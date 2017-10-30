@@ -1,4 +1,4 @@
-import parseUri from 'parse-uri';
+import parseUri from 'parse-uri'
 import { createRequestBuilder } from '@commercetools/api-request-builder';
 import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-local/constants';
 import toGlobal from 'core/utils/to-global';
@@ -41,6 +41,7 @@ const methodToHttpMethod = method => {
       throw new Error('sdk: unknown-method');
   }
 };
+
 
 export default ({ dispatch, getState }) => next => action => {
   if (!action) return next(action);
