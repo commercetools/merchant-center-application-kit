@@ -22,28 +22,55 @@ const client = createClient({
   middlewares: [userAgentMiddleware, httpMiddleware],
 });
 
+// NOTE in case we create the middleware into a factory, these could come in
+// as options
+const selectProjectKey = state => {
+  const application = state.globalAppState || state.application;
+  return application.currentProjectKey;
+};
+
+const selectToken = state => {
+  const application = state.globalAppState || state.application;
+  return application.token;
+};
+
+const actionToUri = (action, projectKey) => {
+  // TODO how to configure project key?
+  // Do we need it for every request?
+  // What if one request does not need it? Omit the object?
+  const requestBuilder = createRequestBuilder({ projectKey });
+  // NOTE it's weird that we have to access this from the request builder.
+  // Shouldn't it just be a part of the object we parse?
+  // NOTE shouldn't requestBuilder be called requestUriBuilder instead?
+  const service = requestBuilder[action.payload.service];
+  // NOTE once the sdk supports parsing objects this can go away
+  applyOptionsToService(action.payload.options, service);
+
+  return service.build();
+};
+
+const methodToHttpMethod = method => {
+  switch (method) {
+    case 'fetch':
+      return 'GET';
+    case 'update':
+      return 'POST';
+    default:
+      throw new Error('sdk: unknown-method');
+  }
+};
+
 export default ({ dispatch, getState }) => next => action => {
   if (!action) return next(action);
 
   if (action.type === 'SDK') {
+    // NOTE here the middleware is aware of the application
+    // instead we could refactor to middleware factory and accept options with
+    // options.selectToken(state) and options.selectProjectKey(state)
+    // or is this Speculative Generality?
     const state = getState();
-    const application = state.globalAppState || state.application;
 
-    // TODO how to configure project key?
-    // Do we need it for every request?
-    // What if one request does not need it? Omit the object?
-    const requestBuilder = createRequestBuilder({
-      projectKey: application.currentProjectKey,
-    });
-    // NOTE it's weird that we have to access this from the request builder.
-    // Shouldn't it just be a part of the object we parse?
-    // NOTE shouldn't requestBuilder be called requestUriBuilder instead?
-    const service = requestBuilder[action.payload.service];
-    // NOTE once the sdk supports parsing objects this can go away
-    applyOptionsToService(action.payload.options, service);
-
-    // TODO throw when this fails?
-    const uri = service.build();
+    const uri = actionToUri(action, selectProjectKey(state));
 
     const requestName = `sdk.${action.payload.method}(${uri})`;
 
@@ -52,25 +79,13 @@ export default ({ dispatch, getState }) => next => action => {
     // and provide hooks for `onFetch`, `onResult` and `onError
     dispatch(toGlobal({ type: SHOW_LOADING, payload: requestName }));
 
-    // NOTE do we need to support more types?
-    const method = (() => {
-      switch (action.payload.method) {
-        case 'fetch':
-          return 'GET';
-        case 'update':
-          return 'POST';
-        default:
-          throw new Error('sdk: unkown-method');
-      }
-    })();
-
     // NOTE the promise returned by the client resolves to a custom format
     // it will contain { statusCode, headers, body }
     return client
       .execute({
         uri,
-        method,
-        headers: { Authorization: application.token },
+        method: methodToHttpMethod(action.payload.method),
+        headers: { Authorization: selectToken(state) },
       })
       .then(
         result => {
