@@ -79,13 +79,16 @@ export default ({ dispatch, getState }) => next => action => {
     // and provide hooks for `onFetch`, `onResult` and `onError
     dispatch(toGlobal({ type: SHOW_LOADING, payload: requestName }));
 
+    const method = methodToHttpMethod(action.payload.method);
+
     // NOTE the promise returned by the client resolves to a custom format
     // it will contain { statusCode, headers, body }
     return client
       .execute({
         uri,
-        method: methodToHttpMethod(action.payload.method),
+        method,
         headers: { Authorization: selectToken(state) },
+        ...(method === 'POST' ? { body: action.payload.payload } : {}),
       })
       .then(
         result => {
