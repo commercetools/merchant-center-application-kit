@@ -23,10 +23,10 @@ describe('when the action is of type SDK', () => {
       payload: { service: 'productTypes', method: 'fetch' },
     };
     const next = jest.fn();
-    const expectedResult = {};
+    const response = { body: 'foo' };
     let resultPromise;
     beforeEach(() => {
-      clientMock.productTypes = createServiceMock(expectedResult);
+      clientMock.productTypes = createServiceMock(response);
       resultPromise = middleware({ dispatch, getState })(next)(action);
     });
 
@@ -48,7 +48,7 @@ describe('when the action is of type SDK', () => {
     });
 
     it('should return a promise', async () => {
-      expect(resultPromise).resolves.toBe(expectedResult);
+      await expect(resultPromise).resolves.toBe(response.body);
     });
   });
 
@@ -61,15 +61,15 @@ describe('when the action is of type SDK', () => {
       payload: { service: 'productTypes', method: 'fetch' },
     };
     const next = jest.fn();
-    const expectedResult = {};
+    const response = { body: 'foo' };
     let resultPromise;
     beforeEach(() => {
-      clientMock.productTypes = createServiceMock(expectedResult);
+      clientMock.productTypes = createServiceMock(response);
       resultPromise = middleware({ dispatch, getState })(next)(action);
     });
 
     it('should return the result the fetch', async () => {
-      expect(resultPromise).resolves.toBe(expectedResult);
+      await expect(resultPromise).resolves.toBe(response.body);
     });
     it('should call "service.fetch"', () => {
       expect(clientMock.productTypes.fetch).toHaveBeenCalledTimes(1);
@@ -85,15 +85,15 @@ describe('when the action is of type SDK', () => {
       payload: { service: 'productTypes', method: 'update' },
     };
     const next = jest.fn();
-    const expectedResult = {};
+    const response = { body: 'foo' };
     let resultPromise;
     beforeEach(() => {
-      clientMock.productTypes = createServiceMock(expectedResult);
+      clientMock.productTypes = createServiceMock(response);
       resultPromise = middleware({ dispatch, getState })(next)(action);
     });
 
     it('should return the result the update', async () => {
-      expect(resultPromise).resolves.toBe(expectedResult);
+      await expect(resultPromise).resolves.toBe(response.body);
     });
     it('should call "service.update"', () => {
       expect(clientMock.productTypes.update).toHaveBeenCalledTimes(1);
