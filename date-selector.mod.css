@@ -1,0 +1,66 @@
+@import 'ui-kit/materials/colors.mod.css';
+
+.container {
+  display: flex;
+  align-items: stretch;
+}
+
+.container-left {
+  width: calc(100% - 80px);
+}
+
+.container-right {
+  width: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.container-full {
+  width: 100%;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.list-item {
+  flex: 1 0 100px;
+  margin-right: 5px;
+}
+
+.list-item:last-child {
+  margin: 0;
+}
+
+.list-item-year,
+.list-item-month,
+.list-item-day {
+  composes: list-item;
+}
+
+.dropdown {
+  composes: form-react-select-container from 'core/components/dropdowns/dropdown/dropdown.mod.css';
+  width: 100%;
+}
+
+.dropdown:global(.is-disabled) :global(.Select-control):hover {
+  cursor: not-allowed;
+}
+
+.clear-button {
+  cursor: pointer;
+  margin-left: 10px;
+  position: relative;
+
+  /* offset the icon to the top, since the icon itself contains an empty pixel
+  at the top */
+  margin-top: -1px;
+}
+
+.label-day-of-week {
+  color: var(--color-grey);
+  margin-left: 10px;
+}
