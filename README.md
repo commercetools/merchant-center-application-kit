@@ -1,9 +1,9 @@
 # L10n
 
-* `@commercetools/l10n/country-information`
+* `@commercetools-local/l10n/country-information`
 
 ```js
-import { withCountries, countriesShape } from '@commercetools/l10n/country-information';
+import { withCountries, countriesShape } from '@commercetools-local/l10n/country-information';
 
 withCountries(ownProps => ownProps.locale)(Component);
 
@@ -11,10 +11,10 @@ withCountries(ownProps => ownProps.locale)(Component);
 // { "de":"Germany" }
 ```
 
-* `@commercetools/l10n/currency-information`
+* `@commercetools-local/l10n/currency-information`
 
 ```js
-import { withCurrencies, currenciesShape } from '@commercetools/l10n/currency-information';
+import { withCurrencies, currenciesShape } from '@commercetools-local/l10n/currency-information';
 
 withCurrencies(ownProps => ownProps.locale)(Component);
 
