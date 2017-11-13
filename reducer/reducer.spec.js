@@ -1,5 +1,6 @@
 import deepFreeze from 'deep-freeze';
-import { reducer, addNotification, removeNotification } from 'notifications';
+import { addNotification, removeNotification } from '../action-creators';
+import reducer from './reducer';
 
 describe('reducing add/remove notification actions', () => {
   it('should reduce the add notification action', () => {

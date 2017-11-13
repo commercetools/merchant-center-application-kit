@@ -1,9 +1,5 @@
-import {
-  addNotification,
-  removeNotification,
-  ADD_NOTIFICATION,
-  REMOVE_NOTIFICATION,
-} from 'notifications';
+import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from '../action-types';
+import { addNotification, removeNotification } from './action-creators';
 
 describe('creating add notification actions', () => {
   it('should create an add notification action with no meta data', () => {

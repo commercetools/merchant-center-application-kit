@@ -85,7 +85,7 @@ The middleware
 
 ```js
 import { createStore, applyMiddleware } from 'redux';
-import { middleware as notificationsMiddleware } from 'notifications';
+import { middleware as notificationsMiddleware } from '@commercetools/notifications';
 import rootReducer from './reducers/index';
 
 // Note: this API requires redux@>=3.1.0
@@ -126,7 +126,7 @@ They can be used for filtering out notification actions in the logger.
 ```js
 import React from 'react'
 import PropTypes from 'prop-types';
-import { removeNotification } from 'notifications'
+import { removeNotification } from '@commercetools/notifications'
 
 // Accepts a notification map function,
 // which returns the component based on the notification.

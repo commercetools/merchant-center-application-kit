@@ -1,12 +1,8 @@
 import deepFreeze from 'deep-freeze';
 import oneLine from 'common-tags/lib/oneLine';
-import {
-  middleware,
-  ADD_NOTIFICATION,
-  REMOVE_NOTIFICATION,
-  addNotification,
-  removeNotification,
-} from 'notifications';
+import middleware from '../middleware';
+import { addNotification, removeNotification } from '../action-creators';
+import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from '../action-types';
 
 describe('dispatching add/remove notification actions', () => {
   it('should dispatch the add notification action with dismiss', () => {
