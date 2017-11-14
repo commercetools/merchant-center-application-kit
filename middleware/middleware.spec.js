@@ -1,21 +1,22 @@
-import clientMock from 'core/utils/node-sdk';
 import middleware from './middleware';
+import client from './client';
 
-jest.mock('core/utils/node-sdk', () => ({}));
+jest.mock('./client');
 
-const createServiceMock = result => ({
-  withHeader: jest.fn(),
-  withCredentials: jest.fn(),
-  where: jest.fn(),
-  perPage: jest.fn(),
-  sort: jest.fn(),
-  fetch: jest.fn(() => Promise.resolve(result)),
-  update: jest.fn(() => Promise.resolve(result)),
+const createConsoleMock = () => ({
+  groupCollapsed: () => jest.fn(),
+  groupEnd: () => jest.fn(),
+  log: () => jest.fn(),
 });
 
+const globalAppState = { token: 'foo', currentProjectKey: 'bar' };
+
 describe('when the action is of type SDK', () => {
+  beforeEach(() => {
+    // eslint-disable-next-line no-console
+    global.console = createConsoleMock();
+  });
   describe('no matter the method', () => {
-    const globalAppState = { token: 'foo', currentProjectKey: 'bar' };
     const dispatch = jest.fn();
     const getState = jest.fn(() => ({ globalAppState }));
     const action = {
@@ -26,20 +27,21 @@ describe('when the action is of type SDK', () => {
     const response = { body: 'foo' };
     let resultPromise;
     beforeEach(() => {
-      clientMock.productTypes = createServiceMock(response);
+      client.execute = jest.fn(() => Promise.resolve(response));
       resultPromise = middleware({ dispatch, getState })(next)(action);
     });
 
-    it('should set a token on the service', () => {
-      expect(clientMock.productTypes.withHeader).toHaveBeenCalledWith(
-        'Authorization',
-        globalAppState.token
-      );
+    it('should call `client.execute`', () => {
+      expect(client.execute).toHaveBeenCalledTimes(1);
     });
 
-    it('should set credentials on the service', () => {
-      expect(clientMock.productTypes.withCredentials).toHaveBeenCalledWith({
-        projectKey: globalAppState.currentProjectKey,
+    it('should call `client.execute` with uri, method and headers', () => {
+      expect(client.execute).toHaveBeenCalledWith({
+        uri: expect.any(String),
+        method: 'GET',
+        headers: {
+          Authorization: globalAppState.token,
+        },
       });
     });
 
@@ -53,7 +55,6 @@ describe('when the action is of type SDK', () => {
   });
 
   describe('when the method is "fetch"', () => {
-    const globalAppState = {};
     const dispatch = jest.fn();
     const getState = jest.fn(() => ({ globalAppState }));
     const action = {
@@ -64,39 +65,60 @@ describe('when the action is of type SDK', () => {
     const response = { body: 'foo' };
     let resultPromise;
     beforeEach(() => {
-      clientMock.productTypes = createServiceMock(response);
+      client.execute = jest.fn(() => Promise.resolve(response));
       resultPromise = middleware({ dispatch, getState })(next)(action);
     });
 
-    it('should return the result the fetch', async () => {
+    it('should return the body of the fetch result', async () => {
       await expect(resultPromise).resolves.toBe(response.body);
     });
-    it('should call "service.fetch"', () => {
-      expect(clientMock.productTypes.fetch).toHaveBeenCalledTimes(1);
+
+    it('should call `client.execute`', () => {
+      expect(client.execute).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call `client.execute` with uri, method and headers', () => {
+      expect(client.execute).toHaveBeenCalledWith({
+        uri: expect.any(String),
+        method: 'GET',
+        headers: {
+          Authorization: globalAppState.token,
+        },
+      });
     });
   });
 
   describe('when the method is "update"', () => {
-    const globalAppState = {};
     const dispatch = jest.fn();
     const getState = jest.fn(() => ({ globalAppState }));
     const action = {
       type: 'SDK',
-      payload: { service: 'productTypes', method: 'update' },
+      payload: { service: 'productTypes', method: 'update', payload: {} },
     };
     const next = jest.fn();
     const response = { body: 'foo' };
     let resultPromise;
     beforeEach(() => {
-      clientMock.productTypes = createServiceMock(response);
+      client.execute = jest.fn(() => Promise.resolve(response));
       resultPromise = middleware({ dispatch, getState })(next)(action);
     });
 
     it('should return the result the update', async () => {
       await expect(resultPromise).resolves.toBe(response.body);
     });
-    it('should call "service.update"', () => {
-      expect(clientMock.productTypes.update).toHaveBeenCalledTimes(1);
+    it('should call `client.execute`', () => {
+      expect(client.execute).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call `client.execute` with uri, method, headers and body', () => {
+      expect(client.execute).toHaveBeenCalledWith({
+        uri: expect.any(String),
+        method: 'POST',
+        headers: {
+          Authorization: globalAppState.token,
+        },
+        body: expect.any(Object),
+      });
     });
   });
 });

@@ -1,26 +1,8 @@
-import { createClient } from '@commercetools/sdk-client';
-import { createHttpMiddleware } from '@commercetools/sdk-middleware-http';
-import { createUserAgentMiddleware } from '@commercetools/sdk-middleware-user-agent';
+import parseUri from 'parse-uri';
 import { createRequestBuilder } from '@commercetools/api-request-builder';
 import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-local/constants';
 import toGlobal from 'core/utils/to-global';
-import applyOptionsToService from '../apply-options-to-service';
-
-const userAgentMiddleware = createUserAgentMiddleware({
-  libraryName: 'merchant-center-frontend',
-  libraryVersion: '1.0.0',
-  contactUrl: 'https://mc.commercetools.com',
-  contactEmail: 'mc@commercetools.com',
-});
-
-// NOTE we should not use these directly but rather have them passed in from
-// the application
-const { app: { host, protocol } } = window;
-const backendUrl = `${protocol}://${host}`;
-const httpMiddleware = createHttpMiddleware({ host: backendUrl });
-const client = createClient({
-  middlewares: [userAgentMiddleware, httpMiddleware],
-});
+import client from './client';
 
 // NOTE in case we create the middleware into a factory, these could come in
 // as options
@@ -35,6 +17,7 @@ const selectToken = state => {
 };
 
 const actionToUri = (action, projectKey) => {
+  if (action.payload.uri) return action.payload.uri;
   // TODO how to configure project key?
   // Do we need it for every request?
   // What if one request does not need it? Omit the object?
@@ -43,8 +26,7 @@ const actionToUri = (action, projectKey) => {
   // Shouldn't it just be a part of the object we parse?
   // NOTE shouldn't requestBuilder be called requestUriBuilder instead?
   const service = requestBuilder[action.payload.service];
-  // NOTE once the sdk supports parsing objects this can go away
-  applyOptionsToService(action.payload.options, service);
+  if (action.payload.options) service.parse(action.payload.options);
 
   return service.build();
 };
@@ -80,6 +62,33 @@ export default ({ dispatch, getState }) => next => action => {
     dispatch(toGlobal({ type: SHOW_LOADING, payload: requestName }));
 
     const method = methodToHttpMethod(action.payload.method);
+    // TODO why doesn't this have to be
+    //   Authorization: `Bearer ${selectToken(state)}`
+    const headers = { Authorization: selectToken(state) };
+
+    /* eslint-disable no-console */
+    const uriParts = parseUri(uri);
+    const groupName = `%c${method} %c${uriParts.path}`;
+    console.groupCollapsed(
+      groupName,
+      'color: black; font-weight: bold;',
+      'color: gray; font-weight: lighter;'
+    );
+    console.log('%caction', 'color: dimgrey; font-weight: bold;', action);
+    console.log('%cheaders', 'color: brown; font-weight: bold;', headers);
+    console.log(
+      '%cparams',
+      'color: blueviolet; font-weight: bold;',
+      uriParts.queryKey
+    );
+    if (method === 'POST')
+      console.log(
+        '%cbody',
+        'color: cadetblue; font-weight: bold;',
+        action.payload.payload
+      );
+    console.groupEnd(groupName);
+    /* eslint-enable no-console */
 
     // NOTE the promise returned by the client resolves to a custom format
     // it will contain { statusCode, headers, body }
@@ -87,7 +96,7 @@ export default ({ dispatch, getState }) => next => action => {
       .execute({
         uri,
         method,
-        headers: { Authorization: selectToken(state) },
+        headers,
         ...(method === 'POST' ? { body: action.payload.payload } : {}),
       })
       .then(
