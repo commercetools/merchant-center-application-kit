@@ -97,14 +97,22 @@ describe('when the action is of type SDK', () => {
         payload: { service: 'productTypes', method: 'fetch' },
       };
       const next = jest.fn();
-      const response = { body: 'foo' };
+      const expectedError = { body: 'foo' };
       let resultPromise;
       beforeEach(() => {
-        client.execute = jest.fn(() => Promise.reject(response));
+        client.execute = jest.fn(() => Promise.reject(expectedError));
         resultPromise = middleware({ dispatch, getState })(next)(action);
+        // We catch all errors here so that they don't throw globally
+        // This is necessary because the rejected promise rethrows from
+        // the handler
+        return resultPromise.catch(error => {
+          if (error === expectedError) return;
+          throw error;
+        });
       });
 
       it('should mark the request as completed', () => {
+        expect.hasAssertions();
         expect(dispatch).toHaveBeenCalledWith(
           toGlobal({
             type: HIDE_LOADING,
@@ -114,7 +122,7 @@ describe('when the action is of type SDK', () => {
       });
 
       it('should return a rejecting promise', async () => {
-        await expect(resultPromise).rejects.toBe(response);
+        await expect(resultPromise).rejects.toBe(expectedError);
       });
     });
   });
