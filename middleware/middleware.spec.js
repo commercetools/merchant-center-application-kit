@@ -4,20 +4,11 @@ import middleware from './middleware';
 import client from './client';
 
 jest.mock('./client');
-
-const createConsoleMock = () => ({
-  groupCollapsed: () => jest.fn(),
-  groupEnd: () => jest.fn(),
-  log: () => jest.fn(),
-});
+jest.mock('../utils');
 
 const globalAppState = { token: 'foo', currentProjectKey: 'bar' };
 
 describe('when the action is of type SDK', () => {
-  beforeEach(() => {
-    // eslint-disable-next-line no-console
-    global.console = createConsoleMock();
-  });
   describe('no matter the method', () => {
     describe('when making the request', () => {
       const dispatch = jest.fn();

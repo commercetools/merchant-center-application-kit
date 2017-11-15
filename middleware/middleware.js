@@ -1,7 +1,7 @@
-import parseUri from 'parse-uri';
 import { createRequestBuilder } from '@commercetools/api-request-builder';
 import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-local/constants';
 import toGlobal from 'core/utils/to-global';
+import { parseUri, logRequest } from '../utils';
 import client from './client';
 
 // NOTE in case we create the middleware into a factory, these could come in
@@ -64,29 +64,7 @@ export default ({ dispatch, getState }) => next => action => {
     const method = methodToHttpMethod(action.payload.method);
     const headers = { Authorization: selectToken(state) };
 
-    /* eslint-disable no-console */
-    const uriParts = parseUri(uri);
-    const groupName = `%c${method} %c${uriParts.path}`;
-    console.groupCollapsed(
-      groupName,
-      'color: black; font-weight: bold;',
-      'color: gray; font-weight: lighter;'
-    );
-    console.log('%caction', 'color: dimgrey; font-weight: bold;', action);
-    console.log('%cheaders', 'color: brown; font-weight: bold;', headers);
-    console.log(
-      '%cparams',
-      'color: blueviolet; font-weight: bold;',
-      uriParts.queryKey
-    );
-    if (method === 'POST')
-      console.log(
-        '%cbody',
-        'color: cadetblue; font-weight: bold;',
-        action.payload.payload
-      );
-    console.groupEnd(groupName);
-    /* eslint-enable no-console */
+    logRequest({ method, action, headers, uriParts: parseUri(uri) });
 
     // NOTE the promise returned by the client resolves to a custom format
     // it will contain { statusCode, headers, body }
