@@ -1,7 +1,7 @@
 import { createRequestBuilder } from '@commercetools/api-request-builder';
 import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-local/constants';
 import toGlobal from 'core/utils/to-global';
-import { parseUri, logRequest } from '../utils';
+import { logRequest } from '../utils';
 import client from './client';
 
 // NOTE in case we create the middleware into a factory, these could come in
@@ -54,6 +54,17 @@ export default ({ dispatch, getState }) => next => action => {
 
     const uri = actionToUri(action, selectProjectKey(state));
 
+    // This `requestName` is never really used.
+    //
+    // We keep track of requests which are in progress in the `loading` state of
+    // the application. The `loading` state is an array of strings
+    // (which are correlation Ids, action types or request names).
+    // This is just done so that debugging is easier.
+    //
+    // It's easier to debug
+    //   loading: ['PRODUCTS_FETCHED', 'sdk.fetch(/product-projection-search)']
+    // than to debug
+    //   loading: 2
     const requestName = `sdk.${action.payload.method}(${uri})`;
 
     // NOTE here the middleware is aware of the application
@@ -63,8 +74,6 @@ export default ({ dispatch, getState }) => next => action => {
 
     const method = methodToHttpMethod(action.payload.method);
     const headers = { Authorization: selectToken(state) };
-
-    logRequest({ method, action, headers, uriParts: parseUri(uri) });
 
     // NOTE the promise returned by the client resolves to a custom format
     // it will contain { statusCode, headers, body }
@@ -77,6 +86,13 @@ export default ({ dispatch, getState }) => next => action => {
       })
       .then(
         result => {
+          if (process.env.NODE_ENV !== 'production')
+            logRequest({
+              method,
+              request: { headers, uri },
+              response: result.body,
+              action,
+            });
           dispatch(toGlobal({ type: HIDE_LOADING, payload: requestName }));
           // The promise returned by "fetch" will reject when the request fails,
           // but only in certain cases. See "Checking that the fetch was successful"
@@ -85,6 +101,13 @@ export default ({ dispatch, getState }) => next => action => {
           return result.body;
         },
         error => {
+          if (process.env.NODE_ENV !== 'production')
+            logRequest({
+              method,
+              request: { headers, uri },
+              error,
+              action,
+            });
           dispatch(toGlobal({ type: HIDE_LOADING, payload: requestName }));
           throw error;
         }
