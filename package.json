@@ -1,7 +1,10 @@
 {
-  "name": "@commmercetools/react-datetime-selector",
+  "name": "@commercetools-local/react-datetime-selector",
   "version": "1.0.0",
   "description": "",
   "license": "Proprietary",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "@commercetools-local/ui-kit": "*"
+  }
 }
