@@ -7,8 +7,8 @@ import range from 'lodash.range';
 import styles from './date-selector.mod.css';
 
 // Utility functions for the month selector search
-const toZeroIndexMonth = monthIndex => monthIndex - 1;
-const toOneIndexMonth = monthIndex => monthIndex + 1;
+const toZeroBasedNumbering = monthIndex => monthIndex - 1;
+const toOneBasedNumbering = monthIndex => monthIndex + 1;
 
 // TODO:
 // - use timezone to determine the order of the elements (day, month, year).
@@ -134,20 +134,24 @@ class DateSelector extends React.PureComponent {
       .locale(locale)
       .localeData()
       .months()
-      .map((key, index) => ({ value: toOneIndexMonth(index), label: key }));
+      .map((key, index) => ({ value: toOneBasedNumbering(index), label: key }));
 
   handleSelectionChange = (key, option) => {
     const newState = { [key]: option.value };
 
     if (key === 'month') {
-      newState[key] = toZeroIndexMonth(newState[key]);
+      newState[key] = toZeroBasedNumbering(newState[key]);
 
       // Check that the date is still valid, otherwise
       // reset the `day` value.
       // E.g. selected day is `31` and new month is `February`.
       // The date is obviously invalid, so we reset the `day`.
       const isValid = moment
-        .utc([this.state.year, toZeroIndexMonth(option.value), this.state.day])
+        .utc([
+          this.state.year,
+          toZeroBasedNumbering(option.value),
+          this.state.day,
+        ])
         .isValid();
       if (!isValid) newState.day = undefined;
     }
@@ -233,7 +237,7 @@ class DateSelector extends React.PureComponent {
           this.props.classNames.dropdownMonth
         )}
         placeholder={this.props.placeholderMonth}
-        value={toOneIndexMonth(this.state.month)}
+        value={toOneBasedNumbering(this.state.month)}
         options={this.monthOptions}
         onChange={option => this.handleSelectionChange('month', option)}
         clearable={false}
