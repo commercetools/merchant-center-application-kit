@@ -82,6 +82,8 @@ describe('rendering', () => {
       ]);
     });
 
+    // The values of the months have been incremented by 1 to reflect
+    // the one-indexed order as expected by the end-user.
     it('should initialize list of month options', () => {
       expect(wrapper.instance().monthOptions).toEqual([
         { label: 'January', value: 1 },
@@ -473,6 +475,9 @@ describe('callbacks', () => {
         expect(props.onChange).not.toHaveBeenCalled();
       });
 
+      // The value of the month in the state has been decremented to
+      // reflect the zero-index order expected by momentjs. The original
+      // value is generated using a one-index order.
       it('should update state for month', () => {
         expect(wrapper.state()).toEqual({
           year: 2016,
