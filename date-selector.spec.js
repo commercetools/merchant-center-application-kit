@@ -84,18 +84,18 @@ describe('rendering', () => {
 
     it('should initialize list of month options', () => {
       expect(wrapper.instance().monthOptions).toEqual([
-        { label: 'January', value: 0 },
-        { label: 'February', value: 1 },
-        { label: 'March', value: 2 },
-        { label: 'April', value: 3 },
-        { label: 'May', value: 4 },
-        { label: 'June', value: 5 },
-        { label: 'July', value: 6 },
-        { label: 'August', value: 7 },
-        { label: 'September', value: 8 },
-        { label: 'October', value: 9 },
-        { label: 'November', value: 10 },
-        { label: 'December', value: 11 },
+        { label: 'January', value: 1 },
+        { label: 'February', value: 2 },
+        { label: 'March', value: 3 },
+        { label: 'April', value: 4 },
+        { label: 'May', value: 5 },
+        { label: 'June', value: 6 },
+        { label: 'July', value: 7 },
+        { label: 'August', value: 8 },
+        { label: 'September', value: 9 },
+        { label: 'October', value: 10 },
+        { label: 'November', value: 11 },
+        { label: 'December', value: 12 },
       ]);
     });
   });
@@ -476,7 +476,7 @@ describe('callbacks', () => {
       it('should update state for month', () => {
         expect(wrapper.state()).toEqual({
           year: 2016,
-          month: 3,
+          month: 2,
           day: undefined,
         });
       });
