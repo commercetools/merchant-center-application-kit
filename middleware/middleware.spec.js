@@ -1,3 +1,5 @@
+import toGlobal from 'core/utils/to-global';
+import { SHOW_LOADING, HIDE_LOADING } from 'core/constants';
 import middleware from './middleware';
 import client from './client';
 
@@ -17,40 +19,103 @@ describe('when the action is of type SDK', () => {
     global.console = createConsoleMock();
   });
   describe('no matter the method', () => {
-    const dispatch = jest.fn();
-    const getState = jest.fn(() => ({ globalAppState }));
-    const action = {
-      type: 'SDK',
-      payload: { service: 'productTypes', method: 'fetch' },
-    };
-    const next = jest.fn();
-    const response = { body: 'foo' };
-    let resultPromise;
-    beforeEach(() => {
-      client.execute = jest.fn(() => Promise.resolve(response));
-      resultPromise = middleware({ dispatch, getState })(next)(action);
-    });
+    describe('when making the request', () => {
+      const dispatch = jest.fn();
+      const getState = jest.fn(() => ({ globalAppState }));
+      const action = {
+        type: 'SDK',
+        payload: { service: 'productTypes', method: 'fetch' },
+      };
+      const next = jest.fn();
+      const response = { body: 'foo' };
+      beforeEach(() => {
+        client.execute = jest.fn(() => Promise.resolve(response));
+        return middleware({ dispatch, getState })(next)(action);
+      });
 
-    it('should call `client.execute`', () => {
-      expect(client.execute).toHaveBeenCalledTimes(1);
-    });
+      it('should call `client.execute`', () => {
+        expect(client.execute).toHaveBeenCalledTimes(1);
+      });
 
-    it('should call `client.execute` with uri, method and headers', () => {
-      expect(client.execute).toHaveBeenCalledWith({
-        uri: expect.any(String),
-        method: 'GET',
-        headers: {
-          Authorization: globalAppState.token,
-        },
+      it('should call `client.execute` with uri, method and headers', () => {
+        expect(client.execute).toHaveBeenCalledWith({
+          uri: expect.any(String),
+          method: 'GET',
+          headers: {
+            Authorization: globalAppState.token,
+          },
+        });
+      });
+
+      it('should mark the request as started', () => {
+        expect(dispatch).toHaveBeenCalledWith(
+          toGlobal({
+            type: SHOW_LOADING,
+            payload: 'sdk.fetch(/bar/product-types)',
+          })
+        );
+      });
+
+      it('should not call `next`', () => {
+        expect(next).toHaveBeenCalledTimes(0);
+      });
+    });
+    describe('when the request is successful', () => {
+      const dispatch = jest.fn();
+      const getState = jest.fn(() => ({ globalAppState }));
+      const action = {
+        type: 'SDK',
+        payload: { service: 'productTypes', method: 'fetch' },
+      };
+      const next = jest.fn();
+      const response = { body: 'foo' };
+      let resultPromise;
+      beforeEach(() => {
+        client.execute = jest.fn(() => Promise.resolve(response));
+        resultPromise = middleware({ dispatch, getState })(next)(action);
+      });
+
+      it('should mark the request as completed', () => {
+        expect(dispatch).toHaveBeenCalledWith(
+          toGlobal({
+            type: HIDE_LOADING,
+            payload: 'sdk.fetch(/bar/product-types)',
+          })
+        );
+      });
+
+      it('should return a resolving promise', async () => {
+        await expect(resultPromise).resolves.toBe(response.body);
       });
     });
 
-    it('should not call `next`', () => {
-      expect(next).toHaveBeenCalledTimes(0);
-    });
+    describe('when the request fails', () => {
+      const dispatch = jest.fn();
+      const getState = jest.fn(() => ({ globalAppState }));
+      const action = {
+        type: 'SDK',
+        payload: { service: 'productTypes', method: 'fetch' },
+      };
+      const next = jest.fn();
+      const response = { body: 'foo' };
+      let resultPromise;
+      beforeEach(() => {
+        client.execute = jest.fn(() => Promise.reject(response));
+        resultPromise = middleware({ dispatch, getState })(next)(action);
+      });
 
-    it('should return a promise', async () => {
-      await expect(resultPromise).resolves.toBe(response.body);
+      it('should mark the request as completed', () => {
+        expect(dispatch).toHaveBeenCalledWith(
+          toGlobal({
+            type: HIDE_LOADING,
+            payload: 'sdk.fetch(/bar/product-types)',
+          })
+        );
+      });
+
+      it('should return a rejecting promise', async () => {
+        await expect(resultPromise).rejects.toBe(response);
+      });
     });
   });
 
