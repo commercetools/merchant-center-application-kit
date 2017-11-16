@@ -1,0 +1,14 @@
+{
+  "name": "@commercetools-local/actions-global",
+  "version": "1.0.0",
+  "description": "",
+  "license": "Proprietary",
+  "private": true,
+  "main": "./index.js",
+  "dependencies": {
+    "@commercetools-local/browser-history": "*",
+    "@commercetools-local/constants": "*",
+    "@commercetools-local/notifications": "*",
+    "@commercetools-local/utils": "*"
+  }
+}
