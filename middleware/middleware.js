@@ -62,8 +62,6 @@ export default ({ dispatch, getState }) => next => action => {
     dispatch(toGlobal({ type: SHOW_LOADING, payload: requestName }));
 
     const method = methodToHttpMethod(action.payload.method);
-    // TODO why doesn't this have to be
-    //   Authorization: `Bearer ${selectToken(state)}`
     const headers = { Authorization: selectToken(state) };
 
     /* eslint-disable no-console */
