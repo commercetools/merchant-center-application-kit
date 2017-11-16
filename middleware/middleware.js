@@ -1,6 +1,6 @@
+import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-local/constants';
 import toGlobal from 'core/utils/to-global';
 import client from 'core/utils/node-sdk';
-import { SHOW_LOADING, HIDE_LOADING } from 'core/constants';
 import applyOptionsToService from '../apply-options-to-service';
 
 export default ({ dispatch, getState }) => next => action => {
