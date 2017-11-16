@@ -1,0 +1,8 @@
+{
+  "name": "@commercetools-local/constants",
+  "version": "1.0.0",
+  "description": "",
+  "license": "Proprietary",
+  "private": true,
+  "main": "./index.js"
+}
