@@ -1,0 +1,8 @@
+{
+  "name": "@commercetools-local/browser-history",
+  "version": "1.0.0",
+  "description": "",
+  "license": "Proprietary",
+  "private": true,
+  "main": "./index.js"
+}
