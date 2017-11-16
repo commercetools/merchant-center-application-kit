@@ -96,3 +96,13 @@ export const MANAGE_ORDERS_PERMISSION = {
   mode: 'manage',
   resource: 'orders',
 };
+
+export const FILTER_TYPES = {
+  lessThan: 'lessThan',
+  moreThan: 'moreThan',
+  equalTo: 'equalTo',
+  range: 'range',
+  missing: 'missing',
+  missingIn: 'missingIn',
+  in: 'in',
+};
