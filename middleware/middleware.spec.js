@@ -1,5 +1,5 @@
+import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-local/constants';
 import toGlobal from 'core/utils/to-global';
-import { SHOW_LOADING, HIDE_LOADING } from 'core/constants';
 import middleware from './middleware';
 import client from './client';
 
