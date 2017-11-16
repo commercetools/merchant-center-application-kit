@@ -1,6 +1,6 @@
 import { createRequestBuilder } from '@commercetools/api-request-builder';
 import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-local/constants';
-import toGlobal from 'core/utils/to-global';
+import toGlobal from '@commercetools-local/utils/to-global';
 import { logRequest } from '../utils';
 import client from './client';
 
