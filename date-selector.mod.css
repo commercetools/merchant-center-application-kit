@@ -1,4 +1,15 @@
 @import '@commercetools-local/ui-kit/materials/colors.mod.css';
+@import '@commercetools-local/ui-kit/materials/spacings.mod.css';
+
+:root {
+  /* save toolbar */
+  --height-save-toolbar: 57px;
+
+  /* additional spacing at the bottom of view that has a save-toolbar */
+  --spacing-bottom-with-save-toolbar: calc(
+    var(--height-save-toolbar) + var(--spacing-16)
+  );
+}
 
 .container {
   display: flex;
@@ -41,8 +52,60 @@
   composes: list-item;
 }
 
+/** REACT SELECT COMPOSITION */
+.react-select-container {
+  position: relative;
+}
+
+.react-select-container :global(.Select-control) {
+  background: var(--color-whiteAlabaster);
+  color: var(--color-greyTundora);
+  border-radius: 6px;
+}
+
+.react-select-container :global(.Select-menu-outer) {
+  z-index: 3;
+
+  /* This transform forces GPU acceleration, which fixes high DPI issues
+     in Chrome (Blink). */
+  transform: translate3d(0, 0, 0);
+}
+
+:global(.is-open.Select).react-select-container :global(.Select-control) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Adds extra spacing on the bottom, which avoids the dropdown menu to be
+  overlapped by the save toolbar on Firefox */
+:global(.is-open.Select).react-select-container
+  :global(.Select-menu-outer)::after {
+  content: ' ';
+  position: absolute;
+  height: var(--spacing-bottom-with-save-toolbar);
+  width: 100%;
+  top: 100%;
+}
+
+:global(.is-focused.has-value:not(.is-pseudo-focused)).react-select-container
+  :global(.Select-value-label) {
+  color: var(--color-primaryGrey) !important;
+}
+
+.react-select-container
+  :global(.Select-menu-outer .Select-menu .Select-option.is-focused) {
+  background-color: var(--color-whiteSnow);
+  color: var(--color-greyTundora);
+}
+
+.react-select-container :global(.Select-control) {
+  border: none;
+}
+
+/** REACT SELECT COMPOSITION (end) */
+
 .dropdown {
-  composes: form-react-select-container from 'core/components/dropdowns/dropdown/dropdown.mod.css';
+  composes: react-select-container;
   width: 100%;
 }
 
