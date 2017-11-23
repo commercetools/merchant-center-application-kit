@@ -15,6 +15,8 @@
     "test": "react-scripts test --env=jsdom"
   },
   "dependencies": {
+    "@commercetools-local/constants": "*",
+    "@commercetools-local/utils": "*",
     "history": "4.7.2",
     "react-router": "4.2.0",
     "react-router-dom": "4.2.2"
