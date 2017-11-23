@@ -13,7 +13,7 @@ import * as storage from '@commercetools-local/utils/storage';
 // * enable `anonymizeSentry` when `tracking.js` is moved to app-shell
 // * enable `storage.remove(APP_STORAGE_KEYS.ACTIVE_PROJECT_KEY)` when
 //   `app/constants` are moved to app-shell (or to `@commercetools-local/constants`)
-export const WithAuth = props => {
+export const Authenticated = props => {
   if (props.isLoggedIn) return props.children;
 
   // anonymizeSentry();
@@ -46,8 +46,8 @@ export const WithAuth = props => {
     />
   );
 };
-WithAuth.displayName = 'WithAuth';
-WithAuth.propTypes = {
+Authenticated.displayName = 'Authenticated';
+Authenticated.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
@@ -56,8 +56,8 @@ WithAuth.propTypes = {
 };
 
 export default compose(
-  setDisplayName('WithAuth'),
+  setDisplayName('Authenticated'),
   withProps(() => ({
     isLoggedIn: Boolean(storage.get(CORE_STORAGE_KEYS.TOKEN)),
   }))
-)(WithAuth);
+)(Authenticated);

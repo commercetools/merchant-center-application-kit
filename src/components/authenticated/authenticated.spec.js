@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { LOGOUT_REASONS } from '@commercetools-local/constants';
-import { WithAuth } from './with-auth';
+import { Authenticated } from './authenticated';
 
 const createTestProps = custom => ({
   isLoggedIn: true,
@@ -14,7 +14,7 @@ const createTestProps = custom => ({
 describe('rendering', () => {
   let props;
   let wrapper;
-  const createWrapper = p => shallow(<WithAuth {...p} />);
+  const createWrapper = p => shallow(<Authenticated {...p} />);
   describe('when the user is logged in', () => {
     beforeEach(() => {
       props = createTestProps();
