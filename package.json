@@ -1,0 +1,25 @@
+{
+  "name": "@commercetools-local/application-shell",
+  "version": "1.0.0",
+  "description": "Contains tools for building a MC application",
+  "license": "Proprietary",
+  "private": true,
+  "main": "src/main.js",
+  "module": "src/main.js",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "react-scripts test --env=jsdom"
+  },
+  "dependencies": {
+    "history": "4.7.2",
+    "react-router": "4.2.0",
+    "react-router-dom": "4.2.2"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.13"
+  }
+}
