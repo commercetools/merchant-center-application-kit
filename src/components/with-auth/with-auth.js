@@ -13,7 +13,7 @@ import * as storage from '@commercetools-local/utils/storage';
 // * enable `anonymizeSentry` when `tracking.js` is moved to app-shell
 // * enable `storage.remove(APP_STORAGE_KEYS.ACTIVE_PROJECT_KEY)` when
 //   `app/constants` are moved to app-shell (or to `@commercetools-local/constants`)
-const WithAuth = props => {
+export const WithAuth = props => {
   if (props.isLoggedIn) return props.children;
 
   // anonymizeSentry();
