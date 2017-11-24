@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@commercetools-local/constants": "*",
+    "@commercetools-local/core": "*",
+    "@commercetools-local/ui-kit": "*",
     "@commercetools-local/utils": "*",
     "history": "4.7.2",
     "react-router": "4.2.0",

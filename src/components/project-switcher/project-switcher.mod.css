@@ -1,0 +1,85 @@
+@import '@commercetools-local/ui-kit/materials/colors.mod.css';
+
+.react-select-wrapper {
+  max-width: 400px;
+  min-width: 200px;
+  transition-delay: 0s;
+}
+
+.react-select-wrapper.is-open :global(.Select-control) {
+  border: 1px var(--color-primaryGrey) solid;
+}
+
+:global(.Select--single).react-select-wrapper :global(.Select-value) {
+  padding-right: 65px;
+}
+
+.react-select-container {
+  composes: react-select-container from '@commercetools-local/core/components/dropdowns/dropdown/dropdown.mod.css';
+}
+
+.react-select-container :global(.Select-control) {
+  border: 0;
+  cursor: pointer;
+  min-width: 200px;
+  right: 0;
+  width: 100%;
+}
+
+.react-select-container :global(.Select-control:hover) {
+  box-shadow: none;
+}
+
+/* Name of project  */
+.react-select-container :global(.Select-option) .item-text-main {
+  word-break: break-all;
+}
+
+.dropdown-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.project-name {
+  composes: ellipsis from '@commercetools-local/core/_styles/commons.mod.css';
+  color: var(--color-blueNavy);
+  line-height: 23px;
+  padding-right: 0;
+  width: calc(100% - 55px);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.project-counter {
+  composes: counter from '@commercetools-local/core/_styles/commons.mod.css';
+  margin: 0;
+  right: 33px;
+}
+
+.item-text-main {
+  color: var(--color-blueNavy);
+}
+
+.item-text-disabled {
+  color: var(--color-primaryGrey);
+}
+
+.item-text-main.item-text-disabled {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.item-text-small {
+  font-size: 11px;
+}
+
+.red {
+  color: var(--color-red);
+}
+
+.disabled-icon-container {
+  font-size: 1.5rem;
+  display: flex;
+}

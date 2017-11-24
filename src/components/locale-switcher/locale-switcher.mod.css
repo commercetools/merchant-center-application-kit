@@ -1,0 +1,40 @@
+@import '@commercetools-local/ui-kit/materials/colors.mod.css';
+
+.text {
+  margin-right: 10px;
+  color: var(--color-blueNavy);
+  position: relative;
+  bottom: 13px;
+}
+
+.react-select-container {
+  composes: react-select-container from '@commercetools-local/core/components/dropdowns/dropdown/dropdown.mod.css';
+}
+
+.react-select-container :global(.Select-control) {
+  border: 0;
+  cursor: pointer;
+  width: 160px;
+  right: 0;
+}
+
+.react-select-container :global(.Select-control:hover) {
+  box-shadow: none;
+}
+
+.language-counter {
+  composes: counter from '@commercetools-local/core/_styles/commons.mod.css';
+  right: 33px;
+}
+
+.icon {
+  float: left;
+  margin: 3px 5px 0 -5px;
+  font-size: 1.6em;
+}
+
+.label {
+  display: inline-block;
+  margin: 2px 5px 0 0;
+  color: var(--color-blueNavy);
+}
