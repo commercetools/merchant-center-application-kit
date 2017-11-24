@@ -11,10 +11,11 @@ const createTestProps = custom => ({
   children: <div>{'choo choo'}</div>,
   ...custom,
 });
+const createWrapper = props => shallow(<Authenticated {...props} />);
+
 describe('rendering', () => {
   let props;
   let wrapper;
-  const createWrapper = p => shallow(<Authenticated {...p} />);
   describe('when the user is logged in', () => {
     beforeEach(() => {
       props = createTestProps();
