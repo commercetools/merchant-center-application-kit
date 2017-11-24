@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { compose, setDisplayName } from 'recompose';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import omit from 'lodash.omit';
 
 const LoggedInUserQuery = gql`
   query LoggedInUser {
@@ -39,8 +40,12 @@ const graphqlOptions = {
 };
 
 const WithUser = props => {
-  const { mapDataToProps, render, userData, ...parentProps } = props;
-  const mappedProps = mapDataToProps ? mapDataToProps(userData) : { userData };
+  const mappedProps = props.mapDataToProps
+    ? props.mapDataToProps(props.userData)
+    : { userData: props.userData };
+  // Extract props coming from parents and omit props specific to this
+  // component, then pass them down to the children.
+  const parentProps = omit(props, ['mapDataToProps', 'render', 'userData']);
   return props.render({ ...parentProps, ...mappedProps });
 };
 WithUser.displayName = 'WithUser';

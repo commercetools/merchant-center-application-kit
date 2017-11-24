@@ -18,9 +18,16 @@ import { WithUser } from '@commercetools-local/application-shell'
 
 <WithUser
   mapDataToProps={userData => userData}
-  render={({ loading, me }) => (
-    <div />
-  )}
+  render={({ userData: { loading, me }, ...rest }) =>
+    loading
+      ? <Loading />
+      : (
+        <div>
+          <Profile firstName={me.firstName} />
+          <Main {...rest} />
+        </div>
+      )
+  }
 />
 ```
 
