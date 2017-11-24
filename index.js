@@ -1,6 +1,8 @@
 // STORAGE
 export const STORAGE_KEYS = {
   TOKEN: 'token',
+  ACTIVE_PROJECT_KEY: 'activeProjectKey',
+  SELECTED_DATA_LOCALE: 'selectedDataLocale',
 };
 
 // PLUGINS
