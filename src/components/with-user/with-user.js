@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { compose, setDisplayName } from 'recompose';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import omit from 'lodash.omit';
 
 const LoggedInUserQuery = gql`
   query LoggedInUser {
@@ -37,21 +36,23 @@ const LoggedInUserQuery = gql`
 const graphqlOptions = {
   alias: 'withUser',
   name: 'userData',
+  options: {
+    variables: {
+      target: 'mc',
+    },
+  },
 };
 
 const WithUser = props => {
   const mappedProps = props.mapDataToProps
     ? props.mapDataToProps(props.userData)
-    : { userData: props.userData };
-  // Extract props coming from parents and omit props specific to this
-  // component, then pass them down to the children.
-  const parentProps = omit(props, ['mapDataToProps', 'render', 'userData']);
-  return props.render({ ...parentProps, ...mappedProps });
+    : props.userData;
+  return props.children(mappedProps);
 };
 WithUser.displayName = 'WithUser';
 WithUser.propTypes = {
   mapDataToProps: PropTypes.func,
-  render: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired,
   // Injected
   userData: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
@@ -69,10 +70,9 @@ const WithUserData = compose(
 // HoC
 const withUser = mapDataToProps => Component => {
   const WrappedWithUser = props => (
-    <WithUserData
-      mapDataToProps={mapDataToProps}
-      render={mappedProps => <Component {...props} {...mappedProps} />}
-    />
+    <WithUserData mapDataToProps={mapDataToProps}>
+      {mappedProps => <Component {...props} {...mappedProps} />}
+    </WithUserData>
   );
   WrappedWithUser.displayName = 'WithUser';
   return WrappedWithUser;

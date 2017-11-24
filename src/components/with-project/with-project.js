@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { compose, setDisplayName } from 'recompose';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import omit from 'lodash.omit';
 
 const ProjectQuery = gql`
   query Project($projectKey: String!) {
@@ -70,32 +69,36 @@ const ProjectQuery = gql`
       }
     }
   }
+
+  fragment ImageRegex on ImageRegexOptions {
+    flag
+    search
+    replace
+  }
 `;
 
 const graphqlOptions = {
   alias: 'withProject',
   name: 'projectData',
+  options: ownProps => ({
+    variables: {
+      target: 'mc',
+      projectKey: ownProps.projectKey,
+    },
+  }),
 };
 
 const WithProject = props => {
   const mappedProps = props.mapDataToProps
     ? props.mapDataToProps(props.projectData)
-    : { projectData: props.projectData };
-  // Extract props coming from parents and omit props specific to this
-  // component, then pass them down to the children.
-  const parentProps = omit(props, [
-    'projectKey',
-    'mapDataToProps',
-    'render',
-    'projectData',
-  ]);
-  return props.render({ ...parentProps, ...mappedProps });
+    : props.projectData;
+  return props.children(mappedProps);
 };
 WithProject.displayName = 'WithProject';
 WithProject.propTypes = {
   projectKey: PropTypes.string.isRequired,
   mapDataToProps: PropTypes.func,
-  render: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired,
   // Injected
   projectData: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
@@ -105,7 +108,7 @@ WithProject.propTypes = {
 };
 
 // React component
-const WithUserProject = compose(
+const WithProjectData = compose(
   setDisplayName('WithProject'),
   graphql(ProjectQuery, graphqlOptions)
 )(WithProject);
@@ -113,18 +116,19 @@ const WithUserProject = compose(
 // HoC
 const withProject = (getProjectKey, mapDataToProps) => Component => {
   const WrappedWithProject = props => (
-    <WithUserProject
+    <WithProjectData
       projectKey={getProjectKey(props)}
       mapDataToProps={mapDataToProps}
-      render={mappedProps => <Component {...props} {...mappedProps} />}
-    />
+    >
+      {mappedProps => <Component {...props} {...mappedProps} />}
+    </WithProjectData>
   );
   WrappedWithProject.displayName = 'WithProject';
   return WrappedWithProject;
 };
 
 // Public exports
-export default WithUserProject;
+export default WithProjectData;
 export { withProject };
 
 // For testing

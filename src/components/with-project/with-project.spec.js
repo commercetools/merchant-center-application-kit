@@ -11,7 +11,7 @@ describe('rendering', () => {
       beforeEach(() => {
         props = {
           projectKey: 'my-project',
-          render: jest.fn(),
+          children: jest.fn(),
           // this is usually injected by graphql
           projectData: {
             loading: false,
@@ -22,14 +22,9 @@ describe('rendering', () => {
         };
         wrapper = shallow(<WithProject foo="bar" {...props} />);
       });
-      it('should call render with projectData object', () => {
-        expect(props.render).toHaveBeenCalledWith(
-          expect.objectContaining({ projectData: props.projectData })
-        );
-      });
-      it('should proxy parent props to render', () => {
-        expect(props.render).toHaveBeenCalledWith(
-          expect.objectContaining({ foo: 'bar' })
+      it('should call children with projectData object', () => {
+        expect(props.children).toHaveBeenCalledWith(
+          expect.objectContaining(props.projectData)
         );
       });
     });
@@ -40,7 +35,7 @@ describe('rendering', () => {
           mapDataToProps: projectData => ({
             name: projectData.project && projectData.project.name,
           }),
-          render: jest.fn(),
+          children: jest.fn(),
           // this is usually injected by graphql
           projectData: {
             loading: false,
@@ -51,19 +46,14 @@ describe('rendering', () => {
         };
         wrapper = shallow(<WithProject foo="bar" {...props} />);
       });
-      it('should call render with mapped prop name', () => {
-        expect(props.render).toHaveBeenCalledWith(
+      it('should call children with mapped prop name', () => {
+        expect(props.children).toHaveBeenCalledWith(
           expect.objectContaining({ name: 'My Project' })
         );
       });
-      it('should call render without projectData object', () => {
-        expect(props.render).not.toHaveBeenCalledWith(
-          expect.objectContaining({ projectData: props.projectData })
-        );
-      });
-      it('should proxy parent props to render', () => {
-        expect(props.render).toHaveBeenCalledWith(
-          expect.objectContaining({ foo: 'bar' })
+      it('should call children without projectData object', () => {
+        expect(props.children).not.toHaveBeenCalledWith(
+          expect.objectContaining(props.projectData)
         );
       });
     });
@@ -81,7 +71,7 @@ describe('rendering', () => {
       wrapper = shallow(
         <ProfileTitleWithProject foo="bar" projectKey="my-project" />
       );
-      wrapperRender = shallow(wrapper.prop('render')({ name: 'My Project' }));
+      wrapperRender = shallow(wrapper.prop('children')({ name: 'My Project' }));
     });
     it('should render <ProjectTitle> with name', () => {
       expect(wrapperRender).toMatchElement(<div>{'My Project'}</div>);

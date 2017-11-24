@@ -7,7 +7,7 @@ The data is cached within Apollo, so rendering the component multiple times won'
 
 ## `<WithProject>`
 
-A React component that will pass project data to a `render` function.
+A React component that will pass project data to a `children` function.
 
 > This is the React version of the `withProject` HoC.
 
@@ -19,7 +19,8 @@ import { WithProject } from '@commercetools-local/application-shell'
 <WithProject
   projectKey="my-project"
   mapDataToProps={userData => userData}
-  render={({ projectData: { loading, project }, ...rest }) =>
+>
+  {({ projectData: { loading, project }, ...rest }) =>
     loading
       ? <Loading />
       : (
@@ -29,7 +30,7 @@ import { WithProject } from '@commercetools-local/application-shell'
         </div>
       )
   }
-/>
+</WithProject>
 ```
 
 ### Properties
@@ -38,7 +39,7 @@ import { WithProject } from '@commercetools-local/application-shell'
 | --- | --- | :---: | --- | --- | --- |
 | `projectKey` | `string` | ✅ | - | - | The `key` of the project that you want to fetch |
 | `mapDataToProps` | `func` | - | - | - | Map the props that will be passed to the `render` function. Use this as a chance to compute some values within the data and pass it s a specific prop. |
-| `render` | `func` | ✅ | - | - | Render your children elements within this function. The argument is an object containing the mapped data from `mapDataToProps` or the default bject injected by `graphql` HoC |
+| `children` | `func` | ✅ | - | - | Render your children elements within this function. The argument is an object containing the mapped data from `mapDataToProps` or the default bject injected by `graphql` HoC |
 
 ## `withProject(getProjectKey, mapDataToProps)`
 

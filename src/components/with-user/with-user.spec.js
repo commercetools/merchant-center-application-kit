@@ -10,7 +10,7 @@ describe('rendering', () => {
     describe('when mapDataToProps is not defined', () => {
       beforeEach(() => {
         props = {
-          render: jest.fn(),
+          children: jest.fn(),
           // this is usually injected by graphql
           userData: {
             loading: false,
@@ -19,17 +19,10 @@ describe('rendering', () => {
             },
           },
         };
-        wrapper = shallow(<WithUser foo="bar" {...props} />);
+        wrapper = shallow(<WithUser {...props} />);
       });
-      it('should call render with userData object', () => {
-        expect(props.render).toHaveBeenCalledWith(
-          expect.objectContaining({ userData: props.userData })
-        );
-      });
-      it('should proxy parent props to render', () => {
-        expect(props.render).toHaveBeenCalledWith(
-          expect.objectContaining({ foo: 'bar' })
-        );
+      it('should call children with userData object', () => {
+        expect(props.children).toHaveBeenCalledWith(props.userData);
       });
     });
     describe('when mapDataToProps is defined', () => {
@@ -38,7 +31,7 @@ describe('rendering', () => {
           mapDataToProps: userData => ({
             firstName: userData.me && userData.me.firstName,
           }),
-          render: jest.fn(),
+          children: jest.fn(),
           // this is usually injected by graphql
           userData: {
             loading: false,
@@ -47,21 +40,16 @@ describe('rendering', () => {
             },
           },
         };
-        wrapper = shallow(<WithUser foo="bar" {...props} />);
+        wrapper = shallow(<WithUser {...props} />);
       });
-      it('should call render with mapped prop firstName', () => {
-        expect(props.render).toHaveBeenCalledWith(
+      it('should call children with mapped prop firstName', () => {
+        expect(props.children).toHaveBeenCalledWith(
           expect.objectContaining({ firstName: 'John' })
         );
       });
-      it('should call render without userData object', () => {
-        expect(props.render).not.toHaveBeenCalledWith(
-          expect.objectContaining({ userData: props.userData })
-        );
-      });
-      it('should proxy parent props to render', () => {
-        expect(props.render).toHaveBeenCalledWith(
-          expect.objectContaining({ foo: 'bar' })
+      it('should call children without userData object', () => {
+        expect(props.children).not.toHaveBeenCalledWith(
+          expect.objectContaining(props.userData)
         );
       });
     });
@@ -75,7 +63,7 @@ describe('rendering', () => {
     beforeEach(() => {
       const ProfileWithUser = withUser()(Profile);
       wrapper = shallow(<ProfileWithUser foo="bar" />);
-      wrapperRender = shallow(wrapper.prop('render')({ firstName: 'John' }));
+      wrapperRender = shallow(wrapper.prop('children')({ firstName: 'John' }));
     });
     it('should render <Profile> with firstName', () => {
       expect(wrapperRender).toMatchElement(<div>{'John'}</div>);
