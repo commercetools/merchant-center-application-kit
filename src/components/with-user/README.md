@@ -38,11 +38,12 @@ import { WithUser } from '@commercetools-local/application-shell'
 | `mapDataToProps` | `func` | - | - | - | Map the props that will be passed to the `render` function. Use this as a chance to compute some values within the data and pass it as a specific prop. |
 | `render` | `func` | ✅ | - | - | Render your children elements within this function. The argument is an object containing the mapped data from `mapDataToProps` or the default object injected by `graphql` HoC |
 
-## `withUser`
 
-A React component that will pass user data to a `render` function.
+## `withUser(mapDataToProps)`
 
-> This is the React version of the `withUser` HoC.
+A HoC component that will inject user data as prop.
+
+> This is the HoC version of the `WithUser` component.
 
 ### Usage
 
@@ -56,3 +57,7 @@ withUser(
   userData => ({ firstName: userData.me && userData.me.firstName })
 )(Profile)
 ```
+
+### Arguments
+
+* `mapDataToProps(userData): Object`: map the props that will be injected to the composed component. Use this as a chance to compute some values within the data and pass it s a specific prop.
