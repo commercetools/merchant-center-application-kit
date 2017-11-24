@@ -1,0 +1,664 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering graphql query should match snapshot 1`] = `
+Object {
+  "definitions": Array [
+    Object {
+      "directives": Array [],
+      "kind": "OperationDefinition",
+      "name": Object {
+        "kind": "Name",
+        "value": "Project",
+      },
+      "operation": "query",
+      "selectionSet": Object {
+        "kind": "SelectionSet",
+        "selections": Array [
+          Object {
+            "alias": null,
+            "arguments": Array [
+              Object {
+                "kind": "Argument",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "key",
+                },
+                "value": Object {
+                  "kind": "Variable",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "projectKey",
+                  },
+                },
+              },
+            ],
+            "directives": Array [],
+            "kind": "Field",
+            "name": Object {
+              "kind": "Name",
+              "value": "project",
+            },
+            "selectionSet": Object {
+              "kind": "SelectionSet",
+              "selections": Array [
+                Object {
+                  "alias": null,
+                  "arguments": Array [],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "id",
+                  },
+                  "selectionSet": null,
+                },
+                Object {
+                  "alias": null,
+                  "arguments": Array [],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "key",
+                  },
+                  "selectionSet": null,
+                },
+                Object {
+                  "alias": null,
+                  "arguments": Array [],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "name",
+                  },
+                  "selectionSet": null,
+                },
+                Object {
+                  "alias": null,
+                  "arguments": Array [],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "countries",
+                  },
+                  "selectionSet": null,
+                },
+                Object {
+                  "alias": null,
+                  "arguments": Array [],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "currencies",
+                  },
+                  "selectionSet": null,
+                },
+                Object {
+                  "alias": null,
+                  "arguments": Array [],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "languages",
+                  },
+                  "selectionSet": null,
+                },
+                Object {
+                  "alias": null,
+                  "arguments": Array [],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "expired",
+                  },
+                  "selectionSet": null,
+                },
+                Object {
+                  "alias": null,
+                  "arguments": Array [],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "suspended",
+                  },
+                  "selectionSet": null,
+                },
+                Object {
+                  "alias": null,
+                  "arguments": Array [],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "permissions",
+                  },
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canManageOrganization",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canManageProject",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canViewProjectSettings",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canViewProducts",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canManageProducts",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canViewOrders",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canManageOrders",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canViewCustomers",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canManageCustomers",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canViewTypes",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canManageTypes",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canViewShippingLists",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canManageShippingLists",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canViewPayments",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "canManagePayments",
+                        },
+                        "selectionSet": null,
+                      },
+                    ],
+                  },
+                },
+                Object {
+                  "alias": null,
+                  "arguments": Array [],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "owner",
+                  },
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "id",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "name",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "createdAt",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "teamsCount",
+                        },
+                        "selectionSet": null,
+                      },
+                    ],
+                  },
+                },
+                Object {
+                  "alias": null,
+                  "arguments": Array [],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "settings",
+                  },
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "id",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "baseSettings",
+                        },
+                        "selectionSet": Object {
+                          "kind": "SelectionSet",
+                          "selections": Array [
+                            Object {
+                              "alias": null,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "id",
+                              },
+                              "selectionSet": null,
+                            },
+                            Object {
+                              "alias": null,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "userProjectSettings",
+                              },
+                              "selectionSet": null,
+                            },
+                            Object {
+                              "alias": null,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "pluginPreset",
+                              },
+                              "selectionSet": null,
+                            },
+                            Object {
+                              "alias": null,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "imageRegex",
+                              },
+                              "selectionSet": Object {
+                                "kind": "SelectionSet",
+                                "selections": Array [
+                                  Object {
+                                    "alias": null,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "thumb",
+                                    },
+                                    "selectionSet": Object {
+                                      "kind": "SelectionSet",
+                                      "selections": Array [
+                                        Object {
+                                          "directives": Array [],
+                                          "kind": "FragmentSpread",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "ImageRegex",
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  Object {
+                                    "alias": null,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "small",
+                                    },
+                                    "selectionSet": Object {
+                                      "kind": "SelectionSet",
+                                      "selections": Array [
+                                        Object {
+                                          "directives": Array [],
+                                          "kind": "FragmentSpread",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "ImageRegex",
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            Object {
+                              "alias": null,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "orderStatesVisibility",
+                              },
+                              "selectionSet": Object {
+                                "kind": "SelectionSet",
+                                "selections": Array [
+                                  Object {
+                                    "alias": null,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "isPaymentStateHidden",
+                                    },
+                                    "selectionSet": null,
+                                  },
+                                  Object {
+                                    "alias": null,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "isShipmentStateHidden",
+                                    },
+                                    "selectionSet": null,
+                                  },
+                                  Object {
+                                    "alias": null,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "isOrderStateHidden",
+                                    },
+                                    "selectionSet": null,
+                                  },
+                                ],
+                              },
+                            },
+                            Object {
+                              "alias": null,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "categoryRecommendationSettings",
+                              },
+                              "selectionSet": Object {
+                                "kind": "SelectionSet",
+                                "selections": Array [
+                                  Object {
+                                    "alias": null,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "searchProperty",
+                                    },
+                                    "selectionSet": null,
+                                  },
+                                  Object {
+                                    "alias": null,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "options",
+                                    },
+                                    "selectionSet": Object {
+                                      "kind": "SelectionSet",
+                                      "selections": Array [
+                                        Object {
+                                          "alias": null,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "attributeName",
+                                          },
+                                          "selectionSet": null,
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "productSettings",
+                        },
+                        "selectionSet": null,
+                      },
+                      Object {
+                        "alias": null,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "currentProductSettings",
+                        },
+                        "selectionSet": null,
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+      "variableDefinitions": Array [
+        Object {
+          "defaultValue": null,
+          "kind": "VariableDefinition",
+          "type": Object {
+            "kind": "NonNullType",
+            "type": Object {
+              "kind": "NamedType",
+              "name": Object {
+                "kind": "Name",
+                "value": "String",
+              },
+            },
+          },
+          "variable": Object {
+            "kind": "Variable",
+            "name": Object {
+              "kind": "Name",
+              "value": "projectKey",
+            },
+          },
+        },
+      ],
+    },
+  ],
+  "kind": "Document",
+  "loc": Object {
+    "end": 1330,
+    "start": 0,
+  },
+}
+`;
