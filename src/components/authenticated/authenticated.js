@@ -1,6 +1,7 @@
 import querystring from 'querystring';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import { Redirect } from 'react-router-dom';
 import { compose, setDisplayName, withProps } from 'recompose';
 import {
@@ -52,11 +53,12 @@ Authenticated.propTypes = {
     pathname: PropTypes.string.isRequired,
   }).isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default compose(
   setDisplayName('Authenticated'),
+  withRouter,
   withProps(() => ({
     isLoggedIn: Boolean(storage.get(CORE_STORAGE_KEYS.TOKEN)),
   }))
