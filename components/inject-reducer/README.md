@@ -7,7 +7,7 @@ level reducer to the store using the `name` prop as the key.
 ## To be deprecated behavior
 
 At the moment this component also handles registering your plugin and wrapping
-your plugin code in a `LocalProvider` compnent so that your plugin store only
+your plugin code in a `LocalProvider` component so that your plugin store only
 sees the reducer you passed to the component. As a side effect of this you
 should only use this component once as the entry point to your plugin.
 
