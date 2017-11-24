@@ -19,10 +19,13 @@ const createTestStore = props => ({
   ...props,
 });
 
+const ChildComponent = () => <div />;
+ChildComponent.displayName = 'ChildComponent';
+
 const createWrapper = props =>
   shallow(
     <InjectReducer {...props}>
-      <div />
+      <ChildComponent />
     </InjectReducer>,
     {
       context: {
@@ -42,7 +45,7 @@ describe('rendering', () => {
       expect(wrapper).not.toRender(LocalProvider);
     });
     it('should not render children', () => {
-      expect(wrapper.containsMatchingElement(<div />)).toBe(false);
+      expect(wrapper).not.toRender('ChildComponent');
     });
   });
   describe('when the plugin is active', () => {
@@ -53,7 +56,7 @@ describe('rendering', () => {
       wrapper = createWrapper(props);
     });
     it('should render children', () => {
-      expect(wrapper.containsMatchingElement(<div />)).toBe(true);
+      expect(wrapper).toRender('ChildComponent');
     });
     it('should wrap the children in a LocalProvider', () => {
       expect(wrapper).toRender(LocalProvider);
