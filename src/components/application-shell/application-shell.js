@@ -51,22 +51,19 @@ export default class ApplicationShell extends React.PureComponent {
      */
 
     return (
-      <div>
-        <div id="foo-bar" />
-        <IntlProvider locale={'en'} messages={this.props.i18n.en}>
-          <ApolloProvider client={apolloClient}>
-            <Router>
-              <Switch>
-                {/* Public routes */}
-                <Route path="/login" render={() => <div>{'LOGIN PAGE'}</div>} />
+      <IntlProvider locale={'en'} messages={this.props.i18n.en}>
+        <ApolloProvider client={apolloClient}>
+          <Router>
+            <Switch>
+              {/* Public routes */}
+              <Route path="/login" render={() => <div>{'LOGIN PAGE'}</div>} />
 
-                {/* Protected routes */}
-                <Route component={ProtectedRoutes} />
-              </Switch>
-            </Router>
-          </ApolloProvider>
-        </IntlProvider>
-      </div>
+              {/* Protected routes */}
+              <Route component={ProtectedRoutes} />
+            </Switch>
+          </Router>
+        </ApolloProvider>
+      </IntlProvider>
     );
   }
 }
