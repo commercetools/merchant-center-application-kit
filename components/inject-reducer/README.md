@@ -22,10 +22,10 @@ will also remove this code again once we make that switch.
 import React from 'react';
 import { InjectReducer } from '@commercetools-local/application-shell';
 import Dashboard from './components/dashboard';
-import reducers from './reducers';
+import reducer from './reducer';
 
 const AsyncDashboard = props => (
-  <InjectReducer name="mcng-dashboard" reducer={reducers}>
+  <InjectReducer name="mcng-dashboard" reducer={reducer}>
     <Dashboard {...props} />
   </InjectReducer>
 );
