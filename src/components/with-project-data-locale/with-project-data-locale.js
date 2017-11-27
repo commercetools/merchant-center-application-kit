@@ -36,7 +36,7 @@ export default class WithProjectDataLocale extends React.PureComponent {
   };
 
   state = {
-    locale: getSelectedDataLocaleForProject(),
+    locale: getSelectedDataLocaleForProject(this.props.locales),
   };
 
   componentWillReceiveProps(nextProps) {
