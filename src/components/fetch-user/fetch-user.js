@@ -43,7 +43,13 @@ const graphqlOptions = {
   },
   // Rename `loading` -> `isLoading`, to follow our naming convention
   // https://github.com/commercetools/merchant-center-frontend/issues/2701
-  props: ({ data: { loading } }) => ({ isLoading: loading }),
+  props: ({ userData }) => ({
+    userData: {
+      isLoading: userData.loading,
+      error: userData.error,
+      user: userData.user,
+    },
+  }),
 };
 
 // Correct, this is a FaaC component ;)

@@ -88,7 +88,13 @@ const graphqlOptions = {
   }),
   // Rename `loading` -> `isLoading`, to follow our naming convention
   // https://github.com/commercetools/merchant-center-frontend/issues/2701
-  props: ({ data: { loading } }) => ({ isLoading: loading }),
+  props: ({ projectData }) => ({
+    projectData: {
+      isLoading: projectData.loading,
+      error: projectData.error,
+      project: projectData.project,
+    },
+  }),
 };
 
 const FetchProject = props => props.children(props.projectData);
