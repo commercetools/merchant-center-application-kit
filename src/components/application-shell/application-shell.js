@@ -10,30 +10,7 @@ import ProjectContainer from '../project-container';
 
 const ProtectedRoutes = () => (
   <Authenticated>
-    {/**
-     * The <AppBar> should always be rendered as long as the user is
-     * authenticated, no matter which route we're in.
-     * However, in order to be able to render the <ProjectSwitcher> we need to
-     * know the `projectKey`. The easiest/safest way to do that is by getting
-     * it from react-router.
-     *
-     * So what happens here is the following:
-     * - using /:projectKey basically matches every route and it parses the
-     *   projectKey param
-     * - since this <Route> is defined outside of the <Switch>, it will always
-     *   render the related component <AppBar>
-     * - in <AppBar> we then pass the `projectKey` param to the <ProjectSwitcher>
-     * - since the <ProjectSwitcher> knows about the list of availableProjects
-     *   of the user, it can try to find the current project based on the
-     *   given projectKey
-     *   - if the project is not found, the dropdown will have no value selected.
-     *     This is exactly the case for routes such as /profile, /organizations, etc.
-     *     - we might want to ensure the matching of the route with a project
-     *       key by prefixing the route with something like /u/profile, as `u`
-     *       will never be a valid projectKey
-     *   - if the project is found, the dropdown will have it selected
-     */}
-    <Route path="/:projectKey" component={AppBar} />
+    <AppBar />
 
     <Switch>
       {/* Non-project routes */}

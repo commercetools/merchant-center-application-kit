@@ -23,9 +23,7 @@ export class ProjectSwitcher extends React.PureComponent {
     ).isRequired,
 
     // Injected
-    windowLocation: PropTypes.shape({
-      replace: PropTypes.func.isRequired,
-    }).isRequired,
+    redirectTo: PropTypes.func.isRequired,
     // Intl
     intl: PropTypes.shape({
       formatMessage: PropTypes.func.isRequired,
@@ -76,7 +74,7 @@ export class ProjectSwitcher extends React.PureComponent {
       // We simply redirect to a "new" browser page, instead of using the
       // history router. This will simplify a lot of things and avoid possible
       // problems like e.g. resetting the store/state.
-      this.props.windowLocation.replace(`/${selectedProjectKey}`);
+      this.props.redirectTo(`/${selectedProjectKey}`);
   };
 
   renderProjectName = () => {
@@ -184,11 +182,7 @@ export class ProjectSwitcher extends React.PureComponent {
 export default compose(
   setDisplayName('ProjectSwitcher'),
   withProps(() => ({
-    // Inject the `window.location` object as a prop, makes it easier to test it.
-    // NOTE: passing `window.location.replace` as a prop will cause problems with
-    // "hot loader", guessing it's because of the "special" nature of the `window`
-    // object? Whatever, passing it like this it works ;)
-    windowLocation: window.location,
+    redirectTo: targetUrl => window.location.replace(targetUrl),
   })),
   injectIntl
 )(ProjectSwitcher);

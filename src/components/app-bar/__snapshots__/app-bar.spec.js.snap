@@ -32,10 +32,14 @@ exports[`rendering should match layout structure 1`] = `
           alignItems="center"
           scale="s"
         >
-          <div
-            id="locale-switcher"
+          <Route
+            component={[Function]}
+            path="/:projectKey"
           />
-          <FetchUser />
+          <Route
+            component={[Function]}
+            path="/:projectKey"
+          />
         </Inline>
       </div>
       <div

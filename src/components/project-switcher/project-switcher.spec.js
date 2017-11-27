@@ -10,7 +10,7 @@ const createTestProps = props => ({
     { key: 'key1', name: 'name1' },
     { key: 'key3', name: 'name3' },
   ],
-  windowLocation: { replace: jest.fn() },
+  redirectTo: jest.fn(),
   intl: { formatMessage: jest.fn() },
   ...props,
 });
@@ -147,8 +147,8 @@ describe('callbacks', () => {
         wrapper.find('Select').simulate('change', { key: 'key2' });
       });
       it('should redirect to the new project url', () => {
-        expect(props.windowLocation.replace).toHaveBeenCalledTimes(1);
-        expect(props.windowLocation.replace).toHaveBeenLastCalledWith('/key2');
+        expect(props.redirectTo).toHaveBeenCalledTimes(1);
+        expect(props.redirectTo).toHaveBeenLastCalledWith('/key2');
       });
     });
 
@@ -159,7 +159,7 @@ describe('callbacks', () => {
         wrapper.find('Select').simulate('change', { key: 'key1' });
       });
       it('should not redirect to the new project', () => {
-        expect(props.windowLocation.replace).toHaveBeenCalledTimes(0);
+        expect(props.redirectTo).toHaveBeenCalledTimes(0);
       });
     });
   });

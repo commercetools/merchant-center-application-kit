@@ -10,7 +10,7 @@ export default class LocaleSwitcher extends React.PureComponent {
   static propTypes = {
     projectDataLocale: PropTypes.string.isRequired,
     setProjectDataLocale: PropTypes.func.isRequired,
-    languages: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+    availableLocales: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   };
 
   handleSelection = ({ key: language }) => {
@@ -24,7 +24,7 @@ export default class LocaleSwitcher extends React.PureComponent {
       </div>
       <span className={styles.label}>{`${this.props.projectDataLocale}`}</span>
       <span className={styles['language-counter']}>
-        {this.props.languages.length}
+        {this.props.availableLocales.length}
       </span>
     </span>
   );
@@ -41,9 +41,9 @@ export default class LocaleSwitcher extends React.PureComponent {
           name="locale-switcher"
           onChange={this.handleSelection}
           autoBlur={true}
-          options={this.props.languages.map(lang => ({
-            name: lang,
-            key: lang,
+          options={this.props.availableLocales.map(locale => ({
+            name: locale,
+            key: locale,
           }))}
           clearable={false}
           backspaceRemoves={false}

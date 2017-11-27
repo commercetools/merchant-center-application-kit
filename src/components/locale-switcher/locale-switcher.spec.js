@@ -6,7 +6,7 @@ import LocaleSwitcher from './locale-switcher';
 const createTestProps = props => ({
   projectDataLocale: 'en',
   setProjectDataLocale: jest.fn(),
-  languages: ['en', 'de', 'it'],
+  availableLocales: ['en', 'de', 'it'],
   ...props,
 });
 
@@ -18,12 +18,6 @@ describe('render base elements', () => {
   beforeEach(() => {
     const props = createTestProps();
     wrapper = shallow(<LocaleSwitcher {...props} />);
-  });
-
-  it('should render data-track-component', () => {
-    expect(wrapper).toRender({
-      'data-track-component': 'LocaleSwitch',
-    });
   });
 
   it('should render Select component', () => {
