@@ -9,11 +9,6 @@ const activatePlugin = pluginName => ({
   payload: pluginName,
 });
 
-// This component will inject a plugin reducer into the global store.
-// Render this as the root component of the plugin, as it should be
-// the first thing the plugin needs to do to register itself.
-// NOTE: this component will probably become useless once we start
-// migrating plugins into applications.
 export class InjectReducer extends React.PureComponent {
   static displayName = 'InjectReducer';
 
