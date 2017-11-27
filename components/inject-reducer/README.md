@@ -60,3 +60,7 @@ store.injectReducer = ({ name, reducer }) => {
   );
 };
 ```
+
+## Prior art
+
+This component is inspired by React Boilerplate. Specifically [this HoC](https://github.com/react-boilerplate/react-boilerplate/blob/e39f8bdca29a35edbd7480968c9fe0b2c9438860/app/utils/reducerInjectors.js).
