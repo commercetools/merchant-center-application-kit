@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose, setDisplayName } from 'recompose';
+import { compose, getDisplayName, setDisplayName } from 'recompose';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
@@ -86,50 +86,52 @@ const graphqlOptions = {
       projectKey: ownProps.projectKey,
     },
   }),
+  // Rename `loading` -> `isLoading`, to follow our naming convention
+  // https://github.com/commercetools/merchant-center-frontend/issues/2701
+  props: ({ data: { loading } }) => ({ isLoading: loading }),
 };
 
-const WithProject = props => {
-  const mappedProps = props.mapDataToProps
-    ? props.mapDataToProps(props.projectData)
-    : props.projectData;
-  return props.children(mappedProps);
-};
-WithProject.displayName = 'WithProject';
-WithProject.propTypes = {
+const FetchProject = props => props.children(props.projectData);
+FetchProject.displayName = 'FetchProject';
+FetchProject.propTypes = {
   projectKey: PropTypes.string.isRequired,
-  mapDataToProps: PropTypes.func,
   children: PropTypes.func.isRequired,
   // Injected
   projectData: PropTypes.shape({
-    loading: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired,
     error: PropTypes.object,
     project: PropTypes.object, // see graphql query shape
   }).isRequired,
 };
 
 // React component
-const WithProjectData = compose(
-  setDisplayName('WithProject'),
+const FetchProjectData = compose(
+  setDisplayName('FetchProject'),
   graphql(ProjectQuery, graphqlOptions)
-)(WithProject);
+)(FetchProject);
 
 // HoC
 const withProject = (getProjectKey, mapDataToProps) => Component => {
   const WrappedWithProject = props => (
-    <WithProjectData
+    <FetchProjectData
       projectKey={getProjectKey(props)}
       mapDataToProps={mapDataToProps}
     >
-      {mappedProps => <Component {...props} {...mappedProps} />}
-    </WithProjectData>
+      {projectData => {
+        const mappedProps = mapDataToProps
+          ? mapDataToProps(projectData)
+          : projectData;
+        return <Component {...props} {...mappedProps} />;
+      }}
+    </FetchProjectData>
   );
-  WrappedWithProject.displayName = 'WithProject';
+  WrappedWithProject.displayName = `withProject(${getDisplayName(Component)})`;
   return WrappedWithProject;
 };
 
 // Public exports
-export default WithProjectData;
+export default FetchProjectData;
 export { withProject };
 
 // For testing
-export { ProjectQuery, WithProject };
+export { ProjectQuery, FetchProject };
