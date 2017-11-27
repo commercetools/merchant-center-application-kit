@@ -10,7 +10,7 @@ export default class LocaleSwitcher extends React.PureComponent {
   static propTypes = {
     projectDataLocale: PropTypes.string.isRequired,
     setProjectDataLocale: PropTypes.func.isRequired,
-    languages: PropTypes.array.isRequired,
+    languages: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   };
 
   handleSelection = ({ key: language }) => {
@@ -30,28 +30,24 @@ export default class LocaleSwitcher extends React.PureComponent {
   );
 
   render() {
-    if (this.props.languages.length <= 1) return null;
-
     return (
       <div className={styles.container} data-track-component="LocaleSwitch">
         <Select
-          {...{
-            valueRenderer: this.renderLabel,
-            labelKey: 'name',
-            valueKey: 'key',
-            className: styles['react-select-container'],
-            value: this.props.projectDataLocale,
-            name: 'locale-switcher',
-            onChange: this.handleSelection,
-            autoBlur: true,
-            options: this.props.languages.map(lang => ({
-              name: lang,
-              key: lang,
-            })),
-            clearable: false,
-            backspaceRemoves: false,
-            searchable: false,
-          }}
+          valueRenderer={this.renderLabel}
+          labelKey="name"
+          valueKey="key"
+          className={styles['react-select-container']}
+          value={this.props.projectDataLocale}
+          name="locale-switcher"
+          onChange={this.handleSelection}
+          autoBlur={true}
+          options={this.props.languages.map(lang => ({
+            name: lang,
+            key: lang,
+          }))}
+          clearable={false}
+          backspaceRemoves={false}
+          searchable={false}
         />
       </div>
     );

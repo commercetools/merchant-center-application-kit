@@ -30,15 +30,6 @@ describe('render base elements', () => {
     expect(wrapper).toRender('Select');
   });
 
-  it('should not render component if there is only 1 language', () => {
-    const propsWithOneLanguage = createTestProps({
-      languages: ['en'],
-    });
-
-    const wrapperEmpty = shallow(<LocaleSwitcher {...propsWithOneLanguage} />);
-    expect(wrapperEmpty.html()).toBe(null);
-  });
-
   describe('dropdown label', () => {
     let wrapperLabel;
     beforeEach(() => {

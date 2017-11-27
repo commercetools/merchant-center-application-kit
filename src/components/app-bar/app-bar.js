@@ -25,12 +25,12 @@ const AppBar = props => (
 
               <FetchUser>
                 {({ isLoading, user }) =>
-                  isLoading ? null : (
+                  !isLoading && user && user.availableProjects.length > 0 ? (
                     <ProjectSwitcher
                       projectKey={props.match.params.projectKey}
                       availableProjects={user.availableProjects}
                     />
-                  )
+                  ) : null
                 }
               </FetchUser>
             </Spacings.Inline>

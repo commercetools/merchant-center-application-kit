@@ -35,7 +35,7 @@ exports[`rendering should match layout structure 1`] = `
           <div
             id="locale-switcher"
           />
-          <WithUser />
+          <FetchUser />
         </Inline>
       </div>
       <div

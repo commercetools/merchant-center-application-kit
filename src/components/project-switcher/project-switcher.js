@@ -143,38 +143,38 @@ export class ProjectSwitcher extends React.PureComponent {
     this.setState({ isMenuOpen: false });
   };
 
+  getRef = node => {
+    this.node = node;
+  };
+
   render() {
     return (
       <div
-        ref={node => {
-          this.node = node;
-        }}
+        ref={this.getRef}
         className={classnames(styles['react-select-wrapper'], {
           [styles['is-open']]: this.state.isMenuOpen,
         })}
         data-track-component="ProjectSwitch"
       >
         <Select
-          {...{
-            onOpen: this.handleOpen,
-            onClose: this.handleClose,
-            valueRenderer: this.renderLabel,
-            labelKey: 'name',
-            valueKey: 'key',
-            className: styles['react-select-container'],
-            value: this.props.projectKey,
-            name: 'project-switcher',
-            onChange: this.handleSelection,
-            autoBlur: true,
-            options: this.props.availableProjects,
-            optionRenderer: this.handleRenderItemName,
-            clearable: false,
-            backspaceRemoves: false,
-            searchPromptText: this.props.intl.formatMessage(
-              messages.searchPlaceholder
-            ),
-            noResultsText: this.props.intl.formatMessage(messages.noResults),
-          }}
+          onOpen={this.handleOpen}
+          onClose={this.handleClose}
+          valueRenderer={this.renderLabel}
+          labelKey="name"
+          valueKey="key"
+          className={styles['react-select-container']}
+          value={this.props.projectKey}
+          name="project-switcher"
+          onChange={this.handleSelection}
+          autoBlur={true}
+          options={this.props.availableProjects}
+          optionRenderer={this.handleRenderItemName}
+          clearable={false}
+          backspaceRemoves={false}
+          searchPromptText={this.props.intl.formatMessage(
+            messages.searchPlaceholder
+          )}
+          noResultsText={this.props.intl.formatMessage(messages.noResults)}
         />
       </div>
     );
