@@ -45,7 +45,7 @@ export default AsyncDashboard;
 
 This component does not yet work since the corresponding reducer injection
 function in the store is missing. This is how the store's `injectReducer`
-funciton should look like to make this component work:
+function should look like to make this component work:
 
 ```js
 import createPluginReducer from './utils/plugins/create-reducer';
