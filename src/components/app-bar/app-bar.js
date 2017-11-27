@@ -4,7 +4,7 @@ import LogoSVG from '@commercetools-local/ui-kit/materials/images/logo.svg';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import UserSettingsMenu from '../user-settings-menu';
 import ProjectSwitcher from '../project-switcher';
-import WithUser from '../with-user';
+import FetchUser from '../fetch-user';
 import styles from './app-bar.mod.css';
 
 const AppBar = props => (
@@ -23,16 +23,16 @@ const AppBar = props => (
               {/* This node is used by a react portal */}
               <div id="locale-switcher" />
 
-              <WithUser>
-                {({ loading, me }) =>
-                  loading ? null : (
+              <FetchUser>
+                {({ isLoading, user }) =>
+                  isLoading ? null : (
                     <ProjectSwitcher
                       projectKey={props.match.params.projectKey}
-                      availableProjects={me.availableProjects}
+                      availableProjects={user.availableProjects}
                     />
                   )
                 }
-              </WithUser>
+              </FetchUser>
             </Spacings.Inline>
           )}
         </div>
