@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose, setDisplayName } from 'recompose';
+import { compose, getDisplayName, setDisplayName } from 'recompose';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
 const LoggedInUserQuery = gql`
   query LoggedInUser {
-    me {
+    user: me {
       id
       createdAt
       version
@@ -41,46 +41,49 @@ const graphqlOptions = {
       target: 'mc',
     },
   },
+  // Rename `loading` -> `isLoading`, to follow our naming convention
+  // https://github.com/commercetools/merchant-center-frontend/issues/2701
+  props: ({ data: { loading } }) => ({ isLoading: loading }),
 };
 
-const WithUser = props => {
-  const mappedProps = props.mapDataToProps
-    ? props.mapDataToProps(props.userData)
-    : props.userData;
-  return props.children(mappedProps);
-};
-WithUser.displayName = 'WithUser';
-WithUser.propTypes = {
-  mapDataToProps: PropTypes.func,
+// Correct, this is a FaaC component ;)
+const FetchUser = props => props.children(props.userData);
+FetchUser.displayName = 'FetchUser';
+FetchUser.propTypes = {
   children: PropTypes.func.isRequired,
   // Injected
   userData: PropTypes.shape({
-    loading: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired,
     error: PropTypes.object,
-    me: PropTypes.object, // see graphql query shape
+    user: PropTypes.object, // see graphql query shape
   }).isRequired,
 };
 
 // React component
-const WithUserData = compose(
-  setDisplayName('WithUser'),
+const FetchLoggedInUser = compose(
+  setDisplayName('FetchUser'),
   graphql(LoggedInUserQuery, graphqlOptions)
-)(WithUser);
+)(FetchUser);
 
 // HoC
 const withUser = mapDataToProps => Component => {
   const WrappedWithUser = props => (
-    <WithUserData mapDataToProps={mapDataToProps}>
-      {mappedProps => <Component {...props} {...mappedProps} />}
-    </WithUserData>
+    <FetchLoggedInUser mapDataToProps={mapDataToProps}>
+      {userData => {
+        const mappedProps = mapDataToProps
+          ? mapDataToProps(userData)
+          : userData;
+        return <Component {...props} {...mappedProps} />;
+      }}
+    </FetchLoggedInUser>
   );
-  WrappedWithUser.displayName = 'WithUser';
+  WrappedWithUser.displayName = `withUser(${getDisplayName(Component)})`;
   return WrappedWithUser;
 };
 
 // Public exports
-export default WithUserData;
+export default FetchLoggedInUser;
 export { withUser };
 
 // For testing
-export { LoggedInUserQuery, WithUser };
+export { LoggedInUserQuery, FetchUser };

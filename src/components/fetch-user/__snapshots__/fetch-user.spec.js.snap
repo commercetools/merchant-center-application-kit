@@ -15,7 +15,10 @@ Object {
         "kind": "SelectionSet",
         "selections": Array [
           Object {
-            "alias": null,
+            "alias": Object {
+              "kind": "Name",
+              "value": "user",
+            },
             "arguments": Array [],
             "directives": Array [],
             "kind": "Field",
@@ -264,7 +267,7 @@ Object {
   ],
   "kind": "Document",
   "loc": Object {
-    "end": 429,
+    "end": 435,
     "start": 0,
   },
 }
