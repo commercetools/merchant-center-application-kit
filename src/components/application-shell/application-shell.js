@@ -45,7 +45,6 @@ export default class ApplicationShell extends React.PureComponent {
                       <Route path="/:projectKey" component={ProjectContainer} />
                       <Route path="/" component={RedirectToProject} />
                     </Switch>
-                    <Route pathrender={() => <div>{'Another route'}</div>} />
                   </Authenticated>
                 )}
               />
