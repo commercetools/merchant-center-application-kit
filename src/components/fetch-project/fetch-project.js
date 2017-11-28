@@ -119,10 +119,7 @@ const FetchProjectData = compose(
 // HoC
 const withProject = (getProjectKey, mapDataToProps) => Component => {
   const WrappedWithProject = props => (
-    <FetchProjectData
-      projectKey={getProjectKey(props)}
-      mapDataToProps={mapDataToProps}
-    >
+    <FetchProjectData projectKey={getProjectKey(props)}>
       {projectData => {
         const mappedProps = mapDataToProps
           ? mapDataToProps(projectData)

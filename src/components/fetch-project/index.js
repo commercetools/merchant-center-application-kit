@@ -1,1 +1,1 @@
-export { default, fetchProject } from './fetch-project';
+export { default, withProject } from './fetch-project';

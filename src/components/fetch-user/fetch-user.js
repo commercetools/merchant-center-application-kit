@@ -74,7 +74,7 @@ const FetchLoggedInUser = compose(
 // HoC
 const withUser = mapDataToProps => Component => {
   const WrappedWithUser = props => (
-    <FetchLoggedInUser mapDataToProps={mapDataToProps}>
+    <FetchLoggedInUser>
       {userData => {
         const mappedProps = mapDataToProps
           ? mapDataToProps(userData)

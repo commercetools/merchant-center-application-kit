@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import apolloClient from '../../configure-apollo';
 import Authenticated from '../authenticated';
-import LocaleProvider from '../locale-provider';
+import ConfigureIntlProvider from '../configure-intl-provider';
 import AppBar from '../app-bar';
 import ProjectContainer from '../project-container';
 
@@ -17,51 +17,39 @@ export default class ApplicationShell extends React.PureComponent {
   render() {
     return (
       <ApolloProvider client={apolloClient}>
-        <Router>
-          <Switch>
-            {/* Public routes */}
-            <Route
-              path="/login"
-              render={() => (
-                <LocaleProvider i18n={this.props.i18n}>
-                  <div>{'LOGIN PAGE'}</div>
-                </LocaleProvider>
-              )}
-            />
+        <ConfigureIntlProvider i18n={this.props.i18n}>
+          <Router>
+            <Switch>
+              {/* Public routes */}
+              <Route path="/login" render={() => <div>{'LOGIN PAGE'}</div>} />
 
-            {/* Protected routes */}
-            <Route
-              render={() => (
-                <Authenticated>
-                  <LocaleProvider i18n={this.props.i18n}>
-                    <div>
-                      <AppBar />
+              {/* Protected routes */}
+              <Route
+                render={() => (
+                  <Authenticated>
+                    <AppBar />
 
-                      <Switch>
-                        {/* Non-project routes */}
-                        <Route
-                          path="/profile"
-                          render={() => <div>{'PROFILE VIEW'}</div>}
-                        />
-                        <Route
-                          path="/organizations"
-                          render={() => <div>{'ORGS VIEW'}</div>}
-                        />
+                    <Switch>
+                      {/* Non-project routes */}
+                      <Route
+                        path="/profile"
+                        render={() => <div>{'PROFILE VIEW'}</div>}
+                      />
+                      <Route
+                        path="/organizations"
+                        render={() => <div>{'ORGS VIEW'}</div>}
+                      />
 
-                        {/* Project routes */}
-                        <Route
-                          path="/:projectKey"
-                          component={ProjectContainer}
-                        />
-                        <Route render={() => <div>{'Another route'}</div>} />
-                      </Switch>
-                    </div>
-                  </LocaleProvider>
-                </Authenticated>
-              )}
-            />
-          </Switch>
-        </Router>
+                      {/* Project routes */}
+                      <Route path="/:projectKey" component={ProjectContainer} />
+                      <Route render={() => <div>{'Another route'}</div>} />
+                    </Switch>
+                  </Authenticated>
+                )}
+              />
+            </Switch>
+          </Router>
+        </ConfigureIntlProvider>
       </ApolloProvider>
     );
   }
