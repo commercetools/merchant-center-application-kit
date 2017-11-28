@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering should output correct tree 1`] = `
+<Card
+  className="box"
+  type="raised"
+>
+  <div
+    className="header"
+  >
+    <div
+      className="logo"
+    >
+      <img
+        src="test-file-stub"
+      />
+    </div>
+  </div>
+  <div
+    className="holder"
+    data-test="login-form"
+  >
+    <Foo />
+  </div>
+</Card>
+`;

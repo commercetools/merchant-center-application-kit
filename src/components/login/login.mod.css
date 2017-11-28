@@ -1,0 +1,84 @@
+@import '@commercetools-local/ui-kit/materials/colors.mod.css';
+@import '@commercetools-local/ui-kit/materials/spacings.mod.css';
+
+.underline {
+  composes: underline from '@commercetools-local/core/_styles/commons.mod.css';
+}
+
+/* Login container */
+
+.form > * + * {
+  margin: var(--spacing-16) 0 0;
+}
+
+.forgot-pw {
+  margin-top: var(--spacing-24);
+  display: block;
+  cursor: pointer;
+  color: var(--color-greyTundora);
+}
+
+.forgot-pw:hover {
+  color: var(--color-primaryGreen);
+}
+
+.error-message {
+  margin: 0;
+  padding: 20px 10px;
+  background-color: var(--color-redCream);
+  color: var(--color-red);
+  border-bottom: 1px solid var(--color-red);
+}
+
+.success-message {
+  margin: 0;
+  padding: 20px 10px;
+  background-color: var(--color-primaryGreen);
+  color: var(--color-white);
+}
+
+/* Forms */
+.title {
+  padding: 0;
+  margin: 0;
+}
+
+.fieldset {
+  border: 0;
+  padding: 0;
+}
+
+.label {
+  composes: label from '@commercetools-local/core/_styles/forms.mod.css';
+  text-align: left;
+  margin: var(--spacing-16) 0 var(--spacing-8);
+}
+
+.input-text {
+  width: 100%;
+}
+
+.input-text:last-of-type {
+  margin-bottom: var(--spacing-24);
+}
+
+.input-text {
+  composes: input-basic from '@commercetools-local/core/_styles/forms.mod.css';
+  width: 100%;
+}
+
+.input-text:last-of-type {
+  margin-bottom: 25px;
+}
+
+.overlay {
+  composes: modal-overlay-fullscreen from '@commercetools-local/core/_styles/modals.mod.css';
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.forgot-pw.disabled:hover {
+  color: var(--color-greyDove);
+}

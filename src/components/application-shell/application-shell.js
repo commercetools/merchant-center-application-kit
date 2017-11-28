@@ -8,6 +8,8 @@ import ConfigureIntlProvider from '../configure-intl-provider';
 import AppBar from '../app-bar';
 import ProjectContainer from '../project-container';
 import RedirectToProject from '../redirect-to-project';
+import Login from '../login';
+import Logout from '../logout';
 
 export default class ApplicationShell extends React.PureComponent {
   static displayName = 'ApplicationShell';
@@ -22,7 +24,8 @@ export default class ApplicationShell extends React.PureComponent {
           <Router>
             <Switch>
               {/* Public routes */}
-              <Route path="/login" render={() => <div>{'LOGIN PAGE'}</div>} />
+              <Route path="/login" component={Login} />
+              <Route path="/logout" component={Logout} />
 
               {/* Protected routes */}
               <Route

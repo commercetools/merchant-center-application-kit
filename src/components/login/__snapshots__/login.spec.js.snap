@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering should match tree 1`] = `
+<PublicPageContainer>
+  <LoginBox>
+    <form
+      className="form"
+      method="post"
+      onChange={[Function]}
+      onSubmit={[Function]}
+    >
+      <fieldset
+        className="fieldset"
+      >
+        <legend
+          className="title"
+        >
+          <Title>
+            <FormattedMessage
+              defaultMessage="Sign in to your account"
+              description="The title message for the login form"
+              id="LoginForm.title"
+              values={Object {}}
+            />
+          </Title>
+        </legend>
+        <label
+          className="label"
+          htmlFor="email"
+        >
+          <FormattedMessage
+            defaultMessage="Email"
+            description="The label for the login input field (email)"
+            id="LoginForm.email"
+            values={Object {}}
+          />
+        </label>
+        <input
+          className="input-text"
+          name="email"
+          onKeyDown={[Function]}
+          type="text"
+        />
+        <label
+          className="label"
+          htmlFor="password"
+        >
+          <FormattedMessage
+            defaultMessage="Password"
+            description="The label for the login input field (password)"
+            id="LoginForm.password"
+            values={Object {}}
+          />
+        </label>
+        <input
+          className="input-text"
+          name="password"
+          onKeyDown={[Function]}
+          type="password"
+        />
+        <PrimaryButton
+          isToggleButton={false}
+          label="LoginForm.signin"
+          onClick={[Function]}
+          size="big"
+          tone="primary"
+        />
+        <a
+          className="forgot-pw"
+          data-track-component="ForgotPassword"
+          data-track-event="click"
+          onClick={[Function]}
+        >
+          <FormattedMessage
+            defaultMessage="Forgot password?"
+            description="The lable of the forgot password link"
+            id="LoginForm.forgotPassword"
+            values={Object {}}
+          />
+        </a>
+      </fieldset>
+    </form>
+  </LoginBox>
+</PublicPageContainer>
+`;
