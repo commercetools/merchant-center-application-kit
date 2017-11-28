@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering outputs correct tree 1`] = `
+<ServicePageResponseLayout
+  bodyContent={<withRouter(ServicePageProjectSwitcher) />}
+  imageSrc="test-file-stub"
+  paragraph1={
+    <FormattedMessage
+      defaultMessage="Please contact your system administrator if you have any further questions or select another Project to view."
+      id="ProjectSuspended.paragraph1"
+      values={Object {}}
+    />
+  }
+  title={
+    <FormattedMessage
+      defaultMessage="Your Project has been suspended"
+      id="ProjectSuspended.title"
+      values={Object {}}
+    />
+  }
+/>
+`;

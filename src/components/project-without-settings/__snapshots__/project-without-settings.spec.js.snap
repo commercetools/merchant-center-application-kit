@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering outputs correct tree 1`] = `
+<div>
+  Unexpected error. The project-setting is missing for project foo. Please contact our support.
+</div>
+`;

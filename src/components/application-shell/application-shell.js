@@ -7,6 +7,7 @@ import Authenticated from '../authenticated';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import AppBar from '../app-bar';
 import ProjectContainer from '../project-container';
+import RedirectToProject from '../redirect-to-project';
 
 export default class ApplicationShell extends React.PureComponent {
   static displayName = 'ApplicationShell';
@@ -42,8 +43,9 @@ export default class ApplicationShell extends React.PureComponent {
 
                       {/* Project routes */}
                       <Route path="/:projectKey" component={ProjectContainer} />
-                      <Route render={() => <div>{'Another route'}</div>} />
+                      <Route path="/" component={RedirectToProject} />
                     </Switch>
+                    <Route pathrender={() => <div>{'Another route'}</div>} />
                   </Authenticated>
                 )}
               />
