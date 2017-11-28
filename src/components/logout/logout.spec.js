@@ -1,7 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Logout } from './logout';
+import {
+  ACCESS_TOKEN_NAMESPACE,
+  ACCESS_TOKEN_IDP_URL_KEY,
+  STORAGE_KEYS as CORE_STORAGE_KEYS,
+} from '@commercetools-local/constants';
+import * as storage from '@commercetools-local/utils/storage';
+import { Logout, getLoginStrategy } from './logout';
 
+let mockJWTDecode = jest.fn();
+jest.mock('jwt-decode', () => (...args) => mockJWTDecode(...args));
 jest.mock('@commercetools-local/utils/storage');
 
 const createTestProps = props => ({
@@ -46,6 +54,55 @@ describe('componentDidMount', () => {
       expect(props.redirectTo).toHaveBeenLastCalledWith(
         '/login?reason=unauthorized'
       );
+    });
+  });
+});
+
+describe('getLoginStrategy', () => {
+  describe('when token is defined', () => {
+    describe('when IdP URL is defined', () => {
+      beforeEach(() => {
+        mockJWTDecode.mockClear();
+        mockJWTDecode = jest.fn(() => ({
+          [`${ACCESS_TOKEN_NAMESPACE}${
+            ACCESS_TOKEN_IDP_URL_KEY
+          }`]: 'https://idp.com',
+        }));
+        storage.put(CORE_STORAGE_KEYS.TOKEN, 'xxx');
+      });
+      it('should decode the access token and return the loginStrategy', () => {
+        expect(getLoginStrategy()).toBe('sso');
+      });
+    });
+    describe('when IdP URL is not defined', () => {
+      beforeEach(() => {
+        mockJWTDecode.mockClear();
+        mockJWTDecode = jest.fn(() => ({}));
+        storage.put(CORE_STORAGE_KEYS.TOKEN, 'xxx');
+      });
+      it('should decode the access token and return the loginStrategy', () => {
+        expect(getLoginStrategy()).toBe('default');
+      });
+    });
+    describe('when decoding the token throws an error', () => {
+      beforeEach(() => {
+        mockJWTDecode.mockClear();
+        mockJWTDecode = jest.fn(() => {
+          throw new Error("I'm not a valid JWT!");
+        });
+        storage.put(CORE_STORAGE_KEYS.TOKEN, 'xxx');
+      });
+      it('should return the default login strategy', () => {
+        expect(getLoginStrategy()).toBe('default');
+      });
+    });
+  });
+  describe('when token is not defined', () => {
+    beforeEach(() => {
+      storage.remove(CORE_STORAGE_KEYS.TOKEN);
+    });
+    it('should return null', () => {
+      expect(getLoginStrategy()).toBe(null);
     });
   });
 });

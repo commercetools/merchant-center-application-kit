@@ -12,7 +12,7 @@ import {
 } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 
-const selectLoginStrategy = () => {
+export const getLoginStrategy = () => {
   const accessToken = storage.get(CORE_STORAGE_KEYS.TOKEN);
 
   if (!accessToken) return null;
@@ -78,6 +78,6 @@ export class Logout extends React.PureComponent {
 }
 
 export default withProps(() => ({
-  loginStrategy: selectLoginStrategy(),
+  loginStrategy: getLoginStrategy(),
   redirectTo: targetUrl => window.location.replace(targetUrl),
 }))(Logout);
