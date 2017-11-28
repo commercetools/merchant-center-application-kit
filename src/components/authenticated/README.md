@@ -1,26 +1,12 @@
-# Configure <IntlProvider> with the proper locale
+# `Authenticated`
 
-This component is used to configure `<IntlProvider>` based on the proper
-`locale`.
-The `locale` is determined by:
-* the user setting, in case the user is logged in
-* the browser language, in case the user is not logged in
+This component is used to check if the application has an access `token`.
+If not, the user will be redirected to the login page.
 
-## `<ConfigureIntlProvider>`
-
-### Usage
+## Usage
 
 ```js
-import ConfigureIntlProvider from '../configure-intl-provider'
-
-<ConfigureIntlProvider i18n={i18nMessages}>
-  <Main />
-</ConfigureIntlProvider>
+<Authenticated>
+  <div>{'My protected components'}<div/>
+</Authenticated>
 ```
-
-### Properties
-
-| Props | Type | Required | Values | Default  | Description |
-| --- | --- | :---: | --- | --- | --- |
-| `i18n` | `object` | ✅ | - | - | The object containing the i18n messages in all different locales. |
-| `children` | `React.Element` | ✅ | - | - | - |
