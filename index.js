@@ -5,6 +5,16 @@ export const STORAGE_KEYS = {
   SELECTED_DATA_LOCALE: 'selectedDataLocale',
 };
 
+// SSO
+export const INTERNAL_AUTH_PROVIDER = 'commercetools';
+export const EXTERNAL_AUTH_PROVIDER = 'external';
+// This is a key used as a public claim in a JWT. The key is prefixed by a
+// "collision-resistant namespace", in this case a "domain name".
+export const ACCESS_TOKEN_NAMESPACE = 'https://mc.ct.com/';
+export const ACCESS_TOKEN_IDP_URL_KEY = 'idp_url';
+export const LOGIN_STRATEGY_DEFAULT = 'default';
+export const LOGIN_STRATEGY_SSO = 'sso';
+
 // PLUGINS
 export const ACTIVATE_PLUGIN = 'ACTIVATE_PLUGIN';
 export const DEACTIVATE_PLUGIN = 'DEACTIVATE_PLUGIN';
