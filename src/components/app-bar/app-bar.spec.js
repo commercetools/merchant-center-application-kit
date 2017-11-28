@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
@@ -10,6 +11,13 @@ import AppBar, {
   ProjectSwitcherForUser,
 } from './app-bar';
 
+const createTestPropsForRouteComponents = props => ({
+  projectKey: 'test-1',
+  isLoadingUser: true,
+  user: null,
+  ...props,
+});
+
 describe('rendering', () => {
   let wrapper;
   beforeEach(() => {
@@ -18,100 +26,136 @@ describe('rendering', () => {
   it('should match layout structure', () => {
     expect(wrapper).toMatchSnapshot();
   });
-  describe('container for <LocaleSwitcher>', () => {
-    let localeWrapper;
+  describe('inner routes', () => {
     let fetchUserChildrenWrapper;
+    let fetchUserChildrenProps;
     beforeEach(() => {
-      localeWrapper = shallow(
-        <LocaleSwitcherForProject
-          match={{ params: { projectKey: 'test-1' } }}
-        />
+      fetchUserChildrenProps = {
+        isLoading: true,
+        user: { availableProjects: [] },
+      };
+      fetchUserChildrenWrapper = shallow(
+        <div>
+          {wrapper.find(FetchUser).prop('children')(fetchUserChildrenProps)}
+        </div>
       );
     });
-    describe('when user is loading', () => {
+    it('should render <Route>', () => {
+      expect(fetchUserChildrenWrapper).toRender(Route);
+    });
+    describe('render route', () => {
+      let renderRouteChildrenWrapper;
+      let renderRouteChildrenProps;
       beforeEach(() => {
-        fetchUserChildrenWrapper = shallow(
+        renderRouteChildrenProps = {
+          match: { params: { projectKey: 'test-1' } },
+        };
+        renderRouteChildrenWrapper = shallow(
           <div>
-            {localeWrapper.find(FetchUser).prop('children')({
-              isLoading: true,
-            })}
+            {fetchUserChildrenWrapper.find(Route).prop('render')(
+              renderRouteChildrenProps
+            )}
           </div>
         );
       });
+      it('should pass projectKey to <LocaleSwitcherForProject>', () => {
+        expect(
+          renderRouteChildrenWrapper.find(LocaleSwitcherForProject)
+        ).toHaveProp('projectKey', 'test-1');
+      });
+      it('should pass isLoadingUser to <LocaleSwitcherForProject>', () => {
+        expect(
+          renderRouteChildrenWrapper.find(LocaleSwitcherForProject)
+        ).toHaveProp('isLoadingUser', fetchUserChildrenProps.isLoading);
+      });
+      it('should pass user to <LocaleSwitcherForProject>', () => {
+        expect(
+          renderRouteChildrenWrapper.find(LocaleSwitcherForProject)
+        ).toHaveProp('user', fetchUserChildrenProps.user);
+      });
+      it('should pass projectKey to <ProjectSwitcherForUser>', () => {
+        expect(
+          renderRouteChildrenWrapper.find(ProjectSwitcherForUser)
+        ).toHaveProp('projectKey', 'test-1');
+      });
+      it('should pass isLoadingUser to <ProjectSwitcherForUser>', () => {
+        expect(
+          renderRouteChildrenWrapper.find(ProjectSwitcherForUser)
+        ).toHaveProp('isLoadingUser', fetchUserChildrenProps.isLoading);
+      });
+      it('should pass user to <ProjectSwitcherForUser>', () => {
+        expect(
+          renderRouteChildrenWrapper.find(ProjectSwitcherForUser)
+        ).toHaveProp('user', fetchUserChildrenProps.user);
+      });
+    });
+  });
+  describe('container for <LocaleSwitcher>', () => {
+    let props;
+    let localeWrapper;
+    describe('when user is loading', () => {
+      beforeEach(() => {
+        props = createTestPropsForRouteComponents();
+        localeWrapper = shallow(<LocaleSwitcherForProject {...props} />);
+      });
       it('should render null', () => {
-        expect(fetchUserChildrenWrapper).toContainReact(<div />);
+        expect(localeWrapper.type()).toBe(null);
       });
     });
     describe('when user is not loading', () => {
       describe('when user has no available projects', () => {
         beforeEach(() => {
-          fetchUserChildrenWrapper = shallow(
-            <div>
-              {localeWrapper.find(FetchUser).prop('children')({
-                isLoading: false,
-                user: { availableProjects: [] },
-              })}
-            </div>
-          );
+          props = createTestPropsForRouteComponents({
+            isLoadingUser: false,
+            user: { availableProjects: [] },
+          });
+          localeWrapper = shallow(<LocaleSwitcherForProject {...props} />);
         });
         it('should render null', () => {
-          expect(fetchUserChildrenWrapper).toContainReact(<div />);
+          expect(localeWrapper.type()).toBe(null);
         });
       });
       describe('when user has available projects', () => {
         let fetchProjectChildrenWrapper;
         describe('projectKey param is included in the available projects', () => {
           beforeEach(() => {
-            fetchUserChildrenWrapper = shallow(
-              <div>
-                {localeWrapper.find(FetchUser).prop('children')({
-                  isLoading: false,
-                  user: { availableProjects: [{ key: 'test-1' }] },
-                })}
-              </div>
-            );
+            props = createTestPropsForRouteComponents({
+              isLoadingUser: false,
+              user: { availableProjects: [{ key: 'test-1' }] },
+            });
+            localeWrapper = shallow(<LocaleSwitcherForProject {...props} />);
           });
           describe('when project is loading', () => {
             beforeEach(() => {
-              fetchProjectChildrenWrapper = shallow(
-                <div>
-                  {fetchUserChildrenWrapper.find(FetchProject).prop('children')(
-                    {
-                      isLoading: true,
-                    }
-                  )}
-                </div>
-              );
+              fetchProjectChildrenWrapper = localeWrapper
+                .find(FetchProject)
+                .prop('children')({
+                isLoading: true,
+              });
             });
             it('should render null', () => {
-              expect(fetchProjectChildrenWrapper).toContainReact(<div />);
+              expect(fetchProjectChildrenWrapper).toBe(null);
             });
           });
           describe('when project is not loading', () => {
             describe('when project has only one language', () => {
               beforeEach(() => {
-                fetchProjectChildrenWrapper = shallow(
-                  <div>
-                    {fetchUserChildrenWrapper
-                      .find(FetchProject)
-                      .prop('children')({
-                      isLoading: false,
-                      project: { languages: ['en'] },
-                    })}
-                  </div>
-                );
+                fetchProjectChildrenWrapper = localeWrapper
+                  .find(FetchProject)
+                  .prop('children')({
+                  isLoading: false,
+                  project: { languages: ['en'] },
+                });
               });
               it('should render null', () => {
-                expect(fetchProjectChildrenWrapper).toContainReact(<div />);
+                expect(fetchProjectChildrenWrapper).toBe(null);
               });
             });
             describe('when project has more than one language', () => {
               beforeEach(() => {
                 fetchProjectChildrenWrapper = shallow(
                   <div>
-                    {fetchUserChildrenWrapper
-                      .find(FetchProject)
-                      .prop('children')({
+                    {localeWrapper.find(FetchProject).prop('children')({
                       isLoading: false,
                       project: { languages: ['en', 'de'] },
                     })}
@@ -164,84 +208,68 @@ describe('rendering', () => {
         });
         describe('projectKey param is not included in the available projects', () => {
           beforeEach(() => {
-            fetchUserChildrenWrapper = shallow(
-              <div>
-                {localeWrapper.find(FetchUser).prop('children')({
-                  isLoading: false,
-                  user: { availableProjects: [{ key: 'p1' }] },
-                })}
-              </div>
-            );
+            props = createTestPropsForRouteComponents({
+              isLoadingUser: false,
+              user: { availableProjects: [{ key: 'p1' }] },
+            });
+            localeWrapper = shallow(<LocaleSwitcherForProject {...props} />);
           });
           it('should render null', () => {
-            expect(fetchUserChildrenWrapper).toContainReact(<div />);
+            expect(localeWrapper.type()).toBe(null);
           });
         });
       });
     });
   });
   describe('container for <ProjectSwitcher>', () => {
+    let props;
     let projectWrapper;
-    let fetchProjectChildrenWrapper;
     beforeEach(() => {
-      projectWrapper = shallow(
-        <ProjectSwitcherForUser match={{ params: { projectKey: 'test-1' } }} />
-      );
+      props = createTestPropsForRouteComponents();
+      projectWrapper = shallow(<ProjectSwitcherForUser {...props} />);
     });
     describe('when user is loading', () => {
       beforeEach(() => {
-        fetchProjectChildrenWrapper = shallow(
-          <div>
-            {projectWrapper.find(FetchUser).prop('children')({
-              isLoading: true,
-            })}
-          </div>
-        );
+        props = createTestPropsForRouteComponents();
+        projectWrapper = shallow(<ProjectSwitcherForUser {...props} />);
       });
       it('should render null', () => {
-        expect(fetchProjectChildrenWrapper).toContainReact(<div />);
+        expect(projectWrapper.type()).toBe(null);
       });
     });
     describe('when user is not loading', () => {
       describe('when user has no available projects', () => {
         beforeEach(() => {
-          fetchProjectChildrenWrapper = shallow(
-            <div>
-              {projectWrapper.find(FetchUser).prop('children')({
-                isLoading: false,
-                user: { availableProjects: [] },
-              })}
-            </div>
-          );
+          props = createTestPropsForRouteComponents({
+            isLoadingUser: false,
+            user: { availableProjects: [] },
+          });
+          projectWrapper = shallow(<ProjectSwitcherForUser {...props} />);
         });
         it('should render null', () => {
-          expect(fetchProjectChildrenWrapper).toContainReact(<div />);
+          expect(projectWrapper.type()).toBe(null);
         });
       });
       describe('when user has available projects', () => {
-        let projectSwitcherWrapper;
         describe('<ProjectSwitcher>', () => {
           beforeEach(() => {
-            projectSwitcherWrapper = shallow(
-              <div>
-                {projectWrapper.find(FetchUser).prop('children')({
-                  isLoading: false,
-                  user: { availableProjects: [{ key: 'test-1' }] },
-                })}
-              </div>
-            );
+            props = createTestPropsForRouteComponents({
+              isLoadingUser: false,
+              user: { availableProjects: [{ key: 'test-1' }] },
+            });
+            projectWrapper = shallow(<ProjectSwitcherForUser {...props} />);
           });
           it('should render <ProjectSwitcher>', () => {
-            expect(projectSwitcherWrapper).toRender(ProjectSwitcher);
+            expect(projectWrapper).toRender(ProjectSwitcher);
           });
           it('should pass projectKey to <ProjectSwitcher>', () => {
-            expect(projectSwitcherWrapper.find(ProjectSwitcher)).toHaveProp(
+            expect(projectWrapper.find(ProjectSwitcher)).toHaveProp(
               'projectKey',
               'test-1'
             );
           });
           it('should pass available projects to <ProjectSwitcher>', () => {
-            expect(projectSwitcherWrapper.find(ProjectSwitcher)).toHaveProp(
+            expect(projectWrapper.find(ProjectSwitcher)).toHaveProp(
               'availableProjects',
               [{ key: 'test-1' }]
             );

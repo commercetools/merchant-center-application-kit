@@ -28,19 +28,7 @@ exports[`rendering should match layout structure 1`] = `
       <div
         className="switchers"
       >
-        <Inline
-          alignItems="center"
-          scale="s"
-        >
-          <Route
-            component={[Function]}
-            path="/:projectKey"
-          />
-          <Route
-            component={[Function]}
-            path="/:projectKey"
-          />
-        </Inline>
+        <FetchUser />
       </div>
       <div
         className="spacer"
