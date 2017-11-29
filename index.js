@@ -1,11 +1,13 @@
 // STORAGE
 export const STORAGE_KEYS = {
+  NONCE: 'nonce',
   TOKEN: 'token',
   ACTIVE_PROJECT_KEY: 'activeProjectKey',
   SELECTED_DATA_LOCALE: 'selectedDataLocale',
 };
 
 // SSO
+export const ORGANIZATION_GENERAL_ERROR = 'organizationGeneralError';
 export const INTERNAL_AUTH_PROVIDER = 'commercetools';
 export const EXTERNAL_AUTH_PROVIDER = 'external';
 // This is a key used as a public claim in a JWT. The key is prefixed by a
