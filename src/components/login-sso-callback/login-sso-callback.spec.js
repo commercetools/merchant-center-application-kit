@@ -8,9 +8,9 @@ jest.mock('jwt-decode', () => () => ({ nonce: 'EY' }));
 jest.mock('@commercetools-local/utils/storage');
 
 const createTestProps = props => ({
-  location: {
-    hash: '',
-    search: '',
+  locationParams: {
+    id_token: '111',
+    organizationId: 'o1',
   },
   redirectTo: jest.fn(),
   requestAccessToken: jest.fn(),
@@ -51,7 +51,6 @@ describe('lifecylcle', () => {
     let props;
     beforeEach(() => {
       props = createTestProps({
-        location: { hash: '#id_token=111', search: '?organizationId=o1' },
         requestAccessToken: jest.fn(() =>
           Promise.resolve({ body: { token: 'xxx' } })
         ),

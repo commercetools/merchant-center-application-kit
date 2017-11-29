@@ -1,22 +1,20 @@
-import querystring from 'querystring';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withProps } from 'recompose';
+import { compose, withProps } from 'recompose';
 import jwtDecode from 'jwt-decode';
 import * as storage from '@commercetools-local/utils/storage';
 import client from '@commercetools-local/utils/node-sdk';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
+import withParsedLocation from '../with-parsed-location';
 import ApplicationLoader from '../application-loader';
 import FailedAuthentication from '../failed-authentication';
 
 export class LoginSSOCallback extends React.PureComponent {
   static displayName = 'LoginSSOCallback';
   static propTypes = {
-    location: PropTypes.shape({
-      // Contains the `id_token` param
-      hash: PropTypes.string.isRequired,
-      // Contains the `organizationId` param
-      search: PropTypes.string.isRequired,
+    locationParams: PropTypes.shape({
+      id_token: PropTypes.string.isRequired,
+      organizationId: PropTypes.string.isRequired,
     }).isRequired,
     redirectTo: PropTypes.func.isRequired,
     requestAccessToken: PropTypes.func.isRequired,
@@ -27,8 +25,7 @@ export class LoginSSOCallback extends React.PureComponent {
   };
 
   componentDidMount() {
-    const idToken = querystring.parse(this.props.location.hash.substring(1))
-      .id_token;
+    const idToken = this.props.locationParams.id_token;
     const decodedIdToken = jwtDecode(idToken);
     const nonce = storage.get(CORE_STORAGE_KEYS.NONCE);
     storage.remove(CORE_STORAGE_KEYS.NONCE);
@@ -36,14 +33,10 @@ export class LoginSSOCallback extends React.PureComponent {
     if (decodedIdToken.nonce !== nonce) {
       this.setAuthenticationFailed(true);
     } else {
-      const organizationId = querystring.parse(
-        this.props.location.search.substring(1)
-      ).organizationId;
-
       this.props
         .requestAccessToken({
           idToken,
-          organization: organizationId,
+          organization: this.props.locationParams.organizationId,
         })
         .then(payload => {
           storage.put(CORE_STORAGE_KEYS.TOKEN, payload.body.token);
@@ -68,7 +61,10 @@ export class LoginSSOCallback extends React.PureComponent {
   }
 }
 
-export default withProps(() => ({
-  requestAccessToken: payload => client.tokens.create(payload),
-  redirectTo: target => window.location.replace(target),
-}))(LoginSSOCallback);
+export default compose(
+  withParsedLocation,
+  withProps(() => ({
+    requestAccessToken: payload => client.tokens.create(payload),
+    redirectTo: target => window.location.replace(target),
+  }))
+)(LoginSSOCallback);

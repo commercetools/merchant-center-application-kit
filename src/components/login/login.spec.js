@@ -6,12 +6,7 @@ import { Login } from './login';
 jest.mock('@commercetools-local/utils/storage');
 
 const createTestProps = props => ({
-  location: {
-    // Can contain following params:
-    // - `reason`
-    // - `redirectTo`
-    search: '',
-  },
+  locationParams: {},
   history: {
     push: jest.fn(),
   },
@@ -180,7 +175,7 @@ describe('initial state', () => {
   let wrapper;
   beforeEach(() => {
     const props = createTestProps({
-      location: { search: '?reason=foo' },
+      locationParams: { reason: 'foo' },
     });
     wrapper = shallow(<Login {...props} />);
   });
@@ -260,9 +255,7 @@ describe('requestAccessToken', () => {
     beforeEach(() => {
       handleSubmitPreventDefaultMock.mockClear();
       props = createTestProps({
-        location: {
-          search: '?redirectTo=/foo/bar',
-        },
+        locationParams: { redirectTo: '/foo/bar' },
         requestAccessToken: jest.fn(() =>
           Promise.resolve({ body: { token: '123' } })
         ),

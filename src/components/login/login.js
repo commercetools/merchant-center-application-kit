@@ -1,7 +1,5 @@
-import querystring from 'querystring';
-import PropTypes from 'prop-types';
 import React from 'react';
-import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
@@ -16,6 +14,7 @@ import { injectConfiguration } from '@commercetools-local/core/components/config
 import Notification from '@commercetools-local/core/components/notification';
 import Title from '@commercetools-local/core/components/title';
 import InfoDialog from '@commercetools-local/core/components/overlays/info-dialog';
+import withParsedLocation from '../with-parsed-location';
 import PublicPageContainer from '../public-page-container';
 import LoginBox from '../login-box';
 import styles from './login.mod.css';
@@ -25,11 +24,9 @@ export class Login extends React.PureComponent {
   static displayName = 'Login';
 
   static propTypes = {
-    location: PropTypes.shape({
-      // Can contain following params:
-      // - `reason`
-      // - `redirectTo`
-      search: PropTypes.string,
+    locationParams: PropTypes.shape({
+      reason: PropTypes.string,
+      redirectTo: PropTypes.string,
     }).isRequired,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
@@ -50,7 +47,7 @@ export class Login extends React.PureComponent {
     countdown: 10,
     showRedirectDialog: null,
     shouldRedirectPasswordForgot: false,
-    error: querystring.parse(this.props.location.search.substring(1)).reason,
+    error: this.props.locationParams.reason,
   };
 
   componentDidMount = () => {
@@ -85,10 +82,7 @@ export class Login extends React.PureComponent {
       .then(payload => {
         this.setState({ loading: false });
         storage.put(CORE_STORAGE_KEYS.TOKEN, payload.body.token);
-        this.props.history.push(
-          querystring.parse(this.props.location.search.substring(1))
-            .redirectTo || '/'
-        );
+        this.props.history.push(this.props.locationParams.redirectTo || '/');
       })
       .catch(error => {
         this.setState({
@@ -291,9 +285,9 @@ export class Login extends React.PureComponent {
 }
 
 export default compose(
-  withRouter,
   injectIntl,
   injectConfiguration(['adminCenterUrl'], 'adminCenterUrl'),
+  withParsedLocation,
   withProps({
     requestAccessToken: payload => client.tokens.create(payload),
   })
