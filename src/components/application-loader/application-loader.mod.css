@@ -1,0 +1,15 @@
+@import '@commercetools-local/ui-kit/materials/spacings.mod.css';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+  height: 100vh;
+  padding: var(--spacing-24);
+}
+
+.container > * + * {
+  margin: var(--spacing-24) 0 0;
+}

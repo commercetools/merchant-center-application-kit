@@ -9,6 +9,8 @@ import AppBar from '../app-bar';
 import ProjectContainer from '../project-container';
 import RedirectToProject from '../redirect-to-project';
 import Login from '../login';
+import LoginSSO from '../login-sso';
+import LoginSSOCallback from '../login-sso-callback';
 import Logout from '../logout';
 
 export default class ApplicationShell extends React.PureComponent {
@@ -24,6 +26,8 @@ export default class ApplicationShell extends React.PureComponent {
           <Router>
             <Switch>
               {/* Public routes */}
+              <Route path="/login/sso/callback" component={LoginSSOCallback} />
+              <Route path="/login/sso" component={LoginSSO} />
               <Route path="/login" component={Login} />
               <Route path="/logout" component={Logout} />
 
