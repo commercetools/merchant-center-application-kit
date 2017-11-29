@@ -30,7 +30,6 @@ exports[`rendering <Formik> form elements should match layout 1`] = `
       }
     />
     <Field
-      component="input"
       name="organizationName"
       onChange={[Function]}
       type="text"
