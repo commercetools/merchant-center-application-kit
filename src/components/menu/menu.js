@@ -137,6 +137,11 @@ MenuItemLink.propTypes = {
 // children if the flag is missing/not found.
 export const ToggledWithPermissions = props => {
   const demandedPermissions = props.permissions || [];
+  // This manual glueing is needed because the RestrictedByPermissions component
+  // is connect to the redux store. The app shell, however, does not use redux
+  // anymore.
+  // TODO refactor with-permissions component to not connect to redux but to
+  // use the FetchProject component to read the users permissions
   const permissionsProps = createPermissionsMatchingToProps(
     demandedPermissions,
     { some: Boolean(props.permissions) }
