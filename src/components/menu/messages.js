@@ -17,4 +17,16 @@ export default defineMessages({
     id: 'Menu.Orders.add',
     defaultMessage: 'Add order',
   },
+  'Menu.Customers.title': {
+    id: 'Menu.Customers.title',
+    defaultMessage: 'Customers',
+  },
+  'Menu.Customers.list': {
+    id: 'Menu.Customers.list',
+    defaultMessage: 'Customers list',
+  },
+  'Menu.Customers.add': {
+    id: 'Menu.Customers.add',
+    defaultMessage: 'Add customer',
+  },
 });

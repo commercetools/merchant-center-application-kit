@@ -130,9 +130,9 @@ MenuItemLink.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-// This component basically just wraps the `<RestrictedByPermissions>` and the
-// `<FeatureToggled>` components. However, it's necessary to have it as the
-// `<FeatureToggled>` wrapper should be rendered only if the `featureToggle`
+// This component basically just wraps the `<UnconnectedRestrictedByPermissions>`
+// and the `<FeatureToggled>` components. However, it's necessary to have it as
+// the `<FeatureToggled>` wrapper should be rendered only if the `featureToggle`
 // prop is defined. This is because `<FeatureToggled>` will not render any
 // children if the flag is missing/not found.
 export const ToggledWithPermissions = props => {

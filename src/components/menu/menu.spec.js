@@ -2,6 +2,8 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { FeatureToggled } from '@flopflip/react-broadcast';
 import { UnconnectedRestrictedByPermissions } from '@commercetools-local/core/components/with-permissions';
+import * as storage from '@commercetools-local/utils/storage';
+import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import {
   Menu,
   DataMenu,
@@ -397,12 +399,9 @@ describe('rendering', () => {
               );
             });
             it('should render submenu label', () => {
-              expect(
-                wrapper
-                  .find('MenuItemLink')
-                  .at(1)
-                  .containsMatchingElement('Add Customer')
-              ).toBe(true);
+              expect(wrapper.find('MenuItemLink').at(1)).toRender({
+                id: 'Menu.Customers.add',
+              });
             });
           });
         });
@@ -461,6 +460,8 @@ describe('rendering', () => {
         beforeEach(() => {
           props = {
             featureToggle: 'myFeature',
+            permissions: [],
+            actualPermissions: {},
           };
           wrapper = shallow(
             <ToggledWithPermissions {...props}>
@@ -478,7 +479,7 @@ describe('rendering', () => {
       describe('when featureToggle is not defined', () => {
         beforeEach(() => {
           wrapper = shallow(
-            <ToggledWithPermissions>
+            <ToggledWithPermissions actualPermissions={{}}>
               <ItemChild />
             </ToggledWithPermissions>
           );
@@ -488,14 +489,15 @@ describe('rendering', () => {
         });
       });
     });
-    describe('<RestrictedByPermissions>', () => {
-      it('should render <RestrictedByPermissions>', () => {
-        expect(wrapper).toRender(RestrictedByPermissions);
+    describe('<UnconnectedRestrictedByPermissions>', () => {
+      it('should render <UnconnectedRestrictedByPermissions>', () => {
+        expect(wrapper).toRender(UnconnectedRestrictedByPermissions);
       });
       describe('when permissions are defined', () => {
         beforeEach(() => {
           props = {
             permissions: [{ mode: 'view', resource: 'products' }],
+            actualPermissions: { canViewProducts: true },
           };
           wrapper = shallow(
             <ToggledWithPermissions {...props}>
@@ -504,20 +506,14 @@ describe('rendering', () => {
           );
         });
         it('should pass permissions as prop', () => {
-          expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
+          expect(wrapper.find(UnconnectedRestrictedByPermissions)).toHaveProp(
             'permissions',
             [{ mode: 'view', resource: 'products' }]
           );
         });
-        it('should pass selectUserPermissions as prop', () => {
-          expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
-            'selectUserPermissions',
-            expect.any(Function)
-          );
-        });
-        it('should pass shouldMatchSomePermissions as prop (true)', () => {
-          expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
-            'shouldMatchSomePermissions',
+        it('should pass isAuthorized as prop (true)', () => {
+          expect(wrapper.find(UnconnectedRestrictedByPermissions)).toHaveProp(
+            'isAuthorized',
             true
           );
         });
@@ -526,6 +522,7 @@ describe('rendering', () => {
         beforeEach(() => {
           props = {
             permissions: undefined,
+            actualPermissions: {},
           };
           wrapper = shallow(
             <ToggledWithPermissions {...props}>
@@ -534,21 +531,15 @@ describe('rendering', () => {
           );
         });
         it('should pass permissions as prop', () => {
-          expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
+          expect(wrapper.find(UnconnectedRestrictedByPermissions)).toHaveProp(
             'permissions',
             []
           );
         });
-        it('should pass selectUserPermissions as prop', () => {
-          expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
-            'selectUserPermissions',
-            expect.any(Function)
-          );
-        });
-        it('should pass shouldMatchSomePermissions as prop (false)', () => {
-          expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
-            'shouldMatchSomePermissions',
-            false
+        it('should pass isAuthorized as prop', () => {
+          expect(wrapper.find(UnconnectedRestrictedByPermissions)).toHaveProp(
+            'isAuthorized',
+            true
           );
         });
       });
@@ -560,6 +551,7 @@ describe('rendering', () => {
       beforeEach(() => {
         props = {
           linkTo: '/test-1/customers',
+          exactMatch: true,
         };
         wrapper = shallow(
           <MenuItemLink {...props}>
@@ -567,20 +559,20 @@ describe('rendering', () => {
           </MenuItemLink>
         );
       });
-      it('should render <Link>', () => {
-        expect(wrapper).toRender('Link');
+      it('should render <NavLink>', () => {
+        expect(wrapper).toRender('NavLink');
       });
       it('should pass to as prop', () => {
-        expect(wrapper.find('Link')).toHaveProp('to', '/test-1/customers');
+        expect(wrapper.find('NavLink')).toHaveProp('to', '/test-1/customers');
+      });
+      it('should pass exact as prop', () => {
+        expect(wrapper.find('NavLink')).toHaveProp('exact', true);
       });
       it('should pass activeClassName as prop', () => {
-        expect(wrapper.find('Link')).toHaveProp(
+        expect(wrapper.find('NavLink')).toHaveProp(
           'activeClassName',
           'highlighted'
         );
-      });
-      it('should pass onlyActiveOnIndex as prop', () => {
-        expect(wrapper.find('Link')).toHaveProp('onlyActiveOnIndex', true);
       });
       it('should render children', () => {
         expect(wrapper).toRender(LinkLabel);
@@ -990,7 +982,9 @@ describe('instance methods', () => {
           wrapper.instance().handleToggleMenu();
         });
         it('should update isForcedMenuOpen to false', () => {
-          expect(props.forceMenuToggle).toHaveBeenLastCalledWith(false);
+          expect(storage.get(CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN)).toBe(
+            false
+          );
         });
       });
       describe('if menu is not open', () => {
@@ -999,7 +993,7 @@ describe('instance methods', () => {
           wrapper.instance().handleToggleMenu();
         });
         it('should update isForcedMenuOpen to true', () => {
-          expect(props.forceMenuToggle).toHaveBeenLastCalledWith(true);
+          expect(storage.get(CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN)).toBe(true);
         });
       });
     });
