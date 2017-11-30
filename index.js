@@ -4,6 +4,7 @@ export const STORAGE_KEYS = {
   TOKEN: 'token',
   ACTIVE_PROJECT_KEY: 'activeProjectKey',
   SELECTED_DATA_LOCALE: 'selectedDataLocale',
+  IS_FORCED_MENU_OPEN: 'isForcedMenuOpen',
 };
 
 // SSO
