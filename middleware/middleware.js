@@ -75,6 +75,9 @@ export default ({ dispatch, getState }) => next => action => {
     const method = methodToHttpMethod(action.payload.method);
     const headers = {
       Authorization: selectToken(state),
+      // NOTE: passing headers is currently only necessary for the pim-indexer
+      // this should be cleaned up, so the endpoint of an http call is determined by the url
+      // and not the headers
       ...(action.payload.headers || []),
     };
 
