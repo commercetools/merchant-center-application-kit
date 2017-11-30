@@ -73,7 +73,10 @@ export default ({ dispatch, getState }) => next => action => {
     dispatch(toGlobal({ type: SHOW_LOADING, payload: requestName }));
 
     const method = methodToHttpMethod(action.payload.method);
-    const headers = { Authorization: selectToken(state) };
+    const headers = {
+      Authorization: selectToken(state),
+      ...(action.payload.headers || []),
+    };
 
     // NOTE the promise returned by the client resolves to a custom format
     // it will contain { statusCode, headers, body }
