@@ -13,7 +13,7 @@ import * as i18n from '../../../../i18n';
 ReactDOM.render(
   <ApplicationShell
     i18n={i18n}
-    // configuration={window.app}
+    configuration={window.app}
     // menuLinks={[{ path: '/foo', label: 'Foo' }, { path: '/bar', label: 'Bar' }]}
   >
     <div>{'This is the APPLICATION specific part'}</div>
