@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import omit from 'lodash.omit';
 import LoadingSpinner from '@commercetools-local/core/components/loading-spinner';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
+import Menu from '../menu';
 import ProjectNotFound from '../project-not-found';
 import ProjectExpired from '../project-expired';
 import ProjectSuspended from '../project-suspended';
@@ -27,10 +29,13 @@ const ProjectContainer = props => (
             if (project.expired) return <ProjectExpired />;
             if (!project.settings) return <ProjectWithoutSettings />;
             return (
-              <div>
-                {/* <Menu /> */}
-                {/* <Content /> */}
-                {'TODO: this is the project content'}
+              <div style={{ display: 'inline-flex' }}>
+                <Menu
+                  location={props.location}
+                  menuLinks={props.menuLinks}
+                  projectKey={props.match.params.projectKey}
+                  projectPermissions={omit(project.permissions, ['__typename'])}
+                />
                 {props.children}
               </div>
             );
@@ -47,6 +52,8 @@ ProjectContainer.propTypes = {
       projectKey: PropTypes.string,
     }).isRequired,
   }).isRequired,
+  location: PropTypes.object.isRequired,
+  menuLinks: PropTypes.array.isRequired,
   children: PropTypes.element.isRequired,
 };
 

@@ -20,6 +20,7 @@ export default class ApplicationShell extends React.PureComponent {
   static propTypes = {
     i18n: PropTypes.object.isRequired,
     configuration: PropTypes.object.isRequired,
+    menuLinks: PropTypes.array.isRequired,
     children: PropTypes.element.isRequired,
   };
   render() {
@@ -63,7 +64,10 @@ export default class ApplicationShell extends React.PureComponent {
                               <SetupFlopFlipProvider
                                 projectKey={routerProps.match.params.projectKey}
                               >
-                                <ProjectContainer {...routerProps}>
+                                <ProjectContainer
+                                  {...routerProps}
+                                  menuLinks={this.props.menuLinks}
+                                >
                                   {this.props.children}
                                 </ProjectContainer>
                               </SetupFlopFlipProvider>
