@@ -13,6 +13,7 @@ import Login from '../login';
 import LoginSSO from '../login-sso';
 import LoginSSOCallback from '../login-sso-callback';
 import Logout from '../logout';
+import SetupFlopFlipProvider from '../setup-flop-flip-provider';
 
 export default class ApplicationShell extends React.PureComponent {
   static displayName = 'ApplicationShell';
@@ -41,30 +42,32 @@ export default class ApplicationShell extends React.PureComponent {
                 <Route
                   render={() => (
                     <Authenticated>
-                      <AppBar />
+                      <SetupFlopFlipProvider>
+                        <AppBar />
 
-                      <Switch>
-                        {/* Non-project routes */}
-                        <Route
-                          path="/profile"
-                          render={() => <div>{'PROFILE VIEW'}</div>}
-                        />
-                        <Route
-                          path="/organizations"
-                          render={() => <div>{'ORGS VIEW'}</div>}
-                        />
+                        <Switch>
+                          {/* Non-project routes */}
+                          <Route
+                            path="/profile"
+                            render={() => <div>{'PROFILE VIEW'}</div>}
+                          />
+                          <Route
+                            path="/organizations"
+                            render={() => <div>{'ORGS VIEW'}</div>}
+                          />
 
-                        {/* Project routes */}
-                        <Route
-                          path="/:projectKey"
-                          render={routerProps => (
-                            <ProjectContainer {...routerProps}>
-                              {this.props.children}
-                            </ProjectContainer>
-                          )}
-                        />
-                        <Route path="/" component={RedirectToProject} />
-                      </Switch>
+                          {/* Project routes */}
+                          <Route
+                            path="/:projectKey"
+                            render={routerProps => (
+                              <ProjectContainer {...routerProps}>
+                                {this.props.children}
+                              </ProjectContainer>
+                            )}
+                          />
+                          <Route path="/" component={RedirectToProject} />
+                        </Switch>
+                      </SetupFlopFlipProvider>
                     </Authenticated>
                   )}
                 />
