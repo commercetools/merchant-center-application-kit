@@ -60,9 +60,13 @@ export default class ApplicationShell extends React.PureComponent {
                           <Route
                             path="/:projectKey"
                             render={routerProps => (
-                              <ProjectContainer {...routerProps}>
-                                {this.props.children}
-                              </ProjectContainer>
+                              <SetupFlopFlipProvider
+                                projectKey={routerProps.match.params.projectKey}
+                              >
+                                <ProjectContainer {...routerProps}>
+                                  {this.props.children}
+                                </ProjectContainer>
+                              </SetupFlopFlipProvider>
                             )}
                           />
                           <Route path="/" component={RedirectToProject} />
