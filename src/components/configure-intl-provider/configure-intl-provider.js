@@ -14,9 +14,11 @@ const getLocaleForUserOrFallbackToBrowser = user => {
 export const ConfigureIntlProvider = props => {
   const locale = getLocaleForUserOrFallbackToBrowser(props.user);
   return (
-    <IntlProvider locale={locale} messages={props.i18n[locale]}>
-      {props.children}
-    </IntlProvider>
+    !props.isLoading && (
+      <IntlProvider locale={locale} messages={props.i18n[locale]}>
+        {props.children}
+      </IntlProvider>
+    )
   );
 };
 
@@ -26,6 +28,7 @@ ConfigureIntlProvider.propTypes = {
   children: PropTypes.element.isRequired,
   // Injected
   user: PropTypes.object,
+  isLoading: PropTypes.bool,
 };
 
 export default branch(
