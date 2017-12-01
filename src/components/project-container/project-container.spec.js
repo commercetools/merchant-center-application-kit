@@ -5,12 +5,21 @@ import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 import ProjectContainer from './project-container';
 
+const createTestProps = custom => ({
+  match: { params: { projectKey: 'test-1' } },
+  location: {},
+  menuLinks: [],
+  ...custom,
+});
+
 describe('rendering', () => {
+  let props;
   let wrapper;
   let fetchUserChildrenWrapper;
   beforeEach(() => {
+    props = createTestProps();
     wrapper = shallow(
-      <ProjectContainer match={{ params: { projectKey: 'test-1' } }}>
+      <ProjectContainer {...props}>
         <div>{'foo'}</div>
       </ProjectContainer>
     );
