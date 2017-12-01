@@ -21,6 +21,72 @@ const testMenuLinks = [
     },
   },
   {
+    name: 'mcng-products',
+    menu: {
+      name: 'products',
+      link: 'products',
+      label: 'Menu.Products.title',
+      icon: 'BoxProductIcon',
+      permissions: [
+        {
+          mode: 'view',
+          resource: 'products',
+        },
+        {
+          mode: 'manage',
+          resource: 'products',
+        },
+      ],
+      submenu: [
+        {
+          name: 'products-ist',
+          label: 'Menu.Products.list',
+          link: 'products',
+        },
+        {
+          name: 'products-verify-changes',
+          featureToggle: 'modifiedProducts',
+          label: 'Menu.Products.verifyChanges',
+          link: 'products/modified',
+          permissions: [
+            {
+              mode: 'manage',
+              resource: 'products',
+            },
+          ],
+        },
+        {
+          name: 'products-search',
+          featureToggle: 'pimSearch',
+          label: 'Menu.Products.pimSearchList',
+          link: 'products/pim-search',
+          permissions: [
+            {
+              mode: 'manage',
+              resource: 'products',
+            },
+          ],
+        },
+        {
+          name: 'products-add',
+          label: 'Menu.Products.add',
+          link: 'products/new',
+          permissions: [
+            {
+              mode: 'manage',
+              resource: 'products',
+            },
+          ],
+        },
+        {
+          name: 'products-direct-access',
+          label: 'Menu.Products.directAccess',
+          link: 'products/direct-access',
+        },
+      ],
+    },
+  },
+  {
     name: 'mcng-categories',
     menu: {
       name: 'categories',
