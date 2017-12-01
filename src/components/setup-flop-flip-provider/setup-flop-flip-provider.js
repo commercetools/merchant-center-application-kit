@@ -6,48 +6,57 @@ import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import { injectConfiguration } from '@commercetools-local/core/components/configuration';
 import FetchUser from '../fetch-user';
 
-const createLaunchdarlyAdapterArgs = defaultMemoize(
-  (clientSideId, userId, ldTrackingId, ldTrackingGroup, ldTrackingProject) => ({
-    clientSideId,
-    user: {
-      key: userId,
-      custom: {
-        id: ldTrackingId,
-        group: ldTrackingGroup,
-        project: ldTrackingProject,
+class SetupFlopFlip extends React.PureComponent {
+  static displayName = 'SetupFlopFlip';
+  static propTypes = {
+    ldClientSideId: PropTypes.string.isRequired,
+    projectKey: PropTypes.string,
+    children: PropTypes.node.isRequired,
+  };
+
+  createLaunchdarlyAdapterArgs = defaultMemoize(
+    (
+      clientSideId,
+      userId,
+      ldTrackingId,
+      ldTrackingGroup,
+      ldTrackingProject
+    ) => ({
+      clientSideId,
+      user: {
+        key: userId,
+        custom: {
+          id: ldTrackingId,
+          group: ldTrackingGroup,
+          project: ldTrackingProject,
+        },
       },
-    },
-  })
-);
+    })
+  );
 
-const SetupFlopFlip = props => (
-  <FetchUser>
-    {({ isLoading, user }) => (
-      <ConfigureFlopFlip
-        adapter={ldAdapter}
-        adapterArgs={createLaunchdarlyAdapterArgs(
-          props.ldClientSideId,
-          user && user.id,
-          user && user.launchdarklyTrackingId,
-          user && user.launchdarklyTrackingGroup,
-          props.projectKey
+  render() {
+    return (
+      <FetchUser>
+        {({ isLoading, user }) => (
+          <ConfigureFlopFlip
+            adapter={ldAdapter}
+            adapterArgs={this.createLaunchdarlyAdapterArgs(
+              this.props.ldClientSideId,
+              user && user.id,
+              user && user.launchdarklyTrackingId,
+              user && user.launchdarklyTrackingGroup,
+              this.props.projectKey
+            )}
+            shouldDeferAdapterConfiguration={isLoading}
+          >
+            {/* flop flip only accepts a single child :( */}
+            <div>{this.props.children}</div>
+          </ConfigureFlopFlip>
         )}
-        shouldDeferAdapterConfiguration={isLoading}
-      >
-        {/* flop flip only accepts a single child :( */}
-        <div>{props.children}</div>
-      </ConfigureFlopFlip>
-    )}
-  </FetchUser>
-);
-
-SetupFlopFlip.displayName = 'SetupFlopFlip';
-
-SetupFlopFlip.propTypes = {
-  ldClientSideId: PropTypes.string.isRequired,
-  projectKey: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
+      </FetchUser>
+    );
+  }
+}
 
 export default injectConfiguration(
   ['tracking', 'ldClientSideId'],
