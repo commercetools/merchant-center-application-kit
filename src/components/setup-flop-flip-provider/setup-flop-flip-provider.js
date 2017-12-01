@@ -22,22 +22,20 @@ const createLaunchdarlyAdapterArgs = defaultMemoize(
 
 const SetupFlopFlip = props => (
   <FetchUser>
-    {({ isFetching, user }) => (
+    {({ isLoading, user }) => (
       <ConfigureFlopFlip
         adapter={ldAdapter}
-        adapterArgs={
-          !isFetching &&
-          createLaunchdarlyAdapterArgs(
-            props.ldClientSideId,
-            user.id,
-            user.launchdarklyTrackingId,
-            user.launchdarklyTrackingGroup,
-            props.projectKey
-          )
-        }
-        shouldDeferAdapterConfiguration={isFetching}
+        adapterArgs={createLaunchdarlyAdapterArgs(
+          props.ldClientSideId,
+          user && user.id,
+          user && user.launchdarklyTrackingId,
+          user && user.launchdarklyTrackingGroup,
+          props.projectKey
+        )}
+        shouldDeferAdapterConfiguration={isLoading}
       >
-        {props.children}
+        {/* flop flip only accepts a single child :( */}
+        <div>{props.children}</div>
       </ConfigureFlopFlip>
     )}
   </FetchUser>
