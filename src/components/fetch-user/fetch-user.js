@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose, getDisplayName, setDisplayName } from 'recompose';
+import {
+  compose,
+  getDisplayName,
+  setDisplayName,
+  shouldUpdate,
+} from 'recompose';
+import { deepEqual } from 'fast-equals';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
@@ -68,7 +74,10 @@ FetchUser.propTypes = {
 // React component
 const FetchLoggedInUser = compose(
   setDisplayName('FetchUser'),
-  graphql(LoggedInUserQuery, graphqlOptions)
+  graphql(LoggedInUserQuery, graphqlOptions),
+  // a render is triggered because the reference of the userData prop changes
+  // although the objects content didn't change
+  shouldUpdate((props, nextProps) => !deepEqual(props, nextProps))
 )(FetchUser);
 
 // HoC
