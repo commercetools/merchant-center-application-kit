@@ -8,7 +8,7 @@ import LocaleSwitcher from '../locale-switcher';
 import ProjectSwitcher from '../project-switcher';
 import FetchUser from '../fetch-user';
 import FetchProject from '../fetch-project';
-import WithProjectDataLocale from '../with-project-data-locale';
+import ProjectDataLocale from '../project-data-locale';
 import styles from './app-bar.mod.css';
 
 // The `<LocaleSwitcher>` should be rendered only if the user and the project
@@ -32,7 +32,7 @@ const LocaleSwitcherForProject = props => {
           // Render the `<LocaleSwitcher>` only if the project has more
           // than one language.
           !isLoadingProject && project && project.languages.length > 1 ? (
-            <WithProjectDataLocale locales={project.languages}>
+            <ProjectDataLocale locales={project.languages}>
               {({ locale, setProjectDataLocale }) => (
                 <LocaleSwitcher
                   projectDataLocale={locale}
@@ -40,7 +40,7 @@ const LocaleSwitcherForProject = props => {
                   availableLocales={project.languages}
                 />
               )}
-            </WithProjectDataLocale>
+            </ProjectDataLocale>
           ) : null
         }
       </FetchProject>

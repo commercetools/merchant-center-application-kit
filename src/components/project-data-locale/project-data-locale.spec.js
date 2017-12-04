@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
-import WithProjectDataLocale from './with-project-data-locale';
+import ProjectDataLocale from './project-data-locale';
 
 jest.mock('@commercetools-local/utils/storage');
 
@@ -19,7 +19,7 @@ describe('rendering', () => {
   describe('when list of locales is not defined', () => {
     beforeEach(() => {
       props = createTestProps();
-      wrapper = shallow(<WithProjectDataLocale {...props} />);
+      wrapper = shallow(<ProjectDataLocale {...props} />);
     });
     it('should call render function with default locale "en"', () => {
       expect(props.children).toHaveBeenCalledWith(
@@ -39,7 +39,7 @@ describe('rendering', () => {
     describe('when locale is not cached yet', () => {
       beforeEach(() => {
         props = createTestProps();
-        wrapper = shallow(<WithProjectDataLocale {...props} />);
+        wrapper = shallow(<ProjectDataLocale {...props} />);
         wrapper.setProps({ locales: ['it', 'de'] });
       });
       it('should call render function with first locale from the list', () => {
@@ -52,7 +52,7 @@ describe('rendering', () => {
       beforeEach(() => {
         storage.put(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
         props = createTestProps();
-        wrapper = shallow(<WithProjectDataLocale {...props} />);
+        wrapper = shallow(<ProjectDataLocale {...props} />);
         wrapper.setProps({ locales: ['it', 'de'] });
       });
       it('should call render function with the locale from the cache', () => {
@@ -65,7 +65,7 @@ describe('rendering', () => {
       beforeEach(() => {
         storage.put(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
         props = createTestProps();
-        wrapper = shallow(<WithProjectDataLocale {...props} />);
+        wrapper = shallow(<ProjectDataLocale {...props} />);
         wrapper.setProps({ locales: ['it', 'en'] });
       });
       it('should call render function with first locale from the list', () => {
@@ -83,7 +83,7 @@ describe('interactions', () => {
   describe('updating the project data locale', () => {
     beforeEach(() => {
       props = createTestProps();
-      wrapper = shallow(<WithProjectDataLocale {...props} />);
+      wrapper = shallow(<ProjectDataLocale {...props} />);
       wrapper.instance().handleSetProjectDataLocale('de');
     });
     it('should update the state with the new locale', () => {

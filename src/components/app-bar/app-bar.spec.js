@@ -5,7 +5,7 @@ import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectSwitcher from '../project-switcher';
-import WithProjectDataLocale from '../with-project-data-locale';
+import ProjectDataLocale from '../project-data-locale';
 import AppBar, {
   LocaleSwitcherForProject,
   ProjectSwitcherForUser,
@@ -162,9 +162,9 @@ describe('rendering', () => {
                   </div>
                 );
               });
-              it('should pass project locales to <WithProjectDataLocale>', () => {
+              it('should pass project locales to <ProjectDataLocale>', () => {
                 expect(
-                  fetchProjectChildrenWrapper.find(WithProjectDataLocale)
+                  fetchProjectChildrenWrapper.find(ProjectDataLocale)
                 ).toHaveProp('locales', ['en', 'de']);
               });
               describe('<LocaleSwitcher>', () => {
@@ -173,7 +173,7 @@ describe('rendering', () => {
                   localeSwitcherWrapper = shallow(
                     <div>
                       {fetchProjectChildrenWrapper
-                        .find(WithProjectDataLocale)
+                        .find(ProjectDataLocale)
                         .prop('children')({
                         locale: 'en',
                         setProjectDataLocale: jest.fn(),

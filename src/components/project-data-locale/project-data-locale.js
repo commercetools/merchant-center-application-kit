@@ -27,8 +27,8 @@ const getSelectedDataLocaleForProject = projectLocales => {
   return defaultDataLocaleForProject;
 };
 
-export default class WithProjectDataLocale extends React.PureComponent {
-  static displayName = 'WithProjectDataLocale';
+export default class ProjectDataLocale extends React.PureComponent {
+  static displayName = 'ProjectDataLocale';
 
   static propTypes = {
     locales: PropTypes.arrayOf(PropTypes.string.isRequired),
