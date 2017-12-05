@@ -15,7 +15,10 @@ const userAgentMiddleware = createUserAgentMiddleware({
 // the application
 const { app: { host, protocol } } = window;
 const backendUrl = `${protocol}://${host}`;
-const httpMiddleware = createHttpMiddleware({ host: backendUrl });
+const httpMiddleware = createHttpMiddleware({
+  host: backendUrl,
+  includeResponseHeaders: true,
+});
 const client = createClient({
   middlewares: [userAgentMiddleware, httpMiddleware],
 });

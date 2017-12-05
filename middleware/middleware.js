@@ -1,5 +1,9 @@
 import { createRequestBuilder } from '@commercetools/api-request-builder';
-import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-local/constants';
+import {
+  SHOW_LOADING,
+  HIDE_LOADING,
+  TOKEN_SET,
+} from '@commercetools-local/constants';
 import toGlobal from '@commercetools-local/utils/to-global';
 import { logRequest } from '../utils';
 import client from './client';
@@ -42,6 +46,10 @@ const methodToHttpMethod = method => {
   }
 };
 
+const forceTokenHeader = {
+  'X-Force-Token': 'true',
+};
+
 export default ({ dispatch, getState }) => next => action => {
   if (!action) return next(action);
 
@@ -73,32 +81,67 @@ export default ({ dispatch, getState }) => next => action => {
     dispatch(toGlobal({ type: SHOW_LOADING, payload: requestName }));
 
     const method = methodToHttpMethod(action.payload.method);
-    const headers = {
-      Authorization: selectToken(state),
-      // NOTE: passing headers is currently only necessary for the pim-indexer
-      // this should be cleaned up, so the endpoint of an http call is determined by the url
-      // and not the headers
-      ...(action.payload.headers || []),
-    };
 
     // NOTE the promise returned by the client resolves to a custom format
     // it will contain { statusCode, headers, body }
-    return client
-      .execute({
-        uri,
-        method,
-        headers,
-        ...(method === 'POST' ? { body: action.payload.payload } : {}),
+    const sendRequest = shouldRenewToken => {
+      const headers = {
+        Authorization: selectToken(state),
+        // NOTE: passing headers is currently only necessary for the pim-indexer
+        // this should be cleaned up, so the endpoint of an http call is determined by the url
+        // and not the headers
+        ...(action.payload.headers || {}),
+        ...(shouldRenewToken ? forceTokenHeader : {}),
+      };
+      return client
+        .execute({
+          uri,
+          method,
+          headers,
+          ...(method === 'POST' ? { body: action.payload.payload } : {}),
+        })
+        .then(
+          result => {
+            if (process.env.NODE_ENV !== 'production')
+              logRequest({
+                method,
+                request: { headers, uri },
+                response: result.body,
+                action,
+              });
+            const newToken = result.headers['x-set-token'];
+            if (newToken) {
+              // The backend cache the OAuth token inside the jwt token.
+              // After having fetched a new OAuth token, it sends the frontend
+              // the new jwt token with this header.
+              // https://github.com/commercetools/merchant-center-backend/blob/master/docs/AUTHENTICATION.md#projects-api-oauth-token-caching
+              dispatch(toGlobal({ type: TOKEN_SET, payload: newToken }));
+            }
+            return result;
+          },
+          error => {
+            if (process.env.NODE_ENV !== 'production')
+              logRequest({
+                method,
+                request: { headers, uri },
+                error,
+                action,
+              });
+            throw error;
+          }
+        );
+    };
+    return sendRequest(false)
+      .catch(error => {
+        // in case of 401 error, try again with a new token
+        // https://github.com/commercetools/merchant-center-backend/blob/master/docs/AUTHENTICATION.md#problems-due-to-oauth-token-caching
+        if (error.statusCode && error.statusCode === 401) {
+          return sendRequest(true);
+        }
+        throw error;
       })
       .then(
         result => {
-          if (process.env.NODE_ENV !== 'production')
-            logRequest({
-              method,
-              request: { headers, uri },
-              response: result.body,
-              action,
-            });
           dispatch(toGlobal({ type: HIDE_LOADING, payload: requestName }));
           // The promise returned by "fetch" will reject when the request fails,
           // but only in certain cases. See "Checking that the fetch was successful"
@@ -107,13 +150,6 @@ export default ({ dispatch, getState }) => next => action => {
           return result.body;
         },
         error => {
-          if (process.env.NODE_ENV !== 'production')
-            logRequest({
-              method,
-              request: { headers, uri },
-              error,
-              action,
-            });
           dispatch(toGlobal({ type: HIDE_LOADING, payload: requestName }));
           throw error;
         }

@@ -1,4 +1,8 @@
-import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-local/constants';
+import {
+  SHOW_LOADING,
+  HIDE_LOADING,
+  TOKEN_SET,
+} from '@commercetools-local/constants';
 import toGlobal from '@commercetools-local/utils/to-global';
 import middleware from './middleware';
 import client from './client';
@@ -18,7 +22,7 @@ describe('when the action is of type SDK', () => {
         payload: { service: 'productTypes', method: 'fetch' },
       };
       const next = jest.fn();
-      const response = { body: 'foo' };
+      const response = { body: 'foo', headers: {} };
       beforeEach(() => {
         client.execute = jest.fn(() => Promise.resolve(response));
         return middleware({ dispatch, getState })(next)(action);
@@ -59,7 +63,7 @@ describe('when the action is of type SDK', () => {
         payload: { service: 'productTypes', method: 'fetch' },
       };
       const next = jest.fn();
-      const response = { body: 'foo' };
+      const response = { body: 'foo', headers: {} };
       let resultPromise;
       beforeEach(() => {
         client.execute = jest.fn(() => Promise.resolve(response));
@@ -80,6 +84,32 @@ describe('when the action is of type SDK', () => {
       });
     });
 
+    describe('when the request contains a new JWT token', () => {
+      const dispatch = jest.fn();
+      const getState = jest.fn(() => ({ globalAppState }));
+      const action = {
+        type: 'SDK',
+        payload: { service: 'productTypes', method: 'fetch' },
+      };
+      const next = jest.fn();
+      const response = {
+        headers: { 'x-set-token': 'new token' },
+      };
+      beforeEach(() => {
+        client.execute = jest.fn(() => Promise.resolve(response));
+        middleware({ dispatch, getState })(next)(action);
+      });
+
+      it('should update the token', () => {
+        expect(dispatch).toHaveBeenCalledWith(
+          toGlobal({
+            type: TOKEN_SET,
+            payload: 'new token',
+          })
+        );
+      });
+    });
+
     describe('when the request fails', () => {
       const dispatch = jest.fn();
       const getState = jest.fn(() => ({ globalAppState }));
@@ -88,7 +118,7 @@ describe('when the action is of type SDK', () => {
         payload: { service: 'productTypes', method: 'fetch' },
       };
       const next = jest.fn();
-      const expectedError = { body: 'foo' };
+      const expectedError = { body: 'foo', headers: {} };
       let resultPromise;
       beforeEach(() => {
         client.execute = jest.fn(() => Promise.reject(expectedError));
@@ -118,6 +148,41 @@ describe('when the action is of type SDK', () => {
     });
   });
 
+  describe('when the request fails with 401', () => {
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => ({ globalAppState }));
+    const action = {
+      type: 'SDK',
+      payload: { service: 'productTypes', method: 'fetch' },
+    };
+    const next = jest.fn();
+    const expectedError = { statusCode: 401, body: 'foo', headers: {} };
+    const response = { body: 'foo', headers: {} };
+    let resultPromise;
+    beforeEach(() => {
+      client.execute = jest
+        .fn()
+        .mockReturnValueOnce(Promise.reject(expectedError))
+        .mockReturnValueOnce(Promise.resolve(response));
+      resultPromise = middleware({ dispatch, getState })(next)(action);
+      // We catch all errors here so that they don't throw globally
+      // This is necessary because the rejected promise rethrows from
+      // the handler
+      return resultPromise.catch(error => {
+        if (error === expectedError) return;
+        throw error;
+      });
+    });
+    it('should retry the request with the X-Force-Token header', () => {
+      expect(client.execute).toHaveBeenCalledTimes(2);
+      const firstCall = client.execute.mock.calls[0][0];
+      expect(firstCall.headers).not.toHaveProperty('X-Force-Token');
+      const secondCall = client.execute.mock.calls[1][0];
+      expect(secondCall.headers).toHaveProperty('X-Force-Token');
+      expect(secondCall.headers['X-Force-Token']).toBe('true');
+    });
+  });
+
   describe('when the method is "fetch"', () => {
     const dispatch = jest.fn();
     const getState = jest.fn(() => ({ globalAppState }));
@@ -126,7 +191,7 @@ describe('when the action is of type SDK', () => {
       payload: { service: 'productTypes', method: 'fetch' },
     };
     const next = jest.fn();
-    const response = { body: 'foo' };
+    const response = { body: 'foo', headers: {} };
     let resultPromise;
     beforeEach(() => {
       client.execute = jest.fn(() => Promise.resolve(response));
@@ -160,7 +225,7 @@ describe('when the action is of type SDK', () => {
       payload: { service: 'productTypes', method: 'update', payload: {} },
     };
     const next = jest.fn();
-    const response = { body: 'foo' };
+    const response = { body: 'foo', headers: {} };
     let resultPromise;
     beforeEach(() => {
       client.execute = jest.fn(() => Promise.resolve(response));
