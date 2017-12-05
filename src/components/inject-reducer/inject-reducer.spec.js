@@ -62,7 +62,7 @@ describe('rendering', () => {
       expect(wrapper).toRender(LocalProvider);
     });
     it('should provide the plugin name to the LocalProvider', () => {
-      expect(wrapper.find(LocalProvider)).toHaveProp('plugin', 'foo');
+      expect(wrapper.find(LocalProvider)).toHaveProp('pluginName', 'foo');
     });
   });
 });
