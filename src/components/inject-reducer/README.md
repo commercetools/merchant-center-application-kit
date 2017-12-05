@@ -4,6 +4,9 @@ This component is built for injecting a reducer into the redux store from
 asynchronously loaded code. It takes a reducer function and adds it as a top
 level reducer to the store using the `name` prop as the key.
 
+> Using this component requires that the **redux `store`** is defined up the
+> context tree (`<Provider>`).
+
 ## To be deprecated behavior
 
 At the moment this component also handles registering your plugin and wrapping
@@ -20,14 +23,17 @@ will also remove this code again once we make that switch.
 
 ```jsx
 import React from 'react';
+import { Provider as StoreProvider } from 'react-redux';
 import { InjectReducer } from '@commercetools-local/application-shell';
 import Dashboard from './components/dashboard';
 import reducer from './reducer';
 
 const AsyncDashboard = props => (
-  <InjectReducer name="mcng-dashboard" reducer={reducer}>
-    <Dashboard {...props} />
-  </InjectReducer>
+  <StoreProvider store={store}>
+    <InjectReducer name="mcng-dashboard" reducer={reducer}>
+      <Dashboard {...props} />
+    </InjectReducer>
+  </StoreProvider>
 );
 AsyncDashboard.displayName = 'AsyncDashboard';
 
@@ -63,4 +69,5 @@ store.injectReducer = ({ name, reducer }) => {
 
 ## Prior art
 
-This component is inspired by React Boilerplate. Specifically [this HoC](https://github.com/react-boilerplate/react-boilerplate/blob/e39f8bdca29a35edbd7480968c9fe0b2c9438860/app/utils/reducerInjectors.js).
+This component is inspired by React Boilerplate. Specifically
+[this HoC](https://github.com/react-boilerplate/react-boilerplate/blob/e39f8bdca29a35edbd7480968c9fe0b2c9438860/app/utils/reducerInjectors.js).

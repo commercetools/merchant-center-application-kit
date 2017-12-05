@@ -29,24 +29,30 @@ export class InjectReducer extends React.PureComponent {
   };
 
   componentWillMount() {
-    // Check `store.injectedReducers[name] === reducer`.
-    // In case the reducer has already been defined but the component mounts
-    // again we should avoid to injecting it again.
-    if (
+    const hasPluginReducerBeenInjected =
       Reflect.has(this.context.store.injectedReducers, this.props.name) &&
       this.context.store.injectedReducers[this.props.name] ===
-        this.props.reducer
-    )
-      return;
+        this.props.reducer;
 
-    // Given the plugin name and reducer, inject it into the store.
-    this.context.store.injectReducer({
-      name: this.props.name,
-      reducer: this.props.reducer,
-    });
-
-    // Tell the store to activate the given plugin.
-    this.context.store.dispatch(activatePlugin(this.props.name));
+    // In case the reducer has already been defined but the component mounts
+    // again we should avoid to inject it again.
+    if (!hasPluginReducerBeenInjected) {
+      // Given the plugin name and reducer, inject it into the store.
+      this.context.store.injectReducer({
+        name: this.props.name,
+        reducer: this.props.reducer,
+      });
+      // Tell the store to activate the given plugin.
+      this.context.store.dispatch(activatePlugin(this.props.name));
+    } else if (
+      // In case the reducer has been previously injected, but this plugin
+      // needs to be activated again, we simply check it based on the
+      // active plugin name in the store.
+      this.props.activePlugin &&
+      this.props.activePlugin !== this.props.name
+    ) {
+      this.context.store.dispatch(activatePlugin(this.props.name));
+    }
   }
 
   render() {
