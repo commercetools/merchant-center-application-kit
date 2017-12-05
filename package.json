@@ -11,8 +11,8 @@
     "npm": ">=3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "test": "react-scripts test --env=jsdom"
+    "prestart": "pushd ../../; npm run setup dist-development",
+    "start": "node ../../toolbox/start.js --entryPoint=./packages-shared/application-shell/src/example/for-development.js"
   },
   "dependencies": {
     "@commercetools-local/constants": "*",
