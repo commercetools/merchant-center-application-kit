@@ -42,11 +42,11 @@ export class LocalProvider extends React.Component {
   static displayName = 'LocalProvider';
 
   static propTypes = {
+    pluginName: PropTypes.string,
     children: PropTypes.any,
-    plugin: PropTypes.string,
-    hasStateForActivePlugin: PropTypes.bool.isRequired,
 
     // Injected
+    hasStateForActivePlugin: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired,
     project: PropTypes.object.isRequired,
   };
@@ -63,11 +63,11 @@ export class LocalProvider extends React.Component {
     // Only update when a plugin is defined and has its own state slice,
     // otherwise we're in the middle of either a plugin or project switch, so
     // the state is inconsistent
-    return Boolean(nextProps.plugin) && nextProps.hasStateForActivePlugin;
+    return Boolean(nextProps.pluginName) && nextProps.hasStateForActivePlugin;
   }
 
   getChildContext() {
-    if (!this.props.plugin) return this.context.store;
+    if (!this.props.pluginName) return { store: this.context.store };
 
     return {
       store: this.createLocalStore(this.context.store, this.props),
@@ -75,18 +75,19 @@ export class LocalProvider extends React.Component {
   }
 
   createLocalStore = (store, props) => ({
+    isLocal: true,
     dispatch(action) {
       return store.dispatch({
         type: __LOCAL,
         payload: action,
         meta: {
-          plugin: props.plugin,
+          plugin: props.pluginName,
         },
       });
     },
     getState() {
       const appState = store.getState();
-      const state = appState[props.plugin];
+      const state = appState[props.pluginName];
       // Inject a field called `globalAppState` that contains
       // values about application, user and project.
       // This field is only available to a plugin state.
@@ -113,7 +114,7 @@ export class LocalProvider extends React.Component {
 export const mapStateToProps = (state, ownProps) => ({
   hasStateForActivePlugin: Object.prototype.hasOwnProperty.call(
     state,
-    ownProps.plugin
+    ownProps.pluginName
   ),
 });
 

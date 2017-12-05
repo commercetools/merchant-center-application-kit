@@ -106,28 +106,66 @@ describe('lifecycle', () => {
       });
     });
     describe('when reducer has already been initialized', () => {
-      beforeEach(() => {
-        props = createTestProps();
-        storeOptions = createTestStore({
-          injectedReducers: { [props.name]: props.reducer },
+      describe('when activePlugin is the same as the current mounted plugin', () => {
+        beforeEach(() => {
+          props = createTestProps({
+            activePlugin: props.name,
+          });
+          storeOptions = createTestStore({
+            injectedReducers: { [props.name]: props.reducer },
+          });
+          wrapper = shallow(
+            <InjectReducer {...props}>
+              <div />
+            </InjectReducer>,
+            {
+              context: {
+                store: storeOptions,
+              },
+            }
+          );
+          wrapper.instance().componentWillMount();
         });
-        wrapper = shallow(
-          <InjectReducer {...props}>
-            <div />
-          </InjectReducer>,
-          {
-            context: {
-              store: storeOptions,
+        it('should not call injectReducer', () => {
+          expect(storeOptions.injectReducer).not.toHaveBeenCalled();
+        });
+        it('should not dispatch ACTIVATE_PLUGIN action', () => {
+          expect(storeOptions.dispatch).not.toHaveBeenCalled();
+        });
+      });
+      describe('when activePlugin differs from the current mounted plugin', () => {
+        beforeEach(() => {
+          props = createTestProps({
+            name: 'another-plugin',
+            activePlugin: 'foo',
+          });
+          storeOptions = createTestStore({
+            injectedReducers: {
+              'another-plugin': props.reducer,
+              foo: props.reducer,
             },
-          }
-        );
-        wrapper.instance().componentWillMount();
-      });
-      it('should not call injectReducer', () => {
-        expect(storeOptions.injectReducer).not.toHaveBeenCalled();
-      });
-      it('should not dispatch ACTIVATE_PLUGIN action', () => {
-        expect(storeOptions.dispatch).not.toHaveBeenCalled();
+          });
+          wrapper = shallow(
+            <InjectReducer {...props}>
+              <div />
+            </InjectReducer>,
+            {
+              context: {
+                store: storeOptions,
+              },
+            }
+          );
+          wrapper.instance().componentWillMount();
+        });
+        it('should not call injectReducer', () => {
+          expect(storeOptions.injectReducer).not.toHaveBeenCalled();
+        });
+        it('should dispatch ACTIVATE_PLUGIN action', () => {
+          expect(storeOptions.dispatch).toHaveBeenCalledWith({
+            type: 'ACTIVATE_PLUGIN',
+            payload: 'another-plugin',
+          });
+        });
       });
     });
   });

@@ -57,7 +57,7 @@ export class InjectReducer extends React.PureComponent {
 
   render() {
     return this.props.activePlugin === this.props.name ? (
-      <LocalProvider plugin={this.props.activePlugin}>
+      <LocalProvider pluginName={this.props.activePlugin}>
         {this.props.children}
       </LocalProvider>
     ) : null;
