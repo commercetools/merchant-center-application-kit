@@ -11,7 +11,7 @@
     "npm": ">=3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "$(pwd)/../../node_modules/.bin/neutrino start",
     "test": "react-scripts test --env=jsdom"
   },
   "dependencies": {
