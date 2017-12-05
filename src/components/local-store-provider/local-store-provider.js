@@ -11,33 +11,6 @@ import * as storage from '@commercetools-local/utils/storage';
 import { withUser } from '../fetch-user';
 import { withProject } from '../fetch-project';
 
-const mapUserAndProjectToState = ({ user, project }) => ({
-  token: storage.get(CORE_STORAGE_KEYS.TOKEN),
-  // This is the "selected project language", a.k.a the selected locale for the localized project data.
-  currentLanguage: storage.get(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE),
-  // This is the user locale, a.k.a the locale used by react-intl to localize the application.
-  locale: user.language,
-  // Mostly useful for reacting to opening/closing of left menu navigation
-  isForcedMenuOpen: storage.get(CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN),
-
-  // User info
-  id: user.id,
-  firstName: user.firstName,
-  // NOTE: will be deprecated in favour of a single `locale`
-  // https://jira.commercetools.com/browse/CTP-814
-  numberFormat: user.numberFormat,
-
-  // Project info
-  permissions: project.permissions,
-  countries: project.countries,
-  languages: project.languages,
-  currencies: project.currencies,
-  currentProjectKey: project.key,
-  baseSettings: project.settings && project.settings.baseSettings,
-  currentProjectSettings: project.settings,
-  currentProjectExpired: project.expired,
-});
-
 export class LocalStoreProvider extends React.Component {
   static displayName = 'LocalStoreProvider';
 
@@ -106,16 +79,41 @@ export class LocalStoreProvider extends React.Component {
         // Inject a field called `globalAppState` that contains
         // values about application, user and project.
         // This field is only available to a plugin state.
-        globalAppState: mapUserAndProjectToState({
-          user: this.props.user,
-          project: this.props.project,
-        }),
+        globalAppState: this.mapUserAndProjectToState(),
       };
     },
     replaceReducer() {
       throw new Error('May not be called from plugin');
     },
     subscribe: (...args) => this.context.store.subscribe(...args),
+  });
+
+  mapUserAndProjectToState = () => ({
+    token: storage.get(CORE_STORAGE_KEYS.TOKEN),
+    // This is the "selected project language", a.k.a the selected locale for the localized project data.
+    currentLanguage: storage.get(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE),
+    // This is the user locale, a.k.a the locale used by react-intl to localize the application.
+    locale: this.props.user.language,
+    // Mostly useful for reacting to opening/closing of left menu navigation
+    isForcedMenuOpen: storage.get(CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN),
+
+    // User info
+    id: this.props.user.id,
+    firstName: this.props.user.firstName,
+    // NOTE: will be deprecated in favour of a single `locale`
+    // https://jira.commercetools.com/browse/CTP-814
+    numberFormat: this.props.user.numberFormat,
+
+    // Project info
+    permissions: this.props.project.permissions,
+    countries: this.props.project.countries,
+    languages: this.props.project.languages,
+    currencies: this.props.project.currencies,
+    currentProjectKey: this.props.project.key,
+    baseSettings:
+      this.props.project.settings && this.props.project.settings.baseSettings,
+    currentProjectSettings: this.props.project.settings,
+    currentProjectExpired: this.props.project.expired,
   });
 
   render() {
