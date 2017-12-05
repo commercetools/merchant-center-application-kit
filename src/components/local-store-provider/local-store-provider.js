@@ -38,8 +38,8 @@ const mapUserAndProjectToState = ({ user, project }) => ({
   currentProjectExpired: project.expired,
 });
 
-export class LocalProvider extends React.Component {
-  static displayName = 'LocalProvider';
+export class LocalStoreProvider extends React.Component {
+  static displayName = 'LocalStoreProvider';
 
   static propTypes = {
     pluginName: PropTypes.string,
@@ -47,8 +47,21 @@ export class LocalProvider extends React.Component {
 
     // Injected
     hasStateForActivePlugin: PropTypes.bool.isRequired,
-    user: PropTypes.object.isRequired,
-    project: PropTypes.object.isRequired,
+    user: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      firstName: PropTypes.string.isRequired,
+      numberFormat: PropTypes.string.isRequired,
+      language: PropTypes.string.isRequired,
+    }).isRequired,
+    project: PropTypes.shape({
+      permissions: PropTypes.object.isRequired,
+      countries: PropTypes.array.isRequired,
+      languages: PropTypes.array.isRequired,
+      currencies: PropTypes.array.isRequired,
+      key: PropTypes.string.isRequired,
+      settings: PropTypes.object,
+      expired: PropTypes.bool.isRequired,
+    }).isRequired,
   };
 
   static contextTypes = {
@@ -74,35 +87,35 @@ export class LocalProvider extends React.Component {
     };
   }
 
-  createLocalStore = (store, props) => ({
+  createLocalStore = () => ({
+    // This is just an internal flag to indicate that this is the local store.
+    // It's mostly useful for testing and debugging.
     isLocal: true,
-    dispatch(action) {
-      return store.dispatch({
+    dispatch: action =>
+      this.context.store.dispatch({
         type: __LOCAL,
         payload: action,
         meta: {
-          plugin: props.pluginName,
+          plugin: this.props.pluginName,
         },
-      });
-    },
-    getState() {
-      const appState = store.getState();
-      const state = appState[props.pluginName];
-      // Inject a field called `globalAppState` that contains
-      // values about application, user and project.
-      // This field is only available to a plugin state.
-      state.globalAppState = mapUserAndProjectToState({
-        user: props.user,
-        project: props.project,
-      });
-      return state;
+      }),
+    getState: () => {
+      const appState = this.context.store.getState();
+      return {
+        ...appState[this.props.pluginName],
+        // Inject a field called `globalAppState` that contains
+        // values about application, user and project.
+        // This field is only available to a plugin state.
+        globalAppState: mapUserAndProjectToState({
+          user: this.props.user,
+          project: this.props.project,
+        }),
+      };
     },
     replaceReducer() {
       throw new Error('May not be called from plugin');
     },
-    subscribe(...args) {
-      return store.subscribe(...args);
-    },
+    subscribe: (...args) => this.context.store.subscribe(...args),
   });
 
   render() {
@@ -123,4 +136,4 @@ export default compose(
   withUser(),
   withProject(ownProps => ownProps.match.params.projectKey),
   connect(mapStateToProps)
-)(LocalProvider);
+)(LocalStoreProvider);

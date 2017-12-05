@@ -5,7 +5,7 @@ import {
   STORAGE_KEYS as CORE_STORAGE_KEYS,
 } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
-import { LocalProvider, mapStateToProps } from './local-provider';
+import { LocalStoreProvider, mapStateToProps } from './local-store-provider';
 
 jest.mock('@commercetools-local/utils/storage');
 
@@ -30,7 +30,7 @@ const createTestProps = props => ({
   ...props,
 });
 
-describe('LocalProvider', () => {
+describe('LocalStoreProvider', () => {
   let props;
   let wrapper;
   describe('rendering', () => {
@@ -38,9 +38,9 @@ describe('LocalProvider', () => {
       beforeEach(() => {
         props = createTestProps();
         wrapper = shallow(
-          <LocalProvider {...props}>
+          <LocalStoreProvider {...props}>
             <div />
-          </LocalProvider>,
+          </LocalStoreProvider>,
           { context: { store: {} } }
         );
       });
@@ -52,9 +52,9 @@ describe('LocalProvider', () => {
       beforeEach(() => {
         props = createTestProps({ hasStateForActivePlugin: true });
         wrapper = shallow(
-          <LocalProvider {...props}>
+          <LocalStoreProvider {...props}>
             <div />
-          </LocalProvider>,
+          </LocalStoreProvider>,
           { context: { store: {} } }
         );
       });
@@ -79,9 +79,9 @@ describe('lifecycle', () => {
             hasStateForActivePlugin: true,
           };
           wrapper = shallow(
-            <LocalProvider {...props}>
+            <LocalStoreProvider {...props}>
               <div />
-            </LocalProvider>,
+            </LocalStoreProvider>,
             { context: { store: {} } }
           );
         });
@@ -99,9 +99,9 @@ describe('lifecycle', () => {
             hasStateForActivePlugin: false,
           };
           wrapper = shallow(
-            <LocalProvider {...props}>
+            <LocalStoreProvider {...props}>
               <div />
-            </LocalProvider>,
+            </LocalStoreProvider>,
             { context: { store: {} } }
           );
         });
@@ -120,9 +120,9 @@ describe('lifecycle', () => {
           hasStateForActivePlugin: true,
         };
         wrapper = shallow(
-          <LocalProvider {...props}>
+          <LocalStoreProvider {...props}>
             <div />
-          </LocalProvider>,
+          </LocalStoreProvider>,
           { context: { store: {} } }
         );
       });
@@ -138,9 +138,9 @@ describe('lifecycle', () => {
         props = createTestProps({ pluginName: undefined });
         store = {};
         wrapper = shallow(
-          <LocalProvider {...props}>
+          <LocalStoreProvider {...props}>
             <div />
-          </LocalProvider>,
+          </LocalStoreProvider>,
           { context: { store } }
         );
       });
@@ -153,9 +153,9 @@ describe('lifecycle', () => {
         props = createTestProps({ pluginName: 'mcng-foo' });
         store = {};
         wrapper = shallow(
-          <LocalProvider {...props}>
+          <LocalStoreProvider {...props}>
             <div />
-          </LocalProvider>,
+          </LocalStoreProvider>,
           { context: { store } }
         );
       });
@@ -184,9 +184,9 @@ describe('lifecycle', () => {
       beforeEach(() => {
         props = createTestProps({ pluginName: 'mcng-foo' });
         wrapper = shallow(
-          <LocalProvider {...props}>
+          <LocalStoreProvider {...props}>
             <div />
-          </LocalProvider>,
+          </LocalStoreProvider>,
           { context: { store } }
         );
         localStore = wrapper.instance().createLocalStore(store, props);
@@ -208,9 +208,9 @@ describe('lifecycle', () => {
         storage.put(CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN, false);
         props = createTestProps({ pluginName: 'mcng-foo' });
         wrapper = shallow(
-          <LocalProvider {...props}>
+          <LocalStoreProvider {...props}>
             <div />
-          </LocalProvider>,
+          </LocalStoreProvider>,
           { context: { store } }
         );
         localStore = wrapper.instance().createLocalStore(store, props);
@@ -251,9 +251,9 @@ describe('lifecycle', () => {
       beforeEach(() => {
         props = createTestProps({ pluginName: 'mcng-foo' });
         wrapper = shallow(
-          <LocalProvider {...props}>
+          <LocalStoreProvider {...props}>
             <div />
-          </LocalProvider>,
+          </LocalStoreProvider>,
           { context: { store } }
         );
         localStore = wrapper.instance().createLocalStore(store, props);
@@ -271,9 +271,9 @@ describe('lifecycle', () => {
       beforeEach(() => {
         props = createTestProps({ pluginName: 'mcng-foo' });
         wrapper = shallow(
-          <LocalProvider {...props}>
+          <LocalStoreProvider {...props}>
             <div />
-          </LocalProvider>,
+          </LocalStoreProvider>,
           { context: { store } }
         );
         localStore = wrapper.instance().createLocalStore(store, props);

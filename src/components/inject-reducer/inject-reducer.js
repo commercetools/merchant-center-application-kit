@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ACTIVATE_PLUGIN } from '@commercetools-local/constants';
 import { connect } from 'react-redux';
-import LocalProvider from '../local-provider';
+import LocalStoreProvider from '../local-store-provider';
 
 const activatePlugin = pluginName => ({
   type: ACTIVATE_PLUGIN,
@@ -57,9 +57,9 @@ export class InjectReducer extends React.PureComponent {
 
   render() {
     return this.props.activePlugin === this.props.name ? (
-      <LocalProvider pluginName={this.props.activePlugin}>
+      <LocalStoreProvider pluginName={this.props.activePlugin}>
         {this.props.children}
-      </LocalProvider>
+      </LocalStoreProvider>
     ) : null;
   }
 }

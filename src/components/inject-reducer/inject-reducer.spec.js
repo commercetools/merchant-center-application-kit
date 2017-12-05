@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import LocalProvider from '../local-provider';
+import LocalStoreProvider from '../local-store-provider';
 import { InjectReducer } from './inject-reducer';
 
 const createTestProps = props => ({
@@ -41,8 +41,8 @@ describe('rendering', () => {
     wrapper = createWrapper(props);
   });
   describe('when the plugin is not active yet', () => {
-    it('should not render a LocalProvider', () => {
-      expect(wrapper).not.toRender(LocalProvider);
+    it('should not render a LocalStoreProvider', () => {
+      expect(wrapper).not.toRender(LocalStoreProvider);
     });
     it('should not render children', () => {
       expect(wrapper).not.toRender('ChildComponent');
@@ -58,11 +58,11 @@ describe('rendering', () => {
     it('should render children', () => {
       expect(wrapper).toRender('ChildComponent');
     });
-    it('should wrap the children in a LocalProvider', () => {
-      expect(wrapper).toRender(LocalProvider);
+    it('should wrap the children in a LocalStoreProvider', () => {
+      expect(wrapper).toRender(LocalStoreProvider);
     });
-    it('should provide the plugin name to the LocalProvider', () => {
-      expect(wrapper.find(LocalProvider)).toHaveProp('pluginName', 'foo');
+    it('should provide the plugin name to the LocalStoreProvider', () => {
+      expect(wrapper.find(LocalStoreProvider)).toHaveProp('pluginName', 'foo');
     });
   });
 });
@@ -70,13 +70,12 @@ describe('rendering', () => {
 describe('lifecycle', () => {
   let props;
   let storeOptions;
-  let wrapper;
   describe('mounting', () => {
     describe('when reducer has not been injected yet', () => {
       beforeEach(() => {
         props = createTestProps();
         storeOptions = createTestStore();
-        wrapper = shallow(
+        shallow(
           <InjectReducer {...props}>
             <div />
           </InjectReducer>,
@@ -86,7 +85,6 @@ describe('lifecycle', () => {
             },
           }
         );
-        wrapper.instance().componentWillMount();
       });
       it('should call injectReducer with reducer name', () => {
         expect(storeOptions.injectReducer).toHaveBeenCalledWith(
@@ -114,7 +112,7 @@ describe('lifecycle', () => {
           storeOptions = createTestStore({
             injectedReducers: { [props.name]: props.reducer },
           });
-          wrapper = shallow(
+          shallow(
             <InjectReducer {...props}>
               <div />
             </InjectReducer>,
@@ -124,7 +122,6 @@ describe('lifecycle', () => {
               },
             }
           );
-          wrapper.instance().componentWillMount();
         });
         it('should not call injectReducer', () => {
           expect(storeOptions.injectReducer).not.toHaveBeenCalled();
@@ -145,7 +142,7 @@ describe('lifecycle', () => {
               foo: props.reducer,
             },
           });
-          wrapper = shallow(
+          shallow(
             <InjectReducer {...props}>
               <div />
             </InjectReducer>,
@@ -155,7 +152,6 @@ describe('lifecycle', () => {
               },
             }
           );
-          wrapper.instance().componentWillMount();
         });
         it('should not call injectReducer', () => {
           expect(storeOptions.injectReducer).not.toHaveBeenCalled();

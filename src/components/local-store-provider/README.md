@@ -1,4 +1,4 @@
-# LocalProvider
+# LocalStoreProvider
 
 This component overrides the redux `store` to restrict the scope to a _plugin_.
 In particular:
