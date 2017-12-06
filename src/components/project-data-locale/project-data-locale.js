@@ -48,6 +48,8 @@ export default class ProjectDataLocale extends React.PureComponent {
 
   handleSetProjectDataLocale = locale => {
     this.setState({ locale });
+    // Cache it
+    storage.put(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE, locale);
   };
 
   render() {

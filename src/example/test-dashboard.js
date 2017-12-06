@@ -14,7 +14,10 @@ StoreLogger.displayName = 'StoreLogger';
 StoreLogger.propTypes = {
   state: PropTypes.object.isRequired,
 };
-const ConnectedStoreLogger = connect(state => ({ state }))(StoreLogger);
+const ConnectedStoreLogger = connect(state => {
+  console.log('<ConnectedStoreLogger> Dashboard', state)
+  return { state }
+})(StoreLogger);
 
 const dashboardReducer = () => ({
   thisIsTheDashboard: true,

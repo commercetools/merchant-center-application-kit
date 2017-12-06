@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
+import ProjectDataLocale from '../project-data-locale';
 import ProjectContainer from './project-container';
 
 const createTestProps = custom => ({
@@ -11,6 +12,10 @@ const createTestProps = custom => ({
   menuItems: [],
   ...custom,
 });
+
+jest.mock('react-dom', () => ({
+  createPortal: () => <div id="create-portal-has-been-called" />,
+}));
 
 describe('rendering', () => {
   let props;
@@ -152,20 +157,175 @@ describe('rendering', () => {
         });
       });
       describe('when project is in a valid state', () => {
-        beforeEach(() => {
-          fetchProjectChildrenWrapper = shallow(
-            <div>
-              {fetchUserChildrenWrapper.find(FetchProject).prop('children')({
-                isLoading: false,
-                project: { suspended: false, expired: false, settings: {} },
-              })}
-            </div>
-          );
-        });
-        it('should render children', () => {
-          expect(fetchProjectChildrenWrapper).toContainReact(
-            <div>{'foo'}</div>
-          );
+        describe('<ProjectDataLocale>', () => {
+          let projectDataLocaleChildrenWrapper;
+          beforeEach(() => {
+            fetchProjectChildrenWrapper = shallow(
+              <div>
+                {fetchUserChildrenWrapper.find(FetchProject).prop('children')({
+                  isLoading: false,
+                  project: {
+                    suspended: false,
+                    expired: false,
+                    settings: {},
+                    languages: ['de'],
+                  },
+                })}
+              </div>
+            );
+            projectDataLocaleChildrenWrapper = shallow(
+              <div>
+                {fetchProjectChildrenWrapper
+                  .find(ProjectDataLocale)
+                  .prop('children')({
+                  locale: 'de',
+                  setProjectDataLocale: jest.fn(),
+                })}
+              </div>
+            );
+          });
+          describe('when <ProjectContainer> is mounted', () => {
+            beforeEach(() => {
+              const el = document.createElement('div');
+              wrapper.setState({ localeSwitcherNode: el });
+              fetchProjectChildrenWrapper = shallow(
+                <div>
+                  {fetchUserChildrenWrapper.find(FetchProject).prop('children')(
+                    {
+                      isLoading: false,
+                      project: {
+                        suspended: false,
+                        expired: false,
+                        settings: {},
+                        languages: ['de', 'en'],
+                      },
+                    }
+                  )}
+                </div>
+              );
+              projectDataLocaleChildrenWrapper = shallow(
+                <div>
+                  {fetchProjectChildrenWrapper
+                    .find(ProjectDataLocale)
+                    .prop('children')({
+                    locale: 'de',
+                    setProjectDataLocale: jest.fn(),
+                  })}
+                </div>
+              );
+            });
+            it('should render children with locale', () => {
+              expect(projectDataLocaleChildrenWrapper).toContainReact(
+                <div>{'foo'}</div>
+              );
+            });
+            describe('when project has more than one language', () => {
+              beforeEach(() => {
+                const el = document.createElement('div');
+                wrapper.setState({ localeSwitcherNode: el });
+                fetchProjectChildrenWrapper = shallow(
+                  <div>
+                    {fetchUserChildrenWrapper
+                      .find(FetchProject)
+                      .prop('children')({
+                      isLoading: false,
+                      project: {
+                        suspended: false,
+                        expired: false,
+                        settings: {},
+                        languages: ['de', 'en'],
+                      },
+                    })}
+                  </div>
+                );
+                projectDataLocaleChildrenWrapper = shallow(
+                  <div>
+                    {fetchProjectChildrenWrapper
+                      .find(ProjectDataLocale)
+                      .prop('children')({
+                      locale: 'de',
+                      setProjectDataLocale: jest.fn(),
+                    })}
+                  </div>
+                );
+              });
+              it('should render <LocalSwitcher> through a portal', () => {
+                expect(projectDataLocaleChildrenWrapper).toRender(
+                  '#create-portal-has-been-called'
+                );
+              });
+            });
+            describe('when project has only one language', () => {
+              beforeEach(() => {
+                const el = document.createElement('div');
+                wrapper.setState({ localeSwitcherNode: el });
+                fetchProjectChildrenWrapper = shallow(
+                  <div>
+                    {fetchUserChildrenWrapper
+                      .find(FetchProject)
+                      .prop('children')({
+                      isLoading: false,
+                      project: {
+                        suspended: false,
+                        expired: false,
+                        settings: {},
+                        languages: ['de'],
+                      },
+                    })}
+                  </div>
+                );
+                projectDataLocaleChildrenWrapper = shallow(
+                  <div>
+                    {fetchProjectChildrenWrapper
+                      .find(ProjectDataLocale)
+                      .prop('children')({
+                      locale: 'de',
+                      setProjectDataLocale: jest.fn(),
+                    })}
+                  </div>
+                );
+              });
+              it('should not render <LocalSwitcher> through a portal', () => {
+                expect(projectDataLocaleChildrenWrapper).not.toRender(
+                  '#create-portal-has-been-called'
+                );
+              });
+            });
+          });
+          describe('when <ProjectContainer> is mounting', () => {
+            beforeEach(() => {
+              fetchProjectChildrenWrapper = shallow(
+                <div>
+                  {fetchUserChildrenWrapper.find(FetchProject).prop('children')(
+                    {
+                      isLoading: false,
+                      project: {
+                        suspended: false,
+                        expired: false,
+                        settings: {},
+                        languages: ['de', 'en'],
+                      },
+                    }
+                  )}
+                </div>
+              );
+              projectDataLocaleChildrenWrapper = shallow(
+                <div>
+                  {fetchProjectChildrenWrapper
+                    .find(ProjectDataLocale)
+                    .prop('children')({
+                    locale: 'de',
+                    setProjectDataLocale: jest.fn(),
+                  })}
+                </div>
+              );
+            });
+            it('should not render <LocalSwitcher> through a portal', () => {
+              expect(projectDataLocaleChildrenWrapper).not.toRender(
+                '#create-portal-has-been-called'
+              );
+            });
+          });
         });
       });
     });

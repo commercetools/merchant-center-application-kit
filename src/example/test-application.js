@@ -53,20 +53,10 @@ const TestApplication = () => (
     menuItems={testMenuItems}
   >
     <StoreProvider store={store}>
-      <div>
-        <ul>
-          <li>
-            <Link to="/almond-40/dashboard">{'Dashboard'}</Link>
-          </li>
-          <li>
-            <Link to="/almond-40/products">{'Products'}</Link>
-          </li>
-        </ul>
-        <Switch>
-          <Route path="/:projectKey/dashboard" component={TestDashboard} />
-          <Route path="/:projectKey/products" component={TestProducts} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route path="/:projectKey/dashboard" component={TestDashboard} />
+        <Route path="/:projectKey/products" component={TestProducts} />
+      </Switch>
     </StoreProvider>
   </ApplicationShell>
 );

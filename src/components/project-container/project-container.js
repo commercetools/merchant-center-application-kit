@@ -1,8 +1,11 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import omit from 'lodash.omit';
 import LoadingSpinner from '@commercetools-local/core/components/loading-spinner';
+import LocaleSwitcher from '../locale-switcher';
+import ProjectDataLocale from '../project-data-locale';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 import Menu from '../menu';
@@ -25,7 +28,31 @@ class ProjectContainer extends React.PureComponent {
   };
   state = {
     hasError: false,
+    localeSwitcherNode: null,
   };
+  componentDidMount() {
+    /**
+     * NOTE: in order to render a component into a portal, the portal
+     * DOM node needs to exists in the DOM.
+     * If we try to get the DOM node by id before the components are
+     * actually mounted, we won't find the DOM node, hence we can't render
+     * the portal.
+     * To work around this issue, we simply wait that the component is
+     * mounted, then we render the portal.
+     *
+     * From the reactjs docs: https://reactjs.org/docs/portals.html
+     * "
+     *   If a child component requires to be attached to the DOM tree
+     *   immediately when mounted, for example to measure a
+     *   DOM node, or uses 'autoFocus' in a descendant, add
+     *   state to Modal and only render the children when Modal
+     *   is inserted in the DOM tree.
+     * "
+     */
+    this.setState({
+      localeSwitcherNode: document.getElementById('locale-switcher'),
+    });
+  }
   componentDidCatch(/* error, info */) {
     this.setState({ hasError: true });
     // NOTE: track the error
@@ -65,19 +92,39 @@ class ProjectContainer extends React.PureComponent {
                 if (!project.settings) return <ProjectWithoutSettings />;
 
                 return (
-                  <div style={{ display: 'inline-flex' }}>
-                    <Menu
-                      location={this.props.location}
-                      menuItems={this.props.menuItems}
-                      projectKey={this.props.match.params.projectKey}
-                      projectPermissions={omit(project.permissions, [
-                        '__typename',
-                      ])}
-                    />
-                    {/* <Content /> */}
-                    {'TODO: this is the project content'}
-                    {this.props.children}
-                  </div>
+                  <ProjectDataLocale locales={project.languages}>
+                    {({ locale, setProjectDataLocale }) => (
+                      <div style={{ display: 'inline-flex' }}>
+                        {/* Render <LocaleSwitcher> using a portal */}
+                        {this.state.localeSwitcherNode &&
+                          // Render the `<LocaleSwitcher>` only if the project has more
+                          // than one language.
+                          project.languages.length > 1 &&
+                          ReactDOM.createPortal(
+                            <LocaleSwitcher
+                              projectDataLocale={locale}
+                              setProjectDataLocale={setProjectDataLocale}
+                              availableLocales={project.languages}
+                            />,
+                            this.state.localeSwitcherNode
+                          )}
+                        <Menu
+                          location={this.props.location}
+                          menuItems={this.props.menuItems}
+                          projectKey={this.props.match.params.projectKey}
+                          projectPermissions={omit(project.permissions, [
+                            '__typename',
+                          ])}
+                        />
+                        {/**
+                         * NOTE: we don't need to explicitly pass the `locale`,
+                         * it's enough to trigger a re-render.
+                         * The `locale` can then be read from the localStorage.
+                         */}
+                        {this.props.children}
+                      </div>
+                    )}
+                  </ProjectDataLocale>
                 );
               }}
             </FetchProject>
