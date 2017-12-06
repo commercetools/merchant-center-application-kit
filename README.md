@@ -183,8 +183,7 @@ class LeftNavigation extends React.PureComponent {
   own action-creators, and use your own action-creators in your application
   exclusively calling `addNotification` behind the scenes.
 * to hide all notifications, iterate over the notifications in the state and
-  call `removeNotification(id)` on each one: `state.notifications.forEach(notif
-  => removeNotification(notif.id))`. Simply resetting the state would lead to
+  call `removeNotification(id)` on each one: `state.notifications.forEach(notif => removeNotification(notif.id))`. Simply resetting the state would lead to
   the `onDismiss` callbacks not being fired.
 * It's entirely up to you to render the notifications. Connect to the store and
   iterate over them.
