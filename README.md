@@ -5,7 +5,7 @@
 ```js
 import {
   withCountries,
-  countriesShape
+  countriesShape,
 } from '@commercetools-local/l10n/country-information';
 
 withCountries(ownProps => ownProps.locale)(Component);
@@ -19,7 +19,7 @@ withCountries(ownProps => ownProps.locale)(Component);
 ```js
 import {
   withCurrencies,
-  currenciesShape
+  currenciesShape,
 } from '@commercetools-local/l10n/currency-information';
 
 withCurrencies(ownProps => ownProps.locale)(Component);
