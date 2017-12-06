@@ -14,7 +14,7 @@ View.propTypes = {
   // This is what the router injects. Hash and search are just strings.
   location: PropTypes.shape({
     hash: PropTypes.string.isRequired,
-    search: PropTypes.string.isRequired
+    search: PropTypes.string.isRequired,
   }).isRequired,
   // This is what this HoC injects, it contains all the parsed params
   // both from hash and search.
@@ -23,8 +23,8 @@ View.propTypes = {
   locationParams: PropTypes.shape({
     redirectTo: PropTypes.string,
     scope: PropTypes.string,
-    name: PropTypes.string
-  }).isRequired
+    name: PropTypes.string,
+  }).isRequired,
 };
 
 compose(withRouter, withParsedLocation);

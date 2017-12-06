@@ -52,7 +52,7 @@ const ProjectTitle = props => <div>{props.projectName}</div>;
 withProject(
   ownProps => ownProps.match.params.projectKey,
   projectData => ({
-    projectName: projectData.project && projectData.project.name
+    projectName: projectData.project && projectData.project.name,
   })
 )(ProjectTitle);
 ```
