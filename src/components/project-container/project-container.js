@@ -20,7 +20,7 @@ class ProjectContainer extends React.PureComponent {
       }).isRequired,
     }).isRequired,
     location: PropTypes.object.isRequired,
-    menuLinks: PropTypes.array.isRequired,
+    menuItems: PropTypes.array.isRequired,
     children: PropTypes.element.isRequired,
   };
   state = {
@@ -68,7 +68,7 @@ class ProjectContainer extends React.PureComponent {
                   <div style={{ display: 'inline-flex' }}>
                     <Menu
                       location={this.props.location}
-                      menuLinks={this.props.menuLinks}
+                      menuItems={this.props.menuItems}
                       projectKey={this.props.match.params.projectKey}
                       projectPermissions={omit(project.permissions, [
                         '__typename',

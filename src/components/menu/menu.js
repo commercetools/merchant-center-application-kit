@@ -443,7 +443,7 @@ export class Menu extends React.PureComponent {
     // From parent
     className: PropTypes.string,
     location: PropTypes.object.isRequired,
-    menuLinks: PropTypes.array.isRequired,
+    menuItems: PropTypes.array.isRequired,
     projectKey: PropTypes.string.isRequired,
     projectPermissions: PropTypes.objectOf(PropTypes.bool).isRequired,
     // Injected
@@ -464,7 +464,7 @@ export class Menu extends React.PureComponent {
       >
         <DataMenu
           rootNode={this.node}
-          data={this.props.menuLinks}
+          data={this.props.menuItems}
           isForcedMenuOpen={this.props.isForcedMenuOpen}
           location={this.props.location}
           projectKey={this.props.projectKey}

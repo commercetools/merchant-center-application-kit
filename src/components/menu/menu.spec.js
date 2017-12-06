@@ -20,7 +20,7 @@ const createTestProps = props => ({
   location: {
     pathname: '',
   },
-  menuLinks: [],
+  menuItems: [],
   projectKey: 'test-1',
   projectPermissions: {
     canManageCustomers: false,
@@ -86,7 +86,7 @@ describe('rendering', () => {
         expect(wrapper.find('DataMenu')).toHaveProp('rootNode');
       });
       it('should pass data as prop', () => {
-        expect(wrapper.find('DataMenu')).toHaveProp('data', props.menuLinks);
+        expect(wrapper.find('DataMenu')).toHaveProp('data', props.menuItems);
       });
       it('should pass projectKey as prop', () => {
         expect(wrapper.find('DataMenu')).toHaveProp(

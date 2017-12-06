@@ -5,7 +5,7 @@ import { Provider as StoreProvider } from 'react-redux';
 import { Link, Switch, Route } from 'react-router-dom';
 import * as i18n from '../../../../i18n';
 import ApplicationShell from '../main';
-import testMenuLinks from './fixtures/menu-links';
+import testMenuItems from './fixtures/menu-items';
 import TestDashboard from './test-dashboard';
 import TestProducts from './test-products';
 
@@ -50,7 +50,7 @@ const TestApplication = () => (
   <ApplicationShell
     i18n={i18n}
     configuration={window.app}
-    menuLinks={testMenuLinks}
+    menuItems={testMenuItems}
   >
     <StoreProvider store={store}>
       <div>
