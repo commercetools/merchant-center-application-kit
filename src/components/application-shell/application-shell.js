@@ -15,13 +15,13 @@ import LoginSSOCallback from '../login-sso-callback';
 import Logout from '../logout';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
 
-export default class ApplicationShell extends React.PureComponent {
+export default class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
   static propTypes = {
     i18n: PropTypes.object.isRequired,
     configuration: PropTypes.object.isRequired,
     menuItems: PropTypes.array.isRequired,
-    children: PropTypes.element.isRequired,
+    render: PropTypes.func.isRequired,
   };
   render() {
     return (
@@ -68,7 +68,7 @@ export default class ApplicationShell extends React.PureComponent {
                                   {...routerProps}
                                   menuItems={this.props.menuItems}
                                 >
-                                  {this.props.children}
+                                  {this.props.render}
                                 </ProjectContainer>
                               </SetupFlopFlipProvider>
                             )}

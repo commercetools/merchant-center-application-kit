@@ -2,7 +2,7 @@ import React from 'react';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import { Provider as StoreProvider } from 'react-redux';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import * as i18n from '../../../../i18n';
 import ApplicationShell from '../main';
 import testMenuItems from './fixtures/menu-items';
@@ -51,14 +51,15 @@ const TestApplication = () => (
     i18n={i18n}
     configuration={window.app}
     menuItems={testMenuItems}
-  >
-    <StoreProvider store={store}>
-      <Switch>
-        <Route path="/:projectKey/dashboard" component={TestDashboard} />
-        <Route path="/:projectKey/products" component={TestProducts} />
-      </Switch>
-    </StoreProvider>
-  </ApplicationShell>
+    render={() => (
+      <StoreProvider store={store}>
+        <Switch>
+          <Route path="/:projectKey/dashboard" component={TestDashboard} />
+          <Route path="/:projectKey/products" component={TestProducts} />
+        </Switch>
+      </StoreProvider>
+    )}
+  />
 );
 TestApplication.displayName = 'TestApplication';
 

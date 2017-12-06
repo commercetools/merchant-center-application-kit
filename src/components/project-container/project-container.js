@@ -14,7 +14,7 @@ import ProjectExpired from '../project-expired';
 import ProjectSuspended from '../project-suspended';
 import ProjectWithoutSettings from '../project-without-settings';
 
-class ProjectContainer extends React.PureComponent {
+class ProjectContainer extends React.Component {
   static displayName = 'ProjectContainer';
   static propTypes = {
     match: PropTypes.shape({
@@ -24,7 +24,7 @@ class ProjectContainer extends React.PureComponent {
     }).isRequired,
     location: PropTypes.object.isRequired,
     menuItems: PropTypes.array.isRequired,
-    children: PropTypes.element.isRequired,
+    render: PropTypes.func.isRequired,
   };
   state = {
     hasError: false,
@@ -121,7 +121,7 @@ class ProjectContainer extends React.PureComponent {
                          * it's enough to trigger a re-render.
                          * The `locale` can then be read from the localStorage.
                          */}
-                        {this.props.children}
+                        {this.props.render()}
                       </div>
                     )}
                   </ProjectDataLocale>

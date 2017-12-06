@@ -10,6 +10,7 @@ const createTestProps = custom => ({
   match: { params: { projectKey: 'test-1' } },
   location: {},
   menuItems: [],
+  render: jest.fn(),
   ...custom,
 });
 
@@ -23,11 +24,7 @@ describe('rendering', () => {
   let fetchUserChildrenWrapper;
   beforeEach(() => {
     props = createTestProps();
-    wrapper = shallow(
-      <ProjectContainer {...props}>
-        <div>{'foo'}</div>
-      </ProjectContainer>
-    );
+    wrapper = shallow(<ProjectContainer {...props} />);
   });
   describe('when user is loading', () => {
     beforeEach(() => {
@@ -214,10 +211,8 @@ describe('rendering', () => {
                 </div>
               );
             });
-            it('should render children with locale', () => {
-              expect(projectDataLocaleChildrenWrapper).toContainReact(
-                <div>{'foo'}</div>
-              );
+            it('should call render function', () => {
+              expect(props.render).toHaveBeenCalled();
             });
             describe('when project has more than one language', () => {
               beforeEach(() => {
