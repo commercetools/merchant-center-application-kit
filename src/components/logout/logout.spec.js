@@ -64,9 +64,7 @@ describe('getLoginStrategy', () => {
       beforeEach(() => {
         mockJWTDecode.mockClear();
         mockJWTDecode = jest.fn(() => ({
-          [`${ACCESS_TOKEN_NAMESPACE}${
-            ACCESS_TOKEN_IDP_URL_KEY
-          }`]: 'https://idp.com',
+          [`${ACCESS_TOKEN_NAMESPACE}${ACCESS_TOKEN_IDP_URL_KEY}`]: 'https://idp.com',
         }));
         storage.put(CORE_STORAGE_KEYS.TOKEN, 'xxx');
       });
