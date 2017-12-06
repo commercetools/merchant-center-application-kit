@@ -8,7 +8,7 @@ import ProjectContainer from './project-container';
 const createTestProps = custom => ({
   match: { params: { projectKey: 'test-1' } },
   location: {},
-  menuLinks: [],
+  menuItems: [],
   ...custom,
 });
 
