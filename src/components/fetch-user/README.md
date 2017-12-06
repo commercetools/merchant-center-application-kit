@@ -31,10 +31,9 @@ import { FetchUser } from '@commercetools-local/application-shell'
 
 ### Properties
 
-| Props | Type | Required | Values | Default  | Description |
-| --- | --- | :---: | --- | --- | --- |
-| `children` | `func` | ✅ | - | - | Render your children elements within this function. The argument is an object containing the mapped data from `mapDataToProps` or the default object injected by `graphql` HoC |
-
+| Props      | Type   | Required | Values | Default | Description                                                                                                                                                                    |
+| ---------- | ------ | :------: | ------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `children` | `func` |    ✅    | -      | -       | Render your children elements within this function. The argument is an object containing the mapped data from `mapDataToProps` or the default object injected by `graphql` HoC |
 
 ## `withUser(mapDataToProps)`
 
@@ -45,14 +44,12 @@ A HoC component that will inject user data as prop.
 ### Usage
 
 ```js
-import { withUser } from '@commercetools-local/application-shell'
+import { withUser } from '@commercetools-local/application-shell';
 
-const Profile = props => (
-  <div>{props.firstName}</div>
-)
-withUser(
-  userData => ({ firstName: userData.me && userData.me.firstName })
-)(Profile)
+const Profile = props => <div>{props.firstName}</div>;
+withUser(userData => ({ firstName: userData.me && userData.me.firstName }))(
+  Profile
+);
 ```
 
 ### Arguments

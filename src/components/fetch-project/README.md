@@ -32,10 +32,10 @@ import { FetchProject } from '@commercetools-local/application-shell'
 
 ### Properties
 
-| Props | Type | Required | Values | Default  | Description |
-| --- | --- | :---: | --- | --- | --- |
-| `projectKey` | `string` | ✅ | - | - | The `key` of the project that you want to fetch |
-| `children` | `func` | ✅ | - | - | Render your children elements within this function. The argument is an object containing the mapped data from `mapDataToProps` or the default bject injected by `graphql` HoC |
+| Props        | Type     | Required | Values | Default | Description                                                                                                                                                                   |
+| ------------ | -------- | :------: | ------ | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `projectKey` | `string` |    ✅    | -      | -       | The `key` of the project that you want to fetch                                                                                                                               |
+| `children`   | `func`   |    ✅    | -      | -       | Render your children elements within this function. The argument is an object containing the mapped data from `mapDataToProps` or the default bject injected by `graphql` HoC |
 
 ## `withProject(getProjectKey, mapDataToProps)`
 
@@ -46,15 +46,15 @@ A HoC component that will inject project data as prop.
 ### Usage
 
 ```js
-import { withProject } from '@commercetools-local/application-shell'
+import { withProject } from '@commercetools-local/application-shell';
 
-const ProjectTitle = props => (
-  <div>{props.projectName}</div>
-)
+const ProjectTitle = props => <div>{props.projectName}</div>;
 withProject(
   ownProps => ownProps.match.params.projectKey,
-  projectData => ({ projectName: projectData.project && projectData.project.name })
-)(ProjectTitle)
+  projectData => ({
+    projectName: projectData.project && projectData.project.name
+  })
+)(ProjectTitle);
 ```
 
 ### Arguments

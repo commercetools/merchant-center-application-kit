@@ -39,6 +39,7 @@ ReactDOM.render(
 ```
 
 ## Development
+
 This module contains the [folder structure](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#folder-structure) required by _CRA_, which allows to easily start a react application using `react-scripts`.
 
 > Make sure to have `react-scripts` installed globally.
