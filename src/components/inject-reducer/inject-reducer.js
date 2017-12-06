@@ -48,6 +48,10 @@ export class InjectReducer extends React.PureComponent {
       // In case the reducer has been previously injected, but this plugin
       // needs to be activated again, we simply check it based on the
       // active plugin name in the store.
+      // Example:
+      // - go to dashboard (reducer injected, activate plugin)
+      // - go to products (reducer injected, activate plugin)
+      // - go back to dashboard (activate plugin)
       this.props.activePlugin &&
       this.props.activePlugin !== this.props.name
     ) {

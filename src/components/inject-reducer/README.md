@@ -4,8 +4,8 @@ This component is built for injecting a reducer into the redux store from
 asynchronously loaded code. It takes a reducer function and adds it as a top
 level reducer to the store using the `name` prop as the key.
 
-> Using this component requires that the **redux `store`** is defined up the
-> context tree (`<Provider>`).
+> Using this component requires that the **redux `store`** is defined in the
+> React context (`<Provider>`).
 
 ## To be deprecated behavior
 
@@ -23,10 +23,13 @@ will also remove this code again once we make that switch.
 
 ```jsx
 import React from 'react';
+import { createStore } from 'redux';
 import { Provider as StoreProvider } from 'react-redux';
 import { InjectReducer } from '@commercetools-local/application-shell';
 import Dashboard from './components/dashboard';
 import reducer from './reducer';
+
+const store = createStore(...);
 
 const AsyncDashboard = props => (
   <StoreProvider store={store}>

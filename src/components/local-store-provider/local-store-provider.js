@@ -53,11 +53,7 @@ export class LocalStoreProvider extends React.Component {
   }
 
   getChildContext() {
-    if (!this.props.pluginName) return { store: this.context.store };
-
-    return {
-      store: this.createLocalStore(this.context.store, this.props),
-    };
+    return { store: this.createLocalStore() };
   }
 
   createLocalStore = () => ({

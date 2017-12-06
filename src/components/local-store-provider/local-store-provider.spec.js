@@ -133,39 +133,22 @@ describe('lifecycle', () => {
   });
   describe('getChildContext', () => {
     let store;
-    describe('when pluginName is not defined', () => {
-      beforeEach(() => {
-        props = createTestProps({ pluginName: undefined });
-        store = {};
-        wrapper = shallow(
-          <LocalStoreProvider {...props}>
-            <div />
-          </LocalStoreProvider>,
-          { context: { store } }
-        );
-      });
-      it('should return normal store', () => {
-        expect(wrapper.instance().getChildContext()).toEqual({ store });
-      });
+    beforeEach(() => {
+      props = createTestProps();
+      store = {};
+      wrapper = shallow(
+        <LocalStoreProvider {...props}>
+          <div />
+        </LocalStoreProvider>,
+        { context: { store } }
+      );
     });
-    describe('when pluginName is defined', () => {
-      beforeEach(() => {
-        props = createTestProps({ pluginName: 'mcng-foo' });
-        store = {};
-        wrapper = shallow(
-          <LocalStoreProvider {...props}>
-            <div />
-          </LocalStoreProvider>,
-          { context: { store } }
-        );
-      });
-      it('should not return reference to store that is already in context', () => {
-        expect(wrapper.instance().getChildContext().store).not.toBe(store);
-      });
-      it('should return store scoped for local plugin', () => {
-        expect(wrapper.instance().getChildContext()).toEqual({
-          store: expect.objectContaining({ isLocal: true }),
-        });
+    it('should not return reference to store that is already in context', () => {
+      expect(wrapper.instance().getChildContext().store).not.toBe(store);
+    });
+    it('should return store scoped for local plugin', () => {
+      expect(wrapper.instance().getChildContext()).toEqual({
+        store: expect.objectContaining({ isLocal: true }),
       });
     });
   });
