@@ -67,9 +67,8 @@ export default class ApplicationShell extends React.Component {
                                 <ProjectContainer
                                   {...routerProps}
                                   menuItems={this.props.menuItems}
-                                >
-                                  {this.props.render}
-                                </ProjectContainer>
+                                  render={this.props.render}
+                                />
                               </SetupFlopFlipProvider>
                             )}
                           />
