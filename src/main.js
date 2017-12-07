@@ -2,7 +2,10 @@
  * THIS IS THE MODULE ENTRY POINT!
  */
 export { default } from './components/application-shell';
-export { default as InjectReducer } from './components/inject-reducer';
+export {
+  default as InjectReducer,
+  activePluginReducer,
+} from './components/inject-reducer';
 export { default as FetchUser, withUser } from './components/fetch-user';
 export {
   default as FetchProject,

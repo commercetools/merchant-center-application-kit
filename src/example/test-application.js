@@ -8,6 +8,7 @@ import * as i18n from '../../../../i18n';
 import ApplicationShell, {
   RequestsInFlightLoader,
   requestsInFlightReducer,
+  activePluginReducer,
 } from '../main';
 import testMenuItems from './fixtures/menu-items';
 import TestDashboard from './test-dashboard';
@@ -25,35 +26,21 @@ const loggerMiddleware = createLogger({
   },
 });
 
-const mainReducer = combineReducers({
-  requestsInFlight: requestsInFlightReducer,
-});
+const createReducer = (injectedReducers = {}) =>
+  combineReducers({
+    activePlugin: activePluginReducer,
+    requestsInFlight: requestsInFlightReducer,
+    ...injectedReducers,
+  });
 const store = createStore(
-  mainReducer,
+  createReducer(),
   { requestsInFlight: null },
   compose(applyMiddleware(loggerMiddleware))
 );
 store.injectedReducers = {};
 store.injectReducer = ({ name, reducer }) => {
   store.injectedReducers[name] = reducer;
-  store.replaceReducer((state, action) => {
-    if (action && action.type === 'ACTIVATE_PLUGIN') {
-      // NOTE: to ensure that we pick the correct plugin name
-      // we use the value within the action payload.
-      // If we were to use the `name` given from the component
-      // it would have been wrong, because the reference to that
-      // variable can be out of sync.
-      const pluginName = action.payload;
-      return {
-        ...state,
-        activePlugin: pluginName,
-        [pluginName]: store.injectedReducers[pluginName](state[pluginName], {
-          type: 'INIT_PLUGIN',
-        }),
-      };
-    }
-    return mainReducer(state, action);
-  });
+  store.replaceReducer(createReducer(store.injectedReducers));
 };
 
 class TriggerRequestsInFlight extends React.PureComponent {
