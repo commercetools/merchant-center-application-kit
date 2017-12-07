@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { Redirect } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import FetchProject from '../fetch-project';
@@ -15,15 +16,16 @@ const createTestProps = custom => ({
   ...custom,
 });
 
-jest.mock('react-dom', () => ({
-  createPortal: () => <div id="create-portal-has-been-called" />,
-}));
+jest.mock('react-dom');
 
 describe('rendering', () => {
   let props;
   let wrapper;
   let fetchUserChildrenWrapper;
   beforeEach(() => {
+    createPortal.mockImplementation(() => (
+      <div id="create-portal-has-been-called" />
+    ));
     props = createTestProps();
     wrapper = shallow(<ProjectContainer {...props} />);
   });

@@ -1,13 +1,17 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { shallow } from 'enzyme';
 import { RequestsInFlightLoader } from './requests-in-flight-loader';
 
-jest.mock('react-dom', () => ({
-  createPortal: () => <div id="create-portal-has-been-called" />,
-}));
+jest.mock('react-dom');
 
 describe('rendering', () => {
   let wrapper;
+  beforeEach(() => {
+    createPortal.mockImplementation(() => (
+      <div id="create-portal-has-been-called" />
+    ));
+  });
   describe('when there are no requests in flight', () => {
     beforeEach(() => {
       wrapper = shallow(<RequestsInFlightLoader hasRequestsInFlight={false} />);
