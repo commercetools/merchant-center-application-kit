@@ -4,11 +4,19 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 import { Provider as StoreProvider } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
+import {
+  addNotification,
+  removeNotification,
+  middleware as notificationsMiddleware,
+} from '@commercetools-local/notifications';
+import { DOMAINS } from '@commercetools-local/constants';
 import * as i18n from '../../../../i18n';
 import ApplicationShell, {
   RequestsInFlightLoader,
   requestsInFlightReducer,
   activePluginReducer,
+  SetupNotifications,
+  notificationsReducer,
 } from '../main';
 import testMenuItems from './fixtures/menu-items';
 import TestDashboard from './test-dashboard';
@@ -30,12 +38,13 @@ const createReducer = (injectedReducers = {}) =>
   combineReducers({
     activePlugin: activePluginReducer,
     requestsInFlight: requestsInFlightReducer,
+    notifications: notificationsReducer,
     ...injectedReducers,
   });
 const store = createStore(
   createReducer(),
   { requestsInFlight: null },
-  compose(applyMiddleware(loggerMiddleware))
+  compose(applyMiddleware(loggerMiddleware, notificationsMiddleware))
 );
 store.injectedReducers = {};
 store.injectReducer = ({ name, reducer }) => {
@@ -80,6 +89,46 @@ class TriggerRequestsInFlight extends React.PureComponent {
     );
   }
 }
+class TriggerNotification extends React.PureComponent {
+  static displayName = 'TriggerNotification';
+  static propTypes = {
+    store: PropTypes.shape({
+      dispatch: PropTypes.func.isRequired,
+    }).isRequired,
+  };
+  domains = [
+    { name: DOMAINS.GLOBAL, kind: 'info' },
+    { name: DOMAINS.PAGE, kind: 'error' },
+    { name: DOMAINS.SIDE, kind: 'success' },
+  ];
+  render() {
+    return (
+      <div>
+        {this.domains.map(domain => (
+          <div key={domain.name}>
+            <label>{domain.name}</label>
+            <button
+              onClick={() =>
+                store.dispatch(
+                  addNotification({
+                    domain: domain.name,
+                    text: 'foo',
+                    kind: domain.kind,
+                  })
+                )
+              }
+            >
+              {'Add notification'}
+            </button>
+            <button onClick={() => store.dispatch(removeNotification())}>
+              {'Remove notification'}
+            </button>
+          </div>
+        ))}
+      </div>
+    );
+  }
+}
 
 const TestApplication = () => (
   <ApplicationShell
@@ -91,6 +140,8 @@ const TestApplication = () => (
         <div>
           <RequestsInFlightLoader />
           <TriggerRequestsInFlight store={store} />
+          <TriggerNotification store={store} />
+          <SetupNotifications />
           <Switch>
             <Route path="/:projectKey/dashboard" component={TestDashboard} />
             <Route path="/:projectKey/products" component={TestProducts} />

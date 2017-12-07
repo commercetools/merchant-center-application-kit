@@ -44,36 +44,57 @@ export default class ApplicationShell extends React.Component {
                   render={() => (
                     <Authenticated>
                       <SetupFlopFlipProvider>
+                        <div id="global-notifications" />
                         <AppBar />
 
-                        <Switch>
-                          {/* Non-project routes */}
-                          <Route
-                            path="/profile"
-                            render={() => <div>{'PROFILE VIEW'}</div>}
-                          />
-                          <Route
-                            path="/organizations"
-                            render={() => <div>{'ORGS VIEW'}</div>}
-                          />
+                        <div>
+                          <div id="side-notifications" />
+                          <Switch>
+                            {/* Non-project routes */}
+                            <Route
+                              path="/profile"
+                              render={() => (
+                                <div>
+                                  <div id="page-notifications" />
+                                  {'PROFILE VIEW'}
+                                </div>
+                              )}
+                            />
+                            <Route
+                              path="/organizations"
+                              render={() => (
+                                <div>
+                                  <div id="page-notifications" />
+                                  {'ORGS VIEW'}
+                                </div>
+                              )}
+                            />
 
-                          {/* Project routes */}
-                          <Route
-                            path="/:projectKey"
-                            render={routerProps => (
-                              <SetupFlopFlipProvider
-                                projectKey={routerProps.match.params.projectKey}
-                              >
-                                <ProjectContainer
-                                  {...routerProps}
-                                  menuItems={this.props.menuItems}
-                                  render={this.props.render}
-                                />
-                              </SetupFlopFlipProvider>
-                            )}
-                          />
-                          <Route path="/" component={RedirectToProject} />
-                        </Switch>
+                            {/* Project routes */}
+                            <Route
+                              path="/:projectKey"
+                              render={routerProps => (
+                                <SetupFlopFlipProvider
+                                  projectKey={
+                                    routerProps.match.params.projectKey
+                                  }
+                                >
+                                  <ProjectContainer
+                                    {...routerProps}
+                                    menuItems={this.props.menuItems}
+                                    render={(...args) => (
+                                      <React.Fragment>
+                                        <div id="page-notifications" />
+                                        {this.props.render(...args)}
+                                      </React.Fragment>
+                                    )}
+                                  />
+                                </SetupFlopFlipProvider>
+                              )}
+                            />
+                            <Route path="/" component={RedirectToProject} />
+                          </Switch>
+                        </div>
                       </SetupFlopFlipProvider>
                     </Authenticated>
                   )}

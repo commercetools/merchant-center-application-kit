@@ -18,3 +18,7 @@ export {
   default as RequestsInFlightLoader,
   requestsInFlightReducer,
 } from './components/requests-in-flight-loader';
+export {
+  default as SetupNotifications,
+  notificationsReducer,
+} from './components/setup-notifications';
