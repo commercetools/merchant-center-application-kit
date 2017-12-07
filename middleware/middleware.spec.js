@@ -183,6 +183,37 @@ describe('when the action is of type SDK', () => {
     });
   });
 
+  describe('when the request always fails with 401', () => {
+    const dispatch = jest.fn();
+    const getState = jest.fn(() => ({ globalAppState }));
+    const action = {
+      type: 'SDK',
+      payload: { service: 'productTypes', method: 'fetch' },
+    };
+    const next = jest.fn();
+    const expectedError = { statusCode: 401, body: 'foo', headers: {} };
+    let resultPromise;
+    beforeEach(() => {
+      client.execute = jest.fn(() => Promise.reject(expectedError));
+      resultPromise = middleware({ dispatch, getState })(next)(action);
+      // We catch all errors here so that they don't throw globally
+      // This is necessary because the rejected promise rethrows from
+      // the handler
+      return resultPromise.catch(error => {
+        if (error === expectedError) return;
+        throw error;
+      });
+    });
+    it('should only retry once', () => {
+      expect(client.execute).toHaveBeenCalledTimes(2);
+      const firstCall = client.execute.mock.calls[0][0];
+      expect(firstCall.headers).not.toHaveProperty('X-Force-Token');
+      const secondCall = client.execute.mock.calls[1][0];
+      expect(secondCall.headers).toHaveProperty('X-Force-Token');
+      expect(secondCall.headers['X-Force-Token']).toBe('true');
+    });
+  });
+
   describe('when the method is "fetch"', () => {
     const dispatch = jest.fn();
     const getState = jest.fn(() => ({ globalAppState }));
