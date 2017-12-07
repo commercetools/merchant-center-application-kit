@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 import ProjectDataLocale from '../project-data-locale';
+import LocaleSwitcher from '../locale-switcher';
 import ProjectContainer from './project-container';
 
 const createTestProps = custom => ({
@@ -244,7 +245,7 @@ describe('rendering', () => {
                   </div>
                 );
               });
-              it('should render <LocalSwitcher> through a portal', () => {
+              it('should render portal', () => {
                 expect(projectDataLocaleChildrenWrapper).toRender(
                   '#create-portal-has-been-called'
                 );
@@ -323,6 +324,38 @@ describe('rendering', () => {
           });
         });
       });
+    });
+  });
+  describe('switcher', () => {
+    let switcherWrapper;
+    beforeEach(() => {
+      switcherWrapper = shallow(
+        <div>
+          {wrapper.instance().renderSwitcher({
+            projectDataLocale: 'de',
+            setProjectDataLocale: jest.fn(),
+            availableLocales: ['en', 'de'],
+          })}
+        </div>
+      );
+    });
+    it('should pass "projectDataLocale" as prop', () => {
+      expect(switcherWrapper.find(LocaleSwitcher)).toHaveProp(
+        'projectDataLocale',
+        'de'
+      );
+    });
+    it('should pass "setProjectDataLocale" as prop', () => {
+      expect(switcherWrapper.find(LocaleSwitcher)).toHaveProp(
+        'setProjectDataLocale',
+        expect.any(Function)
+      );
+    });
+    it('should pass "availableLocales" as prop', () => {
+      expect(switcherWrapper.find(LocaleSwitcher)).toHaveProp(
+        'availableLocales',
+        ['en', 'de']
+      );
     });
   });
 });

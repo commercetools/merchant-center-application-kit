@@ -16,7 +16,7 @@ exports[`rendering should match layout structure 1`] = `
   </div>
   <div
     className="loader-container"
-    id="loading-spinner"
+    id="loader-for-requests-in-flight"
   />
   <div
     className="navigation"

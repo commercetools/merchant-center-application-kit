@@ -13,7 +13,10 @@ const AppBar = () => (
       <img src={LogoSVG} className={styles['logo-img']} alt="Logo" />
     </div>
 
-    <div id="loading-spinner" className={styles['loader-container']} />
+    <div
+      id="loader-for-requests-in-flight"
+      className={styles['loader-container']}
+    />
 
     <div className={styles.navigation}>
       <Spacings.Inline scale="m" alignItems="center">

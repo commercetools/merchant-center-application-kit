@@ -1,15 +1,19 @@
 import React from 'react';
-import { createStore, compose, applyMiddleware } from 'redux';
+import PropTypes from 'prop-types';
+import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 import { Provider as StoreProvider } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import * as i18n from '../../../../i18n';
-import ApplicationShell from '../main';
+import ApplicationShell, {
+  RequestsInFlightLoader,
+  requestsInFlightReducer,
+} from '../main';
 import testMenuItems from './fixtures/menu-items';
 import TestDashboard from './test-dashboard';
 import TestProducts from './test-products';
 
-const logger = createLogger({
+const loggerMiddleware = createLogger({
   collapsed: true,
   colors: {
     title: action =>
@@ -21,8 +25,14 @@ const logger = createLogger({
   },
 });
 
-const mainReducer = state => state || {};
-const store = createStore(mainReducer, {}, compose(applyMiddleware(logger)));
+const mainReducer = combineReducers({
+  requestsInFlight: requestsInFlightReducer,
+});
+const store = createStore(
+  mainReducer,
+  { requestsInFlight: null },
+  compose(applyMiddleware(loggerMiddleware))
+);
 store.injectedReducers = {};
 store.injectReducer = ({ name, reducer }) => {
   store.injectedReducers[name] = reducer;
@@ -46,6 +56,44 @@ store.injectReducer = ({ name, reducer }) => {
   });
 };
 
+class TriggerRequestsInFlight extends React.PureComponent {
+  static displayName = 'TriggerRequestsInFlight';
+  static propTypes = {
+    store: PropTypes.shape({
+      dispatch: PropTypes.func.isRequired,
+    }).isRequired,
+  };
+  requestIds = ['request/1', 'request/2', 'request/3'];
+  getRandomRequestId = () =>
+    this.requestIds[Math.floor(Math.random() * this.requestIds.length)];
+  render() {
+    return (
+      <div>
+        <button
+          onClick={() =>
+            store.dispatch({
+              type: 'SHOW_LOADING',
+              payload: this.getRandomRequestId(),
+            })
+          }
+        >
+          {'Add request'}
+        </button>
+        <button
+          onClick={() =>
+            store.dispatch({
+              type: 'HIDE_LOADING',
+              payload: this.getRandomRequestId(),
+            })
+          }
+        >
+          {'Remove request'}
+        </button>
+      </div>
+    );
+  }
+}
+
 const TestApplication = () => (
   <ApplicationShell
     i18n={i18n}
@@ -53,10 +101,14 @@ const TestApplication = () => (
     menuItems={testMenuItems}
     render={() => (
       <StoreProvider store={store}>
-        <Switch>
-          <Route path="/:projectKey/dashboard" component={TestDashboard} />
-          <Route path="/:projectKey/products" component={TestProducts} />
-        </Switch>
+        <div>
+          <RequestsInFlightLoader />
+          <TriggerRequestsInFlight store={store} />
+          <Switch>
+            <Route path="/:projectKey/dashboard" component={TestDashboard} />
+            <Route path="/:projectKey/products" component={TestProducts} />
+          </Switch>
+        </div>
       </StoreProvider>
     )}
   />

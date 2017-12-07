@@ -13,6 +13,9 @@ describe('rendering', () => {
   it('should match layout structure', () => {
     expect(wrapper).toMatchSnapshot();
   });
+  it('should render placeholder for "loader-for-requests-in-flight"', () => {
+    expect(wrapper).toRender('#loader-for-requests-in-flight');
+  });
   describe('inner routes', () => {
     let fetchUserChildrenWrapper;
     let fetchUserChildrenProps;

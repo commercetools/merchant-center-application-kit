@@ -57,6 +57,15 @@ class ProjectContainer extends React.Component {
     this.setState({ hasError: true });
     // NOTE: track the error
   }
+  // Makes it easier to test
+  renderSwitcher = switcherProps => (
+    <LocaleSwitcher
+      // Be explicit on listing the props so that we can better assert it.
+      projectDataLocale={switcherProps.projectDataLocale}
+      setProjectDataLocale={switcherProps.setProjectDataLocale}
+      availableLocales={switcherProps.availableLocales}
+    />
+  );
   render() {
     if (this.state.hasError) {
       // NOTE: implement proper error view
@@ -101,11 +110,11 @@ class ProjectContainer extends React.Component {
                           // than one language.
                           project.languages.length > 1 &&
                           ReactDOM.createPortal(
-                            <LocaleSwitcher
-                              projectDataLocale={locale}
-                              setProjectDataLocale={setProjectDataLocale}
-                              availableLocales={project.languages}
-                            />,
+                            this.renderSwitcher({
+                              projectDataLocale: locale,
+                              setProjectDataLocale,
+                              availableLocales: project.languages,
+                            }),
                             this.state.localeSwitcherNode
                           )}
                         <Menu
