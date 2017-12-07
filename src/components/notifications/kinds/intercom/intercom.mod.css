@@ -1,0 +1,7 @@
+.underline {
+  composes: underline from '@commercetools-local/core/_styles/commons.mod.css';
+}
+
+.link {
+  composes: bold link from '@commercetools-local/core/_styles/commons.mod.css';
+}

@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mapPluginNotificationToComponent side-notifications should map the message kind to the correct components 1`] = `
+<div
+  className="container-page"
+>
+  <GenericNotification
+    dismiss={[Function]}
+    key="1"
+    notification={
+      Object {
+        "domain": "side",
+        "id": 1,
+        "kind": "success",
+        "text": "some-success-text",
+      }
+    }
+  />
+  <GenericNotification
+    dismiss={[Function]}
+    key="2"
+    notification={
+      Object {
+        "domain": "side",
+        "id": 2,
+        "kind": "info",
+        "text": "some-info-text",
+      }
+    }
+  />
+  <GenericNotification
+    dismiss={[Function]}
+    key="3"
+    notification={
+      Object {
+        "domain": "side",
+        "id": 3,
+        "kind": "warning",
+        "text": "some-warning-text",
+      }
+    }
+  />
+  <GenericNotification
+    dismiss={[Function]}
+    key="4"
+    notification={
+      Object {
+        "domain": "side",
+        "id": 4,
+        "kind": "error",
+        "text": "some-error-text",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`rendering displays notifications 1`] = `
+<div
+  className="container-page"
+>
+  <GenericNotification
+    dismiss={[Function]}
+    key="1"
+    notification={
+      Object {
+        "domain": "page",
+        "id": 1,
+        "kind": "success",
+        "text": "some-text",
+      }
+    }
+  />
+  <GenericNotification
+    dismiss={[Function]}
+    key="2"
+    notification={
+      Object {
+        "domain": "page",
+        "id": 2,
+        "kind": "info",
+        "text": "some-other-text",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`rendering outputs correct tree 1`] = `
+<div
+  className="container-page"
+>
+  <GenericNotification
+    dismiss={[Function]}
+    key="1"
+    notification={
+      Object {
+        "domain": "page",
+        "id": 1,
+        "kind": "success",
+        "text": "some-text",
+      }
+    }
+  />
+  <GenericNotification
+    dismiss={[Function]}
+    key="2"
+    notification={
+      Object {
+        "domain": "page",
+        "id": 2,
+        "kind": "info",
+        "text": "some-other-text",
+      }
+    }
+  />
+  <GenericNotification
+    dismiss={[Function]}
+    key="3"
+    notification={
+      Object {
+        "domain": "global",
+        "id": 3,
+        "kind": "info",
+        "text": "some-more-text",
+      }
+    }
+  />
+</div>
+`;
