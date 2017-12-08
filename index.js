@@ -43,6 +43,11 @@ export const DOMAINS = {
   PAGE: 'page',
   SIDE: 'side',
 };
+export const DOMAIN_DOM_IDS = {
+  [DOMAINS.GLOBAL]: 'global-notifications',
+  [DOMAINS.PAGE]: 'page-notifications',
+  [DOMAINS.SIDE]: 'side-notifications',
+};
 
 // ERRORS
 export const UNAUTHORIZED = 'UNAUTHORIZED';
