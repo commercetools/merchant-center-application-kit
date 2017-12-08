@@ -4,10 +4,8 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import LoadingSpinner from '@commercetools-local/core/components/loading-spinner';
+import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '@commercetools-local/constants';
 import messages from './messages';
-
-// TODO: move it to some constants file?
-const selectorId = 'loader-for-requests-in-flight';
 
 export class RequestsInFlightLoader extends React.PureComponent {
   static displayName = 'RequestsInFlightLoader';
@@ -26,7 +24,7 @@ export class RequestsInFlightLoader extends React.PureComponent {
       this.props.hasRequestsInFlight &&
       ReactDOM.createPortal(
         this.renderLoader(),
-        document.getElementById(selectorId)
+        document.getElementById(REQUESTS_IN_FLIGHT_LOADER_DOM_ID)
       )
     );
   }
