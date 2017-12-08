@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
+import { DOMAIN_DOM_IDS, DOMAINS } from '@commercetools-local/constants';
 import apolloClient from '../../configure-apollo';
 import Authenticated from '../authenticated';
 import ConfigureIntlProvider from '../configure-intl-provider';
@@ -44,18 +45,18 @@ export default class ApplicationShell extends React.Component {
                   render={() => (
                     <Authenticated>
                       <SetupFlopFlipProvider>
-                        <div id="global-notifications" />
+                        <div id={DOMAIN_DOM_IDS[DOMAINS.GLOBAL]} />
                         <AppBar />
 
                         <div>
-                          <div id="side-notifications" />
+                          <div id={DOMAIN_DOM_IDS[DOMAINS.SIDE]} />
                           <Switch>
                             {/* Non-project routes */}
                             <Route
                               path="/profile"
                               render={() => (
                                 <div>
-                                  <div id="page-notifications" />
+                                  <div id={DOMAIN_DOM_IDS[DOMAINS.PAGE]} />
                                   {'PROFILE VIEW'}
                                 </div>
                               )}
@@ -64,7 +65,7 @@ export default class ApplicationShell extends React.Component {
                               path="/organizations"
                               render={() => (
                                 <div>
-                                  <div id="page-notifications" />
+                                  <div id={DOMAIN_DOM_IDS[DOMAINS.PAGE]} />
                                   {'ORGS VIEW'}
                                 </div>
                               )}
@@ -84,7 +85,9 @@ export default class ApplicationShell extends React.Component {
                                     menuItems={this.props.menuItems}
                                     render={(...args) => (
                                       <React.Fragment>
-                                        <div id="page-notifications" />
+                                        <div
+                                          id={DOMAIN_DOM_IDS[DOMAINS.PAGE]}
+                                        />
                                         {this.props.render(...args)}
                                       </React.Fragment>
                                     )}

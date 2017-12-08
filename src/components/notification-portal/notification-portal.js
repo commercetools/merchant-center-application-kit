@@ -1,14 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { DOMAINS } from '@commercetools-local/constants';
-
-// TODO: move it to some constants file!
-const selectors = {
-  [DOMAINS.GLOBAL]: 'global-notifications',
-  [DOMAINS.PAGE]: 'page-notifications',
-  [DOMAINS.SIDE]: 'side-notifications',
-};
+import { DOMAINS, DOMAIN_DOM_IDS } from '@commercetools-local/constants';
 
 export class NotificationPortal extends React.PureComponent {
   static displayName = 'NotificationPortal';
@@ -39,7 +32,7 @@ export class NotificationPortal extends React.PureComponent {
      * "
      */
     this.setState({
-      portalNode: document.getElementById(selectors[this.props.domain]),
+      portalNode: document.getElementById(DOMAIN_DOM_IDS[this.props.domain]),
     });
   }
   render() {
