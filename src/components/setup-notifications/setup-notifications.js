@@ -57,7 +57,7 @@ export const SetupNotifications = props => (
 SetupNotifications.displayName = 'SetupNotifications';
 
 SetupNotifications.propTypes = {
-  activePlugin: PropTypes.string.isRequired,
+  activePlugin: PropTypes.string,
   globalNotifications: PropTypes.array.isRequired,
   pageNotifications: PropTypes.array.isRequired,
   sideNotifications: PropTypes.array.isRequired,
