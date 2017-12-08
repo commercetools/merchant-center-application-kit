@@ -1,0 +1,62 @@
+@import '@commercetools-local/ui-kit/materials/colors.mod.css';
+@import '@commercetools-local/ui-kit/materials/spacings.mod.css';
+@import '@commercetools-local/ui-kit/materials/shadows.mod.css';
+@import '@commercetools-local/ui-kit/materials/borders.mod.css';
+
+.container {
+  position: relative;
+}
+
+.settings-container {
+  cursor: pointer;
+}
+
+.settings-container:hover .avatar > div > div {
+  background-color: var(--color-grey) !important;
+}
+
+.settings-container:hover img {
+  opacity: 0.7;
+}
+
+.menu {
+  position: absolute;
+  border: 1px var(--color-greySolid) solid;
+  box-shadow: var(--shadow-7-first), var(--shadow-7-second);
+  width: 200px;
+  right: 0;
+  top: 34px;
+  padding: 0;
+}
+
+.menu::before {
+  content: '';
+  position: absolute;
+  right: 30px;
+  top: -6px;
+  border-style: solid;
+  border-width: 0 6px 6px;
+  border-color: transparent transparent var(--color-white) transparent;
+  z-index: 1;
+}
+
+.menu::after {
+  content: '';
+  position: absolute;
+  right: 28px;
+  top: -8px;
+  border-style: solid;
+  border-width: 0 8px 8px;
+  border-color: transparent transparent var(--color-greySolid) transparent;
+  z-index: 0;
+}
+
+.item {
+  width: 100%;
+  cursor: pointer;
+  color: var(--color-greyDark);
+}
+
+.item:hover {
+  background-color: var(--color-greyAlto);
+}

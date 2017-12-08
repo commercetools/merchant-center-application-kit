@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import FetchUser from '../fetch-user';
 import ProjectSwitcher from '../project-switcher';
+import UserSettingsMenu from '../user-settings-menu';
 import AppBar from './app-bar';
 
 describe('rendering', () => {
@@ -16,13 +17,18 @@ describe('rendering', () => {
   it('should render placeholder for "loader-for-requests-in-flight"', () => {
     expect(wrapper).toRender('#loader-for-requests-in-flight');
   });
-  describe('inner routes', () => {
+  describe('fetched user', () => {
     let fetchUserChildrenWrapper;
     let fetchUserChildrenProps;
     beforeEach(() => {
       fetchUserChildrenProps = {
         isLoading: true,
-        user: { availableProjects: [] },
+        user: {
+          availableProjects: [],
+          firstName: 'John',
+          lastName: 'Snow',
+          email: 'john.snow@got.com',
+        },
       };
       fetchUserChildrenWrapper = shallow(
         <div>
@@ -32,6 +38,26 @@ describe('rendering', () => {
     });
     it('should render <Route>', () => {
       expect(fetchUserChildrenWrapper).toRender(Route);
+    });
+    describe('<UserSettingsMenu>', () => {
+      it('should pass "firstName" to <UserSettingsMenu>', () => {
+        expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
+          'firstName',
+          'John'
+        );
+      });
+      it('should pass "lastName" to <UserSettingsMenu>', () => {
+        expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
+          'lastName',
+          'Snow'
+        );
+      });
+      it('should pass "email" to <UserSettingsMenu>', () => {
+        expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
+          'email',
+          'john.snow@got.com'
+        );
+      });
     });
     describe('render route', () => {
       let renderRouteChildrenWrapper;

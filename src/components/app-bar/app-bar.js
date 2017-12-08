@@ -19,10 +19,10 @@ const AppBar = () => (
     />
 
     <div className={styles.navigation}>
-      <Spacings.Inline scale="m" alignItems="center">
-        <div className={styles.switchers}>
-          <FetchUser>
-            {({ isLoading, user }) => (
+      <FetchUser>
+        {({ isLoading, user }) => (
+          <Spacings.Inline scale="m" alignItems="center">
+            <div className={styles.switchers}>
               <Route
                 path="/:projectKey"
                 render={routerProps => (
@@ -48,14 +48,18 @@ const AppBar = () => (
                   </Spacings.Inline>
                 )}
               />
-            )}
-          </FetchUser>
-        </div>
-        <div className={styles.spacer} />
-        <Spacings.Inline alignItems="center">
-          <UserSettingsMenu />
-        </Spacings.Inline>
-      </Spacings.Inline>
+            </div>
+            <div className={styles.spacer} />
+            <Spacings.Inline alignItems="center">
+              <UserSettingsMenu
+                firstName={user.firstName}
+                lastName={user.lastName}
+                email={user.email}
+              />
+            </Spacings.Inline>
+          </Spacings.Inline>
+        )}
+      </FetchUser>
     </div>
   </header>
 );

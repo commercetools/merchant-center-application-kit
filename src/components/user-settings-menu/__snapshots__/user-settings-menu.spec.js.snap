@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`callbacks clicking to open the menu outputs correct tree 1`] = `
+<div
+  className="container"
+  data-test="user-settings-menu"
+>
+  <div
+    className="settings-container"
+    onClick={[Function]}
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
+  >
+    <Inline
+      alignItems="center"
+      scale="s"
+    >
+      <div
+        className="avatar"
+      >
+        <Avatar
+          email="john-doe@commercetools.de"
+          firstName="John Test"
+          lastName="Doe"
+          size="small"
+        />
+      </div>
+      <CaretDownIcon
+        size="small"
+        theme="black"
+      />
+    </Inline>
+  </div>
+  <Card
+    className="menu"
+    type="raised"
+  >
+    <Inset
+      scale="s"
+    >
+      <TextDetail
+        tone="secondary"
+      >
+        John Test Doe
+      </TextDetail>
+    </Inset>
+    <withFlagSubscription(withProps(FeatureToggled))
+      flag="userProfile"
+    >
+      <Link
+        replace={false}
+        to="/profile"
+      >
+        <div
+          className="item"
+        >
+          <Inset
+            scale="s"
+          >
+            <FormattedMessage
+              defaultMessage="My Profile"
+              description="The label for user profile option"
+              id="UserSettingsMenu.userProfile"
+              values={Object {}}
+            />
+          </Inset>
+        </div>
+      </Link>
+    </withFlagSubscription(withProps(FeatureToggled))>
+    <Link
+      data-test="logout-button"
+      replace={false}
+      to="/logout?reason=user"
+    >
+      <div
+        className="item"
+      >
+        <Inset
+          scale="s"
+        >
+          <FormattedMessage
+            defaultMessage="Logout"
+            description="The label for logout option"
+            id="UserSettingsMenu.logout"
+            values={Object {}}
+          />
+        </Inset>
+      </div>
+    </Link>
+  </Card>
+</div>
+`;
+
+exports[`render outputs correct tree 1`] = `
+<div
+  className="container"
+  data-test="user-settings-menu"
+>
+  <div
+    className="settings-container"
+    onClick={[Function]}
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
+  >
+    <Inline
+      alignItems="center"
+      scale="s"
+    >
+      <div
+        className="avatar"
+      >
+        <Avatar
+          email="john-doe@commercetools.de"
+          firstName="John Test"
+          lastName="Doe"
+          size="small"
+        />
+      </div>
+      <CaretDownIcon
+        size="small"
+        theme="black"
+      />
+    </Inline>
+  </div>
+</div>
+`;

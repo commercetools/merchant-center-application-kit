@@ -21,25 +21,7 @@ exports[`rendering should match layout structure 1`] = `
   <div
     className="navigation"
   >
-    <Inline
-      alignItems="center"
-      scale="m"
-    >
-      <div
-        className="switchers"
-      >
-        <FetchUser />
-      </div>
-      <div
-        className="spacer"
-      />
-      <Inline
-        alignItems="center"
-        scale="s"
-      >
-        <UserSettingsMenu />
-      </Inline>
-    </Inline>
+    <FetchUser />
   </div>
 </header>
 `;
