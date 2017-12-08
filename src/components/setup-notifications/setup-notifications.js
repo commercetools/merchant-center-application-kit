@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { DOMAINS } from '@commercetools-local/constants';
 import NotificationPortal from '../notification-portal';
-import NotificationsList from '../notifications/notifications-list';
+import NotificationsList from '../notifications-list';
 import {
   selectLatestGlobalNotificationAsList,
   selectPageNotifications,

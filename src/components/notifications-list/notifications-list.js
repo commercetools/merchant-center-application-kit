@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { removeNotification } from '@commercetools-local/notifications';
 import { DOMAINS } from '@commercetools-local/constants';
-import GenericNotification from '../kinds/generic';
-import IntercomNotification from '../kinds/intercom';
-import ApiErrorNotification from '../kinds/api-error';
-import UnexpectedErrorNotification from '../kinds/unexpected-error';
+import GenericNotification from '../notification-kinds/generic';
+import IntercomNotification from '../notification-kinds/intercom';
+import ApiErrorNotification from '../notification-kinds/api-error';
+import UnexpectedErrorNotification from '../notification-kinds/unexpected-error';
 import styles from './notifications-list.mod.css';
 
 function mapNotificationToComponent(notification) {
