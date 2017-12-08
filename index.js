@@ -122,3 +122,5 @@ export const FILTER_TYPES = {
   missingIn: 'missingIn',
   in: 'in',
 };
+
+export const REQUESTS_IN_FLIGHT_LOADER_DOM_ID = 'loader-for-requests-in-flight';
