@@ -10,7 +10,7 @@ import client from './client';
 jest.mock('./client');
 jest.mock('../utils');
 
-const globalAppState = { token: 'foo', currentProjectKey: 'bar' };
+const globalAppState = { token: 'foo', projectKey: 'bar' };
 
 describe('when the action is of type SDK', () => {
   describe('no matter the method', () => {

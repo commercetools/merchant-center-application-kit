@@ -12,7 +12,7 @@ import client from './client';
 // as options
 const selectProjectKey = state => {
   const application = state.globalAppState || state.application;
-  return application.currentProjectKey;
+  return application.projectKey;
 };
 
 const selectToken = state => {
