@@ -11,14 +11,14 @@ import PropTypes from 'prop-types';
 const ProjectWithoutSettings = props => (
   <div>
     {`Unexpected error. The project-setting is missing for project ${
-      props.params.currentProject
+      props.params.projectKey
     }. Please contact our support.`}
   </div>
 );
 ProjectWithoutSettings.displayName = 'ProjectWithoutSettings';
 ProjectWithoutSettings.propTypes = {
   params: PropTypes.shape({
-    currentProject: PropTypes.string,
+    projectKey: PropTypes.string,
   }),
 };
 

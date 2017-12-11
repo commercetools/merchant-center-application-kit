@@ -6,7 +6,7 @@ describe('rendering', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(
-      <ProjectWithoutSettings params={{ currentProject: 'foo' }} />
+      <ProjectWithoutSettings params={{ projectKey: 'foo' }} />
     );
   });
   it('outputs correct tree', () => {
