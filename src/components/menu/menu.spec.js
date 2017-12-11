@@ -1,6 +1,5 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import { FeatureToggled } from '@flopflip/react-broadcast';
 import { UnconnectedRestrictedByPermissions } from '@commercetools-local/core/components/with-permissions';
 import * as storage from '@commercetools-local/utils/storage';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
@@ -455,7 +454,7 @@ describe('rendering', () => {
   });
   describe('<ToggledWithPermissions>', () => {
     const ItemChild = () => <span>{'foo'}</span>;
-    describe('<FeatureToggled>', () => {
+    describe('<ToggleFeature>', () => {
       describe('when featureToggle is defined', () => {
         beforeEach(() => {
           props = {
@@ -469,11 +468,14 @@ describe('rendering', () => {
             </ToggledWithPermissions>
           );
         });
-        it('should render <FeatureToggled>', () => {
-          expect(wrapper).toRender(FeatureToggled);
+        it('should match snapshot', () => {
+          expect(wrapper).toMatchSnapshot();
+        });
+        it('should render <ToggleFeature>', () => {
+          expect(wrapper).toRender('ToggleFeature');
         });
         it('should pass flag as prop', () => {
-          expect(wrapper.find(FeatureToggled)).toHaveProp('flag', 'myFeature');
+          expect(wrapper.find('ToggleFeature')).toHaveProp('flag', 'myFeature');
         });
       });
       describe('when featureToggle is not defined', () => {
@@ -484,8 +486,11 @@ describe('rendering', () => {
             </ToggledWithPermissions>
           );
         });
-        it('should render <FeatureToggled>', () => {
-          expect(wrapper).not.toRender('FeatureToggled');
+        it('should match snapshot', () => {
+          expect(wrapper).toMatchSnapshot();
+        });
+        it('should not render <ToggleFeature>', () => {
+          expect(wrapper).not.toRender('ToggleFeature');
         });
       });
     });
@@ -504,6 +509,9 @@ describe('rendering', () => {
               <ItemChild />
             </ToggledWithPermissions>
           );
+        });
+        it('should match snapshot', () => {
+          expect(wrapper).toMatchSnapshot();
         });
         it('should pass permissions as prop', () => {
           expect(wrapper.find(UnconnectedRestrictedByPermissions)).toHaveProp(
@@ -529,6 +537,9 @@ describe('rendering', () => {
               <ItemChild />
             </ToggledWithPermissions>
           );
+        });
+        it('should match snapshot', () => {
+          expect(wrapper).toMatchSnapshot();
         });
         it('should pass permissions as prop', () => {
           expect(wrapper.find(UnconnectedRestrictedByPermissions)).toHaveProp(

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering <ToggledWithPermissions> <ToggleFeature> when featureToggle is defined should match snapshot 1`] = `
+<ToggleFeature
+  flag="myFeature"
+>
+  <UnconnectedRestrictedByPermissions
+    isAuthorized={false}
+    permissions={Array []}
+    unauthorizedComponent={null}
+  >
+    <ItemChild />
+  </UnconnectedRestrictedByPermissions>
+</ToggleFeature>
+`;
+
+exports[`rendering <ToggledWithPermissions> <ToggleFeature> when featureToggle is not defined should match snapshot 1`] = `
+<UnconnectedRestrictedByPermissions
+  isAuthorized={true}
+  permissions={Array []}
+  unauthorizedComponent={null}
+>
+  <ItemChild />
+</UnconnectedRestrictedByPermissions>
+`;
+
+exports[`rendering <ToggledWithPermissions> <UnconnectedRestrictedByPermissions> when permissions are defined should match snapshot 1`] = `
+<UnconnectedRestrictedByPermissions
+  isAuthorized={true}
+  permissions={
+    Array [
+      Object {
+        "mode": "view",
+        "resource": "products",
+      },
+    ]
+  }
+  unauthorizedComponent={null}
+>
+  <ItemChild />
+</UnconnectedRestrictedByPermissions>
+`;
+
+exports[`rendering <ToggledWithPermissions> <UnconnectedRestrictedByPermissions> when permissions are not defined should match snapshot 1`] = `
+<UnconnectedRestrictedByPermissions
+  isAuthorized={true}
+  permissions={Array []}
+  unauthorizedComponent={null}
+>
+  <ItemChild />
+</UnconnectedRestrictedByPermissions>
+`;

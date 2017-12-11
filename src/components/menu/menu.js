@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { matchPath } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import { FeatureToggled } from '@flopflip/react-broadcast';
+import { ToggleFeature } from '@flopflip/react-broadcast';
 import { withProps } from 'recompose';
 import classnames from 'classnames';
 import oneLineTrim from 'common-tags/lib/oneLineTrim';
@@ -131,9 +131,9 @@ MenuItemLink.propTypes = {
 };
 
 // This component basically just wraps the `<UnconnectedRestrictedByPermissions>`
-// and the `<FeatureToggled>` components. However, it's necessary to have it as
-// the `<FeatureToggled>` wrapper should be rendered only if the `featureToggle`
-// prop is defined. This is because `<FeatureToggled>` will not render any
+// and the `<ToggleFeature>` components. However, it's necessary to have it as
+// the `<ToggleFeature>` wrapper should be rendered only if the `featureToggle`
+// prop is defined. This is because `<ToggleFeature>` will not render any
 // children if the flag is missing/not found.
 export const ToggledWithPermissions = props => {
   const demandedPermissions = props.permissions || [];
@@ -155,9 +155,9 @@ export const ToggledWithPermissions = props => {
     </UnconnectedRestrictedByPermissions>
   );
   return props.featureToggle ? (
-    <FeatureToggled flag={props.featureToggle}>
+    <ToggleFeature flag={props.featureToggle}>
       {permissionsWrapper}
-    </FeatureToggled>
+    </ToggleFeature>
   ) : (
     permissionsWrapper
   );
