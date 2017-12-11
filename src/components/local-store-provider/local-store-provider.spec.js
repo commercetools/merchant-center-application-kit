@@ -224,7 +224,7 @@ describe('lifecycle', () => {
               projectKey: props.project.key,
               baseSettings: props.project.baseSettings,
               projectSettings: props.project.settings,
-              currentProjectExpired: props.project.expired,
+              projectExpired: props.project.expired,
             },
           })
         );

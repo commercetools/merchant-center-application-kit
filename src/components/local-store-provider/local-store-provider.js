@@ -109,7 +109,7 @@ export class LocalStoreProvider extends React.Component {
     baseSettings:
       this.props.project.settings && this.props.project.settings.baseSettings,
     projectSettings: this.props.project.settings,
-    currentProjectExpired: this.props.project.expired,
+    projectExpired: this.props.project.expired,
   });
 
   render() {
