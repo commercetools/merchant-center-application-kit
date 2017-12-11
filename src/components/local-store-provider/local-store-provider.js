@@ -87,7 +87,7 @@ export class LocalStoreProvider extends React.Component {
   mapUserAndProjectToState = () => ({
     token: storage.get(CORE_STORAGE_KEYS.TOKEN),
     // This is the "selected project language", a.k.a the selected locale for the localized project data.
-    currentLanguage: storage.get(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE),
+    language: storage.get(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE),
     // This is the user locale, a.k.a the locale used by react-intl to localize the application.
     locale: this.props.user.language,
     // Mostly useful for reacting to opening/closing of left menu navigation

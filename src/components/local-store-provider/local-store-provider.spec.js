@@ -211,7 +211,7 @@ describe('lifecycle', () => {
           expect.objectContaining({
             globalAppState: {
               token: 'xxx',
-              currentLanguage: 'de',
+              language: 'de',
               locale: props.user.language,
               isForcedMenuOpen: false,
               id: props.user.id,
