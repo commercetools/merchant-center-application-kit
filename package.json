@@ -17,6 +17,7 @@
   "dependencies": {
     "@commercetools-local/constants": "*",
     "@commercetools-local/core": "*",
+    "@commercetools-local/actions-global": "*",
     "@commercetools-local/notifications": "*",
     "@commercetools-local/ui-kit": "*",
     "@commercetools-local/utils": "*",

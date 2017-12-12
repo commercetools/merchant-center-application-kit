@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
-import { Provider as StoreProvider } from 'react-redux';
+import { Provider as StoreProvider, connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import {
   addNotification,
@@ -15,7 +15,7 @@ import ApplicationShell, {
   RequestsInFlightLoader,
   requestsInFlightReducer,
   activePluginReducer,
-  SetupNotifications,
+  NotificationsConnector,
   notificationsReducer,
 } from '../main';
 import testMenuItems from './fixtures/menu-items';
@@ -92,9 +92,8 @@ class TriggerRequestsInFlight extends React.PureComponent {
 class TriggerNotification extends React.PureComponent {
   static displayName = 'TriggerNotification';
   static propTypes = {
-    store: PropTypes.shape({
-      dispatch: PropTypes.func.isRequired,
-    }).isRequired,
+    activePlugin: PropTypes.string,
+    addNotification: PropTypes.func.isRequired,
   };
   domains = [
     { name: DOMAINS.GLOBAL, kind: 'info' },
@@ -109,13 +108,12 @@ class TriggerNotification extends React.PureComponent {
             <label>{domain.name}</label>
             <button
               onClick={() =>
-                store.dispatch(
-                  addNotification({
-                    domain: domain.name,
-                    text: 'foo',
-                    kind: domain.kind,
-                  })
-                )
+                this.props.addNotification({
+                  domain: domain.name,
+                  text: 'foo',
+                  kind: domain.kind,
+                  plugin: this.props.activePlugin,
+                })
               }
             >
               {'Add notification'}
@@ -129,27 +127,41 @@ class TriggerNotification extends React.PureComponent {
     );
   }
 }
+const ConnectedTriggerNotification = connect(
+  state => ({
+    activePlugin: state.activePlugin,
+  }),
+  { addNotification }
+)(TriggerNotification);
 
 const TestApplication = () => (
-  <ApplicationShell
-    i18n={i18n}
-    configuration={window.app}
-    menuItems={testMenuItems}
-    render={() => (
-      <StoreProvider store={store}>
-        <div>
-          <RequestsInFlightLoader />
-          <TriggerRequestsInFlight store={store} />
-          <TriggerNotification store={store} />
-          <SetupNotifications />
-          <Switch>
-            <Route path="/:projectKey/dashboard" component={TestDashboard} />
-            <Route path="/:projectKey/products" component={TestProducts} />
-          </Switch>
-        </div>
-      </StoreProvider>
-    )}
-  />
+  <StoreProvider store={store}>
+    <NotificationsConnector>
+      {({ notifications, showNotification }) => (
+        <ApplicationShell
+          i18n={i18n}
+          configuration={window.app}
+          menuItems={testMenuItems}
+          notifications={notifications}
+          showNotification={showNotification}
+          render={() => (
+            <div>
+              <RequestsInFlightLoader />
+              <TriggerRequestsInFlight store={store} />
+              <ConnectedTriggerNotification />
+              <Switch>
+                <Route
+                  path="/:projectKey/dashboard"
+                  component={TestDashboard}
+                />
+                <Route path="/:projectKey/products" component={TestProducts} />
+              </Switch>
+            </div>
+          )}
+        />
+      )}
+    </NotificationsConnector>
+  </StoreProvider>
 );
 TestApplication.displayName = 'TestApplication';
 

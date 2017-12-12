@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
-import { DOMAIN_DOM_IDS, DOMAINS } from '@commercetools-local/constants';
+import { DOMAINS } from '@commercetools-local/constants';
+import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
 import Authenticated from '../authenticated';
 import ConfigureIntlProvider from '../configure-intl-provider';
@@ -23,6 +24,8 @@ export default class ApplicationShell extends React.Component {
     configuration: PropTypes.object.isRequired,
     menuItems: PropTypes.array.isRequired,
     render: PropTypes.func.isRequired,
+    notifications: PropTypes.object.isRequired,
+    showNotification: PropTypes.func.isRequired,
   };
   render() {
     return (
@@ -45,18 +48,38 @@ export default class ApplicationShell extends React.Component {
                   render={() => (
                     <Authenticated>
                       <SetupFlopFlipProvider>
-                        <div id={DOMAIN_DOM_IDS[DOMAINS.GLOBAL]} />
+                        <NotificationsList
+                          domain={DOMAINS.GLOBAL}
+                          notifications={this.props.notifications.global}
+                          // mapPluginNotificationToComponent={
+                          //   state.mapPluginNotificationToComponent
+                          // }
+                        />
                         <AppBar />
 
                         <div>
-                          <div id={DOMAIN_DOM_IDS[DOMAINS.SIDE]} />
+                          <NotificationsList
+                            domain={DOMAINS.SIDE}
+                            notifications={this.props.notifications.side}
+                            // mapPluginNotificationToComponent={
+                            //   state.mapPluginNotificationToComponent
+                            // }
+                          />
                           <Switch>
                             {/* Non-project routes */}
                             <Route
                               path="/profile"
                               render={() => (
                                 <div>
-                                  <div id={DOMAIN_DOM_IDS[DOMAINS.PAGE]} />
+                                  <NotificationsList
+                                    domain={DOMAINS.PAGE}
+                                    notifications={
+                                      this.props.notifications.page
+                                    }
+                                    // mapPluginNotificationToComponent={
+                                    //   state.mapPluginNotificationToComponent
+                                    // }
+                                  />
                                   {'PROFILE VIEW'}
                                 </div>
                               )}
@@ -65,7 +88,15 @@ export default class ApplicationShell extends React.Component {
                               path="/organizations"
                               render={() => (
                                 <div>
-                                  <div id={DOMAIN_DOM_IDS[DOMAINS.PAGE]} />
+                                  <NotificationsList
+                                    domain={DOMAINS.PAGE}
+                                    notifications={
+                                      this.props.notifications.page
+                                    }
+                                    // mapPluginNotificationToComponent={
+                                    //   state.mapPluginNotificationToComponent
+                                    // }
+                                  />
                                   {'ORGS VIEW'}
                                 </div>
                               )}
@@ -85,8 +116,14 @@ export default class ApplicationShell extends React.Component {
                                     menuItems={this.props.menuItems}
                                     render={(...args) => (
                                       <React.Fragment>
-                                        <div
-                                          id={DOMAIN_DOM_IDS[DOMAINS.PAGE]}
+                                        <NotificationsList
+                                          domain={DOMAINS.PAGE}
+                                          notifications={
+                                            this.props.notifications.page
+                                          }
+                                          // mapPluginNotificationToComponent={
+                                          //   state.mapPluginNotificationToComponent
+                                          // }
                                         />
                                         {this.props.render(...args)}
                                       </React.Fragment>

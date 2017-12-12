@@ -53,17 +53,6 @@ function mapNotificationToComponent(notification) {
   }
 }
 
-export const isNotificationVisible = (activePlugin, notificationPlugin) => {
-  // When the notification is global we always show it
-  if (!notificationPlugin) return true;
-
-  // when no plugin is active we hide all plugin notifications
-  if (!activePlugin) return false;
-
-  // When a plugin is active we only show notifications of that plugin
-  return activePlugin === notificationPlugin;
-};
-
 export class NotificationsList extends React.PureComponent {
   static displayName = 'NotificationsList';
 
@@ -85,39 +74,35 @@ export class NotificationsList extends React.PureComponent {
   render() {
     return (
       <div className={styles[`container-${this.props.domain}`]}>
-        {this.props.notifications
-          .filter(notification =>
-            isNotificationVisible(this.props.activePlugin, notification.plugin)
-          )
-          .map(notification => {
-            // check whether the current plugin provides a custom
-            // notification for this type
-            const PluginNotification =
-              this.props.mapPluginNotificationToComponent &&
-              this.props.mapPluginNotificationToComponent(notification);
-            // fall back to app-wide notifications
-            const Component =
-              PluginNotification || mapNotificationToComponent(notification);
-            if (!Component) {
-              if (process.env.NODE_ENV !== 'production')
-                // eslint-disable-next-line no-console
-                console.error(
-                  `Saw unexpected notification kind "${notification.kind}".`,
-                  notification
-                );
-              return null;
-            }
-            const dismiss = () => {
-              this.context.store.dispatch(removeNotification(notification.id));
-            };
-            return (
-              <Component
-                key={notification.id}
-                notification={notification}
-                dismiss={dismiss}
-              />
-            );
-          })}
+        {this.props.notifications.map(notification => {
+          // check whether the current plugin provides a custom
+          // notification for this type
+          const PluginNotification =
+            this.props.mapPluginNotificationToComponent &&
+            this.props.mapPluginNotificationToComponent(notification);
+          // fall back to app-wide notifications
+          const Component =
+            PluginNotification || mapNotificationToComponent(notification);
+          if (!Component) {
+            if (process.env.NODE_ENV !== 'production')
+              // eslint-disable-next-line no-console
+              console.error(
+                `Saw unexpected notification kind "${notification.kind}".`,
+                notification
+              );
+            return null;
+          }
+          const dismiss = () => {
+            this.context.store.dispatch(removeNotification(notification.id));
+          };
+          return (
+            <Component
+              key={notification.id}
+              notification={notification}
+              dismiss={dismiss}
+            />
+          );
+        })}
       </div>
     );
   }

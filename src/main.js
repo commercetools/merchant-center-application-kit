@@ -19,6 +19,6 @@ export {
   requestsInFlightReducer,
 } from './components/requests-in-flight-loader';
 export {
-  default as SetupNotifications,
+  default as NotificationsConnector,
   notificationsReducer,
-} from './components/setup-notifications';
+} from './components/notifications-connector';
