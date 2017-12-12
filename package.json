@@ -4,5 +4,8 @@
   "description": "",
   "license": "Proprietary",
   "private": true,
-  "main": "./index.js"
+  "main": "./index.js",
+  "dependencies": {
+    "history": "4.7.2"
+  }
 }
