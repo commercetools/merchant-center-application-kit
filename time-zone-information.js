@@ -14,7 +14,11 @@ export const timeZonesShape = PropTypes.objectOf(
  * a function that asynchronously loads the country data.
  */
 const getTimeZonesForLocale = (locale, cb) =>
-  import(`./data/time-zones/${locale}.json`)
+  import(/* webpackChunkName: "time-zone-data" */
+  // Use lazy once so that subsequent calls to import() will use the same
+  // network response. https://webpack.js.org/api/module-methods/#import-
+  /* webpackMode: "lazy-once" */
+  `./data/time-zones/${locale}.json`)
     .then(timeZones => cb(null, timeZones))
     .catch(() => cb(new Error(`Unknown locale ${locale}`)));
 
