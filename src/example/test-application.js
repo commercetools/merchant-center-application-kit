@@ -4,6 +4,7 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 import { Provider as StoreProvider, connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { reducer as formReducer } from 'redux-form';
 import {
   addNotification,
   removeNotification,
@@ -39,6 +40,7 @@ const createReducer = (injectedReducers = {}) =>
     activePlugin: activePluginReducer,
     requestsInFlight: requestsInFlightReducer,
     notifications: notificationsReducer,
+    form: formReducer,
     ...injectedReducers,
   });
 const store = createStore(

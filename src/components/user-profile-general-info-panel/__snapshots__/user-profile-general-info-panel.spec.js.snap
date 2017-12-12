@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering should ensure layout structure 1`] = `
+<CollapsiblePanel
+  label="UserProfile.GeneralInfoPanel.title"
+  tone="primary"
+>
+  <FormBox
+    hasWarning={false}
+  >
+    <LabelField
+      isRequired={true}
+      title="UserProfile.GeneralInfoPanel.firstName"
+    />
+    <Field
+      component={[Function]}
+      name="firstName"
+      shouldDisplayTooltip={[Function]}
+      submitFailed={false}
+    />
+  </FormBox>
+  <FormBox
+    hasWarning={false}
+  >
+    <LabelField
+      isRequired={true}
+      title="UserProfile.GeneralInfoPanel.lastName"
+    />
+    <Field
+      component={[Function]}
+      name="lastName"
+      shouldDisplayTooltip={[Function]}
+      submitFailed={false}
+    />
+  </FormBox>
+  <FormBox
+    hasWarning={false}
+  >
+    <LabelField
+      isRequired={false}
+      title="UserProfile.GeneralInfoPanel.email"
+    />
+    <Field
+      component={[Function]}
+      disabled={true}
+      name="email"
+    />
+  </FormBox>
+</CollapsiblePanel>
+`;

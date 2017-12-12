@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering should ensure layout structure 1`] = `
+<Inset
+  scale="m"
+>
+  <InjectIntl(UserProfileGeneralInfoPanel)
+    hasSubmitFailed={false}
+  />
+  <Connect(withTimeZones(InjectIntl(UserProfilePersonalSettingsPanel))) />
+  <PageBottomSpacer />
+  <InjectIntl(WarningSaveToolbar)
+    isToolbarDisabled={false}
+    isToolbarVisible={false}
+    onCancel={[Function]}
+    route={Object {}}
+    shouldWarnOnLeave={false}
+  />
+</Inset>
+`;

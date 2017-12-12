@@ -15,10 +15,12 @@
     "start": "node ../../toolbox/start.js --entryPoint=./packages-shared/application-shell/src/example/for-development.js"
   },
   "dependencies": {
+    "@commercetools-local/actions-global": "*",
     "@commercetools-local/constants": "*",
     "@commercetools-local/core": "*",
-    "@commercetools-local/actions-global": "*",
+    "@commercetools-local/l10n": "*",
     "@commercetools-local/notifications": "*",
+    "@commercetools-local/test-utils": "*",
     "@commercetools-local/ui-kit": "*",
     "@commercetools-local/utils": "*",
     "@flopflip/launchdarkly-adapter": "2.0.5",

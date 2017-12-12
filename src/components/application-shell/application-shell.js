@@ -16,6 +16,7 @@ import LoginSSO from '../login-sso';
 import LoginSSOCallback from '../login-sso-callback';
 import Logout from '../logout';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
+import UserProfile from '../user-profile';
 
 export default class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
@@ -30,6 +31,7 @@ export default class ApplicationShell extends React.Component {
       side: PropTypes.array.isRequired,
     }).isRequired,
     showNotification: PropTypes.func.isRequired,
+    showUnexpectedErrorNotification: PropTypes.func.isRequired,
     mapPluginNotificationToComponent: PropTypes.func,
     showApiErrorNotification: PropTypes.func,
     showUnexpectedErrorNotification: PropTypes.func,
@@ -92,7 +94,11 @@ export default class ApplicationShell extends React.Component {
                                         .mapPluginNotificationToComponent
                                     }
                                   />
-                                  {'PROFILE VIEW'}
+                                  <UserProfile
+                                    showNotification={
+                                      this.props.showNotification
+                                    }
+                                  />
                                 </div>
                               )}
                             />
