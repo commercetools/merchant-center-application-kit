@@ -1,4 +1,4 @@
-# Sdk.Fetch
+# Sdk.Get
 
 Fetches data when rendered.
 
@@ -35,7 +35,7 @@ customized by providing `shouldRefetch`.
 
 ## Static Fields
 
-* `Sdk.Fetch.errorHandler` contains _(Function)_: Error handler which is called
+* `Sdk.Get.errorHandler` contains _(Function)_: Error handler which is called
   when no `onError` prop was specified and an error happens while resolving the
   promise. This property can be overridden to replace the default error handler.
   The default error handler will throw the error.

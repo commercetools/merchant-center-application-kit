@@ -1,8 +1,8 @@
-export function fetch(payload) {
-  return { type: 'SDK', payload: { method: 'fetch', ...payload } };
+export function get(payload) {
+  return { type: 'SDK', payload: { method: 'GET', ...payload } };
 }
 
 // TODO improve this to support passing payload to the update method
-export function update(payload) {
-  return { type: 'SDK', payload: { method: 'update', ...payload } };
+export function post(payload) {
+  return { type: 'SDK', payload: { method: 'POST', ...payload } };
 }

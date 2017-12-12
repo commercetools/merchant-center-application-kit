@@ -2,8 +2,8 @@ import * as actions from './actions';
 
 describe('fetch', () => {
   it('should match snapshot', () => {
-    expect(actions.fetch({ foo: true })).toEqual({
-      payload: { foo: true, method: 'fetch' },
+    expect(actions.get({ foo: true })).toEqual({
+      payload: { foo: true, method: 'GET' },
       type: 'SDK',
     });
   });
@@ -11,8 +11,8 @@ describe('fetch', () => {
 
 describe('update', () => {
   it('should match snapshot', () => {
-    expect(actions.update({ foo: true })).toEqual({
-      payload: { foo: true, method: 'update' },
+    expect(actions.post({ foo: true })).toEqual({
+      payload: { foo: true, method: 'POST' },
       type: 'SDK',
     });
   });

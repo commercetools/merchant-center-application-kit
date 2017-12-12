@@ -19,6 +19,6 @@ the promise. It passes the response back to the callee.
 
 ## Declaring the fetch using a component
 
-The provided `Sdk.Fetch` component can be rendered to fetch data. It uses the
+The provided `Sdk.Get` component can be rendered to fetch data. It uses the
 middleware behind the scenes but adds some features on top. See
 [components/sdk-fetch/README.md](./components/sdk-fetch/README.md) for details.

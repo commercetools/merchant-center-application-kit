@@ -19,7 +19,7 @@ describe('when the action is of type SDK', () => {
       const getState = jest.fn(() => ({ globalAppState }));
       const action = {
         type: 'SDK',
-        payload: { service: 'productTypes', method: 'fetch' },
+        payload: { service: 'productTypes', method: 'GET' },
       };
       const next = jest.fn();
       const response = { body: 'foo', headers: {} };
@@ -46,7 +46,7 @@ describe('when the action is of type SDK', () => {
         expect(dispatch).toHaveBeenCalledWith(
           toGlobal({
             type: SHOW_LOADING,
-            payload: 'sdk.fetch(/bar/product-types)',
+            payload: 'sdk.get(/bar/product-types)',
           })
         );
       });
@@ -60,7 +60,7 @@ describe('when the action is of type SDK', () => {
       const getState = jest.fn(() => ({ globalAppState }));
       const action = {
         type: 'SDK',
-        payload: { service: 'productTypes', method: 'fetch' },
+        payload: { service: 'productTypes', method: 'GET' },
       };
       const next = jest.fn();
       const response = { body: 'foo', headers: {} };
@@ -74,7 +74,7 @@ describe('when the action is of type SDK', () => {
         expect(dispatch).toHaveBeenCalledWith(
           toGlobal({
             type: HIDE_LOADING,
-            payload: 'sdk.fetch(/bar/product-types)',
+            payload: 'sdk.get(/bar/product-types)',
           })
         );
       });
@@ -89,7 +89,7 @@ describe('when the action is of type SDK', () => {
       const getState = jest.fn(() => ({ globalAppState }));
       const action = {
         type: 'SDK',
-        payload: { service: 'productTypes', method: 'fetch' },
+        payload: { service: 'productTypes', method: 'GET' },
       };
       const next = jest.fn();
       const response = {
@@ -115,7 +115,7 @@ describe('when the action is of type SDK', () => {
       const getState = jest.fn(() => ({ globalAppState }));
       const action = {
         type: 'SDK',
-        payload: { service: 'productTypes', method: 'fetch' },
+        payload: { service: 'productTypes', method: 'GET' },
       };
       const next = jest.fn();
       const expectedError = { body: 'foo', headers: {} };
@@ -137,7 +137,7 @@ describe('when the action is of type SDK', () => {
         expect(dispatch).toHaveBeenCalledWith(
           toGlobal({
             type: HIDE_LOADING,
-            payload: 'sdk.fetch(/bar/product-types)',
+            payload: 'sdk.get(/bar/product-types)',
           })
         );
       });
@@ -153,7 +153,7 @@ describe('when the action is of type SDK', () => {
     const getState = jest.fn(() => ({ globalAppState }));
     const action = {
       type: 'SDK',
-      payload: { service: 'productTypes', method: 'fetch' },
+      payload: { service: 'productTypes', method: 'GET' },
     };
     const next = jest.fn();
     const expectedError = { statusCode: 401, body: 'foo', headers: {} };
@@ -188,7 +188,7 @@ describe('when the action is of type SDK', () => {
     const getState = jest.fn(() => ({ globalAppState }));
     const action = {
       type: 'SDK',
-      payload: { service: 'productTypes', method: 'fetch' },
+      payload: { service: 'productTypes', method: 'GET' },
     };
     const next = jest.fn();
     const expectedError = { statusCode: 401, body: 'foo', headers: {} };
@@ -214,12 +214,12 @@ describe('when the action is of type SDK', () => {
     });
   });
 
-  describe('when the method is "fetch"', () => {
+  describe('when the method is "get"', () => {
     const dispatch = jest.fn();
     const getState = jest.fn(() => ({ globalAppState }));
     const action = {
       type: 'SDK',
-      payload: { service: 'productTypes', method: 'fetch' },
+      payload: { service: 'productTypes', method: 'GET' },
     };
     const next = jest.fn();
     const response = { body: 'foo', headers: {} };
@@ -248,12 +248,12 @@ describe('when the action is of type SDK', () => {
     });
   });
 
-  describe('when the method is "update"', () => {
+  describe('when the method is "post"', () => {
     const dispatch = jest.fn();
     const getState = jest.fn(() => ({ globalAppState }));
     const action = {
       type: 'SDK',
-      payload: { service: 'productTypes', method: 'update', payload: {} },
+      payload: { service: 'productTypes', method: 'POST', payload: {} },
     };
     const next = jest.fn();
     const response = { body: 'foo', headers: {} };

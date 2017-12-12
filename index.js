@@ -1,9 +1,9 @@
 import middleware from './middleware';
 import * as actions from './actions';
-import SdkFetch from './components/sdk-fetch';
+import SdkGet from './components/sdk-get';
 
 const Sdk = {
-  Fetch: SdkFetch,
+  Get: SdkGet,
 };
 
 export { middleware, actions, Sdk };

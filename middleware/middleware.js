@@ -35,17 +35,6 @@ const actionToUri = (action, projectKey) => {
   return service.build();
 };
 
-const methodToHttpMethod = method => {
-  switch (method) {
-    case 'fetch':
-      return 'GET';
-    case 'update':
-      return 'POST';
-    default:
-      throw new Error('sdk: unknown-method');
-  }
-};
-
 const forceTokenHeader = {
   'X-Force-Token': 'true',
 };
@@ -73,14 +62,12 @@ export default ({ dispatch, getState }) => next => action => {
     //   loading: ['PRODUCTS_FETCHED', 'sdk.fetch(/product-projection-search)']
     // than to debug
     //   loading: 2
-    const requestName = `sdk.${action.payload.method}(${uri})`;
+    const requestName = `sdk.${action.payload.method.toLowerCase()}(${uri})`;
 
     // NOTE here the middleware is aware of the application
     // Instead we should probably convert to a middleware factory
     // and provide hooks for `onFetch`, `onResult` and `onError
     dispatch(toGlobal({ type: SHOW_LOADING, payload: requestName }));
-
-    const method = methodToHttpMethod(action.payload.method);
 
     // NOTE the promise returned by the client resolves to a custom format
     // it will contain { statusCode, headers, body }
@@ -96,15 +83,17 @@ export default ({ dispatch, getState }) => next => action => {
       return client
         .execute({
           uri,
-          method,
+          method: action.payload.method,
           headers,
-          ...(method === 'POST' ? { body: action.payload.payload } : {}),
+          ...(action.payload.method === 'POST'
+            ? { body: action.payload.payload }
+            : {}),
         })
         .then(
           result => {
             if (process.env.NODE_ENV !== 'production')
               logRequest({
-                method,
+                method: action.payload.method,
                 request: { headers, uri },
                 response: result.body,
                 action,
@@ -122,7 +111,7 @@ export default ({ dispatch, getState }) => next => action => {
           error => {
             if (process.env.NODE_ENV !== 'production')
               logRequest({
-                method,
+                method: action.payload.method.toLowerCase(),
                 request: { headers, uri },
                 error,
                 action,

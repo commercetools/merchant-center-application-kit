@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { deepEqual } from 'fast-equals';
 import * as sdkActions from '../../actions';
 
-class SdkFetch extends React.Component {
-  static displayName = 'SdkFetch';
+class SdkGet extends React.Component {
+  static displayName = 'SdkGet';
   static errorHandler = error => {
     throw error;
   };
@@ -22,7 +22,7 @@ class SdkFetch extends React.Component {
     dispatch: PropTypes.func.isRequired,
   };
   static defaultProps = {
-    actionCreator: sdkActions.fetch,
+    actionCreator: sdkActions.get,
     actionCreatorArgs: [],
     shouldRefetch: (prevArgs, nextArgs) => !deepEqual(prevArgs, nextArgs),
   };
@@ -85,7 +85,7 @@ class SdkFetch extends React.Component {
         this.changeRequestsInFlight(-1);
         if (this.isComponentMounted) this.setState({ error, result: null });
         if (onError) onError(error);
-        else SdkFetch.errorHandler(error);
+        else SdkGet.errorHandler(error);
       }
     );
   };
@@ -98,4 +98,4 @@ class SdkFetch extends React.Component {
   }
 }
 
-export default connect(null, dispatch => ({ dispatch }))(SdkFetch);
+export default connect(null, dispatch => ({ dispatch }))(SdkGet);
