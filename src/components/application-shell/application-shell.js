@@ -26,6 +26,7 @@ export default class ApplicationShell extends React.Component {
     render: PropTypes.func.isRequired,
     notifications: PropTypes.object.isRequired,
     showNotification: PropTypes.func.isRequired,
+    mapPluginNotificationToComponent: PropTypes.func,
   };
   render() {
     return (
@@ -51,9 +52,9 @@ export default class ApplicationShell extends React.Component {
                         <NotificationsList
                           domain={DOMAINS.GLOBAL}
                           notifications={this.props.notifications.global}
-                          // mapPluginNotificationToComponent={
-                          //   state.mapPluginNotificationToComponent
-                          // }
+                          mapPluginNotificationToComponent={
+                            this.props.mapPluginNotificationToComponent
+                          }
                         />
                         <AppBar />
 
@@ -61,9 +62,9 @@ export default class ApplicationShell extends React.Component {
                           <NotificationsList
                             domain={DOMAINS.SIDE}
                             notifications={this.props.notifications.side}
-                            // mapPluginNotificationToComponent={
-                            //   state.mapPluginNotificationToComponent
-                            // }
+                            mapPluginNotificationToComponent={
+                              this.props.mapPluginNotificationToComponent
+                            }
                           />
                           <Switch>
                             {/* Non-project routes */}
@@ -76,9 +77,10 @@ export default class ApplicationShell extends React.Component {
                                     notifications={
                                       this.props.notifications.page
                                     }
-                                    // mapPluginNotificationToComponent={
-                                    //   state.mapPluginNotificationToComponent
-                                    // }
+                                    mapPluginNotificationToComponent={
+                                      this.props
+                                        .mapPluginNotificationToComponent
+                                    }
                                   />
                                   {'PROFILE VIEW'}
                                 </div>
@@ -93,9 +95,10 @@ export default class ApplicationShell extends React.Component {
                                     notifications={
                                       this.props.notifications.page
                                     }
-                                    // mapPluginNotificationToComponent={
-                                    //   state.mapPluginNotificationToComponent
-                                    // }
+                                    mapPluginNotificationToComponent={
+                                      this.props
+                                        .mapPluginNotificationToComponent
+                                    }
                                   />
                                   {'ORGS VIEW'}
                                 </div>
@@ -121,9 +124,10 @@ export default class ApplicationShell extends React.Component {
                                           notifications={
                                             this.props.notifications.page
                                           }
-                                          // mapPluginNotificationToComponent={
-                                          //   state.mapPluginNotificationToComponent
-                                          // }
+                                          mapPluginNotificationToComponent={
+                                            this.props
+                                              .mapPluginNotificationToComponent
+                                          }
                                         />
                                         {this.props.render(...args)}
                                       </React.Fragment>
