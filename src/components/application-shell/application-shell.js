@@ -27,6 +27,8 @@ export default class ApplicationShell extends React.Component {
     notifications: PropTypes.object.isRequired,
     showNotification: PropTypes.func.isRequired,
     mapPluginNotificationToComponent: PropTypes.func,
+    showApiErrorNotification: PropTypes.func,
+    showUnexpectedErrorNotification: PropTypes.func,
   };
   render() {
     return (

@@ -137,13 +137,20 @@ const ConnectedTriggerNotification = connect(
 const TestApplication = () => (
   <StoreProvider store={store}>
     <NotificationsConnector>
-      {({ notifications, showNotification }) => (
+      {({
+        notifications,
+        showNotification,
+        showApiErrorNotification,
+        showUnexpectedErrorNotification,
+      }) => (
         <ApplicationShell
           i18n={i18n}
           configuration={window.app}
           menuItems={testMenuItems}
           notifications={notifications}
           showNotification={showNotification}
+          showApiErrorNotification={showApiErrorNotification}
+          showUnexpectedErrorNotification={showUnexpectedErrorNotification}
           render={() => (
             <div>
               <RequestsInFlightLoader />
