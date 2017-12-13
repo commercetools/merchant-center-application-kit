@@ -18,6 +18,7 @@ const intlMock = {
 
 const createTestProps = props => ({
   onSubmit: jest.fn(),
+  handleSubmit: jest.fn(() => () => {}),
   route: {},
   isSaveToolbarAlwaysVisible: false,
   intl: intlMock,
@@ -27,7 +28,6 @@ const createTestProps = props => ({
   pristine: false,
   submitting: false,
   change: jest.fn(),
-  handleSubmit: jest.fn(),
   reset: jest.fn(),
   submitSucceeded: false,
   syncErrors: {},
