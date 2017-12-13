@@ -1,45 +1,12 @@
 import isNumber from 'lodash.isnumber';
 import { addNotification } from '@commercetools-local/notifications';
 import {
-  LOGGED_IN,
   HIDE_ALL_PAGE_NOTIFICATIONS,
   SWITCH_LOCALE,
   SWITCH_PROJECT_LANGUAGE,
   DOMAINS,
-  STATUS_CODES,
-  LOGOUT_REASONS,
 } from '@commercetools-local/constants';
 import toGlobal from '@commercetools-local/utils/to-global';
-import logger from '@commercetools-local/utils/logger';
-import browserHistory from '@commercetools-local/browser-history';
-
-// This is similar to `handleActionError`
-export function handleApiError(error, source) {
-  return dispatch => handleActionError(dispatch, error, source);
-}
-
-export default function handleActionError(dispatch, error, source) {
-  // On production we send the errors to Sentry.
-  if (window.app.env !== 'production') logger.error(error, error.stack);
-
-  // logout when unauthorized
-  if (error.statusCode === STATUS_CODES.UNAUTHORIZED && source !== LOGGED_IN) {
-    browserHistory.push(`/logout?reason=${LOGOUT_REASONS.UNAUTHORIZED}`);
-  }
-
-  // We need to do the return, because if not we see an error notification
-  // The error is handled with the handleUnavailableResource HoC to show the PageNotFound component
-  // when the api returns 404
-  if (error.statusCode === STATUS_CODES.NOT_FOUND) return null;
-
-  // All native errors that might occur within a Promise handler,
-  // are caught here as well. In this case we dispatch an unexpected
-  // error notification.
-  if (!error.statusCode)
-    return dispatch(showUnexpectedErrorNotification({ source, error }));
-
-  return dispatch(showApiErrorNotification({ source, error }));
-}
 
 export function showApiErrorNotification({ error, source }) {
   return showNotification(
