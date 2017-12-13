@@ -7,10 +7,12 @@ import {
   selectSideNotifications,
 } from './reducer';
 
-const NotificationsFaC = props =>
+export const NotificationsFaC = props =>
   props.children({
     notifications: props.notifications,
     showNotification: props.showNotification,
+    showApiErrorNotification: props.showApiErrorNotification,
+    showUnexpectedErrorNotification: props.showUnexpectedErrorNotification,
   });
 
 NotificationsFaC.propTypes = {
@@ -20,6 +22,8 @@ NotificationsFaC.propTypes = {
     side: PropTypes.array.isRequired,
   }),
   showNotification: PropTypes.func.isRequired,
+  showApiErrorNotification: PropTypes.func.isRequired,
+  showUnexpectedErrorNotification: PropTypes.func.isRequired,
 };
 
 export const isNotificationVisible = (activePlugin, notificationPlugin) => {
@@ -49,6 +53,9 @@ const NotificationsConnector = connect(
   }),
   {
     showNotification: globalActions.showNotification,
+    showApiErrorNotification: globalActions.showApiErrorNotification,
+    showUnexpectedErrorNotification:
+      globalActions.showUnexpectedErrorNotification,
   }
 )(NotificationsFaC);
 
