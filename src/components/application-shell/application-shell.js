@@ -31,7 +31,6 @@ export default class ApplicationShell extends React.Component {
       side: PropTypes.array.isRequired,
     }).isRequired,
     showNotification: PropTypes.func.isRequired,
-    showUnexpectedErrorNotification: PropTypes.func.isRequired,
     mapPluginNotificationToComponent: PropTypes.func,
     showApiErrorNotification: PropTypes.func,
     showUnexpectedErrorNotification: PropTypes.func,
@@ -97,6 +96,9 @@ export default class ApplicationShell extends React.Component {
                                   <UserProfile
                                     showNotification={
                                       this.props.showNotification
+                                    }
+                                    showUnexpectedErrorNotification={
+                                      this.props.showUnexpectedErrorNotification
                                     }
                                   />
                                 </div>
