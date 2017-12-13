@@ -1,7 +1,7 @@
 import {
   SHOW_LOADING,
   HIDE_LOADING,
-  TOKEN_SET,
+  SET_TOKEN,
 } from '@commercetools-local/constants';
 import toGlobal from '@commercetools-local/utils/to-global';
 import middleware from './middleware';
@@ -103,7 +103,7 @@ describe('when the action is of type SDK', () => {
       it('should update the token', () => {
         expect(dispatch).toHaveBeenCalledWith(
           toGlobal({
-            type: TOKEN_SET,
+            type: SET_TOKEN,
             payload: 'new token',
           })
         );

@@ -2,7 +2,7 @@ import { createRequestBuilder } from '@commercetools/api-request-builder';
 import {
   SHOW_LOADING,
   HIDE_LOADING,
-  TOKEN_SET,
+  SET_TOKEN,
 } from '@commercetools-local/constants';
 import toGlobal from '@commercetools-local/utils/to-global';
 import { logRequest } from '../utils';
@@ -33,10 +33,6 @@ const actionToUri = (action, projectKey) => {
   if (action.payload.options) service.parse(action.payload.options);
 
   return service.build();
-};
-
-const forceTokenHeader = {
-  'X-Force-Token': 'true',
 };
 
 export default ({ dispatch, getState }) => next => action => {
@@ -71,14 +67,14 @@ export default ({ dispatch, getState }) => next => action => {
 
     // NOTE the promise returned by the client resolves to a custom format
     // it will contain { statusCode, headers, body }
-    const sendRequest = shouldRenewToken => {
+    const sendRequest = ({ shouldRenewToken } = {}) => {
       const headers = {
         Authorization: selectToken(state),
         // NOTE: passing headers is currently only necessary for the pim-indexer
         // this should be cleaned up, so the endpoint of an http call is determined by the url
         // and not the headers
         ...(action.payload.headers || {}),
-        ...(shouldRenewToken ? forceTokenHeader : {}),
+        ...(shouldRenewToken ? { 'X-Force-Token': 'true' } : {}),
       };
       return client
         .execute({
@@ -98,13 +94,13 @@ export default ({ dispatch, getState }) => next => action => {
                 response: result.body,
                 action,
               });
-            const newToken = result.headers['x-set-token'];
-            if (newToken) {
-              // The backend cache the OAuth token inside the jwt token.
+            const nextToken = result.headers['x-set-token'];
+            if (nextToken) {
+              // The backend caches the OAuth token inside the jwt token.
               // After having fetched a new OAuth token, it sends the frontend
               // the new jwt token with this header.
               // https://github.com/commercetools/merchant-center-backend/blob/master/docs/AUTHENTICATION.md#projects-api-oauth-token-caching
-              dispatch(toGlobal({ type: TOKEN_SET, payload: newToken }));
+              dispatch(toGlobal({ type: SET_TOKEN, payload: nextToken }));
             }
             return result;
           },
@@ -120,12 +116,12 @@ export default ({ dispatch, getState }) => next => action => {
           }
         );
     };
-    return sendRequest(false)
+    return sendRequest()
       .catch(error => {
         // in case of 401 error, try again with a new token
         // https://github.com/commercetools/merchant-center-backend/blob/master/docs/AUTHENTICATION.md#problems-due-to-oauth-token-caching
         if (error.statusCode && error.statusCode === 401) {
-          return sendRequest(true);
+          return sendRequest({ shouldRenewToken: true });
         }
         throw error;
       })
