@@ -9,9 +9,12 @@ import {
   addNotification,
   removeNotification,
   middleware as notificationsMiddleware,
+  ADD_NOTIFICATION,
+  REMOVE_NOTIFICATION,
 } from '@commercetools-local/notifications';
-import { DOMAINS } from '@commercetools-local/constants';
+import * as constants from '@commercetools-local/constants';
 import * as i18n from '../../../../i18n';
+import createExtractGlobalActions from '../middleware/create-extract-global-actions';
 import ApplicationShell, {
   RequestsInFlightLoader,
   requestsInFlightReducer,
@@ -46,7 +49,22 @@ const createReducer = (injectedReducers = {}) =>
 const store = createStore(
   createReducer(),
   { requestsInFlight: null },
-  compose(applyMiddleware(loggerMiddleware, notificationsMiddleware))
+  compose(
+    applyMiddleware(
+      loggerMiddleware,
+      createExtractGlobalActions([
+        /* list of action types plugins may dispatch globally */
+        constants.SHOW_LOADING,
+        constants.HIDE_LOADING,
+        ADD_NOTIFICATION,
+        REMOVE_NOTIFICATION,
+        constants.HIDE_ALL_PAGE_NOTIFICATIONS,
+        constants.SWITCH_LOCALE,
+        constants.SWITCH_PROJECT_LANGUAGE,
+      ]),
+      notificationsMiddleware
+    )
+  )
 );
 store.injectedReducers = {};
 store.injectReducer = ({ name, reducer }) => {
@@ -98,9 +116,9 @@ class TriggerNotification extends React.PureComponent {
     addNotification: PropTypes.func.isRequired,
   };
   domains = [
-    { name: DOMAINS.GLOBAL, kind: 'info' },
-    { name: DOMAINS.PAGE, kind: 'error' },
-    { name: DOMAINS.SIDE, kind: 'success' },
+    { name: constants.DOMAINS.GLOBAL, kind: 'info' },
+    { name: constants.DOMAINS.PAGE, kind: 'error' },
+    { name: constants.DOMAINS.SIDE, kind: 'success' },
   ];
   render() {
     return (
