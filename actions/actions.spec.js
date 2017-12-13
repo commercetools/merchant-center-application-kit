@@ -46,23 +46,23 @@ describe('post', () => {
   });
 });
 
-describe('remove', () => {
+describe('del', () => {
   it('should have `type`', () => {
-    expect(actions.remove({})).toEqual({
+    expect(actions.del({})).toEqual({
       payload: expect.any(Object),
       type: 'SDK',
     });
   });
 
   it('should have `payload`', () => {
-    expect(actions.remove({ foo: true })).toEqual({
+    expect(actions.del({ foo: true })).toEqual({
       payload: expect.objectContaining({ foo: true }),
       type: expect.any(String),
     });
   });
 
   it('should have `DELETE` `method` in payload', () => {
-    expect(actions.remove({ foo: true })).toEqual({
+    expect(actions.del({ foo: true })).toEqual({
       payload: expect.objectContaining({ method: 'DELETE' }),
       type: expect.any(String),
     });

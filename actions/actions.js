@@ -2,7 +2,7 @@ export function get(payload) {
   return { type: 'SDK', payload: { method: 'GET', ...payload } };
 }
 
-export function remove(payload) {
+export function del(payload) {
   return { type: 'SDK', payload: { method: 'DELETE', ...payload } };
 }
 
