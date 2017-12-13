@@ -76,15 +76,10 @@ export default ({ dispatch, getState }) => next => action => {
         ...(action.payload.headers || {}),
         ...(shouldRenewToken ? { 'X-Force-Token': 'true' } : {}),
       };
+      const body =
+        action.payload.method === 'POST' ? action.payload.payload : undefined;
       return client
-        .execute({
-          uri,
-          method: action.payload.method,
-          headers,
-          ...(action.payload.method === 'POST'
-            ? { body: action.payload.payload }
-            : {}),
-        })
+        .execute({ uri, method: action.payload.method, headers, body })
         .then(
           result => {
             if (process.env.NODE_ENV !== 'production')
