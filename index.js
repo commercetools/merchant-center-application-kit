@@ -27,7 +27,7 @@ export const __GLOBAL = 'GLOBAL';
 
 // APPLICATION STATE
 export const LOGGED_IN = 'LOGGED_IN';
-export const TOKEN_SET = 'TOKEN_SET';
+export const SET_TOKEN = 'SET_TOKEN';
 export const LOGGED_OUT = 'LOGGED_OUT';
 export const SWITCH_LOCALE = 'SWITCH_LOCALE';
 export const SWITCH_PROJECT_LANGUAGE = 'SWITCH_PROJECT_LANGUAGE';
