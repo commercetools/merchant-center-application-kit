@@ -39,7 +39,7 @@ export class UserProfile extends React.Component {
   static propTypes = {
     route: PropTypes.object.isRequired,
     userData: PropTypes.shape({
-      isFetching: PropTypes.bool.isRequired,
+      isLoading: PropTypes.bool.isRequired,
       user: PropTypes.shape({
         firstName: PropTypes.string.isRequired,
         lastName: PropTypes.string.isRequired,
@@ -150,10 +150,10 @@ export default compose(
   injectIntl,
   withUser(userData => ({ userData })),
   withProps(props => ({
-    projectsCount: props.userData.isFetching
+    projectsCount: props.userData.isLoading
       ? 0
       : props.userData.user.availableProjects.length,
-    organizationsCount: props.userData.isFetching
+    organizationsCount: props.userData.isLoading
       ? 0
       : props.userData.user.availableOrganizations.length,
   })),
