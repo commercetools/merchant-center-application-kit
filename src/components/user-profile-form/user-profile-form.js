@@ -36,13 +36,15 @@ export const UserProfileForm = props => (
     <UserProfileGeneralInfoPanel hasSubmitFailed={props.submitFailed} />
     <UserProfilePersonalSettingsPanel />
     <PageBottomSpacer />
-    {/* TODO make warnSaveToolbar */}
+    {/* TODO make WarnSaveToolbar #RR4 */}
     <SaveToolbar
       route={props.route}
       onSave={createSubmitHandler(props.handleSubmit, props.onSubmit)}
       onCancel={props.reset}
       shouldWarnOnLeave={!props.submitSucceeded && props.dirty}
+      // remove isVisible for WarnSaveToolbar #RR4
       isVisible={props.isSaveToolbarAlwaysVisible || props.dirty}
+      isToolbarVisible={props.isSaveToolbarAlwaysVisible || props.dirty}
       isToolbarDisabled={props.submitting || props.pristine || props.invalid}
     />
   </Spacings.Inset>

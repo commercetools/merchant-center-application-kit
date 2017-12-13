@@ -1,16 +1,30 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { intlMock } from '@commercetools-local/test-utils';
 import { DOMAINS } from '@commercetools-local/constants';
 import UserProfileForm from '../user-profile-form';
 import { UserProfile } from './user-profile';
 
+// TODO replace with test-utils intlMock after RR4 migration #RR4
+const intlMock = {
+  formatMessage: message => message.id,
+  formatDate: () => 'xxx',
+  formatTime: () => 'xxx',
+  formatRelative: () => 'xxx',
+  formatNumber: () => 'xxx',
+  formatPlural: () => 'xxx',
+  formatHTMLMessage: () => 'xxx',
+  now: () => 'xxx',
+};
+
 const createTestProps = props => ({
   route: {},
-  userProfile: {
-    firstName: 'foo',
-    lastName: 'bar',
-    email: 'foo@bar.com',
+  userData: {
+    isLoading: false,
+    user: {
+      firstName: 'foo',
+      lastName: 'bar',
+      email: 'foo@bar.com',
+    },
   },
   projectsCount: 2,
   organizationsCount: 1,
@@ -53,7 +67,7 @@ describe('rendering', () => {
     it('should pass initialValues to <UserProfileForm>', () => {
       expect(wrapper.find(UserProfileForm)).toHaveProp(
         'initialValues',
-        props.userProfile
+        props.userData.user
       );
     });
     it('should pass route to <UserProfileForm>', () => {
@@ -112,18 +126,6 @@ describe('callbacks', () => {
               timeZone: 'Europe/Berlin',
             },
           },
-        });
-      });
-      it('should dispatch update user', () => {
-        expect(props.setLoggedInUser).toHaveBeenCalledTimes(1);
-        expect(props.setLoggedInUser).toHaveBeenCalledWith({
-          id: '1',
-          version: 2,
-          email: 'john@snow.got',
-          firstName: 'John',
-          lastName: 'Snow',
-          language: 'en',
-          timeZone: 'Europe/Berlin',
         });
       });
       it('should dispatch success notification', () => {

@@ -9,9 +9,10 @@ exports[`rendering should ensure layout structure 1`] = `
   />
   <Connect(withTimeZones(InjectIntl(UserProfilePersonalSettingsPanel))) />
   <PageBottomSpacer />
-  <InjectIntl(WarningSaveToolbar)
+  <SaveToolbar
     isToolbarDisabled={false}
     isToolbarVisible={false}
+    isVisible={false}
     onCancel={[Function]}
     route={Object {}}
     shouldWarnOnLeave={false}

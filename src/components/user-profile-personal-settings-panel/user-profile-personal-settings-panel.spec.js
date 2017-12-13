@@ -1,7 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { intlMock } from '@commercetools-local/test-utils';
 import { UserProfilePersonalSettingsPanel } from './user-profile-personal-settings-panel';
+
+// TODO replace with test-utils intlMock after RR4 migration #RR4
+const intlMock = {
+  formatMessage: message => message.id,
+  formatDate: () => 'xxx',
+  formatTime: () => 'xxx',
+  formatRelative: () => 'xxx',
+  formatNumber: () => 'xxx',
+  formatPlural: () => 'xxx',
+  formatHTMLMessage: () => 'xxx',
+  now: () => 'xxx',
+};
 
 const createTestProps = props => ({
   hasSubmitFailed: false,
