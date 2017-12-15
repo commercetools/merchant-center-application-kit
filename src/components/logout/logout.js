@@ -67,6 +67,14 @@ export class Logout extends React.PureComponent {
     const logoutReason = searchQuery.reason;
     if (logoutReason) redirectUrl = `${redirectUrl}?reason=${logoutReason}`;
 
+    // Reset tracking, token, etc.
+    // anonymizeSentry();
+    // setupIntercom('shutdown');
+    storage.remove(CORE_STORAGE_KEYS.TOKEN);
+    // NOTE: we need to ensure the cached projectKey is removed, because
+    // the user can log in with another account and most likely he won't
+    // access to the cached project.
+    // storage.remove(APP_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
     // We simply redirect to a "new" browser page, instead of using the
     // history router. This will simplify a lot of things and avoid possible
     // problems like e.g. resetting the store/state.
