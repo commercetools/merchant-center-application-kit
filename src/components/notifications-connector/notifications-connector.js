@@ -25,6 +25,7 @@ NotificationsFaC.propTypes = {
   showApiErrorNotification: PropTypes.func.isRequired,
   showUnexpectedErrorNotification: PropTypes.func.isRequired,
 };
+NotificationsFaC.displayName = 'NotificationsFaC';
 
 export const isNotificationVisible = (activePlugin, notificationPlugin) => {
   // When the notification is global we always show it
