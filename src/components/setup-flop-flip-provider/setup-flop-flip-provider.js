@@ -14,7 +14,7 @@ class SetupFlopFlip extends React.PureComponent {
     children: PropTypes.node.isRequired,
   };
 
-  createLaunchdarlyAdapterArgs = defaultMemoize(
+  createLaunchdarklyAdapterArgs = defaultMemoize(
     (
       clientSideId,
       userId,
@@ -40,7 +40,7 @@ class SetupFlopFlip extends React.PureComponent {
         {({ isLoading, user }) => (
           <ConfigureFlopFlip
             adapter={ldAdapter}
-            adapterArgs={this.createLaunchdarlyAdapterArgs(
+            adapterArgs={this.createLaunchdarklyAdapterArgs(
               this.props.ldClientSideId,
               user && user.id,
               user && user.launchdarklyTrackingId,
