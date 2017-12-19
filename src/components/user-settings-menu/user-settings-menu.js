@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { compose } from 'recompose';
-import { FeatureToggled } from '@flopflip/react-broadcast';
+import { ToggleFeature } from '@flopflip/react-broadcast';
 import onClickOutside from 'react-onclickoutside';
 import { CaretDownIcon } from '@commercetools-local/ui-kit/icons';
 import Text from '@commercetools-local/ui-kit/typography/text';
@@ -72,7 +72,7 @@ export class UserSettingsMenu extends React.PureComponent {
                 })}
               </Text.Detail>
             </Spacings.Inset>
-            <FeatureToggled flag="userProfile">
+            <ToggleFeature flag="userProfile">
               <Link to={`/profile`}>
                 <div className={styles.item}>
                   <Spacings.Inset scale="s">
@@ -80,7 +80,7 @@ export class UserSettingsMenu extends React.PureComponent {
                   </Spacings.Inset>
                 </div>
               </Link>
-            </FeatureToggled>
+            </ToggleFeature>
             <Link
               to={`/logout?reason=${LOGOUT_REASONS.USER}`}
               data-test="logout-button"

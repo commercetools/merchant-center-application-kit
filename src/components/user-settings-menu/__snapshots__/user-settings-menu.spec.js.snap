@@ -8,8 +8,8 @@ exports[`callbacks clicking to open the menu outputs correct tree 1`] = `
   <div
     className="settings-container"
     onClick={[Function]}
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseOut={[MockFunction]}
+    onMouseOver={[MockFunction]}
   >
     <Inline
       alignItems="center"
@@ -44,7 +44,7 @@ exports[`callbacks clicking to open the menu outputs correct tree 1`] = `
         John Test Doe
       </TextDetail>
     </Inset>
-    <withFlagSubscription(withProps(FeatureToggled))
+    <ToggleFeature
       flag="userProfile"
     >
       <Link
@@ -66,7 +66,7 @@ exports[`callbacks clicking to open the menu outputs correct tree 1`] = `
           </Inset>
         </div>
       </Link>
-    </withFlagSubscription(withProps(FeatureToggled))>
+    </ToggleFeature>
     <Link
       data-test="logout-button"
       replace={false}
@@ -99,8 +99,8 @@ exports[`render outputs correct tree 1`] = `
   <div
     className="settings-container"
     onClick={[Function]}
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseOut={[MockFunction]}
+    onMouseOver={[MockFunction]}
   >
     <Inline
       alignItems="center"
