@@ -40,23 +40,44 @@ describe('rendering', () => {
       expect(fetchUserChildrenWrapper).toRender(Route);
     });
     describe('<UserSettingsMenu>', () => {
-      it('should pass "firstName" to <UserSettingsMenu>', () => {
-        expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
-          'firstName',
-          'John'
-        );
+      describe('when user is loading', () => {
+        it('should not render the user settings menu', () => {
+          expect(fetchUserChildrenWrapper).not.toRender(UserSettingsMenu);
+        });
       });
-      it('should pass "lastName" to <UserSettingsMenu>', () => {
-        expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
-          'lastName',
-          'Snow'
-        );
-      });
-      it('should pass "email" to <UserSettingsMenu>', () => {
-        expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
-          'email',
-          'john.snow@got.com'
-        );
+      describe('when user is loaded', () => {
+        beforeEach(() => {
+          fetchUserChildrenProps = {
+            ...fetchUserChildrenProps,
+            isLoading: false,
+          };
+          fetchUserChildrenWrapper = shallow(
+            <div>
+              {wrapper.find(FetchUser).prop('children')(fetchUserChildrenProps)}
+            </div>
+          );
+        });
+        it('should render the user settings menu', () => {
+          expect(fetchUserChildrenWrapper).toRender(UserSettingsMenu);
+        });
+        it('should pass "firstName" to <UserSettingsMenu>', () => {
+          expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
+            'firstName',
+            'John'
+          );
+        });
+        it('should pass "lastName" to <UserSettingsMenu>', () => {
+          expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
+            'lastName',
+            'Snow'
+          );
+        });
+        it('should pass "email" to <UserSettingsMenu>', () => {
+          expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
+            'email',
+            'john.snow@got.com'
+          );
+        });
       });
     });
     describe('render route', () => {

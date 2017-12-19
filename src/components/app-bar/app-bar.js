@@ -50,13 +50,13 @@ const AppBar = () => (
               />
             </div>
             <div className={styles.spacer} />
-            <Spacings.Inline alignItems="center">
+            {!isLoading && (
               <UserSettingsMenu
                 firstName={user.firstName}
                 lastName={user.lastName}
                 email={user.email}
               />
-            </Spacings.Inline>
+            )}
           </Spacings.Inline>
         )}
       </FetchUser>
