@@ -24,7 +24,11 @@ export default class ApplicationShell extends React.Component {
     configuration: PropTypes.object.isRequired,
     menuItems: PropTypes.array.isRequired,
     render: PropTypes.func.isRequired,
-    notifications: PropTypes.object.isRequired,
+    notificationsByDomain: PropTypes.shape({
+      global: PropTypes.array.isRequired,
+      page: PropTypes.array.isRequired,
+      side: PropTypes.array.isRequired,
+    }).isRequired,
     showNotification: PropTypes.func.isRequired,
     mapPluginNotificationToComponent: PropTypes.func,
     showApiErrorNotification: PropTypes.func,
@@ -53,7 +57,9 @@ export default class ApplicationShell extends React.Component {
                       <SetupFlopFlipProvider>
                         <NotificationsList
                           domain={DOMAINS.GLOBAL}
-                          notifications={this.props.notifications.global}
+                          notifications={
+                            this.props.notificationsByDomain.global
+                          }
                           mapPluginNotificationToComponent={
                             this.props.mapPluginNotificationToComponent
                           }
@@ -63,7 +69,9 @@ export default class ApplicationShell extends React.Component {
                         <div>
                           <NotificationsList
                             domain={DOMAINS.SIDE}
-                            notifications={this.props.notifications.side}
+                            notifications={
+                              this.props.notificationsByDomain.side
+                            }
                             mapPluginNotificationToComponent={
                               this.props.mapPluginNotificationToComponent
                             }
@@ -77,7 +85,7 @@ export default class ApplicationShell extends React.Component {
                                   <NotificationsList
                                     domain={DOMAINS.PAGE}
                                     notifications={
-                                      this.props.notifications.page
+                                      this.props.notificationsByDomain.page
                                     }
                                     mapPluginNotificationToComponent={
                                       this.props
@@ -95,7 +103,7 @@ export default class ApplicationShell extends React.Component {
                                   <NotificationsList
                                     domain={DOMAINS.PAGE}
                                     notifications={
-                                      this.props.notifications.page
+                                      this.props.notificationsByDomain.page
                                     }
                                     mapPluginNotificationToComponent={
                                       this.props
@@ -124,7 +132,8 @@ export default class ApplicationShell extends React.Component {
                                         <NotificationsList
                                           domain={DOMAINS.PAGE}
                                           notifications={
-                                            this.props.notifications.page
+                                            this.props.notificationsByDomain
+                                              .page
                                           }
                                           mapPluginNotificationToComponent={
                                             this.props

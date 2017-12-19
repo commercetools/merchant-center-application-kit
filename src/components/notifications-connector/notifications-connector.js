@@ -9,14 +9,14 @@ import {
 
 export const NotificationsFaC = props =>
   props.children({
-    notifications: props.notifications,
+    notificationsByDomain: props.notificationsByDomain,
     showNotification: props.showNotification,
     showApiErrorNotification: props.showApiErrorNotification,
     showUnexpectedErrorNotification: props.showUnexpectedErrorNotification,
   });
 
 NotificationsFaC.propTypes = {
-  notifications: PropTypes.shape({
+  notificationsByDomain: PropTypes.shape({
     global: PropTypes.array.isRequired,
     page: PropTypes.array.isRequired,
     side: PropTypes.array.isRequired,
@@ -40,7 +40,7 @@ export const isNotificationVisible = (activePlugin, notificationPlugin) => {
 
 const NotificationsConnector = connect(
   state => ({
-    notifications: {
+    notificationsByDomain: {
       global: selectLatestGlobalNotificationAsList(state).filter(notification =>
         isNotificationVisible(state.activePlugin, notification.plugin)
       ),

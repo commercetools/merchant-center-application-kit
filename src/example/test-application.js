@@ -138,7 +138,7 @@ const TestApplication = () => (
   <StoreProvider store={store}>
     <NotificationsConnector>
       {({
-        notifications,
+        notificationsByDomain,
         showNotification,
         showApiErrorNotification,
         showUnexpectedErrorNotification,
@@ -147,7 +147,7 @@ const TestApplication = () => (
           i18n={i18n}
           configuration={window.app}
           menuItems={testMenuItems}
-          notifications={notifications}
+          notificationsByDomain={notificationsByDomain}
           showNotification={showNotification}
           showApiErrorNotification={showApiErrorNotification}
           showUnexpectedErrorNotification={showUnexpectedErrorNotification}

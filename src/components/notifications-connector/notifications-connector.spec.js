@@ -33,7 +33,7 @@ describe('NotificationsFaC', () => {
   let props;
   const createTestProps = custom => ({
     children: jest.fn(),
-    notifications: ['foo', 'bar'],
+    notificationsByDomain: { global: ['foo', 'bar'], page: [], side: [] },
     showNotification: jest.fn(),
     showApiErrorNotification: jest.fn(),
     showUnexpectedErrorNotification: jest.fn(),
@@ -46,10 +46,10 @@ describe('NotificationsFaC', () => {
   it('should call the children prop', () => {
     expect(props.children).toHaveBeenCalledTimes(1);
   });
-  it('should pass notifications', () => {
+  it('should pass notificationsByDomain', () => {
     expect(props.children).toHaveBeenCalledWith(
       expect.objectContaining({
-        notifications: props.notifications,
+        notificationsByDomain: props.notificationsByDomain,
       })
     );
   });
