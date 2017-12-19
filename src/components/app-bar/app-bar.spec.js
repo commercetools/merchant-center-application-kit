@@ -17,7 +17,7 @@ describe('rendering', () => {
   it('should render placeholder for "loader-for-requests-in-flight"', () => {
     expect(wrapper).toRender('#loader-for-requests-in-flight');
   });
-  describe('fetched user', () => {
+  describe('when fetching the user', () => {
     let fetchUserChildrenWrapper;
     let fetchUserChildrenProps;
     beforeEach(() => {
@@ -57,26 +57,28 @@ describe('rendering', () => {
             </div>
           );
         });
-        it('should render the user settings menu', () => {
-          expect(fetchUserChildrenWrapper).toRender(UserSettingsMenu);
-        });
-        it('should pass "firstName" to <UserSettingsMenu>', () => {
-          expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
-            'firstName',
-            'John'
-          );
-        });
-        it('should pass "lastName" to <UserSettingsMenu>', () => {
-          expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
-            'lastName',
-            'Snow'
-          );
-        });
-        it('should pass "email" to <UserSettingsMenu>', () => {
-          expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
-            'email',
-            'john.snow@got.com'
-          );
+        describe('<UserSettingsMenu>', () => {
+          it('should render', () => {
+            expect(fetchUserChildrenWrapper).toRender(UserSettingsMenu);
+          });
+          it('should receive "firstName"', () => {
+            expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
+              'firstName',
+              'John'
+            );
+          });
+          it('should receive "lastName"', () => {
+            expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
+              'lastName',
+              'Snow'
+            );
+          });
+          it('should receive "email"', () => {
+            expect(fetchUserChildrenWrapper.find(UserSettingsMenu)).toHaveProp(
+              'email',
+              'john.snow@got.com'
+            );
+          });
         });
       });
     });
