@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 import { Provider as StoreProvider, connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import {
   addNotification,
   removeNotification,
@@ -162,6 +162,12 @@ const TestApplication = () => (
                   component={TestDashboard}
                 />
                 <Route path="/:projectKey/products" component={TestProducts} />
+                <Route
+                  path="/:projectKey"
+                  render={({ match }) => (
+                    <Redirect to={`${match.url}/dashboard`} />
+                  )}
+                />
               </Switch>
             </div>
           )}
