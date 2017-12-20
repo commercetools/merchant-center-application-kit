@@ -10,6 +10,7 @@ import Text from '@commercetools-local/ui-kit/typography/text';
 import { DOMAINS } from '@commercetools-local/constants';
 import logger from '@commercetools-local/utils/logger';
 import Avatar from '@commercetools-local/core/components/avatar';
+import injectConfiguration from '@commercetools-local/core/components/configuration/inject-configuration';
 import { withUser } from '../fetch-user';
 import UserProfileForm from '../user-profile-form';
 import styles from './user-profile.mod.css';
@@ -54,6 +55,7 @@ export class UserProfile extends React.Component {
     showNotification: PropTypes.func.isRequired,
     showUnexpectedErrorNotification: PropTypes.func.isRequired,
 
+    env: PropTypes.string.isRequired,
     intl: intlShape.isRequired,
   };
 
@@ -86,7 +88,7 @@ export class UserProfile extends React.Component {
       })
       .catch(error => {
         // On production we send the errors to Sentry.
-        if (window.app.env !== 'production') logger.error(error, error.stack);
+        if (this.props.env !== 'production') logger.error(error, error.stack);
         // Show an error message
         this.props.showUnexpectedErrorNotification({ error });
         // Notify redux-form that there was an error.
@@ -156,5 +158,6 @@ export default compose(
       ? 0
       : props.userData.user.availableOrganizations.length,
   })),
-  graphql(UserProfileMutation, { name: 'updateUserProfile' })
+  graphql(UserProfileMutation, { name: 'updateUserProfile' }),
+  injectConfiguration('env', 'env')
 )(UserProfile);

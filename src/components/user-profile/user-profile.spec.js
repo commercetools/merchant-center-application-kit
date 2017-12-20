@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { SubmissionError } from 'redux-form';
 import { DOMAINS } from '@commercetools-local/constants';
 import UserProfileForm from '../user-profile-form';
 import { UserProfile } from './user-profile';
@@ -33,6 +34,7 @@ const createTestProps = props => ({
   showNotification: jest.fn(),
   showUnexpectedErrorNotification: jest.fn(),
   intl: intlMock,
+  env: 'production',
   ...props,
 });
 
@@ -80,10 +82,8 @@ describe('callbacks', () => {
   describe('handleSave', () => {
     let props;
     let wrapper;
-    let callbackFn;
     describe('if request is successfull', () => {
-      beforeEach(() => {
-        callbackFn = jest.fn();
+      beforeEach(async () => {
         props = createTestProps({
           updateUserProfile: jest.fn(() =>
             Promise.resolve({
@@ -102,16 +102,13 @@ describe('callbacks', () => {
           ),
         });
         wrapper = shallow(<UserProfile {...props} />);
-        return wrapper.instance().handleSave(
-          {
-            version: 2,
-            firstName: 'John',
-            lastName: 'Snow',
-            language: 'en',
-            timeZone: 'Europe/Berlin',
-          },
-          callbackFn
-        );
+        return wrapper.instance().handleSave({
+          version: 2,
+          firstName: 'John',
+          lastName: 'Snow',
+          language: 'en',
+          timeZone: 'Europe/Berlin',
+        });
       });
       it('should trigger mutation', () => {
         expect(props.updateUserProfile).toHaveBeenCalledTimes(1);
@@ -136,28 +133,23 @@ describe('callbacks', () => {
           text: 'UserProfile.userUpdated',
         });
       });
-      it('should call form callback function', () => {
-        expect(callbackFn).toHaveBeenCalledTimes(1);
-        expect(callbackFn).toHaveBeenCalledWith();
-      });
     });
     describe('if request failed', () => {
       beforeEach(() => {
-        callbackFn = jest.fn();
         props = createTestProps({
           updateUserProfile: jest.fn(() => Promise.reject(new Error('Oops'))),
         });
         wrapper = shallow(<UserProfile {...props} />);
-        return wrapper.instance().handleSave(
-          {
+        return wrapper
+          .instance()
+          .handleSave({
             version: 2,
             firstName: 'John',
             lastName: 'Snow',
             language: 'en',
             timeZone: 'Europe/Berlin',
-          },
-          callbackFn
-        );
+          })
+          .catch(() => {});
       });
       it('should trigger mutation', () => {
         expect(props.updateUserProfile).toHaveBeenCalledTimes(1);
@@ -186,9 +178,16 @@ describe('callbacks', () => {
           error: new Error('Oops'),
         });
       });
-      it('should call form callback function', () => {
-        expect(callbackFn).toHaveBeenCalledTimes(1);
-        expect(callbackFn).toHaveBeenCalledWith(new Error('Oops'));
+      it('should reject with a SubmissionError', () => {
+        expect(
+          wrapper.instance().handleSave({
+            version: 2,
+            firstName: 'John',
+            lastName: 'Snow',
+            language: 'en',
+            timeZone: 'Europe/Berlin',
+          })
+        ).rejects.toThrow(SubmissionError);
       });
     });
   });
