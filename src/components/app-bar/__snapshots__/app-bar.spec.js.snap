@@ -5,19 +5,24 @@ exports[`rendering should match layout structure 1`] = `
   className="top-navigation"
   data-test="top-navigation"
 >
-  <div
-    className="logo"
+  <Inline
+    alignItems="flexStart"
+    scale="s"
   >
-    <img
-      alt="Logo"
-      className="logo-img"
-      src="test-file-stub"
+    <div
+      className="logo"
+    >
+      <img
+        alt="Logo"
+        className="logo-img"
+        src="test-file-stub"
+      />
+    </div>
+    <div
+      className="loader-container"
+      id="loader-for-requests-in-flight"
     />
-  </div>
-  <div
-    className="loader-container"
-    id="loader-for-requests-in-flight"
-  />
+  </Inline>
   <div
     className="navigation"
   >

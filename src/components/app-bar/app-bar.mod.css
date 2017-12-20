@@ -19,6 +19,7 @@
   z-index: 20000;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 /* THE DROPDOWNS IN TOP NAVIGATION HAS SPECIAL SIZES */
