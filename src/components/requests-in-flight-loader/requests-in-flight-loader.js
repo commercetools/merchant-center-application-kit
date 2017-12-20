@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import LoadingSpinner from '@commercetools-local/core/components/loading-spinner';
+import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '@commercetools-local/constants';
 import messages from './messages';
 
