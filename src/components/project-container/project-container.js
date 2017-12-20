@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import omit from 'lodash.omit';
-import LoadingSpinner from '@commercetools-local/core/components/loading-spinner';
+import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectDataLocale from '../project-data-locale';
 import FetchProject from '../fetch-project';
