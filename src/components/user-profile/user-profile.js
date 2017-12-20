@@ -4,6 +4,7 @@ import { compose, withProps } from 'recompose';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import { SubmissionError } from 'redux-form';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import Text from '@commercetools-local/ui-kit/typography/text';
 import { DOMAINS } from '@commercetools-local/constants';
@@ -61,7 +62,7 @@ export class UserProfile extends React.Component {
     organizationsCount: 0,
   };
 
-  handleSave = (formData, callback) =>
+  handleSave = formData =>
     this.props
       .updateUserProfile({
         variables: {
@@ -82,8 +83,6 @@ export class UserProfile extends React.Component {
           domain: DOMAINS.SIDE,
           text: this.props.intl.formatMessage(messages.userUpdated),
         });
-        // Notify redux-form that everything went fine
-        callback();
       })
       .catch(error => {
         // On production we send the errors to Sentry.
@@ -91,7 +90,7 @@ export class UserProfile extends React.Component {
         // Show an error message
         this.props.showUnexpectedErrorNotification({ error });
         // Notify redux-form that there was an error.
-        callback(error);
+        throw new SubmissionError();
       });
 
   render() {

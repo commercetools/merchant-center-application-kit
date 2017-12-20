@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl, intlShape } from 'react-intl';
 import { compose } from 'recompose';
-import {
-  SubmissionError,
-  reduxForm,
-  getFormValues,
-  getFormSyncErrors,
-} from 'redux-form';
+import { reduxForm, getFormValues, getFormSyncErrors } from 'redux-form';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import { messages as validationMessages } from '@commercetools-local/utils/validation';
 import PageBottomSpacer from '@commercetools-local/core/components/page-bottom-spacer';
@@ -18,19 +13,6 @@ import UserProfileGeneralInfoPanel from '../user-profile-general-info-panel';
 import UserProfilePersonalSettingsPanel from '../user-profile-personal-settings-panel';
 import { USER_PROFILE_FORM_NAME } from '../../constants';
 
-const createSubmitHandler = (submitFormHandler, callback) =>
-  submitFormHandler(
-    data =>
-      new Promise((resolve, reject) => {
-        callback(data, error => {
-          if (error)
-            // TODO map API errors to fields
-            reject(new SubmissionError({}));
-          else resolve();
-        });
-      })
-  );
-
 export const UserProfileForm = props => (
   <Spacings.Inset>
     <UserProfileGeneralInfoPanel hasSubmitFailed={props.submitFailed} />
@@ -39,7 +21,7 @@ export const UserProfileForm = props => (
     {/* TODO make WarnSaveToolbar #RR4 */}
     <SaveToolbar
       route={props.route}
-      onSave={createSubmitHandler(props.handleSubmit, props.onSubmit)}
+      onSave={props.handleSubmit}
       onCancel={props.reset}
       shouldWarnOnLeave={!props.submitSucceeded && props.dirty}
       // remove isVisible for WarnSaveToolbar #RR4

@@ -14,7 +14,7 @@ exports[`rendering should ensure layout structure 1`] = `
     isToolbarVisible={false}
     isVisible={false}
     onCancel={[MockFunction]}
-    onSave={[Function]}
+    onSave={[MockFunction]}
     route={Object {}}
     shouldWarnOnLeave={false}
   />
