@@ -15,8 +15,10 @@ import { USER_PROFILE_FORM_NAME } from '../../constants';
 
 export const UserProfileForm = props => (
   <Spacings.Inset>
-    <UserProfileGeneralInfoPanel hasSubmitFailed={props.submitFailed} />
-    <UserProfilePersonalSettingsPanel />
+    <Spacings.Inline scale="m">
+      <UserProfileGeneralInfoPanel hasSubmitFailed={props.submitFailed} />
+      <UserProfilePersonalSettingsPanel />
+    </Spacings.Inline>
     <PageBottomSpacer />
     {/* TODO make WarnSaveToolbar #RR4 */}
     <SaveToolbar

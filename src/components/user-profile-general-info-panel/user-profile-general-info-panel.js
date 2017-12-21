@@ -5,7 +5,7 @@ import { injectIntl, intlShape } from 'react-intl';
 import { Field } from 'redux-form';
 import ThrottledField from '@commercetools-local/core/components/fields/throttled-field';
 import wrapInputForReduxForm from '@commercetools-local/core/components/input-wrapper';
-import CollapsiblePanel from '@commercetools-local/core/components/toggles/collapsible-panel';
+import CollapsiblePanel from '@commercetools-local/ui-kit/panels/collapsible-panel';
 import FormBox from '@commercetools-local/core/components/form-box';
 import LabelField from '@commercetools-local/core/components/fields/label-field';
 import messages from './messages';

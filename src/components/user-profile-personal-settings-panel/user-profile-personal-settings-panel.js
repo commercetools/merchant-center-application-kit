@@ -11,7 +11,7 @@ import {
   timeZonesShape,
 } from '@commercetools-local/l10n/time-zone-information';
 import wrapInputForReduxForm from '@commercetools-local/core/components/input-wrapper';
-import CollapsiblePanel from '@commercetools-local/core/components/toggles/collapsible-panel';
+import CollapsiblePanel from '@commercetools-local/ui-kit/panels/collapsible-panel';
 import FormBox from '@commercetools-local/core/components/form-box';
 import LabelField from '@commercetools-local/core/components/fields/label-field';
 import { USER_PROFILE_FORM_NAME } from '../../constants';
