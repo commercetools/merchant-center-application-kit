@@ -67,6 +67,10 @@ export default ({ dispatch, getState }) => next => action => {
 
     // NOTE the promise returned by the client resolves to a custom format
     // it will contain { statusCode, headers, body }
+    // NOTE This retry logic could be moved to an sdk client middleware,
+    // but the client's middleware system is not capable of that right now
+    // https://github.com/commercetools/merchant-center-frontend/pull/3304
+    // https://github.com/commercetools/nodejs/issues/390
     const sendRequest = ({ shouldRenewToken } = {}) => {
       const headers = {
         Authorization: selectToken(state),
