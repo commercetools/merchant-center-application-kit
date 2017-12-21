@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering should ensure layout structure 1`] = `
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "column",
+    }
+  }
+>
+  <Header>
+    <Inset
+      scale="m"
+    >
+      <Inline
+        alignItems="center"
+        scale="m"
+      >
+        <Avatar
+          email="foo@bar.com"
+          firstName="foo"
+          lastName="bar"
+          size="big"
+        />
+        <div>
+          <TextHeadline
+            elementType="h1"
+          >
+            foo bar
+          </TextHeadline>
+          <TextBody>
+            <FormattedMessage
+              defaultMessage="You are in {organizationsCount, plural, one {{organizationsCount} organization} other {{organizationsCount} organizations}} and working on {projectsCount, plural, one {{projectsCount} project} other {{projectsCount} projects}}"
+              description="Text to describe how many organizations and projects the user have"
+              id="UserProfile.subtitle"
+              values={
+                Object {
+                  "organizationsCount": 1,
+                  "projectsCount": 2,
+                }
+              }
+            />
+          </TextBody>
+        </div>
+      </Inline>
+    </Inset>
+  </Header>
+  <div
+    style={
+      Object {
+        "flexGrow": 1,
+        "height": "100vh",
+        "overflow": "auto",
+      }
+    }
+  >
+    <UserProfileForm
+      initialValues={
+        Object {
+          "email": "foo@bar.com",
+          "firstName": "foo",
+          "lastName": "bar",
+        }
+      }
+      onSubmit={[Function]}
+      route={Object {}}
+    />
+  </div>
+</div>
+`;

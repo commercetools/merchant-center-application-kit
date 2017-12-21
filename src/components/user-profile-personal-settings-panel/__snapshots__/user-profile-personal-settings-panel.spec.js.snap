@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering should ensure layout structure 1`] = `
+<CollapsiblePanel
+  label="UserProfile.PersonalSettingsPanel.title"
+  tone="primary"
+>
+  <FormBox
+    hasWarning={false}
+  >
+    <LabelField
+      isRequired={true}
+      title="UserProfile.PersonalSettingsPanel.language"
+    />
+    <Field
+      clearable={false}
+      component={[Function]}
+      name="language"
+      options={
+        Array [
+          Object {
+            "label": "EN",
+            "value": "en",
+          },
+          Object {
+            "label": "DE",
+            "value": "de",
+          },
+        ]
+      }
+      parse={[Function]}
+      searchable={false}
+    />
+  </FormBox>
+  <FormBox
+    hasWarning={false}
+  >
+    <LabelField
+      isRequired={false}
+      title="UserProfile.PersonalSettingsPanel.timeZone"
+    />
+    <Field
+      clearable={true}
+      component={[Function]}
+      name="timeZone"
+      options={
+        Array [
+          Object {
+            "label": "Europe/Berlin - CEST (+02:00)",
+            "value": "Europe/Berlin",
+          },
+        ]
+      }
+      parse={[Function]}
+      searchable={true}
+    />
+  </FormBox>
+</CollapsiblePanel>
+`;
