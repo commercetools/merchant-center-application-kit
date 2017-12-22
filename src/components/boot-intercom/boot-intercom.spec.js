@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { INTERCOM_TRACKING_STATUS } from '../../constants';
 import { BootIntercom } from './boot-intercom';
 
 let mockBoot;
@@ -13,6 +14,7 @@ const createTestProps = custom => ({
     user: {
       id: 1,
       firstName: 'Confoozius',
+      tracking_intercom: INTERCOM_TRACKING_STATUS.active,
     },
   },
   ...custom,
@@ -74,6 +76,36 @@ describe('bootIntercom', () => {
       props = createTestProps();
       wrapper = shallow(<BootIntercom {...props} />);
       wrapper.instance().hasBooted = true;
+      wrapper.instance().bootIntercom(props);
+    });
+    it('should not call boot', () => {
+      expect(mockBoot).toHaveBeenCalledTimes(0);
+    });
+  });
+  describe('when user denied intercom', () => {
+    beforeEach(() => {
+      props = createTestProps({
+        userData: {
+          isLoading: false,
+          user: { tracking_intercom: INTERCOM_TRACKING_STATUS.inactive },
+        },
+      });
+      wrapper = shallow(<BootIntercom {...props} />);
+      wrapper.instance().bootIntercom(props);
+    });
+    it('should not call boot', () => {
+      expect(mockBoot).toHaveBeenCalledTimes(0);
+    });
+  });
+  describe('when user has not decided to use intercom', () => {
+    beforeEach(() => {
+      props = createTestProps({
+        userData: {
+          isLoading: false,
+          user: { tracking_intercom: INTERCOM_TRACKING_STATUS.pending },
+        },
+      });
+      wrapper = shallow(<BootIntercom {...props} />);
       wrapper.instance().bootIntercom(props);
     });
     it('should not call boot', () => {
