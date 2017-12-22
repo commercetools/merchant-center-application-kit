@@ -37,24 +37,27 @@ export class IntercomUserTracker extends React.Component {
   componentDidMount() {
     // since the user and project could have been loaded from the apollo cache
     // they could be preset already when mounting
-    this.updateUser(this.props);
+    if (this.shouldUpdateUser(this.props)) {
+      this.updateUser(this.props);
+    }
   }
   componentWillUpdate(nextProps) {
     // call in componentWillUpdate rather than in componentWillReceiveProps
     // because willUpdate will only run if shouldComponentUpdate returned true
     // componentWillReceiveProps will always run
-    this.updateUser(nextProps);
+    if (this.shouldUpdateUser(nextProps)) {
+      this.updateUser(nextProps);
+    }
   }
+  shouldUpdateUser = props => !props.userData.isLoading;
   updateUser = props => {
-    if (!props.userData.isLoading) {
-      if (props.projectKey && !props.projectData.isLoading) {
-        intercom.updateUser({
-          ...props.userData.user,
-          organization: props.projectData.project.owner,
-        });
-      } else {
-        intercom.updateUser(props.userData.user);
-      }
+    if (props.projectKey && !props.projectData.isLoading) {
+      intercom.updateUser({
+        ...props.userData.user,
+        organization: props.projectData.project.owner,
+      });
+    } else {
+      intercom.updateUser(props.userData.user);
     }
   };
   render() {

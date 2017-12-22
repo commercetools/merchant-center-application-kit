@@ -72,26 +72,59 @@ describe('lifecycle', () => {
     let updateUser;
     beforeEach(() => {
       updateUser = jest.fn();
-      wrapper.instance().updateUser = updateUser;
-      wrapper.instance().componentDidMount();
     });
-    it('should call updateUser', () => {
-      expect(updateUser).toHaveBeenCalledTimes(1);
-      expect(updateUser).toHaveBeenCalledWith(props);
+    describe('when the user is loading', () => {
+      beforeEach(() => {
+        props = createTestProps({ userData: { isLoading: true } });
+        wrapper = shallow(<IntercomUserTracker {...props} />);
+        wrapper.instance().updateUser = updateUser;
+        wrapper.instance().componentDidMount();
+      });
+      it('should not update the user', () => {
+        expect(updateUser).toHaveBeenCalledTimes(0);
+      });
+    });
+    describe('when the user is loaded', () => {
+      beforeEach(() => {
+        props = createTestProps({ userData: { isLoading: false } });
+        wrapper = shallow(<IntercomUserTracker {...props} />);
+        wrapper.instance().updateUser = updateUser;
+        wrapper.instance().componentDidMount();
+      });
+      it('should call updateUser', () => {
+        expect(updateUser).toHaveBeenCalledTimes(1);
+        expect(updateUser).toHaveBeenCalledWith(props);
+      });
     });
   });
 
   describe('componentWillUpdate', () => {
     let updateUser;
-    const nextProps = {};
     beforeEach(() => {
       updateUser = jest.fn();
-      wrapper.instance().updateUser = updateUser;
-      wrapper.instance().componentWillUpdate(nextProps);
     });
-    it('should call updateUser', () => {
-      expect(updateUser).toHaveBeenCalledTimes(1);
-      expect(updateUser).toHaveBeenCalledWith(nextProps);
+    describe('when the user is loading', () => {
+      beforeEach(() => {
+        props = createTestProps({ userData: { isLoading: true } });
+        wrapper = shallow(<IntercomUserTracker {...props} />);
+        wrapper.instance().updateUser = updateUser;
+        wrapper.instance().componentWillUpdate(props);
+      });
+      it('should not update the user', () => {
+        expect(updateUser).toHaveBeenCalledTimes(0);
+      });
+    });
+    describe('when the user is loaded', () => {
+      beforeEach(() => {
+        props = createTestProps({ userData: { isLoading: false } });
+        wrapper = shallow(<IntercomUserTracker {...props} />);
+        wrapper.instance().updateUser = updateUser;
+        wrapper.instance().componentWillUpdate(props);
+      });
+      it('should call updateUser', () => {
+        expect(updateUser).toHaveBeenCalledTimes(1);
+        expect(updateUser).toHaveBeenCalledWith(props);
+      });
     });
   });
 });
@@ -100,47 +133,10 @@ describe('updateUser', () => {
   beforeEach(() => {
     mockUpdateUser = jest.fn();
   });
-  describe('when the user is loading', () => {
-    beforeEach(() => {
-      props = createTestProps({ userData: { isLoading: true } });
-      wrapper = shallow(<IntercomUserTracker {...props} />);
-      wrapper.instance().updateUser(props);
-    });
-    it('should not update the user', () => {
-      expect(mockUpdateUser).toHaveBeenCalledTimes(0);
-    });
-  });
-  describe('when the user is loaded', () => {
-    describe('when the project key is set', () => {
-      describe('when the project is loading', () => {
-        beforeEach(() => {
-          props = createTestProps({ projectData: { isLoading: true } });
-          wrapper = shallow(<IntercomUserTracker {...props} />);
-          wrapper.instance().updateUser(props);
-        });
-        it('should call update without the organization info', () => {
-          expect(mockUpdateUser).toHaveBeenCalledTimes(1);
-          expect(mockUpdateUser).toHaveBeenCalledWith(props.userData.user);
-        });
-      });
-      describe('when the project is loaded', () => {
-        beforeEach(() => {
-          props = createTestProps();
-          wrapper = shallow(<IntercomUserTracker {...props} />);
-          wrapper.instance().updateUser(props);
-        });
-        it('should call update with the organization info', () => {
-          expect(mockUpdateUser).toHaveBeenCalledTimes(1);
-          expect(mockUpdateUser).toHaveBeenCalledWith({
-            ...props.userData.user,
-            organization: props.projectData.project.owner,
-          });
-        });
-      });
-    });
-    describe('when the project key is not set', () => {
+  describe('when the project key is set', () => {
+    describe('when the project is loading', () => {
       beforeEach(() => {
-        props = createTestProps({ projectKey: undefined });
+        props = createTestProps({ projectData: { isLoading: true } });
         wrapper = shallow(<IntercomUserTracker {...props} />);
         wrapper.instance().updateUser(props);
       });
@@ -148,6 +144,31 @@ describe('updateUser', () => {
         expect(mockUpdateUser).toHaveBeenCalledTimes(1);
         expect(mockUpdateUser).toHaveBeenCalledWith(props.userData.user);
       });
+    });
+    describe('when the project is loaded', () => {
+      beforeEach(() => {
+        props = createTestProps();
+        wrapper = shallow(<IntercomUserTracker {...props} />);
+        wrapper.instance().updateUser(props);
+      });
+      it('should call update with the organization info', () => {
+        expect(mockUpdateUser).toHaveBeenCalledTimes(1);
+        expect(mockUpdateUser).toHaveBeenCalledWith({
+          ...props.userData.user,
+          organization: props.projectData.project.owner,
+        });
+      });
+    });
+  });
+  describe('when the project key is not set', () => {
+    beforeEach(() => {
+      props = createTestProps({ projectKey: undefined });
+      wrapper = shallow(<IntercomUserTracker {...props} />);
+      wrapper.instance().updateUser(props);
+    });
+    it('should call update without the organization info', () => {
+      expect(mockUpdateUser).toHaveBeenCalledTimes(1);
+      expect(mockUpdateUser).toHaveBeenCalledWith(props.userData.user);
     });
   });
 });
