@@ -11,6 +11,7 @@ import {
   LOGIN_STRATEGY_SSO,
 } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
+import ShutdownIntercom from '../shutdown-intercom';
 
 export const getLoginStrategy = () => {
   const accessToken = storage.get(CORE_STORAGE_KEYS.TOKEN);
@@ -69,7 +70,7 @@ export class Logout extends React.PureComponent {
 
     // Reset tracking, token, etc.
     // anonymizeSentry();
-    // setupIntercom('shutdown');
+    // remove the access token from local storage
     storage.remove(CORE_STORAGE_KEYS.TOKEN);
     // NOTE: we need to ensure the cached projectKey is removed, because
     // the user can log in with another account and most likely he won't
@@ -81,7 +82,7 @@ export class Logout extends React.PureComponent {
     this.props.redirectTo(redirectUrl);
   }
   render() {
-    return null;
+    return <ShutdownIntercom />;
   }
 }
 
