@@ -89,9 +89,18 @@ class SdkGet extends React.Component {
       }
     );
   };
+  refresh = () =>
+    this.fetch({
+      dispatch: this.props.dispatch,
+      actionCreator: this.props.actionCreator,
+      actionCreatorArgs: this.props.actionCreatorArgs,
+      onSuccess: this.props.onSuccess,
+      onError: this.props.onError,
+    });
   render() {
     return this.props.render({
       isLoading: this.state.requestsInFlight > 0,
+      refresh: this.refresh,
       result: this.state.result,
       error: this.state.error,
     });
