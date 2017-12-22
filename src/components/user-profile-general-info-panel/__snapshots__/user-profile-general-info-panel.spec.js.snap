@@ -3,7 +3,6 @@
 exports[`rendering should ensure layout structure 1`] = `
 <CollapsiblePanel
   label="UserProfile.GeneralInfoPanel.title"
-  tone="primary"
 >
   <FormBox
     hasWarning={false}
