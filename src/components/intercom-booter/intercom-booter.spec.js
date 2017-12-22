@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { INTERCOM_TRACKING_STATUS } from '../../constants';
-import { BootIntercom } from './boot-intercom';
+import { BootIntercom } from './intercom-booter';
 
 let mockBoot;
 jest.mock('../../utils/intercom', () => ({

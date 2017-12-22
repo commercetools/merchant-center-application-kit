@@ -19,7 +19,7 @@ import SetupFlopFlipProvider from '../setup-flop-flip-provider';
 import UserProfile from '../user-profile';
 import IntercomUrlTracker from '../intercom-url-tracker';
 import IntercomUserTracker from '../intercom-user-tracker';
-import BootIntercom from '../boot-intercom';
+import IntercomBooter from '../intercom-booter';
 
 export default class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
@@ -60,7 +60,7 @@ export default class ApplicationShell extends React.Component {
                     render={() => (
                       <Authenticated>
                         {/* TODO make logout redirect explicit */}
-                        <BootIntercom />
+                        <IntercomBooter />
                         <SetupFlopFlipProvider>
                           <NotificationsList
                             domain={DOMAINS.GLOBAL}
