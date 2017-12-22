@@ -48,11 +48,25 @@ describe('lifecycle', () => {
     beforeEach(() => {
       boot = jest.fn();
       wrapper.instance().bootIntercom = boot;
-      wrapper.instance().componentWillReceiveProps(nextProps);
     });
-    it('should call boot', () => {
-      expect(boot).toHaveBeenCalledTimes(1);
-      expect(boot).toHaveBeenCalledWith(nextProps);
+
+    describe('when intercom already booted', () => {
+      beforeEach(() => {
+        wrapper.instance().hasBooted = true;
+        wrapper.instance().componentWillReceiveProps(nextProps);
+      });
+      it('should not call boot', () => {
+        expect(boot).toHaveBeenCalledTimes(0);
+      });
+    });
+    describe('when intercom has not booted yet', () => {
+      beforeEach(() => {
+        wrapper.instance().componentWillReceiveProps(nextProps);
+      });
+      it('should call boot', () => {
+        expect(boot).toHaveBeenCalledTimes(1);
+        expect(boot).toHaveBeenCalledWith(nextProps);
+      });
     });
   });
 });
@@ -65,17 +79,6 @@ describe('bootIntercom', () => {
     beforeEach(() => {
       props = createTestProps({ userData: { isLoading: true } });
       wrapper = shallow(<BootIntercom {...props} />);
-      wrapper.instance().bootIntercom(props);
-    });
-    it('should not call boot', () => {
-      expect(mockBoot).toHaveBeenCalledTimes(0);
-    });
-  });
-  describe('when intercom already booted', () => {
-    beforeEach(() => {
-      props = createTestProps();
-      wrapper = shallow(<BootIntercom {...props} />);
-      wrapper.instance().hasBooted = true;
       wrapper.instance().bootIntercom(props);
     });
     it('should not call boot', () => {

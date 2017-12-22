@@ -28,11 +28,12 @@ export class BootIntercom extends React.Component {
     this.bootIntercom(this.props);
   }
   componentWillReceiveProps(nextProps) {
-    this.bootIntercom(nextProps);
+    if (!this.hasBooted) {
+      this.bootIntercom(nextProps);
+    }
   }
   bootIntercom = props => {
     if (
-      !this.hasBooted &&
       !props.userData.isLoading &&
       props.userData.user.tracking_intercom === INTERCOM_TRACKING_STATUS.active
     ) {
