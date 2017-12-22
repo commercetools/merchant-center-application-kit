@@ -5,6 +5,14 @@ import { withProject } from '../fetch-project';
 import { withUser } from '../fetch-user';
 import * as intercom from '../../utils/intercom';
 
+/**
+ * This component will let intercom know if any information about the user has
+ * changed. Also, it takes care of letting intercom know which organization the
+ * project belongs to that the user is looking at. In case the user is on a
+ * non-project specific route (like `/profile`) no organization information is
+ * sent.
+ */
+
 export class IntercomUserTracker extends React.Component {
   static displayName = 'IntercomUserTracker';
   static propTypes = {
