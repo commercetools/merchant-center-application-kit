@@ -20,29 +20,33 @@ export class BootIntercom extends React.Component {
       isLoading: PropTypes.bool.isRequired,
       user: PropTypes.object,
     }),
+    children: PropTypes.node,
+  };
+  static defaultProps = {
+    children: null,
   };
   hasBooted = false;
   componentDidMount() {
     // since the user and project could have been loaded from the apollo cache
     // they could be preset already when mounting
-    this.bootIntercom(this.props);
+    this.bootIntercom(this.props.userData);
   }
   componentWillReceiveProps(nextProps) {
     if (!this.hasBooted) {
-      this.bootIntercom(nextProps);
+      this.bootIntercom(nextProps.userData);
     }
   }
-  bootIntercom = props => {
+  bootIntercom = userData => {
     if (
-      !props.userData.isLoading &&
-      props.userData.user.tracking_intercom === INTERCOM_TRACKING_STATUS.active
+      !userData.isLoading &&
+      userData.user.tracking_intercom === INTERCOM_TRACKING_STATUS.active
     ) {
-      intercom.boot(props.userData.user);
+      intercom.boot(userData.user);
       this.hasBooted = true;
     }
   };
   render() {
-    return null;
+    return this.props.children;
   }
 }
 

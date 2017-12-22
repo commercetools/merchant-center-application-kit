@@ -38,13 +38,13 @@ describe('lifecycle', () => {
     });
     it('should call boot', () => {
       expect(boot).toHaveBeenCalledTimes(1);
-      expect(boot).toHaveBeenCalledWith(props);
+      expect(boot).toHaveBeenCalledWith(props.userData);
     });
   });
 
   describe('componentWillReceiveProps', () => {
     let boot;
-    const nextProps = {};
+    const nextProps = { userData: { foo: 'bar' } };
     beforeEach(() => {
       boot = jest.fn();
       wrapper.instance().bootIntercom = boot;
@@ -65,7 +65,7 @@ describe('lifecycle', () => {
       });
       it('should call boot', () => {
         expect(boot).toHaveBeenCalledTimes(1);
-        expect(boot).toHaveBeenCalledWith(nextProps);
+        expect(boot).toHaveBeenCalledWith(nextProps.userData);
       });
     });
   });
@@ -79,7 +79,7 @@ describe('bootIntercom', () => {
     beforeEach(() => {
       props = createTestProps({ userData: { isLoading: true } });
       wrapper = shallow(<BootIntercom {...props} />);
-      wrapper.instance().bootIntercom(props);
+      wrapper.instance().bootIntercom(props.userData);
     });
     it('should not call boot', () => {
       expect(mockBoot).toHaveBeenCalledTimes(0);
@@ -94,7 +94,7 @@ describe('bootIntercom', () => {
         },
       });
       wrapper = shallow(<BootIntercom {...props} />);
-      wrapper.instance().bootIntercom(props);
+      wrapper.instance().bootIntercom(props.userData);
     });
     it('should not call boot', () => {
       expect(mockBoot).toHaveBeenCalledTimes(0);
@@ -109,7 +109,7 @@ describe('bootIntercom', () => {
         },
       });
       wrapper = shallow(<BootIntercom {...props} />);
-      wrapper.instance().bootIntercom(props);
+      wrapper.instance().bootIntercom(props.userData);
     });
     it('should not call boot', () => {
       expect(mockBoot).toHaveBeenCalledTimes(0);
@@ -119,7 +119,7 @@ describe('bootIntercom', () => {
     beforeEach(() => {
       props = createTestProps();
       wrapper = shallow(<BootIntercom {...props} />);
-      wrapper.instance().bootIntercom(props);
+      wrapper.instance().bootIntercom(props.userData);
     });
     it('should call boot with user info', () => {
       expect(mockBoot).toHaveBeenCalledTimes(1);
