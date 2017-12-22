@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as intercom from '../../utils/intercom';
 
 /**
@@ -9,11 +10,17 @@ import * as intercom from '../../utils/intercom';
 
 class ShutdownIntercom extends React.Component {
   static displayName = 'ShutdownIntercom';
+  static propTypes = {
+    children: PropTypes.node,
+  };
+  defaultProps = {
+    children: null,
+  };
   componentDidMount() {
     intercom.shutdown();
   }
   render() {
-    return null;
+    return this.props.children;
   }
 }
 
