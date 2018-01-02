@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { deepEqual } from 'fast-equals';
 import * as sdkActions from '../../actions';
 
-class SdkGet extends React.Component {
+export class SdkGet extends React.Component {
   static displayName = 'SdkGet';
   static errorHandler = error => {
     throw error;
