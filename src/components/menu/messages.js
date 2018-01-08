@@ -13,9 +13,9 @@ export default defineMessages({
     id: 'Menu.Products.list',
     defaultMessage: 'Products list',
   },
-  'Menu.Products.verifyChanges': {
-    id: 'Menu.Products.verifyChanges',
-    defaultMessage: 'Verify changes',
+  'Menu.Products.reviewModifiedProducts': {
+    id: 'Menu.Products.reviewModifiedProducts',
+    defaultMessage: 'Review modified products',
   },
   'Menu.Products.pimSearchList': {
     id: 'Menu.Products.pimSearchList',

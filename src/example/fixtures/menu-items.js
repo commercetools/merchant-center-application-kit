@@ -34,7 +34,7 @@ export default [
         {
           name: 'products-verify-changes',
           featureToggle: 'modifiedProducts',
-          label: 'Menu.Products.verifyChanges',
+          label: 'Menu.Products.reviewModifiedProducts',
           link: 'products/modified',
           permissions: [
             {
