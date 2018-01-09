@@ -91,7 +91,7 @@ export const updateUser = user => {
     window.dataLayer.push({ userId: user.id });
 };
 
-export const removeUser = () => {
+export const stopTrackingUser = () => {
   if (window.dataLayer && window.app.tracking.gtm)
     window.dataLayer.push({ userId: undefined });
 };

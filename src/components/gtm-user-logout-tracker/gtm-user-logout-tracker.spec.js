@@ -2,9 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import GtmUserLogoutTracker from './gtm-user-logout-tracker';
 
-let mockRemoveUser;
+let mockStopTrackingUser;
 jest.mock('../../utils/gtm', () => ({
-  removeUser: (...args) => mockRemoveUser(...args),
+  stopTrackingUser: (...args) => mockStopTrackingUser(...args),
 }));
 
 let wrapper;
@@ -16,11 +16,11 @@ describe('lifecycle', () => {
 
   describe('componentDidMount', () => {
     beforeEach(() => {
-      mockRemoveUser = jest.fn();
+      mockStopTrackingUser = jest.fn();
       wrapper.instance().componentDidMount();
     });
-    it('should call removeUser', () => {
-      expect(mockRemoveUser).toHaveBeenCalledTimes(1);
+    it('should call stopTrackingUser', () => {
+      expect(mockStopTrackingUser).toHaveBeenCalledTimes(1);
     });
   });
 });

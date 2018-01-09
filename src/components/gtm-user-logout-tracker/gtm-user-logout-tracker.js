@@ -6,7 +6,7 @@ class GtmUserLogoutTracker extends React.Component {
   componentDidMount() {
     // When the user is not logged in anymore (e.g. on logout) we still track
     // page views but without the user data in context.
-    gtm.removeUser();
+    gtm.stopTrackingUser();
   }
   render() {
     return null;
