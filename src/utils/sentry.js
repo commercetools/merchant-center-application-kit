@@ -16,6 +16,6 @@ export const updateUser = user => {
     });
 };
 
-export const removeUser = () => {
+export const stopTrackingUser = () => {
   if (window.app.env === 'production') Raven.setUserContext();
 };
