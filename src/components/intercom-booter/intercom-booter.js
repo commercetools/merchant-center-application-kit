@@ -7,14 +7,14 @@ import { INTERCOM_TRACKING_STATUS } from '../../constants';
 /**
  * Intercom should only be booted up once per page load.
  * We also may not boot Intercom for users that have decided to opt out of
- * Intercom. By default the `intercom_status` is PENDING and when the yser
+ * Intercom. By default the `intercom_status` is PENDING and when the user
  * opts-out it gets set to INACTIVE.
  * Whenever the user opts-in to the `intercom_status` status gets set to ACTIVE
- * on the user and thus this component rerenders and will boot intercom.
+ * on the user and thus this component re-renders and will boot intercom.
  */
 
-export class BootIntercom extends React.Component {
-  static displayName = 'BootIntercom';
+export class IntercomBooter extends React.Component {
+  static displayName = 'IntercomBooter';
   static propTypes = {
     userData: PropTypes.shape({
       isLoading: PropTypes.bool.isRequired,
@@ -55,4 +55,4 @@ export default withUser(userData => ({
     isLoading: userData.isLoading,
     user: userData.user,
   },
-}))(BootIntercom);
+}))(IntercomBooter);

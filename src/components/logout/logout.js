@@ -12,6 +12,7 @@ import {
 } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import ShutdownIntercom from '../shutdown-intercom';
+import SentryUserLogoutTracker from '../sentry-user-logout-tracker';
 
 export const getLoginStrategy = () => {
   const accessToken = storage.get(CORE_STORAGE_KEYS.TOKEN);
@@ -82,7 +83,12 @@ export class Logout extends React.PureComponent {
     this.props.redirectTo(redirectUrl);
   }
   render() {
-    return <ShutdownIntercom />;
+    return (
+      <React.Fragment>
+        <ShutdownIntercom />
+        <SentryUserLogoutTracker />
+      </React.Fragment>
+    );
   }
 }
 

@@ -21,6 +21,20 @@ const createTestProps = props => ({
   ...props,
 });
 
+describe('rendering', () => {
+  let wrapper;
+  beforeEach(() => {
+    const props = createTestProps();
+    wrapper = shallow(<Logout {...props} />);
+  });
+  it('should render <ShutdownIntercom>', () => {
+    expect(wrapper).toRender('ShutdownIntercom');
+  });
+  it('should render <SentryUserLogoutTracker>', () => {
+    expect(wrapper).toRender('SentryUserLogoutTracker');
+  });
+});
+
 describe('componentDidMount', () => {
   let props;
   describe('when login strategy is default', () => {

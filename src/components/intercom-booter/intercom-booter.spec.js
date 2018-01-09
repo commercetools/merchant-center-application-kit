@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { INTERCOM_TRACKING_STATUS } from '../../constants';
-import { BootIntercom } from './intercom-booter';
+import { IntercomBooter } from './intercom-booter';
 
 let mockBoot;
 jest.mock('../../utils/intercom', () => ({
@@ -26,7 +26,7 @@ let wrapper;
 describe('lifecycle', () => {
   beforeEach(() => {
     props = createTestProps();
-    wrapper = shallow(<BootIntercom {...props} />);
+    wrapper = shallow(<IntercomBooter {...props} />);
   });
 
   describe('componentDidMount', () => {
@@ -78,7 +78,7 @@ describe('bootIntercom', () => {
   describe('when the user is loading', () => {
     beforeEach(() => {
       props = createTestProps({ userData: { isLoading: true } });
-      wrapper = shallow(<BootIntercom {...props} />);
+      wrapper = shallow(<IntercomBooter {...props} />);
       wrapper.instance().bootIntercom(props.userData);
     });
     it('should not call boot', () => {
@@ -93,7 +93,7 @@ describe('bootIntercom', () => {
           user: { tracking_intercom: INTERCOM_TRACKING_STATUS.inactive },
         },
       });
-      wrapper = shallow(<BootIntercom {...props} />);
+      wrapper = shallow(<IntercomBooter {...props} />);
       wrapper.instance().bootIntercom(props.userData);
     });
     it('should not call boot', () => {
@@ -108,7 +108,7 @@ describe('bootIntercom', () => {
           user: { tracking_intercom: INTERCOM_TRACKING_STATUS.pending },
         },
       });
-      wrapper = shallow(<BootIntercom {...props} />);
+      wrapper = shallow(<IntercomBooter {...props} />);
       wrapper.instance().bootIntercom(props.userData);
     });
     it('should not call boot', () => {
@@ -118,7 +118,7 @@ describe('bootIntercom', () => {
   describe('when intercom has not booted yet', () => {
     beforeEach(() => {
       props = createTestProps();
-      wrapper = shallow(<BootIntercom {...props} />);
+      wrapper = shallow(<IntercomBooter {...props} />);
       wrapper.instance().bootIntercom(props.userData);
     });
     it('should call boot with user info', () => {
