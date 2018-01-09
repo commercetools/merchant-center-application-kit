@@ -13,6 +13,7 @@ import {
 import * as storage from '@commercetools-local/utils/storage';
 import ShutdownIntercom from '../shutdown-intercom';
 import SentryUserLogoutTracker from '../sentry-user-logout-tracker';
+import GtmUserLogoutTracker from '../gtm-user-logout-tracker';
 
 export const getLoginStrategy = () => {
   const accessToken = storage.get(CORE_STORAGE_KEYS.TOKEN);
@@ -87,6 +88,7 @@ export class Logout extends React.PureComponent {
       <React.Fragment>
         <ShutdownIntercom />
         <SentryUserLogoutTracker />
+        <GtmUserLogoutTracker />
       </React.Fragment>
     );
   }

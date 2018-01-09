@@ -1,5 +1,20 @@
 import { getDataAttribute } from '@commercetools-local/utils/dataset';
 
+// The way that tracking works is like so:
+//
+// `data-track-component`: used to set up the hierarchy of the tracking ID.
+// `data-track-event`: if this attribute exists, track the event.
+// `data-track-strict`: if this exists, do not handle event bubbling.
+// `data-track-label`: additional meta information.
+
+// Whitelisting and mapping certain generated event names to hardcoded events.
+// They should be keyed by generated name, valued by hardcoded name.
+export const eventWhitelist = {
+  LanguageSwitch: 'LanguageSwitch',
+  ProjectSwitch: 'ProjectSwitch',
+  ForgotPassword: 'ForgotPassword',
+};
+
 export const track = (event, hierarchy, label) => {
   if (!window.dataLayer) return;
 
@@ -65,6 +80,34 @@ const eventHandler = name => event => {
   if (trackEvent !== name) return;
 
   hierarchy = hierarchy.reverse().join('-');
+
+  // The event map also serves as a whitelist. This is really not intuitive
+  // by looking at the name.
+
+  // This checks:
+  // 1. if the event is in the whitelist and is a string, map it
+  // 2. if the event is in the whitelist, is an object,
+  //   and there is a matching key, then map to the value
+  // 3. if the event is not in the whitelist then don't track
+  if (typeof eventWhitelist[hierarchy] === 'string')
+    hierarchy = eventWhitelist[hierarchy];
+  else if (
+    typeof eventWhitelist[hierarchy] === 'object' &&
+    trackLabel in eventWhitelist[hierarchy]
+  )
+    hierarchy = eventWhitelist[hierarchy][trackLabel];
+  else {
+    // eslint-disable-next-line no-console
+    console.warn('ignoring event', {
+      event: trackEvent,
+      hierarchy:
+        typeof hierarchy === 'object' && trackLabel in hierarchy
+          ? hierarchy[trackLabel]
+          : hierarchy,
+      label: trackLabel,
+    });
+    return;
+  }
 
   // eslint-disable-next-line no-console
   console.info('tracking event', {

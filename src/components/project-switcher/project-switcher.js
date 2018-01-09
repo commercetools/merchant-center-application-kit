@@ -153,6 +153,7 @@ export class ProjectSwitcher extends React.PureComponent {
           [styles['is-open']]: this.state.isMenuOpen,
         })}
         data-track-component="ProjectSwitch"
+        data-track-event="click"
       >
         <Select
           onOpen={this.handleOpen}
