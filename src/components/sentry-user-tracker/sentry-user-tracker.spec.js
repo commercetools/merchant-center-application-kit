@@ -71,7 +71,7 @@ describe('lifecycle', () => {
       });
       it('should call updateUser', () => {
         expect(updateUser).toHaveBeenCalledTimes(1);
-        expect(updateUser).toHaveBeenCalledWith(props);
+        expect(updateUser).toHaveBeenCalledWith(props.userData);
       });
     });
   });
@@ -101,7 +101,7 @@ describe('lifecycle', () => {
       });
       it('should call updateUser', () => {
         expect(updateUser).toHaveBeenCalledTimes(1);
-        expect(updateUser).toHaveBeenCalledWith(props);
+        expect(updateUser).toHaveBeenCalledWith(props.userData);
       });
     });
   });
@@ -112,7 +112,7 @@ describe('updateUser', () => {
     mockUpdateUser = jest.fn();
     props = createTestProps();
     wrapper = shallow(<SentryUserTracker {...props} />);
-    wrapper.instance().updateUser(props);
+    wrapper.instance().updateUser(props.userData);
   });
   it('should call update with user info', () => {
     expect(mockUpdateUser).toHaveBeenCalledTimes(1);
