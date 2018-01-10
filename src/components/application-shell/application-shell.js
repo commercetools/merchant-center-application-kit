@@ -22,6 +22,7 @@ import IntercomUserTracker from '../intercom-user-tracker';
 import IntercomBooter from '../intercom-booter';
 import SentryBooter from '../sentry-booter';
 import SentryUserTracker from '../sentry-user-tracker';
+import VersionCheckSubscriber from '../version-check-subscriber';
 
 export default class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
@@ -46,6 +47,7 @@ export default class ApplicationShell extends React.Component {
         <ApolloProvider client={apolloClient}>
           <ConfigureIntlProvider i18n={this.props.i18n}>
             <React.Fragment>
+              <VersionCheckSubscriber />
               <SentryBooter />
               <Router>
                 <IntercomUrlTracker>
