@@ -1,4 +1,3 @@
-import querystring from 'querystring';
 import jwtDecode from 'jwt-decode';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -43,6 +42,7 @@ export class Logout extends React.PureComponent {
     location: PropTypes.shape({
       // Can contain following params:
       // - `reason`
+      // - `redirectTo`
       search: PropTypes.string.isRequired,
     }).isRequired,
 
@@ -54,7 +54,7 @@ export class Logout extends React.PureComponent {
     ]),
   };
 
-  componentWillMount() {
+  componentDidMount() {
     let redirectUrl;
     switch (this.props.loginStrategy) {
       case LOGIN_STRATEGY_SSO:
@@ -64,24 +64,17 @@ export class Logout extends React.PureComponent {
         redirectUrl = '/login';
     }
 
-    const searchQuery = querystring.parse(
-      this.props.location.search.substring(1)
-    );
-    const logoutReason = searchQuery.reason;
-    if (logoutReason) redirectUrl = `${redirectUrl}?reason=${logoutReason}`;
-
     // Reset tracking, token, etc.
-    // anonymizeSentry();
     // remove the access token from local storage
     storage.remove(CORE_STORAGE_KEYS.TOKEN);
     // NOTE: we need to ensure the cached projectKey is removed, because
     // the user can log in with another account and most likely he won't
     // access to the cached project.
-    // storage.remove(APP_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
+    storage.remove(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
     // We simply redirect to a "new" browser page, instead of using the
     // history router. This will simplify a lot of things and avoid possible
     // problems like e.g. resetting the store/state.
-    this.props.redirectTo(redirectUrl);
+    this.props.redirectTo(redirectUrl + this.props.location.search);
   }
   render() {
     return (

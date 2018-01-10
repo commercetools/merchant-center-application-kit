@@ -2,6 +2,8 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { Redirect } from 'react-router-dom';
 import { shallow } from 'enzyme';
+import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
+import * as storage from '@commercetools-local/utils/storage';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
 import ProjectDataLocale from '../project-data-locale';
@@ -17,6 +19,7 @@ const createTestProps = custom => ({
 });
 
 jest.mock('react-dom');
+jest.mock('@commercetools-local/utils/storage');
 
 describe('rendering', () => {
   let props;
@@ -358,6 +361,35 @@ describe('rendering', () => {
         'availableLocales',
         ['en', 'de']
       );
+    });
+  });
+});
+
+describe('lifecycle', () => {
+  let props;
+  let wrapper;
+  describe('componentDidUpdate', () => {
+    describe('when projectKey is already cached', () => {
+      beforeEach(() => {
+        props = createTestProps({ match: { params: { projectKey: 'p1' } } });
+        storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, 'p1');
+        wrapper = shallow(<ProjectContainer {...props} />);
+        wrapper.instance().componentDidUpdate();
+      });
+      it('should not update storage', () => {
+        expect(storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)).toBe('p1');
+      });
+    });
+    describe('when projectKey is not cached', () => {
+      beforeEach(() => {
+        props = createTestProps({ match: { params: { projectKey: 'p1' } } });
+        storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, 'p2');
+        wrapper = shallow(<ProjectContainer {...props} />);
+        wrapper.instance().componentDidUpdate();
+      });
+      it('should cache projectKey into storage', () => {
+        expect(storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)).toBe('p1');
+      });
     });
   });
 });

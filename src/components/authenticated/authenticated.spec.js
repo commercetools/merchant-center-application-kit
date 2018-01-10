@@ -34,8 +34,8 @@ describe('rendering', () => {
       it('should render a Redirect component', () => {
         expect(wrapper).toRender('Redirect');
       });
-      it('should redirect to /login', () => {
-        expect(wrapper.find('Redirect').prop('to').pathname).toBe('/login');
+      it('should redirect to /logout', () => {
+        expect(wrapper.find('Redirect').prop('to').pathname).toBe('/logout');
       });
       it('should set the reason param to `UNAUTHORIZED`', () => {
         expect(wrapper.find('Redirect').prop('to').search).toContain(
@@ -59,8 +59,8 @@ describe('rendering', () => {
       it('should render a Redirect component', () => {
         expect(wrapper).toRender('Redirect');
       });
-      it('should redirect to /login', () => {
-        expect(wrapper.find('Redirect').prop('to').pathname).toBe('/login');
+      it('should redirect to /logout', () => {
+        expect(wrapper.find('Redirect').prop('to').pathname).toBe('/logout');
       });
       it('should set the reason param to `UNAUTHORIZED`', () => {
         expect(wrapper.find('Redirect').prop('to').search).toContain(

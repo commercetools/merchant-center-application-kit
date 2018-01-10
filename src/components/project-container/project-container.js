@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import omit from 'lodash.omit';
+import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
+import * as storage from '@commercetools-local/utils/storage';
 import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectDataLocale from '../project-data-locale';
@@ -52,6 +54,15 @@ class ProjectContainer extends React.Component {
     this.setState({
       localeSwitcherNode: document.getElementById('locale-switcher'),
     });
+  }
+  componentDidUpdate() {
+    // Ensure to cache the projectKey, in case it changes.
+    const cachedProjectKey = storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
+    if (cachedProjectKey !== this.props.match.params.projectKey)
+      storage.put(
+        CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY,
+        this.props.match.params.projectKey
+      );
   }
   componentDidCatch(/* error, info */) {
     this.setState({ hasError: true });

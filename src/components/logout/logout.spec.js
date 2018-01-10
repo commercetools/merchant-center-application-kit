@@ -37,10 +37,24 @@ describe('rendering', () => {
 
 describe('componentDidMount', () => {
   let props;
+  beforeEach(() => {
+    props = createTestProps();
+    storage.put(CORE_STORAGE_KEYS.TOKEN, '123');
+    storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, 'foo-1');
+    const wrapper = shallow(<Logout {...props} />);
+    wrapper.instance().componentDidMount();
+  });
+  it('should remove token from storage', () => {
+    expect(storage.get(CORE_STORAGE_KEYS.TOKEN)).toBe(null);
+  });
+  it('should remove projectKey from storage', () => {
+    expect(storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)).toBe(null);
+  });
   describe('when login strategy is default', () => {
     beforeEach(() => {
       props = createTestProps({ loginStrategy: 'default' });
-      shallow(<Logout {...props} />);
+      const wrapper = shallow(<Logout {...props} />);
+      wrapper.instance().componentDidMount();
     });
     it('should redirect to the default login page', () => {
       expect(props.redirectTo).toHaveBeenCalledTimes(1);
@@ -50,7 +64,8 @@ describe('componentDidMount', () => {
   describe('when login strategy is sso', () => {
     beforeEach(() => {
       props = createTestProps({ loginStrategy: 'sso' });
-      shallow(<Logout {...props} />);
+      const wrapper = shallow(<Logout {...props} />);
+      wrapper.instance().componentDidMount();
     });
     it('should redirect to the sso login page', () => {
       expect(props.redirectTo).toHaveBeenCalledTimes(1);
@@ -62,7 +77,8 @@ describe('componentDidMount', () => {
       props = createTestProps({
         location: { search: '?reason=unauthorized' },
       });
-      shallow(<Logout {...props} />);
+      const wrapper = shallow(<Logout {...props} />);
+      wrapper.instance().componentDidMount();
     });
     it('should redirect to login page with query parameter', () => {
       expect(props.redirectTo).toHaveBeenLastCalledWith(

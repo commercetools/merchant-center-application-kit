@@ -155,7 +155,8 @@ export default class ApplicationShell extends React.Component {
                                       }
                                     >
                                       <ProjectContainer
-                                        {...routerProps}
+                                        match={routerProps.match}
+                                        location={routerProps.location}
                                         menuItems={this.props.menuItems}
                                         render={() => (
                                           <React.Fragment>
