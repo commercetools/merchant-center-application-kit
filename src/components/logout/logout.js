@@ -64,7 +64,6 @@ export class Logout extends React.PureComponent {
         redirectUrl = '/login';
     }
 
-    // Reset tracking, token, etc.
     // remove the access token from local storage
     storage.remove(CORE_STORAGE_KEYS.TOKEN);
     // NOTE: we need to ensure the cached projectKey is removed, because
