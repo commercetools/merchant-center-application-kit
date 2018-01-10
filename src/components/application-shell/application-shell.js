@@ -106,8 +106,7 @@ export default class ApplicationShell extends React.Component {
                                       <NotificationsList
                                         domain={DOMAINS.PAGE}
                                         notifications={
-                                          this.props.notificationsByDomain
-                                            .page
+                                          this.props.notificationsByDomain.page
                                         }
                                         mapPluginNotificationToComponent={
                                           this.props
@@ -134,8 +133,7 @@ export default class ApplicationShell extends React.Component {
                                       <NotificationsList
                                         domain={DOMAINS.PAGE}
                                         notifications={
-                                          this.props.notificationsByDomain
-                                            .page
+                                          this.props.notificationsByDomain.page
                                         }
                                         mapPluginNotificationToComponent={
                                           this.props
@@ -170,8 +168,8 @@ export default class ApplicationShell extends React.Component {
                                             <NotificationsList
                                               domain={DOMAINS.PAGE}
                                               notifications={
-                                                this.props
-                                                  .notificationsByDomain.page
+                                                this.props.notificationsByDomain
+                                                  .page
                                               }
                                               mapPluginNotificationToComponent={
                                                 this.props
@@ -185,10 +183,7 @@ export default class ApplicationShell extends React.Component {
                                     </SetupFlopFlipProvider>
                                   )}
                                 />
-                                <Route
-                                  path="/"
-                                  component={RedirectToProject}
-                                />
+                                <Route path="/" component={RedirectToProject} />
                               </Switch>
                             </SetupFlopFlipProvider>
                           </Authenticated>
