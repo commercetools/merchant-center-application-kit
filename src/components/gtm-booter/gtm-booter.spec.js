@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { boot } from '../../utils/gtm';
 import GtmBooter from './gtm-booter';
 
-let mockBoot;
 jest.mock('../../utils/gtm', () => ({
-  boot: (...args) => mockBoot(...args),
+  boot: jest.fn(),
 }));
 
 const createTestProps = custom => ({
@@ -25,12 +25,12 @@ describe('lifecycle', () => {
 
   describe('componentDidMount', () => {
     beforeEach(() => {
-      mockBoot = jest.fn();
+      boot.mockReset();
       wrapper.instance().componentDidMount();
     });
     it('should call boot', () => {
-      expect(mockBoot).toHaveBeenCalledTimes(1);
-      expect(mockBoot).toHaveBeenCalledWith(props.trackingEventWhitelist);
+      expect(boot).toHaveBeenCalledTimes(1);
+      expect(boot).toHaveBeenCalledWith(props.trackingEventWhitelist);
     });
   });
 });

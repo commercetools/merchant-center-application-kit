@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { stopTrackingUser } from '../../utils/gtm';
 import GtmUserLogoutTracker from './gtm-user-logout-tracker';
 
-let mockStopTrackingUser;
 jest.mock('../../utils/gtm', () => ({
-  stopTrackingUser: (...args) => mockStopTrackingUser(...args),
+  stopTrackingUser: jest.fn(),
 }));
 
 let wrapper;
@@ -16,11 +16,11 @@ describe('lifecycle', () => {
 
   describe('componentDidMount', () => {
     beforeEach(() => {
-      mockStopTrackingUser = jest.fn();
+      stopTrackingUser.mockReset();
       wrapper.instance().componentDidMount();
     });
     it('should call stopTrackingUser', () => {
-      expect(mockStopTrackingUser).toHaveBeenCalledTimes(1);
+      expect(stopTrackingUser).toHaveBeenCalledTimes(1);
     });
   });
 });
