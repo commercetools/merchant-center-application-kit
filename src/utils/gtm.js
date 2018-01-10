@@ -1,3 +1,7 @@
+/**
+ * Google Tag Manager (GTM) Tracking Utilities
+ */
+
 import { getDataAttribute } from '@commercetools-local/utils/dataset';
 
 // The way that tracking works is like so:

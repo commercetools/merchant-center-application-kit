@@ -7,7 +7,7 @@ const pluginName = 'mcng-dashboard';
 
 // every plugin is supposed to export which events it wants to track
 export const trackingEventWhitelist = {
-  DashboardButton: 'DashboardButton',
+  'TestDashboard-DashboardButton': 'TestDashboard-DashboardButton',
 };
 
 const StoreLogger = props => (
@@ -31,7 +31,7 @@ class TestDashboard extends React.Component {
   render() {
     return (
       <InjectReducer name={pluginName} reducer={dashboardReducer}>
-        <div>
+        <div data-track-component="TestDashboard">
           <ConnectedStoreLogger />
           <div>{'This is the APPLICATION specific part'}</div>
           <button
