@@ -7,11 +7,20 @@ jest.mock('../../utils/gtm', () => ({
   boot: (...args) => mockBoot(...args),
 }));
 
+const createTestProps = custom => ({
+  trackingEventWhitelist: {
+    EventName: 'MappedEventName',
+  },
+  ...custom,
+});
+
+let props;
 let wrapper;
 
 describe('lifecycle', () => {
   beforeEach(() => {
-    wrapper = shallow(<GtmBooter>{'foo'}</GtmBooter>);
+    props = createTestProps();
+    wrapper = shallow(<GtmBooter {...props}>{'foo'}</GtmBooter>);
   });
 
   describe('componentDidMount', () => {
@@ -21,6 +30,7 @@ describe('lifecycle', () => {
     });
     it('should call boot', () => {
       expect(mockBoot).toHaveBeenCalledTimes(1);
+      expect(mockBoot).toHaveBeenCalledWith(props.trackingEventWhitelist);
     });
   });
 });

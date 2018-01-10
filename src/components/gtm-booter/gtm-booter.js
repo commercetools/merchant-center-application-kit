@@ -11,6 +11,7 @@ class GtmBooter extends React.Component {
   static displayName = 'GtmBooter';
   static propTypes = {
     children: PropTypes.node.isRequired,
+    trackingEventWhitelist: PropTypes.objectOf(PropTypes.string).isRequired,
   };
   static contextTypes = {
     mcng: mcngShape,
@@ -29,7 +30,7 @@ class GtmBooter extends React.Component {
   componentDidMount() {
     // We don't need any user data to start using GTM, for example for
     // tracking page views and flows when the user is not logged in.
-    gtm.boot();
+    gtm.boot(this.props.trackingEventWhitelist);
   }
   render() {
     return this.props.children;

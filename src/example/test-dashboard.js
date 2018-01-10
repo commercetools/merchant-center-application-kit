@@ -5,6 +5,11 @@ import InjectReducer from '../components/inject-reducer';
 
 const pluginName = 'mcng-dashboard';
 
+// every plugin is supposed to export which events it wants to track
+export const trackingEventWhitelist = {
+  DashboardButton: 'DashboardButton',
+};
+
 const StoreLogger = props => (
   <pre>
     <code>{JSON.stringify(props.state, null, 2)}</code>
@@ -29,6 +34,14 @@ class TestDashboard extends React.Component {
         <div>
           <ConnectedStoreLogger />
           <div>{'This is the APPLICATION specific part'}</div>
+          <button
+            data-track-component="DashboardButton"
+            data-track-event="click"
+          >
+            {
+              'Clicking me will send an event to Google Analytics via Google Tag Manager'
+            }
+          </button>
         </div>
       </InjectReducer>
     );

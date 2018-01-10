@@ -32,6 +32,7 @@ export default class ApplicationShell extends React.Component {
     i18n: PropTypes.object.isRequired,
     configuration: PropTypes.object.isRequired,
     menuItems: PropTypes.array.isRequired,
+    trackingEventWhitelist: PropTypes.objectOf(PropTypes.string).isRequired,
     render: PropTypes.func.isRequired,
     notificationsByDomain: PropTypes.shape({
       global: PropTypes.array.isRequired,
@@ -53,7 +54,9 @@ export default class ApplicationShell extends React.Component {
               <SentryBooter />
               <Router>
                 <IntercomUrlTracker>
-                  <GtmBooter>
+                  <GtmBooter
+                    trackingEventWhitelist={this.props.trackingEventWhitelist}
+                  >
                     <Switch>
                       {/* Public routes */}
                       <Route

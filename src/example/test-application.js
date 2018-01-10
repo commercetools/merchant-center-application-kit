@@ -23,8 +23,17 @@ import ApplicationShell, {
   notificationsReducer,
 } from '../main';
 import testMenuItems from './fixtures/menu-items';
-import TestDashboard from './test-dashboard';
-import TestProducts from './test-products';
+import TestDashboard, {
+  trackingEventWhitelist as dashboardTrackingEventWhitelist,
+} from './test-dashboard';
+import TestProducts, {
+  trackingEventWhitelist as productsTrackingEventWhitelist,
+} from './test-products';
+
+const trackingEventWhitelist = {
+  ...dashboardTrackingEventWhitelist,
+  ...productsTrackingEventWhitelist,
+};
 
 const loggerMiddleware = createLogger({
   collapsed: true,
@@ -167,6 +176,7 @@ const TestApplication = () => (
           i18n={i18n}
           configuration={window.app}
           menuItems={testMenuItems}
+          trackingEventWhitelist={trackingEventWhitelist}
           notificationsByDomain={notificationsByDomain}
           showNotification={showNotification}
           showApiErrorNotification={showApiErrorNotification}
