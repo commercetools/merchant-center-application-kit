@@ -43,8 +43,6 @@ const store = createStore(
         ADD_NOTIFICATION,
         REMOVE_NOTIFICATION,
         constants.HIDE_ALL_PAGE_NOTIFICATIONS,
-        constants.SWITCH_LOCALE,
-        constants.SWITCH_PROJECT_LANGUAGE,
       ]),
       createScopedMiddleware(thunk.withExtraArgument(client)),
       sentryTrackingMiddleware,
