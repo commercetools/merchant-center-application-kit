@@ -22,3 +22,4 @@ export {
   default as NotificationsConnector,
   notificationsReducer,
 } from './components/notifications-connector';
+export { default as reduxStore } from './configure-store';

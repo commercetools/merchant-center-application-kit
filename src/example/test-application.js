@@ -1,27 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
-import { createLogger } from 'redux-logger';
 import { Provider as StoreProvider, connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-import { reducer as formReducer } from 'redux-form';
-import PageNotFound from '@commercetools-local/core/components/page-not-found';
 import {
   addNotification,
   removeNotification,
-  middleware as notificationsMiddleware,
-  ADD_NOTIFICATION,
-  REMOVE_NOTIFICATION,
 } from '@commercetools-local/notifications';
 import * as constants from '@commercetools-local/constants';
 import * as i18n from '../../../../i18n';
-import createExtractGlobalActions from '../middleware/create-extract-global-actions';
 import ApplicationShell, {
   RequestsInFlightLoader,
-  requestsInFlightReducer,
-  activePluginReducer,
   NotificationsConnector,
-  notificationsReducer,
+  reduxStore,
 } from '../main';
 import testMenuItems from './fixtures/menu-items';
 import TestDashboard, {
@@ -34,52 +24,6 @@ import TestProducts, {
 const trackingEventWhitelist = {
   ...dashboardTrackingEventWhitelist,
   ...productsTrackingEventWhitelist,
-};
-
-const loggerMiddleware = createLogger({
-  collapsed: true,
-  colors: {
-    title: action =>
-      /^LOCAL($|\/.*)/.test(action.type) ? '#FFA500' : '#000000',
-    prevState: () => '#9E9E9E',
-    action: () => '#03A9F4',
-    nextState: () => '#4CAF50',
-    error: () => '#F20404',
-  },
-});
-
-const createReducer = (injectedReducers = {}) =>
-  combineReducers({
-    activePlugin: activePluginReducer,
-    requestsInFlight: requestsInFlightReducer,
-    notifications: notificationsReducer,
-    form: formReducer,
-    ...injectedReducers,
-  });
-const store = createStore(
-  createReducer(),
-  { requestsInFlight: null },
-  compose(
-    applyMiddleware(
-      loggerMiddleware,
-      createExtractGlobalActions([
-        /* list of action types plugins may dispatch globally */
-        constants.SHOW_LOADING,
-        constants.HIDE_LOADING,
-        ADD_NOTIFICATION,
-        REMOVE_NOTIFICATION,
-        constants.HIDE_ALL_PAGE_NOTIFICATIONS,
-        constants.SWITCH_LOCALE,
-        constants.SWITCH_PROJECT_LANGUAGE,
-      ]),
-      notificationsMiddleware
-    )
-  )
-);
-store.injectedReducers = {};
-store.injectReducer = ({ name, reducer }) => {
-  store.injectedReducers[name] = reducer;
-  store.replaceReducer(createReducer(store.injectedReducers));
 };
 
 class TriggerRequestsInFlight extends React.PureComponent {
@@ -97,7 +41,7 @@ class TriggerRequestsInFlight extends React.PureComponent {
       <div>
         <button
           onClick={() =>
-            store.dispatch({
+            reduxStore.dispatch({
               type: 'SHOW_LOADING',
               payload: this.getRandomRequestId(),
             })
@@ -107,7 +51,7 @@ class TriggerRequestsInFlight extends React.PureComponent {
         </button>
         <button
           onClick={() =>
-            store.dispatch({
+            reduxStore.dispatch({
               type: 'HIDE_LOADING',
               payload: this.getRandomRequestId(),
             })
@@ -148,7 +92,7 @@ class TriggerNotification extends React.PureComponent {
             >
               {'Add notification'}
             </button>
-            <button onClick={() => store.dispatch(removeNotification())}>
+            <button onClick={() => reduxStore.dispatch(removeNotification())}>
               {'Remove notification'}
             </button>
           </div>
@@ -165,7 +109,7 @@ const ConnectedTriggerNotification = connect(
 )(TriggerNotification);
 
 const TestApplication = () => (
-  <StoreProvider store={store}>
+  <StoreProvider store={reduxStore}>
     <NotificationsConnector>
       {({
         notificationsByDomain,
@@ -185,7 +129,7 @@ const TestApplication = () => (
           render={() => (
             <div>
               <RequestsInFlightLoader />
-              <TriggerRequestsInFlight store={store} />
+              <TriggerRequestsInFlight store={reduxStore} />
               <ConnectedTriggerNotification />
               <Switch>
                 <Route
