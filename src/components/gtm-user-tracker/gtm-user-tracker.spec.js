@@ -64,14 +64,16 @@ describe('lifecycle', () => {
     });
     describe('when the user is loaded', () => {
       beforeEach(() => {
-        props = createTestProps({ userData: { isLoading: false } });
+        props = createTestProps({
+          userData: { isLoading: false, user: { id: 'user-1' } },
+        });
         wrapper = shallow(<GtmUserTracker {...props} />);
         wrapper.instance().updateUser = updateUserInstanceMethod;
         wrapper.instance().componentDidMount();
       });
       it('should call updateUser', () => {
         expect(updateUserInstanceMethod).toHaveBeenCalledTimes(1);
-        expect(updateUserInstanceMethod).toHaveBeenCalledWith(props);
+        expect(updateUserInstanceMethod).toHaveBeenCalledWith({ id: 'user-1' });
       });
     });
   });
@@ -94,14 +96,16 @@ describe('lifecycle', () => {
     });
     describe('when the user is loaded', () => {
       beforeEach(() => {
-        props = createTestProps({ userData: { isLoading: false } });
+        props = createTestProps({
+          userData: { isLoading: false, user: { id: 'user-1' } },
+        });
         wrapper = shallow(<GtmUserTracker {...props} />);
         wrapper.instance().updateUser = updateUserInstanceMethod;
         wrapper.instance().componentWillUpdate(props);
       });
       it('should call updateUser', () => {
         expect(updateUserInstanceMethod).toHaveBeenCalledTimes(1);
-        expect(updateUserInstanceMethod).toHaveBeenCalledWith(props);
+        expect(updateUserInstanceMethod).toHaveBeenCalledWith({ id: 'user-1' });
       });
     });
   });
@@ -112,7 +116,7 @@ describe('updateUser', () => {
     updateUser.mockReset();
     props = createTestProps();
     wrapper = shallow(<GtmUserTracker {...props} />);
-    wrapper.instance().updateUser(props);
+    wrapper.instance().updateUser(props.userData.user);
   });
   it('should call update with user info', () => {
     expect(updateUser).toHaveBeenCalledTimes(1);

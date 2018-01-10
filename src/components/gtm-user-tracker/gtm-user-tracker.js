@@ -22,21 +22,21 @@ export class GtmUserTracker extends React.Component {
   componentDidMount() {
     // since the user and project could have been loaded from the apollo cache
     // they could be preset already when mounting
-    if (this.shouldUpdateUser(this.props)) {
-      this.updateUser(this.props);
+    if (this.shouldUpdateUser(this.props.userData)) {
+      this.updateUser(this.props.userData.user);
     }
   }
   componentWillUpdate(nextProps) {
     // call in componentWillUpdate rather than in componentWillReceiveProps
     // because willUpdate will only run if shouldComponentUpdate returned true
     // componentWillReceiveProps will always run
-    if (this.shouldUpdateUser(nextProps)) {
-      this.updateUser(nextProps);
+    if (this.shouldUpdateUser(nextProps.userData)) {
+      this.updateUser(nextProps.userData.user);
     }
   }
-  shouldUpdateUser = props => !props.userData.isLoading;
-  updateUser = props => {
-    gtm.updateUser(props.userData.user);
+  shouldUpdateUser = userData => !userData.isLoading;
+  updateUser = user => {
+    gtm.updateUser(user);
   };
   render() {
     return null;
