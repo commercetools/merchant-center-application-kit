@@ -103,7 +103,7 @@ export default ({ dispatch, getState }) => next => action => {
           error => {
             if (process.env.NODE_ENV !== 'production')
               logRequest({
-                method: action.payload.method.toLowerCase(),
+                method: action.payload.method,
                 request: { headers, uri },
                 error,
                 action,
