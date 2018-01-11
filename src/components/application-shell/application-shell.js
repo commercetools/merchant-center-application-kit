@@ -4,11 +4,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import { DOMAINS } from '@commercetools-local/constants';
-import 'awesomplete/awesomplete.css';
-import 'react-select/dist/react-select.css';
-import 'react-dates/lib/css/_datepicker.css';
-import '@commercetools-local/ui-kit/materials/grid.mod.css';
-import '@commercetools-local/ui-kit/materials/reset.mod.css';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
 import Authenticated from '../authenticated';
@@ -30,6 +25,7 @@ import SentryUserTracker from '../sentry-user-tracker';
 import VersionCheckSubscriber from '../version-check-subscriber';
 import GtmUserTracker from '../gtm-user-tracker';
 import GtmBooter from '../gtm-booter';
+import './global-style-imports';
 
 export default class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
