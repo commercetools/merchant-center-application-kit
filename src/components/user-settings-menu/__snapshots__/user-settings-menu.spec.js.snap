@@ -1,35 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`callbacks clicking to open the menu outputs correct tree 1`] = `
-<div
-  className="container"
-  data-test="user-settings-menu"
->
+exports[`rendering menu when menu is open should render matching tree 1`] = `
+<div>
   <div
     className="settings-container"
-    onClick={[Function]}
-    onMouseOut={[MockFunction]}
-    onMouseOver={[MockFunction]}
+    onClick={[MockFunction]}
   >
-    <Inline
-      alignItems="center"
-      scale="s"
-    >
-      <div
-        className="avatar"
-      >
-        <Avatar
-          email="john-doe@commercetools.de"
-          firstName="John Test"
-          lastName="Doe"
-          size="small"
-        />
-      </div>
-      <CaretDownIcon
-        size="small"
-        theme="black"
-      />
-    </Inline>
+    <WithMouseOverState(UserAvatar)
+      email="john-doe@commercetools.de"
+      firstName="John Test"
+      lastName="Doe"
+    />
   </div>
   <Card
     className="menu"
@@ -88,39 +69,5 @@ exports[`callbacks clicking to open the menu outputs correct tree 1`] = `
       </div>
     </Link>
   </Card>
-</div>
-`;
-
-exports[`render outputs correct tree 1`] = `
-<div
-  className="container"
-  data-test="user-settings-menu"
->
-  <div
-    className="settings-container"
-    onClick={[Function]}
-    onMouseOut={[MockFunction]}
-    onMouseOver={[MockFunction]}
-  >
-    <Inline
-      alignItems="center"
-      scale="s"
-    >
-      <div
-        className="avatar"
-      >
-        <Avatar
-          email="john-doe@commercetools.de"
-          firstName="John Test"
-          lastName="Doe"
-          size="small"
-        />
-      </div>
-      <CaretDownIcon
-        size="small"
-        theme="black"
-      />
-    </Inline>
-  </div>
 </div>
 `;

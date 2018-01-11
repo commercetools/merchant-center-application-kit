@@ -105,7 +105,7 @@ describe('rendering', () => {
           beforeEach(() => {
             fetchUserChildrenProps = {
               isLoading: true,
-              user: { availableProjects: [] },
+              user: { email: 'john.snow@got.com', availableProjects: [] },
             };
             fetchUserChildrenWrapper = shallow(
               <div>
@@ -131,7 +131,7 @@ describe('rendering', () => {
             beforeEach(() => {
               fetchUserChildrenProps = {
                 isLoading: false,
-                user: { availableProjects: [] },
+                user: { email: 'john.snow@got.com', availableProjects: [] },
               };
               fetchUserChildrenWrapper = shallow(
                 <div>
@@ -157,7 +157,10 @@ describe('rendering', () => {
               beforeEach(() => {
                 fetchUserChildrenProps = {
                   isLoading: false,
-                  user: { availableProjects: [{ key: 'test-1' }] },
+                  user: {
+                    email: 'john.snow@got.com',
+                    availableProjects: [{ key: 'test-1' }],
+                  },
                 };
                 fetchUserChildrenWrapper = shallow(
                   <div>
