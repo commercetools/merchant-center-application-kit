@@ -19,11 +19,16 @@ If there are **requests in flight**, a loading spinner will be shown in the
 ```js
 import { createStore, combineReducers } from 'redux';
 import { Provider as StoreProvider } from 'react-redux';
-import { RequestsInFlightLoader, requestsInFlightReducer } from '@commercetools-local/application-shell';
+import {
+  RequestsInFlightLoader,
+  requestsInFlightReducer,
+} from '@commercetools-local/application-shell';
 
-const store = createStore(combineReducers({ requestsInFlight: requestsInFlightReducer }));
+const store = createStore(
+  combineReducers({ requestsInFlight: requestsInFlightReducer })
+);
 
 <StoreProvider store={store}>
   <RequestsInFlightLoader />
-</StoreProvider>
+</StoreProvider>;
 ```
