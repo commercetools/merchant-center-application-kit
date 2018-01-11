@@ -40,6 +40,8 @@ const MyApplication = () => (
         <Switch>
           <Route path="/:projectKey/dashboard" component={AsyncDashboard} />
           <Route path="/:projectKey/products" component={AsyncProducts} />
+          {/* Define a catch-all route */}
+          <Route component={PageNotFound} />
         </Switch>
       </StoreProvider>
     )}

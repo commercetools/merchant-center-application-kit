@@ -8,7 +8,6 @@ import {
 } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
-import PageNotFound from '@commercetools-local/core/components/page-not-found';
 import { DOMAINS } from '@commercetools-local/constants';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
@@ -134,6 +133,24 @@ export default class ApplicationShell extends React.Component {
                                 />
 
                                 {/* Project routes */}
+                                {/* Redirect from base project route to dashboard */}
+                                <Route
+                                  exact={true}
+                                  path="/:projectKey"
+                                  render={({ match }) => (
+                                    /**
+                                     * NOTE: we can't use the `match.url`
+                                     * because of the trailing slash case.
+                                     * E.g.: `/foo` -> `/foo/dashboard`
+                                     * E.g.: `/foo/` -> `/foo//dashboard`
+                                     */
+                                    <Redirect
+                                      to={`/${
+                                        match.params.projectKey
+                                      }/dashboard`}
+                                    />
+                                  )}
+                                />
                                 <Route
                                   path="/:projectKey"
                                   render={routerProps => (
@@ -166,35 +183,10 @@ export default class ApplicationShell extends React.Component {
                                               }
                                             />
                                             {/**
-                                             * Redirect from base project route
-                                             * to dashboard */}
-                                            <Route
-                                              exact={true}
-                                              path="/:projectKey"
-                                              render={({ match }) => (
-                                                /**
-                                                 * NOTE: we can't use the `match.url`
-                                                 * because of the trailing slash case.
-                                                 * E.g.: `/foo` -> `/foo/dashboard`
-                                                 * E.g.: `/foo/` -> `/foo//dashboard`
-                                                 */
-                                                <Redirect
-                                                  to={`/${
-                                                    match.params.projectKey
-                                                  }/dashboard`}
-                                                />
-                                              )}
-                                            />
-                                            {/**
                                              * This effectively renders the
                                              * children, which is the application
                                              * specific part */
                                             this.props.render()}
-                                            {/**
-                                             * Define a catch-all route (needs
-                                             * to be defined after the rendered
-                                             * children) */}
-                                            <Route component={PageNotFound} />
                                           </React.Fragment>
                                         )}
                                       />

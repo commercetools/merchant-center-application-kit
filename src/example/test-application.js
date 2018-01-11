@@ -5,6 +5,7 @@ import { createLogger } from 'redux-logger';
 import { Provider as StoreProvider, connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { reducer as formReducer } from 'redux-form';
+import PageNotFound from '@commercetools-local/core/components/page-not-found';
 import {
   addNotification,
   removeNotification,
@@ -192,6 +193,11 @@ const TestApplication = () => (
                   component={TestDashboard}
                 />
                 <Route path="/:projectKey/products" component={TestProducts} />
+                {/**
+                 * Define a catch-all route (needs
+                 * to be defined after the rendered
+                 * children) */}
+                <Route component={PageNotFound} />
               </Switch>
             </div>
           )}
