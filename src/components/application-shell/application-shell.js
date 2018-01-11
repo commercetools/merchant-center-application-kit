@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
+import PageNotFound from '@commercetools-local/core/components/page-not-found';
 import { DOMAINS } from '@commercetools-local/constants';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
@@ -126,25 +127,6 @@ export default class ApplicationShell extends React.Component {
                                     </React.Fragment>
                                   )}
                                 />
-                                <Route
-                                  path="/organizations"
-                                  render={() => (
-                                    <React.Fragment>
-                                      <IntercomUserTracker />
-                                      <NotificationsList
-                                        domain={DOMAINS.PAGE}
-                                        notifications={
-                                          this.props.notificationsByDomain.page
-                                        }
-                                        mapPluginNotificationToComponent={
-                                          this.props
-                                            .mapPluginNotificationToComponent
-                                        }
-                                      />
-                                      {'ORGS VIEW'}
-                                    </React.Fragment>
-                                  )}
-                                />
 
                                 {/* Project routes */}
                                 <Route
@@ -178,7 +160,16 @@ export default class ApplicationShell extends React.Component {
                                                   .mapPluginNotificationToComponent
                                               }
                                             />
-                                            {this.props.render()}
+                                            {/**
+                                             * This effectively renders the
+                                             * children, which is the application
+                                             * specific part */
+                                            this.props.render()}
+                                            {/**
+                                             * Define a catch-all route (needs
+                                             * to be defined after the rendered
+                                             * children) */}
+                                            <Route component={PageNotFound} />
                                           </React.Fragment>
                                         )}
                                       />
