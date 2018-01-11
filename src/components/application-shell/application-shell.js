@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import PageNotFound from '@commercetools-local/core/components/page-not-found';
@@ -159,6 +164,26 @@ export default class ApplicationShell extends React.Component {
                                                 this.props
                                                   .mapPluginNotificationToComponent
                                               }
+                                            />
+                                            {/**
+                                             * Redirect from base project route
+                                             * to dashboard */}
+                                            <Route
+                                              exact={true}
+                                              path="/:projectKey"
+                                              render={({ match }) => (
+                                                /**
+                                                 * NOTE: we can't use the `match.url`
+                                                 * because of the trailing slash case.
+                                                 * E.g.: `/foo` -> `/foo/dashboard`
+                                                 * E.g.: `/foo/` -> `/foo//dashboard`
+                                                 */
+                                                <Redirect
+                                                  to={`/${
+                                                    match.params.projectKey
+                                                  }/dashboard`}
+                                                />
+                                              )}
                                             />
                                             {/**
                                              * This effectively renders the
