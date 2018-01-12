@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
+import { joinPaths } from '@commercetools-local/utils/url';
 import { DOMAINS } from '@commercetools-local/constants';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
@@ -138,16 +139,8 @@ export default class ApplicationShell extends React.Component {
                                   exact={true}
                                   path="/:projectKey"
                                   render={({ match }) => (
-                                    /**
-                                     * NOTE: we can't use the `match.url`
-                                     * because of the trailing slash case.
-                                     * E.g.: `/foo` -> `/foo/dashboard`
-                                     * E.g.: `/foo/` -> `/foo//dashboard`
-                                     */
                                     <Redirect
-                                      to={`/${
-                                        match.params.projectKey
-                                      }/dashboard`}
+                                      to={joinPaths(match.url, 'dashboard')}
                                     />
                                   )}
                                 />
