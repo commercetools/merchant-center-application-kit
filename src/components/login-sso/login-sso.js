@@ -8,7 +8,10 @@ import uuid from 'uuid/v4';
 import Text from '@commercetools-local/ui-kit/typography/text';
 import PrimaryButton from '@commercetools-local/ui-kit/buttons/primary-button';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
-import { joinPaths, trimSlashes } from '@commercetools-local/utils/url';
+import {
+  joinPaths,
+  trimLeadingAndTrailingSlashes,
+} from '@commercetools-local/utils/url';
 import client from '@commercetools-local/utils/node-sdk';
 import * as storage from '@commercetools-local/utils/storage';
 import { messages as validationMessages } from '@commercetools-local/utils/validation';
@@ -81,7 +84,7 @@ export class LoginSSO extends React.PureComponent {
             scope: 'openid email profile',
             response_type: 'id_token',
             client_id: authProvider.clientId,
-            redirect_uri: trimSlashes(
+            redirect_uri: trimLeadingAndTrailingSlashes(
               joinPaths(
                 this.props.originUrl,
                 this.props.match.url,
