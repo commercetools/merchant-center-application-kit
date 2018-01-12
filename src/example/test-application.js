@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider as StoreProvider, connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
+import PageNotFound from '@commercetools-local/core/components/page-not-found';
 import {
   addNotification,
   removeNotification,
