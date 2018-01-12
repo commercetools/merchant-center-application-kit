@@ -1,0 +1,22 @@
+.page-with-menu-layout {
+  flex-grow: 1;
+  display: flex;
+}
+
+.page-with-menu-layout > aside {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-with-menu-layout > main {
+  flex-grow: 1;
+
+  /*
+    Allow the this flex child to grow smaller than its smallest content.
+    This is needed when there is a really wide text inside that would stretch
+    this node to be wider than the parent.
+  */
+  min-width: 0;
+  overflow: auto;
+}

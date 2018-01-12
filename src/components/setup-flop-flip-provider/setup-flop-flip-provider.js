@@ -50,7 +50,7 @@ class SetupFlopFlip extends React.PureComponent {
             shouldDeferAdapterConfiguration={isLoading}
           >
             {/* flop flip only accepts a single child :( */}
-            <div>{this.props.children}</div>
+            <React.Fragment>{this.props.children}</React.Fragment>
           </ConfigureFlopFlip>
         )}
       </FetchUser>

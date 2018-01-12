@@ -11,6 +11,7 @@
 /* Left Nav */
 
 .left-navigation {
+  flex-grow: 1;
   width: var(--width-leftNavigation);
   z-index: 19999;
   background: var(--color-blueNavy);

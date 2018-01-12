@@ -1,0 +1,14 @@
+/* we should probably give the #app div created by create-index-html a class */
+:global(#app) {
+  height: 100%;
+}
+
+.app-layout {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-without-menu-layout {
+  flex-grow: 1;
+}

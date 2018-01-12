@@ -15,6 +15,7 @@ import ProjectNotFound from '../project-not-found';
 import ProjectExpired from '../project-expired';
 import ProjectSuspended from '../project-suspended';
 import ProjectWithoutSettings from '../project-without-settings';
+import styles from './project-container.mod.css';
 
 class ProjectContainer extends React.Component {
   static displayName = 'ProjectContainer';
@@ -114,7 +115,7 @@ class ProjectContainer extends React.Component {
                 return (
                   <ProjectDataLocale locales={project.languages}>
                     {({ locale, setProjectDataLocale }) => (
-                      <div style={{ display: 'inline-flex' }}>
+                      <div className={styles['page-with-menu-layout']}>
                         {/* Render <LocaleSwitcher> using a portal */}
                         {this.state.localeSwitcherNode &&
                           // Render the `<LocaleSwitcher>` only if the project has more
@@ -128,20 +129,24 @@ class ProjectContainer extends React.Component {
                             }),
                             this.state.localeSwitcherNode
                           )}
-                        <Menu
-                          location={this.props.location}
-                          menuItems={this.props.menuItems}
-                          projectKey={this.props.match.params.projectKey}
-                          projectPermissions={omit(project.permissions, [
-                            '__typename',
-                          ])}
-                        />
-                        {/**
-                         * NOTE: we don't need to explicitly pass the `locale`,
-                         * it's enough to trigger a re-render.
-                         * The `locale` can then be read from the localStorage.
-                         */}
-                        {this.props.render()}
+                        <aside>
+                          <Menu
+                            location={this.props.location}
+                            menuItems={this.props.menuItems}
+                            projectKey={this.props.match.params.projectKey}
+                            projectPermissions={omit(project.permissions, [
+                              '__typename',
+                            ])}
+                          />
+                        </aside>
+                        <main>
+                          {/**
+                           * NOTE: we don't need to explicitly pass the `locale`,
+                           * it's enough to trigger a re-render.
+                           * The `locale` can then be read from the localStorage.
+                           */}
+                          {this.props.render()}
+                        </main>
                       </div>
                     )}
                   </ProjectDataLocale>
