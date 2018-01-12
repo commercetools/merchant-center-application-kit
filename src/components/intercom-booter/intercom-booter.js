@@ -1,8 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { compose } from 'recompose';
-import * as globalActions from '@commercetools-local/actions-global';
 import { DOMAINS } from '@commercetools-local/constants';
 import { withUser } from '../fetch-user';
 import * as intercom from '../../utils/intercom';
@@ -20,10 +17,10 @@ import { INTERCOM_TRACKING_STATUS } from '../../constants';
 export class IntercomBooter extends React.Component {
   static displayName = 'IntercomBooter';
   static propTypes = {
-    user: PropTypes.object,
+    showNotification: PropTypes.func.isRequired,
     children: PropTypes.node,
     // Injected
-    showNotification: PropTypes.func.isRequired,
+    intercomTracking: PropTypes.oneOf(Object.values(INTERCOM_TRACKING_STATUS)),
   };
   static defaultProps = {
     children: null,
@@ -33,29 +30,22 @@ export class IntercomBooter extends React.Component {
   componentDidMount() {
     // since the user and project could have been loaded from the apollo cache
     // they could be preset already when mounting
-    this.bootIntercom(this.props.user);
-    this.showBanner(this.props.user);
+    this.bootIntercom(this.props.intercomTracking);
+    this.showBanner(this.props.intercomTracking);
   }
   componentWillReceiveProps(nextProps) {
-    this.bootIntercom(nextProps.user);
-    this.showBanner(nextProps.user);
+    if (!this.isBooted) this.bootIntercom(nextProps.intercomTracking);
+    if (!this.isNotificationDispatched)
+      this.showBanner(nextProps.intercomTracking);
   }
-  bootIntercom = user => {
-    if (
-      !this.isBooted &&
-      user &&
-      user.tracking_intercom === INTERCOM_TRACKING_STATUS.active
-    ) {
+  bootIntercom = intercomTracking => {
+    if (intercomTracking === INTERCOM_TRACKING_STATUS.active) {
       this.hasBooted = true;
-      intercom.boot(user);
+      intercom.boot(intercomTracking);
     }
   };
-  showBanner = user => {
-    if (
-      !this.isNotificationDispatched &&
-      user &&
-      user.tracking_intercom === INTERCOM_TRACKING_STATUS.pending
-    ) {
+  showBanner = intercomTracking => {
+    if (intercomTracking === INTERCOM_TRACKING_STATUS.pending) {
       this.isNotificationDispatched = true;
       this.props.showNotification({
         kind: 'intercom',
@@ -68,7 +58,6 @@ export class IntercomBooter extends React.Component {
   }
 }
 
-export default compose(
-  withUser(),
-  connect(null, { showNotification: globalActions.showNotification })
-)(IntercomBooter);
+export default withUser(userData => ({
+  intercomTracking: userData.user && userData.tracking_intercom,
+}))(IntercomBooter);

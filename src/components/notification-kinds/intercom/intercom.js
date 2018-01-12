@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
@@ -9,7 +8,6 @@ import logger from '@commercetools-local/utils/logger';
 import { DOMAINS } from '@commercetools-local/constants';
 import Notification from '@commercetools-local/core/components/notification';
 import { injectConfiguration } from '@commercetools-local/core/components/configuration';
-import * as globalActions from '@commercetools-local/actions-global';
 import { INTERCOM_TRACKING_STATUS } from '../../../constants';
 import * as intercom from '../../../utils/intercom';
 import styles from './intercom.mod.css';
@@ -48,9 +46,9 @@ export class IntercomNotification extends React.PureComponent {
       kind: PropTypes.oneOf(['intercom']).isRequired,
       domain: PropTypes.oneOf([DOMAINS.GLOBAL]).isRequired,
     }),
+    showUnexpectedErrorNotification: PropTypes.func.isRequired,
     // Injected
     changeIntercomStatus: PropTypes.func.isRequired,
-    showUnexpectedErrorNotification: PropTypes.func.isRequired,
     environmentName: PropTypes.string.isRequired,
   };
 
@@ -128,12 +126,6 @@ export class IntercomNotification extends React.PureComponent {
 }
 
 export default compose(
-  graphql(IntercomStatusMutation, {
-    name: 'changeIntercomStatus',
-  }),
-  connect(null, {
-    showUnexpectedErrorNotification:
-      globalActions.showUnexpectedErrorNotification,
-  }),
+  graphql(IntercomStatusMutation, { name: 'changeIntercomStatus' }),
   injectConfiguration(['env'], 'environmentName')
 )(IntercomNotification);

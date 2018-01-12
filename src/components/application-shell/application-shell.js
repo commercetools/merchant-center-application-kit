@@ -81,7 +81,9 @@ export default class ApplicationShell extends React.Component {
                           <Authenticated>
                             <div className={styles['app-layout']}>
                               {/* TODO make logout redirect explicit */}
-                              <IntercomBooter />
+                              <IntercomBooter
+                                showNotification={this.props.showNotification}
+                              />
                               <SentryUserTracker />
                               <GtmUserTracker />
                               <SetupFlopFlipProvider>

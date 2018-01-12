@@ -61,6 +61,8 @@ export class NotificationsList extends React.PureComponent {
     notifications: PropTypes.arrayOf(PropTypes.object).isRequired,
     mapPluginNotificationToComponent: PropTypes.func,
     activePlugin: PropTypes.string,
+    // Needed for global notifications at the moment.
+    showUnexpectedErrorNotification: PropTypes.func,
   };
 
   static defaultProps = {
@@ -100,6 +102,10 @@ export class NotificationsList extends React.PureComponent {
               key={notification.id}
               notification={notification}
               dismiss={dismiss}
+              // Needed for global notifications at the moment.
+              showUnexpectedErrorNotification={
+                this.props.showUnexpectedErrorNotification
+              }
             />
           );
         })}
