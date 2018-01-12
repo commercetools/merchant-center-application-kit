@@ -1,10 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+import logger from '@commercetools-local/utils/logger';
 import { DOMAINS } from '@commercetools-local/constants';
 import Notification from '@commercetools-local/core/components/notification';
-// import { updateUser } from '../../../../actions/user';
-// import { setupIntercom } from '../../../../utils/tracking';
+import { injectConfiguration } from '@commercetools-local/core/components/configuration';
+import * as globalActions from '@commercetools-local/actions-global';
+import { INTERCOM_TRACKING_STATUS } from '../../../constants';
+import * as intercom from '../../../utils/intercom';
 import styles from './intercom.mod.css';
 
 const messages = defineMessages({
@@ -22,7 +29,16 @@ const messages = defineMessages({
   },
 });
 
-class IntercomNotification extends React.PureComponent {
+const IntercomStatusMutation = gql`
+  mutation LoggedInUser($status: IntercomTrackingStatus!) {
+    changeIntercomStatus(status: $status) {
+      id
+      tracking_intercom
+    }
+  }
+`;
+
+export class IntercomNotification extends React.PureComponent {
   static displayName = 'IntercomNotification';
 
   static propTypes = {
@@ -32,37 +48,55 @@ class IntercomNotification extends React.PureComponent {
       kind: PropTypes.oneOf(['intercom']).isRequired,
       domain: PropTypes.oneOf([DOMAINS.GLOBAL]).isRequired,
     }),
+    // Injected
+    changeIntercomStatus: PropTypes.func.isRequired,
+    showUnexpectedErrorNotification: PropTypes.func.isRequired,
+    environmentName: PropTypes.string.isRequired,
   };
 
-  static contextTypes = {
-    store: PropTypes.object,
+  handleMutationError = error => {
+    // On production we send the errors to Sentry.
+    if (this.props.environmentName !== 'production')
+      logger.error(error, error.stack);
+    // Show an error message
+    this.props.showUnexpectedErrorNotification({ error });
   };
 
-  optOutIntercom = () => {
-    // this.context.store.dispatch(
-    //   updateUser({ tracking_intercom: 'Inactive' }, error => {
-    //     if (error) return;
-    //     setupIntercom('shutdown');
-    //   })
-    // );
-    this.props.dismiss();
+  handleOptOutLinkClick = () => {
+    this.props
+      .changeIntercomStatus({
+        variables: {
+          target: 'mc',
+          status: INTERCOM_TRACKING_STATUS.inactive,
+        },
+      })
+      .then(() => {
+        this.props.dismiss();
+        intercom.shutdown();
+      })
+      .catch(error => this.handleMutationError(error));
   };
 
-  handleClose = () => {
-    // this.context.store.dispatch(
-    //   updateUser({ tracking_intercom: 'Active' }, error => {
-    //     if (error) return;
-    //     setupIntercom('update');
-    //   })
-    // );
-    this.props.dismiss();
+  handleCloseNotification = () => {
+    this.props
+      .changeIntercomStatus({
+        variables: {
+          target: 'mc',
+          status: INTERCOM_TRACKING_STATUS.active,
+        },
+      })
+      .then(() => {
+        this.props.dismiss();
+        intercom.changePage();
+      })
+      .catch(error => this.handleMutationError(error));
   };
 
   render() {
     return (
       <Notification
         type="info"
-        onCloseClick={this.handleClose}
+        onCloseClick={this.handleCloseNotification}
         domain={this.props.notification.domain}
       >
         <FormattedMessage
@@ -79,7 +113,10 @@ class IntercomNotification extends React.PureComponent {
               </a>
             ),
             link: (
-              <span className={styles.link} onClick={this.optOutIntercom}>
+              <span
+                className={styles.link}
+                onClick={this.handleOptOutLinkClick}
+              >
                 <FormattedMessage {...messages.optOutLink} />
               </span>
             ),
@@ -90,4 +127,13 @@ class IntercomNotification extends React.PureComponent {
   }
 }
 
-export default IntercomNotification;
+export default compose(
+  graphql(IntercomStatusMutation, {
+    name: 'changeIntercomStatus',
+  }),
+  connect(null, {
+    showUnexpectedErrorNotification:
+      globalActions.showUnexpectedErrorNotification,
+  }),
+  injectConfiguration(['env'], 'environmentName')
+)(IntercomNotification);

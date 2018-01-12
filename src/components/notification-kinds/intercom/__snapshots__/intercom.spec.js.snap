@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering values for FormattedMessage link should match snapshot 1`] = `
+<span
+  className="link"
+  onClick={[Function]}
+>
+  <FormattedMessage
+    defaultMessage="opt-out"
+    description="Text for the \\"opt-out\\" action."
+    id="GlobalNotification.optOutLink"
+    values={Object {}}
+  />
+</span>
+`;
+
+exports[`rendering values for FormattedMessage linkToIntercom should match snapshot 1`] = `
+<a
+  className="underline"
+  href="https://www.intercom.io"
+  rel="noreferrer noopener"
+  target="_blank"
+>
+  Intercom
+</a>
+`;

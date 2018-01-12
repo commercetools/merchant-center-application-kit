@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { DOMAINS } from '@commercetools-local/constants';
 import { INTERCOM_TRACKING_STATUS } from '../../constants';
 import { IntercomBooter } from './intercom-booter';
 
@@ -9,14 +10,12 @@ jest.mock('../../utils/intercom', () => ({
 }));
 
 const createTestProps = custom => ({
-  userData: {
-    isLoading: false,
-    user: {
-      id: 1,
-      firstName: 'Confoozius',
-      tracking_intercom: INTERCOM_TRACKING_STATUS.active,
-    },
+  user: {
+    id: 1,
+    firstName: 'Confoozius',
+    tracking_intercom: INTERCOM_TRACKING_STATUS.pending,
   },
+  showNotification: jest.fn(),
   ...custom,
 });
 
@@ -24,49 +23,48 @@ let props;
 let wrapper;
 
 describe('lifecycle', () => {
+  let bootIntercomFn;
+  let showBannerFn;
   beforeEach(() => {
+    bootIntercomFn = jest.fn();
+    showBannerFn = jest.fn();
     props = createTestProps();
     wrapper = shallow(<IntercomBooter {...props} />);
+    wrapper.instance().bootIntercom = bootIntercomFn;
+    wrapper.instance().showBanner = showBannerFn;
+    wrapper.instance().componentDidMount();
   });
 
   describe('componentDidMount', () => {
-    let boot;
     beforeEach(() => {
-      boot = jest.fn();
-      wrapper.instance().bootIntercom = boot;
+      bootIntercomFn.mockClear();
+      showBannerFn.mockClear();
       wrapper.instance().componentDidMount();
     });
     it('should call boot', () => {
-      expect(boot).toHaveBeenCalledTimes(1);
-      expect(boot).toHaveBeenCalledWith(props.userData);
+      expect(bootIntercomFn).toHaveBeenCalledTimes(1);
+      expect(bootIntercomFn).toHaveBeenCalledWith(props.user);
+    });
+    it('should call show banner', () => {
+      expect(showBannerFn).toHaveBeenCalledTimes(1);
+      expect(showBannerFn).toHaveBeenCalledWith(props.user);
     });
   });
-
   describe('componentWillReceiveProps', () => {
-    let boot;
-    const nextProps = { userData: { foo: 'bar' } };
+    let nextProps;
     beforeEach(() => {
-      boot = jest.fn();
-      wrapper.instance().bootIntercom = boot;
+      bootIntercomFn.mockClear();
+      showBannerFn.mockClear();
+      nextProps = { user: {} };
+      wrapper.instance().componentWillReceiveProps(nextProps);
     });
-
-    describe('when intercom already booted', () => {
-      beforeEach(() => {
-        wrapper.instance().hasBooted = true;
-        wrapper.instance().componentWillReceiveProps(nextProps);
-      });
-      it('should not call boot', () => {
-        expect(boot).toHaveBeenCalledTimes(0);
-      });
+    it('should call boot', () => {
+      expect(bootIntercomFn).toHaveBeenCalledTimes(1);
+      expect(bootIntercomFn).toHaveBeenCalledWith(nextProps.user);
     });
-    describe('when intercom has not booted yet', () => {
-      beforeEach(() => {
-        wrapper.instance().componentWillReceiveProps(nextProps);
-      });
-      it('should call boot', () => {
-        expect(boot).toHaveBeenCalledTimes(1);
-        expect(boot).toHaveBeenCalledWith(nextProps.userData);
-      });
+    it('should call show banner', () => {
+      expect(showBannerFn).toHaveBeenCalledTimes(1);
+      expect(showBannerFn).toHaveBeenCalledWith(nextProps.user);
     });
   });
 });
@@ -75,55 +73,123 @@ describe('bootIntercom', () => {
   beforeEach(() => {
     mockBoot = jest.fn();
   });
-  describe('when the user is loading', () => {
-    beforeEach(() => {
-      props = createTestProps({ userData: { isLoading: true } });
-      wrapper = shallow(<IntercomBooter {...props} />);
-      wrapper.instance().bootIntercom(props.userData);
-    });
-    it('should not call boot', () => {
-      expect(mockBoot).toHaveBeenCalledTimes(0);
-    });
-  });
-  describe('when user denied intercom', () => {
-    beforeEach(() => {
-      props = createTestProps({
-        userData: {
-          isLoading: false,
-          user: { tracking_intercom: INTERCOM_TRACKING_STATUS.inactive },
-        },
+  describe('when intercom is not booted yet', () => {
+    describe('when user is defined', () => {
+      describe('when tracking status is ACTIVE', () => {
+        beforeEach(() => {
+          props = createTestProps({
+            user: {
+              id: 1,
+              tracking_intercom: INTERCOM_TRACKING_STATUS.active,
+            },
+          });
+          wrapper = shallow(<IntercomBooter {...props} />);
+          wrapper.instance().bootIntercom(props.user);
+        });
+        it('should boot intercom', () => {
+          expect(mockBoot).toHaveBeenCalledTimes(1);
+          expect(mockBoot).toHaveBeenCalledWith(props.user);
+        });
+        it('should set the flag hasBooted to true', () => {
+          expect(wrapper.instance().hasBooted).toBe(true);
+        });
       });
-      wrapper = shallow(<IntercomBooter {...props} />);
-      wrapper.instance().bootIntercom(props.userData);
-    });
-    it('should not call boot', () => {
-      expect(mockBoot).toHaveBeenCalledTimes(0);
-    });
-  });
-  describe('when user has not decided to use intercom', () => {
-    beforeEach(() => {
-      props = createTestProps({
-        userData: {
-          isLoading: false,
-          user: { tracking_intercom: INTERCOM_TRACKING_STATUS.pending },
-        },
+      describe('when tracking status is not ACTIVE', () => {
+        beforeEach(() => {
+          props = createTestProps();
+          wrapper = shallow(<IntercomBooter {...props} />);
+          wrapper.instance().bootIntercom(props.user);
+        });
+        it('should not boot intercom', () => {
+          expect(mockBoot).toHaveBeenCalledTimes(0);
+        });
       });
-      wrapper = shallow(<IntercomBooter {...props} />);
-      wrapper.instance().bootIntercom(props.userData);
     });
-    it('should not call boot', () => {
-      expect(mockBoot).toHaveBeenCalledTimes(0);
+    describe('when user is not defined', () => {
+      beforeEach(() => {
+        props = createTestProps({ user: null });
+        wrapper = shallow(<IntercomBooter {...props} />);
+        wrapper.instance().bootIntercom(props.user);
+      });
+      it('should not boot intercom', () => {
+        expect(mockBoot).toHaveBeenCalledTimes(0);
+      });
     });
   });
-  describe('when intercom has not booted yet', () => {
+  describe('when intercom is already booted', () => {
     beforeEach(() => {
       props = createTestProps();
       wrapper = shallow(<IntercomBooter {...props} />);
-      wrapper.instance().bootIntercom(props.userData);
+      wrapper.instance().hasBooted = true;
+      wrapper.instance().bootIntercom(props.user);
     });
-    it('should call boot with user info', () => {
-      expect(mockBoot).toHaveBeenCalledTimes(1);
-      expect(mockBoot).toHaveBeenCalledWith(props.userData.user);
+    it('should not boot intercom', () => {
+      expect(mockBoot).toHaveBeenCalledTimes(0);
+    });
+  });
+});
+
+describe('showBanner', () => {
+  describe('when intercom banner is not dispatched yet', () => {
+    describe('when user is defined', () => {
+      describe('when tracking status is PENDING', () => {
+        beforeEach(() => {
+          props = createTestProps({
+            user: {
+              id: 1,
+              tracking_intercom: INTERCOM_TRACKING_STATUS.pending,
+            },
+          });
+          wrapper = shallow(<IntercomBooter {...props} />);
+          wrapper.instance().showBanner(props.user);
+        });
+        it('should boot intercom', () => {
+          expect(props.showNotification).toHaveBeenCalledTimes(1);
+          expect(props.showNotification).toHaveBeenCalledWith({
+            kind: 'intercom',
+            domain: DOMAINS.GLOBAL,
+          });
+        });
+        it('should set the flag isNotificationDispatched to true', () => {
+          expect(wrapper.instance().isNotificationDispatched).toBe(true);
+        });
+      });
+      describe('when tracking status is not PENDING', () => {
+        beforeEach(() => {
+          props = createTestProps({
+            user: {
+              id: 1,
+              tracking_intercom: INTERCOM_TRACKING_STATUS.active,
+            },
+          });
+          wrapper = shallow(<IntercomBooter {...props} />);
+          wrapper.instance().showBanner(props.user);
+        });
+        it('should not boot intercom', () => {
+          expect(props.showNotification).toHaveBeenCalledTimes(0);
+        });
+      });
+    });
+    describe('when user is not defined', () => {
+      beforeEach(() => {
+        props = createTestProps({ user: null });
+        wrapper = shallow(<IntercomBooter {...props} />);
+        wrapper.instance().showBanner(props.user);
+      });
+      it('should not boot intercom', () => {
+        expect(props.showNotification).toHaveBeenCalledTimes(0);
+      });
+    });
+  });
+  describe('when intercom notification is already dispatched', () => {
+    beforeEach(() => {
+      props = createTestProps();
+      wrapper = shallow(<IntercomBooter {...props} />);
+      wrapper.instance().isNotificationDispatched = true;
+      wrapper.instance().showBanner(props.user);
+    });
+    it('should not boot intercom', () => {
+      expect(mockBoot).toHaveBeenCalledTimes(0);
     });
   });
 });
