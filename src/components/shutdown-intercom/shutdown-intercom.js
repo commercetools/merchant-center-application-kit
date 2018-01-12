@@ -13,7 +13,7 @@ class ShutdownIntercom extends React.Component {
   static propTypes = {
     children: PropTypes.node,
   };
-  defaultProps = {
+  static defaultProps = {
     children: null,
   };
   componentDidMount() {
