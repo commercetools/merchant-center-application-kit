@@ -52,7 +52,7 @@ describe('lifecycle', () => {
     });
     describe('when intercom is already booted', () => {
       beforeEach(() => {
-        wrapper.instance().isBooted = true;
+        wrapper.instance().hasBooted = true;
         wrapper.instance().componentWillReceiveProps(nextProps);
       });
       it('should not call boot', () => {
@@ -61,7 +61,7 @@ describe('lifecycle', () => {
     });
     describe('when intercom is not booted yet', () => {
       beforeEach(() => {
-        wrapper.instance().isBooted = false;
+        wrapper.instance().hasBooted = false;
         wrapper.instance().componentWillReceiveProps(nextProps);
       });
       it('should call boot', () => {
@@ -73,7 +73,7 @@ describe('lifecycle', () => {
     });
     describe('when intercom banner has been shown', () => {
       beforeEach(() => {
-        wrapper.instance().isNotificationDispatched = true;
+        wrapper.instance().hasDispatchedNotification = true;
         wrapper.instance().componentWillReceiveProps(nextProps);
       });
       it('should not call show banner', () => {
@@ -82,7 +82,7 @@ describe('lifecycle', () => {
     });
     describe('when intercom banner has not been shown', () => {
       beforeEach(() => {
-        wrapper.instance().isNotificationDispatched = false;
+        wrapper.instance().hasDispatchedNotification = false;
         wrapper.instance().componentWillReceiveProps(nextProps);
       });
       it('should call show banner', () => {
@@ -147,8 +147,8 @@ describe('showBanner', () => {
         domain: DOMAINS.GLOBAL,
       });
     });
-    it('should set the flag isNotificationDispatched to true', () => {
-      expect(wrapper.instance().isNotificationDispatched).toBe(true);
+    it('should set the flag hasDispatchedNotification to true', () => {
+      expect(wrapper.instance().hasDispatchedNotification).toBe(true);
     });
   });
   describe('when tracking status is not PENDING', () => {

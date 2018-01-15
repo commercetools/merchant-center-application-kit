@@ -28,7 +28,7 @@ export class IntercomBooter extends React.Component {
     children: null,
   };
   hasBooted = false;
-  isNotificationDispatched = false;
+  hasDispatchedNotification = false;
   componentDidMount() {
     // since the user and project could have been loaded from the apollo cache
     // they could be preset already when mounting
@@ -36,8 +36,8 @@ export class IntercomBooter extends React.Component {
     this.showBanner(this.props.intercomTrackingStatus);
   }
   componentWillReceiveProps(nextProps) {
-    if (!this.isBooted) this.bootIntercom(nextProps.intercomTrackingStatus);
-    if (!this.isNotificationDispatched)
+    if (!this.hasBooted) this.bootIntercom(nextProps.intercomTrackingStatus);
+    if (!this.hasDispatchedNotification)
       this.showBanner(nextProps.intercomTrackingStatus);
   }
   bootIntercom = intercomTrackingStatus => {
@@ -48,7 +48,7 @@ export class IntercomBooter extends React.Component {
   };
   showBanner = intercomTrackingStatus => {
     if (intercomTrackingStatus === INTERCOM_TRACKING_STATUS.pending) {
-      this.isNotificationDispatched = true;
+      this.hasDispatchedNotification = true;
       this.props.showNotification({
         kind: 'intercom',
         domain: DOMAINS.GLOBAL,
