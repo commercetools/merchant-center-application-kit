@@ -110,11 +110,7 @@ export default class ApplicationShell extends React.Component {
                                   <Route
                                     path="/profile"
                                     render={() => (
-                                      <div
-                                        className={
-                                          styles['page-without-menu-layout']
-                                        }
-                                      >
+                                      <React.Fragment>
                                         <IntercomUserTracker />
                                         <NotificationsList
                                           domain={DOMAINS.PAGE}
@@ -136,7 +132,7 @@ export default class ApplicationShell extends React.Component {
                                               .showUnexpectedErrorNotification
                                           }
                                         />
-                                      </div>
+                                      </React.Fragment>
                                     )}
                                   />
 

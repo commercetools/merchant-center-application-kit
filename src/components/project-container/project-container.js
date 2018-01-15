@@ -115,7 +115,7 @@ class ProjectContainer extends React.Component {
                 return (
                   <ProjectDataLocale locales={project.languages}>
                     {({ locale, setProjectDataLocale }) => (
-                      <div className={styles['page-with-menu-layout']}>
+                      <React.Fragment>
                         {/* Render <LocaleSwitcher> using a portal */}
                         {this.state.localeSwitcherNode &&
                           // Render the `<LocaleSwitcher>` only if the project has more
@@ -129,7 +129,7 @@ class ProjectContainer extends React.Component {
                             }),
                             this.state.localeSwitcherNode
                           )}
-                        <aside>
+                        <aside className={styles.aside}>
                           <Menu
                             location={this.props.location}
                             menuItems={this.props.menuItems}
@@ -139,15 +139,20 @@ class ProjectContainer extends React.Component {
                             ])}
                           />
                         </aside>
-                        <main>
+                        {/**
+                         * NOTE: in IE11 main can't be a grid-child apparently.
+                         * So we have to use a div and give it the role `main`
+                         * to achieve the same semantic result
+                         */}
+                        <div role="main" className={styles.main}>
                           {/**
                            * NOTE: we don't need to explicitly pass the `locale`,
                            * it's enough to trigger a re-render.
                            * The `locale` can then be read from the localStorage.
                            */}
                           {this.props.render()}
-                        </main>
-                      </div>
+                        </div>
+                      </React.Fragment>
                     )}
                   </ProjectDataLocale>
                 );
