@@ -104,9 +104,6 @@ describe('interactions', () => {
     it('should dismiss notification', () => {
       expect(props.dismiss).toHaveBeenCalledTimes(1);
     });
-    it('should shutdown intercom', () => {
-      expect(intercom.shutdown).toHaveBeenCalledTimes(1);
-    });
   });
   describe('handleCloseNotification', () => {
     beforeEach(() => {
@@ -134,9 +131,6 @@ describe('interactions', () => {
     });
     it('should dismiss notification', () => {
       expect(props.dismiss).toHaveBeenCalledTimes(1);
-    });
-    it('should update intercom', () => {
-      expect(intercom.changePage).toHaveBeenCalledTimes(1);
     });
   });
 });

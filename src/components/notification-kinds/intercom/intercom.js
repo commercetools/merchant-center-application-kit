@@ -9,7 +9,6 @@ import { DOMAINS } from '@commercetools-local/constants';
 import Notification from '@commercetools-local/core/components/notification';
 import { injectConfiguration } from '@commercetools-local/core/components/configuration';
 import { INTERCOM_TRACKING_STATUS } from '../../../constants';
-import * as intercom from '../../../utils/intercom';
 import styles from './intercom.mod.css';
 
 const messages = defineMessages({
@@ -70,7 +69,9 @@ export class IntercomNotification extends React.PureComponent {
       })
       .then(() => {
         this.props.dismiss();
-        intercom.shutdown();
+        // no need to shut down intercom manually since the users intercom
+        // tracking status was pending before this notification was shown
+        // intercom never got booted in the first place
       })
       .catch(error => this.handleMutationError(error));
   };
@@ -85,7 +86,6 @@ export class IntercomNotification extends React.PureComponent {
       })
       .then(() => {
         this.props.dismiss();
-        intercom.changePage();
       })
       .catch(error => this.handleMutationError(error));
   };
