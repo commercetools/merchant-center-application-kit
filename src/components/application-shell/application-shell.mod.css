@@ -5,12 +5,6 @@
 
 .app-layout {
   height: 100vh;
-
-  /* IE10 version of css grid to make it work in IE11 */
-  -ms-grid-rows: var(--headerHeight) 1fr;
-  -ms-grid-columns: var(--menuWidth) 1fr;
-
-  /* grid spec-compliant version */
   display: grid;
   grid-template-rows: var(--headerHeight) 1fr;
   grid-template-columns: var(--menuWidth) 1fr;
