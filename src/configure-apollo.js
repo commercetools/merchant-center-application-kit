@@ -1,3 +1,4 @@
+import fetch from 'unfetch';
 import createHistory from 'history/createBrowserHistory';
 import ApolloClient from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
@@ -15,6 +16,7 @@ const history = createHistory();
 
 const httpLink = createHttpLink({
   uri: `${window.app.protocol}://${window.app.host}/graphql`,
+  fetch,
 });
 const isKnownTarget = target => ['mc', 'ctp', 'dashboard'].includes(target);
 // Use a middleware to update the request headers with the correct params.
