@@ -61,5 +61,5 @@ export class IntercomBooter extends React.Component {
 }
 
 export default withUser(userData => ({
-  intercomTrackingStatus: userData.user && userData.tracking_intercom,
+  intercomTrackingStatus: userData.user && userData.user.tracking_intercom,
 }))(IntercomBooter);
