@@ -7,11 +7,11 @@
   height: 100%;
 
   /* IE10 version of css grid to make it work in IE11 */
-  -ms-grid-rows: 50px 1fr;
+  -ms-grid-rows: 43px 1fr;
   -ms-grid-columns: 200px 1fr;
 
   /* grid spec-compliant version */
   display: grid;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 43px 1fr;
   grid-template-columns: 200px 1fr;
 }
