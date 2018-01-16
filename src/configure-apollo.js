@@ -16,6 +16,11 @@ const history = createHistory();
 
 const httpLink = createHttpLink({
   uri: `${window.app.protocol}://${window.app.host}/graphql`,
+  // manual polyfill for fetch to support older browsers like IE11
+  // for some reason that I wasn't able to figure out just importing
+  // isomorphic fetch didn't make Apollo use the global fetch :(
+  // they recommend using unfetch and passing it explicitly like we are doing
+  // here. https://www.apollographql.com/docs/link/links/http.html#fetch
   fetch,
 });
 const isKnownTarget = target => ['mc', 'ctp', 'dashboard'].includes(target);
