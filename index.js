@@ -112,11 +112,6 @@ export const MANAGE_ORDERS_PERMISSION = {
   resource: 'orders',
 };
 
-export const MANAGE_PROJECTS_PERMISSION = {
-  mode: 'manage',
-  resource: 'projects',
-};
-
 export const FILTER_TYPES = {
   lessThan: 'lessThan',
   moreThan: 'moreThan',
