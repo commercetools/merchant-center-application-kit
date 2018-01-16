@@ -11,7 +11,12 @@ class GtmBooter extends React.Component {
   static displayName = 'GtmBooter';
   static propTypes = {
     children: PropTypes.node.isRequired,
-    trackingEventWhitelist: PropTypes.objectOf(PropTypes.string).isRequired,
+    trackingEventWhitelist: PropTypes.objectOf(
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.objectOf(PropTypes.string),
+      ])
+    ).isRequired,
   };
   static contextTypes = {
     mcng: mcngShape,

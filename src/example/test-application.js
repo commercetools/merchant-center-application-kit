@@ -111,44 +111,49 @@ const ConnectedTriggerNotification = connect(
 
 const TestApplication = () => (
   <StoreProvider store={reduxStore}>
-    <NotificationsConnector>
-      {({
-        notificationsByDomain,
-        showNotification,
-        showApiErrorNotification,
-        showUnexpectedErrorNotification,
-      }) => (
-        <ApplicationShell
-          i18n={i18n}
-          configuration={window.app}
-          menuItems={testMenuItems}
-          trackingEventWhitelist={trackingEventWhitelist}
-          notificationsByDomain={notificationsByDomain}
-          showNotification={showNotification}
-          showApiErrorNotification={showApiErrorNotification}
-          showUnexpectedErrorNotification={showUnexpectedErrorNotification}
-          render={() => (
-            <div>
-              <RequestsInFlightLoader />
-              <TriggerRequestsInFlight store={reduxStore} />
-              <ConnectedTriggerNotification />
-              <Switch>
-                <Route
-                  path="/:projectKey/dashboard"
-                  component={TestDashboard}
-                />
-                <Route path="/:projectKey/products" component={TestProducts} />
-                {/**
-                 * Define a catch-all route (needs
-                 * to be defined after the rendered
-                 * children) */}
-                <Route component={PageNotFound} />
-              </Switch>
-            </div>
-          )}
-        />
-      )}
-    </NotificationsConnector>
+    <React.Fragment>
+      <RequestsInFlightLoader />
+      <NotificationsConnector>
+        {({
+          notificationsByDomain,
+          showNotification,
+          showApiErrorNotification,
+          showUnexpectedErrorNotification,
+        }) => (
+          <ApplicationShell
+            i18n={i18n}
+            configuration={window.app}
+            menuItems={testMenuItems}
+            trackingEventWhitelist={trackingEventWhitelist}
+            notificationsByDomain={notificationsByDomain}
+            showNotification={showNotification}
+            showApiErrorNotification={showApiErrorNotification}
+            showUnexpectedErrorNotification={showUnexpectedErrorNotification}
+            render={() => (
+              <div>
+                <TriggerRequestsInFlight store={reduxStore} />
+                <ConnectedTriggerNotification />
+                <Switch>
+                  <Route
+                    path="/:projectKey/dashboard"
+                    component={TestDashboard}
+                  />
+                  <Route
+                    path="/:projectKey/products"
+                    component={TestProducts}
+                  />
+                  {/**
+                   * Define a catch-all route (needs
+                   * to be defined after the rendered
+                   * children) */}
+                  <Route component={PageNotFound} />
+                </Switch>
+              </div>
+            )}
+          />
+        )}
+      </NotificationsConnector>
+    </React.Fragment>
   </StoreProvider>
 );
 TestApplication.displayName = 'TestApplication';

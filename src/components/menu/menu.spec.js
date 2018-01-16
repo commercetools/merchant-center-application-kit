@@ -50,13 +50,13 @@ const createDataMenuTestProps = props => ({
       name: 'mcng-customers',
       menu: {
         name: 'Customers',
-        label: 'Menu.Customers.title',
+        labelKey: 'Menu.Customers.title',
         link: 'customers',
         icon: 'CustomerFilledIcon',
         submenu: [
           {
             name: 'Add Customer',
-            label: 'Menu.Customers.add',
+            labelKey: 'Menu.Customers.add',
             link: 'customers/new',
           },
         ],
@@ -129,7 +129,7 @@ describe('rendering', () => {
               name: 'mcng-customers',
               menu: {
                 name: 'Customers',
-                label: 'Menu.Customers.title',
+                labelKey: 'Menu.Customers.title',
                 link: 'customers',
                 icon: 'CustomerFilledIcon',
                 permissions: [{ mode: 'view', resource: 'customers' }],
@@ -186,7 +186,7 @@ describe('rendering', () => {
         );
       });
       describe('<MenuItemLink>', () => {
-        it('should render menu label', () => {
+        it('should render menu labelKey', () => {
           expect(wrapper.find('MenuItemLink').at(0)).toRender({
             id: 'Menu.Customers.title',
           });
@@ -210,7 +210,7 @@ describe('rendering', () => {
                   name: 'mcng-customers',
                   menu: {
                     name: 'Customers',
-                    label: 'Menu.Customers.title',
+                    labelKey: 'Menu.Customers.title',
                     link: 'customers',
                     icon: 'CustomerFilledIcon',
                   },
@@ -303,13 +303,13 @@ describe('rendering', () => {
                   name: 'mcng-customers',
                   menu: {
                     name: 'Customers',
-                    label: 'Menu.Customers.title',
+                    labelKey: 'Menu.Customers.title',
                     link: 'customers',
                     icon: 'CustomerFilledIcon',
                     submenu: [
                       {
                         name: 'Add Customer',
-                        label: 'Menu.Customers.add',
+                        labelKey: 'Menu.Customers.add',
                         link: 'customers/new',
                         permissions: [
                           { mode: 'manage', resource: 'customers' },
@@ -397,7 +397,7 @@ describe('rendering', () => {
                 '/test-1/customers/new'
               );
             });
-            it('should render submenu label', () => {
+            it('should render submenu labelKey', () => {
               expect(wrapper.find('MenuItemLink').at(1)).toRender({
                 id: 'Menu.Customers.add',
               });
@@ -412,7 +412,7 @@ describe('rendering', () => {
                   name: 'mcng-customers',
                   menu: {
                     name: 'Customers',
-                    label: 'Menu.Customers.title',
+                    labelKey: 'Menu.Customers.title',
                     link: 'customers',
                     icon: 'CustomerFilledIcon',
                   },

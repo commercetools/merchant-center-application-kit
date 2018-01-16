@@ -184,7 +184,7 @@ export class DataMenu extends React.PureComponent {
         name: PropTypes.string.isRequired,
         menu: PropTypes.shape({
           name: PropTypes.string.isRequired,
-          label: PropTypes.string.isRequired,
+          labelKey: PropTypes.string.isRequired,
           link: PropTypes.string.isRequired,
           icon: PropTypes.string.isRequired,
           featureToggle: PropTypes.string,
@@ -197,7 +197,7 @@ export class DataMenu extends React.PureComponent {
           submenu: PropTypes.arrayOf(
             PropTypes.shape({
               name: PropTypes.string.isRequired,
-              label: PropTypes.string.isRequired,
+              labelKey: PropTypes.string.isRequired,
               link: PropTypes.string.isRequired,
               featureToggle: PropTypes.string,
               permissions: PropTypes.arrayOf(
@@ -387,7 +387,7 @@ export class DataMenu extends React.PureComponent {
                         ? { 'data-target': 'toggle' }
                         : {})}
                     >
-                      <FormattedMessage {...messages[menu.label]} />
+                      <FormattedMessage {...messages[menu.labelKey]} />
                     </div>
                   </div>
                 </MenuItemLink>
@@ -414,7 +414,7 @@ export class DataMenu extends React.PureComponent {
                                 exactMatch={true}
                               >
                                 <FormattedMessage
-                                  {...messages[submenu.label]}
+                                  {...messages[submenu.labelKey]}
                                 />
                               </MenuItemLink>
                             </div>

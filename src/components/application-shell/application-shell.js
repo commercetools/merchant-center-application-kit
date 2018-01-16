@@ -10,6 +10,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import { joinPaths } from '@commercetools-local/utils/url';
 import { DOMAINS } from '@commercetools-local/constants';
+import setupGlobalErrorListener from '../../utils/setup-global-error-listener';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
 import Authenticated from '../authenticated';
@@ -40,7 +41,12 @@ export default class ApplicationShell extends React.Component {
     i18n: PropTypes.object.isRequired,
     configuration: PropTypes.object.isRequired,
     menuItems: PropTypes.array.isRequired,
-    trackingEventWhitelist: PropTypes.objectOf(PropTypes.string).isRequired,
+    trackingEventWhitelist: PropTypes.objectOf(
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.objectOf(PropTypes.string),
+      ])
+    ).isRequired,
     render: PropTypes.func.isRequired,
     notificationsByDomain: PropTypes.shape({
       global: PropTypes.array.isRequired,
@@ -52,6 +58,9 @@ export default class ApplicationShell extends React.Component {
     showApiErrorNotification: PropTypes.func,
     showUnexpectedErrorNotification: PropTypes.func,
   };
+  componentDidMount() {
+    setupGlobalErrorListener(this.props.showUnexpectedErrorNotification);
+  }
   render() {
     return (
       <ConfigurationProvider configuration={this.props.configuration}>

@@ -57,6 +57,14 @@ export default defineMessages({
     id: 'Menu.Customers.add',
     defaultMessage: 'Add customer',
   },
+  'Menu.CustomerGroups.add': {
+    id: 'Menu.CustomerGroups.add',
+    defaultMessage: 'Add customer group',
+  },
+  'Menu.CustomerGroups.list': {
+    id: 'Menu.CustomerGroups.list',
+    defaultMessage: 'Customer groups list',
+  },
   'Menu.Orders.title': {
     id: 'Menu.Orders.title',
     defaultMessage: 'Orders',
@@ -73,20 +81,28 @@ export default defineMessages({
     id: 'Menu.Discounts.title',
     defaultMessage: 'Discounts',
   },
-  'Menu.Discounts.ProductDiscounts.list': {
+  'Menu.ProductDiscounts.list': {
     id: 'Menu.ProductDiscounts.list',
     defaultMessage: 'Product discounts list',
   },
-  'Menu.Discounts.CartDiscounts.list': {
+  'Menu.CartDiscounts.list': {
     id: 'Menu.CartDiscounts.list',
     defaultMessage: 'Cart discounts list',
   },
-  'Menu.Discounts.DiscountCodes.list': {
+  'Menu.DiscountCodes.list': {
     id: 'Menu.DiscountCodes.list',
     defaultMessage: 'Discount codes list',
   },
   'Menu.Discounts.add': {
     id: 'Menu.Discounts.add',
     defaultMessage: 'Add order',
+  },
+  'Menu.ProjectSettings.title': {
+    id: 'Menu.ProjectSettings.title',
+    defaultMessage: 'Settings',
+  },
+  'Menu.Taxes.title': {
+    id: 'Menu.Taxes.title',
+    defaultMessage: 'Taxes',
   },
 });
