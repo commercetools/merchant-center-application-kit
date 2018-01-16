@@ -20,7 +20,9 @@ export class IntercomBooter extends React.Component {
     showNotification: PropTypes.func.isRequired,
     children: PropTypes.node,
     // Injected
-    intercomTracking: PropTypes.oneOf(Object.values(INTERCOM_TRACKING_STATUS)),
+    intercomTrackingStatus: PropTypes.oneOf(
+      Object.values(INTERCOM_TRACKING_STATUS)
+    ),
   };
   static defaultProps = {
     children: null,
@@ -30,22 +32,22 @@ export class IntercomBooter extends React.Component {
   componentDidMount() {
     // since the user and project could have been loaded from the apollo cache
     // they could be preset already when mounting
-    this.bootIntercom(this.props.intercomTracking);
-    this.showBanner(this.props.intercomTracking);
+    this.bootIntercom(this.props.intercomTrackingStatus);
+    this.showBanner(this.props.intercomTrackingStatus);
   }
   componentWillReceiveProps(nextProps) {
-    if (!this.isBooted) this.bootIntercom(nextProps.intercomTracking);
+    if (!this.isBooted) this.bootIntercom(nextProps.intercomTrackingStatus);
     if (!this.isNotificationDispatched)
-      this.showBanner(nextProps.intercomTracking);
+      this.showBanner(nextProps.intercomTrackingStatus);
   }
-  bootIntercom = intercomTracking => {
-    if (intercomTracking === INTERCOM_TRACKING_STATUS.active) {
+  bootIntercom = intercomTrackingStatus => {
+    if (intercomTrackingStatus === INTERCOM_TRACKING_STATUS.active) {
       this.hasBooted = true;
-      intercom.boot(intercomTracking);
+      intercom.boot(intercomTrackingStatus);
     }
   };
-  showBanner = intercomTracking => {
-    if (intercomTracking === INTERCOM_TRACKING_STATUS.pending) {
+  showBanner = intercomTrackingStatus => {
+    if (intercomTrackingStatus === INTERCOM_TRACKING_STATUS.pending) {
       this.isNotificationDispatched = true;
       this.props.showNotification({
         kind: 'intercom',
@@ -59,5 +61,5 @@ export class IntercomBooter extends React.Component {
 }
 
 export default withUser(userData => ({
-  intercomTracking: userData.user && userData.tracking_intercom,
+  intercomTrackingStatus: userData.user && userData.tracking_intercom,
 }))(IntercomBooter);
