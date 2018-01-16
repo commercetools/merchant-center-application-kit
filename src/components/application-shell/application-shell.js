@@ -95,6 +95,9 @@ export default class ApplicationShell extends React.Component {
                                   mapPluginNotificationToComponent={
                                     this.props.mapPluginNotificationToComponent
                                   }
+                                  showUnexpectedErrorNotification={
+                                    this.props.showUnexpectedErrorNotification
+                                  }
                                 />
                                 <AppBar />
 
