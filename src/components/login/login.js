@@ -85,14 +85,20 @@ export class Login extends React.PureComponent {
         this.props.history.push(this.props.locationParams.redirectTo || '/');
       })
       .catch(error => {
-        this.setState({
-          loading: false,
-          error: error.message.match(/invalid/i)
-            ? LOGOUT_REASONS.INVALID
-            : // Unknown error reason. Pass the actual error message.
-              // TODO: should we expose this message?
-              error.message,
-        });
+        if (error) {
+          // We are sure that the API always return one error in this case,
+          // therefore it's safe to access the first error in the list.
+          const code =
+            error.body && error.body.errors[0] && error.body.errors[0].code;
+          if (code === 'LockedAccount') {
+            this.props.history.push('/login/locked');
+          } else {
+            this.setState({
+              loading: false,
+              error: LOGOUT_REASONS.INVALID,
+            });
+          }
+        }
       });
   };
 

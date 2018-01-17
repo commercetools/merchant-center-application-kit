@@ -295,7 +295,27 @@ describe('requestAccessToken', () => {
     });
   });
   describe('when login fails', () => {
-    describe('when error message matches "invalid"', () => {
+    describe('when error code is "LockedAccount"', () => {
+      let props;
+      let wrapper;
+      beforeEach(() => {
+        handleSubmitPreventDefaultMock.mockClear();
+        props = createTestProps({
+          requestAccessToken: jest.fn(() => {
+            const error = new Error('Account is locked');
+            error.body = { errors: [{ code: 'LockedAccount' }] };
+            return Promise.reject(error);
+          }),
+        });
+        wrapper = shallow(<Login {...props} />);
+        wrapper.setState({ email: 'john@doe.com', password: 'secret' });
+        wrapper.instance().handleSubmit({ preventDefault: jest.fn() });
+      });
+      it('should redirect to locked page', () => {
+        expect(props.history.push).toHaveBeenCalledWith('/login/locked');
+      });
+    });
+    describe('when error code is not "LockedAccount"', () => {
       let props;
       let wrapper;
       beforeEach(() => {
@@ -303,6 +323,7 @@ describe('requestAccessToken', () => {
         props = createTestProps({
           requestAccessToken: jest.fn(() => {
             const error = new Error('Username or password are invalid');
+            error.body = { errors: [{ code: 'InvalidLogin' }] };
             return Promise.reject(error);
           }),
         });
@@ -311,26 +332,7 @@ describe('requestAccessToken', () => {
         wrapper.instance().handleSubmit({ preventDefault: jest.fn() });
       });
       it('should set INVALID reason as error message', () => {
-        expect(wrapper).toHaveState('error', 'invalid');
-      });
-    });
-    describe('when error message does not match "invalid"', () => {
-      let props;
-      let wrapper;
-      beforeEach(() => {
-        handleSubmitPreventDefaultMock.mockClear();
-        props = createTestProps({
-          requestAccessToken: jest.fn(() => {
-            const error = new Error('Fetch error');
-            return Promise.reject(error);
-          }),
-        });
-        wrapper = shallow(<Login {...props} />);
-        wrapper.setState({ email: 'john@doe.com', password: 'secret' });
-        wrapper.instance().handleSubmit({ preventDefault: jest.fn() });
-      });
-      it('should set original error message as error', () => {
-        expect(wrapper).toHaveState('error', 'Fetch error');
+        expect(wrapper).toHaveState('error', LOGOUT_REASONS.INVALID);
       });
     });
   });

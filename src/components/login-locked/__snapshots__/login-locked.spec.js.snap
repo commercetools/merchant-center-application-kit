@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelpDeskLink rendering should match snapshot 1`] = `
+<a
+  href="https://support.commercetools.com"
+  target="_blank"
+>
+  <FormattedMessage
+    defaultMessage="Help Desk"
+    id="LoginLocked.helpDeskLink"
+    values={Object {}}
+  />
+</a>
+`;
+
+exports[`LockedAccount rendering rendering should match snapshot 1`] = `
+<ServicePageResponseLayout
+  imageSrc="test-file-stub"
+  paragraph1={
+    <FormattedMessage
+      defaultMessage="You can {resetPasswordLink} or contact the commercetools {helpDeskLink}"
+      id="LoginLocked.paragraph1"
+      values={
+        Object {
+          "helpDeskLink": <HelpDeskLink />,
+          "resetPasswordLink": <getContext(withProps(ResetPasswordLink)) />,
+        }
+      }
+    />
+  }
+  title={
+    <FormattedMessage
+      defaultMessage="Account Locked"
+      id="LoginLocked.title"
+      values={Object {}}
+    />
+  }
+/>
+`;
+
+exports[`ResetPasswordLink rendering rendering should match snapshot 1`] = `
+<a
+  href="https://ac.ct.com/reset-password"
+  target="_blank"
+>
+  <FormattedMessage
+    defaultMessage="reset your password"
+    id="LoginLocked.resetPasswordLink"
+    values={Object {}}
+  />
+</a>
+`;

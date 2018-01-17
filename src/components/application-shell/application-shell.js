@@ -21,6 +21,7 @@ import RedirectToProject from '../redirect-to-project';
 import Login from '../login';
 import LoginSSO from '../login-sso';
 import LoginSSOCallback from '../login-sso-callback';
+import LoginLocked from '../login-locked';
 import Logout from '../logout';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
 import UserProfile from '../user-profile';
@@ -81,6 +82,7 @@ export default class ApplicationShell extends React.Component {
                         component={LoginSSOCallback}
                       />
                       <Route path="/login/sso" component={LoginSSO} />
+                      <Route path="/login/locked" component={LoginLocked} />
                       <Route path="/login" component={Login} />
                       <Route path="/logout" component={Logout} />
 
