@@ -12,9 +12,6 @@ export {
   withProject,
 } from './components/fetch-project';
 export {
-  default as withParsedLocation,
-} from './components/with-parsed-location';
-export {
   default as NotificationsConnector,
   notificationsReducer,
 } from './components/notifications-connector';

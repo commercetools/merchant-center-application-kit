@@ -5,16 +5,20 @@ import jwtDecode from 'jwt-decode';
 import * as storage from '@commercetools-local/utils/storage';
 import client from '@commercetools-local/utils/node-sdk';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
-import withParsedLocation from '../with-parsed-location';
+import { withParsedLocation } from '@commercetools-local/react-router-utils';
 import ApplicationLoader from '../application-loader';
 import FailedAuthentication from '../failed-authentication';
 
 export class LoginSSOCallback extends React.PureComponent {
   static displayName = 'LoginSSOCallback';
   static propTypes = {
-    locationParams: PropTypes.shape({
-      id_token: PropTypes.string.isRequired,
-      organizationId: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      query: PropTypes.shape({
+        organizationId: PropTypes.string.isRequired,
+      }).isRequired,
+      fragments: PropTypes.shape({
+        id_token: PropTypes.string.isRequired,
+      }).isRequired,
     }).isRequired,
     redirectTo: PropTypes.func.isRequired,
     requestAccessToken: PropTypes.func.isRequired,
@@ -25,7 +29,7 @@ export class LoginSSOCallback extends React.PureComponent {
   };
 
   componentDidMount() {
-    const idToken = this.props.locationParams.id_token;
+    const idToken = this.props.location.fragments.id_token;
     const decodedIdToken = jwtDecode(idToken);
     const nonce = storage.get(CORE_STORAGE_KEYS.NONCE);
     storage.remove(CORE_STORAGE_KEYS.NONCE);
@@ -36,7 +40,7 @@ export class LoginSSOCallback extends React.PureComponent {
       this.props
         .requestAccessToken({
           idToken,
-          organization: this.props.locationParams.organizationId,
+          organization: this.props.location.query.organizationId,
         })
         .then(payload => {
           storage.put(CORE_STORAGE_KEYS.TOKEN, payload.body.token);

@@ -20,6 +20,7 @@
     "@commercetools-local/core": "*",
     "@commercetools-local/l10n": "*",
     "@commercetools-local/notifications": "*",
+    "@commercetools-local/react-router-utils": "*",
     "@commercetools-local/sdk": "*",
     "@commercetools-local/sdk-service": "*",
     "@commercetools-local/test-utils": "*",

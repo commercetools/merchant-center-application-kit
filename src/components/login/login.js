@@ -14,7 +14,7 @@ import { injectConfiguration } from '@commercetools-local/core/components/config
 import Notification from '@commercetools-local/core/components/notification';
 import Title from '@commercetools-local/core/components/title';
 import InfoDialog from '@commercetools-local/core/components/overlays/info-dialog';
-import withParsedLocation from '../with-parsed-location';
+import { withParsedLocation } from '@commercetools-local/react-router-utils';
 import PublicPageContainer from '../public-page-container';
 import LoginBox from '../login-box';
 import styles from './login.mod.css';
@@ -24,9 +24,11 @@ export class Login extends React.PureComponent {
   static displayName = 'Login';
 
   static propTypes = {
-    locationParams: PropTypes.shape({
-      reason: PropTypes.string,
-      redirectTo: PropTypes.string,
+    location: PropTypes.shape({
+      query: PropTypes.shape({
+        reason: PropTypes.string,
+        redirectTo: PropTypes.string,
+      }).isRequired,
     }).isRequired,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
@@ -47,7 +49,7 @@ export class Login extends React.PureComponent {
     countdown: 10,
     showRedirectDialog: null,
     shouldRedirectPasswordForgot: false,
-    error: this.props.locationParams.reason,
+    error: this.props.location.query.reason,
   };
 
   componentDidMount = () => {
@@ -82,7 +84,7 @@ export class Login extends React.PureComponent {
       .then(payload => {
         this.setState({ loading: false });
         storage.put(CORE_STORAGE_KEYS.TOKEN, payload.body.token);
-        this.props.history.push(this.props.locationParams.redirectTo || '/');
+        this.props.history.push(this.props.location.query.redirectTo || '/');
       })
       .catch(error => {
         if (error) {

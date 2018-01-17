@@ -8,9 +8,9 @@ jest.mock('jwt-decode', () => () => ({ nonce: 'EY' }));
 jest.mock('@commercetools-local/utils/storage');
 
 const createTestProps = props => ({
-  locationParams: {
-    id_token: '111',
-    organizationId: 'o1',
+  location: {
+    query: { organizationId: 'o1' },
+    fragments: { id_token: '111' },
   },
   redirectTo: jest.fn(),
   requestAccessToken: jest.fn(),
