@@ -12,7 +12,6 @@ import * as sdkService from '@commercetools-local/sdk-service';
 import * as constants from '@commercetools-local/constants';
 import * as i18n from '../../../../i18n';
 import ApplicationShell, {
-  RequestsInFlightLoader,
   NotificationsConnector,
   reduxStore,
   setupGlobalErrorListener,
@@ -114,54 +113,48 @@ const ConnectedTriggerNotification = connect(
 
 const TestApplication = () => (
   <StoreProvider store={reduxStore}>
-    <React.Fragment>
-      <RequestsInFlightLoader />
-      <NotificationsConnector>
-        {({
-          notificationsByDomain,
-          showNotification,
-          showApiErrorNotification,
-          showUnexpectedErrorNotification,
-        }) => (
-          <ApplicationShell
-            i18n={i18n}
-            configuration={window.app}
-            menuItems={testMenuItems}
-            trackingEventWhitelist={trackingEventWhitelist}
-            notificationsByDomain={notificationsByDomain}
-            showNotification={showNotification}
-            showApiErrorNotification={showApiErrorNotification}
-            showUnexpectedErrorNotification={showUnexpectedErrorNotification}
-            onRegisterGlobalErrorListeners={() => {
-              setupGlobalErrorListener(showUnexpectedErrorNotification);
-              Sdk.Get.errorHandler = error =>
-                sdkService.handleActionError(error, 'sdk')(reduxStore.dispatch);
-            }}
-            render={() => (
-              <div>
-                <TriggerRequestsInFlight store={reduxStore} />
-                <ConnectedTriggerNotification />
-                <Switch>
-                  <Route
-                    path="/:projectKey/dashboard"
-                    component={TestDashboard}
-                  />
-                  <Route
-                    path="/:projectKey/products"
-                    component={TestProducts}
-                  />
-                  {/**
-                   * Define a catch-all route (needs
-                   * to be defined after the rendered
-                   * children) */}
-                  <Route component={PageNotFound} />
-                </Switch>
-              </div>
-            )}
-          />
-        )}
-      </NotificationsConnector>
-    </React.Fragment>
+    <NotificationsConnector>
+      {({
+        notificationsByDomain,
+        showNotification,
+        showApiErrorNotification,
+        showUnexpectedErrorNotification,
+      }) => (
+        <ApplicationShell
+          i18n={i18n}
+          configuration={window.app}
+          menuItems={testMenuItems}
+          trackingEventWhitelist={trackingEventWhitelist}
+          notificationsByDomain={notificationsByDomain}
+          showNotification={showNotification}
+          showApiErrorNotification={showApiErrorNotification}
+          showUnexpectedErrorNotification={showUnexpectedErrorNotification}
+          onRegisterGlobalErrorListeners={() => {
+            setupGlobalErrorListener(showUnexpectedErrorNotification);
+            Sdk.Get.errorHandler = error =>
+              sdkService.handleActionError(error, 'sdk')(reduxStore.dispatch);
+          }}
+          render={() => (
+            <div>
+              <TriggerRequestsInFlight store={reduxStore} />
+              <ConnectedTriggerNotification />
+              <Switch>
+                <Route
+                  path="/:projectKey/dashboard"
+                  component={TestDashboard}
+                />
+                <Route path="/:projectKey/products" component={TestProducts} />
+                {/**
+                 * Define a catch-all route (needs
+                 * to be defined after the rendered
+                 * children) */}
+                <Route component={PageNotFound} />
+              </Switch>
+            </div>
+          )}
+        />
+      )}
+    </NotificationsConnector>
   </StoreProvider>
 );
 TestApplication.displayName = 'TestApplication';

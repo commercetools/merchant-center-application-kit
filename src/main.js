@@ -15,10 +15,6 @@ export {
   default as withParsedLocation,
 } from './components/with-parsed-location';
 export {
-  default as RequestsInFlightLoader,
-  requestsInFlightReducer,
-} from './components/requests-in-flight-loader';
-export {
   default as NotificationsConnector,
   notificationsReducer,
 } from './components/notifications-connector';

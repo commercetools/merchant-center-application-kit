@@ -30,6 +30,7 @@ import IntercomBooter from '../intercom-booter';
 import SentryBooter from '../sentry-booter';
 import SentryUserTracker from '../sentry-user-tracker';
 import VersionCheckSubscriber from '../version-check-subscriber';
+import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
 import GtmBooter from '../gtm-booter';
 import styles from './application-shell.mod.css';
@@ -70,6 +71,9 @@ export default class ApplicationShell extends React.Component {
             <React.Fragment>
               <VersionCheckSubscriber />
               <SentryBooter />
+              {/* NOTE: this can be removed when we get rid of showing a
+              loading spinner in the app bar */}
+              <RequestsInFlightLoader />
               <Router>
                 <IntercomUrlTracker>
                   <GtmBooter
