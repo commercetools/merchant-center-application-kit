@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import omit from 'lodash.omit';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
@@ -10,12 +9,10 @@ import LocaleSwitcher from '../locale-switcher';
 import ProjectDataLocale from '../project-data-locale';
 import FetchProject from '../fetch-project';
 import FetchUser from '../fetch-user';
-import Menu from '../menu';
 import ProjectNotFound from '../project-not-found';
 import ProjectExpired from '../project-expired';
 import ProjectSuspended from '../project-suspended';
 import ProjectWithoutSettings from '../project-without-settings';
-import styles from './project-container.mod.css';
 
 class ProjectContainer extends React.Component {
   static displayName = 'ProjectContainer';
@@ -25,8 +22,6 @@ class ProjectContainer extends React.Component {
         projectKey: PropTypes.string,
       }).isRequired,
     }).isRequired,
-    location: PropTypes.object.isRequired,
-    menuItems: PropTypes.array.isRequired,
     render: PropTypes.func.isRequired,
   };
   state = {
@@ -129,29 +124,12 @@ class ProjectContainer extends React.Component {
                             }),
                             this.state.localeSwitcherNode
                           )}
-                        <aside className={styles.aside}>
-                          <Menu
-                            location={this.props.location}
-                            menuItems={this.props.menuItems}
-                            projectKey={this.props.match.params.projectKey}
-                            projectPermissions={omit(project.permissions, [
-                              '__typename',
-                            ])}
-                          />
-                        </aside>
                         {/**
-                         * NOTE: in IE11 main can't be a grid-child apparently.
-                         * So we have to use a div and give it the role `main`
-                         * to achieve the same semantic result
+                         * NOTE: we don't need to explicitly pass the `locale`,
+                         * it's enough to trigger a re-render.
+                         * The `locale` can then be read from the localStorage.
                          */}
-                        <div role="main" className={styles.main}>
-                          {/**
-                           * NOTE: we don't need to explicitly pass the `locale`,
-                           * it's enough to trigger a re-render.
-                           * The `locale` can then be read from the localStorage.
-                           */}
-                          {this.props.render()}
-                        </div>
+                        {this.props.render()}
                       </React.Fragment>
                     )}
                   </ProjectDataLocale>

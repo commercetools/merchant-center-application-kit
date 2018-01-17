@@ -4,8 +4,9 @@ import { FormattedMessage } from 'react-intl';
 import { matchPath } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { ToggleFeature } from '@flopflip/react-broadcast';
-import { withProps } from 'recompose';
+import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
+import omit from 'lodash.omit';
 import oneLineTrim from 'common-tags/lib/oneLineTrim';
 import * as Icons from '@commercetools-local/ui-kit/icons';
 import { getDataAttribute } from '@commercetools-local/utils/dataset';
@@ -15,6 +16,7 @@ import {
 } from '@commercetools-local/core/components/with-permissions';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
+import { withProject } from '../fetch-project';
 import styles from './menu.mod.css';
 import messages from './messages';
 
@@ -475,14 +477,21 @@ export class Menu extends React.PureComponent {
   }
 }
 
-export default withProps(() => {
-  const cachedIsForcedMenuOpen = storage.get(
-    CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN
-  );
-  return {
-    isForcedMenuOpen:
-      typeof cachedIsForcedMenuOpen === 'string'
-        ? cachedIsForcedMenuOpen === 'true'
-        : null,
-  };
-})(Menu);
+export default compose(
+  withProps({ projectKey: storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY) }),
+  withProject(props => props.projectKey, projectData => ({ projectData })),
+  withProps(props => {
+    const cachedIsForcedMenuOpen = storage.get(
+      CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN
+    );
+    return {
+      projectPermissions: props.projectData.project
+        ? omit(props.projectData.project.permissions, ['__typename'])
+        : {},
+      isForcedMenuOpen:
+        typeof cachedIsForcedMenuOpen === 'string'
+          ? cachedIsForcedMenuOpen === 'true'
+          : null,
+    };
+  })
+)(Menu);

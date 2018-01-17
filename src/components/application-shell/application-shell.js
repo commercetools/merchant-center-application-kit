@@ -1,3 +1,4 @@
+import querystring from 'querystring';
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -9,7 +10,7 @@ import {
 import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import { joinPaths } from '@commercetools-local/utils/url';
-import { DOMAINS } from '@commercetools-local/constants';
+import { DOMAINS, LOGOUT_REASONS } from '@commercetools-local/constants';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
 import Authenticated from '../authenticated';
@@ -33,6 +34,7 @@ import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
 import GtmBooter from '../gtm-booter';
+import Menu from '../menu';
 import styles from './application-shell.mod.css';
 import './global-style-imports';
 
@@ -79,70 +81,72 @@ export default class ApplicationShell extends React.Component {
                   <GtmBooter
                     trackingEventWhitelist={this.props.trackingEventWhitelist}
                   >
-                    <Switch>
-                      {/* Public routes */}
-                      <Route
-                        path="/login/sso/callback"
-                        component={LoginSSOCallback}
-                      />
-                      <Route path="/login/sso" component={LoginSSO} />
-                      <Route path="/login/locked" component={LoginLocked} />
-                      <Route path="/login" component={Login} />
-                      <Route path="/logout" component={Logout} />
+                    <Authenticated>
+                      {({ authenticated }) =>
+                        authenticated ? (
+                          <React.Fragment>
+                            <IntercomBooter
+                              showNotification={this.props.showNotification}
+                            />
+                            <SentryUserTracker />
+                            <GtmUserTracker />
+                            <IntercomUserTracker />
+                            <SetupFlopFlipProvider>
+                              <div className={styles['app-layout']}>
+                                <div className={styles['global-notifications']}>
+                                  <NotificationsList
+                                    domain={DOMAINS.GLOBAL}
+                                    notifications={
+                                      this.props.notificationsByDomain.global
+                                    }
+                                    mapPluginNotificationToComponent={
+                                      this.props
+                                        .mapPluginNotificationToComponent
+                                    }
+                                    showUnexpectedErrorNotification={
+                                      this.props.showUnexpectedErrorNotification
+                                    }
+                                  />
+                                </div>
+                                <header>
+                                  <AppBar />
+                                </header>
 
-                      {/* Protected routes */}
-                      <Route
-                        render={() => (
-                          <Authenticated>
-                            <div className={styles['app-layout']}>
-                              {/* TODO make logout redirect explicit */}
-                              <IntercomBooter
-                                showNotification={this.props.showNotification}
-                              />
-                              <SentryUserTracker />
-                              <GtmUserTracker />
-                              <SetupFlopFlipProvider>
-                                <NotificationsList
-                                  domain={DOMAINS.GLOBAL}
-                                  notifications={
-                                    this.props.notificationsByDomain.global
-                                  }
-                                  mapPluginNotificationToComponent={
-                                    this.props.mapPluginNotificationToComponent
-                                  }
-                                  showUnexpectedErrorNotification={
-                                    this.props.showUnexpectedErrorNotification
-                                  }
-                                />
-                                <AppBar />
-
-                                <NotificationsList
-                                  domain={DOMAINS.SIDE}
-                                  notifications={
-                                    this.props.notificationsByDomain.side
-                                  }
-                                  mapPluginNotificationToComponent={
-                                    this.props.mapPluginNotificationToComponent
-                                  }
-                                />
-                                <Switch>
-                                  {/* Non-project routes */}
+                                <aside>
                                   <Route
-                                    path="/profile"
-                                    render={() => (
-                                      <React.Fragment>
-                                        <IntercomUserTracker />
-                                        <NotificationsList
-                                          domain={DOMAINS.PAGE}
-                                          notifications={
-                                            this.props.notificationsByDomain
-                                              .page
-                                          }
-                                          mapPluginNotificationToComponent={
-                                            this.props
-                                              .mapPluginNotificationToComponent
-                                          }
-                                        />
+                                    render={({ location }) => (
+                                      <Menu
+                                        location={location}
+                                        menuItems={this.props.menuItems}
+                                      />
+                                    )}
+                                  />
+                                </aside>
+                                <div role="main" className={styles.main}>
+                                  <NotificationsList
+                                    domain={DOMAINS.PAGE}
+                                    notifications={
+                                      this.props.notificationsByDomain.page
+                                    }
+                                    mapPluginNotificationToComponent={
+                                      this.props
+                                        .mapPluginNotificationToComponent
+                                    }
+                                  />
+                                  <NotificationsList
+                                    domain={DOMAINS.SIDE}
+                                    notifications={
+                                      this.props.notificationsByDomain.side
+                                    }
+                                    mapPluginNotificationToComponent={
+                                      this.props
+                                        .mapPluginNotificationToComponent
+                                    }
+                                  />
+                                  <Switch>
+                                    <Route
+                                      path="/profile"
+                                      render={() => (
                                         <UserProfile
                                           showNotification={
                                             this.props.showNotification
@@ -152,74 +156,108 @@ export default class ApplicationShell extends React.Component {
                                               .showUnexpectedErrorNotification
                                           }
                                         />
-                                      </React.Fragment>
-                                    )}
-                                  />
-
-                                  {/* Project routes */}
-                                  {/* Redirect from base project route to dashboard */}
-                                  <Route
-                                    exact={true}
-                                    path="/:projectKey"
-                                    render={({ match }) => (
-                                      <Redirect
-                                        to={joinPaths(match.url, 'dashboard')}
-                                      />
-                                    )}
-                                  />
-                                  <Route
-                                    path="/:projectKey"
-                                    render={routerProps => (
-                                      <SetupFlopFlipProvider
-                                        projectKey={
-                                          routerProps.match.params.projectKey
-                                        }
-                                      >
-                                        <ProjectContainer
-                                          match={routerProps.match}
-                                          location={routerProps.location}
-                                          menuItems={this.props.menuItems}
-                                          render={() => (
-                                            <React.Fragment>
-                                              <IntercomUserTracker
-                                                projectKey={
-                                                  routerProps.match.params
-                                                    .projectKey
-                                                }
-                                              />
-                                              <NotificationsList
-                                                domain={DOMAINS.PAGE}
-                                                notifications={
-                                                  this.props
-                                                    .notificationsByDomain.page
-                                                }
-                                                mapPluginNotificationToComponent={
-                                                  this.props
-                                                    .mapPluginNotificationToComponent
-                                                }
-                                              />
-                                              {/**
-                                               * This effectively renders the
-                                               * children, which is the application
-                                               * specific part */
-                                              this.props.render()}
-                                            </React.Fragment>
-                                          )}
+                                      )}
+                                    />
+                                    {/* Project routes */}
+                                    {/* Redirect from base project route to dashboard */}
+                                    <Route
+                                      exact={true}
+                                      path="/:projectKey"
+                                      render={({ match }) => (
+                                        <Redirect
+                                          to={joinPaths(match.url, 'dashboard')}
                                         />
-                                      </SetupFlopFlipProvider>
-                                    )}
+                                      )}
+                                    />
+                                    <Route
+                                      path="/:projectKey"
+                                      render={routerProps => (
+                                        <SetupFlopFlipProvider
+                                          projectKey={
+                                            routerProps.match.params.projectKey
+                                          }
+                                        >
+                                          <ProjectContainer
+                                            match={routerProps.match}
+                                            location={routerProps.location}
+                                            render={() => (
+                                              <React.Fragment>
+                                                <IntercomUserTracker
+                                                  projectKey={
+                                                    routerProps.match.params
+                                                      .projectKey
+                                                  }
+                                                />
+                                                {/**
+                                                 * NOTE: in IE11 main can't be a grid-child apparently.
+                                                 * So we have to use a div and give it the role `main`
+                                                 * to achieve the same semantic result
+                                                 */}
+                                                {/**
+                                                 * This effectively renders the
+                                                 * children, which is the application
+                                                 * specific part */
+                                                this.props.render()}
+                                              </React.Fragment>
+                                            )}
+                                          />
+                                        </SetupFlopFlipProvider>
+                                      )}
+                                    />
+                                    <Route
+                                      path="/"
+                                      component={RedirectToProject}
+                                    />
+                                  </Switch>
+                                </div>
+
+                                <Switch />
+                              </div>
+                            </SetupFlopFlipProvider>
+                          </React.Fragment>
+                        ) : (
+                          <Switch>
+                            {/* Public routes */}
+                            <Route
+                              path="/login/sso/callback"
+                              component={LoginSSOCallback}
+                            />
+                            <Route path="/login/sso" component={LoginSSO} />
+                            <Route
+                              path="/login/locked"
+                              component={LoginLocked}
+                            />
+                            <Route path="/login" component={Login} />
+                            <Route path="/logout" component={Logout} />
+                            <Route
+                              render={({ location }) => {
+                                // If the user tries to access a route (e.g. `/my-project/orders`)
+                                // and he's not logged in, we will be redirected to the login page
+                                // as usual but as soon as he logs in, he'll be redirected to the
+                                // location that he tried to access before. This is handled by the
+                                // query parameter `redirectTo`.
+                                const searchQuery = querystring.stringify({
+                                  reason: LOGOUT_REASONS.UNAUTHORIZED,
+                                  // This will be used after being logged in,
+                                  // to redirect to this location.
+                                  ...(location.pathname === '/'
+                                    ? {}
+                                    : { redirectTo: location.pathname }),
+                                });
+                                return (
+                                  <Redirect
+                                    to={{
+                                      pathname: '/logout',
+                                      search: `?${searchQuery}`,
+                                    }}
                                   />
-                                  <Route
-                                    path="/"
-                                    component={RedirectToProject}
-                                  />
-                                </Switch>
-                              </SetupFlopFlipProvider>
-                            </div>
-                          </Authenticated>
-                        )}
-                      />
-                    </Switch>
+                                );
+                              }}
+                            />
+                          </Switch>
+                        )
+                      }
+                    </Authenticated>
                   </GtmBooter>
                 </IntercomUrlTracker>
               </Router>

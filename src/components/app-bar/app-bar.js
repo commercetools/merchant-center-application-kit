@@ -8,7 +8,7 @@ import FetchUser from '../fetch-user';
 import styles from './app-bar.mod.css';
 
 const AppBar = () => (
-  <header className={styles['top-navigation']} data-test="top-navigation">
+  <div className={styles['top-navigation']} data-test="top-navigation">
     <Spacings.Inline>
       <div className={styles.logo}>
         <img src={LogoSVG} className={styles['logo-img']} alt="Logo" />
@@ -63,7 +63,7 @@ const AppBar = () => (
         )}
       </FetchUser>
     </div>
-  </header>
+  </div>
 );
 AppBar.displayName = 'AppBar';
 
