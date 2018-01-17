@@ -100,7 +100,7 @@ export class UserProfile extends React.Component {
     return (
       <div
         /* TODO: build this into UIKit (e.g. <Page>) */
-        style={{ display: 'flex', flexDirection: 'column' }}
+        style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
       >
         <Header>
           <Spacings.Inset>
@@ -133,7 +133,7 @@ export class UserProfile extends React.Component {
 
         <div
           /* TODO: build this into UIKit (e.g. <Page.Content scrollable={true}>) */
-          style={{ overflow: 'auto', flexGrow: 1, height: '100vh' }}
+          style={{ overflow: 'auto', flexGrow: 1 }}
         >
           <UserProfileForm
             // This is specific to redux-form
