@@ -16,9 +16,9 @@ describe('rendering', () => {
       props = createTestProps();
       createWrapper(props);
     });
-    it('should call children with `authenticated` set to true', () => {
+    it('should call children with `isAuthenticated` set to true', () => {
       expect(props.children).toHaveBeenCalledTimes(1);
-      expect(props.children).toHaveBeenCalledWith({ authenticated: true });
+      expect(props.children).toHaveBeenCalledWith({ isAuthenticated: true });
     });
   });
   describe('when the user is not logged in', () => {
@@ -26,9 +26,9 @@ describe('rendering', () => {
       props = createTestProps({ isLoggedIn: false });
       createWrapper(props);
     });
-    it('should call children with `authenticated` set to true', () => {
+    it('should call children with `isAuthenticated` set to true', () => {
       expect(props.children).toHaveBeenCalledTimes(1);
-      expect(props.children).toHaveBeenCalledWith({ authenticated: false });
+      expect(props.children).toHaveBeenCalledWith({ isAuthenticated: false });
     });
   });
   // TODO move test to the app shell

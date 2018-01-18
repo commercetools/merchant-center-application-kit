@@ -4,7 +4,7 @@ import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constant
 import * as storage from '@commercetools-local/utils/storage';
 
 export const Authenticated = props =>
-  props.children({ authenticated: props.isLoggedIn });
+  props.children({ isAuthenticated: props.isLoggedIn });
 Authenticated.displayName = 'Authenticated';
 Authenticated.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,

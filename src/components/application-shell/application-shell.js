@@ -82,8 +82,8 @@ export default class ApplicationShell extends React.Component {
                     trackingEventWhitelist={this.props.trackingEventWhitelist}
                   >
                     <Authenticated>
-                      {({ authenticated }) =>
-                        authenticated ? (
+                      {({ isAuthenticated }) =>
+                        isAuthenticated ? (
                           <React.Fragment>
                             <IntercomBooter
                               showNotification={this.props.showNotification}
