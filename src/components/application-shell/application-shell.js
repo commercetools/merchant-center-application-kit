@@ -124,6 +124,12 @@ export default class ApplicationShell extends React.Component {
                                     )}
                                   />
                                 </aside>
+
+                                {/**
+                                 * NOTE: in IE11 main can't be a grid-child apparently.
+                                 * So we have to use a div and give it the role `main`
+                                 * to achieve the same semantic result
+                                 */}
                                 <div role="main" className={styles.main}>
                                   <NotificationsList
                                     domain={DOMAINS.PAGE}
@@ -198,11 +204,6 @@ export default class ApplicationShell extends React.Component {
                                                   }
                                                 />
                                                 {/**
-                                                 * NOTE: in IE11 main can't be a grid-child apparently.
-                                                 * So we have to use a div and give it the role `main`
-                                                 * to achieve the same semantic result
-                                                 */}
-                                                {/**
                                                  * This effectively renders the
                                                  * children, which is the application
                                                  * specific part */
@@ -219,8 +220,6 @@ export default class ApplicationShell extends React.Component {
                                     />
                                   </Switch>
                                 </div>
-
-                                <Switch />
                               </div>
                             </SetupFlopFlipProvider>
                           </React.Fragment>
