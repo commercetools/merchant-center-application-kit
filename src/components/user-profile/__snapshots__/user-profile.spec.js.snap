@@ -6,6 +6,7 @@ exports[`rendering should ensure layout structure 1`] = `
     Object {
       "display": "flex",
       "flexDirection": "column",
+      "height": "100%",
     }
   }
 >
@@ -50,7 +51,6 @@ exports[`rendering should ensure layout structure 1`] = `
     style={
       Object {
         "flexGrow": 1,
-        "height": "100vh",
         "overflow": "auto",
       }
     }

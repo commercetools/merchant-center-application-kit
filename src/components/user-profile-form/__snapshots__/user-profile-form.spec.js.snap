@@ -4,15 +4,15 @@ exports[`rendering should ensure layout structure 1`] = `
 <Inset
   scale="m"
 >
-  <Inline
-    alignItems="flexStart"
+  <Stack
+    alignItems="stretch"
     scale="m"
   >
     <InjectIntl(UserProfileGeneralInfoPanel)
       hasSubmitFailed={false}
     />
     <Connect(withTimeZones(InjectIntl(UserProfilePersonalSettingsPanel))) />
-  </Inline>
+  </Stack>
   <PageBottomSpacer />
   <SaveToolbar
     isToolbarDisabled={false}
