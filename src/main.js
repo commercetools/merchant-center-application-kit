@@ -23,3 +23,6 @@ export {
   notificationsReducer,
 } from './components/notifications-connector';
 export { default as reduxStore } from './configure-store';
+export {
+  default as setupGlobalErrorListener,
+} from './utils/setup-global-error-listener';

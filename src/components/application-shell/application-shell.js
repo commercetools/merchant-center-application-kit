@@ -10,7 +10,6 @@ import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import { joinPaths } from '@commercetools-local/utils/url';
 import { DOMAINS } from '@commercetools-local/constants';
-import setupGlobalErrorListener from '../../utils/setup-global-error-listener';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
 import Authenticated from '../authenticated';
@@ -58,9 +57,10 @@ export default class ApplicationShell extends React.Component {
     mapPluginNotificationToComponent: PropTypes.func,
     showApiErrorNotification: PropTypes.func,
     showUnexpectedErrorNotification: PropTypes.func,
+    onRegisterGlobalErrorListeners: PropTypes.func.isRequired,
   };
   componentDidMount() {
-    setupGlobalErrorListener(this.props.showUnexpectedErrorNotification);
+    this.props.onRegisterGlobalErrorListeners();
   }
   render() {
     return (

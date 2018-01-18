@@ -7,12 +7,15 @@ import {
   addNotification,
   removeNotification,
 } from '@commercetools-local/notifications';
+import { Sdk } from '@commercetools-local/sdk';
+import * as sdkService from '@commercetools-local/sdk-service';
 import * as constants from '@commercetools-local/constants';
 import * as i18n from '../../../../i18n';
 import ApplicationShell, {
   RequestsInFlightLoader,
   NotificationsConnector,
   reduxStore,
+  setupGlobalErrorListener,
 } from '../main';
 import testMenuItems from './fixtures/menu-items';
 import TestDashboard, {
@@ -129,6 +132,11 @@ const TestApplication = () => (
             showNotification={showNotification}
             showApiErrorNotification={showApiErrorNotification}
             showUnexpectedErrorNotification={showUnexpectedErrorNotification}
+            onRegisterGlobalErrorListeners={() => {
+              setupGlobalErrorListener(showUnexpectedErrorNotification);
+              Sdk.Get.errorHandler = error =>
+                sdkService.handleActionError(error, 'sdk')(reduxStore.dispatch);
+            }}
             render={() => (
               <div>
                 <TriggerRequestsInFlight store={reduxStore} />
