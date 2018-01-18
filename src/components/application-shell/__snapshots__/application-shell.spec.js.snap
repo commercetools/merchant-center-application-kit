@@ -1,0 +1,272 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering <Authenticated> when user is authenticated project container <Route> should match layout structure 1`] = `
+<div>
+  <React.Fragment>
+    <withUser(IntercomBooter)
+      showNotification={[MockFunction]}
+    />
+    <withUser(SentryUserTracker) />
+    <withUser(GtmUserTracker) />
+    <withUser(branch(IntercomUserTracker)) />
+    <SetupFlopFlipProvider>
+      <div
+        className="app-layout"
+      >
+        <div
+          className="global-notifications"
+        >
+          <NotificationsList
+            domain="global"
+            mapPluginNotificationToComponent={[MockFunction]}
+            notifications={Array []}
+            showUnexpectedErrorNotification={[MockFunction]}
+          />
+        </div>
+        <header>
+          <AppBar />
+        </header>
+        <aside>
+          <Route
+            path="/:projectKey"
+            render={[Function]}
+          />
+        </aside>
+        <div
+          className="main"
+          role="main"
+        >
+          <NotificationsList
+            domain="page"
+            mapPluginNotificationToComponent={[MockFunction]}
+            notifications={Array []}
+          />
+          <NotificationsList
+            domain="side"
+            mapPluginNotificationToComponent={[MockFunction]}
+            notifications={Array []}
+          />
+          <Switch>
+            <Route
+              component={[Function]}
+              path="/logout"
+            />
+            <Route
+              path="/profile"
+              render={[Function]}
+            />
+            <Route
+              exact={true}
+              path="/:projectKey"
+              render={[Function]}
+            />
+            <Route
+              exact={false}
+              path="/:projectKey"
+              render={[Function]}
+            />
+            <Route
+              component={[Function]}
+              path="/"
+            />
+          </Switch>
+        </div>
+      </div>
+    </SetupFlopFlipProvider>
+  </React.Fragment>
+</div>
+`;
+
+exports[`rendering <Authenticated> when user is authenticated should match layout structure 1`] = `
+<div>
+  <React.Fragment>
+    <withUser(IntercomBooter)
+      showNotification={[MockFunction]}
+    />
+    <withUser(SentryUserTracker) />
+    <withUser(GtmUserTracker) />
+    <withUser(branch(IntercomUserTracker)) />
+    <SetupFlopFlipProvider>
+      <div
+        className="app-layout"
+      >
+        <div
+          className="global-notifications"
+        >
+          <NotificationsList
+            domain="global"
+            mapPluginNotificationToComponent={[MockFunction]}
+            notifications={Array []}
+            showUnexpectedErrorNotification={[MockFunction]}
+          />
+        </div>
+        <header>
+          <AppBar />
+        </header>
+        <aside>
+          <Route
+            path="/:projectKey"
+            render={[Function]}
+          />
+        </aside>
+        <div
+          className="main"
+          role="main"
+        >
+          <NotificationsList
+            domain="page"
+            mapPluginNotificationToComponent={[MockFunction]}
+            notifications={Array []}
+          />
+          <NotificationsList
+            domain="side"
+            mapPluginNotificationToComponent={[MockFunction]}
+            notifications={Array []}
+          />
+          <Switch>
+            <Route
+              component={[Function]}
+              path="/logout"
+            />
+            <Route
+              path="/profile"
+              render={[Function]}
+            />
+            <Route
+              exact={true}
+              path="/:projectKey"
+              render={[Function]}
+            />
+            <Route
+              exact={false}
+              path="/:projectKey"
+              render={[Function]}
+            />
+            <Route
+              component={[Function]}
+              path="/"
+            />
+          </Switch>
+        </div>
+      </div>
+    </SetupFlopFlipProvider>
+  </React.Fragment>
+</div>
+`;
+
+exports[`rendering <Authenticated> when user is not authenticated should match layout structure 1`] = `
+<div>
+  <Switch>
+    <Route
+      component={[Function]}
+      path="/login/sso/callback"
+    />
+    <Route
+      component={[Function]}
+      path="/login/sso"
+    />
+    <Route
+      component={[Function]}
+      path="/login/locked"
+    />
+    <Route
+      component={[Function]}
+      path="/login"
+    />
+    <Route
+      render={[Function]}
+    />
+  </Switch>
+</div>
+`;
+
+exports[`rendering should match main structure 1`] = `
+<ConfigurationProvider
+  configuration={Object {}}
+>
+  <ApolloProvider
+    client={
+      ApolloClient {
+        "cache": InMemoryCache {
+          "addTypename": true,
+          "config": Object {
+            "addTypename": true,
+            "dataIdFromObject": [Function],
+            "fragmentMatcher": IntrospectionFragmentMatcher {
+              "isReady": true,
+              "match": [Function],
+              "possibleTypesMap": Object {},
+            },
+            "storeFactory": [Function],
+          },
+          "data": ObjectCache {
+            "data": Object {},
+          },
+          "optimistic": Array [],
+          "silenceBroadcast": false,
+          "watches": Array [],
+        },
+        "defaultOptions": Object {},
+        "disableNetworkFetches": false,
+        "link": ApolloLink {
+          "request": [Function],
+        },
+        "mutate": [Function],
+        "query": [Function],
+        "queryDeduplication": true,
+        "reFetchObservableQueries": [Function],
+        "resetStore": [Function],
+        "resetStoreCallbacks": Array [],
+        "ssrMode": false,
+        "store": DataStore {
+          "cache": InMemoryCache {
+            "addTypename": true,
+            "config": Object {
+              "addTypename": true,
+              "dataIdFromObject": [Function],
+              "fragmentMatcher": IntrospectionFragmentMatcher {
+                "isReady": true,
+                "match": [Function],
+                "possibleTypesMap": Object {},
+              },
+              "storeFactory": [Function],
+            },
+            "data": ObjectCache {
+              "data": Object {},
+            },
+            "optimistic": Array [],
+            "silenceBroadcast": false,
+            "watches": Array [],
+          },
+        },
+        "version": "2.2.0",
+        "watchQuery": [Function],
+      }
+    }
+  >
+    <branch(ConfigureIntlProvider)
+      i18n={
+        Object {
+          "de": Object {},
+          "en": Object {},
+        }
+      }
+    >
+      <React.Fragment>
+        <VersionCheckSubscriber />
+        <SentryBooter />
+        <Connect(RequestsInFlightLoader) />
+        <BrowserRouter>
+          <IntercomUrlTracker>
+            <GtmBooter
+              trackingEventWhitelist={Object {}}
+            >
+              <Authenticated />
+            </GtmBooter>
+          </IntercomUrlTracker>
+        </BrowserRouter>
+      </React.Fragment>
+    </branch(ConfigureIntlProvider)>
+  </ApolloProvider>
+</ConfigurationProvider>
+`;

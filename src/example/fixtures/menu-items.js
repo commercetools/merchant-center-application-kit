@@ -4,7 +4,7 @@ export default [
     menu: {
       name: 'Dashboard',
       link: 'dashboard',
-      labelKey: 'Menu.Dashboard.title',
+      labelKey: 'NavBar.Dashboard.title',
       icon: 'SpeedometerIcon',
     },
   },
@@ -13,7 +13,7 @@ export default [
     menu: {
       name: 'products',
       link: 'products',
-      labelKey: 'Menu.Products.title',
+      labelKey: 'NavBar.Products.title',
       icon: 'BoxProductIcon',
       permissions: [
         {
@@ -28,13 +28,13 @@ export default [
       submenu: [
         {
           name: 'products-ist',
-          labelKey: 'Menu.Products.list',
+          labelKey: 'NavBar.Products.list',
           link: 'products',
         },
         {
           name: 'products-verify-changes',
           featureToggle: 'modifiedProducts',
-          labelKey: 'Menu.Products.reviewModifiedProducts',
+          labelKey: 'NavBar.Products.reviewModifiedProducts',
           link: 'products/modified',
           permissions: [
             {
@@ -46,7 +46,7 @@ export default [
         {
           name: 'products-search',
           featureToggle: 'pimSearch',
-          labelKey: 'Menu.Products.pimSearchList',
+          labelKey: 'NavBar.Products.pimSearchList',
           link: 'products/pim-search',
           permissions: [
             {
@@ -57,7 +57,7 @@ export default [
         },
         {
           name: 'products-add',
-          labelKey: 'Menu.Products.add',
+          labelKey: 'NavBar.Products.add',
           link: 'products/new',
           permissions: [
             {
@@ -68,7 +68,7 @@ export default [
         },
         {
           name: 'products-direct-access',
-          labelKey: 'Menu.Products.directAccess',
+          labelKey: 'NavBar.Products.directAccess',
           link: 'products/direct-access',
         },
       ],
@@ -79,7 +79,7 @@ export default [
     menu: {
       name: 'categories',
       link: 'categories',
-      labelKey: 'Menu.Categories.title',
+      labelKey: 'NavBar.Categories.title',
       icon: 'CategoryTreeIcon',
       permissions: [
         {
@@ -94,17 +94,17 @@ export default [
       submenu: [
         {
           name: 'categories-list',
-          labelKey: 'Menu.Categories.list',
+          labelKey: 'NavBar.Categories.list',
           link: 'categories?mode=list',
         },
         {
           name: 'categories-search',
-          labelKey: 'Menu.Categories.search',
+          labelKey: 'NavBar.Categories.search',
           link: 'categories?mode=search',
         },
         {
           name: 'categories-add',
-          labelKey: 'Menu.Categories.add',
+          labelKey: 'NavBar.Categories.add',
           link: 'categories/new',
           permissions: [
             {
@@ -121,7 +121,7 @@ export default [
     menu: {
       name: 'customers',
       link: 'customers',
-      labelKey: 'Menu.Customers.title',
+      labelKey: 'NavBar.Customers.title',
       icon: 'CustomerFilledIcon',
       permissions: [
         {
@@ -136,12 +136,12 @@ export default [
       submenu: [
         {
           name: 'customers-list',
-          labelKey: 'Menu.Customers.list',
+          labelKey: 'NavBar.Customers.list',
           link: 'customers',
         },
         {
           name: 'customers-add',
-          labelKey: 'Menu.Customers.add',
+          labelKey: 'NavBar.Customers.add',
           link: 'customers/new',
           permissions: [
             {
@@ -158,7 +158,7 @@ export default [
     menu: {
       name: 'orders',
       link: 'orders',
-      labelKey: 'Menu.Orders.title',
+      labelKey: 'NavBar.Orders.title',
       icon: 'CartIcon',
       permissions: [
         {
@@ -173,12 +173,12 @@ export default [
       submenu: [
         {
           name: 'orders-list',
-          labelKey: 'Menu.Orders.list',
+          labelKey: 'NavBar.Orders.list',
           link: 'orders',
         },
         {
           name: 'orders-add',
-          labelKey: 'Menu.Orders.add',
+          labelKey: 'NavBar.Orders.add',
           link: 'orders/new',
           permissions: [
             {
@@ -195,7 +195,7 @@ export default [
     menu: {
       name: 'discounts',
       link: 'discounts',
-      labelKey: 'Menu.Discounts.title',
+      labelKey: 'NavBar.Discounts.title',
       icon: 'TagMultiIcon',
       permissions: [
         {
@@ -218,7 +218,7 @@ export default [
       submenu: [
         {
           name: 'product-discounts-list',
-          labelKey: 'Menu.ProductDiscounts.list',
+          labelKey: 'NavBar.ProductDiscounts.list',
           link: 'discounts/products',
           permissions: [
             {
@@ -229,7 +229,7 @@ export default [
         },
         {
           name: 'cart-discounts-list',
-          labelKey: 'Menu.CartDiscounts.list',
+          labelKey: 'NavBar.CartDiscounts.list',
           link: 'discounts/carts',
           permissions: [
             {
@@ -240,7 +240,7 @@ export default [
         },
         {
           name: 'discount-codes-list',
-          labelKey: 'Menu.DiscountCodes.list',
+          labelKey: 'NavBar.DiscountCodes.list',
           link: 'discounts/codes',
           featureToggle: 'discountCodes',
           permissions: [
@@ -252,7 +252,7 @@ export default [
         },
         {
           name: 'discounts-add',
-          labelKey: 'Menu.Discounts.add',
+          labelKey: 'NavBar.Discounts.add',
           link: 'discounts/new',
           permissions: [
             {

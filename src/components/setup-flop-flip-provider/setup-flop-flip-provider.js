@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defaultMemoize } from 'reselect';
+import { compose, setDisplayName } from 'recompose';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import { injectConfiguration } from '@commercetools-local/core/components/configuration';
@@ -58,7 +59,7 @@ class SetupFlopFlip extends React.PureComponent {
   }
 }
 
-export default injectConfiguration(
-  ['tracking', 'ldClientSideId'],
-  'ldClientSideId'
+export default compose(
+  setDisplayName('SetupFlopFlipProvider'),
+  injectConfiguration(['tracking', 'ldClientSideId'], 'ldClientSideId')
 )(SetupFlopFlip);

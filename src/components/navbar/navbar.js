@@ -17,7 +17,7 @@ import {
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import { withProject } from '../fetch-project';
-import styles from './menu.mod.css';
+import styles from './navbar.mod.css';
 import messages from './messages';
 
 /*
@@ -438,8 +438,8 @@ export class DataMenu extends React.PureComponent {
   }
 }
 
-export class Menu extends React.PureComponent {
-  static displayName = 'Menu';
+export class NavBar extends React.PureComponent {
+  static displayName = 'NavBar';
 
   static propTypes = {
     // From parent
@@ -477,34 +477,38 @@ export class Menu extends React.PureComponent {
   }
 }
 
+const selectProjectKey = data =>
+  // in case the user logs in for the first time  and there is no cached
+  // project key we take the projekt key from the URL that is passed in
+  // as a prop
+  // the above is the only case where we pick the project key from the URL
+  // generally it is perferrable to read it from local storage, because
+  // it will always be available from there as soon as the user is logged in
+  // even when the user visits the /profile or /organizations pages, which
+  // don't contain the project key in the URL
+  // This is not considered the optimal solution though as we don't have a
+  // single source of truth for the project key anymore
+  storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY) || data.projectKey;
+
 export default compose(
-  withProps(props => ({
-    projectKey:
-      // in case the user logs in for the first time  and there is no cached
-      // project key we take the projekt key from the URL that is passed in
-      // as a prop
-      // the above is the only case where we pick the project key from the URL
-      // generally it is perferrable to read it from local storage, because
-      // it will always be available from there as soon as the user is logged in
-      // even when the user visits the /profile or /organizations pages, which
-      // don't contain the project key in the URL
-      // This is not considered the optimal solution though as we don't have a
-      // single source of truth for the project key anymore
-      storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY) || props.projectKey,
-  })),
-  withProject(props => props.projectKey, projectData => ({ projectData })),
   withProps(props => {
     const cachedIsForcedMenuOpen = storage.get(
       CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN
     );
     return {
-      projectPermissions: props.projectData.project
-        ? omit(props.projectData.project.permissions, ['__typename'])
-        : {},
+      projectKey: selectProjectKey(props),
       isForcedMenuOpen:
         typeof cachedIsForcedMenuOpen === 'string'
           ? cachedIsForcedMenuOpen === 'true'
           : null,
     };
-  })
-)(Menu);
+  }),
+  withProject(
+    ownProps => ownProps.projectKey,
+    projectData => ({
+      projectPermissions: projectData.project
+        ? omit(projectData.project.permissions, ['__typename'])
+        : {},
+    })
+  )
+)(NavBar);

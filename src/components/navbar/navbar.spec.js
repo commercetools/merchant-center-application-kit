@@ -4,14 +4,14 @@ import { UnconnectedRestrictedByPermissions } from '@commercetools-local/core/co
 import * as storage from '@commercetools-local/utils/storage';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import {
-  Menu,
+  NavBar,
   DataMenu,
   MenuItemLink,
   MenuItem,
   MenuGroup,
   MenuExpander,
   ToggledWithPermissions,
-} from './menu';
+} from './navbar';
 
 jest.mock('@commercetools-local/utils/storage');
 
@@ -50,13 +50,13 @@ const createDataMenuTestProps = props => ({
       name: 'mcng-customers',
       menu: {
         name: 'Customers',
-        labelKey: 'Menu.Customers.title',
+        labelKey: 'NavBar.Customers.title',
         link: 'customers',
         icon: 'CustomerFilledIcon',
         submenu: [
           {
             name: 'Add Customer',
-            labelKey: 'Menu.Customers.add',
+            labelKey: 'NavBar.Customers.add',
             link: 'customers/new',
           },
         ],
@@ -69,10 +69,10 @@ const createDataMenuTestProps = props => ({
 describe('rendering', () => {
   let props;
   let wrapper;
-  describe('<Menu>', () => {
+  describe('<NavBar>', () => {
     beforeEach(() => {
       props = createTestProps();
-      wrapper = shallow(<Menu {...props} />);
+      wrapper = shallow(<NavBar {...props} />);
     });
     it('should render <nav> element', () => {
       expect(wrapper).toRender('nav');
@@ -129,7 +129,7 @@ describe('rendering', () => {
               name: 'mcng-customers',
               menu: {
                 name: 'Customers',
-                labelKey: 'Menu.Customers.title',
+                labelKey: 'NavBar.Customers.title',
                 link: 'customers',
                 icon: 'CustomerFilledIcon',
                 permissions: [{ mode: 'view', resource: 'customers' }],
@@ -188,7 +188,7 @@ describe('rendering', () => {
       describe('<MenuItemLink>', () => {
         it('should render menu labelKey', () => {
           expect(wrapper.find('MenuItemLink').at(0)).toRender({
-            id: 'Menu.Customers.title',
+            id: 'NavBar.Customers.title',
           });
         });
         describe('when menu is not open', () => {
@@ -210,7 +210,7 @@ describe('rendering', () => {
                   name: 'mcng-customers',
                   menu: {
                     name: 'Customers',
-                    labelKey: 'Menu.Customers.title',
+                    labelKey: 'NavBar.Customers.title',
                     link: 'customers',
                     icon: 'CustomerFilledIcon',
                   },
@@ -303,13 +303,13 @@ describe('rendering', () => {
                   name: 'mcng-customers',
                   menu: {
                     name: 'Customers',
-                    labelKey: 'Menu.Customers.title',
+                    labelKey: 'NavBar.Customers.title',
                     link: 'customers',
                     icon: 'CustomerFilledIcon',
                     submenu: [
                       {
                         name: 'Add Customer',
-                        labelKey: 'Menu.Customers.add',
+                        labelKey: 'NavBar.Customers.add',
                         link: 'customers/new',
                         permissions: [
                           { mode: 'manage', resource: 'customers' },
@@ -399,7 +399,7 @@ describe('rendering', () => {
             });
             it('should render submenu labelKey', () => {
               expect(wrapper.find('MenuItemLink').at(1)).toRender({
-                id: 'Menu.Customers.add',
+                id: 'NavBar.Customers.add',
               });
             });
           });
@@ -412,7 +412,7 @@ describe('rendering', () => {
                   name: 'mcng-customers',
                   menu: {
                     name: 'Customers',
-                    labelKey: 'Menu.Customers.title',
+                    labelKey: 'NavBar.Customers.title',
                     link: 'customers',
                     icon: 'CustomerFilledIcon',
                   },

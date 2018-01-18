@@ -34,7 +34,7 @@ import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
 import GtmBooter from '../gtm-booter';
-import Menu from '../menu';
+import NavBar from '../navbar';
 import styles from './application-shell.mod.css';
 import './global-style-imports';
 
@@ -116,7 +116,7 @@ export default class ApplicationShell extends React.Component {
                                   <Route
                                     path="/:projectKey"
                                     render={({ location, match }) => (
-                                      <Menu
+                                      <NavBar
                                         location={location}
                                         menuItems={this.props.menuItems}
                                         projectKey={match.params.projectKey}
@@ -185,6 +185,7 @@ export default class ApplicationShell extends React.Component {
                                       )}
                                     />
                                     <Route
+                                      exact={false}
                                       path="/:projectKey"
                                       render={routerProps => (
                                         <SetupFlopFlipProvider
