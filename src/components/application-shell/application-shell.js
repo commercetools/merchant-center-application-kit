@@ -251,7 +251,7 @@ export default class ApplicationShell extends React.Component {
                                 return (
                                   <Redirect
                                     to={{
-                                      pathname: '/logout',
+                                      pathname: '/login',
                                       search: `?${searchQuery}`,
                                     }}
                                   />
