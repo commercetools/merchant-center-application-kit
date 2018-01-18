@@ -144,6 +144,13 @@ export default class ApplicationShell extends React.Component {
                                     }
                                   />
                                   <Switch>
+                                    {/* when the user is redirected to logout he
+                                    is still logged in and thus wer are still
+                                    in the `authenticated` branch
+                                    The component won't render anything, but
+                                    unauthenticated the user and redirect him
+                                    to login */}
+                                    <Route path="/logout" component={Logout} />
                                     <Route
                                       path="/profile"
                                       render={() => (
@@ -228,7 +235,6 @@ export default class ApplicationShell extends React.Component {
                               component={LoginLocked}
                             />
                             <Route path="/login" component={Login} />
-                            <Route path="/logout" component={Logout} />
                             <Route
                               render={({ location }) => {
                                 // If the user tries to access a route (e.g. `/my-project/orders`)
