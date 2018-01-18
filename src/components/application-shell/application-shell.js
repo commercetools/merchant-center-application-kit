@@ -192,24 +192,21 @@ export default class ApplicationShell extends React.Component {
                                             routerProps.match.params.projectKey
                                           }
                                         >
+                                          <IntercomUserTracker
+                                            projectKey={
+                                              routerProps.match.params
+                                                .projectKey
+                                            }
+                                          />
                                           <ProjectContainer
                                             match={routerProps.match}
                                             location={routerProps.location}
-                                            render={() => (
-                                              <React.Fragment>
-                                                <IntercomUserTracker
-                                                  projectKey={
-                                                    routerProps.match.params
-                                                      .projectKey
-                                                  }
-                                                />
-                                                {/**
-                                                 * This effectively renders the
-                                                 * children, which is the application
-                                                 * specific part */
-                                                this.props.render()}
-                                              </React.Fragment>
-                                            )}
+                                            render={
+                                              // This effectively renders the
+                                              // children, which is the application
+                                              // specific part
+                                              this.props.render
+                                            }
                                           />
                                         </SetupFlopFlipProvider>
                                       )}
