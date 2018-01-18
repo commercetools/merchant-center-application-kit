@@ -114,10 +114,12 @@ export default class ApplicationShell extends React.Component {
 
                                 <aside>
                                   <Route
-                                    render={({ location }) => (
+                                    path="/:projectKey"
+                                    render={({ location, match }) => (
                                       <Menu
                                         location={location}
                                         menuItems={this.props.menuItems}
+                                        projectKey={match.params.projectKey}
                                       />
                                     )}
                                   />

@@ -478,7 +478,20 @@ export class Menu extends React.PureComponent {
 }
 
 export default compose(
-  withProps({ projectKey: storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY) }),
+  withProps(props => ({
+    projectKey:
+      // in case the user logs in for the first time  and there is no cached
+      // project key we take the projekt key from the URL that is passed in
+      // as a prop
+      // the above is the only case where we pick the project key from the URL
+      // generally it is perferrable to read it from local storage, because
+      // it will always be available from there as soon as the user is logged in
+      // even when the user visits the /profile or /organizations pages, which
+      // don't contain the project key in the URL
+      // This is not considered the optimal solution though as we don't have a
+      // single source of truth for the project key anymore
+      storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY) || props.projectKey,
+  })),
   withProject(props => props.projectKey, projectData => ({ projectData })),
   withProps(props => {
     const cachedIsForcedMenuOpen = storage.get(
