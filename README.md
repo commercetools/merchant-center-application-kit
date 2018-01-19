@@ -27,3 +27,20 @@ withCurrencies(ownProps => ownProps.locale)(Component);
 // format: { currencyCode: { label, symbol } }
 // { "EUR": { "label": "Euro", "symbol": "€" } }
 ```
+
+* `@commercetools-local/l10n/language-information`
+
+```js
+import {
+  withLanguages,
+  languagesShape,
+} from '@commercetools-local/l10n/currency-information';
+
+withLanguages(ownProps => ownProps.locale)(Component);
+
+// format: { languageCode: { language, country? } }
+// Case with main language
+// { "es": { "language": "Spanish" } }
+// Case with language of a region
+// { "es-AR": { "language": "Spanish", "country": "Argentina" } }
+```
