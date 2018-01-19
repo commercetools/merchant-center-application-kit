@@ -94,37 +94,36 @@ const extractLanguageDataForLocale = locale => {
   // We need to fetch the countries first in order to have them when we have
   // languages the type es_GT so we can get the country name for object info
   return extractCountryDataForLocale(locale).then(countries =>
-    Object.keys(languages).reduce(
-      (acc, language) =>
-        // We only map the countries with 2 digits (ISO 3166-1 alpha-2) to be
-        // inline with the AC
-        language.length === 2
-          ? Object.assign(
-              {},
-              acc,
-              // In case the current language has territories we need to parse
-              // each one of them into its own language (e.j. es_AR)
-              languages[language].territories
-                ? Object.assign(
-                    // We need to set the basic language (e.j. es)
-                    { [language]: { language: languageNames[language] } },
-                    acc,
-                    languages[language].territories.reduce(
-                      (acc2, territory) =>
-                        Object.assign({}, acc2, {
-                          [`${language}_${territory}`]: {
-                            language: languageNames[language],
-                            country: countries[territory.toLowerCase()],
-                          },
-                        }),
-                      {}
-                    )
+    Object.keys(languages)
+      // We only map the countries with 2 digits (ISO 3166-1 alpha-2) to be
+      // inline with the AC
+      .filter(language => language.length === 2)
+      .reduce(
+        (acc, language) =>
+          Object.assign(
+            {},
+            acc,
+            // In case the current language has territories we need to parse
+            // each one of them into its own language (e.j. es_AR)
+            languages[language].territories
+              ? Object.assign(
+                  // We need to set the basic language (e.j. es)
+                  { [language]: { language: languageNames[language] } },
+                  languages[language].territories.reduce(
+                    (acc2, territory) =>
+                      Object.assign({}, acc2, {
+                        [`${language}_${territory}`]: {
+                          language: languageNames[language],
+                          country: countries[territory.toLowerCase()],
+                        },
+                      }),
+                    {}
                   )
-                : { [language]: { language: languageNames[language] } }
-            )
-          : acc,
-      {}
-    )
+                )
+              : { [language]: { language: languageNames[language] } }
+          ),
+        {}
+      )
   );
 };
 
