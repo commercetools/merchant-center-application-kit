@@ -10,6 +10,7 @@ const L10N_KEYS = {
   COUNTRY: 'country',
   CURRENCY: 'currency',
   TIMEZONE: 'timezone',
+  LANGUAGE: 'languaje',
 };
 
 const extractCountryDataForLocale = locale => {
@@ -84,18 +85,65 @@ const extractTimeZoneDataForLocale = (/* locale */) => {
   );
 };
 
+const extractLanguageDataForLocale = locale => {
+  // Get the list of all languages.
+  const languages = cldr.extractLanguageSupplementalData(locale);
+  // Get the list of all language names
+  const languageNames = cldr.extractLanguageDisplayNames(locale);
+
+  // We need to fetch the countries first in order to have them when we have
+  // languages the type es_GT so we can get the country name for object info
+  return extractCountryDataForLocale(locale).then(countries =>
+    Object.keys(languages).reduce(
+      (acc, language) =>
+        // We only map the countries with 2 digits (ISO 3166-1 alpha-2) to be
+        // inline with the AC
+        language.length === 2
+          ? Object.assign(
+              {},
+              acc,
+              // In case the current language has territories we need to parse
+              // each one of them into its own language (e.j. es_AR)
+              languages[language].territories
+                ? Object.assign(
+                    // We need to set the basic language (e.j. es)
+                    { [language]: { language: languageNames[language] } },
+                    acc,
+                    languages[language].territories.reduce(
+                      (acc2, territory) =>
+                        Object.assign({}, acc2, {
+                          [`${language}_${territory}`]: {
+                            country: languageNames[language],
+                            language: countries[territory.toLowerCase()],
+                          },
+                        }),
+                      {}
+                    )
+                  )
+                : { [language]: { language: languageNames[language] } }
+            )
+          : acc,
+      {}
+    )
+  );
+};
+
 const DATA_DIR = {
   [L10N_KEYS.COUNTRY]: {
-    path: './modules/l10n/data/countries',
+    path: './packages-shared/l10n/data/countries',
     transform: extractCountryDataForLocale,
   },
   [L10N_KEYS.CURRENCY]: {
-    path: './modules/l10n/data/currencies',
+    path: './packages-shared/l10n/data/currencies',
     transform: extractCurrencyDataForLocale,
   },
   [L10N_KEYS.TIMEZONE]: {
-    path: './modules/l10n/data/time-zones',
+    path: './packages-shared/l10n/data/time-zones',
     transform: extractTimeZoneDataForLocale,
+  },
+  [L10N_KEYS.LANGUAGE]: {
+    path: './packages-shared/l10n/data/languages',
+    transform: extractLanguageDataForLocale,
   },
 };
 
@@ -134,7 +182,12 @@ const run = async key => {
 };
 
 Promise.all(
-  [L10N_KEYS.COUNTRY, L10N_KEYS.CURRENCY, L10N_KEYS.TIMEZONE].map(run)
+  [
+    L10N_KEYS.COUNTRY,
+    L10N_KEYS.CURRENCY,
+    L10N_KEYS.TIMEZONE,
+    L10N_KEYS.LANGUAGE,
+  ].map(run)
 )
   .then(() => {
     console.log('Data generated!');
