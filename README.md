@@ -34,7 +34,7 @@ withCurrencies(ownProps => ownProps.locale)(Component);
 import {
   withLanguages,
   languagesShape,
-} from '@commercetools-local/l10n/currency-information';
+} from '@commercetools-local/l10n/language-information';
 
 withLanguages(ownProps => ownProps.locale)(Component);
 
