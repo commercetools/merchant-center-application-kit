@@ -1,183 +1,177 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`rendering <Authenticated> when user is authenticated project container <Route> should match layout structure 1`] = `
-<div>
-  <React.Fragment>
-    <withUser(IntercomBooter)
-      showNotification={[MockFunction]}
-    />
-    <withUser(SentryUserTracker) />
-    <withUser(GtmUserTracker) />
-    <withUser(branch(IntercomUserTracker)) />
-    <SetupFlopFlipProvider>
+exports[`<ApplicationAuthenticated> rendering project container <Route> should match layout structure 1`] = `
+<React.Fragment>
+  <withUser(IntercomBooter)
+    showNotification={[MockFunction]}
+  />
+  <withUser(SentryUserTracker) />
+  <withUser(GtmUserTracker) />
+  <withUser(branch(IntercomUserTracker)) />
+  <SetupFlopFlipProvider>
+    <div
+      className="app-layout"
+    >
       <div
-        className="app-layout"
+        className="global-notifications"
       >
-        <div
-          className="global-notifications"
-        >
-          <NotificationsList
-            domain="global"
-            mapPluginNotificationToComponent={[MockFunction]}
-            notifications={Array []}
-            showUnexpectedErrorNotification={[MockFunction]}
-          />
-        </div>
-        <header>
-          <AppBar />
-        </header>
-        <aside>
+        <NotificationsList
+          domain="global"
+          mapPluginNotificationToComponent={[MockFunction]}
+          notifications={Array []}
+          showUnexpectedErrorNotification={[MockFunction]}
+        />
+      </div>
+      <header>
+        <AppBar />
+      </header>
+      <aside>
+        <Route
+          path="/:projectKey"
+          render={[Function]}
+        />
+      </aside>
+      <div
+        className="main"
+        role="main"
+      >
+        <NotificationsList
+          domain="page"
+          mapPluginNotificationToComponent={[MockFunction]}
+          notifications={Array []}
+        />
+        <NotificationsList
+          domain="side"
+          mapPluginNotificationToComponent={[MockFunction]}
+          notifications={Array []}
+        />
+        <Switch>
           <Route
+            component={[Function]}
+            path="/logout"
+          />
+          <Route
+            path="/profile"
+            render={[Function]}
+          />
+          <Route
+            exact={true}
             path="/:projectKey"
             render={[Function]}
           />
-        </aside>
-        <div
-          className="main"
-          role="main"
-        >
-          <NotificationsList
-            domain="page"
-            mapPluginNotificationToComponent={[MockFunction]}
-            notifications={Array []}
-          />
-          <NotificationsList
-            domain="side"
-            mapPluginNotificationToComponent={[MockFunction]}
-            notifications={Array []}
-          />
-          <Switch>
-            <Route
-              component={[Function]}
-              path="/logout"
-            />
-            <Route
-              path="/profile"
-              render={[Function]}
-            />
-            <Route
-              exact={true}
-              path="/:projectKey"
-              render={[Function]}
-            />
-            <Route
-              exact={false}
-              path="/:projectKey"
-              render={[Function]}
-            />
-            <Route
-              component={[Function]}
-              path="/"
-            />
-          </Switch>
-        </div>
-      </div>
-    </SetupFlopFlipProvider>
-  </React.Fragment>
-</div>
-`;
-
-exports[`rendering <Authenticated> when user is authenticated should match layout structure 1`] = `
-<div>
-  <React.Fragment>
-    <withUser(IntercomBooter)
-      showNotification={[MockFunction]}
-    />
-    <withUser(SentryUserTracker) />
-    <withUser(GtmUserTracker) />
-    <withUser(branch(IntercomUserTracker)) />
-    <SetupFlopFlipProvider>
-      <div
-        className="app-layout"
-      >
-        <div
-          className="global-notifications"
-        >
-          <NotificationsList
-            domain="global"
-            mapPluginNotificationToComponent={[MockFunction]}
-            notifications={Array []}
-            showUnexpectedErrorNotification={[MockFunction]}
-          />
-        </div>
-        <header>
-          <AppBar />
-        </header>
-        <aside>
           <Route
+            exact={false}
             path="/:projectKey"
             render={[Function]}
           />
-        </aside>
-        <div
-          className="main"
-          role="main"
-        >
-          <NotificationsList
-            domain="page"
-            mapPluginNotificationToComponent={[MockFunction]}
-            notifications={Array []}
+          <Route
+            component={[Function]}
+            path="/"
           />
-          <NotificationsList
-            domain="side"
-            mapPluginNotificationToComponent={[MockFunction]}
-            notifications={Array []}
-          />
-          <Switch>
-            <Route
-              component={[Function]}
-              path="/logout"
-            />
-            <Route
-              path="/profile"
-              render={[Function]}
-            />
-            <Route
-              exact={true}
-              path="/:projectKey"
-              render={[Function]}
-            />
-            <Route
-              exact={false}
-              path="/:projectKey"
-              render={[Function]}
-            />
-            <Route
-              component={[Function]}
-              path="/"
-            />
-          </Switch>
-        </div>
+        </Switch>
       </div>
-    </SetupFlopFlipProvider>
-  </React.Fragment>
-</div>
+    </div>
+  </SetupFlopFlipProvider>
+</React.Fragment>
 `;
 
-exports[`rendering <Authenticated> when user is not authenticated should match layout structure 1`] = `
-<div>
-  <Switch>
-    <Route
-      component={[Function]}
-      path="/login/sso/callback"
-    />
-    <Route
-      component={[Function]}
-      path="/login/sso"
-    />
-    <Route
-      component={[Function]}
-      path="/login/locked"
-    />
-    <Route
-      component={[Function]}
-      path="/login"
-    />
-    <Route
-      render={[Function]}
-    />
-  </Switch>
-</div>
+exports[`<ApplicationAuthenticated> rendering should match layout structure 1`] = `
+<React.Fragment>
+  <withUser(IntercomBooter)
+    showNotification={[MockFunction]}
+  />
+  <withUser(SentryUserTracker) />
+  <withUser(GtmUserTracker) />
+  <withUser(branch(IntercomUserTracker)) />
+  <SetupFlopFlipProvider>
+    <div
+      className="app-layout"
+    >
+      <div
+        className="global-notifications"
+      >
+        <NotificationsList
+          domain="global"
+          mapPluginNotificationToComponent={[MockFunction]}
+          notifications={Array []}
+          showUnexpectedErrorNotification={[MockFunction]}
+        />
+      </div>
+      <header>
+        <AppBar />
+      </header>
+      <aside>
+        <Route
+          path="/:projectKey"
+          render={[Function]}
+        />
+      </aside>
+      <div
+        className="main"
+        role="main"
+      >
+        <NotificationsList
+          domain="page"
+          mapPluginNotificationToComponent={[MockFunction]}
+          notifications={Array []}
+        />
+        <NotificationsList
+          domain="side"
+          mapPluginNotificationToComponent={[MockFunction]}
+          notifications={Array []}
+        />
+        <Switch>
+          <Route
+            component={[Function]}
+            path="/logout"
+          />
+          <Route
+            path="/profile"
+            render={[Function]}
+          />
+          <Route
+            exact={true}
+            path="/:projectKey"
+            render={[Function]}
+          />
+          <Route
+            exact={false}
+            path="/:projectKey"
+            render={[Function]}
+          />
+          <Route
+            component={[Function]}
+            path="/"
+          />
+        </Switch>
+      </div>
+    </div>
+  </SetupFlopFlipProvider>
+</React.Fragment>
+`;
+
+exports[`<ApplicationPublic> rendering should match layout structure 1`] = `
+<Switch>
+  <Route
+    component={[Function]}
+    path="/login/sso/callback"
+  />
+  <Route
+    component={[Function]}
+    path="/login/sso"
+  />
+  <Route
+    component={[Function]}
+    path="/login/locked"
+  />
+  <Route
+    component={[Function]}
+    path="/login"
+  />
+  <Route
+    render={[Function]}
+  />
+</Switch>
 `;
 
 exports[`rendering should match main structure 1`] = `
