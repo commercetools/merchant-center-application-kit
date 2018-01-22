@@ -18,13 +18,13 @@ import Authenticated from '../authenticated';
 import AppBar from '../app-bar';
 import ProjectContainer from '../project-container';
 import RedirectToProject from '../redirect-to-project';
-import Login from '../login';
-import LoginSSO from '../login-sso';
-import LoginSSOCallback from '../login-sso-callback';
-import LoginLocked from '../login-locked';
+import AsyncLogin from '../login/async';
+import AsyncLoginSSO from '../login-sso/async';
+import AsyncLoginSSOCallback from '../login-sso-callback/async';
+import AsyncLoginLocked from '../login-locked/async';
 import Logout from '../logout';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
-import UserProfile from '../user-profile';
+import AsyncUserProfile from '../user-profile/async';
 import IntercomUrlTracker from '../intercom-url-tracker';
 import IntercomUserTracker from '../intercom-user-tracker';
 import IntercomBooter from '../intercom-booter';
@@ -108,7 +108,7 @@ export const RestrictedApplication = props => (
             <Route
               path="/profile"
               render={() => (
-                <UserProfile
+                <AsyncUserProfile
                   showNotification={props.showNotification}
                   showUnexpectedErrorNotification={
                     props.showUnexpectedErrorNotification
@@ -175,10 +175,10 @@ RestrictedApplication.propTypes = {
 export const UnrestrictedApplication = () => (
   <Switch>
     {/* Public routes */}
-    <Route path="/login/sso/callback" component={LoginSSOCallback} />
-    <Route path="/login/sso" component={LoginSSO} />
-    <Route path="/login/locked" component={LoginLocked} />
-    <Route path="/login" component={Login} />
+    <Route path="/login/sso/callback" component={AsyncLoginSSOCallback} />
+    <Route path="/login/sso" component={AsyncLoginSSO} />
+    <Route path="/login/locked" component={AsyncLoginLocked} />
+    <Route path="/login" component={AsyncLogin} />
     <Route
       render={({ location }) => {
         // If the user tries to access a route (e.g. `/my-project/orders`)

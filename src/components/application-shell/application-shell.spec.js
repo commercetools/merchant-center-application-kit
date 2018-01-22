@@ -5,7 +5,7 @@ import ConfigureIntlProvider from '../configure-intl-provider';
 import IntercomBooter from '../intercom-booter';
 import IntercomUserTracker from '../intercom-user-tracker';
 import NavBar from '../navbar';
-import UserProfile from '../user-profile';
+import AsyncUserProfile from '../user-profile/async';
 import ApplicationShell, {
   RestrictedApplication,
   UnrestrictedApplication,
@@ -185,7 +185,7 @@ describe('<RestrictedApplication>', () => {
     it('should render <Route> for "/profile" below main container', () => {
       expect(wrapper.find('.main')).toRender({ path: '/profile' });
     });
-    describe('<UserProfile>', () => {
+    describe('<AsyncUserProfile>', () => {
       let routeRenderWrapper;
       beforeEach(() => {
         routeRenderWrapper = shallow(
@@ -197,8 +197,8 @@ describe('<RestrictedApplication>', () => {
           </div>
         );
       });
-      it('should render <UserProfile> inside <Route> below main container', () => {
-        expect(routeRenderWrapper).toRender(UserProfile);
+      it('should render <AsyncUserProfile> inside <Route> below main container', () => {
+        expect(routeRenderWrapper).toRender(AsyncUserProfile);
       });
     });
     it('should render <Route> matching exact ":projectKey" path', () => {
