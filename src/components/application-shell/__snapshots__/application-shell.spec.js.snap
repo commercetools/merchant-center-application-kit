@@ -255,7 +255,7 @@ exports[`rendering should match main structure 1`] = `
             <GtmBooter
               trackingEventWhitelist={Object {}}
             >
-              <Authenticated />
+              <ApplicationPublic />
             </GtmBooter>
           </IntercomUrlTracker>
         </BrowserRouter>
