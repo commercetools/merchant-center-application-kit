@@ -309,12 +309,10 @@ describe('rendering', () => {
         });
         describe('when location pathname is "/"', () => {
           it('should render <Redirect> without "redirectTo" search param', () => {
-            expect(routeRenderWrapper.find('Redirect')).toHaveProp(
+            expect(routeRenderWrapper.find('Redirect')).not.toHaveProp(
               'to',
               expect.objectContaining({
-                // We use a negative look-around to negate the matching
-                // https://stackoverflow.com/a/406408
-                search: expect.stringMatching(/^((?!redirectTo).)*$/),
+                search: expect.stringContaining('redirectTo'),
               })
             );
           });
