@@ -10,7 +10,7 @@ const L10N_KEYS = {
   COUNTRY: 'country',
   CURRENCY: 'currency',
   TIMEZONE: 'timezone',
-  LANGUAGE: 'languaje',
+  LANGUAGE: 'language',
 };
 
 const extractCountryDataForLocale = locale => {
@@ -107,7 +107,7 @@ const extractLanguageDataForLocale = locale => {
             // each one of them into its own language (e.j. es_AR)
             languages[language].territories
               ? Object.assign(
-                  // We need to set the basic language (e.j. es)
+                  // We need to set the basic language (e.g. es)
                   { [language]: { language: languageNames[language] } },
                   languages[language].territories.reduce(
                     (acc2, territory) =>
