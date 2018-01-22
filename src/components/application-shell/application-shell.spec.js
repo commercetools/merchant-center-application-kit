@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { DOMAINS } from '@commercetools-local/constants';
 import ConfigureIntlProvider from '../configure-intl-provider';
+import FetchUser from '../fetch-user';
 import IntercomBooter from '../intercom-booter';
 import IntercomUserTracker from '../intercom-user-tracker';
 import NavBar from '../navbar';
@@ -108,10 +109,24 @@ describe('rendering', () => {
 describe('<RestrictedApplication>', () => {
   let props;
   let wrapper;
+  let userData;
   describe('rendering', () => {
     beforeEach(() => {
       props = createTestProps();
-      wrapper = shallow(<RestrictedApplication {...props} />);
+      const rootWrapper = shallow(<RestrictedApplication {...props} />);
+      userData = {
+        isLoading: false,
+        user: {
+          id: 'u1',
+          email: 'john.snow@got.com',
+          firstName: 'John',
+          lastName: 'Snow',
+          availableProjects: [],
+        },
+      };
+      wrapper = shallow(
+        <div>{rootWrapper.find(FetchUser).prop('children')(userData)}</div>
+      );
     });
     it('should match layout structure', () => {
       expect(wrapper).toMatchSnapshot();

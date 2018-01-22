@@ -1,153 +1,261 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<RestrictedApplication> rendering project container <Route> should match layout structure 1`] = `
-<React.Fragment>
-  <withUser(IntercomBooter)
-    showNotification={[MockFunction]}
-  />
-  <withUser(SentryUserTracker) />
-  <withUser(GtmUserTracker) />
-  <withUser(branch(IntercomUserTracker)) />
-  <SetupFlopFlipProvider>
-    <div
-      className="app-layout"
+<div>
+  <React.Fragment>
+    <IntercomBooter
+      showNotification={[MockFunction]}
+    />
+    <SentryUserTracker
+      user={
+        Object {
+          "availableProjects": Array [],
+          "email": "john.snow@got.com",
+          "firstName": "John",
+          "id": "u1",
+          "lastName": "Snow",
+        }
+      }
+    />
+    <GtmUserTracker
+      user={
+        Object {
+          "availableProjects": Array [],
+          "email": "john.snow@got.com",
+          "firstName": "John",
+          "id": "u1",
+          "lastName": "Snow",
+        }
+      }
+    />
+    <branch(IntercomUserTracker)
+      user={
+        Object {
+          "availableProjects": Array [],
+          "email": "john.snow@got.com",
+          "firstName": "John",
+          "id": "u1",
+          "lastName": "Snow",
+        }
+      }
+    />
+    <SetupFlopFlipProvider
+      isLoading={false}
+      user={
+        Object {
+          "availableProjects": Array [],
+          "email": "john.snow@got.com",
+          "firstName": "John",
+          "id": "u1",
+          "lastName": "Snow",
+        }
+      }
     >
       <div
-        className="global-notifications"
+        className="app-layout"
       >
-        <NotificationsList
-          domain="global"
-          mapPluginNotificationToComponent={[MockFunction]}
-          notifications={Array []}
-          showUnexpectedErrorNotification={[MockFunction]}
-        />
-      </div>
-      <header>
-        <AppBar />
-      </header>
-      <aside>
-        <Route
-          path="/:projectKey"
-          render={[Function]}
-        />
-      </aside>
-      <div
-        className="main"
-        role="main"
-      >
-        <NotificationsList
-          domain="page"
-          mapPluginNotificationToComponent={[MockFunction]}
-          notifications={Array []}
-        />
-        <NotificationsList
-          domain="side"
-          mapPluginNotificationToComponent={[MockFunction]}
-          notifications={Array []}
-        />
-        <Switch>
-          <Route
-            component={[Function]}
-            path="/logout"
+        <div
+          className="global-notifications"
+        >
+          <NotificationsList
+            domain="global"
+            mapPluginNotificationToComponent={[MockFunction]}
+            notifications={Array []}
+            showUnexpectedErrorNotification={[MockFunction]}
           />
-          <Route
-            path="/profile"
-            render={[Function]}
+        </div>
+        <header>
+          <AppBar
+            isLoading={false}
+            user={
+              Object {
+                "availableProjects": Array [],
+                "email": "john.snow@got.com",
+                "firstName": "John",
+                "id": "u1",
+                "lastName": "Snow",
+              }
+            }
           />
+        </header>
+        <aside>
           <Route
-            exact={true}
             path="/:projectKey"
             render={[Function]}
           />
-          <Route
-            exact={false}
-            path="/:projectKey"
-            render={[Function]}
+        </aside>
+        <div
+          className="main"
+          role="main"
+        >
+          <NotificationsList
+            domain="page"
+            mapPluginNotificationToComponent={[MockFunction]}
+            notifications={Array []}
           />
-          <Route
-            component={[Function]}
-            path="/"
+          <NotificationsList
+            domain="side"
+            mapPluginNotificationToComponent={[MockFunction]}
+            notifications={Array []}
           />
-        </Switch>
+          <Switch>
+            <Route
+              component={[Function]}
+              path="/logout"
+            />
+            <Route
+              path="/profile"
+              render={[Function]}
+            />
+            <Route
+              exact={true}
+              path="/:projectKey"
+              render={[Function]}
+            />
+            <Route
+              exact={false}
+              path="/:projectKey"
+              render={[Function]}
+            />
+            <Route
+              component={[Function]}
+              path="/"
+            />
+          </Switch>
+        </div>
       </div>
-    </div>
-  </SetupFlopFlipProvider>
-</React.Fragment>
+    </SetupFlopFlipProvider>
+  </React.Fragment>
+</div>
 `;
 
 exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
-<React.Fragment>
-  <withUser(IntercomBooter)
-    showNotification={[MockFunction]}
-  />
-  <withUser(SentryUserTracker) />
-  <withUser(GtmUserTracker) />
-  <withUser(branch(IntercomUserTracker)) />
-  <SetupFlopFlipProvider>
-    <div
-      className="app-layout"
+<div>
+  <React.Fragment>
+    <IntercomBooter
+      showNotification={[MockFunction]}
+    />
+    <SentryUserTracker
+      user={
+        Object {
+          "availableProjects": Array [],
+          "email": "john.snow@got.com",
+          "firstName": "John",
+          "id": "u1",
+          "lastName": "Snow",
+        }
+      }
+    />
+    <GtmUserTracker
+      user={
+        Object {
+          "availableProjects": Array [],
+          "email": "john.snow@got.com",
+          "firstName": "John",
+          "id": "u1",
+          "lastName": "Snow",
+        }
+      }
+    />
+    <branch(IntercomUserTracker)
+      user={
+        Object {
+          "availableProjects": Array [],
+          "email": "john.snow@got.com",
+          "firstName": "John",
+          "id": "u1",
+          "lastName": "Snow",
+        }
+      }
+    />
+    <SetupFlopFlipProvider
+      isLoading={false}
+      user={
+        Object {
+          "availableProjects": Array [],
+          "email": "john.snow@got.com",
+          "firstName": "John",
+          "id": "u1",
+          "lastName": "Snow",
+        }
+      }
     >
       <div
-        className="global-notifications"
+        className="app-layout"
       >
-        <NotificationsList
-          domain="global"
-          mapPluginNotificationToComponent={[MockFunction]}
-          notifications={Array []}
-          showUnexpectedErrorNotification={[MockFunction]}
-        />
-      </div>
-      <header>
-        <AppBar />
-      </header>
-      <aside>
-        <Route
-          path="/:projectKey"
-          render={[Function]}
-        />
-      </aside>
-      <div
-        className="main"
-        role="main"
-      >
-        <NotificationsList
-          domain="page"
-          mapPluginNotificationToComponent={[MockFunction]}
-          notifications={Array []}
-        />
-        <NotificationsList
-          domain="side"
-          mapPluginNotificationToComponent={[MockFunction]}
-          notifications={Array []}
-        />
-        <Switch>
-          <Route
-            component={[Function]}
-            path="/logout"
+        <div
+          className="global-notifications"
+        >
+          <NotificationsList
+            domain="global"
+            mapPluginNotificationToComponent={[MockFunction]}
+            notifications={Array []}
+            showUnexpectedErrorNotification={[MockFunction]}
           />
-          <Route
-            path="/profile"
-            render={[Function]}
+        </div>
+        <header>
+          <AppBar
+            isLoading={false}
+            user={
+              Object {
+                "availableProjects": Array [],
+                "email": "john.snow@got.com",
+                "firstName": "John",
+                "id": "u1",
+                "lastName": "Snow",
+              }
+            }
           />
+        </header>
+        <aside>
           <Route
-            exact={true}
             path="/:projectKey"
             render={[Function]}
           />
-          <Route
-            exact={false}
-            path="/:projectKey"
-            render={[Function]}
+        </aside>
+        <div
+          className="main"
+          role="main"
+        >
+          <NotificationsList
+            domain="page"
+            mapPluginNotificationToComponent={[MockFunction]}
+            notifications={Array []}
           />
-          <Route
-            component={[Function]}
-            path="/"
+          <NotificationsList
+            domain="side"
+            mapPluginNotificationToComponent={[MockFunction]}
+            notifications={Array []}
           />
-        </Switch>
+          <Switch>
+            <Route
+              component={[Function]}
+              path="/logout"
+            />
+            <Route
+              path="/profile"
+              render={[Function]}
+            />
+            <Route
+              exact={true}
+              path="/:projectKey"
+              render={[Function]}
+            />
+            <Route
+              exact={false}
+              path="/:projectKey"
+              render={[Function]}
+            />
+            <Route
+              component={[Function]}
+              path="/"
+            />
+          </Switch>
+        </div>
       </div>
-    </div>
-  </SetupFlopFlipProvider>
-</React.Fragment>
+    </SetupFlopFlipProvider>
+  </React.Fragment>
+</div>
 `;
 
 exports[`<UnrestrictedApplication> rendering should match layout structure 1`] = `
@@ -255,7 +363,7 @@ exports[`rendering should match main structure 1`] = `
             <GtmBooter
               trackingEventWhitelist={Object {}}
             >
-              <ApplicationPublic />
+              <Authenticated />
             </GtmBooter>
           </IntercomUrlTracker>
         </BrowserRouter>

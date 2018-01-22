@@ -39,13 +39,10 @@ export class UserProfile extends React.Component {
 
   static propTypes = {
     route: PropTypes.object.isRequired,
-    userData: PropTypes.shape({
-      isLoading: PropTypes.bool.isRequired,
-      user: PropTypes.shape({
-        firstName: PropTypes.string.isRequired,
-        lastName: PropTypes.string.isRequired,
-        email: PropTypes.string.isRequired,
-      }),
+    user: PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
     }),
     projectsCount: PropTypes.number.isRequired,
     organizationsCount: PropTypes.number.isRequired,
@@ -95,7 +92,7 @@ export class UserProfile extends React.Component {
       });
 
   render() {
-    if (!this.props.userData.user) return null;
+    if (!this.props.user) return null;
     return (
       <div
         /* TODO: build this into UIKit (e.g. <Page>) */
@@ -105,16 +102,14 @@ export class UserProfile extends React.Component {
           <Spacings.Inset>
             <Spacings.Inline scale="m" alignItems="center">
               <Avatar
-                email={this.props.userData.user.email}
-                firstName={this.props.userData.user.firstName}
-                lastName={this.props.userData.user.lastName}
+                email={this.props.user.email}
+                firstName={this.props.user.firstName}
+                lastName={this.props.user.lastName}
                 size="big"
               />
               <div>
                 <Text.Headline elementType="h1">
-                  {`${this.props.userData.user.firstName} ${
-                    this.props.userData.user.lastName
-                  }`}
+                  {`${this.props.user.firstName} ${this.props.user.lastName}`}
                 </Text.Headline>
                 <Text.Body>
                   <FormattedMessage
@@ -136,7 +131,7 @@ export class UserProfile extends React.Component {
         >
           <UserProfileForm
             // This is specific to redux-form
-            initialValues={this.props.userData.user}
+            initialValues={this.props.user}
             onSubmit={this.handleSave}
             route={this.props.route}
           />
@@ -149,12 +144,10 @@ export class UserProfile extends React.Component {
 export default compose(
   injectIntl,
   withProps(props => ({
-    projectsCount: props.userData.isLoading
-      ? 0
-      : props.userData.user.availableProjects.length,
-    organizationsCount: props.userData.isLoading
-      ? 0
-      : props.userData.user.availableOrganizations.length,
+    projectsCount: props.user ? props.user.availableProjects.length : 0,
+    organizationsCount: props.user
+      ? props.user.availableOrganizations.length
+      : 0,
   })),
   graphql(UserProfileMutation, { name: 'updateUserProfile' }),
   injectConfiguration('env', 'env')

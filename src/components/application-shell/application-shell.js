@@ -10,12 +10,7 @@ import {
 import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import { joinPaths } from '@commercetools-local/utils/url';
-import {
-  DOMAINS,
-  LOGOUT_REASONS,
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-} from '@commercetools-local/constants';
-import * as storage from '@commercetools-local/utils/storage';
+import { DOMAINS, LOGOUT_REASONS } from '@commercetools-local/constants';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
@@ -120,7 +115,7 @@ export const RestrictedApplication = props => (
                   path="/profile"
                   render={() => (
                     <AsyncUserProfile
-                      userData={{ isLoading, user }}
+                      user={user}
                       showNotification={props.showNotification}
                       showUnexpectedErrorNotification={
                         props.showUnexpectedErrorNotification
@@ -251,12 +246,8 @@ export default class ApplicationShell extends React.Component {
     showUnexpectedErrorNotification: PropTypes.func,
     onRegisterGlobalErrorListeners: PropTypes.func.isRequired,
   };
-  isAuthenticated = Boolean(storage.get(CORE_STORAGE_KEYS.TOKEN));
   componentDidMount() {
     this.props.onRegisterGlobalErrorListeners();
-  }
-  componentWillReceiveProps() {
-    this.isAuthenticated = Boolean(storage.get(CORE_STORAGE_KEYS.TOKEN));
   }
   render() {
     return (
