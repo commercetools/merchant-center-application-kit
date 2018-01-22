@@ -16,49 +16,27 @@ import * as intercom from '../../utils/intercom';
 export class IntercomUserTracker extends React.Component {
   static displayName = 'IntercomUserTracker';
   static propTypes = {
+    // Only used for the `withProject` HOC
     projectKey: PropTypes.string,
-    userData: PropTypes.shape({
-      isLoading: PropTypes.bool.isRequired,
-      user: PropTypes.object,
-    }),
-    projectData: PropTypes.shape({
-      isLoading: PropTypes.bool.isRequired,
-      project: PropTypes.object,
-    }),
+    // Injected
+    user: PropTypes.object,
+    organization: PropTypes.object,
   };
-  shouldComponentUpdate(nextProps) {
-    return (
-      (this.props.projectKey &&
-        nextProps.projectKey &&
-        nextProps.projectData.project !== this.props.projectData.project) ||
-      nextProps.userData.user !== this.props.userData.user
-    );
-  }
   componentDidMount() {
     // since the user and project could have been loaded from the apollo cache
     // they could be preset already when mounting
-    if (this.shouldUpdateUser(this.props)) {
-      this.updateUser(this.props);
-    }
+    if (this.props.user) this.syncUser();
   }
-  componentWillUpdate(nextProps) {
-    // call in componentWillUpdate rather than in componentWillReceiveProps
-    // because willUpdate will only run if shouldComponentUpdate returned true
-    // componentWillReceiveProps will always run
-    if (this.shouldUpdateUser(nextProps)) {
-      this.updateUser(nextProps);
-    }
+  componentDidUpdate() {
+    if (this.props.user) this.syncUser();
   }
-  shouldUpdateUser = props => !props.userData.isLoading;
-  updateUser = props => {
-    if (props.projectKey && !props.projectData.isLoading) {
-      intercom.updateUser({
-        ...props.userData.user,
-        organization: props.projectData.project.owner,
-      });
-    } else {
-      intercom.updateUser(props.userData.user);
-    }
+  syncUser = () => {
+    intercom.updateUser({
+      ...this.props.user,
+      ...(this.props.organization
+        ? { organization: this.props.organization }
+        : {}),
+    });
   };
   render() {
     return null;
@@ -66,21 +44,14 @@ export class IntercomUserTracker extends React.Component {
 }
 
 export default compose(
-  withUser(userData => ({
-    userData: {
-      isLoading: userData.isLoading,
-      user: userData.user,
-    },
-  })),
+  withUser(userData => ({ user: userData && userData.user })),
   branch(
     props => props.projectKey,
     withProject(
       props => props.projectKey,
       projectData => ({
-        projectData: {
-          isLoading: projectData.isLoading,
-          project: projectData.project,
-        },
+        organization:
+          projectData && projectData.project && projectData.project.owner,
       })
     )
   )
