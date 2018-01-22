@@ -13,7 +13,7 @@ import * as intercom from '../../utils/intercom';
  * sent.
  */
 
-export class IntercomUserTracker extends React.Component {
+export class IntercomUserTracker extends React.PureComponent {
   static displayName = 'IntercomUserTracker';
   static propTypes = {
     // Only used for the `withProject` HOC
