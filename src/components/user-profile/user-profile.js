@@ -11,7 +11,6 @@ import { DOMAINS } from '@commercetools-local/constants';
 import logger from '@commercetools-local/utils/logger';
 import Avatar from '@commercetools-local/core/components/avatar';
 import injectConfiguration from '@commercetools-local/core/components/configuration/inject-configuration';
-import { withUser } from '../fetch-user';
 import UserProfileForm from '../user-profile-form';
 import styles from './user-profile.mod.css';
 import messages from './messages';
@@ -149,7 +148,6 @@ export class UserProfile extends React.Component {
 
 export default compose(
   injectIntl,
-  withUser(userData => ({ userData })),
   withProps(props => ({
     projectsCount: props.userData.isLoading
       ? 0

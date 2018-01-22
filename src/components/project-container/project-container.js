@@ -8,7 +8,6 @@ import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectDataLocale from '../project-data-locale';
 import FetchProject from '../fetch-project';
-import FetchUser from '../fetch-user';
 import ProjectNotFound from '../project-not-found';
 import ProjectExpired from '../project-expired';
 import ProjectSuspended from '../project-suspended';
@@ -22,6 +21,10 @@ class ProjectContainer extends React.Component {
         projectKey: PropTypes.string,
       }).isRequired,
     }).isRequired,
+    isLoadingUser: PropTypes.bool.isRequired,
+    user: PropTypes.shape({
+      availableProjects: PropTypes.array.isRequired,
+    }),
     render: PropTypes.func.isRequired,
   };
   state = {
@@ -89,56 +92,50 @@ class ProjectContainer extends React.Component {
         </div>
       );
     }
+    // TODO: do something if there is an `error`?
+    if (this.props.isLoadingUser) return <LoadingSpinner />;
+    if (this.props.user && this.props.user.availableProjects.length === 0)
+      return <Redirect to="/logout?reason=no-projects" />;
+
     return (
-      <FetchUser>
-        {({ isLoading: isLoadingUser, user }) => {
+      <FetchProject projectKey={this.props.match.params.projectKey}>
+        {({ isLoading: isLoadingProject, project }) => {
           // TODO: do something if there is an `error`?
-          if (isLoadingUser) return <LoadingSpinner />;
-          if (user && user.availableProjects.length === 0)
-            return <Redirect to="/logout?reason=no-projects" />;
+          if (isLoadingProject) return <LoadingSpinner />;
+          if (!project) return <ProjectNotFound />;
+          if (project.suspended) return <ProjectSuspended />;
+          if (project.expired) return <ProjectExpired />;
+          if (!project.settings) return <ProjectWithoutSettings />;
 
           return (
-            <FetchProject projectKey={this.props.match.params.projectKey}>
-              {({ isLoading: isLoadingProject, project }) => {
-                // TODO: do something if there is an `error`?
-                if (isLoadingProject) return <LoadingSpinner />;
-                if (!project) return <ProjectNotFound />;
-                if (project.suspended) return <ProjectSuspended />;
-                if (project.expired) return <ProjectExpired />;
-                if (!project.settings) return <ProjectWithoutSettings />;
-
-                return (
-                  <ProjectDataLocale locales={project.languages}>
-                    {({ locale, setProjectDataLocale }) => (
-                      <React.Fragment>
-                        {/* Render <LocaleSwitcher> using a portal */}
-                        {this.state.localeSwitcherNode &&
-                          // Render the `<LocaleSwitcher>` only if the project has more
-                          // than one language.
-                          project.languages.length > 1 &&
-                          ReactDOM.createPortal(
-                            this.renderSwitcher({
-                              projectDataLocale: locale,
-                              setProjectDataLocale,
-                              availableLocales: project.languages,
-                            }),
-                            this.state.localeSwitcherNode
-                          )}
-                        {/**
-                         * NOTE: we don't need to explicitly pass the `locale`,
-                         * it's enough to trigger a re-render.
-                         * The `locale` can then be read from the localStorage.
-                         */}
-                        {this.props.render()}
-                      </React.Fragment>
+            <ProjectDataLocale locales={project.languages}>
+              {({ locale, setProjectDataLocale }) => (
+                <React.Fragment>
+                  {/* Render <LocaleSwitcher> using a portal */}
+                  {this.state.localeSwitcherNode &&
+                    // Render the `<LocaleSwitcher>` only if the project has more
+                    // than one language.
+                    project.languages.length > 1 &&
+                    ReactDOM.createPortal(
+                      this.renderSwitcher({
+                        projectDataLocale: locale,
+                        setProjectDataLocale,
+                        availableLocales: project.languages,
+                      }),
+                      this.state.localeSwitcherNode
                     )}
-                  </ProjectDataLocale>
-                );
-              }}
-            </FetchProject>
+                  {/**
+                   * NOTE: we don't need to explicitly pass the `locale`,
+                   * it's enough to trigger a re-render.
+                   * The `locale` can then be read from the localStorage.
+                   */}
+                  {this.props.render()}
+                </React.Fragment>
+              )}
+            </ProjectDataLocale>
           );
         }}
-      </FetchUser>
+      </FetchProject>
     );
   }
 }

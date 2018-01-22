@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DOMAINS } from '@commercetools-local/constants';
-import { withUser } from '../fetch-user';
 import * as intercom from '../../utils/intercom';
 import { INTERCOM_TRACKING_STATUS } from '../../constants';
 
@@ -60,6 +59,4 @@ export class IntercomBooter extends React.Component {
   }
 }
 
-export default withUser(userData => ({
-  intercomTrackingStatus: userData.user && userData.user.tracking_intercom,
-}))(IntercomBooter);
+export default IntercomBooter;

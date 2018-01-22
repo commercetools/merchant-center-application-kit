@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withUser } from '../fetch-user';
 import * as sentry from '../../utils/sentry';
 
 /**
@@ -8,7 +7,7 @@ import * as sentry from '../../utils/sentry';
  * changed.
  */
 
-export class SentryUserTracker extends React.PureComponent {
+class SentryUserTracker extends React.PureComponent {
   static displayName = 'SentryUserTracker';
   static propTypes = {
     user: PropTypes.object,
@@ -29,6 +28,4 @@ export class SentryUserTracker extends React.PureComponent {
   }
 }
 
-export default withUser(userData => ({ user: userData.user }))(
-  SentryUserTracker
-);
+export default SentryUserTracker;

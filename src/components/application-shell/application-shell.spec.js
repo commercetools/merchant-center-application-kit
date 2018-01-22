@@ -1,10 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import {
-  DOMAINS,
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-} from '@commercetools-local/constants';
-import * as storage from '@commercetools-local/utils/storage';
+import { DOMAINS } from '@commercetools-local/constants';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import IntercomBooter from '../intercom-booter';
 import IntercomUserTracker from '../intercom-user-tracker';
@@ -76,84 +72,14 @@ describe('rendering', () => {
     });
   });
 
-  describe('when user is not authenticated', () => {
-    beforeEach(() => {
-      storage.remove(CORE_STORAGE_KEYS.TOKEN, 'xxx');
-      props = createTestProps();
-      wrapper = shallow(<ApplicationShell {...props} />);
-    });
-    it('should render <ApplicationPublic> after track components', () => {
-      expect(wrapper).toRender('GtmBooter > ApplicationPublic');
-    });
-  });
-});
-describe('<ApplicationAuthenticated>', () => {
-  let props;
-  let wrapper;
-  describe('rendering', () => {
-    beforeEach(() => {
-      storage.put(CORE_STORAGE_KEYS.TOKEN, 'xxx');
-      props = createTestProps();
-      wrapper = shallow(<ApplicationAuthenticated {...props} />);
-    });
-    it('should match layout structure', () => {
-      expect(wrapper).toMatchSnapshot();
-    });
-    it('should boot intercom', () => {
-      expect(wrapper).toRender(IntercomBooter);
-    });
-    it('should setup flopflip provider', () => {
-      expect(wrapper).toRender('SetupFlopFlipProvider');
-    });
-    describe('layout', () => {
-      it('should render "global-notifications" container inside "app-layout"', () => {
-        expect(wrapper).toRender('.app-layout > .global-notifications');
-      });
-      it('should render "header" element inside "app-layout"', () => {
-        expect(wrapper).toRender('.app-layout > header');
-      });
-      it('should render "aside" element inside "app-layout"', () => {
-        expect(wrapper).toRender('.app-layout > aside');
-      });
-      it('should render "main" container inside "app-layout"', () => {
-        expect(wrapper).toRender('.app-layout > .main');
-      });
-      it('should mark "main" container with "main" role', () => {
-        expect(wrapper).toRender('.app-layout > .main[role="main"]');
-      });
-    });
-    it('should render GLOBAL <NotificationsList>', () => {
-      expect(wrapper.find('NotificationsList').at(0)).toHaveProp(
-        'domain',
-        DOMAINS.GLOBAL
-      );
-    });
-    it('should render PAGE <NotificationsList>', () => {
-      expect(wrapper.find('NotificationsList').at(1)).toHaveProp(
-        'domain',
-        DOMAINS.PAGE
-      );
-    });
-    it('should render SIDE <NotificationsList>', () => {
-      expect(wrapper.find('NotificationsList').at(2)).toHaveProp(
-        'domain',
-        DOMAINS.SIDE
-      );
-    });
-    it('should render <AppBar> below header element', () => {
-      expect(wrapper).toRender('header > AppBar');
-    });
-    it('should render <Route> for "/:projectKey" below aside element', () => {
-      expect(wrapper.find('aside > Route')).toHaveProp('path', '/:projectKey');
-    });
-    describe('<NavBar>', () => {
-      let routeRenderWrapper;
+  describe('<Authenticated>', () => {
+    let authRenderWrapper;
+    describe('when user is authenticated', () => {
       beforeEach(() => {
-        routeRenderWrapper = shallow(
+        authRenderWrapper = shallow(
           <div>
-            {wrapper.find('aside > Route').prop('render')({
-              location: {},
-              match: { params: { projectKey: 'foo-1' } },
+            {wrapper.find('Authenticated').prop('children')({
+              isAuthenticated: true,
             })}
           </div>
         );
@@ -458,40 +384,6 @@ describe('lifecycle', () => {
     });
     it('should call onRegisterGlobalErrorListeners', () => {
       expect(props.onRegisterGlobalErrorListeners).toHaveBeenCalled();
-    });
-  });
-  describe('when token is in storage', () => {
-    beforeEach(() => {
-      storage.put(CORE_STORAGE_KEYS.TOKEN, 'xxx');
-      wrapper.instance().componentWillReceiveProps();
-    });
-    it('should set isAuthenticated when the component initalizes', () => {
-      expect(wrapper.instance().isAuthenticated).toBe(true);
-    });
-    describe('componentWillReceiveProps', () => {
-      beforeEach(() => {
-        wrapper.instance().componentWillReceiveProps();
-      });
-      it('should update isAuthenticated', () => {
-        expect(wrapper.instance().isAuthenticated).toBe(true);
-      });
-    });
-  });
-  describe('when token is not in storage', () => {
-    beforeEach(() => {
-      storage.remove(CORE_STORAGE_KEYS.TOKEN);
-      wrapper.instance().componentWillReceiveProps();
-    });
-    it('should set isAuthenticated when the component initalizes', () => {
-      expect(wrapper.instance().isAuthenticated).toBe(false);
-    });
-    describe('componentWillReceiveProps', () => {
-      beforeEach(() => {
-        wrapper.instance().componentWillReceiveProps();
-      });
-      it('should update isAuthenticated', () => {
-        expect(wrapper.instance().isAuthenticated).toBe(false);
-      });
     });
   });
 });

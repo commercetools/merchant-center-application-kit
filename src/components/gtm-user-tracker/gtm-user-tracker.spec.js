@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { updateUser } from '../../utils/gtm';
-import { GtmUserTracker } from './gtm-user-tracker';
+import GtmUserTracker from './gtm-user-tracker';
 
 jest.mock('../../utils/gtm');
 

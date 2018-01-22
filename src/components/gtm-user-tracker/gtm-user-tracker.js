@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withUser } from '../fetch-user';
 import * as gtm from '../../utils/gtm';
 
 /**
@@ -8,7 +7,7 @@ import * as gtm from '../../utils/gtm';
  * changed.
  */
 
-export class GtmUserTracker extends React.PureComponent {
+class GtmUserTracker extends React.PureComponent {
   static displayName = 'GtmUserTracker';
   static propTypes = {
     user: PropTypes.object,
@@ -29,4 +28,4 @@ export class GtmUserTracker extends React.PureComponent {
   }
 }
 
-export default withUser(userData => ({ user: userData.user }))(GtmUserTracker);
+export default GtmUserTracker;

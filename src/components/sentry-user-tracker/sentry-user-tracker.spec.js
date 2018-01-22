@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { updateUser } from '../../utils/sentry';
-import { SentryUserTracker } from './sentry-user-tracker';
+import SentryUserTracker from './sentry-user-tracker';
 
 jest.mock('../../utils/sentry');
 

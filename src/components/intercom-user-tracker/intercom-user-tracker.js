@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose, branch } from 'recompose';
+import { branch } from 'recompose';
 import { withProject } from '../fetch-project';
-import { withUser } from '../fetch-user';
 import * as intercom from '../../utils/intercom';
 
 /**
@@ -18,8 +17,8 @@ export class IntercomUserTracker extends React.PureComponent {
   static propTypes = {
     // Only used for the `withProject` HOC
     projectKey: PropTypes.string,
-    // Injected
     user: PropTypes.object,
+    // Injected
     organization: PropTypes.object,
   };
   componentDidMount() {
@@ -43,16 +42,13 @@ export class IntercomUserTracker extends React.PureComponent {
   }
 }
 
-export default compose(
-  withUser(userData => ({ user: userData && userData.user })),
-  branch(
+export default branch(
+  props => props.projectKey,
+  withProject(
     props => props.projectKey,
-    withProject(
-      props => props.projectKey,
-      projectData => ({
-        organization:
-          projectData && projectData.project && projectData.project.owner,
-      })
-    )
+    projectData => ({
+      organization:
+        projectData && projectData.project && projectData.project.owner,
+    })
   )
 )(IntercomUserTracker);
