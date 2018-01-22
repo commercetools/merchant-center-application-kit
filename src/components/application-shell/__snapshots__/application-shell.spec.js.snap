@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ApplicationAuthenticated> rendering project container <Route> should match layout structure 1`] = `
+exports[`<RestrictedApplication> rendering project container <Route> should match layout structure 1`] = `
 <React.Fragment>
   <withUser(IntercomBooter)
     showNotification={[MockFunction]}
@@ -75,7 +75,7 @@ exports[`<ApplicationAuthenticated> rendering project container <Route> should m
 </React.Fragment>
 `;
 
-exports[`<ApplicationAuthenticated> rendering should match layout structure 1`] = `
+exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
 <React.Fragment>
   <withUser(IntercomBooter)
     showNotification={[MockFunction]}
@@ -150,7 +150,7 @@ exports[`<ApplicationAuthenticated> rendering should match layout structure 1`] 
 </React.Fragment>
 `;
 
-exports[`<ApplicationPublic> rendering should match layout structure 1`] = `
+exports[`<UnrestrictedApplication> rendering should match layout structure 1`] = `
 <Switch>
   <Route
     component={[Function]}

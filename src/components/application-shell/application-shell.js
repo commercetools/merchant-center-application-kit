@@ -40,9 +40,9 @@ import './global-style-imports';
 
 /**
  * This component is rendered whenever the user is considered "authenticated"
- * and contains the "normal" application part.
+ * and contains the "restricted" application part.
  */
-export const ApplicationAuthenticated = props => (
+export const RestrictedApplication = props => (
   <React.Fragment>
     <IntercomBooter showNotification={props.showNotification} />
     <SentryUserTracker />
@@ -153,8 +153,8 @@ export const ApplicationAuthenticated = props => (
     </SetupFlopFlipProvider>
   </React.Fragment>
 );
-ApplicationAuthenticated.displayName = 'ApplicationAuthenticated';
-ApplicationAuthenticated.propTypes = {
+RestrictedApplication.displayName = 'RestrictedApplication';
+RestrictedApplication.propTypes = {
   render: PropTypes.func.isRequired,
   menuItems: PropTypes.array.isRequired,
   notificationsByDomain: PropTypes.shape({
@@ -172,7 +172,7 @@ ApplicationAuthenticated.propTypes = {
  * This component is rendered whenever the user is not considered "authenticated"
  * and contains application parts that can be accessed publicly.
  */
-export const ApplicationPublic = () => (
+export const UnrestrictedApplication = () => (
   <Switch>
     {/* Public routes */}
     <Route path="/login/sso/callback" component={LoginSSOCallback} />
@@ -206,7 +206,7 @@ export const ApplicationPublic = () => (
     />
   </Switch>
 );
-ApplicationPublic.displayName = 'ApplicationPublic';
+UnrestrictedApplication.displayName = 'UnrestrictedApplication';
 
 export default class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
@@ -254,7 +254,7 @@ export default class ApplicationShell extends React.Component {
                     <Authenticated>
                       {({ isAuthenticated }) =>
                         isAuthenticated ? (
-                          <ApplicationAuthenticated
+                          <RestrictedApplication
                             render={this.props.render}
                             menuItems={this.props.menuItems}
                             notificationsByDomain={
@@ -272,7 +272,7 @@ export default class ApplicationShell extends React.Component {
                             }
                           />
                         ) : (
-                          <ApplicationPublic />
+                          <UnrestrictedApplication />
                         )
                       }
                     </Authenticated>

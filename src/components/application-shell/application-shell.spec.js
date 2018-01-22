@@ -7,8 +7,8 @@ import IntercomUserTracker from '../intercom-user-tracker';
 import NavBar from '../navbar';
 import UserProfile from '../user-profile';
 import ApplicationShell, {
-  ApplicationAuthenticated,
-  ApplicationPublic,
+  RestrictedApplication,
+  UnrestrictedApplication,
 } from './application-shell';
 
 const createTestProps = props => ({
@@ -84,8 +84,8 @@ describe('rendering', () => {
           </div>
         );
       });
-      it('should render <ApplicationAuthenticated> after track components', () => {
-        expect(authRenderWrapper).toRender('ApplicationAuthenticated');
+      it('should render <RestrictedApplication> after track components', () => {
+        expect(authRenderWrapper).toRender('RestrictedApplication');
       });
     });
 
@@ -99,19 +99,19 @@ describe('rendering', () => {
           </div>
         );
       });
-      it('should render <ApplicationPublic> after track components', () => {
-        expect(authRenderWrapper).toRender('ApplicationPublic');
+      it('should render <UnrestrictedApplication> after track components', () => {
+        expect(authRenderWrapper).toRender('UnrestrictedApplication');
       });
     });
   });
 });
-describe('<ApplicationAuthenticated>', () => {
+describe('<RestrictedApplication>', () => {
   let props;
   let wrapper;
   describe('rendering', () => {
     beforeEach(() => {
       props = createTestProps();
-      wrapper = shallow(<ApplicationAuthenticated {...props} />);
+      wrapper = shallow(<RestrictedApplication {...props} />);
     });
     it('should match layout structure', () => {
       expect(wrapper).toMatchSnapshot();
@@ -291,13 +291,13 @@ describe('<ApplicationAuthenticated>', () => {
   });
 });
 
-describe('<ApplicationPublic>', () => {
+describe('<UnrestrictedApplication>', () => {
   let props;
   let wrapper;
   describe('rendering', () => {
     beforeEach(() => {
       props = createTestProps();
-      wrapper = shallow(<ApplicationPublic {...props} />);
+      wrapper = shallow(<UnrestrictedApplication {...props} />);
     });
     it('should match layout structure', () => {
       expect(wrapper).toMatchSnapshot();
