@@ -8,44 +8,25 @@ import * as gtm from '../../utils/gtm';
  * changed.
  */
 
-export class GtmUserTracker extends React.Component {
+export class GtmUserTracker extends React.PureComponent {
   static displayName = 'GtmUserTracker';
   static propTypes = {
-    userData: PropTypes.shape({
-      isLoading: PropTypes.bool.isRequired,
-      user: PropTypes.object,
-    }),
+    user: PropTypes.object,
   };
-  shouldComponentUpdate(nextProps) {
-    return nextProps.userData.user !== this.props.userData.user;
-  }
   componentDidMount() {
     // since the user and project could have been loaded from the apollo cache
     // they could be preset already when mounting
-    if (this.shouldUpdateUser(this.props.userData)) {
-      this.updateUser(this.props.userData.user);
-    }
+    if (this.props.user) this.syncUser();
   }
-  componentWillUpdate(nextProps) {
-    // call in componentWillUpdate rather than in componentWillReceiveProps
-    // because willUpdate will only run if shouldComponentUpdate returned true
-    // componentWillReceiveProps will always run
-    if (this.shouldUpdateUser(nextProps.userData)) {
-      this.updateUser(nextProps.userData.user);
-    }
+  componentDidUpdate() {
+    if (this.props.user) this.syncUser();
   }
-  shouldUpdateUser = userData => !userData.isLoading;
-  updateUser = user => {
-    gtm.updateUser(user);
+  syncUser = () => {
+    gtm.updateUser(this.props.user);
   };
   render() {
     return null;
   }
 }
 
-export default withUser(userData => ({
-  userData: {
-    isLoading: userData.isLoading,
-    user: userData.user,
-  },
-}))(GtmUserTracker);
+export default withUser(userData => ({ user: userData.user }))(GtmUserTracker);

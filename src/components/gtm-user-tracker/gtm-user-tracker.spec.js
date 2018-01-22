@@ -3,123 +3,93 @@ import { shallow } from 'enzyme';
 import { updateUser } from '../../utils/gtm';
 import { GtmUserTracker } from './gtm-user-tracker';
 
-jest.mock('../../utils/gtm', () => ({
-  updateUser: jest.fn(),
-}));
+jest.mock('../../utils/gtm');
 
 const createTestProps = custom => ({
-  userData: {
-    isLoading: false,
-    user: {
-      id: 1,
-      firstName: 'Confoozius',
-    },
+  user: {
+    id: 1,
+    firstName: 'Confoozius',
   },
   ...custom,
 });
 
-let props;
-let wrapper;
-
 describe('lifecycle', () => {
+  let props;
+  let wrapper;
   beforeEach(() => {
     props = createTestProps();
     wrapper = shallow(<GtmUserTracker {...props} />);
   });
-  describe('shouldComponentUpdate', () => {
-    describe('when user has not changed', () => {
-      it('should not update', () => {
-        expect(wrapper.instance().shouldComponentUpdate({ ...props })).toBe(
-          false
-        );
-      });
-    });
-    describe('when user changed', () => {
-      it('should update', () => {
-        expect(
-          wrapper.instance().shouldComponentUpdate({
-            ...props,
-            userData: { isLoading: false, user: { ...props.userData.user } },
-          })
-        ).toBe(true);
-      });
-    });
-  });
-
   describe('componentDidMount', () => {
-    let updateUserInstanceMethod;
+    let syncUserMock;
     beforeEach(() => {
-      updateUserInstanceMethod = jest.fn();
+      syncUserMock = jest.fn();
     });
-    describe('when the user is loading', () => {
+    describe('when the user is not defined', () => {
       beforeEach(() => {
-        props = createTestProps({ userData: { isLoading: true } });
+        props = createTestProps({ user: null });
         wrapper = shallow(<GtmUserTracker {...props} />);
-        wrapper.instance().updateUser = updateUserInstanceMethod;
+        wrapper.instance().syncUser = syncUserMock;
         wrapper.instance().componentDidMount();
       });
-      it('should not update the user', () => {
-        expect(updateUserInstanceMethod).toHaveBeenCalledTimes(0);
+      it('should not call syncUser', () => {
+        expect(syncUserMock).toHaveBeenCalledTimes(0);
       });
     });
-    describe('when the user is loaded', () => {
+    describe('when the user is defined', () => {
       beforeEach(() => {
-        props = createTestProps({
-          userData: { isLoading: false, user: { id: 'user-1' } },
-        });
+        props = createTestProps();
         wrapper = shallow(<GtmUserTracker {...props} />);
-        wrapper.instance().updateUser = updateUserInstanceMethod;
+        wrapper.instance().syncUser = syncUserMock;
         wrapper.instance().componentDidMount();
       });
-      it('should call updateUser', () => {
-        expect(updateUserInstanceMethod).toHaveBeenCalledTimes(1);
-        expect(updateUserInstanceMethod).toHaveBeenCalledWith({ id: 'user-1' });
+      it('should call syncUser', () => {
+        expect(syncUserMock).toHaveBeenCalledTimes(1);
       });
     });
   });
 
-  describe('componentWillUpdate', () => {
-    let updateUserInstanceMethod;
+  describe('componentDidUpdate', () => {
+    let syncUserMock;
     beforeEach(() => {
-      updateUserInstanceMethod = jest.fn();
+      syncUserMock = jest.fn();
     });
-    describe('when the user is loading', () => {
+    describe('when the user not defined', () => {
       beforeEach(() => {
-        props = createTestProps({ userData: { isLoading: true } });
+        props = createTestProps({ user: null });
         wrapper = shallow(<GtmUserTracker {...props} />);
-        wrapper.instance().updateUser = updateUserInstanceMethod;
-        wrapper.instance().componentWillUpdate(props);
+        wrapper.instance().syncUser = syncUserMock;
+        wrapper.instance().componentDidUpdate();
       });
       it('should not update the user', () => {
-        expect(updateUserInstanceMethod).toHaveBeenCalledTimes(0);
+        expect(syncUserMock).toHaveBeenCalledTimes(0);
       });
     });
-    describe('when the user is loaded', () => {
+    describe('when the user is defined', () => {
       beforeEach(() => {
-        props = createTestProps({
-          userData: { isLoading: false, user: { id: 'user-1' } },
-        });
+        props = createTestProps();
         wrapper = shallow(<GtmUserTracker {...props} />);
-        wrapper.instance().updateUser = updateUserInstanceMethod;
-        wrapper.instance().componentWillUpdate(props);
+        wrapper.instance().syncUser = syncUserMock;
+        wrapper.instance().componentDidUpdate(props);
       });
-      it('should call updateUser', () => {
-        expect(updateUserInstanceMethod).toHaveBeenCalledTimes(1);
-        expect(updateUserInstanceMethod).toHaveBeenCalledWith({ id: 'user-1' });
+      it('should call syncUserMock', () => {
+        expect(syncUserMock).toHaveBeenCalledTimes(1);
       });
     });
   });
 });
 
-describe('updateUser', () => {
+describe('syncUser', () => {
+  let props;
+  let wrapper;
   beforeEach(() => {
-    updateUser.mockReset();
     props = createTestProps();
     wrapper = shallow(<GtmUserTracker {...props} />);
-    wrapper.instance().updateUser(props.userData.user);
+    wrapper.instance().syncUser();
   });
-  it('should call update with user info', () => {
-    expect(updateUser).toHaveBeenCalledTimes(1);
-    expect(updateUser).toHaveBeenCalledWith(props.userData.user);
+  it('should call updateUser with the user object', () => {
+    expect(updateUser).toHaveBeenCalledWith(
+      expect.objectContaining(props.user)
+    );
   });
 });

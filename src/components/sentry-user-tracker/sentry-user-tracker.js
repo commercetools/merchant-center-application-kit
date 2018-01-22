@@ -8,44 +8,27 @@ import * as sentry from '../../utils/sentry';
  * changed.
  */
 
-export class SentryUserTracker extends React.Component {
+export class SentryUserTracker extends React.PureComponent {
   static displayName = 'SentryUserTracker';
   static propTypes = {
-    userData: PropTypes.shape({
-      isLoading: PropTypes.bool.isRequired,
-      user: PropTypes.object,
-    }),
+    user: PropTypes.object,
   };
-  shouldComponentUpdate(nextProps) {
-    return nextProps.userData.user !== this.props.userData.user;
-  }
   componentDidMount() {
     // since the user and project could have been loaded from the apollo cache
     // they could be preset already when mounting
-    if (this.shouldUpdateUser(this.props.userData)) {
-      this.updateUser(this.props.userData);
-    }
+    if (this.props.user) this.syncUser();
   }
-  componentWillUpdate(nextProps) {
-    // call in componentWillUpdate rather than in componentWillReceiveProps
-    // because willUpdate will only run if shouldComponentUpdate returned true
-    // componentWillReceiveProps will always run
-    if (this.shouldUpdateUser(nextProps.userData)) {
-      this.updateUser(nextProps.userData);
-    }
+  componentDidUpdate() {
+    if (this.props.user) this.syncUser();
   }
-  shouldUpdateUser = userData => !userData.isLoading;
-  updateUser = userData => {
-    sentry.updateUser(userData.user);
+  syncUser = () => {
+    sentry.updateUser(this.props.user);
   };
   render() {
     return null;
   }
 }
 
-export default withUser(userData => ({
-  userData: {
-    isLoading: userData.isLoading,
-    user: userData.user,
-  },
-}))(SentryUserTracker);
+export default withUser(userData => ({ user: userData.user }))(
+  SentryUserTracker
+);

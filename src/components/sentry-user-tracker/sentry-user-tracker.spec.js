@@ -1,121 +1,95 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { updateUser } from '../../utils/sentry';
 import { SentryUserTracker } from './sentry-user-tracker';
 
-let mockUpdateUser;
-jest.mock('../../utils/sentry', () => ({
-  updateUser: (...args) => mockUpdateUser(...args),
-}));
+jest.mock('../../utils/sentry');
 
 const createTestProps = custom => ({
-  userData: {
-    isLoading: false,
-    user: {
-      id: 1,
-      firstName: 'Confoozius',
-    },
+  user: {
+    id: 1,
+    firstName: 'Confoozius',
   },
   ...custom,
 });
 
-let props;
-let wrapper;
-
 describe('lifecycle', () => {
+  let props;
+  let wrapper;
   beforeEach(() => {
     props = createTestProps();
     wrapper = shallow(<SentryUserTracker {...props} />);
   });
-  describe('shouldComponentUpdate', () => {
-    describe('when user has not changed', () => {
-      it('should not update', () => {
-        expect(wrapper.instance().shouldComponentUpdate({ ...props })).toBe(
-          false
-        );
-      });
-    });
-    describe('when user changed', () => {
-      it('should update', () => {
-        expect(
-          wrapper.instance().shouldComponentUpdate({
-            ...props,
-            userData: { isLoading: false, user: { ...props.userData.user } },
-          })
-        ).toBe(true);
-      });
-    });
-  });
-
   describe('componentDidMount', () => {
-    let updateUser;
+    let syncUserMock;
     beforeEach(() => {
-      updateUser = jest.fn();
+      syncUserMock = jest.fn();
     });
-    describe('when the user is loading', () => {
+    describe('when the user is not defined', () => {
       beforeEach(() => {
-        props = createTestProps({ userData: { isLoading: true } });
+        props = createTestProps({ user: null });
         wrapper = shallow(<SentryUserTracker {...props} />);
-        wrapper.instance().updateUser = updateUser;
+        wrapper.instance().syncUser = syncUserMock;
         wrapper.instance().componentDidMount();
       });
-      it('should not update the user', () => {
-        expect(updateUser).toHaveBeenCalledTimes(0);
+      it('should not call syncUser', () => {
+        expect(syncUserMock).toHaveBeenCalledTimes(0);
       });
     });
-    describe('when the user is loaded', () => {
+    describe('when the user is defined', () => {
       beforeEach(() => {
-        props = createTestProps({ userData: { isLoading: false } });
+        props = createTestProps();
         wrapper = shallow(<SentryUserTracker {...props} />);
-        wrapper.instance().updateUser = updateUser;
+        wrapper.instance().syncUser = syncUserMock;
         wrapper.instance().componentDidMount();
       });
-      it('should call updateUser', () => {
-        expect(updateUser).toHaveBeenCalledTimes(1);
-        expect(updateUser).toHaveBeenCalledWith(props.userData);
+      it('should call syncUser', () => {
+        expect(syncUserMock).toHaveBeenCalledTimes(1);
       });
     });
   });
 
-  describe('componentWillUpdate', () => {
-    let updateUser;
+  describe('componentDidUpdate', () => {
+    let syncUserMock;
     beforeEach(() => {
-      updateUser = jest.fn();
+      syncUserMock = jest.fn();
     });
-    describe('when the user is loading', () => {
+    describe('when the user not defined', () => {
       beforeEach(() => {
-        props = createTestProps({ userData: { isLoading: true } });
+        props = createTestProps({ user: null });
         wrapper = shallow(<SentryUserTracker {...props} />);
-        wrapper.instance().updateUser = updateUser;
-        wrapper.instance().componentWillUpdate(props);
+        wrapper.instance().syncUser = syncUserMock;
+        wrapper.instance().componentDidUpdate();
       });
       it('should not update the user', () => {
-        expect(updateUser).toHaveBeenCalledTimes(0);
+        expect(syncUserMock).toHaveBeenCalledTimes(0);
       });
     });
-    describe('when the user is loaded', () => {
+    describe('when the user is defined', () => {
       beforeEach(() => {
-        props = createTestProps({ userData: { isLoading: false } });
+        props = createTestProps();
         wrapper = shallow(<SentryUserTracker {...props} />);
-        wrapper.instance().updateUser = updateUser;
-        wrapper.instance().componentWillUpdate(props);
+        wrapper.instance().syncUser = syncUserMock;
+        wrapper.instance().componentDidUpdate(props);
       });
-      it('should call updateUser', () => {
-        expect(updateUser).toHaveBeenCalledTimes(1);
-        expect(updateUser).toHaveBeenCalledWith(props.userData);
+      it('should call syncUserMock', () => {
+        expect(syncUserMock).toHaveBeenCalledTimes(1);
       });
     });
   });
 });
 
-describe('updateUser', () => {
+describe('syncUser', () => {
+  let props;
+  let wrapper;
   beforeEach(() => {
-    mockUpdateUser = jest.fn();
     props = createTestProps();
     wrapper = shallow(<SentryUserTracker {...props} />);
-    wrapper.instance().updateUser(props.userData);
+    wrapper.instance().syncUser();
   });
-  it('should call update with user info', () => {
-    expect(mockUpdateUser).toHaveBeenCalledTimes(1);
-    expect(mockUpdateUser).toHaveBeenCalledWith(props.userData.user);
+  it('should call updateUser with the user object', () => {
+    expect(updateUser).toHaveBeenCalledWith(
+      expect.objectContaining(props.user)
+    );
   });
 });
