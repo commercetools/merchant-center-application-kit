@@ -105,4 +105,12 @@ export default defineMessages({
     id: 'NavBar.Taxes.title',
     defaultMessage: 'Taxes',
   },
+  'NavBar.International.title': {
+    id: 'NavBar.International.title',
+    defaultMessage: 'International',
+  },
+  'NavBar.ShippingMethods.title': {
+    id: 'NavBar.ShippingMethods.title',
+    defaultMessage: 'Shipping methods',
+  },
 });
