@@ -8,64 +8,92 @@ building _MC applications_.
 It also provides a set of complementary components to provide additional
 features to the application.
 
-> Some of those components are temporary to ensure backwards compatibilities
+> Some of those components are **temporary** to ensure backwards compatibilities
 > with the current setup.
 
 ## Usage
 
 ```js
+/**
+ * This is the entry point of an application.
+ * See `@commercetools-local/application-shell` for usage.
+ */
 import React from 'react';
-import ReactDOM from 'react-dom';
-import ApplicationShell from '@commercetools/application-shell';
+import { Provider as StoreProvider } from 'react-redux';
+import ApplicationShell, {
+  NotificationsConnector,
+  reduxStore,
+  setupGlobalErrorListener,
+} from '@commercetools-local/application-shell';
+import { Sdk } from '@commercetools-local/sdk';
+import * as sdkService from '@commercetools-local/sdk-service';
+import PageNotFound from '@commercetools-local/core/components/page-not-found';
 
-const MyApplication = () => (
-  <ApplicationShell
-    i18n={/* map of translated messages keyed by locale */}
-    configuration={window.app}
-    menuItems={/* list of menu items definition */}
-    i18n={i18n}
-    configuration={window.app}
-    menuItems={testMenuItems}
-    render={() => (
-      /*
-        This is the part where you "render" your application.
-        Your application defines the routes itself which can be simply rendered
-        as react component `Route`, the main `Router` is defined within the
-        `ApplicationShell`.
-        Additionally the `application-shell` package will provide all the
-        necessary complementary tools to access application specific stuff
-        like state, HoC, etc.
-      */
-      <StoreProvider store={store}>
-        <Switch>
-          <Route path="/:projectKey/dashboard" component={AsyncDashboard} />
-          <Route path="/:projectKey/products" component={AsyncProducts} />
-          {/* Define a catch-all route */}
-          <Route component={PageNotFound} />
-        </Switch>
-      </StoreProvider>
-    )}
-  />
-)
+// NOTE: the following relative imports depend on the location of this file.
+import * as i18n from '../../../../i18n';
+import { menuItems, trackingEventWhitelist } from '../../plugins.new';
 
-ReactDOM.render(<MyApplication />, document.getElementById('root'));
+const EntryPoint = () => (
+  <StoreProvider store={reduxStore}>
+    <NotificationsConnector>
+      {({
+        notificationsByDomain,
+        showNotification,
+        showApiErrorNotification,
+        showUnexpectedErrorNotification,
+      }) => (
+        <ApplicationShell
+          i18n={i18n}
+          configuration={window.app}
+          menuItems={menuItems}
+          trackingEventWhitelist={trackingEventWhitelist}
+          notificationsByDomain={notificationsByDomain}
+          showNotification={showNotification}
+          showApiErrorNotification={showApiErrorNotification}
+          showUnexpectedErrorNotification={showUnexpectedErrorNotification}
+          onRegisterGlobalErrorListeners={() => {
+            setupGlobalErrorListener(showUnexpectedErrorNotification);
+            Sdk.Get.errorHandler = error =>
+              sdkService.handleActionError(error, 'sdk')(reduxStore.dispatch);
+          }}
+          render={() => (
+            <Switch>
+              <Route path="/:projectKey/dashboard" component={AsyncDashboard} />
+              <Route path="/:projectKey/products" component={AsyncProducts} />
+              {/* Define a catch-all route */}
+              <Route component={PageNotFound} />
+            </Switch>
+          )}
+        />
+      )}
+    </NotificationsConnector>
+  </StoreProvider>
+);
+EntryPoint.displayName = 'EntryPoint';
+
+ReactDOM.render(<EntryPoint />, document.getElementById('root'));
 ```
 
 ## Props
 
-| Props           | Type     | Required | Default | Description                                                                                                                                   |
-| --------------- | -------- | :------: | ------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `i18n`          | `object` |    ✅    | -       | An object containing all the translated messages per locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`).          |
-| `configuration` | `object` |    ✅    | -       | The current `window.app`.                                                                                                                     |
-| `menuItems`     | `array`  |    ✅    | -       | A list of menu item definitions (see `./src/example/fixtures/menu-items.js`).                                                                 |
-| `render`        | `func`   |    ✅    | -       | The function to render the application specific part. This function is executed only when the application specific part needs to be rendered. |
+| Props                             | Type     | Required | Default | Description                                                                                                                                   |
+| --------------------------------- | -------- | :------: | ------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `i18n`                            | `object` |    ✅    | -       | An object containing all the translated messages per locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`).          |
+| `configuration`                   | `object` |    ✅    | -       | The current `window.app`.                                                                                                                     |
+| `menuItems`                       | `array`  |    ✅    | -       | A list of menu item definitions (see `./src/example/fixtures/menu-items.js`).                                                                 |
+| `render`                          | `func`   |    ✅    | -       | The function to render the application specific part. This function is executed only when the application specific part needs to be rendered. |
+| `trackingEventWhitelist`          | `object` |    ✅    | -       | An object containing a map of tracking events (_this mapping is required for backwards compatibility, it might be removed in the future_)     |
+| `notificationsByDomain`           | `object` |    ✅    | -       | An object containing a list of notifications that are currently active in the redux store, grouped by domain (`global`, `page`, `side`)       |
+| `showNotification`                | `func`   |    ✅    | -       | The function to dispatch a new notification (see `@commercetools-local/notifications`)                                                        |
+| `showApiErrorNotification`        | `func`   |    ✅    | -       | The function to dispatch a new API error notification (see `@commercetools-local/notifications`)                                              |
+| `showUnexpectedErrorNotification` | `func`   |    ✅    | -       | The function to dispatch a general error notification (see `@commercetools-local/notifications`)                                              |
+| `onRegisterGlobalErrorListeners`  | `func`   |    ✅    | -       | A callback function to setup global event listeners, called when the `ApplicationShell` is mounted                                            |
 
 # Development
 
 This module contains the
 [folder structure](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#folder-structure)
-required by _CRA_, which allows to easily start a react application using
-`toolbox/start.js`.
+required by _CRA_, which allows to easily start a react application using `toolbox/start.js`.
 
 This is very useful for development to work on this module in isolation.
 
