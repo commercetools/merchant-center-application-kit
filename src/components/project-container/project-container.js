@@ -99,9 +99,9 @@ class ProjectContainer extends React.Component {
 
     return (
       <FetchProject projectKey={this.props.match.params.projectKey}>
-        {({ isLoading: isLoadingProject, project }) => {
+        {({ isLoading: isProjectLoading, project }) => {
           // TODO: do something if there is an `error`?
-          if (isLoadingProject) return <LoadingSpinner />;
+          if (isProjectLoading) return <LoadingSpinner />;
           if (!project) return <ProjectNotFound />;
           if (project.suspended) return <ProjectSuspended />;
           if (project.expired) return <ProjectExpired />;
