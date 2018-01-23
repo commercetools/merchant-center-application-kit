@@ -27,7 +27,7 @@ const createTestProps = props => ({
   mapPluginNotificationToComponent: jest.fn(),
   showApiErrorNotification: jest.fn(),
   showUnexpectedErrorNotification: jest.fn(),
-  onRegisterGlobalErrorListeners: jest.fn(),
+  onRegisterErrorListeners: jest.fn(),
   ...props,
 });
 
