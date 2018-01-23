@@ -397,8 +397,8 @@ describe('lifecycle', () => {
     beforeEach(() => {
       wrapper.instance().componentDidMount();
     });
-    it('should call onRegisterGlobalErrorListeners', () => {
-      expect(props.onRegisterGlobalErrorListeners).toHaveBeenCalled();
+    it('should call onRegisterErrorListeners', () => {
+      expect(props.onRegisterErrorListeners).toHaveBeenCalled();
     });
   });
 });

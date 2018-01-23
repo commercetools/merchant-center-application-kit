@@ -29,7 +29,6 @@ import AsyncUserProfile from '../user-profile/async';
 import IntercomUrlTracker from '../intercom-url-tracker';
 import IntercomUserTracker from '../intercom-user-tracker';
 import IntercomBooter from '../intercom-booter';
-import SentryBooter from '../sentry-booter';
 import SentryUserTracker from '../sentry-user-tracker';
 import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
@@ -244,10 +243,10 @@ export default class ApplicationShell extends React.Component {
     mapPluginNotificationToComponent: PropTypes.func,
     showApiErrorNotification: PropTypes.func,
     showUnexpectedErrorNotification: PropTypes.func,
-    onRegisterGlobalErrorListeners: PropTypes.func.isRequired,
+    onRegisterErrorListeners: PropTypes.func.isRequired,
   };
   componentDidMount() {
-    this.props.onRegisterGlobalErrorListeners();
+    this.props.onRegisterErrorListeners();
   }
   render() {
     return (
@@ -256,7 +255,6 @@ export default class ApplicationShell extends React.Component {
           <ConfigureIntlProvider i18n={this.props.i18n}>
             <React.Fragment>
               <VersionCheckSubscriber />
-              <SentryBooter />
               {/* NOTE: this can be removed when we get rid of showing a
               loading spinner in the app bar */}
               <RequestsInFlightLoader />

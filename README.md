@@ -33,6 +33,9 @@ import PageNotFound from '@commercetools-local/core/components/page-not-found';
 import * as i18n from '../../../../i18n';
 import { menuItems, trackingEventWhitelist } from '../../plugins.new';
 
+// Ensure to setup the global error listener first!
+setupGlobalErrorListener(reduxStore.dispatch);
+
 const EntryPoint = () => (
   <StoreProvider store={reduxStore}>
     <NotificationsConnector>
@@ -51,8 +54,7 @@ const EntryPoint = () => (
           showNotification={showNotification}
           showApiErrorNotification={showApiErrorNotification}
           showUnexpectedErrorNotification={showUnexpectedErrorNotification}
-          onRegisterGlobalErrorListeners={() => {
-            setupGlobalErrorListener(showUnexpectedErrorNotification);
+          onRegisterErrorListeners={() => {
             Sdk.Get.errorHandler = error =>
               sdkService.handleActionError(error, 'sdk')(reduxStore.dispatch);
           }}
@@ -87,7 +89,7 @@ ReactDOM.render(<EntryPoint />, document.getElementById('root'));
 | `showNotification`                | `func`   |    ✅    | -       | Simply proxy the prop provided by `NotificationsConnector`                                                                                    |
 | `showApiErrorNotification`        | `func`   |    ✅    | -       | Simply proxy the prop provided by `NotificationsConnector`                                                                                    |
 | `showUnexpectedErrorNotification` | `func`   |    ✅    | -       | Simply proxy the prop provided by `NotificationsConnector`                                                                                    |
-| `onRegisterGlobalErrorListeners`  | `func`   |    ✅    | -       | A callback function to setup global event listeners, called when the `ApplicationShell` is mounted                                            |
+| `onRegisterErrorListeners`        | `func`   |    ✅    | -       | A callback function to setup global event listeners, called when the `ApplicationShell` is mounted                                            |
 
 # Development
 

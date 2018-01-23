@@ -1,12 +1,18 @@
 /* global process */
 import logger from '@commercetools-local/utils/logger';
+import { showUnexpectedErrorNotification } from '@commercetools-local/actions-global';
+import { boot as bootSentry } from '../sentry';
+
+// Ensure to initialize Sentry as soon as possible, so that we have the chance
+// of catching possible errors.
+bootSentry();
 
 export const unwrapError = eventOrMessage =>
   eventOrMessage
     ? eventOrMessage.error || eventOrMessage
     : new Error('unknown-error');
 
-export default function setupGlobalErrorListener(dispatchError) {
+export default function setupGlobalErrorListener(dispatch) {
   // Capture unhandled errors generated from rejected Promises.
   //
   // http://www.2ality.com/2016/04/unhandled-rejections.html
@@ -21,13 +27,13 @@ export default function setupGlobalErrorListener(dispatchError) {
           'handled. This is most likely a bug in the software. Please ensure ' +
           'that the promise is correctly handled.'
       );
-    dispatchError(event.reason);
+    dispatch(showUnexpectedErrorNotification(event.reason));
   });
 
   // Capture normal global errors coming from non Promise code.
   // We have to unwrap the error as the MDN docs state that
   // `onerror` will either be invoked with an event or message.
   window.addEventListener('error', eventOrMessage => {
-    dispatchError(unwrapError(eventOrMessage));
+    dispatch(showUnexpectedErrorNotification(unwrapError(eventOrMessage)));
   });
 }

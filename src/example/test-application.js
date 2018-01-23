@@ -111,6 +111,9 @@ const ConnectedTriggerNotification = connect(
   { addNotification }
 )(TriggerNotification);
 
+// Ensure to setup the global error listener first!
+setupGlobalErrorListener(reduxStore.dispatch);
+
 const TestApplication = () => (
   <StoreProvider store={reduxStore}>
     <NotificationsConnector>
@@ -129,8 +132,7 @@ const TestApplication = () => (
           showNotification={showNotification}
           showApiErrorNotification={showApiErrorNotification}
           showUnexpectedErrorNotification={showUnexpectedErrorNotification}
-          onRegisterGlobalErrorListeners={() => {
-            setupGlobalErrorListener(showUnexpectedErrorNotification);
+          onRegisterErrorListeners={() => {
             Sdk.Get.errorHandler = error =>
               sdkService.handleActionError(error, 'sdk')(reduxStore.dispatch);
           }}
