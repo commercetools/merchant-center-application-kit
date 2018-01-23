@@ -83,10 +83,10 @@ ReactDOM.render(<EntryPoint />, document.getElementById('root'));
 | `menuItems`                       | `array`  |    ✅    | -       | A list of menu item definitions (see `./src/example/fixtures/menu-items.js`).                                                                 |
 | `render`                          | `func`   |    ✅    | -       | The function to render the application specific part. This function is executed only when the application specific part needs to be rendered. |
 | `trackingEventWhitelist`          | `object` |    ✅    | -       | An object containing a map of tracking events (_this mapping is required for backwards compatibility, it might be removed in the future_)     |
-| `notificationsByDomain`           | `object` |    ✅    | -       | An object containing a list of notifications that are currently active in the redux store, grouped by domain (`global`, `page`, `side`)       |
-| `showNotification`                | `func`   |    ✅    | -       | The function to dispatch a new notification (see `@commercetools-local/notifications`)                                                        |
-| `showApiErrorNotification`        | `func`   |    ✅    | -       | The function to dispatch a new API error notification (see `@commercetools-local/notifications`)                                              |
-| `showUnexpectedErrorNotification` | `func`   |    ✅    | -       | The function to dispatch a general error notification (see `@commercetools-local/notifications`)                                              |
+| `notificationsByDomain`           | `object` |    ✅    | -       | Simply proxy the prop provided by `NotificationsConnector`                                                                                    |
+| `showNotification`                | `func`   |    ✅    | -       | Simply proxy the prop provided by `NotificationsConnector`                                                                                    |
+| `showApiErrorNotification`        | `func`   |    ✅    | -       | Simply proxy the prop provided by `NotificationsConnector`                                                                                    |
+| `showUnexpectedErrorNotification` | `func`   |    ✅    | -       | Simply proxy the prop provided by `NotificationsConnector`                                                                                    |
 | `onRegisterGlobalErrorListeners`  | `func`   |    ✅    | -       | A callback function to setup global event listeners, called when the `ApplicationShell` is mounted                                            |
 
 # Development
