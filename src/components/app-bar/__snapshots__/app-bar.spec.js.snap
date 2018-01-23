@@ -26,7 +26,22 @@ exports[`rendering should match layout structure 1`] = `
   <div
     className="navigation"
   >
-    <FetchUser />
+    <Inline
+      alignItems="center"
+      scale="m"
+    >
+      <div
+        className="switchers"
+      >
+        <Route
+          path="/:projectKey"
+          render={[Function]}
+        />
+      </div>
+      <div
+        className="spacer"
+      />
+    </Inline>
   </div>
 </div>
 `;

@@ -5,7 +5,6 @@ import { shallow } from 'enzyme';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import FetchProject from '../fetch-project';
-import FetchUser from '../fetch-user';
 import ProjectDataLocale from '../project-data-locale';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectContainer from './project-container';
@@ -13,7 +12,7 @@ import ProjectContainer from './project-container';
 const createTestProps = custom => ({
   match: { params: { projectKey: 'test-1' } },
   isLoadingUser: false,
-  user: {},
+  user: { availableProjects: [] },
   render: jest.fn(),
   ...custom,
 });
@@ -24,7 +23,6 @@ jest.mock('@commercetools-local/utils/storage');
 describe('rendering', () => {
   let props;
   let wrapper;
-  let fetchUserChildrenWrapper;
   beforeEach(() => {
     createPortal.mockImplementation(() => (
       <div id="create-portal-has-been-called" />
@@ -34,32 +32,24 @@ describe('rendering', () => {
   });
   describe('when user is loading', () => {
     beforeEach(() => {
-      fetchUserChildrenWrapper = shallow(
-        <div>
-          {wrapper.find(FetchUser).prop('children')({
-            isLoading: true,
-          })}
-        </div>
-      );
+      props = createTestProps({ isLoadingUser: true });
+      wrapper = shallow(<ProjectContainer {...props} />);
     });
     it('should render <LoadingSpinner>', () => {
-      expect(fetchUserChildrenWrapper).toRender('LoadingSpinner');
+      expect(wrapper).toRender('LoadingSpinner');
     });
   });
   describe('when user is not loading', () => {
     describe('when user has no available projects', () => {
       beforeEach(() => {
-        fetchUserChildrenWrapper = shallow(
-          <div>
-            {wrapper.find(FetchUser).prop('children')({
-              isLoading: false,
-              user: { availableProjects: [] },
-            })}
-          </div>
-        );
+        props = createTestProps({
+          isLoadingUser: false,
+          user: { availableProjects: [] },
+        });
+        wrapper = shallow(<ProjectContainer {...props} />);
       });
       it('should render <Redirect> with target to logout', () => {
-        expect(fetchUserChildrenWrapper.find(Redirect)).toHaveProp(
+        expect(wrapper.find(Redirect)).toHaveProp(
           'to',
           '/logout?reason=no-projects'
         );
@@ -68,26 +58,20 @@ describe('rendering', () => {
     describe('when user has available projects', () => {
       let fetchProjectChildrenWrapper;
       beforeEach(() => {
-        fetchUserChildrenWrapper = shallow(
-          <div>
-            {wrapper.find(FetchUser).prop('children')({
-              isLoading: false,
-              user: { availableProjects: [{ key: 'p1' }] },
-            })}
-          </div>
-        );
+        props = createTestProps({
+          isLoadingUser: false,
+          user: { availableProjects: [{ key: 'p1' }] },
+        });
+        wrapper = shallow(<ProjectContainer {...props} />);
       });
       it('should render <FetchProject> with projectKey', () => {
-        expect(fetchUserChildrenWrapper.find(FetchProject)).toHaveProp(
-          'projectKey',
-          'test-1'
-        );
+        expect(wrapper.find(FetchProject)).toHaveProp('projectKey', 'test-1');
       });
       describe('when project is loading', () => {
         beforeEach(() => {
           fetchProjectChildrenWrapper = shallow(
             <div>
-              {fetchUserChildrenWrapper.find(FetchProject).prop('children')({
+              {wrapper.find(FetchProject).prop('children')({
                 isLoading: true,
               })}
             </div>
@@ -101,7 +85,7 @@ describe('rendering', () => {
         beforeEach(() => {
           fetchProjectChildrenWrapper = shallow(
             <div>
-              {fetchUserChildrenWrapper.find(FetchProject).prop('children')({
+              {wrapper.find(FetchProject).prop('children')({
                 isLoading: false,
                 project: null,
               })}
@@ -116,7 +100,7 @@ describe('rendering', () => {
         beforeEach(() => {
           fetchProjectChildrenWrapper = shallow(
             <div>
-              {fetchUserChildrenWrapper.find(FetchProject).prop('children')({
+              {wrapper.find(FetchProject).prop('children')({
                 isLoading: false,
                 project: { suspended: true },
               })}
@@ -131,7 +115,7 @@ describe('rendering', () => {
         beforeEach(() => {
           fetchProjectChildrenWrapper = shallow(
             <div>
-              {fetchUserChildrenWrapper.find(FetchProject).prop('children')({
+              {wrapper.find(FetchProject).prop('children')({
                 isLoading: false,
                 project: { suspended: false, expired: true },
               })}
@@ -146,7 +130,7 @@ describe('rendering', () => {
         beforeEach(() => {
           fetchProjectChildrenWrapper = shallow(
             <div>
-              {fetchUserChildrenWrapper.find(FetchProject).prop('children')({
+              {wrapper.find(FetchProject).prop('children')({
                 isLoading: false,
                 project: { suspended: false, expired: false, settings: null },
               })}
@@ -165,7 +149,7 @@ describe('rendering', () => {
           beforeEach(() => {
             fetchProjectChildrenWrapper = shallow(
               <div>
-                {fetchUserChildrenWrapper.find(FetchProject).prop('children')({
+                {wrapper.find(FetchProject).prop('children')({
                   isLoading: false,
                   project: {
                     suspended: false,
@@ -193,17 +177,15 @@ describe('rendering', () => {
               wrapper.setState({ localeSwitcherNode: el });
               fetchProjectChildrenWrapper = shallow(
                 <div>
-                  {fetchUserChildrenWrapper.find(FetchProject).prop('children')(
-                    {
-                      isLoading: false,
-                      project: {
-                        suspended: false,
-                        expired: false,
-                        settings: {},
-                        languages: ['de', 'en'],
-                      },
-                    }
-                  )}
+                  {wrapper.find(FetchProject).prop('children')({
+                    isLoading: false,
+                    project: {
+                      suspended: false,
+                      expired: false,
+                      settings: {},
+                      languages: ['de', 'en'],
+                    },
+                  })}
                 </div>
               );
               projectDataLocaleChildrenWrapper = shallow(
@@ -226,9 +208,7 @@ describe('rendering', () => {
                 wrapper.setState({ localeSwitcherNode: el });
                 fetchProjectChildrenWrapper = shallow(
                   <div>
-                    {fetchUserChildrenWrapper
-                      .find(FetchProject)
-                      .prop('children')({
+                    {wrapper.find(FetchProject).prop('children')({
                       isLoading: false,
                       project: {
                         suspended: false,
@@ -262,9 +242,7 @@ describe('rendering', () => {
                 wrapper.setState({ localeSwitcherNode: el });
                 fetchProjectChildrenWrapper = shallow(
                   <div>
-                    {fetchUserChildrenWrapper
-                      .find(FetchProject)
-                      .prop('children')({
+                    {wrapper.find(FetchProject).prop('children')({
                       isLoading: false,
                       project: {
                         suspended: false,
@@ -297,17 +275,15 @@ describe('rendering', () => {
             beforeEach(() => {
               fetchProjectChildrenWrapper = shallow(
                 <div>
-                  {fetchUserChildrenWrapper.find(FetchProject).prop('children')(
-                    {
-                      isLoading: false,
-                      project: {
-                        suspended: false,
-                        expired: false,
-                        settings: {},
-                        languages: ['de', 'en'],
-                      },
-                    }
-                  )}
+                  {wrapper.find(FetchProject).prop('children')({
+                    isLoading: false,
+                    project: {
+                      suspended: false,
+                      expired: false,
+                      settings: {},
+                      languages: ['de', 'en'],
+                    },
+                  })}
                 </div>
               );
               projectDataLocaleChildrenWrapper = shallow(

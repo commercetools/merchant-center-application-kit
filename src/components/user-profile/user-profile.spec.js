@@ -19,13 +19,10 @@ const intlMock = {
 
 const createTestProps = props => ({
   route: {},
-  userData: {
-    isLoading: false,
-    user: {
-      firstName: 'foo',
-      lastName: 'bar',
-      email: 'foo@bar.com',
-    },
+  user: {
+    firstName: 'foo',
+    lastName: 'bar',
+    email: 'foo@bar.com',
   },
   projectsCount: 2,
   organizationsCount: 1,
@@ -69,7 +66,7 @@ describe('rendering', () => {
     it('should pass initialValues to <UserProfileForm>', () => {
       expect(wrapper.find(UserProfileForm)).toHaveProp(
         'initialValues',
-        props.userData.user
+        props.user
       );
     });
     it('should pass route to <UserProfileForm>', () => {
