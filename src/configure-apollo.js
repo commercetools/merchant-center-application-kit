@@ -30,7 +30,7 @@ const isKnownTarget = target => ['mc', 'ctp', 'dashboard'].includes(target);
 // Use a middleware to update the request headers with the correct params.
 const headerMiddlewareLink = new ApolloLink((operation, forward) => {
   const target = operation.variables.target;
-  if (!isKnownTarget)
+  if (!isKnownTarget(target))
     throw new Error(
       `GraphQL target "${target}" is missing or is not supported`
     );
