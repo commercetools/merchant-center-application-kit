@@ -1,4 +1,3 @@
-/* global process */
 import logger from '@commercetools-local/utils/logger';
 import { showUnexpectedErrorNotification } from '@commercetools-local/actions-global';
 import { boot as bootSentry } from '../sentry';

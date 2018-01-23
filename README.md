@@ -33,7 +33,8 @@ import PageNotFound from '@commercetools-local/core/components/page-not-found';
 import * as i18n from '../../../../i18n';
 import { menuItems, trackingEventWhitelist } from '../../plugins.new';
 
-// Ensure to setup the global error listener first!
+// Ensure to setup the global error listener before any React component renders
+// in order to catch possible errors on rendering/mounting.
 setupGlobalErrorListener(reduxStore.dispatch);
 
 const EntryPoint = () => (
