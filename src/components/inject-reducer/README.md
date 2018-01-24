@@ -52,31 +52,6 @@ export default AsyncDashboard;
 | `name`    | `string` |    ✅    | -      | -       | The key at which the reducer should added to the store in the top level. This will be your plugin's name until we migrate to multiple applications.    |
 | `reducer` | `func`   |    ✅    | -      | -       | The reducer function that should be injected to the store at the top level. This will be your plugin reducer until we migrate to multiple applications. (**NOTE: the reducer needs to be wrapped with the `createPluginReducer`**) |
 
-## Disclaimer ⚠️
-
-This component does not yet work since the corresponding reducer injection
-function in the store is missing. This is how the store's `injectReducer`
-function should look like to make this component work:
-
-```js
-import { combineReducers } from 'redux';
-
-const createReducer = (injectedReducers = {}) =>
-  combineReducers({
-    activePlugin: activePluginReducer,
-    requestsInFlight: requestsInFlightReducer,
-    notifications: notificationsReducer,
-    form: formReducer,
-    ...injectedReducers,
-  });
-
-store.injectedReducers = {};
-store.injectReducer = ({ name, reducer }) => {
-  store.injectedReducers[name] = reducer;
-  store.replaceReducer(createReducer(store.injectedReducers));
-};
-```
-
 ## Prior art
 
 This component is inspired by React Boilerplate. Specifically
