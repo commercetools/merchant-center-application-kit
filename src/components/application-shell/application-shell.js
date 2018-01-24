@@ -10,15 +10,11 @@ import {
 import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import { joinPaths } from '@commercetools-local/utils/url';
-import {
-  DOMAINS,
-  LOGOUT_REASONS,
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-} from '@commercetools-local/constants';
-import * as storage from '@commercetools-local/utils/storage';
+import { DOMAINS, LOGOUT_REASONS } from '@commercetools-local/constants';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
+import WithProjectKey from '../with-project-key';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import Authenticated from '../authenticated';
 import AppBar from '../app-bar';
@@ -42,19 +38,6 @@ import GtmBooter from '../gtm-booter';
 import NavBar from '../navbar';
 import styles from './application-shell.mod.css';
 import './global-style-imports';
-
-/**
- * For some components that require the projectKey param from the URL, we need
- * to be careful to differentiate between the actual projectKey or an internal
- * protected route.
- * For example: `/:projectKey` can match both `/my-project-key` and `/account/profile`
- * In this case `account` is not meant to be considered a project key,
- * therefore we select the project key from local storage.
- */
-const selectRealProjectKey = matchedProjectKey =>
-  matchedProjectKey === 'account'
-    ? storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)
-    : matchedProjectKey;
 
 /**
  * This component is rendered whenever the user is considered "authenticated"
@@ -86,17 +69,17 @@ export const RestrictedApplication = props => (
               />
             </div>
             <header>
-              <AppBar isLoading={isLoading} user={user} />
+              <AppBar user={user} />
             </header>
 
             <aside>
-              <Route
-                path="/:projectKey"
-                render={({ location, match }) => (
+              <WithProjectKey
+                user={user}
+                render={({ projectKey, routerProps }) => (
                   <NavBar
-                    location={location}
+                    location={routerProps.location}
                     menuItems={props.menuItems}
-                    projectKey={selectRealProjectKey(match.params.projectKey)}
+                    projectKey={projectKey}
                   />
                 )}
               />
@@ -123,11 +106,22 @@ export const RestrictedApplication = props => (
                 }
               />
               <Switch>
-                {/* When the user is redirected to /logout he is still logged in
-              and thus wer are still in the `authenticated` branch.
-              The component won't render anything. It will unauthenticate
-              the user and redirect him to /login. */}
+                {/**
+                 * When the user is redirected to /logout he is still logged
+                 * in and thus wer are still in the `authenticated` branch.
+                 * The component won't render anything. It will unauthenticate
+                 * the user and redirect him to /login.
+                 */}
                 <Route path="/logout" component={Logout} />
+                <Redirect from="/profile" to="/account/profile" />
+                {/* Redirect from account to account/profile */}
+                <Route
+                  exact={true}
+                  path="/account"
+                  render={({ match }) => (
+                    <Redirect to={joinPaths(match.url, 'profile')} />
+                  )}
+                />
                 <Route
                   path="/account/profile"
                   render={() => (

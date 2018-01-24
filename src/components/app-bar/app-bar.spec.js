@@ -1,12 +1,10 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import ProjectSwitcher from '../project-switcher';
 import UserSettingsMenu from '../user-settings-menu';
 import AppBar from './app-bar';
 
 const createTestProps = props => ({
-  isLoading: true,
   user: {
     availableProjects: [],
     firstName: 'John',
@@ -29,19 +27,25 @@ describe('rendering', () => {
   it('should render placeholder for "loader-for-requests-in-flight"', () => {
     expect(wrapper).toRender('#loader-for-requests-in-flight');
   });
-
-  it('should render <Route>', () => {
-    expect(wrapper).toRender(Route);
+  it('should render placeholder for "locale-switcher"', () => {
+    expect(wrapper).toRender('#locale-switcher');
+  });
+  it('should render <WithProjectKey>', () => {
+    expect(wrapper).toRender('WithProjectKey');
   });
   describe('<UserSettingsMenu>', () => {
-    describe('when user is loading', () => {
+    describe('when user is not defined', () => {
+      beforeEach(() => {
+        props = createTestProps({ user: null });
+        wrapper = shallow(<AppBar {...props} />);
+      });
       it('should not render the user settings menu', () => {
         expect(wrapper).not.toRender(UserSettingsMenu);
       });
     });
     describe('when user is loaded', () => {
       beforeEach(() => {
-        props = createTestProps({ isLoading: false });
+        props = createTestProps();
         wrapper = shallow(<AppBar {...props} />);
       });
       describe('<UserSettingsMenu>', () => {
@@ -66,87 +70,88 @@ describe('rendering', () => {
       });
     });
   });
-  describe('render route', () => {
-    let renderRouteChildrenWrapper;
-    let renderRouteChildrenProps;
+  describe('render <WithProjectKey>', () => {
+    let renderChildrenWrapper;
+    let renderChildrenProps;
     beforeEach(() => {
-      renderRouteChildrenProps = {
-        match: { params: { projectKey: 'test-1' } },
-      };
-      renderRouteChildrenWrapper = shallow(
+      renderChildrenProps = { projectKey: 'test-1' };
+      renderChildrenWrapper = shallow(
         <div>
-          {wrapper.find(Route).prop('render')(renderRouteChildrenProps)}
+          {wrapper.find('WithProjectKey').prop('render')(renderChildrenProps)}
         </div>
       );
     });
-    it('should render placeholder for "locale-switcher"', () => {
-      expect(renderRouteChildrenWrapper).toRender('#locale-switcher');
-    });
+
     describe('<ProjectSwitcher>', () => {
-      describe('when user is loading', () => {
+      describe('when user is not defined', () => {
         beforeEach(() => {
           props = createTestProps({
-            isLoading: true,
-            user: { ...props.user, availableProjects: [] },
+            user: null,
           });
           wrapper = shallow(<AppBar {...props} />);
-          renderRouteChildrenWrapper = shallow(
+          renderChildrenWrapper = shallow(
             <div>
-              {wrapper.find(Route).prop('render')(renderRouteChildrenProps)}
+              {wrapper.find('WithProjectKey').prop('render')(
+                renderChildrenProps
+              )}
             </div>
           );
         });
         it('should not render <ProjectSwitcher>', () => {
-          expect(renderRouteChildrenWrapper).not.toRender(ProjectSwitcher);
+          expect(renderChildrenWrapper).not.toRender(ProjectSwitcher);
         });
       });
-      describe('when user is not loading', () => {
+      describe('when user is defined', () => {
         describe('when user has no available projects', () => {
           beforeEach(() => {
             props = createTestProps({
-              isLoading: false,
               user: { ...props.user, availableProjects: [] },
             });
             wrapper = shallow(<AppBar {...props} />);
-            renderRouteChildrenWrapper = shallow(
+            renderChildrenWrapper = shallow(
               <div>
-                {wrapper.find(Route).prop('render')(renderRouteChildrenProps)}
+                {wrapper.find('WithProjectKey').prop('render')(
+                  renderChildrenProps
+                )}
               </div>
             );
           });
           it('should not render <ProjectSwitcher>', () => {
-            expect(renderRouteChildrenWrapper).not.toRender(ProjectSwitcher);
+            expect(renderChildrenWrapper).not.toRender(ProjectSwitcher);
           });
         });
         describe('when user has available projects', () => {
           describe('<ProjectSwitcher>', () => {
             beforeEach(() => {
               props = createTestProps({
-                isLoading: false,
                 user: {
                   ...props.user,
                   availableProjects: [{ key: 'test-1' }],
                 },
               });
               wrapper = shallow(<AppBar {...props} />);
-              renderRouteChildrenWrapper = shallow(
+              renderChildrenWrapper = shallow(
                 <div>
-                  {wrapper.find(Route).prop('render')(renderRouteChildrenProps)}
+                  {wrapper.find('WithProjectKey').prop('render')(
+                    renderChildrenProps
+                  )}
                 </div>
               );
             });
             it('should render <ProjectSwitcher>', () => {
-              expect(renderRouteChildrenWrapper).toRender(ProjectSwitcher);
+              expect(renderChildrenWrapper).toRender(ProjectSwitcher);
             });
             it('should pass projectKey to <ProjectSwitcher>', () => {
-              expect(
-                renderRouteChildrenWrapper.find(ProjectSwitcher)
-              ).toHaveProp('projectKey', 'test-1');
+              expect(renderChildrenWrapper.find(ProjectSwitcher)).toHaveProp(
+                'projectKey',
+                'test-1'
+              );
             });
             it('should pass available projects to <ProjectSwitcher>', () => {
-              expect(
-                renderRouteChildrenWrapper.find(ProjectSwitcher)
-              ).toHaveProp('availableProjects', [{ key: 'test-1' }]);
+              expect(renderChildrenWrapper.find(ProjectSwitcher)).toHaveProp(
+                'availableProjects',
+                [{ key: 'test-1' }]
+              );
             });
           });
         });

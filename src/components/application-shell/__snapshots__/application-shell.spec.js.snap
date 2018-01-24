@@ -66,7 +66,6 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
         </div>
         <header>
           <AppBar
-            isLoading={false}
             user={
               Object {
                 "availableProjects": Array [],
@@ -79,9 +78,17 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
           />
         </header>
         <aside>
-          <Route
-            path="/:projectKey"
+          <WithProjectKey
             render={[Function]}
+            user={
+              Object {
+                "availableProjects": Array [],
+                "email": "john.snow@got.com",
+                "firstName": "John",
+                "id": "u1",
+                "lastName": "Snow",
+              }
+            }
           />
         </aside>
         <div
@@ -103,8 +110,18 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
               component={[Function]}
               path="/logout"
             />
+            <Redirect
+              from="/profile"
+              push={false}
+              to="/account/profile"
+            />
             <Route
-              path="/profile"
+              exact={true}
+              path="/account"
+              render={[Function]}
+            />
+            <Route
+              path="/account/profile"
               render={[Function]}
             />
             <Route
@@ -195,7 +212,6 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
         </div>
         <header>
           <AppBar
-            isLoading={false}
             user={
               Object {
                 "availableProjects": Array [],
@@ -208,9 +224,17 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
           />
         </header>
         <aside>
-          <Route
-            path="/:projectKey"
+          <WithProjectKey
             render={[Function]}
+            user={
+              Object {
+                "availableProjects": Array [],
+                "email": "john.snow@got.com",
+                "firstName": "John",
+                "id": "u1",
+                "lastName": "Snow",
+              }
+            }
           />
         </aside>
         <div
@@ -232,8 +256,18 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
               component={[Function]}
               path="/logout"
             />
+            <Redirect
+              from="/profile"
+              push={false}
+              to="/account/profile"
+            />
             <Route
-              path="/profile"
+              exact={true}
+              path="/account"
+              render={[Function]}
+            />
+            <Route
+              path="/account/profile"
               render={[Function]}
             />
             <Route

@@ -1,10 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import {
-  DOMAINS,
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-} from '@commercetools-local/constants';
-import * as storage from '@commercetools-local/utils/storage';
+import { DOMAINS } from '@commercetools-local/constants';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import FetchUser from '../fetch-user';
 import IntercomBooter from '../intercom-booter';
@@ -181,22 +177,25 @@ describe('<RestrictedApplication>', () => {
     it('should render <AppBar> below header element', () => {
       expect(wrapper).toRender('header > AppBar');
     });
-    it('should render <Route> for "/:projectKey" below aside element', () => {
-      expect(wrapper.find('aside > Route')).toHaveProp('path', '/:projectKey');
+    it('should render <WithProjectKey> below aside element', () => {
+      expect(wrapper.find('aside > WithProjectKey')).toHaveProp(
+        'user',
+        userData.user
+      );
     });
     describe('<NavBar>', () => {
       let routeRenderWrapper;
       beforeEach(() => {
         routeRenderWrapper = shallow(
           <div>
-            {wrapper.find('aside > Route').prop('render')({
-              location: {},
-              match: { params: { projectKey: 'foo-1' } },
+            {wrapper.find('aside > WithProjectKey').prop('render')({
+              routerProps: { location: {} },
+              projectKey: 'foo-1',
             })}
           </div>
         );
       });
-      it('should render <NavBar> inside <Route> below aside element', () => {
+      it('should render <NavBar> inside <WithProjectKey> below aside element', () => {
         expect(routeRenderWrapper).toRender(NavBar);
       });
       it('should pass the projectKey matched from the URL', () => {
@@ -205,37 +204,12 @@ describe('<RestrictedApplication>', () => {
           'foo-1'
         );
       });
-      describe('when "projectKey" param is starts with "/account"', () => {
-        beforeEach(() => {
-          storage.put(
-            CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY,
-            'some-other-project-key'
-          );
-          routeRenderWrapper = shallow(
-            <div>
-              {wrapper.find('aside > Route').prop('render')({
-                location: {},
-                match: {
-                  url: '/account/profile',
-                  params: { projectKey: 'account' },
-                },
-              })}
-            </div>
-          );
-        });
-        it('should pass the projectKey from the cache', () => {
-          expect(routeRenderWrapper.find(NavBar)).toHaveProp(
-            'projectKey',
-            'some-other-project-key'
-          );
-        });
-      });
     });
     it('should render <Route> for "/logout" below main container', () => {
       expect(wrapper.find('.main')).toRender({ path: '/logout' });
     });
-    it('should render <Route> for "/profile" below main container', () => {
-      expect(wrapper.find('.main')).toRender({ path: '/profile' });
+    it('should render <Route> for "/account/profile" below main container', () => {
+      expect(wrapper.find('.main')).toRender({ path: '/account/profile' });
     });
     describe('<AsyncUserProfile>', () => {
       let routeRenderWrapper;
@@ -244,7 +218,7 @@ describe('<RestrictedApplication>', () => {
           <div>
             {wrapper
               .find('.main')
-              .find({ path: '/profile' })
+              .find({ path: '/account/profile' })
               .prop('render')()}
           </div>
         );

@@ -33,13 +33,33 @@ exports[`rendering should match layout structure 1`] = `
       <div
         className="switchers"
       >
-        <Route
-          path="/:projectKey"
-          render={[Function]}
-        />
+        <Inline
+          alignItems="center"
+          scale="s"
+        >
+          <div
+            id="locale-switcher"
+          />
+          <WithProjectKey
+            render={[Function]}
+            user={
+              Object {
+                "availableProjects": Array [],
+                "email": "john.snow@got.com",
+                "firstName": "John",
+                "lastName": "Snow",
+              }
+            }
+          />
+        </Inline>
       </div>
       <div
         className="spacer"
+      />
+      <UserSettingsMenu
+        email="john.snow@got.com"
+        firstName="John"
+        lastName="Snow"
       />
     </Inline>
   </div>

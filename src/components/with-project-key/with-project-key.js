@@ -1,0 +1,53 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Route } from 'react-router-dom';
+import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
+import * as storage from '@commercetools-local/utils/storage';
+
+/**
+ * For some components that require the projectKey param from the URL, we need
+ * to be careful to differentiate between the actual projectKey or an internal
+ * protected route.
+ * For example: `/:projectKey` can match both `/my-project-key` and `/account/profile`
+ * In this case `account` is not meant to be considered a project key,
+ * therefore we select the project key from local storage.
+ */
+const matchProjectKeyOrLoadFromCache = matchedProjectKey =>
+  matchedProjectKey === 'account'
+    ? storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)
+    : matchedProjectKey;
+
+const WithProjectKey = props => (
+  <Route
+    path="/:projectKey"
+    render={routerProps => {
+      if (!props.user) return null;
+      const matchedProjectKey = matchProjectKeyOrLoadFromCache(
+        routerProps.match.params.projectKey
+      );
+      // At this point `projectKey` can still be `null`.
+      // This happens e.g. when the user is not logged in, tries to
+      // access a route under `/account` directly. After being logged
+      // in again, there is no projectKey in the URL as well as in
+      // localStorage. In this case we attempt to get the first project key
+      // from the list of available projects of the user.
+      // In case there are no available projects, we do not render anything.
+      const projectKey =
+        !matchedProjectKey && props.user.availableProjects.length > 0
+          ? props.user.availableProjects[0].key
+          : matchedProjectKey;
+      if (!projectKey) return null;
+      // Render only if there is a project key
+      return props.render({ projectKey, routerProps });
+    }}
+  />
+);
+WithProjectKey.displayName = 'WithProjectKey';
+WithProjectKey.propTypes = {
+  user: PropTypes.shape({
+    availableProjects: PropTypes.array.isRequired,
+  }),
+  render: PropTypes.func.isRequired,
+};
+
+export default WithProjectKey;
