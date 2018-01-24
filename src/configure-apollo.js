@@ -26,7 +26,8 @@ const httpLink = createHttpLink({
   // here. https://www.apollographql.com/docs/link/links/http.html#fetch
   fetch,
 });
-const isKnownTarget = target => ['mc', 'ctp', 'dashboard'].includes(target);
+const isKnownTarget = target =>
+  ['mc', 'ctp', 'dashboard', 'pim-indexer'].includes(target);
 // Use a middleware to update the request headers with the correct params.
 const headerMiddlewareLink = new ApolloLink((operation, forward) => {
   const target = operation.variables.target;
