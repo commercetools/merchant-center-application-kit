@@ -50,8 +50,8 @@ describe('rendering', () => {
       it('should render matching tree', () => {
         expect(dowshiftRenderWrapper).toMatchSnapshot();
       });
-      it('should render link to "/profile"', () => {
-        expect(dowshiftRenderWrapper).toRender({ to: '/profile' });
+      it('should render link to "/account/profile"', () => {
+        expect(dowshiftRenderWrapper).toRender({ to: '/account/profile' });
       });
       it('should render link to "/logout"', () => {
         expect(dowshiftRenderWrapper).toRender({ to: '/logout?reason=user' });

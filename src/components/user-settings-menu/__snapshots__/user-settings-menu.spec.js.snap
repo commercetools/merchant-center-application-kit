@@ -30,7 +30,7 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
     >
       <Link
         replace={false}
-        to="/profile"
+        to="/account/profile"
       >
         <div
           className="item"
