@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import InjectReducer from '../components/inject-reducer';
+import { InjectReducer, createPluginReducer } from '../main';
 
 const pluginName = 'mcng-products';
 
@@ -21,9 +21,9 @@ StoreLogger.propTypes = {
 };
 const ConnectedStoreLogger = connect(state => ({ state }))(StoreLogger);
 
-const productsReducer = () => ({
+const productsReducer = createPluginReducer(() => ({
   thisIsProducts: true,
-});
+}));
 
 class TestProducts extends React.Component {
   static displayName = 'TestProducts';

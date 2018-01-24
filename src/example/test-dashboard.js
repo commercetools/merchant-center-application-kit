@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import InjectReducer from '../components/inject-reducer';
+import { InjectReducer, createPluginReducer } from '../main';
 
 const pluginName = 'mcng-dashboard';
 
@@ -21,9 +21,9 @@ StoreLogger.propTypes = {
 };
 const ConnectedStoreLogger = connect(state => ({ state }))(StoreLogger);
 
-const dashboardReducer = () => ({
+const dashboardReducer = createPluginReducer(() => ({
   thisIsTheDashboard: true,
-});
+}));
 
 class TestDashboard extends React.Component {
   static displayName = 'TestDashboard';
