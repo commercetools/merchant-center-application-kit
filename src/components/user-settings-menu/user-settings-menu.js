@@ -80,7 +80,7 @@ export default class UserSettingsMenu extends React.PureComponent {
                     </Text.Detail>
                   </Spacings.Inset>
                   <ToggleFeature flag="userProfile">
-                    <Link to="/profile">
+                    <Link to="/account/profile">
                       <div className={styles.item}>
                         <Spacings.Inset scale="s">
                           <FormattedMessage {...messages.userProfile} />

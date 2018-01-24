@@ -25,15 +25,17 @@ will also remove this code again once we make that switch.
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider as StoreProvider } from 'react-redux';
-import { InjectReducer } from '@commercetools-local/application-shell';
+import { InjectReducer, createPluginReducer } from '@commercetools-local/application-shell';
 import Dashboard from './components/dashboard';
 import reducer from './reducer';
 
 const store = createStore(...);
 
+const pluginReducer = createPluginReducer(reducer);
+
 const AsyncDashboard = props => (
   <StoreProvider store={store}>
-    <InjectReducer name="mcng-dashboard" reducer={reducer}>
+    <InjectReducer name="mcng-dashboard" reducer={pluginReducer}>
       <Dashboard {...props} />
     </InjectReducer>
   </StoreProvider>
@@ -48,7 +50,7 @@ export default AsyncDashboard;
 | Props     | Type     | Required | Values | Default | Description                                                                                                                                            |
 | --------- | -------- | :------: | ------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `name`    | `string` |    ✅    | -      | -       | The key at which the reducer should added to the store in the top level. This will be your plugin's name until we migrate to multiple applications.    |
-| `reducer` | `func`   |    ✅    | -      | -       | The reducer function that should be injected to the store at the top level. This will be your plugin reducer until we migrate to multiple applications |
+| `reducer` | `func`   |    ✅    | -      | -       | The reducer function that should be injected to the store at the top level. This will be your plugin reducer until we migrate to multiple applications. (**NOTE: the reducer needs to be wrapped with the `createPluginReducer`**) |
 
 ## Disclaimer ⚠️
 
@@ -57,16 +59,21 @@ function in the store is missing. This is how the store's `injectReducer`
 function should look like to make this component work:
 
 ```js
-import createPluginReducer from './utils/plugins/create-reducer';
+import { combineReducers } from 'redux';
 
-// const store = createStore(..)
+const createReducer = (injectedReducers = {}) =>
+  combineReducers({
+    activePlugin: activePluginReducer,
+    requestsInFlight: requestsInFlightReducer,
+    notifications: notificationsReducer,
+    form: formReducer,
+    ...injectedReducers,
+  });
 
 store.injectedReducers = {};
 store.injectReducer = ({ name, reducer }) => {
   store.injectedReducers[name] = reducer;
-  store.replaceReducer(
-    createPluginReducer(store.injectedReducers, applicationReducer)
-  );
+  store.replaceReducer(createReducer(store.injectedReducers));
 };
 ```
 

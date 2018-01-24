@@ -1,6 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { DOMAINS } from '@commercetools-local/constants';
+import {
+  DOMAINS,
+  STORAGE_KEYS as CORE_STORAGE_KEYS,
+} from '@commercetools-local/constants';
+import * as storage from '@commercetools-local/utils/storage';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import FetchUser from '../fetch-user';
 import IntercomBooter from '../intercom-booter';
@@ -11,6 +15,8 @@ import ApplicationShell, {
   RestrictedApplication,
   UnrestrictedApplication,
 } from './application-shell';
+
+jest.mock('@commercetools-local/utils/storage');
 
 const createTestProps = props => ({
   i18n: { en: {}, de: {} },
@@ -192,6 +198,37 @@ describe('<RestrictedApplication>', () => {
       });
       it('should render <NavBar> inside <Route> below aside element', () => {
         expect(routeRenderWrapper).toRender(NavBar);
+      });
+      it('should pass the projectKey matched from the URL', () => {
+        expect(routeRenderWrapper.find(NavBar)).toHaveProp(
+          'projectKey',
+          'foo-1'
+        );
+      });
+      describe('when "projectKey" param is starts with "/account"', () => {
+        beforeEach(() => {
+          storage.put(
+            CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY,
+            'some-other-project-key'
+          );
+          routeRenderWrapper = shallow(
+            <div>
+              {wrapper.find('aside > Route').prop('render')({
+                location: {},
+                match: {
+                  url: '/account/profile',
+                  params: { projectKey: 'account' },
+                },
+              })}
+            </div>
+          );
+        });
+        it('should pass the projectKey from the cache', () => {
+          expect(routeRenderWrapper.find(NavBar)).toHaveProp(
+            'projectKey',
+            'some-other-project-key'
+          );
+        });
       });
     });
     it('should render <Route> for "/logout" below main container', () => {

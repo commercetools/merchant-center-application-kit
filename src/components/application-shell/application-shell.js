@@ -10,7 +10,12 @@ import {
 import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import { joinPaths } from '@commercetools-local/utils/url';
-import { DOMAINS, LOGOUT_REASONS } from '@commercetools-local/constants';
+import {
+  DOMAINS,
+  LOGOUT_REASONS,
+  STORAGE_KEYS as CORE_STORAGE_KEYS,
+} from '@commercetools-local/constants';
+import * as storage from '@commercetools-local/utils/storage';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
@@ -37,6 +42,19 @@ import GtmBooter from '../gtm-booter';
 import NavBar from '../navbar';
 import styles from './application-shell.mod.css';
 import './global-style-imports';
+
+/**
+ * For some components that require the projectKey param from the URL, we need
+ * to be careful to differentiate between the actual projectKey or an internal
+ * protected route.
+ * For example: `/:projectKey` can match both `/my-project-key` and `/account/profile`
+ * In this case `account` is not meant to be considered a project key,
+ * therefore we select the project key from local storage.
+ */
+const selectRealProjectKey = matchedProjectKey =>
+  matchedProjectKey === 'account'
+    ? storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)
+    : matchedProjectKey;
 
 /**
  * This component is rendered whenever the user is considered "authenticated"
@@ -78,7 +96,7 @@ export const RestrictedApplication = props => (
                   <NavBar
                     location={location}
                     menuItems={props.menuItems}
-                    projectKey={match.params.projectKey}
+                    projectKey={selectRealProjectKey(match.params.projectKey)}
                   />
                 )}
               />
@@ -111,7 +129,7 @@ export const RestrictedApplication = props => (
               the user and redirect him to /login. */}
                 <Route path="/logout" component={Logout} />
                 <Route
-                  path="/profile"
+                  path="/account/profile"
                   render={() => (
                     <AsyncUserProfile
                       user={user}
