@@ -113,24 +113,24 @@ export const RestrictedApplication = props => (
                  */}
                 <Route path="/logout" component={Logout} />
                 <Redirect from="/profile" to="/account/profile" />
-                {/* Redirect from account to account/profile */}
                 <Route
-                  exact={true}
                   path="/account"
                   render={({ match }) => (
-                    <Redirect to={joinPaths(match.url, 'profile')} />
-                  )}
-                />
-                <Route
-                  path="/account/profile"
-                  render={() => (
-                    <AsyncUserProfile
-                      user={user}
-                      showNotification={props.showNotification}
-                      showUnexpectedErrorNotification={
-                        props.showUnexpectedErrorNotification
-                      }
-                    />
+                    <Switch>
+                      <Route
+                        path="/account/profile"
+                        render={() => (
+                          <AsyncUserProfile
+                            user={user}
+                            showNotification={props.showNotification}
+                            showUnexpectedErrorNotification={
+                              props.showUnexpectedErrorNotification
+                            }
+                          />
+                        )}
+                      />
+                      <Redirect to={joinPaths(match.url, 'profile')} />
+                    </Switch>
                   )}
                 />
                 {/* Project routes */}

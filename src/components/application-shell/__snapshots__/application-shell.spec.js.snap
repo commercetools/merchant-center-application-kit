@@ -116,12 +116,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
               to="/account/profile"
             />
             <Route
-              exact={true}
               path="/account"
-              render={[Function]}
-            />
-            <Route
-              path="/account/profile"
               render={[Function]}
             />
             <Route
@@ -262,12 +257,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
               to="/account/profile"
             />
             <Route
-              exact={true}
               path="/account"
-              render={[Function]}
-            />
-            <Route
-              path="/account/profile"
               render={[Function]}
             />
             <Route

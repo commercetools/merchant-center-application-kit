@@ -208,23 +208,41 @@ describe('<RestrictedApplication>', () => {
     it('should render <Route> for "/logout" below main container', () => {
       expect(wrapper.find('.main')).toRender({ path: '/logout' });
     });
-    it('should render <Route> for "/account/profile" below main container', () => {
-      expect(wrapper.find('.main')).toRender({ path: '/account/profile' });
+    it('should render <Route> for "/account" below main container', () => {
+      expect(wrapper.find('.main')).toRender({ path: '/account' });
     });
-    describe('<AsyncUserProfile>', () => {
+    describe('account routes', () => {
       let routeRenderWrapper;
       beforeEach(() => {
         routeRenderWrapper = shallow(
           <div>
             {wrapper
               .find('.main')
-              .find({ path: '/account/profile' })
-              .prop('render')()}
+              .find({ path: '/account' })
+              .prop('render')({ match: { url: '/account' } })}
           </div>
         );
       });
-      it('should render <AsyncUserProfile> inside <Route> below main container', () => {
-        expect(routeRenderWrapper).toRender(AsyncUserProfile);
+      it('should render <Route> for "/account/profile"', () => {
+        expect(routeRenderWrapper).toRender({ path: '/account/profile' });
+      });
+      it('should render <Route> for redurect to "/account/profile"', () => {
+        expect(routeRenderWrapper).toRender({ to: '/account/profile' });
+      });
+      describe('<AsyncUserProfile>', () => {
+        let userProfileRouteRenderWrapper;
+        beforeEach(() => {
+          userProfileRouteRenderWrapper = shallow(
+            <div>
+              {routeRenderWrapper
+                .find({ path: '/account/profile' })
+                .prop('render')()}
+            </div>
+          );
+        });
+        it('should render <AsyncUserProfile> inside <Route> below main container', () => {
+          expect(userProfileRouteRenderWrapper).toRender(AsyncUserProfile);
+        });
       });
     });
     it('should render <Route> matching exact ":projectKey" path', () => {
