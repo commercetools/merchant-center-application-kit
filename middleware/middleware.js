@@ -3,7 +3,9 @@ import {
   SHOW_LOADING,
   HIDE_LOADING,
   SET_TOKEN,
+  STORAGE_KEYS as CORE_STORAGE_KEYS,
 } from '@commercetools-local/constants';
+import * as storage from '@commercetools-local/utils/storage';
 import toGlobal from '@commercetools-local/utils/to-global';
 import { logRequest } from '../utils';
 import client from './client';
@@ -11,13 +13,24 @@ import client from './client';
 // NOTE in case we create the middleware into a factory, these could come in
 // as options
 const selectProjectKey = state => {
+  // With the new setup, is not possible anymore for the action creators
+  // to have access to the `globalAppState`. Therefore, in order to be
+  // backwards compatible, we fall back to read the value from local storage.
   const application = state.globalAppState || state.application;
-  return application.projectKey;
+  return (
+    (application && application.projectKey) ||
+    storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)
+  );
 };
 
 const selectToken = state => {
-  const application = state.globalAppState || state.application;
-  return application.token;
+  // With the new setup, is not possible anymore for the action creators
+  // to have access to the `globalAppState`. Therefore, in order to be
+  // backwards compatible, we fall back to read the value from local storage.
+  const application = state.globalAppState || state.application || {};
+  return (
+    (application && application.token) || storage.get(CORE_STORAGE_KEYS.TOKEN)
+  );
 };
 
 const actionToUri = (action, projectKey) => {
