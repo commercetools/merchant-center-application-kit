@@ -19,7 +19,6 @@ import ConfigureIntlProvider from '../configure-intl-provider';
 import Authenticated from '../authenticated';
 import AppBar from '../app-bar';
 import ProjectContainer from '../project-container';
-import RedirectToProject from '../redirect-to-project';
 import AsyncLogin from '../login/async';
 import AsyncLoginSSO from '../login-sso/async';
 import AsyncLoginSSOCallback from '../login-sso-callback/async';
@@ -169,7 +168,20 @@ export const RestrictedApplication = props => (
                     </SetupFlopFlipProvider>
                   )}
                 />
-                <Route path="/" component={RedirectToProject} />
+
+                <Route
+                  path="/"
+                  render={() => (
+                    <WithProjectKey
+                      user={user}
+                      render={({ projectKey }) => (
+                        // Redirect to an active project key, or the
+                        // first one in the list of available projects
+                        <Redirect to={`/${projectKey}`} />
+                      )}
+                    />
+                  )}
+                />
               </Switch>
             </div>
           </div>

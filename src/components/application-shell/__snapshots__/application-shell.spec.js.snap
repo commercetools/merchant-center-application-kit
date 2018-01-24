@@ -135,8 +135,8 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
               render={[Function]}
             />
             <Route
-              component={[Function]}
               path="/"
+              render={[Function]}
             />
           </Switch>
         </div>
@@ -281,8 +281,8 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
               render={[Function]}
             />
             <Route
-              component={[Function]}
               path="/"
+              render={[Function]}
             />
           </Switch>
         </div>
