@@ -143,6 +143,19 @@ export const RestrictedApplication = props => (
                     )}
                   />
                   <Route
+                    exact={true}
+                    path="/"
+                    render={() => (
+                      <WithProjectKey
+                        user={user}
+                        render={({ projectKey }) => (
+                          // Redirect to the given projectKey
+                          <Redirect to={`/${projectKey}`} />
+                        )}
+                      />
+                    )}
+                  />
+                  <Route
                     exact={false}
                     path="/:projectKey"
                     render={routerProps => (
@@ -162,20 +175,6 @@ export const RestrictedApplication = props => (
                           render={props.render}
                         />
                       </React.Fragment>
-                    )}
-                  />
-
-                  <Route
-                    path="/"
-                    render={() => (
-                      <WithProjectKey
-                        user={user}
-                        render={({ projectKey }) => (
-                          // Redirect to an active project key, or the
-                          // first one in the list of available projects
-                          <Redirect to={`/${projectKey}`} />
-                        )}
-                      />
                     )}
                   />
                 </Switch>

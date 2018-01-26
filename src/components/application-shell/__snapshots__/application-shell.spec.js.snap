@@ -113,12 +113,13 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
             render={[Function]}
           />
           <Route
-            exact={false}
-            path="/:projectKey"
+            exact={true}
+            path="/"
             render={[Function]}
           />
           <Route
-            path="/"
+            exact={false}
+            path="/:projectKey"
             render={[Function]}
           />
         </Switch>
@@ -241,12 +242,13 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
             render={[Function]}
           />
           <Route
-            exact={false}
-            path="/:projectKey"
+            exact={true}
+            path="/"
             render={[Function]}
           />
           <Route
-            path="/"
+            exact={false}
+            path="/:projectKey"
             render={[Function]}
           />
         </Switch>
