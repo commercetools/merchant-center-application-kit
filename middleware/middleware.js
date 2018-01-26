@@ -16,6 +16,7 @@ const selectProjectKey = state => {
   // With the new setup, is not possible anymore for the action creators
   // to have access to the `globalAppState`. Therefore, in order to be
   // backwards compatible, we fall back to read the value from local storage.
+  // TODO: remove the "old" logic after the #RR4 migration
   const application = state.globalAppState || state.application;
   return (
     (application && application.projectKey) ||
@@ -27,6 +28,7 @@ const selectToken = state => {
   // With the new setup, is not possible anymore for the action creators
   // to have access to the `globalAppState`. Therefore, in order to be
   // backwards compatible, we fall back to read the value from local storage.
+  // TODO: remove the "old" logic after the #RR4 migration
   const application = state.globalAppState || state.application || {};
   return (
     (application && application.token) || storage.get(CORE_STORAGE_KEYS.TOKEN)
