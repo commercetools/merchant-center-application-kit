@@ -9,6 +9,7 @@ import {
 import { deepEqual } from 'fast-equals';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import { GraphQlTargets } from '@commercetools-local/constants';
 
 const ProjectQuery = gql`
   query Project($projectKey: String!) {
@@ -88,7 +89,7 @@ const graphqlOptions = {
   name: 'projectData',
   options: ownProps => ({
     variables: {
-      target: 'mc',
+      target: GraphQlTargets.MerchantCenterBackend,
       projectKey: ownProps.projectKey,
     },
   }),

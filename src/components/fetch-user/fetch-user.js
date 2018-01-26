@@ -9,6 +9,7 @@ import {
 import { deepEqual } from 'fast-equals';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import { GraphQlTargets } from '@commercetools-local/constants';
 
 const LoggedInUserQuery = gql`
   query LoggedInUser {
@@ -44,7 +45,7 @@ const graphqlOptions = {
   name: 'userData',
   options: {
     variables: {
-      target: 'mc',
+      target: GraphQlTargets.MerchantCenterBackend,
     },
   },
   // Rename `loading` -> `isLoading`, to follow our naming convention
