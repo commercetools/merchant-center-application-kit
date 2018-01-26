@@ -123,3 +123,10 @@ export const FILTER_TYPES = {
 };
 
 export const REQUESTS_IN_FLIGHT_LOADER_DOM_ID = 'loader-for-requests-in-flight';
+
+export const GraphQlTargets = {
+  MerchantCenterBackend: 'mc',
+  CommercetoolsPlatform: 'ctp',
+  DashboardService: 'dashboard',
+  PimIndexer: 'pim-indexer',
+};
