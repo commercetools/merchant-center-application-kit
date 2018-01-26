@@ -219,7 +219,7 @@ describe('<RestrictedApplication>', () => {
             {wrapper
               .find('.main')
               .find({ path: '/account' })
-              .prop('render')({ match: { url: '/account' } })}
+              .prop('render')({ match: { url: '/account', path: '/account' } })}
           </div>
         );
       });
