@@ -114,7 +114,7 @@ export const RestrictedApplication = props => (
                   render={({ match }) => (
                     <Switch>
                       <Route
-                        path="/account/profile"
+                        path={`${match.path}/profile`}
                         render={() => (
                           <AsyncUserProfile
                             user={user}
