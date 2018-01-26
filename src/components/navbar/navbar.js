@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { matchPath } from 'react-router';
-import { NavLink } from 'react-router-dom';
+import { NavLink, matchPath, withRouter } from 'react-router-dom';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
@@ -443,13 +442,12 @@ export class NavBar extends React.PureComponent {
 
   static propTypes = {
     // From parent
-    className: PropTypes.string,
-    location: PropTypes.object.isRequired,
     menuItems: PropTypes.array.isRequired,
     projectKey: PropTypes.string.isRequired,
-    projectPermissions: PropTypes.objectOf(PropTypes.bool).isRequired,
     // Injected
+    location: PropTypes.object.isRequired,
     isForcedMenuOpen: PropTypes.bool,
+    projectPermissions: PropTypes.objectOf(PropTypes.bool).isRequired,
   };
 
   getNode = node => {
@@ -460,7 +458,7 @@ export class NavBar extends React.PureComponent {
     return (
       <nav
         ref={this.getNode}
-        className={classnames(this.props.className, styles['left-navigation'])}
+        className={styles['left-navigation']}
         data-test="left-navigation"
         data-track-component="Navigation"
       >
@@ -478,6 +476,7 @@ export class NavBar extends React.PureComponent {
 }
 
 export default compose(
+  withRouter, // Connect again, to access the `location` object
   withProps(() => {
     const cachedIsForcedMenuOpen = storage.get(
       CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN

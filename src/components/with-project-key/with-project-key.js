@@ -38,7 +38,7 @@ const WithProjectKey = props => (
           : matchedProjectKey;
       if (!projectKey) return null;
       // Render only if there is a project key
-      return props.render({ projectKey, routerProps });
+      return props.render({ projectKey });
     }}
   />
 );

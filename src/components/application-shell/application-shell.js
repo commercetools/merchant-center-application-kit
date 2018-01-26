@@ -74,12 +74,8 @@ export const RestrictedApplication = props => (
             <aside>
               <WithProjectKey
                 user={user}
-                render={({ projectKey, routerProps }) => (
-                  <NavBar
-                    location={routerProps.location}
-                    menuItems={props.menuItems}
-                    projectKey={projectKey}
-                  />
+                render={({ projectKey }) => (
+                  <NavBar menuItems={props.menuItems} projectKey={projectKey} />
                 )}
               />
             </aside>
