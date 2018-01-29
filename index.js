@@ -127,6 +127,6 @@ export const REQUESTS_IN_FLIGHT_LOADER_DOM_ID = 'loader-for-requests-in-flight';
 export const GRAPHQL_TARGETS = {
   MERCHANT_CENTER_BACKEND: 'mc',
   COMMERCETOOLS_PLATFORM: 'ctp',
-  DashboardService: 'dashboard',
+  DASHBOARD_SERVICE: 'dashboard',
   PIM_INDEXER: 'pim-indexer',
 };
