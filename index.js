@@ -124,7 +124,7 @@ export const FILTER_TYPES = {
 
 export const REQUESTS_IN_FLIGHT_LOADER_DOM_ID = 'loader-for-requests-in-flight';
 
-export const GraphQlTargets = {
+export const GRAPHQL_TARGETS = {
   MerchantCenterBackend: 'mc',
   CommercetoolsPlatform: 'ctp',
   DashboardService: 'dashboard',
