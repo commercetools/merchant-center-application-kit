@@ -7,7 +7,7 @@ import { graphql } from 'react-apollo';
 import { SubmissionError } from 'redux-form';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import Text from '@commercetools-local/ui-kit/typography/text';
-import { GraphQlTargets, DOMAINS } from '@commercetools-local/constants';
+import { GRAPHQL_TARGETS, DOMAINS } from '@commercetools-local/constants';
 import logger from '@commercetools-local/utils/logger';
 import Avatar from '@commercetools-local/core/components/avatar';
 import injectConfiguration from '@commercetools-local/core/components/configuration/inject-configuration';
@@ -64,7 +64,7 @@ export class UserProfile extends React.Component {
     this.props
       .updateUserProfile({
         variables: {
-          target: GraphQlTargets.MerchantCenterBackend,
+          target: GRAPHQL_TARGETS.MerchantCenterBackend,
           version: formData.version,
           user: {
             firstName: formData.firstName,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { SubmissionError } from 'redux-form';
-import { GraphQlTargets, DOMAINS } from '@commercetools-local/constants';
+import { GRAPHQL_TARGETS, DOMAINS } from '@commercetools-local/constants';
 import UserProfileForm from '../user-profile-form';
 import { UserProfile } from './user-profile';
 
@@ -111,7 +111,7 @@ describe('callbacks', () => {
         expect(props.updateUserProfile).toHaveBeenCalledTimes(1);
         expect(props.updateUserProfile).toHaveBeenCalledWith({
           variables: {
-            target: GraphQlTargets.MerchantCenterBackend,
+            target: GRAPHQL_TARGETS.MerchantCenterBackend,
             version: 2,
             user: {
               firstName: 'John',
@@ -152,7 +152,7 @@ describe('callbacks', () => {
         expect(props.updateUserProfile).toHaveBeenCalledTimes(1);
         expect(props.updateUserProfile).toHaveBeenCalledWith({
           variables: {
-            target: GraphQlTargets.MerchantCenterBackend,
+            target: GRAPHQL_TARGETS.MerchantCenterBackend,
             version: 2,
             user: {
               firstName: 'John',

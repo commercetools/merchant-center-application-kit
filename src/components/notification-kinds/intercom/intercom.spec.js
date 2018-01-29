@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { GraphQlTargets, DOMAINS } from '@commercetools-local/constants';
+import { GRAPHQL_TARGETS, DOMAINS } from '@commercetools-local/constants';
 import { INTERCOM_TRACKING_STATUS } from '../../../constants';
 import * as intercom from '../../../utils/intercom';
 import { IntercomNotification } from './intercom';
@@ -92,7 +92,7 @@ describe('interactions', () => {
     it('should trigger mutation passing variable "mc" target', () => {
       expect(props.changeIntercomStatus).toHaveBeenCalledWith({
         variables: expect.objectContaining({
-          target: GraphQlTargets.MerchantCenterBackend,
+          target: GRAPHQL_TARGETS.MerchantCenterBackend,
         }),
       });
     });
@@ -122,7 +122,7 @@ describe('interactions', () => {
     it('should trigger mutation passing variable "mc" target', () => {
       expect(props.changeIntercomStatus).toHaveBeenCalledWith({
         variables: expect.objectContaining({
-          target: GraphQlTargets.MerchantCenterBackend,
+          target: GRAPHQL_TARGETS.MerchantCenterBackend,
         }),
       });
     });

@@ -5,7 +5,7 @@ import { compose } from 'recompose';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import logger from '@commercetools-local/utils/logger';
-import { GraphQlTargets, DOMAINS } from '@commercetools-local/constants';
+import { GRAPHQL_TARGETS, DOMAINS } from '@commercetools-local/constants';
 import Notification from '@commercetools-local/core/components/notification';
 import { injectConfiguration } from '@commercetools-local/core/components/configuration';
 import { INTERCOM_TRACKING_STATUS } from '../../../constants';
@@ -63,7 +63,7 @@ export class IntercomNotification extends React.PureComponent {
     this.props
       .changeIntercomStatus({
         variables: {
-          target: GraphQlTargets.MerchantCenterBackend,
+          target: GRAPHQL_TARGETS.MerchantCenterBackend,
           status: INTERCOM_TRACKING_STATUS.inactive,
         },
       })
@@ -80,7 +80,7 @@ export class IntercomNotification extends React.PureComponent {
     this.props
       .changeIntercomStatus({
         variables: {
-          target: GraphQlTargets.MerchantCenterBackend,
+          target: GRAPHQL_TARGETS.MerchantCenterBackend,
           status: INTERCOM_TRACKING_STATUS.active,
         },
       })

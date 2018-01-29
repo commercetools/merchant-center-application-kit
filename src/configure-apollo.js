@@ -9,7 +9,7 @@ import {
 } from 'apollo-cache-inmemory';
 import { onError } from 'apollo-link-error';
 import {
-  GraphQlTargets,
+  GRAPHQL_TARGETS,
   LOGOUT_REASONS,
   STATUS_CODES,
   STORAGE_KEYS as CORE_STORAGE_KEYS,
@@ -27,7 +27,7 @@ const httpLink = createHttpLink({
   // here. https://www.apollographql.com/docs/link/links/http.html#fetch
   fetch,
 });
-const isKnownTarget = target => Object.values(GraphQlTargets).includes(target);
+const isKnownTarget = target => Object.values(GRAPHQL_TARGETS).includes(target);
 // Use a middleware to update the request headers with the correct params.
 const headerMiddlewareLink = new ApolloLink((operation, forward) => {
   const target = operation.variables.target;
