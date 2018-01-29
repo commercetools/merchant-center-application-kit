@@ -46,7 +46,7 @@ export const RestrictedApplication = props => (
   <FetchUser>
     {({ isLoading, user }) => (
       <SetupFlopFlipProvider user={user}>
-        {({ setProjectKey }) => (
+        {({ setProjectKey: syncProjectKeyForFlopFlip }) => (
           <React.Fragment>
             <IntercomBooter
               intercomTrackingStatus={user && user.tracking_intercom}
@@ -155,7 +155,7 @@ export const RestrictedApplication = props => (
                           isLoadingUser={isLoading}
                           user={user}
                           match={routerProps.match}
-                          setProjectKey={setProjectKey}
+                          setProjectKey={syncProjectKeyForFlopFlip}
                           // This effectively renders the
                           // children, which is the application
                           // specific part

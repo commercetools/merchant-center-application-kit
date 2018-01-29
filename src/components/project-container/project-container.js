@@ -57,13 +57,16 @@ class ProjectContainer extends React.Component {
     });
   }
   componentDidUpdate() {
-    // Ensure to cache the projectKey, in case it changes.
     const cachedProjectKey = storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
     let nextProjectKey = cachedProjectKey;
+    // Ensure to cache the projectKey, in case it changes.
     if (cachedProjectKey !== this.props.match.params.projectKey) {
       nextProjectKey = this.props.match.params.projectKey;
       storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, nextProjectKey);
     }
+    // This callback should always be called, as we want to keep it in sync with
+    // the projectKey currently active. It's the responsibility of the caller
+    // to actually "be smart" and check if the given projectKey changed or not.
     this.props.setProjectKey(nextProjectKey);
   }
   componentDidCatch(/* error, info */) {
