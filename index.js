@@ -125,8 +125,8 @@ export const FILTER_TYPES = {
 export const REQUESTS_IN_FLIGHT_LOADER_DOM_ID = 'loader-for-requests-in-flight';
 
 export const GRAPHQL_TARGETS = {
-  MerchantCenterBackend: 'mc',
-  CommercetoolsPlatform: 'ctp',
+  MERCHANT_CENTER_BACKEND: 'mc',
+  COMMERCETOOLS_PLATFORM: 'ctp',
   DashboardService: 'dashboard',
-  PimIndexer: 'pim-indexer',
+  PIM_INDEXER: 'pim-indexer',
 };
