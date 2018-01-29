@@ -6,18 +6,16 @@ import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import { injectConfiguration } from '@commercetools-local/core/components/configuration';
 
-class SetupFlopFlip extends React.PureComponent {
-  static displayName = 'SetupFlopFlip';
+export class SetupFlopFlipProvider extends React.PureComponent {
+  static displayName = 'SetupFlopFlipProvider';
   static propTypes = {
     ldClientSideId: PropTypes.string.isRequired,
-    projectKey: PropTypes.string,
-    isLoading: PropTypes.bool.isRequired,
     user: PropTypes.shape({
       id: PropTypes.string.isRequired,
       launchdarklyTrackingId: PropTypes.string.isRequired,
       launchdarklyTrackingGroup: PropTypes.string.isRequired,
     }),
-    children: PropTypes.node.isRequired,
+    children: PropTypes.func.isRequired,
   };
 
   createLaunchdarklyAdapterArgs = defaultMemoize(
@@ -39,6 +37,14 @@ class SetupFlopFlip extends React.PureComponent {
       },
     })
   );
+  state = {
+    projectKey: null,
+  };
+
+  setProjectKey = projectKey => {
+    // Update only if the projectKey changes
+    if (projectKey !== this.state.projectKey) this.setState({ projectKey });
+  };
 
   render() {
     return (
@@ -49,12 +55,11 @@ class SetupFlopFlip extends React.PureComponent {
           this.props.user && this.props.user.id,
           this.props.user && this.props.user.launchdarklyTrackingId,
           this.props.user && this.props.user.launchdarklyTrackingGroup,
-          this.props.projectKey
+          this.state.projectKey
         )}
-        shouldDeferAdapterConfiguration={this.props.isLoading}
+        shouldDeferAdapterConfiguration={!this.props.user}
       >
-        {/* flop flip only accepts a single child :( */}
-        <React.Fragment>{this.props.children}</React.Fragment>
+        {this.props.children({ setProjectKey: this.setProjectKey })}
       </ConfigureFlopFlip>
     );
   }
@@ -63,4 +68,4 @@ class SetupFlopFlip extends React.PureComponent {
 export default compose(
   setDisplayName('SetupFlopFlipProvider'),
   injectConfiguration(['tracking', 'ldClientSideId'], 'ldClientSideId')
-)(SetupFlopFlip);
+)(SetupFlopFlipProvider);

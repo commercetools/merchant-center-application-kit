@@ -7,6 +7,7 @@ import IntercomBooter from '../intercom-booter';
 import IntercomUserTracker from '../intercom-user-tracker';
 import NavBar from '../navbar';
 import AsyncUserProfile from '../user-profile/async';
+import SetupFlopFlipProvider from '../setup-flop-flip-provider';
 import ApplicationShell, {
   RestrictedApplication,
   UnrestrictedApplication,
@@ -126,8 +127,15 @@ describe('<RestrictedApplication>', () => {
           availableProjects: [],
         },
       };
-      wrapper = shallow(
+      const fetchWrapper = shallow(
         <div>{rootWrapper.find(FetchUser).prop('children')(userData)}</div>
+      );
+      wrapper = shallow(
+        <div>
+          {fetchWrapper.find(SetupFlopFlipProvider).prop('children')({
+            setProjectKey: jest.fn(),
+          })}
+        </div>
       );
     });
     it('should match layout structure', () => {
@@ -135,9 +143,6 @@ describe('<RestrictedApplication>', () => {
     });
     it('should boot intercom', () => {
       expect(wrapper).toRender(IntercomBooter);
-    });
-    it('should setup flopflip provider', () => {
-      expect(wrapper).toRender('SetupFlopFlipProvider');
     });
     describe('layout', () => {
       it('should render "global-notifications" container inside "app-layout"', () => {
@@ -296,12 +301,6 @@ describe('<RestrictedApplication>', () => {
       it('should match layout structure', () => {
         expect(wrapper).toMatchSnapshot();
       });
-      it('should pass "projectKey" to <SetupFlopFlipProvider>', () => {
-        expect(routeRenderWrapper.find('SetupFlopFlipProvider')).toHaveProp(
-          'projectKey',
-          routerProps.match.params.projectKey
-        );
-      });
       it('should pass "projectKey" to <IntercomUserTracker>', () => {
         expect(routeRenderWrapper.find(IntercomUserTracker)).toHaveProp(
           'projectKey',
@@ -314,10 +313,10 @@ describe('<RestrictedApplication>', () => {
           routerProps.match
         );
       });
-      it('should pass "location" to <ProjectContainer>', () => {
+      it('should pass "setProjectKey" to <ProjectContainer>', () => {
         expect(routeRenderWrapper.find('ProjectContainer')).toHaveProp(
-          'location',
-          routerProps.location
+          'setProjectKey',
+          expect.any(Function)
         );
       });
       it('should pass "render" to <ProjectContainer>', () => {

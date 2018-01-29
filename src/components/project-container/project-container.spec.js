@@ -13,6 +13,7 @@ const createTestProps = custom => ({
   match: { params: { projectKey: 'test-1' } },
   isLoadingUser: false,
   user: { availableProjects: [] },
+  setProjectKey: jest.fn(),
   render: jest.fn(),
   ...custom,
 });
@@ -355,6 +356,9 @@ describe('lifecycle', () => {
       it('should not update storage', () => {
         expect(storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)).toBe('p1');
       });
+      it('should call setProjectKey', () => {
+        expect(props.setProjectKey).toHaveBeenCalledWith('p1');
+      });
     });
     describe('when projectKey is not cached', () => {
       beforeEach(() => {
@@ -365,6 +369,9 @@ describe('lifecycle', () => {
       });
       it('should cache projectKey into storage', () => {
         expect(storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)).toBe('p1');
+      });
+      it('should call setProjectKey', () => {
+        expect(props.setProjectKey).toHaveBeenCalledWith('p1');
       });
     });
   });

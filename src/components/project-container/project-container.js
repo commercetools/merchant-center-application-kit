@@ -25,6 +25,8 @@ class ProjectContainer extends React.Component {
     user: PropTypes.shape({
       availableProjects: PropTypes.array.isRequired,
     }),
+    // A callback function to sync the projectKey with a parent component.
+    setProjectKey: PropTypes.func.isRequired,
     render: PropTypes.func.isRequired,
   };
   state = {
@@ -57,11 +59,12 @@ class ProjectContainer extends React.Component {
   componentDidUpdate() {
     // Ensure to cache the projectKey, in case it changes.
     const cachedProjectKey = storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
-    if (cachedProjectKey !== this.props.match.params.projectKey)
-      storage.put(
-        CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY,
-        this.props.match.params.projectKey
-      );
+    let nextProjectKey = cachedProjectKey;
+    if (cachedProjectKey !== this.props.match.params.projectKey) {
+      nextProjectKey = this.props.match.params.projectKey;
+      storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, nextProjectKey);
+    }
+    this.props.setProjectKey(nextProjectKey);
   }
   componentDidCatch(/* error, info */) {
     this.setState({ hasError: true });
