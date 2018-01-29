@@ -89,7 +89,7 @@ const graphqlOptions = {
   name: 'projectData',
   options: ownProps => ({
     variables: {
-      target: GRAPHQL_TARGETS.MerchantCenterBackend,
+      target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
       projectKey: ownProps.projectKey,
     },
   }),

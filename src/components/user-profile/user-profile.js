@@ -64,7 +64,7 @@ export class UserProfile extends React.Component {
     this.props
       .updateUserProfile({
         variables: {
-          target: GRAPHQL_TARGETS.MerchantCenterBackend,
+          target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
           version: formData.version,
           user: {
             firstName: formData.firstName,

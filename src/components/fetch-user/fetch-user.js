@@ -45,7 +45,7 @@ const graphqlOptions = {
   name: 'userData',
   options: {
     variables: {
-      target: GRAPHQL_TARGETS.MerchantCenterBackend,
+      target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
     },
   },
   // Rename `loading` -> `isLoading`, to follow our naming convention

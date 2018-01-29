@@ -63,7 +63,7 @@ export class IntercomNotification extends React.PureComponent {
     this.props
       .changeIntercomStatus({
         variables: {
-          target: GRAPHQL_TARGETS.MerchantCenterBackend,
+          target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
           status: INTERCOM_TRACKING_STATUS.inactive,
         },
       })
@@ -80,7 +80,7 @@ export class IntercomNotification extends React.PureComponent {
     this.props
       .changeIntercomStatus({
         variables: {
-          target: GRAPHQL_TARGETS.MerchantCenterBackend,
+          target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
           status: INTERCOM_TRACKING_STATUS.active,
         },
       })

@@ -111,7 +111,7 @@ describe('callbacks', () => {
         expect(props.updateUserProfile).toHaveBeenCalledTimes(1);
         expect(props.updateUserProfile).toHaveBeenCalledWith({
           variables: {
-            target: GRAPHQL_TARGETS.MerchantCenterBackend,
+            target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
             version: 2,
             user: {
               firstName: 'John',
@@ -152,7 +152,7 @@ describe('callbacks', () => {
         expect(props.updateUserProfile).toHaveBeenCalledTimes(1);
         expect(props.updateUserProfile).toHaveBeenCalledWith({
           variables: {
-            target: GRAPHQL_TARGETS.MerchantCenterBackend,
+            target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
             version: 2,
             user: {
               firstName: 'John',

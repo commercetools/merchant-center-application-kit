@@ -92,7 +92,7 @@ describe('interactions', () => {
     it('should trigger mutation passing variable "mc" target', () => {
       expect(props.changeIntercomStatus).toHaveBeenCalledWith({
         variables: expect.objectContaining({
-          target: GRAPHQL_TARGETS.MerchantCenterBackend,
+          target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
         }),
       });
     });
@@ -122,7 +122,7 @@ describe('interactions', () => {
     it('should trigger mutation passing variable "mc" target', () => {
       expect(props.changeIntercomStatus).toHaveBeenCalledWith({
         variables: expect.objectContaining({
-          target: GRAPHQL_TARGETS.MerchantCenterBackend,
+          target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
         }),
       });
     });
