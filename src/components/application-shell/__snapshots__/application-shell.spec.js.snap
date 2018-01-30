@@ -341,7 +341,7 @@ exports[`rendering should match main structure 1`] = `
             "watches": Array [],
           },
         },
-        "version": "2.2.0",
+        "version": "2.2.1",
         "watchQuery": [Function],
       }
     }
