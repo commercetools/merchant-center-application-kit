@@ -100,7 +100,12 @@ const client = new ApolloClient({
   link,
   cache: new InMemoryCache({
     fragmentMatcher,
-    dataIdFromObject: object => object.id,
+    dataIdFromObject: result => {
+      if (result.__typename && (result.id || result.key)) {
+        return `${result.__typename}: ${result.id || result.key}`;
+      }
+      return null;
+    },
   }),
 });
 
