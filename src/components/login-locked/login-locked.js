@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { injectConfiguration } from '@commercetools-local/core/components/configuration';
-import PageNotFoundSVG from '@commercetools-local/ui-kit/materials/images/maintenance/page-not-found.svg';
+import ProjectSuspended from '@commercetools-local/ui-kit/materials/images/maintenance/project-suspended.svg';
 import ServicePageResponseLayout from '@commercetools-local/core/components/service-page-response-layout';
+import Text from '@commercetools-local/ui-kit/typography/text';
 import messages from './messages';
+
+const year = new Date().getUTCFullYear();
 
 export const HelpDeskLink = () => (
   <a href={'https://support.commercetools.com'} target="_blank">
@@ -29,7 +32,7 @@ const ConnectedResetPasswordLink = injectConfiguration(
 
 const LoginLocked = () => (
   <ServicePageResponseLayout
-    imageSrc={PageNotFoundSVG}
+    imageSrc={ProjectSuspended}
     title={<FormattedMessage {...messages.title} />}
     paragraph1={
       <FormattedMessage
@@ -40,6 +43,7 @@ const LoginLocked = () => (
         }}
       />
     }
+    paragraph2={<Text.Detail>{`${year} © commercetools`}</Text.Detail>}
   />
 );
 LoginLocked.displayName = 'LoginLocked';

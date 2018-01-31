@@ -18,7 +18,7 @@ exports[`LockedAccount rendering rendering should match snapshot 1`] = `
   imageSrc="test-file-stub"
   paragraph1={
     <FormattedMessage
-      defaultMessage="You can {resetPasswordLink} or contact the commercetools {helpDeskLink}"
+      defaultMessage="For security reasons, your account has been locked because there were too many invalid log in attempts. You can {resetPasswordLink} or contact the commercetools {helpDeskLink}"
       id="LoginLocked.paragraph1"
       values={
         Object {
@@ -27,6 +27,11 @@ exports[`LockedAccount rendering rendering should match snapshot 1`] = `
         }
       }
     />
+  }
+  paragraph2={
+    <TextDetail>
+      2018 © commercetools
+    </TextDetail>
   }
   title={
     <FormattedMessage

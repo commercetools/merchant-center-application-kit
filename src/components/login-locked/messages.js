@@ -8,7 +8,7 @@ export default defineMessages({
   paragraph1: {
     id: 'LoginLocked.paragraph1',
     defaultMessage:
-      'You can {resetPasswordLink} or contact the commercetools {helpDeskLink}',
+      'For security reasons, your account has been locked because there were too many invalid log in attempts. You can {resetPasswordLink} or contact the commercetools {helpDeskLink}',
   },
   resetPasswordLink: {
     id: 'LoginLocked.resetPasswordLink',
