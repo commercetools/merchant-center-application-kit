@@ -14,7 +14,6 @@ import { GRAPHQL_TARGETS } from '@commercetools-local/constants';
 const ProjectQuery = gql`
   query Project($projectKey: String!) {
     project(key: $projectKey) {
-      id
       key
       name
       countries
