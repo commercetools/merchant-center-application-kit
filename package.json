@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@commercetools-local/actions-global": "*",
+    "@commercetools-local/browser-history": "*",
     "@commercetools-local/constants": "*",
     "@commercetools-local/core": "*",
     "@commercetools-local/l10n": "*",

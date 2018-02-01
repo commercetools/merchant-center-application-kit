@@ -1,5 +1,4 @@
 import fetch from 'unfetch';
-import createHistory from 'history/createBrowserHistory';
 import ApolloClient from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
 import { createHttpLink } from 'apollo-link-http';
@@ -14,8 +13,6 @@ import {
   createSetTokenLink,
   tokenRetryLink,
 } from './apollo-links/';
-
-const history = createHistory();
 
 const httpLink = createHttpLink({
   uri: `${window.app.protocol}://${window.app.host}/graphql`,
