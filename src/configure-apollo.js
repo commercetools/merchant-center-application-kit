@@ -102,7 +102,7 @@ const client = new ApolloClient({
     fragmentMatcher,
     dataIdFromObject: result => {
       if (result.__typename && (result.id || result.key)) {
-        return `${result.__typename}: ${result.id || result.key}`;
+        return `${result.__typename}:${result.id || result.key}`;
       }
       return null;
     },

@@ -15,6 +15,7 @@ const ProjectQuery = gql`
   query Project($projectKey: String!) {
     project(key: $projectKey) {
       key
+      version
       name
       countries
       currencies
