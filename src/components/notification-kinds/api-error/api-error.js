@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import { DOMAINS } from '@commercetools-local/constants';
-import ApiError, {
-  messages,
-} from '@commercetools-local/core/components/api-error';
+import ApiError from '@commercetools-local/core/components/api-error';
 import Notification from '@commercetools-local/core/components/notification';
 
 class ApiErrorNotification extends React.PureComponent {
@@ -17,51 +14,42 @@ class ApiErrorNotification extends React.PureComponent {
       domain: PropTypes.oneOf([DOMAINS.PAGE]).isRequired,
       kind: PropTypes.oneOf(['api-error']).isRequired,
       values: PropTypes.shape({
-        source: PropTypes.string,
         message: PropTypes.string,
-        statusCode: PropTypes.number,
-        body: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+        errors: PropTypes.arrayOf(
+          PropTypes.shape({
+            code: PropTypes.string.isRequired,
+            message: PropTypes.string,
+          })
+        ),
       }),
     }),
   };
 
-  static contextTypes = {
-    intl: PropTypes.object,
-    store: PropTypes.object,
-  };
+  renderApiErrors = errors => (
+    <ul>
+      {errors.map((error, idx) => {
+        if (!error.code) {
+          /**
+           * NOTE: This is an API error which usually contains
+           * a `code` property such as `DuplicateField` or `InvalidOperation`.
+           * If this `code` does not exist the API is not conforming to its
+           * own error specification.
+           */
+          if (process.env.NODE_ENV !== 'production')
+            // eslint-disable-next-line no-console
+            console.error('Unknown API error', error);
 
-  renderApiError = notification => {
-    const { values } = notification;
-
-    if (
-      typeof values.body === 'string' ||
-      !{}.hasOwnProperty.call(values.body, 'errors') ||
-      !Array.isArray(values.body.errors)
-    )
-      return <FormattedMessage {...messages.General} />;
-
-    return (
-      <ul>
-        {values.body.errors.map((error, i) => {
-          if (!error.code) {
-            // There should not be a case like this, but if so
-            // we log / report the error and don't show anything.
-            if (process.env.NODE_ENV !== 'production')
-              // eslint-disable-next-line no-console
-              console.error('Unknown error', error);
-
-            if (error.message) return <li key={i}>{error.message}</li>;
-            return null;
-          }
-          return (
-            <li key={i}>
-              <ApiError error={error} />
-            </li>
-          );
-        })}
-      </ul>
-    );
-  };
+          if (error.message) return <li key={idx}>{error.message}</li>;
+          return null;
+        }
+        return (
+          <li key={idx}>
+            <ApiError error={error} />
+          </li>
+        );
+      })}
+    </ul>
+  );
 
   render() {
     return (
@@ -70,7 +58,7 @@ class ApiErrorNotification extends React.PureComponent {
         domain={this.props.notification.domain}
         onCloseClick={this.props.dismiss}
       >
-        {this.renderApiError(this.props.notification)}
+        {this.renderApiErrors(this.props.notification.values.errors)}
       </Notification>
     );
   }
