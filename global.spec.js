@@ -17,7 +17,7 @@ describe('dispatching notifications', () => {
   it('dispatches the ADD_NOTIFICATION action when passing an error', () => {
     expect(
       showApiErrorNotification({
-        error: 'oops',
+        errors: [{ code: 'oops' }],
         source: 'FOO',
       })
     ).toEqual(
@@ -27,14 +27,13 @@ describe('dispatching notifications', () => {
           kind: 'api-error',
           domain: 'page',
           values: {
-            body: 'oops',
+            errors: [{ code: 'oops' }],
             source: 'FOO',
             statusCode: undefined,
           },
         },
         meta: {
           dismissAfter: 0,
-          error: 'oops',
         },
       })
     );
@@ -61,7 +60,6 @@ describe('dispatching notifications', () => {
         },
         meta: {
           dismissAfter: 0,
-          error: 'oops',
         },
       })
     );

@@ -8,24 +8,18 @@ import {
 } from '@commercetools-local/constants';
 import toGlobal from '@commercetools-local/utils/to-global';
 
-export function showApiErrorNotification({ error, source }) {
+export function showApiErrorNotification({ errors, source }) {
   return showNotification(
     {
       kind: 'api-error',
       values: {
         source,
-        statusCode: error.statusCode || error.code,
-        body:
-          error.body ||
-          (error instanceof Error
-            ? `${error.toString()}\n${error.stack}`
-            : error),
+        errors,
       },
       domain: DOMAINS.PAGE,
     },
     {
       dismissAfter: 0,
-      error,
     }
   );
 }
@@ -47,12 +41,11 @@ export function showUnexpectedErrorNotification({ error, source, errorId }) {
     },
     {
       dismissAfter: 0,
-      error,
     }
   );
 }
 
-export function showNotification(notification, options = {}) {
+export function showNotification(notification, meta = {}) {
   if (process.env.NODE_ENV !== 'production')
     if (notification.domain) {
       if (!Object.values(DOMAINS).includes(notification.domain))
@@ -65,11 +58,11 @@ export function showNotification(notification, options = {}) {
       // eslint-disable-next-line no-console
       console.warn('Notification is missing domain', notification);
 
-  let dismissAfter = options.dismissAfter;
+  let dismissAfter = meta.dismissAfter;
   if (!isNumber(dismissAfter))
     dismissAfter = notification.kind === 'success' ? 5000 : 0;
 
-  return toGlobal(addNotification(notification, { ...options, dismissAfter }));
+  return toGlobal(addNotification(notification, { ...meta, dismissAfter }));
 }
 
 export function switchLocale(locale) {
