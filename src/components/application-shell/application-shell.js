@@ -106,80 +106,82 @@ export const RestrictedApplication = props => (
                     props.mapPluginNotificationToComponent
                   }
                 />
-                <Switch>
-                  {/**
-                   * When the user is redirected to /logout he is still logged
-                   * in and thus wer are still in the `authenticated` branch.
-                   * The component won't render anything. It will unauthenticate
-                   * the user and redirect him to /login.
-                   */}
-                  <Route path="/logout" component={Logout} />
-                  <Redirect from="/profile" to="/account/profile" />
-                  <Route
-                    path="/account"
-                    render={({ match }) => (
-                      <Switch>
-                        <Route
-                          path={`${match.path}/profile`}
-                          render={() => (
-                            <AsyncUserProfile
-                              user={user}
-                              showNotification={props.showNotification}
-                              showUnexpectedErrorNotification={
-                                props.showUnexpectedErrorNotification
-                              }
-                            />
+                <div className={styles.content}>
+                  <Switch>
+                    {/**
+                     * When the user is redirected to /logout he is still logged
+                     * in and thus wer are still in the `authenticated` branch.
+                     * The component won't render anything. It will unauthenticate
+                     * the user and redirect him to /login.
+                     */}
+                    <Route path="/logout" component={Logout} />
+                    <Redirect from="/profile" to="/account/profile" />
+                    <Route
+                      path="/account"
+                      render={({ match }) => (
+                        <Switch>
+                          <Route
+                            path={`${match.path}/profile`}
+                            render={() => (
+                              <AsyncUserProfile
+                                user={user}
+                                showNotification={props.showNotification}
+                                showUnexpectedErrorNotification={
+                                  props.showUnexpectedErrorNotification
+                                }
+                              />
+                            )}
+                          />
+                          <Redirect to={joinPaths(match.url, 'profile')} />
+                        </Switch>
+                      )}
+                    />
+                    {/* Project routes */}
+                    {/* Redirect from base project route to dashboard */}
+                    <Route
+                      exact={true}
+                      path="/:projectKey"
+                      render={({ match }) => (
+                        <Redirect to={joinPaths(match.url, 'dashboard')} />
+                      )}
+                    />
+                    <Route
+                      exact={true}
+                      path="/"
+                      render={() => (
+                        <WithProjectKey
+                          user={user}
+                          render={({ projectKey }) => (
+                            // Redirect to the given projectKey
+                            <Redirect to={`/${projectKey}`} />
                           )}
                         />
-                        <Redirect to={joinPaths(match.url, 'profile')} />
-                      </Switch>
-                    )}
-                  />
-                  {/* Project routes */}
-                  {/* Redirect from base project route to dashboard */}
-                  <Route
-                    exact={true}
-                    path="/:projectKey"
-                    render={({ match }) => (
-                      <Redirect to={joinPaths(match.url, 'dashboard')} />
-                    )}
-                  />
-                  <Route
-                    exact={true}
-                    path="/"
-                    render={() => (
-                      <WithProjectKey
-                        user={user}
-                        render={({ projectKey }) => (
-                          // Redirect to the given projectKey
-                          <Redirect to={`/${projectKey}`} />
-                        )}
-                      />
-                    )}
-                  />
-                  <Route
-                    exact={false}
-                    path="/:projectKey"
-                    render={routerProps => (
-                      <React.Fragment>
-                        <IntercomUserTracker
-                          user={user}
-                          projectKey={routerProps.match.params.projectKey}
-                        />
-                        <ProjectContainer
-                          isLoadingUser={isLoading}
-                          user={user}
-                          match={routerProps.match}
-                          setProjectKey={syncProjectKeyForFlopFlip}
-                          // This effectively renders the
-                          // children, which is the application
-                          // specific part
-                          render={props.render}
-                        />
-                      </React.Fragment>
-                    )}
-                  />
-                </Switch>
+                      )}
+                    />
+                    <Route
+                      exact={false}
+                      path="/:projectKey"
+                      render={routerProps => (
+                        <React.Fragment>
+                          <IntercomUserTracker
+                            user={user}
+                            projectKey={routerProps.match.params.projectKey}
+                          />
+                          <ProjectContainer
+                            isLoadingUser={isLoading}
+                            user={user}
+                            match={routerProps.match}
+                            setProjectKey={syncProjectKeyForFlopFlip}
+                            // This effectively renders the
+                            // children, which is the application
+                            // specific part
+                            render={props.render}
+                          />
+                        </React.Fragment>
+                      )}
+                    />
+                  </Switch>
+                </div>
               </div>
             </div>
           </React.Fragment>
