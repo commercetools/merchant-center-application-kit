@@ -11,6 +11,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import { joinPaths } from '@commercetools-local/utils/url';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-local/constants';
+import PortalsContainer from '@commercetools-local/core/components/portals-container';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
@@ -90,6 +91,7 @@ export const RestrictedApplication = props => (
                * to achieve the same semantic result
                */}
               <div role="main" className={styles.main}>
+                <PortalsContainer />
                 <NotificationsList
                   domain={DOMAINS.PAGE}
                   notifications={props.notificationsByDomain.page}
