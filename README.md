@@ -85,6 +85,14 @@ Before using the `sdk-client` the `sdk` middleware combines `service` and `optio
 
 The supported `options` can be found in the `api-request-builder`'s documentation under the [Declarative Usage](https://commercetools.github.io/nodejs/sdk/api/apiRequestBuilder.html#declarative-usage) section.
 
+### Error handling
+
+Failed requests will result in a rejected promise. The `sdk-client`'s error handling applies, so network errors and CTP API errors on the content itself result in a rejected promise.
+
+The `sdk` package does not provide any error handling out of the box. It's the application's responsibility to handle errors (e.g. show a notification, track the error).
+
+The MC has a `handleActionError` function which is what we currently use for error handling. It logs the error to the tracking tool (Sentry) and shows a notification to the client. This should be used whenever a more special error handling is not necessary.
+
 ### Example
 
 ```js
@@ -98,12 +106,19 @@ const fetchProductById = productId =>
 ```
 
 ```js
+import * as sdkService from '@commercetools-local/sdk-service';
+
 class Foo extends React.Component {
   state = { product: null };
   componentDidMount() {
-    this.props.fetchProductById(this.props.productId).then(product => {
-      this.setState({ product });
-    });
+    this.props.fetchProductById(this.props.productId).then(
+      product => {
+        this.setState({ product });
+      },
+      error => {
+        this.props.onApiError(error, 'Foo/fetchProductById');
+      }
+    );
   }
   render() {
     if (!this.state.product) return <LoadingSpinner />;
@@ -115,5 +130,6 @@ class Foo extends React.Component {
 // and finally we need to pass the bound action creator to the component using plain old redux
 export default connect(null, {
   fetchProductById: productsActions.fetchProductById,
+  onApiError: sdkService.handleActionError,
 });
 ```
