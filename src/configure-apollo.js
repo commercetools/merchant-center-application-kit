@@ -2,6 +2,7 @@ import fetch from 'unfetch';
 import createHistory from 'history/createBrowserHistory';
 import ApolloClient from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
+import apolloLogger from 'apollo-link-logger';
 import { createHttpLink } from 'apollo-link-http';
 import {
   InMemoryCache,
@@ -36,6 +37,7 @@ const link = ApolloLink.from([
   createSetTokenLink({ storage }),
   createErrorLink({ history, storage }),
   tokenRetryLink,
+  apolloLogger,
   httpLink,
 ]);
 
