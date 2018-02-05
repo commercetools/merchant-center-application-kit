@@ -41,9 +41,6 @@ describe('rendering', () => {
     props = createTestProps();
     wrapper = shallow(<ApplicationShell {...props} />);
   });
-  it('should match main structure', () => {
-    expect(wrapper).toMatchSnapshot();
-  });
   describe('providers', () => {
     it('should pass "configuration" to <ConfigurationProvider>', () => {
       expect(wrapper.find('ConfigurationProvider')).toHaveProp(

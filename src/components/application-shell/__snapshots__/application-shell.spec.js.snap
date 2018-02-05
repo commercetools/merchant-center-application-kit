@@ -83,6 +83,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
         className="main"
         role="main"
       >
+        <PortalsContainer />
         <NotificationsList
           domain="page"
           mapPluginNotificationToComponent={[MockFunction]}
@@ -212,6 +213,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
         className="main"
         role="main"
       >
+        <PortalsContainer />
         <NotificationsList
           domain="page"
           mapPluginNotificationToComponent={[MockFunction]}
@@ -280,94 +282,4 @@ exports[`<UnrestrictedApplication> rendering should match layout structure 1`] =
     render={[Function]}
   />
 </Switch>
-`;
-
-exports[`rendering should match main structure 1`] = `
-<ConfigurationProvider
-  configuration={Object {}}
->
-  <ApolloProvider
-    client={
-      ApolloClient {
-        "cache": InMemoryCache {
-          "addTypename": true,
-          "config": Object {
-            "addTypename": true,
-            "dataIdFromObject": [Function],
-            "fragmentMatcher": IntrospectionFragmentMatcher {
-              "isReady": true,
-              "match": [Function],
-              "possibleTypesMap": Object {},
-            },
-            "storeFactory": [Function],
-          },
-          "data": ObjectCache {
-            "data": Object {},
-          },
-          "optimistic": Array [],
-          "silenceBroadcast": false,
-          "watches": Array [],
-        },
-        "defaultOptions": Object {},
-        "disableNetworkFetches": false,
-        "link": ApolloLink {
-          "request": [Function],
-        },
-        "mutate": [Function],
-        "query": [Function],
-        "queryDeduplication": true,
-        "reFetchObservableQueries": [Function],
-        "resetStore": [Function],
-        "resetStoreCallbacks": Array [],
-        "ssrMode": false,
-        "store": DataStore {
-          "cache": InMemoryCache {
-            "addTypename": true,
-            "config": Object {
-              "addTypename": true,
-              "dataIdFromObject": [Function],
-              "fragmentMatcher": IntrospectionFragmentMatcher {
-                "isReady": true,
-                "match": [Function],
-                "possibleTypesMap": Object {},
-              },
-              "storeFactory": [Function],
-            },
-            "data": ObjectCache {
-              "data": Object {},
-            },
-            "optimistic": Array [],
-            "silenceBroadcast": false,
-            "watches": Array [],
-          },
-        },
-        "version": "2.2.5",
-        "watchQuery": [Function],
-      }
-    }
-  >
-    <branch(ConfigureIntlProvider)
-      i18n={
-        Object {
-          "de": Object {},
-          "en": Object {},
-        }
-      }
-    >
-      <React.Fragment>
-        <VersionCheckSubscriber />
-        <Connect(RequestsInFlightLoader) />
-        <BrowserRouter>
-          <IntercomUrlTracker>
-            <GtmBooter
-              trackingEventWhitelist={Object {}}
-            >
-              <Authenticated />
-            </GtmBooter>
-          </IntercomUrlTracker>
-        </BrowserRouter>
-      </React.Fragment>
-    </branch(ConfigureIntlProvider)>
-  </ApolloProvider>
-</ConfigurationProvider>
 `;
