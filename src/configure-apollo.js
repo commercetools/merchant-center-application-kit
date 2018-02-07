@@ -2,6 +2,7 @@ import fetch from 'unfetch';
 import createHistory from 'history/createBrowserHistory';
 import ApolloClient from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
+import { RetryLink } from 'apollo-link-retry';
 import { createHttpLink } from 'apollo-link-http';
 import {
   InMemoryCache,
@@ -29,7 +30,7 @@ const httpLink = createHttpLink({
 });
 const isKnownTarget = target => Object.values(GRAPHQL_TARGETS).includes(target);
 // Use a middleware to update the request headers with the correct params.
-const headerMiddlewareLink = new ApolloLink((operation, forward) => {
+const headerLink = new ApolloLink((operation, forward) => {
   const target = operation.variables.target;
   if (!isKnownTarget(target))
     throw new Error(
@@ -61,7 +62,60 @@ const errorLink = onError(({ networkError }) => {
   )
     history.push(`/logout?reason=${LOGOUT_REASONS.UNAUTHORIZED}`);
 });
-const link = ApolloLink.from([headerMiddlewareLink, errorLink, httpLink]);
+
+const setTokenLink = new ApolloLink((operation, forward) =>
+  forward(operation).map(data => {
+    // The backend caches the OAuth token inside the jwt token.
+    // After having fetched a new OAuth token, it sends the frontend
+    // the new jwt token with this header.
+    // https://github.com/commercetools/merchant-center-backend/blob/master/docs/AUTHENTICATION.md#projects-api-oauth-token-caching
+    const nextToken = operation
+      .getContext()
+      .response.headers.get('x-set-token');
+
+    if (nextToken) {
+      storage.set(CORE_STORAGE_KEYS.TOKEN, nextToken);
+    }
+
+    return data;
+  })
+);
+
+const tokenRetryLink = new RetryLink({
+  attempts: (count, operation, error) => {
+    // in case of 401 error, try again ONCE with a new token
+    // https://github.com/commercetools/merchant-center-backend/blob/master/docs/AUTHENTICATION.md#problems-due-to-oauth-token-caching
+    if (
+      error &&
+      error.statusCode &&
+      error.statusCode === STATUS_CODES.UNAUTHORIZED &&
+      count === 1
+    ) {
+      operation.setContext(({ headers }) => ({
+        headers: {
+          ...headers,
+          'X-Force-Token': true,
+        },
+      }));
+
+      return true;
+    }
+
+    return false;
+  },
+});
+
+// order of links is relevant here
+// in the request-phase they are executed top to bottom
+// in the response/phase they are executed bottom to top
+// `tokenRetryLink` needs to stay after `errorLink` in order to be executed before `errorLink` for responses
+const link = ApolloLink.from([
+  headerLink,
+  setTokenLink,
+  errorLink,
+  tokenRetryLink,
+  httpLink,
+]);
 
 /**
  * Note:
