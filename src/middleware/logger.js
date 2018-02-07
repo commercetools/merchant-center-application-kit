@@ -28,6 +28,7 @@ const loggerMiddleware = createLogger({
     nextState: () => '#4CAF50',
     error: () => '#F20404',
   },
+  diff: true,
   predicate: (getState, action) => {
     if (!action) return false;
 
