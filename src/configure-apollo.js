@@ -74,7 +74,7 @@ const setTokenLink = new ApolloLink((operation, forward) =>
       .response.headers.get('x-set-token');
 
     if (nextToken) {
-      storage.set(CORE_STORAGE_KEYS.TOKEN, nextToken);
+      storage.put(CORE_STORAGE_KEYS.TOKEN, nextToken);
     }
 
     return data;
