@@ -4,6 +4,7 @@ import {
   HIDE_LOADING,
   SET_TOKEN,
   STORAGE_KEYS as CORE_STORAGE_KEYS,
+  STATUS_CODES,
 } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import toGlobal from '@commercetools-local/utils/to-global';
@@ -131,7 +132,10 @@ export default ({ dispatch, getState }) => next => action => {
       .catch(error => {
         // in case of 401 error, try again with a new token
         // https://github.com/commercetools/merchant-center-backend/blob/master/docs/AUTHENTICATION.md#problems-due-to-oauth-token-caching
-        if (error.statusCode && error.statusCode === 401) {
+        if (
+          error.statusCode &&
+          error.statusCode === STATUS_CODES.UNAUTHORIZED
+        ) {
           return sendRequest({ shouldRenewToken: true });
         }
         throw error;
