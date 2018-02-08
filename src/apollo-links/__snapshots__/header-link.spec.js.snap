@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`with valid target should set headers matching snapshot 1`] = `
+Object {
+  "headers": Object {
+    "Accept": "application/json",
+    "Authorization": "token",
+    "X-Graphql-Target": "mc",
+    "X-Project-Key": "project-1",
+  },
+}
+`;

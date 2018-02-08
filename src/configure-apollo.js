@@ -2,20 +2,18 @@ import fetch from 'unfetch';
 import createHistory from 'history/createBrowserHistory';
 import ApolloClient from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
-import { RetryLink } from 'apollo-link-retry';
 import { createHttpLink } from 'apollo-link-http';
 import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory';
-import { onError } from 'apollo-link-error';
-import {
-  GRAPHQL_TARGETS,
-  LOGOUT_REASONS,
-  STATUS_CODES,
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-} from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
+import {
+  createErrorLink,
+  createHeaderLink,
+  createSetTokenLink,
+  tokenRetryLink,
+} from './apollo-links/';
 
 const history = createHistory();
 
@@ -28,91 +26,15 @@ const httpLink = createHttpLink({
   // here. https://www.apollographql.com/docs/link/links/http.html#fetch
   fetch,
 });
-const isKnownTarget = target => Object.values(GRAPHQL_TARGETS).includes(target);
-// Use a middleware to update the request headers with the correct params.
-const headerLink = new ApolloLink((operation, forward) => {
-  const target = operation.variables.target;
-  if (!isKnownTarget(target))
-    throw new Error(
-      `GraphQL target "${target}" is missing or is not supported`
-    );
-  const token = storage.get(CORE_STORAGE_KEYS.TOKEN);
-  const projectKey = storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
-  // NOTE: keep header names with capital letters to avoid possible conflicts
-  // or problems with nginx.
-  operation.setContext({
-    headers: {
-      Accept: 'application/json',
-      Authorization: token,
-      'X-Project-Key': projectKey,
-      'X-Graphql-Target': target,
-    },
-  });
-  return forward(operation);
-});
-
-// Checks response from GraphQL in order to scan 401 errors and redirect the
-// user to the login page reseting the store and showing the proper message
-const errorLink = onError(({ networkError }) => {
-  const token = storage.get(CORE_STORAGE_KEYS.TOKEN);
-  if (
-    networkError &&
-    networkError.statusCode === STATUS_CODES.UNAUTHORIZED &&
-    token
-  )
-    history.push(`/logout?reason=${LOGOUT_REASONS.UNAUTHORIZED}`);
-});
-
-const setTokenLink = new ApolloLink((operation, forward) =>
-  forward(operation).map(data => {
-    // The backend caches the OAuth token inside the jwt token.
-    // After having fetched a new OAuth token, it sends the frontend
-    // the new jwt token with this header.
-    // https://github.com/commercetools/merchant-center-backend/blob/master/docs/AUTHENTICATION.md#projects-api-oauth-token-caching
-    const nextToken = operation
-      .getContext()
-      .response.headers.get('x-set-token');
-
-    if (nextToken) {
-      storage.put(CORE_STORAGE_KEYS.TOKEN, nextToken);
-    }
-
-    return data;
-  })
-);
-
-const tokenRetryLink = new RetryLink({
-  attempts: (count, operation, error) => {
-    // in case of 401 error, try again ONCE with a new token
-    // https://github.com/commercetools/merchant-center-backend/blob/master/docs/AUTHENTICATION.md#problems-due-to-oauth-token-caching
-    if (
-      error &&
-      error.statusCode &&
-      error.statusCode === STATUS_CODES.UNAUTHORIZED &&
-      count === 1
-    ) {
-      operation.setContext(({ headers }) => ({
-        headers: {
-          ...headers,
-          'X-Force-Token': true,
-        },
-      }));
-
-      return true;
-    }
-
-    return false;
-  },
-});
 
 // order of links is relevant here
 // in the request-phase they are executed top to bottom
 // in the response/phase they are executed bottom to top
 // `tokenRetryLink` needs to stay after `errorLink` in order to be executed before `errorLink` for responses
 const link = ApolloLink.from([
-  headerLink,
-  setTokenLink,
-  errorLink,
+  createHeaderLink({ storage }),
+  createSetTokenLink({ storage }),
+  createErrorLink({ history, storage }),
   tokenRetryLink,
   httpLink,
 ]);
