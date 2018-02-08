@@ -7,38 +7,9 @@ import {
   shouldUpdate,
 } from 'recompose';
 import { deepEqual } from 'fast-equals';
-import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-local/constants';
-
-const LoggedInUserQuery = gql`
-  query LoggedInUser {
-    user: me {
-      id
-      createdAt
-      version
-      email
-      firstName
-      lastName
-      language
-      numberFormat
-      timeZone
-      tracking_intercom
-      intercom_user_hash
-      launchdarklyTrackingId
-      launchdarklyTrackingGroup
-      availableProjects {
-        key
-        name
-        suspended
-        expired
-      }
-      availableOrganizations {
-        name
-      }
-    }
-  }
-`;
+import LoggedInUserQuery from './fetch-user.graphql';
 
 const graphqlOptions = {
   alias: 'withUser',

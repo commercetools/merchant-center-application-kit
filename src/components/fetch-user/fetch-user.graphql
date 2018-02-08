@@ -1,0 +1,26 @@
+query LoggedInUserQuery {
+  user: me {
+    id
+    createdAt
+    version
+    email
+    firstName
+    lastName
+    language
+    numberFormat
+    timeZone
+    tracking_intercom
+    intercom_user_hash
+    launchdarklyTrackingId
+    launchdarklyTrackingGroup
+    availableProjects {
+      key
+      name
+      suspended
+      expired
+    }
+    availableOrganizations {
+      name
+    }
+  }
+}
