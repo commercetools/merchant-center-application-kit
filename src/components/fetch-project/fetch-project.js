@@ -7,82 +7,9 @@ import {
   shouldUpdate,
 } from 'recompose';
 import { deepEqual } from 'fast-equals';
-import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-local/constants';
-
-const ProjectQuery = gql`
-  query Project($projectKey: String!) {
-    project(key: $projectKey) {
-      key
-      version
-      name
-      countries
-      currencies
-      languages
-      expired
-      suspended
-      permissions {
-        canManageOrganization
-        canManageProject
-        canViewProjectSettings
-        canViewProducts
-        canManageProducts
-        canViewOrders
-        canManageOrders
-        canViewCustomers
-        canManageCustomers
-        canViewTypes
-        canManageTypes
-        canViewShippingLists
-        canManageShippingLists
-        canViewPayments
-        canManagePayments
-      }
-      owner {
-        id
-        name
-        createdAt
-        teamsCount
-      }
-      settings {
-        id
-        baseSettings {
-          id
-          userProjectSettings
-          pluginPreset
-          imageRegex {
-            thumb {
-              ...ImageRegex
-            }
-            small {
-              ...ImageRegex
-            }
-          }
-          orderStatesVisibility {
-            isPaymentStateHidden
-            isShipmentStateHidden
-            isOrderStateHidden
-          }
-          categoryRecommendationSettings {
-            searchProperty
-            options {
-              attributeName
-            }
-          }
-        }
-        productSettings
-        currentProductSettings
-      }
-    }
-  }
-
-  fragment ImageRegex on ImageRegexOptions {
-    flag
-    search
-    replace
-  }
-`;
+import ProjectQuery from './fetch-project.graphql';
 
 const graphqlOptions = {
   alias: 'withProject',
