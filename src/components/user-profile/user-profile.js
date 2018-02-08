@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { compose, withProps } from 'recompose';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
-import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { SubmissionError } from 'redux-form';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
@@ -12,6 +11,7 @@ import logger from '@commercetools-local/utils/logger';
 import Avatar from '@commercetools-local/core/components/avatar';
 import injectConfiguration from '@commercetools-local/core/components/configuration/inject-configuration';
 import UserProfileForm from '../user-profile-form';
+import UpdateUserProfile from './user-profile.graphql';
 import styles from './user-profile.mod.css';
 import messages from './messages';
 
@@ -19,20 +19,6 @@ import messages from './messages';
 const Header = props => <div className={styles.header}>{props.children}</div>;
 Header.displayName = 'Header';
 Header.propTypes = { children: PropTypes.node.isRequired };
-
-const UserProfileMutation = gql`
-  mutation($version: Int!, $user: UserProfileInput!) {
-    updateUserProfile(version: $version, user: $user) {
-      id
-      version
-      email
-      firstName
-      lastName
-      language
-      timeZone
-    }
-  }
-`;
 
 export class UserProfile extends React.Component {
   static displayName = 'UserProfile';
@@ -149,6 +135,6 @@ export default compose(
       ? props.user.availableOrganizations.length
       : 0,
   })),
-  graphql(UserProfileMutation, { name: 'updateUserProfile' }),
+  graphql(UpdateUserProfile, { name: 'updateUserProfile' }),
   injectConfiguration('env', 'env')
 )(UserProfile);
