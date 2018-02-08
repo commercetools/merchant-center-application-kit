@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { FetchUser, withUser, LoggedInUserQuery } from './fetch-user';
+import LoggedInUserQuery from './fetch-user.graphql';
+import { FetchUser, withUser } from './fetch-user';
 
 describe('rendering', () => {
   let props;

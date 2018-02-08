@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { FetchProject, withProject, ProjectQuery } from './fetch-project';
+import ProjectQuery from './fetch-project.graphql';
+import { FetchProject, withProject } from './fetch-project';
 
 describe('rendering', () => {
   let props;

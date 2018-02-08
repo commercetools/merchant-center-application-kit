@@ -5,17 +5,63 @@ Object {
   "definitions": Array [
     Object {
       "directives": Array [],
+      "kind": "FragmentDefinition",
+      "name": Object {
+        "kind": "Name",
+        "value": "ImageRegex",
+      },
+      "selectionSet": Object {
+        "kind": "SelectionSet",
+        "selections": Array [
+          Object {
+            "arguments": Array [],
+            "directives": Array [],
+            "kind": "Field",
+            "name": Object {
+              "kind": "Name",
+              "value": "flag",
+            },
+          },
+          Object {
+            "arguments": Array [],
+            "directives": Array [],
+            "kind": "Field",
+            "name": Object {
+              "kind": "Name",
+              "value": "search",
+            },
+          },
+          Object {
+            "arguments": Array [],
+            "directives": Array [],
+            "kind": "Field",
+            "name": Object {
+              "kind": "Name",
+              "value": "replace",
+            },
+          },
+        ],
+      },
+      "typeCondition": Object {
+        "kind": "NamedType",
+        "name": Object {
+          "kind": "Name",
+          "value": "ImageRegexOptions",
+        },
+      },
+    },
+    Object {
+      "directives": Array [],
       "kind": "OperationDefinition",
       "name": Object {
         "kind": "Name",
-        "value": "Project",
+        "value": "ProjectQuery",
       },
       "operation": "query",
       "selectionSet": Object {
         "kind": "SelectionSet",
         "selections": Array [
           Object {
-            "alias": undefined,
             "arguments": Array [
               Object {
                 "kind": "Argument",
@@ -42,7 +88,6 @@ Object {
               "kind": "SelectionSet",
               "selections": Array [
                 Object {
-                  "alias": undefined,
                   "arguments": Array [],
                   "directives": Array [],
                   "kind": "Field",
@@ -50,10 +95,8 @@ Object {
                     "kind": "Name",
                     "value": "key",
                   },
-                  "selectionSet": undefined,
                 },
                 Object {
-                  "alias": undefined,
                   "arguments": Array [],
                   "directives": Array [],
                   "kind": "Field",
@@ -61,10 +104,8 @@ Object {
                     "kind": "Name",
                     "value": "version",
                   },
-                  "selectionSet": undefined,
                 },
                 Object {
-                  "alias": undefined,
                   "arguments": Array [],
                   "directives": Array [],
                   "kind": "Field",
@@ -72,10 +113,8 @@ Object {
                     "kind": "Name",
                     "value": "name",
                   },
-                  "selectionSet": undefined,
                 },
                 Object {
-                  "alias": undefined,
                   "arguments": Array [],
                   "directives": Array [],
                   "kind": "Field",
@@ -83,10 +122,8 @@ Object {
                     "kind": "Name",
                     "value": "countries",
                   },
-                  "selectionSet": undefined,
                 },
                 Object {
-                  "alias": undefined,
                   "arguments": Array [],
                   "directives": Array [],
                   "kind": "Field",
@@ -94,10 +131,8 @@ Object {
                     "kind": "Name",
                     "value": "currencies",
                   },
-                  "selectionSet": undefined,
                 },
                 Object {
-                  "alias": undefined,
                   "arguments": Array [],
                   "directives": Array [],
                   "kind": "Field",
@@ -105,10 +140,8 @@ Object {
                     "kind": "Name",
                     "value": "languages",
                   },
-                  "selectionSet": undefined,
                 },
                 Object {
-                  "alias": undefined,
                   "arguments": Array [],
                   "directives": Array [],
                   "kind": "Field",
@@ -116,10 +149,8 @@ Object {
                     "kind": "Name",
                     "value": "expired",
                   },
-                  "selectionSet": undefined,
                 },
                 Object {
-                  "alias": undefined,
                   "arguments": Array [],
                   "directives": Array [],
                   "kind": "Field",
@@ -127,10 +158,8 @@ Object {
                     "kind": "Name",
                     "value": "suspended",
                   },
-                  "selectionSet": undefined,
                 },
                 Object {
-                  "alias": undefined,
                   "arguments": Array [],
                   "directives": Array [],
                   "kind": "Field",
@@ -142,7 +171,6 @@ Object {
                     "kind": "SelectionSet",
                     "selections": Array [
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -150,10 +178,8 @@ Object {
                           "kind": "Name",
                           "value": "canManageOrganization",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -161,10 +187,8 @@ Object {
                           "kind": "Name",
                           "value": "canManageProject",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -172,10 +196,8 @@ Object {
                           "kind": "Name",
                           "value": "canViewProjectSettings",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -183,10 +205,8 @@ Object {
                           "kind": "Name",
                           "value": "canViewProducts",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -194,10 +214,8 @@ Object {
                           "kind": "Name",
                           "value": "canManageProducts",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -205,10 +223,8 @@ Object {
                           "kind": "Name",
                           "value": "canViewOrders",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -216,10 +232,8 @@ Object {
                           "kind": "Name",
                           "value": "canManageOrders",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -227,10 +241,8 @@ Object {
                           "kind": "Name",
                           "value": "canViewCustomers",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -238,10 +250,8 @@ Object {
                           "kind": "Name",
                           "value": "canManageCustomers",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -249,10 +259,8 @@ Object {
                           "kind": "Name",
                           "value": "canViewTypes",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -260,10 +268,8 @@ Object {
                           "kind": "Name",
                           "value": "canManageTypes",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -271,10 +277,8 @@ Object {
                           "kind": "Name",
                           "value": "canViewShippingLists",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -282,10 +286,8 @@ Object {
                           "kind": "Name",
                           "value": "canManageShippingLists",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -293,10 +295,8 @@ Object {
                           "kind": "Name",
                           "value": "canViewPayments",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -304,13 +304,11 @@ Object {
                           "kind": "Name",
                           "value": "canManagePayments",
                         },
-                        "selectionSet": undefined,
                       },
                     ],
                   },
                 },
                 Object {
-                  "alias": undefined,
                   "arguments": Array [],
                   "directives": Array [],
                   "kind": "Field",
@@ -322,7 +320,6 @@ Object {
                     "kind": "SelectionSet",
                     "selections": Array [
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -330,10 +327,8 @@ Object {
                           "kind": "Name",
                           "value": "id",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -341,10 +336,8 @@ Object {
                           "kind": "Name",
                           "value": "name",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -352,10 +345,8 @@ Object {
                           "kind": "Name",
                           "value": "createdAt",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -363,13 +354,11 @@ Object {
                           "kind": "Name",
                           "value": "teamsCount",
                         },
-                        "selectionSet": undefined,
                       },
                     ],
                   },
                 },
                 Object {
-                  "alias": undefined,
                   "arguments": Array [],
                   "directives": Array [],
                   "kind": "Field",
@@ -381,7 +370,6 @@ Object {
                     "kind": "SelectionSet",
                     "selections": Array [
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -389,10 +377,8 @@ Object {
                           "kind": "Name",
                           "value": "id",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -404,7 +390,6 @@ Object {
                           "kind": "SelectionSet",
                           "selections": Array [
                             Object {
-                              "alias": undefined,
                               "arguments": Array [],
                               "directives": Array [],
                               "kind": "Field",
@@ -412,10 +397,8 @@ Object {
                                 "kind": "Name",
                                 "value": "id",
                               },
-                              "selectionSet": undefined,
                             },
                             Object {
-                              "alias": undefined,
                               "arguments": Array [],
                               "directives": Array [],
                               "kind": "Field",
@@ -423,10 +406,8 @@ Object {
                                 "kind": "Name",
                                 "value": "userProjectSettings",
                               },
-                              "selectionSet": undefined,
                             },
                             Object {
-                              "alias": undefined,
                               "arguments": Array [],
                               "directives": Array [],
                               "kind": "Field",
@@ -434,10 +415,8 @@ Object {
                                 "kind": "Name",
                                 "value": "pluginPreset",
                               },
-                              "selectionSet": undefined,
                             },
                             Object {
-                              "alias": undefined,
                               "arguments": Array [],
                               "directives": Array [],
                               "kind": "Field",
@@ -449,7 +428,6 @@ Object {
                                 "kind": "SelectionSet",
                                 "selections": Array [
                                   Object {
-                                    "alias": undefined,
                                     "arguments": Array [],
                                     "directives": Array [],
                                     "kind": "Field",
@@ -472,7 +450,6 @@ Object {
                                     },
                                   },
                                   Object {
-                                    "alias": undefined,
                                     "arguments": Array [],
                                     "directives": Array [],
                                     "kind": "Field",
@@ -498,7 +475,6 @@ Object {
                               },
                             },
                             Object {
-                              "alias": undefined,
                               "arguments": Array [],
                               "directives": Array [],
                               "kind": "Field",
@@ -510,7 +486,6 @@ Object {
                                 "kind": "SelectionSet",
                                 "selections": Array [
                                   Object {
-                                    "alias": undefined,
                                     "arguments": Array [],
                                     "directives": Array [],
                                     "kind": "Field",
@@ -518,10 +493,8 @@ Object {
                                       "kind": "Name",
                                       "value": "isPaymentStateHidden",
                                     },
-                                    "selectionSet": undefined,
                                   },
                                   Object {
-                                    "alias": undefined,
                                     "arguments": Array [],
                                     "directives": Array [],
                                     "kind": "Field",
@@ -529,10 +502,8 @@ Object {
                                       "kind": "Name",
                                       "value": "isShipmentStateHidden",
                                     },
-                                    "selectionSet": undefined,
                                   },
                                   Object {
-                                    "alias": undefined,
                                     "arguments": Array [],
                                     "directives": Array [],
                                     "kind": "Field",
@@ -540,13 +511,11 @@ Object {
                                       "kind": "Name",
                                       "value": "isOrderStateHidden",
                                     },
-                                    "selectionSet": undefined,
                                   },
                                 ],
                               },
                             },
                             Object {
-                              "alias": undefined,
                               "arguments": Array [],
                               "directives": Array [],
                               "kind": "Field",
@@ -558,7 +527,6 @@ Object {
                                 "kind": "SelectionSet",
                                 "selections": Array [
                                   Object {
-                                    "alias": undefined,
                                     "arguments": Array [],
                                     "directives": Array [],
                                     "kind": "Field",
@@ -566,10 +534,8 @@ Object {
                                       "kind": "Name",
                                       "value": "searchProperty",
                                     },
-                                    "selectionSet": undefined,
                                   },
                                   Object {
-                                    "alias": undefined,
                                     "arguments": Array [],
                                     "directives": Array [],
                                     "kind": "Field",
@@ -581,7 +547,6 @@ Object {
                                       "kind": "SelectionSet",
                                       "selections": Array [
                                         Object {
-                                          "alias": undefined,
                                           "arguments": Array [],
                                           "directives": Array [],
                                           "kind": "Field",
@@ -589,7 +554,6 @@ Object {
                                             "kind": "Name",
                                             "value": "attributeName",
                                           },
-                                          "selectionSet": undefined,
                                         },
                                       ],
                                     },
@@ -601,7 +565,6 @@ Object {
                         },
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -609,10 +572,8 @@ Object {
                           "kind": "Name",
                           "value": "productSettings",
                         },
-                        "selectionSet": undefined,
                       },
                       Object {
-                        "alias": undefined,
                         "arguments": Array [],
                         "directives": Array [],
                         "kind": "Field",
@@ -620,7 +581,6 @@ Object {
                           "kind": "Name",
                           "value": "currentProductSettings",
                         },
-                        "selectionSet": undefined,
                       },
                     ],
                   },
@@ -632,7 +592,6 @@ Object {
       },
       "variableDefinitions": Array [
         Object {
-          "defaultValue": undefined,
           "kind": "VariableDefinition",
           "type": Object {
             "kind": "NonNullType",
@@ -654,63 +613,88 @@ Object {
         },
       ],
     },
-    Object {
-      "directives": Array [],
-      "kind": "FragmentDefinition",
-      "name": Object {
-        "kind": "Name",
-        "value": "ImageRegex",
-      },
-      "selectionSet": Object {
-        "kind": "SelectionSet",
-        "selections": Array [
-          Object {
-            "alias": undefined,
-            "arguments": Array [],
-            "directives": Array [],
-            "kind": "Field",
-            "name": Object {
-              "kind": "Name",
-              "value": "flag",
-            },
-            "selectionSet": undefined,
-          },
-          Object {
-            "alias": undefined,
-            "arguments": Array [],
-            "directives": Array [],
-            "kind": "Field",
-            "name": Object {
-              "kind": "Name",
-              "value": "search",
-            },
-            "selectionSet": undefined,
-          },
-          Object {
-            "alias": undefined,
-            "arguments": Array [],
-            "directives": Array [],
-            "kind": "Field",
-            "name": Object {
-              "kind": "Name",
-              "value": "replace",
-            },
-            "selectionSet": undefined,
-          },
-        ],
-      },
-      "typeCondition": Object {
-        "kind": "NamedType",
-        "name": Object {
-          "kind": "Name",
-          "value": "ImageRegexOptions",
-        },
-      },
-    },
   ],
   "kind": "Document",
   "loc": Object {
-    "end": 1417,
+    "end": 1283,
+    "source": Object {
+      "body": "fragment ImageRegex on ImageRegexOptions {
+  flag
+  search
+  replace
+}
+
+query ProjectQuery($projectKey: String!) {
+  project(key: $projectKey) {
+    key
+    version
+    name
+    countries
+    currencies
+    languages
+    expired
+    suspended
+    permissions {
+      canManageOrganization
+      canManageProject
+      canViewProjectSettings
+      canViewProducts
+      canManageProducts
+      canViewOrders
+      canManageOrders
+      canViewCustomers
+      canManageCustomers
+      canViewTypes
+      canManageTypes
+      canViewShippingLists
+      canManageShippingLists
+      canViewPayments
+      canManagePayments
+    }
+    owner {
+      id
+      name
+      createdAt
+      teamsCount
+    }
+    settings {
+      id
+      baseSettings {
+        id
+        userProjectSettings
+        pluginPreset
+        imageRegex {
+          thumb {
+            ...ImageRegex
+          }
+          small {
+            ...ImageRegex
+          }
+        }
+        orderStatesVisibility {
+          isPaymentStateHidden
+          isShipmentStateHidden
+          isOrderStateHidden
+        }
+        categoryRecommendationSettings {
+          searchProperty
+          options {
+            attributeName
+          }
+        }
+      }
+      productSettings
+      currentProductSettings
+    }
+  }
+}
+",
+      "locationOffset": Object {
+        "column": 1,
+        "line": 1,
+      },
+      "name": "GraphQL request",
+    },
     "start": 0,
   },
 }
