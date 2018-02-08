@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 import { compose } from 'recompose';
-import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import logger from '@commercetools-local/utils/logger';
 import { GRAPHQL_TARGETS, DOMAINS } from '@commercetools-local/constants';
 import Notification from '@commercetools-local/core/components/notification';
 import { injectConfiguration } from '@commercetools-local/core/components/configuration';
 import { INTERCOM_TRACKING_STATUS } from '../../../constants';
+import ChangeIntercomStatus from './intercom.graphql';
 import styles from './intercom.mod.css';
 
 const messages = defineMessages({
@@ -25,15 +25,6 @@ const messages = defineMessages({
     defaultMessage: 'opt-out',
   },
 });
-
-const IntercomStatusMutation = gql`
-  mutation LoggedInUser($status: IntercomTrackingStatus!) {
-    changeIntercomStatus(status: $status) {
-      id
-      tracking_intercom
-    }
-  }
-`;
 
 export class IntercomNotification extends React.PureComponent {
   static displayName = 'IntercomNotification';
@@ -126,6 +117,6 @@ export class IntercomNotification extends React.PureComponent {
 }
 
 export default compose(
-  graphql(IntercomStatusMutation, { name: 'changeIntercomStatus' }),
+  graphql(ChangeIntercomStatus, { name: 'changeIntercomStatus' }),
   injectConfiguration(['env'], 'environmentName')
 )(IntercomNotification);
