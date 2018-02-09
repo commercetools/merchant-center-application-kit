@@ -12,6 +12,13 @@ const query = gql`
   }
 `;
 
+const createErrorLinkConfig = custom => ({
+  history: { push: jest.fn() },
+  storage: { get: jest.fn(() => 'token') },
+
+  ...custom,
+});
+
 const unauthenticatedError = new Error('Unauthorized');
 unauthenticatedError.statusCode = 401;
 
@@ -25,10 +32,7 @@ describe('with unauthenticated error', () => {
 
   describe('with stored token', () => {
     beforeEach(async () => {
-      errorLinkConfig = {
-        history: { push: jest.fn() },
-        storage: { get: jest.fn(() => 'token') },
-      };
+      errorLinkConfig = createErrorLinkConfig();
 
       terminatingLinkStub = jest.fn(
         () => new Observable(o => o.error(unauthenticatedError))
@@ -55,12 +59,9 @@ describe('with unauthenticated error', () => {
 
   describe('without stored token', () => {
     beforeEach(async () => {
-      errorLinkConfig = {
-        history: { push: jest.fn() },
-        storage: {
-          storage: { get: jest.fn(() => undefined) },
-        },
-      };
+      errorLinkConfig = createErrorLinkConfig();
+
+      errorLinkConfig.storage.get.mockReturnValue(undefined);
 
       terminatingLinkStub = jest.fn(
         () => new Observable(o => o.error(unauthenticatedError))
@@ -86,10 +87,7 @@ describe('with unhandled error', () => {
   let link;
 
   beforeEach(async () => {
-    errorLinkConfig = {
-      history: { push: jest.fn() },
-      storage: { get: jest.fn(() => 'token') },
-    };
+    errorLinkConfig = createErrorLinkConfig();
 
     terminatingLinkStub = jest.fn(
       () => new Observable(o => o.error(badRequestError))
