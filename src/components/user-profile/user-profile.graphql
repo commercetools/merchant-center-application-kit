@@ -1,0 +1,11 @@
+mutation UpdateUserProfile($version: Int!, $user: UserProfileInput!) {
+  updateUserProfile(version: $version, user: $user) {
+    id
+    version
+    email
+    firstName
+    lastName
+    language
+    timeZone
+  }
+}

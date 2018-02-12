@@ -1,0 +1,70 @@
+fragment ImageRegex on ImageRegexOptions {
+  flag
+  search
+  replace
+}
+
+query ProjectQuery($projectKey: String!) {
+  project(key: $projectKey) {
+    key
+    version
+    name
+    countries
+    currencies
+    languages
+    expired
+    suspended
+    permissions {
+      canManageOrganization
+      canManageProject
+      canViewProjectSettings
+      canViewProducts
+      canManageProducts
+      canViewOrders
+      canManageOrders
+      canViewCustomers
+      canManageCustomers
+      canViewTypes
+      canManageTypes
+      canViewShippingLists
+      canManageShippingLists
+      canViewPayments
+      canManagePayments
+    }
+    owner {
+      id
+      name
+      createdAt
+      teamsCount
+    }
+    settings {
+      id
+      baseSettings {
+        id
+        userProjectSettings
+        pluginPreset
+        imageRegex {
+          thumb {
+            ...ImageRegex
+          }
+          small {
+            ...ImageRegex
+          }
+        }
+        orderStatesVisibility {
+          isPaymentStateHidden
+          isShipmentStateHidden
+          isOrderStateHidden
+        }
+        categoryRecommendationSettings {
+          searchProperty
+          options {
+            attributeName
+          }
+        }
+      }
+      productSettings
+      currentProductSettings
+    }
+  }
+}
