@@ -56,20 +56,7 @@ export const PRODUCTS_REFERENCE_SEARCH_FETCHED =
   'PRODUCTS_REFERENCE_SEARCH_FETCHED';
 export const CATEGORIES_REFERENCE_SEARCH_FETCHED =
   'CATEGORIES_REFERENCE_SEARCH_FETCHED';
-export const SEARCH_FILTERS_EVENTS = {
-  updateFilterValue: 'updateFilterValue',
-  toggleEditMode: 'toggleEditMode',
-  cancelFilterChanges: 'cancelFilterChanges',
-  removeFilterFromField: 'removeFilterFromField',
-  clearAllFilters: 'clearAllFilters',
-  addFilterToField: 'addFilterToField',
-  clearFiltersFromField: 'clearFiltersFromField',
-  addField: 'addField',
-  applyFiltersAndRemoveEmpty: 'applyFiltersAndRemoveEmpty',
-  applyFilters: 'applyFilters',
-  removeFilterTagFromField: 'removeFilterTagFromField',
-  clearAll: 'clearAll',
-};
+
 // MANAGEMENT
 export const INITIAL_STATE_FETCHED = 'INITIAL_STATE_FETCHED';
 
