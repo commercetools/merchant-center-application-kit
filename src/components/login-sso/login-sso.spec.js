@@ -211,12 +211,10 @@ describe('interaction', () => {
           props = createTestProps({
             getOrganizationByName: jest.fn(() =>
               Promise.resolve({
-                body: {
-                  protocol: 'oidc',
-                  organizationId: 'o1',
-                  clientId: '123',
-                  url: 'https://auth0.ct.com',
-                },
+                protocol: 'oidc',
+                organizationId: 'o1',
+                clientId: '123',
+                url: 'https://auth0.ct.com',
               })
             ),
           });

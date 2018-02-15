@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { compose, withProps } from 'recompose';
 import jwtDecode from 'jwt-decode';
 import * as storage from '@commercetools-local/utils/storage';
-import client from '@commercetools-local/utils/node-sdk';
+import * as sdkActions from '@commercetools-local/sdk/actions';
+import { connect } from 'react-redux';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import { withParsedLocation } from '@commercetools-local/react-router-utils';
 import ApplicationLoader from '../application-loader';
@@ -43,7 +44,7 @@ export class LoginSSOCallback extends React.PureComponent {
           organization: this.props.location.query.organizationId,
         })
         .then(payload => {
-          storage.put(CORE_STORAGE_KEYS.TOKEN, payload.body.token);
+          storage.put(CORE_STORAGE_KEYS.TOKEN, payload.token);
           this.props.redirectTo('/');
         })
         .catch(() => {
@@ -65,10 +66,13 @@ export class LoginSSOCallback extends React.PureComponent {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  requestAccessToken: payload =>
+    dispatch(sdkActions.post({ uri: `/tokens`, payload })),
+});
+
 export default compose(
   withParsedLocation,
-  withProps(() => ({
-    requestAccessToken: payload => client.tokens.create(payload),
-    redirectTo: target => window.location.replace(target),
-  }))
+  withProps(() => ({ redirectTo: target => window.location.replace(target) })),
+  connect(null, mapDispatchToProps)
 )(LoginSSOCallback);

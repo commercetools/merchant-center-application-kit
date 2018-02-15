@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { compose, withProps } from 'recompose';
+import { compose } from 'recompose';
 import classnames from 'classnames';
+import * as sdkActions from '@commercetools-local/sdk/actions';
+import { connect } from 'react-redux';
 import PrimaryButton from '@commercetools-local/ui-kit/buttons/primary-button';
 import {
   LOGOUT_REASONS,
   STORAGE_KEYS as CORE_STORAGE_KEYS,
 } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
-import client from '@commercetools-local/utils/node-sdk';
 import { injectConfiguration } from '@commercetools-local/core/components/configuration';
 import Notification from '@commercetools-local/core/components/notification';
 import Title from '@commercetools-local/core/components/title';
@@ -83,18 +84,14 @@ export class Login extends React.PureComponent {
       })
       .then(payload => {
         this.setState({ loading: false });
-        storage.put(CORE_STORAGE_KEYS.TOKEN, payload.body.token);
+        storage.put(CORE_STORAGE_KEYS.TOKEN, payload.token);
         this.props.history.push(this.props.location.query.redirectTo || '/');
       })
       .catch(error => {
         if (error) {
           // We are sure that the API always return one error in this case,
           // therefore it's safe to access the first error in the list.
-          const code =
-            error.body &&
-            error.body.errors &&
-            error.body.errors[0] &&
-            error.body.errors[0].code;
+          const code = error.errors && error.errors[0] && error.errors[0].code;
           if (code === 'LockedAccount') {
             this.props.history.push('/login/locked');
           } else {
@@ -295,11 +292,14 @@ export class Login extends React.PureComponent {
   );
 }
 
+const mapDispatchToProps = dispatch => ({
+  requestAccessToken: payload =>
+    dispatch(sdkActions.post({ uri: `/tokens`, payload })),
+});
+
 export default compose(
   injectIntl,
   injectConfiguration(['adminCenterUrl'], 'adminCenterUrl'),
   withParsedLocation,
-  withProps({
-    requestAccessToken: payload => client.tokens.create(payload),
-  })
+  connect(null, mapDispatchToProps)
 )(Login);

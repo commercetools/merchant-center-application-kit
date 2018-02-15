@@ -12,7 +12,8 @@ import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-local/utils/url';
-import client from '@commercetools-local/utils/node-sdk';
+import * as sdkActions from '@commercetools-local/sdk/actions';
+import { connect } from 'react-redux';
 import * as storage from '@commercetools-local/utils/storage';
 import { messages as validationMessages } from '@commercetools-local/utils/validation';
 import Title from '@commercetools-local/core/components/title';
@@ -69,9 +70,8 @@ export class LoginSSO extends React.PureComponent {
   };
   handleSubmit = (values, actions) => {
     this.props.getOrganizationByName(values.organizationName).then(
-      payload => {
+      authProvider => {
         actions.setSubmitting(false);
-        const authProvider = payload.body;
         if (authProvider.protocol === 'oidc') {
           // Quick note: we assume that the authorization endpoint is /authorize
           // This endpoint name is not mandatory. However, it is used as a common
@@ -188,12 +188,16 @@ export class LoginSSO extends React.PureComponent {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  getOrganizationByName: name =>
+    dispatch(sdkActions.get({ uri: `/sso/organizations?name=${name}` })),
+});
+
 export default compose(
   injectIntl,
   withProps(() => ({
     originUrl: window.location.origin,
     redirectTo: target => window.location.replace(target),
-    getOrganizationByName: name =>
-      client.sso.byQueryString(`name=${name}`).fetch(),
-  }))
+  })),
+  connect(null, mapDispatchToProps)
 )(LoginSSO);

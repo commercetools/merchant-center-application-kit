@@ -303,7 +303,7 @@ describe('requestAccessToken', () => {
         props = createTestProps({
           requestAccessToken: jest.fn(() => {
             const error = new Error('Account is locked');
-            error.body = { errors: [{ code: 'LockedAccount' }] };
+            error.errors = [{ code: 'LockedAccount' }];
             return Promise.reject(error);
           }),
         });
