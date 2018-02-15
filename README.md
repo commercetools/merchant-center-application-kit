@@ -26,7 +26,7 @@ import ApplicationShell, {
   setupGlobalErrorListener,
 } from '@commercetools-local/application-shell';
 import { Sdk } from '@commercetools-local/sdk';
-import * as sdkService from '@commercetools-local/sdk-service';
+import * as globalActions from '@commercetools-local/actions-global';
 import PageNotFound from '@commercetools-local/core/components/page-not-found';
 
 // NOTE: the following relative imports depend on the location of this file.
@@ -57,7 +57,7 @@ const EntryPoint = () => (
           showUnexpectedErrorNotification={showUnexpectedErrorNotification}
           onRegisterErrorListeners={() => {
             Sdk.Get.errorHandler = error =>
-              sdkService.handleActionError(error, 'sdk')(reduxStore.dispatch);
+              handleActionError(error, 'sdk')(reduxStore.dispatch);
           }}
           render={() => (
             <Switch>
