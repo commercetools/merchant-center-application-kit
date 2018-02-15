@@ -106,7 +106,7 @@ const fetchProductById = productId =>
 ```
 
 ```js
-import * as sdkService from '@commercetools-local/sdk-service';
+import * as globalActions from '@commercetools-local/actions-global';
 
 class Foo extends React.Component {
   state = { product: null };
@@ -130,6 +130,6 @@ class Foo extends React.Component {
 // and finally we need to pass the bound action creator to the component using plain old redux
 export default connect(null, {
   fetchProductById: productsActions.fetchProductById,
-  onApiError: sdkService.handleActionError,
+  onApiError: globalActions.handleActionError,
 });
 ```
