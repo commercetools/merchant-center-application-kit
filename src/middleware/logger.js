@@ -1,6 +1,5 @@
 import { createLogger } from 'redux-logger';
 import * as constants from '@commercetools-local/constants';
-import { SERVICE } from '@commercetools-local/sdk-service';
 import {
   ADD_NOTIFICATION,
   REMOVE_NOTIFICATION,
@@ -43,7 +42,6 @@ const loggerMiddleware = createLogger({
       return false;
 
     switch (type) {
-      case SERVICE:
       case REMOVE_NOTIFICATION:
         return false;
       case ADD_NOTIFICATION: {
@@ -53,8 +51,7 @@ const loggerMiddleware = createLogger({
       case constants.__LOCAL:
         return (
           payload &&
-          (payload.type !== SERVICE &&
-            typeof payload.type === 'string' &&
+          (typeof payload.type === 'string' &&
             !payload.type.startsWith('@@redux-form'))
         );
       default:

@@ -7,7 +7,6 @@ import {
   REMOVE_NOTIFICATION,
 } from '@commercetools-local/notifications';
 import { middleware as sdkMiddleware } from '@commercetools-local/sdk';
-import { middleware as serviceMiddleware } from '@commercetools-local/sdk-service';
 import client from '@commercetools-local/utils/node-sdk';
 import * as constants from '@commercetools-local/constants';
 import addPluginToNotificationMiddleware from './middleware/add-plugin-to-notification';
@@ -51,8 +50,6 @@ const store = createStore(
       notificationsMiddleware,
       sdkMiddleware,
       createScopedMiddleware(sdkMiddleware),
-      serviceMiddleware,
-      createScopedMiddleware(serviceMiddleware),
       thunk.withExtraArgument(client),
       batchedUpdates,
       loggerMiddleware
