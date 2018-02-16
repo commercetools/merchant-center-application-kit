@@ -86,7 +86,7 @@ The middleware
 ```js
 import { createStore, applyMiddleware } from 'redux';
 import { middleware as notificationsMiddleware } from '@commercetools-local/notifications';
-import rootReducer from './reducers/index';
+import rootReducer from './reducers';
 
 // Note: this API requires redux@>=3.1.0
 const store = createStore(
