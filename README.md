@@ -31,7 +31,7 @@ import PageNotFound from '@commercetools-local/core/components/page-not-found';
 
 // NOTE: the following relative imports depend on the location of this file.
 import * as i18n from '../../../../i18n';
-import { menuItems, trackingEventWhitelist } from '../../plugins.new';
+import { menuItems, trackingEventWhitelist } from '../../plugins';
 
 // Ensure to setup the global error listener before any React component renders
 // in order to catch possible errors on rendering/mounting.
