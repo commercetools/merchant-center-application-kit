@@ -51,9 +51,7 @@ describe('lifecylcle', () => {
     let props;
     beforeEach(() => {
       props = createTestProps({
-        requestAccessToken: jest.fn(() =>
-          Promise.resolve({ body: { token: 'xxx' } })
-        ),
+        requestAccessToken: jest.fn(() => Promise.resolve({ token: 'xxx' })),
       });
       wrapper = shallow(<LoginSSOCallback {...props} />);
     });
@@ -77,7 +75,7 @@ describe('lifecylcle', () => {
         beforeEach(() => {
           props = createTestProps({
             requestAccessToken: jest.fn(() =>
-              Promise.resolve({ body: { token: 'xxx' } })
+              Promise.resolve({ token: 'xxx' })
             ),
           });
           wrapper = shallow(<LoginSSOCallback {...props} />);

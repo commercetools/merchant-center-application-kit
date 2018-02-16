@@ -8,7 +8,7 @@ import {
   removeNotification,
 } from '@commercetools-local/notifications';
 import { Sdk } from '@commercetools-local/sdk';
-import * as sdkService from '@commercetools-local/sdk-service';
+import * as globalActions from '@commercetools-local/actions-global';
 import * as constants from '@commercetools-local/constants';
 import * as i18n from '../../../../i18n';
 import ApplicationShell, {
@@ -135,7 +135,9 @@ const TestApplication = () => (
           showUnexpectedErrorNotification={showUnexpectedErrorNotification}
           onRegisterErrorListeners={() => {
             Sdk.Get.errorHandler = error =>
-              sdkService.handleActionError(error, 'sdk')(reduxStore.dispatch);
+              globalActions.handleActionError(error, 'sdk')(
+                reduxStore.dispatch
+              );
           }}
           render={() => (
             <div>

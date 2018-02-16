@@ -46,17 +46,17 @@ describe('lifecycle', () => {
         logger.info.mockReset();
       });
       describe('if deployed version is the same as the one in the browser', () => {
-        beforeEach(() => {
+        beforeEach(async () => {
           jest.useFakeTimers();
+          const fetchServerVersionResult = Promise.resolve({ revision: '123' });
           props = createTestProps({
-            fetchServerVersion: jest.fn((url, callback) =>
-              callback(null, { revision: '123' })
-            ),
+            fetchServerVersion: jest.fn(() => fetchServerVersionResult),
             clientVersion: '123',
           });
           wrapper = shallow(<VersionCheckSubscriber {...props} />);
           wrapper.instance().componentDidMount();
           jest.runOnlyPendingTimers();
+          await fetchServerVersionResult;
         });
         it('should not notify', () => {
           expect(logger.info).toHaveBeenCalledTimes(0);
@@ -66,21 +66,21 @@ describe('lifecycle', () => {
         });
       });
       describe('if deployed version is different then the one in the browser', () => {
-        beforeEach(() => {
+        beforeEach(async () => {
           jest.useFakeTimers();
+          const fetchServerVersionResult = Promise.resolve({ revision: '456' });
           props = createTestProps({
-            fetchServerVersion: jest.fn((url, callback) =>
-              callback(null, { revision: '456' })
-            ),
+            fetchServerVersion: jest.fn(() => fetchServerVersionResult),
             clientVersion: '123',
           });
           wrapper = shallow(<VersionCheckSubscriber {...props} />);
           wrapper.instance().componentDidMount();
           jest.runOnlyPendingTimers();
+          await fetchServerVersionResult;
         });
         it('should notify', () => {
           expect(logger.info).toHaveBeenCalledWith(
-            'New version available, please reload the page'
+            'VersionCheckSubscriber: New version available, please reload the page'
           );
         });
         it('should assign interval reference into component instance', () => {

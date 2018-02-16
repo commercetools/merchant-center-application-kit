@@ -29,6 +29,7 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
       flag="userProfile"
     >
       <Link
+        onClick={[MockFunction]}
         replace={false}
         to="/account/profile"
       >

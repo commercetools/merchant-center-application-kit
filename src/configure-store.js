@@ -7,8 +7,6 @@ import {
   REMOVE_NOTIFICATION,
 } from '@commercetools-local/notifications';
 import { middleware as sdkMiddleware } from '@commercetools-local/sdk';
-import { middleware as serviceMiddleware } from '@commercetools-local/sdk-service';
-import client from '@commercetools-local/utils/node-sdk';
 import * as constants from '@commercetools-local/constants';
 import addPluginToNotificationMiddleware from './middleware/add-plugin-to-notification';
 import batchedUpdates from './middleware/batched-updates';
@@ -44,16 +42,14 @@ const store = createStore(
         REMOVE_NOTIFICATION,
         constants.HIDE_ALL_PAGE_NOTIFICATIONS,
       ]),
-      createScopedMiddleware(thunk.withExtraArgument(client)),
+      createScopedMiddleware(thunk),
       sentryTrackingMiddleware,
       createScopedMiddleware(sentryTrackingMiddleware),
       hideNotificationsMiddleware,
       notificationsMiddleware,
       sdkMiddleware,
       createScopedMiddleware(sdkMiddleware),
-      serviceMiddleware,
-      createScopedMiddleware(serviceMiddleware),
-      thunk.withExtraArgument(client),
+      thunk,
       batchedUpdates,
       loggerMiddleware
     ),
