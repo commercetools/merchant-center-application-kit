@@ -49,6 +49,9 @@ export const RestrictedApplication = props => (
       <SetupFlopFlipProvider user={user}>
         {({ setProjectKey: syncProjectKeyForFlopFlip }) => (
           <React.Fragment>
+            {/* NOTE: the requests in flight loader will render a loading
+            spinner into the AppBar. */}
+            <RequestsInFlightLoader />
             <IntercomBooter
               intercomTrackingStatus={user && user.tracking_intercom}
               showNotification={props.showNotification}
@@ -279,9 +282,6 @@ export default class ApplicationShell extends React.Component {
           <ConfigureIntlProvider i18n={this.props.i18n}>
             <React.Fragment>
               <VersionCheckSubscriber />
-              {/* NOTE: this can be removed when we get rid of showing a
-              loading spinner in the app bar */}
-              <RequestsInFlightLoader />
               <Router>
                 <IntercomUrlTracker>
                   <GtmBooter

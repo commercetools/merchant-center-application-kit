@@ -3,6 +3,7 @@
 exports[`<RestrictedApplication> rendering project container <Route> should match layout structure 1`] = `
 <div>
   <React.Fragment>
+    <Connect(RequestsInFlightLoader) />
     <IntercomBooter
       showNotification={[MockFunction]}
     />
@@ -137,6 +138,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
 exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
 <div>
   <React.Fragment>
+    <Connect(RequestsInFlightLoader) />
     <IntercomBooter
       showNotification={[MockFunction]}
     />
