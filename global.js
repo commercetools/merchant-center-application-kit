@@ -102,5 +102,7 @@ export const handleActionError = (error, source) => dispatch => {
   if (!error.statusCode)
     return dispatch(showUnexpectedErrorNotification({ source, error }));
 
-  return dispatch(showApiErrorNotification({ source, error }));
+  return dispatch(
+    showApiErrorNotification({ source, errors: error.body.errors })
+  );
 };
