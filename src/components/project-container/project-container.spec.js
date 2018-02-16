@@ -7,6 +7,7 @@ import * as storage from '@commercetools-local/utils/storage';
 import FetchProject from '../fetch-project';
 import ProjectDataLocale from '../project-data-locale';
 import LocaleSwitcher from '../locale-switcher';
+import ProjectWithoutSettings from '../project-without-settings';
 import ProjectContainer from './project-container';
 
 const createTestProps = custom => ({
@@ -139,9 +140,7 @@ describe('rendering', () => {
           );
         });
         it('should render <ProjectWithoutSettings>', () => {
-          expect(fetchProjectChildrenWrapper).toRender(
-            'ProjectWithoutSettings'
-          );
+          expect(fetchProjectChildrenWrapper).toRender(ProjectWithoutSettings);
         });
       });
       describe('when project is in a valid state', () => {
