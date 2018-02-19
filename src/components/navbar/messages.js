@@ -95,7 +95,7 @@ export default defineMessages({
   },
   'NavBar.Discounts.add': {
     id: 'NavBar.Discounts.add',
-    defaultMessage: 'Add order',
+    defaultMessage: 'Add discount',
   },
   'NavBar.ProjectSettings.title': {
     id: 'NavBar.ProjectSettings.title',
