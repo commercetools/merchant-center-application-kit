@@ -6,6 +6,7 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory';
+import history from '@commercetools-local/browser-history';
 import * as storage from '@commercetools-local/utils/storage';
 import {
   createErrorLink,
