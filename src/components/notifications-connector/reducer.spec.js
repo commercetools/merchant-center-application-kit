@@ -1,10 +1,38 @@
 import { DOMAINS } from '@commercetools-local/constants';
 import {
+  isNotificationVisible,
   selectGlobalNotifications,
   selectPageNotifications,
   selectSideNotifications,
   selectLatestGlobalNotificationAsList,
+  selectNotificationsByDomain,
 } from './reducer';
+
+describe('isNotificationVisible', () => {
+  describe('when no plugin is active', () => {
+    it('should show global notifications', () => {
+      expect(isNotificationVisible(null, null)).toBe(true);
+    });
+    it('should hide plugin notifications', () => {
+      expect(isNotificationVisible(null, 'non-active-plugin')).toBe(false);
+    });
+  });
+  describe('when a plugin is active', () => {
+    it('should show global notifications', () => {
+      expect(isNotificationVisible('active-plugin', null)).toBe(true);
+    });
+    it('should hide notifications from other plugins', () => {
+      expect(isNotificationVisible('active-plugin', 'non-active-plugin')).toBe(
+        false
+      );
+    });
+    it('should show notifications from the active plugin', () => {
+      expect(isNotificationVisible('active-plugin', 'active-plugin')).toBe(
+        true
+      );
+    });
+  });
+});
 
 describe('selectGlobalNotifications', () => {
   it('should select global notifications', () => {
@@ -48,5 +76,31 @@ describe('selectLatestGlobalNotificationAsList', () => {
         { domain: DOMAINS.PAGE },
       ])
     ).toEqual([{ domain: DOMAINS.GLOBAL }]);
+  });
+});
+
+describe('selectNotificationsByDomain', () => {
+  it('should return an object with global side and page notifications', () => {
+    const globalNotifications = [
+      { domain: DOMAINS.GLOBAL, plugin: 'mcng-categories' },
+    ];
+    const pageNotifications = [
+      { domain: DOMAINS.PAGE, plugin: 'mcng-categories' },
+    ];
+    const sideNotifications = [
+      { domain: DOMAINS.SIDE, plugin: 'mcng-categories' },
+    ];
+    expect(
+      selectNotificationsByDomain.resultFunc(
+        globalNotifications,
+        pageNotifications,
+        sideNotifications,
+        'mcng-categories'
+      )
+    ).toEqual({
+      global: globalNotifications,
+      page: pageNotifications,
+      side: sideNotifications,
+    });
   });
 });
