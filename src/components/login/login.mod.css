@@ -17,7 +17,6 @@
 }
 
 .forgot-pw {
-  margin-top: var(--spacing-24);
   display: block;
   cursor: pointer;
   color: var(--color-greyTundora);
@@ -57,15 +56,6 @@
   color: var(--color-greyDove);
   display: block;
   text-align: left;
-  margin: var(--spacing-16) 0 var(--spacing-8);
-}
-
-.input-text {
-  width: 100%;
-}
-
-.input-text:last-of-type {
-  margin-bottom: var(--spacing-24);
 }
 
 .input-text {
@@ -89,10 +79,6 @@
 
 .input-text:focus {
   border-color: var(--color-greenLight);
-}
-
-.input-text:last-of-type {
-  margin-bottom: 25px;
 }
 
 .overlay {

@@ -25,6 +25,7 @@ import {
 } from '@commercetools-local/constants';
 import PublicPageContainer from '../public-page-container';
 import LoginBox from '../login-box';
+import loginStyles from '../login/login.mod.css';
 import messages from './messages';
 import styles from './login-sso.mod.css';
 
@@ -155,6 +156,7 @@ export class LoginSSO extends React.PureComponent {
                     <Field
                       type="text"
                       name="organizationName"
+                      className={loginStyles['input-text']}
                       value={formikProps.values.organizationName}
                       onChange={event => {
                         formikProps.setFieldValue(
@@ -171,13 +173,15 @@ export class LoginSSO extends React.PureComponent {
                         </p>
                       )}
                   </div>
-                  <PrimaryButton
-                    label={this.props.intl.formatMessage(messages.proceed)}
-                    onClick={formikProps.handleSubmit}
-                    isDisabled={
-                      !formikProps.isValid || formikProps.isSubmitting
-                    }
-                  />
+                  <div>
+                    <PrimaryButton
+                      label={this.props.intl.formatMessage(messages.proceed)}
+                      onClick={formikProps.handleSubmit}
+                      isDisabled={
+                        !formikProps.isValid || formikProps.isSubmitting
+                      }
+                    />
+                  </div>
                 </Spacings.Stack>
               );
             }}
