@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import Raven from 'raven-js';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
@@ -69,9 +70,9 @@ class ProjectContainer extends React.Component {
     // to actually "be smart" and check if the given projectKey changed or not.
     this.props.setProjectKey(nextProjectKey);
   }
-  componentDidCatch(/* error, info */) {
+  componentDidCatch(error, errorInfo) {
     this.setState({ hasError: true });
-    // NOTE: track the error
+    Raven.captureException(error, { extra: errorInfo });
   }
   // Makes it easier to test
   renderSwitcher = switcherProps => (

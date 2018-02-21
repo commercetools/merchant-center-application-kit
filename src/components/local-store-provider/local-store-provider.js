@@ -94,11 +94,13 @@ export class LocalStoreProvider extends React.Component {
     isForcedMenuOpen: storage.get(CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN),
 
     // User info
-    id: this.props.user.id,
-    firstName: this.props.user.firstName,
-    // NOTE: will be deprecated in favour of a single `locale`
-    // https://jira.commercetools.com/browse/CTP-814
-    numberFormat: this.props.user.numberFormat,
+    user: {
+      id: this.props.user.id,
+      firstName: this.props.user.firstName,
+      // NOTE: will be deprecated in favour of a single `locale`
+      // https://jira.commercetools.com/browse/CTP-814
+      numberFormat: this.props.user.numberFormat,
+    },
 
     // Project info
     permissions: this.props.project.permissions,

@@ -1,5 +1,4 @@
 import fetch from 'unfetch';
-import createHistory from 'history/createBrowserHistory';
 import ApolloClient from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
 import apolloLogger from 'apollo-link-logger';
@@ -8,6 +7,7 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory';
+import history from '@commercetools-local/browser-history';
 import * as storage from '@commercetools-local/utils/storage';
 import {
   createErrorLink,
@@ -15,8 +15,6 @@ import {
   createSetTokenLink,
   tokenRetryLink,
 } from './apollo-links/';
-
-const history = createHistory();
 
 const httpLink = createHttpLink({
   uri: `${window.app.protocol}://${window.app.host}/graphql`,

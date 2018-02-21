@@ -31,6 +31,39 @@
   */
   min-width: 0;
   overflow: auto;
+
+  /*
+    layout the children. There will always be the page and side notification
+    about the actual content. The content should stretch to fill the rest of
+    the page.
+  */
+  display: flex;
+  flex-direction: column;
+
+  /*
+    set position to relative to layout notifications and modals
+  */
+  position: relative;
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+  this is only necessary because we have an intermediary <div> wrapping the
+  <View> component that is used to wrap every content-view. This intermediary
+  <div> is solely used for adding the tracking context to the content-view.
+  However, this could be done by passing the tracking context to the <View>
+  and let it do the layout, so we can avoid laying our from the outside as we
+  do here.
+*/
+.content > * {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-layout > aside {

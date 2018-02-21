@@ -3,6 +3,7 @@
 exports[`<RestrictedApplication> rendering project container <Route> should match layout structure 1`] = `
 <div>
   <React.Fragment>
+    <Connect(RequestsInFlightLoader) />
     <IntercomBooter
       showNotification={[MockFunction]}
     />
@@ -83,6 +84,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
         className="main"
         role="main"
       >
+        <PortalsContainer />
         <NotificationsList
           domain="page"
           mapPluginNotificationToComponent={[MockFunction]}
@@ -93,36 +95,40 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
           mapPluginNotificationToComponent={[MockFunction]}
           notifications={Array []}
         />
-        <Switch>
-          <Route
-            component={[Function]}
-            path="/logout"
-          />
-          <Redirect
-            from="/profile"
-            push={false}
-            to="/account/profile"
-          />
-          <Route
-            path="/account"
-            render={[Function]}
-          />
-          <Route
-            exact={true}
-            path="/:projectKey"
-            render={[Function]}
-          />
-          <Route
-            exact={true}
-            path="/"
-            render={[Function]}
-          />
-          <Route
-            exact={false}
-            path="/:projectKey"
-            render={[Function]}
-          />
-        </Switch>
+        <div
+          className="content"
+        >
+          <Switch>
+            <Route
+              component={[Function]}
+              path="/logout"
+            />
+            <Redirect
+              from="/profile"
+              push={false}
+              to="/account/profile"
+            />
+            <Route
+              path="/account"
+              render={[Function]}
+            />
+            <Route
+              exact={true}
+              path="/:projectKey"
+              render={[Function]}
+            />
+            <Route
+              exact={true}
+              path="/"
+              render={[Function]}
+            />
+            <Route
+              exact={false}
+              path="/:projectKey"
+              render={[Function]}
+            />
+          </Switch>
+        </div>
       </div>
     </div>
   </React.Fragment>
@@ -132,6 +138,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
 exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
 <div>
   <React.Fragment>
+    <Connect(RequestsInFlightLoader) />
     <IntercomBooter
       showNotification={[MockFunction]}
     />
@@ -212,6 +219,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
         className="main"
         role="main"
       >
+        <PortalsContainer />
         <NotificationsList
           domain="page"
           mapPluginNotificationToComponent={[MockFunction]}
@@ -222,36 +230,40 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
           mapPluginNotificationToComponent={[MockFunction]}
           notifications={Array []}
         />
-        <Switch>
-          <Route
-            component={[Function]}
-            path="/logout"
-          />
-          <Redirect
-            from="/profile"
-            push={false}
-            to="/account/profile"
-          />
-          <Route
-            path="/account"
-            render={[Function]}
-          />
-          <Route
-            exact={true}
-            path="/:projectKey"
-            render={[Function]}
-          />
-          <Route
-            exact={true}
-            path="/"
-            render={[Function]}
-          />
-          <Route
-            exact={false}
-            path="/:projectKey"
-            render={[Function]}
-          />
-        </Switch>
+        <div
+          className="content"
+        >
+          <Switch>
+            <Route
+              component={[Function]}
+              path="/logout"
+            />
+            <Redirect
+              from="/profile"
+              push={false}
+              to="/account/profile"
+            />
+            <Route
+              path="/account"
+              render={[Function]}
+            />
+            <Route
+              exact={true}
+              path="/:projectKey"
+              render={[Function]}
+            />
+            <Route
+              exact={true}
+              path="/"
+              render={[Function]}
+            />
+            <Route
+              exact={false}
+              path="/:projectKey"
+              render={[Function]}
+            />
+          </Switch>
+        </div>
       </div>
     </div>
   </React.Fragment>
@@ -280,94 +292,4 @@ exports[`<UnrestrictedApplication> rendering should match layout structure 1`] =
     render={[Function]}
   />
 </Switch>
-`;
-
-exports[`rendering should match main structure 1`] = `
-<ConfigurationProvider
-  configuration={Object {}}
->
-  <ApolloProvider
-    client={
-      ApolloClient {
-        "cache": InMemoryCache {
-          "addTypename": true,
-          "config": Object {
-            "addTypename": true,
-            "dataIdFromObject": [Function],
-            "fragmentMatcher": IntrospectionFragmentMatcher {
-              "isReady": true,
-              "match": [Function],
-              "possibleTypesMap": Object {},
-            },
-            "storeFactory": [Function],
-          },
-          "data": ObjectCache {
-            "data": Object {},
-          },
-          "optimistic": Array [],
-          "silenceBroadcast": false,
-          "watches": Array [],
-        },
-        "defaultOptions": Object {},
-        "disableNetworkFetches": false,
-        "link": ApolloLink {
-          "request": [Function],
-        },
-        "mutate": [Function],
-        "query": [Function],
-        "queryDeduplication": true,
-        "reFetchObservableQueries": [Function],
-        "resetStore": [Function],
-        "resetStoreCallbacks": Array [],
-        "ssrMode": false,
-        "store": DataStore {
-          "cache": InMemoryCache {
-            "addTypename": true,
-            "config": Object {
-              "addTypename": true,
-              "dataIdFromObject": [Function],
-              "fragmentMatcher": IntrospectionFragmentMatcher {
-                "isReady": true,
-                "match": [Function],
-                "possibleTypesMap": Object {},
-              },
-              "storeFactory": [Function],
-            },
-            "data": ObjectCache {
-              "data": Object {},
-            },
-            "optimistic": Array [],
-            "silenceBroadcast": false,
-            "watches": Array [],
-          },
-        },
-        "version": "2.2.5",
-        "watchQuery": [Function],
-      }
-    }
-  >
-    <branch(ConfigureIntlProvider)
-      i18n={
-        Object {
-          "de": Object {},
-          "en": Object {},
-        }
-      }
-    >
-      <React.Fragment>
-        <VersionCheckSubscriber />
-        <Connect(RequestsInFlightLoader) />
-        <BrowserRouter>
-          <IntercomUrlTracker>
-            <GtmBooter
-              trackingEventWhitelist={Object {}}
-            >
-              <Authenticated />
-            </GtmBooter>
-          </IntercomUrlTracker>
-        </BrowserRouter>
-      </React.Fragment>
-    </branch(ConfigureIntlProvider)>
-  </ApolloProvider>
-</ConfigurationProvider>
 `;

@@ -1,11 +1,7 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as globalActions from '@commercetools-local/actions-global';
-import {
-  selectLatestGlobalNotificationAsList,
-  selectPageNotifications,
-  selectSideNotifications,
-} from './reducer';
+import { selectNotificationsByDomain } from './reducer';
 
 export const NotificationsFaC = props =>
   props.children({
@@ -27,30 +23,9 @@ NotificationsFaC.propTypes = {
 };
 NotificationsFaC.displayName = 'NotificationsFaC';
 
-export const isNotificationVisible = (activePlugin, notificationPlugin) => {
-  // When the notification is global we always show it
-  if (!notificationPlugin) return true;
-
-  // when no plugin is active we hide all plugin notifications
-  if (!activePlugin) return false;
-
-  // When a plugin is active we only show notifications of that plugin
-  return activePlugin === notificationPlugin;
-};
-
 const NotificationsConnector = connect(
   state => ({
-    notificationsByDomain: {
-      global: selectLatestGlobalNotificationAsList(state).filter(notification =>
-        isNotificationVisible(state.activePlugin, notification.plugin)
-      ),
-      page: selectPageNotifications(state).filter(notification =>
-        isNotificationVisible(state.activePlugin, notification.plugin)
-      ),
-      side: selectSideNotifications(state).filter(notification =>
-        isNotificationVisible(state.activePlugin, notification.plugin)
-      ),
-    },
+    notificationsByDomain: selectNotificationsByDomain(state),
   }),
   {
     showNotification: globalActions.showNotification,

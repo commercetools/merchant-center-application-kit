@@ -11,6 +11,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import { joinPaths } from '@commercetools-local/utils/url';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-local/constants';
+import PortalsContainer from '@commercetools-local/core/components/portals-container';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
@@ -48,6 +49,9 @@ export const RestrictedApplication = props => (
       <SetupFlopFlipProvider user={user}>
         {({ setProjectKey: syncProjectKeyForFlopFlip }) => (
           <React.Fragment>
+            {/* NOTE: the requests in flight loader will render a loading
+            spinner into the AppBar. */}
+            <RequestsInFlightLoader />
             <IntercomBooter
               intercomTrackingStatus={user && user.tracking_intercom}
               showNotification={props.showNotification}
@@ -90,6 +94,7 @@ export const RestrictedApplication = props => (
                * to achieve the same semantic result
                */}
               <div role="main" className={styles.main}>
+                <PortalsContainer />
                 <NotificationsList
                   domain={DOMAINS.PAGE}
                   notifications={props.notificationsByDomain.page}
@@ -104,80 +109,82 @@ export const RestrictedApplication = props => (
                     props.mapPluginNotificationToComponent
                   }
                 />
-                <Switch>
-                  {/**
-                   * When the user is redirected to /logout he is still logged
-                   * in and thus wer are still in the `authenticated` branch.
-                   * The component won't render anything. It will unauthenticate
-                   * the user and redirect him to /login.
-                   */}
-                  <Route path="/logout" component={Logout} />
-                  <Redirect from="/profile" to="/account/profile" />
-                  <Route
-                    path="/account"
-                    render={({ match }) => (
-                      <Switch>
-                        <Route
-                          path={`${match.path}/profile`}
-                          render={() => (
-                            <AsyncUserProfile
-                              user={user}
-                              showNotification={props.showNotification}
-                              showUnexpectedErrorNotification={
-                                props.showUnexpectedErrorNotification
-                              }
-                            />
+                <div className={styles.content}>
+                  <Switch>
+                    {/**
+                     * When the user is redirected to /logout he is still logged
+                     * in and thus wer are still in the `authenticated` branch.
+                     * The component won't render anything. It will unauthenticate
+                     * the user and redirect him to /login.
+                     */}
+                    <Route path="/logout" component={Logout} />
+                    <Redirect from="/profile" to="/account/profile" />
+                    <Route
+                      path="/account"
+                      render={({ match }) => (
+                        <Switch>
+                          <Route
+                            path={`${match.path}/profile`}
+                            render={() => (
+                              <AsyncUserProfile
+                                user={user}
+                                showNotification={props.showNotification}
+                                showUnexpectedErrorNotification={
+                                  props.showUnexpectedErrorNotification
+                                }
+                              />
+                            )}
+                          />
+                          <Redirect to={joinPaths(match.url, 'profile')} />
+                        </Switch>
+                      )}
+                    />
+                    {/* Project routes */}
+                    {/* Redirect from base project route to dashboard */}
+                    <Route
+                      exact={true}
+                      path="/:projectKey"
+                      render={({ match }) => (
+                        <Redirect to={joinPaths(match.url, 'dashboard')} />
+                      )}
+                    />
+                    <Route
+                      exact={true}
+                      path="/"
+                      render={() => (
+                        <WithProjectKey
+                          user={user}
+                          render={({ projectKey }) => (
+                            // Redirect to the given projectKey
+                            <Redirect to={`/${projectKey}`} />
                           )}
                         />
-                        <Redirect to={joinPaths(match.url, 'profile')} />
-                      </Switch>
-                    )}
-                  />
-                  {/* Project routes */}
-                  {/* Redirect from base project route to dashboard */}
-                  <Route
-                    exact={true}
-                    path="/:projectKey"
-                    render={({ match }) => (
-                      <Redirect to={joinPaths(match.url, 'dashboard')} />
-                    )}
-                  />
-                  <Route
-                    exact={true}
-                    path="/"
-                    render={() => (
-                      <WithProjectKey
-                        user={user}
-                        render={({ projectKey }) => (
-                          // Redirect to the given projectKey
-                          <Redirect to={`/${projectKey}`} />
-                        )}
-                      />
-                    )}
-                  />
-                  <Route
-                    exact={false}
-                    path="/:projectKey"
-                    render={routerProps => (
-                      <React.Fragment>
-                        <IntercomUserTracker
-                          user={user}
-                          projectKey={routerProps.match.params.projectKey}
-                        />
-                        <ProjectContainer
-                          isLoadingUser={isLoading}
-                          user={user}
-                          match={routerProps.match}
-                          setProjectKey={syncProjectKeyForFlopFlip}
-                          // This effectively renders the
-                          // children, which is the application
-                          // specific part
-                          render={props.render}
-                        />
-                      </React.Fragment>
-                    )}
-                  />
-                </Switch>
+                      )}
+                    />
+                    <Route
+                      exact={false}
+                      path="/:projectKey"
+                      render={routerProps => (
+                        <React.Fragment>
+                          <IntercomUserTracker
+                            user={user}
+                            projectKey={routerProps.match.params.projectKey}
+                          />
+                          <ProjectContainer
+                            isLoadingUser={isLoading}
+                            user={user}
+                            match={routerProps.match}
+                            setProjectKey={syncProjectKeyForFlopFlip}
+                            // This effectively renders the
+                            // children, which is the application
+                            // specific part
+                            render={props.render}
+                          />
+                        </React.Fragment>
+                      )}
+                    />
+                  </Switch>
+                </div>
               </div>
             </div>
           </React.Fragment>
@@ -275,9 +282,6 @@ export default class ApplicationShell extends React.Component {
           <ConfigureIntlProvider i18n={this.props.i18n}>
             <React.Fragment>
               <VersionCheckSubscriber />
-              {/* NOTE: this can be removed when we get rid of showing a
-              loading spinner in the app bar */}
-              <RequestsInFlightLoader />
               <Router>
                 <IntercomUrlTracker>
                   <GtmBooter
