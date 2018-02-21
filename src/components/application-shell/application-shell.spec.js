@@ -57,7 +57,7 @@ describe('rendering', () => {
   });
   describe('trackers', () => {
     it('should render <IntercomUrlTracker> below <Router>', () => {
-      expect(wrapper).toRender('BrowserRouter > IntercomUrlTracker');
+      expect(wrapper).toRender('Router > IntercomUrlTracker');
     });
     it('should render <GtmBooter> below <IntercomUrlTracker>', () => {
       expect(wrapper).toRender('IntercomUrlTracker > GtmBooter');

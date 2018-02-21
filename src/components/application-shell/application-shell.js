@@ -1,17 +1,13 @@
 import querystring from 'querystring';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { Router, Redirect, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import { joinPaths } from '@commercetools-local/utils/url';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-local/constants';
 import PortalsContainer from '@commercetools-local/core/components/portals-container';
+import history from '@commercetools-local/browser-history';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
@@ -282,7 +278,7 @@ export default class ApplicationShell extends React.Component {
           <ConfigureIntlProvider i18n={this.props.i18n}>
             <React.Fragment>
               <VersionCheckSubscriber />
-              <Router>
+              <Router history={history}>
                 <IntercomUrlTracker>
                   <GtmBooter
                     trackingEventWhitelist={this.props.trackingEventWhitelist}
