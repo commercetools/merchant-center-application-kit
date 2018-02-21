@@ -13,6 +13,7 @@ import ProjectNotFound from '../project-not-found';
 import ProjectExpired from '../project-expired';
 import ProjectSuspended from '../project-suspended';
 import ProjectWithoutSettings from '../project-without-settings';
+import ErrorApologizer from '../error-apologizer';
 
 class ProjectContainer extends React.Component {
   static displayName = 'ProjectContainer';
@@ -72,6 +73,9 @@ class ProjectContainer extends React.Component {
   }
   componentDidCatch(error, errorInfo) {
     this.setState({ hasError: true });
+    // Note: In development mode componentDidCatch is not based on try-catch
+    // to catch exceptions. Thus exceptions caught here will also be caught in
+    // the global `error` event listener (setup-global-error-listener.js).
     Raven.captureException(error, { extra: errorInfo });
   }
   // Makes it easier to test
@@ -85,19 +89,7 @@ class ProjectContainer extends React.Component {
   );
   render() {
     if (this.state.hasError) {
-      // NOTE: implement proper error view
-      return (
-        <div style={{ backgroundColor: 'red', color: 'white' }}>
-          <h2 style={{ color: 'white' }}>
-            {'Uh-oh, something went wrong in this main area.'}
-          </h2>
-          <p>
-            {
-              'You can still click around, navigate to another view or reload the page. If the error persists please contact our support.'
-            }
-          </p>
-        </div>
-      );
+      return <ErrorApologizer />;
     }
     // TODO: do something if there is an `error`?
     if (this.props.isLoadingUser) return <LoadingSpinner />;
