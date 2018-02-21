@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ProjectQuery from './fetch-project.graphql';
 import { FetchProject, withProject } from './fetch-project';
 
 describe('rendering', () => {
@@ -72,12 +71,6 @@ describe('rendering', () => {
       it('should render FetchProject internally', () => {
         expect(wrapper).toRender('FetchProject');
       });
-    });
-  });
-
-  describe('graphql query', () => {
-    it('should match snapshot', () => {
-      expect(ProjectQuery).toMatchSnapshot();
     });
   });
 });
