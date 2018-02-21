@@ -23,6 +23,9 @@ class ProjectContainer extends React.Component {
         projectKey: PropTypes.string,
       }).isRequired,
     }).isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
     isLoadingUser: PropTypes.bool.isRequired,
     user: PropTypes.shape({
       availableProjects: PropTypes.array.isRequired,
@@ -58,7 +61,10 @@ class ProjectContainer extends React.Component {
       localeSwitcherNode: document.getElementById('locale-switcher'),
     });
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.setState({ hasError: false });
+    }
     const cachedProjectKey = storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
     let nextProjectKey = cachedProjectKey;
     // Ensure to cache the projectKey, in case it changes.
