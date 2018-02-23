@@ -12,6 +12,9 @@ import ProjectContainer from './project-container';
 
 const createTestProps = custom => ({
   match: { params: { projectKey: 'test-1' } },
+  location: {
+    pathname: '/test-project/products',
+  },
   isLoadingUser: false,
   user: { availableProjects: [] },
   setProjectKey: jest.fn(),
@@ -350,7 +353,7 @@ describe('lifecycle', () => {
         props = createTestProps({ match: { params: { projectKey: 'p1' } } });
         storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, 'p1');
         wrapper = shallow(<ProjectContainer {...props} />);
-        wrapper.instance().componentDidUpdate();
+        wrapper.instance().componentDidUpdate(props);
       });
       it('should not update storage', () => {
         expect(storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)).toBe('p1');
@@ -364,7 +367,7 @@ describe('lifecycle', () => {
         props = createTestProps({ match: { params: { projectKey: 'p1' } } });
         storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, 'p2');
         wrapper = shallow(<ProjectContainer {...props} />);
-        wrapper.instance().componentDidUpdate();
+        wrapper.instance().componentDidUpdate(props);
       });
       it('should cache projectKey into storage', () => {
         expect(storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)).toBe('p1');
@@ -372,6 +375,20 @@ describe('lifecycle', () => {
       it('should call setProjectKey', () => {
         expect(props.setProjectKey).toHaveBeenCalledWith('p1');
       });
+    });
+  });
+  describe('when the user navigated to a different route', () => {
+    beforeEach(() => {
+      props = createTestProps();
+      wrapper = shallow(<ProjectContainer {...props} />);
+      wrapper.setState({ hasError: true });
+      wrapper.instance().componentDidUpdate({
+        ...props,
+        location: { pathname: 'test-project/categories' },
+      });
+    });
+    it('should reset the `hasError` state', () => {
+      expect(wrapper).toHaveState('hasError', false);
     });
   });
 });

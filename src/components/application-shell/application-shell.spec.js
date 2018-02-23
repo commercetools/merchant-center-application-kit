@@ -283,7 +283,7 @@ describe('<RestrictedApplication>', () => {
       let routerProps;
       beforeEach(() => {
         routerProps = {
-          location: {},
+          location: { pathname: '/test-project/products' },
           match: { params: { projectKey: 'foo-1' } },
         };
         routeRenderWrapper = shallow(
