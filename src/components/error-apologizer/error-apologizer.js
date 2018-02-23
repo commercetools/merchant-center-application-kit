@@ -9,7 +9,7 @@ const ErrorApologizer = () => (
     title={<FormattedMessage {...messages.title} />}
     paragraph1={
       <Text.Body>
-        <FormattedMessage {...messages.apology} />
+        <FormattedMessage {...messages.notifiedTeam} />
       </Text.Body>
     }
   />
