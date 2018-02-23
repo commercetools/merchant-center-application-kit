@@ -12,7 +12,7 @@
   },
   "scripts": {
     "prestart": "pushd ../../; npm run setup dist-development",
-    "start": "node ../../toolbox/start.js --entryPoint=./packages-shared/application-shell/src/example/for-development.js"
+    "start": "node ../../toolbox/start.js --package=packages-shared/application-shell"
   },
   "dependencies": {
     "@commercetools-local/actions-global": "*",
