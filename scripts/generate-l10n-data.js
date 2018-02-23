@@ -112,7 +112,7 @@ const extractLanguageDataForLocale = locale => {
                   languages[language].territories.reduce(
                     (acc2, territory) =>
                       Object.assign({}, acc2, {
-                        [`${language}_${territory}`]: {
+                        [`${language}-${territory}`]: {
                           language: languageNames[language],
                           country: countries[territory.toLowerCase()],
                         },
