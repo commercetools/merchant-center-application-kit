@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import LoggedInUserQuery from './fetch-user.graphql';
 import { FetchUser, withUser } from './fetch-user';
 
 describe('rendering', () => {
@@ -64,12 +63,6 @@ describe('rendering', () => {
       it('should render FetchUser internally', () => {
         expect(wrapper).toRender('FetchUser');
       });
-    });
-  });
-
-  describe('graphql query', () => {
-    it('should match snapshot', () => {
-      expect(LoggedInUserQuery).toMatchSnapshot();
     });
   });
 });

@@ -30,19 +30,22 @@ exports[`rendering <Formik> form elements should match layout 1`] = `
       }
     />
     <Field
+      className="input-text"
       name="organizationName"
       onChange={[Function]}
       type="text"
       value=""
     />
   </div>
-  <PrimaryButton
-    isDisabled={true}
-    isToggleButton={false}
-    label="Login.sso.proceed"
-    onClick={[MockFunction]}
-    size="big"
-    tone="primary"
-  />
+  <div>
+    <PrimaryButton
+      isDisabled={true}
+      isToggleButton={false}
+      label="Login.sso.proceed"
+      onClick={[MockFunction]}
+      size="big"
+      tone="primary"
+    />
+  </div>
 </div>
 `;

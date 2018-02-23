@@ -57,7 +57,7 @@ describe('rendering', () => {
   });
   describe('trackers', () => {
     it('should render <IntercomUrlTracker> below <Router>', () => {
-      expect(wrapper).toRender('BrowserRouter > IntercomUrlTracker');
+      expect(wrapper).toRender('Router > IntercomUrlTracker');
     });
     it('should render <GtmBooter> below <IntercomUrlTracker>', () => {
       expect(wrapper).toRender('IntercomUrlTracker > GtmBooter');
@@ -283,7 +283,7 @@ describe('<RestrictedApplication>', () => {
       let routerProps;
       beforeEach(() => {
         routerProps = {
-          location: {},
+          location: { pathname: '/test-project/products' },
           match: { params: { projectKey: 'foo-1' } },
         };
         routeRenderWrapper = shallow(

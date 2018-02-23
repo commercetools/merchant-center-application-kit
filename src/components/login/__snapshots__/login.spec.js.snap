@@ -12,72 +12,94 @@ exports[`rendering should match tree 1`] = `
       <fieldset
         className="fieldset"
       >
-        <legend
-          className="title"
+        <Stack
+          alignItems="stretch"
+          scale="m"
         >
-          <Title>
+          <legend
+            className="title"
+          >
+            <Title>
+              <FormattedMessage
+                defaultMessage="Sign in to your account"
+                description="The title message for the login form"
+                id="LoginForm.title"
+                values={Object {}}
+              />
+            </Title>
+          </legend>
+          <Stack
+            alignItems="stretch"
+            scale="m"
+          >
+            <Stack
+              alignItems="stretch"
+              scale="s"
+            >
+              <label
+                className="label"
+                htmlFor="email"
+              >
+                <FormattedMessage
+                  defaultMessage="Email"
+                  description="The label for the login input field (email)"
+                  id="LoginForm.email"
+                  values={Object {}}
+                />
+              </label>
+              <input
+                className="input-text"
+                name="email"
+                onKeyDown={[Function]}
+                type="text"
+              />
+            </Stack>
+            <Stack
+              alignItems="stretch"
+              scale="s"
+            >
+              <label
+                className="label"
+                htmlFor="password"
+              >
+                <FormattedMessage
+                  defaultMessage="Password"
+                  description="The label for the login input field (password)"
+                  id="LoginForm.password"
+                  values={Object {}}
+                />
+              </label>
+              <input
+                className="input-text"
+                name="password"
+                onKeyDown={[Function]}
+                type="password"
+              />
+            </Stack>
+          </Stack>
+          <div>
+            <PrimaryButton
+              isToggleButton={false}
+              label="LoginForm.signin"
+              onClick={[Function]}
+              size="big"
+              tone="primary"
+            />
+          </div>
+          <a
+            className="forgot-pw"
+            data-track-component="ForgotPassword"
+            data-track-event="click"
+            onClick={[Function]}
+          >
             <FormattedMessage
-              defaultMessage="Sign in to your account"
-              description="The title message for the login form"
-              id="LoginForm.title"
+              defaultMessage="Forgot password?"
+              description="The lable of the forgot password link"
+              id="LoginForm.forgotPassword"
               values={Object {}}
             />
-          </Title>
-        </legend>
-        <label
-          className="label"
-          htmlFor="email"
-        >
-          <FormattedMessage
-            defaultMessage="Email"
-            description="The label for the login input field (email)"
-            id="LoginForm.email"
-            values={Object {}}
-          />
-        </label>
-        <input
-          className="input-text"
-          name="email"
-          onKeyDown={[Function]}
-          type="text"
-        />
-        <label
-          className="label"
-          htmlFor="password"
-        >
-          <FormattedMessage
-            defaultMessage="Password"
-            description="The label for the login input field (password)"
-            id="LoginForm.password"
-            values={Object {}}
-          />
-        </label>
-        <input
-          className="input-text"
-          name="password"
-          onKeyDown={[Function]}
-          type="password"
-        />
-        <PrimaryButton
-          isToggleButton={false}
-          label="LoginForm.signin"
-          onClick={[Function]}
-          size="big"
-          tone="primary"
-        />
-        <a
-          className="forgot-pw"
-          data-track-component="ForgotPassword"
-          data-track-event="click"
-          onClick={[Function]}
-        >
-          <FormattedMessage
-            defaultMessage="Forgot password?"
-            description="The lable of the forgot password link"
-            id="LoginForm.forgotPassword"
-            values={Object {}}
-          />
-        </a>
+          </a>
+        </Stack>
       </fieldset>
     </form>
   </LoginBox>

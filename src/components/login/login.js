@@ -5,6 +5,7 @@ import { compose } from 'recompose';
 import classnames from 'classnames';
 import * as sdkActions from '@commercetools-local/sdk/actions';
 import { connect } from 'react-redux';
+import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import PrimaryButton from '@commercetools-local/ui-kit/buttons/primary-button';
 import {
   LOGOUT_REASONS,
@@ -233,58 +234,67 @@ export class Login extends React.PureComponent {
         >
           {this.renderErrorMessage()}
           <fieldset className={styles.fieldset}>
-            <legend className={styles.title}>
-              <Title>
-                <FormattedMessage {...messages.title} />
-              </Title>
-            </legend>
+            <Spacings.Stack scale="m">
+              <legend className={styles.title}>
+                <Title>
+                  <FormattedMessage {...messages.title} />
+                </Title>
+              </legend>
 
-            <label className={styles.label} htmlFor="email">
-              <FormattedMessage {...messages.email} />
-            </label>
-            <input
-              className={styles['input-text']}
-              type="text"
-              name="email"
-              ref={node => {
-                this.email = node;
-              }}
-              onKeyDown={this.handleKeyPress}
-            />
+              <Spacings.Stack scale="m">
+                <Spacings.Stack scale="s">
+                  <label className={styles.label} htmlFor="email">
+                    <FormattedMessage {...messages.email} />
+                  </label>
+                  <input
+                    className={styles['input-text']}
+                    type="text"
+                    name="email"
+                    ref={node => {
+                      this.email = node;
+                    }}
+                    onKeyDown={this.handleKeyPress}
+                  />
+                </Spacings.Stack>
+                <Spacings.Stack scale="s">
+                  <label className={styles.label} htmlFor="password">
+                    <FormattedMessage {...messages.password} />
+                  </label>
+                  <input
+                    className={styles['input-text']}
+                    type="password"
+                    name="password"
+                    onKeyDown={this.handleKeyPress}
+                  />
+                </Spacings.Stack>
+              </Spacings.Stack>
 
-            <label className={styles.label} htmlFor="password">
-              <FormattedMessage {...messages.password} />
-            </label>
-            <input
-              className={styles['input-text']}
-              type="password"
-              name="password"
-              onKeyDown={this.handleKeyPress}
-            />
+              <div>
+                <PrimaryButton
+                  label={
+                    this.state.loading
+                      ? this.props.intl.formatMessage(messages.validating)
+                      : this.props.intl.formatMessage(messages.signin)
+                  }
+                  onClick={this.handleSubmit}
+                />
+              </div>
 
-            <PrimaryButton
-              label={
-                this.state.loading
-                  ? this.props.intl.formatMessage(messages.validating)
-                  : this.props.intl.formatMessage(messages.signin)
-              }
-              onClick={this.handleSubmit}
-            />
-
-            <a
-              className={classnames(styles['forgot-pw'], {
-                [styles.disabled]: this.state.loading,
-              })}
-              data-track-component="ForgotPassword"
-              data-track-event="click"
-              onClick={event =>
-                !this.state.loading
-                  ? this.redirectToForgotPassword(event)
-                  : null
-              }
-            >
-              <FormattedMessage {...messages.forgotPassword} />
-            </a>
+              <a
+                className={classnames(styles['forgot-pw'], {
+                  [styles.disabled]: this.state.loading,
+                })}
+                data-track-component="ForgotPassword"
+                data-track-event="click"
+                onClick={event =>
+                  !this.state.loading
+                    ? this.redirectToForgotPassword(event)
+                    : null
+                }
+              >
+                <FormattedMessage {...messages.forgotPassword} />
+              </a>
+            </Spacings.Stack>
           </fieldset>
         </form>
       </LoginBox>
