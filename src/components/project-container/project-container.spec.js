@@ -35,6 +35,16 @@ describe('rendering', () => {
     props = createTestProps();
     wrapper = shallow(<ProjectContainer {...props} />);
   });
+  describe('when there is an error', () => {
+    beforeEach(() => {
+      props = createTestProps();
+      wrapper = shallow(<ProjectContainer {...props} />);
+      wrapper.setState({ hasError: true });
+    });
+    it('should render a fallback UI', () => {
+      expect(wrapper).toRender('ErrorApologizer');
+    });
+  });
   describe('when user is loading', () => {
     beforeEach(() => {
       props = createTestProps({ isLoadingUser: true });
