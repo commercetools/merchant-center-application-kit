@@ -6,11 +6,6 @@ import { boot as bootSentry } from '../sentry';
 // of catching possible errors.
 bootSentry();
 
-export const unwrapError = eventOrMessage =>
-  eventOrMessage
-    ? eventOrMessage.error || eventOrMessage
-    : new Error('unknown-error');
-
 export default function setupGlobalErrorListener(dispatch) {
   // Capture unhandled errors generated from rejected Promises.
   //
@@ -30,9 +25,7 @@ export default function setupGlobalErrorListener(dispatch) {
   });
 
   // Capture normal global errors coming from non Promise code.
-  // We have to unwrap the error as the MDN docs state that
-  // `onerror` will either be invoked with an event or message.
-  window.addEventListener('error', eventOrMessage => {
-    dispatch(showUnexpectedErrorNotification(unwrapError(eventOrMessage)));
+  window.addEventListener('error', errorEvent => {
+    dispatch(showUnexpectedErrorNotification(errorEvent));
   });
 }

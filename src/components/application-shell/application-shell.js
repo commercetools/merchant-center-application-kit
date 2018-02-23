@@ -170,6 +170,7 @@ export const RestrictedApplication = props => (
                             isLoadingUser={isLoading}
                             user={user}
                             match={routerProps.match}
+                            location={routerProps.location}
                             setProjectKey={syncProjectKeyForFlopFlip}
                             // This effectively renders the
                             // children, which is the application
