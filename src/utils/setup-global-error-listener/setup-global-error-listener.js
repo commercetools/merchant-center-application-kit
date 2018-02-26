@@ -21,11 +21,13 @@ export default function setupGlobalErrorListener(dispatch) {
           'handled. This is most likely a bug in the software. Please ensure ' +
           'that the promise is correctly handled.'
       );
-    dispatch(showUnexpectedErrorNotification(event.reason));
+    dispatch(
+      showUnexpectedErrorNotification({ error: { message: event.reason } })
+    );
   });
 
   // Capture normal global errors coming from non Promise code.
   window.addEventListener('error', errorEvent => {
-    dispatch(showUnexpectedErrorNotification(errorEvent));
+    dispatch(showUnexpectedErrorNotification({ error: errorEvent }));
   });
 }
