@@ -116,7 +116,7 @@ class Foo extends React.Component {
         this.setState({ product });
       },
       error => {
-        this.props.onApiError(error, 'Foo/fetchProductById');
+        this.props.onActionError(error, 'Foo/fetchProductById');
       }
     );
   }
@@ -130,6 +130,6 @@ class Foo extends React.Component {
 // and finally we need to pass the bound action creator to the component using plain old redux
 export default connect(null, {
   fetchProductById: productsActions.fetchProductById,
-  onApiError: globalActions.handleActionError,
+  onActionError: globalActions.handleActionError,
 });
 ```
