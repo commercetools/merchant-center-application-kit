@@ -113,4 +113,8 @@ export default defineMessages({
     id: 'NavBar.ShippingMethods.title',
     defaultMessage: 'Shipping methods',
   },
+  'NavBar.ProductTypes.title': {
+    id: 'NavBar.ProductTypes.title',
+    defaultMessage: 'Product types',
+  },
 });
