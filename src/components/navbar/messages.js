@@ -97,20 +97,16 @@ export default defineMessages({
     id: 'NavBar.Discounts.add',
     defaultMessage: 'Add discount',
   },
-  'NavBar.ProjectSettings.title': {
-    id: 'NavBar.ProjectSettings.title',
+  'NavBar.Settings.title': {
+    id: 'NavBar.Settings.title',
     defaultMessage: 'Settings',
   },
-  'NavBar.Taxes.title': {
-    id: 'NavBar.Taxes.title',
-    defaultMessage: 'Taxes',
+  'NavBar.ProjectSettings.title': {
+    id: 'NavBar.ProjectSettings.title',
+    defaultMessage: 'Project settings',
   },
-  'NavBar.International.title': {
-    id: 'NavBar.International.title',
-    defaultMessage: 'International',
-  },
-  'NavBar.ShippingMethods.title': {
-    id: 'NavBar.ShippingMethods.title',
-    defaultMessage: 'Shipping methods',
+  'NavBar.ProductTypes.title': {
+    id: 'NavBar.ProductTypes.title',
+    defaultMessage: 'Product types',
   },
 });
