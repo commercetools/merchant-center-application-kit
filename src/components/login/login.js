@@ -16,7 +16,6 @@ import { injectConfiguration } from '@commercetools-local/core/components/config
 import Notification from '@commercetools-local/core/components/notification';
 import Title from '@commercetools-local/core/components/title';
 import InfoDialog from '@commercetools-local/core/components/overlays/info-dialog';
-import { withParsedLocation } from '@commercetools-local/react-router-utils';
 import PublicPageContainer from '../public-page-container';
 import LoginBox from '../login-box';
 import styles from './login.mod.css';
@@ -310,6 +309,5 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   injectIntl,
   injectConfiguration(['adminCenterUrl'], 'adminCenterUrl'),
-  withParsedLocation,
   connect(null, mapDispatchToProps)
 )(Login);

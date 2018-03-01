@@ -368,7 +368,7 @@ describe('<UnrestrictedApplication>', () => {
         expect(routeRenderWrapper.find('Redirect')).toHaveProp(
           'to',
           expect.objectContaining({
-            search: expect.stringContaining('reason=unauthorized'),
+            query: expect.objectContaining({ reason: 'unauthorized' }),
           })
         );
       });
@@ -377,7 +377,9 @@ describe('<UnrestrictedApplication>', () => {
           expect(routeRenderWrapper.find('Redirect')).not.toHaveProp(
             'to',
             expect.objectContaining({
-              search: expect.stringContaining('redirectTo'),
+              query: expect.objectContaining({
+                redirectTo: expect.any(String),
+              }),
             })
           );
         });
@@ -400,9 +402,9 @@ describe('<UnrestrictedApplication>', () => {
           expect(routeRenderWrapper.find('Redirect')).toHaveProp(
             'to',
             expect.objectContaining({
-              search: expect.stringContaining(
-                `redirectTo=${encodeURIComponent('/foo-1/products')}`
-              ),
+              query: expect.objectContaining({
+                redirectTo: '/foo-1/products',
+              }),
             })
           );
         });

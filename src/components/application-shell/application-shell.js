@@ -1,4 +1,3 @@
-import querystring from 'querystring';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Router, Redirect, Route, Switch } from 'react-router-dom';
@@ -223,19 +222,19 @@ export const UnrestrictedApplication = () => (
         // as usual but as soon as he logs in, he'll be redirected to the
         // location that he tried to access before. This is handled by the
         // query parameter `redirectTo`.
-        const searchQuery = querystring.stringify({
+        const searchQuery = {
           reason: LOGOUT_REASONS.UNAUTHORIZED,
           // This will be used after being logged in,
           // to redirect to this location.
           ...(location.pathname === '/'
             ? {}
             : { redirectTo: location.pathname }),
-        });
+        };
         return (
           <Redirect
             to={{
               pathname: '/login',
-              search: `?${searchQuery}`,
+              query: searchQuery,
             }}
           />
         );
