@@ -60,6 +60,7 @@ describe('dispatching notifications', () => {
         },
         meta: {
           dismissAfter: 0,
+          error: 'oops',
         },
       })
     );

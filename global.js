@@ -46,6 +46,7 @@ export function showUnexpectedErrorNotification({ error, source, errorId }) {
     },
     {
       dismissAfter: 0,
+      error,
     }
   );
 }
