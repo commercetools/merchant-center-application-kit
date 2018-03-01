@@ -27,7 +27,9 @@ const loggerMiddleware = createLogger({
     nextState: () => '#4CAF50',
     error: () => '#F20404',
   },
-  diff: true,
+  // WARNING: Enabling this option causes huge performance degradation.
+  // Only enable if you want detailed debugging.
+  diff: false,
   predicate: (getState, action) => {
     if (!action) return false;
 
