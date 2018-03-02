@@ -21,7 +21,6 @@
     "@commercetools-local/core": "*",
     "@commercetools-local/l10n": "*",
     "@commercetools-local/notifications": "*",
-    "@commercetools-local/react-router-utils": "*",
     "@commercetools-local/sdk": "*",
     "@commercetools-local/test-utils": "*",
     "@commercetools-local/ui-kit": "*",

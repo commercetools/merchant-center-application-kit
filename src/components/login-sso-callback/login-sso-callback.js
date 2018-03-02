@@ -6,7 +6,6 @@ import * as storage from '@commercetools-local/utils/storage';
 import * as sdkActions from '@commercetools-local/sdk/actions';
 import { connect } from 'react-redux';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
-import { withParsedLocation } from '@commercetools-local/react-router-utils';
 import ApplicationLoader from '../application-loader';
 import FailedAuthentication from '../failed-authentication';
 
@@ -72,7 +71,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default compose(
-  withParsedLocation,
   withProps(() => ({ redirectTo: target => window.location.replace(target) })),
   connect(null, mapDispatchToProps)
 )(LoginSSOCallback);
