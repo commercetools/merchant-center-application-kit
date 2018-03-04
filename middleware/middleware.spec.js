@@ -37,6 +37,7 @@ describe('when the action is of type SDK', () => {
           uri: expect.any(String),
           method: 'GET',
           headers: {
+            Accept: 'application/json',
             Authorization: globalAppState.token,
           },
         });
@@ -242,6 +243,7 @@ describe('when the action is of type SDK', () => {
         uri: expect.any(String),
         method: 'GET',
         headers: {
+          Accept: 'application/json',
           Authorization: globalAppState.token,
         },
       });
@@ -275,6 +277,7 @@ describe('when the action is of type SDK', () => {
         uri: expect.any(String),
         method: 'POST',
         headers: {
+          Accept: 'application/json',
           Authorization: globalAppState.token,
         },
         body: expect.any(Object),

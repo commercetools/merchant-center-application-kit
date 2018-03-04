@@ -89,6 +89,7 @@ export default ({ dispatch, getState }) => next => action => {
     // https://github.com/commercetools/nodejs/issues/390
     const sendRequest = ({ shouldRenewToken } = {}) => {
       const headers = {
+        Accept: 'application/json',
         Authorization: selectToken(state),
         ...(action.payload.headers || {}),
         ...(shouldRenewToken ? { 'X-Force-Token': 'true' } : {}),
