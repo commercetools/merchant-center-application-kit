@@ -107,6 +107,6 @@ export default defineMessages({
   },
   'NavBar.ProductTypes.title': {
     id: 'NavBar.ProductTypes.title',
-    defaultMessage: 'Product types',
+    defaultMessage: 'Product Types',
   },
 });
