@@ -18,6 +18,7 @@ const backendUrl = `${protocol}://${host}`;
 const httpMiddleware = createHttpMiddleware({
   host: backendUrl,
   includeResponseHeaders: true,
+  credentialsMode: 'include',
 });
 const client = createClient({
   middlewares: [userAgentMiddleware, httpMiddleware],
