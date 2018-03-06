@@ -2,7 +2,10 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { UnconnectedRestrictedByPermissions } from '@commercetools-local/core/components/with-permissions';
 import * as storage from '@commercetools-local/utils/storage';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
+import {
+  STORAGE_KEYS as CORE_STORAGE_KEYS,
+  PLUGIN_NAMES,
+} from '@commercetools-local/constants';
 import {
   NavBar,
   DataMenu,
@@ -10,6 +13,7 @@ import {
   MenuItem,
   MenuGroup,
   MenuExpander,
+  MenuItemDivider,
   ToggledWithPermissions,
 } from './navbar';
 
@@ -121,7 +125,30 @@ describe('rendering', () => {
     it('should render <ToggledWithPermissions>', () => {
       expect(wrapper.find('MenuGroup').at(0)).toRender(ToggledWithPermissions);
     });
-    describe('<ToggledWithPermissions>', () => {
+    describe('when rendering the settings menu', () => {
+      beforeEach(() => {
+        props = createDataMenuTestProps({
+          data: [
+            {
+              name: 'mcng-project-settings',
+              menu: {
+                name: PLUGIN_NAMES.SETTINGS,
+                labelKey: 'NavBar.Customers.title',
+                link: 'customers',
+                icon: 'CustomerFilledIcon',
+                permissions: [{ mode: 'view', resource: 'customers' }],
+                featureToggle: 'customerList',
+              },
+            },
+          ],
+        });
+        wrapper = shallow(<DataMenu {...props} />);
+      });
+      it('should render a MenuItemDivider', () => {
+        expect(wrapper.find('MenuGroup').first()).toRender(MenuItemDivider);
+      });
+    });
+    describe('when rendering any other menu', () => {
       beforeEach(() => {
         props = createDataMenuTestProps({
           data: [
@@ -140,21 +167,28 @@ describe('rendering', () => {
         });
         wrapper = shallow(<DataMenu {...props} />);
       });
-      it('should pass featureToggle as prop', () => {
-        expect(
-          wrapper
-            .find('MenuGroup')
-            .at(0)
-            .find(ToggledWithPermissions)
-        ).toHaveProp('featureToggle', 'customerList');
+      it('should not render a MenuItemDivider', () => {
+        expect(wrapper.find('MenuGroup').first()).not.toRender(MenuItemDivider);
       });
-      it('should pass permissions as prop', () => {
-        expect(
-          wrapper
-            .find('MenuGroup')
-            .at(0)
-            .find(ToggledWithPermissions)
-        ).toHaveProp('permissions', [{ mode: 'view', resource: 'customers' }]);
+      describe('<ToggledWithPermissions>', () => {
+        it('should pass featureToggle as prop', () => {
+          expect(
+            wrapper
+              .find('MenuGroup')
+              .at(0)
+              .find(ToggledWithPermissions)
+          ).toHaveProp('featureToggle', 'customerList');
+        });
+        it('should pass permissions as prop', () => {
+          expect(
+            wrapper
+              .find('MenuGroup')
+              .at(0)
+              .find(ToggledWithPermissions)
+          ).toHaveProp('permissions', [
+            { mode: 'view', resource: 'customers' },
+          ]);
+        });
       });
     });
     describe('<MenuItem>', () => {
@@ -759,6 +793,17 @@ describe('rendering', () => {
       it('should render hidden class', () => {
         expect(wrapper.find('li')).toHaveClassName('hidden');
       });
+    });
+  });
+  describe('<MenuItemDivider>', () => {
+    beforeEach(() => {
+      wrapper = shallow(<MenuItemDivider />);
+    });
+    it('should render a div with className `divider-first-item`', () => {
+      expect(wrapper).toRender({ className: 'divider-first-item' });
+    });
+    it('should render a div with className `divider-second-item`', () => {
+      expect(wrapper).toRender({ className: 'divider-second-item' });
     });
   });
 });

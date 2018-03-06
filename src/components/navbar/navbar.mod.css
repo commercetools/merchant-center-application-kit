@@ -308,3 +308,11 @@
 .hidden {
   display: none;
 }
+
+.divider-first-item {
+  border-top: 1px solid var(--color-black);
+}
+
+.divider-second-item {
+  border-top: 1px solid var(--color-bluePolice);
+}
