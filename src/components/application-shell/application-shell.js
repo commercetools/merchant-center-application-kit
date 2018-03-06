@@ -26,7 +26,7 @@ import IntercomUrlTracker from '../intercom-url-tracker';
 import IntercomUserTracker from '../intercom-user-tracker';
 import IntercomBooter from '../intercom-booter';
 import SentryUserTracker from '../sentry-user-tracker';
-import VersionCheckSubscriber from '../version-check-subscriber';
+// import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
 import GtmBooter from '../gtm-booter';
@@ -277,7 +277,7 @@ export default class ApplicationShell extends React.Component {
         <ApolloProvider client={apolloClient}>
           <ConfigureIntlProvider i18n={this.props.i18n}>
             <React.Fragment>
-              <VersionCheckSubscriber />
+              {/* <VersionCheckSubscriber /> */}
               <Router history={history}>
                 <IntercomUrlTracker>
                   <GtmBooter
