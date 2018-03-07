@@ -2,10 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { UnconnectedRestrictedByPermissions } from '@commercetools-local/core/components/with-permissions';
 import * as storage from '@commercetools-local/utils/storage';
-import {
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-  PLUGIN_NAMES,
-} from '@commercetools-local/constants';
+import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import {
   NavBar,
   DataMenu,
@@ -132,12 +129,12 @@ describe('rendering', () => {
             {
               name: 'mcng-project-settings',
               menu: {
-                name: PLUGIN_NAMES.SETTINGS,
-                labelKey: 'NavBar.Customers.title',
-                link: 'customers',
+                name: 'Settings',
+                labelKey: 'NavBar.Settings.title',
+                link: 'settings',
                 icon: 'CustomerFilledIcon',
-                permissions: [{ mode: 'view', resource: 'customers' }],
-                featureToggle: 'customerList',
+                permissions: [{ mode: 'manage', resource: 'project' }],
+                featureToggle: 'projectSettings',
               },
             },
           ],
@@ -177,6 +174,7 @@ describe('rendering', () => {
               .find('MenuGroup')
               .at(0)
               .find(ToggledWithPermissions)
+              .at(1)
           ).toHaveProp('featureToggle', 'customerList');
         });
         it('should pass permissions as prop', () => {
@@ -185,6 +183,7 @@ describe('rendering', () => {
               .find('MenuGroup')
               .at(0)
               .find(ToggledWithPermissions)
+              .at(1)
           ).toHaveProp('permissions', [
             { mode: 'view', resource: 'customers' },
           ]);

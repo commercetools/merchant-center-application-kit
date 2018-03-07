@@ -13,10 +13,7 @@ import {
   createPermissionsMatchingToProps,
   UnconnectedRestrictedByPermissions,
 } from '@commercetools-local/core/components/with-permissions';
-import {
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-  PLUGIN_NAMES,
-} from '@commercetools-local/constants';
+import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import { withProject } from '../fetch-project';
 import styles from './navbar.mod.css';
@@ -35,6 +32,10 @@ import messages from './messages';
   <MenuExpander/>
 </DataMenu>
 */
+
+const PLUGIN_NAMES = {
+  SETTINGS: 'settings',
+};
 
 export const MenuExpander = props => (
   <li
@@ -355,10 +356,22 @@ export class DataMenu extends React.PureComponent {
           const isActive = this.state.activeItemIndex === index;
           const MenuIcon = Icons[menu.icon];
           const baseIconTheme =
-            menu.name === PLUGIN_NAMES.SETTINGS ? 'grey' : 'white';
+            menu.name.toLowerCase() === PLUGIN_NAMES.SETTINGS
+              ? 'grey'
+              : 'white';
           return (
             <React.Fragment key={name}>
-              {menu.name === PLUGIN_NAMES.SETTINGS && <MenuItemDivider />}
+              <ToggledWithPermissions
+                featureToggle={menu.featureToggle}
+                permissions={menu.permissions}
+                actualPermissions={this.props.projectPermissions}
+              >
+                {menu.name.toLowerCase() === PLUGIN_NAMES.SETTINGS ? (
+                  <MenuItemDivider />
+                ) : (
+                  <div />
+                )}
+              </ToggledWithPermissions>
               <ToggledWithPermissions
                 featureToggle={menu.featureToggle}
                 permissions={menu.permissions}
