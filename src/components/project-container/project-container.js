@@ -82,6 +82,7 @@ class ProjectContainer extends React.Component {
     // Note: In development mode componentDidCatch is not based on try-catch
     // to catch exceptions. Thus exceptions caught here will also be caught in
     // the global `error` event listener (setup-global-error-listener.js).
+    // see: https://github.com/facebook/react/issues/10474
     sentry.reportError(error, { extra: errorInfo });
   }
   // Makes it easier to test
