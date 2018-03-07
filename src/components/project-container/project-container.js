@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import Raven from 'raven-js';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
+import * as sentry from '../../utils/sentry';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectDataLocale from '../project-data-locale';
 import FetchProject from '../fetch-project';
@@ -82,7 +82,7 @@ class ProjectContainer extends React.Component {
     // Note: In development mode componentDidCatch is not based on try-catch
     // to catch exceptions. Thus exceptions caught here will also be caught in
     // the global `error` event listener (setup-global-error-listener.js).
-    Raven.captureException(error, { extra: errorInfo });
+    sentry.reportError(error, { extra: errorInfo });
   }
   // Makes it easier to test
   renderSwitcher = switcherProps => (
