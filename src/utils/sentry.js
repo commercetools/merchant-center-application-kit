@@ -5,6 +5,7 @@ export const boot = () => {
     Raven.config(window.app.tracking.sentry, {
       release: window.app.revision,
       tags: { role: 'frontend' },
+      environment: window.app.env,
     }).install();
 };
 
