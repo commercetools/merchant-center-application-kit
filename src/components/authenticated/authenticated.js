@@ -14,6 +14,6 @@ Authenticated.propTypes = {
 export default compose(
   setDisplayName('Authenticated'),
   withProps(() => ({
-    isLoggedIn: Boolean(storage.get(CORE_STORAGE_KEYS.TOKEN)),
+    isLoggedIn: Boolean(storage.get(CORE_STORAGE_KEYS.IS_AUTHENTICATED)),
   }))
 )(Authenticated);

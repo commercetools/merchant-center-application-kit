@@ -32,6 +32,6 @@ ConfigureIntlProvider.propTypes = {
 };
 
 export default branch(
-  () => Boolean(storage.get(CORE_STORAGE_KEYS.TOKEN)),
+  () => Boolean(storage.get(CORE_STORAGE_KEYS.IS_AUTHENTICATED)),
   withUser()
 )(ConfigureIntlProvider);

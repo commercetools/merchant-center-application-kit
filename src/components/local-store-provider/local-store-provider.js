@@ -85,6 +85,8 @@ export class LocalStoreProvider extends React.Component {
   });
 
   mapUserAndProjectToState = () => ({
+    // TODO: remove once we use cookies
+    // #cookie
     token: storage.get(CORE_STORAGE_KEYS.TOKEN),
     // This is the "selected project language", a.k.a the selected locale for the localized project data.
     language: storage.get(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE),

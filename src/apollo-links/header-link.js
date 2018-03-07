@@ -16,14 +16,12 @@ export const createHeaderLink = ({ storage }) =>
         `GraphQL target "${target}" is missing or is not supported`
       );
 
-    const token = storage.get(CORE_STORAGE_KEYS.TOKEN);
     const projectKey = storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
     // NOTE: keep header names with capital letters to avoid possible conflicts
     // or problems with nginx.
     operation.setContext({
       headers: {
         Accept: 'application/json',
-        Authorization: token,
         'X-Project-Key': projectKey,
         'X-Graphql-Target': target,
       },

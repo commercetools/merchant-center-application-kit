@@ -10,12 +10,12 @@ import {
 // user to the login page resetting the store and showing the proper message
 export const createErrorLink = ({ history, storage }) =>
   onError(({ networkError }) => {
-    const token = storage.get(CORE_STORAGE_KEYS.TOKEN);
+    const isAuthenticated = storage.get(CORE_STORAGE_KEYS.IS_AUTHENTICATED);
 
     if (
       networkError &&
       networkError.statusCode === STATUS_CODES.UNAUTHORIZED &&
-      token
+      isAuthenticated
     )
       history.push(`/logout?reason=${LOGOUT_REASONS.UNAUTHORIZED}`);
   });

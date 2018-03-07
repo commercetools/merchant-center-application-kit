@@ -43,7 +43,18 @@ export class LoginSSOCallback extends React.PureComponent {
           organization: this.props.location.query.organizationId,
         })
         .then(payload => {
-          storage.put(CORE_STORAGE_KEYS.TOKEN, payload.token);
+          // TODO: remove once we switch to cookie base auth
+          // #cookie
+          if (payload.token)
+            storage.put(CORE_STORAGE_KEYS.TOKEN, payload.token);
+          // Set a flag to indicate that the user has been authenticated
+          storage.put(CORE_STORAGE_KEYS.IS_AUTHENTICATED, true);
+          // Store the IdP Url, useful for redirecting logic on logout.
+          storage.put(
+            CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL,
+            payload.identityProviderUrl
+          );
+
           this.props.redirectTo('/');
         })
         .catch(() => {

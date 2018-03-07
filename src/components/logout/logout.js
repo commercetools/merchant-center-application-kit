@@ -1,10 +1,7 @@
-import jwtDecode from 'jwt-decode';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withProps } from 'recompose';
 import {
-  ACCESS_TOKEN_NAMESPACE,
-  ACCESS_TOKEN_IDP_URL_KEY,
   STORAGE_KEYS as CORE_STORAGE_KEYS,
   LOGIN_STRATEGY_DEFAULT,
   LOGIN_STRATEGY_SSO,
@@ -15,25 +12,8 @@ import SentryUserLogoutTracker from '../sentry-user-logout-tracker';
 import GtmUserLogoutTracker from '../gtm-user-logout-tracker';
 
 export const getLoginStrategy = () => {
-  const accessToken = storage.get(CORE_STORAGE_KEYS.TOKEN);
-
-  if (!accessToken) return null;
-  let token;
-  try {
-    // If the access token is not a JWT or is malformed, this function will
-    // throw an error, possibly putting the application into a wrong state.
-    // If an error is thrown we just catch it and ignore it, resulting in the
-    // "login strategy" to be set to default.
-    token = jwtDecode(accessToken);
-  } catch (e) {
-    token = {};
-  }
-  return {}.hasOwnProperty.call(
-    token,
-    `${ACCESS_TOKEN_NAMESPACE}${ACCESS_TOKEN_IDP_URL_KEY}`
-  )
-    ? LOGIN_STRATEGY_SSO
-    : LOGIN_STRATEGY_DEFAULT;
+  const idpUrl = storage.get(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL);
+  return idpUrl ? LOGIN_STRATEGY_SSO : LOGIN_STRATEGY_DEFAULT;
 };
 
 export class Logout extends React.PureComponent {
@@ -65,7 +45,10 @@ export class Logout extends React.PureComponent {
     }
 
     // remove the access token from local storage
+    // #cookie
     storage.remove(CORE_STORAGE_KEYS.TOKEN);
+    // The user is no longer authenticated.
+    storage.remove(CORE_STORAGE_KEYS.IS_AUTHENTICATED);
     // NOTE: we need to ensure the cached projectKey is removed, because
     // the user can log in with another account and most likely he won't
     // access to the cached project.

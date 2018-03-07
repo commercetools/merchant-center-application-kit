@@ -1,8 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import {
-  ACCESS_TOKEN_NAMESPACE,
-  ACCESS_TOKEN_IDP_URL_KEY,
+  ACCESS_TOKEN_IDP_URL,
   STORAGE_KEYS as CORE_STORAGE_KEYS,
 } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
@@ -46,6 +45,9 @@ describe('componentDidMount', () => {
   });
   it('should remove token from storage', () => {
     expect(storage.get(CORE_STORAGE_KEYS.TOKEN)).toBe(null);
+  });
+  it('should remove isAuthenticated from storage', () => {
+    expect(storage.get(CORE_STORAGE_KEYS.IS_AUTHENTICATED)).toBe(null);
   });
   it('should remove projectKey from storage', () => {
     expect(storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)).toBe(null);
@@ -94,7 +96,7 @@ describe('getLoginStrategy', () => {
       beforeEach(() => {
         mockJWTDecode.mockClear();
         mockJWTDecode = jest.fn(() => ({
-          [`${ACCESS_TOKEN_NAMESPACE}${ACCESS_TOKEN_IDP_URL_KEY}`]: 'https://idp.com',
+          [ACCESS_TOKEN_IDP_URL]: 'https://idp.com',
         }));
         storage.put(CORE_STORAGE_KEYS.TOKEN, 'xxx');
       });

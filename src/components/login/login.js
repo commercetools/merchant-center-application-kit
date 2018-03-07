@@ -84,7 +84,15 @@ export class Login extends React.PureComponent {
       })
       .then(payload => {
         this.setState({ loading: false });
-        storage.put(CORE_STORAGE_KEYS.TOKEN, payload.token);
+        // TODO: remove once we switch to cookie base auth
+        // #cookie
+        if (payload.token) storage.put(CORE_STORAGE_KEYS.TOKEN, payload.token);
+        // Set a flag to indicate that the user has been authenticated
+        storage.put(CORE_STORAGE_KEYS.IS_AUTHENTICATED, true);
+        // Ensure to remove the IdP Url value from local storage, as in this
+        // case login is not done through SSO.
+        storage.remove(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL);
+        // Redirect to a `redirectTo` url, if present, otherwise to defaul route
         this.props.history.push(this.props.location.query.redirectTo || '/');
       })
       .catch(error => {
