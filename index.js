@@ -130,8 +130,3 @@ export const GRAPHQL_TARGETS = {
   DASHBOARD_SERVICE: 'dashboard',
   PIM_INDEXER: 'pim-indexer',
 };
-
-// Plugin Names for the menu items
-export const PLUGIN_NAMES = {
-  SETTINGS: 'Settings',
-};
