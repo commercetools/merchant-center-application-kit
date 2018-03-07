@@ -1,4 +1,4 @@
-import { reportErrorFactory } from './sentry';
+import { createErrorReporter } from './sentry';
 
 const createDebugLogger = () => ({
   error: jest.fn(),
@@ -22,7 +22,7 @@ describe('with "production"-environment', () => {
   beforeEach(() => {
     debugLogger = createDebugLogger();
     productionLogger = createProductionLogger();
-    reportError = reportErrorFactory(
+    reportError = createErrorReporter(
       'production',
       debugLogger,
       productionLogger
@@ -81,7 +81,7 @@ describe('with "development"-environment', () => {
   beforeEach(() => {
     debugLogger = createDebugLogger();
     productionLogger = createProductionLogger();
-    reportError = reportErrorFactory(
+    reportError = createErrorReporter(
       'development',
       debugLogger,
       productionLogger
@@ -128,7 +128,7 @@ describe('with "test"-environment', () => {
   beforeEach(() => {
     debugLogger = createDebugLogger();
     productionLogger = createProductionLogger();
-    reportError = reportErrorFactory('test', debugLogger, productionLogger);
+    reportError = createErrorReporter('test', debugLogger, productionLogger);
     error = new Error('Boom');
     reportError(error);
   });
