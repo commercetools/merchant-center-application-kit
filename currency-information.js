@@ -10,7 +10,7 @@ export const currenciesShape = PropTypes.objectOf(
  * a function that asynchronously loads the country data.
  */
 const getCurrenciesForLocale = (locale, cb) =>
-  import(`./data/currencies/${locale}.json`)
+  import(`./data/currencies/${locale}.json` /* webpackChunkName: "currency-data" */)
     .then(currencies => cb(null, currencies))
     .catch(() => cb(new Error(`Unknown locale ${locale}`)));
 

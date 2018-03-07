@@ -8,7 +8,7 @@ export const countriesShape = PropTypes.objectOf(PropTypes.string);
  * a function that asynchronously loads the country data.
  */
 const getCountriesForLocale = (locale, cb) =>
-  import(`./data/countries/${locale}.json`)
+  import(`./data/countries/${locale}.json` /* webpackChunkName: "country-data" */)
     .then(countries => cb(null, countries))
     .catch(() => cb(new Error(`Unknown locale ${locale}`)));
 
