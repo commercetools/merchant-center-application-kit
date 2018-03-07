@@ -174,7 +174,6 @@ describe('rendering', () => {
               .find('MenuGroup')
               .at(0)
               .find(ToggledWithPermissions)
-              .at(1)
           ).toHaveProp('featureToggle', 'customerList');
         });
         it('should pass permissions as prop', () => {
@@ -183,7 +182,6 @@ describe('rendering', () => {
               .find('MenuGroup')
               .at(0)
               .find(ToggledWithPermissions)
-              .at(1)
           ).toHaveProp('permissions', [
             { mode: 'view', resource: 'customers' },
           ]);

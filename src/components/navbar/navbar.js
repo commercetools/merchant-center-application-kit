@@ -360,23 +360,16 @@ export class DataMenu extends React.PureComponent {
               ? 'grey'
               : 'white';
           return (
-            <React.Fragment key={name}>
-              <ToggledWithPermissions
-                featureToggle={menu.featureToggle}
-                permissions={menu.permissions}
-                actualPermissions={this.props.projectPermissions}
-              >
-                {menu.name.toLowerCase() === PLUGIN_NAMES.SETTINGS ? (
+            <ToggledWithPermissions
+              key={name}
+              featureToggle={menu.featureToggle}
+              permissions={menu.permissions}
+              actualPermissions={this.props.projectPermissions}
+            >
+              <React.Fragment>
+                {menu.name.toLowerCase() === PLUGIN_NAMES.SETTINGS && (
                   <MenuItemDivider />
-                ) : (
-                  <div />
                 )}
-              </ToggledWithPermissions>
-              <ToggledWithPermissions
-                featureToggle={menu.featureToggle}
-                permissions={menu.permissions}
-                actualPermissions={this.props.projectPermissions}
-              >
                 <MenuItem
                   hasSubmenu={Boolean(menu.submenu)}
                   isActive={isActive}
@@ -454,8 +447,8 @@ export class DataMenu extends React.PureComponent {
                       : null}
                   </MenuGroup>
                 </MenuItem>
-              </ToggledWithPermissions>
-            </React.Fragment>
+              </React.Fragment>
+            </ToggledWithPermissions>
           );
         })}
         <MenuExpander
