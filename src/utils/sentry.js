@@ -27,20 +27,20 @@ export const reportErrorFactory = (
   productionLogger = Raven
 ) => error => {
   if (error instanceof Error === false && environment === 'development') {
-    /* eslint-disable no-console */
     debugLogger.warn(
-      `
-        You called 'sentry.reportError' with an argument that is not an instance of 'Error'.
-        'Error' should be preferred so that a stack-trace can be made available in sentry.
-
-        See: https://docs.sentry.io/clients/javascript/usage/#try-catch
-      `
+      '[SENTRY]: You called "sentry.reportError" with an argument that is not an instance of "Error". ' +
+        '"Error" should be preferred so that a stack-trace can be made available in sentry. ' +
+        'See: https://docs.sentry.io/clients/javascript/usage/#try-catch'
     );
   }
 
   if (environment === 'production') {
     // logs error to sentry
-    productionLogger.captureException(error);
+    if (error instanceof Error) {
+      productionLogger.captureException(error);
+    } else {
+      productionLogger.captureMessage(error);
+    }
 
     // Generate a unique ID referring to the last generated Sentry error
     const errorId = productionLogger.lastEventId();
@@ -48,10 +48,9 @@ export const reportErrorFactory = (
     // The error stack should be available in Sentry, so there is no
     // need to print it in the console as well.
     // We just notify that an error occurred and provide the error ID.
-    /* eslint-disable no-console */
-    debugLogger.error(`An error occured (ID: ${errorId}).`);
+    debugLogger.error(`[SENTRY]: An error occured (ID: ${errorId}).`);
   } else if (environment === 'development') {
-    debugLogger.error(error);
+    debugLogger.error('[SENTRY]:', error);
   }
 };
 

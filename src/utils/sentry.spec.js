@@ -9,6 +9,7 @@ const createDebugLogger = () => ({
 const mockId = 'mock-id';
 const createProductionLogger = () => ({
   captureException: jest.fn(),
+  captureMessage: jest.fn(),
   lastEventId: jest.fn(() => mockId),
 });
 
@@ -26,23 +27,48 @@ describe('with "production"-environment', () => {
       debugLogger,
       productionLogger
     );
-
-    error = new Error('Boom');
-    reportError(error);
   });
 
-  it('it should should call `productionLogger.captureException` once', () => {
-    expect(productionLogger.captureException).toHaveBeenCalledTimes(1);
+  describe('with an instance of `Error` as argument', () => {
+    beforeEach(() => {
+      error = new Error('Boom');
+      reportError(error);
+    });
+
+    it('it should should call `productionLogger.captureException` once', () => {
+      expect(productionLogger.captureException).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call `productionLogger.captureException` with the error-object', () => {
+      expect(productionLogger.captureException).toHaveBeenCalledWith(error);
+    });
+
+    it('should call `debugLogger.error` with the generated `errorId`', () => {
+      expect(debugLogger.error).toHaveBeenCalledWith(
+        expect.stringContaining(mockId)
+      );
+    });
   });
 
-  it('should call `productionLogger.captureException` with the error-object', () => {
-    expect(productionLogger.captureException).toHaveBeenCalledWith(error);
-  });
+  describe('with a string as argument', () => {
+    beforeEach(() => {
+      error = 'Boom';
+      reportError(error);
+    });
 
-  it('should call `debugLogger.error` with the generated `errorId`', () => {
-    expect(debugLogger.error).toHaveBeenCalledWith(
-      expect.stringContaining(mockId)
-    );
+    it('it should should call `productionLogger.captureException` once', () => {
+      expect(productionLogger.captureMessage).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call `productionLogger.captureException` with the error-object', () => {
+      expect(productionLogger.captureMessage).toHaveBeenCalledWith(error);
+    });
+
+    it('should call `debugLogger.error` with the generated `errorId`', () => {
+      expect(debugLogger.error).toHaveBeenCalledWith(
+        expect.stringContaining(mockId)
+      );
+    });
   });
 });
 
@@ -73,7 +99,7 @@ describe('with "development"-environment', () => {
     });
 
     it('should call `debugLogger.error` with `error`', () => {
-      expect(debugLogger.error).toHaveBeenCalledWith(error);
+      expect(debugLogger.error).toHaveBeenCalledWith(expect.any(String), error);
     });
   });
 
@@ -88,7 +114,7 @@ describe('with "development"-environment', () => {
     });
 
     it('should call `debugLogger.error` with `error`', () => {
-      expect(debugLogger.error).toHaveBeenCalledWith(error);
+      expect(debugLogger.error).toHaveBeenCalledWith(expect.any(String), error);
     });
   });
 });
