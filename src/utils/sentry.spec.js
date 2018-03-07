@@ -40,7 +40,17 @@ describe('with "production"-environment', () => {
     });
 
     it('should call `productionLogger.captureException` with the error-object', () => {
-      expect(productionLogger.captureException).toHaveBeenCalledWith(error);
+      expect(productionLogger.captureException).toHaveBeenCalledWith(
+        error,
+        undefined
+      );
+    });
+
+    it('should call `productionLogger.captureException` with undefined as the second argument', () => {
+      expect(productionLogger.captureException).toHaveBeenCalledWith(
+        expect.anything(),
+        undefined
+      );
     });
 
     it('should call `debugLogger.error` with the generated `errorId`', () => {
@@ -61,12 +71,33 @@ describe('with "production"-environment', () => {
     });
 
     it('should call `productionLogger.captureException` with the error-object', () => {
-      expect(productionLogger.captureMessage).toHaveBeenCalledWith(error);
+      expect(productionLogger.captureMessage).toHaveBeenCalledWith(
+        error,
+        undefined
+      );
     });
 
     it('should call `debugLogger.error` with the generated `errorId`', () => {
       expect(debugLogger.error).toHaveBeenCalledWith(
         expect.stringContaining(mockId)
+      );
+    });
+  });
+
+  describe('with `extraInfo` as second argument', () => {
+    let extraInfo;
+    beforeEach(() => {
+      error = new Error('Boom');
+      extraInfo = {
+        level: 'info',
+      };
+      reportError(error, extraInfo);
+    });
+
+    it('should call `productionLogger.captureException` with the error-object', () => {
+      expect(productionLogger.captureException).toHaveBeenCalledWith(
+        expect.anything(),
+        extraInfo
       );
     });
   });

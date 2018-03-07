@@ -26,7 +26,7 @@ export const createErrorReporter = (
   environment,
   debugLogger = console,
   productionLogger = Raven
-) => error => {
+) => (error, extraInfo) => {
   if (error instanceof Error === false && environment === 'development') {
     debugLogger.warn(
       '[SENTRY]: You called "sentry.reportError" with an argument that is not an instance of "Error". ' +
@@ -38,9 +38,9 @@ export const createErrorReporter = (
   if (environment === 'production') {
     // logs error to sentry
     if (error instanceof Error) {
-      productionLogger.captureException(error);
+      productionLogger.captureException(error, extraInfo);
     } else {
-      productionLogger.captureMessage(error);
+      productionLogger.captureMessage(error, extraInfo);
     }
 
     // Generate a unique ID referring to the last generated Sentry error
