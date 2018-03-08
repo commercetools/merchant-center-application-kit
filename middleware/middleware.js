@@ -25,6 +25,8 @@ const selectProjectKey = state => {
   );
 };
 
+// TODO: remove once we use cookies
+// #cookie
 const selectToken = state => {
   // With the new setup, is not possible anymore for the action creators
   // to have access to the `globalAppState`. Therefore, in order to be
@@ -90,6 +92,8 @@ export default ({ dispatch, getState }) => next => action => {
     const sendRequest = ({ shouldRenewToken } = {}) => {
       const headers = {
         Accept: 'application/json',
+        // TODO: remove once we use cookies
+        // #cookie
         Authorization: selectToken(state),
         ...(action.payload.headers || {}),
         ...(shouldRenewToken ? { 'X-Force-Token': 'true' } : {}),
