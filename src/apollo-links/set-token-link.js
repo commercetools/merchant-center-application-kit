@@ -1,6 +1,9 @@
 import { ApolloLink } from 'apollo-link';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 
+// TODO: remove this link once we use cookies
+// #cookie
+
 /* eslint-disable import/prefer-default-export */
 export const createSetTokenLink = ({ storage }) =>
   new ApolloLink((operation, forward) =>
