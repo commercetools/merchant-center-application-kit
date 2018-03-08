@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
-import * as sentry from '../../utils/sentry';
+import { reportErrorToSentry } from '../../utils/sentry';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectDataLocale from '../project-data-locale';
 import FetchProject from '../fetch-project';
@@ -83,7 +83,7 @@ class ProjectContainer extends React.Component {
     // to catch exceptions. Thus exceptions caught here will also be caught in
     // the global `error` event listener (setup-global-error-listener.js).
     // see: https://github.com/facebook/react/issues/10474
-    sentry.reportError(error, { extra: errorInfo });
+    reportErrorToSentry(error, { extra: errorInfo });
   }
   // Makes it easier to test
   renderSwitcher = switcherProps => (

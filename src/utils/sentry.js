@@ -22,7 +22,7 @@ export const stopTrackingUser = () => {
 };
 
 // NOTE: only exported for tests => use reportError below for your code
-export const createErrorReporter = (
+export const createSentryErrorReporter = (
   environment,
   debugLogger = console,
   productionLogger = Raven
@@ -55,6 +55,6 @@ export const createErrorReporter = (
   }
 };
 
-export const reportError = createErrorReporter(
+export const reportErrorToSentry = createSentryErrorReporter(
   window.app.env || process.env.NODE_ENV
 );
