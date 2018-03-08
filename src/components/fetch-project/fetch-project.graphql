@@ -1,9 +1,3 @@
-fragment ImageRegex on ImageRegexOptions {
-  flag
-  search
-  replace
-}
-
 query ProjectQuery($projectKey: String!) {
   project(key: $projectKey) {
     key
@@ -67,4 +61,10 @@ query ProjectQuery($projectKey: String!) {
       currentProductSettings
     }
   }
+}
+
+fragment ImageRegex on ImageRegexOptions {
+  flag
+  search
+  replace
 }
