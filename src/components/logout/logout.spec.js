@@ -49,6 +49,9 @@ describe('componentDidMount', () => {
   it('should remove isAuthenticated from storage', () => {
     expect(storage.get(CORE_STORAGE_KEYS.IS_AUTHENTICATED)).toBe(null);
   });
+  it('should remove identityProviderUrl from storage', () => {
+    expect(storage.get(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL)).toBe(null);
+  });
   it('should remove projectKey from storage', () => {
     expect(storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)).toBe(null);
   });

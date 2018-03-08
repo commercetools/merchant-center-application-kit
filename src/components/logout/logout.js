@@ -49,6 +49,7 @@ export class Logout extends React.PureComponent {
     storage.remove(CORE_STORAGE_KEYS.TOKEN);
     // The user is no longer authenticated.
     storage.remove(CORE_STORAGE_KEYS.IS_AUTHENTICATED);
+    storage.remove(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL);
     // NOTE: we need to ensure the cached projectKey is removed, because
     // the user can log in with another account and most likely he won't
     // access to the cached project.
