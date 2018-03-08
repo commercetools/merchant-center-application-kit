@@ -1,14 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import {
-  ACCESS_TOKEN_IDP_URL,
   STORAGE_KEYS as CORE_STORAGE_KEYS,
+  LOGIN_STRATEGY_SSO,
+  LOGIN_STRATEGY_DEFAULT,
 } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import { Logout, getLoginStrategy } from './logout';
 
-let mockJWTDecode = jest.fn();
-jest.mock('jwt-decode', () => (...args) => mockJWTDecode(...args));
 jest.mock('@commercetools-local/utils/storage');
 
 const createTestProps = props => ({
@@ -94,48 +93,20 @@ describe('componentDidMount', () => {
 });
 
 describe('getLoginStrategy', () => {
-  describe('when token is defined', () => {
-    describe('when IdP URL is defined', () => {
-      beforeEach(() => {
-        mockJWTDecode.mockClear();
-        mockJWTDecode = jest.fn(() => ({
-          [ACCESS_TOKEN_IDP_URL]: 'https://idp.com',
-        }));
-        storage.put(CORE_STORAGE_KEYS.TOKEN, 'xxx');
-      });
-      it('should decode the access token and return the loginStrategy', () => {
-        expect(getLoginStrategy()).toBe('sso');
-      });
+  describe('when IdP URL is defined', () => {
+    beforeEach(() => {
+      storage.put(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL, 'xxx');
     });
-    describe('when IdP URL is not defined', () => {
-      beforeEach(() => {
-        mockJWTDecode.mockClear();
-        mockJWTDecode = jest.fn(() => ({}));
-        storage.put(CORE_STORAGE_KEYS.TOKEN, 'xxx');
-      });
-      it('should decode the access token and return the loginStrategy', () => {
-        expect(getLoginStrategy()).toBe('default');
-      });
-    });
-    describe('when decoding the token throws an error', () => {
-      beforeEach(() => {
-        mockJWTDecode.mockClear();
-        mockJWTDecode = jest.fn(() => {
-          throw new Error("I'm not a valid JWT!");
-        });
-        storage.put(CORE_STORAGE_KEYS.TOKEN, 'xxx');
-      });
-      it('should return the default login strategy', () => {
-        expect(getLoginStrategy()).toBe('default');
-      });
+    it('should return SSO as the login strategy', () => {
+      expect(getLoginStrategy()).toBe(LOGIN_STRATEGY_SSO);
     });
   });
-  describe('when token is not defined', () => {
+  describe('when IdP URL is not defined', () => {
     beforeEach(() => {
-      storage.remove(CORE_STORAGE_KEYS.TOKEN);
+      storage.remove(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL);
     });
-    it('should return null', () => {
-      expect(getLoginStrategy()).toBe(null);
+    it('should return default as the login strategy', () => {
+      expect(getLoginStrategy()).toBe(LOGIN_STRATEGY_DEFAULT);
     });
   });
 });
