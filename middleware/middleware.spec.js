@@ -1,8 +1,4 @@
-import {
-  SHOW_LOADING,
-  HIDE_LOADING,
-  SET_TOKEN,
-} from '@commercetools-local/constants';
+import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-local/constants';
 import toGlobal from '@commercetools-local/utils/to-global';
 import middleware from './middleware';
 import client from './client';
@@ -10,7 +6,7 @@ import client from './client';
 jest.mock('./client');
 jest.mock('../utils');
 
-const globalAppState = { token: 'foo', projectKey: 'bar' };
+const globalAppState = { projectKey: 'bar' };
 
 describe('when the action is of type SDK', () => {
   describe('no matter the method', () => {
@@ -38,7 +34,6 @@ describe('when the action is of type SDK', () => {
           method: 'GET',
           headers: {
             Accept: 'application/json',
-            Authorization: globalAppState.token,
           },
         });
       });
@@ -82,32 +77,6 @@ describe('when the action is of type SDK', () => {
 
       it('should return a resolving promise', async () => {
         await expect(resultPromise).resolves.toBe(response.body);
-      });
-    });
-
-    describe('when the request contains a new JWT token', () => {
-      const dispatch = jest.fn();
-      const getState = jest.fn(() => ({ globalAppState }));
-      const action = {
-        type: 'SDK',
-        payload: { service: 'productTypes', method: 'GET' },
-      };
-      const next = jest.fn();
-      const response = {
-        headers: { 'x-set-token': 'new token' },
-      };
-      beforeEach(() => {
-        client.execute = jest.fn(() => Promise.resolve(response));
-        middleware({ dispatch, getState })(next)(action);
-      });
-
-      it('should update the token', () => {
-        expect(dispatch).toHaveBeenCalledWith(
-          toGlobal({
-            type: SET_TOKEN,
-            payload: 'new token',
-          })
-        );
       });
     });
 
@@ -244,7 +213,6 @@ describe('when the action is of type SDK', () => {
         method: 'GET',
         headers: {
           Accept: 'application/json',
-          Authorization: globalAppState.token,
         },
       });
     });
@@ -278,7 +246,6 @@ describe('when the action is of type SDK', () => {
         method: 'POST',
         headers: {
           Accept: 'application/json',
-          Authorization: globalAppState.token,
         },
         body: expect.any(Object),
       });

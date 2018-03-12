@@ -2,7 +2,6 @@ import { createRequestBuilder } from '@commercetools/api-request-builder';
 import {
   SHOW_LOADING,
   HIDE_LOADING,
-  SET_TOKEN,
   STORAGE_KEYS as CORE_STORAGE_KEYS,
   STATUS_CODES,
 } from '@commercetools-local/constants';
@@ -22,19 +21,6 @@ const selectProjectKey = state => {
   return (
     (application && application.projectKey) ||
     storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)
-  );
-};
-
-// TODO: remove once we use cookies
-// #cookie
-const selectToken = state => {
-  // With the new setup, is not possible anymore for the action creators
-  // to have access to the `globalAppState`. Therefore, in order to be
-  // backwards compatible, we fall back to read the value from local storage.
-  // TODO: remove the "old" logic after the #RR4 migration
-  const application = state.globalAppState || state.application || {};
-  return (
-    (application && application.token) || storage.get(CORE_STORAGE_KEYS.TOKEN)
   );
 };
 
@@ -59,8 +45,7 @@ export default ({ dispatch, getState }) => next => action => {
   if (action.type === 'SDK') {
     // NOTE here the middleware is aware of the application
     // instead we could refactor to middleware factory and accept options with
-    // options.selectToken(state) and options.selectProjectKey(state)
-    // or is this Speculative Generality?
+    // options.selectProjectKey(state) or is this Speculative Generality?
     const state = getState();
 
     const uri = actionToUri(action, selectProjectKey(state));
@@ -92,9 +77,6 @@ export default ({ dispatch, getState }) => next => action => {
     const sendRequest = ({ shouldRenewToken } = {}) => {
       const headers = {
         Accept: 'application/json',
-        // TODO: remove once we use cookies
-        // #cookie
-        Authorization: selectToken(state),
         ...(action.payload.headers || {}),
         ...(shouldRenewToken ? { 'X-Force-Token': 'true' } : {}),
       };
@@ -111,14 +93,6 @@ export default ({ dispatch, getState }) => next => action => {
                 response: result.body,
                 action,
               });
-            const nextToken = result.headers['x-set-token'];
-            if (nextToken) {
-              // The backend caches the OAuth token inside the jwt token.
-              // After having fetched a new OAuth token, it sends the frontend
-              // the new jwt token with this header.
-              // https://github.com/commercetools/merchant-center-backend/blob/master/docs/AUTHENTICATION.md#projects-api-oauth-token-caching
-              dispatch(toGlobal({ type: SET_TOKEN, payload: nextToken }));
-            }
             return result;
           },
           error => {
