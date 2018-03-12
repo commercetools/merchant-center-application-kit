@@ -1,19 +1,16 @@
 import PropTypes from 'prop-types';
-import { compose, setDisplayName, withProps } from 'recompose';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 
-export const Authenticated = props =>
-  props.children({ isAuthenticated: props.isLoggedIn });
+const getIsAuthenticated = () => storage.get(CORE_STORAGE_KEYS.IS_AUTHENTICATED) === 'true';
+
+const Authenticated = props => {
+  const isAuthenticated = getIsAuthenticated();
+  return props.children({ isAuthenticated });
+};
 Authenticated.displayName = 'Authenticated';
 Authenticated.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
   children: PropTypes.func.isRequired,
 };
 
-export default compose(
-  setDisplayName('Authenticated'),
-  withProps(() => ({
-    isLoggedIn: storage.get(CORE_STORAGE_KEYS.IS_AUTHENTICATED) === 'true',
-  }))
-)(Authenticated);
+export default Authenticated;

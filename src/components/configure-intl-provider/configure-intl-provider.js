@@ -1,37 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
-import { branch } from 'recompose';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
-import * as storage from '@commercetools-local/utils/storage';
-import { withUser } from '../fetch-user';
 
-const getLocaleForUserOrFallbackToBrowser = user => {
-  if (user) return user.language;
-  return window.navigator.language || 'en';
-};
-
-export const ConfigureIntlProvider = props => {
-  const locale = getLocaleForUserOrFallbackToBrowser(props.user);
+const ConfigureIntlProvider = props => {
+  if (!props.locale) return null;
   return (
-    !props.isLoading && (
-      <IntlProvider locale={locale} messages={props.i18n[locale]}>
-        {props.children}
-      </IntlProvider>
-    )
+    <IntlProvider locale={props.locale} messages={props.messages}>
+      {props.children}
+    </IntlProvider>
   );
 };
 
 ConfigureIntlProvider.displayName = 'ConfigureIntlProvider';
 ConfigureIntlProvider.propTypes = {
-  i18n: PropTypes.object.isRequired,
+  locale: PropTypes.string,
+  messages: PropTypes.object,
   children: PropTypes.element.isRequired,
-  // Injected
-  user: PropTypes.object,
-  isLoading: PropTypes.bool,
 };
 
-export default branch(
-  () => storage.get(CORE_STORAGE_KEYS.IS_AUTHENTICATED) === 'true',
-  withUser()
-)(ConfigureIntlProvider);
+export default ConfigureIntlProvider;

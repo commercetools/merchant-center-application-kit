@@ -16,7 +16,7 @@ import ApplicationShell, {
 jest.mock('@commercetools-local/utils/storage');
 
 const createTestProps = props => ({
-  i18n: { en: {}, de: {} },
+  i18n: { en: {}, 'en-US': { title: 'Title' }, de: { title: 'Titel' } },
   configuration: {},
   menuItems: [],
   trackingEventWhitelist: {},
@@ -46,12 +46,6 @@ describe('rendering', () => {
       expect(wrapper.find('ConfigurationProvider')).toHaveProp(
         'configuration',
         props.configuration
-      );
-    });
-    it('should pass "i18n" to <ConfigureIntlProvider>', () => {
-      expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
-        'i18n',
-        props.i18n
       );
     });
   });
@@ -100,6 +94,18 @@ describe('rendering', () => {
           </div>
         );
       });
+      it('should pass "locale" to <ConfigureIntlProvider>', () => {
+        expect(authRenderWrapper.find(ConfigureIntlProvider)).toHaveProp(
+          'locale',
+          'en-US'
+        );
+      });
+      it('should pass "messages" to <ConfigureIntlProvider>', () => {
+        expect(authRenderWrapper.find(ConfigureIntlProvider)).toHaveProp(
+          'messages',
+          { title: 'Title' }
+        );
+      });
       it('should render <UnrestrictedApplication> after track components', () => {
         expect(authRenderWrapper).toRender('UnrestrictedApplication');
       });
@@ -110,6 +116,7 @@ describe('<RestrictedApplication>', () => {
   let props;
   let wrapper;
   let userData;
+  let fetchUserWrapper;
   describe('rendering', () => {
     beforeEach(() => {
       props = createTestProps();
@@ -122,14 +129,15 @@ describe('<RestrictedApplication>', () => {
           firstName: 'John',
           lastName: 'Snow',
           availableProjects: [],
+          language: 'de',
         },
       };
-      const fetchWrapper = shallow(
+      fetchUserWrapper = shallow(
         <div>{rootWrapper.find(FetchUser).prop('children')(userData)}</div>
       );
       wrapper = shallow(
         <div>
-          {fetchWrapper.find(SetupFlopFlipProvider).prop('children')({
+          {fetchUserWrapper.find(SetupFlopFlipProvider).prop('children')({
             setProjectKey: jest.fn(),
           })}
         </div>
@@ -140,6 +148,20 @@ describe('<RestrictedApplication>', () => {
     });
     it('should boot intercom', () => {
       expect(wrapper).toRender(IntercomBooter);
+    });
+    it('should pass user "locale" to <ConfigureIntlProvider>', () => {
+      expect(fetchUserWrapper.find(ConfigureIntlProvider)).toHaveProp(
+        'locale',
+        userData.user.language
+      );
+    });
+    it('should pass "messages" to <ConfigureIntlProvider>', () => {
+      expect(fetchUserWrapper.find(ConfigureIntlProvider)).toHaveProp(
+        'messages',
+        {
+          title: 'Titel',
+        }
+      );
     });
     describe('layout', () => {
       it('should render "global-notifications" container inside "app-layout"', () => {

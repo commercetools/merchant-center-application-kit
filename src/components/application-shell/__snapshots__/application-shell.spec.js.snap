@@ -14,6 +14,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
           "email": "john.snow@got.com",
           "firstName": "John",
           "id": "u1",
+          "language": "de",
           "lastName": "Snow",
         }
       }
@@ -25,6 +26,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
           "email": "john.snow@got.com",
           "firstName": "John",
           "id": "u1",
+          "language": "de",
           "lastName": "Snow",
         }
       }
@@ -36,6 +38,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
           "email": "john.snow@got.com",
           "firstName": "John",
           "id": "u1",
+          "language": "de",
           "lastName": "Snow",
         }
       }
@@ -61,6 +64,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
               "email": "john.snow@got.com",
               "firstName": "John",
               "id": "u1",
+              "language": "de",
               "lastName": "Snow",
             }
           }
@@ -75,6 +79,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
               "email": "john.snow@got.com",
               "firstName": "John",
               "id": "u1",
+              "language": "de",
               "lastName": "Snow",
             }
           }
@@ -149,6 +154,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
           "email": "john.snow@got.com",
           "firstName": "John",
           "id": "u1",
+          "language": "de",
           "lastName": "Snow",
         }
       }
@@ -160,6 +166,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
           "email": "john.snow@got.com",
           "firstName": "John",
           "id": "u1",
+          "language": "de",
           "lastName": "Snow",
         }
       }
@@ -171,6 +178,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
           "email": "john.snow@got.com",
           "firstName": "John",
           "id": "u1",
+          "language": "de",
           "lastName": "Snow",
         }
       }
@@ -196,6 +204,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
               "email": "john.snow@got.com",
               "firstName": "John",
               "id": "u1",
+              "language": "de",
               "lastName": "Snow",
             }
           }
@@ -210,6 +219,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
               "email": "john.snow@got.com",
               "firstName": "John",
               "id": "u1",
+              "language": "de",
               "lastName": "Snow",
             }
           }

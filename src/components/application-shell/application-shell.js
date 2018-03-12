@@ -42,160 +42,166 @@ import './global-style-imports';
 export const RestrictedApplication = props => (
   <FetchUser>
     {({ isLoading, user }) => (
-      <SetupFlopFlipProvider user={user}>
-        {({ setProjectKey: syncProjectKeyForFlopFlip }) => (
-          <React.Fragment>
-            {/* NOTE: the requests in flight loader will render a loading
+      <ConfigureIntlProvider
+        locale={user && user.language}
+        messages={user && props.i18n[user.language]}
+      >
+        <SetupFlopFlipProvider user={user}>
+          {({ setProjectKey: syncProjectKeyForFlopFlip }) => (
+            <React.Fragment>
+              {/* NOTE: the requests in flight loader will render a loading
             spinner into the AppBar. */}
-            <RequestsInFlightLoader />
-            <IntercomBooter
-              intercomTrackingStatus={user && user.tracking_intercom}
-              showNotification={props.showNotification}
-            />
-            <SentryUserTracker user={user} />
-            <GtmUserTracker user={user} />
-            <IntercomUserTracker user={user} />
-            <div className={styles['app-layout']}>
-              <div className={styles['global-notifications']}>
-                <NotificationsList
-                  domain={DOMAINS.GLOBAL}
-                  notifications={props.notificationsByDomain.global}
-                  mapPluginNotificationToComponent={
-                    props.mapPluginNotificationToComponent
-                  }
-                  showUnexpectedErrorNotification={
-                    props.showUnexpectedErrorNotification
-                  }
-                />
-              </div>
-              <header>
-                <AppBar user={user} />
-              </header>
+              <RequestsInFlightLoader />
+              <IntercomBooter
+                intercomTrackingStatus={user && user.tracking_intercom}
+                showNotification={props.showNotification}
+              />
+              <SentryUserTracker user={user} />
+              <GtmUserTracker user={user} />
+              <IntercomUserTracker user={user} />
+              <div className={styles['app-layout']}>
+                <div className={styles['global-notifications']}>
+                  <NotificationsList
+                    domain={DOMAINS.GLOBAL}
+                    notifications={props.notificationsByDomain.global}
+                    mapPluginNotificationToComponent={
+                      props.mapPluginNotificationToComponent
+                    }
+                    showUnexpectedErrorNotification={
+                      props.showUnexpectedErrorNotification
+                    }
+                  />
+                </div>
+                <header>
+                  <AppBar user={user} />
+                </header>
 
-              <aside>
-                <WithProjectKey
-                  user={user}
-                  render={({ projectKey }) => (
-                    <NavBar
-                      menuItems={props.menuItems}
-                      projectKey={projectKey}
-                    />
-                  )}
-                />
-              </aside>
+                <aside>
+                  <WithProjectKey
+                    user={user}
+                    render={({ projectKey }) => (
+                      <NavBar
+                        menuItems={props.menuItems}
+                        projectKey={projectKey}
+                      />
+                    )}
+                  />
+                </aside>
 
-              {/**
-               * NOTE: in IE11 main can't be a grid-child apparently.
-               * So we have to use a div and give it the role `main`
-               * to achieve the same semantic result
-               */}
-              <div role="main" className={styles.main}>
-                <PortalsContainer />
-                <NotificationsList
-                  domain={DOMAINS.PAGE}
-                  notifications={props.notificationsByDomain.page}
-                  mapPluginNotificationToComponent={
-                    props.mapPluginNotificationToComponent
-                  }
-                />
-                <NotificationsList
-                  domain={DOMAINS.SIDE}
-                  notifications={props.notificationsByDomain.side}
-                  mapPluginNotificationToComponent={
-                    props.mapPluginNotificationToComponent
-                  }
-                />
-                <div className={styles.content}>
-                  <Switch>
-                    {/**
-                     * When the user is redirected to /logout he is still logged
-                     * in and thus wer are still in the `authenticated` branch.
-                     * The component won't render anything. It will unauthenticate
-                     * the user and redirect him to /login.
-                     */}
-                    <Route path="/logout" component={Logout} />
-                    <Redirect from="/profile" to="/account/profile" />
-                    <Route
-                      path="/account"
-                      render={({ match }) => (
-                        <Switch>
-                          <Route
-                            path={`${match.path}/profile`}
-                            render={() => (
-                              <AsyncUserProfile
-                                user={user}
-                                showNotification={props.showNotification}
-                                showUnexpectedErrorNotification={
-                                  props.showUnexpectedErrorNotification
-                                }
-                              />
-                            )}
-                          />
-                          <Redirect to={joinPaths(match.url, 'profile')} />
-                        </Switch>
-                      )}
-                    />
-                    {/* Project routes */}
-                    {/* Redirect from base project route to dashboard */}
-                    <Route
-                      exact={true}
-                      path="/:projectKey"
-                      render={({ match }) => (
-                        <Redirect to={joinPaths(match.url, 'dashboard')} />
-                      )}
-                    />
-                    <Route
-                      exact={true}
-                      path="/"
-                      render={() =>
-                        user ? (
-                          <WithProjectKey
-                            user={user}
-                            render={({ projectKey }) => (
-                              // Redirect to the given projectKey
-                              <Redirect to={`/${projectKey}`} />
-                            )}
-                          />
-                        ) : (
-                          <ApplicationLoader />
-                        )
-                      }
-                    />
-                    <Route
-                      exact={false}
-                      path="/:projectKey"
-                      render={routerProps => (
-                        <React.Fragment>
-                          <IntercomUserTracker
-                            user={user}
-                            projectKey={routerProps.match.params.projectKey}
-                          />
-                          <ProjectContainer
-                            isLoadingUser={isLoading}
-                            user={user}
-                            match={routerProps.match}
-                            location={routerProps.location}
-                            setProjectKey={syncProjectKeyForFlopFlip}
-                            // This effectively renders the
-                            // children, which is the application
-                            // specific part
-                            render={props.render}
-                          />
-                        </React.Fragment>
-                      )}
-                    />
-                  </Switch>
+                {/**
+                 * NOTE: in IE11 main can't be a grid-child apparently.
+                 * So we have to use a div and give it the role `main`
+                 * to achieve the same semantic result
+                 */}
+                <div role="main" className={styles.main}>
+                  <PortalsContainer />
+                  <NotificationsList
+                    domain={DOMAINS.PAGE}
+                    notifications={props.notificationsByDomain.page}
+                    mapPluginNotificationToComponent={
+                      props.mapPluginNotificationToComponent
+                    }
+                  />
+                  <NotificationsList
+                    domain={DOMAINS.SIDE}
+                    notifications={props.notificationsByDomain.side}
+                    mapPluginNotificationToComponent={
+                      props.mapPluginNotificationToComponent
+                    }
+                  />
+                  <div className={styles.content}>
+                    <Switch>
+                      {/**
+                       * When the user is redirected to /logout he is still logged
+                       * in and thus wer are still in the `authenticated` branch.
+                       * The component won't render anything. It will unauthenticate
+                       * the user and redirect him to /login.
+                       */}
+                      <Route path="/logout" component={Logout} />
+                      <Redirect from="/profile" to="/account/profile" />
+                      <Route
+                        path="/account"
+                        render={({ match }) => (
+                          <Switch>
+                            <Route
+                              path={`${match.path}/profile`}
+                              render={() => (
+                                <AsyncUserProfile
+                                  user={user}
+                                  showNotification={props.showNotification}
+                                  showUnexpectedErrorNotification={
+                                    props.showUnexpectedErrorNotification
+                                  }
+                                />
+                              )}
+                            />
+                            <Redirect to={joinPaths(match.url, 'profile')} />
+                          </Switch>
+                        )}
+                      />
+                      {/* Project routes */}
+                      {/* Redirect from base project route to dashboard */}
+                      <Route
+                        exact={true}
+                        path="/:projectKey"
+                        render={({ match }) => (
+                          <Redirect to={joinPaths(match.url, 'dashboard')} />
+                        )}
+                      />
+                      <Route
+                        exact={true}
+                        path="/"
+                        render={() => (
+                          user ? (
+                            <WithProjectKey
+                              user={user}
+                              render={({ projectKey }) => (
+                                // Redirect to the given projectKey
+                                <Redirect to={`/${projectKey}`} />
+                              )}
+                            />
+                          ) : (
+                            <ApplicationLoader />
+                          )
+                        )}
+                      />
+                      <Route
+                        exact={false}
+                        path="/:projectKey"
+                        render={routerProps => (
+                          <React.Fragment>
+                            <IntercomUserTracker
+                              user={user}
+                              projectKey={routerProps.match.params.projectKey}
+                            />
+                            <ProjectContainer
+                              isLoadingUser={isLoading}
+                              user={user}
+                              match={routerProps.match}
+                              location={routerProps.location}
+                              setProjectKey={syncProjectKeyForFlopFlip}
+                              // This effectively renders the
+                              // children, which is the application
+                              // specific part
+                              render={props.render}
+                            />
+                          </React.Fragment>
+                        )}
+                      />
+                    </Switch>
+                  </div>
                 </div>
               </div>
-            </div>
-          </React.Fragment>
-        )}
-      </SetupFlopFlipProvider>
+            </React.Fragment>
+          )}
+        </SetupFlopFlipProvider>
+      </ConfigureIntlProvider>
     )}
   </FetchUser>
 );
 RestrictedApplication.displayName = 'RestrictedApplication';
 RestrictedApplication.propTypes = {
+  i18n: PropTypes.object.isRequired,
   render: PropTypes.func.isRequired,
   menuItems: PropTypes.array.isRequired,
   notificationsByDomain: PropTypes.shape({
@@ -276,22 +282,25 @@ export default class ApplicationShell extends React.Component {
   componentDidMount() {
     this.props.onRegisterErrorListeners();
   }
+  getBrowserLocale = () =>
+    (window && window.navigator && window.navigator.language) || 'en';
   render() {
     return (
       <ConfigurationProvider configuration={this.props.configuration}>
         <ApolloProvider client={apolloClient}>
-          <ConfigureIntlProvider i18n={this.props.i18n}>
-            <React.Fragment>
-              {/* <VersionCheckSubscriber /> */}
-              <Router history={history}>
-                <IntercomUrlTracker>
-                  <GtmBooter
-                    trackingEventWhitelist={this.props.trackingEventWhitelist}
-                  >
-                    <Authenticated>
-                      {({ isAuthenticated }) =>
-                        isAuthenticated ? (
+          <React.Fragment>
+            {/* <VersionCheckSubscriber /> */}
+            <Router history={history}>
+              <IntercomUrlTracker>
+                <GtmBooter
+                  trackingEventWhitelist={this.props.trackingEventWhitelist}
+                >
+                  <Authenticated>
+                    {({ isAuthenticated }) => {
+                      if (isAuthenticated)
+                        return (
                           <RestrictedApplication
+                            i18n={this.props.i18n}
                             render={this.props.render}
                             menuItems={this.props.menuItems}
                             notificationsByDomain={
@@ -308,16 +317,22 @@ export default class ApplicationShell extends React.Component {
                               this.props.showUnexpectedErrorNotification
                             }
                           />
-                        ) : (
+                        );
+                      const browserLocale = this.getBrowserLocale();
+                      return (
+                        <ConfigureIntlProvider
+                          locale={browserLocale}
+                          messages={this.props.i18n[browserLocale]}
+                        >
                           <UnrestrictedApplication />
-                        )
-                      }
-                    </Authenticated>
-                  </GtmBooter>
-                </IntercomUrlTracker>
-              </Router>
-            </React.Fragment>
-          </ConfigureIntlProvider>
+                        </ConfigureIntlProvider>
+                      );
+                    }}
+                  </Authenticated>
+                </GtmBooter>
+              </IntercomUrlTracker>
+            </Router>
+          </React.Fragment>
         </ApolloProvider>
       </ConfigurationProvider>
     );
