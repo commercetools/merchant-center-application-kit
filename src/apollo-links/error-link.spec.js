@@ -14,7 +14,7 @@ const query = gql`
 
 const createErrorLinkConfig = custom => ({
   history: { push: jest.fn() },
-  storage: { get: jest.fn(() => 'token') },
+  storage: { get: jest.fn(() => 'true') },
 
   ...custom,
 });
@@ -30,7 +30,7 @@ describe('with unauthenticated error', () => {
   let terminatingLinkStub;
   let link;
 
-  describe('with stored token', () => {
+  describe('when user is authenticated', () => {
     beforeEach(async () => {
       errorLinkConfig = createErrorLinkConfig();
 
@@ -57,9 +57,11 @@ describe('with unauthenticated error', () => {
     });
   });
 
-  describe('without stored token', () => {
+  describe('when user is not authenticated', () => {
     beforeEach(async () => {
-      errorLinkConfig = createErrorLinkConfig();
+      errorLinkConfig = createErrorLinkConfig({
+        storage: { get: jest.fn(() => 'false') },
+      });
 
       errorLinkConfig.storage.get.mockReturnValue(undefined);
 

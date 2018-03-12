@@ -10,7 +10,8 @@ import {
 // user to the login page resetting the store and showing the proper message
 export const createErrorLink = ({ history, storage }) =>
   onError(({ networkError }) => {
-    const isAuthenticated = storage.get(CORE_STORAGE_KEYS.IS_AUTHENTICATED);
+    const isAuthenticated =
+      storage.get(CORE_STORAGE_KEYS.IS_AUTHENTICATED) === 'true';
 
     if (
       networkError &&
