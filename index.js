@@ -1,9 +1,6 @@
 // STORAGE
 export const STORAGE_KEYS = {
   NONCE: 'nonce',
-  // Remove once we only use cookies
-  // #cookie
-  TOKEN: 'token',
   IS_AUTHENTICATED: 'isAuthenticated',
   ACTIVE_PROJECT_KEY: 'activeProjectKey',
   SELECTED_DATA_LOCALE: 'selectedDataLocale',
@@ -32,7 +29,6 @@ export const __GLOBAL = 'GLOBAL';
 
 // APPLICATION STATE
 export const LOGGED_IN = 'LOGGED_IN';
-export const SET_TOKEN = 'SET_TOKEN';
 export const LOGGED_OUT = 'LOGGED_OUT';
 export const SWITCH_LOCALE = 'SWITCH_LOCALE';
 export const SWITCH_PROJECT_LANGUAGE = 'SWITCH_PROJECT_LANGUAGE';
