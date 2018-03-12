@@ -37,13 +37,9 @@ describe('componentDidMount', () => {
   let props;
   beforeEach(() => {
     props = createTestProps();
-    storage.put(CORE_STORAGE_KEYS.TOKEN, '123');
     storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, 'foo-1');
     const wrapper = shallow(<Logout {...props} />);
     wrapper.instance().componentDidMount();
-  });
-  it('should remove token from storage', () => {
-    expect(storage.get(CORE_STORAGE_KEYS.TOKEN)).toBe(null);
   });
   it('should remove isAuthenticated from storage', () => {
     expect(storage.get(CORE_STORAGE_KEYS.IS_AUTHENTICATED)).toBe(null);

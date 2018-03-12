@@ -82,11 +82,8 @@ export class Login extends React.PureComponent {
         email: this.state.email,
         password: this.state.password,
       })
-      .then(payload => {
+      .then(() => {
         this.setState({ loading: false });
-        // TODO: remove once we switch to cookie base auth
-        // #cookie
-        if (payload.token) storage.put(CORE_STORAGE_KEYS.TOKEN, payload.token);
         // Set a flag to indicate that the user has been authenticated
         storage.put(CORE_STORAGE_KEYS.IS_AUTHENTICATED, true);
         // Ensure to remove the IdP Url value from local storage, as in this

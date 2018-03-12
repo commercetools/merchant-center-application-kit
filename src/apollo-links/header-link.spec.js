@@ -28,10 +28,7 @@ describe('with valid target', () => {
 
     headerLink = createHeaderLink({
       storage: {
-        get: jest
-          .fn()
-          .mockImplementationOnce(() => 'token')
-          .mockImplementationOnce(() => 'project-1'),
+        get: jest.fn(() => 'project-1'),
       },
     });
 
@@ -49,14 +46,6 @@ describe('with valid target', () => {
 
   it('should set headers matching snapshot', () => {
     expect(context).toMatchSnapshot();
-  });
-
-  it('should set `Authorization`-Header to stored token', () => {
-    expect(context.headers).toEqual(
-      expect.objectContaining({
-        Authorization: 'token',
-      })
-    );
   });
 
   it('should set `X-Project-Key`-Header', () => {

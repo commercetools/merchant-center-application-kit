@@ -199,9 +199,7 @@ describe('requestAccessToken', () => {
     beforeEach(() => {
       handleSubmitPreventDefaultMock.mockClear();
       props = createTestProps({
-        requestAccessToken: jest.fn(() =>
-          Promise.resolve({ body: { token: '123' } })
-        ),
+        requestAccessToken: jest.fn(() => Promise.resolve()),
       });
       wrapper = shallow(<Login {...props} />);
       wrapper.setState({ email: 'john@doe.com', password: 'secret' });
@@ -256,9 +254,7 @@ describe('requestAccessToken', () => {
       handleSubmitPreventDefaultMock.mockClear();
       props = createTestProps({
         location: { query: { redirectTo: '/foo/bar' } },
-        requestAccessToken: jest.fn(() =>
-          Promise.resolve({ body: { token: '123' } })
-        ),
+        requestAccessToken: jest.fn(() => Promise.resolve()),
       });
       wrapper = shallow(<Login {...props} />);
       wrapper.setState({ email: 'john@doe.com', password: 'secret' });

@@ -186,7 +186,6 @@ describe('lifecycle', () => {
     describe('getState', () => {
       let localState;
       beforeEach(() => {
-        storage.put(CORE_STORAGE_KEYS.TOKEN, 'xxx');
         storage.put(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
         storage.put(CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN, false);
         props = createTestProps({ pluginName: 'mcng-foo' });
@@ -210,7 +209,6 @@ describe('lifecycle', () => {
         expect(localState).toEqual(
           expect.objectContaining({
             globalAppState: {
-              token: 'xxx',
               language: 'de',
               locale: props.user.language,
               isForcedMenuOpen: false,

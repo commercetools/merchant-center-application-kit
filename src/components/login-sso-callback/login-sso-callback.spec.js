@@ -82,9 +82,6 @@ describe('lifecylcle', () => {
           storage.put(CORE_STORAGE_KEYS.NONCE, 'EY');
           wrapper.instance().componentDidMount();
         });
-        it('should save token in storage', () => {
-          expect(storage.get(CORE_STORAGE_KEYS.TOKEN)).toBe('xxx');
-        });
         it('should redirect to /', () => {
           expect(props.redirectTo).toHaveBeenCalledWith('/');
         });

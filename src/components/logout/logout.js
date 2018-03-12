@@ -44,9 +44,6 @@ export class Logout extends React.PureComponent {
         redirectUrl = '/login';
     }
 
-    // remove the access token from local storage
-    // #cookie
-    storage.remove(CORE_STORAGE_KEYS.TOKEN);
     // The user is no longer authenticated.
     storage.remove(CORE_STORAGE_KEYS.IS_AUTHENTICATED);
     storage.remove(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL);

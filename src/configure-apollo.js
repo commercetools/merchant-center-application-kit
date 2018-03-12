@@ -12,7 +12,6 @@ import * as storage from '@commercetools-local/utils/storage';
 import {
   createErrorLink,
   createHeaderLink,
-  createSetTokenLink,
   tokenRetryLink,
 } from './apollo-links/';
 
@@ -33,7 +32,6 @@ const httpLink = createHttpLink({
 // `tokenRetryLink` needs to stay after `errorLink` in order to be executed before `errorLink` for responses
 const link = ApolloLink.from([
   createHeaderLink({ storage }),
-  createSetTokenLink({ storage }),
   createErrorLink({ history, storage }),
   tokenRetryLink,
   apolloLogger,
