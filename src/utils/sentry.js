@@ -6,6 +6,9 @@ export const boot = () => {
       release: window.app.revision,
       tags: { role: 'frontend' },
       environment: window.app.env,
+      // in order to reduce the noise in sentry we only track errors that come
+      // from our code and ignore errors that come from e.g. intercom
+      // https://blog.sentry.io/2017/03/27/tips-for-reducing-javascript-error-noise.html
       whitelistUrls: [window.app.cdnUrl, window.app.frontendHost],
     }).install();
 };
