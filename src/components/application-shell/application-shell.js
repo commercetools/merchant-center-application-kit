@@ -151,7 +151,7 @@ export const RestrictedApplication = props => (
                       <Route
                         exact={true}
                         path="/"
-                        render={() => (
+                        render={() =>
                           user ? (
                             <WithProjectKey
                               user={user}
@@ -163,7 +163,7 @@ export const RestrictedApplication = props => (
                           ) : (
                             <ApplicationLoader />
                           )
-                        )}
+                        }
                       />
                       <Route
                         exact={false}
