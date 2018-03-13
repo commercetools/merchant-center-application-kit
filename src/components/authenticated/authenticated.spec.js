@@ -16,7 +16,7 @@ describe('rendering', () => {
   let props;
   describe('when user is authenticated', () => {
     beforeEach(() => {
-      storage.put(CORE_STORAGE_KEYS.TOKEN, 'xxx');
+      storage.put(CORE_STORAGE_KEYS.IS_AUTHENTICATED, 'true');
       props = createTestProps();
       createWrapper(props);
     });
@@ -27,7 +27,7 @@ describe('rendering', () => {
   });
   describe('when the user is not logged in', () => {
     beforeEach(() => {
-      storage.remove(CORE_STORAGE_KEYS.TOKEN);
+      storage.remove(CORE_STORAGE_KEYS.IS_AUTHENTICATED);
       props = createTestProps();
       createWrapper(props);
     });
