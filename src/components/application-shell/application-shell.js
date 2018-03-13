@@ -31,6 +31,7 @@ import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
 import GtmBooter from '../gtm-booter';
 import NavBar from '../navbar';
+import ApplicationLoader from '../application-loader';
 import styles from './application-shell.mod.css';
 import './global-style-imports';
 
@@ -146,15 +147,19 @@ export const RestrictedApplication = props => (
                     <Route
                       exact={true}
                       path="/"
-                      render={() => (
-                        <WithProjectKey
-                          user={user}
-                          render={({ projectKey }) => (
-                            // Redirect to the given projectKey
-                            <Redirect to={`/${projectKey}`} />
-                          )}
-                        />
-                      )}
+                      render={() =>
+                        user ? (
+                          <WithProjectKey
+                            user={user}
+                            render={({ projectKey }) => (
+                              // Redirect to the given projectKey
+                              <Redirect to={`/${projectKey}`} />
+                            )}
+                          />
+                        ) : (
+                          <ApplicationLoader />
+                        )
+                      }
                     />
                     <Route
                       exact={false}
