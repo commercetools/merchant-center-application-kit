@@ -17,7 +17,7 @@ import {
 } from './apollo-links/';
 
 const httpLink = createHttpLink({
-  uri: `${window.app.protocol}://${window.app.host}/graphql`,
+  uri: `${window.app.protocol}://${window.app.backendHost}/graphql`,
   credentials: 'include',
   // manual polyfill for fetch to support older browsers like IE11
   // for some reason that I wasn't able to figure out just importing
