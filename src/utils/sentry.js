@@ -6,6 +6,7 @@ export const boot = () => {
       release: window.app.revision,
       tags: { role: 'frontend' },
       environment: window.app.env,
+      whitelistUrls: [window.app.cdnUrl, window.app.frontendHost],
     }).install();
 };
 
