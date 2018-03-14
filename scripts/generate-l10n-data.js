@@ -88,42 +88,59 @@ const extractTimeZoneDataForLocale = (/* locale */) => {
 const extractLanguageDataForLocale = locale => {
   // Get the list of all languages.
   const languages = cldr.extractLanguageSupplementalData(locale);
+  // Get the list of all remaining languages.
+  const oldLanguages = cldr.extractLanguageSupplementalMetadata(locale);
   // Get the list of all language names
   const languageNames = cldr.extractLanguageDisplayNames(locale);
 
   // We need to fetch the countries first in order to have them when we have
   // languages the type es_GT so we can get the country name for object info
   return extractCountryDataForLocale(locale).then(countries =>
-    Object.keys(languages)
+    // We work with a set of data with a mix of the current languages and the
+    // old ones
+    [...Object.keys(languages), ...Object.keys(oldLanguages)]
       // We only map the countries with 2 digits (ISO 3166-1 alpha-2) to be
       // inline with the AC
       .filter(language => language.length === 2)
-      .reduce(
-        (acc, language) =>
-          Object.assign(
-            {},
-            acc,
-            // In case the current language has territories we need to parse
-            // each one of them into its own language (e.j. es_AR)
-            languages[language].territories
-              ? Object.assign(
-                  // We need to set the basic language (e.g. es)
-                  { [language]: { language: languageNames[language] } },
-                  languages[language].territories.reduce(
-                    (acc2, territory) =>
-                      Object.assign({}, acc2, {
-                        [`${language}-${territory}`]: {
-                          language: languageNames[language],
-                          country: countries[territory.toLowerCase()],
-                        },
-                      }),
-                    {}
-                  )
+      .reduce((totalLanguages, language) => {
+        // If the key does not exist in the current languages is because is
+        // and old one so now we need to discard the "deprecated" ones.
+        if (!languages[language]) {
+          return oldLanguages[language].reason === 'deprecated'
+            ? totalLanguages
+            : Object.assign({}, totalLanguages, {
+                [language]: {
+                  language:
+                    // We check for the language name taking into account the
+                    // key or the replacement key for the language
+                    languageNames[language] ||
+                    languageNames[oldLanguages[language].replacement],
+                },
+              });
+        }
+        return Object.assign(
+          {},
+          totalLanguages,
+          // In case the current language has territories we need to parse
+          // each one of them into its own language (e.j. es_AR)
+          languages[language].territories
+            ? Object.assign(
+                // We need to set the basic language (e.g. es)
+                { [language]: { language: languageNames[language] } },
+                languages[language].territories.reduce(
+                  (territoryLanguages, territory) =>
+                    Object.assign({}, territoryLanguages, {
+                      [`${language}-${territory}`]: {
+                        language: languageNames[language],
+                        country: countries[territory.toLowerCase()],
+                      },
+                    }),
+                  {}
                 )
-              : { [language]: { language: languageNames[language] } }
-          ),
-        {}
-      )
+              )
+            : { [language]: { language: languageNames[language] } }
+        );
+      }, {})
   );
 };
 
