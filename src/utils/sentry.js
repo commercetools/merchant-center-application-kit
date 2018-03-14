@@ -16,7 +16,9 @@ export const boot = () => {
 export const updateUser = user => {
   if (user && window.app.env === 'production')
     Raven.setUserContext({
-      email: user.email,
+      // to avoid sending personal data to sentry we anonymize the email address
+      // by only sending the domain part or the email
+      email: user.email.split('@')[1],
       id: user.id,
     });
 };
