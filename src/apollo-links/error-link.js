@@ -17,6 +17,7 @@ export const createErrorLink = ({ history, storage }) =>
       networkError &&
       networkError.statusCode === STATUS_CODES.UNAUTHORIZED &&
       isAuthenticated
-    )
+    ) {
       history.push(`/logout?reason=${LOGOUT_REASONS.UNAUTHORIZED}`);
+    }
   });

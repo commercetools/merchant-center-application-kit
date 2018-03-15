@@ -111,13 +111,6 @@ export const RestrictedApplication = props => (
                   />
                   <div className={styles.content}>
                     <Switch>
-                      {/**
-                       * When the user is redirected to /logout he is still logged
-                       * in and thus wer are still in the `authenticated` branch.
-                       * The component won't render anything. It will unauthenticate
-                       * the user and redirect him to /login.
-                       */}
-                      <Route path="/logout" component={Logout} />
                       <Redirect from="/profile" to="/account/profile" />
                       <Route
                         path="/account"
@@ -295,40 +288,51 @@ export default class ApplicationShell extends React.Component {
                 <GtmBooter
                   trackingEventWhitelist={this.props.trackingEventWhitelist}
                 >
-                  <Authenticated>
-                    {({ isAuthenticated }) => {
-                      if (isAuthenticated)
-                        return (
-                          <RestrictedApplication
-                            i18n={this.props.i18n}
-                            render={this.props.render}
-                            menuItems={this.props.menuItems}
-                            notificationsByDomain={
-                              this.props.notificationsByDomain
-                            }
-                            showNotification={this.props.showNotification}
-                            mapPluginNotificationToComponent={
-                              this.props.mapPluginNotificationToComponent
-                            }
-                            showApiErrorNotification={
-                              this.props.showApiErrorNotification
-                            }
-                            showUnexpectedErrorNotification={
-                              this.props.showUnexpectedErrorNotification
-                            }
-                          />
-                        );
-                      const browserLocale = this.getBrowserLocale();
-                      return (
-                        <ConfigureIntlProvider
-                          locale={browserLocale}
-                          messages={this.props.i18n[browserLocale]}
-                        >
-                          <UnrestrictedApplication />
-                        </ConfigureIntlProvider>
-                      );
-                    }}
-                  </Authenticated>
+                  <Switch>
+                    {/**
+                     * No matter if the user is authenticated or not, when we go
+                     * to this route we should always log the user out.
+                     */}
+                    <Route path="/logout" component={Logout} />
+                    <Route
+                      render={() => (
+                        <Authenticated>
+                          {({ isAuthenticated }) => {
+                            if (isAuthenticated)
+                              return (
+                                <RestrictedApplication
+                                  i18n={this.props.i18n}
+                                  render={this.props.render}
+                                  menuItems={this.props.menuItems}
+                                  notificationsByDomain={
+                                    this.props.notificationsByDomain
+                                  }
+                                  showNotification={this.props.showNotification}
+                                  mapPluginNotificationToComponent={
+                                    this.props.mapPluginNotificationToComponent
+                                  }
+                                  showApiErrorNotification={
+                                    this.props.showApiErrorNotification
+                                  }
+                                  showUnexpectedErrorNotification={
+                                    this.props.showUnexpectedErrorNotification
+                                  }
+                                />
+                              );
+                            const browserLocale = this.getBrowserLocale();
+                            return (
+                              <ConfigureIntlProvider
+                                locale={browserLocale}
+                                messages={this.props.i18n[browserLocale]}
+                              >
+                                <UnrestrictedApplication />
+                              </ConfigureIntlProvider>
+                            );
+                          }}
+                        </Authenticated>
+                      )}
+                    />
+                  </Switch>
                 </GtmBooter>
               </IntercomUrlTracker>
             </Router>

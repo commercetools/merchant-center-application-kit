@@ -62,18 +62,32 @@ describe('rendering', () => {
         props.trackingEventWhitelist
       );
     });
-    it('should render <Authenticated> after track components', () => {
-      expect(wrapper).toRender('GtmBooter > Authenticated');
+    it('should render <Switch> after track components', () => {
+      expect(wrapper).toRender('GtmBooter > Switch');
     });
+  });
+  it('should render <Route> for "/logout"', () => {
+    expect(wrapper).toRender({ path: '/logout' });
   });
 
   describe('<Authenticated>', () => {
+    let routeRenderWrapper;
     let authRenderWrapper;
+    beforeEach(() => {
+      routeRenderWrapper = shallow(
+        <div>
+          {wrapper
+            .find('Switch > Route')
+            .last()
+            .prop('render')()}
+        </div>
+      );
+    });
     describe('when user is authenticated', () => {
       beforeEach(() => {
         authRenderWrapper = shallow(
           <div>
-            {wrapper.find('Authenticated').prop('children')({
+            {routeRenderWrapper.find('Authenticated').prop('children')({
               isAuthenticated: true,
             })}
           </div>
@@ -88,7 +102,7 @@ describe('rendering', () => {
       beforeEach(() => {
         authRenderWrapper = shallow(
           <div>
-            {wrapper.find('Authenticated').prop('children')({
+            {routeRenderWrapper.find('Authenticated').prop('children')({
               isAuthenticated: false,
             })}
           </div>
@@ -228,9 +242,6 @@ describe('<RestrictedApplication>', () => {
           'foo-1'
         );
       });
-    });
-    it('should render <Route> for "/logout" below main container', () => {
-      expect(wrapper.find('.main')).toRender({ path: '/logout' });
     });
     it('should render <Route> for "/account" below main container', () => {
       expect(wrapper.find('.main')).toRender({ path: '/account' });

@@ -104,10 +104,6 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
           className="content"
         >
           <Switch>
-            <Route
-              component={[Function]}
-              path="/logout"
-            />
             <Redirect
               from="/profile"
               push={false}
@@ -244,10 +240,6 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
           className="content"
         >
           <Switch>
-            <Route
-              component={[Function]}
-              path="/logout"
-            />
             <Redirect
               from="/profile"
               push={false}
