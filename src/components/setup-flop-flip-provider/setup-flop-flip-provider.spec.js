@@ -1,7 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
+import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { SetupFlopFlipProvider } from './setup-flop-flip-provider';
+
+jest.mock('@flopflip/launchdarkly-adapter');
 
 const createTestProps = props => ({
   ldClientSideId: '111',
@@ -66,33 +69,16 @@ describe('rendering', () => {
       })
     );
   });
-  describe('on initial state', () => {
-    it('should pass null for "user.custom.project" as adapter arg', () => {
-      expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(
-        'adapterArgs',
-        expect.objectContaining({
-          user: expect.objectContaining({
-            custom: expect.objectContaining({
-              project: null,
-            }),
-          }),
-        })
-      );
-    });
-  });
   describe('when project key is set', () => {
     beforeEach(() => {
       wrapper.instance().setProjectKey('test-1');
       wrapper.update();
     });
-    it('should pass null for "user.custom.project" as adapter arg', () => {
-      expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(
-        'adapterArgs',
+    it('should pass the updated user context containing the project key', () => {
+      expect(ldAdapter.updateUserContext).toHaveBeenCalledWith(
         expect.objectContaining({
-          user: expect.objectContaining({
-            custom: expect.objectContaining({
-              project: 'test-1',
-            }),
+          custom: expect.objectContaining({
+            project: 'test-1',
           }),
         })
       );

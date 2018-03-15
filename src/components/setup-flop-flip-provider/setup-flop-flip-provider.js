@@ -37,14 +37,17 @@ export class SetupFlopFlipProvider extends React.PureComponent {
       },
     })
   );
-  state = {
-    projectKey: null,
-  };
 
-  setProjectKey = projectKey => {
-    // Update only if the projectKey changes
-    if (projectKey !== this.state.projectKey) this.setState({ projectKey });
-  };
+  setProjectKey = defaultMemoize(projectKey => {
+    const updatedAdapterArgs = this.createLaunchdarklyAdapterArgs(
+      this.props.ldClientSideId,
+      this.props.user && this.props.user.id,
+      this.props.user && this.props.user.launchdarklyTrackingId,
+      this.props.user && this.props.user.launchdarklyTrackingGroup,
+      projectKey
+    );
+    ldAdapter.updateUserContext(updatedAdapterArgs.user);
+  });
 
   render() {
     return (
@@ -54,8 +57,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
           this.props.ldClientSideId,
           this.props.user && this.props.user.id,
           this.props.user && this.props.user.launchdarklyTrackingId,
-          this.props.user && this.props.user.launchdarklyTrackingGroup,
-          this.state.projectKey
+          this.props.user && this.props.user.launchdarklyTrackingGroup
         )}
         shouldDeferAdapterConfiguration={!this.props.user}
       >

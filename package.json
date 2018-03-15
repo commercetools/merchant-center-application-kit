@@ -24,11 +24,6 @@
     "@commercetools-local/sdk": "*",
     "@commercetools-local/test-utils": "*",
     "@commercetools-local/ui-kit": "*",
-    "@commercetools-local/utils": "*",
-    "@flopflip/launchdarkly-adapter": "2.1.1",
-    "@flopflip/react-broadcast": "5.1.5",
-    "history": "4.7.2",
-    "react-router": "4.2.0",
-    "react-router-dom": "4.2.2"
+    "@commercetools-local/utils": "*"
   }
 }
