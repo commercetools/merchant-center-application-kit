@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { DOMAINS } from '@commercetools-local/constants';
-import { messages } from '@commercetools-local/core/components/api-error';
+import messages from '@commercetools-local/core/components/api-error/messages';
 import Notification from '@commercetools-local/core/components/notification';
 
 class UnexpectedErrorNotification extends React.PureComponent {
