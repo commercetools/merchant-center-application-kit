@@ -16,7 +16,7 @@ import {
 } from './apollo-links/';
 
 const httpLink = createHttpLink({
-  uri: `${window.app.protocol}://${window.app.backendHost}/graphql`,
+  uri: `${window.app.mcApiUrl}/graphql`,
   credentials: 'include',
   headers: {
     accept: 'application/json',
