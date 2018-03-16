@@ -93,9 +93,27 @@ const extractLanguageDataForLocale = locale => {
   // Get the list of all language names
   const languageNames = cldr.extractLanguageDisplayNames(locale);
 
-  // Here we are filtering the oldLanguages for having only the ones that
-  // are not deprecated and has a key or its replacement key with length of 2
-  // as stipulated by the ISO 639 (1, 2)
+  /* Here we are filtering the oldLanguages for having only the ones that
+  * are not deprecated and has a key or its replacement key with length of 2
+  * as stipulated by the ISO 639 (1, 2)
+  *
+  * Let's say that we got this coming from cldr
+  *  {
+  *    bh: { replacement: 'bhr', reason: 'legacy'},
+  *    tr: { replacement: 'thr', reason: 'deprecated'},
+  *    mar: { replacement: 'ma', reason: 'legacy'},
+  *    adr: { replacement: 'adr-a', reason: 'legacy'},
+  *  }
+  *
+  * The output with the following function would be:
+  *  {
+  *    bh: { replacement: 'bhr', reason: 'legacy'}, --> key of length 2
+  *    mar: { replacement: 'ma', reason: 'legacy'}, --> replacement of length 2
+  *  }
+  *
+  *  We omit the second one (tr) because of the deprecated reason and the fourth
+  *  one (adr) because nor the key or the replacement key has length 2.
+  */
   const filteredOldLanguages = Object.entries(oldLanguages).reduce(
     (allLanguages, [key, value]) => {
       if (
@@ -218,9 +236,9 @@ const run = async key => {
 
 Promise.all(
   [
-    // L10N_KEYS.COUNTRY,
-    // L10N_KEYS.CURRENCY,
-    // L10N_KEYS.TIMEZONE,
+    L10N_KEYS.COUNTRY,
+    L10N_KEYS.CURRENCY,
+    L10N_KEYS.TIMEZONE,
     L10N_KEYS.LANGUAGE,
   ].map(run)
 )
