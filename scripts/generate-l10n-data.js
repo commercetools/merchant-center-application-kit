@@ -93,12 +93,33 @@ const extractLanguageDataForLocale = locale => {
   // Get the list of all language names
   const languageNames = cldr.extractLanguageDisplayNames(locale);
 
+  // Here we are filtering the oldLanguages for having only the ones that
+  // are not deprecated and has a key or its replacement key with length of 2
+  // as stipulated by the ISO 639 (1, 2)
+  const filteredOldLanguages = Object.entries(oldLanguages).reduce(
+    (allLanguages, [key, value]) => {
+      if (
+        value.reason !== 'deprecated' &&
+        (key.length === 2 ||
+          (value.replacement && value.replacement.length === 2))
+      ) {
+        return key.length === 2
+          ? Object.assign({}, allLanguages, { [key]: oldLanguages[key] })
+          : Object.assign({}, allLanguages, {
+              [value.replacement]: oldLanguages[key],
+            });
+      }
+      return allLanguages;
+    },
+    {}
+  );
+
   // We need to fetch the countries first in order to have them when we have
   // languages the type es_GT so we can get the country name for object info
   return extractCountryDataForLocale(locale).then(countries =>
     // We work with a set of data with a mix of the current languages and the
     // old ones
-    [...Object.keys(languages), ...Object.keys(oldLanguages)]
+    [...Object.keys(languages), ...Object.keys(filteredOldLanguages)]
       // We only map the countries with 2 digits (ISO 3166-1 alpha-2) to be
       // inline with the AC
       .filter(language => language.length === 2)
@@ -106,17 +127,15 @@ const extractLanguageDataForLocale = locale => {
         // If the key does not exist in the current languages is because is
         // and old one so now we need to discard the "deprecated" ones.
         if (!languages[language]) {
-          return oldLanguages[language].reason === 'deprecated'
-            ? totalLanguages
-            : Object.assign({}, totalLanguages, {
-                [language]: {
-                  language:
-                    // We check for the language name taking into account the
-                    // key or the replacement key for the language
-                    languageNames[language] ||
-                    languageNames[oldLanguages[language].replacement],
-                },
-              });
+          return Object.assign({}, totalLanguages, {
+            [language]: {
+              language:
+                // We check for the language name taking into account the
+                // key or the replacement key for the language
+                languageNames[language] ||
+                languageNames[oldLanguages[language].replacement],
+            },
+          });
         }
         return Object.assign(
           {},
@@ -199,9 +218,9 @@ const run = async key => {
 
 Promise.all(
   [
-    L10N_KEYS.COUNTRY,
-    L10N_KEYS.CURRENCY,
-    L10N_KEYS.TIMEZONE,
+    // L10N_KEYS.COUNTRY,
+    // L10N_KEYS.CURRENCY,
+    // L10N_KEYS.TIMEZONE,
     L10N_KEYS.LANGUAGE,
   ].map(run)
 )
