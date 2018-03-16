@@ -13,10 +13,8 @@ const userAgentMiddleware = createUserAgentMiddleware({
 
 // NOTE we should not use these directly but rather have them passed in from
 // the application
-const { app: { backendHost, protocol } } = window;
-const backendUrl = `${protocol}://${backendHost}`;
 const httpMiddleware = createHttpMiddleware({
-  host: backendUrl,
+  host: window.app.mcApiUrl,
   includeResponseHeaders: true,
   credentialsMode: 'include',
 });
