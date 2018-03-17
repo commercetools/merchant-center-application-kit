@@ -4,15 +4,11 @@
   "description": "Contains tools for building a MC application",
   "license": "Proprietary",
   "private": true,
-  "main": "src/main.js",
-  "module": "src/main.js",
+  "main": "src/index.js",
+  "module": "src/index.js",
   "engines": {
     "node": ">=8",
     "npm": ">=3"
-  },
-  "scripts": {
-    "prestart": "pushd ../../; npm run setup dist-development",
-    "start": "node ../../toolbox/start.js --package=packages-shared/application-shell"
   },
   "dependencies": {
     "@commercetools-local/actions-global": "*",

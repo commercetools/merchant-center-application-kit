@@ -1,7 +1,25 @@
 /**
- * THIS IS NOT THE MODULE ENTRY POINT!
- * This file is used by `react-script` to start the playground application
- * for testing/developing the `<ApplicationShell>` component.
- * The `<ApplicationShell>` component is however exported in `package.json`.
+ * THIS IS THE MODULE ENTRY POINT!
  */
-import './example/for-development';
+import './public-path';
+
+export { default } from './components/application-shell';
+export {
+  default as InjectReducer,
+  activePluginReducer,
+  createPluginReducer,
+} from './components/inject-reducer';
+export { default as FetchUser, withUser } from './components/fetch-user';
+export {
+  default as FetchProject,
+  withProject,
+} from './components/fetch-project';
+export {
+  default as NotificationsConnector,
+  notificationsReducer,
+} from './components/notifications-connector';
+export { default as reduxStore } from './configure-store';
+export {
+  default as setupGlobalErrorListener,
+} from './utils/setup-global-error-listener';
+export { reportErrorToSentry } from './utils/sentry';
