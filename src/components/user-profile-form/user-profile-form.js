@@ -36,7 +36,6 @@ export class UserProfileForm extends React.Component {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     isSubmitting={form.isSubmitting}
-                    hasAttemptedSubmit={this.state.hasAttemptedSubmit}
                   />
                   <UserProfilePersonalSettingsPanel
                     values={form.values}

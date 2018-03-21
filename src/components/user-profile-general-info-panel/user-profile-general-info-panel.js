@@ -11,7 +11,6 @@ import messages from './messages';
 
 export const UserProfileGeneralInfoPanel = ({
   isSubmitting,
-  hasAttemptedSubmit,
   values,
   errors,
   intl,
@@ -25,8 +24,7 @@ export const UserProfileGeneralInfoPanel = ({
         title={intl.formatMessage(messages.firstName)}
         isRequired={true}
       />
-      {hasAttemptedSubmit &&
-        touched.firstName &&
+      {touched.firstName &&
         errors.firstNameMissing && (
           <Text.Detail tone="negative">
             <FormattedMessage {...validationMessages.required} />
@@ -35,9 +33,7 @@ export const UserProfileGeneralInfoPanel = ({
       <TextInput
         name="firstName"
         value={values.firstName}
-        hasWarning={
-          hasAttemptedSubmit && touched.firstName && errors.firstNameMissing
-        }
+        hasWarning={touched.firstName && errors.firstNameMissing}
         onChange={onChange}
         onBlur={onBlur}
         isDisabled={isSubmitting}
@@ -48,8 +44,7 @@ export const UserProfileGeneralInfoPanel = ({
         title={intl.formatMessage(messages.lastName)}
         isRequired={true}
       />
-      {hasAttemptedSubmit &&
-        touched.lastName &&
+      {touched.lastName &&
         errors.lastNameMissing && (
           <Text.Detail tone="negative">
             <FormattedMessage {...validationMessages.required} />
@@ -58,9 +53,7 @@ export const UserProfileGeneralInfoPanel = ({
       <TextInput
         name="lastName"
         value={values.lastName}
-        hasError={
-          hasAttemptedSubmit && touched.lastName && errors.lastNameMissing
-        }
+        hasError={touched.lastName && errors.lastNameMissing}
         onChange={onChange}
         onBlur={onBlur}
         isDisabled={isSubmitting}
@@ -81,7 +74,6 @@ export const UserProfileGeneralInfoPanel = ({
 UserProfileGeneralInfoPanel.displayName = 'UserProfileGeneralInfoPanel';
 UserProfileGeneralInfoPanel.propTypes = {
   isSubmitting: PropTypes.bool.isRequired,
-  hasAttemptedSubmit: PropTypes.bool.isRequired,
   errors: PropTypes.shape({
     firstName: PropTypes.string,
     lastName: PropTypes.string,
