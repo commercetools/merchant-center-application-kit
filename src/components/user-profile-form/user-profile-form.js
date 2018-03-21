@@ -7,13 +7,7 @@ import PageBottomSpacer from '@commercetools-local/core/components/page-bottom-s
 import WarningSaveToolbar from '@commercetools-local/core/components/warning-save-toolbar';
 import UserProfileGeneralInfoPanel from '../user-profile-general-info-panel';
 import UserProfilePersonalSettingsPanel from '../user-profile-personal-settings-panel';
-
-export const validate = values => {
-  const errors = {};
-  if (values.firstName.trim().length === 0) errors.firstNameMissing = true;
-  if (values.lastName.trim().length === 0) errors.lastNameMissing = true;
-  return errors;
-};
+import validate from './validations';
 
 export class UserProfileForm extends React.Component {
   render() {

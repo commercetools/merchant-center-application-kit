@@ -12,7 +12,6 @@ exports[`rendering when submitting should disable all input fields 1`] = `
       title="UserProfile.GeneralInfoPanel.firstName"
     />
     <TextInput
-      hasWarning={false}
       isDisabled={true}
       name="firstName"
       onBlur={[MockFunction]}
@@ -28,7 +27,6 @@ exports[`rendering when submitting should disable all input fields 1`] = `
       title="UserProfile.GeneralInfoPanel.lastName"
     />
     <TextInput
-      hasError={false}
       isDisabled={true}
       name="lastName"
       onBlur={[MockFunction]}
@@ -66,7 +64,6 @@ exports[`rendering when there are no errors should ensure layout structure 1`] =
       title="UserProfile.GeneralInfoPanel.firstName"
     />
     <TextInput
-      hasWarning={false}
       isDisabled={false}
       name="firstName"
       onBlur={[MockFunction]}
@@ -82,7 +79,6 @@ exports[`rendering when there are no errors should ensure layout structure 1`] =
       title="UserProfile.GeneralInfoPanel.lastName"
     />
     <TextInput
-      hasError={false}
       isDisabled={false}
       name="lastName"
       onBlur={[MockFunction]}

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { intlMock } from '@commercetools-local/test-utils';
 import WarningSaveToolbar from '@commercetools-local/core/components/warning-save-toolbar';
 import UserProfileGeneralInfoPanel from '../user-profile-general-info-panel';
-import { UserProfileForm, validate } from './user-profile-form';
+import { UserProfileForm } from './user-profile-form';
 
 const createTestProps = props => ({
   initialValues: {
@@ -39,23 +39,6 @@ const createFormikProps = props => ({
   resetForm: jest.fn(),
   dirty: false,
   ...props,
-});
-
-describe('validate', () => {
-  describe('when the first name is missing', () => {
-    it('should mark that as an error', () => {
-      expect(validate({ firstName: '', lastName: 'Foo' })).toEqual({
-        firstNameMissing: true,
-      });
-    });
-  });
-  describe('when the last name is missing', () => {
-    it('should mark that as an error', () => {
-      expect(validate({ firstName: 'Foo', lastName: '' })).toEqual({
-        lastNameMissing: true,
-      });
-    });
-  });
 });
 
 describe('rendering', () => {
