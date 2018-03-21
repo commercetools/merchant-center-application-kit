@@ -22,29 +22,22 @@ export const timeZonesToOptions = defaultMemoize(timeZones =>
   }))
 );
 
-export const UserProfilePersonalSettingsPanel = ({
-  isSubmitting,
-  values,
-  intl,
-  onChangeFieldValue,
-  onBlurField,
-  timeZones,
-}) => (
-  <CollapsiblePanel label={intl.formatMessage(messages.title)}>
+export const UserProfilePersonalSettingsPanel = props => (
+  <CollapsiblePanel label={props.intl.formatMessage(messages.title)}>
     <FormBox>
       <LabelField
-        title={intl.formatMessage(messages.language)}
+        title={props.intl.formatMessage(messages.language)}
         isRequired={true}
       />
       <Select
         name="language"
-        value={values.language}
+        value={props.values.language}
         onChange={option => {
-          onChangeFieldValue('language', option.value);
-          onBlurField('language');
+          props.onChangeFieldValue('language', option.value);
+          props.onBlurField('language');
         }}
         onBlur={() => {
-          onBlurField('language');
+          props.onBlurField('language');
         }}
         options={[{ value: 'en', label: 'EN' }, { value: 'de', label: 'DE' }]}
         clearable={false}
@@ -53,29 +46,29 @@ export const UserProfilePersonalSettingsPanel = ({
           /* transform react select option to form value */
           ({ value }) => value
         }
-        disabled={isSubmitting}
+        disabled={props.isSubmitting}
       />
     </FormBox>
     <FormBox>
-      <LabelField title={intl.formatMessage(messages.timeZone)} />
+      <LabelField title={props.intl.formatMessage(messages.timeZone)} />
       <Select
         name="timeZone"
-        value={values.timeZone}
+        value={props.values.timeZone}
         onChange={option => {
-          onChangeFieldValue('timeZone', option ? option.value : null);
-          onBlurField('timeZone');
+          props.onChangeFieldValue('timeZone', option ? option.value : null);
+          props.onBlurField('timeZone');
         }}
         onBlur={() => {
-          onBlurField('timeZone');
+          props.onBlurField('timeZone');
         }}
-        options={timeZonesToOptions(timeZones)}
+        options={timeZonesToOptions(props.timeZones)}
         clearable={true}
         searchable={true}
         parse={
           /* transform react select option to form value */
           option => (option ? option.value : null)
         }
-        disabled={isSubmitting}
+        disabled={props.isSubmitting}
       />
     </FormBox>
   </CollapsiblePanel>
@@ -99,7 +92,9 @@ UserProfilePersonalSettingsPanel.propTypes = {
 };
 
 export default compose(
-  withUser,
+  withUser(userData => ({
+    user: { locale: userData.user && userData.user.language },
+  })),
   withTimeZones(ownProps => ownProps.user.locale),
   injectIntl
 )(UserProfilePersonalSettingsPanel);
