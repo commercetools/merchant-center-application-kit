@@ -16,9 +16,6 @@ export const validate = values => {
 };
 
 export class UserProfileForm extends React.Component {
-  state = {
-    hasAttemptedSubmit: false,
-  };
   render() {
     return (
       <Formik
@@ -50,14 +47,7 @@ export class UserProfileForm extends React.Component {
                 </Spacings.Stack>
                 <PageBottomSpacer />
                 <WarningSaveToolbar
-                  onSave={(...args) => {
-                    // NOTE unfortunately I could not find a way for formik to
-                    // give us this information: has the user attempted to
-                    // submit the form at least once?
-                    // Maybe it's worth adding a PR to formik, should be simple
-                    this.setState({ hasAttemptedSubmit: true });
-                    return form.handleSubmit(...args);
-                  }}
+                  onSave={form.handleSubmit}
                   onCancel={form.handleReset}
                   shouldWarnOnLeave={form.dirty}
                   isToolbarVisible={form.dirty}

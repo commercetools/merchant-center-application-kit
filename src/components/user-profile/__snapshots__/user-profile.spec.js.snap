@@ -64,7 +64,6 @@ exports[`rendering should ensure layout structure 1`] = `
         }
       }
       onSubmit={[Function]}
-      route={Object {}}
     />
   </div>
 </div>

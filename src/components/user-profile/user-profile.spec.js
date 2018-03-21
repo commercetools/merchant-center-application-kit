@@ -1,21 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { SubmissionError } from 'redux-form';
 import { GRAPHQL_TARGETS, DOMAINS } from '@commercetools-local/constants';
+import { intlMock } from '@commercetools-local/test-utils';
 import UserProfileForm from '../user-profile-form';
 import { UserProfile } from './user-profile';
-
-// TODO replace with test-utils intlMock after RR4 migration #RR4
-const intlMock = {
-  formatMessage: message => message.id,
-  formatDate: () => 'xxx',
-  formatTime: () => 'xxx',
-  formatRelative: () => 'xxx',
-  formatNumber: () => 'xxx',
-  formatPlural: () => 'xxx',
-  formatHTMLMessage: () => 'xxx',
-  now: () => 'xxx',
-};
 
 const createTestProps = props => ({
   route: {},
@@ -27,11 +15,9 @@ const createTestProps = props => ({
   projectsCount: 2,
   organizationsCount: 1,
   updateUserProfile: jest.fn(),
-  setLoggedInUser: jest.fn(),
   showNotification: jest.fn(),
   showApiErrorNotification: jest.fn(),
   intl: intlMock,
-  env: 'production',
   ...props,
 });
 
@@ -69,18 +55,20 @@ describe('rendering', () => {
         props.user
       );
     });
-    it('should pass route to <UserProfileForm>', () => {
-      expect(wrapper.find(UserProfileForm)).toHaveProp('route', props.route);
-    });
   });
 });
 
 describe('callbacks', () => {
-  describe('handleSave', () => {
+  describe('handleSubmit', () => {
     let props;
     let wrapper;
-    describe('if request is successfull', () => {
-      beforeEach(async () => {
+    let actions;
+    describe('when request is successfull', () => {
+      beforeEach(() => {
+        actions = {
+          setSubmitting: jest.fn(),
+          resetForm: jest.fn(),
+        };
         props = createTestProps({
           updateUserProfile: jest.fn(() =>
             Promise.resolve({
@@ -99,13 +87,16 @@ describe('callbacks', () => {
           ),
         });
         wrapper = shallow(<UserProfile {...props} />);
-        return wrapper.instance().handleSave({
-          version: 2,
-          firstName: 'John',
-          lastName: 'Snow',
-          language: 'en',
-          timeZone: 'Europe/Berlin',
-        });
+        return wrapper.instance().handleSubmit(
+          {
+            version: 2,
+            firstName: 'John',
+            lastName: 'Snow',
+            language: 'en',
+            timeZone: 'Europe/Berlin',
+          },
+          actions
+        );
       });
       it('should trigger mutation', () => {
         expect(props.updateUserProfile).toHaveBeenCalledTimes(1);
@@ -130,23 +121,33 @@ describe('callbacks', () => {
           text: 'UserProfile.userUpdated',
         });
       });
+      it('should reset form values', () => {
+        expect(actions.resetForm).toHaveBeenCalled();
+      });
+      it('should mark form as not submitting', () => {
+        expect(actions.setSubmitting).toHaveBeenCalledWith(false);
+      });
     });
-    describe('if request failed', () => {
+    describe('when request fails', () => {
       beforeEach(() => {
+        actions = {
+          setSubmitting: jest.fn(),
+          setErrors: jest.fn(),
+        };
         props = createTestProps({
           updateUserProfile: jest.fn(() => Promise.reject(new Error('Oops'))),
         });
         wrapper = shallow(<UserProfile {...props} />);
-        return wrapper
-          .instance()
-          .handleSave({
+        return wrapper.instance().handleSubmit(
+          {
             version: 2,
             firstName: 'John',
             lastName: 'Snow',
             language: 'en',
             timeZone: 'Europe/Berlin',
-          })
-          .catch(() => {});
+          },
+          actions
+        );
       });
       it('should trigger mutation', () => {
         expect(props.updateUserProfile).toHaveBeenCalledTimes(1);
@@ -163,28 +164,11 @@ describe('callbacks', () => {
           },
         });
       });
-      it('should not dispatch update user', () => {
-        expect(props.setLoggedInUser).toHaveBeenCalledTimes(0);
-      });
       it('should not dispatch success notification', () => {
         expect(props.showNotification).toHaveBeenCalledTimes(0);
       });
-      it('should dispatch error notification', () => {
-        expect(props.showApiErrorNotification).toHaveBeenCalledTimes(1);
-        expect(props.showApiErrorNotification).toHaveBeenCalledWith({
-          error: new Error('Oops'),
-        });
-      });
-      it('should reject with a SubmissionError', () => {
-        expect(
-          wrapper.instance().handleSave({
-            version: 2,
-            firstName: 'John',
-            lastName: 'Snow',
-            language: 'en',
-            timeZone: 'Europe/Berlin',
-          })
-        ).rejects.toThrow(SubmissionError);
+      it('should mark form as not submitting', () => {
+        expect(actions.setSubmitting).toHaveBeenCalledWith(false);
       });
     });
   });
