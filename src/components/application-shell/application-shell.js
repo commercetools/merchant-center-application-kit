@@ -122,8 +122,8 @@ export const RestrictedApplication = props => (
                                 <AsyncUserProfile
                                   user={user}
                                   showNotification={props.showNotification}
-                                  showUnexpectedErrorNotification={
-                                    props.showUnexpectedErrorNotification
+                                  showApiErrorNotification={
+                                    props.showApiErrorNotification
                                   }
                                 />
                               )}

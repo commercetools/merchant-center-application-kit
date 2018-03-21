@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`rendering should ensure layout structure 1`] = `
+exports[`rendering when not submitting should ensure layout structure 1`] = `
 <CollapsiblePanel
   label="UserProfile.PersonalSettingsPanel.title"
 >
@@ -11,10 +11,39 @@ exports[`rendering should ensure layout structure 1`] = `
       isRequired={true}
       title="UserProfile.PersonalSettingsPanel.language"
     />
-    <Field
+    <Select
+      addLabelText="Add \\"{label}\\"?"
+      arrowRenderer={[Function]}
+      autosize={true}
+      backspaceRemoves={true}
+      backspaceToRemoveMessage="Press backspace to remove {label}"
+      clearAllText="Clear all"
+      clearRenderer={[Function]}
+      clearValueText="Clear value"
       clearable={false}
-      component={[Function]}
+      deleteRemoves={true}
+      delimiter=","
+      disabled={false}
+      escapeClearsValue={true}
+      filterOptions={[Function]}
+      ignoreAccents={true}
+      ignoreCase={true}
+      inputProps={Object {}}
+      isLoading={false}
+      joinValues={false}
+      labelKey="label"
+      matchPos="any"
+      matchProp="any"
+      menuBuffer={0}
+      menuRenderer={[Function]}
+      multi={false}
       name="language"
+      noResultsText="No results found"
+      onBlur={[Function]}
+      onBlurResetsInput={true}
+      onChange={[Function]}
+      onCloseResetsInput={true}
+      optionComponent={[Function]}
       options={
         Array [
           Object {
@@ -27,8 +56,17 @@ exports[`rendering should ensure layout structure 1`] = `
           },
         ]
       }
+      pageSize={5}
       parse={[Function]}
+      placeholder="Select..."
+      required={false}
+      scrollMenuIntoView={true}
       searchable={false}
+      simpleValue={false}
+      tabSelectsValue={true}
+      value="en"
+      valueComponent={[Function]}
+      valueKey="value"
     />
   </FormBox>
   <FormBox
@@ -38,10 +76,39 @@ exports[`rendering should ensure layout structure 1`] = `
       isRequired={false}
       title="UserProfile.PersonalSettingsPanel.timeZone"
     />
-    <Field
+    <Select
+      addLabelText="Add \\"{label}\\"?"
+      arrowRenderer={[Function]}
+      autosize={true}
+      backspaceRemoves={true}
+      backspaceToRemoveMessage="Press backspace to remove {label}"
+      clearAllText="Clear all"
+      clearRenderer={[Function]}
+      clearValueText="Clear value"
       clearable={true}
-      component={[Function]}
+      deleteRemoves={true}
+      delimiter=","
+      disabled={false}
+      escapeClearsValue={true}
+      filterOptions={[Function]}
+      ignoreAccents={true}
+      ignoreCase={true}
+      inputProps={Object {}}
+      isLoading={false}
+      joinValues={false}
+      labelKey="label"
+      matchPos="any"
+      matchProp="any"
+      menuBuffer={0}
+      menuRenderer={[Function]}
+      multi={false}
       name="timeZone"
+      noResultsText="No results found"
+      onBlur={[Function]}
+      onBlurResetsInput={true}
+      onChange={[Function]}
+      onCloseResetsInput={true}
+      optionComponent={[Function]}
       options={
         Array [
           Object {
@@ -50,8 +117,150 @@ exports[`rendering should ensure layout structure 1`] = `
           },
         ]
       }
+      pageSize={5}
       parse={[Function]}
+      placeholder="Select..."
+      required={false}
+      scrollMenuIntoView={true}
       searchable={true}
+      simpleValue={false}
+      tabSelectsValue={true}
+      value="Europe/Berlin"
+      valueComponent={[Function]}
+      valueKey="value"
+    />
+  </FormBox>
+</CollapsiblePanel>
+`;
+
+exports[`rendering when submitting should disable all input fields 1`] = `
+<CollapsiblePanel
+  label="UserProfile.PersonalSettingsPanel.title"
+>
+  <FormBox
+    hasWarning={false}
+  >
+    <LabelField
+      isRequired={true}
+      title="UserProfile.PersonalSettingsPanel.language"
+    />
+    <Select
+      addLabelText="Add \\"{label}\\"?"
+      arrowRenderer={[Function]}
+      autosize={true}
+      backspaceRemoves={true}
+      backspaceToRemoveMessage="Press backspace to remove {label}"
+      clearAllText="Clear all"
+      clearRenderer={[Function]}
+      clearValueText="Clear value"
+      clearable={false}
+      deleteRemoves={true}
+      delimiter=","
+      disabled={true}
+      escapeClearsValue={true}
+      filterOptions={[Function]}
+      ignoreAccents={true}
+      ignoreCase={true}
+      inputProps={Object {}}
+      isLoading={false}
+      joinValues={false}
+      labelKey="label"
+      matchPos="any"
+      matchProp="any"
+      menuBuffer={0}
+      menuRenderer={[Function]}
+      multi={false}
+      name="language"
+      noResultsText="No results found"
+      onBlur={[Function]}
+      onBlurResetsInput={true}
+      onChange={[Function]}
+      onCloseResetsInput={true}
+      optionComponent={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "EN",
+            "value": "en",
+          },
+          Object {
+            "label": "DE",
+            "value": "de",
+          },
+        ]
+      }
+      pageSize={5}
+      parse={[Function]}
+      placeholder="Select..."
+      required={false}
+      scrollMenuIntoView={true}
+      searchable={false}
+      simpleValue={false}
+      tabSelectsValue={true}
+      value="en"
+      valueComponent={[Function]}
+      valueKey="value"
+    />
+  </FormBox>
+  <FormBox
+    hasWarning={false}
+  >
+    <LabelField
+      isRequired={false}
+      title="UserProfile.PersonalSettingsPanel.timeZone"
+    />
+    <Select
+      addLabelText="Add \\"{label}\\"?"
+      arrowRenderer={[Function]}
+      autosize={true}
+      backspaceRemoves={true}
+      backspaceToRemoveMessage="Press backspace to remove {label}"
+      clearAllText="Clear all"
+      clearRenderer={[Function]}
+      clearValueText="Clear value"
+      clearable={true}
+      deleteRemoves={true}
+      delimiter=","
+      disabled={true}
+      escapeClearsValue={true}
+      filterOptions={[Function]}
+      ignoreAccents={true}
+      ignoreCase={true}
+      inputProps={Object {}}
+      isLoading={false}
+      joinValues={false}
+      labelKey="label"
+      matchPos="any"
+      matchProp="any"
+      menuBuffer={0}
+      menuRenderer={[Function]}
+      multi={false}
+      name="timeZone"
+      noResultsText="No results found"
+      onBlur={[Function]}
+      onBlurResetsInput={true}
+      onChange={[Function]}
+      onCloseResetsInput={true}
+      optionComponent={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "Europe/Berlin - CEST (+02:00)",
+            "value": "Europe/Berlin",
+          },
+        ]
+      }
+      pageSize={5}
+      parse={[Function]}
+      placeholder="Select..."
+      required={false}
+      scrollMenuIntoView={true}
+      searchable={true}
+      simpleValue={false}
+      tabSelectsValue={true}
+      value="Europe/Berlin"
+      valueComponent={[Function]}
+      valueKey="value"
     />
   </FormBox>
 </CollapsiblePanel>

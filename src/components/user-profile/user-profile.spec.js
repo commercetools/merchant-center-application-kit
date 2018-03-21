@@ -29,7 +29,7 @@ const createTestProps = props => ({
   updateUserProfile: jest.fn(),
   setLoggedInUser: jest.fn(),
   showNotification: jest.fn(),
-  showUnexpectedErrorNotification: jest.fn(),
+  showApiErrorNotification: jest.fn(),
   intl: intlMock,
   env: 'production',
   ...props,
@@ -170,8 +170,8 @@ describe('callbacks', () => {
         expect(props.showNotification).toHaveBeenCalledTimes(0);
       });
       it('should dispatch error notification', () => {
-        expect(props.showUnexpectedErrorNotification).toHaveBeenCalledTimes(1);
-        expect(props.showUnexpectedErrorNotification).toHaveBeenCalledWith({
+        expect(props.showApiErrorNotification).toHaveBeenCalledTimes(1);
+        expect(props.showApiErrorNotification).toHaveBeenCalledWith({
           error: new Error('Oops'),
         });
       });

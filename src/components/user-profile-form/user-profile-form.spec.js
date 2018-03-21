@@ -1,38 +1,61 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import SaveToolbar from '@commercetools-local/core/components/save-toolbar';
+import { intlMock } from '@commercetools-local/test-utils';
+import WarningSaveToolbar from '@commercetools-local/core/components/warning-save-toolbar';
 import UserProfileGeneralInfoPanel from '../user-profile-general-info-panel';
-import { UserProfileForm } from './user-profile-form';
-
-// TODO replace with test-utils intlMock after RR4 migration #RR4
-const intlMock = {
-  formatMessage: message => message.id,
-  formatDate: () => 'xxx',
-  formatTime: () => 'xxx',
-  formatRelative: () => 'xxx',
-  formatNumber: () => 'xxx',
-  formatPlural: () => 'xxx',
-  formatHTMLMessage: () => 'xxx',
-  now: () => 'xxx',
-};
+import { UserProfileForm, validate } from './user-profile-form';
 
 const createTestProps = props => ({
+  initialValues: {
+    version: 2,
+    email: 'john@snow.got',
+    firstName: 'John',
+    lastName: 'Snow',
+    language: 'en',
+    timeZone: 'Europe/Berlin',
+  },
   onSubmit: jest.fn(),
-  handleSubmit: jest.fn(() => () => {}),
-  route: {},
-  isSaveToolbarAlwaysVisible: false,
   intl: intlMock,
-  // Connected (redux-form)
-  invalid: false,
-  dirty: false,
-  pristine: false,
-  submitting: false,
-  change: jest.fn(),
-  reset: jest.fn(),
-  submitSucceeded: false,
-  syncErrors: {},
-  submitFailed: false,
   ...props,
+});
+
+const createFormikProps = props => ({
+  values: {
+    version: 2,
+    email: 'john@snow.got',
+    firstName: 'John',
+    lastName: 'Snow',
+    language: 'en',
+    timeZone: 'Europe/Berlin',
+  },
+  errors: {},
+  touched: {},
+  handleBlur: jest.fn(),
+  handleChange: jest.fn(),
+  handleSubmit: jest.fn(),
+  isSubmitting: false,
+  setFieldValue: jest.fn(),
+  setFieldTouched: jest.fn(),
+  resetForm: jest.fn(),
+  dirty: false,
+  ...props,
+});
+
+describe('validate', () => {
+  describe('when the first name is missing', () => {
+    it('should mark that as an error', () => {
+      expect(validate({ firstName: '', lastName: 'Foo' })).toEqual({
+        firstNameMissing: true,
+      });
+    });
+  });
+  describe('when the last name is missing', () => {
+    it('should mark that as an error', () => {
+      expect(validate({ firstName: 'Foo', lastName: '' })).toEqual({
+        lastNameMissing: true,
+      });
+    });
+  });
 });
 
 describe('rendering', () => {
@@ -45,71 +68,111 @@ describe('rendering', () => {
   it('should ensure layout structure', () => {
     expect(wrapper).toMatchSnapshot();
   });
-  it('should render <UserProfileGeneralInfoPanel>', () => {
-    expect(wrapper).toRender(UserProfileGeneralInfoPanel);
+  describe('rendering form', () => {
+    let formikProps;
+    let formikWrapper;
+    beforeEach(() => {
+      formikProps = createFormikProps();
+      formikWrapper = shallow(
+        wrapper.find('Formik').prop('render')(formikProps)
+      );
+    });
+    it('should render <UserProfileGeneralInfoPanel>', () => {
+      expect(formikWrapper).toRender(UserProfileGeneralInfoPanel);
+    });
   });
-  describe('<SaveToolbar>', () => {
-    describe('when form is not submitted and is dirty', () => {
+  describe('<WarningSaveToolbar>', () => {
+    describe('when form is pristine', () => {
+      let formikProps;
+      let formikWrapper;
       beforeEach(() => {
-        props = createTestProps({ submitSucceeded: false, dirty: true });
-        wrapper = shallow(<UserProfileForm {...props} />);
+        formikProps = createFormikProps({ touched: {}, dirty: false });
+        formikWrapper = shallow(
+          wrapper.find('Formik').prop('render')(formikProps)
+        );
       });
-      it('should pass true to shouldWarnOnLeave prop', () => {
-        expect(wrapper.find(SaveToolbar)).toHaveProp('shouldWarnOnLeave', true);
+      it('should not warn on leave', () => {
+        expect(formikWrapper.find(WarningSaveToolbar)).toHaveProp(
+          'shouldWarnOnLeave',
+          false
+        );
+      });
+      it('should not show save toolbar', () => {
+        expect(formikWrapper.find(WarningSaveToolbar)).toHaveProp(
+          'isToolbarVisible',
+          false
+        );
       });
     });
-    describe('when save toolbar should always be visible', () => {
+    describe('when form is dirty', () => {
+      let formikProps;
+      let formikWrapper;
       beforeEach(() => {
-        props = createTestProps({ isSaveToolbarAlwaysVisible: true });
-        wrapper = shallow(<UserProfileForm {...props} />);
-      });
-      it('should pass true isToolbarVisible prop', () => {
-        expect(wrapper.find(SaveToolbar)).toHaveProp('isToolbarVisible', true);
-      });
-    });
-    describe('when save toolbar should not always be visible and form is dirty', () => {
-      beforeEach(() => {
-        props = createTestProps({
-          isSaveToolbarAlwaysVisible: false,
+        formikProps = createFormikProps({
+          touched: { name: true },
           dirty: true,
         });
-        wrapper = shallow(<UserProfileForm {...props} />);
+        formikWrapper = shallow(
+          wrapper.find('Formik').prop('render')(formikProps)
+        );
       });
-      it('should pass true isToolbarVisible prop', () => {
-        expect(wrapper.find(SaveToolbar)).toHaveProp('isToolbarVisible', true);
+      it('should warn on leave', () => {
+        expect(formikWrapper.find(WarningSaveToolbar)).toHaveProp(
+          'shouldWarnOnLeave',
+          true
+        );
+      });
+      it('should show save toolbar', () => {
+        expect(formikWrapper.find(WarningSaveToolbar)).toHaveProp(
+          'isToolbarVisible',
+          true
+        );
       });
     });
     describe('when form is submitting', () => {
+      let formikProps;
+      let formikWrapper;
       beforeEach(() => {
-        props = createTestProps({
-          submitting: true,
+        formikProps = createFormikProps({
+          touched: { firstName: true },
+          dirty: true,
+          isSubmitting: true,
         });
-        wrapper = shallow(<UserProfileForm {...props} />);
+        formikWrapper = shallow(
+          wrapper.find('Formik').prop('render')(formikProps)
+        );
       });
-      it('should pass true to isToolbarDisabled prop', () => {
-        expect(wrapper.find(SaveToolbar)).toHaveProp('isToolbarDisabled', true);
+      it('should disable SaveToolbar', () => {
+        expect(formikWrapper.find(WarningSaveToolbar)).toHaveProp(
+          'isToolbarDisabled',
+          true
+        );
       });
     });
-    describe('when form is pristine', () => {
+    describe('when firstname is invalid', () => {
+      let formikProps;
+      let formikWrapper;
       beforeEach(() => {
-        props = createTestProps({
-          pristine: true,
+        formikProps = createFormikProps({
+          errors: { firstName: 'foo' },
+          touched: { firstName: true },
+          dirty: true,
         });
-        wrapper = shallow(<UserProfileForm {...props} />);
+        formikWrapper = shallow(
+          wrapper.find('Formik').prop('render')(formikProps)
+        );
       });
-      it('should pass true to isToolbarDisabled prop', () => {
-        expect(wrapper.find(SaveToolbar)).toHaveProp('isToolbarDisabled', true);
+      it('should show the error', () => {
+        expect(formikWrapper.find(UserProfileGeneralInfoPanel)).toHaveProp(
+          'errors',
+          { firstName: 'foo' }
+        );
       });
-    });
-    describe('when form is invalid', () => {
-      beforeEach(() => {
-        props = createTestProps({
-          invalid: true,
-        });
-        wrapper = shallow(<UserProfileForm {...props} />);
-      });
-      it('should pass true to isToolbarDisabled prop', () => {
-        expect(wrapper.find(SaveToolbar)).toHaveProp('isToolbarDisabled', true);
+      it('should not disable SaveToolbar', () => {
+        expect(formikWrapper.find(WarningSaveToolbar)).toHaveProp(
+          'isToolbarDisabled',
+          false
+        );
       });
     });
   });

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`rendering should ensure layout structure 1`] = `
+exports[`rendering when submitting should disable all input fields 1`] = `
 <CollapsiblePanel
   label="UserProfile.GeneralInfoPanel.title"
 >
@@ -11,11 +11,13 @@ exports[`rendering should ensure layout structure 1`] = `
       isRequired={true}
       title="UserProfile.GeneralInfoPanel.firstName"
     />
-    <Field
-      component={[Function]}
+    <TextInput
+      hasWarning={false}
+      isDisabled={true}
       name="firstName"
-      shouldDisplayTooltip={[Function]}
-      submitFailed={false}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      value="John"
     />
   </FormBox>
   <FormBox
@@ -25,11 +27,13 @@ exports[`rendering should ensure layout structure 1`] = `
       isRequired={true}
       title="UserProfile.GeneralInfoPanel.lastName"
     />
-    <Field
-      component={[Function]}
+    <TextInput
+      hasError={false}
+      isDisabled={true}
       name="lastName"
-      shouldDisplayTooltip={[Function]}
-      submitFailed={false}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      value="Snow"
     />
   </FormBox>
   <FormBox
@@ -39,10 +43,129 @@ exports[`rendering should ensure layout structure 1`] = `
       isRequired={false}
       title="UserProfile.GeneralInfoPanel.email"
     />
-    <Field
-      component={[Function]}
-      disabled={true}
+    <TextInput
+      isDisabled={true}
       name="email"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      value="john@snow.got"
+    />
+  </FormBox>
+</CollapsiblePanel>
+`;
+
+exports[`rendering when there are no errors should ensure layout structure 1`] = `
+<CollapsiblePanel
+  label="UserProfile.GeneralInfoPanel.title"
+>
+  <FormBox
+    hasWarning={false}
+  >
+    <LabelField
+      isRequired={true}
+      title="UserProfile.GeneralInfoPanel.firstName"
+    />
+    <TextInput
+      hasWarning={false}
+      isDisabled={false}
+      name="firstName"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      value="John"
+    />
+  </FormBox>
+  <FormBox
+    hasWarning={false}
+  >
+    <LabelField
+      isRequired={true}
+      title="UserProfile.GeneralInfoPanel.lastName"
+    />
+    <TextInput
+      hasError={false}
+      isDisabled={false}
+      name="lastName"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      value="Snow"
+    />
+  </FormBox>
+  <FormBox
+    hasWarning={false}
+  >
+    <LabelField
+      isRequired={false}
+      title="UserProfile.GeneralInfoPanel.email"
+    />
+    <TextInput
+      isDisabled={true}
+      name="email"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      value="john@snow.got"
+    />
+  </FormBox>
+</CollapsiblePanel>
+`;
+
+exports[`rendering when there is a validation error on first name should ensure layout structure 1`] = `
+<CollapsiblePanel
+  label="UserProfile.GeneralInfoPanel.title"
+>
+  <FormBox
+    hasWarning={false}
+  >
+    <LabelField
+      isRequired={true}
+      title="UserProfile.GeneralInfoPanel.firstName"
+    />
+    <TextDetail
+      tone="negative"
+    >
+      <FormattedMessage
+        defaultMessage="Please fill in this required field."
+        description="An error message to show if the field is required"
+        id="Validation.required"
+        values={Object {}}
+      />
+    </TextDetail>
+    <TextInput
+      hasWarning={true}
+      isDisabled={false}
+      name="firstName"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      value="John"
+    />
+  </FormBox>
+  <FormBox
+    hasWarning={false}
+  >
+    <LabelField
+      isRequired={true}
+      title="UserProfile.GeneralInfoPanel.lastName"
+    />
+    <TextInput
+      isDisabled={false}
+      name="lastName"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      value="Snow"
+    />
+  </FormBox>
+  <FormBox
+    hasWarning={false}
+  >
+    <LabelField
+      isRequired={false}
+      title="UserProfile.GeneralInfoPanel.email"
+    />
+    <TextInput
+      isDisabled={true}
+      name="email"
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
+      value="john@snow.got"
     />
   </FormBox>
 </CollapsiblePanel>

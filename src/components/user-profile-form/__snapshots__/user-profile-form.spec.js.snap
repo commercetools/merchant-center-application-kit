@@ -1,27 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`rendering should ensure layout structure 1`] = `
-<Inset
-  scale="m"
->
-  <Stack
-    alignItems="stretch"
-    scale="m"
-  >
-    <InjectIntl(UserProfileGeneralInfoPanel)
-      hasSubmitFailed={false}
-    />
-    <Connect(withTimeZones(InjectIntl(UserProfilePersonalSettingsPanel))) />
-  </Stack>
-  <PageBottomSpacer />
-  <SaveToolbar
-    isToolbarDisabled={false}
-    isToolbarVisible={false}
-    isVisible={false}
-    onCancel={[MockFunction]}
-    onSave={[MockFunction]}
-    route={Object {}}
-    shouldWarnOnLeave={false}
-  />
-</Inset>
+<Formik
+  enableReinitialize={true}
+  initialValues={
+    Object {
+      "email": "john@snow.got",
+      "firstName": "John",
+      "language": "en",
+      "lastName": "Snow",
+      "timeZone": "Europe/Berlin",
+      "version": 2,
+    }
+  }
+  isInitialValid={false}
+  onSubmit={[MockFunction]}
+  render={[Function]}
+  validate={[Function]}
+  validateOnBlur={true}
+  validateOnChange={true}
+/>
 `;

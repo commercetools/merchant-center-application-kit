@@ -55,7 +55,7 @@ exports[`rendering should ensure layout structure 1`] = `
       }
     }
   >
-    <UserProfileForm
+    <InjectIntl(UserProfileForm)
       initialValues={
         Object {
           "email": "foo@bar.com",

@@ -1,23 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
-import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { defaultMemoize } from 'reselect';
 import Select from 'react-select';
-import { Field, formValueSelector } from 'redux-form';
 import {
   withTimeZones,
   timeZonesShape,
 } from '@commercetools-local/l10n/time-zone-information';
-import wrapInputForReduxForm from '@commercetools-local/core/components/input-wrapper';
 import CollapsiblePanel from '@commercetools-local/ui-kit/panels/collapsible-panel';
 import FormBox from '@commercetools-local/core/components/form-box';
 import LabelField from '@commercetools-local/core/components/fields/label-field';
-import { USER_PROFILE_FORM_NAME } from '../../constants';
+import { withUser } from '../fetch-user';
 import messages from './messages';
-
-const RFSelect = wrapInputForReduxForm(Select);
 
 export const timeZonesToOptions = defaultMemoize(timeZones =>
   Object.entries(timeZones).map(([code, value]) => ({
@@ -27,16 +22,30 @@ export const timeZonesToOptions = defaultMemoize(timeZones =>
   }))
 );
 
-export const UserProfilePersonalSettingsPanel = props => (
-  <CollapsiblePanel label={props.intl.formatMessage(messages.title)}>
+export const UserProfilePersonalSettingsPanel = ({
+  isSubmitting,
+  values,
+  intl,
+  onChangeFieldValue,
+  onBlurField,
+  timeZones,
+}) => (
+  <CollapsiblePanel label={intl.formatMessage(messages.title)}>
     <FormBox>
       <LabelField
-        title={props.intl.formatMessage(messages.language)}
+        title={intl.formatMessage(messages.language)}
         isRequired={true}
       />
-      <Field
+      <Select
         name="language"
-        component={RFSelect}
+        value={values.language}
+        onChange={option => {
+          onChangeFieldValue('language', option.value);
+          onBlurField('language');
+        }}
+        onBlur={() => {
+          onBlurField('language');
+        }}
         options={[{ value: 'en', label: 'EN' }, { value: 'de', label: 'DE' }]}
         clearable={false}
         searchable={false}
@@ -44,20 +53,29 @@ export const UserProfilePersonalSettingsPanel = props => (
           /* transform react select option to form value */
           ({ value }) => value
         }
+        disabled={isSubmitting}
       />
     </FormBox>
     <FormBox>
-      <LabelField title={props.intl.formatMessage(messages.timeZone)} />
-      <Field
+      <LabelField title={intl.formatMessage(messages.timeZone)} />
+      <Select
         name="timeZone"
-        component={RFSelect}
-        options={timeZonesToOptions(props.timeZones)}
+        value={values.timeZone}
+        onChange={option => {
+          onChangeFieldValue('timeZone', option ? option.value : null);
+          onBlurField('timeZone');
+        }}
+        onBlur={() => {
+          onBlurField('timeZone');
+        }}
+        options={timeZonesToOptions(timeZones)}
         clearable={true}
         searchable={true}
         parse={
           /* transform react select option to form value */
           option => (option ? option.value : null)
         }
+        disabled={isSubmitting}
       />
     </FormBox>
   </CollapsiblePanel>
@@ -65,16 +83,23 @@ export const UserProfilePersonalSettingsPanel = props => (
 UserProfilePersonalSettingsPanel.displayName =
   'UserProfilePersonalSettingsPanel';
 UserProfilePersonalSettingsPanel.propTypes = {
-  hasSubmitFailed: PropTypes.bool,
+  isSubmitting: PropTypes.bool.isRequired,
+  values: PropTypes.shape({
+    language: PropTypes.string.isRequired,
+    timeZone: PropTypes.string,
+  }),
+  onChangeFieldValue: PropTypes.func.isRequired,
+  onBlurField: PropTypes.func.isRequired,
   // HoC
   timeZones: timeZonesShape,
   intl: intlShape.isRequired,
+  user: PropTypes.shape({
+    locale: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
-const valueSelector = formValueSelector(USER_PROFILE_FORM_NAME);
-
 export default compose(
-  connect(state => ({ locale: valueSelector(state, 'language') })),
+  withUser,
   withTimeZones(ownProps => ownProps.locale),
   injectIntl
 )(UserProfilePersonalSettingsPanel);

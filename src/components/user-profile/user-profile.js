@@ -35,7 +35,7 @@ export class UserProfile extends React.Component {
 
     updateUserProfile: PropTypes.func.isRequired,
     showNotification: PropTypes.func.isRequired,
-    showUnexpectedErrorNotification: PropTypes.func.isRequired,
+    showApiErrorNotification: PropTypes.func.isRequired,
 
     env: PropTypes.string.isRequired,
     intl: intlShape.isRequired,
@@ -72,7 +72,7 @@ export class UserProfile extends React.Component {
         // On production we send the errors to Sentry.
         if (this.props.env !== 'production') logger.error(error, error.stack);
         // Show an error message
-        this.props.showUnexpectedErrorNotification({ error });
+        this.props.showApiErrorNotification({ error });
         // Notify redux-form that there was an error.
         throw new SubmissionError();
       });

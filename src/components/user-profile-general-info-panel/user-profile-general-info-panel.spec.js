@@ -1,42 +1,91 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { intlMock } from '@commercetools-local/test-utils';
 import { UserProfileGeneralInfoPanel } from './user-profile-general-info-panel';
 
-// TODO replace with test-utils intlMock after RR4 migration #RR4
-const intlMock = {
-  formatMessage: message => message.id,
-  formatDate: () => 'xxx',
-  formatTime: () => 'xxx',
-  formatRelative: () => 'xxx',
-  formatNumber: () => 'xxx',
-  formatPlural: () => 'xxx',
-  formatHTMLMessage: () => 'xxx',
-  now: () => 'xxx',
-};
-
 const createTestProps = props => ({
-  hasSubmitFailed: false,
+  isSubmitting: false,
+  hasAttemptedSubmit: false,
+  values: {
+    email: 'john@snow.got',
+    firstName: 'John',
+    lastName: 'Snow',
+  },
+  errors: {},
   intl: intlMock,
+  touched: {},
+  onChange: jest.fn(),
+  onBlur: jest.fn(),
   ...props,
 });
 
 describe('rendering', () => {
-  let props;
-  let wrapper;
-  beforeEach(() => {
-    props = createTestProps();
-    wrapper = shallow(<UserProfileGeneralInfoPanel {...props} />);
+  describe('when there are no errors', () => {
+    let props;
+    let wrapper;
+    beforeEach(() => {
+      props = createTestProps();
+      wrapper = shallow(<UserProfileGeneralInfoPanel {...props} />);
+    });
+    it('should ensure layout structure', () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+    it('should render input field for firstName', () => {
+      expect(wrapper).toRender({ name: 'firstName' });
+    });
+    it('should render input field for lastName', () => {
+      expect(wrapper).toRender({ name: 'lastName' });
+    });
+    it('should render input field for email', () => {
+      expect(wrapper).toRender({ name: 'email' });
+    });
   });
-  it('should ensure layout structure', () => {
-    expect(wrapper).toMatchSnapshot();
+
+  describe('when there is a validation error on first name', () => {
+    let props;
+    let wrapper;
+    beforeEach(() => {
+      props = createTestProps({
+        errors: { firstNameMissing: true },
+        touched: { firstName: true },
+        hasAttemptedSubmit: true,
+      });
+      wrapper = shallow(<UserProfileGeneralInfoPanel {...props} />);
+    });
+    it('should ensure layout structure', () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+    it('should show the error', () => {
+      expect(wrapper.find('FormattedMessage')).toHaveProp(
+        'id',
+        'Validation.required'
+      );
+    });
+    it('should highlight the first name input', () => {
+      expect(wrapper.find({ name: 'firstName' })).toHaveProp(
+        'hasWarning',
+        true
+      );
+    });
   });
-  it('should render <Field> for firstName', () => {
-    expect(wrapper).toRender({ name: 'firstName' });
-  });
-  it('should render <Field> for lastName', () => {
-    expect(wrapper).toRender({ name: 'lastName' });
-  });
-  it('should render <Field> for email', () => {
-    expect(wrapper).toRender({ name: 'email' });
+  describe('when submitting', () => {
+    let props;
+    let wrapper;
+    beforeEach(() => {
+      props = createTestProps({
+        isSubmitting: true,
+        touched: { firstName: true },
+      });
+      wrapper = shallow(<UserProfileGeneralInfoPanel {...props} />);
+    });
+    it('should disable all input fields', () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+    it('should disable the first name input', () => {
+      expect(wrapper.find({ name: 'firstName' })).toHaveProp(
+        'isDisabled',
+        true
+      );
+    });
   });
 });

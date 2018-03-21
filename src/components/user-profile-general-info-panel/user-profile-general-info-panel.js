@@ -1,68 +1,102 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose, withProps } from 'recompose';
-import { injectIntl, intlShape } from 'react-intl';
-import { Field } from 'redux-form';
-import ThrottledField from '@commercetools-local/core/components/fields/throttled-field';
-import wrapInputForReduxForm from '@commercetools-local/core/components/input-wrapper';
+import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import TextInput from '@commercetools-local/ui-kit/inputs/text-input';
 import CollapsiblePanel from '@commercetools-local/ui-kit/panels/collapsible-panel';
+import { messages as validationMessages } from '@commercetools-local/utils/validation';
+import Text from '@commercetools-local/ui-kit/typography/text';
 import FormBox from '@commercetools-local/core/components/form-box';
 import LabelField from '@commercetools-local/core/components/fields/label-field';
 import messages from './messages';
 
-const Input = compose(
-  wrapInputForReduxForm,
-  withProps(ownerProps => ({
-    // the ThrottledField component only passes the DOM event as param when
-    // calling the onChange handler but redux-form expects the changed value
-    onChange: ({ target }) => ownerProps.onChange(target.value),
-    // we need to pass onEnter here so that ThrottledField aborts pending
-    // updates and calls onChange with the current value when hitting "Enter"
-    // We don't add some custom implementation here because redux-form already
-    // listens to the onKeyDown events on the field and submits the form when
-    // "Enter" is pressed
-    onEnter: () => {},
-  }))
-)(ThrottledField);
-
-const shouldShowError = meta =>
-  (meta.hasSubmitFailed || meta.touched) && meta.invalid;
-
-export const UserProfileGeneralInfoPanel = props => (
-  <CollapsiblePanel label={props.intl.formatMessage(messages.title)}>
+export const UserProfileGeneralInfoPanel = ({
+  isSubmitting,
+  hasAttemptedSubmit,
+  values,
+  errors,
+  intl,
+  touched,
+  onChange,
+  onBlur,
+}) => (
+  <CollapsiblePanel label={intl.formatMessage(messages.title)}>
     <FormBox>
       <LabelField
-        title={props.intl.formatMessage(messages.firstName)}
+        title={intl.formatMessage(messages.firstName)}
         isRequired={true}
       />
-      <Field
+      {hasAttemptedSubmit &&
+        touched.firstName &&
+        errors.firstNameMissing && (
+          <Text.Detail tone="negative">
+            <FormattedMessage {...validationMessages.required} />
+          </Text.Detail>
+        )}
+      <TextInput
         name="firstName"
-        component={Input}
-        shouldDisplayTooltip={shouldShowError}
-        submitFailed={props.hasSubmitFailed}
+        value={values.firstName}
+        hasWarning={
+          hasAttemptedSubmit && touched.firstName && errors.firstNameMissing
+        }
+        onChange={onChange}
+        onBlur={onBlur}
+        isDisabled={isSubmitting}
       />
     </FormBox>
     <FormBox>
       <LabelField
-        title={props.intl.formatMessage(messages.lastName)}
+        title={intl.formatMessage(messages.lastName)}
         isRequired={true}
       />
-      <Field
+      {hasAttemptedSubmit &&
+        touched.lastName &&
+        errors.lastNameMissing && (
+          <Text.Detail tone="negative">
+            <FormattedMessage {...validationMessages.required} />
+          </Text.Detail>
+        )}
+      <TextInput
         name="lastName"
-        component={Input}
-        shouldDisplayTooltip={shouldShowError}
-        submitFailed={props.hasSubmitFailed}
+        value={values.lastName}
+        hasError={
+          hasAttemptedSubmit && touched.lastName && errors.lastNameMissing
+        }
+        onChange={onChange}
+        onBlur={onBlur}
+        isDisabled={isSubmitting}
       />
     </FormBox>
     <FormBox>
-      <LabelField title={props.intl.formatMessage(messages.email)} />
-      <Field name="email" component={Input} disabled={true} />
+      <LabelField title={intl.formatMessage(messages.email)} />
+      <TextInput
+        name="email"
+        value={values.email}
+        isDisabled={true}
+        onChange={onChange}
+        onBlur={onBlur}
+      />
     </FormBox>
   </CollapsiblePanel>
 );
 UserProfileGeneralInfoPanel.displayName = 'UserProfileGeneralInfoPanel';
 UserProfileGeneralInfoPanel.propTypes = {
-  hasSubmitFailed: PropTypes.bool,
+  isSubmitting: PropTypes.bool.isRequired,
+  hasAttemptedSubmit: PropTypes.bool.isRequired,
+  errors: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+  }),
+  values: PropTypes.shape({
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+  }),
+  touched: PropTypes.shape({
+    firstName: PropTypes.bool,
+    lastName: PropTypes.bool,
+  }),
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
   intl: intlShape.isRequired,
 };
 
