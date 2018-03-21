@@ -22,7 +22,7 @@ export const timeZonesToOptions = defaultMemoize(timeZones =>
   }))
 );
 
-export const UserProfilePersonalSettingsPanel = props => (
+export const UserProfilePersonalSettingsSubform = props => (
   <CollapsiblePanel label={props.intl.formatMessage(messages.title)}>
     <FormBox>
       <LabelField
@@ -31,13 +31,13 @@ export const UserProfilePersonalSettingsPanel = props => (
       />
       <Select
         name="language"
-        value={props.values.language}
+        value={props.form.values.language}
         onChange={option => {
-          props.onChangeFieldValue('language', option.value);
-          props.onBlurField('language');
+          props.form.setFieldValue('language', option.value);
+          props.form.setFieldTouched('language');
         }}
         onBlur={() => {
-          props.onBlurField('language');
+          props.form.setFieldTouched('language');
         }}
         options={[{ value: 'en', label: 'EN' }, { value: 'de', label: 'DE' }]}
         clearable={false}
@@ -46,20 +46,20 @@ export const UserProfilePersonalSettingsPanel = props => (
           /* transform react select option to form value */
           ({ value }) => value
         }
-        disabled={props.isSubmitting}
+        disabled={props.form.isSubmitting}
       />
     </FormBox>
     <FormBox>
       <LabelField title={props.intl.formatMessage(messages.timeZone)} />
       <Select
         name="timeZone"
-        value={props.values.timeZone}
+        value={props.form.values.timeZone}
         onChange={option => {
-          props.onChangeFieldValue('timeZone', option ? option.value : null);
-          props.onBlurField('timeZone');
+          props.form.setFieldValue('timeZone', option ? option.value : null);
+          props.form.setFieldTouched('timeZone');
         }}
         onBlur={() => {
-          props.onBlurField('timeZone');
+          props.form.setFieldTouched('timeZone');
         }}
         options={timeZonesToOptions(props.timeZones)}
         clearable={true}
@@ -68,21 +68,24 @@ export const UserProfilePersonalSettingsPanel = props => (
           /* transform react select option to form value */
           option => (option ? option.value : null)
         }
-        disabled={props.isSubmitting}
+        disabled={props.form.isSubmitting}
       />
     </FormBox>
   </CollapsiblePanel>
 );
-UserProfilePersonalSettingsPanel.displayName =
-  'UserProfilePersonalSettingsPanel';
-UserProfilePersonalSettingsPanel.propTypes = {
-  isSubmitting: PropTypes.bool.isRequired,
-  values: PropTypes.shape({
-    language: PropTypes.string.isRequired,
-    timeZone: PropTypes.string,
+UserProfilePersonalSettingsSubform.displayName =
+  'UserProfilePersonalSettingsSubform';
+UserProfilePersonalSettingsSubform.propTypes = {
+  form: PropTypes.shape({
+    isSubmitting: PropTypes.bool.isRequired,
+    values: PropTypes.shape({
+      language: PropTypes.string.isRequired,
+      timeZone: PropTypes.string,
+    }),
+    setFieldValue: PropTypes.func.isRequired,
+    setFieldTouched: PropTypes.func.isRequired,
   }),
-  onChangeFieldValue: PropTypes.func.isRequired,
-  onBlurField: PropTypes.func.isRequired,
+
   // HoC
   timeZones: timeZonesShape,
   intl: intlShape.isRequired,
@@ -97,4 +100,4 @@ export default compose(
   })),
   withTimeZones(ownProps => ownProps.user.locale),
   injectIntl
-)(UserProfilePersonalSettingsPanel);
+)(UserProfilePersonalSettingsSubform);

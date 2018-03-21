@@ -34,7 +34,6 @@ export class UserProfile extends React.Component {
     showNotification: PropTypes.func.isRequired,
     showApiErrorNotification: PropTypes.func.isRequired,
 
-    env: PropTypes.string.isRequired,
     intl: intlShape.isRequired,
   };
 

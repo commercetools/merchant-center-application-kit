@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { intlMock } from '@commercetools-local/test-utils';
 import WarningSaveToolbar from '@commercetools-local/core/components/warning-save-toolbar';
-import UserProfileGeneralInfoPanel from '../user-profile-general-info-panel';
+import UserProfileGeneralInfoSubform from '../user-profile-general-info-subform';
 import { UserProfileForm } from './user-profile-form';
 
 const createTestProps = props => ({
@@ -60,8 +60,8 @@ describe('rendering', () => {
         wrapper.find('Formik').prop('render')(formikProps)
       );
     });
-    it('should render <UserProfileGeneralInfoPanel>', () => {
-      expect(formikWrapper).toRender(UserProfileGeneralInfoPanel);
+    it('should render <UserProfileGeneralInfoSubform>', () => {
+      expect(formikWrapper).toRender(UserProfileGeneralInfoSubform);
     });
   });
   describe('<WarningSaveToolbar>', () => {
@@ -146,9 +146,9 @@ describe('rendering', () => {
         );
       });
       it('should show the error', () => {
-        expect(formikWrapper.find(UserProfileGeneralInfoPanel)).toHaveProp(
-          'errors',
-          { firstName: 'foo' }
+        expect(formikWrapper.find(UserProfileGeneralInfoSubform)).toHaveProp(
+          'form',
+          expect.objectContaining({ errors: { firstName: 'foo' } })
         );
       });
       it('should not disable SaveToolbar', () => {
