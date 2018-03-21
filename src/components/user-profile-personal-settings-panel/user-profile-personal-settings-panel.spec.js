@@ -15,6 +15,10 @@ const createTestProps = props => ({
   timeZones: {
     'Europe/Berlin': { name: 'Europe/Berlin', abbr: 'CEST', offset: '+02:00' },
   },
+  user: {
+    locale: 'en',
+  },
+
   ...props,
 });
 

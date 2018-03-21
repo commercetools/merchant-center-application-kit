@@ -100,6 +100,6 @@ UserProfilePersonalSettingsPanel.propTypes = {
 
 export default compose(
   withUser,
-  withTimeZones(ownProps => ownProps.locale),
+  withTimeZones(ownProps => ownProps.user.locale),
   injectIntl
 )(UserProfilePersonalSettingsPanel);
