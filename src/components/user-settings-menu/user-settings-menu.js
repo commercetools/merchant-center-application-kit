@@ -89,6 +89,8 @@ export default class UserSettingsMenu extends React.PureComponent {
                     </Link>
                   </ToggleFeature>
                   <a
+                    // NOTE: we want to redirect to a new page so that the
+                    // server can remove things like cookie for access token.
                     href={`/logout?reason=${LOGOUT_REASONS.USER}`}
                     data-test="logout-button"
                   >
