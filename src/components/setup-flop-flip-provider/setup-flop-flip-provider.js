@@ -46,7 +46,20 @@ export class SetupFlopFlipProvider extends React.PureComponent {
       this.props.user && this.props.user.launchdarklyTrackingGroup,
       projectKey
     );
-    ldAdapter.updateUserContext(updatedAdapterArgs.user);
+
+    /**
+     * NOTE:
+     *   We `catch` the error from the adapter as we often set it before
+     *   the adapter managed to inititalize.
+     *
+     * TODO:
+     *   Find a better solution for this.
+     *   1. The adapter could support a `waitUntil` to only internally update
+     *      the configuration one it's ready.
+     *   2. We `setTimeout` (really last resort) when we want to update
+     *      the configuration.
+     */
+    ldAdapter.updateUserContext(updatedAdapterArgs.user).catch(() => {});
   });
 
   render() {
