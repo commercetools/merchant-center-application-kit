@@ -4,7 +4,9 @@ import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { SetupFlopFlipProvider } from './setup-flop-flip-provider';
 
-jest.mock('@flopflip/launchdarkly-adapter');
+jest.mock('@flopflip/launchdarkly-adapter', () => ({
+  updateUserContext: jest.fn(() => Promise.resolve()),
+}));
 
 const createTestProps = props => ({
   ldClientSideId: '111',
