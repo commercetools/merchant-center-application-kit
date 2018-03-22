@@ -49,10 +49,9 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
         </div>
       </Link>
     </ToggleFeature>
-    <Link
+    <a
       data-test="logout-button"
-      replace={false}
-      to="/logout?reason=user"
+      href="/logout?reason=user"
     >
       <div
         className="item"
@@ -68,7 +67,7 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
           />
         </Inset>
       </div>
-    </Link>
+    </a>
   </Card>
 </div>
 `;

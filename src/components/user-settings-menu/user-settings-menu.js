@@ -88,8 +88,8 @@ export default class UserSettingsMenu extends React.PureComponent {
                       </div>
                     </Link>
                   </ToggleFeature>
-                  <Link
-                    to={`/logout?reason=${LOGOUT_REASONS.USER}`}
+                  <a
+                    href={`/logout?reason=${LOGOUT_REASONS.USER}`}
                     data-test="logout-button"
                   >
                     <div className={styles.item}>
@@ -97,7 +97,7 @@ export default class UserSettingsMenu extends React.PureComponent {
                         <FormattedMessage {...messages.logout} />
                       </Spacings.Inset>
                     </div>
-                  </Link>
+                  </a>
                 </Card>
               )}
             </div>

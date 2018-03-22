@@ -54,7 +54,7 @@ describe('rendering', () => {
         expect(dowshiftRenderWrapper).toRender({ to: '/account/profile' });
       });
       it('should render link to "/logout"', () => {
-        expect(dowshiftRenderWrapper).toRender({ to: '/logout?reason=user' });
+        expect(dowshiftRenderWrapper).toRender({ href: '/logout?reason=user' });
       });
     });
     describe('when menu is closed', () => {
