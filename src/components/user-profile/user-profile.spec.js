@@ -62,10 +62,10 @@ describe('callbacks', () => {
   describe('handleSubmit', () => {
     let props;
     let wrapper;
-    let actions;
+    let formikBag;
     describe('when request is successfull', () => {
       beforeEach(() => {
-        actions = {
+        formikBag = {
           setSubmitting: jest.fn(),
           resetForm: jest.fn(),
         };
@@ -95,7 +95,7 @@ describe('callbacks', () => {
             language: 'en',
             timeZone: 'Europe/Berlin',
           },
-          actions
+          formikBag
         );
       });
       it('should trigger mutation', () => {
@@ -122,15 +122,15 @@ describe('callbacks', () => {
         });
       });
       it('should reset form values', () => {
-        expect(actions.resetForm).toHaveBeenCalled();
+        expect(formikBag.resetForm).toHaveBeenCalled();
       });
       it('should mark form as not submitting', () => {
-        expect(actions.setSubmitting).toHaveBeenCalledWith(false);
+        expect(formikBag.setSubmitting).toHaveBeenCalledWith(false);
       });
     });
     describe('when request fails', () => {
       beforeEach(() => {
-        actions = {
+        formikBag = {
           setSubmitting: jest.fn(),
           setErrors: jest.fn(),
         };
@@ -146,7 +146,7 @@ describe('callbacks', () => {
             language: 'en',
             timeZone: 'Europe/Berlin',
           },
-          actions
+          formikBag
         );
       });
       it('should trigger mutation', () => {
@@ -168,7 +168,7 @@ describe('callbacks', () => {
         expect(props.showNotification).toHaveBeenCalledTimes(0);
       });
       it('should mark form as not submitting', () => {
-        expect(actions.setSubmitting).toHaveBeenCalledWith(false);
+        expect(formikBag.setSubmitting).toHaveBeenCalledWith(false);
       });
     });
   });

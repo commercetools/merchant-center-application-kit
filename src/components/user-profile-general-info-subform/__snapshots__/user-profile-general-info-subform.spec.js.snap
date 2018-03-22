@@ -12,6 +12,7 @@ exports[`rendering when submitting should disable all input fields 1`] = `
       title="UserProfile.GeneralInfoPanel.firstName"
     />
     <TextInput
+      horizontalConstraint="scale"
       isDisabled={true}
       name="firstName"
       onChange={[MockFunction]}
@@ -26,6 +27,7 @@ exports[`rendering when submitting should disable all input fields 1`] = `
       title="UserProfile.GeneralInfoPanel.lastName"
     />
     <TextInput
+      horizontalConstraint="scale"
       isDisabled={true}
       name="lastName"
       onChange={[MockFunction]}
@@ -40,6 +42,7 @@ exports[`rendering when submitting should disable all input fields 1`] = `
       title="UserProfile.GeneralInfoPanel.email"
     />
     <TextInput
+      horizontalConstraint="scale"
       isDisabled={true}
       name="email"
       onChange={[MockFunction]}
@@ -61,6 +64,7 @@ exports[`rendering when there are no errors should ensure layout structure 1`] =
       title="UserProfile.GeneralInfoPanel.firstName"
     />
     <TextInput
+      horizontalConstraint="scale"
       isDisabled={false}
       name="firstName"
       onChange={[MockFunction]}
@@ -75,6 +79,7 @@ exports[`rendering when there are no errors should ensure layout structure 1`] =
       title="UserProfile.GeneralInfoPanel.lastName"
     />
     <TextInput
+      horizontalConstraint="scale"
       isDisabled={false}
       name="lastName"
       onChange={[MockFunction]}
@@ -89,6 +94,7 @@ exports[`rendering when there are no errors should ensure layout structure 1`] =
       title="UserProfile.GeneralInfoPanel.email"
     />
     <TextInput
+      horizontalConstraint="scale"
       isDisabled={true}
       name="email"
       onChange={[MockFunction]}

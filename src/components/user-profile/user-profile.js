@@ -42,7 +42,7 @@ export class UserProfile extends React.Component {
     organizationsCount: 0,
   };
 
-  handleSubmit = (values, actions) =>
+  handleSubmit = (values, formikBag) =>
     this.props
       .updateUserProfile({
         variables: {
@@ -64,13 +64,13 @@ export class UserProfile extends React.Component {
           text: this.props.intl.formatMessage(messages.userUpdated),
         });
 
-        actions.setSubmitting(false);
+        formikBag.setSubmitting(false);
 
         // We need to reset the form (for new version & data)
-        actions.resetForm();
+        formikBag.resetForm();
       })
       .catch(error => {
-        actions.setSubmitting(false);
+        formikBag.setSubmitting(false);
         this.props.showApiErrorNotification(error, 'user-profile/form');
       });
 
