@@ -11,13 +11,18 @@ exports[`rendering when submitting should disable all input fields 1`] = `
       isRequired={true}
       title="UserProfile.GeneralInfoPanel.firstName"
     />
-    <TextInput
-      horizontalConstraint="scale"
-      isDisabled={true}
-      name="firstName"
-      onChange={[MockFunction]}
-      value="John"
-    />
+    <Stack
+      alignItems="stretch"
+      scale="s"
+    >
+      <TextInput
+        horizontalConstraint="scale"
+        isDisabled={true}
+        name="firstName"
+        onChange={[MockFunction]}
+        value="John"
+      />
+    </Stack>
   </FormBox>
   <FormBox
     hasWarning={false}
@@ -26,13 +31,18 @@ exports[`rendering when submitting should disable all input fields 1`] = `
       isRequired={true}
       title="UserProfile.GeneralInfoPanel.lastName"
     />
-    <TextInput
-      horizontalConstraint="scale"
-      isDisabled={true}
-      name="lastName"
-      onChange={[MockFunction]}
-      value="Snow"
-    />
+    <Stack
+      alignItems="stretch"
+      scale="s"
+    >
+      <TextInput
+        horizontalConstraint="scale"
+        isDisabled={true}
+        name="lastName"
+        onChange={[MockFunction]}
+        value="Snow"
+      />
+    </Stack>
   </FormBox>
   <FormBox
     hasWarning={false}
@@ -63,13 +73,18 @@ exports[`rendering when there are no errors should ensure layout structure 1`] =
       isRequired={true}
       title="UserProfile.GeneralInfoPanel.firstName"
     />
-    <TextInput
-      horizontalConstraint="scale"
-      isDisabled={false}
-      name="firstName"
-      onChange={[MockFunction]}
-      value="John"
-    />
+    <Stack
+      alignItems="stretch"
+      scale="s"
+    >
+      <TextInput
+        horizontalConstraint="scale"
+        isDisabled={false}
+        name="firstName"
+        onChange={[MockFunction]}
+        value="John"
+      />
+    </Stack>
   </FormBox>
   <FormBox
     hasWarning={false}
@@ -78,13 +93,18 @@ exports[`rendering when there are no errors should ensure layout structure 1`] =
       isRequired={true}
       title="UserProfile.GeneralInfoPanel.lastName"
     />
-    <TextInput
-      horizontalConstraint="scale"
-      isDisabled={false}
-      name="lastName"
-      onChange={[MockFunction]}
-      value="Snow"
-    />
+    <Stack
+      alignItems="stretch"
+      scale="s"
+    >
+      <TextInput
+        horizontalConstraint="scale"
+        isDisabled={false}
+        name="lastName"
+        onChange={[MockFunction]}
+        value="Snow"
+      />
+    </Stack>
   </FormBox>
   <FormBox
     hasWarning={false}

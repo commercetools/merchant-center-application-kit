@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 import TextInput from '@commercetools-local/ui-kit/inputs/text-input';
+import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import CollapsiblePanel from '@commercetools-local/ui-kit/panels/collapsible-panel';
 import ErrorMessage from '@commercetools-local/ui-kit/messages/error-message';
 import { messages as validationMessages } from '@commercetools-local/utils/validation';
@@ -16,43 +17,46 @@ export const UserProfileGeneralInfoSubform = props => (
         title={props.intl.formatMessage(messages.firstName)}
         isRequired={true}
       />
-      <TextInput
-        name="firstName"
-        value={props.form.values.firstName}
-        hasWarning={
-          props.form.touched.firstName && props.form.errors.firstNameMissing
-        }
-        onChange={props.form.handleChange}
-        isDisabled={props.form.isSubmitting}
-      />
-      {props.form.touched.firstName &&
-        props.form.errors.firstNameMissing && (
-          <ErrorMessage>
-            <FormattedMessage {...validationMessages.required} />
-          </ErrorMessage>
-        )}
+      <Spacings.Stack>
+        <TextInput
+          name="firstName"
+          value={props.form.values.firstName}
+          hasWarning={
+            props.form.touched.firstName && props.form.errors.firstNameMissing
+          }
+          onChange={props.form.handleChange}
+          isDisabled={props.form.isSubmitting}
+        />
+        {props.form.touched.firstName &&
+          props.form.errors.firstNameMissing && (
+            <ErrorMessage>
+              <FormattedMessage {...validationMessages.required} />
+            </ErrorMessage>
+          )}
+      </Spacings.Stack>
     </FormBox>
     <FormBox>
       <LabelField
         title={props.intl.formatMessage(messages.lastName)}
         isRequired={true}
       />
-
-      <TextInput
-        name="lastName"
-        value={props.form.values.lastName}
-        hasError={
-          props.form.touched.lastName && props.form.errors.lastNameMissing
-        }
-        onChange={props.form.handleChange}
-        isDisabled={props.form.isSubmitting}
-      />
-      {props.form.touched.lastName &&
-        props.form.errors.lastNameMissing && (
-          <ErrorMessage>
-            <FormattedMessage {...validationMessages.required} />
-          </ErrorMessage>
-        )}
+      <Spacings.Stack>
+        <TextInput
+          name="lastName"
+          value={props.form.values.lastName}
+          hasError={
+            props.form.touched.lastName && props.form.errors.lastNameMissing
+          }
+          onChange={props.form.handleChange}
+          isDisabled={props.form.isSubmitting}
+        />
+        {props.form.touched.lastName &&
+          props.form.errors.lastNameMissing && (
+            <ErrorMessage>
+              <FormattedMessage {...validationMessages.required} />
+            </ErrorMessage>
+          )}
+      </Spacings.Stack>
     </FormBox>
     <FormBox>
       <LabelField title={props.intl.formatMessage(messages.email)} />
