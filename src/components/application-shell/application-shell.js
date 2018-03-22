@@ -4,6 +4,7 @@ import { Router, Redirect, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import { joinPaths } from '@commercetools-local/utils/url';
+import * as storage from '@commercetools-local/utils/storage';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-local/constants';
 import PortalsContainer from '@commercetools-local/core/components/portals-container';
 import history from '@commercetools-local/browser-history';
@@ -274,6 +275,9 @@ export default class ApplicationShell extends React.Component {
   };
   componentDidMount() {
     this.props.onRegisterErrorListeners();
+    // NOTE: this is a temporary thingy, to ensure we clear the `token`
+    // from localStorage.
+    storage.remove('token');
   }
   getBrowserLocale = () =>
     (window && window.navigator && window.navigator.language) || 'en';
