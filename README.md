@@ -9,10 +9,10 @@ low-level logic.
 
 #### Arguments
 
-1. `notification` _(Object)_: This notification will get added to the list. See
-   `Notification`.
-1. `[options]` _(Object)_: If specified, further customizes the behavior of the
-   notification.
+1.  `notification` _(Object)_: This notification will get added to the list. See
+    `Notification`.
+1.  `[options]` _(Object)_: If specified, further customizes the behavior of the
+    notification.
 
 * `[dismissAfter = 0]` _(Number)_: dismiss the component after this duration
   (milliseconds)
@@ -61,7 +61,7 @@ middleware automatically, plus any props passed as the payload on creation.
 
 #### Arguments
 
-1. `id` _(Number)_: This notification will be removed
+1.  `id` _(Number)_: This notification will be removed
 
 #### Example action
 
