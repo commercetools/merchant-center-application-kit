@@ -47,9 +47,9 @@ export default AsyncDashboard;
 
 ## Props
 
-| Props     | Type     | Required | Values | Default | Description                                                                                                                                            |
-| --------- | -------- | :------: | ------ | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `name`    | `string` |    ✅    | -      | -       | The key at which the reducer should added to the store in the top level. This will be your plugin's name until we migrate to multiple applications.    |
+| Props     | Type     | Required | Values | Default | Description                                                                                                                                                                                                                        |
+| --------- | -------- | :------: | ------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`    | `string` |    ✅    | -      | -       | The key at which the reducer should added to the store in the top level. This will be your plugin's name until we migrate to multiple applications.                                                                                |
 | `reducer` | `func`   |    ✅    | -      | -       | The reducer function that should be injected to the store at the top level. This will be your plugin reducer until we migrate to multiple applications. (**NOTE: the reducer needs to be wrapped with the `createPluginReducer`**) |
 
 ## Prior art
