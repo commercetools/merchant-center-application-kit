@@ -194,7 +194,7 @@ export class LoginSSO extends React.PureComponent {
 
 const mapDispatchToProps = dispatch => ({
   getOrganizationByName: name =>
-    dispatch(sdkActions.get({ uri: `/sso/organizations?name=${name}` })),
+    dispatch(sdkActions.get({ uri: `/sso/organization?name=${name}` })),
 });
 
 export default compose(
