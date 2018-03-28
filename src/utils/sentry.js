@@ -14,13 +14,15 @@ export const boot = () => {
 };
 
 export const updateUser = user => {
-  if (user && window.app.env === 'production')
+  if (user && window.app.env === 'production') {
+    // to avoid sending personal data to sentry we anonymize the email address
+    // by only sending the domain part or the email
+    const emailTld = user.email.split('@')[1];
     Raven.setUserContext({
-      // to avoid sending personal data to sentry we anonymize the email address
-      // by only sending the domain part or the email
-      email: user.email.split('@')[1],
+      email: `xxx@${emailTld}`,
       id: user.id,
     });
+  }
 };
 
 export const stopTrackingUser = () => {
