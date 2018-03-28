@@ -1,17 +1,15 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Text from '@commercetools-local/ui-kit/typography/text';
+import FailedAuthorizationSVG from '@commercetools-local/ui-kit/materials/images/maintenance/failed-authorization.svg';
 import ServicePageResponseLayout from '@commercetools-local/core/components/service-page-response-layout';
 import messages from './messages';
 
 const ErrorApologizer = () => (
   <ServicePageResponseLayout
+    // TODO: use a proper image
+    imageSrc={FailedAuthorizationSVG}
     title={<FormattedMessage {...messages.title} />}
-    paragraph1={
-      <Text.Body>
-        <FormattedMessage {...messages.notifiedTeam} />
-      </Text.Body>
-    }
+    paragraph1={<FormattedMessage {...messages.notifiedTeam} />}
   />
 );
 

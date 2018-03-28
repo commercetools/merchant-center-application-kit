@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { DOMAINS } from '@commercetools-local/constants';
+import { reportErrorToSentry } from '../../utils/sentry';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import FetchUser from '../fetch-user';
 import IntercomBooter from '../intercom-booter';
@@ -14,6 +15,7 @@ import ApplicationShell, {
 } from './application-shell';
 
 jest.mock('@commercetools-local/utils/storage');
+jest.mock('../../utils/sentry');
 
 const createTestProps = props => ({
   i18n: { en: {}, 'en-US': { title: 'Title' }, de: { title: 'Titel' } },
@@ -156,6 +158,35 @@ describe('<RestrictedApplication>', () => {
           })}
         </div>
       );
+    });
+    describe('when fetching the user returns an error', () => {
+      beforeEach(() => {
+        reportErrorToSentry.mockClear();
+        props = createTestProps();
+        const rootWrapper = shallow(<RestrictedApplication {...props} />);
+        userData = {
+          isLoading: false,
+          error: new Error('Failed to fetch'),
+        };
+        fetchUserWrapper = shallow(
+          <div>{rootWrapper.find(FetchUser).prop('children')(userData)}</div>
+        );
+      });
+      it('should pass "locale" to <ConfigureIntlProvider>', () => {
+        expect(fetchUserWrapper.find(ConfigureIntlProvider)).toHaveProp(
+          'locale',
+          'en-US'
+        );
+      });
+      it('should render <ErrorApologizer>', () => {
+        expect(fetchUserWrapper).toRender('ErrorApologizer');
+      });
+      it('should report error to sentry', () => {
+        expect(reportErrorToSentry).toHaveBeenCalledWith(
+          new Error('Failed to fetch'),
+          {}
+        );
+      });
     });
     it('should match layout structure', () => {
       expect(wrapper).toMatchSnapshot();
