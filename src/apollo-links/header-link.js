@@ -21,7 +21,6 @@ export const createHeaderLink = ({ storage }) =>
     // or problems with nginx.
     operation.setContext({
       headers: {
-        Accept: 'application/json',
         'X-Project-Key': projectKey,
         'X-Graphql-Target': target,
       },
