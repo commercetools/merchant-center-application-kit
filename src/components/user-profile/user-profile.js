@@ -71,7 +71,7 @@ export class UserProfile extends React.Component {
       })
       .catch(error => {
         formikBag.setSubmitting(false);
-        this.props.showApiErrorNotification(error, 'user-profile/form');
+        this.props.showApiErrorNotification({ errors: [error] });
       });
 
   render() {
