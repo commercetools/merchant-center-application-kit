@@ -3,7 +3,6 @@
 exports[`with valid target should set headers matching snapshot 1`] = `
 Object {
   "headers": Object {
-    "Accept": "application/json",
     "X-Graphql-Target": "mc",
     "X-Project-Key": "project-1",
   },

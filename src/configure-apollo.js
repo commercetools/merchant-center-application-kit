@@ -18,6 +18,9 @@ import {
 const httpLink = createHttpLink({
   uri: `${window.app.protocol}://${window.app.backendHost}/graphql`,
   credentials: 'include',
+  headers: {
+    accept: 'application/json',
+  },
   // manual polyfill for fetch to support older browsers like IE11
   // for some reason that I wasn't able to figure out just importing
   // isomorphic fetch didn't make Apollo use the global fetch :(
