@@ -1,17 +1,15 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import Text from '@commercetools-local/ui-kit/typography/text';
+import PageNotFoundSVG from '@commercetools-local/ui-kit/materials/images/maintenance/page-not-found.svg';
 import ServicePageResponseLayout from '@commercetools-local/core/components/service-page-response-layout';
 import messages from './messages';
 
 const ErrorApologizer = () => (
   <ServicePageResponseLayout
+    // TODO: use a proper image
+    imageSrc={PageNotFoundSVG}
     title={<FormattedMessage {...messages.title} />}
-    paragraph1={
-      <Text.Body>
-        <FormattedMessage {...messages.notifiedTeam} />
-      </Text.Body>
-    }
+    paragraph1={<FormattedMessage {...messages.notifiedTeam} />}
   />
 );
 
