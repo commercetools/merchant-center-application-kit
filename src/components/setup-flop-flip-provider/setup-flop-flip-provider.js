@@ -14,6 +14,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
       id: PropTypes.string.isRequired,
       launchdarklyTrackingId: PropTypes.string.isRequired,
       launchdarklyTrackingGroup: PropTypes.string.isRequired,
+      launchdarklyTrackingProject: PropTypes.string,
     }),
     children: PropTypes.func.isRequired,
   };
@@ -38,30 +39,6 @@ export class SetupFlopFlipProvider extends React.PureComponent {
     })
   );
 
-  setProjectKey = defaultMemoize(projectKey => {
-    const updatedAdapterArgs = this.createLaunchdarklyAdapterArgs(
-      this.props.ldClientSideId,
-      this.props.user && this.props.user.id,
-      this.props.user && this.props.user.launchdarklyTrackingId,
-      this.props.user && this.props.user.launchdarklyTrackingGroup,
-      projectKey
-    );
-
-    /**
-     * NOTE:
-     *   We `catch` the error from the adapter as we often set it before
-     *   the adapter managed to inititalize.
-     *
-     * TODO:
-     *   Find a better solution for this.
-     *   1. The adapter could support a `waitUntil` to only internally update
-     *      the configuration one it's ready.
-     *   2. We `setTimeout` (really last resort) when we want to update
-     *      the configuration.
-     */
-    ldAdapter.updateUserContext(updatedAdapterArgs.user).catch(() => {});
-  });
-
   render() {
     return (
       <ConfigureFlopFlip
@@ -70,11 +47,12 @@ export class SetupFlopFlipProvider extends React.PureComponent {
           this.props.ldClientSideId,
           this.props.user && this.props.user.id,
           this.props.user && this.props.user.launchdarklyTrackingId,
-          this.props.user && this.props.user.launchdarklyTrackingGroup
+          this.props.user && this.props.user.launchdarklyTrackingGroup,
+          this.props.user && this.props.user.launchdarklyTrackingProject
         )}
         shouldDeferAdapterConfiguration={!this.props.user}
       >
-        {this.props.children({ setProjectKey: this.setProjectKey })}
+        {this.props.children()}
       </ConfigureFlopFlip>
     );
   }

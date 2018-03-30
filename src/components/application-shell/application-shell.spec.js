@@ -374,12 +374,6 @@ describe('<RestrictedApplication>', () => {
           routerProps.match
         );
       });
-      it('should pass "setProjectKey" to <ProjectContainer>', () => {
-        expect(routeRenderWrapper.find('ProjectContainer')).toHaveProp(
-          'setProjectKey',
-          expect.any(Function)
-        );
-      });
       it('should pass "render" to <ProjectContainer>', () => {
         expect(routeRenderWrapper.find('ProjectContainer')).toHaveProp(
           'render',

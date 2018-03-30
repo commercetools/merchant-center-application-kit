@@ -68,7 +68,7 @@ export const RestrictedApplication = props => (
           messages={user && props.i18n[user.language]}
         >
           <SetupFlopFlipProvider user={user}>
-            {({ setProjectKey: syncProjectKeyForFlopFlip }) => (
+            {() => (
               <React.Fragment>
                 {/* NOTE: the requests in flight loader will render a loading
             spinner into the AppBar. */}
@@ -193,7 +193,6 @@ export const RestrictedApplication = props => (
                                 user={user}
                                 match={routerProps.match}
                                 location={routerProps.location}
-                                setProjectKey={syncProjectKeyForFlopFlip}
                                 // This effectively renders the
                                 // children, which is the application
                                 // specific part

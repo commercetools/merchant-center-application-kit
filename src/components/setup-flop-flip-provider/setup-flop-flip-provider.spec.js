@@ -1,12 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { SetupFlopFlipProvider } from './setup-flop-flip-provider';
-
-jest.mock('@flopflip/launchdarkly-adapter', () => ({
-  updateUserContext: jest.fn(() => Promise.resolve()),
-}));
 
 const createTestProps = props => ({
   ldClientSideId: '111',
@@ -14,6 +9,7 @@ const createTestProps = props => ({
     id: 'u1',
     launchdarklyTrackingId: '123',
     launchdarklyTrackingGroup: 'ct',
+    launchdarklyTrackingProject: 'test-project',
   },
   children: jest.fn(),
   ...props,
@@ -71,21 +67,6 @@ describe('rendering', () => {
       })
     );
   });
-  describe('when project key is set', () => {
-    beforeEach(() => {
-      wrapper.instance().setProjectKey('test-1');
-      wrapper.update();
-    });
-    it('should pass the updated user context containing the project key', () => {
-      expect(ldAdapter.updateUserContext).toHaveBeenCalledWith(
-        expect.objectContaining({
-          custom: expect.objectContaining({
-            project: 'test-1',
-          }),
-        })
-      );
-    });
-  });
   describe('when user is not defined', () => {
     beforeEach(() => {
       props = createTestProps({ user: null });
@@ -105,12 +86,5 @@ describe('rendering', () => {
         false
       );
     });
-  });
-  it('should render children as function with setProjectKey prop', () => {
-    expect(props.children).toHaveBeenCalledWith(
-      expect.objectContaining({
-        setProjectKey: wrapper.instance().setProjectKey,
-      })
-    );
   });
 });

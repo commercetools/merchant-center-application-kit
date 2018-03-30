@@ -30,8 +30,6 @@ class ProjectContainer extends React.Component {
     user: PropTypes.shape({
       availableProjects: PropTypes.array.isRequired,
     }),
-    // A callback function to sync the projectKey with a parent component.
-    setProjectKey: PropTypes.func.isRequired,
     render: PropTypes.func.isRequired,
   };
   state = {
@@ -72,10 +70,6 @@ class ProjectContainer extends React.Component {
       nextProjectKey = this.props.match.params.projectKey;
       storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, nextProjectKey);
     }
-    // This callback should always be called, as we want to keep it in sync with
-    // the projectKey currently active. It's the responsibility of the caller
-    // to actually "be smart" and check if the given projectKey changed or not.
-    this.props.setProjectKey(nextProjectKey);
   }
   componentDidCatch(error, errorInfo) {
     this.setState({ hasError: true });
