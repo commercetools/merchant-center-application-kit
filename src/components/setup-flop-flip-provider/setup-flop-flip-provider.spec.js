@@ -9,7 +9,6 @@ const createTestProps = props => ({
     id: 'u1',
     launchdarklyTrackingId: '123',
     launchdarklyTrackingGroup: 'ct',
-    launchdarklyTrackingProject: 'test-project',
   },
   children: jest.fn(),
   ...props,
