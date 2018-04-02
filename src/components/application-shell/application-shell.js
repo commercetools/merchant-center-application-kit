@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Router, Redirect, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
+import { defaultMemoize } from 'reselect';
+import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import { joinPaths } from '@commercetools-local/utils/url';
 import * as storage from '@commercetools-local/utils/storage';
@@ -40,6 +42,10 @@ import './global-style-imports';
 
 const getBrowserLocale = () =>
   (window && window.navigator && window.navigator.language) || 'en';
+
+const getFlopflipReconfiguration = defaultMemoize(projectKey => ({
+  custom: { project: projectKey },
+}));
 
 /**
  * This component is rendered whenever the user is considered "authenticated"
@@ -187,6 +193,11 @@ export const RestrictedApplication = props => (
                               <IntercomUserTracker
                                 user={user}
                                 projectKey={routerProps.match.params.projectKey}
+                              />
+                              <ReconfigureFlopFlip
+                                user={getFlopflipReconfiguration(
+                                  routerProps.match.params.projectKey
+                                )}
                               />
                               <ProjectContainer
                                 isLoadingUser={isLoading}
