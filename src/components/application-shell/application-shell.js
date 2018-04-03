@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Router, Redirect, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
-import { defaultMemoize } from 'reselect';
 import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import { joinPaths } from '@commercetools-local/utils/url';
@@ -24,7 +23,9 @@ import AsyncLoginSSO from '../login-sso/async';
 import AsyncLoginSSOCallback from '../login-sso-callback/async';
 import AsyncLoginLocked from '../login-locked/async';
 import Logout from '../logout';
-import SetupFlopFlipProvider from '../setup-flop-flip-provider';
+import SetupFlopFlipProvider, {
+  getFlopflipReconfiguration,
+} from '../setup-flop-flip-provider';
 import AsyncUserProfile from '../user-profile/async';
 import IntercomUrlTracker from '../intercom-url-tracker';
 import IntercomUserTracker from '../intercom-user-tracker';
@@ -42,10 +43,6 @@ import './global-style-imports';
 
 const getBrowserLocale = () =>
   (window && window.navigator && window.navigator.language) || 'en';
-
-const getFlopflipReconfiguration = defaultMemoize(projectKey => ({
-  custom: { project: projectKey },
-}));
 
 /**
  * This component is rendered whenever the user is considered "authenticated"

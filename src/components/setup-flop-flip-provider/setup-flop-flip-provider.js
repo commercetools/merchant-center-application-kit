@@ -6,6 +6,10 @@ import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import { injectConfiguration } from '@commercetools-local/core/components/configuration';
 
+export const getFlopflipReconfiguration = defaultMemoize(projectKey => ({
+  custom: { project: projectKey },
+}));
+
 export class SetupFlopFlipProvider extends React.PureComponent {
   static displayName = 'SetupFlopFlipProvider';
   static propTypes = {
