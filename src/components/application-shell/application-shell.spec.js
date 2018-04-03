@@ -9,7 +9,6 @@ import IntercomBooter from '../intercom-booter';
 import IntercomUserTracker from '../intercom-user-tracker';
 import NavBar from '../navbar';
 import AsyncUserProfile from '../user-profile/async';
-import SetupFlopFlipProvider from '../setup-flop-flip-provider';
 import ApplicationShell, {
   RestrictedApplication,
   UnrestrictedApplication,
@@ -149,15 +148,8 @@ describe('<RestrictedApplication>', () => {
           language: 'de',
         },
       };
-      fetchUserWrapper = shallow(
-        <div>{rootWrapper.find(FetchUser).prop('children')(userData)}</div>
-      );
       wrapper = shallow(
-        <div>
-          {fetchUserWrapper.find(SetupFlopFlipProvider).prop('children')({
-            setProjectKey: jest.fn(),
-          })}
-        </div>
+        <div>{rootWrapper.find(FetchUser).prop('children')(userData)}</div>
       );
     });
     describe('when fetching the user returns an error', () => {

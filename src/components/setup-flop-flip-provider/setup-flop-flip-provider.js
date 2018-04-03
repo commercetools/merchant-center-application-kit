@@ -43,7 +43,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
         )}
         shouldDeferAdapterConfiguration={!this.props.user}
       >
-        {this.props.children()}
+        {this.props.children}
       </ConfigureFlopFlip>
     );
   }

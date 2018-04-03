@@ -2,12 +2,15 @@
 
 exports[`<RestrictedApplication> rendering project container <Route> should match layout structure 1`] = `
 <div>
-  <React.Fragment>
-    <Connect(RequestsInFlightLoader) />
-    <IntercomBooter
-      showNotification={[MockFunction]}
-    />
-    <SentryUserTracker
+  <ConfigureIntlProvider
+    locale="de"
+    messages={
+      Object {
+        "title": "Titel",
+      }
+    }
+  >
+    <SetupFlopFlipProvider
       user={
         Object {
           "availableProjects": Array [],
@@ -18,46 +21,13 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
           "lastName": "Snow",
         }
       }
-    />
-    <GtmUserTracker
-      user={
-        Object {
-          "availableProjects": Array [],
-          "email": "john.snow@got.com",
-          "firstName": "John",
-          "id": "u1",
-          "language": "de",
-          "lastName": "Snow",
-        }
-      }
-    />
-    <branch(IntercomUserTracker)
-      user={
-        Object {
-          "availableProjects": Array [],
-          "email": "john.snow@got.com",
-          "firstName": "John",
-          "id": "u1",
-          "language": "de",
-          "lastName": "Snow",
-        }
-      }
-    />
-    <div
-      className="app-layout"
     >
-      <div
-        className="global-notifications"
-      >
-        <NotificationsList
-          domain="global"
-          mapPluginNotificationToComponent={[MockFunction]}
-          notifications={Array []}
-          showUnexpectedErrorNotification={[MockFunction]}
+      <React.Fragment>
+        <Connect(RequestsInFlightLoader) />
+        <IntercomBooter
+          showNotification={[MockFunction]}
         />
-      </div>
-      <header>
-        <AppBar
+        <SentryUserTracker
           user={
             Object {
               "availableProjects": Array [],
@@ -69,10 +39,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
             }
           }
         />
-      </header>
-      <aside>
-        <WithProjectKey
-          render={[Function]}
+        <GtmUserTracker
           user={
             Object {
               "availableProjects": Array [],
@@ -84,66 +51,124 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
             }
           }
         />
-      </aside>
-      <div
-        className="main"
-        role="main"
-      >
-        <PortalsContainer />
-        <NotificationsList
-          domain="page"
-          mapPluginNotificationToComponent={[MockFunction]}
-          notifications={Array []}
-        />
-        <NotificationsList
-          domain="side"
-          mapPluginNotificationToComponent={[MockFunction]}
-          notifications={Array []}
+        <branch(IntercomUserTracker)
+          user={
+            Object {
+              "availableProjects": Array [],
+              "email": "john.snow@got.com",
+              "firstName": "John",
+              "id": "u1",
+              "language": "de",
+              "lastName": "Snow",
+            }
+          }
         />
         <div
-          className="content"
+          className="app-layout"
         >
-          <Switch>
-            <Redirect
-              from="/profile"
-              push={false}
-              to="/account/profile"
+          <div
+            className="global-notifications"
+          >
+            <NotificationsList
+              domain="global"
+              mapPluginNotificationToComponent={[MockFunction]}
+              notifications={Array []}
+              showUnexpectedErrorNotification={[MockFunction]}
             />
-            <Route
-              path="/account"
+          </div>
+          <header>
+            <AppBar
+              user={
+                Object {
+                  "availableProjects": Array [],
+                  "email": "john.snow@got.com",
+                  "firstName": "John",
+                  "id": "u1",
+                  "language": "de",
+                  "lastName": "Snow",
+                }
+              }
+            />
+          </header>
+          <aside>
+            <WithProjectKey
               render={[Function]}
+              user={
+                Object {
+                  "availableProjects": Array [],
+                  "email": "john.snow@got.com",
+                  "firstName": "John",
+                  "id": "u1",
+                  "language": "de",
+                  "lastName": "Snow",
+                }
+              }
             />
-            <Route
-              exact={true}
-              path="/:projectKey"
-              render={[Function]}
+          </aside>
+          <div
+            className="main"
+            role="main"
+          >
+            <PortalsContainer />
+            <NotificationsList
+              domain="page"
+              mapPluginNotificationToComponent={[MockFunction]}
+              notifications={Array []}
             />
-            <Route
-              exact={true}
-              path="/"
-              render={[Function]}
+            <NotificationsList
+              domain="side"
+              mapPluginNotificationToComponent={[MockFunction]}
+              notifications={Array []}
             />
-            <Route
-              exact={false}
-              path="/:projectKey"
-              render={[Function]}
-            />
-          </Switch>
+            <div
+              className="content"
+            >
+              <Switch>
+                <Redirect
+                  from="/profile"
+                  push={false}
+                  to="/account/profile"
+                />
+                <Route
+                  path="/account"
+                  render={[Function]}
+                />
+                <Route
+                  exact={true}
+                  path="/:projectKey"
+                  render={[Function]}
+                />
+                <Route
+                  exact={true}
+                  path="/"
+                  render={[Function]}
+                />
+                <Route
+                  exact={false}
+                  path="/:projectKey"
+                  render={[Function]}
+                />
+              </Switch>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </React.Fragment>
+      </React.Fragment>
+    </SetupFlopFlipProvider>
+  </ConfigureIntlProvider>
 </div>
 `;
 
 exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
 <div>
-  <React.Fragment>
-    <Connect(RequestsInFlightLoader) />
-    <IntercomBooter
-      showNotification={[MockFunction]}
-    />
-    <SentryUserTracker
+  <ConfigureIntlProvider
+    locale="de"
+    messages={
+      Object {
+        "title": "Titel",
+      }
+    }
+  >
+    <SetupFlopFlipProvider
       user={
         Object {
           "availableProjects": Array [],
@@ -154,46 +179,13 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
           "lastName": "Snow",
         }
       }
-    />
-    <GtmUserTracker
-      user={
-        Object {
-          "availableProjects": Array [],
-          "email": "john.snow@got.com",
-          "firstName": "John",
-          "id": "u1",
-          "language": "de",
-          "lastName": "Snow",
-        }
-      }
-    />
-    <branch(IntercomUserTracker)
-      user={
-        Object {
-          "availableProjects": Array [],
-          "email": "john.snow@got.com",
-          "firstName": "John",
-          "id": "u1",
-          "language": "de",
-          "lastName": "Snow",
-        }
-      }
-    />
-    <div
-      className="app-layout"
     >
-      <div
-        className="global-notifications"
-      >
-        <NotificationsList
-          domain="global"
-          mapPluginNotificationToComponent={[MockFunction]}
-          notifications={Array []}
-          showUnexpectedErrorNotification={[MockFunction]}
+      <React.Fragment>
+        <Connect(RequestsInFlightLoader) />
+        <IntercomBooter
+          showNotification={[MockFunction]}
         />
-      </div>
-      <header>
-        <AppBar
+        <SentryUserTracker
           user={
             Object {
               "availableProjects": Array [],
@@ -205,10 +197,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
             }
           }
         />
-      </header>
-      <aside>
-        <WithProjectKey
-          render={[Function]}
+        <GtmUserTracker
           user={
             Object {
               "availableProjects": Array [],
@@ -220,55 +209,110 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
             }
           }
         />
-      </aside>
-      <div
-        className="main"
-        role="main"
-      >
-        <PortalsContainer />
-        <NotificationsList
-          domain="page"
-          mapPluginNotificationToComponent={[MockFunction]}
-          notifications={Array []}
-        />
-        <NotificationsList
-          domain="side"
-          mapPluginNotificationToComponent={[MockFunction]}
-          notifications={Array []}
+        <branch(IntercomUserTracker)
+          user={
+            Object {
+              "availableProjects": Array [],
+              "email": "john.snow@got.com",
+              "firstName": "John",
+              "id": "u1",
+              "language": "de",
+              "lastName": "Snow",
+            }
+          }
         />
         <div
-          className="content"
+          className="app-layout"
         >
-          <Switch>
-            <Redirect
-              from="/profile"
-              push={false}
-              to="/account/profile"
+          <div
+            className="global-notifications"
+          >
+            <NotificationsList
+              domain="global"
+              mapPluginNotificationToComponent={[MockFunction]}
+              notifications={Array []}
+              showUnexpectedErrorNotification={[MockFunction]}
             />
-            <Route
-              path="/account"
+          </div>
+          <header>
+            <AppBar
+              user={
+                Object {
+                  "availableProjects": Array [],
+                  "email": "john.snow@got.com",
+                  "firstName": "John",
+                  "id": "u1",
+                  "language": "de",
+                  "lastName": "Snow",
+                }
+              }
+            />
+          </header>
+          <aside>
+            <WithProjectKey
               render={[Function]}
+              user={
+                Object {
+                  "availableProjects": Array [],
+                  "email": "john.snow@got.com",
+                  "firstName": "John",
+                  "id": "u1",
+                  "language": "de",
+                  "lastName": "Snow",
+                }
+              }
             />
-            <Route
-              exact={true}
-              path="/:projectKey"
-              render={[Function]}
+          </aside>
+          <div
+            className="main"
+            role="main"
+          >
+            <PortalsContainer />
+            <NotificationsList
+              domain="page"
+              mapPluginNotificationToComponent={[MockFunction]}
+              notifications={Array []}
             />
-            <Route
-              exact={true}
-              path="/"
-              render={[Function]}
+            <NotificationsList
+              domain="side"
+              mapPluginNotificationToComponent={[MockFunction]}
+              notifications={Array []}
             />
-            <Route
-              exact={false}
-              path="/:projectKey"
-              render={[Function]}
-            />
-          </Switch>
+            <div
+              className="content"
+            >
+              <Switch>
+                <Redirect
+                  from="/profile"
+                  push={false}
+                  to="/account/profile"
+                />
+                <Route
+                  path="/account"
+                  render={[Function]}
+                />
+                <Route
+                  exact={true}
+                  path="/:projectKey"
+                  render={[Function]}
+                />
+                <Route
+                  exact={true}
+                  path="/"
+                  render={[Function]}
+                />
+                <Route
+                  exact={false}
+                  path="/:projectKey"
+                  render={[Function]}
+                />
+              </Switch>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </React.Fragment>
+      </React.Fragment>
+    </SetupFlopFlipProvider>
+  </ConfigureIntlProvider>
 </div>
 `;
 
