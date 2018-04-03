@@ -1,18 +1,24 @@
-import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-local/constants';
+import {
+  SHOW_LOADING,
+  HIDE_LOADING,
+  STORAGE_KEYS as CORE_STORAGE_KEYS,
+} from '@commercetools-local/constants';
 import toGlobal from '@commercetools-local/utils/to-global';
+import * as storage from '@commercetools-local/utils/storage';
 import middleware from './middleware';
 import client from './client';
 
+jest.mock('@commercetools-local/utils/storage');
 jest.mock('./client');
 jest.mock('../utils');
 
-const globalAppState = { projectKey: 'bar' };
-
 describe('when the action is of type SDK', () => {
+  beforeEach(() => {
+    storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, 'test-project');
+  });
   describe('no matter the method', () => {
     describe('when making the request', () => {
       const dispatch = jest.fn();
-      const getState = jest.fn(() => ({ globalAppState }));
       const action = {
         type: 'SDK',
         payload: { service: 'productTypes', method: 'GET' },
@@ -21,7 +27,7 @@ describe('when the action is of type SDK', () => {
       const response = { body: 'foo', headers: {} };
       beforeEach(() => {
         client.execute = jest.fn(() => Promise.resolve(response));
-        return middleware({ dispatch, getState })(next)(action);
+        return middleware({ dispatch })(next)(action);
       });
 
       it('should call `client.execute`', () => {
@@ -42,7 +48,7 @@ describe('when the action is of type SDK', () => {
         expect(dispatch).toHaveBeenCalledWith(
           toGlobal({
             type: SHOW_LOADING,
-            payload: 'sdk.get(/bar/product-types)',
+            payload: 'sdk.get(/test-project/product-types)',
           })
         );
       });
@@ -53,7 +59,6 @@ describe('when the action is of type SDK', () => {
     });
     describe('when the request is successful', () => {
       const dispatch = jest.fn();
-      const getState = jest.fn(() => ({ globalAppState }));
       const action = {
         type: 'SDK',
         payload: { service: 'productTypes', method: 'GET' },
@@ -63,14 +68,14 @@ describe('when the action is of type SDK', () => {
       let resultPromise;
       beforeEach(() => {
         client.execute = jest.fn(() => Promise.resolve(response));
-        resultPromise = middleware({ dispatch, getState })(next)(action);
+        resultPromise = middleware({ dispatch })(next)(action);
       });
 
       it('should mark the request as completed', () => {
         expect(dispatch).toHaveBeenCalledWith(
           toGlobal({
             type: HIDE_LOADING,
-            payload: 'sdk.get(/bar/product-types)',
+            payload: 'sdk.get(/test-project/product-types)',
           })
         );
       });
@@ -82,7 +87,6 @@ describe('when the action is of type SDK', () => {
 
     describe('when the request fails', () => {
       const dispatch = jest.fn();
-      const getState = jest.fn(() => ({ globalAppState }));
       const action = {
         type: 'SDK',
         payload: { service: 'productTypes', method: 'GET' },
@@ -92,7 +96,7 @@ describe('when the action is of type SDK', () => {
       let resultPromise;
       beforeEach(() => {
         client.execute = jest.fn(() => Promise.reject(expectedError));
-        resultPromise = middleware({ dispatch, getState })(next)(action);
+        resultPromise = middleware({ dispatch })(next)(action);
         // We catch all errors here so that they don't throw globally
         // This is necessary because the rejected promise rethrows from
         // the handler
@@ -107,7 +111,7 @@ describe('when the action is of type SDK', () => {
         expect(dispatch).toHaveBeenCalledWith(
           toGlobal({
             type: HIDE_LOADING,
-            payload: 'sdk.get(/bar/product-types)',
+            payload: 'sdk.get(/test-project/product-types)',
           })
         );
       });
@@ -120,7 +124,6 @@ describe('when the action is of type SDK', () => {
 
   describe('when the request fails with 401', () => {
     const dispatch = jest.fn();
-    const getState = jest.fn(() => ({ globalAppState }));
     const action = {
       type: 'SDK',
       payload: { service: 'productTypes', method: 'GET' },
@@ -134,7 +137,7 @@ describe('when the action is of type SDK', () => {
         .fn()
         .mockReturnValueOnce(Promise.reject(expectedError))
         .mockReturnValueOnce(Promise.resolve(response));
-      resultPromise = middleware({ dispatch, getState })(next)(action);
+      resultPromise = middleware({ dispatch })(next)(action);
       // We catch all errors here so that they don't throw globally
       // This is necessary because the rejected promise rethrows from
       // the handler
@@ -155,7 +158,6 @@ describe('when the action is of type SDK', () => {
 
   describe('when the request always fails with 401', () => {
     const dispatch = jest.fn();
-    const getState = jest.fn(() => ({ globalAppState }));
     const action = {
       type: 'SDK',
       payload: { service: 'productTypes', method: 'GET' },
@@ -165,7 +167,7 @@ describe('when the action is of type SDK', () => {
     let resultPromise;
     beforeEach(() => {
       client.execute = jest.fn(() => Promise.reject(expectedError));
-      resultPromise = middleware({ dispatch, getState })(next)(action);
+      resultPromise = middleware({ dispatch })(next)(action);
       // We catch all errors here so that they don't throw globally
       // This is necessary because the rejected promise rethrows from
       // the handler
@@ -186,7 +188,6 @@ describe('when the action is of type SDK', () => {
 
   describe('when the method is "get"', () => {
     const dispatch = jest.fn();
-    const getState = jest.fn(() => ({ globalAppState }));
     const action = {
       type: 'SDK',
       payload: { service: 'productTypes', method: 'GET' },
@@ -196,7 +197,7 @@ describe('when the action is of type SDK', () => {
     let resultPromise;
     beforeEach(() => {
       client.execute = jest.fn(() => Promise.resolve(response));
-      resultPromise = middleware({ dispatch, getState })(next)(action);
+      resultPromise = middleware({ dispatch })(next)(action);
     });
 
     it('should return the body of the fetch result', async () => {
@@ -220,7 +221,6 @@ describe('when the action is of type SDK', () => {
 
   describe('when the method is "post"', () => {
     const dispatch = jest.fn();
-    const getState = jest.fn(() => ({ globalAppState }));
     const action = {
       type: 'SDK',
       payload: { service: 'productTypes', method: 'POST', payload: {} },
@@ -230,7 +230,7 @@ describe('when the action is of type SDK', () => {
     let resultPromise;
     beforeEach(() => {
       client.execute = jest.fn(() => Promise.resolve(response));
-      resultPromise = middleware({ dispatch, getState })(next)(action);
+      resultPromise = middleware({ dispatch })(next)(action);
     });
 
     it('should return the result the update', async () => {
@@ -255,12 +255,11 @@ describe('when the action is of type SDK', () => {
 
 describe('when the action is not of type SDK', () => {
   const dispatch = jest.fn();
-  const getState = jest.fn();
   const action = { type: 'FOO' };
   const next = jest.fn(() => 'result-of-next');
   let result;
   beforeEach(() => {
-    result = middleware({ dispatch, getState })(next)(action);
+    result = middleware({ dispatch })(next)(action);
   });
 
   it('should call `next` with the action', () => {

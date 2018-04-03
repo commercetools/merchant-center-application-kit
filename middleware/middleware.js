@@ -12,17 +12,8 @@ import client from './client';
 
 // NOTE in case we create the middleware into a factory, these could come in
 // as options
-const selectProjectKey = state => {
-  // With the new setup, is not possible anymore for the action creators
-  // to have access to the `globalAppState`. Therefore, in order to be
-  // backwards compatible, we fall back to read the value from local storage.
-  // TODO: remove the "old" logic after the #RR4 migration
-  const application = state.globalAppState || state.application;
-  return (
-    (application && application.projectKey) ||
-    storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)
-  );
-};
+const selectProjectKey = () =>
+  storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
 
 const actionToUri = (action, projectKey) => {
   if (action.payload.uri) return action.payload.uri;
@@ -39,16 +30,11 @@ const actionToUri = (action, projectKey) => {
   return service.build();
 };
 
-export default ({ dispatch, getState }) => next => action => {
+export default ({ dispatch }) => next => action => {
   if (!action) return next(action);
 
   if (action.type === 'SDK') {
-    // NOTE here the middleware is aware of the application
-    // instead we could refactor to middleware factory and accept options with
-    // options.selectProjectKey(state) or is this Speculative Generality?
-    const state = getState();
-
-    const uri = actionToUri(action, selectProjectKey(state));
+    const uri = actionToUri(action, selectProjectKey());
 
     // This `requestName` is never really used.
     //
