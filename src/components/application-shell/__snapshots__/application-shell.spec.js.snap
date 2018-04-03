@@ -3,10 +3,10 @@
 exports[`<RestrictedApplication> rendering project container <Route> should match layout structure 1`] = `
 <div>
   <ConfigureIntlProvider
-    locale="de"
+    locale="en-US"
     messages={
       Object {
-        "title": "Titel",
+        "title": "Title",
       }
     }
   >
@@ -17,7 +17,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
           "email": "john.snow@got.com",
           "firstName": "John",
           "id": "u1",
-          "language": "de",
+          "language": "en-US",
           "lastName": "Snow",
         }
       }
@@ -34,7 +34,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
               "email": "john.snow@got.com",
               "firstName": "John",
               "id": "u1",
-              "language": "de",
+              "language": "en-US",
               "lastName": "Snow",
             }
           }
@@ -46,7 +46,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
               "email": "john.snow@got.com",
               "firstName": "John",
               "id": "u1",
-              "language": "de",
+              "language": "en-US",
               "lastName": "Snow",
             }
           }
@@ -58,7 +58,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
               "email": "john.snow@got.com",
               "firstName": "John",
               "id": "u1",
-              "language": "de",
+              "language": "en-US",
               "lastName": "Snow",
             }
           }
@@ -84,7 +84,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
                   "email": "john.snow@got.com",
                   "firstName": "John",
                   "id": "u1",
-                  "language": "de",
+                  "language": "en-US",
                   "lastName": "Snow",
                 }
               }
@@ -99,7 +99,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
                   "email": "john.snow@got.com",
                   "firstName": "John",
                   "id": "u1",
-                  "language": "de",
+                  "language": "en-US",
                   "lastName": "Snow",
                 }
               }
@@ -161,10 +161,10 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
 exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
 <div>
   <ConfigureIntlProvider
-    locale="de"
+    locale="en-US"
     messages={
       Object {
-        "title": "Titel",
+        "title": "Title",
       }
     }
   >
@@ -175,7 +175,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
           "email": "john.snow@got.com",
           "firstName": "John",
           "id": "u1",
-          "language": "de",
+          "language": "en-US",
           "lastName": "Snow",
         }
       }
@@ -192,7 +192,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
               "email": "john.snow@got.com",
               "firstName": "John",
               "id": "u1",
-              "language": "de",
+              "language": "en-US",
               "lastName": "Snow",
             }
           }
@@ -204,7 +204,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
               "email": "john.snow@got.com",
               "firstName": "John",
               "id": "u1",
-              "language": "de",
+              "language": "en-US",
               "lastName": "Snow",
             }
           }
@@ -216,7 +216,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
               "email": "john.snow@got.com",
               "firstName": "John",
               "id": "u1",
-              "language": "de",
+              "language": "en-US",
               "lastName": "Snow",
             }
           }
@@ -242,7 +242,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
                   "email": "john.snow@got.com",
                   "firstName": "John",
                   "id": "u1",
-                  "language": "de",
+                  "language": "en-US",
                   "lastName": "Snow",
                 }
               }
@@ -257,7 +257,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
                   "email": "john.snow@got.com",
                   "firstName": "John",
                   "id": "u1",
-                  "language": "de",
+                  "language": "en-US",
                   "lastName": "Snow",
                 }
               }

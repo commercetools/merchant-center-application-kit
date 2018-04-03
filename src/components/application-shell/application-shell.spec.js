@@ -145,7 +145,7 @@ describe('<RestrictedApplication>', () => {
           firstName: 'John',
           lastName: 'Snow',
           availableProjects: [],
-          language: 'de',
+          language: 'en-US',
         },
       };
       wrapper = shallow(
@@ -197,7 +197,7 @@ describe('<RestrictedApplication>', () => {
       expect(fetchUserWrapper.find(ConfigureIntlProvider)).toHaveProp(
         'messages',
         {
-          title: 'Titel',
+          title: 'Title',
         }
       );
     });
