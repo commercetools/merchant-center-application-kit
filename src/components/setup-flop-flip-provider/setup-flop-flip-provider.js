@@ -19,7 +19,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
       launchdarklyTrackingId: PropTypes.string.isRequired,
       launchdarklyTrackingGroup: PropTypes.string.isRequired,
     }),
-    children: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired,
   };
 
   createLaunchdarklyAdapterArgs = defaultMemoize(
