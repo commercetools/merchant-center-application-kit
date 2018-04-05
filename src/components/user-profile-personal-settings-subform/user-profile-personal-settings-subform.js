@@ -8,9 +8,13 @@ import {
   withTimeZones,
   timeZonesShape,
 } from '@commercetools-local/l10n/time-zone-information';
+import Spacings from '@commercetools-local/ui-kit/materials/spacings';
+import ValidationError from '@commercetools-local/core/components/validation-error';
+import ErrorMessage from '@commercetools-local/ui-kit/messages/error-message';
 import CollapsiblePanel from '@commercetools-local/ui-kit/panels/collapsible-panel';
 import FormBox from '@commercetools-local/core/components/form-box';
 import LabelField from '@commercetools-local/core/components/fields/label-field';
+import { messages as validationMessages } from '@commercetools-local/utils/validation';
 import { withUser } from '../fetch-user';
 import messages from './messages';
 
@@ -29,25 +33,37 @@ export const UserProfilePersonalSettingsSubform = props => (
         title={<FormattedMessage {...messages.language} />}
         isRequired={true}
       />
-      <Select
-        name="language"
-        value={props.formik.values.language}
-        onChange={option => {
-          props.formik.setFieldValue('language', option.value);
-          props.formik.setFieldTouched('language');
-        }}
-        onBlur={() => {
-          props.formik.setFieldTouched('language');
-        }}
-        options={[{ value: 'en', label: 'EN' }, { value: 'de', label: 'DE' }]}
-        clearable={false}
-        searchable={false}
-        parse={
-          /* transform react select option to form value */
-          ({ value }) => value
-        }
-        disabled={props.formik.isSubmitting}
-      />
+      <Spacings.Stack>
+        <Select
+          name="language"
+          value={props.formik.values.language}
+          onChange={option => {
+            props.formik.setFieldValue('language', option.value);
+            props.formik.setFieldTouched('language');
+          }}
+          onBlur={() => {
+            props.formik.setFieldTouched('language');
+          }}
+          options={[{ value: 'en', label: 'EN' }, { value: 'de', label: 'DE' }]}
+          clearable={false}
+          searchable={false}
+          parse={
+            /* transform react select option to form value */
+            ({ value }) => value
+          }
+          disabled={props.formik.isSubmitting}
+        />
+        <ValidationError.Switch
+          errors={props.formik.errors.language}
+          isTouched={props.formik.touched.language}
+        >
+          <ValidationError.Match rule="required">
+            <ErrorMessage>
+              <FormattedMessage {...validationMessages.required} />
+            </ErrorMessage>
+          </ValidationError.Match>
+        </ValidationError.Switch>
+      </Spacings.Stack>
     </FormBox>
     <FormBox>
       <LabelField title={<FormattedMessage {...messages.timeZone} />} />
@@ -81,6 +97,14 @@ UserProfilePersonalSettingsSubform.propTypes = {
     values: PropTypes.shape({
       language: PropTypes.string.isRequired,
       timeZone: PropTypes.string,
+    }),
+    errors: PropTypes.shape({
+      language: PropTypes.shape({
+        required: PropTypes.bool.isRequired,
+      }),
+    }),
+    touched: PropTypes.shape({
+      language: PropTypes.bool,
     }),
     setFieldValue: PropTypes.func.isRequired,
     setFieldTouched: PropTypes.func.isRequired,

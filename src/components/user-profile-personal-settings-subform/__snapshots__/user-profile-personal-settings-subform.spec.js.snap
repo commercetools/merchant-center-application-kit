@@ -25,63 +25,85 @@ exports[`rendering when not submitting should ensure layout structure 1`] = `
         />
       }
     />
-    <Select
-      addLabelText="Add \\"{label}\\"?"
-      arrowRenderer={[Function]}
-      autosize={true}
-      backspaceRemoves={true}
-      backspaceToRemoveMessage="Press backspace to remove {label}"
-      clearAllText="Clear all"
-      clearRenderer={[Function]}
-      clearValueText="Clear value"
-      clearable={false}
-      deleteRemoves={true}
-      delimiter=","
-      disabled={false}
-      escapeClearsValue={true}
-      filterOptions={[Function]}
-      ignoreAccents={true}
-      ignoreCase={true}
-      inputProps={Object {}}
-      isLoading={false}
-      joinValues={false}
-      labelKey="label"
-      matchPos="any"
-      matchProp="any"
-      menuBuffer={0}
-      menuRenderer={[Function]}
-      multi={false}
-      name="language"
-      noResultsText="No results found"
-      onBlur={[Function]}
-      onBlurResetsInput={true}
-      onChange={[Function]}
-      onCloseResetsInput={true}
-      optionComponent={[Function]}
-      options={
-        Array [
-          Object {
-            "label": "EN",
-            "value": "en",
-          },
-          Object {
-            "label": "DE",
-            "value": "de",
-          },
-        ]
-      }
-      pageSize={5}
-      parse={[Function]}
-      placeholder="Select..."
-      required={false}
-      scrollMenuIntoView={true}
-      searchable={false}
-      simpleValue={false}
-      tabSelectsValue={true}
-      value="en"
-      valueComponent={[Function]}
-      valueKey="value"
-    />
+    <Stack
+      alignItems="stretch"
+      scale="s"
+    >
+      <Select
+        addLabelText="Add \\"{label}\\"?"
+        arrowRenderer={[Function]}
+        autosize={true}
+        backspaceRemoves={true}
+        backspaceToRemoveMessage="Press backspace to remove {label}"
+        clearAllText="Clear all"
+        clearRenderer={[Function]}
+        clearValueText="Clear value"
+        clearable={false}
+        deleteRemoves={true}
+        delimiter=","
+        disabled={false}
+        escapeClearsValue={true}
+        filterOptions={[Function]}
+        ignoreAccents={true}
+        ignoreCase={true}
+        inputProps={Object {}}
+        isLoading={false}
+        joinValues={false}
+        labelKey="label"
+        matchPos="any"
+        matchProp="any"
+        menuBuffer={0}
+        menuRenderer={[Function]}
+        multi={false}
+        name="language"
+        noResultsText="No results found"
+        onBlur={[Function]}
+        onBlurResetsInput={true}
+        onChange={[Function]}
+        onCloseResetsInput={true}
+        optionComponent={[Function]}
+        options={
+          Array [
+            Object {
+              "label": "EN",
+              "value": "en",
+            },
+            Object {
+              "label": "DE",
+              "value": "de",
+            },
+          ]
+        }
+        pageSize={5}
+        parse={[Function]}
+        placeholder="Select..."
+        required={false}
+        scrollMenuIntoView={true}
+        searchable={false}
+        simpleValue={false}
+        tabSelectsValue={true}
+        value="en"
+        valueComponent={[Function]}
+        valueKey="value"
+      />
+      <ValidationErrorSwitch
+        errors={Object {}}
+        isTouched={false}
+      >
+        <ValidationErrorMatch
+          rule="required"
+        >
+          <ErrorMessage>
+            <FormattedMessage
+              defaultMessage="Please fill in this required field."
+              description="An error message to show if the field is required"
+              id="Validation.required"
+              values={Object {}}
+            />
+          </ErrorMessage>
+        </ValidationErrorMatch>
+      </ValidationErrorSwitch>
+    </Stack>
   </FormBox>
   <FormBox
     hasWarning={false}
@@ -179,63 +201,85 @@ exports[`rendering when submitting should disable all input fields 1`] = `
         />
       }
     />
-    <Select
-      addLabelText="Add \\"{label}\\"?"
-      arrowRenderer={[Function]}
-      autosize={true}
-      backspaceRemoves={true}
-      backspaceToRemoveMessage="Press backspace to remove {label}"
-      clearAllText="Clear all"
-      clearRenderer={[Function]}
-      clearValueText="Clear value"
-      clearable={false}
-      deleteRemoves={true}
-      delimiter=","
-      disabled={true}
-      escapeClearsValue={true}
-      filterOptions={[Function]}
-      ignoreAccents={true}
-      ignoreCase={true}
-      inputProps={Object {}}
-      isLoading={false}
-      joinValues={false}
-      labelKey="label"
-      matchPos="any"
-      matchProp="any"
-      menuBuffer={0}
-      menuRenderer={[Function]}
-      multi={false}
-      name="language"
-      noResultsText="No results found"
-      onBlur={[Function]}
-      onBlurResetsInput={true}
-      onChange={[Function]}
-      onCloseResetsInput={true}
-      optionComponent={[Function]}
-      options={
-        Array [
-          Object {
-            "label": "EN",
-            "value": "en",
-          },
-          Object {
-            "label": "DE",
-            "value": "de",
-          },
-        ]
-      }
-      pageSize={5}
-      parse={[Function]}
-      placeholder="Select..."
-      required={false}
-      scrollMenuIntoView={true}
-      searchable={false}
-      simpleValue={false}
-      tabSelectsValue={true}
-      value="en"
-      valueComponent={[Function]}
-      valueKey="value"
-    />
+    <Stack
+      alignItems="stretch"
+      scale="s"
+    >
+      <Select
+        addLabelText="Add \\"{label}\\"?"
+        arrowRenderer={[Function]}
+        autosize={true}
+        backspaceRemoves={true}
+        backspaceToRemoveMessage="Press backspace to remove {label}"
+        clearAllText="Clear all"
+        clearRenderer={[Function]}
+        clearValueText="Clear value"
+        clearable={false}
+        deleteRemoves={true}
+        delimiter=","
+        disabled={true}
+        escapeClearsValue={true}
+        filterOptions={[Function]}
+        ignoreAccents={true}
+        ignoreCase={true}
+        inputProps={Object {}}
+        isLoading={false}
+        joinValues={false}
+        labelKey="label"
+        matchPos="any"
+        matchProp="any"
+        menuBuffer={0}
+        menuRenderer={[Function]}
+        multi={false}
+        name="language"
+        noResultsText="No results found"
+        onBlur={[Function]}
+        onBlurResetsInput={true}
+        onChange={[Function]}
+        onCloseResetsInput={true}
+        optionComponent={[Function]}
+        options={
+          Array [
+            Object {
+              "label": "EN",
+              "value": "en",
+            },
+            Object {
+              "label": "DE",
+              "value": "de",
+            },
+          ]
+        }
+        pageSize={5}
+        parse={[Function]}
+        placeholder="Select..."
+        required={false}
+        scrollMenuIntoView={true}
+        searchable={false}
+        simpleValue={false}
+        tabSelectsValue={true}
+        value="en"
+        valueComponent={[Function]}
+        valueKey="value"
+      />
+      <ValidationErrorSwitch
+        errors={Object {}}
+        isTouched={false}
+      >
+        <ValidationErrorMatch
+          rule="required"
+        >
+          <ErrorMessage>
+            <FormattedMessage
+              defaultMessage="Please fill in this required field."
+              description="An error message to show if the field is required"
+              id="Validation.required"
+              values={Object {}}
+            />
+          </ErrorMessage>
+        </ValidationErrorMatch>
+      </ValidationErrorSwitch>
+    </Stack>
   </FormBox>
   <FormBox
     hasWarning={false}

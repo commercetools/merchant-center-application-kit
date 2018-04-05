@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { intlMock } from '@commercetools-local/test-utils';
 import { UserProfilePersonalSettingsSubform } from './user-profile-personal-settings-subform';
 
 const createFormikProps = props => ({
@@ -9,7 +8,8 @@ const createFormikProps = props => ({
     language: 'en',
     timeZone: 'Europe/Berlin',
   },
-  intl: intlMock,
+  errors: {},
+  touched: {},
   setFieldValue: jest.fn(),
   setFieldTouched: jest.fn(),
 
@@ -17,8 +17,6 @@ const createFormikProps = props => ({
 });
 const createTestProps = props => ({
   formik: createFormikProps(),
-
-  intl: intlMock,
   timeZones: {
     'Europe/Berlin': { name: 'Europe/Berlin', abbr: 'CEST', offset: '+02:00' },
   },
