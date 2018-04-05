@@ -20,4 +20,14 @@ describe('validate', () => {
       });
     });
   });
+
+  describe('on `language`', () => {
+    describe('when the language is missing', () => {
+      it('should mark that as an error', () => {
+        expect(validate({ firstName: 'Foo', language: '' }).language).toEqual({
+          required: true,
+        });
+      });
+    });
+  });
 });
