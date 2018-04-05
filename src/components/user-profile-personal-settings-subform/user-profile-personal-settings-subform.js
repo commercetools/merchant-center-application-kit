@@ -31,13 +31,13 @@ export const UserProfilePersonalSettingsSubform = props => (
       />
       <Select
         name="language"
-        value={props.form.values.language}
+        value={props.formik.values.language}
         onChange={option => {
-          props.form.setFieldValue('language', option.value);
-          props.form.setFieldTouched('language');
+          props.formik.setFieldValue('language', option.value);
+          props.formik.setFieldTouched('language');
         }}
         onBlur={() => {
-          props.form.setFieldTouched('language');
+          props.formik.setFieldTouched('language');
         }}
         options={[{ value: 'en', label: 'EN' }, { value: 'de', label: 'DE' }]}
         clearable={false}
@@ -46,20 +46,20 @@ export const UserProfilePersonalSettingsSubform = props => (
           /* transform react select option to form value */
           ({ value }) => value
         }
-        disabled={props.form.isSubmitting}
+        disabled={props.formik.isSubmitting}
       />
     </FormBox>
     <FormBox>
       <LabelField title={props.intl.formatMessage(messages.timeZone)} />
       <Select
         name="timeZone"
-        value={props.form.values.timeZone}
+        value={props.formik.values.timeZone}
         onChange={option => {
-          props.form.setFieldValue('timeZone', option ? option.value : null);
-          props.form.setFieldTouched('timeZone');
+          props.formik.setFieldValue('timeZone', option ? option.value : null);
+          props.formik.setFieldTouched('timeZone');
         }}
         onBlur={() => {
-          props.form.setFieldTouched('timeZone');
+          props.formik.setFieldTouched('timeZone');
         }}
         options={timeZonesToOptions(props.timeZones)}
         clearable={true}
@@ -68,7 +68,7 @@ export const UserProfilePersonalSettingsSubform = props => (
           /* transform react select option to form value */
           option => (option ? option.value : null)
         }
-        disabled={props.form.isSubmitting}
+        disabled={props.formik.isSubmitting}
       />
     </FormBox>
   </CollapsiblePanel>
@@ -76,7 +76,7 @@ export const UserProfilePersonalSettingsSubform = props => (
 UserProfilePersonalSettingsSubform.displayName =
   'UserProfilePersonalSettingsSubform';
 UserProfilePersonalSettingsSubform.propTypes = {
-  form: PropTypes.shape({
+  formik: PropTypes.shape({
     isSubmitting: PropTypes.bool.isRequired,
     values: PropTypes.shape({
       language: PropTypes.string.isRequired,

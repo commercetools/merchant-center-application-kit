@@ -17,20 +17,20 @@ export class UserProfileForm extends React.Component {
         onSubmit={this.props.onSubmit}
         enableReinitialize={true}
         validate={validate}
-        render={form => (
+        render={formikProps => (
           <form>
             <Spacings.Inset>
               <Spacings.Stack scale="m">
-                <UserProfileGeneralInfoSubform form={form} />
-                <UserProfilePersonalSettingsSubform form={form} />
+                <UserProfileGeneralInfoSubform formik={formikProps} />
+                <UserProfilePersonalSettingsSubform formik={formikProps} />
               </Spacings.Stack>
               <PageBottomSpacer />
               <WarningSaveToolbar
-                onSave={form.handleSubmit}
-                onCancel={form.handleReset}
-                shouldWarnOnLeave={form.dirty}
-                isToolbarVisible={form.dirty}
-                isToolbarDisabled={form.isSubmitting}
+                onSave={formikProps.handleSubmit}
+                onCancel={formikProps.handleReset}
+                shouldWarnOnLeave={formikProps.dirty}
+                isToolbarVisible={formikProps.dirty}
+                isToolbarDisabled={formikProps.isSubmitting}
               />
             </Spacings.Inset>
           </form>

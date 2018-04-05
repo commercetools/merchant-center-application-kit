@@ -20,15 +20,16 @@ export const UserProfileGeneralInfoSubform = props => (
       <Spacings.Stack>
         <TextInput
           name="firstName"
-          value={props.form.values.firstName}
+          value={props.formik.values.firstName}
           hasWarning={
-            props.form.touched.firstName && props.form.errors.firstNameMissing
+            props.formik.touched.firstName &&
+            props.formik.errors.firstNameMissing
           }
-          onChange={props.form.handleChange}
-          isDisabled={props.form.isSubmitting}
+          onChange={props.formik.handleChange}
+          isDisabled={props.formik.isSubmitting}
         />
-        {props.form.touched.firstName &&
-          props.form.errors.firstNameMissing && (
+        {props.formik.touched.firstName &&
+          props.formik.errors.firstNameMissing && (
             <ErrorMessage>
               <FormattedMessage {...validationMessages.required} />
             </ErrorMessage>
@@ -43,15 +44,15 @@ export const UserProfileGeneralInfoSubform = props => (
       <Spacings.Stack>
         <TextInput
           name="lastName"
-          value={props.form.values.lastName}
+          value={props.formik.values.lastName}
           hasError={
-            props.form.touched.lastName && props.form.errors.lastNameMissing
+            props.formik.touched.lastName && props.formik.errors.lastNameMissing
           }
-          onChange={props.form.handleChange}
-          isDisabled={props.form.isSubmitting}
+          onChange={props.formik.handleChange}
+          isDisabled={props.formik.isSubmitting}
         />
-        {props.form.touched.lastName &&
-          props.form.errors.lastNameMissing && (
+        {props.formik.touched.lastName &&
+          props.formik.errors.lastNameMissing && (
             <ErrorMessage>
               <FormattedMessage {...validationMessages.required} />
             </ErrorMessage>
@@ -62,16 +63,16 @@ export const UserProfileGeneralInfoSubform = props => (
       <LabelField title={props.intl.formatMessage(messages.email)} />
       <TextInput
         name="email"
-        value={props.form.values.email}
+        value={props.formik.values.email}
         isDisabled={true}
-        onChange={props.form.handleChange}
+        onChange={props.formik.handleChange}
       />
     </FormBox>
   </CollapsiblePanel>
 );
 UserProfileGeneralInfoSubform.displayName = 'UserProfileGeneralInfoSubform';
 UserProfileGeneralInfoSubform.propTypes = {
-  form: PropTypes.shape({
+  formik: PropTypes.shape({
     isSubmitting: PropTypes.bool.isRequired,
     errors: PropTypes.shape({
       firstNameMissing: PropTypes.boolean,

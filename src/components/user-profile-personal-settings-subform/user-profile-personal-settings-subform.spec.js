@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { intlMock } from '@commercetools-local/test-utils';
 import { UserProfilePersonalSettingsSubform } from './user-profile-personal-settings-subform';
 
-const createFormProps = props => ({
+const createFormikProps = props => ({
   isSubmitting: false,
   values: {
     language: 'en',
@@ -16,7 +16,7 @@ const createFormProps = props => ({
   ...props,
 });
 const createTestProps = props => ({
-  form: createFormProps(),
+  formik: createFormikProps(),
 
   intl: intlMock,
   timeZones: {
@@ -53,7 +53,7 @@ describe('rendering', () => {
     let wrapper;
     beforeEach(() => {
       props = createTestProps({
-        form: createFormProps({
+        formik: createFormikProps({
           isSubmitting: true,
           touched: { firstName: true },
         }),

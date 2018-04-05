@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { intlMock } from '@commercetools-local/test-utils';
 import { UserProfileGeneralInfoSubform } from './user-profile-general-info-subform';
 
-const createFormProps = props => ({
+const createFormikProps = props => ({
   isSubmitting: false,
   values: {
     email: 'john@snow.got',
@@ -17,7 +17,7 @@ const createFormProps = props => ({
   ...props,
 });
 const createTestProps = props => ({
-  form: createFormProps(),
+  formik: createFormikProps(),
 
   intl: intlMock,
 
@@ -51,7 +51,7 @@ describe('rendering', () => {
     let wrapper;
     beforeEach(() => {
       props = createTestProps({
-        form: createFormProps({
+        formik: createFormikProps({
           isSubmitting: true,
         }),
       });
