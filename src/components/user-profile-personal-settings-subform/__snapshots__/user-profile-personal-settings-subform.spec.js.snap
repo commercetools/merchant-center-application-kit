@@ -2,14 +2,28 @@
 
 exports[`rendering when not submitting should ensure layout structure 1`] = `
 <CollapsiblePanel
-  label="UserProfile.PersonalSettingsPanel.title"
+  label={
+    <FormattedMessage
+      defaultMessage="Personal Settings"
+      description="Title of the User Profile personal settings panel"
+      id="UserProfile.PersonalSettingsPanel.title"
+      values={Object {}}
+    />
+  }
 >
   <FormBox
     hasWarning={false}
   >
     <LabelField
       isRequired={true}
-      title="UserProfile.PersonalSettingsPanel.language"
+      title={
+        <FormattedMessage
+          defaultMessage="Language"
+          description="Language label"
+          id="UserProfile.PersonalSettingsPanel.language"
+          values={Object {}}
+        />
+      }
     />
     <Select
       addLabelText="Add \\"{label}\\"?"
@@ -74,7 +88,14 @@ exports[`rendering when not submitting should ensure layout structure 1`] = `
   >
     <LabelField
       isRequired={false}
-      title="UserProfile.PersonalSettingsPanel.timeZone"
+      title={
+        <FormattedMessage
+          defaultMessage="Time Zone"
+          description="TimeZone label"
+          id="UserProfile.PersonalSettingsPanel.timeZone"
+          values={Object {}}
+        />
+      }
     />
     <Select
       addLabelText="Add \\"{label}\\"?"
@@ -135,14 +156,28 @@ exports[`rendering when not submitting should ensure layout structure 1`] = `
 
 exports[`rendering when submitting should disable all input fields 1`] = `
 <CollapsiblePanel
-  label="UserProfile.PersonalSettingsPanel.title"
+  label={
+    <FormattedMessage
+      defaultMessage="Personal Settings"
+      description="Title of the User Profile personal settings panel"
+      id="UserProfile.PersonalSettingsPanel.title"
+      values={Object {}}
+    />
+  }
 >
   <FormBox
     hasWarning={false}
   >
     <LabelField
       isRequired={true}
-      title="UserProfile.PersonalSettingsPanel.language"
+      title={
+        <FormattedMessage
+          defaultMessage="Language"
+          description="Language label"
+          id="UserProfile.PersonalSettingsPanel.language"
+          values={Object {}}
+        />
+      }
     />
     <Select
       addLabelText="Add \\"{label}\\"?"
@@ -207,7 +242,14 @@ exports[`rendering when submitting should disable all input fields 1`] = `
   >
     <LabelField
       isRequired={false}
-      title="UserProfile.PersonalSettingsPanel.timeZone"
+      title={
+        <FormattedMessage
+          defaultMessage="Time Zone"
+          description="TimeZone label"
+          id="UserProfile.PersonalSettingsPanel.timeZone"
+          values={Object {}}
+        />
+      }
     />
     <Select
       addLabelText="Add \\"{label}\\"?"

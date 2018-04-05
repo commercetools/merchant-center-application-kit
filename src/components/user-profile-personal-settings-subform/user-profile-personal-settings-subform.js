@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { compose } from 'recompose';
 import { defaultMemoize } from 'reselect';
 import Select from 'react-select';
@@ -23,10 +23,10 @@ export const timeZonesToOptions = defaultMemoize(timeZones =>
 );
 
 export const UserProfilePersonalSettingsSubform = props => (
-  <CollapsiblePanel label={props.intl.formatMessage(messages.title)}>
+  <CollapsiblePanel label={<FormattedMessage {...messages.title} />}>
     <FormBox>
       <LabelField
-        title={props.intl.formatMessage(messages.language)}
+        title={<FormattedMessage {...messages.language} />}
         isRequired={true}
       />
       <Select
@@ -50,7 +50,7 @@ export const UserProfilePersonalSettingsSubform = props => (
       />
     </FormBox>
     <FormBox>
-      <LabelField title={props.intl.formatMessage(messages.timeZone)} />
+      <LabelField title={<FormattedMessage {...messages.timeZone} />} />
       <Select
         name="timeZone"
         value={props.formik.values.timeZone}
@@ -88,7 +88,6 @@ UserProfilePersonalSettingsSubform.propTypes = {
 
   // HoC
   timeZones: timeZonesShape,
-  intl: intlShape.isRequired,
   user: PropTypes.shape({
     locale: PropTypes.string.isRequired,
   }).isRequired,
@@ -98,6 +97,5 @@ export default compose(
   withUser(userData => ({
     user: { locale: userData.user && userData.user.language },
   })),
-  withTimeZones(ownProps => ownProps.user.locale),
-  injectIntl
+  withTimeZones(ownProps => ownProps.user.locale)
 )(UserProfilePersonalSettingsSubform);
