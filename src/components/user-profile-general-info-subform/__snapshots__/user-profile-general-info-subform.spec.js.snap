@@ -16,12 +16,30 @@ exports[`rendering when submitting should disable all input fields 1`] = `
       scale="s"
     >
       <TextInput
+        hasError={false}
         horizontalConstraint="scale"
         isDisabled={true}
         name="firstName"
         onChange={[MockFunction]}
         value="John"
       />
+      <ValidationErrorSwitch
+        errors={Object {}}
+        isTouched={false}
+      >
+        <ValidationErrorMatch
+          rule="required"
+        >
+          <ErrorMessage>
+            <FormattedMessage
+              defaultMessage="Please fill in this required field."
+              description="An error message to show if the field is required"
+              id="Validation.required"
+              values={Object {}}
+            />
+          </ErrorMessage>
+        </ValidationErrorMatch>
+      </ValidationErrorSwitch>
     </Stack>
   </FormBox>
   <FormBox
@@ -36,12 +54,30 @@ exports[`rendering when submitting should disable all input fields 1`] = `
       scale="s"
     >
       <TextInput
+        hasError={false}
         horizontalConstraint="scale"
         isDisabled={true}
         name="lastName"
         onChange={[MockFunction]}
         value="Snow"
       />
+      <ValidationErrorSwitch
+        errors={Object {}}
+        isTouched={false}
+      >
+        <ValidationErrorMatch
+          rule="required"
+        >
+          <ErrorMessage>
+            <FormattedMessage
+              defaultMessage="Please fill in this required field."
+              description="An error message to show if the field is required"
+              id="Validation.required"
+              values={Object {}}
+            />
+          </ErrorMessage>
+        </ValidationErrorMatch>
+      </ValidationErrorSwitch>
     </Stack>
   </FormBox>
   <FormBox
@@ -78,12 +114,30 @@ exports[`rendering when there are no errors should ensure layout structure 1`] =
       scale="s"
     >
       <TextInput
+        hasError={false}
         horizontalConstraint="scale"
         isDisabled={false}
         name="firstName"
         onChange={[MockFunction]}
         value="John"
       />
+      <ValidationErrorSwitch
+        errors={Object {}}
+        isTouched={false}
+      >
+        <ValidationErrorMatch
+          rule="required"
+        >
+          <ErrorMessage>
+            <FormattedMessage
+              defaultMessage="Please fill in this required field."
+              description="An error message to show if the field is required"
+              id="Validation.required"
+              values={Object {}}
+            />
+          </ErrorMessage>
+        </ValidationErrorMatch>
+      </ValidationErrorSwitch>
     </Stack>
   </FormBox>
   <FormBox
@@ -98,12 +152,30 @@ exports[`rendering when there are no errors should ensure layout structure 1`] =
       scale="s"
     >
       <TextInput
+        hasError={false}
         horizontalConstraint="scale"
         isDisabled={false}
         name="lastName"
         onChange={[MockFunction]}
         value="Snow"
       />
+      <ValidationErrorSwitch
+        errors={Object {}}
+        isTouched={false}
+      >
+        <ValidationErrorMatch
+          rule="required"
+        >
+          <ErrorMessage>
+            <FormattedMessage
+              defaultMessage="Please fill in this required field."
+              description="An error message to show if the field is required"
+              id="Validation.required"
+              values={Object {}}
+            />
+          </ErrorMessage>
+        </ValidationErrorMatch>
+      </ValidationErrorSwitch>
     </Stack>
   </FormBox>
   <FormBox

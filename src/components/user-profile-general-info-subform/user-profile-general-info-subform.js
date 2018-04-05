@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
 import TextInput from '@commercetools-local/ui-kit/inputs/text-input';
+import ValidationError from '@commercetools-local/core/components/validation-error';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import CollapsiblePanel from '@commercetools-local/ui-kit/panels/collapsible-panel';
 import ErrorMessage from '@commercetools-local/ui-kit/messages/error-message';
@@ -21,19 +22,22 @@ export const UserProfileGeneralInfoSubform = props => (
         <TextInput
           name="firstName"
           value={props.formik.values.firstName}
-          hasWarning={
-            props.formik.touched.firstName &&
-            props.formik.errors.firstNameMissing
-          }
+          hasError={Boolean(
+            props.formik.touched.firstName && props.formik.errors.firstName
+          )}
           onChange={props.formik.handleChange}
           isDisabled={props.formik.isSubmitting}
         />
-        {props.formik.touched.firstName &&
-          props.formik.errors.firstNameMissing && (
+        <ValidationError.Switch
+          errors={props.formik.errors.firstName}
+          isTouched={props.formik.touched.firstName}
+        >
+          <ValidationError.Match rule="required">
             <ErrorMessage>
               <FormattedMessage {...validationMessages.required} />
             </ErrorMessage>
-          )}
+          </ValidationError.Match>
+        </ValidationError.Switch>
       </Spacings.Stack>
     </FormBox>
     <FormBox>
@@ -45,18 +49,22 @@ export const UserProfileGeneralInfoSubform = props => (
         <TextInput
           name="lastName"
           value={props.formik.values.lastName}
-          hasError={
-            props.formik.touched.lastName && props.formik.errors.lastNameMissing
-          }
+          hasError={Boolean(
+            props.formik.touched.lastName && props.formik.errors.lastName
+          )}
           onChange={props.formik.handleChange}
           isDisabled={props.formik.isSubmitting}
         />
-        {props.formik.touched.lastName &&
-          props.formik.errors.lastNameMissing && (
+        <ValidationError.Switch
+          errors={props.formik.errors.lastName}
+          isTouched={props.formik.touched.lastName}
+        >
+          <ValidationError.Match rule="required">
             <ErrorMessage>
               <FormattedMessage {...validationMessages.required} />
             </ErrorMessage>
-          )}
+          </ValidationError.Match>
+        </ValidationError.Switch>
       </Spacings.Stack>
     </FormBox>
     <FormBox>
@@ -75,8 +83,12 @@ UserProfileGeneralInfoSubform.propTypes = {
   formik: PropTypes.shape({
     isSubmitting: PropTypes.bool.isRequired,
     errors: PropTypes.shape({
-      firstNameMissing: PropTypes.boolean,
-      lastNameMissing: PropTypes.boolean,
+      firstName: PropTypes.shape({
+        required: PropTypes.bool.isRequired,
+      }),
+      lastName: PropTypes.shape({
+        required: PropTypes.bool.isRequired,
+      }),
     }),
     values: PropTypes.shape({
       firstName: PropTypes.string.isRequired,
