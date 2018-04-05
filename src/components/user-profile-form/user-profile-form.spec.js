@@ -137,7 +137,7 @@ describe('rendering', () => {
       let formikWrapper;
       beforeEach(() => {
         formikProps = createFormikProps({
-          errors: { firstName: 'foo' },
+          errors: { firstName: { required: true } },
           touched: { firstName: true },
           dirty: true,
         });
@@ -145,10 +145,10 @@ describe('rendering', () => {
           wrapper.find('Formik').prop('render')(formikProps)
         );
       });
-      it('should show the error', () => {
+      it('should pass the errors to subform', () => {
         expect(formikWrapper.find(UserProfileGeneralInfoSubform)).toHaveProp(
-          'form',
-          expect.objectContaining({ errors: { firstName: 'foo' } })
+          'formik',
+          expect.objectContaining({ errors: formikProps.errors })
         );
       });
       it('should not disable SaveToolbar', () => {
