@@ -2,14 +2,28 @@
 
 exports[`rendering when submitting should disable all input fields 1`] = `
 <CollapsiblePanel
-  label="UserProfile.GeneralInfoPanel.title"
+  label={
+    <FormattedMessage
+      defaultMessage="General Information"
+      description="Title of the User Profile general info panel"
+      id="UserProfile.GeneralInfoPanel.title"
+      values={Object {}}
+    />
+  }
 >
   <FormBox
     hasWarning={false}
   >
     <LabelField
       isRequired={true}
-      title="UserProfile.GeneralInfoPanel.firstName"
+      title={
+        <FormattedMessage
+          defaultMessage="First Name"
+          description="First name label"
+          id="UserProfile.GeneralInfoPanel.firstName"
+          values={Object {}}
+        />
+      }
     />
     <Stack
       alignItems="stretch"
@@ -47,7 +61,14 @@ exports[`rendering when submitting should disable all input fields 1`] = `
   >
     <LabelField
       isRequired={true}
-      title="UserProfile.GeneralInfoPanel.lastName"
+      title={
+        <FormattedMessage
+          defaultMessage="Last Name"
+          description="Last name label"
+          id="UserProfile.GeneralInfoPanel.lastName"
+          values={Object {}}
+        />
+      }
     />
     <Stack
       alignItems="stretch"
@@ -85,7 +106,14 @@ exports[`rendering when submitting should disable all input fields 1`] = `
   >
     <LabelField
       isRequired={false}
-      title="UserProfile.GeneralInfoPanel.email"
+      title={
+        <FormattedMessage
+          defaultMessage="E-mail"
+          description="E-mail label"
+          id="UserProfile.GeneralInfoPanel.email"
+          values={Object {}}
+        />
+      }
     />
     <TextInput
       horizontalConstraint="scale"
@@ -100,14 +128,28 @@ exports[`rendering when submitting should disable all input fields 1`] = `
 
 exports[`rendering when there are no errors should ensure layout structure 1`] = `
 <CollapsiblePanel
-  label="UserProfile.GeneralInfoPanel.title"
+  label={
+    <FormattedMessage
+      defaultMessage="General Information"
+      description="Title of the User Profile general info panel"
+      id="UserProfile.GeneralInfoPanel.title"
+      values={Object {}}
+    />
+  }
 >
   <FormBox
     hasWarning={false}
   >
     <LabelField
       isRequired={true}
-      title="UserProfile.GeneralInfoPanel.firstName"
+      title={
+        <FormattedMessage
+          defaultMessage="First Name"
+          description="First name label"
+          id="UserProfile.GeneralInfoPanel.firstName"
+          values={Object {}}
+        />
+      }
     />
     <Stack
       alignItems="stretch"
@@ -145,7 +187,14 @@ exports[`rendering when there are no errors should ensure layout structure 1`] =
   >
     <LabelField
       isRequired={true}
-      title="UserProfile.GeneralInfoPanel.lastName"
+      title={
+        <FormattedMessage
+          defaultMessage="Last Name"
+          description="Last name label"
+          id="UserProfile.GeneralInfoPanel.lastName"
+          values={Object {}}
+        />
+      }
     />
     <Stack
       alignItems="stretch"
@@ -183,7 +232,14 @@ exports[`rendering when there are no errors should ensure layout structure 1`] =
   >
     <LabelField
       isRequired={false}
-      title="UserProfile.GeneralInfoPanel.email"
+      title={
+        <FormattedMessage
+          defaultMessage="E-mail"
+          description="E-mail label"
+          id="UserProfile.GeneralInfoPanel.email"
+          values={Object {}}
+        />
+      }
     />
     <TextInput
       horizontalConstraint="scale"

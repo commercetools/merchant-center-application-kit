@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { intlMock } from '@commercetools-local/test-utils';
 import { UserProfileGeneralInfoSubform } from './user-profile-general-info-subform';
 
 const createFormikProps = props => ({
@@ -18,8 +17,6 @@ const createFormikProps = props => ({
 });
 const createTestProps = props => ({
   formik: createFormikProps(),
-
-  intl: intlMock,
 
   ...props,
 });

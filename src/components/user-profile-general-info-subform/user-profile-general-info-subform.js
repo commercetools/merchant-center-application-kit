@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import TextInput from '@commercetools-local/ui-kit/inputs/text-input';
 import ValidationError from '@commercetools-local/core/components/validation-error';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
@@ -12,10 +12,10 @@ import LabelField from '@commercetools-local/core/components/fields/label-field'
 import messages from './messages';
 
 export const UserProfileGeneralInfoSubform = props => (
-  <CollapsiblePanel label={props.intl.formatMessage(messages.title)}>
+  <CollapsiblePanel label={<FormattedMessage {...messages.title} />}>
     <FormBox>
       <LabelField
-        title={props.intl.formatMessage(messages.firstName)}
+        title={<FormattedMessage {...messages.firstName} />}
         isRequired={true}
       />
       <Spacings.Stack>
@@ -42,7 +42,7 @@ export const UserProfileGeneralInfoSubform = props => (
     </FormBox>
     <FormBox>
       <LabelField
-        title={props.intl.formatMessage(messages.lastName)}
+        title={<FormattedMessage {...messages.lastName} />}
         isRequired={true}
       />
       <Spacings.Stack>
@@ -68,7 +68,7 @@ export const UserProfileGeneralInfoSubform = props => (
       </Spacings.Stack>
     </FormBox>
     <FormBox>
-      <LabelField title={props.intl.formatMessage(messages.email)} />
+      <LabelField title={<FormattedMessage {...messages.email} />} />
       <TextInput
         name="email"
         value={props.formik.values.email}
@@ -101,8 +101,6 @@ UserProfileGeneralInfoSubform.propTypes = {
     }),
     handleChange: PropTypes.func.isRequired,
   }),
-
-  intl: intlShape.isRequired,
 };
 
-export default injectIntl(UserProfileGeneralInfoSubform);
+export default UserProfileGeneralInfoSubform;
