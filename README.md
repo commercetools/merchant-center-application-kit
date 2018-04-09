@@ -28,9 +28,9 @@ import ApplicationShell, {
 import { Sdk } from '@commercetools-local/sdk';
 import * as globalActions from '@commercetools-local/actions-global';
 import PageNotFound from '@commercetools-local/core/components/page-not-found';
+import * as i18n from '@commercetools-local/i18n';
 
 // NOTE: the following relative imports depend on the location of this file.
-import * as i18n from '../../../../i18n';
 import { menuItems, trackingEventWhitelist } from '../../plugins';
 
 // Ensure to setup the global error listener before any React component renders

@@ -12,11 +12,12 @@ The `locale` is determined by:
 ### Usage
 
 ```js
-import ConfigureIntlProvider from '../configure-intl-provider'
+import * as i18nMessages from '@commercetools-local/i18n';
+import ConfigureIntlProvider from '../configure-intl-provider';
 
 <ConfigureIntlProvider i18n={i18nMessages}>
   <Main />
-</ConfigureIntlProvider>
+</ConfigureIntlProvider>;
 ```
 
 ### Properties
