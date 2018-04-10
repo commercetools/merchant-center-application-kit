@@ -9,7 +9,7 @@ export const countriesShape = PropTypes.objectOf(PropTypes.string);
  */
 const getCountriesForLocale = (locale, cb) =>
   import(`./data/countries/${locale}.json` /* webpackChunkName: "country-data" */)
-    .then(countries => cb(null, countries))
+    .then(countries => cb(null, countries.default))
     .catch(() => cb(new Error(`Unknown locale ${locale}`)));
 
 export const withCountries = createL10NInjector({

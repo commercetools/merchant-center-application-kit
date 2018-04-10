@@ -11,7 +11,7 @@ export const currenciesShape = PropTypes.objectOf(
  */
 const getCurrenciesForLocale = (locale, cb) =>
   import(`./data/currencies/${locale}.json` /* webpackChunkName: "currency-data" */)
-    .then(currencies => cb(null, currencies))
+    .then(currencies => cb(null, currencies.default))
     .catch(() => cb(new Error(`Unknown locale ${locale}`)));
 
 export const withCurrencies = createL10NInjector({
