@@ -15,6 +15,9 @@ export {
   withProject,
 } from './components/fetch-project';
 export {
+  default as InjectProjectLocale,
+} from './components/inject-project-locale';
+export {
   default as NotificationsConnector,
   notificationsReducer,
 } from './components/notifications-connector';
