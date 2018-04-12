@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
+import { SetProjectDataLocale } from '@commercetools-local/application-shell-connectors';
 
 const defaultLocale = 'en';
 
@@ -53,9 +54,13 @@ export default class ProjectDataLocale extends React.PureComponent {
   };
 
   render() {
-    return this.props.children({
-      locale: this.state.locale,
-      setProjectDataLocale: this.handleSetProjectDataLocale,
-    });
+    return (
+      <SetProjectDataLocale locale={this.state.locale}>
+        {this.props.children({
+          locale: this.state.locale,
+          setProjectDataLocale: this.handleSetProjectDataLocale,
+        })}
+      </SetProjectDataLocale>
+    );
   }
 }

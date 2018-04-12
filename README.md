@@ -1,5 +1,3 @@
-<h1><p align="center">🚧 Work In Progress 🚧</p></h1>
-
 # `@commercetools-local/application-shell`
 
 This module contains the main _React component_ `<ApplicationShell>` for

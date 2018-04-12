@@ -8,7 +8,7 @@ jest.mock('@commercetools-local/utils/storage');
 
 const createTestProps = props => ({
   locales: null,
-  children: jest.fn(),
+  children: jest.fn(() => <div />),
   ...props,
 });
 
@@ -20,6 +20,9 @@ describe('rendering', () => {
     beforeEach(() => {
       props = createTestProps();
       wrapper = shallow(<ProjectDataLocale {...props} />);
+    });
+    it('should render <SetProjectDataLocale> with locale "en"', () => {
+      expect(wrapper.find('SetProjectDataLocale')).toHaveProp('locale', 'en');
     });
     it('should call render function with default locale "en"', () => {
       expect(props.children).toHaveBeenCalledWith(
@@ -42,6 +45,9 @@ describe('rendering', () => {
         wrapper = shallow(<ProjectDataLocale {...props} />);
         wrapper.setProps({ locales: ['it', 'de'] });
       });
+      it('should render <SetProjectDataLocale> with locale "it"', () => {
+        expect(wrapper.find('SetProjectDataLocale')).toHaveProp('locale', 'it');
+      });
       it('should call render function with first locale from the list', () => {
         expect(props.children).toHaveBeenCalledWith(
           expect.objectContaining({ locale: 'it' })
@@ -55,6 +61,9 @@ describe('rendering', () => {
         wrapper = shallow(<ProjectDataLocale {...props} />);
         wrapper.setProps({ locales: ['it', 'de'] });
       });
+      it('should render <SetProjectDataLocale> with locale "de"', () => {
+        expect(wrapper.find('SetProjectDataLocale')).toHaveProp('locale', 'de');
+      });
       it('should call render function with the locale from the cache', () => {
         expect(props.children).toHaveBeenCalledWith(
           expect.objectContaining({ locale: 'de' })
@@ -67,6 +76,9 @@ describe('rendering', () => {
         props = createTestProps();
         wrapper = shallow(<ProjectDataLocale {...props} />);
         wrapper.setProps({ locales: ['it', 'en'] });
+      });
+      it('should render <SetProjectDataLocale> with locale "it"', () => {
+        expect(wrapper.find('SetProjectDataLocale')).toHaveProp('locale', 'it');
       });
       it('should call render function with first locale from the list', () => {
         expect(props.children).toHaveBeenCalledWith(
