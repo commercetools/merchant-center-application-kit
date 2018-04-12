@@ -1,0 +1,13 @@
+{
+  "name": "@commercetools-local/application-shell-connectors",
+  "version": "1.0.0",
+  "description": "Contains complementary tools for AppShell",
+  "license": "Proprietary",
+  "private": true,
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=3"
+  }
+}
