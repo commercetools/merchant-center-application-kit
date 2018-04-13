@@ -7,16 +7,17 @@ const defaultLocale = 'en';
 
 const { Provider, Consumer } = createReactContext(defaultLocale);
 
-export const SetProjectDataLocale = props => (
+const AppShellProviderForProjectDataLocale = props => (
   <Provider value={props.locale}>{props.children}</Provider>
 );
-SetProjectDataLocale.displayName = 'SetProjectDataLocale';
-SetProjectDataLocale.propTypes = {
+AppShellProviderForProjectDataLocale.displayName =
+  'AppShellProviderForProjectDataLocale';
+AppShellProviderForProjectDataLocale.propTypes = {
   locale: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
 
-export const GetProjectDataLocale = props => (
+const GetProjectDataLocale = props => (
   <Consumer>{locale => props.render(locale)}</Consumer>
 );
 GetProjectDataLocale.displayName = 'GetProjectDataLocale';
@@ -24,9 +25,7 @@ GetProjectDataLocale.propTypes = {
   render: PropTypes.func.isRequired,
 };
 
-export const withProjectDataLocale = (
-  propKey = 'projectDataLocale'
-) => Component => {
+const withProjectDataLocale = (propKey = 'projectDataLocale') => Component => {
   const WrappedComponent = props => (
     <GetProjectDataLocale
       render={locale => <Component {...props} {...{ [propKey]: locale }} />}
@@ -37,3 +36,7 @@ export const withProjectDataLocale = (
   )})`;
   return WrappedComponent;
 };
+
+// Exports
+export default GetProjectDataLocale;
+export { AppShellProviderForProjectDataLocale, withProjectDataLocale };

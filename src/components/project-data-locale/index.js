@@ -1,5 +1,5 @@
+export { default } from './project-data-locale';
 export {
-  GetProjectDataLocale,
-  SetProjectDataLocale,
+  AppShellProviderForProjectDataLocale,
   withProjectDataLocale,
 } from './project-data-locale';

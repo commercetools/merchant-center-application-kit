@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { SetProjectDataLocale } from './project-data-locale';
+import { AppShellProviderForProjectDataLocale } from './project-data-locale';
 
 describe('rendering', () => {
   let wrapper;
@@ -8,9 +8,9 @@ describe('rendering', () => {
   describe('Provider', () => {
     beforeEach(() => {
       wrapper = shallow(
-        <SetProjectDataLocale locale="de">
+        <AppShellProviderForProjectDataLocale locale="de">
           <div />
-        </SetProjectDataLocale>
+        </AppShellProviderForProjectDataLocale>
       );
     });
     it('should pass value "de" to Provider', () => {
