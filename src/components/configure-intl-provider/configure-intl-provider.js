@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { AppShellProviderForUserTimeZone } from '@commercetools-local/application-shell-connectors';
 import { IntlProvider } from 'react-intl';
 
 const ConfigureIntlProvider = props => {
@@ -8,7 +9,9 @@ const ConfigureIntlProvider = props => {
   if (!props.locale) return null;
   return (
     <IntlProvider locale={props.locale} messages={props.messages}>
-      {props.children}
+      <AppShellProviderForUserTimeZone timeZone={props.timeZone}>
+        {props.children}
+      </AppShellProviderForUserTimeZone>
     </IntlProvider>
   );
 };
@@ -16,6 +19,7 @@ const ConfigureIntlProvider = props => {
 ConfigureIntlProvider.displayName = 'ConfigureIntlProvider';
 ConfigureIntlProvider.propTypes = {
   locale: PropTypes.string,
+  timeZone: PropTypes.string,
   messages: PropTypes.object,
   children: PropTypes.element.isRequired,
 };

@@ -5,6 +5,7 @@ import ConfigureIntlProvider from './configure-intl-provider';
 
 const createTestProps = props => ({
   locale: 'en',
+  timeZone: 'Europe/Madrid',
   messages: { title: 'Title' },
   ...props,
 });
@@ -40,6 +41,17 @@ describe('rendering', () => {
     it('should pass messages for given locale to <IntlProvider>', () => {
       expect(wrapper.find(IntlProvider)).toHaveProp('messages', {
         title: 'Title',
+      });
+    });
+    describe('AppShellProviderForUserTimeZone', () => {
+      it('should render AppShellProviderForUserTimeZone', () => {
+        expect(wrapper).toRender('AppShellProviderForUserTimeZone');
+      });
+      it('should have timeZone as prop', () => {
+        expect(wrapper.find('AppShellProviderForUserTimeZone')).toHaveProp(
+          'timeZone',
+          props.timeZone
+        );
       });
     });
   });
