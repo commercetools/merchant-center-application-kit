@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import createReactContext from 'create-react-context';
 import { wrapDisplayName } from 'recompose';
 
 const defaultLocale = 'en';
 
-const { Provider, Consumer } = createReactContext(defaultLocale);
+const { Provider, Consumer } = React.createContext(defaultLocale);
 
 const AppShellProviderForProjectDataLocale = props => (
   <Provider value={props.locale}>{props.children}</Provider>
