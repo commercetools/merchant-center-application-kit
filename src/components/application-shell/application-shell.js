@@ -67,6 +67,7 @@ export const RestrictedApplication = props => (
       }
       return (
         <ConfigureIntlProvider
+          timeZone={user && user.timeZone}
           locale={user && user.language}
           messages={user && props.i18n[user.language]}
         >
