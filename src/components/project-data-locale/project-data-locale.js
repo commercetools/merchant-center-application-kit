@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import createReactContext from 'create-react-context';
-import { getDisplayName } from 'recompose';
+import { wrapDisplayName } from 'recompose';
 
 const defaultLocale = 'en';
 
@@ -31,9 +31,10 @@ const withProjectDataLocale = (propKey = 'projectDataLocale') => Component => {
       render={locale => <Component {...props} {...{ [propKey]: locale }} />}
     />
   );
-  WrappedComponent.displayName = `withProjectDataLocale(${getDisplayName(
-    Component
-  )})`;
+  WrappedComponent.displayName = wrapDisplayName(
+    Component,
+    'withProjectDataLocale'
+  );
   return WrappedComponent;
 };
 
