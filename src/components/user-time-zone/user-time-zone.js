@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { wrapDisplayName } from 'recompose';
 
-const { Provider, Consumer } = React.createContext();
+const defaultTimeZone = 'Etc/UTC';
+
+const { Provider, Consumer } = React.createContext(defaultTimeZone);
 
 const AppShellProviderForUserTimeZone = props => (
   <Provider value={props.timeZone}>{props.children}</Provider>
