@@ -60,15 +60,17 @@ class ProjectContainer extends React.Component {
     });
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.location.pathname !== this.props.location.pathname) {
+    if (
+      prevProps.location.pathname !== this.props.location.pathname &&
+      this.state.hasError
+    ) {
       this.setState({ hasError: false });
     }
+    // Ensure to sync the `projectKey` from the URL with localStorage.
+    const projectKeyFromParams = this.props.match.params.projectKey;
     const cachedProjectKey = storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
-    let nextProjectKey = cachedProjectKey;
-    // Ensure to cache the projectKey, in case it changes.
-    if (cachedProjectKey !== this.props.match.params.projectKey) {
-      nextProjectKey = this.props.match.params.projectKey;
-      storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, nextProjectKey);
+    if (!cachedProjectKey || cachedProjectKey !== projectKeyFromParams) {
+      storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, projectKeyFromParams);
     }
   }
   componentDidCatch(error, errorInfo) {

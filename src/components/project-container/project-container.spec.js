@@ -368,7 +368,18 @@ describe('lifecycle', () => {
         expect(storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)).toBe('p1');
       });
     });
-    describe('when projectKey is not cached', () => {
+    describe('when no projectKey is cached', () => {
+      beforeEach(() => {
+        props = createTestProps({ match: { params: { projectKey: 'p1' } } });
+        storage.remove(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
+        wrapper = shallow(<ProjectContainer {...props} />);
+        wrapper.instance().componentDidUpdate(props);
+      });
+      it('should cache projectKey into storage', () => {
+        expect(storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)).toBe('p1');
+      });
+    });
+    describe('when a different projectKey is cached', () => {
       beforeEach(() => {
         props = createTestProps({ match: { params: { projectKey: 'p1' } } });
         storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, 'p2');
