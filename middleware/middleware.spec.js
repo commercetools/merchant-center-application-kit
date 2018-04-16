@@ -270,3 +270,21 @@ describe('when the action is not of type SDK', () => {
     expect(result).toBe('result-of-next');
   });
 });
+
+describe('when the projectKey is not defined', () => {
+  const dispatch = jest.fn();
+  let action;
+  const next = jest.fn(() => 'result-of-next');
+  beforeEach(() => {
+    storage.remove(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
+    action = {
+      type: 'SDK',
+      payload: { service: 'productTypes', method: 'GET' },
+    };
+  });
+  it('should throw an error with message containing URI', () => {
+    expect(() => middleware({ dispatch })(next)(action)).toThrowError(
+      'Expected projectKey to be defined for action service "productTypes" (method "GET")'
+    );
+  });
+});

@@ -17,6 +17,16 @@ const selectProjectKey = () =>
 
 const actionToUri = (action, projectKey) => {
   if (action.payload.uri) return action.payload.uri;
+
+  // Validate that `projectKey` exists
+  if (!projectKey) {
+    throw new Error(
+      `Expected projectKey to be defined for action service "${
+        action.payload.service
+      }" (method "${action.payload.method}")`
+    );
+  }
+
   // TODO how to configure project key?
   // Do we need it for every request?
   // What if one request does not need it? Omit the object?
