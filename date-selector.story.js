@@ -18,12 +18,16 @@ class DateSelectorStory extends React.PureComponent {
   };
 
   handleLocaleChange = event => {
-    const { target: { value } } = event;
+    const {
+      target: { value },
+    } = event;
     this.setState({ locale: value });
   };
 
   handleYearChange = event => {
-    const { target: { name, value } } = event;
+    const {
+      target: { name, value },
+    } = event;
     const year = parseInt(value, 10);
 
     if (isNaN(year)) return;
