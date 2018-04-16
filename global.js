@@ -60,9 +60,9 @@ export function showNotification(notification, meta = {}) {
           `Unknown notification domain "${notification.domain}"`,
           notification
         );
-    } else
-      // eslint-disable-next-line no-console
-      console.warn('Notification is missing domain', notification);
+    }
+    // eslint-disable-next-line no-console
+    else console.warn('Notification is missing domain', notification);
 
   let dismissAfter = meta.dismissAfter;
   if (!isNumber(dismissAfter))
