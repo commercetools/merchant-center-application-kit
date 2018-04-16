@@ -12,7 +12,9 @@ export default () => next => action => {
     action.type === ADD_NOTIFICATION &&
     action.payload.kind === 'unexpected-error'
   ) {
-    const { meta: { error } } = action;
+    const {
+      meta: { error },
+    } = action;
 
     // Check that the `error` is set
     if (!error && process.env.NODE_ENV !== 'production')

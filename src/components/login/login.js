@@ -110,7 +110,9 @@ export class Login extends React.PureComponent {
   };
 
   handleInputChange = event => {
-    const { target: { name, value } } = event;
+    const {
+      target: { name, value },
+    } = event;
     this.setState({ [name]: value });
   };
   handleKeyPress = event => {
