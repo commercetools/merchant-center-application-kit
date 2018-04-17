@@ -67,10 +67,12 @@ class ProjectContainer extends React.Component {
       this.setState({ hasError: false });
     }
     // Ensure to sync the `projectKey` from the URL with localStorage.
-    const projectKeyFromParams = this.props.match.params.projectKey;
+    const latestProjectKey = this.props.match.params.projectKey;
     const cachedProjectKey = storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
-    if (!cachedProjectKey || cachedProjectKey !== projectKeyFromParams) {
-      storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, projectKeyFromParams);
+    const isCacheStale =
+      !cachedProjectKey || cachedProjectKey !== latestProjectKey;
+    if (isCacheStale) {
+      storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, latestProjectKey);
     }
   }
   componentDidCatch(error, errorInfo) {
