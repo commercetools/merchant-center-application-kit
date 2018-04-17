@@ -51,11 +51,7 @@ const loggerMiddleware = createLogger({
         return !ignoredKinds.includes(payload.kind);
       }
       case constants.__LOCAL:
-        return (
-          payload &&
-          (typeof payload.type === 'string' &&
-            !payload.type.startsWith('@@redux-form'))
-        );
+        return payload && typeof payload.type === 'string';
       default:
         return true;
     }
