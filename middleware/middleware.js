@@ -27,9 +27,6 @@ const actionToUri = (action, projectKey) => {
     );
   }
 
-  // TODO how to configure project key?
-  // Do we need it for every request?
-  // What if one request does not need it? Omit the object?
   const requestBuilder = createRequestBuilder({ projectKey });
   // NOTE it's weird that we have to access this from the request builder.
   // Shouldn't it just be a part of the object we parse?
