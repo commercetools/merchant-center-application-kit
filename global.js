@@ -11,7 +11,6 @@ import {
 } from '@commercetools-local/constants';
 import toGlobal from '@commercetools-local/utils/to-global';
 import browserHistory from '@commercetools-local/browser-history';
-import logger from '@commercetools-local/utils/logger';
 
 export function showApiErrorNotification({ errors, source }) {
   return showNotification(
@@ -85,7 +84,8 @@ export function hideAllPageNotifications() {
 
 export const handleActionError = (error, source) => dispatch => {
   // On production we send the errors to Sentry.
-  if (window.app.env !== 'production') logger.error(error, error.stack);
+  // eslint-disable-next-line no-console
+  if (window.app.env !== 'production') console.error(error, error.stack);
 
   // logout when unauthorized
   if (error.statusCode === STATUS_CODES.UNAUTHORIZED && source !== LOGGED_IN) {
