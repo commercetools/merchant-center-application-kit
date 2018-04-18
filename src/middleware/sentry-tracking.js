@@ -1,7 +1,6 @@
 /* global process */
 import Raven from 'raven-js';
 import { ADD_NOTIFICATION } from '@commercetools-local/notifications';
-import logger from '@commercetools-local/utils/logger';
 
 // Note: this middleware should be placed before the middleware that
 // handles the notifications.
@@ -18,7 +17,8 @@ export default () => next => action => {
 
     // Check that the `error` is set
     if (!error && process.env.NODE_ENV !== 'production')
-      logger.error('Missing error object when dispatching unexpected error.');
+      // eslint-disable-next-line no-console
+      console.error('Missing error object when dispatching unexpected error.');
 
     if (process.env.NODE_ENV !== 'production') return next(action);
 
@@ -30,7 +30,8 @@ export default () => next => action => {
     // The error stack should be available in Sentry, so there is no
     // need to print it in the console as well.
     // We just notify that an error occured and provide the error ID.
-    logger.error(`An error occured (ID: ${errorId}).`);
+    // eslint-disable-next-line no-console
+    console.error(`An error occured (ID: ${errorId}).`);
 
     // Inject the generated errorId into the notification values,
     // in order to display it in the notification message.
