@@ -1,4 +1,7 @@
+import { reportErrorToSentry } from '../../utils/sentry';
 import reducer from './reducer';
+
+jest.mock('../../utils/sentry');
 
 describe('initial state', () => {
   it('should return empty array', () => {
@@ -28,13 +31,16 @@ describe('actions', () => {
         expect(reducer(state, action)).toEqual([1, 3, 2]);
       });
     });
-    describe('if the list does not contain the given payload', () => {
+    describe('when the list does not contain the given payload', () => {
       beforeEach(() => {
         state = [1, 2];
         action = { type: 'HIDE_LOADING', payload: 5 };
       });
       it('should return the reference of the existing state', () => {
         expect(reducer(state, action)).toBe(state);
+      });
+      it('should report an error', () => {
+        expect(reportErrorToSentry).toHaveBeenCalledTimes(1);
       });
     });
   });
