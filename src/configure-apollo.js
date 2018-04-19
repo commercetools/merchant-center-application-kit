@@ -80,6 +80,8 @@ const client = new ApolloClient({
     fragmentMatcher,
     dataIdFromObject: result => {
       if (result.__typename === 'Project') return result.key;
+      if (result.__typename === 'Reference')
+        return `${result.__typename}:${result.id}`;
       return result.id;
     },
   }),
