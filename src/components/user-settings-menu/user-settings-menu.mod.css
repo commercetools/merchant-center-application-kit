@@ -54,7 +54,7 @@
 .item {
   width: 100%;
   cursor: pointer;
-  color: var(--color-greyDark);
+  color: var(--color-black);
 }
 
 .item:hover {
