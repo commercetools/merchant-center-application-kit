@@ -28,7 +28,7 @@ export class InjectReducer extends React.PureComponent {
     }),
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const hasPluginReducerBeenInjected =
       Reflect.has(this.context.store.injectedReducers, this.props.name) &&
       this.context.store.injectedReducers[this.props.name] ===
