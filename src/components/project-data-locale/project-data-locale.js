@@ -40,11 +40,12 @@ export default class ProjectDataLocale extends React.PureComponent {
     locale: getSelectedDataLocaleForProject(this.props.locales),
   };
 
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.locales && nextProps.locales)
-      this.setState({
-        locale: getSelectedDataLocaleForProject(nextProps.locales),
-      });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return !prevState.locales && nextProps.locales
+      ? {
+          locale: getSelectedDataLocaleForProject(nextProps.locales),
+        }
+      : null;
   }
 
   handleSetProjectDataLocale = locale => {

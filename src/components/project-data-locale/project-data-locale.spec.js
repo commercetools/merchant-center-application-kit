@@ -40,62 +40,50 @@ describe('rendering', () => {
       );
     });
   });
+});
 
-  describe('when list of locales is defined', () => {
-    describe('when locale is not cached yet', () => {
-      beforeEach(() => {
-        props = createTestProps();
-        wrapper = shallow(<ProjectDataLocale {...props} />);
-        wrapper.setProps({ locales: ['it', 'de'] });
+describe('lifecycle', () => {
+  describe('getDerivedStateFromProps', () => {
+    let derivedState;
+    let nextProps;
+    describe('when list of locales is defined', () => {
+      describe('when locale is not cached yet', () => {
+        beforeEach(() => {
+          nextProps = { locales: ['it', 'de'] };
+          derivedState = ProjectDataLocale.getDerivedStateFromProps(
+            nextProps,
+            {}
+          );
+        });
+        it('should render derive state with locale "it"', () => {
+          expect(derivedState).toEqual({ locale: 'it' });
+        });
       });
-      it('should render <AppShellProviderForProjectDataLocale> with locale "it"', () => {
-        expect(wrapper.find('AppShellProviderForProjectDataLocale')).toHaveProp(
-          'locale',
-          'it'
-        );
+      describe('when locale has been already cached', () => {
+        beforeEach(() => {
+          storage.put(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
+          nextProps = { locales: ['it', 'de'] };
+          derivedState = ProjectDataLocale.getDerivedStateFromProps(
+            nextProps,
+            {}
+          );
+        });
+        it('should render derive state with locale "de"', () => {
+          expect(derivedState).toEqual({ locale: 'de' });
+        });
       });
-      it('should call render function with first locale from the list', () => {
-        expect(props.children).toHaveBeenCalledWith(
-          expect.objectContaining({ locale: 'it' })
-        );
-      });
-    });
-    describe('when locale has been already cached', () => {
-      beforeEach(() => {
-        storage.put(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
-        props = createTestProps();
-        wrapper = shallow(<ProjectDataLocale {...props} />);
-        wrapper.setProps({ locales: ['it', 'de'] });
-      });
-      it('should render <AppShellProviderForProjectDataLocale> with locale "de"', () => {
-        expect(wrapper.find('AppShellProviderForProjectDataLocale')).toHaveProp(
-          'locale',
-          'de'
-        );
-      });
-      it('should call render function with the locale from the cache', () => {
-        expect(props.children).toHaveBeenCalledWith(
-          expect.objectContaining({ locale: 'de' })
-        );
-      });
-    });
-    describe('when cached locale is not listed in the project locales', () => {
-      beforeEach(() => {
-        storage.put(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
-        props = createTestProps();
-        wrapper = shallow(<ProjectDataLocale {...props} />);
-        wrapper.setProps({ locales: ['it', 'en'] });
-      });
-      it('should render <AppShellProviderForProjectDataLocale> with locale "it"', () => {
-        expect(wrapper.find('AppShellProviderForProjectDataLocale')).toHaveProp(
-          'locale',
-          'it'
-        );
-      });
-      it('should call render function with first locale from the list', () => {
-        expect(props.children).toHaveBeenCalledWith(
-          expect.objectContaining({ locale: 'it' })
-        );
+      describe('when cached locale is not listed in the project locales', () => {
+        beforeEach(() => {
+          storage.put(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
+          nextProps = { locales: ['it', 'de'] };
+          derivedState = ProjectDataLocale.getDerivedStateFromProps(
+            nextProps,
+            {}
+          );
+        });
+        it('should render derive state with locale "de"', () => {
+          expect(derivedState).toEqual({ locale: 'de' });
+        });
       });
     });
   });
