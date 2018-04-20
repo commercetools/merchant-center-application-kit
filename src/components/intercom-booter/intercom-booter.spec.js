@@ -43,17 +43,15 @@ describe('lifecycle', () => {
       expect(showBannerFn).toHaveBeenCalledWith(props.intercomTrackingStatus);
     });
   });
-  describe('componentWillReceiveProps', () => {
-    let nextProps;
+  describe('componentDidUpdate', () => {
     beforeEach(() => {
       bootIntercomFn.mockClear();
       showBannerFn.mockClear();
-      nextProps = { intercomTrackingStatus: null };
     });
     describe('when intercom is already booted', () => {
       beforeEach(() => {
         wrapper.instance().hasBooted = true;
-        wrapper.instance().componentWillReceiveProps(nextProps);
+        wrapper.instance().componentDidUpdate();
       });
       it('should not call boot', () => {
         expect(bootIntercomFn).not.toHaveBeenCalled();
@@ -62,19 +60,19 @@ describe('lifecycle', () => {
     describe('when intercom is not booted yet', () => {
       beforeEach(() => {
         wrapper.instance().hasBooted = false;
-        wrapper.instance().componentWillReceiveProps(nextProps);
+        wrapper.instance().componentDidUpdate();
       });
       it('should call boot', () => {
         expect(bootIntercomFn).toHaveBeenCalledTimes(1);
         expect(bootIntercomFn).toHaveBeenCalledWith(
-          nextProps.intercomTrackingStatus
+          props.intercomTrackingStatus
         );
       });
     });
     describe('when intercom banner has been shown', () => {
       beforeEach(() => {
         wrapper.instance().hasDispatchedNotification = true;
-        wrapper.instance().componentWillReceiveProps(nextProps);
+        wrapper.instance().componentDidUpdate();
       });
       it('should not call show banner', () => {
         expect(showBannerFn).not.toHaveBeenCalled();
@@ -83,13 +81,11 @@ describe('lifecycle', () => {
     describe('when intercom banner has not been shown', () => {
       beforeEach(() => {
         wrapper.instance().hasDispatchedNotification = false;
-        wrapper.instance().componentWillReceiveProps(nextProps);
+        wrapper.instance().componentDidUpdate();
       });
       it('should call show banner', () => {
         expect(showBannerFn).toHaveBeenCalledTimes(1);
-        expect(showBannerFn).toHaveBeenCalledWith(
-          nextProps.intercomTrackingStatus
-        );
+        expect(showBannerFn).toHaveBeenCalledWith(props.intercomTrackingStatus);
       });
     });
   });
