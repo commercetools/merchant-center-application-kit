@@ -56,7 +56,14 @@ describe('lifecycle', () => {
           );
         });
         it('should render derive state with locale "it"', () => {
-          expect(derivedState).toEqual({ locale: 'it' });
+          expect(derivedState).toEqual(
+            expect.objectContaining({ locale: 'it' })
+          );
+        });
+        it('should render derive state with locales', () => {
+          expect(derivedState).toEqual(
+            expect.objectContaining({ locales: nextProps.locales })
+          );
         });
       });
       describe('when locale has been already cached', () => {
@@ -69,7 +76,14 @@ describe('lifecycle', () => {
           );
         });
         it('should render derive state with locale "de"', () => {
-          expect(derivedState).toEqual({ locale: 'de' });
+          expect(derivedState).toEqual(
+            expect.objectContaining({ locale: 'de' })
+          );
+        });
+        it('should render derive state with locales', () => {
+          expect(derivedState).toEqual(
+            expect.objectContaining({ locales: nextProps.locales })
+          );
         });
       });
       describe('when cached locale is not listed in the project locales', () => {
@@ -82,7 +96,14 @@ describe('lifecycle', () => {
           );
         });
         it('should render derive state with locale "de"', () => {
-          expect(derivedState).toEqual({ locale: 'de' });
+          expect(derivedState).toEqual(
+            expect.objectContaining({ locale: 'de' })
+          );
+        });
+        it('should render derive state with locales', () => {
+          expect(derivedState).toEqual(
+            expect.objectContaining({ locales: nextProps.locales })
+          );
         });
       });
     });
