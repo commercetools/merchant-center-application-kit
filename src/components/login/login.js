@@ -57,16 +57,15 @@ export class Login extends React.PureComponent {
     this.email.focus();
   };
 
-  componentWillReceiveProps = () => {
-    if (
-      this.state.error === LOGOUT_REASONS.NO_PROJECTS &&
-      !this.state.showRedirectDialog
-    )
-      this.setState({
-        showRedirectDialog: true,
-        countdown: 10,
-      });
-  };
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return prevState.error === LOGOUT_REASONS.NO_PROJECTS &&
+      !prevState.showRedirectDialog
+      ? {
+          showRedirectDialog: true,
+          countdown: 10,
+        }
+      : null;
+  }
 
   componentWillUnmount = () => {
     clearInterval(this.interval);
