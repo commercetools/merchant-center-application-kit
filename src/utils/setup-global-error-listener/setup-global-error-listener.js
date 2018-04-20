@@ -1,5 +1,5 @@
 import { showUnexpectedErrorNotification } from '@commercetools-local/actions-global';
-import { boot as bootSentry } from '../sentry';
+import { boot as bootSentry } from '@commercetools-local/sentry';
 
 // Ensure to initialize Sentry as soon as possible, so that we have the chance
 // of catching possible errors.

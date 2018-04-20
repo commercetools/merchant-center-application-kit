@@ -1,5 +1,5 @@
 import React from 'react';
-import * as sentry from '../../utils/sentry';
+import * as sentry from '@commercetools-local/sentry';
 
 class SentryUserLogoutTracker extends React.Component {
   static displayName = 'SentryUserLogoutTracker';

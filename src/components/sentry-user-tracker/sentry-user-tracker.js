@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as sentry from '../../utils/sentry';
+import * as sentry from '@commercetools-local/sentry';
 
 /**
  * This component will let sentry know if any information about the user has

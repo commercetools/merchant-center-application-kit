@@ -1,7 +1,7 @@
-import { reportErrorToSentry } from '../../utils/sentry';
+import { reportErrorToSentry } from '@commercetools-local/sentry';
 import reducer from './reducer';
 
-jest.mock('../../utils/sentry');
+jest.mock('@commercetools-local/sentry');
 
 describe('initial state', () => {
   it('should return empty array', () => {

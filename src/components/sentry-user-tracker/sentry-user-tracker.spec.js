@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { updateUser } from '../../utils/sentry';
+import { updateUser } from '@commercetools-local/sentry';
 import SentryUserTracker from './sentry-user-tracker';
 
-jest.mock('../../utils/sentry');
+jest.mock('@commercetools-local/sentry');
 
 const createTestProps = custom => ({
   user: {

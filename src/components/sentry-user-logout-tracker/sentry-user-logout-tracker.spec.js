@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import SentryUserLogoutTracker from './sentry-user-logout-tracker';
 
 let mockStopTrackingUser;
-jest.mock('../../utils/sentry', () => ({
+jest.mock('@commercetools-local/sentry', () => ({
   stopTrackingUser: (...args) => mockStopTrackingUser(...args),
 }));
 

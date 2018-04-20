@@ -21,6 +21,7 @@
     "@commercetools-local/sdk": "*",
     "@commercetools-local/test-utils": "*",
     "@commercetools-local/ui-kit": "*",
-    "@commercetools-local/utils": "*"
+    "@commercetools-local/utils": "*",
+    "@commercetools-local/sentry": "*"
   }
 }

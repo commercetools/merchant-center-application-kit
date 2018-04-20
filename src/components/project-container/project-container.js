@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
-import { reportErrorToSentry } from '../../utils/sentry';
+import { reportErrorToSentry } from '@commercetools-local/sentry';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectDataLocale from '../project-data-locale';
 import FetchProject from '../fetch-project';

@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import { DOMAINS } from '@commercetools-local/constants';
-import { reportErrorToSentry } from '../../utils/sentry';
+import { reportErrorToSentry } from '@commercetools-local/sentry';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import FetchUser from '../fetch-user';
 import IntercomBooter from '../intercom-booter';
@@ -15,7 +15,7 @@ import ApplicationShell, {
 } from './application-shell';
 
 jest.mock('@commercetools-local/utils/storage');
-jest.mock('../../utils/sentry');
+jest.mock('@commercetools-local/sentry');
 
 const createTestProps = props => ({
   i18n: { en: {}, 'en-US': { title: 'Title' }, de: { title: 'Titel' } },
