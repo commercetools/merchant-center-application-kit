@@ -6,9 +6,9 @@ import {
   LOGIN_STRATEGY_DEFAULT,
   LOGIN_STRATEGY_SSO,
 } from '@commercetools-local/constants';
+import { SentryUserLogoutTracker } from '@commercetools-local/sentry';
 import * as storage from '@commercetools-local/utils/storage';
 import ShutdownIntercom from '../shutdown-intercom';
-import SentryUserLogoutTracker from '../sentry-user-logout-tracker';
 import GtmUserLogoutTracker from '../gtm-user-logout-tracker';
 
 export const getLoginStrategy = () => {

@@ -9,7 +9,10 @@ import * as storage from '@commercetools-local/utils/storage';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-local/constants';
 import PortalsContainer from '@commercetools-local/core/components/portals-container';
 import history from '@commercetools-local/browser-history';
-import { reportErrorToSentry } from '@commercetools-local/sentry';
+import {
+  reportErrorToSentry,
+  SentryUserTracker,
+} from '@commercetools-local/sentry';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
@@ -30,7 +33,6 @@ import AsyncUserProfile from '../user-profile/async';
 import IntercomUrlTracker from '../intercom-url-tracker';
 import IntercomUserTracker from '../intercom-user-tracker';
 import IntercomBooter from '../intercom-booter';
-import SentryUserTracker from '../sentry-user-tracker';
 // import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
