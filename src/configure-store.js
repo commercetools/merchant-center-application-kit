@@ -1,5 +1,4 @@
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 import {
   middleware as notificationsMiddleware,
@@ -24,7 +23,6 @@ const createReducer = (injectedReducers = {}) =>
     activePlugin: activePluginReducer,
     requestsInFlight: requestsInFlightReducer,
     notifications: notificationsReducer,
-    form: formReducer,
     ...injectedReducers,
   });
 const store = createStore(

@@ -248,13 +248,12 @@ export class DataMenu extends React.PureComponent {
     this.checkSize();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.isForcedMenuOpen !== null &&
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return nextProps.isForcedMenuOpen !== null &&
       nextProps.isForcedMenuOpen !== undefined &&
-      this.state.isMenuOpen !== nextProps.isForcedMenuOpen
-    )
-      this.setState({ isMenuOpen: nextProps.isForcedMenuOpen });
+      prevState.isMenuOpen !== nextProps.isForcedMenuOpen
+      ? { isMenuOpen: nextProps.isForcedMenuOpen }
+      : null;
   }
 
   componentDidUpdate(prevProps, prevState) {

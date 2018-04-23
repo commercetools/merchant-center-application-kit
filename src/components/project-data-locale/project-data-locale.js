@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { deepEqual } from 'fast-equals';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import { AppShellProviderForProjectDataLocale } from '@commercetools-local/application-shell-connectors';
@@ -40,11 +41,13 @@ export default class ProjectDataLocale extends React.PureComponent {
     locale: getSelectedDataLocaleForProject(this.props.locales),
   };
 
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.locales && nextProps.locales)
-      this.setState({
-        locale: getSelectedDataLocaleForProject(nextProps.locales),
-      });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (deepEqual(prevState.locales, nextProps.locales)) return null;
+
+    return {
+      locales: nextProps.locales,
+      locale: getSelectedDataLocaleForProject(nextProps.locales),
+    };
   }
 
   handleSetProjectDataLocale = locale => {

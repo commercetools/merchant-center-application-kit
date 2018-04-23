@@ -58,7 +58,7 @@ export const createSentryErrorReporter = (
     // need to print it in the console as well.
     // We just notify that an error occurred and provide the error ID.
     debugLogger.error(`[SENTRY]: An error occured (ID: ${errorId}).`);
-  } else if (environment === 'development') {
+  } else {
     debugLogger.error('[SENTRY]:', error);
   }
 };

@@ -34,10 +34,10 @@ export class IntercomBooter extends React.Component {
     this.bootIntercom(this.props.intercomTrackingStatus);
     this.showBanner(this.props.intercomTrackingStatus);
   }
-  componentWillReceiveProps(nextProps) {
-    if (!this.hasBooted) this.bootIntercom(nextProps.intercomTrackingStatus);
+  componentDidUpdate() {
+    if (!this.hasBooted) this.bootIntercom(this.props.intercomTrackingStatus);
     if (!this.hasDispatchedNotification)
-      this.showBanner(nextProps.intercomTrackingStatus);
+      this.showBanner(this.props.intercomTrackingStatus);
   }
   bootIntercom = intercomTrackingStatus => {
     if (intercomTrackingStatus === INTERCOM_TRACKING_STATUS.active) {

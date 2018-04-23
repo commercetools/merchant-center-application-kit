@@ -75,7 +75,7 @@ describe('lifecycle', () => {
       beforeEach(() => {
         props = createTestProps();
         storeOptions = createTestStore();
-        shallow(
+        const wrapper = shallow(
           <InjectReducer {...props}>
             <div />
           </InjectReducer>,
@@ -85,6 +85,7 @@ describe('lifecycle', () => {
             },
           }
         );
+        wrapper.instance().componentDidMount();
       });
       it('should call injectReducer with reducer name', () => {
         expect(storeOptions.injectReducer).toHaveBeenCalledWith(
@@ -142,7 +143,7 @@ describe('lifecycle', () => {
               foo: props.reducer,
             },
           });
-          shallow(
+          const wrapper = shallow(
             <InjectReducer {...props}>
               <div />
             </InjectReducer>,
@@ -152,6 +153,7 @@ describe('lifecycle', () => {
               },
             }
           );
+          wrapper.instance().componentDidMount();
         });
         it('should not call injectReducer', () => {
           expect(storeOptions.injectReducer).not.toHaveBeenCalled();

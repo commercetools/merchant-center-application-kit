@@ -824,27 +824,28 @@ describe('lifecycle', () => {
         expect(wrapper).toHaveState('isMenuOpen', false);
       });
     });
-    describe('componentWillReceiveProps', () => {
+    describe('getDerivedStateFromProps', () => {
+      let derivedState;
       describe('when isForcedMenuOpen changes', () => {
         beforeEach(() => {
-          wrapper.setState({ isMenuOpen: false });
-          wrapper
-            .instance()
-            .componentWillReceiveProps({ isForcedMenuOpen: true });
+          derivedState = DataMenu.getDerivedStateFromProps(
+            { isForcedMenuOpen: true },
+            { isMenuOpen: false }
+          );
         });
         it('should update isMenuOpen', () => {
-          expect(wrapper).toHaveState('isMenuOpen', true);
+          expect(derivedState).toHaveProperty('isMenuOpen', true);
         });
       });
       describe('when isForcedMenuOpen does not change', () => {
         beforeEach(() => {
-          wrapper.setState({ isMenuOpen: false });
-          wrapper
-            .instance()
-            .componentWillReceiveProps({ isForcedMenuOpen: false });
+          derivedState = DataMenu.getDerivedStateFromProps(
+            { isForcedMenuOpen: false },
+            { isMenuOpen: false }
+          );
         });
         it('should not update isMenuOpen', () => {
-          expect(wrapper).toHaveState('isMenuOpen', false);
+          expect(derivedState).toBeNull();
         });
       });
     });
