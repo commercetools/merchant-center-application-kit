@@ -23,6 +23,10 @@ const createTestProps = props => ({
   user: {
     locale: 'en',
   },
+  languages: {
+    en: { code: 'en', language: 'English' },
+    de: { code: 'de', language: 'German' },
+  },
 
   ...props,
 });

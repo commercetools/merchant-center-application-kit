@@ -65,11 +65,11 @@ exports[`rendering when not submitting should ensure layout structure 1`] = `
         options={
           Array [
             Object {
-              "label": "EN",
+              "label": "English (en)",
               "value": "en",
             },
             Object {
-              "label": "DE",
+              "label": "German (de)",
               "value": "de",
             },
           ]
@@ -241,11 +241,11 @@ exports[`rendering when submitting should disable all input fields 1`] = `
         options={
           Array [
             Object {
-              "label": "EN",
+              "label": "English (en)",
               "value": "en",
             },
             Object {
-              "label": "DE",
+              "label": "German (de)",
               "value": "de",
             },
           ]

@@ -8,6 +8,10 @@ import {
   withTimeZones,
   timeZonesShape,
 } from '@commercetools-local/l10n/time-zone-information';
+import {
+  withLanguages,
+  languagesShape,
+} from '@commercetools-local/l10n/language-information';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import ValidationError from '@commercetools-local/core/components/validation-error';
 import ErrorMessage from '@commercetools-local/ui-kit/messages/error-message';
@@ -24,6 +28,20 @@ export const timeZonesToOptions = defaultMemoize(timeZones =>
     // E.g. `Europe/Berlin - CEST (+02:00)`
     label: `${code} - ${value.abbr} (${value.offset})`,
   }))
+);
+
+/* We are going to display now locales instead of just languages, but we still need to define
+ * only the ones with the locale 'en' or 'de'. So 'en-GB' is a valid option but not 'es-US'. 
+ */
+export const mapLanguagesToOptions = defaultMemoize(languages =>
+  Object.entries(languages)
+    .filter(([code]) => code.startsWith('en') || code.startsWith('de'))
+    .map(([code, value]) => ({
+      value: code,
+      label: value.country
+        ? `${value.language} (${value.country}) (${code})`
+        : `${value.language} (${code})`,
+    }))
 );
 
 export const UserProfilePersonalSettingsSubform = props => (
@@ -44,7 +62,7 @@ export const UserProfilePersonalSettingsSubform = props => (
           onBlur={() => {
             props.formik.setFieldTouched('language');
           }}
-          options={[{ value: 'en', label: 'EN' }, { value: 'de', label: 'DE' }]}
+          options={mapLanguagesToOptions(props.languages)}
           clearable={false}
           searchable={false}
           parse={
@@ -112,6 +130,7 @@ UserProfilePersonalSettingsSubform.propTypes = {
 
   // HoC
   timeZones: timeZonesShape,
+  languages: languagesShape,
   user: PropTypes.shape({
     locale: PropTypes.string.isRequired,
   }).isRequired,
@@ -121,5 +140,6 @@ export default compose(
   withUser(userData => ({
     user: { locale: userData.user && userData.user.language },
   })),
-  withTimeZones(ownProps => ownProps.user.locale)
+  withTimeZones(ownProps => ownProps.user.locale),
+  withLanguages(ownProps => ownProps.user.locale)
 )(UserProfilePersonalSettingsSubform);
