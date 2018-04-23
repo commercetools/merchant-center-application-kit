@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import isNil from 'lodash.isnil';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, withRouter } from 'react-router-dom';
 import { ToggleFeature } from '@flopflip/react-broadcast';
@@ -239,18 +240,15 @@ export class DataMenu extends React.PureComponent {
     isMenuOpen: false,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     window.addEventListener('click', this.shouldCloseMenuFly, true);
     window.addEventListener('resize', this.checkSize);
-  }
 
-  componentDidMount() {
     this.checkSize();
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    return nextProps.isForcedMenuOpen !== null &&
-      nextProps.isForcedMenuOpen !== undefined &&
+    return !isNil(nextProps.isForcedMenuOpen) &&
       prevState.isMenuOpen !== nextProps.isForcedMenuOpen
       ? { isMenuOpen: nextProps.isForcedMenuOpen }
       : null;
