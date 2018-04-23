@@ -44,6 +44,9 @@ import './global-style-imports';
 const getBrowserLocale = () =>
   (window && window.navigator && window.navigator.language) || 'en';
 
+const parseLocale = locale =>
+  locale.includes('-') ? locale.split('-')[0] : locale;
+
 /**
  * This component is rendered whenever the user is considered "authenticated"
  * and contains the "restricted" application part.
@@ -56,10 +59,11 @@ export const RestrictedApplication = props => (
       if (error) {
         reportErrorToSentry(error, {});
         const browserLocale = getBrowserLocale();
+        const locale = parseLocale(browserLocale);
         return (
           <ConfigureIntlProvider
             locale={browserLocale}
-            messages={props.i18n[browserLocale]}
+            messages={props.i18n[locale]}
           >
             <ErrorApologizer />
           </ConfigureIntlProvider>
@@ -69,7 +73,7 @@ export const RestrictedApplication = props => (
         <ConfigureIntlProvider
           timeZone={user && user.timeZone}
           locale={user && user.language}
-          messages={user && props.i18n[user.language]}
+          messages={user && props.i18n[parseLocale(user.language)]}
         >
           <SetupFlopFlipProvider user={user}>
             <React.Fragment>
@@ -349,10 +353,11 @@ export default class ApplicationShell extends React.Component {
                                 />
                               );
                             const browserLocale = getBrowserLocale();
+                            const locale = parseLocale(browserLocale);
                             return (
                               <ConfigureIntlProvider
                                 locale={browserLocale}
-                                messages={this.props.i18n[browserLocale]}
+                                messages={this.props.i18n[locale]}
                               >
                                 <UnrestrictedApplication />
                               </ConfigureIntlProvider>

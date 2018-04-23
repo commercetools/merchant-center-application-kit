@@ -6,7 +6,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
     locale="en-US"
     messages={
       Object {
-        "title": "Title",
+        "title": "Title en",
       }
     }
   >
@@ -164,7 +164,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
     locale="en-US"
     messages={
       Object {
-        "title": "Title",
+        "title": "Title en",
       }
     }
   >

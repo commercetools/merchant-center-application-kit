@@ -18,7 +18,11 @@ jest.mock('@commercetools-local/utils/storage');
 jest.mock('../../utils/sentry');
 
 const createTestProps = props => ({
-  i18n: { en: {}, 'en-US': { title: 'Title' }, de: { title: 'Titel' } },
+  i18n: {
+    en: { title: 'Title en' },
+    'en-US': { title: 'Title' },
+    de: { title: 'Titel' },
+  },
   configuration: {},
   menuItems: [],
   trackingEventWhitelist: {},
@@ -119,7 +123,7 @@ describe('rendering', () => {
       it('should pass "messages" to <ConfigureIntlProvider>', () => {
         expect(authRenderWrapper.find(ConfigureIntlProvider)).toHaveProp(
           'messages',
-          { title: 'Title' }
+          { title: 'Title en' }
         );
       });
       it('should render <UnrestrictedApplication> after track components', () => {
@@ -196,9 +200,7 @@ describe('<RestrictedApplication>', () => {
     it('should pass "messages" to <ConfigureIntlProvider>', () => {
       expect(fetchUserWrapper.find(ConfigureIntlProvider)).toHaveProp(
         'messages',
-        {
-          title: 'Title',
-        }
+        { title: 'Title en' }
       );
     });
     describe('layout', () => {
