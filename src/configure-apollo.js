@@ -82,6 +82,8 @@ const client = new ApolloClient({
       if (result.__typename === 'Project') return result.key;
       if (result.__typename === 'Reference')
         return `${result.__typename}:${result.id}`;
+      if (result.__typename === 'AttributeDefinition')
+        return `${result.__typename}:${result.name}`;
       return result.id;
     },
   }),
