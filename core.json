@@ -607,6 +607,7 @@
   "CurrencyListFilter.placeholder": "Select a Currency",
   "CurrencyListFilter.placeholderMulti": "Select one or more Currencies",
   "Customer.Address.additionalInformation": "Additional information:",
+  "Customer.Address.additionalStreeInfo": "Addition street information:",
   "Customer.Address.address": "Address:",
   "Customer.Address.city:": "City:",
   "Customer.Address.company": "Company name:",
