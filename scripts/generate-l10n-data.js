@@ -38,19 +38,24 @@ const extractCurrencyDataForLocale = async locale => {
   const currencyInfo = cldr.extractCurrencyInfoById(locale);
   // Fetch list of currencies that are still in use, then use this list
   // to "remove" the outdated currencies from the previous list.
-  const listOfActiveCurrencies = await fetch(
+  const activeCurrencies = await fetch(
     'http://www.localeplanet.com/api/auto/currencymap.json'
   ).then(response => response.json());
 
   return Promise.resolve(
-    Object.keys(listOfActiveCurrencies).reduce(
+    Object.keys(activeCurrencies).reduce(
       (acc, key) =>
-        Object.assign({}, acc, {
-          [key]: {
-            label: currencyInfo[key].displayName,
-            symbol: listOfActiveCurrencies[key].symbol_native,
-          },
-        }),
+        // `currencyInfo` given by `cldr` may not contain any information based on the
+        // currencyCode that we fetched from `currencymap.json`, so we have this definition
+        // check in place.
+        currencyInfo[key]
+          ? Object.assign({}, acc, {
+              [key]: {
+                label: currencyInfo[key].displayName,
+                symbol: activeCurrencies[key].symbol_native,
+              },
+            })
+          : acc,
       {}
     )
   );
