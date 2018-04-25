@@ -2169,7 +2169,7 @@
   "ProjectSettings.ProductType.AttributeDefinitions.deleteAttributeDefinition": "Remove Attribute",
   "ProjectSettings.ProductType.AttributeDefinitions.deleteButtonDisabledBecauseOfCombinationUnique": "This attribute cannot be deleted due to the combination unique constraint",
   "ProjectSettings.ProductType.AttributeDefinitions.Details.cancelButton": "Cancel",
-  "ProjectSettings.ProductType.AttributeDefinitions.Details.modalTitle": "Edit Attribute",
+  "ProjectSettings.ProductType.AttributeDefinitions.Details.modalTitle": "Attribute Details",
   "ProjectSettings.ProductType.AttributeDefinitions.Details.updateButton": "Update Attribute",
   "ProjectSettings.ProductType.Create.backToList": "To product type list",
   "ProjectSettings.ProductType.Create.productTypeCreateFailed": "The product type could not be created.",
