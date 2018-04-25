@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { wrapDisplayName } from 'recompose';
+import moment from 'moment-timezone';
 
-const defaultTimeZone = 'Etc/UTC';
+const defaultTimeZone = moment.tz.guess() || 'Etc/UTC';
 
 const { Provider, Consumer } = React.createContext(defaultTimeZone);
 
