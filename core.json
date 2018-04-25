@@ -802,7 +802,7 @@
   "Dashboard.RevenueNumbers.notEnoughData": "not enough data available",
   "Dashboard.RevenueNumbers.revenueTitle": "Total sales",
   "Dashboard.RevenueNumbers.totalOrders": "{total} orders",
-  "Dashboard.RevenueRow.legendTime": "Time (UTC)",
+  "Dashboard.RevenueRow.legendTime": "Time ({timeZone})",
   "Dashboard.RevenueRow.noOrders": "This project does not have any orders.",
   "Dashboard.RevenueRow.totalRevenueTitle": "Sales performance",
   "Dashboard.TopFiveProducts.column.inventory": "Total Inventory",
