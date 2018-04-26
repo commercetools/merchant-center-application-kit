@@ -8,11 +8,13 @@ const defaultTimeZone = moment.tz.guess() || 'Etc/UTC';
 const { Provider, Consumer } = React.createContext(defaultTimeZone);
 
 const AppShellProviderForUserTimeZone = props => (
-  <Provider value={props.timeZone}>{props.children}</Provider>
+  <Provider value={props.timeZone ? props.timeZone : defaultTimeZone}>
+    {props.children}
+  </Provider>
 );
 AppShellProviderForUserTimeZone.displayName = 'AppShellProviderForUserTimeZone';
 AppShellProviderForUserTimeZone.propTypes = {
-  timeZone: PropTypes.string.isRequired,
+  timeZone: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
