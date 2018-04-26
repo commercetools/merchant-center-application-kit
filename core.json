@@ -893,6 +893,8 @@
   "DiscountRule.DiscountRuleAggregator.not": "If the following does not apply",
   "DiscountRule.DiscountRuleAggregator.removeCondition": "Remove condition",
   "DiscountRule.DiscountRuleAggregator.selectCondition": "Select a condition",
+  "DiscountRule.item.target.functionGroupLabel": "Function",
+  "DiscountRule.item.target.predicateGroupLabel": "Predicate",
   "DiscountRule.Validation.oneCondition": "All conditions must have a rule. Add a rule to this condition or remove this condition before continuing.",
   "DiscountRule.Validation.provideAttributeName": "Provide a valid attribute name",
   "DiscountRule.Validation.selectCondition": "Select a condition to add or remove this condition before continuing.",
