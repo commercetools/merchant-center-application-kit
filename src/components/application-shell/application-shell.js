@@ -69,7 +69,10 @@ export const RestrictedApplication = props => (
       }
       return (
         <ConfigureIntlProvider
-          timeZone={user && user.timeZone}
+          /* We need to pass the value as `undefined` in case the user has no
+           * timeZone defined so the defaultProps in the Context.Provider kick in
+           */
+          timeZone={user && user.timeZone ? user.timeZone : undefined}
           locale={user && user.language}
           messages={user && props.i18n[user.language]}
         >
