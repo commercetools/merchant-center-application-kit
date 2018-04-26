@@ -877,6 +877,7 @@
   "DiscountCodes.ListView.column.maxApplications": "Max applications",
   "DiscountCodes.ListView.column.maxApplicationsPerCustomer": "Max applications per customer",
   "DiscountCodes.ListView.column.name": "Name",
+  "DiscountCodes.ListView.labelMoreGroups": "show all",
   "DiscountCodes.ListView.noDiscountCodesNeedStatusChange": "All discount codes {type, select, activate {are already active} deactivate {are already deactivated}}.",
   "DiscountCodes.ListView.noResultsTitle": "There are no discount codes associated to this project.",
   "DiscountCodes.ListView.search.falseBooleanOption": "False",
