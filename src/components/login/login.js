@@ -41,6 +41,7 @@ export class Login extends React.PureComponent {
     intl: PropTypes.shape({
       formatMessage: PropTypes.func.isRequired,
     }).isRequired,
+    redirectTo: PropTypes.func.isRequired,
   };
 
   state = {
@@ -89,7 +90,14 @@ export class Login extends React.PureComponent {
         // case login is not done through SSO.
         storage.remove(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL);
         // Redirect to a `redirectTo` url, if present, otherwise to defaul route
-        this.props.history.push(this.props.location.query.redirectTo || '/');
+        const nextTargetUrl = this.props.location.query.redirectTo;
+        if (nextTargetUrl)
+          // We force a browser redirect, to let the proxy server handle
+          // the new request URL.
+          this.props.redirectTo(nextTargetUrl);
+        // In this case, the AppShell will handle the base path route,
+        // most likely to redirect to e.g. `/:projectKey/dashboard`.
+        else this.props.history.push('/');
       })
       .catch(error => {
         if (error) {
@@ -307,6 +315,12 @@ export class Login extends React.PureComponent {
   );
 }
 
+const mapStateToProps = () => ({
+  // We misuse `mapStateToProps` to "inject" this prop,
+  // to avoid having yet another HOC `withProps`.
+  redirectTo: target => window.location.replace(target),
+});
+
 const mapDispatchToProps = dispatch => ({
   requestAccessToken: payload =>
     dispatch(sdkActions.post({ uri: `/tokens`, payload })),
@@ -315,5 +329,5 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   injectIntl,
   injectConfiguration(['adminCenterUrl'], 'adminCenterUrl'),
-  connect(null, mapDispatchToProps)
+  connect(mapStateToProps, mapDispatchToProps)
 )(Login);

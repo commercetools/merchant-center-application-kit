@@ -17,6 +17,7 @@ const createTestProps = props => ({
   intl: {
     formatMessage: jest.fn(message => message.id),
   },
+  redirectTo: jest.fn(),
   ...props,
 });
 
@@ -284,7 +285,7 @@ describe('requestAccessToken', () => {
       });
     });
     it('should redirect to given path', () => {
-      expect(props.history.push).toHaveBeenLastCalledWith('/foo/bar');
+      expect(props.redirectTo).toHaveBeenLastCalledWith('/foo/bar');
     });
     it('should set loading to false', () => {
       expect(wrapper).toHaveState('loading', false);

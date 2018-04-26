@@ -322,10 +322,16 @@ describe('<RestrictedApplication>', () => {
           </div>
         );
       });
-      it('should render <Redirect> to "/dashboard', () => {
-        expect(routeRenderWrapper.find('Redirect')).toHaveProp(
+      it('should render <PageRedirect> to "/dashboard"', () => {
+        expect(routeRenderWrapper.find('PageRedirect')).toHaveProp(
           'to',
           '/foo-1/dashboard'
+        );
+      });
+      it('should render <PageRedirect> with "forceReload" to true', () => {
+        expect(routeRenderWrapper.find('PageRedirect')).toHaveProp(
+          'forceReload',
+          true
         );
       });
     });

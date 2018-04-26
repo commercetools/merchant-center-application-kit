@@ -6,7 +6,10 @@ import { injectConfiguration } from '@commercetools-local/core/components/config
 
 export class ForcePageReload extends React.PureComponent {
   static displayName = 'ForcePageReload';
-  reloadPage = () => window.location.reload();
+  // The `forcedReload` ensures that the page is always reloaded
+  // from the server, instead of from the browser cache.
+  // https://developer.mozilla.org/en-US/docs/Web/API/Location/reload
+  reloadPage = () => window.location.reload(/* forcedReload */ true);
   componentDidMount() {
     this.reloadPage();
   }

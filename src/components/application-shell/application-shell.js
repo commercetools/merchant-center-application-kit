@@ -35,6 +35,7 @@ import IntercomUserTracker from '../intercom-user-tracker';
 import IntercomBooter from '../intercom-booter';
 // import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
+import PageRedirect from '../page-redirect';
 import GtmUserTracker from '../gtm-user-tracker';
 import GtmBooter from '../gtm-booter';
 import NavBar from '../navbar';
@@ -167,7 +168,11 @@ export const RestrictedApplication = props => (
                         exact={true}
                         path="/:projectKey"
                         render={({ match }) => (
-                          <Redirect to={joinPaths(match.url, 'dashboard')} />
+                          <PageRedirect
+                            // We always do a full redirect in this case
+                            forceReload={true}
+                            to={joinPaths(match.url, 'dashboard')}
+                          />
                         )}
                       />
                       <Route
