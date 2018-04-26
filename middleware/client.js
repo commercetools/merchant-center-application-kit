@@ -1,6 +1,8 @@
+import uuid from 'uuid/v4';
 import { createClient } from '@commercetools/sdk-client';
 import { createHttpMiddleware } from '@commercetools/sdk-middleware-http';
 import { createUserAgentMiddleware } from '@commercetools/sdk-middleware-user-agent';
+import { createCorrelationIdMiddleware } from '@commercetools/sdk-middleware-correlation-id';
 
 // NOTE we should not use these directly but rather have them passed in from
 // the application
@@ -18,8 +20,13 @@ const httpMiddleware = createHttpMiddleware({
   includeResponseHeaders: true,
   credentialsMode: 'include',
 });
+
+const correlationIdMiddleware = createCorrelationIdMiddleware({
+  generate: () => `mc/${uuid()}`,
+});
+
 const client = createClient({
-  middlewares: [userAgentMiddleware, httpMiddleware],
+  middlewares: [correlationIdMiddleware, userAgentMiddleware, httpMiddleware],
 });
 
 export default client;
