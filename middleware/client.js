@@ -26,7 +26,7 @@ const correlationIdMiddleware = createCorrelationIdMiddleware({
   // NOTE: Not all properties are set when performing requests (e.g. /token)
   // does not yet have a `projectKey`. Hence, we filter out the holes of the
   // array.
-  generate: () => ['mc', selectProjectKey(), uuid()].filter(Boolean).join('_'),
+  generate: () => ['mc', selectProjectKey(), uuid()].filter(Boolean).join('/'),
 });
 
 const client = createClient({
