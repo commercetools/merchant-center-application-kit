@@ -4,6 +4,8 @@ import waitFor from 'wait-for-observables';
 import { GRAPHQL_TARGETS } from '@commercetools-local/constants';
 import { createHeaderLink } from './header-link';
 
+jest.mock('uuid/v4', () => () => 'foo-uuid');
+
 const query = gql`
   {
     sample {
@@ -60,6 +62,30 @@ describe('with valid target', () => {
     expect(context.headers).toEqual(
       expect.objectContaining({
         'X-Graphql-Target': GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+      })
+    );
+  });
+
+  it('should include `mc` in the `X-Correlation-Id`-Header', () => {
+    expect(context.headers).toEqual(
+      expect.objectContaining({
+        'X-Correlation-Id': expect.stringContaining('mc'),
+      })
+    );
+  });
+
+  it('should include the `projectKey` in the `X-Correlation-Id`-Header', () => {
+    expect(context.headers).toEqual(
+      expect.objectContaining({
+        'X-Correlation-Id': expect.stringContaining('project-1'),
+      })
+    );
+  });
+
+  it('should include a `uuid` in the `X-Correlation-Id`-Header', () => {
+    expect(context.headers).toEqual(
+      expect.objectContaining({
+        'X-Correlation-Id': expect.stringContaining('foo-uuid'),
       })
     );
   });

@@ -1,4 +1,5 @@
 import { ApolloLink } from 'apollo-link';
+import uuid from 'uuid/v4';
 import {
   GRAPHQL_TARGETS,
   STORAGE_KEYS as CORE_STORAGE_KEYS,
@@ -22,6 +23,9 @@ export const createHeaderLink = ({ storage }) =>
     operation.setContext({
       headers: {
         'X-Project-Key': projectKey,
+        'X-Correlation-Id': ['mc', projectKey, uuid()]
+          .filter(Boolean)
+          .join('/'),
         'X-Graphql-Target': target,
       },
     });
