@@ -1,20 +1,15 @@
-import {
-  SHOW_LOADING,
-  HIDE_LOADING,
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-} from '@commercetools-local/constants';
+import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-local/constants';
 import toGlobal from '@commercetools-local/utils/to-global';
-import * as storage from '@commercetools-local/utils/storage';
+import { selectProjectKey } from '../utils';
 import middleware from './middleware';
 import client from './client';
 
-jest.mock('@commercetools-local/utils/storage');
 jest.mock('./client');
 jest.mock('../utils');
 
 describe('when the action is of type SDK', () => {
   beforeEach(() => {
-    storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, 'test-project');
+    selectProjectKey.mockReturnValue('test-project');
   });
   describe('no matter the method', () => {
     describe('when making the request', () => {
@@ -276,7 +271,7 @@ describe('when the projectKey is not defined', () => {
   let action;
   const next = jest.fn(() => 'result-of-next');
   beforeEach(() => {
-    storage.remove(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
+    selectProjectKey.mockReturnValue(undefined);
     action = {
       type: 'SDK',
       payload: { service: 'productTypes', method: 'GET' },
