@@ -2,18 +2,11 @@ import { createRequestBuilder } from '@commercetools/api-request-builder';
 import {
   SHOW_LOADING,
   HIDE_LOADING,
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
   STATUS_CODES,
 } from '@commercetools-local/constants';
-import * as storage from '@commercetools-local/utils/storage';
 import toGlobal from '@commercetools-local/utils/to-global';
-import { logRequest } from '../utils';
+import { logRequest, selectProjectKey } from '../utils';
 import client from './client';
-
-// NOTE in case we create the middleware into a factory, these could come in
-// as options
-const selectProjectKey = () =>
-  storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
 
 const actionToUri = (action, projectKey) => {
   if (action.payload.uri) return action.payload.uri;

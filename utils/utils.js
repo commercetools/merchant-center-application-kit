@@ -1,4 +1,6 @@
 import qs from 'query-string';
+import * as storage from '@commercetools-local/utils/storage';
+import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 
 export const parseUri = uri => {
   const parser = document.createElement('a');
@@ -32,3 +34,8 @@ export const logRequest = ({ method, request, response, error, action }) => {
   console.groupEnd(groupName);
   /* eslint-enable no-console */
 };
+
+// NOTE in case we create the middleware into a factory, these could come in
+// as options
+export const selectProjectKey = () =>
+  storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);

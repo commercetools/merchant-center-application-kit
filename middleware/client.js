@@ -3,6 +3,7 @@ import { createClient } from '@commercetools/sdk-client';
 import { createHttpMiddleware } from '@commercetools/sdk-middleware-http';
 import { createUserAgentMiddleware } from '@commercetools/sdk-middleware-user-agent';
 import { createCorrelationIdMiddleware } from '@commercetools/sdk-middleware-correlation-id';
+import { selectProjectKey } from '../utils';
 
 // NOTE we should not use these directly but rather have them passed in from
 // the application
@@ -22,7 +23,7 @@ const httpMiddleware = createHttpMiddleware({
 });
 
 const correlationIdMiddleware = createCorrelationIdMiddleware({
-  generate: () => `mc/${uuid()}`,
+  generate: () => `mc/${selectProjectKey()}/${uuid()}`,
 });
 
 const client = createClient({
