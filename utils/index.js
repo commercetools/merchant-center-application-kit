@@ -1,1 +1,1 @@
-export * from './utils';
+export { parseUri, logRequest, selectProjectKey } from './utils';
