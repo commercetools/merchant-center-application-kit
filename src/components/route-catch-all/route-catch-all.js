@@ -21,13 +21,13 @@ export class ForcePageReload extends React.PureComponent {
 export class RouteCatchAll extends React.PureComponent {
   static displayName = 'RouteCatchAll';
   static propTypes = {
-    environmentName: PropTypes.string.isRequired,
+    servedByProxy: PropTypes.string,
   };
   // NOTE: it's important that the return value is a `Route` component!
   render() {
-    // On staging/production environment, we assume that we run multiple
-    // applications and that the reverse proxy router handles forwarding
-    // the request to the correct service.
+    // In case the application is served by a proxy server, we assume that
+    // the reverse proxy router handles requests forwarding to the specified
+    // service.
     // For example, if the current "loaded" app is products and I click
     // on a link to discounts, the products app does not know about the
     // discount routes, thus falling back to this "catch all route" component.
@@ -37,7 +37,7 @@ export class RouteCatchAll extends React.PureComponent {
     // the request to the discounts app.
     // If no route matches, the application fallback will handle the request
     // instead, showing e.g. a 404 page.
-    if (this.props.environmentName !== 'development')
+    if (this.props.servedByProxy === 'true')
       return <Route component={ForcePageReload} />;
 
     // In case we are developing the app locally, we simply render a 404
@@ -47,4 +47,6 @@ export class RouteCatchAll extends React.PureComponent {
   }
 }
 
-export default injectConfiguration(['env'], 'environmentName')(RouteCatchAll);
+export default injectConfiguration(['servedByProxy'], 'servedByProxy')(
+  RouteCatchAll
+);

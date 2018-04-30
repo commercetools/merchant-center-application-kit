@@ -19,20 +19,20 @@ describe('rendering', () => {
     });
   });
   describe('<RouteCatchAll>', () => {
-    describe('when MC environment is development', () => {
+    describe('when "servedByProxy" is "true"', () => {
       beforeEach(() => {
-        wrapper = shallow(<RouteCatchAll environmentName="development" />);
-      });
-      it('should render Route with <PageNotFound>', () => {
-        expect(wrapper.find('Route')).toHaveProp('component', PageNotFound);
-      });
-    });
-    describe('when MC environment is not development', () => {
-      beforeEach(() => {
-        wrapper = shallow(<RouteCatchAll environmentName="production" />);
+        wrapper = shallow(<RouteCatchAll servedByProxy="true" />);
       });
       it('should render Route with <ForcePageReload>', () => {
         expect(wrapper.find('Route')).toHaveProp('component', ForcePageReload);
+      });
+    });
+    describe('when "servedByProxy" is not defined', () => {
+      beforeEach(() => {
+        wrapper = shallow(<RouteCatchAll />);
+      });
+      it('should render Route with <PageNotFound>', () => {
+        expect(wrapper.find('Route')).toHaveProp('component', PageNotFound);
       });
     });
   });
