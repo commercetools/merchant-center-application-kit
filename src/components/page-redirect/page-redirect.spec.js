@@ -11,7 +11,7 @@ describe('rendering', () => {
       wrapper.instance().componentDidMount();
     });
     it('should call redirectTo when component mounts', () => {
-      expect(wrapper.instance().redirectTo).toHaveBeenCalled();
+      expect(wrapper.instance().redirectTo).toHaveBeenCalledWith('/foo/bar');
     });
     it('should render null', () => {
       expect(wrapper.type()).toBe(null);

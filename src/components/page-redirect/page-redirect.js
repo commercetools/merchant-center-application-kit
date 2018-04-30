@@ -7,9 +7,9 @@ export class LocationRedirect extends React.PureComponent {
   static propTypes = {
     to: PropTypes.string.isRequired,
   };
-  redirectTo = () => window.location.replace(this.props.to);
+  redirectTo = targetUrl => window.location.replace(targetUrl);
   componentDidMount() {
-    this.redirectTo();
+    this.redirectTo(this.props.to);
   }
   render() {
     return null;

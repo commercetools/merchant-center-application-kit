@@ -113,6 +113,9 @@ export const RestrictedApplication = props => (
                       <NavBar
                         menuItems={props.menuItems}
                         projectKey={projectKey}
+                        useFullRedirectsForLinks={
+                          props.INTERNAL__isApplicationFallback
+                        }
                       />
                     )}
                   />
@@ -244,6 +247,7 @@ RestrictedApplication.propTypes = {
   mapPluginNotificationToComponent: PropTypes.func,
   showApiErrorNotification: PropTypes.func,
   showUnexpectedErrorNotification: PropTypes.func,
+  INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
 };
 
 /**
@@ -309,6 +313,11 @@ export default class ApplicationShell extends React.Component {
     showApiErrorNotification: PropTypes.func,
     showUnexpectedErrorNotification: PropTypes.func,
     onRegisterErrorListeners: PropTypes.func.isRequired,
+    // Internal usage only, does not need to be documented
+    INTERNAL__isApplicationFallback: PropTypes.bool,
+  };
+  static defaultProps = {
+    INTERNAL__isApplicationFallback: false,
   };
   componentDidMount() {
     this.props.onRegisterErrorListeners();
@@ -355,6 +364,9 @@ export default class ApplicationShell extends React.Component {
                                   }
                                   showUnexpectedErrorNotification={
                                     this.props.showUnexpectedErrorNotification
+                                  }
+                                  INTERNAL__isApplicationFallback={
+                                    this.props.INTERNAL__isApplicationFallback
                                   }
                                 />
                               );

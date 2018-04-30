@@ -33,6 +33,7 @@ const createTestProps = props => ({
   showApiErrorNotification: jest.fn(),
   showUnexpectedErrorNotification: jest.fn(),
   onRegisterErrorListeners: jest.fn(),
+  INTERNAL__isApplicationFallback: false,
   ...props,
 });
 
@@ -264,6 +265,12 @@ describe('<RestrictedApplication>', () => {
         expect(routeRenderWrapper.find(NavBar)).toHaveProp(
           'projectKey',
           'foo-1'
+        );
+      });
+      it('should pass "useFullRedirectsForLinks"', () => {
+        expect(routeRenderWrapper.find(NavBar)).toHaveProp(
+          'useFullRedirectsForLinks',
+          props.INTERNAL__isApplicationFallback
         );
       });
     });
