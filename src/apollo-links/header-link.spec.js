@@ -5,6 +5,9 @@ import { GRAPHQL_TARGETS } from '@commercetools-local/constants';
 import { createHeaderLink } from './header-link';
 
 jest.mock('uuid/v4', () => () => 'foo-uuid');
+jest.mock('../utils/select-user-id', () => ({
+  selectUserId: () => 'foo-user-id',
+}));
 
 const query = gql`
   {
@@ -78,6 +81,14 @@ describe('with valid target', () => {
     expect(context.headers).toEqual(
       expect.objectContaining({
         'X-Correlation-Id': expect.stringContaining('project-1'),
+      })
+    );
+  });
+
+  it('should include a `userId` in the `X-Correlation-Id`-Header', () => {
+    expect(context.headers).toEqual(
+      expect.objectContaining({
+        'X-Correlation-Id': expect.stringContaining('foo-user-id'),
       })
     );
   });

@@ -3,7 +3,7 @@
 exports[`with valid target should set headers matching snapshot 1`] = `
 Object {
   "headers": Object {
-    "X-Correlation-Id": "mc/project-1/foo-uuid",
+    "X-Correlation-Id": "mc/project-1/foo-user-id/foo-uuid",
     "X-Graphql-Target": "mc",
     "X-Project-Key": "project-1",
   },

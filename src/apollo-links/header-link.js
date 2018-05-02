@@ -4,6 +4,7 @@ import {
   GRAPHQL_TARGETS,
   STORAGE_KEYS as CORE_STORAGE_KEYS,
 } from '@commercetools-local/constants';
+import { selectUserId } from '../utils/select-user-id';
 
 const isKnownTarget = target => Object.values(GRAPHQL_TARGETS).includes(target);
 
@@ -23,7 +24,7 @@ export const createHeaderLink = ({ storage }) =>
     operation.setContext({
       headers: {
         'X-Project-Key': projectKey,
-        'X-Correlation-Id': ['mc', projectKey, uuid()]
+        'X-Correlation-Id': ['mc', projectKey, selectUserId(), uuid()]
           .filter(Boolean)
           .join('/'),
         'X-Graphql-Target': target,
