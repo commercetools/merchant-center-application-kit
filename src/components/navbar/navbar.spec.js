@@ -1036,7 +1036,8 @@ describe('instance methods', () => {
           wrapper.instance().handleToggleMenu();
         });
         it('should update isForcedMenuOpen to false', () => {
-          expect(storage.get(CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN)).toBe(
+          expect(storage.put).toHaveBeenCalledWith(
+            CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN,
             false
           );
         });
@@ -1047,7 +1048,10 @@ describe('instance methods', () => {
           wrapper.instance().handleToggleMenu();
         });
         it('should update isForcedMenuOpen to true', () => {
-          expect(storage.get(CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN)).toBe(true);
+          expect(storage.put).toHaveBeenCalledWith(
+            CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN,
+            true
+          );
         });
       });
     });
