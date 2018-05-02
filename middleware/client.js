@@ -3,6 +3,7 @@ import { createClient } from '@commercetools/sdk-client';
 import { createHttpMiddleware } from '@commercetools/sdk-middleware-http';
 import { createUserAgentMiddleware } from '@commercetools/sdk-middleware-user-agent';
 import { createCorrelationIdMiddleware } from '@commercetools/sdk-middleware-correlation-id';
+import { selectUserId } from '@commercetools-local/application-shell';
 import { selectProjectKey } from '../utils';
 
 // NOTE we should not use these directly but rather have them passed in from
@@ -26,7 +27,10 @@ const correlationIdMiddleware = createCorrelationIdMiddleware({
   // NOTE: Not all properties are set when performing requests (e.g. /token)
   // does not yet have a `projectKey`. Hence, we filter out the holes of the
   // array.
-  generate: () => ['mc', selectProjectKey(), uuid()].filter(Boolean).join('/'),
+  generate: () =>
+    ['mc', selectProjectKey(), selectUserId(), uuid()]
+      .filter(Boolean)
+      .join('/'),
 });
 
 const client = createClient({
