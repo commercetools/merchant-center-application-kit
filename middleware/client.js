@@ -1,14 +1,11 @@
-import uuid from 'uuid/v4';
-import { createClient } from '@commercetools/sdk-client';
-import { createHttpMiddleware } from '@commercetools/sdk-middleware-http';
-import { createUserAgentMiddleware } from '@commercetools/sdk-middleware-user-agent';
-import { createCorrelationIdMiddleware } from '@commercetools/sdk-middleware-correlation-id';
-import { selectUserId } from '@commercetools-local/application-shell';
-import { selectProjectKey } from '../utils';
+import { createClient as createSdkClient } from '@commercetools/sdk-client';
+import { createHttpMiddleware as createSdkHttpMiddleware } from '@commercetools/sdk-middleware-http';
+import { createUserAgentMiddleware as createSdkUserAgentMiddleware } from '@commercetools/sdk-middleware-user-agent';
+import { createCorrelationIdMiddleware as createSdkCorrelationIdMiddleware } from '@commercetools/sdk-middleware-correlation-id';
 
 // NOTE we should not use these directly but rather have them passed in from
 // the application
-const userAgentMiddleware = createUserAgentMiddleware({
+const userAgentMiddleware = createSdkUserAgentMiddleware({
   libraryName: 'merchant-center-frontend',
   libraryVersion: '1.0.0',
   contactUrl: 'https://mc.commercetools.com',
@@ -17,24 +14,24 @@ const userAgentMiddleware = createUserAgentMiddleware({
 
 // NOTE we should not use these directly but rather have them passed in from
 // the application
-const httpMiddleware = createHttpMiddleware({
+const httpMiddleware = createSdkHttpMiddleware({
   host: window.app.mcApiUrl,
   includeResponseHeaders: true,
   credentialsMode: 'include',
 });
 
-const correlationIdMiddleware = createCorrelationIdMiddleware({
-  // NOTE: Not all properties are set when performing requests (e.g. /token)
-  // does not yet have a `projectKey`. Hence, we filter out the holes of the
-  // array.
-  generate: () =>
-    ['mc', selectProjectKey(), selectUserId(), uuid()]
-      .filter(Boolean)
-      .join('/'),
-});
+const createCorrelationIdMiddleware = ({ getCorrelationId }) =>
+  createSdkCorrelationIdMiddleware({
+    generate: getCorrelationId,
+  });
 
-const client = createClient({
-  middlewares: [correlationIdMiddleware, userAgentMiddleware, httpMiddleware],
-});
+const createClient = ({ getCorrelationId }) =>
+  createSdkClient({
+    middlewares: [
+      createCorrelationIdMiddleware({ getCorrelationId }),
+      userAgentMiddleware,
+      httpMiddleware,
+    ],
+  });
 
-export default client;
+export default createClient;
