@@ -1,7 +1,7 @@
 import apolloClient from '../../configure-apollo';
 import UserIdQuery from './select-user-id.graphql';
 
-const selectUserId = () => {
+export default () => {
   try {
     const queryResult = apolloClient.readQuery({
       query: UserIdQuery,
@@ -16,5 +16,3 @@ const selectUserId = () => {
 
   return null;
 };
-
-export default selectUserId;

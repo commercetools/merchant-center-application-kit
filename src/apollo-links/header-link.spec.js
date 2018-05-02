@@ -5,8 +5,8 @@ import { GRAPHQL_TARGETS } from '@commercetools-local/constants';
 import { createHeaderLink } from './header-link';
 
 jest.mock('uuid/v4', () => () => 'foo-uuid');
-jest.mock('../utils/select-user-id', () => ({
-  selectUserId: () => 'foo-user-id',
+jest.mock('../utils/', () => ({
+  getCorrelationId: () => 'test-correlation-id',
 }));
 
 const query = gql`
@@ -72,31 +72,7 @@ describe('with valid target', () => {
   it('should include `mc` in the `X-Correlation-Id`-Header', () => {
     expect(context.headers).toEqual(
       expect.objectContaining({
-        'X-Correlation-Id': expect.stringContaining('mc'),
-      })
-    );
-  });
-
-  it('should include the `projectKey` in the `X-Correlation-Id`-Header', () => {
-    expect(context.headers).toEqual(
-      expect.objectContaining({
-        'X-Correlation-Id': expect.stringContaining('project-1'),
-      })
-    );
-  });
-
-  it('should include a `userId` in the `X-Correlation-Id`-Header', () => {
-    expect(context.headers).toEqual(
-      expect.objectContaining({
-        'X-Correlation-Id': expect.stringContaining('foo-user-id'),
-      })
-    );
-  });
-
-  it('should include a `uuid` in the `X-Correlation-Id`-Header', () => {
-    expect(context.headers).toEqual(
-      expect.objectContaining({
-        'X-Correlation-Id': expect.stringContaining('foo-uuid'),
+        'X-Correlation-Id': 'test-correlation-id',
       })
     );
   });

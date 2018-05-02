@@ -22,4 +22,4 @@ export { default as reduxStore } from './configure-store';
 export {
   default as setupGlobalErrorListener,
 } from './utils/setup-global-error-listener';
-export { selectUserId } from './utils/select-user-id';
+export { selectUserId, selectProjectKey } from './utils';
