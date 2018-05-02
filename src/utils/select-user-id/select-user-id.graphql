@@ -1,0 +1,5 @@
+query LoggedInUserQuery {
+  user: me {
+    id
+  }
+}
