@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import Authenticated from './authenticated';
 
@@ -16,7 +15,7 @@ describe('rendering', () => {
   let props;
   describe('when user is authenticated', () => {
     beforeEach(() => {
-      storage.put(CORE_STORAGE_KEYS.IS_AUTHENTICATED, 'true');
+      storage.get.mockReturnValue('true');
       props = createTestProps();
       createWrapper(props);
     });
@@ -27,7 +26,7 @@ describe('rendering', () => {
   });
   describe('when the user is not logged in', () => {
     beforeEach(() => {
-      storage.remove(CORE_STORAGE_KEYS.IS_AUTHENTICATED);
+      storage.get.mockReturnValue('false');
       props = createTestProps();
       createWrapper(props);
     });
