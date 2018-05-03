@@ -20,7 +20,12 @@ const getTimeZonesForLocale = (locale, cb) =>
   /* webpackMode: "lazy-once" */
   `./data/time-zones/${locale}.json`)
     .then(timeZones => cb(null, timeZones.default))
-    .catch(() => cb(new Error(`Unknown locale ${locale}`)));
+    .catch(() =>
+      // In case the locale is not supported we will return the EN L10N data as fallback
+      import(`./data/time-zones/en.json`).then(timeZones =>
+        cb(new Error(`Unknown locale ${locale}`), timeZones.default)
+      )
+    );
 
 export const withTimeZones = createL10NInjector({
   displayName: 'withTimeZones',

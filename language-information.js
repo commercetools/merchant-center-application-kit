@@ -15,7 +15,12 @@ export const languagesShape = PropTypes.objectOf(
 const getLanguagesForLocale = (locale, cb) =>
   import(`./data/languages/${locale}.json` /* webpackChunkName: "language-data" */)
     .then(languages => cb(null, languages.default))
-    .catch(() => cb(new Error(`Unknown locale ${locale}`)));
+    .catch(() =>
+      // In case the locale is not supported we will return the EN L10N data as fallback
+      import(`./data/languages/en.json`).then(languages =>
+        cb(new Error(`Unknown locale ${locale}`), languages.default)
+      )
+    );
 
 export const withLanguages = createL10NInjector({
   displayName: 'withLanguages',
