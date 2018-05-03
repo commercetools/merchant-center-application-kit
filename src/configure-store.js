@@ -21,7 +21,7 @@ import { getCorrelationId, selectProjectKey } from './utils';
 
 const sdkMiddleware = createSdkMiddleware({
   getCorrelationId,
-  projectKey: selectProjectKey(),
+  getProjectKey: selectProjectKey,
 });
 
 const createReducer = (injectedReducers = {}) =>
