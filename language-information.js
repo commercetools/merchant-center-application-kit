@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import createL10NInjector from './create-l10n-injector';
+import getSupportedLocale from './get-supported-locale';
 
 export const languagesShape = PropTypes.objectOf(
   PropTypes.shape({
@@ -12,16 +13,12 @@ export const languagesShape = PropTypes.objectOf(
  * If running through webpack, code splitting makes `getLanguagesForLocale`
  * a function that asynchronously loads the country data.
  */
-const getLanguagesForLocale = (locale, cb) =>
-  import(`./data/languages/${locale}.json` /* webpackChunkName: "language-data" */)
+const getLanguagesForLocale = (locale, cb) => {
+  const supportedLocale = getSupportedLocale(locale);
+  import(`./data/languages/${supportedLocale}.json` /* webpackChunkName: "language-data" */)
     .then(languages => cb(null, languages.default))
-    .catch(() =>
-      // In case the locale is not supported we will return the EN L10N data as fallback
-      import(`./data/languages/en.json`).then(languages =>
-        cb(new Error(`Unknown locale ${locale}`), languages.default)
-      )
-    );
-
+    .catch(error => cb(error));
+};
 export const withLanguages = createL10NInjector({
   displayName: 'withLanguages',
   propKey: 'languages',
