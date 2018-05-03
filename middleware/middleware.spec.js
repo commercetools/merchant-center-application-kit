@@ -8,7 +8,7 @@ jest.mock('../utils');
 
 const middlewareOptions = {
   getCorrelationId: jest.fn(),
-  projectKey: 'test-project',
+  getProjectKey: jest.fn(() => 'test-project'),
 };
 
 describe('when the action is of type SDK', () => {
@@ -330,9 +330,10 @@ describe('when the projectKey is not defined', () => {
   });
   it('should throw an error with message containing URI', () => {
     expect(() =>
-      createMiddleware({ getCorrelationId: jest.fn() })({ dispatch })(next)(
-        action
-      )
+      createMiddleware({
+        getCorrelationId: jest.fn(),
+        getProjectKey: jest.fn(() => null),
+      })({ dispatch })(next)(action)
     ).toThrowError(
       'Expected projectKey to be defined for action service "productTypes" (method "GET")'
     );

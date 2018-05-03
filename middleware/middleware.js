@@ -30,14 +30,14 @@ const actionToUri = (action, projectKey) => {
   return service.build();
 };
 
-export default ({ getCorrelationId, projectKey }) => {
+export default ({ getCorrelationId, getProjectKey }) => {
   const client = createClient({ getCorrelationId });
 
   return ({ dispatch }) => next => action => {
     if (!action) return next(action);
 
     if (action.type === 'SDK') {
-      const uri = actionToUri(action, projectKey);
+      const uri = actionToUri(action, getProjectKey());
 
       // This `requestName` is never really used.
       //
