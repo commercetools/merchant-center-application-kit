@@ -1,5 +1,6 @@
 import React from 'react';
 import { wrapDisplayName } from 'recompose';
+import { reportErrorToSentry } from '@commercetools-local/sentry';
 
 export default function createL10NInjector({
   displayName,
@@ -25,6 +26,9 @@ export default function createL10NInjector({
       loadCountries = props => {
         this.setState({ [propLoadingKey]: true });
         loadLocale(mapPropsToLocale(props), (error, data) => {
+          if (error) {
+            reportErrorToSentry(error);
+          }
           if (!this.isUnmounting)
             this.setState({ [propKey]: data, [propLoadingKey]: false });
         });
