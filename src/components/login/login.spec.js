@@ -17,7 +17,6 @@ const createTestProps = props => ({
   intl: {
     formatMessage: jest.fn(message => message.id),
   },
-  redirectTo: jest.fn(),
   ...props,
 });
 
@@ -258,6 +257,7 @@ describe('requestAccessToken', () => {
         requestAccessToken: jest.fn(() => Promise.resolve()),
       });
       wrapper = shallow(<Login {...props} />);
+      wrapper.instance().redirectTo = jest.fn();
       wrapper.setState({ email: 'john@doe.com', password: 'secret' });
       wrapper.find('form').simulate('change', {
         target: {
@@ -285,7 +285,9 @@ describe('requestAccessToken', () => {
       });
     });
     it('should redirect to given path', () => {
-      expect(props.redirectTo).toHaveBeenLastCalledWith('/foo/bar');
+      expect(wrapper.instance().redirectTo).toHaveBeenLastCalledWith(
+        '/foo/bar'
+      );
     });
     it('should set loading to false', () => {
       expect(wrapper).toHaveState('loading', false);

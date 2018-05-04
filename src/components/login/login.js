@@ -41,7 +41,6 @@ export class Login extends React.PureComponent {
     intl: PropTypes.shape({
       formatMessage: PropTypes.func.isRequired,
     }).isRequired,
-    redirectTo: PropTypes.func.isRequired,
   };
 
   state = {
@@ -53,6 +52,8 @@ export class Login extends React.PureComponent {
     shouldRedirectPasswordForgot: false,
     error: this.props.location.query.reason,
   };
+
+  redirectTo = targetUrl => window.location.replace(targetUrl);
 
   componentDidMount = () => {
     this.email.focus();
@@ -94,7 +95,7 @@ export class Login extends React.PureComponent {
         if (nextTargetUrl)
           // We force a browser redirect, to let the proxy server handle
           // the new request URL.
-          this.props.redirectTo(nextTargetUrl);
+          this.redirectTo(nextTargetUrl);
         // In this case, the AppShell will handle the base path route,
         // most likely to redirect to e.g. `/:projectKey/dashboard`.
         else this.props.history.push('/');
@@ -315,12 +316,6 @@ export class Login extends React.PureComponent {
   );
 }
 
-const mapStateToProps = () => ({
-  // We misuse `mapStateToProps` to "inject" this prop,
-  // to avoid having yet another HOC `withProps`.
-  redirectTo: target => window.location.replace(target),
-});
-
 const mapDispatchToProps = dispatch => ({
   requestAccessToken: payload =>
     dispatch(sdkActions.post({ uri: `/tokens`, payload })),
@@ -329,5 +324,5 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   injectIntl,
   injectConfiguration(['adminCenterUrl'], 'adminCenterUrl'),
-  connect(mapStateToProps, mapDispatchToProps)
+  connect(null, mapDispatchToProps)
 )(Login);
