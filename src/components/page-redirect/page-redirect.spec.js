@@ -18,30 +18,20 @@ describe('rendering', () => {
     });
   });
   describe('<PageRedirect>', () => {
-    describe('when "forceReload" is true', () => {
-      let routeWrapper;
+    describe('when "reload" is true', () => {
       beforeEach(() => {
-        wrapper = shallow(<PageRedirect forceReload={true} to="/foo/bar" />);
-        routeWrapper = shallow(
-          <div>{wrapper.find('Route').prop('render')()}</div>
-        );
-      });
-      it('should render Route', () => {
-        expect(wrapper).toRender('Route');
+        wrapper = shallow(<PageRedirect reload={true} to="/foo/bar" />);
       });
       it('should render LocationRedirect', () => {
-        expect(routeWrapper).toRender('LocationRedirect');
+        expect(wrapper).toRender('LocationRedirect');
       });
       it('should pass "to" to render LocationRedirect', () => {
-        expect(routeWrapper.find('LocationRedirect')).toHaveProp(
-          'to',
-          '/foo/bar'
-        );
+        expect(wrapper.find('LocationRedirect')).toHaveProp('to', '/foo/bar');
       });
     });
-    describe('when "forceReload" is false', () => {
+    describe('when "reload" is false', () => {
       beforeEach(() => {
-        wrapper = shallow(<PageRedirect forceReload={false} to="/foo/bar" />);
+        wrapper = shallow(<PageRedirect reload={false} to="/foo/bar" />);
       });
       it('should render Redirect', () => {
         expect(wrapper).toRender('Redirect');

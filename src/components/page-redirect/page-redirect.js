@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 export class LocationRedirect extends React.PureComponent {
   static displayName = 'LocationRedirect';
@@ -16,16 +16,15 @@ export class LocationRedirect extends React.PureComponent {
   }
 }
 
-const PageRedirect = ({ forceReload, ...rest }) => {
-  if (forceReload)
-    return <Route render={() => <LocationRedirect to={rest.to} />} />;
+const PageRedirect = ({ reload, ...rest }) => {
+  if (reload) return <LocationRedirect to={rest.to} />;
   return <Redirect {...rest} />;
 };
 PageRedirect.displayName = 'PageRedirect';
 PageRedirect.propTypes = {
-  forceReload: PropTypes.bool,
+  reload: PropTypes.bool,
 };
 PageRedirect.defaultProps = {
-  forceReload: false,
+  reload: false,
 };
 export default PageRedirect;
