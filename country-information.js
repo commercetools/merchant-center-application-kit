@@ -10,7 +10,10 @@ export const countriesShape = PropTypes.objectOf(PropTypes.string);
  */
 const getCountriesForLocale = (locale, cb) => {
   const supportedLocale = getSupportedLocale(locale);
-  import(`./data/countries/${supportedLocale}.json` /* webpackChunkName: "country-data" */)
+  // Use lazy once so that subsequent calls to import() will use the same
+  // network response. https://webpack.js.org/api/module-methods/#import-
+  import(/* webpackChunkName: "country-data", webpackMode: "lazy-once" */
+  `./data/countries/${supportedLocale}.json`)
     .then(countries => cb(null, countries.default))
     .catch(error => cb(error));
 };

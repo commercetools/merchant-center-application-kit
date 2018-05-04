@@ -16,10 +16,9 @@ export const timeZonesShape = PropTypes.objectOf(
  */
 const getTimeZonesForLocale = (locale, cb) => {
   const supportedLocale = getSupportedLocale(locale);
-  import(/* webpackChunkName: "time-zone-data" */
   // Use lazy once so that subsequent calls to import() will use the same
   // network response. https://webpack.js.org/api/module-methods/#import-
-  /* webpackMode: "lazy-once" */
+  import(/* webpackChunkName: "time-zone-data", webpackMode: "lazy-once" */
   `./data/time-zones/${supportedLocale}.json`)
     .then(timeZones => cb(null, timeZones.default))
     .catch(error => cb(error));

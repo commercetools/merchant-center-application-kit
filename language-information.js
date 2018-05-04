@@ -15,7 +15,10 @@ export const languagesShape = PropTypes.objectOf(
  */
 const getLanguagesForLocale = (locale, cb) => {
   const supportedLocale = getSupportedLocale(locale);
-  import(`./data/languages/${supportedLocale}.json` /* webpackChunkName: "language-data" */)
+  // Use lazy once so that subsequent calls to import() will use the same
+  // network response. https://webpack.js.org/api/module-methods/#import-
+  import(/* webpackChunkName: "language-data", webpackMode: "lazy-once" */
+  `./data/languages/${supportedLocale}.json`)
     .then(languages => cb(null, languages.default))
     .catch(error => cb(error));
 };

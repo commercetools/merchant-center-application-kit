@@ -12,7 +12,10 @@ export const currenciesShape = PropTypes.objectOf(
  */
 const getCurrenciesForLocale = (locale, cb) => {
   const supportedLocale = getSupportedLocale(locale);
-  import(`./data/currencies/${supportedLocale}.json` /* webpackChunkName: "currency-data" */)
+  // Use lazy once so that subsequent calls to import() will use the same
+  // network response. https://webpack.js.org/api/module-methods/#import-
+  import(/* webpackChunkName: "currency-data", webpackMode: "lazy-once" */
+  `./data/currencies/${supportedLocale}.json`)
     .then(currencies => cb(null, currencies.default))
     .catch(error => cb(error));
 };
