@@ -132,13 +132,13 @@ describe('when there is an error loading L10n data', () => {
     const loadLocalesErrorMock = jest.fn((locale, cb) =>
       cb(error, mockData[locale])
     );
-    const withErrors = createL10NInjector({
-      displayName: 'withErrors',
+    const l10nInjector = createL10NInjector({
+      displayName: 'l10nInjector',
       propKey: 'errors',
-      propLoadingKey: 'withErrors',
+      propLoadingKey: 'l10nInjector',
       loadLocale: loadLocalesErrorMock,
     });
-    const WrappedComponent = withErrors(props => props.locale)(Foo);
+    const WrappedComponent = l10nInjector(props => props.locale)(Foo);
     wrapper = shallow(<WrappedComponent locale="es" />);
     wrapper.instance().componentDidMount();
   });
