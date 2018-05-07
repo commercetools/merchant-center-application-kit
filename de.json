@@ -2369,7 +2369,7 @@
   "ProjectSettings.ShippingMethodsDetails.addZoneRateButtonLabel": "Versandsatz einer Zone hinzufügen",
   "ProjectSettings.ShippingMethodsDetails.addZoneRateButtonTooltip": "Sie müssen erst speichern, bevor Sie eine Zone erstellen können",
   "ProjectSettings.ShippingMethodsDetails.cartClassificationShippingRateTableTitle": "Gestufte Versandsätze nach Klassifizierung",
-  "ProjectSettings.ShippingMethodsDetails.cartScoreShippingRateTableTitle": "",
+  "ProjectSettings.ShippingMethodsDetails.cartScoreShippingRateTableTitle": "Gestufte Versandsätze nach Score",
   "ProjectSettings.ShippingMethodsDetails.cartValueShippingRateTableTitle": "Gestufte Versandsätze nach Gesamtwert",
   "ProjectSettings.ShippingMethodsDetails.descriptionFieldLabel": "Beschreibung",
   "ProjectSettings.ShippingMethodsDetails.editShippingMethodButtonLabel": "Versandoption bearbeiten",
