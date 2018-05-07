@@ -2180,6 +2180,7 @@
   "ProductTypes.List.addProductType": "Add Product Type",
   "ProductTypes.List.attributes": "({total} {total, plural, one {attribute} other {attributes}})",
   "ProductTypes.List.createProductType": "Create a product type",
+  "ProductTypes.List.noMatchingProductTypes": "No product-types match your search-criteria. Please select different ones and try again.",
   "ProductTypes.List.noProductTypes": "{link} to be able to add products to your project.",
   "ProductTypes.List.toolbarTitle": "Product Types",
   "ProjectExpired.paragraph1": "If you are interested in finding out more about the commercetools Merchant Center, please contact us at {mailto}.",
