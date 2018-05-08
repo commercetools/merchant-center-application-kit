@@ -335,9 +335,9 @@ describe('<RestrictedApplication>', () => {
           '/foo-1/dashboard'
         );
       });
-      it('should render <PageRedirect> with "forceReload" to true', () => {
+      it('should render <PageRedirect> with "reload" to true', () => {
         expect(routeRenderWrapper.find('PageRedirect')).toHaveProp(
-          'forceReload',
+          'reload',
           true
         );
       });
