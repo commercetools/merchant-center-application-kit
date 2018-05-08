@@ -68,7 +68,7 @@ describe('lifecycle', () => {
       });
       describe('when locale has been already cached', () => {
         beforeEach(() => {
-          storage.put(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
+          storage.get.mockReturnValue('de');
           nextProps = { locales: ['it', 'de'] };
           derivedState = ProjectDataLocale.getDerivedStateFromProps(
             nextProps,

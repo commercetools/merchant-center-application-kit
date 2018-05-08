@@ -3,7 +3,6 @@ import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 import { compose } from 'recompose';
 import { graphql } from 'react-apollo';
-import logger from '@commercetools-local/utils/logger';
 import { GRAPHQL_TARGETS, DOMAINS } from '@commercetools-local/constants';
 import Notification from '@commercetools-local/core/components/notification';
 import { injectConfiguration } from '@commercetools-local/core/components/configuration';
@@ -43,10 +42,8 @@ export class IntercomNotification extends React.PureComponent {
   };
 
   handleMutationError = error => {
-    // On production we send the errors to Sentry.
-    if (this.props.environmentName !== 'production')
-      logger.error(error, error.stack);
     // Show an error message
+    // The fn also logs to sentry using the sentry-tracking middleware
     this.props.showUnexpectedErrorNotification({ error });
   };
 

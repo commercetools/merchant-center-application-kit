@@ -37,18 +37,25 @@ describe('componentDidMount', () => {
   let props;
   beforeEach(() => {
     props = createTestProps();
-    storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, 'foo-1');
+    storage.get.mockReturnValue('foo-1');
+
     const wrapper = shallow(<Logout {...props} />);
     wrapper.instance().componentDidMount();
   });
   it('should remove isAuthenticated from storage', () => {
-    expect(storage.get(CORE_STORAGE_KEYS.IS_AUTHENTICATED)).toBe(null);
+    expect(storage.remove).toHaveBeenCalledWith(
+      CORE_STORAGE_KEYS.IS_AUTHENTICATED
+    );
   });
   it('should remove identityProviderUrl from storage', () => {
-    expect(storage.get(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL)).toBe(null);
+    expect(storage.remove).toHaveBeenCalledWith(
+      CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL
+    );
   });
   it('should remove projectKey from storage', () => {
-    expect(storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY)).toBe(null);
+    expect(storage.remove).toHaveBeenCalledWith(
+      CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY
+    );
   });
   describe('when login strategy is default', () => {
     beforeEach(() => {
@@ -91,7 +98,7 @@ describe('componentDidMount', () => {
 describe('getLoginStrategy', () => {
   describe('when IdP URL is defined', () => {
     beforeEach(() => {
-      storage.put(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL, 'xxx');
+      storage.get.mockReturnValue('xxx');
     });
     it('should return SSO as the login strategy', () => {
       expect(getLoginStrategy()).toBe(LOGIN_STRATEGY_SSO);
@@ -99,7 +106,7 @@ describe('getLoginStrategy', () => {
   });
   describe('when IdP URL is not defined', () => {
     beforeEach(() => {
-      storage.remove(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL);
+      storage.get.mockReturnValue(null);
     });
     it('should return default as the login strategy', () => {
       expect(getLoginStrategy()).toBe(LOGIN_STRATEGY_DEFAULT);

@@ -5,7 +5,7 @@ import {
   ADD_NOTIFICATION,
   REMOVE_NOTIFICATION,
 } from '@commercetools-local/notifications';
-import { middleware as sdkMiddleware } from '@commercetools-local/sdk';
+import { createMiddleware as createSdkMiddleware } from '@commercetools-local/sdk';
 import * as constants from '@commercetools-local/constants';
 import addPluginToNotificationMiddleware from './middleware/add-plugin-to-notification';
 import batchedUpdates from './middleware/batched-updates';
@@ -17,6 +17,12 @@ import sentryTrackingMiddleware from './middleware/sentry-tracking';
 import { activePluginReducer } from './components/inject-reducer';
 import { requestsInFlightReducer } from './components/requests-in-flight-loader';
 import { notificationsReducer } from './components/notifications-connector';
+import { getCorrelationId, selectProjectKey } from './utils';
+
+const sdkMiddleware = createSdkMiddleware({
+  getCorrelationId,
+  getProjectKey: selectProjectKey,
+});
 
 const createReducer = (injectedReducers = {}) =>
   combineReducers({

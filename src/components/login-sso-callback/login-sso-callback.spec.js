@@ -58,7 +58,7 @@ describe('lifecylcle', () => {
 
     describe('when nonce is correct', () => {
       beforeEach(() => {
-        storage.put(CORE_STORAGE_KEYS.NONCE, 'EY');
+        storage.get.mockReturnValue('EY');
         wrapper.instance().componentDidMount();
       });
       it('should call requestAccessToken with idToken', () => {
@@ -92,7 +92,7 @@ describe('lifecylcle', () => {
             requestAccessToken: jest.fn(() => Promise.reject(new Error())),
           });
           wrapper = shallow(<LoginSSOCallback {...props} />);
-          storage.put(CORE_STORAGE_KEYS.NONCE, 'EY');
+          storage.get.mockReturnValue('EY');
           wrapper.instance().componentDidMount();
         });
         it('should set hasAuthenticationFailed to true', () => {
@@ -106,7 +106,7 @@ describe('lifecylcle', () => {
 
     describe('when nonce is wrong', () => {
       beforeEach(() => {
-        storage.put(CORE_STORAGE_KEYS.NONCE, 'BAD');
+        storage.get.mockReturnValue(CORE_STORAGE_KEYS.NONCE, 'BAD');
         wrapper.instance().componentDidMount();
       });
       it('should set hasAuthenticationFailed to true', () => {

@@ -1,4 +1,4 @@
-import logger from '@commercetools-local/utils/logger';
+import { reportErrorToSentry } from '@commercetools-local/sentry';
 
 const excludeFirstOccurrence = (list, item) => {
   const index = list.indexOf(item);
@@ -14,8 +14,10 @@ export default (requestsInFlight, action) => {
   if (action && action.type === 'HIDE_LOADING') {
     // may only remove first occurence
     if (!requestsInFlight.includes(action.payload)) {
-      logger.warn(
-        `Tried to hide "${action.payload}", but it was not progressing!`
+      reportErrorToSentry(
+        new Error(
+          `Tried to hide "${action.payload}", but it was not progressing!`
+        )
       );
       return requestsInFlight;
     }

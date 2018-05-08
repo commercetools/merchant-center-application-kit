@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose, setDisplayName } from 'recompose';
-import logger from '@commercetools-local/utils/logger';
 import * as sdkActions from '@commercetools-local/sdk/actions';
 import { connect } from 'react-redux';
 import { injectConfiguration } from '@commercetools-local/core/components/configuration';
@@ -25,12 +24,14 @@ export class VersionCheckSubscriber extends React.PureComponent {
               // - show a notification message (global/sidebar)
               // - have a "special" icon in the `TopNavigation` that indicates
               //   a new version is available (e.g. like Chrome does)
-              logger.info(
+              // eslint-disable-next-line no-console
+              console.info(
                 'VersionCheckSubscriber: New version available, please reload the page'
               );
           },
           error => {
-            logger.warn(
+            // eslint-disable-next-line no-console
+            console.warn(
               'VersionCheckSubscriber: Could not fetch version.',
               error
             );

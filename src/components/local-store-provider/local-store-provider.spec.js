@@ -1,9 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import {
-  __LOCAL,
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-} from '@commercetools-local/constants';
+import { __LOCAL } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import { LocalStoreProvider, mapStateToProps } from './local-store-provider';
 
@@ -186,8 +183,7 @@ describe('lifecycle', () => {
     describe('getState', () => {
       let localState;
       beforeEach(() => {
-        storage.put(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
-        storage.put(CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN, false);
+        storage.get.mockReturnValueOnce('de').mockReturnValueOnce(false);
         props = createTestProps({ pluginName: 'mcng-foo' });
         wrapper = shallow(
           <LocalStoreProvider {...props}>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import WithProjectKey, {
   WithProjectKeyFromCacheOrUser,
@@ -46,7 +45,7 @@ describe('rendering', () => {
     describe('when projectKey is not cached in localStorage', () => {
       describe('when the user has no available projects', () => {
         beforeEach(() => {
-          storage.remove(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
+          storage.get.mockReturnValue(null);
           props = createTestProps({ user: { availableProjects: [] } });
           wrapper = shallow(<WithProjectKeyFromCacheOrUser {...props} />);
         });
@@ -56,7 +55,7 @@ describe('rendering', () => {
       });
       describe('when user has at least one available project', () => {
         beforeEach(() => {
-          storage.remove(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
+          storage.get.mockReturnValue(null);
           props = createTestProps({
             user: { availableProjects: [{ key: 'p1' }] },
           });
@@ -71,7 +70,7 @@ describe('rendering', () => {
     });
     describe('when projectKey is cached in localStorage', () => {
       beforeEach(() => {
-        storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, 'cached-project-key');
+        storage.get.mockReturnValue('cached-project-key');
         props = createTestProps({ user: { availableProjects: [] } });
         wrapper = shallow(<WithProjectKeyFromCacheOrUser {...props} />);
       });

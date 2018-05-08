@@ -9,9 +9,12 @@ import * as storage from '@commercetools-local/utils/storage';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-local/constants';
 import PortalsContainer from '@commercetools-local/core/components/portals-container';
 import history from '@commercetools-local/browser-history';
+import {
+  reportErrorToSentry,
+  SentryUserTracker,
+} from '@commercetools-local/sentry';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
-import { reportErrorToSentry } from '../../utils/sentry';
 import FetchUser from '../fetch-user';
 import WithProjectKey from '../with-project-key';
 import ConfigureIntlProvider from '../configure-intl-provider';
@@ -30,7 +33,6 @@ import AsyncUserProfile from '../user-profile/async';
 import IntercomUrlTracker from '../intercom-url-tracker';
 import IntercomUserTracker from '../intercom-user-tracker';
 import IntercomBooter from '../intercom-booter';
-import SentryUserTracker from '../sentry-user-tracker';
 // import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
@@ -71,7 +73,10 @@ export const RestrictedApplication = props => (
       }
       return (
         <ConfigureIntlProvider
-          timeZone={user && user.timeZone}
+          /* We need to pass the value as `undefined` in case the user has no
+           * timeZone defined so the defaultProps in the Context.Provider kick in
+           */
+          timeZone={user && user.timeZone ? user.timeZone : undefined}
           locale={user && user.language}
           messages={user && props.i18n[parseLocale(user.language)]}
         >

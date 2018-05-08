@@ -1,6 +1,6 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { shallow } from 'enzyme';
-import logger from '@commercetools-local/utils/logger';
 import { VersionCheckSubscriber } from './version-check-subscriber';
 
 const createTestProps = props => ({
@@ -8,8 +8,6 @@ const createTestProps = props => ({
   clientVersion: '123',
   ...props,
 });
-
-jest.mock('@commercetools-local/utils/logger');
 
 describe('rendering', () => {
   let wrapper;
@@ -43,7 +41,8 @@ describe('lifecycle', () => {
     });
     describe('if env is not development', () => {
       beforeEach(() => {
-        logger.info.mockReset();
+        console.info = jest.fn();
+        console.warn = jest.fn();
       });
       describe('if deployed version is the same as the one in the browser', () => {
         beforeEach(async () => {
@@ -59,7 +58,7 @@ describe('lifecycle', () => {
           await fetchServerVersionResult;
         });
         it('should not notify', () => {
-          expect(logger.info).toHaveBeenCalledTimes(0);
+          expect(console.info).toHaveBeenCalledTimes(0);
         });
         it('should assign interval reference into component instance', () => {
           expect(wrapper.instance().poll).toBeDefined();
@@ -79,7 +78,7 @@ describe('lifecycle', () => {
           await fetchServerVersionResult;
         });
         it('should notify', () => {
-          expect(logger.info).toHaveBeenCalledWith(
+          expect(console.info).toHaveBeenCalledWith(
             'VersionCheckSubscriber: New version available, please reload the page'
           );
         });

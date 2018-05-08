@@ -1,6 +1,5 @@
-import logger from '@commercetools-local/utils/logger';
 import { showUnexpectedErrorNotification } from '@commercetools-local/actions-global';
-import { boot as bootSentry } from '../sentry';
+import { boot as bootSentry } from '@commercetools-local/sentry';
 
 // Ensure to initialize Sentry as soon as possible, so that we have the chance
 // of catching possible errors.
@@ -16,7 +15,8 @@ export default function setupGlobalErrorListener(dispatch) {
   // We just keep it here as a nice-to-have thing.
   window.addEventListener('unhandledrejection', event => {
     if (process.env.NODE_ENV !== 'production')
-      logger.warn(
+      // eslint-disable-next-line no-console
+      console.warn(
         'An uncaught promise has been rejected and not properly ' +
           'handled. This is most likely a bug in the software. Please ensure ' +
           'that the promise is correctly handled.'

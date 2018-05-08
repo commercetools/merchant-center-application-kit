@@ -254,12 +254,9 @@ export class DataMenu extends React.PureComponent {
       : null;
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // menu was just opened
-    if (!prevState.isMenuOpen && this.state.isMenuOpen)
-      document.body.classList.add('body__menu-open');
-    // menu was just closed
-    if (prevState.isMenuOpen && !this.state.isMenuOpen)
+  componentDidUpdate() {
+    if (this.state.isMenuOpen) document.body.classList.add('body__menu-open');
+    if (!this.state.isMenuOpen)
       document.body.classList.remove('body__menu-open');
   }
 
