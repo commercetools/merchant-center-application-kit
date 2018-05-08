@@ -46,7 +46,7 @@ import './global-style-imports';
 const getBrowserLocale = () =>
   (window && window.navigator && window.navigator.language) || 'en';
 
-const parseLocale = locale =>
+const extractLanguageFromLocale = locale =>
   locale.includes('-') ? locale.split('-')[0] : locale;
 
 /**
@@ -61,7 +61,7 @@ export const RestrictedApplication = props => (
       if (error) {
         reportErrorToSentry(error, {});
         const browserLocale = getBrowserLocale();
-        const locale = parseLocale(browserLocale);
+        const locale = extractLanguageFromLocale(browserLocale);
         return (
           <ConfigureIntlProvider
             locale={browserLocale}
@@ -78,7 +78,9 @@ export const RestrictedApplication = props => (
            */
           timeZone={user && user.timeZone ? user.timeZone : undefined}
           locale={user && user.language}
-          messages={user && props.i18n[parseLocale(user.language)]}
+          messages={
+            user && props.i18n[extractLanguageFromLocale(user.language)]
+          }
         >
           <SetupFlopFlipProvider user={user}>
             <React.Fragment>
@@ -358,7 +360,9 @@ export default class ApplicationShell extends React.Component {
                                 />
                               );
                             const browserLocale = getBrowserLocale();
-                            const locale = parseLocale(browserLocale);
+                            const locale = extractLanguageFromLocale(
+                              browserLocale
+                            );
                             return (
                               <ConfigureIntlProvider
                                 locale={browserLocale}
