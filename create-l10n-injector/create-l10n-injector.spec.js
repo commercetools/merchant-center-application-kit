@@ -1,6 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { reportErrorToSentry } from '@commercetools-local/sentry';
 import createL10NInjector from './create-l10n-injector';
+
+jest.mock('@commercetools-local/sentry');
 
 const mockData = {
   en: {
@@ -119,5 +122,32 @@ describe('lifecycle', () => {
         expect(loadLocalesMock).toHaveBeenCalledTimes(0);
       });
     });
+  });
+});
+
+describe('when there is an error loading L10n data', () => {
+  let wrapper;
+  const error = new Error('unknown locale');
+  beforeEach(() => {
+    const loadLocalesErrorMock = jest.fn((locale, cb) =>
+      cb(error, mockData[locale])
+    );
+    const l10nInjector = createL10NInjector({
+      displayName: 'l10nInjector',
+      propKey: 'errors',
+      propLoadingKey: 'l10nInjector',
+      loadLocale: loadLocalesErrorMock,
+    });
+    const WrappedComponent = l10nInjector(props => props.locale)(Foo);
+    wrapper = shallow(<WrappedComponent locale="es" />);
+    wrapper.instance().componentDidMount();
+  });
+
+  it('should call reportErrorToSentry', () => {
+    expect(reportErrorToSentry).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call reportErrorToSentry with the error', () => {
+    expect(reportErrorToSentry).toHaveBeenCalledWith(error);
   });
 });

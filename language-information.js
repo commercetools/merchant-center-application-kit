@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import createL10NInjector from './create-l10n-injector';
-import parseLocale from './parse-locale';
+import {
+  getSupportedLocale,
+  extractLanguageFromLocale,
+} from './get-supported-locale';
 
 export const languagesShape = PropTypes.objectOf(
   PropTypes.shape({
@@ -14,11 +17,14 @@ export const languagesShape = PropTypes.objectOf(
  * a function that asynchronously loads the country data.
  */
 const getLanguagesForLocale = (locale, cb) => {
-  const parsedLocale = parseLocale(locale);
-
-  return import(`./data/languages/${parsedLocale}.json` /* webpackChunkName: "language-data" */)
+  const languageFromLocale = extractLanguageFromLocale(locale);
+  const supportedLocale = getSupportedLocale(languageFromLocale);
+  // Use lazy once so that subsequent calls to import() will use the same
+  // network response. https://webpack.js.org/api/module-methods/#import-
+  import(/* webpackChunkName: "language-data", webpackMode: "lazy-once" */
+  `./data/languages/${supportedLocale}.json`)
     .then(languages => cb(null, languages.default))
-    .catch(() => cb(new Error(`Unknown locale ${locale}`)));
+    .catch(error => cb(error));
 };
 export const withLanguages = createL10NInjector({
   displayName: 'withLanguages',
