@@ -173,7 +173,7 @@ export const RestrictedApplication = props => (
                         render={({ match }) => (
                           <PageRedirect
                             // We always do a full redirect in this case
-                            forceReload={true}
+                            reload={true}
                             to={joinPaths(match.url, 'dashboard')}
                           />
                         )}
