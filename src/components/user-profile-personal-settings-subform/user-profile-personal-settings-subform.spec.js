@@ -26,6 +26,8 @@ const createTestProps = props => ({
   languages: {
     en: { code: 'en', language: 'English' },
     de: { code: 'de', language: 'German' },
+    'en-US': { code: 'en-US', language: 'English (United States)' },
+    'en-DE': { code: 'en-DE', language: 'English (Germany)' },
   },
 
   ...props,

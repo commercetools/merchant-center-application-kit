@@ -72,6 +72,14 @@ exports[`rendering when not submitting should ensure layout structure 1`] = `
               "label": "German (de)",
               "value": "de",
             },
+            Object {
+              "label": "English (United States) (en-US)",
+              "value": "en-US",
+            },
+            Object {
+              "label": "English (Germany) (en-DE)",
+              "value": "en-DE",
+            },
           ]
         }
         pageSize={5}
@@ -247,6 +255,14 @@ exports[`rendering when submitting should disable all input fields 1`] = `
             Object {
               "label": "German (de)",
               "value": "de",
+            },
+            Object {
+              "label": "English (United States) (en-US)",
+              "value": "en-US",
+            },
+            Object {
+              "label": "English (Germany) (en-DE)",
+              "value": "en-DE",
             },
           ]
         }
