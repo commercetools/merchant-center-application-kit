@@ -5,11 +5,12 @@ import { shallow } from 'enzyme';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import { intlMock } from '@commercetools-local/test-utils';
+import Notifier from '@commercetools-local/core/components/notifier';
 import FetchProject from '../fetch-project';
 import ProjectDataLocale from '../project-data-locale';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectWithoutSettings from '../project-without-settings';
-import { ProjectContainer } from './project-container';
+import ProjectContainer from './project-container';
 
 const createTestProps = custom => ({
   match: { params: { projectKey: 'test-1' } },
@@ -130,6 +131,7 @@ describe('rendering', () => {
       });
       describe('when project has trialDaysLeft', () => {
         describe('when trial days are less than two weeks (14 days)', () => {
+          let notifierWrapper;
           beforeEach(() => {
             fetchProjectChildrenWrapper = shallow(
               <div>
@@ -145,13 +147,22 @@ describe('rendering', () => {
                 })}
               </div>
             );
+            notifierWrapper = shallow(
+              <div>
+                {fetchProjectChildrenWrapper
+                  .find(ProjectDataLocale)
+                  .prop('children')({
+                  locales: ['de'],
+                })}
+              </div>
+            );
           });
-
-          it('should call showNotification', () => {
-            expect(props.showNotification).toHaveBeenCalledTimes(1);
+          it('should render Notifier component', () => {
+            expect(notifierWrapper).toRender(Notifier.displayName);
           });
         });
         describe('when trial days are greater than two weeks (14 days)', () => {
+          let notifierWrapper;
           beforeEach(() => {
             fetchProjectChildrenWrapper = shallow(
               <div>
@@ -167,13 +178,23 @@ describe('rendering', () => {
                 })}
               </div>
             );
+            notifierWrapper = shallow(
+              <div>
+                {fetchProjectChildrenWrapper
+                  .find(ProjectDataLocale)
+                  .prop('children')({
+                  locales: ['de'],
+                })}
+              </div>
+            );
           });
 
-          it('should not call showNotification', () => {
-            expect(props.showNotification).not.toHaveBeenCalled();
+          it('should not render Notifier component', () => {
+            expect(notifierWrapper).not.toRender(Notifier.displayName);
           });
         });
         describe('when trial days are equal to two weeks (14 days)', () => {
+          let notifierWrapper;
           beforeEach(() => {
             fetchProjectChildrenWrapper = shallow(
               <div>
@@ -189,10 +210,19 @@ describe('rendering', () => {
                 })}
               </div>
             );
+            notifierWrapper = shallow(
+              <div>
+                {fetchProjectChildrenWrapper
+                  .find(ProjectDataLocale)
+                  .prop('children')({
+                  locales: ['de'],
+                })}
+              </div>
+            );
           });
 
-          it('should not call showNotification', () => {
-            expect(props.showNotification).toHaveBeenCalledTimes(1);
+          it('should render Notifier component', () => {
+            expect(notifierWrapper).toRender(Notifier.displayName);
           });
         });
       });

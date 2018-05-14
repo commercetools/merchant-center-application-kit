@@ -204,7 +204,6 @@ export const RestrictedApplication = props => (
                             <ProjectContainer
                               isLoadingUser={isLoading}
                               user={user}
-                              showNotification={props.showNotification}
                               match={routerProps.match}
                               location={routerProps.location}
                               // This effectively renders the
