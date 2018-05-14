@@ -2221,6 +2221,8 @@
   "ProjectSettings.ProductTypes.Details.AttributeDefinition.Details.attributeConstraintValueSameForAllExplanation": "variants",
   "ProjectSettings.ProductTypes.Details.AttributeDefinition.Details.attributeConstraintValueUnique": "Unique:",
   "ProjectSettings.ProductTypes.Details.AttributeDefinition.Details.attributeConstraintValueUniqueExplanation": "different for each variant",
+  "ProjectSettings.ProductTypes.Details.AttributeDefinition.Details.attributeDefinitionAlreadyExistsError": "This product type already uses an attribute definition with the same name.",
+  "ProjectSettings.ProductTypes.Details.AttributeDefinition.Details.attributeDefinitionTypeConflictError": "Product type \"{conflictingProductTypeName}\" already uses an attribute definition with the same name \"{conflictingAttributeName}\" but a different type.",
   "ProjectSettings.ProductTypes.Details.AttributeDefinition.Details.attributeDescriptionDescription": "Attribute description",
   "ProjectSettings.ProductTypes.Details.AttributeDefinition.Details.attributeIdentifierDescription": "The attribute identifier, or attribute name, is a {uniqueTerm} used to identify this attribute.",
   "ProjectSettings.ProductTypes.Details.AttributeDefinition.Details.attributeIdentifierDescriptionUniqueTerm": "unique term",
