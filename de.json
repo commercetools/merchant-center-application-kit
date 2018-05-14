@@ -1777,7 +1777,7 @@
   "Products.GeneralInfoForm.modalDescriptionSubtitle": "Beschreiben Sie das Produkt in den entsprechenden Landessprachen.",
   "Products.GeneralInfoForm.modalNameSubtitle1": "Geben Sie den Produktnamen in den entsprechenden Landessprachen ein.",
   "Products.GeneralInfoForm.modalNameSubtitle2": "Dies ist ein Pflichtfeld. Sie müssen in mindestens einer Landessprache Angaben machen.",
-  "Products.GeneralInfoForm.productTypeName": "Produkttyp: {productTypeName}",
+  "Products.GeneralInfoForm.productTypeName": "Produkttyp:",
   "Products.GeneralInfoForm.RecommendedCategories.categoryLevel": "Kategorieebene",
   "Products.GeneralInfoForm.RecommendedCategories.categoryName": "Kategorie-Name",
   "Products.GeneralInfoForm.RecommendedCategories.categoryPath": "Kategorie-Pfad",
