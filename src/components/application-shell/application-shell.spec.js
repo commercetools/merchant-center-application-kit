@@ -34,6 +34,7 @@ const createTestProps = props => ({
   showApiErrorNotification: jest.fn(),
   showUnexpectedErrorNotification: jest.fn(),
   onRegisterErrorListeners: jest.fn(),
+  INTERNAL__isApplicationFallback: false,
   ...props,
 });
 
@@ -267,6 +268,12 @@ describe('<RestrictedApplication>', () => {
           'foo-1'
         );
       });
+      it('should pass "useFullRedirectsForLinks"', () => {
+        expect(routeRenderWrapper.find(NavBar)).toHaveProp(
+          'useFullRedirectsForLinks',
+          props.INTERNAL__isApplicationFallback
+        );
+      });
     });
     it('should render <Route> for "/account" below main container', () => {
       expect(wrapper.find('.main')).toRender({ path: '/account' });
@@ -323,10 +330,16 @@ describe('<RestrictedApplication>', () => {
           </div>
         );
       });
-      it('should render <Redirect> to "/dashboard', () => {
-        expect(routeRenderWrapper.find('Redirect')).toHaveProp(
+      it('should render <PageRedirect> to "/dashboard"', () => {
+        expect(routeRenderWrapper.find('PageRedirect')).toHaveProp(
           'to',
           '/foo-1/dashboard'
+        );
+      });
+      it('should render <PageRedirect> with "reload" to true', () => {
+        expect(routeRenderWrapper.find('PageRedirect')).toHaveProp(
+          'reload',
+          true
         );
       });
     });

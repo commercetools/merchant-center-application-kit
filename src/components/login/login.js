@@ -53,6 +53,8 @@ export class Login extends React.PureComponent {
     error: this.props.location.query.reason,
   };
 
+  redirectTo = targetUrl => window.location.replace(targetUrl);
+
   componentDidMount = () => {
     this.email.focus();
   };
@@ -89,7 +91,14 @@ export class Login extends React.PureComponent {
         // case login is not done through SSO.
         storage.remove(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL);
         // Redirect to a `redirectTo` url, if present, otherwise to defaul route
-        this.props.history.push(this.props.location.query.redirectTo || '/');
+        const nextTargetUrl = this.props.location.query.redirectTo;
+        if (nextTargetUrl)
+          // We force a browser redirect, to let the proxy server handle
+          // the new request URL.
+          this.redirectTo(nextTargetUrl);
+        // In this case, the AppShell will handle the base path route,
+        // most likely to redirect to e.g. `/:projectKey/dashboard`.
+        else this.props.history.push('/');
       })
       .catch(error => {
         if (error) {
