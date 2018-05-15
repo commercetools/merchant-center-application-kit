@@ -48,6 +48,8 @@ export class SdkGet extends React.Component {
       onError: this.props.onError,
     });
   }
+
+  // eslint-disable-next-line camelcase
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (
       nextProps.shouldRefetch(
