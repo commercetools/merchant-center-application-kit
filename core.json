@@ -2218,7 +2218,7 @@
   "ProductTypes.List.SortDropdown.sortOldestFirst": "Oldest first",
   "ProductTypes.List.sortingLabel": "Sorting:",
   "ProductTypes.List.toolbarTitle": "Product Types",
-  "Project.trialDaysLeft": "Your project trial period will expire in {daysLeft} days. For any inquiries please contact sales@commercetools.com",
+  "Project.trialDaysLeft": "Your project trial period will expire in {daysLeft} {daysLeft, plural, one {day} other {days}}. For any inquiries please contact sales@commercetools.com",
   "ProjectExpired.paragraph1": "If you are interested in finding out more about the commercetools Merchant Center, please contact us at {mailto}.",
   "ProjectExpired.title": "Your trial has expired",
   "ProjectNotFound.paragraph1": "The Project you are looking for either does not exists or you are not authorized to view it. Select another Project to view.",
