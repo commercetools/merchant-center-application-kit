@@ -1777,7 +1777,7 @@
   "Products.GeneralInfoForm.modalDescriptionSubtitle": "Describe the product in their corresponding locales.",
   "Products.GeneralInfoForm.modalNameSubtitle1": "Enter the product name in their corresponding locales.",
   "Products.GeneralInfoForm.modalNameSubtitle2": "This is a mandatory field, please fill in at least one locale.",
-  "Products.GeneralInfoForm.productTypeName": "Product Type: {productTypeName}",
+  "Products.GeneralInfoForm.productTypeName": "Product Type:",
   "Products.GeneralInfoForm.RecommendedCategories.categoryLevel": "Category level",
   "Products.GeneralInfoForm.RecommendedCategories.categoryName": "Category name",
   "Products.GeneralInfoForm.RecommendedCategories.categoryPath": "Category path",
