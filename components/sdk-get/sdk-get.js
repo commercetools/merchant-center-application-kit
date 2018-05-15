@@ -48,7 +48,7 @@ export class SdkGet extends React.Component {
       onError: this.props.onError,
     });
   }
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (
       nextProps.shouldRefetch(
         this.props.actionCreatorArgs,
