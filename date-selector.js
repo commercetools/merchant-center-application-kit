@@ -66,7 +66,7 @@ class DateSelector extends React.PureComponent {
     disabled: false,
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     // TODO: Think about using a better solution (e.g. reselect) for a
     // cleaner implementation.
     //
@@ -79,7 +79,7 @@ class DateSelector extends React.PureComponent {
     this.monthOptions = this.getAvailableMonthOptions(this.props.locale);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     // If the value changed, update the state with the new date values.
     if (this.props.value !== nextProps.value)
       this.setState(this.parseDateValues(nextProps.value));
