@@ -363,14 +363,16 @@ describe('<RestrictedApplication>', () => {
         );
       });
       it('should pass "match" to <ProjectContainer>', () => {
-        expect(
-          routeRenderWrapper.find(ProjectContainer.displayName)
-        ).toHaveProp('match', routerProps.match);
+        expect(routeRenderWrapper.find(ProjectContainer)).toHaveProp(
+          'match',
+          routerProps.match
+        );
       });
       it('should pass "render" to <ProjectContainer>', () => {
-        expect(
-          routeRenderWrapper.find(ProjectContainer.displayName)
-        ).toHaveProp('render', props.render);
+        expect(routeRenderWrapper.find(ProjectContainer)).toHaveProp(
+          'render',
+          props.render
+        );
       });
       it('should render <ReconfigureFlopflip>', () => {
         expect(routeRenderWrapper).toRender(ReconfigureFlopFlip);

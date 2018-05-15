@@ -158,7 +158,7 @@ describe('rendering', () => {
             );
           });
           it('should render Notifier component', () => {
-            expect(notifierWrapper).toRender(Notifier.displayName);
+            expect(notifierWrapper).toRender(Notifier);
           });
         });
         describe('when trial days are greater than two weeks (14 days)', () => {
@@ -222,7 +222,7 @@ describe('rendering', () => {
           });
 
           it('should render Notifier component', () => {
-            expect(notifierWrapper).toRender(Notifier.displayName);
+            expect(notifierWrapper).toRender(Notifier);
           });
         });
       });
