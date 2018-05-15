@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
+import { injectIntl, intlShape } from 'react-intl';
 import isNil from 'lodash.isnil';
 import {
   STORAGE_KEYS as CORE_STORAGE_KEYS,
@@ -22,7 +22,7 @@ import ProjectWithoutSettings from '../project-without-settings';
 import ErrorApologizer from '../error-apologizer';
 import messages from './messages';
 
-export default class ProjectContainer extends React.Component {
+export class ProjectContainer extends React.Component {
   static displayName = 'ProjectContainer';
   static propTypes = {
     match: PropTypes.shape({
@@ -38,6 +38,7 @@ export default class ProjectContainer extends React.Component {
       availableProjects: PropTypes.array.isRequired,
     }),
     render: PropTypes.func.isRequired,
+    intl: intlShape.isRequired,
   };
   state = {
     hasError: false,
@@ -114,6 +115,7 @@ export default class ProjectContainer extends React.Component {
 
     // A trial expire notification should be displayed from 2 weeks before the project expires
     const minDaysToDisplayNotification = 14;
+    const maxDaysToDisplayNotification = 0;
 
     return (
       <FetchProject projectKey={this.props.match.params.projectKey}>
@@ -130,16 +132,15 @@ export default class ProjectContainer extends React.Component {
               {({ locale, setProjectDataLocale }) => (
                 <React.Fragment>
                   {!isNil(project.trialDaysLeft) &&
-                    project.trialDaysLeft <= minDaysToDisplayNotification && (
+                    project.trialDaysLeft <= minDaysToDisplayNotification &&
+                    project.trialDaysLeft >= maxDaysToDisplayNotification && (
                       <Notifier
                         kind="warning"
                         domain={DOMAINS.GLOBAL}
-                        message={
-                          <FormattedMessage
-                            {...messages.trialDaysLeft}
-                            values={{ daysLeft: project.trialDaysLeft }}
-                          />
-                        }
+                        text={this.props.intl.formatMessage(
+                          messages.trialDaysLeft,
+                          { daysLeft: project.trialDaysLeft }
+                        )}
                       />
                     )}
                   {/* Render <LocaleSwitcher> using a portal */}
@@ -170,3 +171,5 @@ export default class ProjectContainer extends React.Component {
     );
   }
 }
+
+export default injectIntl(ProjectContainer);

@@ -10,7 +10,7 @@ import FetchProject from '../fetch-project';
 import ProjectDataLocale from '../project-data-locale';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectWithoutSettings from '../project-without-settings';
-import ProjectContainer from './project-container';
+import { ProjectContainer } from './project-container';
 
 const createTestProps = custom => ({
   match: { params: { projectKey: 'test-1' } },
