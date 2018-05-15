@@ -4,6 +4,7 @@ import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import { DOMAINS } from '@commercetools-local/constants';
 import { reportErrorToSentry } from '@commercetools-local/sentry';
 import ConfigureIntlProvider from '../configure-intl-provider';
+import ProjectContainer from '../project-container';
 import FetchUser from '../fetch-user';
 import IntercomBooter from '../intercom-booter';
 import IntercomUserTracker from '../intercom-user-tracker';
@@ -362,16 +363,14 @@ describe('<RestrictedApplication>', () => {
         );
       });
       it('should pass "match" to <ProjectContainer>', () => {
-        expect(routeRenderWrapper.find('ProjectContainer')).toHaveProp(
-          'match',
-          routerProps.match
-        );
+        expect(
+          routeRenderWrapper.find(ProjectContainer.displayName)
+        ).toHaveProp('match', routerProps.match);
       });
       it('should pass "render" to <ProjectContainer>', () => {
-        expect(routeRenderWrapper.find('ProjectContainer')).toHaveProp(
-          'render',
-          props.render
-        );
+        expect(
+          routeRenderWrapper.find(ProjectContainer.displayName)
+        ).toHaveProp('render', props.render);
       });
       it('should render <ReconfigureFlopflip>', () => {
         expect(routeRenderWrapper).toRender(ReconfigureFlopFlip);
