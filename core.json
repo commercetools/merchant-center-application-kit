@@ -961,7 +961,7 @@
   "Discounts.DiscountCodesBulkActionsDropdown.delete": "Delete",
   "Discounts.DiscountCodesBulkActionsDropdown.label": "Actions",
   "Discounts.duplicate.product.title": "Duplicate a Product discount",
-  "Discounts.ListView.column.columnSortOrder": "Sort order",
+  "Discounts.ListView.column.columnSortOrder": "Rank",
   "Discounts.ListView.column.discountActive": "Active",
   "Discounts.ListView.column.discountAmount": "Type and amount",
   "Discounts.ListView.column.discountCodes": "Discount codes",
