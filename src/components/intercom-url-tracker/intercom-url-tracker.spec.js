@@ -20,10 +20,10 @@ describe('lifecycle', () => {
     props = createTestProps();
     wrapper = shallow(<IntercomUrlTracker {...props} />);
   });
-  describe('componentWillUpdate', () => {
+  describe('UNSAFE_componentWillUpdate(', () => {
     beforeEach(() => {
       mockChangePage = jest.fn();
-      wrapper.instance().componentWillUpdate();
+      wrapper.instance().UNSAFE_componentWillUpdate();
     });
     it('should call changePage', () => {
       expect(mockChangePage).toHaveBeenCalledTimes(1);

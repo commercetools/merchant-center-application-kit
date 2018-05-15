@@ -14,7 +14,7 @@ class IntercomUrlTracker extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
   };
-  componentWillUpdate() {
+  UNSAFE_componentWillUpdate() {
     intercom.changePage();
   }
   render() {
