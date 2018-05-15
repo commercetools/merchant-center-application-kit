@@ -190,7 +190,7 @@ describe('rendering', () => {
           });
 
           it('should not render Notifier component', () => {
-            expect(notifierWrapper).not.toRender(Notifier.displayName);
+            expect(notifierWrapper).not.toRender(Notifier);
           });
         });
         describe('when trial days are equal to two weeks (14 days)', () => {
