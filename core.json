@@ -762,6 +762,7 @@
   "Customers.ListView.column.firstName": "First name",
   "Customers.ListView.column.lastModifiedAt": "Modified on",
   "Customers.ListView.column.lastName": "Last name",
+  "Customers.ListView.filter.customerGroup": "Customer group",
   "Customers.ListView.noCustomersDescriptionLink": "Add a customer.",
   "Customers.ListView.noCustomersTitle": "There are no customers in this project.",
   "Customers.ListView.noResultsDescription": "Try changing the search settings.",
