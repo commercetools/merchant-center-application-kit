@@ -18,6 +18,7 @@ import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constant
 import * as storage from '@commercetools-local/utils/storage';
 import { withProject } from '../fetch-project';
 import styles from './navbar.mod.css';
+import { defaultNavigationItems } from './config';
 import messages from './messages';
 
 /*
@@ -477,7 +478,6 @@ export class NavBar extends React.PureComponent {
 
   static propTypes = {
     // From parent
-    menuItems: PropTypes.array.isRequired,
     projectKey: PropTypes.string.isRequired,
     useFullRedirectsForLinks: PropTypes.bool.isRequired,
     // Injected
@@ -500,7 +500,7 @@ export class NavBar extends React.PureComponent {
       >
         <DataMenu
           rootNode={this.node}
-          data={this.props.menuItems}
+          data={defaultNavigationItems}
           isForcedMenuOpen={this.props.isForcedMenuOpen}
           location={this.props.location}
           projectKey={this.props.projectKey}

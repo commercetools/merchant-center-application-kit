@@ -111,7 +111,6 @@ export const RestrictedApplication = props => (
                     user={user}
                     render={({ projectKey }) => (
                       <NavBar
-                        menuItems={props.menuItems}
                         projectKey={projectKey}
                         useFullRedirectsForLinks={
                           props.INTERNAL__isApplicationFallback
@@ -237,7 +236,6 @@ RestrictedApplication.displayName = 'RestrictedApplication';
 RestrictedApplication.propTypes = {
   i18n: PropTypes.object.isRequired,
   render: PropTypes.func.isRequired,
-  menuItems: PropTypes.array.isRequired,
   notificationsByDomain: PropTypes.shape({
     global: PropTypes.array.isRequired,
     page: PropTypes.array.isRequired,
@@ -295,13 +293,12 @@ export default class ApplicationShell extends React.Component {
   static propTypes = {
     i18n: PropTypes.object.isRequired,
     configuration: PropTypes.object.isRequired,
-    menuItems: PropTypes.array.isRequired,
     trackingEventWhitelist: PropTypes.objectOf(
       PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.objectOf(PropTypes.string),
-      ])
-    ).isRequired,
+      ]).isRequired
+    ),
     render: PropTypes.func.isRequired,
     notificationsByDomain: PropTypes.shape({
       global: PropTypes.array.isRequired,
@@ -317,6 +314,7 @@ export default class ApplicationShell extends React.Component {
     INTERNAL__isApplicationFallback: PropTypes.bool,
   };
   static defaultProps = {
+    trackingEventWhitelist: {},
     INTERNAL__isApplicationFallback: false,
   };
   componentDidMount() {
@@ -351,7 +349,6 @@ export default class ApplicationShell extends React.Component {
                                 <RestrictedApplication
                                   i18n={this.props.i18n}
                                   render={this.props.render}
-                                  menuItems={this.props.menuItems}
                                   notificationsByDomain={
                                     this.props.notificationsByDomain
                                   }

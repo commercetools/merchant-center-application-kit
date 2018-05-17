@@ -21,7 +21,6 @@ jest.mock('@commercetools-local/sentry');
 const createTestProps = props => ({
   i18n: { en: {}, 'en-US': { title: 'Title' }, de: { title: 'Titel' } },
   configuration: {},
-  menuItems: [],
   trackingEventWhitelist: {},
   render: jest.fn(),
   notificationsByDomain: {
