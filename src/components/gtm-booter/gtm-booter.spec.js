@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { boot } from '../../utils/gtm';
+import defaultTrackingEventWhitelist from '../../tracking-whitelist';
 import GtmBooter from './gtm-booter';
 
 jest.mock('../../utils/gtm', () => ({
@@ -30,7 +31,10 @@ describe('lifecycle', () => {
     });
     it('should call boot', () => {
       expect(boot).toHaveBeenCalledTimes(1);
-      expect(boot).toHaveBeenCalledWith(props.trackingEventWhitelist);
+      expect(boot).toHaveBeenCalledWith({
+        ...defaultTrackingEventWhitelist,
+        ...props.trackingEventWhitelist,
+      });
     });
   });
 });

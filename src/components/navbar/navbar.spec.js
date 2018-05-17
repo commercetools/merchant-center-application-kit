@@ -13,6 +13,7 @@ import {
   MenuItemDivider,
   ToggledWithPermissions,
 } from './navbar';
+import { defaultNavigationItems } from './config';
 
 jest.mock('@commercetools-local/utils/storage');
 
@@ -20,7 +21,6 @@ const createTestProps = props => ({
   location: {
     pathname: '',
   },
-  menuItems: [],
   projectKey: 'test-1',
   projectPermissions: {
     canManageCustomers: false,
@@ -87,7 +87,10 @@ describe('rendering', () => {
         expect(wrapper.find('DataMenu')).toHaveProp('rootNode');
       });
       it('should pass data as prop', () => {
-        expect(wrapper.find('DataMenu')).toHaveProp('data', props.menuItems);
+        expect(wrapper.find('DataMenu')).toHaveProp(
+          'data',
+          defaultNavigationItems
+        );
       });
       it('should pass projectKey as prop', () => {
         expect(wrapper.find('DataMenu')).toHaveProp(
