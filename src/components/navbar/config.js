@@ -373,8 +373,8 @@ export const defaultNavigationItems = [
   itemsDashboard,
   itemsProducts,
   itemsCategories,
-  itemsOrders,
   itemsCustomers,
+  itemsOrders,
   itemsDiscounts,
   itemsProjectSettings,
 ];
