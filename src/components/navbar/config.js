@@ -124,7 +124,7 @@ const itemsDashboard = {
 };
 
 const itemsDiscounts = {
-  name: 'mcng-discounts',
+  name: 'application-discounts',
   menu: {
     name: 'Discounts',
     link: 'discounts',
