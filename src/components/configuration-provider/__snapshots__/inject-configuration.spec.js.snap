@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HoC when requesting a configuration when a \`propName\` is passed should output correct tree 1`] = `
+<getContext(withProps(TestComponent))>
+  <withProps(TestComponent)
+    configuration={
+      Object {
+        "bar": Object {
+          "more": "values",
+        },
+        "baz": Object {
+          "much": "amaze",
+        },
+        "foo": Object {
+          "config": "value",
+        },
+      }
+    }
+  >
+    <TestComponent
+      configuration={
+        Object {
+          "bar": Object {
+            "more": "values",
+          },
+          "baz": Object {
+            "much": "amaze",
+          },
+          "foo": Object {
+            "config": "value",
+          },
+        }
+      }
+      someFooProp={
+        Object {
+          "config": "value",
+        }
+      }
+    >
+      <div>
+        Test
+      </div>
+    </TestComponent>
+  </withProps(TestComponent)>
+</getContext(withProps(TestComponent))>
+`;
+
+exports[`HoC when requesting a configuration when the configuration does not exist should output correct tree 1`] = `
+<getContext(withProps(TestComponent))>
+  <withProps(TestComponent)
+    configuration={
+      Object {
+        "bar": Object {
+          "more": "values",
+        },
+        "baz": Object {
+          "much": "amaze",
+        },
+        "foo": Object {
+          "config": "value",
+        },
+      }
+    }
+  >
+    <TestComponent>
+      <div>
+        Test
+      </div>
+    </TestComponent>
+  </withProps(TestComponent)>
+</getContext(withProps(TestComponent))>
+`;
+
+exports[`HoC when requesting a configuration when the configuration exists should output correct tree 1`] = `
+<getContext(withProps(TestComponent))>
+  <withProps(TestComponent)
+    configuration={
+      Object {
+        "bar": Object {
+          "more": "values",
+        },
+        "baz": Object {
+          "much": "amaze",
+        },
+        "foo": Object {
+          "config": "value",
+        },
+      }
+    }
+  >
+    <TestComponent
+      configuration={
+        Object {
+          "config": "value",
+        }
+      }
+    >
+      <div>
+        Test
+      </div>
+    </TestComponent>
+  </withProps(TestComponent)>
+</getContext(withProps(TestComponent))>
+`;
