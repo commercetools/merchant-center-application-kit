@@ -1,7 +1,6 @@
 import React from 'react';
 import { wrapDisplayName } from 'recompose';
-import { getIn } from 'formik';
-import { ConfigurationContext } from './configuration-provider';
+import { ConfigurationConsumer } from './configuration-consumer';
 
 const injectConfiguration = (
   pathToConfiguration,
@@ -11,14 +10,11 @@ const injectConfiguration = (
     static displayName = wrapDisplayName(Component, 'injectConfiguration');
     render() {
       return (
-        <ConfigurationContext.Consumer>
+        <ConfigurationConsumer pathToConfiguration={pathToConfiguration}>
           {configuration => (
-            <Component
-              {...this.props}
-              {...{ [propName]: getIn(configuration, pathToConfiguration) }}
-            />
+            <Component {...this.props} {...{ [propName]: configuration }} />
           )}
-        </ConfigurationContext.Consumer>
+        </ConfigurationConsumer>
       );
     }
   }
