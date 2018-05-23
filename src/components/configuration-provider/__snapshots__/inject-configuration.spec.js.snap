@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`HoC when requesting a configuration when a \`propName\` is passed should output correct tree 1`] = `undefined`;
-
-exports[`HoC when requesting a configuration when the configuration does not exist should output correct tree 1`] = `undefined`;
-
-exports[`HoC when requesting a configuration when the configuration exists should output correct tree 1`] = `undefined`;
