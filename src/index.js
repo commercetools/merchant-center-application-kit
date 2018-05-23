@@ -8,3 +8,8 @@ export {
   AppShellProviderForUserTimeZone,
   withUserTimeZone,
 } from './components/user-time-zone';
+export {
+  ConfigurationProvider,
+  ConfigurationConsumer,
+  injectConfiguration,
+} from './components/configuration';
