@@ -4,7 +4,7 @@ import { defaultMemoize } from 'reselect';
 import { compose, setDisplayName } from 'recompose';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { injectConfiguration } from '@commercetools-local/core/components/configuration';
+import { injectConfiguration } from '@commercetools-local/application-shell-connectors';
 
 export const getFlopflipReconfiguration = defaultMemoize(projectKey => ({
   custom: { project: projectKey },

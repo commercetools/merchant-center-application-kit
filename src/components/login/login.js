@@ -12,7 +12,7 @@ import {
   STORAGE_KEYS as CORE_STORAGE_KEYS,
 } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
-import { injectConfiguration } from '@commercetools-local/core/components/configuration';
+import { injectConfiguration } from '@commercetools-local/application-shell-connectors';
 import Notification from '@commercetools-local/core/components/notification';
 import Title from '@commercetools-local/core/components/title';
 import InfoDialog from '@commercetools-local/core/components/overlays/info-dialog';

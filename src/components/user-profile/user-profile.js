@@ -7,7 +7,7 @@ import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import Text from '@commercetools-local/ui-kit/typography/text';
 import { GRAPHQL_TARGETS, DOMAINS } from '@commercetools-local/constants';
 import Avatar from '@commercetools-local/core/components/avatar';
-import injectConfiguration from '@commercetools-local/core/components/configuration/inject-configuration';
+import { injectConfiguration } from '@commercetools-local/application-shell-connectors';
 import UserProfileForm from '../user-profile-form';
 import UpdateUserProfile from './user-profile.graphql';
 import styles from './user-profile.mod.css';

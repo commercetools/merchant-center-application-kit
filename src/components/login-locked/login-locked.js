@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { injectConfiguration } from '@commercetools-local/core/components/configuration';
+import { injectConfiguration } from '@commercetools-local/application-shell-connectors';
 import ProjectSuspended from '@commercetools-local/ui-kit/materials/images/maintenance/project-suspended.svg';
 import ServicePageResponseLayout from '@commercetools-local/core/components/service-page-response-layout';
 import Text from '@commercetools-local/ui-kit/typography/text';

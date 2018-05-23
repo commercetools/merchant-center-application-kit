@@ -12,6 +12,7 @@ import {
   reportErrorToSentry,
   SentryUserTracker,
 } from '@commercetools-local/sentry';
+import { ConfigurationProvider } from '@commercetools-local/application-shell-connectors';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
@@ -34,7 +35,6 @@ import IntercomUserTracker from '../intercom-user-tracker';
 import IntercomBooter from '../intercom-booter';
 // import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
-import { ConfigurationProvider } from '../configuration-provider';
 import PageRedirect from '../page-redirect';
 import GtmUserTracker from '../gtm-user-tracker';
 import GtmBooter from '../gtm-booter';
