@@ -1,6 +1,6 @@
 import React from 'react';
 import { wrapDisplayName } from 'recompose';
-import { ConfigurationConsumer } from './configuration-consumer';
+import ConfigurationConsumer from './configuration-consumer';
 
 const injectConfiguration = (
   pathToConfiguration,
