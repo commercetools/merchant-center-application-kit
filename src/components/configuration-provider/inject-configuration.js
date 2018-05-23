@@ -1,16 +1,29 @@
-import PropTypes from 'prop-types';
+import React from 'react';
+import { wrapDisplayName } from 'recompose';
 import { getIn } from 'formik';
-import { withProps, getContext, compose } from 'recompose';
+import { ConfigurationContext } from './configuration-provider';
 
-const injectConfiguration = (pathToConfiguration, propName) =>
-  withProps(props => ({
-    [propName]: getIn(props.configuration, pathToConfiguration),
-  }));
+const injectConfiguration = (
+  pathToConfiguration,
+  propName = 'configuration'
+) => Component => {
+  class EnhancedComponent extends React.PureComponent {
+    static displayName = wrapDisplayName(Component, 'injectConfiguration');
+    render() {
+      return (
+        <ConfigurationContext.Consumer>
+          {configuration => (
+            <Component
+              {...this.props}
+              {...{ [propName]: getIn(configuration, pathToConfiguration) }}
+            />
+          )}
+        </ConfigurationContext.Consumer>
+      );
+    }
+  }
 
-export default (pathToConfiguration, propName = 'configuration') =>
-  compose(
-    getContext({
-      configuration: PropTypes.object,
-    }),
-    injectConfiguration(pathToConfiguration, propName)
-  );
+  return EnhancedComponent;
+};
+
+export default injectConfiguration;

@@ -1,24 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+export const ConfigurationContext = React.createContext({});
+
 export default class ConfigurationProvider extends React.PureComponent {
   static displayName = 'ConfigurationProvider';
   static propTypes = {
     configuration: PropTypes.object.isRequired,
-    children: PropTypes.element,
+    children: PropTypes.node,
   };
-
-  static childContextTypes = {
-    configuration: PropTypes.object.isRequired,
-  };
-
-  getChildContext() {
-    return {
-      configuration: this.props.configuration,
-    };
-  }
 
   render() {
-    return React.Children.only(this.props.children);
+    return (
+      <ConfigurationContext.Provider value={this.props.configuration}>
+        {this.props.children}
+      </ConfigurationContext.Provider>
+    );
   }
 }

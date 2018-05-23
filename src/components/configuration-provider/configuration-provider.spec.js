@@ -18,39 +18,26 @@ describe('ConfigurationProvider', () => {
       );
     });
 
+    it('should match snapshot', () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should pass `configuration` to `<Provider>`', () => {
+      expect(wrapper).toRender({ value: configuration });
+    });
+
     describe('with children', () => {
       it('should render the children', () => {
-        expect(wrapper.type()).toBe('div');
+        expect(wrapper).toRender('div');
       });
     });
   });
-});
 
-describe('propTypes', () => {
-  it('should contain `configuration`', () => {
-    expect(ConfigurationProvider.propTypes.configuration).toBeDefined();
-  });
-});
-
-describe('childContextTypes', () => {
-  it('should contain `configuration`', () => {
-    expect(ConfigurationProvider.childContextTypes.configuration).toBeDefined();
-  });
-});
-
-describe('getChildContext', () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = shallow(
-      <ConfigurationProvider configuration={configuration}>
-        <div />
-      </ConfigurationProvider>
-    );
-  });
-
-  it('should return the `configuration`', () => {
-    expect(wrapper.instance().getChildContext().configuration).toBe(
-      configuration
-    );
+  describe('statics', () => {
+    describe('propTypes', () => {
+      it('should contain `configuration`', () => {
+        expect(ConfigurationProvider.propTypes.configuration).toBeDefined();
+      });
+    });
   });
 });
