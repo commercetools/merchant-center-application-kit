@@ -1,25 +1,3 @@
-// STORAGE
-export const STORAGE_KEYS = {
-  NONCE: 'nonce',
-  IS_AUTHENTICATED: 'isAuthenticated',
-  ACTIVE_PROJECT_KEY: 'activeProjectKey',
-  SELECTED_DATA_LOCALE: 'selectedDataLocale',
-  IS_FORCED_MENU_OPEN: 'isForcedMenuOpen',
-  IDENTITY_PROVIDER_URL: 'identityProviderUrl',
-};
-
-// SSO
-export const ORGANIZATION_GENERAL_ERROR = 'organizationGeneralError';
-export const INTERNAL_AUTH_PROVIDER = 'commercetools';
-export const EXTERNAL_AUTH_PROVIDER = 'external';
-// This is a key used as a public claim in a JWT. The key is prefixed by a
-// "collision-resistant namespace", in this case a "domain name".
-export const ACCESS_TOKEN_NAMESPACE = 'https://mc.ct.com/';
-export const ACCESS_TOKEN_IDP_URL_KEY = 'idp_url';
-export const LOGIN_STRATEGY_DEFAULT = 'default';
-export const LOGIN_STRATEGY_SSO = 'sso';
-export const ACCESS_TOKEN_IDP_URL = `${ACCESS_TOKEN_NAMESPACE}${ACCESS_TOKEN_IDP_URL_KEY}`;
-
 // NOTIFICATIONS
 export const SHOW_LOADING = 'SHOW_LOADING';
 export const HIDE_LOADING = 'HIDE_LOADING';
