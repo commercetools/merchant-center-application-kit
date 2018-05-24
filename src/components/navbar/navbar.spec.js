@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { UnconnectedRestrictedByPermissions } from '@commercetools-local/core/components/with-permissions';
 import * as storage from '@commercetools-local/utils/storage';
-import { STORAGE_KEYS } from '../../constants';
+import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import {
   NavBar,
   DataMenu,
@@ -234,6 +234,22 @@ describe('rendering', () => {
             expect(wrapper.find('MenuItemLink').at(0)).toHaveProp(
               'linkTo',
               '/test-1/customers'
+            );
+          });
+        });
+        describe('when `externalLink` is passed', () => {
+          beforeEach(() => {
+            props = createDataMenuTestProps({
+              data: defaultNavigationItems.filter(
+                item => item.name === 'mc-support'
+              ),
+            });
+            wrapper = shallow(<DataMenu {...props} />);
+          });
+          it('should pass externalLink as prop', () => {
+            expect(wrapper.find('MenuItemLink').at(0)).toHaveProp(
+              'externalLink',
+              MCSupportFormURL
             );
           });
         });
@@ -599,6 +615,33 @@ describe('rendering', () => {
   });
   describe('<MenuItemLink>', () => {
     const LinkLabel = () => <span>{'Customers'}</span>;
+    describe('when externalLink is defined', () => {
+      beforeEach(() => {
+        props = {
+          externalLink: '//www.externalLink.com',
+          exactMatch: true,
+          useFullRedirectsForLinks: false,
+          tracking: {
+            'data-track-component': 'Support-links',
+            'data-track-event': 'click',
+            'data-track-label': 'support_icon',
+          },
+        };
+        wrapper = shallow(
+          <MenuItemLink {...props}>
+            <LinkLabel />
+          </MenuItemLink>
+        );
+      });
+      it('should render <a> with provided href', () => {
+        expect(wrapper.find('a')).toHaveProp('href', props.externalLink);
+      });
+      it('should pass tracking props', () => {
+        expect(wrapper).toHaveProp('data-track-component', 'Support-links');
+        expect(wrapper).toHaveProp('data-track-event', 'click');
+        expect(wrapper).toHaveProp('data-track-label', 'support_icon');
+      });
+    });
     describe('when linkTo is defined', () => {
       beforeEach(() => {
         props = {

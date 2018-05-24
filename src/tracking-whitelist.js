@@ -14,6 +14,7 @@ const trackingEventWhitelist = {
   'Navigation-AddProduct': 'Navigation-AddProduct',
   'Navigation-DirectAccess': 'Navigation-DirectAccess',
   'Navigation-Taxes': 'Navigation-Taxes',
+  'Navigation-Support-links': 'Navigation-Support-links',
 };
 
 export default trackingEventWhitelist;
