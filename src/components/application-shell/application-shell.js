@@ -47,7 +47,7 @@ import './global-style-imports';
 const getBrowserLocale = () =>
   (window && window.navigator && window.navigator.language) || 'en';
 
-const extractLanguageFromLocale = locale =>
+export const extractLanguageFromLocale = locale =>
   locale.includes('-') ? locale.split('-')[0] : locale;
 
 /**

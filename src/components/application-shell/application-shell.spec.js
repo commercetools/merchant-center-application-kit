@@ -13,6 +13,7 @@ import AsyncUserProfile from '../user-profile/async';
 import ApplicationShell, {
   RestrictedApplication,
   UnrestrictedApplication,
+  extractLanguageFromLocale,
 } from './application-shell';
 
 jest.mock('@commercetools-local/utils/storage');
@@ -506,6 +507,29 @@ describe('lifecycle', () => {
     });
     it('should call onRegisterErrorListeners', () => {
       expect(props.onRegisterErrorListeners).toHaveBeenCalled();
+    });
+  });
+});
+
+describe('extractLanguageFromLocale', () => {
+  let locale;
+  let languageFromLocale;
+  describe('when the locale is a combination of language and region', () => {
+    beforeEach(() => {
+      locale = 'en-US';
+      languageFromLocale = extractLanguageFromLocale(locale);
+    });
+    it('should return only the language', () => {
+      expect(languageFromLocale).toBe('en');
+    });
+  });
+  describe('when the locale is is just the language', () => {
+    beforeEach(() => {
+      locale = 'de';
+      languageFromLocale = extractLanguageFromLocale(locale);
+    });
+    it('should return the locale itself', () => {
+      expect(languageFromLocale).toBe('de');
     });
   });
 });
