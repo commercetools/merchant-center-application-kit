@@ -9,6 +9,7 @@
     "@commercetools-local/browser-history": "*",
     "@commercetools-local/constants": "*",
     "@commercetools-local/notifications": "*",
-    "@commercetools-local/utils": "*"
+    "@commercetools-local/utils": "*",
+    "lodash.isnumber": "3.0.3"
   }
 }
