@@ -523,7 +523,7 @@ describe('extractLanguageFromLocale', () => {
       expect(languageFromLocale).toBe('en');
     });
   });
-  describe('when the locale is is just the language', () => {
+  describe('when the locale is just the language', () => {
     beforeEach(() => {
       locale = 'de';
       languageFromLocale = extractLanguageFromLocale(locale);
