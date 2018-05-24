@@ -5,6 +5,13 @@
   "license": "Proprietary",
   "private": true,
   "dependencies": {
-    "@commercetools-local/ui-kit": "*"
+    "@commercetools-local/ui-kit": "*",
+    "classnames": "2.2.5",
+    "lodash.range": "3.2.0",
+    "moment": "2.22.1",
+    "moment-timezone": "0.5.17",
+    "prop-types": "15.6.1",
+    "react": "16.4.0",
+    "react-select": "1.0.0-rc.5"
   }
 }
