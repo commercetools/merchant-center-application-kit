@@ -4,7 +4,20 @@
   "description": "",
   "license": "Proprietary",
   "private": true,
+  "scripts": {
+    "_enableMeWhenReady_postinstall": "echo 'This script is currently disabled (https://github.com/commercetools/merchant-center-frontend/pull/4402)'; exit 1; node ./scripts/generate-l10n-data.js"
+  },
   "dependencies": {
-    "@commercetools-local/sentry": "*"
+    "@commercetools-local/sentry": "*",
+    "prop-types": "15.6.1",
+    "react": "16.4.0",
+    "recompose": "0.26.0"
+  },
+  "devDependencies": {
+    "cldr": "4.8.0",
+    "moment-timezone": "0.5.17",
+    "node-fetch": "2.1.2",
+    "rimraf": "2.6.2",
+    "shelljs": "0.8.2"
   }
 }
