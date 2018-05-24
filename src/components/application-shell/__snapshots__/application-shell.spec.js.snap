@@ -24,9 +24,6 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
     >
       <React.Fragment>
         <Connect(RequestsInFlightLoader) />
-        <IntercomBooter
-          showNotification={[MockFunction]}
-        />
         <SentryUserTracker
           user={
             Object {
@@ -40,18 +37,6 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
           }
         />
         <GtmUserTracker
-          user={
-            Object {
-              "availableProjects": Array [],
-              "email": "john.snow@got.com",
-              "firstName": "John",
-              "id": "u1",
-              "language": "en-US",
-              "lastName": "Snow",
-            }
-          }
-        />
-        <branch(IntercomUserTracker)
           user={
             Object {
               "availableProjects": Array [],
@@ -182,9 +167,6 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
     >
       <React.Fragment>
         <Connect(RequestsInFlightLoader) />
-        <IntercomBooter
-          showNotification={[MockFunction]}
-        />
         <SentryUserTracker
           user={
             Object {
@@ -198,18 +180,6 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
           }
         />
         <GtmUserTracker
-          user={
-            Object {
-              "availableProjects": Array [],
-              "email": "john.snow@got.com",
-              "firstName": "John",
-              "id": "u1",
-              "language": "en-US",
-              "lastName": "Snow",
-            }
-          }
-        />
-        <branch(IntercomUserTracker)
           user={
             Object {
               "availableProjects": Array [],
