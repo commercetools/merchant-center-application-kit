@@ -1,15 +1,9 @@
 import { ADD_NOTIFICATION } from '@commercetools-local/notifications';
-import {
-  SWITCH_LOCALE,
-  SWITCH_PROJECT_LANGUAGE,
-  HIDE_ALL_PAGE_NOTIFICATIONS,
-} from '@commercetools-local/constants';
+import { HIDE_ALL_PAGE_NOTIFICATIONS } from '@commercetools-local/constants';
 import toGlobal from '@commercetools-local/utils/to-global';
 import {
   showApiErrorNotification,
   showUnexpectedErrorNotification,
-  switchLocale,
-  switchProjectLanguage,
   hideAllPageNotifications,
 } from './global';
 
@@ -65,26 +59,6 @@ describe('dispatching notifications', () => {
       })
     );
   });
-});
-
-it('dispatches the SWITCH_LOCALE action', () => {
-  const newLocale = 'en';
-  expect(switchLocale(newLocale)).toEqual(
-    toGlobal({
-      type: SWITCH_LOCALE,
-      payload: newLocale,
-    })
-  );
-});
-
-it('dispatches the SWITCH_PROJECT_LANGUAGE action', () => {
-  const newLocale = 'en';
-  expect(switchProjectLanguage(newLocale)).toEqual(
-    toGlobal({
-      type: SWITCH_PROJECT_LANGUAGE,
-      payload: newLocale,
-    })
-  );
 });
 
 it('dispatches the HIDE_ALL_PAGE_NOTIFICATIONS action', () => {

@@ -2,10 +2,7 @@ import isNumber from 'lodash.isnumber';
 import { addNotification } from '@commercetools-local/notifications';
 import {
   HIDE_ALL_PAGE_NOTIFICATIONS,
-  SWITCH_LOCALE,
-  SWITCH_PROJECT_LANGUAGE,
   DOMAINS,
-  LOGGED_IN,
   STATUS_CODES,
   LOGOUT_REASONS,
 } from '@commercetools-local/constants';
@@ -70,14 +67,6 @@ export function showNotification(notification, meta = {}) {
   return toGlobal(addNotification(notification, { ...meta, dismissAfter }));
 }
 
-export function switchLocale(locale) {
-  return toGlobal({ type: SWITCH_LOCALE, payload: locale });
-}
-
-export function switchProjectLanguage(lang) {
-  return toGlobal({ type: SWITCH_PROJECT_LANGUAGE, payload: lang });
-}
-
 export function hideAllPageNotifications() {
   return toGlobal({ type: HIDE_ALL_PAGE_NOTIFICATIONS });
 }
@@ -88,7 +77,7 @@ export const handleActionError = (error, source) => dispatch => {
   if (window.app.env !== 'production') console.error(error, error.stack);
 
   // logout when unauthorized
-  if (error.statusCode === STATUS_CODES.UNAUTHORIZED && source !== LOGGED_IN) {
+  if (error.statusCode === STATUS_CODES.UNAUTHORIZED) {
     browserHistory.push(`/logout?reason=${LOGOUT_REASONS.UNAUTHORIZED}`);
   }
 
