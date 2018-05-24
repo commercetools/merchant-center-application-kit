@@ -6,13 +6,13 @@ import { ConfigurationContext } from './configuration-provider';
 const ConfigurationConsumer = props => (
   <ConfigurationContext.Consumer>
     {configuration =>
-      props.children(getIn(configuration, this.propspathToConfiguration))
+      props.children(getIn(configuration, props.pathToConfiguration))
     }
   </ConfigurationContext.Consumer>
 );
 ConfigurationConsumer.displayName = 'ConfigurationConsumer';
 ConfigurationConsumer.propTypes = {
-  pathToConfiguration: PropTypes.string,
+  pathToConfiguration: PropTypes.array.isRequired,
   children: PropTypes.func.isRequired,
 };
 
