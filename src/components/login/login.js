@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { compose } from 'recompose';
 import classnames from 'classnames';
-import * as sdkActions from '@commercetools-local/sdk/actions';
 import { connect } from 'react-redux';
+import * as sdkActions from '@commercetools-local/sdk/actions';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import PrimaryButton from '@commercetools-local/ui-kit/buttons/primary-button';
 import {
