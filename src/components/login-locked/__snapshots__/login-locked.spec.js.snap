@@ -23,7 +23,7 @@ exports[`LockedAccount rendering rendering should match snapshot 1`] = `
       values={
         Object {
           "helpDeskLink": <HelpDeskLink />,
-          "resetPasswordLink": <getContext(withProps(ResetPasswordLink)) />,
+          "resetPasswordLink": <injectConfiguration(ResetPasswordLink) />,
         }
       }
     />

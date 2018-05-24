@@ -4,6 +4,7 @@ import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import { DOMAINS } from '@commercetools-local/constants';
 import { reportErrorToSentry } from '@commercetools-local/sentry';
 import ConfigureIntlProvider from '../configure-intl-provider';
+import ProjectContainer from '../project-container';
 import FetchUser from '../fetch-user';
 import IntercomBooter from '../intercom-booter';
 import IntercomUserTracker from '../intercom-user-tracker';
@@ -24,7 +25,6 @@ const createTestProps = props => ({
     de: { title: 'Titel' },
   },
   configuration: {},
-  menuItems: [],
   trackingEventWhitelist: {},
   render: jest.fn(),
   notificationsByDomain: {
@@ -37,6 +37,7 @@ const createTestProps = props => ({
   showApiErrorNotification: jest.fn(),
   showUnexpectedErrorNotification: jest.fn(),
   onRegisterErrorListeners: jest.fn(),
+  INTERNAL__isApplicationFallback: false,
   ...props,
 });
 
@@ -268,6 +269,12 @@ describe('<RestrictedApplication>', () => {
           'foo-1'
         );
       });
+      it('should pass "useFullRedirectsForLinks"', () => {
+        expect(routeRenderWrapper.find(NavBar)).toHaveProp(
+          'useFullRedirectsForLinks',
+          props.INTERNAL__isApplicationFallback
+        );
+      });
     });
     it('should render <Route> for "/account" below main container', () => {
       expect(wrapper.find('.main')).toRender({ path: '/account' });
@@ -324,10 +331,16 @@ describe('<RestrictedApplication>', () => {
           </div>
         );
       });
-      it('should render <Redirect> to "/dashboard', () => {
-        expect(routeRenderWrapper.find('Redirect')).toHaveProp(
+      it('should render <PageRedirect> to "/dashboard"', () => {
+        expect(routeRenderWrapper.find('PageRedirect')).toHaveProp(
           'to',
           '/foo-1/dashboard'
+        );
+      });
+      it('should render <PageRedirect> with "reload" to true', () => {
+        expect(routeRenderWrapper.find('PageRedirect')).toHaveProp(
+          'reload',
+          true
         );
       });
     });
@@ -364,13 +377,13 @@ describe('<RestrictedApplication>', () => {
         );
       });
       it('should pass "match" to <ProjectContainer>', () => {
-        expect(routeRenderWrapper.find('ProjectContainer')).toHaveProp(
+        expect(routeRenderWrapper.find(ProjectContainer)).toHaveProp(
           'match',
           routerProps.match
         );
       });
       it('should pass "render" to <ProjectContainer>', () => {
-        expect(routeRenderWrapper.find('ProjectContainer')).toHaveProp(
+        expect(routeRenderWrapper.find(ProjectContainer)).toHaveProp(
           'render',
           props.render
         );

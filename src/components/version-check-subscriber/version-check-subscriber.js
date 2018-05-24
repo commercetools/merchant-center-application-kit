@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { compose, setDisplayName } from 'recompose';
 import * as sdkActions from '@commercetools-local/sdk/actions';
 import { connect } from 'react-redux';
-import { injectConfiguration } from '@commercetools-local/core/components/configuration';
+import { injectConfiguration } from '@commercetools-local/application-shell-connectors';
 
 export class VersionCheckSubscriber extends React.PureComponent {
   static displayName = 'VersionCheckSubscriber';

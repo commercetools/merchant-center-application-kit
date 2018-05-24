@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Router, Redirect, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
-import { ConfigurationProvider } from '@commercetools-local/core/components/configuration';
 import { joinPaths } from '@commercetools-local/utils/url';
 import * as storage from '@commercetools-local/utils/storage';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-local/constants';
@@ -13,6 +12,7 @@ import {
   reportErrorToSentry,
   SentryUserTracker,
 } from '@commercetools-local/sentry';
+import { ConfigurationProvider } from '@commercetools-local/application-shell-connectors';
 import NotificationsList from '../notifications-list';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
@@ -35,6 +35,7 @@ import IntercomUserTracker from '../intercom-user-tracker';
 import IntercomBooter from '../intercom-booter';
 // import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
+import PageRedirect from '../page-redirect';
 import GtmUserTracker from '../gtm-user-tracker';
 import GtmBooter from '../gtm-booter';
 import NavBar from '../navbar';
@@ -116,8 +117,10 @@ export const RestrictedApplication = props => (
                     user={user}
                     render={({ projectKey }) => (
                       <NavBar
-                        menuItems={props.menuItems}
                         projectKey={projectKey}
+                        useFullRedirectsForLinks={
+                          props.INTERNAL__isApplicationFallback
+                        }
                       />
                     )}
                   />
@@ -173,7 +176,11 @@ export const RestrictedApplication = props => (
                         exact={true}
                         path="/:projectKey"
                         render={({ match }) => (
-                          <Redirect to={joinPaths(match.url, 'dashboard')} />
+                          <PageRedirect
+                            // We always do a full redirect in this case
+                            reload={true}
+                            to={joinPaths(match.url, 'dashboard')}
+                          />
                         )}
                       />
                       <Route
@@ -235,7 +242,6 @@ RestrictedApplication.displayName = 'RestrictedApplication';
 RestrictedApplication.propTypes = {
   i18n: PropTypes.object.isRequired,
   render: PropTypes.func.isRequired,
-  menuItems: PropTypes.array.isRequired,
   notificationsByDomain: PropTypes.shape({
     global: PropTypes.array.isRequired,
     page: PropTypes.array.isRequired,
@@ -245,6 +251,7 @@ RestrictedApplication.propTypes = {
   mapPluginNotificationToComponent: PropTypes.func,
   showApiErrorNotification: PropTypes.func,
   showUnexpectedErrorNotification: PropTypes.func,
+  INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
 };
 
 /**
@@ -292,13 +299,12 @@ export default class ApplicationShell extends React.Component {
   static propTypes = {
     i18n: PropTypes.object.isRequired,
     configuration: PropTypes.object.isRequired,
-    menuItems: PropTypes.array.isRequired,
     trackingEventWhitelist: PropTypes.objectOf(
       PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.objectOf(PropTypes.string),
-      ])
-    ).isRequired,
+      ]).isRequired
+    ),
     render: PropTypes.func.isRequired,
     notificationsByDomain: PropTypes.shape({
       global: PropTypes.array.isRequired,
@@ -310,6 +316,12 @@ export default class ApplicationShell extends React.Component {
     showApiErrorNotification: PropTypes.func,
     showUnexpectedErrorNotification: PropTypes.func,
     onRegisterErrorListeners: PropTypes.func.isRequired,
+    // Internal usage only, does not need to be documented
+    INTERNAL__isApplicationFallback: PropTypes.bool,
+  };
+  static defaultProps = {
+    trackingEventWhitelist: {},
+    INTERNAL__isApplicationFallback: false,
   };
   componentDidMount() {
     this.props.onRegisterErrorListeners();
@@ -343,7 +355,6 @@ export default class ApplicationShell extends React.Component {
                                 <RestrictedApplication
                                   i18n={this.props.i18n}
                                   render={this.props.render}
-                                  menuItems={this.props.menuItems}
                                   notificationsByDomain={
                                     this.props.notificationsByDomain
                                   }
@@ -356,6 +367,9 @@ export default class ApplicationShell extends React.Component {
                                   }
                                   showUnexpectedErrorNotification={
                                     this.props.showUnexpectedErrorNotification
+                                  }
+                                  INTERNAL__isApplicationFallback={
+                                    this.props.INTERNAL__isApplicationFallback
                                   }
                                 />
                               );

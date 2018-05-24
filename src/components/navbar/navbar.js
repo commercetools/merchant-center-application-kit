@@ -18,6 +18,7 @@ import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constant
 import * as storage from '@commercetools-local/utils/storage';
 import { withProject } from '../fetch-project';
 import styles from './navbar.mod.css';
+import { defaultNavigationItems } from './config';
 import messages from './messages';
 
 /*
@@ -113,28 +114,39 @@ MenuItem.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export const MenuItemLink = props =>
-  props.linkTo ? (
-    <NavLink
-      to={props.linkTo}
-      exact={props.exactMatch}
-      activeClassName={styles.highlighted}
-      className={styles['text-link']}
-    >
-      {props.children}
-    </NavLink>
-  ) : (
-    props.children
-  );
-MenuItemLink.displayName = 'MenuItemLink';
-MenuItemLink.defaultProps = {
-  exactMatch: false,
-};
-MenuItemLink.propTypes = {
-  linkTo: PropTypes.string,
-  exactMatch: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-};
+export class MenuItemLink extends React.PureComponent {
+  static displayName = 'MenuItemLink';
+  static propTypes = {
+    linkTo: PropTypes.string,
+    exactMatch: PropTypes.bool,
+    children: PropTypes.node.isRequired,
+    useFullRedirectsForLinks: PropTypes.bool.isRequired,
+  };
+  static defaultProps = {
+    exactMatch: false,
+  };
+  redirectTo = targetUrl => window.location.replace(targetUrl);
+  render() {
+    return this.props.linkTo ? (
+      <NavLink
+        to={this.props.linkTo}
+        exact={this.props.exactMatch}
+        activeClassName={styles.highlighted}
+        className={styles['text-link']}
+        onClick={event => {
+          if (this.props.useFullRedirectsForLinks) {
+            event.preventDefault();
+            this.redirectTo(this.props.linkTo);
+          }
+        }}
+      >
+        {this.props.children}
+      </NavLink>
+    ) : (
+      this.props.children
+    );
+  }
+}
 
 // This component just render two divs with borders in order to differentiate
 // the settings plugin from the other ones
@@ -233,6 +245,7 @@ export class DataMenu extends React.PureComponent {
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
+    useFullRedirectsForLinks: PropTypes.bool.isRequired,
   };
   state = {
     activeItemIndex: null,
@@ -386,6 +399,9 @@ export class DataMenu extends React.PureComponent {
                         ? `/${this.props.projectKey}/${menu.link}`
                         : null
                     }
+                    useFullRedirectsForLinks={
+                      this.props.useFullRedirectsForLinks
+                    }
                   >
                     <div className={styles['item-icon-text']}>
                       <div className={styles.icon}>
@@ -425,10 +441,13 @@ export class DataMenu extends React.PureComponent {
                               <div className={styles.text}>
                                 <MenuItemLink
                                   linkTo={oneLineTrim`
-                                /${this.props.projectKey}
-                                /${submenu.link}
-                              `}
+                                    /${this.props.projectKey}
+                                    /${submenu.link}
+                                  `}
                                   exactMatch={true}
+                                  useFullRedirectsForLinks={
+                                    this.props.useFullRedirectsForLinks
+                                  }
                                 >
                                   <FormattedMessage
                                     {...messages[submenu.labelKey]}
@@ -459,8 +478,8 @@ export class NavBar extends React.PureComponent {
 
   static propTypes = {
     // From parent
-    menuItems: PropTypes.array.isRequired,
     projectKey: PropTypes.string.isRequired,
+    useFullRedirectsForLinks: PropTypes.bool.isRequired,
     // Injected
     location: PropTypes.object.isRequired,
     isForcedMenuOpen: PropTypes.bool,
@@ -481,11 +500,12 @@ export class NavBar extends React.PureComponent {
       >
         <DataMenu
           rootNode={this.node}
-          data={this.props.menuItems}
+          data={defaultNavigationItems}
           isForcedMenuOpen={this.props.isForcedMenuOpen}
           location={this.props.location}
           projectKey={this.props.projectKey}
           projectPermissions={this.props.projectPermissions}
+          useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}
         />
       </nav>
     );

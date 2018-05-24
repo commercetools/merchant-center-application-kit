@@ -18,6 +18,7 @@ export {
   default as NotificationsConnector,
   notificationsReducer,
 } from './components/notifications-connector';
+export { default as RouteCatchAll } from './components/route-catch-all';
 export { default as reduxStore } from './configure-store';
 export {
   default as setupGlobalErrorListener,

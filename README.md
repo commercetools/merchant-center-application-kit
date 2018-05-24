@@ -28,8 +28,7 @@ import * as globalActions from '@commercetools-local/actions-global';
 import PageNotFound from '@commercetools-local/core/components/page-not-found';
 import * as i18n from '@commercetools-local/i18n';
 
-// NOTE: the following relative imports depend on the location of this file.
-import { menuItems, trackingEventWhitelist } from '../../plugins';
+import trackingEventWhitelist from './tracking-whitelist';
 
 // Ensure to setup the global error listener before any React component renders
 // in order to catch possible errors on rendering/mounting.
@@ -47,7 +46,6 @@ const EntryPoint = () => (
         <ApplicationShell
           i18n={i18n}
           configuration={window.app}
-          menuItems={menuItems}
           trackingEventWhitelist={trackingEventWhitelist}
           notificationsByDomain={notificationsByDomain}
           showNotification={showNotification}
@@ -81,7 +79,6 @@ ReactDOM.render(<EntryPoint />, document.getElementById('root'));
 | --------------------------------- | -------- | :------: | ------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | `i18n`                            | `object` |    ✅    | -       | An object containing all the translated messages per locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`).          |
 | `configuration`                   | `object` |    ✅    | -       | The current `window.app`.                                                                                                                     |
-| `menuItems`                       | `array`  |    ✅    | -       | A list of menu item definitions (see `./src/example/fixtures/menu-items.js`).                                                                 |
 | `render`                          | `func`   |    ✅    | -       | The function to render the application specific part. This function is executed only when the application specific part needs to be rendered. |
 | `trackingEventWhitelist`          | `object` |    ✅    | -       | An object containing a map of tracking events (_this mapping is required for backwards compatibility, it might be removed in the future_)     |
 | `notificationsByDomain`           | `object` |    ✅    | -       | Simply proxy the prop provided by `NotificationsConnector`                                                                                    |

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as gtm from '../../utils/gtm';
+import defaultTrackingEventWhitelist from '../../tracking-whitelist';
 
 const mcngShape = PropTypes.shape({
   track: PropTypes.func.isRequired,
@@ -35,7 +36,10 @@ class GtmBooter extends React.Component {
   componentDidMount() {
     // We don't need any user data to start using GTM, for example for
     // tracking page views and flows when the user is not logged in.
-    gtm.boot(this.props.trackingEventWhitelist);
+    gtm.boot({
+      ...defaultTrackingEventWhitelist,
+      ...this.props.trackingEventWhitelist,
+    });
   }
   render() {
     return this.props.children;

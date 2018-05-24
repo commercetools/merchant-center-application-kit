@@ -4,11 +4,13 @@ import { Redirect } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
+import { intlMock } from '@commercetools-local/test-utils';
+import Notifier from '@commercetools-local/core/components/notifier';
 import FetchProject from '../fetch-project';
 import ProjectDataLocale from '../project-data-locale';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectWithoutSettings from '../project-without-settings';
-import ProjectContainer from './project-container';
+import { ProjectContainer } from './project-container';
 
 const createTestProps = custom => ({
   match: { params: { projectKey: 'test-1' } },
@@ -17,6 +19,8 @@ const createTestProps = custom => ({
   },
   isLoadingUser: false,
   user: { availableProjects: [] },
+  showNotification: jest.fn(),
+  intl: intlMock,
   render: jest.fn(),
   ...custom,
 });
@@ -123,6 +127,103 @@ describe('rendering', () => {
         });
         it('should render <ProjectSuspended>', () => {
           expect(fetchProjectChildrenWrapper).toRender('ProjectSuspended');
+        });
+      });
+      describe('when project has trialDaysLeft', () => {
+        describe('when trial days are less than two weeks (14 days)', () => {
+          let notifierWrapper;
+          beforeEach(() => {
+            fetchProjectChildrenWrapper = shallow(
+              <div>
+                {wrapper.find(FetchProject).prop('children')({
+                  isLoading: false,
+                  project: {
+                    suspended: false,
+                    expired: false,
+                    settings: {},
+                    languages: ['de'],
+                    trialDaysLeft: 13,
+                  },
+                })}
+              </div>
+            );
+            notifierWrapper = shallow(
+              <div>
+                {fetchProjectChildrenWrapper
+                  .find(ProjectDataLocale)
+                  .prop('children')({
+                  locales: ['de'],
+                })}
+              </div>
+            );
+          });
+          it('should render Notifier component', () => {
+            expect(notifierWrapper).toRender(Notifier);
+          });
+        });
+        describe('when trial days are greater than two weeks (14 days)', () => {
+          let notifierWrapper;
+          beforeEach(() => {
+            fetchProjectChildrenWrapper = shallow(
+              <div>
+                {wrapper.find(FetchProject).prop('children')({
+                  isLoading: false,
+                  project: {
+                    suspended: false,
+                    expired: false,
+                    settings: {},
+                    languages: ['de'],
+                    trialDaysLeft: 16,
+                  },
+                })}
+              </div>
+            );
+            notifierWrapper = shallow(
+              <div>
+                {fetchProjectChildrenWrapper
+                  .find(ProjectDataLocale)
+                  .prop('children')({
+                  locales: ['de'],
+                })}
+              </div>
+            );
+          });
+
+          it('should not render Notifier component', () => {
+            expect(notifierWrapper).not.toRender(Notifier);
+          });
+        });
+        describe('when trial days are equal to two weeks (14 days)', () => {
+          let notifierWrapper;
+          beforeEach(() => {
+            fetchProjectChildrenWrapper = shallow(
+              <div>
+                {wrapper.find(FetchProject).prop('children')({
+                  isLoading: false,
+                  project: {
+                    suspended: false,
+                    expired: false,
+                    settings: {},
+                    languages: ['de'],
+                    trialDaysLeft: 14,
+                  },
+                })}
+              </div>
+            );
+            notifierWrapper = shallow(
+              <div>
+                {fetchProjectChildrenWrapper
+                  .find(ProjectDataLocale)
+                  .prop('children')({
+                  locales: ['de'],
+                })}
+              </div>
+            );
+          });
+
+          it('should render Notifier component', () => {
+            expect(notifierWrapper).toRender(Notifier);
+          });
         });
       });
       describe('when project is expired', () => {

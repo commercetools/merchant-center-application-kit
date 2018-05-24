@@ -13,6 +13,7 @@ import {
   MenuItemDivider,
   ToggledWithPermissions,
 } from './navbar';
+import { defaultNavigationItems } from './config';
 
 jest.mock('@commercetools-local/utils/storage');
 
@@ -20,7 +21,6 @@ const createTestProps = props => ({
   location: {
     pathname: '',
   },
-  menuItems: [],
   projectKey: 'test-1',
   projectPermissions: {
     canManageCustomers: false,
@@ -40,6 +40,7 @@ const createTestProps = props => ({
     canViewTypes: false,
   },
   isForcedMenuOpen: false,
+  useFullRedirectsForLinks: false,
   ...props,
 });
 
@@ -86,7 +87,10 @@ describe('rendering', () => {
         expect(wrapper.find('DataMenu')).toHaveProp('rootNode');
       });
       it('should pass data as prop', () => {
-        expect(wrapper.find('DataMenu')).toHaveProp('data', props.menuItems);
+        expect(wrapper.find('DataMenu')).toHaveProp(
+          'data',
+          defaultNavigationItems
+        );
       });
       it('should pass projectKey as prop', () => {
         expect(wrapper.find('DataMenu')).toHaveProp(
@@ -428,6 +432,12 @@ describe('rendering', () => {
                 '/test-1/customers/new'
               );
             });
+            it('should pass "useFullRedirectsForLinks" as prop', () => {
+              expect(wrapper.find('MenuItemLink').at(1)).toHaveProp(
+                'useFullRedirectsForLinks',
+                props.useFullRedirectsForLinks
+              );
+            });
             it('should render submenu labelKey', () => {
               expect(wrapper.find('MenuItemLink').at(1)).toRender({
                 id: 'NavBar.Customers.add',
@@ -594,6 +604,7 @@ describe('rendering', () => {
         props = {
           linkTo: '/test-1/customers',
           exactMatch: true,
+          useFullRedirectsForLinks: false,
         };
         wrapper = shallow(
           <MenuItemLink {...props}>
@@ -619,11 +630,52 @@ describe('rendering', () => {
       it('should render children', () => {
         expect(wrapper).toRender(LinkLabel);
       });
+      describe('when onClick is called', () => {
+        let mockedEvent;
+        describe('if useFullRedirectsForLinks is true', () => {
+          beforeEach(() => {
+            mockedEvent = { preventDefault: jest.fn() };
+            wrapper = shallow(
+              <MenuItemLink {...props} useFullRedirectsForLinks={true}>
+                <LinkLabel />
+              </MenuItemLink>
+            );
+            wrapper.instance().redirectTo = jest.fn();
+            wrapper.find('NavLink').prop('onClick')(mockedEvent);
+          });
+          it('should call preventDefault on the event', () => {
+            expect(mockedEvent.preventDefault).toHaveBeenCalled();
+          });
+          it('should call redirectTo', () => {
+            expect(wrapper.instance().redirectTo).toHaveBeenCalledWith(
+              props.linkTo
+            );
+          });
+        });
+        describe('if useFullRedirectsForLinks is false', () => {
+          beforeEach(() => {
+            mockedEvent = { preventDefault: jest.fn() };
+            wrapper = shallow(
+              <MenuItemLink {...props} useFullRedirectsForLinks={false}>
+                <LinkLabel />
+              </MenuItemLink>
+            );
+            wrapper.instance().redirectTo = jest.fn();
+            wrapper.find('NavLink').prop('onClick')(mockedEvent);
+          });
+          it('should not call preventDefault on the event', () => {
+            expect(mockedEvent.preventDefault).not.toHaveBeenCalled();
+          });
+          it('should not call redirectTo', () => {
+            expect(wrapper.instance().redirectTo).not.toHaveBeenCalled();
+          });
+        });
+      });
     });
     describe('when linkTo is not defined', () => {
       beforeEach(() => {
         wrapper = shallow(
-          <MenuItemLink>
+          <MenuItemLink useFullRedirectsForLinks={false}>
             <LinkLabel />
           </MenuItemLink>
         );

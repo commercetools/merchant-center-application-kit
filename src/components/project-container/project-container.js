@@ -2,8 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
+import { injectIntl, intlShape } from 'react-intl';
+import isNil from 'lodash.isnil';
+import {
+  STORAGE_KEYS as CORE_STORAGE_KEYS,
+  DOMAINS,
+} from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
+import Notifier from '@commercetools-local/core/components/notifier';
 import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
 import { reportErrorToSentry } from '@commercetools-local/sentry';
 import LocaleSwitcher from '../locale-switcher';
@@ -14,8 +20,9 @@ import ProjectExpired from '../project-expired';
 import ProjectSuspended from '../project-suspended';
 import ProjectWithoutSettings from '../project-without-settings';
 import ErrorApologizer from '../error-apologizer';
+import messages from './messages';
 
-class ProjectContainer extends React.Component {
+export class ProjectContainer extends React.Component {
   static displayName = 'ProjectContainer';
   static propTypes = {
     match: PropTypes.shape({
@@ -31,6 +38,7 @@ class ProjectContainer extends React.Component {
       availableProjects: PropTypes.array.isRequired,
     }),
     render: PropTypes.func.isRequired,
+    intl: intlShape.isRequired,
   };
   state = {
     hasError: false,
@@ -59,6 +67,7 @@ class ProjectContainer extends React.Component {
       localeSwitcherNode: document.getElementById('locale-switcher'),
     });
   }
+
   componentDidUpdate(prevProps) {
     this.setState(
       prevState =>
@@ -94,6 +103,7 @@ class ProjectContainer extends React.Component {
       availableLocales={switcherProps.availableLocales}
     />
   );
+
   render() {
     if (this.state.hasError) {
       return <ErrorApologizer />;
@@ -102,6 +112,10 @@ class ProjectContainer extends React.Component {
     if (this.props.isLoadingUser) return <LoadingSpinner />;
     if (this.props.user && this.props.user.availableProjects.length === 0)
       return <Redirect to="/logout?reason=no-projects" />;
+
+    // A trial expire notification should be displayed from 2 weeks before the project expires
+    const minDaysToDisplayNotification = 14;
+    const maxDaysToDisplayNotification = 0;
 
     return (
       <FetchProject projectKey={this.props.match.params.projectKey}>
@@ -117,6 +131,18 @@ class ProjectContainer extends React.Component {
             <ProjectDataLocale locales={project.languages}>
               {({ locale, setProjectDataLocale }) => (
                 <React.Fragment>
+                  {!isNil(project.trialDaysLeft) &&
+                    project.trialDaysLeft <= minDaysToDisplayNotification &&
+                    project.trialDaysLeft >= maxDaysToDisplayNotification && (
+                      <Notifier
+                        kind="warning"
+                        domain={DOMAINS.GLOBAL}
+                        text={this.props.intl.formatMessage(
+                          messages.trialDaysLeft,
+                          { daysLeft: project.trialDaysLeft }
+                        )}
+                      />
+                    )}
                   {/* Render <LocaleSwitcher> using a portal */}
                   {this.state.localeSwitcherNode &&
                     // Render the `<LocaleSwitcher>` only if the project has more
@@ -146,4 +172,4 @@ class ProjectContainer extends React.Component {
   }
 }
 
-export default ProjectContainer;
+export default injectIntl(ProjectContainer);

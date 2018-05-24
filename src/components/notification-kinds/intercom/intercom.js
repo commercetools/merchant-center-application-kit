@@ -5,7 +5,7 @@ import { compose } from 'recompose';
 import { graphql } from 'react-apollo';
 import { GRAPHQL_TARGETS, DOMAINS } from '@commercetools-local/constants';
 import Notification from '@commercetools-local/core/components/notification';
-import { injectConfiguration } from '@commercetools-local/core/components/configuration';
+import { injectConfiguration } from '@commercetools-local/application-shell-connectors';
 import { INTERCOM_TRACKING_STATUS } from '../../../constants';
 import ChangeIntercomStatus from './intercom.graphql';
 import styles from './intercom.mod.css';
