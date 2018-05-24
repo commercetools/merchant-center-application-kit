@@ -8,7 +8,10 @@ import withMouseOverState from '@commercetools-local/ui-kit/hocs/with-mouse-over
 import { CaretDownIcon } from '@commercetools-local/ui-kit/icons';
 import Text from '@commercetools-local/ui-kit/typography/text';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
-import { LOGOUT_REASONS } from '@commercetools-local/constants';
+import {
+  LOGOUT_REASONS,
+  MCSupportFormURL,
+} from '@commercetools-local/constants';
 import formatUserName from '@commercetools-local/utils/user';
 import Avatar from '@commercetools-local/core/components/avatar';
 import Card from '@commercetools-local/core/components/card';
@@ -96,6 +99,20 @@ export default class UserSettingsMenu extends React.PureComponent {
                     <div className={styles.item}>
                       <Spacings.Inset scale="s">
                         <FormattedMessage {...messages.privacyPolicy} />
+                      </Spacings.Inset>
+                    </div>
+                  </a>
+                  <a
+                    href={MCSupportFormURL}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    data-track-component="Navigation-Support-links"
+                    data-track-event="click"
+                    data-track-label="support_textlink"
+                  >
+                    <div className={styles.item}>
+                      <Spacings.Inset scale="s">
+                        <FormattedMessage {...messages.support} />
                       </Spacings.Inset>
                     </div>
                   </a>

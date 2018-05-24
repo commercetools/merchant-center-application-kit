@@ -6,6 +6,11 @@ export default defineMessages({
     description: 'The label for user profile option',
     defaultMessage: 'My Profile',
   },
+  support: {
+    id: 'UserSettingsMenu.support',
+    description: 'The label for Support',
+    defaultMessage: 'Support',
+  },
   logout: {
     id: 'UserSettingsMenu.logout',
     description: 'The label for logout option',
