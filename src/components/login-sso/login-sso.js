@@ -19,10 +19,7 @@ import { messages as validationMessages } from '@commercetools-local/utils/valid
 import Title from '@commercetools-local/core/components/title';
 import LabelField from '@commercetools-local/core/components/fields/label-field';
 import Notification from '@commercetools-local/core/components/notification';
-import {
-  ORGANIZATION_GENERAL_ERROR,
-  STORAGE_KEYS,
-} from '@commercetools-local/constants';
+import { ORGANIZATION_GENERAL_ERROR, STORAGE_KEYS } from '../../constants';
 import PublicPageContainer from '../public-page-container';
 import LoginBox from '../login-box';
 import loginStyles from '../login/login.mod.css';

@@ -1,8 +1,6 @@
 import { ApolloLink } from 'apollo-link';
-import {
-  GRAPHQL_TARGETS,
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-} from '@commercetools-local/constants';
+import { GRAPHQL_TARGETS } from '@commercetools-local/constants';
+import { STORAGE_KEYS } from '../constants';
 import { getCorrelationId } from '../utils';
 
 const isKnownTarget = target => Object.values(GRAPHQL_TARGETS).includes(target);
@@ -17,7 +15,7 @@ export const createHeaderLink = ({ storage }) =>
         `GraphQL target "${target}" is missing or is not supported`
       );
 
-    const projectKey = storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
+    const projectKey = storage.get(STORAGE_KEYS.ACTIVE_PROJECT_KEY);
     // NOTE: keep header names with capital letters to avoid possible conflicts
     // or problems with nginx.
     operation.setContext({

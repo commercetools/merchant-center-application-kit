@@ -1,9 +1,6 @@
 import { onError } from 'apollo-link-error';
-import {
-  STATUS_CODES,
-  LOGOUT_REASONS,
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-} from '@commercetools-local/constants';
+import { STATUS_CODES, LOGOUT_REASONS } from '@commercetools-local/constants';
+import { STORAGE_KEYS } from '../constants';
 
 /* eslint-disable import/prefer-default-export */
 // Checks response from GraphQL in order to scan 401 errors and redirect the
@@ -11,7 +8,7 @@ import {
 export const createErrorLink = ({ history, storage }) =>
   onError(({ networkError }) => {
     const isAuthenticated =
-      storage.get(CORE_STORAGE_KEYS.IS_AUTHENTICATED) === 'true';
+      storage.get(STORAGE_KEYS.IS_AUTHENTICATED) === 'true';
 
     if (
       networkError &&

@@ -2,10 +2,10 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { Redirect } from 'react-router-dom';
 import { shallow } from 'enzyme';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import { intlMock } from '@commercetools-local/test-utils';
 import Notifier from '@commercetools-local/core/components/notifier';
+import { STORAGE_KEYS } from '../../constants';
 import FetchProject from '../fetch-project';
 import ProjectDataLocale from '../project-data-locale';
 import LocaleSwitcher from '../locale-switcher';
@@ -477,7 +477,7 @@ describe('lifecycle', () => {
       });
       it('should cache projectKey into storage', () => {
         expect(storage.put).toHaveBeenCalledWith(
-          CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY,
+          STORAGE_KEYS.ACTIVE_PROJECT_KEY,
           'p1'
         );
       });
@@ -485,16 +485,13 @@ describe('lifecycle', () => {
     describe('when a different projectKey is cached', () => {
       beforeEach(() => {
         props = createTestProps({ match: { params: { projectKey: 'p1' } } });
-        storage.get.mockReturnValueOnce(
-          CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY,
-          'p2'
-        );
+        storage.get.mockReturnValueOnce(STORAGE_KEYS.ACTIVE_PROJECT_KEY, 'p2');
         wrapper = shallow(<ProjectContainer {...props} />);
         wrapper.instance().componentDidUpdate(props);
       });
       it('should cache projectKey into storage', () => {
         expect(storage.put).toHaveBeenLastCalledWith(
-          CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY,
+          STORAGE_KEYS.ACTIVE_PROJECT_KEY,
           'p1'
         );
       });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
+import { STORAGE_KEYS } from '../../constants';
 import ProjectDataLocale from './project-data-locale';
 
 jest.mock('@commercetools-local/utils/storage');
@@ -88,7 +88,7 @@ describe('lifecycle', () => {
       });
       describe('when cached locale is not listed in the project locales', () => {
         beforeEach(() => {
-          storage.put(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
+          storage.put(STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
           nextProps = { locales: ['it', 'de'] };
           derivedState = ProjectDataLocale.getDerivedStateFromProps(
             nextProps,

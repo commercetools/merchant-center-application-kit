@@ -6,7 +6,11 @@ import {
   REMOVE_NOTIFICATION,
 } from '@commercetools-local/notifications';
 import { createMiddleware as createSdkMiddleware } from '@commercetools-local/sdk';
-import * as constants from '@commercetools-local/constants';
+import {
+  SHOW_LOADING,
+  HIDE_LOADING,
+  HIDE_ALL_PAGE_NOTIFICATIONS,
+} from '@commercetools-local/constants';
 import addPluginToNotificationMiddleware from './middleware/add-plugin-to-notification';
 import batchedUpdates from './middleware/batched-updates';
 import createExtractGlobalActions from './middleware/create-extract-global-actions';
@@ -40,11 +44,11 @@ const store = createStore(
       addPluginToNotificationMiddleware,
       createExtractGlobalActions([
         /* list of action types plugins may dispatch globally */
-        constants.SHOW_LOADING,
-        constants.HIDE_LOADING,
+        SHOW_LOADING,
+        HIDE_LOADING,
         ADD_NOTIFICATION,
         REMOVE_NOTIFICATION,
-        constants.HIDE_ALL_PAGE_NOTIFICATIONS,
+        HIDE_ALL_PAGE_NOTIFICATIONS,
       ]),
       createScopedMiddleware(thunk),
       sentryTrackingMiddleware,
@@ -60,7 +64,7 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__
       ? window.__REDUX_DEVTOOLS_EXTENSION__({
           actionSanitizer: actionTransformer,
-          actionsBlacklist: [constants.SHOW_LOADING, constants.HIDE_LOADING],
+          actionsBlacklist: [SHOW_LOADING, HIDE_LOADING],
         })
       : noop => noop
   )

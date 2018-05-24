@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { UnconnectedRestrictedByPermissions } from '@commercetools-local/core/components/with-permissions';
 import * as storage from '@commercetools-local/utils/storage';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
+import { STORAGE_KEYS } from '../../constants';
 import {
   NavBar,
   DataMenu,
@@ -1089,7 +1089,7 @@ describe('instance methods', () => {
         });
         it('should update isForcedMenuOpen to false', () => {
           expect(storage.put).toHaveBeenCalledWith(
-            CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN,
+            STORAGE_KEYS.IS_FORCED_MENU_OPEN,
             false
           );
         });
@@ -1101,7 +1101,7 @@ describe('instance methods', () => {
         });
         it('should update isForcedMenuOpen to true', () => {
           expect(storage.put).toHaveBeenCalledWith(
-            CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN,
+            STORAGE_KEYS.IS_FORCED_MENU_OPEN,
             true
           );
         });

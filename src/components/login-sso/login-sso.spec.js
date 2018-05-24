@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Formik } from 'formik';
-import { ORGANIZATION_GENERAL_ERROR } from '@commercetools-local/constants';
 import Text from '@commercetools-local/ui-kit/typography/text';
 import PrimaryButton from '@commercetools-local/ui-kit/buttons/primary-button';
+import { ORGANIZATION_GENERAL_ERROR } from '../../constants';
 import { LoginSSO, getMessageKeyForError } from './login-sso';
 
 const createTestProps = props => ({

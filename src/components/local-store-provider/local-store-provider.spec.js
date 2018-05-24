@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { __LOCAL } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
+import { __LOCAL } from '../../middleware/add-plugin-to-notification/constants';
 import { LocalStoreProvider, mapStateToProps } from './local-store-provider';
 
 jest.mock('@commercetools-local/utils/storage');

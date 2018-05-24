@@ -4,14 +4,12 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { injectIntl, intlShape } from 'react-intl';
 import isNil from 'lodash.isnil';
-import {
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-  DOMAINS,
-} from '@commercetools-local/constants';
+import { DOMAINS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import Notifier from '@commercetools-local/core/components/notifier';
 import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
 import { reportErrorToSentry } from '@commercetools-local/sentry';
+import { STORAGE_KEYS } from '../../constants';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectDataLocale from '../project-data-locale';
 import FetchProject from '../fetch-project';
@@ -79,11 +77,11 @@ export class ProjectContainer extends React.Component {
 
     // Ensure to sync the `projectKey` from the URL with localStorage.
     const latestProjectKey = this.props.match.params.projectKey;
-    const cachedProjectKey = storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
+    const cachedProjectKey = storage.get(STORAGE_KEYS.ACTIVE_PROJECT_KEY);
     const isCacheStale =
       !cachedProjectKey || cachedProjectKey !== latestProjectKey;
     if (isCacheStale) {
-      storage.put(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY, latestProjectKey);
+      storage.put(STORAGE_KEYS.ACTIVE_PROJECT_KEY, latestProjectKey);
     }
   }
   componentDidCatch(error, errorInfo) {

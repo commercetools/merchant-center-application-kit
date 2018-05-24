@@ -14,8 +14,8 @@ import {
   createPermissionsMatchingToProps,
   UnconnectedRestrictedByPermissions,
 } from '@commercetools-local/core/components/with-permissions';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
+import { STORAGE_KEYS } from '../../constants';
 import { withProject } from '../fetch-project';
 import styles from './navbar.mod.css';
 import { defaultNavigationItems } from './config';
@@ -351,7 +351,7 @@ export class DataMenu extends React.PureComponent {
 
     this.setState(prevState => {
       const nextIsMenuOpen = !prevState.isMenuOpen;
-      storage.put(CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN, nextIsMenuOpen);
+      storage.put(STORAGE_KEYS.IS_FORCED_MENU_OPEN, nextIsMenuOpen);
       return { isMenuOpen: nextIsMenuOpen };
     });
   };
@@ -516,7 +516,7 @@ export default compose(
   withRouter, // Connect again, to access the `location` object
   withProps(() => {
     const cachedIsForcedMenuOpen = storage.get(
-      CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN
+      STORAGE_KEYS.IS_FORCED_MENU_OPEN
     );
     return {
       isForcedMenuOpen:
