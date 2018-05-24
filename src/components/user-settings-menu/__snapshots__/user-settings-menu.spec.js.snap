@@ -50,6 +50,25 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
       </Link>
     </ToggleFeature>
     <a
+      href="https://commercetools.com/privacy"
+      target="_blank"
+    >
+      <div
+        className="item"
+      >
+        <Inset
+          scale="s"
+        >
+          <FormattedMessage
+            defaultMessage="Privacy Policy"
+            description="The label for privacy policy option"
+            id="UserSettingsMenu.privacyPolicy"
+            values={Object {}}
+          />
+        </Inset>
+      </div>
+    </a>
+    <a
       data-test="logout-button"
       href="/logout?reason=user"
     >
