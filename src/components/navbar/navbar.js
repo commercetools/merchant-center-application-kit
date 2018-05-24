@@ -223,7 +223,13 @@ ToggledWithPermissions.propTypes = {
   actualPermissions: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
   children: PropTypes.element.isRequired,
 };
-
+export const getIconTheme = (menu, isActive) => {
+  const baseIconTheme =
+    menu.name.toLowerCase() === PLUGIN_NAMES.SETTINGS ? 'grey' : 'white';
+  if (isActive) return 'green';
+  else if (menu.name === 'Support') return 'blue';
+  return baseIconTheme;
+};
 export class DataMenu extends React.PureComponent {
   static displayName = 'DataMenu';
   static propTypes = {
@@ -379,14 +385,6 @@ export class DataMenu extends React.PureComponent {
     });
   };
 
-  getIconTheme = (menu, isActive) => {
-    const baseIconTheme =
-      menu.name.toLowerCase() === PLUGIN_NAMES.SETTINGS ? 'grey' : 'white';
-    if (isActive || this.isMainMenuRouteActive(menu.link)) return 'green';
-    else if (menu.name === 'Support') return 'blue';
-    return baseIconTheme;
-  };
-
   render() {
     const bottomMenuItems = ['Support'];
     return (
@@ -438,7 +436,10 @@ export class DataMenu extends React.PureComponent {
                       <div className={styles.icon}>
                         <MenuIcon
                           size="scale"
-                          theme={this.getIconTheme(menu, isActive)}
+                          theme={getIconTheme(
+                            menu,
+                            isActive || this.isMainMenuRouteActive(menu.link)
+                          )}
                         />
                       </div>
                       <div

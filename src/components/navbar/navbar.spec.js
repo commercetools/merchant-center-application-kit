@@ -12,6 +12,7 @@ import {
   MenuExpander,
   MenuItemDivider,
   ToggledWithPermissions,
+  getIconTheme,
 } from './navbar';
 import { defaultNavigationItems } from './config';
 
@@ -1147,6 +1148,82 @@ describe('instance methods', () => {
             STORAGE_KEYS.IS_FORCED_MENU_OPEN,
             true
           );
+        });
+      });
+    });
+  });
+});
+
+describe('helpers', () => {
+  describe('getIconTheme', () => {
+    describe('when isActive is true', () => {
+      let iconTheme;
+      let menu;
+      beforeEach(() => {
+        menu = {
+          name: 'menu',
+        };
+        iconTheme = getIconTheme(menu, true);
+      });
+      it('should get green theme', () => {
+        expect(iconTheme).toBe('green');
+      });
+      describe('when menu is settings', () => {
+        beforeEach(() => {
+          menu = {
+            name: 'settings',
+          };
+          iconTheme = getIconTheme(menu, true);
+        });
+        it('should get green theme', () => {
+          expect(iconTheme).toBe('green');
+        });
+      });
+      describe('when menu is Support', () => {
+        beforeEach(() => {
+          menu = {
+            name: 'Support',
+          };
+          iconTheme = getIconTheme(menu, true);
+        });
+        it('should get green theme', () => {
+          expect(iconTheme).toBe('green');
+        });
+      });
+    });
+    describe('when isActive is false', () => {
+      let iconTheme;
+      let menu;
+      beforeEach(() => {
+        menu = {
+          name: 'menu',
+        };
+        iconTheme = getIconTheme(menu, false);
+      });
+      it('should get white theme', () => {
+        expect(iconTheme).toBe('white');
+      });
+
+      describe('when menu is settings', () => {
+        beforeEach(() => {
+          menu = {
+            name: 'settings',
+          };
+          iconTheme = getIconTheme(menu, false);
+        });
+        it('should get grey theme', () => {
+          expect(iconTheme).toBe('grey');
+        });
+      });
+      describe('when menu is Support', () => {
+        beforeEach(() => {
+          menu = {
+            name: 'Support',
+          };
+          iconTheme = getIconTheme(menu, false);
+        });
+        it('should get blue theme', () => {
+          expect(iconTheme).toBe('blue');
         });
       });
     });
