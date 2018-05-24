@@ -53,3 +53,6 @@ export const GRAPHQL_TARGETS = {
   DASHBOARD_SERVICE: 'dashboard',
   PIM_INDEXER: 'pim-indexer',
 };
+
+export const MCSupportFormURL =
+  'https://jira.commercetools.com/servicedesk/customer/portal/1/create/99';
