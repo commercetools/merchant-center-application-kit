@@ -30,9 +30,6 @@ export const DOMAINS = {
   SIDE: 'side',
 };
 
-// ERRORS
-export const UNAUTHORIZED = 'UNAUTHORIZED';
-
 // CORE ACTIONS
 export const INITIALIZE_SEARCH_SLICE = 'INITIALIZE_SEARCH_SLICE';
 export const SET_SEARCH_FILTER_STATE = 'SET_SEARCH_FILTER_STATE';
@@ -46,10 +43,6 @@ export const CATEGORIES_REFERENCE_SEARCH_FETCHED =
 
 // MANAGEMENT
 export const INITIAL_STATE_FETCHED = 'INITIAL_STATE_FETCHED';
-
-// IMPEX
-export const IMPORT_JOB_CREATED = 'IMPORT_JOB_CREATED';
-export const EXPORT_JOB_CREATED = 'EXPORT_JOB_CREATED';
 
 // NO VALUE FALLBACK
 export const NO_VALUE_FALLBACK = '- - - -';
@@ -108,8 +101,6 @@ export const FILTER_TYPES = {
   missingIn: 'missingIn',
   in: 'in',
 };
-
-export const REQUESTS_IN_FLIGHT_LOADER_DOM_ID = 'loader-for-requests-in-flight';
 
 export const GRAPHQL_TARGETS = {
   MERCHANT_CENTER_BACKEND: 'mc',
