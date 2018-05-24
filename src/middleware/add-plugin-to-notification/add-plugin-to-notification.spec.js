@@ -1,6 +1,6 @@
 import { ADD_NOTIFICATION } from '@commercetools-local/notifications';
-import { __LOCAL, __GLOBAL } from '@commercetools-local/constants';
 import addPluginToNotificationMiddleware from './add-plugin-to-notification';
+import { __LOCAL, __GLOBAL } from './constants';
 
 const addPluginToNotification = addPluginToNotificationMiddleware();
 

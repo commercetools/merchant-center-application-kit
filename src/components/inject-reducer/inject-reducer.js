@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ACTIVATE_PLUGIN } from '@commercetools-local/constants';
 import { connect } from 'react-redux';
 import LocalStoreProvider from '../local-store-provider';
+import { ACTIVATE_PLUGIN } from './constants';
 
 const activatePlugin = pluginName => ({
   type: ACTIVATE_PLUGIN,

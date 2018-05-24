@@ -1,7 +1,7 @@
 import {
   isGlobalAction,
   isLocalAction,
-} from '@commercetools-local/utils/actions';
+} from './add-plugin-to-notification/actions';
 
 /**
  * Middleware factory.
