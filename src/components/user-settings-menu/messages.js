@@ -11,4 +11,9 @@ export default defineMessages({
     description: 'The label for logout option',
     defaultMessage: 'Logout',
   },
+  privacyPolicy: {
+    id: 'UserSettingsMenu.privacyPolicy',
+    description: 'The label for privacy policy option',
+    defaultMessage: 'Privacy Policy',
+  },
 });

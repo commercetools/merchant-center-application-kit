@@ -88,6 +88,17 @@ export default class UserSettingsMenu extends React.PureComponent {
                       </div>
                     </Link>
                   </ToggleFeature>
+                  {
+                    // FIXME: added as urgent request for GDPR changes
+                    // Should be properly added on the CTP-1209 task
+                  }
+                  <a href={`https://commercetools.com/privacy`} target="_blank">
+                    <div className={styles.item}>
+                      <Spacings.Inset scale="s">
+                        <FormattedMessage {...messages.privacyPolicy} />
+                      </Spacings.Inset>
+                    </div>
+                  </a>
                   <a
                     // NOTE: we want to redirect to a new page so that the
                     // server can remove things like cookie for access token.
