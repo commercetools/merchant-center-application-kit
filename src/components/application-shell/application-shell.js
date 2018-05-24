@@ -62,11 +62,11 @@ export const RestrictedApplication = props => (
       if (error) {
         reportErrorToSentry(error, {});
         const browserLocale = getBrowserLocale();
-        const locale = extractLanguageFromLocale(browserLocale);
+        const language = extractLanguageFromLocale(browserLocale);
         return (
           <ConfigureIntlProvider
             locale={browserLocale}
-            messages={props.i18n[locale]}
+            messages={props.i18n[language]}
           >
             <ErrorApologizer />
           </ConfigureIntlProvider>
@@ -374,13 +374,13 @@ export default class ApplicationShell extends React.Component {
                                 />
                               );
                             const browserLocale = getBrowserLocale();
-                            const locale = extractLanguageFromLocale(
+                            const language = extractLanguageFromLocale(
                               browserLocale
                             );
                             return (
                               <ConfigureIntlProvider
                                 locale={browserLocale}
-                                messages={this.props.i18n[locale]}
+                                messages={this.props.i18n[language]}
                               >
                                 <UnrestrictedApplication />
                               </ConfigureIntlProvider>

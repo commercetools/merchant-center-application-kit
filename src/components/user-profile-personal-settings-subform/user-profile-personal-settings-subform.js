@@ -30,8 +30,10 @@ export const timeZonesToOptions = defaultMemoize(timeZones =>
   }))
 );
 
-/* We are going to display now locales instead of just languages, but we still need to define
- * only the ones with the locale 'en' or 'de'. So 'en-GB' is a valid option but not 'es-US'. 
+/* 
+ * We are going to display now locales(<language-code>-<country-code>) instead of just languages, 
+ * but we still need to define only the ones with the language 'en' or 'de'.
+ * So 'en-GB' is a valid option but not 'es-PR'. 
  */
 export const mapLanguagesToOptions = defaultMemoize(languages =>
   Object.entries(languages)
