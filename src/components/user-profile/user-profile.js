@@ -131,5 +131,5 @@ export default compose(
       : 0,
   })),
   graphql(UpdateUserProfile, { name: 'updateUserProfile' }),
-  injectConfiguration('env', 'env')
+  injectConfiguration(['env'], 'env')
 )(UserProfile);
