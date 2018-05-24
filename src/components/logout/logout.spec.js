@@ -25,9 +25,6 @@ describe('rendering', () => {
     const props = createTestProps();
     wrapper = shallow(<Logout {...props} />);
   });
-  it('should render <ShutdownIntercom>', () => {
-    expect(wrapper).toRender('ShutdownIntercom');
-  });
   it('should render <SentryUserLogoutTracker>', () => {
     expect(wrapper).toRender('SentryUserLogoutTracker');
   });

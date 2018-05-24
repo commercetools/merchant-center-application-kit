@@ -8,7 +8,6 @@ import {
   LOGIN_STRATEGY_SSO,
   STORAGE_KEYS,
 } from '../../constants';
-import ShutdownIntercom from '../shutdown-intercom';
 import GtmUserLogoutTracker from '../gtm-user-logout-tracker';
 
 export const getLoginStrategy = () => {
@@ -59,7 +58,6 @@ export class Logout extends React.PureComponent {
   render() {
     return (
       <React.Fragment>
-        <ShutdownIntercom />
         <SentryUserLogoutTracker />
         <GtmUserLogoutTracker />
       </React.Fragment>

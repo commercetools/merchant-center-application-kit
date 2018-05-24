@@ -44,7 +44,7 @@ const loggerMiddleware = createLogger({
       case REMOVE_NOTIFICATION:
         return false;
       case ADD_NOTIFICATION: {
-        const ignoredKinds = ['intercom', 'api-error', 'unexpected-error'];
+        const ignoredKinds = ['api-error', 'unexpected-error'];
         return !ignoredKinds.includes(payload.kind);
       }
       case __LOCAL:

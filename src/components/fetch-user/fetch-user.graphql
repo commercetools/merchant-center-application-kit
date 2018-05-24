@@ -9,8 +9,6 @@ query LoggedInUserQuery {
     language
     numberFormat
     timeZone
-    tracking_intercom
-    intercom_user_hash
     launchdarklyTrackingId
     launchdarklyTrackingGroup
     availableProjects {
