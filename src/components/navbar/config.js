@@ -372,7 +372,6 @@ const itemsMCSupport = {
   name: 'mc-support',
   menu: {
     name: 'Support',
-    link: '',
     externalLink: MCSupportFormURL,
     labelKey: 'NavBar.MCSupport.title',
     icon: 'SupportIcon',

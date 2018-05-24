@@ -234,7 +234,7 @@ export class DataMenu extends React.PureComponent {
         menu: PropTypes.shape({
           name: PropTypes.string.isRequired,
           labelKey: PropTypes.string.isRequired,
-          link: PropTypes.string.isRequired,
+          link: PropTypes.string,
           externalLink: PropTypes.string,
           tracking: PropTypes.object,
           icon: PropTypes.string.isRequired,
