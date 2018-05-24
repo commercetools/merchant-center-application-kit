@@ -5,6 +5,7 @@ import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import WithProjectKey from '../with-project-key';
 import UserSettingsMenu from '../user-settings-menu';
 import ProjectSwitcher from '../project-switcher';
+import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/constants';
 import styles from './app-bar.mod.css';
 
 const AppBar = props => (
@@ -15,7 +16,7 @@ const AppBar = props => (
       </div>
 
       <div
-        id="loader-for-requests-in-flight"
+        id={REQUESTS_IN_FLIGHT_LOADER_DOM_ID}
         className={styles['loader-container']}
       />
     </Spacings.Inline>
