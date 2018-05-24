@@ -8,6 +8,13 @@
   "module": "src/index.js",
   "engines": {
     "node": ">=8",
-    "npm": ">=3"
+    "npm": ">=5"
+  },
+  "dependencies": {
+    "lodash.get": "4.4.2",
+    "moment-timezone": "0.5.17",
+    "prop-types": "15.6.1",
+    "react": "16.4.0",
+    "recompose": "0.26.0"
   }
 }

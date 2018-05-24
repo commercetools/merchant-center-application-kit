@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getIn } from 'formik';
+import get from 'lodash.get';
 import { ConfigurationContext } from './configuration-provider';
 
 const ConfigurationConsumer = props => (
   <ConfigurationContext.Consumer>
     {configuration =>
-      props.children(getIn(configuration, props.pathToConfiguration))
+      props.children(get(configuration, props.pathToConfiguration))
     }
   </ConfigurationContext.Consumer>
 );
