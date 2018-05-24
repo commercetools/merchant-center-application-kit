@@ -18,7 +18,8 @@ export default function createL10NInjector({
       componentWillUnmount() {
         this.isUnmounting = true;
       }
-      componentWillReceiveProps(nextProps) {
+      // eslint-disable-next-line camelcase
+      UNSAFE_componentWillReceiveProps(nextProps) {
         if (mapPropsToLocale(this.props) !== mapPropsToLocale(nextProps)) {
           this.loadCountries(nextProps);
         }

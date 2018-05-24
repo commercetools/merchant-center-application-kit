@@ -94,7 +94,7 @@ describe('lifecycle', () => {
     describe('locale changes', () => {
       beforeAll(() => {
         loadLocalesMock.mockClear();
-        wrapper.instance().componentWillReceiveProps({ locale: 'de' });
+        wrapper.instance().UNSAFE_componentWillReceiveProps({ locale: 'de' });
       });
       it('should load candies', () => {
         expect(loadLocalesMock).toHaveBeenCalledTimes(1);
@@ -116,7 +116,7 @@ describe('lifecycle', () => {
     describe('locale does not change', () => {
       beforeAll(() => {
         loadLocalesMock.mockClear();
-        wrapper.instance().componentWillReceiveProps({ locale: 'en' });
+        wrapper.instance().UNSAFE_componentWillReceiveProps({ locale: 'en' });
       });
       it('should not load candies', () => {
         expect(loadLocalesMock).toHaveBeenCalledTimes(0);
