@@ -4,5 +4,10 @@
   "description": "",
   "license": "Proprietary",
   "private": true,
-  "main": "./index.js"
+  "main": "./index.js",
+  "dependencies": {
+    "history": "4.7.2",
+    "history-query-enhancer": "1.0.2",
+    "query-string": "5.1.0"
+  }
 }
