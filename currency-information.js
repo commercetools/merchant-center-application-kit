@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import createL10NInjector from './create-l10n-injector';
-import {
-  getSupportedLocale,
-  extractLanguageFromLocale,
-} from './get-supported-locale';
+import getSupportedLanguage from './utils/get-supported-language';
+import extractLanguageFromLocale from './utils/extract-language-from-locale';
 
 export const currenciesShape = PropTypes.objectOf(
   PropTypes.shape({ label: PropTypes.string, symbol: PropTypes.string })
@@ -15,7 +13,7 @@ export const currenciesShape = PropTypes.objectOf(
  */
 const getCurrenciesForLocale = (locale, cb) => {
   const languageFromLocale = extractLanguageFromLocale(locale);
-  const supportedLocale = getSupportedLocale(languageFromLocale);
+  const supportedLocale = getSupportedLanguage(languageFromLocale);
   // Use lazy once so that subsequent calls to import() will use the same
   // network response. https://webpack.js.org/api/module-methods/#import-
   import(/* webpackChunkName: "currency-data", webpackMode: "lazy-once" */
