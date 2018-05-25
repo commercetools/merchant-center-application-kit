@@ -35,8 +35,8 @@ export const timeZonesToOptions = defaultMemoize(timeZones =>
  * but we still need to define only the ones with the language 'en' or 'de'.
  * So 'en-GB' is a valid option but not 'es-PR'. 
  */
-export const mapLanguagesToOptions = defaultMemoize(languages =>
-  Object.entries(languages)
+export const mapLocalesToOptions = defaultMemoize(locales =>
+  Object.entries(locales)
     .filter(([code]) => code.startsWith('en') || code.startsWith('de'))
     .map(([code, value]) => ({
       value: code,
@@ -64,7 +64,7 @@ export const UserProfilePersonalSettingsSubform = props => (
           onBlur={() => {
             props.formik.setFieldTouched('language');
           }}
-          options={mapLanguagesToOptions(props.languages)}
+          options={mapLocalesToOptions(props.languages)}
           clearable={false}
           searchable={false}
           parse={
