@@ -920,31 +920,6 @@ describe('lifecycle', () => {
         expect(wrapper).toHaveState('isMenuOpen', false);
       });
     });
-    describe('getDerivedStateFromProps', () => {
-      let derivedState;
-      describe('when isForcedMenuOpen changes', () => {
-        beforeEach(() => {
-          derivedState = DataMenu.getDerivedStateFromProps(
-            { isForcedMenuOpen: true },
-            { isMenuOpen: false }
-          );
-        });
-        it('should update isMenuOpen', () => {
-          expect(derivedState).toHaveProperty('isMenuOpen', true);
-        });
-      });
-      describe('when isForcedMenuOpen does not change', () => {
-        beforeEach(() => {
-          derivedState = DataMenu.getDerivedStateFromProps(
-            { isForcedMenuOpen: false },
-            { isMenuOpen: false }
-          );
-        });
-        it('should not update isMenuOpen', () => {
-          expect(derivedState).toBeNull();
-        });
-      });
-    });
   });
 });
 
