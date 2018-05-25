@@ -3,19 +3,17 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { compose } from 'recompose';
 import classnames from 'classnames';
-import * as sdkActions from '@commercetools-local/sdk/actions';
 import { connect } from 'react-redux';
+import * as sdkActions from '@commercetools-local/sdk/actions';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import PrimaryButton from '@commercetools-local/ui-kit/buttons/primary-button';
-import {
-  LOGOUT_REASONS,
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-} from '@commercetools-local/constants';
+import { LOGOUT_REASONS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
 import { injectConfiguration } from '@commercetools-local/application-shell-connectors';
 import Notification from '@commercetools-local/core/components/notification';
 import Title from '@commercetools-local/core/components/title';
 import InfoDialog from '@commercetools-local/core/components/overlays/info-dialog';
+import { STORAGE_KEYS } from '../../constants';
 import PublicPageContainer from '../public-page-container';
 import LoginBox from '../login-box';
 import styles from './login.mod.css';
@@ -86,10 +84,10 @@ export class Login extends React.PureComponent {
       .then(() => {
         this.setState({ loading: false });
         // Set a flag to indicate that the user has been authenticated
-        storage.put(CORE_STORAGE_KEYS.IS_AUTHENTICATED, true);
+        storage.put(STORAGE_KEYS.IS_AUTHENTICATED, true);
         // Ensure to remove the IdP Url value from local storage, as in this
         // case login is not done through SSO.
-        storage.remove(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL);
+        storage.remove(STORAGE_KEYS.IDENTITY_PROVIDER_URL);
         // Redirect to a `redirectTo` url, if present, otherwise to defaul route
         const nextTargetUrl = this.props.location.query.redirectTo;
         if (nextTargetUrl)

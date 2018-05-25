@@ -1,3 +1,4 @@
+import { MCSupportFormURL } from '../../constants';
 import {
   CUSTOMER_GROUPS,
   PIM_SEARCH,
@@ -124,7 +125,7 @@ const itemsDashboard = {
 };
 
 const itemsDiscounts = {
-  name: 'mcng-discounts',
+  name: 'application-discounts',
   menu: {
     name: 'Discounts',
     link: 'discounts',
@@ -367,6 +368,21 @@ const itemsProjectSettings = {
   },
 };
 
+const itemsMCSupport = {
+  name: 'mc-support',
+  menu: {
+    name: 'Support',
+    externalLink: MCSupportFormURL,
+    labelKey: 'NavBar.MCSupport.title',
+    icon: 'SupportIcon',
+    tracking: {
+      'data-track-component': 'Support-links',
+      'data-track-event': 'click',
+      'data-track-label': 'support_icon',
+    },
+  },
+};
+
 // List order is important!
 // eslint-disable-next-line import/prefer-default-export
 export const defaultNavigationItems = [
@@ -377,4 +393,5 @@ export const defaultNavigationItems = [
   itemsOrders,
   itemsDiscounts,
   itemsProjectSettings,
+  itemsMCSupport,
 ];

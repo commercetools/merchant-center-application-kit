@@ -3,6 +3,7 @@
 @import '@commercetools-local/ui-kit/materials/spacings.mod.css';
 
 :root {
+  --expander-height: 50px;
   --color-whiteFaded: var(--color-white) alpha(20%);
   --icon-size: 32px;
   --submenu-margin: calc(var(--icon-size) + var(--spacing-16));
@@ -71,7 +72,7 @@
 }
 
 .expander {
-  height: 50px;
+  height: var(--expander-height);
   bottom: 0;
   position: absolute;
   display: flex;
@@ -103,6 +104,11 @@
   bottom: 0;
   left: 0;
   margin: auto;
+}
+
+.item--bottom {
+  position: absolute;
+  bottom: var(--expander-height);
 }
 
 .list-item:hover {

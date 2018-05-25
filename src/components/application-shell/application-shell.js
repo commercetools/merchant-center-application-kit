@@ -30,9 +30,6 @@ import SetupFlopFlipProvider, {
   getFlopflipReconfiguration,
 } from '../setup-flop-flip-provider';
 import AsyncUserProfile from '../user-profile/async';
-import IntercomUrlTracker from '../intercom-url-tracker';
-import IntercomUserTracker from '../intercom-user-tracker';
-import IntercomBooter from '../intercom-booter';
 // import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import PageRedirect from '../page-redirect';
@@ -88,13 +85,8 @@ export const RestrictedApplication = props => (
               {/* NOTE: the requests in flight loader will render a loading
             spinner into the AppBar. */}
               <RequestsInFlightLoader />
-              <IntercomBooter
-                intercomTrackingStatus={user && user.tracking_intercom}
-                showNotification={props.showNotification}
-              />
               <SentryUserTracker user={user} />
               <GtmUserTracker user={user} />
-              <IntercomUserTracker user={user} />
               <div className={styles['app-layout']}>
                 <div className={styles['global-notifications']}>
                   <NotificationsList
@@ -205,10 +197,6 @@ export const RestrictedApplication = props => (
                         path="/:projectKey"
                         render={routerProps => (
                           <React.Fragment>
-                            <IntercomUserTracker
-                              user={user}
-                              projectKey={routerProps.match.params.projectKey}
-                            />
                             <ReconfigureFlopFlip
                               user={getFlopflipReconfiguration(
                                 routerProps.match.params.projectKey
@@ -336,62 +324,60 @@ export default class ApplicationShell extends React.Component {
           <React.Fragment>
             {/* <VersionCheckSubscriber /> */}
             <Router history={history}>
-              <IntercomUrlTracker>
-                <GtmBooter
-                  trackingEventWhitelist={this.props.trackingEventWhitelist}
-                >
-                  <Switch>
-                    {/**
-                     * No matter if the user is authenticated or not, when we go
-                     * to this route we should always log the user out.
-                     */}
-                    <Route path="/logout" component={Logout} />
-                    <Route
-                      render={() => (
-                        <Authenticated>
-                          {({ isAuthenticated }) => {
-                            if (isAuthenticated)
-                              return (
-                                <RestrictedApplication
-                                  i18n={this.props.i18n}
-                                  render={this.props.render}
-                                  notificationsByDomain={
-                                    this.props.notificationsByDomain
-                                  }
-                                  showNotification={this.props.showNotification}
-                                  mapPluginNotificationToComponent={
-                                    this.props.mapPluginNotificationToComponent
-                                  }
-                                  showApiErrorNotification={
-                                    this.props.showApiErrorNotification
-                                  }
-                                  showUnexpectedErrorNotification={
-                                    this.props.showUnexpectedErrorNotification
-                                  }
-                                  INTERNAL__isApplicationFallback={
-                                    this.props.INTERNAL__isApplicationFallback
-                                  }
-                                />
-                              );
-                            const browserLocale = getBrowserLocale();
-                            const language = extractLanguageFromLocale(
-                              browserLocale
-                            );
+              <GtmBooter
+                trackingEventWhitelist={this.props.trackingEventWhitelist}
+              >
+                <Switch>
+                  {/**
+                   * No matter if the user is authenticated or not, when we go
+                   * to this route we should always log the user out.
+                   */}
+                  <Route path="/logout" component={Logout} />
+                  <Route
+                    render={() => (
+                      <Authenticated>
+                        {({ isAuthenticated }) => {
+                          if (isAuthenticated)
                             return (
-                              <ConfigureIntlProvider
-                                locale={browserLocale}
-                                messages={this.props.i18n[language]}
-                              >
-                                <UnrestrictedApplication />
-                              </ConfigureIntlProvider>
+                              <RestrictedApplication
+                                i18n={this.props.i18n}
+                                render={this.props.render}
+                                notificationsByDomain={
+                                  this.props.notificationsByDomain
+                                }
+                                showNotification={this.props.showNotification}
+                                mapPluginNotificationToComponent={
+                                  this.props.mapPluginNotificationToComponent
+                                }
+                                showApiErrorNotification={
+                                  this.props.showApiErrorNotification
+                                }
+                                showUnexpectedErrorNotification={
+                                  this.props.showUnexpectedErrorNotification
+                                }
+                                INTERNAL__isApplicationFallback={
+                                  this.props.INTERNAL__isApplicationFallback
+                                }
+                              />
                             );
-                          }}
-                        </Authenticated>
-                      )}
-                    />
-                  </Switch>
-                </GtmBooter>
-              </IntercomUrlTracker>
+                          const browserLocale = getBrowserLocale();
+                          const language = extractLanguageFromLocale(
+                            browserLocale
+                          );
+                          return (
+                            <ConfigureIntlProvider
+                              locale={browserLocale}
+                              messages={this.props.i18n[language]}
+                            >
+                              <UnrestrictedApplication />
+                            </ConfigureIntlProvider>
+                          );
+                        }}
+                      </Authenticated>
+                    )}
+                  />
+                </Switch>
+              </GtmBooter>
             </Router>
           </React.Fragment>
         </ApolloProvider>

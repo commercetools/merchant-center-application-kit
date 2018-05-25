@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
+import { STORAGE_KEYS } from '../../constants';
 
 export const WithProjectKeyFromCacheOrUser = props => {
-  const cachedProjectKey = storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
+  const cachedProjectKey = storage.get(STORAGE_KEYS.ACTIVE_PROJECT_KEY);
   // At this point `projectKey` can still be `null`.
   // This happens e.g. when the user is not logged in, tries to
   // access a route under `/account` directly. After being logged

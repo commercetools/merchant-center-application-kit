@@ -1,8 +1,5 @@
 import { ADD_NOTIFICATION } from '@commercetools-local/notifications';
-import {
-  isLocalAction,
-  isGlobalAction,
-} from '@commercetools-local/utils/actions';
+import { isLocalAction, isGlobalAction } from './actions';
 
 const isAddNotificationAction = action =>
   action && action.type === ADD_NOTIFICATION;

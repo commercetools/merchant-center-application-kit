@@ -14,8 +14,8 @@ import {
   createPermissionsMatchingToProps,
   UnconnectedRestrictedByPermissions,
 } from '@commercetools-local/core/components/with-permissions';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
+import { STORAGE_KEYS } from '../../constants';
 import { withProject } from '../fetch-project';
 import styles from './navbar.mod.css';
 import { defaultNavigationItems } from './config';
@@ -95,6 +95,7 @@ export const MenuItem = props => (
       [styles.item__active]: props.isActive,
       [styles['item_menu-collapsed']]: !props.isMenuOpen,
       [styles['item__no-submenu']]: !props.hasSubmenu,
+      [styles['item--bottom']]: props.isBottomItem,
     })}
     onClick={props.onClick}
     onMouseEnter={props.onMouseEnter}
@@ -108,6 +109,7 @@ MenuItem.propTypes = {
   hasSubmenu: PropTypes.bool.isRequired,
   isActive: PropTypes.bool.isRequired,
   isMenuOpen: PropTypes.bool.isRequired,
+  isBottomItem: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
@@ -119,14 +121,33 @@ export class MenuItemLink extends React.PureComponent {
   static propTypes = {
     linkTo: PropTypes.string,
     exactMatch: PropTypes.bool,
+    externalLink: PropTypes.string,
+    tracking: PropTypes.shape({
+      'data-track-component': PropTypes.string,
+      'data-track-event': PropTypes.string,
+      'data-track-label': PropTypes.string,
+    }),
     children: PropTypes.node.isRequired,
     useFullRedirectsForLinks: PropTypes.bool.isRequired,
   };
   static defaultProps = {
     exactMatch: false,
+    tracking: {},
   };
   redirectTo = targetUrl => window.location.replace(targetUrl);
   render() {
+    if (this.props.externalLink) {
+      return (
+        <a
+          href={this.props.externalLink}
+          rel="noopener noreferrer"
+          target="_blank"
+          {...this.props.tracking}
+        >
+          {this.props.children}
+        </a>
+      );
+    }
     return this.props.linkTo ? (
       <NavLink
         to={this.props.linkTo}
@@ -202,7 +223,13 @@ ToggledWithPermissions.propTypes = {
   actualPermissions: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
   children: PropTypes.element.isRequired,
 };
-
+export const getIconTheme = (menu, isActive) => {
+  const baseIconTheme =
+    menu.name.toLowerCase() === PLUGIN_NAMES.SETTINGS ? 'grey' : 'white';
+  if (isActive) return 'green';
+  else if (menu.name === 'Support') return 'blue';
+  return baseIconTheme;
+};
 export class DataMenu extends React.PureComponent {
   static displayName = 'DataMenu';
   static propTypes = {
@@ -213,7 +240,9 @@ export class DataMenu extends React.PureComponent {
         menu: PropTypes.shape({
           name: PropTypes.string.isRequired,
           labelKey: PropTypes.string.isRequired,
-          link: PropTypes.string.isRequired,
+          link: PropTypes.string,
+          externalLink: PropTypes.string,
+          tracking: PropTypes.object,
           icon: PropTypes.string.isRequired,
           featureToggle: PropTypes.string,
           permissions: PropTypes.arrayOf(
@@ -351,21 +380,18 @@ export class DataMenu extends React.PureComponent {
 
     this.setState(prevState => {
       const nextIsMenuOpen = !prevState.isMenuOpen;
-      storage.put(CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN, nextIsMenuOpen);
+      storage.put(STORAGE_KEYS.IS_FORCED_MENU_OPEN, nextIsMenuOpen);
       return { isMenuOpen: nextIsMenuOpen };
     });
   };
 
   render() {
+    const bottomMenuItems = ['Support'];
     return (
       <MenuGroup level={1}>
         {this.props.data.map(({ name, menu }, index) => {
           const isActive = this.state.activeItemIndex === index;
           const MenuIcon = Icons[menu.icon];
-          const baseIconTheme =
-            menu.name.toLowerCase() === PLUGIN_NAMES.SETTINGS
-              ? 'grey'
-              : 'white';
           return (
             <ToggledWithPermissions
               key={name}
@@ -379,6 +405,7 @@ export class DataMenu extends React.PureComponent {
                 )}
                 <MenuItem
                   hasSubmenu={Boolean(menu.submenu)}
+                  isBottomItem={bottomMenuItems.indexOf(menu.name) >= 0}
                   isActive={isActive}
                   isMenuOpen={this.state.isMenuOpen}
                   onClick={event => {
@@ -394,6 +421,8 @@ export class DataMenu extends React.PureComponent {
                   }
                 >
                   <MenuItemLink
+                    externalLink={menu.externalLink}
+                    tracking={menu.tracking}
                     linkTo={
                       !this.state.isMenuOpen || !menu.submenu
                         ? `/${this.props.projectKey}/${menu.link}`
@@ -407,11 +436,10 @@ export class DataMenu extends React.PureComponent {
                       <div className={styles.icon}>
                         <MenuIcon
                           size="scale"
-                          theme={
+                          theme={getIconTheme(
+                            menu,
                             isActive || this.isMainMenuRouteActive(menu.link)
-                              ? 'green'
-                              : baseIconTheme
-                          }
+                          )}
                         />
                       </div>
                       <div
@@ -516,7 +544,7 @@ export default compose(
   withRouter, // Connect again, to access the `location` object
   withProps(() => {
     const cachedIsForcedMenuOpen = storage.get(
-      CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN
+      STORAGE_KEYS.IS_FORCED_MENU_OPEN
     );
     return {
       isForcedMenuOpen:

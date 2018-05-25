@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'recompose';
-import {
-  __LOCAL,
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-} from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/utils/storage';
+import { __LOCAL } from '../../middleware/add-plugin-to-notification/constants';
+import { STORAGE_KEYS } from '../../constants';
 import { withUser } from '../fetch-user';
 import { withProject } from '../fetch-project';
 
@@ -86,11 +84,11 @@ export class LocalStoreProvider extends React.Component {
 
   mapUserAndProjectToState = () => ({
     // This is the "selected project language", a.k.a the selected locale for the localized project data.
-    language: storage.get(CORE_STORAGE_KEYS.SELECTED_DATA_LOCALE),
+    language: storage.get(STORAGE_KEYS.SELECTED_DATA_LOCALE),
     // This is the user locale, a.k.a the locale used by react-intl to localize the application.
     locale: this.props.user.language,
     // Mostly useful for reacting to opening/closing of left menu navigation
-    isForcedMenuOpen: storage.get(CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN),
+    isForcedMenuOpen: storage.get(STORAGE_KEYS.IS_FORCED_MENU_OPEN),
 
     // User info
     user: {

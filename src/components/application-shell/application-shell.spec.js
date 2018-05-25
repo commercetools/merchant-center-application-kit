@@ -6,8 +6,6 @@ import { reportErrorToSentry } from '@commercetools-local/sentry';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import ProjectContainer from '../project-container';
 import FetchUser from '../fetch-user';
-import IntercomBooter from '../intercom-booter';
-import IntercomUserTracker from '../intercom-user-tracker';
 import NavBar from '../navbar';
 import AsyncUserProfile from '../user-profile/async';
 import ApplicationShell, {
@@ -58,11 +56,8 @@ describe('rendering', () => {
     });
   });
   describe('trackers', () => {
-    it('should render <IntercomUrlTracker> below <Router>', () => {
-      expect(wrapper).toRender('Router > IntercomUrlTracker');
-    });
-    it('should render <GtmBooter> below <IntercomUrlTracker>', () => {
-      expect(wrapper).toRender('IntercomUrlTracker > GtmBooter');
+    it('should render <GtmBooter> below <Router>', () => {
+      expect(wrapper).toRender('Router > GtmBooter');
     });
     it('should pass "trackingEventWhitelist" to <GtmBooter>', () => {
       expect(wrapper.find('GtmBooter')).toHaveProp(
@@ -189,9 +184,6 @@ describe('<RestrictedApplication>', () => {
     });
     it('should match layout structure', () => {
       expect(wrapper).toMatchSnapshot();
-    });
-    it('should boot intercom', () => {
-      expect(wrapper).toRender(IntercomBooter);
     });
     it('should pass user "locale" to <ConfigureIntlProvider>', () => {
       expect(fetchUserWrapper.find(ConfigureIntlProvider)).toHaveProp(
@@ -370,12 +362,6 @@ describe('<RestrictedApplication>', () => {
       });
       it('should match layout structure', () => {
         expect(wrapper).toMatchSnapshot();
-      });
-      it('should pass "projectKey" to <IntercomUserTracker>', () => {
-        expect(routeRenderWrapper.find(IntercomUserTracker)).toHaveProp(
-          'projectKey',
-          routerProps.match.params.projectKey
-        );
       });
       it('should pass "match" to <ProjectContainer>', () => {
         expect(routeRenderWrapper.find(ProjectContainer)).toHaveProp(

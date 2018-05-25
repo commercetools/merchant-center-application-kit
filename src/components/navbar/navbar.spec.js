@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import { UnconnectedRestrictedByPermissions } from '@commercetools-local/core/components/with-permissions';
 import * as storage from '@commercetools-local/utils/storage';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
+import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import {
   NavBar,
   DataMenu,
@@ -12,6 +12,7 @@ import {
   MenuExpander,
   MenuItemDivider,
   ToggledWithPermissions,
+  getIconTheme,
 } from './navbar';
 import { defaultNavigationItems } from './config';
 
@@ -234,6 +235,22 @@ describe('rendering', () => {
             expect(wrapper.find('MenuItemLink').at(0)).toHaveProp(
               'linkTo',
               '/test-1/customers'
+            );
+          });
+        });
+        describe('when `externalLink` is passed', () => {
+          beforeEach(() => {
+            props = createDataMenuTestProps({
+              data: defaultNavigationItems.filter(
+                item => item.name === 'mc-support'
+              ),
+            });
+            wrapper = shallow(<DataMenu {...props} />);
+          });
+          it('should pass externalLink as prop', () => {
+            expect(wrapper.find('MenuItemLink').at(0)).toHaveProp(
+              'externalLink',
+              MCSupportFormURL
             );
           });
         });
@@ -599,6 +616,33 @@ describe('rendering', () => {
   });
   describe('<MenuItemLink>', () => {
     const LinkLabel = () => <span>{'Customers'}</span>;
+    describe('when externalLink is defined', () => {
+      beforeEach(() => {
+        props = {
+          externalLink: '//www.externalLink.com',
+          exactMatch: true,
+          useFullRedirectsForLinks: false,
+          tracking: {
+            'data-track-component': 'Support-links',
+            'data-track-event': 'click',
+            'data-track-label': 'support_icon',
+          },
+        };
+        wrapper = shallow(
+          <MenuItemLink {...props}>
+            <LinkLabel />
+          </MenuItemLink>
+        );
+      });
+      it('should render <a> with provided href', () => {
+        expect(wrapper.find('a')).toHaveProp('href', props.externalLink);
+      });
+      it('should pass tracking props', () => {
+        expect(wrapper).toHaveProp('data-track-component', 'Support-links');
+        expect(wrapper).toHaveProp('data-track-event', 'click');
+        expect(wrapper).toHaveProp('data-track-label', 'support_icon');
+      });
+    });
     describe('when linkTo is defined', () => {
       beforeEach(() => {
         props = {
@@ -1089,7 +1133,7 @@ describe('instance methods', () => {
         });
         it('should update isForcedMenuOpen to false', () => {
           expect(storage.put).toHaveBeenCalledWith(
-            CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN,
+            STORAGE_KEYS.IS_FORCED_MENU_OPEN,
             false
           );
         });
@@ -1101,9 +1145,85 @@ describe('instance methods', () => {
         });
         it('should update isForcedMenuOpen to true', () => {
           expect(storage.put).toHaveBeenCalledWith(
-            CORE_STORAGE_KEYS.IS_FORCED_MENU_OPEN,
+            STORAGE_KEYS.IS_FORCED_MENU_OPEN,
             true
           );
+        });
+      });
+    });
+  });
+});
+
+describe('helpers', () => {
+  describe('getIconTheme', () => {
+    describe('when isActive is true', () => {
+      let iconTheme;
+      let menu;
+      beforeEach(() => {
+        menu = {
+          name: 'menu',
+        };
+        iconTheme = getIconTheme(menu, true);
+      });
+      it('should get green theme', () => {
+        expect(iconTheme).toBe('green');
+      });
+      describe('when menu is settings', () => {
+        beforeEach(() => {
+          menu = {
+            name: 'settings',
+          };
+          iconTheme = getIconTheme(menu, true);
+        });
+        it('should get green theme', () => {
+          expect(iconTheme).toBe('green');
+        });
+      });
+      describe('when menu is Support', () => {
+        beforeEach(() => {
+          menu = {
+            name: 'Support',
+          };
+          iconTheme = getIconTheme(menu, true);
+        });
+        it('should get green theme', () => {
+          expect(iconTheme).toBe('green');
+        });
+      });
+    });
+    describe('when isActive is false', () => {
+      let iconTheme;
+      let menu;
+      beforeEach(() => {
+        menu = {
+          name: 'menu',
+        };
+        iconTheme = getIconTheme(menu, false);
+      });
+      it('should get white theme', () => {
+        expect(iconTheme).toBe('white');
+      });
+
+      describe('when menu is settings', () => {
+        beforeEach(() => {
+          menu = {
+            name: 'settings',
+          };
+          iconTheme = getIconTheme(menu, false);
+        });
+        it('should get grey theme', () => {
+          expect(iconTheme).toBe('grey');
+        });
+      });
+      describe('when menu is Support', () => {
+        beforeEach(() => {
+          menu = {
+            name: 'Support',
+          };
+          iconTheme = getIconTheme(menu, false);
+        });
+        it('should get blue theme', () => {
+          expect(iconTheme).toBe('blue');
         });
       });
     });

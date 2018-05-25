@@ -101,6 +101,10 @@ export default defineMessages({
     id: 'NavBar.Settings.title',
     defaultMessage: 'Settings',
   },
+  'NavBar.MCSupport.title': {
+    id: 'NavBar.MCSupport.title',
+    defaultMessage: 'Support',
+  },
   'NavBar.ProjectSettings.title': {
     id: 'NavBar.ProjectSettings.title',
     defaultMessage: 'Project settings',

@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import * as storage from '@commercetools-local/utils/storage';
 import {
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
   LOGIN_STRATEGY_SSO,
   LOGIN_STRATEGY_DEFAULT,
-} from '@commercetools-local/constants';
-import * as storage from '@commercetools-local/utils/storage';
+  STORAGE_KEYS,
+} from '../../constants';
 import { Logout, getLoginStrategy } from './logout';
 
 jest.mock('@commercetools-local/utils/storage');
@@ -25,9 +25,6 @@ describe('rendering', () => {
     const props = createTestProps();
     wrapper = shallow(<Logout {...props} />);
   });
-  it('should render <ShutdownIntercom>', () => {
-    expect(wrapper).toRender('ShutdownIntercom');
-  });
   it('should render <SentryUserLogoutTracker>', () => {
     expect(wrapper).toRender('SentryUserLogoutTracker');
   });
@@ -43,18 +40,16 @@ describe('componentDidMount', () => {
     wrapper.instance().componentDidMount();
   });
   it('should remove isAuthenticated from storage', () => {
-    expect(storage.remove).toHaveBeenCalledWith(
-      CORE_STORAGE_KEYS.IS_AUTHENTICATED
-    );
+    expect(storage.remove).toHaveBeenCalledWith(STORAGE_KEYS.IS_AUTHENTICATED);
   });
   it('should remove identityProviderUrl from storage', () => {
     expect(storage.remove).toHaveBeenCalledWith(
-      CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL
+      STORAGE_KEYS.IDENTITY_PROVIDER_URL
     );
   });
   it('should remove projectKey from storage', () => {
     expect(storage.remove).toHaveBeenCalledWith(
-      CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY
+      STORAGE_KEYS.ACTIVE_PROJECT_KEY
     );
   });
   describe('when login strategy is default', () => {

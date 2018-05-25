@@ -1,3 +1,4 @@
+import { ACTIVATE_PLUGIN } from './constants';
 import reducer from './reducer';
 
 describe('initial state', () => {
@@ -12,7 +13,7 @@ describe('actions', () => {
   describe('ACTIVATE_PLUGIN', () => {
     beforeEach(() => {
       state = [1];
-      action = { type: 'ACTIVATE_PLUGIN', payload: 'mcng-foo' };
+      action = { type: ACTIVATE_PLUGIN, payload: 'mcng-foo' };
     });
     it('should return the plugin name', () => {
       expect(reducer(state, action)).toBe('mcng-foo');

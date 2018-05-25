@@ -3,7 +3,6 @@ import React from 'react';
 import { removeNotification } from '@commercetools-local/notifications';
 import { DOMAINS } from '@commercetools-local/constants';
 import GenericNotification from '../notification-kinds/generic';
-import IntercomNotification from '../notification-kinds/intercom';
 import ApiErrorNotification from '../notification-kinds/api-error';
 import UnexpectedErrorNotification from '../notification-kinds/unexpected-error';
 import styles from './notifications-list.mod.css';
@@ -31,8 +30,6 @@ function mapNotificationToComponent(notification) {
         case 'info':
         case 'success':
           return GenericNotification;
-        case 'intercom':
-          return IntercomNotification;
         case 'unexpected-error':
           return UnexpectedErrorNotification;
         default:

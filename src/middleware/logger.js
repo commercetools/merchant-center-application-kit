@@ -1,15 +1,12 @@
 import { createLogger } from 'redux-logger';
-import * as constants from '@commercetools-local/constants';
 import {
   ADD_NOTIFICATION,
   REMOVE_NOTIFICATION,
 } from '@commercetools-local/notifications';
+import { __LOCAL } from '../middleware/add-plugin-to-notification/constants';
 
 export const actionTransformer = action =>
-  action &&
-  action.type === constants.__LOCAL &&
-  action.payload &&
-  action.payload.type
+  action && action.type === __LOCAL && action.payload && action.payload.type
     ? {
         ...action.payload,
         type: `LOCAL/${action.meta.plugin}/${action.payload.type}`,
@@ -47,10 +44,10 @@ const loggerMiddleware = createLogger({
       case REMOVE_NOTIFICATION:
         return false;
       case ADD_NOTIFICATION: {
-        const ignoredKinds = ['intercom', 'api-error', 'unexpected-error'];
+        const ignoredKinds = ['api-error', 'unexpected-error'];
         return !ignoredKinds.includes(payload.kind);
       }
-      case constants.__LOCAL:
+      case __LOCAL:
         return payload && typeof payload.type === 'string';
       default:
         return true;

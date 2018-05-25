@@ -1,6 +1,0 @@
-mutation ChangeIntercomStatus($status: IntercomTrackingStatus!) {
-  changeIntercomStatus(status: $status) {
-    id
-    tracking_intercom
-  }
-}

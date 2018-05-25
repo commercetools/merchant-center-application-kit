@@ -1,4 +1,4 @@
 import * as storage from '@commercetools-local/utils/storage';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
+import { STORAGE_KEYS } from '../../constants';
 
-export default () => storage.get(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
+export default () => storage.get(STORAGE_KEYS.ACTIVE_PROJECT_KEY);

@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { compose, withProps } from 'recompose';
 import jwtDecode from 'jwt-decode';
+import { connect } from 'react-redux';
 import * as storage from '@commercetools-local/utils/storage';
 import * as sdkActions from '@commercetools-local/sdk/actions';
-import { connect } from 'react-redux';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
+import { STORAGE_KEYS } from '../../constants';
 import ApplicationLoader from '../application-loader';
 import FailedAuthentication from '../failed-authentication';
 
@@ -31,8 +31,8 @@ export class LoginSSOCallback extends React.PureComponent {
   componentDidMount() {
     const idToken = this.props.location.fragments.id_token;
     const decodedIdToken = jwtDecode(idToken);
-    const nonce = storage.get(CORE_STORAGE_KEYS.NONCE);
-    storage.remove(CORE_STORAGE_KEYS.NONCE);
+    const nonce = storage.get(STORAGE_KEYS.NONCE);
+    storage.remove(STORAGE_KEYS.NONCE);
 
     if (decodedIdToken.nonce !== nonce) {
       this.setAuthenticationFailed(true);
@@ -44,10 +44,10 @@ export class LoginSSOCallback extends React.PureComponent {
         })
         .then(payload => {
           // Set a flag to indicate that the user has been authenticated
-          storage.put(CORE_STORAGE_KEYS.IS_AUTHENTICATED, true);
+          storage.put(STORAGE_KEYS.IS_AUTHENTICATED, true);
           // Store the IdP Url, useful for redirecting logic on logout.
           storage.put(
-            CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL,
+            STORAGE_KEYS.IDENTITY_PROVIDER_URL,
             payload.identityProviderUrl
           );
 

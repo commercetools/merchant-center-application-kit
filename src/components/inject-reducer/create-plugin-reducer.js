@@ -1,4 +1,4 @@
-import { isLocalAction } from '@commercetools-local/utils/actions';
+import { isLocalAction } from '../../middleware/add-plugin-to-notification/actions';
 
 // Actions dispatched by plugins are scoped within a `__LOCAL` action.
 // Each plugin reducer should be wrapped into this reducer, so that `__LOCAL`

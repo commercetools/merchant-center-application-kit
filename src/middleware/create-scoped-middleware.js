@@ -1,5 +1,5 @@
-import { __LOCAL } from '@commercetools-local/constants';
-import { isLocalAction } from '@commercetools-local/utils/actions';
+import { __LOCAL } from './add-plugin-to-notification/constants';
+import { isLocalAction } from './add-plugin-to-notification/actions';
 
 // Localizes a middleware for a plugin.
 //

@@ -1,18 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withProps } from 'recompose';
-import {
-  STORAGE_KEYS as CORE_STORAGE_KEYS,
-  LOGIN_STRATEGY_DEFAULT,
-  LOGIN_STRATEGY_SSO,
-} from '@commercetools-local/constants';
 import { SentryUserLogoutTracker } from '@commercetools-local/sentry';
 import * as storage from '@commercetools-local/utils/storage';
-import ShutdownIntercom from '../shutdown-intercom';
+import {
+  LOGIN_STRATEGY_DEFAULT,
+  LOGIN_STRATEGY_SSO,
+  STORAGE_KEYS,
+} from '../../constants';
 import GtmUserLogoutTracker from '../gtm-user-logout-tracker';
 
 export const getLoginStrategy = () => {
-  const idpUrl = storage.get(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL);
+  const idpUrl = storage.get(STORAGE_KEYS.IDENTITY_PROVIDER_URL);
   return idpUrl ? LOGIN_STRATEGY_SSO : LOGIN_STRATEGY_DEFAULT;
 };
 
@@ -45,12 +44,12 @@ export class Logout extends React.PureComponent {
     }
 
     // The user is no longer authenticated.
-    storage.remove(CORE_STORAGE_KEYS.IS_AUTHENTICATED);
-    storage.remove(CORE_STORAGE_KEYS.IDENTITY_PROVIDER_URL);
+    storage.remove(STORAGE_KEYS.IS_AUTHENTICATED);
+    storage.remove(STORAGE_KEYS.IDENTITY_PROVIDER_URL);
     // NOTE: we need to ensure the cached projectKey is removed, because
     // the user can log in with another account and most likely he won't
     // access to the cached project.
-    storage.remove(CORE_STORAGE_KEYS.ACTIVE_PROJECT_KEY);
+    storage.remove(STORAGE_KEYS.ACTIVE_PROJECT_KEY);
     // We simply redirect to a "new" browser page, instead of using the
     // history router. This will simplify a lot of things and avoid possible
     // problems like e.g. resetting the store/state.
@@ -59,7 +58,6 @@ export class Logout extends React.PureComponent {
   render() {
     return (
       <React.Fragment>
-        <ShutdownIntercom />
         <SentryUserLogoutTracker />
         <GtmUserLogoutTracker />
       </React.Fragment>

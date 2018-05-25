@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import * as storage from '@commercetools-local/utils/storage';
-import { STORAGE_KEYS as CORE_STORAGE_KEYS } from '@commercetools-local/constants';
+import { STORAGE_KEYS } from '../../constants';
 import { LoginSSOCallback } from './login-sso-callback';
 
 jest.mock('jwt-decode', () => () => ({ nonce: 'EY' }));
@@ -79,7 +79,7 @@ describe('lifecylcle', () => {
             ),
           });
           wrapper = shallow(<LoginSSOCallback {...props} />);
-          storage.put(CORE_STORAGE_KEYS.NONCE, 'EY');
+          storage.put(STORAGE_KEYS.NONCE, 'EY');
           wrapper.instance().componentDidMount();
         });
         it('should redirect to /', () => {
@@ -106,7 +106,7 @@ describe('lifecylcle', () => {
 
     describe('when nonce is wrong', () => {
       beforeEach(() => {
-        storage.get.mockReturnValue(CORE_STORAGE_KEYS.NONCE, 'BAD');
+        storage.get.mockReturnValue(STORAGE_KEYS.NONCE, 'BAD');
         wrapper.instance().componentDidMount();
       });
       it('should set hasAuthenticationFailed to true', () => {
