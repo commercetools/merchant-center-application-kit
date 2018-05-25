@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose, withProps } from 'recompose';
+import qs from 'query-string';
 import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
 import * as storage from '@commercetools-local/utils/storage';
@@ -16,9 +17,7 @@ export class LoginSSOCallback extends React.PureComponent {
       query: PropTypes.shape({
         organizationId: PropTypes.string.isRequired,
       }).isRequired,
-      fragments: PropTypes.shape({
-        id_token: PropTypes.string.isRequired,
-      }).isRequired,
+      hash: PropTypes.string.isRequired,
     }).isRequired,
     redirectTo: PropTypes.func.isRequired,
     requestAccessToken: PropTypes.func.isRequired,
@@ -29,7 +28,8 @@ export class LoginSSOCallback extends React.PureComponent {
   };
 
   componentDidMount() {
-    const idToken = this.props.location.fragments.id_token;
+    const fragments = qs.parse(this.props.location.hash.substring(1));
+    const idToken = fragments.id_token;
     const decodedIdToken = jwtDecode(idToken);
     const nonce = storage.get(STORAGE_KEYS.NONCE);
     storage.remove(STORAGE_KEYS.NONCE);

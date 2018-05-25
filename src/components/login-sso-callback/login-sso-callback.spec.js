@@ -10,7 +10,7 @@ jest.mock('@commercetools-local/utils/storage');
 const createTestProps = props => ({
   location: {
     query: { organizationId: 'o1' },
-    fragments: { id_token: '111' },
+    hash: '#id_token=111',
   },
   redirectTo: jest.fn(),
   requestAccessToken: jest.fn(),
