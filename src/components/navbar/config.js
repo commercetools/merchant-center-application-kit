@@ -203,7 +203,7 @@ const itemsDiscounts = {
 };
 
 const itemsOrders = {
-  name: 'mcng-orders',
+  name: 'application-orders',
   menu: {
     name: 'Orders',
     link: 'orders',
