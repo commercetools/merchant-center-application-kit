@@ -10,7 +10,7 @@
   "dependencies": {
     "@commercetools-local/sentry": "*",
     "prop-types": "15.6.1",
-    "react": "16.4.0",
+    "react": "16.3.2",
     "recompose": "0.26.0"
   },
   "devDependencies": {
