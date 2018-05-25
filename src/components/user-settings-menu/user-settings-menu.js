@@ -8,13 +8,11 @@ import withMouseOverState from '@commercetools-local/ui-kit/hocs/with-mouse-over
 import { CaretDownIcon } from '@commercetools-local/ui-kit/icons';
 import Text from '@commercetools-local/ui-kit/typography/text';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
-import {
-  LOGOUT_REASONS,
-  MCSupportFormURL,
-} from '@commercetools-local/constants';
+import { LOGOUT_REASONS } from '@commercetools-local/constants';
 import formatUserName from '@commercetools-local/utils/user';
 import Avatar from '@commercetools-local/core/components/avatar';
 import Card from '@commercetools-local/core/components/card';
+import { MCSupportFormURL } from '../../constants';
 import styles from './user-settings-menu.mod.css';
 import messages from './messages';
 

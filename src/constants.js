@@ -18,3 +18,6 @@ export const STORAGE_KEYS = {
 export const ORGANIZATION_GENERAL_ERROR = 'organizationGeneralError';
 export const LOGIN_STRATEGY_DEFAULT = 'default';
 export const LOGIN_STRATEGY_SSO = 'sso';
+
+export const MCSupportFormURL =
+  'https://jira.commercetools.com/servicedesk/customer/portal/1/create/99';

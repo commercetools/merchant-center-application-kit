@@ -1,4 +1,4 @@
-import { MCSupportFormURL } from '@commercetools-local/constants';
+import { MCSupportFormURL } from '../../constants';
 import {
   CUSTOMER_GROUPS,
   PIM_SEARCH,

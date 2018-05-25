@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { CaretDownIcon } from '@commercetools-local/ui-kit/icons';
-import { MCSupportFormURL } from '@commercetools-local/constants';
+import { MCSupportFormURL } from '../../constants';
 import UserSettingsMenu, { UserAvatar } from './user-settings-menu';
 
 const createTestProps = props => ({
