@@ -14,7 +14,7 @@
     "lodash.get": "4.4.2",
     "moment-timezone": "0.5.17",
     "prop-types": "15.6.1",
-    "react": "16.3.2",
+    "react": "16.4.0",
     "recompose": "0.26.0"
   }
 }
