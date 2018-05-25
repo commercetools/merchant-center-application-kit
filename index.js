@@ -21,9 +21,6 @@ export const PRODUCTS_REFERENCE_SEARCH_FETCHED =
 export const CATEGORIES_REFERENCE_SEARCH_FETCHED =
   'CATEGORIES_REFERENCE_SEARCH_FETCHED';
 
-// MANAGEMENT
-export const INITIAL_STATE_FETCHED = 'INITIAL_STATE_FETCHED';
-
 // NO VALUE FALLBACK
 export const NO_VALUE_FALLBACK = '- - - -';
 
@@ -59,16 +56,6 @@ export const MANAGE_CUSTOMERS_PERMISSION = {
 export const MANAGE_ORDERS_PERMISSION = {
   mode: 'manage',
   resource: 'orders',
-};
-
-export const FILTER_TYPES = {
-  lessThan: 'lessThan',
-  moreThan: 'moreThan',
-  equalTo: 'equalTo',
-  range: 'range',
-  missing: 'missing',
-  missingIn: 'missingIn',
-  in: 'in',
 };
 
 export const GRAPHQL_TARGETS = {
