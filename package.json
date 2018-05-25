@@ -7,6 +7,6 @@
   "dependencies": {
     "prop-types": "15.6.1",
     "raven-js": "3.25.2",
-    "react": "16.4.0"
+    "react": "16.3.2"
   }
 }
