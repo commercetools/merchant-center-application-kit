@@ -27,17 +27,6 @@ export const INITIAL_STATE_FETCHED = 'INITIAL_STATE_FETCHED';
 // NO VALUE FALLBACK
 export const NO_VALUE_FALLBACK = '- - - -';
 
-export const PRODUCT_STATUSES = {
-  PUBLISHED: 'published',
-  UNPUBLISHED: 'unpublished',
-  MODIFIED: 'modified',
-};
-
-export const PRODUCT_ACTIONS = {
-  PUBLISH: 'publish',
-  UNPUBLISH: 'unpublish',
-};
-
 export const STATUS_CODES = {
   UNAUTHORIZED: 401,
   FORBIDDEN: 403,
