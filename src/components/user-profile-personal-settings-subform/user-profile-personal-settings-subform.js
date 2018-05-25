@@ -37,12 +37,12 @@ export const timeZonesToOptions = defaultMemoize(timeZones =>
  */
 export const mapLocalesToOptions = defaultMemoize(locales =>
   Object.entries(locales)
-    .filter(([code]) => code.startsWith('en') || code.startsWith('de'))
-    .map(([code, value]) => ({
-      value: code,
+    .filter(([locale]) => locale.startsWith('en') || locale.startsWith('de'))
+    .map(([locale, value]) => ({
+      value: locale,
       label: value.country
-        ? `${value.language} (${value.country}) (${code})`
-        : `${value.language} (${code})`,
+        ? `${value.language} (${value.country}) (${locale})`
+        : `${value.language} (${locale})`,
     }))
 );
 
