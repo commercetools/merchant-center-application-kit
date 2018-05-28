@@ -4,8 +4,8 @@ This package contains all the intl messages and translations.
 
 Supported languages:
 
-* `en`
-* `de`
+- `en`
+- `de`
 
 ### Usage
 
