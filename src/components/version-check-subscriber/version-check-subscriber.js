@@ -56,5 +56,8 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   setDisplayName('VersionCheckSubscriber'),
   injectConfiguration(['revision'], 'clientVersion'),
-  connect(null, mapDispatchToProps)
+  connect(
+    null,
+    mapDispatchToProps
+  )
 )(VersionCheckSubscriber);

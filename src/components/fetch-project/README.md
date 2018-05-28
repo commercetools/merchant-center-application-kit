@@ -59,5 +59,5 @@ withProject(
 
 ### Arguments
 
-* `getProjectKey(ownProps): String`: a function that receives props coming from the parent component and returns the project key
-* `mapDataToProps(projectData): Object`: map the props that will be injected to the composed component. Use this as a chance to compute some values within the data and pass it as a specific prop.
+- `getProjectKey(ownProps): String`: a function that receives props coming from the parent component and returns the project key
+- `mapDataToProps(projectData): Object`: map the props that will be injected to the composed component. Use this as a chance to compute some values within the data and pass it as a specific prop.

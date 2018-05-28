@@ -79,5 +79,8 @@ const mapDispatchToProps = dispatch => ({
 
 export default compose(
   withProps(() => ({ redirectTo: target => window.location.replace(target) })),
-  connect(null, mapDispatchToProps)
+  connect(
+    null,
+    mapDispatchToProps
+  )
 )(LoginSSOCallback);

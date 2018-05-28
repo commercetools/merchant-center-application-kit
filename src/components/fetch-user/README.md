@@ -54,4 +54,4 @@ withUser(userData => ({ firstName: userData.me && userData.me.firstName }))(
 
 ### Arguments
 
-* `mapDataToProps(userData): Object`: map the props that will be injected to the composed component. Use this as a chance to compute some values within the data and pass it s a specific prop.
+- `mapDataToProps(userData): Object`: map the props that will be injected to the composed component. Use this as a chance to compute some values within the data and pass it s a specific prop.

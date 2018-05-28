@@ -322,5 +322,8 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   injectIntl,
   injectConfiguration(['adminCenterUrl'], 'adminCenterUrl'),
-  connect(null, mapDispatchToProps)
+  connect(
+    null,
+    mapDispatchToProps
+  )
 )(Login);

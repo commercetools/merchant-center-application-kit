@@ -200,5 +200,8 @@ export default compose(
     originUrl: window.location.origin,
     redirectTo: target => window.location.replace(target),
   })),
-  connect(null, mapDispatchToProps)
+  connect(
+    null,
+    mapDispatchToProps
+  )
 )(LoginSSO);

@@ -3,9 +3,9 @@
 This component overrides the redux `store` to restrict the scope to a _plugin_.
 In particular:
 
-* `dispatch` wraps the action into a `LOCAL` action, meaning that the action is
+- `dispatch` wraps the action into a `LOCAL` action, meaning that the action is
   coming from a _plugin_
-* `getState` will only return the state _slice_ for the specific _plugin_.
+- `getState` will only return the state _slice_ for the specific _plugin_.
   Additionally a `globalAppState` field will be injected at runtime to provide
   values useful to plugins about application, user and project.
 
