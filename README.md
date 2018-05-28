@@ -6,8 +6,8 @@ Tools for declarative fetching.
 
 There are two sides to declarative fetching:
 
-* describing the data we need to fetch declaratively
-* fetching by rendering a component instead of triggering the fetch imperatively
+- describing the data we need to fetch declaratively
+- fetching by rendering a component instead of triggering the fetch imperatively
 
 This module aims to provide the necessary parts for both.
 
@@ -43,16 +43,16 @@ import * as sdkActions from '@commercetools-local/sdk/actions';
 
 There are three action creators which all have the same behavior and API. The only difference is the resulting HTTP method:
 
-* `sdkActions.get(description)`: `GET`
-* `sdkActions.post(description)`: `POST`
-* `sdkActions.del(description)`: `DELETE`
+- `sdkActions.get(description)`: `GET`
+- `sdkActions.post(description)`: `POST`
+- `sdkActions.del(description)`: `DELETE`
 
 #### Specifying an endpoint
 
 There are two ways to describe an endpoint:
 
-* direct: `description.uri` is used as-is
-* combined: `description.service` and `description.options` are combined to form a `uri`
+- direct: `description.uri` is used as-is
+- combined: `description.service` and `description.options` are combined to form a `uri`
 
 A `payload` can be provided in either case. It is only used by the `sdkActions.post` action creator. It contains the request payload.
 
@@ -65,7 +65,7 @@ A `payload` can be provided in either case. It is only used by the `sdkActions.p
 }
 ```
 
-* `uri` can be relative or absolute. It gets passed to [`sdk-client`](https://commercetools.github.io/nodejs/sdk/api/sdkClient.html) as-is
+- `uri` can be relative or absolute. It gets passed to [`sdk-client`](https://commercetools.github.io/nodejs/sdk/api/sdkClient.html) as-is
 
 This approach must be used when querying something other than the CTP API. In case the CTP API is queried it is recommended to use `service` and `options` since that is easier to test. It is totally valid to provide `uri` only as well though.
 
@@ -128,8 +128,11 @@ class Foo extends React.Component {
 }
 
 // and finally we need to pass the bound action creator to the component using plain old redux
-export default connect(null, {
-  fetchProductById: productsActions.fetchProductById,
-  onActionError: globalActions.handleActionError,
-});
+export default connect(
+  null,
+  {
+    fetchProductById: productsActions.fetchProductById,
+    onActionError: globalActions.handleActionError,
+  }
+);
 ```

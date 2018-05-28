@@ -109,4 +109,7 @@ export class SdkGet extends React.Component {
   }
 }
 
-export default connect(null, dispatch => ({ dispatch }))(SdkGet);
+export default connect(
+  null,
+  dispatch => ({ dispatch })
+)(SdkGet);
