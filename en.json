@@ -766,7 +766,7 @@
   "Customers.ListView.noCustomersTitle": "There are no customers in this project.",
   "Customers.ListView.noResultsDescription": "Try changing the search settings.",
   "Customers.ListView.noResultsTitle": "No customers match these settings.",
-  "Customers.SearchByCustomers.searchPlaceholder": "Search by full customer number, email or company name",
+  "Customers.SearchByCustomers.searchPlaceholder": "Search by customer number, email, company name or External ID",
   "Customers.Update.backToList": "To Customers List",
   "Customers.Update.confirmDeleteButton": "Delete customer",
   "Customers.Update.confirmDeleteMessage": "This permanently deletes the customer {name}.\nThis action cannot be undone. Click 'Delete customer' to proceed.",

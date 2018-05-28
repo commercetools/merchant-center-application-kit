@@ -777,7 +777,7 @@
   "Customers.ListView.noCustomersTitle": "Es gibt keine Kunden in diesem Projekt.",
   "Customers.ListView.noResultsDescription": "Versuchen Sie die Sucheinstellungen zu ändern.",
   "Customers.ListView.noResultsTitle": "Es gibt keine Kunden zu Ihrer Suche.",
-  "Customers.SearchByCustomers.searchPlaceholder": "Suchen nach vollständiger Kundennummer, Externe ID, Email oder Firmenname.",
+  "Customers.SearchByCustomers.searchPlaceholder": "Suchen nach Kundennummer, Externe ID, Email oder Firmenname.",
   "Customers.Update.backToList": "Zur Kundenliste",
   "Customers.Update.confirmDeleteButton": "Kunde löschen",
   "Customers.Update.confirmDeleteMessage": "Damit wird der Kunde {name} dauerhaft gelöscht.\nDiese Aktion kann nicht rückgängig gemacht werden. Klicken Sie \"Kunde löschen\" um fortzufahren.",
