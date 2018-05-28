@@ -50,7 +50,7 @@ const createDataMenuTestProps = props => ({
   ...createTestProps(),
   data: [
     {
-      name: 'mcng-customers',
+      name: 'application-customers',
       menu: {
         name: 'Customers',
         labelKey: 'NavBar.Customers.title',
@@ -155,7 +155,7 @@ describe('rendering', () => {
         props = createDataMenuTestProps({
           data: [
             {
-              name: 'mcng-customers',
+              name: 'application-customers',
               menu: {
                 name: 'Customers',
                 labelKey: 'NavBar.Customers.title',
@@ -259,7 +259,7 @@ describe('rendering', () => {
             props = createDataMenuTestProps({
               data: [
                 {
-                  name: 'mcng-customers',
+                  name: 'application-customers',
                   menu: {
                     name: 'Customers',
                     labelKey: 'NavBar.Customers.title',
@@ -352,7 +352,7 @@ describe('rendering', () => {
             props = createDataMenuTestProps({
               data: [
                 {
-                  name: 'mcng-customers',
+                  name: 'application-customers',
                   menu: {
                     name: 'Customers',
                     labelKey: 'NavBar.Customers.title',
@@ -467,7 +467,7 @@ describe('rendering', () => {
             props = createDataMenuTestProps({
               data: [
                 {
-                  name: 'mcng-customers',
+                  name: 'application-customers',
                   menu: {
                     name: 'Customers',
                     labelKey: 'NavBar.Customers.title',

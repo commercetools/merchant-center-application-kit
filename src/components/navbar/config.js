@@ -49,7 +49,7 @@ const itemsCategories = {
 };
 
 const itemsCustomers = {
-  name: 'mcng-customers',
+  name: 'application-customers',
   menu: {
     name: 'Customers',
     link: 'customers',
