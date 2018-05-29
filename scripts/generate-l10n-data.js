@@ -13,13 +13,21 @@ const L10N_KEYS = {
   LANGUAGE: 'language',
 };
 
+// This are excluded countries since cldr returns them in its list
+// but our API does not allow them. After some investigation with the
+// data files of the cldr library there is nothing for identifying them
+// since they are valid codes in the ISO 3166 and its following updates
+// https://www.drupal.org/project/drupal/issues/2036219
+const excludedCountries = ['QO', 'UN', 'ZZ'];
+
 const extractCountryDataForLocale = locale => {
   const countryNames = cldr.extractTerritoryDisplayNames(locale);
   const numberRegex = /^\d+$/;
 
   // filter out continents
   Object.keys(countryNames).forEach(key => {
-    if (numberRegex.test(key)) delete countryNames[key];
+    if (numberRegex.test(key) || excludedCountries.includes(key))
+      delete countryNames[key];
   });
 
   // lowercase locales
@@ -242,9 +250,9 @@ const run = async key => {
 Promise.all(
   [
     L10N_KEYS.COUNTRY,
-    L10N_KEYS.CURRENCY,
-    L10N_KEYS.TIMEZONE,
-    L10N_KEYS.LANGUAGE,
+    // L10N_KEYS.CURRENCY,
+    // L10N_KEYS.TIMEZONE,
+    // L10N_KEYS.LANGUAGE,
   ].map(run)
 )
   .then(() => {
