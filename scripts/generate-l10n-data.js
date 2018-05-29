@@ -250,9 +250,9 @@ const run = async key => {
 Promise.all(
   [
     L10N_KEYS.COUNTRY,
-    // L10N_KEYS.CURRENCY,
-    // L10N_KEYS.TIMEZONE,
-    // L10N_KEYS.LANGUAGE,
+    L10N_KEYS.CURRENCY,
+    L10N_KEYS.TIMEZONE,
+    L10N_KEYS.LANGUAGE,
   ].map(run)
 )
   .then(() => {
