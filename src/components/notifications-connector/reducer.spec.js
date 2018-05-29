@@ -82,20 +82,20 @@ describe('selectLatestGlobalNotificationAsList', () => {
 describe('selectNotificationsByDomain', () => {
   it('should return an object with global side and page notifications', () => {
     const globalNotifications = [
-      { domain: DOMAINS.GLOBAL, plugin: 'mcng-categories' },
+      { domain: DOMAINS.GLOBAL, plugin: 'application-categories' },
     ];
     const pageNotifications = [
-      { domain: DOMAINS.PAGE, plugin: 'mcng-categories' },
+      { domain: DOMAINS.PAGE, plugin: 'application-categories' },
     ];
     const sideNotifications = [
-      { domain: DOMAINS.SIDE, plugin: 'mcng-categories' },
+      { domain: DOMAINS.SIDE, plugin: 'application-categories' },
     ];
     expect(
       selectNotificationsByDomain.resultFunc(
         globalNotifications,
         pageNotifications,
         sideNotifications,
-        'mcng-categories'
+        'application-categories'
       )
     ).toEqual({
       global: globalNotifications,

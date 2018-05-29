@@ -289,13 +289,6 @@ export class DataMenu extends React.PureComponent {
     this.checkSize();
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return !isNil(nextProps.isForcedMenuOpen) &&
-      prevState.isMenuOpen !== nextProps.isForcedMenuOpen
-      ? { isMenuOpen: nextProps.isForcedMenuOpen }
-      : null;
-  }
-
   componentDidUpdate() {
     if (this.state.isMenuOpen) document.body.classList.add('body__menu-open');
     if (!this.state.isMenuOpen)
@@ -324,8 +317,7 @@ export class DataMenu extends React.PureComponent {
     } else if (canExpandMenu && this.state.isExpanderVisible !== true)
       this.setState({ isExpanderVisible: true });
     else if (
-      (this.props.isForcedMenuOpen === undefined ||
-        this.props.isForcedMenuOpen === null) &&
+      isNil(this.props.isForcedMenuOpen) &&
       this.state.isMenuOpen !== shouldOpen
     )
       // User has no settings yet (this.props.isForcedMenuOpen === null)
@@ -334,8 +326,7 @@ export class DataMenu extends React.PureComponent {
       // - if screen is small we close it
       this.setState({ isMenuOpen: shouldOpen, isExpanderVisible: true });
     else if (
-      this.props.isForcedMenuOpen !== undefined &&
-      this.props.isForcedMenuOpen !== null &&
+      !isNil(this.props.isForcedMenuOpen) &&
       this.state.isMenuOpen !== this.props.isForcedMenuOpen
     )
       // User has setting, we should use that and ignore the screen size.

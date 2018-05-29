@@ -6,7 +6,7 @@ import {
 } from './feature-toggles';
 
 const itemsCategories = {
-  name: 'mcng-categories',
+  name: 'application-categories',
   menu: {
     name: 'Categories',
     link: 'categories',
