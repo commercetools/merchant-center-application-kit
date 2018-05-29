@@ -1,15 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 import PortalsContainer from '@commercetools-local/core/components/portals-container';
+import Spacings from '@commercetools-local/ui-kit/materials/spacings';
+import Text from '@commercetools-local/ui-kit/typography/text';
 import styles from './public-page-container.mod.css';
+import messages from './messages';
 
 const year = new Date().getUTCFullYear();
 
 const PublicPageContainer = props => (
   <div className={styles.container}>
-    <PortalsContainer />
-    {props.children}
-    <p className={styles.copyright}>{`${year} © commercetools`}</p>
+    <div className={styles.login}>
+      <Spacings.Stack scale="m">
+        <PortalsContainer />
+        {props.children}
+        <div className={styles.footer}>
+          <a href={`https://commercetools.com/privacy`} target="_blank">
+            <Text.Detail tone="positive">
+              <FormattedMessage {...messages.privacyPolicy} />
+            </Text.Detail>
+          </a>
+          <Text.Detail>{`${year} © commercetools`}</Text.Detail>
+        </div>
+      </Spacings.Stack>
+    </div>
   </div>
 );
 PublicPageContainer.displayName = 'PublicPageContainer';

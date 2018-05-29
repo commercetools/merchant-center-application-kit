@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { FormattedMessage } from 'react-intl';
 import PublicPageContainer from './public-page-container';
 
 describe('rendering', () => {
@@ -18,9 +19,22 @@ describe('rendering', () => {
   it('should render children', () => {
     expect(wrapper).toRender('Foo');
   });
-  it('should render the copyright', () => {
-    expect(wrapper).toRender('.copyright');
+  it('should contain the copyright text', () => {
     const date = new Date().getUTCFullYear();
-    expect(wrapper.contains(`${date} © commercetools`)).toBe(true);
+    expect(wrapper.find('TextDetail').at(1)).toHaveProp(
+      'children',
+      `${date} © commercetools`
+    );
+  });
+  it('should render privacy policy link', () => {
+    expect(wrapper.find('TextDetail').at(0)).toHaveProp(
+      'children',
+      <FormattedMessage
+        defaultMessage="Privacy Policy"
+        description="The label for privacy policy link"
+        id="LoginPage.privacyPolicy"
+        values={{}}
+      />
+    );
   });
 });

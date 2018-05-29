@@ -2,14 +2,19 @@
 @import '@commercetools-local/ui-kit/materials/spacings.mod.css';
 
 .container {
+  display: flex;
+  justify-content: center;
   background: var(--color-whiteSnow);
-  width: 100%;
   height: 100vh;
-  padding: 7% 0;
 }
 
-.copyright {
-  font-size: 0.9rem;
-  text-align: center;
-  margin-top: var(--spacing-24);
+.login {
+  margin-top: calc(var(--spacing-32) * 2);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
 }
