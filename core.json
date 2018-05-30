@@ -2511,6 +2511,7 @@
   "ProjectSettings.Tab.International.Zones.countriesPlaceholder": "Select countries",
   "ProjectSettings.Tab.International.Zones.createZone": "A new zone has been added successfully to the project.",
   "ProjectSettings.Tab.International.Zones.deleteZoneButton": "Delete zone",
+  "ProjectSettings.Tab.International.Zones.duplicateCountryAmongZones": "The country you're trying to add already exists among the zones.",
   "ProjectSettings.Tab.International.Zones.editButton": "Edit",
   "ProjectSettings.Tab.International.Zones.saveButton": "Save",
   "ProjectSettings.Tab.International.Zones.someZoneDeletionsSucceededSomeFailed": "{unsuccessfulCount} zones could not be deleted. {successfulCount} of {totalCount} have been deleted successfully.",
