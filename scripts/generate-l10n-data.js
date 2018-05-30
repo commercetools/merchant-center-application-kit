@@ -24,7 +24,7 @@ const extractCountryDataForLocale = locale => {
   const countryNames = cldr.extractTerritoryDisplayNames(locale);
   const numberRegex = /^\d+$/;
 
-  // filter out continents
+  // filter out continents and invalid countries
   Object.keys(countryNames).forEach(key => {
     if (numberRegex.test(key) || excludedCountries.includes(key))
       delete countryNames[key];
@@ -232,7 +232,7 @@ const updateLocaleData = async (key, locales) => {
 
       fs.writeFileSync(
         `${DATA_DIR[key].path}/${locale}.json`,
-        JSON.stringify(localData)
+        JSON.stringify(localData, null, 2)
       );
       return Promise.resolve();
     })
