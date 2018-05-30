@@ -1197,8 +1197,8 @@ describe('helpers', () => {
           };
           iconTheme = getIconTheme(menu, false);
         });
-        it('should get blue theme', () => {
-          expect(iconTheme).toBe('blue');
+        it('should get grey theme', () => {
+          expect(iconTheme).toBe('grey');
         });
       });
     });

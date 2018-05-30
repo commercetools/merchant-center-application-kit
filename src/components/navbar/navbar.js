@@ -225,9 +225,10 @@ ToggledWithPermissions.propTypes = {
 };
 export const getIconTheme = (menu, isActive) => {
   const baseIconTheme =
-    menu.name.toLowerCase() === PLUGIN_NAMES.SETTINGS ? 'grey' : 'white';
+    menu.name.toLowerCase() === PLUGIN_NAMES.SETTINGS || menu.name === 'Support'
+      ? 'grey'
+      : 'white';
   if (isActive) return 'green';
-  else if (menu.name === 'Support') return 'blue';
   return baseIconTheme;
 };
 export class DataMenu extends React.PureComponent {
