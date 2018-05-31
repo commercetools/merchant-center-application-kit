@@ -42,6 +42,11 @@ export const MANAGE_CUSTOMERS_PERMISSION = {
   resource: 'customers',
 };
 
+export const MANAGE_OAUTH_CLIENTS = {
+  mode: 'manage',
+  resource: 'oauth_clients',
+};
+
 export const MANAGE_ORDERS_PERMISSION = {
   mode: 'manage',
   resource: 'orders',
