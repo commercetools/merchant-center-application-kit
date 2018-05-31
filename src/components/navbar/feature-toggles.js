@@ -32,3 +32,4 @@ export const PRICE_TIERS = 'productPriceTiers';
 export const PRODUCT_TYPES_ADMINISTRATION = 'productTypesAdministration';
 
 export const PROJECT_SETTINGS = 'projectSettings';
+export const DEVELOPER_SETTINGS = 'developerSettings';

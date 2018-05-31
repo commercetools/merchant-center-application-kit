@@ -3,6 +3,7 @@ import {
   CUSTOMER_GROUPS,
   PIM_SEARCH,
   PRODUCT_TYPES_ADMINISTRATION,
+  DEVELOPER_SETTINGS,
 } from './feature-toggles';
 
 const itemsCategories = {
@@ -361,6 +362,18 @@ const itemsProjectSettings = {
           {
             mode: 'view',
             resource: 'products',
+          },
+        ],
+      },
+      {
+        name: 'Developer settings',
+        featureToggle: DEVELOPER_SETTINGS,
+        labelKey: 'NavBar.DeveloperSettings.title',
+        link: 'settings/developer',
+        permissions: [
+          {
+            mode: 'manage',
+            resource: 'project',
           },
         ],
       },

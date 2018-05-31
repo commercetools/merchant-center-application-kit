@@ -113,4 +113,8 @@ export default defineMessages({
     id: 'NavBar.ProductTypes.title',
     defaultMessage: 'Product Types',
   },
+  'NavBar.DeveloperSettings.title': {
+    id: 'NavBar.DeveloperSettings.title',
+    defaultMessage: 'Developer Settings',
+  },
 });
