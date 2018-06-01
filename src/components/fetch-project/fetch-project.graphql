@@ -21,8 +21,6 @@ query ProjectQuery($projectKey: String!) {
       canManageCustomers
       canViewTypes
       canManageTypes
-      canViewShippingLists
-      canManageShippingLists
       canViewPayments
       canManagePayments
     }
