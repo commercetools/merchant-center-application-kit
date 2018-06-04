@@ -1,7 +1,0 @@
-@import '@commercetools-local/ui-kit/materials/colors.mod.css';
-
-.header {
-  background-color: var(--color-whiteSnow);
-  border-bottom: 1px var(--color-greyMischka) solid;
-  word-break: break-all;
-}

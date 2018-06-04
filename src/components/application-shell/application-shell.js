@@ -29,7 +29,6 @@ import Logout from '../logout';
 import SetupFlopFlipProvider, {
   getFlopflipReconfiguration,
 } from '../setup-flop-flip-provider';
-import AsyncUserProfile from '../user-profile/async';
 // import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import PageRedirect from '../page-redirect';
@@ -144,23 +143,9 @@ export const RestrictedApplication = props => (
                       <Redirect from="/profile" to="/account/profile" />
                       <Route
                         path="/account"
-                        render={({ match }) => (
-                          <Switch>
-                            <Route
-                              path={`${match.path}/profile`}
-                              render={() => (
-                                <AsyncUserProfile
-                                  user={user}
-                                  showNotification={props.showNotification}
-                                  showApiErrorNotification={
-                                    props.showApiErrorNotification
-                                  }
-                                />
-                              )}
-                            />
-                            <Redirect to={joinPaths(match.url, 'profile')} />
-                          </Switch>
-                        )}
+                        // Render the children and pass the control to the
+                        // specific application part
+                        render={props.render}
                       />
                       {/* Project routes */}
                       {/* Redirect from base project route to dashboard */}

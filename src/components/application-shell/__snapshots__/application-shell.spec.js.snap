@@ -116,7 +116,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
                 />
                 <Route
                   path="/account"
-                  render={[Function]}
+                  render={[MockFunction]}
                 />
                 <Route
                   exact={true}
@@ -259,7 +259,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
                 />
                 <Route
                   path="/account"
-                  render={[Function]}
+                  render={[MockFunction]}
                 />
                 <Route
                   exact={true}

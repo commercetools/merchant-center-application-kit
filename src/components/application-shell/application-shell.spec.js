@@ -7,7 +7,6 @@ import ConfigureIntlProvider from '../configure-intl-provider';
 import ProjectContainer from '../project-container';
 import FetchUser from '../fetch-user';
 import NavBar from '../navbar';
-import AsyncUserProfile from '../user-profile/async';
 import ApplicationShell, {
   RestrictedApplication,
   UnrestrictedApplication,
@@ -269,42 +268,14 @@ describe('<RestrictedApplication>', () => {
         );
       });
     });
-    it('should render <Route> for "/account" below main container', () => {
-      expect(wrapper.find('.main')).toRender({ path: '/account' });
+    it('should render <Route> for "/account"', () => {
+      expect(wrapper.find('.main')).toRender({
+        path: '/account',
+        render: props.render,
+      });
     });
-    describe('account routes', () => {
-      let routeRenderWrapper;
-      beforeEach(() => {
-        routeRenderWrapper = shallow(
-          <div>
-            {wrapper
-              .find('.main')
-              .find({ path: '/account' })
-              .prop('render')({ match: { url: '/account', path: '/account' } })}
-          </div>
-        );
-      });
-      it('should render <Route> for "/account/profile"', () => {
-        expect(routeRenderWrapper).toRender({ path: '/account/profile' });
-      });
-      it('should render <Route> for redurect to "/account/profile"', () => {
-        expect(routeRenderWrapper).toRender({ to: '/account/profile' });
-      });
-      describe('<AsyncUserProfile>', () => {
-        let userProfileRouteRenderWrapper;
-        beforeEach(() => {
-          userProfileRouteRenderWrapper = shallow(
-            <div>
-              {routeRenderWrapper
-                .find({ path: '/account/profile' })
-                .prop('render')()}
-            </div>
-          );
-        });
-        it('should render <AsyncUserProfile> inside <Route> below main container', () => {
-          expect(userProfileRouteRenderWrapper).toRender(AsyncUserProfile);
-        });
-      });
+    it('should render <Route> for redirect to "/account"', () => {
+      expect(wrapper.find('.main')).toRender({ to: '/account/profile' });
     });
     it('should render <Route> matching exact ":projectKey" path', () => {
       expect(wrapper.find('.main')).toRender({
