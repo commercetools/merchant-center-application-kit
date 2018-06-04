@@ -3,7 +3,7 @@ import {
   ADD_NOTIFICATION,
 } from '@commercetools-local/notifications';
 import { HIDE_ALL_PAGE_NOTIFICATIONS } from '@commercetools-local/constants';
-import { selectPageNotifications } from '../components/notifications-connector/reducer';
+import { notificationsReducer } from '@commercetools-local/react-notifications';
 
 function isErrorNotificationKind(kind) {
   return kind === 'api-error' || kind === 'unexpected-error';
@@ -14,19 +14,21 @@ export default ({ getState }) => next => action => {
 
   if (action.type === HIDE_ALL_PAGE_NOTIFICATIONS) {
     const state = getState();
-    selectPageNotifications(state).forEach(notification =>
-      next(removeNotification(notification.id))
-    );
+    notificationsReducer
+      .selectPageNotifications(state)
+      .forEach(notification => next(removeNotification(notification.id)));
   } else if (
     action.type === ADD_NOTIFICATION &&
     action.payload &&
     isErrorNotificationKind(action.payload.kind)
   ) {
     const state = getState();
-    selectPageNotifications(state).forEach(notification => {
-      if (isErrorNotificationKind(notification.kind))
-        next(removeNotification(notification.id));
-    });
+    notificationsReducer
+      .selectPageNotifications(state)
+      .forEach(notification => {
+        if (isErrorNotificationKind(notification.kind))
+          next(removeNotification(notification.id));
+      });
   }
   return next(action);
 };

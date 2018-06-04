@@ -18,6 +18,7 @@
     "@commercetools-local/core": "*",
     "@commercetools-local/l10n": "*",
     "@commercetools-local/notifications": "*",
+    "@commercetools-local/react-notifications": "*",
     "@commercetools-local/sdk": "*",
     "@commercetools-local/storage": "*",
     "@commercetools-local/ui-kit": "*",

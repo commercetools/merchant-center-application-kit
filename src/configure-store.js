@@ -11,6 +11,7 @@ import {
   HIDE_LOADING,
   HIDE_ALL_PAGE_NOTIFICATIONS,
 } from '@commercetools-local/constants';
+import { notificationsReducer } from '@commercetools-local/react-notifications';
 import addPluginToNotificationMiddleware from './middleware/add-plugin-to-notification';
 import batchedUpdates from './middleware/batched-updates';
 import createExtractGlobalActions from './middleware/create-extract-global-actions';
@@ -20,7 +21,6 @@ import loggerMiddleware, { actionTransformer } from './middleware/logger';
 import sentryTrackingMiddleware from './middleware/sentry-tracking';
 import { activePluginReducer } from './components/inject-reducer';
 import { requestsInFlightReducer } from './components/requests-in-flight-loader';
-import { notificationsReducer } from './components/notifications-connector';
 import { getCorrelationId, selectProjectKey } from './utils';
 
 const sdkMiddleware = createSdkMiddleware({

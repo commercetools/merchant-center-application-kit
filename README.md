@@ -19,7 +19,6 @@ features to the application.
 import React from 'react';
 import { Provider as StoreProvider } from 'react-redux';
 import ApplicationShell, {
-  NotificationsConnector,
   reduxStore,
   setupGlobalErrorListener,
 } from '@commercetools-local/application-shell';
@@ -36,36 +35,23 @@ setupGlobalErrorListener(reduxStore.dispatch);
 
 const EntryPoint = () => (
   <StoreProvider store={reduxStore}>
-    <NotificationsConnector>
-      {({
-        notificationsByDomain,
-        showNotification,
-        showApiErrorNotification,
-        showUnexpectedErrorNotification,
-      }) => (
-        <ApplicationShell
-          i18n={i18n}
-          configuration={window.app}
-          trackingEventWhitelist={trackingEventWhitelist}
-          notificationsByDomain={notificationsByDomain}
-          showNotification={showNotification}
-          showApiErrorNotification={showApiErrorNotification}
-          showUnexpectedErrorNotification={showUnexpectedErrorNotification}
-          onRegisterErrorListeners={() => {
-            Sdk.Get.errorHandler = error =>
-              handleActionError(error, 'sdk')(reduxStore.dispatch);
-          }}
-          render={() => (
-            <Switch>
-              <Route path="/:projectKey/dashboard" component={AsyncDashboard} />
-              <Route path="/:projectKey/products" component={AsyncProducts} />
-              {/* Define a catch-all route */}
-              <Route component={PageNotFound} />
-            </Switch>
-          )}
-        />
+    <ApplicationShell
+      i18n={i18n}
+      configuration={window.app}
+      trackingEventWhitelist={trackingEventWhitelist}
+      onRegisterErrorListeners={() => {
+        Sdk.Get.errorHandler = error =>
+          handleActionError(error, 'sdk')(reduxStore.dispatch);
+      }}
+      render={() => (
+        <Switch>
+          <Route path="/:projectKey/dashboard" component={AsyncDashboard} />
+          <Route path="/:projectKey/products" component={AsyncProducts} />
+          {/* Define a catch-all route */}
+          <Route component={PageNotFound} />
+        </Switch>
       )}
-    </NotificationsConnector>
+    />
   </StoreProvider>
 );
 EntryPoint.displayName = 'EntryPoint';
@@ -75,17 +61,13 @@ ReactDOM.render(<EntryPoint />, document.getElementById('root'));
 
 ## Props
 
-| Props                             | Type     | Required | Default | Description                                                                                                                                   |
-| --------------------------------- | -------- | :------: | ------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `i18n`                            | `object` |    ✅    | -       | An object containing all the translated messages per locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`).          |
-| `configuration`                   | `object` |    ✅    | -       | The current `window.app`.                                                                                                                     |
-| `render`                          | `func`   |    ✅    | -       | The function to render the application specific part. This function is executed only when the application specific part needs to be rendered. |
-| `trackingEventWhitelist`          | `object` |    ✅    | -       | An object containing a map of tracking events (_this mapping is required for backwards compatibility, it might be removed in the future_)     |
-| `notificationsByDomain`           | `object` |    ✅    | -       | Simply proxy the prop provided by `NotificationsConnector`                                                                                    |
-| `showNotification`                | `func`   |    ✅    | -       | Simply proxy the prop provided by `NotificationsConnector`                                                                                    |
-| `showApiErrorNotification`        | `func`   |    ✅    | -       | Simply proxy the prop provided by `NotificationsConnector`                                                                                    |
-| `showUnexpectedErrorNotification` | `func`   |    ✅    | -       | Simply proxy the prop provided by `NotificationsConnector`                                                                                    |
-| `onRegisterErrorListeners`        | `func`   |    ✅    | -       | A callback function to setup global event listeners, called when the `ApplicationShell` is mounted                                            |
+| Props                      | Type     | Required | Default | Description                                                                                                                                   |
+| -------------------------- | -------- | :------: | ------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `i18n`                     | `object` |    ✅    | -       | An object containing all the translated messages per locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`).          |
+| `configuration`            | `object` |    ✅    | -       | The current `window.app`.                                                                                                                     |
+| `render`                   | `func`   |    ✅    | -       | The function to render the application specific part. This function is executed only when the application specific part needs to be rendered. |
+| `trackingEventWhitelist`   | `object` |    ✅    | -       | An object containing a map of tracking events (_this mapping is required for backwards compatibility, it might be removed in the future_)     |
+| `onRegisterErrorListeners` | `func`   |    ✅    | -       | A callback function to setup global event listeners, called when the `ApplicationShell` is mounted                                            |
 
 # Development
 
