@@ -458,43 +458,17 @@ describe('lifecycle', () => {
   let props;
   let wrapper;
   describe('componentDidUpdate', () => {
-    describe('when projectKey is already cached', () => {
-      beforeEach(() => {
-        props = createTestProps({ match: { params: { projectKey: 'p1' } } });
-        storage.get.mockReturnValueOnce('p1');
-        wrapper = shallow(<ProjectContainer {...props} />);
-        wrapper.instance().componentDidUpdate(props);
-      });
-      it('should not update storage', () => {
-        expect(storage.put).not.toHaveBeenCalled();
-      });
+    beforeEach(() => {
+      props = createTestProps({ match: { params: { projectKey: 'p1' } } });
+      storage.get.mockReturnValueOnce('p1');
+      wrapper = shallow(<ProjectContainer {...props} />);
+      wrapper.instance().componentDidUpdate(props);
     });
-    describe('when no projectKey is cached', () => {
-      beforeEach(() => {
-        props = createTestProps({ match: { params: { projectKey: 'p1' } } });
-        wrapper = shallow(<ProjectContainer {...props} />);
-        wrapper.instance().componentDidUpdate(props);
-      });
-      it('should cache projectKey into storage', () => {
-        expect(storage.put).toHaveBeenCalledWith(
-          STORAGE_KEYS.ACTIVE_PROJECT_KEY,
-          'p1'
-        );
-      });
-    });
-    describe('when a different projectKey is cached', () => {
-      beforeEach(() => {
-        props = createTestProps({ match: { params: { projectKey: 'p1' } } });
-        storage.get.mockReturnValueOnce(STORAGE_KEYS.ACTIVE_PROJECT_KEY, 'p2');
-        wrapper = shallow(<ProjectContainer {...props} />);
-        wrapper.instance().componentDidUpdate(props);
-      });
-      it('should cache projectKey into storage', () => {
-        expect(storage.put).toHaveBeenLastCalledWith(
-          STORAGE_KEYS.ACTIVE_PROJECT_KEY,
-          'p1'
-        );
-      });
+    it('should store the project key in localStorage', () => {
+      expect(storage.put).toHaveBeenCalledWith(
+        STORAGE_KEYS.ACTIVE_PROJECT_KEY,
+        'p1'
+      );
     });
   });
   describe('when the user navigated to a different route', () => {
