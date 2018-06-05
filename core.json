@@ -2065,8 +2065,6 @@
   "Products.ProductAttributesView.title": "View Settings",
   "Products.ProductCreatedNotification.afterCreation": "Your product has been saved. Would you like to {createLink}?",
   "Products.ProductCreatedNotification.createNewLink": "create a new one",
-  "Products.ProductCreatedNotification.productPublishedNotification": "Product has been published.",
-  "Products.ProductCreatedNotification.publishLink": "publish this product",
   "Products.ProductDetailsDropdownSettings.productsLabelDescription": "Save a Product Attributes Custom view for \"{name}\".",
   "Products.ProductDetailsDropdownSettings.productsLabelList": "My Product Attributes Views",
   "Products.ProductDetailsDropdownSettings.resetLabel": "Default view",
