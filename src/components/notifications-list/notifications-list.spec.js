@@ -1,105 +1,274 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import { DOMAINS } from '@commercetools-local/constants';
-import { NotificationsList } from './notifications-list';
+import NotificationsConnector from '../notifications-connector';
+import GetCustomNotificationComponent from '../map-notification-to-component';
+import GenericNotification from '../notification-kinds/generic';
+import ApiErrorNotification from '../notification-kinds/api-error';
+import UnexpectedErrorNotification from '../notification-kinds/unexpected-error';
+import NotificationsList from './notifications-list';
 
 const createTestProps = props => ({
   domain: DOMAINS.PAGE,
-  notifications: [],
-  activePlugin: null,
   ...props,
 });
 
 describe('rendering', () => {
-  it('outputs correct tree', () => {
-    const props = createTestProps({
-      notifications: [
-        { id: 1, domain: DOMAINS.PAGE, kind: 'success', text: 'some-text' },
-        { id: 2, domain: DOMAINS.PAGE, kind: 'info', text: 'some-other-text' },
-        { id: 3, domain: DOMAINS.GLOBAL, kind: 'info', text: 'some-more-text' },
-      ],
+  let wrapper;
+  let props;
+  beforeEach(() => {
+    props = createTestProps();
+    wrapper = shallow(<NotificationsList {...props} />, {
+      context: {
+        store: {
+          dispatch: jest.fn(),
+        },
+      },
     });
-    const wrapper = shallow(<NotificationsList {...props} />, {
-      context: { store: { dispatch: jest.fn() } },
-    });
-    expect(wrapper).toMatchSnapshot();
   });
-  it('displays notifications', () => {
-    const props = createTestProps({
-      notifications: [
-        { id: 1, domain: DOMAINS.PAGE, kind: 'success', text: 'some-text' },
-        { id: 2, domain: DOMAINS.PAGE, kind: 'info', text: 'some-other-text' },
-      ],
-    });
-    const wrapper = shallow(<NotificationsList {...props} />, {
-      context: { store: { dispatch: jest.fn() } },
-    });
-    expect(wrapper).toMatchSnapshot();
-  });
-});
-
-describe('mapPluginNotificationToComponent', () => {
-  it('can return a component that is preferred to internal kinds', () => {
-    const FooNotification = () => <div />;
-    const props = createTestProps({
-      notifications: [
-        { id: 1, domain: DOMAINS.PAGE, kind: 'success', text: 'some-text' },
-        { id: 2, domain: DOMAINS.PAGE, kind: 'info', text: 'some-other-text' },
-      ],
-    });
-    const wrapper = shallow(
-      <NotificationsList
-        {...props}
-        mapPluginNotificationToComponent={notification =>
-          notification.kind === 'success' ? FooNotification : null
-        }
-      />,
-      { context: { store: { dispatch: jest.fn() } } }
-    );
-    expect(wrapper).toRender(FooNotification);
-  });
-
-  describe('side-notifications', () => {
-    let props;
-    let wrapper;
-
+  describe('if there is a custom notification component', () => {
+    const CustomComponent = () => <div />;
+    CustomComponent.displayName = 'CustomComponent';
+    const mapCustomComponent = jest.fn(() => CustomComponent);
     beforeEach(() => {
-      props = createTestProps({
-        notifications: [
-          {
-            id: 1,
-            domain: DOMAINS.SIDE,
-            kind: 'success',
-            text: 'some-success-text',
-          },
-          {
-            id: 2,
-            domain: DOMAINS.SIDE,
-            kind: 'info',
-            text: 'some-info-text',
-          },
-          {
-            id: 3,
-            domain: DOMAINS.SIDE,
-            kind: 'warning',
-            text: 'some-warning-text',
-          },
-          {
-            id: 4,
-            domain: DOMAINS.SIDE,
-            kind: 'error',
-            text: 'some-error-text',
-          },
-        ],
+      wrapper = wrapper
+        .find(NotificationsConnector)
+        .renderProp('children', {
+          notifications: [
+            { id: 1, domain: DOMAINS.PAGE, kind: 'success', text: 'some-text' },
+          ],
+          showUnexpectedNotification: jest.fn(),
+        })
+        .find(GetCustomNotificationComponent)
+        .renderProp('render', mapCustomComponent);
+    });
+    it('should render the <CustomComponent> notification component', () => {
+      expect(wrapper).toRender(CustomComponent);
+    });
+  });
+  describe('if there is not a custom notification component', () => {
+    describe('for PAGE notifications', () => {
+      describe('if kind is "api-error"', () => {
+        beforeEach(() => {
+          wrapper = wrapper
+            .find(NotificationsConnector)
+            .renderProp('children', {
+              notifications: [
+                {
+                  id: 1,
+                  domain: DOMAINS.PAGE,
+                  kind: 'api-error',
+                  text: 'some-text',
+                },
+              ],
+              showUnexpectedNotification: jest.fn(),
+            })
+            .find(GetCustomNotificationComponent)
+            .renderProp('render', () => null);
+        });
+        it('should render the <ApiErrorNotification> notification component', () => {
+          expect(wrapper).toRender(ApiErrorNotification);
+        });
       });
-      wrapper = shallow(<NotificationsList {...props} />, {
-        context: { store: { dispatch: jest.fn() } },
+      describe('if kind is "unexpected-error"', () => {
+        beforeEach(() => {
+          wrapper = wrapper
+            .find(NotificationsConnector)
+            .renderProp('children', {
+              notifications: [
+                {
+                  id: 1,
+                  domain: DOMAINS.PAGE,
+                  kind: 'unexpected-error',
+                  text: 'some-text',
+                },
+              ],
+              showUnexpectedNotification: jest.fn(),
+            })
+            .find(GetCustomNotificationComponent)
+            .renderProp('render', () => null);
+        });
+        it('should render the <UnexpectedErrorNotification> notification component', () => {
+          expect(wrapper).toRender(UnexpectedErrorNotification);
+        });
+      });
+      describe('if kind is "success"', () => {
+        beforeEach(() => {
+          wrapper = wrapper
+            .find(NotificationsConnector)
+            .renderProp('children', {
+              notifications: [
+                {
+                  id: 1,
+                  domain: DOMAINS.PAGE,
+                  kind: 'success',
+                  text: 'some-text',
+                },
+              ],
+              showUnexpectedNotification: jest.fn(),
+            })
+            .find(GetCustomNotificationComponent)
+            .renderProp('render', () => null);
+        });
+        it('should render the <GenericNotification> notification component', () => {
+          expect(wrapper).toRender(GenericNotification);
+        });
+      });
+      describe('if kind is none of the above', () => {
+        beforeEach(() => {
+          console.error = jest.fn();
+          wrapper = wrapper
+            .find(NotificationsConnector)
+            .renderProp('children', {
+              notifications: [
+                {
+                  id: 1,
+                  domain: DOMAINS.PAGE,
+                  kind: 'non-existing',
+                  text: 'some-text',
+                },
+              ],
+              showUnexpectedNotification: jest.fn(),
+            })
+            .find(GetCustomNotificationComponent)
+            .renderProp('render', () => null);
+        });
+        it('should render null', () => {
+          expect(wrapper).not.toRender({ notification: expect.any(Object) });
+        });
+        it('should log error to console', () => {
+          expect(console.error).toHaveBeenCalledWith(
+            'Saw unexpected notification kind "non-existing".',
+            expect.any(Object)
+          );
+        });
       });
     });
-
-    it('should map the message kind to the correct components', () => {
-      expect(wrapper).toMatchSnapshot();
-      expect(wrapper.find('GenericNotification')).toHaveLength(4);
+    describe('for GLOBAL notifications', () => {
+      describe('if kind is "unexpected-error"', () => {
+        beforeEach(() => {
+          wrapper = wrapper
+            .find(NotificationsConnector)
+            .renderProp('children', {
+              notifications: [
+                {
+                  id: 1,
+                  domain: DOMAINS.GLOBAL,
+                  kind: 'unexpected-error',
+                  text: 'some-text',
+                },
+              ],
+              showUnexpectedNotification: jest.fn(),
+            })
+            .find(GetCustomNotificationComponent)
+            .renderProp('render', () => null);
+        });
+        it('should render the <UnexpectedErrorNotification> notification component', () => {
+          expect(wrapper).toRender(UnexpectedErrorNotification);
+        });
+      });
+      describe('if kind is "success"', () => {
+        beforeEach(() => {
+          wrapper = wrapper
+            .find(NotificationsConnector)
+            .renderProp('children', {
+              notifications: [
+                {
+                  id: 1,
+                  domain: DOMAINS.GLOBAL,
+                  kind: 'success',
+                  text: 'some-text',
+                },
+              ],
+              showUnexpectedNotification: jest.fn(),
+            })
+            .find(GetCustomNotificationComponent)
+            .renderProp('render', () => null);
+        });
+        it('should render the <GenericNotification> notification component', () => {
+          expect(wrapper).toRender(GenericNotification);
+        });
+      });
+      describe('if kind is none of the above', () => {
+        beforeEach(() => {
+          wrapper = wrapper
+            .find(NotificationsConnector)
+            .renderProp('children', {
+              notifications: [
+                {
+                  id: 1,
+                  domain: DOMAINS.GLOBAL,
+                  kind: 'non-existing',
+                  text: 'some-text',
+                },
+              ],
+              showUnexpectedNotification: jest.fn(),
+            })
+            .find(GetCustomNotificationComponent)
+            .renderProp('render', () => null);
+        });
+        it('should render null', () => {
+          expect(wrapper).not.toRender({ notification: expect.any(Object) });
+        });
+        it('should log error to console', () => {
+          expect(console.error).toHaveBeenCalledWith(
+            'Saw unexpected notification kind "non-existing".',
+            expect.any(Object)
+          );
+        });
+      });
+    });
+    describe('for SIDE notifications', () => {
+      describe('if kind is "success"', () => {
+        beforeEach(() => {
+          wrapper = wrapper
+            .find(NotificationsConnector)
+            .renderProp('children', {
+              notifications: [
+                {
+                  id: 1,
+                  domain: DOMAINS.SIDE,
+                  kind: 'success',
+                  text: 'some-text',
+                },
+              ],
+              showUnexpectedNotification: jest.fn(),
+            })
+            .find(GetCustomNotificationComponent)
+            .renderProp('render', () => null);
+        });
+        it('should render the <GenericNotification> notification component', () => {
+          expect(wrapper).toRender(GenericNotification);
+        });
+      });
+      describe('if kind is none of the above', () => {
+        beforeEach(() => {
+          wrapper = wrapper
+            .find(NotificationsConnector)
+            .renderProp('children', {
+              notifications: [
+                {
+                  id: 1,
+                  domain: DOMAINS.SIDE,
+                  kind: 'non-existing',
+                  text: 'some-text',
+                },
+              ],
+              showUnexpectedNotification: jest.fn(),
+            })
+            .find(GetCustomNotificationComponent)
+            .renderProp('render', () => null);
+        });
+        it('should render null', () => {
+          expect(wrapper).not.toRender({ notification: expect.any(Object) });
+        });
+        it('should log error to console', () => {
+          expect(console.error).toHaveBeenCalledWith(
+            'Saw unexpected notification kind "non-existing".',
+            expect.any(Object)
+          );
+        });
+      });
     });
   });
 });

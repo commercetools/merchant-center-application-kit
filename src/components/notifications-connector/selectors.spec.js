@@ -6,7 +6,7 @@ import {
   selectSideNotifications,
   selectLatestGlobalNotificationAsList,
   selectNotificationsByDomain,
-} from './reducer';
+} from './selectors';
 
 describe('isNotificationVisible', () => {
   describe('when no plugin is active', () => {

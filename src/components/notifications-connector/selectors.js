@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { reducer as notificationsReducer } from '@commercetools-local/notifications';
 import { DOMAINS } from '@commercetools-local/constants';
 
 export const isNotificationVisible = (activePlugin, notificationPlugin) => {
@@ -62,5 +61,3 @@ export const selectNotificationsByDomain = createSelector(
     ),
   })
 );
-
-export default notificationsReducer;

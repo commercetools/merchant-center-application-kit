@@ -6,6 +6,7 @@ import NotificationsConnector from '../notifications-connector';
 import GenericNotification from '../notification-kinds/generic';
 import ApiErrorNotification from '../notification-kinds/api-error';
 import UnexpectedErrorNotification from '../notification-kinds/unexpected-error';
+import GetCustomNotificationComponent from '../map-notification-to-component';
 import styles from './notifications-list.mod.css';
 
 function mapNotificationToComponent(notification) {
@@ -51,16 +52,11 @@ function mapNotificationToComponent(notification) {
   }
 }
 
-export class NotificationsList extends React.PureComponent {
+class NotificationsList extends React.PureComponent {
   static displayName = 'NotificationsList';
 
   static propTypes = {
     domain: PropTypes.string.isRequired,
-    mapPluginNotificationToComponent: PropTypes.func,
-  };
-
-  static defaultProps = {
-    mapPluginNotificationToComponent: null,
   };
 
   static contextTypes = {
@@ -73,43 +69,48 @@ export class NotificationsList extends React.PureComponent {
     return (
       <NotificationsConnector domain={this.props.domain}>
         {({ notifications, showUnexpectedErrorNotification }) => (
-          <div className={styles[`container-${this.props.domain}`]}>
-            {notifications.map(notification => {
-              // check whether the current plugin provides a custom
-              // notification for this type
-              const PluginNotification =
-                this.props.mapPluginNotificationToComponent &&
-                this.props.mapPluginNotificationToComponent(notification);
-              // fall back to app-wide notifications
-              const Component =
-                PluginNotification || mapNotificationToComponent(notification);
-              if (!Component) {
-                if (process.env.NODE_ENV !== 'production')
-                  // eslint-disable-next-line no-console
-                  console.error(
-                    `Saw unexpected notification kind "${notification.kind}".`,
+          <GetCustomNotificationComponent
+            render={mapCustomNotificationToComponent => (
+              <div className={styles[`container-${this.props.domain}`]}>
+                {notifications.map(notification => {
+                  // 1. Check if there is a custom notification component first
+                  const CustomNotificationComponent = mapCustomNotificationToComponent(
                     notification
                   );
-                return null;
-              }
-              const dismiss = () => {
-                this.context.store.dispatch(
-                  removeNotification(notification.id)
-                );
-              };
-              return (
-                <Component
-                  key={notification.id}
-                  notification={notification}
-                  dismiss={dismiss}
-                  // Needed for global notifications at the moment.
-                  showUnexpectedErrorNotification={
-                    showUnexpectedErrorNotification
+                  // 2. Fall back to the default notification components
+                  const NotificationComponent =
+                    CustomNotificationComponent ||
+                    mapNotificationToComponent(notification);
+                  if (!NotificationComponent) {
+                    if (process.env.NODE_ENV !== 'production')
+                      // eslint-disable-next-line no-console
+                      console.error(
+                        `Saw unexpected notification kind "${
+                          notification.kind
+                        }".`,
+                        notification
+                      );
+                    return null;
                   }
-                />
-              );
-            })}
-          </div>
+                  return (
+                    <NotificationComponent
+                      key={notification.id}
+                      notification={notification}
+                      dismiss={() => {
+                        this.context.store.dispatch(
+                          removeNotification(notification.id)
+                        );
+                      }}
+                      // Needed for global notifications at the moment.
+                      showUnexpectedErrorNotification={
+                        showUnexpectedErrorNotification
+                      }
+                    />
+                  );
+                })}
+              </div>
+            )}
+          />
         )}
       </NotificationsConnector>
     );
