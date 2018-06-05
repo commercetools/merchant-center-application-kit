@@ -33,7 +33,7 @@ const createTestPropsForFormik = props => ({
 });
 
 jest.mock('uuid/v4', () => () => 'foo-uuid');
-jest.mock('@commercetools-local/utils/storage');
+jest.mock('@commercetools-local/storage');
 
 describe('rendering', () => {
   let wrapper;

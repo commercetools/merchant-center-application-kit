@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import { UnconnectedRestrictedByPermissions } from '@commercetools-local/core/components/with-permissions';
-import * as storage from '@commercetools-local/utils/storage';
+import * as storage from '@commercetools-local/storage';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import {
   NavBar,
@@ -16,7 +16,7 @@ import {
 } from './navbar';
 import { defaultNavigationItems } from './config';
 
-jest.mock('@commercetools-local/utils/storage');
+jest.mock('@commercetools-local/storage');
 
 const createTestProps = props => ({
   location: {

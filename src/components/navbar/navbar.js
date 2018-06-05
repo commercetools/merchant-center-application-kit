@@ -14,7 +14,7 @@ import {
   createPermissionsMatchingToProps,
   UnconnectedRestrictedByPermissions,
 } from '@commercetools-local/core/components/with-permissions';
-import * as storage from '@commercetools-local/utils/storage';
+import * as storage from '@commercetools-local/storage';
 import { STORAGE_KEYS } from '../../constants';
 import { withProject } from '../fetch-project';
 import styles from './navbar.mod.css';

@@ -8,7 +8,7 @@ import {
   IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory';
 import history from '@commercetools-local/browser-history';
-import * as storage from '@commercetools-local/utils/storage';
+import * as storage from '@commercetools-local/storage';
 import { createErrorLink, headerLink, tokenRetryLink } from './apollo-links/';
 
 const httpLink = createHttpLink({

@@ -14,7 +14,7 @@ import {
 } from '@commercetools-local/utils/url';
 import * as sdkActions from '@commercetools-local/sdk/actions';
 import { connect } from 'react-redux';
-import * as storage from '@commercetools-local/utils/storage';
+import * as storage from '@commercetools-local/storage';
 import { messages as validationMessages } from '@commercetools-local/utils/validation';
 import Title from '@commercetools-local/core/components/title';
 import LabelField from '@commercetools-local/core/components/fields/label-field';

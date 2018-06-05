@@ -19,6 +19,7 @@
     "@commercetools-local/l10n": "*",
     "@commercetools-local/notifications": "*",
     "@commercetools-local/sdk": "*",
+    "@commercetools-local/storage": "*",
     "@commercetools-local/test-utils": "*",
     "@commercetools-local/ui-kit": "*",
     "@commercetools-local/utils": "*",

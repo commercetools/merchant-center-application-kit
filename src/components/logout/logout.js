@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withProps } from 'recompose';
 import { SentryUserLogoutTracker } from '@commercetools-local/sentry';
-import * as storage from '@commercetools-local/utils/storage';
+import * as storage from '@commercetools-local/storage';
 import {
   LOGIN_STRATEGY_DEFAULT,
   LOGIN_STRATEGY_SSO,

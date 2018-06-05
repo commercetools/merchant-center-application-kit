@@ -13,7 +13,7 @@ import ApplicationShell, {
   extractLanguageFromLocale,
 } from './application-shell';
 
-jest.mock('@commercetools-local/utils/storage');
+jest.mock('@commercetools-local/storage');
 jest.mock('@commercetools-local/sentry');
 
 const createTestProps = props => ({

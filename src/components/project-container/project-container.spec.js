@@ -2,7 +2,7 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { Redirect } from 'react-router-dom';
 import { shallow } from 'enzyme';
-import * as storage from '@commercetools-local/utils/storage';
+import * as storage from '@commercetools-local/storage';
 import { intlMock } from '@commercetools-local/test-utils';
 import Notifier from '@commercetools-local/core/components/notifier';
 import { STORAGE_KEYS } from '../../constants';
@@ -26,7 +26,7 @@ const createTestProps = custom => ({
 });
 
 jest.mock('react-dom');
-jest.mock('@commercetools-local/utils/storage');
+jest.mock('@commercetools-local/storage');
 
 describe('rendering', () => {
   let props;

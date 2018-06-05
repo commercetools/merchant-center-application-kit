@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import * as storage from '@commercetools-local/utils/storage';
+import * as storage from '@commercetools-local/storage';
 import WithProjectKey, {
   WithProjectKeyFromCacheOrUser,
 } from './with-project-key';
 
-jest.mock('@commercetools-local/utils/storage');
+jest.mock('@commercetools-local/storage');
 
 const createTestProps = props => ({
   user: null,

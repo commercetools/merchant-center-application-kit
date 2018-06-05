@@ -3,7 +3,7 @@ import React from 'react';
 import { LOGOUT_REASONS } from '@commercetools-local/constants';
 import { Login } from './login';
 
-jest.mock('@commercetools-local/utils/storage');
+jest.mock('@commercetools-local/storage');
 
 const createTestProps = props => ({
   location: { query: {} },

@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import * as storage from '@commercetools-local/utils/storage';
+import * as storage from '@commercetools-local/storage';
 import { __LOCAL } from '../../middleware/add-plugin-to-notification/constants';
 import { LocalStoreProvider, mapStateToProps } from './local-store-provider';
 
-jest.mock('@commercetools-local/utils/storage');
+jest.mock('@commercetools-local/storage');
 
 const createTestProps = props => ({
   hasStateForActivePlugin: false,

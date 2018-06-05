@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'recompose';
-import * as storage from '@commercetools-local/utils/storage';
+import * as storage from '@commercetools-local/storage';
 import { __LOCAL } from '../../middleware/add-plugin-to-notification/constants';
 import { STORAGE_KEYS } from '../../constants';
 import { withUser } from '../fetch-user';
