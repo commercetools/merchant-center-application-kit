@@ -4,7 +4,7 @@ describe('NotificationsFaC', () => {
   let props;
   const createTestProps = custom => ({
     children: jest.fn(),
-    notificationsByDomain: { global: ['foo', 'bar'], page: [], side: [] },
+    notifications: ['foo', 'bar'],
     showNotification: jest.fn(),
     showApiErrorNotification: jest.fn(),
     showUnexpectedErrorNotification: jest.fn(),
@@ -20,7 +20,7 @@ describe('NotificationsFaC', () => {
   it('should pass notificationsByDomain', () => {
     expect(props.children).toHaveBeenCalledWith(
       expect.objectContaining({
-        notificationsByDomain: props.notificationsByDomain,
+        notifications: props.notifications,
       })
     );
   });
