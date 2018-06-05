@@ -18,7 +18,7 @@ import * as storage from '@commercetools-local/storage';
 import { messages as validationMessages } from '@commercetools-local/utils/validation';
 import Title from '@commercetools-local/core/components/title';
 import LabelField from '@commercetools-local/core/components/fields/label-field';
-import Notification from '@commercetools-local/core/components/notification';
+import { Notification } from '@commercetools-local/react-notifications';
 import { ORGANIZATION_GENERAL_ERROR, STORAGE_KEYS } from '../../constants';
 import PublicPageContainer from '../public-page-container';
 import LoginBox from '../login-box';
