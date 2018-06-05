@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 import { Redirect } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import * as storage from '@commercetools-local/storage';
-import { intlMock } from '@commercetools-local/test-utils';
 import Notifier from '@commercetools-local/core/components/notifier';
 import { STORAGE_KEYS } from '../../constants';
 import FetchProject from '../fetch-project';
@@ -20,7 +19,9 @@ const createTestProps = custom => ({
   isLoadingUser: false,
   user: { availableProjects: [] },
   showNotification: jest.fn(),
-  intl: intlMock,
+  intl: {
+    formatMessage: jest.fn(),
+  },
   render: jest.fn(),
   ...custom,
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import { injectIntl, intlShape } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import isNil from 'lodash.isnil';
 import { DOMAINS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/storage';
@@ -36,7 +36,9 @@ export class ProjectContainer extends React.Component {
       availableProjects: PropTypes.array.isRequired,
     }),
     render: PropTypes.func.isRequired,
-    intl: intlShape.isRequired,
+    intl: PropTypes.shape({
+      formatMessage: PropTypes.func.isRequired,
+    }).isRequired,
   };
   state = {
     hasError: false,
