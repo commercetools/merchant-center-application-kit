@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DOMAINS } from '@commercetools-local/constants';
 import ApiError from '@commercetools-local/core/components/api-error';
-import Notification from '@commercetools-local/core/components/notification';
+import Notification from '../../notification';
 
 class ApiErrorNotification extends React.PureComponent {
   static displayName = 'ApiErrorNotification';

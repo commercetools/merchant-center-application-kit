@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { DOMAINS } from '@commercetools-local/constants';
 import messages from '@commercetools-local/core/components/api-error/messages';
-import Notification from '@commercetools-local/core/components/notification';
+import Notification from '../../notification';
 
 class UnexpectedErrorNotification extends React.PureComponent {
   static displayName = 'UnexpectedErrorNotification';
