@@ -1,0 +1,247 @@
+@import '@commercetools-local/ui-kit/materials/borders.mod.css';
+@import '@commercetools-local/ui-kit/materials/colors.mod.css';
+@import '@commercetools-local/ui-kit/materials/shadows.mod.css';
+@import '@commercetools-local/ui-kit/materials/spacings.mod.css';
+
+:root {
+  --width-for-type-spacing: 50px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* CLOSE BUTTON */
+
+.content {
+  flex-basis: 100%;
+  flex-grow: 1;
+  padding: 0 var(--spacing-8);
+  margin: 0;
+}
+
+.content p,
+.content a {
+  color: var(--color-white);
+}
+
+.content ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/** Child component style overrides */
+.button-close {
+  border: 0;
+  font-size: 1rem;
+  height: 24px;
+  bottom: 0;
+  margin: auto;
+}
+
+.icon-container {
+  background: transparent;
+  border-color: var(--color-white);
+  color: var(--color-white);
+  position: relative;
+}
+
+.icon-container:hover {
+  color: var(--color-white);
+}
+
+/* NOTIFICATIONS - SIDE - ICON */
+
+.icon-type-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 100%;
+  color: var(--color-white);
+  border-radius: 3px 0 0 3px;
+}
+
+.icon-type-container--success {
+  background: var(--color-primaryGreen);
+}
+
+.icon-type-container--info {
+  background: var(--color-blue);
+}
+
+.icon-type-container--error {
+  background: var(--color-red);
+}
+
+.icon-type-container--warning {
+  background: var(--color-orange);
+}
+
+.extra-padding {
+  padding: var(--spacing-16) var(--spacing-16) var(--spacing-16)
+    var(--width-for-type-spacing) !important;
+}
+
+/* NOTIFICATIONS BASE */
+
+.notification {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-16);
+}
+
+.notification-page {
+  composes: notification;
+  composes: show-notification from '../../_styles/animations.mod.css';
+  text-align: center;
+}
+
+.notification-page > * + * {
+  margin-left: var(--spacing-8);
+}
+
+.notification-side {
+  composes: notification;
+  composes: extra-padding;
+  text-align: left;
+  background: var(--color-white);
+  border: 1px solid var(--color-white);
+  box-shadow: var(--shadow-1-second);
+  border-radius: var(--border-radius-6);
+  word-break: break-word;
+  hyphens: auto; /* still not supported on Chrome */
+}
+
+.notification-side-dynamic {
+  composes: notification-side;
+  composes: show-notification-side from '../../_styles/animations.mod.css' !important;
+  position: relative;
+  z-index: 10000;
+  margin-top: var(--spacing-24) !important;
+  right: var(--spacing-32);
+  float: right;
+  clear: both;
+  max-width: 50%;
+}
+
+.notification-side .icon-container {
+  color: var(--color-secondaryGrey);
+  border-color: var(--color-primaryGrey);
+}
+
+.notification-side,
+.notification-side .content a,
+.notification-side .content p {
+  color: var(--color-black);
+}
+
+.notification-side .content {
+  font-size: 0.929rem;
+}
+
+.notification-global {
+  composes: notification-page;
+}
+
+/* NOTIFICATIONS - GLOBAL */
+
+.notification-global-error-dynamic {
+  composes: notification-page;
+  background-color: var(--color-red);
+}
+
+.notification-global-info-dynamic {
+  composes: notification-page;
+  background-color: var(--color-blue);
+}
+
+.notification-global-warning-dynamic {
+  composes: notification-page;
+  background-color: var(--color-orange);
+}
+
+/* NOTIFICATIONS - PAGE */
+
+.notification-page-error-dynamic {
+  composes: notification-page;
+  background-color: var(--color-red);
+}
+
+.notification-page-info-dynamic {
+  composes: notification-page;
+  background-color: var(--color-blue);
+}
+
+.notification-page-warning-dynamic {
+  composes: notification-page;
+  background-color: var(--color-orange);
+}
+
+.notification-page-success-dynamic {
+  composes: notification-page;
+  background-color: var(--color-primaryGreen);
+}
+
+/* NOTIFICATIONS - SIDE */
+
+.border-error {
+  border: 1px solid var(--color-red);
+}
+
+.border-warning {
+  border: 1px solid var(--color-orange);
+}
+
+.border-info {
+  border: 1px solid var(--color-blue);
+}
+
+.border-success {
+  border: 1px solid var(--color-primaryGreen);
+}
+
+.notification-side-error-fixed {
+  composes: notification-side;
+  composes: border-error;
+}
+
+.notification-side-error-dynamic {
+  composes: notification-side-dynamic;
+  composes: border-error;
+}
+
+.notification-side-warning-fixed {
+  composes: notification-side;
+  composes: border-warning;
+}
+
+.notification-side-warning-dynamic {
+  composes: notification-side-dynamic;
+  composes: border-warning;
+}
+
+.notification-side-info-fixed {
+  composes: notification-side;
+  composes: border-info;
+}
+
+.notification-side-info-dynamic {
+  composes: notification-side-dynamic;
+  composes: border-info;
+}
+
+.notification-side-success-fixed {
+  composes: notification-side;
+  composes: border-success;
+}
+
+.notification-side-success-dynamic {
+  composes: notification-side-dynamic;
+  composes: border-success;
+}
