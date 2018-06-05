@@ -2,6 +2,7 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import {
   middleware as notificationsMiddleware,
+  reducer as notificationsReducer,
   ADD_NOTIFICATION,
   REMOVE_NOTIFICATION,
 } from '@commercetools-local/notifications';
@@ -11,7 +12,6 @@ import {
   HIDE_LOADING,
   HIDE_ALL_PAGE_NOTIFICATIONS,
 } from '@commercetools-local/constants';
-import { notificationsReducer } from '@commercetools-local/react-notifications';
 import addPluginToNotificationMiddleware from './middleware/add-plugin-to-notification';
 import batchedUpdates from './middleware/batched-updates';
 import createExtractGlobalActions from './middleware/create-extract-global-actions';

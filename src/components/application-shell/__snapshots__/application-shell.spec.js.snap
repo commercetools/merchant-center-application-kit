@@ -56,9 +56,6 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
           >
             <NotificationsList
               domain="global"
-              mapPluginNotificationToComponent={[MockFunction]}
-              notifications={Array []}
-              showUnexpectedErrorNotification={[MockFunction]}
             />
           </div>
           <header>
@@ -97,13 +94,9 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
             <PortalsContainer />
             <NotificationsList
               domain="page"
-              mapPluginNotificationToComponent={[MockFunction]}
-              notifications={Array []}
             />
             <NotificationsList
               domain="side"
-              mapPluginNotificationToComponent={[MockFunction]}
-              notifications={Array []}
             />
             <div
               className="content"
@@ -199,9 +192,6 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
           >
             <NotificationsList
               domain="global"
-              mapPluginNotificationToComponent={[MockFunction]}
-              notifications={Array []}
-              showUnexpectedErrorNotification={[MockFunction]}
             />
           </div>
           <header>
@@ -240,13 +230,9 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
             <PortalsContainer />
             <NotificationsList
               domain="page"
-              mapPluginNotificationToComponent={[MockFunction]}
-              notifications={Array []}
             />
             <NotificationsList
               domain="side"
-              mapPluginNotificationToComponent={[MockFunction]}
-              notifications={Array []}
             />
             <div
               className="content"

@@ -88,12 +88,7 @@ export const RestrictedApplication = props => (
               <GtmUserTracker user={user} />
               <div className={styles['app-layout']}>
                 <div className={styles['global-notifications']}>
-                  <NotificationsList
-                    domain={DOMAINS.GLOBAL}
-                    mapPluginNotificationToComponent={
-                      props.mapPluginNotificationToComponent
-                    }
-                  />
+                  <NotificationsList domain={DOMAINS.GLOBAL} />
                 </div>
                 <header>
                   <AppBar user={user} />
@@ -120,18 +115,8 @@ export const RestrictedApplication = props => (
                  */}
                 <div role="main" className={styles.main}>
                   <PortalsContainer />
-                  <NotificationsList
-                    domain={DOMAINS.PAGE}
-                    mapPluginNotificationToComponent={
-                      props.mapPluginNotificationToComponent
-                    }
-                  />
-                  <NotificationsList
-                    domain={DOMAINS.SIDE}
-                    mapPluginNotificationToComponent={
-                      props.mapPluginNotificationToComponent
-                    }
-                  />
+                  <NotificationsList domain={DOMAINS.PAGE} />
+                  <NotificationsList domain={DOMAINS.SIDE} />
                   <div className={styles.content}>
                     <Switch>
                       <Redirect from="/profile" to="/account/profile" />
@@ -209,7 +194,6 @@ RestrictedApplication.displayName = 'RestrictedApplication';
 RestrictedApplication.propTypes = {
   i18n: PropTypes.object.isRequired,
   render: PropTypes.func.isRequired,
-  mapPluginNotificationToComponent: PropTypes.func,
   INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
 };
 
@@ -265,7 +249,6 @@ export default class ApplicationShell extends React.Component {
       ]).isRequired
     ),
     render: PropTypes.func.isRequired,
-    mapPluginNotificationToComponent: PropTypes.func,
     onRegisterErrorListeners: PropTypes.func.isRequired,
     // Internal usage only, does not need to be documented
     INTERNAL__isApplicationFallback: PropTypes.bool,
@@ -305,9 +288,6 @@ export default class ApplicationShell extends React.Component {
                               <RestrictedApplication
                                 i18n={this.props.i18n}
                                 render={this.props.render}
-                                mapPluginNotificationToComponent={
-                                  this.props.mapPluginNotificationToComponent
-                                }
                                 INTERNAL__isApplicationFallback={
                                   this.props.INTERNAL__isApplicationFallback
                                 }
