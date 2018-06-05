@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { DOMAINS } from '@commercetools-local/constants';
-import messages from '@commercetools-local/core/components/api-error/messages';
+import apiErrorMessages from '../api-error-message/messages';
 import Notification from '../../notification';
 
 class UnexpectedErrorNotification extends React.PureComponent {
@@ -30,7 +30,7 @@ class UnexpectedErrorNotification extends React.PureComponent {
         domain={this.props.notification.domain}
         onCloseClick={this.props.dismiss}
       >
-        <FormattedMessage {...messages.General} />
+        <FormattedMessage {...apiErrorMessages.General} />
         {this.props.notification.values.errorId && <br />}
         {this.props.notification.values.errorId && (
           <span>{`ID (${this.props.notification.values.errorId})`}</span>

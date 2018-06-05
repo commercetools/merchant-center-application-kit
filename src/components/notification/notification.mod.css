@@ -87,6 +87,43 @@
     var(--width-for-type-spacing) !important;
 }
 
+/* Animations */
+
+.show {
+  animation: show 0.3s forwards linear;
+}
+
+.show-notification {
+  composes: show;
+  animation: shownotification 0.3s forwards;
+}
+
+.show-notification-side {
+  composes: show;
+  animation: shownotificationside 0.3s forwards;
+}
+
+@keyframes shownotification {
+  0% {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+  100% {
+    max-height: 200px;
+  }
+}
+
+@keyframes shownotificationside {
+  0% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 /* NOTIFICATIONS BASE */
 
 .notification {
@@ -98,7 +135,7 @@
 
 .notification-page {
   composes: notification;
-  composes: show-notification from '../../_styles/animations.mod.css';
+  composes: show-notification;
   text-align: center;
 }
 
@@ -120,7 +157,7 @@
 
 .notification-side-dynamic {
   composes: notification-side;
-  composes: show-notification-side from '../../_styles/animations.mod.css' !important;
+  composes: show-notification-side !important;
   position: relative;
   z-index: 10000;
   margin-top: var(--spacing-24) !important;

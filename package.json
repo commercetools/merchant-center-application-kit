@@ -11,6 +11,7 @@
     "@commercetools-local/constants": "*",
     "@commercetools-local/core": "*",
     "@commercetools-local/notifications": "*",
+    "@commercetools-local/sentry": "*",
     "@commercetools-local/ui-kit": "*",
     "prop-types": "15.6.1",
     "react": "16.4.0",

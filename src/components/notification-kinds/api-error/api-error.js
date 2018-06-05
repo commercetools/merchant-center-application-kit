@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DOMAINS } from '@commercetools-local/constants';
-import ApiError from '@commercetools-local/core/components/api-error';
 import Notification from '../../notification';
+import ApiErrorMessage from '../api-error-message';
 
 class ApiErrorNotification extends React.PureComponent {
   static displayName = 'ApiErrorNotification';
@@ -44,7 +44,7 @@ class ApiErrorNotification extends React.PureComponent {
         }
         return (
           <li key={idx}>
-            <ApiError error={error} />
+            <ApiErrorMessage error={error} />
           </li>
         );
       })}
