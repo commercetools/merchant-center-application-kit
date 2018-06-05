@@ -1,4 +1,9 @@
-import * as storage from '@commercetools-local/utils/storage';
-import { STORAGE_KEYS } from '../../constants';
+// this will try to extract the project-key from the url
+export default () => {
+  const staticUrlPathsInPositionOfProjectKey = ['login', 'logout', 'account'];
+  const possibleProjectKey = window.location.pathname.split('/')[1];
 
-export default () => storage.get(STORAGE_KEYS.ACTIVE_PROJECT_KEY);
+  return staticUrlPathsInPositionOfProjectKey.includes(possibleProjectKey)
+    ? undefined
+    : possibleProjectKey;
+};
