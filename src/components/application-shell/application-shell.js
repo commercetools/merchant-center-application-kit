@@ -6,7 +6,6 @@ import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import { joinPaths } from '@commercetools-local/utils/url';
 import * as storage from '@commercetools-local/storage';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-local/constants';
-import PortalsContainer from '@commercetools-local/core/components/portals-container';
 import history from '@commercetools-local/browser-history';
 import {
   reportErrorToSentry,
@@ -14,6 +13,7 @@ import {
 } from '@commercetools-local/sentry';
 import { ConfigurationProvider } from '@commercetools-local/application-shell-connectors';
 import { NotificationsList } from '@commercetools-local/react-notifications';
+import PortalsContainer from '../portals-container';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
 import WithProjectKey from '../with-project-key';
