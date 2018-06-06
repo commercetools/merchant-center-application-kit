@@ -1,3 +1,5 @@
+export const PORTALS_CONTAINER_ID = 'portals-container';
+
 export const __GLOBAL = 'GLOBAL';
 
 // NOTIFICATIONS
