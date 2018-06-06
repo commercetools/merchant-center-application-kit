@@ -73,7 +73,11 @@ Initials.propTypes = {
 Initials.defaultProps = { text: '' };
 
 const Avatar = props => (
-  <div className={classnames(styles.avatar, styles[`avatar-${props.size}`])}>
+  <div
+    className={classnames(styles.avatar, styles[`avatar-${props.size}`], {
+      [styles['avatar-hover']]: props.isHighlighted,
+    })}
+  >
     <GravatarImg email={props.email} size={props.size} />
     <Initials
       text={getInitialsFromName({
@@ -85,6 +89,7 @@ const Avatar = props => (
 );
 Avatar.displayName = 'Avatar';
 Avatar.defaultProps = {
+  isHighlighted: false,
   size: 'small',
 };
 
@@ -92,6 +97,7 @@ Avatar.propTypes = {
   firstName: PropTypes.any.isRequired,
   lastName: PropTypes.any.isRequired,
   email: PropTypes.any.isRequired,
+  isHighlighted: PropTypes.bool,
   size: PropTypes.oneOf(['big', 'small']).isRequired,
 };
 

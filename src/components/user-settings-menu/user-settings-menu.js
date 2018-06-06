@@ -19,13 +19,12 @@ import messages from './messages';
 export const UserAvatar = props => (
   <div onMouseOver={props.handleMouseOver} onMouseOut={props.handleMouseOut}>
     <Spacings.Inline alignItems="center">
-      <div className={styles.avatar}>
-        <Avatar
-          email={props.email}
-          firstName={props.firstName}
-          lastName={props.lastName}
-        />
-      </div>
+      <Avatar
+        email={props.email}
+        firstName={props.firstName}
+        lastName={props.lastName}
+        isHighlighted={props.isMouseOver}
+      />
       <CaretDownIcon
         size="small"
         theme={props.isMouseOver ? 'grey' : 'black'}

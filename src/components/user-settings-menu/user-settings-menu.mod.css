@@ -11,14 +11,6 @@
   cursor: pointer;
 }
 
-.settings-container:hover .avatar > div > div {
-  background-color: var(--color-grey) !important;
-}
-
-.settings-container:hover img {
-  opacity: 0.7;
-}
-
 .menu {
   position: absolute;
   border: 1px var(--color-greySolid) solid;
