@@ -18,11 +18,6 @@ class UnexpectedErrorNotification extends React.PureComponent {
     }),
   };
 
-  static contextTypes = {
-    intl: PropTypes.object,
-    store: PropTypes.object,
-  };
-
   render() {
     return (
       <Notification

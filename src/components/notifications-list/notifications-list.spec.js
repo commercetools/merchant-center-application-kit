@@ -18,13 +18,7 @@ describe('rendering', () => {
   let props;
   beforeEach(() => {
     props = createTestProps();
-    wrapper = shallow(<NotificationsList {...props} />, {
-      context: {
-        store: {
-          dispatch: jest.fn(),
-        },
-      },
-    });
+    wrapper = shallow(<NotificationsList {...props} />);
   });
   describe('if there is a custom notification component', () => {
     const CustomComponent = () => <div />;
@@ -37,7 +31,7 @@ describe('rendering', () => {
           notifications: [
             { id: 1, domain: DOMAINS.PAGE, kind: 'success', text: 'some-text' },
           ],
-          showUnexpectedNotification: jest.fn(),
+          removeNotification: jest.fn(),
         })
         .find(GetCustomNotificationComponent)
         .renderProp('render', mapCustomComponent);
@@ -61,7 +55,7 @@ describe('rendering', () => {
                   text: 'some-text',
                 },
               ],
-              showUnexpectedNotification: jest.fn(),
+              removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
             .renderProp('render', () => null);
@@ -83,7 +77,7 @@ describe('rendering', () => {
                   text: 'some-text',
                 },
               ],
-              showUnexpectedNotification: jest.fn(),
+              removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
             .renderProp('render', () => null);
@@ -105,7 +99,7 @@ describe('rendering', () => {
                   text: 'some-text',
                 },
               ],
-              showUnexpectedNotification: jest.fn(),
+              removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
             .renderProp('render', () => null);
@@ -128,7 +122,7 @@ describe('rendering', () => {
                   text: 'some-text',
                 },
               ],
-              showUnexpectedNotification: jest.fn(),
+              removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
             .renderProp('render', () => null);
@@ -158,7 +152,7 @@ describe('rendering', () => {
                   text: 'some-text',
                 },
               ],
-              showUnexpectedNotification: jest.fn(),
+              removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
             .renderProp('render', () => null);
@@ -180,7 +174,7 @@ describe('rendering', () => {
                   text: 'some-text',
                 },
               ],
-              showUnexpectedNotification: jest.fn(),
+              removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
             .renderProp('render', () => null);
@@ -202,7 +196,7 @@ describe('rendering', () => {
                   text: 'some-text',
                 },
               ],
-              showUnexpectedNotification: jest.fn(),
+              removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
             .renderProp('render', () => null);
@@ -232,7 +226,7 @@ describe('rendering', () => {
                   text: 'some-text',
                 },
               ],
-              showUnexpectedNotification: jest.fn(),
+              removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
             .renderProp('render', () => null);
@@ -254,7 +248,7 @@ describe('rendering', () => {
                   text: 'some-text',
                 },
               ],
-              showUnexpectedNotification: jest.fn(),
+              removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
             .renderProp('render', () => null);

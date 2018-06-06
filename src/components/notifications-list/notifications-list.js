@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { removeNotification } from '@commercetools-local/notifications';
 import { DOMAINS } from '@commercetools-local/constants';
 import NotificationsConnector from '../notifications-connector';
 import GenericNotification from '../notification-kinds/generic';
@@ -59,16 +58,10 @@ class NotificationsList extends React.PureComponent {
     domain: PropTypes.string.isRequired,
   };
 
-  static contextTypes = {
-    store: PropTypes.shape({
-      dispatch: PropTypes.func.isRequired,
-    }).isRequired,
-  };
-
   render() {
     return (
       <NotificationsConnector domain={this.props.domain}>
-        {({ notifications, showUnexpectedErrorNotification }) => (
+        {({ notifications, removeNotification }) => (
           <GetCustomNotificationComponent
             render={mapCustomNotificationToComponent => (
               <div className={styles[`container-${this.props.domain}`]}>
@@ -97,14 +90,8 @@ class NotificationsList extends React.PureComponent {
                       key={notification.id}
                       notification={notification}
                       dismiss={() => {
-                        this.context.store.dispatch(
-                          removeNotification(notification.id)
-                        );
+                        removeNotification(notification.id);
                       }}
-                      // Needed for global notifications at the moment.
-                      showUnexpectedErrorNotification={
-                        showUnexpectedErrorNotification
-                      }
                     />
                   );
                 })}

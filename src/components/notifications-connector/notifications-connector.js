@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { removeNotification } from '@commercetools-local/notifications';
 import * as globalActions from '@commercetools-local/actions-global';
 import { selectNotificationsByDomain } from './selectors';
 
@@ -7,6 +8,7 @@ export const NotificationsFaC = props =>
   props.children({
     notifications: props.notifications,
     showNotification: props.showNotification,
+    removeNotification: props.removeNotification,
     showApiErrorNotification: props.showApiErrorNotification,
     showUnexpectedErrorNotification: props.showUnexpectedErrorNotification,
   });
@@ -14,6 +16,7 @@ export const NotificationsFaC = props =>
 NotificationsFaC.propTypes = {
   notifications: PropTypes.array.isRequired,
   showNotification: PropTypes.func.isRequired,
+  removeNotification: PropTypes.func.isRequired,
   showApiErrorNotification: PropTypes.func.isRequired,
   showUnexpectedErrorNotification: PropTypes.func.isRequired,
 };
@@ -25,6 +28,7 @@ const NotificationsConnector = connect(
     return { notifications: notificationsByDomain[ownProps.domain] };
   },
   {
+    removeNotification,
     showNotification: globalActions.showNotification,
     showApiErrorNotification: globalActions.showApiErrorNotification,
     showUnexpectedErrorNotification:
