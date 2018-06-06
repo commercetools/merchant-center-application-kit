@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Modal from 'react-modal';
-import { portalsContainerId } from '../../components/portals-container';
+import { PORTALS_CONTAINER_ID } from '@commercetools-local/constants';
 
 const ModalContainer = props => (
   <Modal
     {...props}
-    parentSelector={() => document.querySelector(`#${portalsContainerId}`)}
+    parentSelector={() => document.querySelector(`#${PORTALS_CONTAINER_ID}`)}
     ariaHideApp={false}
   >
     {props.children}
