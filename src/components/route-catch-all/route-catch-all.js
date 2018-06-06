@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
-import PageNotFound from '@commercetools-local/core/components/page-not-found';
 import { injectConfiguration } from '@commercetools-local/application-shell-connectors';
+import PageNotFound from '../../from-core/page-not-found';
 
 export class ForcePageReload extends React.PureComponent {
   static displayName = 'ForcePageReload';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import FailedAuthenticationSvg from '@commercetools-local/ui-kit/materials/images/maintenance/failed-authentication.svg';
-import ServicePageResponseLayout from '@commercetools-local/core/components/service-page-response-layout';
+import ServicePageResponseLayout from '../../from-core/service-page-response-layout';
 import messages from './messages';
 
 const FailedAuthentication = () => (
