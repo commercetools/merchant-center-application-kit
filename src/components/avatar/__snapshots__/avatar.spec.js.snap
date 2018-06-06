@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering should match snapshot 1`] = `
+<div
+  className="avatar avatar-small"
+>
+  <GravatarImg
+    email="caspar@commercetools.de"
+    size="small"
+  />
+  <Initials
+    text="CC"
+  />
+</div>
+`;
