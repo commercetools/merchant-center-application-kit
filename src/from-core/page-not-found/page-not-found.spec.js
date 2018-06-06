@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import { PageNotFound } from './page-not-found';
+import PageNotFound from './page-not-found';
 
 describe('rendering', () => {
   let wrapper;
