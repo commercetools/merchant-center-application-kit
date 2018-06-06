@@ -11,7 +11,7 @@ import { LOGOUT_REASONS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/storage';
 import { injectConfiguration } from '@commercetools-local/application-shell-connectors';
 import { Notification } from '@commercetools-local/react-notifications';
-import InfoDialog from '@commercetools-local/core/components/overlays/info-dialog';
+import InfoDialog from '../../from-core/info-dialog';
 import Title from '../../from-core/title';
 import { STORAGE_KEYS } from '../../constants';
 import PublicPageContainer from '../public-page-container';
