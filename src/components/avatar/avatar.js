@@ -19,6 +19,13 @@ export const getInitialsFromName = ({ firstName = '', lastName = '' }) =>
 
 const createMd5HashForEmail = email => md5(email.trim().toLowerCase());
 
+/**
+ * `s` - defines the size we want a bigger one if the user is on a retina-display
+ * `d` - defines the default if the user is not known to gravatar, it returns a blank image,
+ *        which will display the initials underneath
+ *
+ * @see: https://de.gravatar.com/site/implement/images/
+ */
 const createGravatarImgUrl = size => md5Hash =>
   `https://www.gravatar.com/avatar/${md5Hash}?s=${
     isRetina() ? size * 2 : size
@@ -32,16 +39,22 @@ export const getAvatarImageUrl = sizePreset =>
     createMd5HashForEmail
   );
 
-const GravatarImg = props => (
-  <div
-    className={classnames(styles['gravatar-img'], {
-      [styles['gravatar-img-big']]: props.size === 'big',
-    })}
-    style={{
-      backgroundImage: `url(${getAvatarImageUrl(props.size)(props.email)})`,
-    }}
-  />
-);
+export const GravatarImg = props => {
+  if (typeof props.email !== 'string') {
+    return null;
+  }
+
+  return (
+    <div
+      className={classnames(styles['gravatar-img'], {
+        [styles['gravatar-img-big']]: props.size === 'big',
+      })}
+      style={{
+        backgroundImage: `url(${getAvatarImageUrl(props.size)(props.email)})`,
+      }}
+    />
+  );
+};
 GravatarImg.displayName = 'GravatarImg';
 GravatarImg.propTypes = {
   email: PropTypes.string,

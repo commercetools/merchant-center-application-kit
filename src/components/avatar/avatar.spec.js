@@ -1,6 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Avatar, { getInitialsFromName, getAvatarImageUrl } from './avatar';
+import Avatar, {
+  getInitialsFromName,
+  getAvatarImageUrl,
+  GravatarImg,
+} from './avatar';
 
 jest.mock('is-retina', () => () => false);
 
@@ -15,29 +19,56 @@ const createTestProps = custom => ({
 describe('rendering', () => {
   let props;
   let wrapper;
-  beforeEach(() => {
-    props = createTestProps();
-    wrapper = shallow(<Avatar {...props} />);
+
+  describe('<Avatar />', () => {
+    beforeEach(() => {
+      props = createTestProps();
+      wrapper = shallow(<Avatar {...props} />);
+    });
+
+    it('should match snapshot', () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should render a <GravatarImg />', () => {
+      expect(wrapper).toRender('GravatarImg');
+    });
+
+    it('should pass the `email` to <GravatarImg />', () => {
+      expect(wrapper.find('GravatarImg')).toHaveProp('email', props.email);
+    });
+
+    it('should pass the `size` to <GravatarImg />', () => {
+      expect(wrapper.find('GravatarImg')).toHaveProp('size', props.size);
+    });
+
+    it('should render a <Initials /> with the expected text', () => {
+      expect(wrapper.find('Initials')).toHaveProp('text', 'CC');
+    });
   });
 
-  it('should match snapshot', () => {
-    expect(wrapper).toMatchSnapshot();
-  });
+  describe('<GravatarImg />', () => {
+    describe('with regular email', () => {
+      beforeEach(() => {
+        wrapper = shallow(
+          <GravatarImg email="caspar@commercetools.de" size="small" />
+        );
+      });
 
-  it('should render a <GravatarImg />', () => {
-    expect(wrapper).toRender('GravatarImg');
-  });
+      it('should match snapshot', () => {
+        expect(wrapper).toMatchSnapshot();
+      });
+    });
 
-  it('should pass the `email` to <GravatarImg />', () => {
-    expect(wrapper.find('GravatarImg')).toHaveProp('email', props.email);
-  });
+    describe('with non-string email', () => {
+      beforeEach(() => {
+        wrapper = shallow(<GravatarImg email={null} size="small" />);
+      });
 
-  it('should pass the `size` to <GravatarImg />', () => {
-    expect(wrapper.find('GravatarImg')).toHaveProp('size', props.size);
-  });
-
-  it('should render a <Initials /> with the expected text', () => {
-    expect(wrapper.find('Initials')).toHaveProp('text', 'CC');
+      it('should match render nothing', () => {
+        expect(wrapper).toBeEmptyRender();
+      });
+    });
   });
 });
 
