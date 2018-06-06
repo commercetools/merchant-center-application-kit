@@ -2,6 +2,7 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import {
   middleware as notificationsMiddleware,
+  reducer as notificationsReducer,
   ADD_NOTIFICATION,
   REMOVE_NOTIFICATION,
 } from '@commercetools-local/notifications';
@@ -20,7 +21,6 @@ import loggerMiddleware, { actionTransformer } from './middleware/logger';
 import sentryTrackingMiddleware from './middleware/sentry-tracking';
 import { activePluginReducer } from './components/inject-reducer';
 import { requestsInFlightReducer } from './components/requests-in-flight-loader';
-import { notificationsReducer } from './components/notifications-connector';
 import { getCorrelationId, selectProjectKey } from './utils';
 
 const sdkMiddleware = createSdkMiddleware({

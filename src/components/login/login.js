@@ -10,7 +10,7 @@ import PrimaryButton from '@commercetools-local/ui-kit/buttons/primary-button';
 import { LOGOUT_REASONS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/storage';
 import { injectConfiguration } from '@commercetools-local/application-shell-connectors';
-import Notification from '@commercetools-local/core/components/notification';
+import { Notification } from '@commercetools-local/react-notifications';
 import Title from '@commercetools-local/core/components/title';
 import InfoDialog from '@commercetools-local/core/components/overlays/info-dialog';
 import { STORAGE_KEYS } from '../../constants';

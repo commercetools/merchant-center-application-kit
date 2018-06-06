@@ -18,7 +18,6 @@ const createTestProps = custom => ({
   },
   isLoadingUser: false,
   user: { availableProjects: [] },
-  showNotification: jest.fn(),
   intl: {
     formatMessage: jest.fn(),
   },
