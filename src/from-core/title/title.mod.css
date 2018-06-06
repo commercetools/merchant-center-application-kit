@@ -1,0 +1,7 @@
+@import '@commercetools-local/ui-kit/materials/colors.mod.css';
+
+.title {
+  composes: text-headline from '../../_styles/commons.mod.css';
+  color: var(--color-greyTundora);
+  display: block;
+}
