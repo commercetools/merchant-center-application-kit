@@ -6,7 +6,7 @@ import { injectIntl } from 'react-intl';
 import isNil from 'lodash.isnil';
 import { DOMAINS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/storage';
-import Notifier from '@commercetools-local/core/components/notifier';
+import Notifier from '@commercetools-local/react-notifications';
 import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
 import { reportErrorToSentry } from '@commercetools-local/sentry';
 import { STORAGE_KEYS } from '../../constants';
