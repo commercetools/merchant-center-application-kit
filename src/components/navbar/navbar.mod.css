@@ -90,7 +90,7 @@
 .expand-icon {
   transform: translateX(0) rotateZ(180deg);
   color: var(--color-white);
-  background: var(--color-darkGreen);
+  background: var(--new-color-green-25);
   cursor: pointer;
   width: 32px;
   height: 32px;
@@ -112,7 +112,7 @@
 }
 
 .list-item:hover {
-  background-color: var(--color-darkGreen);
+  background-color: var(--new-color-navy-30);
 }
 
 .item__active .title {
@@ -210,7 +210,7 @@
 }
 
 :global(.body__menu-open) .title-copy:hover {
-  color: var(--color-greenLight);
+  color: var(--new-color-green-40);
 }
 
 :global(.body__menu-open) .expander {
@@ -223,7 +223,7 @@
   padding: 55px var(--spacing-16) var(--spacing-16);
   font-weight: 100;
   position: absolute;
-  background-color: var(--color-darkGreen);
+  background-color: var(--new-color-navy-30);
   top: 0;
   left: 64px;
   z-index: -1;
@@ -241,8 +241,8 @@
 }
 
 .sublist-item:hover {
-  /* background-color: --color-darkGreen; */
-  color: var(--color-greenLight);
+  /* background-color: --new-color-navy-30; */
+  color: var(--new-color-green-40);
 }
 
 .text {
@@ -256,7 +256,7 @@
 }
 
 .text-link:hover {
-  color: var(--color-greenLight);
+  color: var(--new-color-green-40);
 }
 
 .title-text {
@@ -267,7 +267,7 @@
 
 /* Item active */
 .item__active {
-  background: var(--color-darkGreen);
+  background: var(--new-color-navy-30);
 }
 
 .list-item.item__active .item-icon-text {
@@ -308,7 +308,7 @@
 }
 
 .highlighted {
-  color: var(--color-greenLight) !important;
+  color: var(--new-color-green-40) !important;
 }
 
 .hidden {

@@ -23,13 +23,13 @@
 }
 
 .forgot-pw:hover {
-  color: var(--color-primaryGreen);
+  color: var(--new-color-green);
 }
 
 .success-message {
   margin: 0;
   padding: 20px 10px;
-  background-color: var(--color-primaryGreen);
+  background-color: var(--new-color-green);
   color: var(--color-white);
 }
 
@@ -70,7 +70,7 @@
 }
 
 .input-text:focus {
-  border-color: var(--color-greenLight);
+  border-color: var(--new-color-green-25);
 }
 
 .overlay {
