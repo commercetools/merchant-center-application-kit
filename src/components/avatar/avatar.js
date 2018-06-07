@@ -20,9 +20,9 @@ export const getInitialsFromName = ({ firstName = '', lastName = '' }) =>
 const createMd5HashForEmail = email => md5(email.trim().toLowerCase());
 
 /**
- * `s` - defines the size we want a bigger one if the user is on a retina-display
- * `d` - defines the default if the user is not known to gravatar, it returns a blank image,
- *        which will display the initials underneath
+ * `s` - defines the size. We want a bigger one if the user is on a retina-display
+ * `d` - defines the default if the user is not known to Gravatar. It returns a blank image,
+ *        which let the initials underneath shine through
  *
  * @see: https://de.gravatar.com/site/implement/images/
  */
@@ -31,7 +31,7 @@ const createGravatarImgUrl = size => md5Hash =>
     isRetina() ? size * 2 : size
   }&d=blank`;
 
-const getSizeForPreset = size => (size === 'big' ? 200 : 26);
+const getSizeForPreset = size => (size === 'l' ? 200 : 26);
 
 export const getAvatarImageUrl = sizePreset =>
   compose(
@@ -47,7 +47,7 @@ export const GravatarImg = props => {
   return (
     <div
       className={classnames(styles['gravatar-img'], {
-        [styles['gravatar-img-big']]: props.size === 'big',
+        [styles['gravatar-img-big']]: props.size === 'l',
       })}
       style={{
         backgroundImage: `url(${getAvatarImageUrl(props.size)(props.email)})`,
@@ -58,19 +58,27 @@ export const GravatarImg = props => {
 GravatarImg.displayName = 'GravatarImg';
 GravatarImg.propTypes = {
   email: PropTypes.string,
-  size: PropTypes.string,
+  size: PropTypes.oneOf(['l', 's']),
 };
 GravatarImg.defaultProps = {
-  size: 'small',
+  size: 's',
 };
 
-const Initials = props => <div className={styles.initials}>{props.text}</div>;
+const Initials = props => (
+  <div className={styles.initials}>
+    {getInitialsFromName({
+      firstName: props.firstName,
+      lastName: props.lastName,
+    })}
+  </div>
+);
 
 Initials.displayName = 'Initials';
 Initials.propTypes = {
-  text: PropTypes.string,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
 };
-Initials.defaultProps = { text: '' };
+Initials.defaultProps = { firstName: '', lastName: '' };
 
 const Avatar = props => (
   <div
@@ -79,12 +87,7 @@ const Avatar = props => (
     })}
   >
     <GravatarImg email={props.email} size={props.size} />
-    <Initials
-      text={getInitialsFromName({
-        firstName: props.firstName,
-        lastName: props.lastName,
-      })}
-    />
+    <Initials firstName={props.firstName} lastName={props.lastName} />
   </div>
 );
 Avatar.displayName = 'Avatar';
@@ -92,7 +95,7 @@ Avatar.defaultProps = {
   firstName: '',
   lastName: '',
   isHighlighted: false,
-  size: 'small',
+  size: 's',
 };
 
 Avatar.propTypes = {
@@ -100,7 +103,7 @@ Avatar.propTypes = {
   lastName: PropTypes.string,
   email: PropTypes.string.isRequired,
   isHighlighted: PropTypes.bool,
-  size: PropTypes.oneOf(['big', 'small']).isRequired,
+  size: PropTypes.oneOf(['l', 's']).isRequired,
 };
 
 export default Avatar;

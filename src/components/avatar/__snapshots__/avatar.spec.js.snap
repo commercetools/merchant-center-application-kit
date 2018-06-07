@@ -2,14 +2,15 @@
 
 exports[`rendering <Avatar /> should match snapshot 1`] = `
 <div
-  className="avatar avatar-small"
+  className="avatar avatar-s"
 >
   <GravatarImg
     email="caspar@commercetools.de"
-    size="small"
+    size="s"
   />
   <Initials
-    text="CC"
+    firstName="Caspar"
+    lastName="Commercetools"
   />
 </div>
 `;

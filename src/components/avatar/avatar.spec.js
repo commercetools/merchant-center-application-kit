@@ -12,7 +12,7 @@ const createTestProps = custom => ({
   firstName: 'Caspar',
   lastName: 'Commercetools',
   email: 'caspar@commercetools.de',
-  size: 'small',
+  size: 's',
   ...custom,
 });
 
@@ -42,8 +42,12 @@ describe('rendering', () => {
       expect(wrapper.find('GravatarImg')).toHaveProp('size', props.size);
     });
 
-    it('should render a <Initials /> with the expected text', () => {
-      expect(wrapper.find('Initials')).toHaveProp('text', 'CC');
+    it('should pass `firstName` to <Initials />', () => {
+      expect(wrapper.find('Initials')).toHaveProp('firstName', 'Caspar');
+    });
+
+    it('should pass `lastName` to <Initials />', () => {
+      expect(wrapper.find('Initials')).toHaveProp('lastName', 'Commercetools');
     });
   });
 
@@ -51,7 +55,7 @@ describe('rendering', () => {
     describe('with regular email', () => {
       beforeEach(() => {
         wrapper = shallow(
-          <GravatarImg email="caspar@commercetools.de" size="small" />
+          <GravatarImg email="caspar@commercetools.de" size="s" />
         );
       });
 
@@ -62,7 +66,7 @@ describe('rendering', () => {
 
     describe('with non-string email', () => {
       beforeEach(() => {
-        wrapper = shallow(<GravatarImg email={null} size="small" />);
+        wrapper = shallow(<GravatarImg email={null} size="s" />);
       });
 
       it('should match render nothing', () => {
@@ -121,7 +125,7 @@ describe('helper', () => {
 
     describe('with standard options', () => {
       beforeEach(() => {
-        subject = getAvatarImageUrl('small')('caspar@commercetools.de');
+        subject = getAvatarImageUrl('s')('caspar@commercetools.de');
       });
 
       it('should contain the hashed email', () => {
@@ -139,7 +143,7 @@ describe('helper', () => {
 
     describe('with lower-/uppercase email-address', () => {
       beforeEach(() => {
-        subject = getAvatarImageUrl('small')('Caspar@comMercetools.dE');
+        subject = getAvatarImageUrl('s')('Caspar@comMercetools.dE');
       });
 
       it('should contain the hashed email', () => {
@@ -149,7 +153,7 @@ describe('helper', () => {
 
     describe('with untrimmed whitespace', () => {
       beforeEach(() => {
-        subject = getAvatarImageUrl('small')('    caspar@commercetools.de    ');
+        subject = getAvatarImageUrl('s')('    caspar@commercetools.de    ');
       });
 
       it('should contain the hashed email', () => {
@@ -159,7 +163,7 @@ describe('helper', () => {
 
     describe('with size `big`', () => {
       beforeEach(() => {
-        subject = getAvatarImageUrl('big')('caspar@commercetools.de');
+        subject = getAvatarImageUrl('l')('caspar@commercetools.de');
       });
 
       it('should contain the hashed email', () => {

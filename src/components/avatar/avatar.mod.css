@@ -37,14 +37,10 @@
   width: 100px;
 }
 
-.avatar-small {
+.avatar-s {
   font-size: 1rem;
-  height: 26px;
-  width: 26px;
 }
 
-.avatar-big {
+.avatar-l {
   font-size: 3rem;
-  height: 100px;
-  width: 100px;
 }
