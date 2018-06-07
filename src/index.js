@@ -13,3 +13,8 @@ export {
   ConfigurationConsumer,
   injectConfiguration,
 } from './components/configuration';
+export {
+  default as GetUserPermissions,
+  AppShellProviderForUserPermissions,
+  withUserPermissions,
+} from './components/user-permissions';
