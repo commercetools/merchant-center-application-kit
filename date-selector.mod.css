@@ -58,7 +58,7 @@
 }
 
 .react-select-container :global(.Select-control) {
-  background: var(--color-whiteAlabaster);
+  background: var(--new-color-gray-95);
   color: var(--color-greyTundora);
   border-radius: 6px;
 }
@@ -94,7 +94,7 @@
 
 .react-select-container
   :global(.Select-menu-outer .Select-menu .Select-option.is-focused) {
-  background-color: var(--color-whiteSnow);
+  background-color: var(--new-color-gray-95);
   color: var(--color-greyTundora);
 }
 
