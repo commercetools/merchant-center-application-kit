@@ -7,7 +7,7 @@
 }
 
 .react-select-wrapper.is-open :global(.Select-control) {
-  border: 1px var(--color-primaryGrey) solid;
+  border: 1px var(--new-color-gray) solid;
 }
 
 :global(.Select--single).react-select-wrapper :global(.Select-value) {
@@ -62,7 +62,7 @@
 }
 
 .item-text-disabled {
-  color: var(--color-primaryGrey);
+  color: var(--new-color-gray);
 }
 
 .item-text-main.item-text-disabled {

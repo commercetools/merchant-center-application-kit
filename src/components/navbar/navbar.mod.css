@@ -191,7 +191,7 @@
   margin: 0 0 0 var(--submenu-margin);
   padding: var(--spacing-8) 0 0;
   background-color: transparent;
-  border-top: 1px var(--color-greyDusty) solid;
+  border-top: 1px var(--new-color-gray-60) solid;
 }
 
 :global(.body__menu-open) .sublist.sublist-no-children {

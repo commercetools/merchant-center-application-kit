@@ -19,7 +19,7 @@
 .forgot-pw {
   display: block;
   cursor: pointer;
-  color: var(--color-greyTundora);
+  color: var(--new-color-black);
 }
 
 .forgot-pw:hover {
@@ -45,7 +45,7 @@
 }
 
 .label {
-  color: var(--color-greyDove);
+  color: var(--new-color-black);
   display: block;
   text-align: left;
 }
@@ -55,7 +55,7 @@
   border-radius: 6px;
   border-style: solid;
   border-width: 1px;
-  color: var(--color-greyTundora);
+  color: var(--new-color-black);
   font-weight: 500;
   font-size: 1rem;
   font-family: 'Open Sans', sans-serif !important;
@@ -64,7 +64,7 @@
   box-shadow: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  border-color: var(--color-primaryGrey);
+  border-color: var(--new-color-gray);
   background-color: var(--new-color-white);
   width: 100%;
 }
@@ -89,5 +89,5 @@
 }
 
 .forgot-pw.disabled:hover {
-  color: var(--color-greyDove);
+  color: var(--new-color-black);
 }

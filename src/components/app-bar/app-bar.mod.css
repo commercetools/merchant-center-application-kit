@@ -75,7 +75,7 @@
 }
 
 .spacer {
-  border-left: 1px var(--color-greyAlto) solid;
+  border-left: 1px var(--new-color-gray-90) solid;
   height: var(--height-app-bar);
 }
 
