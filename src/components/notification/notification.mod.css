@@ -67,7 +67,7 @@
 }
 
 .icon-type-container--success {
-  background: var(--color-primaryGreen);
+  background: var(--new-color-green);
 }
 
 .icon-type-container--info {
@@ -222,7 +222,7 @@
 
 .notification-page-success-dynamic {
   composes: notification-page;
-  background-color: var(--color-primaryGreen);
+  background-color: var(--new-color-green);
 }
 
 /* NOTIFICATIONS - SIDE */
@@ -240,7 +240,7 @@
 }
 
 .border-success {
-  border: 1px solid var(--color-primaryGreen);
+  border: 1px solid var(--new-color-green);
 }
 
 .notification-side-error-fixed {
