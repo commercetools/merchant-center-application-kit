@@ -1,32 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`rendering <ToggledWithPermissions> <ToggleFeature> when featureToggle is defined should match snapshot 1`] = `
-<ToggleFeature
-  flag="myFeature"
->
-  <UnconnectedRestrictedByPermissions
-    isAuthorized={false}
-    permissions={Array []}
-    unauthorizedComponent={null}
-  >
-    <ItemChild />
-  </UnconnectedRestrictedByPermissions>
-</ToggleFeature>
-`;
-
-exports[`rendering <ToggledWithPermissions> <ToggleFeature> when featureToggle is not defined should match snapshot 1`] = `
-<UnconnectedRestrictedByPermissions
-  isAuthorized={true}
-  permissions={Array []}
-  unauthorizedComponent={null}
->
-  <ItemChild />
-</UnconnectedRestrictedByPermissions>
-`;
-
-exports[`rendering <ToggledWithPermissions> <UnconnectedRestrictedByPermissions> when permissions are defined should match snapshot 1`] = `
-<UnconnectedRestrictedByPermissions
-  isAuthorized={true}
+exports[`rendering <ToggledWithPermissions> <RestrictedByPermissions> when permissions are defined should match snapshot 1`] = `
+<withUserPermissions(RestrictedByPermissions)
   permissions={
     Array [
       Object {
@@ -35,18 +10,39 @@ exports[`rendering <ToggledWithPermissions> <UnconnectedRestrictedByPermissions>
       },
     ]
   }
-  unauthorizedComponent={null}
+  shouldMatchSomePermissions={true}
 >
   <ItemChild />
-</UnconnectedRestrictedByPermissions>
+</withUserPermissions(RestrictedByPermissions)>
 `;
 
-exports[`rendering <ToggledWithPermissions> <UnconnectedRestrictedByPermissions> when permissions are not defined should match snapshot 1`] = `
-<UnconnectedRestrictedByPermissions
-  isAuthorized={true}
+exports[`rendering <ToggledWithPermissions> <RestrictedByPermissions> when permissions are not defined should match snapshot 1`] = `
+<withUserPermissions(RestrictedByPermissions)
   permissions={Array []}
-  unauthorizedComponent={null}
+  shouldMatchSomePermissions={false}
 >
   <ItemChild />
-</UnconnectedRestrictedByPermissions>
+</withUserPermissions(RestrictedByPermissions)>
+`;
+
+exports[`rendering <ToggledWithPermissions> <ToggleFeature> when featureToggle is defined should match snapshot 1`] = `
+<ToggleFeature
+  flag="myFeature"
+>
+  <withUserPermissions(RestrictedByPermissions)
+    permissions={Array []}
+    shouldMatchSomePermissions={true}
+  >
+    <ItemChild />
+  </withUserPermissions(RestrictedByPermissions)>
+</ToggleFeature>
+`;
+
+exports[`rendering <ToggledWithPermissions> <ToggleFeature> when featureToggle is not defined should match snapshot 1`] = `
+<withUserPermissions(RestrictedByPermissions)
+  permissions={Array []}
+  shouldMatchSomePermissions={false}
+>
+  <ItemChild />
+</withUserPermissions(RestrictedByPermissions)>
 `;

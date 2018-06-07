@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import { UnconnectedRestrictedByPermissions } from '@commercetools-local/core/components/with-permissions';
+import { RestrictedByPermissions } from '@commercetools-local/permissions';
 import * as storage from '@commercetools-local/storage';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import {
@@ -81,6 +81,14 @@ describe('rendering', () => {
     it('should render DataMenu component', () => {
       expect(wrapper).toRender('DataMenu');
     });
+    describe('<AppShellProviderForUserPermissions>', () => {
+      it('should pass permissions as prop', () => {
+        expect(wrapper.find('AppShellProviderForUserPermissions')).toHaveProp(
+          'permissions',
+          props.projectPermissions
+        );
+      });
+    });
     describe('<DataMenu>', () => {
       it('should pass rootNode as prop', () => {
         expect(wrapper.find('DataMenu')).toHaveProp('rootNode');
@@ -95,12 +103,6 @@ describe('rendering', () => {
         expect(wrapper.find('DataMenu')).toHaveProp(
           'projectKey',
           props.projectKey
-        );
-      });
-      it('should pass projectPermissions as prop', () => {
-        expect(wrapper.find('DataMenu')).toHaveProp(
-          'projectPermissions',
-          props.projectPermissions
         );
       });
       it('should pass isForcedMenuOpen as prop', () => {
@@ -550,15 +552,14 @@ describe('rendering', () => {
         });
       });
     });
-    describe('<UnconnectedRestrictedByPermissions>', () => {
-      it('should render <UnconnectedRestrictedByPermissions>', () => {
-        expect(wrapper).toRender(UnconnectedRestrictedByPermissions);
+    describe('<RestrictedByPermissions>', () => {
+      it('should render <RestrictedByPermissions>', () => {
+        expect(wrapper).toRender(RestrictedByPermissions);
       });
       describe('when permissions are defined', () => {
         beforeEach(() => {
           props = {
             permissions: [{ mode: 'view', resource: 'products' }],
-            actualPermissions: { canViewProducts: true },
           };
           wrapper = shallow(
             <ToggledWithPermissions {...props}>
@@ -570,14 +571,14 @@ describe('rendering', () => {
           expect(wrapper).toMatchSnapshot();
         });
         it('should pass permissions as prop', () => {
-          expect(wrapper.find(UnconnectedRestrictedByPermissions)).toHaveProp(
+          expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
             'permissions',
             [{ mode: 'view', resource: 'products' }]
           );
         });
-        it('should pass isAuthorized as prop (true)', () => {
-          expect(wrapper.find(UnconnectedRestrictedByPermissions)).toHaveProp(
-            'isAuthorized',
+        it('should pass shouldMatchSomePermissions as prop (true)', () => {
+          expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
+            'shouldMatchSomePermissions',
             true
           );
         });
@@ -586,7 +587,6 @@ describe('rendering', () => {
         beforeEach(() => {
           props = {
             permissions: undefined,
-            actualPermissions: {},
           };
           wrapper = shallow(
             <ToggledWithPermissions {...props}>
@@ -598,15 +598,15 @@ describe('rendering', () => {
           expect(wrapper).toMatchSnapshot();
         });
         it('should pass permissions as prop', () => {
-          expect(wrapper.find(UnconnectedRestrictedByPermissions)).toHaveProp(
+          expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
             'permissions',
             []
           );
         });
-        it('should pass isAuthorized as prop', () => {
-          expect(wrapper.find(UnconnectedRestrictedByPermissions)).toHaveProp(
-            'isAuthorized',
-            true
+        it('should pass shouldMatchSomePermissions as prop (false)', () => {
+          expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
+            'shouldMatchSomePermissions',
+            false
           );
         });
       });
