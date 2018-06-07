@@ -89,14 +89,16 @@ const Avatar = props => (
 );
 Avatar.displayName = 'Avatar';
 Avatar.defaultProps = {
+  firstName: '',
+  lastName: '',
   isHighlighted: false,
   size: 'small',
 };
 
 Avatar.propTypes = {
-  firstName: PropTypes.any.isRequired,
-  lastName: PropTypes.any.isRequired,
-  email: PropTypes.any.isRequired,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  email: PropTypes.string.isRequired,
   isHighlighted: PropTypes.bool,
   size: PropTypes.oneOf(['big', 'small']).isRequired,
 };
