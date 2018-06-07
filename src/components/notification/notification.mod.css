@@ -22,7 +22,7 @@
 
 .content p,
 .content a {
-  color: var(--color-white);
+  color: var(--new-color-white);
 }
 
 .content ul {
@@ -42,13 +42,13 @@
 
 .icon-container {
   background: transparent;
-  border-color: var(--color-white);
-  color: var(--color-white);
+  border-color: var(--new-color-white);
+  color: var(--new-color-white);
   position: relative;
 }
 
 .icon-container:hover {
-  color: var(--color-white);
+  color: var(--new-color-white);
 }
 
 /* NOTIFICATIONS - SIDE - ICON */
@@ -62,7 +62,7 @@
   top: 0;
   width: 48px;
   height: 100%;
-  color: var(--color-white);
+  color: var(--new-color-white);
   border-radius: 3px 0 0 3px;
 }
 
@@ -147,8 +147,8 @@
   composes: notification;
   composes: extra-padding;
   text-align: left;
-  background: var(--color-white);
-  border: 1px solid var(--color-white);
+  background: var(--new-color-white);
+  border: 1px solid var(--new-color-white);
   box-shadow: var(--shadow-1-second);
   border-radius: var(--border-radius-6);
   word-break: break-word;

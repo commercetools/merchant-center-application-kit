@@ -6,7 +6,7 @@
 }
 
 .container {
-  color: var(--color-white);
+  color: var(--new-color-white);
   position: relative;
   width: 100%;
   z-index: 10000;
