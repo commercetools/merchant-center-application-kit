@@ -59,7 +59,7 @@
 
 .react-select-container :global(.Select-control) {
   background: var(--new-color-gray-95);
-  color: var(--color-greyTundora);
+  color: var(--new-color-black);
   border-radius: 6px;
 }
 
@@ -89,13 +89,13 @@
 
 :global(.is-focused.has-value:not(.is-pseudo-focused)).react-select-container
   :global(.Select-value-label) {
-  color: var(--color-primaryGrey) !important;
+  color: var(--new-color-gray) !important;
 }
 
 .react-select-container
   :global(.Select-menu-outer .Select-menu .Select-option.is-focused) {
   background-color: var(--new-color-gray-95);
-  color: var(--color-greyTundora);
+  color: var(--new-color-black);
 }
 
 .react-select-container :global(.Select-control) {
@@ -124,6 +124,6 @@
 }
 
 .label-day-of-week {
-  color: var(--color-grey);
+  color: var(--new-color-gray-60);
   margin-left: 10px;
 }
