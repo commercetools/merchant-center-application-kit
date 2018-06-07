@@ -175,7 +175,7 @@
 .notification-side,
 .notification-side .content a,
 .notification-side .content p {
-  color: var(--color-black);
+  color: var(--new-color-black);
 }
 
 .notification-side .content {
