@@ -168,8 +168,8 @@
 }
 
 .notification-side .icon-container {
-  color: var(--color-secondaryGrey);
-  border-color: var(--color-primaryGrey);
+  color: var(--new-color-gray-60);
+  border-color: var(--new-color-gray);
 }
 
 .notification-side,
