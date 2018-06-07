@@ -12,7 +12,7 @@
 }
 
 .settings-container:hover .avatar > div > div {
-  background-color: var(--new-color-gray-60) !important;
+  background-color: var(--color-gray-60) !important;
 }
 
 .settings-container:hover img {
@@ -21,7 +21,7 @@
 
 .menu {
   position: absolute;
-  border: 1px var(--new-color-gray-60) solid;
+  border: 1px var(--color-gray-60) solid;
   box-shadow: var(--shadow-7-first), var(--shadow-7-second);
   width: 200px;
   right: 0;
@@ -36,7 +36,7 @@
   top: -6px;
   border-style: solid;
   border-width: 0 6px 6px;
-  border-color: transparent transparent var(--new-color-white) transparent;
+  border-color: transparent transparent var(--color-white) transparent;
   z-index: 1;
 }
 
@@ -47,16 +47,16 @@
   top: -8px;
   border-style: solid;
   border-width: 0 8px 8px;
-  border-color: transparent transparent var(--new-color-gray-60) transparent;
+  border-color: transparent transparent var(--color-gray-60) transparent;
   z-index: 0;
 }
 
 .item {
   width: 100%;
   cursor: pointer;
-  color: var(--new-color-black);
+  color: var(--color-black);
 }
 
 .item:hover {
-  background-color: var(--new-color-gray-90);
+  background-color: var(--color-gray-90);
 }

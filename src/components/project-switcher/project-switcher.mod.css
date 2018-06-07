@@ -7,7 +7,7 @@
 }
 
 .react-select-wrapper.is-open :global(.Select-control) {
-  border: 1px var(--new-color-gray) solid;
+  border: 1px var(--color-gray) solid;
 }
 
 :global(.Select--single).react-select-wrapper :global(.Select-value) {
@@ -43,7 +43,7 @@
 
 .project-name {
   composes: ellipsis from '@commercetools-local/core/_styles/commons.mod.css';
-  color: var(--new-color-navy);
+  color: var(--color-navy);
   line-height: 23px;
   padding-right: 0;
   width: calc(100% - 55px);
@@ -58,11 +58,11 @@
 }
 
 .item-text-main {
-  color: var(--new-color-navy);
+  color: var(--color-navy);
 }
 
 .item-text-disabled {
-  color: var(--new-color-gray);
+  color: var(--color-gray);
 }
 
 .item-text-main.item-text-disabled {
@@ -76,7 +76,7 @@
 }
 
 .red {
-  color: var(--new-color-red);
+  color: var(--color-red);
 }
 
 .disabled-icon-container {

@@ -19,18 +19,18 @@
 .forgot-pw {
   display: block;
   cursor: pointer;
-  color: var(--new-color-black);
+  color: var(--color-black);
 }
 
 .forgot-pw:hover {
-  color: var(--new-color-green);
+  color: var(--color-green);
 }
 
 .success-message {
   margin: 0;
   padding: 20px 10px;
-  background-color: var(--new-color-green);
-  color: var(--new-color-white);
+  background-color: var(--color-green);
+  color: var(--color-white);
 }
 
 /* Forms */
@@ -45,7 +45,7 @@
 }
 
 .label {
-  color: var(--new-color-black);
+  color: var(--color-black);
   display: block;
   text-align: left;
 }
@@ -55,7 +55,7 @@
   border-radius: 6px;
   border-style: solid;
   border-width: 1px;
-  color: var(--new-color-black);
+  color: var(--color-black);
   font-weight: 500;
   font-size: 1rem;
   font-family: 'Open Sans', sans-serif !important;
@@ -64,13 +64,13 @@
   box-shadow: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  border-color: var(--new-color-gray);
-  background-color: var(--new-color-white);
+  border-color: var(--color-gray);
+  background-color: var(--color-white);
   width: 100%;
 }
 
 .input-text:focus {
-  border-color: var(--new-color-green-25);
+  border-color: var(--color-green-25);
 }
 
 .overlay {
@@ -89,5 +89,5 @@
 }
 
 .forgot-pw.disabled:hover {
-  color: var(--new-color-black);
+  color: var(--color-black);
 }

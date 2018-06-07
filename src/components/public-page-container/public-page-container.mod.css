@@ -4,7 +4,7 @@
 .container {
   display: flex;
   justify-content: center;
-  background: var(--new-color-gray-95);
+  background: var(--color-gray-95);
   height: 100vh;
 }
 
