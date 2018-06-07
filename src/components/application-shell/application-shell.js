@@ -31,7 +31,6 @@ import SetupFlopFlipProvider, {
 } from '../setup-flop-flip-provider';
 // import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
-import PageRedirect from '../page-redirect';
 import GtmUserTracker from '../gtm-user-tracker';
 import GtmBooter from '../gtm-booter';
 import NavBar from '../navbar';
@@ -132,11 +131,7 @@ export const RestrictedApplication = props => (
                         exact={true}
                         path="/:projectKey"
                         render={({ match }) => (
-                          <PageRedirect
-                            // We always do a full redirect in this case
-                            reload={true}
-                            to={joinPaths(match.url, 'dashboard')}
-                          />
+                          <Redirect to={joinPaths(match.url, 'dashboard')} />
                         )}
                       />
                       <Route

@@ -280,14 +280,8 @@ describe('<RestrictedApplication>', () => {
           .find({ exact: true, path: '/:projectKey' })
           .renderProp('render', { match: { url: '/foo-1' } });
       });
-      it('should render <PageRedirect> to "/dashboard"', () => {
-        expect(wrapper.find('PageRedirect')).toHaveProp(
-          'to',
-          '/foo-1/dashboard'
-        );
-      });
-      it('should render <PageRedirect> with "reload" to true', () => {
-        expect(wrapper.find('PageRedirect')).toHaveProp('reload', true);
+      it('should render <Redirect> to "/dashboard"', () => {
+        expect(wrapper.find('Redirect')).toHaveProp('to', '/foo-1/dashboard');
       });
     });
     it('should render <Route> matching ":projectKey" path', () => {
