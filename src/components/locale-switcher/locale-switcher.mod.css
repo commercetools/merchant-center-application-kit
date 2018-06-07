@@ -2,7 +2,7 @@
 
 .text {
   margin-right: 10px;
-  color: var(--color-blueNavy);
+  color: var(--new-color-navy);
   position: relative;
   bottom: 13px;
 }
@@ -36,5 +36,5 @@
 .label {
   display: inline-block;
   margin: 2px 5px 0 0;
-  color: var(--color-blueNavy);
+  color: var(--new-color-navy);
 }

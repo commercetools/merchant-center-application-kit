@@ -43,7 +43,7 @@
 
 .project-name {
   composes: ellipsis from '@commercetools-local/core/_styles/commons.mod.css';
-  color: var(--color-blueNavy);
+  color: var(--new-color-navy);
   line-height: 23px;
   padding-right: 0;
   width: calc(100% - 55px);
@@ -58,7 +58,7 @@
 }
 
 .item-text-main {
-  color: var(--color-blueNavy);
+  color: var(--new-color-navy);
 }
 
 .item-text-disabled {
@@ -76,7 +76,7 @@
 }
 
 .red {
-  color: var(--color-red);
+  color: var(--new-color-red);
 }
 
 .disabled-icon-container {

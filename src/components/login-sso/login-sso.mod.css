@@ -1,5 +1,5 @@
 @import '@commercetools-local/ui-kit/materials/colors.mod.css';
 
 .error {
-  color: var(--color-red);
+  color: var(--new-color-red);
 }

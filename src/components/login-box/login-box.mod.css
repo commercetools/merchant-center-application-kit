@@ -9,7 +9,7 @@
 }
 
 .header {
-  background: var(--color-blueNavy);
+  background: var(--new-color-navy);
   padding: var(--spacing-8);
   border-top-left-radius: var(--border-radius-6);
   border-top-right-radius: var(--border-radius-6);

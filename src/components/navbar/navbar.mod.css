@@ -15,7 +15,7 @@
   flex-grow: 1;
   width: var(--width-leftNavigation);
   z-index: 19999;
-  background: var(--color-blueNavy);
+  background: var(--new-color-navy);
 }
 
 .list {
@@ -28,7 +28,7 @@
 .list-item {
   width: 64px;
   height: 64px;
-  background: var(--color-blueNavy);
+  background: var(--new-color-navy);
   margin: 0;
   list-style: none;
   cursor: pointer;

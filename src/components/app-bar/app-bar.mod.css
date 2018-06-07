@@ -11,7 +11,6 @@
 
 /* Header */
 .app-bar {
-  background: var(--color-white);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
   min-height: var(--height-app-bar);
   position: relative;
@@ -65,7 +64,7 @@
 }
 
 .item-link:hover {
-  color: var(--color-blueNavy);
+  color: var(--new-color-navy);
 }
 
 /* Loader */
