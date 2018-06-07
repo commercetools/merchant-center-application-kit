@@ -10,9 +10,9 @@ import Text from '@commercetools-local/ui-kit/typography/text';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import { LOGOUT_REASONS } from '@commercetools-local/constants';
 import formatUserName from '@commercetools-local/utils/user';
-import { Avatar } from '@commercetools-local/application-shell';
 import Card from '@commercetools-local/core/components/card';
 import { MCSupportFormURL } from '../../constants';
+import Avatar from '../avatar';
 import styles from './user-settings-menu.mod.css';
 import messages from './messages';
 
