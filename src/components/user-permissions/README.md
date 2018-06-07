@@ -1,27 +1,26 @@
-# Connectors for `timeZone`
+# Connectors for user `permissions`
 
-This component exposes getters/setters to set and retrieve the `timeZone`.
+This component exposes getters/setters to set and retrieve the user `permissions` on the active project.
 
-The timeZone information will be used to format dates (date, datetime, time) in the frontend taking into account
-the one that the user has selected in the its profile.
+> It uses the new React Context API, so you need to provide the `AppShellProviderForUserPermissions` up in the tree. This is done within the AppShell!
 
-> It uses the new React Context API, so you need to provide the `AppShellProviderForUserTimeZone` up in the tree. This is done within the AppShell!
+Additionally it provides a HOC to inject the `userPermissions`.
 
-Additionally it provides a HOC to inject the `timeZone`.
+> This component should most likely be used to implement other components (`@commercetools-local/permissions`) and it's very unlikely that you would need to use this directly.
 
 ### Usage
 
 ```js
 /* In the AppShell */
-<AppShellProviderForUserTimeZone timeZone="Europe/Madrid">
+<AppShellProviderForUserPermissions permissions={project.permissions}>
   <div>
     {/* ... */}
     {/* In the application specific code */}
-    <GetUserTimeZone
-      render={timeZone => (
-        <div>{`Selected timeZone by the user: ${timeZone}`}</div>
+    <GetUserPermissions
+      render={userPermissions => (
+        <div>{...}</div>
       )}
     />
   </div>
-</AppShellProviderForUserTimeZone>
+</AppShellProviderForUserPermissions>
 ```
