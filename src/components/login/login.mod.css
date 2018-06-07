@@ -30,7 +30,7 @@
   margin: 0;
   padding: 20px 10px;
   background-color: var(--new-color-green);
-  color: var(--color-white);
+  color: var(--new-color-white);
 }
 
 /* Forms */
@@ -65,7 +65,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   border-color: var(--color-primaryGrey);
-  background-color: var(--color-white);
+  background-color: var(--new-color-white);
   width: 100%;
 }
 

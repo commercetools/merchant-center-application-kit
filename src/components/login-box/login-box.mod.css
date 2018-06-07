@@ -23,7 +23,7 @@
 
 .holder {
   text-align: left;
-  background: var(--color-white);
+  background: var(--new-color-white);
   border-bottom-left-radius: var(--border-radius-6);
   border-bottom-right-radius: var(--border-radius-6);
   padding: var(--spacing-24);
