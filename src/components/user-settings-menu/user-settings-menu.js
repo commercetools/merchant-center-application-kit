@@ -9,7 +9,6 @@ import { CaretDownIcon } from '@commercetools-local/ui-kit/icons';
 import Text from '@commercetools-local/ui-kit/typography/text';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import { LOGOUT_REASONS } from '@commercetools-local/constants';
-import formatUserName from '@commercetools-local/utils/user';
 import Card from '../../from-core/card';
 import { MCSupportFormURL } from '../../constants';
 import Avatar from '../avatar';
@@ -73,10 +72,9 @@ export default class UserSettingsMenu extends React.PureComponent {
                 <Card className={styles.menu}>
                   <Spacings.Inset scale="s">
                     <Text.Detail tone="secondary">
-                      {formatUserName({
-                        firstName: this.props.firstName,
-                        lastName: this.props.lastName,
-                      })}
+                      {[this.props.firstName, this.props.lastName]
+                        .join(' ')
+                        .trim()}
                     </Text.Detail>
                   </Spacings.Inset>
                   <ToggleFeature flag="userProfile">
