@@ -9,7 +9,6 @@ import classnames from 'classnames';
 import omit from 'lodash.omit';
 import oneLineTrim from 'common-tags/lib/oneLineTrim';
 import * as Icons from '@commercetools-local/ui-kit/icons';
-import { getDataAttribute } from '@commercetools-local/utils/dataset';
 import * as storage from '@commercetools-local/storage';
 import { AppShellProviderForUserPermissions } from '@commercetools-local/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-local/permissions';
@@ -334,7 +333,9 @@ export class DataMenu extends React.PureComponent {
   };
 
   handleToggleItem = (event, index) => {
-    const isTarget = getDataAttribute(event.target, 'data-target') === 'toggle';
+    const isTarget = event.target.dataset
+      ? event.target.dataset.target === 'toggle'
+      : false;
     if (this.state.activeItemIndex !== index)
       this.setState({ activeItemIndex: index });
     else if (this.state.activeItemIndex === index && isTarget)

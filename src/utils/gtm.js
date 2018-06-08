@@ -1,8 +1,15 @@
 /**
  * Google Tag Manager (GTM) Tracking Utilities
  */
+import camelcase from 'lodash.camelcase';
 
-import { getDataAttribute } from '@commercetools-local/utils/dataset';
+const getDataAttribute = (node, key) => {
+  if (node.dataset) {
+    const camelKey = camelcase(key.replace(/^data-/, ''));
+    return node.dataset[camelKey];
+  }
+  return undefined;
+};
 
 // The way that tracking works is like so:
 //
