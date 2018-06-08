@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defaultMemoize } from 'reselect';
-import { compose, setDisplayName } from 'recompose';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { injectConfiguration } from '@commercetools-local/application-shell-connectors';
+
+// This value is hard-coded here because we want to make sure that the
+// app uses our account of LD. The value is meant to be public, so there
+// is no need to be concerned about security.
+const ldClientSideId = '5979d95f6040390cd07b5e00';
 
 export const getFlopflipReconfiguration = defaultMemoize(projectKey => ({
   custom: { project: projectKey },
@@ -13,7 +16,6 @@ export const getFlopflipReconfiguration = defaultMemoize(projectKey => ({
 export class SetupFlopFlipProvider extends React.PureComponent {
   static displayName = 'SetupFlopFlipProvider';
   static propTypes = {
-    ldClientSideId: PropTypes.string.isRequired,
     user: PropTypes.shape({
       id: PropTypes.string.isRequired,
       launchdarklyTrackingId: PropTypes.string.isRequired,
@@ -40,7 +42,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
       <ConfigureFlopFlip
         adapter={ldAdapter}
         adapterArgs={this.createLaunchdarklyAdapterArgs(
-          this.props.ldClientSideId,
+          ldClientSideId,
           this.props.user && this.props.user.id,
           this.props.user && this.props.user.launchdarklyTrackingId,
           this.props.user && this.props.user.launchdarklyTrackingGroup
@@ -53,7 +55,4 @@ export class SetupFlopFlipProvider extends React.PureComponent {
   }
 }
 
-export default compose(
-  setDisplayName('SetupFlopFlipProvider'),
-  injectConfiguration(['tracking', 'ldClientSideId'], 'ldClientSideId')
-)(SetupFlopFlipProvider);
+export default SetupFlopFlipProvider;

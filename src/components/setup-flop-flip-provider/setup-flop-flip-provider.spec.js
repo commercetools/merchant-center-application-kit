@@ -4,7 +4,6 @@ import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import { SetupFlopFlipProvider } from './setup-flop-flip-provider';
 
 const createTestProps = props => ({
-  ldClientSideId: '111',
   user: {
     id: 'u1',
     launchdarklyTrackingId: '123',
@@ -28,7 +27,7 @@ describe('rendering', () => {
     expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(
       'adapterArgs',
       expect.objectContaining({
-        clientSideId: props.ldClientSideId,
+        clientSideId: '5979d95f6040390cd07b5e00',
       })
     );
   });
