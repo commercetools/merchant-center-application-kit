@@ -23,6 +23,7 @@
     "@commercetools-local/sdk": "*",
     "@commercetools-local/storage": "*",
     "@commercetools-local/ui-kit": "*",
+    "@commercetools-local/url-utils": "*",
     "@commercetools-local/utils": "*",
     "@commercetools-local/sentry": "*",
     "@flopflip/launchdarkly-adapter": "2.2.4",

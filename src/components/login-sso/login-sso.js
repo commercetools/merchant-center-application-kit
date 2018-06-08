@@ -11,7 +11,7 @@ import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
-} from '@commercetools-local/utils/url';
+} from '@commercetools-local/url-utils';
 import * as sdkActions from '@commercetools-local/sdk/actions';
 import { connect } from 'react-redux';
 import * as storage from '@commercetools-local/storage';
