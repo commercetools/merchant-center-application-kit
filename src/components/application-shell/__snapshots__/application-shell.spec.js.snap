@@ -1,275 +1,189 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<RestrictedApplication> rendering project container <Route> should match layout structure 1`] = `
-<div>
-  <ConfigureIntlProvider
-    locale="en-US"
-    messages={
+<React.Fragment>
+  <withReconfiguration(ReconfigureAdapter)
+    user={
       Object {
-        "title": "Title en",
+        "custom": Object {
+          "project": "foo-1",
+        },
       }
     }
-  >
-    <SetupFlopFlipProvider
-      user={
-        Object {
-          "availableProjects": Array [],
-          "email": "john.snow@got.com",
-          "firstName": "John",
-          "id": "u1",
-          "language": "en-US",
-          "lastName": "Snow",
-        }
+  />
+  <InjectIntl(ProjectContainer)
+    isLoadingUser={false}
+    location={
+      Object {
+        "pathname": "/test-project/products",
       }
-    >
-      <React.Fragment>
-        <Connect(RequestsInFlightLoader) />
-        <SentryUserTracker
-          user={
-            Object {
-              "availableProjects": Array [],
-              "email": "john.snow@got.com",
-              "firstName": "John",
-              "id": "u1",
-              "language": "en-US",
-              "lastName": "Snow",
-            }
-          }
-        />
-        <GtmUserTracker
-          user={
-            Object {
-              "availableProjects": Array [],
-              "email": "john.snow@got.com",
-              "firstName": "John",
-              "id": "u1",
-              "language": "en-US",
-              "lastName": "Snow",
-            }
-          }
-        />
-        <div
-          className="app-layout"
-        >
-          <div
-            className="global-notifications"
-          >
-            <NotificationsList
-              domain="global"
-            />
-          </div>
-          <header>
-            <AppBar
-              user={
-                Object {
-                  "availableProjects": Array [],
-                  "email": "john.snow@got.com",
-                  "firstName": "John",
-                  "id": "u1",
-                  "language": "en-US",
-                  "lastName": "Snow",
-                }
-              }
-            />
-          </header>
-          <aside>
-            <WithProjectKey
-              render={[Function]}
-              user={
-                Object {
-                  "availableProjects": Array [],
-                  "email": "john.snow@got.com",
-                  "firstName": "John",
-                  "id": "u1",
-                  "language": "en-US",
-                  "lastName": "Snow",
-                }
-              }
-            />
-          </aside>
-          <div
-            className="main"
-            role="main"
-          >
-            <PortalsContainer />
-            <NotificationsList
-              domain="page"
-            />
-            <NotificationsList
-              domain="side"
-            />
-            <div
-              className="content"
-            >
-              <Switch>
-                <Redirect
-                  from="/profile"
-                  push={false}
-                  to="/account/profile"
-                />
-                <Route
-                  path="/account"
-                  render={[MockFunction]}
-                />
-                <Route
-                  exact={true}
-                  path="/:projectKey"
-                  render={[Function]}
-                />
-                <Route
-                  exact={true}
-                  path="/"
-                  render={[Function]}
-                />
-                <Route
-                  exact={false}
-                  path="/:projectKey"
-                  render={[Function]}
-                />
-              </Switch>
-            </div>
-          </div>
-        </div>
-      </React.Fragment>
-    </SetupFlopFlipProvider>
-  </ConfigureIntlProvider>
-</div>
+    }
+    match={
+      Object {
+        "params": Object {
+          "projectKey": "foo-1",
+        },
+      }
+    }
+    render={[MockFunction]}
+    user={
+      Object {
+        "availableProjects": Array [],
+        "email": "john.snow@got.com",
+        "firstName": "John",
+        "id": "u1",
+        "language": "en-US",
+        "lastName": "Snow",
+        "launchdarklyTrackingGroup": "ct",
+        "launchdarklyTrackingId": "123",
+      }
+    }
+  />
+</React.Fragment>
 `;
 
 exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
-<div>
-  <ConfigureIntlProvider
-    locale="en-US"
-    messages={
+<ConfigureIntlProvider
+  locale="en-US"
+  messages={
+    Object {
+      "title": "Title en",
+    }
+  }
+>
+  <SetupFlopFlipProvider
+    user={
       Object {
-        "title": "Title en",
+        "availableProjects": Array [],
+        "email": "john.snow@got.com",
+        "firstName": "John",
+        "id": "u1",
+        "language": "en-US",
+        "lastName": "Snow",
+        "launchdarklyTrackingGroup": "ct",
+        "launchdarklyTrackingId": "123",
       }
     }
   >
-    <SetupFlopFlipProvider
-      user={
-        Object {
-          "availableProjects": Array [],
-          "email": "john.snow@got.com",
-          "firstName": "John",
-          "id": "u1",
-          "language": "en-US",
-          "lastName": "Snow",
+    <React.Fragment>
+      <Connect(RequestsInFlightLoader) />
+      <SentryUserTracker
+        user={
+          Object {
+            "availableProjects": Array [],
+            "email": "john.snow@got.com",
+            "firstName": "John",
+            "id": "u1",
+            "language": "en-US",
+            "lastName": "Snow",
+            "launchdarklyTrackingGroup": "ct",
+            "launchdarklyTrackingId": "123",
+          }
         }
-      }
-    >
-      <React.Fragment>
-        <Connect(RequestsInFlightLoader) />
-        <SentryUserTracker
-          user={
-            Object {
-              "availableProjects": Array [],
-              "email": "john.snow@got.com",
-              "firstName": "John",
-              "id": "u1",
-              "language": "en-US",
-              "lastName": "Snow",
-            }
+      />
+      <GtmUserTracker
+        user={
+          Object {
+            "availableProjects": Array [],
+            "email": "john.snow@got.com",
+            "firstName": "John",
+            "id": "u1",
+            "language": "en-US",
+            "lastName": "Snow",
+            "launchdarklyTrackingGroup": "ct",
+            "launchdarklyTrackingId": "123",
           }
-        />
-        <GtmUserTracker
-          user={
-            Object {
-              "availableProjects": Array [],
-              "email": "john.snow@got.com",
-              "firstName": "John",
-              "id": "u1",
-              "language": "en-US",
-              "lastName": "Snow",
-            }
-          }
-        />
+        }
+      />
+      <div
+        className="app-layout"
+      >
         <div
-          className="app-layout"
+          className="global-notifications"
         >
-          <div
-            className="global-notifications"
-          >
-            <NotificationsList
-              domain="global"
-            />
-          </div>
-          <header>
-            <AppBar
-              user={
-                Object {
-                  "availableProjects": Array [],
-                  "email": "john.snow@got.com",
-                  "firstName": "John",
-                  "id": "u1",
-                  "language": "en-US",
-                  "lastName": "Snow",
-                }
+          <NotificationsList
+            domain="global"
+          />
+        </div>
+        <header>
+          <AppBar
+            user={
+              Object {
+                "availableProjects": Array [],
+                "email": "john.snow@got.com",
+                "firstName": "John",
+                "id": "u1",
+                "language": "en-US",
+                "lastName": "Snow",
+                "launchdarklyTrackingGroup": "ct",
+                "launchdarklyTrackingId": "123",
               }
-            />
-          </header>
-          <aside>
-            <WithProjectKey
-              render={[Function]}
-              user={
-                Object {
-                  "availableProjects": Array [],
-                  "email": "john.snow@got.com",
-                  "firstName": "John",
-                  "id": "u1",
-                  "language": "en-US",
-                  "lastName": "Snow",
-                }
+            }
+          />
+        </header>
+        <aside>
+          <WithProjectKey
+            render={[Function]}
+            user={
+              Object {
+                "availableProjects": Array [],
+                "email": "john.snow@got.com",
+                "firstName": "John",
+                "id": "u1",
+                "language": "en-US",
+                "lastName": "Snow",
+                "launchdarklyTrackingGroup": "ct",
+                "launchdarklyTrackingId": "123",
               }
-            />
-          </aside>
+            }
+          />
+        </aside>
+        <div
+          className="main"
+          role="main"
+        >
+          <PortalsContainer />
+          <NotificationsList
+            domain="page"
+          />
+          <NotificationsList
+            domain="side"
+          />
           <div
-            className="main"
-            role="main"
+            className="content"
           >
-            <PortalsContainer />
-            <NotificationsList
-              domain="page"
-            />
-            <NotificationsList
-              domain="side"
-            />
-            <div
-              className="content"
-            >
-              <Switch>
-                <Redirect
-                  from="/profile"
-                  push={false}
-                  to="/account/profile"
-                />
-                <Route
-                  path="/account"
-                  render={[MockFunction]}
-                />
-                <Route
-                  exact={true}
-                  path="/:projectKey"
-                  render={[Function]}
-                />
-                <Route
-                  exact={true}
-                  path="/"
-                  render={[Function]}
-                />
-                <Route
-                  exact={false}
-                  path="/:projectKey"
-                  render={[Function]}
-                />
-              </Switch>
-            </div>
+            <Switch>
+              <Redirect
+                from="/profile"
+                push={false}
+                to="/account/profile"
+              />
+              <Route
+                path="/account"
+                render={[MockFunction]}
+              />
+              <Route
+                exact={true}
+                path="/:projectKey"
+                render={[Function]}
+              />
+              <Route
+                exact={true}
+                path="/"
+                render={[Function]}
+              />
+              <Route
+                exact={false}
+                path="/:projectKey"
+                render={[Function]}
+              />
+            </Switch>
           </div>
         </div>
-      </React.Fragment>
-    </SetupFlopFlipProvider>
-  </ConfigureIntlProvider>
-</div>
+      </div>
+    </React.Fragment>
+  </SetupFlopFlipProvider>
+</ConfigureIntlProvider>
 `;
 
 exports[`<UnrestrictedApplication> rendering should match layout structure 1`] = `
