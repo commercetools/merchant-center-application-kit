@@ -3,7 +3,7 @@
 
 .text-small {
   font-size: 0.923rem;
-  color: var(--color-greyTundora);
+  color: var(--color-black);
 }
 
 .label-wrapper {
@@ -19,7 +19,7 @@
 
 .description {
   composes: text-small;
-  color: var(--color-greyDove);
+  color: var(--color-gray);
   font-weight: normal;
   display: inline-block;
   margin-bottom: var(--spacing-8);

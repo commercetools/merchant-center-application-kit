@@ -13,6 +13,7 @@
 
 .react-select-container :global(.Select-control) {
   border: 0;
+  background-color: var(--color-gray-95);
   cursor: pointer;
   width: 160px;
   right: 0;
@@ -27,7 +28,7 @@
   height: 22px;
   border-radius: 22px;
   padding: 3px;
-  background: var(--color-greenLight);
+  background: var(--color-navy-40);
   color: var(--color-white);
   display: inline-block;
   font-size: 0.9rem;

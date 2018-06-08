@@ -7,6 +7,6 @@
 
 .title {
   composes: text-headline;
-  color: var(--color-greyTundora);
+  color: var(--color-black);
   display: block;
 }
