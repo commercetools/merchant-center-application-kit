@@ -1,0 +1,12 @@
+@import '@commercetools-local/ui-kit/materials/colors.mod.css';
+
+.text-headline {
+  font-size: 1.846rem;
+  font-weight: 100;
+}
+
+.title {
+  composes: text-headline;
+  color: var(--color-greyTundora);
+  display: block;
+}

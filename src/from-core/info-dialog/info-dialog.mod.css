@@ -1,0 +1,69 @@
+@import '@commercetools-local/ui-kit/materials/colors.mod.css';
+@import '@commercetools-local/ui-kit/materials/borders.mod.css';
+@import '@commercetools-local/ui-kit/materials/spacings.mod.css';
+
+:root {
+  --color-modalBackground: rgba(32, 62, 72, 0.5);
+
+  /* Modals */
+  --z-index--overlay: 999;
+}
+
+.modal-overlay-base {
+  display: flex;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-modalBackground);
+  z-index: var(--z-index--overlay);
+}
+
+.modal-content-base {
+  padding: 0;
+  border-radius: 0;
+  background: var(--color-white);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  outline: none;
+  height: 100%; /* hack for safari */
+}
+
+.modal-content-float-small {
+  composes: modal-content-base;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  max-width: 750px;
+  height: auto;
+  max-height: 80%;
+  border-radius: var(--border-radius-6);
+  padding: var(--spacing-16);
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.transition-modal-overlay {
+  composes: modal-overlay-base;
+  opacity: 0;
+}
+
+.overlay {
+  composes: transition-modal-overlay;
+  z-index: 1000;
+}
+
+.content {
+  composes: modal-content-float-small;
+}
+
+.close-button {
+  position: absolute;
+  top: var(--spacing-16);
+  right: var(--spacing-16);
+}
+
+.info-dialog-title,
+.info-dialog-paragraph {
+  margin-bottom: var(--spacing-8);
+}

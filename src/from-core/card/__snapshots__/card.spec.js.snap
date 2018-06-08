@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering with \`flat\` \`type\` should output correct tree 1`] = `
+<div
+  className="container type-flat"
+>
+  text
+</div>
+`;
+
+exports[`rendering with \`raised\` \`type\` should output correct tree 1`] = `
+<div
+  className="container type-raised"
+>
+  text
+</div>
+`;

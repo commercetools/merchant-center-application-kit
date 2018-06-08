@@ -4,6 +4,7 @@
 import './public-path';
 
 export { default } from './components/application-shell';
+export { default as Avatar } from './components/avatar';
 export {
   default as InjectReducer,
   activePluginReducer,

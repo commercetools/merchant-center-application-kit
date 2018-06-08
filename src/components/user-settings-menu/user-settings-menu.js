@@ -9,23 +9,21 @@ import { CaretDownIcon } from '@commercetools-local/ui-kit/icons';
 import Text from '@commercetools-local/ui-kit/typography/text';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import { LOGOUT_REASONS } from '@commercetools-local/constants';
-import formatUserName from '@commercetools-local/utils/user';
-import Avatar from '@commercetools-local/core/components/avatar';
-import Card from '@commercetools-local/core/components/card';
+import Card from '../../from-core/card';
 import { MCSupportFormURL } from '../../constants';
+import Avatar from '../avatar';
 import styles from './user-settings-menu.mod.css';
 import messages from './messages';
 
 export const UserAvatar = props => (
   <div onMouseOver={props.handleMouseOver} onMouseOut={props.handleMouseOut}>
     <Spacings.Inline alignItems="center">
-      <div className={styles.avatar}>
-        <Avatar
-          email={props.email}
-          firstName={props.firstName}
-          lastName={props.lastName}
-        />
-      </div>
+      <Avatar
+        email={props.email}
+        firstName={props.firstName}
+        lastName={props.lastName}
+        isHighlighted={props.isMouseOver}
+      />
       <CaretDownIcon
         size="small"
         theme={props.isMouseOver ? 'grey' : 'black'}
@@ -74,10 +72,9 @@ export default class UserSettingsMenu extends React.PureComponent {
                 <Card className={styles.menu}>
                   <Spacings.Inset scale="s">
                     <Text.Detail tone="secondary">
-                      {formatUserName({
-                        firstName: this.props.firstName,
-                        lastName: this.props.lastName,
-                      })}
+                      {[this.props.firstName, this.props.lastName]
+                        .join(' ')
+                        .trim()}
                     </Text.Detail>
                   </Spacings.Inset>
                   <ToggleFeature flag="userProfile">

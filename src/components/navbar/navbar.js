@@ -9,12 +9,9 @@ import classnames from 'classnames';
 import omit from 'lodash.omit';
 import oneLineTrim from 'common-tags/lib/oneLineTrim';
 import * as Icons from '@commercetools-local/ui-kit/icons';
-import { getDataAttribute } from '@commercetools-local/utils/dataset';
-import {
-  createPermissionsMatchingToProps,
-  UnconnectedRestrictedByPermissions,
-} from '@commercetools-local/core/components/with-permissions';
 import * as storage from '@commercetools-local/storage';
+import { AppShellProviderForUserPermissions } from '@commercetools-local/application-shell-connectors';
+import { RestrictedByPermissions } from '@commercetools-local/permissions';
 import { STORAGE_KEYS } from '../../constants';
 import { withProject } from '../fetch-project';
 import styles from './navbar.mod.css';
@@ -179,29 +176,19 @@ export const MenuItemDivider = () => (
 
 MenuItemDivider.displayName = 'MenuItemDivider';
 
-// This component basically just wraps the `<UnconnectedRestrictedByPermissions>`
+// This component basically just wraps the `<RestrictedByPermissions>`
 // and the `<ToggleFeature>` components. However, it's necessary to have it as
 // the `<ToggleFeature>` wrapper should be rendered only if the `featureToggle`
 // prop is defined. This is because `<ToggleFeature>` will not render any
 // children if the flag is missing/not found.
 export const ToggledWithPermissions = props => {
-  const demandedPermissions = props.permissions || [];
-  // This manual glueing is needed because the RestrictedByPermissions component
-  // is connect to the redux store. The app shell, however, does not use redux
-  // anymore.
-  // TODO refactor with-permissions component to not connect to redux but to
-  // use the FetchProject component to read the users permissions
-  const permissionsProps = createPermissionsMatchingToProps(
-    demandedPermissions,
-    { some: Boolean(props.permissions) }
-  )({ actualPermissions: props.actualPermissions });
   const permissionsWrapper = (
-    <UnconnectedRestrictedByPermissions
-      permissions={demandedPermissions}
-      isAuthorized={permissionsProps.isAuthorized}
+    <RestrictedByPermissions
+      permissions={props.permissions || []}
+      shouldMatchSomePermissions={Boolean(props.permissions)}
     >
       {props.children}
-    </UnconnectedRestrictedByPermissions>
+    </RestrictedByPermissions>
   );
   return props.featureToggle ? (
     <ToggleFeature flag={props.featureToggle}>
@@ -220,7 +207,6 @@ ToggledWithPermissions.propTypes = {
       resource: PropTypes.string.isRequired,
     })
   ),
-  actualPermissions: PropTypes.objectOf(PropTypes.bool.isRequired).isRequired,
   children: PropTypes.element.isRequired,
 };
 export const getIconTheme = (menu, isActive) => {
@@ -270,7 +256,6 @@ export class DataMenu extends React.PureComponent {
       })
     ),
     projectKey: PropTypes.string.isRequired,
-    projectPermissions: PropTypes.objectOf(PropTypes.bool).isRequired,
     isForcedMenuOpen: PropTypes.bool,
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
@@ -347,12 +332,9 @@ export class DataMenu extends React.PureComponent {
     return Boolean(match);
   };
 
-  handleToggleItem = (event, index) => {
-    const isTarget = getDataAttribute(event.target, 'data-target') === 'toggle';
+  handleToggleItem = index => {
     if (this.state.activeItemIndex !== index)
       this.setState({ activeItemIndex: index });
-    else if (this.state.activeItemIndex === index && isTarget)
-      this.setState({ activeItemIndex: null });
   };
 
   shouldCloseMenuFly = event => {
@@ -389,7 +371,6 @@ export class DataMenu extends React.PureComponent {
               key={name}
               featureToggle={menu.featureToggle}
               permissions={menu.permissions}
-              actualPermissions={this.props.projectPermissions}
             >
               <React.Fragment>
                 {menu.name.toLowerCase() === PLUGIN_NAMES.SETTINGS && (
@@ -400,13 +381,13 @@ export class DataMenu extends React.PureComponent {
                   isBottomItem={bottomMenuItems.indexOf(menu.name) >= 0}
                   isActive={isActive}
                   isMenuOpen={this.state.isMenuOpen}
-                  onClick={event => {
-                    this.handleToggleItem(event, index);
+                  onClick={() => {
+                    this.handleToggleItem(index);
                   }}
                   onMouseEnter={
                     this.state.isMenuOpen
                       ? null
-                      : event => this.handleToggleItem(event, index)
+                      : () => this.handleToggleItem(index)
                   }
                   onMouseLeave={
                     this.state.isMenuOpen ? null : this.shouldCloseMenuFly
@@ -434,12 +415,7 @@ export class DataMenu extends React.PureComponent {
                           )}
                         />
                       </div>
-                      <div
-                        className={styles.title}
-                        {...(this.state.isMenuOpen
-                          ? { 'data-target': 'toggle' }
-                          : {})}
-                      >
+                      <div className={styles.title}>
                         <FormattedMessage {...messages[menu.labelKey]} />
                       </div>
                     </div>
@@ -455,7 +431,6 @@ export class DataMenu extends React.PureComponent {
                             key={`${name}-submenu-${submenu.name}`}
                             featureToggle={submenu.featureToggle}
                             permissions={submenu.permissions}
-                            actualPermissions={this.props.projectPermissions}
                           >
                             <li className={styles['sublist-item']}>
                               <div className={styles.text}>
@@ -503,7 +478,7 @@ export class NavBar extends React.PureComponent {
     // Injected
     location: PropTypes.object.isRequired,
     isForcedMenuOpen: PropTypes.bool,
-    projectPermissions: PropTypes.objectOf(PropTypes.bool).isRequired,
+    projectPermissions: PropTypes.object.isRequired,
   };
 
   getNode = node => {
@@ -518,15 +493,18 @@ export class NavBar extends React.PureComponent {
         data-test="left-navigation"
         data-track-component="Navigation"
       >
-        <DataMenu
-          rootNode={this.node}
-          data={defaultNavigationItems}
-          isForcedMenuOpen={this.props.isForcedMenuOpen}
-          location={this.props.location}
-          projectKey={this.props.projectKey}
-          projectPermissions={this.props.projectPermissions}
-          useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}
-        />
+        <AppShellProviderForUserPermissions
+          permissions={this.props.projectPermissions}
+        >
+          <DataMenu
+            rootNode={this.node}
+            data={defaultNavigationItems}
+            isForcedMenuOpen={this.props.isForcedMenuOpen}
+            location={this.props.location}
+            projectKey={this.props.projectKey}
+            useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}
+          />
+        </AppShellProviderForUserPermissions>
       </nav>
     );
   }

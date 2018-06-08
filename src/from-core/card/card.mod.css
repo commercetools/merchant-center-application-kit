@@ -1,0 +1,24 @@
+@import '@commercetools-local/ui-kit/materials/borders.mod.css';
+@import '@commercetools-local/ui-kit/materials/colors.mod.css';
+@import '@commercetools-local/ui-kit/materials/spacings.mod.css';
+@import '@commercetools-local/ui-kit/materials/shadows.mod.css';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.type-raised {
+  box-shadow: var(--shadow-1-second);
+  border-radius: var(--border-radius-6);
+  padding: var(--spacing-16);
+  background: var(--color-white);
+}
+
+.type-flat {
+  border-radius: var(--border-radius-6);
+  padding: var(--spacing-16);
+  background: var(--color-white);
+  box-shadow: none;
+}

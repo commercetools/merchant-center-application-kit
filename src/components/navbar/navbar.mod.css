@@ -1,4 +1,3 @@
-@import '@commercetools-local/core/_styles/shared.mod.css';
 @import '@commercetools-local/ui-kit/materials/colors.mod.css';
 @import '@commercetools-local/ui-kit/materials/spacings.mod.css';
 
@@ -6,6 +5,9 @@
   --expander-height: 50px;
   --icon-size: 32px;
   --submenu-margin: calc(var(--icon-size) + var(--spacing-16));
+
+  /* Left navigation */
+  --width-leftNavigation: 64px;
 }
 
 /* Left Nav */

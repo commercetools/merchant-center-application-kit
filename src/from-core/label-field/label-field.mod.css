@@ -1,0 +1,26 @@
+@import '@commercetools-local/ui-kit/materials/colors.mod.css';
+@import '@commercetools-local/ui-kit/materials/spacings.mod.css';
+
+.text-small {
+  font-size: 0.923rem;
+  color: var(--color-greyTundora);
+}
+
+.label-wrapper {
+  display: block;
+}
+
+.label {
+  composes: text-small;
+  display: block;
+  font-weight: 700;
+  margin-bottom: var(--spacing-4);
+}
+
+.description {
+  composes: text-small;
+  color: var(--color-greyDove);
+  font-weight: normal;
+  display: inline-block;
+  margin-bottom: var(--spacing-8);
+}

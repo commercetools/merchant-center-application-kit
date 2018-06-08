@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import FailedAuthorizationSVG from '@commercetools-local/ui-kit/materials/images/maintenance/failed-authorization.svg';
-import ServicePageResponseLayout from '@commercetools-local/core/components/service-page-response-layout';
+import ServicePageResponseLayout from '../../from-core/service-page-response-layout';
 import ServicePageProjectSwitcher from '../service-page-project-switcher';
 import messages from './messages';
 

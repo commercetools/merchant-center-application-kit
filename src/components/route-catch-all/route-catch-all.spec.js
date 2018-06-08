@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import PageNotFound from '@commercetools-local/core/components/page-not-found';
+import PageNotFound from '../../from-core/page-not-found';
 import { ForcePageReload, RouteCatchAll } from './route-catch-all';
 
 describe('rendering', () => {

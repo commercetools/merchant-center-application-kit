@@ -1,9 +1,11 @@
 @import '@commercetools-local/ui-kit/materials/colors.mod.css';
 @import '@commercetools-local/ui-kit/materials/spacings.mod.css';
-@import '@commercetools-local/core/_styles/shared.mod.css';
 
 :root {
   --color-modalBackground: rgba(32, 62, 72, 0.5);
+
+  /* Modals */
+  --z-index--overlay: 999;
 }
 
 .underline {

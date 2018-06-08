@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
 import isNil from 'lodash.isnil';
+import omit from 'lodash.omit';
 import { DOMAINS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/storage';
 import { Notifier } from '@commercetools-local/react-notifications';
+import { AppShellProviderForUserPermissions } from '@commercetools-local/application-shell-connectors';
 import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
 import { reportErrorToSentry } from '@commercetools-local/sentry';
 import { STORAGE_KEYS } from '../../constants';
@@ -123,43 +125,47 @@ export class ProjectContainer extends React.Component {
           if (!project.settings) return <ProjectWithoutSettings />;
 
           return (
-            <ProjectDataLocale locales={project.languages}>
-              {({ locale, setProjectDataLocale }) => (
-                <React.Fragment>
-                  {!isNil(project.trialDaysLeft) &&
-                    project.trialDaysLeft <= minDaysToDisplayNotification &&
-                    project.trialDaysLeft >= maxDaysToDisplayNotification && (
-                      <Notifier
-                        kind="warning"
-                        domain={DOMAINS.GLOBAL}
-                        text={this.props.intl.formatMessage(
-                          messages.trialDaysLeft,
-                          { daysLeft: project.trialDaysLeft }
-                        )}
-                      />
-                    )}
-                  {/* Render <LocaleSwitcher> using a portal */}
-                  {this.state.localeSwitcherNode &&
-                    // Render the `<LocaleSwitcher>` only if the project has more
-                    // than one language.
-                    project.languages.length > 1 &&
-                    ReactDOM.createPortal(
-                      this.renderSwitcher({
-                        projectDataLocale: locale,
-                        setProjectDataLocale,
-                        availableLocales: project.languages,
-                      }),
-                      this.state.localeSwitcherNode
-                    )}
-                  {/**
-                   * NOTE: we don't need to explicitly pass the `locale`,
-                   * it's enough to trigger a re-render.
-                   * The `locale` can then be read from the localStorage.
-                   */}
-                  {this.props.render()}
-                </React.Fragment>
-              )}
-            </ProjectDataLocale>
+            <AppShellProviderForUserPermissions
+              permissions={omit(project.permissions, ['__typename'])}
+            >
+              <ProjectDataLocale locales={project.languages}>
+                {({ locale, setProjectDataLocale }) => (
+                  <React.Fragment>
+                    {!isNil(project.trialDaysLeft) &&
+                      project.trialDaysLeft <= minDaysToDisplayNotification &&
+                      project.trialDaysLeft >= maxDaysToDisplayNotification && (
+                        <Notifier
+                          kind="warning"
+                          domain={DOMAINS.GLOBAL}
+                          text={this.props.intl.formatMessage(
+                            messages.trialDaysLeft,
+                            { daysLeft: project.trialDaysLeft }
+                          )}
+                        />
+                      )}
+                    {/* Render <LocaleSwitcher> using a portal */}
+                    {this.state.localeSwitcherNode &&
+                      // Render the `<LocaleSwitcher>` only if the project has more
+                      // than one language.
+                      project.languages.length > 1 &&
+                      ReactDOM.createPortal(
+                        this.renderSwitcher({
+                          projectDataLocale: locale,
+                          setProjectDataLocale,
+                          availableLocales: project.languages,
+                        }),
+                        this.state.localeSwitcherNode
+                      )}
+                    {/**
+                     * NOTE: we don't need to explicitly pass the `locale`,
+                     * it's enough to trigger a re-render.
+                     * The `locale` can then be read from the localStorage.
+                     */}
+                    {this.props.render()}
+                  </React.Fragment>
+                )}
+              </ProjectDataLocale>
+            </AppShellProviderForUserPermissions>
           );
         }}
       </FetchProject>

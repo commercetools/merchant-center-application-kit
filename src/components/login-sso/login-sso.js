@@ -11,15 +11,14 @@ import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
-} from '@commercetools-local/utils/url';
+} from '@commercetools-local/url-utils';
 import * as sdkActions from '@commercetools-local/sdk/actions';
 import { connect } from 'react-redux';
 import * as storage from '@commercetools-local/storage';
-import { messages as validationMessages } from '@commercetools-local/utils/validation';
-import Title from '@commercetools-local/core/components/title';
-import LabelField from '@commercetools-local/core/components/fields/label-field';
 import { Notification } from '@commercetools-local/react-notifications';
 import { ORGANIZATION_GENERAL_ERROR, STORAGE_KEYS } from '../../constants';
+import LabelField from '../../from-core/label-field';
+import Title from '../../from-core/title';
 import PublicPageContainer from '../public-page-container';
 import LoginBox from '../login-box';
 import loginStyles from '../login/login.mod.css';
@@ -61,7 +60,7 @@ export class LoginSSO extends React.PureComponent {
     const errors = {};
     if (!values.organizationName) {
       errors.organizationName = this.props.intl.formatMessage(
-        validationMessages.required
+        messages.required
       );
     }
     return errors;
