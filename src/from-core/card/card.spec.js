@@ -35,4 +35,38 @@ describe('rendering', () => {
       expect(wrapper).toHaveClassName('type-flat');
     });
   });
+
+  describe('with `light` theme', () => {
+    const props = { theme: 'light' };
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(<Card {...props}>{'text'}</Card>);
+    });
+
+    it('should output correct tree', () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should apply the `theme-light` class name', () => {
+      expect(wrapper).toHaveClassName('theme-light');
+    });
+  });
+
+  describe('with `dark` theme', () => {
+    const props = { theme: 'dark' };
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = shallow(<Card {...props}>{'text'}</Card>);
+    });
+
+    it('should output correct tree', () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should apply the `theme-dark` class name', () => {
+      expect(wrapper).toHaveClassName('theme-dark');
+    });
+  });
 });
