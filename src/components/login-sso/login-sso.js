@@ -15,7 +15,6 @@ import {
 import * as sdkActions from '@commercetools-local/sdk/actions';
 import { connect } from 'react-redux';
 import * as storage from '@commercetools-local/storage';
-import { messages as validationMessages } from '@commercetools-local/utils/validation';
 import { Notification } from '@commercetools-local/react-notifications';
 import { ORGANIZATION_GENERAL_ERROR, STORAGE_KEYS } from '../../constants';
 import LabelField from '../../from-core/label-field';
@@ -61,7 +60,7 @@ export class LoginSSO extends React.PureComponent {
     const errors = {};
     if (!values.organizationName) {
       errors.organizationName = this.props.intl.formatMessage(
-        validationMessages.required
+        messages.required
       );
     }
     return errors;
