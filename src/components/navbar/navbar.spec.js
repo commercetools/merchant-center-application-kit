@@ -1044,23 +1044,10 @@ describe('instance methods', () => {
       describe('if activeItemIndex is not the same as the given index', () => {
         beforeEach(() => {
           wrapper.setState({ activeItemIndex: 1 });
-          wrapper
-            .instance()
-            .handleToggleItem({ target: { dataset: { target: 'toggle' } } }, 0);
+          wrapper.instance().handleToggleItem(0);
         });
         it('should update activeItemIndex with the new index', () => {
           expect(wrapper).toHaveState('activeItemIndex', 0);
-        });
-      });
-      describe('if activeItemIndex is the same as the given index and the event is the same as the target', () => {
-        beforeEach(() => {
-          wrapper.setState({ activeItemIndex: 0 });
-          wrapper
-            .instance()
-            .handleToggleItem({ target: { dataset: { target: 'toggle' } } }, 0);
-        });
-        it('should unset activeItemIndex', () => {
-          expect(wrapper).toHaveState('activeItemIndex', null);
         });
       });
     });

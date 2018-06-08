@@ -332,14 +332,9 @@ export class DataMenu extends React.PureComponent {
     return Boolean(match);
   };
 
-  handleToggleItem = (event, index) => {
-    const isTarget = event.target.dataset
-      ? event.target.dataset.target === 'toggle'
-      : false;
+  handleToggleItem = index => {
     if (this.state.activeItemIndex !== index)
       this.setState({ activeItemIndex: index });
-    else if (this.state.activeItemIndex === index && isTarget)
-      this.setState({ activeItemIndex: null });
   };
 
   shouldCloseMenuFly = event => {
@@ -386,13 +381,13 @@ export class DataMenu extends React.PureComponent {
                   isBottomItem={bottomMenuItems.indexOf(menu.name) >= 0}
                   isActive={isActive}
                   isMenuOpen={this.state.isMenuOpen}
-                  onClick={event => {
-                    this.handleToggleItem(event, index);
+                  onClick={() => {
+                    this.handleToggleItem(index);
                   }}
                   onMouseEnter={
                     this.state.isMenuOpen
                       ? null
-                      : event => this.handleToggleItem(event, index)
+                      : () => this.handleToggleItem(index)
                   }
                   onMouseLeave={
                     this.state.isMenuOpen ? null : this.shouldCloseMenuFly
@@ -420,12 +415,7 @@ export class DataMenu extends React.PureComponent {
                           )}
                         />
                       </div>
-                      <div
-                        className={styles.title}
-                        {...(this.state.isMenuOpen
-                          ? { 'data-target': 'toggle' }
-                          : {})}
-                      >
+                      <div className={styles.title}>
                         <FormattedMessage {...messages[menu.labelKey]} />
                       </div>
                     </div>
