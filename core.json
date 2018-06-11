@@ -503,6 +503,7 @@
   "Categories.Details.Products.labelPrices": "Prices",
   "Categories.Details.Products.labelProductName": "Product name",
   "Categories.Details.Products.labelProductType": "Product Type",
+  "Categories.Details.Products.labelSku": "SKU",
   "Categories.Details.Products.labelState": "State",
   "Categories.Details.Products.labelStatus": "Status",
   "Categories.Details.Products.labelVariantsCount": "Variants",
