@@ -132,11 +132,9 @@ describe('<RestrictedApplication>', () => {
   let props;
   let wrapper;
   let userData;
-  let fetchUserWrapper;
   describe('rendering', () => {
     beforeEach(() => {
       props = createTestProps();
-      const rootWrapper = shallow(<RestrictedApplication {...props} />);
       userData = {
         isLoading: false,
         user: {
@@ -146,33 +144,37 @@ describe('<RestrictedApplication>', () => {
           lastName: 'Snow',
           availableProjects: [],
           language: 'en-US',
+          launchdarklyTrackingId: '123',
+          launchdarklyTrackingGroup: 'ct',
         },
       };
-      wrapper = shallow(
-        <div>{rootWrapper.find(FetchUser).prop('children')(userData)}</div>
-      );
+      wrapper = shallow(<RestrictedApplication {...props} />)
+        .find(FetchUser)
+        .renderProp('children', userData);
+    });
+    it('should match layout structure', () => {
+      expect(wrapper).toMatchSnapshot();
     });
     describe('when fetching the user returns an error', () => {
       beforeEach(() => {
         reportErrorToSentry.mockClear();
         props = createTestProps();
-        const rootWrapper = shallow(<RestrictedApplication {...props} />);
         userData = {
           isLoading: false,
           error: new Error('Failed to fetch'),
         };
-        fetchUserWrapper = shallow(
-          <div>{rootWrapper.find(FetchUser).prop('children')(userData)}</div>
-        );
+        wrapper = shallow(<RestrictedApplication {...props} />)
+          .find(FetchUser)
+          .renderProp('children', userData);
       });
       it('should pass "locale" to <ConfigureIntlProvider>', () => {
-        expect(fetchUserWrapper.find(ConfigureIntlProvider)).toHaveProp(
+        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
           'locale',
           'en-US'
         );
       });
       it('should render <ErrorApologizer>', () => {
-        expect(fetchUserWrapper).toRender('ErrorApologizer');
+        expect(wrapper).toRender('ErrorApologizer');
       });
       it('should report error to sentry', () => {
         expect(reportErrorToSentry).toHaveBeenCalledWith(
@@ -181,20 +183,16 @@ describe('<RestrictedApplication>', () => {
         );
       });
     });
-    it('should match layout structure', () => {
-      expect(wrapper).toMatchSnapshot();
-    });
     it('should pass user "locale" to <ConfigureIntlProvider>', () => {
-      expect(fetchUserWrapper.find(ConfigureIntlProvider)).toHaveProp(
+      expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
         'locale',
         userData.user.language
       );
     });
     it('should pass "messages" to <ConfigureIntlProvider>', () => {
-      expect(fetchUserWrapper.find(ConfigureIntlProvider)).toHaveProp(
-        'messages',
-        { title: 'Title en' }
-      );
+      expect(wrapper.find(ConfigureIntlProvider)).toHaveProp('messages', {
+        title: 'Title en',
+      });
     });
     describe('layout', () => {
       it('should render "global-notifications" container inside "app-layout"', () => {
@@ -241,28 +239,20 @@ describe('<RestrictedApplication>', () => {
       );
     });
     describe('<NavBar>', () => {
-      let routeRenderWrapper;
       beforeEach(() => {
-        routeRenderWrapper = shallow(
-          <div>
-            {wrapper.find('aside > WithProjectKey').prop('render')({
-              routerProps: { location: {} },
-              projectKey: 'foo-1',
-            })}
-          </div>
-        );
+        wrapper = wrapper.find('aside > WithProjectKey').renderProp('render', {
+          routerProps: { location: {} },
+          projectKey: 'foo-1',
+        });
       });
       it('should render <NavBar> inside <WithProjectKey> below aside element', () => {
-        expect(routeRenderWrapper).toRender(NavBar);
+        expect(wrapper).toRender(NavBar);
       });
       it('should pass the projectKey matched from the URL', () => {
-        expect(routeRenderWrapper.find(NavBar)).toHaveProp(
-          'projectKey',
-          'foo-1'
-        );
+        expect(wrapper.find(NavBar)).toHaveProp('projectKey', 'foo-1');
       });
       it('should pass "useFullRedirectsForLinks"', () => {
-        expect(routeRenderWrapper.find(NavBar)).toHaveProp(
+        expect(wrapper.find(NavBar)).toHaveProp(
           'useFullRedirectsForLinks',
           props.INTERNAL__isApplicationFallback
         );
@@ -284,28 +274,20 @@ describe('<RestrictedApplication>', () => {
       });
     });
     describe('<Redirect> to dashboard', () => {
-      let routeRenderWrapper;
       beforeEach(() => {
-        routeRenderWrapper = shallow(
-          <div>
-            {wrapper
-              .find('.main')
-              .find({ exact: true, path: '/:projectKey' })
-              .prop('render')({ match: { url: '/foo-1' } })}
-          </div>
-        );
+        wrapper = wrapper
+          .find('.main')
+          .find({ exact: true, path: '/:projectKey' })
+          .renderProp('render', { match: { url: '/foo-1' } });
       });
       it('should render <PageRedirect> to "/dashboard"', () => {
-        expect(routeRenderWrapper.find('PageRedirect')).toHaveProp(
+        expect(wrapper.find('PageRedirect')).toHaveProp(
           'to',
           '/foo-1/dashboard'
         );
       });
       it('should render <PageRedirect> with "reload" to true', () => {
-        expect(routeRenderWrapper.find('PageRedirect')).toHaveProp(
-          'reload',
-          true
-        );
+        expect(wrapper.find('PageRedirect')).toHaveProp('reload', true);
       });
     });
     it('should render <Route> matching ":projectKey" path', () => {
@@ -315,43 +297,38 @@ describe('<RestrictedApplication>', () => {
       });
     });
     describe('project container <Route>', () => {
-      let routeRenderWrapper;
       let routerProps;
       beforeEach(() => {
         routerProps = {
           location: { pathname: '/test-project/products' },
           match: { params: { projectKey: 'foo-1' } },
         };
-        routeRenderWrapper = shallow(
-          <div>
-            {wrapper
-              .find('.main')
-              .find({ exact: false, path: '/:projectKey' })
-              .prop('render')(routerProps)}
-          </div>
-        );
+        wrapper = wrapper
+          .find('.main')
+          .find({ exact: false, path: '/:projectKey' })
+          .renderProp('render', routerProps);
       });
       it('should match layout structure', () => {
         expect(wrapper).toMatchSnapshot();
       });
       it('should pass "match" to <ProjectContainer>', () => {
-        expect(routeRenderWrapper.find(ProjectContainer)).toHaveProp(
+        expect(wrapper.find(ProjectContainer)).toHaveProp(
           'match',
           routerProps.match
         );
       });
       it('should pass "render" to <ProjectContainer>', () => {
-        expect(routeRenderWrapper.find(ProjectContainer)).toHaveProp(
+        expect(wrapper.find(ProjectContainer)).toHaveProp(
           'render',
           props.render
         );
       });
       it('should render <ReconfigureFlopflip>', () => {
-        expect(routeRenderWrapper).toRender(ReconfigureFlopFlip);
+        expect(wrapper).toRender(ReconfigureFlopFlip);
       });
 
       it('should pass `projectKey` within `user` to `<ReconfigureFlopflip>`', () => {
-        expect(routeRenderWrapper.find(ReconfigureFlopFlip)).toHaveProp(
+        expect(wrapper.find(ReconfigureFlopFlip)).toHaveProp(
           'user',
           expect.objectContaining({
             custom: expect.objectContaining({
@@ -381,29 +358,25 @@ describe('<UnrestrictedApplication>', () => {
       expect(wrapper).toMatchSnapshot();
     });
     describe('catch <Route>', () => {
-      let routeRenderWrapper;
+      let renderWrapper;
       let routerProps;
       beforeEach(() => {
         routerProps = {
           location: { pathname: '/' },
         };
-        routeRenderWrapper = shallow(
-          <div>
-            {wrapper
-              .find('Route')
-              .last()
-              .prop('render')(routerProps)}
-          </div>
-        );
+        renderWrapper = wrapper
+          .find('Route')
+          .last()
+          .renderProp('render', routerProps);
       });
       it('should render <Redirect> to "/login', () => {
-        expect(routeRenderWrapper.find('Redirect')).toHaveProp(
+        expect(renderWrapper.find('Redirect')).toHaveProp(
           'to',
           expect.objectContaining({ pathname: '/login' })
         );
       });
       it('should render <Redirect> with "reason" in search param', () => {
-        expect(routeRenderWrapper.find('Redirect')).toHaveProp(
+        expect(renderWrapper.find('Redirect')).toHaveProp(
           'to',
           expect.objectContaining({
             query: expect.objectContaining({ reason: 'unauthorized' }),
@@ -412,7 +385,7 @@ describe('<UnrestrictedApplication>', () => {
       });
       describe('when location pathname is "/"', () => {
         it('should render <Redirect> without "redirectTo" search param', () => {
-          expect(routeRenderWrapper.find('Redirect')).not.toHaveProp(
+          expect(renderWrapper.find('Redirect')).not.toHaveProp(
             'to',
             expect.objectContaining({
               query: expect.objectContaining({
@@ -427,17 +400,13 @@ describe('<UnrestrictedApplication>', () => {
           routerProps = {
             location: { pathname: '/foo-1/products' },
           };
-          routeRenderWrapper = shallow(
-            <div>
-              {wrapper
-                .find('Route')
-                .last()
-                .prop('render')(routerProps)}
-            </div>
-          );
+          renderWrapper = wrapper
+            .find('Route')
+            .last()
+            .renderProp('render', routerProps);
         });
-        it('should render <Redirect> wit "redirectTo" search param', () => {
-          expect(routeRenderWrapper.find('Redirect')).toHaveProp(
+        it('should render <Redirect> with "redirectTo" search param', () => {
+          expect(renderWrapper.find('Redirect')).toHaveProp(
             'to',
             expect.objectContaining({
               query: expect.objectContaining({

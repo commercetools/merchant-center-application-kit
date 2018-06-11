@@ -13,12 +13,18 @@
   box-shadow: var(--shadow-1-second);
   border-radius: var(--border-radius-6);
   padding: var(--spacing-16);
-  background: var(--color-white);
 }
 
 .type-flat {
   border-radius: var(--border-radius-6);
   padding: var(--spacing-16);
-  background: var(--color-white);
   box-shadow: none;
+}
+
+.theme-light {
+  background: var(--color-white);
+}
+
+.theme-dark {
+  background: var(--color-whiteSnow);
 }

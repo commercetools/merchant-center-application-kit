@@ -1,8 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`rendering with \`dark\` theme should output correct tree 1`] = `
+<div
+  className="container type-raised theme-dark"
+>
+  text
+</div>
+`;
+
 exports[`rendering with \`flat\` \`type\` should output correct tree 1`] = `
 <div
-  className="container type-flat"
+  className="container type-flat theme-light"
+>
+  text
+</div>
+`;
+
+exports[`rendering with \`light\` theme should output correct tree 1`] = `
+<div
+  className="container type-raised theme-light"
 >
   text
 </div>
@@ -10,7 +26,7 @@ exports[`rendering with \`flat\` \`type\` should output correct tree 1`] = `
 
 exports[`rendering with \`raised\` \`type\` should output correct tree 1`] = `
 <div
-  className="container type-raised"
+  className="container type-raised theme-light"
 >
   text
 </div>

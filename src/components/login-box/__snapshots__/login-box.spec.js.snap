@@ -3,6 +3,7 @@
 exports[`rendering should output correct tree 1`] = `
 <Card
   className="box"
+  theme="light"
   type="raised"
 >
   <div
