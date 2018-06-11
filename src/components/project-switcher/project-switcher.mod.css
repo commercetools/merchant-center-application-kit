@@ -19,6 +19,9 @@
 }
 
 .react-select-container :global(.Select-control) {
+  background: var(--color-whiteAlabaster);
+  color: var(--color-greyTundora);
+  border-radius: 6px;
   border: 0;
   cursor: pointer;
   min-width: 200px;
