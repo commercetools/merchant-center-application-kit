@@ -214,7 +214,7 @@ export const getIconTheme = (menu, isActive) => {
     menu.name.toLowerCase() === PLUGIN_NAMES.SETTINGS || menu.name === 'Support'
       ? 'grey'
       : 'white';
-  if (isActive) return 'green';
+  if (isActive) return 'navbar-green';
   return baseIconTheme;
 };
 export class DataMenu extends React.PureComponent {
