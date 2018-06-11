@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import { defaultMemoize } from 'reselect';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
+import { ConfigurationConsumer } from '@commercetools-local/application-shell-connectors';
 
 // This value is hard-coded here because we want to make sure that the
 // app uses our account of LD. The value is meant to be public, so there
 // is no need to be concerned about security.
-const ldClientSideId = '5979d95f6040390cd07b5e00';
+const ldClientSideIdProduction = '5979d95f6040390cd07b5e01';
+// On our staging env we use a different ID, therefore we need to use the
+// one above only for `production` environment.
+const ldClientSideIdStaging = '5979d95f6040390cd07b5e00';
 
 export const getFlopflipReconfiguration = defaultMemoize(projectKey => ({
   custom: { project: projectKey },
@@ -39,18 +43,24 @@ export class SetupFlopFlipProvider extends React.PureComponent {
 
   render() {
     return (
-      <ConfigureFlopFlip
-        adapter={ldAdapter}
-        adapterArgs={this.createLaunchdarklyAdapterArgs(
-          ldClientSideId,
-          this.props.user && this.props.user.id,
-          this.props.user && this.props.user.launchdarklyTrackingId,
-          this.props.user && this.props.user.launchdarklyTrackingGroup
+      <ConfigurationConsumer pathToConfiguration={['env']}>
+        {env => (
+          <ConfigureFlopFlip
+            adapter={ldAdapter}
+            adapterArgs={this.createLaunchdarklyAdapterArgs(
+              env === 'production'
+                ? ldClientSideIdProduction
+                : ldClientSideIdStaging,
+              this.props.user && this.props.user.id,
+              this.props.user && this.props.user.launchdarklyTrackingId,
+              this.props.user && this.props.user.launchdarklyTrackingGroup
+            )}
+            shouldDeferAdapterConfiguration={!this.props.user}
+          >
+            {this.props.children}
+          </ConfigureFlopFlip>
         )}
-        shouldDeferAdapterConfiguration={!this.props.user}
-      >
-        {this.props.children}
-      </ConfigureFlopFlip>
+      </ConfigurationConsumer>
     );
   }
 }
