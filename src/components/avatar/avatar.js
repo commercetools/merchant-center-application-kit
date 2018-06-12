@@ -32,22 +32,17 @@ const getSizeForPreset = size => (size === 'l' ? 200 : 26);
 export const getAvatarImageUrl = sizePreset =>
   createGravatarImgUrl(getSizeForPreset(sizePreset));
 
-export const GravatarImg = props => {
-  if (typeof props.hash !== 'string') {
-    return null;
-  }
+export const GravatarImg = props => (
+  <div
+    className={classnames(styles['gravatar-img'], {
+      [styles['gravatar-img-big']]: props.size === 'l',
+    })}
+    style={{
+      backgroundImage: `url(${getAvatarImageUrl(props.size)(props.hash)})`,
+    }}
+  />
+);
 
-  return (
-    <div
-      className={classnames(styles['gravatar-img'], {
-        [styles['gravatar-img-big']]: props.size === 'l',
-      })}
-      style={{
-        backgroundImage: `url(${getAvatarImageUrl(props.size)(props.hash)})`,
-      }}
-    />
-  );
-};
 GravatarImg.displayName = 'GravatarImg';
 GravatarImg.propTypes = {
   hash: PropTypes.string,

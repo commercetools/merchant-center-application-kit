@@ -66,16 +66,6 @@ describe('rendering', () => {
         expect(wrapper).toMatchSnapshot();
       });
     });
-
-    describe('with non-string email', () => {
-      beforeEach(() => {
-        wrapper = shallow(<GravatarImg email={null} size="s" />);
-      });
-
-      it('should match render nothing', () => {
-        expect(wrapper).toBeEmptyRender();
-      });
-    });
   });
 });
 
