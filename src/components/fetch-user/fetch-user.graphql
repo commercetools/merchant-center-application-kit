@@ -5,6 +5,7 @@ query LoggedInUserQuery {
     version
     email
     firstName
+    gravatarHash
     lastName
     language
     numberFormat

@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import isRetina from 'is-retina';
-import md5 from 'md5';
-import { compose } from 'recompose';
 import styles from './avatar.mod.css';
 
 const getFirstChar = str =>
@@ -16,8 +14,6 @@ const getFirstChar = str =>
 
 export const getInitialsFromName = ({ firstName = '', lastName = '' }) =>
   `${getFirstChar(firstName)}${getFirstChar(lastName)}`;
-
-const createMd5HashForEmail = email => md5(email.trim().toLowerCase());
 
 /**
  * `s` - defines the size. We want a bigger one if the user is on a retina-display
@@ -34,13 +30,10 @@ const createGravatarImgUrl = size => md5Hash =>
 const getSizeForPreset = size => (size === 'l' ? 200 : 26);
 
 export const getAvatarImageUrl = sizePreset =>
-  compose(
-    createGravatarImgUrl(getSizeForPreset(sizePreset)),
-    createMd5HashForEmail
-  );
+  createGravatarImgUrl(getSizeForPreset(sizePreset));
 
 export const GravatarImg = props => {
-  if (typeof props.email !== 'string') {
+  if (typeof props.hash !== 'string') {
     return null;
   }
 
@@ -50,14 +43,14 @@ export const GravatarImg = props => {
         [styles['gravatar-img-big']]: props.size === 'l',
       })}
       style={{
-        backgroundImage: `url(${getAvatarImageUrl(props.size)(props.email)})`,
+        backgroundImage: `url(${getAvatarImageUrl(props.size)(props.hash)})`,
       }}
     />
   );
 };
 GravatarImg.displayName = 'GravatarImg';
 GravatarImg.propTypes = {
-  email: PropTypes.string,
+  hash: PropTypes.string,
   size: PropTypes.oneOf(['l', 's']),
 };
 GravatarImg.defaultProps = {
@@ -86,7 +79,7 @@ const Avatar = props => (
       [styles['avatar-hover']]: props.isHighlighted,
     })}
   >
-    <GravatarImg email={props.email} size={props.size} />
+    <GravatarImg hash={props.gravatarHash} size={props.size} />
     <Initials firstName={props.firstName} lastName={props.lastName} />
   </div>
 );
@@ -101,7 +94,7 @@ Avatar.defaultProps = {
 Avatar.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
-  email: PropTypes.string.isRequired,
+  gravatarHash: PropTypes.string.isRequired,
   isHighlighted: PropTypes.bool,
   size: PropTypes.oneOf(['l', 's']).isRequired,
 };

@@ -140,6 +140,7 @@ describe('<RestrictedApplication>', () => {
         user: {
           id: 'u1',
           email: 'john.snow@got.com',
+          gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
           firstName: 'John',
           lastName: 'Snow',
           availableProjects: [],

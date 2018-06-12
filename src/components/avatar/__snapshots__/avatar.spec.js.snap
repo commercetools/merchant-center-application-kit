@@ -5,7 +5,7 @@ exports[`rendering <Avatar /> should match snapshot 1`] = `
   className="avatar avatar-s"
 >
   <GravatarImg
-    email="caspar@commercetools.de"
+    hash="20c9c1b252b46ab49d6f7a4cee9c3e68"
     size="s"
   />
   <Initials

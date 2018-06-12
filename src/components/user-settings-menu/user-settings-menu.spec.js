@@ -7,7 +7,7 @@ import UserSettingsMenu, { UserAvatar } from './user-settings-menu';
 const createTestProps = props => ({
   firstName: 'John Test',
   lastName: 'Doe',
-  email: 'john-doe@commercetools.de',
+  gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
   ...props,
 });
 
@@ -103,10 +103,10 @@ describe('rendering', () => {
       expect(wrapper.find('Avatar')).toHaveProp('lastName', 'Doe');
     });
 
-    it('should pass prop email to `Avatar` component', () => {
+    it('should pass prop `gravatarHash` to `Avatar` component', () => {
       expect(wrapper.find('Avatar')).toHaveProp(
-        'email',
-        'john-doe@commercetools.de'
+        'gravatarHash',
+        '20c9c1b252b46ab49d6f7a4cee9c3e68'
       );
     });
   });

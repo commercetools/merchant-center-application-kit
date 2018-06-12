@@ -19,7 +19,7 @@ export const UserAvatar = props => (
   <div onMouseOver={props.handleMouseOver} onMouseOut={props.handleMouseOut}>
     <Spacings.Inline alignItems="center">
       <Avatar
-        email={props.email}
+        gravatarHash={props.gravatarHash}
         firstName={props.firstName}
         lastName={props.lastName}
         isHighlighted={props.isMouseOver}
@@ -33,7 +33,7 @@ export const UserAvatar = props => (
 );
 UserAvatar.displayName = 'UserAvatar';
 UserAvatar.propTypes = {
-  email: PropTypes.string.isRequired,
+  gravatarHash: PropTypes.string.isRequired,
   firstName: PropTypes.string,
   lastName: PropTypes.string,
   // Injected
@@ -49,7 +49,7 @@ export default class UserSettingsMenu extends React.PureComponent {
   static propTypes = {
     firstName: PropTypes.string,
     lastName: PropTypes.string,
-    email: PropTypes.string.isRequired,
+    gravatarHash: PropTypes.string.isRequired,
   };
 
   render() {
@@ -65,7 +65,7 @@ export default class UserSettingsMenu extends React.PureComponent {
                 <UserAvatarWithHoverState
                   firstName={this.props.firstName}
                   lastName={this.props.lastName}
-                  email={this.props.email}
+                  gravatarHash={this.props.gravatarHash}
                 />
               </div>
               {isOpen && (

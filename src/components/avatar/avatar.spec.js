@@ -11,7 +11,7 @@ jest.mock('is-retina', () => () => false);
 const createTestProps = custom => ({
   firstName: 'Caspar',
   lastName: 'Commercetools',
-  email: 'caspar@commercetools.de',
+  gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
   size: 's',
   ...custom,
 });
@@ -35,7 +35,10 @@ describe('rendering', () => {
     });
 
     it('should pass the `email` to <GravatarImg />', () => {
-      expect(wrapper.find('GravatarImg')).toHaveProp('email', props.email);
+      expect(wrapper.find('GravatarImg')).toHaveProp(
+        'hash',
+        props.gravatarHash
+      );
     });
 
     it('should pass the `size` to <GravatarImg />', () => {
@@ -55,7 +58,7 @@ describe('rendering', () => {
     describe('with regular email', () => {
       beforeEach(() => {
         wrapper = shallow(
-          <GravatarImg email="caspar@commercetools.de" size="s" />
+          <GravatarImg hash="20c9c1b252b46ab49d6f7a4cee9c3e68" size="s" />
         );
       });
 
@@ -125,7 +128,7 @@ describe('helper', () => {
 
     describe('with standard options', () => {
       beforeEach(() => {
-        subject = getAvatarImageUrl('s')('caspar@commercetools.de');
+        subject = getAvatarImageUrl('s')('20c9c1b252b46ab49d6f7a4cee9c3e68');
       });
 
       it('should contain the hashed email', () => {
@@ -141,29 +144,9 @@ describe('helper', () => {
       });
     });
 
-    describe('with lower-/uppercase email-address', () => {
-      beforeEach(() => {
-        subject = getAvatarImageUrl('s')('Caspar@comMercetools.dE');
-      });
-
-      it('should contain the hashed email', () => {
-        expect(subject).toContain('20c9c1b252b46ab49d6f7a4cee9c3e68');
-      });
-    });
-
-    describe('with untrimmed whitespace', () => {
-      beforeEach(() => {
-        subject = getAvatarImageUrl('s')('    caspar@commercetools.de    ');
-      });
-
-      it('should contain the hashed email', () => {
-        expect(subject).toContain('20c9c1b252b46ab49d6f7a4cee9c3e68');
-      });
-    });
-
     describe('with size `big`', () => {
       beforeEach(() => {
-        subject = getAvatarImageUrl('l')('caspar@commercetools.de');
+        subject = getAvatarImageUrl('l')('20c9c1b252b46ab49d6f7a4cee9c3e68');
       });
 
       it('should contain the hashed email', () => {
