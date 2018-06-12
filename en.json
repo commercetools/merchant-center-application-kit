@@ -2367,6 +2367,8 @@
   "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.disabledEditButtonDialogMessage": "It is not possible to make edits to the Shipping Rate Configuration since you already have tiered shipping rates configured.",
   "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.disabledEditButtonDialogTitle": "Shipping Rate configuration",
   "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.doneButtonLabel": "Done",
+  "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.disabledEditButtonDialogMessage": "It is not possible to make edits to the Shipping Rate Controls since tiered shipping rates have already been configured.",
+  "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.disabledEditButtonDialogTitle": "Shipping Rate Controls",
   "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.editTierShippingConfigurationButtonLabel": "Edit tiers",
   "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.fixedRateTitle": "Fixed Rate",
   "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.fixedRateType": "A fixed shipping rate means it is only possible to configure one shipping rate (per currency) per shipping method.",
