@@ -1,0 +1,42 @@
+{
+  "name": "@commercetools-frontend/mc-scripts",
+  "version": "1.0.0",
+  "description": "Configuration and scripts for developing a MC application",
+  "license": "Proprietary",
+  "private": true,
+  "bin": {
+    "mc-scripts": "./bin/mc-scripts.js"
+  },
+  "dependencies": {
+    "@commercetools-frontend/mc-http-server-config": "1.0.0",
+    "babel-loader": "7.1.4",
+    "chalk": "2.4.1",
+    "clean-webpack-plugin": "0.1.19",
+    "css-loader": "0.28.11",
+    "file-loader": "1.1.11",
+    "fs-extra": "6.0.1",
+    "html-webpack-plugin": "3.2.0",
+    "json-loader": "0.5.7",
+    "moment-locales-webpack-plugin": "1.0.7",
+    "mri": "1.1.1",
+    "postcss": "6.0.22",
+    "postcss-cssnext": "3.1.0",
+    "postcss-import": "11.1.0",
+    "postcss-loader": "2.1.5",
+    "postcss-reporter": "5.0.0",
+    "promise": "8.0.1",
+    "style-loader": "0.21.0",
+    "svg-url-loader": "2.3.2",
+    "svgr": "1.8.1",
+    "uglifyjs-webpack-plugin": "1.2.5",
+    "url-loader": "1.0.1",
+    "webpack": "4.12.0",
+    "webpack-bundle-analyzer": "2.13.1",
+    "webpack-dev-server": "3.1.4",
+    "webpackbar": "2.6.1"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  }
+}
