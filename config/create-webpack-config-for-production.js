@@ -90,7 +90,11 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
 
   // In production, we only want to load the polyfills and the app code.
   entry: {
-    app: [require.resolve('./polyfills'), 'babel-polyfill', entryPoint],
+    app: [
+      require.resolve('./polyfills'),
+      require.resolve('babel-polyfill'),
+      entryPoint,
+    ],
   },
 
   output: {
@@ -191,9 +195,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
           {
             include: [/ui-kit\/icons/, /ui-kit\/.*\/icons/],
             use: [
-              'babel-loader',
+              require.resolve('babel-loader'),
               {
-                loader: 'svgr/webpack',
+                loader: require.resolve('svgr/webpack'),
                 options: {
                   icon: true,
                 },
@@ -206,7 +210,12 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
             // SVG images are included in ui-kit.
             include: /ui-kit/,
             exclude: [/ui-kit\/icons/, /ui-kit\/.*\/icons/],
-            use: [{ loader: 'svg-url-loader', options: { noquotes: true } }],
+            use: [
+              {
+                loader: require.resolve('svg-url-loader'),
+                options: { noquotes: true },
+              },
+            ],
           },
         ],
       },
@@ -216,7 +225,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
       {
         test: /\.png$/,
         include: /ui-kit/,
-        use: ['url-loader'],
+        use: [require.resolve('url-loader')],
       },
       // "css" loader resolves paths in CSS and adds assets as dependencies.
       // "style" loader turns CSS into JS modules that inject <style> tags.
@@ -226,7 +235,10 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
         test: /\.css$/,
         // Do not transform vendor CSS with "postcss" loader.
         include: /node_modules/,
-        loaders: ['style-loader', 'css-loader'],
+        loaders: [
+          require.resolve('style-loader'),
+          require.resolve('css-loader'),
+        ],
       },
       // "postcss" loader applies autoprefixer to our CSS
       // (see `./postcss.config.js`).
@@ -242,7 +254,11 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
             fileName.endsWith('.css') && !fileName.endsWith('.mod.css')
           );
         },
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
+        use: [
+          require.resolve('style-loader'),
+          require.resolve('css-loader'),
+          require.resolve('postcss-loader'),
+        ],
         include: sourceFolders,
       },
       // "postcss" loader applies autoprefixer to our CSS
@@ -254,9 +270,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
       {
         test: /\.mod\.css$/,
         use: [
-          'style-loader',
+          require.resolve('style-loader'),
           {
-            loader: 'css-loader',
+            loader: require.resolve('css-loader'),
             options: {
               modules: true,
               importLoaders: 1,
@@ -264,7 +280,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
             },
           },
           {
-            loader: 'postcss-loader',
+            loader: require.resolve('postcss-loader'),
             options: {
               config: {
                 ctx: {
@@ -279,18 +295,23 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
       // Process JS with Babel.
       {
         test: /\.js$/,
-        use: [{ loader: 'babel-loader', options: { cacheDirectory: true } }],
+        use: [
+          {
+            loader: require.resolve('babel-loader'),
+            options: { cacheDirectory: true },
+          },
+        ],
         include: sourceFolders,
       },
       // Allow to import `*.graphql` SDL files.
       {
         test: /\.graphql$/,
         include: sourceFolders,
-        use: ['graphql-tag/loader'],
+        use: [require.resolve('graphql-tag/loader')],
       },
       {
         test: /\.pegjs$/,
-        use: ['pegjs-loader'],
+        use: [require.resolve('pegjs-loader')],
       },
     ],
   },

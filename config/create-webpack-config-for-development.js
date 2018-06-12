@@ -39,7 +39,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
     app: [
       // Ship a few polyfills by default
       require.resolve('./polyfills'),
-      'babel-polyfill',
+      require.resolve('babel-polyfill'),
       // Include an alternative client for WebpackDevServer. A client's job is to
       // connect to WebpackDevServer by a socket and get notified about changes.
       // When you save a file, the client will either apply hot updates (in case
@@ -139,9 +139,20 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
           {
             include: [/ui-kit\/icons/, /ui-kit\/.*\/icons/],
             use: [
-              'babel-loader',
               {
-                loader: 'svgr/webpack',
+                loader: require.resolve('babel-loader'),
+                options: {
+                  babelrc: false,
+                  presets: [require.resolve('./babelrc.js')],
+                  // This is a feature of `babel-loader` for webpack (not Babel itself).
+                  // It enables caching results in ./node_modules/.cache/babel-loader/
+                  // directory for faster rebuilds.
+                  cacheDirectory: true,
+                  highlightCode: true,
+                },
+              },
+              {
+                loader: require.resolve('svgr/webpack'),
                 options: {
                   icon: true,
                 },
@@ -154,7 +165,12 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
             // SVG images are included in ui-kit.
             include: /ui-kit/,
             exclude: [/ui-kit\/icons/, /ui-kit\/.*\/icons/],
-            use: [{ loader: 'svg-url-loader', options: { noquotes: true } }],
+            use: [
+              {
+                loader: require.resolve('svg-url-loader'),
+                options: { noquotes: true },
+              },
+            ],
           },
         ],
       },
@@ -164,7 +180,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
       {
         test: /\.png$/,
         include: /ui-kit/,
-        use: ['url-loader'],
+        use: [require.resolve('url-loader')],
       },
       // "css" loader resolves paths in CSS and adds assets as dependencies.
       // "style" loader turns CSS into JS modules that inject <style> tags.
@@ -174,7 +190,10 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
         test: /\.css$/,
         // Do not transform vendor CSS with "postcss" loader.
         include: /node_modules/,
-        loaders: ['style-loader', 'css-loader'],
+        loaders: [
+          require.resolve('style-loader'),
+          require.resolve('css-loader'),
+        ],
       },
       // "postcss" loader applies autoprefixer to our CSS
       // (see `./postcss.config.js`).
@@ -190,7 +209,11 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
             fileName.endsWith('.css') && !fileName.endsWith('.mod.css')
           );
         },
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
+        use: [
+          require.resolve('style-loader'),
+          require.resolve('css-loader'),
+          require.resolve('postcss-loader'),
+        ],
         include: sourceFolders,
       },
       // "postcss" loader applies autoprefixer to our CSS
@@ -202,9 +225,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
       {
         test: /\.mod\.css$/,
         use: [
-          'style-loader',
+          require.resolve('style-loader'),
           {
-            loader: 'css-loader',
+            loader: require.resolve('css-loader'),
             options: {
               modules: true,
               importLoaders: 1,
@@ -212,7 +235,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
             },
           },
           {
-            loader: 'postcss-loader',
+            loader: require.resolve('postcss-loader'),
             options: {
               config: {
                 ctx: {
@@ -227,18 +250,40 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
       // Process JS with Babel.
       {
         test: /\.js$/,
-        use: [{ loader: 'babel-loader', options: { cacheDirectory: true } }],
+        use: [
+          // This loader parallelizes code compilation, it is optional but
+          // improves compile time on larger projects
+          // {
+          //   loader: require.resolve('thread-loader'),
+          //   options: {
+          //     poolTimeout: Infinity, // keep workers alive for more effective watch mode
+          //   },
+          // },
+          {
+            loader: require.resolve('babel-loader'),
+            options: {
+              babelrc: false,
+              compact: false,
+              presets: [require.resolve('./babelrc.js')],
+              // This is a feature of `babel-loader` for webpack (not Babel itself).
+              // It enables caching results in ./node_modules/.cache/babel-loader/
+              // directory for faster rebuilds.
+              cacheDirectory: true,
+              highlightCode: true,
+            },
+          },
+        ],
         include: sourceFolders,
       },
       // Allow to import `*.graphql` SDL files.
       {
         test: /\.graphql$/,
         include: sourceFolders,
-        use: ['graphql-tag/loader'],
+        use: [require.resolve('graphql-tag/loader')],
       },
       {
         test: /\.pegjs$/,
-        use: ['pegjs-loader'],
+        use: [require.resolve('pegjs-loader')],
       },
     ],
   },
