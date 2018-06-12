@@ -1,0 +1,26 @@
+{
+  "name": "@commercetools-frontend/mc-http-server",
+  "version": "3.1.0",
+  "description": "HTTP server for MC frontend",
+  "license": "Proprietary",
+  "private": true,
+  "bin": {
+    "mc-http-server": "./bin/start-mc.js"
+  },
+  "dependencies": {
+    "@commercetools-frontend/mc-http-server-config": "^1.0.0",
+    "compression": "1.7.2",
+    "connect": "3.6.6",
+    "connect-history-api-fallback": "1.5.0",
+    "@promster/express": "0.3.5",
+    "morgan": "1.9.0",
+    "mri": "1.1.0",
+    "node-fetch": "2.1.2",
+    "serve-static": "1.13.2",
+    "shelljs": "0.8.1"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  }
+}
