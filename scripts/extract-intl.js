@@ -17,7 +17,8 @@ const ROOT_PROJECT_PATH = path.join(path.dirname(__filename), '../../../');
 const TRANSLATION_DIR = path.join(path.dirname(__filename), '../');
 
 // Glob to match all js files except test files
-const FILES_TO_PARSE = '{packages-application,packages-shared}/**/!(*.spec).js';
+const FILES_TO_PARSE =
+  '{packages-application,packages-devtools,packages-shared}/**/!(*.spec).js';
 const locales = ['en', 'de'];
 
 const newLine = () => process.stdout.write('\n');
