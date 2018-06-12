@@ -1104,6 +1104,7 @@
   "DiscountsMultiSelectionStatus.selectionCount": "discount codes selected",
   "DiscountsMultiSelectionStatus.selectionHasBeenReset": "The previously selected discount codes have been unselected.",
   "DiscountsMultiSelectionStatus.unselectAllDiscounts": "deselect all",
+  "DiscountsMultiSelectionStatus.unselectOAuthClientTemplate": "clear selection",
   "DoubleExpandControl.collapseAll": "Collapse all attributes",
   "DoubleExpandControl.expandAll": "Expand all attributes",
   "Dropdown.select": "Select",
