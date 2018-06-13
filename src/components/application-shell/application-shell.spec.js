@@ -140,6 +140,7 @@ describe('<RestrictedApplication>', () => {
         user: {
           id: 'u1',
           email: 'john.snow@got.com',
+          gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
           firstName: 'John',
           lastName: 'Snow',
           availableProjects: [],
@@ -280,14 +281,8 @@ describe('<RestrictedApplication>', () => {
           .find({ exact: true, path: '/:projectKey' })
           .renderProp('render', { match: { url: '/foo-1' } });
       });
-      it('should render <PageRedirect> to "/dashboard"', () => {
-        expect(wrapper.find('PageRedirect')).toHaveProp(
-          'to',
-          '/foo-1/dashboard'
-        );
-      });
-      it('should render <PageRedirect> with "reload" to true', () => {
-        expect(wrapper.find('PageRedirect')).toHaveProp('reload', true);
+      it('should render <Redirect> to "/dashboard"', () => {
+        expect(wrapper.find('Redirect')).toHaveProp('to', '/foo-1/dashboard');
       });
     });
     it('should render <Route> matching ":projectKey" path', () => {

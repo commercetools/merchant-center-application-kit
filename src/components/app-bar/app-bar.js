@@ -53,7 +53,7 @@ const AppBar = props => (
           <UserSettingsMenu
             firstName={props.user.firstName}
             lastName={props.user.lastName}
-            email={props.user.email}
+            gravatarHash={props.user.gravatarHash}
           />
         )}
       </Spacings.Inline>
@@ -63,7 +63,7 @@ const AppBar = props => (
 AppBar.displayName = 'AppBar';
 AppBar.propTypes = {
   user: PropTypes.shape({
-    email: PropTypes.string.isRequired,
+    gravatarHash: PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
     availableProjects: PropTypes.array.isRequired,

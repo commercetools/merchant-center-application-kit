@@ -9,7 +9,7 @@ const createTestProps = props => ({
     availableProjects: [],
     firstName: 'John',
     lastName: 'Snow',
-    email: 'john.snow@got.com',
+    gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
   },
   ...props,
 });
@@ -61,10 +61,10 @@ describe('rendering', () => {
         it('should receive "lastName"', () => {
           expect(wrapper.find(UserSettingsMenu)).toHaveProp('lastName', 'Snow');
         });
-        it('should receive "email"', () => {
+        it('should receive "gravatarHash"', () => {
           expect(wrapper.find(UserSettingsMenu)).toHaveProp(
-            'email',
-            'john.snow@got.com'
+            'gravatarHash',
+            '20c9c1b252b46ab49d6f7a4cee9c3e68'
           );
         });
       });
