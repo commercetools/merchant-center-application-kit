@@ -297,7 +297,7 @@ describe('rendering', () => {
           it('should render active icon', () => {
             expect(wrapper.find('CustomerFilledIcon')).toHaveProp(
               'theme',
-              'green'
+              'green-light'
             );
           });
         });
@@ -315,7 +315,7 @@ describe('rendering', () => {
           it('should render active icon', () => {
             expect(wrapper.find('CustomerFilledIcon')).toHaveProp(
               'theme',
-              'green'
+              'green-light'
             );
           });
         });
@@ -1126,7 +1126,7 @@ describe('helpers', () => {
         iconTheme = getIconTheme(menu, true);
       });
       it('should get green theme', () => {
-        expect(iconTheme).toBe('green');
+        expect(iconTheme).toBe('green-light');
       });
       describe('when menu is settings', () => {
         beforeEach(() => {
@@ -1136,7 +1136,7 @@ describe('helpers', () => {
           iconTheme = getIconTheme(menu, true);
         });
         it('should get green theme', () => {
-          expect(iconTheme).toBe('green');
+          expect(iconTheme).toBe('green-light');
         });
       });
       describe('when menu is Support', () => {
@@ -1147,7 +1147,7 @@ describe('helpers', () => {
           iconTheme = getIconTheme(menu, true);
         });
         it('should get green theme', () => {
-          expect(iconTheme).toBe('green');
+          expect(iconTheme).toBe('green-light');
         });
       });
     });
