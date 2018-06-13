@@ -4,6 +4,9 @@ const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const postcssImport = require('postcss-import');
+const postcssCssNext = require('postcss-cssnext');
+const postcssReporter = require('postcss-reporter');
 
 /**
  * This is a factory function to create the default webpack config
@@ -143,7 +146,12 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
                 loader: require.resolve('babel-loader'),
                 options: {
                   babelrc: false,
-                  presets: [require.resolve('./babelrc.js')],
+                  presets: [
+                    require.resolve('babel-preset-mc-app'),
+                    // require.resolve(
+                    //   '@commercetools-frontend/babel-preset-mc-app'
+                    // ),
+                  ],
                   // This is a feature of `babel-loader` for webpack (not Babel itself).
                   // It enables caching results in ./node_modules/.cache/babel-loader/
                   // directory for faster rebuilds.
@@ -212,7 +220,20 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
         use: [
           require.resolve('style-loader'),
           require.resolve('css-loader'),
-          require.resolve('postcss-loader'),
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                postcssImport(),
+                postcssCssNext({
+                  browsers: '> 1%',
+                  features: { autoprefixer: { grid: true } },
+                }),
+                postcssReporter(),
+              ],
+            },
+          },
         ],
         include: sourceFolders,
       },
@@ -237,11 +258,15 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
           {
             loader: require.resolve('postcss-loader'),
             options: {
-              config: {
-                ctx: {
-                  sourceFolders,
-                },
-              },
+              ident: 'postcss',
+              plugins: () => [
+                postcssImport({ path: sourceFolders }),
+                postcssCssNext({
+                  browsers: '> 1%',
+                  features: { autoprefixer: { grid: true } },
+                }),
+                postcssReporter(),
+              ],
             },
           },
         ],
@@ -264,7 +289,10 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
             options: {
               babelrc: false,
               compact: false,
-              presets: [require.resolve('./babelrc.js')],
+              presets: [
+                // require.resolve('@commercetools-frontend/babel-preset-mc-app'),
+                require.resolve('babel-preset-mc-app'),
+              ],
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
               // directory for faster rebuilds.
