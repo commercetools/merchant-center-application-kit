@@ -9,7 +9,7 @@ import { STORAGE_KEYS } from '../../constants';
 import { withUser } from '../fetch-user';
 import { withProject } from '../fetch-project';
 
-export class LocalStoreProvider extends React.Component {
+class LocalStoreProvider extends React.Component {
   static displayName = 'LocalStoreProvider';
 
   static propTypes = {
