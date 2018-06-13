@@ -9,6 +9,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 // webpack v4.0.0" (https://webpack.js.org/plugins/uglifyjs-webpack-plugin/)
 // we need to explicitly use the library to be using the newest version
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const postcssImport = require('postcss-import');
+const postcssCssNext = require('postcss-cssnext');
+const postcssReporter = require('postcss-reporter');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 
 const uglifyConfig = {
@@ -195,7 +198,22 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
           {
             include: [/ui-kit\/icons/, /ui-kit\/.*\/icons/],
             use: [
-              require.resolve('babel-loader'),
+              {
+                loader: require.resolve('babel-loader'),
+                options: {
+                  babelrc: false,
+                  presets: [
+                    require.resolve(
+                      '@commercetools-frontend/babel-preset-mc-app'
+                    ),
+                  ],
+                  // This is a feature of `babel-loader` for webpack (not Babel itself).
+                  // It enables caching results in ./node_modules/.cache/babel-loader/
+                  // directory for faster rebuilds.
+                  cacheDirectory: true,
+                  highlightCode: true,
+                },
+              },
               {
                 loader: require.resolve('svgr/webpack'),
                 options: {
@@ -257,7 +275,20 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
         use: [
           require.resolve('style-loader'),
           require.resolve('css-loader'),
-          require.resolve('postcss-loader'),
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                postcssImport(),
+                postcssCssNext({
+                  browsers: '> 1%',
+                  features: { autoprefixer: { grid: true } },
+                }),
+                postcssReporter(),
+              ],
+            },
+          },
         ],
         include: sourceFolders,
       },
@@ -282,11 +313,15 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
           {
             loader: require.resolve('postcss-loader'),
             options: {
-              config: {
-                ctx: {
-                  sourceFolders,
-                },
-              },
+              ident: 'postcss',
+              plugins: () => [
+                postcssImport({ path: sourceFolders }),
+                postcssCssNext({
+                  browsers: '> 1%',
+                  features: { autoprefixer: { grid: true } },
+                }),
+                postcssReporter(),
+              ],
             },
           },
         ],
@@ -296,9 +331,23 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
       {
         test: /\.js$/,
         use: [
+          // This loader parallelizes code compilation, it is optional but
+          // improves compile time on larger projects
+          require.resolve('thread-loader'),
           {
             loader: require.resolve('babel-loader'),
-            options: { cacheDirectory: true },
+            options: {
+              babelrc: false,
+              compact: false,
+              presets: [
+                require.resolve('@commercetools-frontend/babel-preset-mc-app'),
+              ],
+              // This is a feature of `babel-loader` for webpack (not Babel itself).
+              // It enables caching results in ./node_modules/.cache/babel-loader/
+              // directory for faster rebuilds.
+              cacheDirectory: true,
+              highlightCode: true,
+            },
           },
         ],
         include: sourceFolders,
