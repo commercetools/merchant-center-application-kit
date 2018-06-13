@@ -6,24 +6,32 @@ const spawn = require('../react-dev-utils/crossSpawn');
 const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
 const commands = flags._;
 
-if (flags.help || commands.length === 0) {
+if (commands.length === 0 || (flags.help && commands.length === 0)) {
   console.log(`
-  Usage: mc-scripts [command]
+  Usage: mc-scripts [command] [options]
 
   Commands:
-  build     Bundles the application in production mode
-  start     Starts the application using webpack dev server
+  build            Bundles the application in production mode
+  start            Starts the application using webpack dev server
+  extract-intl     Extracts intl messages into JSON files
   `);
+  process.exit(0);
 }
 
 const command = commands[0];
 
 switch (command) {
   case 'build':
-  case 'start': {
-    const result = spawn.sync('node', [require.resolve(`../${command}`)], {
-      stdio: 'inherit',
-    });
+  case 'start':
+  case 'extract-intl': {
+    const commandArgs = process.argv.slice(2).filter(arg => command !== arg);
+    const result = spawn.sync(
+      'node',
+      [require.resolve(`../${command}`)].concat(commandArgs),
+      {
+        stdio: 'inherit',
+      }
+    );
     if (result.signal) {
       if (result.signal === 'SIGKILL') {
         console.log(
