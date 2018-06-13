@@ -190,6 +190,8 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
     strictExportPresence: true,
 
     rules: [
+      // Disable require.ensure as it's not a standard language feature.
+      { parser: { requireEnsure: false } },
       {
         test: /\.svg$/,
         oneOf: [
