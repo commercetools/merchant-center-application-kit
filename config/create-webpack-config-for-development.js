@@ -147,10 +147,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
                 options: {
                   babelrc: false,
                   presets: [
-                    require.resolve('babel-preset-mc-app'),
-                    // require.resolve(
-                    //   '@commercetools-frontend/babel-preset-mc-app'
-                    // ),
+                    require.resolve(
+                      '@commercetools-frontend/babel-preset-mc-app'
+                    ),
                   ],
                   // This is a feature of `babel-loader` for webpack (not Babel itself).
                   // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -290,8 +289,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
               babelrc: false,
               compact: false,
               presets: [
-                // require.resolve('@commercetools-frontend/babel-preset-mc-app'),
-                require.resolve('babel-preset-mc-app'),
+                require.resolve('@commercetools-frontend/babel-preset-mc-app'),
               ],
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
