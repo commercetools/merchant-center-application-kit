@@ -37,6 +37,10 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
         "lastName": "Snow",
         "launchdarklyTrackingGroup": "ct",
         "launchdarklyTrackingId": "123",
+        "launchdarklyTrackingTeam": Array [
+          "abc",
+          "def",
+        ],
       }
     }
   />
@@ -64,6 +68,10 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
         "lastName": "Snow",
         "launchdarklyTrackingGroup": "ct",
         "launchdarklyTrackingId": "123",
+        "launchdarklyTrackingTeam": Array [
+          "abc",
+          "def",
+        ],
       }
     }
   >
@@ -81,6 +89,10 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
             "lastName": "Snow",
             "launchdarklyTrackingGroup": "ct",
             "launchdarklyTrackingId": "123",
+            "launchdarklyTrackingTeam": Array [
+              "abc",
+              "def",
+            ],
           }
         }
       />
@@ -96,6 +108,10 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
             "lastName": "Snow",
             "launchdarklyTrackingGroup": "ct",
             "launchdarklyTrackingId": "123",
+            "launchdarklyTrackingTeam": Array [
+              "abc",
+              "def",
+            ],
           }
         }
       />
@@ -122,6 +138,10 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
                 "lastName": "Snow",
                 "launchdarklyTrackingGroup": "ct",
                 "launchdarklyTrackingId": "123",
+                "launchdarklyTrackingTeam": Array [
+                  "abc",
+                  "def",
+                ],
               }
             }
           />
@@ -140,6 +160,10 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
                 "lastName": "Snow",
                 "launchdarklyTrackingGroup": "ct",
                 "launchdarklyTrackingId": "123",
+                "launchdarklyTrackingTeam": Array [
+                  "abc",
+                  "def",
+                ],
               }
             }
           />
