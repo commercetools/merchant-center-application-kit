@@ -90,13 +90,9 @@ export class Login extends React.PureComponent {
         storage.remove(STORAGE_KEYS.IDENTITY_PROVIDER_URL);
         // Redirect to a `redirectTo` url, if present, otherwise to defaul route
         const nextTargetUrl = this.props.location.query.redirectTo;
-        if (nextTargetUrl)
-          // We force a browser redirect, to let the proxy server handle
-          // the new request URL.
-          this.redirectTo(nextTargetUrl);
-        // In this case, the AppShell will handle the base path route,
-        // most likely to redirect to e.g. `/:projectKey/dashboard`.
-        else this.props.history.push('/');
+        // We force a browser redirect, to let the proxy server handle
+        // the new request URL.
+        this.redirectTo(nextTargetUrl || '/');
       })
       .catch(error => {
         if (error) {
