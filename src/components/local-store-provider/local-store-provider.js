@@ -124,6 +124,8 @@ export const mapStateToProps = (state, ownProps) => ({
   ),
 });
 
+export { LocalStoreProvider };
+
 export default compose(
   withRouter, // Used by `withProject`
   withProject(ownProps => ownProps.match.params.projectKey),
