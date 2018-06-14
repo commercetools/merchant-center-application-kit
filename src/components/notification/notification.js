@@ -12,6 +12,7 @@ import {
 } from '@commercetools-local/ui-kit/icons';
 import IconButton from '@commercetools-local/ui-kit/buttons/icon-button';
 import { DOMAINS } from '@commercetools-local/constants';
+import { filterDataAttributes } from '../../../../utils/dataset';
 import styles from './notification.mod.css';
 import messages from './messages';
 
@@ -28,7 +29,7 @@ NotificationIcon.propTypes = {
   theme: PropTypes.string.isRequired,
 };
 
-class Notification extends React.PureComponent {
+export class Notification extends React.PureComponent {
   static displayName = 'Notification';
 
   static propTypes = {
@@ -62,6 +63,7 @@ class Notification extends React.PureComponent {
             }`
           ]
         )}
+        {...filterDataAttributes(this.props)}
       >
         <div className={styles.content}>{this.props.children}</div>
         {this.props.onCloseClick ? (
