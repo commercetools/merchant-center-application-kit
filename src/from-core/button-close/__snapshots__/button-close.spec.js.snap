@@ -10,7 +10,7 @@ exports[`rendering render component should output correct tree 1`] = `
   onMouseOver={[MockFunction]}
 >
   <CloseIcon
-    size="small"
+    size="medium"
     theme="black"
   />
 </div>
