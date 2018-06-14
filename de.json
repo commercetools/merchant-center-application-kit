@@ -2370,7 +2370,7 @@
   "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.cartClassificationDescription2": "Nur Schlüssel, die in der Werteliste definiert sind, können verwendet werden. Die Schlüssel müssen eindeutig sein.",
   "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.cartClassificationRemoveButton": "Schlüssel entfernen",
   "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.cartClassificationTitle": "Klassifizierung",
-  "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.cartScoreDescription": "Versandsätze werden anhand einer abstrakten Kategorisierung des Warenkorbs festgelegt, die durch Zahlen ausgedrückt wird, wie bspw. ein Versand-Score or Gewichtsklassen.",
+  "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.cartScoreDescription": "Versandsätze werden anhand einer abstrakten Kategorisierung des Warenkorbs festgelegt, die durch Zahlen ausgedrückt wird.",
   "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.cartScoreDescription2": "Der Eingabebereich fängt mit 0 an und hat keine obere Grenze. Der Standardversandsatz deckt den Bereich vom 0 bis zur ersten von Ihnen erstellten Stufe ab. Deshalb muss die erste Stufe mindestens mit 1 beginnen.",
   "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.cartScoreTitle": "Score",
   "ProjectSettings.ShippingMethods.General.ShippingRateConfiguracionPanel.cartValueDescription": "Versandsätze werden anhand des Gesamtwertes des Warenkorbs festgelegt.",
