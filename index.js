@@ -29,8 +29,6 @@ module.exports = function getBabelPresetForMcApp() {
             browsers: ['last 1 versions'],
             node: '8',
           },
-          // Do not transform modules to CJS
-          modules: false,
         },
       ],
       (isEnvProduction || isEnvDevelopment) && [
