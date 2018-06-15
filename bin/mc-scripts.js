@@ -13,6 +13,7 @@ if (commands.length === 0 || (flags.help && commands.length === 0)) {
   Commands:
   build            Bundles the application in production mode
   start            Starts the application using webpack dev server
+  test             Runs jest using a default test configuration
   extract-intl     Extracts intl messages into JSON files
   `);
   process.exit(0);
@@ -22,8 +23,9 @@ const command = commands[0];
 
 switch (command) {
   case 'build':
+  case 'extract-intl':
   case 'start':
-  case 'extract-intl': {
+  case 'test': {
     const commandArgs = process.argv.slice(2).filter(arg => command !== arg);
     const result = spawn.sync(
       'node',

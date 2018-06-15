@@ -137,9 +137,10 @@ const sortMessages = localeMessages => {
 
 const extractFromFile = async fileName => {
   try {
-    const code = await readFile(path.join(rootPath, fileName));
+    const src = await readFile(path.join(rootPath, fileName));
     // Use babel plugin to extract instances where react-intl is used
-    const { metadata: result } = await transformAsync(code, {
+    const { metadata: result } = await transformAsync(src, {
+      babelrc: false,
       presets,
       plugins,
       filename: fileName,
