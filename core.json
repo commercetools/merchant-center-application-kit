@@ -1607,7 +1607,7 @@
   "ProductDiscount.Details.Conditions.labelCurrency": "Currency",
   "ProductDiscount.Details.Conditions.labelCustomerGroup": "Customer group",
   "ProductDiscount.Details.Conditions.labelPrice": "Price",
-  "ProductDiscount.Details.Conditions.labelProduct": "Product",
+  "ProductDiscount.Details.Conditions.labelProduct": "Product ID",
   "ProductDiscount.Details.Conditions.labelProductKey": "Product key",
   "ProductDiscount.Details.Conditions.labelProductType": "Product type",
   "ProductDiscount.Details.Conditions.labelSKU": "SKU",
