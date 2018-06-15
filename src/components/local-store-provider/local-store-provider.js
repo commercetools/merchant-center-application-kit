@@ -9,7 +9,7 @@ import { STORAGE_KEYS } from '../../constants';
 import { withUser } from '../fetch-user';
 import { withProject } from '../fetch-project';
 
-class LocalStoreProvider extends React.Component {
+export class LocalStoreProvider extends React.Component {
   static displayName = 'LocalStoreProvider';
 
   static propTypes = {
@@ -123,8 +123,6 @@ export const mapStateToProps = (state, ownProps) => ({
     ownProps.pluginName
   ),
 });
-
-export { LocalStoreProvider };
 
 export default compose(
   withRouter, // Used by `withProject`
