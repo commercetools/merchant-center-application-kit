@@ -26,14 +26,9 @@ module.exports = ({ resolveRelativePath, rootDir }) => ({
   testPathIgnorePatterns: ['node_modules', 'cypress'],
   testRegex: '\\.spec\\.js$',
   transform: {
-    '^.+\\.(graphql)$': 'jest-transform-graphql',
+    '^.+\\.js$': resolveRelativePath('./jest-config/transform-babel-jest.js'),
+    '^.+\\.graphql$': 'jest-transform-graphql',
     '^.+\\.pegjs$': 'pegjs-jest',
-    '^.+\\.(js|jsx|mjs)$': resolveRelativePath(
-      './jest-config/transform-babel-jest.js'
-    ),
-    '^(?!.*\\.(js|jsx|mjs|css|json|graphql)$)': resolveRelativePath(
-      './jest-config/transform-file.js'
-    ),
   },
   watchPlugins: ['jest-plugin-filename'],
 });

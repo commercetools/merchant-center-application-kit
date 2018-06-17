@@ -21,7 +21,7 @@ const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
 
 if (flags.help) {
   console.log(`
-  Usage: mc-scripts test [options]
+  Usage: mc-scripts test [options] files..
 
   NOTE: all given arguments are passed to the jest CLI.
 
@@ -65,7 +65,7 @@ const {
       }
     : {}
 );
-const jestArgs = Object.entries(remainingFlags).map(
-  ([key, value]) => `--${key}=${value}`
-);
+const jestArgs = Object.entries(remainingFlags)
+  .map(([key, value]) => `--${key}=${value}`)
+  .concat(flags._);
 jest.run(jestArgs);
