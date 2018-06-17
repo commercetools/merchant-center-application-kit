@@ -78,7 +78,10 @@ export const RestrictedApplication = props => (
             user && props.i18n[extractLanguageFromLocale(user.language)]
           }
         >
-          <SetupFlopFlipProvider user={user}>
+          <SetupFlopFlipProvider
+            user={user}
+            defaultFlags={props.defaultFeatureFlags}
+          >
             <React.Fragment>
               {/* NOTE: the requests in flight loader will render a loading
             spinner into the AppBar. */}
@@ -188,6 +191,7 @@ export const RestrictedApplication = props => (
 RestrictedApplication.displayName = 'RestrictedApplication';
 RestrictedApplication.propTypes = {
   i18n: PropTypes.object.isRequired,
+  defaultFeatureFlags: PropTypes.object.isRequired,
   render: PropTypes.func.isRequired,
   INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
 };
@@ -237,6 +241,7 @@ export default class ApplicationShell extends React.Component {
   static propTypes = {
     i18n: PropTypes.object.isRequired,
     configuration: PropTypes.object.isRequired,
+    defaultFeatureFlags: PropTypes.object,
     trackingEventWhitelist: PropTypes.objectOf(
       PropTypes.oneOfType([
         PropTypes.string,
@@ -282,6 +287,9 @@ export default class ApplicationShell extends React.Component {
                             return (
                               <RestrictedApplication
                                 i18n={this.props.i18n}
+                                defaultFeatureFlags={
+                                  this.props.defaultFeatureFlags
+                                }
                                 render={this.props.render}
                                 INTERNAL__isApplicationFallback={
                                   this.props.INTERNAL__isApplicationFallback

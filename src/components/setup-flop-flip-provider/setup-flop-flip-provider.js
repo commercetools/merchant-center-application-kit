@@ -26,6 +26,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
       launchdarklyTrackingGroup: PropTypes.string.isRequired,
       launchdarklyTrackingTeam: PropTypes.array.isRequired,
     }),
+    defaultFlags: PropTypes.object,
     children: PropTypes.node.isRequired,
   };
 
@@ -58,6 +59,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
               this.props.user && this.props.user.launchdarklyTrackingGroup,
               this.props.user && this.props.user.launchdarklyTrackingTeam
             )}
+            defaultFlags={this.props.defaultFlags}
             shouldDeferAdapterConfiguration={!this.props.user}
           >
             {this.props.children}
