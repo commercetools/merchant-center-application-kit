@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering should match snapshot 1`] = `
+<ConfigureFlopflip
+  adapter={
+    Object {
+      "configure": [Function],
+      "reconfigure": [Function],
+      "updateUserContext": [Function],
+    }
+  }
+  adapterArgs={
+    Object {
+      "clientSideId": "5979d95f6040390cd07b5e00",
+      "user": Object {
+        "custom": Object {
+          "group": "ct",
+          "id": "123",
+          "team": Array [
+            "abc",
+            "def",
+          ],
+        },
+        "key": "u1",
+      },
+    }
+  }
+  defaultFlags={
+    Object {
+      "flagA": true,
+    }
+  }
+  shouldDeferAdapterConfiguration={false}
+>
+  <div />
+</ConfigureFlopflip>
+`;
