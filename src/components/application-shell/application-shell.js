@@ -191,7 +191,7 @@ export const RestrictedApplication = props => (
 RestrictedApplication.displayName = 'RestrictedApplication';
 RestrictedApplication.propTypes = {
   i18n: PropTypes.object.isRequired,
-  defaultFeatureFlags: PropTypes.object.isRequired,
+  defaultFeatureFlags: PropTypes.object,
   render: PropTypes.func.isRequired,
   INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
 };
