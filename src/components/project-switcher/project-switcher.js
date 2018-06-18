@@ -45,6 +45,8 @@ export class ProjectSwitcher extends React.PureComponent {
             PropTypes.shape({
               key: PropTypes.string.isRequired,
               name: PropTypes.string.isRequired,
+              suspended: PropTypes.bool.isRequired,
+              expired: PropTypes.bool.isRequired,
             })
           ),
         }),

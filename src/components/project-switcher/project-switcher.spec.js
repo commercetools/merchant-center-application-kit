@@ -10,10 +10,10 @@ const createTestProps = props => ({
     user: {
       projects: {
         results: [
-          { key: 'key4', name: 'name4' },
-          { key: 'key2', name: 'name2' },
-          { key: 'key1', name: 'name1' },
-          { key: 'key3', name: 'name3' },
+          { key: 'key4', name: 'name4', suspended: false, expired: false },
+          { key: 'key2', name: 'name2', suspended: false, expired: false },
+          { key: 'key1', name: 'name1', suspended: false, expired: false },
+          { key: 'key3', name: 'name3', suspended: false, expired: false },
         ],
       },
     },

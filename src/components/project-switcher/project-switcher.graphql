@@ -5,6 +5,8 @@ query ProjectsQuery {
       results {
         name
         key
+        suspended
+        expired
       }
     }
   }
