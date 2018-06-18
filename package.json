@@ -14,7 +14,7 @@
     "recompose": "0.26.0"
   },
   "devDependencies": {
-    "cldr": "4.8.0",
+    "cldr": "4.10.0",
     "moment-timezone": "0.5.17",
     "node-fetch": "2.1.2",
     "rimraf": "2.6.2",
