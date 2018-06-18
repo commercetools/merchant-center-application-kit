@@ -312,7 +312,7 @@ const itemsProducts = {
 };
 
 const itemsProjectSettings = {
-  name: 'mcng-project-settings',
+  name: 'application-project-settings',
 
   menu: {
     name: 'Settings',

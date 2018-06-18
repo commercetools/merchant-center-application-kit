@@ -132,7 +132,7 @@ describe('rendering', () => {
         props = createDataMenuTestProps({
           data: [
             {
-              name: 'mcng-project-settings',
+              name: 'application-project-settings',
               menu: {
                 name: 'Settings',
                 labelKey: 'NavBar.Settings.title',
