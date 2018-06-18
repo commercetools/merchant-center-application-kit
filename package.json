@@ -34,7 +34,7 @@
     "apollo-link-logger": "1.2.2",
     "apollo-link-retry": "2.2.3",
     "classnames": "2.2.6",
-    "common-tags": "1.7.2",
+    "common-tags": "1.8.0",
     "downshift": "1.31.14",
     "fast-equals": "1.5.2",
     "formik": "0.11.11",
