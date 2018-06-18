@@ -1,5 +1,5 @@
 substitutions:
-  _PKG_VERSION: 3.1.0
+  _PKG_VERSION: 4.0.0
 steps:
 - name: 'gcr.io/cloud-builders/yarn'
   args: ['install', '--pure-lockfile', '--cwd', 'packages-devtools/mc-http-server']
