@@ -31,17 +31,17 @@ const AppBar = props => (
               user={props.user}
               render={({ projectKey }) =>
                 // The `<ProjectSwitcher>` should be rendered only if the
-                // user is fetched and the user has available projects.
+                // user is fetched and the user has projects.
                 props.user &&
-                props.user.availableProjects.length > 0 && (
+                props.user.projects.total > 0 && (
                   <ProjectSwitcher
                     // In this case it's not necessary to check if the `projectKey` param
-                    // is included in the list of available projects. In such case
+                    // is included in the list of projects. In such case
                     // the dropdown will still be rendered but no project will be selected.
                     // This is fine becase the user has still the possibility to "switch"
                     // to a project.
                     projectKey={projectKey}
-                    availableProjects={props.user.availableProjects}
+                    total={props.user.projects.total}
                   />
                 )
               }
@@ -66,7 +66,9 @@ AppBar.propTypes = {
     gravatarHash: PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
-    availableProjects: PropTypes.array.isRequired,
+    projects: PropTypes.shape({
+      total: PropTypes.number.isRequired,
+    }).isRequired,
   }),
 };
 

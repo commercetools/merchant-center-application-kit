@@ -1,33 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { defaultMemoize } from 'reselect';
 import { compose, withProps, setDisplayName } from 'recompose';
+import { graphql } from 'react-apollo';
 import Select from 'react-select';
 import { FormattedMessage, injectIntl } from 'react-intl';
+import { GRAPHQL_TARGETS } from '@commercetools-local/constants';
 import classnames from 'classnames';
 import { ErrorIcon } from '@commercetools-local/ui-kit/icons';
 import styles from './project-switcher.mod.css';
+import ProjectsQuery from './project-switcher.graphql';
 import messages from './messages';
 
 const maxResizableWidth = 225;
+
+const mapProjectsToOptions = defaultMemoize(projects =>
+  projects.map(project => ({
+    key: project.key,
+    name: project.name,
+  }))
+);
 
 export class ProjectSwitcher extends React.PureComponent {
   static displayName = 'ProjectSwitcher';
 
   static propTypes = {
     projectKey: PropTypes.string.isRequired,
-    availableProjects: PropTypes.arrayOf(
-      PropTypes.shape({
-        key: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-
-    // Injected
+    total: PropTypes.number.isRequired,
+    // withProps
     redirectTo: PropTypes.func.isRequired,
-    // Intl
+    // injectIntl
     intl: PropTypes.shape({
       formatMessage: PropTypes.func.isRequired,
     }).isRequired,
+    // graphql
+    projectsQuery: PropTypes.shape({
+      loading: PropTypes.bool.isRequired,
+      error: PropTypes.shape({
+        message: PropTypes.string.isRequired,
+      }),
+      user: PropTypes.shape({
+        projects: PropTypes.shape({
+          results: PropTypes.arrayOf(
+            PropTypes.shape({
+              key: PropTypes.string.isRequired,
+              name: PropTypes.string.isRequired,
+            })
+          ),
+        }),
+      }),
+    }),
   };
 
   state = {
@@ -43,6 +65,8 @@ export class ProjectSwitcher extends React.PureComponent {
   }
 
   resizeDropdown = () => {
+    if (this.props.projectsQuery.loading) return;
+
     const element = this.node.querySelector(
       '[data-test=project-switcher__name]'
     );
@@ -63,7 +87,7 @@ export class ProjectSwitcher extends React.PureComponent {
   };
 
   getProjectName = key => {
-    const selectedProject = this.props.availableProjects.find(
+    const selectedProject = this.props.projectsQuery.user.projects.results.find(
       project => project.key === key
     );
     return selectedProject && selectedProject.name;
@@ -93,9 +117,7 @@ export class ProjectSwitcher extends React.PureComponent {
   renderLabel = () => (
     <span className={styles['dropdown-container']}>
       {this.renderProjectName()}
-      <span className={styles['project-counter']}>
-        {this.props.availableProjects.length}
-      </span>
+      <span className={styles['project-counter']}>{this.props.total}</span>
     </span>
   );
 
@@ -146,6 +168,7 @@ export class ProjectSwitcher extends React.PureComponent {
   };
 
   render() {
+    if (this.props.projectsQuery.loading) return null;
     return (
       <div
         ref={this.getRef}
@@ -166,7 +189,9 @@ export class ProjectSwitcher extends React.PureComponent {
           name="project-switcher"
           onChange={this.handleSelection}
           autoBlur={true}
-          options={this.props.availableProjects}
+          options={mapProjectsToOptions(
+            this.props.projectsQuery.user.projects.results
+          )}
           optionRenderer={this.handleRenderItemName}
           clearable={false}
           backspaceRemoves={false}
@@ -185,5 +210,14 @@ export default compose(
   withProps(() => ({
     redirectTo: targetUrl => window.location.replace(targetUrl),
   })),
+  graphql(ProjectsQuery, {
+    name: 'projectsQuery',
+    options: () => ({
+      variables: {
+        target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+      },
+      fetchPolicy: 'cache-and-network',
+    }),
+  }),
   injectIntl
 )(ProjectSwitcher);

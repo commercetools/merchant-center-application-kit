@@ -27,7 +27,7 @@ describe('rendering', () => {
   });
   describe('when user is defined', () => {
     beforeEach(() => {
-      props = createTestProps({ user: { availableProjects: [{ key: 'p1' }] } });
+      props = createTestProps({ user: { project: { total: 2 } } });
       wrapper = shallow(<WithProjectKey {...props} />);
     });
     it('should render Route for "/"', () => {
@@ -43,25 +43,25 @@ describe('rendering', () => {
 
   describe('<WithProjectKeyFromCacheOrUser>', () => {
     describe('when projectKey is not cached in localStorage', () => {
-      describe('when the user has no available projects', () => {
+      describe('when the user has no projects', () => {
         beforeEach(() => {
           storage.get.mockReturnValue(null);
-          props = createTestProps({ user: { availableProjects: [] } });
+          props = createTestProps({ user: { defaultProjectKey: null } });
           wrapper = shallow(<WithProjectKeyFromCacheOrUser {...props} />);
         });
         it('should render nothing', () => {
           expect(wrapper.type()).toBe(null);
         });
       });
-      describe('when user has at least one available project', () => {
+      describe('when user has a default project key', () => {
         beforeEach(() => {
           storage.get.mockReturnValue(null);
           props = createTestProps({
-            user: { availableProjects: [{ key: 'p1' }] },
+            user: { defaultProjectKey: 'p1' },
           });
           wrapper = shallow(<WithProjectKeyFromCacheOrUser {...props} />);
         });
-        it('should call render callback with the first project key from the available projects list', () => {
+        it('should call render callback with the first project key from the default project key', () => {
           expect(props.render).toHaveBeenCalledWith(
             expect.objectContaining({ projectKey: 'p1' })
           );
@@ -71,7 +71,7 @@ describe('rendering', () => {
     describe('when projectKey is cached in localStorage', () => {
       beforeEach(() => {
         storage.get.mockReturnValue('cached-project-key');
-        props = createTestProps({ user: { availableProjects: [] } });
+        props = createTestProps({ user: { defaultProjectKey: null } });
         wrapper = shallow(<WithProjectKeyFromCacheOrUser {...props} />);
       });
       it('should call render callback with the cached project key', () => {
@@ -84,7 +84,7 @@ describe('rendering', () => {
   describe('Route for "/:projectKey"', () => {
     beforeEach(() => {
       props = createTestProps({
-        user: { availableProjects: [{ key: 'p1' }] },
+        user: { defaultProjectKey: 'p1' },
       });
       wrapper = shallow(<WithProjectKey {...props} />);
       shallow(

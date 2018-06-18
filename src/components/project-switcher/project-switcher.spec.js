@@ -4,12 +4,20 @@ import { ProjectSwitcher } from './project-switcher';
 
 const createTestProps = props => ({
   projectKey: 'key1',
-  availableProjects: [
-    { key: 'key4', name: 'name4' },
-    { key: 'key2', name: 'name2' },
-    { key: 'key1', name: 'name1' },
-    { key: 'key3', name: 'name3' },
-  ],
+  total: 4,
+  projectsQuery: {
+    loading: false,
+    user: {
+      projects: {
+        results: [
+          { key: 'key4', name: 'name4' },
+          { key: 'key2', name: 'name2' },
+          { key: 'key1', name: 'name1' },
+          { key: 'key3', name: 'name3' },
+        ],
+      },
+    },
+  },
   redirectTo: jest.fn(),
   intl: { formatMessage: jest.fn() },
   ...props,
@@ -40,7 +48,9 @@ describe('rendering', () => {
 
   it('contains the number of projects in the selector', () => {
     const projectNumber = valueRenderer.props.children[1];
-    expect(projectNumber.props.children).toBe(props.availableProjects.length);
+    expect(projectNumber.props.children).toBe(
+      props.projectsQuery.user.projects.results.length
+    );
   });
 
   describe('dropdown option item', () => {

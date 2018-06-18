@@ -35,7 +35,9 @@ export class ProjectContainer extends React.Component {
     }).isRequired,
     isLoadingUser: PropTypes.bool.isRequired,
     user: PropTypes.shape({
-      availableProjects: PropTypes.array.isRequired,
+      projects: PropTypes.shape({
+        total: PropTypes.number.isRequired,
+      }).isRequired,
     }),
     render: PropTypes.func.isRequired,
     intl: PropTypes.shape({
@@ -107,7 +109,7 @@ export class ProjectContainer extends React.Component {
     }
     // TODO: do something if there is an `error`?
     if (this.props.isLoadingUser) return <LoadingSpinner />;
-    if (this.props.user && this.props.user.availableProjects.length === 0)
+    if (this.props.user && this.props.user.projects.total === 0)
       return <Redirect to="/logout?reason=no-projects" />;
 
     // A trial expire notification should be displayed from 2 weeks before the project expires

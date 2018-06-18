@@ -13,12 +13,7 @@ query LoggedInUserQuery {
     launchdarklyTrackingId
     launchdarklyTrackingGroup
     launchdarklyTrackingTeam
-    availableProjects {
-      key
-      name
-      suspended
-      expired
-    }
+    defaultProjectKey
     projects {
       total
     }

@@ -17,7 +17,7 @@ const createTestProps = custom => ({
     pathname: '/test-project/products',
   },
   isLoadingUser: false,
-  user: { availableProjects: [] },
+  user: { projects: { total: 0 } },
   intl: {
     formatMessage: jest.fn(),
   },
@@ -58,11 +58,11 @@ describe('rendering', () => {
     });
   });
   describe('when user is not loading', () => {
-    describe('when user has no available projects', () => {
+    describe('when user has no projects', () => {
       beforeEach(() => {
         props = createTestProps({
           isLoadingUser: false,
-          user: { availableProjects: [] },
+          user: { projects: { total: 0 } },
         });
         wrapper = shallow(<ProjectContainer {...props} />);
       });
@@ -73,11 +73,11 @@ describe('rendering', () => {
         );
       });
     });
-    describe('when user has available projects', () => {
+    describe('when user has projects', () => {
       beforeEach(() => {
         props = createTestProps({
           isLoadingUser: false,
-          user: { availableProjects: [{ key: 'p1' }] },
+          user: { projects: { total: 1 } },
         });
         wrapper = shallow(<ProjectContainer {...props} />);
       });

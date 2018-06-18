@@ -6,7 +6,9 @@ import AppBar from './app-bar';
 
 const createTestProps = props => ({
   user: {
-    availableProjects: [],
+    projects: {
+      total: 0,
+    },
     firstName: 'John',
     lastName: 'Snow',
     gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
@@ -102,10 +104,10 @@ describe('rendering', () => {
         });
       });
       describe('when user is defined', () => {
-        describe('when user has no available projects', () => {
+        describe('when user has no projects', () => {
           beforeEach(() => {
             props = createTestProps({
-              user: { ...props.user, availableProjects: [] },
+              user: { ...props.user, projects: { total: 0 } },
             });
             wrapper = shallow(<AppBar {...props} />);
             renderChildrenWrapper = shallow(
@@ -120,13 +122,13 @@ describe('rendering', () => {
             expect(renderChildrenWrapper).not.toRender(ProjectSwitcher);
           });
         });
-        describe('when user has available projects', () => {
+        describe('when user has projects', () => {
           describe('<ProjectSwitcher>', () => {
             beforeEach(() => {
               props = createTestProps({
                 user: {
                   ...props.user,
-                  availableProjects: [{ key: 'test-1' }],
+                  projects: { total: 1 },
                 },
               });
               wrapper = shallow(<AppBar {...props} />);
@@ -147,10 +149,10 @@ describe('rendering', () => {
                 'test-1'
               );
             });
-            it('should pass available projects to <ProjectSwitcher>', () => {
+            it('should pass total to <ProjectSwitcher>', () => {
               expect(renderChildrenWrapper.find(ProjectSwitcher)).toHaveProp(
-                'availableProjects',
-                [{ key: 'test-1' }]
+                'total',
+                1
               );
             });
           });

@@ -9,15 +9,15 @@ export const ServicePageProjectSwitcher = props => (
   <div className={styles.container}>
     <FetchUser>
       {({ isLoading, user }) =>
-        !isLoading && user && user.availableProjects.length > 0 ? (
+        !isLoading && user && user.projects.total > 0 ? (
           <ProjectSwitcher
             // In this case it's not necessary to check if the `projectKey` param
-            // is included in the list of available projects. In such case
+            // is included in the list of projects. In such case
             // the dropdown will still be rendered but no project will be selected.
             // This is fine becase the user has still the possibility to "switch"
             // to a project.
             projectKey={props.match.params.projectKey}
-            availableProjects={user.availableProjects}
+            total={user.projects.total}
           />
         ) : null
       }
