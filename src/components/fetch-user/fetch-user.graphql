@@ -19,8 +19,11 @@ query LoggedInUserQuery {
       suspended
       expired
     }
-    availableOrganizations {
-      name
+    projects {
+      total
+    }
+    organizations {
+      total
     }
   }
 }
