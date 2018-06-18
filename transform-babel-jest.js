@@ -8,11 +8,11 @@ const crypto = require('crypto');
 // we simply implement the `transform` on our own. And since we don't use
 // a `.babelrc`, we don't include it in the "cache key".
 const { transform, util: babelUtil } = require('@babel/core');
-const babelConfig = require('@commercetools-frontend/babel-preset-mc-app');
+const getBabePresetConfigForMcApp = require('@commercetools-frontend/babel-preset-mc-app');
 
 const THIS_FILE = fs.readFileSync(__filename);
 
-const { presets, plugins } = babelConfig;
+const { presets, plugins } = getBabePresetConfigForMcApp();
 
 presets.push(require('babel-preset-jest'));
 
