@@ -106,7 +106,7 @@ const itemsCustomers = {
 };
 
 const itemsDashboard = {
-  name: 'mcng-dashboard',
+  name: 'application-dashboard',
   menu: {
     name: 'Dashboard',
     link: 'dashboard',
