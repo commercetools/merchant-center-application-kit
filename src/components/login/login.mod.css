@@ -72,7 +72,7 @@
 }
 
 .input-text:focus {
-  border-color: var(--color-green-25);
+  border-color: var(--color-green);
 }
 
 .overlay {
