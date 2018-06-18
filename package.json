@@ -1,0 +1,25 @@
+{
+  "name": "@commercetools-frontend/eslint-config-mc-app",
+  "version": "1.0.0",
+  "description": "ESLint config used by a MC application",
+  "license": "Proprietary",
+  "private": true,
+  "dependencies": {
+    "babel-eslint": "8.2.3",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-config-prettier": "2.9.0",
+    "eslint-formatter-pretty": "1.3.0",
+    "eslint-plugin-cypress": "2.0.1",
+    "eslint-plugin-import": "2.12.0",
+    "eslint-plugin-jest": "21.17.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-local-rules": "0.1.0",
+    "eslint-plugin-prefer-object-spread": "1.2.1",
+    "eslint-plugin-prettier": "2.6.0",
+    "eslint-plugin-react": "7.9.1"
+  },
+  "peerDependencies": {
+    "eslint": ">= 4.19"
+  }
+}
