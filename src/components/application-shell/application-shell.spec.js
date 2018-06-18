@@ -147,6 +147,7 @@ describe('<RestrictedApplication>', () => {
           language: 'en-US',
           launchdarklyTrackingId: '123',
           launchdarklyTrackingGroup: 'ct',
+          launchdarklyTrackingTeam: ['abc', 'def'],
         },
       };
       wrapper = shallow(<RestrictedApplication {...props} />)

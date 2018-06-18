@@ -12,6 +12,7 @@ query LoggedInUserQuery {
     timeZone
     launchdarklyTrackingId
     launchdarklyTrackingGroup
+    launchdarklyTrackingTeam
     availableProjects {
       key
       name

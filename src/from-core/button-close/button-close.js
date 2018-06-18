@@ -14,7 +14,7 @@ export const ButtonClose = props => (
     data-track-component="Close"
     data-track-event="click"
   >
-    <CloseIcon size="small" theme={props.isMouseOver ? 'green' : 'black'} />
+    <CloseIcon size="medium" theme={props.isMouseOver ? 'green' : 'black'} />
   </div>
 );
 ButtonClose.displayName = 'ButtonClose';

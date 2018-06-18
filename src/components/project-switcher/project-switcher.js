@@ -109,7 +109,7 @@ export class ProjectSwitcher extends React.PureComponent {
         {item.name}
         {(item.suspended || item.expired) && (
           <span className={styles['disabled-icon-container']}>
-            <ErrorIcon size="small" />
+            <ErrorIcon size="medium" />
           </span>
         )}
       </div>
