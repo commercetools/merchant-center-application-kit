@@ -242,7 +242,7 @@ const itemsOrders = {
 };
 
 const itemsProducts = {
-  name: 'mcng-products',
+  name: 'application-products',
   menu: {
     name: 'Products',
     link: 'products',
