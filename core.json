@@ -2760,7 +2760,7 @@
   "UserProfile.PersonalSettingsPanel.language": "Language",
   "UserProfile.PersonalSettingsPanel.timeZone": "Time Zone",
   "UserProfile.PersonalSettingsPanel.title": "Personal Settings",
-  "UserProfile.subtitle": "You are in {organizationsCount, plural, one {{organizationsCount} organization} other {{organizationsCount} organizations}} and working on {projectsCount, plural, one {{projectsCount} project} other {{projectsCount} projects}}",
+  "UserProfile.subtitle": "You are in {organizationsTotal, plural, one {{organizationsTotal} organization} other {{organizationsTotal} organizations}} and working on {projectsTotal, plural, one {{projectsTotal} project} other {{projectsTotal} projects}}",
   "UserProfile.userUpdated": "Your profile has been successfully updated",
   "UserSettingsMenu.logout": "Logout",
   "UserSettingsMenu.privacyPolicy": "Privacy Policy",
