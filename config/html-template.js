@@ -1,4 +1,4 @@
-const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-http-server-config/utils/replace-html-placeholders');
+const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-http-server/utils/replace-html-placeholders');
 
 module.exports = templateParams => {
   const scriptChunks = templateParams.htmlWebpackPlugin.files.js.map(
@@ -42,7 +42,7 @@ module.exports = templateParams => {
   // If we're running the app locally, replace the placeholders immediately!
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line global-require
-    const localEnv = require('@commercetools-frontend/mc-http-server-config/env');
+    const localEnv = require('@commercetools-frontend/mc-http-server/env');
     return replaceHtmlPlaceholders(htmlContent, localEnv);
   }
 

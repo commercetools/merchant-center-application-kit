@@ -1,5 +1,5 @@
-const headers = require('@commercetools-frontend/mc-http-server-config/headers');
-const logoutMiddleware = require('@commercetools-frontend/mc-http-server-config/routes/logout');
+const headers = require('@commercetools-frontend/mc-http-server/headers');
+const logoutMiddleware = require('@commercetools-frontend/mc-http-server/routes/logout');
 const errorOverlayMiddleware = require('../react-dev-utils/errorOverlayMiddleware');
 const noopServiceWorkerMiddleware = require('../react-dev-utils/noopServiceWorkerMiddleware');
 
