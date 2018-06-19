@@ -8,7 +8,6 @@
     "mc-http-server": "./bin/start-mc.js"
   },
   "dependencies": {
-    "@commercetools-frontend/mc-http-server-config": "^1.0.0",
     "compression": "1.7.2",
     "connect": "3.6.6",
     "connect-history-api-fallback": "1.5.0",
@@ -18,6 +17,12 @@
     "node-fetch": "2.1.2",
     "serve-static": "1.13.2",
     "shelljs": "0.8.1"
+  },
+  "peerDependencies": {
+    "@commercetools-frontend/mc-http-server-config": ">=1"
+  },
+  "devDependencies": {
+    "@commercetools-frontend/mc-http-server-config": "^1.0.0"
   },
   "engines": {
     "node": ">=8",
