@@ -1,12 +1,6 @@
 substitutions:
   _PKG_VERSION: 4.0.0
 steps:
-- name: 'gcr.io/cloud-builders/yarn'
-  args: ['link', '--cwd', 'packages-devtools/mc-http-server-config', '--global-folder', '.yarn-global', '--link-folder', '.yarn-links']
-- name: 'gcr.io/cloud-builders/yarn'
-  args: ['link', '--cwd', 'packages-devtools/mc-http-server', '--global-folder', '.yarn-global', '--link-folder', '.yarn-links', '@commercetools-frontend/mc-http-server-config']
-- name: 'gcr.io/cloud-builders/yarn'
-  args: ['install', '--prod', '--cwd', 'packages-devtools/mc-http-server']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'eu.gcr.io/$PROJECT_ID/mc-http-server:${_PKG_VERSION}', '-t', 'eu.gcr.io/$PROJECT_ID/mc-http-server:latest', './packages-devtools/mc-http-server']
 images:

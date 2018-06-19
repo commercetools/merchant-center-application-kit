@@ -10,9 +10,9 @@ const compression = require('compression');
 const connect = require('connect');
 const history = require('connect-history-api-fallback');
 const serveStatic = require('serve-static');
-const headers = require('@commercetools-frontend/mc-http-server-config/headers');
-const logout = require('@commercetools-frontend/mc-http-server-config/routes/logout');
+const logout = require('./routes/logout');
 const metrics = require('./routes/metrics');
+const headers = require('./headers');
 
 const publicFolderPath = path.join(__dirname, 'public');
 

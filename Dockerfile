@@ -6,6 +6,8 @@ WORKDIR /app
 
 COPY ./ /app/
 
+RUN yarn install
+
 ENV NODE_ENV production
 EXPOSE 3001
 
