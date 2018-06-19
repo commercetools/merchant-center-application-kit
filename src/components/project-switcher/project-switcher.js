@@ -18,6 +18,8 @@ const mapProjectsToOptions = defaultMemoize(projects =>
   projects.map(project => ({
     key: project.key,
     name: project.name,
+    suspended: project.suspended,
+    expired: project.expired,
   }))
 );
 
