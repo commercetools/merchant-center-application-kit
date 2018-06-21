@@ -59,7 +59,7 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
         to="/account/projects"
       >
         <div
-          className="item"
+          className="item item-divider-account-section"
         >
           <Inset
             scale="s"
