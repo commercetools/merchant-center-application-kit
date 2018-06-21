@@ -12,6 +12,7 @@ import { LOGOUT_REASONS } from '@commercetools-local/constants';
 import Card from '../../from-core/card';
 import { MCSupportFormURL } from '../../constants';
 import Avatar from '../avatar';
+import { USER_PROFILE, PROJECTS_LIST } from '../../feature-toggles';
 import styles from './user-settings-menu.mod.css';
 import messages from './messages';
 
@@ -77,7 +78,7 @@ export default class UserSettingsMenu extends React.PureComponent {
                         .trim()}
                     </Text.Detail>
                   </Spacings.Inset>
-                  <ToggleFeature flag="userProfile">
+                  <ToggleFeature flag={USER_PROFILE}>
                     <Link to="/account/profile" onClick={toggleMenu}>
                       <div className={styles.item}>
                         <Spacings.Inset scale="s">
@@ -86,7 +87,7 @@ export default class UserSettingsMenu extends React.PureComponent {
                       </div>
                     </Link>
                   </ToggleFeature>
-                  <ToggleFeature flag="projectsList">
+                  <ToggleFeature flag={PROJECTS_LIST}>
                     <Link to="/account/projects" onClick={toggleMenu}>
                       <div className={styles.item}>
                         <Spacings.Inset scale="s">
