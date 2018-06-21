@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import classnames from 'classnames';
 import Downshift from 'downshift';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import withMouseOverState from '@commercetools-local/ui-kit/hocs/with-mouse-over-state';
@@ -89,7 +90,12 @@ export default class UserSettingsMenu extends React.PureComponent {
                   </ToggleFeature>
                   <ToggleFeature flag={PROJECTS_LIST}>
                     <Link to="/account/projects" onClick={toggleMenu}>
-                      <div className={styles.item}>
+                      <div
+                        className={classnames(
+                          styles.item,
+                          styles['item-divider-account-section']
+                        )}
+                      >
                         <Spacings.Inset scale="s">
                           <FormattedMessage {...messages.manageProjects} />
                         </Spacings.Inset>
