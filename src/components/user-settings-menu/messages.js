@@ -6,6 +6,11 @@ export default defineMessages({
     description: 'The label for user profile option',
     defaultMessage: 'My Profile',
   },
+  manageProjects: {
+    id: 'UserSettingsMenu.manageProjects',
+    description: 'The label for manage projects option',
+    defaultMessage: 'Manage Projects',
+  },
   support: {
     id: 'UserSettingsMenu.support',
     description: 'The label for Support',

@@ -86,6 +86,15 @@ export default class UserSettingsMenu extends React.PureComponent {
                       </div>
                     </Link>
                   </ToggleFeature>
+                  <ToggleFeature flag="projectsList">
+                    <Link to="/account/projects" onClick={toggleMenu}>
+                      <div className={styles.item}>
+                        <Spacings.Inset scale="s">
+                          <FormattedMessage {...messages.manageProjects} />
+                        </Spacings.Inset>
+                      </div>
+                    </Link>
+                  </ToggleFeature>
                   {
                     // FIXME: added as urgent request for GDPR changes
                     // Should be properly added on the CTP-1209 task
