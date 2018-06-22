@@ -17,8 +17,5 @@ query LoggedInUserQuery {
     projects {
       total
     }
-    organizations {
-      total
-    }
   }
 }
