@@ -90,22 +90,16 @@
 }
 
 .expand-icon {
-  transform: translateX(0) rotateZ(180deg);
-  color: var(--color-white);
+  align-items: center;
   background: var(--color-darkGreen);
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
   border-radius: 32px;
-  font-size: 1.6em;
-  text-align: center;
-  padding-top: 5px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
+  color: var(--color-white);
+  cursor: pointer;
+  display: flex;
+  height: 32px;
+  justify-content: center;
+  transform: translateX(0) rotateZ(180deg);
+  width: 32px;
 }
 
 .item--bottom {
@@ -180,8 +174,6 @@
 
 :global(.body__menu-open) .expand-icon {
   transform: translateX(65px) rotateZ(0deg);
-  transform-origin: 20px 16px;
-  margin: auto;
 }
 
 :global(.body__menu-open) .item__active {
