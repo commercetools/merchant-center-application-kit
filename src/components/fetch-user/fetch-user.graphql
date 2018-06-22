@@ -1,11 +1,9 @@
 query LoggedInUserQuery {
   user: me {
     id
-    createdAt
-    version
     email
-    firstName
     gravatarHash
+    firstName
     lastName
     language
     numberFormat
