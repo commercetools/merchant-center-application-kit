@@ -1,7 +1,7 @@
 {
   "name": "@commercetools-frontend/application-shell-connectors",
   "version": "1.0.0",
-  "description": "Contains complementary tools for AppShell",
+  "description": "Contains complementary tools for @commercetools-frontend/application-shell",
   "license": "Proprietary",
   "private": true,
   "main": "src/index.js",
