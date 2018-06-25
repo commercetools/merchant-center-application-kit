@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import * as storage from '@commercetools-local/storage';
+import * as storage from '@commercetools-frontend/storage';
 import { STORAGE_KEYS } from '../../constants';
 import { LoginSSOCallback } from './login-sso-callback';
 
 jest.mock('jwt-decode', () => () => ({ nonce: 'EY' }));
-jest.mock('@commercetools-local/storage');
+jest.mock('@commercetools-frontend/storage');
 
 const createTestProps = props => ({
   location: {

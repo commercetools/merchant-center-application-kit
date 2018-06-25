@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
-import * as storage from '@commercetools-local/storage';
+import * as storage from '@commercetools-frontend/storage';
 import { STORAGE_KEYS } from '../../constants';
 
 export const WithProjectKeyFromCacheOrUser = props => {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import * as storage from '@commercetools-local/storage';
+import * as storage from '@commercetools-frontend/storage';
 import Authenticated from './authenticated';
 
-jest.mock('@commercetools-local/storage');
+jest.mock('@commercetools-frontend/storage');
 
 const createTestProps = custom => ({
   children: jest.fn(),

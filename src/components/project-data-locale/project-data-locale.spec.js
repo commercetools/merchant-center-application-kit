@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import * as storage from '@commercetools-local/storage';
+import * as storage from '@commercetools-frontend/storage';
 import { STORAGE_KEYS } from '../../constants';
 import ProjectDataLocale from './project-data-locale';
 
-jest.mock('@commercetools-local/storage');
+jest.mock('@commercetools-frontend/storage');
 
 const createTestProps = props => ({
   locales: null,

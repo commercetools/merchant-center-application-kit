@@ -1,4 +1,4 @@
-import { reportErrorToSentry } from '@commercetools-local/sentry';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 
 const excludeFirstOccurrence = (list, item) => {
   const index = list.indexOf(item);

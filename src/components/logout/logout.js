@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withProps } from 'recompose';
-import { SentryUserLogoutTracker } from '@commercetools-local/sentry';
-import * as storage from '@commercetools-local/storage';
+import { SentryUserLogoutTracker } from '@commercetools-frontend/sentry';
+import * as storage from '@commercetools-frontend/storage';
 import {
   LOGIN_STRATEGY_DEFAULT,
   LOGIN_STRATEGY_SSO,

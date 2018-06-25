@@ -4,7 +4,7 @@ import { compose, withProps } from 'recompose';
 import qs from 'query-string';
 import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
-import * as storage from '@commercetools-local/storage';
+import * as storage from '@commercetools-frontend/storage';
 import * as sdkActions from '@commercetools-frontend/sdk/actions';
 import { STORAGE_KEYS } from '../../constants';
 import ApplicationLoader from '../application-loader';

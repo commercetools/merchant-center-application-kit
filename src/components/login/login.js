@@ -8,7 +8,7 @@ import * as sdkActions from '@commercetools-frontend/sdk/actions';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import PrimaryButton from '@commercetools-local/ui-kit/buttons/primary-button';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import * as storage from '@commercetools-local/storage';
+import * as storage from '@commercetools-frontend/storage';
 import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
 import { Notification } from '@commercetools-frontend/react-notifications';
 import InfoDialog from '../../from-core/info-dialog';
