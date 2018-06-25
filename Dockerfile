@@ -1,4 +1,4 @@
-FROM node:8-slim@sha256:556271789f920bc0bf3d0906c33747e7397fda25d1ddd75d794f92c993ae3c2b
+FROM node:8-slim@sha256:55739838bbd1a7d66eb8d6446be2488564a2def8198642a919bac201b814cf28
 
 LABEL maintainer="mc@commercetools.com"
 
