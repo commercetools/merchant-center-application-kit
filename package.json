@@ -5,6 +5,10 @@
   "license": "Proprietary",
   "private": true,
   "main": "./jest-preset.js",
+  "module": "./jest-preset.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@babel/core": "7.0.0-beta.51",
     "@commercetools/enzyme-extensions": "3.0.1",
