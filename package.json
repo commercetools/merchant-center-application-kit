@@ -2,7 +2,7 @@
   "name": "@commercetools-frontend/sdk",
   "version": "1.0.0",
   "description": "Tools for declarative fetching",
-  "license": "Proprietary",
+  "license": "MIT",
   "private": false,
   "main": "./index.js",
   "module": "./index.js",

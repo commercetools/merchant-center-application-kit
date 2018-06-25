@@ -1,6 +1,12 @@
-# sdk
+# @commercetools-frontend/sdk
 
 Tools for declarative fetching.
+
+## Install
+
+```bash
+$ npm install --save @commercetools-frontend/sdk
+```
 
 ## Declarative Fetching
 
