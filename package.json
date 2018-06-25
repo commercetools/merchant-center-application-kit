@@ -1,0 +1,59 @@
+{
+  "name": "merchant-center-starter-app",
+  "version": "1.0.0",
+  "description": "A starter example for building a Merchant Center application",
+  "main": "index.js",
+  "scripts": {
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "precommit": "lint-staged",
+    "build": "mc-scripts build",
+    "start": "mc-scripts start",
+    "lint": "jest --projects jest.eslint.config.js",
+    "format": "npm run format:js && npm run format:md",
+    "format:js": "prettier --write 'src/**/*.js'",
+    "format:md": "prettier --parser markdown --write '*.md,src/**/*.md'",
+    "test": "jest --config jest.test.config.js",
+    "test:watch": "jest --config jest.test.config.js --watch"
+  },
+  "dependencies": {
+    "@commercetools-frontend/application-shell": "^1.0.0-beta.1",
+    "@commercetools-frontend/i18n": "^1.0.0-beta.1",
+    "@commercetools-frontend/l10n": "^1.0.0-beta.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1"
+  },
+  "devDependencies": {
+    "@commercetools-frontend/mc-scripts": "^1.0.0-beta.1",
+    "@commercetools-frontend/eslint-config-mc-app": "^1.0.0-beta.1",
+    "@commitlint/cli": "^7.0.0",
+    "@commitlint/config-conventional": "^7.0.1",
+    "eslint": "^5.0.0",
+    "eslint-formatter-pretty": "^1.3.0",
+    "husky": "^0.14.3",
+    "jest": "^23.2.0",
+    "jest-plugin-filename": "^0.0.1",
+    "jest-runner-eslint": "^0.6.0",
+    "jest-silent-reporter": "^0.0.5",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.13.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/commercetools/merchant-center-starter-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/commercetools/merchant-center-starter-app/issues"
+  },
+  "homepage": "https://github.com/commercetools/merchant-center-starter-app#readme",
+  "keywords": [
+    "Merchant Center",
+    "starter",
+    "application",
+    "ui",
+    "react"
+  ],
+  "license": "MIT"
+}
