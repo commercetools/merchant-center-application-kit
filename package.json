@@ -2,7 +2,7 @@
   "name": "@commercetools-frontend/mc-scripts",
   "version": "1.0.0",
   "description": "Configuration and scripts for developing a MC application",
-  "license": "Proprietary",
+  "license": "MIT",
   "private": false,
   "publishConfig": {
     "access": "public"
