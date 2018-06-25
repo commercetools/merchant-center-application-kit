@@ -3,7 +3,7 @@ import {
   SHOW_LOADING,
   HIDE_LOADING,
   STATUS_CODES,
-} from '@commercetools-local/constants';
+} from '@commercetools-frontend/constants';
 import toGlobal from '@commercetools-frontend/actions-global/to-global';
 import { logRequest } from '../utils';
 import createClient from './client';

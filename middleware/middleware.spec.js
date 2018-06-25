@@ -1,4 +1,4 @@
-import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-local/constants';
+import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
 import toGlobal from '@commercetools-frontend/actions-global/to-global';
 import createMiddleware from './middleware';
 import createClient from './client';
