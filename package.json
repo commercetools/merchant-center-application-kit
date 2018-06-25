@@ -5,6 +5,10 @@
   "license": "Proprietary",
   "private": true,
   "main": "./index.js",
+  "module": "./index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@commercetools-frontend/browser-history": "1.0.0",
     "@commercetools-frontend/constants": "1.0.0",
