@@ -2,7 +2,7 @@
   "name": "@commercetools-frontend/sentry",
   "version": "1.0.0",
   "description": "Components to set up Sentry for a MC application",
-  "license": "Proprietary",
+  "license": "MIT",
   "private": false,
   "main": "./index.js",
   "module": "./index.js",
