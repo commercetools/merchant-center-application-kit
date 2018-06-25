@@ -9,7 +9,6 @@
   "dependencies": {
     "@commercetools-local/actions-global": "*",
     "@commercetools-local/constants": "*",
-    "@commercetools-local/core": "*",
     "@commercetools-local/notifications": "*",
     "@commercetools-local/sentry": "*",
     "@commercetools-local/ui-kit": "*",
