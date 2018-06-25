@@ -5,9 +5,9 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import { compose, withProps } from 'recompose';
 import { Formik, Field } from 'formik';
 import uuid from 'uuid/v4';
-import Text from '@commercetools-local/ui-kit/typography/text';
-import PrimaryButton from '@commercetools-local/ui-kit/buttons/primary-button';
-import Spacings from '@commercetools-local/ui-kit/materials/spacings';
+import Text from '@commercetools-frontend/ui-kit/typography/text';
+import PrimaryButton from '@commercetools-frontend/ui-kit/buttons/primary-button';
+import Spacings from '@commercetools-frontend/ui-kit/materials/spacings';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,

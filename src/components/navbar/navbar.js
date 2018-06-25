@@ -8,7 +8,7 @@ import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
 import omit from 'lodash.omit';
 import oneLineTrim from 'common-tags/lib/oneLineTrim';
-import * as Icons from '@commercetools-local/ui-kit/icons';
+import * as Icons from '@commercetools-frontend/ui-kit/icons';
 import * as storage from '@commercetools-frontend/storage';
 import { AppShellProviderForUserPermissions } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Formik } from 'formik';
-import Text from '@commercetools-local/ui-kit/typography/text';
-import PrimaryButton from '@commercetools-local/ui-kit/buttons/primary-button';
+import Text from '@commercetools-frontend/ui-kit/typography/text';
+import PrimaryButton from '@commercetools-frontend/ui-kit/buttons/primary-button';
 import { ORGANIZATION_GENERAL_ERROR } from '../../constants';
 import { LoginSSO, getMessageKeyForError } from './login-sso';
 

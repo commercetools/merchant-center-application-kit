@@ -22,7 +22,7 @@
     "@commercetools-frontend/sdk": "1.0.0",
     "@commercetools-frontend/sentry": "1.0.0",
     "@commercetools-frontend/storage": "1.0.0",
-    "@commercetools-local/ui-kit": "*",
+    "@commercetools-frontend/ui-kit": "1.0.0",
     "@commercetools-local/url-utils": "*",
     "@flopflip/launchdarkly-adapter": "2.3.0",
     "@flopflip/react-broadcast": "6.0.3",

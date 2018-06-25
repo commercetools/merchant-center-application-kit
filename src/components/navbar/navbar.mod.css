@@ -1,5 +1,5 @@
-@import '@commercetools-local/ui-kit/materials/colors.mod.css';
-@import '@commercetools-local/ui-kit/materials/spacings.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/colors.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/spacings.mod.css';
 
 :root {
   --expander-height: 50px;

@@ -9,7 +9,7 @@ import { DOMAINS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { AppShellProviderForUserPermissions } from '@commercetools-frontend/application-shell-connectors';
-import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
+import LoadingSpinner from '@commercetools-frontend/ui-kit/loading-spinner';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { STORAGE_KEYS } from '../../constants';
 import LocaleSwitcher from '../locale-switcher';
