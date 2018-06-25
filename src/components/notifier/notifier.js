@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import isNumber from 'lodash.isnumber';
-import * as globalActions from '@commercetools-local/actions-global';
+import * as globalActions from '@commercetools-frontend/actions-global';
 import { DOMAINS } from '@commercetools-local/constants';
 
 export class Notifier extends React.Component {

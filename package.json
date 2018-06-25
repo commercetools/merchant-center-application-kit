@@ -7,7 +7,7 @@
   "main": "src/index.js",
   "module": "src/index.js",
   "dependencies": {
-    "@commercetools-local/actions-global": "*",
+    "@commercetools-frontend/actions-global": "1.0.0",
     "@commercetools-local/constants": "*",
     "@commercetools-local/notifications": "*",
     "@commercetools-local/sentry": "*",
