@@ -2,7 +2,7 @@
   "name": "@commercetools-frontend/url-utils",
   "version": "1.0.0",
   "description": "Utility functions to work with URLs",
-  "license": "Proprietary",
+  "license": "MIT",
   "private": false,
   "main": "./index.js",
   "module": "./index.js",
