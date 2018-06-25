@@ -106,7 +106,7 @@ const fetchProductById = productId =>
 ```
 
 ```js
-import * as globalActions from '@commercetools-local/actions-global';
+import * as globalActions from '@commercetools-frontend/actions-global';
 
 class Foo extends React.Component {
   state = { product: null };
