@@ -1,7 +1,12 @@
-# Notifications
+# @commercetools-frontend/notifications
 
-A general-purpose notification system built on top of redux, providing only the
-low-level logic.
+A general-purpose notification system built on top of redux.
+
+## Install
+
+```bash
+$ npm install --save @commercetools-frontend/notifications
+```
 
 ## Action Creator
 
