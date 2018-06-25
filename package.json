@@ -7,7 +7,7 @@
   "main": "src/index.js",
   "module": "src/index.js",
   "dependencies": {
-    "@commercetools-local/application-shell-connectors": "*",
+    "@commercetools-frontend/application-shell-connectors": "1.0.0",
     "lodash.camelcase": "4.3.0",
     "lodash.isnil": "4.0.0",
     "prop-types": "15.6.1",

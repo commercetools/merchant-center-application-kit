@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isNil from 'lodash.isnil';
-import { withUserPermissions } from '@commercetools-local/application-shell-connectors';
+import { withUserPermissions } from '@commercetools-frontend/application-shell-connectors';
 import Authorized from '../authorized';
 
 const getHasChildren = children => React.Children.count(children) > 0;
