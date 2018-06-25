@@ -1,7 +1,7 @@
 {
   "name": "@commercetools-frontend/sentry",
   "version": "1.0.0",
-  "description": "",
+  "description": "Components to set up Sentry for a MC application",
   "license": "Proprietary",
   "private": true,
   "dependencies": {
