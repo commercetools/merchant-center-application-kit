@@ -1,12 +1,12 @@
 # L10n
 
-- `@commercetools-local/l10n/country-information`
+- `@commercetools-frontend/l10n/country-information`
 
 ```js
 import {
   withCountries,
   countriesShape,
-} from '@commercetools-local/l10n/country-information';
+} from '@commercetools-frontend/l10n/country-information';
 
 withCountries(ownProps => ownProps.locale)(Component);
 
@@ -14,13 +14,13 @@ withCountries(ownProps => ownProps.locale)(Component);
 // { "de":"Germany" }
 ```
 
-- `@commercetools-local/l10n/currency-information`
+- `@commercetools-frontend/l10n/currency-information`
 
 ```js
 import {
   withCurrencies,
   currenciesShape,
-} from '@commercetools-local/l10n/currency-information';
+} from '@commercetools-frontend/l10n/currency-information';
 
 withCurrencies(ownProps => ownProps.locale)(Component);
 
@@ -28,13 +28,13 @@ withCurrencies(ownProps => ownProps.locale)(Component);
 // { "EUR": { "label": "Euro", "symbol": "€" } }
 ```
 
-- `@commercetools-local/l10n/language-information`
+- `@commercetools-frontend/l10n/language-information`
 
 ```js
 import {
   withLanguages,
   languagesShape,
-} from '@commercetools-local/l10n/language-information';
+} from '@commercetools-frontend/l10n/language-information';
 
 withLanguages(ownProps => ownProps.locale)(Component);
 
