@@ -10,7 +10,7 @@ Supported languages:
 ### Usage
 
 ```js
-import * as i18n from '@commercetools-local/i18n';
+import * as i18n from '@commercetools-frontend/i18n';
 
 // i18n.en
 // i18n.de
