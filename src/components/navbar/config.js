@@ -106,7 +106,7 @@ const itemsCustomers = {
 };
 
 const itemsDashboard = {
-  name: 'mcng-dashboard',
+  name: 'application-dashboard',
   menu: {
     name: 'Dashboard',
     link: 'dashboard',
@@ -242,7 +242,7 @@ const itemsOrders = {
 };
 
 const itemsProducts = {
-  name: 'mcng-products',
+  name: 'application-products',
   menu: {
     name: 'Products',
     link: 'products',
@@ -312,7 +312,7 @@ const itemsProducts = {
 };
 
 const itemsProjectSettings = {
-  name: 'mcng-project-settings',
+  name: 'application-project-settings',
 
   menu: {
     name: 'Settings',

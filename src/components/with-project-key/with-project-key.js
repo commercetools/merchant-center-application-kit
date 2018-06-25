@@ -11,12 +11,11 @@ export const WithProjectKeyFromCacheOrUser = props => {
   // access a route under `/account` directly. After being logged
   // in again, there is no projectKey in localStorage. In this case we
   // attempt to get the first project key from the list of available
-  // projects of the user. In case there are no available projects, we
+  // projects of the user. In case there are no  projects, we
   // do not render anything.
-  const projectKey =
-    !cachedProjectKey && props.user.availableProjects.length > 0
-      ? props.user.availableProjects[0].key
-      : cachedProjectKey;
+  const projectKey = !cachedProjectKey
+    ? props.user.defaultProjectKey
+    : cachedProjectKey;
 
   if (!projectKey) return null;
   // Render only if there is a project key
@@ -25,7 +24,7 @@ export const WithProjectKeyFromCacheOrUser = props => {
 WithProjectKeyFromCacheOrUser.displayName = 'WithProjectKeyFromCacheOrUser';
 WithProjectKeyFromCacheOrUser.propTypes = {
   user: PropTypes.shape({
-    availableProjects: PropTypes.array.isRequired,
+    defaultProjectKey: PropTypes.string,
   }),
   render: PropTypes.func.isRequired,
 };
@@ -74,9 +73,7 @@ const WithProjectKey = props => {
 };
 WithProjectKey.displayName = 'WithProjectKey';
 WithProjectKey.propTypes = {
-  user: PropTypes.shape({
-    availableProjects: PropTypes.array.isRequired,
-  }),
+  user: PropTypes.object,
   render: PropTypes.func.isRequired,
 };
 

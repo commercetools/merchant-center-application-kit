@@ -44,10 +44,12 @@ exports[`rendering should match layout structure 1`] = `
             render={[Function]}
             user={
               Object {
-                "availableProjects": Array [],
                 "firstName": "John",
                 "gravatarHash": "20c9c1b252b46ab49d6f7a4cee9c3e68",
                 "lastName": "Snow",
+                "projects": Object {
+                  "total": 0,
+                },
               }
             }
           />

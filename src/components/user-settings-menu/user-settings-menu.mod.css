@@ -52,3 +52,7 @@
 .item:hover {
   background-color: var(--color-gray-90);
 }
+
+.item-divider-account-section {
+  border-bottom: 1px solid var(--color-gray);
+}

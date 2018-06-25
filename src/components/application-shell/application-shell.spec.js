@@ -143,7 +143,9 @@ describe('<RestrictedApplication>', () => {
           gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
           firstName: 'John',
           lastName: 'Snow',
-          availableProjects: [],
+          projects: {
+            total: 0,
+          },
           language: 'en-US',
           launchdarklyTrackingId: '123',
           launchdarklyTrackingGroup: 'ct',

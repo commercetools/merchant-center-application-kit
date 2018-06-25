@@ -48,7 +48,7 @@ export const MenuExpander = props => (
         FIXME: define hover effect.
         https://github.com/commercetools/merchant-center-frontend/issues/2216
       */}
-      <Icons.BackIcon theme="white" />
+      <Icons.BackIcon theme="white" size="big" />
     </div>
   </li>
 );

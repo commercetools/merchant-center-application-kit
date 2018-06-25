@@ -275,7 +275,7 @@ describe('mapStateToProps', () => {
     });
     it('should be false when there is no state for the plugin', () => {
       const state = { 'mcng-dashboard': {} };
-      const ownProps = { pluginName: 'mcng-products' };
+      const ownProps = { pluginName: 'application-products' };
       const componentProps = mapStateToProps(state, ownProps);
       expect(componentProps.hasStateForActivePlugin).toBe(false);
     });

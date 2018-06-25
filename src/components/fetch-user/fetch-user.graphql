@@ -1,11 +1,9 @@
 query LoggedInUserQuery {
   user: me {
     id
-    createdAt
-    version
     email
-    firstName
     gravatarHash
+    firstName
     lastName
     language
     numberFormat
@@ -13,14 +11,9 @@ query LoggedInUserQuery {
     launchdarklyTrackingId
     launchdarklyTrackingGroup
     launchdarklyTrackingTeam
-    availableProjects {
-      key
-      name
-      suspended
-      expired
-    }
-    availableOrganizations {
-      name
+    defaultProjectKey
+    projects {
+      total
     }
   }
 }

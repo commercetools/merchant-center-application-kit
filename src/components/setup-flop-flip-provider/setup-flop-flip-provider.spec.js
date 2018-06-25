@@ -11,6 +11,9 @@ const createTestProps = props => ({
     launchdarklyTrackingGroup: 'ct',
     launchdarklyTrackingTeam: ['abc', 'def'],
   },
+  defaultFlags: {
+    flagA: true,
+  },
   children: <div />,
   ...props,
 });
@@ -23,6 +26,9 @@ describe('rendering', () => {
     wrapper = shallow(<SetupFlopFlipProvider {...props} />)
       .find(ConfigurationConsumer)
       .renderProp('children', 'staging');
+  });
+  it('should match snapshot', () => {
+    expect(wrapper).toMatchSnapshot();
   });
   it('should render <ConfigureFlopFlip>', () => {
     expect(wrapper).toRender(ConfigureFlopFlip);

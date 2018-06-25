@@ -20,7 +20,7 @@ export default class LocaleSwitcher extends React.PureComponent {
   renderLabel = () => (
     <span>
       <div className={styles.icon}>
-        <WorldIcon />
+        <WorldIcon size="big" />
       </div>
       <span className={styles.label}>{`${this.props.projectDataLocale}`}</span>
       <span className={styles['language-counter']}>

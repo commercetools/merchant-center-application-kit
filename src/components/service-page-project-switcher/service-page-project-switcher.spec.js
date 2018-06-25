@@ -32,13 +32,13 @@ describe('rendering', () => {
     });
   });
   describe('when user is not loading', () => {
-    describe('when user has no available projects', () => {
+    describe('when user has no projects', () => {
       beforeEach(() => {
         fetchUserChildrenWrapper = shallow(
           <div>
             {wrapper.find(FetchUser).prop('children')({
               isLoading: false,
-              user: { availableProjects: [] },
+              user: { projects: { total: 0 } },
             })}
           </div>
         );
@@ -47,7 +47,7 @@ describe('rendering', () => {
         expect(fetchUserChildrenWrapper).toContainReact(<div />);
       });
     });
-    describe('when user has available projects', () => {
+    describe('when user has projects', () => {
       let projectSwitcherWrapper;
       describe('<ProjectSwitcher>', () => {
         beforeEach(() => {
@@ -55,7 +55,7 @@ describe('rendering', () => {
             <div>
               {wrapper.find(FetchUser).prop('children')({
                 isLoading: false,
-                user: { availableProjects: [{ key: 'test-1' }] },
+                user: { projects: { total: 1 } },
               })}
             </div>
           );
@@ -69,10 +69,10 @@ describe('rendering', () => {
             'test-1'
           );
         });
-        it('should pass available projects to <ProjectSwitcher>', () => {
+        it('should pass total to <ProjectSwitcher>', () => {
           expect(projectSwitcherWrapper.find(ProjectSwitcher)).toHaveProp(
-            'availableProjects',
-            [{ key: 'test-1' }]
+            'total',
+            1
           );
         });
       });

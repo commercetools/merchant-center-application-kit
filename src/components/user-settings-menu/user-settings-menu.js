@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import classnames from 'classnames';
 import Downshift from 'downshift';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import withMouseOverState from '@commercetools-local/ui-kit/hocs/with-mouse-over-state';
@@ -12,6 +13,7 @@ import { LOGOUT_REASONS } from '@commercetools-local/constants';
 import Card from '../../from-core/card';
 import { MCSupportFormURL } from '../../constants';
 import Avatar from '../avatar';
+import { USER_PROFILE, PROJECTS_LIST } from '../../feature-toggles';
 import styles from './user-settings-menu.mod.css';
 import messages from './messages';
 
@@ -77,11 +79,25 @@ export default class UserSettingsMenu extends React.PureComponent {
                         .trim()}
                     </Text.Detail>
                   </Spacings.Inset>
-                  <ToggleFeature flag="userProfile">
+                  <ToggleFeature flag={USER_PROFILE}>
                     <Link to="/account/profile" onClick={toggleMenu}>
                       <div className={styles.item}>
                         <Spacings.Inset scale="s">
                           <FormattedMessage {...messages.userProfile} />
+                        </Spacings.Inset>
+                      </div>
+                    </Link>
+                  </ToggleFeature>
+                  <ToggleFeature flag={PROJECTS_LIST}>
+                    <Link to="/account/projects" onClick={toggleMenu}>
+                      <div
+                        className={classnames(
+                          styles.item,
+                          styles['item-divider-account-section']
+                        )}
+                      >
+                        <Spacings.Inset scale="s">
+                          <FormattedMessage {...messages.manageProjects} />
                         </Spacings.Inset>
                       </div>
                     </Link>
