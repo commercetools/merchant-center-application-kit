@@ -5,5 +5,8 @@
   "license": "Proprietary",
   "private": true,
   "main": "./index.js",
-  "module": "./index.js"
+  "module": "./index.js",
+  "publishConfig": {
+    "access": "public"
+  }
 }
