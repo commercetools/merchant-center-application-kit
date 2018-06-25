@@ -4,8 +4,11 @@
   "description": "React bindings for @commercetools-frontend/notifications",
   "license": "Proprietary",
   "private": true,
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@commercetools-frontend/actions-global": "1.0.0",
     "@commercetools-frontend/constants": "1.0.0",
