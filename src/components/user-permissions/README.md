@@ -6,7 +6,7 @@ This component exposes getters/setters to set and retrieve the user `permissions
 
 Additionally it provides a HOC to inject the `userPermissions`.
 
-> This component should most likely be used to implement other components (`@commercetools-local/permissions`) and it's very unlikely that you would need to use this directly.
+> This component should most likely be used to implement other components (`@commercetools-frontend/permissions`) and it's very unlikely that you would need to use this directly.
 
 ### Usage
 
