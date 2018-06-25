@@ -2,7 +2,7 @@
   "name": "@commercetools-frontend/jest-preset-mc-app",
   "version": "1.0.0",
   "description": "Jest preset used by a MC application",
-  "license": "Proprietary",
+  "license": "MIT",
   "private": false,
   "main": "./jest-preset.js",
   "module": "./jest-preset.js",
