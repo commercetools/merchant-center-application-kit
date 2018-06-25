@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Configuration and scripts for developing a MC application",
   "license": "Proprietary",
-  "private": true,
+  "private": false,
   "publishConfig": {
     "access": "public"
   },
