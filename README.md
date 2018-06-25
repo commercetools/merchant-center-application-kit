@@ -1,4 +1,14 @@
-# L10n
+# @commercetools-frontend/l10n
+
+React bindings to load l10n data.
+
+## Install
+
+```bash
+$ npm install --save @commercetools-frontend/l10n
+```
+
+## Components
 
 - `@commercetools-frontend/l10n/country-information`
 

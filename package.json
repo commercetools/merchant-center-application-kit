@@ -2,7 +2,7 @@
   "name": "@commercetools-frontend/l10n",
   "version": "1.0.0",
   "description": "React bindings to load l10n data",
-  "license": "Proprietary",
+  "license": "MIT",
   "private": false,
   "publishConfig": {
     "access": "public"
