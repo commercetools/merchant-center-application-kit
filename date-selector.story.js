@@ -1,8 +1,8 @@
 /* TODO: move this package to ui-kit? */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import IconButton from '@commercetools-local/ui-kit/buttons/icon-button';
-import { CloseBoldIcon } from '@commercetools-local/ui-kit/icons';
+import IconButton from '@commercetools-frontend/ui-kit/buttons/icon-button';
+import { CloseBoldIcon } from '@commercetools-frontend/ui-kit/icons';
 import DateSelector from './date-selector';
 
 const datePlaceholder = '____/__/__';
