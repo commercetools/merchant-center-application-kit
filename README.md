@@ -1,4 +1,6 @@
-# Utilities to handle permissions
+# @commercetools-frontend/permissions
+
+React components to declaratively handle MC permissions.
 
 - `branchOnPermissions()`
 - `<RestrictedByPermissions>`
@@ -11,6 +13,12 @@ type Permission {
   mode: view|manage;
   resource: String; // one of `products`, `orders`, ...
 }
+```
+
+## Install
+
+```bash
+$ npm install --save @commercetools-frontend/react-notifications
 ```
 
 ## `branchOnPermissions(permissions, [FallbackComponent], [options])`
