@@ -4,6 +4,9 @@
   "description": "React bindings to load l10n data",
   "license": "Proprietary",
   "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "_enableMeWhenReady_postinstall": "echo 'This script is currently disabled (https://github.com/commercetools/merchant-center-frontend/pull/4402)'; exit 1; node ./scripts/generate-l10n-data.js"
   },
