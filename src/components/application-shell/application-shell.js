@@ -12,7 +12,7 @@ import {
   SentryUserTracker,
 } from '@commercetools-local/sentry';
 import { ConfigurationProvider } from '@commercetools-frontend/application-shell-connectors';
-import { NotificationsList } from '@commercetools-local/react-notifications';
+import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import PortalsContainer from '../portals-container';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';

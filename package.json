@@ -18,7 +18,7 @@
     "@commercetools-frontend/l10n": "1.0.0",
     "@commercetools-frontend/notifications": "1.0.0",
     "@commercetools-frontend/permissions": "1.0.0",
-    "@commercetools-local/react-notifications": "*",
+    "@commercetools-frontend/react-notifications": "1.0.0",
     "@commercetools-local/sdk": "*",
     "@commercetools-local/sentry": "*",
     "@commercetools-local/storage": "*",

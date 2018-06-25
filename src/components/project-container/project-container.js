@@ -7,7 +7,7 @@ import isNil from 'lodash.isnil';
 import omit from 'lodash.omit';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-local/storage';
-import { Notifier } from '@commercetools-local/react-notifications';
+import { Notifier } from '@commercetools-frontend/react-notifications';
 import { AppShellProviderForUserPermissions } from '@commercetools-frontend/application-shell-connectors';
 import LoadingSpinner from '@commercetools-local/ui-kit/loading-spinner';
 import { reportErrorToSentry } from '@commercetools-local/sentry';

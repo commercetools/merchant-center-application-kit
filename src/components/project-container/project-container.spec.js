@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { Redirect } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import * as storage from '@commercetools-local/storage';
-import { Notifier } from '@commercetools-local/react-notifications';
+import { Notifier } from '@commercetools-frontend/react-notifications';
 import { STORAGE_KEYS } from '../../constants';
 import FetchProject from '../fetch-project';
 import ProjectDataLocale from '../project-data-locale';

@@ -2,7 +2,7 @@ import {
   removeNotification,
   ADD_NOTIFICATION,
 } from '@commercetools-frontend/notifications';
-import { selectPageNotifications } from '@commercetools-local/react-notifications';
+import { selectPageNotifications } from '@commercetools-frontend/react-notifications';
 import { HIDE_ALL_PAGE_NOTIFICATIONS } from '@commercetools-frontend/constants';
 
 function isErrorNotificationKind(kind) {

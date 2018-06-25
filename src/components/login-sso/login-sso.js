@@ -15,7 +15,7 @@ import {
 import * as sdkActions from '@commercetools-local/sdk/actions';
 import { connect } from 'react-redux';
 import * as storage from '@commercetools-local/storage';
-import { Notification } from '@commercetools-local/react-notifications';
+import { Notification } from '@commercetools-frontend/react-notifications';
 import { ORGANIZATION_GENERAL_ERROR, STORAGE_KEYS } from '../../constants';
 import LabelField from '../../from-core/label-field';
 import Title from '../../from-core/title';
