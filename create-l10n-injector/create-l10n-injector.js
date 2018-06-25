@@ -1,6 +1,6 @@
 import React from 'react';
 import { wrapDisplayName } from 'recompose';
-import { reportErrorToSentry } from '@commercetools-local/sentry';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 
 export default function createL10NInjector({
   displayName,

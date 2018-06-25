@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { reportErrorToSentry } from '@commercetools-local/sentry';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import createL10NInjector from './create-l10n-injector';
 
-jest.mock('@commercetools-local/sentry');
+jest.mock('@commercetools-frontend/sentry');
 
 const mockData = {
   en: {
