@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@commercetools-frontend/actions-global": "1.0.0",
-    "@commercetools-local/application-shell-connectors": "*",
+    "@commercetools-frontend/application-shell-connectors": "1.0.0",
     "@commercetools-local/browser-history": "*",
     "@commercetools-local/constants": "*",
     "@commercetools-local/l10n": "*",

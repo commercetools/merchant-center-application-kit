@@ -9,7 +9,7 @@ import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import PrimaryButton from '@commercetools-local/ui-kit/buttons/primary-button';
 import { LOGOUT_REASONS } from '@commercetools-local/constants';
 import * as storage from '@commercetools-local/storage';
-import { injectConfiguration } from '@commercetools-local/application-shell-connectors';
+import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
 import { Notification } from '@commercetools-local/react-notifications';
 import InfoDialog from '../../from-core/info-dialog';
 import Title from '../../from-core/title';

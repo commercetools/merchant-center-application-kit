@@ -10,7 +10,7 @@ import omit from 'lodash.omit';
 import oneLineTrim from 'common-tags/lib/oneLineTrim';
 import * as Icons from '@commercetools-local/ui-kit/icons';
 import * as storage from '@commercetools-local/storage';
-import { AppShellProviderForUserPermissions } from '@commercetools-local/application-shell-connectors';
+import { AppShellProviderForUserPermissions } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-local/permissions';
 import { STORAGE_KEYS } from '../../constants';
 import { withProject } from '../fetch-project';

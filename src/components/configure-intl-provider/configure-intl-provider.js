@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AppShellProviderForUserTimeZone } from '@commercetools-local/application-shell-connectors';
+import { AppShellProviderForUserTimeZone } from '@commercetools-frontend/application-shell-connectors';
 import { IntlProvider } from 'react-intl';
 
 const ConfigureIntlProvider = props => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { ConfigurationConsumer } from '@commercetools-local/application-shell-connectors';
+import { ConfigurationConsumer } from '@commercetools-frontend/application-shell-connectors';
 import { SetupFlopFlipProvider } from './setup-flop-flip-provider';
 
 const createTestProps = props => ({
