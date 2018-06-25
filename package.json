@@ -1,7 +1,7 @@
 {
   "name": "@commercetools-frontend/jest-preset-mc-app",
   "version": "1.0.0",
-  "description": "Babel preset used by a MC application",
+  "description": "Jest preset used by a MC application",
   "license": "Proprietary",
   "private": true,
   "main": "./jest-preset.js",
