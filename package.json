@@ -6,7 +6,7 @@
   "private": true,
   "main": "./index.js",
   "dependencies": {
-    "@commercetools-local/browser-history": "*",
+    "@commercetools-frontend/browser-history": "1.0.0",
     "@commercetools-local/constants": "*",
     "@commercetools-local/notifications": "*",
     "lodash.isnumber": "3.0.3"

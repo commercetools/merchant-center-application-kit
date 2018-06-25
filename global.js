@@ -6,7 +6,7 @@ import {
   STATUS_CODES,
   LOGOUT_REASONS,
 } from '@commercetools-local/constants';
-import browserHistory from '@commercetools-local/browser-history';
+import browserHistory from '@commercetools-frontend/browser-history';
 import toGlobal from './to-global';
 
 export function showApiErrorNotification({ errors, source }) {
