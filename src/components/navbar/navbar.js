@@ -11,7 +11,7 @@ import oneLineTrim from 'common-tags/lib/oneLineTrim';
 import * as Icons from '@commercetools-local/ui-kit/icons';
 import * as storage from '@commercetools-local/storage';
 import { AppShellProviderForUserPermissions } from '@commercetools-frontend/application-shell-connectors';
-import { RestrictedByPermissions } from '@commercetools-local/permissions';
+import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS } from '../../constants';
 import { withProject } from '../fetch-project';
 import styles from './navbar.mod.css';

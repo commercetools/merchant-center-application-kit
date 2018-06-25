@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import { RestrictedByPermissions } from '@commercetools-local/permissions';
+import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import * as storage from '@commercetools-local/storage';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import {
