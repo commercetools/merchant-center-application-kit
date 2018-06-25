@@ -4,6 +4,11 @@
   "description": "Components to set up Sentry for a MC application",
   "license": "Proprietary",
   "private": true,
+  "main": "./index.js",
+  "module": "./index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "prop-types": "15.6.1",
     "raven-js": "3.25.2",
