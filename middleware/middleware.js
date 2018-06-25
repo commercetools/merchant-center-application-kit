@@ -4,7 +4,7 @@ import {
   HIDE_LOADING,
   STATUS_CODES,
 } from '@commercetools-local/constants';
-import toGlobal from '@commercetools-local/utils/to-global';
+import toGlobal from '@commercetools-local/actions-global/to-global';
 import { logRequest } from '../utils';
 import createClient from './client';
 

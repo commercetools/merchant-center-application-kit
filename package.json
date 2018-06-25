@@ -10,6 +10,7 @@
     "@commercetools/sdk-middleware-correlation-id": "1.0.0",
     "@commercetools/sdk-middleware-http": "4.0.0",
     "@commercetools/sdk-middleware-user-agent": "1.2.8",
+    "@commercetools-local/actions-global": "*",
     "@commercetools-local/constants": "*",
     "@commercetools-local/utils": "*",
     "fast-equals": "1.5.2",
