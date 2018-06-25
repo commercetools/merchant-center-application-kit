@@ -1,7 +1,7 @@
 {
   "name": "@commercetools-frontend/storage",
   "version": "1.0.0",
-  "description": "",
+  "description": "Getters and setters for window.localStorage",
   "license": "Proprietary",
   "private": true,
   "main": "index.js",
