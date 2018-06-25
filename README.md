@@ -23,7 +23,7 @@ import ApplicationShell, {
   setupGlobalErrorListener,
 } from '@commercetools-local/application-shell';
 import { Sdk } from '@commercetools-local/sdk';
-import * as globalActions from '@commercetools-local/actions-global';
+import * as globalActions from '@commercetools-frontend/actions-global';
 import PageNotFound from '@commercetools-local/core/components/page-not-found';
 import * as i18n from '@commercetools-local/i18n';
 
