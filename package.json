@@ -4,6 +4,11 @@
   "description": "ESLint config used by a MC application",
   "license": "Proprietary",
   "private": true,
+  "main": "./index.js",
+  "module": "./index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "babel-eslint": "8.2.5",
     "eslint": "4.19.1",
