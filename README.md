@@ -25,7 +25,7 @@ import ApplicationShell, {
 import { Sdk } from '@commercetools-local/sdk';
 import * as globalActions from '@commercetools-frontend/actions-global';
 import PageNotFound from '@commercetools-local/core/components/page-not-found';
-import * as i18n from '@commercetools-local/i18n';
+import * as i18n from '@commercetools-frontend/i18n';
 
 import trackingEventWhitelist from './tracking-whitelist';
 
