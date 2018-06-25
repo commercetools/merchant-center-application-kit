@@ -3,7 +3,7 @@
   "version": "4.0.0",
   "description": "Production HTTP server for running a MC application",
   "license": "Proprietary",
-  "private": true,
+  "private": false,
   "publishConfig": {
     "access": "public"
   },
