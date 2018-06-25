@@ -5,7 +5,7 @@ import {
   DOMAINS,
   STATUS_CODES,
   LOGOUT_REASONS,
-} from '@commercetools-local/constants';
+} from '@commercetools-frontend/constants';
 import browserHistory from '@commercetools-frontend/browser-history';
 import toGlobal from './to-global';
 

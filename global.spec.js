@@ -1,5 +1,5 @@
 import { ADD_NOTIFICATION } from '@commercetools-local/notifications';
-import { HIDE_ALL_PAGE_NOTIFICATIONS } from '@commercetools-local/constants';
+import { HIDE_ALL_PAGE_NOTIFICATIONS } from '@commercetools-frontend/constants';
 import toGlobal from './to-global';
 import {
   showApiErrorNotification,

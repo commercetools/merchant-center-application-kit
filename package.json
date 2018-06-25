@@ -7,7 +7,7 @@
   "main": "./index.js",
   "dependencies": {
     "@commercetools-frontend/browser-history": "1.0.0",
-    "@commercetools-local/constants": "*",
+    "@commercetools-frontend/constants": "1.0.0",
     "@commercetools-local/notifications": "*",
     "lodash.isnumber": "3.0.3"
   }
