@@ -23,7 +23,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
   // to CORS errors when an error happens
   // https://webpack.js.org/configuration/devtool/#devtool
   // https://reactjs.org/docs/cross-origin-errors.html#source-maps
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
 
   // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
   // https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a
