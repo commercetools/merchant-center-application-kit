@@ -4,5 +4,9 @@
   "description": "Shared constants for MC applications",
   "license": "Proprietary",
   "private": true,
-  "main": "./index.js"
+  "main": "./index.js",
+  "module": "./index.js",
+  "publishConfig": {
+    "access": "public"
+  }
 }
