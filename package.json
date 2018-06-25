@@ -1,7 +1,7 @@
 {
   "name": "@commercetools-frontend/i18n",
   "version": "1.0.0",
-  "description": "",
+  "description": "MC i18n messages",
   "license": "Proprietary",
   "private": true,
   "main": "./index.js"
