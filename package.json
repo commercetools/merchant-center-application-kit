@@ -1,7 +1,7 @@
 {
   "name": "@commercetools-frontend/mc-http-server",
   "version": "4.0.0",
-  "description": "HTTP server for MC frontend",
+  "description": "Production HTTP server for running a MC application",
   "license": "Proprietary",
   "private": true,
   "bin": {
