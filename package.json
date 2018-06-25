@@ -12,7 +12,6 @@
     "@commercetools/sdk-middleware-user-agent": "1.2.8",
     "@commercetools-local/actions-global": "*",
     "@commercetools-local/constants": "*",
-    "@commercetools-local/utils": "*",
     "fast-equals": "1.5.2",
     "prop-types": "15.6.1",
     "query-string": "5.1.0",
