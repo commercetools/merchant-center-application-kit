@@ -1,7 +1,7 @@
 {
   "name": "@commercetools-frontend/constants",
   "version": "1.0.0",
-  "description": "",
+  "description": "Shared constants for MC applications",
   "license": "Proprietary",
   "private": true,
   "main": "./index.js"
