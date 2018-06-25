@@ -1,4 +1,4 @@
-import { ADD_NOTIFICATION } from '@commercetools-local/notifications';
+import { ADD_NOTIFICATION } from '@commercetools-frontend/notifications';
 import { HIDE_ALL_PAGE_NOTIFICATIONS } from '@commercetools-frontend/constants';
 import toGlobal from './to-global';
 import {

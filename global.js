@@ -1,5 +1,5 @@
 import isNumber from 'lodash.isnumber';
-import { addNotification } from '@commercetools-local/notifications';
+import { addNotification } from '@commercetools-frontend/notifications';
 import {
   HIDE_ALL_PAGE_NOTIFICATIONS,
   DOMAINS,
