@@ -1,5 +1,5 @@
 {
-  "name": "@commercetools-local/application-shell-connectors",
+  "name": "@commercetools-frontend/application-shell-connectors",
   "version": "1.0.0",
   "description": "Contains complementary tools for AppShell",
   "license": "Proprietary",
