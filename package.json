@@ -5,6 +5,10 @@
   "license": "Proprietary",
   "private": true,
   "main": "./index.js",
+  "module": "./index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "history": "4.7.2",
     "history-query-enhancer": "1.0.2",
