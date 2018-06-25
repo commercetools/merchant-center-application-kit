@@ -9,8 +9,8 @@ import {
   WarningIcon,
   InfoIcon,
   SuccessIcon,
-} from '@commercetools-local/ui-kit/icons';
-import IconButton from '@commercetools-local/ui-kit/buttons/icon-button';
+} from '@commercetools-frontend/ui-kit/icons';
+import IconButton from '@commercetools-frontend/ui-kit/buttons/icon-button';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { filterDataAttributes } from '../../../../utils/dataset';
 import styles from './notification.mod.css';
