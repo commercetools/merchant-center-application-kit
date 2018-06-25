@@ -23,7 +23,7 @@
     "@commercetools-frontend/sentry": "1.0.0",
     "@commercetools-frontend/storage": "1.0.0",
     "@commercetools-frontend/ui-kit": "1.0.0",
-    "@commercetools-local/url-utils": "*",
+    "@commercetools-frontend/url-utils": "1.0.0",
     "@flopflip/launchdarkly-adapter": "2.3.0",
     "@flopflip/react-broadcast": "6.0.3",
     "apollo-cache-inmemory": "1.2.4",
