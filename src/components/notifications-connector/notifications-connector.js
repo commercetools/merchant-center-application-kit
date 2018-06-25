@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { removeNotification } from '@commercetools-local/notifications';
+import { removeNotification } from '@commercetools-frontend/notifications';
 import * as globalActions from '@commercetools-frontend/actions-global';
 import { selectNotificationsByDomain } from './selectors';
 

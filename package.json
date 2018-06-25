@@ -9,7 +9,7 @@
   "dependencies": {
     "@commercetools-frontend/actions-global": "1.0.0",
     "@commercetools-frontend/constants": "1.0.0",
-    "@commercetools-local/notifications": "*",
+    "@commercetools-frontend/notifications": "1.0.0",
     "@commercetools-local/sentry": "*",
     "@commercetools-local/ui-kit": "*",
     "lodash.isnumber": "3.0.3",
