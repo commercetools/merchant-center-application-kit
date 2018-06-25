@@ -4,6 +4,11 @@
   "description": "Tools for declarative fetching",
   "license": "Proprietary",
   "private": true,
+  "main": "./index.js",
+  "module": "./index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@commercetools/api-request-builder": "3.7.2",
     "@commercetools/sdk-client": "1.5.6",
