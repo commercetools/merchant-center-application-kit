@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Jest preset used by a MC application",
   "license": "Proprietary",
-  "private": true,
+  "private": false,
   "main": "./jest-preset.js",
   "module": "./jest-preset.js",
   "publishConfig": {
