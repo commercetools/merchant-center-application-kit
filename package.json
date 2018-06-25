@@ -1,7 +1,7 @@
 {
   "name": "@commercetools-frontend/application-shell",
   "version": "1.0.0",
-  "description": "Contains tools for building a MC application",
+  "description": "React component to bootstrap the general MC application logic",
   "license": "Proprietary",
   "private": true,
   "main": "src/index.js",
