@@ -4,5 +4,9 @@
   "description": "MC i18n messages",
   "license": "Proprietary",
   "private": true,
-  "main": "./index.js"
+  "main": "./index.js",
+  "module": "./index.js",
+  "publishConfig": {
+    "access": "public"
+  }
 }
