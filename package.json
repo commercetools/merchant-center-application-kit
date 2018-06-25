@@ -10,7 +10,7 @@
     "@commercetools-frontend/actions-global": "1.0.0",
     "@commercetools-frontend/constants": "1.0.0",
     "@commercetools-frontend/notifications": "1.0.0",
-    "@commercetools-local/sentry": "*",
+    "@commercetools-frontend/sentry": "1.0.0",
     "@commercetools-local/ui-kit": "*",
     "lodash.isnumber": "3.0.3",
     "prop-types": "15.6.1",

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { reportErrorToSentry } from '@commercetools-local/sentry';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import messages from './messages';
 
 const regexInvalidOperationRequiredAttribute = /Required attribute '(.*)' cannot be removed/;
