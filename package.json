@@ -2,7 +2,7 @@
   "name": "@commercetools-frontend/eslint-config-mc-app",
   "version": "1.0.0",
   "description": "ESLint config used by a MC application",
-  "license": "Proprietary",
+  "license": "MIT",
   "private": false,
   "main": "./index.js",
   "module": "./index.js",
