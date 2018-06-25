@@ -2,7 +2,7 @@
   "name": "@commercetools-frontend/application-shell",
   "version": "1.0.0",
   "description": "React component to bootstrap the general MC application logic",
-  "license": "Proprietary",
+  "license": "MIT",
   "private": false,
   "main": "./src/index.js",
   "module": "./src/index.js",
