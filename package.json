@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Shared constants for MC applications",
   "license": "Proprietary",
-  "private": true,
+  "private": false,
   "main": "./index.js",
   "module": "./index.js",
   "publishConfig": {
