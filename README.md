@@ -1,8 +1,14 @@
-# HTTP Server
+# @commercetools-frontend/mc-http-server
 
-This package contains the HTTP server to run the MC SPA.
+This package contains the HTTP server to run a MC application in production.
 
-> The server is **only used for production**, for development we use [our custom version of `react-scripts` and `webpack-dev-server`](../README.md).
+> This server should **only be used for production**, for development we use `@commercetools-frontend/mc-scripts` to start a development server.
+
+## Install
+
+```bash
+$ npm install --save @commercetools-frontend/mc-http-server
+```
 
 ## Why do we need an HTTP Server?
 
@@ -23,16 +29,3 @@ Besides generating and serving the `index.html`, the HTTP server does additional
 - gathers `/metrics` for Prometheus
 - provides a `/version` endpoint with the current revision hash (git SHA)
 - intercepts `/logout` redirects to clear the HTTP cookie for the access token
-
-### Release process
-
-We use Google Cloud Container Registry to build and store the Docker image, using a Build trigger connected to our GitHub repo.
-
-- the trigger is configured to be executed based on the git tag matching the regex `http-server-[0-9].[0-9].[0-9]`
-  - the reason is to avoid triggering the build on every push/commit on e.g. `master`, instead we need to explicitly "tag a release"
-  - whenever we push some changes for the dockerfile, we should create a new tag `git tag -m "Http server: 2.0.0" http-server-2.0.0 && git push --tags`, obviously using a proper semver
-- remember to bump the version in the following places:
-  - `package.json`
-  - `_PKG_VERSION` in `cloudbuild.yaml`
-  - `image.tag` in the `values.yaml` of the related K8s chart
-- the Google Cloud project used for the registry is called `ct-images`
