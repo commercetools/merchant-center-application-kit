@@ -4,6 +4,9 @@
   "description": "Production HTTP server for running a MC application",
   "license": "Proprietary",
   "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "mc-http-server": "./bin/start-mc.js"
   },
