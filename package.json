@@ -15,7 +15,7 @@
     "@commercetools-frontend/application-shell-connectors": "1.0.0",
     "@commercetools-frontend/browser-history": "1.0.0",
     "@commercetools-frontend/constants": "1.0.0",
-    "@commercetools-local/l10n": "*",
+    "@commercetools-frontend/l10n": "1.0.0",
     "@commercetools-local/notifications": "*",
     "@commercetools-local/permissions": "*",
     "@commercetools-local/react-notifications": "*",
