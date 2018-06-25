@@ -30,7 +30,7 @@ const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 
 // Resolve the absolute path of the caller location. This is necessary
 // to point to files within that folder.
-const appPackagePath = path.resolve('.');
+const appPackagePath = process.cwd();
 const paths = {
   appBuild: path.join(appPackagePath, 'dist', 'assets'),
   appWebpackConfig: path.join(appPackagePath, 'webpack.config.prod.js'),

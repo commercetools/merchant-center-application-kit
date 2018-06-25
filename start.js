@@ -28,7 +28,7 @@ const createDevServerConfig = require('./config/webpack-dev-server.config');
 
 // Resolve the absolute path of the caller location. This is necessary
 // to point to files within that folder.
-const appPackagePath = path.resolve('.');
+const appPackagePath = process.cwd();
 const paths = {
   appPublic: path.join(appPackagePath, 'public'),
   appWebpackConfig: path.join(appPackagePath, 'webpack.config.dev.js'),
