@@ -4,7 +4,7 @@ const dotenvExpand = require('dotenv-expand');
 
 // Resolve the absolute path of the caller location. This is necessary
 // to point to files within that folder.
-const sourcePath = path.resolve('.');
+const sourcePath = process.cwd();
 
 const parsedEnv = dotenv.config({ path: path.join(sourcePath, '.env') });
 dotenvExpand(parsedEnv);

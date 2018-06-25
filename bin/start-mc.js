@@ -33,7 +33,7 @@ const useLocalAssets = flags['use-local-assets'];
 if (useLocalAssets) {
   // Resolve the absolute path of the caller location. This is necessary
   // to point to files within that folder.
-  const sourcePath = path.resolve('.');
+  const sourcePath = process.cwd();
   const assetsFrom = path.join(sourcePath, 'dist/assets');
   // Make sure that the `dist/assets` folder is available.
   try {
