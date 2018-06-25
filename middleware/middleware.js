@@ -34,10 +34,11 @@ export default ({ getCorrelationId, getProjectKey }) => {
   const client = createClient({ getCorrelationId });
 
   return ({ dispatch }) => next => action => {
+    const projectKey = getProjectKey();
     if (!action) return next(action);
 
     if (action.type === 'SDK') {
-      const uri = actionToUri(action, getProjectKey());
+      const uri = actionToUri(action, projectKey);
 
       // This `requestName` is never really used.
       //
@@ -68,6 +69,7 @@ export default ({ getCorrelationId, getProjectKey }) => {
           Accept: 'application/json',
           ...(action.payload.headers || {}),
           ...(shouldRenewToken ? { 'X-Force-Token': 'true' } : {}),
+          ...{ 'X-Project-Key': projectKey },
         };
         const body =
           action.payload.method === 'POST' ? action.payload.payload : undefined;

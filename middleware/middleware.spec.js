@@ -39,9 +39,10 @@ describe('when the action is of type SDK', () => {
         expect(execute).toHaveBeenCalledWith({
           uri: expect.any(String),
           method: 'GET',
-          headers: {
+          headers: expect.objectContaining({
             Accept: 'application/json',
-          },
+            'X-Project-Key': 'test-project',
+          }),
         });
       });
 
@@ -246,9 +247,10 @@ describe('when the action is of type SDK', () => {
       expect(execute).toHaveBeenCalledWith({
         uri: expect.any(String),
         method: 'GET',
-        headers: {
+        headers: expect.objectContaining({
           Accept: 'application/json',
-        },
+          'X-Project-Key': 'test-project',
+        }),
       });
     });
   });
@@ -285,9 +287,10 @@ describe('when the action is of type SDK', () => {
       expect(execute).toHaveBeenCalledWith({
         uri: expect.any(String),
         method: 'POST',
-        headers: {
+        headers: expect.objectContaining({
           Accept: 'application/json',
-        },
+          'X-Project-Key': 'test-project',
+        }),
         body: expect.any(Object),
       });
     });
