@@ -2,7 +2,7 @@
   "name": "@commercetools-frontend/i18n",
   "version": "1.0.0",
   "description": "MC i18n messages",
-  "license": "Proprietary",
+  "license": "MIT",
   "private": false,
   "main": "./index.js",
   "module": "./index.js",

@@ -1,11 +1,16 @@
-# I18n
+# @commercetools-frontend/i18n
 
-This package contains all the intl messages and translations.
-
+MC i18n messages.
 Supported languages:
 
 - `en`
 - `de`
+
+## Install
+
+```bash
+$ npm install --save @commercetools-frontend/i18n
+```
 
 ### Usage
 
@@ -20,7 +25,7 @@ import * as i18n from '@commercetools-frontend/i18n';
 
 After you have defined the `intl` messages in your React components, you should extract those messages into `core.json`. This file contains a key-value map of the message `id` and the message value.
 
-To extract the messages simply run `./scripts/extract-intl.js`.
+To extract the messages simply run `mc-scripts extract-intl [options]`.
 
 ### Syncing translations with Transifex
 
