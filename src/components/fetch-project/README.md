@@ -14,7 +14,7 @@ A React component that will pass project data to a `children` function.
 ### Usage
 
 ```js
-import { FetchProject } from '@commercetools-local/application-shell'
+import { FetchProject } from '@commercetools-frontend/application-shell'
 
 <FetchProject projectKey="my-project">
   {({ isLoading, project }) =>
@@ -46,7 +46,7 @@ A HoC component that will inject project data as prop.
 ### Usage
 
 ```js
-import { withProject } from '@commercetools-local/application-shell';
+import { withProject } from '@commercetools-frontend/application-shell';
 
 const ProjectTitle = props => <div>{props.projectName}</div>;
 withProject(

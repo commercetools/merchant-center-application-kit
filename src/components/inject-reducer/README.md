@@ -25,7 +25,7 @@ will also remove this code again once we make that switch.
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider as StoreProvider } from 'react-redux';
-import { InjectReducer, createPluginReducer } from '@commercetools-local/application-shell';
+import { InjectReducer, createPluginReducer } from '@commercetools-frontend/application-shell';
 import Dashboard from './components/dashboard';
 import reducer from './reducer';
 

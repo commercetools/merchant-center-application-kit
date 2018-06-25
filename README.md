@@ -1,4 +1,4 @@
-# `@commercetools-local/application-shell`
+# `@commercetools-frontend/application-shell`
 
 This module contains the main _React component_ `<ApplicationShell>` for
 building _MC applications_.
@@ -14,14 +14,14 @@ features to the application.
 ```js
 /**
  * This is the entry point of an application.
- * See `@commercetools-local/application-shell` for usage.
+ * See `@commercetools-frontend/application-shell` for usage.
  */
 import React from 'react';
 import { Provider as StoreProvider } from 'react-redux';
 import ApplicationShell, {
   reduxStore,
   setupGlobalErrorListener,
-} from '@commercetools-local/application-shell';
+} from '@commercetools-frontend/application-shell';
 import { Sdk } from '@commercetools-local/sdk';
 import * as globalActions from '@commercetools-frontend/actions-global';
 import PageNotFound from '@commercetools-local/core/components/page-not-found';
