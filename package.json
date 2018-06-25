@@ -2,7 +2,7 @@
   "name": "@commercetools-frontend/browser-history",
   "version": "1.0.0",
   "description": "Enhances browser history",
-  "license": "Proprietary",
+  "license": "MIT",
   "private": false,
   "main": "./index.js",
   "module": "./index.js",
