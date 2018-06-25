@@ -1,6 +1,6 @@
 import { ADD_NOTIFICATION } from '@commercetools-local/notifications';
 import { HIDE_ALL_PAGE_NOTIFICATIONS } from '@commercetools-local/constants';
-import toGlobal from '@commercetools-local/utils/to-global';
+import toGlobal from './to-global';
 import {
   showApiErrorNotification,
   showUnexpectedErrorNotification,

@@ -1,5 +1,5 @@
 {
-  "name": "@commercetools-local/actions-global",
+  "name": "@commercetools-frontend/actions-global",
   "version": "1.0.0",
   "description": "",
   "license": "Proprietary",
@@ -9,7 +9,6 @@
     "@commercetools-local/browser-history": "*",
     "@commercetools-local/constants": "*",
     "@commercetools-local/notifications": "*",
-    "@commercetools-local/utils": "*",
     "lodash.isnumber": "3.0.3"
   }
 }
