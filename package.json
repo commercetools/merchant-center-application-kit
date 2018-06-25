@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A general-purpose notification system built on top of redux",
   "license": "Proprietary",
-  "private": true,
+  "private": false,
   "main": "./index.js",
   "module": "./index.js",
   "publishConfig": {
