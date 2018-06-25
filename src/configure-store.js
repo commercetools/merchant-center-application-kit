@@ -6,7 +6,7 @@ import {
   ADD_NOTIFICATION,
   REMOVE_NOTIFICATION,
 } from '@commercetools-frontend/notifications';
-import { createMiddleware as createSdkMiddleware } from '@commercetools-local/sdk';
+import { createMiddleware as createSdkMiddleware } from '@commercetools-frontend/sdk';
 import {
   SHOW_LOADING,
   HIDE_LOADING,

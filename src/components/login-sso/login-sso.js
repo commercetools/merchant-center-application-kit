@@ -12,7 +12,7 @@ import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-local/url-utils';
-import * as sdkActions from '@commercetools-local/sdk/actions';
+import * as sdkActions from '@commercetools-frontend/sdk/actions';
 import { connect } from 'react-redux';
 import * as storage from '@commercetools-local/storage';
 import { Notification } from '@commercetools-frontend/react-notifications';
