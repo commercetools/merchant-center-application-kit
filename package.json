@@ -2,7 +2,7 @@
   "name": "@commercetools-frontend/actions-global",
   "version": "1.0.0",
   "description": "Global redux actions for a MC application",
-  "license": "Proprietary",
+  "license": "MIT",
   "private": false,
   "main": "./index.js",
   "module": "./index.js",
