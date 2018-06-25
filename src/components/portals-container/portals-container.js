@@ -1,5 +1,5 @@
 import React from 'react';
-import { PORTALS_CONTAINER_ID } from '@commercetools-local/constants';
+import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import styles from './portals-container.mod.css';
 
 // This is used so we can render all overlays inside here

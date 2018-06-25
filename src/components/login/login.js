@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as sdkActions from '@commercetools-local/sdk/actions';
 import Spacings from '@commercetools-local/ui-kit/materials/spacings';
 import PrimaryButton from '@commercetools-local/ui-kit/buttons/primary-button';
-import { LOGOUT_REASONS } from '@commercetools-local/constants';
+import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-local/storage';
 import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
 import { Notification } from '@commercetools-local/react-notifications';

@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
 import isNil from 'lodash.isnil';
 import omit from 'lodash.omit';
-import { DOMAINS } from '@commercetools-local/constants';
+import { DOMAINS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-local/storage';
 import { Notifier } from '@commercetools-local/react-notifications';
 import { AppShellProviderForUserPermissions } from '@commercetools-frontend/application-shell-connectors';

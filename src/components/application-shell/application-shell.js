@@ -5,7 +5,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import { joinPaths } from '@commercetools-local/url-utils';
 import * as storage from '@commercetools-local/storage';
-import { DOMAINS, LOGOUT_REASONS } from '@commercetools-local/constants';
+import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import history from '@commercetools-frontend/browser-history';
 import {
   reportErrorToSentry,

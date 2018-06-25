@@ -5,7 +5,7 @@ import { compose, withProps, setDisplayName } from 'recompose';
 import { graphql } from 'react-apollo';
 import Select from 'react-select';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { GRAPHQL_TARGETS } from '@commercetools-local/constants';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import classnames from 'classnames';
 import { ErrorIcon } from '@commercetools-local/ui-kit/icons';
 import styles from './project-switcher.mod.css';

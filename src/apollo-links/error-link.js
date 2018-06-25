@@ -1,5 +1,8 @@
 import { onError } from 'apollo-link-error';
-import { STATUS_CODES, LOGOUT_REASONS } from '@commercetools-local/constants';
+import {
+  STATUS_CODES,
+  LOGOUT_REASONS,
+} from '@commercetools-frontend/constants';
 import { STORAGE_KEYS } from '../constants';
 
 /* eslint-disable import/prefer-default-export */

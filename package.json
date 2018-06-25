@@ -14,7 +14,7 @@
     "@commercetools-frontend/actions-global": "1.0.0",
     "@commercetools-frontend/application-shell-connectors": "1.0.0",
     "@commercetools-frontend/browser-history": "1.0.0",
-    "@commercetools-local/constants": "*",
+    "@commercetools-frontend/constants": "1.0.0",
     "@commercetools-local/l10n": "*",
     "@commercetools-local/notifications": "*",
     "@commercetools-local/permissions": "*",

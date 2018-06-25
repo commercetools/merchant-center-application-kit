@@ -8,7 +8,7 @@ import {
 } from 'recompose';
 import { deepEqual } from 'fast-equals';
 import { graphql } from 'react-apollo';
-import { GRAPHQL_TARGETS } from '@commercetools-local/constants';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import ProjectQuery from './fetch-project.graphql';
 
 const graphqlOptions = {

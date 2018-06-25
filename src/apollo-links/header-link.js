@@ -1,5 +1,5 @@
 import { ApolloLink } from 'apollo-link';
-import { GRAPHQL_TARGETS } from '@commercetools-local/constants';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { getCorrelationId, selectProjectKey } from '../utils';
 
 const isKnownTarget = target => Object.values(GRAPHQL_TARGETS).includes(target);
