@@ -16,7 +16,7 @@
     "@commercetools-frontend/browser-history": "1.0.0",
     "@commercetools-frontend/constants": "1.0.0",
     "@commercetools-frontend/l10n": "1.0.0",
-    "@commercetools-local/notifications": "*",
+    "@commercetools-frontend/notifications": "1.0.0",
     "@commercetools-local/permissions": "*",
     "@commercetools-local/react-notifications": "*",
     "@commercetools-local/sdk": "*",

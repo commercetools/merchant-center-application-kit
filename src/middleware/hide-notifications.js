@@ -1,7 +1,7 @@
 import {
   removeNotification,
   ADD_NOTIFICATION,
-} from '@commercetools-local/notifications';
+} from '@commercetools-frontend/notifications';
 import { selectPageNotifications } from '@commercetools-local/react-notifications';
 import { HIDE_ALL_PAGE_NOTIFICATIONS } from '@commercetools-frontend/constants';
 

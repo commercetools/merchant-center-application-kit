@@ -2,7 +2,7 @@ import { createLogger } from 'redux-logger';
 import {
   ADD_NOTIFICATION,
   REMOVE_NOTIFICATION,
-} from '@commercetools-local/notifications';
+} from '@commercetools-frontend/notifications';
 import { __LOCAL } from '../middleware/add-plugin-to-notification/constants';
 
 export const actionTransformer = action =>

@@ -5,7 +5,7 @@ import {
   reducer as notificationsReducer,
   ADD_NOTIFICATION,
   REMOVE_NOTIFICATION,
-} from '@commercetools-local/notifications';
+} from '@commercetools-frontend/notifications';
 import { createMiddleware as createSdkMiddleware } from '@commercetools-local/sdk';
 import {
   SHOW_LOADING,
