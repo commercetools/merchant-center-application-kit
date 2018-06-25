@@ -1,7 +1,7 @@
 {
   "name": "@commercetools-frontend/l10n",
   "version": "1.0.0",
-  "description": "",
+  "description": "React bindings to load l10n data",
   "license": "Proprietary",
   "private": true,
   "scripts": {
