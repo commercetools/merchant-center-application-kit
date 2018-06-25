@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DOMAINS } from '@commercetools-local/constants';
+import { DOMAINS } from '@commercetools-frontend/constants';
 import Notification from '../../notification';
 
 const GenericNotification = props => (

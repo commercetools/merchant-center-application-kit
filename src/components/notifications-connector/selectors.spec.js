@@ -1,4 +1,4 @@
-import { DOMAINS } from '@commercetools-local/constants';
+import { DOMAINS } from '@commercetools-frontend/constants';
 import {
   isNotificationVisible,
   selectGlobalNotifications,

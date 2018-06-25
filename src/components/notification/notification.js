@@ -11,7 +11,7 @@ import {
   SuccessIcon,
 } from '@commercetools-local/ui-kit/icons';
 import IconButton from '@commercetools-local/ui-kit/buttons/icon-button';
-import { DOMAINS } from '@commercetools-local/constants';
+import { DOMAINS } from '@commercetools-frontend/constants';
 import { filterDataAttributes } from '../../../../utils/dataset';
 import styles from './notification.mod.css';
 import messages from './messages';

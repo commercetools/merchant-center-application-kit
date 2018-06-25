@@ -8,7 +8,7 @@
   "module": "src/index.js",
   "dependencies": {
     "@commercetools-frontend/actions-global": "1.0.0",
-    "@commercetools-local/constants": "*",
+    "@commercetools-frontend/constants": "1.0.0",
     "@commercetools-local/notifications": "*",
     "@commercetools-local/sentry": "*",
     "@commercetools-local/ui-kit": "*",
