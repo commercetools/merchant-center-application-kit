@@ -1,5 +1,4 @@
 {
   "name": "mc-starter-app",
-  "dotenv": ".env.production",
-  "files": [".env.production", "dist"]
+  "dotenv": ".env.production"
 }
