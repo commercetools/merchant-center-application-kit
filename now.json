@@ -1,13 +1,5 @@
 {
-  "env": {
-    "MC_ENV": "production",
-    "MC_LOCATION": "eu",
-    "MC_API_URL": "https://mc-api.escemo.com",
-    "FRONTEND_HOST": "mc-custom-app.now.sh",
-    "AC_URL": "https://admin.commercetools.com",
-    "IMPEX_PRODUCT_EXPORT_URL": "https://impex.commercetools.com/commands/product-export",
-    "TRACKING_GTM": "GTM-PJVGPV",
-    "CDN_URL": "/assets/",
-    "SERVED_BY_PROXY": false
-  }
+  "name": "mc-starter-app",
+  "dotenv": ".env.production",
+  "files": ["dist"]
 }
