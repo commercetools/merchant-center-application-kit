@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@commercetools-frontend/mc-scripts": "^1.0.0-beta.5",
+    "@commercetools-frontend/mc-http-server": "^1.0.0-beta.5",
     "@commercetools-frontend/eslint-config-mc-app": "^1.0.0-beta.5",
     "@commercetools-frontend/jest-preset-mc-app": "^1.0.0-beta.5",
     "@commitlint/cli": "^7.0.0",
