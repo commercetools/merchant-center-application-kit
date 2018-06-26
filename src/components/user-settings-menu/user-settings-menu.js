@@ -14,7 +14,7 @@ import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import Card from '../../from-core/card';
 import { MCSupportFormURL, MANAGE_PROJECTS_PERMISSION } from '../../constants';
 import Avatar from '../avatar';
-import { USER_PROFILE, PROJECTS_LIST } from '../../feature-toggles';
+import { PROJECTS_LIST } from '../../feature-toggles';
 import styles from './user-settings-menu.mod.css';
 import messages from './messages';
 
@@ -80,15 +80,13 @@ export default class UserSettingsMenu extends React.PureComponent {
                         .trim()}
                     </Text.Detail>
                   </Spacings.Inset>
-                  <ToggleFeature flag={USER_PROFILE}>
-                    <Link to="/account/profile" onClick={toggleMenu}>
-                      <div className={styles.item}>
-                        <Spacings.Inset scale="s">
-                          <FormattedMessage {...messages.userProfile} />
-                        </Spacings.Inset>
-                      </div>
-                    </Link>
-                  </ToggleFeature>
+                  <Link to="/account/profile" onClick={toggleMenu}>
+                    <div className={styles.item}>
+                      <Spacings.Inset scale="s">
+                        <FormattedMessage {...messages.userProfile} />
+                      </Spacings.Inset>
+                    </div>
+                  </Link>
                   <ToggleFeature flag={PROJECTS_LIST}>
                     <RestrictedByPermissions
                       permissions={[MANAGE_PROJECTS_PERMISSION]}

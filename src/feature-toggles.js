@@ -9,5 +9,6 @@
  *   fetched from LaunchDarkly (without default values flopflip will default
  *   them to off until fetched).
  */
-export const USER_PROFILE = 'userProfile';
+
+// eslint-disable-next-line import/prefer-default-export
 export const PROJECTS_LIST = 'projectsList';
