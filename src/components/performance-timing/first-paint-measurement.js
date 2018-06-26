@@ -1,5 +1,6 @@
 import { lifecycle, compose } from 'recompose';
 import snakeCase from 'lodash.snakecase';
+import oneLineTrim from 'common-tags/lib/oneLineTrim';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
 import { convertToClosestMs } from './conversions';
@@ -18,13 +19,18 @@ export default compose(
       // if we follow the pattern of initiating the `PerformanceObserver` upon mount
       const paintMetrics = performance.getEntriesByType('paint');
       const convertedMetrics = paintMetrics.map(paintMetric => ({
-        metricName: `mc_frontend_ms_${snakeCase(paintMetric.name)}`,
+        metricName: oneLineTrim`
+          browser
+          _duration
+          _${snakeCase(paintMetric.name)}
+          _milliseconds
+        `,
         metricValue: convertToClosestMs(paintMetric.startTime),
+        metricLabels: { application: this.props.applicationLabel },
       }));
       const headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('Accept', 'application/json');
-
       fetch(`${this.props.mcApiUrl}${metricSummariesEndpoint}`, {
         method: 'POST',
         body: JSON.stringify(convertedMetrics),
