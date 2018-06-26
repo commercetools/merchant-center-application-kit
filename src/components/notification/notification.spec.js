@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { intlMock } from '@commercetools-local/test-utils';
 import { Notification } from './notification';
 
 const TestComponent = () => <div />;
@@ -10,7 +9,9 @@ const createTestProps = props => ({
   domain: 'side',
   type: 'warning',
   fixed: true,
-  intl: intlMock,
+  intl: {
+    formatMessage: jest.fn(message => message.id),
+  },
   ...props,
 });
 

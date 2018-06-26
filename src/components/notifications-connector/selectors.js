@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { DOMAINS } from '@commercetools-local/constants';
+import { DOMAINS } from '@commercetools-frontend/constants';
 
 export const isNotificationVisible = (activePlugin, notificationPlugin) => {
   // When the notification is global we always show it

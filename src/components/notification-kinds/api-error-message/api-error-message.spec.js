@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { FormattedMessage } from 'react-intl';
-import { reportErrorToSentry } from '@commercetools-local/sentry';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { ApiErrorMessage } from './api-error-message';
 
-jest.mock('@commercetools-local/sentry');
+jest.mock('@commercetools-frontend/sentry');
 
 const createTestProps = custom => ({
   error: {

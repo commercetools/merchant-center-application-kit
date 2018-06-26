@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import isNumber from 'lodash.isnumber';
-import * as globalActions from '@commercetools-local/actions-global';
-import { DOMAINS } from '@commercetools-local/constants';
+import * as globalActions from '@commercetools-frontend/actions-global';
+import { DOMAINS } from '@commercetools-frontend/constants';
 
 export class Notifier extends React.Component {
   static displayName = 'Notifier';

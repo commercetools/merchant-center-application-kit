@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import { DOMAINS } from '@commercetools-local/constants';
+import { DOMAINS } from '@commercetools-frontend/constants';
 import NotificationsConnector from '../notifications-connector';
 import GetCustomNotificationComponent from '../map-notification-to-component';
 import GenericNotification from '../notification-kinds/generic';
