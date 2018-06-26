@@ -12,6 +12,7 @@ module.exports = {
       NODE_ENV: 'test',
     },
   },
+  moduleDirectories: ['src', 'node_modules'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': resolveRelativePath(
       './transform-file.js'
@@ -37,5 +38,13 @@ module.exports = {
     '^.+\\.graphql$': 'jest-transform-graphql',
     '^.+\\.pegjs$': 'pegjs-jest',
   },
+  transformIgnorePatterns: [
+    // This option tells Jest to ignore specific folders from being transpiled
+    // (e.g. with babel).
+    // However we need to instruct jest to actually transpile some packages.
+    // NOTE: this might not be necessary anymore once we ship packages already
+    // transpiled.
+    '/node_modules/(?!(@commercetools-frontend.*?\\.(js|graphql)$))',
+  ],
   watchPlugins: ['jest-plugin-filename'],
 };
