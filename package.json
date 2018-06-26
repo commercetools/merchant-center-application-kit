@@ -14,7 +14,8 @@
     "format:js": "prettier --write 'src/**/*.js'",
     "format:md": "prettier --parser markdown --write '*.md,src/**/*.md'",
     "test": "jest --config jest.test.config.js",
-    "test:watch": "jest --config jest.test.config.js --watch"
+    "test:watch": "jest --config jest.test.config.js --watch",
+    "ci": "jest --projects jest.*.config.js"
   },
   "dependencies": {
     "@commercetools-frontend/application-shell": "^1.0.0-beta.5",
