@@ -40,10 +40,19 @@ class FinalStatsWriterPlugin {
       );
     }
 
-    fs.writeFileSync(
-      this.config.outputPath,
-      JSON.stringify(finalStats, null, 2)
-    );
+    try {
+      fs.accessSync(this.config.outputPath, fs.F_OK);
+      fs.writeFileSync(
+        this.config.outputPath,
+        JSON.stringify(finalStats, null, 2)
+      );
+    } catch (error) {
+      console.warn(
+        `[FinalStatsWriterPlugin] The dist folder could not be found at ${
+          this.config.outputPath
+        }. Check the console for errors during the webpack compilation.`
+      );
+    }
   }
 }
 
