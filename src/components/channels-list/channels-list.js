@@ -27,6 +27,9 @@ export const columnsDefinition = [
   },
 ];
 
+const getErrorMessage = error =>
+  error.stack || error.message || error.toString();
+
 export class ChannelsList extends React.Component {
   static displayName = 'ChannelsList';
   static propTypes = {
@@ -69,30 +72,31 @@ export class ChannelsList extends React.Component {
           >
             {({ isLoading, result, error, hasNoResults /* , refresh */ }) => {
               if (isLoading) return <LoadingSpinner />;
-              if (error) return <div>{error}</div>;
-              if (hasNoResults || (result && result.count > 0))
+              if (error) return <div>{getErrorMessage(error)}</div>;
+              if (hasNoResults) {
                 return (
-                  <Table
-                    columns={columnsDefinition}
-                    itemRenderer={item =>
-                      this.renderChannelRow(result.results, item)
-                    }
-                    rowCount={result.count}
-                    // onRowClick={(_, rowIndex) =>
-                    //   this.handleRowClick(rowIndex, result.results)
-                    // }
-                    registerMeasurementCache={this.registerMeasurementCache}
-                    shouldFillRemainingVerticalSpace={true}
-                    items={result.results}
-                  >
-                    {/* TODO: add <Pagination> component */}
-                    <PageBottomSpacer />
-                  </Table>
+                  <div className={styles['empty-results']}>
+                    <FormattedMessage {...messages.noResultsText} />
+                  </div>
                 );
+              }
               return (
-                <div className={styles['empty-results']}>
-                  <FormattedMessage {...messages.noResultsText} />
-                </div>
+                <Table
+                  columns={columnsDefinition}
+                  itemRenderer={item =>
+                    this.renderChannelRow(result.results, item)
+                  }
+                  rowCount={result.count}
+                  // onRowClick={(_, rowIndex) =>
+                  //   this.handleRowClick(rowIndex, result.results)
+                  // }
+                  registerMeasurementCache={this.registerMeasurementCache}
+                  shouldFillRemainingVerticalSpace={true}
+                  items={result.results}
+                >
+                  {/* TODO: add <Pagination> component */}
+                  <PageBottomSpacer />
+                </Table>
               );
             }}
           </ChannelsListConnector>

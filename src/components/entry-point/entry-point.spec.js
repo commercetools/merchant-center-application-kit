@@ -12,8 +12,8 @@ describe('rendering', () => {
     beforeEach(() => {
       wrapper = wrapper.find(ApplicationShell).renderProp('render');
     });
-    it('should render welcome route', () => {
-      expect(wrapper).toRender({ path: '/:projectKey/welcome' });
+    it('should render channels route', () => {
+      expect(wrapper).toRender({ path: '/:projectKey/channels' });
     });
   });
 });

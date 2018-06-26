@@ -12,12 +12,12 @@ export default defineMessages({
     defaultMessage: 'Key',
   },
   columnChannelName: {
-    id: 'Customers.ListView.column.channelName',
+    id: 'Channels.ListView.column.channelName',
     description: 'Title of the table column (channel name)',
     defaultMessage: 'Name',
   },
   noResultsText: {
-    id: 'Customers.ListView.noResults',
+    id: 'Channels.ListView.noResults',
     description: 'Text for no results',
     defaultMessage: 'There are no results matching your search criteria.',
   },
