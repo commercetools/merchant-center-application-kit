@@ -1,7 +1,7 @@
 import { lifecycle, compose } from 'recompose';
 import snakeCase from 'lodash.snakecase';
-import { reportErrorToSentry } from '@commercetools-local/sentry';
-import { injectConfiguration } from '@commercetools-local/application-shell-connectors';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
 import { convertToClosestMs } from './conversions';
 
 const BaseComponent = () => null;
