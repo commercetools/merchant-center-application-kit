@@ -10,7 +10,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 // we need to explicitly use the library to be using the newest version
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const postcssImport = require('postcss-import');
-const postcssCssNext = require('postcss-cssnext');
+const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 
@@ -269,7 +269,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
               ident: 'postcss',
               plugins: () => [
                 postcssImport({ path: sourceFolders }),
-                postcssCssNext({
+                postcssPresetEnv({
                   browsers: '> 1%',
                   features: { autoprefixer: { grid: true } },
                 }),
@@ -303,7 +303,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
                   ident: 'postcss',
                   plugins: () => [
                     postcssImport(),
-                    postcssCssNext({
+                    postcssPresetEnv({
                       browsers: '> 1%',
                       features: { autoprefixer: { grid: true } },
                     }),

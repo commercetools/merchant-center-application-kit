@@ -5,7 +5,7 @@ const WebpackBar = require('webpackbar');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const postcssImport = require('postcss-import');
-const postcssCssNext = require('postcss-cssnext');
+const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
 
 /**
@@ -213,7 +213,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
               ident: 'postcss',
               plugins: () => [
                 postcssImport({ path: sourceFolders }),
-                postcssCssNext({
+                postcssPresetEnv({
                   browsers: '> 1%',
                   features: { autoprefixer: { grid: true } },
                 }),
@@ -247,7 +247,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
                   ident: 'postcss',
                   plugins: () => [
                     postcssImport(),
-                    postcssCssNext({
+                    postcssPresetEnv({
                       browsers: '> 1%',
                       features: { autoprefixer: { grid: true } },
                     }),
