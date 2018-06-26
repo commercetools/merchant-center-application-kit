@@ -1,0 +1,15 @@
+:root {
+  --page-bottom-spacer-height: 90px;
+}
+
+.height-m {
+  height: var(--page-bottom-spacer-height);
+}
+
+.height-l {
+  height: calc(var(--page-bottom-spacer-height) * 2);
+}
+
+.height-xl {
+  height: calc(var(--page-bottom-spacer-height) * 3);
+}

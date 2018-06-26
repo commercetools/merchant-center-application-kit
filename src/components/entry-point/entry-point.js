@@ -12,8 +12,11 @@ import * as globalActions from '@commercetools-frontend/actions-global';
 import { Route, Switch } from 'react-router-dom';
 import * as i18n from '@commercetools-frontend/i18n';
 
-const AsyncWelcome = Loadable({
-  loader: () => import('../../routes' /* webpackChunkName: "welcome" */),
+// Here we split up the main (app) bundle with the actual application business logic.
+// Splitting by route is usually recommended and you can potentially have a splitting
+// point for each route. More info at https://reactjs.org/docs/code-splitting.html
+const AsyncChannels = Loadable({
+  loader: () => import('../../routes' /* webpackChunkName: "channels" */),
   loading: LoadingSpinner,
 });
 
@@ -37,7 +40,7 @@ class EntryPoint extends React.Component {
           }}
           render={() => (
             <Switch>
-              <Route path="/:projectKey/welcome" component={AsyncWelcome} />
+              <Route path="/:projectKey/channels" component={AsyncChannels} />
               {/* Catch-all route */}
               <RouteCatchAll />
             </Switch>

@@ -1,0 +1,8 @@
+@import '@commercetools-frontend/ui-kit/materials/colors.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/spacings.mod.css';
+
+.empty-results {
+  border-top: 1px var(--color-greyMischka) solid;
+  padding: var(--spacing-16) 0;
+  flex-grow: 1;
+}

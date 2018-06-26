@@ -1,11 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Route, Switch } from 'react-router-dom';
+import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
+import ChannelsList from './components/channels-list';
 
-const WelcomeRoutes = props => (
-  <h1>{`Welcome to project: ${props.match.params.projectKey}`}</h1>
+// FIXME: import it from AppShell
+const PageUnauthorized = () => <div>{'Unauthorized'}</div>;
+PageUnauthorized.displayName = 'PageUnauthorized';
+
+const ApplicationChannelRoutes = () => (
+  <Switch>
+    <Route
+      render={routerProps => (
+        <RestrictedByPermissions
+          permissions={[
+            { mode: 'manage', resource: 'products' },
+            { mode: 'view', resource: 'products' },
+          ]}
+          unauthorizedComponent={PageUnauthorized}
+          shouldMatchSomePermissions={true}
+        >
+          <ChannelsList projectKey={routerProps.match.params.projectKey} />
+        </RestrictedByPermissions>
+      )}
+    />
+  </Switch>
 );
-WelcomeRoutes.displayName = 'WelcomeRoutes';
-WelcomeRoutes.propTypes = {
+ApplicationChannelRoutes.displayName = 'ApplicationChannelRoutes';
+ApplicationChannelRoutes.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       projectKey: PropTypes.string.isRequired,
@@ -13,4 +35,4 @@ WelcomeRoutes.propTypes = {
   }).isRequired,
 };
 
-export default WelcomeRoutes;
+export default ApplicationChannelRoutes;
