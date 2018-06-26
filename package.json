@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/mc-http-server",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "Production HTTP server for running a MC application",
   "license": "MIT",
   "private": false,
