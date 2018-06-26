@@ -31,5 +31,4 @@ export const PRICE_TIERS = 'productPriceTiers';
 // This is a shared toggle. It is also used in application-project-settings
 export const PRODUCT_TYPES_ADMINISTRATION = 'productTypesAdministration';
 
-export const PROJECT_SETTINGS = 'projectSettings';
 export const DEVELOPER_SETTINGS = 'developerSettings';
