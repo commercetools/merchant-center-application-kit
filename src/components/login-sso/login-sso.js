@@ -5,17 +5,17 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import { compose, withProps } from 'recompose';
 import { Formik, Field } from 'formik';
 import uuid from 'uuid/v4';
-import Text from '@commercetools-local/ui-kit/typography/text';
-import PrimaryButton from '@commercetools-local/ui-kit/buttons/primary-button';
-import Spacings from '@commercetools-local/ui-kit/materials/spacings';
+import Text from '@commercetools-frontend/ui-kit/typography/text';
+import PrimaryButton from '@commercetools-frontend/ui-kit/buttons/primary-button';
+import Spacings from '@commercetools-frontend/ui-kit/materials/spacings';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
-} from '@commercetools-local/url-utils';
-import * as sdkActions from '@commercetools-local/sdk/actions';
+} from '@commercetools-frontend/url-utils';
+import * as sdkActions from '@commercetools-frontend/sdk/actions';
 import { connect } from 'react-redux';
-import * as storage from '@commercetools-local/storage';
-import { Notification } from '@commercetools-local/react-notifications';
+import * as storage from '@commercetools-frontend/storage';
+import { Notification } from '@commercetools-frontend/react-notifications';
 import { ORGANIZATION_GENERAL_ERROR, STORAGE_KEYS } from '../../constants';
 import LabelField from '../../from-core/label-field';
 import Title from '../../from-core/title';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import * as storage from '@commercetools-local/storage';
+import * as storage from '@commercetools-frontend/storage';
 import {
   LOGIN_STRATEGY_SSO,
   LOGIN_STRATEGY_DEFAULT,
@@ -8,7 +8,7 @@ import {
 } from '../../constants';
 import { Logout, getLoginStrategy } from './logout';
 
-jest.mock('@commercetools-local/storage');
+jest.mock('@commercetools-frontend/storage');
 
 const createTestProps = props => ({
   location: {

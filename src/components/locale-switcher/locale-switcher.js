@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Select from 'react-select';
-import { WorldIcon } from '@commercetools-local/ui-kit/icons';
+import { WorldIcon } from '@commercetools-frontend/ui-kit/icons';
 import styles from './locale-switcher.mod.css';
 
 export default class LocaleSwitcher extends React.PureComponent {

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { deepEqual } from 'fast-equals';
-import * as storage from '@commercetools-local/storage';
-import { AppShellProviderForProjectDataLocale } from '@commercetools-local/application-shell-connectors';
+import * as storage from '@commercetools-frontend/storage';
+import { AppShellProviderForProjectDataLocale } from '@commercetools-frontend/application-shell-connectors';
 import { STORAGE_KEYS } from '../../constants';
 
 const defaultLocale = 'en';

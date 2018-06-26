@@ -22,7 +22,7 @@ import { Provider as StoreProvider } from 'react-redux';
 import {
   RequestsInFlightLoader,
   requestsInFlightReducer,
-} from '@commercetools-local/application-shell';
+} from '@commercetools-frontend/application-shell';
 
 const store = createStore(
   combineReducers({ requestsInFlight: requestsInFlightReducer })

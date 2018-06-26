@@ -1,5 +1,5 @@
 import { RetryLink } from 'apollo-link-retry';
-import { STATUS_CODES } from '@commercetools-local/constants';
+import { STATUS_CODES } from '@commercetools-frontend/constants';
 
 /* eslint-disable import/prefer-default-export */
 export const tokenRetryLink = new RetryLink({

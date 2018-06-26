@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
-import { injectConfiguration } from '@commercetools-local/application-shell-connectors';
+import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
 import PageNotFound from '../../from-core/page-not-found';
 
 export class ForcePageReload extends React.PureComponent {

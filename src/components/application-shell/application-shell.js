@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { Router, Redirect, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
-import { joinPaths } from '@commercetools-local/url-utils';
-import * as storage from '@commercetools-local/storage';
-import { DOMAINS, LOGOUT_REASONS } from '@commercetools-local/constants';
-import history from '@commercetools-local/browser-history';
+import { joinPaths } from '@commercetools-frontend/url-utils';
+import * as storage from '@commercetools-frontend/storage';
+import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
+import history from '@commercetools-frontend/browser-history';
 import {
   reportErrorToSentry,
   SentryUserTracker,
-} from '@commercetools-local/sentry';
-import { ConfigurationProvider } from '@commercetools-local/application-shell-connectors';
-import { NotificationsList } from '@commercetools-local/react-notifications';
+} from '@commercetools-frontend/sentry';
+import { ConfigurationProvider } from '@commercetools-frontend/application-shell-connectors';
+import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import PortalsContainer from '../portals-container';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';

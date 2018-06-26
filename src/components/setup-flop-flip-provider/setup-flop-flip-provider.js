@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { defaultMemoize } from 'reselect';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { ConfigurationConsumer } from '@commercetools-local/application-shell-connectors';
+import { ConfigurationConsumer } from '@commercetools-frontend/application-shell-connectors';
 
 // This value is hard-coded here because we want to make sure that the
 // app uses our account of LD. The value is meant to be public, so there

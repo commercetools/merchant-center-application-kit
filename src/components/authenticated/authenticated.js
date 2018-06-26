@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import * as storage from '@commercetools-local/storage';
+import * as storage from '@commercetools-frontend/storage';
 import { STORAGE_KEYS } from '../../constants';
 
 const getIsAuthenticated = () =>

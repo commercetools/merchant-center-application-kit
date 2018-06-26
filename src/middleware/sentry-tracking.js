@@ -1,6 +1,6 @@
 /* global process */
 import Raven from 'raven-js';
-import { ADD_NOTIFICATION } from '@commercetools-local/notifications';
+import { ADD_NOTIFICATION } from '@commercetools-frontend/notifications';
 
 // Note: this middleware should be placed before the middleware that
 // handles the notifications.

@@ -14,7 +14,7 @@ A React component that will pass user data to a `children` function.
 ### Usage
 
 ```js
-import { FetchUser } from '@commercetools-local/application-shell'
+import { FetchUser } from '@commercetools-frontend/application-shell'
 
 <FetchUser>
   {({ isLoading, user }) =>
@@ -44,7 +44,7 @@ A HoC component that will inject user data as prop.
 ### Usage
 
 ```js
-import { withUser } from '@commercetools-local/application-shell';
+import { withUser } from '@commercetools-frontend/application-shell';
 
 const Profile = props => <div>{props.firstName}</div>;
 withUser(userData => ({ firstName: userData.me && userData.me.firstName }))(

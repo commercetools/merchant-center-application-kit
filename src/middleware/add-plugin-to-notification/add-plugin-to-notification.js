@@ -1,4 +1,4 @@
-import { ADD_NOTIFICATION } from '@commercetools-local/notifications';
+import { ADD_NOTIFICATION } from '@commercetools-frontend/notifications';
 import { isLocalAction, isGlobalAction } from './actions';
 
 const isAddNotificationAction = action =>

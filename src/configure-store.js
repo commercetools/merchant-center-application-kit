@@ -5,13 +5,13 @@ import {
   reducer as notificationsReducer,
   ADD_NOTIFICATION,
   REMOVE_NOTIFICATION,
-} from '@commercetools-local/notifications';
-import { createMiddleware as createSdkMiddleware } from '@commercetools-local/sdk';
+} from '@commercetools-frontend/notifications';
+import { createMiddleware as createSdkMiddleware } from '@commercetools-frontend/sdk';
 import {
   SHOW_LOADING,
   HIDE_LOADING,
   HIDE_ALL_PAGE_NOTIFICATIONS,
-} from '@commercetools-local/constants';
+} from '@commercetools-frontend/constants';
 import addPluginToNotificationMiddleware from './middleware/add-plugin-to-notification';
 import batchedUpdates from './middleware/batched-updates';
 import createExtractGlobalActions from './middleware/create-extract-global-actions';

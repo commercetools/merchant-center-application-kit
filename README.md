@@ -1,4 +1,4 @@
-# `@commercetools-local/application-shell`
+# `@commercetools-frontend/application-shell`
 
 This module contains the main _React component_ `<ApplicationShell>` for
 building _MC applications_.
@@ -6,26 +6,29 @@ building _MC applications_.
 It also provides a set of complementary components to provide additional
 features to the application.
 
-> Some of those components are **temporary** to ensure backwards compatibilities
-> with the current setup.
+## Install
+
+```bash
+$ npm install --save @commercetools-frontend/application-shell
+```
 
 ## Usage
 
 ```js
 /**
  * This is the entry point of an application.
- * See `@commercetools-local/application-shell` for usage.
+ * See `@commercetools-frontend/application-shell` for usage.
  */
 import React from 'react';
 import { Provider as StoreProvider } from 'react-redux';
 import ApplicationShell, {
   reduxStore,
   setupGlobalErrorListener,
-} from '@commercetools-local/application-shell';
-import { Sdk } from '@commercetools-local/sdk';
-import * as globalActions from '@commercetools-local/actions-global';
+} from '@commercetools-frontend/application-shell';
+import { Sdk } from '@commercetools-frontend/sdk';
+import * as globalActions from '@commercetools-frontend/actions-global';
 import PageNotFound from '@commercetools-local/core/components/page-not-found';
-import * as i18n from '@commercetools-local/i18n';
+import * as i18n from '@commercetools-frontend/i18n';
 
 import trackingEventWhitelist from './tracking-whitelist';
 
@@ -68,18 +71,3 @@ ReactDOM.render(<EntryPoint />, document.getElementById('root'));
 | `render`                   | `func`   |    ✅    | -       | The function to render the application specific part. This function is executed only when the application specific part needs to be rendered. |
 | `trackingEventWhitelist`   | `object` |    ✅    | -       | An object containing a map of tracking events (_this mapping is required for backwards compatibility, it might be removed in the future_)     |
 | `onRegisterErrorListeners` | `func`   |    ✅    | -       | A callback function to setup global event listeners, called when the `ApplicationShell` is mounted                                            |
-
-# Development
-
-This module contains the
-[folder structure](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#folder-structure)
-required by _CRA_, which allows to easily start a react application using `toolbox/start.js`.
-
-This is very useful for development to work on this module in isolation.
-
-```bash
-$ cd ./packages-shared/application-shell
-$ yarn start
-```
-
-> The _exported_ package however will only contain the react components.

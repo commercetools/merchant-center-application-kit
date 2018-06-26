@@ -1,4 +1,4 @@
-@import '@commercetools-local/ui-kit/materials/spacings.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/spacings.mod.css';
 
 .container {
   display: flex;

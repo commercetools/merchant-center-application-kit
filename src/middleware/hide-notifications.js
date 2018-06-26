@@ -1,9 +1,9 @@
 import {
   removeNotification,
   ADD_NOTIFICATION,
-} from '@commercetools-local/notifications';
-import { selectPageNotifications } from '@commercetools-local/react-notifications';
-import { HIDE_ALL_PAGE_NOTIFICATIONS } from '@commercetools-local/constants';
+} from '@commercetools-frontend/notifications';
+import { selectPageNotifications } from '@commercetools-frontend/react-notifications';
+import { HIDE_ALL_PAGE_NOTIFICATIONS } from '@commercetools-frontend/constants';
 
 function isErrorNotificationKind(kind) {
   return kind === 'api-error' || kind === 'unexpected-error';

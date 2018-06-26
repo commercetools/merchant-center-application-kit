@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
-import { DOMAINS } from '@commercetools-local/constants';
-import { reportErrorToSentry } from '@commercetools-local/sentry';
+import { DOMAINS } from '@commercetools-frontend/constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import ProjectContainer from '../project-container';
 import FetchUser from '../fetch-user';
@@ -13,8 +13,8 @@ import ApplicationShell, {
   extractLanguageFromLocale,
 } from './application-shell';
 
-jest.mock('@commercetools-local/storage');
-jest.mock('@commercetools-local/sentry');
+jest.mock('@commercetools-frontend/storage');
+jest.mock('@commercetools-frontend/sentry');
 
 const createTestProps = props => ({
   i18n: {
