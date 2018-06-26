@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/browser-history",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "Enhances browser history",
   "license": "MIT",
   "private": false,
