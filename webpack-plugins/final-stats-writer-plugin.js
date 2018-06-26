@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 class FinalStatsWriterPlugin {
   // Expected options:
@@ -43,7 +44,7 @@ class FinalStatsWriterPlugin {
     try {
       fs.accessSync(this.config.outputPath, fs.F_OK);
       fs.writeFileSync(
-        this.config.outputPath,
+        path.join(this.config.outputPath, 'stats.json'),
         JSON.stringify(finalStats, null, 2)
       );
     } catch (error) {

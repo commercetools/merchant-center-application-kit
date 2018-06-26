@@ -170,7 +170,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
     // This is necessary to programmatically refer to the correct bundle path
     // in the `index.html`.
     new FinalStatsWriterPlugin({
-      outputPath: path.join(distPath, 'stats.json'),
+      outputPath: distPath,
       includeFields: ['entrypoints', 'assets', 'publicPath', 'time'],
     }),
   ]
