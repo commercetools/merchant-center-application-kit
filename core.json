@@ -2268,6 +2268,7 @@
   "Products.UpdateProductForm.step.variants": "Variants",
   "Products.UpdateProductForm.tooltipLabel": "Product has unsaved changes. Please save or discard these first.",
   "Products.VariantCreate.VariantsDetailAttributes.title": "Add details for this variant. Images and prices for the variant can be added once the product has been created.",
+  "Products.VariantDetails.VariantsDetailAttributes.confirmSKUEditMessage": "If the SKU of a variant is changed, the inventory will be unlinked so it will not be visible anymore.\n Would you like to proceed?",
   "Products.VariantDetails.VariantsDetailAttributes.title": "Manage the details for this variant.",
   "Products.VariantsDetail.backToVariants": "Back to variants",
   "Products.VariantsDetail.button.confirm": "Confirm",
