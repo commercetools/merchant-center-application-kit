@@ -14,6 +14,8 @@ const {
   MC_ENV,
   MC_LOCATION,
   MC_API_URL,
+  AUTH_URL,
+  API_URL,
   FRONTEND_HOST,
   AC_URL,
   IMPEX_PRODUCT_EXPORT_URL,
@@ -27,6 +29,8 @@ const requiredEnvVariables = [
   'MC_ENV',
   'MC_LOCATION',
   'MC_API_URL',
+  'AUTH_URL',
+  'API_URL',
   'FRONTEND_HOST',
   'AC_URL',
   'IMPEX_PRODUCT_EXPORT_URL',
@@ -48,6 +52,8 @@ requiredEnvVariables.forEach(key => {
 module.exports = {
   frontendHost: FRONTEND_HOST,
   mcApiUrl: MC_API_URL,
+  authUrl: AUTH_URL,
+  apiUrl: API_URL,
   location: MC_LOCATION,
   tracking: {
     gtm: TRACKING_GTM,
