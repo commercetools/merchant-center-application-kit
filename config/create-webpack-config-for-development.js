@@ -7,6 +7,7 @@ const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const postcssImport = require('postcss-import');
 const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
+const browserslist = require('./browserslist');
 
 /**
  * This is a factory function to create the default webpack config
@@ -214,8 +215,8 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
               plugins: () => [
                 postcssImport({ path: sourceFolders }),
                 postcssPresetEnv({
-                  browsers: '> 1%',
-                  features: { autoprefixer: { grid: true } },
+                  browsers: browserslist.development,
+                  autoprefixer: { grid: true },
                 }),
                 postcssReporter(),
               ],
@@ -248,8 +249,8 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
                   plugins: () => [
                     postcssImport(),
                     postcssPresetEnv({
-                      browsers: '> 1%',
-                      features: { autoprefixer: { grid: true } },
+                      browsers: browserslist.development,
+                      autoprefixer: { grid: true },
                     }),
                     postcssReporter(),
                   ],

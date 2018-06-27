@@ -13,6 +13,7 @@ const postcssImport = require('postcss-import');
 const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
+const browserslist = require('./browserslist');
 
 const uglifyConfig = {
   // This configuration is from the slack team:
@@ -270,8 +271,8 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
               plugins: () => [
                 postcssImport({ path: sourceFolders }),
                 postcssPresetEnv({
-                  browsers: '> 1%',
-                  features: { autoprefixer: { grid: true } },
+                  browsers: browserslist.production,
+                  autoprefixer: { grid: true },
                 }),
                 postcssReporter(),
               ],
@@ -304,8 +305,8 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
                   plugins: () => [
                     postcssImport(),
                     postcssPresetEnv({
-                      browsers: '> 1%',
-                      features: { autoprefixer: { grid: true } },
+                      browsers: browserslist.production,
+                      autoprefixer: { grid: true },
                     }),
                     postcssReporter(),
                   ],
