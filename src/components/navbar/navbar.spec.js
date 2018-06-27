@@ -22,6 +22,7 @@ const createTestProps = props => ({
   location: {
     pathname: '',
   },
+  language: 'en',
   projectKey: 'test-1',
   projectPermissions: {
     canManageCustomers: false,
@@ -67,6 +68,42 @@ const createDataMenuTestProps = props => ({
   ...props,
 });
 
+const createProjectExtensionNavbarProps = props => ({
+  name: 'application-channels',
+  menu: {
+    name: 'Channels',
+    allLocaleLabels: [
+      {
+        locale: 'en',
+        value: 'Channels',
+      },
+      {
+        locale: 'de',
+        value: 'Kanäle',
+      },
+    ],
+    link: 'channels',
+    icon: 'WorldIcon',
+    submenu: [
+      {
+        name: 'Channels',
+        allLocaleLabels: [
+          {
+            locale: 'en',
+            value: 'Channels',
+          },
+          {
+            locale: 'de',
+            value: 'Kanäle',
+          },
+        ],
+        link: 'channels',
+      },
+    ],
+  },
+  ...props,
+});
+
 describe('rendering', () => {
   let props;
   let wrapper;
@@ -99,6 +136,9 @@ describe('rendering', () => {
           defaultNavigationItems
         );
       });
+      it('should pass language as prop', () => {
+        expect(wrapper.find('DataMenu')).toHaveProp('language', props.language);
+      });
       it('should pass projectKey as prop', () => {
         expect(wrapper.find('DataMenu')).toHaveProp(
           'projectKey',
@@ -113,6 +153,29 @@ describe('rendering', () => {
       });
       it('should pass location as prop', () => {
         expect(wrapper.find('DataMenu')).toHaveProp('location', props.location);
+      });
+      describe('when there are project extensions', () => {
+        let extendedMenuItem;
+        beforeEach(() => {
+          extendedMenuItem = createProjectExtensionNavbarProps();
+          props = createTestProps({
+            projectExtensionsQuery: {
+              projectExtensions: [
+                {
+                  id: 'pe1',
+                  navbarMenu: extendedMenuItem,
+                },
+              ],
+            },
+          });
+          wrapper = shallow(<NavBar {...props} />);
+        });
+        it('should pass data with extended menu items as prop', () => {
+          expect(wrapper.find('DataMenu')).toHaveProp(
+            'data',
+            defaultNavigationItems.concat(extendedMenuItem)
+          );
+        });
       });
     });
   });

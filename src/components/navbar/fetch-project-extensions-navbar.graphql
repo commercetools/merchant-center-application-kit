@@ -1,0 +1,35 @@
+query FetchProjectExtensionsNavbar {
+  projectExtensions {
+    id
+    navbarMenu {
+      name
+      menu {
+        name
+        link
+        allLocaleLabels {
+          locale
+          value
+        }
+        icon
+        featureToggle
+        permissions {
+          mode
+          resource
+        }
+        submenu {
+          name
+          link
+          allLocaleLabels {
+            locale
+            value
+          }
+          featureToggle
+          permissions {
+            mode
+            resource
+          }
+        }
+      }
+    }
+  }
+}
