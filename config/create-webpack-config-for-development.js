@@ -103,6 +103,8 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
         // within `HtmlWebpackPlugin` (see `@commercetools-frontend/mc-http-server-config/env.js`).
         HTTP_PORT: JSON.stringify(process.env.HTTP_PORT),
         MC_API_URL: JSON.stringify(process.env.MC_API_URL),
+        AUTH_URL: JSON.stringify(process.env.AUTH_URL),
+        API_URL: JSON.stringify(process.env.API_URL),
         MC_ENV: JSON.stringify(process.env.MC_ENV),
         MC_LOCATION: JSON.stringify(process.env.MC_LOCATION),
         FRONTEND_HOST: JSON.stringify(process.env.FRONTEND_HOST),
