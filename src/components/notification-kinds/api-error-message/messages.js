@@ -171,4 +171,11 @@ export default defineMessages({
     defaultMessage:
       'Sorry, we could not perform the requested action. It is not possible to perform the update actions as instructed by the API extension.',
   },
+  TaxCategoryDuplicateCountry: {
+    id: 'ApiError.TaxCategoryDuplicateCountry',
+    description:
+      'User inputs duplicate country and/or state into tax category form',
+    defaultMessage:
+      'Duplicate tax rates submitted. Please remove the duplicates.',
+  },
 });
