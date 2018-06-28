@@ -1,4 +1,4 @@
-query FetchProjectExtensionsNavbar {
+query FetchProjectExtensionsNavbarQuery {
   projectExtensions {
     id
     navbarMenu {

@@ -522,17 +522,6 @@ export class NavBar extends React.PureComponent {
   };
 
   render() {
-    let dataMenu = defaultNavigationItems;
-    if (
-      this.props.projectExtensionsQuery &&
-      this.props.projectExtensionsQuery.projectExtensions
-    ) {
-      dataMenu = dataMenu.concat(
-        this.props.projectExtensionsQuery.projectExtensions.map(
-          ext => ext.navbarMenu
-        )
-      );
-    }
     return (
       <nav
         ref={this.getNode}
@@ -545,7 +534,16 @@ export class NavBar extends React.PureComponent {
         >
           <DataMenu
             rootNode={this.node}
-            data={dataMenu}
+            data={
+              this.props.projectExtensionsQuery &&
+              this.props.projectExtensionsQuery.projectExtensions
+                ? defaultNavigationItems.concat(
+                    this.props.projectExtensionsQuery.projectExtensions.map(
+                      ext => ext.navbarMenu
+                    )
+                  )
+                : defaultNavigationItems
+            }
             isForcedMenuOpen={this.props.isForcedMenuOpen}
             location={this.props.location}
             language={this.props.language}
