@@ -1,9 +1,12 @@
 {
   "name": "@commercetools-frontend/mc-scripts",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.8",
   "description": "Configuration and scripts for developing a MC application",
-  "license": "Proprietary",
-  "private": true,
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "mc-scripts": "./bin/mc-scripts.js"
   },
@@ -11,8 +14,8 @@
     "@babel/code-frame": "7.0.0-beta.51",
     "@babel/core": "7.0.0-beta.51",
     "@babel/runtime": "7.0.0-beta.51",
-    "@commercetools-frontend/babel-preset-mc-app": "1.0.0",
-    "@commercetools-frontend/mc-http-server": "4.0.0",
+    "@commercetools-frontend/babel-preset-mc-app": "1.0.0-beta.8",
+    "@commercetools-frontend/mc-http-server": "1.0.0-beta.8",
     "@svgr/webpack": "2.0.0",
     "address": "1.0.3",
     "babel-core": "7.0.0-bridge.0",
@@ -30,6 +33,7 @@
     "fs-extra": "6.0.1",
     "gh-pages": "1.2.0",
     "glob": "7.1.2",
+    "graphql-tag": "2.9.2",
     "gzip-size": "4.1.0",
     "html-webpack-plugin": "3.2.0",
     "inquirer": "5.1.0",
@@ -42,9 +46,9 @@
     "pegjs-loader": "0.5.4",
     "pkg-up": "2.0.0",
     "postcss": "6.0.22",
-    "postcss-cssnext": "3.1.0",
     "postcss-import": "11.1.0",
     "postcss-loader": "2.1.5",
+    "postcss-preset-env": "5.2.1",
     "postcss-reporter": "5.0.0",
     "promise": "8.0.1",
     "react-error-overlay": "^4.0.0",
@@ -57,13 +61,13 @@
     "svg-url-loader": "2.3.2",
     "text-table": "0.2.0",
     "thread-loader": "1.1.5",
-    "uglifyjs-webpack-plugin": "emmenko/uglifyjs-webpack-plugin#empty-source-map-patch",
+    "uglifyjs-webpack-plugin": "1.2.7",
     "url-loader": "1.0.1",
+    "watch": "1.0.2",
     "webpack": "4.12.0",
     "webpack-bundle-analyzer": "2.13.1",
     "webpack-dev-server": "3.1.4",
-    "webpackbar": "2.6.1",
-    "watch": "1.0.2"
+    "webpackbar": "2.6.1"
   },
   "engines": {
     "node": ">=8",

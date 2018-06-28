@@ -5,8 +5,9 @@ const WebpackBar = require('webpackbar');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const postcssImport = require('postcss-import');
-const postcssCssNext = require('postcss-cssnext');
+const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
+const browserslist = require('./browserslist');
 
 /**
  * This is a factory function to create the default webpack config
@@ -102,6 +103,8 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
         // within `HtmlWebpackPlugin` (see `@commercetools-frontend/mc-http-server-config/env.js`).
         HTTP_PORT: JSON.stringify(process.env.HTTP_PORT),
         MC_API_URL: JSON.stringify(process.env.MC_API_URL),
+        CTP_AUTH_URL: JSON.stringify(process.env.CTP_AUTH_URL),
+        CTP_API_URL: JSON.stringify(process.env.CTP_API_URL),
         MC_ENV: JSON.stringify(process.env.MC_ENV),
         MC_LOCATION: JSON.stringify(process.env.MC_LOCATION),
         FRONTEND_HOST: JSON.stringify(process.env.FRONTEND_HOST),
@@ -191,55 +194,12 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
         include: /ui-kit/,
         use: [require.resolve('url-loader')],
       },
-      // "css" loader resolves paths in CSS and adds assets as dependencies.
-      // "style" loader turns CSS into JS modules that inject <style> tags.
-      // In production, we use a plugin to extract that CSS to a file, but
-      // in development "style" loader enables hot editing of CSS.
-      {
-        test: /\.css$/,
-        // Do not transform vendor CSS with "postcss" loader.
-        include: /node_modules/,
-        loaders: [
-          require.resolve('style-loader'),
-          require.resolve('css-loader'),
-        ],
-      },
-      // "postcss" loader applies autoprefixer to our CSS
-      // "css" loader resolves paths in CSS and adds assets as dependencies.
-      // "style" loader turns CSS into JS modules that inject <style> tags.
-      {
-        test: function testForNormalCssFiles(fileName) {
-          return (
-            // Use this only for plain CSS.
-            // For css-modules, see loader below.
-            fileName.endsWith('.css') && !fileName.endsWith('.mod.css')
-          );
-        },
-        use: [
-          require.resolve('style-loader'),
-          require.resolve('css-loader'),
-          {
-            loader: require.resolve('postcss-loader'),
-            options: {
-              ident: 'postcss',
-              plugins: () => [
-                postcssImport(),
-                postcssCssNext({
-                  browsers: '> 1%',
-                  features: { autoprefixer: { grid: true } },
-                }),
-                postcssReporter(),
-              ],
-            },
-          },
-        ],
-        include: sourceFolders,
-      },
       // "postcss" loader applies autoprefixer to our CSS
       // "css" loader resolves paths in CSS and adds assets as dependencies.
       // "style" loader turns CSS into JS modules that inject <style> tags.
       {
         test: /\.mod\.css$/,
+        include: sourceFolders,
         use: [
           require.resolve('style-loader'),
           {
@@ -256,16 +216,59 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
               ident: 'postcss',
               plugins: () => [
                 postcssImport({ path: sourceFolders }),
-                postcssCssNext({
-                  browsers: '> 1%',
-                  features: { autoprefixer: { grid: true } },
+                postcssPresetEnv({
+                  browsers: browserslist.development,
+                  autoprefixer: { grid: true },
                 }),
                 postcssReporter(),
               ],
             },
           },
         ],
-        include: sourceFolders,
+      },
+      {
+        test: function testForNormalCssFiles(fileName) {
+          return (
+            // Use this only for plain CSS.
+            // For css-modules, see loader above.
+            fileName.endsWith('.css') && !fileName.endsWith('.mod.css')
+          );
+        },
+        // "postcss" loader applies autoprefixer to our CSS.
+        // "css" loader resolves paths in CSS and adds assets as dependencies.
+        // "style" loader turns CSS into JS modules that inject <style> tags.
+        oneOf: [
+          {
+            // Use "postcss" for all the included source folders.
+            include: sourceFolders,
+            use: [
+              require.resolve('style-loader'),
+              require.resolve('css-loader'),
+              {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  ident: 'postcss',
+                  plugins: () => [
+                    postcssImport(),
+                    postcssPresetEnv({
+                      browsers: browserslist.development,
+                      autoprefixer: { grid: true },
+                    }),
+                    postcssReporter(),
+                  ],
+                },
+              },
+            ],
+          },
+          {
+            // For all other vendor CSS, do not use "postcss" loader.
+            include: /node_modules/,
+            loaders: [
+              require.resolve('style-loader'),
+              require.resolve('css-loader'),
+            ],
+          },
+        ],
       },
       // Process JS with Babel.
       {
