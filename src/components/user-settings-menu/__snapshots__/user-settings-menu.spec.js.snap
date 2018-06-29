@@ -26,53 +26,60 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
         John Test Doe
       </TextDetail>
     </Inset>
-    <ToggleFeature
-      flag="userProfile"
+    <Link
+      onClick={[MockFunction]}
+      replace={false}
+      to="/account/profile"
     >
-      <Link
-        onClick={[MockFunction]}
-        replace={false}
-        to="/account/profile"
+      <div
+        className="item"
       >
-        <div
-          className="item"
+        <Inset
+          scale="s"
         >
-          <Inset
-            scale="s"
-          >
-            <FormattedMessage
-              defaultMessage="My Profile"
-              description="The label for user profile option"
-              id="UserSettingsMenu.userProfile"
-              values={Object {}}
-            />
-          </Inset>
-        </div>
-      </Link>
-    </ToggleFeature>
+          <FormattedMessage
+            defaultMessage="My Profile"
+            description="The label for user profile option"
+            id="UserSettingsMenu.userProfile"
+            values={Object {}}
+          />
+        </Inset>
+      </div>
+    </Link>
     <ToggleFeature
       flag="projectsList"
     >
-      <Link
-        onClick={[MockFunction]}
-        replace={false}
-        to="/account/projects"
+      <withUserPermissions(RestrictedByPermissions)
+        permissions={
+          Array [
+            Object {
+              "mode": "manage",
+              "resource": "projects",
+            },
+          ]
+        }
       >
-        <div
-          className="item item-divider-account-section"
+        <Link
+          onClick={[MockFunction]}
+          replace={false}
+          to="/account/projects"
         >
-          <Inset
-            scale="s"
+          <div
+            className="item item-divider-account-section"
           >
-            <FormattedMessage
-              defaultMessage="Manage Projects"
-              description="The label for manage projects option"
-              id="UserSettingsMenu.manageProjects"
-              values={Object {}}
-            />
-          </Inset>
-        </div>
-      </Link>
+            <Inset
+              scale="s"
+            >
+              <FormattedMessage
+                defaultMessage="Manage Projects"
+                description="The label for manage projects option"
+                id="UserSettingsMenu.manageProjects"
+                values={Object {}}
+              />
+            </Inset>
+          </div>
+        </Link>
+      </withUserPermissions(RestrictedByPermissions)>
     </ToggleFeature>
     <a
       href="https://commercetools.com/privacy"

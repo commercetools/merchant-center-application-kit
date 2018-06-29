@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import isNil from 'lodash.isnil';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, withRouter } from 'react-router-dom';
+import { graphql } from 'react-apollo';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
@@ -10,10 +11,16 @@ import omit from 'lodash.omit';
 import oneLineTrim from 'common-tags/lib/oneLineTrim';
 import * as Icons from '@commercetools-frontend/ui-kit/icons';
 import * as storage from '@commercetools-frontend/storage';
+import {
+  GRAPHQL_TARGETS,
+  NO_VALUE_FALLBACK,
+} from '@commercetools-frontend/constants';
 import { AppShellProviderForUserPermissions } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS } from '../../constants';
+import { withUser } from '../fetch-user';
 import { withProject } from '../fetch-project';
+import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
 import styles from './navbar.mod.css';
 import { defaultNavigationItems } from './config';
 import messages from './messages';
@@ -226,7 +233,13 @@ export class DataMenu extends React.PureComponent {
         name: PropTypes.string.isRequired,
         menu: PropTypes.shape({
           name: PropTypes.string.isRequired,
-          labelKey: PropTypes.string.isRequired,
+          labelKey: PropTypes.string,
+          allLocaleLabels: PropTypes.arrayOf(
+            PropTypes.shape({
+              locale: PropTypes.string.isRequired,
+              value: PropTypes.string.isRequired,
+            }).isRequired
+          ),
           link: PropTypes.string,
           externalLink: PropTypes.string,
           tracking: PropTypes.object,
@@ -241,7 +254,13 @@ export class DataMenu extends React.PureComponent {
           submenu: PropTypes.arrayOf(
             PropTypes.shape({
               name: PropTypes.string.isRequired,
-              labelKey: PropTypes.string.isRequired,
+              labelKey: PropTypes.string,
+              allLocaleLabels: PropTypes.arrayOf(
+                PropTypes.shape({
+                  locale: PropTypes.string.isRequired,
+                  value: PropTypes.string.isRequired,
+                }).isRequired
+              ),
               link: PropTypes.string.isRequired,
               featureToggle: PropTypes.string,
               permissions: PropTypes.arrayOf(
@@ -255,6 +274,7 @@ export class DataMenu extends React.PureComponent {
         }),
       })
     ),
+    language: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
     isForcedMenuOpen: PropTypes.bool,
     location: PropTypes.shape({
@@ -267,6 +287,8 @@ export class DataMenu extends React.PureComponent {
     isExpanderVisible: true,
     isMenuOpen: false,
   };
+
+  bottomMenuItems = ['Support'];
 
   componentDidMount() {
     window.addEventListener('click', this.shouldCloseMenuFly, true);
@@ -359,8 +381,16 @@ export class DataMenu extends React.PureComponent {
     });
   };
 
+  renderLabel = menu => {
+    if (menu.labelKey) return <FormattedMessage {...messages[menu.labelKey]} />;
+    const localizedLabel = menu.allLocaleLabels.find(
+      loc => loc.locale === this.props.language
+    );
+    if (localizedLabel) return localizedLabel.value;
+    return NO_VALUE_FALLBACK;
+  };
+
   render() {
-    const bottomMenuItems = ['Support'];
     return (
       <MenuGroup level={1}>
         {this.props.data.map(({ name, menu }, index) => {
@@ -378,7 +408,7 @@ export class DataMenu extends React.PureComponent {
                 )}
                 <MenuItem
                   hasSubmenu={Boolean(menu.submenu)}
-                  isBottomItem={bottomMenuItems.indexOf(menu.name) >= 0}
+                  isBottomItem={this.bottomMenuItems.indexOf(menu.name) >= 0}
                   isActive={isActive}
                   isMenuOpen={this.state.isMenuOpen}
                   onClick={() => {
@@ -416,7 +446,7 @@ export class DataMenu extends React.PureComponent {
                         />
                       </div>
                       <div className={styles.title}>
-                        <FormattedMessage {...messages[menu.labelKey]} />
+                        {this.renderLabel(menu)}
                       </div>
                     </div>
                   </MenuItemLink>
@@ -444,9 +474,7 @@ export class DataMenu extends React.PureComponent {
                                     this.props.useFullRedirectsForLinks
                                   }
                                 >
-                                  <FormattedMessage
-                                    {...messages[submenu.labelKey]}
-                                  />
+                                  {this.renderLabel(submenu)}
                                 </MenuItemLink>
                               </div>
                             </li>
@@ -473,12 +501,20 @@ export class NavBar extends React.PureComponent {
 
   static propTypes = {
     // From parent
+    language: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
     useFullRedirectsForLinks: PropTypes.bool.isRequired,
     // Injected
     location: PropTypes.object.isRequired,
     isForcedMenuOpen: PropTypes.bool,
     projectPermissions: PropTypes.object.isRequired,
+    projectExtensionsQuery: PropTypes.shape({
+      projectExtensions: PropTypes.arrayOf(
+        PropTypes.shape({
+          navbarMenu: PropTypes.object.isRequired,
+        })
+      ),
+    }),
   };
 
   getNode = node => {
@@ -498,9 +534,19 @@ export class NavBar extends React.PureComponent {
         >
           <DataMenu
             rootNode={this.node}
-            data={defaultNavigationItems}
+            data={
+              this.props.projectExtensionsQuery &&
+              this.props.projectExtensionsQuery.projectExtensions
+                ? defaultNavigationItems.concat(
+                    this.props.projectExtensionsQuery.projectExtensions.map(
+                      ext => ext.navbarMenu
+                    )
+                  )
+                : defaultNavigationItems
+            }
             isForcedMenuOpen={this.props.isForcedMenuOpen}
             location={this.props.location}
+            language={this.props.language}
             projectKey={this.props.projectKey}
             useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}
           />
@@ -523,6 +569,7 @@ export default compose(
           : null,
     };
   }),
+  withUser(userData => ({ language: userData.user.language })),
   withProject(
     ownProps => ownProps.projectKey,
     projectData => ({
@@ -530,5 +577,14 @@ export default compose(
         ? omit(projectData.project.permissions, ['__typename'])
         : {},
     })
-  )
+  ),
+  graphql(FetchProjectExtensionsNavbar, {
+    name: 'projectExtensionsQuery',
+    options: () => ({
+      variables: {
+        target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+      },
+      fetchPolicy: 'cache-and-network',
+    }),
+  })
 )(NavBar);

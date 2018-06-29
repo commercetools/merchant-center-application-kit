@@ -24,12 +24,9 @@ export const DISCOUNT_RULE_BUILDER_DROPDOWN = 'extendedRuleBuilderDropdown';
 export const DISCOUNTS_BULK_SELECTION_STATUS =
   'discounts-bulk-selection-status';
 
-export const ORDER_RETURN_INFO = 'orderReturnInfo';
-
 export const PIM_SEARCH = 'pimSearch';
 export const PRICE_TIERS = 'productPriceTiers';
 // This is a shared toggle. It is also used in application-project-settings
 export const PRODUCT_TYPES_ADMINISTRATION = 'productTypesAdministration';
 
-export const PROJECT_SETTINGS = 'projectSettings';
 export const DEVELOPER_SETTINGS = 'developerSettings';
