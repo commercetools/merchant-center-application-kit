@@ -3,6 +3,8 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 // as "aliasing v1.0.0 as webpack.optimize.UglifyJsPlugin is scheduled for
@@ -82,7 +84,10 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
   // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
   // https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a
   optimization: {
-    minimizer: [new UglifyJsPlugin(uglifyConfig)],
+    minimizer: [
+      new UglifyJsPlugin(uglifyConfig),
+      new OptimizeCSSAssetsPlugin({}),
+    ],
     // Automatically split vendor and commons
     // https://twitter.com/wSokra/status/969633336732905474
     splitChunks: {
@@ -154,6 +159,18 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
       inject: false,
       filename: 'index.html.template',
       template: path.join(__dirname, 'html-template.js'),
+      chunksSortMode: (a, b) => {
+        // By default, HtmlWebpackPlugin sorts chunks by id.
+        // Since we prefer for our vendor coming first, we sort them
+        // reverse alphabetically instead
+        if (a.names[0] > b.names[0]) {
+          return -1;
+        }
+        if (a.names[0] < b.names[0]) {
+          return 1;
+        }
+        return 0;
+      },
     }),
     // Add module names to factory functions so they appear in browser profiler.
     // NOTE: instead of using `HashedModuleIdsPlugin`, we use `NamedModulesPlugin`
@@ -169,6 +186,12 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
     // Strip all locales except `en`, `de`
     // (`en` is built into Moment and can't be removed)
     new MomentLocalesPlugin({ localesToKeep: ['de'] }),
+    // Extracts CSS into ... files.
+    new MiniCssExtractPlugin({
+      filename: '[name].[chunkhash].css',
+      chunkFilename: '[name].[id].[chunkhash].css',
+    }),
+
     // Generate a `stats.json` file containing information and paths to
     // the assets that webpack created.
     // This is necessary to programmatically refer to the correct bundle path
@@ -258,7 +281,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
         test: /\.mod\.css$/,
         include: sourceFolders,
         use: [
-          require.resolve('style-loader'),
+          MiniCssExtractPlugin.loader,
           {
             loader: require.resolve('css-loader'),
             options: {
@@ -296,13 +319,13 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
         },
         // "postcss" loader applies autoprefixer to our CSS.
         // "css" loader resolves paths in CSS and adds assets as dependencies.
-        // "style" loader turns CSS into JS modules that inject <style> tags.
+        // MiniCssExtractPlugin.loader extracts css to one file per css file.
         oneOf: [
           {
             // Use "postcss" for all the included source folders.
             include: sourceFolders,
             use: [
-              require.resolve('style-loader'),
+              MiniCssExtractPlugin.loader,
               require.resolve('css-loader'),
               {
                 loader: require.resolve('postcss-loader'),
@@ -325,9 +348,10 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
           },
           {
             // For all other vendor CSS, do not use "postcss" loader.
+            // But still use MiniCssExtractPlugin :)
             include: /node_modules/,
             loaders: [
-              require.resolve('style-loader'),
+              MiniCssExtractPlugin.loader,
               require.resolve('css-loader'),
             ],
           },
