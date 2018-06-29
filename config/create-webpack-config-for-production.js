@@ -12,6 +12,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const postcssImport = require('postcss-import');
 const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
+const postCSSCustomProperties = require('postcss-custom-properties');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 const browserslist = require('./browserslist');
 
@@ -276,6 +277,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
                   browsers: browserslist.production,
                   autoprefixer: { grid: true },
                 }),
+                postCSSCustomProperties({
+                  preserve: false,
+                }),
                 postcssReporter(),
               ],
             },
@@ -309,6 +313,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
                     postcssPresetEnv({
                       browsers: browserslist.production,
                       autoprefixer: { grid: true },
+                    }),
+                    postCSSCustomProperties({
+                      preserve: false,
                     }),
                     postcssReporter(),
                   ],
