@@ -21,3 +21,4 @@ export {
   default as setupGlobalErrorListener,
 } from './utils/setup-global-error-listener';
 export { selectUserId, selectProjectKey } from './utils';
+export { default as AsyncChunkLoader } from './components/async-chunk-loader';
