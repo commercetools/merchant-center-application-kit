@@ -12,7 +12,7 @@ import {
 } from '@commercetools-frontend/ui-kit/icons';
 import IconButton from '@commercetools-frontend/ui-kit/buttons/icon-button';
 import { DOMAINS } from '@commercetools-frontend/constants';
-import { filterDataAttributes } from '../../../../utils/dataset';
+import filterDataAttributes from '../../utils/filter-data-attributes';
 import styles from './notification.mod.css';
 import messages from './messages';
 
