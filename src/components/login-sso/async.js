@@ -1,7 +1,7 @@
 import Loadable from 'react-loadable';
-import ApplicationLoader from '../application-loader';
+import AsyncChunkLoader from '../async-chunk-loader';
 
 export default Loadable({
   loader: () => import('./login-sso' /* webpackChunkName: "login-sso" */),
-  loading: ApplicationLoader,
+  loading: AsyncChunkLoader,
 });

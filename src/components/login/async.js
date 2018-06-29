@@ -1,7 +1,7 @@
 import Loadable from 'react-loadable';
-import ApplicationLoader from '../application-loader';
+import AsyncChunkLoader from '../async-chunk-loader';
 
 export default Loadable({
   loader: () => import('./login' /* webpackChunkName: "login" */),
-  loading: ApplicationLoader,
+  loading: AsyncChunkLoader,
 });
