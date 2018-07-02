@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/mc-scripts",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.9",
   "description": "Configuration and scripts for developing a MC application",
   "license": "MIT",
   "private": false,
@@ -14,8 +14,8 @@
     "@babel/code-frame": "7.0.0-beta.51",
     "@babel/core": "7.0.0-beta.51",
     "@babel/runtime": "7.0.0-beta.51",
-    "@commercetools-frontend/babel-preset-mc-app": "1.0.0-beta.8",
-    "@commercetools-frontend/mc-http-server": "1.0.0-beta.8",
+    "@commercetools-frontend/babel-preset-mc-app": "1.0.0-beta.9",
+    "@commercetools-frontend/mc-http-server": "1.0.0-beta.9",
     "@svgr/webpack": "2.0.0",
     "address": "1.0.3",
     "babel-core": "7.0.0-bridge.0",
