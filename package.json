@@ -8,7 +8,7 @@
     "precommit": "lint-staged",
     "build": "mc-scripts build",
     "start": "mc-scripts start",
-    "now-start": "mc-http-server --use-local-assets",
+    "start:prod": "mc-http-server --use-local-assets",
     "lint": "jest --projects jest.eslint.config.js",
     "format": "npm run format:js && npm run format:md",
     "format:js": "prettier --write 'src/**/*.js'",
