@@ -62,21 +62,19 @@ export class SdkGet extends React.Component {
       }
     );
   }
-
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     if (
-      nextProps.shouldRefetch(
-        this.props.actionCreatorArgs,
-        nextProps.actionCreatorArgs
+      this.props.shouldRefetch(
+        prevProps.actionCreatorArgs,
+        this.props.actionCreatorArgs
       )
     )
       this.fetch({
-        dispatch: nextProps.dispatch,
-        actionCreator: nextProps.actionCreator,
-        actionCreatorArgs: nextProps.actionCreatorArgs,
-        onSuccess: nextProps.onSuccess,
-        onError: nextProps.onError,
+        dispatch: this.props.dispatch,
+        actionCreator: this.props.actionCreator,
+        actionCreatorArgs: this.props.actionCreatorArgs,
+        onSuccess: this.props.onSuccess,
+        onError: this.props.onError,
       });
   }
   componentWillUnmount() {
