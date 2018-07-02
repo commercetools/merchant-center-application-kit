@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/storage",
-  "version": "1.0.0-beta.9",
+  "version": "1.0.0-beta.10",
   "description": "Getters and setters for window.localStorage",
   "license": "MIT",
   "private": false,
