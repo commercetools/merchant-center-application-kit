@@ -29,6 +29,15 @@ A webpack server will start building the source codes and will open up a page in
 
 > The `.env` file contains necessary ENV variables to run the application on localhost.
 
+### API domains
+
+The MC runs on 2 different data centers: one in `EU` and one in `US`. Depending on which one you would like to target your application, you need to adjust a couple of ENV variables in the `.env` file.
+
+The MC API is available at the following domains:
+
+- for `EU`: `https://mc-api.commercetools.com`
+- for `US`: `https://mc-api.commercetools.co`
+
 ### Running in production
 
 To run the application in production mode, you need to take a couple of steps:
