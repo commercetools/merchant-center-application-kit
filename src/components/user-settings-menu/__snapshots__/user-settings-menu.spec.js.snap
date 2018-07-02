@@ -47,39 +47,52 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
       </div>
     </Link>
     <ToggleFeature
+      flag="organizationsList"
+    >
+      <Link
+        onClick={[MockFunction]}
+        replace={false}
+        to="/account/organizations"
+      >
+        <div
+          className="item"
+        >
+          <Inset
+            scale="s"
+          >
+            <FormattedMessage
+              defaultMessage="Manage Organizations"
+              description="The label for manage organizations option"
+              id="UserSettingsMenu.manageOrganizations"
+              values={Object {}}
+            />
+          </Inset>
+        </div>
+      </Link>
+    </ToggleFeature>
+    <ToggleFeature
       flag="projectsList"
     >
-      <withUserPermissions(RestrictedByPermissions)
-        permissions={
-          Array [
-            Object {
-              "mode": "manage",
-              "resource": "projects",
-            },
-          ]
-        }
+      <Link
+        onClick={[MockFunction]}
+        replace={false}
+        to="/account/projects"
       >
-        <Link
-          onClick={[MockFunction]}
-          replace={false}
-          to="/account/projects"
+        <div
+          className="item item-divider-account-section"
         >
-          <div
-            className="item item-divider-account-section"
+          <Inset
+            scale="s"
           >
-            <Inset
-              scale="s"
-            >
-              <FormattedMessage
-                defaultMessage="Manage Projects"
-                description="The label for manage projects option"
-                id="UserSettingsMenu.manageProjects"
-                values={Object {}}
-              />
-            </Inset>
-          </div>
-        </Link>
-      </withUserPermissions(RestrictedByPermissions)>
+            <FormattedMessage
+              defaultMessage="Manage Projects"
+              description="The label for manage projects option"
+              id="UserSettingsMenu.manageProjects"
+              values={Object {}}
+            />
+          </Inset>
+        </div>
+      </Link>
     </ToggleFeature>
     <a
       href="https://commercetools.com/privacy"

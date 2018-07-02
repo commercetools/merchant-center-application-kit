@@ -10,11 +10,10 @@ import { CaretDownIcon } from '@commercetools-frontend/ui-kit/icons';
 import Text from '@commercetools-frontend/ui-kit/typography/text';
 import Spacings from '@commercetools-frontend/ui-kit/materials/spacings';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import Card from '../../from-core/card';
-import { MCSupportFormURL, MANAGE_PROJECTS_PERMISSION } from '../../constants';
+import { MCSupportFormURL } from '../../constants';
 import Avatar from '../avatar';
-import { PROJECTS_LIST } from '../../feature-toggles';
+import { PROJECTS_LIST, ORGANIZATIONS_LIST } from '../../feature-toggles';
 import styles from './user-settings-menu.mod.css';
 import messages from './messages';
 
@@ -87,23 +86,28 @@ export default class UserSettingsMenu extends React.PureComponent {
                       </Spacings.Inset>
                     </div>
                   </Link>
+                  <ToggleFeature flag={ORGANIZATIONS_LIST}>
+                    <Link to="/account/organizations" onClick={toggleMenu}>
+                      <div className={styles.item}>
+                        <Spacings.Inset scale="s">
+                          <FormattedMessage {...messages.manageOrganizations} />
+                        </Spacings.Inset>
+                      </div>
+                    </Link>
+                  </ToggleFeature>
                   <ToggleFeature flag={PROJECTS_LIST}>
-                    <RestrictedByPermissions
-                      permissions={[MANAGE_PROJECTS_PERMISSION]}
-                    >
-                      <Link to="/account/projects" onClick={toggleMenu}>
-                        <div
-                          className={classnames(
-                            styles.item,
-                            styles['item-divider-account-section']
-                          )}
-                        >
-                          <Spacings.Inset scale="s">
-                            <FormattedMessage {...messages.manageProjects} />
-                          </Spacings.Inset>
-                        </div>
-                      </Link>
-                    </RestrictedByPermissions>
+                    <Link to="/account/projects" onClick={toggleMenu}>
+                      <div
+                        className={classnames(
+                          styles.item,
+                          styles['item-divider-account-section']
+                        )}
+                      >
+                        <Spacings.Inset scale="s">
+                          <FormattedMessage {...messages.manageProjects} />
+                        </Spacings.Inset>
+                      </div>
+                    </Link>
                   </ToggleFeature>
                   {
                     // FIXME: added as urgent request for GDPR changes
