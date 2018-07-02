@@ -54,8 +54,6 @@ const cspDirectives = Object.assign(
     'script-src': [
       "'self'",
       // NOTE: trailing slash is important for partial URLs!
-      'storage.googleapis.com/mc-eu/',
-      'storage.googleapis.com/mc-us/',
       'storage.googleapis.com/mc-staging/',
       'storage.googleapis.com/mc-production-eu/',
       'storage.googleapis.com/mc-production-us/',
@@ -90,6 +88,9 @@ const cspDirectives = Object.assign(
       "'unsafe-inline'",
       'fonts.googleapis.com',
       'data:',
+      'storage.googleapis.com/mc-staging/',
+      'storage.googleapis.com/mc-production-eu/',
+      'storage.googleapis.com/mc-production-us/',
     ],
     'font-src': ["'self'", 'fonts.gstatic.com', 'data:'],
   },
