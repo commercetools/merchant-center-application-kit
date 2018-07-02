@@ -18,7 +18,7 @@ describe('rendering', () => {
   });
   it('should call render', () => {
     expect(props.render).toHaveBeenCalledWith({
-      isLoading: false,
+      isLoading: true,
       refresh: expect.any(Function),
       result: null,
       error: null,

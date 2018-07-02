@@ -27,6 +27,11 @@ export class SdkGet extends React.Component {
     shouldRefetch: (prevArgs, nextArgs) => !deepEqual(prevArgs, nextArgs),
   };
   state = {
+    // We want the component to have a loading state by default, so we
+    // keep track of whether the first request has completed.
+    // We can't use requestsInFlight only as that would lead to a flash of
+    // the loading state until the first request starts in componentDidMount.
+    isWaitingForCompletionOfFirstRequest: true,
     requestsInFlight: 0,
     result: null,
     error: null,
@@ -46,7 +51,16 @@ export class SdkGet extends React.Component {
       actionCreatorArgs: this.props.actionCreatorArgs,
       onSuccess: this.props.onSuccess,
       onError: this.props.onError,
-    });
+    }).then(
+      result => {
+        this.setState({ isWaitingForCompletionOfFirstRequest: false });
+        return result;
+      },
+      error => {
+        this.setState({ isWaitingForCompletionOfFirstRequest: false });
+        throw error;
+      }
+    );
   }
 
   // eslint-disable-next-line camelcase
@@ -101,7 +115,9 @@ export class SdkGet extends React.Component {
     });
   render() {
     return this.props.render({
-      isLoading: this.state.requestsInFlight > 0,
+      isLoading:
+        this.state.requestsInFlight > 0 ||
+        this.state.isWaitingForCompletionOfFirstRequest,
       refresh: this.refresh,
       result: this.state.result,
       error: this.state.error,
