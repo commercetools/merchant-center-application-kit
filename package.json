@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/actions-global",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.9",
   "description": "Global redux actions for a MC application",
   "license": "MIT",
   "private": false,
@@ -10,9 +10,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@commercetools-frontend/browser-history": "1.0.0-beta.8",
-    "@commercetools-frontend/constants": "1.0.0-beta.8",
-    "@commercetools-frontend/notifications": "1.0.0-beta.8",
+    "@commercetools-frontend/browser-history": "1.0.0-beta.9",
+    "@commercetools-frontend/constants": "1.0.0-beta.9",
+    "@commercetools-frontend/notifications": "1.0.0-beta.9",
     "lodash.isnumber": "3.0.3"
   }
 }
