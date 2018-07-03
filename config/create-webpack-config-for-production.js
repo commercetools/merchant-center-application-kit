@@ -92,6 +92,14 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
     // https://twitter.com/wSokra/status/969633336732905474
     splitChunks: {
       chunks: 'all',
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true,
+        },
+      },
     },
     // Keep the runtime chunk seperated to enable long term caching
     // https://twitter.com/wSokra/status/969679223278505985
@@ -159,18 +167,6 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
       inject: false,
       filename: 'index.html.template',
       template: path.join(__dirname, 'html-template.js'),
-      chunksSortMode: (a, b) => {
-        // By default, HtmlWebpackPlugin sorts chunks by id.
-        // Since we prefer for our vendor coming first, we sort them
-        // reverse alphabetically instead
-        if (a.names[0] > b.names[0]) {
-          return -1;
-        }
-        if (a.names[0] < b.names[0]) {
-          return 1;
-        }
-        return 0;
-      },
     }),
     // Add module names to factory functions so they appear in browser profiler.
     // NOTE: instead of using `HashedModuleIdsPlugin`, we use `NamedModulesPlugin`
@@ -186,10 +182,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
     // Strip all locales except `en`, `de`
     // (`en` is built into Moment and can't be removed)
     new MomentLocalesPlugin({ localesToKeep: ['de'] }),
-    // Extracts CSS into ... files.
+    // Extracts CSS into one CSS file to mimic CSS order in dev
     new MiniCssExtractPlugin({
       filename: '[name].[chunkhash].css',
-      chunkFilename: '[name].[id].[chunkhash].css',
     }),
 
     // Generate a `stats.json` file containing information and paths to
