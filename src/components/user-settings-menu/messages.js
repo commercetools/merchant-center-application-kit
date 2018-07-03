@@ -16,6 +16,11 @@ export default defineMessages({
     description: 'The label for manage projects option',
     defaultMessage: 'Manage Projects',
   },
+  manageTeams: {
+    id: 'UserSettingsMenu.manageTeams',
+    description: 'The label for manage teams option',
+    defaultMessage: 'Manage Teams',
+  },
   support: {
     id: 'UserSettingsMenu.support',
     description: 'The label for Support',

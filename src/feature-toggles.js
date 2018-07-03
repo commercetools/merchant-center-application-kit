@@ -13,3 +13,4 @@
 // eslint-disable-next-line import/prefer-default-export
 export const PROJECTS_LIST = 'projectsList';
 export const ORGANIZATIONS_LIST = 'organizationsList';
+export const TEAMS_LIST = 'teamsList';

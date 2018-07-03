@@ -13,7 +13,11 @@ import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import Card from '../../from-core/card';
 import { MCSupportFormURL } from '../../constants';
 import Avatar from '../avatar';
-import { PROJECTS_LIST, ORGANIZATIONS_LIST } from '../../feature-toggles';
+import {
+  PROJECTS_LIST,
+  ORGANIZATIONS_LIST,
+  TEAMS_LIST,
+} from '../../feature-toggles';
 import styles from './user-settings-menu.mod.css';
 import messages from './messages';
 
@@ -97,6 +101,15 @@ export default class UserSettingsMenu extends React.PureComponent {
                   </ToggleFeature>
                   <ToggleFeature flag={PROJECTS_LIST}>
                     <Link to="/account/projects" onClick={toggleMenu}>
+                      <div className={styles.item}>
+                        <Spacings.Inset scale="s">
+                          <FormattedMessage {...messages.manageProjects} />
+                        </Spacings.Inset>
+                      </div>
+                    </Link>
+                  </ToggleFeature>
+                  <ToggleFeature flag={TEAMS_LIST}>
+                    <Link to="/account/teams" onClick={toggleMenu}>
                       <div
                         className={classnames(
                           styles.item,
@@ -104,7 +117,7 @@ export default class UserSettingsMenu extends React.PureComponent {
                         )}
                       >
                         <Spacings.Inset scale="s">
-                          <FormattedMessage {...messages.manageProjects} />
+                          <FormattedMessage {...messages.manageTeams} />
                         </Spacings.Inset>
                       </div>
                     </Link>
