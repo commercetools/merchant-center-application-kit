@@ -79,7 +79,7 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
         to="/account/projects"
       >
         <div
-          className="item"
+          className="item item-divider-account-section"
         >
           <Inset
             scale="s"
@@ -88,30 +88,6 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
               defaultMessage="Manage Projects"
               description="The label for manage projects option"
               id="UserSettingsMenu.manageProjects"
-              values={Object {}}
-            />
-          </Inset>
-        </div>
-      </Link>
-    </ToggleFeature>
-    <ToggleFeature
-      flag="teamsList"
-    >
-      <Link
-        onClick={[MockFunction]}
-        replace={false}
-        to="/account/teams"
-      >
-        <div
-          className="item item-divider-account-section"
-        >
-          <Inset
-            scale="s"
-          >
-            <FormattedMessage
-              defaultMessage="Manage Teams"
-              description="The label for manage teams option"
-              id="UserSettingsMenu.manageTeams"
               values={Object {}}
             />
           </Inset>
