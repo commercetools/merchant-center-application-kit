@@ -15,6 +15,7 @@ const postcssImport = require('postcss-import');
 const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
 const postCSSCustomProperties = require('postcss-custom-properties');
+const postcssCustomMediaQueries = require('postcss-custom-media');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 const browserslist = require('./browserslist');
 
@@ -298,6 +299,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
                 postCSSCustomProperties({
                   preserve: false,
                 }),
+                postcssCustomMediaQueries(),
                 postcssReporter(),
               ],
             },
