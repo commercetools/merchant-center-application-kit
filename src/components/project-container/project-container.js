@@ -9,9 +9,9 @@ import { DOMAINS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { AppShellProviderForUserPermissions } from '@commercetools-frontend/application-shell-connectors';
-import LoadingSpinner from '@commercetools-frontend/ui-kit/loading-spinner';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { STORAGE_KEYS } from '../../constants';
+import ApplicationLoader from '../application-loader';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectDataLocale from '../project-data-locale';
 import FetchProject from '../fetch-project';
@@ -108,7 +108,7 @@ export class ProjectContainer extends React.Component {
       return <ErrorApologizer />;
     }
     // TODO: do something if there is an `error`?
-    if (this.props.isLoadingUser) return <LoadingSpinner />;
+    if (this.props.isLoadingUser) return <ApplicationLoader />;
     if (this.props.user && this.props.user.projects.total === 0)
       return <Redirect to="/logout?reason=no-projects" />;
 
@@ -120,7 +120,7 @@ export class ProjectContainer extends React.Component {
       <FetchProject projectKey={this.props.match.params.projectKey}>
         {({ isLoading: isProjectLoading, project }) => {
           // TODO: do something if there is an `error`?
-          if (isProjectLoading) return <LoadingSpinner />;
+          if (isProjectLoading) return <ApplicationLoader />;
           if (!project) return <ProjectNotFound />;
           if (project.suspended) return <ProjectSuspended />;
           if (project.expired) return <ProjectExpired />;

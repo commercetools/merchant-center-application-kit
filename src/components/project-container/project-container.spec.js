@@ -5,6 +5,7 @@ import { shallow } from 'enzyme';
 import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { STORAGE_KEYS } from '../../constants';
+import ApplicationLoader from '../application-loader';
 import FetchProject from '../fetch-project';
 import ProjectDataLocale from '../project-data-locale';
 import LocaleSwitcher from '../locale-switcher';
@@ -53,8 +54,8 @@ describe('rendering', () => {
       props = createTestProps({ isLoadingUser: true });
       wrapper = shallow(<ProjectContainer {...props} />);
     });
-    it('should render <LoadingSpinner>', () => {
-      expect(wrapper).toRender('LoadingSpinner');
+    it('should render <ApplicationLoader>', () => {
+      expect(wrapper).toRender(ApplicationLoader);
     });
   });
   describe('when user is not loading', () => {
@@ -90,8 +91,8 @@ describe('rendering', () => {
             isLoading: true,
           });
         });
-        it('should render <LoadingSpinner>', () => {
-          expect(wrapper).toRender('LoadingSpinner');
+        it('should render <ApplicationLoader>', () => {
+          expect(wrapper).toRender(ApplicationLoader);
         });
       });
       describe('when project is not found', () => {

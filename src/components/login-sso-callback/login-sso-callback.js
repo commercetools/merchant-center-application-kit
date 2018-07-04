@@ -67,7 +67,7 @@ export class LoginSSOCallback extends React.PureComponent {
     return this.state.hasAuthenticationFailed ? (
       <FailedAuthentication />
     ) : (
-      <ApplicationLoader />
+      <ApplicationLoader showLogo={true} />
     );
   }
 }
