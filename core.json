@@ -1302,6 +1302,7 @@
   "Orders.Create.Step.LineItems.cartUpdated": "The cart has been successfully updated",
   "Orders.Create.Step.LineItems.Custom.backToAddOrderLabel": "Back to add order",
   "Orders.Create.Step.LineItems.Custom.cancelButtonLabel": "Cancel",
+  "Orders.Create.Step.LineItems.Custom.invalidTaxCategory": "Invalid tax category",
   "Orders.Create.Step.LineItems.Custom.itemSuccessfullyAdded": "The custom line item {name} has successfully been added to the cart",
   "Orders.Create.Step.LineItems.Custom.localizedModalTitle": "Custom line item name",
   "Orders.Create.Step.LineItems.Custom.missingTaxRate": "You can not add this item to the cart because the selected tax category does not have a valid tax rate for the cart country",
