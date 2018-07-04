@@ -447,7 +447,6 @@
   "Categories.Details.ChangeParent.Breadcrumbs.label": "Category path",
   "Categories.Details.ChangeParent.Breadcrumbs.labelCurrent": "Current category path",
   "Categories.Details.ChangeParent.Breadcrumbs.labelNew": "New category path",
-  "Categories.Details.ChangeParent.cell.products": "{count} products",
   "Categories.Details.ChangeParent.cell.subcategories": "{count} subcategories",
   "Categories.Details.ChangeParent.changeParentButtonLabel": "Move Category",
   "Categories.Details.ChangeParent.changeParentConfirmation.description": "Are you sure you would like to move the category '{currentCategoryName}' and all subcategories to '{newParentCategoryName}'?",
