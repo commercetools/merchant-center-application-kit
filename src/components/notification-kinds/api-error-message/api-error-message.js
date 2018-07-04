@@ -61,6 +61,13 @@ export const ApiErrorMessage = props => {
 
   if (
     props.error.code === 'InvalidOperation' &&
+    props.error.message.includes('Duplicate tax rate for')
+  ) {
+    return <FormattedMessage {...messages.TaxCategoryDuplicateCountry} />;
+  }
+
+  if (
+    props.error.code === 'InvalidOperation' &&
     regexInvalidOperationRequiredAttribute.test(props.error.message)
   ) {
     const attrName = props.error.message.replace(
