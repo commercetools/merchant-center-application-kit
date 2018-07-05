@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 const path = require('path');
 const webpack = require('webpack');
+const cssnano = require('cssnano');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -18,6 +19,19 @@ const postCSSCustomProperties = require('postcss-custom-properties');
 const postcssCustomMediaQueries = require('postcss-custom-media');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 const browserslist = require('./browserslist');
+
+const optimizeCSSConfig = {
+  // Since css-loader uses cssnano v3.1.0, it's best to stick with the
+  // same version here
+  cssProcessor: cssnano,
+  // This safe condition is necessary (as of v3 of cssnano) else we will run into
+  // problems, learn more👇
+  // https://github.com/NMFR/optimize-css-assets-webpack-plugin/issues/28
+  cssProcessorOptions: {
+    safe: true,
+    discardComments: { removeAll: true },
+  },
+};
 
 const uglifyConfig = {
   // This configuration is from the slack team:
@@ -87,20 +101,12 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
   optimization: {
     minimizer: [
       new UglifyJsPlugin(uglifyConfig),
-      new OptimizeCSSAssetsPlugin({}),
+      new OptimizeCSSAssetsPlugin(optimizeCSSConfig),
     ],
     // Automatically split vendor and commons
     // https://twitter.com/wSokra/status/969633336732905474
     splitChunks: {
       chunks: 'all',
-      cacheGroups: {
-        styles: {
-          name: 'styles',
-          test: /\.css$/,
-          chunks: 'all',
-          enforce: true,
-        },
-      },
     },
     // Keep the runtime chunk seperated to enable long term caching
     // https://twitter.com/wSokra/status/969679223278505985
@@ -186,6 +192,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
     // Extracts CSS into one CSS file to mimic CSS order in dev
     new MiniCssExtractPlugin({
       filename: '[name].[chunkhash].css',
+      chunkFilename: '[id].[name].[chunkhash].css',
     }),
 
     // Generate a `stats.json` file containing information and paths to

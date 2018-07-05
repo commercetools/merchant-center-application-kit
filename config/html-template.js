@@ -1,7 +1,18 @@
 const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-http-server/utils/replace-html-placeholders');
 
 module.exports = templateParams => {
-  const cssChunks = templateParams.htmlWebpackPlugin.files.css.map(fileName => {
+  const cssVendorChunks = [];
+  const cssAppChunks = [];
+
+  templateParams.htmlWebpackPlugin.files.css.forEach(file => {
+    if (file.indexOf('vendor') === -1) {
+      cssAppChunks.push(file);
+    } else {
+      cssVendorChunks.push(file);
+    }
+  });
+
+  const cssChunks = cssVendorChunks.concat(cssAppChunks).map(fileName => {
     const chunkPath = fileName.replace(/^\//, '');
     return `<link href="__CDN_URL__${chunkPath}" rel='stylesheet' type='text/css'></link>`;
   });
