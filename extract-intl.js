@@ -47,7 +47,7 @@ const { presets, plugins } = babelConfig;
 // Resolve the absolute path of the caller location. This is necessary
 // to point to files within that folder.
 const rootPath = process.cwd();
-const locales = ['en', 'de'];
+const locales = ['en', 'de', 'es'];
 const defaultLocale = flags.locale;
 const outputPath = flags['output-path'];
 const shouldBuildTranslations = flags['build-translations'];
