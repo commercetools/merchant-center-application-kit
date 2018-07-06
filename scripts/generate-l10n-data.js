@@ -1,10 +1,12 @@
 /* eslint-disable no-console, prefer-object-spread/prefer-object-spread */
-require('shelljs/global');
 const fs = require('fs');
+const path = require('path');
+const shell = require('shelljs');
 const cldr = require('cldr');
-const rimraf = require('rimraf');
+const chalk = require('chalk');
 const fetch = require('node-fetch');
 const moment = require('moment-timezone');
+const deepDiff = require('deep-diff');
 
 const L10N_KEYS = {
   COUNTRY: 'country',
@@ -196,55 +198,96 @@ const extractLanguageDataForLocale = locale => {
 
 const DATA_DIR = {
   [L10N_KEYS.COUNTRY]: {
-    path: './packages-shared/l10n/data/countries',
+    path: './data/countries',
     transform: extractCountryDataForLocale,
   },
   [L10N_KEYS.CURRENCY]: {
-    path: './packages-shared/l10n/data/currencies',
+    path: './data/currencies',
     transform: extractCurrencyDataForLocale,
   },
   [L10N_KEYS.TIMEZONE]: {
-    path: './packages-shared/l10n/data/time-zones',
+    path: './data/time-zones',
     transform: extractTimeZoneDataForLocale,
   },
   [L10N_KEYS.LANGUAGE]: {
-    path: './packages-shared/l10n/data/languages',
+    path: './data/languages',
     transform: extractLanguageDataForLocale,
   },
 };
 
-/**
- * Delete + re-create data dir.
- * Ignores create err if dir already exists
- */
-const setup = key => {
-  rimraf.sync(DATA_DIR[key].path);
-  // eslint-disable-next-line no-undef
-  mkdir('-p', DATA_DIR[key].path);
+const mapDiffToWarnings = (oldData, newData) => {
+  const diff = deepDiff(oldData, newData);
+  if (!diff) return [];
+  return diff
+    .map(diffEdit => {
+      switch (diffEdit.kind) {
+        case 'E':
+          return `The field "${chalk.cyan(
+            diffEdit.path.join('.')
+          )}" ${chalk.underline('has changed')} from "${chalk.red(
+            diffEdit.lhs
+          )}" to "${chalk.green(diffEdit.rhs)}".`;
+        case 'D':
+          return `The field "${chalk.cyan(
+            diffEdit.path.join('.')
+          )}" ${chalk.underline('has been removed')} ('${chalk.red(
+            JSON.stringify(diffEdit.lhs)
+          )}').`;
+        case 'N':
+          return `The field "${chalk.cyan(
+            diffEdit.path.join('.')
+          )}" ${chalk.underline('has been added')} ('${chalk.green(
+            JSON.stringify(diffEdit.rhs)
+          )}').`;
+        default:
+          return null;
+      }
+    })
+    .filter(Boolean);
 };
 
 const updateLocaleData = async (key, locales) => {
-  await Promise.all(
+  const results = await Promise.all(
     locales.map(async locale => {
-      const localData = await DATA_DIR[key].transform(locale);
+      const newLocaleData = await DATA_DIR[key].transform(locale);
+      const targetFolder = path.join(__dirname, '..', DATA_DIR[key].path);
+      const targetFile = path.join(targetFolder, `${locale}.json`);
 
-      console.log(`[${key}] Writing ${locale} data to ${locale}.json`);
+      console.log(`[${key}] Writing ${locale} data to ${targetFile}`);
 
-      fs.writeFileSync(
-        `${DATA_DIR[key].path}/${locale}.json`,
-        JSON.stringify(localData, null, 2)
-      );
-      return Promise.resolve();
+      let warnings = [];
+      try {
+        fs.accessSync(targetFile, fs.F_OK);
+        const oldLocaleData = JSON.parse(
+          fs.readFileSync(targetFile, { encoding: 'utf8' })
+        );
+        warnings = mapDiffToWarnings(oldLocaleData, newLocaleData);
+      } catch (error) {
+        // skip
+      }
+
+      shell.mkdir('-p', targetFolder);
+      fs.writeFileSync(targetFile, JSON.stringify(newLocaleData, null, 2));
+      return Promise.resolve({ warnings, locale });
     })
   );
 
   console.log(`[${key}] Updated ${locales.length} locales`);
+  results.forEach(r => {
+    if (r.warnings.length > 0) {
+      console.log(
+        chalk.yellow(
+          `[${key}] Data generated with warnings for locale "${r.locale}".\n`
+        )
+      );
+      console.log(r.warnings.join('\n'));
+    }
+  });
   return Promise.resolve();
 };
 
 const run = async key => {
-  setup(key);
-  await updateLocaleData(key, ['en', 'de']);
+  await updateLocaleData(key, ['en', 'de', 'es']);
 };
 
 Promise.all(
