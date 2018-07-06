@@ -9,6 +9,7 @@
     "build": "mc-scripts build",
     "start": "mc-scripts start",
     "start:prod": "mc-http-server --use-local-assets",
+    "now-start": "npm run start:prod",
     "lint": "jest --projects jest.eslint.config.js",
     "format": "npm run format:js && npm run format:md",
     "format:js": "prettier --write 'src/**/*.js'",
