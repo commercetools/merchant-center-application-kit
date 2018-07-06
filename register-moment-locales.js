@@ -15,3 +15,8 @@ import 'moment/locale/en-nz';
 import 'moment/locale/de';
 import 'moment/locale/de-at';
 import 'moment/locale/de-ch';
+
+// ES
+import 'moment/locale/es';
+import 'moment/locale/es-us';
+import 'moment/locale/es-do';
