@@ -169,6 +169,10 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
                 loader: require.resolve('@svgr/webpack'),
                 options: {
                   icon: true,
+                  svgoConfig: {
+                    // Keeps ID's of svgs so they can be targeted with CSS
+                    cleanupIDs: false,
+                  },
                 },
               },
             ],
