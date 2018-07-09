@@ -87,8 +87,7 @@
 }
 
 .expand-icon {
-  color: var(--color-white);
-  background: var(--color-green-25);
+  background: var(--color-black);
   align-items: center;
   border-radius: 32px;
   cursor: pointer;
