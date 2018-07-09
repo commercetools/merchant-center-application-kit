@@ -277,7 +277,9 @@ const updateLocaleData = async (key, locales) => {
     if (r.warnings.length > 0) {
       console.log(
         chalk.yellow(
-          `[${key}] Data generated with warnings for locale "${r.locale}".\n`
+          `\n\n[${key}] Data generated with warnings for locale "${
+            r.locale
+          }".\n`
         )
       );
       console.log(r.warnings.join('\n'));
