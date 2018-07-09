@@ -17,7 +17,7 @@ const PublicPageContainer = props => (
         {props.children}
         <div className={styles.footer}>
           <a href={`https://commercetools.com/privacy`} target="_blank">
-            <Text.Detail tone="primary">
+            <Text.Detail>
               <FormattedMessage {...messages.privacyPolicy} />
             </Text.Detail>
           </a>
