@@ -3,12 +3,23 @@ import snakeCase from 'lodash.snakecase';
 import oneLineTrim from 'common-tags/lib/oneLineTrim';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
-import { convertToClosestMs } from './conversions';
+import convertToClosestMs from './conversions';
 
-const BaseComponent = () => null;
-BaseComponent.displayName = 'FirstPaintMeasurement';
+const FirstPaintMeasurement = () => null;
+FirstPaintMeasurement.displayName = 'FirstPaintMeasurement';
 
 const metricSummariesEndpoint = '/proxy/mc-metrics/metrics/summaries';
+
+const transformPaintToMcMetics = ({ paintMetric, labels }) => ({
+  metricName: oneLineTrim`
+    browser
+    _duration
+    _${snakeCase(paintMetric.name)}
+    _milliseconds
+  `,
+  metricValue: convertToClosestMs(paintMetric.startTime),
+  metricLabels: labels,
+});
 
 export default compose(
   injectConfiguration(['mcApiUrl'], 'mcApiUrl'),
@@ -17,20 +28,19 @@ export default compose(
       // We are using the Performance API, since registering `paint`
       // on the `PerformanceObserver` doesn't give us the startTimes that we need
       // if we follow the pattern of initiating the `PerformanceObserver` upon mount
-      const paintMetrics = performance.getEntriesByType('paint');
-      const convertedMetrics = paintMetrics.map(paintMetric => ({
-        metricName: oneLineTrim`
-          browser
-          _duration
-          _${snakeCase(paintMetric.name)}
-          _milliseconds
-        `,
-        metricValue: convertToClosestMs(paintMetric.startTime),
-        metricLabels: { application: this.props.applicationLabel },
-      }));
+      const convertedMetrics = performance
+        .getEntriesByType('paint')
+        .map(paintMetric =>
+          transformPaintToMcMetics({
+            paintMetric,
+            labels: { application: this.props.applicationLabel },
+          })
+        );
+
       const headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('Accept', 'application/json');
+
       fetch(`${this.props.mcApiUrl}${metricSummariesEndpoint}`, {
         method: 'POST',
         body: JSON.stringify(convertedMetrics),
@@ -43,4 +53,4 @@ export default compose(
       });
     },
   })
-)(BaseComponent);
+)(FirstPaintMeasurement);
