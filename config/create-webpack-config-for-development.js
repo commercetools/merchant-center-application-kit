@@ -168,10 +168,15 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
               {
                 loader: require.resolve('@svgr/webpack'),
                 options: {
-                  icon: true,
+                  // NOTE: disable this and manually add `removeViewBox: false` in the SVGO plugins list
+                  // See related PR: https://github.com/smooth-code/svgr/pull/137
+                  icon: false,
                   svgoConfig: {
-                    // Keeps ID's of svgs so they can be targeted with CSS
-                    cleanupIDs: false,
+                    plugins: [
+                      { removeViewBox: false },
+                      // Keeps ID's of svgs so they can be targeted with CSS
+                      { cleanupIDs: false },
+                    ],
                   },
                 },
               },
