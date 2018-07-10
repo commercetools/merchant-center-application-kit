@@ -78,13 +78,23 @@ const uglifyConfig = {
   parallel: true,
 };
 
+const defaultToggleFlags = {
+  // Allow to disable CSS extraction in case it's not necessary (e.g. for Storybook)
+  enableExtractCss: true,
+};
+
 /**
  * This is a factory function to create the default webpack config
  * for a MC Application in `production` mode.
  * The function requires the file path to the related application
  * "entry point".
  */
-module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
+module.exports = ({
+  distPath,
+  entryPoint,
+  sourceFolders,
+  toggleFlags = defaultToggleFlags,
+}) => ({
   // Don't attempt to continue if there are any errors.
   bail: true,
 
@@ -99,14 +109,17 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
   // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
   // https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a
   optimization: {
-    minimizer: [
-      new UglifyJsPlugin(uglifyConfig),
-      new OptimizeCSSAssetsPlugin(optimizeCSSConfig),
-    ],
+    minimizer: [new UglifyJsPlugin(uglifyConfig)].concat(
+      toggleFlags.enableExtractCss
+        ? new OptimizeCSSAssetsPlugin(optimizeCSSConfig)
+        : []
+    ),
     // Automatically split vendor and commons
     // https://twitter.com/wSokra/status/969633336732905474
     splitChunks: {
       chunks: 'all',
+      // NOTE: if you enable `cacheGroups` for CSS, remember to toggle it with
+      // the `toggleFlags.enableExtractCss`
     },
     // Keep the runtime chunk seperated to enable long term caching
     // https://twitter.com/wSokra/status/969679223278505985
@@ -189,11 +202,6 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
     // Strip all locales except `en`, `de`
     // (`en` is built into Moment and can't be removed)
     new MomentLocalesPlugin({ localesToKeep: ['de'] }),
-    // Extracts CSS into one CSS file to mimic CSS order in dev
-    new MiniCssExtractPlugin({
-      filename: '[name].[chunkhash].css',
-      chunkFilename: '[id].[name].[chunkhash].css',
-    }),
 
     // Generate a `stats.json` file containing information and paths to
     // the assets that webpack created.
@@ -206,6 +214,13 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
   ]
     // Optional plugins
     .concat(
+      toggleFlags.enableExtractCss
+        ? // Extracts CSS into one CSS file to mimic CSS order in dev
+          new MiniCssExtractPlugin({
+            filename: '[name].[chunkhash].css',
+            chunkFilename: '[id].[name].[chunkhash].css',
+          })
+        : [],
       process.env.ANALYZE_BUNDLE === 'true'
         ? [
             new BundleAnalyzerPlugin({
@@ -288,7 +303,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
         test: /\.mod\.css$/,
         include: sourceFolders,
         use: [
-          MiniCssExtractPlugin.loader,
+          toggleFlags.enableExtractCss
+            ? MiniCssExtractPlugin.loader
+            : require.resolve('style-loader'),
           {
             loader: require.resolve('css-loader'),
             options: {
@@ -327,13 +344,15 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
         },
         // "postcss" loader applies autoprefixer to our CSS.
         // "css" loader resolves paths in CSS and adds assets as dependencies.
-        // MiniCssExtractPlugin.loader extracts css to one file per css file.
+        // "MiniCssExtractPlugin" or "style" loader extracts css to one file per css file.
         oneOf: [
           {
             // Use "postcss" for all the included source folders.
             include: sourceFolders,
             use: [
-              MiniCssExtractPlugin.loader,
+              toggleFlags.enableExtractCss
+                ? MiniCssExtractPlugin.loader
+                : require.resolve('style-loader'),
               require.resolve('css-loader'),
               {
                 loader: require.resolve('postcss-loader'),
@@ -359,7 +378,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
             // But still use MiniCssExtractPlugin :)
             include: /node_modules/,
             loaders: [
-              MiniCssExtractPlugin.loader,
+              toggleFlags.enableExtractCss
+                ? MiniCssExtractPlugin.loader
+                : require.resolve('style-loader'),
               require.resolve('css-loader'),
             ],
           },
