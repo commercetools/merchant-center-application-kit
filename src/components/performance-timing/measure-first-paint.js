@@ -10,7 +10,7 @@ MeasureFirstPaint.displayName = 'MeasureFirstPaint';
 
 const metricSummariesEndpoint = '/proxy/mc-metrics/metrics/summaries';
 
-const transformPaintToMcMetics = ({ paintMetric, labels }) => ({
+const transformPaintToMcMetrics = ({ paintMetric, labels }) => ({
   metricName: oneLineTrim`
     browser
     _duration
@@ -31,7 +31,7 @@ export default compose(
       const convertedMetrics = performance
         .getEntriesByType('paint')
         .map(paintMetric =>
-          transformPaintToMcMetics({
+          transformPaintToMcMetrics({
             paintMetric,
             labels: { application: this.props.applicationLabel },
           })
