@@ -1,8 +1,11 @@
 /* eslint-disable prettier/prettier */
 const path = require('path');
 const webpack = require('webpack');
+const cssnano = require('cssnano');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 // as "aliasing v1.0.0 as webpack.optimize.UglifyJsPlugin is scheduled for
@@ -12,8 +15,23 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const postcssImport = require('postcss-import');
 const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
+const postCSSCustomProperties = require('postcss-custom-properties');
+const postcssCustomMediaQueries = require('postcss-custom-media');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 const browserslist = require('./browserslist');
+
+const optimizeCSSConfig = {
+  // Since css-loader uses cssnano v3.1.0, it's best to stick with the
+  // same version here
+  cssProcessor: cssnano,
+  // This safe condition is necessary (as of v3 of cssnano) else we will run into
+  // problems, learn more👇
+  // https://github.com/NMFR/optimize-css-assets-webpack-plugin/issues/28
+  cssProcessorOptions: {
+    safe: true,
+    discardComments: { removeAll: true },
+  },
+};
 
 const uglifyConfig = {
   // This configuration is from the slack team:
@@ -60,13 +78,23 @@ const uglifyConfig = {
   parallel: true,
 };
 
+const defaultToggleFlags = {
+  // Allow to disable CSS extraction in case it's not necessary (e.g. for Storybook)
+  enableExtractCss: true,
+};
+
 /**
  * This is a factory function to create the default webpack config
  * for a MC Application in `production` mode.
  * The function requires the file path to the related application
  * "entry point".
  */
-module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
+module.exports = ({
+  distPath,
+  entryPoint,
+  sourceFolders,
+  toggleFlags = defaultToggleFlags,
+}) => ({
   // Don't attempt to continue if there are any errors.
   bail: true,
 
@@ -81,11 +109,17 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
   // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
   // https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a
   optimization: {
-    minimizer: [new UglifyJsPlugin(uglifyConfig)],
+    minimizer: [new UglifyJsPlugin(uglifyConfig)].concat(
+      toggleFlags.enableExtractCss
+        ? new OptimizeCSSAssetsPlugin(optimizeCSSConfig)
+        : []
+    ),
     // Automatically split vendor and commons
     // https://twitter.com/wSokra/status/969633336732905474
     splitChunks: {
       chunks: 'all',
+      // NOTE: if you enable `cacheGroups` for CSS, remember to toggle it with
+      // the `toggleFlags.enableExtractCss`
     },
     // Keep the runtime chunk seperated to enable long term caching
     // https://twitter.com/wSokra/status/969679223278505985
@@ -168,6 +202,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
     // Strip all locales except `en`, `de`
     // (`en` is built into Moment and can't be removed)
     new MomentLocalesPlugin({ localesToKeep: ['de'] }),
+
     // Generate a `stats.json` file containing information and paths to
     // the assets that webpack created.
     // This is necessary to programmatically refer to the correct bundle path
@@ -179,6 +214,13 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
   ]
     // Optional plugins
     .concat(
+      toggleFlags.enableExtractCss
+        ? // Extracts CSS into one CSS file to mimic CSS order in dev
+          new MiniCssExtractPlugin({
+            filename: '[name].[chunkhash].css',
+            chunkFilename: '[id].[name].[chunkhash].css',
+          })
+        : [],
       process.env.ANALYZE_BUNDLE === 'true'
         ? [
             new BundleAnalyzerPlugin({
@@ -257,7 +299,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
         test: /\.mod\.css$/,
         include: sourceFolders,
         use: [
-          require.resolve('style-loader'),
+          toggleFlags.enableExtractCss
+            ? MiniCssExtractPlugin.loader
+            : require.resolve('style-loader'),
           {
             loader: require.resolve('css-loader'),
             options: {
@@ -276,6 +320,10 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
                   browsers: browserslist.production,
                   autoprefixer: { grid: true },
                 }),
+                postCSSCustomProperties({
+                  preserve: false,
+                }),
+                postcssCustomMediaQueries(),
                 postcssReporter(),
               ],
             },
@@ -292,13 +340,15 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
         },
         // "postcss" loader applies autoprefixer to our CSS.
         // "css" loader resolves paths in CSS and adds assets as dependencies.
-        // "style" loader turns CSS into JS modules that inject <style> tags.
+        // "MiniCssExtractPlugin" or "style" loader extracts css to one file per css file.
         oneOf: [
           {
             // Use "postcss" for all the included source folders.
             include: sourceFolders,
             use: [
-              require.resolve('style-loader'),
+              toggleFlags.enableExtractCss
+                ? MiniCssExtractPlugin.loader
+                : require.resolve('style-loader'),
               require.resolve('css-loader'),
               {
                 loader: require.resolve('postcss-loader'),
@@ -310,6 +360,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
                       browsers: browserslist.production,
                       autoprefixer: { grid: true },
                     }),
+                    postCSSCustomProperties({
+                      preserve: false,
+                    }),
                     postcssReporter(),
                   ],
                 },
@@ -318,9 +371,12 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
           },
           {
             // For all other vendor CSS, do not use "postcss" loader.
+            // But still use MiniCssExtractPlugin :)
             include: /node_modules/,
             loaders: [
-              require.resolve('style-loader'),
+              toggleFlags.enableExtractCss
+                ? MiniCssExtractPlugin.loader
+                : require.resolve('style-loader'),
               require.resolve('css-loader'),
             ],
           },
