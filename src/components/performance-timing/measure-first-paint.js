@@ -1,9 +1,10 @@
+import fetch from 'unfetch';
 import React from 'react';
 import PropTypes from 'prop-types';
 import snakeCase from 'lodash.snakecase';
-import oneLineTrim from 'common-tags/lib/oneLineTrim';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
+import { oneLine, oneLineTrim } from 'common-tags';
+import { injectConfiguration } from '../../../../application-shell-connectors/src';
+import { reportErrorToSentry } from '../../../../sentry';
 import convertToClosestMs from './conversions';
 
 const transformPaintToMcMetrics = ({ paintMetric, labels }) => ({
@@ -28,7 +29,7 @@ class MeasureFirstPaint extends React.Component {
   componentDidMount() {
     // We are using the Performance API, since registering `paint`
     // on the `PerformanceObserver` doesn't give us the startTimes that we need
-    // if we follow the pattern of initiating the `PerformanceObserver` upon mount
+    // in a timely fashion..
     const convertedMetrics = performance
       .getEntriesByType('paint')
       .map(paintMetric =>
@@ -47,11 +48,29 @@ class MeasureFirstPaint extends React.Component {
       body: JSON.stringify(convertedMetrics),
       credentials: 'include',
       headers,
-    }).catch(error => {
-      reportErrorToSentry(new Error('Unable to push first-paint metrics'), {
-        extra: error,
+    })
+      .then(response => {
+        if (response.ok) return;
+        // when we have reached this point, we assume that the
+        // the payload given to us by the MC-backend is an error payload
+        response.text().then(assumedErrorPayload => {
+          reportErrorToSentry(
+            new Error('Unable to push first-paint metrics.'),
+            { extra: assumedErrorPayload }
+          );
+        });
+      })
+      .catch(assumedNetworkError => {
+        reportErrorToSentry(
+          new Error(oneLine`
+            Unable to push first-paint metrics.
+            Assuming there was network error.
+          `),
+          {
+            extra: assumedNetworkError,
+          }
+        );
       });
-    });
   }
   render() {
     return null;
