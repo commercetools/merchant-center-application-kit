@@ -1,1 +1,1 @@
-export { default } from './first-paint-measurement';
+export { default } from './measure-first-paint';

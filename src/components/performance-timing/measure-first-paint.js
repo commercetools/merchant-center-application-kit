@@ -5,8 +5,8 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
 import convertToClosestMs from './conversions';
 
-const FirstPaintMeasurement = () => null;
-FirstPaintMeasurement.displayName = 'FirstPaintMeasurement';
+const MeasureFirstPaint = () => null;
+MeasureFirstPaint.displayName = 'MeasureFirstPaint';
 
 const metricSummariesEndpoint = '/proxy/mc-metrics/metrics/summaries';
 
@@ -53,4 +53,4 @@ export default compose(
       });
     },
   })
-)(FirstPaintMeasurement);
+)(MeasureFirstPaint);

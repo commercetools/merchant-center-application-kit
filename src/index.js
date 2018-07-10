@@ -5,9 +5,7 @@ import './public-path';
 
 export { default } from './components/application-shell';
 export { default as Avatar } from './components/avatar';
-export {
-  default as FirstPaintMeasurement,
-} from './components/performance-timing';
+export { default as MeasureFirstPaint } from './components/performance-timing';
 export {
   default as InjectReducer,
   activePluginReducer,
