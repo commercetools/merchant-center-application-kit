@@ -11,6 +11,41 @@ This repository contains an example application to run within a [Merchant Center
 
 ⏳ _coming soon_
 
+> NOTE: until there is a proper documentation we recommend to look into the npm packages of `@commercetools-frontend` to check their READMEs and understand what you can use to build the application. In particular, we recommend looking at the `@commercetools-frontend/ui-kit` package as well as `@commercetools-frontend/sdk`, `@commercetools-frontend/application-shell`, `@commercetools-frontend/application-shell-connectors`. Look also at the example implementation to see how to combine the main elements.
+
+### Getting started
+
+Before you jump into developing the application, there are some important information to know beforehand:
+
+- the project demonstrate how to set up and develop a Merchant Center Application
+- a Merchant Center Application is a runnable React application, developed and built using the `mc-scripts` package provided by commercetools (_if you're familiar with `react-scripts`, it works very similarly to that_)
+  - the `mc-scripts start` command will start a webpack development server
+  - the `mc-scripts build` command will bundle the production assets into the `dist` folder
+- the Merchant Center itself is composed by multiple applications running behind a proxy, each one of those serving a specific part of the overall Merchant Center (_e.g. dashboard, products, discounts_)
+- building a "custom" Merchant Center Application, means building a new part of the overall Merchant Center, where eventually this "custom" app will be hosted by you and served from the proxy within the commercetools systems (_more on that will come soon_)
+- in order to have the same main structure and "bootstrap" logic across the different applications, we built a component called `ApplicationShell` that MUST be rendered by each application within their entry points
+  - the `ApplicationShell` contains among other things the `NavBar` component, where you see the "links" on the left-side menu
+  - the `NavBar` component is shared across all the different applications, and needs to contain the main links of all the applications
+  - the `NavBar` component by default only contains the links of the "official" applications (_e.g. dashboard, products, discounts_)
+  - for custom applications, links are stored in the Merchant Center API and loaded asynchronously for a specific project. This means that you can't "manually" add links to the `NavBar` but instead you need to configure them with the settings (_more on that will come soon_)
+- each Merchant Center Application usually defines ONE main route (_e.g. in this example the application defines a `/:projectKey/channels` route_)
+  - routes should always contain the `/:projectKey`, as those "custom" application belong to a certain project
+  - routes for "custom" applications should not conflict with the "official" routes (_e.g. `dashboard`, `products`, etc_), as "official" routes always take precedence
+  - routes can and should have sub-routes, dependening on how many levels/views the application should have (_e.g. `/:projectKey/channels/:id`, `/:projectKey/channels/new`, etc_)
+
+### Project structure
+
+If you are trying to find yourself around the files and folders, here are some useful information where find what:
+
+- `src` contains all the JS files to build the application
+  - `index.js` is the application "entry point" and contains the basic imports to render the React app
+  - `routes.js` contains the sub-routes and components rendered by the application (the main route is defined in the `<EntryPoint>` and is loaded asynchronously using code splitting)
+- `dist` contains the production bundles
+- `.env` contains the development ENV variables used by the webpack dev server (_more on that will come soon_)
+- `.env.production` is an example of the ENV variables used by running the application in production mode (see below [Running in production](#running-in-production))
+- `webpack.config.<env>.js` contains the setup for getting the webpack configurations for dev/prod (having those files is important as they are read by `mc-scripts`)
+- `jest[...].js` contains configuration for the different runners (testing, linting, etc)
+
 ## Development
 
 Checkout the source code of the repository and install the dependencies:
