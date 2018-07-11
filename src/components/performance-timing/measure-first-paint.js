@@ -1,24 +1,24 @@
-import fetch from 'unfetch';
 import React from 'react';
 import PropTypes from 'prop-types';
 import snakeCase from 'lodash.snakecase';
-import { oneLine, oneLineTrim } from 'common-tags';
+import { oneLineTrim, oneLine } from 'common-tags';
 import { injectConfiguration } from '../../../../application-shell-connectors/src';
 import { reportErrorToSentry } from '../../../../sentry';
 import convertToClosestMs from './conversions';
+import pushPaintMetrics from './push-paint-metrics';
 
-const transformPaintToMcMetrics = ({ paintMetric, labels }) => ({
+const metricSummariesEndpoint = '/proxy/mc-metrics/metrics/summaries';
+
+const transformPaintToMcMetrics = ({ paintMeasurement, labels }) => ({
   metricName: oneLineTrim`
     browser
     _duration
-    _${snakeCase(paintMetric.name)}
+    _${snakeCase(paintMeasurement.name)}
     _milliseconds
   `,
-  metricValue: convertToClosestMs(paintMetric.startTime),
+  metricValue: convertToClosestMs(paintMeasurement.startTime),
   metricLabels: labels,
 });
-
-const metricSummariesEndpoint = '/proxy/mc-metrics/metrics/summaries';
 
 class MeasureFirstPaint extends React.Component {
   static displayName = 'MeasureFirstPaint';
@@ -30,24 +30,18 @@ class MeasureFirstPaint extends React.Component {
     // We are using the Performance API, since registering `paint`
     // on the `PerformanceObserver` doesn't give us the startTimes that we need
     // in a timely fashion..
-    const convertedMetrics = performance
+    const convertedMetrics = window.performance
       .getEntriesByType('paint')
-      .map(paintMetric =>
+      .map(paintMeasurement =>
         transformPaintToMcMetrics({
-          paintMetric,
+          paintMeasurement,
           labels: { application: this.props.applicationLabel },
         })
       );
 
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-
-    fetch(`${this.props.mcApiUrl}${metricSummariesEndpoint}`, {
-      method: 'POST',
-      body: JSON.stringify(convertedMetrics),
-      credentials: 'include',
-      headers,
+    pushPaintMetrics({
+      url: `${this.props.mcApiUrl}${metricSummariesEndpoint}`,
+      paintMetrics: convertedMetrics,
     })
       .then(response => {
         if (response.ok) return;
