@@ -1,7 +1,7 @@
 import { ApolloLink, execute, Observable } from 'apollo-link';
 import gql from 'graphql-tag';
 import waitFor from 'wait-for-observables';
-import { tokenRetryLink } from './token-retry-link';
+import tokenRetryLink from './token-retry-link';
 
 const query = gql`
   {
@@ -33,9 +33,20 @@ describe('tokenRetryLink', () => {
   describe('with unauthorized-error', () => {
     describe('with successful retry', () => {
       beforeEach(async () => {
+        const headerLink = new ApolloLink((operation, forward) => {
+          operation.setContext({
+            headers: {
+              'X-Graphql-Target': 'ctp',
+            },
+          });
+          return forward(operation);
+        });
         debugLink = new ApolloLink((operation, forward) => {
+          operation.setContext(({ headers }) => ({
+            ...headers,
+            'X-Graphql-Target': 'ctp',
+          }));
           context = operation.getContext();
-
           return forward(operation);
         });
 
@@ -47,6 +58,7 @@ describe('tokenRetryLink', () => {
         terminatingLinkStub.mockReturnValueOnce(Observable.of(responseStub));
 
         link = ApolloLink.from([
+          headerLink,
           tokenRetryLink,
           debugLink,
           terminatingLinkStub,
@@ -80,6 +92,14 @@ describe('tokenRetryLink', () => {
 
     describe('with unsuccessful retry', () => {
       beforeEach(async () => {
+        const headerLink = new ApolloLink((operation, forward) => {
+          operation.setContext({
+            headers: {
+              'X-Graphql-Target': 'ctp',
+            },
+          });
+          return forward(operation);
+        });
         debugLink = new ApolloLink((operation, forward) => {
           context = operation.getContext();
 
@@ -91,6 +111,7 @@ describe('tokenRetryLink', () => {
         );
 
         link = ApolloLink.from([
+          headerLink,
           tokenRetryLink,
           debugLink,
           terminatingLinkStub,

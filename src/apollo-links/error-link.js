@@ -3,21 +3,14 @@ import {
   STATUS_CODES,
   LOGOUT_REASONS,
 } from '@commercetools-frontend/constants';
-import { STORAGE_KEYS } from '../constants';
+import history from '@commercetools-frontend/browser-history';
 
-/* eslint-disable import/prefer-default-export */
 // Checks response from GraphQL in order to scan 401 errors and redirect the
 // user to the login page resetting the store and showing the proper message
-export const createErrorLink = ({ history, storage }) =>
-  onError(({ networkError }) => {
-    const isAuthenticated =
-      storage.get(STORAGE_KEYS.IS_AUTHENTICATED) === 'true';
+const errorLink = onError(({ networkError }) => {
+  if (networkError && networkError.statusCode === STATUS_CODES.UNAUTHORIZED) {
+    history.push(`/logout?reason=${LOGOUT_REASONS.UNAUTHORIZED}`);
+  }
+});
 
-    if (
-      networkError &&
-      networkError.statusCode === STATUS_CODES.UNAUTHORIZED &&
-      isAuthenticated
-    ) {
-      history.push(`/logout?reason=${LOGOUT_REASONS.UNAUTHORIZED}`);
-    }
-  });
+export default errorLink;

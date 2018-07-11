@@ -7,9 +7,7 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory';
-import history from '@commercetools-frontend/browser-history';
-import * as storage from '@commercetools-frontend/storage';
-import { createErrorLink, headerLink, tokenRetryLink } from './apollo-links/';
+import { errorLink, headerLink, tokenRetryLink } from './apollo-links/';
 
 const httpLink = createHttpLink({
   uri: `${window.app.mcApiUrl}/graphql`,
@@ -31,9 +29,9 @@ const httpLink = createHttpLink({
 // `tokenRetryLink` needs to stay after `errorLink` in order to be executed before `errorLink` for responses
 const link = ApolloLink.from([
   headerLink,
-  createErrorLink({ history, storage }),
-  tokenRetryLink,
+  errorLink,
   apolloLogger,
+  tokenRetryLink,
   httpLink,
 ]);
 

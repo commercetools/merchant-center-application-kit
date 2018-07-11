@@ -1,3 +1,3 @@
-export * from './error-link';
-export * from './header-link';
-export * from './token-retry-link';
+export { default as errorLink } from './error-link';
+export { default as headerLink } from './header-link';
+export { default as tokenRetryLink } from './token-retry-link';

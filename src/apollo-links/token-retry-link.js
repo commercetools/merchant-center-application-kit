@@ -1,15 +1,19 @@
 import { RetryLink } from 'apollo-link-retry';
 import { STATUS_CODES } from '@commercetools-frontend/constants';
 
-/* eslint-disable import/prefer-default-export */
-export const tokenRetryLink = new RetryLink({
+// This link retries requests to the CTP API that have been rejected
+// because of an invalid/expired oauth token.
+// To do so, we resend the request with the header "X-Force-Token: true"
+// so that the MC BE can issue a new token.
+// NOTE: the retry is not meant to work for the MC access token.
+const tokenRetryLink = new RetryLink({
   attempts: (count, operation, error) => {
-    // in case of 401 error, try again ONCE with a new token
-    // https://github.com/commercetools/merchant-center-backend/blob/master/docs/AUTHENTICATION.md#problems-due-to-oauth-token-caching
+    const { headers: requestHeaders } = operation.getContext();
     if (
       error &&
       error.statusCode &&
       error.statusCode === STATUS_CODES.UNAUTHORIZED &&
+      requestHeaders['X-Graphql-Target'] === 'ctp' &&
       count === 1
     ) {
       operation.setContext(({ headers }) => ({
@@ -25,3 +29,5 @@ export const tokenRetryLink = new RetryLink({
     return false;
   },
 });
+
+export default tokenRetryLink;

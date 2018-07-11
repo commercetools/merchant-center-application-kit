@@ -6,7 +6,7 @@ const isKnownTarget = target => Object.values(GRAPHQL_TARGETS).includes(target);
 
 /* eslint-disable import/prefer-default-export */
 // Use a middleware to update the request headers with the correct params.
-export const headerLink = new ApolloLink((operation, forward) => {
+const headerLink = new ApolloLink((operation, forward) => {
   const target = operation.variables.target;
   if (!isKnownTarget(target))
     throw new Error(
@@ -25,3 +25,5 @@ export const headerLink = new ApolloLink((operation, forward) => {
   });
   return forward(operation);
 });
+
+export default headerLink;
