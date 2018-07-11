@@ -226,7 +226,11 @@ export const RestrictedApplication = props => (
 
 RestrictedApplication.displayName = 'RestrictedOuterApplication';
 RestrictedApplication.propTypes = {
-  loadIntl: PropTypes.object.isRequired,
+  loadIntl: PropTypes.shape({
+    de: PropTypes.func.isRequired,
+    en: PropTypes.func.isRequired,
+    es: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 /**
@@ -273,8 +277,11 @@ UnrestrictedApplication.displayName = 'UnrestrictedApplication';
 export default class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
   static propTypes = {
-    // i18n: PropTypes.object.isRequired,
-    loadIntl: PropTypes.object.isRequired,
+    loadIntl: PropTypes.shape({
+      de: PropTypes.func.isRequired,
+      en: PropTypes.func.isRequired,
+      es: PropTypes.func.isRequired,
+    }).isRequired,
     configuration: PropTypes.object.isRequired,
     defaultFeatureFlags: PropTypes.object,
     trackingEventWhitelist: PropTypes.objectOf(
