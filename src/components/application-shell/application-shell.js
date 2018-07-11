@@ -51,7 +51,7 @@ export const extractLanguageFromLocale = locale =>
  * and contains the "restricted" application part.
  */
 
-const RestrictedInnerApplication = props => {
+export const RestrictedInnerApplication = props => {
   if (props.error) {
     reportErrorToSentry(props.error, {});
     return (
@@ -202,9 +202,7 @@ export const RestrictedApplication = props => (
         return null;
       }
 
-      const locale = error
-        ? extractLanguageFromLocale(getBrowserLocale())
-        : user.language;
+      const locale = error ? getBrowserLocale() : user.language;
 
       return (
         <AsyncLocaleMessages locale={locale} loadIntl={props.loadIntl}>
@@ -339,9 +337,6 @@ export default class ApplicationShell extends React.Component {
                               />
                             );
                           const browserLocale = getBrowserLocale();
-                          const language = extractLanguageFromLocale(
-                            browserLocale
-                          );
 
                           return (
                             <AsyncLocaleMessages
@@ -350,7 +345,7 @@ export default class ApplicationShell extends React.Component {
                             >
                               {({ messages }) => (
                                 <ConfigureIntlProvider
-                                  locale={language}
+                                  locale={browserLocale}
                                   messages={messages}
                                 >
                                   <UnrestrictedApplication />

@@ -1,6 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<RestrictedApplication> rendering project container <Route> should match layout structure 1`] = `
+exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
+<RestrictedInnerApplication
+  INTERNAL__isApplicationFallback={false}
+  configuration={Object {}}
+  i18n={
+    Object {
+      "de": Object {
+        "title": "Titel",
+      },
+      "en": Object {
+        "title": "Title en",
+      },
+      "en-US": Object {
+        "title": "Title",
+      },
+    }
+  }
+  isLoading={false}
+  loadIntl={
+    Object {
+      "de": [MockFunction],
+      "en": [MockFunction],
+      "es": [MockFunction],
+    }
+  }
+  locale="en-US"
+  mapPluginNotificationToComponent={[MockFunction]}
+  messages={
+    Object {
+      "title": "Title en",
+    }
+  }
+  notificationsByDomain={
+    Object {
+      "global": Array [],
+      "page": Array [],
+      "side": Array [],
+    }
+  }
+  onRegisterErrorListeners={[MockFunction]}
+  render={[MockFunction]}
+  showApiErrorNotification={[MockFunction]}
+  showNotification={[MockFunction]}
+  showUnexpectedErrorNotification={[MockFunction]}
+  trackingEventWhitelist={Object {}}
+  user={
+    Object {
+      "email": "john.snow@got.com",
+      "firstName": "John",
+      "gravatarHash": "20c9c1b252b46ab49d6f7a4cee9c3e68",
+      "id": "u1",
+      "language": "en-US",
+      "lastName": "Snow",
+      "launchdarklyTrackingGroup": "ct",
+      "launchdarklyTrackingId": "123",
+      "launchdarklyTrackingTeam": Array [
+        "abc",
+        "def",
+      ],
+      "projects": Object {
+        "total": 0,
+      },
+    }
+  }
+/>
+`;
+
+exports[`<RestrictedInnerApplication rendering project container <Route> should match layout structure 1`] = `
 <React.Fragment>
   <withReconfiguration(ReconfigureAdapter)
     user={
@@ -49,12 +116,12 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
 </React.Fragment>
 `;
 
-exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
+exports[`<RestrictedInnerApplication rendering should match layout structure 1`] = `
 <ConfigureIntlProvider
   locale="en-US"
   messages={
     Object {
-      "title": "Title en",
+      "title": "Test en",
     }
   }
 >

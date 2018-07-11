@@ -4,11 +4,13 @@ import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import ConfigureIntlProvider from '../configure-intl-provider';
+import AsyncLocaleMessages from '../async-locale-messages';
 import ProjectContainer from '../project-container';
 import FetchUser from '../fetch-user';
 import NavBar from '../navbar';
 import ApplicationShell, {
   RestrictedApplication,
+  RestrictedInnerApplication,
   UnrestrictedApplication,
   extractLanguageFromLocale,
 } from './application-shell';
@@ -21,6 +23,11 @@ const createTestProps = props => ({
     en: { title: 'Title en' },
     'en-US': { title: 'Title' },
     de: { title: 'Titel' },
+  },
+  loadIntl: {
+    en: jest.fn(),
+    es: jest.fn(),
+    de: jest.fn(),
   },
   configuration: {},
   trackingEventWhitelist: {},
@@ -87,28 +94,30 @@ describe('rendering', () => {
     });
     describe('when user is authenticated', () => {
       beforeEach(() => {
-        authRenderWrapper = shallow(
-          <div>
-            {routeRenderWrapper.find('Authenticated').prop('children')({
-              isAuthenticated: true,
-            })}
-          </div>
-        );
+        authRenderWrapper = routeRenderWrapper
+          .find('Authenticated')
+          .renderProp('children', {
+            isAuthenticated: true,
+          });
       });
       it('should render <RestrictedApplication> after track components', () => {
-        expect(authRenderWrapper).toRender('RestrictedApplication');
+        expect(authRenderWrapper).toRender(RestrictedApplication);
       });
     });
 
     describe('when user is not authenticated', () => {
       beforeEach(() => {
-        authRenderWrapper = shallow(
-          <div>
-            {routeRenderWrapper.find('Authenticated').prop('children')({
-              isAuthenticated: false,
-            })}
-          </div>
-        );
+        authRenderWrapper = routeRenderWrapper
+          .find('Authenticated')
+          .renderProp('children', {
+            isAuthenticated: false,
+          })
+          .find(AsyncLocaleMessages)
+          .renderProp('children', {
+            messages: {
+              title: 'Title en',
+            },
+          });
       });
       it('should pass "locale" to <ConfigureIntlProvider>', () => {
         expect(authRenderWrapper.find(ConfigureIntlProvider)).toHaveProp(
@@ -154,7 +163,9 @@ describe('<RestrictedApplication>', () => {
       };
       wrapper = shallow(<RestrictedApplication {...props} />)
         .find(FetchUser)
-        .renderProp('children', userData);
+        .renderProp('children', userData)
+        .find(AsyncLocaleMessages)
+        .renderProp('children', { messages: props.i18n.en });
     });
     it('should match layout structure', () => {
       expect(wrapper).toMatchSnapshot();
@@ -169,13 +180,63 @@ describe('<RestrictedApplication>', () => {
         };
         wrapper = shallow(<RestrictedApplication {...props} />)
           .find(FetchUser)
-          .renderProp('children', userData);
+          .renderProp('children', userData)
+          .find(AsyncLocaleMessages)
+          .renderProp('children', { messages: {} });
       });
-      it('should pass "locale" to <ConfigureIntlProvider>', () => {
-        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
+      it('should pass "locale" to <RestrictedInnerApplication>', () => {
+        expect(wrapper.find(RestrictedInnerApplication)).toHaveProp(
           'locale',
           'en-US'
         );
+      });
+    });
+  });
+});
+
+describe('<RestrictedInnerApplication', () => {
+  let props;
+  let wrapper;
+  describe('rendering', () => {
+    beforeEach(() => {
+      props = createTestProps({
+        messages: {
+          title: 'Test en',
+        },
+        locale: 'en-US',
+        isLoading: false,
+        user: {
+          id: 'u1',
+          email: 'john.snow@got.com',
+          gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
+          firstName: 'John',
+          lastName: 'Snow',
+          projects: {
+            total: 0,
+          },
+          language: 'en-US',
+          launchdarklyTrackingId: '123',
+          launchdarklyTrackingGroup: 'ct',
+          launchdarklyTrackingTeam: ['abc', 'def'],
+        },
+      });
+      wrapper = shallow(<RestrictedInnerApplication {...props} />);
+    });
+
+    it('should match layout structure', () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    describe('when fetching the user returns an error', () => {
+      beforeEach(() => {
+        reportErrorToSentry.mockClear();
+        props = createTestProps({
+          error: new Error('Failed to fetch'),
+          isLoading: false,
+          messages: {},
+          locale: 'en-US',
+        });
+        wrapper = shallow(<RestrictedInnerApplication {...props} />);
       });
       it('should render <ErrorApologizer>', () => {
         expect(wrapper).toRender('ErrorApologizer');
@@ -187,15 +248,16 @@ describe('<RestrictedApplication>', () => {
         );
       });
     });
+
     it('should pass user "locale" to <ConfigureIntlProvider>', () => {
       expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
         'locale',
-        userData.user.language
+        props.user.language
       );
     });
     it('should pass "messages" to <ConfigureIntlProvider>', () => {
       expect(wrapper.find(ConfigureIntlProvider)).toHaveProp('messages', {
-        title: 'Title en',
+        title: 'Test en',
       });
     });
     describe('layout', () => {
@@ -239,7 +301,7 @@ describe('<RestrictedApplication>', () => {
     it('should render <WithProjectKey> below aside element', () => {
       expect(wrapper.find('aside > WithProjectKey')).toHaveProp(
         'user',
-        userData.user
+        props.user
       );
     });
     describe('<NavBar>', () => {
