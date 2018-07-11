@@ -33,7 +33,7 @@ class AsyncLocaleMessages extends React.Component {
           messages: data,
         });
       },
-      error => reportErrorToSentry(error)
+      error => reportErrorToSentry(error, {})
     );
   }
 
@@ -49,7 +49,7 @@ class AsyncLocaleMessages extends React.Component {
             messages: data,
           });
         },
-        error => reportErrorToSentry(error)
+        error => reportErrorToSentry(error, {})
       );
     }
   }
