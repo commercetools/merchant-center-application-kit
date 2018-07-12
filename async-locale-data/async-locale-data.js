@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import loadI18n from '../load-i18n';
 
 export const extractLanguageFromLocale = locale =>
   locale.includes('-') ? locale.split('-')[0] : locale;
@@ -13,7 +14,6 @@ class AsyncLocaleData extends React.Component {
   static displayName = 'AsyncLocaleData';
   static propTypes = {
     children: PropTypes.func.isRequired,
-    loadI18n: PropTypes.func.isRequired,
     locale: PropTypes.string,
   };
 
@@ -23,7 +23,7 @@ class AsyncLocaleData extends React.Component {
 
   componentDidMount() {
     const locale = extractLanguageFromLocale(this.props.locale);
-    this.props.loadI18n(locale).then(
+    loadI18n(locale).then(
       data => {
         this.setState({
           messages: data,
@@ -39,7 +39,7 @@ class AsyncLocaleData extends React.Component {
       languageChanged(prevProps.locale, this.props.locale)
     ) {
       const locale = extractLanguageFromLocale(this.props.locale);
-      this.props.loadI18n(locale).then(
+      loadI18n(locale).then(
         data => {
           this.setState({
             messages: data,
