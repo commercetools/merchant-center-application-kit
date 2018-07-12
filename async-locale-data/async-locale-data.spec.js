@@ -7,13 +7,13 @@ import AsyncLocaleData from './async-locale-data';
 jest.mock('@commercetools-frontend/sentry');
 
 jest.mock('../load-i18n', () =>
-  jest.fn(() => new Promise(resolve => resolve({})))
+  jest.fn(() => new Promise(resolve => resolve({ title: 'Title en' })))
 );
 
 const ChildComponent = () => <div>Child</div>;
 
 const createTestProps = props => ({
-  children: () => <ChildComponent />,
+  children: jest.fn(() => <ChildComponent />),
   locale: 'en-US',
   ...props,
 });
@@ -31,9 +31,7 @@ describe('rendering', () => {
     describe('when component is mounted', () => {
       beforeEach(() => {
         loadI18n.mockClear();
-        loadI18n.mockImplementation(
-          jest.fn(() => new Promise((resolve, reject) => reject(error)))
-        );
+        loadI18n.mockImplementation(jest.fn(() => Promise.reject(error)));
         reportErrorToSentry.mockClear();
         wrapper.instance().componentDidMount();
       });
@@ -51,26 +49,31 @@ describe('rendering', () => {
     });
     describe('when component is mounted', () => {
       beforeEach(() => {
+        props = createTestProps();
+        wrapper = shallow(<AsyncLocaleData {...props} />);
         wrapper.instance().componentDidMount();
       });
 
       it('should call `loadIntl`', () => {
         expect(loadI18n).toHaveBeenCalled();
       });
+      it('should call `children`', () => {
+        expect(props.children).toHaveBeenCalled();
+      });
     });
 
     describe('when component is updated but with same locale', () => {
       beforeEach(() => {
         wrapper.instance().componentDidUpdate({
-          locale: 'en-CA',
+          locale: 'en-in',
         });
       });
 
-      it('should not call `loadIntl`', () => {
-        expect(loadI18n).toHaveBeenCalledTimes(0);
+      it('should call `loadIntl`', () => {
+        expect(loadI18n).toHaveBeenCalledTimes(1);
       });
     });
-    describe('when component is updated with different locale', () => {
+    describe('when component is updated with new locale', () => {
       beforeEach(() => {
         loadI18n.mockClear();
         props = createTestProps({
@@ -86,8 +89,8 @@ describe('rendering', () => {
         expect(loadI18n).toHaveBeenCalled();
       });
 
-      it('should call `loadIntl` with `de`', () => {
-        expect(loadI18n).toHaveBeenCalledWith('de');
+      it('should call `loadIntl` with `de` and `at`', () => {
+        expect(loadI18n).toHaveBeenCalledWith('de', 'at');
       });
     });
   });

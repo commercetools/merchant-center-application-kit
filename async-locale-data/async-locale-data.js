@@ -6,9 +6,8 @@ import loadI18n from '../load-i18n';
 export const extractLanguageFromLocale = locale =>
   locale.includes('-') ? locale.split('-')[0] : locale;
 
-export const languageChanged = (prevLocale, nextLocale) =>
-  extractLanguageFromLocale(prevLocale) !==
-  extractLanguageFromLocale(nextLocale);
+export const extractCountryFromLocale = locale =>
+  locale.includes('-') ? locale.split('-')[1].toLowerCase() : '';
 
 class AsyncLocaleData extends React.Component {
   static displayName = 'AsyncLocaleData';
@@ -18,15 +17,18 @@ class AsyncLocaleData extends React.Component {
   };
 
   state = {
+    locale: null,
     messages: null,
   };
 
   componentDidMount() {
-    const locale = extractLanguageFromLocale(this.props.locale);
-    loadI18n(locale).then(
+    const lang = extractLanguageFromLocale(this.props.locale);
+    const country = extractCountryFromLocale(this.props.locale);
+    loadI18n(lang, country).then(
       data => {
         this.setState({
           messages: data,
+          locale: lang,
         });
       },
       error => reportErrorToSentry(error, {})
@@ -34,15 +36,14 @@ class AsyncLocaleData extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (
-      !prevProps.locale ||
-      languageChanged(prevProps.locale, this.props.locale)
-    ) {
-      const locale = extractLanguageFromLocale(this.props.locale);
-      loadI18n(locale).then(
+    if (!prevProps.locale || prevProps.locale !== this.props.locale) {
+      const lang = extractLanguageFromLocale(this.props.locale);
+      const country = extractCountryFromLocale(this.props.locale);
+      loadI18n(lang, country).then(
         data => {
           this.setState({
             messages: data,
+            locale: lang,
           });
         },
         error => reportErrorToSentry(error, {})
@@ -52,6 +53,7 @@ class AsyncLocaleData extends React.Component {
 
   render() {
     return this.props.children({
+      locale: this.state.locale,
       messages: this.state.messages,
     });
   }
