@@ -64,7 +64,7 @@ export const RestrictedApplication = props => (
       const locale = error ? getBrowserLocale() : user.language;
 
       return (
-        <AsyncLocaleData locale={locale} loadI18n={props.loadI18n}>
+        <AsyncLocaleData locale={locale}>
           {({ messages }) => {
             if (error) {
               reportErrorToSentry(error, {});
@@ -201,7 +201,6 @@ export const RestrictedApplication = props => (
 
 RestrictedApplication.displayName = 'RestrictedApplication';
 RestrictedApplication.propTypes = {
-  loadI18n: PropTypes.func.isRequired,
   defaultFeatureFlags: PropTypes.object,
   render: PropTypes.func.isRequired,
   INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
@@ -251,7 +250,6 @@ UnrestrictedApplication.displayName = 'UnrestrictedApplication';
 export default class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
   static propTypes = {
-    loadI18n: PropTypes.func.isRequired,
     configuration: PropTypes.object.isRequired,
     defaultFeatureFlags: PropTypes.object,
     trackingEventWhitelist: PropTypes.objectOf(
@@ -301,7 +299,6 @@ export default class ApplicationShell extends React.Component {
                                 defaultFeatureFlags={
                                   this.props.defaultFeatureFlags
                                 }
-                                loadI18n={this.props.loadI18n}
                                 render={this.props.render}
                                 INTERNAL__isApplicationFallback={
                                   this.props.INTERNAL__isApplicationFallback
@@ -311,10 +308,7 @@ export default class ApplicationShell extends React.Component {
                           const browserLocale = getBrowserLocale();
 
                           return (
-                            <AsyncLocaleData
-                              locale={browserLocale}
-                              loadI18n={this.props.loadI18n}
-                            >
+                            <AsyncLocaleData locale={browserLocale}>
                               {({ messages }) => (
                                 <ConfigureIntlProvider
                                   locale={browserLocale}
