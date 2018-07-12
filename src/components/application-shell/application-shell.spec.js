@@ -10,7 +10,6 @@ import FetchUser from '../fetch-user';
 import NavBar from '../navbar';
 import ApplicationShell, {
   RestrictedApplication,
-  RestrictedInnerApplication,
   UnrestrictedApplication,
   extractLanguageFromLocale,
 } from './application-shell';
@@ -178,61 +177,13 @@ describe('<RestrictedApplication>', () => {
           .find(FetchUser)
           .renderProp('children', userData)
           .find(AsyncLocaleMessages)
-          .renderProp('children', { messages: {} });
+          .renderProp('children', { messages: { title: 'Test en' } });
       });
-      it('should pass "locale" to <RestrictedInnerApplication>', () => {
-        expect(wrapper.find(RestrictedInnerApplication)).toHaveProp(
+      it('should pass "locale" to <ConfigureIntlProvider>', () => {
+        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
           'locale',
           'en-US'
         );
-      });
-    });
-  });
-});
-
-describe('<RestrictedInnerApplication', () => {
-  let props;
-  let wrapper;
-  describe('rendering', () => {
-    beforeEach(() => {
-      props = createTestProps({
-        messages: {
-          title: 'Test en',
-        },
-        locale: 'en-US',
-        isLoading: false,
-        user: {
-          id: 'u1',
-          email: 'john.snow@got.com',
-          gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
-          firstName: 'John',
-          lastName: 'Snow',
-          projects: {
-            total: 0,
-          },
-          language: 'en-US',
-          launchdarklyTrackingId: '123',
-          launchdarklyTrackingGroup: 'ct',
-          launchdarklyTrackingTeam: ['abc', 'def'],
-        },
-      });
-      wrapper = shallow(<RestrictedInnerApplication {...props} />);
-    });
-
-    it('should match layout structure', () => {
-      expect(wrapper).toMatchSnapshot();
-    });
-
-    describe('when fetching the user returns an error', () => {
-      beforeEach(() => {
-        reportErrorToSentry.mockClear();
-        props = createTestProps({
-          error: new Error('Failed to fetch'),
-          isLoading: false,
-          messages: {},
-          locale: 'en-US',
-        });
-        wrapper = shallow(<RestrictedInnerApplication {...props} />);
       });
       it('should render <ErrorApologizer>', () => {
         expect(wrapper).toRender('ErrorApologizer');
@@ -243,19 +194,13 @@ describe('<RestrictedInnerApplication', () => {
           {}
         );
       });
-    });
-
-    it('should pass user "locale" to <ConfigureIntlProvider>', () => {
-      expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
-        'locale',
-        props.user.language
-      );
-    });
-    it('should pass "messages" to <ConfigureIntlProvider>', () => {
-      expect(wrapper.find(ConfigureIntlProvider)).toHaveProp('messages', {
-        title: 'Test en',
+      it('should pass "messages" to <ConfigureIntlProvider>', () => {
+        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp('messages', {
+          title: 'Test en',
+        });
       });
     });
+
     describe('layout', () => {
       it('should render "global-notifications" container inside "app-layout"', () => {
         expect(wrapper).toRender('.app-layout > .global-notifications');
@@ -297,7 +242,7 @@ describe('<RestrictedInnerApplication', () => {
     it('should render <WithProjectKey> below aside element', () => {
       expect(wrapper.find('aside > WithProjectKey')).toHaveProp(
         'user',
-        props.user
+        userData.user
       );
     });
     describe('<NavBar>', () => {

@@ -51,147 +51,6 @@ export const extractLanguageFromLocale = locale =>
  * and contains the "restricted" application part.
  */
 
-export const RestrictedInnerApplication = props => {
-  if (props.error) {
-    reportErrorToSentry(props.error, {});
-    return (
-      <ConfigureIntlProvider locale={props.locale} messages={props.messages}>
-        <ErrorApologizer />
-      </ConfigureIntlProvider>
-    );
-  }
-  return (
-    <ConfigureIntlProvider
-      /* We need to pass the value as `undefined` in case the user has no
-           * timeZone defined so the defaultProps in the Context.Provider kick in
-           */
-      timeZone={
-        props.user && props.user.timeZone ? props.user.timeZone : undefined
-      }
-      locale={props.locale && props.locale}
-      messages={props.messages && props.messages}
-    >
-      <SetupFlopFlipProvider
-        user={props.user}
-        defaultFlags={props.defaultFeatureFlags}
-      >
-        <React.Fragment>
-          {/* NOTE: the requests in flight loader will render a loading
-            spinner into the AppBar. */}
-          <RequestsInFlightLoader />
-          <SentryUserTracker user={props.user} />
-          <GtmUserTracker user={props.user} />
-          <div className={styles['app-layout']}>
-            <div className={styles['global-notifications']}>
-              <NotificationsList domain={DOMAINS.GLOBAL} />
-            </div>
-            <header>
-              <AppBar user={props.user} />
-            </header>
-
-            <aside>
-              <WithProjectKey
-                user={props.user}
-                render={({ projectKey }) => (
-                  <NavBar
-                    projectKey={projectKey}
-                    useFullRedirectsForLinks={
-                      props.INTERNAL__isApplicationFallback
-                    }
-                  />
-                )}
-              />
-            </aside>
-
-            {/**
-             * NOTE: in IE11 main can't be a grid-child apparently.
-             * So we have to use a div and give it the role `main`
-             * to achieve the same semantic result
-             */}
-            <div role="main" className={styles.main}>
-              <PortalsContainer />
-              <NotificationsList domain={DOMAINS.PAGE} />
-              <NotificationsList domain={DOMAINS.SIDE} />
-              <div className={styles.content}>
-                <Switch>
-                  <Redirect from="/profile" to="/account/profile" />
-                  <Route
-                    path="/account"
-                    // Render the children and pass the control to the
-                    // specific application part
-                    render={props.render}
-                  />
-                  {/* Project routes */}
-                  {/* Redirect from base project route to dashboard */}
-                  <Route
-                    exact={true}
-                    path="/:projectKey"
-                    render={({ match }) => (
-                      <Redirect to={joinPaths(match.url, 'dashboard')} />
-                    )}
-                  />
-                  <Route
-                    exact={true}
-                    path="/"
-                    render={() =>
-                      props.user ? (
-                        <WithProjectKey
-                          user={props.user}
-                          render={({ projectKey }) => (
-                            // Redirect to the given projectKey
-                            <Redirect to={`/${projectKey}`} />
-                          )}
-                        />
-                      ) : (
-                        <ApplicationLoader />
-                      )
-                    }
-                  />
-                  <Route
-                    exact={false}
-                    path="/:projectKey"
-                    render={routerProps => (
-                      <React.Fragment>
-                        <ReconfigureFlopFlip
-                          user={getFlopflipReconfiguration(
-                            routerProps.match.params.projectKey
-                          )}
-                        />
-                        <ProjectContainer
-                          isLoadingUser={props.isLoading}
-                          user={props.user}
-                          match={routerProps.match}
-                          location={routerProps.location}
-                          // This effectively renders the
-                          // children, which is the application
-                          // specific part
-                          render={props.render}
-                        />
-                      </React.Fragment>
-                    )}
-                  />
-                </Switch>
-              </div>
-            </div>
-          </div>
-        </React.Fragment>
-      </SetupFlopFlipProvider>
-    </ConfigureIntlProvider>
-  );
-};
-
-RestrictedInnerApplication.displayName = 'RestrictedInnerApplication';
-RestrictedInnerApplication.propTypes = {
-  error: PropTypes.object,
-  user: PropTypes.object,
-  messages: PropTypes.object.isRequired,
-  locale: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  defaultFeatureFlags: PropTypes.object,
-  render: PropTypes.func.isRequired,
-  INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
-};
-
 export const RestrictedApplication = props => (
   <FetchUser>
     {({ isLoading, user, error }) => {
@@ -206,25 +65,146 @@ export const RestrictedApplication = props => (
 
       return (
         <AsyncLocaleMessages locale={locale} loadI18n={props.loadI18n}>
-          {({ messages }) => (
-            <RestrictedInnerApplication
-              isLoading={isLoading}
-              user={user}
-              error={error}
-              messages={messages}
-              locale={locale}
-              {...props}
-            />
-          )}
+          {({ messages }) => {
+            if (error) {
+              reportErrorToSentry(error, {});
+              return (
+                <ConfigureIntlProvider locale={locale} messages={messages}>
+                  <ErrorApologizer />
+                </ConfigureIntlProvider>
+              );
+            }
+            return (
+              <ConfigureIntlProvider
+                /* We need to pass the value as `undefined` in case the user has no
+                     * timeZone defined so the defaultProps in the Context.Provider kick in
+                     */
+                timeZone={user && user.timeZone ? user.timeZone : undefined}
+                locale={locale && locale}
+                messages={messages && messages}
+              >
+                <SetupFlopFlipProvider
+                  user={user}
+                  defaultFlags={props.defaultFeatureFlags}
+                >
+                  <React.Fragment>
+                    {/* NOTE: the requests in flight loader will render a loading
+                      spinner into the AppBar. */}
+                    <RequestsInFlightLoader />
+                    <SentryUserTracker user={user} />
+                    <GtmUserTracker user={user} />
+                    <div className={styles['app-layout']}>
+                      <div className={styles['global-notifications']}>
+                        <NotificationsList domain={DOMAINS.GLOBAL} />
+                      </div>
+                      <header>
+                        <AppBar user={user} />
+                      </header>
+
+                      <aside>
+                        <WithProjectKey
+                          user={user}
+                          render={({ projectKey }) => (
+                            <NavBar
+                              projectKey={projectKey}
+                              useFullRedirectsForLinks={
+                                props.INTERNAL__isApplicationFallback
+                              }
+                            />
+                          )}
+                        />
+                      </aside>
+
+                      {/**
+                       * NOTE: in IE11 main can't be a grid-child apparently.
+                       * So we have to use a div and give it the role `main`
+                       * to achieve the same semantic result
+                       */}
+                      <div role="main" className={styles.main}>
+                        <PortalsContainer />
+                        <NotificationsList domain={DOMAINS.PAGE} />
+                        <NotificationsList domain={DOMAINS.SIDE} />
+                        <div className={styles.content}>
+                          <Switch>
+                            <Redirect from="/profile" to="/account/profile" />
+                            <Route
+                              path="/account"
+                              // Render the children and pass the control to the
+                              // specific application part
+                              render={props.render}
+                            />
+                            {/* Project routes */}
+                            {/* Redirect from base project route to dashboard */}
+                            <Route
+                              exact={true}
+                              path="/:projectKey"
+                              render={({ match }) => (
+                                <Redirect
+                                  to={joinPaths(match.url, 'dashboard')}
+                                />
+                              )}
+                            />
+                            <Route
+                              exact={true}
+                              path="/"
+                              render={() =>
+                                user ? (
+                                  <WithProjectKey
+                                    user={user}
+                                    render={({ projectKey }) => (
+                                      // Redirect to the given projectKey
+                                      <Redirect to={`/${projectKey}`} />
+                                    )}
+                                  />
+                                ) : (
+                                  <ApplicationLoader />
+                                )
+                              }
+                            />
+                            <Route
+                              exact={false}
+                              path="/:projectKey"
+                              render={routerProps => (
+                                <React.Fragment>
+                                  <ReconfigureFlopFlip
+                                    user={getFlopflipReconfiguration(
+                                      routerProps.match.params.projectKey
+                                    )}
+                                  />
+                                  <ProjectContainer
+                                    isLoadingUser={isLoading}
+                                    user={user}
+                                    match={routerProps.match}
+                                    location={routerProps.location}
+                                    // This effectively renders the
+                                    // children, which is the application
+                                    // specific part
+                                    render={props.render}
+                                  />
+                                </React.Fragment>
+                              )}
+                            />
+                          </Switch>
+                        </div>
+                      </div>
+                    </div>
+                  </React.Fragment>
+                </SetupFlopFlipProvider>
+              </ConfigureIntlProvider>
+            );
+          }}
         </AsyncLocaleMessages>
       );
     }}
   </FetchUser>
 );
 
-RestrictedApplication.displayName = 'RestrictedOuterApplication';
+RestrictedApplication.displayName = 'RestrictedApplication';
 RestrictedApplication.propTypes = {
   loadI18n: PropTypes.func.isRequired,
+  defaultFeatureFlags: PropTypes.object,
+  render: PropTypes.func.isRequired,
+  INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
 };
 
 /**
