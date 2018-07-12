@@ -61,11 +61,11 @@ export const RestrictedApplication = props => (
         return null;
       }
 
-      const locale = error ? getBrowserLocale() : user.language;
+      const userLocale = error ? getBrowserLocale() : user && user.language;
 
       return (
-        <AsyncLocaleData locale={locale}>
-          {({ messages }) => {
+        <AsyncLocaleData locale={userLocale}>
+          {({ locale, messages }) => {
             if (error) {
               reportErrorToSentry(error, {});
               return (
@@ -74,6 +74,7 @@ export const RestrictedApplication = props => (
                 </ConfigureIntlProvider>
               );
             }
+
             return (
               <ConfigureIntlProvider
                 /* We need to pass the value as `undefined` in case the user has no
@@ -309,9 +310,9 @@ export default class ApplicationShell extends React.Component {
 
                           return (
                             <AsyncLocaleData locale={browserLocale}>
-                              {({ messages }) => (
+                              {({ locale, messages }) => (
                                 <ConfigureIntlProvider
-                                  locale={browserLocale}
+                                  locale={locale}
                                   messages={messages}
                                 >
                                   <UnrestrictedApplication />
