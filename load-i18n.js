@@ -1,9 +1,6 @@
-const loadEn = () => import('./data/en.json');
-const loadDe = () => import('./data/de.json');
-const loadEs = () => import('./data/es.json');
-
-export default {
-  en: loadEn,
-  de: loadDe,
-  es: loadEs,
-};
+export default function loadI18n(locale) {
+  // Use lazy once so that subsequent calls to import() will use the same
+  // network response. https://webpack.js.org/api/module-methods/#import-
+  return import(/* webpackChunkName: "i18n-locale-data", webpackMode: "lazy-once" */
+  `./data/${locale}.json`);
+}
