@@ -3,8 +3,8 @@ import { shallow } from 'enzyme';
 import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import AsyncLocaleData from '@commercetools-frontend/i18n/async-locale-data';
 import ConfigureIntlProvider from '../configure-intl-provider';
-import AsyncLocaleMessages from '../async-locale-messages';
 import ProjectContainer from '../project-container';
 import FetchUser from '../fetch-user';
 import NavBar from '../navbar';
@@ -107,7 +107,7 @@ describe('rendering', () => {
           .renderProp('children', {
             isAuthenticated: false,
           })
-          .find(AsyncLocaleMessages)
+          .find(AsyncLocaleData)
           .renderProp('children', {
             messages: {
               title: 'Title en',
@@ -159,7 +159,7 @@ describe('<RestrictedApplication>', () => {
       wrapper = shallow(<RestrictedApplication {...props} />)
         .find(FetchUser)
         .renderProp('children', userData)
-        .find(AsyncLocaleMessages)
+        .find(AsyncLocaleData)
         .renderProp('children', { messages: props.i18n.en });
     });
     it('should match layout structure', () => {
@@ -176,7 +176,7 @@ describe('<RestrictedApplication>', () => {
         wrapper = shallow(<RestrictedApplication {...props} />)
           .find(FetchUser)
           .renderProp('children', userData)
-          .find(AsyncLocaleMessages)
+          .find(AsyncLocaleData)
           .renderProp('children', { messages: { title: 'Test en' } });
       });
       it('should pass "locale" to <ConfigureIntlProvider>', () => {

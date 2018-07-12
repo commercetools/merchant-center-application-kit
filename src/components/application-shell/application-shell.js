@@ -13,6 +13,7 @@ import {
 } from '@commercetools-frontend/sentry';
 import { ConfigurationProvider } from '@commercetools-frontend/application-shell-connectors';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
+import AsyncLocaleData from '@commercetools-frontend/i18n/async-locale-data';
 import PortalsContainer from '../portals-container';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
@@ -35,7 +36,6 @@ import GtmUserTracker from '../gtm-user-tracker';
 import GtmBooter from '../gtm-booter';
 import NavBar from '../navbar';
 import ApplicationLoader from '../application-loader';
-import AsyncLocaleMessages from '../async-locale-messages';
 import ErrorApologizer from '../error-apologizer';
 import styles from './application-shell.mod.css';
 import './global-style-imports';
@@ -64,7 +64,7 @@ export const RestrictedApplication = props => (
       const locale = error ? getBrowserLocale() : user.language;
 
       return (
-        <AsyncLocaleMessages locale={locale} loadI18n={props.loadI18n}>
+        <AsyncLocaleData locale={locale} loadI18n={props.loadI18n}>
           {({ messages }) => {
             if (error) {
               reportErrorToSentry(error, {});
@@ -193,7 +193,7 @@ export const RestrictedApplication = props => (
               </ConfigureIntlProvider>
             );
           }}
-        </AsyncLocaleMessages>
+        </AsyncLocaleData>
       );
     }}
   </FetchUser>
@@ -311,7 +311,7 @@ export default class ApplicationShell extends React.Component {
                           const browserLocale = getBrowserLocale();
 
                           return (
-                            <AsyncLocaleMessages
+                            <AsyncLocaleData
                               locale={browserLocale}
                               loadI18n={this.props.loadI18n}
                             >
@@ -323,7 +323,7 @@ export default class ApplicationShell extends React.Component {
                                   <UnrestrictedApplication />
                                 </ConfigureIntlProvider>
                               )}
-                            </AsyncLocaleMessages>
+                            </AsyncLocaleData>
                           );
                         }}
                       </Authenticated>
