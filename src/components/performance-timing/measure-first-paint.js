@@ -41,11 +41,15 @@ export class MeasureFirstPaint extends React.Component {
         })
       );
 
-    this.props.pushMetricSummary({ body: paintMetrics }).catch(error => {
-      reportErrorToSentry(new Error('Unable to push first-paint metrics'), {
-        extra: error,
-      });
-    });
+    if (paintMetrics.length > 0) {
+      this.props
+        .pushMetricSummary({ body: JSON.stringify(paintMetrics) })
+        .catch(error => {
+          reportErrorToSentry(new Error('Unable to push first-paint metrics'), {
+            extra: error,
+          });
+        });
+    }
   }
   render() {
     return this.props.children;

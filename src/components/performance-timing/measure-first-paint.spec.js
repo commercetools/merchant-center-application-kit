@@ -30,18 +30,18 @@ describe('rendering', () => {
     });
     it('should send an action with the mapped metrics', () => {
       expect(props.pushMetricSummary).toHaveBeenCalledWith({
-        body: [
+        body: JSON.stringify([
           {
-            metricLabels: { application: props.applicationLabel },
             metricName: 'browser_duration_first_paint_milliseconds',
             metricValue: 2028.5,
+            metricLabels: { application: props.applicationLabel },
           },
           {
-            metricLabels: { application: props.applicationLabel },
             metricName: 'browser_duration_first_contentful_paint_milliseconds',
             metricValue: 2028.5,
+            metricLabels: { application: props.applicationLabel },
           },
-        ],
+        ]),
       });
     });
     it('should not report error to sentry', () => {
