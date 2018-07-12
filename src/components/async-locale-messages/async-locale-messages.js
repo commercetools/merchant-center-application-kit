@@ -13,11 +13,7 @@ class AsyncLocaleMessages extends React.Component {
   static displayName = 'AsyncLocaleMessages';
   static propTypes = {
     children: PropTypes.func.isRequired,
-    loadIntl: PropTypes.shape({
-      de: PropTypes.func.isRequired,
-      en: PropTypes.func.isRequired,
-      es: PropTypes.func.isRequired,
-    }).isRequired,
+    loadI18n: PropTypes.func.isRequired,
     locale: PropTypes.string,
   };
 
@@ -27,7 +23,7 @@ class AsyncLocaleMessages extends React.Component {
 
   componentDidMount() {
     const locale = extractLanguageFromLocale(this.props.locale);
-    this.props.loadIntl[locale]().then(
+    this.props.loadI18n(locale).then(
       data => {
         this.setState({
           messages: data,
@@ -43,7 +39,7 @@ class AsyncLocaleMessages extends React.Component {
       languageChanged(prevProps.locale, this.props.locale)
     ) {
       const locale = extractLanguageFromLocale(this.props.locale);
-      this.props.loadIntl[locale]().then(
+      this.props.loadI18n(locale).then(
         data => {
           this.setState({
             messages: data,

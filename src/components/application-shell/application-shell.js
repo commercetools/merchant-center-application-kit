@@ -205,7 +205,7 @@ export const RestrictedApplication = props => (
       const locale = error ? getBrowserLocale() : user.language;
 
       return (
-        <AsyncLocaleMessages locale={locale} loadIntl={props.loadIntl}>
+        <AsyncLocaleMessages locale={locale} loadI18n={props.loadI18n}>
           {({ messages }) => (
             <RestrictedInnerApplication
               isLoading={isLoading}
@@ -224,11 +224,7 @@ export const RestrictedApplication = props => (
 
 RestrictedApplication.displayName = 'RestrictedOuterApplication';
 RestrictedApplication.propTypes = {
-  loadIntl: PropTypes.shape({
-    de: PropTypes.func.isRequired,
-    en: PropTypes.func.isRequired,
-    es: PropTypes.func.isRequired,
-  }).isRequired,
+  loadI18n: PropTypes.func.isRequired,
 };
 
 /**
@@ -275,11 +271,7 @@ UnrestrictedApplication.displayName = 'UnrestrictedApplication';
 export default class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
   static propTypes = {
-    loadIntl: PropTypes.shape({
-      de: PropTypes.func.isRequired,
-      en: PropTypes.func.isRequired,
-      es: PropTypes.func.isRequired,
-    }).isRequired,
+    loadI18n: PropTypes.func.isRequired,
     configuration: PropTypes.object.isRequired,
     defaultFeatureFlags: PropTypes.object,
     trackingEventWhitelist: PropTypes.objectOf(
@@ -329,7 +321,7 @@ export default class ApplicationShell extends React.Component {
                                 defaultFeatureFlags={
                                   this.props.defaultFeatureFlags
                                 }
-                                loadIntl={this.props.loadIntl}
+                                loadI18n={this.props.loadI18n}
                                 render={this.props.render}
                                 INTERNAL__isApplicationFallback={
                                   this.props.INTERNAL__isApplicationFallback
@@ -341,7 +333,7 @@ export default class ApplicationShell extends React.Component {
                           return (
                             <AsyncLocaleMessages
                               locale={browserLocale}
-                              loadIntl={this.props.loadIntl}
+                              loadI18n={this.props.loadI18n}
                             >
                               {({ messages }) => (
                                 <ConfigureIntlProvider

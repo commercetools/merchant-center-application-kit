@@ -18,13 +18,7 @@ exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
     }
   }
   isLoading={false}
-  loadIntl={
-    Object {
-      "de": [MockFunction],
-      "en": [MockFunction],
-      "es": [MockFunction],
-    }
-  }
+  loadI18n={[MockFunction]}
   locale="en-US"
   mapPluginNotificationToComponent={[MockFunction]}
   messages={

@@ -10,11 +10,7 @@ const ChildComponent = () => <div>Child</div>;
 const createTestProps = props => ({
   children: () => <ChildComponent />,
   locale: 'en-US',
-  loadIntl: {
-    en: jest.fn(() => new Promise(resolve => resolve({}))),
-    de: jest.fn(() => new Promise(resolve => resolve({}))),
-    es: () => {},
-  },
+  loadI18n: jest.fn(() => new Promise(resolve => resolve({}))),
   ...props,
 });
 
@@ -25,11 +21,7 @@ describe('rendering', () => {
     const error = new Error('oh no!');
     beforeEach(() => {
       props = createTestProps({
-        loadIntl: {
-          en: () => new Promise((resolve, reject) => reject(error)),
-          de: () => {},
-          es: () => {},
-        },
+        loadI18n: () => new Promise((resolve, reject) => reject(error)),
       });
       wrapper = shallow(<AsyncLocaleMessages {...props} />);
     });
@@ -55,7 +47,7 @@ describe('rendering', () => {
       });
 
       it('should call `loadIntl`', () => {
-        expect(props.loadIntl.en).toHaveBeenCalled();
+        expect(props.loadI18n).toHaveBeenCalled();
       });
     });
 
@@ -67,7 +59,7 @@ describe('rendering', () => {
       });
 
       it('should not call `loadIntl`', () => {
-        expect(props.loadIntl.en).toHaveBeenCalledTimes(0);
+        expect(props.loadI18n).toHaveBeenCalledTimes(0);
       });
     });
     describe('when component is updated with different locale', () => {
@@ -82,7 +74,11 @@ describe('rendering', () => {
       });
 
       it('should call `loadIntl`', () => {
-        expect(props.loadIntl.de).toHaveBeenCalled();
+        expect(props.loadI18n).toHaveBeenCalled();
+      });
+
+      it('should call `loadIntl` with `de`', () => {
+        expect(props.loadI18n).toHaveBeenCalledWith('de');
       });
     });
   });
