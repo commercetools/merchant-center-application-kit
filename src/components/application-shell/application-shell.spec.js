@@ -109,6 +109,7 @@ describe('rendering', () => {
           })
           .find(AsyncLocaleData)
           .renderProp('children', {
+            locale: 'en-US',
             messages: {
               title: 'Title en',
             },
@@ -160,7 +161,10 @@ describe('<RestrictedApplication>', () => {
         .find(FetchUser)
         .renderProp('children', userData)
         .find(AsyncLocaleData)
-        .renderProp('children', { messages: props.i18n.en });
+        .renderProp('children', {
+          locale: userData.language,
+          messages: props.i18n.en,
+        });
     });
     it('should match layout structure', () => {
       expect(wrapper).toMatchSnapshot();
@@ -177,13 +181,13 @@ describe('<RestrictedApplication>', () => {
           .find(FetchUser)
           .renderProp('children', userData)
           .find(AsyncLocaleData)
-          .renderProp('children', { messages: { title: 'Test en' } });
+          .renderProp('children', {
+            locale: 'en',
+            messages: { title: 'Test en' },
+          });
       });
       it('should pass "locale" to <ConfigureIntlProvider>', () => {
-        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
-          'locale',
-          'en-US'
-        );
+        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp('locale', 'en');
       });
       it('should render <ErrorApologizer>', () => {
         expect(wrapper).toRender('ErrorApologizer');

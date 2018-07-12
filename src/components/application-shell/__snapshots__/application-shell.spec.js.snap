@@ -51,7 +51,6 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
 
 exports[`<RestrictedApplication> rendering should match layout structure 1`] = `
 <ConfigureIntlProvider
-  locale="en-US"
   messages={
     Object {
       "title": "Title en",
