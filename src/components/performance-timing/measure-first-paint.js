@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { compose, withProps } from 'recompose';
 import snakeCase from 'lodash.snakecase';
 import { oneLineTrim, oneLine } from 'common-tags';
 import { injectConfiguration } from '../../../../application-shell-connectors/src';
@@ -24,13 +25,18 @@ class MeasureFirstPaint extends React.Component {
   static displayName = 'MeasureFirstPaint';
   static propTypes = {
     applicationLabel: PropTypes.string.isRequired,
+    children: PropTypes.node,
+    // Injected
     mcApiUrl: PropTypes.string.isRequired,
+    browserPerformanceApi: PropTypes.shape({
+      getEntriesByType: PropTypes.func.isRequired,
+    }).isRequired,
   };
   componentDidMount() {
     // We are using the Performance API, since registering `paint`
     // on the `PerformanceObserver` doesn't give us the startTimes that we need
     // in a timely fashion..
-    const convertedMetrics = window.performance
+    const convertedMetrics = this.props.browserPerformanceApi
       .getEntriesByType('paint')
       .map(paintMeasurement =>
         transformPaintToMcMetrics({
@@ -67,8 +73,11 @@ class MeasureFirstPaint extends React.Component {
       });
   }
   render() {
-    return null;
+    return this.props.children;
   }
 }
 
-export default injectConfiguration(['mcApiUrl'], 'mcApiUrl')(MeasureFirstPaint);
+export default compose(
+  injectConfiguration(['mcApiUrl'], 'mcApiUrl'),
+  withProps({ browserPerformanceApi: window.performance })
+)(MeasureFirstPaint);
