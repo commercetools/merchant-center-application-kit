@@ -17,7 +17,7 @@ const createPaintMetric = ({ paintMeasurement, labels }) => ({
   metricLabels: labels,
 });
 
-class MeasureFirstPaint extends React.Component {
+export class MeasureFirstPaint extends React.Component {
   static displayName = 'MeasureFirstPaint';
   static propTypes = {
     applicationLabel: PropTypes.string.isRequired,
