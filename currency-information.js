@@ -14,9 +14,10 @@ export const currenciesShape = PropTypes.objectOf(
 const getCurrenciesForLocale = (locale, cb) => {
   const languageFromLocale = extractLanguageFromLocale(locale);
   const supportedLocale = getSupportedLanguage(languageFromLocale);
-  // Use lazy once so that subsequent calls to import() will use the same
-  // network response. https://webpack.js.org/api/module-methods/#import-
-  import(/* webpackChunkName: "currency-data", webpackMode: "lazy-once" */
+  // Use default webpackMode (lazy) so that we generate one file per locale.
+  // The files are named like "currency-data-en-json.chunk.js" after compilation
+  // https://webpack.js.org/api/module-methods/#import-
+  import(/* webpackChunkName: "currency-data-[request]" */
   `./data/currencies/${supportedLocale}.json`)
     .then(currencies => cb(null, currencies.default))
     .catch(error => cb(error));

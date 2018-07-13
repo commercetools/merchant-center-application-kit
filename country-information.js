@@ -12,9 +12,10 @@ export const countriesShape = PropTypes.objectOf(PropTypes.string);
 const getCountriesForLocale = (locale, cb) => {
   const languageFromLocale = extractLanguageFromLocale(locale);
   const supportedLocale = getSupportedLanguage(languageFromLocale);
-  // Use lazy once so that subsequent calls to import() will use the same
-  // network response. https://webpack.js.org/api/module-methods/#import-
-  import(/* webpackChunkName: "country-data", webpackMode: "lazy-once" */
+  // Use default webpackMode (lazy) so that we generate one file per locale.
+  // The files are named like "country-data-en-json.chunk.js" after compilation
+  // https://webpack.js.org/api/module-methods/#import-
+  import(/* webpackChunkName: "country-data-[request]" */
   `./data/countries/${supportedLocale}.json`)
     .then(countries => cb(null, countries.default))
     .catch(error => cb(error));
