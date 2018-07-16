@@ -18,9 +18,10 @@ export const timeZonesShape = PropTypes.objectOf(
 const getTimeZonesForLocale = (locale, cb) => {
   const languageFromLocale = extractLanguageFromLocale(locale);
   const supportedLocale = getSupportedLanguage(languageFromLocale);
-  // Use lazy once so that subsequent calls to import() will use the same
-  // network response. https://webpack.js.org/api/module-methods/#import-
-  import(/* webpackChunkName: "time-zone-data", webpackMode: "lazy-once" */
+  // Use default webpackMode (lazy) so that we generate one file per locale.
+  // The files are named like "time-zone-data-en-json.chunk.js" after compilation
+  // https://webpack.js.org/api/module-methods/#import-
+  import(/* webpackChunkName: "time-zone-data-[request]" */
   `./data/time-zones/${supportedLocale}.json`)
     .then(timeZones => cb(null, timeZones.default))
     .catch(error => cb(error));
