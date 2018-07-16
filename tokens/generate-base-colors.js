@@ -7,7 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 const css = require('css');
-const lodash = require('lodash');
+const startCase = require('lodash').startCase;
 
 const file = fs.readFileSync(
   path.join(
@@ -38,7 +38,7 @@ const declarationsBody = colors.reduce((acc, curr) => {
           // Adds a comment to categorize base colors in groups
           acc.push({
             type: 'comment',
-            comment: ' ' + lodash.startCase(colorName + 's') + ' ',
+            comment: ' ' + startCase(colorName + 's') + ' ',
           });
         } else {
           // Writes the variations of color section below
