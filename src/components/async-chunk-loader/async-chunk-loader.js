@@ -14,6 +14,10 @@ class AsyncChunkLoader extends React.PureComponent {
   componentDidMount() {
     if (this.props.error) reportErrorToSentry(this.props.error, {});
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.error !== this.props.error)
+      reportErrorToSentry(this.props.error, {});
+  }
   render() {
     if (this.props.error) return <ErrorApologizer />;
     // To avoid "Flashing of loading component"
