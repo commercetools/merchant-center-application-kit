@@ -4,7 +4,7 @@ import isNil from 'lodash.isnil';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';
-import { ToggleFeature } from '@flopflip/react-broadcast';
+import { ToggleFeature, injectFeatureToggle } from '@flopflip/react-broadcast';
 import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
 import omit from 'lodash.omit';
@@ -20,6 +20,7 @@ import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS } from '../../constants';
 import { withUser } from '../fetch-user';
 import { withProject } from '../fetch-project';
+import { PROJECT_EXTENSIONS } from './feature-toggles';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
 import styles from './navbar.mod.css';
 import { defaultNavigationItems } from './config';
@@ -515,6 +516,9 @@ export class NavBar extends React.PureComponent {
         })
       ),
     }),
+
+    // injectFeatureToggle
+    areProjectExtensionsEnabled: PropTypes.bool.isRequired,
   };
 
   getNode = node => {
@@ -557,6 +561,7 @@ export class NavBar extends React.PureComponent {
 }
 
 export default compose(
+  injectFeatureToggle(PROJECT_EXTENSIONS, 'areProjectExtensionsEnabled'),
   withRouter, // Connect again, to access the `location` object
   withProps(() => {
     const cachedIsForcedMenuOpen = storage.get(
@@ -580,6 +585,7 @@ export default compose(
   ),
   graphql(FetchProjectExtensionsNavbar, {
     name: 'projectExtensionsQuery',
+    skip: ownProps => !ownProps.areProjectExtensionsEnabled,
     options: () => ({
       variables: {
         target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,

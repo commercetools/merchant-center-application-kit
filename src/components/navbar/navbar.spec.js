@@ -41,6 +41,9 @@ const createTestProps = props => ({
   },
   isForcedMenuOpen: false,
   useFullRedirectsForLinks: false,
+
+  // injectFeatureToggle
+  areProjectExtensionsEnabled: false,
   ...props,
 });
 
