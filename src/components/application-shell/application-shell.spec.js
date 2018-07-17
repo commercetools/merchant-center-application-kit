@@ -23,7 +23,6 @@ const createTestProps = props => ({
     'en-US': { title: 'Title' },
     de: { title: 'Titel' },
   },
-  loadI18n: jest.fn(),
   configuration: {},
   trackingEventWhitelist: {},
   render: jest.fn(),
