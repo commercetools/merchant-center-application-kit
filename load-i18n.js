@@ -7,18 +7,18 @@ export default function loadI18n(lang, country) {
 
   const momentLocaleCode = getMatchingMomentCode(lang, country);
 
-  const reactIntlChunkImport = import(/* webpackChunkName: "react-intl-data" */
+  const reactIntlChunkImport = import(/* webpackChunkName: "react-intl-data-[request]" */
   /* webpackMode: "lazy" */
   `./locale-data/${lang}`);
 
-  const momentChunkImport = import(/* webpackChunkName: "i18n-moment-locale" */
+  const momentChunkImport = import(/* webpackChunkName: "i18n-moment-locale-[request]" */
   `./moment-data/${momentLocaleCode}`);
 
   const localeDataPromises = [reactIntlChunkImport, momentChunkImport];
 
   return Promise.all(localeDataPromises).then(response => {
     addLocaleData([...response[0].default]);
-    return import(/* webpackChunkName: "react-intl-localized-strings" */ /* webpackMode: "lazy" */
+    return import(/* webpackChunkName: "react-intl-localized-strings-[request]" */
     `./data/${lang}.json`);
   });
 }
