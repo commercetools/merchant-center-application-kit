@@ -61,9 +61,7 @@ export class MeasureFirstPaint extends React.Component {
 const mapStateToProps = () => ({
   // We take this chance to inject this global object to make it easier to test.
   // NOTE: We "safely" get the `getEntriesByType` as it might not be available.
-  browserPerformanceApi: {
-    getEntriesByType: window.performance && window.performance.getEntriesByType,
-  },
+  browserPerformanceApi: window.performance,
 });
 const mapDispatchToProps = {
   pushMetricSummary: actions.pushMetricSummary,
