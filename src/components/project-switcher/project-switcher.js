@@ -193,9 +193,10 @@ export class ProjectSwitcher extends React.PureComponent {
           name="project-switcher"
           onChange={this.handleSelection}
           autoBlur={true}
-          options={mapProjectsToOptions(
-            this.props.projectsQuery.user.projects.results
-          )}
+          options={
+            this.props.projectsQuery.user &&
+            mapProjectsToOptions(this.props.projectsQuery.user.projects.results)
+          }
           optionRenderer={this.handleRenderItemName}
           clearable={false}
           backspaceRemoves={false}
