@@ -17,51 +17,70 @@ const createTestProps = custom => ({
 
 jest.mock('@commercetools-frontend/sentry');
 
-describe('rendering', () => {
+describe('lifecycle', () => {
   let props;
   let wrapper;
-  beforeEach(() => {
-    props = createTestProps();
-    wrapper = shallow(<MeasureFirstPaint {...props} />);
-  });
-  describe('when mounted', () => {
-    beforeEach(() => {
-      wrapper.instance().componentDidMount();
-    });
-    it('should send an action with the mapped metrics', () => {
-      expect(props.pushMetricSummary).toHaveBeenCalledWith({
-        body: JSON.stringify([
-          {
-            metricName: 'browser_duration_first_paint_milliseconds',
-            metricValue: 2028.5,
-            metricLabels: { application: props.applicationLabel },
-          },
-          {
-            metricName: 'browser_duration_first_contentful_paint_milliseconds',
-            metricValue: 2028.5,
-            metricLabels: { application: props.applicationLabel },
-          },
-        ]),
-      });
-    });
-    it('should not report error to sentry', () => {
-      expect(reportErrorToSentry).not.toHaveBeenCalled();
-    });
-    describe('when request fails', () => {
-      let error;
+
+  describe('`componentDidMount`', () => {
+    describe('without `browserPerformanceApi.getEntriesByType`', () => {
       beforeEach(() => {
-        error = new Error('Oops');
         props = createTestProps({
-          pushMetricSummary: jest.fn(() => Promise.reject(error)),
+          browserPerformanceApi: {},
         });
         wrapper = shallow(<MeasureFirstPaint {...props} />);
+
         wrapper.instance().componentDidMount();
       });
+
+      it('should not send an action with the mapped metrics', () => {
+        expect(props.pushMetricSummary).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('with `browserPerformanceApi.getEntriesByType`', () => {
+      beforeEach(() => {
+        props = createTestProps();
+        wrapper = shallow(<MeasureFirstPaint {...props} />);
+
+        wrapper.instance().componentDidMount();
+      });
+
+      it('should send an action with the mapped metrics', () => {
+        expect(props.pushMetricSummary).toHaveBeenCalledWith({
+          body: JSON.stringify([
+            {
+              metricName: 'browser_duration_first_paint_milliseconds',
+              metricValue: 2028.5,
+              metricLabels: { application: props.applicationLabel },
+            },
+            {
+              metricName:
+                'browser_duration_first_contentful_paint_milliseconds',
+              metricValue: 2028.5,
+              metricLabels: { application: props.applicationLabel },
+            },
+          ]),
+        });
+      });
       it('should not report error to sentry', () => {
-        expect(reportErrorToSentry).toHaveBeenCalledWith(
-          new Error('Unable to push first-paint metrics'),
-          { extra: error }
-        );
+        expect(reportErrorToSentry).not.toHaveBeenCalled();
+      });
+      describe('when request fails', () => {
+        let error;
+        beforeEach(() => {
+          error = new Error('Oops');
+          props = createTestProps({
+            pushMetricSummary: jest.fn(() => Promise.reject(error)),
+          });
+          wrapper = shallow(<MeasureFirstPaint {...props} />);
+          wrapper.instance().componentDidMount();
+        });
+        it('should not report error to sentry', () => {
+          expect(reportErrorToSentry).toHaveBeenCalledWith(
+            new Error('Unable to push first-paint metrics'),
+            { extra: error }
+          );
+        });
       });
     });
   });

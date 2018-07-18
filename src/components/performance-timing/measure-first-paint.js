@@ -25,10 +25,12 @@ export class MeasureFirstPaint extends React.Component {
     // Injected
     pushMetricSummary: PropTypes.func.isRequired,
     browserPerformanceApi: PropTypes.shape({
-      getEntriesByType: PropTypes.func.isRequired,
+      getEntriesByType: PropTypes.func,
     }).isRequired,
   };
   componentDidMount() {
+    // NOTE: Early return if performance API is not availble.
+    if (!this.props.browserPerformanceApi.getEntriesByType) return;
     // We are using the Performance API, since registering `paint`
     // on the `PerformanceObserver` doesn't give us the startTimes that we need
     // in a timely fashion..
@@ -57,9 +59,11 @@ export class MeasureFirstPaint extends React.Component {
 }
 
 const mapStateToProps = () => ({
-  // We take this chance to inject this global object
-  // to make it easier to test.
-  browserPerformanceApi: window.performance,
+  // We take this chance to inject this global object to make it easier to test.
+  // NOTE: We "safely" get the `getEntriesByType` as it might not be available.
+  browserPerformanceApi: {
+    getEntriesByType: window.performance && window.performance.getEntriesByType,
+  },
 });
 const mapDispatchToProps = {
   pushMetricSummary: actions.pushMetricSummary,
