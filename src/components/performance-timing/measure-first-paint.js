@@ -20,7 +20,7 @@ const createPaintMetric = ({ paintMeasurement, labels }) => ({
 export class MeasureFirstPaint extends React.Component {
   static displayName = 'MeasureFirstPaint';
   static propTypes = {
-    applicationLabel: PropTypes.string.isRequired,
+    application: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
     children: PropTypes.node,
     // connect
@@ -42,7 +42,7 @@ export class MeasureFirstPaint extends React.Component {
         createPaintMetric({
           paintMeasurement,
           labels: {
-            application: this.props.applicationLabel,
+            application: this.props.application,
             user_agent: this.props.userAgent,
             project_key: this.props.projectKey,
           },

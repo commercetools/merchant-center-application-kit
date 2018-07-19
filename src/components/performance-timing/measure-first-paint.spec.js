@@ -4,7 +4,7 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { MeasureFirstPaint } from './measure-first-paint';
 
 const createTestProps = custom => ({
-  applicationLabel: 'application-foo',
+  application: 'application-foo',
   projectKey: 'test-project',
   userAgent:
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
@@ -55,7 +55,7 @@ describe('lifecycle', () => {
               metricName: 'browser_duration_first_paint_milliseconds',
               metricValue: 2028.5,
               metricLabels: {
-                application: props.applicationLabel,
+                application: props.application,
                 user_agent: props.userAgent,
                 project_key: props.projectKey,
               },
@@ -65,7 +65,7 @@ describe('lifecycle', () => {
                 'browser_duration_first_contentful_paint_milliseconds',
               metricValue: 2028.5,
               metricLabels: {
-                application: props.applicationLabel,
+                application: props.application,
                 user_agent: props.userAgent,
                 project_key: props.projectKey,
               },
