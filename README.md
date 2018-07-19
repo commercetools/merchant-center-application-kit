@@ -9,6 +9,17 @@ React components to declaratively handle MC permissions.
 A requested permission has the following shape:
 
 ```js
+enum Permission {
+  ManageProject
+  ManageCustomers
+  ManageOrders
+  ManageProducts
+  ViewCustomers
+  ViewOrders
+  ViewProducts
+}
+
+// ⚠️ This is deprecated 👇
 type Permission {
   mode: view|manage;
   resource: String; // one of `products`, `orders`, ...
@@ -18,7 +29,7 @@ type Permission {
 ## Install
 
 ```bash
-$ npm install --save @commercetools-frontend/react-notifications
+$ npm install --save @commercetools-frontend/permissions
 ```
 
 ## `branchOnPermissions(permissions, [FallbackComponent], [options])`
@@ -50,10 +61,7 @@ branchOnPermissions(
 const TopFiveProducts = () =>
   // ...
 
-  branchOnPermissions(
-    [{ mode: 'view', resource: 'products' }],
-    [{ mode: 'view', resource: 'orders' }]
-  )(TopFiveProducts);
+  branchOnPermissions([ViewProducts, ViewOrders])(TopFiveProducts);
 ```
 
 ```js
@@ -61,10 +69,7 @@ const TopFiveProducts = () =>
 const ReadOnlyInput = () => // ...
 const Input = () => // ...
 
-branchOnPermissions(
-  [{ mode: 'view', resource: 'products' }],
-  ReadOnlyInput
-)(Input)
+branchOnPermissions([ViewProducts], ReadOnlyInput)(Input)
 ```
 
 ## `<RestrictedByPermissions>`
@@ -107,16 +112,13 @@ const Unauthorized = () => <p>{'No permissions to see this'}</p>;
 const Dashboard = () => (
   <div>
     <RestrictedByPermissions
-      permissions={[{ mode: 'view', resource: 'products' }]}
+      permissions={[ViewProducts]}
       unauthorizedComponent={Unauthorized}
     >
       <TopFiveProducts />
     </RestrictedByPermissions>
     <RestrictedByPermissions
-      permissions={[
-        { mode: 'view', resource: 'products' },
-        { mode: 'view', resource: 'orders' },
-      ]}
+      permissions={[ViewProducts, ViewOrders]}
       shouldMatchSomePermissions={true}
     >
       {({ isAuthorized }) => <RevenueChart isDisabled={!isAuthorized} />}
@@ -157,8 +159,5 @@ const InputField = props => (
   />
 );
 
-injectAuthorized(
-  [{ mode: 'view', resource: 'products' }],
-  [{ mode: 'view', resource: 'orders' }]
-)(InputField);
+injectAuthorized([ViewProducts, ViewOrders])(InputField);
 ```
