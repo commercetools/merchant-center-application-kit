@@ -4,22 +4,10 @@ exports[`rendering <ToggledWithPermissions> <RestrictedByPermissions> when permi
 <withUserPermissions(RestrictedByPermissions)
   permissions={
     Array [
-      Object {
-        "mode": "view",
-        "resource": "products",
-      },
+      "ViewProducts",
     ]
   }
   shouldMatchSomePermissions={true}
->
-  <ItemChild />
-</withUserPermissions(RestrictedByPermissions)>
-`;
-
-exports[`rendering <ToggledWithPermissions> <RestrictedByPermissions> when permissions are not defined should match snapshot 1`] = `
-<withUserPermissions(RestrictedByPermissions)
-  permissions={Array []}
-  shouldMatchSomePermissions={false}
 >
   <ItemChild />
 </withUserPermissions(RestrictedByPermissions)>
@@ -41,7 +29,7 @@ exports[`rendering <ToggledWithPermissions> <ToggleFeature> when featureToggle i
 exports[`rendering <ToggledWithPermissions> <ToggleFeature> when featureToggle is not defined should match snapshot 1`] = `
 <withUserPermissions(RestrictedByPermissions)
   permissions={Array []}
-  shouldMatchSomePermissions={false}
+  shouldMatchSomePermissions={true}
 >
   <ItemChild />
 </withUserPermissions(RestrictedByPermissions)>

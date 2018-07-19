@@ -1,6 +1,9 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
+import {
+  RestrictedByPermissions,
+  constants as permissionKeys,
+} from '@commercetools-frontend/permissions';
 import * as storage from '@commercetools-frontend/storage';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import {
@@ -52,58 +55,40 @@ const createDataMenuTestProps = props => ({
   ...createTestProps(),
   data: [
     {
-      name: 'application-customers',
-      menu: {
-        name: 'Customers',
-        labelKey: 'NavBar.Customers.title',
-        link: 'customers',
-        icon: 'CustomerFilledIcon',
-        submenu: [
-          {
-            name: 'Add Customer',
-            labelKey: 'NavBar.Customers.add',
-            link: 'customers/new',
-          },
-        ],
-      },
+      key: 'Customers',
+      labelKey: 'NavBar.Customers.title',
+      uriPath: 'customers',
+      icon: 'CustomerFilledIcon',
+      submenu: [
+        {
+          key: 'Add Customer',
+          labelKey: 'NavBar.Customers.add',
+          uriPath: 'customers/new',
+        },
+      ],
     },
   ],
   ...props,
 });
 
 const createProjectExtensionNavbarProps = props => ({
-  name: 'application-channels',
-  menu: {
-    name: 'Channels',
-    allLocaleLabels: [
-      {
-        locale: 'en',
-        value: 'Channels',
-      },
-      {
-        locale: 'de',
-        value: 'Kanäle',
-      },
-    ],
-    link: 'channels',
-    icon: 'WorldIcon',
-    submenu: [
-      {
-        name: 'Channels',
-        allLocaleLabels: [
-          {
-            locale: 'en',
-            value: 'Channels',
-          },
-          {
-            locale: 'de',
-            value: 'Kanäle',
-          },
-        ],
-        link: 'channels',
-      },
-    ],
-  },
+  key: 'Channels',
+  allLocaleLabels: [
+    { locale: 'en', value: 'Channels' },
+    { locale: 'de', value: 'Kanäle' },
+  ],
+  uriPath: 'channels',
+  icon: 'WorldIcon',
+  submenu: [
+    {
+      key: 'Channels',
+      allLocaleLabels: [
+        { locale: 'en', value: 'Channels' },
+        { locale: 'de', value: 'Kanäle' },
+      ],
+      uriPath: 'channels',
+    },
+  ],
   ...props,
 });
 
@@ -163,12 +148,15 @@ describe('rendering', () => {
           extendedMenuItem = createProjectExtensionNavbarProps();
           props = createTestProps({
             projectExtensionsQuery: {
-              projectExtensions: [
-                {
-                  id: 'pe1',
-                  navbarMenu: extendedMenuItem,
-                },
-              ],
+              projectExtensions: {
+                id: 'pe1',
+                applications: [
+                  {
+                    id: 'pe1a1',
+                    navbarMenu: extendedMenuItem,
+                  },
+                ],
+              },
             },
           });
           wrapper = shallow(<NavBar {...props} />);
@@ -198,15 +186,12 @@ describe('rendering', () => {
         props = createDataMenuTestProps({
           data: [
             {
-              name: 'application-project-settings',
-              menu: {
-                name: 'Settings',
-                labelKey: 'NavBar.Settings.title',
-                link: 'settings',
-                icon: 'CustomerFilledIcon',
-                permissions: [{ mode: 'manage', resource: 'project' }],
-                featureToggle: 'projectSettings',
-              },
+              key: 'Settings',
+              labelKey: 'NavBar.Settings.title',
+              uriPath: 'settings',
+              icon: 'CustomerFilledIcon',
+              permissions: [permissionKeys.ManageProject],
+              featureToggle: 'projectSettings',
             },
           ],
         });
@@ -221,15 +206,12 @@ describe('rendering', () => {
         props = createDataMenuTestProps({
           data: [
             {
-              name: 'application-customers',
-              menu: {
-                name: 'Customers',
-                labelKey: 'NavBar.Customers.title',
-                link: 'customers',
-                icon: 'CustomerFilledIcon',
-                permissions: [{ mode: 'view', resource: 'customers' }],
-                featureToggle: 'customerList',
-              },
+              key: 'Customers',
+              labelKey: 'NavBar.Customers.title',
+              uriPath: 'customers',
+              icon: 'CustomerFilledIcon',
+              permissions: [permissionKeys.ViewCustomers],
+              featureToggle: 'customerList',
             },
           ],
         });
@@ -253,9 +235,7 @@ describe('rendering', () => {
               .find('MenuGroup')
               .at(0)
               .find(ToggledWithPermissions)
-          ).toHaveProp('permissions', [
-            { mode: 'view', resource: 'customers' },
-          ]);
+          ).toHaveProp('permissions', [permissionKeys.ViewCustomers]);
         });
       });
     });
@@ -308,7 +288,7 @@ describe('rendering', () => {
           beforeEach(() => {
             props = createDataMenuTestProps({
               data: defaultNavigationItems.filter(
-                item => item.name === 'mc-support'
+                item => item.key === 'Support'
               ),
             });
             wrapper = shallow(<DataMenu {...props} />);
@@ -325,13 +305,10 @@ describe('rendering', () => {
             props = createDataMenuTestProps({
               data: [
                 {
-                  name: 'application-customers',
-                  menu: {
-                    name: 'Customers',
-                    labelKey: 'NavBar.Customers.title',
-                    link: 'customers',
-                    icon: 'CustomerFilledIcon',
-                  },
+                  key: 'Customers',
+                  labelKey: 'NavBar.Customers.title',
+                  uriPath: 'customers',
+                  icon: 'CustomerFilledIcon',
                 },
               ],
             });
@@ -418,24 +395,19 @@ describe('rendering', () => {
             props = createDataMenuTestProps({
               data: [
                 {
-                  name: 'application-customers',
-                  menu: {
-                    name: 'Customers',
-                    labelKey: 'NavBar.Customers.title',
-                    link: 'customers',
-                    icon: 'CustomerFilledIcon',
-                    submenu: [
-                      {
-                        name: 'Add Customer',
-                        labelKey: 'NavBar.Customers.add',
-                        link: 'customers/new',
-                        permissions: [
-                          { mode: 'manage', resource: 'customers' },
-                        ],
-                        featureToggle: 'customerAdd',
-                      },
-                    ],
-                  },
+                  key: 'Customers',
+                  labelKey: 'NavBar.Customers.title',
+                  uriPath: 'customers',
+                  icon: 'CustomerFilledIcon',
+                  submenu: [
+                    {
+                      key: 'Add Customer',
+                      labelKey: 'NavBar.Customers.add',
+                      uriPath: 'customers/new',
+                      permissions: [permissionKeys.ManageCustomers],
+                      featureToggle: 'customerAdd',
+                    },
+                  ],
                 },
               ],
             });
@@ -455,9 +427,7 @@ describe('rendering', () => {
                 .find('MenuGroup')
                 .at(1)
                 .find(ToggledWithPermissions)
-            ).toHaveProp('permissions', [
-              { mode: 'manage', resource: 'customers' },
-            ]);
+            ).toHaveProp('permissions', [permissionKeys.ManageCustomers]);
           });
         });
         describe('when item is active', () => {
@@ -533,13 +503,10 @@ describe('rendering', () => {
             props = createDataMenuTestProps({
               data: [
                 {
-                  name: 'application-customers',
-                  menu: {
-                    name: 'Customers',
-                    labelKey: 'NavBar.Customers.title',
-                    link: 'customers',
-                    icon: 'CustomerFilledIcon',
-                  },
+                  key: 'Customers',
+                  labelKey: 'NavBar.Customers.title',
+                  uriPath: 'customers',
+                  icon: 'CustomerFilledIcon',
                 },
               ],
             });
@@ -625,7 +592,7 @@ describe('rendering', () => {
       describe('when permissions are defined', () => {
         beforeEach(() => {
           props = {
-            permissions: [{ mode: 'view', resource: 'products' }],
+            permissions: [permissionKeys.ViewProducts],
           };
           wrapper = shallow(
             <ToggledWithPermissions {...props}>
@@ -639,40 +606,13 @@ describe('rendering', () => {
         it('should pass permissions as prop', () => {
           expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
             'permissions',
-            [{ mode: 'view', resource: 'products' }]
+            [permissionKeys.ViewProducts]
           );
         });
         it('should pass shouldMatchSomePermissions as prop (true)', () => {
           expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
             'shouldMatchSomePermissions',
             true
-          );
-        });
-      });
-      describe('when permissions are not defined', () => {
-        beforeEach(() => {
-          props = {
-            permissions: undefined,
-          };
-          wrapper = shallow(
-            <ToggledWithPermissions {...props}>
-              <ItemChild />
-            </ToggledWithPermissions>
-          );
-        });
-        it('should match snapshot', () => {
-          expect(wrapper).toMatchSnapshot();
-        });
-        it('should pass permissions as prop', () => {
-          expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
-            'permissions',
-            []
-          );
-        });
-        it('should pass shouldMatchSomePermissions as prop (false)', () => {
-          expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
-            'shouldMatchSomePermissions',
-            false
           );
         });
       });
@@ -1187,7 +1127,7 @@ describe('helpers', () => {
       let menu;
       beforeEach(() => {
         menu = {
-          name: 'menu',
+          key: 'menu',
         };
         iconTheme = getIconTheme(menu, true);
       });
@@ -1197,7 +1137,7 @@ describe('helpers', () => {
       describe('when menu is settings', () => {
         beforeEach(() => {
           menu = {
-            name: 'settings',
+            key: 'Settings',
           };
           iconTheme = getIconTheme(menu, true);
         });
@@ -1208,7 +1148,7 @@ describe('helpers', () => {
       describe('when menu is Support', () => {
         beforeEach(() => {
           menu = {
-            name: 'Support',
+            key: 'Support',
           };
           iconTheme = getIconTheme(menu, true);
         });
@@ -1222,7 +1162,7 @@ describe('helpers', () => {
       let menu;
       beforeEach(() => {
         menu = {
-          name: 'menu',
+          key: 'menu',
         };
         iconTheme = getIconTheme(menu, false);
       });
@@ -1233,7 +1173,7 @@ describe('helpers', () => {
       describe('when menu is settings', () => {
         beforeEach(() => {
           menu = {
-            name: 'settings',
+            key: 'Settings',
           };
           iconTheme = getIconTheme(menu, false);
         });
@@ -1244,7 +1184,7 @@ describe('helpers', () => {
       describe('when menu is Support', () => {
         beforeEach(() => {
           menu = {
-            name: 'Support',
+            key: 'Support',
           };
           iconTheme = getIconTheme(menu, false);
         });

@@ -16,7 +16,10 @@ import {
   NO_VALUE_FALLBACK,
 } from '@commercetools-frontend/constants';
 import { AppShellProviderForUserPermissions } from '@commercetools-frontend/application-shell-connectors';
-import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
+import {
+  RestrictedByPermissions,
+  constants as permissionKeys,
+} from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS } from '../../constants';
 import { withUser } from '../fetch-user';
 import { withProject } from '../fetch-project';
@@ -39,10 +42,6 @@ import messages from './messages';
   <MenuExpander/>
 </DataMenu>
 */
-
-const PLUGIN_NAMES = {
-  SETTINGS: 'settings',
-};
 
 export const MenuExpander = props => (
   <li
@@ -193,7 +192,7 @@ export const ToggledWithPermissions = props => {
   const permissionsWrapper = (
     <RestrictedByPermissions
       permissions={props.permissions || []}
-      shouldMatchSomePermissions={Boolean(props.permissions)}
+      shouldMatchSomePermissions={true}
     >
       {props.children}
     </RestrictedByPermissions>
@@ -209,19 +208,12 @@ export const ToggledWithPermissions = props => {
 ToggledWithPermissions.displayName = 'ToggledWithPermissions';
 ToggledWithPermissions.propTypes = {
   featureToggle: PropTypes.string,
-  permissions: PropTypes.arrayOf(
-    PropTypes.shape({
-      mode: PropTypes.string.isRequired,
-      resource: PropTypes.string.isRequired,
-    })
-  ),
+  permissions: PropTypes.arrayOf(PropTypes.oneOf(Object.keys(permissionKeys))),
   children: PropTypes.element.isRequired,
 };
 export const getIconTheme = (menu, isActive) => {
   const baseIconTheme =
-    menu.name.toLowerCase() === PLUGIN_NAMES.SETTINGS || menu.name === 'Support'
-      ? 'grey'
-      : 'white';
+    menu.key === 'Settings' || menu.key === 'Support' ? 'grey' : 'white';
   if (isActive) return 'green-light';
   return baseIconTheme;
 };
@@ -231,48 +223,39 @@ export class DataMenu extends React.PureComponent {
     rootNode: PropTypes.any,
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        menu: PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          labelKey: PropTypes.string,
-          allLocaleLabels: PropTypes.arrayOf(
-            PropTypes.shape({
-              locale: PropTypes.string.isRequired,
-              value: PropTypes.string.isRequired,
-            }).isRequired
-          ),
-          link: PropTypes.string,
-          externalLink: PropTypes.string,
-          tracking: PropTypes.object,
-          icon: PropTypes.string.isRequired,
-          featureToggle: PropTypes.string,
-          permissions: PropTypes.arrayOf(
-            PropTypes.shape({
-              mode: PropTypes.string.isRequired,
-              resource: PropTypes.string.isRequired,
-            })
-          ),
-          submenu: PropTypes.arrayOf(
-            PropTypes.shape({
-              name: PropTypes.string.isRequired,
-              labelKey: PropTypes.string,
-              allLocaleLabels: PropTypes.arrayOf(
-                PropTypes.shape({
-                  locale: PropTypes.string.isRequired,
-                  value: PropTypes.string.isRequired,
-                }).isRequired
-              ),
-              link: PropTypes.string.isRequired,
-              featureToggle: PropTypes.string,
-              permissions: PropTypes.arrayOf(
-                PropTypes.shape({
-                  mode: PropTypes.string.isRequired,
-                  resource: PropTypes.string.isRequired,
-                })
-              ),
-            })
-          ),
-        }),
+        key: PropTypes.string.isRequired,
+        labelKey: PropTypes.string,
+        allLocaleLabels: PropTypes.arrayOf(
+          PropTypes.shape({
+            locale: PropTypes.string.isRequired,
+            value: PropTypes.string.isRequired,
+          }).isRequired
+        ),
+        uriPath: PropTypes.string,
+        externalLink: PropTypes.string,
+        tracking: PropTypes.object,
+        icon: PropTypes.string.isRequired,
+        featureToggle: PropTypes.string,
+        permissions: PropTypes.arrayOf(
+          PropTypes.oneOf(Object.keys(permissionKeys))
+        ),
+        submenu: PropTypes.arrayOf(
+          PropTypes.shape({
+            key: PropTypes.string.isRequired,
+            labelKey: PropTypes.string,
+            allLocaleLabels: PropTypes.arrayOf(
+              PropTypes.shape({
+                locale: PropTypes.string.isRequired,
+                value: PropTypes.string.isRequired,
+              }).isRequired
+            ),
+            uriPath: PropTypes.string.isRequired,
+            featureToggle: PropTypes.string,
+            permissions: PropTypes.arrayOf(
+              PropTypes.oneOf(Object.keys(permissionKeys))
+            ),
+          })
+        ),
       })
     ),
     language: PropTypes.string.isRequired,
@@ -394,22 +377,20 @@ export class DataMenu extends React.PureComponent {
   render() {
     return (
       <MenuGroup level={1}>
-        {this.props.data.map(({ name, menu }, index) => {
+        {this.props.data.map((menu, index) => {
           const isActive = this.state.activeItemIndex === index;
           const MenuIcon = Icons[menu.icon];
           return (
             <ToggledWithPermissions
-              key={name}
+              key={menu.key}
               featureToggle={menu.featureToggle}
               permissions={menu.permissions}
             >
               <React.Fragment>
-                {menu.name.toLowerCase() === PLUGIN_NAMES.SETTINGS && (
-                  <MenuItemDivider />
-                )}
+                {menu.key === 'Settings' && <MenuItemDivider />}
                 <MenuItem
                   hasSubmenu={Boolean(menu.submenu)}
-                  isBottomItem={this.bottomMenuItems.indexOf(menu.name) >= 0}
+                  isBottomItem={this.bottomMenuItems.indexOf(menu.key) >= 0}
                   isActive={isActive}
                   isMenuOpen={this.state.isMenuOpen}
                   onClick={() => {
@@ -429,7 +410,7 @@ export class DataMenu extends React.PureComponent {
                     tracking={menu.tracking}
                     linkTo={
                       !this.state.isMenuOpen || !menu.submenu
-                        ? `/${this.props.projectKey}/${menu.link}`
+                        ? `/${this.props.projectKey}/${menu.uriPath}`
                         : null
                     }
                     useFullRedirectsForLinks={
@@ -442,7 +423,7 @@ export class DataMenu extends React.PureComponent {
                           size="scale"
                           theme={getIconTheme(
                             menu,
-                            isActive || this.isMainMenuRouteActive(menu.link)
+                            isActive || this.isMainMenuRouteActive(menu.uriPath)
                           )}
                         />
                       </div>
@@ -459,7 +440,7 @@ export class DataMenu extends React.PureComponent {
                     {menu.submenu
                       ? menu.submenu.map(submenu => (
                           <ToggledWithPermissions
-                            key={`${name}-submenu-${submenu.name}`}
+                            key={`${menu.key}-submenu-${submenu.key}`}
                             featureToggle={submenu.featureToggle}
                             permissions={submenu.permissions}
                           >
@@ -468,7 +449,7 @@ export class DataMenu extends React.PureComponent {
                                 <MenuItemLink
                                   linkTo={oneLineTrim`
                                     /${this.props.projectKey}
-                                    /${submenu.link}
+                                    /${submenu.uriPath}
                                   `}
                                   exactMatch={true}
                                   useFullRedirectsForLinks={
@@ -510,11 +491,15 @@ export class NavBar extends React.PureComponent {
     isForcedMenuOpen: PropTypes.bool,
     projectPermissions: PropTypes.object.isRequired,
     projectExtensionsQuery: PropTypes.shape({
-      projectExtensions: PropTypes.arrayOf(
-        PropTypes.shape({
-          navbarMenu: PropTypes.object.isRequired,
-        })
-      ),
+      projectExtensions: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        applications: PropTypes.arrayOf(
+          PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            navbarMenu: PropTypes.object.isRequired,
+          })
+        ).isRequired,
+      }),
     }),
 
     // injectFeatureToggle
@@ -542,7 +527,7 @@ export class NavBar extends React.PureComponent {
               this.props.projectExtensionsQuery &&
               this.props.projectExtensionsQuery.projectExtensions
                 ? defaultNavigationItems.concat(
-                    this.props.projectExtensionsQuery.projectExtensions.map(
+                    this.props.projectExtensionsQuery.projectExtensions.applications.map(
                       ext => ext.navbarMenu
                     )
                   )
