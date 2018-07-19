@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isNil from 'lodash.isnil';
 import { withUserPermissions } from '@commercetools-frontend/application-shell-connectors';
+import * as permissionKeys from '../../constants';
 import Authorized from '../authorized';
 
 const getHasChildren = children => React.Children.count(children) > 0;
@@ -11,10 +12,13 @@ export class RestrictedByPermissions extends React.Component {
   static propTypes = {
     shouldMatchSomePermissions: PropTypes.bool,
     permissions: PropTypes.arrayOf(
-      PropTypes.shape({
-        mode: PropTypes.string.isRequired,
-        resource: PropTypes.string.isRequired,
-      }).isRequired
+      PropTypes.oneOfType([
+        PropTypes.oneOf(Object.keys(permissionKeys)),
+        PropTypes.shape({
+          mode: PropTypes.string.isRequired,
+          resource: PropTypes.string.isRequired,
+        }),
+      ]).isRequired
     ).isRequired,
 
     unauthorizedComponent(props, propName, componentName, ...rest) {
