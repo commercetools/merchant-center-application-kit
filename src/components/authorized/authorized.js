@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { wrapDisplayName } from 'recompose';
-import memoizeOne from 'memoize-one';
+import { defaultMemoize } from 'reselect';
 import warning from 'warning';
 import camelCase from 'lodash.camelcase';
 import upperFirst from 'lodash.upperfirst';
@@ -12,7 +12,7 @@ import {
 } from '../../utils/has-permissions';
 import * as permissionKeys from '../../constants';
 
-const ensurePermissionsKeyShape = memoizeOne(permissions =>
+const ensurePermissionsKeyShape = defaultMemoize(permissions =>
   permissions.map(
     permission =>
       typeof permission === 'string'
