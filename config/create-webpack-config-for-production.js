@@ -201,7 +201,7 @@ module.exports = ({
     new webpack.NamedModulesPlugin(),
     // Strip all locales except `en`, `de`
     // (`en` is built into Moment and can't be removed)
-    new MomentLocalesPlugin({ localesToKeep: ['de'] }),
+    new MomentLocalesPlugin({ localesToKeep: ['de', 'es'] }),
 
     // Generate a `stats.json` file containing information and paths to
     // the assets that webpack created.
@@ -264,7 +264,16 @@ module.exports = ({
               {
                 loader: require.resolve('@svgr/webpack'),
                 options: {
-                  icon: true,
+                  // NOTE: disable this and manually add `removeViewBox: false` in the SVGO plugins list
+                  // See related PR: https://github.com/smooth-code/svgr/pull/137
+                  icon: false,
+                  svgoConfig: {
+                    plugins: [
+                      { removeViewBox: false },
+                      // Keeps ID's of svgs so they can be targeted with CSS
+                      { cleanupIDs: false },
+                    ],
+                  },
                 },
               },
             ],
