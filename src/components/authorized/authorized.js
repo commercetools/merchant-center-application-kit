@@ -2,20 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { wrapDisplayName } from 'recompose';
 import memoizeOne from 'memoize-one';
+import warning from 'warning';
+import camelCase from 'lodash.camelcase';
+import upperFirst from 'lodash.upperfirst';
 import { GetUserPermissions } from '@commercetools-frontend/application-shell-connectors';
 import {
   hasSomePermissions,
   hasEveryPermissions,
 } from '../../utils/has-permissions';
 import * as permissionKeys from '../../constants';
-import { toPermissionShape } from '../../utils/transforms';
 
-const ensurePermissionsShape = memoizeOne(permissions =>
+const ensurePermissionsKeyShape = memoizeOne(permissions =>
   permissions.map(
     permission =>
       typeof permission === 'string'
-        ? toPermissionShape(permission)
-        : permission
+        ? permission
+        : upperFirst(camelCase(`${permission.mode} ${permission.resource}`))
   )
 );
 
@@ -38,14 +40,24 @@ class Authorized extends React.Component {
   static defaultProps = {
     shouldMatchSomePermissions: false,
   };
-
+  componentDidUpdate() {
+    const hasDemandedPermissionsWithDeprecatedFormat = this.props.demandedPermissions.some(
+      permission => typeof permission !== 'string'
+    );
+    const shouldSkipWarning = process.env.NODE_ENV === 'production';
+    warning(
+      // `warning` logs the message when `NODE_ENV` is not 'production'
+      shouldSkipWarning || hasDemandedPermissionsWithDeprecatedFormat,
+      'The permission format with "{ mode, resource }" has been deprecated. Please use the constant values from the "@commercetools-frontend/permissions" package.'
+    );
+  }
   render() {
-    const demandedPermissions = ensurePermissionsShape(
+    const demandedPermissions = ensurePermissionsKeyShape(
       this.props.demandedPermissions
     );
     const isAuthorized = this.props.shouldMatchSomePermissions
-      ? hasSomePermissions(this.props.actualPermissions, demandedPermissions)
-      : hasEveryPermissions(this.props.actualPermissions, demandedPermissions);
+      ? hasSomePermissions(demandedPermissions, this.props.actualPermissions)
+      : hasEveryPermissions(demandedPermissions, this.props.actualPermissions);
     return this.props.render(isAuthorized);
   }
 }

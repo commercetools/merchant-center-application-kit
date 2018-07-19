@@ -1,13 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import warning from 'warning';
+import { ViewProducts, ViewOrders } from '../../constants';
 import Authorized from './authorized';
+
+jest.mock('warning', () => jest.fn());
 
 const createTestProps = custom => ({
   shouldMatchSomePermissions: false,
-  demandedPermissions: [
-    { mode: 'view', resource: 'products' },
-    { mode: 'view', resource: 'orders' },
-  ],
+  demandedPermissions: [ViewProducts, ViewOrders],
   actualPermissions: {
     canViewProducts: true,
     canViewOrders: true,
@@ -104,13 +105,16 @@ describe('rendering', () => {
       });
     });
   });
-  describe('when demandedPermissions is a list of string values', () => {
+  describe('when demandedPermissions is a list of values with the deprecated format', () => {
     describe('if should match SOME permissions', () => {
       describe('if can manage products', () => {
         beforeEach(() => {
           props = createTestProps({
             shouldMatchSomePermissions: true,
-            demandedPermissions: ['ManageProducts', 'ViewOrders'],
+            demandedPermissions: [
+              { mode: 'view', resource: 'products' },
+              { mode: 'view', resource: 'orders' },
+            ],
             actualPermissions: {
               canManageProducts: true,
               canViewOrders: true,
@@ -120,6 +124,35 @@ describe('rendering', () => {
         });
         it('should pass isAuthorized as "true"', () => {
           expect(props.render).toHaveBeenCalledWith(true);
+        });
+      });
+    });
+  });
+});
+
+describe('deprecations', () => {
+  let props;
+  let wrapper;
+  describe('permissions shape', () => {
+    describe('if demandedPermissions has the deprecated shape { mode, resource }', () => {
+      describe('when component updates', () => {
+        beforeEach(() => {
+          props = createTestProps({
+            demandedPermissions: [
+              { mode: 'view', resource: 'products' },
+              { mode: 'view', resource: 'orders' },
+            ],
+          });
+          wrapper = shallow(<Authorized {...props} />);
+          wrapper.instance().componentDidUpdate();
+        });
+        it('should log warning', () => {
+          expect(warning).toBeCalledWith(
+            expect.any(Boolean),
+            expect.stringContaining(
+              'The permission format with "{ mode, resource }" has been deprecated. Please use the constant values from the "@commercetools-frontend/permissions" package.'
+            )
+          );
         });
       });
     });

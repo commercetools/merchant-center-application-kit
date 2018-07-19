@@ -1,33 +1,41 @@
-import camelCase from 'lodash.camelcase';
+import { ManageProject } from '../constants';
 
 // Build the permission key from the definition to match it to the format coming
 // from the API.
-export const buildPermissionKey = permission =>
-  // NOTE: spaces are intentional, in order for the camelCase function to know
-  // which letters to make uppercase
-  camelCase(`can ${permission.mode} ${permission.resource}`);
+const toCanCase = permissionKey => `can${permissionKey}`;
 
 // Check that the user permissions match EXACTLY the required permission.
-export const hasExactPermission = (demandedPermission, actualPermissions) =>
-  actualPermissions[buildPermissionKey(demandedPermission)];
+// The shapes of the arguments are:
+// - demandedPermission:
+//     'ViewProducts'
+// - actualPermissions:
+//     { canViewProducts: true, canManageOrders: false }
+const hasExactPermission = (demandedPermission, actualPermissions) =>
+  actualPermissions[toCanCase(demandedPermission)];
 
 // Check that the user permissions match the required MANAGE permission.
-export const hasManagePermission = (demandedPermission, actualPermissions) =>
-  demandedPermission.mode === 'view' &&
-  actualPermissions[
-    buildPermissionKey({
-      mode: 'manage',
-      resource: demandedPermission.resource,
-    })
-  ];
+// The shapes of the arguments are:
+// - demandedPermission:
+//     'ViewProducts'
+// - actualPermissions:
+//     { canViewProducts: true, canManageOrders: false }
+const hasManagePermission = (demandedPermission, actualPermissions) =>
+  demandedPermission.startsWith('View') &&
+  actualPermissions[toCanCase(demandedPermission.replace('View', 'Manage'))];
 
 // Check that the user permissions match the required MANAGE_PROJECT permission.
-export const hasManageProjectPermission = actualPermissions =>
-  actualPermissions[
-    buildPermissionKey({ mode: 'manage', resource: 'project' })
-  ];
+// The shapes of the arguments are:
+// - actualPermissions:
+//     { canViewProducts: true, canManageOrders: false }
+const hasManageProjectPermission = actualPermissions =>
+  actualPermissions[toCanCase(ManageProject)];
 
 // Check the user permissions using one of the defined matchers.
+// The shapes of the arguments are:
+// - demandedPermission:
+//     'ViewProducts'
+// - actualPermissions:
+//     { canViewProducts: true, canManageOrders: false }
 export const hasPermission = (demandedPermission, actualPermissions) =>
   // First checking the existence of the exact permission
   hasExactPermission(demandedPermission, actualPermissions) ||
@@ -38,13 +46,23 @@ export const hasPermission = (demandedPermission, actualPermissions) =>
   hasManageProjectPermission(actualPermissions);
 
 // Check that the user permissions match EVERY one of the required permissions.
-export const hasEveryPermissions = (actualPermissions, demandedPermissions) =>
+// The shapes of the arguments are:
+// - demandedPermissions:
+//     ['ViewProducts', 'ManageOrders']
+// - actualPermissions:
+//     { canViewProducts: true, canManageOrders: false }
+export const hasEveryPermissions = (demandedPermissions, actualPermissions) =>
   demandedPermissions.every(permission =>
     hasPermission(permission, actualPermissions)
   );
 
 // Check that the user permissions match SOME one of the required permissions.
-export const hasSomePermissions = (actualPermissions, demandedPermissions) =>
+// The shapes of the arguments are:
+// - demandedPermissions:
+//     ['ViewProducts', 'ManageOrders']
+// - actualPermissions:
+//     { canViewProducts: true, canManageOrders: false }
+export const hasSomePermissions = (demandedPermissions, actualPermissions) =>
   demandedPermissions.some(permission =>
     hasPermission(permission, actualPermissions)
   );
