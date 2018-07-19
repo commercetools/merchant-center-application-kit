@@ -13,6 +13,8 @@
     "@commercetools-frontend/application-shell-connectors": "1.0.0-beta.11",
     "lodash.camelcase": "4.3.0",
     "lodash.isnil": "4.0.0",
+    "lodash.snakecase": "4.1.1",
+    "memoize-one": "4.0.0",
     "prop-types": "15.6.1",
     "react": "16.4.1",
     "recompose": "0.27.1"

@@ -104,4 +104,24 @@ describe('rendering', () => {
       });
     });
   });
+  describe('when demandedPermissions is a list of string values', () => {
+    describe('if should match SOME permissions', () => {
+      describe('if can manage products', () => {
+        beforeEach(() => {
+          props = createTestProps({
+            shouldMatchSomePermissions: true,
+            demandedPermissions: ['ManageProducts', 'ViewOrders'],
+            actualPermissions: {
+              canManageProducts: true,
+              canViewOrders: true,
+            },
+          });
+          shallow(<Authorized {...props} />);
+        });
+        it('should pass isAuthorized as "true"', () => {
+          expect(props.render).toHaveBeenCalledWith(true);
+        });
+      });
+    });
+  });
 });

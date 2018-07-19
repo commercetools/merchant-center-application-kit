@@ -1,21 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { wrapDisplayName } from 'recompose';
+import memoizeOne from 'memoize-one';
 import { GetUserPermissions } from '@commercetools-frontend/application-shell-connectors';
 import {
   hasSomePermissions,
   hasEveryPermissions,
 } from '../../utils/has-permissions';
+import * as permissionKeys from '../../constants';
+import { toPermissionShape } from '../../utils/transforms';
+
+const ensurePermissionsShape = memoizeOne(permissions =>
+  permissions.map(
+    permission =>
+      typeof permission === 'string'
+        ? toPermissionShape(permission)
+        : permission
+  )
+);
 
 class Authorized extends React.Component {
   static displayName = 'Authorized';
   static propTypes = {
     shouldMatchSomePermissions: PropTypes.bool,
     demandedPermissions: PropTypes.arrayOf(
-      PropTypes.shape({
-        mode: PropTypes.string.isRequired,
-        resource: PropTypes.string.isRequired,
-      }).isRequired
+      PropTypes.oneOfType([
+        PropTypes.oneOf(Object.keys(permissionKeys)),
+        PropTypes.shape({
+          mode: PropTypes.string.isRequired,
+          resource: PropTypes.string.isRequired,
+        }),
+      ]).isRequired
     ).isRequired,
     actualPermissions: PropTypes.objectOf(PropTypes.bool).isRequired,
     render: PropTypes.func,
@@ -25,15 +40,12 @@ class Authorized extends React.Component {
   };
 
   render() {
+    const demandedPermissions = ensurePermissionsShape(
+      this.props.demandedPermissions
+    );
     const isAuthorized = this.props.shouldMatchSomePermissions
-      ? hasSomePermissions(
-          this.props.actualPermissions,
-          this.props.demandedPermissions
-        )
-      : hasEveryPermissions(
-          this.props.actualPermissions,
-          this.props.demandedPermissions
-        );
+      ? hasSomePermissions(this.props.actualPermissions, demandedPermissions)
+      : hasEveryPermissions(this.props.actualPermissions, demandedPermissions);
     return this.props.render(isAuthorized);
   }
 }
