@@ -22,7 +22,8 @@ export class MeasureFirstPaint extends React.Component {
   static propTypes = {
     applicationLabel: PropTypes.string.isRequired,
     children: PropTypes.node,
-    // Injected
+    // connect
+    userAgent: PropTypes.string.isRequired,
     pushMetricSummary: PropTypes.func.isRequired,
     browserPerformanceApi: PropTypes.shape({
       getEntriesByType: PropTypes.func,
@@ -39,7 +40,10 @@ export class MeasureFirstPaint extends React.Component {
       .map(paintMeasurement =>
         createPaintMetric({
           paintMeasurement,
-          labels: { application: this.props.applicationLabel },
+          labels: {
+            application: this.props.applicationLabel,
+            user_agent: this.props.userAgent,
+          },
         })
       );
 
@@ -62,6 +66,7 @@ const mapStateToProps = () => ({
   // We take this chance to inject this global object to make it easier to test.
   // NOTE: We "safely" get the `getEntriesByType` as it might not be available.
   browserPerformanceApi: window.performance,
+  userAgent: window.navigator.userAgent,
 });
 const mapDispatchToProps = {
   pushMetricSummary: actions.pushMetricSummary,

@@ -5,6 +5,8 @@ import { MeasureFirstPaint } from './measure-first-paint';
 
 const createTestProps = custom => ({
   applicationLabel: 'application-foo',
+  userAgent:
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
   pushMetricSummary: jest.fn(() => Promise.resolve()),
   browserPerformanceApi: {
     getEntriesByType: jest.fn(() => [
@@ -51,13 +53,19 @@ describe('lifecycle', () => {
             {
               metricName: 'browser_duration_first_paint_milliseconds',
               metricValue: 2028.5,
-              metricLabels: { application: props.applicationLabel },
+              metricLabels: {
+                application: props.applicationLabel,
+                user_agent: props.userAgent,
+              },
             },
             {
               metricName:
                 'browser_duration_first_contentful_paint_milliseconds',
               metricValue: 2028.5,
-              metricLabels: { application: props.applicationLabel },
+              metricLabels: {
+                application: props.applicationLabel,
+                user_agent: props.userAgent,
+              },
             },
           ]),
         });
