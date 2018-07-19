@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import {
   RestrictedByPermissions,
-  constants as permissionKeys,
+  constants as permissions,
 } from '@commercetools-frontend/permissions';
 import * as storage from '@commercetools-frontend/storage';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
@@ -190,7 +190,7 @@ describe('rendering', () => {
               labelKey: 'NavBar.Settings.title',
               uriPath: 'settings',
               icon: 'CustomerFilledIcon',
-              permissions: [permissionKeys.ManageProject],
+              permissions: [permissions.ManageProject],
               featureToggle: 'projectSettings',
             },
           ],
@@ -210,7 +210,7 @@ describe('rendering', () => {
               labelKey: 'NavBar.Customers.title',
               uriPath: 'customers',
               icon: 'CustomerFilledIcon',
-              permissions: [permissionKeys.ViewCustomers],
+              permissions: [permissions.ViewCustomers],
               featureToggle: 'customerList',
             },
           ],
@@ -235,7 +235,7 @@ describe('rendering', () => {
               .find('MenuGroup')
               .at(0)
               .find(ToggledWithPermissions)
-          ).toHaveProp('permissions', [permissionKeys.ViewCustomers]);
+          ).toHaveProp('permissions', [permissions.ViewCustomers]);
         });
       });
     });
@@ -404,7 +404,7 @@ describe('rendering', () => {
                       key: 'Add Customer',
                       labelKey: 'NavBar.Customers.add',
                       uriPath: 'customers/new',
-                      permissions: [permissionKeys.ManageCustomers],
+                      permissions: [permissions.ManageCustomers],
                       featureToggle: 'customerAdd',
                     },
                   ],
@@ -427,7 +427,7 @@ describe('rendering', () => {
                 .find('MenuGroup')
                 .at(1)
                 .find(ToggledWithPermissions)
-            ).toHaveProp('permissions', [permissionKeys.ManageCustomers]);
+            ).toHaveProp('permissions', [permissions.ManageCustomers]);
           });
         });
         describe('when item is active', () => {
@@ -592,7 +592,7 @@ describe('rendering', () => {
       describe('when permissions are defined', () => {
         beforeEach(() => {
           props = {
-            permissions: [permissionKeys.ViewProducts],
+            permissions: [permissions.ViewProducts],
           };
           wrapper = shallow(
             <ToggledWithPermissions {...props}>
@@ -606,7 +606,7 @@ describe('rendering', () => {
         it('should pass permissions as prop', () => {
           expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
             'permissions',
-            [permissionKeys.ViewProducts]
+            [permissions.ViewProducts]
           );
         });
         it('should pass shouldMatchSomePermissions as prop (true)', () => {
