@@ -21,6 +21,7 @@ export class MeasureFirstPaint extends React.Component {
   static displayName = 'MeasureFirstPaint';
   static propTypes = {
     applicationLabel: PropTypes.string.isRequired,
+    projectKey: PropTypes.string.isRequired,
     children: PropTypes.node,
     // connect
     userAgent: PropTypes.string.isRequired,
@@ -43,6 +44,7 @@ export class MeasureFirstPaint extends React.Component {
           labels: {
             application: this.props.applicationLabel,
             user_agent: this.props.userAgent,
+            project_key: this.props.projectKey,
           },
         })
       );

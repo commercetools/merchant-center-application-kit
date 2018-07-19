@@ -5,6 +5,7 @@ import { MeasureFirstPaint } from './measure-first-paint';
 
 const createTestProps = custom => ({
   applicationLabel: 'application-foo',
+  projectKey: 'test-project',
   userAgent:
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
   pushMetricSummary: jest.fn(() => Promise.resolve()),
@@ -56,6 +57,7 @@ describe('lifecycle', () => {
               metricLabels: {
                 application: props.applicationLabel,
                 user_agent: props.userAgent,
+                project_key: props.projectKey,
               },
             },
             {
@@ -65,6 +67,7 @@ describe('lifecycle', () => {
               metricLabels: {
                 application: props.applicationLabel,
                 user_agent: props.userAgent,
+                project_key: props.projectKey,
               },
             },
           ]),
