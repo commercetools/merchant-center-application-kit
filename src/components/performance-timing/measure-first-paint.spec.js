@@ -8,7 +8,7 @@ const createTestProps = custom => ({
   projectKey: 'test-project',
   userAgent:
     'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
-  pushMetricSummary: jest.fn(() => Promise.resolve()),
+  pushMetricHistogram: jest.fn(() => Promise.resolve()),
   browserPerformanceApi: {
     getEntriesByType: jest.fn(() => [
       { name: 'firstPaint', startTime: 2028.5 },
@@ -36,7 +36,7 @@ describe('lifecycle', () => {
       });
 
       it('should not send an action with the mapped metrics', () => {
-        expect(props.pushMetricSummary).not.toHaveBeenCalled();
+        expect(props.pushMetricHistogram).not.toHaveBeenCalled();
       });
     });
 
@@ -49,10 +49,10 @@ describe('lifecycle', () => {
       });
 
       it('should send an action with the mapped metrics', () => {
-        expect(props.pushMetricSummary).toHaveBeenCalledWith({
+        expect(props.pushMetricHistogram).toHaveBeenCalledWith({
           body: JSON.stringify([
             {
-              metricName: 'browser_duration_first_paint_milliseconds',
+              metricName: 'browser_duration_first_paint_buckets_milliseconds',
               metricValue: 2028.5,
               metricLabels: {
                 application: props.application,
@@ -62,7 +62,7 @@ describe('lifecycle', () => {
             },
             {
               metricName:
-                'browser_duration_first_contentful_paint_milliseconds',
+                'browser_duration_first_contentful_paint_buckets_milliseconds',
               metricValue: 2028.5,
               metricLabels: {
                 application: props.application,
@@ -81,7 +81,7 @@ describe('lifecycle', () => {
         beforeEach(() => {
           error = new Error('Oops');
           props = createTestProps({
-            pushMetricSummary: jest.fn(() => Promise.reject(error)),
+            pushMetricHistogram: jest.fn(() => Promise.reject(error)),
           });
           wrapper = shallow(<MeasureFirstPaint {...props} />);
           wrapper.instance().componentDidMount();

@@ -11,6 +11,7 @@ const createPaintMetric = ({ paintMeasurement, labels }) => ({
     'browser',
     'duration',
     snakeCase(paintMeasurement.name),
+    'buckets',
     'milliseconds',
   ].join('_'),
   metricValue: convertToClosestMs(paintMeasurement.startTime),
@@ -25,7 +26,7 @@ export class MeasureFirstPaint extends React.Component {
     children: PropTypes.node,
     // connect
     userAgent: PropTypes.string.isRequired,
-    pushMetricSummary: PropTypes.func.isRequired,
+    pushMetricHistogram: PropTypes.func.isRequired,
     browserPerformanceApi: PropTypes.shape({
       getEntriesByType: PropTypes.func,
     }).isRequired,
@@ -51,7 +52,7 @@ export class MeasureFirstPaint extends React.Component {
 
     if (paintMetrics.length > 0) {
       this.props
-        .pushMetricSummary({ body: JSON.stringify(paintMetrics) })
+        .pushMetricHistogram({ body: JSON.stringify(paintMetrics) })
         .catch(error => {
           reportErrorToSentry(new Error('Unable to push first-paint metrics'), {
             extra: error,
@@ -71,7 +72,7 @@ const mapStateToProps = () => ({
   userAgent: window.navigator.userAgent,
 });
 const mapDispatchToProps = {
-  pushMetricSummary: actions.pushMetricSummary,
+  pushMetricHistogram: actions.pushMetricHistogram,
 };
 export default connect(
   mapStateToProps,
