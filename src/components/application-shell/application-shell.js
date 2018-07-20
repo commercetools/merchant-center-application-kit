@@ -14,6 +14,7 @@ import {
 import { ConfigurationProvider } from '@commercetools-frontend/application-shell-connectors';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import AsyncLocaleData from '@commercetools-frontend/i18n/async-locale-data';
+import getSupportedLanguage from '@commercetools-frontend/l10n/utils/get-supported-language';
 import PortalsContainer from '../portals-container';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
@@ -37,7 +38,6 @@ import GtmBooter from '../gtm-booter';
 import NavBar from '../navbar';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
-import getSupportedLanguage from '../../../../l10n/utils/get-supported-language';
 import styles from './application-shell.mod.css';
 import './global-style-imports';
 
