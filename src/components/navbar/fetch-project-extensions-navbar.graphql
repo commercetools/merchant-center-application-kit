@@ -1,29 +1,32 @@
-query FetchProjectExtensionsNavbarQuery {
-  projectExtensions {
-    id
-    applications {
+query FetchProjectExtensionsNavbarQuery($projectKey: String!) {
+  project(key: $projectKey) {
+    key
+    settingsExtension {
       id
-      navbarMenu {
+      applications {
         id
-        key
-        uriPath
-        icon
-        allLocaleLabels {
-          locale
-          value
-        }
-        featureToggle
-        permissions
-        submenu {
+        navbarMenu {
           id
           key
           uriPath
-          allLocaleLabels {
+          icon
+          labelAllLocales {
             locale
             value
           }
-          permissions
           featureToggle
+          permissions
+          submenu {
+            id
+            key
+            uriPath
+            labelAllLocales {
+              locale
+              value
+            }
+            permissions
+            featureToggle
+          }
         }
       }
     }

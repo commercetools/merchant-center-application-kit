@@ -225,7 +225,7 @@ export class DataMenu extends React.PureComponent {
       PropTypes.shape({
         key: PropTypes.string.isRequired,
         labelKey: PropTypes.string,
-        allLocaleLabels: PropTypes.arrayOf(
+        labelAllLocales: PropTypes.arrayOf(
           PropTypes.shape({
             locale: PropTypes.string.isRequired,
             value: PropTypes.string.isRequired,
@@ -243,7 +243,7 @@ export class DataMenu extends React.PureComponent {
           PropTypes.shape({
             key: PropTypes.string.isRequired,
             labelKey: PropTypes.string,
-            allLocaleLabels: PropTypes.arrayOf(
+            labelAllLocales: PropTypes.arrayOf(
               PropTypes.shape({
                 locale: PropTypes.string.isRequired,
                 value: PropTypes.string.isRequired,
@@ -367,7 +367,7 @@ export class DataMenu extends React.PureComponent {
 
   renderLabel = menu => {
     if (menu.labelKey) return <FormattedMessage {...messages[menu.labelKey]} />;
-    const localizedLabel = menu.allLocaleLabels.find(
+    const localizedLabel = menu.labelAllLocales.find(
       loc => loc.locale === this.props.language
     );
     if (localizedLabel) return localizedLabel.value;
@@ -491,14 +491,17 @@ export class NavBar extends React.PureComponent {
     isForcedMenuOpen: PropTypes.bool,
     projectPermissions: PropTypes.object.isRequired,
     projectExtensionsQuery: PropTypes.shape({
-      projectExtensions: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        applications: PropTypes.arrayOf(
-          PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            navbarMenu: PropTypes.object.isRequired,
-          })
-        ).isRequired,
+      project: PropTypes.shape({
+        key: PropTypes.string.isRequired,
+        settingsExtension: PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          applications: PropTypes.arrayOf(
+            PropTypes.shape({
+              id: PropTypes.string.isRequired,
+              navbarMenu: PropTypes.object.isRequired,
+            })
+          ).isRequired,
+        }),
       }),
     }),
 
@@ -525,10 +528,11 @@ export class NavBar extends React.PureComponent {
             rootNode={this.node}
             data={
               this.props.projectExtensionsQuery &&
-              this.props.projectExtensionsQuery.projectExtensions
+              this.props.projectExtensionsQuery.project &&
+              this.props.projectExtensionsQuery.project.settingsExtension
                 ? defaultNavigationItems.concat(
-                    this.props.projectExtensionsQuery.projectExtensions.applications.map(
-                      ext => ext.navbarMenu
+                    this.props.projectExtensionsQuery.project.settingsExtension.applications.map(
+                      app => app.navbarMenu
                     )
                   )
                 : defaultNavigationItems
@@ -571,9 +575,10 @@ export default compose(
   graphql(FetchProjectExtensionsNavbar, {
     name: 'projectExtensionsQuery',
     skip: ownProps => !ownProps.areProjectExtensionsEnabled,
-    options: () => ({
+    options: ownProps => ({
       variables: {
         target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+        projectKey: ownProps.projectKey,
       },
       fetchPolicy: 'cache-and-network',
     }),

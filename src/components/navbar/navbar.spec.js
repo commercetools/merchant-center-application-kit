@@ -148,14 +148,17 @@ describe('rendering', () => {
           extendedMenuItem = createProjectExtensionNavbarProps();
           props = createTestProps({
             projectExtensionsQuery: {
-              projectExtensions: {
-                id: 'pe1',
-                applications: [
-                  {
-                    id: 'pe1a1',
-                    navbarMenu: extendedMenuItem,
-                  },
-                ],
+              project: {
+                key: 'test-1',
+                settingsExtension: {
+                  id: 'pe1',
+                  applications: [
+                    {
+                      id: 'pe1a1',
+                      navbarMenu: extendedMenuItem,
+                    },
+                  ],
+                },
               },
             },
           });
