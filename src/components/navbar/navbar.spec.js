@@ -550,41 +550,123 @@ describe('rendering', () => {
     const ItemChild = () => <span>{'foo'}</span>;
     describe('<ToggleFeature>', () => {
       describe('when featureToggle is defined', () => {
-        beforeEach(() => {
-          props = {
-            featureToggle: 'myFeature',
-            permissions: [],
-            actualPermissions: {},
-          };
-          wrapper = shallow(
-            <ToggledWithPermissions {...props}>
-              <ItemChild />
-            </ToggledWithPermissions>
-          );
+        describe('with empty permissions', () => {
+          beforeEach(() => {
+            props = {
+              featureToggle: 'myFeature',
+              permissions: [],
+              actualPermissions: {},
+            };
+            wrapper = shallow(
+              <ToggledWithPermissions {...props}>
+                <ItemChild />
+              </ToggledWithPermissions>
+            );
+          });
+          it('should render <ToggleFeature>', () => {
+            expect(wrapper).toRender('ToggleFeature');
+          });
+          it('should pass flag as prop', () => {
+            expect(wrapper.find('ToggleFeature')).toHaveProp(
+              'flag',
+              'myFeature'
+            );
+          });
+          it('should not render <RestrictedByPermissions>', () => {
+            expect(wrapper).not.toRender(RestrictedByPermissions);
+          });
         });
-        it('should match snapshot', () => {
-          expect(wrapper).toMatchSnapshot();
-        });
-        it('should render <ToggleFeature>', () => {
-          expect(wrapper).toRender('ToggleFeature');
-        });
-        it('should pass flag as prop', () => {
-          expect(wrapper.find('ToggleFeature')).toHaveProp('flag', 'myFeature');
+        describe('with defined permissions', () => {
+          beforeEach(() => {
+            props = {
+              featureToggle: 'myFeature',
+              permissions: [permissions.ManageOrders],
+              actualPermissions: {},
+            };
+            wrapper = shallow(
+              <ToggledWithPermissions {...props}>
+                <ItemChild />
+              </ToggledWithPermissions>
+            );
+          });
+          it('should render <ToggleFeature>', () => {
+            expect(wrapper).toRender('ToggleFeature');
+          });
+          it('should pass "flag" as prop to <ToggleFeature>', () => {
+            expect(wrapper.find('ToggleFeature')).toHaveProp(
+              'flag',
+              'myFeature'
+            );
+          });
+          it('should render <RestrictedByPermissions>', () => {
+            expect(wrapper).toRender(RestrictedByPermissions);
+          });
+          it('should pass "permissions" as prop to <RestrictedByPermissions>', () => {
+            expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
+              'permissions',
+              props.permissions
+            );
+          });
+          it('should pass "shouldMatchSomePermissions" as prop to <RestrictedByPermissions>', () => {
+            expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
+              'shouldMatchSomePermissions',
+              true
+            );
+          });
         });
       });
       describe('when featureToggle is not defined', () => {
-        beforeEach(() => {
-          wrapper = shallow(
-            <ToggledWithPermissions actualPermissions={{}}>
-              <ItemChild />
-            </ToggledWithPermissions>
-          );
+        describe('with empty permissions', () => {
+          beforeEach(() => {
+            props = {
+              featureToggle: undefined,
+              permissions: [],
+              actualPermissions: {},
+            };
+            wrapper = shallow(
+              <ToggledWithPermissions {...props}>
+                <ItemChild />
+              </ToggledWithPermissions>
+            );
+          });
+          it('should not render <ToggleFeature>', () => {
+            expect(wrapper).not.toRender('ToggleFeature');
+          });
+          it('should not render <RestrictedByPermissions>', () => {
+            expect(wrapper).not.toRender(RestrictedByPermissions);
+          });
         });
-        it('should match snapshot', () => {
-          expect(wrapper).toMatchSnapshot();
-        });
-        it('should not render <ToggleFeature>', () => {
-          expect(wrapper).not.toRender('ToggleFeature');
+        describe('with defined permissions', () => {
+          beforeEach(() => {
+            props = {
+              featureToggle: undefined,
+              permissions: [permissions.ManageOrders],
+              actualPermissions: {},
+            };
+            wrapper = shallow(
+              <ToggledWithPermissions {...props}>
+                <ItemChild />
+              </ToggledWithPermissions>
+            );
+          });
+          it('should not render <ToggleFeature>', () => {
+            expect(wrapper).not.toRender('ToggleFeature');
+          });
+          it('should render <RestrictedByPermissions>', () => {
+            expect(wrapper).toRender(RestrictedByPermissions);
+          });
+          it('should pass "permissions" as prop to <RestrictedByPermissions>', () => {
+            expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
+              'permissions',
+              props.permissions
+            );
+          });
+          it('should pass "shouldMatchSomePermissions" as prop to <RestrictedByPermissions>', () => {
+            expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
+              'shouldMatchSomePermissions',
+              true
+            );
+          });
         });
       });
     });

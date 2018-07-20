@@ -12,25 +12,3 @@ exports[`rendering <ToggledWithPermissions> <RestrictedByPermissions> when permi
   <ItemChild />
 </withUserPermissions(RestrictedByPermissions)>
 `;
-
-exports[`rendering <ToggledWithPermissions> <ToggleFeature> when featureToggle is defined should match snapshot 1`] = `
-<ToggleFeature
-  flag="myFeature"
->
-  <withUserPermissions(RestrictedByPermissions)
-    permissions={Array []}
-    shouldMatchSomePermissions={true}
-  >
-    <ItemChild />
-  </withUserPermissions(RestrictedByPermissions)>
-</ToggleFeature>
-`;
-
-exports[`rendering <ToggledWithPermissions> <ToggleFeature> when featureToggle is not defined should match snapshot 1`] = `
-<withUserPermissions(RestrictedByPermissions)
-  permissions={Array []}
-  shouldMatchSomePermissions={true}
->
-  <ItemChild />
-</withUserPermissions(RestrictedByPermissions)>
-`;

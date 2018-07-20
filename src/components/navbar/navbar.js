@@ -189,14 +189,18 @@ MenuItemDivider.displayName = 'MenuItemDivider';
 // prop is defined. This is because `<ToggleFeature>` will not render any
 // children if the flag is missing/not found.
 export const ToggledWithPermissions = props => {
-  const permissionsWrapper = (
-    <RestrictedByPermissions
-      permissions={props.permissions || []}
-      shouldMatchSomePermissions={true}
-    >
-      {props.children}
-    </RestrictedByPermissions>
-  );
+  const permissionsWrapper =
+    props.permissions.length > 0 ? (
+      <RestrictedByPermissions
+        permissions={props.permissions}
+        // Always check that some of the given permissions match.
+        shouldMatchSomePermissions={true}
+      >
+        {props.children}
+      </RestrictedByPermissions>
+    ) : (
+      props.children
+    );
   return props.featureToggle ? (
     <ToggleFeature flag={props.featureToggle}>
       {permissionsWrapper}
@@ -210,6 +214,9 @@ ToggledWithPermissions.propTypes = {
   featureToggle: PropTypes.string,
   permissions: PropTypes.arrayOf(PropTypes.oneOf(Object.keys(permissionKeys))),
   children: PropTypes.element.isRequired,
+};
+ToggledWithPermissions.defaultProps = {
+  permissions: [],
 };
 export const getIconTheme = (menu, isActive) => {
   const baseIconTheme =
