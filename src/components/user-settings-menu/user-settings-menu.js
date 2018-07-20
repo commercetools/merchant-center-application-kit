@@ -57,8 +57,8 @@ export default class UserSettingsMenu extends React.PureComponent {
   render() {
     return (
       <div className={styles.container} data-test="user-settings-menu">
-        <Downshift
-          render={({ isOpen, toggleMenu }) => (
+        <Downshift>
+          {({ isOpen, toggleMenu }) => (
             <div>
               <div
                 className={styles['settings-container']}
@@ -150,7 +150,7 @@ export default class UserSettingsMenu extends React.PureComponent {
               )}
             </div>
           )}
-        />
+        </Downshift>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import Downshift from 'downshift';
 import { CaretDownIcon } from '@commercetools-frontend/ui-kit/icons';
 import { MCSupportFormURL } from '../../constants';
 import UserSettingsMenu, { UserAvatar } from './user-settings-menu';
@@ -20,7 +21,7 @@ describe('rendering', () => {
   });
 
   it('should render <Downshift> wrapper', () => {
-    expect(wrapper).toRender('Downshift');
+    expect(wrapper).toRender(Downshift);
   });
 
   describe('menu', () => {
@@ -29,7 +30,7 @@ describe('rendering', () => {
     beforeEach(() => {
       downshiftProps = { isOpen: false, toggleMenu: jest.fn() };
       dowshiftRenderWrapper = shallow(
-        wrapper.find('Downshift').prop('render')(downshiftProps)
+        wrapper.find(Downshift).prop('children')(downshiftProps)
       );
     });
     it('should render div with click handler', () => {
@@ -45,7 +46,7 @@ describe('rendering', () => {
       beforeEach(() => {
         downshiftProps = { isOpen: true, toggleMenu: jest.fn() };
         dowshiftRenderWrapper = shallow(
-          wrapper.find('Downshift').prop('render')(downshiftProps)
+          wrapper.find(Downshift).prop('children')(downshiftProps)
         );
       });
       it('should render matching tree', () => {
@@ -65,7 +66,7 @@ describe('rendering', () => {
       beforeEach(() => {
         downshiftProps = { isOpen: false, toggleMenu: jest.fn() };
         dowshiftRenderWrapper = shallow(
-          wrapper.find('Downshift').prop('render')(downshiftProps)
+          wrapper.find(Downshift).prop('children')(downshiftProps)
         );
       });
       it('should not render <Card>', () => {
