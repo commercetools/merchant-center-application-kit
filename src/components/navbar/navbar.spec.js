@@ -1,5 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
+import { ToggleFeature } from '@flopflip/react-broadcast';
 import {
   RestrictedByPermissions,
   constants as permissions,
@@ -564,13 +565,10 @@ describe('rendering', () => {
             );
           });
           it('should render <ToggleFeature>', () => {
-            expect(wrapper).toRender('ToggleFeature');
+            expect(wrapper).toRender(ToggleFeature);
           });
-          it('should pass flag as prop', () => {
-            expect(wrapper.find('ToggleFeature')).toHaveProp(
-              'flag',
-              'myFeature'
-            );
+          it('should pass "flag" as prop to <ToggleFeature>', () => {
+            expect(wrapper.find(ToggleFeature)).toHaveProp('flag', 'myFeature');
           });
           it('should not render <RestrictedByPermissions>', () => {
             expect(wrapper).not.toRender(RestrictedByPermissions);
@@ -590,13 +588,10 @@ describe('rendering', () => {
             );
           });
           it('should render <ToggleFeature>', () => {
-            expect(wrapper).toRender('ToggleFeature');
+            expect(wrapper).toRender(ToggleFeature);
           });
           it('should pass "flag" as prop to <ToggleFeature>', () => {
-            expect(wrapper.find('ToggleFeature')).toHaveProp(
-              'flag',
-              'myFeature'
-            );
+            expect(wrapper.find(ToggleFeature)).toHaveProp('flag', 'myFeature');
           });
           it('should render <RestrictedByPermissions>', () => {
             expect(wrapper).toRender(RestrictedByPermissions);
@@ -630,7 +625,7 @@ describe('rendering', () => {
             );
           });
           it('should not render <ToggleFeature>', () => {
-            expect(wrapper).not.toRender('ToggleFeature');
+            expect(wrapper).not.toRender(ToggleFeature);
           });
           it('should not render <RestrictedByPermissions>', () => {
             expect(wrapper).not.toRender(RestrictedByPermissions);
@@ -650,7 +645,7 @@ describe('rendering', () => {
             );
           });
           it('should not render <ToggleFeature>', () => {
-            expect(wrapper).not.toRender('ToggleFeature');
+            expect(wrapper).not.toRender(ToggleFeature);
           });
           it('should render <RestrictedByPermissions>', () => {
             expect(wrapper).toRender(RestrictedByPermissions);
