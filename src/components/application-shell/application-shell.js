@@ -37,11 +37,14 @@ import GtmBooter from '../gtm-booter';
 import NavBar from '../navbar';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
+import getSupportedLanguage from '../../../../l10n/utils/get-supported-language';
 import styles from './application-shell.mod.css';
 import './global-style-imports';
 
-const getBrowserLocale = () =>
-  (window && window.navigator && window.navigator.language) || 'en';
+export const getBrowserLocale = window => {
+  const language = window && window.navigator && window.navigator.language;
+  return getSupportedLanguage(language);
+};
 
 export const extractLanguageFromLocale = locale =>
   locale.includes('-') ? locale.split('-')[0] : locale;
@@ -61,7 +64,9 @@ export const RestrictedApplication = props => (
         return null;
       }
 
-      const userLocale = error ? getBrowserLocale() : user && user.language;
+      const userLocale = error
+        ? getBrowserLocale(window)
+        : user && user.language;
 
       return (
         <AsyncLocaleData locale={userLocale}>
@@ -306,7 +311,7 @@ export default class ApplicationShell extends React.Component {
                                 }
                               />
                             );
-                          const browserLocale = getBrowserLocale();
+                          const browserLocale = getBrowserLocale(window);
 
                           return (
                             <AsyncLocaleData locale={browserLocale}>
