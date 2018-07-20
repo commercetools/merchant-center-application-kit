@@ -4,7 +4,7 @@ import warning from 'warning';
 import { ViewProducts, ViewOrders } from '../../constants';
 import Authorized from './authorized';
 
-jest.mock('warning', () => jest.fn());
+jest.mock('warning');
 
 const createTestProps = custom => ({
   shouldMatchSomePermissions: false,
@@ -137,6 +137,7 @@ describe('deprecations', () => {
     describe('if demandedPermissions has the deprecated shape { mode, resource }', () => {
       describe('when component updates', () => {
         beforeEach(() => {
+          warning.mockClear();
           props = createTestProps({
             demandedPermissions: [
               { mode: 'view', resource: 'products' },
@@ -146,12 +147,28 @@ describe('deprecations', () => {
           wrapper = shallow(<Authorized {...props} />);
           wrapper.instance().componentDidUpdate();
         });
-        it('should log warning', () => {
-          expect(warning).toBeCalledWith(
-            expect.any(Boolean),
-            expect.stringContaining(
-              'The permission format with "{ mode, resource }" has been deprecated. Please use the constant values from the "@commercetools-frontend/permissions" package.'
-            )
+        it('should log warning with false condition', () => {
+          expect(warning).toHaveBeenCalledWith(
+            false,
+            'The permission format with "{ mode, resource }" has been deprecated. Please use the constant values from the "@commercetools-frontend/permissions" package.'
+          );
+        });
+      });
+    });
+    describe('if demandedPermissions does not have the deprecated shape { mode, resource }', () => {
+      describe('when component updates', () => {
+        beforeEach(() => {
+          warning.mockClear();
+          props = createTestProps({
+            demandedPermissions: [ViewProducts],
+          });
+          wrapper = shallow(<Authorized {...props} />);
+          wrapper.instance().componentDidUpdate();
+        });
+        it('should log warning with true condition', () => {
+          expect(warning).toHaveBeenCalledWith(
+            true,
+            'The permission format with "{ mode, resource }" has been deprecated. Please use the constant values from the "@commercetools-frontend/permissions" package.'
           );
         });
       });

@@ -40,16 +40,20 @@ class Authorized extends React.Component {
   static defaultProps = {
     shouldMatchSomePermissions: false,
   };
+  hasAlreadyLoggedDeprecationWarning = false;
   componentDidUpdate() {
+    if (this.hasAlreadyLoggedDeprecationWarning) return;
     const hasDemandedPermissionsWithDeprecatedFormat = this.props.demandedPermissions.some(
       permission => typeof permission !== 'string'
     );
-    const shouldSkipWarning = process.env.NODE_ENV === 'production';
+    const shouldSkipWarning =
+      process.env.NODE_ENV === 'production' ||
+      !hasDemandedPermissionsWithDeprecatedFormat;
     warning(
-      // `warning` logs the message when `NODE_ENV` is not 'production'
-      shouldSkipWarning || hasDemandedPermissionsWithDeprecatedFormat,
+      shouldSkipWarning,
       'The permission format with "{ mode, resource }" has been deprecated. Please use the constant values from the "@commercetools-frontend/permissions" package.'
     );
+    if (!shouldSkipWarning) this.hasAlreadyLoggedDeprecationWarning = true;
   }
   render() {
     const demandedPermissions = ensurePermissionsKeyShape(
