@@ -1,4 +1,4 @@
-const supportedLanguages = ['en', 'de'];
+const supportedLanguages = ['en', 'de', 'es'];
 const defaultLanguage = 'en';
 
 // Given a language tag, return the language only if it's whitelisted.
