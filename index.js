@@ -39,11 +39,6 @@ export const VIEW_PRODUCTS_PERMISSION = {
   resource: 'products',
 };
 
-export const MANAGE_CUSTOMERS_PERMISSION = {
-  mode: 'manage',
-  resource: 'customers',
-};
-
 export const MANAGE_OAUTH_CLIENTS = {
   mode: 'manage',
   resource: 'oauth_clients',
