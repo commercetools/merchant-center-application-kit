@@ -1,3 +1,5 @@
+#import "../project-switcher/project-switcher-fragments.graphql"
+
 query LoggedInUserQuery {
   user: me {
     id
@@ -14,6 +16,9 @@ query LoggedInUserQuery {
     defaultProjectKey
     projects {
       total
+      results {
+        ...projectFragment
+      }
     }
   }
 }

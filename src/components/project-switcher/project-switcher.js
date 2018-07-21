@@ -221,7 +221,6 @@ export default compose(
       variables: {
         target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
       },
-      fetchPolicy: 'cache-and-network',
     }),
   }),
   injectIntl
