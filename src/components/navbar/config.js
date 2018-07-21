@@ -1,4 +1,4 @@
-import { constants as permissions } from '@commercetools-frontend/permissions';
+import { permissions } from '@commercetools-frontend/permissions';
 import { MCSupportFormURL } from '../../constants';
 import {
   CUSTOMER_GROUPS,

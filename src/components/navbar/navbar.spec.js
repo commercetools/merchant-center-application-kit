@@ -3,7 +3,7 @@ import React from 'react';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import {
   RestrictedByPermissions,
-  constants as permissions,
+  permissions,
 } from '@commercetools-frontend/permissions';
 import * as storage from '@commercetools-frontend/storage';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';

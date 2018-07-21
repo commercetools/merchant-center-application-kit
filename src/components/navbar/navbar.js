@@ -18,7 +18,7 @@ import {
 import { AppShellProviderForUserPermissions } from '@commercetools-frontend/application-shell-connectors';
 import {
   RestrictedByPermissions,
-  constants as permissionKeys,
+  permissions,
 } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS } from '../../constants';
 import { withUser } from '../fetch-user';
@@ -212,7 +212,7 @@ export const ToggledWithPermissions = props => {
 ToggledWithPermissions.displayName = 'ToggledWithPermissions';
 ToggledWithPermissions.propTypes = {
   featureToggle: PropTypes.string,
-  permissions: PropTypes.arrayOf(PropTypes.oneOf(Object.keys(permissionKeys))),
+  permissions: PropTypes.arrayOf(PropTypes.oneOf(Object.keys(permissions))),
   children: PropTypes.element.isRequired,
 };
 ToggledWithPermissions.defaultProps = {
@@ -244,7 +244,7 @@ export class DataMenu extends React.PureComponent {
         icon: PropTypes.string.isRequired,
         featureToggle: PropTypes.string,
         permissions: PropTypes.arrayOf(
-          PropTypes.oneOf(Object.keys(permissionKeys))
+          PropTypes.oneOf(Object.keys(permissions))
         ),
         submenu: PropTypes.arrayOf(
           PropTypes.shape({
@@ -259,7 +259,7 @@ export class DataMenu extends React.PureComponent {
             uriPath: PropTypes.string.isRequired,
             featureToggle: PropTypes.string,
             permissions: PropTypes.arrayOf(
-              PropTypes.oneOf(Object.keys(permissionKeys))
+              PropTypes.oneOf(Object.keys(permissions))
             ),
           })
         ),
