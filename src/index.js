@@ -10,4 +10,4 @@ export {
   default as Authorized,
   injectAuthorized,
 } from './components/authorized';
-export { constants };
+export { constants as permissions };
