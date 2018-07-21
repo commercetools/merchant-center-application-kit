@@ -1,9 +1,4 @@
-import {
-  ManageProducts,
-  ViewProducts,
-  ManageOrders,
-  ViewCustomers,
-} from '../constants';
+import { permissions } from '../constants';
 import {
   hasPermission,
   hasEveryPermissions,
@@ -15,7 +10,7 @@ describe('hasPermission', () => {
   let actualPermissions;
   describe('when the user has the demanded permission', () => {
     beforeEach(() => {
-      demandedPermission = ManageProducts;
+      demandedPermission = permissions.ManageProducts;
       actualPermissions = { canManageProducts: true };
     });
     it('should return true', () => {
@@ -24,7 +19,7 @@ describe('hasPermission', () => {
   });
   describe('when a view permission is demanded', () => {
     beforeEach(() => {
-      demandedPermission = ViewProducts;
+      demandedPermission = permissions.ViewProducts;
     });
     describe('when the user has the manage permission for same resource', () => {
       beforeEach(() => {
@@ -69,18 +64,24 @@ describe('hasPermission', () => {
 describe('hasEveryPermission', () => {
   it('should return true if every demanded permission match', () => {
     expect(
-      hasEveryPermissions([ViewProducts, ManageOrders], {
-        canViewProducts: true,
-        canManageOrders: true,
-      })
+      hasEveryPermissions(
+        [permissions.ViewProducts, permissions.ManageOrders],
+        {
+          canViewProducts: true,
+          canManageOrders: true,
+        }
+      )
     ).toBe(true);
   });
   it('should return false if at least one demanded permission does not match', () => {
     expect(
-      hasEveryPermissions([ViewProducts, ManageOrders], {
-        canViewProducts: true,
-        canViewOrders: true,
-      })
+      hasEveryPermissions(
+        [permissions.ViewProducts, permissions.ManageOrders],
+        {
+          canViewProducts: true,
+          canViewOrders: true,
+        }
+      )
     ).toBe(false);
   });
 });
@@ -88,7 +89,7 @@ describe('hasEveryPermission', () => {
 describe('hasSomePermissions', () => {
   it('should return true if at least one demanded permission matches', () => {
     expect(
-      hasSomePermissions([ViewProducts, ManageOrders], {
+      hasSomePermissions([permissions.ViewProducts, permissions.ManageOrders], {
         canViewProducts: true,
         canViewOrders: true,
       })
@@ -96,7 +97,7 @@ describe('hasSomePermissions', () => {
   });
   it('should return false if none of the demanded permissions match', () => {
     expect(
-      hasSomePermissions([ViewCustomers], {
+      hasSomePermissions([permissions.ViewCustomers], {
         canViewProducts: true,
         canViewOrders: true,
       })

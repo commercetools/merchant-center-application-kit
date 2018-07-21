@@ -1,10 +1,15 @@
-export const ManageProject = 'ManageProject';
-export const ManageCustomers = 'ManageCustomers';
-export const ManageOrders = 'ManageOrders';
-export const ManageProducts = 'ManageProducts';
-export const ManageOauthClients = 'ManageOauthClients';
-export const ManageStates = 'ManageStates';
-export const ViewCustomers = 'ViewCustomers';
-export const ViewOrders = 'ViewOrders';
-export const ViewProducts = 'ViewProducts';
-export const ViewStates = 'ViewStates';
+const permissions = {
+  ManageProject: 'ManageProject',
+  ManageCustomers: 'ManageCustomers',
+  ManageOrders: 'ManageOrders',
+  ManageProducts: 'ManageProducts',
+  ManageOauthClients: 'ManageOauthClients',
+  ManageStates: 'ManageStates',
+  ViewCustomers: 'ViewCustomers',
+  ViewOrders: 'ViewOrders',
+  ViewProducts: 'ViewProducts',
+  ViewStates: 'ViewStates',
+};
+
+/* eslint-disable import/prefer-default-export */
+export { permissions };

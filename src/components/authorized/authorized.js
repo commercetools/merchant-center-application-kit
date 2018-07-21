@@ -10,10 +10,10 @@ import {
   hasSomePermissions,
   hasEveryPermissions,
 } from '../../utils/has-permissions';
-import * as permissionKeys from '../../constants';
+import { permissions } from '../../constants';
 
-const ensurePermissionsKeyShape = defaultMemoize(permissions =>
-  permissions.map(
+const ensurePermissionsKeyShape = defaultMemoize(demandedPermissions =>
+  demandedPermissions.map(
     permission =>
       typeof permission === 'string'
         ? permission
@@ -27,7 +27,7 @@ class Authorized extends React.Component {
     shouldMatchSomePermissions: PropTypes.bool,
     demandedPermissions: PropTypes.arrayOf(
       PropTypes.oneOfType([
-        PropTypes.oneOf(Object.keys(permissionKeys)),
+        PropTypes.oneOf(Object.values(permissions)),
         PropTypes.shape({
           mode: PropTypes.string.isRequired,
           resource: PropTypes.string.isRequired,

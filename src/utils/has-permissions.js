@@ -1,4 +1,4 @@
-import { ManageProject } from '../constants';
+import { permissions } from '../constants';
 
 // Build the permission key from the definition to match it to the format coming
 // from the API.
@@ -28,7 +28,7 @@ const hasManagePermission = (demandedPermission, actualPermissions) =>
 // - actualPermissions:
 //     { canViewProducts: true, canManageOrders: false }
 const hasManageProjectPermission = actualPermissions =>
-  actualPermissions[toCanCase(ManageProject)];
+  actualPermissions[toCanCase(permissions.ManageProject)];
 
 // Check the user permissions using one of the defined matchers.
 // The shapes of the arguments are:

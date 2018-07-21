@@ -1,14 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import warning from 'warning';
-import { ViewProducts, ViewOrders } from '../../constants';
+import { permissions } from '../../constants';
 import Authorized from './authorized';
 
 jest.mock('warning');
 
 const createTestProps = custom => ({
   shouldMatchSomePermissions: false,
-  demandedPermissions: [ViewProducts, ViewOrders],
+  demandedPermissions: [permissions.ViewProducts, permissions.ViewOrders],
   actualPermissions: {
     canViewProducts: true,
     canViewOrders: true,
@@ -160,7 +160,7 @@ describe('deprecations', () => {
         beforeEach(() => {
           warning.mockClear();
           props = createTestProps({
-            demandedPermissions: [ViewProducts],
+            demandedPermissions: [permissions.ViewProducts],
           });
           wrapper = shallow(<Authorized {...props} />);
           wrapper.instance().componentDidUpdate();
