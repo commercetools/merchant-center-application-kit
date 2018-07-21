@@ -29,26 +29,6 @@ export const LOGOUT_REASONS = {
   INVALID: 'invalid',
 };
 
-export const MANAGE_PRODUCTS_PERMISSION = {
-  mode: 'manage',
-  resource: 'products',
-};
-
-export const VIEW_PRODUCTS_PERMISSION = {
-  mode: 'view',
-  resource: 'products',
-};
-
-export const MANAGE_OAUTH_CLIENTS = {
-  mode: 'manage',
-  resource: 'oauth_clients',
-};
-
-export const MANAGE_ORDERS_PERMISSION = {
-  mode: 'manage',
-  resource: 'orders',
-};
-
 export const GRAPHQL_TARGETS = {
   MERCHANT_CENTER_BACKEND: 'mc',
   COMMERCETOOLS_PLATFORM: 'ctp',
