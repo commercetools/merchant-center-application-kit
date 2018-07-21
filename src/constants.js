@@ -5,3 +5,4 @@ export const ManageProducts = 'ManageProducts';
 export const ViewCustomers = 'ViewCustomers';
 export const ViewOrders = 'ViewOrders';
 export const ViewProducts = 'ViewProducts';
+export const ManageOauthClients = 'ManageOauthClients';
