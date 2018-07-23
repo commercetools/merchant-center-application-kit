@@ -5,10 +5,12 @@ const permissions = {
   ManageProducts: 'ManageProducts',
   ManageOauthClients: 'ManageOauthClients',
   ManageStates: 'ManageStates',
+  ManageTypes: 'ManageTypes',
   ViewCustomers: 'ViewCustomers',
   ViewOrders: 'ViewOrders',
   ViewProducts: 'ViewProducts',
   ViewStates: 'ViewStates',
+  ViewTypes: 'ViewTypes',
 };
 
 /* eslint-disable import/prefer-default-export */
