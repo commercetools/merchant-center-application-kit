@@ -41,7 +41,7 @@ import ErrorApologizer from '../error-apologizer';
 import styles from './application-shell.mod.css';
 import './global-style-imports';
 
-export const getBrowserLocale = window => {
+export const getBrowserLanguage = window => {
   const language = window && window.navigator && window.navigator.language;
   return getSupportedLanguage(language);
 };
@@ -65,7 +65,7 @@ export const RestrictedApplication = props => (
       }
 
       const userLocale = error
-        ? getBrowserLocale(window)
+        ? getBrowserLanguage(window)
         : user && user.language;
 
       return (
@@ -311,7 +311,7 @@ export default class ApplicationShell extends React.Component {
                                 }
                               />
                             );
-                          const browserLocale = getBrowserLocale(window);
+                          const browserLocale = getBrowserLanguage(window);
 
                           return (
                             <AsyncLocaleData locale={browserLocale}>

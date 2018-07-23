@@ -12,7 +12,7 @@ import ApplicationShell, {
   RestrictedApplication,
   UnrestrictedApplication,
   extractLanguageFromLocale,
-  getBrowserLocale,
+  getBrowserLanguage,
 } from './application-shell';
 
 jest.mock('@commercetools-frontend/storage');
@@ -442,7 +442,7 @@ describe('lifecycle', () => {
   });
 });
 
-describe('getBrowserLocale', () => {
+describe('getBrowserLanguage', () => {
   let testWindow;
   describe('when the locale is supported by the MC', () => {
     beforeEach(() => {
@@ -453,7 +453,7 @@ describe('getBrowserLocale', () => {
       };
     });
     it('should return the language', () => {
-      expect(getBrowserLocale(testWindow)).toBe('de');
+      expect(getBrowserLanguage(testWindow)).toBe('de');
     });
   });
   describe('when locale is not supported by the MC', () => {
@@ -465,7 +465,7 @@ describe('getBrowserLocale', () => {
       };
     });
     it('should return the default language, `en`', () => {
-      expect(getBrowserLocale(testWindow)).toBe('en');
+      expect(getBrowserLanguage(testWindow)).toBe('en');
     });
   });
 });
