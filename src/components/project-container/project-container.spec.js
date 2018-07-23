@@ -4,6 +4,9 @@ import { Redirect } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
+import ProjectExpired from '../project-expired';
+import ProjectNotFound from '../project-not-found';
+import ProjectSuspended from '../project-suspended';
 import { STORAGE_KEYS } from '../../constants';
 import ApplicationLoader from '../application-loader';
 import FetchProject from '../fetch-project';
@@ -103,7 +106,7 @@ describe('rendering', () => {
           });
         });
         it('should render <ProjectNotFound>', () => {
-          expect(wrapper).toRender('ProjectNotFound');
+          expect(wrapper).toRender(ProjectNotFound);
         });
       });
       describe('when project is suspended', () => {
@@ -114,7 +117,7 @@ describe('rendering', () => {
           });
         });
         it('should render <ProjectSuspended>', () => {
-          expect(wrapper).toRender('ProjectSuspended');
+          expect(wrapper).toRender(ProjectSuspended);
         });
       });
       describe('when project has trialDaysLeft', () => {
@@ -198,7 +201,7 @@ describe('rendering', () => {
           });
         });
         it('should render <ProjectExpired>', () => {
-          expect(wrapper).toRender('ProjectExpired');
+          expect(wrapper).toRender(ProjectExpired);
         });
       });
       describe('when project has no settings', () => {

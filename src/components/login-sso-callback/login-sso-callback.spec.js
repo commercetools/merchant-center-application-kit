@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import * as storage from '@commercetools-frontend/storage';
 import { STORAGE_KEYS } from '../../constants';
+import FailedAuthentication from '../failed-authentication';
 import { LoginSSOCallback } from './login-sso-callback';
 
 jest.mock('jwt-decode', () => () => ({ nonce: 'EY' }));
@@ -40,7 +41,7 @@ describe('rendering', () => {
       wrapper.setState({ hasAuthenticationFailed: true });
     });
     it('should render <FailedAuthentication>', () => {
-      expect(wrapper).toRender('FailedAuthentication');
+      expect(wrapper).toRender(FailedAuthentication);
     });
   });
 });
