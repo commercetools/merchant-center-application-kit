@@ -2210,6 +2210,8 @@
   "Products.PimSearchList.productsUnpublished.failure.some": "Unpublishing some of the Products has failed. Another user may have been concurrently editing the products. Please try again.",
   "Products.PimSearchList.productsUnpublished.successful": "All Products have been unpublished.",
   "Products.PimSearchList.search.inputPlaceholder": "Search by name, description, SKU, product key, or variant key",
+  "Products.PimSearchList.SidebarLayout.hideFilters": "Hide filters",
+  "Products.PimSearchList.SidebarLayout.showFilters": "Show filters",
   "Products.PricesDetail.channelNoResults": "Sorry, but there are no channels that match your search.",
   "Products.PricesDetail.channelSearchPlaceholder": "Enter the exact channel name",
   "Products.PricesDetail.confirmPriceChangeMessage": "This price is a high precision price. Are you sure you want to change the price? The precision information will get lost.",
