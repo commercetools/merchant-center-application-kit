@@ -21,9 +21,3 @@ export const LOGIN_STRATEGY_SSO = 'sso';
 
 export const MCSupportFormURL =
   'https://jira.commercetools.com/servicedesk/customer/portal/1/create/99';
-
-// Permissions
-export const MANAGE_PROJECTS_PERMISSION = {
-  mode: 'manage',
-  resource: 'projects',
-};
