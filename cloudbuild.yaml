@@ -1,5 +1,5 @@
 substitutions:
-  _PKG_VERSION: 4.2.0
+  _PKG_VERSION: 4.2.1
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'eu.gcr.io/$PROJECT_ID/mc-http-server:${_PKG_VERSION}', '-t', 'eu.gcr.io/$PROJECT_ID/mc-http-server:latest', './packages-devtools/mc-http-server']
