@@ -1,11 +1,6 @@
-import PropTypes from 'prop-types';
 import createL10NInjector from './create-l10n-injector';
 import getSupportedLanguage from './utils/get-supported-language';
 import extractLanguageFromLocale from './utils/extract-language-from-locale';
-
-export const currenciesShape = PropTypes.objectOf(
-  PropTypes.shape({ label: PropTypes.string, symbol: PropTypes.string })
-);
 
 /**
  * If running through webpack, code splitting makes `getCurrenciesForLocale`
@@ -23,6 +18,7 @@ const getCurrenciesForLocale = (locale, cb) => {
     .catch(error => cb(error));
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export const withCurrencies = createL10NInjector({
   displayName: 'withCurrencies',
   propKey: 'currencies',
