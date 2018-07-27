@@ -2213,6 +2213,7 @@
   "Products.PimSearchList.productsUnpublished.failure.all": "Unpublishing the Products has failed. Another user may have been concurrently editing the Products. Please try again.",
   "Products.PimSearchList.productsUnpublished.failure.some": "Unpublishing some of the Products has failed. Another user may have been concurrently editing the products. Please try again.",
   "Products.PimSearchList.productsUnpublished.successful": "All Products have been unpublished.",
+  "Products.PimSearchList.search.advancedModeInvalidJsonErrorMessage": "Invalid JSON input",
   "Products.PimSearchList.search.basicModeConfirmationModalMessage": "Your advanced search query cannot be displayed in basic mode. By proceeding, your search will be removed. Would you like to proceed?",
   "Products.PimSearchList.search.basicModeConfirmationModalTitle": "Back to Basic Search",
   "Products.PimSearchList.search.inputPlaceholder": "Search by name, description, SKU, product key, or variant key",
