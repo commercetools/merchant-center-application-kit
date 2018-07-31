@@ -1608,7 +1608,7 @@
   "Orders.ListView.noResultsDescription": "Try changing the search settings.",
   "Orders.ListView.noResultsTitle": "No orders match these settings.",
   "Orders.OrderDetails.backToList": "To Orders list",
-  "Orders.OrderDetails.copyButton": "Copy order",
+  "Orders.OrderDetails.copyButton": "Copy this order",
   "Orders.OrderDetails.OrderCustomFieldsForm.customFieldsUpdated": "Custom fields successfully updated",
   "Orders.OrderDetails.OrderCustomFieldsForm.noCustomFields": "There are no custom fields related to this order.",
   "Orders.OrderDetails.orderWithOrderNumber": "Order {orderNumber}",
