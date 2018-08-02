@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
+import has from 'lodash.has';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import messages from './messages';
 
@@ -41,8 +42,8 @@ export const ApiErrorMessage = props => {
 
   // Try to match the error with a custom error message
   if (
-    {}.hasOwnProperty.call(props.error, 'invalidValue') &&
-    {}.hasOwnProperty.call(props.error.invalidValue, 'overlappingPrices')
+    has(props.error, 'invalidValue') &&
+    has(props.error.invalidValue, 'overlappingPrices')
   )
     return <FormattedMessage {...messages.OverlappingPrices} />;
 
