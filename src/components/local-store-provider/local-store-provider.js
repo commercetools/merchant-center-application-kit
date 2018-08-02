@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { compose } from 'recompose';
+import has from 'lodash.has';
 import * as storage from '@commercetools-frontend/storage';
 import { __LOCAL } from '../../middleware/add-plugin-to-notification/constants';
 import { STORAGE_KEYS } from '../../constants';
@@ -118,10 +119,7 @@ export class LocalStoreProvider extends React.Component {
 }
 
 export const mapStateToProps = (state, ownProps) => ({
-  hasStateForActivePlugin: Object.prototype.hasOwnProperty.call(
-    state,
-    ownProps.pluginName
-  ),
+  hasStateForActivePlugin: has(state, ownProps.pluginName),
 });
 
 export default compose(
