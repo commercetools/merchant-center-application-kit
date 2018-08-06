@@ -31,6 +31,8 @@ module.exports = templateParams => {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="preconnect" href="__CDN_URL__">
+    <link rel="preconnect" href="__MC_API_URL__">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"></link>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i' rel='stylesheet' type='text/css'></link>
     ${cssChunks.join('\n')}
