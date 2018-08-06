@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { MeasureFirstPaint } from './measure-first-paint';
 
 const createTestProps = custom => ({
@@ -71,26 +70,6 @@ describe('lifecycle', () => {
               },
             },
           ]),
-        });
-      });
-      it('should not report error to sentry', () => {
-        expect(reportErrorToSentry).not.toHaveBeenCalled();
-      });
-      describe('when request fails', () => {
-        let error;
-        beforeEach(() => {
-          error = new Error('Oops');
-          props = createTestProps({
-            pushMetricHistogram: jest.fn(() => Promise.reject(error)),
-          });
-          wrapper = shallow(<MeasureFirstPaint {...props} />);
-          wrapper.instance().componentDidMount();
-        });
-        it('should not report error to sentry', () => {
-          expect(reportErrorToSentry).toHaveBeenCalledWith(
-            new Error('Unable to push first-paint metrics'),
-            { extra: error }
-          );
         });
       });
     });

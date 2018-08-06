@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import snakeCase from 'lodash.snakecase';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import convertToClosestMs from './conversions';
 import * as actions from './actions';
 
@@ -51,13 +50,7 @@ export class MeasureFirstPaint extends React.Component {
       );
 
     if (paintMetrics.length > 0) {
-      this.props
-        .pushMetricHistogram({ body: JSON.stringify(paintMetrics) })
-        .catch(error => {
-          reportErrorToSentry(new Error('Unable to push first-paint metrics'), {
-            extra: error,
-          });
-        });
+      this.props.pushMetricHistogram({ body: JSON.stringify(paintMetrics) });
     }
   }
   render() {
