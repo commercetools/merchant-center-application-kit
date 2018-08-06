@@ -1,5 +1,5 @@
 substitutions:
-  _PKG_VERSION: 4.2.3
+  _PKG_VERSION: 4.2.4
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args:
