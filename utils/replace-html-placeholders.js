@@ -18,6 +18,10 @@ const replaceHtmlPlaceholders = (indexHtmlContent, config) =>
       `${config.cdnUrl.replace(/\/$/, '')}/`
     )
     .replace(
+      new RegExp('__MC_API_URL__', 'g'),
+      `${config.mcApiUrl.replace(/\/$/, '')}`
+    )
+    .replace(
       new RegExp('__APP_ENVIRONMENT__', 'g'),
       sanitizeAppEnvironment(config)
     )
