@@ -498,17 +498,14 @@ export class NavBar extends React.PureComponent {
     isForcedMenuOpen: PropTypes.bool,
     projectPermissions: PropTypes.object.isRequired,
     projectExtensionsQuery: PropTypes.shape({
-      project: PropTypes.shape({
-        key: PropTypes.string.isRequired,
-        settingsExtension: PropTypes.shape({
-          id: PropTypes.string.isRequired,
-          applications: PropTypes.arrayOf(
-            PropTypes.shape({
-              id: PropTypes.string.isRequired,
-              navbarMenu: PropTypes.object.isRequired,
-            })
-          ).isRequired,
-        }),
+      projectExtension: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        applications: PropTypes.arrayOf(
+          PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            navbarMenu: PropTypes.object.isRequired,
+          })
+        ).isRequired,
       }),
     }),
 
@@ -535,10 +532,9 @@ export class NavBar extends React.PureComponent {
             rootNode={this.node}
             data={
               this.props.projectExtensionsQuery &&
-              this.props.projectExtensionsQuery.project &&
-              this.props.projectExtensionsQuery.project.settingsExtension
+              this.props.projectExtensionsQuery.projectExtension
                 ? defaultNavigationItems.concat(
-                    this.props.projectExtensionsQuery.project.settingsExtension.applications.map(
+                    this.props.projectExtensionsQuery.projectExtension.applications.map(
                       app => app.navbarMenu
                     )
                   )
@@ -584,7 +580,7 @@ export default compose(
     skip: ownProps => !ownProps.areProjectExtensionsEnabled,
     options: ownProps => ({
       variables: {
-        target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+        target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
         projectKey: ownProps.projectKey,
       },
       fetchPolicy: 'cache-and-network',
