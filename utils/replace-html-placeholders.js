@@ -17,10 +17,7 @@ const replaceHtmlPlaceholders = (indexHtmlContent, config) =>
       // Ensure there is a trailing slash
       `${config.cdnUrl.replace(/\/$/, '')}/`
     )
-    .replace(
-      new RegExp('__MC_API_URL__', 'g'),
-      `${config.mcApiUrl.replace(/\/$/, '')}`
-    )
+    .replace(new RegExp('__MC_API_URL__', 'g'), config.mcApiUrl)
     .replace(
       new RegExp('__APP_ENVIRONMENT__', 'g'),
       sanitizeAppEnvironment(config)
