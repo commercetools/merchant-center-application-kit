@@ -34,4 +34,5 @@ export const GRAPHQL_TARGETS = {
   COMMERCETOOLS_PLATFORM: 'ctp',
   DASHBOARD_SERVICE: 'dashboard',
   PIM_INDEXER: 'pim-indexer',
+  SETTINGS_SERVICE: 'settings',
 };
