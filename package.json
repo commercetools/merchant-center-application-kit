@@ -45,6 +45,7 @@
     "graphql-tag": "2.9.2",
     "is-retina": "1.0.3",
     "jwt-decode": "2.2.0",
+    "lodash.has": "4.5.2",
     "lodash.isnil": "4.0.0",
     "lodash.omit": "4.5.0",
     "prop-types": "15.6.1",
