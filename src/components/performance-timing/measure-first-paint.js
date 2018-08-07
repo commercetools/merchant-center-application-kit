@@ -48,9 +48,13 @@ export class MeasureFirstPaint extends React.Component {
           },
         })
       );
-
     if (paintMetrics.length > 0) {
-      this.props.pushMetricHistogram({ body: JSON.stringify(paintMetrics) });
+      this.props
+        .pushMetricHistogram({ body: JSON.stringify(paintMetrics) })
+        .catch(() => {
+          // Error is ignored under the assumption that page is being
+          // reloaded whilst the request was being sent or network request was interrupted
+        });
     }
   }
   render() {
