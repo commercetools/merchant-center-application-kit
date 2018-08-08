@@ -1578,6 +1578,8 @@
   "Orders.Duplicate.orderSummaryTitle": "Order summary",
   "Orders.Duplicate.placeOrderLabel": "Place order",
   "Orders.Duplicate.Step.Confirmation": "Confirmation",
+  "Orders.Duplicate.Step.Confirmation.noBillingAddress": "You have no billing address selected yet. Please go to customer step and select one.",
+  "Orders.Duplicate.Step.Confirmation.noShippingAddress": "You have no shipping address selected yet. Please go to customer step and select one.",
   "Orders.Duplicate.Step.Confirmation.noShippingMethod": "You have no shipping method selected yet. Please go shipping step and select one,",
   "Orders.Duplicate.Step.Customer": "Customer",
   "Orders.Duplicate.Step.LineItems": "Items",
