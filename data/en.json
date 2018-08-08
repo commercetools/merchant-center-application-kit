@@ -1563,6 +1563,8 @@
   "Orders.Duplicate.orderSummaryTitle": "",
   "Orders.Duplicate.placeOrderLabel": "",
   "Orders.Duplicate.Step.Confirmation": "",
+  "Orders.Duplicate.Step.Confirmation.noBillingAddress": "There is no billing address selected, go to the “Customer” step to select one.",
+  "Orders.Duplicate.Step.Confirmation.noShippingAddress": "There is no shipping address selected, go to the “Customer” step to select one.",
   "Orders.Duplicate.Step.Confirmation.noShippingMethod": "No shipping method has been selected. Please go to the Shipping step and select one.",
   "Orders.Duplicate.Step.Customer": "",
   "Orders.Duplicate.Step.LineItems": "",

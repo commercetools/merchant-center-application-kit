@@ -1565,6 +1565,8 @@
   "Orders.Duplicate.orderSummaryTitle": "Zusammenfassung",
   "Orders.Duplicate.placeOrderLabel": "Bestellung bestätigen",
   "Orders.Duplicate.Step.Confirmation": "Bestätigung",
+  "Orders.Duplicate.Step.Confirmation.noBillingAddress": "Es wurde noch keine Rechnungsadresse ausgewählt. Gehen Sie zum Schritt \"Kunde\" um eine Adresse auszuwählen.",
+  "Orders.Duplicate.Step.Confirmation.noShippingAddress": "Es wurde noch keine Versandadresse ausgewählt. Gehen Sie zum Schritt \"Kunde\" um eine Adresse auszuwählen.",
   "Orders.Duplicate.Step.Confirmation.noShippingMethod": "Es wurde keine Versandmethode angegeben. Gehen Sie zu Versand und wählen Sie dort Ihre Versandmethode aus.",
   "Orders.Duplicate.Step.Customer": "Kunde",
   "Orders.Duplicate.Step.LineItems": "Bestellpositionen",
