@@ -825,7 +825,6 @@
   "Dashboard.DateRangeSelector.labelFilter.year": "This year",
   "Dashboard.DateRangeSelector.labelFrom": "From",
   "Dashboard.DateRangeSelector.labelTo": "To",
-  "Dashboard.loading": "Loading...",
   "Dashboard.refresh": "Refresh",
   "Dashboard.ResourcesNumbers.publishedProducts": "Published products",
   "Dashboard.ResourcesNumbers.title": "No. of products & categories",
