@@ -7,6 +7,7 @@ const ConfigureIntlProvider = props => {
   // If there is no locale selected yet, we should avoid rendering
   // to avoid possible FOUC (flash of untranslated content),
   if (!props.locale) return null;
+  if (window.onAppLoaded) window.onAppLoaded();
   return (
     <IntlProvider locale={props.locale} messages={props.messages}>
       <AppShellProviderForUserTimeZone timeZone={props.timeZone}>
