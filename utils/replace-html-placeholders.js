@@ -1,17 +1,19 @@
+const getAssets = require('@commercetools-frontend/mc-scripts/utils/get-assets');
 const sanitizeAppEnvironment = require('./sanitize-app-environment');
 
-const getGtmTrackingScripts = tracking => {
+const getGtmTrackingScript = tracking => {
   const gtmId = tracking.gtm;
   if (gtmId === 'false') return '';
   const url = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
   return `
-<script>dataLayer = [{ 'gtm.start': new Date().getTime(), event: 'gtm.js' }];</script>
 <script async type="text/javascript" src="${url}"></script>
   `;
 };
 
-const replaceHtmlPlaceholders = (indexHtmlContent, config) =>
-  indexHtmlContent
+const replaceHtmlPlaceholders = (indexHtmlContent, config) => {
+  const assets = getAssets();
+
+  return indexHtmlContent
     .replace(
       new RegExp('__CDN_URL__', 'g'),
       // Ensure there is a trailing slash
@@ -23,8 +25,18 @@ const replaceHtmlPlaceholders = (indexHtmlContent, config) =>
       sanitizeAppEnvironment(config)
     )
     .replace(
-      new RegExp('__TRACKING_GTM__', 'g'),
-      getGtmTrackingScripts(config.tracking)
+      new RegExp('__GTM_SCRIPT__', 'g'),
+      getGtmTrackingScript(config.tracking)
+    )
+    .replace(new RegExp('__DATALAYER_JS__', 'g'), assets.dataLayerScript)
+    .replace(
+      new RegExp('__LOADING_SCREEN_JS__', 'g'),
+      assets.loadingScreenScript
+    )
+    .replace(
+      new RegExp('__LOADING_SCREEN_CSS__', 'g'),
+      assets.loadingScreenStyles
     );
+};
 
 module.exports = replaceHtmlPlaceholders;

@@ -11,6 +11,7 @@
     "mc-http-server": "./bin/start-mc.js"
   },
   "dependencies": {
+    "@commercetools-frontend/mc-scripts": "^1.0.0-beta.0",
     "@promster/express": "0.4.1",
     "compression": "1.7.2",
     "connect": "3.6.6",
