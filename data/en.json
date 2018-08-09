@@ -1577,6 +1577,7 @@
   "Orders.List.title": "Orders",
   "Orders.List.Title.addOrder": "",
   "Orders.ListView.column.copyButton": "",
+  "Orders.ListView.column.copyButtonColumn": "Copy order",
   "Orders.ListView.column.createdAt": "Date created",
   "Orders.ListView.column.email": "Email",
   "Orders.ListView.column.firstNameBilling": "",
