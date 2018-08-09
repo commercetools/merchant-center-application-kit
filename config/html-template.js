@@ -42,76 +42,7 @@ module.exports = templateParams => {
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
     <div id="app">
-      <style>
-          .loading-screen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            width: 100vw;
-          }
-
-          .loading-screen--hidden {
-            display: none;
-          }
-
-          .loading-screen>*+* {
-            margin: 24px 0 0;
-          }
-
-          .loading-spinner {
-            width: 32px;
-            height: 32px;
-          }
-
-          .long-loading-notice {
-            color: #999;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 12px;
-          }
-
-          .long-loading-notice--hidden {
-            visibility: hidden;
-          }
-
-          .loading-spinner-circle {
-            fill: #213c45;
-            opacity: 0.2;
-          }
-
-          @keyframes loading-spinner-animation {
-            0% {
-              transform: rotate(0deg);
-            }
-            100% {
-              transform: rotate(360deg);
-            }
-          }
-
-          .loading-spinner-pointer {
-            transform-origin: 20px 20px 0;
-            animation: loading-spinner-animation 0.5s infinite linear;
-          }
-      </style>
-
-      <script>
-        (function () {
-          setTimeout(function() {
-            var loadingScreen = document.querySelector('.loading-screen');
-            if (loadingScreen) {
-              loadingScreen.classList.remove('loading-screen--hidden');
-            }
-          }, 250)
-
-          setTimeout(function() {
-            var longLoadingNotice = document.querySelector('.long-loading-notice');
-            if (longLoadingNotice) {
-              longLoadingNotice.classList.remove('long-loading-notice--hidden');
-            }
-          }, 1000)
-        })();
-      </script>
+      <style>__LOADING_SCREEN_CSS__</style>
 
       <div class="loading-screen loading-screen--hidden">
         <svg class="loading-spinner" viewBox="0 0 40 40">
@@ -126,11 +57,15 @@ module.exports = templateParams => {
       </div>
     </div>
 
+    <!-- Loading screen handling -->
+    <script>__LOADING_SCREEN_JS__</script>
+
     <!-- Application globals -->
     <script>window.app = __APP_ENVIRONMENT__;</script>
 
     <!-- Tracking scripts (load before application bundles) -->
-    __TRACKING_GTM__
+    <script>__DATALAYER_JS__</script>
+    __GTM_SCRIPT__
 
     <!-- Main application chunks -->
     ${scriptChunks.join('\n')}
