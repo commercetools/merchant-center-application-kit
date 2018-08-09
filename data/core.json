@@ -2236,6 +2236,8 @@
   "Products.PimSearchList.productsUnpublished.failure.all": "Unpublishing the Products has failed. Another user may have been concurrently editing the Products. Please try again.",
   "Products.PimSearchList.productsUnpublished.failure.some": "Unpublishing some of the Products has failed. Another user may have been concurrently editing the products. Please try again.",
   "Products.PimSearchList.productsUnpublished.successful": "All Products have been unpublished.",
+  "Products.PimSearchList.search.advancedModeConfirmationModalMessage": "By switching the view, your search and applied filters will be removed. Would you like to proceed?",
+  "Products.PimSearchList.search.advancedModeConfirmationModalTitle": "Go to Advanced Search",
   "Products.PimSearchList.search.advancedModeInvalidJsonErrorMessage": "Invalid JSON Input",
   "Products.PimSearchList.search.advancedModeInvalidLimitErrorMessage": "\"limit\" can be only {resultsPerPageOptions}",
   "Products.PimSearchList.search.advancedModeInvalidOffsetErrorMessage": "\"offset\" can be changed only in the pagination of the product list",
