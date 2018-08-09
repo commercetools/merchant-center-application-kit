@@ -41,7 +41,7 @@ module.exports = templateParams => {
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
-    <div id="app">
+    <div id="app-loader">
       <style>__LOADING_SCREEN_CSS__</style>
 
       <div class="loading-screen loading-screen--hidden">
@@ -56,6 +56,7 @@ module.exports = templateParams => {
         <p class="long-loading-notice long-loading-notice--hidden">Sorry, this takes unusually long.</p>
       </div>
     </div>
+    <div id="app"></div>
 
     <!-- Loading screen handling -->
     <script>__LOADING_SCREEN_JS__</script>

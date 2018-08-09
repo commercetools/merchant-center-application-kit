@@ -56,6 +56,13 @@ const loadingScreenStyles = `
 `;
 
 const loadingScreenScript = `
+window.onAppLoaded = () => {
+  const appLoader = document.querySelector('#app-loader');
+
+  if (appLoader) {
+    appLoader.remove();
+  }
+}
 (function() {
   setTimeout(() => {
     const loadingScreen = document.querySelector('.loading-screen');
