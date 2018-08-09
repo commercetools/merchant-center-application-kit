@@ -2249,6 +2249,7 @@
   "Products.PimSearchList.SidebarLayout.advancedSearch": "Search products",
   "Products.PimSearchList.SidebarLayout.hideFilters": "Hide filters",
   "Products.PimSearchList.SidebarLayout.showFilters": "Show filters",
+  "Products.PimSearchList.title": "Products",
   "Products.PricesDetail.channelNoResults": "Sorry, but there are no channels that match your search.",
   "Products.PricesDetail.channelSearchPlaceholder": "Enter the exact channel name",
   "Products.PricesDetail.confirmPriceChangeMessage": "This price is a high precision price. Are you sure you want to change the price? The precision information will get lost.",
