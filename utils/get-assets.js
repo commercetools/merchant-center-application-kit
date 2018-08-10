@@ -29,7 +29,7 @@ window.onAppLoaded = () => {
     if (longLoadingNotice) {
       longLoadingNotice.classList.remove('long-loading-notice--hidden');
     }
-  }, 1000);
+  }, 2000);
 })();
 `;
 
