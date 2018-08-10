@@ -32,10 +32,6 @@ const replaceHtmlPlaceholders = (indexHtmlContent, config) => {
     .replace(
       new RegExp('__LOADING_SCREEN_JS__', 'g'),
       assets.loadingScreenScript
-    )
-    .replace(
-      new RegExp('__LOADING_SCREEN_CSS__', 'g'),
-      assets.loadingScreenStyles
     );
 };
 
