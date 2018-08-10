@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import once from 'lodash.once';
 import { AppShellProviderForUserTimeZone } from '@commercetools-frontend/application-shell-connectors';
 import { IntlProvider } from 'react-intl';
+
+const hideAppLoader = once(() => {
+  if (window.onAppLoaded) window.onAppLoaded();
+});
 
 const ConfigureIntlProvider = props => {
   // If there is no locale selected yet, we should avoid rendering
   // to avoid possible FOUC (flash of untranslated content),
   if (!props.locale) return null;
-  if (window.onAppLoaded) window.onAppLoaded();
+  hideAppLoader();
   return (
     <IntlProvider locale={props.locale} messages={props.messages}>
       <AppShellProviderForUserTimeZone timeZone={props.timeZone}>
