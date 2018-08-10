@@ -1,4 +1,4 @@
-const getAssets = require('@commercetools-frontend/mc-scripts/utils/get-assets');
+const getAssets = require('./get-assets');
 const sanitizeAppEnvironment = require('./sanitize-app-environment');
 
 const getGtmTrackingScript = tracking => {

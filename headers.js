@@ -1,5 +1,5 @@
-const getAssetHashes = require('@commercetools-frontend/mc-scripts/utils/get-asset-hashes');
-const createAssetHash = require('@commercetools-frontend/mc-scripts/utils/create-asset-hash');
+const getAssetHashes = require('./utils/get-asset-hashes');
+const createAssetHash = require('./utils/create-asset-hash');
 const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
 const env = require('./env');
 
