@@ -2942,6 +2942,8 @@
   "UIKit.MoneyInput.chevronLabel": "Open/Close Dropdown",
   "UIKit.MultilineTextInput.collapse": "Collapse",
   "UIKit.MultilineTextInput.expand": "Expand",
+  "UIKit.SelectInput.noOptionsMessageWithInputValue": "No options",
+  "UIKit.SelectInput.noOptionsMessageWithoutInputValue": "No options",
   "UIKit.TimeInput.labelRange": "to",
   "UIKit.TimeRangePicker.from": "From",
   "UIKit.TimeRangePicker.to": "To",
