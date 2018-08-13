@@ -20,7 +20,7 @@
     "fast-equals": "1.5.3",
     "prop-types": "15.6.2",
     "query-string": "5.1.0",
-    "react": "16.4.1",
+    "react": "16.4.2",
     "react-redux": "5.0.7",
     "unfetch": "3.0.0"
   }
