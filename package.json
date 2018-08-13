@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/eslint-config-mc-app",
-  "version": "1.0.0-beta.13",
+  "version": "1.0.0-beta.14",
   "description": "ESLint config used by a MC application",
   "license": "MIT",
   "private": false,
