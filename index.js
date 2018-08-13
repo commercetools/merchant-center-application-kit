@@ -96,7 +96,6 @@ module.exports = function getBabePresetConfigForMcApp() {
         require('@babel/plugin-transform-runtime').default,
         {
           helpers: false,
-          polyfill: false,
           regenerator: true,
         },
       ],
