@@ -9,25 +9,29 @@ dataLayer = [{ 'gtm.start': new Date().getTime(), event: 'gtm.js' }];
 `;
 
 const loadingScreenScript = `
-window.onAppLoaded = () => {
-  const appLoader = document.querySelector('#app-loader');
+// Assining global callback used by ConfigureIntlProvider to remove
+// loading screen.
+window.onAppLoaded = function() {
+  var appLoaderEl = document.querySelector('#app-loader');
 
-  if (appLoader) {
-    appLoader.remove();
+  if (appLoaderEl) {
+    appLoaderEl.parentNode.removeChild(appLoaderEl);
   }
-}
+};
+// Handles showing and hiding different loading screen elements
+// Needs to be compatible with all browsers supported without transpilation.
 (function() {
-  setTimeout(() => {
-    const loadingScreen = document.querySelector('.loading-screen');
-    if (loadingScreen) {
-      loadingScreen.classList.remove('loading-screen--hidden');
+  setTimeout(function() {
+    var loadingScreenEl = document.querySelector('.loading-screen');
+    if (loadingScreenEl) {
+      loadingScreenEl.classList.remove('loading-screen--hidden');
     }
   }, 250);
 
-  setTimeout(() => {
-    const longLoadingNotice = document.querySelector('.long-loading-notice');
-    if (longLoadingNotice) {
-      longLoadingNotice.classList.remove('long-loading-notice--hidden');
+  setTimeout(function() {
+    var longLoadingNoticeEl = document.querySelector('.long-loading-notice');
+    if (longLoadingNoticeEl) {
+      longLoadingNoticeEl.classList.remove('long-loading-notice--hidden');
     }
   }, 2000);
 })();
