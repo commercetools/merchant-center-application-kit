@@ -11,7 +11,7 @@
     "moment": "2.22.1",
     "moment-timezone": "0.5.17",
     "prop-types": "15.6.1",
-    "react": "16.4.1",
+    "react": "16.4.2",
     "react-select": "1.2.1"
   }
 }
