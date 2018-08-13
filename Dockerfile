@@ -10,7 +10,7 @@
 #   - `image.tag` in the `values.yaml` of the related K8s chart
 # - the Google Cloud project used for the registry is called `ct-images`
 
-FROM node:8-slim@sha256:16ed6d11d87d2001cfb83f312c1198a11e741481fa286e28460d2f2e06ad9f0a
+FROM node:8-slim@sha256:0fc9eb85150ee4d313e6e042fae8f60f7485ffe1f98c61c1a99d88723432d94c
 
 LABEL maintainer="mc@commercetools.com"
 
