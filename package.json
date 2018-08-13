@@ -18,7 +18,7 @@
     "lodash.has": "4.5.2",
     "lodash.isnumber": "3.0.3",
     "prop-types": "15.6.1",
-    "react": "16.4.1",
+    "react": "16.4.2",
     "react-intl": "2.4.0",
     "react-redux": "5.0.7",
     "reselect": "3.0.1"
