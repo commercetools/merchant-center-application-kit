@@ -5,6 +5,7 @@ const cssnano = require('cssnano');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const safeParser = require('postcss-safe-parser');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -28,7 +29,9 @@ const optimizeCSSConfig = {
   // problems, learn more👇
   // https://github.com/NMFR/optimize-css-assets-webpack-plugin/issues/28
   cssProcessorOptions: {
-    safe: true,
+    // The previous safe option has been removed this is a fix from
+    // https://github.com/NMFR/optimize-css-assets-webpack-plugin/issues/65#issuecomment-405721294
+    parser: safeParser,
     discardComments: { removeAll: true },
   },
 };
