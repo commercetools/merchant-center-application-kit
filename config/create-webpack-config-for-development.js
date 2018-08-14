@@ -123,9 +123,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
     new HtmlWebpackPlugin({
       inject: false,
       filename: path.join(distPath, 'assets/index.html'),
-      template: require.resolve(
-        '@commercetools-frontend/mc-html-template/html-template.js'
-      ),
+      template: require.resolve('@commercetools-frontend/mc-html-template'),
     }),
     new LocalHtmlWebpackPlugin(),
     // Add module names to factory functions so they appear in browser profiler.

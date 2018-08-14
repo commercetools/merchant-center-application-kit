@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this,no-param-reassign */
-const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-html-template/replace-html-placeholders');
+const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-html-template/utils/replace-html-placeholders');
 
 class LocalHtmlWebpackPlugin {
   apply(compiler) {
