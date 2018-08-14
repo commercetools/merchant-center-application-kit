@@ -1,9 +1,8 @@
 const assets = require('../html-scripts');
 const sanitizeAppEnvironment = require('./sanitize-app-environment');
 
-const getGtmTrackingScript = tracking => {
-  const gtmId = tracking.gtm;
-  if (gtmId === 'false') return '';
+const getGtmTrackingScript = gtmId => {
+  if (!gtmId) return '';
   const url = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
   return `
 <script async type="text/javascript" src="${url}"></script>
@@ -24,7 +23,7 @@ const replaceHtmlPlaceholders = (indexHtmlContent, config) =>
     )
     .replace(
       new RegExp('__GTM_SCRIPT__', 'g'),
-      getGtmTrackingScript(config.tracking)
+      getGtmTrackingScript(config.trackingGtm)
     )
     .replace(new RegExp('__DATALAYER_JS__', 'g'), assets.dataLayer)
     .replace(new RegExp('__LOADING_SCREEN_JS__', 'g'), assets.loadingScreen);
