@@ -1621,7 +1621,7 @@
   "Orders.Payments.noPaymentsTitle": "Sorry, there are no payments associated with this order.",
   "Orders.SearchByOrder.customerFirstNameLabel": "Customer first name",
   "Orders.SearchByOrder.customerLastNameLabel": "Customer last name",
-  "Orders.SearchByOrder.searchPlaceholder": "Enter order number, customer email, or last name from either shipping- or billing address",
+  "Orders.SearchByOrder.searchPlaceholder": "Search by order number, email, SKU, last name, city or postal code (shipping / billing address)",
   "Orders.TransitionSplitButton.splitLineItem": "Split line item state",
   "OrderState.Cancelled": "Cancelled",
   "OrderState.Complete": "Complete",

@@ -1625,7 +1625,7 @@
   "Orders.Payments.noPaymentsTitle": "Leider gibt es keine Zahlungen, die mit dieser Bestellung verknüpft sind.",
   "Orders.SearchByOrder.customerFirstNameLabel": "Vorname des Kunden",
   "Orders.SearchByOrder.customerLastNameLabel": "Nachname des Kunden",
-  "Orders.SearchByOrder.searchPlaceholder": "Geben Sie Bestellnummer, Kunden Email, oder Nachname von entweder Rechnungs- oder Versandadresse ein",
+  "Orders.SearchByOrder.searchPlaceholder": "Suchen nach Bestellnummer, E-Mail, SKU, Nachname, Ort oder PLZ (Versand- / Rechnungsadresse)",
   "Orders.TransitionSplitButton.splitLineItem": "Bestellpositionsstatus aufteilen",
   "OrderState.Cancelled": "Abgebrochen",
   "OrderState.Complete": "Erfüllt",
