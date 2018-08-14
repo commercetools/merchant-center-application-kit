@@ -13,6 +13,20 @@ if (process.env.NODE_ENV !== 'production')
     'This server can only be started in production mode. Please set your NODE_ENV=production.'
   );
 
+// NOTE: previously, for running the prod server locally, we were copying
+// assets into public/assets and compiling the index.html into public folder.
+// To run the app then we would define the cdnUrl as http://localhost:3001/assets,
+// because of the assets subfolder.
+// However, on the webpack-dev-server, the index.html and the bundles are
+// served from the same folder. It's really complicated to get the config right
+// and eventually it's not worth the effort as it just feels like a bloody workaround.
+// Therefore, we do it a bit different now: keep the webpack-dev-server
+// config as is and adjust the mc-script to serve the files the same way.
+// Remember that for normal production usage, assets are served from a CDN.
+// So now we have a flat public folder instead of an assets subfolder.
+// Which means that the 3 static files (favicon, google**.html, robots.txt)
+// need to be put somewhere else (public-assets) and copy into the public
+// folder when the server starts.
 const publicAssetsFolderPath = path.join(__dirname, '../public-assets/*');
 const publicFolderPath = path.join(__dirname, '../public');
 
