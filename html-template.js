@@ -1,5 +1,3 @@
-const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-http-server/utils/replace-html-placeholders');
-
 module.exports = templateParams => {
   const cssVendorChunks = [];
   const cssAppChunks = [];
@@ -25,7 +23,7 @@ module.exports = templateParams => {
     }
   );
 
-  const htmlContent = `
+  return `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -126,13 +124,4 @@ module.exports = templateParams => {
   </body>
 </html>
   `;
-
-  // If we're running the app locally, replace the placeholders immediately!
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line global-require
-    const localEnv = require('@commercetools-frontend/mc-http-server/env');
-    return replaceHtmlPlaceholders(htmlContent, localEnv);
-  }
-
-  return htmlContent;
 };
