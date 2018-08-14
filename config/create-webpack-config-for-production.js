@@ -169,7 +169,7 @@ module.exports = ({
         // routed by a proxy server (see `toolbox/http-proxy-router`).
         SERVED_BY_PROXY: JSON.stringify(process.env.SERVED_BY_PROXY),
         // NOTE: proxy some env variables to allow them to be used from
-        // within `HtmlWebpackPlugin` (see `@commercetools-frontend/mc-http-server-config/env.js`).
+        // within `HtmlWebpackPlugin` (see `@commercetools-frontend/mc-html-template/env.js`).
         HTTP_PORT: JSON.stringify(process.env.HTTP_PORT),
         MC_API_URL: JSON.stringify(process.env.MC_API_URL),
         CTP_AUTH_URL: JSON.stringify(process.env.CTP_AUTH_URL),
@@ -189,7 +189,9 @@ module.exports = ({
     new HtmlWebpackPlugin({
       inject: false,
       filename: 'index.html.template',
-      template: path.join(__dirname, 'html-template.js'),
+      template: require.resolve(
+        '@commercetools-frontend/mc-html-template/html-template.js'
+      ),
     }),
     // Add module names to factory functions so they appear in browser profiler.
     // NOTE: instead of using `HashedModuleIdsPlugin`, we use `NamedModulesPlugin`

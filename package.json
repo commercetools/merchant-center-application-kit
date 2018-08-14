@@ -15,7 +15,7 @@
     "@babel/core": "7.0.0-rc.1",
     "@babel/runtime": "7.0.0-rc.1",
     "@commercetools-frontend/babel-preset-mc-app": "1.0.0-beta.14",
-    "@commercetools-frontend/mc-http-server": "1.0.0-beta.14",
+    "@commercetools-frontend/mc-html-template": "1.0.0-beta.14",
     "@svgr/webpack": "2.1.1",
     "address": "1.0.3",
     "babel-core": "7.0.0-bridge.0",

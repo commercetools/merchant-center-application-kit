@@ -1,5 +1,4 @@
-const headers = require('@commercetools-frontend/mc-http-server/headers');
-const logoutMiddleware = require('@commercetools-frontend/mc-http-server/routes/logout');
+const headers = require('@commercetools-frontend/mc-html-template/headers');
 const errorOverlayMiddleware = require('../react-dev-utils/errorOverlayMiddleware');
 const noopServiceWorkerMiddleware = require('../react-dev-utils/noopServiceWorkerMiddleware');
 
@@ -87,6 +86,19 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
     // https://github.com/facebookincubator/create-react-app/issues/2272#issuecomment-302832432
     app.use(noopServiceWorkerMiddleware());
     // Intercept the /logout page and "remove" the auth cookie value
-    app.use(logoutMiddleware);
+    app.use((request, response, next) => {
+      if (request.url.startsWith('/logout')) {
+        response.setHeader(
+          'Set-Cookie',
+          [
+            `mcAccessToken=''`, // <-- unset the value
+            'Path=/',
+            `Expires=${new Date(0).toUTCString()}`, // <-- put a date in the past
+            'HttpOnly',
+          ].join('; ')
+        );
+      }
+      next();
+    });
   },
 });
