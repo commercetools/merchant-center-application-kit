@@ -99,25 +99,6 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
-        // Use this in case you are starting multiple applications locally,
-        // routed by a proxy server (see `toolbox/http-proxy-router`).
-        SERVED_BY_PROXY: JSON.stringify(process.env.SERVED_BY_PROXY),
-        // NOTE: proxy some env variables to allow them to be used from
-        // within `HtmlWebpackPlugin` (see `@commercetools-frontend/mc-html-template/env.js`).
-        HTTP_PORT: JSON.stringify(process.env.HTTP_PORT),
-        MC_API_URL: JSON.stringify(process.env.MC_API_URL),
-        CTP_AUTH_URL: JSON.stringify(process.env.CTP_AUTH_URL),
-        CTP_API_URL: JSON.stringify(process.env.CTP_API_URL),
-        MC_ENV: JSON.stringify(process.env.MC_ENV),
-        MC_LOCATION: JSON.stringify(process.env.MC_LOCATION),
-        FRONTEND_HOST: JSON.stringify(process.env.FRONTEND_HOST),
-        AC_URL: JSON.stringify(process.env.AC_URL),
-        IMPEX_PRODUCT_EXPORT_URL: JSON.stringify(
-          process.env.IMPEX_PRODUCT_EXPORT_URL
-        ),
-        CDN_URL: JSON.stringify(process.env.CDN_URL),
-        TRACKING_GTM: JSON.stringify(process.env.TRACKING_GTM),
-        TRACKING_SENTRY: JSON.stringify(process.env.TRACKING_SENTRY),
       },
     }),
     new HtmlWebpackPlugin({
