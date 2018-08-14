@@ -7,7 +7,7 @@ const mri = require('mri');
 const shell = require('shelljs');
 const fetch = require('node-fetch');
 const env = require('@commercetools-frontend/mc-html-template/env');
-const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-html-template/replace-html-placeholders');
+const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-html-template/utils/replace-html-placeholders');
 
 if (process.env.NODE_ENV !== 'production')
   throw new Error(
