@@ -1,6 +1,14 @@
-const headers = require('@commercetools-frontend/mc-html-template/headers');
+const path = require('path');
+const loadEnv = require('@commercetools-frontend/mc-html-template/load-env');
+const loadHeaders = require('@commercetools-frontend/mc-html-template/load-headers');
 const errorOverlayMiddleware = require('../react-dev-utils/errorOverlayMiddleware');
 const noopServiceWorkerMiddleware = require('../react-dev-utils/noopServiceWorkerMiddleware');
+
+const sourcePath = process.cwd();
+const localEnv = loadEnv(path.join(sourcePath, 'env.json'));
+const headers = loadHeaders(localEnv, {
+  cspPath: path.join(sourcePath, 'csp.json'),
+});
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
