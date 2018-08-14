@@ -86,6 +86,7 @@ module.exports = {
     'prefer-destructuring': 0,
     'prefer-promise-reject-errors': 'warn',
     'react/jsx-no-target-blank': 0,
+    'lines-between-class-members': 0,
   },
   overrides: [
     {
