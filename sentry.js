@@ -2,7 +2,7 @@ import Raven from 'raven-js';
 
 export const boot = () => {
   if (window.app.env === 'production')
-    Raven.config(window.app.tracking.sentry, {
+    Raven.config(window.app.trackingSentry, {
       release: window.app.revision,
       tags: { role: 'frontend' },
       environment: window.app.env,
