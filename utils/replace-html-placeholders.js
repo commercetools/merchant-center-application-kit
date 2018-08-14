@@ -1,5 +1,4 @@
 const assets = require('../html-scripts');
-const env = require('../env');
 const sanitizeAppEnvironment = require('./sanitize-app-environment');
 
 const getGtmTrackingScript = tracking => {
@@ -11,21 +10,21 @@ const getGtmTrackingScript = tracking => {
   `;
 };
 
-const replaceHtmlPlaceholders = indexHtmlContent =>
+const replaceHtmlPlaceholders = (indexHtmlContent, config) =>
   indexHtmlContent
     .replace(
       new RegExp('__CDN_URL__', 'g'),
       // Ensure there is a trailing slash
-      `${env.cdnUrl.replace(/\/$/, '')}/`
+      `${config.cdnUrl.replace(/\/$/, '')}/`
     )
-    .replace(new RegExp('__MC_API_URL__', 'g'), env.mcApiUrl)
+    .replace(new RegExp('__MC_API_URL__', 'g'), config.mcApiUrl)
     .replace(
       new RegExp('__APP_ENVIRONMENT__', 'g'),
-      sanitizeAppEnvironment(env)
+      sanitizeAppEnvironment(config)
     )
     .replace(
       new RegExp('__GTM_SCRIPT__', 'g'),
-      getGtmTrackingScript(env.tracking)
+      getGtmTrackingScript(config.tracking)
     )
     .replace(new RegExp('__DATALAYER_JS__', 'g'), assets.dataLayer)
     .replace(new RegExp('__LOADING_SCREEN_JS__', 'g'), assets.loadingScreen);
