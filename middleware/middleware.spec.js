@@ -1,6 +1,6 @@
 import deepFreeze from 'deep-freeze';
 import oneLine from 'common-tags/lib/oneLine';
-import middleware from '../middleware';
+import middleware from '.';
 import { addNotification, removeNotification } from '../action-creators';
 import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from '../action-types';
 
