@@ -21,9 +21,7 @@ module.exports = function logout(request, response, next) {
             ? []
             : [
                 `Domain=${
-                  require('@commercetools-frontend/mc-html-template/env').frontendHost.split(
-                    'mc.'
-                  )[1]
+                  require('../load-options').env.frontendHost.split('mc.')[1]
                 }`,
                 'Secure',
               ]
