@@ -1,6 +1,6 @@
-const assets = require('./html-scripts');
+const assets = require('../html-scripts');
+const env = require('../env');
 const sanitizeAppEnvironment = require('./sanitize-app-environment');
-const env = require('./env');
 
 const getGtmTrackingScript = tracking => {
   const gtmId = tracking.gtm;

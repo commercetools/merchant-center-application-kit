@@ -5,8 +5,8 @@
  *   as we don't want to execute any JavaScript which might have been
  *   tampered with.
  */
+const assets = require('../html-scripts');
 const createAssetHash = require('./create-asset-hash');
-const assets = require('./html-scripts');
 
 module.exports = () => [
   createAssetHash(assets.dataLayer),

@@ -1,6 +1,6 @@
-const getAssetHashes = require('./get-asset-hashes');
-const createAssetHash = require('./create-asset-hash');
-const sanitizeAppEnvironment = require('./sanitize-app-environment');
+const getAssetHashes = require('./utils/get-asset-hashes');
+const createAssetHash = require('./utils/create-asset-hash');
+const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
 const env = require('./env');
 
 const isDev = !process.env.MC_ENV || process.env.MC_ENV === 'development';
