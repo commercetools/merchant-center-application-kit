@@ -18,8 +18,8 @@ import messages from './messages';
 
 const NotificationIcon = props => {
   if (props.type === 'error') return <ErrorIcon theme={props.theme} />;
-  else if (props.type === 'info') return <InfoIcon theme={props.theme} />;
-  else if (props.type === 'warning') return <WarningIcon theme={props.theme} />;
+  if (props.type === 'info') return <InfoIcon theme={props.theme} />;
+  if (props.type === 'warning') return <WarningIcon theme={props.theme} />;
 
   return <SuccessIcon theme={props.theme} />;
 };
