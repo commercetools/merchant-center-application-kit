@@ -11,16 +11,14 @@
     "mc-http-server": "./bin/start-mc.js"
   },
   "dependencies": {
+    "@commercetools-frontend/mc-html-template": "1.0.0-beta.14",
     "@promster/express": "0.4.1",
     "compression": "1.7.2",
     "connect": "3.6.6",
     "connect-history-api-fallback": "1.5.0",
-    "dotenv": "6.0.0",
-    "dotenv-expand": "4.2.0",
     "morgan": "1.9.0",
     "mri": "1.1.1",
     "node-fetch": "2.2.0",
-    "serialize-javascript": "1.5.0",
     "serve-static": "1.13.2",
     "shelljs": "0.8.2"
   },

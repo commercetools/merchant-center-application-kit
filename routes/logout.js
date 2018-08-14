@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 // If the file is required in "production" mode, we additionally check
 // if the MC_ENV is development or not. The only case where this might
 // happen is when you start the server locally to test the app in
@@ -19,8 +20,11 @@ module.exports = function logout(request, response, next) {
           isDev
             ? []
             : [
-                // eslint-disable-next-line global-require
-                `Domain=${require('../env').frontendHost.split('mc.')[1]}`,
+                `Domain=${
+                  require('@commercetools-frontend/mc-html-template/env').frontendHost.split(
+                    'mc.'
+                  )[1]
+                }`,
                 'Secure',
               ]
         )

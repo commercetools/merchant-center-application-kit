@@ -6,8 +6,8 @@ const path = require('path');
 const mri = require('mri');
 const shell = require('shelljs');
 const fetch = require('node-fetch');
-const env = require('../env');
-const replaceHtmlPlaceholders = require('../utils/replace-html-placeholders');
+const env = require('@commercetools-frontend/mc-html-template/env');
+const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-html-template/replace-html-placeholders');
 
 if (process.env.NODE_ENV !== 'production')
   throw new Error(
@@ -54,10 +54,7 @@ const getIndexHtml = async () => {
       path.join(publicFolderPath, 'assets/index.html.template'),
       'utf8'
     );
-    const updatedIndexHtmlContent = replaceHtmlPlaceholders(
-      indexHtmlContent,
-      env
-    );
+    const updatedIndexHtmlContent = replaceHtmlPlaceholders(indexHtmlContent);
     return Promise.resolve(updatedIndexHtmlContent);
   }
 
@@ -78,8 +75,7 @@ const getIndexHtml = async () => {
   }
   const remoteIndexHtmlContent = await remoteIndexHtmlResponse.text();
   const updatedIndexHtmlContent = replaceHtmlPlaceholders(
-    remoteIndexHtmlContent,
-    env
+    remoteIndexHtmlContent
   );
   return Promise.resolve(updatedIndexHtmlContent);
 };
