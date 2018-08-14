@@ -10,9 +10,9 @@ const compression = require('compression');
 const connect = require('connect');
 const history = require('connect-history-api-fallback');
 const serveStatic = require('serve-static');
-const headers = require('@commercetools-frontend/mc-html-template/headers');
 const logout = require('./routes/logout');
 const metrics = require('./routes/metrics');
+const options = require('./load-options');
 
 const publicFolderPath = path.join(__dirname, 'public');
 
@@ -35,8 +35,8 @@ const serverUrl = `http://localhost:${serverPort}`;
 const staticFilesMiddleware = serveStatic(publicFolderPath, {
   // Define security headers!
   setHeaders(res) {
-    Object.keys(headers).forEach(key => {
-      res.setHeader(key, headers[key]);
+    Object.keys(options.headers).forEach(key => {
+      res.setHeader(key, options.headers[key]);
     });
   },
 });

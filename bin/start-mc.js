@@ -3,34 +3,26 @@
 /* eslint-disable no-console,global-require */
 const fs = require('fs');
 const path = require('path');
-const mri = require('mri');
 const shell = require('shelljs');
 const fetch = require('node-fetch');
-const env = require('@commercetools-frontend/mc-html-template/env');
 const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-html-template/utils/replace-html-placeholders');
+const options = require('../load-options');
 
 if (process.env.NODE_ENV !== 'production')
   throw new Error(
     'This server can only be started in production mode. Please set your NODE_ENV=production.'
   );
 
+const publicAssetsFolderPath = path.join(__dirname, '../public-assets/*');
 const publicFolderPath = path.join(__dirname, '../public');
 
-const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
-
-if (flags.help) {
-  console.log(`
-  Usage: mc-http-server [options]
-
-  Options:
-  --use-local-assets     (optional) If this option is enabled, the "dist/assets" will be used to start the http-server package. This requires that the assets have been built before running this script.
-  `);
-}
-const useLocalAssets = flags['use-local-assets'];
+shell.rm('-rf', publicFolderPath);
+shell.mkdir('-p', publicFolderPath);
+shell.cp('-R', publicAssetsFolderPath, publicFolderPath);
 
 // This should only be used locally, as we're relying on relative paths
 // outside of this package.
-if (useLocalAssets) {
+if (options.useLocalAssets) {
   // Resolve the absolute path of the caller location. This is necessary
   // to point to files within that folder.
   const sourcePath = process.cwd();
@@ -44,17 +36,20 @@ if (useLocalAssets) {
     );
   }
   // Copy the `dist/assets` folder into the `public` folder.
-  shell.cp('-R', assetsFrom, publicFolderPath);
+  shell.cp('-R', path.join(assetsFrom, '/*'), publicFolderPath);
 }
 
 const getIndexHtml = async () => {
   // For local usage only!
-  if (useLocalAssets) {
+  if (options.useLocalAssets) {
     const indexHtmlContent = fs.readFileSync(
-      path.join(publicFolderPath, 'assets/index.html.template'),
+      path.join(publicFolderPath, 'index.html.template'),
       'utf8'
     );
-    const updatedIndexHtmlContent = replaceHtmlPlaceholders(indexHtmlContent);
+    const updatedIndexHtmlContent = replaceHtmlPlaceholders(
+      indexHtmlContent,
+      options.env
+    );
     return Promise.resolve(updatedIndexHtmlContent);
   }
 
@@ -66,7 +61,7 @@ const getIndexHtml = async () => {
   const randomQueryParam = Date.now();
   // Fetch `index.html.template` from remote Storage Bucket
   const remoteIndexHtmlResponse = await fetch(
-    `${env.cdnUrl}/index.html.template?${randomQueryParam}`
+    `${options.env.cdnUrl}/index.html.template?${randomQueryParam}`
   );
   if (!remoteIndexHtmlResponse.ok) {
     const rawResponseError = await remoteIndexHtmlResponse.text();
@@ -75,7 +70,8 @@ const getIndexHtml = async () => {
   }
   const remoteIndexHtmlContent = await remoteIndexHtmlResponse.text();
   const updatedIndexHtmlContent = replaceHtmlPlaceholders(
-    remoteIndexHtmlContent
+    remoteIndexHtmlContent,
+    options.env
   );
   return Promise.resolve(updatedIndexHtmlContent);
 };

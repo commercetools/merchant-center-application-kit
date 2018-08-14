@@ -6,6 +6,5 @@
 
 # static assets are uploaded to a gcloud storage bucket and don't need to be
 # bundled with the FE container
-public/assets
-public/index.html
+public
 cloudbuild.yaml
