@@ -7,7 +7,7 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory';
-import { errorLink, headerLink, tokenRetryLink } from './apollo-links/';
+import { errorLink, headerLink, tokenRetryLink } from './apollo-links';
 
 const httpLink = createHttpLink({
   uri: `${window.app.mcApiUrl}/graphql`,

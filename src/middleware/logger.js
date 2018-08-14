@@ -3,7 +3,7 @@ import {
   ADD_NOTIFICATION,
   REMOVE_NOTIFICATION,
 } from '@commercetools-frontend/notifications';
-import { __LOCAL } from '../middleware/add-plugin-to-notification/constants';
+import { __LOCAL } from './add-plugin-to-notification/constants';
 
 export const actionTransformer = action =>
   action && action.type === __LOCAL && action.payload && action.payload.type
