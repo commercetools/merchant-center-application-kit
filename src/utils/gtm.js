@@ -158,11 +158,11 @@ export const boot = trackingEventWhitelist => {
 };
 
 export const updateUser = user => {
-  if (window.dataLayer && window.app.tracking.gtm)
+  if (window.dataLayer && window.app.trackingGtm)
     window.dataLayer.push({ userId: user.id });
 };
 
 export const stopTrackingUser = () => {
-  if (window.dataLayer && window.app.tracking.gtm)
+  if (window.dataLayer && window.app.trackingGtm)
     window.dataLayer.push({ userId: undefined });
 };
