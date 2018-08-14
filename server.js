@@ -63,7 +63,7 @@ const app = connect()
   .use('/metrics', metrics)
   .use('/version', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ revision: process.env.GIT_SHA }));
+    res.end(JSON.stringify({ revision: options.env.revision }));
   })
   // Intercept the /logout page and "remove" the auth cookie value
   .use(logout)
