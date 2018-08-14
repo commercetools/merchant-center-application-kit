@@ -1,7 +1,7 @@
 @import '@commercetools-frontend/ui-kit/materials/borders.mod.css';
 @import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
 @import '@commercetools-frontend/ui-kit/materials/spacings.mod.css';
-@import '@commercetools-frontend/ui-kit/materials/shadows.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/shadows/base-shadows.mod.css';
 
 .container {
   display: flex;
