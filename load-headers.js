@@ -4,7 +4,7 @@ const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
 const htmlScripts = require('./html-scripts');
 const htmlStyles = require('./html-styles');
 
-const isDev = !process.env.MC_ENV || process.env.MC_ENV === 'development';
+const isProd = process.env.NODE_ENV === 'production';
 
 // Keep a reference to the loaded config so that requiring the module
 // again will result in returning the cached value.
@@ -76,12 +76,12 @@ module.exports = (env, options) => {
         'www.googletagmanager.com/gtm.js',
         'www.google-analytics.com/analytics.js',
       ].concat(
-        isDev
-          ? // allows webpack to load source maps on runtime when errors occur
+        isProd
+          ? // Allow only hashed inline scripts (see list above)
+            htmlScriptsHashes.map(assetHash => `'${assetHash}'`)
+          : // allows webpack to load source maps on runtime when errors occur
             // using script tags
             ['localhost:*', "'unsafe-inline'"]
-          : // Allow only hashed inline scripts (see list above)
-            htmlScriptsHashes.map(assetHash => `'${assetHash}'`)
       ),
       'connect-src': [
         "'self'",
@@ -93,7 +93,7 @@ module.exports = (env, options) => {
         'events.launchdarkly.com',
         'app.getsentry.com',
         'www.google-analytics.com',
-      ].concat(isDev ? ['ws:', 'localhost:8080', 'webpack-internal:'] : []),
+      ].concat(isProd ? [] : ['ws:', 'localhost:8080', 'webpack-internal:']),
       'img-src': ['*', 'data:'],
       'style-src': [
         "'self'",
@@ -103,29 +103,28 @@ module.exports = (env, options) => {
         'storage.googleapis.com/mc-production-eu/',
         'storage.googleapis.com/mc-production-us/',
       ].concat(
-        isDev
-          ? // allows webpack to load source maps on runtime when errors occur
-            // using script tags
-            ["'unsafe-inline'"]
-          : // Allow only hashed inline scripts (see list above)
+        isProd
+          ? // Allow only hashed inline scripts (see list above)
             htmlStylesHashes.map(assetHash => `'${assetHash}'`)
+          : // allows webpack to inject style tags
+            ["'unsafe-inline'"]
       ),
       'font-src': ["'self'", 'fonts.gstatic.com', 'data:'],
     },
-    isDev
+    isProd
       ? {
-          // NOTE: use this instead of `upgrade-insecure-requests` for local
-          // development to avoid `http://localhost` requests to be redirected
-          // to https.
-          'block-all-mixed-content': '',
-        }
-      : {
           // NOTE: prefer this over `block-all-mixed-content`.
           // https://youtu.be/j-0Bj40juMI?t=11m47s
           'upgrade-insecure-requests': '',
           'report-uri':
             // For now we report to the staging project to avoid spamming production.
             'https://sentry.io/api/201984/csp-report/?sentry_key=ccb1fd8c25c241a18e801104bb687ac5',
+        }
+      : {
+          // NOTE: use this instead of `upgrade-insecure-requests` for local
+          // development to avoid `http://localhost` requests to be redirected
+          // to https.
+          'block-all-mixed-content': '',
         }
     // NOTE: we might want to define further policies in the future, for example
     // - `require-sri-for style script` (at the moment not possible because
