@@ -46,7 +46,7 @@ const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
     /**
      * NOTE:
      *   We do not need to know the path. It is only the index.html
-     *   for this service. As it is public facing attackers can "scape"
+     *   for this service. As it is public facing attackers can "scrape"
      *   any url causing an unindented increase of cardinality in Prometheus.
      */
     path: '',
