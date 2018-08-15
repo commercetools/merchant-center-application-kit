@@ -29,7 +29,6 @@ module.exports = configPath => {
 
   // Default configuration containing optional fields
   const defaultConfig = {
-    tracking: {},
     servedByProxy: false,
   };
 
