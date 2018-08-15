@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const uglify = require('uglify-es');
 
-const loadScriptAsString = scriptName => {
-  const content = fs.readFileSync(path.join(__dirname, scriptName), {
+const loadScriptAsString = fileName => {
+  const content = fs.readFileSync(path.join(__dirname, fileName), {
     encoding: 'utf8',
   });
   if (process.env.NODE_ENV !== 'production') return content;

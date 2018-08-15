@@ -1,4 +1,5 @@
-const assets = require('../html-scripts');
+const htmlScripts = require('../html-scripts');
+const htmlStyles = require('../html-styles');
 const sanitizeAppEnvironment = require('./sanitize-app-environment');
 
 const getGtmTrackingScript = gtmId => {
@@ -25,7 +26,14 @@ const replaceHtmlPlaceholders = (indexHtmlContent, config) =>
       new RegExp('__GTM_SCRIPT__', 'g'),
       getGtmTrackingScript(config.trackingGtm)
     )
-    .replace(new RegExp('__DATALAYER_JS__', 'g'), assets.dataLayer)
-    .replace(new RegExp('__LOADING_SCREEN_JS__', 'g'), assets.loadingScreen);
+    .replace(new RegExp('__DATALAYER_JS__', 'g'), htmlScripts.dataLayer)
+    .replace(
+      new RegExp('__LOADING_SCREEN_JS__', 'g'),
+      htmlScripts.loadingScreen
+    )
+    .replace(
+      new RegExp('__LOADING_SCREEN_CSS__', 'g'),
+      htmlStyles.loadingScreen
+    );
 
 module.exports = replaceHtmlPlaceholders;

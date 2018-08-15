@@ -1,7 +1,8 @@
 const fs = require('fs');
-const getAssetHashes = require('./utils/get-asset-hashes');
 const createAssetHash = require('./utils/create-asset-hash');
 const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
+const htmlScripts = require('./html-scripts');
+const htmlStyles = require('./html-styles');
 
 const isDev = !process.env.MC_ENV || process.env.MC_ENV === 'development';
 
@@ -46,12 +47,17 @@ module.exports = (env, options) => {
 
   // List hashes for injected inline scripts.
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src
-  const assetHashes = [
-    ...getAssetHashes(),
+  const htmlScriptsHashes = [
+    createAssetHash(htmlScripts.dataLayer),
+    createAssetHash(htmlScripts.loadingScreen),
     // Only the mc-http-server is aware of the env which is why we need
     // to create its hash here.
     createAssetHash(`window.app = ${sanitizeAppEnvironment(env)};`),
   ];
+
+  // List hashes for injected inline styles.
+  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src
+  const htmlStylesHashes = [createAssetHash(htmlStyles.loadingScreen)];
 
   /**
    * Content Security Policy (CSP)
@@ -75,7 +81,7 @@ module.exports = (env, options) => {
             // using script tags
             ['localhost:*', "'unsafe-inline'"]
           : // Allow only hashed inline scripts (see list above)
-            assetHashes.map(assetHash => `'${assetHash}'`)
+            htmlScriptsHashes.map(assetHash => `'${assetHash}'`)
       ),
       'connect-src': [
         "'self'",
@@ -91,14 +97,19 @@ module.exports = (env, options) => {
       'img-src': ['*', 'data:'],
       'style-src': [
         "'self'",
-        // TODO: this might be removed once we load CSS from an external file
-        "'unsafe-inline'",
         'fonts.googleapis.com',
         'data:',
         'storage.googleapis.com/mc-staging/',
         'storage.googleapis.com/mc-production-eu/',
         'storage.googleapis.com/mc-production-us/',
-      ],
+      ].concat(
+        isDev
+          ? // allows webpack to load source maps on runtime when errors occur
+            // using script tags
+            ["'unsafe-inline'"]
+          : // Allow only hashed inline scripts (see list above)
+            htmlStylesHashes.map(assetHash => `'${assetHash}'`)
+      ),
       'font-src': ["'self'", 'fonts.gstatic.com', 'data:'],
     },
     isDev
