@@ -41,7 +41,17 @@ const staticFilesMiddleware = serveStatic(publicFolderPath, {
   },
 });
 // Gather and expose metrics to Prometheus
-const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware();
+const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
+  getLabelValues: () => ({
+    /**
+     * NOTE:
+     *   We do not need to know the path. It is only the index.html
+     *   for this service. As it is public facing attackers can "scape"
+     *   any url causing an unindented increase of cardinality in Prometheus.
+     */
+    path: '',
+  }),
+});
 
 // Configure and start the HTTP server.
 const app = connect()
