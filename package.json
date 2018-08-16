@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/mc-html-template",
-  "version": "1.0.0-beta.22",
+  "version": "1.0.0-beta.24",
   "description": "Everything related to render the index.html for a MC application",
   "license": "MIT",
   "private": false,
