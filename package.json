@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/constants",
-  "version": "1.0.0-beta.24",
+  "version": "1.0.0-beta.25",
   "description": "Shared constants for MC applications",
   "license": "Proprietary",
   "private": false,
