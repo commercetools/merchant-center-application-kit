@@ -46,16 +46,18 @@ const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
 
 // Configure and start the HTTP server.
 const app = express()
-  .use(compression())
   .use(prometheusMetricsMiddleware)
-  .use(morgan('combined', { stream: process.stdout }))
   .use('/metrics', metrics)
   .use('/version', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({ revision: options.env.revision }));
   })
+  // Request access logs
+  .use(morgan('combined', { stream: process.stdout }))
   // Intercept the /logout page and "remove" the auth cookie value
   .use(logout)
+  // From here on, compress all responses
+  .use(compression())
   // Try serving a static file that matches the url, otherwise go to
   // the next middleware (e.g. favicon.ico)
   .use(express.static(publicFolderPath))
