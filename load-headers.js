@@ -2,7 +2,7 @@ const fs = require('fs');
 const createAssetHash = require('./utils/create-asset-hash');
 const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
 const htmlScripts = require('./html-scripts');
-const htmlStyles = require('./html-styles');
+// const htmlStyles = require('./html-styles');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -53,9 +53,9 @@ module.exports = (env, options) => {
     createAssetHash(`window.app = ${sanitizeAppEnvironment(env)};`),
   ];
 
-  // List hashes for injected inline styles.
-  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src
-  const htmlStylesHashes = [createAssetHash(htmlStyles.loadingScreen)];
+  // // List hashes for injected inline styles.
+  // // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/style-src
+  // const htmlStylesHashes = [createAssetHash(htmlStyles.loadingScreen)];
 
   /**
    * Content Security Policy (CSP)
@@ -73,15 +73,13 @@ module.exports = (env, options) => {
         'storage.googleapis.com/mc-production-us/',
         'www.googletagmanager.com/gtm.js',
         'www.google-analytics.com/analytics.js',
-      ]
-        .concat(htmlScriptsHashes.map(assetHash => `'${assetHash}'`))
-        .concat(
-          isProd
-            ? []
-            : // Allow webpack to load source maps on runtime when errors occur
-              // using script tags
-              ['localhost:*', "'unsafe-inline'"]
-        ),
+      ].concat(
+        isProd
+          ? htmlScriptsHashes.map(assetHash => `'${assetHash}'`)
+          : // Allow webpack to load source maps on runtime when errors occur
+            // using script tags
+            ['localhost:*', "'unsafe-inline'"]
+      ),
       'connect-src': [
         "'self'",
         'mc-api.escemo.com',
@@ -101,10 +99,13 @@ module.exports = (env, options) => {
         'storage.googleapis.com/mc-staging/',
         'storage.googleapis.com/mc-production-eu/',
         'storage.googleapis.com/mc-production-us/',
-        // TODO: investigate what needs to be done to avoid unsafe inline styles
+      ].concat(
+        // TODO: investigate what needs to be done to avoid unsafe-inline styles
         // https://github.com/commercetools/merchant-center-frontend/pull/5223#discussion_r210367636
-        "'unsafe-inline'",
-      ].concat(htmlStylesHashes.map(assetHash => `'${assetHash}'`)),
+        ["'unsafe-inline'"]
+        // TODO: enable this once we can avoid unsafe-inline
+        // htmlStylesHashes.map(assetHash => `'${assetHash}'`)
+      ),
       'font-src': ["'self'", 'fonts.gstatic.com', 'data:'],
     },
     isProd
