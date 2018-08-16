@@ -50,8 +50,6 @@ module.exports = (env, options) => {
   const htmlScriptsHashes = [
     createAssetHash(htmlScripts.dataLayer),
     createAssetHash(htmlScripts.loadingScreen),
-    // Only the mc-http-server is aware of the env which is why we need
-    // to create its hash here.
     createAssetHash(`window.app = ${sanitizeAppEnvironment(env)};`),
   ];
 
@@ -75,14 +73,15 @@ module.exports = (env, options) => {
         'storage.googleapis.com/mc-production-us/',
         'www.googletagmanager.com/gtm.js',
         'www.google-analytics.com/analytics.js',
-      ].concat(
-        isProd
-          ? // Allow only hashed inline scripts (see list above)
-            htmlScriptsHashes.map(assetHash => `'${assetHash}'`)
-          : // allows webpack to load source maps on runtime when errors occur
-            // using script tags
-            ['localhost:*', "'unsafe-inline'"]
-      ),
+      ]
+        .concat(htmlScriptsHashes.map(assetHash => `'${assetHash}'`))
+        .concat(
+          isProd
+            ? []
+            : // Allow webpack to load source maps on runtime when errors occur
+              // using script tags
+              ['localhost:*', "'unsafe-inline'"]
+        ),
       'connect-src': [
         "'self'",
         'mc-api.escemo.com',
@@ -102,13 +101,10 @@ module.exports = (env, options) => {
         'storage.googleapis.com/mc-staging/',
         'storage.googleapis.com/mc-production-eu/',
         'storage.googleapis.com/mc-production-us/',
-      ].concat(
-        isProd
-          ? // Allow only hashed inline scripts (see list above)
-            htmlStylesHashes.map(assetHash => `'${assetHash}'`)
-          : // allows webpack to inject style tags
-            ["'unsafe-inline'"]
-      ),
+        // TODO: investigate what needs to be done to avoid unsafe inline styles
+        // https://github.com/commercetools/merchant-center-frontend/pull/5223#discussion_r210367636
+        "'unsafe-inline'",
+      ].concat(htmlStylesHashes.map(assetHash => `'${assetHash}'`)),
       'font-src': ["'self'", 'fonts.gstatic.com', 'data:'],
     },
     isProd
