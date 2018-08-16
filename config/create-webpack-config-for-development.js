@@ -9,8 +9,12 @@ const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
 const postCSSCustomProperties = require('postcss-custom-properties');
 const postcssCustomMediaQueries = require('postcss-custom-media');
-const LocalHtmlWebpackPlugin = require('../webpack-plugins/local-html-webpack-plugin');
 const browserslist = require('./browserslist');
+
+const defaultToggleFlags = {
+  // Allow to disable index.html generation in case it's not necessary (e.g. for Storybook)
+  generateIndexHtml: true,
+};
 
 /**
  * This is a factory function to create the default webpack config
@@ -18,7 +22,12 @@ const browserslist = require('./browserslist');
  * The function requires the file path to the related application
  * "entry point".
  */
-module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
+module.exports = ({
+  distPath,
+  entryPoint,
+  sourceFolders,
+  toggleFlags = defaultToggleFlags,
+}) => ({
   // https://webpack.js.org/concepts/#mode
   mode: 'development',
 
@@ -101,21 +110,35 @@ module.exports = ({ distPath, entryPoint, sourceFolders }) => ({
         NODE_ENV: JSON.stringify('development'),
       },
     }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      filename: path.join(distPath, 'assets/index.html'),
-      template: require.resolve('@commercetools-frontend/mc-html-template'),
-    }),
-    new LocalHtmlWebpackPlugin(),
-    // Add module names to factory functions so they appear in browser profiler.
-    // https://webpack.js.org/guides/caching/
-    new webpack.NamedModulesPlugin(),
-    // Strip all locales except `en`, `de`
-    // (`en` is built into Moment and can't be removed).
-    new MomentLocalesPlugin({ localesToKeep: ['de', 'es'] }),
-    // This is necessary to emit hot updates (currently CSS only).
-    new webpack.HotModuleReplacementPlugin(),
-  ],
+  ]
+    .concat(
+      toggleFlags.generateIndexHtml
+        ? [
+            new HtmlWebpackPlugin({
+              inject: false,
+              filename: path.join(distPath, 'assets/index.html'),
+              template: require.resolve(
+                '@commercetools-frontend/mc-html-template'
+              ),
+            }),
+            (() => {
+              // eslint-disable-next-line global-require
+              const LocalHtmlWebpackPlugin = require('../webpack-plugins/local-html-webpack-plugin');
+              return new LocalHtmlWebpackPlugin();
+            })(),
+          ]
+        : []
+    )
+    .concat([
+      // Add module names to factory functions so they appear in browser profiler.
+      // https://webpack.js.org/guides/caching/
+      new webpack.NamedModulesPlugin(),
+      // Strip all locales except `en`, `de`
+      // (`en` is built into Moment and can't be removed).
+      new MomentLocalesPlugin({ localesToKeep: ['de', 'es'] }),
+      // This is necessary to emit hot updates (currently CSS only).
+      new webpack.HotModuleReplacementPlugin(),
+    ]),
 
   module: {
     // Makes missing exports an error instead of warning.

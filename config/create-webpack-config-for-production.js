@@ -84,6 +84,8 @@ const uglifyConfig = {
 const defaultToggleFlags = {
   // Allow to disable CSS extraction in case it's not necessary (e.g. for Storybook)
   enableExtractCss: true,
+  // Allow to disable index.html generation in case it's not necessary (e.g. for Storybook)
+  generateIndexHtml: true,
 };
 
 /**
@@ -167,35 +169,45 @@ module.exports = ({
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      filename: 'index.html.template',
-      template: require.resolve('@commercetools-frontend/mc-html-template'),
-    }),
-    // Add module names to factory functions so they appear in browser profiler.
-    // NOTE: instead of using `HashedModuleIdsPlugin`, we use `NamedModulesPlugin`
-    // for production as well, despite the `HashedModuleIdsPlugin` being the
-    // recommended choice for production.
-    // It appears that using `HashedModuleIdsPlugin` the gzipped bundles are
-    // bigger in size compared to the bundles produces by `NamedModulesPlugin`.
-    // Therefore we go for the choice of having smaller bundles.
-    // Refs:
-    // - https://gitlab.com/gitlab-org/gitlab-ce/issues/32835
-    // - https://medium.com/@schnibl/hashes-are-had-to-zip-pathnames-not-therefore-your-end-result-with-named-modules-is-unintuitively-94baa1a507e
-    new webpack.NamedModulesPlugin(),
-    // Strip all locales except `en`, `de`
-    // (`en` is built into Moment and can't be removed)
-    new MomentLocalesPlugin({ localesToKeep: ['de', 'es'] }),
-
-    // Generate a `stats.json` file containing information and paths to
-    // the assets that webpack created.
-    // This is necessary to programmatically refer to the correct bundle path
-    // in the `index.html`.
-    new FinalStatsWriterPlugin({
-      outputPath: distPath,
-      includeFields: ['entrypoints', 'assets', 'publicPath', 'time'],
-    }),
   ]
+    .concat(
+      toggleFlags.generateIndexHtml
+        ? [
+            new HtmlWebpackPlugin({
+              inject: false,
+              filename: 'index.html.template',
+              template: require.resolve(
+                '@commercetools-frontend/mc-html-template'
+              ),
+            }),
+          ]
+        : []
+    )
+    .concat([
+      // Add module names to factory functions so they appear in browser profiler.
+      // NOTE: instead of using `HashedModuleIdsPlugin`, we use `NamedModulesPlugin`
+      // for production as well, despite the `HashedModuleIdsPlugin` being the
+      // recommended choice for production.
+      // It appears that using `HashedModuleIdsPlugin` the gzipped bundles are
+      // bigger in size compared to the bundles produces by `NamedModulesPlugin`.
+      // Therefore we go for the choice of having smaller bundles.
+      // Refs:
+      // - https://gitlab.com/gitlab-org/gitlab-ce/issues/32835
+      // - https://medium.com/@schnibl/hashes-are-had-to-zip-pathnames-not-therefore-your-end-result-with-named-modules-is-unintuitively-94baa1a507e
+      new webpack.NamedModulesPlugin(),
+      // Strip all locales except `en`, `de`
+      // (`en` is built into Moment and can't be removed)
+      new MomentLocalesPlugin({ localesToKeep: ['de', 'es'] }),
+
+      // Generate a `stats.json` file containing information and paths to
+      // the assets that webpack created.
+      // This is necessary to programmatically refer to the correct bundle path
+      // in the `index.html`.
+      new FinalStatsWriterPlugin({
+        outputPath: distPath,
+        includeFields: ['entrypoints', 'assets', 'publicPath', 'time'],
+      }),
+    ])
     // Optional plugins
     .concat(
       toggleFlags.enableExtractCss
