@@ -4,8 +4,6 @@ const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
 const htmlScripts = require('./html-scripts');
 // const htmlStyles = require('./html-styles');
 
-const isProd = process.env.NODE_ENV === 'production';
-
 // Keep a reference to the loaded config so that requiring the module
 // again will result in returning the cached value.
 let loadedHeaders;
@@ -45,6 +43,8 @@ const mergeCspDirectives = (...csps) =>
 module.exports = (env, options) => {
   if (loadedHeaders) return loadedHeaders;
 
+  const isMcDevEnv = env.env === 'development';
+
   // List hashes for injected inline scripts.
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src
   const htmlScriptsHashes = [
@@ -74,11 +74,11 @@ module.exports = (env, options) => {
         'www.googletagmanager.com/gtm.js',
         'www.google-analytics.com/analytics.js',
       ].concat(
-        isProd
-          ? htmlScriptsHashes.map(assetHash => `'${assetHash}'`)
-          : // Allow webpack to load source maps on runtime when errors occur
+        isMcDevEnv
+          ? // Allow webpack to load source maps on runtime when errors occur
             // using script tags
             ['localhost:*', "'unsafe-inline'"]
+          : htmlScriptsHashes.map(assetHash => `'${assetHash}'`)
       ),
       'connect-src': [
         "'self'",
@@ -90,7 +90,9 @@ module.exports = (env, options) => {
         'events.launchdarkly.com',
         'app.getsentry.com',
         'www.google-analytics.com',
-      ].concat(isProd ? [] : ['ws:', 'localhost:8080', 'webpack-internal:']),
+      ].concat(
+        isMcDevEnv ? ['ws:', 'localhost:8080', 'webpack-internal:'] : []
+      ),
       'img-src': ['*', 'data:'],
       'style-src': [
         "'self'",
@@ -108,20 +110,20 @@ module.exports = (env, options) => {
       ),
       'font-src': ["'self'", 'fonts.gstatic.com', 'data:'],
     },
-    isProd
+    isMcDevEnv
       ? {
+          // NOTE: use this instead of `upgrade-insecure-requests` for local
+          // development to avoid `http://localhost` requests to be redirected
+          // to https.
+          'block-all-mixed-content': '',
+        }
+      : {
           // NOTE: prefer this over `block-all-mixed-content`.
           // https://youtu.be/j-0Bj40juMI?t=11m47s
           'upgrade-insecure-requests': '',
           'report-uri':
             // For now we report to the staging project to avoid spamming production.
             'https://sentry.io/api/201984/csp-report/?sentry_key=ccb1fd8c25c241a18e801104bb687ac5',
-        }
-      : {
-          // NOTE: use this instead of `upgrade-insecure-requests` for local
-          // development to avoid `http://localhost` requests to be redirected
-          // to https.
-          'block-all-mixed-content': '',
         }
     // NOTE: we might want to define further policies in the future, for example
     // - `require-sri-for style script` (at the moment not possible because
