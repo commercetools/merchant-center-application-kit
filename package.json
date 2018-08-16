@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/babel-preset-mc-app",
-  "version": "1.0.0-beta.23",
+  "version": "1.0.0-beta.24",
   "description": "Babel preset used by a MC application",
   "license": "MIT",
   "private": false,
