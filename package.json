@@ -14,12 +14,10 @@
     "@commercetools-frontend/mc-html-template": "1.0.0-beta.20",
     "@promster/express": "0.4.1",
     "compression": "1.7.2",
-    "connect": "3.6.6",
-    "connect-history-api-fallback": "1.5.0",
+    "express": "4.16.3",
     "morgan": "1.9.0",
     "mri": "1.1.1",
     "node-fetch": "2.2.0",
-    "serve-static": "1.13.2",
     "shelljs": "0.8.2"
   },
   "engines": {

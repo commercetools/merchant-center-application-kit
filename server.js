@@ -7,9 +7,7 @@ const {
   createMiddleware: createPrometheusMetricsMiddleware,
 } = require('@promster/express');
 const compression = require('compression');
-const connect = require('connect');
-const history = require('connect-history-api-fallback');
-const serveStatic = require('serve-static');
+const express = require('express');
 const logout = require('./routes/logout');
 const metrics = require('./routes/metrics');
 const options = require('./load-options');
@@ -31,15 +29,6 @@ const serverUrl = `http://localhost:${serverPort}`;
  * 👇 Middlewares
  */
 
-// Serve static files from the `public` folder.
-const staticFilesMiddleware = serveStatic(publicFolderPath, {
-  // Define security headers!
-  setHeaders(res) {
-    Object.keys(options.headers).forEach(key => {
-      res.setHeader(key, options.headers[key]);
-    });
-  },
-});
 // Gather and expose metrics to Prometheus
 const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
   options: {
@@ -56,7 +45,7 @@ const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
 });
 
 // Configure and start the HTTP server.
-const app = connect()
+const app = express()
   .use(compression())
   .use(prometheusMetricsMiddleware)
   .use(morgan('combined', { stream: process.stdout }))
@@ -67,8 +56,17 @@ const app = connect()
   })
   // Intercept the /logout page and "remove" the auth cookie value
   .use(logout)
-  .use(history())
-  .use(staticFilesMiddleware);
+  // Try serving a static file that matches the url, otherwise go to
+  // the next middleware (e.g. favicon.ico)
+  .use(express.static(publicFolderPath))
+  .use('*', (request, response) => {
+    // Define security headers!
+    Object.keys(options.headers).forEach(key => {
+      response.setHeader(key, options.headers[key]);
+    });
+    // Fall back to index.html
+    response.sendFile(path.join(publicFolderPath, 'index.html'));
+  });
 
 http.createServer(app).listen(serverPort, error => {
   if (error) throw error;
