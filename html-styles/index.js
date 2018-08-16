@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
+const uglifycss = require('uglifycss');
 
 const loadStyleAsString = fileName => {
   const content = fs.readFileSync(path.join(__dirname, fileName), {
@@ -9,9 +10,7 @@ const loadStyleAsString = fileName => {
   if (process.env.NODE_ENV !== 'production') return content;
 
   // Minify styles for production usage
-  return content
-    .replace(/\s/g, '') // remove all whitespaces
-    .replace(/\r?\n|\r/g, ''); // remove all newlines
+  return uglifycss.processString(content);
 };
 
 module.exports = {

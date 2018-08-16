@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "serialize-javascript": "1.5.0",
-    "uglify-es": "3.3.9"
+    "uglify-es": "3.3.9",
+    "uglifycss": "0.0.29"
   },
   "engines": {
     "node": ">=8",
