@@ -52,16 +52,18 @@ export class MeasureFirstPaint extends React.Component {
         name: 'firstContentfulPaint',
         durationMs: MeasureFirstPaint.tracker.firstContentfulPaintDuration,
       },
-    ].map(paintMeasurement =>
-      createPaintMetric({
-        paintMeasurement,
-        labels: {
-          application: this.props.application,
-          user_agent: this.props.userAgent,
-          project_key: this.props.projectKey,
-        },
-      })
-    );
+    ]
+      .filter(paintMeasurement => Boolean(paintMeasurement.durationMs))
+      .map(paintMeasurement =>
+        createPaintMetric({
+          paintMeasurement,
+          labels: {
+            application: this.props.application,
+            user_agent: this.props.userAgent,
+            project_key: this.props.projectKey,
+          },
+        })
+      );
 
     if (paintMetrics.length > 0) {
       this.props.pushMetricHistogram({ payload: paintMetrics }).catch(() => {
