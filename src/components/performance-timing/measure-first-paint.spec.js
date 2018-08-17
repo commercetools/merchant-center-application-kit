@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import Perfume from 'perfume.js';
 import { MeasureFirstPaint } from './measure-first-paint';
 
 const createTestProps = custom => ({
@@ -17,61 +18,116 @@ const createTestProps = custom => ({
   ...custom,
 });
 
-jest.mock('@commercetools-frontend/sentry');
+jest.mock('perfume.js', () =>
+  jest.fn(() => ({
+    firstPaintDuration: 1,
+    firstContentfulPaintDuration: 2,
+  }))
+);
 
 describe('lifecycle', () => {
   let props;
   let wrapper;
 
+  beforeEach(() => {
+    props = createTestProps();
+    wrapper = shallow(<MeasureFirstPaint {...props} />);
+  });
+
   describe('`componentDidMount`', () => {
-    describe('without `browserPerformanceApi.getEntriesByType`', () => {
-      beforeEach(() => {
-        props = createTestProps({
-          browserPerformanceApi: {},
-        });
-        wrapper = shallow(<MeasureFirstPaint {...props} />);
-
-        wrapper.instance().componentDidMount();
-      });
-
-      it('should not send an action with the mapped metrics', () => {
-        expect(props.pushMetricHistogram).not.toHaveBeenCalled();
-      });
+    beforeEach(() => {
+      wrapper.instance().componentDidMount();
     });
 
-    describe('with `browserPerformanceApi.getEntriesByType`', () => {
-      beforeEach(() => {
-        props = createTestProps();
-        wrapper = shallow(<MeasureFirstPaint {...props} />);
-
-        wrapper.instance().componentDidMount();
-      });
-
-      it('should send an action with the mapped metrics', () => {
+    describe('pushing metric histograms', () => {
+      it('should push the first paint metric as a histograms', () => {
         expect(props.pushMetricHistogram).toHaveBeenCalledWith({
-          body: JSON.stringify([
-            {
+          payload: expect.arrayContaining([
+            expect.objectContaining({
               metricName: 'browser_duration_first_paint_buckets_milliseconds',
-              metricValue: 2028.5,
-              metricLabels: {
-                application: props.application,
-                user_agent: props.userAgent,
-                project_key: props.projectKey,
-              },
-            },
-            {
-              metricName:
-                'browser_duration_first_contentful_paint_buckets_milliseconds',
-              metricValue: 2028.5,
-              metricLabels: {
-                application: props.application,
-                user_agent: props.userAgent,
-                project_key: props.projectKey,
-              },
-            },
+            }),
           ]),
         });
       });
+
+      it('should push the first contentful paint metric as a histograms', () => {
+        expect(props.pushMetricHistogram).toHaveBeenCalledWith({
+          payload: expect.arrayContaining([
+            expect.objectContaining({
+              metricName:
+                'browser_duration_first_contentful_paint_buckets_milliseconds',
+            }),
+          ]),
+        });
+      });
+
+      describe('metric values', () => {
+        it('should push the first paint', () => {
+          expect(props.pushMetricHistogram).toHaveBeenCalledWith({
+            payload: expect.arrayContaining([
+              expect.objectContaining({
+                metricValue: 1,
+              }),
+            ]),
+          });
+        });
+
+        it('should push the first contentful paint', () => {
+          expect(props.pushMetricHistogram).toHaveBeenCalledWith({
+            payload: expect.arrayContaining([
+              expect.objectContaining({
+                metricValue: 2,
+              }),
+            ]),
+          });
+        });
+      });
+
+      describe('metric labels', () => {
+        it('should push the user agent with metrics', () => {
+          expect(props.pushMetricHistogram).toHaveBeenCalledWith({
+            payload: expect.arrayContaining([
+              expect.objectContaining({
+                metricLabels: expect.objectContaining({
+                  user_agent: props.userAgent,
+                }),
+              }),
+            ]),
+          });
+        });
+
+        it('should push the application with metrics', () => {
+          expect(props.pushMetricHistogram).toHaveBeenCalledWith({
+            payload: expect.arrayContaining([
+              expect.objectContaining({
+                metricLabels: expect.objectContaining({
+                  application: props.application,
+                }),
+              }),
+            ]),
+          });
+        });
+
+        it('should push the project key with metrics', () => {
+          expect(props.pushMetricHistogram).toHaveBeenCalledWith({
+            payload: expect.arrayContaining([
+              expect.objectContaining({
+                metricLabels: expect.objectContaining({
+                  project_key: props.projectKey,
+                }),
+              }),
+            ]),
+          });
+        });
+      });
+    });
+  });
+});
+
+describe('statics', () => {
+  describe('tracker', () => {
+    it('should assign `Perfume` as the `tracker`', () => {
+      expect(MeasureFirstPaint.tracker).toEqual(new Perfume());
     });
   });
 });

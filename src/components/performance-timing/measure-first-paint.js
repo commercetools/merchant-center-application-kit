@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Perfume from 'perfume.js';
 import snakeCase from 'lodash.snakecase';
 import convertToClosestMs from './conversions';
 import * as actions from './actions';
@@ -13,8 +14,19 @@ const createPaintMetric = ({ paintMeasurement, labels }) => ({
     'buckets',
     'milliseconds',
   ].join('_'),
-  metricValue: convertToClosestMs(paintMeasurement.startTime),
+  metricValue: convertToClosestMs(paintMeasurement.durationMs),
   metricLabels: labels,
+});
+
+/**
+ * NOTE:
+ *   Perfume has to be created before the component is created.
+ *   Otherwise it fails to emit its metircs.
+ */
+const perfume = new Perfume({
+  logging: false,
+  firstContentfulPaint: true,
+  firstPaint: true,
 });
 
 export class MeasureFirstPaint extends React.Component {
@@ -26,35 +38,36 @@ export class MeasureFirstPaint extends React.Component {
     // connect
     userAgent: PropTypes.string.isRequired,
     pushMetricHistogram: PropTypes.func.isRequired,
-    browserPerformanceApi: PropTypes.shape({
-      getEntriesByType: PropTypes.func,
-    }).isRequired,
   };
+  // NOTE: The tracker is assigned so others can
+  // use it from the outside.
+  static tracker = perfume;
   componentDidMount() {
-    // NOTE: Early return if performance API is not availble.
-    if (!this.props.browserPerformanceApi.getEntriesByType) return;
-    // We are using the Performance API, since registering `paint`
-    // on the `PerformanceObserver` doesn't give us the startTimes that we need
-    // in a timely fashion..
-    const paintMetrics = this.props.browserPerformanceApi
-      .getEntriesByType('paint')
-      .map(paintMeasurement =>
-        createPaintMetric({
-          paintMeasurement,
-          labels: {
-            application: this.props.application,
-            user_agent: this.props.userAgent,
-            project_key: this.props.projectKey,
-          },
-        })
-      );
+    const paintMetrics = [
+      {
+        name: 'firstPaint',
+        durationMs: MeasureFirstPaint.tracker.firstPaintDuration,
+      },
+      {
+        name: 'firstContentfulPaint',
+        durationMs: MeasureFirstPaint.tracker.firstContentfulPaintDuration,
+      },
+    ].map(paintMeasurement =>
+      createPaintMetric({
+        paintMeasurement,
+        labels: {
+          application: this.props.application,
+          user_agent: this.props.userAgent,
+          project_key: this.props.projectKey,
+        },
+      })
+    );
+
     if (paintMetrics.length > 0) {
-      this.props
-        .pushMetricHistogram({ body: JSON.stringify(paintMetrics) })
-        .catch(() => {
-          // Error is ignored under the assumption that page is being
-          // reloaded whilst the request was being sent or network request was interrupted
-        });
+      this.props.pushMetricHistogram({ payload: paintMetrics }).catch(() => {
+        // Error is ignored under the assumption that page is being
+        // reloaded whilst the request was being sent or network request was interrupted
+      });
     }
   }
   render() {
@@ -63,9 +76,6 @@ export class MeasureFirstPaint extends React.Component {
 }
 
 const mapStateToProps = () => ({
-  // We take this chance to inject this global object to make it easier to test.
-  // NOTE: We "safely" get the `getEntriesByType` as it might not be available.
-  browserPerformanceApi: window.performance,
   userAgent: window.navigator.userAgent,
 });
 const mapDispatchToProps = {

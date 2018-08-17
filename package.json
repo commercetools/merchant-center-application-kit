@@ -50,6 +50,7 @@
     "lodash.omit": "4.5.0",
     "lodash.once": "4.1.1",
     "prop-types": "15.6.1",
+    "perfume.js": "0.8.0",
     "query-string": "5.1.0",
     "raven-js": "3.25.2",
     "react": "16.4.2",
