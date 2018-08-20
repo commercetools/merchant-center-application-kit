@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@commercetools-frontend/mc-html-template": "1.0.0-beta.25",
-    "@promster/express": "0.4.1",
+    "@promster/express": "1.2.0",
     "compression": "1.7.2",
     "express": "4.16.3",
     "morgan": "1.9.0",

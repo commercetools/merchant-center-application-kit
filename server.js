@@ -9,7 +9,7 @@ const {
 const compression = require('compression');
 const express = require('express');
 const logout = require('./routes/logout');
-const metrics = require('./routes/metrics');
+const getMetrics = require('./routes/metrics');
 const options = require('./load-options');
 
 const publicFolderPath = path.join(__dirname, 'public');
@@ -32,6 +32,7 @@ const serverUrl = `http://localhost:${serverPort}`;
 // Gather and expose metrics to Prometheus
 const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
   options: {
+    accuracies: ['ms'],
     getLabelValues: () => ({
       /**
        * NOTE:
@@ -46,8 +47,9 @@ const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
 
 // Configure and start the HTTP server.
 const app = express()
-  .use('/metrics', metrics)
-  .use('/version', (request, response) => {
+  .disable('x-powered-by')
+  .get('/metrics', getMetrics)
+  .get('/version', (request, response) => {
     response.setHeader('Content-Type', 'application/json');
     response.end(JSON.stringify({ revision: options.env.revision }));
   })
