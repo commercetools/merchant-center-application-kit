@@ -46,16 +46,17 @@ const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
 
 // Configure and start the HTTP server.
 const app = express()
-  .use(prometheusMetricsMiddleware)
   .use('/metrics', metrics)
-  .use('/version', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ revision: options.env.revision }));
+  .use('/version', (request, response) => {
+    response.setHeader('Content-Type', 'application/json');
+    response.end(JSON.stringify({ revision: options.env.revision }));
   })
   // Request access logs
   .use(morgan('combined', { stream: process.stdout }))
   // Intercept the /logout page and "remove" the auth cookie value
   .use(logout)
+  // Keep this after the scraping endpoint `/metrics`
+  .use(prometheusMetricsMiddleware)
   // From here on, compress all responses
   .use(compression())
   // Try serving a static file that matches the url, otherwise go to
