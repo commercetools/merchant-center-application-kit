@@ -33,11 +33,20 @@ export class MeasureFirstPaint extends React.Component {
   static displayName = 'MeasureFirstPaint';
   static propTypes = {
     application: PropTypes.string.isRequired,
-    projectKey: PropTypes.string.isRequired,
+    projectKey: PropTypes.string,
     children: PropTypes.node,
     // connect
     userAgent: PropTypes.string.isRequired,
     pushMetricHistogram: PropTypes.func.isRequired,
+  };
+  static defaultProps = {
+    /**
+     * NOTE:
+     *   In the e.g. application-account runs out of a `projectKey` context.
+     *   In order to not have `"undefined"` in our Prometheus metrics we
+     *   send an empty string whenever no `projectKey` is passed.
+     */
+    projectKey: '',
   };
   // NOTE: The tracker is assigned so others can
   // use it from the outside.
