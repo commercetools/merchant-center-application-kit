@@ -41,8 +41,9 @@ If you are trying to find yourself around the files and folders, here are some u
   - `index.js` is the application "entry point" and contains the basic imports to render the React app
   - `routes.js` contains the sub-routes and components rendered by the application (the main route is defined in the `<EntryPoint>` and is loaded asynchronously using code splitting)
 - `dist` contains the production bundles
-- `.env` contains the development ENV variables used by the webpack dev server (_more on that will come soon_)
-- `.env.production` is an example of the ENV variables used by running the application in production mode (see below [Running in production](#running-in-production))
+- `env.json` contains the development config used by the webpack dev server (_more on that will come soon_)
+- `env.prod.json` is an example of the config used by running the application in production mode (see below [Running in production](#running-in-production))
+- `csp.json` contains additional directives for CSP, specific to the domain hosting the app (_more on that will come soon_)
 - `webpack.config.<env>.js` contains the setup for getting the webpack configurations for dev/prod (having those files is important as they are read by `mc-scripts`)
 - `jest[...].js` contains configuration for the different runners (testing, linting, etc)
 
@@ -62,11 +63,11 @@ $ npm start
 
 A webpack server will start building the source codes and will open up a page in the browser. At this point you can start developing the app and webpack will reload the page whenever you make some changes.
 
-> The `.env` file contains necessary ENV variables to run the application on localhost.
+> The `env.json` file contains necessary config to run the application on localhost.
 
 ### API domains
 
-The MC runs on 2 different data centers: one in `EU` and one in `US`. Depending on which one you would like to target your application, you need to adjust a couple of ENV variables in the `.env` file.
+The MC runs on 2 different data centers: one in `EU` and one in `US`. Depending on which one you would like to target your application, you need to adjust a couple of fields in the `env.json` file.
 
 The MC API is available at the following domains:
 
@@ -89,17 +90,36 @@ This will output a `dist` folder containing the JS bundles in the `dist/assets` 
 
 The HTTP server comes shipped with the `@commercetools-frontend/mc-http-server` package and provides a binary to start the server (`mc-http-server`).
 
-To start the server, you need to provide the ENV variables either as a `.env` file or as inline ENV variables. You can look at the `.env.production` to get an idea.
+To start the server, you need to provide the path to the config `--config=$(pwd)/env.json` file. The `env.prod.json` is for production usage.
 
-In case you host the JS bundles on an external CDN, you need to point the CDN URL in the ENV variables. However, if you keep the assets within the server itself, you need to pass different arguments to the command:
+In case you host the JS bundles on an external CDN, you need to point the `cdnUrl` in the `env.json` config to the URL serving the assets. However, if you keep the assets within the server itself, you need to pass different arguments to the command:
+
+```js
+// Using an external CDN. In the `env.json` you should pass the URL pointing to the folder where
+// the assets are stored.
+{
+  "cdnUrl": "https://my.cdn.com/path/to/folder/"
+}
+```
 
 ```bash
-# Using an external CDN. In the `.env` you should pass the URL pointing to the folder where
-# the assets are stored.
-$ CDN_URL=https://my.cdn.com/path/to/folder/ mc-http-server
+$ mc-http-server --config=$(pwd)/env.prod.json
+```
 
-# Not using an external CDN.
-$ CDN_URL=/assets/ mc-http-server --use-local-assets
+In case assets are served from the same server, it's recommended to define the path to the server itself (including the host name)
+
+```js
+// Not using an external CDN
+{
+  // this is the default, all assets are served from the root folder
+  "cdnUrl": "https://localhost:3001",
+  // this is the default, all assets are served from the root folder
+  "cdnUrl": "https://localhost:3001"
+}
+```
+
+```bash
+$ mc-http-server --config=$(pwd)/env.prod.json --use-local-assets
 ```
 
 3.  start the HTTP server (as Docker image)
