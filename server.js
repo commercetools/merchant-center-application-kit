@@ -45,6 +45,15 @@ const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
   },
 });
 
+const serverIndexMiddleware = (request, response) => {
+  // Define security headers!
+  Object.keys(options.headers).forEach(key => {
+    response.setHeader(key, options.headers[key]);
+  });
+  // Fall back to index.html
+  response.sendFile(path.join(publicFolderPath, 'index.html'));
+};
+
 // Configure and start the HTTP server.
 const app = express()
   .disable('x-powered-by')
@@ -61,17 +70,19 @@ const app = express()
   .use(prometheusMetricsMiddleware)
   // From here on, compress all responses
   .use(compression())
+  // Explicitly check if the request is asking for the `index.html`
+  // to avoid letting it be served by the static middleware without
+  // the proper security headers.
+  .use((request, response, next) => {
+    if (request.url === '/' || request.url.startsWith('/index.html'))
+      serverIndexMiddleware(request, response);
+    else next();
+  })
   // Try serving a static file that matches the url, otherwise go to
   // the next middleware (e.g. favicon.ico)
   .use(express.static(publicFolderPath))
-  .use('*', (request, response) => {
-    // Define security headers!
-    Object.keys(options.headers).forEach(key => {
-      response.setHeader(key, options.headers[key]);
-    });
-    // Fall back to index.html
-    response.sendFile(path.join(publicFolderPath, 'index.html'));
-  });
+  // Catch all middleware to serve the `index.html` (for SPA routes)
+  .use('*', serverIndexMiddleware);
 
 http.createServer(app).listen(serverPort, error => {
   if (error) throw error;
