@@ -2265,6 +2265,7 @@
   "Products.PimSearchList.search.basicModeConfirmationModalMessage": "Your advanced search query cannot be displayed in basic mode. By proceeding, your search will be removed. Would you like to proceed?",
   "Products.PimSearchList.search.basicModeConfirmationModalTitle": "Back to Basic Search",
   "Products.PimSearchList.search.basicSearchInputPlaceholder": "Search by name, description, SKU, product key, or variant key",
+  "Products.PimSearchList.SidebarFilter.ProductType.searchableDropdownPlaceholder": "Search for a product type to filter",
   "Products.PimSearchList.SidebarFilter.productTypeHeader": "Product Type",
   "Products.PimSearchList.SidebarLayout.advancedSearch": "Search products",
   "Products.PimSearchList.SidebarLayout.hideFilters": "Hide filters",
