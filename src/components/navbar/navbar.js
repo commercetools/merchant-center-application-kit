@@ -387,6 +387,7 @@ export class DataMenu extends React.PureComponent {
         {this.props.data.map((menu, index) => {
           const isActive = this.state.activeItemIndex === index;
           const MenuIcon = Icons[menu.icon];
+          const hasSubmenu = Boolean(menu.submenu) && menu.submenu.length > 0;
           return (
             <ToggledWithPermissions
               key={menu.key}
@@ -396,7 +397,7 @@ export class DataMenu extends React.PureComponent {
               <React.Fragment>
                 {menu.key === 'Settings' && <MenuItemDivider />}
                 <MenuItem
-                  hasSubmenu={Boolean(menu.submenu)}
+                  hasSubmenu={hasSubmenu}
                   isBottomItem={this.bottomMenuItems.indexOf(menu.key) >= 0}
                   isActive={isActive}
                   isMenuOpen={this.state.isMenuOpen}
@@ -416,7 +417,7 @@ export class DataMenu extends React.PureComponent {
                     externalLink={menu.externalLink}
                     tracking={menu.tracking}
                     linkTo={
-                      !this.state.isMenuOpen || !menu.submenu
+                      !this.state.isMenuOpen || !hasSubmenu
                         ? `/${this.props.projectKey}/${menu.uriPath}`
                         : null
                     }
@@ -444,7 +445,7 @@ export class DataMenu extends React.PureComponent {
                     isActive={isActive}
                     isExpanded={this.state.isMenuOpen}
                   >
-                    {menu.submenu
+                    {hasSubmenu
                       ? menu.submenu.map(submenu => (
                           <ToggledWithPermissions
                             key={`${menu.key}-submenu-${submenu.key}`}

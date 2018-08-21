@@ -323,6 +323,29 @@ describe('rendering', () => {
             );
           });
         });
+        describe('when menu is open but there is no submenu (empty list)', () => {
+          beforeEach(() => {
+            props = createDataMenuTestProps({
+              data: [
+                {
+                  key: 'Customers',
+                  labelKey: 'NavBar.Customers.title',
+                  uriPath: 'customers',
+                  icon: 'CustomerFilledIcon',
+                  submenu: [],
+                },
+              ],
+            });
+            wrapper = shallow(<DataMenu {...props} />);
+            wrapper.setState({ isMenuOpen: true });
+          });
+          it('should pass linkTo as prop', () => {
+            expect(wrapper.find('MenuItemLink').at(0)).toHaveProp(
+              'linkTo',
+              '/test-1/customers'
+            );
+          });
+        });
         describe('when menu is open and there is a submenu', () => {
           beforeEach(() => {
             wrapper.setState({ isMenuOpen: true });

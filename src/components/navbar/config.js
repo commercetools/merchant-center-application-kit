@@ -73,6 +73,7 @@ const itemsDashboard = {
   labelKey: 'NavBar.Dashboard.title',
   icon: 'SpeedometerIcon',
   permissions: [permissions.ViewOrders, permissions.ManageProducts],
+  submenu: [],
 };
 
 const itemsDiscounts = {
