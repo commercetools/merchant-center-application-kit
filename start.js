@@ -16,14 +16,14 @@ const path = require('path');
 const chalk = require('chalk');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const clearConsole = require('./react-dev-utils/clearConsole');
-const checkRequiredFiles = require('./react-dev-utils/checkRequiredFiles');
+const clearConsole = require('react-dev-utils/clearConsole');
+const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const {
   choosePort,
   createCompiler,
   prepareUrls,
-} = require('./react-dev-utils/WebpackDevServerUtils');
-const openBrowser = require('./react-dev-utils/openBrowser');
+} = require('react-dev-utils/WebpackDevServerUtils');
+const openBrowser = require('react-dev-utils/openBrowser');
 const createDevServerConfig = require('./config/webpack-dev-server.config');
 
 // Resolve the absolute path of the caller location. This is necessary

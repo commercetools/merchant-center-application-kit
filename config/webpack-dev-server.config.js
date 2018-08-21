@@ -1,8 +1,8 @@
 const path = require('path');
 const loadEnv = require('@commercetools-frontend/mc-html-template/load-env');
 const loadHeaders = require('@commercetools-frontend/mc-html-template/load-headers');
-const errorOverlayMiddleware = require('../react-dev-utils/errorOverlayMiddleware');
-const noopServiceWorkerMiddleware = require('../react-dev-utils/noopServiceWorkerMiddleware');
+const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
+const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
 
 const sourcePath = process.cwd();
 const localEnv = loadEnv(path.join(sourcePath, 'env.json'));

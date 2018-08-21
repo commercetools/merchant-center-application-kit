@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const mri = require('mri');
-const spawn = require('../react-dev-utils/crossSpawn');
+const spawn = require('react-dev-utils/crossSpawn');
 
 const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
 const commands = flags._;
