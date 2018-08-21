@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-shell-connectors",
-  "version": "1.0.0-beta.26",
+  "version": "1.0.0-beta.27",
   "description": "Contains complementary tools for @commercetools-frontend/application-shell",
   "license": "Proprietary",
   "private": false,
