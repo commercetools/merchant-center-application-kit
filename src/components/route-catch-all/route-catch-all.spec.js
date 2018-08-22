@@ -19,9 +19,17 @@ describe('rendering', () => {
     });
   });
   describe('<RouteCatchAll>', () => {
-    describe('when "servedByProxy" is "true"', () => {
+    describe('when "servedByProxy" is "true" (string)', () => {
       beforeEach(() => {
         wrapper = shallow(<RouteCatchAll servedByProxy="true" />);
+      });
+      it('should render Route with <ForcePageReload>', () => {
+        expect(wrapper.find('Route')).toHaveProp('component', ForcePageReload);
+      });
+    });
+    describe('when "servedByProxy" is "true" (boolean)', () => {
+      beforeEach(() => {
+        wrapper = shallow(<RouteCatchAll servedByProxy={true} />);
       });
       it('should render Route with <ForcePageReload>', () => {
         expect(wrapper.find('Route')).toHaveProp('component', ForcePageReload);
