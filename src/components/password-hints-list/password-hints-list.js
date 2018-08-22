@@ -6,7 +6,7 @@ import styles from './password-hints-list.mod.css';
 const PasswordHintsList = props => (
   <div
     className={classnames(styles['password-hints-list'], {
-      [styles.expanded]: props.expanded,
+      [styles.expanded]: props.isExpanded,
     })}
   >
     {React.Children.map(props.children, child =>
@@ -20,7 +20,7 @@ const PasswordHintsList = props => (
 PasswordHintsList.displayName = 'PasswordHintsList';
 PasswordHintsList.propTypes = {
   children: PropTypes.node.isRequired,
-  expanded: PropTypes.bool,
+  isExpanded: PropTypes.bool,
   checkUnfulfilled: PropTypes.bool,
 };
 export default PasswordHintsList;

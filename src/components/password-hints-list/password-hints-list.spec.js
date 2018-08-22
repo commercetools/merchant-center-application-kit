@@ -4,7 +4,7 @@ import PasswordHintsList from './password-hints-list';
 import styles from './password-hints-list.mod.css';
 
 const createTestProps = props => ({
-  expanded: true,
+  isExpanded: true,
   checkUnfulfilled: true,
   ...props,
 });
@@ -51,9 +51,9 @@ describe('rendering', () => {
       expect(wrapper.find(Child)).toHaveProp('checkUnfulfilled', false);
     });
   });
-  describe('when `expanded` is `true`', () => {
+  describe('when `isExpanded` is `true`', () => {
     beforeEach(() => {
-      props = createTestProps({ expanded: true });
+      props = createTestProps({ isExpanded: true });
       wrapper = shallow(
         <PasswordHintsList {...props}>
           <Child />
@@ -68,9 +68,9 @@ describe('rendering', () => {
       ).toBe(true);
     });
   });
-  describe('when `expanded` is `false`', () => {
+  describe('when `isExpanded` is `false`', () => {
     beforeEach(() => {
-      props = createTestProps({ expanded: false });
+      props = createTestProps({ isExpanded: false });
       wrapper = shallow(
         <PasswordHintsList {...props}>
           <Child />
