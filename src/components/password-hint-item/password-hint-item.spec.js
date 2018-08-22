@@ -37,9 +37,9 @@ describe('rendering', () => {
           expect(wrapper).toRender(SuccessIcon);
         });
         it('should have hint styled as `fullfilled`', () => {
-          expect(
-            wrapper.find(`.${styles.hint}`).hasClass(styles.fulfilled)
-          ).toBe(true);
+          expect(wrapper.find(`.${styles.hint}`)).toHaveClassName(
+            styles.fulfilled
+          );
         });
       }
     );
@@ -56,9 +56,9 @@ describe('rendering', () => {
         expect(wrapper).toRender(CloseBoldIcon);
       });
       it('should have hint styled as `un-fulfilled`', () => {
-        expect(
-          wrapper.find(`.${styles.hint}`).hasClass(styles['un-fulfilled'])
-        ).toBe(true);
+        expect(wrapper.find(`.${styles.hint}`)).toHaveClassName(
+          styles['un-fulfilled']
+        );
       });
     });
     describe('when `checkUnfulfilled` is `false`', () => {
@@ -75,8 +75,8 @@ describe('rendering', () => {
         expect(wrapper).not.toRender(SuccessIcon);
       });
       it('should have hint styled as `unchecked`', () => {
-        expect(wrapper.find(`.${styles.hint}`).hasClass(styles.unchecked)).toBe(
-          true
+        expect(wrapper.find(`.${styles.hint}`)).toHaveClassName(
+          styles.unchecked
         );
       });
     });

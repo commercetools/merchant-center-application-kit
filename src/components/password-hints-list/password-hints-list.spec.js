@@ -61,11 +61,9 @@ describe('rendering', () => {
       );
     });
     it('should pass on `checkUnfulfilled` to children', () => {
-      expect(
-        wrapper
-          .find(`.${styles['password-hints-list']}`)
-          .hasClass(styles.expanded)
-      ).toBe(true);
+      expect(wrapper.find(`.${styles['password-hints-list']}`)).toHaveClassName(
+        styles.expanded
+      );
     });
   });
   describe('when `isExpanded` is `false`', () => {
@@ -79,10 +77,8 @@ describe('rendering', () => {
     });
     it('should pass on `checkUnfulfilled` to children', () => {
       expect(
-        wrapper
-          .find(`.${styles['password-hints-list']}`)
-          .hasClass(styles.expanded)
-      ).toBe(false);
+        wrapper.find(`.${styles['password-hints-list']}`)
+      ).not.toHaveClassName(styles.expanded);
     });
   });
 });
