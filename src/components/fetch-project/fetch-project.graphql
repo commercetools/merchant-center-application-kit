@@ -38,14 +38,6 @@ query ProjectQuery($projectKey: String!) {
         id
         userProjectSettings
         pluginPreset
-        imageRegex {
-          thumb {
-            ...ImageRegex
-          }
-          small {
-            ...ImageRegex
-          }
-        }
         orderStatesVisibility {
           isPaymentStateHidden
           isShipmentStateHidden
@@ -62,10 +54,4 @@ query ProjectQuery($projectKey: String!) {
       currentProductSettings
     }
   }
-}
-
-fragment ImageRegex on ImageRegexOptions {
-  flag
-  search
-  replace
 }
