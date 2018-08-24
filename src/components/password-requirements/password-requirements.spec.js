@@ -66,10 +66,8 @@ describe('rendering', () => {
         </PasswordRequirements>
       );
     });
-    it('should pass on `shouldShowUnfulfilledAsError` to children', () => {
-      expect(
-        wrapper.find(`.${styles['password-requirements']}`)
-      ).toHaveClassName(styles.expanded);
+    it('should add class `expanded`', () => {
+      expect(wrapper).toHaveClassName(styles.expanded);
     });
   });
   describe('when `isExpanded` is `false`', () => {
@@ -82,9 +80,7 @@ describe('rendering', () => {
       );
     });
     it('should pass on `shouldShowUnfulfilledAsError` to children', () => {
-      expect(wrapper.find(PasswordRequirements)).not.toHaveClassName(
-        styles.expanded
-      );
+      expect(wrapper).not.toHaveClassName(styles.expanded);
     });
   });
 });
