@@ -8,7 +8,7 @@ import PasswordRequirement from './password-requirement';
 import styles from './password-requirement.mod.css';
 
 const createTestProps = props => ({
-  fulfilled: true,
+  isFulfilled: true,
   shouldShowUnfulfilledAsError: true,
   ...props,
 });
@@ -31,7 +31,7 @@ describe('rendering', () => {
       shouldShowUnfulfilledAsError => {
         beforeEach(() => {
           props = createTestProps({
-            fulfilled: true,
+            isFulfilled: true,
             shouldShowUnfulfilledAsError,
           });
           wrapper = shallow(
@@ -53,7 +53,7 @@ describe('rendering', () => {
     describe('when `shouldShowUnfulfilledAsError` is `true`', () => {
       beforeEach(() => {
         props = createTestProps({
-          fulfilled: false,
+          isFulfilled: false,
           shouldShowUnfulfilledAsError: true,
         });
         wrapper = shallow(
@@ -72,7 +72,7 @@ describe('rendering', () => {
     describe('when `shouldShowUnfulfilledAsError` is `false`', () => {
       beforeEach(() => {
         props = createTestProps({
-          fulfilled: false,
+          isFulfilled: false,
           shouldShowUnfulfilledAsError: false,
         });
         wrapper = shallow(

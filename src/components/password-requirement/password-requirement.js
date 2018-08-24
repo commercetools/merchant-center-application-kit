@@ -9,16 +9,16 @@ import styles from './password-requirement.mod.css';
 
 const PasswordRequirement = props => {
   const showUnfulfilledError =
-    !props.fulfilled && props.shouldShowUnfulfilledAsError;
+    !props.isFulfilled && props.shouldShowUnfulfilledAsError;
   return (
     <div className={styles['password-requirement']}>
       <span className={styles.icon}>
-        {props.fulfilled && <SuccessIcon size="medium" theme="green" />}
+        {props.isFulfilled && <SuccessIcon size="medium" theme="green" />}
         {showUnfulfilledError && <CloseBoldIcon size="medium" theme="red" />}
       </span>
       <div
         className={classnames(styles.requirement, {
-          [styles.fulfilled]: props.fulfilled,
+          [styles.fulfilled]: props.isFulfilled,
           [styles.unfulfilled]: showUnfulfilledError,
         })}
       >
@@ -31,7 +31,7 @@ const PasswordRequirement = props => {
 PasswordRequirement.displayName = 'PasswordRequirement';
 PasswordRequirement.propTypes = {
   children: PropTypes.node.isRequired,
-  fulfilled: PropTypes.bool,
+  isFulfilled: PropTypes.bool,
   shouldShowUnfulfilledAsError: PropTypes.bool,
 };
 export default PasswordRequirement;
