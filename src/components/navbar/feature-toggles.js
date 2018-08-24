@@ -14,6 +14,8 @@
 // a specific customer. Should be properly implemented once we have a
 // better abstraction. For more info see the discussion thread on https://github.com/commercetools/merchant-center-frontend/pull/4107
 export const CAN_VIEW_DASHBOARD = 'canViewDashboard';
+export const CAN_VIEW_ORDERS = 'canViewOrders';
+export const CAN_VIEW_CATEGORIES = 'canViewCategories';
 
 export const CUSTOMER_GROUPS = 'customerGroups';
 

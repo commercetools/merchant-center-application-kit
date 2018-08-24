@@ -5,6 +5,8 @@ import {
   PIM_SEARCH,
   PRODUCT_TYPES_ADMINISTRATION,
   DEVELOPER_SETTINGS,
+  CAN_VIEW_CATEGORIES,
+  CAN_VIEW_ORDERS,
 } from './feature-toggles';
 
 const itemsCategories = {
@@ -12,6 +14,7 @@ const itemsCategories = {
   uriPath: 'categories',
   labelKey: 'NavBar.Categories.title',
   icon: 'CategoryTreeIcon',
+  featureToggle: CAN_VIEW_CATEGORIES,
   permissions: [permissions.ViewProducts, permissions.ManageProducts],
   submenu: [
     {
@@ -120,6 +123,7 @@ const itemsOrders = {
   uriPath: 'orders',
   labelKey: 'NavBar.Orders.title',
   icon: 'CartIcon',
+  featureToggle: CAN_VIEW_ORDERS,
   permissions: [permissions.ViewOrders, permissions.ManageOrders],
   submenu: [
     {
