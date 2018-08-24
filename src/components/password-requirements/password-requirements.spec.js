@@ -82,9 +82,9 @@ describe('rendering', () => {
       );
     });
     it('should pass on `shouldShowUnfulfilledAsError` to children', () => {
-      expect(
-        wrapper.find(`.${styles['password-requirements']}`)
-      ).not.toHaveClassName(styles.expanded);
+      expect(wrapper.find(PasswordRequirements)).not.toHaveClassName(
+        styles.expanded
+      );
     });
   });
 });
