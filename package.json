@@ -18,6 +18,6 @@
     "react": "16.4.2",
     "recompose": "0.26.0",
     "reselect": "3.0.1",
-    "warning": "4.0.1"
+    "warning": "4.0.2"
   }
 }
