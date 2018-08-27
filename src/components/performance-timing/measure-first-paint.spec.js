@@ -15,7 +15,7 @@ jest.mock('perfume.js', () =>
   jest.fn(() => ({
     firstPaintDuration: 1,
     firstContentfulPaintDuration: 2,
-    observeTimeToInteractive: jest.fn(() => Promise.resolve(1234.22)),
+    observeTimeToInteractive: Promise.resolve(1234.22),
   }))
 );
 
