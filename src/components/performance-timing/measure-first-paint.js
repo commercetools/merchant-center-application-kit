@@ -56,7 +56,8 @@ export class MeasureFirstPaint extends React.Component {
     /**
      * NOTE:
      *   Time to Interactive is an async value emitted by a Promise
-     *   on Perfume. Once resolved all other values are statically.
+     *   on Perfume. Once resolved all other values are statically
+     *   available.
      */
     perfume.observeTimeToInteractive.then(timeToInteractiveMs => {
       const paintMetrics = [
