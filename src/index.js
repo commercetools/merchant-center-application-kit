@@ -18,3 +18,8 @@ export {
   AppShellProviderForUserPermissions,
   withUserPermissions,
 } from './components/user-permissions';
+export {
+  default as GetProjectExtensionImageRegex,
+  ProjectExtensionProviderForImageRegex,
+  withProjectExtensionImageRegex,
+} from './components/project-extension-image-regex';
