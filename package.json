@@ -10,7 +10,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/core": "7.0.0-rc.1",
+    "@babel/core": "7.0.0",
     "@commercetools-frontend/babel-preset-mc-app": "1.0.0-beta.28",
     "@commercetools/enzyme-extensions": "3.0.1",
     "@commercetools/jest-enzyme-matchers": "1.1.2",
