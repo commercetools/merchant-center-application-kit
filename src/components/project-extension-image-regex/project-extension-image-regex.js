@@ -14,11 +14,13 @@ const ProjectExtensionProviderForImageRegex = props => (
     query={FetchProjectExtensionImageRegex}
     variables={{ target: GRAPHQL_TARGETS.SETTINGS_SERVICE }}
   >
-    {({ data }) => (
+    {({ loading, data }) => (
       <Provider
-        value={
-          data && data.projectExtension && data.projectExtension.imageRegex
-        }
+        value={{
+          loading,
+          imageRegex:
+            data && data.projectExtension && data.projectExtension.imageRegex,
+        }}
       >
         {props.children}
       </Provider>

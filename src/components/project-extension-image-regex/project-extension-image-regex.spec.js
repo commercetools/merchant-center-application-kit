@@ -12,10 +12,19 @@ describe('rendering', () => {
           <ProjectExtensionProviderForImageRegex>
             <div />
           </ProjectExtensionProviderForImageRegex>
-        ).renderProp('children', { data: undefined });
+        ).renderProp('children', { loading: true, data: undefined });
       });
-      it('should pass undefined value to Provider', () => {
-        expect(wrapper).toHaveProp('value', undefined);
+      it('should pass value object with "loading" state "true" to Provider', () => {
+        expect(wrapper).toHaveProp(
+          'value',
+          expect.objectContaining({ loading: true })
+        );
+      });
+      it('should pass value object with "imageRegex" undefined to Provider', () => {
+        expect(wrapper).toHaveProp(
+          'value',
+          expect.objectContaining({ imageRegex: undefined })
+        );
       });
     });
     describe('when data is defined', () => {
@@ -25,6 +34,7 @@ describe('rendering', () => {
             <div />
           </ProjectExtensionProviderForImageRegex>
         ).renderProp('children', {
+          loading: false,
           data: {
             projectExtension: {
               imageRegex: {
@@ -38,14 +48,25 @@ describe('rendering', () => {
           },
         });
       });
-      it('should pass "imageRegex" object to Provider', () => {
-        expect(wrapper).toHaveProp('value', {
-          thumb: {
-            flag: 'gi',
-            replace: '-thumb.jpg',
-            search: '.[^.]+$',
-          },
-        });
+      it('should pass value object with "loading" state "false" to Provider', () => {
+        expect(wrapper).toHaveProp(
+          'value',
+          expect.objectContaining({ loading: false })
+        );
+      });
+      it('should pass value object with "imageRegex" to Provider', () => {
+        expect(wrapper).toHaveProp(
+          'value',
+          expect.objectContaining({
+            imageRegex: {
+              thumb: {
+                flag: 'gi',
+                replace: '-thumb.jpg',
+                search: '.[^.]+$',
+              },
+            },
+          })
+        );
       });
     });
   });
