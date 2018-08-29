@@ -15,7 +15,7 @@ import { ConfigurationProvider } from '@commercetools-frontend/application-shell
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import AsyncLocaleData from '@commercetools-frontend/i18n/async-locale-data';
 import getSupportedLanguage from '@commercetools-frontend/l10n/utils/get-supported-language';
-import uiKitMessages from '@commercetools-frontend/ui-kit/i18n';
+import * as uiKitMessages from '@commercetools-frontend/ui-kit/i18n';
 import PortalsContainer from '../portals-container';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
