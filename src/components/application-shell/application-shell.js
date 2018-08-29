@@ -15,6 +15,7 @@ import { ConfigurationProvider } from '@commercetools-frontend/application-shell
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import AsyncLocaleData from '@commercetools-frontend/i18n/async-locale-data';
 import getSupportedLanguage from '@commercetools-frontend/l10n/utils/get-supported-language';
+import uikitMessages from '@commercetools-frontend/ui-kit/i18n';
 import PortalsContainer from '../portals-container';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
@@ -49,6 +50,8 @@ export const getBrowserLanguage = window => {
 export const extractLanguageFromLocale = locale =>
   locale.includes('-') ? locale.split('-')[0] : locale;
 
+export const mergeMessages = (...args) => Object.assign({}, ...args);
+
 /**
  * This component is rendered whenever the user is considered "authenticated"
  * and contains the "restricted" application part.
@@ -74,7 +77,10 @@ export const RestrictedApplication = props => (
             if (error) {
               reportErrorToSentry(error, {});
               return (
-                <ConfigureIntlProvider locale={locale} messages={messages}>
+                <ConfigureIntlProvider
+                  locale={locale}
+                  messages={mergeMessages(messages, uikitMessages[locale])}
+                >
                   <ErrorApologizer />
                 </ConfigureIntlProvider>
               );
@@ -82,12 +88,12 @@ export const RestrictedApplication = props => (
 
             return (
               <ConfigureIntlProvider
-                /* We need to pass the value as `undefined` in case the user has no
-                     * timeZone defined so the defaultProps in the Context.Provider kick in
-                     */
+                // We need to pass the value as `undefined` in case the user
+                // has no `timeZone` defined so the `defaultProps` in the
+                // `<Context.Provider>` kick in.
                 timeZone={user && user.timeZone ? user.timeZone : undefined}
                 locale={locale && locale}
-                messages={messages && messages}
+                messages={mergeMessages(messages, uikitMessages[locale])}
               >
                 <SetupFlopFlipProvider
                   user={user}
@@ -318,7 +324,10 @@ export default class ApplicationShell extends React.Component {
                               {({ locale, messages }) => (
                                 <ConfigureIntlProvider
                                   locale={locale}
-                                  messages={messages}
+                                  messages={mergeMessages(
+                                    messages,
+                                    uikitMessages[locale]
+                                  )}
                                 >
                                   <UnrestrictedApplication />
                                 </ConfigureIntlProvider>
