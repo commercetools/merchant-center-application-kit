@@ -203,28 +203,30 @@ const extractFromFile = async fileName => {
   // We usually do not build the translation-files because they are
   // handled by transifex and sync by the transifex CLI.
   if (shouldBuildTranslations) {
-    locales.forEach(async locale => {
-      const translationFileName = `${outputPath}/${locale}.json`;
+    await Promise.all(
+      locales.map(async locale => {
+        const translationFileName = `${outputPath}/${locale}.json`;
 
-      localeTaskDone = task(
-        `Writing translation messages for ${locale} to: ${translationFileName}`
-      );
-      try {
-        const messages = sortMessages(localeMappings[locale]);
-
-        // Write to file the JSON representation of the translation messages
-        const prettified = `${JSON.stringify(messages, null, 2)}`;
-
-        await writeFile(translationFileName, prettified);
-
-        localeTaskDone();
-      } catch (error) {
-        localeTaskDone(
-          `There was an error saving this translation file: ${translationFileName}
-        \n${error}`
+        localeTaskDone = task(
+          `Writing translation messages for ${locale} to: ${translationFileName}\n`
         );
-      }
-    });
+        try {
+          const messages = sortMessages(localeMappings[locale]);
+
+          // Write to file the JSON representation of the translation messages
+          const prettified = `${JSON.stringify(messages, null, 2)}`;
+
+          await writeFile(translationFileName, prettified);
+
+          localeTaskDone();
+        } catch (error) {
+          localeTaskDone(
+            `There was an error saving this translation file: ${translationFileName}
+        \n${error}`
+          );
+        }
+      })
+    );
   }
 
   process.exit();
