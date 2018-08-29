@@ -579,10 +579,9 @@ export default compose(
   graphql(FetchProjectExtensionsNavbar, {
     name: 'projectExtensionsQuery',
     skip: ownProps => !ownProps.areProjectExtensionsEnabled,
-    options: ownProps => ({
+    options: () => ({
       variables: {
         target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
-        projectKey: ownProps.projectKey,
       },
       fetchPolicy: 'cache-and-network',
     }),
