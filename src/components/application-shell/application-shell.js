@@ -15,7 +15,7 @@ import { ConfigurationProvider } from '@commercetools-frontend/application-shell
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import AsyncLocaleData from '@commercetools-frontend/i18n/async-locale-data';
 import getSupportedLanguage from '@commercetools-frontend/l10n/utils/get-supported-language';
-import uikitMessages from '@commercetools-frontend/ui-kit/i18n';
+import uiKitMessages from '@commercetools-frontend/ui-kit/i18n';
 import PortalsContainer from '../portals-container';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
@@ -50,7 +50,7 @@ export const getBrowserLanguage = window => {
 export const extractLanguageFromLocale = locale =>
   locale.includes('-') ? locale.split('-')[0] : locale;
 
-export const mergeMessages = (...args) => Object.assign({}, ...args);
+export const mergeMessages = (...messages) => Object.assign({}, ...messages);
 
 /**
  * This component is rendered whenever the user is considered "authenticated"
@@ -79,7 +79,7 @@ export const RestrictedApplication = props => (
               return (
                 <ConfigureIntlProvider
                   locale={locale}
-                  messages={mergeMessages(messages, uikitMessages[locale])}
+                  messages={mergeMessages(messages, uiKitMessages[locale])}
                 >
                   <ErrorApologizer />
                 </ConfigureIntlProvider>
@@ -92,8 +92,8 @@ export const RestrictedApplication = props => (
                 // has no `timeZone` defined so the `defaultProps` in the
                 // `<Context.Provider>` kick in.
                 timeZone={user && user.timeZone ? user.timeZone : undefined}
-                locale={locale && locale}
-                messages={mergeMessages(messages, uikitMessages[locale])}
+                locale={locale}
+                messages={mergeMessages(messages, uiKitMessages[locale])}
               >
                 <SetupFlopFlipProvider
                   user={user}
@@ -326,7 +326,7 @@ export default class ApplicationShell extends React.Component {
                                   locale={locale}
                                   messages={mergeMessages(
                                     messages,
-                                    uikitMessages[locale]
+                                    uiKitMessages[locale]
                                   )}
                                 >
                                   <UnrestrictedApplication />
