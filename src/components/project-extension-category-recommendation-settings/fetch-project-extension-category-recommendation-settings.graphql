@@ -1,0 +1,9 @@
+query FetchProjectExtensionCategoryRecommendationSettingsQuery {
+  projectExtension {
+    id
+    categoryRecommendationSettings {
+      searchProperty
+      attributeName
+    }
+  }
+}

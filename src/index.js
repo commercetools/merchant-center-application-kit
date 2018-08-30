@@ -23,3 +23,8 @@ export {
   ProjectExtensionProviderForImageRegex,
   withProjectExtensionImageRegex,
 } from './components/project-extension-image-regex';
+export {
+  default as GetProjectExtensionCategoryRecommendationSettings,
+  ProjectExtensionProviderForCategoryRecommendationSettings,
+  withProjectExtensionCategoryRecommendationSettings,
+} from './components/project-extension-category-recommendation-settings';

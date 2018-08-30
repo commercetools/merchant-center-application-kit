@@ -5,9 +5,9 @@ import { Query } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.graphql';
 
-const defaultImageRegex = {};
+const defaultValue = {};
 
-const { Provider, Consumer } = React.createContext(defaultImageRegex);
+const { Provider, Consumer } = React.createContext(defaultValue);
 
 const ProjectExtensionProviderForImageRegex = props => (
   <Query
@@ -42,12 +42,12 @@ GetProjectExtensionImageRegex.propTypes = {
 };
 
 const withProjectExtensionImageRegex = (
-  propKey = 'imageRegex'
+  propKey = 'imageRegexData'
 ) => Component => {
   const WrappedComponent = props => (
     <GetProjectExtensionImageRegex
-      render={imageRegex => (
-        <Component {...props} {...{ [propKey]: imageRegex }} />
+      render={imageRegexData => (
+        <Component {...props} {...{ [propKey]: imageRegexData }} />
       )}
     />
   );

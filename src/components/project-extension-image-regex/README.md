@@ -9,7 +9,7 @@ Additionally it provides a HOC to inject the `imageRegex`.
 ### Usage
 
 The provider implicitly triggers a query to fetch the project extension setting.
-While the data is loading, the provider will contain an empty object `{}`. Therefore, accessing the value with a consumer is _safe_.
+The consumer will receive an object with a `loading` prop and the `imageRegex` value.
 
 ```js
 <ProjectExtensionProviderForImageRegex>
@@ -17,11 +17,14 @@ While the data is loading, the provider will contain an empty object `{}`. There
     {/* ... */}
     {/* Somewhere down the tree */}
     <GetProjectExtensionImageRegex
-      render={imageRegex =>
-        imageRegex && imageRegex.small
-          ? <div>{`Image regex setting: ${JSON.stringify(imageRegex.small)}`}</div>
-          : <LoadingSpinner>
-      }
+      render={({ loading, imageRegex }) => {
+        if (loading) return <LoadingSpinner />;
+        return (
+          <div>{`Image regex setting: ${JSON.stringify(
+            imageRegex.small
+          )}`}</div>
+        );
+      }}
     />
   </div>
 </ProjectExtensionProviderForImageRegex>
