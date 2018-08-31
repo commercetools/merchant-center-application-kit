@@ -17,10 +17,10 @@ class ApiErrorNotification extends React.PureComponent {
         message: PropTypes.string,
         errors: PropTypes.arrayOf(
           PropTypes.shape({
-            code: PropTypes.string.isRequired,
+            code: PropTypes.string,
             message: PropTypes.string,
           })
-        ),
+        ).isRequired,
       }),
     }),
   };
@@ -28,19 +28,15 @@ class ApiErrorNotification extends React.PureComponent {
   renderApiErrors = errors => (
     <ul>
       {errors.map((error, idx) => {
-        if (!error.code) {
+        if (!error.code && process.env.NODE_ENV !== 'production') {
           /**
            * NOTE: This is an API error which usually contains
            * a `code` property such as `DuplicateField` or `InvalidOperation`.
            * If this `code` does not exist the API is not conforming to its
            * own error specification.
            */
-          if (process.env.NODE_ENV !== 'production')
-            // eslint-disable-next-line no-console
-            console.error('Unknown API error', error);
-
-          if (error.message) return <li key={idx}>{error.message}</li>;
-          return null;
+          // eslint-disable-next-line no-console
+          console.error('Unknown API error', error);
         }
         return (
           <li key={idx}>
