@@ -4,7 +4,7 @@ This component exposes getters/setters to set and retrieve the `imageRegex` from
 
 > It uses the new React Context API, so you need to provide the `ProjectExtensionProviderForImageRegex` at a point in the tree where you need the setting from there below.
 
-Additionally it provides a HOC to inject the `imageRegex`.
+Additionally it provides a HOC to inject the `imageRegexData`.
 
 ### Usage
 
