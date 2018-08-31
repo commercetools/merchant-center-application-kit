@@ -92,7 +92,14 @@ export const handleActionError = (error, source) => dispatch => {
   if (!error.statusCode)
     return dispatch(showUnexpectedErrorNotification({ source, error }));
 
+  const hasListOfErrors = error.body.errors && Array.isArray(error.body.errors);
   return dispatch(
-    showApiErrorNotification({ source, errors: error.body.errors })
+    showApiErrorNotification({
+      source,
+      errors: hasListOfErrors
+        ? error.body.errors
+        : // Pass a fallback error so that our error components can handle it
+          [{ message: error.body.message }],
+    })
   );
 };
