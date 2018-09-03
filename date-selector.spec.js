@@ -53,7 +53,10 @@ describe('rendering', () => {
     });
 
     it('should day selector is disabled by default', () => {
-      expect(wrapper.find({ name: 'day-selector' })).toBeDisabled();
+      expect(wrapper.find({ name: 'day-selector' })).toHaveProp(
+        'disabled',
+        true
+      );
     });
 
     it('should render text for clear button', () => {
@@ -421,15 +424,24 @@ describe('rendering', () => {
     });
 
     it('year selector should be disabled', () => {
-      expect(wrapper.find({ name: 'year-selector' })).toBeDisabled();
+      expect(wrapper.find({ name: 'year-selector' })).toHaveProp(
+        'disabled',
+        true
+      );
     });
 
     it('month selector should be disabled', () => {
-      expect(wrapper.find({ name: 'month-selector' })).toBeDisabled();
+      expect(wrapper.find({ name: 'month-selector' })).toHaveProp(
+        'disabled',
+        true
+      );
     });
 
     it('day selector should be disabled', () => {
-      expect(wrapper.find({ name: 'day-selector' })).toBeDisabled();
+      expect(wrapper.find({ name: 'day-selector' })).toHaveProp(
+        'disabled',
+        true
+      );
     });
   });
 });
