@@ -1,5 +1,5 @@
-query FetchProjectExtensionsNavbarQuery($projectKey: String!) {
-  projectExtension(where: { projectKey: $projectKey }) {
+query FetchProjectExtensionsNavbarQuery {
+  projectExtension {
     id
     applications {
       id

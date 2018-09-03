@@ -13,6 +13,7 @@ import ApplicationShell, {
   UnrestrictedApplication,
   extractLanguageFromLocale,
   getBrowserLanguage,
+  mergeMessages,
 } from './application-shell';
 
 jest.mock('@commercetools-frontend/storage');
@@ -124,7 +125,7 @@ describe('rendering', () => {
       it('should pass "messages" to <ConfigureIntlProvider>', () => {
         expect(authRenderWrapper.find(ConfigureIntlProvider)).toHaveProp(
           'messages',
-          { title: 'Title en' }
+          expect.objectContaining({ title: 'Title en' })
         );
       });
       it('should render <UnrestrictedApplication> after track components', () => {
@@ -199,9 +200,12 @@ describe('<RestrictedApplication>', () => {
         );
       });
       it('should pass "messages" to <ConfigureIntlProvider>', () => {
-        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp('messages', {
-          title: 'Test en',
-        });
+        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
+          'messages',
+          expect.objectContaining({
+            title: 'Test en',
+          })
+        );
       });
     });
 
@@ -489,6 +493,21 @@ describe('extractLanguageFromLocale', () => {
     });
     it('should return the locale itself', () => {
       expect(languageFromLocale).toBe('de');
+    });
+  });
+});
+
+describe('mergeMessages', () => {
+  it('should merge multiple arguments', () => {
+    expect(mergeMessages({ a: 1 }, { b: 2 }, { c: 3 })).toEqual({
+      a: 1,
+      b: 2,
+      c: 3,
+    });
+  });
+  it('should merge even if arguments are not defined', () => {
+    expect(mergeMessages(null, undefined, { c: 3 })).toEqual({
+      c: 3,
     });
   });
 });
