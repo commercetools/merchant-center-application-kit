@@ -7,6 +7,7 @@ import {
   DEVELOPER_SETTINGS,
   CAN_VIEW_CATEGORIES,
   CAN_VIEW_ORDERS,
+  CAN_VIEW_DISCOUNTS,
 } from './feature-toggles';
 
 const itemsCategories = {
@@ -84,6 +85,7 @@ const itemsDiscounts = {
   uriPath: 'discounts',
   labelKey: 'NavBar.Discounts.title',
   icon: 'TagMultiIcon',
+  featureToggle: CAN_VIEW_DISCOUNTS,
   permissions: [
     permissions.ViewProducts,
     permissions.ManageProducts,
