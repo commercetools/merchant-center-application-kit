@@ -44,7 +44,7 @@ module.exports = {
     // However we need to instruct jest to actually transpile some packages.
     // NOTE: this might not be necessary anymore once we ship packages already
     // transpiled.
-    '/node_modules/(?!(@commercetools-frontend.*?\\.(js|graphql)$))',
+    'node_modules/(?!(@commercetools-frontend)/)',
   ],
   watchPlugins: ['jest-plugin-filename'],
 };

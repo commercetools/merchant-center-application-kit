@@ -7,7 +7,7 @@ const crypto = require('crypto');
 // does not play well with that. We also need to use our own preset, therefore
 // we simply implement the `transform` on our own. And since we don't use
 // a `.babelrc`, we don't include it in the "cache key".
-const { transform, util: babelUtil } = require('@babel/core');
+const { transform } = require('@babel/core');
 const getBabePresetConfigForMcApp = require('@commercetools-frontend/babel-preset-mc-app');
 
 const THIS_FILE = fs.readFileSync(__filename);
@@ -33,13 +33,6 @@ module.exports = {
       .digest('hex');
   },
   process(src, filename, config, transformOptions) {
-    const altExts = config.moduleFileExtensions.map(
-      extension => `.${extension}`
-    );
-    if (babelUtil && !babelUtil.canCompile(filename, altExts)) {
-      return src;
-    }
-
     const theseOptions = {
       babelrc: false,
       compact: false,
