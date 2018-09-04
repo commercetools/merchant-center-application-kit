@@ -21,11 +21,11 @@ import loggerMiddleware, { actionTransformer } from './middleware/logger';
 import sentryTrackingMiddleware from './middleware/sentry-tracking';
 import { activePluginReducer } from './components/inject-reducer';
 import { requestsInFlightReducer } from './components/requests-in-flight-loader';
-import { getCorrelationId, selectProjectKey } from './utils';
+import { getCorrelationId, selectProjectKeyFromUrl } from './utils';
 
 const sdkMiddleware = createSdkMiddleware({
   getCorrelationId,
-  getProjectKey: selectProjectKey,
+  getProjectKey: selectProjectKeyFromUrl,
 });
 
 const createReducer = (injectedReducers = {}) =>

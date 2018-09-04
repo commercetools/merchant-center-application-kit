@@ -19,7 +19,6 @@ import * as uiKitMessages from '@commercetools-frontend/ui-kit/i18n';
 import PortalsContainer from '../portals-container';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
-import WithProjectKey from '../with-project-key';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import Authenticated from '../authenticated';
 import AppBar from '../app-bar';
@@ -39,6 +38,10 @@ import GtmBooter from '../gtm-booter';
 import NavBar from '../navbar';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
+import {
+  loadProjectKeyForRedirect,
+  selectProjectKeyFromUrl,
+} from '../../utils';
 import styles from './application-shell.mod.css';
 import './global-style-imports';
 
@@ -114,17 +117,29 @@ export const RestrictedApplication = props => (
                       </header>
 
                       <aside>
-                        <WithProjectKey
-                          user={user}
-                          render={({ projectKey }) => (
+                        {(() => {
+                          // The <NavBar> should only be rendered within a project
+                          // context, therefore when there is a `projectKey`.
+                          // If there is no `projectKey` in the URL (e.g. `/account`
+                          // routes), we don't render it.
+                          // NOTE: we also "cache" the `projectKey` in localStorage
+                          // but this should only be used to "re-hydrate" the URL
+                          // location (e.g when you go to `/`, there should be a
+                          // redirect to `/:projectKey`). Therefore, we should not
+                          // rely on the value in localStorage to determine which
+                          // `projectKey` is currently used.
+                          const projectKeyFromUrl = selectProjectKeyFromUrl();
+                          if (!projectKeyFromUrl) return null;
+                          return (
                             <NavBar
-                              projectKey={projectKey}
+                              applicationLanguage={locale}
+                              projectKey={projectKeyFromUrl}
                               useFullRedirectsForLinks={
                                 props.INTERNAL__isApplicationFallback
                               }
                             />
-                          )}
-                        />
+                          );
+                        })()}
                       </aside>
 
                       {/**
@@ -161,12 +176,10 @@ export const RestrictedApplication = props => (
                               path="/"
                               render={() =>
                                 user ? (
-                                  <WithProjectKey
-                                    user={user}
-                                    render={({ projectKey }) => (
-                                      // Redirect to the given projectKey
-                                      <Redirect to={`/${projectKey}`} />
-                                    )}
+                                  <Redirect
+                                    to={`/${loadProjectKeyForRedirect(
+                                      user.defaultProjectKey
+                                    )}`}
                                   />
                                 ) : (
                                   <ApplicationLoader />

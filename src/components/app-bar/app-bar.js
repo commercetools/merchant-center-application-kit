@@ -2,11 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LogoSVG from '@commercetools-frontend/ui-kit/materials/images/logo.svg';
 import Spacings from '@commercetools-frontend/ui-kit/materials/spacings';
-import WithProjectKey from '../with-project-key';
+import {
+  loadProjectKeyForRedirect,
+  selectProjectKeyFromUrl,
+} from '../../utils';
 import UserSettingsMenu from '../user-settings-menu';
 import ProjectSwitcher from '../project-switcher';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/constants';
 import styles from './app-bar.mod.css';
+
+const getSelectedProjectKeyForSwitcher = defaultProjectKey =>
+  selectProjectKeyFromUrl() || loadProjectKeyForRedirect(defaultProjectKey);
 
 const AppBar = props => (
   <div className={styles['app-bar']} data-test="top-navigation">
@@ -27,25 +33,22 @@ const AppBar = props => (
           <Spacings.Inline alignItems="center">
             {/* This node is used by a react portal */}
             <div id="locale-switcher" />
-            <WithProjectKey
-              user={props.user}
-              render={({ projectKey }) =>
-                // The `<ProjectSwitcher>` should be rendered only if the
-                // user is fetched and the user has projects.
-                props.user &&
-                props.user.projects.total > 0 && (
-                  <ProjectSwitcher
-                    // In this case it's not necessary to check if the `projectKey` param
-                    // is included in the list of projects. In such case
-                    // the dropdown will still be rendered but no project will be selected.
-                    // This is fine becase the user has still the possibility to "switch"
-                    // to a project.
-                    projectKey={projectKey}
-                    total={props.user.projects.total}
-                  />
-                )
-              }
-            />
+            {// The `<ProjectSwitcher>` should be rendered only if the
+            // user is fetched and the user has projects.
+            props.user &&
+              props.user.projects.total > 0 && (
+                <ProjectSwitcher
+                  // In this case it's not necessary to check if the `projectKey` param
+                  // is included in the list of projects. In such case
+                  // the dropdown will still be rendered but no project will be selected.
+                  // This is fine becase the user has still the possibility to "switch"
+                  // to a project.
+                  projectKey={getSelectedProjectKeyForSwitcher(
+                    props.user.defaultProjectKey
+                  )}
+                  total={props.user.projects.total}
+                />
+              )}
           </Spacings.Inline>
         </div>
         <div className={styles.spacer} />
@@ -69,6 +72,7 @@ AppBar.propTypes = {
     projects: PropTypes.shape({
       total: PropTypes.number.isRequired,
     }).isRequired,
+    defaultProjectKey: PropTypes.string.isRequired,
   }),
 };
 

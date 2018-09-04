@@ -9,6 +9,7 @@ const createTestProps = props => ({
     projects: {
       total: 0,
     },
+    defaultProjectKey: 'test-1',
     firstName: 'John',
     lastName: 'Snow',
     gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
@@ -31,9 +32,6 @@ describe('rendering', () => {
   });
   it('should render placeholder for "locale-switcher"', () => {
     expect(wrapper).toRender('#locale-switcher');
-  });
-  it('should render <WithProjectKey>', () => {
-    expect(wrapper).toRender('WithProjectKey');
   });
   describe('<UserSettingsMenu>', () => {
     describe('when user is not defined', () => {
@@ -72,89 +70,52 @@ describe('rendering', () => {
       });
     });
   });
-  describe('render <WithProjectKey>', () => {
-    let renderChildrenWrapper;
-    let renderChildrenProps;
-    beforeEach(() => {
-      renderChildrenProps = { projectKey: 'test-1' };
-      renderChildrenWrapper = shallow(
-        <div>
-          {wrapper.find('WithProjectKey').prop('render')(renderChildrenProps)}
-        </div>
-      );
+  describe('<ProjectSwitcher>', () => {
+    describe('when user is not defined', () => {
+      beforeEach(() => {
+        props = createTestProps({
+          user: null,
+        });
+        wrapper = shallow(<AppBar {...props} />);
+      });
+      it('should not render <ProjectSwitcher>', () => {
+        expect(wrapper).not.toRender(ProjectSwitcher);
+      });
     });
-
-    describe('<ProjectSwitcher>', () => {
-      describe('when user is not defined', () => {
+    describe('when user is defined', () => {
+      describe('when user has no projects', () => {
         beforeEach(() => {
           props = createTestProps({
-            user: null,
+            user: { ...props.user, projects: { total: 0 } },
           });
           wrapper = shallow(<AppBar {...props} />);
-          renderChildrenWrapper = shallow(
-            <div>
-              {wrapper.find('WithProjectKey').prop('render')(
-                renderChildrenProps
-              )}
-            </div>
-          );
         });
         it('should not render <ProjectSwitcher>', () => {
-          expect(renderChildrenWrapper).not.toRender(ProjectSwitcher);
+          expect(wrapper).not.toRender(ProjectSwitcher);
         });
       });
-      describe('when user is defined', () => {
-        describe('when user has no projects', () => {
+      describe('when user has projects', () => {
+        describe('<ProjectSwitcher>', () => {
           beforeEach(() => {
             props = createTestProps({
-              user: { ...props.user, projects: { total: 0 } },
+              user: {
+                ...props.user,
+                projects: { total: 1 },
+              },
             });
             wrapper = shallow(<AppBar {...props} />);
-            renderChildrenWrapper = shallow(
-              <div>
-                {wrapper.find('WithProjectKey').prop('render')(
-                  renderChildrenProps
-                )}
-              </div>
+          });
+          it('should render <ProjectSwitcher>', () => {
+            expect(wrapper).toRender(ProjectSwitcher);
+          });
+          it('should pass projectKey to <ProjectSwitcher>', () => {
+            expect(wrapper.find(ProjectSwitcher)).toHaveProp(
+              'projectKey',
+              'test-1'
             );
           });
-          it('should not render <ProjectSwitcher>', () => {
-            expect(renderChildrenWrapper).not.toRender(ProjectSwitcher);
-          });
-        });
-        describe('when user has projects', () => {
-          describe('<ProjectSwitcher>', () => {
-            beforeEach(() => {
-              props = createTestProps({
-                user: {
-                  ...props.user,
-                  projects: { total: 1 },
-                },
-              });
-              wrapper = shallow(<AppBar {...props} />);
-              renderChildrenWrapper = shallow(
-                <div>
-                  {wrapper.find('WithProjectKey').prop('render')(
-                    renderChildrenProps
-                  )}
-                </div>
-              );
-            });
-            it('should render <ProjectSwitcher>', () => {
-              expect(renderChildrenWrapper).toRender(ProjectSwitcher);
-            });
-            it('should pass projectKey to <ProjectSwitcher>', () => {
-              expect(renderChildrenWrapper.find(ProjectSwitcher)).toHaveProp(
-                'projectKey',
-                'test-1'
-              );
-            });
-            it('should pass total to <ProjectSwitcher>', () => {
-              expect(renderChildrenWrapper.find(ProjectSwitcher)).toHaveProp(
-                'total',
-                1
-              );
-            });
+          it('should pass total to <ProjectSwitcher>', () => {
+            expect(wrapper.find(ProjectSwitcher)).toHaveProp('total', 1);
           });
         });
       });

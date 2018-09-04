@@ -1,6 +1,6 @@
 import { ApolloLink } from 'apollo-link';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { getCorrelationId, selectProjectKey } from '../utils';
+import { getCorrelationId, selectProjectKeyFromUrl } from '../utils';
 
 const isKnownTarget = target => Object.values(GRAPHQL_TARGETS).includes(target);
 
@@ -13,7 +13,7 @@ const headerLink = new ApolloLink((operation, forward) => {
       `GraphQL target "${target}" is missing or is not supported`
     );
 
-  const projectKey = selectProjectKey();
+  const projectKey = selectProjectKeyFromUrl();
   // NOTE: keep header names with capital letters to avoid possible conflicts
   // or problems with nginx.
   operation.setContext({

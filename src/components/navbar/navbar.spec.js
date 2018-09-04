@@ -26,7 +26,7 @@ const createTestProps = props => ({
   location: {
     pathname: '',
   },
-  language: 'en',
+  applicationLanguage: 'en',
   projectKey: 'test-1',
   projectPermissions: {
     canManageCustomers: false,
@@ -125,8 +125,11 @@ describe('rendering', () => {
           defaultNavigationItems
         );
       });
-      it('should pass language as prop', () => {
-        expect(wrapper.find('DataMenu')).toHaveProp('language', props.language);
+      it('should pass applicationLanguage as prop', () => {
+        expect(wrapper.find('DataMenu')).toHaveProp(
+          'applicationLanguage',
+          props.applicationLanguage
+        );
       });
       it('should pass projectKey as prop', () => {
         expect(wrapper.find('DataMenu')).toHaveProp(

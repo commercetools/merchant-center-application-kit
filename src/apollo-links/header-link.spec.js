@@ -6,7 +6,7 @@ import headerLink from './header-link';
 
 jest.mock('../utils/', () => ({
   getCorrelationId: () => 'test-correlation-id',
-  selectProjectKey: () => 'project-1',
+  selectProjectKeyFromUrl: () => 'project-1',
 }));
 
 describe('headerLink', () => {

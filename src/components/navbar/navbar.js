@@ -21,7 +21,6 @@ import {
   permissions,
 } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS } from '../../constants';
-import { withUser } from '../fetch-user';
 import { withProject } from '../fetch-project';
 import { PROJECT_EXTENSIONS } from './feature-toggles';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
@@ -265,7 +264,7 @@ export class DataMenu extends React.PureComponent {
         ),
       })
     ),
-    language: PropTypes.string.isRequired,
+    applicationLanguage: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
     isForcedMenuOpen: PropTypes.bool,
     location: PropTypes.shape({
@@ -375,7 +374,7 @@ export class DataMenu extends React.PureComponent {
   renderLabel = menu => {
     if (menu.labelKey) return <FormattedMessage {...messages[menu.labelKey]} />;
     const localizedLabel = menu.labelAllLocales.find(
-      loc => loc.locale === this.props.language
+      loc => loc.locale === this.props.applicationLanguage
     );
     if (localizedLabel) return localizedLabel.value;
     return NO_VALUE_FALLBACK;
@@ -491,7 +490,7 @@ export class NavBar extends React.PureComponent {
 
   static propTypes = {
     // From parent
-    language: PropTypes.string.isRequired,
+    applicationLanguage: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
     useFullRedirectsForLinks: PropTypes.bool.isRequired,
     // Injected
@@ -543,7 +542,7 @@ export class NavBar extends React.PureComponent {
             }
             isForcedMenuOpen={this.props.isForcedMenuOpen}
             location={this.props.location}
-            language={this.props.language}
+            applicationLanguage={this.props.applicationLanguage}
             projectKey={this.props.projectKey}
             useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}
           />
@@ -567,7 +566,6 @@ export default compose(
           : null,
     };
   }),
-  withUser(userData => ({ language: userData.user.language })),
   withProject(
     ownProps => ownProps.projectKey,
     projectData => ({

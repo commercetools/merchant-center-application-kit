@@ -4,6 +4,7 @@ import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import AsyncLocaleData from '@commercetools-frontend/i18n/async-locale-data';
+import * as appShellUtils from '../../utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import ProjectContainer from '../project-container';
 import FetchUser from '../fetch-user';
@@ -18,6 +19,7 @@ import ApplicationShell, {
 
 jest.mock('@commercetools-frontend/storage');
 jest.mock('@commercetools-frontend/sentry');
+jest.mock('../../utils');
 
 const createTestProps = props => ({
   i18n: {
@@ -110,7 +112,7 @@ describe('rendering', () => {
           })
           .find(AsyncLocaleData)
           .renderProp('children', {
-            locale: 'en-US',
+            locale: 'en',
             messages: {
               title: 'Title en',
             },
@@ -119,7 +121,7 @@ describe('rendering', () => {
       it('should pass "locale" to <ConfigureIntlProvider>', () => {
         expect(authRenderWrapper.find(ConfigureIntlProvider)).toHaveProp(
           'locale',
-          'en-US'
+          'en'
         );
       });
       it('should pass "messages" to <ConfigureIntlProvider>', () => {
@@ -152,6 +154,7 @@ describe('<RestrictedApplication>', () => {
           projects: {
             total: 0,
           },
+          defaultProjectKey: 'foo-0',
           language: 'en-US',
           launchdarklyTrackingId: '123',
           launchdarklyTrackingGroup: 'ct',
@@ -163,12 +166,9 @@ describe('<RestrictedApplication>', () => {
         .renderProp('children', userData)
         .find(AsyncLocaleData)
         .renderProp('children', {
-          locale: userData.language,
+          locale: 'en',
           messages: props.i18n.en,
         });
-    });
-    it('should match layout structure', () => {
-      expect(wrapper).toMatchSnapshot();
     });
     describe('when fetching the user returns an error', () => {
       beforeEach(() => {
@@ -247,30 +247,49 @@ describe('<RestrictedApplication>', () => {
     it('should render <AppBar> below header element', () => {
       expect(wrapper).toRender('header > AppBar');
     });
-    it('should render <WithProjectKey> below aside element', () => {
-      expect(wrapper.find('aside > WithProjectKey')).toHaveProp(
-        'user',
-        userData.user
-      );
-    });
     describe('<NavBar>', () => {
-      beforeEach(() => {
-        wrapper = wrapper.find('aside > WithProjectKey').renderProp('render', {
-          routerProps: { location: {} },
-          projectKey: 'foo-1',
+      describe('when there is a project key in the url', () => {
+        beforeEach(() => {
+          appShellUtils.selectProjectKeyFromUrl.mockReturnValue('foo-1');
+          wrapper = shallow(<RestrictedApplication {...props} />)
+            .find(FetchUser)
+            .renderProp('children', userData)
+            .find(AsyncLocaleData)
+            .renderProp('children', {
+              locale: 'en',
+              messages: { title: 'Test en' },
+            });
+          wrapper = wrapper.find('aside');
+        });
+        it('should pass the projectKey matched from the URL', () => {
+          expect(wrapper.find(NavBar)).toHaveProp('projectKey', 'foo-1');
+        });
+        it('should pass the application language', () => {
+          expect(wrapper.find(NavBar)).toHaveProp('applicationLanguage', 'en');
+        });
+        it('should pass "useFullRedirectsForLinks"', () => {
+          expect(wrapper.find(NavBar)).toHaveProp(
+            'useFullRedirectsForLinks',
+            props.INTERNAL__isApplicationFallback
+          );
         });
       });
-      it('should render <NavBar> inside <WithProjectKey> below aside element', () => {
-        expect(wrapper).toRender(NavBar);
-      });
-      it('should pass the projectKey matched from the URL', () => {
-        expect(wrapper.find(NavBar)).toHaveProp('projectKey', 'foo-1');
-      });
-      it('should pass "useFullRedirectsForLinks"', () => {
-        expect(wrapper.find(NavBar)).toHaveProp(
-          'useFullRedirectsForLinks',
-          props.INTERNAL__isApplicationFallback
-        );
+      describe('when there is no project key in the url', () => {
+        beforeEach(() => {
+          appShellUtils.selectProjectKeyFromUrl.mockReturnValue();
+          wrapper = shallow(<RestrictedApplication {...props} />)
+            .find(FetchUser)
+            .renderProp('children', userData)
+            .find(AsyncLocaleData)
+            .renderProp('children', {
+              locale: 'en',
+              messages: { title: 'Test en' },
+            });
+          wrapper = wrapper.find('aside');
+        });
+        it('should not render <NavBar>', () => {
+          expect(wrapper).not.toRender(NavBar);
+        });
       });
     });
     it('should render <Route> for "/account"', () => {

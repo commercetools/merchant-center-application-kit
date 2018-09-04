@@ -1,6 +1,8 @@
 import uuid from 'uuid/v4';
-import selectProjectKey from '../select-project-key';
+import selectProjectKeyFromUrl from '../select-project-key-from-url';
 import selectUserId from '../select-user-id';
 
 export default () =>
-  ['mc', selectProjectKey(), selectUserId(), uuid()].filter(Boolean).join('/');
+  ['mc', selectProjectKeyFromUrl(), selectUserId(), uuid()]
+    .filter(Boolean)
+    .join('/');
