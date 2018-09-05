@@ -44,6 +44,16 @@ const createTestProps = props => ({
   ...props,
 });
 
+const renderForAsyncData = ({ props, userData }) =>
+  shallow(<RestrictedApplication {...props} />)
+    .find(FetchUser)
+    .renderProp('children', userData)
+    .find(AsyncLocaleData)
+    .renderProp('children', {
+      locale: 'en',
+      messages: { title: 'Test en' },
+    });
+
 describe('rendering', () => {
   let props;
   let wrapper;
@@ -161,14 +171,7 @@ describe('<RestrictedApplication>', () => {
           launchdarklyTrackingTeam: ['abc', 'def'],
         },
       };
-      wrapper = shallow(<RestrictedApplication {...props} />)
-        .find(FetchUser)
-        .renderProp('children', userData)
-        .find(AsyncLocaleData)
-        .renderProp('children', {
-          locale: 'en',
-          messages: props.i18n.en,
-        });
+      wrapper = renderForAsyncData({ props, userData });
     });
     describe('when fetching the user returns an error', () => {
       beforeEach(() => {
@@ -178,14 +181,7 @@ describe('<RestrictedApplication>', () => {
           isLoading: false,
           error: new Error('Failed to fetch'),
         };
-        wrapper = shallow(<RestrictedApplication {...props} />)
-          .find(FetchUser)
-          .renderProp('children', userData)
-          .find(AsyncLocaleData)
-          .renderProp('children', {
-            locale: 'en',
-            messages: { title: 'Test en' },
-          });
+        wrapper = renderForAsyncData({ props, userData });
       });
       it('should pass "locale" to <ConfigureIntlProvider>', () => {
         expect(wrapper.find(ConfigureIntlProvider)).toHaveProp('locale', 'en');
@@ -248,27 +244,24 @@ describe('<RestrictedApplication>', () => {
       expect(wrapper).toRender('header > AppBar');
     });
     describe('<NavBar>', () => {
+      let wrapperAside;
       describe('when there is a project key in the url', () => {
         beforeEach(() => {
           appShellUtils.selectProjectKeyFromUrl.mockReturnValue('foo-1');
-          wrapper = shallow(<RestrictedApplication {...props} />)
-            .find(FetchUser)
-            .renderProp('children', userData)
-            .find(AsyncLocaleData)
-            .renderProp('children', {
-              locale: 'en',
-              messages: { title: 'Test en' },
-            });
-          wrapper = wrapper.find('aside');
+          wrapper = renderForAsyncData({ props, userData });
+          wrapperAside = wrapper.find('aside');
         });
         it('should pass the projectKey matched from the URL', () => {
-          expect(wrapper.find(NavBar)).toHaveProp('projectKey', 'foo-1');
+          expect(wrapperAside.find(NavBar)).toHaveProp('projectKey', 'foo-1');
         });
         it('should pass the application language', () => {
-          expect(wrapper.find(NavBar)).toHaveProp('applicationLanguage', 'en');
+          expect(wrapperAside.find(NavBar)).toHaveProp(
+            'applicationLanguage',
+            'en'
+          );
         });
         it('should pass "useFullRedirectsForLinks"', () => {
-          expect(wrapper.find(NavBar)).toHaveProp(
+          expect(wrapperAside.find(NavBar)).toHaveProp(
             'useFullRedirectsForLinks',
             props.INTERNAL__isApplicationFallback
           );
@@ -277,18 +270,11 @@ describe('<RestrictedApplication>', () => {
       describe('when there is no project key in the url', () => {
         beforeEach(() => {
           appShellUtils.selectProjectKeyFromUrl.mockReturnValue();
-          wrapper = shallow(<RestrictedApplication {...props} />)
-            .find(FetchUser)
-            .renderProp('children', userData)
-            .find(AsyncLocaleData)
-            .renderProp('children', {
-              locale: 'en',
-              messages: { title: 'Test en' },
-            });
-          wrapper = wrapper.find('aside');
+          wrapper = renderForAsyncData({ props, userData });
+          wrapperAside = wrapper.find('aside');
         });
         it('should not render <NavBar>', () => {
-          expect(wrapper).not.toRender(NavBar);
+          expect(wrapperAside).not.toRender(NavBar);
         });
       });
     });
