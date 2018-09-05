@@ -3036,6 +3036,7 @@
   "TotalResults.title": "{total} results",
   "UnsavedChanges.version1": "There are unsaved changes. By leaving this page, the changes will not be saved.",
   "UnsavedChanges.version2": "There are unsaved changes. By leaving this page, the changes will not be saved. Would you like to continue?",
+  "UserProfile.backToProject": "Back to project",
   "UserProfile.GeneralInfoPanel.email": "E-mail",
   "UserProfile.GeneralInfoPanel.firstName": "First Name",
   "UserProfile.GeneralInfoPanel.lastName": "Last Name",
