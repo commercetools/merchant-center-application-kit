@@ -39,7 +39,7 @@ import NavBar from '../navbar';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
 import {
-  loadProjectKeyForRedirect,
+  selectProjectKeyFromLocalStorage,
   selectProjectKeyFromUrl,
 } from '../../utils';
 import styles from './application-shell.mod.css';
@@ -177,9 +177,8 @@ export const RestrictedApplication = props => (
                               render={() =>
                                 user ? (
                                   <Redirect
-                                    to={`/${loadProjectKeyForRedirect(
-                                      user.defaultProjectKey
-                                    )}`}
+                                    to={`/${selectProjectKeyFromLocalStorage() ||
+                                      user.defaultProjectKey}`}
                                   />
                                 ) : (
                                   <ApplicationLoader />

@@ -3,16 +3,13 @@ import PropTypes from 'prop-types';
 import LogoSVG from '@commercetools-frontend/ui-kit/materials/images/logo.svg';
 import Spacings from '@commercetools-frontend/ui-kit/materials/spacings';
 import {
-  loadProjectKeyForRedirect,
+  selectProjectKeyFromLocalStorage,
   selectProjectKeyFromUrl,
 } from '../../utils';
 import UserSettingsMenu from '../user-settings-menu';
 import ProjectSwitcher from '../project-switcher';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/constants';
 import styles from './app-bar.mod.css';
-
-const getSelectedProjectKeyForSwitcher = defaultProjectKey =>
-  selectProjectKeyFromUrl() || loadProjectKeyForRedirect(defaultProjectKey);
 
 const AppBar = props => (
   <div className={styles['app-bar']} data-test="top-navigation">
@@ -43,9 +40,11 @@ const AppBar = props => (
                   // the dropdown will still be rendered but no project will be selected.
                   // This is fine becase the user has still the possibility to "switch"
                   // to a project.
-                  projectKey={getSelectedProjectKeyForSwitcher(
+                  projectKey={
+                    selectProjectKeyFromUrl() ||
+                    selectProjectKeyFromLocalStorage() ||
                     props.user.defaultProjectKey
-                  )}
+                  }
                   total={props.user.projects.total}
                 />
               )}

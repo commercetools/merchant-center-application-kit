@@ -1,6 +1,6 @@
 export {
-  default as loadProjectKeyForRedirect,
-} from './load-project-key-for-redirect';
+  default as selectProjectKeyFromLocalStorage,
+} from './select-project-key-from-local-storage';
 export {
   default as selectProjectKeyFromUrl,
 } from './select-project-key-from-url';
