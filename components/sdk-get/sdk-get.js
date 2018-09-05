@@ -53,11 +53,13 @@ export class SdkGet extends React.Component {
       onError: this.props.onError,
     }).then(
       result => {
-        this.setState({ isWaitingForCompletionOfFirstRequest: false });
+        if (this.isComponentMounted)
+          this.setState({ isWaitingForCompletionOfFirstRequest: false });
         return result;
       },
       error => {
-        this.setState({ isWaitingForCompletionOfFirstRequest: false });
+        if (this.isComponentMounted)
+          this.setState({ isWaitingForCompletionOfFirstRequest: false });
         throw error;
       }
     );
