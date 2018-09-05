@@ -7,8 +7,9 @@ const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const postcssImport = require('postcss-import');
 const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
-const postCSSCustomProperties = require('postcss-custom-properties');
+const postcssCustomProperties = require('postcss-custom-properties');
 const postcssCustomMediaQueries = require('postcss-custom-media');
+const postcssPostcssColorModFunction = require('postcss-color-mod-function');
 const browserslist = require('./browserslist');
 
 const defaultToggleFlags = {
@@ -233,9 +234,11 @@ module.exports = ({
                   browsers: browserslist.development,
                   autoprefixer: { grid: true },
                 }),
-                postCSSCustomProperties({
+                postcssCustomProperties({
                   preserve: false,
                 }),
+                postcssCustomMediaQueries(),
+                postcssPostcssColorModFunction(),
                 postcssReporter(),
               ],
             },
@@ -270,10 +273,11 @@ module.exports = ({
                       browsers: browserslist.development,
                       autoprefixer: { grid: true },
                     }),
-                    postCSSCustomProperties({
+                    postcssCustomProperties({
                       preserve: false,
                     }),
                     postcssCustomMediaQueries(),
+                    postcssPostcssColorModFunction(),
                     postcssReporter(),
                   ],
                 },

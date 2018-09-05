@@ -16,8 +16,9 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const postcssImport = require('postcss-import');
 const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
-const postCSSCustomProperties = require('postcss-custom-properties');
+const postcssCustomProperties = require('postcss-custom-properties');
 const postcssCustomMediaQueries = require('postcss-custom-media');
+const postcssPostcssColorModFunction = require('postcss-color-mod-function');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 const browserslist = require('./browserslist');
 
@@ -321,10 +322,11 @@ module.exports = ({
                   browsers: browserslist.production,
                   autoprefixer: { grid: true },
                 }),
-                postCSSCustomProperties({
+                postcssCustomProperties({
                   preserve: false,
                 }),
                 postcssCustomMediaQueries(),
+                postcssPostcssColorModFunction(),
                 postcssReporter(),
               ],
             },
@@ -361,9 +363,11 @@ module.exports = ({
                       browsers: browserslist.production,
                       autoprefixer: { grid: true },
                     }),
-                    postCSSCustomProperties({
+                    postcssCustomProperties({
                       preserve: false,
                     }),
+                    postcssCustomMediaQueries(),
+                    postcssPostcssColorModFunction(),
                     postcssReporter(),
                   ],
                 },
