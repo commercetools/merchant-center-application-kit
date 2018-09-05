@@ -8,15 +8,15 @@ describe('when project key is cached in localStorage', () => {
     storage.get.mockReturnValue('foo-1');
   });
   it('should return cached key', () => {
-    expect(selectProjectKeyFromLocalStorage('fallback')).toBe('foo-1');
+    expect(selectProjectKeyFromLocalStorage()).toBe('foo-1');
   });
 });
 
 describe('when project key is not cached in localStorage', () => {
   beforeEach(() => {
-    storage.get.mockReturnValue();
+    storage.get.mockReturnValue(null);
   });
   it('should return default key', () => {
-    expect(selectProjectKeyFromLocalStorage('fallback')).toBe('fallback');
+    expect(selectProjectKeyFromLocalStorage()).toBe(null);
   });
 });
