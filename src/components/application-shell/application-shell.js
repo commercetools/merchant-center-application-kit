@@ -176,6 +176,9 @@ export const RestrictedApplication = props => (
                               path="/"
                               render={() =>
                                 user ? (
+                                  // This is the only case where we need to look into localStorage
+                                  // to attempt to get the previously known `projectKey`.
+                                  // If none is found, we use the `defaultProjectKey` set by the API.
                                   <Redirect
                                     to={`/${selectProjectKeyFromLocalStorage() ||
                                       user.defaultProjectKey}`}
