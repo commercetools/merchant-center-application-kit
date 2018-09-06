@@ -117,6 +117,7 @@ export default ({ getCorrelationId, getProjectKey }) => {
             // but only in certain cases. See "Checking that the fetch was successful"
             // in https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
             // The SDK already handles this case for us.
+
             return result.body;
           },
           error => {
