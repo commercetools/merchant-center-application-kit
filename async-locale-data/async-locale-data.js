@@ -13,22 +13,22 @@ class AsyncLocaleData extends React.Component {
   static displayName = 'AsyncLocaleData';
   static propTypes = {
     children: PropTypes.func.isRequired,
-    locale: PropTypes.string,
+    locale: PropTypes.string.isRequired,
   };
 
   state = {
-    locale: null,
+    language: 'en',
     messages: null,
   };
 
   componentDidMount() {
-    const lang = extractLanguageFromLocale(this.props.locale);
+    const language = extractLanguageFromLocale(this.props.locale);
     const country = extractCountryFromLocale(this.props.locale);
-    loadI18n(lang, country).then(
+    loadI18n(language, country).then(
       data => {
         this.setState({
+          language,
           messages: data,
-          locale: lang,
         });
       },
       error => reportErrorToSentry(error, {})
@@ -37,13 +37,13 @@ class AsyncLocaleData extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (!prevProps.locale || prevProps.locale !== this.props.locale) {
-      const lang = extractLanguageFromLocale(this.props.locale);
+      const language = extractLanguageFromLocale(this.props.locale);
       const country = extractCountryFromLocale(this.props.locale);
-      loadI18n(lang, country).then(
+      loadI18n(language, country).then(
         data => {
           this.setState({
+            language,
             messages: data,
-            locale: lang,
           });
         },
         error => reportErrorToSentry(error, {})
@@ -53,7 +53,7 @@ class AsyncLocaleData extends React.Component {
 
   render() {
     return this.props.children({
-      locale: this.state.locale,
+      language: this.state.language,
       messages: this.state.messages,
     });
   }
