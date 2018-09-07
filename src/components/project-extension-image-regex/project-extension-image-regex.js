@@ -17,7 +17,7 @@ const ProjectExtensionProviderForImageRegex = props => (
     {({ loading, data }) => (
       <Provider
         value={{
-          loading,
+          isLoading: loading,
           imageRegex:
             data && data.projectExtension && data.projectExtension.imageRegex,
         }}

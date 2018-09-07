@@ -14,10 +14,10 @@ describe('rendering', () => {
           </ProjectExtensionProviderForImageRegex>
         ).renderProp('children', { loading: true, data: undefined });
       });
-      it('should pass value object with "loading" state "true" to Provider', () => {
+      it('should pass value object with "isLoading" state "true" to Provider', () => {
         expect(wrapper).toHaveProp(
           'value',
-          expect.objectContaining({ loading: true })
+          expect.objectContaining({ isLoading: true })
         );
       });
       it('should pass value object with "imageRegex" undefined to Provider', () => {
@@ -48,10 +48,10 @@ describe('rendering', () => {
           },
         });
       });
-      it('should pass value object with "loading" state "false" to Provider', () => {
+      it('should pass value object with "isLoading" state "false" to Provider', () => {
         expect(wrapper).toHaveProp(
           'value',
-          expect.objectContaining({ loading: false })
+          expect.objectContaining({ isLoading: false })
         );
       });
       it('should pass value object with "imageRegex" to Provider', () => {
