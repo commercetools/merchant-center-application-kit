@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Router, Redirect, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
+import omit from 'lodash.omit';
 import { joinPaths } from '@commercetools-frontend/url-utils';
 import * as storage from '@commercetools-frontend/storage';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
@@ -19,6 +20,7 @@ import * as uiKitMessages from '@commercetools-frontend/ui-kit/i18n';
 import PortalsContainer from '../portals-container';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
+import FetchProject from '../fetch-project';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import Authenticated from '../authenticated';
 import AppBar from '../app-bar';
@@ -35,7 +37,7 @@ import SetupFlopFlipProvider, {
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
 import GtmBooter from '../gtm-booter';
-import NavBar from '../navbar';
+import NavBar, { LoadingNavBar } from '../navbar';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
 import {
@@ -53,6 +55,13 @@ export const getBrowserLanguage = window => {
 export const extractLanguageFromLocale = locale =>
   locale.includes('-') ? locale.split('-')[0] : locale;
 
+const getUserLocale = ({ user, error }) => {
+  if (error || !user) {
+    return getBrowserLanguage(window);
+  }
+  return user.language;
+};
+
 export const mergeMessages = (...messages) => Object.assign({}, ...messages);
 
 /**
@@ -62,27 +71,21 @@ export const mergeMessages = (...messages) => Object.assign({}, ...messages);
 
 export const RestrictedApplication = props => (
   <FetchUser>
-    {({ isLoading, user, error }) => {
+    {({ isLoading: isLoadingUser, user, error }) => {
       // TODO: inspect the error in case we want to be more specific
       // about the error message and give detailed instructions.
 
-      if (isLoading) {
-        return null;
-      }
-
-      const userLocale = error
-        ? getBrowserLanguage(window)
-        : user && user.language;
+      const userLocale = getUserLocale({ user, error });
 
       return (
         <AsyncLocaleData locale={userLocale}>
-          {({ locale, messages }) => {
+          {({ language, messages }) => {
             if (error) {
               reportErrorToSentry(error, {});
               return (
                 <ConfigureIntlProvider
-                  locale={locale}
-                  messages={mergeMessages(messages, uiKitMessages[locale])}
+                  language={language}
+                  messages={mergeMessages(messages, uiKitMessages[language])}
                 >
                   <ErrorApologizer />
                 </ConfigureIntlProvider>
@@ -95,8 +98,8 @@ export const RestrictedApplication = props => (
                 // has no `timeZone` defined so the `defaultProps` in the
                 // `<Context.Provider>` kick in.
                 timeZone={user && user.timeZone ? user.timeZone : undefined}
-                locale={locale}
-                messages={mergeMessages(messages, uiKitMessages[locale])}
+                language={language}
+                messages={mergeMessages(messages, uiKitMessages[language])}
               >
                 <SetupFlopFlipProvider
                   user={user}
@@ -131,13 +134,26 @@ export const RestrictedApplication = props => (
                           const projectKeyFromUrl = selectProjectKeyFromUrl();
                           if (!projectKeyFromUrl) return null;
                           return (
-                            <NavBar
-                              applicationLanguage={locale}
-                              projectKey={projectKeyFromUrl}
-                              useFullRedirectsForLinks={
-                                props.INTERNAL__isApplicationFallback
-                              }
-                            />
+                            <FetchProject projectKey={projectKeyFromUrl}>
+                              {({ isLoading: isLoadingProject, project }) => {
+                                if (isLoadingUser || isLoadingProject)
+                                  return <LoadingNavBar />;
+
+                                const projectPermissions = project
+                                  ? omit(project.permissions, ['__typename'])
+                                  : {};
+                                return (
+                                  <NavBar
+                                    applicationLanguage={language}
+                                    projectKey={projectKeyFromUrl}
+                                    projectPermissions={projectPermissions}
+                                    useFullRedirectsForLinks={
+                                      props.INTERNAL__isApplicationFallback
+                                    }
+                                  />
+                                );
+                              }}
+                            </FetchProject>
                           );
                         })()}
                       </aside>
@@ -147,73 +163,79 @@ export const RestrictedApplication = props => (
                        * So we have to use a div and give it the role `main`
                        * to achieve the same semantic result
                        */}
-                      <div role="main" className={styles.main}>
-                        <PortalsContainer />
-                        <NotificationsList domain={DOMAINS.PAGE} />
-                        <NotificationsList domain={DOMAINS.SIDE} />
-                        <div className={styles.content}>
-                          <Switch>
-                            <Redirect from="/profile" to="/account/profile" />
-                            <Route
-                              path="/account"
-                              // Render the children and pass the control to the
-                              // specific application part
-                              render={props.render}
-                            />
-                            {/* Project routes */}
-                            {/* Redirect from base project route to dashboard */}
-                            <Route
-                              exact={true}
-                              path="/:projectKey"
-                              render={({ match }) => (
-                                <Redirect
-                                  to={joinPaths(match.url, 'dashboard')}
-                                />
-                              )}
-                            />
-                            <Route
-                              exact={true}
-                              path="/"
-                              render={() =>
-                                user ? (
-                                  // This is the only case where we need to look into localStorage
-                                  // to attempt to get the previously known `projectKey`.
-                                  // If none is found, we use the `defaultProjectKey` set by the API.
-                                  <Redirect
-                                    to={`/${selectProjectKeyFromLocalStorage() ||
-                                      user.defaultProjectKey}`}
-                                  />
-                                ) : (
-                                  <ApplicationLoader />
-                                )
-                              }
-                            />
-                            <Route
-                              exact={false}
-                              path="/:projectKey"
-                              render={routerProps => (
-                                <React.Fragment>
-                                  <ReconfigureFlopFlip
-                                    user={getFlopflipReconfiguration(
-                                      routerProps.match.params.projectKey
-                                    )}
-                                  />
-                                  <ProjectContainer
-                                    isLoadingUser={isLoading}
-                                    user={user}
-                                    match={routerProps.match}
-                                    location={routerProps.location}
-                                    // This effectively renders the
-                                    // children, which is the application
-                                    // specific part
-                                    render={props.render}
-                                  />
-                                </React.Fragment>
-                              )}
-                            />
-                          </Switch>
+                      {isLoadingUser ? (
+                        <div role="main" className={styles.main}>
+                          <ApplicationLoader />
                         </div>
-                      </div>
+                      ) : (
+                        <div role="main" className={styles.main}>
+                          <PortalsContainer />
+                          <NotificationsList domain={DOMAINS.PAGE} />
+                          <NotificationsList domain={DOMAINS.SIDE} />
+                          <div className={styles.content}>
+                            <Switch>
+                              <Redirect from="/profile" to="/account/profile" />
+                              <Route
+                                path="/account"
+                                // Render the children and pass the control to the
+                                // specific application part
+                                render={props.render}
+                              />
+                              {/* Project routes */}
+                              {/* Redirect from base project route to dashboard */}
+                              <Route
+                                exact={true}
+                                path="/:projectKey"
+                                render={({ match }) => (
+                                  <Redirect
+                                    to={joinPaths(match.url, 'dashboard')}
+                                  />
+                                )}
+                              />
+                              <Route
+                                exact={true}
+                                path="/"
+                                render={() =>
+                                  user ? (
+                                    // This is the only case where we need to look into localStorage
+                                    // to attempt to get the previously known `projectKey`.
+                                    // If none is found, we use the `defaultProjectKey` set by the API.
+                                    <Redirect
+                                      to={`/${selectProjectKeyFromLocalStorage() ||
+                                        user.defaultProjectKey}`}
+                                    />
+                                  ) : (
+                                    <ApplicationLoader />
+                                  )
+                                }
+                              />
+                              <Route
+                                exact={false}
+                                path="/:projectKey"
+                                render={routerProps => (
+                                  <React.Fragment>
+                                    <ReconfigureFlopFlip
+                                      user={getFlopflipReconfiguration(
+                                        routerProps.match.params.projectKey
+                                      )}
+                                    />
+                                    <ProjectContainer
+                                      isLoadingUser={isLoadingUser}
+                                      user={user}
+                                      match={routerProps.match}
+                                      location={routerProps.location}
+                                      // This effectively renders the
+                                      // children, which is the application
+                                      // specific part
+                                      render={props.render}
+                                    />
+                                  </React.Fragment>
+                                )}
+                              />
+                            </Switch>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </React.Fragment>
                 </SetupFlopFlipProvider>
@@ -332,16 +354,16 @@ export default class ApplicationShell extends React.Component {
                                 }
                               />
                             );
-                          const browserLocale = getBrowserLanguage(window);
+                          const browserLanguage = getBrowserLanguage(window);
 
                           return (
-                            <AsyncLocaleData locale={browserLocale}>
-                              {({ locale, messages }) => (
+                            <AsyncLocaleData locale={browserLanguage}>
+                              {({ language, messages }) => (
                                 <ConfigureIntlProvider
-                                  locale={locale}
+                                  language={language}
                                   messages={mergeMessages(
                                     messages,
-                                    uiKitMessages[locale]
+                                    uiKitMessages[language]
                                   )}
                                 >
                                   <UnrestrictedApplication />

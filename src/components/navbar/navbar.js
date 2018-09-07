@@ -7,7 +7,6 @@ import { graphql } from 'react-apollo';
 import { ToggleFeature, injectFeatureToggle } from '@flopflip/react-broadcast';
 import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
-import omit from 'lodash.omit';
 import oneLineTrim from 'common-tags/lib/oneLineTrim';
 import * as Icons from '@commercetools-frontend/ui-kit/icons';
 import * as storage from '@commercetools-frontend/storage';
@@ -21,7 +20,6 @@ import {
   permissions,
 } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS } from '../../constants';
-import { withProject } from '../fetch-project';
 import { PROJECT_EXTENSIONS } from './feature-toggles';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
 import styles from './navbar.mod.css';
@@ -485,6 +483,25 @@ export class DataMenu extends React.PureComponent {
   }
 }
 
+export const NavBarLayout = props => (
+  <nav
+    ref={props.getNode}
+    className={styles['left-navigation']}
+    data-test="left-navigation"
+    data-track-component="Navigation"
+  >
+    {props.children}
+  </nav>
+);
+NavBarLayout.displayName = 'NavBarLayout';
+NavBarLayout.propTypes = {
+  getNode: PropTypes.func.isRequired,
+  children: PropTypes.node,
+};
+NavBarLayout.defaultProps = {
+  getNode: () => {},
+};
+
 export class NavBar extends React.PureComponent {
   static displayName = 'NavBar';
 
@@ -492,11 +509,11 @@ export class NavBar extends React.PureComponent {
     // From parent
     applicationLanguage: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
+    projectPermissions: PropTypes.object.isRequired,
     useFullRedirectsForLinks: PropTypes.bool.isRequired,
     // Injected
     location: PropTypes.object.isRequired,
     isForcedMenuOpen: PropTypes.bool,
-    projectPermissions: PropTypes.object.isRequired,
     projectExtensionsQuery: PropTypes.shape({
       projectExtension: PropTypes.shape({
         id: PropTypes.string.isRequired,
@@ -519,12 +536,7 @@ export class NavBar extends React.PureComponent {
 
   render() {
     return (
-      <nav
-        ref={this.getNode}
-        className={styles['left-navigation']}
-        data-test="left-navigation"
-        data-track-component="Navigation"
-      >
+      <NavBarLayout getNode={this.getNode}>
         <AppShellProviderForUserPermissions
           permissions={this.props.projectPermissions}
         >
@@ -547,7 +559,7 @@ export class NavBar extends React.PureComponent {
             useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}
           />
         </AppShellProviderForUserPermissions>
-      </nav>
+      </NavBarLayout>
     );
   }
 }
@@ -566,14 +578,6 @@ export default compose(
           : null,
     };
   }),
-  withProject(
-    ownProps => ownProps.projectKey,
-    projectData => ({
-      projectPermissions: projectData.project
-        ? omit(projectData.project.permissions, ['__typename'])
-        : {},
-    })
-  ),
   graphql(FetchProjectExtensionsNavbar, {
     name: 'projectExtensionsQuery',
     skip: ownProps => !ownProps.areProjectExtensionsEnabled,
@@ -585,3 +589,26 @@ export default compose(
     }),
   })
 )(NavBar);
+
+export const LoadingNavBar = () => (
+  <NavBarLayout>
+    <MenuGroup level={1}>
+      <React.Fragment>
+        {Array.from(new Array(5)).map((_, index) => (
+          <MenuItem
+            key={index}
+            hasSubmenu={false}
+            isMenuOpen={false}
+            isActive={false}
+            onClick={() => {}}
+          >
+            <div className={styles['loading-dot-container']}>
+              <div className={styles['loading-dot']} />
+            </div>
+          </MenuItem>
+        ))}
+      </React.Fragment>
+    </MenuGroup>
+  </NavBarLayout>
+);
+LoadingNavBar.displayName = 'LoadingNavBar';

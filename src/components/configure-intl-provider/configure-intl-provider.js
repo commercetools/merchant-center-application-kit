@@ -21,12 +21,9 @@ const hideAppLoader = once(() => {
 });
 
 const ConfigureIntlProvider = props => {
-  // If there is no locale selected yet, we should avoid rendering
-  // to avoid possible FOUC (flash of untranslated content),
-  if (!props.locale) return null;
   hideAppLoader();
   return (
-    <IntlProvider locale={props.locale} messages={props.messages}>
+    <IntlProvider locale={props.language} messages={props.messages}>
       <AppShellProviderForUserTimeZone timeZone={props.timeZone}>
         {props.children}
       </AppShellProviderForUserTimeZone>
@@ -36,7 +33,7 @@ const ConfigureIntlProvider = props => {
 
 ConfigureIntlProvider.displayName = 'ConfigureIntlProvider';
 ConfigureIntlProvider.propTypes = {
-  locale: PropTypes.string,
+  language: PropTypes.string.isRequired,
   timeZone: PropTypes.string,
   messages: PropTypes.object,
   children: PropTypes.element.isRequired,

@@ -9,6 +9,7 @@ import * as storage from '@commercetools-frontend/storage';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import {
   NavBar,
+  NavBarLayout,
   DataMenu,
   MenuItemLink,
   MenuItem,
@@ -101,8 +102,8 @@ describe('rendering', () => {
       props = createTestProps();
       wrapper = shallow(<NavBar {...props} />);
     });
-    it('should render <nav> element', () => {
-      expect(wrapper).toRender('nav');
+    it('should render <NavBarLayout> element', () => {
+      expect(wrapper).toRender(NavBarLayout);
     });
     it('should render DataMenu component', () => {
       expect(wrapper).toRender('DataMenu');

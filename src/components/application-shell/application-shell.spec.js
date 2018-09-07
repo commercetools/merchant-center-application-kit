@@ -8,6 +8,7 @@ import * as appShellUtils from '../../utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import ProjectContainer from '../project-container';
 import FetchUser from '../fetch-user';
+import FetchProject from '../fetch-project';
 import NavBar from '../navbar';
 import ApplicationShell, {
   RestrictedApplication,
@@ -50,7 +51,7 @@ const renderForAsyncData = ({ props, userData }) =>
     .renderProp('children', userData)
     .find(AsyncLocaleData)
     .renderProp('children', {
-      locale: 'en',
+      language: 'en',
       messages: { title: 'Test en' },
     });
 
@@ -122,15 +123,15 @@ describe('rendering', () => {
           })
           .find(AsyncLocaleData)
           .renderProp('children', {
-            locale: 'en',
+            language: 'en',
             messages: {
               title: 'Title en',
             },
           });
       });
-      it('should pass "locale" to <ConfigureIntlProvider>', () => {
+      it('should pass "language" to <ConfigureIntlProvider>', () => {
         expect(authRenderWrapper.find(ConfigureIntlProvider)).toHaveProp(
-          'locale',
+          'language',
           'en'
         );
       });
@@ -183,8 +184,11 @@ describe('<RestrictedApplication>', () => {
         };
         wrapper = renderForAsyncData({ props, userData });
       });
-      it('should pass "locale" to <ConfigureIntlProvider>', () => {
-        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp('locale', 'en');
+      it('should pass "language" to <ConfigureIntlProvider>', () => {
+        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
+          'language',
+          'en'
+        );
       });
       it('should render <ErrorApologizer>', () => {
         expect(wrapper).toRender('ErrorApologizer');
@@ -248,8 +252,18 @@ describe('<RestrictedApplication>', () => {
       describe('when there is a project key in the url', () => {
         beforeEach(() => {
           appShellUtils.selectProjectKeyFromUrl.mockReturnValue('foo-1');
+          userData = {
+            isLoading: false,
+            // user: { language: 'en' },
+          };
           wrapper = renderForAsyncData({ props, userData });
-          wrapperAside = wrapper.find('aside');
+          wrapperAside = wrapper
+            .find('aside')
+            .find(FetchProject)
+            .renderProp('children', {
+              isLoading: false,
+              project: { permissions: { canManageProject: true } },
+            });
         });
         it('should pass the projectKey matched from the URL', () => {
           expect(wrapperAside.find(NavBar)).toHaveProp('projectKey', 'foo-1');

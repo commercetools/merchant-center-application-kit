@@ -89,3 +89,36 @@
 .language-switch > * {
   flex: 1 0 auto;
 }
+
+.loading-placeholder {
+  background-color: var(--color-gray);
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.loading-rect {
+  composes: loading-placeholder;
+  width: 150px;
+  height: 30px;
+  border-radius: 4px;
+}
+
+.loading-dot {
+  composes: loading-placeholder;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: var(--color-gray);
+  }
+  100% {
+    background-color: var(--color-gray-95);
+  }
+}
