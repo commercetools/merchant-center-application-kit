@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import LoadingSpinner from '@commercetools-frontend/ui-kit/loading-spinner';
+import { LoadingSpinner } from '@commercetools-frontend/ui-kit';
 import ApplicationLoader from './application-loader';
 
 describe('rendering', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LogoSVG from '@commercetools-frontend/ui-kit/materials/images/ct-logo.svg';
-import LoadingSpinner from '@commercetools-frontend/ui-kit/loading-spinner';
+import { LoadingSpinner } from '@commercetools-frontend/ui-kit';
 import styles from './application-loader.mod.css';
 
 const ApplicationLoader = props => (

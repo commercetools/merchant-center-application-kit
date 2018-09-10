@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
 import ProjectSuspended from '@commercetools-frontend/ui-kit/materials/images/maintenance/project-suspended.svg';
-import Text from '@commercetools-frontend/ui-kit/typography/text';
+import { Text } from '@commercetools-frontend/ui-kit';
 import ServicePageResponseLayout from '../../from-core/service-page-response-layout';
 import messages from './messages';
 

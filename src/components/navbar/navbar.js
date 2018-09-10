@@ -8,7 +8,7 @@ import { ToggleFeature, injectFeatureToggle } from '@flopflip/react-broadcast';
 import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
 import oneLineTrim from 'common-tags/lib/oneLineTrim';
-import * as Icons from '@commercetools-frontend/ui-kit/icons';
+import * as UIKit from '@commercetools-frontend/ui-kit';
 import * as storage from '@commercetools-frontend/storage';
 import {
   GRAPHQL_TARGETS,
@@ -53,7 +53,7 @@ export const MenuExpander = props => (
         FIXME: define hover effect.
         https://github.com/commercetools/merchant-center-frontend/issues/2216
       */}
-      <Icons.BackIcon theme="white" size="big" />
+      <UIKit.BackIcon theme="white" size="big" />
     </div>
   </li>
 );
@@ -384,7 +384,7 @@ export class DataMenu extends React.PureComponent {
       <MenuGroup level={1}>
         {this.props.data.map((menu, index) => {
           const isActive = this.state.activeItemIndex === index;
-          const MenuIcon = Icons[menu.icon];
+          const MenuIcon = UIKit[menu.icon];
           const hasSubmenu = Boolean(menu.submenu) && menu.submenu.length > 0;
           return (
             <ToggledWithPermissions

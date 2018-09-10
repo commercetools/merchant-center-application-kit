@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import {
-  SuccessIcon,
-  CloseBoldIcon,
-} from '@commercetools-frontend/ui-kit/icons';
+import { SuccessIcon, CloseBoldIcon } from '@commercetools-frontend/ui-kit';
 import styles from './password-requirement.mod.css';
 
 const PasswordRequirement = props => {

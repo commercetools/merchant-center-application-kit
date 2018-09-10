@@ -7,7 +7,7 @@ import Select from 'react-select';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import classnames from 'classnames';
-import { ErrorIcon } from '@commercetools-frontend/ui-kit/icons';
+import { ErrorIcon } from '@commercetools-frontend/ui-kit';
 import styles from './project-switcher.mod.css';
 import ProjectsQuery from './project-switcher.graphql';
 import messages from './messages';

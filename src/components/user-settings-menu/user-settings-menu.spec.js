@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Downshift from 'downshift';
-import { CaretDownIcon } from '@commercetools-frontend/ui-kit/icons';
+import { CaretDownIcon } from '@commercetools-frontend/ui-kit';
 import { MCSupportFormURL } from '../../constants';
 import UserSettingsMenu, { UserAvatar } from './user-settings-menu';
 

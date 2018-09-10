@@ -1,9 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import {
-  SuccessIcon,
-  CloseBoldIcon,
-} from '@commercetools-frontend/ui-kit/icons';
+import { SuccessIcon, CloseBoldIcon } from '@commercetools-frontend/ui-kit';
 import PasswordRequirement from './password-requirement';
 import styles from './password-requirement.mod.css';
 

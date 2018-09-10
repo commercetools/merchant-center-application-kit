@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import Spacings from '@commercetools-frontend/ui-kit/materials/spacings';
-import Text from '@commercetools-frontend/ui-kit/typography/text';
+import { Spacings, Text } from '@commercetools-frontend/ui-kit';
 import PortalsContainer from '../portals-container';
 import styles from './public-page-container.mod.css';
 import messages from './messages';

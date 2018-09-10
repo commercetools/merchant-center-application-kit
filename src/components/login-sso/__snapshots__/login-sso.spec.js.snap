@@ -2,7 +2,7 @@
 
 exports[`rendering <Formik> form elements should match layout 1`] = `
 <div
-  className="m stretch"
+  className="stack-mod_m__3RfZO stack-mod_stretch__3aWvN"
 >
   <Title>
     <FormattedMessage
