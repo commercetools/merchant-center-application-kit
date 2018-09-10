@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { compose, setDisplayName, getDisplayName } from 'recompose';
-import withMouseOverState from '@commercetools-frontend/ui-kit/hocs/with-mouse-over-state';
-import { CloseIcon } from '@commercetools-frontend/ui-kit/icons';
+import { CloseIcon, withMouseOverState } from '@commercetools-frontend/ui-kit';
 import styles from './button-close.mod.css';
 
 export const ButtonClose = props => (

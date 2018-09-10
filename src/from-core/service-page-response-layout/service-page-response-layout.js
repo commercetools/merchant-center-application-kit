@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Text from '@commercetools-frontend/ui-kit/typography/text';
+import { Text } from '@commercetools-frontend/ui-kit';
 import styles from './service-page-response-layout.mod.css';
 
 const ServicePageResponseLayout = props => (
