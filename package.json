@@ -8,5 +8,9 @@
   "module": "./index.js",
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "deep-freeze": "0.0.1",
+    "common-tags": "1.8.0"
   }
 }
