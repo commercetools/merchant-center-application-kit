@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "history": "4.7.2",
-    "history-query-enhancer": "1.0.2",
+    "history-query-enhancer": "1.0.4",
     "query-string": "5.1.0"
   }
 }
