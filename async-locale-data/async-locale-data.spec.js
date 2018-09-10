@@ -6,9 +6,7 @@ import AsyncLocaleData from './async-locale-data';
 
 jest.mock('@commercetools-frontend/sentry');
 
-jest.mock('../load-i18n', () =>
-  jest.fn(() => new Promise(resolve => resolve({ title: 'Title en' })))
-);
+jest.mock('../load-i18n', () => jest.fn());
 
 const ChildComponent = () => <div>Child</div>;
 
@@ -22,16 +20,16 @@ describe('rendering', () => {
   let wrapper;
   let props;
   describe('if there is an error', () => {
-    const error = new Error('oh no!');
+    let error;
     beforeEach(() => {
+      error = new Error('oh no!');
       loadI18n.mockClear();
+      loadI18n.mockImplementation(jest.fn(() => Promise.reject(error)));
       props = createTestProps();
       wrapper = shallow(<AsyncLocaleData {...props} />);
     });
     describe('when component is mounted', () => {
       beforeEach(() => {
-        loadI18n.mockClear();
-        loadI18n.mockImplementation(jest.fn(() => Promise.reject(error)));
         reportErrorToSentry.mockClear();
         wrapper.instance().componentDidMount();
       });
@@ -43,22 +41,27 @@ describe('rendering', () => {
 
   describe('if there is no error', () => {
     beforeEach(() => {
+      loadI18n.mockClear();
+      loadI18n.mockImplementation(
+        jest.fn(() => Promise.resolve({ title: 'Title en' }))
+      );
       props = createTestProps();
       wrapper = shallow(<AsyncLocaleData {...props} />);
-      loadI18n.mockClear();
     });
     describe('when component is mounted', () => {
       beforeEach(() => {
-        props = createTestProps();
-        wrapper = shallow(<AsyncLocaleData {...props} />);
         wrapper.instance().componentDidMount();
       });
 
       it('should call `loadIntl`', () => {
         expect(loadI18n).toHaveBeenCalled();
       });
-      it('should call `children`', () => {
-        expect(props.children).toHaveBeenCalled();
+      it('should call `children` with state', () => {
+        expect(props.children).toHaveBeenCalledWith({
+          isLoading: false,
+          language: 'en',
+          messages: { title: 'Title en' },
+        });
       });
     });
 
@@ -91,6 +94,24 @@ describe('rendering', () => {
 
       it('should call `loadIntl` with `de` and `at`', () => {
         expect(loadI18n).toHaveBeenCalledWith('de', 'at');
+      });
+    });
+  });
+
+  describe('when locale is not defined', () => {
+    beforeEach(() => {
+      loadI18n.mockClear();
+      props = createTestProps({ locale: null });
+      wrapper = shallow(<AsyncLocaleData {...props} />);
+    });
+    it('should not call `loadIntl`', () => {
+      expect(loadI18n).not.toHaveBeenCalled();
+    });
+    it('should call `children` with state', () => {
+      expect(props.children).toHaveBeenCalledWith({
+        isLoading: true,
+        language: null,
+        messages: null,
       });
     });
   });
