@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@commercetools-frontend/sentry": "1.0.0-beta.30",
+    "moment": "2.22.2",
     "prop-types": "15.6.2",
     "react": "16.5.0",
     "recompose": "0.26.0"
