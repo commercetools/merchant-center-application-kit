@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { compose } from 'recompose';
 import { withUser } from '@commercetools-frontend/application-shell';
-import LoadingSpinner from '@commercetools-frontend/ui-kit/loading-spinner';
-import Table from '@commercetools-frontend/ui-kit/table';
-import Spacings from '@commercetools-frontend/ui-kit/materials/spacings';
-import Constraints from '@commercetools-frontend/ui-kit/materials/constraints';
-import Text from '@commercetools-frontend/ui-kit/typography/text';
+import {
+  LoadingSpinner,
+  Table,
+  Spacings,
+  Constraints,
+  Text,
+} from '@commercetools-frontend/ui-kit';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import PageBottomSpacer from '../page-bottom-spacer';
 import ChannelsListConnector from '../channels-list-connector';

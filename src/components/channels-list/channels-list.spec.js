@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Table from '@commercetools-frontend/ui-kit/table';
+import { Table } from '@commercetools-frontend/ui-kit';
 import ChannelsListConnector from '../channels-list-connector';
 import { ChannelsList } from './channels-list';
 
