@@ -12,7 +12,6 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
     }
   />
   <InjectIntl(ProjectContainer)
-    isLoadingUser={false}
     location={
       Object {
         "pathname": "/test-project/products",

@@ -20,7 +20,6 @@ const createTestProps = custom => ({
   location: {
     pathname: '/test-project/products',
   },
-  isLoadingUser: false,
   user: { projects: { total: 0 } },
   intl: {
     formatMessage: jest.fn(),
@@ -52,173 +51,184 @@ describe('rendering', () => {
       expect(wrapper).toRender('ErrorApologizer');
     });
   });
-  describe('when user is loading', () => {
+  describe('when user has no projects', () => {
     beforeEach(() => {
-      props = createTestProps({ isLoadingUser: true });
+      props = createTestProps({
+        isLoadingUser: false,
+        user: { projects: { total: 0 } },
+      });
       wrapper = shallow(<ProjectContainer {...props} />);
     });
-    it('should render <ApplicationLoader>', () => {
-      expect(wrapper).toRender(ApplicationLoader);
+    it('should render <Redirect> with target to logout', () => {
+      expect(wrapper.find(Redirect)).toHaveProp(
+        'to',
+        '/logout?reason=no-projects'
+      );
     });
   });
-  describe('when user is not loading', () => {
-    describe('when user has no projects', () => {
-      beforeEach(() => {
-        props = createTestProps({
-          isLoadingUser: false,
-          user: { projects: { total: 0 } },
-        });
-        wrapper = shallow(<ProjectContainer {...props} />);
+  describe('when user has projects', () => {
+    beforeEach(() => {
+      props = createTestProps({
+        isLoadingUser: false,
+        user: { projects: { total: 1 } },
       });
-      it('should render <Redirect> with target to logout', () => {
-        expect(wrapper.find(Redirect)).toHaveProp(
-          'to',
-          '/logout?reason=no-projects'
-        );
+      wrapper = shallow(<ProjectContainer {...props} />);
+    });
+    it('should render <FetchProject> with projectKey', () => {
+      expect(wrapper.find(FetchProject)).toHaveProp('projectKey', 'test-1');
+    });
+    describe('when project is loading', () => {
+      beforeEach(() => {
+        wrapper = wrapper.find(FetchProject).renderProp('children', {
+          isLoading: true,
+        });
+      });
+      it('should render <ApplicationLoader>', () => {
+        expect(wrapper).toRender(ApplicationLoader);
       });
     });
-    describe('when user has projects', () => {
+    describe('when project is not found', () => {
       beforeEach(() => {
-        props = createTestProps({
-          isLoadingUser: false,
-          user: { projects: { total: 1 } },
+        wrapper = wrapper.find(FetchProject).renderProp('children', {
+          isLoading: false,
+          project: null,
         });
-        wrapper = shallow(<ProjectContainer {...props} />);
       });
-      it('should render <FetchProject> with projectKey', () => {
-        expect(wrapper.find(FetchProject)).toHaveProp('projectKey', 'test-1');
+      it('should render <ProjectNotFound>', () => {
+        expect(wrapper).toRender(ProjectNotFound);
       });
-      describe('when project is loading', () => {
+    });
+    describe('when project is suspended', () => {
+      beforeEach(() => {
+        wrapper = wrapper.find(FetchProject).renderProp('children', {
+          isLoading: false,
+          project: { suspended: true },
+        });
+      });
+      it('should render <ProjectSuspended>', () => {
+        expect(wrapper).toRender(ProjectSuspended);
+      });
+    });
+    describe('when project has trialDaysLeft', () => {
+      describe('when trial days are less than two weeks (14 days)', () => {
         beforeEach(() => {
-          wrapper = wrapper.find(FetchProject).renderProp('children', {
-            isLoading: true,
-          });
+          wrapper = wrapper
+            .find(FetchProject)
+            .renderProp('children', {
+              isLoading: false,
+              project: {
+                suspended: false,
+                expired: false,
+                settings: {},
+                languages: ['de'],
+                trialDaysLeft: 13,
+              },
+            })
+            .find(ProjectDataLocale)
+            .renderProp('children', {
+              locales: ['de'],
+            });
         });
-        it('should render <ApplicationLoader>', () => {
-          expect(wrapper).toRender(ApplicationLoader);
+        it('should render Notifier component', () => {
+          expect(wrapper).toRender(Notifier);
         });
       });
-      describe('when project is not found', () => {
+      describe('when trial days are greater than two weeks (14 days)', () => {
         beforeEach(() => {
-          wrapper = wrapper.find(FetchProject).renderProp('children', {
-            isLoading: false,
-            project: null,
-          });
+          wrapper = wrapper
+            .find(FetchProject)
+            .renderProp('children', {
+              isLoading: false,
+              project: {
+                suspended: false,
+                expired: false,
+                settings: {},
+                languages: ['de'],
+                trialDaysLeft: 16,
+              },
+            })
+            .find(ProjectDataLocale)
+            .renderProp('children', {
+              locales: ['de'],
+            });
         });
-        it('should render <ProjectNotFound>', () => {
-          expect(wrapper).toRender(ProjectNotFound);
-        });
-      });
-      describe('when project is suspended', () => {
-        beforeEach(() => {
-          wrapper = wrapper.find(FetchProject).renderProp('children', {
-            isLoading: false,
-            project: { suspended: true },
-          });
-        });
-        it('should render <ProjectSuspended>', () => {
-          expect(wrapper).toRender(ProjectSuspended);
-        });
-      });
-      describe('when project has trialDaysLeft', () => {
-        describe('when trial days are less than two weeks (14 days)', () => {
-          beforeEach(() => {
-            wrapper = wrapper
-              .find(FetchProject)
-              .renderProp('children', {
-                isLoading: false,
-                project: {
-                  suspended: false,
-                  expired: false,
-                  settings: {},
-                  languages: ['de'],
-                  trialDaysLeft: 13,
-                },
-              })
-              .find(ProjectDataLocale)
-              .renderProp('children', {
-                locales: ['de'],
-              });
-          });
-          it('should render Notifier component', () => {
-            expect(wrapper).toRender(Notifier);
-          });
-        });
-        describe('when trial days are greater than two weeks (14 days)', () => {
-          beforeEach(() => {
-            wrapper = wrapper
-              .find(FetchProject)
-              .renderProp('children', {
-                isLoading: false,
-                project: {
-                  suspended: false,
-                  expired: false,
-                  settings: {},
-                  languages: ['de'],
-                  trialDaysLeft: 16,
-                },
-              })
-              .find(ProjectDataLocale)
-              .renderProp('children', {
-                locales: ['de'],
-              });
-          });
 
-          it('should not render Notifier component', () => {
-            expect(wrapper).not.toRender(Notifier);
-          });
+        it('should not render Notifier component', () => {
+          expect(wrapper).not.toRender(Notifier);
         });
-        describe('when trial days are equal to two weeks (14 days)', () => {
-          beforeEach(() => {
-            wrapper = wrapper
-              .find(FetchProject)
-              .renderProp('children', {
-                isLoading: false,
-                project: {
-                  suspended: false,
-                  expired: false,
-                  settings: {},
-                  languages: ['de'],
-                  trialDaysLeft: 14,
-                },
-              })
-              .find(ProjectDataLocale)
-              .renderProp('children', {
-                locales: ['de'],
-              });
-          });
+      });
+      describe('when trial days are equal to two weeks (14 days)', () => {
+        beforeEach(() => {
+          wrapper = wrapper
+            .find(FetchProject)
+            .renderProp('children', {
+              isLoading: false,
+              project: {
+                suspended: false,
+                expired: false,
+                settings: {},
+                languages: ['de'],
+                trialDaysLeft: 14,
+              },
+            })
+            .find(ProjectDataLocale)
+            .renderProp('children', {
+              locales: ['de'],
+            });
+        });
 
-          it('should render Notifier component', () => {
-            expect(wrapper).toRender(Notifier);
-          });
+        it('should render Notifier component', () => {
+          expect(wrapper).toRender(Notifier);
         });
       });
-      describe('when project is expired', () => {
+    });
+    describe('when project is expired', () => {
+      beforeEach(() => {
+        wrapper = wrapper.find(FetchProject).renderProp('children', {
+          isLoading: false,
+          project: { suspended: false, expired: true },
+        });
+      });
+      it('should render <ProjectExpired>', () => {
+        expect(wrapper).toRender(ProjectExpired);
+      });
+    });
+    describe('when project has no settings', () => {
+      beforeEach(() => {
+        wrapper = wrapper.find(FetchProject).renderProp('children', {
+          isLoading: false,
+          project: { suspended: false, expired: false, settings: null },
+        });
+      });
+      it('should render <ProjectWithoutSettings>', () => {
+        expect(wrapper).toRender(ProjectWithoutSettings);
+      });
+    });
+    describe('when project is in a valid state', () => {
+      describe('<ProjectDataLocale>', () => {
+        let wrapperDataLocale;
         beforeEach(() => {
-          wrapper = wrapper.find(FetchProject).renderProp('children', {
-            isLoading: false,
-            project: { suspended: false, expired: true },
-          });
+          wrapperDataLocale = wrapper
+            .find(FetchProject)
+            .renderProp('children', {
+              isLoading: false,
+              project: {
+                suspended: false,
+                expired: false,
+                settings: {},
+                languages: ['de'],
+              },
+            })
+            .find(ProjectDataLocale)
+            .renderProp('children', {
+              locale: 'de',
+              setProjectDataLocale: jest.fn(),
+            });
         });
-        it('should render <ProjectExpired>', () => {
-          expect(wrapper).toRender(ProjectExpired);
-        });
-      });
-      describe('when project has no settings', () => {
-        beforeEach(() => {
-          wrapper = wrapper.find(FetchProject).renderProp('children', {
-            isLoading: false,
-            project: { suspended: false, expired: false, settings: null },
-          });
-        });
-        it('should render <ProjectWithoutSettings>', () => {
-          expect(wrapper).toRender(ProjectWithoutSettings);
-        });
-      });
-      describe('when project is in a valid state', () => {
-        describe('<ProjectDataLocale>', () => {
-          let wrapperDataLocale;
+        describe('when <ProjectContainer> is mounted', () => {
           beforeEach(() => {
+            const el = document.createElement('div');
+            wrapper.setState({ localeSwitcherNode: el });
             wrapperDataLocale = wrapper
               .find(FetchProject)
               .renderProp('children', {
@@ -227,7 +237,7 @@ describe('rendering', () => {
                   suspended: false,
                   expired: false,
                   settings: {},
-                  languages: ['de'],
+                  languages: ['de', 'en'],
                 },
               })
               .find(ProjectDataLocale)
@@ -236,7 +246,10 @@ describe('rendering', () => {
                 setProjectDataLocale: jest.fn(),
               });
           });
-          describe('when <ProjectContainer> is mounted', () => {
+          it('should call render function', () => {
+            expect(props.render).toHaveBeenCalled();
+          });
+          describe('when project has more than one language', () => {
             beforeEach(() => {
               const el = document.createElement('div');
               wrapper.setState({ localeSwitcherNode: el });
@@ -257,66 +270,16 @@ describe('rendering', () => {
                   setProjectDataLocale: jest.fn(),
                 });
             });
-            it('should call render function', () => {
-              expect(props.render).toHaveBeenCalled();
-            });
-            describe('when project has more than one language', () => {
-              beforeEach(() => {
-                const el = document.createElement('div');
-                wrapper.setState({ localeSwitcherNode: el });
-                wrapperDataLocale = wrapper
-                  .find(FetchProject)
-                  .renderProp('children', {
-                    isLoading: false,
-                    project: {
-                      suspended: false,
-                      expired: false,
-                      settings: {},
-                      languages: ['de', 'en'],
-                    },
-                  })
-                  .find(ProjectDataLocale)
-                  .renderProp('children', {
-                    locale: 'de',
-                    setProjectDataLocale: jest.fn(),
-                  });
-              });
-              it('should render portal', () => {
-                expect(wrapperDataLocale).toRender(
-                  '#create-portal-has-been-called'
-                );
-              });
-            });
-            describe('when project has only one language', () => {
-              beforeEach(() => {
-                const el = document.createElement('div');
-                wrapper.setState({ localeSwitcherNode: el });
-                wrapperDataLocale = wrapper
-                  .find(FetchProject)
-                  .renderProp('children', {
-                    isLoading: false,
-                    project: {
-                      suspended: false,
-                      expired: false,
-                      settings: {},
-                      languages: ['de'],
-                    },
-                  })
-                  .find(ProjectDataLocale)
-                  .renderProp('children', {
-                    locale: 'de',
-                    setProjectDataLocale: jest.fn(),
-                  });
-              });
-              it('should not render <LocalSwitcher> through a portal', () => {
-                expect(wrapperDataLocale).not.toRender(
-                  '#create-portal-has-been-called'
-                );
-              });
+            it('should render portal', () => {
+              expect(wrapperDataLocale).toRender(
+                '#create-portal-has-been-called'
+              );
             });
           });
-          describe('when <ProjectContainer> is mounting', () => {
+          describe('when project has only one language', () => {
             beforeEach(() => {
+              const el = document.createElement('div');
+              wrapper.setState({ localeSwitcherNode: el });
               wrapperDataLocale = wrapper
                 .find(FetchProject)
                 .renderProp('children', {
@@ -325,7 +288,7 @@ describe('rendering', () => {
                     suspended: false,
                     expired: false,
                     settings: {},
-                    languages: ['de', 'en'],
+                    languages: ['de'],
                   },
                 })
                 .find(ProjectDataLocale)
@@ -339,6 +302,31 @@ describe('rendering', () => {
                 '#create-portal-has-been-called'
               );
             });
+          });
+        });
+        describe('when <ProjectContainer> is mounting', () => {
+          beforeEach(() => {
+            wrapperDataLocale = wrapper
+              .find(FetchProject)
+              .renderProp('children', {
+                isLoading: false,
+                project: {
+                  suspended: false,
+                  expired: false,
+                  settings: {},
+                  languages: ['de', 'en'],
+                },
+              })
+              .find(ProjectDataLocale)
+              .renderProp('children', {
+                locale: 'de',
+                setProjectDataLocale: jest.fn(),
+              });
+          });
+          it('should not render <LocalSwitcher> through a portal', () => {
+            expect(wrapperDataLocale).not.toRender(
+              '#create-portal-has-been-called'
+            );
           });
         });
       });

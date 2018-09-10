@@ -33,7 +33,6 @@ export class ProjectContainer extends React.Component {
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
-    isLoadingUser: PropTypes.bool.isRequired,
     user: PropTypes.shape({
       projects: PropTypes.shape({
         total: PropTypes.number.isRequired,
@@ -108,7 +107,6 @@ export class ProjectContainer extends React.Component {
       return <ErrorApologizer />;
     }
     // TODO: do something if there is an `error`?
-    if (this.props.isLoadingUser) return <ApplicationLoader />;
     if (this.props.user && this.props.user.projects.total === 0)
       return <Redirect to="/logout?reason=no-projects" />;
 

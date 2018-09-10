@@ -23,7 +23,12 @@ const hideAppLoader = once(() => {
 const ConfigureIntlProvider = props => {
   hideAppLoader();
   return (
-    <IntlProvider locale={props.language} messages={props.messages}>
+    // In case the language is not defined yet, we temporary fall back to `en` so
+    // that react-intl does not complain.
+    <IntlProvider
+      locale={props.language || 'en'}
+      messages={props.messages || {}}
+    >
       <AppShellProviderForUserTimeZone timeZone={props.timeZone}>
         {props.children}
       </AppShellProviderForUserTimeZone>
@@ -33,7 +38,7 @@ const ConfigureIntlProvider = props => {
 
 ConfigureIntlProvider.displayName = 'ConfigureIntlProvider';
 ConfigureIntlProvider.propTypes = {
-  language: PropTypes.string.isRequired,
+  language: PropTypes.string,
   timeZone: PropTypes.string,
   messages: PropTypes.object,
   children: PropTypes.element.isRequired,

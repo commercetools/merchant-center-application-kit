@@ -9,7 +9,7 @@ import ConfigureIntlProvider from '../configure-intl-provider';
 import ProjectContainer from '../project-container';
 import FetchUser from '../fetch-user';
 import FetchProject from '../fetch-project';
-import NavBar from '../navbar';
+import NavBar, { LoadingNavBar } from '../navbar';
 import ApplicationShell, {
   RestrictedApplication,
   UnrestrictedApplication,
@@ -45,15 +45,18 @@ const createTestProps = props => ({
   ...props,
 });
 
-const renderForAsyncData = ({ props, userData }) =>
+const testLocaleData = {
+  isLoading: false,
+  language: 'en',
+  messages: { title: 'Test en' },
+};
+
+const renderForAsyncData = ({ props, userData, localeData = testLocaleData }) =>
   shallow(<RestrictedApplication {...props} />)
     .find(FetchUser)
     .renderProp('children', userData)
     .find(AsyncLocaleData)
-    .renderProp('children', {
-      language: 'en',
-      messages: { title: 'Test en' },
-    });
+    .renderProp('children', localeData);
 
 describe('rendering', () => {
   let props;
@@ -151,6 +154,7 @@ describe('<RestrictedApplication>', () => {
   let props;
   let wrapper;
   let userData;
+  let localeData;
   describe('rendering', () => {
     beforeEach(() => {
       props = createTestProps();
@@ -173,6 +177,41 @@ describe('<RestrictedApplication>', () => {
         },
       };
       wrapper = renderForAsyncData({ props, userData });
+    });
+    describe('when user is loading', () => {
+      beforeEach(() => {
+        reportErrorToSentry.mockClear();
+        props = createTestProps();
+        userData = {
+          isLoading: true,
+        };
+        wrapper = shallow(<RestrictedApplication {...props} />)
+          .find(FetchUser)
+          .renderProp('children', userData);
+      });
+      it('should pass "locale" as undefined to <AsyncLocaleData>', () => {
+        expect(wrapper.find(AsyncLocaleData)).toHaveProp('locale', undefined);
+      });
+    });
+    describe('when locale data is loading', () => {
+      beforeEach(() => {
+        reportErrorToSentry.mockClear();
+        wrapper = shallow(<RestrictedApplication {...props} />)
+          .find(FetchUser)
+          .renderProp('children', userData)
+          .find(AsyncLocaleData)
+          .renderProp('children', {
+            isLoading: true,
+            language: null,
+            messages: null,
+          });
+      });
+      it('should not pass "language" prop to <ConfigureIntlProvider>', () => {
+        expect(wrapper.find(ConfigureIntlProvider)).not.toHaveProp('language');
+      });
+      it('should not pass "messages" prop to <ConfigureIntlProvider>', () => {
+        expect(wrapper.find(ConfigureIntlProvider)).not.toHaveProp('messages');
+      });
     });
     describe('when fetching the user returns an error', () => {
       beforeEach(() => {
@@ -254,7 +293,6 @@ describe('<RestrictedApplication>', () => {
           appShellUtils.selectProjectKeyFromUrl.mockReturnValue('foo-1');
           userData = {
             isLoading: false,
-            // user: { language: 'en' },
           };
           wrapper = renderForAsyncData({ props, userData });
           wrapperAside = wrapper
@@ -280,12 +318,66 @@ describe('<RestrictedApplication>', () => {
             props.INTERNAL__isApplicationFallback
           );
         });
+        describe('when user, locale and project are loading', () => {
+          beforeEach(() => {
+            userData = {
+              isLoading: true,
+            };
+            localeData = {
+              isLoading: true,
+            };
+            wrapper = renderForAsyncData({ props, userData, localeData });
+            wrapperAside = wrapper
+              .find('aside')
+              .find(FetchProject)
+              .renderProp('children', {
+                isLoading: true,
+              });
+          });
+          it('should render <LoadingNavBar>', () => {
+            expect(wrapperAside).toRender(LoadingNavBar);
+          });
+        });
+        describe('when user is loaded, locale and project are loading', () => {
+          beforeEach(() => {
+            localeData = {
+              isLoading: true,
+            };
+            wrapper = renderForAsyncData({ props, userData, localeData });
+            wrapperAside = wrapper
+              .find('aside')
+              .find(FetchProject)
+              .renderProp('children', {
+                isLoading: true,
+              });
+          });
+          it('should render <LoadingNavBar>', () => {
+            expect(wrapperAside).toRender(LoadingNavBar);
+          });
+        });
+        describe('when user and locale data are loaded, project is loading', () => {
+          beforeEach(() => {
+            wrapper = renderForAsyncData({ props, userData });
+            wrapperAside = wrapper
+              .find('aside')
+              .find(FetchProject)
+              .renderProp('children', {
+                isLoading: true,
+              });
+          });
+          it('should render <LoadingNavBar>', () => {
+            expect(wrapperAside).toRender(LoadingNavBar);
+          });
+        });
       });
       describe('when there is no project key in the url', () => {
         beforeEach(() => {
           appShellUtils.selectProjectKeyFromUrl.mockReturnValue();
           wrapper = renderForAsyncData({ props, userData });
           wrapperAside = wrapper.find('aside');
+        });
+        it('should not render <LoadingNavBar>', () => {
+          expect(wrapperAside).not.toRender(LoadingNavBar);
         });
         it('should not render <NavBar>', () => {
           expect(wrapperAside).not.toRender(NavBar);
