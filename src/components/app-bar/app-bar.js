@@ -8,6 +8,7 @@ import {
 } from '../../utils';
 import UserSettingsMenu from '../user-settings-menu';
 import ProjectSwitcher from '../project-switcher';
+import LoadingPlaceholder from '../loading-placeholder';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/constants';
 import styles from './app-bar.mod.css';
 
@@ -32,7 +33,7 @@ const AppBar = props => (
             <div id="locale-switcher" />
             {(() => {
               if (!props.user) {
-                return <div className={styles['loading-rect']} />;
+                return <LoadingPlaceholder shape="rect" size="s" />;
               }
               // The `<ProjectSwitcher>` should be rendered only if the
               // user is fetched and the user has projects.
@@ -65,7 +66,7 @@ const AppBar = props => (
             gravatarHash={props.user.gravatarHash}
           />
         ) : (
-          <div className={styles['loading-dot']} />
+          <LoadingPlaceholder shape="dot" size="l" />
         )}
       </Spacings.Inline>
     </div>

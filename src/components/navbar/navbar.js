@@ -21,6 +21,7 @@ import {
 } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS } from '../../constants';
 import { PROJECT_EXTENSIONS } from './feature-toggles';
+import LoadingPlaceholder from '../loading-placeholder';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
 import styles from './navbar.mod.css';
 import { defaultNavigationItems } from './config';
@@ -603,7 +604,7 @@ export const LoadingNavBar = () => (
             onClick={() => {}}
           >
             <div className={styles['loading-dot-container']}>
-              <div className={styles['loading-dot']} />
+              <LoadingPlaceholder shape="dot" size="m" />
             </div>
           </MenuItem>
         ))}

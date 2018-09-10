@@ -1,0 +1,84 @@
+@import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/sizes.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/spacings.mod.css';
+
+:root {
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --rect-width-s: 150px;
+  --rect-width-m: 300px;
+  --rect-width-l: 450px;
+  --rect-width-xl: 600px;
+  --rect-height: 32px;
+}
+
+.base {
+  background-color: var(--color-gray);
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: var(--color-gray);
+  }
+  100% {
+    background-color: var(--color-gray-95);
+  }
+}
+
+.dot-s {
+  composes: base;
+  width: var(--spacing-8);
+  height: var(--spacing-8);
+  border-radius: var(--radius-4);
+}
+.dot-m {
+  composes: base;
+  width: var(--spacing-16);
+  height: var(--spacing-16);
+  border-radius: var(--radius-8);
+}
+.dot-l {
+  composes: base;
+  width: var(--spacing-24);
+  height: var(--spacing-24);
+  border-radius: var(--radius-12);
+}
+.dot-xl {
+  composes: base;
+  width: var(--spacing-32);
+  height: var(--spacing-32);
+  border-radius: var(--radius-16);
+}
+
+.rect-s {
+  composes: base;
+  width: var(--rect-width-s);
+  height: var(--rect-height);
+  border-radius: var(--radius-4);
+}
+.rect-m {
+  composes: base;
+  width: var(--rect-width-m);
+  height: var(--rect-height);
+  border-radius: var(--radius-4);
+}
+.rect-l {
+  composes: base;
+  width: var(--rect-width-l);
+  height: var(--rect-height);
+  border-radius: var(--radius-4);
+}
+.rect-xl {
+  composes: base;
+  width: var(--rect-width-xl);
+  height: var(--rect-height);
+  border-radius: var(--radius-4);
+}

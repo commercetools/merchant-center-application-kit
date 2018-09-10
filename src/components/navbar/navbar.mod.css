@@ -320,26 +320,3 @@
   align-items: center;
   justify-content: center;
 }
-
-.loading-dot {
-  width: 16px;
-  height: 16px;
-  border-radius: 8px;
-  background-color: var(--color-green);
-  animation-name: pulse;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  animation-delay: 0;
-  animation-direction: alternate;
-  animation-iteration-count: infinite;
-}
-
-@keyframes pulse {
-  0% {
-    background-color: var(--color-green);
-  }
-  100% {
-    background-color: var(--color-green-95);
-  }
-}
-
