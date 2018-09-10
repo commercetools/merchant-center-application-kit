@@ -6,6 +6,7 @@ exports[`rendering should match snapshot 1`] = `
     Object {
       "configure": [Function],
       "getFlag": [Function],
+      "getIsReady": [Function],
       "reconfigure": [Function],
       "updateUserContext": [Function],
     }
