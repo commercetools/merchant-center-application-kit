@@ -15,10 +15,12 @@
     "@commercetools-frontend/notifications": "1.0.0-beta.30",
     "@commercetools-frontend/sentry": "1.0.0-beta.30",
     "@commercetools-frontend/ui-kit": "1.0.0-beta.30",
+    "classnames": "2.2.6",
     "lodash.has": "4.5.2",
     "lodash.isnumber": "3.0.3",
     "prop-types": "15.6.2",
     "react": "16.5.0",
+    "recompose": "0.26.0",
     "react-intl": "2.4.0",
     "react-redux": "5.0.7",
     "reselect": "3.0.1"
