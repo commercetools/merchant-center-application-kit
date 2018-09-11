@@ -129,7 +129,7 @@ export class ProjectContainer extends React.Component {
                 }
               />
             );
-          if (project.expired) return <ProjectExpired />;
+          if (project.expiry.isActive) return <ProjectExpired />;
           if (!project.settings) return <ProjectWithoutSettings />;
 
           return (
@@ -139,15 +139,16 @@ export class ProjectContainer extends React.Component {
               <ProjectDataLocale locales={project.languages}>
                 {({ locale, setProjectDataLocale }) => (
                   <React.Fragment>
-                    {!isNil(project.trialDaysLeft) &&
-                      project.trialDaysLeft <= minDaysToDisplayNotification &&
-                      project.trialDaysLeft >= maxDaysToDisplayNotification && (
+                    {!isNil(project.expiry.daysLeft) &&
+                      project.expiry.daysLeft <= minDaysToDisplayNotification &&
+                      project.expiry.daysLeft >=
+                        maxDaysToDisplayNotification && (
                         <Notifier
                           kind="warning"
                           domain={DOMAINS.GLOBAL}
                           text={this.props.intl.formatMessage(
                             messages.trialDaysLeft,
-                            { daysLeft: project.trialDaysLeft }
+                            { daysLeft: project.expiry.daysLeft }
                           )}
                         />
                       )}

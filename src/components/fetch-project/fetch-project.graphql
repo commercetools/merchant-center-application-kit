@@ -6,8 +6,10 @@ query ProjectQuery($projectKey: String!) {
     countries
     currencies
     languages
-    trialDaysLeft
-    expired
+    expiry {
+      isActive
+      daysLeft
+    }
     suspension {
       isActive
     }

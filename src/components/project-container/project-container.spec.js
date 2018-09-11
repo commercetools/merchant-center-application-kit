@@ -138,7 +138,7 @@ describe('rendering', () => {
         });
       });
     });
-    describe('when project has trialDaysLeft', () => {
+    describe('when project has days left on before expiry', () => {
       describe('when trial days are less than two weeks (14 days)', () => {
         beforeEach(() => {
           wrapper = wrapper
@@ -147,10 +147,9 @@ describe('rendering', () => {
               isLoading: false,
               project: {
                 suspension: { isActive: false },
-                expired: false,
+                expiry: { isActive: false, daysLeft: 13 },
                 settings: {},
                 languages: ['de'],
-                trialDaysLeft: 13,
               },
             })
             .find(ProjectDataLocale)
@@ -169,11 +168,10 @@ describe('rendering', () => {
             .renderProp('children', {
               isLoading: false,
               project: {
-                suspension: { isActive: false },
-                expired: false,
+                suspension: { isActive: false, daysLeft: 16 },
+                expiry: { isActive: false },
                 settings: {},
                 languages: ['de'],
-                trialDaysLeft: 16,
               },
             })
             .find(ProjectDataLocale)
@@ -194,10 +192,9 @@ describe('rendering', () => {
               isLoading: false,
               project: {
                 suspension: { isActive: false },
-                expired: false,
+                expiry: { isActive: false, daysLeft: 14 },
                 settings: {},
                 languages: ['de'],
-                trialDaysLeft: 14,
               },
             })
             .find(ProjectDataLocale)
@@ -215,7 +212,10 @@ describe('rendering', () => {
       beforeEach(() => {
         wrapper = wrapper.find(FetchProject).renderProp('children', {
           isLoading: false,
-          project: { suspension: { isActive: false }, expired: true },
+          project: {
+            suspension: { isActive: false },
+            expiry: { isActive: true },
+          },
         });
       });
       it('should render <ProjectExpired>', () => {
@@ -228,7 +228,7 @@ describe('rendering', () => {
           isLoading: false,
           project: {
             suspension: { isActive: false },
-            expired: false,
+            expiry: { isActive: false },
             settings: null,
           },
         });
@@ -247,7 +247,7 @@ describe('rendering', () => {
               isLoading: false,
               project: {
                 suspension: { isActive: false },
-                expired: false,
+                expiry: { isActive: false },
                 settings: {},
                 languages: ['de'],
               },
@@ -268,7 +268,7 @@ describe('rendering', () => {
                 isLoading: false,
                 project: {
                   suspension: { isActive: false },
-                  expired: false,
+                  expiry: { isActive: false },
                   settings: {},
                   languages: ['de', 'en'],
                 },
@@ -292,7 +292,7 @@ describe('rendering', () => {
                   isLoading: false,
                   project: {
                     suspension: { isActive: false },
-                    expired: false,
+                    expiry: { isActive: false },
                     settings: {},
                     languages: ['de', 'en'],
                   },
@@ -319,7 +319,7 @@ describe('rendering', () => {
                   isLoading: false,
                   project: {
                     suspension: { isActive: false },
-                    expired: false,
+                    expiry: { isActive: false },
                     settings: {},
                     languages: ['de'],
                   },
@@ -345,7 +345,7 @@ describe('rendering', () => {
                 isLoading: false,
                 project: {
                   suspension: { isActive: false },
-                  expired: false,
+                  expiry: { isActive: false },
                   settings: {},
                   languages: ['de', 'en'],
                 },

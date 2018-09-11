@@ -12,25 +12,25 @@ const createProjectsQuery = custom => ({
           key: 'key4',
           name: 'name4',
           suspension: { isActive: false },
-          expired: false,
+          expiry: { isActive: false },
         },
         {
           key: 'key2',
           name: 'name2',
           suspension: { isActive: false },
-          expired: false,
+          expiry: { isActive: false },
         },
         {
           key: 'key1',
           name: 'name1',
           suspension: { isActive: false },
-          expired: false,
+          expiry: { isActive: false },
         },
         {
           key: 'key3',
           name: 'name3',
           suspension: { isActive: false },
-          expired: false,
+          expiry: { isActive: false },
         },
       ],
     },
@@ -126,6 +126,7 @@ describe('rendering', () => {
             wrapper.instance().handleRenderItemName({
               name: 'Project A',
               key: 'project-a',
+              expiry: { isActive: false },
               suspension: { isActive: false },
             })
           );
@@ -154,6 +155,7 @@ describe('rendering', () => {
             wrapper.instance().handleRenderItemName({
               name: 'Project A',
               key: 'project-a',
+              expiry: { isActive: false },
               suspension: { isActive: true },
             })
           );
@@ -185,7 +187,7 @@ describe('rendering', () => {
             wrapper.instance().handleRenderItemName({
               name: 'Project A',
               key: 'project-a',
-              expired: true,
+              expiry: { isActive: true },
               suspension: {
                 isActive: false,
               },

@@ -22,7 +22,9 @@ const createTestProps = props => ({
     currencies: [],
     key: 'foo',
     settings: {},
-    expired: false,
+    expiry: {
+      isActive: false,
+    },
   },
   ...props,
 });
@@ -220,7 +222,7 @@ describe('lifecycle', () => {
               projectKey: props.project.key,
               baseSettings: props.project.baseSettings,
               projectSettings: props.project.settings,
-              projectExpired: props.project.expired,
+              projectExpired: props.project.expiry.isActive,
             },
           })
         );

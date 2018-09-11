@@ -48,7 +48,9 @@ exports[`rendering when loaded should match snapshot 1`] = `
     options={
       Array [
         Object {
-          "expired": false,
+          "expiry": Object {
+            "isActive": false,
+          },
           "key": "key4",
           "name": "name4",
           "suspension": Object {
@@ -56,7 +58,9 @@ exports[`rendering when loaded should match snapshot 1`] = `
           },
         },
         Object {
-          "expired": false,
+          "expiry": Object {
+            "isActive": false,
+          },
           "key": "key2",
           "name": "name2",
           "suspension": Object {
@@ -64,7 +68,9 @@ exports[`rendering when loaded should match snapshot 1`] = `
           },
         },
         Object {
-          "expired": false,
+          "expiry": Object {
+            "isActive": false,
+          },
           "key": "key1",
           "name": "name1",
           "suspension": Object {
@@ -72,7 +78,9 @@ exports[`rendering when loaded should match snapshot 1`] = `
           },
         },
         Object {
-          "expired": false,
+          "expiry": Object {
+            "isActive": false,
+          },
           "key": "key3",
           "name": "name3",
           "suspension": Object {

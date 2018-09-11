@@ -32,7 +32,9 @@ export class LocalStoreProvider extends React.Component {
       currencies: PropTypes.array.isRequired,
       key: PropTypes.string.isRequired,
       settings: PropTypes.object,
-      expired: PropTypes.bool.isRequired,
+      expiry: PropTypes.shape({
+        isActive: PropTypes.bool.isRequired,
+      }),
     }).isRequired,
   };
 
@@ -109,7 +111,7 @@ export class LocalStoreProvider extends React.Component {
     baseSettings:
       this.props.project.settings && this.props.project.settings.baseSettings,
     projectSettings: this.props.project.settings,
-    projectExpired: this.props.project.expired,
+    projectExpired: this.props.project.expiry.isActive,
   });
 
   render() {

@@ -19,7 +19,7 @@ const mapProjectsToOptions = defaultMemoize(projects =>
     key: project.key,
     name: project.name,
     suspension: project.suspension,
-    expired: project.expired,
+    expiry: project.expiry,
   }))
 );
 
@@ -50,7 +50,9 @@ export class ProjectSwitcher extends React.PureComponent {
               suspension: PropTypes.shape({
                 isActive: PropTypes.bool.isRequired,
               }),
-              expired: PropTypes.bool.isRequired,
+              expiry: PropTypes.shape({
+                isActive: PropTypes.bool.isRequired,
+              }),
             })
           ),
         }),
@@ -132,11 +134,11 @@ export class ProjectSwitcher extends React.PureComponent {
       <div
         className={classnames(styles['item-text-main'], {
           [styles['item-text-disabled']]:
-            project.suspension.isActive || project.expired,
+            project.suspension.isActive || project.expiry.isActive,
         })}
       >
         {project.name}
-        {(project.suspension.isActive || project.expired) && (
+        {(project.suspension.isActive || project.expiry.isActive) && (
           <span className={styles['disabled-icon-container']}>
             <ErrorIcon size="medium" />
           </span>
@@ -145,7 +147,7 @@ export class ProjectSwitcher extends React.PureComponent {
       <div
         className={classnames(styles['item-text-small'], {
           [styles['item-text-disabled']]:
-            project.suspension.isActive || project.expired,
+            project.suspension.isActive || project.expiry.isActive,
         })}
       >
         {project.key}
@@ -155,7 +157,7 @@ export class ProjectSwitcher extends React.PureComponent {
           <FormattedMessage {...messages.suspended} />
         </div>
       )}
-      {project.expired && (
+      {project.expiry.isActive && (
         <div className={classnames(styles.red, styles['item-text-small'])}>
           <FormattedMessage {...messages.expired} />
         </div>
