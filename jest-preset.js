@@ -45,6 +45,7 @@ module.exports = {
     // NOTE: this might not be necessary anymore once we ship packages already
     // transpiled.
     'node_modules/(?!(@commercetools-frontend)/)',
+    'node_modules/@commercetools-frontend/ui-kit',
   ],
   watchPlugins: ['jest-plugin-filename', 'jest-watch-master'],
 };
