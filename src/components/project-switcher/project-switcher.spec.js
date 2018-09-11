@@ -8,10 +8,30 @@ const createProjectsQuery = custom => ({
   user: {
     projects: {
       results: [
-        { key: 'key4', name: 'name4', suspended: false, expired: false },
-        { key: 'key2', name: 'name2', suspended: false, expired: false },
-        { key: 'key1', name: 'name1', suspended: false, expired: false },
-        { key: 'key3', name: 'name3', suspended: false, expired: false },
+        {
+          key: 'key4',
+          name: 'name4',
+          suspension: { isActive: false },
+          expired: false,
+        },
+        {
+          key: 'key2',
+          name: 'name2',
+          suspension: { isActive: false },
+          expired: false,
+        },
+        {
+          key: 'key1',
+          name: 'name1',
+          suspension: { isActive: false },
+          expired: false,
+        },
+        {
+          key: 'key3',
+          name: 'name3',
+          suspension: { isActive: false },
+          expired: false,
+        },
       ],
     },
   },
@@ -103,9 +123,11 @@ describe('rendering', () => {
         let optionWrapper;
         beforeEach(() => {
           optionWrapper = shallow(
-            wrapper
-              .instance()
-              .handleRenderItemName({ name: 'Project A', key: 'project-a' })
+            wrapper.instance().handleRenderItemName({
+              name: 'Project A',
+              key: 'project-a',
+              suspension: { isActive: false },
+            })
           );
         });
         it('should render item name', () => {
@@ -125,14 +147,14 @@ describe('rendering', () => {
           expect(optionWrapper).not.toRender('FormattedMessage');
         });
       });
-      describe('project is suspended', () => {
+      describe('project is has suspension', () => {
         let optionWrapper;
         beforeEach(() => {
           optionWrapper = shallow(
             wrapper.instance().handleRenderItemName({
               name: 'Project A',
               key: 'project-a',
-              suspended: true,
+              suspension: { isActive: true },
             })
           );
         });
@@ -164,6 +186,9 @@ describe('rendering', () => {
               name: 'Project A',
               key: 'project-a',
               expired: true,
+              suspension: {
+                isActive: false,
+              },
             })
           );
         });

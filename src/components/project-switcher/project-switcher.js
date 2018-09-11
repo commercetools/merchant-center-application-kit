@@ -18,7 +18,7 @@ const mapProjectsToOptions = defaultMemoize(projects =>
   projects.map(project => ({
     key: project.key,
     name: project.name,
-    suspended: project.suspended,
+    suspension: project.suspension,
     expired: project.expired,
   }))
 );
@@ -47,7 +47,9 @@ export class ProjectSwitcher extends React.PureComponent {
             PropTypes.shape({
               key: PropTypes.string.isRequired,
               name: PropTypes.string.isRequired,
-              suspended: PropTypes.bool.isRequired,
+              suspension: PropTypes.shape({
+                isActive: PropTypes.bool.isRequired,
+              }),
               expired: PropTypes.bool.isRequired,
             })
           ),
@@ -125,15 +127,16 @@ export class ProjectSwitcher extends React.PureComponent {
     </span>
   );
 
-  handleRenderItemName = item => (
+  handleRenderItemName = project => (
     <div>
       <div
         className={classnames(styles['item-text-main'], {
-          [styles['item-text-disabled']]: item.suspended || item.expired,
+          [styles['item-text-disabled']]:
+            project.suspension.isActive || project.expired,
         })}
       >
-        {item.name}
-        {(item.suspended || item.expired) && (
+        {project.name}
+        {(project.suspension.isActive || project.expired) && (
           <span className={styles['disabled-icon-container']}>
             <ErrorIcon size="medium" />
           </span>
@@ -141,17 +144,18 @@ export class ProjectSwitcher extends React.PureComponent {
       </div>
       <div
         className={classnames(styles['item-text-small'], {
-          [styles['item-text-disabled']]: item.suspended || item.expired,
+          [styles['item-text-disabled']]:
+            project.suspension.isActive || project.expired,
         })}
       >
-        {item.key}
+        {project.key}
       </div>
-      {item.suspended && (
+      {project.suspension.isActive && (
         <div className={classnames(styles.red, styles['item-text-small'])}>
           <FormattedMessage {...messages.suspended} />
         </div>
       )}
-      {item.expired && (
+      {project.expired && (
         <div className={classnames(styles.red, styles['item-text-small'])}>
           <FormattedMessage {...messages.expired} />
         </div>

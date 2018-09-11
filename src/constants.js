@@ -13,6 +13,11 @@ export const STORAGE_KEYS = {
   IS_FORCED_MENU_OPEN: 'isForcedMenuOpen',
   IDENTITY_PROVIDER_URL: 'identityProviderUrl',
 };
+export const SUSPENSION_REASONS = {
+  TEMPORARY_MAINTENANCE: 'TemporaryMaintenance',
+  PAYMENT: 'Payment',
+  OTHER: 'Other',
+};
 
 // SSO
 export const ORGANIZATION_GENERAL_ERROR = 'organizationGeneralError';

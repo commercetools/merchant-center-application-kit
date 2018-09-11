@@ -1,9 +1,13 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  title: {
-    id: 'ProjectSuspended.title',
+  defaultSuspensionMessage: {
+    id: 'ProjectSuspended.defaultSuspensionMessage',
     defaultMessage: 'Your Project has been suspended',
+  },
+  temporaryMaintenanceSuspensionMessage: {
+    id: 'ProjectSuspended.temporaryMaintenanceSuspensionMessage',
+    defaultMessage: 'Your Project is temporarily suspended due to maintenance.',
   },
   paragraph1: {
     id: 'ProjectSuspended.paragraph1',

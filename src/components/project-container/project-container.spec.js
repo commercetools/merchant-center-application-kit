@@ -99,14 +99,43 @@ describe('rendering', () => {
       });
     });
     describe('when project is suspended', () => {
+      let projectSuspendedWrapper;
       beforeEach(() => {
-        wrapper = wrapper.find(FetchProject).renderProp('children', {
-          isLoading: false,
-          project: { suspended: true },
-        });
+        projectSuspendedWrapper = wrapper
+          .find(FetchProject)
+          .renderProp('children', {
+            isLoading: false,
+            project: { suspension: { isActive: true } },
+          });
       });
       it('should render <ProjectSuspended>', () => {
-        expect(wrapper).toRender(ProjectSuspended);
+        expect(projectSuspendedWrapper).toRender(ProjectSuspended);
+      });
+      describe('when suspension reason is temporary', () => {
+        beforeEach(() => {
+          projectSuspendedWrapper = wrapper
+            .find(FetchProject)
+            .renderProp('children', {
+              isLoading: false,
+              project: {
+                suspension: {
+                  isActive: true,
+                  reason: 'TemporaryMaintenance',
+                },
+              },
+            });
+        });
+
+        it('should render <ProjectSuspended>', () => {
+          expect(projectSuspendedWrapper).toRender(ProjectSuspended);
+        });
+
+        it('should pass `isTemporary` to <ProjectSuspended>', () => {
+          expect(projectSuspendedWrapper.find(ProjectSuspended)).toHaveProp(
+            'isTemporary',
+            true
+          );
+        });
       });
     });
     describe('when project has trialDaysLeft', () => {
@@ -117,7 +146,7 @@ describe('rendering', () => {
             .renderProp('children', {
               isLoading: false,
               project: {
-                suspended: false,
+                suspension: { isActive: false },
                 expired: false,
                 settings: {},
                 languages: ['de'],
@@ -140,7 +169,7 @@ describe('rendering', () => {
             .renderProp('children', {
               isLoading: false,
               project: {
-                suspended: false,
+                suspension: { isActive: false },
                 expired: false,
                 settings: {},
                 languages: ['de'],
@@ -164,7 +193,7 @@ describe('rendering', () => {
             .renderProp('children', {
               isLoading: false,
               project: {
-                suspended: false,
+                suspension: { isActive: false },
                 expired: false,
                 settings: {},
                 languages: ['de'],
@@ -186,7 +215,7 @@ describe('rendering', () => {
       beforeEach(() => {
         wrapper = wrapper.find(FetchProject).renderProp('children', {
           isLoading: false,
-          project: { suspended: false, expired: true },
+          project: { suspension: { isActive: false }, expired: true },
         });
       });
       it('should render <ProjectExpired>', () => {
@@ -197,7 +226,11 @@ describe('rendering', () => {
       beforeEach(() => {
         wrapper = wrapper.find(FetchProject).renderProp('children', {
           isLoading: false,
-          project: { suspended: false, expired: false, settings: null },
+          project: {
+            suspension: { isActive: false },
+            expired: false,
+            settings: null,
+          },
         });
       });
       it('should render <ProjectWithoutSettings>', () => {
@@ -213,7 +246,7 @@ describe('rendering', () => {
             .renderProp('children', {
               isLoading: false,
               project: {
-                suspended: false,
+                suspension: { isActive: false },
                 expired: false,
                 settings: {},
                 languages: ['de'],
@@ -234,7 +267,7 @@ describe('rendering', () => {
               .renderProp('children', {
                 isLoading: false,
                 project: {
-                  suspended: false,
+                  suspension: { isActive: false },
                   expired: false,
                   settings: {},
                   languages: ['de', 'en'],
@@ -258,7 +291,7 @@ describe('rendering', () => {
                 .renderProp('children', {
                   isLoading: false,
                   project: {
-                    suspended: false,
+                    suspension: { isActive: false },
                     expired: false,
                     settings: {},
                     languages: ['de', 'en'],
@@ -285,7 +318,7 @@ describe('rendering', () => {
                 .renderProp('children', {
                   isLoading: false,
                   project: {
-                    suspended: false,
+                    suspension: { isActive: false },
                     expired: false,
                     settings: {},
                     languages: ['de'],
@@ -311,7 +344,7 @@ describe('rendering', () => {
               .renderProp('children', {
                 isLoading: false,
                 project: {
-                  suspended: false,
+                  suspension: { isActive: false },
                   expired: false,
                   settings: {},
                   languages: ['de', 'en'],

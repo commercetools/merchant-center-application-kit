@@ -10,7 +10,7 @@ import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { AppShellProviderForUserPermissions } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { STORAGE_KEYS } from '../../constants';
+import { STORAGE_KEYS, SUSPENSION_REASONS } from '../../constants';
 import ApplicationLoader from '../application-loader';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectDataLocale from '../project-data-locale';
@@ -120,7 +120,15 @@ export class ProjectContainer extends React.Component {
           // TODO: do something if there is an `error`?
           if (isProjectLoading) return <ApplicationLoader />;
           if (!project) return <ProjectNotFound />;
-          if (project.suspended) return <ProjectSuspended />;
+          if (project.suspension.isActive)
+            return (
+              <ProjectSuspended
+                isTemporary={
+                  project.suspension.reason ===
+                  SUSPENSION_REASONS.TEMPORARY_MAINTENANCE
+                }
+              />
+            );
           if (project.expired) return <ProjectExpired />;
           if (!project.settings) return <ProjectWithoutSettings />;
 

@@ -8,7 +8,9 @@ query ProjectQuery($projectKey: String!) {
     languages
     trialDaysLeft
     expired
-    suspended
+    suspension {
+      isActive
+    }
     permissions {
       canManageOrganization
       canManageProject

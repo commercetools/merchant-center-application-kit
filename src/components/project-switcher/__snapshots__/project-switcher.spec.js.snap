@@ -51,25 +51,33 @@ exports[`rendering when loaded should match snapshot 1`] = `
           "expired": false,
           "key": "key4",
           "name": "name4",
-          "suspended": false,
+          "suspension": Object {
+            "isActive": false,
+          },
         },
         Object {
           "expired": false,
           "key": "key2",
           "name": "name2",
-          "suspended": false,
+          "suspension": Object {
+            "isActive": false,
+          },
         },
         Object {
           "expired": false,
           "key": "key1",
           "name": "name1",
-          "suspended": false,
+          "suspension": Object {
+            "isActive": false,
+          },
         },
         Object {
           "expired": false,
           "key": "key3",
           "name": "name3",
-          "suspended": false,
+          "suspension": Object {
+            "isActive": false,
+          },
         },
       ]
     }
