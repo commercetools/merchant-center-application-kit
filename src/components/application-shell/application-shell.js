@@ -16,7 +16,7 @@ import { ConfigurationProvider } from '@commercetools-frontend/application-shell
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import AsyncLocaleData from '@commercetools-frontend/i18n/async-locale-data';
 import getSupportedLanguage from '@commercetools-frontend/l10n/utils/get-supported-language';
-import * as uiKitMessages from '@commercetools-frontend/ui-kit/i18n';
+import { en, de, es } from '@commercetools-frontend/ui-kit';
 import PortalsContainer from '../portals-container';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
@@ -47,6 +47,7 @@ import {
 import styles from './application-shell.mod.css';
 import './global-style-imports';
 
+const uiKitMessages = [en, de, es];
 export const getBrowserLanguage = window => {
   const language = window && window.navigator && window.navigator.language;
   return getSupportedLanguage(language);
