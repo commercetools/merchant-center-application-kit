@@ -2008,6 +2008,8 @@
   "Products.CreateProductForm.step.productType": "Select a product type",
   "Products.CreateProductForm.step.search": "Add internal and external search information",
   "Products.CreateProductForm.step.variants": "Add product variants",
+  "Products.CreateProductForm.step.variants.errors.MissingMasterVariant": "At least one variant required",
+  "Products.CreateProductForm.step.variants.errors.MissingValueAmongRequiredAttributes": "Following {attributeSize, plural, one {attribute} other {attributes}} {attributeSize, plural, one {is} other {are}} required: {attributeNames}",
   "Products.Diff.NotSupported": "The element of type \"{elementTypeName}\" cannot be edited in this view. You can still revert it to the published version.",
   "Products.Diff.NotSupported.DetailsView": "details view",
   "Products.Diff.NotSupported.WithLink": "The element of type \"{elementTypeName}\" cannot be edited in this view. You can still revert it to the published version. To edit this element go to the {detailsViewLink}.",
