@@ -120,7 +120,7 @@ export class ProjectContainer extends React.Component {
           // TODO: do something if there is an `error`?
           if (isProjectLoading) return <ApplicationLoader />;
           if (!project) return <ProjectNotFound />;
-          if (project.suspension.isActive)
+          if (project.suspension && project.suspension.isActive)
             return (
               <ProjectSuspended
                 isTemporary={
@@ -129,7 +129,8 @@ export class ProjectContainer extends React.Component {
                 }
               />
             );
-          if (project.expiry.isActive) return <ProjectExpired />;
+          if (project.expiry && project.expiry.isActive)
+            return <ProjectExpired />;
           if (!project.settings) return <ProjectWithoutSettings />;
 
           return (
