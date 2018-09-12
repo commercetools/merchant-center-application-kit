@@ -16,7 +16,7 @@ import { ConfigurationProvider } from '@commercetools-frontend/application-shell
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import AsyncLocaleData from '@commercetools-frontend/i18n/async-locale-data';
 import getSupportedLanguage from '@commercetools-frontend/l10n/utils/get-supported-language';
-import { en, de, es } from '@commercetools-frontend/ui-kit';
+import { i18n } from '@commercetools-frontend/ui-kit';
 import PortalsContainer from '../portals-container';
 import apolloClient from '../../configure-apollo';
 import FetchUser from '../fetch-user';
@@ -47,7 +47,6 @@ import {
 import styles from './application-shell.mod.css';
 import './global-style-imports';
 
-const uiKitMessages = [en, de, es];
 export const getBrowserLanguage = window => {
   const language = window && window.navigator && window.navigator.language;
   return getSupportedLanguage(language);
@@ -80,7 +79,7 @@ export const RestrictedApplication = props => (
               return (
                 <ConfigureIntlProvider
                   language={language}
-                  messages={mergeMessages(messages, uiKitMessages[language])}
+                  messages={mergeMessages(messages, i18n[language])}
                 >
                   <ErrorApologizer />
                 </ConfigureIntlProvider>
@@ -109,7 +108,7 @@ export const RestrictedApplication = props => (
                     // `<Context.Provider>` kick in.
                     timeZone: user && user.timeZone ? user.timeZone : undefined,
                     language,
-                    messages: mergeMessages(messages, uiKitMessages[language]),
+                    messages: mergeMessages(messages, i18n[language]),
                   })}
             >
               <SetupFlopFlipProvider
@@ -378,7 +377,7 @@ export default class ApplicationShell extends React.Component {
                                   language={language}
                                   messages={mergeMessages(
                                     messages,
-                                    uiKitMessages[language]
+                                    i18n[language]
                                   )}
                                 >
                                   <UnrestrictedApplication />
