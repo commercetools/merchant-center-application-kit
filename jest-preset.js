@@ -46,5 +46,5 @@ module.exports = {
     // transpiled.
     'node_modules/(?!(@commercetools-frontend)/)',
   ],
-  watchPlugins: ['jest-plugin-filename'],
+  watchPlugins: ['jest-plugin-filename', 'jest-watch-master'],
 };
