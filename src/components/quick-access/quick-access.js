@@ -16,6 +16,7 @@ import {
   createProductVariantSubCommands,
 } from './sub-commands';
 import messages from './messages';
+import { saveHistory, loadHistory } from './history';
 
 const containsMatchByProductId = data => Boolean(data.productById);
 const containsMatchByProductKey = data => Boolean(data.productByKey);
@@ -97,6 +98,19 @@ export class QuickAccess extends React.Component {
     projectDataLocale: PropTypes.string,
     onChangeProjectDataLocale: PropTypes.func,
   };
+
+  state = {
+    history: [],
+  };
+
+  componentDidMount() {
+    const history = loadHistory();
+    if (history.length > 0) this.setState({ history });
+  }
+
+  componentWillUnmount() {
+    saveHistory(this.state.history);
+  }
 
   query = (Query, variables) =>
     this.props.client
@@ -268,6 +282,8 @@ export class QuickAccess extends React.Component {
   render() {
     return (
       <Butler
+        history={this.state.history}
+        onHistoryChange={history => this.setState({ history })}
         search={this.search}
         executeCommand={this.executeCommand}
         onClose={this.props.onClose}

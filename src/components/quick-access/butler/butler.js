@@ -6,7 +6,6 @@ import last from 'lodash.last';
 import classnames from 'classnames';
 import { SearchIcon } from '@commercetools-frontend/ui-kit';
 import ButlerContainer from '../butler-container';
-import { saveHistory, loadHistory } from './history';
 import { flattenResults } from '../utils';
 import ButlerCommand from '../butler-command';
 import messages from '../messages';
@@ -26,32 +25,21 @@ const isCloseCombo = event =>
   !event.altKey &&
   !event.shiftKey;
 
-const appendHistoryEntry = prevState => {
-  // only main entries get added to history
-  if (prevState.stack.length > 0) return prevState.history;
-
-  // no entry when there are no results
-  if (prevState.results.length === 0) return prevState.history;
-
-  const entry = {
-    // The key to identify history entries by is always the searchText
-    // There will never be two history entries with the same searchText
-    searchText: prevState.searchText,
-    results: prevState.results,
-  };
-
-  return [
-    ...prevState.history.filter(
-      command => command.searchText !== prevState.searchText
-    ),
-    entry,
-  ];
-};
-
 export default class Butler extends React.Component {
   static displayName = 'Butler';
 
   static propTypes = {
+    history: PropTypes.arrayOf(
+      PropTypes.shape({
+        searchText: PropTypes.string.isRequired,
+        results: PropTypes.arrayOf(
+          PropTypes.shape({
+            id: PropTypes.string.isRequired,
+          })
+        ),
+      })
+    ).isRequired,
+    onHistoryChange: PropTypes.func.isRequired,
     search: PropTypes.func.isRequired,
     getNextCommands: PropTypes.func.isRequired,
     executeCommand: PropTypes.func.isRequired,
@@ -66,16 +54,11 @@ export default class Butler extends React.Component {
     enableHistory: true,
     results: [],
     stack: [],
-    history: loadHistory(),
   };
 
   shouldSelectFieldText = false;
   searchContainerRef = React.createRef();
   searchInputRef = React.createRef();
-
-  componentWillUnmount() {
-    saveHistory(this.state.history);
-  }
 
   setNetworkError = () => {
     this.setState({ hasNetworkError: true });
@@ -145,7 +128,7 @@ export default class Butler extends React.Component {
               ? // When going back the first step
                 -1
               : // When going back more than one step
-                prevState.history.findIndex(
+                this.props.history.findIndex(
                   command => command.searchText === prevState.searchText
                 );
           // Pick the previous command from the history
@@ -153,11 +136,11 @@ export default class Butler extends React.Component {
             selectedIndex === -1
               ? // previous command on top of the history when going back on
                 // first step
-                last(prevState.history)
+                last(this.props.history)
               : // previous command is deeper down
                 // When the history does not exist (negative index), then
                 // this implicitly returns undefined
-                prevState.history[selectedIndex - 1];
+                this.props.history[selectedIndex - 1];
           // Skip when no previous entry exists in the history
           if (!prevCommand) return null;
           return {
@@ -219,9 +202,13 @@ export default class Butler extends React.Component {
                           selectedResult: 0,
                           enableHistory: false,
                           results: nextCommands || [],
-                          history: appendHistoryEntry(prev),
                         }
-                      : null
+                      : null,
+                  () => {
+                    if (this.state.searchText === searchText) {
+                      this.createHistoryEntry();
+                    }
+                  }
                 );
               } else {
                 this.shake();
@@ -266,7 +253,7 @@ export default class Butler extends React.Component {
     if (event.key !== 'Enter') return true;
 
     // add entry to history
-    this.setState(prevState => ({ history: appendHistoryEntry(prevState) }));
+    this.createHistoryEntry();
 
     // User just triggered the search
     if (this.state.selectedResult === -1) return true;
@@ -351,14 +338,36 @@ export default class Butler extends React.Component {
   };
 
   close = () => {
+    this.props.onHistoryChange(this.state);
     this.setState(
-      prevState => ({
+      {
         selectedResult: -1,
         enableHistory: true,
-        history: appendHistoryEntry(prevState),
-      }),
+      },
       this.props.onClose
     );
+  };
+
+  createHistoryEntry = () => {
+    // only main entries get added to history
+    if (this.state.stack.length > 0) return;
+
+    // no entry when there are no results
+    if (this.state.results.length === 0) return;
+
+    const entry = {
+      // The key to identify history entries by is always the searchText
+      // There will never be two history entries with the same searchText
+      searchText: this.state.searchText,
+      results: this.state.results,
+    };
+
+    this.props.onHistoryChange([
+      ...this.props.history.filter(
+        command => command.searchText !== this.state.searchText
+      ),
+      entry,
+    ]);
   };
 
   render() {
@@ -429,11 +438,7 @@ export default class Butler extends React.Component {
                   this.setState({ selectedResult: index });
                 }}
                 onClick={() => {
-                  // add entry to history
-                  this.setState(prevState => ({
-                    history: appendHistoryEntry(prevState),
-                  }));
-
+                  this.createHistoryEntry();
                   this.execute(command);
                 }}
               />
