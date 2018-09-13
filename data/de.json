@@ -2798,6 +2798,7 @@
   "ProjectSettings.View.CollapsibleFormPanel.editButtonLabel": "Bearbeiten",
   "ProjectSettings.View.CollapsibleFormPanel.expandLabel": "Maximieren",
   "ProjectSettings.View.CollapsibleFormPanel.saveButtonLabel": "Speichern",
+  "ProjectSettings.View.tabChannels": "Kanäle",
   "ProjectSettings.View.tabInternational": "Internationalisierung",
   "ProjectSettings.View.tabShippingMethods": "Versandmethoden",
   "ProjectSettings.View.tabTaxes": "Steuern",
