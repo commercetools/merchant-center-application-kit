@@ -2475,6 +2475,7 @@
   "ProjectSettings.Channels.Create.title": "Create a channel",
   "ProjectSettings.Channels.Details.channelDeleted": "Channel {channelName} has been deleted successfully.",
   "ProjectSettings.Channels.Details.channelUpdated": "Channel {channelName} has been updated successfully.",
+  "ProjectSettings.Channels.Form.CustomFields.noTypes": "There are no custom types defined for channels.",
   "ProjectSettings.Channels.Form.GeneralInfo.channelRolesLabel": "Channel roles",
   "ProjectSettings.Channels.Form.GeneralInfo.DuplicateKey": "A channel with this key already exists.",
   "ProjectSettings.Channels.Form.GeneralInfo.roles.inventorySupply": "Inventory Supply",
