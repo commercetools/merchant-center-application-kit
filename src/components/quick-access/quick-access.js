@@ -100,13 +100,8 @@ export class QuickAccess extends React.Component {
   };
 
   state = {
-    history: [],
+    history: loadHistory(),
   };
-
-  componentDidMount() {
-    const history = loadHistory();
-    if (history.length > 0) this.setState({ history });
-  }
 
   componentWillUnmount() {
     saveHistory(this.state.history);
