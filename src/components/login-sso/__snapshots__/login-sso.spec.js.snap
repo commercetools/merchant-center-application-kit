@@ -29,7 +29,7 @@ exports[`rendering <Formik> form elements should match layout 1`] = `
         />
       }
     />
-    <Field
+    <C
       className="input-text"
       name="organizationName"
       onChange={[Function]}
