@@ -11,7 +11,7 @@ This repository contains an example application to run within a [Merchant Center
 
 ⏳ _coming soon_
 
-> NOTE: until there is a proper documentation we recommend to look into the npm packages of `@commercetools-frontend` to check their READMEs and understand what you can use to build the application. In particular, we recommend looking at the `@commercetools-frontend/ui-kit` package as well as `@commercetools-frontend/sdk`, `@commercetools-frontend/application-shell`, `@commercetools-frontend/application-shell-connectors`. Look also at the example implementation to see how to combine the main elements.
+> NOTE: until there is a proper documentation we recommend to look into the npm packages of `@commercetools-frontend` to check their READMEs and understand what you can use to build the application. In particular, we recommend looking at the [`@commercetools-frontend/ui-kit`](https://github.com/commercetools/ui-kit) package as well as `@commercetools-frontend/sdk`, `@commercetools-frontend/application-shell`, `@commercetools-frontend/application-shell-connectors`. Look also at the example implementation to see how to combine the main elements.
 
 ### Getting started
 
