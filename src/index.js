@@ -17,7 +17,7 @@ export {
   withProject,
 } from './components/fetch-project';
 export { default as RouteCatchAll } from './components/route-catch-all';
-export { default as reduxStore } from './configure-store';
+export { default as reduxStore, createReduxStore } from './configure-store';
 export {
   default as setupGlobalErrorListener,
 } from './utils/setup-global-error-listener';

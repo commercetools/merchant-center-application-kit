@@ -23,56 +23,63 @@ import { activePluginReducer } from './components/inject-reducer';
 import { requestsInFlightReducer } from './components/requests-in-flight-loader';
 import { getCorrelationId, selectProjectKeyFromUrl } from './utils';
 
-const sdkMiddleware = createSdkMiddleware({
-  getCorrelationId,
-  getProjectKey: selectProjectKeyFromUrl,
-});
-
-const createReducer = (injectedReducers = {}) =>
-  combineReducers({
-    activePlugin: activePluginReducer,
-    requestsInFlight: requestsInFlightReducer,
-    notifications: notificationsReducer,
-    ...injectedReducers,
+// We use a factory as it's more practicable for tests
+// The application can import the configured store (the default export)
+export const createReduxStore = (
+  preloadedState = { requestsInFlight: null }
+) => {
+  const sdkMiddleware = createSdkMiddleware({
+    getCorrelationId,
+    getProjectKey: selectProjectKeyFromUrl,
   });
-const store = createStore(
-  createReducer(),
-  { requestsInFlight: null },
-  compose(
-    applyMiddleware(
-      // Should be defined before `createExtractGlobalActions`
-      addPluginToNotificationMiddleware,
-      createExtractGlobalActions([
-        /* list of action types plugins may dispatch globally */
-        SHOW_LOADING,
-        HIDE_LOADING,
-        ADD_NOTIFICATION,
-        REMOVE_NOTIFICATION,
-        HIDE_ALL_PAGE_NOTIFICATIONS,
-      ]),
-      createScopedMiddleware(thunk),
-      sentryTrackingMiddleware,
-      createScopedMiddleware(sentryTrackingMiddleware),
-      hideNotificationsMiddleware,
-      notificationsMiddleware,
-      sdkMiddleware,
-      createScopedMiddleware(sdkMiddleware),
-      thunk,
-      batchedUpdates,
-      loggerMiddleware
-    ),
-    window.__REDUX_DEVTOOLS_EXTENSION__
-      ? window.__REDUX_DEVTOOLS_EXTENSION__({
-          actionSanitizer: actionTransformer,
-          actionsBlacklist: [SHOW_LOADING, HIDE_LOADING],
-        })
-      : noop => noop
-  )
-);
-store.injectedReducers = {};
-store.injectReducer = ({ name, reducer }) => {
-  store.injectedReducers[name] = reducer;
-  store.replaceReducer(createReducer(store.injectedReducers));
+
+  const createReducer = (injectedReducers = {}) =>
+    combineReducers({
+      activePlugin: activePluginReducer,
+      requestsInFlight: requestsInFlightReducer,
+      notifications: notificationsReducer,
+      ...injectedReducers,
+    });
+  const store = createStore(
+    createReducer(),
+    preloadedState,
+    compose(
+      applyMiddleware(
+        // Should be defined before `createExtractGlobalActions`
+        addPluginToNotificationMiddleware,
+        createExtractGlobalActions([
+          /* list of action types plugins may dispatch globally */
+          SHOW_LOADING,
+          HIDE_LOADING,
+          ADD_NOTIFICATION,
+          REMOVE_NOTIFICATION,
+          HIDE_ALL_PAGE_NOTIFICATIONS,
+        ]),
+        createScopedMiddleware(thunk),
+        sentryTrackingMiddleware,
+        createScopedMiddleware(sentryTrackingMiddleware),
+        hideNotificationsMiddleware,
+        notificationsMiddleware,
+        sdkMiddleware,
+        createScopedMiddleware(sdkMiddleware),
+        thunk,
+        batchedUpdates,
+        loggerMiddleware
+      ),
+      window.__REDUX_DEVTOOLS_EXTENSION__
+        ? window.__REDUX_DEVTOOLS_EXTENSION__({
+            actionSanitizer: actionTransformer,
+            actionsBlacklist: [SHOW_LOADING, HIDE_LOADING],
+          })
+        : noop => noop
+    )
+  );
+  store.injectedReducers = {};
+  store.injectReducer = ({ name, reducer }) => {
+    store.injectedReducers[name] = reducer;
+    store.replaceReducer(createReducer(store.injectedReducers));
+  };
+  return store;
 };
 
-export default store;
+export default createReduxStore();
