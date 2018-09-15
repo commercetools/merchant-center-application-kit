@@ -58,8 +58,10 @@ export const extractLanguageFromLocale = locale =>
 export const mergeMessages = (...messages) => Object.assign({}, ...messages);
 
 // FIXME: fix the uikit exports
-const getMessagesForLanguage = language =>
-  i18n[language].default || i18n[language];
+const getMessagesForLanguage = language => {
+  const messages = i18n[language];
+  return messages && messages.default ? messages.default : messages;
+};
 
 /**
  * This component is rendered whenever the user is considered "authenticated"
