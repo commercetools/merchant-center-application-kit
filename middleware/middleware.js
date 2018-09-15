@@ -77,7 +77,7 @@ export default ({ getCorrelationId, getProjectKey }) => {
           .execute({ uri, method: action.payload.method, headers, body })
           .then(
             result => {
-              if (process.env.NODE_ENV !== 'production')
+              if (process.env.NODE_ENV === 'development')
                 logRequest({
                   method: action.payload.method,
                   request: { headers, uri },
@@ -87,7 +87,7 @@ export default ({ getCorrelationId, getProjectKey }) => {
               return result;
             },
             error => {
-              if (process.env.NODE_ENV !== 'production')
+              if (process.env.NODE_ENV === 'development')
                 logRequest({
                   method: action.payload.method,
                   request: { headers, uri },
