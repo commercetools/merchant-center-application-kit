@@ -1,9 +1,6 @@
 import React from 'react';
-import { MockedProvider as ApolloMockProvider } from 'react-apollo/test-utils';
-import { render, fireEvent, waitForElement } from 'react-testing-library';
-import memoryAdapter from '@flopflip/memory-adapter';
-import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { IntlProvider } from 'react-intl';
+import { fireEvent, waitForElement } from 'react-testing-library';
+import { render } from '../../test-utils';
 import QuickAccessQuery from './quick-access.graphql';
 import * as gtm from '../../utils/gtm';
 import QuickAccess from './index';
@@ -54,13 +51,7 @@ describe('QuickAccess', () => {
   });
 
   it('should open when pressing "f" on document body', async () => {
-    const { getByTestId } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={[]} addTypename={false}>
-          <QuickAccess {...createTestProps()} />
-        </ApolloMockProvider>
-      </IntlProvider>
-    );
+    const { getByTestId } = render(<QuickAccess {...createTestProps()} />);
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
@@ -76,11 +67,7 @@ describe('QuickAccess', () => {
   it('should open when pressing "f" on an element with tabIndex="-1" (like a modal)', async () => {
     const { getByTestId } = render(
       <div>
-        <IntlProvider locale="en">
-          <ApolloMockProvider mocks={[]} addTypename={false}>
-            <QuickAccess {...createTestProps()} />
-          </ApolloMockProvider>
-        </IntlProvider>
+        <QuickAccess {...createTestProps()} />
         <div tabIndex="-1" data-testid="modal">
           Modal
         </div>
@@ -99,15 +86,7 @@ describe('QuickAccess', () => {
   });
 
   it('should not close when the search input is clicked', async () => {
-    const { getByTestId } = render(
-      <div>
-        <IntlProvider locale="en">
-          <ApolloMockProvider mocks={[]} addTypename={false}>
-            <QuickAccess {...createTestProps()} />
-          </ApolloMockProvider>
-        </IntlProvider>
-      </div>
-    );
+    const { getByTestId } = render(<QuickAccess {...createTestProps()} />);
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
@@ -120,13 +99,7 @@ describe('QuickAccess', () => {
   });
 
   it('should not open when pressing "f" not directly on other focusable elements', async () => {
-    const { queryByTestId } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={[]} addTypename={false}>
-          <QuickAccess {...createTestProps()} />
-        </ApolloMockProvider>
-      </IntlProvider>
-    );
+    const { queryByTestId } = render(<QuickAccess {...createTestProps()} />);
 
     // open quick-access
     fireEvent.keyDown(document.body.firstChild, { key: 'f' });
@@ -134,13 +107,7 @@ describe('QuickAccess', () => {
   });
 
   it('should track when QuickAccess is opened', async () => {
-    const { getByTestId } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={[]} addTypename={false}>
-          <QuickAccess {...createTestProps()} />
-        </ApolloMockProvider>
-      </IntlProvider>
-    );
+    const { getByTestId } = render(<QuickAccess {...createTestProps()} />);
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
@@ -156,11 +123,7 @@ describe('QuickAccess', () => {
 
   it('should close when pressing Escape', async () => {
     const { getByTestId, container } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={[]} addTypename={false}>
-          <QuickAccess {...createTestProps()} />
-        </ApolloMockProvider>
-      </IntlProvider>
+      <QuickAccess {...createTestProps()} />
     );
 
     // open quick-access
@@ -180,11 +143,8 @@ describe('QuickAccess', () => {
   it('should show results when searching for Dashboard', async () => {
     const mocks = [createMatchlessSearchMock('Open dshbrd')];
     const { getByTestId, getByText } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={mocks} addTypename={false}>
-          <QuickAccess {...createTestProps()} />
-        </ApolloMockProvider>
-      </IntlProvider>
+      <QuickAccess {...createTestProps()} />,
+      { mocks }
     );
 
     // open quick-access
@@ -208,11 +168,8 @@ describe('QuickAccess', () => {
       },
     ];
     const { getByTestId, getByText, queryByText } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={mocks} addTypename={false}>
-          <QuickAccess {...createTestProps()} />
-        </ApolloMockProvider>
-      </IntlProvider>
+      <QuickAccess {...createTestProps()} />,
+      { mocks }
     );
     const offlineText = 'Offline';
 
@@ -237,11 +194,8 @@ describe('QuickAccess', () => {
     const mocks = [createMatchlessSearchMock('Open dshbrd')];
     const props = createTestProps();
     const { getByTestId, container, getByText } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={mocks} addTypename={false}>
-          <QuickAccess {...props} />
-        </ApolloMockProvider>
-      </IntlProvider>
+      <QuickAccess {...props} />,
+      { mocks }
     );
 
     // open quick-access
@@ -267,11 +221,8 @@ describe('QuickAccess', () => {
     ];
     const props = createTestProps();
     const { getByTestId, container, getByText } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={mocks} addTypename={false}>
-          <QuickAccess {...props} />
-        </ApolloMockProvider>
-      </IntlProvider>
+      <QuickAccess {...props} />,
+      { mocks }
     );
 
     // open quick-access
@@ -400,11 +351,8 @@ describe('QuickAccess', () => {
       },
     ];
     const { getByTestId, getByText } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={mocks} addTypename={false}>
-          <QuickAccess {...createTestProps()} />
-        </ApolloMockProvider>
-      </IntlProvider>
+      <QuickAccess {...createTestProps()} />,
+      { mocks }
     );
 
     // open quick-access
@@ -453,11 +401,8 @@ describe('QuickAccess', () => {
       },
     ];
     const { getByTestId, getByText } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={mocks} addTypename={false}>
-          <QuickAccess {...createTestProps()} />
-        </ApolloMockProvider>
-      </IntlProvider>
+      <QuickAccess {...createTestProps()} />,
+      { mocks }
     );
 
     // open quick-access
@@ -506,11 +451,8 @@ describe('QuickAccess', () => {
       },
     ];
     const { getByTestId, getByText } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={mocks} addTypename={false}>
-          <QuickAccess {...createTestProps()} />
-        </ApolloMockProvider>
-      </IntlProvider>
+      <QuickAccess {...createTestProps()} />,
+      { mocks }
     );
 
     // open quick-access
@@ -560,11 +502,8 @@ describe('QuickAccess', () => {
       },
     ];
     const { getByTestId, getByText } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={mocks} addTypename={false}>
-          <QuickAccess {...createTestProps({ projectDataLocale: 'de' })} />
-        </ApolloMockProvider>
-      </IntlProvider>
+      <QuickAccess {...createTestProps({ projectDataLocale: 'de' })} />,
+      { mocks }
     );
 
     // open quick-access
@@ -586,11 +525,8 @@ describe('QuickAccess', () => {
     const searchTerm = 'Open producttypesettings';
     const mocks = [createMatchlessSearchMock(searchTerm)];
     const { getByTestId, getByText } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={mocks} addTypename={false}>
-          <QuickAccess {...createTestProps()} />
-        </ApolloMockProvider>
-      </IntlProvider>
+      <QuickAccess {...createTestProps()} />,
+      { mocks }
     );
 
     // open quick-access
@@ -607,11 +543,8 @@ describe('QuickAccess', () => {
     const searchTerm = 'Open dshbrd';
     const mocks = [createMatchlessSearchMock(searchTerm)];
     const { getByTestId, getByText } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={mocks} addTypename={false}>
-          <QuickAccess {...createTestProps()} />
-        </ApolloMockProvider>
-      </IntlProvider>
+      <QuickAccess {...createTestProps()} />,
+      { mocks }
     );
 
     // open quick-access
@@ -659,11 +592,8 @@ describe('QuickAccess', () => {
     const mocks = [createMatchlessSearchMock(searchTerm)];
     const props = createTestProps();
     const { getByTestId, container, getByText } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={mocks} addTypename={false}>
-          <QuickAccess {...props} />
-        </ApolloMockProvider>
-      </IntlProvider>
+      <QuickAccess {...props} />,
+      { mocks }
     );
 
     // open quick-access
@@ -697,11 +627,8 @@ describe('QuickAccess', () => {
     const mocks = [createMatchlessSearchMock(searchTerm)];
     const props = createTestProps({ project: undefined });
     const { getByTestId, queryByText, getByText } = render(
-      <IntlProvider locale="en">
-        <ApolloMockProvider mocks={mocks} addTypename={false}>
-          <QuickAccess {...props} />
-        </ApolloMockProvider>
-      </IntlProvider>
+      <QuickAccess {...props} />,
+      { mocks }
     );
 
     // open quick-access
@@ -727,11 +654,8 @@ describe('QuickAccess', () => {
       props.project.permissions = {};
 
       const { getByTestId, queryByText, getByText } = render(
-        <IntlProvider locale="en">
-          <ApolloMockProvider mocks={mocks} addTypename={false}>
-            <QuickAccess {...props} />
-          </ApolloMockProvider>
-        </IntlProvider>
+        <QuickAccess {...props} />,
+        { mocks }
       );
 
       // open quick-access
@@ -753,13 +677,9 @@ describe('QuickAccess', () => {
       const props = createTestProps();
       props.project.permissions = { canViewOrders: true };
 
-      const { getByTestId, getByText } = render(
-        <IntlProvider locale="en">
-          <ApolloMockProvider mocks={mocks} addTypename={false}>
-            <QuickAccess {...props} />
-          </ApolloMockProvider>
-        </IntlProvider>
-      );
+      const { getByTestId, getByText } = render(<QuickAccess {...props} />, {
+        mocks,
+      });
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
@@ -800,11 +720,8 @@ describe('QuickAccess', () => {
             },
           });
           const { getByTestId, queryByText, getByText } = render(
-            <IntlProvider locale="en">
-              <ApolloMockProvider mocks={mocks} addTypename={false}>
-                <QuickAccess {...props} />
-              </ApolloMockProvider>
-            </IntlProvider>
+            <QuickAccess {...props} />,
+            { mocks }
           );
 
           // open quick-access
@@ -840,11 +757,7 @@ describe('QuickAccess', () => {
           },
         });
         const { getByTestId, queryByText, getByText } = render(
-          <IntlProvider locale="en">
-            <ApolloMockProvider mocks={[]} addTypename={false}>
-              <QuickAccess {...props} />
-            </ApolloMockProvider>
-          </IntlProvider>
+          <QuickAccess {...props} />
         );
 
         // open quick-access
@@ -866,24 +779,13 @@ describe('QuickAccess', () => {
   // will allow us to use memoryAdapter for tests by adding the "reset" method,
   // and by not calling setState after the component unmounted.
   describe('feature toggles', () => {
-    afterEach(() => {
-      memoryAdapter.reset();
-    });
     it('should not find PIM-Search when the feature is toggled off', async () => {
       const props = createTestProps();
       const searchTerm = 'Opn PIM Srch';
       const mocks = [createMatchlessSearchMock(searchTerm)];
       const { getByTestId, queryByText, getByText, queryByTestId } = render(
-        <IntlProvider locale="en">
-          <ConfigureFlopFlip
-            adapter={memoryAdapter}
-            defaultFlags={{ pimSearch: false }}
-          >
-            <ApolloMockProvider mocks={mocks} addTypename={false}>
-              <QuickAccess {...props} />
-            </ApolloMockProvider>
-          </ConfigureFlopFlip>
-        </IntlProvider>
+        <QuickAccess {...props} />,
+        { mocks, flags: { pimSearch: false } }
       );
 
       // open quick-access
@@ -903,18 +805,10 @@ describe('QuickAccess', () => {
       const props = createTestProps();
       const searchTerm = 'Opn PIM Srch';
       const mocks = [createMatchlessSearchMock(searchTerm)];
-      const { getByTestId, getByText } = render(
-        <IntlProvider locale="en">
-          <ConfigureFlopFlip
-            adapter={memoryAdapter}
-            defaultFlags={{ pimSearch: true }}
-          >
-            <ApolloMockProvider mocks={mocks} addTypename={false}>
-              <QuickAccess {...props} />
-            </ApolloMockProvider>
-          </ConfigureFlopFlip>
-        </IntlProvider>
-      );
+      const { getByTestId, getByText } = render(<QuickAccess {...props} />, {
+        mocks,
+        flags: { pimSearch: true },
+      });
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });

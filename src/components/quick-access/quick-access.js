@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// eslint-disable-next-line import/extensions
 import { compose } from 'recompose';
 import { injectIntl } from 'react-intl';
 import { injectFeatureToggles } from '@flopflip/react-broadcast';
