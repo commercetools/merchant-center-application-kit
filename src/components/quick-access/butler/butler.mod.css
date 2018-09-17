@@ -1,0 +1,85 @@
+@import '@commercetools-frontend/ui-kit/materials/tokens/tokens.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/borders.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/spacings.mod.css';
+
+.alfred {
+  background-color: var(--color-white);
+  border: 0;
+  border-radius: var(--border-radius-4);
+  min-height: 40px;
+
+  /* one more than app-bar (20000) and one more than the overlay (20001) */
+  z-index: 20002;
+  width: 400px;
+  margin: 40px auto;
+  overflow: hidden;
+  -webkit-box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.75);
+  padding-bottom: var(--spacing-8);
+}
+
+.alfred.offline {
+  padding-bottom: 0;
+}
+
+@keyframes shake {
+  from,
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  14%,
+  42%,
+  70% {
+    transform: translate3d(-3px, 0, 0);
+  }
+
+  28%,
+  56%,
+  84% {
+    transform: translate3d(3px, 0, 0);
+  }
+}
+
+.shake {
+  animation-duration: 0.45s;
+  animation-fill-mode: both;
+  animation-name: shake;
+}
+
+.inputWrapper {
+  display: flex;
+}
+
+.magnifyingGlass {
+  align-self: center;
+  padding-left: var(--spacing-16);
+  margin-top: var(--spacing-8);
+}
+
+.magnifyingGlass > * {
+  display: block;
+}
+
+.searchText {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  font-size: 22px;
+  font-weight: 300;
+  padding: var(--spacing-16) var(--spacing-16) var(--spacing-8) var(--spacing-8);
+}
+
+.offlineWarning {
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: default;
+  background: var(--color-red);
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--color-white);
+  font-size: var(--token-font-size-small);
+  padding: var(--spacing-4);
+}
