@@ -60,12 +60,6 @@ export const extractLanguageFromLocale = locale =>
 
 export const mergeMessages = (...messages) => Object.assign({}, ...messages);
 
-// FIXME: fix the uikit exports
-const getMessagesForLanguage = language => {
-  const messages = i18n[language];
-  return messages && messages.default ? messages.default : messages;
-};
-
 /**
  * This component is rendered whenever the user is considered "authenticated"
  * and contains the "restricted" application part.
@@ -88,10 +82,7 @@ export const RestrictedApplication = props => (
               return (
                 <ConfigureIntlProvider
                   language={language}
-                  messages={mergeMessages(
-                    messages,
-                    getMessagesForLanguage(language)
-                  )}
+                  messages={mergeMessages(messages, i18n[language])}
                 >
                   <ErrorApologizer />
                 </ConfigureIntlProvider>
@@ -120,10 +111,7 @@ export const RestrictedApplication = props => (
                     // `<Context.Provider>` kick in.
                     timeZone: user && user.timeZone ? user.timeZone : undefined,
                     language,
-                    messages: mergeMessages(
-                      messages,
-                      getMessagesForLanguage(language)
-                    ),
+                    messages: mergeMessages(messages, i18n[language]),
                   })}
             >
               <SetupFlopFlipProvider
@@ -449,7 +437,7 @@ export default class ApplicationShell extends React.Component {
                                   language={language}
                                   messages={mergeMessages(
                                     messages,
-                                    getMessagesForLanguage(language)
+                                    i18n[language]
                                   )}
                                 >
                                   <UnrestrictedApplication />
