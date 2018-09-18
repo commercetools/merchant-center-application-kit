@@ -203,12 +203,7 @@ export default class Butler extends React.Component {
                           enableHistory: false,
                           results: nextCommands || [],
                         }
-                      : null,
-                  () => {
-                    if (this.state.searchText === searchText) {
-                      this.createHistoryEntry();
-                    }
-                  }
+                      : null
                 );
               } else {
                 this.shake();
@@ -251,9 +246,6 @@ export default class Butler extends React.Component {
     }
 
     if (event.key !== 'Enter') return true;
-
-    // add entry to history
-    this.createHistoryEntry();
 
     // User just triggered the search
     if (this.state.selectedResult === -1) return true;
@@ -325,20 +317,26 @@ export default class Butler extends React.Component {
   };
 
   execute = command => {
+    this.appendHistoryEntry({
+      searchText: this.state.searchText,
+      results: this.state.results,
+      stack: this.state.stack,
+    });
+
     this.setState(
       {
         searchText: '',
         results: [],
         selectedResult: -1,
       },
-      this.props.onClose
+      () => {
+        this.props.onClose();
+        this.props.executeCommand(command);
+      }
     );
-
-    this.props.executeCommand(command);
   };
 
-  close = () => {
-    this.props.onHistoryChange(this.state);
+  handleContainerClick = () => {
     this.setState(
       {
         selectedResult: -1,
@@ -348,23 +346,27 @@ export default class Butler extends React.Component {
     );
   };
 
-  createHistoryEntry = () => {
-    // only main entries get added to history
-    if (this.state.stack.length > 0) return;
+  appendHistoryEntry = ({ searchText, results, stack }) => {
+    // Only main entries get added to history, so when a subcommand is executed,
+    // we add the main command of it to the history (the top-level command).
+    //
+    // The key to identify history entries by is always the searchText
+    // There will never be two history entries with the same searchText
+    const entry =
+      stack.length === 0
+        ? // The stack is empty, so we are executing a top-level command
+          { searchText, results }
+        : // We are executing a subcommand, so we get the top-level command for it,
+          // which is at the bottom of the stack.
+          { searchText: stack[0].searchText, results: stack[0].results };
 
-    // no entry when there are no results
-    if (this.state.results.length === 0) return;
-
-    const entry = {
-      // The key to identify history entries by is always the searchText
-      // There will never be two history entries with the same searchText
-      searchText: this.state.searchText,
-      results: this.state.results,
-    };
-
+    // Add the entry to the history, while excluding any earlier history entry
+    // with the same search text. This effectively "moves" that entry to the
+    // top of the history (with the most recent results), or appends a new entry
+    // when it didn't exist before.
     this.props.onHistoryChange([
       ...this.props.history.filter(
-        command => command.searchText !== this.state.searchText
+        command => command.searchText !== entry.searchText
       ),
       entry,
     ]);
@@ -372,7 +374,10 @@ export default class Butler extends React.Component {
 
   render() {
     return (
-      <ButlerContainer onClick={this.close} data-testid="quick-access">
+      <ButlerContainer
+        onClick={this.handleContainerClick}
+        data-testid="quick-access"
+      >
         <div
           ref={this.searchContainerRef}
           className={classnames(styles.alfred, {
@@ -438,7 +443,6 @@ export default class Butler extends React.Component {
                   this.setState({ selectedResult: index });
                 }}
                 onClick={() => {
-                  this.createHistoryEntry();
                   this.execute(command);
                 }}
               />
