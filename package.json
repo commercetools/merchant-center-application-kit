@@ -23,7 +23,7 @@
     "prop-types": "15.6.2",
     "react": "16.5.1",
     "react-dom": "16.5.1",
-    "react-intl": "2.5.0",
+    "react-intl": "2.6.0",
     "react-redux": "5.0.7",
     "react-router-dom": "4.3.1",
     "recompose": "0.26.0",
