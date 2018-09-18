@@ -14,7 +14,7 @@
     "@commercetools-frontend/constants": "1.0.0-beta.31",
     "@commercetools-frontend/notifications": "1.0.0-beta.31",
     "@commercetools-frontend/sentry": "1.0.0-beta.31",
-    "@commercetools-frontend/ui-kit": "2.0.0-rc.5",
+    "@commercetools-frontend/ui-kit": "2.0.0-rc.6",
     "classnames": "2.2.6",
     "lodash.has": "4.5.2",
     "lodash.isnumber": "3.0.3",
