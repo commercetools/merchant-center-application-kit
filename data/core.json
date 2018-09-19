@@ -2267,6 +2267,7 @@
   "Products.PimSearchList.search.basicModeConfirmationModalTitle": "Back to Basic Search",
   "Products.PimSearchList.search.basicSearchInputPlaceholder": "Search by name, description, SKU, product key, or variant key",
   "Products.PimSearchList.SidebarFilter.ProductType.searchInputPlaceholder": "Search for a product type to filter",
+  "Products.PimSearchList.SidebarFilter.ProductType.noOptionsMessage": "No options",
   "Products.PimSearchList.SidebarFilter.productTypeHeader": "Product Type",
   "Products.PimSearchList.SidebarFilter.statusHeader": "Status",
   "Products.PimSearchList.SidebarLayout.advancedSearch": "Search products",
