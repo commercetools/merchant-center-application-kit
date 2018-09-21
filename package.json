@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/permissions",
-  "version": "1.0.0-beta.31",
+  "version": "1.0.0-beta.32",
   "description": "React components to declaratively handle MC permissions",
   "license": "MIT",
   "private": false,
@@ -10,7 +10,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@commercetools-frontend/application-shell-connectors": "1.0.0-beta.31",
+    "@commercetools-frontend/application-shell-connectors": "1.0.0-beta.32",
     "lodash.camelcase": "4.3.0",
     "lodash.isnil": "4.0.0",
     "lodash.upperfirst": "4.3.1",
