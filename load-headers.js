@@ -85,6 +85,8 @@ module.exports = (env, options) => {
         'mc-api.escemo.com',
         'mc-api.commercetools.com',
         'mc-api.commercetools.co',
+        'mc-api.neo-stage.vw.aws.commercetools.com',
+        'mc-api.neo.vw.aws.commercetools.com',
         'app.launchdarkly.com',
         'clientstream.launchdarkly.com',
         'events.launchdarkly.com',
