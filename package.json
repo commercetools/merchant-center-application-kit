@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/mc-http-server",
-  "version": "1.0.0-beta.31",
+  "version": "1.0.0-beta.32",
   "description": "Production HTTP server for running a MC application",
   "license": "MIT",
   "private": false,
@@ -11,7 +11,7 @@
     "mc-http-server": "./bin/start-mc.js"
   },
   "dependencies": {
-    "@commercetools-frontend/mc-html-template": "1.0.0-beta.31",
+    "@commercetools-frontend/mc-html-template": "1.0.0-beta.32",
     "@promster/express": "1.2.0",
     "compression": "1.7.3",
     "express": "4.16.3",
