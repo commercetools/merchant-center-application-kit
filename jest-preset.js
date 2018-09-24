@@ -47,9 +47,5 @@ module.exports = {
     'node_modules/(?!(@commercetools-frontend)/)',
     'node_modules/@commercetools-frontend/ui-kit',
   ],
-  watchPlugins: [
-    'jest-plugin-filename',
-    'jest-watch-master',
-    'jest-watch-yarn-workspaces',
-  ],
+  watchPlugins: ['jest-plugin-filename', 'jest-watch-master'],
 };
