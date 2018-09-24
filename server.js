@@ -33,6 +33,11 @@ const serverUrl = `http://localhost:${serverPort}`;
 const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
   options: {
     accuracies: ['ms'],
+    metricTypes: ['httpRequestsHistogram'],
+    metricNames: {
+      httpRequestDurationInMilliseconds:
+        'http_request_duration_buckets_milliseconds',
+    },
     getLabelValues: () => ({
       /**
        * NOTE:
