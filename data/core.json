@@ -756,7 +756,6 @@
   "Customers.Details.CustomerCustomFields.noCustomFields": "There are no custom fields related to this type",
   "Customers.Details.CustomerCustomFields.noCustomType": "You have no custom type selected. In order to use custom fields you have to select one.",
   "Customers.Details.CustomerCustomFields.noTypes": "There are no custom types defined for customers. Please create one.",
-  "Customers.Details.CustomerCustomFields.title": "Manage customer custom fields.",
   "Customers.Details.CustomerCustomFields.typesPlaceholder": "Select...",
   "Customers.Details.CustomerCustomFields.typesTitle": "Custom type",
   "Customers.Details.General.clearDate": "Clear date",
