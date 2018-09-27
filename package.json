@@ -15,7 +15,7 @@
     "@commercetools/api-request-builder": "4.0.2",
     "@commercetools/sdk-client": "1.5.8",
     "@commercetools/sdk-middleware-correlation-id": "1.0.1",
-    "@commercetools/sdk-middleware-http": "4.0.3",
+    "@commercetools/sdk-middleware-http": "4.0.4",
     "@commercetools/sdk-middleware-user-agent": "1.2.10",
     "fast-equals": "1.6.1",
     "prop-types": "15.6.2",
