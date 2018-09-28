@@ -30,6 +30,8 @@
     this node to be wider than the parent.
   */
   min-width: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
 
   /*
     layout the children. There will always be the page and side notification
