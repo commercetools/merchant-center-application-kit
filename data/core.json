@@ -2308,6 +2308,7 @@
   "Products.PimSearchList.SidebarFilter.ProductType.noOptionsMessage": "No options",
   "Products.PimSearchList.SidebarFilter.ProductType.searchInputPlaceholder": "Search for a product type to filter",
   "Products.PimSearchList.SidebarFilter.productTypeHeader": "Product Type",
+  "Products.PimSearchList.SidebarFilter.StateFilter.searchInputPlaceholder": "Search for a state to filter",
   "Products.PimSearchList.SidebarFilter.stateHeader": "State",
   "Products.PimSearchList.SidebarFilter.statusHeader": "Status",
   "Products.PimSearchList.SidebarLayout.advancedSearch": "Search products",
