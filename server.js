@@ -65,7 +65,12 @@ const app = express()
   .get('/metrics', getMetrics)
   .get('/version', (request, response) => {
     response.setHeader('Content-Type', 'application/json');
-    response.end(JSON.stringify({ revision: options.env.revision }));
+    response.end(
+      JSON.stringify({
+        deployedAt: options.env.deployedAt,
+        revision: options.env.revision,
+      })
+    );
   })
   // Request access logs
   .use(morgan('combined', { stream: process.stdout }))
