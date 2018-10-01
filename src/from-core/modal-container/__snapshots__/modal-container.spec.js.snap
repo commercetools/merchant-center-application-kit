@@ -9,6 +9,7 @@ exports[`rendering outputs correct tree 1`] = `
   isOpen={false}
   parentSelector={[Function]}
   portalClassName="ReactModalPortal"
+  role="dialog"
   shouldCloseOnEsc={true}
   shouldCloseOnOverlayClick={true}
   shouldFocusAfterRender={true}
