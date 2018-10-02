@@ -1,11 +1,11 @@
 import { addLocaleData } from 'react-intl';
 import { getMatchingMomentCode } from './utils';
 
-export default function loadI18n(lang, country) {
+export default function loadI18n(lang) {
   // Use default (lazy) so that we will receive one chunk per
   // locale. https://webpack.js.org/api/module-methods/#import-
 
-  const momentLocaleCode = getMatchingMomentCode(lang, country);
+  const momentLocaleCode = getMatchingMomentCode(lang);
 
   const reactIntlChunkImport = import(/* webpackChunkName: "react-intl-data-[request]" */
   /* webpackMode: "lazy" */

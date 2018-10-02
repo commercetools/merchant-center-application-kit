@@ -92,8 +92,8 @@ describe('rendering', () => {
         expect(loadI18n).toHaveBeenCalled();
       });
 
-      it('should call `loadIntl` with `de` and `at`', () => {
-        expect(loadI18n).toHaveBeenCalledWith('de', 'at');
+      it('should call `loadIntl` with `de`', () => {
+        expect(loadI18n).toHaveBeenCalledWith('de');
       });
     });
   });

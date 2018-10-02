@@ -6,9 +6,6 @@ import loadI18n from '../load-i18n';
 export const extractLanguageFromLocale = locale =>
   locale.includes('-') ? locale.split('-')[0] : locale;
 
-export const extractCountryFromLocale = locale =>
-  locale.includes('-') ? locale.split('-')[1].toLowerCase() : '';
-
 class AsyncLocaleData extends React.Component {
   static displayName = 'AsyncLocaleData';
   static propTypes = {
@@ -38,8 +35,7 @@ class AsyncLocaleData extends React.Component {
 
   loadLocaleData = locale => {
     const language = extractLanguageFromLocale(locale);
-    const country = extractCountryFromLocale(locale);
-    loadI18n(language, country).then(
+    loadI18n(language).then(
       data => {
         this.setState({
           isLoading: false,
