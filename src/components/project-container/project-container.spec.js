@@ -12,7 +12,6 @@ import ApplicationLoader from '../application-loader';
 import FetchProject from '../fetch-project';
 import ProjectDataLocale from '../project-data-locale';
 import LocaleSwitcher from '../locale-switcher';
-import ProjectWithoutSettings from '../project-without-settings';
 import { ProjectContainer } from './project-container';
 
 const createTestProps = custom => ({
@@ -220,21 +219,6 @@ describe('rendering', () => {
       });
       it('should render <ProjectExpired>', () => {
         expect(wrapper).toRender(ProjectExpired);
-      });
-    });
-    describe('when project has no settings', () => {
-      beforeEach(() => {
-        wrapper = wrapper.find(FetchProject).renderProp('children', {
-          isLoading: false,
-          project: {
-            suspension: { isActive: false },
-            expiry: { isActive: false },
-            settings: null,
-          },
-        });
-      });
-      it('should render <ProjectWithoutSettings>', () => {
-        expect(wrapper).toRender(ProjectWithoutSettings);
       });
     });
     describe('when project is in a valid state', () => {
