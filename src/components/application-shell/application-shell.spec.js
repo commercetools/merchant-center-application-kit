@@ -174,6 +174,7 @@ describe('<RestrictedApplication>', () => {
           launchdarklyTrackingId: '123',
           launchdarklyTrackingGroup: 'ct',
           launchdarklyTrackingTeam: ['abc', 'def'],
+          launchdarklyTrackingTenant: 'xy',
         },
       };
       wrapper = renderForAsyncData({ props, userData });
