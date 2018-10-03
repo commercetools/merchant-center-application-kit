@@ -40,6 +40,7 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
           "abc",
           "def",
         ],
+        "launchdarklyTrackingTenant": "xy",
         "projects": Object {
           "total": 0,
         },

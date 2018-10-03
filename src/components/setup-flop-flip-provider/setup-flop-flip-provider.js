@@ -25,13 +25,21 @@ export class SetupFlopFlipProvider extends React.PureComponent {
       launchdarklyTrackingId: PropTypes.string.isRequired,
       launchdarklyTrackingGroup: PropTypes.string.isRequired,
       launchdarklyTrackingTeam: PropTypes.array.isRequired,
+      launchdarklyTrackingTenant: PropTypes.string.isRequired,
     }),
     defaultFlags: PropTypes.object,
     children: PropTypes.node.isRequired,
   };
 
   createLaunchdarklyAdapterArgs = defaultMemoize(
-    (clientSideId, userId, ldTrackingId, ldTrackingGroup, ldTrackingTeam) => ({
+    (
+      clientSideId,
+      userId,
+      ldTrackingId,
+      ldTrackingGroup,
+      ldTrackingTeam,
+      ldTrackingTenant
+    ) => ({
       clientSideId,
       user: {
         key: userId,
@@ -39,6 +47,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
           id: ldTrackingId,
           team: ldTrackingTeam,
           group: ldTrackingGroup,
+          tenant: ldTrackingTenant,
         },
       },
     })
@@ -57,7 +66,8 @@ export class SetupFlopFlipProvider extends React.PureComponent {
               this.props.user && this.props.user.id,
               this.props.user && this.props.user.launchdarklyTrackingId,
               this.props.user && this.props.user.launchdarklyTrackingGroup,
-              this.props.user && this.props.user.launchdarklyTrackingTeam
+              this.props.user && this.props.user.launchdarklyTrackingTeam,
+              this.props.user && this.props.user.launchdarklyTrackingTenant
             )}
             defaultFlags={this.props.defaultFlags}
             shouldDeferAdapterConfiguration={!this.props.user}

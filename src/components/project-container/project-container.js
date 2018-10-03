@@ -18,7 +18,6 @@ import FetchProject from '../fetch-project';
 import ProjectNotFound from '../project-not-found';
 import ProjectExpired from '../project-expired';
 import ProjectSuspended from '../project-suspended';
-import ProjectWithoutSettings from '../project-without-settings';
 import ErrorApologizer from '../error-apologizer';
 import messages from './messages';
 
@@ -131,7 +130,6 @@ export class ProjectContainer extends React.Component {
             );
           if (project.expiry && project.expiry.isActive)
             return <ProjectExpired />;
-          if (!project.settings) return <ProjectWithoutSettings />;
 
           return (
             <AppShellProviderForUserPermissions
