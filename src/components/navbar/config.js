@@ -6,6 +6,7 @@ import {
   PRODUCT_TYPES_ADMINISTRATION,
   DEVELOPER_SETTINGS,
   CAN_VIEW_CATEGORIES,
+  CAN_VIEW_PRODUCTS,
   CAN_VIEW_ORDERS,
   CAN_VIEW_DISCOUNTS,
 } from './feature-toggles';
@@ -147,6 +148,7 @@ const itemsProducts = {
   uriPath: 'products',
   labelKey: 'NavBar.Products.title',
   icon: 'BoxProductIcon',
+  featureToggle: CAN_VIEW_PRODUCTS,
   permissions: [permissions.ViewProducts, permissions.ManageProducts],
   submenu: [
     {
