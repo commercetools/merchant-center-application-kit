@@ -20,7 +20,7 @@
     "babel-loader": "8.0.4",
     "babel-plugin-react-intl": "3.0.1",
     "babel-polyfill": "6.26.0",
-    "browserslist": "4.1.1",
+    "browserslist": "4.1.2",
     "chalk": "2.4.1",
     "clean-webpack-plugin": "0.1.19",
     "css-loader": "1.0.0",
