@@ -220,7 +220,6 @@ describe('lifecycle', () => {
               languages: props.project.languages,
               currencies: props.project.currencies,
               projectKey: props.project.key,
-              baseSettings: props.project.baseSettings,
               projectSettings: props.project.settings,
               projectExpired: props.project.expiry.isActive,
             },

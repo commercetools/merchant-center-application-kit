@@ -38,16 +38,6 @@ query ProjectQuery($projectKey: String!) {
     }
     settings {
       id
-      baseSettings {
-        id
-        userProjectSettings
-        pluginPreset
-        orderStatesVisibility {
-          isPaymentStateHidden
-          isShipmentStateHidden
-          isOrderStateHidden
-        }
-      }
       productSettings
       currentProductSettings
     }

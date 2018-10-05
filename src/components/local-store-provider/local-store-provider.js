@@ -108,8 +108,6 @@ export class LocalStoreProvider extends React.Component {
     languages: this.props.project.languages,
     currencies: this.props.project.currencies,
     projectKey: this.props.project.key,
-    baseSettings:
-      this.props.project.settings && this.props.project.settings.baseSettings,
     projectSettings: this.props.project.settings,
     projectExpired: this.props.project.expiry.isActive,
   });
