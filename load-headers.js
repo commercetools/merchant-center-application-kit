@@ -68,7 +68,6 @@ module.exports = (env, options) => {
       'script-src': [
         "'self'",
         // NOTE: trailing slash is important for partial URLs!
-        'storage.googleapis.com/mc-staging/',
         'storage.googleapis.com/mc-production-eu/',
         'storage.googleapis.com/mc-production-us/',
         'www.googletagmanager.com/gtm.js',
@@ -82,11 +81,8 @@ module.exports = (env, options) => {
       ),
       'connect-src': [
         "'self'",
-        'mc-api.escemo.com',
         'mc-api.commercetools.com',
         'mc-api.commercetools.co',
-        'mc-api.neo-stage.vw.aws.commercetools.com',
-        'mc-api.neo.vw.aws.commercetools.com',
         'app.launchdarkly.com',
         'clientstream.launchdarkly.com',
         'events.launchdarkly.com',
@@ -100,7 +96,6 @@ module.exports = (env, options) => {
         "'self'",
         'fonts.googleapis.com',
         'data:',
-        'storage.googleapis.com/mc-staging/',
         'storage.googleapis.com/mc-production-eu/',
         'storage.googleapis.com/mc-production-us/',
       ].concat(
