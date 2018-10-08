@@ -1,0 +1,19 @@
+{
+  "name": "@commercetools-frontend/i18n",
+  "version": "1.0.0-beta.33",
+  "description": "MC i18n messages",
+  "license": "MIT",
+  "private": false,
+  "main": "./index.js",
+  "module": "./index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@commercetools-frontend/i18n": "1.0.0-beta.33",
+    "@commercetools-frontend/sentry": "1.0.0-beta.33",
+    "moment": "2.22.2",
+    "prop-types": "15.6.2",
+    "react": "16.5.2"
+  }
+}
