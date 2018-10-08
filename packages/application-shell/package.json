@@ -80,6 +80,7 @@
   },
   "devDependencies": {
     "@flopflip/memory-adapter": "1.1.0",
+    "history": "4.7.2",
     "react-testing-library": "5.2.0",
     "wait-for-observables": "1.0.3"
   },
