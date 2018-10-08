@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering <Avatar /> should match snapshot 1`] = `
+<div
+  className="avatar avatar-s"
+>
+  <GravatarImg
+    hash="20c9c1b252b46ab49d6f7a4cee9c3e68"
+    size="s"
+  />
+  <Initials
+    firstName="Caspar"
+    lastName="Commercetools"
+  />
+</div>
+`;
+
+exports[`rendering <GravatarImg /> with regular email should match snapshot 1`] = `
+<div
+  className="gravatar-img"
+  style={
+    Object {
+      "backgroundImage": "url(https://www.gravatar.com/avatar/20c9c1b252b46ab49d6f7a4cee9c3e68?s=26&d=blank)",
+    }
+  }
+/>
+`;

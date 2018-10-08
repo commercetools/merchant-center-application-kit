@@ -1,0 +1,20 @@
+@import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/spacings.mod.css';
+
+.container {
+  display: flex;
+  justify-content: center;
+  background: var(--color-gray-95);
+  height: 100vh;
+}
+
+.login {
+  margin-top: calc(var(--spacing-32) * 2);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}

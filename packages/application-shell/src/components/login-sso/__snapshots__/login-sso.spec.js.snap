@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering <Formik> form elements should match layout 1`] = `
+<div
+  className="stack-mod_m__3s4LT stack-mod_stretch__1Ck4r"
+>
+  <Title>
+    <FormattedMessage
+      defaultMessage="Sign in to your Organization"
+      id="Login.sso.title"
+      values={Object {}}
+    />
+  </Title>
+  <div>
+    <LabelField
+      isRequired={true}
+      subtitle={
+        <FormattedMessage
+          defaultMessage="This field is case sensitive"
+          id="Login.sso.caseSensitive"
+          values={Object {}}
+        />
+      }
+      title={
+        <FormattedMessage
+          defaultMessage="Enter your Organization's name to sign in"
+          id="Login.sso.organization"
+          values={Object {}}
+        />
+      }
+    />
+    <C
+      className="input-text"
+      name="organizationName"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div>
+    <PrimaryButton
+      isDisabled={true}
+      isToggleButton={false}
+      label="Login.sso.proceed"
+      onClick={[MockFunction]}
+      size="big"
+      tone="primary"
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,25 @@
+#import "../project-switcher/project-switcher-fragments.graphql"
+
+query LoggedInUserQuery {
+  user: me {
+    id
+    email
+    gravatarHash
+    firstName
+    lastName
+    language
+    numberFormat
+    timeZone
+    launchdarklyTrackingId
+    launchdarklyTrackingGroup
+    launchdarklyTrackingTeam
+    launchdarklyTrackingTenant
+    defaultProjectKey
+    projects {
+      total
+      results {
+        ...projectFragment
+      }
+    }
+  }
+}

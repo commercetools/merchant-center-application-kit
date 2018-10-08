@@ -1,0 +1,5 @@
+@import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
+
+.error {
+  color: var(--color-red);
+}

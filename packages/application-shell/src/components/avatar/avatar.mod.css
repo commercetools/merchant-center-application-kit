@@ -1,0 +1,46 @@
+@import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
+
+.avatar {
+  align-items: center;
+  background-color: var(--color-gray-60);
+  border-radius: 100%;
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.avatar-hover {
+  background-color: var(--color-gray);
+}
+
+.initials {
+  position: absolute;
+}
+
+.gravatar-img {
+  background-position: center center;
+  background-size: contain;
+  height: 26px;
+  position: relative;
+  width: 26px;
+  z-index: 10;
+}
+
+.avatar-hover .gravatar-img {
+  opacity: 0.7;
+}
+
+.gravatar-img-big {
+  height: 100px;
+  width: 100px;
+}
+
+.avatar-s {
+  font-size: 1rem;
+}
+
+.avatar-l {
+  font-size: 3rem;
+}

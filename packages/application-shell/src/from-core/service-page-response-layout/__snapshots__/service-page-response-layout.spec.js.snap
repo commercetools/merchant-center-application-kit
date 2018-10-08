@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering with both paragraphs and a body content in between outputs correct tree 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="content"
+  >
+    <div>
+      <img
+        className="graphic"
+        src="/assets/foo.svg"
+      />
+    </div>
+    <TextHeadline
+      elementType="h2"
+    >
+      <div>
+        title
+      </div>
+    </TextHeadline>
+    <TextBody>
+      <div>
+        title 1
+      </div>
+    </TextBody>
+    <div
+      className="body"
+    >
+      <div>
+        content
+      </div>
+    </div>
+    <TextBody>
+      <div>
+        title 2
+      </div>
+    </TextBody>
+  </div>
+</div>
+`;
+
+exports[`rendering with both paragraphs outputs correct tree 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="content"
+  >
+    <div>
+      <img
+        className="graphic"
+        src="/assets/foo.svg"
+      />
+    </div>
+    <TextHeadline
+      elementType="h2"
+    >
+      <div>
+        title
+      </div>
+    </TextHeadline>
+    <TextBody>
+      <div>
+        title 1
+      </div>
+    </TextBody>
+    <TextBody>
+      <div>
+        title 2
+      </div>
+    </TextBody>
+  </div>
+</div>
+`;
+
+exports[`rendering with only 1 paragraph outputs correct tree 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="content"
+  >
+    <div>
+      <img
+        className="graphic"
+        src="/assets/foo.svg"
+      />
+    </div>
+    <TextHeadline
+      elementType="h2"
+    >
+      <div>
+        title
+      </div>
+    </TextHeadline>
+    <TextBody>
+      <div>
+        title 1
+      </div>
+    </TextBody>
+  </div>
+</div>
+`;
+
+exports[`rendering with only one paragraph and the body content outputs correct tree 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="content"
+  >
+    <div>
+      <img
+        className="graphic"
+        src="/assets/foo.svg"
+      />
+    </div>
+    <TextHeadline
+      elementType="h2"
+    >
+      <div>
+        title
+      </div>
+    </TextHeadline>
+    <TextBody>
+      <div>
+        title 1
+      </div>
+    </TextBody>
+    <div
+      className="body"
+    >
+      <div>
+        content
+      </div>
+    </div>
+  </div>
+</div>
+`;

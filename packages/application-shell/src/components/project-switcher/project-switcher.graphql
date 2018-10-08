@@ -1,0 +1,12 @@
+#import "./project-switcher-fragments.graphql"
+
+query ProjectsQuery {
+  user: me {
+    id
+    projects {
+      results {
+        ...projectFragment
+      }
+    }
+  }
+}

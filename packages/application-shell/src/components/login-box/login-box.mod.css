@@ -1,0 +1,30 @@
+@import '@commercetools-frontend/ui-kit/materials/borders.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/spacings.mod.css';
+
+.box {
+  width: 350px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.header {
+  background: var(--color-navy);
+  padding: var(--spacing-8);
+  border-top-left-radius: var(--border-radius-6);
+  border-top-right-radius: var(--border-radius-6);
+}
+
+.logo {
+  width: 163px;
+  height: 45px;
+  padding: 3px 0;
+}
+
+.holder {
+  text-align: left;
+  background: var(--color-white);
+  border-bottom-left-radius: var(--border-radius-6);
+  border-bottom-right-radius: var(--border-radius-6);
+  padding: var(--spacing-24);
+}

@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RestrictedApplication> rendering project container <Route> should match layout structure 1`] = `
+<Fragment>
+  <withReconfiguration(ReconfigureAdapter)
+    user={
+      Object {
+        "custom": Object {
+          "project": "foo-1",
+        },
+      }
+    }
+  />
+  <InjectIntl(ProjectContainer)
+    location={
+      Object {
+        "pathname": "/test-project/products",
+      }
+    }
+    match={
+      Object {
+        "params": Object {
+          "projectKey": "foo-1",
+        },
+      }
+    }
+    render={[MockFunction]}
+    user={
+      Object {
+        "defaultProjectKey": "foo-0",
+        "email": "john.snow@got.com",
+        "firstName": "John",
+        "gravatarHash": "20c9c1b252b46ab49d6f7a4cee9c3e68",
+        "id": "u1",
+        "language": "en-US",
+        "lastName": "Snow",
+        "launchdarklyTrackingGroup": "ct",
+        "launchdarklyTrackingId": "123",
+        "launchdarklyTrackingTeam": Array [
+          "abc",
+          "def",
+        ],
+        "launchdarklyTrackingTenant": "xy",
+        "projects": Object {
+          "total": 0,
+        },
+      }
+    }
+  />
+</Fragment>
+`;
+
+exports[`<UnrestrictedApplication> rendering should match layout structure 1`] = `
+<Switch>
+  <Route
+    component={[Function]}
+    path="/login/sso/callback"
+  />
+  <Route
+    component={[Function]}
+    path="/login/sso"
+  />
+  <Route
+    component={[Function]}
+    path="/login/locked"
+  />
+  <Route
+    component={[Function]}
+    path="/login"
+  />
+  <Route
+    render={[Function]}
+  />
+</Switch>
+`;

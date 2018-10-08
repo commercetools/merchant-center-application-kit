@@ -1,0 +1,91 @@
+@import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/spacings.mod.css';
+
+:root {
+  --margin-left-logo: 20px;
+  --height-app-bar: 43px;
+  --width-dropdown: 60px;
+}
+
+/* Top Navigation */
+
+/* Header */
+.app-bar {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
+  min-height: var(--height-app-bar);
+  position: relative;
+  width: 100%;
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* THE DROPDOWNS IN TOP NAVIGATION HAS SPECIAL SIZES */
+.switchers :global(.Select-input),
+.switchers :global(.Select-control) {
+  height: 28px;
+}
+
+.switchers :global(.Select-control) {
+  /* We can't set the border to transparent due to a safari bug */
+  border: 1px var(--color-white) solid;
+}
+
+.switchers :global(.Select-input > input) {
+  padding: 5px 0 12px;
+}
+
+.switchers :global(.Select-value) {
+  line-height: 24px !important;
+}
+
+/* Logo */
+.logo {
+  display: block;
+  float: left;
+  width: 28px;
+  height: 32px;
+  margin-left: var(--margin-left-logo);
+}
+
+.logo-img {
+  width: 100%;
+}
+
+/* User nav right */
+.navigation {
+  float: right;
+  font-weight: normal;
+  font-size: 1rem;
+  margin-right: var(--spacing-16);
+  display: flex;
+  align-items: center;
+}
+
+.item-link:hover {
+  color: var(--color-navy);
+}
+
+/* Loader */
+
+.loader-container {
+  display: flex;
+  flex: 1;
+}
+
+.spacer {
+  border-left: 1px var(--color-gray-90) solid;
+  height: var(--height-app-bar);
+}
+
+/* React Select */
+
+.language-switch {
+  display: flex;
+  width: var(--width-dropdown);
+}
+
+.language-switch > * {
+  flex: 1 0 auto;
+}

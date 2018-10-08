@@ -1,0 +1,26 @@
+@import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/spacings.mod.css';
+
+.text-small {
+  font-size: 0.923rem;
+  color: var(--color-black);
+}
+
+.label-wrapper {
+  display: block;
+}
+
+.label {
+  composes: text-small;
+  display: block;
+  font-weight: 700;
+  margin-bottom: var(--spacing-4);
+}
+
+.description {
+  composes: text-small;
+  color: var(--color-gray);
+  font-weight: normal;
+  display: inline-block;
+  margin-bottom: var(--spacing-8);
+}

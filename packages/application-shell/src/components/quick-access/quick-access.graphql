@@ -1,0 +1,61 @@
+query QuickAccess($searchText: String!) {
+  productById: product(id: $searchText) {
+    key
+    id
+    masterData {
+      staged {
+        nameAllLocales {
+          locale
+          value
+        }
+      }
+    }
+  }
+
+  productByKey: product(key: $searchText) {
+    key
+    id
+    masterData {
+      staged {
+        nameAllLocales {
+          locale
+          value
+        }
+      }
+    }
+  }
+
+  productByVariantSku: product(sku: $searchText) {
+    id
+    masterData {
+      staged {
+        nameAllLocales {
+          locale
+          value
+        }
+        variant(sku: $searchText) {
+          sku
+          key
+          id
+        }
+      }
+    }
+  }
+
+  productByVariantKey: product(variantKey: $searchText) {
+    id
+    masterData {
+      staged {
+        nameAllLocales {
+          locale
+          value
+        }
+        variant(key: $searchText) {
+          sku
+          key
+          id
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+@import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/spacings.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/shadows/base-shadows.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/borders.mod.css';
+
+.container {
+  position: relative;
+}
+
+.settings-container {
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  border: 1px var(--color-gray-60) solid;
+  box-shadow: var(--shadow-7-first), var(--shadow-7-second);
+  width: 200px;
+  right: 0;
+  top: 34px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.menu::before {
+  content: '';
+  position: absolute;
+  right: 30px;
+  top: -6px;
+  border-style: solid;
+  border-width: 0 6px 6px;
+  border-color: transparent transparent var(--color-white) transparent;
+  z-index: 1;
+}
+
+.menu::after {
+  content: '';
+  position: absolute;
+  right: 28px;
+  top: -8px;
+  border-style: solid;
+  border-width: 0 8px 8px;
+  border-color: transparent transparent var(--color-gray-60) transparent;
+  z-index: 0;
+}
+
+.item {
+  width: 100%;
+  cursor: pointer;
+  color: var(--color-black);
+}
+
+.item:hover {
+  background-color: var(--color-gray-90);
+}
+
+.item-divider-account-section {
+  border-bottom: 1px solid var(--color-gray);
+}

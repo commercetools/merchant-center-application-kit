@@ -1,0 +1,8 @@
+fragment projectFragment on Project {
+  name
+  key
+  suspension {
+    isActive
+  }
+  expired
+}

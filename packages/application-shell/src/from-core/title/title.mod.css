@@ -1,0 +1,12 @@
+@import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
+
+.text-headline {
+  font-size: 1.846rem;
+  font-weight: 100;
+}
+
+.title {
+  composes: text-headline;
+  color: var(--color-black);
+  display: block;
+}

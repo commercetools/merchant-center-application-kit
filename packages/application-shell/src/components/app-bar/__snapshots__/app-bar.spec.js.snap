@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering should match layout structure 1`] = `
+<div
+  className="app-bar"
+  data-test="top-navigation"
+>
+  <Inline
+    alignItems="flexStart"
+    scale="s"
+  >
+    <div
+      className="logo"
+    >
+      <img
+        alt="Logo"
+        className="logo-img"
+        src="test-file-stub"
+      />
+    </div>
+    <div
+      className="loader-container"
+      id="loader-for-requests-in-flight"
+    />
+  </Inline>
+  <div
+    className="navigation"
+  >
+    <Inline
+      alignItems="center"
+      scale="m"
+    >
+      <div
+        className="switchers"
+      >
+        <Inline
+          alignItems="center"
+          scale="s"
+        >
+          <div
+            id="locale-switcher"
+          />
+        </Inline>
+      </div>
+      <div
+        className="spacer"
+      />
+      <UserSettingsMenu
+        firstName="John"
+        gravatarHash="20c9c1b252b46ab49d6f7a4cee9c3e68"
+        lastName="Snow"
+      />
+    </Inline>
+  </div>
+</div>
+`;

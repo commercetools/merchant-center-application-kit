@@ -1,0 +1,45 @@
+query ProjectQuery($projectKey: String!) {
+  project(key: $projectKey) {
+    key
+    version
+    name
+    countries
+    currencies
+    languages
+    expiry {
+      isActive
+      daysLeft
+    }
+    suspension {
+      isActive
+    }
+    permissions {
+      canManageOrganization
+      canManageProject
+      canViewProjectSettings
+      canViewProducts
+      canManageProducts
+      canViewOrders
+      canManageOrders
+      canViewCustomers
+      canManageCustomers
+      canViewTypes
+      canManageTypes
+      canViewPayments
+      canManagePayments
+    }
+    owner {
+      id
+      name
+      createdAt
+      teams {
+        count
+      }
+    }
+    settings {
+      id
+      productSettings
+      currentProductSettings
+    }
+  }
+}

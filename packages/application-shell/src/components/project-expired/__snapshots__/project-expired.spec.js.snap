@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering outputs correct tree 1`] = `
+<ServicePageResponseLayout
+  bodyContent={<withRouter(ServicePageProjectSwitcher) />}
+  imageSrc="test-file-stub"
+  paragraph1={
+    <FormattedMessage
+      defaultMessage="If you are interested in finding out more about the commercetools Merchant Center, please contact us at {mailto}."
+      id="ProjectExpired.paragraph1"
+      values={
+        Object {
+          "mailto": <a
+            href="mailto:sales@commercetools.com"
+          >
+            sales@commercetools.com
+          </a>,
+        }
+      }
+    />
+  }
+  title={
+    <FormattedMessage
+      defaultMessage="Your trial has expired"
+      id="ProjectExpired.title"
+      values={Object {}}
+    />
+  }
+/>
+`;

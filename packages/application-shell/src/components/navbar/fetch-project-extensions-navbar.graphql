@@ -1,0 +1,31 @@
+query FetchProjectExtensionsNavbarQuery {
+  projectExtension {
+    id
+    applications {
+      id
+      navbarMenu {
+        id
+        key
+        uriPath
+        icon
+        labelAllLocales {
+          locale
+          value
+        }
+        featureToggle
+        permissions
+        submenu {
+          id
+          key
+          uriPath
+          labelAllLocales {
+            locale
+            value
+          }
+          permissions
+          featureToggle
+        }
+      }
+    }
+  }
+}

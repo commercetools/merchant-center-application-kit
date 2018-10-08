@@ -1,0 +1,57 @@
+@import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
+
+.text {
+  margin-right: 10px;
+  color: var(--color-navy);
+  position: relative;
+  bottom: 13px;
+}
+
+.react-select-container {
+  position: relative;
+}
+
+.react-select-container :global(.Select-control) {
+  background: var(--color-gray-95);
+  color: var(--color-black);
+  border-radius: 6px;
+  cursor: pointer;
+  width: 160px;
+  right: 0;
+}
+
+.react-select-container :global(.Select-control:hover) {
+  box-shadow: none;
+}
+
+.counter {
+  width: 22px;
+  height: 22px;
+  border-radius: 22px;
+  padding: 3px;
+  background: var(--color-navy-40);
+  color: var(--color-white);
+  display: inline-block;
+  font-size: 0.9rem;
+  text-align: center;
+  position: absolute;
+  margin-top: 3px;
+  line-height: 17px;
+}
+
+.language-counter {
+  composes: counter;
+  right: 33px;
+}
+
+.icon {
+  float: left;
+  margin: 3px 5px 0 -5px;
+  font-size: 1.6em;
+}
+
+.label {
+  display: inline-block;
+  margin: 2px 5px 0 0;
+  color: var(--color-navy);
+}

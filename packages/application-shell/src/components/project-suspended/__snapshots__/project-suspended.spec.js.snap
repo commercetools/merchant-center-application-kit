@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering should match snapshot 1`] = `
+<ServicePageResponseLayout
+  bodyContent={<withRouter(ServicePageProjectSwitcher) />}
+  imageSrc="test-file-stub"
+  paragraph1={
+    <FormattedMessage
+      defaultMessage="Please contact your system administrator if you have any further questions or select another Project to view."
+      id="ProjectSuspended.paragraph1"
+      values={Object {}}
+    />
+  }
+  title={
+    <FormattedMessage
+      defaultMessage="Your Project has been suspended"
+      id="ProjectSuspended.defaultSuspensionMessage"
+      values={Object {}}
+    />
+  }
+/>
+`;
+
+exports[`rendering when suspension is temporary should match snapshot 1`] = `
+<ServicePageResponseLayout
+  bodyContent={<withRouter(ServicePageProjectSwitcher) />}
+  imageSrc="test-file-stub"
+  paragraph1={
+    <FormattedMessage
+      defaultMessage="Please contact your system administrator if you have any further questions or select another Project to view."
+      id="ProjectSuspended.paragraph1"
+      values={Object {}}
+    />
+  }
+  title={
+    <FormattedMessage
+      defaultMessage="Your Project is temporarily suspended due to maintenance."
+      id="ProjectSuspended.temporaryMaintenanceSuspensionMessage"
+      values={Object {}}
+    />
+  }
+/>
+`;

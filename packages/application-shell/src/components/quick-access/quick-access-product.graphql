@@ -1,0 +1,14 @@
+query QuickAccessProductQuery($productId: String!) {
+  product(id: $productId) {
+    id
+    masterData {
+      staged {
+        allVariants {
+          id
+          key
+          sku
+        }
+      }
+    }
+  }
+}
