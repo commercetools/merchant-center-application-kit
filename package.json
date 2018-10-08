@@ -19,7 +19,7 @@
     "moment-timezone": "0.5.21",
     "prop-types": "15.6.2",
     "react": "16.5.2",
-    "react-apollo": "2.2.3",
+    "react-apollo": "2.2.4",
     "recompose": "0.26.0"
   }
 }
