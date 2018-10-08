@@ -1,0 +1,25 @@
+{
+  "name": "@commercetools-frontend/application-shell-connectors",
+  "version": "1.0.0-beta.33",
+  "description": "Contains complementary tools for @commercetools-frontend/application-shell",
+  "license": "Proprietary",
+  "private": false,
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "dependencies": {
+    "@commercetools-frontend/constants": "1.0.0-beta.33",
+    "lodash.get": "4.4.2",
+    "moment-timezone": "0.5.21",
+    "prop-types": "15.6.2",
+    "react": "16.5.2",
+    "react-apollo": "2.2.4",
+    "recompose": "0.26.0"
+  }
+}

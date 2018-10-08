@@ -1,0 +1,18 @@
+query FetchProjectExtensionImageRegexQuery {
+  projectExtension {
+    id
+    imageRegex {
+      thumb {
+        ...ImageRegex
+      }
+      small {
+        ...ImageRegex
+      }
+    }
+  }
+}
+fragment ImageRegex on ImageRegexOptions {
+  flag
+  search
+  replace
+}
