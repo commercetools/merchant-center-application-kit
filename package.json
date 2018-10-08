@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/l10n",
-  "version": "1.0.0-beta.32",
+  "version": "1.0.0-beta.33",
   "description": "React bindings to load l10n data",
   "license": "MIT",
   "private": false,
@@ -11,7 +11,7 @@
     "generate-data": "node ./scripts/generate-l10n-data.js"
   },
   "dependencies": {
-    "@commercetools-frontend/sentry": "1.0.0-beta.32",
+    "@commercetools-frontend/sentry": "1.0.0-beta.33",
     "moment": "2.22.2",
     "prop-types": "15.6.2",
     "react": "16.5.2",
