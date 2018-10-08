@@ -5,7 +5,7 @@
   "license": "Proprietary",
   "private": true,
   "dependencies": {
-    "@commercetools-frontend/ui-kit": "2.0.0-rc.9",
+    "@commercetools-frontend/ui-kit": "2.0.0-rc.10",
     "classnames": "2.2.6",
     "lodash.range": "3.2.0",
     "moment": "2.22.2",
