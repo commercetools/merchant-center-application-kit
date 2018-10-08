@@ -30,8 +30,12 @@
     "pegjs-jest": "0.0.2",
     "raf": "3.4.0"
   },
+  "devDependencies": {
+    "react-testing-library": "5.2.0"
+  },
   "peerDependencies": {
     "enzyme": ">=3",
-    "jest": ">=23"
+    "jest": ">=23",
+    "react-testing-library": ">=5"
   }
 }

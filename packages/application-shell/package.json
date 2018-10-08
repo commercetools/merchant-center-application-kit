@@ -82,5 +82,8 @@
     "@flopflip/memory-adapter": "1.1.0",
     "react-testing-library": "5.2.0",
     "wait-for-observables": "1.0.3"
+  },
+  "peerDependencies": {
+    "react-testing-library": ">=5"
   }
 }
