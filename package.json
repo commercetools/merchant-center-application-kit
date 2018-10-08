@@ -3,10 +3,7 @@
   "version": "0.0.0",
   "description": "Merchant Center Application Kit (monorepo)",
   "license": "MIT",
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
+  "private": true,
   "scripts": {
     "i18n:build": "./packages/mc-scripts/bin/mc-scripts.js extract-intl --output-path=$(pwd)/packages/i18n/data 'packages/**/!(*.spec).js'",
     "i18n:pull": "tx pull --mode onlyreviewed",
@@ -22,7 +19,7 @@
     "start": "echo \"Nothing to start yet\" && exit 1",
     "release": "lerna publish --exact",
     "test": "jest --config jest.test.config.js",
-    "test:watch": "jest --config jest.test.config.js --watch",
+    "test:watch": "jest --config jest.test.config.js --watch"
   },
   "workspaces": ["packages/*"],
   "dependencies": {},
@@ -38,7 +35,7 @@
     "jest-runner-eslint": "0.6.0",
     "jest-runner-shellcheck": "1.0.2",
     "jest-runner-stylelint": "1.0.0",
-    "lerna": "2.11.0",
+    "lerna": "3.4.1",
     "lint-staged": "7.3.0",
     "prettier": "1.14.3",
     "stylelint": "9.6.0",

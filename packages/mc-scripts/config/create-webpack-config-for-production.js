@@ -149,7 +149,7 @@ module.exports = ({
     // The build folder.
     path: path.join(distPath, 'assets'),
     pathinfo: false,
-    // Will be injected on runtime. See `packages-shared/application-shell/src/public-path.js`
+    // Will be injected on runtime. See `packages/application-shell/src/public-path.js`
     publicPath: '',
   },
 
