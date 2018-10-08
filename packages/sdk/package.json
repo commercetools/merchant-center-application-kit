@@ -1,0 +1,27 @@
+{
+  "name": "@commercetools-frontend/sdk",
+  "version": "1.0.0-beta.33",
+  "description": "Tools for declarative fetching",
+  "license": "MIT",
+  "private": false,
+  "main": "./index.js",
+  "module": "./index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@commercetools-frontend/actions-global": "1.0.0-beta.33",
+    "@commercetools-frontend/constants": "1.0.0-beta.33",
+    "@commercetools/api-request-builder": "4.0.2",
+    "@commercetools/sdk-client": "1.5.8",
+    "@commercetools/sdk-middleware-correlation-id": "1.0.1",
+    "@commercetools/sdk-middleware-http": "4.0.4",
+    "@commercetools/sdk-middleware-user-agent": "1.2.10",
+    "fast-equals": "1.6.1",
+    "prop-types": "15.6.2",
+    "query-string": "5.1.0",
+    "react": "16.5.2",
+    "react-redux": "5.0.7",
+    "unfetch": "3.1.1"
+  }
+}
