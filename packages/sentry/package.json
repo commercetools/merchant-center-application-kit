@@ -1,0 +1,17 @@
+{
+  "name": "@commercetools-frontend/sentry",
+  "version": "1.0.0-beta.33",
+  "description": "Components to set up Sentry for a MC application",
+  "license": "MIT",
+  "private": false,
+  "main": "./index.js",
+  "module": "./index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "prop-types": "15.6.2",
+    "raven-js": "3.27.0",
+    "react": "16.5.2"
+  }
+}
