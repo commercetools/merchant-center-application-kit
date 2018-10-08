@@ -1,0 +1,19 @@
+{
+  "name": "@commercetools-frontend/mc-html-template",
+  "version": "1.0.0-beta.33",
+  "description": "Everything related to render the index.html for a MC application",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "serialize-javascript": "1.5.0",
+    "uglify-es": "3.3.9",
+    "uglifycss": "0.0.29"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  }
+}
