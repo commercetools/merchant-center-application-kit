@@ -14,7 +14,7 @@
     "format": "npm run format:js && npm run format:css & npm run format:md & npm run format:yaml",
     "format:js": "prettier --write 'packages/**/*.js'",
     "format:css": "prettier --parser postcss --write 'packages/**/*.css'",
-    "format:md": "prettier --parser markdown --write 'packages/**/*.md'",
+    "format:md": "prettier --parser markdown --write '{.github,packages}/**/*.md'",
     "format:yaml": "prettier --parser yaml --write 'packages/**/*.yaml'",
     "start": "echo \"Nothing to start yet\" && exit 1",
     "release": "lerna publish --exact",
