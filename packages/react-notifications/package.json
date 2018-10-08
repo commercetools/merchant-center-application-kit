@@ -1,0 +1,32 @@
+{
+  "name": "@commercetools-frontend/react-notifications",
+  "version": "1.0.0-beta.33",
+  "description": "React bindings for @commercetools-frontend/notifications",
+  "license": "MIT",
+  "private": false,
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@commercetools-frontend/actions-global": "1.0.0-beta.33",
+    "@commercetools-frontend/constants": "1.0.0-beta.33",
+    "@commercetools-frontend/notifications": "1.0.0-beta.33",
+    "@commercetools-frontend/sentry": "1.0.0-beta.33",
+    "@commercetools-frontend/ui-kit": "2.0.0-rc.10",
+    "classnames": "2.2.6",
+    "lodash.has": "4.5.2",
+    "lodash.isnumber": "3.0.3",
+    "moment": "2.22.2",
+    "moment-timezone": "0.5.21",
+    "prop-types": "15.6.2",
+    "react": "16.5.2",
+    "react-dom": "16.5.2",
+    "react-intl": "2.7.1",
+    "react-redux": "5.0.7",
+    "react-router-dom": "4.3.1",
+    "recompose": "0.26.0",
+    "reselect": "3.0.1"
+  }
+}
