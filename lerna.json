@@ -5,6 +5,7 @@
   "npmClient": "yarn",
   "command": {
     "publish": {
+      "npmClient": "yarn",
       "message": "chore(release): publish %s"
     }
   }
