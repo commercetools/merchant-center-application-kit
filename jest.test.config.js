@@ -8,7 +8,6 @@ module.exports = {
     // dependencies (e.g. `packages`) which are symlinked as dependencies
     // in node_modules. Since the name of those packages are scoped with
     // `@commercetools-local` we simply match the JS files within those folders.
-    '/node_modules/',
     'node_modules/@commercetools-frontend/ui-kit',
     'node_modules/(?!(@commercetools-frontend)/)',
   ],
