@@ -17,7 +17,7 @@
     "format:md": "prettier --parser markdown --write '{.github,packages}/**/*.md' *.md",
     "format:yaml": "prettier --parser yaml --write 'packages/**/*.yaml' *.yaml",
     "start": "echo \"Nothing to start yet\" && exit 1",
-    "release": "lerna publish --exact",
+    "release": "lerna publish --exact --preid beta",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch"
   },
