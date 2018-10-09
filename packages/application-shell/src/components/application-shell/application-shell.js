@@ -82,7 +82,11 @@ export const RestrictedApplication = props => (
               return (
                 <ConfigureIntlProvider
                   language={language}
-                  messages={mergeMessages(messages, i18n[language])}
+                  messages={mergeMessages(
+                    messages,
+                    i18n[language],
+                    props.applicationMessages[language]
+                  )}
                 >
                   <ErrorApologizer />
                 </ConfigureIntlProvider>
@@ -111,7 +115,11 @@ export const RestrictedApplication = props => (
                     // `<Context.Provider>` kick in.
                     timeZone: user && user.timeZone ? user.timeZone : undefined,
                     language,
-                    messages: mergeMessages(messages, i18n[language]),
+                    messages: mergeMessages(
+                      messages,
+                      i18n[language],
+                      props.applicationMessages[language]
+                    ),
                   })}
             >
               <SetupFlopFlipProvider
@@ -326,6 +334,7 @@ RestrictedApplication.displayName = 'RestrictedApplication';
 RestrictedApplication.propTypes = {
   defaultFeatureFlags: PropTypes.object,
   render: PropTypes.func.isRequired,
+  applicationMessages: PropTypes.object.isRequired,
   INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
 };
 
@@ -383,6 +392,7 @@ export default class ApplicationShell extends React.Component {
     ),
     render: PropTypes.func.isRequired,
     onRegisterErrorListeners: PropTypes.func.isRequired,
+    applicationMessages: PropTypes.object.isRequired,
     // Internal usage only, does not need to be documented
     INTERNAL__isApplicationFallback: PropTypes.bool,
   };
@@ -423,6 +433,9 @@ export default class ApplicationShell extends React.Component {
                                   this.props.defaultFeatureFlags
                                 }
                                 render={this.props.render}
+                                applicationMessages={
+                                  this.props.applicationMessages
+                                }
                                 INTERNAL__isApplicationFallback={
                                   this.props.INTERNAL__isApplicationFallback
                                 }
@@ -437,7 +450,8 @@ export default class ApplicationShell extends React.Component {
                                   language={language}
                                   messages={mergeMessages(
                                     messages,
-                                    i18n[language]
+                                    i18n[language],
+                                    this.props.applicationMessages[language]
                                   )}
                                 >
                                   <UnrestrictedApplication />
