@@ -29,6 +29,7 @@
     "@commercetools-frontend/ui-kit": "2.0.0-rc.10",
     "@commercetools-frontend/url-utils": "1.0.0-beta.33",
     "@flopflip/launchdarkly-adapter": "2.4.1",
+    "@flopflip/memory-adapter": "1.1.0",
     "@flopflip/react-broadcast": "7.1.2",
     "apollo-cache-inmemory": "1.2.10",
     "apollo-client": "2.4.2",
@@ -46,6 +47,7 @@
     "fuse.js": "3.2.1",
     "graphql": "14.0.2",
     "graphql-tag": "2.10.0",
+    "history": "4.7.2",
     "is-retina": "1.0.3",
     "jwt-decode": "2.2.0",
     "lodash.camelcase": "4.3.0",
@@ -70,6 +72,7 @@
     "react-router": "4.3.1",
     "react-router-dom": "4.3.1",
     "react-select": "1.2.1",
+    "react-testing-library": "5.2.0",
     "recompose": "0.26.0",
     "redux": "4.0.0",
     "redux-logger": "3.0.6",
@@ -79,12 +82,6 @@
     "uuid": "3.3.2"
   },
   "devDependencies": {
-    "@flopflip/memory-adapter": "1.1.0",
-    "history": "4.7.2",
-    "react-testing-library": "5.2.0",
     "wait-for-observables": "1.0.3"
-  },
-  "peerDependencies": {
-    "react-testing-library": ">=5"
   }
 }
