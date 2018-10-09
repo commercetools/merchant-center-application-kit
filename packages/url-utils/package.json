@@ -2,11 +2,22 @@
   "name": "@commercetools-frontend/url-utils",
   "version": "1.0.0-beta.34",
   "description": "Utility functions to work with URLs",
+  "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commercetools/merchant-center-application-kit.git"
+  },
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
-  "main": "./index.js",
-  "module": "./index.js",
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "main": "./index.js",
+  "module": "./index.js"
 }

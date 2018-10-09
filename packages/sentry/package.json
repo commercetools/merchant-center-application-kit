@@ -2,13 +2,24 @@
   "name": "@commercetools-frontend/sentry",
   "version": "1.0.0-beta.34",
   "description": "Components to set up Sentry for a MC application",
+  "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commercetools/merchant-center-application-kit.git"
+  },
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
-  "main": "./index.js",
-  "module": "./index.js",
   "publishConfig": {
     "access": "public"
   },
+  "main": "./index.js",
+  "module": "./index.js",
   "dependencies": {
     "prop-types": "15.6.2",
     "raven-js": "3.27.0",

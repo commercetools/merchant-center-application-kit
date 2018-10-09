@@ -2,13 +2,24 @@
   "name": "@commercetools-frontend/eslint-config-mc-app",
   "version": "1.0.0-beta.34",
   "description": "ESLint config used by a MC application",
+  "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commercetools/merchant-center-application-kit.git"
+  },
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
-  "main": "./index.js",
-  "module": "./index.js",
   "publishConfig": {
     "access": "public"
   },
+  "main": "./index.js",
+  "module": "./index.js",
   "dependencies": {
     "babel-eslint": "10.0.1",
     "eslint": "5.6.1",
