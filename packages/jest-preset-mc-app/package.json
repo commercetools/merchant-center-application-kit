@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/jest-preset-mc-app",
-  "version": "1.0.0-beta.33",
+  "version": "1.0.0-beta.34",
   "description": "Jest preset used by a MC application",
   "license": "MIT",
   "private": false,
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@babel/core": "7.1.2",
-    "@commercetools-frontend/babel-preset-mc-app": "1.0.0-beta.33",
+    "@commercetools-frontend/babel-preset-mc-app": "1.0.0-beta.34",
     "@commercetools/enzyme-extensions": "3.0.1",
     "@commercetools/jest-enzyme-matchers": "1.1.2",
     "babel-core": "7.0.0-bridge.0",
