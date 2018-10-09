@@ -30,8 +30,6 @@ export const DISCOUNTS_BULK_SELECTION_STATUS =
 
 export const PIM_SEARCH = 'pimSearch';
 export const PRICE_TIERS = 'productPriceTiers';
-// This is a shared toggle. It is also used in application-project-settings
-export const PRODUCT_TYPES_ADMINISTRATION = 'productTypesAdministration';
 
 export const DEVELOPER_SETTINGS = 'developerSettings';
 export const PROJECT_EXTENSIONS = 'projectExtensions';

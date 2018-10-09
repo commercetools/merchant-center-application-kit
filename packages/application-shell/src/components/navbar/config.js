@@ -3,7 +3,6 @@ import { MCSupportFormURL } from '../../constants';
 import {
   CUSTOMER_GROUPS,
   PIM_SEARCH,
-  PRODUCT_TYPES_ADMINISTRATION,
   DEVELOPER_SETTINGS,
   CAN_VIEW_CATEGORIES,
   CAN_VIEW_PRODUCTS,
@@ -202,7 +201,6 @@ const itemsProjectSettings = {
     },
     {
       key: 'Product types',
-      featureToggle: PRODUCT_TYPES_ADMINISTRATION,
       labelKey: 'NavBar.ProductTypes.title',
       uriPath: 'settings/product-types',
       permissions: [
