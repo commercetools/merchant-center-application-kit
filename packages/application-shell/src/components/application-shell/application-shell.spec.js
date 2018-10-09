@@ -23,10 +23,10 @@ jest.mock('@commercetools-frontend/sentry');
 jest.mock('../../utils');
 
 const createTestProps = props => ({
-  i18n: {
-    en: { title: 'Title en' },
-    'en-US': { title: 'Title' },
-    de: { title: 'Titel' },
+  applicationMessages: {
+    en: { 'CustomApp.title': 'Title en' },
+    'en-US': { 'CustomApp.title': 'Title' },
+    de: { 'CustomApp.title': 'Titel' },
   },
   configuration: {},
   trackingEventWhitelist: {},
@@ -48,7 +48,7 @@ const createTestProps = props => ({
 const testLocaleData = {
   isLoading: false,
   language: 'en',
-  messages: { title: 'Test en' },
+  messages: { 'AppKit.title': 'Title en' },
 };
 
 const renderForAsyncData = ({ props, userData, localeData = testLocaleData }) =>
@@ -127,9 +127,7 @@ describe('rendering', () => {
           .find(AsyncLocaleData)
           .renderProp('children', {
             language: 'en',
-            messages: {
-              title: 'Title en',
-            },
+            messages: testLocaleData.messages,
           });
       });
       it('should pass "language" to <ConfigureIntlProvider>', () => {
@@ -138,10 +136,16 @@ describe('rendering', () => {
           'en'
         );
       });
-      it('should pass "messages" to <ConfigureIntlProvider>', () => {
+      it('should pass default "messages" to <ConfigureIntlProvider>', () => {
         expect(authRenderWrapper.find(ConfigureIntlProvider)).toHaveProp(
           'messages',
-          expect.objectContaining({ title: 'Title en' })
+          expect.objectContaining({ 'AppKit.title': 'Title en' })
+        );
+      });
+      it('should pass custom app "messages" to <ConfigureIntlProvider>', () => {
+        expect(authRenderWrapper.find(ConfigureIntlProvider)).toHaveProp(
+          'messages',
+          expect.objectContaining({ 'AppKit.title': 'Title en' })
         );
       });
       it('should render <UnrestrictedApplication> after track components', () => {
@@ -239,11 +243,19 @@ describe('<RestrictedApplication>', () => {
           {}
         );
       });
-      it('should pass "messages" to <ConfigureIntlProvider>', () => {
+      it('should pass default "messages" to <ConfigureIntlProvider>', () => {
         expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
           'messages',
           expect.objectContaining({
-            title: 'Test en',
+            'AppKit.title': 'Title en',
+          })
+        );
+      });
+      it('should pass application "messages" to <ConfigureIntlProvider>', () => {
+        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
+          'messages',
+          expect.objectContaining({
+            'CustomApp.title': 'Title en',
           })
         );
       });
