@@ -3,20 +3,38 @@ import PropTypes from 'prop-types';
 import omit from 'lodash.omit';
 import styles from './butler-container.mod.css';
 
-const ButlerContainer = props =>
-  // render no overlay in case of loding error, just show nothing then
-  props.timedOut || props.error ? null : (
-    <div
-      className={styles.container}
-      tabIndex="-1"
-      // omit props of react-loadable
-      {...omit(props, ['error', 'timedOut', 'pastDelay', 'isLoading', 'retry'])}
-    />
-  );
-ButlerContainer.displayName = 'ButlerContainer';
-ButlerContainer.propTypes = {
-  timedOut: PropTypes.bool,
-  error: PropTypes.any,
-};
+class ButlerContainer extends React.Component {
+  static displayName = 'ButlerContainer';
+  static propTypes = {
+    timedOut: PropTypes.bool,
+    error: PropTypes.any,
+  };
+
+  componentDidUpdate() {
+    if (this.props.error) {
+      console.error('Failed to load component', this.props.error);
+    }
+  }
+
+  render() {
+    // render no overlay in case of loding error, just show nothing then
+    if (this.props.timedOut || this.props.error) return null;
+
+    return (
+      <div
+        className={styles.container}
+        tabIndex="-1"
+        // omit this.props of react-loadable
+        {...omit(this.props, [
+          'error',
+          'timedOut',
+          'pastDelay',
+          'isLoading',
+          'retry',
+        ])}
+      />
+    );
+  }
+}
 
 export default ButlerContainer;
