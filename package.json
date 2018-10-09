@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "changelog": "node scripts/changelog.js",
     "i18n:build": "./packages/mc-scripts/bin/mc-scripts.js extract-intl --output-path=$(pwd)/packages/i18n/data 'packages/**/!(*.spec).js'",
     "i18n:pull": "tx pull --mode onlyreviewed",
     "l10n:build": "pushd packages/l10n; yarn generate-data",
@@ -12,7 +13,7 @@
     "lint:js": "jest --config jest.eslint.config.js",
     "lint:css": "jest --config jest.stylelint.config.js",
     "format": "npm run format:js && npm run format:css & npm run format:md & npm run format:yaml",
-    "format:js": "prettier --write 'packages/**/*.js' *.js",
+    "format:js": "prettier --write '{packages,scripts}/**/*.js' *.js",
     "format:css": "prettier --parser css --write 'packages/**/*.css'",
     "format:md": "prettier --parser markdown --write '{.github,packages}/**/*.md' *.md",
     "format:yaml": "prettier --parser yaml --write 'packages/**/*.yaml' *.yaml",
@@ -26,6 +27,7 @@
   "devDependencies": {
     "@commitlint/cli": "7.2.0",
     "@commitlint/config-conventional": "7.1.2",
+    "dotenv": "6.1.0",
     "enzyme": "3.7.0",
     "eslint": "5.6.1",
     "husky": "1.1.1",
@@ -38,8 +40,10 @@
     "jest-runner-stylelint": "1.0.0",
     "jest-silent-reporter": "0.1.1",
     "lerna": "3.4.1",
+    "lerna-changelog": "0.8.0",
     "lint-staged": "7.3.0",
     "prettier": "1.14.3",
+    "shelljs": "0.8.2",
     "stylelint": "9.6.0",
     "stylelint-config-standard": "17.0.0",
     "stylelint-order": "0.8.1"

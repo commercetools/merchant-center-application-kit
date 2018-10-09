@@ -57,6 +57,9 @@ typings/
 # dotenv environment variables file
 .env
 
+# Lerna changelog cache
+.changelog
+
 # next.js build output
 .next
 

@@ -8,5 +8,18 @@
       "npmClient": "yarn",
       "message": "chore(release): publish %s"
     }
+  },
+  "changelog": {
+    "repo": "commercetools/merchant-center-application-kit",
+    "cacheDir": ".changelog",
+    "labels": {
+      "🐛 Type: Bug": "🐛 Type: Bug",
+      "💥 Type: Breaking Change": "💥 Type: Breaking Change",
+      "🔮 Type: Chore": "🔮 Type: Chore",
+      "✍️ Type: Documentation": "✍️ Type: Documentation",
+      "💅 Type: Enhancement": "💅 Type: Enhancement",
+      "🚀 Type: New Feature": "🚀 Type: New Feature",
+      "⛑ Type: Refactoring": "⛑ Type: Refactoring"
+    }
   }
 }
