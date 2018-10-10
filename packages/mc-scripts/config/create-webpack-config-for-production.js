@@ -18,7 +18,7 @@ const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
 const postcssCustomProperties = require('postcss-custom-properties');
 const postcssCustomMediaQueries = require('postcss-custom-media');
-const postcssPostcssColorModFunction = require('postcss-color-mod-function');
+const postcssColorModFunction = require('postcss-color-mod-function');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 const browserslist = require('./browserslist');
 
@@ -322,11 +322,11 @@ module.exports = ({
                   browsers: browserslist.production,
                   autoprefixer: { grid: true },
                 }),
+                postcssColorModFunction(),
                 postcssCustomProperties({
                   preserve: false,
                 }),
                 postcssCustomMediaQueries(),
-                postcssPostcssColorModFunction(),
                 postcssReporter(),
               ],
             },
@@ -363,11 +363,11 @@ module.exports = ({
                       browsers: browserslist.production,
                       autoprefixer: { grid: true },
                     }),
+                    postcssCustomMediaQueries(),
                     postcssCustomProperties({
                       preserve: false,
                     }),
-                    postcssCustomMediaQueries(),
-                    postcssPostcssColorModFunction(),
+                    postcssColorModFunction(),
                     postcssReporter(),
                   ],
                 },

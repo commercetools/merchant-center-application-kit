@@ -9,7 +9,7 @@ const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
 const postcssCustomProperties = require('postcss-custom-properties');
 const postcssCustomMediaQueries = require('postcss-custom-media');
-const postcssPostcssColorModFunction = require('postcss-color-mod-function');
+const postcssColorModFunction = require('postcss-color-mod-function');
 const browserslist = require('./browserslist');
 
 const defaultToggleFlags = {
@@ -234,11 +234,11 @@ module.exports = ({
                   browsers: browserslist.development,
                   autoprefixer: { grid: true },
                 }),
+                postcssCustomMediaQueries(),
                 postcssCustomProperties({
                   preserve: false,
                 }),
-                postcssCustomMediaQueries(),
-                postcssPostcssColorModFunction(),
+                postcssColorModFunction(),
                 postcssReporter(),
               ],
             },
@@ -273,11 +273,11 @@ module.exports = ({
                       browsers: browserslist.development,
                       autoprefixer: { grid: true },
                     }),
+                    postcssCustomMediaQueries(),
                     postcssCustomProperties({
                       preserve: false,
                     }),
-                    postcssCustomMediaQueries(),
-                    postcssPostcssColorModFunction(),
+                    postcssColorModFunction(),
                     postcssReporter(),
                   ],
                 },
