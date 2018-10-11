@@ -781,6 +781,35 @@
     styled-components "3.4.9"
     warning "4.0.2"
 
+"@commercetools-frontend/ui-kit@2.0.0-rc.11":
+  version "2.0.0-rc.11"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-2.0.0-rc.11.tgz#95181ecd8ef891a367ed1b122a7b6d019dd8d607"
+  integrity sha512-OS/+/EOiKZdwXAYPALOscYj8M1VMuXU1/SQgQuzGEfESvxunNeH3uOF3KYad132Ek4bPDHk43P4kfbxglDgrww==
+  dependencies:
+    classnames "2.2.6"
+    common-tags "1.8.0"
+    dom-helpers "3.3.1"
+    downshift "2.2.3"
+    flatpickr "4.5.2"
+    is-touch-device "1.0.1"
+    lodash.flatmap "4.5.0"
+    lodash.has "4.5.2"
+    lodash.isnil "4.0.0"
+    lodash.mapvalues "4.6.0"
+    lodash.omit "4.5.0"
+    lodash.sortby "4.7.0"
+    lodash.uniq "4.5.0"
+    lodash.without "4.4.0"
+    prop-types "15.6.2"
+    react-required-if "1.0.3"
+    react-select "2.1.0"
+    react-textarea-autosize "7.0.4"
+    react-virtualized "9.20.1"
+    recompose "0.30.0"
+    styled-components "3.4.9"
+    tiny-invariant "1.0.1"
+    warning "4.0.2"
+
 "@commercetools/api-request-builder@4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@commercetools/api-request-builder/-/api-request-builder-4.0.2.tgz#3f85c549f4e1ec984d02eb4f8d1ccccb461ada47"
@@ -13746,6 +13775,11 @@ timsort@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/timsort/-/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
+
+tiny-invariant@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.0.1.tgz#54700d039a0384ef2e83afd0e81af84c6d67b140"
+  integrity sha512-avcKCNM2yJqD33H/WJLgIu3QNRXFOjARGJSdLi8IpKESCyhm67vyPWTRjnIbX2uI/pn52tqYcao333R3PBVhbQ==
 
 tmp@^0.0.33:
   version "0.0.33"

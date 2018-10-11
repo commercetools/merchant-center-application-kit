@@ -4,6 +4,7 @@ module.exports = {
   testMatch: [
     '<rootDir>/*.js',
     '<rootDir>/packages/**/*.js',
+    '<rootDir>/playground/**/*.js',
     '<rootDir>/scripts/*.js',
   ],
   watchPlugins: ['jest-plugin-filename', 'jest-watch-master'],
