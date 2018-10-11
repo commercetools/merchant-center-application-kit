@@ -38,10 +38,14 @@ class EntryPoint extends React.Component {
           }}
           render={() => (
             <Switch>
-              <Redirect
-                from="/:projectKey/dashboard"
-                to="/:projectKey/channels"
-              />
+              {/* For development, it's useful to redirect to the actual
+              application routes when you open the browser at http://localhost:3001 */
+              process.env.NODE_ENV === 'production' ? null : (
+                <Redirect
+                  from="/:projectKey/dashboard"
+                  to="/:projectKey/channels"
+                />
+              )}
               <Route path="/:projectKey/channels" component={AsyncChannels} />
               {/* Catch-all route */}
               <RouteCatchAll />
