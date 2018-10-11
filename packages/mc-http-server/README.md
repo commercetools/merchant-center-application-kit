@@ -10,6 +10,14 @@ This package contains the HTTP server to run a MC application in production.
 $ npm install --save @commercetools-frontend/mc-http-server
 ```
 
+### Docker image
+
+We also provide a docker image to run the server:
+
+```bash
+$ docker run -p 3001:3001 eu.gcr.io/ct-images/mc-http-server:v0.0.0 mc-http-server --config="$(pwd)/env.json"
+```
+
 ## Why do we need an HTTP Server?
 
 Since a SPA consists of mainly JS bundles and CSS, it's usually not necessary to have an actual HTTP server running.
