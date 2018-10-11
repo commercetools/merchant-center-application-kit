@@ -1,16 +1,14 @@
-substitutions:
-  _PKG_VERSION: 5.3.3
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args:
       [
         'build',
         '-t',
-        'eu.gcr.io/$PROJECT_ID/mc-http-server:${_PKG_VERSION}',
+        'eu.gcr.io/$PROJECT_ID/mc-http-server:$TAG_NAME',
         '-t',
         'eu.gcr.io/$PROJECT_ID/mc-http-server:latest',
         './packages/mc-http-server',
       ]
 images:
-  - 'eu.gcr.io/$PROJECT_ID/mc-http-server:${_PKG_VERSION}'
+  - 'eu.gcr.io/$PROJECT_ID/mc-http-server:$TAG_NAME'
   - 'eu.gcr.io/$PROJECT_ID/mc-http-server:latest'
