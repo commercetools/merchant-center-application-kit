@@ -142,7 +142,7 @@ export default ({
         {
           id: 'go/discounts/carts/list',
           text: intl.formatMessage(messages.openCartDiscountsList),
-          action: { type: 'go', to: `/${project.key}/discounts/products` },
+          action: { type: 'go', to: `/${project.key}/discounts/carts` },
         },
         {
           id: 'go/discounts/codes/list',
