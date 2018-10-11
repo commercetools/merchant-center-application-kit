@@ -17,12 +17,13 @@
     "format:css": "prettier --parser css --write 'packages/**/*.css'",
     "format:md": "prettier --parser markdown --write '{.github,packages}/**/*.md' *.md",
     "format:yaml": "prettier --parser yaml --write 'packages/**/*.yaml' *.yaml",
-    "start": "echo \"Nothing to start yet\" && exit 1",
+    "start": "yarn playground:start",
     "release": "lerna publish --exact --preid beta",
     "test": "jest --config jest.test.config.js",
-    "test:watch": "jest --config jest.test.config.js --watch"
+    "test:watch": "jest --config jest.test.config.js --watch",
+    "playground:start": "pushd playground; yarn start"
   },
-  "workspaces": ["packages/*"],
+  "workspaces": ["packages/*", "playground"],
   "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "7.2.0",

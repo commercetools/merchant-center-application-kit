@@ -9,7 +9,7 @@ import ApplicationShell, {
 } from '@commercetools-frontend/application-shell';
 import { Sdk } from '@commercetools-frontend/sdk';
 import * as globalActions from '@commercetools-frontend/actions-global';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 // Here we split up the main (app) bundle with the actual application business logic.
 // Splitting by route is usually recommended and you can potentially have a splitting
@@ -38,6 +38,10 @@ class EntryPoint extends React.Component {
           }}
           render={() => (
             <Switch>
+              <Redirect
+                from="/:projectKey/dashboard"
+                to="/:projectKey/channels"
+              />
               <Route path="/:projectKey/channels" component={AsyncChannels} />
               {/* Catch-all route */}
               <RouteCatchAll />
