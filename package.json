@@ -21,7 +21,8 @@
     "release": "lerna publish --exact --preid beta",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
-    "playground:start": "pushd playground; yarn start"
+    "playground:start": "pushd playground; yarn start",
+    "playground:build": "pushd playground; yarn build"
   },
   "workspaces": ["packages/*", "playground"],
   "dependencies": {},
