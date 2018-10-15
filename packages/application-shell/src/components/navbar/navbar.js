@@ -97,7 +97,6 @@ export const MenuItem = props => (
       [styles.item__active]: props.isActive,
       [styles['item_menu-collapsed']]: !props.isMenuOpen,
       [styles['item__no-submenu']]: !props.hasSubmenu,
-      [styles['item--bottom']]: props.isBottomItem,
     })}
     onClick={props.onClick}
     onMouseEnter={props.onMouseEnter}
@@ -343,9 +342,10 @@ export class DataMenu extends React.PureComponent {
     return Boolean(match);
   };
 
-  handleToggleItem = index => {
-    if (this.state.activeItemIndex !== index)
-      this.setState({ activeItemIndex: index });
+  handleToggleItem = (menuType, index) => {
+    const activeItem = `${menuType}-${index}`;
+    if (this.state.activeItemIndex !== activeItem)
+      this.setState({ activeItemIndex: activeItem });
   };
 
   shouldCloseMenuFly = event => {
@@ -379,110 +379,130 @@ export class DataMenu extends React.PureComponent {
     return NO_VALUE_FALLBACK;
   };
 
+  renderMenu = (menu, menuType, index) => {
+    const isActive = this.state.activeItemIndex === `${menuType}-${index}`;
+    const MenuIcon = Icons[menu.icon];
+    const hasSubmenu = Boolean(menu.submenu) && menu.submenu.length > 0;
+    return (
+      <ToggledWithPermissions
+        key={menu.key}
+        featureToggle={menu.featureToggle}
+        permissions={menu.permissions}
+      >
+        <React.Fragment>
+          {menu.key === 'Settings' && <MenuItemDivider />}
+          <MenuItem
+            hasSubmenu={hasSubmenu}
+            isActive={isActive}
+            isMenuOpen={this.state.isMenuOpen}
+            onClick={() => {
+              this.handleToggleItem(menuType, index);
+            }}
+            onMouseEnter={
+              this.state.isMenuOpen
+                ? null
+                : () => this.handleToggleItem(menuType, index)
+            }
+            onMouseLeave={
+              this.state.isMenuOpen ? null : this.shouldCloseMenuFly
+            }
+          >
+            <MenuItemLink
+              externalLink={menu.externalLink}
+              tracking={menu.tracking}
+              linkTo={
+                !this.state.isMenuOpen || !hasSubmenu
+                  ? `/${this.props.projectKey}/${menu.uriPath}`
+                  : null
+              }
+              useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}
+            >
+              <div className={styles['item-icon-text']}>
+                <div className={styles.icon}>
+                  <MenuIcon
+                    size="scale"
+                    theme={getIconTheme(
+                      menu,
+                      isActive || this.isMainMenuRouteActive(menu.uriPath)
+                    )}
+                  />
+                </div>
+                <div className={styles.title}>{this.renderLabel(menu)}</div>
+              </div>
+            </MenuItemLink>
+            <MenuGroup
+              level={2}
+              isActive={isActive}
+              isExpanded={this.state.isMenuOpen}
+            >
+              {hasSubmenu
+                ? menu.submenu.map(submenu => (
+                    <ToggledWithPermissions
+                      key={`${menu.key}-submenu-${submenu.key}`}
+                      featureToggle={submenu.featureToggle}
+                      permissions={submenu.permissions}
+                    >
+                      <li className={styles['sublist-item']}>
+                        <div className={styles.text}>
+                          <MenuItemLink
+                            linkTo={oneLineTrim`
+                            /${this.props.projectKey}
+                            /${submenu.uriPath}
+                          `}
+                            exactMatch={true}
+                            useFullRedirectsForLinks={
+                              this.props.useFullRedirectsForLinks
+                            }
+                          >
+                            {this.renderLabel(submenu)}
+                          </MenuItemLink>
+                        </div>
+                      </li>
+                    </ToggledWithPermissions>
+                  ))
+                : null}
+            </MenuGroup>
+          </MenuItem>
+        </React.Fragment>
+      </ToggledWithPermissions>
+    );
+  };
+
   render() {
     return (
       <MenuGroup level={1}>
-        {this.props.data.map((menu, index) => {
-          const isActive = this.state.activeItemIndex === index;
-          const MenuIcon = Icons[menu.icon];
-          const hasSubmenu = Boolean(menu.submenu) && menu.submenu.length > 0;
-          return (
-            <ToggledWithPermissions
-              key={menu.key}
-              featureToggle={menu.featureToggle}
-              permissions={menu.permissions}
-            >
-              <React.Fragment>
-                {menu.key === 'Settings' && <MenuItemDivider />}
-                <MenuItem
-                  hasSubmenu={hasSubmenu}
-                  isBottomItem={this.bottomMenuItems.indexOf(menu.key) >= 0}
-                  isActive={isActive}
-                  isMenuOpen={this.state.isMenuOpen}
-                  onClick={() => {
-                    this.handleToggleItem(index);
-                  }}
-                  onMouseEnter={
-                    this.state.isMenuOpen
-                      ? null
-                      : () => this.handleToggleItem(index)
-                  }
-                  onMouseLeave={
-                    this.state.isMenuOpen ? null : this.shouldCloseMenuFly
-                  }
-                >
-                  <MenuItemLink
-                    externalLink={menu.externalLink}
-                    tracking={menu.tracking}
-                    linkTo={
-                      !this.state.isMenuOpen || !hasSubmenu
-                        ? `/${this.props.projectKey}/${menu.uriPath}`
-                        : null
-                    }
-                    useFullRedirectsForLinks={
-                      this.props.useFullRedirectsForLinks
-                    }
-                  >
-                    <div className={styles['item-icon-text']}>
-                      <div className={styles.icon}>
-                        <MenuIcon
-                          size="scale"
-                          theme={getIconTheme(
-                            menu,
-                            isActive || this.isMainMenuRouteActive(menu.uriPath)
-                          )}
-                        />
-                      </div>
-                      <div className={styles.title}>
-                        {this.renderLabel(menu)}
-                      </div>
-                    </div>
-                  </MenuItemLink>
-                  <MenuGroup
-                    level={2}
-                    isActive={isActive}
-                    isExpanded={this.state.isMenuOpen}
-                  >
-                    {hasSubmenu
-                      ? menu.submenu.map(submenu => (
-                          <ToggledWithPermissions
-                            key={`${menu.key}-submenu-${submenu.key}`}
-                            featureToggle={submenu.featureToggle}
-                            permissions={submenu.permissions}
-                          >
-                            <li className={styles['sublist-item']}>
-                              <div className={styles.text}>
-                                <MenuItemLink
-                                  linkTo={oneLineTrim`
-                                    /${this.props.projectKey}
-                                    /${submenu.uriPath}
-                                  `}
-                                  exactMatch={true}
-                                  useFullRedirectsForLinks={
-                                    this.props.useFullRedirectsForLinks
-                                  }
-                                >
-                                  {this.renderLabel(submenu)}
-                                </MenuItemLink>
-                              </div>
-                            </li>
-                          </ToggledWithPermissions>
-                        ))
-                      : null}
-                  </MenuGroup>
-                </MenuItem>
-              </React.Fragment>
-            </ToggledWithPermissions>
-          );
-        })}
-        <MenuExpander
-          isVisible={this.state.isExpanderVisible}
-          onClick={this.handleToggleMenu}
-        />
+        <ScrollableMenu>
+          {this.props.data
+            .filter(menu => this.bottomMenuItems.indexOf(menu.key))
+            .map((menu, index) => this.renderMenu(menu, 'scrollable', index))}
+        </ScrollableMenu>
+        <FixedMenu>
+          {this.props.data
+            .filter(menu => !this.bottomMenuItems.indexOf(menu.key))
+            .map((menu, index) => this.renderMenu(menu, 'fixed', index))}
+          <MenuExpander
+            isVisible={this.state.isExpanderVisible}
+            onClick={this.handleToggleMenu}
+          />
+        </FixedMenu>
       </MenuGroup>
     );
   }
 }
+
+export const ScrollableMenu = props => (
+  <div className={styles['scrollable-menu']}>{props.children}</div>
+);
+ScrollableMenu.propTypes = {
+  children: PropTypes.node,
+};
+
+export const FixedMenu = props => (
+  <div className={styles['fixed-menu']}>{props.children}</div>
+);
+FixedMenu.propTypes = {
+  children: PropTypes.node,
+};
 
 export const NavBarLayout = props => (
   <nav
