@@ -8,10 +8,6 @@
   - [#8](https://github.com/commercetools/merchant-center-application-kit/pull/8) fix(quick-access): fix cart-discount-list route ([@dferber90](https://github.com/dferber90))
   - [#1](https://github.com/commercetools/merchant-center-application-kit/pull/1) fix(app-shell/quick-access): missing dep, log if component cannot be loaded ([@emmenko](https://github.com/emmenko))
 
-#### 💥 Type: Breaking Change
-
-- [#4](https://github.com/commercetools/merchant-center-application-kit/pull/4) Cleanup i18n translations ([@emmenko](https://github.com/emmenko))
-
 #### 🔮 Type: Chore
 
 - `i18n`
