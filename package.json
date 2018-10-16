@@ -18,7 +18,7 @@
     "format:md": "prettier --parser markdown --write '{.github,packages}/**/*.md' *.md",
     "format:yaml": "prettier --parser yaml --write 'packages/**/*.yaml' *.yaml",
     "start": "yarn playground:start",
-    "release": "lerna publish --exact --preid beta",
+    "release": "lerna publish --exact --preid rc",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
     "playground:start": "cd playground; yarn start",
