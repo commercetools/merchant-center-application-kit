@@ -2,6 +2,7 @@
   "name": "merchant-center-starter-app",
   "version": "1.0.0-beta.36",
   "description": "A starter example for building a Merchant Center application",
+  "private": true,
   "scripts": {
     "build": "mc-scripts build",
     "start": "mc-scripts start",
