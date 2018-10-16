@@ -363,7 +363,7 @@ describe('rendering', () => {
         });
         describe('when item is active', () => {
           beforeEach(() => {
-            wrapper.setState({ activeItemIndex: 0 });
+            wrapper.setState({ activeItemIndex: 'scrollable-0' });
           });
           it('should render active icon', () => {
             expect(wrapper.find('CustomerFilledIcon')).toHaveProp(
@@ -460,7 +460,7 @@ describe('rendering', () => {
         });
         describe('when item is active', () => {
           beforeEach(() => {
-            wrapper.setState({ activeItemIndex: 0 });
+            wrapper.setState({ activeItemIndex: 'scrollable-0' });
           });
           it('should pass isActive as prop', () => {
             expect(wrapper.find('MenuGroup').at(1)).toHaveProp(
@@ -1153,11 +1153,11 @@ describe('instance methods', () => {
     describe('handleToggleItem', () => {
       describe('if activeItemIndex is not the same as the given index', () => {
         beforeEach(() => {
-          wrapper.setState({ activeItemIndex: 1 });
-          wrapper.instance().handleToggleItem(0);
+          wrapper.setState({ activeItemIndex: 'fixed-1' });
+          wrapper.instance().handleToggleItem('fixed', 0);
         });
         it('should update activeItemIndex with the new index', () => {
-          expect(wrapper).toHaveState('activeItemIndex', 0);
+          expect(wrapper).toHaveState('activeItemIndex', 'fixed-0');
         });
       });
     });
@@ -1189,7 +1189,7 @@ describe('instance methods', () => {
     describe('handleToggleMenu', () => {
       describe('if menu is open and activeItemIndex is not null', () => {
         beforeEach(() => {
-          wrapper.setState({ isMenuOpen: true, activeItemIndex: 0 });
+          wrapper.setState({ isMenuOpen: true, activeItemIndex: 'fixed-0' });
           wrapper.instance().handleToggleMenu();
         });
         it('should unset activeItemIndex', () => {
