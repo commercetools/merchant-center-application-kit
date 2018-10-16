@@ -19,6 +19,9 @@ const AsyncChannels = Loadable({
   loading: AsyncChunkLoader,
 });
 
+// TODO: define intl messages
+const messages = { en: {} };
+
 // Ensure to setup the global error listener before any React component renders
 // in order to catch possible errors on rendering/mounting.
 setupGlobalErrorListener(reduxStore.dispatch);
@@ -36,6 +39,7 @@ class EntryPoint extends React.Component {
                 reduxStore.dispatch
               );
           }}
+          applicationMessages={messages}
           render={() => (
             <Switch>
               {/* For development, it's useful to redirect to the actual
