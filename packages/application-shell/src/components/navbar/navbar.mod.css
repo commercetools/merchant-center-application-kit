@@ -269,7 +269,7 @@
 
 .list-item.item__active .item-icon-text {
   position: absolute;
-  width: 150px;
+  width: 175px;
 }
 
 :global(.body__menu-open) .list-item.item__active .item-icon-text {
