@@ -22,7 +22,7 @@ const headerLink = new ApolloLink((operation, forward) => {
    *   it to be the fallback.
    */
   const projectKey =
-    selectProjectKeyFromUrl() || operation.variables.projectKey;
+    operation.variables.projectKey || selectProjectKeyFromUrl();
 
   // NOTE: keep header names with capital letters to avoid possible conflicts or problems with nginx.
   operation.setContext({
