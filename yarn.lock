@@ -761,7 +761,7 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@commercetools-frontend/ui-kit@2.0.0-rc.11", "@commercetools-frontend/ui-kit@^2.0.0-rc.0":
+"@commercetools-frontend/ui-kit@2.0.0-rc.11":
   version "2.0.0-rc.11"
   resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-2.0.0-rc.11.tgz#95181ecd8ef891a367ed1b122a7b6d019dd8d607"
   integrity sha512-OS/+/EOiKZdwXAYPALOscYj8M1VMuXU1/SQgQuzGEfESvxunNeH3uOF3KYad132Ek4bPDHk43P4kfbxglDgrww==
