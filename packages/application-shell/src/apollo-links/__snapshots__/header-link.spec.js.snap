@@ -9,3 +9,13 @@ Object {
   },
 }
 `;
+
+exports[`with valid target without project key in url with project key in variables should set headers matching snapshot 1`] = `
+Object {
+  "headers": Object {
+    "X-Correlation-Id": "test-correlation-id",
+    "X-Graphql-Target": "mc",
+    "X-Project-Key": "test-project-key",
+  },
+}
+`;

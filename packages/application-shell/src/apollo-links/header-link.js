@@ -13,9 +13,18 @@ const headerLink = new ApolloLink((operation, forward) => {
       `GraphQL target "${target}" is missing or is not supported`
     );
 
-  const projectKey = selectProjectKeyFromUrl();
-  // NOTE: keep header names with capital letters to avoid possible conflicts
-  // or problems with nginx.
+  /**
+   * NOTE:
+   *   The project key is read from the url in a project related appliation context.
+   *   This holds for most applications like `application-categories`, `application-discounts` etc.
+   *   However, the `application-account` does not run with the project key being part of the url.
+   *   As a result we allow passing the project key as a variable on the operation allowing
+   *   it to be the fallback.
+   */
+  const projectKey =
+    selectProjectKeyFromUrl() || operation.variables.projectKey;
+
+  // NOTE: keep header names with capital letters to avoid possible conflicts or problems with nginx.
   operation.setContext({
     headers: {
       'X-Project-Key': projectKey,

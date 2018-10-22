@@ -2,11 +2,12 @@ import { ApolloLink, execute, Observable } from 'apollo-link';
 import gql from 'graphql-tag';
 import waitFor from 'wait-for-observables';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { selectProjectKeyFromUrl } from '../utils';
 import headerLink from './header-link';
 
 jest.mock('../utils/', () => ({
   getCorrelationId: () => 'test-correlation-id',
-  selectProjectKeyFromUrl: () => 'project-1',
+  selectProjectKeyFromUrl: jest.fn(() => 'project-1'),
 }));
 
 describe('headerLink', () => {
@@ -74,5 +75,39 @@ describe('with valid target', () => {
         'X-Correlation-Id': 'test-correlation-id',
       })
     );
+  });
+
+  describe('without project key in url', () => {
+    beforeEach(() => {
+      selectProjectKeyFromUrl.mockImplementation(() => undefined);
+    });
+
+    describe('with project key in variables', () => {
+      const projectKey = 'test-project-key';
+
+      beforeEach(async () => {
+        await waitFor(
+          execute(link, {
+            query,
+            variables: {
+              target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+              projectKey,
+            },
+          })
+        );
+      });
+
+      it('should set headers matching snapshot', () => {
+        expect(context).toMatchSnapshot();
+      });
+
+      it('should set `X-Project-Key`-Header', () => {
+        expect(context.headers).toEqual(
+          expect.objectContaining({
+            'X-Project-Key': projectKey,
+          })
+        );
+      });
+    });
   });
 });
