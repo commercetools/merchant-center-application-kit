@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-shell-connectors",
-  "version": "1.0.0-rc.0",
+  "version": "1.0.0-rc.1",
   "description": "Contains complementary tools for @commercetools-frontend/application-shell",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -25,7 +25,7 @@
     "npm": ">=5"
   },
   "dependencies": {
-    "@commercetools-frontend/constants": "1.0.0-rc.0",
+    "@commercetools-frontend/constants": "1.0.0-rc.1",
     "lodash.get": "4.4.2",
     "moment-timezone": "0.5.21",
     "prop-types": "15.6.2",
