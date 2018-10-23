@@ -47,7 +47,9 @@ export default class QuickAccessTrigger extends React.Component {
       // react-modal uses it for example. We want to treat those elements
       // similar to document.body.
       // See https://stackoverflow.com/a/32912224
-      event.target.getAttribute('tabindex') !== '-1'
+      event.target.getAttribute('tabindex') !== '-1' &&
+      // Do not prevent Quick Access from opening when a link has focus
+      event.target.nodeName !== 'A'
     )
       return;
 
