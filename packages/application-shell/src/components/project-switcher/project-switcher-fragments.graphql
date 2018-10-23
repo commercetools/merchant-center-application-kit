@@ -4,5 +4,7 @@ fragment projectFragment on Project {
   suspension {
     isActive
   }
-  expired
+  expiry {
+    isActive
+  }
 }
