@@ -1,7 +1,7 @@
 query FetchProjectExtensionsNavbarQuery {
   projectExtension {
     id
-    applications {
+    applications(where: { isActive: true }) {
       id
       navbarMenu {
         id
