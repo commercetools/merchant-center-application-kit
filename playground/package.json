@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-starter-app",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.2",
   "description": "A starter example for building a Merchant Center application",
   "private": true,
   "scripts": {
@@ -11,14 +11,14 @@
     "now-start": "NODE_ENV=production npm run start:prod"
   },
   "dependencies": {
-    "@commercetools-frontend/actions-global": "1.0.0-rc.1",
-    "@commercetools-frontend/application-shell": "1.0.0-rc.1",
-    "@commercetools-frontend/constants": "1.0.0-rc.1",
-    "@commercetools-frontend/i18n": "1.0.0-rc.1",
-    "@commercetools-frontend/l10n": "1.0.0-rc.1",
-    "@commercetools-frontend/mc-http-server": "1.0.0-rc.1",
-    "@commercetools-frontend/permissions": "1.0.0-rc.1",
-    "@commercetools-frontend/sdk": "1.0.0-rc.1",
+    "@commercetools-frontend/actions-global": "1.0.0-rc.2",
+    "@commercetools-frontend/application-shell": "1.0.0-rc.2",
+    "@commercetools-frontend/constants": "1.0.0-rc.2",
+    "@commercetools-frontend/i18n": "1.0.0-rc.2",
+    "@commercetools-frontend/l10n": "1.0.0-rc.2",
+    "@commercetools-frontend/mc-http-server": "1.0.0-rc.2",
+    "@commercetools-frontend/permissions": "1.0.0-rc.2",
+    "@commercetools-frontend/sdk": "1.0.0-rc.2",
     "@commercetools-frontend/ui-kit": "2.0.0-rc.11",
     "moment": "2.22.2",
     "moment-timezone": "0.5.21",
@@ -33,6 +33,6 @@
     "react-select": "1.2.1"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "1.0.0-rc.1"
+    "@commercetools-frontend/mc-scripts": "1.0.0-rc.2"
   }
 }
