@@ -1,4 +1,13 @@
 steps:
+  # As this build gets triggered during a release cycle,
+  # lerna will push the git tag before publishing the packages
+  # to npm, which causes the docker build to fail to install
+  # the dependencies (as they are not been fully published yet).
+  # Therefore, we try to wait for about 30s before building
+  # the docker image, which should give enough time for
+  # the lerna release to finish.
+  - name: 'ubuntu'
+    args: ['sleep', '30']
   - name: 'gcr.io/cloud-builders/docker'
     args:
       [
