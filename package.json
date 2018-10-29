@@ -40,7 +40,7 @@
     "jest-dom": "1.12.1",
     "jest-each": "23.6.0",
     "jest-plugin-filename": "0.0.1",
-    "jest-runner-eslint": "0.6.0",
+    "jest-runner-eslint": "0.7.1",
     "jest-runner-shellcheck": "1.0.2",
     "jest-runner-stylelint": "1.0.0",
     "jest-silent-reporter": "0.1.1",
