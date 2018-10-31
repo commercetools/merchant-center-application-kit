@@ -29,8 +29,14 @@
     "lodash.get": "4.4.2",
     "moment-timezone": "0.5.21",
     "prop-types": "15.6.2",
-    "react": "16.5.2",
-    "react-apollo": "2.2.4",
     "recompose": "0.26.0"
+  },
+  "devDependencies": {
+    "react": "16.5.2",
+    "react-apollo": "2.2.4"
+  },
+  "peerDependencies": {
+    "react": ">=16 <17",
+    "react-apollo": ">=2 <3"
   }
 }
