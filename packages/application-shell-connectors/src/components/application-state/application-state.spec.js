@@ -45,14 +45,15 @@ describe('rendering', () => {
       expect(wrapper).toHaveProp(
         'value',
         expect.objectContaining({
-          user: expect.objectContaining({
+          user: {
             id: expect.any(String),
             email: expect.any(String),
             firstName: expect.any(String),
             lastName: expect.any(String),
             applicationLocale: expect.any(String),
             numberFormat: expect.any(String),
-          }),
+            timeZone: expect.any(String),
+          },
         })
       );
     });
@@ -60,7 +61,7 @@ describe('rendering', () => {
       expect(wrapper).toHaveProp(
         'value',
         expect.objectContaining({
-          project: expect.objectContaining({
+          project: {
             key: expect.any(String),
             version: expect.any(Number),
             name: expect.any(String),
@@ -69,7 +70,7 @@ describe('rendering', () => {
             languages: expect.any(Array),
             permissions: expect.any(Object),
             dataLocale: expect.any(String),
-          }),
+          },
         })
       );
     });
