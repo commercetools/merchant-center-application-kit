@@ -1,5 +1,6 @@
 import { ApolloLink, execute, Observable } from 'apollo-link';
-import gql from 'graphql-tag';
+import gql from 'graphql-tag.macro';
+
 import waitFor from 'wait-for-observables';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import headerLink from './header-link';

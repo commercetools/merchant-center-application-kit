@@ -2,6 +2,8 @@
   "name": "@commercetools-frontend/i18n",
   "version": "1.0.0-rc.2",
   "description": "MC i18n messages",
+  "main": "dist/i18n.cjs.js",
+  "module": "dist/i18n.es.js",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
     "type": "git",
@@ -13,16 +15,20 @@
     "react",
     "toolkit"
   ],
+  "scripts": {
+    "prebuild": "rimraf dist/**",
+    "build": "cross-env npm run build:es && npm run build:cjs",
+    "build:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs index.js -o dist/i18n.cjs.js",
+    "build:es": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f es index.js -o dist/i18n.es.js"
+  },
   "license": "MIT",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "main": "./index.js",
-  "module": "./index.js",
   "dependencies": {
-    "@commercetools-frontend/i18n": "1.0.0-rc.2",
     "@commercetools-frontend/sentry": "1.0.0-rc.2",
+    "react-intl": "2.7.1",
     "moment": "2.22.2",
     "prop-types": "15.6.2",
     "react": "16.5.2"

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import createL10NInjector from './create-l10n-injector';
-import getSupportedLanguage from './utils/get-supported-language';
-import extractLanguageFromLocale from './utils/extract-language-from-locale';
+import createL10NInjector from '../create-l10n-injector';
+import getSupportedLanguage from '../utils/get-supported-language';
+import extractLanguageFromLocale from '../utils/extract-language-from-locale';
 
 export const languagesShape = PropTypes.objectOf(
   PropTypes.shape({
@@ -21,7 +21,7 @@ const getLanguagesForLocale = (locale, cb) => {
   // The files are named like "language-data-en-json.chunk.js" after compilation
   // https://webpack.js.org/api/module-methods/#import-
   import(/* webpackChunkName: "language-data-[request]" */
-  `./data/languages/${supportedLocale}.json`)
+  `../data/languages/${supportedLocale}.json`)
     .then(languages => cb(null, languages.default))
     .catch(error => cb(error));
 };

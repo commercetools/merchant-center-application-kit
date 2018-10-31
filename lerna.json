@@ -9,6 +9,7 @@
       "message": "chore(release): publish %s"
     }
   },
+  "packages": ["packages/*"],
   "changelog": {
     "repo": "commercetools/merchant-center-application-kit",
     "cacheDir": ".changelog",

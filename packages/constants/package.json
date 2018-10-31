@@ -18,6 +18,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./index.js",
-  "module": "./index.js"
+  "scripts": {
+    "prebuild": "rimraf dist/**",
+    "build": "cross-env npm run build:es && npm run build:cjs",
+    "build:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./index.js -o dist/constants.cjs.js",
+    "build:es": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f es ./index.js -o dist/constants.es.js"
+  },
+  "main": "./dist/constants.cjs.js",
+  "module": "./dist/constants.es.js"
 }

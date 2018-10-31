@@ -7,6 +7,8 @@
     "type": "git",
     "url": "https://github.com/commercetools/merchant-center-application-kit.git"
   },
+  "main": "dist/l10n.cjs.js",
+  "module": "dist/l10n.es.js",
   "keywords": [
     "javascript",
     "frontend",
@@ -19,7 +21,11 @@
     "access": "public"
   },
   "scripts": {
-    "generate-data": "node ./scripts/generate-l10n-data.js"
+    "generate-data": "node ./scripts/generate-l10n-data.js",
+    "prebuild": "rimraf dist/**",
+    "build": "cross-env npm run build:es && npm run build:cjs",
+    "build:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./index.js -o dist/l10n.cjs.js",
+    "build:es": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f es ./index.js -o dist/l10n.es.js"
   },
   "dependencies": {
     "@commercetools-frontend/sentry": "1.0.0-rc.2",

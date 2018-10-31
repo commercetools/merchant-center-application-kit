@@ -2,6 +2,8 @@
   "name": "@commercetools-frontend/application-shell",
   "version": "1.0.0-rc.2",
   "description": "React component to bootstrap the general MC application logic",
+  "main": "dist/application-shell.cjs.js",
+  "module": "dist/application-shell.es.js",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
     "type": "git",
@@ -13,13 +15,17 @@
     "react",
     "toolkit"
   ],
+  "scripts": {
+    "prebuild": "rimraf dist/**",
+    "build": "cross-env npm run build:es && npm run build:cjs",
+    "build:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./src/index.js -o dist/application-shell.cjs.js",
+    "build:es": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f es ./src/index.js -o dist/application-shell.es.js"
+  },
   "license": "MIT",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "main": "./src/index.js",
-  "module": "./src/index.js",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
@@ -61,6 +67,8 @@
     "is-retina": "1.0.3",
     "jwt-decode": "2.2.0",
     "lodash.camelcase": "4.3.0",
+    "lodash.flatmap": "4.5.0",
+    "lodash.snakecase": "4.1.1",
     "lodash.has": "4.5.2",
     "lodash.isnil": "4.0.0",
     "lodash.last": "3.0.0",
