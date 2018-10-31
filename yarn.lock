@@ -3376,17 +3376,18 @@ classnames@2.2.6, classnames@^2.2.3, classnames@^2.2.4, classnames@^2.2.5:
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
-cldr@4.11.0:
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/cldr/-/cldr-4.11.0.tgz#1a10c1a0967c2fb0876ea24a46db99ea1adc2e44"
-  integrity sha512-HZZsh5sONEEScC0FZjOD8+Y4b3rZIDr+X139oyxCctBZ3x7nDVsKsaGvGlkMGM6tdAISaQsWObh6uz27EafEEQ==
+cldr@4.13.0:
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/cldr/-/cldr-4.13.0.tgz#a10ea41bbd7c5d965eda5fdd3531ba8291c4d71b"
+  integrity sha512-azSL1aMvsZM9Im6ZrnMhW/b3xF02YhoFckB7zzyjDKipUGjbVgkQSGukgJP+kFlEYCxKrCzU4Fj/nCchjjqZcw==
   dependencies:
+    escodegen "^1.11.0"
+    esprima "^4.0.1"
     lodash "^4.17.10"
     memoizeasync "^1.1.0"
     passerror "^1.1.1"
     pegjs "^0.10.0"
     seq "^0.3.5"
-    uglify-js "^1.3.3"
     unicoderegexp "^0.4.1"
     xmldom "^0.1.27"
     xpath "^0.0.27"
@@ -5294,7 +5295,7 @@ esprima@^3.1.3:
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-3.1.3.tgz#fdca51cee6133895e3c88d535ce49dbff62a4633"
   integrity sha1-/cpRzuYTOJXjyI1TXOSdv/YqRjM=
 
-esprima@^4.0.0:
+esprima@^4.0.0, esprima@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
   integrity sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==
@@ -13982,11 +13983,6 @@ uglify-js@3.4.x, uglify-js@^3.1.4:
   dependencies:
     commander "~2.17.1"
     source-map "~0.6.1"
-
-uglify-js@^1.3.3:
-  version "1.3.5"
-  resolved "http://registry.npmjs.org/uglify-js/-/uglify-js-1.3.5.tgz#4b5bfff9186effbaa888e4c9e94bd9fc4c94929d"
-  integrity sha1-S1v/+Rhu/7qoiOTJ6UvZ/EyUkp0=
 
 uglifycss@0.0.29:
   version "0.0.29"
