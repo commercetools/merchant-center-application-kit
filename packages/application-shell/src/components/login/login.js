@@ -8,7 +8,7 @@ import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { Spacings, PrimaryButton } from '@commercetools-frontend/ui-kit';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
-import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
+import { withApplicationState } from '@commercetools-frontend/application-shell-connectors';
 import { Notification } from '@commercetools-frontend/react-notifications';
 import InfoDialog from '../../from-core/info-dialog';
 import Title from '../../from-core/title';
@@ -34,7 +34,11 @@ export class Login extends React.PureComponent {
 
     // Injected
     requestAccessToken: PropTypes.func.isRequired,
-    adminCenterUrl: PropTypes.string.isRequired,
+    applicationState: PropTypes.shape({
+      environment: PropTypes.shape({
+        adminCenterUrl: PropTypes.string.isRequired,
+      }).isRequired,
+    }).isRequired,
     intl: PropTypes.shape({
       formatMessage: PropTypes.func.isRequired,
     }).isRequired,
@@ -127,7 +131,9 @@ export class Login extends React.PureComponent {
       case LOGOUT_REASONS.NO_PROJECTS: {
         const link = (
           <a
-            href={`${this.props.adminCenterUrl}/login`}
+            href={`${
+              this.props.applicationState.environment.adminCenterUrl
+            }/login`}
             target="_blank"
             className={styles.underline}
           >
@@ -171,7 +177,9 @@ export class Login extends React.PureComponent {
     if (!this.state.shouldRedirectPasswordForgot) return null;
 
     return this.renderCountdownAlert(
-      `${this.props.adminCenterUrl}/reset-password`,
+      `${
+        this.props.applicationState.environment.adminCenterUrl
+      }/reset-password`,
       'forgotPassowordTitle',
       'forgotPassowordSubtitle'
     );
@@ -316,7 +324,7 @@ const mapDispatchToProps = dispatch => ({
 
 export default compose(
   injectIntl,
-  injectConfiguration(['adminCenterUrl'], 'adminCenterUrl'),
+  withApplicationState(),
   connect(
     null,
     mapDispatchToProps

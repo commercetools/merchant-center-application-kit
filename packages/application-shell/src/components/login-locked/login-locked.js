@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
+import { GetApplicationState } from '@commercetools-frontend/application-shell-connectors';
 import ProjectSuspended from '@commercetools-frontend/ui-kit/images/maintenance/project-suspended.svg';
 import { Text } from '@commercetools-frontend/ui-kit';
 import ServicePageResponseLayout from '../../from-core/service-page-response-layout';
@@ -16,19 +15,16 @@ export const HelpDeskLink = () => (
 );
 HelpDeskLink.displayName = 'HelpDeskLink';
 
-export const ResetPasswordLink = props => (
-  <a href={`${props.adminCenterUrl}/reset-password`} target="_blank">
-    <FormattedMessage {...messages.resetPasswordLink} />
-  </a>
+export const ResetPasswordLink = () => (
+  <GetApplicationState
+    render={({ environment }) => (
+      <a href={`${environment.adminCenterUrl}/reset-password`} target="_blank">
+        <FormattedMessage {...messages.resetPasswordLink} />
+      </a>
+    )}
+  />
 );
 ResetPasswordLink.displayName = 'ResetPasswordLink';
-ResetPasswordLink.propTypes = {
-  adminCenterUrl: PropTypes.string.isRequired,
-};
-const ConnectedResetPasswordLink = injectConfiguration(
-  ['adminCenterUrl'],
-  'adminCenterUrl'
-)(ResetPasswordLink);
 
 const LoginLocked = () => (
   <ServicePageResponseLayout
@@ -38,7 +34,7 @@ const LoginLocked = () => (
       <FormattedMessage
         {...messages.paragraph1}
         values={{
-          resetPasswordLink: <ConnectedResetPasswordLink />,
+          resetPasswordLink: <ResetPasswordLink />,
           helpDeskLink: <HelpDeskLink />,
         }}
       />

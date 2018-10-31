@@ -13,6 +13,7 @@
   "dependencies": {
     "@commercetools-frontend/actions-global": "1.0.0-rc.3",
     "@commercetools-frontend/application-shell": "1.0.0-rc.3",
+    "@commercetools-frontend/application-shell-connectors": "1.0.0-rc.3",
     "@commercetools-frontend/constants": "1.0.0-rc.3",
     "@commercetools-frontend/i18n": "1.0.0-rc.3",
     "@commercetools-frontend/l10n": "1.0.0-rc.3",

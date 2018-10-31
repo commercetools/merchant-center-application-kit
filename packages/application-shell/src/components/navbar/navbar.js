@@ -14,7 +14,6 @@ import {
   GRAPHQL_TARGETS,
   NO_VALUE_FALLBACK,
 } from '@commercetools-frontend/constants';
-import { AppShellProviderForUserPermissions } from '@commercetools-frontend/application-shell-connectors';
 import {
   RestrictedByPermissions,
   permissions,
@@ -493,6 +492,7 @@ export class DataMenu extends React.PureComponent {
 export const ScrollableMenu = props => (
   <div className={styles['scrollable-menu']}>{props.children}</div>
 );
+ScrollableMenu.displayName = 'ScrollableMenu';
 ScrollableMenu.propTypes = {
   children: PropTypes.node,
 };
@@ -500,6 +500,7 @@ ScrollableMenu.propTypes = {
 export const FixedMenu = props => (
   <div className={styles['fixed-menu']}>{props.children}</div>
 );
+FixedMenu.displayName = 'FixedMenu';
 FixedMenu.propTypes = {
   children: PropTypes.node,
 };
@@ -530,7 +531,6 @@ export class NavBar extends React.PureComponent {
     // From parent
     applicationLanguage: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
-    projectPermissions: PropTypes.object.isRequired,
     useFullRedirectsForLinks: PropTypes.bool.isRequired,
     // Injected
     location: PropTypes.object.isRequired,
@@ -558,28 +558,24 @@ export class NavBar extends React.PureComponent {
   render() {
     return (
       <NavBarLayout getNode={this.getNode}>
-        <AppShellProviderForUserPermissions
-          permissions={this.props.projectPermissions}
-        >
-          <DataMenu
-            rootNode={this.node}
-            data={
-              this.props.projectExtensionsQuery &&
-              this.props.projectExtensionsQuery.projectExtension
-                ? defaultNavigationItems.concat(
-                    this.props.projectExtensionsQuery.projectExtension.applications.map(
-                      app => app.navbarMenu
-                    )
+        <DataMenu
+          rootNode={this.node}
+          data={
+            this.props.projectExtensionsQuery &&
+            this.props.projectExtensionsQuery.projectExtension
+              ? defaultNavigationItems.concat(
+                  this.props.projectExtensionsQuery.projectExtension.applications.map(
+                    app => app.navbarMenu
                   )
-                : defaultNavigationItems
-            }
-            isForcedMenuOpen={this.props.isForcedMenuOpen}
-            location={this.props.location}
-            applicationLanguage={this.props.applicationLanguage}
-            projectKey={this.props.projectKey}
-            useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}
-          />
-        </AppShellProviderForUserPermissions>
+                )
+              : defaultNavigationItems
+          }
+          isForcedMenuOpen={this.props.isForcedMenuOpen}
+          location={this.props.location}
+          applicationLanguage={this.props.applicationLanguage}
+          projectKey={this.props.projectKey}
+          useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}
+        />
       </NavBarLayout>
     );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isNil from 'lodash.isnil';
-import { withUserPermissions } from '@commercetools-frontend/application-shell-connectors';
+import { withApplicationState } from '@commercetools-frontend/application-shell-connectors';
 import { permissions } from '../../constants';
 import Authorized from '../authorized';
 
@@ -34,7 +34,11 @@ export class RestrictedByPermissions extends React.Component {
     render: PropTypes.func,
 
     // Injected
-    userPermissions: PropTypes.objectOf(PropTypes.bool).isRequired,
+    applicationState: PropTypes.shape({
+      project: PropTypes.shape({
+        permissions: PropTypes.objectOf(PropTypes.bool).isRequired,
+      }).isRequired,
+    }).isRequired,
   };
 
   render() {
@@ -42,7 +46,7 @@ export class RestrictedByPermissions extends React.Component {
       <Authorized
         shouldMatchSomePermissions={this.props.shouldMatchSomePermissions}
         demandedPermissions={this.props.permissions}
-        actualPermissions={this.props.userPermissions}
+        actualPermissions={this.props.applicationState.project.permissions}
         render={isAuthorized => {
           if (typeof this.props.children === 'function')
             return this.props.children({
@@ -69,4 +73,4 @@ export class RestrictedByPermissions extends React.Component {
   }
 }
 
-export default withUserPermissions()(RestrictedByPermissions);
+export default withApplicationState()(RestrictedByPermissions);

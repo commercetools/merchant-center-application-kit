@@ -12,6 +12,11 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
     }
   />
   <InjectIntl(ProjectContainer)
+    environment={
+      Object {
+        "env": "test",
+      }
+    }
     location={
       Object {
         "pathname": "/test-project/products",

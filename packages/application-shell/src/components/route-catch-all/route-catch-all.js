@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
-import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
+import { withApplicationState } from '@commercetools-frontend/application-shell-connectors';
 import PageNotFound from '../../from-core/page-not-found';
 
 export class ForcePageReload extends React.PureComponent {
@@ -21,13 +21,18 @@ export class ForcePageReload extends React.PureComponent {
 export class RouteCatchAll extends React.PureComponent {
   static displayName = 'RouteCatchAll';
   static propTypes = {
-    servedByProxy: PropTypes.oneOfType([
-      PropTypes.bool.isRequired,
-      PropTypes.oneOf(['true', 'false']).isRequired,
-    ]),
+    applicationState: PropTypes.shape({
+      environment: PropTypes.shape({
+        servedByProxy: PropTypes.oneOfType([
+          PropTypes.bool.isRequired,
+          PropTypes.oneOf(['true', 'false']).isRequired,
+        ]),
+      }),
+    }).isRequired,
   };
   // NOTE: it's important that the return value is a `Route` component!
   render() {
+    const servedByProxy = this.props.applicationState.environment.servedByProxy;
     // In case the application is served by a proxy server, we assume that
     // the reverse proxy router handles requests forwarding to the specified
     // service.
@@ -40,10 +45,7 @@ export class RouteCatchAll extends React.PureComponent {
     // the request to the discounts app.
     // If no route matches, the application fallback will handle the request
     // instead, showing e.g. a 404 page.
-    if (
-      this.props.servedByProxy === true ||
-      this.props.servedByProxy === 'true'
-    )
+    if (servedByProxy === true || servedByProxy === 'true')
       return <Route component={ForcePageReload} />;
 
     // In case we are developing the app locally, we simply render a 404
@@ -53,6 +55,4 @@ export class RouteCatchAll extends React.PureComponent {
   }
 }
 
-export default injectConfiguration(['servedByProxy'], 'servedByProxy')(
-  RouteCatchAll
-);
+export default withApplicationState()(RouteCatchAll);

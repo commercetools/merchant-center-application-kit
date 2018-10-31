@@ -5,7 +5,11 @@ import { VersionCheckSubscriber } from './version-check-subscriber';
 
 const createTestProps = props => ({
   fetchServerVersion: jest.fn(),
-  clientVersion: '123',
+  applicationState: {
+    environment: {
+      revision: '123',
+    },
+  },
   ...props,
 });
 

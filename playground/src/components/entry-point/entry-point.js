@@ -33,7 +33,7 @@ class EntryPoint extends React.Component {
     return (
       <StoreProvider store={reduxStore}>
         <ApplicationShell
-          configuration={window.app}
+          environment={window.app}
           onRegisterErrorListeners={() => {
             Sdk.Get.errorHandler = error =>
               globalActions.handleActionError(error, 'sdk')(

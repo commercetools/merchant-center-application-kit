@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import once from 'lodash.once';
-import { AppShellProviderForUserTimeZone } from '@commercetools-frontend/application-shell-connectors';
 import { IntlProvider } from 'react-intl';
 
 const hideAppLoader = once(() => {
@@ -29,9 +28,7 @@ const ConfigureIntlProvider = props => {
       locale={props.language || 'en'}
       messages={props.messages || {}}
     >
-      <AppShellProviderForUserTimeZone timeZone={props.timeZone}>
-        {props.children}
-      </AppShellProviderForUserTimeZone>
+      {props.children}
     </IntlProvider>
   );
 };
@@ -39,7 +36,6 @@ const ConfigureIntlProvider = props => {
 ConfigureIntlProvider.displayName = 'ConfigureIntlProvider';
 ConfigureIntlProvider.propTypes = {
   language: PropTypes.string,
-  timeZone: PropTypes.string,
   messages: PropTypes.object,
   children: PropTypes.element.isRequired,
 };

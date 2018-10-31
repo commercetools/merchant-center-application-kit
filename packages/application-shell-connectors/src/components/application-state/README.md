@@ -1,26 +1,31 @@
-# Connectors for user `permissions`
+# Connectors for `applicationState`
 
-This component exposes getters/setters to set and retrieve the user `permissions` on the active project.
+This component exposes getters/setters to set and retrieve the `applicationState`.
 
-> It uses the new React Context API, so you need to provide the `AppShellProviderForUserPermissions` up in the tree. This is done within the AppShell!
+> It uses the new React Context API, so you need to provide the `ApplicationStateProvider` up in the tree. This is done within the AppShell!
 
-Additionally it provides a HOC to inject the `userPermissions`.
+Additionally it provides a HOC to inject the `applicationState`.
 
-> This component should most likely be used to implement other components (`@commercetools-frontend/permissions`) and it's very unlikely that you would need to use this directly.
+Use this component to access about the `user`, `project` and application `environment`.
 
 ### Usage
 
 ```js
 /* In the AppShell */
-<AppShellProviderForUserPermissions permissions={project.permissions}>
+<ApplicationStateProvider
+  user={{...}}
+  project={{...}}
+  projectDataLocale="en"
+  environment={{...}}
+>
   <div>
     {/* ... */}
     {/* In the application specific code */}
-    <GetUserPermissions
-      render={userPermissions => (
+    <GetApplicationState
+      render={({ user, project, environment }) => (
         <div>{...}</div>
       )}
     />
   </div>
-</AppShellProviderForUserPermissions>
+</ApplicationStateProvider>
 ```

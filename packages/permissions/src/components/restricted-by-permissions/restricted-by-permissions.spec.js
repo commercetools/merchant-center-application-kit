@@ -9,9 +9,13 @@ const createTestProps = custom => ({
     { mode: 'view', resource: 'products' },
     { mode: 'view', resource: 'orders' },
   ],
-  userPermissions: {
-    canViewProducts: true,
-    canViewOrders: true,
+  applicationState: {
+    project: {
+      permissions: {
+        canViewProducts: true,
+        canViewOrders: true,
+      },
+    },
   },
   ...custom,
 });

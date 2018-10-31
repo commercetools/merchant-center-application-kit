@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
+import { ApplicationStateProvider } from '@commercetools-frontend/application-shell-connectors';
 import ProjectExpired from '../project-expired';
 import ProjectNotFound from '../project-not-found';
 import ProjectSuspended from '../project-suspended';
@@ -23,6 +24,7 @@ const createTestProps = custom => ({
   intl: {
     formatMessage: jest.fn(),
   },
+  environment: {},
   render: jest.fn(),
   ...custom,
 });
@@ -224,23 +226,51 @@ describe('rendering', () => {
     describe('when project is in a valid state', () => {
       describe('<ProjectDataLocale>', () => {
         let wrapperDataLocale;
+        let project;
+        let dataLocale;
         beforeEach(() => {
+          project = {
+            suspension: { isActive: false },
+            expiry: { isActive: false },
+            settings: {},
+            languages: ['de'],
+          };
+          dataLocale = 'de';
           wrapperDataLocale = wrapper
             .find(FetchProject)
             .renderProp('children', {
               isLoading: false,
-              project: {
-                suspension: { isActive: false },
-                expiry: { isActive: false },
-                settings: {},
-                languages: ['de'],
-              },
+              project,
             })
             .find(ProjectDataLocale)
             .renderProp('children', {
-              locale: 'de',
+              locale: dataLocale,
               setProjectDataLocale: jest.fn(),
             });
+        });
+        it('should pass "user" to <ApplicationStateProvider>', () => {
+          expect(wrapperDataLocale.find(ApplicationStateProvider)).toHaveProp(
+            'user',
+            props.user
+          );
+        });
+        it('should pass "project" to <ApplicationStateProvider>', () => {
+          expect(wrapperDataLocale.find(ApplicationStateProvider)).toHaveProp(
+            'project',
+            project
+          );
+        });
+        it('should pass "projectDataLocale" to <ApplicationStateProvider>', () => {
+          expect(wrapperDataLocale.find(ApplicationStateProvider)).toHaveProp(
+            'projectDataLocale',
+            'de'
+          );
+        });
+        it('should pass "environment" to <ApplicationStateProvider>', () => {
+          expect(wrapperDataLocale.find(ApplicationStateProvider)).toHaveProp(
+            'environment',
+            props.environment
+          );
         });
         describe('when <ProjectContainer> is mounted', () => {
           beforeEach(() => {

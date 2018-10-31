@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { compose } from 'recompose';
-import { withUser } from '@commercetools-frontend/application-shell';
+import { withApplicationState } from '@commercetools-frontend/application-shell-connectors';
 import {
   LoadingSpinner,
   Table,
@@ -36,8 +35,12 @@ export class ChannelsList extends React.Component {
   static displayName = 'ChannelsList';
   static propTypes = {
     projectKey: PropTypes.string.isRequired,
-    // withUser
-    language: PropTypes.string.isRequired,
+    // injected
+    applicationState: PropTypes.shape({
+      project: PropTypes.shape({
+        dataLocale: PropTypes.string.isRequired,
+      }).isRequired,
+    }).isRequired,
   };
   measurementCache = null;
   registerMeasurementCache = cache => {
@@ -51,7 +54,8 @@ export class ChannelsList extends React.Component {
         return value ? (
           <Constraints.Horizontal constraint="m">
             <Text.Wrap>
-              {value[this.props.language] || NO_VALUE_FALLBACK}
+              {value[this.props.applicationState.project.dataLocale] ||
+                NO_VALUE_FALLBACK}
             </Text.Wrap>
           </Constraints.Horizontal>
         ) : (
@@ -68,10 +72,7 @@ export class ChannelsList extends React.Component {
           <Text.Headline elementType="h2">
             <FormattedMessage {...messages.title} />
           </Text.Headline>
-          <ChannelsListConnector
-            projectKey={this.props.projectKey}
-            language={this.props.language}
-          >
+          <ChannelsListConnector projectKey={this.props.projectKey}>
             {({ isLoading, result, error, hasNoResults /* , refresh */ }) => {
               if (isLoading) return <LoadingSpinner />;
               if (error) return <div>{getErrorMessage(error)}</div>;
@@ -108,6 +109,4 @@ export class ChannelsList extends React.Component {
   }
 }
 
-export default compose(
-  withUser(userData => ({ language: userData.user.language }))
-)(ChannelsList);
+export default withApplicationState()(ChannelsList);

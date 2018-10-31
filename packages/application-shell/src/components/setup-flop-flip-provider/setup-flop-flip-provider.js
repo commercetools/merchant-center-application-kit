@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { defaultMemoize } from 'reselect';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { ConfigurationConsumer } from '@commercetools-frontend/application-shell-connectors';
 
 // This value is hard-coded here because we want to make sure that the
 // app uses our account of LD. The value is meant to be public, so there
@@ -28,6 +27,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
       launchdarklyTrackingTenant: PropTypes.string.isRequired,
     }),
     defaultFlags: PropTypes.object,
+    appEnv: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
   };
 
@@ -55,27 +55,23 @@ export class SetupFlopFlipProvider extends React.PureComponent {
 
   render() {
     return (
-      <ConfigurationConsumer pathToConfiguration={['env']}>
-        {env => (
-          <ConfigureFlopFlip
-            adapter={ldAdapter}
-            adapterArgs={this.createLaunchdarklyAdapterArgs(
-              env === 'production'
-                ? ldClientSideIdProduction
-                : ldClientSideIdStaging,
-              this.props.user && this.props.user.id,
-              this.props.user && this.props.user.launchdarklyTrackingId,
-              this.props.user && this.props.user.launchdarklyTrackingGroup,
-              this.props.user && this.props.user.launchdarklyTrackingTeam,
-              this.props.user && this.props.user.launchdarklyTrackingTenant
-            )}
-            defaultFlags={this.props.defaultFlags}
-            shouldDeferAdapterConfiguration={!this.props.user}
-          >
-            {this.props.children}
-          </ConfigureFlopFlip>
+      <ConfigureFlopFlip
+        adapter={ldAdapter}
+        adapterArgs={this.createLaunchdarklyAdapterArgs(
+          this.props.appEnv === 'production'
+            ? ldClientSideIdProduction
+            : ldClientSideIdStaging,
+          this.props.user && this.props.user.id,
+          this.props.user && this.props.user.launchdarklyTrackingId,
+          this.props.user && this.props.user.launchdarklyTrackingGroup,
+          this.props.user && this.props.user.launchdarklyTrackingTeam,
+          this.props.user && this.props.user.launchdarklyTrackingTenant
         )}
-      </ConfigurationConsumer>
+        defaultFlags={this.props.defaultFlags}
+        shouldDeferAdapterConfiguration={!this.props.user}
+      >
+        {this.props.children}
+      </ConfigureFlopFlip>
     );
   }
 }

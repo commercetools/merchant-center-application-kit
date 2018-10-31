@@ -3,11 +3,22 @@ import { shallow } from 'enzyme';
 import PageNotFound from '../../from-core/page-not-found';
 import { ForcePageReload, RouteCatchAll } from './route-catch-all';
 
+const createTestProps = props => ({
+  applicationState: {
+    environment: {
+      servedByProxy: false,
+    },
+  },
+  ...props,
+});
+
 describe('rendering', () => {
   let wrapper;
+  let props;
   describe('<ForcePageReload>', () => {
     beforeEach(() => {
-      wrapper = shallow(<ForcePageReload />);
+      props = createTestProps();
+      wrapper = shallow(<ForcePageReload {...props} />);
       wrapper.instance().reloadPage = jest.fn();
       wrapper.instance().componentDidMount();
     });
@@ -21,7 +32,14 @@ describe('rendering', () => {
   describe('<RouteCatchAll>', () => {
     describe('when "servedByProxy" is "true" (string)', () => {
       beforeEach(() => {
-        wrapper = shallow(<RouteCatchAll servedByProxy="true" />);
+        props = createTestProps({
+          applicationState: {
+            environment: {
+              servedByProxy: 'true',
+            },
+          },
+        });
+        wrapper = shallow(<RouteCatchAll {...props} />);
       });
       it('should render Route with <ForcePageReload>', () => {
         expect(wrapper.find('Route')).toHaveProp('component', ForcePageReload);
@@ -29,7 +47,14 @@ describe('rendering', () => {
     });
     describe('when "servedByProxy" is "true" (boolean)', () => {
       beforeEach(() => {
-        wrapper = shallow(<RouteCatchAll servedByProxy={true} />);
+        props = createTestProps({
+          applicationState: {
+            environment: {
+              servedByProxy: true,
+            },
+          },
+        });
+        wrapper = shallow(<RouteCatchAll {...props} />);
       });
       it('should render Route with <ForcePageReload>', () => {
         expect(wrapper.find('Route')).toHaveProp('component', ForcePageReload);
@@ -37,7 +62,12 @@ describe('rendering', () => {
     });
     describe('when "servedByProxy" is not defined', () => {
       beforeEach(() => {
-        wrapper = shallow(<RouteCatchAll />);
+        props = createTestProps({
+          applicationState: {
+            environment: {},
+          },
+        });
+        wrapper = shallow(<RouteCatchAll {...props} />);
       });
       it('should render Route with <PageNotFound>', () => {
         expect(wrapper.find('Route')).toHaveProp('component', PageNotFound);

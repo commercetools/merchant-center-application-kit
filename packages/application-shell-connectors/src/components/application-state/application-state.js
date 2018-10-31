@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { wrapDisplayName } from 'recompose';
+import moment from 'moment-timezone';
+import omit from 'lodash.omit';
 
 const { Provider, Consumer } = React.createContext({});
+
+const defaultTimeZone = moment.tz.guess() || 'Etc/UTC';
 
 // Expose only certain fields as some of them are only meant to
 // be used internally in the AppShell
@@ -17,7 +21,7 @@ const mapUserPropsToApplicationState = user => ({
   // confusion.
   applicationLocale: user.language,
   numberFormat: user.numberFormat,
-  timeZone: user.numberFormat,
+  timeZone: user.timeZone || defaultTimeZone,
 });
 
 // Expose only certain fields as some of them are only meant to
@@ -29,16 +33,18 @@ const mapProjectPropsToApplicationState = (project, projectDataLocale) => ({
   countries: project.countries,
   currencies: project.currencies,
   languages: project.languages,
-  permissions: project.permissions,
+  permissions: omit(project.permissions, ['__typename']),
   // Additional fields that do not belong directly to a project
-  dataLocale: projectDataLocale,
+  ...(projectDataLocale ? { dataLocale: projectDataLocale } : {}),
 });
 
 const ApplicationStateProvider = props => (
   <Provider
     value={{
       environment: props.environment,
-      user: mapUserPropsToApplicationState(props.user),
+      ...(props.user
+        ? { user: mapUserPropsToApplicationState(props.user) }
+        : {}),
       ...(props.project
         ? {
             project: mapProjectPropsToApplicationState(
@@ -54,9 +60,9 @@ const ApplicationStateProvider = props => (
 );
 ApplicationStateProvider.displayName = 'ApplicationStateProvider';
 ApplicationStateProvider.propTypes = {
-  user: PropTypes.object.isRequired,
-  // NOTE: project (and dataLocale) are not required because in some views
-  // (e.g. accounts) we are not in a project context anymore.
+  user: PropTypes.object,
+  // NOTE: project (and dataLocale) might be eventually undefined because
+  // in some views (e.g. accounts) we are not in a project context anymore.
   project: PropTypes.object,
   projectDataLocale: PropTypes.string,
   // This is the environment configuration coming from `windows.app`
