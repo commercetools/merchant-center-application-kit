@@ -1,6 +1,5 @@
 import { ApolloLink, execute, Observable } from 'apollo-link';
 import gql from 'graphql-tag';
-
 import waitFor from 'wait-for-observables';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import history from '@commercetools-frontend/browser-history';
