@@ -11,7 +11,6 @@ import { graphql } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import LoggedInUserQuery from './fetch-user.graphql';
 
-console.log('LoggedInUserQuery', LoggedInUserQuery);
 const graphqlOptions = {
   alias: 'withUser',
   name: 'userData',

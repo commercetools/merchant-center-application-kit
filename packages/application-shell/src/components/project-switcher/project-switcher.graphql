@@ -1,13 +1,4 @@
-fragment projectFragment on Project {
-  name
-  key
-  suspension {
-    isActive
-  }
-  expiry {
-    isActive
-  }
-}
+#import "./project-switcher-fragments.graphql"
 
 query ProjectsQuery {
   user: me {
