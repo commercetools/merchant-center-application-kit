@@ -15,7 +15,7 @@ import {
 import { ConfigurationProvider } from '@commercetools-frontend/application-shell-connectors';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
-import getSupportedLanguage from '@commercetools-frontend/l10n/utils/get-supported-language';
+import { getSupportedLanguage } from '@commercetools-frontend/l10n';
 import { i18n } from '@commercetools-frontend/ui-kit';
 import ProjectDataLocale from '../project-data-locale';
 import PortalsContainer from '../portals-container';
@@ -70,7 +70,6 @@ export const RestrictedApplication = props => (
     {({ isLoading: isLoadingUser, user, error }) => {
       // TODO: inspect the error in case we want to be more specific
       // about the error message and give detailed instructions.
-
       if (error) {
         // Since we do not know the locale of the user, we pick it from the
         // user's browser to attempt to match the language for the correct translations.
@@ -379,7 +378,7 @@ export const UnrestrictedApplication = () => (
 
 UnrestrictedApplication.displayName = 'UnrestrictedApplication';
 
-export default class ApplicationShell extends React.Component {
+class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
   static propTypes = {
     configuration: PropTypes.object.isRequired,
@@ -472,3 +471,5 @@ export default class ApplicationShell extends React.Component {
     );
   }
 }
+
+export default ApplicationShell;
