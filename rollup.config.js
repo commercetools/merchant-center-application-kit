@@ -1,6 +1,5 @@
 const fs = require('fs');
 const babel = require('rollup-plugin-babel');
-const peerDepsExternal = require('rollup-plugin-peer-deps-external');
 const readPkgUp = require('read-pkg-up');
 const resolve = require('rollup-plugin-node-resolve');
 const replace = require('rollup-plugin-replace');
@@ -27,6 +26,11 @@ const babelOptions = getBabelPreset();
 const babelPlugins = babelOptions.plugins;
 const babelConfig = {
   ...babelOptions,
+  /*
+    babel-plugin-import-graphql works a lot better than graphql rollup plugin.
+    can also add this to our default babel-config and remove the webpack
+    loader
+  */
   /* eslint-disable-next-line global-require */
   plugins: [require('babel-plugin-import-graphql')].concat(babelPlugins),
 };
@@ -60,14 +64,12 @@ const config = {
     replace({
       'process.env.NODE_ENV': JSON.stringify(env),
     }),
-    peerDepsExternal({
-      dependencies: true,
-    }),
     babel({
       exclude: '**/node_modules/**',
       runtimeHelpers: true,
       ...babelConfig,
     }),
+    // To convert CJS modules to ES6
     commonjs({
       include: 'node_modules/**',
     }),
@@ -78,7 +80,6 @@ const config = {
       preferBuiltins: true,
       modulesOnly: true,
     }),
-    // To convert CJS modules to ES6
     json(),
     builtins(),
     postcss({
@@ -103,7 +104,6 @@ const config = {
         postcssDiscardComments(),
         postcssCustomProperties({
           preserve: false,
-          // importFrom: 'materials/custom-properties.css',
         }),
         postcssReporter(),
       ],
