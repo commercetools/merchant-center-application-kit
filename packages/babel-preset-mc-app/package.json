@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/babel-preset-mc-app",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-beta.0",
   "description": "Babel preset used by a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -37,9 +37,9 @@
     "@babel/plugin-transform-runtime": "7.1.0",
     "@babel/preset-env": "7.1.0",
     "@babel/preset-react": "7.0.0",
+    "babel-plugin-import-graphql": "2.6.2",
     "babel-plugin-macros": "2.4.2",
     "babel-plugin-transform-dynamic-import": "2.1.0",
-    "babel-plugin-transform-react-remove-prop-types": "0.4.18",
-    "babel-plugin-import-graphql": "2.6.2"
+    "babel-plugin-transform-react-remove-prop-types": "0.4.18"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/react-notifications",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-beta.0",
   "description": "React bindings for @commercetools-frontend/notifications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -27,10 +27,10 @@
   "main": "./dist/react-notifications.cjs.js",
   "module": "./dist/react-notifications.es.js",
   "dependencies": {
-    "@commercetools-frontend/actions-global": "1.0.0-rc.2",
-    "@commercetools-frontend/constants": "1.0.0-rc.2",
-    "@commercetools-frontend/notifications": "1.0.0-rc.2",
-    "@commercetools-frontend/sentry": "1.0.0-rc.2",
+    "@commercetools-frontend/actions-global": "1.0.0-beta.0",
+    "@commercetools-frontend/constants": "1.0.0-beta.0",
+    "@commercetools-frontend/notifications": "1.0.0-beta.0",
+    "@commercetools-frontend/sentry": "1.0.0-beta.0",
     "@commercetools-frontend/ui-kit": "2.0.0-rc.11",
     "classnames": "2.2.6",
     "lodash.has": "4.5.2",
