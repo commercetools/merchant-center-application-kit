@@ -27,12 +27,12 @@
   "dependencies": {
     "@commercetools-frontend/constants": "1.0.0-rc.2",
     "lodash.get": "4.4.2",
-    "moment-timezone": "0.5.21",
+    "moment-timezone": "0.5.23",
     "prop-types": "15.6.2",
     "recompose": "0.26.0"
   },
   "devDependencies": {
-    "react": "16.5.2",
+    "react": "16.6.0",
     "react-apollo": "2.2.4"
   },
   "peerDependencies": {
