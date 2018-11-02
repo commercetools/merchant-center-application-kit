@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/i18n",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-beta.1",
   "description": "MC i18n messages",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -21,8 +21,8 @@
   "main": "./index.js",
   "module": "./index.js",
   "dependencies": {
-    "@commercetools-frontend/i18n": "1.0.0-rc.2",
-    "@commercetools-frontend/sentry": "1.0.0-rc.2",
+    "@commercetools-frontend/i18n": "1.0.0-beta.1",
+    "@commercetools-frontend/sentry": "1.0.0-beta.1",
     "moment": "2.22.2",
     "prop-types": "15.6.2",
     "react": "16.5.2"
