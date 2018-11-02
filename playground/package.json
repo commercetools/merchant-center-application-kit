@@ -4,7 +4,7 @@
   "description": "A starter example for building a Merchant Center application",
   "private": true,
   "scripts": {
-    "build:prod": "mc-scripts build",
+    "build:playground": "mc-scripts build",
     "start": "mc-scripts start",
     "start:prod": "mc-http-server --config $(pwd)/env.prod.json --csp $(pwd)/csp.json --use-local-assets",
     "now-build": "NODE_ENV=production npm run build",

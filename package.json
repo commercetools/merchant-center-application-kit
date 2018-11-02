@@ -22,7 +22,8 @@
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
     "playground:start": "cd playground; yarn start",
-    "playground:build": "cd playground; yarn build"
+    "playground:build": "cd playground; yarn build:playground",
+    "build": "NODE_ENV=production lerna run build"
   },
   "workspaces": [
     "packages/*",
