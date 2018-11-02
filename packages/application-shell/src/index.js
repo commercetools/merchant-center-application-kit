@@ -22,6 +22,7 @@ export {
 } from './components/fetch-project';
 export { default as RouteCatchAll } from './components/route-catch-all';
 export { default as reduxStore, createReduxStore } from './configure-store';
+export { default as apolloClient } from './configure-apollo';
 export {
   default as setupGlobalErrorListener,
 } from './utils/setup-global-error-listener';
