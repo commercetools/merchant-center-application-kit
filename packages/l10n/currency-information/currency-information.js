@@ -1,6 +1,6 @@
-import createL10NInjector from './create-l10n-injector';
-import getSupportedLanguage from './utils/get-supported-language';
-import extractLanguageFromLocale from './utils/extract-language-from-locale';
+import createL10NInjector from '../create-l10n-injector';
+import getSupportedLanguage from '../utils/get-supported-language';
+import extractLanguageFromLocale from '../utils/extract-language-from-locale';
 
 /**
  * If running through webpack, code splitting makes `getCurrenciesForLocale`
@@ -13,7 +13,7 @@ const getCurrenciesForLocale = (locale, cb) => {
   // The files are named like "currency-data-en-json.chunk.js" after compilation
   // https://webpack.js.org/api/module-methods/#import-
   import(/* webpackChunkName: "currency-data-[request]" */
-  `./data/currencies/${supportedLocale}.json`)
+  `../data/currencies/${supportedLocale}.json`)
     .then(currencies => cb(null, currencies.default))
     .catch(error => cb(error));
 };
