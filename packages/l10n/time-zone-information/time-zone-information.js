@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import createL10NInjector from './create-l10n-injector';
-import getSupportedLanguage from './utils/get-supported-language';
-import extractLanguageFromLocale from './utils/extract-language-from-locale';
+import createL10NInjector from '../create-l10n-injector';
+import getSupportedLanguage from '../utils/get-supported-language';
+import extractLanguageFromLocale from '../utils/extract-language-from-locale';
 
 export const timeZonesShape = PropTypes.objectOf(
   PropTypes.shape({
@@ -22,7 +22,7 @@ const getTimeZonesForLocale = (locale, cb) => {
   // The files are named like "time-zone-data-en-json.chunk.js" after compilation
   // https://webpack.js.org/api/module-methods/#import-
   import(/* webpackChunkName: "time-zone-data-[request]" */
-  `./data/time-zones/${supportedLocale}.json`)
+  `../data/time-zones/${supportedLocale}.json`)
     .then(timeZones => cb(null, timeZones.default))
     .catch(error => cb(error));
 };

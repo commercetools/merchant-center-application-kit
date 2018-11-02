@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import loadI18n from '../load-i18n';
 
-console.log(loadI18n);
-
 export const extractLanguageFromLocale = locale =>
   locale.includes('-') ? locale.split('-')[0] : locale;
 
