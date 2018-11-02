@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import createL10NInjector from '../create-l10n-injector';
-import getSupportedLanguage from '../utils/get-supported-language';
-import extractLanguageFromLocale from '../utils/extract-language-from-locale';
+import createL10NInjector from './create-l10n-injector';
+import getSupportedLanguage from './utils/get-supported-language';
+import extractLanguageFromLocale from './utils/extract-language-from-locale';
 
 const getImportChunk = lang => {
   switch (lang) {

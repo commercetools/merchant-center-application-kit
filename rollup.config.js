@@ -5,9 +5,10 @@ const resolve = require('rollup-plugin-node-resolve');
 const json = require('rollup-plugin-json');
 const commonjs = require('rollup-plugin-commonjs');
 const postcss = require('rollup-plugin-postcss');
+const peerDeps = require('rollup-plugin-peer-deps-external');
 const getBabelPreset = require('@commercetools-frontend/babel-preset-mc-app');
 const builtins = require('rollup-plugin-node-builtins');
-const graphql = require('rollup-plugin-graphql');
+const babelPluginImportGraphQL = require('babel-plugin-import-graphql');
 const postcssCustomProperties = require('postcss-custom-properties');
 const postcssCustomMediaQueries = require('postcss-custom-media');
 const postcssColorModFunction = require('postcss-color-mod-function');
@@ -33,9 +34,6 @@ const browserslist = {
   ],
 };
 
-const deps = Object.keys(pkg.dependencies || {});
-const peerDeps = Object.keys(pkg.peerDependencies || {});
-
 const config = {
   output: {
     name: pkg.name,
@@ -46,13 +44,15 @@ const config = {
       'react-redux': 'react-redux',
     },
   },
-  external: deps.concat(peerDeps).concat(deps),
   plugins: [
-    graphql(),
+    peerDeps({
+      includeDependencies: true,
+    }),
     babel({
       exclude: '**/node_modules/**',
       runtimeHelpers: true,
       ...babelOptions,
+      plugins: [babelPluginImportGraphQL.default, ...babelOptions.plugins],
     }),
     // To convert CJS modules to ES6
     commonjs({
@@ -65,7 +65,10 @@ const config = {
       preferBuiltins: true,
       modulesOnly: true,
     }),
-    json(),
+    json(
+      // generate a named export for every property of the JSON object
+      { namedExports: true } // Default: true // could disable just for CJS/
+    ),
     builtins(),
     postcss({
       include: ['**/*.mod.css'],

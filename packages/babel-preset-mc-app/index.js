@@ -62,7 +62,6 @@ module.exports = function getBabePresetConfigForMcApp() {
       ],
     ].filter(Boolean),
     plugins: [
-      require('babel-plugin-import-graphql'),
       // Experimental macros support. Will be documented after it's had some time
       // in the wild.
       require('babel-plugin-macros'),

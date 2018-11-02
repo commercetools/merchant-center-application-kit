@@ -23,8 +23,9 @@
   "scripts": {
     "prebuild": "rimraf dist/**",
     "build": "cross-env npm run build:es && npm run build:cjs",
-    "build:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./index.js -o dist/actions-global.cjs.js",
-    "build:es": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f es ./index.js -o dist/actions-global.es.js"
+    "build:watch": "cross-env npm run build:es -- -w",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.js -o dist/actions-global.cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js -o dist/actions-global.es.js"
   },
   "dependencies": {
     "@commercetools-frontend/browser-history": "1.0.0-rc.3",

@@ -18,8 +18,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/application-shell.cjs.js",
-  "module": "dist/application-shell.es.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
@@ -27,8 +27,9 @@
   "scripts": {
     "prebuild": "rimraf dist/**",
     "build": "cross-env npm run build:es && npm run build:cjs",
-    "build:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./src/index.js -o dist/application-shell.cjs.js",
-    "build:es": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f es ./src/index.js -o dist/application-shell.es.js"
+    "build:watch": "cross-env npm run build:es -- -w",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js --dir ./dist/cjs --experimentalCodeSplitting",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.js --dir ./dist/es --experimentalCodeSplitting"
   },
   "dependencies": {
     "@babel/runtime": "7.1.2",
