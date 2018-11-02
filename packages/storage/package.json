@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/storage",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.1-beta.0",
   "description": "Getters and setters for window.localStorage",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
