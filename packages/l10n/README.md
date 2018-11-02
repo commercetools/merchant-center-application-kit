@@ -28,6 +28,8 @@ withCurrencies(ownProps => ownProps.locale)(Component);
 // { "EUR": { "label": "Euro", "symbol": "€" } }
 ```
 
+- `@commercetools-frontend/l10n`
+
 ```js
 import { withLanguages, languagesShape } from '@commercetools-frontend/l10n';
 
