@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import AsyncLocaleData from '@commercetools-frontend/i18n/async-locale-data';
+import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import * as appShellUtils from '../../utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import ProjectContainer from '../project-container';
