@@ -1,13 +1,14 @@
 import React from 'react';
-import Loadable from 'react-loadable';
-import ButlerContainer from './butler-container';
+// import Loadable from 'react-loadable';
+// import ButlerContainer from './butler-container';
 import * as gtm from '../../utils/gtm';
 import trackingEvents from './tracking-events';
-
-const QuickAccessModal = Loadable({
-  loader: () => import('./quick-access' /* webpackChunkName: "quick-access" */),
-  loading: ButlerContainer,
-});
+import QuickAccessModal from './quick-access';
+// TODO: make this work in different environments.
+// const QuickAccessModal = Loadable({
+//   loader: () => import('./quick-access' /* webpackChunkName: "quick-access" */),
+//   loading: ButlerContainer,
+// });
 
 export default class QuickAccessTrigger extends React.Component {
   static displayName = 'QuickAccessTrigger';
