@@ -1,5 +1,5 @@
 import { addLocaleData } from 'react-intl';
-import { getMatchingMomentCode } from './utils';
+import { getMatchingMomentCode } from '../utils';
 
 const getReactIntlChunkImport = lang => {
   switch (lang) {
