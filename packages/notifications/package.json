@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/notifications",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "description": "A general-purpose notification system built on top of redux",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
