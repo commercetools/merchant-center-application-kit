@@ -18,6 +18,8 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "./index.js",
+  "module": "./index.js",
   "scripts": {
     "generate-data": "node ./scripts/generate-l10n-data.js"
   },

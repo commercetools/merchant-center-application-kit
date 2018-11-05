@@ -14,8 +14,8 @@ import {
 } from '@commercetools-frontend/sentry';
 import { ConfigurationProvider } from '@commercetools-frontend/application-shell-connectors';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
-import AsyncLocaleData from '@commercetools-frontend/i18n/async-locale-data';
-import getSupportedLanguage from '@commercetools-frontend/l10n/utils/get-supported-language';
+import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import { getSupportedLanguage } from '@commercetools-frontend/l10n';
 import { i18n } from '@commercetools-frontend/ui-kit';
 import ProjectDataLocale from '../project-data-locale';
 import PortalsContainer from '../portals-container';

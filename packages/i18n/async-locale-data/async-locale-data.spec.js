@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import loadI18n from '@commercetools-frontend/i18n/load-i18n';
+import loadI18n from '../load-i18n';
 import AsyncLocaleData from './async-locale-data';
 
 jest.mock('@commercetools-frontend/sentry');
