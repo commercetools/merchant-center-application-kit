@@ -9,6 +9,7 @@ import {
 import { deepEqual } from 'fast-equals';
 import { graphql } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import deprecateComponent from '../../from-core/deprecate-component';
 import LoggedInUserQuery from './fetch-user.graphql';
 
 const graphqlOptions = {
@@ -74,3 +75,16 @@ export { withUser };
 
 // For testing
 export { LoggedInUserQuery, FetchUser };
+
+// Exports with deprecated warnings
+const DeprecatedFetchUser = deprecateComponent(
+  'The "FetchUser" component has been deprecated and will be removed in the next major release. Please use "GetApplicationState" from `@commercetools-frontend/application-shell-connectors` to access "user" and "project" information.'
+)(FetchLoggedInUser);
+const deprecatedWithUser = mapDataToProps => Component => {
+  const WrappedComponent = withUser(mapDataToProps)(Component);
+  return deprecateComponent(
+    'The "withUser" HOC has been deprecated and will be removed in the next major release. Please use "withApplicationState" from `@commercetools-frontend/application-shell-connectors` to access "user" and "project" information.',
+    WrappedComponent
+  );
+};
+export { DeprecatedFetchUser, deprecatedWithUser };
