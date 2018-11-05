@@ -4,6 +4,7 @@ exports[`rendering outputs correct tree 1`] = `
 <div
   className="container"
 >
+  here
   <ServicePageResponseLayout
     imageSrc="test-file-stub"
     paragraph1={
@@ -14,16 +15,7 @@ Please contact your system administrator or the commercetools {link} if you have
         id="PageNotFound.paragraph1"
         values={
           Object {
-            "link": <a
-              href="https://support.commercetools.com"
-              target="_blank"
-            >
-              <FormattedMessage
-                defaultMessage="Help Desk"
-                id="PageNotFound.helpDesk"
-                values={Object {}}
-              />
-            </a>,
+            "link": <Link />,
           }
         }
       />

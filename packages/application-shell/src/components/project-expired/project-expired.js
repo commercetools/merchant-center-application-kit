@@ -6,14 +6,19 @@ import ServicePageProjectSwitcher from '../service-page-project-switcher';
 import messages from './messages';
 
 const salesEmail = 'sales@commercetools.com';
-const mailto = <a href={`mailto:${salesEmail}`}>{salesEmail}</a>;
+
+const EmailLink = () => <a href={`mailto:${salesEmail}`}>{salesEmail}</a>;
+EmailLink.displayName = 'EmailLink';
 
 const ProjectExpired = () => (
   <ServicePageResponseLayout
     imageSrc={ProjectExpiredSvg}
     title={<FormattedMessage {...messages.title} />}
     paragraph1={
-      <FormattedMessage {...messages.paragraph1} values={{ mailto }} />
+      <FormattedMessage
+        {...messages.paragraph1}
+        values={{ mailto: <EmailLink email={salesEmail} /> }}
+      />
     }
     bodyContent={<ServicePageProjectSwitcher />}
   />

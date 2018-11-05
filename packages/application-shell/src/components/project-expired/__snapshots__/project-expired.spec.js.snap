@@ -10,11 +10,9 @@ exports[`rendering outputs correct tree 1`] = `
       id="ProjectExpired.paragraph1"
       values={
         Object {
-          "mailto": <a
-            href="mailto:sales@commercetools.com"
-          >
-            sales@commercetools.com
-          </a>,
+          "mailto": <EmailLink
+            email="sales@commercetools.com"
+          />,
         }
       }
     />
