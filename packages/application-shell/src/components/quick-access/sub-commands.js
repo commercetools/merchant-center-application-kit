@@ -1,4 +1,4 @@
-import oneLineTrim from 'common-tags/lib/oneLineTrim';
+import { oneLineTrim } from 'common-tags';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import QuickAccessProductQuery from './quick-access-product.graphql';
 import messages from './messages';
