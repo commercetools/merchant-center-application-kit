@@ -34,11 +34,7 @@ export class Login extends React.PureComponent {
 
     // Injected
     requestAccessToken: PropTypes.func.isRequired,
-    applicationState: PropTypes.shape({
-      environment: PropTypes.shape({
-        adminCenterUrl: PropTypes.string.isRequired,
-      }).isRequired,
-    }).isRequired,
+    adminCenterUrl: PropTypes.string.isRequired,
     intl: PropTypes.shape({
       formatMessage: PropTypes.func.isRequired,
     }).isRequired,
@@ -131,9 +127,7 @@ export class Login extends React.PureComponent {
       case LOGOUT_REASONS.NO_PROJECTS: {
         const link = (
           <a
-            href={`${
-              this.props.applicationState.environment.adminCenterUrl
-            }/login`}
+            href={`${this.props.adminCenterUrl}/login`}
             target="_blank"
             className={styles.underline}
           >
@@ -177,9 +171,7 @@ export class Login extends React.PureComponent {
     if (!this.state.shouldRedirectPasswordForgot) return null;
 
     return this.renderCountdownAlert(
-      `${
-        this.props.applicationState.environment.adminCenterUrl
-      }/reset-password`,
+      `${this.props.adminCenterUrl}/reset-password`,
       'forgotPassowordTitle',
       'forgotPassowordSubtitle'
     );
@@ -324,7 +316,9 @@ const mapDispatchToProps = dispatch => ({
 
 export default compose(
   injectIntl,
-  withApplicationState(),
+  withApplicationState(applicationState => ({
+    adminCenterUrl: applicationState.environment.adminCenterUrl,
+  })),
   connect(
     null,
     mapDispatchToProps

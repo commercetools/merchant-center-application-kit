@@ -4,11 +4,7 @@ import PageNotFound from '../../from-core/page-not-found';
 import { ForcePageReload, RouteCatchAll } from './route-catch-all';
 
 const createTestProps = props => ({
-  applicationState: {
-    environment: {
-      servedByProxy: false,
-    },
-  },
+  servedByProxy: false,
   ...props,
 });
 
@@ -33,11 +29,7 @@ describe('rendering', () => {
     describe('when "servedByProxy" is "true" (string)', () => {
       beforeEach(() => {
         props = createTestProps({
-          applicationState: {
-            environment: {
-              servedByProxy: 'true',
-            },
-          },
+          servedByProxy: 'true',
         });
         wrapper = shallow(<RouteCatchAll {...props} />);
       });
@@ -48,11 +40,7 @@ describe('rendering', () => {
     describe('when "servedByProxy" is "true" (boolean)', () => {
       beforeEach(() => {
         props = createTestProps({
-          applicationState: {
-            environment: {
-              servedByProxy: true,
-            },
-          },
+          servedByProxy: true,
         });
         wrapper = shallow(<RouteCatchAll {...props} />);
       });
@@ -63,9 +51,7 @@ describe('rendering', () => {
     describe('when "servedByProxy" is not defined', () => {
       beforeEach(() => {
         props = createTestProps({
-          applicationState: {
-            environment: {},
-          },
+          servedByProxy: undefined,
         });
         wrapper = shallow(<RouteCatchAll {...props} />);
       });

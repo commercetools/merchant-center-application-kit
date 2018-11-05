@@ -57,3 +57,18 @@ The following are common fields defined in `env.json`. However, each application
   </div>
 </ApplicationStateProvider>
 ```
+
+You can also use the HOC `withApplicationState` that will inject a `applicationState` prop.
+
+```js
+withApplicationState()(MyComponent);
+```
+
+...or pass a mapping function as the first argument to return custom shape of the injected props
+
+```js
+withApplicationState(applicationState => ({
+  projectKey: applicationState.project && applicationState.project.key,
+  userEmail: applicationState.user && applicationState.user.email,
+}))(MyComponent);
+```

@@ -21,18 +21,13 @@ export class ForcePageReload extends React.PureComponent {
 export class RouteCatchAll extends React.PureComponent {
   static displayName = 'RouteCatchAll';
   static propTypes = {
-    applicationState: PropTypes.shape({
-      environment: PropTypes.shape({
-        servedByProxy: PropTypes.oneOfType([
-          PropTypes.bool.isRequired,
-          PropTypes.oneOf(['true', 'false']).isRequired,
-        ]),
-      }),
-    }).isRequired,
+    servedByProxy: PropTypes.oneOfType([
+      PropTypes.bool.isRequired,
+      PropTypes.oneOf(['true', 'false']).isRequired,
+    ]),
   };
   // NOTE: it's important that the return value is a `Route` component!
   render() {
-    const servedByProxy = this.props.applicationState.environment.servedByProxy;
     // In case the application is served by a proxy server, we assume that
     // the reverse proxy router handles requests forwarding to the specified
     // service.
@@ -45,7 +40,10 @@ export class RouteCatchAll extends React.PureComponent {
     // the request to the discounts app.
     // If no route matches, the application fallback will handle the request
     // instead, showing e.g. a 404 page.
-    if (servedByProxy === true || servedByProxy === 'true')
+    if (
+      this.props.servedByProxy === true ||
+      this.props.servedByProxy === 'true'
+    )
       return <Route component={ForcePageReload} />;
 
     // In case we are developing the app locally, we simply render a 404
@@ -55,4 +53,6 @@ export class RouteCatchAll extends React.PureComponent {
   }
 }
 
-export default withApplicationState()(RouteCatchAll);
+export default withApplicationState(applicationState => ({
+  servedByProxy: applicationState.environment.servedByProxy,
+}))(RouteCatchAll);

@@ -13,11 +13,7 @@ const createTestProps = props => ({
   // Action creators
   requestAccessToken: jest.fn(),
   // Injected
-  applicationState: {
-    environment: {
-      adminCenterUrl: 'http://ac.com',
-    },
-  },
+  adminCenterUrl: 'http://ac.com',
   intl: {
     formatMessage: jest.fn(message => message.id),
   },

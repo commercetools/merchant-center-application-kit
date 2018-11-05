@@ -111,12 +111,15 @@ GetApplicationState.propTypes = {
   render: PropTypes.func.isRequired,
 };
 
-const withApplicationState = (propKey = 'applicationState') => Component => {
+const withApplicationState = mapDataToProps => Component => {
   const WrappedComponent = props => (
     <GetApplicationState
-      render={applicationState => (
-        <Component {...props} {...{ [propKey]: applicationState }} />
-      )}
+      render={applicationState => {
+        const mappedProps = mapDataToProps
+          ? mapDataToProps(applicationState)
+          : { applicationState };
+        return <Component {...props} {...mappedProps} />;
+      }}
     />
   );
   WrappedComponent.displayName = wrapDisplayName(
