@@ -21,7 +21,8 @@ $ npm install --save @commercetools-frontend/application-shell
  */
 import React from 'react';
 import { Provider as StoreProvider } from 'react-redux';
-import ApplicationShell, {
+import {
+  ApplicationShell,
   reduxStore,
   setupGlobalErrorListener,
 } from '@commercetools-frontend/application-shell';

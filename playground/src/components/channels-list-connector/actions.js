@@ -1,5 +1,5 @@
 import { createRequestBuilder } from '@commercetools/api-request-builder';
-import * as sdkActions from '@commercetools-frontend/sdk/actions';
+import { actions as sdkActions } from '@commercetools-frontend/sdk';
 
 export const getChannelsUri = (options, meta) => {
   const requestBuilder = createRequestBuilder({ projectKey: meta.projectKey });

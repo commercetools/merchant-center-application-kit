@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { compose, setDisplayName } from 'recompose';
 import { connect } from 'react-redux';
-import * as sdkActions from '@commercetools-frontend/sdk/actions';
+import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
 
 export class VersionCheckSubscriber extends React.PureComponent {

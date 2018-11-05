@@ -10,7 +10,7 @@ import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-frontend/url-utils';
-import * as sdkActions from '@commercetools-frontend/sdk/actions';
+import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { connect } from 'react-redux';
 import * as storage from '@commercetools-frontend/storage';
 import { Notification } from '@commercetools-frontend/react-notifications';

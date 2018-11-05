@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ApplicationShell from '@commercetools-frontend/application-shell';
+import { ApplicationShell } from '@commercetools-frontend/application-shell';
 import EntryPoint from './entry-point';
 
 describe('rendering', () => {
