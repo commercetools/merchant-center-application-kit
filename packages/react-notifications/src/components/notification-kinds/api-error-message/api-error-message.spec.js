@@ -133,6 +133,23 @@ describe('render', () => {
     it('should report the error', () => {
       expect(reportErrorToSentry).toHaveBeenCalledTimes(1);
     });
+    describe('when `error.code` is `invalid_scope`', () => {
+      describe('with project expired', () => {
+        beforeEach(() => {
+          props = createTestProps({
+            error: {
+              code: 'invalid_scope',
+              message: 'has expired',
+            },
+          });
+          reportErrorToSentry.mockReset();
+          wrapper = shallow(<ApiErrorMessage {...props} />);
+        });
+        it('should not report to sentry', () => {
+          expect(reportErrorToSentry).toHaveBeenCalledTimes(0);
+        });
+      });
+    });
   });
 
   describe('DuplicateSlug', () => {

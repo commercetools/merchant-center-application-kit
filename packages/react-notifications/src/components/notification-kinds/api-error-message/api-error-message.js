@@ -104,10 +104,16 @@ export const ApiErrorMessage = props => {
   const message = messages[props.error.code];
   if (!message) {
     // This error is not mapped / translated yet,
-    // we log / report it and show the original error.
+    // we log, report it to sentry and show the original error, unless `error.code` is `invalid_scope`
+    // which an error code emitted for expired project(s)
     // NOTE this is a side-effect within the render function, which is bad!
     // This should be moved to componentDidMount
-    reportErrorToSentry(new Error('Unmapped error'), { extra: props.error });
+    if (
+      props.error.code !== 'invalid_scope' &&
+      !props.error.message.includes('has expired')
+    ) {
+      reportErrorToSentry(new Error('Unmapped error'), { extra: props.error });
+    }
 
     return (
       <div>
