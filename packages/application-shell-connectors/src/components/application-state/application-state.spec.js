@@ -50,7 +50,7 @@ describe('rendering', () => {
             email: expect.any(String),
             firstName: expect.any(String),
             lastName: expect.any(String),
-            applicationLocale: expect.any(String),
+            locale: expect.any(String),
             numberFormat: expect.any(String),
             timeZone: expect.any(String),
           },
