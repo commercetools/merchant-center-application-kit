@@ -4,7 +4,7 @@ import { compose } from 'recompose';
 import { injectIntl } from 'react-intl';
 import { injectFeatureToggles } from '@flopflip/react-broadcast';
 import { withApollo } from 'react-apollo';
-import oneLineTrim from 'common-tags/lib/oneLineTrim';
+import { oneLineTrim } from 'common-tags';
 import debounce from 'debounce-async';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import Butler from './butler';

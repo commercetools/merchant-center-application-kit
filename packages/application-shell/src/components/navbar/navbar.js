@@ -7,7 +7,7 @@ import { graphql } from 'react-apollo';
 import { ToggleFeature, injectFeatureToggle } from '@flopflip/react-broadcast';
 import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
-import oneLineTrim from 'common-tags/lib/oneLineTrim';
+import { oneLineTrim } from 'common-tags';
 import { Icons } from '@commercetools-frontend/ui-kit';
 import * as storage from '@commercetools-frontend/storage';
 import {

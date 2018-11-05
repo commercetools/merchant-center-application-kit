@@ -1,4 +1,4 @@
-import oneLineTrim from 'common-tags/lib/oneLineTrim';
+import { oneLineTrim } from 'common-tags';
 import messages from './messages';
 
 const hasPermission = (permission, allPermissions) =>
