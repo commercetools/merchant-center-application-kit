@@ -4,7 +4,7 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import { compose } from 'recompose';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
-import * as sdkActions from '@commercetools-frontend/sdk/actions';
+import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { Spacings, PrimaryButton } from '@commercetools-frontend/ui-kit';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';

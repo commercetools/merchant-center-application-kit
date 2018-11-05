@@ -42,7 +42,7 @@ A Redux action using one of the action creators below needs to be dispatched. It
 The action creators can be imported as
 
 ```js
-import * as sdkActions from '@commercetools-frontend/sdk/actions';
+import { actions as sdkActions } from '@commercetools-frontend/sdk';
 ```
 
 #### Methods
@@ -102,7 +102,7 @@ The MC has a `handleActionError` function which is what we currently use for err
 ### Example
 
 ```js
-import * as sdkActions from '@commercetools-frontend/sdk/actions';
+import { actions as sdkActions } from '@commercetools-frontend/sdk';
 
 const fetchProductById = productId =>
   sdkActions.get({

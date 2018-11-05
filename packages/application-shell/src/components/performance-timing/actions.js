@@ -1,4 +1,4 @@
-import * as sdkActions from '@commercetools-frontend/sdk/actions';
+import { actions as sdkActions } from '@commercetools-frontend/sdk';
 
 // eslint-disable-next-line import/prefer-default-export
 export const pushMetricHistogram = ({ payload }) =>
