@@ -3,7 +3,7 @@
  */
 import './public-path';
 
-export { default } from './components/application-shell';
+export { default as ApplicationShell } from './components/application-shell';
 export { default as apolloClient } from './configure-apollo';
 export { default as Avatar } from './components/avatar';
 export { default as MeasureFirstPaint } from './components/performance-timing';

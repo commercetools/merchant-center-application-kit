@@ -1,7 +1,8 @@
 import React from 'react';
 import { Provider as StoreProvider } from 'react-redux';
 import Loadable from 'react-loadable';
-import ApplicationShell, {
+import {
+  ApplicationShell,
   reduxStore,
   setupGlobalErrorListener,
   RouteCatchAll,
