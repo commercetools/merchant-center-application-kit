@@ -4,7 +4,6 @@ exports[`rendering outputs correct tree 1`] = `
 <div
   className="container"
 >
-  here
   <ServicePageResponseLayout
     imageSrc="test-file-stub"
     paragraph1={
