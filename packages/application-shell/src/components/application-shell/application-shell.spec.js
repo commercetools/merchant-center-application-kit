@@ -29,7 +29,14 @@ const createTestProps = props => ({
     'en-US': { 'CustomApp.title': 'Title' },
     de: { 'CustomApp.title': 'Titel' },
   },
-  environment: { env: 'test' },
+  environment: {
+    frontendHost: 'localhost:3001',
+    mcApiUrl: 'https://mc-api.commercetools.com',
+    location: 'eu',
+    env: 'development',
+    cdnUrl: 'http://localhost:3001',
+    servedByProxy: false,
+  },
   trackingEventWhitelist: {},
   render: jest.fn(),
   notificationsByDomain: {
@@ -343,7 +350,15 @@ describe('<RestrictedApplication>', () => {
         beforeEach(() => {
           appShellUtils.selectProjectKeyFromUrl.mockReturnValue('foo-1');
           wrapper = renderForAsyncData({ props, userData });
-          project = { permissions: { canManageProject: true } };
+          project = {
+            key: 'foo-1',
+            version: 1,
+            name: 'Foo 1',
+            countries: ['us'],
+            currencies: ['USD'],
+            languages: ['en'],
+            permissions: { canManageProject: true },
+          };
           wrapperAside = wrapper
             .find('aside')
             .find(FetchProject)

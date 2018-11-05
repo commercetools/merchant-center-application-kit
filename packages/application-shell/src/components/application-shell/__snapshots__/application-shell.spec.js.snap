@@ -14,7 +14,12 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
   <InjectIntl(ProjectContainer)
     environment={
       Object {
-        "env": "test",
+        "cdnUrl": "http://localhost:3001",
+        "env": "development",
+        "frontendHost": "localhost:3001",
+        "location": "eu",
+        "mcApiUrl": "https://mc-api.commercetools.com",
+        "servedByProxy": false,
       }
     }
     location={

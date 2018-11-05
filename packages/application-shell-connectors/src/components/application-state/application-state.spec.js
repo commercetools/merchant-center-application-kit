@@ -15,8 +15,8 @@ describe('rendering', () => {
             firstName: 'foo',
             lastName: 'bar',
             language: 'en',
-            numberFormat: 'en',
             // Fields that should not be exposed
+            numberFormat: 'en',
             gravatarHash: 'aaa',
             launchdarklyTrackingId: '1',
             defaultProjectKey: 'aaaa',
@@ -35,7 +35,14 @@ describe('rendering', () => {
             owner: { id: 'o1' },
           }}
           projectDataLocale="en"
-          environment={{ location: 'eu', env: 'production-eu' }}
+          environment={{
+            frontendHost: 'localhost:3001',
+            mcApiUrl: 'https://mc-api.commercetools.com',
+            location: 'eu',
+            env: 'development',
+            cdnUrl: 'http://localhost:3001',
+            servedByProxy: false,
+          }}
         >
           <div />
         </ApplicationStateProvider>
@@ -51,7 +58,6 @@ describe('rendering', () => {
             firstName: expect.any(String),
             lastName: expect.any(String),
             locale: expect.any(String),
-            numberFormat: expect.any(String),
             timeZone: expect.any(String),
           },
         })

@@ -22,7 +22,6 @@ const mapUserToApplicationStateUser = user => {
     // NOTE: this is an alias for the original field `user.language` but it's actually
     // a locale (language + country).
     locale: user.language,
-    numberFormat: user.numberFormat,
     timeZone: user.timeZone || defaultTimeZone,
   };
 };
@@ -66,13 +65,40 @@ const ApplicationStateProvider = props => (
   </Provider>
 );
 ApplicationStateProvider.displayName = 'ApplicationStateProvider';
+// NOTE: some fields (user, project and projectDataLocale) are optional
+// depending on the render phase of the ApplicationStateProvider.
+// Furthermore, some fields (project, projectDataLocale) might be eventually
+// undefined because in some views (e.g. accounts) we are not in a project context anymore.
 ApplicationStateProvider.propTypes = {
   // This is the environment configuration coming from `windows.app`
-  environment: PropTypes.object.isRequired,
-  user: PropTypes.object,
-  // NOTE: project (and dataLocale) might be eventually undefined because
-  // in some views (e.g. accounts) we are not in a project context anymore.
-  project: PropTypes.object,
+  environment: PropTypes.shape({
+    frontendHost: PropTypes.string.isRequired,
+    mcApiUrl: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    env: PropTypes.string.isRequired,
+    cdnUrl: PropTypes.string.isRequired,
+    servedByProxy: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    // ...plus other fields that are specific to each application
+  }).isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    language: PropTypes.string.isRequired,
+    timeZone: PropTypes.string,
+    // ...plus other fields that we don't want to expose
+  }),
+  project: PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    version: PropTypes.number,
+    name: PropTypes.string.isRequired,
+    countries: PropTypes.arrayOf(PropTypes.string).isRequired,
+    currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+    languages: PropTypes.arrayOf(PropTypes.string).isRequired,
+    permissions: PropTypes.object.isRequired,
+    // ...plus other fields that we don't want to expose
+  }),
   projectDataLocale: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
