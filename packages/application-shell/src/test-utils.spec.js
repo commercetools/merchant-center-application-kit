@@ -12,6 +12,7 @@ import { injectFeatureToggle } from '@flopflip/react-broadcast';
 import { Switch, Route } from 'react-router';
 import { render, wait } from './test-utils';
 import { GetApplicationState } from '../../application-shell-connectors';
+import { RestrictedByPermissions } from '../../permissions';
 
 describe('Intl', () => {
   const TestComponent = injectIntl(props => props.intl.locale);
@@ -147,9 +148,7 @@ describe('ApplicationState', () => {
         key: 'test-with-big-data',
         languages: ['de', 'en-GB'],
         name: 'Test with big data',
-        permissions: {
-          canManageProject: true,
-        },
+        permissions: { canManageProject: true },
         version: 43,
       });
     });
@@ -170,6 +169,26 @@ describe('ApplicationState', () => {
         permissions: { canManageProject: true },
         version: 43,
       });
+    });
+  });
+
+  describe('permissions', () => {
+    const TestComponent = () => (
+      <RestrictedByPermissions
+        permissions={[{ mode: 'manage', resource: 'products' }]}
+      >
+        {({ isAuthorized }) => (isAuthorized ? 'Authorized' : 'Not allowed')}
+      </RestrictedByPermissions>
+    );
+    it('should have all permissions by default', () => {
+      const { container } = render(<TestComponent />);
+      expect(container).toHaveTextContent('Authorized');
+    });
+    it('should allow overwriting permissions', () => {
+      const { container } = render(<TestComponent />, {
+        project: { permissions: {} },
+      });
+      expect(container).toHaveTextContent('Not allowed');
     });
   });
 
