@@ -5,6 +5,7 @@ Supported languages:
 
 - `en`
 - `de`
+- `es`
 
 ## Install
 
