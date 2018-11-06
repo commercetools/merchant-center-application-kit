@@ -29,21 +29,6 @@ const createTestProps = props => ({
   },
   applicationLanguage: 'en',
   projectKey: 'test-1',
-  projectPermissions: {
-    canManageCustomers: false,
-    canManageOrders: false,
-    canManageOrganization: true,
-    canManagePayments: false,
-    canManageProducts: false,
-    canManageProject: true,
-    canManageTypes: false,
-    canViewCustomers: false,
-    canViewOrders: false,
-    canViewPayments: false,
-    canViewProducts: false,
-    canViewProjectSettings: false,
-    canViewTypes: false,
-  },
   isForcedMenuOpen: false,
   useFullRedirectsForLinks: false,
 
@@ -107,14 +92,6 @@ describe('rendering', () => {
     });
     it('should render DataMenu component', () => {
       expect(wrapper).toRender('DataMenu');
-    });
-    describe('<AppShellProviderForUserPermissions>', () => {
-      it('should pass permissions as prop', () => {
-        expect(wrapper.find('AppShellProviderForUserPermissions')).toHaveProp(
-          'permissions',
-          props.projectPermissions
-        );
-      });
     });
     describe('<DataMenu>', () => {
       it('should pass rootNode as prop', () => {

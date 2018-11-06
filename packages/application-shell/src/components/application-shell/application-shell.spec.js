@@ -4,6 +4,7 @@ import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import { ApplicationStateProvider } from '@commercetools-frontend/application-shell-connectors';
 import * as appShellUtils from '../../utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import ProjectContainer from '../project-container';
@@ -28,7 +29,14 @@ const createTestProps = props => ({
     'en-US': { 'CustomApp.title': 'Title' },
     de: { 'CustomApp.title': 'Titel' },
   },
-  configuration: {},
+  environment: {
+    frontendHost: 'localhost:3001',
+    mcApiUrl: 'https://mc-api.commercetools.com',
+    location: 'eu',
+    env: 'development',
+    cdnUrl: 'http://localhost:3001',
+    servedByProxy: false,
+  },
   trackingEventWhitelist: {},
   render: jest.fn(),
   notificationsByDomain: {
@@ -66,10 +74,10 @@ describe('rendering', () => {
     wrapper = shallow(<ApplicationShell {...props} />);
   });
   describe('providers', () => {
-    it('should pass "configuration" to <ConfigurationProvider>', () => {
-      expect(wrapper.find('ConfigurationProvider')).toHaveProp(
-        'configuration',
-        props.configuration
+    it('should pass "environment" to <ApplicationStateProvider>', () => {
+      expect(wrapper.find(ApplicationStateProvider)).toHaveProp(
+        'environment',
+        props.environment
       );
     });
   });
@@ -197,6 +205,39 @@ describe('<RestrictedApplication>', () => {
       it('should pass "locale" as undefined to <AsyncLocaleData>', () => {
         expect(wrapper.find(AsyncLocaleData)).toHaveProp('locale', undefined);
       });
+      it('should pass "user" as undefined to <ApplicationStateProvider>', () => {
+        expect(wrapper.find(ApplicationStateProvider)).toHaveProp(
+          'user',
+          undefined
+        );
+      });
+      it('should pass "environment" to <ApplicationStateProvider>', () => {
+        expect(wrapper.find(ApplicationStateProvider)).toHaveProp(
+          'environment',
+          props.environment
+        );
+      });
+    });
+    describe('when user is loaded', () => {
+      beforeEach(() => {
+        reportErrorToSentry.mockClear();
+        props = createTestProps();
+        wrapper = shallow(<RestrictedApplication {...props} />)
+          .find(FetchUser)
+          .renderProp('children', userData);
+      });
+      it('should pass "user" to <ApplicationStateProvider>', () => {
+        expect(wrapper.find(ApplicationStateProvider)).toHaveProp(
+          'user',
+          userData.user
+        );
+      });
+      it('should pass "environment" to <ApplicationStateProvider>', () => {
+        expect(wrapper.find(ApplicationStateProvider)).toHaveProp(
+          'environment',
+          props.environment
+        );
+      });
     });
     describe('when locale data is loading', () => {
       beforeEach(() => {
@@ -259,6 +300,9 @@ describe('<RestrictedApplication>', () => {
           })
         );
       });
+      it('should not render <ApplicationStateProvider>', () => {
+        expect(wrapper).not.toRender(ApplicationStateProvider);
+      });
     });
 
     describe('layout', () => {
@@ -302,19 +346,44 @@ describe('<RestrictedApplication>', () => {
     describe('<NavBar>', () => {
       let wrapperAside;
       describe('when there is a project key in the url', () => {
+        let project;
         beforeEach(() => {
           appShellUtils.selectProjectKeyFromUrl.mockReturnValue('foo-1');
-          userData = {
-            isLoading: false,
-          };
           wrapper = renderForAsyncData({ props, userData });
+          project = {
+            key: 'foo-1',
+            version: 1,
+            name: 'Foo 1',
+            countries: ['us'],
+            currencies: ['USD'],
+            languages: ['en'],
+            permissions: { canManageProject: true },
+          };
           wrapperAside = wrapper
             .find('aside')
             .find(FetchProject)
             .renderProp('children', {
               isLoading: false,
-              project: { permissions: { canManageProject: true } },
+              project,
             });
+        });
+        it('should pass "user" to <ApplicationStateProvider>', () => {
+          expect(wrapperAside.find(ApplicationStateProvider)).toHaveProp(
+            'user',
+            userData.user
+          );
+        });
+        it('should pass "project" to <ApplicationStateProvider>', () => {
+          expect(wrapperAside.find(ApplicationStateProvider)).toHaveProp(
+            'project',
+            project
+          );
+        });
+        it('should pass "environment" to <ApplicationStateProvider>', () => {
+          expect(wrapperAside.find(ApplicationStateProvider)).toHaveProp(
+            'environment',
+            props.environment
+          );
         });
         it('should pass the projectKey matched from the URL', () => {
           expect(wrapperAside.find(NavBar)).toHaveProp('projectKey', 'foo-1');

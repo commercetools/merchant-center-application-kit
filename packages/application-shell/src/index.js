@@ -12,10 +12,13 @@ export {
   activePluginReducer,
   createPluginReducer,
 } from './components/inject-reducer';
-export { default as FetchUser, withUser } from './components/fetch-user';
 export {
-  default as FetchProject,
-  withProject,
+  DeprecatedFetchUser as FetchUser,
+  deprecatedWithUser as withUser,
+} from './components/fetch-user';
+export {
+  DeprecatedFetchProject as FetchProject,
+  deprecatedWithProject as withProject,
 } from './components/fetch-project';
 export { default as RouteCatchAll } from './components/route-catch-all';
 export { default as reduxStore, createReduxStore } from './configure-store';

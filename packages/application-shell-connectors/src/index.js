@@ -1,23 +1,9 @@
 export {
-  default as GetProjectDataLocale,
-  AppShellProviderForProjectDataLocale,
-  withProjectDataLocale,
-} from './components/project-data-locale';
-export {
-  default as GetUserTimeZone,
-  AppShellProviderForUserTimeZone,
-  withUserTimeZone,
-} from './components/user-time-zone';
-export {
-  ConfigurationProvider,
-  ConfigurationConsumer,
-  injectConfiguration,
-} from './components/configuration';
-export {
-  default as GetUserPermissions,
-  AppShellProviderForUserPermissions,
-  withUserPermissions,
-} from './components/user-permissions';
+  default as GetApplicationState,
+  ApplicationStateProvider,
+  withApplicationState,
+} from './components/application-state';
+
 export {
   default as GetProjectExtensionImageRegex,
   ProjectExtensionProviderForImageRegex,

@@ -21,12 +21,6 @@ describe('rendering', () => {
       props = createTestProps();
       wrapper = shallow(<ProjectDataLocale {...props} />);
     });
-    it('should render <AppShellProviderForProjectDataLocale> with locale "en"', () => {
-      expect(wrapper.find('AppShellProviderForProjectDataLocale')).toHaveProp(
-        'locale',
-        'en'
-      );
-    });
     it('should call render function with default locale "en"', () => {
       expect(props.children).toHaveBeenCalledWith(
         expect.objectContaining({ locale: 'en' })

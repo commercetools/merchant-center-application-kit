@@ -8,7 +8,7 @@ import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { Spacings, PrimaryButton } from '@commercetools-frontend/ui-kit';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
-import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
+import { withApplicationState } from '@commercetools-frontend/application-shell-connectors';
 import { Notification } from '@commercetools-frontend/react-notifications';
 import InfoDialog from '../../from-core/info-dialog';
 import Title from '../../from-core/title';
@@ -316,7 +316,9 @@ const mapDispatchToProps = dispatch => ({
 
 export default compose(
   injectIntl,
-  injectConfiguration(['adminCenterUrl'], 'adminCenterUrl'),
+  withApplicationState(applicationState => ({
+    adminCenterUrl: applicationState.environment.adminCenterUrl,
+  })),
   connect(
     null,
     mapDispatchToProps

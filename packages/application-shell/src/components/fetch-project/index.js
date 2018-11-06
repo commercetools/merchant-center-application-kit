@@ -1,1 +1,6 @@
-export { default, withProject } from './fetch-project';
+export {
+  default,
+  withProject,
+  DeprecatedFetchProject,
+  deprecatedWithProject,
+} from './fetch-project';

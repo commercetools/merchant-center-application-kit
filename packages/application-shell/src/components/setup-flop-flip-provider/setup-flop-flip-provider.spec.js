@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { ConfigurationConsumer } from '@commercetools-frontend/application-shell-connectors';
 import { SetupFlopFlipProvider } from './setup-flop-flip-provider';
 
 const createTestProps = props => ({
@@ -15,6 +14,7 @@ const createTestProps = props => ({
   defaultFlags: {
     flagA: true,
   },
+  appEnv: 'staging',
   children: <div />,
   ...props,
 });
@@ -24,9 +24,7 @@ describe('rendering', () => {
   let wrapper;
   beforeEach(() => {
     props = createTestProps();
-    wrapper = shallow(<SetupFlopFlipProvider {...props} />)
-      .find(ConfigurationConsumer)
-      .renderProp('children', 'staging');
+    wrapper = shallow(<SetupFlopFlipProvider {...props} />);
   });
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();
@@ -103,9 +101,7 @@ describe('rendering', () => {
   describe('when user is not defined', () => {
     beforeEach(() => {
       props = createTestProps({ user: null });
-      wrapper = shallow(<SetupFlopFlipProvider {...props} />)
-        .find(ConfigurationConsumer)
-        .renderProp('children', 'staging');
+      wrapper = shallow(<SetupFlopFlipProvider {...props} />);
     });
     it('should set "shouldDeferAdapterConfiguration" to true', () => {
       expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(
@@ -124,9 +120,9 @@ describe('rendering', () => {
   });
   describe('when env is production', () => {
     beforeEach(() => {
-      wrapper = shallow(<SetupFlopFlipProvider {...props} />)
-        .find(ConfigurationConsumer)
-        .renderProp('children', 'production');
+      wrapper = shallow(
+        <SetupFlopFlipProvider {...props} appEnv="production" />
+      );
     });
     it('should pass production "clientSideId" as adapter arg', () => {
       expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(

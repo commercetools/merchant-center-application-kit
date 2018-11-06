@@ -8,14 +8,12 @@ class ChannelsListConnector extends React.Component {
   static propTypes = {
     children: PropTypes.func.isRequired,
     projectKey: PropTypes.string.isRequired,
-    language: PropTypes.string.isRequired,
   };
   render() {
     return (
       <Sdk.Get
         actionCreator={requestParams =>
           actions.fetchChannels(requestParams, {
-            language: this.props.language,
             projectKey: this.props.projectKey,
           })
         }

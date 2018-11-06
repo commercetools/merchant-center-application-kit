@@ -23,7 +23,7 @@ exports[`LockedAccount rendering rendering should match snapshot 1`] = `
       values={
         Object {
           "helpDeskLink": <HelpDeskLink />,
-          "resetPasswordLink": <injectConfiguration(ResetPasswordLink) />,
+          "resetPasswordLink": <ResetPasswordLink />,
         }
       }
     />
@@ -44,14 +44,7 @@ exports[`LockedAccount rendering rendering should match snapshot 1`] = `
 `;
 
 exports[`ResetPasswordLink rendering rendering should match snapshot 1`] = `
-<a
-  href="https://ac.ct.com/reset-password"
-  target="_blank"
->
-  <FormattedMessage
-    defaultMessage="reset your password"
-    id="LoginLocked.resetPasswordLink"
-    values={Object {}}
-  />
-</a>
+<GetApplicationState
+  render={[Function]}
+/>
 `;

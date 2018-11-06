@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { deepEqual } from 'fast-equals';
 import * as storage from '@commercetools-frontend/storage';
-import { AppShellProviderForProjectDataLocale } from '@commercetools-frontend/application-shell-connectors';
 import { STORAGE_KEYS } from '../../constants';
 
 const defaultLocale = 'en';
@@ -54,13 +53,9 @@ export default class ProjectDataLocale extends React.PureComponent {
   };
 
   render() {
-    return (
-      <AppShellProviderForProjectDataLocale locale={this.state.locale}>
-        {this.props.children({
-          locale: this.state.locale,
-          setProjectDataLocale: this.handleSetProjectDataLocale,
-        })}
-      </AppShellProviderForProjectDataLocale>
-    );
+    return this.props.children({
+      locale: this.state.locale,
+      setProjectDataLocale: this.handleSetProjectDataLocale,
+    });
   }
 }

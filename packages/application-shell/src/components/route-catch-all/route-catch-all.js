@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
-import { injectConfiguration } from '@commercetools-frontend/application-shell-connectors';
+import { withApplicationState } from '@commercetools-frontend/application-shell-connectors';
 import PageNotFound from '../../from-core/page-not-found';
 
 export class ForcePageReload extends React.PureComponent {
@@ -53,6 +53,6 @@ export class RouteCatchAll extends React.PureComponent {
   }
 }
 
-export default injectConfiguration(['servedByProxy'], 'servedByProxy')(
-  RouteCatchAll
-);
+export default withApplicationState(applicationState => ({
+  servedByProxy: applicationState.environment.servedByProxy,
+}))(RouteCatchAll);

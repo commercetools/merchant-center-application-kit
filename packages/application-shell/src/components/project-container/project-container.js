@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
 import isNil from 'lodash.isnil';
-import omit from 'lodash.omit';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
-import { AppShellProviderForUserPermissions } from '@commercetools-frontend/application-shell-connectors';
+import { ApplicationStateProvider } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { STORAGE_KEYS, SUSPENSION_REASONS } from '../../constants';
 import ApplicationLoader from '../application-loader';
@@ -37,6 +36,7 @@ export class ProjectContainer extends React.Component {
         total: PropTypes.number.isRequired,
       }).isRequired,
     }),
+    environment: PropTypes.object.isRequired,
     render: PropTypes.func.isRequired,
     intl: PropTypes.shape({
       formatMessage: PropTypes.func.isRequired,
@@ -132,11 +132,14 @@ export class ProjectContainer extends React.Component {
             return <ProjectExpired />;
 
           return (
-            <AppShellProviderForUserPermissions
-              permissions={omit(project.permissions, ['__typename'])}
-            >
-              <ProjectDataLocale locales={project.languages}>
-                {({ locale, setProjectDataLocale }) => (
+            <ProjectDataLocale locales={project.languages}>
+              {({ locale, setProjectDataLocale }) => (
+                <ApplicationStateProvider
+                  user={this.props.user}
+                  project={project}
+                  projectDataLocale={locale}
+                  environment={this.props.environment}
+                >
                   <React.Fragment>
                     {!isNil(project.expiry.daysLeft) &&
                       project.expiry.daysLeft <= minDaysToDisplayNotification &&
@@ -171,9 +174,9 @@ export class ProjectContainer extends React.Component {
                      */}
                     {this.props.render()}
                   </React.Fragment>
-                )}
-              </ProjectDataLocale>
-            </AppShellProviderForUserPermissions>
+                </ApplicationStateProvider>
+              )}
+            </ProjectDataLocale>
           );
         }}
       </FetchProject>
