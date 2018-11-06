@@ -31,7 +31,7 @@ afterEach(memoryAdapter.reset);
 // Inspired by
 // https://github.com/kentcdodds/react-testing-library-course/blob/2a5b1560656790bb1d9c055fba3845780b2c2c97/src/__tests__/react-router-03.js
 // eslint-disable-next-line import/prefer-default-export
-export const render = (
+const render = (
   ui,
   {
     // react-intl
@@ -68,7 +68,7 @@ export const render = (
 // Test setup for rendering with Redux
 // We expose a sophisticated function because we plan to get rid of Redux
 // Use this function only when your test actually needs Redux
-export const renderWithRedux = (
+const renderWithRedux = (
   ui,
   {
     // Consuemrs of renderWithRedux can use
@@ -84,3 +84,12 @@ export const renderWithRedux = (
   // this to test implementation details).
   store,
 });
+
+// re-export everything
+export * from 'react-testing-library';
+
+export {
+  // override render method of react-testing-library
+  render,
+  renderWithRedux,
+};
