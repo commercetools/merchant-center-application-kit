@@ -23,7 +23,7 @@ const containsMatchByProductKey = data => Boolean(data.productByKey);
 const containsMatchByVariantKey = data => Boolean(data.productByVariantKey);
 const containsMatchByVariantSku = data => Boolean(data.productByVariantSku);
 
-export class QuickAccess extends React.Component {
+class QuickAccess extends React.Component {
   static displayName = 'QuickAccess';
   static propTypes = {
     project: PropTypes.shape({
