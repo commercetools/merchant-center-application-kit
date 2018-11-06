@@ -3,6 +3,25 @@ import createL10NInjector from './create-l10n-injector';
 import getSupportedLanguage from './utils/get-supported-language';
 import extractLanguageFromLocale from './utils/extract-language-from-locale';
 
+const getImportChunk = lang => {
+  let importChunk;
+  switch (lang) {
+    case 'en':
+      importChunk = import(/* webpackChunkName: "language-data-en" */ './data/languages/en.json');
+      break;
+    case 'de':
+      importChunk = import(/* webpackChunkName: "language-data-es" */ './data/languages/es.json');
+      break;
+    case 'es':
+      importChunk = import(/* webpackChunkName: "language-data-de" */ './data/languages/de.json');
+      break;
+
+    default:
+      importChunk = import(/* webpackChunkName: "language-data-en" */ './data/languages/en.json');
+  }
+  return importChunk;
+};
+
 export const languagesShape = PropTypes.objectOf(
   PropTypes.shape({
     country: PropTypes.string,
@@ -20,8 +39,7 @@ const getLanguagesForLocale = (locale, cb) => {
   // Use default webpackMode (lazy) so that we generate one file per locale.
   // The files are named like "language-data-en-json.chunk.js" after compilation
   // https://webpack.js.org/api/module-methods/#import-
-  import(/* webpackChunkName: "language-data-[request]" */
-  `./data/languages/${supportedLocale}.json`)
+  getImportChunk(supportedLocale)
     .then(languages => cb(null, languages.default))
     .catch(error => cb(error));
 };
