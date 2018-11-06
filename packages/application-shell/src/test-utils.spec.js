@@ -261,13 +261,11 @@ describe('router', () => {
   it('should render fallback when no route is provided', () => {
     const { container } = render(<TestComponent />);
     expect(container).not.toHaveTextContent('Foo');
-    expect(container).not.toHaveTextContent('Bar');
     expect(container).toHaveTextContent('None');
   });
   it('should render allow routing', () => {
     const { container } = render(<TestComponent />, { route: '/foo' });
     expect(container).toHaveTextContent('Foo');
-    expect(container).not.toHaveTextContent('Bar');
     expect(container).not.toHaveTextContent('None');
   });
   it('should return a history object', () => {
