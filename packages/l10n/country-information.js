@@ -4,22 +4,14 @@ import getSupportedLanguage from './utils/get-supported-language';
 import extractLanguageFromLocale from './utils/extract-language-from-locale';
 
 const getImportChunk = lang => {
-  let importChunk;
   switch (lang) {
-    case 'en':
-      importChunk = import(/* webpackChunkName: "country-data-en" */ './data/countries/en.json');
-      break;
     case 'de':
-      importChunk = import(/* webpackChunkName: "country-data-es" */ './data/countries/es.json');
-      break;
+      return import(/* webpackChunkName: "country-data-es" */ './data/countries/es.json');
     case 'es':
-      importChunk = import(/* webpackChunkName: "country-data-de" */ './data/countries/de.json');
-      break;
-
+      return import(/* webpackChunkName: "country-data-de" */ './data/countries/de.json');
     default:
-      importChunk = import(/* webpackChunkName: "country-data-en" */ './data/countries/en.json');
+      return import(/* webpackChunkName: "country-data-en" */ './data/countries/en.json');
   }
-  return importChunk;
 };
 
 export const countriesShape = PropTypes.objectOf(PropTypes.string);

@@ -4,22 +4,14 @@ import getSupportedLanguage from './utils/get-supported-language';
 import extractLanguageFromLocale from './utils/extract-language-from-locale';
 
 const getImportChunk = lang => {
-  let importChunk;
   switch (lang) {
-    case 'en':
-      importChunk = import(/* webpackChunkName: "timezone-data-en" */ './data/time-zones/en.json');
-      break;
     case 'de':
-      importChunk = import(/* webpackChunkName: "timezone-data-es" */ './data/time-zones/es.json');
-      break;
+      return import(/* webpackChunkName: "timezone-data-es" */ './data/time-zones/es.json');
     case 'es':
-      importChunk = import(/* webpackChunkName: "timezone-data-de" */ './data/time-zones/de.json');
-      break;
-
+      return import(/* webpackChunkName: "timezone-data-de" */ './data/time-zones/de.json');
     default:
-      importChunk = import(/* webpackChunkName: "timezone-data-en" */ './data/time-zones/en.json');
+      return import(/* webpackChunkName: "timezone-data-en" */ './data/time-zones/en.json');
   }
-  return importChunk;
 };
 
 export const timeZonesShape = PropTypes.objectOf(

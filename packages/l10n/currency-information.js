@@ -3,22 +3,14 @@ import getSupportedLanguage from './utils/get-supported-language';
 import extractLanguageFromLocale from './utils/extract-language-from-locale';
 
 const getImportChunk = lang => {
-  let importChunk;
   switch (lang) {
-    case 'en':
-      importChunk = import(/* webpackChunkName: "currency-data-en" */ './data/currencies/en.json');
-      break;
     case 'de':
-      importChunk = import(/* webpackChunkName: "currency-data-es" */ './data/currencies/es.json');
-      break;
+      return import(/* webpackChunkName: "currency-data-es" */ './data/currencies/es.json');
     case 'es':
-      importChunk = import(/* webpackChunkName: "currency-data-de" */ './data/currencies/de.json');
-      break;
-
+      return import(/* webpackChunkName: "currency-data-de" */ './data/currencies/de.json');
     default:
-      importChunk = import(/* webpackChunkName: "currency-data-en" */ './data/currencies/en.json');
+      return import(/* webpackChunkName: "currency-data-en" */ './data/currencies/en.json');
   }
-  return importChunk;
 };
 
 /**
