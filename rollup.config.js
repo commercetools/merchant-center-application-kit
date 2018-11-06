@@ -21,6 +21,8 @@ const { pkg } = readPkgUp.sync({
   cwd: fs.realpathSync(process.cwd()),
 });
 
+const format = process.env.npm_lifecycle_event.split(':')[1];
+
 const babelOptions = getBabelPreset();
 
 // Inspired by https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/config/webpack.config.prod.js
@@ -67,7 +69,7 @@ const config = {
     }),
     json(
       // generate a named export for every property of the JSON object
-      { namedExports: true } // Default: true // could disable just for CJS/
+      { namedExports: format !== 'cjs' } // Default: true // could disable just for CJS/
     ),
     builtins(),
     postcss({
