@@ -77,14 +77,15 @@ export { withUser };
 export { LoggedInUserQuery, FetchUser };
 
 // Exports with deprecated warnings
-const DeprecatedFetchUser = deprecateComponent(
-  'The "FetchUser" component has been deprecated and will be removed in the next major release. Please use "GetApplicationState" from `@commercetools-frontend/application-shell-connectors` to access "user" and "project" information.'
-)(FetchLoggedInUser);
+const DeprecatedFetchUser = deprecateComponent({
+  message:
+    'The "FetchUser" component has been deprecated and will be removed in the next major release. Please use "GetApplicationState" from `@commercetools-frontend/application-shell-connectors` to access "user" and "project" information.',
+})(FetchLoggedInUser);
 const deprecatedWithUser = mapDataToProps => Component => {
   const WrappedComponent = withUser(mapDataToProps)(Component);
-  return deprecateComponent(
-    'The "withUser" HOC has been deprecated and will be removed in the next major release. Please use "withApplicationState" from `@commercetools-frontend/application-shell-connectors` to access "user" and "project" information.',
-    WrappedComponent
-  );
+  return deprecateComponent({
+    message:
+      'The "withUser" HOC has been deprecated and will be removed in the next major release. Please use "withApplicationState" from `@commercetools-frontend/application-shell-connectors` to access "user" and "project" information.',
+  })(WrappedComponent);
 };
 export { DeprecatedFetchUser, deprecatedWithUser };
