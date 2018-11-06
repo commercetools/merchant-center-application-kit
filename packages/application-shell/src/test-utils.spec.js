@@ -9,10 +9,10 @@ import { injectIntl } from 'react-intl';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { injectFeatureToggle } from '@flopflip/react-broadcast';
+import { GetApplicationState } from '@commercetools-frontend/application-shell-connectors';
+import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { Switch, Route } from 'react-router';
 import { render, wait } from './test-utils';
-import { GetApplicationState } from '../../application-shell-connectors';
-import { RestrictedByPermissions } from '../../permissions';
 
 describe('Intl', () => {
   const TestComponent = injectIntl(props => props.intl.locale);
