@@ -15,7 +15,6 @@ Link.displayName = 'Link';
 
 const PageNotFound = () => (
   <div className={styles.container}>
-    here
     <ServicePageResponseLayout
       imageSrc={PageNotFoundSVG}
       title={<FormattedMessage {...messages.title} />}
