@@ -2,57 +2,36 @@ import { addLocaleData } from 'react-intl';
 import { getMatchingMomentCode } from './utils';
 
 const getReactIntlChunkImport = lang => {
-  let chunkImport;
   switch (lang) {
-    case 'en':
-      chunkImport = import(/* webpackChunkName: "react-intl-data-en" */ 'react-intl/locale-data/en');
-      break;
     case 'de':
-      chunkImport = import(/* webpackChunkName: "react-intl-data-de" */ 'react-intl/locale-data/de');
-      break;
+      return import(/* webpackChunkName: "react-intl-data-de" */ 'react-intl/locale-data/de');
     case 'es':
-      chunkImport = import(/* webpackChunkName: "react-intl-data-es" */ 'react-intl/locale-data/es');
-      break;
+      return import(/* webpackChunkName: "react-intl-data-es" */ 'react-intl/locale-data/es');
     default:
-      chunkImport = import(/* webpackChunkName: "react-intl-data-en" */ 'react-intl/locale-data/en');
+      return import(/* webpackChunkName: "react-intl-data-en" */ 'react-intl/locale-data/en');
   }
-  return chunkImport;
 };
 
 const getMomentChunkImport = momentLocaleCode => {
-  let chunkImport;
   switch (momentLocaleCode) {
-    case 'en':
-      chunkImport = import(/* webpackChunkName: "i18n-moment-locale-en-gb" */ 'moment/locale/en-gb');
-      break;
     case 'de':
-      chunkImport = import(/* webpackChunkName: "i18n-moment-locale-de" */ 'moment/locale/de');
-      break;
+      return import(/* webpackChunkName: "i18n-moment-locale-de" */ 'moment/locale/de');
     case 'es':
-      chunkImport = import(/* webpackChunkName: "i18n-moment-locale-es" */ 'moment/locale/es');
-      break;
+      return import(/* webpackChunkName: "i18n-moment-locale-es" */ 'moment/locale/es');
     default:
-      chunkImport = import(/* webpackChunkName: "i18n-moment-locale-en-gb" */ 'moment/locale/en-gb');
+      return import(/* webpackChunkName: "i18n-moment-locale-en-gb" */ 'moment/locale/en-gb');
   }
-  return chunkImport;
 };
 
 const getLocalizedStringsChunkImport = lang => {
-  let chunkImport;
   switch (lang) {
-    case 'en':
-      chunkImport = import(/* webpackChunkName: "react-intl-localized-strings-en" */ './data/en.json');
-      break;
     case 'de':
-      chunkImport = import(/* webpackChunkName: "react-intl-localized-strings-de" */ './data/de.json');
-      break;
+      return import(/* webpackChunkName: "react-intl-localized-strings-de" */ './data/de.json');
     case 'es':
-      chunkImport = import(/* webpackChunkName: "react-intl-localized-strings-es" */ './data/es.json');
-      break;
+      return import(/* webpackChunkName: "react-intl-localized-strings-es" */ './data/es.json');
     default:
-      chunkImport = import(/* webpackChunkName: "react-intl-localized-strings-en" */ './data/en.json');
+      return import(/* webpackChunkName: "react-intl-localized-strings-en" */ './data/en.json');
   }
-  return chunkImport;
 };
 
 export default function loadI18n(lang) {
