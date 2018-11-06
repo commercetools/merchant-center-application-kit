@@ -12,6 +12,7 @@ import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import { MockedProvider as ApolloMockProvider } from 'react-apollo/test-utils';
 import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
+import { ApplicationStateProvider } from '@commercetools-frontend/application-shell-connectors';
 import { createReduxStore } from './configure-store';
 
 // Reset memoryAdapter after each test, so that the next test accepts the
@@ -20,17 +21,52 @@ import { createReduxStore } from './configure-store';
 // location is better for it.
 afterEach(memoryAdapter.reset);
 
-// This function renders any component within the application context.
+// These default values get merged with the values provided by the test from
+// the call to "render"
+const defaultUser = {
+  id: 'user-id-1',
+  email: 'sheldon.cooper@caltech.edu',
+  firstName: 'Sheldon',
+  lastName: 'Cooper',
+  language: 'en',
+  timeZone: 'Etc/UTC',
+};
+
+const defaultEnvironment = {
+  frontendHost: 'localhost:3001',
+  mcApiUrl: 'https://mc-api.commercetools.com',
+  location: 'eu',
+  env: 'production',
+  cdnUrl: 'http://localhost:3001',
+  servedByProxy: false,
+};
+
+const defaultProject = {
+  key: 'test-with-big-data',
+  version: 43,
+  name: 'Test with big data',
+  countries: ['de', 'en'],
+  currencies: ['EUR', 'GBP'],
+  languages: ['de', 'en-GB'],
+  permissions: { canManageProject: true },
+};
+
+// Allow consumers of `render` to extend the defaults by passing an object
+// or to completely omit the value by passing `null`
+const mergeOptional = (defaultValue, value) =>
+  value === null ? undefined : { ...defaultValue, ...value };
+
+// This function renders any component within the application context, as if it
+// was rendered inside <ApplicationShell />.
 // The context is not completely set up yet, some things are missing:
 //   - Tracking on context
-//   - Project information
+//   - react-intl's information from addLocaleData
 //   - possibly more that I'm not aware of right now
 //
 //  We can add these things as we go and when we need them.
 
 // Inspired by
 // https://github.com/kentcdodds/react-testing-library-course/blob/2a5b1560656790bb1d9c055fba3845780b2c2c97/src/__tests__/react-router-03.js
-// eslint-disable-next-line import/prefer-default-export
 const render = (
   ui,
   {
@@ -45,25 +81,48 @@ const render = (
     // flopflip
     adpater = memoryAdapter,
     flags = {},
+    // application-state
+    dataLocale = 'en',
+    environment,
+    user,
+    project,
     // forwarding to react-testing-library
     ...renderOptions
   } = {}
-) => ({
-  ...rtlRender(
-    <IntlProvider locale={locale}>
-      <ApolloMockProvider mocks={mocks} addTypename={addTypename}>
-        <ConfigureFlopFlip adapter={adpater} defaultFlags={flags}>
-          <Router history={history}>{ui}</Router>
-        </ConfigureFlopFlip>
-      </ApolloMockProvider>
-    </IntlProvider>,
-    renderOptions
-  ),
-  // adding `history` to the returned utilities to allow us
-  // to reference it in our tests (just try to avoid using
-  // this to test implementation details).
-  history,
-});
+) => {
+  const mergedUser = mergeOptional(defaultUser, user);
+  const mergedProject = mergeOptional(defaultProject, project);
+  const mergedEnvironment = mergeOptional(defaultEnvironment, environment);
+  return {
+    ...rtlRender(
+      <IntlProvider locale={locale}>
+        <ApolloMockProvider mocks={mocks} addTypename={addTypename}>
+          <ConfigureFlopFlip adapter={adpater} defaultFlags={flags}>
+            <ApplicationStateProvider
+              user={mergedUser}
+              project={mergedProject}
+              environment={mergedEnvironment}
+              projectDataLocale={dataLocale}
+            >
+              <Router history={history}>{ui}</Router>
+            </ApplicationStateProvider>
+          </ConfigureFlopFlip>
+        </ApolloMockProvider>
+      </IntlProvider>,
+      renderOptions
+    ),
+    // adding `history` to the returned utilities to allow us
+    // to reference it in our tests (just try to avoid using
+    // this to test implementation details).
+    history,
+    // Adding user, project & environment so tests know about the merge results
+    // Note that these objects do not resemble the application state, they are
+    // only intended to communicate the test setup back to the tests.
+    user: mergedUser,
+    project: mergedProject,
+    environment: mergedEnvironment,
+  };
+};
 
 // Test setup for rendering with Redux
 // We expose a sophisticated function because we plan to get rid of Redux
