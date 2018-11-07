@@ -3,6 +3,6 @@ module.exports = {
   displayName: 'stylelint',
   moduleFileExtensions: ['css'],
   modulePathIgnorePatterns: ['dist'],
-  testMatch: ['<rootDir>/packages/**/*.css', '<rootDir>/playground/**/*.css'],
+  testMatch: ['<rootDir>/**/*.css'],
   watchPlugins: ['jest-plugin-filename', 'jest-watch-master'],
 };
