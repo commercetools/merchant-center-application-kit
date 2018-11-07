@@ -2,11 +2,13 @@ import { ApolloLink, execute, Observable } from 'apollo-link';
 import gql from 'graphql-tag';
 import waitFor from 'wait-for-observables';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { getCorrelationId } from '../utils';
 import headerLink from './header-link';
 
 jest.mock('../utils/', () => ({
-  getCorrelationId: () => 'test-correlation-id',
+  getCorrelationId: jest.fn(() => 'test-correlation-id'),
   selectProjectKeyFromUrl: jest.fn(() => 'project-1'),
+  selectUserId: jest.fn(() => 'user-1'),
 }));
 
 describe('headerLink', () => {
@@ -74,6 +76,10 @@ describe('with valid target', () => {
         'X-Correlation-Id': 'test-correlation-id',
       })
     );
+  });
+
+  it('should pass "userId" param to "getCorrelationId"', () => {
+    expect(getCorrelationId).toHaveBeenCalledWith({ userId: 'user-1' });
   });
 
   describe('with project key in variables', () => {

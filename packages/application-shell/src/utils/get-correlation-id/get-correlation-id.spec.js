@@ -1,12 +1,10 @@
 import selectProjectKeyFromUrl from '../select-project-key-from-url';
-import selectUserId from '../select-user-id';
 import getCorrelationId from './get-correlation-id';
 
 jest.mock('uuid/v4', () => () => 'test-uuid');
 jest.mock('../select-project-key-from-url', () =>
   jest.fn(() => 'test-project-key')
 );
-jest.mock('../select-user-id', () => jest.fn(() => 'test-user-id'));
 
 describe('getCorrelationId', () => {
   let correlationId;
@@ -15,26 +13,32 @@ describe('getCorrelationId', () => {
     correlationId = getCorrelationId();
   });
 
-  it('should match snapshot', () => {
-    expect(correlationId).toMatchSnapshot();
-  });
-
-  it('should invoke `selectUserId`', () => {
-    expect(selectUserId).toHaveBeenCalled();
-  });
-
   it('should invoke `selectProjectKeyFromUrl`', () => {
     expect(selectProjectKeyFromUrl).toHaveBeenCalled();
   });
 
+  describe('with `userId`', () => {
+    beforeEach(() => {
+      correlationId = getCorrelationId({ userId: 'user-1' });
+    });
+
+    it('should build correlation id', () => {
+      expect(correlationId).toBe('mc/test-project-key/user-1/test-uuid');
+    });
+
+    it('should not contain `null`', () => {
+      // NOTE: `'null'` would be stringified.
+      expect(correlationId).not.toEqual(expect.stringContaining('null'));
+    });
+  });
+
   describe('without `userId`', () => {
     beforeEach(() => {
-      selectUserId.mockReturnValue(null);
       correlationId = getCorrelationId();
     });
 
-    it('should match snapshot', () => {
-      expect(correlationId).toMatchSnapshot();
+    it('should build correlation id', () => {
+      expect(correlationId).toBe('mc/test-project-key/test-uuid');
     });
 
     it('should not contain `null`', () => {

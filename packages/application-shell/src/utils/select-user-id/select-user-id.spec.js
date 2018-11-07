@@ -1,16 +1,16 @@
 import selectUserId from './select-user-id';
 
-const cache = {
+const apolloCache = {
   readQuery: jest.fn(),
 };
 
 describe('selectUserId', () => {
   describe('when `readQuery` throws', () => {
     beforeEach(() => {
-      cache.readQuery.mockReturnValueOnce(new Error('Test Error'));
+      apolloCache.readQuery.mockReturnValueOnce(new Error('Test Error'));
     });
     it('should return `null`', () => {
-      expect(selectUserId(cache)).toBeNull();
+      expect(selectUserId({ apolloCache })).toBeNull();
     });
   });
 
@@ -23,19 +23,19 @@ describe('selectUserId', () => {
 
     describe('with `user`', () => {
       beforeEach(() => {
-        cache.readQuery.mockReturnValueOnce(queryResult);
+        apolloCache.readQuery.mockReturnValueOnce(queryResult);
       });
       it('should return the `id`', () => {
-        expect(selectUserId(cache)).toEqual(queryResult.user.id);
+        expect(selectUserId({ apolloCache })).toEqual(queryResult.user.id);
       });
     });
 
     describe('without `user`', () => {
       beforeEach(() => {
-        cache.readQuery.mockReturnValueOnce({});
+        apolloCache.readQuery.mockReturnValueOnce({});
       });
       it('should return `null`', () => {
-        expect(selectUserId(cache)).toBeNull();
+        expect(selectUserId({ apolloCache })).toBeNull();
       });
     });
   });
