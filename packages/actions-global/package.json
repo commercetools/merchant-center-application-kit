@@ -20,12 +20,18 @@
   },
   "main": "dist/actions-global.cjs.js",
   "module": "dist/actions-global.es.js",
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prebuild": "rimraf dist/**",
-    "build": "cross-env npm run build:es && npm run build:cjs",
-    "build:watch": "cross-env npm run build:es -- -w",
+    "build": "npm run build:es && npm run build:cjs",
     "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.js -o dist/actions-global.cjs.js",
-    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js -o dist/actions-global.es.js"
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js -o dist/actions-global.es.js",
+    "build:es:watch": "npm run build:es -- -w"
   },
   "dependencies": {
     "@commercetools-frontend/browser-history": "1.0.0-rc.3",

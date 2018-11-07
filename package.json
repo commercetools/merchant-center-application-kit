@@ -21,8 +21,8 @@
     "release": "lerna publish --exact --preid rc",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
-    "playground:start": "cd playground; yarn start",
-    "playground:build": "cd playground; yarn build:playground",
+    "playground:start": "yarn --cwd playground start",
+    "playground:build": "yarn --cwd playground; yarn build:playground",
     "build": "NODE_ENV=production lerna run build",
     "build:watch": "NODE_ENV=development lerna run --parallel build:watch"
   },

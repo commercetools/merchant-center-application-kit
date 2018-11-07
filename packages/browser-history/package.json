@@ -18,15 +18,21 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "dist/browser-history.cjs.js",
+  "module": "dist/browser-history.es.js",
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prebuild": "rimraf dist/**",
-    "build": "cross-env npm run build:es && npm run build:cjs",
-    "build:watch": "cross-env npm run build:es -- -w",
+    "build": "npm run build:es && npm run build:cjs",
+    "build:watch": "npm run build:es -- -w",
     "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.js -o dist/browser-history.cjs.js",
     "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js -o dist/browser-history.es.js"
   },
-  "main": "./dist/browser-history.cjs.js",
-  "module": "./dist/browser-history.es.js",
   "dependencies": {
     "history": "4.7.2",
     "history-query-enhancer": "1.0.4",

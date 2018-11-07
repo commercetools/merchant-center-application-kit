@@ -18,15 +18,21 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "dist/permissions.cjs.js",
+  "module": "dist/permissions.es.js",
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prebuild": "rimraf dist/**",
-    "build": "cross-env npm run build:es && npm run build:cjs",
-    "build:watch": "cross-env npm run build:es -- -w",
+    "build": "npm run build:es && npm run build:cjs",
+    "build:watch": "npm run build:es -- -w",
     "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js -o ./dist/permissions.cjs.js",
     "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.js -o ./dist/permissions.es.js"
   },
-  "main": "./dist/permissions.cjs.js",
-  "module": "./dist/permissions.es.js",
   "dependencies": {
     "@commercetools-frontend/application-shell-connectors": "1.0.0-rc.3",
     "lodash.camelcase": "4.3.0",

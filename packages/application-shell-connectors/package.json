@@ -18,18 +18,20 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "dist/application-shell-connectors.cjs.js",
+  "module": "dist/application-shell-connectors.es.js",
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prebuild": "rimraf dist/**",
-    "build": "cross-env npm run build:es && npm run build:cjs",
-    "build:watch": "cross-env npm run build:es -- -w",
+    "build": "npm run build:es && npm run build:cjs",
+    "build:watch": "npm run build:es -- -w",
     "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js -o dist/application-shell-connectors.cjs.js",
     "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.js -o dist/application-shell-connectors.es.js"
-  },
-  "main": "./dist/application-shell-connectors.cjs.js",
-  "module": "./dist/application-shell-connectors.es.js",
-  "engines": {
-    "node": ">=8",
-    "npm": ">=5"
   },
   "dependencies": {
     "@commercetools-frontend/constants": "1.0.0-rc.3",
@@ -46,5 +48,9 @@
   "peerDependencies": {
     "react": ">=16 <17",
     "react-apollo": ">=2 <3"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
   }
 }
