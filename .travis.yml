@@ -13,10 +13,13 @@ cache:
   directories:
     - node_modules
 
+before_install:
+  - ./scripts/install_transifex.sh
+
 script:
   - yarn run jest --projects jest.*.config.js --maxWorkers=4 --reporters jest-silent-reporter
   - yarn playground:build
 
 after_success:
-  - ./scripts/install_transifex.sh
+  # - ./scripts/install_transifex.sh
   - ./scripts/push_translations.sh
