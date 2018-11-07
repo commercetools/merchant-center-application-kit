@@ -22,8 +22,8 @@
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
     "playground:start": "yarn --cwd playground start",
-    "playground:build": "yarn --cwd playground; yarn build:playground",
-    "build": "NODE_ENV=production lerna run build",
+    "playground:build": "yarn --cwd playground build",
+    "build": "NODE_ENV=production lerna run build --ignore 'merchant-center-starter-app'",
     "build:es:watch": "NODE_ENV=development lerna run --parallel build:es:watch"
   },
   "workspaces": [
