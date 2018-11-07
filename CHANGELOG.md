@@ -1,3 +1,124 @@
+## Draft for 2.0.0
+
+## BREAKING CHANGES
+
+This release introduce several breaking changes and requires to migrate some parts.
+
+### Dropped some connectors and introduce a new connector for `ApplicationState`
+
+The `@commercetools-frontend/application-shell-connectors` used to contain some connectors that have now been **removed**:
+
+- **configuration**: `injectConfiguration` and `<ConfigurationConsumer>`
+- **project-data-locale**: `withProjectDataLocale` and `<GetProjectDataLocale>`
+- **user-permissions**: `withUserPermissions` and `<GetUserPermissions>`
+- **user-time-zone**: `withUserTimeZone` and `<GetUserTimeZone>`
+
+As a replacement, we now have a single component `<GetApplicationState>` and `withApplicationState` that provide all the necessary "global" information about the `user`, `project` and application `environment`.
+
+#### `user` fields
+
+- `id`
+- `email`
+- `firstName`
+- `lastName`
+- `locale`
+- `timeZone`
+
+#### `project` fields
+
+- `key`
+- `version`
+- `name`
+- `countries`
+- `currencies`
+- `languages`
+- `permissions`: an object containing boolean flags about the permissions of the logged in user for the selected project (e.g. `{ canViewProducts: true, canManageOrders: false, ... }`)
+- `dataLocale`: the selected project **locale** (from the locale switcher in the AppBar) used to render a localized field of the project data. The available values are based on the `project.languages`
+
+#### `environment` fields
+
+This object contains application specific environment information defined in the `env.json`. The object will then be available on runtime from `window.app`. However, to avoid accessing those values globally, we inject this object into the application context.
+
+The following are common fields defined in `env.json`. However, each application can provide more specific fields that cannot be documented.
+
+- `frontendHost`: the host where the Merchant Center application is running (e.g. `mc.commercetools.com`)
+- `mcApiUrl`: the API URL of the Merchant Center (`https://mc-api.commercetools.com` for projects in `EU` and `https://mc-api.commercetools.co` for projects in `US`)
+- `location`: the location where the Merchant Center is running, usually `eu` or `us`
+- `env`: the environment where the Merchant Center is running, usually `production` or `staging`
+- `cdnUrl`: the URL where the static assets are stored
+- `servedByProxy`: a flag to indicate if this application is running behind the Merchant Center proxy or not, usually `true` for production and `false` for local development
+
+#### Usage example
+
+```js
+<GetApplicationState
+  render={({ user, project, environment }) => (
+    <div>{...}</div>
+  )}
+/>
+```
+
+You can also use the HOC `withApplicationState` that will inject a `applicationState` prop.
+
+```js
+withApplicationState()(MyComponent);
+```
+
+...or pass a mapping function as the first argument to return custom shape of the injected props
+
+```js
+withApplicationState(applicationState => ({
+  projectKey: applicationState.project && applicationState.project.key,
+  userEmail: applicationState.user && applicationState.user.email,
+}))(MyComponent);
+```
+
+### Imports
+
+All packages now will expose **named exports** and do not allow to import from paths reaching inside the packages.
+
+```js
+// Before
+import AsyncLocaleData from '@commercetools-frontend/i18n/async-locale-data';
+
+// After
+import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+```
+
+> This includes also the `<ApplicationShell>`, so now it's `import { ApplicationShell } from '@commercetools-frontend/application-shell';`
+
+### Published packages are bundled to ESM or CJS
+
+Previously we were shipping untranspiled code, requiring consumers of the packages to instruct webpack to include those packages in the transpilation process.
+
+```js
+const path = require('path');
+const createWebpackConfigForDevelopment = require('@commercetools-frontend/mc-scripts/config/create-webpack-config-for-development');
+
+const distPath = path.resolve(__dirname, 'dist');
+const entryPoint = path.resolve(__dirname, 'src/index.js');
+const sourceFolders = [
+  path.resolve(__dirname, 'src'),
+  path.resolve(
+    __dirname,
+    'node_modules/@commercetools-frontend/application-shell'
+  ),
+  // ...plus all other `@commercetools-frontend` packages
+];
+
+createWebpackConfigForDevelopment({
+  distPath,
+  entryPoint,
+  sourceFolders,
+});
+```
+
+Now that we ship transpiled code, it's not necessary anymore to include those packages.
+
+---
+
+Additionally, we now include **test utils** to be able to write integration tests using `react-testing-library`. More info in the PR [#60](https://github.com/commercetools/merchant-center-application-kit/pull/60).
+
 ## [1.0.0-rc.3](https://github.com/commercetools/merchant-center-application-kit/compare/v1.0.0-rc.2...v1.0.0-rc.3) (2018-11-05)
 
 #### 🐛 Type: Bug
