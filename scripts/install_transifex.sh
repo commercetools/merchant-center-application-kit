@@ -5,7 +5,7 @@ set -e
 PYTHON_VERSION="python3.6"
 
 echo "Installing $PYTHON_VERSION"
-sudo add-apt-repository ppa:deadsnakes/ppa -y
+# sudo add-apt-repository ppa:deadsnakes/ppa -y
 sudo apt-get update -q
 sudo apt-get install "$PYTHON_VERSION" -y
 
