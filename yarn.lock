@@ -12372,17 +12372,6 @@ react-input-autosize@^2.1.2, react-input-autosize@^2.2.1:
   dependencies:
     prop-types "^15.5.8"
 
-react-intl@2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-2.7.1.tgz#1223e3cc632d75ce33cc8acb44df0fff1818bf51"
-  integrity sha512-Ndk0i04dSplBivA0/fELd8lMvIPuRizKC+F6s1EZ6jELvRKNcx9shWa8A1UIlTQfYSbys5huWCRgmylbW0e57A==
-  dependencies:
-    hoist-non-react-statics "^2.5.5"
-    intl-format-cache "^2.0.5"
-    intl-messageformat "^2.1.0"
-    intl-relativeformat "^2.1.0"
-    invariant "^2.1.1"
-
 react-intl@2.7.2:
   version "2.7.2"
   resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-2.7.2.tgz#efe97e3fc0e99b4e88a6e6150854d3d1852a4381"

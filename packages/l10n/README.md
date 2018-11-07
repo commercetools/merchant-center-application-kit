@@ -11,7 +11,7 @@ $ npm install --save @commercetools-frontend/l10n
 ## Components
 
 ```js
-import { withCountries, countriesShape } from '@commercetools-frontend/l10n';
+import { withCountries, countriesShape } from '@commercetools-frontend';
 
 withCountries(ownProps => ownProps.locale)(Component);
 
@@ -20,7 +20,7 @@ withCountries(ownProps => ownProps.locale)(Component);
 ```
 
 ```js
-import { withCurrencies } from '@commercetools-frontend/l10n';
+import { withCurrencies } from '@commercetools-frontend';
 
 withCurrencies(ownProps => ownProps.locale)(Component);
 
@@ -28,10 +28,8 @@ withCurrencies(ownProps => ownProps.locale)(Component);
 // { "EUR": { "label": "Euro", "symbol": "€" } }
 ```
 
-- `@commercetools-frontend/l10n`
-
 ```js
-import { withLanguages, languagesShape } from '@commercetools-frontend/l10n';
+import { withLanguages, languagesShape } from '@commercetools-frontend';
 
 withLanguages(ownProps => ownProps.locale)(Component);
 
