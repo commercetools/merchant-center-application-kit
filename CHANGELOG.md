@@ -2,18 +2,18 @@
 
 ## BREAKING CHANGES
 
-This release introduce several breaking changes and requires to migrate some parts.
+This release introduces several breaking changes and some migration steps are required.
 
-### Dropped some connectors and introduce a new connector for `ApplicationState`
+### Dropped some connectors and introduced a new connector for `ApplicationState`
 
-The `@commercetools-frontend/application-shell-connectors` used to contain some connectors that have now been **removed**:
+The package `@commercetools-frontend/application-shell-connectors` used to contain some connectors that have now been **removed**:
 
 - **configuration**: `injectConfiguration` and `<ConfigurationConsumer>`
 - **project-data-locale**: `withProjectDataLocale` and `<GetProjectDataLocale>`
 - **user-permissions**: `withUserPermissions` and `<GetUserPermissions>`
 - **user-time-zone**: `withUserTimeZone` and `<GetUserTimeZone>`
 
-As a replacement, we now have a single component `<GetApplicationState>` and `withApplicationState` that provide all the necessary "global" information about the `user`, `project` and application `environment`.
+As a replacement, we now have a single component, `<GetApplicationState>`, and a matching higher order component, `withApplicationState`, that provides all the necessary "global" information about the `user`, `project` and application `environment`.
 
 #### `user` fields
 
@@ -75,7 +75,7 @@ withApplicationState(applicationState => ({
 
 ### Imports
 
-All packages now will expose **named exports** and do not allow to import from paths reaching inside the packages.
+All packages now expose **named exports** and do not allow to import from paths inside the packages.
 
 ```js
 // Before
@@ -113,7 +113,7 @@ createWebpackConfigForDevelopment({
 });
 ```
 
-Now that we ship transpiled code, it's not necessary anymore to include those packages.
+Now that we ship transpiled code, it's not necessary anymore to include those packages in your webpack source folders.
 
 ---
 
