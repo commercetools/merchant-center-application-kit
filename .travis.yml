@@ -1,5 +1,9 @@
 sudo: false
 
+addons:
+  apt:
+    update: true
+
 language: node_js
 
 node_js:
@@ -13,6 +17,10 @@ cache:
   directories:
     - node_modules
 
+before_install:
+  - apt-get install python-pip
+  - pip install --user transifex-client
+  - export PATH="$HOME/.local/bin:$PATH"
 script:
   - yarn run jest --projects jest.*.config.js --maxWorkers=4 --reporters jest-silent-reporter
   - yarn playground:build
