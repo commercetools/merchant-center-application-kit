@@ -24,7 +24,7 @@
     "playground:start": "yarn --cwd playground start",
     "playground:build": "yarn --cwd playground; yarn build:playground",
     "build": "NODE_ENV=production lerna run build",
-    "build:watch": "NODE_ENV=development lerna run --parallel build:watch"
+    "build:es:watch": "NODE_ENV=development lerna run --parallel build:es:watch"
   },
   "workspaces": [
     "packages/*",
