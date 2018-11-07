@@ -1,9 +1,8 @@
-import apolloClient from '../../configure-apollo';
 import UserIdQuery from './select-user-id.graphql';
 
-export default () => {
+export default cache => {
   try {
-    const queryResult = apolloClient.readQuery({
+    const queryResult = cache.readQuery({
       query: UserIdQuery,
     });
 

@@ -13,6 +13,8 @@ const headerLink = new ApolloLink((operation, forward) => {
       `GraphQL target "${target}" is missing or is not supported`
     );
 
+  const { cache } = operation.getContext();
+
   /**
    * NOTE:
    *   The project key is read from the url in a project related appliation context.
@@ -28,7 +30,7 @@ const headerLink = new ApolloLink((operation, forward) => {
   operation.setContext({
     headers: {
       'X-Project-Key': projectKey,
-      'X-Correlation-Id': getCorrelationId(),
+      'X-Correlation-Id': getCorrelationId(cache),
       'X-Graphql-Target': target,
     },
   });
