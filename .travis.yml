@@ -3,6 +3,8 @@ sudo: false
 addons:
   apt:
     update: true
+    packages:
+      - python3
 
 language: node_js
 
@@ -18,7 +20,6 @@ cache:
     - node_modules
 
 before_install:
-  - sudo apt-get install python-pip
   - pip install --user transifex-client
   - export PATH="$HOME/.local/bin:$PATH"
 script:
