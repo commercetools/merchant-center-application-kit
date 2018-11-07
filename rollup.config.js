@@ -1,12 +1,12 @@
 const fs = require('fs');
 const babel = require('rollup-plugin-babel');
 const readPkgUp = require('read-pkg-up');
+const getBabelPreset = require('@commercetools-frontend/babel-preset-mc-app');
 const resolve = require('rollup-plugin-node-resolve');
 const json = require('rollup-plugin-json');
 const commonjs = require('rollup-plugin-commonjs');
 const postcss = require('rollup-plugin-postcss');
 const peerDeps = require('rollup-plugin-peer-deps-external');
-const getBabelPreset = require('@commercetools-frontend/babel-preset-mc-app');
 const builtins = require('rollup-plugin-node-builtins');
 const babelPluginImportGraphQL = require('babel-plugin-import-graphql');
 const postcssCustomProperties = require('postcss-custom-properties');
@@ -40,11 +40,6 @@ const config = {
   output: {
     name: pkg.name,
     sourcemap: true,
-    globals: {
-      react: 'React',
-      redux: 'redux',
-      'react-redux': 'react-redux',
-    },
   },
   plugins: [
     peerDeps({
