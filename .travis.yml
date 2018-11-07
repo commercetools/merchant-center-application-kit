@@ -4,7 +4,7 @@ addons:
   apt:
     update: true
     packages:
-      - python3
+      - python3.6
 
 language: node_js
 
@@ -20,7 +20,7 @@ cache:
     - node_modules
 
 before_install:
-  - pip install --user transifex-client
+  - python3.6 -m pip install --user transifex-client
   - export PATH="$HOME/.local/bin:$PATH"
 script:
   - yarn run jest --projects jest.*.config.js --maxWorkers=4 --reporters jest-silent-reporter
