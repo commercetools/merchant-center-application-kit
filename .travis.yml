@@ -3,6 +3,8 @@ sudo: false
 addons:
   apt:
     update: true
+    sources:
+      - deadsnakes
     packages:
       - python3.6
 
