@@ -1,5 +1,6 @@
----
-extends: "@commercetools-frontend/eslint-config-mc-app"
+extends: '@commercetools-frontend/eslint-config-mc-app'
 settings:
   react:
     version: '^16.0'
+  import/ignore:
+    - test-utils.js$

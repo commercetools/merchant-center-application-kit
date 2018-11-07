@@ -1,6 +1,5 @@
 import React from 'react';
-import { fireEvent, waitForElement } from 'react-testing-library';
-import { render } from '../../test-utils';
+import { render, fireEvent, waitForElement } from '../../test-utils';
 import QuickAccessQuery from './quick-access.graphql';
 import * as gtm from '../../utils/gtm';
 import QuickAccess from './index';
