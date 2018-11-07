@@ -5,7 +5,7 @@ set -e
 : "${TRANSIFEX_PASSWORD?Required env variable TRANSIFEX_PASSWORD}"
 
 # Always skip it if it's not master branch
-if [ "$TRAVIS_BRANCH" == "master" ]; then
+# if [ "$TRAVIS_BRANCH" == "master" ]; then
   echo "Writing transifex configuration"
   cat > "$TRAVIS_BUILD_DIR/.transifexrc" << EOF
 [https://www.transifex.com]
@@ -16,6 +16,6 @@ EOF
 
   echo "Pushing source file for translations"
   tx push -s
-else
-  echo "Not on master branch, skipping job"
-fi
+# else
+#   echo "Not on master branch, skipping job"
+# fi
