@@ -22,7 +22,9 @@ cache:
     - node_modules
 
 before_install:
-  - pip3.6 install --user transifex-client
+  - curl https://bootstrap.pypa.io/get-pip.py | sudo -H python3.6
+  - (pip -V && pip3 -V && pip3.6 -V) | uniq
+  - python3.6 -m pip install --user transifex-client
   - export PATH="$HOME/.local/bin:$PATH"
 script:
   - yarn run jest --projects jest.*.config.js --maxWorkers=4 --reporters jest-silent-reporter
