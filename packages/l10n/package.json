@@ -7,8 +7,6 @@
     "type": "git",
     "url": "https://github.com/commercetools/merchant-center-application-kit.git"
   },
-  "main": "dist/cjs/index.js",
-  "module": "dist/es/index.js",
   "keywords": [
     "javascript",
     "frontend",
@@ -20,6 +18,8 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "dist/l10n-index.cjs.js",
+  "module": "dist/l10n-index.es.js",
   "files": [
     "dist",
     "package.json",
