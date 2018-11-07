@@ -18,7 +18,7 @@ cache:
     - node_modules
 
 before_install:
-  - apt-get install python-pip
+  - sudo apt-get install python-pip
   - pip install --user transifex-client
   - export PATH="$HOME/.local/bin:$PATH"
 script:
