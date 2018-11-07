@@ -73,6 +73,10 @@ withApplicationState(applicationState => ({
 }))(MyComponent);
 ```
 
+### Renamed prop in `<ApplicationShell>`
+
+The prop `configuration` of `<ApplicationShell>` has been renamed to `environment`, to make it less confusing.
+
 ### Imports
 
 All packages now expose **named exports** and do not allow to import from paths inside the packages.
