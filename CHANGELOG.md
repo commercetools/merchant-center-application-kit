@@ -91,11 +91,11 @@ import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 
 > This includes also the `<ApplicationShell>`, so now it's `import { ApplicationShell } from '@commercetools-frontend/application-shell';`
 
-### Published packages are bundled to ESM or CJS
+### Published packages are bundled to ESM and CJS
 
 Previously we were shipping untranspiled code, requiring consumers of the packages to instruct webpack to include those packages in the transpilation process.
 
-```js
+```diff
 const path = require('path');
 const createWebpackConfigForDevelopment = require('@commercetools-frontend/mc-scripts/config/create-webpack-config-for-development');
 
@@ -103,11 +103,11 @@ const distPath = path.resolve(__dirname, 'dist');
 const entryPoint = path.resolve(__dirname, 'src/index.js');
 const sourceFolders = [
   path.resolve(__dirname, 'src'),
-  path.resolve(
-    __dirname,
-    'node_modules/@commercetools-frontend/application-shell'
-  ),
-  // ...plus all other `@commercetools-frontend` packages
+-  path.resolve(
+-    __dirname,
+-    'node_modules/@commercetools-frontend/application-shell'
+-  ),
+-  // ...plus remove all other `@commercetools-frontend` packages
 ];
 
 createWebpackConfigForDevelopment({
