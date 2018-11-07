@@ -247,7 +247,7 @@ describe('router', () => {
     expect(container).not.toHaveTextContent('Foo');
     expect(container).toHaveTextContent('None');
   });
-  it('should render allow routing', () => {
+  it('should render the route when a route is provided', () => {
     const { container } = render(<TestComponent />, { route: '/foo' });
     expect(container).toHaveTextContent('Foo');
     expect(container).not.toHaveTextContent('None');

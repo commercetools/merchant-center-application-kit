@@ -72,3 +72,7 @@ ReactDOM.render(<EntryPoint />, document.getElementById('root'));
 | `render`                   | `func`   |    ✅    | -       | The function to render the application specific part. This function is executed only when the application specific part needs to be rendered. |
 | `trackingEventWhitelist`   | `object` |    ✅    | -       | An object containing a map of tracking events (_this mapping is required for backwards compatibility, it might be removed in the future_)     |
 | `onRegisterErrorListeners` | `func`   |    ✅    | -       | A callback function to setup global event listeners, called when the `ApplicationShell` is mounted                                            |
+
+## Testing
+
+This package contains test-utils which enable you to test your components as if they were rendered inside `ApplicationShell`'s `render` prop using [`react-testing-library`](https://github.com/kentcdodds/react-testing-library). It can simulate the user, project, permissions, feature flags, routing and more. Check out [TEST_UTILS.md](/TEST_UTILS.md).
