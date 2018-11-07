@@ -14,8 +14,8 @@ cache:
     - node_modules
 
 script:
-  - yarn build
   - yarn run jest --projects jest.*.config.js --maxWorkers=4 --reporters jest-silent-reporter
+  - yarn build
   - yarn playground:build
 after_success:
   - ./scripts/push_translations.sh
