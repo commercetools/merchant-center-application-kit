@@ -3,6 +3,8 @@
   <i>✨ Monorepository with tools and components for developing Merchant Center Applications 🛠</i>
 </p>
 
+> To help you developing Merchant Center Applications, be sure to check out our [ui-kit](https://github.com/commercetools/ui-kit) components library.
+
 ## Getting started
 
 Install the dependencies (uses yarn workspaces):
