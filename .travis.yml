@@ -22,7 +22,7 @@ cache:
     - node_modules
 
 before_install:
-  - python3.6 -m pip install --user transifex-client
+  - pip3.6 install --user transifex-client
   - export PATH="$HOME/.local/bin:$PATH"
 script:
   - yarn run jest --projects jest.*.config.js --maxWorkers=4 --reporters jest-silent-reporter
