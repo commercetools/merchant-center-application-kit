@@ -261,10 +261,15 @@ class QuickAccess extends React.Component {
     }
   };
 
-  executeCommand = command => {
+  executeCommand = (command, meta) => {
     if (typeof command.action === 'object') {
       if (command.action.type === 'go') {
-        this.props.history.push(command.action.to);
+        // open in new window
+        if (meta.openInNewTab) {
+          open(command.action.to, '_blank');
+        } else {
+          this.props.history.push(command.action.to);
+        }
       }
     }
     if (typeof command.action === 'function') {
