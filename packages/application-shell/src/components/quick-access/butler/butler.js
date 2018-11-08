@@ -25,6 +25,25 @@ const isCloseCombo = event =>
   !event.altKey &&
   !event.shiftKey;
 
+const getPlatform = () => {
+  if (navigator.appVersion.includes('Win')) return 'windows';
+  if (navigator.appVersion.includes('Mac')) return 'macos';
+  if (navigator.appVersion.includes('X11')) return 'unix';
+  if (navigator.appVersion.includes('Linux')) return 'linux';
+
+  return null;
+};
+
+const hasNewWindowModifier = event => {
+  const platform = getPlatform();
+  switch (platform) {
+    case 'macos':
+      return event.metaKey;
+    default:
+      return event.ctrlKey;
+  }
+};
+
 export default class Butler extends React.Component {
   static displayName = 'Butler';
 
@@ -79,8 +98,8 @@ export default class Butler extends React.Component {
     // We want to know when the user presses cmd+enter (cmd being a meta key).
     // We are only told about this in keyDown, but not in keyUp, so we need
     // to handle it here
-    if (event.key === 'Enter' && event.metaKey) {
-      this.isCmdEnter = true;
+    if (event.key === 'Enter' && hasNewWindowModifier(event)) {
+      this.isNewWindowCombo = true;
       return;
     }
 
@@ -253,17 +272,17 @@ export default class Butler extends React.Component {
       this.shouldSelectFieldText = false;
     }
 
-    if (event.key !== 'Enter' && !this.isCmdEnter) return true;
+    if (event.key !== 'Enter' && !this.isNewWindowCombo) return true;
 
     // User just triggered the search
     if (this.state.selectedResult === -1) return true;
 
     // User had something selected and wants to go there
     this.execute(this.state.results[this.state.selectedResult], {
-      openInNewTab: this.isCmdEnter,
+      openInNewTab: this.isNewWindowCombo,
     });
 
-    this.isCmdEnter = false;
+    this.isNewWindowCombo = false;
     return true;
   };
 
@@ -455,7 +474,9 @@ export default class Butler extends React.Component {
                   this.setState({ selectedResult: index });
                 }}
                 onClick={event => {
-                  this.execute(command, { openInNewTab: event.metaKey });
+                  this.execute(command, {
+                    openInNewTab: hasNewWindowModifier(event),
+                  });
                 }}
               />
             ));
