@@ -1,5 +1,5 @@
-export { default } from './application-context';
 export {
+  ApplicationContext,
   ApplicationContextProvider,
   withApplicationContext,
 } from './application-context';

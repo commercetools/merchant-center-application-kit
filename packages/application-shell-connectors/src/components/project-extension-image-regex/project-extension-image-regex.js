@@ -59,8 +59,8 @@ const withProjectExtensionImageRegex = (
 };
 
 // Exports
-export default GetProjectExtensionImageRegex;
 export {
+  GetProjectExtensionImageRegex,
   ProjectExtensionProviderForImageRegex,
   withProjectExtensionImageRegex,
 };

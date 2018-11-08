@@ -135,5 +135,8 @@ const withApplicationContext = mapApplicationContextToProps => Component => {
 };
 
 // Exports
-export default ApplicationContext;
-export { ApplicationContextProvider, withApplicationContext };
+export {
+  ApplicationContext,
+  ApplicationContextProvider,
+  withApplicationContext,
+};

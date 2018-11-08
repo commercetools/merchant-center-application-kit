@@ -1,11 +1,11 @@
 export {
-  default as ApplicationContext,
+  ApplicationContext,
   ApplicationContextProvider,
   withApplicationContext,
 } from './components/application-context';
 
 export {
-  default as GetProjectExtensionImageRegex,
+  GetProjectExtensionImageRegex,
   ProjectExtensionProviderForImageRegex,
   withProjectExtensionImageRegex,
 } from './components/project-extension-image-regex';
