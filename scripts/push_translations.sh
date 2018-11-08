@@ -6,10 +6,6 @@ set -e
 
 # Always skip it if it's not master branch
 if [ "$TRAVIS_BRANCH" == "master" ]; then
-  echo "Install transifex client"
-  pip install --user transifex-client
-  PATH="$PATH:$HOME/.local/bin"
-
   echo "Writing transifex configuration"
   cat > "$TRAVIS_BUILD_DIR/.transifexrc" << EOF
 [https://www.transifex.com]
