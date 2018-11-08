@@ -1,14 +1,14 @@
-# Connectors for `applicationState`
+# Connectors for `applicationContext`
 
-This component exposes getters/setters to set and retrieve the `applicationState`.
+This component exposes getters/setters to set and retrieve the `applicationContext`.
 
-> It uses the new React Context API, so it needs the `ApplicationStateProvider` up in the tree. This is done within the AppShell.
+> It uses the new React Context API, so it needs the `ApplicationContextProvider` up in the tree. This is done within the AppShell.
 
-Additionally it provides a HOC to inject the `applicationState`.
+Additionally it provides a HOC to inject the `applicationContext`.
 
-Use this component to access information about the `user`, `project` and application `environment`.
+Use this component to access information about `user`, `project` and `environment`.
 
-#### `user` fields
+#### `user`
 
 - `id`
 - `email`
@@ -17,7 +17,7 @@ Use this component to access information about the `user`, `project` and applica
 - `locale`
 - `timeZone`
 
-#### `project` fields
+#### `project`
 
 - `key`
 - `version`
@@ -25,10 +25,16 @@ Use this component to access information about the `user`, `project` and applica
 - `countries`
 - `currencies`
 - `languages`
-- `permissions`: an object containing boolean flags about the permissions of the logged in user for the selected project (e.g. `{ canViewProducts: true, canManageOrders: false, ... }`)
-- `dataLocale`: the selected project **locale** (from the locale switcher in the AppBar) used to render a localized field of the project data. The available values are based on the `project.languages`
 
-#### `environment` fields
+#### `permissions`
+
+An object containing boolean flags about the permissions of the logged in user for the selected project (e.g. `{ canViewProducts: true, canManageOrders: false, ... }`)
+
+#### `dataLocale`
+
+The selected project **locale** (from the locale switcher in the AppBar) used to render a localized field of the project data. The available values are based on the `project.languages`
+
+#### `environment`
 
 This object contains application specific environment information defined in the `env.json`. The object will then be available on runtime from `window.app`. However, to avoid accessing those values globally, we inject this object into the application context.
 
@@ -45,30 +51,33 @@ The following are common fields defined in `env.json`. However, each application
 
 ```js
 /* In the AppShell */
-<ApplicationStateProvider {{ /* props */ }}>
+<ApplicationContextProvider {{ /* props */ }}>
   <div>
     {/* ... */}
     {/* In the application specific code */}
-    <GetApplicationState
+    <GetApplicationContext
       render={({ user, project, environment }) => (
-        <div>{...}</div>
+        <div>
+          <h2>{`Hello ${user.firstName}`}</h2>
+          <p>{`You are currently in project "${project.key}"`}</p>
+        </div>
       )}
     />
   </div>
-</ApplicationStateProvider>
+</ApplicationContextProvider>
 ```
 
-You can also use the HOC `withApplicationState` that will inject a `applicationState` prop.
+You can also use the HOC `withApplicationContext` that will inject a `applicationContext` prop.
 
 ```js
-withApplicationState()(MyComponent);
+withApplicationContext()(MyComponent);
 ```
 
 ...or pass a mapping function as the first argument to return custom shape of the injected props
 
 ```js
-withApplicationState(applicationState => ({
-  projectKey: applicationState.project && applicationState.project.key,
-  userEmail: applicationState.user && applicationState.user.email,
+withApplicationContext(applicationContext => ({
+  projectKey: applicationContext.project && applicationContext.project.key,
+  userEmail: applicationContext.user && applicationContext.user.email,
 }))(MyComponent);
 ```

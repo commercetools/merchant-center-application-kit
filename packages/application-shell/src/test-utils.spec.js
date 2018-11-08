@@ -9,7 +9,7 @@ import { injectIntl } from 'react-intl';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { injectFeatureToggle } from '@flopflip/react-broadcast';
-import { GetApplicationState } from '@commercetools-frontend/application-shell-connectors';
+import { GetApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { Switch, Route } from 'react-router';
 import { render, wait } from './test-utils';
@@ -80,16 +80,11 @@ describe('FlopFlip', () => {
   });
 });
 
-describe('ApplicationState', () => {
+describe('ApplicationContext', () => {
   describe('user', () => {
     const TestComponent = () => (
-      <GetApplicationState
-        render={applicationState =>
-          [
-            applicationState.user.firstName,
-            applicationState.user.lastName,
-          ].join(' ')
-        }
+      <GetApplicationContext
+        render={({ user }) => [user.firstName, user.lastName].join(' ')}
       />
     );
 
@@ -127,17 +122,13 @@ describe('ApplicationState', () => {
 
   describe('project', () => {
     const TestComponent = () => (
-      <GetApplicationState
-        render={applicationState =>
-          [applicationState.project.key, applicationState.project.name].join(
-            ' '
-          )
-        }
+      <GetApplicationContext
+        render={({ project }) => [project.key, project.name].join(' ')}
       />
     );
 
     it('should render with defaults', () => {
-      const { container, project } = render(<TestComponent />);
+      const { container, project, permissions } = render(<TestComponent />);
       expect(container).toHaveTextContent(
         'test-with-big-data Test with big data'
       );
@@ -148,13 +139,13 @@ describe('ApplicationState', () => {
         key: 'test-with-big-data',
         languages: ['de', 'en-GB'],
         name: 'Test with big data',
-        permissions: { canManageProject: true },
         version: 43,
       });
+      expect(permissions).toEqual({ canManageProject: true });
     });
 
     it('should respect user overwrites', () => {
-      const { container, project } = render(<TestComponent />, {
+      const { container, project, permissions } = render(<TestComponent />, {
         project: { name: 'Geek' },
       });
       // shows that data gets merged and overwrites have priority
@@ -166,9 +157,9 @@ describe('ApplicationState', () => {
         key: 'test-with-big-data',
         languages: ['de', 'en-GB'],
         name: 'Geek',
-        permissions: { canManageProject: true },
         version: 43,
       });
+      expect(permissions).toEqual({ canManageProject: true });
     });
   });
 
@@ -186,7 +177,7 @@ describe('ApplicationState', () => {
     });
     it('should allow overwriting permissions', () => {
       const { container } = render(<TestComponent />, {
-        project: { permissions: {} },
+        permissions: { canManageProducts: false },
       });
       expect(container).toHaveTextContent('Not allowed');
     });
@@ -194,9 +185,7 @@ describe('ApplicationState', () => {
 
   describe('dataLocale', () => {
     const TestComponent = () => (
-      <GetApplicationState
-        render={applicationState => applicationState.project.dataLocale}
-      />
+      <GetApplicationContext render={({ dataLocale }) => dataLocale} />
     );
     it('should add the locale to the project', () => {
       const { container } = render(<TestComponent />, { dataLocale: 'de' });
@@ -206,12 +195,9 @@ describe('ApplicationState', () => {
 
   describe('environment', () => {
     const TestComponent = () => (
-      <GetApplicationState
-        render={applicationState =>
-          [
-            applicationState.environment.location,
-            applicationState.environment.env,
-          ].join(' ')
+      <GetApplicationContext
+        render={({ environment }) =>
+          [environment.location, environment.env].join(' ')
         }
       />
     );

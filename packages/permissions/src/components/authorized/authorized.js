@@ -5,7 +5,7 @@ import { defaultMemoize } from 'reselect';
 import warning from 'warning';
 import camelCase from 'lodash.camelcase';
 import upperFirst from 'lodash.upperfirst';
-import { GetApplicationState } from '@commercetools-frontend/application-shell-connectors';
+import { GetApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   hasSomePermissions,
   hasEveryPermissions,
@@ -72,12 +72,12 @@ const injectAuthorized = (
   propName = 'isAuthorized'
 ) => Component => {
   const WrappedComponent = props => (
-    <GetApplicationState
-      render={applicationState => (
+    <GetApplicationContext
+      render={applicationContext => (
         <Authorized
           shouldMatchSomePermissions={options.shouldMatchSomePermissions}
           demandedPermissions={demandedPermissions}
-          actualPermissions={applicationState.project.permissions}
+          actualPermissions={applicationContext.permissions}
           render={isAuthorized => (
             <Component {...props} {...{ [propName]: isAuthorized }} />
           )}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { GetApplicationState } from '@commercetools-frontend/application-shell-connectors';
+import { GetApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { Text } from '@commercetools-frontend/ui-kit';
 import { ProjectSuspendedSVG } from '@commercetools-frontend/assets';
 import ServicePageResponseLayout from '../../from-core/service-page-response-layout';
@@ -16,7 +16,7 @@ export const HelpDeskLink = () => (
 HelpDeskLink.displayName = 'HelpDeskLink';
 
 export const ResetPasswordLink = () => (
-  <GetApplicationState
+  <GetApplicationContext
     render={({ environment }) => (
       <a href={`${environment.adminCenterUrl}/reset-password`} target="_blank">
         <FormattedMessage {...messages.resetPasswordLink} />

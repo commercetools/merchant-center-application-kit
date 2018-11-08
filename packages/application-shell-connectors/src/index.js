@@ -1,8 +1,8 @@
 export {
-  default as GetApplicationState,
-  ApplicationStateProvider,
-  withApplicationState,
-} from './components/application-state';
+  default as GetApplicationContext,
+  ApplicationContextProvider,
+  withApplicationContext,
+} from './components/application-context';
 
 export {
   default as GetProjectExtensionImageRegex,

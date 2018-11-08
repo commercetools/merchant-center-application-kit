@@ -11,7 +11,7 @@ import {
   reportErrorToSentry,
   SentryUserTracker,
 } from '@commercetools-frontend/sentry';
-import { ApplicationStateProvider } from '@commercetools-frontend/application-shell-connectors';
+import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import { getSupportedLanguage } from '@commercetools-frontend/l10n';
@@ -96,7 +96,7 @@ export const RestrictedApplication = props => (
       }
 
       return (
-        <ApplicationStateProvider user={user} environment={props.environment}>
+        <ApplicationContextProvider user={user} environment={props.environment}>
           {/*
             NOTE: we do not want to load the locale data as long as we do not
             know the user setting. This is important in order to avoid flashing
@@ -173,7 +173,7 @@ export const RestrictedApplication = props => (
                                       locales={project.languages}
                                     >
                                       {({ locale, setProjectDataLocale }) => (
-                                        <ApplicationStateProvider
+                                        <ApplicationContextProvider
                                           user={user}
                                           project={project}
                                           projectDataLocale={locale}
@@ -188,7 +188,7 @@ export const RestrictedApplication = props => (
                                             history={routeProps.history}
                                             user={user}
                                           />
-                                        </ApplicationStateProvider>
+                                        </ApplicationContextProvider>
                                       )}
                                     </ProjectDataLocale>
                                   );
@@ -230,7 +230,7 @@ export const RestrictedApplication = props => (
                                   return <LoadingNavBar />;
 
                                 return (
-                                  <ApplicationStateProvider
+                                  <ApplicationContextProvider
                                     user={user}
                                     project={project}
                                     environment={props.environment}
@@ -242,7 +242,7 @@ export const RestrictedApplication = props => (
                                         props.INTERNAL__isApplicationFallback
                                       }
                                     />
-                                  </ApplicationStateProvider>
+                                  </ApplicationContextProvider>
                                 );
                               }}
                             </FetchProject>
@@ -334,7 +334,7 @@ export const RestrictedApplication = props => (
               </ConfigureIntlProvider>
             )}
           </AsyncLocaleData>
-        </ApplicationStateProvider>
+        </ApplicationContextProvider>
       );
     }}
   </FetchUser>
@@ -419,7 +419,7 @@ export default class ApplicationShell extends React.Component {
   }
   render() {
     return (
-      <ApplicationStateProvider environment={this.props.environment}>
+      <ApplicationContextProvider environment={this.props.environment}>
         <ApolloProvider client={apolloClient}>
           <React.Fragment>
             {/* <VersionCheckSubscriber /> */}
@@ -480,7 +480,7 @@ export default class ApplicationShell extends React.Component {
             </Router>
           </React.Fragment>
         </ApolloProvider>
-      </ApplicationStateProvider>
+      </ApplicationContextProvider>
     );
   }
 }

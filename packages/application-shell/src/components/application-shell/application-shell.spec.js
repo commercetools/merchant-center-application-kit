@@ -4,7 +4,7 @@ import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
-import { ApplicationStateProvider } from '@commercetools-frontend/application-shell-connectors';
+import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import * as appShellUtils from '../../utils';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import ProjectContainer from '../project-container';
@@ -74,8 +74,8 @@ describe('rendering', () => {
     wrapper = shallow(<ApplicationShell {...props} />);
   });
   describe('providers', () => {
-    it('should pass "environment" to <ApplicationStateProvider>', () => {
-      expect(wrapper.find(ApplicationStateProvider)).toHaveProp(
+    it('should pass "environment" to <ApplicationContextProvider>', () => {
+      expect(wrapper.find(ApplicationContextProvider)).toHaveProp(
         'environment',
         props.environment
       );
@@ -205,14 +205,14 @@ describe('<RestrictedApplication>', () => {
       it('should pass "locale" as undefined to <AsyncLocaleData>', () => {
         expect(wrapper.find(AsyncLocaleData)).toHaveProp('locale', undefined);
       });
-      it('should pass "user" as undefined to <ApplicationStateProvider>', () => {
-        expect(wrapper.find(ApplicationStateProvider)).toHaveProp(
+      it('should pass "user" as undefined to <ApplicationContextProvider>', () => {
+        expect(wrapper.find(ApplicationContextProvider)).toHaveProp(
           'user',
           undefined
         );
       });
-      it('should pass "environment" to <ApplicationStateProvider>', () => {
-        expect(wrapper.find(ApplicationStateProvider)).toHaveProp(
+      it('should pass "environment" to <ApplicationContextProvider>', () => {
+        expect(wrapper.find(ApplicationContextProvider)).toHaveProp(
           'environment',
           props.environment
         );
@@ -226,14 +226,14 @@ describe('<RestrictedApplication>', () => {
           .find(FetchUser)
           .renderProp('children', userData);
       });
-      it('should pass "user" to <ApplicationStateProvider>', () => {
-        expect(wrapper.find(ApplicationStateProvider)).toHaveProp(
+      it('should pass "user" to <ApplicationContextProvider>', () => {
+        expect(wrapper.find(ApplicationContextProvider)).toHaveProp(
           'user',
           userData.user
         );
       });
-      it('should pass "environment" to <ApplicationStateProvider>', () => {
-        expect(wrapper.find(ApplicationStateProvider)).toHaveProp(
+      it('should pass "environment" to <ApplicationContextProvider>', () => {
+        expect(wrapper.find(ApplicationContextProvider)).toHaveProp(
           'environment',
           props.environment
         );
@@ -300,8 +300,8 @@ describe('<RestrictedApplication>', () => {
           })
         );
       });
-      it('should not render <ApplicationStateProvider>', () => {
-        expect(wrapper).not.toRender(ApplicationStateProvider);
+      it('should not render <ApplicationContextProvider>', () => {
+        expect(wrapper).not.toRender(ApplicationContextProvider);
       });
     });
 
@@ -367,20 +367,20 @@ describe('<RestrictedApplication>', () => {
               project,
             });
         });
-        it('should pass "user" to <ApplicationStateProvider>', () => {
-          expect(wrapperAside.find(ApplicationStateProvider)).toHaveProp(
+        it('should pass "user" to <ApplicationContextProvider>', () => {
+          expect(wrapperAside.find(ApplicationContextProvider)).toHaveProp(
             'user',
             userData.user
           );
         });
-        it('should pass "project" to <ApplicationStateProvider>', () => {
-          expect(wrapperAside.find(ApplicationStateProvider)).toHaveProp(
+        it('should pass "project" to <ApplicationContextProvider>', () => {
+          expect(wrapperAside.find(ApplicationContextProvider)).toHaveProp(
             'project',
             project
           );
         });
-        it('should pass "environment" to <ApplicationStateProvider>', () => {
-          expect(wrapperAside.find(ApplicationStateProvider)).toHaveProp(
+        it('should pass "environment" to <ApplicationContextProvider>', () => {
+          expect(wrapperAside.find(ApplicationContextProvider)).toHaveProp(
             'environment',
             props.environment
           );

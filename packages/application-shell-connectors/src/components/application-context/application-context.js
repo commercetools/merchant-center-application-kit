@@ -11,7 +11,7 @@ const defaultTimeZone = moment.tz.guess() || 'Etc/UTC';
 
 // Expose only certain fields as some of them are only meant to
 // be used internally in the AppShell
-const mapUserToApplicationStateUser = user => {
+const mapUserToApplicationContextUser = user => {
   if (!user) return null;
 
   return {
@@ -28,7 +28,7 @@ const mapUserToApplicationStateUser = user => {
 
 // Expose only certain fields as some of them are only meant to
 // be used internally in the AppShell
-const mapProjectToApplicationStateProject = (project, projectDataLocale) => {
+const mapProjectToApplicationContextProject = project => {
   if (!project) return null;
 
   return {
@@ -38,23 +38,28 @@ const mapProjectToApplicationStateProject = (project, projectDataLocale) => {
     countries: project.countries,
     currencies: project.currencies,
     languages: project.languages,
-    permissions: omit(project.permissions, ['__typename']),
-    // Additional fields that do not belong directly to a project
-    dataLocale: projectDataLocale || null,
   };
 };
 
-const createApplicationState = defaultMemoize(
+const mapProjectToApplicationContextPermissions = project => {
+  if (!project) return null;
+
+  return omit(project.permissions, ['__typename']);
+};
+
+const createApplicationContext = defaultMemoize(
   (environment, user, project, projectDataLocale) => ({
     environment,
-    user: mapUserToApplicationStateUser(user),
-    project: mapProjectToApplicationStateProject(project, projectDataLocale),
+    user: mapUserToApplicationContextUser(user),
+    project: mapProjectToApplicationContextProject(project),
+    permissions: mapProjectToApplicationContextPermissions(project),
+    dataLocale: projectDataLocale,
   })
 );
 
-const ApplicationStateProvider = props => (
+const ApplicationContextProvider = props => (
   <Provider
-    value={createApplicationState(
+    value={createApplicationContext(
       props.environment,
       props.user,
       props.project,
@@ -64,12 +69,12 @@ const ApplicationStateProvider = props => (
     {props.children}
   </Provider>
 );
-ApplicationStateProvider.displayName = 'ApplicationStateProvider';
+ApplicationContextProvider.displayName = 'ApplicationContextProvider';
 // NOTE: some fields (user, project and projectDataLocale) are optional
-// depending on the render phase of the ApplicationStateProvider.
+// depending on the render phase of the ApplicationContextProvider.
 // Furthermore, some fields (project, projectDataLocale) might be eventually
 // undefined because in some views (e.g. accounts) we are not in a project context anymore.
-ApplicationStateProvider.propTypes = {
+ApplicationContextProvider.propTypes = {
   // This is the environment configuration coming from `windows.app`
   environment: PropTypes.shape({
     frontendHost: PropTypes.string.isRequired,
@@ -103,32 +108,32 @@ ApplicationStateProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const GetApplicationState = props => (
-  <Consumer>{applicationState => props.render(applicationState)}</Consumer>
+const GetApplicationContext = props => (
+  <Consumer>{applicationContext => props.render(applicationContext)}</Consumer>
 );
-GetApplicationState.displayName = 'GetApplicationState';
-GetApplicationState.propTypes = {
+GetApplicationContext.displayName = 'GetApplicationContext';
+GetApplicationContext.propTypes = {
   render: PropTypes.func.isRequired,
 };
 
-const withApplicationState = mapDataToProps => Component => {
+const withApplicationContext = mapApplicationContextToProps => Component => {
   const WrappedComponent = props => (
-    <GetApplicationState
-      render={applicationState => {
-        const mappedProps = mapDataToProps
-          ? mapDataToProps(applicationState)
-          : { applicationState };
+    <GetApplicationContext
+      render={applicationContext => {
+        const mappedProps = mapApplicationContextToProps
+          ? mapApplicationContextToProps(applicationContext)
+          : { applicationContext };
         return <Component {...props} {...mappedProps} />;
       }}
     />
   );
   WrappedComponent.displayName = wrapDisplayName(
     Component,
-    'withApplicationState'
+    'withApplicationContext'
   );
   return WrappedComponent;
 };
 
 // Exports
-export default GetApplicationState;
-export { ApplicationStateProvider, withApplicationState };
+export default GetApplicationContext;
+export { ApplicationContextProvider, withApplicationContext };

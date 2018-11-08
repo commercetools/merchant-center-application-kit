@@ -6,10 +6,8 @@ import { ChannelsList } from './channels-list';
 
 const createTestProps = props => ({
   projectKey: 'test-1',
-  applicationState: {
-    project: {
-      dataLocale: 'en',
-    },
+  applicationContext: {
+    dataLocale: 'en',
   },
   ...props,
 });
