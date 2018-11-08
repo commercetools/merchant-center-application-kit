@@ -80,7 +80,7 @@ export { ProjectQuery, FetchProject };
 // Exports with deprecated warnings
 const DeprecatedFetchProject = deprecateComponent({
   message:
-    'The "FetchProject" component has been deprecated and will be removed in the next major release. Please use "GetApplicationContext" from `@commercetools-frontend/application-shell-connectors` to access "user" and "project" information.',
+    'The "FetchProject" component has been deprecated and will be removed in the next major release. Please use "ApplicationContext" from `@commercetools-frontend/application-shell-connectors` to access "user" and "project" information.',
 })(FetchProjectData);
 const deprecatedWithProject = mapDataToProps => Component => {
   const WrappedComponent = withProject(mapDataToProps)(Component);

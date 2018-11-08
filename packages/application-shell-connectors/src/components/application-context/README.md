@@ -55,7 +55,7 @@ The following are common fields defined in `env.json`. However, each application
   <div>
     {/* ... */}
     {/* In the application specific code */}
-    <GetApplicationContext
+    <ApplicationContext
       render={({ user, project, environment }) => (
         <div>
           <h2>{`Hello ${user.firstName}`}</h2>

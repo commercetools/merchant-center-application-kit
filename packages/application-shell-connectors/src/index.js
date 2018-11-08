@@ -1,5 +1,5 @@
 export {
-  default as GetApplicationContext,
+  default as ApplicationContext,
   ApplicationContextProvider,
   withApplicationContext,
 } from './components/application-context';

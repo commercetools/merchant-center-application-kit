@@ -79,7 +79,7 @@ export { LoggedInUserQuery, FetchUser };
 // Exports with deprecated warnings
 const DeprecatedFetchUser = deprecateComponent({
   message:
-    'The "FetchUser" component has been deprecated and will be removed in the next major release. Please use "GetApplicationContext" from `@commercetools-frontend/application-shell-connectors` to access "user" and "project" information.',
+    'The "FetchUser" component has been deprecated and will be removed in the next major release. Please use "ApplicationContext" from `@commercetools-frontend/application-shell-connectors` to access "user" and "project" information.',
 })(FetchLoggedInUser);
 const deprecatedWithUser = mapDataToProps => Component => {
   const WrappedComponent = withUser(mapDataToProps)(Component);

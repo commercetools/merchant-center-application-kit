@@ -9,7 +9,7 @@ import { injectIntl } from 'react-intl';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { injectFeatureToggle } from '@flopflip/react-broadcast';
-import { GetApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { Switch, Route } from 'react-router';
 import { render, wait } from './test-utils';
@@ -83,7 +83,7 @@ describe('FlopFlip', () => {
 describe('ApplicationContext', () => {
   describe('user', () => {
     const TestComponent = () => (
-      <GetApplicationContext
+      <ApplicationContext
         render={({ user }) => [user.firstName, user.lastName].join(' ')}
       />
     );
@@ -122,7 +122,7 @@ describe('ApplicationContext', () => {
 
   describe('project', () => {
     const TestComponent = () => (
-      <GetApplicationContext
+      <ApplicationContext
         render={({ project }) => [project.key, project.name].join(' ')}
       />
     );
@@ -185,7 +185,7 @@ describe('ApplicationContext', () => {
 
   describe('dataLocale', () => {
     const TestComponent = () => (
-      <GetApplicationContext render={({ dataLocale }) => dataLocale} />
+      <ApplicationContext render={({ dataLocale }) => dataLocale} />
     );
     it('should add the locale to the project', () => {
       const { container } = render(<TestComponent />, { dataLocale: 'de' });
@@ -195,7 +195,7 @@ describe('ApplicationContext', () => {
 
   describe('environment', () => {
     const TestComponent = () => (
-      <GetApplicationContext
+      <ApplicationContext
         render={({ environment }) =>
           [environment.location, environment.env].join(' ')
         }

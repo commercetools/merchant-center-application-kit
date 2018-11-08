@@ -44,7 +44,7 @@ exports[`LockedAccount rendering rendering should match snapshot 1`] = `
 `;
 
 exports[`ResetPasswordLink rendering rendering should match snapshot 1`] = `
-<GetApplicationContext
+<ApplicationContext
   render={[Function]}
 />
 `;

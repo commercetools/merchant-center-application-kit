@@ -108,17 +108,17 @@ ApplicationContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const GetApplicationContext = props => (
+const ApplicationContext = props => (
   <Consumer>{applicationContext => props.render(applicationContext)}</Consumer>
 );
-GetApplicationContext.displayName = 'GetApplicationContext';
-GetApplicationContext.propTypes = {
+ApplicationContext.displayName = 'ApplicationContext';
+ApplicationContext.propTypes = {
   render: PropTypes.func.isRequired,
 };
 
 const withApplicationContext = mapApplicationContextToProps => Component => {
   const WrappedComponent = props => (
-    <GetApplicationContext
+    <ApplicationContext
       render={applicationContext => {
         const mappedProps = mapApplicationContextToProps
           ? mapApplicationContextToProps(applicationContext)
@@ -135,5 +135,5 @@ const withApplicationContext = mapApplicationContextToProps => Component => {
 };
 
 // Exports
-export default GetApplicationContext;
+export default ApplicationContext;
 export { ApplicationContextProvider, withApplicationContext };
