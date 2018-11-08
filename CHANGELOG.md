@@ -1,10 +1,10 @@
 ## Draft for 2.0.0
 
-## BREAKING CHANGES
+## BREAKING CHANGES 💣
 
 This release introduces several breaking changes and some migration steps are required.
 
-### Dropped some connectors and introduced a new connector for `ApplicationState`
+### Dropped some connectors and introduced a new connector for `ApplicationContext`
 
 The package `@commercetools-frontend/application-shell-connectors` used to contain some connectors that have now been **removed**:
 
@@ -13,9 +13,9 @@ The package `@commercetools-frontend/application-shell-connectors` used to conta
 - **user-permissions**: `withUserPermissions` and `<GetUserPermissions>`
 - **user-time-zone**: `withUserTimeZone` and `<GetUserTimeZone>`
 
-As a replacement, we now have a single component, `<GetApplicationState>`, and a matching higher order component, `withApplicationState`, that provides all the necessary "global" information about the `user`, `project` and application `environment`.
+As a replacement, we now have a single component, `<GetApplicationContext>`, and a matching higher order component, `withApplicationContext`, that provides all the necessary "global" information about the `user`, `project`, `permissions`, `environment`, etc.
 
-#### `user` fields
+#### `user`
 
 - `id`
 - `email`
@@ -24,7 +24,7 @@ As a replacement, we now have a single component, `<GetApplicationState>`, and a
 - `locale`
 - `timeZone`
 
-#### `project` fields
+#### `project`
 
 - `key`
 - `version`
@@ -32,10 +32,16 @@ As a replacement, we now have a single component, `<GetApplicationState>`, and a
 - `countries`
 - `currencies`
 - `languages`
-- `permissions`: an object containing boolean flags about the permissions of the logged in user for the selected project (e.g. `{ canViewProducts: true, canManageOrders: false, ... }`)
-- `dataLocale`: the selected project **locale** (from the locale switcher in the AppBar) used to render a localized field of the project data. The available values are based on the `project.languages`
 
-#### `environment` fields
+#### `permissions`
+
+An object containing boolean flags about the permissions of the logged in user for the selected project (e.g. `{ canViewProducts: true, canManageOrders: false, ... }`)
+
+#### `dataLocale`
+
+The selected project **locale** (from the locale switcher in the AppBar) used to render a localized field of the project data. The available values are based on the `project.languages`
+
+#### `environment`
 
 This object contains application specific environment information defined in the `env.json`. The object will then be available on runtime from `window.app`. However, to avoid accessing those values globally, we inject this object into the application context.
 
@@ -48,28 +54,31 @@ The following are common fields defined in `env.json`. However, each application
 - `cdnUrl`: the URL where the static assets are stored
 - `servedByProxy`: a flag to indicate if this application is running behind the Merchant Center proxy or not, usually `true` for production and `false` for local development
 
-#### Usage example
+### Usage
 
 ```js
-<GetApplicationState
+<GetApplicationContext
   render={({ user, project, environment }) => (
-    <div>{...}</div>
+    <div>
+      <h2>{`Hello ${user.firstName}`}</h2>
+      <p>{`You are currently in project "${project.key}"`}</p>
+    </div>
   )}
 />
 ```
 
-You can also use the HOC `withApplicationState` that will inject a `applicationState` prop.
+You can also use the HOC `withApplicationContext` that will inject a `applicationContext` prop.
 
 ```js
-withApplicationState()(MyComponent);
+withApplicationContext()(MyComponent);
 ```
 
 ...or pass a mapping function as the first argument to return custom shape of the injected props
 
 ```js
-withApplicationState(applicationState => ({
-  projectKey: applicationState.project && applicationState.project.key,
-  userEmail: applicationState.user && applicationState.user.email,
+withApplicationContext(applicationContext => ({
+  projectKey: applicationContext.project && applicationContext.project.key,
+  userEmail: applicationContext.user && applicationContext.user.email,
 }))(MyComponent);
 ```
 
