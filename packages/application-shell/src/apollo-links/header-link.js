@@ -1,6 +1,10 @@
 import { ApolloLink } from 'apollo-link';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { getCorrelationId, selectProjectKeyFromUrl } from '../utils';
+import {
+  getCorrelationId,
+  selectProjectKeyFromUrl,
+  selectUserId,
+} from '../utils';
 
 const isKnownTarget = target => Object.values(GRAPHQL_TARGETS).includes(target);
 
@@ -23,12 +27,13 @@ const headerLink = new ApolloLink((operation, forward) => {
    */
   const projectKey =
     operation.variables.projectKey || selectProjectKeyFromUrl();
+  const userId = selectUserId({ apolloCache: operation.getContext().cache });
 
   // NOTE: keep header names with capital letters to avoid possible conflicts or problems with nginx.
   operation.setContext({
     headers: {
       'X-Project-Key': projectKey,
-      'X-Correlation-Id': getCorrelationId(),
+      'X-Correlation-Id': getCorrelationId({ userId }),
       'X-Graphql-Target': target,
     },
   });

@@ -25,6 +25,7 @@
     "npm": ">=5"
   },
   "dependencies": {
+    "@babel/runtime": "7.1.2",
     "@commercetools-frontend/actions-global": "1.0.0-rc.3",
     "@commercetools-frontend/application-shell-connectors": "1.0.0-rc.3",
     "@commercetools-frontend/browser-history": "1.0.0-rc.3",
@@ -86,7 +87,8 @@
     "redux-thunk": "2.3.0",
     "reselect": "3.0.1",
     "unfetch": "3.1.1",
-    "uuid": "3.3.2"
+    "uuid": "3.3.2",
+    "warning": "4.0.2"
   },
   "devDependencies": {
     "@commercetools-frontend/ui-kit": "2.0.0-rc.11",

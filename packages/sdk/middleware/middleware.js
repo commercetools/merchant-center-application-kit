@@ -30,7 +30,10 @@ const actionToUri = (action, projectKey) => {
   return service.build();
 };
 
-export default ({ getCorrelationId, getProjectKey }) => {
+export default function createSdkMiddleware({
+  getCorrelationId,
+  getProjectKey,
+}) {
   const client = createClient({ getCorrelationId });
 
   return ({ dispatch }) => next => action => {
@@ -69,7 +72,7 @@ export default ({ getCorrelationId, getProjectKey }) => {
           Accept: 'application/json',
           ...(action.payload.headers || {}),
           ...(shouldRenewToken ? { 'X-Force-Token': 'true' } : {}),
-          ...{ 'X-Project-Key': projectKey },
+          'X-Project-Key': projectKey,
         };
         const body =
           action.payload.method === 'POST' ? action.payload.payload : undefined;
@@ -128,4 +131,4 @@ export default ({ getCorrelationId, getProjectKey }) => {
     }
     return next(action);
   };
-};
+}
