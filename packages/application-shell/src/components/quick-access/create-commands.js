@@ -277,11 +277,11 @@ export default ({
       id: 'go/support',
       text: intl.formatMessage(messages.openSupport),
       keywords: ['Go to support'],
-      action: () =>
-        window.open(
-          `https://jira.commercetools.com/servicedesk/customer/portal/1/create/99`,
-          '_blank'
-        ),
+      action: {
+        type: 'go',
+        to:
+          'https://jira.commercetools.com/servicedesk/customer/portal/1/create/99',
+      },
     },
     {
       id: 'go/account-profile',
@@ -293,9 +293,7 @@ export default ({
       id: 'go/privacy-policy',
       text: intl.formatMessage(messages.showPrivacyPolicy),
       keywords: ['Open Privacy Policy'],
-      action: () => {
-        window.open('https://commercetools.com/privacy', '_blank');
-      },
+      action: { type: 'go', to: 'https://commercetools.com/privacy' },
     },
     {
       id: 'go/logout',

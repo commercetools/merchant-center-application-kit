@@ -25,6 +25,25 @@ const isCloseCombo = event =>
   !event.altKey &&
   !event.shiftKey;
 
+const getPlatform = () => {
+  if (navigator.appVersion.includes('Win')) return 'windows';
+  if (navigator.appVersion.includes('Mac')) return 'macos';
+  if (navigator.appVersion.includes('X11')) return 'unix';
+  if (navigator.appVersion.includes('Linux')) return 'linux';
+
+  return null;
+};
+
+const hasNewWindowModifier = event => {
+  const platform = getPlatform();
+  switch (platform) {
+    case 'macos':
+      return event.metaKey;
+    default:
+      return event.ctrlKey;
+  }
+};
+
 export default class Butler extends React.Component {
   static displayName = 'Butler';
 
@@ -75,6 +94,14 @@ export default class Butler extends React.Component {
   handleKeyDown = event => {
     // Preventing cursor jumps can only happen in onKeyDown, but not in onKeyUp
     event.persist();
+
+    // We want to know when the user presses cmd+enter (cmd being a meta key).
+    // We are only told about this in keyDown, but not in keyUp, so we need
+    // to handle it here
+    if (event.key === 'Enter' && hasNewWindowModifier(event)) {
+      this.isNewWindowCombo = true;
+      return;
+    }
 
     // Avoid selecting the whole page when user selectes everything with
     // a keyboard shortcut. There is probably a better way to do this though.
@@ -245,13 +272,17 @@ export default class Butler extends React.Component {
       this.shouldSelectFieldText = false;
     }
 
-    if (event.key !== 'Enter') return true;
+    if (event.key !== 'Enter' && !this.isNewWindowCombo) return true;
 
     // User just triggered the search
     if (this.state.selectedResult === -1) return true;
 
     // User had something selected and wants to go there
-    this.execute(this.state.results[this.state.selectedResult]);
+    this.execute(this.state.results[this.state.selectedResult], {
+      openInNewTab: this.isNewWindowCombo,
+    });
+
+    this.isNewWindowCombo = false;
     return true;
   };
 
@@ -316,7 +347,7 @@ export default class Butler extends React.Component {
     );
   };
 
-  execute = command => {
+  execute = (command, meta) => {
     this.appendHistoryEntry({
       searchText: this.state.searchText,
       results: this.state.results,
@@ -331,7 +362,7 @@ export default class Butler extends React.Component {
       },
       () => {
         this.props.onClose();
-        this.props.executeCommand(command);
+        this.props.executeCommand(command, meta);
       }
     );
   };
@@ -442,8 +473,10 @@ export default class Butler extends React.Component {
                   // sets the selected result, mainly for the hover effect
                   this.setState({ selectedResult: index });
                 }}
-                onClick={() => {
-                  this.execute(command);
+                onClick={event => {
+                  this.execute(command, {
+                    openInNewTab: hasNewWindowModifier(event),
+                  });
                 }}
               />
             ));

@@ -47,6 +47,7 @@ const createTestProps = custom => ({
 describe('QuickAccess', () => {
   beforeEach(() => {
     gtm.track.mockReset();
+    global.open = jest.fn();
   });
 
   it('should open when pressing "f" on document body', async () => {
@@ -205,6 +206,158 @@ describe('QuickAccess', () => {
     fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
     await waitForElement(() => getByText('Open Dashboard'));
     fireEvent.keyUp(searchInput, { key: 'Enter' });
+    expect(props.history.push).toHaveBeenCalledWith(
+      '/test-with-big-data-44/dashboard'
+    );
+
+    // should close quick access
+    expect(container).toBeEmpty();
+  });
+
+  describe('on MacOS', () => {
+    beforeEach(() => {
+      Object.defineProperty(navigator, 'appVersion', {
+        value:
+          '5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
+        configurable: true,
+      });
+    });
+    it('should open dashboard in new tab when chosing the "Open Dashboard" command by cmd+enter', async () => {
+      const mocks = [createMatchlessSearchMock('Open dshbrd')];
+      const props = createTestProps();
+      const { getByTestId, container, getByText } = render(
+        <QuickAccess {...props} />,
+        { mocks }
+      );
+
+      // open quick-access
+      fireEvent.keyDown(document.body, { key: 'f' });
+      await waitForElement(() => getByTestId('quick-access-search-input'));
+
+      const searchInput = getByTestId('quick-access-search-input');
+      fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
+      await waitForElement(() => getByText('Open Dashboard'));
+      fireEvent.keyDown(searchInput, { key: 'Enter', metaKey: true });
+      fireEvent.keyUp(searchInput, { key: 'Enter', metaKey: true });
+
+      expect(global.open).toHaveBeenCalledWith(
+        '/test-with-big-data-44/dashboard',
+        '_blank'
+      );
+
+      // should close quick access
+      expect(container).toBeEmpty();
+    });
+
+    it('should open dashboard in new tab when chosing the "Open Dashboard" command by cmd+click', async () => {
+      const mocks = [createMatchlessSearchMock('Open dshbrd')];
+      const props = createTestProps();
+      const { getByTestId, container, getByText } = render(
+        <QuickAccess {...props} />,
+        { mocks }
+      );
+
+      // open quick-access
+      fireEvent.keyDown(document.body, { key: 'f' });
+      await waitForElement(() => getByTestId('quick-access-search-input'));
+
+      const searchInput = getByTestId('quick-access-search-input');
+      fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
+      await waitForElement(() => getByText('Open Dashboard'));
+      fireEvent.click(getByTestId('quick-access-result(go/dashboard)'), {
+        metaKey: true,
+      });
+
+      expect(global.open).toHaveBeenCalledWith(
+        '/test-with-big-data-44/dashboard',
+        '_blank'
+      );
+
+      // should close quick access
+      expect(container).toBeEmpty();
+    });
+  });
+
+  describe('on Windows', () => {
+    beforeEach(() => {
+      Object.defineProperty(navigator, 'appVersion', {
+        value: 'Windows Holzkiste',
+        configurable: true,
+      });
+    });
+    it('should open dashboard in new tab when chosing the "Open Dashboard" command by ctrl+enter', async () => {
+      const mocks = [createMatchlessSearchMock('Open dshbrd')];
+      const props = createTestProps();
+      const { getByTestId, container, getByText } = render(
+        <QuickAccess {...props} />,
+        { mocks }
+      );
+
+      // open quick-access
+      fireEvent.keyDown(document.body, { key: 'f' });
+      await waitForElement(() => getByTestId('quick-access-search-input'));
+
+      const searchInput = getByTestId('quick-access-search-input');
+      fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
+      await waitForElement(() => getByText('Open Dashboard'));
+      fireEvent.keyDown(searchInput, { key: 'Enter', ctrlKey: true });
+      fireEvent.keyUp(searchInput, { key: 'Enter', ctrlKey: true });
+
+      expect(global.open).toHaveBeenCalledWith(
+        '/test-with-big-data-44/dashboard',
+        '_blank'
+      );
+
+      // should close quick access
+      expect(container).toBeEmpty();
+    });
+
+    it('should open dashboard in new tab when chosing the "Open Dashboard" command by ctrl+click', async () => {
+      const mocks = [createMatchlessSearchMock('Open dshbrd')];
+      const props = createTestProps();
+      const { getByTestId, container, getByText } = render(
+        <QuickAccess {...props} />,
+        { mocks }
+      );
+
+      // open quick-access
+      fireEvent.keyDown(document.body, { key: 'f' });
+      await waitForElement(() => getByTestId('quick-access-search-input'));
+
+      const searchInput = getByTestId('quick-access-search-input');
+      fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
+      await waitForElement(() => getByText('Open Dashboard'));
+      fireEvent.click(getByTestId('quick-access-result(go/dashboard)'), {
+        ctrlKey: true,
+      });
+
+      expect(global.open).toHaveBeenCalledWith(
+        '/test-with-big-data-44/dashboard',
+        '_blank'
+      );
+
+      // should close quick access
+      expect(container).toBeEmpty();
+    });
+  });
+
+  it('should open dashboard in new tab when chosing the "Open Dashboard" command by click', async () => {
+    const mocks = [createMatchlessSearchMock('Open dshbrd')];
+    const props = createTestProps();
+    const { getByTestId, container, getByText } = render(
+      <QuickAccess {...props} />,
+      { mocks }
+    );
+
+    // open quick-access
+    fireEvent.keyDown(document.body, { key: 'f' });
+    await waitForElement(() => getByTestId('quick-access-search-input'));
+
+    const searchInput = getByTestId('quick-access-search-input');
+    fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
+    await waitForElement(() => getByText('Open Dashboard'));
+    fireEvent.click(getByTestId('quick-access-result(go/dashboard)'));
+
     expect(props.history.push).toHaveBeenCalledWith(
       '/test-with-big-data-44/dashboard'
     );
