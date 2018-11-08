@@ -1,8 +1,8 @@
 import UserIdQuery from './select-user-id.graphql';
 
-export default cache => {
+export default function selectUserId({ apolloCache }) {
   try {
-    const queryResult = cache.readQuery({
+    const queryResult = apolloCache.readQuery({
       query: UserIdQuery,
     });
 
@@ -14,4 +14,4 @@ export default cache => {
   }
 
   return null;
-};
+}

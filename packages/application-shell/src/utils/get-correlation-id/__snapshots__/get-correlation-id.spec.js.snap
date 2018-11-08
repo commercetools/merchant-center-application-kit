@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`getCorrelationId should match snapshot 1`] = `"mc/test-project-key/test-user-id/test-uuid"`;
-
-exports[`getCorrelationId without \`userId\` should match snapshot 1`] = `"mc/test-project-key/test-uuid"`;

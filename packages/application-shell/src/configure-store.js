@@ -21,7 +21,17 @@ import loggerMiddleware, { actionTransformer } from './middleware/logger';
 import sentryTrackingMiddleware from './middleware/sentry-tracking';
 import { activePluginReducer } from './components/inject-reducer';
 import { requestsInFlightReducer } from './components/requests-in-flight-loader';
-import { getCorrelationId, selectProjectKeyFromUrl } from './utils';
+import apolloClient from './configure-apollo';
+import {
+  getCorrelationId,
+  selectProjectKeyFromUrl,
+  selectUserId,
+} from './utils';
+
+const patchedGetCorrelationId = () =>
+  getCorrelationId({
+    userId: selectUserId({ apolloCache: apolloClient }),
+  });
 
 // We use a factory as it's more practicable for tests
 // The application can import the configured store (the default export)
@@ -29,7 +39,7 @@ export const createReduxStore = (
   preloadedState = { requestsInFlight: null }
 ) => {
   const sdkMiddleware = createSdkMiddleware({
-    getCorrelationId,
+    getCorrelationId: patchedGetCorrelationId,
     getProjectKey: selectProjectKeyFromUrl,
   });
 
