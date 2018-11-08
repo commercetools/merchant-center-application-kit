@@ -55,8 +55,8 @@ const config = {
       modulesOnly: true,
     }),
     url({
-      limit: 10 * 1024 * 100, // inline all svg files (matches our webpack behaviour)
-      include: ['**/*.svg'],
+      limit: 10 * 1024 * 100, // inline all png and svg files files (matches our webpack behaviour)
+      include: ['**/*.svg', '**/*.png'],
     }),
     json(
       // generate a named export for every property of the JSON object
