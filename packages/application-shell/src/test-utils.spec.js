@@ -128,7 +128,7 @@ describe('ApplicationContext', () => {
     );
 
     it('should render with defaults', () => {
-      const { container, project, permissions } = render(<TestComponent />);
+      const { container, project } = render(<TestComponent />);
       expect(container).toHaveTextContent(
         'test-with-big-data Test with big data'
       );
@@ -141,11 +141,10 @@ describe('ApplicationContext', () => {
         name: 'Test with big data',
         version: 43,
       });
-      expect(permissions).toEqual({ canManageProject: true });
     });
 
-    it('should respect user overwrites', () => {
-      const { container, project, permissions } = render(<TestComponent />, {
+    it('should respect project overwrites', () => {
+      const { container, project } = render(<TestComponent />, {
         project: { name: 'Geek' },
       });
       // shows that data gets merged and overwrites have priority
@@ -159,7 +158,6 @@ describe('ApplicationContext', () => {
         name: 'Geek',
         version: 43,
       });
-      expect(permissions).toEqual({ canManageProject: true });
     });
   });
 
