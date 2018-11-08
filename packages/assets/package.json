@@ -22,6 +22,7 @@
   "module": "./dist/assets.es.js",
   "files": [
     "dist",
+    "images",
     "package.json",
     "LICENSE",
     "README.md"
