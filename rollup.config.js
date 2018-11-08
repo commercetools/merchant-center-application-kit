@@ -2,6 +2,7 @@ const fs = require('fs');
 const babel = require('rollup-plugin-babel');
 const readPkgUp = require('read-pkg-up');
 const getBabelPreset = require('@commercetools-frontend/babel-preset-mc-app');
+const browserslist = require('@commercetools-frontend/mc-scripts/config/browserslist');
 const resolve = require('rollup-plugin-node-resolve');
 const json = require('rollup-plugin-json');
 const commonjs = require('rollup-plugin-commonjs');
@@ -22,19 +23,9 @@ const { pkg } = readPkgUp.sync({
 });
 
 const format = process.env.npm_lifecycle_event.split(':')[1];
+const isCJS = format === 'cjs';
 
 const babelOptions = getBabelPreset();
-
-// Inspired by https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/config/webpack.config.prod.js
-const browserslist = {
-  production: [
-    '>1%',
-    'last 2 versions',
-    'Firefox ESR',
-    'not op_mini all',
-    'ie 11',
-  ],
-};
 
 const config = {
   output: {
@@ -64,7 +55,9 @@ const config = {
     }),
     json(
       // generate a named export for every property of the JSON object
-      { namedExports: format !== 'cjs' } // Default: true // could disable just for CJS/
+      // disable for CJS build, as we don't want to mix default and
+      // named exports
+      { namedExports: !isCJS }
     ),
     builtins(),
     postcss({
