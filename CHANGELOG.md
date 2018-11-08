@@ -13,7 +13,7 @@ The package `@commercetools-frontend/application-shell-connectors` used to conta
 - **user-permissions**: `withUserPermissions` and `<GetUserPermissions>`
 - **user-time-zone**: `withUserTimeZone` and `<GetUserTimeZone>`
 
-As a replacement, we now have a single component, `<GetApplicationContext>`, and a matching higher order component, `withApplicationContext`, that provides all the necessary "global" information about the `user`, `project`, `permissions`, `environment`, etc.
+As a replacement, we now have a single component, `<ApplicationContext>`, and a matching higher order component, `withApplicationContext`, that provides all the necessary "global" information about the `user`, `project`, `permissions`, `environment`, etc.
 
 #### `user`
 
@@ -57,7 +57,7 @@ The following are common fields defined in `env.json`. However, each application
 ### Usage
 
 ```js
-<GetApplicationContext
+<ApplicationContext
   render={({ user, project, environment }) => (
     <div>
       <h2>{`Hello ${user.firstName}`}</h2>
