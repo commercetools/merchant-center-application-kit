@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import ProjectSuspendedSvg from '@commercetools-frontend/ui-kit/images/maintenance/project-suspended.svg';
+import { ProjectSuspendedSVG } from '@commercetools-frontend/assets';
 import ServicePageResponseLayout from '../../from-core/service-page-response-layout';
 import ServicePageProjectSwitcher from '../service-page-project-switcher';
 import messages from './messages';
 
 const ProjectSuspended = props => (
   <ServicePageResponseLayout
-    imageSrc={ProjectSuspendedSvg}
+    imageSrc={ProjectSuspendedSVG}
     title={(() => {
       /* NOTE: Other suspension reasons are `Payment` and `Other` which are not handled yet */
       if (props.isTemporary)

@@ -1,8 +1,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { GetApplicationState } from '@commercetools-frontend/application-shell-connectors';
-import ProjectSuspended from '@commercetools-frontend/ui-kit/images/maintenance/project-suspended.svg';
 import { Text } from '@commercetools-frontend/ui-kit';
+import { ProjectSuspendedSVG } from '@commercetools-frontend/assets';
 import ServicePageResponseLayout from '../../from-core/service-page-response-layout';
 import messages from './messages';
 
@@ -28,7 +28,7 @@ ResetPasswordLink.displayName = 'ResetPasswordLink';
 
 const LoginLocked = () => (
   <ServicePageResponseLayout
-    imageSrc={ProjectSuspended}
+    imageSrc={ProjectSuspendedSVG}
     title={<FormattedMessage {...messages.title} />}
     paragraph1={
       <FormattedMessage

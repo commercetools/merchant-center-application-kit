@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LogoSVG from '@commercetools-frontend/ui-kit/images/ct-logo.svg';
 import { LoadingSpinner } from '@commercetools-frontend/ui-kit';
+import { CTLogoSVG } from '@commercetools-frontend/assets';
 import styles from './application-loader.mod.css';
 
 const ApplicationLoader = props => (
   <div className={styles.container}>
     <LoadingSpinner />
-    {props.showLogo && <img src={LogoSVG} className={styles.logo} />}
+    {props.showLogo && <img src={CTLogoSVG} className={styles.logo} />}
   </div>
 );
 ApplicationLoader.displayName = 'ApplicationLoader';
