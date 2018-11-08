@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import ProjectExpiredSvg from '@commercetools-frontend/ui-kit/images/maintenance/project-expired.svg';
+import { ProjectExpiredSVG } from '@commercetools-frontend/assets';
 import ServicePageResponseLayout from '../../from-core/service-page-response-layout';
 import ServicePageProjectSwitcher from '../service-page-project-switcher';
 import messages from './messages';
@@ -12,7 +12,7 @@ EmailLink.displayName = 'EmailLink';
 
 const ProjectExpired = () => (
   <ServicePageResponseLayout
-    imageSrc={ProjectExpiredSvg}
+    imageSrc={ProjectExpiredSVG}
     title={<FormattedMessage {...messages.title} />}
     paragraph1={
       <FormattedMessage

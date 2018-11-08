@@ -9,6 +9,7 @@ const commonjs = require('rollup-plugin-commonjs');
 const postcss = require('rollup-plugin-postcss');
 const peerDeps = require('rollup-plugin-peer-deps-external');
 const builtins = require('rollup-plugin-node-builtins');
+const url = require('rollup-plugin-url');
 const babelPluginImportGraphQL = require('babel-plugin-import-graphql');
 const postcssCustomProperties = require('postcss-custom-properties');
 const postcssCustomMediaQueries = require('postcss-custom-media');
@@ -52,6 +53,10 @@ const config = {
       main: true,
       preferBuiltins: true,
       modulesOnly: true,
+    }),
+    url({
+      limit: 10 * 1024 * 100, // inline all png and svg files files (matches our webpack behaviour)
+      include: ['**/*.svg', '**/*.png'],
     }),
     json(
       // generate a named export for every property of the JSON object

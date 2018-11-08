@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LogoBWSVG from '@commercetools-frontend/ui-kit/images/ct_logo_bw_white.svg';
+import { LogoBWWhiteSVG } from '@commercetools-frontend/assets';
 import Card from '../../from-core/card';
 import styles from './login-box.mod.css';
 
@@ -8,7 +8,7 @@ const LoginBox = props => (
   <Card className={styles.box}>
     <div className={styles.header}>
       <div className={styles.logo}>
-        <img src={LogoBWSVG} />
+        <img src={LogoBWWhiteSVG} />
       </div>
     </div>
     <div className={styles.holder} data-test="login-form">
