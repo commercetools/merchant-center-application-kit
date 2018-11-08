@@ -123,6 +123,16 @@ Now that we ship transpiled code, it's not necessary anymore to include those pa
 
 Additionally, we now include **test utils** to be able to write integration tests using `react-testing-library`. More info in the PR [#60](https://github.com/commercetools/merchant-center-application-kit/pull/60).
 
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+
+  - [#69](https://github.com/commercetools/merchant-center-application-kit/pull/69) refactor(assets): move image assets to assets package ([@montezume](https://github.com/montezume))
+
+  A new package has been added, `assets`, that contains static image assets that can be accessed either via named exports, or directly from it's `image` folder. More information can be found in it's [README](https://github.com/commercetools/merchant-center-application-kit/tree/master/packages/assets)
+
+  If you are currently accessing these image assets from `ui-kit`, then you can switch over to using them from `@commercetools-frontend/assets`, as they will be removed from `ui-kit` in a future release.
+
 ## [1.0.0-rc.3](https://github.com/commercetools/merchant-center-application-kit/compare/v1.0.0-rc.2...v1.0.0-rc.3) (2018-11-05)
 
 #### 🐛 Type: Bug
