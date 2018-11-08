@@ -5,7 +5,6 @@ const distPath = path.resolve(__dirname, 'dist');
 const entryPoint = path.resolve(__dirname, 'src/index.js');
 const sourceFolders = [
   path.resolve(__dirname, 'src'),
-  path.resolve(__dirname, '../packages'),
   // NOTE: we still need to include the materials folder in order for `postcss`
   // to compile the css module files.
   path.resolve(

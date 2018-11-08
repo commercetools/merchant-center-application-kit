@@ -18,8 +18,21 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./index.js",
-  "module": "./index.js",
+  "main": "./dist/sentry.cjs.js",
+  "module": "./dist/sentry.es.js",
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist/**",
+    "build": "npm run build:es && npm run build:cjs",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.js -o ./dist/sentry.cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js -o ./dist/sentry.es.js",
+    "build:es:watch": "npm run build:es -- -w"
+  },
   "dependencies": {
     "prop-types": "15.6.2",
     "raven-js": "3.27.0"

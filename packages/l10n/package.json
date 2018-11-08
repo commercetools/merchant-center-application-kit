@@ -18,10 +18,21 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./index.js",
-  "module": "./index.js",
+  "main": "dist/l10n-index.cjs.js",
+  "module": "dist/l10n-index.es.js",
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
-    "generate-data": "node ./scripts/generate-l10n-data.js"
+    "generate-data": "node ./scripts/generate-l10n-data.js",
+    "prebuild": "rimraf dist/**",
+    "build": "npm run build:es && npm run build:cjs",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.js --dir ./dist --chunkFileNames l10n-[name]-[hash].cjs.js --entryFileNames l10n-[name].cjs.js --experimentalCodeSplitting",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js --dir ./dist --chunkFileNames l10n-[name]-[hash].es.js --entryFileNames l10n-[name].es.js --experimentalCodeSplitting",
+    "build:es:watch": "npm run build:es -- -w"
   },
   "dependencies": {
     "@commercetools-frontend/sentry": "1.0.0-rc.3",

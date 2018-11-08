@@ -18,11 +18,21 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./src/index.js",
-  "module": "./src/index.js",
-  "engines": {
-    "node": ">=8",
-    "npm": ">=5"
+  "main": "dist/application-shell-index.cjs.js",
+  "module": "dist/application-shell-index.es.js",
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist/**",
+    "build": "npm run build:es && npm run build:cjs && npm run build:test-utils:es",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.js --dir ./dist --chunkFileNames application-shell-[name]-[hash].cjs.js --entryFileNames application-shell-[name].cjs.js --experimentalCodeSplitting",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js --dir ./dist --chunkFileNames application-shell-[name]-[hash].es.js --entryFileNames application-shell-[name].es.js --experimentalCodeSplitting",
+    "build:es:watch": "npm run build:es -- -w",
+    "build:test-utils:es": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f es ./src/test-utils.js --o ./dist/test-utils/index.js"
   },
   "dependencies": {
     "@babel/runtime": "7.1.2",
@@ -108,5 +118,9 @@
     "react-intl": ">=2 <3",
     "react-router": ">=4 <5",
     "react-router-dom": ">=4 <5"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
   }
 }

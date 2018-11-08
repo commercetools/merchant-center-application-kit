@@ -6,7 +6,7 @@
   "scripts": {
     "build": "mc-scripts build",
     "start": "mc-scripts start",
-    "start:prod": "mc-http-server --config $(pwd)/env.prod.json --csp $(pwd)/csp.json --use-local-assets",
+    "start:prod": "NODE_ENV=production mc-http-server --config $(pwd)/env.prod.json --csp $(pwd)/csp.json --use-local-assets",
     "now-build": "NODE_ENV=production npm run build",
     "now-start": "NODE_ENV=production npm run start:prod"
   },

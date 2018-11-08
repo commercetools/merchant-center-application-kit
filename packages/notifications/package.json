@@ -18,8 +18,21 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./index.js",
-  "module": "./index.js",
+  "main": "./dist/notifications.cjs.js",
+  "module": "./dist/notifications.es.js",
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist/**",
+    "build": "npm run build:es && npm run build:cjs",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.js -o ./dist/notifications.cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js -o ./dist/notifications.es.js",
+    "build:es:watch": "npm run build:es -- -w"
+  },
   "dependencies": {
     "common-tags": "1.8.0",
     "deep-freeze": "0.0.1"

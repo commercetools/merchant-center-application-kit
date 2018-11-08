@@ -18,8 +18,21 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./index.js",
-  "module": "./index.js",
+  "main": "./dist/sdk.cjs.js",
+  "module": "./dist/sdk.es.js",
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist/**",
+    "build": "npm run build:es && npm run build:cjs",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.js -o ./dist/sdk.cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js -o ./dist/sdk.es.js",
+    "build:es:watch": "npm run build:es -- -w"
+  },
   "dependencies": {
     "@commercetools-frontend/actions-global": "1.0.0-rc.3",
     "@commercetools-frontend/constants": "1.0.0-rc.3",
