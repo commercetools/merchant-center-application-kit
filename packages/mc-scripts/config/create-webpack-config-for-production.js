@@ -42,7 +42,6 @@ const uglifyConfig = {
   // https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1
   uglifyOptions: {
     compress: {
-      arrows: false,
       booleans: false,
       collapse_vars: false,
       comparisons: false,
