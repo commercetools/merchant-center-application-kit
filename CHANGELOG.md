@@ -4,9 +4,9 @@
 
 This release introduces several breaking changes and some migration steps are required.
 
-### Dropped some connectors and introduced a new connector for `ApplicationContext`
+### Replaced connectors with `ApplicationContext`
 
-The package `@commercetools-frontend/application-shell-connectors` used to contain some connectors that have now been **removed**:
+The package `@commercetools-frontend/application-shell-connectors` used to contain connectors that have now been **removed**:
 
 - **configuration**: `injectConfiguration` and `<ConfigurationConsumer>`
 - **project-data-locale**: `withProjectDataLocale` and `<GetProjectDataLocale>`
@@ -15,53 +15,20 @@ The package `@commercetools-frontend/application-shell-connectors` used to conta
 
 As a replacement, we now have a single component, `<ApplicationContext>`, and a matching higher order component, `withApplicationContext`, that provides all the necessary "global" information about the `user`, `project`, `permissions`, `environment`, etc.
 
-#### `user`
+You can find out more on how to access this information in the [`ApplicationContext` documentation](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md).
 
-- `id`
-- `email`
-- `firstName`
-- `lastName`
-- `locale`
-- `timeZone`
+Here is a brief summary of the information contained in `applicationContext`.
 
-#### `project`
-
-- `key`
-- `version`
-- `name`
-- `countries`
-- `currencies`
-- `languages`
-
-#### `permissions`
-
-An object containing boolean flags about the permissions of the logged in user for the selected project (e.g. `{ canViewProducts: true, canManageOrders: false, ... }`)
-
-#### `dataLocale`
-
-The selected project **locale** (from the locale switcher in the AppBar) used to render a localized field of the project data. The available values are based on the `project.languages`
-
-#### `environment`
-
-This object contains application specific environment information defined in the `env.json`. The object will then be available on runtime from `window.app`. However, to avoid accessing those values globally, we inject this object into the application context.
-
-The following are common fields defined in `env.json`. However, each application can provide more specific fields that cannot be documented.
-
-- `frontendHost`: the host where the Merchant Center application is running (e.g. `mc.commercetools.com`)
-- `mcApiUrl`: the API URL of the Merchant Center (`https://mc-api.commercetools.com` for projects in `EU` and `https://mc-api.commercetools.co` for projects in `US`)
-- `location`: the location where the Merchant Center is running, usually `eu` or `us`
-- `env`: the environment where the Merchant Center is running, usually `production` or `staging`
-- `cdnUrl`: the URL where the static assets are stored
-- `servedByProxy`: a flag to indicate if this application is running behind the Merchant Center proxy or not, usually `true` for production and `false` for local development
-
-### Usage
+#### Usage
 
 ```js
 <ApplicationContext
-  render={({ user, project, environment }) => (
+  render={applicationContext => (
     <div>
-      <h2>{`Hello ${user.firstName}`}</h2>
-      <p>{`You are currently in project "${project.key}"`}</p>
+      <h2>{`Hello ${applicationContext.user.firstName}`}</h2>
+      <p>{`You are currently in project "${
+        applicationContext.project.key
+      }"`}</p>
     </div>
   )}
 />
@@ -82,13 +49,52 @@ withApplicationContext(applicationContext => ({
 }))(MyComponent);
 ```
 
-### Renamed prop in `<ApplicationShell>`
+##### `applicationContext.user`
+
+- `id`
+- `email`
+- `firstName`
+- `lastName`
+- `locale`
+- `timeZone`
+
+##### `applicationContext.project`
+
+- `key`
+- `version`
+- `name`
+- `countries`
+- `currencies`
+- `languages`
+
+##### `applicationContext.permissions`
+
+An object containing boolean flags about the permissions of the logged in user for the selected project (e.g. `{ canViewProducts: true, canManageOrders: false, ... }`)
+
+##### `applicationContext.dataLocale`
+
+The selected project **locale** (from the locale switcher in the AppBar) used to render a localized field of the project data. The available values are based on the `project.languages`
+
+##### `applicationContext.environment`
+
+This object contains application specific environment information defined in the `env.json`. The object will then be available on runtime from `window.app`. However, to avoid accessing those values globally, we inject this object into the application context.
+
+The following are common fields defined in `env.json`. However, each application can provide more specific fields that cannot be documented.
+
+- `frontendHost`: the host where the Merchant Center application is running (e.g. `mc.commercetools.com`)
+- `mcApiUrl`: the API URL of the Merchant Center (`https://mc-api.commercetools.com` for projects in `EU` and `https://mc-api.commercetools.co` for projects in `US`)
+- `location`: the location where the Merchant Center is running, usually `eu` or `us`
+- `env`: the environment where the Merchant Center is running, usually `production` or `staging`
+- `cdnUrl`: the URL where the static assets are stored
+- `servedByProxy`: a flag to indicate if this application is running behind the Merchant Center proxy or not, usually `true` for production and `false` for local development
+
+### Renamed `configuration` prop of `<ApplicationShell>`
 
 The prop `configuration` of `<ApplicationShell>` has been renamed to `environment`, to make it less confusing.
 
 ### Imports
 
-All packages now expose **named exports** and do not allow to import from paths inside the packages.
+All packages now expose **named exports** and no longer support import from paths inside the packages.
 
 ```js
 // Before
@@ -98,11 +104,11 @@ import AsyncLocaleData from '@commercetools-frontend/i18n/async-locale-data';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 ```
 
-> This includes also the `<ApplicationShell>`, so now it's `import { ApplicationShell } from '@commercetools-frontend/application-shell';`
+> This also includes the `<ApplicationShell>`. You now need to `import { ApplicationShell } from '@commercetools-frontend/application-shell';`
 
-### Published packages are bundled to ESM and CJS
+### Published packages are now bundled to ESM and CJS
 
-Previously we were shipping untranspiled code, requiring consumers of the packages to instruct webpack to include those packages in the transpilation process.
+Previously we were shipping untranspiled code, requiring consumers of the packages to instruct webpack to include those packages in the transpilation process. Now that we ship transpiled code, it's not necessary to include those packages in your webpack source folders anymore:
 
 ```diff
 const path = require('path');
@@ -126,11 +132,9 @@ createWebpackConfigForDevelopment({
 });
 ```
 
-Now that we ship transpiled code, it's not necessary anymore to include those packages in your webpack source folders.
-
 ---
 
-Additionally, we now include **test utils** to be able to write integration tests using `react-testing-library`. More info in the PR [#60](https://github.com/commercetools/merchant-center-application-kit/pull/60).
+Additionally, we now include **test utils** to be able to write component tests using `react-testing-library`. More info in [#60](https://github.com/commercetools/merchant-center-application-kit/pull/60).
 
 #### ⛑ Type: Refactoring
 
