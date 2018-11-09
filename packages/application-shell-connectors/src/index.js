@@ -2,6 +2,7 @@ export {
   ApplicationContext,
   ApplicationContextProvider,
   withApplicationContext,
+  useApplicationContext,
 } from './components/application-context';
 
 export {
