@@ -2,7 +2,7 @@
 
 ## BREAKING CHANGES 💣
 
-This release introduces several breaking changes and some migration steps are required.
+This release introduces several **breaking changes** which require some **migration steps**. We'll go through the list of those now:
 
 ### Replaced connectors with `ApplicationContext`
 
@@ -13,13 +13,13 @@ The package `@commercetools-frontend/application-shell-connectors` used to conta
 - **user-permissions**: `withUserPermissions` and `<GetUserPermissions>`
 - **user-time-zone**: `withUserTimeZone` and `<GetUserTimeZone>`
 
-As a replacement, we now have a single component, `<ApplicationContext>`, and a matching higher order component, `withApplicationContext`, that provides all the necessary "global" information about the `user`, `project`, `permissions`, `environment`, etc.
+As a **replacement**, we now have a single component, `<ApplicationContext>`, and a matching higher order component, `withApplicationContext`, that provides all the necessary "global" information about the `user`, `project`, `permissions`, `environment`, etc.
 
-You can find out more on how to access this information in the [`ApplicationContext` documentation](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md).
+> For the bravers, we also expose a [Hook](http://reactjs.org/hooks) `useApplicationContext`.
 
-Here is a brief summary of the information contained in `applicationContext`.
+You can find out more on how to access this information in the [`ApplicationContext` documentation](https://github.com/commercetools/merchant-center-application-kit/blob/v2.0.0/packages/application-shell-connectors/src/components/application-context/README.md).
 
-#### Usage
+#### Usage of `<ApplicationContext>`
 
 ```js
 <ApplicationContext
@@ -94,7 +94,7 @@ The prop `configuration` of `<ApplicationShell>` has been renamed to `environmen
 
 ### Imports
 
-All packages now expose **named exports** and no longer support import from paths inside the packages.
+All packages now expose **named exports** and **no longer support imports from paths inside the packages**.
 
 ```js
 // Before
@@ -108,7 +108,7 @@ import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 
 ### Published packages are now bundled to ESM and CJS
 
-Previously we were shipping untranspiled code, requiring consumers of the packages to instruct webpack to include those packages in the transpilation process. Now that we ship transpiled code, it's not necessary to include those packages in your webpack source folders anymore:
+Previously we were shipping _untranspiled_ code, requiring consumers of the packages to instruct webpack to include those packages in the transpilation process. Now that we **ship transpiled code**, it's not necessary to include those packages in your webpack source folders anymore:
 
 ```diff
 const path = require('path');
@@ -134,17 +134,22 @@ createWebpackConfigForDevelopment({
 
 ---
 
-Additionally, we now include **test utils** to be able to write component tests using `react-testing-library`. More info in [#60](https://github.com/commercetools/merchant-center-application-kit/pull/60).
+#### 🚀 Type: New Feature
+
+- `application-shell`
+
+  We now expose some **test utils** from the `application-shell` package to be able to write component tests using `react-testing-library`. More info in [#60](https://github.com/commercetools/merchant-center-application-kit/pull/60).
+
+- `assets`
+
+  A new package has been added, `@commercetools-frontend/assets`, that contains static image assets that can be accessed directly from it's `image` folder. More information can be found in it's [README](https://github.com/commercetools/merchant-center-application-kit/blob/v2.0.0/packages/assets/README.md)
+
+  If you are currently accessing these image assets from `ui-kit`, then you can switch over to using them from `@commercetools-frontend/assets`, as **they will be removed from `ui-kit` in a future release**.
 
 #### ⛑ Type: Refactoring
 
 - `application-shell`
-
-  - [#69](https://github.com/commercetools/merchant-center-application-kit/pull/69) refactor(assets): move image assets to assets package ([@montezume](https://github.com/montezume))
-
-  A new package has been added, `assets`, that contains static image assets that can be accessed directly from it's `image` folder. More information can be found in it's [README](https://github.com/commercetools/merchant-center-application-kit/tree/master/packages/assets)
-
-  If you are currently accessing these image assets from `ui-kit`, then you can switch over to using them from `@commercetools-frontend/assets`, as they will be removed from `ui-kit` in a future release.
+  - [#76](https://github.com/commercetools/merchant-center-application-kit/pull/76) refactor: drop downshift ([@montezume](https://github.com/montezume))
 
 ## [1.0.0-rc.3](https://github.com/commercetools/merchant-center-application-kit/compare/v1.0.0-rc.2...v1.0.0-rc.3) (2018-11-05)
 
