@@ -155,18 +155,16 @@ export class ProjectSwitcher extends React.PureComponent {
       >
         {project.key}
       </div>
-      {project.suspension &&
-        project.suspension.isActive && (
-          <div className={classnames(styles.red, styles['item-text-small'])}>
-            <FormattedMessage {...messages.suspended} />
-          </div>
-        )}
-      {project.expiry &&
-        project.expiry.isActive && (
-          <div className={classnames(styles.red, styles['item-text-small'])}>
-            <FormattedMessage {...messages.expired} />
-          </div>
-        )}
+      {project.suspension && project.suspension.isActive && (
+        <div className={classnames(styles.red, styles['item-text-small'])}>
+          <FormattedMessage {...messages.suspended} />
+        </div>
+      )}
+      {project.expiry && project.expiry.isActive && (
+        <div className={classnames(styles.red, styles['item-text-small'])}>
+          <FormattedMessage {...messages.expired} />
+        </div>
+      )}
     </div>
   );
 

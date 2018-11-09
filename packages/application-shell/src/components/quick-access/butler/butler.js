@@ -211,26 +211,25 @@ export default class Butler extends React.Component {
               this.setState({ hasNetworkError: false });
               if (nextCommands.length > 0) {
                 // avoid moving cursor when there are sub-options
-                this.setState(
-                  prev =>
-                    // Ensure the search text has not changed while we were loading
-                    // the next results, otherwise we'd interrupt the user.
-                    // Throw away the results in case the search text has changed.
-                    prev.searchText === searchText
-                      ? {
-                          stack: [
-                            ...prevState.stack,
-                            {
-                              searchText: prevState.searchText,
-                              results: prevState.results,
-                              selectedResult: prevState.selectedResult,
-                            },
-                          ],
-                          selectedResult: 0,
-                          enableHistory: false,
-                          results: nextCommands || [],
-                        }
-                      : null
+                this.setState(prev =>
+                  // Ensure the search text has not changed while we were loading
+                  // the next results, otherwise we'd interrupt the user.
+                  // Throw away the results in case the search text has changed.
+                  prev.searchText === searchText
+                    ? {
+                        stack: [
+                          ...prevState.stack,
+                          {
+                            searchText: prevState.searchText,
+                            results: prevState.results,
+                            selectedResult: prevState.selectedResult,
+                          },
+                        ],
+                        selectedResult: 0,
+                        enableHistory: false,
+                        results: nextCommands || [],
+                      }
+                    : null
                 );
               } else {
                 this.shake();
@@ -327,16 +326,15 @@ export default class Butler extends React.Component {
 
         const results = fuse.search(searchText).slice(0, 9);
 
-        this.setState(
-          prevState =>
-            prevState.searchText === searchText
-              ? {
-                  results,
-                  selectedResult: results.length > 0 ? 0 : -1,
-                  enableHistory: true,
-                  stack: [],
-                }
-              : null
+        this.setState(prevState =>
+          prevState.searchText === searchText
+            ? {
+                results,
+                selectedResult: results.length > 0 ? 0 : -1,
+                enableHistory: true,
+                stack: [],
+              }
+            : null
         );
       },
       error => {

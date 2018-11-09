@@ -18,8 +18,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/url-utils.js",
-  "module": "dist/url-utils.js",
+  "main": "./dist/url-utils.cjs.js",
+  "module": "./dist/url-utils.es.js",
   "files": [
     "dist",
     "package.json",

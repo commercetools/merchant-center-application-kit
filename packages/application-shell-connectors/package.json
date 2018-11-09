@@ -42,7 +42,7 @@
     "recompose": "0.26.0"
   },
   "devDependencies": {
-    "react": "16.6.0",
+    "react": "16.6.1",
     "react-apollo": "2.2.4"
   },
   "peerDependencies": {

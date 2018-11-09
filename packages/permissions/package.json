@@ -40,11 +40,11 @@
     "lodash.upperfirst": "4.3.1",
     "prop-types": "15.6.2",
     "recompose": "0.26.0",
-    "reselect": "3.0.1",
+    "reselect": "4.0.0",
     "warning": "4.0.2"
   },
   "devDependencies": {
-    "react": "16.6.0"
+    "react": "16.6.1"
   },
   "peerDependencies": {
     "react": ">=16 <17"
