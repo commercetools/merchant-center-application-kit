@@ -138,7 +138,7 @@ Additionally, we now include **test utils** to be able to write integration test
 
   - [#69](https://github.com/commercetools/merchant-center-application-kit/pull/69) refactor(assets): move image assets to assets package ([@montezume](https://github.com/montezume))
 
-  A new package has been added, `assets`, that contains static image assets that can be accessed either via named exports, or directly from it's `image` folder. More information can be found in it's [README](https://github.com/commercetools/merchant-center-application-kit/tree/master/packages/assets)
+  A new package has been added, `assets`, that contains static image assets that can be accessed directly from it's `image` folder. More information can be found in it's [README](https://github.com/commercetools/merchant-center-application-kit/tree/master/packages/assets)
 
   If you are currently accessing these image assets from `ui-kit`, then you can switch over to using them from `@commercetools-frontend/assets`, as they will be removed from `ui-kit` in a future release.
 
