@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "public": true,
+  "name": "mc-extensions-channels-prod-us",
+  "alias": "mc-extensions-channels-prod-us",
+  "regions": ["sfo"],
+  "files": [
+    "dist",
+    "csp.prod-us.json",
+    "env.prod-us.json",
+    "now.us.json",
+    "package.json"
+  ],
+  "build": {
+    "env": {
+      "REGION": "us"
+    }
+  }
+}

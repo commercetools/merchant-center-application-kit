@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "public": true,
+  "name": "mc-extensions-channels-prod-eu",
+  "alias": "mc-extensions-channels-prod-eu",
+  "regions": ["bru"],
+  "files": [
+    "dist",
+    "csp.prod-eu.json",
+    "env.prod-eu.json",
+    "now.eu.json",
+    "package.json"
+  ],
+  "build": {
+    "env": {
+      "REGION": "eu"
+    }
+  }
+}
