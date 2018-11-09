@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { GetApplicationState } from '@commercetools-frontend/application-shell-connectors';
 import { Text } from '@commercetools-frontend/ui-kit';
-import { ProjectSuspendedSVG } from '@commercetools-frontend/assets';
+import ProjectSuspendedSVG from '@commercetools-frontend/assets/images/project-suspended.svg';
 import ServicePageResponseLayout from '../../from-core/service-page-response-layout';
 import messages from './messages';
 

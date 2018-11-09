@@ -24,6 +24,7 @@
     "playground:start": "yarn --cwd playground start",
     "playground:build": "yarn --cwd playground build",
     "build": "NODE_ENV=production lerna run build --ignore 'merchant-center-starter-app'",
+    "build:es": "NODE_ENV=production lerna run build:es --ignore 'merchant-center-starter-app'",
     "build:es:watch": "NODE_ENV=development lerna run --ignore 'merchant-center-starter-app' --parallel build:es:watch"
   },
   "workspaces": [

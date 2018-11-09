@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Spacings } from '@commercetools-frontend/ui-kit';
-import { LogoSVG } from '@commercetools-frontend/assets';
+import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
 import {
   selectProjectKeyFromLocalStorage,
   selectProjectKeyFromUrl,

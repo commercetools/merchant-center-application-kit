@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { FailedAuthenticationSVG } from '@commercetools-frontend/assets';
+import FailedAuthenticationSVG from '@commercetools-frontend/assets/images/failed-authentication.svg';
 import ServicePageResponseLayout from '../../from-core/service-page-response-layout';
 import messages from './messages';
 

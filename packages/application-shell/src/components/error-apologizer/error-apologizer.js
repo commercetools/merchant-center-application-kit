@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { UnexpectedErrorSVG } from '@commercetools-frontend/assets';
+import UnexpectedErrorSVG from '@commercetools-frontend/assets/images/unexpected-error.svg';
 import ServicePageResponseLayout from '../../from-core/service-page-response-layout';
 import messages from './messages';
 

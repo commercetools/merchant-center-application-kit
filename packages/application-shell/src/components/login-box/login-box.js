@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LogoBWWhiteSVG } from '@commercetools-frontend/assets';
+import LogoBWWhiteSVG from '@commercetools-frontend/assets/images/ct_logo_bw_white.svg';
 import Card from '../../from-core/card';
 import styles from './login-box.mod.css';
 
