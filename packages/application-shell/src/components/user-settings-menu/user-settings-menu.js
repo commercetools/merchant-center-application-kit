@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import classnames from 'classnames';
-import Downshift from 'downshift';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import {
   withMouseOverState,
@@ -12,6 +11,7 @@ import {
   Spacings,
 } from '@commercetools-frontend/ui-kit';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
+import MenuStateContainer from '../menu-state-container';
 import Card from '../../from-core/card';
 import { MCSupportFormURL } from '../../constants';
 import Avatar from '../avatar';
@@ -59,7 +59,7 @@ export default class UserSettingsMenu extends React.PureComponent {
   render() {
     return (
       <div className={styles.container} data-test="user-settings-menu">
-        <Downshift>
+        <MenuStateContainer>
           {({ isOpen, toggleMenu }) => (
             <div>
               <div
@@ -152,7 +152,7 @@ export default class UserSettingsMenu extends React.PureComponent {
               )}
             </div>
           )}
-        </Downshift>
+        </MenuStateContainer>
       </div>
     );
   }
