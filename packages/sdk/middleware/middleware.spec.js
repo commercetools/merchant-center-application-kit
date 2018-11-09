@@ -337,7 +337,7 @@ describe('when the projectKey is not defined', () => {
         getCorrelationId: jest.fn(),
         getProjectKey: jest.fn(() => null),
       })({ dispatch })(next)(action)
-    ).toThrowError(
+    ).toThrow(
       'Expected projectKey to be defined for action service "productTypes" (method "GET")'
     );
   });

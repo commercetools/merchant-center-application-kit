@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint-disable no-console */
+
 const mri = require('mri');
 const spawn = require('react-dev-utils/crossSpawn');
 
