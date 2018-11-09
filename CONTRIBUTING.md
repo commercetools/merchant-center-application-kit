@@ -18,6 +18,7 @@ packages/
   actions-global/
   application-shell/
   application-shell-connectors/
+  assets/
   babel-preset-mc-app/
   browser-history/
   constants/
@@ -49,6 +50,10 @@ The package also initializes different things such as intl, apollo, routing, etc
 #### [application-shell-connectors](./packages/application-shell-connectors)
 
 This package is a complementary package of the `application-shell` and contains "connector" components that use the new React Context API. The main purpose of those "connectors" is to make it easier for the consumer to access data in any place of the application.
+
+#### [assets](./packages/assets)
+
+This package contains static assets, such as SVG images.
 
 #### [constants](./packages/constants)
 
