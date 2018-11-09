@@ -6,9 +6,12 @@
   "scripts": {
     "build": "mc-scripts build",
     "start": "mc-scripts start",
-    "start:prod": "NODE_ENV=production mc-http-server --config $(pwd)/env.prod.json --csp $(pwd)/csp.json --use-local-assets",
-    "now-build": "NODE_ENV=production npm run build",
-    "now-start": "NODE_ENV=production npm run start:prod"
+    "start:prod:eu": "NODE_ENV=production mc-http-server --config $(pwd)/env.prod-eu.json --csp $(pwd)/csp.prod-eu.json --use-local-assets",
+    "start:prod:us": "NODE_ENV=production mc-http-server --config $(pwd)/env.prod-us.json --csp $(pwd)/csp.prod-us.json --use-local-assets",
+    "deploy": "npm run deploy:eu & npm run deploy:us",
+    "deploy:eu": "now --local-config=now.prod-eu.json",
+    "deploy:us": "now --local-config=now.prod-us.json",
+    "now-build": "npm run build"
   },
   "dependencies": {
     "@commercetools-frontend/actions-global": "1.0.0-rc.3",

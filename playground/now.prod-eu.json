@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "public": true,
+  "alias": ["mc-extensions-channels-prod-eu"],
+  "regions": ["bru"],
+  "builds": [
+    { "src": "package.json", "use": "@now/static-build" }
+  ]
+}
