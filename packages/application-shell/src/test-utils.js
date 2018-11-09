@@ -153,4 +153,6 @@ export {
   // override render method of react-testing-library
   render,
   renderWithRedux,
+  // the original "render" method of react-testing-library
+  rtlRender,
 };
