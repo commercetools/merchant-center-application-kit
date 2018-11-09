@@ -28,10 +28,10 @@ describe('lifecycle', () => {
     wrapper.instance().componentDidMount();
   });
   it('should call `warning`', () => {
-    expect(warning).toBeCalled();
+    expect(warning).toHaveBeenCalled();
   });
   it('should call `warning` with `foo`', () => {
-    expect(warning).toBeCalledWith(
+    expect(warning).toHaveBeenCalledWith(
       expect.any(Boolean),
       expect.stringContaining(message)
     );

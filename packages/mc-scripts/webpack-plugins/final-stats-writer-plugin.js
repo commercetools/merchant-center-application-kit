@@ -48,6 +48,7 @@ class FinalStatsWriterPlugin {
         JSON.stringify(finalStats, null, 2)
       );
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.warn(
         `[FinalStatsWriterPlugin] The dist folder could not be found at ${
           this.config.outputPath

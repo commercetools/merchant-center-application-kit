@@ -12,6 +12,7 @@ class ButlerContainer extends React.Component {
 
   componentDidUpdate() {
     if (this.props.error) {
+      // eslint-disable-next-line no-console
       console.error('Failed to load component', this.props.error);
     }
   }

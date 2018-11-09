@@ -110,6 +110,7 @@ describe('rendering', () => {
       });
       describe('if kind is none of the above', () => {
         beforeEach(() => {
+          // eslint-disable-next-line no-console
           console.error = jest.fn();
           wrapper = wrapper
             .find(NotificationsConnector)
@@ -131,6 +132,7 @@ describe('rendering', () => {
           expect(wrapper).not.toRender({ notification: expect.any(Object) });
         });
         it('should log error to console', () => {
+          // eslint-disable-next-line no-console
           expect(console.error).toHaveBeenCalledWith(
             'Saw unexpected notification kind "non-existing".',
             expect.any(Object)
@@ -205,6 +207,7 @@ describe('rendering', () => {
           expect(wrapper).not.toRender({ notification: expect.any(Object) });
         });
         it('should log error to console', () => {
+          // eslint-disable-next-line no-console
           expect(console.error).toHaveBeenCalledWith(
             'Saw unexpected notification kind "non-existing".',
             expect.any(Object)
@@ -257,6 +260,7 @@ describe('rendering', () => {
           expect(wrapper).not.toRender({ notification: expect.any(Object) });
         });
         it('should log error to console', () => {
+          // eslint-disable-next-line no-console
           expect(console.error).toHaveBeenCalledWith(
             'Saw unexpected notification kind "non-existing".',
             expect.any(Object)
