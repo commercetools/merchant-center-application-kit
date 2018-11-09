@@ -13,7 +13,7 @@ import { MockedProvider as ApolloMockProvider } from 'react-apollo/test-utils';
 import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import { createReduxStore } from './configure-store';
+import { createReduxStore } from '../configure-store';
 
 // Reset memoryAdapter after each test, so that the next test accepts the
 // defaultFlags param.
