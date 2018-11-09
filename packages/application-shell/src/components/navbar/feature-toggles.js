@@ -16,7 +16,6 @@
 export const CAN_VIEW_DASHBOARD = 'canViewDashboard';
 export const CAN_VIEW_ORDERS = 'canViewOrders';
 export const CAN_VIEW_CATEGORIES = 'canViewCategories';
-export const CAN_VIEW_PRODUCTS = 'canViewProducts';
 export const CAN_VIEW_DISCOUNTS = 'canViewDiscounts';
 
 export const CUSTOMER_GROUPS = 'customerGroups';
