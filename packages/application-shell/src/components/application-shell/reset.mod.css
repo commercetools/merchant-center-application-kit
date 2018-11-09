@@ -1,0 +1,46 @@
+@import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  color: var(--color-black);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: var(--color-green);
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease-in;
+}
+
+p {
+  color: var(--color-black);
+  margin: 0;
+}
