@@ -38,7 +38,7 @@
     "@commercetools-frontend/sentry": "1.0.0-rc.3",
     "moment": "2.22.2",
     "prop-types": "15.6.2",
-    "react": "16.6.0",
+    "react": "16.6.1",
     "recompose": "0.26.0"
   },
   "devDependencies": {
@@ -46,7 +46,7 @@
     "cldr": "4.13.0",
     "deep-diff": "1.0.2",
     "moment-timezone": "0.5.23",
-    "node-fetch": "2.2.0",
+    "node-fetch": "2.2.1",
     "rimraf": "2.6.2",
     "shelljs": "0.8.2"
   }

@@ -28,7 +28,7 @@
     "express": "4.16.4",
     "morgan": "1.9.1",
     "mri": "1.1.1",
-    "node-fetch": "2.2.0",
+    "node-fetch": "2.2.1",
     "shelljs": "0.8.2"
   },
   "engines": {
