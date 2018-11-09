@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Downshift from 'downshift';
 import { CaretDownIcon } from '@commercetools-frontend/ui-kit';
+import MenuStateContainer from '../menu-state-container';
 import { MCSupportFormURL } from '../../constants';
 import UserSettingsMenu, { UserAvatar } from './user-settings-menu';
 
@@ -20,57 +20,70 @@ describe('rendering', () => {
     wrapper = shallow(<UserSettingsMenu {...props} />);
   });
 
-  it('should render <Downshift> wrapper', () => {
-    expect(wrapper).toRender(Downshift);
+  it('should render <MenuStateContainer> wrapper', () => {
+    expect(wrapper).toRender(MenuStateContainer);
   });
 
   describe('menu', () => {
-    let downshiftProps;
-    let dowshiftRenderWrapper;
+    let menuStateContainerProps;
+    let menuStateContainerRenderWrapper;
     beforeEach(() => {
-      downshiftProps = { isOpen: false, toggleMenu: jest.fn() };
-      dowshiftRenderWrapper = shallow(
-        wrapper.find(Downshift).prop('children')(downshiftProps)
+      menuStateContainerProps = { isOpen: false, toggleMenu: jest.fn() };
+      menuStateContainerRenderWrapper = shallow(
+        wrapper.find(MenuStateContainer).prop('children')(
+          menuStateContainerProps
+        )
       );
     });
     it('should render div with click handler', () => {
-      expect(dowshiftRenderWrapper.find('.settings-container')).toHaveProp(
-        'onClick',
-        downshiftProps.toggleMenu
-      );
+      expect(
+        menuStateContainerRenderWrapper.find('.settings-container')
+      ).toHaveProp('onClick', menuStateContainerProps.toggleMenu);
     });
     it('should render WithMouseOverState(UserAvatar)', () => {
-      expect(dowshiftRenderWrapper).toRender('WithMouseOverState(UserAvatar)');
+      expect(menuStateContainerRenderWrapper).toRender(
+        'WithMouseOverState(UserAvatar)'
+      );
     });
     describe('when menu is open', () => {
       beforeEach(() => {
-        downshiftProps = { isOpen: true, toggleMenu: jest.fn() };
-        dowshiftRenderWrapper = shallow(
-          wrapper.find(Downshift).prop('children')(downshiftProps)
+        menuStateContainerProps = { isOpen: true, toggleMenu: jest.fn() };
+        menuStateContainerRenderWrapper = shallow(
+          wrapper.find(MenuStateContainer).prop('children')(
+            menuStateContainerProps
+          )
         );
       });
       it('should render matching tree', () => {
-        expect(dowshiftRenderWrapper).toMatchSnapshot();
+        expect(menuStateContainerRenderWrapper).toMatchSnapshot();
       });
       it('should render link to "/account/profile"', () => {
-        expect(dowshiftRenderWrapper).toRender({ to: '/account/profile' });
+        expect(menuStateContainerRenderWrapper).toRender({
+          to: '/account/profile',
+        });
       });
       it('should render link to "/logout"', () => {
-        expect(dowshiftRenderWrapper).toRender({ href: '/logout?reason=user' });
+        expect(menuStateContainerRenderWrapper).toRender({
+          href: '/logout?reason=user',
+        });
       });
       it('should render link to "MCSupportFormURL', () => {
-        expect(dowshiftRenderWrapper).toRender({ href: MCSupportFormURL });
+        expect(menuStateContainerRenderWrapper).toRender({
+          href: MCSupportFormURL,
+        });
       });
     });
     describe('when menu is closed', () => {
       beforeEach(() => {
-        downshiftProps = { isOpen: false, toggleMenu: jest.fn() };
-        dowshiftRenderWrapper = shallow(
-          wrapper.find(Downshift).prop('children')(downshiftProps)
+        menuStateContainerProps = { isOpen: false, toggleMenu: jest.fn() };
+        menuStateContainerRenderWrapper = shallow(
+          wrapper.find(MenuStateContainer).prop('children')(
+            menuStateContainerProps
+          )
         );
       });
       it('should not render <Card>', () => {
-        expect(dowshiftRenderWrapper).not.toRender('Card');
+        expect(menuStateContainerRenderWrapper).not.toRender('Card');
       });
     });
   });
