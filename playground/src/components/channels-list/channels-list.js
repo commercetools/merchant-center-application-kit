@@ -52,7 +52,8 @@ export class ChannelsList extends React.Component {
         return value ? (
           <Constraints.Horizontal constraint="m">
             <Text.Wrap>
-              {value[this.props.dataLocale] || NO_VALUE_FALLBACK}
+              {value[this.props.applicationContext.dataLocale] ||
+                NO_VALUE_FALLBACK}
             </Text.Wrap>
           </Constraints.Horizontal>
         ) : (
