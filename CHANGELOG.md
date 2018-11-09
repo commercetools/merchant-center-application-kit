@@ -1,4 +1,4 @@
-## Draft for 2.0.0
+## [2.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v1.0.0-rc.3...v2.0.0) (2018-11-09)
 
 ## BREAKING CHANGES 💣
 
