@@ -1,13 +1,13 @@
 # Test Utils
 
-We want to make it easy to test features of the application you're building with `ApplicationShell`. As the `ApplicationShell` renders your components with quite some context, it should be easy to influence this context in the tests so that your component can be tested under different circumstances.
+We want to make it easy to test features of the application you're building with `ApplicationShell`. `ApplicationShell` renders your components with quite some context. It should be easy to influence this context in the tests so that your component can be tested under different circumstances as rendered by `ApplicationShell`.
 
 The `ApplicationShell` provides the following context:
 
 - `IntlProvider` for i18n and l10n ([`react-intl`](https://github.com/yahoo/react-intl))
 - `ApolloProvider` for GraphQL ([`react-apollo`](https://github.com/apollographql/react-apollo))
 - `ConfigureFlopFlip` for feature-toggles ([`flopflip`](https://github.com/tdeekens/flopflip))
-- `ApplicationStateProvider` for information about the MC application like `user`, `project`, `environment`, `dataLocale` and `permissions` ([`application-shell-connectors`](https://github.com/commercetools/merchant-center-application-kit/tree/master/packages/application-shell-connectors/src/components/application-state))
+- `ApplicationContextprovider` for information about the MC application like `user`, `project`, `environment`, `dataLocale` and `permissions` ([`application-shell-connectors`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md))
 - `Router` for routing ([`react-router`](https://github.com/ReactTraining/react-router))
 
 ## Table of Contents
@@ -23,7 +23,7 @@ The `ApplicationShell` provides the following context:
     - [`dataLocale` (Localisation)](#datalocale-localisation)
     - [`mocks` (GraphQL)](#mocks-graphql)
     - [`flags` (Feature Flags)](#flags-feature-flags)
-    - [`user`, `project` and `environment` (Application State)](#user-project-and-environment-application-state)
+    - [Application Contenxt](#application-context)
     - [Permissions](#permissions)
     - [Router (`react-router`)](#router-react-router)
 
@@ -31,27 +31,28 @@ The `ApplicationShell` provides the following context:
 
 [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) allows you to interact with the component using the DOM. It is a great testing library due to its philosophy of testing from a user-perspective, instead of testing the implementation. The assertions are written against the produced DOM, and the component-under-test is interacted with using DOM events.
 
-The `render` method exposed by `react-testing-library` is used to render your component and returns a bunch of getters to query the DOM produced by the component-under-test. `ApplicationShell`s `test-utils` export an enhanced `render` method which renders adds more context to the component-under-test, so that it can be rendered as-if it was rendered by `ApplicationShell` itself.
+The `render` method exposed by `react-testing-library` is used to render your component and returns a bunch of getters to query the DOM produced by the component-under-test. `ApplicationShell`s `test-utils` export an enhanced `render` method which adds more context to the component-under-test, so that it can be rendered as-if it was rendered by `ApplicationShell` itself.
 
 ## `test-utils`
 
 ### Basics
 
+This section will introduce you to testing with `test-utils`.
 Let's assume a simple component which prints the authenticated user's first name.
 
 ```jsx
 const FirstName = () => (
-  <GetApplicationState
-    render={applicationState =>
-      applicationState.user ? applicationState.user.firstName : 'Anonymous'
+  <ApplicationContext
+    render={applicationContext =>
+      applicationContext.user ? applicationContext.user.firstName : 'Anonymous'
     }
   />
 );
 ```
 
-This component uses `GetApplicationState` which allows it to access the `applicationState` provided by `ApplicationShell`.
+This component uses `ApplicationContext` which allows it to access the `applicationContext` provided by `ApplicationShell`.
 
-A test which verifies that the authenticated user's first name is rendered by this component can look like this:
+A test which verifies the authenticated user's first name being rendered by this component can look like this:
 
 ```jsx
 import { render } from '@commercetools-frontend/application-shell/test-utils';
@@ -66,7 +67,7 @@ describe('FirstName', () => {
 
 This test renders the `FirstName` component and then verifies that the name _"Sheldon"_ gets printed. _"Sheldon"_ is the name of our default user in tests. You can find the default test data [here](packages/application-shell/src/test-utils.js).
 
-We can make the test more robust by explicitly declaring the authenticated users first name. This ensures that the test keeps working even when the defaults change, and it also makes it easier to follow.
+We can make the test more robust by explicitly declaring the authenticated users first name. This ensures the test keeps working even when the defaults change, and makes it easier to follow.
 
 ```jsx
 import { render } from '@commercetools-frontend/application-shell/test-utils';
@@ -85,7 +86,7 @@ describe('FirstName', () => {
 
 Here we overwrite the authenticated user's `firstName` for our test. The data we pass in gets merged with the default data.
 
-We can also test the case in which no user is authenticated by passing
+We can also test the case in which no user is authenticated by passing `{ user: null }`:
 
 ```jsx
 import { render } from '@commercetools-frontend/application-shell/test-utils';
@@ -98,6 +99,8 @@ describe('FirstName', () => {
 });
 ```
 
+When passing `null` for `user` the default `user` will not be added to the context and the component-under-test will get rendered as-if no user was authenticated. This also works for `project`, `permissions` and `environment` as you will see below.
+
 ### API
 
 This section describes the methods exported by `@commercetools-frontend/application-shell/test-utils`.
@@ -106,31 +109,32 @@ This section describes the methods exported by `@commercetools-frontend/applicat
 
 #### `render(ui: ReactElement, options: Object)`
 
-| Argument              | Type          | Concern           | Description                                                                                                                                                                                                                                                                                                                                                                                                        |
-| --------------------- | ------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `ui`                  | React Element | React             | React Element to render.                                                                                                                                                                                                                                                                                                                                                                                           |
-| `options.locale`      | `String`      | Localisation      | Determines the UI language and number format, is used to configure `IntlProvider`. Only _core_ messages will be available during tests, no matter the `locale`.                                                                                                                                                                                                                                                    |
-| `options.dataLocale`  | `String`      | Localisation      | Sets the locale which is used to display [`LocalizedString`](https://docs.commercetools.com/http-api-types#localizedstring)s.                                                                                                                                                                                                                                                                                      |
-| `options.mocks`       | `Array`       | Apollo            | Allows to mock requests made with Apollo. `mocks` is forwareded as the `mocks` argument to [`MockedProvider`](https://www.apollographql.com/docs/guides/testing-react-components.html#MockedProvider).                                                                                                                                                                                                             |
-| `options.addTypename` | `Boolean`     | Apollo            | If queries are lacking `__typename` (which happens when mocking) it’s important to pass `addTypename: false`, which is the default. See [`MockedProvider.addTypename`](https://www.apollographql.com/docs/guides/testing-react-components.html#addTypename) for more information.                                                                                                                                  |
-| `options.route`       | `String`      | Routing           | The route the user is on, like `/test-project/products`. Defaults to `/`.                                                                                                                                                                                                                                                                                                                                          |
-| `options.history`     | `Object`      | Routing           | By default a memory-history is generated which has the provided `options.route` set as its initial history entry. It's possible to pass a compeltely custom history.                                                                                                                                                                                                                                               |
-| `options.adapter`     | `Object`      | Feature Toggles   | The [flopflip](https://github.com/tdeekens/flopflip) adapter to use when configuring `flopflip`. Defaults to [`memoryAdapter`](https://github.com/tdeekens/flopflip/tree/master/packages/memory-adapter).                                                                                                                                                                                                          |
-| `options.flags`       | `Object`      | Feature Toggles   | An object whose keys are feature-toggles and whose values are their toggle state. Use this to test your component with different feature toggle combinations.                                                                                                                                                                                                                                                      |
-| `options.environment` | `Object`      | Application State | Allows to set the `applicationState.environment`. The passed object gets merged with the tests default environment. Pass `null` to completely remove the `environment`.                                                                                                                                                                                                                                            |
-| `options.user`        | `Object`      | Application State | Allows to set the `applicationState.user`. The passed object gets merged with the tests default user. Pass `null` to completely remove the `environment`.                                                                                                                                                                                                                                                          |
-| `options.project`     | `Object`      | Application State | Allows to set the `applicationState.project`. The passed object gets merged with the tests default project. Pass `null` to completely remove the `environment`.<br><br> Use `options.project.permissions` to influence the user's permissions in the project. The permissions will overwrite the default permissions. Default permissions are `{ canManageProject: true }` which grants permission for everything. |
+| Argument              | Type          | Concern             | Description                                                                                                                                                                                                                                                                       |
+| --------------------- | ------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ui`                  | React Element | React               | React Element to render.                                                                                                                                                                                                                                                          |
+| `options.locale`      | `String`      | Localisation        | Determines the UI language and number format, is used to configure `IntlProvider`. Only _core_ messages will be available during tests, no matter the `locale`.                                                                                                                   |
+| `options.dataLocale`  | `String`      | Localisation        | Sets the locale which is used to display [`LocalizedString`](https://docs.commercetools.com/http-api-types#localizedstring)s.                                                                                                                                                     |
+| `options.mocks`       | `Array`       | Apollo              | Allows to mock requests made with Apollo. `mocks` is forwareded as the `mocks` argument to [`MockedProvider`](https://www.apollographql.com/docs/guides/testing-react-components.html#MockedProvider).                                                                            |
+| `options.addTypename` | `Boolean`     | Apollo              | If queries are lacking `__typename` (which happens when mocking) it’s important to pass `addTypename: false`, which is the default. See [`MockedProvider.addTypename`](https://www.apollographql.com/docs/guides/testing-react-components.html#addTypename) for more information. |
+| `options.route`       | `String`      | Routing             | The route the user is on, like `/test-project/products`. Defaults to `/`.                                                                                                                                                                                                         |
+| `options.history`     | `Object`      | Routing             | By default a memory-history is generated which has the provided `options.route` set as its initial history entry. It's possible to pass a compeltely custom history.                                                                                                              |
+| `options.adapter`     | `Object`      | Feature Toggles     | The [flopflip](https://github.com/tdeekens/flopflip) adapter to use when configuring `flopflip`. Defaults to [`memoryAdapter`](https://github.com/tdeekens/flopflip/tree/master/packages/memory-adapter).                                                                         |
+| `options.flags`       | `Object`      | Feature Toggles     | An object whose keys are feature-toggles and whose values are their toggle state. Use this to test your component with different feature toggle combinations.                                                                                                                     |
+| `options.environment` | `Object`      | Application Context | Allows to set the `applicationContext.environment`. The passed object gets merged with the tests default environment. Pass `null` to completely remove the `environment`, which renders the `ui` as if no `environment` was given.                                                |
+| `options.user`        | `Object`      | Application Context | Allows to set the `applicationContext.user`. The passed object gets merged with the tests default user. Pass `null` to completely remove the `environment`, which renders the `ui` as if no user was authenticated.                                                               |
+| `options.project`     | `Object`      | Application Context | Allows to set the `applicationContext.project`. The passed object gets merged with the tests default project. Pass `null` to completely remove the `project` which renders the `ui` outside of a project context.                                                                 |
+| `options.permissions` | `Object`      | Application Context | Use `options.permissions` to influence the user's permissions in the project. The permissions will overwrite the default permissions. Default permissions are `{ canManageProject: true }` which grants permission for everything.                                                |
 
-**Return value additions**
+**Additional return values**
 
 Calling `render` returns an object which contains all keys `react-testing-library`'s `render` method contains, but also contains these additional entries:
 
-| Entry         | Type     | Description                                                                                                                                                                                                                                                                                                   |
-| ------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `history`     | `Object` | The history created by `render` which is passed to the rotuer. It can be used to simulate location changes and so on.                                                                                                                                                                                         |
-| `user`        | `Object` | The `user` object used to configure `ApplicationStateProvider`, so the result of merging the default user with `options.user`. Note that this is not the same as `applicationState.user`. Can be `undefined` when no user is authenticated (when `options.user` was `null`).                                  |
-| `project`     | `Object` | The `project` object used to configure `ApplicationStateProvider`, so the result of merging the default project with `options.project`. Note that this is not the same as `applicationState.project`. Can be `undefined` when no project was set (when `options.project` was `null`).                         |
-| `environment` | `Object` | The `environment` object used to configure `ApplicationStateProvider`, so the result of merging the default environment with `options.environment`. Note that this is not the same as `applicationState.environment`. Can be `undefined` when no environment was set (when `options.environment` was `null`). |
+| Entry         | Type     | Description                                                                                                                                                                                                                                                                                                       |
+| ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `history`     | `Object` | The history created by `render` which is passed to the rotuer. It can be used to simulate location changes and so on.                                                                                                                                                                                             |
+| `user`        | `Object` | The `user` object used to configure `ApplicationContextProvider`, so the result of merging the default user with `options.user`. Note that this is not the same as `applicationContext.user`. Can be `undefined` when no user is authenticated (when `options.user` was `null`).                                  |
+| `project`     | `Object` | The `project` object used to configure `ApplicationContextProvider`, so the result of merging the default project with `options.project`. Note that this is not the same as `applicationContext.project`. Can be `undefined` when no project was set (when `options.project` was `null`).                         |
+| `environment` | `Object` | The `environment` object used to configure `ApplicationContextProvider`, so the result of merging the default environment with `options.environment`. Note that this is not the same as `applicationContext.environment`. Can be `undefined` when no environment was set (when `options.environment` was `null`). |
 
 #### `rtlRender(ui: ReactElement, options: Object)`
 
@@ -140,7 +144,7 @@ This is the renamed original bare-bones `render` method of `react-testing-librar
 
 #### `locale` (`react-intl`)
 
-The component-under-test rendered with `render` will get rendered in `react-intl`s `IntlProvider`. During tests, the core-messages will be used. It's still possible to use a different locale though.
+The component-under- rendered with `render` will get rendered in `react-intl`s `IntlProvider`. During tests, the core-messages will be used. It's still possible to use a different locale though.
 
 ```jsx
 const Flag = props => {
@@ -173,9 +177,9 @@ describe('Flag', () => {
 
 ```jsx
 export const ProductName = props => (
-  <GetApplicationState
-    render={applicationState =>
-      props.product.name[applicationState.project.dataLocale]
+  <ApplicationContext
+    render={applicationContext =>
+      props.product.name[applicationContext.project.dataLocale]
     }
   />
 );
@@ -294,9 +298,9 @@ describe('Profile', () => {
 });
 ```
 
-#### `user`, `project` and `environment` (Application State)
+#### Application Context
 
-See the [Basics](#basics) example. The same works for `project` and `environment` as well.
+See the [Basics](#basics) example. The same works for `project` and `environment` as well. Check out [`ApplicationContext`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md) to learn about the details of `applicationContext` like `user`, `project`, `permissions` and `environment`.
 
 #### Permissions
 
@@ -321,13 +325,13 @@ import DeleteProductButton from './delete-product-button';
 describe('DeleteProductButton', () => {
   it('should be disabled when the user does not have permission to manage products', () => {
     const { getByText } = render(<DeleteProductButton />, {
-      project: { permissions: { canManageProducts: false } },
+      permissions: { canManageProducts: false },
     });
     expect(getByText('Delete Product')).toBeDisabled();
   });
   it('should be enabled when the user has permission to manage products', () => {
     const { getByText } = render(<DeleteProductButton />, {
-      project: { permissions: { canManageProducts: true } },
+      permissions: { canManageProducts: true },
     });
     expect(getByText('Delete Product')).not.toBeDisabled();
   });
