@@ -115,6 +115,15 @@ $ mc-http-server --config=$(pwd)/env.prod.json --use-local-assets
 
 ⏳ _coming soon_
 
+## Deployment example for `now`
+
+You can find an example setup for hosting the application on [Zeit Now](https://zeit.co/).
+The setup is a bit "unique" due to the nature of the project structure and because we target 2 deployments (`eu` and `us`).
+
+However, deploying with `now` is pretty straight forward and can be done by using a [nodejs](https://zeit.co/docs/v1/deployment-types/node) or [docker](https://zeit.co/docs/v1/deployment-types/docker) deployment types.
+
+> NOTE that the setup currently works for `now` version `1`. The version `2` has deprecated those deployment types and is based on **Lambda** functions (or static files) to run the application. _If requested, we will look into it and provide a tutorial for setting it up._
+
 ## Important notice
 
 The application is not meant to be run as a standalone application, instead it should run behind a proxy within the MC environment (_more info on that will follow soon_).
