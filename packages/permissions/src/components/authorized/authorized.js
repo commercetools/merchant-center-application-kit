@@ -13,11 +13,10 @@ import {
 import { permissions } from '../../constants';
 
 const ensurePermissionsKeyShape = defaultMemoize(demandedPermissions =>
-  demandedPermissions.map(
-    permission =>
-      typeof permission === 'string'
-        ? permission
-        : upperFirst(camelCase(`${permission.mode} ${permission.resource}`))
+  demandedPermissions.map(permission =>
+    typeof permission === 'string'
+      ? permission
+      : upperFirst(camelCase(`${permission.mode} ${permission.resource}`))
   )
 );
 

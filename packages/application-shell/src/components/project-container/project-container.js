@@ -71,12 +71,11 @@ export class ProjectContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    this.setState(
-      prevState =>
-        prevProps.location.pathname !== this.props.location.pathname &&
-        prevState.hasError
-          ? { hasError: false }
-          : null
+    this.setState(prevState =>
+      prevProps.location.pathname !== this.props.location.pathname &&
+      prevState.hasError
+        ? { hasError: false }
+        : null
     );
 
     // Ensure to sync the `projectKey` from the URL with localStorage.

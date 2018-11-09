@@ -15,12 +15,10 @@ export const sanitize = param => {
 };
 
 export const flattenResults = results =>
-  flatMap(
-    results,
-    result =>
-      result.subCommands
-        ? [result, ...flattenResults(result.subCommands)]
-        : result
+  flatMap(results, result =>
+    result.subCommands
+      ? [result, ...flattenResults(result.subCommands)]
+      : result
   );
 
 // Once ui-kit exposes its fallback mechanism, we can use the same one here
