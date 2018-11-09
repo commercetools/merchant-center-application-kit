@@ -5,7 +5,7 @@ import { defaultMemoize } from 'reselect';
 import moment from 'moment-timezone';
 import omit from 'lodash.omit';
 
-const { Provider, Consumer } = React.createContext({});
+const Context = React.createContext({});
 
 const defaultTimeZone = moment.tz.guess() || 'Etc/UTC';
 
@@ -58,7 +58,7 @@ const createApplicationContext = defaultMemoize(
 );
 
 const ApplicationContextProvider = props => (
-  <Provider
+  <Context.Provider
     value={createApplicationContext(
       props.environment,
       props.user,
@@ -67,7 +67,7 @@ const ApplicationContextProvider = props => (
     )}
   >
     {props.children}
-  </Provider>
+  </Context.Provider>
 );
 ApplicationContextProvider.displayName = 'ApplicationContextProvider';
 // NOTE: some fields (user, project and projectDataLocale) are optional
@@ -109,7 +109,9 @@ ApplicationContextProvider.propTypes = {
 };
 
 const ApplicationContext = props => (
-  <Consumer>{applicationContext => props.render(applicationContext)}</Consumer>
+  <Context.Consumer>
+    {applicationContext => props.render(applicationContext)}
+  </Context.Consumer>
 );
 ApplicationContext.displayName = 'ApplicationContext';
 ApplicationContext.propTypes = {
@@ -134,9 +136,26 @@ const withApplicationContext = mapApplicationContextToProps => Component => {
   return WrappedComponent;
 };
 
+// Forward-compatibility with React Hooks 🎉
+const useApplicationContext = React.useContext
+  ? mapApplicationContextToProps => {
+      const applicationContext = React.useContext(Context);
+      return mapApplicationContextToProps
+        ? mapApplicationContextToProps(applicationContext)
+        : applicationContext;
+    }
+  : () => {
+      throw new Error(
+        `React hooks do not seem to be available yet on the installed React version "${
+          React.version
+        }". Please check the React Hooks documentation for more info: https://reactjs.org/hooks.`
+      );
+    };
+
 // Exports
 export {
   ApplicationContext,
   ApplicationContextProvider,
   withApplicationContext,
+  useApplicationContext,
 };
