@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`rendering <ToggledWithPermissions> <RestrictedByPermissions> when permissions are defined should match snapshot 1`] = `
-<withApplicationState(RestrictedByPermissions)
+<withApplicationContext(RestrictedByPermissions)
   permissions={
     Array [
       "ViewProducts",
@@ -10,5 +10,5 @@ exports[`rendering <ToggledWithPermissions> <RestrictedByPermissions> when permi
   shouldMatchSomePermissions={true}
 >
   <ItemChild />
-</withApplicationState(RestrictedByPermissions)>
+</withApplicationContext(RestrictedByPermissions)>
 `;

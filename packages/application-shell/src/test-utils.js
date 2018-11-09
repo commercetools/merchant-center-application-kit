@@ -12,7 +12,7 @@ import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import { MockedProvider as ApolloMockProvider } from 'react-apollo/test-utils';
 import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
-import { ApplicationStateProvider } from '@commercetools-frontend/application-shell-connectors';
+import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { createReduxStore } from './configure-store';
 
 // Reset memoryAdapter after each test, so that the next test accepts the
@@ -48,8 +48,9 @@ const defaultProject = {
   countries: ['de', 'en'],
   currencies: ['EUR', 'GBP'],
   languages: ['de', 'en-GB'],
-  permissions: { canManageProject: true },
 };
+
+const defaultPermissions = { canManageProject: true };
 
 // Allow consumers of `render` to extend the defaults by passing an object
 // or to completely omit the value by passing `null`
@@ -81,11 +82,12 @@ const render = (
     // flopflip
     adpater = memoryAdapter,
     flags = {},
-    // application-state
-    dataLocale = 'en',
+    // application-context
     environment,
     user,
     project,
+    permissions = defaultPermissions,
+    dataLocale = 'en',
     // forwarding to react-testing-library
     ...renderOptions
   } = {}
@@ -98,14 +100,14 @@ const render = (
       <IntlProvider locale={locale}>
         <ApolloMockProvider mocks={mocks} addTypename={addTypename}>
           <ConfigureFlopFlip adapter={adpater} defaultFlags={flags}>
-            <ApplicationStateProvider
+            <ApplicationContextProvider
               user={mergedUser}
-              project={mergedProject}
+              project={mergedProject && { ...mergedProject, permissions }}
               environment={mergedEnvironment}
               projectDataLocale={dataLocale}
             >
               <Router history={history}>{ui}</Router>
-            </ApplicationStateProvider>
+            </ApplicationContextProvider>
           </ConfigureFlopFlip>
         </ApolloMockProvider>
       </IntlProvider>,
@@ -116,7 +118,7 @@ const render = (
     // this to test implementation details).
     history,
     // Adding user, project & environment so tests know about the merge results
-    // Note that these objects do not resemble the application state, they are
+    // Note that these objects do not resemble the application context, they are
     // only intended to communicate the test setup back to the tests.
     user: mergedUser,
     project: mergedProject,

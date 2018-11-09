@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
-import { ApplicationStateProvider } from '@commercetools-frontend/application-shell-connectors';
+import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import ProjectExpired from '../project-expired';
 import ProjectNotFound from '../project-not-found';
 import ProjectSuspended from '../project-suspended';
@@ -275,26 +275,26 @@ describe('rendering', () => {
               setProjectDataLocale: jest.fn(),
             });
         });
-        it('should pass "user" to <ApplicationStateProvider>', () => {
-          expect(wrapperDataLocale.find(ApplicationStateProvider)).toHaveProp(
+        it('should pass "user" to <ApplicationContextProvider>', () => {
+          expect(wrapperDataLocale.find(ApplicationContextProvider)).toHaveProp(
             'user',
             props.user
           );
         });
-        it('should pass "project" to <ApplicationStateProvider>', () => {
-          expect(wrapperDataLocale.find(ApplicationStateProvider)).toHaveProp(
+        it('should pass "project" to <ApplicationContextProvider>', () => {
+          expect(wrapperDataLocale.find(ApplicationContextProvider)).toHaveProp(
             'project',
             project
           );
         });
-        it('should pass "projectDataLocale" to <ApplicationStateProvider>', () => {
-          expect(wrapperDataLocale.find(ApplicationStateProvider)).toHaveProp(
+        it('should pass "projectDataLocale" to <ApplicationContextProvider>', () => {
+          expect(wrapperDataLocale.find(ApplicationContextProvider)).toHaveProp(
             'projectDataLocale',
             'de'
           );
         });
-        it('should pass "environment" to <ApplicationStateProvider>', () => {
-          expect(wrapperDataLocale.find(ApplicationStateProvider)).toHaveProp(
+        it('should pass "environment" to <ApplicationContextProvider>', () => {
+          expect(wrapperDataLocale.find(ApplicationContextProvider)).toHaveProp(
             'environment',
             props.environment
           );

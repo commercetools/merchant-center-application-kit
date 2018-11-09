@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ApplicationStateProvider } from './application-state';
+import { ApplicationContextProvider } from './application-context';
 
 describe('rendering', () => {
   let wrapper;
@@ -8,7 +8,7 @@ describe('rendering', () => {
   describe('Provider', () => {
     beforeEach(() => {
       wrapper = shallow(
-        <ApplicationStateProvider
+        <ApplicationContextProvider
           user={{
             id: 'u1',
             email: 'foo@bar.com',
@@ -45,7 +45,7 @@ describe('rendering', () => {
           }}
         >
           <div />
-        </ApplicationStateProvider>
+        </ApplicationContextProvider>
       );
     });
     it('should pass mapped user to Provider', () => {
@@ -74,9 +74,23 @@ describe('rendering', () => {
             countries: expect.any(Array),
             currencies: expect.any(Array),
             languages: expect.any(Array),
-            permissions: expect.any(Object),
-            dataLocale: expect.any(String),
           },
+        })
+      );
+    });
+    it('should pass mapped permissions to Provider', () => {
+      expect(wrapper).toHaveProp(
+        'value',
+        expect.objectContaining({
+          permissions: expect.any(Object),
+        })
+      );
+    });
+    it('should pass mapped dataLocale to Provider', () => {
+      expect(wrapper).toHaveProp(
+        'value',
+        expect.objectContaining({
+          dataLocale: expect.any(String),
         })
       );
     });

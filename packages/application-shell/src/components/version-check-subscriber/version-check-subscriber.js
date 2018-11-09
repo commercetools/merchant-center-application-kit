@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { compose, setDisplayName } from 'recompose';
 import { connect } from 'react-redux';
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
-import { withApplicationState } from '@commercetools-frontend/application-shell-connectors';
+import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
 export class VersionCheckSubscriber extends React.PureComponent {
   static displayName = 'VersionCheckSubscriber';
 
   static propTypes = {
-    applicationState: PropTypes.shape({
+    applicationContext: PropTypes.shape({
       environment: PropTypes.shape({
         revision: PropTypes.string,
       }).isRequired,
@@ -23,7 +23,8 @@ export class VersionCheckSubscriber extends React.PureComponent {
         this.props.fetchServerVersion().then(
           data => {
             if (
-              data.revision !== this.props.applicationState.environment.revision
+              data.revision !==
+              this.props.applicationContext.environment.revision
             )
               // TODO: notify the user that a new version is available
               // Possible options:
@@ -61,7 +62,7 @@ const mapDispatchToProps = dispatch => ({
 
 export default compose(
   setDisplayName('VersionCheckSubscriber'),
-  withApplicationState(),
+  withApplicationContext(),
   connect(
     null,
     mapDispatchToProps

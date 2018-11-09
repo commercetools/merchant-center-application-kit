@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { withApplicationState } from '@commercetools-frontend/application-shell-connectors';
+import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   LoadingSpinner,
   Table,
@@ -36,10 +36,8 @@ export class ChannelsList extends React.Component {
   static propTypes = {
     projectKey: PropTypes.string.isRequired,
     // injected
-    applicationState: PropTypes.shape({
-      project: PropTypes.shape({
-        dataLocale: PropTypes.string.isRequired,
-      }).isRequired,
+    applicationContext: PropTypes.shape({
+      dataLocale: PropTypes.string.isRequired,
     }).isRequired,
   };
   measurementCache = null;
@@ -54,7 +52,7 @@ export class ChannelsList extends React.Component {
         return value ? (
           <Constraints.Horizontal constraint="m">
             <Text.Wrap>
-              {value[this.props.applicationState.project.dataLocale] ||
+              {value[this.props.applicationContext.dataLocale] ||
                 NO_VALUE_FALLBACK}
             </Text.Wrap>
           </Constraints.Horizontal>
@@ -109,4 +107,4 @@ export class ChannelsList extends React.Component {
   }
 }
 
-export default withApplicationState()(ChannelsList);
+export default withApplicationContext()(ChannelsList);

@@ -7,7 +7,7 @@ import isNil from 'lodash.isnil';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
-import { ApplicationStateProvider } from '@commercetools-frontend/application-shell-connectors';
+import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { STORAGE_KEYS, SUSPENSION_REASONS } from '../../constants';
 import ApplicationLoader from '../application-loader';
@@ -133,7 +133,7 @@ export class ProjectContainer extends React.Component {
           return (
             <ProjectDataLocale locales={project.languages}>
               {({ locale, setProjectDataLocale }) => (
-                <ApplicationStateProvider
+                <ApplicationContextProvider
                   user={this.props.user}
                   project={project}
                   projectDataLocale={locale}
@@ -173,7 +173,7 @@ export class ProjectContainer extends React.Component {
                      */}
                     {this.props.render()}
                   </React.Fragment>
-                </ApplicationStateProvider>
+                </ApplicationContextProvider>
               )}
             </ProjectDataLocale>
           );
