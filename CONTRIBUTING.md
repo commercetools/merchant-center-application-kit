@@ -115,6 +115,6 @@ Once it's done, you can run `yarn start` or `yarn test` (`yarn test:watch`) to d
 
 3. (_Optional_) Include "_Migrating from ..._" instructions for the previous release in case you deem it necessary.
 4. Commit the changelog
-5. Run `yarn release`: you will get promted to select the version that you would like to release (minor, major, pre-release, etc.)
+5. Run `yarn release`: the packages will be bundled with Rollup first, then Lerna will prompt you to select the version that you would like to release (minor, major, pre-release, etc.)
 6. Wait a bit until lerna bumps the versions, creates a commit and a tag and finally publishes the packages to npm.
 7. After publishing, create a GitHub Release with the same text as the changelog entry. See previous Releases for inspiration.
