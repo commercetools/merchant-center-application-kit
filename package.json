@@ -52,7 +52,7 @@
     "lerna": "3.4.3",
     "lerna-changelog": "0.8.2",
     "lint-staged": "8.0.4",
-    "prettier": "1.15.1",
+    "prettier": "1.15.2",
     "read-pkg-up": "4.0.0",
     "rollup": "0.67.0",
     "rollup-plugin-babel": "4.0.3",
