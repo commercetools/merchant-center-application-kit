@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import colors from 'colors/safe';
+import pkgDir from 'pkg-dir';
 
 global.window.app = {
   mcApiUrl: 'http://localhost:8080',
@@ -51,11 +52,12 @@ if (!process.env.LISTENING_TO_UNHANDLED_REJECTION) {
     // We create a file in case there is an unhandled rejection
     // We later check for the existence of this file to fail CI
     if (process.env.CI && !process.env.HAS_CREATED_UNHANDLED_REJECTION_FILE) {
-      const rootPath = require.resolve('.');
+      const rootDir = pkgDir.sync(__dirname);
+
       fs.writeFileSync(
         path.join(
-          rootPath,
-          './fail-tests-because-there-was-an-unhandled-rejection.lock'
+          rootDir,
+          'fail-tests-because-there-was-an-unhandled-rejection.lock'
         )
       );
       process.env.HAS_CREATED_UNHANDLED_REJECTION_FILE = true;
