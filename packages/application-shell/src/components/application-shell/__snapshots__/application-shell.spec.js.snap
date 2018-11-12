@@ -63,19 +63,47 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
 exports[`<UnrestrictedApplication> rendering should match layout structure 1`] = `
 <Switch>
   <Route
-    component={[Function]}
+    component={
+      Object {
+        "$$typeof": Symbol(react.lazy),
+        "_ctor": [Function],
+        "_result": null,
+        "_status": -1,
+      }
+    }
     path="/login/sso/callback"
   />
   <Route
-    component={[Function]}
+    component={
+      Object {
+        "$$typeof": Symbol(react.lazy),
+        "_ctor": [Function],
+        "_result": null,
+        "_status": -1,
+      }
+    }
     path="/login/sso"
   />
   <Route
-    component={[Function]}
+    component={
+      Object {
+        "$$typeof": Symbol(react.lazy),
+        "_ctor": [Function],
+        "_result": null,
+        "_status": -1,
+      }
+    }
     path="/login/locked"
   />
   <Route
-    component={[Function]}
+    component={
+      Object {
+        "$$typeof": Symbol(react.lazy),
+        "_ctor": [Function],
+        "_result": null,
+        "_status": -1,
+      }
+    }
     path="/login"
   />
   <Route

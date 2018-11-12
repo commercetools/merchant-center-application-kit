@@ -1,10 +1,7 @@
-import Loadable from 'react-loadable';
-import AsyncChunkLoader from '../async-chunk-loader';
+import React from 'react';
 
-const FailedAuthentication = Loadable({
-  loader: () =>
-    import('./failed-authentication' /* webpackChunkName: "failed-authentication" */),
-  loading: AsyncChunkLoader,
-});
+const FailedAuthentication = React.lazy(() =>
+  import('./failed-authentication' /* webpackChunkName: "failed-authentication" */)
+);
 
 export { FailedAuthentication as default };

@@ -1,12 +1,10 @@
 import React from 'react';
 import { Provider as StoreProvider } from 'react-redux';
-import Loadable from 'react-loadable';
 import {
   ApplicationShell,
   reduxStore,
   setupGlobalErrorListener,
   RouteCatchAll,
-  AsyncChunkLoader,
 } from '@commercetools-frontend/application-shell';
 import { Sdk } from '@commercetools-frontend/sdk';
 import * as globalActions from '@commercetools-frontend/actions-global';
@@ -27,10 +25,9 @@ const loadApplicationMessagesForLanguage = lang =>
 // Here we split up the main (app) bundle with the actual application business logic.
 // Splitting by route is usually recommended and you can potentially have a splitting
 // point for each route. More info at https://reactjs.org/docs/code-splitting.html
-const AsyncChannels = Loadable({
-  loader: () => import('../../routes' /* webpackChunkName: "channels" */),
-  loading: AsyncChunkLoader,
-});
+const AsyncChannels = React.lazy(() =>
+  import('../../routes' /* webpackChunkName: "channels" */)
+);
 
 // Ensure to setup the global error listener before any React component renders
 // in order to catch possible errors on rendering/mounting.

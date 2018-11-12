@@ -20,6 +20,14 @@ import ProjectSuspended from '../project-suspended';
 import ErrorApologizer from '../error-apologizer';
 import messages from './messages';
 
+// A trial expire notification should be displayed from 2 weeks before the project expires
+const minDaysToDisplayNotification = 14;
+const maxDaysToDisplayNotification = 0;
+const shouldShowNotificationForTrialExpired = daysLeft =>
+  !isNil(daysLeft) &&
+  daysLeft <= minDaysToDisplayNotification &&
+  daysLeft >= maxDaysToDisplayNotification;
+
 export class ProjectContainer extends React.Component {
   static displayName = 'ProjectContainer';
   static propTypes = {
@@ -108,42 +116,38 @@ export class ProjectContainer extends React.Component {
     if (this.props.user && this.props.user.projects.total === 0)
       return <Redirect to="/logout?reason=no-projects" />;
 
-    // A trial expire notification should be displayed from 2 weeks before the project expires
-    const minDaysToDisplayNotification = 14;
-    const maxDaysToDisplayNotification = 0;
-
     return (
-      <FetchProject projectKey={this.props.match.params.projectKey}>
-        {({ isLoading: isProjectLoading, project }) => {
-          // TODO: do something if there is an `error`?
-          if (isProjectLoading) return <ApplicationLoader />;
-          if (!project) return <ProjectNotFound />;
-          if (project.suspension && project.suspension.isActive)
-            return (
-              <ProjectSuspended
-                isTemporary={
-                  project.suspension.reason ===
-                  SUSPENSION_REASONS.TEMPORARY_MAINTENANCE
-                }
-              />
-            );
-          if (project.expiry && project.expiry.isActive)
-            return <ProjectExpired />;
+      <React.Suspense fallback={<ApplicationLoader />}>
+        <FetchProject projectKey={this.props.match.params.projectKey}>
+          {({ isLoading: isProjectLoading, project }) => {
+            // TODO: do something if there is an `error`?
+            if (isProjectLoading) return <ApplicationLoader />;
+            if (!project) return <ProjectNotFound />;
+            if (project.suspension && project.suspension.isActive)
+              return (
+                <ProjectSuspended
+                  isTemporary={
+                    project.suspension.reason ===
+                    SUSPENSION_REASONS.TEMPORARY_MAINTENANCE
+                  }
+                />
+              );
+            if (project.expiry && project.expiry.isActive)
+              return <ProjectExpired />;
 
-          return (
-            <ProjectDataLocale locales={project.languages}>
-              {({ locale, setProjectDataLocale }) => (
-                <ApplicationContextProvider
-                  user={this.props.user}
-                  project={project}
-                  projectDataLocale={locale}
-                  environment={this.props.environment}
-                >
-                  <React.Fragment>
-                    {!isNil(project.expiry.daysLeft) &&
-                      project.expiry.daysLeft <= minDaysToDisplayNotification &&
-                      project.expiry.daysLeft >=
-                        maxDaysToDisplayNotification && (
+            return (
+              <ProjectDataLocale locales={project.languages}>
+                {({ locale, setProjectDataLocale }) => (
+                  <ApplicationContextProvider
+                    user={this.props.user}
+                    project={project}
+                    projectDataLocale={locale}
+                    environment={this.props.environment}
+                  >
+                    <React.Fragment>
+                      {shouldShowNotificationForTrialExpired(
+                        project.expiry.daysLeft
+                      ) && (
                         <Notifier
                           kind="warning"
                           domain={DOMAINS.GLOBAL}
@@ -153,32 +157,33 @@ export class ProjectContainer extends React.Component {
                           )}
                         />
                       )}
-                    {/* Render <LocaleSwitcher> using a portal */}
-                    {this.state.localeSwitcherNode &&
-                      // Render the `<LocaleSwitcher>` only if the project has more
-                      // than one language.
-                      project.languages.length > 1 &&
-                      ReactDOM.createPortal(
-                        this.renderSwitcher({
-                          projectDataLocale: locale,
-                          setProjectDataLocale,
-                          availableLocales: project.languages,
-                        }),
-                        this.state.localeSwitcherNode
-                      )}
-                    {/**
-                     * NOTE: we don't need to explicitly pass the `locale`,
-                     * it's enough to trigger a re-render.
-                     * The `locale` can then be read from the localStorage.
-                     */}
-                    {this.props.render()}
-                  </React.Fragment>
-                </ApplicationContextProvider>
-              )}
-            </ProjectDataLocale>
-          );
-        }}
-      </FetchProject>
+                      {/* Render <LocaleSwitcher> using a portal */}
+                      {this.state.localeSwitcherNode &&
+                        // Render the `<LocaleSwitcher>` only if the project has more
+                        // than one language.
+                        project.languages.length > 1 &&
+                        ReactDOM.createPortal(
+                          this.renderSwitcher({
+                            projectDataLocale: locale,
+                            setProjectDataLocale,
+                            availableLocales: project.languages,
+                          }),
+                          this.state.localeSwitcherNode
+                        )}
+                      {/**
+                       * NOTE: we don't need to explicitly pass the `locale`,
+                       * it's enough to trigger a re-render.
+                       * The `locale` can then be read from the localStorage.
+                       */}
+                      {this.props.render()}
+                    </React.Fragment>
+                  </ApplicationContextProvider>
+                )}
+              </ProjectDataLocale>
+            );
+          }}
+        </FetchProject>
+      </React.Suspense>
     );
   }
 }

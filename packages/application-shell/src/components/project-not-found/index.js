@@ -1,10 +1,7 @@
-import Loadable from 'react-loadable';
-import AsyncChunkLoader from '../async-chunk-loader';
+import React from 'react';
 
-const ProjectNotFound = Loadable({
-  loader: () =>
-    import('./project-not-found' /* webpackChunkName: "project-not-found" */),
-  loading: AsyncChunkLoader,
-});
+const ProjectNotFound = React.lazy(() =>
+  import('./project-not-found' /* webpackChunkName: "project-not-found" */)
+);
 
 export { ProjectNotFound as default };
