@@ -64,7 +64,7 @@
     "rollup-plugin-postcss": "1.6.2",
     "rollup-plugin-replace": "2.1.0",
     "shelljs": "0.8.2",
-    "stylelint": "9.7.1",
+    "stylelint": "9.8.0",
     "stylelint-config-standard": "17.0.0",
     "stylelint-order": "0.8.1"
   },
