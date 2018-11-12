@@ -39,6 +39,7 @@
     "jest-transform-graphql": "2.1.0",
     "jest-watch-master": "1.0.0",
     "pegjs-jest": "0.0.2",
+    "pkg-dir": "3.0.0",
     "raf": "3.4.1"
   },
   "devDependencies": {
