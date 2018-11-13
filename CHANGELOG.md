@@ -1,3 +1,15 @@
+## [2.0.3](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.2...v2.0.3) (2018-11-13)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+
+  - [#96](https://github.com/commercetools/merchant-center-application-kit/pull/96) fix(application-shell): expose test-utils as cjs instead of es ([@montezume](https://github.com/montezume))
+
+- `mc-scripts`
+
+  - [#95](https://github.com/commercetools/merchant-center-application-kit/pull/95) fix(mc-scripts): downgrade uglifyjs-webpack-plugin for pegjs fix ([@montezume](https://github.com/montezume))
+
 ## [2.0.2](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.1...v2.0.2) (2018-11-13)
 
 #### 🐛 Type: Bug
