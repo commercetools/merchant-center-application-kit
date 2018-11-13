@@ -67,6 +67,7 @@ typings/
 # Build
 dist
 public
+packages/application-shell/test-utils
 
 # Editor/IDE
 .idea
