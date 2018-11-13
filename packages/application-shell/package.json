@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-shell",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "React component to bootstrap the general MC application logic",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -34,7 +34,6 @@
     "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js --dir ./dist --chunkFileNames application-shell-[name]-[hash].es.js --entryFileNames application-shell-[name].es.js --experimentalCodeSplitting",
     "build:es:watch": "npm run build:es -- -w",
     "build:test-utils:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./src/test-utils/index.js --o ./test-utils/index.js"
-
   },
   "dependencies": {
     "@babel/runtime": "7.1.5",
