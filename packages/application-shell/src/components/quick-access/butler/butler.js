@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import { SearchIcon } from '@commercetools-frontend/ui-kit';
 import { flattenResults } from '../utils';
 import ButlerCommand from '../butler-command';
+import ButlerContainer from '../butler-container';
 import messages from '../messages';
 import styles from './butler.mod.css';
 
@@ -402,9 +403,7 @@ export default class Butler extends React.Component {
 
   render() {
     return (
-      <div
-        className={styles.container}
-        tabIndex="-1"
+      <ButlerContainer
         onClick={this.handleContainerClick}
         data-testid="quick-access"
       >
@@ -481,7 +480,7 @@ export default class Butler extends React.Component {
             ));
           })()}
         </div>
-      </div>
+      </ButlerContainer>
     );
   }
 }
