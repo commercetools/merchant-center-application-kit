@@ -1,3 +1,11 @@
+## [2.0.2](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.1...v2.0.2) (2018-11-13)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+
+  - [#91](https://github.com/commercetools/merchant-center-application-kit/pull/93) fix(application-shell): expose test-utils ([@dferber90](https://github.com/dferber90))
+
 ## [2.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.0...v2.0.1) (2018-11-13)
 
 #### 🐛 Type: Bug
