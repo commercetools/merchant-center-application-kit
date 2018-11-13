@@ -1,7 +1,7 @@
-import fs from 'fs';
-import path from 'path';
-import colors from 'colors/safe';
-import pkgDir from 'pkg-dir';
+const fs = require('fs');
+const path = require('path');
+const colors = require('colors/safe');
+const pkgDir = require('pkg-dir');
 
 global.window.app = {
   mcApiUrl: 'http://localhost:8080',
