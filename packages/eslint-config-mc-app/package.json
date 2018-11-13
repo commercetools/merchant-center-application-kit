@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/eslint-config-mc-app",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "ESLint config used by a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
