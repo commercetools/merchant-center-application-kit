@@ -1,3 +1,14 @@
+## [2.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.0...v2.0.1) (2018-11-13)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+
+  - [#90](https://github.com/commercetools/merchant-center-application-kit/pull/90) fix: deprecatedWithProject is now passed the correct parameters ([@montezume](https://github.com/montezume))
+
+- `jest-preset-mc-app`
+  - [#88](https://github.com/commercetools/merchant-center-application-kit/pull/88) fix(jest-preset-mc-app): to look up root dir ([@tdeekens](https://github.com/tdeekens))
+
 ## [2.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v1.0.0-rc.3...v2.0.0) (2018-11-09)
 
 ## BREAKING CHANGES 💣
