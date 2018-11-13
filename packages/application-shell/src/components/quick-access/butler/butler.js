@@ -5,7 +5,6 @@ import { FormattedMessage } from 'react-intl';
 import last from 'lodash.last';
 import classnames from 'classnames';
 import { SearchIcon } from '@commercetools-frontend/ui-kit';
-import ButlerContainer from '../butler-container';
 import { flattenResults } from '../utils';
 import ButlerCommand from '../butler-command';
 import messages from '../messages';
@@ -403,7 +402,9 @@ export default class Butler extends React.Component {
 
   render() {
     return (
-      <ButlerContainer
+      <div
+        className={styles.container}
+        tabIndex="-1"
         onClick={this.handleContainerClick}
         data-testid="quick-access"
       >
@@ -480,7 +481,7 @@ export default class Butler extends React.Component {
             ));
           })()}
         </div>
-      </ButlerContainer>
+      </div>
     );
   }
 }

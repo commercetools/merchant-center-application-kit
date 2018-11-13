@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import ButlerContainer from './butler-container';
 import * as gtm from '../../utils/gtm';
 import trackingEvents from './tracking-events';
+import butlerStyles from './butler/butler.mod.css';
 
 const QuickAccessModal = React.lazy(() =>
   import('./quick-access' /* webpackChunkName: "quick-access" */)
@@ -29,7 +29,9 @@ class QuickAccessContainer extends React.Component {
     // render no overlay in case of loding error, just show nothing then
     if (this.state.hasError) return null;
     return (
-      <React.Suspense fallback={<ButlerContainer />}>
+      <React.Suspense
+        fallback={<div className={butlerStyles.container} tabIndex="-1" />}
+      >
         {this.props.children}
       </React.Suspense>
     );
