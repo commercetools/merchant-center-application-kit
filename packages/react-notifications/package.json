@@ -61,7 +61,7 @@
     "react": ">=16 <17",
     "react-dom": ">=16 <17",
     "react-intl": ">=2 <3",
-    "react-router": ">=4 <5 || >=4.4.0-beta.0",
-    "react-router-dom": ">=4 <5 || >=4.4.0-beta.0"
+    "react-router": ">=4 <5 || >=4.4.0-beta.0 <5",
+    "react-router-dom": ">=4 <5 || >=4.4.0-beta.0 <5"
   }
 }
