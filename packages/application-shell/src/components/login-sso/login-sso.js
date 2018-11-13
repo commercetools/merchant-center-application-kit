@@ -32,9 +32,17 @@ export const getMessageKeyForError = error => {
   }
 };
 
-function generateAndCacheNonce() {
+function generateAndCacheNonceWithState(state) {
   const nonce = uuid();
-  storage.put(STORAGE_KEYS.NONCE, nonce);
+  // We store additional information within the given `nonce`
+  // to then retrieve it later when the IdP redirects back
+  // to our application. The URL will contain the `nonce` within
+  // the id_token and, once validated, we can retrieve and use
+  // the state object.
+  // https://auth0.com/docs/protocols/oauth2/oauth-state#how-to-use-the-parameter-to-restore-application-state
+  storage.put(`${STORAGE_KEYS.NONCE}_${nonce}`, state, {
+    storage: window.sessionStorage,
+  });
   return nonce;
 }
 
@@ -67,26 +75,26 @@ export class LoginSSO extends React.PureComponent {
     this.props.getOrganizationByName(values.organizationName).then(
       authProvider => {
         actions.setSubmitting(false);
+        // TODO: handle cases with another protocol?
         if (authProvider.protocol === 'oidc') {
           // Quick note: we assume that the authorization endpoint is /authorize
           // This endpoint name is not mandatory. However, it is used as a common
           // practice throughout the OIDC specification.
           // We might have to let customers set a custom endpoint in the future.
-          const redirectUriParams = querystring.stringify({
-            organizationId: authProvider.organizationId,
-          });
           const params = querystring.stringify({
             scope: 'openid email profile',
             response_type: 'id_token',
             client_id: authProvider.clientId,
             redirect_uri: trimLeadingAndTrailingSlashes(
-              joinPaths(
-                this.props.originUrl,
-                this.props.match.url,
-                `callback?${redirectUriParams}`
-              )
+              // Avoid providing query parameters as some IdP (e.g. Azure) apparently
+              // will consider the full URL to match as part of the callback whitelist.
+              // Instead, we store additional information within the `nonce` value
+              // which is stored in sessionStorage. See `generateAndCacheNonceWithState`.
+              joinPaths(this.props.originUrl, this.props.match.url, `callback`)
             ),
-            nonce: generateAndCacheNonce(),
+            nonce: generateAndCacheNonceWithState({
+              organizationId: authProvider.organizationId,
+            }),
           });
           const authUrl = authProvider.url.replace(/\/$/, ''); // trim trailing slash
           this.props.redirectTo(`${authUrl}/authorize?${params}`);

@@ -14,9 +14,6 @@ export class LoginSSOCallback extends React.PureComponent {
   static displayName = 'LoginSSOCallback';
   static propTypes = {
     location: PropTypes.shape({
-      query: PropTypes.shape({
-        organizationId: PropTypes.string.isRequired,
-      }).isRequired,
       hash: PropTypes.string.isRequired,
     }).isRequired,
     redirectTo: PropTypes.func.isRequired,
@@ -31,16 +28,20 @@ export class LoginSSOCallback extends React.PureComponent {
     const fragments = qs.parse(this.props.location.hash.substring(1));
     const idToken = fragments.id_token;
     const decodedIdToken = jwtDecode(idToken);
-    const nonce = storage.get(STORAGE_KEYS.NONCE);
-    storage.remove(STORAGE_KEYS.NONCE);
+    const sessionState = storage.get(
+      `${STORAGE_KEYS.NONCE}_${decodedIdToken.nonce}`,
+      { storage: window.sessionStorage }
+    );
+    // Clear the nonce, we don't need it anymore
+    storage.remove(STORAGE_KEYS.NONCE, { storage: window.sessionStorage });
 
-    if (decodedIdToken.nonce !== nonce) {
+    if (!sessionState) {
       this.setAuthenticationFailed(true);
     } else {
       this.props
         .requestAccessToken({
           idToken,
-          organization: this.props.location.query.organizationId,
+          organization: sessionState.organizationId,
         })
         .then(payload => {
           // Set a flag to indicate that the user has been authenticated

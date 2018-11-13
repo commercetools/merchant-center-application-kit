@@ -10,7 +10,6 @@ jest.mock('@commercetools-frontend/storage');
 
 const createTestProps = props => ({
   location: {
-    query: { organizationId: 'o1' },
     hash: '#id_token=111',
   },
   redirectTo: jest.fn(),
@@ -59,7 +58,7 @@ describe('lifecylcle', () => {
 
     describe('when nonce is correct', () => {
       beforeEach(() => {
-        storage.get.mockReturnValue('EY');
+        storage.get.mockReturnValue({ organizationId: 'o1' });
         wrapper.instance().componentDidMount();
       });
       it('should call requestAccessToken with idToken', () => {
@@ -80,7 +79,9 @@ describe('lifecylcle', () => {
             ),
           });
           wrapper = shallow(<LoginSSOCallback {...props} />);
-          storage.put(STORAGE_KEYS.NONCE, 'EY');
+          storage.put(`${STORAGE_KEYS.NONCE}_EY`, {
+            organizationId: 'o1',
+          });
           wrapper.instance().componentDidMount();
         });
         it('should redirect to /', () => {
@@ -93,7 +94,7 @@ describe('lifecylcle', () => {
             requestAccessToken: jest.fn(() => Promise.reject(new Error())),
           });
           wrapper = shallow(<LoginSSOCallback {...props} />);
-          storage.get.mockReturnValue('EY');
+          storage.get.mockReturnValue({ organizationId: 'o1' });
           wrapper.instance().componentDidMount();
         });
         it('should set hasAuthenticationFailed to true', () => {
@@ -107,7 +108,7 @@ describe('lifecylcle', () => {
 
     describe('when nonce is wrong', () => {
       beforeEach(() => {
-        storage.get.mockReturnValue(STORAGE_KEYS.NONCE, 'BAD');
+        storage.get.mockReturnValue(null);
         wrapper.instance().componentDidMount();
       });
       it('should set hasAuthenticationFailed to true', () => {
