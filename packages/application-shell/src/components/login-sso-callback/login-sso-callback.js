@@ -28,12 +28,10 @@ export class LoginSSOCallback extends React.PureComponent {
     const fragments = qs.parse(this.props.location.hash.substring(1));
     const idToken = fragments.id_token;
     const decodedIdToken = jwtDecode(idToken);
-    const sessionState = storage.get(
-      `${STORAGE_KEYS.NONCE}_${decodedIdToken.nonce}`,
-      { storage: window.sessionStorage }
-    );
+    const nonceKey = `${STORAGE_KEYS.NONCE}_${decodedIdToken.nonce}`;
+    const sessionState = window.sessionStorage.getItem(nonceKey);
     // Clear the nonce, we don't need it anymore
-    storage.remove(STORAGE_KEYS.NONCE, { storage: window.sessionStorage });
+    window.sessionStorage.removeItem(nonceKey);
 
     if (!sessionState) {
       this.setAuthenticationFailed(true);

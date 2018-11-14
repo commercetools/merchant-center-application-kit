@@ -12,7 +12,6 @@ import {
 } from '@commercetools-frontend/url-utils';
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { connect } from 'react-redux';
-import * as storage from '@commercetools-frontend/storage';
 import { Notification } from '@commercetools-frontend/react-notifications';
 import { ORGANIZATION_GENERAL_ERROR, STORAGE_KEYS } from '../../constants';
 import LabelField from '../../from-core/label-field';
@@ -40,9 +39,7 @@ function generateAndCacheNonceWithState(state) {
   // the id_token and, once validated, we can retrieve and use
   // the state object.
   // https://auth0.com/docs/protocols/oauth2/oauth-state#how-to-use-the-parameter-to-restore-application-state
-  storage.put(`${STORAGE_KEYS.NONCE}_${nonce}`, state, {
-    storage: window.sessionStorage,
-  });
+  window.sessionStorage.setItem(`${STORAGE_KEYS.NONCE}_${nonce}`, state);
   return nonce;
 }
 

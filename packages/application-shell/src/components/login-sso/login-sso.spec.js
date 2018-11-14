@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Formik } from 'formik';
 import { PrimaryButton, Text } from '@commercetools-frontend/ui-kit';
-import * as storage from '@commercetools-frontend/storage';
 import { ORGANIZATION_GENERAL_ERROR } from '../../constants';
 import { LoginSSO, getMessageKeyForError } from './login-sso';
 
@@ -208,6 +207,7 @@ describe('interaction', () => {
     describe('when request is successful', () => {
       describe('when authProvider protocol is "oidc"', () => {
         beforeEach(() => {
+          window.sessionStorage = jest.fn();
           props = createTestProps({
             getOrganizationByName: jest.fn(() =>
               Promise.resolve({
@@ -259,10 +259,9 @@ describe('interaction', () => {
           );
         });
         it('should save state in nonce', () => {
-          expect(storage.put).toHaveBeenCalledWith(
+          expect(window.sessionStorage.setItem).toHaveBeenCalledWith(
             expect.stringContaining('nonce_foo-uuid'),
-            { organizationId: 'o1' },
-            expect.objectContaining({ storage: expect.anything() })
+            { organizationId: 'o1' }
           );
         });
         it('should build authorize URL with nonce param', () => {
