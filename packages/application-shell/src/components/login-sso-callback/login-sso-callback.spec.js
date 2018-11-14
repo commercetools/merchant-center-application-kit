@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import * as storage from '@commercetools-frontend/storage';
 import { STORAGE_KEYS } from '../../constants';
 import FailedAuthentication from '../failed-authentication';
 import { LoginSSOCallback } from './login-sso-callback';
@@ -10,7 +9,6 @@ jest.mock('@commercetools-frontend/storage');
 
 const createTestProps = props => ({
   location: {
-    query: { organizationId: 'o1' },
     hash: '#id_token=111',
   },
   redirectTo: jest.fn(),
@@ -59,7 +57,7 @@ describe('lifecylcle', () => {
 
     describe('when nonce is correct', () => {
       beforeEach(() => {
-        storage.get.mockReturnValue('EY');
+        window.sessionStorage.getItem.mockReturnValue({ organizationId: 'o1' });
         wrapper.instance().componentDidMount();
       });
       it('should call requestAccessToken with idToken', () => {
@@ -80,7 +78,9 @@ describe('lifecylcle', () => {
             ),
           });
           wrapper = shallow(<LoginSSOCallback {...props} />);
-          storage.put(STORAGE_KEYS.NONCE, 'EY');
+          window.sessionStorage.setItem(`${STORAGE_KEYS.NONCE}_EY`, {
+            organizationId: 'o1',
+          });
           wrapper.instance().componentDidMount();
         });
         it('should redirect to /', () => {
@@ -93,7 +93,9 @@ describe('lifecylcle', () => {
             requestAccessToken: jest.fn(() => Promise.reject(new Error())),
           });
           wrapper = shallow(<LoginSSOCallback {...props} />);
-          storage.get.mockReturnValue('EY');
+          window.sessionStorage.getItem.mockReturnValue({
+            organizationId: 'o1',
+          });
           wrapper.instance().componentDidMount();
         });
         it('should set hasAuthenticationFailed to true', () => {
@@ -107,7 +109,7 @@ describe('lifecylcle', () => {
 
     describe('when nonce is wrong', () => {
       beforeEach(() => {
-        storage.get.mockReturnValue(STORAGE_KEYS.NONCE, 'BAD');
+        window.sessionStorage.getItem.mockReturnValue(null);
         wrapper.instance().componentDidMount();
       });
       it('should set hasAuthenticationFailed to true', () => {

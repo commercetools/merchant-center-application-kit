@@ -207,6 +207,7 @@ describe('interaction', () => {
     describe('when request is successful', () => {
       describe('when authProvider protocol is "oidc"', () => {
         beforeEach(() => {
+          window.sessionStorage = jest.fn();
           props = createTestProps({
             getOrganizationByName: jest.fn(() =>
               Promise.resolve({
@@ -257,13 +258,10 @@ describe('interaction', () => {
             expect.stringContaining('client_id=123')
           );
         });
-        it('should build authorize URL with redirect_uri param', () => {
-          expect(props.redirectTo).toHaveBeenCalledWith(
-            expect.stringContaining(
-              `redirect_uri=${encodeURIComponent(
-                'http://mc.ct.com/login/sso/callback?organizationId=o1'
-              )}`
-            )
+        it('should save state in nonce', () => {
+          expect(window.sessionStorage.setItem).toHaveBeenCalledWith(
+            expect.stringContaining('nonce_foo-uuid'),
+            { organizationId: 'o1' }
           );
         });
         it('should build authorize URL with nonce param', () => {
