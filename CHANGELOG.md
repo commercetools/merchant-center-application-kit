@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.3...v2.0.4) (2018-11-14)
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+  - [#98](https://github.com/commercetools/merchant-center-application-kit/pull/98) refactor(login-sso): avoid query params in authorize url, use session storage and state nonce ([@emmenko](https://github.com/emmenko))
+
 ## [2.0.3](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.2...v2.0.3) (2018-11-13)
 
 #### 🐛 Type: Bug
