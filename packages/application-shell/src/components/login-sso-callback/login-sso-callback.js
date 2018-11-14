@@ -10,6 +10,22 @@ import { STORAGE_KEYS } from '../../constants';
 import ApplicationLoader from '../application-loader';
 import FailedAuthentication from '../failed-authentication';
 
+const loadSessionState = key => {
+  const sessionState = window.sessionStorage.getItem(key);
+  if (sessionState) {
+    try {
+      return JSON.parse(sessionState);
+    } catch (error) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn(
+          `Cannot parse session state for "${key}".\n${sessionState}`
+        );
+      }
+    }
+  }
+  return null;
+};
+
 export class LoginSSOCallback extends React.PureComponent {
   static displayName = 'LoginSSOCallback';
   static propTypes = {
@@ -29,7 +45,7 @@ export class LoginSSOCallback extends React.PureComponent {
     const idToken = fragments.id_token;
     const decodedIdToken = jwtDecode(idToken);
     const nonceKey = `${STORAGE_KEYS.NONCE}_${decodedIdToken.nonce}`;
-    const sessionState = window.sessionStorage.getItem(nonceKey);
+    const sessionState = loadSessionState(nonceKey);
     // Clear the nonce, we don't need it anymore
     window.sessionStorage.removeItem(nonceKey);
 

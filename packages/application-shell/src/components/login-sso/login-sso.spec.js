@@ -261,7 +261,7 @@ describe('interaction', () => {
         it('should save state in nonce', () => {
           expect(window.sessionStorage.setItem).toHaveBeenCalledWith(
             expect.stringContaining('nonce_foo-uuid'),
-            { organizationId: 'o1' }
+            JSON.stringify({ organizationId: 'o1' })
           );
         });
         it('should build authorize URL with nonce param', () => {

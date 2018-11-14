@@ -57,7 +57,9 @@ describe('lifecylcle', () => {
 
     describe('when nonce is correct', () => {
       beforeEach(() => {
-        window.sessionStorage.getItem.mockReturnValue({ organizationId: 'o1' });
+        window.sessionStorage.getItem.mockReturnValue(
+          JSON.stringify({ organizationId: 'o1' })
+        );
         wrapper.instance().componentDidMount();
       });
       it('should call requestAccessToken with idToken', () => {
@@ -78,9 +80,12 @@ describe('lifecylcle', () => {
             ),
           });
           wrapper = shallow(<LoginSSOCallback {...props} />);
-          window.sessionStorage.setItem(`${STORAGE_KEYS.NONCE}_EY`, {
-            organizationId: 'o1',
-          });
+          window.sessionStorage.setItem(
+            `${STORAGE_KEYS.NONCE}_EY`,
+            JSON.stringify({
+              organizationId: 'o1',
+            })
+          );
           wrapper.instance().componentDidMount();
         });
         it('should redirect to /', () => {
@@ -93,9 +98,11 @@ describe('lifecylcle', () => {
             requestAccessToken: jest.fn(() => Promise.reject(new Error())),
           });
           wrapper = shallow(<LoginSSOCallback {...props} />);
-          window.sessionStorage.getItem.mockReturnValue({
-            organizationId: 'o1',
-          });
+          window.sessionStorage.getItem.mockReturnValue(
+            JSON.stringify({
+              organizationId: 'o1',
+            })
+          );
           wrapper.instance().componentDidMount();
         });
         it('should set hasAuthenticationFailed to true', () => {
