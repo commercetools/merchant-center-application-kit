@@ -1,3 +1,10 @@
+## [2.0.5](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.4...v2.0.5) (2018-11-14)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#101](https://github.com/commercetools/merchant-center-application-kit/pull/101) fix(login-sso): objects saved in storage need to be serialized/deserialized ([@emmenko](https://github.com/emmenko))
+
 ## [2.0.4](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.3...v2.0.4) (2018-11-14)
 
 #### ⛑ Type: Refactoring
