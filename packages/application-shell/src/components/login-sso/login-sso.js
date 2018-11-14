@@ -39,7 +39,10 @@ function generateAndCacheNonceWithState(state) {
   // the id_token and, once validated, we can retrieve and use
   // the state object.
   // https://auth0.com/docs/protocols/oauth2/oauth-state#how-to-use-the-parameter-to-restore-application-state
-  window.sessionStorage.setItem(`${STORAGE_KEYS.NONCE}_${nonce}`, state);
+  window.sessionStorage.setItem(
+    `${STORAGE_KEYS.NONCE}_${nonce}`,
+    JSON.stringify(state)
+  );
   return nonce;
 }
 
