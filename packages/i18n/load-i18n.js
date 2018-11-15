@@ -47,6 +47,6 @@ export default function loadI18n(lang) {
 
   return Promise.all(localeDataPromises).then(response => {
     addLocaleData([...response[0].default]);
-    return getLocalizedStringsChunkImport(lang);
+    return getLocalizedStringsChunkImport(lang).then(result => result.default);
   });
 }
