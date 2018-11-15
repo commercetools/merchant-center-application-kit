@@ -1,11 +1,10 @@
 import { oneLineTrim } from 'common-tags';
+import {
+  hasPermission,
+  hasSomePermissions,
+  permissions,
+} from '@commercetools-frontend/permissions';
 import messages from './messages';
-
-const hasPermission = (permission, allPermissions) =>
-  // canManageProject makes the user an admin (thereby giving every permission)
-  allPermissions.canManageProject ||
-  allPermissions[`canView${permission}`] ||
-  allPermissions[`canManage${permission}`];
 
 export default ({
   project,
@@ -16,14 +15,26 @@ export default ({
   changeProjectDataLocale,
 }) =>
   [
-    project && {
-      id: 'go/dashboard',
-      text: intl.formatMessage(messages.openDashboard),
-      keywords: ['Go to Dashboard'],
-      action: { type: 'go', to: `/${project.key}/dashboard` },
-    },
     project &&
-      hasPermission('Products', project.permissions) && {
+      hasSomePermissions(
+        [
+          permissions.ViewProducts,
+          permissions.ManageProducts,
+          permissions.ViewOrders,
+          permissions.ManageOrders,
+        ],
+        project.permissions
+      ) && {
+        id: 'go/dashboard',
+        text: intl.formatMessage(messages.openDashboard),
+        keywords: ['Go to Dashboard'],
+        action: { type: 'go', to: `/${project.key}/dashboard` },
+      },
+    project &&
+      hasSomePermissions(
+        [permissions.ViewProducts, permissions.ManageProducts],
+        project.permissions
+      ) && {
         id: 'go/products',
         text: intl.formatMessage(messages.openProducts),
         keywords: ['Go to Products'],
@@ -44,38 +55,48 @@ export default ({
             text: intl.formatMessage(messages.openPimSearch),
             action: { type: 'go', to: `/${project.key}/products/pim-search` },
           },
-          {
+          hasPermission(permissions.ManageProducts, project.permissions) && {
             id: 'go/products/add',
             text: intl.formatMessage(messages.openAddProducts),
             action: { type: 'go', to: `/${project.key}/products/new` },
           },
         ].filter(Boolean),
       },
-    project && {
-      id: 'go/categories',
-      text: intl.formatMessage(messages.openCategories),
-      keywords: ['Go to Categories'],
-      action: { type: 'go', to: `/${project.key}/categories` },
-      subCommands: [
-        {
-          id: 'go/categories/list',
-          text: intl.formatMessage(messages.openCategoriesList),
-          action: { type: 'go', to: `/${project.key}/categories?mode=list` },
-        },
-        {
-          id: 'go/categories/search',
-          text: intl.formatMessage(messages.openCategoriesSearch),
-          action: { type: 'go', to: `/${project.key}/categories?mode=search` },
-        },
-        {
-          id: 'go/categories/add',
-          text: intl.formatMessage(messages.openAddCategory),
-          action: { type: 'go', to: `/${project.key}/categories/new` },
-        },
-      ],
-    },
     project &&
-      hasPermission('Customers', project.permissions) && {
+      hasSomePermissions(
+        [permissions.ViewProducts, permissions.ManageProducts],
+        project.permissions
+      ) && {
+        id: 'go/categories',
+        text: intl.formatMessage(messages.openCategories),
+        keywords: ['Go to Categories'],
+        action: { type: 'go', to: `/${project.key}/categories` },
+        subCommands: [
+          {
+            id: 'go/categories/list',
+            text: intl.formatMessage(messages.openCategoriesList),
+            action: { type: 'go', to: `/${project.key}/categories?mode=list` },
+          },
+          {
+            id: 'go/categories/search',
+            text: intl.formatMessage(messages.openCategoriesSearch),
+            action: {
+              type: 'go',
+              to: `/${project.key}/categories?mode=search`,
+            },
+          },
+          hasPermission(permissions.ManageProducts, project.permissions) && {
+            id: 'go/categories/add',
+            text: intl.formatMessage(messages.openAddCategory),
+            action: { type: 'go', to: `/${project.key}/categories/new` },
+          },
+        ],
+      },
+    project &&
+      hasSomePermissions(
+        [permissions.ViewCustomers, permissions.ManageCustomers],
+        project.permissions
+      ) && {
         id: 'go/customers',
         text: intl.formatMessage(messages.openCustomers),
         keywords: ['Go to Customers'],
@@ -86,7 +107,7 @@ export default ({
             text: intl.formatMessage(messages.openCustomersList),
             action: { type: 'go', to: `/${project.key}/customers` },
           },
-          {
+          hasPermission(permissions.ManageCustomers, project.permissions) && {
             id: 'go/customers/new',
             text: intl.formatMessage(messages.openAddCustomer),
             action: { type: 'go', to: `/${project.key}/customers/new` },
@@ -99,7 +120,7 @@ export default ({
               to: `/${project.key}/customers/customer-groups`,
             },
           },
-          {
+          hasPermission(permissions.ManageCustomers, project.permissions) && {
             id: 'go/customers/customer-groups/add',
             text: intl.formatMessage(messages.openAddCustomerGroup),
             action: {
@@ -110,7 +131,10 @@ export default ({
         ],
       },
     project &&
-      hasPermission('Orders', project.permissions) && {
+      hasSomePermissions(
+        [permissions.ViewOrders, permissions.ManageOrders],
+        project.permissions
+      ) && {
         id: 'go/orders',
         text: intl.formatMessage(messages.openOrders),
         keywords: ['Go to Orders'],
@@ -121,128 +145,176 @@ export default ({
             text: intl.formatMessage(messages.openOrdersList),
             action: { type: 'go', to: `/${project.key}/orders` },
           },
-          {
+          hasPermission(permissions.ManageOrders, project.permissions) && {
             id: 'go/orders/add',
             text: intl.formatMessage(messages.openAddOrder),
             action: { type: 'go', to: `/${project.key}/orders/new` },
           },
         ],
       },
-    project && {
-      id: 'go/discounts',
-      text: intl.formatMessage(messages.openDiscounts),
-      keywords: ['Go to Discounts'],
-      action: { type: 'go', to: `/${project.key}/discounts` },
-      subCommands: [
-        {
-          id: 'go/discounts/products/list',
-          text: intl.formatMessage(messages.openProductDiscountsList),
-          action: { type: 'go', to: `/${project.key}/discounts/products` },
-        },
-        {
-          id: 'go/discounts/carts/list',
-          text: intl.formatMessage(messages.openCartDiscountsList),
-          action: { type: 'go', to: `/${project.key}/discounts/carts` },
-        },
-        {
-          id: 'go/discounts/codes/list',
-          text: intl.formatMessage(messages.openDiscountCodesList),
-          action: { type: 'go', to: `/${project.key}/discounts/codes` },
-        },
-        {
-          id: 'go/discounts/add',
-          text: intl.formatMessage(messages.openAddDiscount),
-          action: { type: 'go', to: `/${project.key}/discounts/new` },
-          subCommands: [
-            {
-              id: 'go/discounts/product/add',
-              text: intl.formatMessage(messages.openAddProductDiscount),
-              action: {
-                type: 'go',
-                to: `/${project.key}/discounts/products/new`,
-              },
-            },
-            {
-              id: 'go/discounts/cart/add',
-              text: intl.formatMessage(messages.openAddCartDiscount),
-              action: { type: 'go', to: `/${project.key}/discounts/carts/new` },
-            },
-            {
-              id: 'go/discounts/code/add',
-              text: intl.formatMessage(messages.openAddCartDiscount),
-              action: { type: 'go', to: `/${project.key}/discounts/codes/new` },
-            },
-          ],
-        },
-      ],
-    },
-    project && {
-      id: 'go/settings',
-      text: intl.formatMessage(messages.openSettings),
-      keywords: ['Go to Settings'],
-      action: {
-        type: 'go',
-        to: `/${project.key}/settings/project/international`,
-      },
-      subCommands: [
-        hasPermission('ProjectSettings', project.permissions) && {
-          id: 'go/settings/project',
-          text: intl.formatMessage(messages.openProjectSettings),
-          action: { type: 'go', to: `/${project.key}/settings/project` },
-          subCommands: [
-            {
-              id: 'go/settings/project/international',
-              text: intl.formatMessage(
-                messages.openProjectSettingsInternationalTab
-              ),
-              action: {
-                type: 'go',
-                to: `/${project.key}/settings/project/international`,
-              },
-            },
-            {
-              id: 'go/settings/project/taxes',
-              text: intl.formatMessage(messages.openProjectSettingsTaxesTab),
-              action: {
-                type: 'go',
-                to: `/${project.key}/settings/project/taxes`,
-              },
-            },
-            {
-              id: 'go/settings/project/shipping-methods',
-              text: intl.formatMessage(
-                messages.openProjectSettingsShippingMethodsTab
-              ),
-              action: {
-                type: 'go',
-                to: `/${project.key}/settings/project/shipping-methods`,
-              },
-            },
-            {
-              id: 'go/settings/project/channels',
-              text: intl.formatMessage(messages.openProjectSettingsChannelsTab),
-              action: {
-                type: 'go',
-                to: `/${project.key}/settings/project/channels`,
-              },
-            },
-          ],
-        },
-        {
-          id: 'go/settings/product-types',
-          text: intl.formatMessage(messages.openProductTypesSettings),
-          action: { type: 'go', to: `/${project.key}/settings/product-types` },
-        },
-        {
-          id: 'go/settings/developer',
-          text: intl.formatMessage(messages.openDeveloperSettings),
-          action: {
-            type: 'go',
-            to: `/${project.key}/settings/developer/api-clients`,
+    project &&
+      hasSomePermissions(
+        [
+          permissions.ViewProducts,
+          permissions.ManageProducts,
+          permissions.ViewOrders,
+          permissions.ManageOrders,
+        ],
+        project.permissions
+      ) && {
+        id: 'go/discounts',
+        text: intl.formatMessage(messages.openDiscounts),
+        keywords: ['Go to Discounts'],
+        action: { type: 'go', to: `/${project.key}/discounts` },
+        subCommands: [
+          hasSomePermissions(
+            [permissions.ViewProducts, permissions.ManageProducts],
+            project.permissions
+          ) && {
+            id: 'go/discounts/products/list',
+            text: intl.formatMessage(messages.openProductDiscountsList),
+            action: { type: 'go', to: `/${project.key}/discounts/products` },
           },
+          hasSomePermissions(
+            [permissions.ViewOrders, permissions.ManageOrders],
+            project.permissions
+          ) && {
+            id: 'go/discounts/carts/list',
+            text: intl.formatMessage(messages.openCartDiscountsList),
+            action: { type: 'go', to: `/${project.key}/discounts/carts` },
+          },
+          hasSomePermissions(
+            [permissions.ViewOrders, permissions.ManageOrders],
+            project.permissions
+          ) && {
+            id: 'go/discounts/codes/list',
+            text: intl.formatMessage(messages.openDiscountCodesList),
+            action: { type: 'go', to: `/${project.key}/discounts/codes` },
+          },
+          hasSomePermissions(
+            [
+              permissions.ViewProducts,
+              permissions.ManageProducts,
+              permissions.ViewOrders,
+              permissions.ManageOrders,
+            ],
+            project.permissions
+          ) && {
+            id: 'go/discounts/add',
+            text: intl.formatMessage(messages.openAddDiscount),
+            action: { type: 'go', to: `/${project.key}/discounts/new` },
+            subCommands: [
+              hasPermission(
+                permissions.ManageProducts,
+                project.permissions
+              ) && {
+                id: 'go/discounts/product/add',
+                text: intl.formatMessage(messages.openAddProductDiscount),
+                action: {
+                  type: 'go',
+                  to: `/${project.key}/discounts/products/new`,
+                },
+              },
+              hasPermission(permissions.ManageOrders, project.permissions) && {
+                id: 'go/discounts/cart/add',
+                text: intl.formatMessage(messages.openAddCartDiscount),
+                action: {
+                  type: 'go',
+                  to: `/${project.key}/discounts/carts/new`,
+                },
+              },
+              hasPermission(permissions.ManageOrders, project.permissions) && {
+                id: 'go/discounts/code/add',
+                text: intl.formatMessage(messages.openAddCartDiscount),
+                action: {
+                  type: 'go',
+                  to: `/${project.key}/discounts/codes/new`,
+                },
+              },
+            ],
+          },
+        ],
+      },
+    project &&
+      hasSomePermissions(
+        [
+          permissions.ManageProject,
+          permissions.ViewProducts,
+          permissions.ManageProducts,
+        ],
+        project.permissions
+      ) && {
+        id: 'go/settings',
+        text: intl.formatMessage(messages.openSettings),
+        keywords: ['Go to Settings'],
+        action: {
+          type: 'go',
+          to: `/${project.key}/settings/project/international`,
         },
-      ].filter(Boolean),
-    },
+        subCommands: [
+          hasPermission(permissions.ManageProject, project.permissions) && {
+            id: 'go/settings/project',
+            text: intl.formatMessage(messages.openProjectSettings),
+            action: { type: 'go', to: `/${project.key}/settings/project` },
+            subCommands: [
+              {
+                id: 'go/settings/project/international',
+                text: intl.formatMessage(
+                  messages.openProjectSettingsInternationalTab
+                ),
+                action: {
+                  type: 'go',
+                  to: `/${project.key}/settings/project/international`,
+                },
+              },
+              {
+                id: 'go/settings/project/taxes',
+                text: intl.formatMessage(messages.openProjectSettingsTaxesTab),
+                action: {
+                  type: 'go',
+                  to: `/${project.key}/settings/project/taxes`,
+                },
+              },
+              {
+                id: 'go/settings/project/shipping-methods',
+                text: intl.formatMessage(
+                  messages.openProjectSettingsShippingMethodsTab
+                ),
+                action: {
+                  type: 'go',
+                  to: `/${project.key}/settings/project/shipping-methods`,
+                },
+              },
+              {
+                id: 'go/settings/project/channels',
+                text: intl.formatMessage(
+                  messages.openProjectSettingsChannelsTab
+                ),
+                action: {
+                  type: 'go',
+                  to: `/${project.key}/settings/project/channels`,
+                },
+              },
+            ],
+          },
+          {
+            id: 'go/settings/product-types',
+            text: intl.formatMessage(messages.openProductTypesSettings),
+            action: {
+              type: 'go',
+              to: `/${project.key}/settings/product-types`,
+            },
+          },
+          hasPermission(permissions.ManageProject, project.permissions) && {
+            id: 'go/settings/developer',
+            text: intl.formatMessage(messages.openDeveloperSettings),
+            action: {
+              type: 'go',
+              to: `/${project.key}/settings/developer/api-clients`,
+            },
+          },
+        ].filter(Boolean),
+      },
     project &&
       project.languages.length > 1 && {
         id: 'action/set-resource-language',

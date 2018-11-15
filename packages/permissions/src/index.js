@@ -8,4 +8,9 @@ export {
   default as Authorized,
   injectAuthorized,
 } from './components/authorized';
+export {
+  hasPermission,
+  hasEveryPermissions,
+  hasSomePermissions,
+} from './utils/has-permissions';
 export { permissions } from './constants';
