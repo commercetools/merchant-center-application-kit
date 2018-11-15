@@ -1,5 +1,6 @@
-export { default as en } from './data/en.json';
-export { default as de } from './data/de.json';
-export { default as es } from './data/es.json';
+import en from './data/en.json';
+import de from './data/de.json';
+import es from './data/es.json';
 
+export { en, de, es };
 export { default as AsyncLocaleData } from './async-locale-data';
