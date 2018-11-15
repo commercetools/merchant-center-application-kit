@@ -1,3 +1,10 @@
+## [2.0.6](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.5...v2.0.6) (2018-11-15)
+
+#### 🐛 Type: Bug
+
+- `i18n`
+  - [#103](https://github.com/commercetools/merchant-center-application-kit/pull/103) fix(i18n): exports to not include default key ([@emmenko](https://github.com/emmenko))
+
 ## [2.0.5](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.4...v2.0.5) (2018-11-14)
 
 #### 🐛 Type: Bug
