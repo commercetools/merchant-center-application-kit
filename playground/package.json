@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-starter-app",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "A starter example for building a Merchant Center application",
   "private": true,
   "scripts": {
@@ -12,11 +12,11 @@
   },
   "dependencies": {
     "@commercetools-frontend/actions-global": "2.0.0",
-    "@commercetools-frontend/application-shell": "2.0.6",
+    "@commercetools-frontend/application-shell": "2.0.7",
     "@commercetools-frontend/application-shell-connectors": "2.0.0",
     "@commercetools-frontend/constants": "2.0.0",
     "@commercetools-frontend/i18n": "2.0.6",
-    "@commercetools-frontend/l10n": "2.0.0",
+    "@commercetools-frontend/l10n": "2.0.7",
     "@commercetools-frontend/mc-http-server": "2.0.0",
     "@commercetools-frontend/permissions": "2.0.0",
     "@commercetools-frontend/sdk": "2.0.0",
