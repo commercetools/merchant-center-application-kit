@@ -211,10 +211,9 @@ describe('interaction', () => {
           props = createTestProps({
             getOrganizationByName: jest.fn(() =>
               Promise.resolve({
-                protocol: 'oidc',
+                authorizeUrl: 'https://auth0.ct.com/authorize',
                 organizationId: 'o1',
                 clientId: '123',
-                url: 'https://auth0.ct.com',
               })
             ),
           });
@@ -231,14 +230,9 @@ describe('interaction', () => {
             'commercetools'
           );
         });
-        it('should build authorize URL with mc domain', () => {
+        it('should build authorize URL', () => {
           expect(props.redirectTo).toHaveBeenCalledWith(
-            expect.stringContaining('https://auth0.ct.com')
-          );
-        });
-        it('should build authorize URL with /authorize endpoint', () => {
-          expect(props.redirectTo).toHaveBeenCalledWith(
-            expect.stringContaining('/authorize')
+            expect.stringContaining('https://auth0.ct.com/authorize')
           );
         });
         it('should build authorize URL with scope param', () => {
@@ -268,29 +262,6 @@ describe('interaction', () => {
           expect(props.redirectTo).toHaveBeenCalledWith(
             expect.stringContaining('nonce=foo-uuid')
           );
-        });
-      });
-      describe('when authProvider protocol is not "oidc"', () => {
-        beforeEach(() => {
-          props = createTestProps({
-            getOrganizationByName: jest.fn(() =>
-              Promise.resolve({
-                body: {
-                  protocol: 'something-else',
-                  organizationId: 'o1',
-                  clientId: '123',
-                  url: 'https://auth0.ct.com',
-                },
-              })
-            ),
-          });
-          wrapper = shallow(<LoginSSO {...props} />);
-          wrapper
-            .instance()
-            .handleSubmit({ organizationName: 'commercetools' }, formActions);
-        });
-        it('should not call redirectTo', () => {
-          expect(props.redirectTo).not.toHaveBeenCalled();
         });
       });
     });

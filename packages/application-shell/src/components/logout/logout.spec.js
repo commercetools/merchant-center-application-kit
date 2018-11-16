@@ -42,10 +42,8 @@ describe('componentDidMount', () => {
   it('should remove isAuthenticated from storage', () => {
     expect(storage.remove).toHaveBeenCalledWith(STORAGE_KEYS.IS_AUTHENTICATED);
   });
-  it('should remove identityProviderUrl from storage', () => {
-    expect(storage.remove).toHaveBeenCalledWith(
-      STORAGE_KEYS.IDENTITY_PROVIDER_URL
-    );
+  it('should remove loginStrategy from storage', () => {
+    expect(storage.remove).toHaveBeenCalledWith(STORAGE_KEYS.LOGIN_STRATEGY);
   });
   it('should remove projectKey from storage', () => {
     expect(storage.remove).toHaveBeenCalledWith(
@@ -93,7 +91,7 @@ describe('componentDidMount', () => {
 describe('getLoginStrategy', () => {
   describe('when IdP URL is defined', () => {
     beforeEach(() => {
-      storage.get.mockReturnValue('xxx');
+      storage.get.mockReturnValue('sso');
     });
     it('should return SSO as the login strategy', () => {
       expect(getLoginStrategy()).toBe(LOGIN_STRATEGY_SSO);

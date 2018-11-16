@@ -75,30 +75,27 @@ export class LoginSSO extends React.PureComponent {
     this.props.getOrganizationByName(values.organizationName).then(
       authProvider => {
         actions.setSubmitting(false);
-        // TODO: handle cases with another protocol?
-        if (authProvider.protocol === 'oidc') {
-          // Quick note: we assume that the authorization endpoint is /authorize
-          // This endpoint name is not mandatory. However, it is used as a common
-          // practice throughout the OIDC specification.
-          // We might have to let customers set a custom endpoint in the future.
-          const params = querystring.stringify({
-            scope: 'openid email profile',
-            response_type: 'id_token',
-            client_id: authProvider.clientId,
-            redirect_uri: trimLeadingAndTrailingSlashes(
-              // Avoid providing query parameters as some IdP (e.g. Azure) apparently
-              // will consider the full URL to match as part of the callback whitelist.
-              // Instead, we store additional information within the `nonce` value
-              // which is stored in sessionStorage. See `generateAndCacheNonceWithState`.
-              joinPaths(this.props.originUrl, this.props.match.url, `callback`)
-            ),
-            nonce: generateAndCacheNonceWithState({
-              organizationId: authProvider.organizationId,
-            }),
-          });
-          const authUrl = authProvider.url.replace(/\/$/, ''); // trim trailing slash
-          this.props.redirectTo(`${authUrl}/authorize?${params}`);
-        }
+
+        // Quick note: we assume that the authorization endpoint is /authorize
+        // This endpoint name is not mandatory. However, it is used as a common
+        // practice throughout the OIDC specification.
+        // We might have to let customers set a custom endpoint in the future.
+        const params = querystring.stringify({
+          scope: 'openid email profile',
+          response_type: 'id_token',
+          client_id: authProvider.clientId,
+          redirect_uri: trimLeadingAndTrailingSlashes(
+            // Avoid providing query parameters as some IdP (e.g. Azure) apparently
+            // will consider the full URL to match as part of the callback whitelist.
+            // Instead, we store additional information within the `nonce` value
+            // which is stored in sessionStorage. See `generateAndCacheNonceWithState`.
+            joinPaths(this.props.originUrl, this.props.match.url, `callback`)
+          ),
+          nonce: generateAndCacheNonceWithState({
+            organizationId: authProvider.organizationId,
+          }),
+        });
+        this.props.redirectTo(`${authProvider.authorizeUrl}?${params}`);
       },
       error => {
         actions.setSubmitting(false);
