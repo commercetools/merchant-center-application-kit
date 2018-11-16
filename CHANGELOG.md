@@ -1,3 +1,14 @@
+## [2.0.7](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.6...v2.0.7) (2018-11-16)
+
+#### 🐛 Type: Bug
+
+- `l10n`
+  - [#105](https://github.com/commercetools/merchant-center-application-kit/pull/105) Fix selection of language chunk ([@tdeekens](https://github.com/tdeekens))
+
+#### Committers: 1
+
+- suǝʞǝǝpʇ ([@tdeekens](https://github.com/tdeekens))
+
 ## [2.0.6](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.5...v2.0.6) (2018-11-15)
 
 #### 🐛 Type: Bug
