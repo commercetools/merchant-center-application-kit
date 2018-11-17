@@ -1,3 +1,19 @@
+## [2.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.7...v2.1.0) (2018-11-17)
+
+#### 💅 Type: Enhancement
+
+- `application-shell-connectors`, `application-shell`
+  - [#107](https://github.com/commercetools/merchant-center-application-kit/pull/107) feat(application-shell-connectors): expose ownerId ([@montezume](https://github.com/montezume))
+
+The `project` object in the `<ApplicationContext>` now contains the `ownerId`, which is the `id` of the **organization** where the project belongs to.
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+  - [#104](https://github.com/commercetools/merchant-center-application-kit/pull/104) refactor(login-sso): use new /tokens/sso endpoint ([@emmenko](https://github.com/emmenko))
+
+This is just an internal refactoring of the login pages, which are part of the `<ApplicationShell>`.
+
 ## [2.0.7](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.6...v2.0.7) (2018-11-16)
 
 #### 🐛 Type: Bug
