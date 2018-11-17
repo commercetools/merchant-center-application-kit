@@ -38,6 +38,7 @@ const mapProjectToApplicationContextProject = project => {
     countries: project.countries,
     currencies: project.currencies,
     languages: project.languages,
+    ownerId: project.owner.id,
   };
 };
 
@@ -101,6 +102,9 @@ ApplicationContextProvider.propTypes = {
     countries: PropTypes.arrayOf(PropTypes.string).isRequired,
     currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
     languages: PropTypes.arrayOf(PropTypes.string).isRequired,
+    owner: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
     permissions: PropTypes.object.isRequired,
     // ...plus other fields that we don't want to expose
   }),

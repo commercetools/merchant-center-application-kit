@@ -28,6 +28,9 @@ const createTestProps = custom => ({
     key: 'test-with-big-data-44',
     languages: ['en', 'de'],
     permissions: managePermissions,
+    owner: {
+      id: 'foo-id',
+    },
   },
   history: { push: jest.fn() },
   // client prop is provided by withApollo
@@ -37,6 +40,9 @@ const createTestProps = custom => ({
         {
           key: 'test-with-big-data-44',
           name: 'Test with big data',
+          owner: {
+            id: 'test-with-foo-id',
+          },
         },
       ],
     },
@@ -859,6 +865,9 @@ describe('QuickAccess', () => {
               key: 'test-with-big-data-44',
               languages: ['en'],
               permissions: managePermissions,
+              owner: {
+                id: 'test-big-data-1',
+              },
             },
             user: {
               projects: {
