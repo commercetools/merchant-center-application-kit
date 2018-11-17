@@ -357,6 +357,9 @@ describe('<RestrictedApplication>', () => {
             countries: ['us'],
             currencies: ['USD'],
             languages: ['en'],
+            owner: {
+              id: 'foo-id',
+            },
             permissions: { canManageProject: true },
           };
           wrapperAside = wrapper
