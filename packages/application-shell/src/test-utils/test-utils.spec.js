@@ -140,6 +140,9 @@ describe('ApplicationContext', () => {
         languages: ['de', 'en-GB'],
         name: 'Test with big data',
         version: 43,
+        owner: {
+          id: 'project-id-1',
+        },
       });
     });
 
@@ -157,6 +160,9 @@ describe('ApplicationContext', () => {
         languages: ['de', 'en-GB'],
         name: 'Geek',
         version: 43,
+        owner: {
+          id: 'project-id-1',
+        },
       });
     });
   });

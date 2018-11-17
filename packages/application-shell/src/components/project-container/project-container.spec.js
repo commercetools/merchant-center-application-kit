@@ -31,6 +31,9 @@ const createTestProjectProps = custom => ({
   countries: ['us'],
   currencies: ['USD'],
   languages: ['en'],
+  owner: {
+    id: 'foo-1',
+  },
   permissions: { canManageProject: true },
   ...custom,
 });

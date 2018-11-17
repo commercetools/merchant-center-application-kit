@@ -74,6 +74,7 @@ describe('rendering', () => {
             countries: expect.any(Array),
             currencies: expect.any(Array),
             languages: expect.any(Array),
+            ownerId: expect.any(String),
           },
         })
       );

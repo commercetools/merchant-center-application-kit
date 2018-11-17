@@ -48,6 +48,9 @@ const defaultProject = {
   countries: ['de', 'en'],
   currencies: ['EUR', 'GBP'],
   languages: ['de', 'en-GB'],
+  owner: {
+    id: 'project-id-1',
+  },
 };
 
 const defaultPermissions = { canManageProject: true };
