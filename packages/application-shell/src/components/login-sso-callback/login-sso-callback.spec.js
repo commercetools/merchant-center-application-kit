@@ -69,7 +69,7 @@ describe('lifecylcle', () => {
       });
       it('should call requestAccessToken with organization id', () => {
         expect(props.requestAccessToken).toHaveBeenCalledWith(
-          expect.objectContaining({ organization: 'o1' })
+          expect.objectContaining({ organizationId: 'o1' })
         );
       });
       describe('when request is successful', () => {

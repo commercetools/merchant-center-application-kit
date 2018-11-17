@@ -86,7 +86,7 @@ export class Login extends React.PureComponent {
         storage.put(STORAGE_KEYS.IS_AUTHENTICATED, true);
         // Ensure to remove the IdP Url value from local storage, as in this
         // case login is not done through SSO.
-        storage.remove(STORAGE_KEYS.IDENTITY_PROVIDER_URL);
+        storage.remove(STORAGE_KEYS.LOGIN_STRATEGY);
         // Redirect to a `redirectTo` url, if present, otherwise to defaul route
         const nextTargetUrl = this.props.location.query.redirectTo;
         // We force a browser redirect, to let the proxy server handle

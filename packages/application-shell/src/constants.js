@@ -11,7 +11,7 @@ export const STORAGE_KEYS = {
   ACTIVE_PROJECT_KEY: 'activeProjectKey',
   SELECTED_DATA_LOCALE: 'selectedDataLocale',
   IS_FORCED_MENU_OPEN: 'isForcedMenuOpen',
-  IDENTITY_PROVIDER_URL: 'identityProviderUrl',
+  LOGIN_STRATEGY: 'loginStrategy',
 };
 export const SUSPENSION_REASONS = {
   TEMPORARY_MAINTENANCE: 'TemporaryMaintenance',

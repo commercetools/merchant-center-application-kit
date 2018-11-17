@@ -11,8 +11,10 @@ import {
 import GtmUserLogoutTracker from '../gtm-user-logout-tracker';
 
 export const getLoginStrategy = () => {
-  const idpUrl = storage.get(STORAGE_KEYS.IDENTITY_PROVIDER_URL);
-  return idpUrl ? LOGIN_STRATEGY_SSO : LOGIN_STRATEGY_DEFAULT;
+  const loginStrategy = storage.get(STORAGE_KEYS.LOGIN_STRATEGY);
+  return loginStrategy === LOGIN_STRATEGY_SSO
+    ? LOGIN_STRATEGY_SSO
+    : LOGIN_STRATEGY_DEFAULT;
 };
 
 export class Logout extends React.PureComponent {
@@ -45,7 +47,7 @@ export class Logout extends React.PureComponent {
 
     // The user is no longer authenticated.
     storage.remove(STORAGE_KEYS.IS_AUTHENTICATED);
-    storage.remove(STORAGE_KEYS.IDENTITY_PROVIDER_URL);
+    storage.remove(STORAGE_KEYS.LOGIN_STRATEGY);
     // NOTE: we need to ensure the cached projectKey is removed, because
     // the user can log in with another account and most likely he won't
     // access to the cached project.

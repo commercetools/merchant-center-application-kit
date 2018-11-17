@@ -44,6 +44,9 @@ export class LoginSSOCallback extends React.PureComponent {
     const fragments = qs.parse(this.props.location.hash.substring(1));
     const idToken = fragments.id_token;
     const decodedIdToken = jwtDecode(idToken);
+    // Validate the nonce.
+    // By trying to load the related session state, we can implicitly check if
+    // the nonce is correct or not.
     const nonceKey = `${STORAGE_KEYS.NONCE}_${decodedIdToken.nonce}`;
     const sessionState = loadSessionState(nonceKey);
     // Clear the nonce, we don't need it anymore
@@ -55,16 +58,13 @@ export class LoginSSOCallback extends React.PureComponent {
       this.props
         .requestAccessToken({
           idToken,
-          organization: sessionState.organizationId,
+          organizationId: sessionState.organizationId,
         })
         .then(payload => {
           // Set a flag to indicate that the user has been authenticated
           storage.put(STORAGE_KEYS.IS_AUTHENTICATED, true);
           // Store the IdP Url, useful for redirecting logic on logout.
-          storage.put(
-            STORAGE_KEYS.IDENTITY_PROVIDER_URL,
-            payload.identityProviderUrl
-          );
+          storage.put(STORAGE_KEYS.LOGIN_STRATEGY, payload.loginStrategy);
 
           this.props.redirectTo('/');
         })
@@ -89,7 +89,7 @@ export class LoginSSOCallback extends React.PureComponent {
 
 const mapDispatchToProps = dispatch => ({
   requestAccessToken: payload =>
-    dispatch(sdkActions.post({ uri: `/tokens`, payload })),
+    dispatch(sdkActions.post({ uri: `/tokens/sso`, payload })),
 });
 
 export default compose(
