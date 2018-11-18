@@ -1,3 +1,14 @@
+## [2.1.1](https://github.com/commercetools/merchant-center-application-kit/compare/v2.1.0...v2.1.1) (2018-11-18)
+
+#### 🔮 Type: Chore
+
+- `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `eslint-config-mc-app`, `jest-preset-mc-app`, `l10n`, `mc-http-server`, `mc-scripts`, `permissions`, `react-notifications`, `sdk`, `sentry`
+  - [#109](https://github.com/commercetools/merchant-center-application-kit/pull/109) Update dependencies (incl. and importantly flopflip) ([@tdeekens](https://github.com/tdeekens))
+
+#### Committers: 1
+
+- suǝʞǝǝpʇ ([@tdeekens](https://github.com/tdeekens))
+
 ## [2.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.7...v2.1.0) (2018-11-17)
 
 #### 💅 Type: Enhancement
