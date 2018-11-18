@@ -1054,35 +1054,38 @@
     invariant "2.2.4"
     mitt "1.1.3"
 
-"@flopflip/react-broadcast@7.1.2":
-  version "7.1.2"
-  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-7.1.2.tgz#87104fe9eda5b31d1c63e6407ab4273e215fe790"
-  integrity sha512-NgNWhefiLk9mZx8zeJ/B4rTp+QCkMkwbEHSH1alSZebfaqtJr4hB2L10uyPztl8G+2RC6HiSKS0kHJVfghrEHg==
+"@flopflip/react-broadcast@7.2.2":
+  version "7.2.2"
+  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-7.2.2.tgz#0b4c0fa99fe6ca766c010186f70009f016b6fcfe"
+  integrity sha512-m1ql2JpQZ8u7H2vK4i2YO31QPdWqhhypadqQDe3kp3+GsJIP5IKzwAqoR5XUnQ2pLkZZvluJyfSsRw89bK6mow==
   dependencies:
-    "@flopflip/react" "^6.1.2"
-    "@flopflip/types" "^1.2.1"
+    "@flopflip/react" "^6.2.0"
+    "@flopflip/types" "^1.4.0"
     create-react-context "0.2.3"
+    lodash.flowright "3.5.0"
     lodash.memoize "4.1.2"
-    recompose "0.30.0"
 
-"@flopflip/react@^6.1.2":
-  version "6.1.4"
-  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-6.1.4.tgz#d1057b3739b457bf1feef02118975f812692ea9a"
-  integrity sha512-UIceiiKKLSGEqAx1NmPlNlwnZfaEg+jfLO3NjxdHoRjDgb7kNZSs+7HYFelhTS5UQ8iLD7YGdGplf0vvEjPnyg==
+"@flopflip/react@^6.2.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-6.2.0.tgz#2691578a8b3b54545442a9a033545fdeb04f2200"
+  integrity sha512-nSsA5byl/r3/Urq0MXTYcY57qXUy3HNTDlpgIY2dk+PoYoLl6hmSRqbVOBZhe6JG7C+E6yxVzumohCcEzK0ujw==
   dependencies:
     create-react-context "0.2.3"
     deepmerge "2.2.1"
     lodash.camelcase "4.3.0"
+    lodash.flowright "3.5.0"
     lodash.intersection "4.4.0"
     lodash.isnil "4.0.0"
     lodash.omit "4.5.0"
-    recompose "0.30.0"
-    warning "4.0.2"
+    prop-types "15.6.2"
+    react-fast-compare "2.0.4"
+    react-is "16.6.3"
+    tiny-warning "1.0.0"
 
-"@flopflip/types@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-1.2.1.tgz#3e4b980e4af4b5629bd1ab733c3197f38d13db0d"
-  integrity sha512-6dlnhflrXrZJXXy0TeQK49OvzMxgNlMQn2tYivitAS0ByG4zDnn5sjEbM8XAYenhYxW0f7uAhY/ZHUYgG8LpNw==
+"@flopflip/types@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-1.4.0.tgz#03536b70db830fef65ffd01cfcd4c3b9d56f8b9c"
+  integrity sha512-DzM4dhan7tOSezf9l2PM16Ft9GiBeHHluJvEqS0Mlsk6UqejlLU7p0QRmyRVJvIJ7I5pTOv75qvS/p1w8wvamQ==
 
 "@lerna/add@^3.4.1":
   version "3.4.1"
@@ -9059,7 +9062,7 @@ lodash.flattendeep@^4.4.0:
   resolved "https://registry.yarnpkg.com/lodash.flattendeep/-/lodash.flattendeep-4.4.0.tgz#fb030917f86a3134e5bc9bec0d69e0013ddfedb2"
   integrity sha1-+wMJF/hqMTTlvJvsDWngAT3f7bI=
 
-lodash.flowright@^3.5.0:
+lodash.flowright@3.5.0, lodash.flowright@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/lodash.flowright/-/lodash.flowright-3.5.0.tgz#2b5fff399716d7e7dc5724fe9349f67065184d67"
   integrity sha1-K1//OZcW1+fcVyT+k0n2cGUYTWc=
@@ -12450,6 +12453,11 @@ react-error-overlay@^5.1.0:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.0.tgz#c516995a5652e7bfbed8b497910d5280df74a7e8"
   integrity sha512-akMy/BQT5m1J3iJIHkSb4qycq2wzllWsmmolaaFVnb+LPV9cIJ/nTud40ZsiiT0H3P+/wXIdbjx2fzF61OaeOQ==
 
+react-fast-compare@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
+  integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+
 react-fast-compare@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-1.0.0.tgz#813a039155e49b43ceffe99528fe5e9d97a6c938"
@@ -12472,6 +12480,11 @@ react-intl@2.7.2:
     intl-messageformat "^2.1.0"
     intl-relativeformat "^2.1.0"
     invariant "^2.1.1"
+
+react-is@16.6.3:
+  version "16.6.3"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.6.3.tgz#d2d7462fcfcbe6ec0da56ad69047e47e56e7eac0"
+  integrity sha512-u7FDWtthB4rWibG/+mFbVd5FvdI20yde86qKGx4lVUTWmPlSWQ4QxbBIrrs+HnXGbxOUlUzTAP/VDmvCwaP2yA==
 
 react-is@^16.3.1, react-is@^16.3.2, react-is@^16.5.2, react-is@^16.6.0, react-is@^16.6.1:
   version "16.6.1"
@@ -14694,6 +14707,11 @@ tiny-invariant@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.0.1.tgz#54700d039a0384ef2e83afd0e81af84c6d67b140"
   integrity sha512-avcKCNM2yJqD33H/WJLgIu3QNRXFOjARGJSdLi8IpKESCyhm67vyPWTRjnIbX2uI/pn52tqYcao333R3PBVhbQ==
+
+tiny-warning@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.0.tgz#70fba262ea3645e10506fe8673aeb133d959fc93"
+  integrity sha512-6CrF/DMLSoYakJ7f6+1bz6nHJY6Tj6sEj8/9hjTzGi94MeuAZprPE+3jykGMUgoswnmuPA9NlKlYLNJaFVYHIw==
 
 tmp@^0.0.33:
   version "0.0.33"
