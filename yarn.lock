@@ -1036,15 +1036,15 @@
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.8.2.tgz#576ff7fb1230185b619a75d258cbc98f0867a8dc"
   integrity sha512-rLu3wcBWH4P5q1CGoSSH/i9hrXs7SlbRLkoq9IGuoPYNGQvDJ3pt/wmOM+XgYjIDRMVIdkUWt0RsfzF50JfnCw==
 
-"@flopflip/launchdarkly-adapter@2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.4.1.tgz#7596cde628bbe59edf76e60f6ce15b0a51ec5e5b"
-  integrity sha512-HYELX7ALnfHgNPFka+61ZU54mdXGjzA4BCynByJSAfqMN3TjdWi1aNdI8I/ySTc+UNIUjs8A8dXkrX0IZ4uP7A==
+"@flopflip/launchdarkly-adapter@2.4.4":
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.4.4.tgz#482b2872be0d84ebc3be6b6a874dfd8def20ec1a"
+  integrity sha512-/zz7TzidzLzYyE+tbTW0nyu3xWrcu1DjarRkeALJ77Zu13X953AYYjPdvu36WmObw1EzghHYYUADViNG6n9mew==
   dependencies:
-    ldclient-js "2.6.0"
+    ldclient-js "2.7.3"
     lodash.camelcase "4.3.0"
     lodash.isequal "4.5.0"
-    warning "4.0.2"
+    tiny-warning "1.0.0"
 
 "@flopflip/memory-adapter@1.1.0":
   version "1.1.0"
@@ -8664,10 +8664,10 @@ lcid@^2.0.0:
   dependencies:
     invert-kv "^2.0.0"
 
-ldclient-js@2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/ldclient-js/-/ldclient-js-2.6.0.tgz#39875ae1b05fda2b4ffee4d53c103cabc2602bba"
-  integrity sha512-7qdoxGkdUlxxEsGv95ZPHvNzpB/3kis0k6Na/4VJOvWJAKK5gy2pqqYcX6ZO4ZC/K2w1Iiytxdq3tYVfDXifgQ==
+ldclient-js@2.7.3:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/ldclient-js/-/ldclient-js-2.7.3.tgz#1ebb80500725a3124a11dd327911cb12e669b045"
+  integrity sha512-Z2bwTFz4BOa2hlnY2vuf3c3/MAuSlUkb3ZXd+B+aYV2M1GyGbEGSHanS0OEFfKlV/w8N5PtZBU42EL5KSkFkbw==
   dependencies:
     Base64 "1.0.1"
     escape-string-regexp "1.0.5"
@@ -14694,6 +14694,11 @@ tiny-invariant@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.0.1.tgz#54700d039a0384ef2e83afd0e81af84c6d67b140"
   integrity sha512-avcKCNM2yJqD33H/WJLgIu3QNRXFOjARGJSdLi8IpKESCyhm67vyPWTRjnIbX2uI/pn52tqYcao333R3PBVhbQ==
+
+tiny-warning@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.0.tgz#70fba262ea3645e10506fe8673aeb133d959fc93"
+  integrity sha512-6CrF/DMLSoYakJ7f6+1bz6nHJY6Tj6sEj8/9hjTzGi94MeuAZprPE+3jykGMUgoswnmuPA9NlKlYLNJaFVYHIw==
 
 tmp@^0.0.33:
   version "0.0.33"
