@@ -28,8 +28,8 @@
     "express": "4.16.4",
     "morgan": "1.9.1",
     "mri": "1.1.1",
-    "node-fetch": "2.2.1",
-    "shelljs": "0.8.2"
+    "node-fetch": "2.3.0",
+    "shelljs": "0.8.3"
   },
   "engines": {
     "node": ">=8",
