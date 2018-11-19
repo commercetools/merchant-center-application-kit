@@ -83,7 +83,7 @@
     "lodash.snakecase": "4.1.1",
     "moment": "2.22.2",
     "moment-timezone": "0.5.23",
-    "perfume.js": "1.1.4",
+    "perfume.js": "1.2.1",
     "prop-types": "15.6.2",
     "query-string": "5.1.0",
     "raven-js": "3.27.0",

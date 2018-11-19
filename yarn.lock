@@ -8940,6 +8940,7 @@ listr-silent-renderer@^1.1.1:
 listr-update-renderer@^0.4.0:
   version "0.4.0"
   resolved "https://github.com/okonet/listr-update-renderer/tarball/upgrade-log-update#06073fa93166277607a7814f4e1f83960081414c"
+  integrity sha1-NE2YDaLKLosUW6MFkI8yrj9MyKc=
   dependencies:
     chalk "^1.1.3"
     cli-truncate "^0.2.1"
@@ -10940,10 +10941,10 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-perfume.js@1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/perfume.js/-/perfume.js-1.1.4.tgz#68e647af907ad26ea1c49597992a678f44665de6"
-  integrity sha512-73tMF6/PARq5jvmDiXtRwtRz5g8uxYkAjI7zlGKSXH3GhrrKj4T8fGKPvkTCcs4sLnLdFhEpofkM+xRIP968wg==
+perfume.js@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/perfume.js/-/perfume.js-1.2.1.tgz#bcfe653f0d28f5482726d39842d387e0bab075e1"
+  integrity sha512-pHWrJTBiG5n/X/CGTCWeY7ApswLGIJQNLE+ofE0OgscJpp0fklH3dpZ1d11LexNOYWeY0IGDBmL/FbqhjMTb+g==
   dependencies:
     first-input-delay "^0.1.3"
     tti-polyfill "^0.2.2"
