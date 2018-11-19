@@ -7,6 +7,10 @@ import { withApollo } from 'react-apollo';
 import { oneLineTrim } from 'common-tags';
 import debounce from 'debounce-async';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import {
+  hasSomePermissions,
+  permissions,
+} from '@commercetools-frontend/permissions';
 import Butler from './butler';
 import QuickAccessQuery from './quick-access.graphql';
 import createCommands from './create-commands';
@@ -127,6 +131,11 @@ class QuickAccess extends React.Component {
       this.query(QuickAccessQuery, {
         searchText: sanitize(searchText),
         target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+        // Pass conditional arguments to disable some of the queries
+        canViewProducts: hasSomePermissions(
+          [permissions.ViewProducts, permissions.ManageProducts],
+          this.props.project.permissions
+        ),
       }).then(data => {
         const commands = [];
 
@@ -265,7 +274,8 @@ class QuickAccess extends React.Component {
     if (typeof command.action === 'object') {
       if (command.action.type === 'go') {
         // open in new window
-        if (meta.openInNewTab) {
+        // and always open other pages in a new window
+        if (meta.openInNewTab || !command.action.to.startsWith('/')) {
           open(command.action.to, '_blank');
         } else {
           this.props.history.push(command.action.to);

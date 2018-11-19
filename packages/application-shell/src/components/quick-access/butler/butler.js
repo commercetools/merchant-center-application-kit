@@ -339,7 +339,7 @@ export default class Butler extends React.Component {
       },
       error => {
         // eslint-disable-next-line no-console
-        if (process.env.NODE_ENV === 'development') console.error(error);
+        if (process.env.NODE_ENV !== 'production') console.error(error);
         this.setNetworkError();
       }
     );

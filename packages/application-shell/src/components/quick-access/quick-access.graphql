@@ -1,5 +1,6 @@
-query QuickAccess($searchText: String!) {
-  productById: product(id: $searchText) {
+query QuickAccess($searchText: String!, $canViewProducts: Boolean!) {
+
+  productById: product(id: $searchText) @include(if: $canViewProducts) {
     key
     id
     masterData {
@@ -12,7 +13,7 @@ query QuickAccess($searchText: String!) {
     }
   }
 
-  productByKey: product(key: $searchText) {
+  productByKey: product(key: $searchText) @include(if: $canViewProducts) {
     key
     id
     masterData {
@@ -25,7 +26,7 @@ query QuickAccess($searchText: String!) {
     }
   }
 
-  productByVariantSku: product(sku: $searchText) {
+  productByVariantSku: product(sku: $searchText) @include(if: $canViewProducts) {
     id
     masterData {
       staged {
@@ -42,7 +43,7 @@ query QuickAccess($searchText: String!) {
     }
   }
 
-  productByVariantKey: product(variantKey: $searchText) {
+  productByVariantKey: product(variantKey: $searchText) @include(if: $canViewProducts) {
     id
     masterData {
       staged {
