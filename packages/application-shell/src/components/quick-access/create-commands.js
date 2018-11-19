@@ -150,7 +150,7 @@ export default ({
             text: intl.formatMessage(messages.openAddOrder),
             action: { type: 'go', to: `/${project.key}/orders/new` },
           },
-        ],
+        ].filter(Boolean),
       },
     project &&
       hasSomePermissions(
@@ -231,9 +231,9 @@ export default ({
                   to: `/${project.key}/discounts/codes/new`,
                 },
               },
-            ],
+            ].filter(Boolean),
           },
-        ],
+        ].filter(Boolean),
       },
     project &&
       hasSomePermissions(

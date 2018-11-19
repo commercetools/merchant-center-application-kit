@@ -6,10 +6,15 @@ import QuickAccess from './index';
 
 jest.mock('../../utils/gtm');
 
-const createMatchlessSearchMock = searchText => ({
+const createMatchlessSearchMock = (searchText, variables = {}) => ({
   request: {
     query: QuickAccessQuery,
-    variables: { searchText, target: 'ctp' },
+    variables: {
+      searchText,
+      target: 'ctp',
+      canViewProducts: true,
+      ...variables,
+    },
   },
   result: {
     data: {
@@ -157,37 +162,60 @@ describe('QuickAccess', () => {
     expect(getByText('Open Dashboard')).toBeInTheDocument();
   });
 
-  it('should show error message when searching while offline', async () => {
-    const mocks = [
-      {
-        request: {
-          query: QuickAccessQuery,
-          variables: { searchText: 'Open dshbrd-offline', target: 'ctp' },
+  describe('when there is an error', () => {
+    let error;
+    beforeEach(() => {
+      // eslint-disable-next-line no-console
+      error = console.error;
+      // eslint-disable-next-line no-console
+      console.error = jest.fn();
+    });
+    afterEach(() => {
+      // eslint-disable-next-line no-console
+      console.error = error;
+      error = null;
+    });
+    it('should show error message when searching while offline', async () => {
+      const mocks = [
+        {
+          request: {
+            query: QuickAccessQuery,
+            variables: {
+              searchText: 'Open dshbrd-offline',
+              canViewProducts: true,
+              target: 'ctp',
+            },
+          },
+          error: new Error('aw shucks'),
         },
-        error: new Error('aw shucks'),
-      },
-    ];
-    const { getByTestId, getByText, queryByText } = render(
-      <QuickAccess {...createTestProps()} />,
-      { mocks }
-    );
-    const offlineText = 'Offline';
+      ];
+      const { getByTestId, getByText, queryByText } = render(
+        <QuickAccess {...createTestProps()} />,
+        { mocks }
+      );
+      const offlineText = 'Offline';
 
-    // open quick-access
-    fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() => getByTestId('quick-access-search-input'));
+      // open quick-access
+      fireEvent.keyDown(document.body, { key: 'f' });
+      await waitForElement(() => getByTestId('quick-access-search-input'));
 
-    const searchInput = getByTestId('quick-access-search-input');
-    fireEvent.change(searchInput, { target: { value: 'Open dshbrd-offline' } });
-    await waitForElement(() => getByText(offlineText));
-    // it should show the offline warning
-    expect(getByText(offlineText)).toBeVisible();
+      const searchInput = getByTestId('quick-access-search-input');
+      fireEvent.change(searchInput, {
+        target: { value: 'Open dshbrd-offline' },
+      });
+      await waitForElement(() => getByText(offlineText));
+      // it should show the offline warning
+      expect(getByText(offlineText)).toBeVisible();
+      // it should log the error
+      // eslint-disable-next-line no-console
+      expect(console.error).toHaveBeenCalledTimes(1);
 
-    // when input is cleared again
-    fireEvent.change(searchInput, { target: { value: '' } });
+      // when input is cleared again
+      fireEvent.change(searchInput, { target: { value: '' } });
 
-    // the offline warning should be removed
-    expect(queryByText(offlineText)).toBeNull();
+      // the offline warning should be removed
+      expect(queryByText(offlineText)).toBeNull();
+    });
   });
 
   it('should open dashboard when chosing the "Open Dashboard" command', async () => {
@@ -472,7 +500,11 @@ describe('QuickAccess', () => {
       {
         request: {
           query: QuickAccessQuery,
-          variables: { searchText: 'party-parrot-sku', target: 'ctp' },
+          variables: {
+            searchText: 'party-parrot-sku',
+            canViewProducts: true,
+            target: 'ctp',
+          },
         },
         result: {
           data: {
@@ -532,7 +564,11 @@ describe('QuickAccess', () => {
       {
         request: {
           query: QuickAccessQuery,
-          variables: { searchText: productId, target: 'ctp' },
+          variables: {
+            searchText: productId,
+            canViewProducts: true,
+            target: 'ctp',
+          },
         },
         result: {
           data: {
@@ -577,7 +613,11 @@ describe('QuickAccess', () => {
       {
         request: {
           query: QuickAccessQuery,
-          variables: { searchText: 'party-parrot', target: 'ctp' },
+          variables: {
+            searchText: 'party-parrot',
+            canViewProducts: true,
+            target: 'ctp',
+          },
         },
         result: {
           data: {
@@ -630,7 +670,11 @@ describe('QuickAccess', () => {
       {
         request: {
           query: QuickAccessQuery,
-          variables: { searchText: productId, target: 'ctp' },
+          variables: {
+            searchText: productId,
+            canViewProducts: true,
+            target: 'ctp',
+          },
         },
         result: {
           data: {
@@ -803,7 +847,11 @@ describe('QuickAccess', () => {
       const mocks = [createMatchlessSearchMock(searchTerm)];
 
       const props = createTestProps();
-      props.project.permissions = {};
+      props.project.permissions = {
+        canManageProject: false,
+        canViewOrders: false,
+        canViewProducts: true,
+      };
 
       const { getByTestId, queryByText, getByText } = render(
         <QuickAccess {...props} />,
@@ -822,12 +870,16 @@ describe('QuickAccess', () => {
       expect(queryByText('Open Orders')).toBeNull();
     });
 
-    it('should not "Open Orders" when user has the view orders permission', async () => {
+    it('should find "Open Orders" when user has the view orders permission', async () => {
       const searchTerm = 'Opn Ordrs';
       const mocks = [createMatchlessSearchMock(searchTerm)];
 
       const props = createTestProps();
-      props.project.permissions = { canViewOrders: true };
+      props.project.permissions = {
+        canManageProject: false,
+        canViewOrders: true,
+        canViewProducts: true,
+      };
 
       const { getByTestId, getByText } = render(<QuickAccess {...props} />, {
         mocks,
