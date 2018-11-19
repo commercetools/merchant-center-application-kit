@@ -274,7 +274,8 @@ class QuickAccess extends React.Component {
     if (typeof command.action === 'object') {
       if (command.action.type === 'go') {
         // open in new window
-        if (meta.openInNewTab) {
+        // and always open other pages in a new window
+        if (meta.openInNewTab || !command.action.to.startsWith('/')) {
           open(command.action.to, '_blank');
         } else {
           this.props.history.push(command.action.to);
