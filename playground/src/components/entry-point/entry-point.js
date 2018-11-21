@@ -12,7 +12,7 @@ import { Sdk } from '@commercetools-frontend/sdk';
 import * as globalActions from '@commercetools-frontend/actions-global';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-const applicationMessages = lang =>
+const loadApplicationMessagesForLanguage = lang =>
   new Promise((resolve, reject) =>
     import(`../../i18n/data/${lang}.json` /* webpackChunkName: "application-messages-[request]" */).then(
       response => {
@@ -49,7 +49,7 @@ class EntryPoint extends React.Component {
                 reduxStore.dispatch
               );
           }}
-          applicationMessages={applicationMessages}
+          applicationMessages={loadApplicationMessagesForLanguage}
           render={() => (
             <Switch>
               {/* For development, it's useful to redirect to the actual

@@ -67,7 +67,7 @@ ReactDOM.render(<EntryPoint />, document.getElementById('root'));
 
 ```js
 // define a function that accepts a language, and returns a promise.
-const applicationMessages = lang =>
+const loadApplicationMessagesForLanguage = lang =>
   new Promise((resolve, reject) =>
     import(`../../i18n/data/${lang}.json` /* webpackChunkName: "application-messages-[request]" */).then(
       response => {
@@ -84,7 +84,7 @@ const applicationMessages = lang =>
 const EntryPoint = () => (
   <StoreProvider store={reduxStore}>
     <ApplicationShell
-      applicationMessages={applicationMessages}
+      applicationMessages={loadApplicationMessagesForLanguage}
       // ... same as above.
     />
   </StoreProvider>
