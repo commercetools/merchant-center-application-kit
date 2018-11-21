@@ -1,3 +1,20 @@
+## [2.1.2](https://github.com/commercetools/merchant-center-application-kit/compare/v2.1.1...v2.1.2) (2018-11-21)
+
+#### 🔮 Type: Chore
+
+- `application-shell`
+  - [#114](https://github.com/commercetools/merchant-center-application-kit/pull/114) chore: update @flopflip version ([@pa3](https://github.com/pa3))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`, `permissions`
+  - [#102](https://github.com/commercetools/merchant-center-application-kit/pull/102) refactor(quick-access): correctly apply permissions to all commands and queries ([@emmenko](https://github.com/emmenko))
+
+#### Committers: 2
+
+- Fedor Kulikov ([@pa3](https://github.com/pa3))
+- Nicola Molinari ([@emmenko](https://github.com/emmenko))
+
 ## [2.1.1](https://github.com/commercetools/merchant-center-application-kit/compare/v2.1.0...v2.1.1) (2018-11-18)
 
 #### 🔮 Type: Chore
