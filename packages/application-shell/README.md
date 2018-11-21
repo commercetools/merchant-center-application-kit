@@ -29,7 +29,7 @@ import {
 import { Sdk } from '@commercetools-frontend/sdk';
 import * as globalActions from '@commercetools-frontend/actions-global';
 import PageNotFound from '@commercetools-local/core/components/page-not-found';
-import * as i18n from '@commercetools-frontend/i18n';
+import applicationMessages from '../../i18n';
 
 import trackingEventWhitelist from './tracking-whitelist';
 
@@ -40,7 +40,7 @@ setupGlobalErrorListener(reduxStore.dispatch);
 const EntryPoint = () => (
   <StoreProvider store={reduxStore}>
     <ApplicationShell
-      i18n={i18n}
+      applicationMessages={applicationMessages}
       configuration={window.app}
       trackingEventWhitelist={trackingEventWhitelist}
       onRegisterErrorListeners={() => {
@@ -65,13 +65,13 @@ ReactDOM.render(<EntryPoint />, document.getElementById('root'));
 
 ## Props
 
-| Props                      | Type     | Required | Default | Description                                                                                                                                   |
-| -------------------------- | -------- | :------: | ------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `i18n`                     | `object` |    ✅    | -       | An object containing all the translated messages per locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`).          |
-| `configuration`            | `object` |    ✅    | -       | The current `window.app`.                                                                                                                     |
-| `render`                   | `func`   |    ✅    | -       | The function to render the application specific part. This function is executed only when the application specific part needs to be rendered. |
-| `trackingEventWhitelist`   | `object` |    ✅    | -       | An object containing a map of tracking events (_this mapping is required for backwards compatibility, it might be removed in the future_)     |
-| `onRegisterErrorListeners` | `func`   |    ✅    | -       | A callback function to setup global event listeners, called when the `ApplicationShell` is mounted                                            |
+| Props                      | Type               | Required | Default | Description                                                                                                                                                                                                       |
+| -------------------------- | ------------------ | :------: | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `applicationMessages`      | `object` or `func` |    ✅    | -       | Either an object containing all the translated messages per locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`), or a function that returns a promise that resolves to such an object. |
+| `configuration`            | `object`           |    ✅    | -       | The current `window.app`.                                                                                                                                                                                         |
+| `render`                   | `func`             |    ✅    | -       | The function to render the application specific part. This function is executed only when the application specific part needs to be rendered.                                                                     |
+| `trackingEventWhitelist`   | `object`           |    ✅    | -       | An object containing a map of tracking events (_this mapping is required for backwards compatibility, it might be removed in the future_)                                                                         |
+| `onRegisterErrorListeners` | `func`             |    ✅    | -       | A callback function to setup global event listeners, called when the `ApplicationShell` is mounted                                                                                                                |
 
 ## Testing
 
