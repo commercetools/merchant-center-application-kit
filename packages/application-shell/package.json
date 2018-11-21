@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-shell",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "React component to bootstrap the general MC application logic",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -42,7 +42,7 @@
     "@commercetools-frontend/assets": "2.0.0",
     "@commercetools-frontend/browser-history": "2.0.0",
     "@commercetools-frontend/constants": "2.0.0",
-    "@commercetools-frontend/i18n": "2.1.1",
+    "@commercetools-frontend/i18n": "2.2.0",
     "@commercetools-frontend/l10n": "2.1.1",
     "@commercetools-frontend/notifications": "2.0.0",
     "@commercetools-frontend/permissions": "2.1.2",
