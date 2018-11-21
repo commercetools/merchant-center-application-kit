@@ -1,3 +1,14 @@
+## [2.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v2.1.1...v2.2.0) (2018-11-21)
+
+#### 🚀 Type: New Feature
+
+- `application-shell`, `i18n`
+  - [#115](https://github.com/commercetools/merchant-center-application-kit/pull/115) Replace ProjectSwitcher with a "Back to project" link in AppBar ([@tdeekens](https://github.com/tdeekens))
+
+#### Committers: 1
+
+- suǝʞǝǝpʇ ([@tdeekens](https://github.com/tdeekens))
+
 ## [2.1.2](https://github.com/commercetools/merchant-center-application-kit/compare/v2.1.1...v2.1.2) (2018-11-21)
 
 #### 🔮 Type: Chore
