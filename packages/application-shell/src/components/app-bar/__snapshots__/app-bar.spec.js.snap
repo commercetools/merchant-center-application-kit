@@ -40,6 +40,27 @@ exports[`rendering should match layout structure 1`] = `
           <div
             id="locale-switcher"
           />
+          <TextDetail>
+            <Link
+              replace={false}
+              to="/test-default-project-key"
+            >
+              <Inline
+                alignItems="center"
+                scale="s"
+              >
+                <AngleLeftIcon
+                  size="small"
+                  theme="green"
+                />
+                <FormattedMessage
+                  defaultMessage="Back to project"
+                  id="AppBar.backToProjectLink"
+                  values={Object {}}
+                />
+              </Inline>
+            </Link>
+          </TextDetail>
         </Inline>
       </div>
       <div
