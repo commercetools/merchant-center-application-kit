@@ -1,3 +1,10 @@
+## [2.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v2.3.0...v2.2.0) (2018-11-21)
+
+#### 🚀 Type: New Feature
+
+- `application-shell`, `i18n`
+  - [#115](https://github.com/commercetools/merchant-center-application-kit/pull/116) Add backwards compatible async messages ([@montezume](https://github.com/montezume))
+
 ## [2.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v2.1.1...v2.2.0) (2018-11-21)
 
 #### 🚀 Type: New Feature
