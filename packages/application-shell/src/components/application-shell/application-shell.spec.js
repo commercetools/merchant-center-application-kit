@@ -56,7 +56,7 @@ const createTestProps = props => ({
 const testLocaleData = {
   isLoading: false,
   language: 'en',
-  messages: { 'AppKit.title': 'Title en' },
+  messages: { 'AppKit.title': 'Title en', 'CustomApp.title': 'Title en' },
 };
 
 const renderForAsyncData = ({ props, userData, localeData = testLocaleData }) =>

@@ -13,6 +13,9 @@ const ChildComponent = () => <div>Child</div>;
 const createTestProps = props => ({
   children: jest.fn(() => <ChildComponent />),
   locale: 'en-US',
+  applicationMessages: {
+    en: { 'CustomApp.title': 'Title en' },
+  },
   ...props,
 });
 
@@ -60,7 +63,7 @@ describe('rendering', () => {
         expect(props.children).toHaveBeenCalledWith({
           isLoading: false,
           language: 'en',
-          messages: { title: 'Title en' },
+          messages: { title: 'Title en', ...props.applicationMessages.en },
         });
       });
     });
@@ -94,6 +97,45 @@ describe('rendering', () => {
 
       it('should call `loadIntl` with `de`', () => {
         expect(loadI18n).toHaveBeenCalledWith('de');
+      });
+    });
+  });
+
+  describe('when applicationMessages is a function', () => {
+    beforeEach(() => {
+      loadI18n.mockClear();
+      loadI18n.mockClear();
+      loadI18n.mockImplementation(
+        jest.fn(() => Promise.resolve({ title: 'Title en' }))
+      );
+      props = createTestProps({
+        locale: 'en-CA',
+        applicationMessages: jest
+          .fn(() => Promise.resolve({ 'CustomApp.title': 'New title en' }))
+          .mockName('applicationMessages'),
+      });
+      wrapper = shallow(<AsyncLocaleData {...props} />);
+    });
+
+    describe('when component is mounted', () => {
+      beforeEach(() => {
+        wrapper.instance().componentDidMount();
+      });
+
+      it('should call `applicationMessagePromise`', () => {
+        expect(props.applicationMessages).toHaveBeenCalled();
+      });
+
+      it('should call `applicationMessagePromise` with `en`', () => {
+        expect(props.applicationMessages).toHaveBeenCalledWith('en');
+      });
+
+      it('should call `children` with state', () => {
+        expect(props.children).toHaveBeenCalledWith({
+          isLoading: false,
+          language: 'en',
+          messages: { title: 'Title en', 'CustomApp.title': 'New title en' },
+        });
       });
     });
   });

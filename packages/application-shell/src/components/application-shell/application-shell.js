@@ -75,17 +75,16 @@ export const RestrictedApplication = props => (
         // user's browser to attempt to match the language for the correct translations.
         const userLocale = getBrowserLanguage(window);
         return (
-          <AsyncLocaleData locale={userLocale}>
+          <AsyncLocaleData
+            locale={userLocale}
+            applicationMessages={props.applicationMessages}
+          >
             {({ language, messages }) => {
               reportErrorToSentry(error, {});
               return (
                 <ConfigureIntlProvider
                   language={language}
-                  messages={mergeMessages(
-                    messages,
-                    i18n[language],
-                    props.applicationMessages[language]
-                  )}
+                  messages={mergeMessages(messages, i18n[language])}
                 >
                   <ErrorApologizer />
                 </ConfigureIntlProvider>
@@ -106,7 +105,10 @@ export const RestrictedApplication = props => (
             Therefore, as long as there is no locale, the children should consider using the
             `isLoading` prop to decide what to render.
           */}
-          <AsyncLocaleData locale={user && user.language}>
+          <AsyncLocaleData
+            locale={user && user.language}
+            applicationMessages={props.applicationMessages}
+          >
             {({ isLoading: isLoadingLocaleData, language, messages }) => (
               <ConfigureIntlProvider
                 // We do not want to pass the language as long as the locale data
@@ -115,11 +117,7 @@ export const RestrictedApplication = props => (
                   ? {}
                   : {
                       language,
-                      messages: mergeMessages(
-                        messages,
-                        i18n[language],
-                        props.applicationMessages[language]
-                      ),
+                      messages: mergeMessages(messages, i18n[language]),
                     })}
               >
                 <SetupFlopFlipProvider
@@ -348,7 +346,8 @@ RestrictedApplication.propTypes = {
   environment: PropTypes.object.isRequired,
   defaultFeatureFlags: PropTypes.object,
   render: PropTypes.func.isRequired,
-  applicationMessages: PropTypes.object.isRequired,
+  applicationMessages: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+    .isRequired,
   INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
 };
 
@@ -406,7 +405,8 @@ export default class ApplicationShell extends React.Component {
     ),
     render: PropTypes.func.isRequired,
     onRegisterErrorListeners: PropTypes.func.isRequired,
-    applicationMessages: PropTypes.object.isRequired,
+    applicationMessages: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+      .isRequired,
     // Internal usage only, does not need to be documented
     INTERNAL__isApplicationFallback: PropTypes.bool,
   };
@@ -459,14 +459,18 @@ export default class ApplicationShell extends React.Component {
                           const browserLanguage = getBrowserLanguage(window);
 
                           return (
-                            <AsyncLocaleData locale={browserLanguage}>
+                            <AsyncLocaleData
+                              locale={browserLanguage}
+                              applicationMessages={
+                                this.props.applicationMessages
+                              }
+                            >
                               {({ language, messages }) => (
                                 <ConfigureIntlProvider
                                   language={language}
                                   messages={mergeMessages(
                                     messages,
-                                    i18n[language],
-                                    this.props.applicationMessages[language]
+                                    i18n[language]
                                   )}
                                 >
                                   <UnrestrictedApplication />

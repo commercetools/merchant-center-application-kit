@@ -12,6 +12,18 @@ import { Sdk } from '@commercetools-frontend/sdk';
 import * as globalActions from '@commercetools-frontend/actions-global';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
+const loadApplicationMessagesForLanguage = lang =>
+  new Promise((resolve, reject) =>
+    import(`../../i18n/data/${lang}.json` /* webpackChunkName: "application-messages-[request]" */).then(
+      response => {
+        resolve(response.default);
+      },
+      error => {
+        reject(error);
+      }
+    )
+  );
+
 // Here we split up the main (app) bundle with the actual application business logic.
 // Splitting by route is usually recommended and you can potentially have a splitting
 // point for each route. More info at https://reactjs.org/docs/code-splitting.html
@@ -19,9 +31,6 @@ const AsyncChannels = Loadable({
   loader: () => import('../../routes' /* webpackChunkName: "channels" */),
   loading: AsyncChunkLoader,
 });
-
-// TODO: define intl messages
-const messages = { en: {} };
 
 // Ensure to setup the global error listener before any React component renders
 // in order to catch possible errors on rendering/mounting.
@@ -40,7 +49,7 @@ class EntryPoint extends React.Component {
                 reduxStore.dispatch
               );
           }}
-          applicationMessages={messages}
+          applicationMessages={loadApplicationMessagesForLanguage}
           render={() => (
             <Switch>
               {/* For development, it's useful to redirect to the actual
