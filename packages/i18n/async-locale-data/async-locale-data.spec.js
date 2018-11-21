@@ -13,6 +13,9 @@ const ChildComponent = () => <div>Child</div>;
 const createTestProps = props => ({
   children: jest.fn(() => <ChildComponent />),
   locale: 'en-US',
+  applicationMessages: {
+    en: { 'CustomApp.title': 'Title en' },
+  },
   ...props,
 });
 
@@ -61,6 +64,7 @@ describe('rendering', () => {
           isLoading: false,
           language: 'en',
           messages: { title: 'Title en' },
+          applicationMessages: props.applicationMessages.en,
         });
       });
     });
@@ -98,6 +102,45 @@ describe('rendering', () => {
     });
   });
 
+  describe('when fetchApplicationMessages is used', () => {
+    beforeEach(() => {
+      loadI18n.mockClear();
+      loadI18n.mockClear();
+      loadI18n.mockImplementation(
+        jest.fn(() => Promise.resolve({ title: 'Title en' }))
+      );
+      props = createTestProps({
+        locale: 'en-CA',
+        applicationMessages: null,
+        fetchApplicationMessages: jest
+          .fn(() => Promise.resolve({ 'CustomApp.title': 'New title en' }))
+          .mockName('fetchApplicationMessages'),
+      });
+      wrapper = shallow(<AsyncLocaleData {...props} />);
+    });
+
+    describe('when component is mounted', () => {
+      beforeEach(() => {
+        wrapper.instance().componentDidMount();
+      });
+
+      it('should call `fetchApplicationMessages`', () => {
+        expect(props.fetchApplicationMessages).toHaveBeenCalled();
+      });
+
+      it('should call `children` with state', () => {
+        expect(props.children).toHaveBeenCalledWith({
+          isLoading: false,
+          language: 'en',
+          messages: { title: 'Title en' },
+          applicationMessages: {
+            'CustomApp.title': 'New title en',
+          },
+        });
+      });
+    });
+  });
+
   describe('when locale is not defined', () => {
     beforeEach(() => {
       loadI18n.mockClear();
@@ -112,6 +155,7 @@ describe('rendering', () => {
         isLoading: true,
         language: null,
         messages: null,
+        applicationMessages: null,
       });
     });
   });

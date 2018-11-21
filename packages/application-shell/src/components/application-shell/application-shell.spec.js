@@ -57,6 +57,9 @@ const testLocaleData = {
   isLoading: false,
   language: 'en',
   messages: { 'AppKit.title': 'Title en' },
+  applicationMessages: {
+    'CustomApp.title': 'Title en',
+  },
 };
 
 const renderForAsyncData = ({ props, userData, localeData = testLocaleData }) =>
@@ -136,6 +139,7 @@ describe('rendering', () => {
           .renderProp('children', {
             language: 'en',
             messages: testLocaleData.messages,
+            applicationMessages: props.applicationMessages.en,
           });
       });
       it('should pass "language" to <ConfigureIntlProvider>', () => {

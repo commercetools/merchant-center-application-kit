@@ -1,0 +1,6 @@
+{
+  "Channels.ListView.column.channelKey": "Channel key",
+  "Channels.ListView.column.channelName": "Channel name",
+  "Channels.ListView.noResults": "There are no results matching your search criteria.",
+  "Channels.ListView.title": "Channels"
+}

@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@commercetools-frontend/sentry": "2.1.1",
+    "lodash.isfunction": "3.0.9",
     "moment": "2.22.2",
     "prop-types": "15.6.2"
   },

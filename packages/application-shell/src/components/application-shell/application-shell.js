@@ -75,8 +75,12 @@ export const RestrictedApplication = props => (
         // user's browser to attempt to match the language for the correct translations.
         const userLocale = getBrowserLanguage(window);
         return (
-          <AsyncLocaleData locale={userLocale}>
-            {({ language, messages }) => {
+          <AsyncLocaleData
+            locale={userLocale}
+            fetchApplicationMessages={props.fetchApplicationMessages}
+            applicationMessages={props.applicationMessages}
+          >
+            {({ language, messages, applicationMessages }) => {
               reportErrorToSentry(error, {});
               return (
                 <ConfigureIntlProvider
@@ -84,7 +88,7 @@ export const RestrictedApplication = props => (
                   messages={mergeMessages(
                     messages,
                     i18n[language],
-                    props.applicationMessages[language]
+                    applicationMessages
                   )}
                 >
                   <ErrorApologizer />
@@ -104,8 +108,17 @@ export const RestrictedApplication = props => (
             Therefore, as long as there is no locale, the children should consider using the
             `isLoading` prop to decide what to render.
           */}
-          <AsyncLocaleData locale={user && user.language}>
-            {({ isLoading: isLoadingLocaleData, language, messages }) => (
+          <AsyncLocaleData
+            locale={user && user.language}
+            applicationMessages={props.applicationMessages}
+            fetchApplicationMessages={props.fetchApplicationMessages}
+          >
+            {({
+              isLoading: isLoadingLocaleData,
+              language,
+              messages,
+              applicationMessages,
+            }) => (
               <ConfigureIntlProvider
                 // We do not want to pass the language as long as the locale data
                 // is not loaded.
@@ -116,7 +129,7 @@ export const RestrictedApplication = props => (
                       messages: mergeMessages(
                         messages,
                         i18n[language],
-                        props.applicationMessages[language]
+                        applicationMessages
                       ),
                     })}
               >
@@ -345,7 +358,8 @@ RestrictedApplication.propTypes = {
   environment: PropTypes.object.isRequired,
   defaultFeatureFlags: PropTypes.object,
   render: PropTypes.func.isRequired,
-  applicationMessages: PropTypes.object.isRequired,
+  applicationMessages: PropTypes.object,
+  fetchApplicationMessages: PropTypes.func,
   INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
 };
 
@@ -403,7 +417,8 @@ export default class ApplicationShell extends React.Component {
     ),
     render: PropTypes.func.isRequired,
     onRegisterErrorListeners: PropTypes.func.isRequired,
-    applicationMessages: PropTypes.object.isRequired,
+    applicationMessages: PropTypes.object,
+    fetchApplicationMessages: PropTypes.func,
     // Internal usage only, does not need to be documented
     INTERNAL__isApplicationFallback: PropTypes.bool,
   };
@@ -448,6 +463,9 @@ export default class ApplicationShell extends React.Component {
                                 applicationMessages={
                                   this.props.applicationMessages
                                 }
+                                fetchApplicationMessages={
+                                  this.props.fetchApplicationMessages
+                                }
                                 INTERNAL__isApplicationFallback={
                                   this.props.INTERNAL__isApplicationFallback
                                 }
@@ -456,14 +474,26 @@ export default class ApplicationShell extends React.Component {
                           const browserLanguage = getBrowserLanguage(window);
 
                           return (
-                            <AsyncLocaleData locale={browserLanguage}>
-                              {({ language, messages }) => (
+                            <AsyncLocaleData
+                              locale={browserLanguage}
+                              applicationMessages={
+                                this.props.applicationMessages
+                              }
+                              fetchApplicationMessages={
+                                this.props.fetchApplicationMessages
+                              }
+                            >
+                              {({
+                                language,
+                                messages,
+                                applicationMessages,
+                              }) => (
                                 <ConfigureIntlProvider
                                   language={language}
                                   messages={mergeMessages(
                                     messages,
                                     i18n[language],
-                                    this.props.applicationMessages[language]
+                                    applicationMessages
                                   )}
                                 >
                                   <UnrestrictedApplication />
