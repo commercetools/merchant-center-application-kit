@@ -63,6 +63,34 @@ EntryPoint.displayName = 'EntryPoint';
 ReactDOM.render(<EntryPoint />, document.getElementById('root'));
 ```
 
+## Loading i18n messages with code splitting
+
+```js
+// define a function that accepts a language, and returns a promise.
+const applicationMessages = lang =>
+  new Promise((resolve, reject) =>
+    import(`../../i18n/data/${lang}.json` /* webpackChunkName: "application-messages-[request]" */).then(
+      response => {
+        resolve(response.default);
+      },
+      error => {
+        reject(error);
+      }
+    )
+  );
+
+// pass this function to the <ApplicationShell />
+
+const EntryPoint = () => (
+  <StoreProvider store={reduxStore}>
+    <ApplicationShell
+      applicationMessages={applicationMessages}
+      // ... same as above.
+    />
+  </StoreProvider>
+);
+```
+
 ## Props
 
 | Props                      | Type               | Required | Default | Description                                                                                                                                                                                                       |

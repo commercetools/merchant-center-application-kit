@@ -65,7 +65,9 @@ class AsyncLocaleData extends React.Component {
         language,
         messages: mergeMessages(
           messages,
-          applicationMessages || this.props.applicationMessages[language]
+          applicationMessages ||
+            (this.props.applicationMessages &&
+              this.props.applicationMessages[language])
         ),
       });
     } catch (error) {
