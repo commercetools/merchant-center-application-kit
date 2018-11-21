@@ -1,6 +1,6 @@
 # @commercetools-frontend/i18n
 
-MC i18n messages.
+MC messages and locale data (moment and react-intl).
 Supported languages:
 
 - `en`
@@ -16,10 +16,67 @@ $ npm install --save @commercetools-frontend/i18n
 ### Usage
 
 ```js
-import * as i18n from '@commercetools-frontend/i18n';
+import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import { ConfigureIntlProvider } from '@commercetools-frontend/application-shell';
 
-// i18n.en
-// i18n.de
+const applicationMessages = {
+  en: {
+    Title: 'Application Title',
+  },
+};
+
+const Application = props => (
+  <AsyncLocaleData
+    locale={props.user.language}
+    applicationMessages={applicationMessages}
+  >
+    {({ isLoading, language, messages }) => {
+      if (isLoading) return null;
+
+      return (
+        <ConfigureIntlProvider language={language} messages={messages}>
+          ...
+        </ConfigureIntlProvider>
+      );
+    }}
+  </AsyncLocaleData>
+);
+```
+
+### Async Usage
+
+```js
+import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import { ConfigureIntlProvider } from '@commercetools-frontend/application-shell';
+
+const loadApplicationMessagesForLanguage = lang =>
+  new Promise((resolve, reject) =>
+    import(`../../i18n/data/${lang}.json` /* webpackChunkName: "application-messages-[request]" */).then(
+      response => {
+        resolve(response.default);
+      },
+      error => {
+        reject(error);
+      }
+    )
+  );
+
+const Application = props => (
+  <AsyncLocaleData
+    locale={props.user.language}
+    applicationMessages={loadApplicationMessagesForLanguage}
+  >
+    {({ isLoading, language, messages }) => {
+      if (isLoading) return null;
+
+      return (
+        <ConfigureIntlProvider language={language} messages={messages}>
+          ...
+        </ConfigureIntlProvider>
+      );
+    }}
+  </AsyncLocaleData>
+);
 ```
 
 ### Generating translation files
