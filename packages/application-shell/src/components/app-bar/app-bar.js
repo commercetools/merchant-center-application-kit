@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Spacings } from '@commercetools-frontend/ui-kit';
+import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
+import { Spacings, Text, AngleLeftIcon } from '@commercetools-frontend/ui-kit';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
-import {
-  selectProjectKeyFromLocalStorage,
-  selectProjectKeyFromUrl,
-} from '../../utils';
+import { selectProjectKeyFromLocalStorage } from '../../utils';
 import UserSettingsMenu from '../user-settings-menu';
 import ProjectSwitcher from '../project-switcher';
 import LoadingPlaceholder from '../loading-placeholder';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/constants';
+import messages from './messages';
 import styles from './app-bar.mod.css';
 
 const AppBar = props => (
@@ -31,31 +31,40 @@ const AppBar = props => (
           <Spacings.Inline alignItems="center">
             {/* This node is used by a react portal */}
             <div id="locale-switcher" />
-            {(() => {
+            {do {
+              const previouslyUsedProjectKey = selectProjectKeyFromLocalStorage();
               if (!props.user) {
-                return <LoadingPlaceholder shape="rect" size="s" />;
+                <LoadingPlaceholder shape="rect" size="s" />;
               }
               // The `<ProjectSwitcher>` should be rendered only if the
-              // user is fetched and the user has projects.
-              if (props.user.projects.total > 0) {
-                return (
-                  <ProjectSwitcher
-                    // In this case it's not necessary to check if the `projectKey` param
-                    // is included in the list of projects. In such case
-                    // the dropdown will still be rendered but no project will be selected.
-                    // This is fine becase the user has still the possibility to "switch"
-                    // to a project.
-                    projectKey={
-                      selectProjectKeyFromUrl() ||
-                      selectProjectKeyFromLocalStorage() ||
-                      props.user.defaultProjectKey
-                    }
-                    total={props.user.projects.total}
-                  />
-                );
-              }
-              return null;
-            })()}
+              // user is fetched and the user has projects while the app runs in an project context.
+              else if (props.user.projects.total > 0 && props.projectKeyFromUrl)
+                <ProjectSwitcher
+                  // In this case it's not necessary to check if the `projectKey` param
+                  // is included in the list of projects. In such case
+                  // the dropdown will still be rendered but no project will be selected.
+                  // This is fine becase the user has still the possibility to "switch"
+                  // to a project.
+                  projectKey={
+                    props.projectKeyFromUrl ||
+                    previouslyUsedProjectKey ||
+                    props.user.defaultProjectKey
+                  }
+                  total={props.user.projects.total}
+                />;
+              else
+                <Text.Detail>
+                  <Link
+                    to={`/${previouslyUsedProjectKey ||
+                      props.user.defaultProjectKey}`}
+                  >
+                    <Spacings.Inline alignItems="center">
+                      <AngleLeftIcon theme="green" size="small" />
+                      <FormattedMessage {...messages.backToProjectLink} />
+                    </Spacings.Inline>
+                  </Link>
+                </Text.Detail>;
+            }}
           </Spacings.Inline>
         </div>
         <div className={styles.spacer} />
@@ -83,6 +92,7 @@ AppBar.propTypes = {
     }).isRequired,
     defaultProjectKey: PropTypes.string.isRequired,
   }),
+  projectKeyFromUrl: PropTypes.string,
 };
 
 export default AppBar;

@@ -95,6 +95,8 @@ export const RestrictedApplication = props => (
         );
       }
 
+      const projectKeyFromUrl = selectProjectKeyFromUrl();
+
       return (
         <ApplicationContextProvider user={user} environment={props.environment}>
           {/*
@@ -139,8 +141,7 @@ export const RestrictedApplication = props => (
                       <ToggleFeature flag={QUICK_ACCESS}>
                         <Route
                           render={routeProps => {
-                            const projectKey = selectProjectKeyFromUrl();
-                            if (!projectKey)
+                            if (!projectKeyFromUrl)
                               return (
                                 <QuickAccess
                                   history={routeProps.history}
@@ -148,7 +149,7 @@ export const RestrictedApplication = props => (
                                 />
                               );
                             return (
-                              <FetchProject projectKey={projectKey}>
+                              <FetchProject projectKey={projectKeyFromUrl}>
                                 {({ isLoading: isProjectLoading, project }) => {
                                   if (isProjectLoading) return null;
 
@@ -200,7 +201,10 @@ export const RestrictedApplication = props => (
                       </ToggleFeature>
 
                       <header>
-                        <AppBar user={user} />
+                        <AppBar
+                          user={user}
+                          projectKeyFromUrl={projectKeyFromUrl}
+                        />
                       </header>
 
                       <aside>
@@ -215,7 +219,6 @@ export const RestrictedApplication = props => (
                           // redirect to `/:projectKey`). Therefore, we should not
                           // rely on the value in localStorage to determine which
                           // `projectKey` is currently used.
-                          const projectKeyFromUrl = selectProjectKeyFromUrl();
                           if (!projectKeyFromUrl) return null;
                           return (
                             <FetchProject projectKey={projectKeyFromUrl}>

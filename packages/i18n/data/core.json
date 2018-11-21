@@ -25,6 +25,7 @@
   "ApiError.SyntaxError": "Syntax error: the given Predicate is not valid. Please read the documentation to define a correct predicate.",
   "ApiError.TaxCategoryDuplicateCountry": "Duplicate tax rates submitted. Please remove the duplicates.",
   "ApiError.Unauthorized": "Sorry, but you are not authorized to access this feature.",
+  "AppBar.backToProjectLink": "Back to project",
   "ErrorApologizer.notifiedTeam": "Our team has been notified about this issue.",
   "ErrorApologizer.title": "Sorry! An unexpected error occured.",
   "FailedAuthentication.paragraph1": "Please try again and contact your system administrator if you have any further questions.",
