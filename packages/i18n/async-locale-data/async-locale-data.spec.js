@@ -63,8 +63,7 @@ describe('rendering', () => {
         expect(props.children).toHaveBeenCalledWith({
           isLoading: false,
           language: 'en',
-          messages: { title: 'Title en' },
-          applicationMessages: props.applicationMessages.en,
+          messages: { title: 'Title en', ...props.applicationMessages.en },
         });
       });
     });
@@ -102,7 +101,7 @@ describe('rendering', () => {
     });
   });
 
-  describe('when fetchApplicationMessages is used', () => {
+  describe('when applicationMessages is a function', () => {
     beforeEach(() => {
       loadI18n.mockClear();
       loadI18n.mockClear();
@@ -111,10 +110,9 @@ describe('rendering', () => {
       );
       props = createTestProps({
         locale: 'en-CA',
-        applicationMessages: null,
-        fetchApplicationMessages: jest
+        applicationMessages: jest
           .fn(() => Promise.resolve({ 'CustomApp.title': 'New title en' }))
-          .mockName('fetchApplicationMessages'),
+          .mockName('applicationMessages'),
       });
       wrapper = shallow(<AsyncLocaleData {...props} />);
     });
@@ -124,18 +122,19 @@ describe('rendering', () => {
         wrapper.instance().componentDidMount();
       });
 
-      it('should call `fetchApplicationMessages`', () => {
-        expect(props.fetchApplicationMessages).toHaveBeenCalled();
+      it('should call `applicationMessagePromise`', () => {
+        expect(props.applicationMessages).toHaveBeenCalled();
+      });
+
+      it('should call `applicationMessagePromise` with `en`', () => {
+        expect(props.applicationMessages).toHaveBeenCalledWith('en');
       });
 
       it('should call `children` with state', () => {
         expect(props.children).toHaveBeenCalledWith({
           isLoading: false,
           language: 'en',
-          messages: { title: 'Title en' },
-          applicationMessages: {
-            'CustomApp.title': 'New title en',
-          },
+          messages: { title: 'Title en', 'CustomApp.title': 'New title en' },
         });
       });
     });
@@ -155,7 +154,6 @@ describe('rendering', () => {
         isLoading: true,
         language: null,
         messages: null,
-        applicationMessages: null,
       });
     });
   });

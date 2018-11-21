@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import isFunction from 'lodash.isfunction';
 import loadI18n from '../load-i18n';
+
+const mergeMessages = (...messages) => Object.assign({}, ...messages);
 
 export const extractLanguageFromLocale = locale =>
   locale.includes('-') ? locale.split('-')[0] : locale;
-
-export const isPromiseLike = obj =>
-  !!obj && typeof obj.then === 'function' && typeof obj.catch === 'function';
 
 class AsyncLocaleData extends React.Component {
   static displayName = 'AsyncLocaleData';
@@ -19,15 +17,16 @@ class AsyncLocaleData extends React.Component {
     // This is important in order to avoid loading different locales and
     // therefore causing flashing of translated content on subsequent re-renders.
     locale: PropTypes.string,
-    applicationMessages: PropTypes.object,
-    fetchApplicationMessages: PropTypes.func,
+    applicationMessages: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+    ]),
   };
 
   state = {
     isLoading: true,
     language: null,
     messages: null,
-    applicationMessages: null,
   };
 
   componentDidMount() {
@@ -40,34 +39,38 @@ class AsyncLocaleData extends React.Component {
     }
   }
 
-  loadLocaleData = locale => {
+  loadLocaleData = async locale => {
     const language = extractLanguageFromLocale(locale);
 
-    const applicationMessagePromise =
-      this.props.fetchApplicationMessages &&
-      isFunction(this.props.fetchApplicationMessages)
-        ? this.props.fetchApplicationMessages(language)
-        : null;
+    let applicationMessagePromise = null;
 
-    let promises = [loadI18n(language)];
-
-    if (isPromiseLike(applicationMessagePromise)) {
-      promises = promises.concat([applicationMessagePromise]);
+    if (typeof this.props.applicationMessages === 'function') {
+      applicationMessagePromise = this.props.applicationMessages(language);
     }
 
-    Promise.all(promises).then(
-      response => {
-        this.setState({
-          isLoading: false,
-          language,
-          messages: response[0],
-          applicationMessages: response[1]
-            ? response[1]
-            : this.props.applicationMessages[language],
-        });
-      },
-      error => reportErrorToSentry(error, {})
-    );
+    const messageFetchingPromises = do {
+      if (applicationMessagePromise) {
+        [loadI18n(language), applicationMessagePromise];
+      } else {
+        [loadI18n(language)];
+      }
+    };
+
+    try {
+      const [messages, applicationMessages] = await Promise.all(
+        messageFetchingPromises
+      );
+      this.setState({
+        isLoading: false,
+        language,
+        messages: mergeMessages(
+          messages,
+          applicationMessages || this.props.applicationMessages[language]
+        ),
+      });
+    } catch (error) {
+      reportErrorToSentry(error, {});
+    }
   };
 
   render() {

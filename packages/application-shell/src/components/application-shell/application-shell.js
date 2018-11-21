@@ -77,19 +77,14 @@ export const RestrictedApplication = props => (
         return (
           <AsyncLocaleData
             locale={userLocale}
-            fetchApplicationMessages={props.fetchApplicationMessages}
             applicationMessages={props.applicationMessages}
           >
-            {({ language, messages, applicationMessages }) => {
+            {({ language, messages }) => {
               reportErrorToSentry(error, {});
               return (
                 <ConfigureIntlProvider
                   language={language}
-                  messages={mergeMessages(
-                    messages,
-                    i18n[language],
-                    applicationMessages
-                  )}
+                  messages={mergeMessages(messages, i18n[language])}
                 >
                   <ErrorApologizer />
                 </ConfigureIntlProvider>
@@ -111,14 +106,8 @@ export const RestrictedApplication = props => (
           <AsyncLocaleData
             locale={user && user.language}
             applicationMessages={props.applicationMessages}
-            fetchApplicationMessages={props.fetchApplicationMessages}
           >
-            {({
-              isLoading: isLoadingLocaleData,
-              language,
-              messages,
-              applicationMessages,
-            }) => (
+            {({ isLoading: isLoadingLocaleData, language, messages }) => (
               <ConfigureIntlProvider
                 // We do not want to pass the language as long as the locale data
                 // is not loaded.
@@ -126,11 +115,7 @@ export const RestrictedApplication = props => (
                   ? {}
                   : {
                       language,
-                      messages: mergeMessages(
-                        messages,
-                        i18n[language],
-                        applicationMessages
-                      ),
+                      messages: mergeMessages(messages, i18n[language]),
                     })}
               >
                 <SetupFlopFlipProvider
@@ -358,8 +343,8 @@ RestrictedApplication.propTypes = {
   environment: PropTypes.object.isRequired,
   defaultFeatureFlags: PropTypes.object,
   render: PropTypes.func.isRequired,
-  applicationMessages: PropTypes.object,
-  fetchApplicationMessages: PropTypes.func,
+  applicationMessages: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+    .isRequired,
   INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
 };
 
@@ -417,8 +402,8 @@ export default class ApplicationShell extends React.Component {
     ),
     render: PropTypes.func.isRequired,
     onRegisterErrorListeners: PropTypes.func.isRequired,
-    applicationMessages: PropTypes.object,
-    fetchApplicationMessages: PropTypes.func,
+    applicationMessages: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+      .isRequired,
     // Internal usage only, does not need to be documented
     INTERNAL__isApplicationFallback: PropTypes.bool,
   };
@@ -463,9 +448,6 @@ export default class ApplicationShell extends React.Component {
                                 applicationMessages={
                                   this.props.applicationMessages
                                 }
-                                fetchApplicationMessages={
-                                  this.props.fetchApplicationMessages
-                                }
                                 INTERNAL__isApplicationFallback={
                                   this.props.INTERNAL__isApplicationFallback
                                 }
@@ -479,21 +461,13 @@ export default class ApplicationShell extends React.Component {
                               applicationMessages={
                                 this.props.applicationMessages
                               }
-                              fetchApplicationMessages={
-                                this.props.fetchApplicationMessages
-                              }
                             >
-                              {({
-                                language,
-                                messages,
-                                applicationMessages,
-                              }) => (
+                              {({ language, messages }) => (
                                 <ConfigureIntlProvider
                                   language={language}
                                   messages={mergeMessages(
                                     messages,
-                                    i18n[language],
-                                    applicationMessages
+                                    i18n[language]
                                   )}
                                 >
                                   <UnrestrictedApplication />
