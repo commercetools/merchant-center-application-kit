@@ -11,7 +11,6 @@ import {
 import { Sdk } from '@commercetools-frontend/sdk';
 import * as globalActions from '@commercetools-frontend/actions-global';
 import { Redirect, Route, Switch } from 'react-router-dom';
-// import applicationMessages from '../../i18n';
 
 const applicationMessages = lang =>
   new Promise((resolve, reject) =>
