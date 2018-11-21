@@ -1114,21 +1114,21 @@
     invariant "2.2.4"
     mitt "1.1.3"
 
-"@flopflip/react-broadcast@7.2.2":
-  version "7.2.2"
-  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-7.2.2.tgz#0b4c0fa99fe6ca766c010186f70009f016b6fcfe"
-  integrity sha512-m1ql2JpQZ8u7H2vK4i2YO31QPdWqhhypadqQDe3kp3+GsJIP5IKzwAqoR5XUnQ2pLkZZvluJyfSsRw89bK6mow==
+"@flopflip/react-broadcast@7.2.3":
+  version "7.2.3"
+  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-7.2.3.tgz#4ab5ada50e1f375403149bbe6317700ec5a13874"
+  integrity sha512-EAAV+rP3kSImoMnJ4UcqRLWTUjrhdw2GS52LWTmC48e1o9/4LLExf8m9JZYptxL4Xinwcp6SUpzQX/IuR+00Zg==
   dependencies:
-    "@flopflip/react" "^6.2.0"
+    "@flopflip/react" "^6.2.1"
     "@flopflip/types" "^1.4.0"
     create-react-context "0.2.3"
     lodash.flowright "3.5.0"
     lodash.memoize "4.1.2"
 
-"@flopflip/react@^6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-6.2.0.tgz#2691578a8b3b54545442a9a033545fdeb04f2200"
-  integrity sha512-nSsA5byl/r3/Urq0MXTYcY57qXUy3HNTDlpgIY2dk+PoYoLl6hmSRqbVOBZhe6JG7C+E6yxVzumohCcEzK0ujw==
+"@flopflip/react@^6.2.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-6.2.1.tgz#1abe28449e472b069f9175052e68a00c121d8145"
+  integrity sha512-6nRnKsBKH9mHzmu7mpodLgJqxaHPKlX9zP0HDkQ8W42Iqd3DXv56JRYtqXI56B9ae203AhlIrSPrEGWwEKCYZQ==
   dependencies:
     create-react-context "0.2.3"
     deepmerge "2.2.1"
