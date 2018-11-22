@@ -1,3 +1,22 @@
+## [2.3.1](https://github.com/commercetools/merchant-center-application-kit/compare/v2.3.1...v2.3.0) (2018-11-22)
+
+#### 🐛 Type: Bug
+
+- `i18n`
+  - [#117](https://github.com/commercetools/merchant-center-application-kit/pull/117) feat(i18n): fix code splitting for mc-app-kit messages ([@montezume](https://github.com/montezume))
+- `application-shell`
+  - [#118](https://github.com/commercetools/merchant-center-application-kit/pull/118) fix(app-shell): add back-to-project data test target ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+  - [#119](https://github.com/commercetools/merchant-center-application-kit/pull/119) fix(app-shell): update support link ([@tdeekens](https://github.com/tdeekens))
+
+#### Committers: 2
+
+- Malcolm Laing ([@montezume](https://github.com/montezume))
+- suǝʞǝǝpʇ ([@tdeekens](https://github.com/tdeekens))
+
 ## [2.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v2.3.0...v2.2.0) (2018-11-21)
 
 #### 🚀 Type: New Feature
