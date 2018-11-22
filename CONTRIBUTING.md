@@ -106,6 +106,8 @@ Once it's done, you can run `yarn start` or `yarn test` (`yarn test:watch`) to d
 
 To develop locally, you can use the `playground` application to test the changes in some of the packages. Make sure to `yarn build` the packages before starting the `playground` app because the app consumes the packages as normal "transpiled" dependencies.
 
+You can also run the build in watch mode `yarn build:es:watch` alongside with `yarn playground:start` to rebundle and rebuild the application on each change.
+
 ## Cutting a Release
 
 #### Draft release notes in the Changelog

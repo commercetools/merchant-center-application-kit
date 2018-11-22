@@ -56,6 +56,8 @@ A project for developing a Merchant Center Application usually consists of the f
 
 Make sure to `yarn build` the packages before starting the `playground` app because the app consumes the packages as normal "transpiled" dependencies.
 
+You can also run the build in watch mode `yarn build:es:watch` alongside with `yarn playground:start` to rebundle and rebuild the application on each change.
+
 To start the development server, run:
 
 ```bash
