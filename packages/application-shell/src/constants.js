@@ -25,4 +25,4 @@ export const LOGIN_STRATEGY_DEFAULT = 'default';
 export const LOGIN_STRATEGY_SSO = 'sso';
 
 export const MCSupportFormURL =
-  'https://jira.commercetools.com/servicedesk/customer/portal/1/create/99';
+  'https://jira.commercetools.com/servicedesk/customer/portal/1/create/167';
