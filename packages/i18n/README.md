@@ -1,9 +1,10 @@
 # @commercetools-frontend/i18n
 
-MC messages and locale data (moment and react-intl).
-Supported languages:
+This package contains JSON data about the i18n messages from the different application-kit packages (e.g. `application-shell`, etc). Additionally, it also loads locale data for `moment` and `react-intl`, which is necessary for runtime usage.
 
-- `en`
+Supported languages are:
+
+- `en` (_default_)
 - `de`
 - `es`
 
@@ -15,20 +16,22 @@ $ npm install --save @commercetools-frontend/i18n
 
 ### Usage
 
+> This package should not be used directly, the `application-shell` does that internally.
+
 ```js
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import { ConfigureIntlProvider } from '@commercetools-frontend/application-shell';
 
-const applicationMessages = {
+const myApplicationMessages = {
   en: {
     Title: 'Application Title',
   },
 };
 
-const Application = props => (
+const MyApplication = props => (
   <AsyncLocaleData
-    locale={props.user.language}
-    applicationMessages={applicationMessages}
+    locale={props.user.locale}
+    applicationMessages={myApplicationMessages}
   >
     {({ isLoading, language, messages }) => {
       if (isLoading) return null;
@@ -43,7 +46,7 @@ const Application = props => (
 );
 ```
 
-### Async Usage
+### Usage with code splitting
 
 ```js
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
@@ -63,7 +66,7 @@ const loadApplicationMessagesForLanguage = lang =>
 
 const Application = props => (
   <AsyncLocaleData
-    locale={props.user.language}
+    locale={props.user.locale}
     applicationMessages={loadApplicationMessagesForLanguage}
   >
     {({ isLoading, language, messages }) => {
