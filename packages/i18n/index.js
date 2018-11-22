@@ -1,6 +1,2 @@
-import en from './data/en.json';
-import de from './data/de.json';
-import es from './data/es.json';
-
-export { en, de, es };
+// eslint-disable-next-line import/prefer-default-export
 export { default as AsyncLocaleData } from './async-locale-data';
