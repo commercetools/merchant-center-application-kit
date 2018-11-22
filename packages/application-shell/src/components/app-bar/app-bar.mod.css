@@ -1,5 +1,6 @@
 @import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
 @import '@commercetools-frontend/ui-kit/materials/spacings.mod.css';
+@import '@commercetools-frontend/ui-kit/materials/shadows/base-shadows.mod.css';
 
 :root {
   --margin-left-logo: 20px;
@@ -11,7 +12,7 @@
 
 /* Header */
 .app-bar {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
+  box-shadow: var(--shadow-1-second);
   min-height: var(--height-app-bar);
   position: relative;
   width: 100%;
