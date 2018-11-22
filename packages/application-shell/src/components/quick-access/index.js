@@ -1,5 +1,6 @@
 import React from 'react';
 import Loadable from 'react-loadable';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import ButlerContainer from './butler-container';
 import * as gtm from '../../utils/gtm';
 import trackingEvents from './tracking-events';
@@ -20,7 +21,21 @@ export default class QuickAccessTrigger extends React.Component {
     document.removeEventListener('keydown', this.handler);
   }
 
-  state = { isVisible: false };
+  // If for some reason an error is thrown, catch it and do not render QuickAccess
+  // to avoid crashing the entire app.
+  componentDidCatch(error, errorInfo) {
+    this.setState({ hasError: true });
+    // Note: In development mode componentDidCatch is not based on try-catch
+    // to catch exceptions. Thus exceptions caught here will also be caught in
+    // the global `error` event listener (setup-global-error-listener.js).
+    // see: https://github.com/facebook/react/issues/10474
+    reportErrorToSentry(error, { extra: errorInfo });
+  }
+
+  state = {
+    isVisible: false,
+    hasError: false,
+  };
 
   handler = event => {
     const hotKey = 'f';
@@ -81,7 +96,7 @@ export default class QuickAccessTrigger extends React.Component {
   };
 
   render() {
-    return this.state.isVisible ? (
+    return this.state.isVisible && !this.state.hasError ? (
       <QuickAccessModal {...this.props} onClose={this.close} />
     ) : null;
   }
