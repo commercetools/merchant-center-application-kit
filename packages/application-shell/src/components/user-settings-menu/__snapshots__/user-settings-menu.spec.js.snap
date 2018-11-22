@@ -117,7 +117,7 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
       data-track-component="Navigation-Support-links"
       data-track-event="click"
       data-track-label="support_textlink"
-      href="https://jira.commercetools.com/servicedesk/customer/portal/1/create/99"
+      href="https://jira.commercetools.com/servicedesk/customer/portal/1/create/167"
       rel="noopener noreferrer"
       target="_blank"
     >
