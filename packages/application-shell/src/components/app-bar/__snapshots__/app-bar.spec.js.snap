@@ -47,6 +47,7 @@ exports[`rendering should match layout structure 1`] = `
             >
               <Inline
                 alignItems="center"
+                data-test="back-to-project"
                 scale="s"
               >
                 <AngleLeftIcon

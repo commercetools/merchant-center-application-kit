@@ -58,7 +58,10 @@ const AppBar = props => (
                     to={`/${previouslyUsedProjectKey ||
                       props.user.defaultProjectKey}`}
                   >
-                    <Spacings.Inline alignItems="center">
+                    <Spacings.Inline
+                      alignItems="center"
+                      data-test="back-to-project"
+                    >
                       <AngleLeftIcon theme="green" size="small" />
                       <FormattedMessage {...messages.backToProjectLink} />
                     </Spacings.Inline>
