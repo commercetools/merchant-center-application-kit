@@ -2,47 +2,59 @@
   <a href="https://commercetools.com/">
     <img alt="commercetools logo" src="http://cdn.rawgit.com/commercetools/press-kit/master/PNG/72DPI/CT%20logo%20chrom%20black%20horizontal%20RGB%2072dpi.png">
   </a>
-  <b>Merchant Center Starter Application.</b>
+  <b>Merchant Center Playground Application.</b>
 </p>
 
-This is a playground application to develop and help testing some of the features from the `application-kit` [packages](../packages).
+## Motivation
 
-### Getting started
+This application can be used as the **starting point** to **build and develop** a Merchant Center Application and shows how to set it up. Furthermore, the playground can be used to test and develop the features in the `application-kit` [packages](../packages).
 
-Before you jump into developing the application, there are some important information to know beforehand:
+> **Custom** Applications are a way to extend the functionality of the Merchant Center to match the specific business requirements of the project. These Custom Applications will be completely managed by you and, once registered, they can be accessed within the official Merchant Center environment.
 
-- the project demonstrate how to set up and develop a Merchant Center Application
+## Important concepts
+
+Before you jump into developing the application, there are some **important information and concepts** to know beforehand:
+
 - a Merchant Center Application is a runnable React application, developed and built using the [`mc-scripts`](../packages/mc-scripts) package
   - the `mc-scripts start` command will start a webpack development server
   - the `mc-scripts build` command will bundle the production assets into the `dist` folder
-- the Merchant Center itself is composed by multiple applications running behind a proxy, each one of those serving a specific part of the overall Merchant Center (_e.g. dashboard, products, discounts_)
-- building a "custom" Merchant Center Application means building a new part of the overall Merchant Center, where eventually the "custom" app will be hosted by you and served from the proxy within the commercetools systems (_more on that will come soon_)
-- in order to have the same main structure and "bootstrap" logic across the different applications, we built a component called `ApplicationShell` that MUST be rendered by each application within their entry points
-  - the `ApplicationShell` contains among other things the `NavBar` component, where you see the "links" on the left-side menu
-  - the `NavBar` component is shared across all the different applications, and needs to contain the main links of all the applications
-  - the `NavBar` component by default only contains the links of the "official" applications (_e.g. dashboard, products, discounts_)
-  - for custom applications, links are stored in the Merchant Center API and loaded asynchronously for a specific project. This means that you can't "manually" add links to the `NavBar` but instead you need to configure them with the settings (_more on that will come soon_)
-- each Merchant Center Application usually defines ONE main route (_e.g. in this example the application defines a `/:projectKey/channels` route_)
-  - routes should always contain the `/:projectKey`, as those "custom" application belong to a certain project
-  - routes for "custom" applications should not conflict with the "official" routes (_e.g. `dashboard`, `products`, etc_), as "official" routes always take precedence
-  - routes can and should have sub-routes, dependening on how many levels/views the application should have (_e.g. `/:projectKey/channels/:id`, `/:projectKey/channels/new`, etc_)
+- the Merchant Center itself is composed by _multiple applications_ running behind a **proxy**
+  - each application serves a specific part of the overall Merchant Center (_e.g. dashboard, products, discounts, etc._)
+- in order to ensure consistency across the different applications and to share the main "bootstrap" logic, we built a component called [`<ApplicationShell>`](../packages/application-shell) that **MUST** be rendered by each application within its entry points
+  - the `<ApplicationShell>` contains, among other things, the `<NavBar>` component with the menu links on the left side
+  - the `<NavBar>` component is shared across all the different applications, and needs to contain the main links of all the applications
+  - the `<NavBar>` component by default only contains the links of the "official" applications (_e.g. dashboard, products, discounts, etc._)
+  - for **custom** applications, links are stored in the Merchant Center API and loaded asynchronously for a specific project. You can configure these settings in the Merchant Center itself when you **register** a custom application (_link will follow_)
+- each Merchant Center Application usually defines **ONE main route** (_e.g. in this example the application defines a `/:projectKey/channels` route_)
+  - routes should always contain the `/:projectKey` because **custom** applications belong to a specific project
+  - routes for **custom** applications should not conflict with the "official" routes (_e.g. `dashboard`, `products`, etc._)
+  - "official" routes always take precedence, so be careful when you name your routes
+  - routes can and should have sub-routes, dependening on how many levels/views the application should have (_e.g. `/:projectKey/channels/:id`, `/:projectKey/channels/new`, etc._)
 
-### Project structure
+## Application structure
 
-To get you familiar with a recommended project structure, we suggest to inspect the `playground` folder. Here are some important parts:
+A project for developing a Merchant Center Application usually consists of the following structure:
 
 - `src` contains all the JS files to build the application
   - `index.js` is the application "entry point" and contains the basic imports to render the React app
   - `routes.js` contains the sub-routes and components rendered by the application (the main route is defined in the `<EntryPoint>` and is loaded asynchronously using code splitting)
 - `dist` contains the production bundles (this is created once you run `yarn build`)
-- `env.json` contains the development config used by the webpack dev server (_more on that will come soon_)
-- `env.prod.json` is an example of the config used by running the application in production mode (see below [Running in production](#running-in-production))
+- `env.json` contains runtime configuration available as a global state `window.app`. The object has to be passed to the `<ApplicationShell>` as `environment` prop. The object can contain any configuration specific to the application, plus the following **required** fields:
+  - `frontendHost`: the host where the Merchant Center application is running (e.g. `mc.commercetools.com`)
+  - `mcApiUrl`: the API URL of the Merchant Center (`https://mc-api.commercetools.com` for projects in `EU` and `https://mc-api.commercetools.co` for projects in `US`)
+  - `location`: the location where the Merchant Center is running, usually `eu` or `us`
+  - `env`: the environment where the Merchant Center is running, usually `production` or `staging`
+  - `cdnUrl`: the URL where the static assets are stored
+  - `servedByProxy`: a flag to indicate if this application is running behind the Merchant Center proxy or not, usually `true` for production and `false` for local development
+    Check the `<ApplicationContext>` in [`application-shell-connectors`](../packages/application-shell-connectors) for more information about it.
 - `csp.json` contains additional directives for CSP, specific to the domain hosting the app (_more on that will come soon_)
 - `webpack.config.<env>.js` contains the setup for getting the webpack configurations for dev/prod (having those files is important as they are read by `mc-scripts`)
 
 ## Development
 
-> The dependencies are installed from the _root_ package, using yarn worskpaces.
+> In this repository the dependencies are installed from the _root_ package, using `yarn` worskpaces.
+
+Make sure to `yarn build` the packages before starting the `playground` app because the app consumes the packages as normal "transpiled" dependencies.
 
 To start the development server, run:
 
@@ -52,18 +64,22 @@ $ yarn start
 
 A webpack server will start building the source codes and will open up a page in the browser. At this point you can start developing the app and webpack will reload the page whenever you make some changes.
 
-> The `env.json` file contains necessary config to run the application on localhost.
+## Merchant Center API
 
-### API domains
+The Merchant Center runs on 2 different _data centers_: one in `EU` and one in `US`. Depending on which one you would like to target for your application, you need to adjust a couple of fields in the `env.json` file.
 
-The MC runs on 2 different data centers: one in `EU` and one in `US`. Depending on which one you would like to target for your application, you need to adjust a couple of fields in the `env.json` file.
-
-The **MC API** is available at the following domains:
+The **Merchant Center API** is available at the following domains:
 
 - for `EU`: `https://mc-api.commercetools.com`
 - for `US`: `https://mc-api.commercetools.co`
 
-### Running in production
+The Merchant Center API mostly works as an **API Gateway** and exposes several entry points, like:
+
+- `/tokens` is used to log a user in with _username/password_. The API will create an access token and put it into a **cookie** in the response.
+- `/graphql` this is a _special_ GraphQL endpoint that requires a header `X-Graphql-Target` one of the values available in the variable `GRAPHQL_TARGETS` in the [`constants`](../packages/constants) package. The header is used to proxy the graphql request to the specific graphql server. We recommend to do an instrospection query with a [graphql IDE](https://github.com/prisma/graphql-playground) to inspect the different schemas.
+- `/proxy/ctp/<CTP_API_URL>` is used to proxy requests to the [CTP API](https://docs.commercetools.com/http-api.html). Requests should be exactly the same as you would make to the CTP API directly, only prefixed with `/proxy/ctp` so that the Merchant Center API can authorize the request and proxy it to the CTP API.
+
+## Running in production
 
 To run the application in production mode, you need to take a couple of steps:
 
@@ -73,15 +89,15 @@ To run the application in production mode, you need to take a couple of steps:
 $ yarn build
 ```
 
-This will output a `dist` folder containing the JS bundles in the `dist/assets` subfolder. There is also a `index.html.template` which will be used to generate the final `index.html` with the bundle references (_see below_).
+This will output a `dist` folder containing the JS bundles in the `dist/assets` subfolder. In the `assets` folder there is a `index.html.template` which will be used to generate the final `index.html` with the bundle references (_see below_).
 
-2.  start the HTTP server (as Nodejs process)
+2.  start the NodeJS HTTP server
 
-The HTTP server comes shipped with the [`mc-http-server`](../packages/mc-http-server) package and provides a binary to start the server (`mc-http-server`). The server will make sure to serve a valid `index.html` and it provides additional tools like security headers, etc.
+The HTTP server comes shipped with the [`mc-http-server`](../packages/mc-http-server) package and provides a binary to start the server (`mc-http-server`). The server will make sure to serve a valid `index.html` and it provides additional tools like _security headers, etc._.
 
-To start the server, you need to provide the path to the config `--config=$(pwd)/env.json` file and `--csp=$(pwd)/csp.json`. The `env.prod.json` is for production usage.
+To start the server, you need to provide the path to the environment file `--config=$(pwd)/env.json` and the Content Security Policy file `--csp=$(pwd)/csp.json`. We recommend to have a separate `env.prod.json` for production usage.
 
-In case you host the JS bundles on an external CDN, you need to point the `cdnUrl` in the `env.json` config to the URL serving the assets. However, if you keep the assets within the server itself, you need to pass different arguments to the command:
+In case you host the JS bundles on an **external CDN**, you need to point the `cdnUrl` in the `env.json` config to the URL serving the assets. However, if you keep the assets within the server itself, you need to pass `--use-local-assets` to the command and point the `cdnUrl` to the root folder:
 
 ```js
 // Using an external CDN. In the `env.json` you should pass the URL pointing to the folder where
@@ -113,9 +129,9 @@ $ mc-http-server --config=$(pwd)/env.prod.json --use-local-assets
 
 3.  start the HTTP server (as Docker image)
 
-⏳ _coming soon_
+We also provide a [docker image](../packages/mc-http-server/Dockerfile) from `eu.gcr.io/ct-images/mc-http-server`. The version is the same as the [last release](https://github.com/commercetools/merchant-center-application-kit/releases).
 
-## Deployment example for `now`
+### Deployment example for `now`
 
 You can find an example setup for hosting the application on [Zeit Now](https://zeit.co/).
 The setup is a bit "unique" due to the nature of the project structure and because we target 2 deployments (`eu` and `us`).

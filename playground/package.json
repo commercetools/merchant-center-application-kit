@@ -1,7 +1,7 @@
 {
-  "name": "merchant-center-starter-app",
+  "name": "playground",
   "version": "2.3.0",
-  "description": "A starter example for building a Merchant Center application",
+  "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
     "build": "mc-scripts build",

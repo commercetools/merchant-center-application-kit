@@ -102,7 +102,13 @@ This package contains React components to perform requests in a declarative way.
 
 Once it's done, you can run `yarn start` or `yarn test` (`yarn test:watch`) to develop the packages.
 
+## Developing locally
+
+To develop locally, you can use the `playground` application to test the changes in some of the packages. Make sure to `yarn build` the packages before starting the `playground` app because the app consumes the packages as normal "transpiled" dependencies.
+
 ## Cutting a Release
+
+#### Draft release notes in the Changelog
 
 1. Make sure that each merged PR that should be mentioned in the release changelog is labelled with one of the [labels](https://github.com/commercetools/merchant-center-application-kit/labels) named `Type: ...` to indicate what kind of change it is.
 2. Create a changelog entry for the release
@@ -114,7 +120,12 @@ Once it's done, you can run `yarn start` or `yarn test` (`yarn test:watch`) to d
 - Maybe add some newlines here and there. Preview the result on GitHub to get a feel for it. Changelog generator output is a bit too terse for my taste, so try to make it visually pleasing and well grouped.
 
 3. (_Optional_) Include "_Migrating from ..._" instructions for the previous release in case you deem it necessary.
-4. Commit the changelog
-5. Run `yarn release`: the packages will be bundled with Rollup first, then Lerna will prompt you to select the version that you would like to release (minor, major, pre-release, etc.)
-6. Wait a bit until lerna bumps the versions, creates a commit and a tag and finally publishes the packages to npm.
-7. After publishing, create a GitHub Release with the same text as the changelog entry. See previous Releases for inspiration.
+4. Commit the changelog (usually by opening a new Pull Request).
+
+#### Release the packages
+
+1. Make sure the `CHANGELOG.md` has been updated.
+2. Check that your npm account has access to the `@commercetools-frontend` organization and that you are logged in with the `npm` CLI.
+3. Run `yarn release`: the packages will be bundled with Rollup first, then Lerna will prompt you to select the version that you would like to release (minor, major, pre-release, etc.)
+4. Wait a bit until Lerna bumps the versions, creates a commit and a tag and finally publishes the packages to npm.
+5. After publishing, create a GitHub Release with the same text as the `CHANGELOG.md` entry. See previous Releases for inspiration.
