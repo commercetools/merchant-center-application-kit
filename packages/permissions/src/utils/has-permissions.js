@@ -36,7 +36,10 @@ const hasManageProjectPermission = actualPermissions =>
 //     'ViewProducts'
 // - actualPermissions:
 //     { canViewProducts: true, canManageOrders: false }
-export const hasPermission = (demandedPermission, actualPermissions) =>
+// NOTE: in case the `actualPermissions` are not defined, fall back to an empty object.
+// This might be the case when the permissions for a user/project could not be loaded
+// (e.g. project not found).
+export const hasPermission = (demandedPermission, actualPermissions = {}) =>
   // First checking the existence of the exact permission
   hasExactPermission(demandedPermission, actualPermissions) ||
   // Then checking if a manage permission is present superposing/implying a

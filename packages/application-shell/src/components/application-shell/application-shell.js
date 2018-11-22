@@ -222,11 +222,12 @@ export const RestrictedApplication = props => (
                             <FetchProject projectKey={projectKeyFromUrl}>
                               {({ isLoading: isLoadingProject, project }) => {
                                 // Render the loading navbar as long as all the data
-                                // hasn't been loaded.
+                                // hasn't been loaded, or if the project does not exist.
                                 if (
                                   isLoadingUser ||
                                   isLoadingLocaleData ||
-                                  isLoadingProject
+                                  isLoadingProject ||
+                                  !project
                                 )
                                   return <LoadingNavBar />;
 

@@ -33,16 +33,7 @@ class QuickAccess extends React.Component {
     project: PropTypes.shape({
       key: PropTypes.string.isRequired,
       languages: PropTypes.arrayOf(PropTypes.string).isRequired,
-      permissions: PropTypes.shape({
-        canViewCustomers: PropTypes.bool,
-        canViewOrders: PropTypes.bool,
-        canViewProducts: PropTypes.bool,
-        canViewProjectSettings: PropTypes.bool,
-        canManageCustomers: PropTypes.bool,
-        canManageOrders: PropTypes.bool,
-        canManageProducts: PropTypes.bool,
-        canManageProjectSettings: PropTypes.bool,
-      }),
+      permissions: PropTypes.object.isRequired,
     }),
     onClose: PropTypes.func.isRequired,
     history: PropTypes.shape({
