@@ -316,6 +316,7 @@ export default ({
         ].filter(Boolean),
       },
     project &&
+      project.languages &&
       project.languages.length > 1 && {
         id: 'action/set-resource-language',
         text: intl.formatMessage(messages.setResourceLanguage),
