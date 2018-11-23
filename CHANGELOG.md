@@ -1,4 +1,16 @@
-## [2.3.2](https://github.com/commercetools/merchant-center-application-kit/compare/v2.3.2...v2.3.1) (2018-11-22)
+## [2.3.3](https://github.com/commercetools/merchant-center-application-kit/compare/v2.3.2...v2.3.3) (2018-11-23)
+
+#### 🔮 Type: Chore
+
+- `i18n`
+  - [#124](https://github.com/commercetools/merchant-center-application-kit/pull/124) chore: sync en.json -> core.json after pulling messages from tx ([@emmenko](https://github.com/emmenko))
+  - [#125](https://github.com/commercetools/merchant-center-application-kit/pull/125) chore(i18n): pull translations from transifex ([@adnasa](https://github.com/adnasa))
+
+#### ✍️ Type: Documentation
+
+- [#123](https://github.com/commercetools/merchant-center-application-kit/pull/123) docs(playground): update and improve README about developing custom applications ([@emmenko](https://github.com/emmenko))
+
+## [2.3.2](https://github.com/commercetools/merchant-center-application-kit/compare/v2.3.1...v2.3.2) (2018-11-22)
 
 #### 🐛 Type: Bug
 
@@ -10,12 +22,7 @@
 - `application-shell`
   - [#122](https://github.com/commercetools/merchant-center-application-kit/pull/122) chore(app-shell): change navbar shadow ([@tdeekens](https://github.com/tdeekens))
 
-#### Committers: 2
-
-- Nicola Molinari ([@emmenko](https://github.com/emmenko))
-- suǝʞǝǝpʇ ([@tdeekens](https://github.com/tdeekens))
-
-## [2.3.1](https://github.com/commercetools/merchant-center-application-kit/compare/v2.3.1...v2.3.0) (2018-11-22)
+## [2.3.1](https://github.com/commercetools/merchant-center-application-kit/compare/v2.3.0...v2.3.1) (2018-11-22)
 
 #### 🐛 Type: Bug
 
@@ -29,12 +36,7 @@
 - `application-shell`
   - [#119](https://github.com/commercetools/merchant-center-application-kit/pull/119) fix(app-shell): update support link ([@tdeekens](https://github.com/tdeekens))
 
-#### Committers: 2
-
-- Malcolm Laing ([@montezume](https://github.com/montezume))
-- suǝʞǝǝpʇ ([@tdeekens](https://github.com/tdeekens))
-
-## [2.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v2.3.0...v2.2.0) (2018-11-21)
+## [2.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v2.2.0...v2.3.0) (2018-11-21)
 
 #### 🚀 Type: New Feature
 
@@ -48,10 +50,6 @@
 - `application-shell`, `i18n`
   - [#115](https://github.com/commercetools/merchant-center-application-kit/pull/115) Replace ProjectSwitcher with a "Back to project" link in AppBar ([@tdeekens](https://github.com/tdeekens))
 
-#### Committers: 1
-
-- suǝʞǝǝpʇ ([@tdeekens](https://github.com/tdeekens))
-
 ## [2.1.2](https://github.com/commercetools/merchant-center-application-kit/compare/v2.1.1...v2.1.2) (2018-11-21)
 
 #### 🔮 Type: Chore
@@ -64,21 +62,12 @@
 - `application-shell`, `permissions`
   - [#102](https://github.com/commercetools/merchant-center-application-kit/pull/102) refactor(quick-access): correctly apply permissions to all commands and queries ([@emmenko](https://github.com/emmenko))
 
-#### Committers: 2
-
-- Fedor Kulikov ([@pa3](https://github.com/pa3))
-- Nicola Molinari ([@emmenko](https://github.com/emmenko))
-
 ## [2.1.1](https://github.com/commercetools/merchant-center-application-kit/compare/v2.1.0...v2.1.1) (2018-11-18)
 
 #### 🔮 Type: Chore
 
 - `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `eslint-config-mc-app`, `jest-preset-mc-app`, `l10n`, `mc-http-server`, `mc-scripts`, `permissions`, `react-notifications`, `sdk`, `sentry`
   - [#109](https://github.com/commercetools/merchant-center-application-kit/pull/109) Update dependencies (incl. and importantly flopflip) ([@tdeekens](https://github.com/tdeekens))
-
-#### Committers: 1
-
-- suǝʞǝǝpʇ ([@tdeekens](https://github.com/tdeekens))
 
 ## [2.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.7...v2.1.0) (2018-11-17)
 
@@ -102,10 +91,6 @@ This is just an internal refactoring of the login pages, which are part of the `
 
 - `l10n`
   - [#105](https://github.com/commercetools/merchant-center-application-kit/pull/105) Fix selection of language chunk ([@tdeekens](https://github.com/tdeekens))
-
-#### Committers: 1
-
-- suǝʞǝǝpʇ ([@tdeekens](https://github.com/tdeekens))
 
 ## [2.0.6](https://github.com/commercetools/merchant-center-application-kit/compare/v2.0.5...v2.0.6) (2018-11-15)
 
