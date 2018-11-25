@@ -1,5 +1,9 @@
 # @commercetools-frontend/notifications
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/@commercetools-frontend/notifications"><img src="https://img.shields.io/npm/v/@commercetools-frontend/notifications.svg"></a>
+</p>
+
 A general-purpose notification system built on top of redux.
 
 ## Install

@@ -1,5 +1,9 @@
 # @commercetools-frontend/i18n
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/@commercetools-frontend/i18n"><img src="https://img.shields.io/npm/v/@commercetools-frontend/i18n.svg"></a>
+</p>
+
 This package contains JSON data about the i18n messages from the different application-kit packages (e.g. `application-shell`, etc). Additionally, it also loads locale data for `moment` and `react-intl`, which is necessary for runtime usage.
 
 Supported languages are:

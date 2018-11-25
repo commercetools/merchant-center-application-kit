@@ -1,5 +1,9 @@
 # @commercetools-frontend/sdk
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/@commercetools-frontend/sdk"><img src="https://img.shields.io/npm/v/@commercetools-frontend/sdk.svg"></a>
+</p>
+
 Tools for declarative fetching.
 
 ## Install

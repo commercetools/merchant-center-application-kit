@@ -1,5 +1,9 @@
 # @commercetools-frontend/l10n
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/@commercetools-frontend/l10n"><img src="https://img.shields.io/npm/v/@commercetools-frontend/l10n.svg"></a>
+</p>
+
 React bindings to load l10n data.
 
 ## Install
