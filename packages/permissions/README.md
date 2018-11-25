@@ -1,5 +1,9 @@
 # @commercetools-frontend/permissions
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/@commercetools-frontend/permissions"><img src="https://img.shields.io/npm/v/@commercetools-frontend/permissions.svg"></a>
+</p>
+
 React components to declaratively handle MC permissions.
 
 - `branchOnPermissions()`

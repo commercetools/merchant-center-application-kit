@@ -1,5 +1,9 @@
 # @commercetools-frontend/mc-http-server
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/@commercetools-frontend/mc-http-server"><img src="https://img.shields.io/npm/v/@commercetools-frontend/mc-http-server.svg"></a>
+</p>
+
 This package contains the HTTP server to run a MC application in production.
 
 > This server should **only be used for production**, for development we use `@commercetools-frontend/mc-scripts` to start a development server.

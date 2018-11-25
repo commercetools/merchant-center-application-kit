@@ -1,5 +1,9 @@
 # `@commercetools-frontend/application-shell`
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/@commercetools-frontend/application-shell"><img src="https://img.shields.io/npm/v/@commercetools-frontend/application-shell.svg"></a>
+</p>
+
 This module contains the main _React component_ `<ApplicationShell>` for
 building _MC applications_.
 
