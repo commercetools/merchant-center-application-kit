@@ -16,6 +16,7 @@ export default ({
 }) =>
   [
     project &&
+      featureToggles.canViewDashboard &&
       hasSomePermissions(
         [
           permissions.ViewProducts,
@@ -63,6 +64,7 @@ export default ({
         ].filter(Boolean),
       },
     project &&
+      featureToggles.canViewCategories &&
       hasSomePermissions(
         [permissions.ViewProducts, permissions.ManageProducts],
         project.permissions
@@ -112,7 +114,7 @@ export default ({
             text: intl.formatMessage(messages.openAddCustomer),
             action: { type: 'go', to: `/${project.key}/customers/new` },
           },
-          {
+          featureToggles.customerGroups && {
             id: 'go/customer/customer-groups',
             text: intl.formatMessage(messages.openCustomerGroupsList),
             action: {
@@ -120,17 +122,19 @@ export default ({
               to: `/${project.key}/customers/customer-groups`,
             },
           },
-          hasPermission(permissions.ManageCustomers, project.permissions) && {
-            id: 'go/customers/customer-groups/add',
-            text: intl.formatMessage(messages.openAddCustomerGroup),
-            action: {
-              type: 'go',
-              to: `/${project.key}/customers/customer-groups/new`,
+          featureToggles.customerGroups &&
+            hasPermission(permissions.ManageCustomers, project.permissions) && {
+              id: 'go/customers/customer-groups/add',
+              text: intl.formatMessage(messages.openAddCustomerGroup),
+              action: {
+                type: 'go',
+                to: `/${project.key}/customers/customer-groups/new`,
+              },
             },
-          },
-        ],
+        ].filter(Boolean),
       },
     project &&
+      featureToggles.canViewOrders &&
       hasSomePermissions(
         [permissions.ViewOrders, permissions.ManageOrders],
         project.permissions
@@ -153,6 +157,7 @@ export default ({
         ].filter(Boolean),
       },
     project &&
+      featureToggles.canViewDiscounts &&
       hasSomePermissions(
         [
           permissions.ViewProducts,
@@ -236,6 +241,7 @@ export default ({
         ].filter(Boolean),
       },
     project &&
+      featureToggles.projectSettings &&
       hasSomePermissions(
         [
           permissions.ManageProject,
@@ -285,7 +291,7 @@ export default ({
                   to: `/${project.key}/settings/project/shipping-methods`,
                 },
               },
-              {
+              featureToggles.projectSettingsChannels && {
                 id: 'go/settings/project/channels',
                 text: intl.formatMessage(
                   messages.openProjectSettingsChannelsTab
@@ -295,7 +301,7 @@ export default ({
                   to: `/${project.key}/settings/project/channels`,
                 },
               },
-            ],
+            ].filter(Boolean),
           },
           {
             id: 'go/settings/product-types',
@@ -305,14 +311,15 @@ export default ({
               to: `/${project.key}/settings/product-types`,
             },
           },
-          hasPermission(permissions.ManageProject, project.permissions) && {
-            id: 'go/settings/developer',
-            text: intl.formatMessage(messages.openDeveloperSettings),
-            action: {
-              type: 'go',
-              to: `/${project.key}/settings/developer/api-clients`,
+          featureToggles.developerSettings &&
+            hasPermission(permissions.ManageProject, project.permissions) && {
+              id: 'go/settings/developer',
+              text: intl.formatMessage(messages.openDeveloperSettings),
+              action: {
+                type: 'go',
+                to: `/${project.key}/settings/developer/api-clients`,
+              },
             },
-          },
         ].filter(Boolean),
       },
     project &&
