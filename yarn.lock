@@ -1902,21 +1902,6 @@
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.0.tgz#8b63ab7f1aa5321248aad5ac890a485656dcea4d"
   integrity sha512-te5lMAWii1uEJ4FwLjzdlbw3+n0FZNOvFXHxQDKeT0dilh7HOzdMzV2TrJVUzq8ep7J4Na8OUYPRLSQkJHAlrg==
 
-"@vue/component-compiler-utils@^1.0.0":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@vue/component-compiler-utils/-/component-compiler-utils-1.3.1.tgz#686f0b913d59590ae327b2a1cb4b6d9b931bbe0e"
-  integrity sha512-IyjJW6ToMitgAhp3xh22QiEW8JvHfLyzlyY/J+GjJ71miod9tNsy6xT2ckm/VirlhPMfeM43kgYZe34jhmmzpw==
-  dependencies:
-    consolidate "^0.15.1"
-    hash-sum "^1.0.2"
-    lru-cache "^4.1.2"
-    merge-source-map "^1.1.0"
-    postcss "^6.0.20"
-    postcss-selector-parser "^3.1.1"
-    prettier "^1.13.0"
-    source-map "^0.5.6"
-    vue-template-es2015-compiler "^1.6.0"
-
 "@webassemblyjs/ast@1.7.11":
   version "1.7.11"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.7.11.tgz#b988582cafbb2b095e8b556526f30c90d057cace"
@@ -2242,32 +2227,32 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-apollo-cache-inmemory@1.3.10:
-  version "1.3.10"
-  resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.3.10.tgz#2e5375ad7ac0d30d59aaae3a2b5967673d0cf968"
-  integrity sha512-cJL8xxX2iytludvxY4goxYJ41n8avXirAjQkEwgSvGqrEzC0PG2DwtHZZh1QTnRRuM1rgj4MKiUiX/Ykhc5L+Q==
+apollo-cache-inmemory@1.3.11:
+  version "1.3.11"
+  resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.3.11.tgz#6cb8f24ec812715169f9acbb0b67833f9a19ec90"
+  integrity sha512-fSoyjBV5RV57J3i/VHDDB74ZgXc0PFiogheNFHEhC0mL6rg5e/DjTx0Vg+csIBk23gvlzTvV+eypx7Q2NJ+dYg==
   dependencies:
-    apollo-cache "^1.1.20"
-    apollo-utilities "^1.0.25"
+    apollo-cache "^1.1.21"
+    apollo-utilities "^1.0.26"
     optimism "^0.6.6"
 
-apollo-cache@1.1.20, apollo-cache@^1.1.20:
-  version "1.1.20"
-  resolved "https://registry.yarnpkg.com/apollo-cache/-/apollo-cache-1.1.20.tgz#6152cc4baf6a63e376efee79f75de4f5c84bf90e"
-  integrity sha512-+Du0/4kUSuf5PjPx0+pvgMGV12ezbHA8/hubYuqRQoy/4AWb4faa61CgJNI6cKz2mhDd9m94VTNKTX11NntwkQ==
+apollo-cache@1.1.21, apollo-cache@^1.1.21:
+  version "1.1.21"
+  resolved "https://registry.yarnpkg.com/apollo-cache/-/apollo-cache-1.1.21.tgz#950025e2272741ba8e5064419906e3ac4072925d"
+  integrity sha512-5ErNb78KHtrJNimkDBTEigcvHkIqUmS7QJIk4lpZZ+XLVVgvk2fD+GhD1PLP+s8vHfAKVbO6vdbRxCCjGGrh5w==
   dependencies:
-    apollo-utilities "^1.0.25"
+    apollo-utilities "^1.0.26"
 
-apollo-client@2.4.6:
-  version "2.4.6"
-  resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.4.6.tgz#ba24a2def6ea9d487b41672652ca967cc7c05e4a"
-  integrity sha512-RsZVMYone7mu3Wj4sr7ehctN8pdaHsP4X1Sv6Ly4gZ/YDetCCVnhbmnk5q7kvDtfoo0jhhHblxgFyA3FLLImtA==
+apollo-client@2.4.7:
+  version "2.4.7"
+  resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.4.7.tgz#b6712fd4c9ba346e3c44cfec7e6868e532b6a957"
+  integrity sha512-6aAm+16AFBYZhJF8eKxrup6AbYni01InDiwTfZhMMTP2xaXQWjsQnfaHbI2oE+hd3+AZFy1drkse8RZKghR/WQ==
   dependencies:
     "@types/zen-observable" "^0.8.0"
-    apollo-cache "1.1.20"
+    apollo-cache "1.1.21"
     apollo-link "^1.0.0"
     apollo-link-dedup "^1.0.0"
-    apollo-utilities "1.0.25"
+    apollo-utilities "1.0.26"
     symbol-observable "^1.0.2"
     zen-observable "^0.8.0"
   optionalDependencies:
@@ -2280,42 +2265,50 @@ apollo-link-dedup@^1.0.0:
   dependencies:
     apollo-link "^1.2.3"
 
-apollo-link-error@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/apollo-link-error/-/apollo-link-error-1.1.1.tgz#69d7124d4dc11ce60f505c940f05d4f1aa0945fb"
-  integrity sha512-/yPcaQWcBdB94vpJ4FsiCJt1dAGGRm+6Tsj3wKwP+72taBH+UsGRQQZk7U/1cpZwl1yqhHZn+ZNhVOebpPcIlA==
+apollo-link-error@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/apollo-link-error/-/apollo-link-error-1.1.2.tgz#d068fdf99892e6fc65cfe0390db8528d182f9481"
+  integrity sha512-zlEZiqQ42E49+BeX3mIKPkMTSlOPrYNEwzSi1MubUiP/Bi6QRP7tzdJXNBnUpkW6MjZJQpfSNZNxK/xwvPiJIw==
   dependencies:
-    apollo-link "^1.2.3"
+    apollo-link "^1.2.4"
 
-apollo-link-http-common@^0.2.5:
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/apollo-link-http-common/-/apollo-link-http-common-0.2.5.tgz#d094beb7971523203359bf830bfbfa7b4e7c30ed"
-  integrity sha512-6FV1wr5AqAyJ64Em1dq5hhGgiyxZE383VJQmhIoDVc3MyNcFL92TkhxREOs4rnH2a9X2iJMko7nodHSGLC6d8w==
+apollo-link-http-common@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/apollo-link-http-common/-/apollo-link-http-common-0.2.6.tgz#47b9012500599fe343e2e87378026384b4fc8c1f"
+  integrity sha512-LUOMWvrZuBP1hyWLBXyaW0KyFeKo79j+k3N+Q4HSkXKbLibnllXQ+JxxoSKGhm0bhREygiLtJAG9JnGlhxGO/Q==
   dependencies:
-    apollo-link "^1.2.3"
+    apollo-link "^1.2.4"
 
-apollo-link-http@1.5.5:
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/apollo-link-http/-/apollo-link-http-1.5.5.tgz#7dbe851821771ad67fa29e3900c57f38cbd80da8"
-  integrity sha512-C5N6N/mRwmepvtzO27dgMEU3MMtRKSqcljBkYNZmWwH11BxkUQ5imBLPM3V4QJXNE7NFuAQAB5PeUd4ligivTQ==
+apollo-link-http@1.5.7:
+  version "1.5.7"
+  resolved "https://registry.yarnpkg.com/apollo-link-http/-/apollo-link-http-1.5.7.tgz#098615c427a910ec8c5817476bbabe68c586b339"
+  integrity sha512-EZ9nynHjwYCpGYP5IsRrZGTWidUVpshk7MuSG4joqGtJMwpFCgMQz+y3BHdUhowHtfAd9z60XmeOTG9FJolb8A==
   dependencies:
-    apollo-link "^1.2.3"
-    apollo-link-http-common "^0.2.5"
+    apollo-link "^1.2.4"
+    apollo-link-http-common "^0.2.6"
 
 apollo-link-logger@1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/apollo-link-logger/-/apollo-link-logger-1.2.3.tgz#1f3e6f7849ce7a7e3aa822141fe062cfa278b1e1"
   integrity sha512-GaVwdHyXmawfvBlHfZkFkBHH3+YH7wibzSCc4/YpIbPVtbtZqi0Qop18w++jgpw385W083DMOdYe2eJsKkZdag==
 
-apollo-link-retry@2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/apollo-link-retry/-/apollo-link-retry-2.2.5.tgz#7c92170ea502685e96db32538f5ad070ddd007be"
-  integrity sha512-DZUyTVDBH5toiqtgJxM955wnXVXeRDRkXrFOEUvXsXyEJ0Bb9ej5YfrdJBPyQL2vB6yP/1l8nEFR1ivV88ivgw==
+apollo-link-retry@2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/apollo-link-retry/-/apollo-link-retry-2.2.6.tgz#aa17e08b4a115ddcbdd70444ced254d3c915fc44"
+  integrity sha512-GhMcugGVT3JXGaZ61by1GVc/m1ceaRjo1WTTIfJLm75k1wdwW1WUnNmBU5ZQrUgdUzkqXaADbWinbm0tDhmMlQ==
   dependencies:
     "@types/zen-observable" "0.8.0"
-    apollo-link "^1.2.3"
+    apollo-link "^1.2.4"
 
-apollo-link@1.2.3, apollo-link@^1.0.0, apollo-link@^1.2.3:
+apollo-link@1.2.4, apollo-link@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.4.tgz#ab4d21d2e428db848e88b5e8f4adc717b19c954b"
+  integrity sha512-B1z+9H2nTyWEhMXRFSnoZ1vSuAYP+V/EdUJvRx9uZ8yuIBZMm6reyVtr1n0BWlKeSFyPieKJy2RLzmITAAQAMQ==
+  dependencies:
+    apollo-utilities "^1.0.0"
+    zen-observable-ts "^0.8.11"
+
+apollo-link@^1.0.0, apollo-link@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.3.tgz#9bd8d5fe1d88d31dc91dae9ecc22474d451fb70d"
   integrity sha512-iL9yS2OfxYhigme5bpTbmRyC+Htt6tyo2fRMHT3K1XRL/C5IQDDz37OjpPy4ndx7WInSvfSZaaOTKFja9VWqSw==
@@ -2323,7 +2316,14 @@ apollo-link@1.2.3, apollo-link@^1.0.0, apollo-link@^1.2.3:
     apollo-utilities "^1.0.0"
     zen-observable-ts "^0.8.10"
 
-apollo-utilities@1.0.25, apollo-utilities@^1.0.0, apollo-utilities@^1.0.25:
+apollo-utilities@1.0.26, apollo-utilities@^1.0.26:
+  version "1.0.26"
+  resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.26.tgz#589c66bf4d16223531351cf667a230c787def1da"
+  integrity sha512-URw7o3phymliqYCYatcird2YRPUU2eWCNvip64U9gQrX56mEfK4m99yBIDCMTpmcvOFsKLii1sIEZsHIs/bvnw==
+  dependencies:
+    fast-json-stable-stringify "^2.0.0"
+
+apollo-utilities@^1.0.0:
   version "1.0.25"
   resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.25.tgz#899b00f5f990fb451675adf84cb3de82eb6372ea"
   integrity sha512-AXvqkhni3Ir1ffm4SA1QzXn8k8I5BBl4PVKEyak734i4jFdp+xgfUyi2VCqF64TJlFTA/B73TRDUvO2D+tKtZg==
@@ -3002,7 +3002,7 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@^3.1.1, bluebird@^3.5.1, bluebird@^3.5.2:
+bluebird@^3.5.1, bluebird@^3.5.2:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.3.tgz#7d01c6f9616c9a51ab0f8c549a79dfe6ec33efa7"
   integrity sha512-/qKPUQlaW1OyR51WeCPBvRnAlnZFUJkCSG5HzGnuIqhgyJtF+T94lFnn33eiazjRm2LAHVy2guNnaq48X9SJuw==
@@ -4027,13 +4027,6 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha1-PXz0Rk22RG6mRL9LOVB/mFEAjo4=
 
-consolidate@^0.15.1:
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/consolidate/-/consolidate-0.15.1.tgz#21ab043235c71a07d45d9aad98593b0dba56bab7"
-  integrity sha512-DW46nrsMJgy9kqAbPt5rKaCr7uFtpo4mSUvLHIUbJEjm0vo+aY5QLwBUq3FK4tRnJr/X0Psc0C4jf/h+HtXSMw==
-  dependencies:
-    bluebird "^3.1.1"
-
 constants-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/constants-browserify/-/constants-browserify-1.0.0.tgz#c20b96d8c617748aaf1c16021760cd27fcb8cb75"
@@ -4216,6 +4209,15 @@ cosmiconfig@4.0.0, cosmiconfig@^4.0.0:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
     require-from-string "^2.0.1"
+
+cosmiconfig@5.0.6:
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-5.0.6.tgz#dca6cf680a0bd03589aff684700858c81abeeb39"
+  integrity sha512-6DWfizHriCrFWURP1/qyhsiFvYdlJzbCzmtFWh744+KyWsJo5+kPzUZZaMRSSItoYc0pxFX7gEO7ZC1/gN/7AQ==
+  dependencies:
+    is-directory "^0.3.1"
+    js-yaml "^3.9.0"
+    parse-json "^4.0.0"
 
 cosmiconfig@^2.1.0, cosmiconfig@^2.1.1:
   version "2.2.2"
@@ -6869,11 +6871,6 @@ hash-base@^3.0.0:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-hash-sum@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/hash-sum/-/hash-sum-1.0.2.tgz#33b40777754c6432573c120cc3808bbd10d47f04"
-  integrity sha1-M7QHd3VMZDJXPBIMw4CLvRDUfwQ=
-
 hash.js@^1.0.0, hash.js@^1.0.3:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/hash.js/-/hash.js-1.1.5.tgz#e38ab4b85dfb1e0c40fe9265c0e9b54854c23812"
@@ -7175,10 +7172,10 @@ humanize-ms@^1.2.1:
   dependencies:
     ms "^2.0.0"
 
-husky@1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-1.1.4.tgz#92f61383527d2571e9586234e5864356bfaceaa9"
-  integrity sha512-cZjGpS7qsaBSo3fOMUuR7erQloX3l5XzL1v/RkIqU6zrQImDdU70z5Re9fGDp7+kbYlM2EtS4aYMlahBeiCUGw==
+husky@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-1.2.0.tgz#d631dda1e4a9ee8ba69a10b0c51a0e2c66e711e5"
+  integrity sha512-/ib3+iycykXC0tYIxsyqierikVa9DA2DrT32UEirqNEFVqOj1bFMTgP3jAz8HM7FgC/C8pc/BTUa9MV2GEkZaA==
   dependencies:
     cosmiconfig "^5.0.6"
     execa "^1.0.0"
@@ -8913,15 +8910,15 @@ libnpmaccess@^3.0.0:
     npm-package-arg "^6.1.0"
     npm-registry-fetch "^3.8.0"
 
-lint-staged@8.0.5:
-  version "8.0.5"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-8.0.5.tgz#8eeca1a213eaded09c4e217da455b6f432046034"
-  integrity sha512-QI2D6lw2teArlr2fmrrCIqHxef7mK2lKjz9e+aZSzFlk5rsy10rg97p3wA9H/vIFR3Fvn34fAgUktD/k896S2A==
+lint-staged@8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-8.1.0.tgz#dbc3ae2565366d8f20efb9f9799d076da64863f2"
+  integrity sha512-yfSkyJy7EuVsaoxtUSEhrD81spdJOe/gMTGea3XaV7HyoRhTb9Gdlp6/JppRZERvKSEYXP9bjcmq6CA5oL2lYQ==
   dependencies:
     "@iamstarkov/listr-update-renderer" "0.4.1"
     chalk "^2.3.1"
     commander "^2.14.1"
-    cosmiconfig "^5.0.2"
+    cosmiconfig "5.0.6"
     debug "^3.1.0"
     dedent "^0.7.0"
     del "^3.0.0"
@@ -9630,13 +9627,6 @@ merge-options@1.0.1:
   integrity sha512-iuPV41VWKWBIOpBsjoxjDZw8/GbSfZ2mk7N1453bwMrfzdrIk7EzBd+8UVR6rkw67th7xnk9Dytl3J+lHPdxvg==
   dependencies:
     is-plain-obj "^1.1"
-
-merge-source-map@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/merge-source-map/-/merge-source-map-1.1.0.tgz#2fdde7e6020939f70906a68f2d7ae685e4c8c646"
-  integrity sha512-Qkcp7P2ygktpMPh2mCQZaf3jhN6D3Z/qVZHSdWvQ+2Ef5HgRAPBO57A77+ENm0CPx2+1Ce/MYKi3ymqdfuqibw==
-  dependencies:
-    source-map "^0.6.1"
 
 merge-stream@^1.0.1:
   version "1.0.1"
@@ -11963,7 +11953,7 @@ postcss-selector-parser@^2.0.0, postcss-selector-parser@^2.2.2:
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 
-postcss-selector-parser@^3.0.0, postcss-selector-parser@^3.1.0, postcss-selector-parser@^3.1.1:
+postcss-selector-parser@^3.0.0, postcss-selector-parser@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-3.1.1.tgz#4f875f4afb0c96573d5cf4d74011aee250a7e865"
   integrity sha1-T4dfSvsMllc9XPTXQBGu4lCn6GU=
@@ -12132,11 +12122,6 @@ prettier@1.15.2:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.2.tgz#d31abe22afa4351efa14c7f8b94b58bb7452205e"
   integrity sha512-YgPLFFA0CdKL4Eg2IHtUSjzj/BWgszDHiNQAe0VAIBse34148whfdzLagRL+QiKS+YfK5ftB6X4v/MBw8yCoug==
-
-prettier@^1.13.0:
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.1.tgz#06c67106afb1b40e74b002353b2079cc7e0e67bf"
-  integrity sha512-4rgV2hyc/5Pk0XHH4VjJWHRgVjgRbpMfLQjREAhHBtyW1UvTFkjJEsueGYNYYZd9mn97K+1qv0EBwm11zoaSgA==
 
 pretty-error@^2.0.2:
   version "2.1.1"
@@ -12685,10 +12670,10 @@ react-test-renderer@^16.0.0-0:
     react-is "^16.6.1"
     scheduler "^0.11.0"
 
-react-testing-library@5.2.3:
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/react-testing-library/-/react-testing-library-5.2.3.tgz#c3be44bfa5eb1ba2acc1fb218785c40ebbdfe8ed"
-  integrity sha512-Bw52++7uORuIQnL55lK/WQfppqAc9+8yFG4lWUp/kmSOvYDnt8J9oI5fNCfAGSQi9iIhAv9aNsI2G5rtid0nrA==
+react-testing-library@5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/react-testing-library/-/react-testing-library-5.3.0.tgz#b88124441d8756438137b705eb26a99410de69cc"
+  integrity sha512-hUXurQC8b828s2Fyuyuibz1PvPbGWb5vSIDCb1ihcGVjzBP9OGnsAm6Dhpu7XqC1o/68KJ/5/QdkeiTDxS9gpw==
   dependencies:
     dom-testing-library "^3.12.0"
 
@@ -13494,12 +13479,11 @@ rollup-plugin-peer-deps-external@2.2.0:
   resolved "https://registry.yarnpkg.com/rollup-plugin-peer-deps-external/-/rollup-plugin-peer-deps-external-2.2.0.tgz#99ef9231aa01736f3e9605b7c3084a0d627f665b"
   integrity sha512-BmJMHUWQcvjS2dQMwJ7dzvdbwpRChnq4AYk2sTU/4aySt9Kumk8y8W3HhTHss31wxzKb0AC/wsiX1AqDcOBIEA==
 
-rollup-plugin-postcss@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-postcss/-/rollup-plugin-postcss-1.6.2.tgz#f3422a56dab21bcb2e9b7182763733d4ff2c1b4c"
-  integrity sha512-kKUdZRWSG7IQwXztKA4NTxFKcII7dn5rxAuJyNRJ9QTErRaM6mH4GoFCBPm0KT9TUZDOGCREdRI4VHUdEV+MJA==
+rollup-plugin-postcss@1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-postcss/-/rollup-plugin-postcss-1.6.3.tgz#18256ba66f29ecd9d42a68f4ef136b92b939ddb8"
+  integrity sha512-se1qftVETua9ZGViud4A4gbgEQenjYnLPvjh3kTqbBZU+f0mQ9YvJptIuzPhEk5kZAHZhkwIkk2jk+byrn1XPA==
   dependencies:
-    "@vue/component-compiler-utils" "^1.0.0"
     chalk "^2.0.0"
     concat-with-sourcemaps "^1.0.5"
     cssnano "^3.10.0"
@@ -15418,11 +15402,6 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-template-es2015-compiler@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
-  integrity sha512-x3LV3wdmmERhVCYy3quqA57NJW7F3i6faas++pJQWtknWT+n7k30F4TVdHvCLn48peTJFRvCpxs3UuFPqgeELg==
-
 w3c-hr-time@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/w3c-hr-time/-/w3c-hr-time-1.0.1.tgz#82ac2bff63d950ea9e3189a58a65625fedf19045"
@@ -15957,6 +15936,13 @@ zen-observable-ts@^0.8.10:
   version "0.8.10"
   resolved "https://registry.yarnpkg.com/zen-observable-ts/-/zen-observable-ts-0.8.10.tgz#18e2ce1c89fe026e9621fd83cc05168228fce829"
   integrity sha512-5vqMtRggU/2GhePC9OU4sYEWOdvmayp2k3gjPf4F0mXwB3CSbbNznfDUvDJx9O2ZTa1EIXdJhPchQveFKwNXPQ==
+  dependencies:
+    zen-observable "^0.8.0"
+
+zen-observable-ts@^0.8.11:
+  version "0.8.11"
+  resolved "https://registry.yarnpkg.com/zen-observable-ts/-/zen-observable-ts-0.8.11.tgz#d54a27cd17dc4b4bb6bd008e5c096af7fcb068a9"
+  integrity sha512-8bs7rgGV4kz5iTb9isudkuQjtWwPnQ8lXq6/T76vrepYZVMsDEv6BXaEA+DHdJSK3KVLduagi9jSpSAJ5NgKHw==
   dependencies:
     zen-observable "^0.8.0"
 
