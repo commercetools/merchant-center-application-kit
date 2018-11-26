@@ -1,14 +1,40 @@
 import React from 'react';
-import Loadable from 'react-loadable';
+import PropTypes from 'prop-types';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import ButlerContainer from './butler-container';
 import * as gtm from '../../utils/gtm';
 import trackingEvents from './tracking-events';
+import ButlerContainer from './butler-container';
 
-const QuickAccessModal = Loadable({
-  loader: () => import('./quick-access' /* webpackChunkName: "quick-access" */),
-  loading: ButlerContainer,
-});
+const QuickAccessModal = React.lazy(() =>
+  import('./quick-access' /* webpackChunkName: "quick-access" */)
+);
+
+class QuickAccessContainer extends React.Component {
+  static displayName = 'QuickAccessContainer';
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+  state = {
+    hasError: false,
+  };
+  componentDidCatch(error, errorInfo) {
+    this.setState({ hasError: true });
+    // Note: In development mode componentDidCatch is not based on try-catch
+    // to catch exceptions. Thus exceptions caught here will also be caught in
+    // the global `error` event listener (setup-global-error-listener.js).
+    // see: https://github.com/facebook/react/issues/10474
+    reportErrorToSentry(error, { extra: errorInfo });
+  }
+  render() {
+    // render no overlay in case of loding error, just show nothing then
+    if (this.state.hasError) return null;
+    return (
+      <React.Suspense fallback={<ButlerContainer />}>
+        {this.props.children}
+      </React.Suspense>
+    );
+  }
+}
 
 export default class QuickAccessTrigger extends React.Component {
   static displayName = 'QuickAccessTrigger';
@@ -97,7 +123,9 @@ export default class QuickAccessTrigger extends React.Component {
 
   render() {
     return this.state.isVisible && !this.state.hasError ? (
-      <QuickAccessModal {...this.props} onClose={this.close} />
+      <QuickAccessContainer>
+        <QuickAccessModal {...this.props} onClose={this.close} />
+      </QuickAccessContainer>
     ) : null;
   }
 }

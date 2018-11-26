@@ -1,10 +1,7 @@
-import Loadable from 'react-loadable';
-import AsyncChunkLoader from '../async-chunk-loader';
+import React from 'react';
 
-const ProjectExpired = Loadable({
-  loader: () =>
-    import('./project-expired' /* webpackChunkName: "project-expired" */),
-  loading: AsyncChunkLoader,
-});
+const ProjectExpired = React.lazy(() =>
+  import('./project-expired' /* webpackChunkName: "project-expired" */)
+);
 
 export { ProjectExpired as default };

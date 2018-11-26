@@ -415,17 +415,32 @@ export default class ApplicationShell extends React.Component {
     trackingEventWhitelist: {},
     INTERNAL__isApplicationFallback: false,
   };
+  state = {
+    hasError: false,
+  };
   componentDidMount() {
     this.props.onRegisterErrorListeners();
     // NOTE: this is a temporary thingy, to ensure we clear the `token`
     // from localStorage.
     storage.remove('token');
   }
+  componentDidCatch(error, errorInfo) {
+    this.setState({ hasError: true });
+    // Note: In development mode componentDidCatch is not based on try-catch
+    // to catch exceptions. Thus exceptions caught here will also be caught in
+    // the global `error` event listener (setup-global-error-listener.js).
+    // see: https://github.com/facebook/react/issues/10474
+    reportErrorToSentry(error, { extra: errorInfo });
+  }
   render() {
+    if (this.state.hasError) {
+      return <ErrorApologizer />;
+    }
+
     return (
       <ApplicationContextProvider environment={this.props.environment}>
         <ApolloProvider client={apolloClient}>
-          <React.Fragment>
+          <React.Suspense fallback={<ApplicationLoader />}>
             {/* <VersionCheckSubscriber /> */}
             <Router history={history}>
               <GtmBooter
@@ -486,7 +501,7 @@ export default class ApplicationShell extends React.Component {
                 </Switch>
               </GtmBooter>
             </Router>
-          </React.Fragment>
+          </React.Suspense>
         </ApolloProvider>
       </ApplicationContextProvider>
     );

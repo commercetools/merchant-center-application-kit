@@ -5,9 +5,9 @@ import { FormattedMessage } from 'react-intl';
 import last from 'lodash.last';
 import classnames from 'classnames';
 import { SearchIcon } from '@commercetools-frontend/ui-kit';
-import ButlerContainer from '../butler-container';
 import { flattenResults } from '../utils';
 import ButlerCommand from '../butler-command';
+import ButlerContainer from '../butler-container';
 import messages from '../messages';
 import styles from './butler.mod.css';
 

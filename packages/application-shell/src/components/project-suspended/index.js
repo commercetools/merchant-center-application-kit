@@ -1,10 +1,7 @@
-import Loadable from 'react-loadable';
-import AsyncChunkLoader from '../async-chunk-loader';
+import React from 'react';
 
-const ProjectSuspended = Loadable({
-  loader: () =>
-    import('./project-suspended' /* webpackChunkName: "project-suspended" */),
-  loading: AsyncChunkLoader,
-});
+const ProjectSuspended = React.lazy(
+  import('./project-suspended' /* webpackChunkName: "project-suspended" */)
+);
 
 export { ProjectSuspended as default };

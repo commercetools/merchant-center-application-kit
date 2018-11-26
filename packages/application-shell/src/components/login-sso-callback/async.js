@@ -1,7 +1,5 @@
-import Loadable from 'react-loadable';
-import AsyncChunkLoader from '../async-chunk-loader';
+import React from 'react';
 
-export default Loadable({
-  loader: () => import('./index' /* webpackChunkName: "login-sso-callback" */),
-  loading: AsyncChunkLoader,
-});
+export default React.lazy(() =>
+  import('./index' /* webpackChunkName: "login-sso-callback" */)
+);
