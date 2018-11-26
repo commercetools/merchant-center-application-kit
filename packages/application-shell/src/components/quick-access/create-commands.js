@@ -131,7 +131,7 @@ export default ({
                 to: `/${project.key}/customers/customer-groups/new`,
               },
             },
-        ],
+        ].filter(Boolean),
       },
     project &&
       featureToggles.canViewOrders &&
@@ -240,85 +240,88 @@ export default ({
           },
         ].filter(Boolean),
       },
-    project && featureToggles.projectSettings,
-    hasSomePermissions(
-      [
-        permissions.ManageProject,
-        permissions.ViewProducts,
-        permissions.ManageProducts,
-      ],
-      project.permissions
-    ) && {
-      id: 'go/settings',
-      text: intl.formatMessage(messages.openSettings),
-      keywords: ['Go to Settings'],
-      action: {
-        type: 'go',
-        to: `/${project.key}/settings/project/international`,
-      },
-      subCommands: [
-        hasPermission(permissions.ManageProject, project.permissions) && {
-          id: 'go/settings/project',
-          text: intl.formatMessage(messages.openProjectSettings),
-          action: { type: 'go', to: `/${project.key}/settings/project` },
-          subCommands: [
-            {
-              id: 'go/settings/project/international',
-              text: intl.formatMessage(
-                messages.openProjectSettingsInternationalTab
-              ),
-              action: {
-                type: 'go',
-                to: `/${project.key}/settings/project/international`,
-              },
-            },
-            {
-              id: 'go/settings/project/taxes',
-              text: intl.formatMessage(messages.openProjectSettingsTaxesTab),
-              action: {
-                type: 'go',
-                to: `/${project.key}/settings/project/taxes`,
-              },
-            },
-            {
-              id: 'go/settings/project/shipping-methods',
-              text: intl.formatMessage(
-                messages.openProjectSettingsShippingMethodsTab
-              ),
-              action: {
-                type: 'go',
-                to: `/${project.key}/settings/project/shipping-methods`,
-              },
-            },
-            featureToggles.projectSettingsChannels && {
-              id: 'go/settings/project/channels',
-              text: intl.formatMessage(messages.openProjectSettingsChannelsTab),
-              action: {
-                type: 'go',
-                to: `/${project.key}/settings/project/channels`,
-              },
-            },
-          ],
+    project &&
+      featureToggles.projectSettings &&
+      hasSomePermissions(
+        [
+          permissions.ManageProject,
+          permissions.ViewProducts,
+          permissions.ManageProducts,
+        ],
+        project.permissions
+      ) && {
+        id: 'go/settings',
+        text: intl.formatMessage(messages.openSettings),
+        keywords: ['Go to Settings'],
+        action: {
+          type: 'go',
+          to: `/${project.key}/settings/project/international`,
         },
-        {
-          id: 'go/settings/product-types',
-          text: intl.formatMessage(messages.openProductTypesSettings),
-          action: {
-            type: 'go',
-            to: `/${project.key}/settings/product-types`,
-          },
-        },
-        featureToggles.developerSettings &&
+        subCommands: [
           hasPermission(permissions.ManageProject, project.permissions) && {
-            id: 'go/settings/developer',
-            text: intl.formatMessage(messages.openDeveloperSettings),
+            id: 'go/settings/project',
+            text: intl.formatMessage(messages.openProjectSettings),
+            action: { type: 'go', to: `/${project.key}/settings/project` },
+            subCommands: [
+              {
+                id: 'go/settings/project/international',
+                text: intl.formatMessage(
+                  messages.openProjectSettingsInternationalTab
+                ),
+                action: {
+                  type: 'go',
+                  to: `/${project.key}/settings/project/international`,
+                },
+              },
+              {
+                id: 'go/settings/project/taxes',
+                text: intl.formatMessage(messages.openProjectSettingsTaxesTab),
+                action: {
+                  type: 'go',
+                  to: `/${project.key}/settings/project/taxes`,
+                },
+              },
+              {
+                id: 'go/settings/project/shipping-methods',
+                text: intl.formatMessage(
+                  messages.openProjectSettingsShippingMethodsTab
+                ),
+                action: {
+                  type: 'go',
+                  to: `/${project.key}/settings/project/shipping-methods`,
+                },
+              },
+              featureToggles.projectSettingsChannels && {
+                id: 'go/settings/project/channels',
+                text: intl.formatMessage(
+                  messages.openProjectSettingsChannelsTab
+                ),
+                action: {
+                  type: 'go',
+                  to: `/${project.key}/settings/project/channels`,
+                },
+              },
+            ].filter(Boolean),
+          },
+          {
+            id: 'go/settings/product-types',
+            text: intl.formatMessage(messages.openProductTypesSettings),
             action: {
               type: 'go',
-              to: `/${project.key}/settings/developer/api-clients`,
+              to: `/${project.key}/settings/product-types`,
             },
           },
-      ].filter(Boolean),
-    },
+          featureToggles.developerSettings &&
+            hasPermission(permissions.ManageProject, project.permissions) && {
+              id: 'go/settings/developer',
+              text: intl.formatMessage(messages.openDeveloperSettings),
+              action: {
+                type: 'go',
+                to: `/${project.key}/settings/developer/api-clients`,
+              },
+            },
+        ].filter(Boolean),
+      },
     project &&
       project.languages &&
       project.languages.length > 1 && {

@@ -28,6 +28,18 @@ const createMatchlessSearchMock = (searchText, variables = {}) => ({
 
 const managePermissions = { canManageProject: true };
 
+const flags = {
+  pimSearch: true,
+  customerGroups: true,
+  projectSettings: true,
+  developerSettings: true,
+  projectSettingsChannels: true,
+  canViewOrders: true,
+  canViewCategories: true,
+  canViewDashboard: true,
+  canViewDiscounts: true,
+};
+
 const createTestProps = custom => ({
   project: {
     key: 'test-with-big-data-44',
@@ -155,7 +167,7 @@ describe('QuickAccess', () => {
     const mocks = [createMatchlessSearchMock('Open dshbrd')];
     const { getByTestId, getByText } = render(
       <QuickAccess {...createTestProps()} />,
-      { mocks }
+      { mocks, flags }
     );
 
     // open quick-access
@@ -229,7 +241,7 @@ describe('QuickAccess', () => {
     const props = createTestProps();
     const { getByTestId, container, getByText } = render(
       <QuickAccess {...props} />,
-      { mocks }
+      { mocks, flags }
     );
 
     // open quick-access
@@ -261,7 +273,7 @@ describe('QuickAccess', () => {
       const props = createTestProps();
       const { getByTestId, container, getByText } = render(
         <QuickAccess {...props} />,
-        { mocks }
+        { mocks, flags }
       );
 
       // open quick-access
@@ -288,7 +300,7 @@ describe('QuickAccess', () => {
       const props = createTestProps();
       const { getByTestId, container, getByText } = render(
         <QuickAccess {...props} />,
-        { mocks }
+        { mocks, flags }
       );
 
       // open quick-access
@@ -324,7 +336,7 @@ describe('QuickAccess', () => {
       const props = createTestProps();
       const { getByTestId, container, getByText } = render(
         <QuickAccess {...props} />,
-        { mocks }
+        { mocks, flags }
       );
 
       // open quick-access
@@ -351,7 +363,7 @@ describe('QuickAccess', () => {
       const props = createTestProps();
       const { getByTestId, container, getByText } = render(
         <QuickAccess {...props} />,
-        { mocks }
+        { mocks, flags }
       );
 
       // open quick-access
@@ -380,7 +392,7 @@ describe('QuickAccess', () => {
     const props = createTestProps();
     const { getByTestId, container, getByText } = render(
       <QuickAccess {...props} />,
-      { mocks }
+      { mocks, flags }
     );
 
     // open quick-access
@@ -408,7 +420,7 @@ describe('QuickAccess', () => {
     const props = createTestProps();
     const { getByTestId, container, getByText } = render(
       <QuickAccess {...props} />,
-      { mocks }
+      { mocks, flags }
     );
 
     // open quick-access
@@ -496,9 +508,9 @@ describe('QuickAccess', () => {
     fireEvent.keyUp(searchInput, { key: 'ArrowUp' });
 
     // The last element in the results
-    expect(getByTestId('quick-access-result(go/categories/add)')).toHaveClass(
-      'result activeResult'
-    );
+    expect(
+      getByTestId('quick-access-result(go/settings/product-types)')
+    ).toHaveClass('result activeResult');
   });
 
   it('should find a product by sku', async () => {
@@ -728,7 +740,7 @@ describe('QuickAccess', () => {
     const mocks = [createMatchlessSearchMock(searchTerm)];
     const { getByTestId, getByText } = render(
       <QuickAccess {...createTestProps()} />,
-      { mocks }
+      { mocks, flags }
     );
 
     // open quick-access
@@ -746,7 +758,7 @@ describe('QuickAccess', () => {
     const mocks = [createMatchlessSearchMock(searchTerm)];
     const { getByTestId, getByText } = render(
       <QuickAccess {...createTestProps()} />,
-      { mocks }
+      { mocks, flags }
     );
 
     // open quick-access
@@ -795,7 +807,7 @@ describe('QuickAccess', () => {
     const props = createTestProps();
     const { getByTestId, container, getByText } = render(
       <QuickAccess {...props} />,
-      { mocks }
+      { mocks, flags }
     );
 
     // open quick-access
@@ -861,7 +873,7 @@ describe('QuickAccess', () => {
 
       const { getByTestId, queryByText, getByText } = render(
         <QuickAccess {...props} />,
-        { mocks }
+        { mocks, flags }
       );
 
       // open quick-access
@@ -889,6 +901,7 @@ describe('QuickAccess', () => {
 
       const { getByTestId, getByText } = render(<QuickAccess {...props} />, {
         mocks,
+        flags,
       });
 
       // open quick-access
@@ -998,7 +1011,7 @@ describe('QuickAccess', () => {
       const mocks = [createMatchlessSearchMock(searchTerm)];
       const { getByTestId, queryByText, getByText, queryByTestId } = render(
         <QuickAccess {...props} />,
-        { mocks, flags: { pimSearch: false } }
+        { mocks, flags: { ...flags, pimSearch: false } }
       );
 
       // open quick-access
