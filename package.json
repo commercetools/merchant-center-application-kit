@@ -18,14 +18,15 @@
     "format:md": "prettier --write --parser markdown '**/*.md'",
     "format:yaml": "prettier --write --parser yaml '**/*.yaml'",
     "start": "yarn playground:start",
-    "release": "npm run build; lerna publish --exact",
+    "release": "npm run build; lerna publish --exact --npm-tag next",
+    "release-to-latest": "lerna exec --no-bail --no-private --no-sort --stream -- '[ -n \"$(npm v . dist-tags.next)\" ] && npm dist-tag add ${LERNA_PACKAGE_NAME}@$(npm v . dist-tags.next) latest'",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
     "playground:start": "yarn --cwd playground start",
     "playground:build": "yarn --cwd playground build",
-    "build": "NODE_ENV=production lerna run build --ignore 'playground'",
-    "build:es": "NODE_ENV=production lerna run build:es --ignore 'playground'",
-    "build:es:watch": "NODE_ENV=development lerna run --ignore 'playground' --parallel build:es:watch"
+    "build": "NODE_ENV=production lerna run build --no-private",
+    "build:es": "NODE_ENV=production lerna run build:es --no-private",
+    "build:es:watch": "NODE_ENV=development lerna run --no-private --parallel build:es:watch"
   },
   "workspaces": [
     "packages/*",

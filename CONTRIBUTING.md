@@ -110,6 +110,8 @@ You can also run the build in watch mode `yarn build:es:watch` alongside with `y
 
 ## Cutting a Release
 
+All releases go the the `next` distribution channel. This gives us a chance to test releases out before making them offical by moving the `latest` dist-tag along.
+
 #### Draft release notes in the Changelog
 
 1. Make sure that each merged PR that should be mentioned in the release changelog is labelled with one of the [labels](https://github.com/commercetools/merchant-center-application-kit/labels) named `Type: ...` to indicate what kind of change it is.
@@ -128,6 +130,16 @@ You can also run the build in watch mode `yarn build:es:watch` alongside with `y
 
 1. Make sure the `CHANGELOG.md` has been updated.
 2. Check that your npm account has access to the `@commercetools-frontend` organization and that you are logged in with the `npm` CLI.
-3. Run `yarn release`: the packages will be bundled with Rollup first, then Lerna will prompt you to select the version that you would like to release (minor, major, pre-release, etc.)
-4. Wait a bit until Lerna bumps the versions, creates a commit and a tag and finally publishes the packages to npm.
+3. Run `yarn release`: the packages will be bundled with Rollup first, then Lerna will prompt you to select the version that you would like to release (minor, major, pre-release, etc.).
+4. Wait a bit until Lerna bumps the versions, creates a commit and a tag and finally publishes the packages to npm (to the `next` distribution channel).
 5. After publishing, create a GitHub Release with the same text as the `CHANGELOG.md` entry. See previous Releases for inspiration.
+
+#### Moving the `latest` dist-tag to a release:
+
+After testing the `next` release on a production project, it's time to move to the `latest` dist-tag to make the release official.
+
+```bash
+$ yarn release-to-latest
+```
+
+The command will promote the version published on `next` to the `latest` dist-tag for each package.
