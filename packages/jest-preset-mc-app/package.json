@@ -43,11 +43,11 @@
     "raf": "3.4.1"
   },
   "devDependencies": {
-    "react-testing-library": "5.2.3"
+    "react-testing-library": "5.3.0"
   },
   "peerDependencies": {
     "enzyme": ">=3",
     "jest": ">=23",
-    "react-testing-library": ">=5"
+    "react-testing-library": ">=5 || <6"
   }
 }
