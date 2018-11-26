@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/i18n",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "MC i18n messages",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.1.5",
-    "@commercetools-frontend/sentry": "2.1.1",
+    "@commercetools-frontend/sentry": "2.4.0",
     "moment": "2.22.2",
     "prop-types": "15.6.2"
   },
