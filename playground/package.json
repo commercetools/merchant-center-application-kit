@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -33,6 +33,6 @@
     "react-select": "1.2.1"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "3.0.0"
+    "@commercetools-frontend/mc-scripts": "3.0.1"
   }
 }
