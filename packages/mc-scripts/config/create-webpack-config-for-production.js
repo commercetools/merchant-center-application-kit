@@ -322,7 +322,6 @@ module.exports = ({
                   browsers: browserslist.production,
                   autoprefixer: { grid: true },
                 }),
-                postcssColorModFunction(),
                 postcssCustomProperties({
                   preserve: false,
                   importFrom: require.resolve(
@@ -334,6 +333,7 @@ module.exports = ({
                     '@commercetools-frontend/ui-kit/materials/media-queries.mod.css'
                   ),
                 }),
+                postcssColorModFunction(),
                 postcssReporter(),
               ],
             },
