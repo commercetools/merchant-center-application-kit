@@ -13,7 +13,7 @@ const itemsCategories = {
   key: 'Categories',
   uriPath: 'categories',
   labelKey: 'NavBar.Categories.title',
-  icon: 'CategoryTreeIcon',
+  icon: 'TreeStructureIcon',
   featureToggle: CAN_VIEW_CATEGORIES,
   permissions: [permissions.ViewProducts, permissions.ManageProducts],
   submenu: [
@@ -40,7 +40,7 @@ const itemsCustomers = {
   key: 'Customers',
   uriPath: 'customers',
   labelKey: 'NavBar.Customers.title',
-  icon: 'CustomerFilledIcon',
+  icon: 'UserFilledIcon',
   permissions: [permissions.ViewCustomers, permissions.ManageCustomers],
   submenu: [
     {
@@ -145,7 +145,7 @@ const itemsProducts = {
   key: 'Products',
   uriPath: 'products',
   labelKey: 'NavBar.Products.title',
-  icon: 'BoxProductIcon',
+  icon: 'BoxIcon',
   permissions: [permissions.ViewProducts, permissions.ManageProducts],
   submenu: [
     {
@@ -184,7 +184,7 @@ const itemsProjectSettings = {
   key: 'Settings',
   uriPath: 'settings',
   labelKey: 'NavBar.Settings.title',
-  icon: 'ProjectSettingsIcon',
+  icon: 'GearIcon',
   permissions: [
     permissions.ManageProject,
     permissions.ManageProducts,

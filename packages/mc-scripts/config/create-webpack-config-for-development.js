@@ -234,9 +234,16 @@ module.exports = ({
                   browsers: browserslist.development,
                   autoprefixer: { grid: true },
                 }),
-                postcssCustomMediaQueries(),
+                postcssCustomMediaQueries({
+                  importFrom: require.resolve(
+                    '@commercetools-frontend/ui-kit/materials/media-queries.mod.css'
+                  ),
+                }),
                 postcssCustomProperties({
                   preserve: false,
+                  importFrom: require.resolve(
+                    '@commercetools-frontend/ui-kit/materials/custom-properties.css'
+                  ),
                 }),
                 postcssColorModFunction(),
                 postcssReporter(),
@@ -273,9 +280,16 @@ module.exports = ({
                       browsers: browserslist.development,
                       autoprefixer: { grid: true },
                     }),
-                    postcssCustomMediaQueries(),
+                    postcssCustomMediaQueries({
+                      importFrom: require.resolve(
+                        '@commercetools-frontend/ui-kit/materials/media-queries.mod.css'
+                      ),
+                    }),
                     postcssCustomProperties({
                       preserve: false,
+                      importFrom: require.resolve(
+                        '@commercetools-frontend/ui-kit/materials/custom-properties.css'
+                      ),
                     }),
                     postcssColorModFunction(),
                     postcssReporter(),
