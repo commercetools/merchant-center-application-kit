@@ -1,3 +1,14 @@
+## [3.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v2.4.0...v3.0.0) (2018-11-27)
+
+## BREAKING CHANGES 💣
+
+This release updates UI-Kit to version 4, which includes several **breaking changes** which require some **migration steps**. This [PR](https://github.com/commercetools/merchant-center-application-kit/pull/139) can be treated as a migration guide. As well as the migration steps are listed in the Ui-Kit [release section](https://github.com/commercetools/ui-kit/releases).
+
+#### 🔮 Type: Chore
+
+- `application-shell`, `react-notifications`, `mc-scripts`, `playground`
+  - [#139](https://github.com/commercetools/merchant-center-application-kit/pull/139) chore: update ui-kit to v4.0.0 ([@montezume](https://github.com/montezume))
+
 ## [2.4.0](https://github.com/commercetools/merchant-center-application-kit/compare/v2.3.2...v2.4.0) (2018-11-26)
 
 #### 🔮 Type: Chore
