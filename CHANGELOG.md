@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v3.0.0...v3.0.1) (2018-11-27)
+
+#### 🐛 Type: Bug
+
+- `mc-scripts`
+  - [#141](https://github.com/commercetools/merchant-center-application-kit/pull/141) fix(mc-scripts): re-arrange postcss plugins to fix color mode with css custom properties ([@montezume](https://github.com/montezume))
+
 ## [3.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v2.4.0...v3.0.0) (2018-11-27)
 
 ## BREAKING CHANGES 💣
