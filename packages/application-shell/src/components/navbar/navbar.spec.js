@@ -171,7 +171,7 @@ describe('rendering', () => {
               key: 'Settings',
               labelKey: 'NavBar.Settings.title',
               uriPath: 'settings',
-              icon: 'CustomerFilledIcon',
+              icon: 'UserFilledIcon',
               permissions: [permissions.ManageProject],
               featureToggle: 'projectSettings',
             },
@@ -191,7 +191,7 @@ describe('rendering', () => {
               key: 'Customers',
               labelKey: 'NavBar.Customers.title',
               uriPath: 'customers',
-              icon: 'CustomerFilledIcon',
+              icon: 'UserFilledIcon',
               permissions: [permissions.ViewCustomers],
               featureToggle: 'customerList',
             },
@@ -290,7 +290,7 @@ describe('rendering', () => {
                   key: 'Customers',
                   labelKey: 'NavBar.Customers.title',
                   uriPath: 'customers',
-                  icon: 'CustomerFilledIcon',
+                  icon: 'UserFilledIcon',
                 },
               ],
             });
@@ -312,7 +312,7 @@ describe('rendering', () => {
                   key: 'Customers',
                   labelKey: 'NavBar.Customers.title',
                   uriPath: 'customers',
-                  icon: 'CustomerFilledIcon',
+                  icon: 'UserFilledIcon',
                   submenu: [],
                 },
               ],
@@ -343,7 +343,7 @@ describe('rendering', () => {
             wrapper.setState({ activeItemIndex: 'scrollable-0' });
           });
           it('should render active icon', () => {
-            expect(wrapper.find('CustomerFilledIcon')).toHaveProp(
+            expect(wrapper.find('UserFilledIcon')).toHaveProp(
               'theme',
               'green-light'
             );
@@ -361,7 +361,7 @@ describe('rendering', () => {
             wrapper.setState({ activeItemIndex: null });
           });
           it('should render active icon', () => {
-            expect(wrapper.find('CustomerFilledIcon')).toHaveProp(
+            expect(wrapper.find('UserFilledIcon')).toHaveProp(
               'theme',
               'green-light'
             );
@@ -379,10 +379,7 @@ describe('rendering', () => {
             wrapper.setState({ activeItemIndex: null });
           });
           it('should render default icon', () => {
-            expect(wrapper.find('CustomerFilledIcon')).toHaveProp(
-              'theme',
-              'white'
-            );
+            expect(wrapper.find('UserFilledIcon')).toHaveProp('theme', 'white');
           });
         });
       });
@@ -403,7 +400,7 @@ describe('rendering', () => {
                   key: 'Customers',
                   labelKey: 'NavBar.Customers.title',
                   uriPath: 'customers',
-                  icon: 'CustomerFilledIcon',
+                  icon: 'UserFilledIcon',
                   submenu: [
                     {
                       key: 'Add Customer',
@@ -511,7 +508,7 @@ describe('rendering', () => {
                   key: 'Customers',
                   labelKey: 'NavBar.Customers.title',
                   uriPath: 'customers',
-                  icon: 'CustomerFilledIcon',
+                  icon: 'UserFilledIcon',
                 },
               ],
             });
