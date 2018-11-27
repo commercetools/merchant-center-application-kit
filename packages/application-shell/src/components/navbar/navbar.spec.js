@@ -5,7 +5,9 @@ import {
   RestrictedByPermissions,
   permissions,
 } from '@commercetools-frontend/permissions';
+import { NavLink } from 'react-router-dom';
 import * as storage from '@commercetools-frontend/storage';
+import { UserFilledIcon } from '@commercetools-frontend/ui-kit';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import {
   NavBar,
@@ -95,34 +97,34 @@ describe('rendering', () => {
     });
     describe('<DataMenu>', () => {
       it('should pass rootNode as prop', () => {
-        expect(wrapper.find('DataMenu')).toHaveProp('rootNode');
+        expect(wrapper.find(DataMenu)).toHaveProp('rootNode');
       });
       it('should pass data as prop', () => {
-        expect(wrapper.find('DataMenu')).toHaveProp(
+        expect(wrapper.find(DataMenu)).toHaveProp(
           'data',
           defaultNavigationItems
         );
       });
       it('should pass applicationLanguage as prop', () => {
-        expect(wrapper.find('DataMenu')).toHaveProp(
+        expect(wrapper.find(DataMenu)).toHaveProp(
           'applicationLanguage',
           props.applicationLanguage
         );
       });
       it('should pass projectKey as prop', () => {
-        expect(wrapper.find('DataMenu')).toHaveProp(
+        expect(wrapper.find(DataMenu)).toHaveProp(
           'projectKey',
           props.projectKey
         );
       });
       it('should pass isForcedMenuOpen as prop', () => {
-        expect(wrapper.find('DataMenu')).toHaveProp(
+        expect(wrapper.find(DataMenu)).toHaveProp(
           'isForcedMenuOpen',
           props.isForcedMenuOpen
         );
       });
       it('should pass location as prop', () => {
-        expect(wrapper.find('DataMenu')).toHaveProp('location', props.location);
+        expect(wrapper.find(DataMenu)).toHaveProp('location', props.location);
       });
       describe('when there are project extensions', () => {
         let extendedMenuItem;
@@ -144,7 +146,7 @@ describe('rendering', () => {
           wrapper = shallow(<NavBar {...props} />);
         });
         it('should pass data with extended menu items as prop', () => {
-          expect(wrapper.find('DataMenu')).toHaveProp(
+          expect(wrapper.find(DataMenu)).toHaveProp(
             'data',
             defaultNavigationItems.concat(extendedMenuItem)
           );
@@ -158,10 +160,10 @@ describe('rendering', () => {
       wrapper = shallow(<DataMenu {...props} />);
     });
     it('should render <MenuGroup> level 1', () => {
-      expect(wrapper.find('MenuGroup').at(0)).toHaveProp('level', 1);
+      expect(wrapper.find(MenuGroup).at(0)).toHaveProp('level', 1);
     });
     it('should render <ToggledWithPermissions>', () => {
-      expect(wrapper.find('MenuGroup').at(0)).toRender(ToggledWithPermissions);
+      expect(wrapper.find(MenuGroup).at(0)).toRender(ToggledWithPermissions);
     });
     describe('when rendering the settings menu', () => {
       beforeEach(() => {
@@ -180,7 +182,7 @@ describe('rendering', () => {
         wrapper = shallow(<DataMenu {...props} />);
       });
       it('should render a MenuItemDivider', () => {
-        expect(wrapper.find('MenuGroup').first()).toRender(MenuItemDivider);
+        expect(wrapper.find(MenuGroup).first()).toRender(MenuItemDivider);
       });
     });
     describe('when rendering any other menu', () => {
@@ -200,13 +202,13 @@ describe('rendering', () => {
         wrapper = shallow(<DataMenu {...props} />);
       });
       it('should not render a MenuItemDivider', () => {
-        expect(wrapper.find('MenuGroup').first()).not.toRender(MenuItemDivider);
+        expect(wrapper.find(MenuGroup).first()).not.toRender(MenuItemDivider);
       });
       describe('<ToggledWithPermissions>', () => {
         it('should pass featureToggle as prop', () => {
           expect(
             wrapper
-              .find('MenuGroup')
+              .find(MenuGroup)
               .at(0)
               .find(ToggledWithPermissions)
           ).toHaveProp('featureToggle', 'customerList');
@@ -214,7 +216,7 @@ describe('rendering', () => {
         it('should pass permissions as prop', () => {
           expect(
             wrapper
-              .find('MenuGroup')
+              .find(MenuGroup)
               .at(0)
               .find(ToggledWithPermissions)
           ).toHaveProp('permissions', [permissions.ViewCustomers]);
@@ -223,35 +225,35 @@ describe('rendering', () => {
     });
     describe('<MenuItem>', () => {
       it('should pass hasSubmenu as prop', () => {
-        expect(wrapper.find('MenuItem')).toHaveProp('hasSubmenu', true);
+        expect(wrapper.find(MenuItem)).toHaveProp('hasSubmenu', true);
       });
       it('should pass isActive as prop', () => {
-        expect(wrapper.find('MenuItem')).toHaveProp('isActive', false);
+        expect(wrapper.find(MenuItem)).toHaveProp('isActive', false);
       });
       it('should pass isMenuOpen as prop', () => {
-        expect(wrapper.find('MenuItem')).toHaveProp('isMenuOpen', false);
+        expect(wrapper.find(MenuItem)).toHaveProp('isMenuOpen', false);
       });
       it('should pass onClick as prop', () => {
-        expect(wrapper.find('MenuItem')).toHaveProp(
+        expect(wrapper.find(MenuItem)).toHaveProp(
           'onClick',
           expect.any(Function)
         );
       });
       it('should pass onMouseEnter as prop', () => {
-        expect(wrapper.find('MenuItem')).toHaveProp(
+        expect(wrapper.find(MenuItem)).toHaveProp(
           'onMouseEnter',
           expect.any(Function)
         );
       });
       it('should pass onMouseLeave as prop', () => {
-        expect(wrapper.find('MenuItem')).toHaveProp(
+        expect(wrapper.find(MenuItem)).toHaveProp(
           'onMouseLeave',
           expect.any(Function)
         );
       });
       describe('<MenuItemLink>', () => {
         it('should render menu labelKey', () => {
-          expect(wrapper.find('MenuItemLink').at(0)).toRender({
+          expect(wrapper.find(MenuItemLink).at(0)).toRender({
             id: 'NavBar.Customers.title',
           });
         });
@@ -260,7 +262,7 @@ describe('rendering', () => {
             wrapper.setState({ isMenuOpen: false });
           });
           it('should pass linkTo as prop', () => {
-            expect(wrapper.find('MenuItemLink').at(0)).toHaveProp(
+            expect(wrapper.find(MenuItemLink).at(0)).toHaveProp(
               'linkTo',
               '/test-1/customers'
             );
@@ -276,7 +278,7 @@ describe('rendering', () => {
             wrapper = shallow(<DataMenu {...props} />);
           });
           it('should pass externalLink as prop', () => {
-            expect(wrapper.find('MenuItemLink').at(0)).toHaveProp(
+            expect(wrapper.find(MenuItemLink).at(0)).toHaveProp(
               'externalLink',
               MCSupportFormURL
             );
@@ -298,7 +300,7 @@ describe('rendering', () => {
             wrapper.setState({ isMenuOpen: true });
           });
           it('should pass linkTo as prop', () => {
-            expect(wrapper.find('MenuItemLink').at(0)).toHaveProp(
+            expect(wrapper.find(MenuItemLink).at(0)).toHaveProp(
               'linkTo',
               '/test-1/customers'
             );
@@ -321,7 +323,7 @@ describe('rendering', () => {
             wrapper.setState({ isMenuOpen: true });
           });
           it('should pass linkTo as prop', () => {
-            expect(wrapper.find('MenuItemLink').at(0)).toHaveProp(
+            expect(wrapper.find(MenuItemLink).at(0)).toHaveProp(
               'linkTo',
               '/test-1/customers'
             );
@@ -332,10 +334,7 @@ describe('rendering', () => {
             wrapper.setState({ isMenuOpen: true });
           });
           it('should pass linkTo as prop', () => {
-            expect(wrapper.find('MenuItemLink').at(0)).toHaveProp(
-              'linkTo',
-              null
-            );
+            expect(wrapper.find(MenuItemLink).at(0)).toHaveProp('linkTo', null);
           });
         });
         describe('when item is active', () => {
@@ -343,7 +342,7 @@ describe('rendering', () => {
             wrapper.setState({ activeItemIndex: 'scrollable-0' });
           });
           it('should render active icon', () => {
-            expect(wrapper.find('UserFilledIcon')).toHaveProp(
+            expect(wrapper.find(UserFilledIcon)).toHaveProp(
               'theme',
               'green-light'
             );
@@ -361,7 +360,7 @@ describe('rendering', () => {
             wrapper.setState({ activeItemIndex: null });
           });
           it('should render active icon', () => {
-            expect(wrapper.find('UserFilledIcon')).toHaveProp(
+            expect(wrapper.find(UserFilledIcon)).toHaveProp(
               'theme',
               'green-light'
             );
@@ -379,16 +378,16 @@ describe('rendering', () => {
             wrapper.setState({ activeItemIndex: null });
           });
           it('should render default icon', () => {
-            expect(wrapper.find('UserFilledIcon')).toHaveProp('theme', 'white');
+            expect(wrapper.find(UserFilledIcon)).toHaveProp('theme', 'white');
           });
         });
       });
       describe('<MenuGroup> level 2', () => {
         it('should pass level as prop', () => {
-          expect(wrapper.find('MenuGroup').at(1)).toHaveProp('level', 2);
+          expect(wrapper.find(MenuGroup).at(1)).toHaveProp('level', 2);
         });
         it('should render', () => {
-          expect(wrapper.find('MenuGroup').at(1)).toRender(
+          expect(wrapper.find(MenuGroup).at(1)).toRender(
             ToggledWithPermissions
           );
         });
@@ -418,7 +417,7 @@ describe('rendering', () => {
           it('should pass featureToggle as prop', () => {
             expect(
               wrapper
-                .find('MenuGroup')
+                .find(MenuGroup)
                 .at(1)
                 .find(ToggledWithPermissions)
             ).toHaveProp('featureToggle', 'customerAdd');
@@ -426,7 +425,7 @@ describe('rendering', () => {
           it('should pass permissions as prop', () => {
             expect(
               wrapper
-                .find('MenuGroup')
+                .find(MenuGroup)
                 .at(1)
                 .find(ToggledWithPermissions)
             ).toHaveProp('permissions', [permissions.ManageCustomers]);
@@ -437,10 +436,7 @@ describe('rendering', () => {
             wrapper.setState({ activeItemIndex: 'scrollable-0' });
           });
           it('should pass isActive as prop', () => {
-            expect(wrapper.find('MenuGroup').at(1)).toHaveProp(
-              'isActive',
-              true
-            );
+            expect(wrapper.find(MenuGroup).at(1)).toHaveProp('isActive', true);
           });
         });
         describe('when item is not active', () => {
@@ -448,10 +444,7 @@ describe('rendering', () => {
             wrapper.setState({ activeItemIndex: null });
           });
           it('should pass isActive as prop', () => {
-            expect(wrapper.find('MenuGroup').at(1)).toHaveProp(
-              'isActive',
-              false
-            );
+            expect(wrapper.find(MenuGroup).at(1)).toHaveProp('isActive', false);
           });
         });
         describe('when menu is open', () => {
@@ -459,7 +452,7 @@ describe('rendering', () => {
             wrapper.setState({ isMenuOpen: true });
           });
           it('should pass isExpanded as prop', () => {
-            expect(wrapper.find('MenuGroup').at(1)).toHaveProp(
+            expect(wrapper.find(MenuGroup).at(1)).toHaveProp(
               'isExpanded',
               true
             );
@@ -470,7 +463,7 @@ describe('rendering', () => {
             wrapper.setState({ isMenuOpen: false });
           });
           it('should pass isExpanded as prop', () => {
-            expect(wrapper.find('MenuGroup').at(1)).toHaveProp(
+            expect(wrapper.find(MenuGroup).at(1)).toHaveProp(
               'isExpanded',
               false
             );
@@ -478,23 +471,23 @@ describe('rendering', () => {
         });
         describe('when there is a submenu', () => {
           it('should render <MenuItemLink>', () => {
-            expect(wrapper.find({ level: 2 })).toRender('MenuItemLink');
+            expect(wrapper.find({ level: 2 })).toRender(MenuItemLink);
           });
           describe('<MenuItemLink>', () => {
             it('should pass linkTo as prop', () => {
-              expect(wrapper.find('MenuItemLink').at(1)).toHaveProp(
+              expect(wrapper.find(MenuItemLink).at(1)).toHaveProp(
                 'linkTo',
                 '/test-1/customers/new'
               );
             });
             it('should pass "useFullRedirectsForLinks" as prop', () => {
-              expect(wrapper.find('MenuItemLink').at(1)).toHaveProp(
+              expect(wrapper.find(MenuItemLink).at(1)).toHaveProp(
                 'useFullRedirectsForLinks',
                 props.useFullRedirectsForLinks
               );
             });
             it('should render submenu labelKey', () => {
-              expect(wrapper.find('MenuItemLink').at(1)).toRender({
+              expect(wrapper.find(MenuItemLink).at(1)).toRender({
                 id: 'NavBar.Customers.add',
               });
             });
@@ -515,7 +508,7 @@ describe('rendering', () => {
             wrapper = shallow(<DataMenu {...props} />);
           });
           it('should not render <MenuItemLink>', () => {
-            expect(wrapper.find({ level: 2 })).not.toRender('MenuItemLink');
+            expect(wrapper.find({ level: 2 })).not.toRender(MenuItemLink);
           });
         });
       });
@@ -526,7 +519,7 @@ describe('rendering', () => {
           wrapper.setState({ isExpanderVisible: true });
         });
         it('should pass isVisible as prop', () => {
-          expect(wrapper.find('MenuExpander')).toHaveProp('isVisible', true);
+          expect(wrapper.find(MenuExpander)).toHaveProp('isVisible', true);
         });
       });
       describe('when expander is not visible', () => {
@@ -534,11 +527,11 @@ describe('rendering', () => {
           wrapper.setState({ isExpanderVisible: false });
         });
         it('should pass isVisible as prop', () => {
-          expect(wrapper.find('MenuExpander')).toHaveProp('isVisible', false);
+          expect(wrapper.find(MenuExpander)).toHaveProp('isVisible', false);
         });
       });
       it('should pass onClick as prop', () => {
-        expect(wrapper.find('MenuExpander')).toHaveProp(
+        expect(wrapper.find(MenuExpander)).toHaveProp(
           'onClick',
           expect.any(Function)
         );
@@ -739,16 +732,16 @@ describe('rendering', () => {
         );
       });
       it('should render <NavLink>', () => {
-        expect(wrapper).toRender('NavLink');
+        expect(wrapper).toRender(NavLink);
       });
       it('should pass to as prop', () => {
-        expect(wrapper.find('NavLink')).toHaveProp('to', '/test-1/customers');
+        expect(wrapper.find(NavLink)).toHaveProp('to', '/test-1/customers');
       });
       it('should pass exact as prop', () => {
-        expect(wrapper.find('NavLink')).toHaveProp('exact', true);
+        expect(wrapper.find(NavLink)).toHaveProp('exact', true);
       });
       it('should pass activeClassName as prop', () => {
-        expect(wrapper.find('NavLink')).toHaveProp(
+        expect(wrapper.find(NavLink)).toHaveProp(
           'activeClassName',
           'highlighted'
         );
@@ -767,7 +760,7 @@ describe('rendering', () => {
               </MenuItemLink>
             );
             wrapper.instance().redirectTo = jest.fn();
-            wrapper.find('NavLink').prop('onClick')(mockedEvent);
+            wrapper.find(NavLink).prop('onClick')(mockedEvent);
           });
           it('should call preventDefault on the event', () => {
             expect(mockedEvent.preventDefault).toHaveBeenCalled();
@@ -787,7 +780,7 @@ describe('rendering', () => {
               </MenuItemLink>
             );
             wrapper.instance().redirectTo = jest.fn();
-            wrapper.find('NavLink').prop('onClick')(mockedEvent);
+            wrapper.find(NavLink).prop('onClick')(mockedEvent);
           });
           it('should not call preventDefault on the event', () => {
             expect(mockedEvent.preventDefault).not.toHaveBeenCalled();
