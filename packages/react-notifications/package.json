@@ -57,7 +57,7 @@
     "react-router-dom": "4.4.0-beta.6"
   },
   "peerDependencies": {
-    "@commercetools-frontend/ui-kit": ">=4",
+    "@commercetools-frontend/ui-kit": ">=4 <5",
     "react": ">=16 <17",
     "react-dom": ">=16 <17",
     "react-intl": ">=2 <3",
