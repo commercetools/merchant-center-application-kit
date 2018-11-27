@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/assets",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "description": "Assets for building mc apps",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {

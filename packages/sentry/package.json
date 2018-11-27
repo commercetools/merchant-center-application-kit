@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/sentry",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "description": "Components to set up Sentry for a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
