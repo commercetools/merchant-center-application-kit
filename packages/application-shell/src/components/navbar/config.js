@@ -7,6 +7,7 @@ import {
   CAN_VIEW_CATEGORIES,
   CAN_VIEW_ORDERS,
   CAN_VIEW_DISCOUNTS,
+  CUSTOM_APPLICATIONS,
 } from './feature-toggles';
 
 const itemsCategories = {
@@ -194,7 +195,7 @@ const itemsProjectSettings = {
     {
       key: 'Project settings',
       labelKey: 'NavBar.ProjectSettings.title',
-      uriPath: 'settings/project/international',
+      uriPath: 'settings/project',
       permissions: [permissions.ManageProject],
     },
     {
@@ -212,6 +213,13 @@ const itemsProjectSettings = {
       featureToggle: DEVELOPER_SETTINGS,
       labelKey: 'NavBar.DeveloperSettings.title',
       uriPath: 'settings/developer',
+      permissions: [permissions.ManageProject],
+    },
+    {
+      key: 'Custom Applications',
+      featureToggle: CUSTOM_APPLICATIONS,
+      labelKey: 'NavBar.CustomApplications.title',
+      uriPath: 'settings/custom-applications',
       permissions: [permissions.ManageProject],
     },
   ],

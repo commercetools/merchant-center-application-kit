@@ -117,4 +117,8 @@ export default defineMessages({
     id: 'NavBar.DeveloperSettings.title',
     defaultMessage: 'Developer Settings',
   },
+  'NavBar.CustomApplications.title': {
+    id: 'NavBar.CustomApplications.title',
+    defaultMessage: 'Custom Applications',
+  },
 });
