@@ -101,7 +101,7 @@
     "warning": "4.0.2"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "2.0.0-rc.11",
+    "@commercetools-frontend/ui-kit": "4.0.0",
     "react": "16.6.3",
     "react-apollo": "2.3.1",
     "react-dom": "16.6.3",
@@ -112,7 +112,7 @@
     "wait-for-observables": "1.0.3"
   },
   "peerDependencies": {
-    "@commercetools-frontend/ui-kit": ">=2 <3 || >=2.0.0-rc.1 <3",
+    "@commercetools-frontend/ui-kit": ">=4",
     "react": ">=16 <17",
     "react-apollo": ">=2 <3",
     "react-dom": ">=16 <17",

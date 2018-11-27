@@ -72,8 +72,11 @@ const config = {
           browsers: browserslist.production,
           autoprefixer: { grid: true },
         }),
-        postcssCustomMediaQueries(),
-        postcssColorModFunction(),
+        postcssCustomMediaQueries({
+          importFrom: require.resolve(
+            '@commercetools-frontend/ui-kit/materials/media-queries.mod.css'
+          ),
+        }),
         // we need to place the postcssDiscardComments BEFORE postcssCustomProperties,
         // otherwise we will end up with a bunch of empty :root elements
         // wherever there are imported comments
@@ -82,7 +85,11 @@ const config = {
         postcssDiscardComments(),
         postcssCustomProperties({
           preserve: false,
+          importFrom: require.resolve(
+            '@commercetools-frontend/ui-kit/materials/custom-properties.css'
+          ),
         }),
+        postcssColorModFunction(),
         postcssReporter(),
       ],
     }),

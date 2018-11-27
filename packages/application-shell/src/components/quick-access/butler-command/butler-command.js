@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { ArrowRightIcon } from '@commercetools-frontend/ui-kit';
+import { AngleThinRightIcon } from '@commercetools-frontend/ui-kit';
 import styles from './butler-command.mod.css';
 
 const ButlerCommand = ({ command, onMouseEnter, onClick, isSelected }) => (
@@ -16,7 +16,10 @@ const ButlerCommand = ({ command, onMouseEnter, onClick, isSelected }) => (
     {((Array.isArray(command.subCommands) && command.subCommands.length > 0) ||
       typeof command.subCommands === 'function') && (
       <div className={styles.subCommandsArrow}>
-        <ArrowRightIcon size="medium" theme={isSelected ? 'white' : 'grey'} />
+        <AngleThinRightIcon
+          size="medium"
+          theme={isSelected ? 'white' : 'grey'}
+        />
       </div>
     )}
   </div>

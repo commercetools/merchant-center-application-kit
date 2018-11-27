@@ -45,7 +45,7 @@ const createDataMenuTestProps = props => ({
       key: 'Customers',
       labelKey: 'NavBar.Customers.title',
       uriPath: 'customers',
-      icon: 'CustomerFilledIcon',
+      icon: 'UserFilledIcon',
       submenu: [
         {
           key: 'Add Customer',

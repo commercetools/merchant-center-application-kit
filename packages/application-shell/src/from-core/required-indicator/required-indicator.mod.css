@@ -1,5 +1,3 @@
-@import '@commercetools-frontend/ui-kit/materials/colors/base-colors.mod.css';
-
 .colored {
   color: var(--color-orange);
 }
