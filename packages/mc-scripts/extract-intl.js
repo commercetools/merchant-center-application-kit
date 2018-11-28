@@ -32,7 +32,8 @@ if (commands.length === 0 || (flags.help && commands.length === 0)) {
   Options:
   --output-path         The location where to put the extracted messages
   --locale=<locale>     (optional) The default locale to use [default "en"]
-  --build-translations  (optional) In case you want to manually build the translation files [default "false"]
+  --build-translations  (optional) In case you want to manually build the locale files with the translations [default "false"]
+  --force-core          (optional) By default, if a core.json file exists, existing keys won't be overwritten. This is to ensure that messages in core.json can be updated from external sources. In case you want to avoid this check, you can force writing the extracted messages to core.json [default "false"]
   `);
   process.exit(0);
 }
@@ -51,6 +52,7 @@ const locales = ['en', 'de', 'es'];
 const defaultLocale = flags.locale;
 const outputPath = flags['output-path'];
 const shouldBuildTranslations = flags['build-translations'];
+const shouldForceWritingToCore = flags['force-core'];
 const globFilesToParse = commands[0];
 
 const newLine = () => process.stdout.write('\n');
@@ -66,24 +68,20 @@ const task = message => {
   };
 };
 
+const fileExists = fileName => {
+  // Make sure that the `index.html` is available.
+  try {
+    fs.accessSync(fileName, fs.F_OK);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 // Wrap async functions below into a promise
 const glob = pattern =>
   new Promise((resolve, reject) => {
     nodeGlob(pattern, (error, value) =>
-      error ? reject(error) : resolve(value)
-    );
-  });
-
-const readFile = fileName =>
-  new Promise((resolve, reject) => {
-    fs.readFile(fileName, (error, value) =>
-      error ? reject(error) : resolve(value)
-    );
-  });
-
-const writeFile = (fileName, data) =>
-  new Promise((resolve, reject) => {
-    fs.writeFile(fileName, data, (error, value) =>
       error ? reject(error) : resolve(value)
     );
   });
@@ -133,7 +131,9 @@ const sortMessages = localeMessages => {
 
 const extractFromFile = async fileName => {
   try {
-    const src = await readFile(path.join(rootPath, fileName));
+    const src = fs.readFileSync(path.join(rootPath, fileName), {
+      encoding: 'utf8',
+    });
     // Use babel plugin to extract instances where react-intl is used
     const { metadata: result } = await transformAsync(src, {
       babelrc: false,
@@ -181,12 +181,36 @@ const extractFromFile = async fileName => {
     `Writing core translation messages to: ${coreTranslationFileName}`
   );
   try {
-    const messages = sortMessages(coreMessages);
+    const sortedCoreMessages = sortMessages(coreMessages);
+
+    // If a message already exists in the core.json file, we do not overwrite it.
+    // This is to ensure that core.json messages can be updated from external sources.
+    let safelyMergedMessages;
+    if (!shouldForceWritingToCore && fileExists(coreTranslationFileName)) {
+      const existingCoreMessages = JSON.parse(
+        fs.readFileSync(coreTranslationFileName, { encoding: 'utf8' })
+      );
+      safelyMergedMessages = Object.keys(sortedCoreMessages).reduce(
+        (updatedMessages, messageKey) =>
+          // eslint-disable-next-line prefer-object-spread/prefer-object-spread
+          Object.assign({}, updatedMessages, {
+            [messageKey]:
+              // If the message key already exists in the core.json file, we won't update it
+              existingCoreMessages[messageKey] ||
+              sortedCoreMessages[messageKey],
+          }),
+        {}
+      );
+    }
 
     // Write to file the JSON representation of the translation messages
-    const prettified = `${JSON.stringify(messages, null, 2)}\n`;
+    const prettified = `${JSON.stringify(
+      safelyMergedMessages || sortedCoreMessages,
+      null,
+      2
+    )}\n`;
 
-    await writeFile(coreTranslationFileName, prettified);
+    fs.writeFileSync(coreTranslationFileName, prettified, { encoding: 'utf8' });
 
     localeTaskDone();
   } catch (error) {
@@ -212,7 +236,9 @@ const extractFromFile = async fileName => {
           // Write to file the JSON representation of the translation messages
           const prettified = `${JSON.stringify(messages, null, 2)}`;
 
-          await writeFile(translationFileName, prettified);
+          fs.writeFileSync(translationFileName, prettified, {
+            encoding: 'utf8',
+          });
 
           localeTaskDone();
         } catch (error) {
