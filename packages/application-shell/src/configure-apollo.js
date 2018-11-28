@@ -68,22 +68,24 @@ const introspectionQueryResultData = {
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData,
 });
-const client = new ApolloClient({
-  link,
-  cache: new InMemoryCache({
-    fragmentMatcher,
-    dataIdFromObject: result => {
-      if (result.__typename === 'Project') return result.key;
-      // Generally all id's are unique accross the platform, so we don't need to
-      // include the type name in the cache key.
-      // However, a reference has the shape { typeId, id } where the id is the
-      // id of the referenced entity. If we didn't prefix ids of References
-      // they would clash with the referenced resource.
-      if (result.__typename === 'Reference')
-        return `${result.__typename}:${result.id}`;
-      return result.id;
-    },
-  }),
-});
 
-export default client;
+export const createApolloClient = () =>
+  new ApolloClient({
+    link,
+    cache: new InMemoryCache({
+      fragmentMatcher,
+      dataIdFromObject: result => {
+        if (result.__typename === 'Project') return result.key;
+        // Generally all id's are unique accross the platform, so we don't need to
+        // include the type name in the cache key.
+        // However, a reference has the shape { typeId, id } where the id is the
+        // id of the referenced entity. If we didn't prefix ids of References
+        // they would clash with the referenced resource.
+        if (result.__typename === 'Reference')
+          return `${result.__typename}:${result.id}`;
+        return result.id;
+      },
+    }),
+  });
+
+export default createApolloClient();

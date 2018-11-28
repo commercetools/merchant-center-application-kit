@@ -4,7 +4,9 @@
 // import { render } from ""@commercetools-frontend/application-shell/test-utils"
 // and then use it together with react-testing-library.
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Router } from 'react-router-dom';
+import { ApolloProvider } from 'react-apollo';
 import { render as rtlRender } from 'react-testing-library';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
@@ -14,6 +16,7 @@ import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { createReduxStore } from '../configure-store';
+import { createApolloClient } from '../configure-apollo';
 
 // Reset memoryAdapter after each test, so that the next test accepts the
 // defaultFlags param.
@@ -60,6 +63,18 @@ const defaultPermissions = { canManageProject: true };
 const mergeOptional = (defaultValue, value) =>
   value === null ? undefined : { ...defaultValue, ...value };
 
+const MockedApolloProvider = ({ children, mocks, addTypename }) => (
+  <ApolloMockProvider mocks={mocks} addTypename={addTypename}>
+    {children}
+  </ApolloMockProvider>
+);
+MockedApolloProvider.displayName = 'MockedApolloProvider';
+MockedApolloProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+  mocks: PropTypes.array.isRequired,
+  addTypename: PropTypes.bool.isRequired,
+};
+
 // This function renders any component within the application context, as if it
 // was rendered inside <ApplicationShell />.
 // The context is not completely set up yet, some things are missing:
@@ -91,6 +106,7 @@ const render = (
     project,
     permissions = defaultPermissions,
     dataLocale = 'en',
+    ApolloProviderComponent = MockedApolloProvider,
     // forwarding to react-testing-library
     ...renderOptions
   } = {}
@@ -101,7 +117,7 @@ const render = (
   return {
     ...rtlRender(
       <IntlProvider locale={locale}>
-        <ApolloMockProvider mocks={mocks} addTypename={addTypename}>
+        <ApolloProviderComponent mocks={mocks} addTypename={addTypename}>
           <ConfigureFlopFlip adapter={adpater} defaultFlags={flags}>
             <ApplicationContextProvider
               user={mergedUser}
@@ -112,7 +128,7 @@ const render = (
               <Router history={history}>{ui}</Router>
             </ApplicationContextProvider>
           </ConfigureFlopFlip>
-        </ApolloMockProvider>
+        </ApolloProviderComponent>
       </IntlProvider>,
       renderOptions
     ),
@@ -149,6 +165,23 @@ const renderWithRedux = (
   store,
 });
 
+// Renders UI without mocking ApolloProvider
+const experimentalRender = (ui, renderOptions) => {
+  const client = createApolloClient();
+  const RealApolloProvider = ({ children }) => (
+    <ApolloProvider client={client}>{children}</ApolloProvider>
+  );
+  RealApolloProvider.displayName = 'RealApolloProvider';
+  RealApolloProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
+  return renderWithRedux(ui, {
+    ...renderOptions,
+    ApolloProviderComponent: RealApolloProvider,
+  });
+};
+
 // re-export everything
 export * from 'react-testing-library';
 
@@ -156,6 +189,7 @@ export {
   // override render method of react-testing-library
   render,
   renderWithRedux,
+  experimentalRender,
   // the original "render" method of react-testing-library
   rtlRender,
 };
