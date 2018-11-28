@@ -158,6 +158,10 @@ export default defineMessages({
     id: 'QuickAccess.openDeveloperSettings',
     defaultMessage: 'Open Developer Settings',
   },
+  openCustomApplicationsSettings: {
+    id: 'QuickAccess.openCustomApplicationsSettings',
+    defaultMessage: 'Open Custom Applications Settings',
+  },
   openSupport: {
     id: 'QuickAccess.openSupport',
     defaultMessage: 'Open Support',

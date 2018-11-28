@@ -320,6 +320,15 @@ export default ({
                 to: `/${project.key}/settings/developer/api-clients`,
               },
             },
+          featureToggles.customApplicationsSettings &&
+            hasPermission(permissions.ManageProject, project.permissions) && {
+              id: 'go/settings/custom-applications',
+              text: intl.formatMessage(messages.openCustomApplicationsSettings),
+              action: {
+                type: 'go',
+                to: `/${project.key}/settings/custom-applications`,
+              },
+            },
         ].filter(Boolean),
       },
     project &&
