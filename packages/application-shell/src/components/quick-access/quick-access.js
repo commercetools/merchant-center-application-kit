@@ -63,6 +63,7 @@ class QuickAccess extends React.Component {
       canViewCategories: PropTypes.bool,
       canViewDashboard: PropTypes.bool,
       canViewDiscounts: PropTypes.bool,
+      customApplications: PropTypes.bool,
     }).isRequired,
     projectDataLocale: PropTypes.string,
     onChangeProjectDataLocale: PropTypes.func,
@@ -281,5 +282,6 @@ export default compose(
     'canViewCategories',
     'canViewDashboard',
     'canViewDiscounts',
+    'customApplications',
   ])
 )(QuickAccess);
