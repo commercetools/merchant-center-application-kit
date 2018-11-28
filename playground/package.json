@@ -20,7 +20,7 @@
     "@commercetools-frontend/mc-http-server": "3.0.0",
     "@commercetools-frontend/permissions": "3.0.0",
     "@commercetools-frontend/sdk": "3.0.0",
-    "@commercetools-frontend/ui-kit": "2.0.0-rc.11",
+    "@commercetools-frontend/ui-kit": "4.0.2",
     "moment": "2.22.2",
     "moment-timezone": "0.5.23",
     "prop-types": "15.6.2",
