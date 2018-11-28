@@ -17,6 +17,15 @@ Install the dependencies (uses yarn workspaces):
 $ yarn
 ```
 
+Build the application bundles
+
+```bash
+$ yarn build
+
+# or
+$ yarn build:es:watch
+```
+
 Start the development server (example app defined in [playground](./playground) folder):
 
 ```bash
