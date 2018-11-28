@@ -7,7 +7,6 @@ import {
 } from '@commercetools-frontend/permissions';
 import { NavLink } from 'react-router-dom';
 import * as storage from '@commercetools-frontend/storage';
-import { UserFilledIcon } from '@commercetools-frontend/ui-kit';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import {
   NavBar,
@@ -20,6 +19,7 @@ import {
   MenuItemDivider,
   ToggledWithPermissions,
   getIconTheme,
+  IconSwitcher,
 } from './navbar';
 import { defaultNavigationItems } from './config';
 
@@ -341,8 +341,14 @@ describe('rendering', () => {
           beforeEach(() => {
             wrapper.setState({ activeItemIndex: 'scrollable-0' });
           });
+          it('should pass iconName to IconSwitcher', () => {
+            expect(wrapper.find(IconSwitcher)).toHaveProp(
+              'iconName',
+              'UserFilledIcon'
+            );
+          });
           it('should render active icon', () => {
-            expect(wrapper.find(UserFilledIcon)).toHaveProp(
+            expect(wrapper.find(IconSwitcher)).toHaveProp(
               'theme',
               'green-light'
             );
@@ -359,8 +365,14 @@ describe('rendering', () => {
             );
             wrapper.setState({ activeItemIndex: null });
           });
+          it('should pass iconName to IconSwitcher', () => {
+            expect(wrapper.find(IconSwitcher)).toHaveProp(
+              'iconName',
+              'UserFilledIcon'
+            );
+          });
           it('should render active icon', () => {
-            expect(wrapper.find(UserFilledIcon)).toHaveProp(
+            expect(wrapper.find(IconSwitcher)).toHaveProp(
               'theme',
               'green-light'
             );
@@ -378,7 +390,7 @@ describe('rendering', () => {
             wrapper.setState({ activeItemIndex: null });
           });
           it('should render default icon', () => {
-            expect(wrapper.find(UserFilledIcon)).toHaveProp('theme', 'white');
+            expect(wrapper.find(IconSwitcher)).toHaveProp('theme', 'white');
           });
         });
       });
