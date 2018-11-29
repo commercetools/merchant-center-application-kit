@@ -76,6 +76,7 @@ const AppBar = props => (
             firstName={props.user.firstName}
             lastName={props.user.lastName}
             gravatarHash={props.user.gravatarHash}
+            email={props.user.email}
           />
         ) : (
           <LoadingPlaceholder shape="dot" size="l" />
