@@ -91,21 +91,25 @@ export class UserSettingsMenu extends React.PureComponent {
                       [styles['item-divider-account-section']]: isAccountPath,
                     })}
                   >
-                    <Spacings.Inset scale="s">
+                    <Spacings.Inset scale="xs">
                       <Spacings.Inline scale="xs" alignItems="center">
                         <Avatar
                           firstName={this.props.firstName}
                           lastName={this.props.lastName}
                           gravatarHash={this.props.gravatarHash}
                         />
-                        <Spacings.Stack scale="xs">
+                        <div
+                          className={classnames({
+                            [styles['email-divider']]: isAccountPath,
+                          })}
+                        >
                           <Text.Body isBold>
                             {[this.props.firstName, this.props.lastName]
                               .join(' ')
                               .trim()}
                           </Text.Body>
                           <Text.Body truncate>{this.props.email}</Text.Body>
-                        </Spacings.Stack>
+                        </div>
                       </Spacings.Inline>
                     </Spacings.Inset>
                   </div>
