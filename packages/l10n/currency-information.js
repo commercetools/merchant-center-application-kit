@@ -24,7 +24,7 @@ const getCurrenciesForLocale = (locale, cb) => {
   // The files are named like "currency-data-en-json.chunk.js" after compilation
   // https://webpack.js.org/api/module-methods/#import-
   getImportChunk(supportedLocale)
-    .then(currencies => cb(null, currencies.default))
+    .then(currencies => cb(null, currencies))
     .catch(error => cb(error));
 };
 

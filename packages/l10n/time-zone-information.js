@@ -33,7 +33,7 @@ const getTimeZonesForLocale = (locale, cb) => {
   // The files are named like "time-zone-data-en-json.chunk.js" after compilation
   // https://webpack.js.org/api/module-methods/#import-
   getImportChunk(supportedLocale)
-    .then(timeZones => cb(null, timeZones.default))
+    .then(timeZones => cb(null, timeZones))
     .catch(error => cb(error));
 };
 
