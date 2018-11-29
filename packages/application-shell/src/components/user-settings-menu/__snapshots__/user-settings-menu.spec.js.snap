@@ -23,7 +23,7 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
       className=""
     >
       <Inset
-        scale="s"
+        scale="xs"
       >
         <Inline
           alignItems="center"
@@ -36,9 +36,8 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
             lastName="Doe"
             size="s"
           />
-          <Stack
-            alignItems="stretch"
-            scale="xs"
+          <div
+            className=""
           >
             <TextBody
               isBold={true}
@@ -50,7 +49,7 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
             >
               john@doe.com
             </TextBody>
-          </Stack>
+          </div>
         </Inline>
       </Inset>
     </div>
