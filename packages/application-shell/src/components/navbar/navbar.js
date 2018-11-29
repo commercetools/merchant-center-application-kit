@@ -68,38 +68,38 @@ import messages from './messages';
 // in which case we don't have a clue on the icons used.
 // A possible solution to that would be to import the SVG using
 // a `<img src>`, given that the SVG are available from a public URL.
-export const IconSwitcher = ({ iconName, ...rest }) => {
+export const IconSwitcher = ({ iconName, ...iconProps }) => {
   switch (iconName) {
     // Application icons
     case 'TreeStructureIcon':
-      return <TreeStructureIcon {...rest} />;
+      return <TreeStructureIcon {...iconProps} />;
     case 'UserFilledIcon':
-      return <UserFilledIcon {...rest} />;
+      return <UserFilledIcon {...iconProps} />;
     case 'SpeedometerIcon':
-      return <SpeedometerIcon {...rest} />;
+      return <SpeedometerIcon {...iconProps} />;
     case 'TagMultiIcon':
-      return <TagMultiIcon {...rest} />;
+      return <TagMultiIcon {...iconProps} />;
     case 'CartIcon':
-      return <CartIcon {...rest} />;
+      return <CartIcon {...iconProps} />;
     case 'BoxIcon':
-      return <BoxIcon {...rest} />;
+      return <BoxIcon {...iconProps} />;
     case 'GearIcon':
-      return <GearIcon {...rest} />;
+      return <GearIcon {...iconProps} />;
     case 'SupportIcon':
-      return <SupportIcon {...rest} />;
+      return <SupportIcon {...iconProps} />;
     // Custom application icons set
     case 'HeartIcon':
-      return <HeartIcon {...rest} />;
+      return <HeartIcon {...iconProps} />;
     case 'PaperclipIcon':
-      return <PaperclipIcon {...rest} />;
+      return <PaperclipIcon {...iconProps} />;
     case 'PluginIcon':
-      return <PluginIcon {...rest} />;
+      return <PluginIcon {...iconProps} />;
     case 'RocketIcon':
-      return <RocketIcon {...rest} />;
+      return <RocketIcon {...iconProps} />;
     case 'StarIcon':
-      return <StarIcon {...rest} />;
+      return <StarIcon {...iconProps} />;
     case 'ConnectedSquareIcon':
-      return <ConnectedSquareIcon {...rest} />;
+      return <ConnectedSquareIcon {...iconProps} />;
     default:
       return <img src={MissingImageSvg} />;
   }
