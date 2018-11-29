@@ -49,12 +49,24 @@ const externalDependencies = pkgDependencies
       !dependenciesRequiringToBeBundled.includes(potentiallyExternalDependency)
   );
 
+/**
+ * Note:
+ *    This function is copied from rollup-plugin-peer-deps-external.
+ *    Reference: https://github.com/Updater/rollup-plugin-peer-deps-external/blob/master/src/get-modules-matcher.js
+ *    Without it rollup has more warnings about unresolved dependencies and unused external imports.
+ */
+const createExternalsFromDependencies = modulesNames => {
+  const moduleRegExp = module => new RegExp(`^${module}(\\/.+)*$`);
+  const regexps = modulesNames.map(moduleRegExp);
+  return id => regexps.some(regexp => regexp.test(id));
+};
+
 const config = {
   output: {
     name: pkg.name,
     sourcemap: true,
   },
-  external: externalDependencies,
+  external: createExternalsFromDependencies(externalDependencies),
   plugins: [
     babel({
       exclude: '**/node_modules/**',
