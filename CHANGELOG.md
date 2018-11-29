@@ -1,10 +1,23 @@
 ## [3.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v3.0.1...v3.1.0) (2018-11-28)
 
+#### 🐛 Type: Bug
+
+- `mc-scripts`
+  - [#150](https://github.com/commercetools/merchant-center-application-kit/pull/150) fix(mc-scripts/extract-intl): do not overwrite existing core messages by default ([@emmenko](https://github.com/emmenko))
+
 #### 💅 Type: Enhancement
 
-- `application-shell`
+- `mc-scripts`
+  - [#150](https://github.com/commercetools/merchant-center-application-kit/pull/150) fix(mc-scripts/extract-intl): do not overwrite existing core messages by default ([@emmenko](https://github.com/emmenko))
+
+* `application-shell`
   - [#143](https://github.com/commercetools/merchant-center-application-kit/pull/143) feat(test-utils): run tests agains actual ApolloProvider ([@pa3](https://github.com/pa3))
   - [#144](https://github.com/commercetools/merchant-center-application-kit/pull/144) Fix double dependency bundling ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+  - [#149](https://github.com/commercetools/merchant-center-application-kit/pull/149) refactor(navbar): use IconSwitcher to statically render icons based on icon names ([@emmenko](https://github.com/emmenko))
 
 ## [3.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v3.0.0...v3.0.1) (2018-11-27)
 
