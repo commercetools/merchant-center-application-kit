@@ -9,12 +9,12 @@ import {
   CaretDownIcon,
   Text,
   Spacings,
+  Avatar,
 } from '@commercetools-frontend/ui-kit';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import MenuStateContainer from '../menu-state-container';
 import Card from '../../from-core/card';
 import { MCSupportFormURL } from '../../constants';
-import Avatar from '../avatar';
 import { PROJECTS_LIST, ORGANIZATIONS_LIST } from '../../feature-toggles';
 import styles from './user-settings-menu.mod.css';
 import messages from './messages';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CaretDownIcon } from '@commercetools-frontend/ui-kit';
+import { Avatar, CaretDownIcon } from '@commercetools-frontend/ui-kit';
 import MenuStateContainer from '../menu-state-container';
 import { MCSupportFormURL } from '../../constants';
 import UserSettingsMenu, { UserAvatar } from './user-settings-menu';
@@ -106,7 +106,7 @@ describe('rendering', () => {
     });
 
     it('should render `Avatar` component', () => {
-      expect(wrapper).toRender('Avatar');
+      expect(wrapper).toRender(Avatar);
     });
 
     it('should pass prop firstName to `Avatar` component', () => {
