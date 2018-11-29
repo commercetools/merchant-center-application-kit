@@ -19,6 +19,7 @@ The `ApplicationShell` provides the following context:
   - [Basics](#basics)
   - [API](#api)
     - [render(ui: ReactElement, options: Object)](#renderui-reactelement-options-object)
+    - [renderWithRedux(ui: ReactElement, options: Object)](#renderwithreduxui-reactelement-options-object)
     - [rtlRender(ui: ReactElement, options: Object)](#rtlrenderui-reactelement-options-object)
   - [Examples](#examples)
     - [`locale` (`react-intl`)](#locale-react-intl)
@@ -137,6 +138,13 @@ Calling `render` returns an object which contains all keys `react-testing-librar
 | `user`        | `Object` | The `user` object used to configure `ApplicationContextProvider`, so the result of merging the default user with `options.user`. Note that this is not the same as `applicationContext.user`. Can be `undefined` when no user is authenticated (when `options.user` was `null`).                                  |
 | `project`     | `Object` | The `project` object used to configure `ApplicationContextProvider`, so the result of merging the default project with `options.project`. Note that this is not the same as `applicationContext.project`. Can be `undefined` when no project was set (when `options.project` was `null`).                         |
 | `environment` | `Object` | The `environment` object used to configure `ApplicationContextProvider`, so the result of merging the default environment with `options.environment`. Note that this is not the same as `applicationContext.environment`. Can be `undefined` when no environment was set (when `options.environment` was `null`). |
+
+#### `renderWithRedux(ui: ReactElement, options: Object)`
+
+> This function might change in the future. Use with caution.
+
+This render function simply wraps the `render` with the Redux `StoreProvider`. You can optionally pass a `store` object in the `options` to alter the behavior of it.
+It's recommended to use this render function if some of your component-under-test uses Redux `connect`.
 
 #### `rtlRender(ui: ReactElement, options: Object)`
 
