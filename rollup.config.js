@@ -7,7 +7,6 @@ const resolve = require('rollup-plugin-node-resolve');
 const json = require('rollup-plugin-json');
 const commonjs = require('rollup-plugin-commonjs');
 const postcss = require('rollup-plugin-postcss');
-const peerDeps = require('rollup-plugin-peer-deps-external');
 const builtins = require('rollup-plugin-node-builtins');
 const babelPluginImportGraphQL = require('babel-plugin-import-graphql');
 const postcssCustomProperties = require('postcss-custom-properties');
@@ -27,15 +26,36 @@ const isCJS = format === 'cjs';
 
 const babelOptions = getBabelPreset();
 
+/**
+ * Note:
+ *   In order to avoid bundling dependencies here and within consumers
+ *   we consider them external as they will be "bundled" by the consumers bundler (e.g. webpack) or
+ *   resolved by Node.js anyway.
+ *
+ *   However, some dependencies are made available through flopflip has they can not
+ *   be bundled twice in different versions. Something which can easily happen and causes hard
+ *   to discover bugs. THose dependencies are not considered to be external.
+ */
+const dependenciesRequiringToBeBundled = ['@flopflip/react-broadcast'];
+const pkgDependencies = Object.keys(pkg.dependencies || {});
+const pkgPeerDependencies = Object.keys(pkg.peerDependencies || {});
+const pkgOptionalDependencies = Object.keys(pkg.optionalDependencies || {});
+
+const externalDependencies = pkgDependencies
+  .concat(pkgPeerDependencies)
+  .concat(pkgOptionalDependencies)
+  .filter(
+    potentiallyExternalDependency =>
+      !dependenciesRequiringToBeBundled.includes(potentiallyExternalDependency)
+  );
+
 const config = {
   output: {
     name: pkg.name,
     sourcemap: true,
   },
+  external: externalDependencies,
   plugins: [
-    peerDeps({
-      includeDependencies: true,
-    }),
     babel({
       exclude: '**/node_modules/**',
       runtimeHelpers: true,
