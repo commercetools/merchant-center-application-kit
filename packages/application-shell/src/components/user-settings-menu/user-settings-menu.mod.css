@@ -8,12 +8,12 @@
 
 .menu {
   position: absolute;
-  border: 1px var(--color-gray-60) solid;
+  border: 1px var(--color-green-40) solid;
   box-shadow: var(--shadow-7-first), var(--shadow-7-second);
-  width: 200px;
+  width: 315px;
   right: 0;
   top: 34px;
-  padding: 0;
+  padding: var(--spacing-4);
   overflow: hidden;
 }
 
@@ -24,7 +24,6 @@
   top: -6px;
   border-style: solid;
   border-width: 0 6px 6px;
-  border-color: transparent transparent var(--color-white) transparent;
   z-index: 1;
 }
 
@@ -35,7 +34,6 @@
   top: -8px;
   border-style: solid;
   border-width: 0 8px 8px;
-  border-color: transparent transparent var(--color-gray-60) transparent;
   z-index: 0;
 }
 

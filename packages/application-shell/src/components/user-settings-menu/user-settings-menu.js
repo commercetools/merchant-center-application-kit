@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter, matchPath } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import classnames from 'classnames';
+import Downshift from 'downshift';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import {
   withMouseOverState,
@@ -12,7 +13,6 @@ import {
   Avatar,
 } from '@commercetools-frontend/ui-kit';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import MenuStateContainer from '../menu-state-container';
 import Card from '../../from-core/card';
 import { MCSupportFormURL } from '../../constants';
 import { PROJECTS_LIST, ORGANIZATIONS_LIST } from '../../feature-toggles';
@@ -40,6 +40,7 @@ UserAvatar.propTypes = {
   gravatarHash: PropTypes.string.isRequired,
   firstName: PropTypes.string,
   lastName: PropTypes.string,
+  email: PropTypes.string,
   // Injected
   handleMouseOver: PropTypes.func.isRequired,
   handleMouseOut: PropTypes.func.isRequired,
@@ -47,21 +48,32 @@ UserAvatar.propTypes = {
 };
 const UserAvatarWithHoverState = withMouseOverState(UserAvatar);
 
-export default class UserSettingsMenu extends React.PureComponent {
+export class UserSettingsMenu extends React.PureComponent {
   static displayName = 'UserSettingsMenu';
 
   static propTypes = {
     firstName: PropTypes.string,
     lastName: PropTypes.string,
+    email: PropTypes.string,
     gravatarHash: PropTypes.string.isRequired,
+
+    // withRouter
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
   };
 
   render() {
+    const isAccountPath = Boolean(
+      matchPath(this.props.location.pathname, {
+        path: '/account',
+      })
+    );
     return (
       <div className={styles.container} data-test="user-settings-menu">
-        <MenuStateContainer>
+        <Downshift>
           {({ isOpen, toggleMenu }) => (
-            <div>
+            <div onBlur={toggleMenu}>
               <div
                 className={styles['settings-container']}
                 onClick={toggleMenu}
@@ -74,43 +86,65 @@ export default class UserSettingsMenu extends React.PureComponent {
               </div>
               {isOpen && (
                 <Card className={styles.menu}>
-                  <Spacings.Inset scale="s">
-                    <Text.Detail tone="secondary">
-                      {[this.props.firstName, this.props.lastName]
-                        .join(' ')
-                        .trim()}
-                    </Text.Detail>
-                  </Spacings.Inset>
-                  <Link to="/account/profile" onClick={toggleMenu}>
-                    <div className={styles.item}>
-                      <Spacings.Inset scale="s">
-                        <FormattedMessage {...messages.userProfile} />
-                      </Spacings.Inset>
-                    </div>
-                  </Link>
-                  <ToggleFeature flag={ORGANIZATIONS_LIST}>
-                    <Link to="/account/organizations" onClick={toggleMenu}>
-                      <div className={styles.item}>
-                        <Spacings.Inset scale="s">
-                          <FormattedMessage {...messages.manageOrganizations} />
-                        </Spacings.Inset>
-                      </div>
-                    </Link>
-                  </ToggleFeature>
-                  <ToggleFeature flag={PROJECTS_LIST}>
-                    <Link to="/account/projects" onClick={toggleMenu}>
-                      <div
-                        className={classnames(
-                          styles.item,
-                          styles['item-divider-account-section']
-                        )}
-                      >
-                        <Spacings.Inset scale="s">
-                          <FormattedMessage {...messages.manageProjects} />
-                        </Spacings.Inset>
-                      </div>
-                    </Link>
-                  </ToggleFeature>
+                  <div
+                    className={classnames({
+                      [styles['item-divider-account-section']]: isAccountPath,
+                    })}
+                  >
+                    <Spacings.Inset scale="s">
+                      <Spacings.Inline scale="xs" alignItems="center">
+                        <Avatar
+                          firstName={this.props.firstName}
+                          lastName={this.props.lastName}
+                          gravatarHash={this.props.gravatarHash}
+                        />
+                        <Spacings.Stack scale="xs">
+                          <Text.Body isBold>
+                            {[this.props.firstName, this.props.lastName]
+                              .join(' ')
+                              .trim()}
+                          </Text.Body>
+                          <Text.Body truncate>{this.props.email}</Text.Body>
+                        </Spacings.Stack>
+                      </Spacings.Inline>
+                    </Spacings.Inset>
+                  </div>
+                  {!isAccountPath && (
+                    <React.Fragment>
+                      <Link to="/account/profile" onClick={toggleMenu}>
+                        <div className={styles.item}>
+                          <Spacings.Inset scale="s">
+                            <FormattedMessage {...messages.userProfile} />
+                          </Spacings.Inset>
+                        </div>
+                      </Link>
+                      <ToggleFeature flag={ORGANIZATIONS_LIST}>
+                        <Link to="/account/organizations" onClick={toggleMenu}>
+                          <div className={styles.item}>
+                            <Spacings.Inset scale="s">
+                              <FormattedMessage
+                                {...messages.manageOrganizations}
+                              />
+                            </Spacings.Inset>
+                          </div>
+                        </Link>
+                      </ToggleFeature>
+                      <ToggleFeature flag={PROJECTS_LIST}>
+                        <Link to="/account/projects" onClick={toggleMenu}>
+                          <div
+                            className={classnames(
+                              styles.item,
+                              styles['item-divider-account-section']
+                            )}
+                          >
+                            <Spacings.Inset scale="s">
+                              <FormattedMessage {...messages.manageProjects} />
+                            </Spacings.Inset>
+                          </div>
+                        </Link>
+                      </ToggleFeature>
+                    </React.Fragment>
+                  )}
                   {
                     // FIXME: added as urgent request for GDPR changes
                     // Should be properly added on the CTP-1209 task
@@ -130,7 +164,12 @@ export default class UserSettingsMenu extends React.PureComponent {
                     data-track-event="click"
                     data-track-label="support_textlink"
                   >
-                    <div className={styles.item}>
+                    <div
+                      className={classnames(
+                        styles.item,
+                        styles['item-divider-account-section']
+                      )}
+                    >
                       <Spacings.Inset scale="s">
                         <FormattedMessage {...messages.support} />
                       </Spacings.Inset>
@@ -142,7 +181,7 @@ export default class UserSettingsMenu extends React.PureComponent {
                     href={`/logout?reason=${LOGOUT_REASONS.USER}`}
                     data-test="logout-button"
                   >
-                    <div className={styles.item}>
+                    <div className={styles.item} tabIndex="0">
                       <Spacings.Inset scale="s">
                         <FormattedMessage {...messages.logout} />
                       </Spacings.Inset>
@@ -152,8 +191,10 @@ export default class UserSettingsMenu extends React.PureComponent {
               )}
             </div>
           )}
-        </MenuStateContainer>
+        </Downshift>
       </div>
     );
   }
 }
+
+export default withRouter(UserSettingsMenu);
