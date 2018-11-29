@@ -33,7 +33,7 @@ if (commands.length === 0 || (flags.help && commands.length === 0)) {
   --output-path         The location where to put the extracted messages
   --locale=<locale>     (optional) The default locale to use [default "en"]
   --build-translations  (optional) In case you want to manually build the locale files with the translations [default "false"]
-  --force-core          (optional) By default, if a core.json file exists, existing keys won't be overwritten. This is to ensure that messages in core.json can be updated from external sources. In case you want to avoid this check, you can force writing the extracted messages to core.json [default "false"]
+  --overwrite-core      (optional) By default, if a core.json file exists, existing keys won't be overwritten. This is to ensure that messages in core.json can be updated from external sources. In case you want to avoid this check, you can force writing the extracted messages to core.json [default "false"]
   `);
   process.exit(0);
 }
@@ -52,7 +52,7 @@ const locales = ['en', 'de', 'es'];
 const defaultLocale = flags.locale;
 const outputPath = flags['output-path'];
 const shouldBuildTranslations = flags['build-translations'];
-const shouldForceWritingToCore = flags['force-core'];
+const shouldOverwriteWritingToCore = flags['overwrite-core'];
 const globFilesToParse = commands[0];
 
 const newLine = () => process.stdout.write('\n');
@@ -66,16 +66,6 @@ const task = message => {
     }
     return newLine();
   };
-};
-
-const fileExists = fileName => {
-  // Make sure that the `index.html` is available.
-  try {
-    fs.accessSync(fileName, fs.F_OK);
-    return true;
-  } catch (error) {
-    return false;
-  }
 };
 
 // Wrap async functions below into a promise
@@ -186,7 +176,10 @@ const extractFromFile = async fileName => {
     // If a message already exists in the core.json file, we do not overwrite it.
     // This is to ensure that core.json messages can be updated from external sources.
     let safelyMergedMessages;
-    if (!shouldForceWritingToCore && fileExists(coreTranslationFileName)) {
+    if (
+      !shouldOverwriteWritingToCore &&
+      fs.existsSync(coreTranslationFileName)
+    ) {
       const existingCoreMessages = JSON.parse(
         fs.readFileSync(coreTranslationFileName, { encoding: 'utf8' })
       );
