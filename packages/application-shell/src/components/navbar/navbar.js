@@ -8,7 +8,24 @@ import { ToggleFeature, injectFeatureToggle } from '@flopflip/react-broadcast';
 import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
 import { oneLineTrim } from 'common-tags';
-import { Icons } from '@commercetools-frontend/ui-kit';
+import {
+  BackIcon,
+  TreeStructureIcon,
+  UserFilledIcon,
+  SpeedometerIcon,
+  TagMultiIcon,
+  CartIcon,
+  BoxIcon,
+  GearIcon,
+  SupportIcon,
+  HeartIcon,
+  PaperclipIcon,
+  PluginIcon,
+  RocketIcon,
+  StarIcon,
+  ConnectedSquareIcon,
+} from '@commercetools-frontend/ui-kit';
+import MissingImageSvg from '@commercetools-frontend/assets/images/image__missing_image.svg';
 import * as storage from '@commercetools-frontend/storage';
 import {
   GRAPHQL_TARGETS,
@@ -40,6 +57,56 @@ import messages from './messages';
 </DataMenu>
 */
 
+// This component receives the icon name as a string
+// and statically maps it to the related icon component.
+// We need to do this to avoid importing ALL icons and pick
+// the icon dynamically.
+// https://github.com/commercetools/ui-kit/pull/270
+// TODO: find a better solution once we implement
+// https://github.com/commercetools/merchant-center-application-kit/issues/37
+// which moves the static navbar config out of the AppShell,
+// in which case we don't have a clue on the icons used.
+// A possible solution to that would be to import the SVG using
+// a `<img src>`, given that the SVG are available from a public URL.
+export const IconSwitcher = ({ iconName, ...iconProps }) => {
+  switch (iconName) {
+    // Application icons
+    case 'TreeStructureIcon':
+      return <TreeStructureIcon {...iconProps} />;
+    case 'UserFilledIcon':
+      return <UserFilledIcon {...iconProps} />;
+    case 'SpeedometerIcon':
+      return <SpeedometerIcon {...iconProps} />;
+    case 'TagMultiIcon':
+      return <TagMultiIcon {...iconProps} />;
+    case 'CartIcon':
+      return <CartIcon {...iconProps} />;
+    case 'BoxIcon':
+      return <BoxIcon {...iconProps} />;
+    case 'GearIcon':
+      return <GearIcon {...iconProps} />;
+    case 'SupportIcon':
+      return <SupportIcon {...iconProps} />;
+    // Custom application icons set
+    case 'HeartIcon':
+      return <HeartIcon {...iconProps} />;
+    case 'PaperclipIcon':
+      return <PaperclipIcon {...iconProps} />;
+    case 'PluginIcon':
+      return <PluginIcon {...iconProps} />;
+    case 'RocketIcon':
+      return <RocketIcon {...iconProps} />;
+    case 'StarIcon':
+      return <StarIcon {...iconProps} />;
+    case 'ConnectedSquareIcon':
+      return <ConnectedSquareIcon {...iconProps} />;
+    default:
+      return <img src={MissingImageSvg} />;
+  }
+};
+IconSwitcher.displayName = 'IconSwitcher';
+IconSwitcher.propTypes = { iconName: PropTypes.string.isRequired };
+
 export const MenuExpander = props => (
   <li
     key="expander"
@@ -52,7 +119,7 @@ export const MenuExpander = props => (
         FIXME: define hover effect.
         https://github.com/commercetools/merchant-center-frontend/issues/2216
       */}
-      <Icons.BackIcon theme="white" size="big" />
+      <BackIcon theme="white" size="big" />
     </div>
   </li>
 );
@@ -380,7 +447,6 @@ export class DataMenu extends React.PureComponent {
 
   renderMenu = (menu, menuType, index) => {
     const isActive = this.state.activeItemIndex === `${menuType}-${index}`;
-    const MenuIcon = Icons[menu.icon];
     const hasSubmenu = Boolean(menu.submenu) && menu.submenu.length > 0;
     return (
       <ToggledWithPermissions
@@ -418,7 +484,8 @@ export class DataMenu extends React.PureComponent {
             >
               <div className={styles['item-icon-text']}>
                 <div className={styles.icon}>
-                  <MenuIcon
+                  <IconSwitcher
+                    iconName={menu.icon}
                     size="scale"
                     theme={getIconTheme(
                       menu,
