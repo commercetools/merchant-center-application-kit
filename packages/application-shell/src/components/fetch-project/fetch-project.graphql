@@ -51,6 +51,11 @@ query ProjectQuery($projectKey: String!) {
       canViewDiscounts
       canViewModifiedProducts
       canViewPimSearch
+      canViewProductsList
+      canViewCategoriesList
+      canViewCustomersList
+      canViewOrdersList
+      canViewDiscountsList
       canViewProductDiscounts
       canViewProductTypes
       canViewProjectSettingsMisc
