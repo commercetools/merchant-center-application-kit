@@ -27,34 +27,31 @@ query ProjectQuery($projectKey: String!) {
       canManageTypes
       canViewPayments
       canManagePayments
-      canAddCategory
-      canAddCustomer
-      canAddCustomerGroup
-      canAddDiscountCode
-      canAddOrder
-      canAddPrice
-      canAddProduct
-      canDeletePrice
-      canDeleteProduct
-      canEditPrice
-      canPublishProduct
-      canUnpublishProduct
-      canViewCartDiscountsList
+      canAddCategories
+      canAddCustomers
+      canAddCustomerGroups
+      canAddDiscountCodes
+      canAddOrders
+      canAddPrices
+      canAddProducts
+      canDeletePrices
+      canDeleteProducts
+      canEditPrices
+      canPublishProducts
+      canUnpublishProducts
+      canViewCartDiscounts
       canViewCategories
       canViewCategoriesSearch
       canViewCustomApplications
-      canViewCustomerGroupsList
-      canViewCustomersList
+      canViewCustomerGroups
       canViewDashboard
       canViewDeveloperSettings
       canViewDirectAccess
-      canViewDiscountCodesList
+      canViewDiscountCodes
       canViewDiscounts
       canViewModifiedProducts
-      canViewOrdersList
-      canViewPimSearchList
-      canViewProductDiscountsList
-      canViewProductsList
+      canViewPimSearch
+      canViewProductDiscounts
       canViewProductTypes
       canViewProjectSettingsMisc
       canViewSettings
