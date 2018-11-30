@@ -27,7 +27,9 @@ const getCountriesForLocale = (locale, cb) => {
   // The files are named like "country-data-en-json.chunk.js" after compilation
   // https://webpack.js.org/api/module-methods/#import-
   getImportChunk(supportedLocale)
-    .then(countries => cb(null, countries))
+    // Prefer loading `default` (for ESM bundles) and
+    // fall back to normal import (for CJS bundles).
+    .then(countries => cb(null, countries.default || countries))
     .catch(error => cb(error));
 };
 

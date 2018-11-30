@@ -32,7 +32,9 @@ const getLanguagesForLocale = (locale, cb) => {
   // The files are named like "language-data-en-json.chunk.js" after compilation
   // https://webpack.js.org/api/module-methods/#import-
   getImportChunk(supportedLocale)
-    .then(languages => cb(null, languages))
+    // Prefer loading `default` (for ESM bundles) and
+    // fall back to normal import (for CJS bundles).
+    .then(languages => cb(null, languages.default || languages))
     .catch(error => cb(error));
 };
 export const withLanguages = createL10NInjector({
