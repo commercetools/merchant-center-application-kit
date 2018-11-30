@@ -27,6 +27,38 @@ query ProjectQuery($projectKey: String!) {
       canManageTypes
       canViewPayments
       canManagePayments
+      canAddCategory
+      canAddCustomer
+      canAddCustomerGroup
+      canAddDiscountCode
+      canAddOrder
+      canAddPrice
+      canAddProduct
+      canDeletePrice
+      canDeleteProduct
+      canEditPrice
+      canPublishProduct
+      canUnpublishProduct
+      canViewCartDiscountsList
+      canViewCategories
+      canViewCategoriesSearch
+      canViewCustomApplications
+      canViewCustomerGroupsList
+      canViewCustomersList
+      canViewDashboard
+      canViewDeveloperSettings
+      canViewDirectAccess
+      canViewDiscountCodesList
+      canViewDiscounts
+      canViewModifiedProducts
+      canViewOrdersList
+      canViewPimSearchList
+      canViewProductDiscountsList
+      canViewProductsList
+      canViewProductTypes
+      canViewProjectSettingsMisc
+      canViewSettings
+      canViewShippingLists
     }
     owner {
       id
