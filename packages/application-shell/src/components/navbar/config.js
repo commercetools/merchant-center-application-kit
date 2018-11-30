@@ -16,7 +16,11 @@ const itemsCategories = {
   labelKey: 'NavBar.Categories.title',
   icon: 'TreeStructureIcon',
   featureToggle: CAN_VIEW_CATEGORIES,
-  permissions: [permissions.ViewProducts, permissions.ManageProducts],
+  permissions: [
+    permissions.ViewProducts,
+    permissions.ManageProducts,
+    permissions.ViewProductsList,
+  ],
   submenu: [
     {
       key: 'Categories',
@@ -34,7 +38,7 @@ const itemsCategories = {
       key: 'AddCategory',
       labelKey: 'NavBar.Categories.add',
       uriPath: 'categories/new',
-      permissions: [permissions.ManageProducts, permissions.AddCategory],
+      permissions: [permissions.ManageProducts, permissions.AddCategories],
     },
   ],
 };
@@ -50,13 +54,13 @@ const itemsCustomers = {
       key: 'Customers',
       labelKey: 'NavBar.Customers.list',
       uriPath: 'customers',
-      permissions: [permissions.ViewCustomers],
+      permissions: [permissions.ViewCustomers, permissions.ViewCustomersList],
     },
     {
       key: 'AddCustomer',
       labelKey: 'NavBar.Customers.add',
       uriPath: 'customers/new',
-      permissions: [permissions.ManageCustomers, permissions.AddCustomer],
+      permissions: [permissions.ManageCustomers, permissions.AddCustomers],
     },
     {
       key: 'CustomerGroups',
@@ -70,7 +74,7 @@ const itemsCustomers = {
       labelKey: 'NavBar.CustomerGroups.add',
       featureToggle: CUSTOMER_GROUPS,
       uriPath: 'customers/customer-groups/new',
-      permissions: [permissions.ManageCustomers, permissions.AddCustomerGroup],
+      permissions: [permissions.ManageCustomers, permissions.AddCustomerGroups],
     },
   ],
 };
@@ -144,7 +148,7 @@ const itemsOrders = {
       key: 'Orders',
       labelKey: 'NavBar.Orders.list',
       uriPath: 'orders',
-      permissions: [permissions.ViewOrders],
+      permissions: [permissions.ViewOrders, permissions.ViewOrdersList],
     },
     {
       key: 'AddOrders',
@@ -166,7 +170,7 @@ const itemsProducts = {
       key: 'ProductList',
       labelKey: 'NavBar.Products.list',
       uriPath: 'products',
-      permissions: [permissions.ViewProducts],
+      permissions: [permissions.ViewProducts, permissions.ViewProductsList],
     },
     {
       key: 'ModifiedProducts',
@@ -185,7 +189,7 @@ const itemsProducts = {
       permissions: [
         permissions.ViewProducts,
         permissions.ManageProducts,
-        permissions.ViewPimSearchList,
+        permissions.ViewPimSearch,
       ],
     },
     {
