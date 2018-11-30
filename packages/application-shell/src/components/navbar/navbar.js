@@ -18,6 +18,7 @@ import {
   BoxIcon,
   GearIcon,
   SupportIcon,
+  WorldIcon,
   HeartIcon,
   PaperclipIcon,
   PluginIcon,
@@ -100,6 +101,9 @@ export const IconSwitcher = ({ iconName, ...iconProps }) => {
       return <StarIcon {...iconProps} />;
     case 'ConnectedSquareIcon':
       return <ConnectedSquareIcon {...iconProps} />;
+    // For backwards compatibility
+    case 'WorldIcon':
+      return <WorldIcon {...iconProps} />;
     default:
       return <img src={MissingImageSvg} />;
   }
