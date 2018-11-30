@@ -145,7 +145,7 @@ describe('QuickAccess', () => {
   });
 
   it('should close when pressing Escape', async () => {
-    const { getByTestId, container } = render(
+    const { getByTestId, queryByTestId } = render(
       <QuickAccess {...createTestProps()} />
     );
 
@@ -159,8 +159,7 @@ describe('QuickAccess', () => {
     fireEvent.keyDown(getByTestId('quick-access-search-input'), {
       key: 'Escape',
     });
-
-    expect(container).toBeEmpty();
+    expect(queryByTestId('quick-access')).not.toBeInTheDocument();
   });
 
   it('should show results when searching for Dashboard', async () => {
@@ -239,7 +238,7 @@ describe('QuickAccess', () => {
   it('should open dashboard when chosing the "Open Dashboard" command', async () => {
     const mocks = [createMatchlessSearchMock('Open dshbrd')];
     const props = createTestProps();
-    const { getByTestId, container, getByText } = render(
+    const { getByTestId, queryByTestId, getByText } = render(
       <QuickAccess {...props} />,
       { mocks, flags }
     );
@@ -257,7 +256,7 @@ describe('QuickAccess', () => {
     );
 
     // should close quick access
-    expect(container).toBeEmpty();
+    expect(queryByTestId('quick-access')).not.toBeInTheDocument();
   });
 
   describe('on MacOS', () => {
@@ -271,7 +270,7 @@ describe('QuickAccess', () => {
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by cmd+enter', async () => {
       const mocks = [createMatchlessSearchMock('Open dshbrd')];
       const props = createTestProps();
-      const { getByTestId, container, getByText } = render(
+      const { getByTestId, queryByTestId, getByText } = render(
         <QuickAccess {...props} />,
         { mocks, flags }
       );
@@ -292,13 +291,13 @@ describe('QuickAccess', () => {
       );
 
       // should close quick access
-      expect(container).toBeEmpty();
+      expect(queryByTestId('quick-access')).not.toBeInTheDocument();
     });
 
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by cmd+click', async () => {
       const mocks = [createMatchlessSearchMock('Open dshbrd')];
       const props = createTestProps();
-      const { getByTestId, container, getByText } = render(
+      const { getByTestId, queryByTestId, getByText } = render(
         <QuickAccess {...props} />,
         { mocks, flags }
       );
@@ -320,7 +319,7 @@ describe('QuickAccess', () => {
       );
 
       // should close quick access
-      expect(container).toBeEmpty();
+      expect(queryByTestId('quick-access')).not.toBeInTheDocument();
     });
   });
 
@@ -334,7 +333,7 @@ describe('QuickAccess', () => {
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by ctrl+enter', async () => {
       const mocks = [createMatchlessSearchMock('Open dshbrd')];
       const props = createTestProps();
-      const { getByTestId, container, getByText } = render(
+      const { getByTestId, queryByTestId, getByText } = render(
         <QuickAccess {...props} />,
         { mocks, flags }
       );
@@ -355,13 +354,13 @@ describe('QuickAccess', () => {
       );
 
       // should close quick access
-      expect(container).toBeEmpty();
+      expect(queryByTestId('quick-access')).not.toBeInTheDocument();
     });
 
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by ctrl+click', async () => {
       const mocks = [createMatchlessSearchMock('Open dshbrd')];
       const props = createTestProps();
-      const { getByTestId, container, getByText } = render(
+      const { getByTestId, queryByTestId, getByText } = render(
         <QuickAccess {...props} />,
         { mocks, flags }
       );
@@ -383,14 +382,14 @@ describe('QuickAccess', () => {
       );
 
       // should close quick access
-      expect(container).toBeEmpty();
+      expect(queryByTestId('quick-access')).not.toBeInTheDocument();
     });
   });
 
   it('should open dashboard in new tab when chosing the "Open Dashboard" command by click', async () => {
     const mocks = [createMatchlessSearchMock('Open dshbrd')];
     const props = createTestProps();
-    const { getByTestId, container, getByText } = render(
+    const { getByTestId, queryByTestId, getByText } = render(
       <QuickAccess {...props} />,
       { mocks, flags }
     );
@@ -409,7 +408,7 @@ describe('QuickAccess', () => {
     );
 
     // should close quick access
-    expect(container).toBeEmpty();
+    expect(queryByTestId('quick-access')).not.toBeInTheDocument();
   });
 
   it('should cycle through the history', async () => {
@@ -418,7 +417,7 @@ describe('QuickAccess', () => {
       createMatchlessSearchMock('Open prdcts'),
     ];
     const props = createTestProps();
-    const { getByTestId, container, getByText } = render(
+    const { getByTestId, queryByTestId, getByText } = render(
       <QuickAccess {...props} />,
       { mocks, flags }
     );
@@ -436,7 +435,7 @@ describe('QuickAccess', () => {
     expect(props.history.push).toHaveBeenCalledWith(
       '/test-with-big-data-44/dashboard'
     );
-    expect(container).toBeEmpty();
+    expect(queryByTestId('quick-access')).not.toBeInTheDocument();
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
@@ -451,7 +450,7 @@ describe('QuickAccess', () => {
     expect(props.history.push).toHaveBeenCalledWith(
       '/test-with-big-data-44/products'
     );
-    expect(container).toBeEmpty();
+    expect(queryByTestId('quick-access')).not.toBeInTheDocument();
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
@@ -805,7 +804,7 @@ describe('QuickAccess', () => {
     const searchTerm = 'Open dshbrd';
     const mocks = [createMatchlessSearchMock(searchTerm)];
     const props = createTestProps();
-    const { getByTestId, container, getByText } = render(
+    const { getByTestId, queryByTestId, getByText } = render(
       <QuickAccess {...props} />,
       { mocks, flags }
     );
@@ -833,7 +832,7 @@ describe('QuickAccess', () => {
     );
 
     // should close quick access
-    expect(container).toBeEmpty();
+    expect(queryByTestId('quick-access')).not.toBeInTheDocument();
   });
 
   it('should not show project-based commands when used outside of the project context', async () => {

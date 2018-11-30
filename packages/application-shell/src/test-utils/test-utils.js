@@ -120,7 +120,7 @@ const render = (
   const mergedEnvironment = mergeOptional(defaultEnvironment, environment);
   return {
     ...rtlRender(
-      <div>
+      <React.Fragment>
         <IntlProvider locale={locale}>
           <ApolloProviderComponent mocks={mocks} addTypename={addTypename}>
             <ConfigureFlopFlip adapter={adpater} defaultFlags={flags}>
@@ -141,7 +141,7 @@ const render = (
         </IntlProvider>
         {/* This container is used to render modals, so we need to make it available in tests */}
         <div id={PORTALS_CONTAINER_ID} />
-      </div>,
+      </React.Fragment>,
       renderOptions
     ),
     // adding `history` to the returned utilities to allow us
