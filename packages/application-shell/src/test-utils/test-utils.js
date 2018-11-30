@@ -15,6 +15,7 @@ import { MockedProvider as ApolloMockProvider } from 'react-apollo/test-utils';
 import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
+import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import { createReduxStore } from '../configure-store';
 import { createApolloClient } from '../configure-apollo';
 
@@ -62,6 +63,9 @@ const defaultPermissions = { canManageProject: true };
 // or to completely omit the value by passing `null`
 const mergeOptional = (defaultValue, value) =>
   value === null ? undefined : { ...defaultValue, ...value };
+
+const LoadingFallback = () => 'Loading...';
+LoadingFallback.displayName = 'LoadingFallback';
 
 const MockedApolloProvider = ({ children, mocks, addTypename }) => (
   <ApolloMockProvider mocks={mocks} addTypename={addTypename}>
@@ -116,20 +120,28 @@ const render = (
   const mergedEnvironment = mergeOptional(defaultEnvironment, environment);
   return {
     ...rtlRender(
-      <IntlProvider locale={locale}>
-        <ApolloProviderComponent mocks={mocks} addTypename={addTypename}>
-          <ConfigureFlopFlip adapter={adpater} defaultFlags={flags}>
-            <ApplicationContextProvider
-              user={mergedUser}
-              project={mergedProject && { ...mergedProject, permissions }}
-              environment={mergedEnvironment}
-              projectDataLocale={dataLocale}
-            >
-              <Router history={history}>{ui}</Router>
-            </ApplicationContextProvider>
-          </ConfigureFlopFlip>
-        </ApolloProviderComponent>
-      </IntlProvider>,
+      <React.Fragment>
+        <IntlProvider locale={locale}>
+          <ApolloProviderComponent mocks={mocks} addTypename={addTypename}>
+            <ConfigureFlopFlip adapter={adpater} defaultFlags={flags}>
+              <ApplicationContextProvider
+                user={mergedUser}
+                project={mergedProject && { ...mergedProject, permissions }}
+                environment={mergedEnvironment}
+                projectDataLocale={dataLocale}
+              >
+                <Router history={history}>
+                  <React.Suspense fallback={<LoadingFallback />}>
+                    {ui}
+                  </React.Suspense>
+                </Router>
+              </ApplicationContextProvider>
+            </ConfigureFlopFlip>
+          </ApolloProviderComponent>
+        </IntlProvider>
+        {/* This container is used to render modals, so we need to make it available in tests */}
+        <div id={PORTALS_CONTAINER_ID} />
+      </React.Fragment>,
       renderOptions
     ),
     // adding `history` to the returned utilities to allow us
@@ -151,7 +163,7 @@ const render = (
 const renderWithRedux = (
   ui,
   {
-    // Consuemrs of renderWithRedux can use
+    // Consumers of renderWithRedux can use
     //   { store: createReduxStore({ requestsInFlight: null, .. }) }
     // to pass an initial state to Redux.
     store = createReduxStore(),
