@@ -159,7 +159,7 @@ describe('QuickAccess', () => {
     fireEvent.keyDown(getByTestId('quick-access-search-input'), {
       key: 'Escape',
     });
-    expect(queryByTestId('quick-access')).not.toBeInTheDOM();
+    expect(queryByTestId('quick-access')).not.toBeInTheDocument();
   });
 
   it('should show results when searching for Dashboard', async () => {
@@ -256,7 +256,7 @@ describe('QuickAccess', () => {
     );
 
     // should close quick access
-    expect(queryByTestId('quick-access')).not.toBeInTheDOM();
+    expect(queryByTestId('quick-access')).not.toBeInTheDocument();
   });
 
   describe('on MacOS', () => {
@@ -291,7 +291,7 @@ describe('QuickAccess', () => {
       );
 
       // should close quick access
-      expect(queryByTestId('quick-access')).not.toBeInTheDOM();
+      expect(queryByTestId('quick-access')).not.toBeInTheDocument();
     });
 
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by cmd+click', async () => {
@@ -319,7 +319,7 @@ describe('QuickAccess', () => {
       );
 
       // should close quick access
-      expect(queryByTestId('quick-access')).not.toBeInTheDOM();
+      expect(queryByTestId('quick-access')).not.toBeInTheDocument();
     });
   });
 
@@ -354,7 +354,7 @@ describe('QuickAccess', () => {
       );
 
       // should close quick access
-      expect(queryByTestId('quick-access')).not.toBeInTheDOM();
+      expect(queryByTestId('quick-access')).not.toBeInTheDocument();
     });
 
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by ctrl+click', async () => {
@@ -382,7 +382,7 @@ describe('QuickAccess', () => {
       );
 
       // should close quick access
-      expect(queryByTestId('quick-access')).not.toBeInTheDOM();
+      expect(queryByTestId('quick-access')).not.toBeInTheDocument();
     });
   });
 
@@ -408,7 +408,7 @@ describe('QuickAccess', () => {
     );
 
     // should close quick access
-    expect(queryByTestId('quick-access')).not.toBeInTheDOM();
+    expect(queryByTestId('quick-access')).not.toBeInTheDocument();
   });
 
   it('should cycle through the history', async () => {
@@ -435,7 +435,7 @@ describe('QuickAccess', () => {
     expect(props.history.push).toHaveBeenCalledWith(
       '/test-with-big-data-44/dashboard'
     );
-    expect(queryByTestId('quick-access')).not.toBeInTheDOM();
+    expect(queryByTestId('quick-access')).not.toBeInTheDocument();
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
@@ -450,7 +450,7 @@ describe('QuickAccess', () => {
     expect(props.history.push).toHaveBeenCalledWith(
       '/test-with-big-data-44/products'
     );
-    expect(queryByTestId('quick-access')).not.toBeInTheDOM();
+    expect(queryByTestId('quick-access')).not.toBeInTheDocument();
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
@@ -832,7 +832,7 @@ describe('QuickAccess', () => {
     );
 
     // should close quick access
-    expect(queryByTestId('quick-access')).not.toBeInTheDOM();
+    expect(queryByTestId('quick-access')).not.toBeInTheDocument();
   });
 
   it('should not show project-based commands when used outside of the project context', async () => {
