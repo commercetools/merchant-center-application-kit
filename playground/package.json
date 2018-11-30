@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -11,15 +11,15 @@
     "deploy:us": "now --local-config=now.us.json --docker; now alias --local-config=now.us.json"
   },
   "dependencies": {
-    "@commercetools-frontend/actions-global": "3.0.0",
-    "@commercetools-frontend/application-shell": "3.1.0",
-    "@commercetools-frontend/application-shell-connectors": "3.0.0",
-    "@commercetools-frontend/constants": "3.0.0",
-    "@commercetools-frontend/i18n": "3.1.0",
-    "@commercetools-frontend/l10n": "3.0.0",
-    "@commercetools-frontend/mc-http-server": "3.0.0",
-    "@commercetools-frontend/permissions": "3.0.0",
-    "@commercetools-frontend/sdk": "3.0.0",
+    "@commercetools-frontend/actions-global": "4.0.0",
+    "@commercetools-frontend/application-shell": "4.0.0",
+    "@commercetools-frontend/application-shell-connectors": "4.0.0",
+    "@commercetools-frontend/constants": "4.0.0",
+    "@commercetools-frontend/i18n": "4.0.0",
+    "@commercetools-frontend/l10n": "4.0.0",
+    "@commercetools-frontend/mc-http-server": "4.0.0",
+    "@commercetools-frontend/permissions": "4.0.0",
+    "@commercetools-frontend/sdk": "4.0.0",
     "@commercetools-frontend/ui-kit": "4.0.2",
     "moment": "2.22.2",
     "moment-timezone": "0.5.23",
@@ -33,6 +33,6 @@
     "react-select": "1.2.1"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "3.1.0"
+    "@commercetools-frontend/mc-scripts": "4.0.0"
   }
 }

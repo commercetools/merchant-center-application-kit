@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/sdk",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Tools for declarative fetching",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -34,8 +34,8 @@
     "build:es:watch": "npm run build:es -- -w"
   },
   "dependencies": {
-    "@commercetools-frontend/actions-global": "3.0.0",
-    "@commercetools-frontend/constants": "3.0.0",
+    "@commercetools-frontend/actions-global": "4.0.0",
+    "@commercetools-frontend/constants": "4.0.0",
     "@commercetools/api-request-builder": "4.1.1",
     "@commercetools/sdk-client": "1.5.10",
     "@commercetools/sdk-middleware-correlation-id": "1.0.1",
