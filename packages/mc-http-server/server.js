@@ -89,7 +89,7 @@ const app = express()
     else next();
   })
   // Try serving a static file that matches the url, otherwise go to
-  // the next middleware (e.g. favicon.ico)
+  // the next middleware (e.g. favicon.png)
   .use(express.static(publicFolderPath))
   // Catch all middleware to serve the `index.html` (for SPA routes)
   .use('*', serverIndexMiddleware);
