@@ -46,7 +46,12 @@ export default function loadI18n(lang) {
   const localeDataPromises = [reactIntlChunkImport, momentChunkImport];
 
   return Promise.all(localeDataPromises).then(response => {
-    addLocaleData([...response[0].default]);
-    return getLocalizedStringsChunkImport(lang).then(result => result.default);
+    // Prefer loading `default` (for ESM bundles) and
+    // fall back to normal import (for CJS bundles).
+    const loadedData = response[0].default || response[0];
+    addLocaleData([...loadedData]);
+    return getLocalizedStringsChunkImport(lang).then(
+      result => result.default || result
+    );
   });
 }
