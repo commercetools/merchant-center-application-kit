@@ -1,3 +1,28 @@
+## [4.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v3.1.0...v4.0.0) (2018-11-30)
+
+#### 💥 Type: Breaking Change
+
+- `application-shell`
+  - [#153](https://github.com/commercetools/merchant-center-application-kit/pull/153) Remove `Avatar` from `application-shell` ([@montezume](https://github.com/montezume))
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#162](https://github.com/commercetools/merchant-center-application-kit/pull/162) Improve permission names ([@tdeekens](https://github.com/tdeekens))
+- `l10n`
+  - [#154](https://github.com/commercetools/merchant-center-application-kit/pull/154) Make locale data work with CJS bundle ([@montezume](https://github.com/montezume))
+
+#### 🔮 Type: Chore
+
+- `mc-html-template`, `mc-http-server`
+  - [#159](https://github.com/commercetools/merchant-center-application-kit/pull/159) chore(http-server): update favicon images for different resolutions ([@emmenko](https://github.com/emmenko))
+
+#### 💅 Type: Enhancement
+
+- `application-shell`
+  - [#155](https://github.com/commercetools/merchant-center-application-kit/pull/155) feat(test-utils): wrap rendered component with React.Suspense, include modals container, document renderWithRedux ([@emmenko](https://github.com/emmenko))
+  - [#158](https://github.com/commercetools/merchant-center-application-kit/pull/158) Add new permissions to project query of app-shell ([@tdeekens](https://github.com/tdeekens))
+
 ## [3.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v3.0.1...v3.1.0) (2018-11-28)
 
 #### 🐛 Type: Bug
