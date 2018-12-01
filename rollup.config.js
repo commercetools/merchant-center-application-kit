@@ -22,9 +22,6 @@ const { pkg } = readPkgUp.sync({
   cwd: fs.realpathSync(process.cwd()),
 });
 
-const format = process.env.npm_lifecycle_event.split(':')[1];
-const isCJS = format === 'cjs';
-
 const babelOptions = getBabelPreset();
 
 const config = {
@@ -53,12 +50,7 @@ const config = {
       preferBuiltins: true,
       modulesOnly: true,
     }),
-    json(
-      // generate a named export for every property of the JSON object
-      // disable for CJS build, as we don't want to mix default and
-      // named exports
-      { namedExports: !isCJS }
-    ),
+    json({ namedExports: false }),
     builtins(),
     postcss({
       include: ['**/*.mod.css'],
