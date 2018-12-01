@@ -49,7 +49,7 @@ export default function loadI18n(lang) {
     // Prefer loading `default` (for ESM bundles) and
     // fall back to normal import (for CJS bundles).
     const loadedData = response[0].default || response[0];
-    addLocaleData([...loadedData]);
+    addLocaleData(loadedData);
     return getLocalizedStringsChunkImport(lang).then(
       result => result.default || result
     );
