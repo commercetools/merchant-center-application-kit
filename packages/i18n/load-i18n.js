@@ -26,11 +26,11 @@ const getMomentChunkImport = momentLocaleCode => {
 const getLocalizedStringsChunkImport = lang => {
   switch (lang) {
     case 'de':
-      return import(/* webpackChunkName: "react-intl-localized-strings-de" */ './data/de.json');
+      return import(/* webpackChunkName: "i18n-app-kit-locale-de" */ './data/de.json');
     case 'es':
-      return import(/* webpackChunkName: "react-intl-localized-strings-es" */ './data/es.json');
+      return import(/* webpackChunkName: "i18n-app-kit-locale-es" */ './data/es.json');
     default:
-      return import(/* webpackChunkName: "react-intl-localized-strings-en" */ './data/en.json');
+      return import(/* webpackChunkName: "i18n-app-kit-locale-en" */ './data/en.json');
   }
 };
 
@@ -46,7 +46,11 @@ export default function loadI18n(lang) {
   const localeDataPromises = [reactIntlChunkImport, momentChunkImport];
 
   return Promise.all(localeDataPromises).then(response => {
-    addLocaleData([...response[0].default]);
-    return getLocalizedStringsChunkImport(lang).then(result => result.default);
+    addLocaleData(response[0].default);
+    return getLocalizedStringsChunkImport(lang).then(
+      // Prefer loading `default` (for ESM bundles) and
+      // fall back to normal import (for CJS bundles).
+      result => result.default || result
+    );
   });
 }
