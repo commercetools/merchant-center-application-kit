@@ -1,3 +1,12 @@
+## [4.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v4.0.0...v4.0.1) (2018-12-01)
+
+#### 🐛 Type: Bug
+
+- `i18n`, `l10n`
+  - [#166](https://github.com/commercetools/merchant-center-application-kit/pull/166) fix(l10n): prefer loading default, fall back to normal import (esm vs cjs) ([@emmenko](https://github.com/emmenko))
+- `application-shell`
+  - [#165](https://github.com/commercetools/merchant-center-application-kit/pull/165) fix(navbar): keep WorldIcon for backwards compatibility ([@emmenko](https://github.com/emmenko))
+
 ## [4.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v3.1.0...v4.0.0) (2018-11-30)
 
 #### 💥 Type: Breaking Change
