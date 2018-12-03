@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CaretDownIcon } from '@commercetools-frontend/ui-kit';
+import { CaretDownIcon, Avatar } from '@commercetools-frontend/ui-kit';
 import Downshift from 'downshift';
 import { MCSupportFormURL } from '../../constants';
 import { UserSettingsMenu, UserAvatar } from './user-settings-menu';
@@ -137,15 +137,15 @@ describe('rendering', () => {
     });
 
     it('should pass prop firstName to `Avatar` component', () => {
-      expect(wrapper.find('Avatar')).toHaveProp('firstName', 'John Test');
+      expect(wrapper.find(Avatar)).toHaveProp('firstName', 'John Test');
     });
 
     it('should pass prop lastName to `Avatar` component', () => {
-      expect(wrapper.find('Avatar')).toHaveProp('lastName', 'Doe');
+      expect(wrapper.find(Avatar)).toHaveProp('lastName', 'Doe');
     });
 
     it('should pass prop `gravatarHash` to `Avatar` component', () => {
-      expect(wrapper.find('Avatar')).toHaveProp(
+      expect(wrapper.find(Avatar)).toHaveProp(
         'gravatarHash',
         '20c9c1b252b46ab49d6f7a4cee9c3e68'
       );
