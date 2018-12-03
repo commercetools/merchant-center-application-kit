@@ -103,12 +103,12 @@
   "devDependencies": {
     "@commercetools-frontend/ui-kit": "4.0.2",
     "react": "16.6.3",
-    "react-apollo": "2.3.1",
+    "react-apollo": "2.3.2",
     "react-dom": "16.6.3",
     "react-intl": "2.7.2",
     "react-router": "4.4.0-beta.6",
     "react-router-dom": "4.4.0-beta.6",
-    "react-testing-library": "5.3.0",
+    "react-testing-library": "5.3.1",
     "wait-for-observables": "1.0.3"
   },
   "peerDependencies": {

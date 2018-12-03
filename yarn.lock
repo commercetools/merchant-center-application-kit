@@ -833,10 +833,10 @@
   resolved "https://registry.yarnpkg.com/@commercetools/sdk-middleware-correlation-id/-/sdk-middleware-correlation-id-1.0.1.tgz#c29f0a6423390128baafcc4a8bf58da3c7a1b8ef"
   integrity sha512-mIasuvMAJx0bsbm8wwm55qLX2E59pakcayFlh2KyV1ffX8/uoVWzcQxuibHuhgT7LjbgkmdSgrDy/2BmmHB7SA==
 
-"@commercetools/sdk-middleware-http@4.0.8":
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/@commercetools/sdk-middleware-http/-/sdk-middleware-http-4.0.8.tgz#b66b84ca590b06d3c8c207bb374594bdd4be27a4"
-  integrity sha512-HLS/zhHEQS3QQ7JitMz0D5X9HGS1ejZLLHhIqvkNnnjQ/CkJ8inrTlHWdFteSq01Htwq91vEDmT/27KqMXcE2A==
+"@commercetools/sdk-middleware-http@4.0.9":
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/@commercetools/sdk-middleware-http/-/sdk-middleware-http-4.0.9.tgz#b5f744923aaf59e5d0da71c8f58f629f3ed86d3e"
+  integrity sha512-j0Aus1HrsE3bcmH6Izdx2XObE7MuimU6Edd+mD8iwIUCEhiGyMCyvWtivlGk8i75Rikdq+1LlQuF6rFf1GNPVg==
 
 "@commercetools/sdk-middleware-user-agent@1.2.11":
   version "1.2.11"
@@ -1108,7 +1108,7 @@
     log-update "^2.3.0"
     strip-ansi "^3.0.1"
 
-"@lerna/add@^3.4.1":
+"@lerna/add@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@lerna/add/-/add-3.5.0.tgz#3518b3d4afc3743b7227b1ee3534114eb9575888"
   integrity sha512-hoOqtal/ChEEtt9rxR/6xmyvTN7581XF4kWHoWPV9NbfZN9e8uTR8z4mCcJq2DiZhRuY7aA5FEROEbl12soowQ==
@@ -1133,7 +1133,7 @@
     "@lerna/validation-error" "^3.0.0"
     npmlog "^4.1.2"
 
-"@lerna/bootstrap@^3.4.1", "@lerna/bootstrap@^3.5.0":
+"@lerna/bootstrap@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@lerna/bootstrap/-/bootstrap-3.5.0.tgz#4d21ef0d1e648c8121432443a7d80c9442756347"
   integrity sha512-+z4kVVJFO5EGfC2ob/4C9LetqWwDtbhZgTRllr1+zOi/2clbD+WKcVI0ku+/ckzKjz783SOc83swX7RrmiLwMQ==
@@ -1162,7 +1162,7 @@
     read-package-tree "^5.1.6"
     semver "^5.5.0"
 
-"@lerna/changed@^3.4.1":
+"@lerna/changed@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@lerna/changed/-/changed-3.5.0.tgz#c96c4bde6d78f4b2a7b3b3e2511bf78cb6aabe17"
   integrity sha512-p9o7/hXwFAoet7UPeHIzIPonYxLHZe9bcNcjxKztZYAne5/OgmZiF4X1UPL2S12wtkT77WQy4Oz8NjRTczcapg==
@@ -1190,7 +1190,7 @@
     execa "^1.0.0"
     strong-log-transformer "^2.0.0"
 
-"@lerna/clean@^3.3.2":
+"@lerna/clean@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@lerna/clean/-/clean-3.5.0.tgz#38e0e58443fa43c19b3eeffcafa46cf254a328ee"
   integrity sha512-bHUFF6Wv7ms81Tmwe56xk296oqU74Sg9NSkUCDG4kZLpYZx347Aw+89ZPTlaSmUwqCgEXKYLr65ZVVvKmflpcA==
@@ -1264,7 +1264,7 @@
     fs-extra "^7.0.0"
     npmlog "^4.1.2"
 
-"@lerna/create@^3.4.1":
+"@lerna/create@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@lerna/create/-/create-3.5.0.tgz#22f64a7af7a08cfbed4af2a01ff82307ee9e0b2b"
   integrity sha512-ek4flHRmpMegZp9tP3RmuDhmMb9+/Hhy9B5eaZc5X5KWqDvFKJtn56sw+M9hNjiYehiimCwhaLWgE2WSikPvcQ==
@@ -1294,7 +1294,7 @@
     "@lerna/child-process" "^3.3.0"
     npmlog "^4.1.2"
 
-"@lerna/diff@^3.3.0":
+"@lerna/diff@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@lerna/diff/-/diff-3.5.0.tgz#4d131a1045321bcea20d743f5cc7f0d0095cf027"
   integrity sha512-iyZ0ZRPqH5Y5XEhOYoKS8H/8UXC/gZ/idlToMFHhUn1oTSd8v9HVU1c2xq1ge0u36ZH/fx/YydUk0A/KSv+p3Q==
@@ -1304,7 +1304,7 @@
     "@lerna/validation-error" "^3.0.0"
     npmlog "^4.1.2"
 
-"@lerna/exec@^3.3.2":
+"@lerna/exec@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@lerna/exec/-/exec-3.5.0.tgz#98f4e8719681c07a739241fadb4cbdbd9d518982"
   integrity sha512-H5jeIueDiuNsxeuGKaP7HqTcenvMsFfBFeWr0W6knHv9NrOF8il34dBqYgApZEDSQ7+2fA3ghwWbF+jUGTSh/A==
@@ -1354,7 +1354,7 @@
     "@lerna/child-process" "^3.3.0"
     semver "^5.5.0"
 
-"@lerna/import@^3.3.1":
+"@lerna/import@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@lerna/import/-/import-3.5.0.tgz#b42d368378d53c664a3324c1e2fc656a23819f12"
   integrity sha512-vgI6lMEzd1ODgi75cmAlfPYylaK37WY3E2fwKyO/lj6UKSGj46dVSK0KwTRHx33tu4PLvPzFi5C6nbY57o5ykQ==
@@ -1367,7 +1367,7 @@
     fs-extra "^7.0.0"
     p-map-series "^1.0.0"
 
-"@lerna/init@^3.3.0":
+"@lerna/init@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@lerna/init/-/init-3.5.0.tgz#40796d70dc261907e4149df62db8acbda8dc56fc"
   integrity sha512-V21/UWj34Mph+9NxIGH1kYcuJAp+uFjfG8Ku2nMy62OGL3553+YQ+Izr+R6egY8y/99UMCDpi5gkQni5eGv3MA==
@@ -1378,7 +1378,7 @@
     p-map "^1.2.0"
     write-json-file "^2.3.0"
 
-"@lerna/link@^3.3.0":
+"@lerna/link@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@lerna/link/-/link-3.5.0.tgz#ae7fe19df1bb0555dfa5aafcaf45c7fad537d81a"
   integrity sha512-KSu1mhxwNRmguqMqUTJd4c7QIk9/xmxJxbmMkA71OaJd4fwondob6DyI/B17NIWutdLbvSWQ7pRlFOPxjQVoUw==
@@ -1389,7 +1389,7 @@
     p-map "^1.2.0"
     slash "^1.0.0"
 
-"@lerna/list@^3.3.2":
+"@lerna/list@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@lerna/list/-/list-3.5.0.tgz#ae38724f1cdc588fde8495385e3b1a9aeac0c80f"
   integrity sha512-T+NZBQ/l6FmZklgrtFuN7luMs3AC/BoS52APOPrM7ZmxW4nenvov0xMwQW1783w/t365YDkDlYd5gM0nX3D1Hg==
@@ -1519,7 +1519,7 @@
     inquirer "^6.2.0"
     npmlog "^4.1.2"
 
-"@lerna/publish@^3.4.3":
+"@lerna/publish@^3.5.1":
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/@lerna/publish/-/publish-3.5.1.tgz#20ea36e05a76755760b67c78719d424fc129f777"
   integrity sha512-ltw2YdWWzev9cZRAzons5ywZh9NJARPX67meeA95oMDVMrhD4Y9VHQNJ3T8ueec/W78/4sKlMSr3ecWyPNp5bg==
@@ -1587,7 +1587,7 @@
     p-map "^1.2.0"
     p-map-series "^1.0.0"
 
-"@lerna/run@^3.3.2":
+"@lerna/run@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@lerna/run/-/run-3.5.0.tgz#f2bf479d8ef12e6a11be5a6404bb1a83eb56146c"
   integrity sha512-BnPD52tj794xG2Xsc4FvgksyFX2CLmSR28TZw/xASEuy14NuQYMZkvbaj61SEhyOEsq7pLhHE5PpfbIv2AIFJw==
@@ -1638,7 +1638,7 @@
   dependencies:
     npmlog "^4.1.2"
 
-"@lerna/version@^3.4.1", "@lerna/version@^3.5.0":
+"@lerna/version@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@lerna/version/-/version-3.5.0.tgz#df6d4d8ef077b51962126c0f52c800d98c53cc26"
   integrity sha512-vxuGkUSfjJuvOIgPG7SDXVmk4GPwJF9F+uhDW9T/wJzTk4UaxL37GpBeJDo43eutQ7mwluP+t88Luwf8S3WXlA==
@@ -8564,15 +8564,15 @@ kleur@^2.0.1:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-2.0.2.tgz#b704f4944d95e255d038f0cb05fb8a602c55a300"
   integrity sha512-77XF9iTllATmG9lSlIv0qdQ2BQ/h9t0bJllHlbvsQ0zUWfU7Yi0S8L5JXzPZgkefIiajLmBJJ4BsMJmqcf7oxQ==
 
+known-css-properties@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.10.0.tgz#8378a8921e6c815ecc47095744a8900af63d577d"
+  integrity sha512-OMPb86bpVbnKN/2VJw1Ggs1Hw/FNGwEL1QYiNIEHaB5FSLybJ4QD7My5Hm9yDhgpRrRnnOgu0oKeuuABzASeBw==
+
 known-css-properties@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.5.0.tgz#6ff66943ed4a5b55657ee095779a91f4536f8084"
   integrity sha512-LOS0CoS8zcZnB1EjLw4LLqDXw8nvt3AGH5dXLQP3D9O1nLLA+9GC5GnPl5mmF+JiQAtSX4VyZC7KvEtcA4kUtA==
-
-known-css-properties@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.9.0.tgz#28f8a7134cfa3b0aa08b1e5edf64a57f64fc23af"
-  integrity sha512-2G/A/8XPhH6MmuVgl079wYsgdqfXE3cfm62txk/ajS4wvRWo6tEHcgQCJCHOOy12Fse1Sxlbf7/IJBpR9hnVew==
 
 last-call-webpack-plugin@^3.0.0:
   version "3.0.0"
@@ -8634,26 +8634,26 @@ lerna-changelog@0.8.2:
     string.prototype.padend "^3.0.0"
     yargs "^11.0.0"
 
-lerna@3.4.3:
-  version "3.4.3"
-  resolved "https://registry.yarnpkg.com/lerna/-/lerna-3.4.3.tgz#501454efb453c65c305802d370ee337f7298787e"
-  integrity sha512-tWq1LvpHqkyB+FaJCmkEweivr88yShDMmauofPVdh0M5gU1cVucszYnIgWafulKYu2LMQ3IfUMUU5Pp3+MvADQ==
+lerna@3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/lerna/-/lerna-3.5.1.tgz#350b24b58fc2d7bc2c1e1f4ef3058afe827cfa68"
+  integrity sha512-0AyxMr2UpR3RAJsyrfNtYvfcI01YVSSnbRdzum7frZAtb7S+8NSY2ip7aDbN6/YsQK2K/zOCQ4shu/nwgub8aw==
   dependencies:
-    "@lerna/add" "^3.4.1"
-    "@lerna/bootstrap" "^3.4.1"
-    "@lerna/changed" "^3.4.1"
-    "@lerna/clean" "^3.3.2"
+    "@lerna/add" "^3.5.0"
+    "@lerna/bootstrap" "^3.5.0"
+    "@lerna/changed" "^3.5.0"
+    "@lerna/clean" "^3.5.0"
     "@lerna/cli" "^3.2.0"
-    "@lerna/create" "^3.4.1"
-    "@lerna/diff" "^3.3.0"
-    "@lerna/exec" "^3.3.2"
-    "@lerna/import" "^3.3.1"
-    "@lerna/init" "^3.3.0"
-    "@lerna/link" "^3.3.0"
-    "@lerna/list" "^3.3.2"
-    "@lerna/publish" "^3.4.3"
-    "@lerna/run" "^3.3.2"
-    "@lerna/version" "^3.4.1"
+    "@lerna/create" "^3.5.0"
+    "@lerna/diff" "^3.5.0"
+    "@lerna/exec" "^3.5.0"
+    "@lerna/import" "^3.5.0"
+    "@lerna/init" "^3.5.0"
+    "@lerna/link" "^3.5.0"
+    "@lerna/list" "^3.5.0"
+    "@lerna/publish" "^3.5.1"
+    "@lerna/run" "^3.5.0"
+    "@lerna/version" "^3.5.0"
     import-local "^1.0.0"
     npmlog "^4.1.2"
 
@@ -11223,7 +11223,7 @@ postcss-less@^1.1.0:
   dependencies:
     postcss "^5.2.16"
 
-postcss-less@^3.0.1:
+postcss-less@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/postcss-less/-/postcss-less-3.1.0.tgz#0e14a80206b452f44d3a09d082fa72645e8168cc"
   integrity sha512-+fDH2A9zV8B4gFu3Idhq8ma09/mMBXXc03T2lL9CHjBQqKrfUit+TrQrnojc6Y4k7N4E+tyE1Uj5U1tcoKtXLQ==
@@ -12000,10 +12000,10 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@1.15.2:
-  version "1.15.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.2.tgz#d31abe22afa4351efa14c7f8b94b58bb7452205e"
-  integrity sha512-YgPLFFA0CdKL4Eg2IHtUSjzj/BWgszDHiNQAe0VAIBse34148whfdzLagRL+QiKS+YfK5ftB6X4v/MBw8yCoug==
+prettier@1.15.3:
+  version "1.15.3"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.3.tgz#1feaac5bdd181237b54dbe65d874e02a1472786a"
+  integrity sha512-gAU9AGAPMaKb3NNSUUuhhFAS7SCO4ALTN4nRIn6PJ075Qd28Yn2Ig2ahEJWdJwJmlEBTUfC7mMUSFy8MwsOCfg==
 
 pretty-error@^2.0.2:
   version "2.1.1"
@@ -12353,10 +12353,10 @@ rcfile@1.0.3:
     path-exists "^2.1.0"
     require-uncached "^1.0.2"
 
-react-apollo@2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.3.1.tgz#f3687062f438b9b40e525d7e1ac2bcf0101b4495"
-  integrity sha512-xPteQmCzMJT8wE4v0zq38E6JWLhrNcJENl66fP117lwzU2lZA+qoUDcizqKl0z2OY5b+KklmqnPPD+wcWAdy7w==
+react-apollo@2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.3.2.tgz#b8e287d2813722b9e0a886cabf8149ab3b84a3b7"
+  integrity sha512-3lU9iqmj4KMIZvlWWSuLihxMGLEAL6oNmnSTWrb3/mRP36Zy0zJD4rdaonDx4WzqFYQAnUPaOiFnHGp0UQUTwA==
   dependencies:
     fbjs "^1.0.0"
     hoist-non-react-statics "^3.0.0"
@@ -12555,10 +12555,10 @@ react-test-renderer@^16.0.0-0:
     react-is "^16.6.3"
     scheduler "^0.11.2"
 
-react-testing-library@5.3.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/react-testing-library/-/react-testing-library-5.3.0.tgz#b88124441d8756438137b705eb26a99410de69cc"
-  integrity sha512-hUXurQC8b828s2Fyuyuibz1PvPbGWb5vSIDCb1ihcGVjzBP9OGnsAm6Dhpu7XqC1o/68KJ/5/QdkeiTDxS9gpw==
+react-testing-library@5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/react-testing-library/-/react-testing-library-5.3.1.tgz#d70ab711c8cef604fd70c9ec422d59e7e51ae112"
+  integrity sha512-lYhbNhlDRzOkqo+QjDGmG7BpFL8nBNLmCi0npW+VsF8pvhwtu78D4rZ7V3WimRaXFQqOt8VQ0+3CwjGkqV9VUA==
   dependencies:
     dom-testing-library "^3.12.0"
 
@@ -14306,10 +14306,10 @@ stylelint-order@0.8.1:
     postcss "^6.0.14"
     postcss-sorting "^3.1.0"
 
-stylelint@9.8.0:
-  version "9.8.0"
-  resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-9.8.0.tgz#bfdade6360d82afe820d6b15251b01acf8ffd04d"
-  integrity sha512-qYYgP9UnZ6S4uaXrfEGPIMeNv21gP4t3E7BtnYfJIiHKvz7AbrCP0vj1wPgD6OFyxLT5txQxtoznfSkm2vsUkQ==
+stylelint@9.9.0:
+  version "9.9.0"
+  resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-9.9.0.tgz#dde466e9b049e0bd30e912ad280f1a2ecf6efdf8"
+  integrity sha512-kIuX0/9/I2mZeHz6EoFt7UpLt7Mz+ic9/PmFwKMdq4BkQHikg3FkcgAElLdAmaI8Au1JEUOS996ZFE+mwXytmA==
   dependencies:
     autoprefixer "^9.0.0"
     balanced-match "^1.0.0"
@@ -14326,7 +14326,7 @@ stylelint@9.8.0:
     ignore "^5.0.4"
     import-lazy "^3.1.0"
     imurmurhash "^0.1.4"
-    known-css-properties "^0.9.0"
+    known-css-properties "^0.10.0"
     leven "^2.1.0"
     lodash "^4.17.4"
     log-symbols "^2.0.0"
@@ -14338,7 +14338,7 @@ stylelint@9.8.0:
     postcss "^7.0.0"
     postcss-html "^0.34.0"
     postcss-jsx "^0.35.0"
-    postcss-less "^3.0.1"
+    postcss-less "^3.1.0"
     postcss-markdown "^0.34.0"
     postcss-media-query-parser "^0.2.3"
     postcss-reporter "^6.0.0"
