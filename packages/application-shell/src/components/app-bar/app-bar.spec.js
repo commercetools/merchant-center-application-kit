@@ -17,6 +17,7 @@ const createTestProps = props => ({
     lastName: 'Snow',
     gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
   },
+  isAccountPath: false,
   ...props,
 });
 

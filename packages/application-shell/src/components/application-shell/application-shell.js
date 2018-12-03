@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Router, Redirect, Route, Switch } from 'react-router-dom';
+import { Router, Redirect, Route, Switch, matchPath } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ReconfigureFlopFlip, ToggleFeature } from '@flopflip/react-broadcast';
 import { joinPaths } from '@commercetools-frontend/url-utils';
@@ -202,6 +202,7 @@ export const RestrictedApplication = props => (
                         <AppBar
                           user={user}
                           projectKeyFromUrl={projectKeyFromUrl}
+                          isAccountPath={props.isAccountPath}
                         />
                       </header>
 
@@ -344,6 +345,7 @@ export const RestrictedApplication = props => (
 
 RestrictedApplication.displayName = 'RestrictedApplication';
 RestrictedApplication.propTypes = {
+  isAccountPath: PropTypes.bool.isRequired,
   environment: PropTypes.object.isRequired,
   defaultFeatureFlags: PropTypes.object,
   render: PropTypes.func.isRequired,
@@ -453,7 +455,7 @@ export default class ApplicationShell extends React.Component {
                    */}
                   <Route path="/logout" component={Logout} />
                   <Route
-                    render={() => (
+                    render={routerProps => (
                       <Authenticated>
                         {({ isAuthenticated }) => {
                           if (isAuthenticated)
@@ -463,6 +465,11 @@ export default class ApplicationShell extends React.Component {
                                 defaultFeatureFlags={
                                   this.props.defaultFeatureFlags
                                 }
+                                isAccountPath={Boolean(
+                                  matchPath(routerProps.location.pathname, {
+                                    path: '/account',
+                                  })
+                                )}
                                 render={this.props.render}
                                 applicationMessages={
                                   this.props.applicationMessages
