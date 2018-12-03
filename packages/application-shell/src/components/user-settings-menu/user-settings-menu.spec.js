@@ -9,16 +9,16 @@ const createTestProps = props => ({
   firstName: 'John Test',
   lastName: 'Doe',
   email: 'john@doe.com',
-  location: {
-    pathname: '/test-1/products',
-  },
   gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
+  isAccountPath: false,
   ...props,
 });
 
 const createDownshiftProps = props => ({
   isOpen: false,
   toggleMenu: jest.fn(),
+  getToggleButtonProps: jest.fn(),
+  getMenuProps: jest.fn(),
   ...props,
 });
 
@@ -43,10 +43,8 @@ describe('rendering', () => {
         wrapper.find(Downshift).prop('children')(downshiftProps)
       );
     });
-    it('should render div with click handler', () => {
-      expect(
-        menuStateContainerRenderWrapper.find('.settings-container')
-      ).toHaveProp('onClick', downshiftProps.toggleMenu);
+    it('should render button', () => {
+      expect(menuStateContainerRenderWrapper).toRender('button');
     });
     it('should render WithMouseOverState(UserAvatar)', () => {
       expect(menuStateContainerRenderWrapper).toRender(
@@ -80,9 +78,7 @@ describe('rendering', () => {
       });
       describe('when is in the account section', () => {
         beforeEach(() => {
-          props = createTestProps({
-            location: { pathname: '/account/organizations' },
-          });
+          props = createTestProps({ isAccountPath: true });
           wrapper = shallow(<UserSettingsMenu {...props} />);
           downshiftProps = createDownshiftProps({ isOpen: true });
           menuStateContainerRenderWrapper = shallow(
