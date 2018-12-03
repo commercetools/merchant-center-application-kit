@@ -66,7 +66,7 @@ const itemsCustomers = {
       labelKey: 'NavBar.CustomerGroups.list',
       featureToggle: CUSTOMER_GROUPS,
       uriPath: 'customers/customer-groups',
-      permissions: [permissions.ViewCustomerGroups],
+      permissions: [permissions.ViewCustomers, permissions.ViewCustomerGroups],
     },
     {
       key: 'AddCustomerGroup',
