@@ -15,6 +15,8 @@ import { MockedProvider as ApolloMockProvider } from 'react-apollo/test-utils';
 import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
+import { NotificationsList } from '@commercetools-frontend/react-notifications';
+import { DOMAINS } from '@commercetools-frontend/constants';
 import { createReduxStore } from '../configure-store';
 import { createApolloClient } from '../configure-apollo';
 
@@ -165,7 +167,17 @@ const renderWithRedux = (
     ...renderOptions
   } = {}
 ) => ({
-  ...render(<StoreProvider store={store}>{ui}</StoreProvider>, renderOptions),
+  ...render(
+    <StoreProvider store={store}>
+      <div>
+        <NotificationsList domain={DOMAINS.GLOBAL} />
+        <NotificationsList domain={DOMAINS.PAGE} />
+        <NotificationsList domain={DOMAINS.SIDE} />
+        {ui}
+      </div>
+    </StoreProvider>,
+    renderOptions
+  ),
   // adding `store` to the returned utilities to allow us
   // to reference it in our tests (just try to avoid using
   // this to test implementation details).
