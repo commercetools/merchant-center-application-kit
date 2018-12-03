@@ -16,23 +16,22 @@ const itemsCategories = {
   labelKey: 'NavBar.Categories.title',
   icon: 'TreeStructureIcon',
   featureToggle: CAN_VIEW_CATEGORIES,
-  permissions: [
-    permissions.ViewProducts,
-    permissions.ManageProducts,
-    permissions.ViewProductsList,
-  ],
+  permissions: [permissions.ViewProducts, permissions.ManageProducts],
   submenu: [
     {
       key: 'Categories',
       labelKey: 'NavBar.Categories.list',
       uriPath: 'categories?mode=list',
-      permissions: [permissions.ViewCategories],
+      permissions: [permissions.ViewCategories, permissions.ViewCategoriesList],
     },
     {
       key: 'CategoriesSearch',
       labelKey: 'NavBar.Categories.search',
       uriPath: 'categories?mode=search',
-      permissions: [permissions.ViewCategoriesSearch],
+      permissions: [
+        permissions.ViewCategories,
+        permissions.ViewCategoriesSearch,
+      ],
     },
     {
       key: 'AddCategory',
@@ -224,7 +223,7 @@ const itemsProjectSettings = {
       key: 'Project settings',
       labelKey: 'NavBar.ProjectSettings.title',
       uriPath: 'settings/project',
-      permissions: [permissions.ManageProject],
+      permissions: [permissions.ManageProject, permissions.ViewProjectSettings],
     },
     {
       key: 'Product types',
