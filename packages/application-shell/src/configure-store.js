@@ -50,32 +50,34 @@ export const createReduxStore = (
       notifications: notificationsReducer,
       ...injectedReducers,
     });
+  const middlewares = [
+    // Should be defined before `createExtractGlobalActions`
+    addPluginToNotificationMiddleware,
+    createExtractGlobalActions([
+      /* list of action types plugins may dispatch globally */
+      SHOW_LOADING,
+      HIDE_LOADING,
+      ADD_NOTIFICATION,
+      REMOVE_NOTIFICATION,
+      HIDE_ALL_PAGE_NOTIFICATIONS,
+    ]),
+    createScopedMiddleware(thunk),
+    sentryTrackingMiddleware,
+    createScopedMiddleware(sentryTrackingMiddleware),
+    hideNotificationsMiddleware,
+    notificationsMiddleware,
+    sdkMiddleware,
+    createScopedMiddleware(sdkMiddleware),
+    thunk,
+    batchedUpdates,
+  ];
+  if (process.env.NODE_ENV !== 'test') middlewares.push(loggerMiddleware);
+
   const store = createStore(
     createReducer(),
     preloadedState,
     compose(
-      applyMiddleware(
-        // Should be defined before `createExtractGlobalActions`
-        addPluginToNotificationMiddleware,
-        createExtractGlobalActions([
-          /* list of action types plugins may dispatch globally */
-          SHOW_LOADING,
-          HIDE_LOADING,
-          ADD_NOTIFICATION,
-          REMOVE_NOTIFICATION,
-          HIDE_ALL_PAGE_NOTIFICATIONS,
-        ]),
-        createScopedMiddleware(thunk),
-        sentryTrackingMiddleware,
-        createScopedMiddleware(sentryTrackingMiddleware),
-        hideNotificationsMiddleware,
-        notificationsMiddleware,
-        sdkMiddleware,
-        createScopedMiddleware(sdkMiddleware),
-        thunk,
-        batchedUpdates,
-        loggerMiddleware
-      ),
+      applyMiddleware(...middlewares),
       window.__REDUX_DEVTOOLS_EXTENSION__
         ? window.__REDUX_DEVTOOLS_EXTENSION__({
             actionSanitizer: actionTransformer,

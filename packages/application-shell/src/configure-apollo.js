@@ -28,11 +28,10 @@ const httpLink = createHttpLink({
 // in the response/phase they are executed bottom to top
 // `tokenRetryLink` needs to stay after `errorLink` in order to be executed before `errorLink` for responses
 const link = ApolloLink.from([
-  headerLink,
-  errorLink,
-  apolloLogger,
-  tokenRetryLink,
-  httpLink,
+  ...[headerLink, errorLink],
+  // We don't want to log Apollo Stuff in testing environment
+  ...(process.env.NODE_ENV !== 'test' ? [apolloLogger] : []),
+  ...[tokenRetryLink, httpLink],
 ]);
 
 /**

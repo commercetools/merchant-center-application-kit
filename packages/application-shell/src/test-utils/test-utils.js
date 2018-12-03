@@ -5,6 +5,7 @@
 // and then use it together with react-testing-library.
 import React from 'react';
 import PropTypes from 'prop-types';
+import merge from 'lodash.merge';
 import { Router } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { render as rtlRender } from 'react-testing-library';
@@ -62,7 +63,7 @@ const defaultPermissions = { canManageProject: true };
 // Allow consumers of `render` to extend the defaults by passing an object
 // or to completely omit the value by passing `null`
 const mergeOptional = (defaultValue, value) =>
-  value === null ? undefined : { ...defaultValue, ...value };
+  value === null ? undefined : merge(defaultValue, value);
 
 const LoadingFallback = () => 'Loading...';
 LoadingFallback.displayName = 'LoadingFallback';

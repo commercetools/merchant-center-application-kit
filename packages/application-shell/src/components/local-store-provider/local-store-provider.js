@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 import { compose } from 'recompose';
 import has from 'lodash.has';
+import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import * as storage from '@commercetools-frontend/storage';
 import { __LOCAL } from '../../middleware/add-plugin-to-notification/constants';
 import { STORAGE_KEYS } from '../../constants';
-import { withUser } from '../fetch-user';
-import { withProject } from '../fetch-project';
 
 export class LocalStoreProvider extends React.Component {
   static displayName = 'LocalStoreProvider';
@@ -19,6 +17,7 @@ export class LocalStoreProvider extends React.Component {
 
     // Injected
     hasStateForActivePlugin: PropTypes.bool.isRequired,
+    permissions: PropTypes.object.isRequired,
     user: PropTypes.shape({
       id: PropTypes.string.isRequired,
       firstName: PropTypes.string.isRequired,
@@ -26,7 +25,6 @@ export class LocalStoreProvider extends React.Component {
       language: PropTypes.string.isRequired,
     }).isRequired,
     project: PropTypes.shape({
-      permissions: PropTypes.object.isRequired,
       countries: PropTypes.array.isRequired,
       languages: PropTypes.array.isRequired,
       currencies: PropTypes.array.isRequired,
@@ -103,13 +101,12 @@ export class LocalStoreProvider extends React.Component {
     },
 
     // Project info
-    permissions: this.props.project.permissions,
+    permissions: this.props.permissions,
     countries: this.props.project.countries,
     languages: this.props.project.languages,
     currencies: this.props.project.currencies,
     projectKey: this.props.project.key,
     projectSettings: this.props.project.settings,
-    projectExpired: this.props.project.expiry.isActive,
   });
 
   render() {
@@ -123,8 +120,10 @@ export const mapStateToProps = (state, ownProps) => ({
 });
 
 export default compose(
-  withRouter, // Used by `withProject`
-  withProject(ownProps => ownProps.match.params.projectKey),
-  withUser(),
+  withApplicationContext(applicationContext => ({
+    user: applicationContext.user,
+    project: applicationContext.project,
+    permissions: applicationContext.permissions,
+  })),
   connect(mapStateToProps)
 )(LocalStoreProvider);

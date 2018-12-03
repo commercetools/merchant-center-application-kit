@@ -221,7 +221,6 @@ describe('lifecycle', () => {
               currencies: props.project.currencies,
               projectKey: props.project.key,
               projectSettings: props.project.settings,
-              projectExpired: props.project.expiry.isActive,
             },
           })
         );
