@@ -243,6 +243,7 @@ const itemsProjectSettings = {
       uriPath: 'settings/developer',
       permissions: [
         permissions.ManageProject,
+        permissions.ManageApiClients,
         permissions.ViewDeveloperSettings,
       ],
     },

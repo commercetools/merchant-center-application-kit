@@ -61,6 +61,8 @@ query ProjectQuery($projectKey: String!) {
       canViewProjectSettingsMisc
       canViewSettings
       canViewShippingLists
+      canViewApiClients
+      canManageApiClients
     }
     owner {
       id

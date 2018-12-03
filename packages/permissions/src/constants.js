@@ -48,6 +48,8 @@ const permissions = {
   ViewShippingLists: 'ViewShippingLists',
   ViewStates: 'ViewStates',
   ViewTypes: 'ViewTypes',
+  ViewApiClients: 'ViewApiClients',
+  ManageApiClients: 'ManageApiClients',
 };
 
 /* eslint-disable import/prefer-default-export */
