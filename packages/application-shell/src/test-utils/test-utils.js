@@ -15,7 +15,6 @@ import { MockedProvider as ApolloMockProvider } from 'react-apollo/test-utils';
 import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import { createReduxStore } from '../configure-store';
 import { createApolloClient } from '../configure-apollo';
 
@@ -120,28 +119,24 @@ const render = (
   const mergedEnvironment = mergeOptional(defaultEnvironment, environment);
   return {
     ...rtlRender(
-      <React.Fragment>
-        <IntlProvider locale={locale}>
-          <ApolloProviderComponent mocks={mocks} addTypename={addTypename}>
-            <ConfigureFlopFlip adapter={adpater} defaultFlags={flags}>
-              <ApplicationContextProvider
-                user={mergedUser}
-                project={mergedProject && { ...mergedProject, permissions }}
-                environment={mergedEnvironment}
-                projectDataLocale={dataLocale}
-              >
-                <Router history={history}>
-                  <React.Suspense fallback={<LoadingFallback />}>
-                    {ui}
-                  </React.Suspense>
-                </Router>
-              </ApplicationContextProvider>
-            </ConfigureFlopFlip>
-          </ApolloProviderComponent>
-        </IntlProvider>
-        {/* This container is used to render modals, so we need to make it available in tests */}
-        <div id={PORTALS_CONTAINER_ID} />
-      </React.Fragment>,
+      <IntlProvider locale={locale}>
+        <ApolloProviderComponent mocks={mocks} addTypename={addTypename}>
+          <ConfigureFlopFlip adapter={adpater} defaultFlags={flags}>
+            <ApplicationContextProvider
+              user={mergedUser}
+              project={mergedProject && { ...mergedProject, permissions }}
+              environment={mergedEnvironment}
+              projectDataLocale={dataLocale}
+            >
+              <Router history={history}>
+                <React.Suspense fallback={<LoadingFallback />}>
+                  {ui}
+                </React.Suspense>
+              </Router>
+            </ApplicationContextProvider>
+          </ConfigureFlopFlip>
+        </ApolloProviderComponent>
+      </IntlProvider>,
       renderOptions
     ),
     // adding `history` to the returned utilities to allow us
