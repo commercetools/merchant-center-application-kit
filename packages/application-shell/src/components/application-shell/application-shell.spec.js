@@ -50,6 +50,7 @@ const createTestProps = props => ({
   showUnexpectedErrorNotification: jest.fn(),
   onRegisterErrorListeners: jest.fn(),
   INTERNAL__isApplicationFallback: false,
+  isAccountPath: false,
   ...props,
 });
 
@@ -108,7 +109,9 @@ describe('rendering', () => {
           {wrapper
             .find('Switch > Route')
             .last()
-            .prop('render')()}
+            .prop('render')({
+            location: { pathname: '/account' },
+          })}
         </div>
       );
     });

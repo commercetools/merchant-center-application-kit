@@ -2,57 +2,59 @@
 
 exports[`rendering menu when menu is open should render matching tree 1`] = `
 <div>
-  <div
+  <button
     className="settings-container"
-    onClick={[MockFunction]}
   >
     <WithMouseOverState(UserAvatar)
       firstName="John Test"
       gravatarHash="20c9c1b252b46ab49d6f7a4cee9c3e68"
       lastName="Doe"
     />
-  </div>
+  </button>
   <Card
     className="menu"
     theme="light"
     type="raised"
   >
-    <Inset
-      scale="s"
-    >
-      <TextDetail
-        tone="secondary"
-      >
-        John Test Doe
-      </TextDetail>
-    </Inset>
-    <Link
-      onClick={[MockFunction]}
-      replace={false}
-      to="/account/profile"
-    >
+    <div>
       <div
-        className="item"
+        className=""
       >
         <Inset
-          scale="s"
+          scale="xs"
         >
-          <FormattedMessage
-            defaultMessage="My Profile"
-            description="The label for user profile option"
-            id="UserSettingsMenu.userProfile"
-            values={Object {}}
-          />
+          <Inline
+            alignItems="center"
+            scale="xs"
+          >
+            <Avatar
+              firstName="John Test"
+              gravatarHash="20c9c1b252b46ab49d6f7a4cee9c3e68"
+              isHighlighted={false}
+              lastName="Doe"
+              size="s"
+            />
+            <div
+              className=""
+            >
+              <TextBody
+                isBold={true}
+              >
+                John Test Doe
+              </TextBody>
+              <TextBody
+                truncate={true}
+              >
+                john@doe.com
+              </TextBody>
+            </div>
+          </Inline>
         </Inset>
       </div>
-    </Link>
-    <ToggleFeature
-      flag="organizationsList"
-    >
       <Link
         onClick={[MockFunction]}
         replace={false}
-        to="/account/organizations"
+        to="/account/profile"
       >
         <div
           className="item"
@@ -61,22 +63,90 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
             scale="s"
           >
             <FormattedMessage
-              defaultMessage="Manage Organizations"
-              description="The label for manage organizations option"
-              id="UserSettingsMenu.manageOrganizations"
+              defaultMessage="My Profile"
+              description="The label for user profile option"
+              id="UserSettingsMenu.userProfile"
               values={Object {}}
             />
           </Inset>
         </div>
       </Link>
-    </ToggleFeature>
-    <ToggleFeature
-      flag="projectsList"
-    >
-      <Link
+      <ToggleFeature
+        flag="organizationsList"
+      >
+        <Link
+          onClick={[MockFunction]}
+          replace={false}
+          to="/account/organizations"
+        >
+          <div
+            className="item"
+          >
+            <Inset
+              scale="s"
+            >
+              <FormattedMessage
+                defaultMessage="Manage Organizations"
+                description="The label for manage organizations option"
+                id="UserSettingsMenu.manageOrganizations"
+                values={Object {}}
+              />
+            </Inset>
+          </div>
+        </Link>
+      </ToggleFeature>
+      <ToggleFeature
+        flag="projectsList"
+      >
+        <Link
+          onClick={[MockFunction]}
+          replace={false}
+          to="/account/projects"
+        >
+          <div
+            className="item item-divider-account-section"
+          >
+            <Inset
+              scale="s"
+            >
+              <FormattedMessage
+                defaultMessage="Manage Projects"
+                description="The label for manage projects option"
+                id="UserSettingsMenu.manageProjects"
+                values={Object {}}
+              />
+            </Inset>
+          </div>
+        </Link>
+      </ToggleFeature>
+      <a
+        href="https://commercetools.com/privacy"
         onClick={[MockFunction]}
-        replace={false}
-        to="/account/projects"
+        target="_blank"
+      >
+        <div
+          className="item"
+        >
+          <Inset
+            scale="s"
+          >
+            <FormattedMessage
+              defaultMessage="Privacy Policy"
+              description="The label for privacy policy option"
+              id="UserSettingsMenu.privacyPolicy"
+              values={Object {}}
+            />
+          </Inset>
+        </div>
+      </a>
+      <a
+        data-track-component="Navigation-Support-links"
+        data-track-event="click"
+        data-track-label="support_textlink"
+        href="https://jira.commercetools.com/servicedesk/customer/portal/1/create/167"
+        onClick={[MockFunction]}
+        rel="noopener noreferrer"
+        target="_blank"
       >
         <div
           className="item item-divider-account-section"
@@ -85,76 +155,35 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
             scale="s"
           >
             <FormattedMessage
-              defaultMessage="Manage Projects"
-              description="The label for manage projects option"
-              id="UserSettingsMenu.manageProjects"
+              defaultMessage="Support"
+              description="The label for Support"
+              id="UserSettingsMenu.support"
               values={Object {}}
             />
           </Inset>
         </div>
-      </Link>
-    </ToggleFeature>
-    <a
-      href="https://commercetools.com/privacy"
-      target="_blank"
-    >
-      <div
-        className="item"
+      </a>
+      <a
+        data-test="logout-button"
+        href="/logout?reason=user"
       >
-        <Inset
-          scale="s"
+        <div
+          className="item"
+          tabIndex="0"
         >
-          <FormattedMessage
-            defaultMessage="Privacy Policy"
-            description="The label for privacy policy option"
-            id="UserSettingsMenu.privacyPolicy"
-            values={Object {}}
-          />
-        </Inset>
-      </div>
-    </a>
-    <a
-      data-track-component="Navigation-Support-links"
-      data-track-event="click"
-      data-track-label="support_textlink"
-      href="https://jira.commercetools.com/servicedesk/customer/portal/1/create/167"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      <div
-        className="item"
-      >
-        <Inset
-          scale="s"
-        >
-          <FormattedMessage
-            defaultMessage="Support"
-            description="The label for Support"
-            id="UserSettingsMenu.support"
-            values={Object {}}
-          />
-        </Inset>
-      </div>
-    </a>
-    <a
-      data-test="logout-button"
-      href="/logout?reason=user"
-    >
-      <div
-        className="item"
-      >
-        <Inset
-          scale="s"
-        >
-          <FormattedMessage
-            defaultMessage="Logout"
-            description="The label for logout option"
-            id="UserSettingsMenu.logout"
-            values={Object {}}
-          />
-        </Inset>
-      </div>
-    </a>
+          <Inset
+            scale="s"
+          >
+            <FormattedMessage
+              defaultMessage="Logout"
+              description="The label for logout option"
+              id="UserSettingsMenu.logout"
+              values={Object {}}
+            />
+          </Inset>
+        </div>
+      </a>
+    </div>
   </Card>
 </div>
 `;

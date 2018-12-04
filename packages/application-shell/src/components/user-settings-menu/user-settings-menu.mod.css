@@ -1,19 +1,26 @@
-.container {
-  position: relative;
+:root {
+  --menu-width: 315px;
+  --menu-position-top: 40px;
+  --menu-position-right: 14px;
+  --menu-offset-right: 28px;
 }
 
 .settings-container {
   cursor: pointer;
+  border: none;
+  padding: 0;
+  display: flex;
+  background: transparent;
 }
 
 .menu {
   position: absolute;
-  border: 1px var(--color-gray-60) solid;
+  border: 1px var(--color-green-40) solid;
   box-shadow: var(--shadow-7-first), var(--shadow-7-second);
-  width: 200px;
-  right: 0;
-  top: 34px;
-  padding: 0;
+  width: var(--menu-width);
+  right: var(--menu-position-right);
+  top: var(--menu-position-top);
+  padding: var(--spacing-4);
   overflow: hidden;
 }
 
@@ -24,18 +31,16 @@
   top: -6px;
   border-style: solid;
   border-width: 0 6px 6px;
-  border-color: transparent transparent var(--color-white) transparent;
   z-index: 1;
 }
 
 .menu::after {
   content: '';
   position: absolute;
-  right: 28px;
-  top: -8px;
+  right: var(--menu-offset-right);
+  top: calc(var(--spacing-8) * -1);
   border-style: solid;
-  border-width: 0 8px 8px;
-  border-color: transparent transparent var(--color-gray-60) transparent;
+  border-width: 0 var(--spacing-8) var(--spacing-8);
   z-index: 0;
 }
 
@@ -51,4 +56,8 @@
 
 .item-divider-account-section {
   border-bottom: 1px solid var(--color-gray);
+}
+
+.email-divider {
+  margin-bottom: var(--spacing-4);
 }

@@ -1,14 +1,24 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Avatar, CaretDownIcon } from '@commercetools-frontend/ui-kit';
-import MenuStateContainer from '../menu-state-container';
+import { CaretDownIcon, Avatar } from '@commercetools-frontend/ui-kit';
+import Downshift from 'downshift';
 import { MCSupportFormURL } from '../../constants';
-import UserSettingsMenu, { UserAvatar } from './user-settings-menu';
+import { UserSettingsMenu, UserAvatar } from './user-settings-menu';
 
 const createTestProps = props => ({
   firstName: 'John Test',
   lastName: 'Doe',
+  email: 'john@doe.com',
   gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
+  isAccountPath: false,
+  ...props,
+});
+
+const createDownshiftProps = props => ({
+  isOpen: false,
+  toggleMenu: jest.fn(),
+  getToggleButtonProps: jest.fn(),
+  getMenuProps: jest.fn(),
   ...props,
 });
 
@@ -20,25 +30,21 @@ describe('rendering', () => {
     wrapper = shallow(<UserSettingsMenu {...props} />);
   });
 
-  it('should render <MenuStateContainer> wrapper', () => {
-    expect(wrapper).toRender(MenuStateContainer);
+  it('should render <Downshift> wrapper', () => {
+    expect(wrapper).toRender(Downshift);
   });
 
   describe('menu', () => {
-    let menuStateContainerProps;
+    let downshiftProps;
     let menuStateContainerRenderWrapper;
     beforeEach(() => {
-      menuStateContainerProps = { isOpen: false, toggleMenu: jest.fn() };
+      downshiftProps = createDownshiftProps();
       menuStateContainerRenderWrapper = shallow(
-        wrapper.find(MenuStateContainer).prop('children')(
-          menuStateContainerProps
-        )
+        wrapper.find(Downshift).prop('children')(downshiftProps)
       );
     });
-    it('should render div with click handler', () => {
-      expect(
-        menuStateContainerRenderWrapper.find('.settings-container')
-      ).toHaveProp('onClick', menuStateContainerProps.toggleMenu);
+    it('should render button', () => {
+      expect(menuStateContainerRenderWrapper).toRender('button');
     });
     it('should render WithMouseOverState(UserAvatar)', () => {
       expect(menuStateContainerRenderWrapper).toRender(
@@ -47,11 +53,9 @@ describe('rendering', () => {
     });
     describe('when menu is open', () => {
       beforeEach(() => {
-        menuStateContainerProps = { isOpen: true, toggleMenu: jest.fn() };
+        downshiftProps = createDownshiftProps({ isOpen: true });
         menuStateContainerRenderWrapper = shallow(
-          wrapper.find(MenuStateContainer).prop('children')(
-            menuStateContainerProps
-          )
+          wrapper.find(Downshift).prop('children')(downshiftProps)
         );
       });
       it('should render matching tree', () => {
@@ -72,14 +76,37 @@ describe('rendering', () => {
           href: MCSupportFormURL,
         });
       });
+      describe('when is in the account section', () => {
+        beforeEach(() => {
+          props = createTestProps({ isAccountPath: true });
+          wrapper = shallow(<UserSettingsMenu {...props} />);
+          downshiftProps = createDownshiftProps({ isOpen: true });
+          menuStateContainerRenderWrapper = shallow(
+            wrapper.find(Downshift).prop('children')(downshiftProps)
+          );
+        });
+        it('should not render link to "/account/profile"', () => {
+          expect(menuStateContainerRenderWrapper).not.toRender({
+            to: '/account/profile',
+          });
+        });
+        it('should not render link to "/account/organizations"', () => {
+          expect(menuStateContainerRenderWrapper).not.toRender({
+            to: '/account/organizations',
+          });
+        });
+        it('should not render link to "/account/projects"', () => {
+          expect(menuStateContainerRenderWrapper).not.toRender({
+            to: '/account/projects',
+          });
+        });
+      });
     });
     describe('when menu is closed', () => {
       beforeEach(() => {
-        menuStateContainerProps = { isOpen: false, toggleMenu: jest.fn() };
+        downshiftProps = createDownshiftProps();
         menuStateContainerRenderWrapper = shallow(
-          wrapper.find(MenuStateContainer).prop('children')(
-            menuStateContainerProps
-          )
+          wrapper.find(Downshift).prop('children')(downshiftProps)
         );
       });
       it('should not render <Card>', () => {
@@ -110,15 +137,15 @@ describe('rendering', () => {
     });
 
     it('should pass prop firstName to `Avatar` component', () => {
-      expect(wrapper.find('Avatar')).toHaveProp('firstName', 'John Test');
+      expect(wrapper.find(Avatar)).toHaveProp('firstName', 'John Test');
     });
 
     it('should pass prop lastName to `Avatar` component', () => {
-      expect(wrapper.find('Avatar')).toHaveProp('lastName', 'Doe');
+      expect(wrapper.find(Avatar)).toHaveProp('lastName', 'Doe');
     });
 
     it('should pass prop `gravatarHash` to `Avatar` component', () => {
-      expect(wrapper.find('Avatar')).toHaveProp(
+      expect(wrapper.find(Avatar)).toHaveProp(
         'gravatarHash',
         '20c9c1b252b46ab49d6f7a4cee9c3e68'
       );

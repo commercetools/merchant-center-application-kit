@@ -76,6 +76,8 @@ const AppBar = props => (
             firstName={props.user.firstName}
             lastName={props.user.lastName}
             gravatarHash={props.user.gravatarHash}
+            email={props.user.email}
+            isAccountPath={props.isAccountPath}
           />
         ) : (
           <LoadingPlaceholder shape="dot" size="l" />
@@ -96,6 +98,7 @@ AppBar.propTypes = {
     defaultProjectKey: PropTypes.string.isRequired,
   }),
   projectKeyFromUrl: PropTypes.string,
+  isAccountPath: PropTypes.bool.isRequired,
 };
 
 export default AppBar;
