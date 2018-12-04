@@ -162,10 +162,6 @@ export class UserSettingsMenu extends React.PureComponent {
                         </ToggleFeature>
                       </React.Fragment>
                     )}
-                    {
-                      // FIXME: added as urgent request for GDPR changes
-                      // Should be properly added on the CTP-1209 task
-                    }
                     <a
                       href={`https://commercetools.com/privacy`}
                       target="_blank"

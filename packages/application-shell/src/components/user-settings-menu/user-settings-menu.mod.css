@@ -2,10 +2,7 @@
   --menu-width: 315px;
   --menu-position-top: 40px;
   --menu-position-right: 14px;
-}
-
-.container > div {
-  display: flex;
+  --menu-offset-right: 28px;
 }
 
 .settings-container {
@@ -39,7 +36,7 @@
 .menu::after {
   content: '';
   position: absolute;
-  right: 28px;
+  right: var(--menu-offset-right);
   top: calc(var(--spacing-8) * -1);
   border-style: solid;
   border-width: 0 var(--spacing-8) var(--spacing-8);
