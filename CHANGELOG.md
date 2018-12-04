@@ -1,3 +1,17 @@
+## [4.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v4.0.1...v4.1.0) (2018-12-04)
+
+#### 🔮 Type: Chore
+
+- `playground`
+  - [#177](https://github.com/commercetools/merchant-center-application-kit/pull/177) chore: remove ui-kit materials transpilation ([@montezume](https://github.com/montezume))
+- `application-shell-connectors`, `application-shell`, `jest-preset-mc-app`, `sdk`
+  - [#178](https://github.com/commercetools/merchant-center-application-kit/pull/178) chore: update deps ([@montezume](https://github.com/montezume))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+  - [#151](https://github.com/commercetools/merchant-center-application-kit/pull/151) [MCD-1509] Refactor dropdown user settings menu ([@qmateub](https://github.com/qmateub))
+
 ## [4.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v4.0.0...v4.0.1) (2018-12-01)
 
 #### 🐛 Type: Bug
