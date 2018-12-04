@@ -16,13 +16,13 @@ import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 // instead of a specific element that will be cleaned up, resulting in
 // console errors (even though the test passes). We only need to to this in
 // test environment.
-const getParentSelector = () =>
+const parentSelector = () =>
   process.env.NODE_ENV === 'test'
     ? document.body
     : document.querySelector(`#${PORTALS_CONTAINER_ID}`);
 
 const ModalContainer = props => (
-  <Modal {...props} parentSelector={getParentSelector} ariaHideApp={false}>
+  <Modal {...props} parentSelector={parentSelector} ariaHideApp={false}>
     {props.children}
   </Modal>
 );
