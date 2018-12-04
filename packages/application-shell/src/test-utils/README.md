@@ -143,12 +143,8 @@ Calling `render` returns an object which contains all keys `react-testing-librar
 
 > This function might change in the future. Use with caution.
 
-This render function simply wraps the `render` with the Redux `StoreProvider`. You can optionally pass a `preloadedState` object in the `options` to initialize the Redux `store` with some initial state.
-It's recommended to use this render function if some of your component-under-test use Redux `connect`.
-
-| Argument                 | Type     | Concern | Description                                                                                                                                                                                                                                                                                                                                                    |
-| ------------------------ | -------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `options.preloadedState` | `Object` | Redux   | Pass an initial state that will be used to rehydrate the Redux `store`. Possible values are: `requestsInFlight` (_Array_ of _String_: an identifier of the request, e.g. `sdk.get(/products/123)`), `notifications` (_Array_ of [Notification](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/notifications/README.md)) |
+This render function simply wraps the `render` with the Redux `StoreProvider`. You can optionally pass a `store` object in the `options` to alter the behavior of it.
+It's recommended to use this render function if some of your component-under-test uses Redux `connect`.
 
 #### `rtlRender(ui: ReactElement, options: Object)`
 

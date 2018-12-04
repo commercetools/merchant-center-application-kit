@@ -160,33 +160,29 @@ const render = (
 const renderWithRedux = (
   ui,
   {
-    // Pass an initial state that will be used to rehydrate the redux store.
-    // Possible state values are:
-    // - requestsInFlight: []
-    // - notifications: []
-    preloadedState,
+    // Consumers of renderWithRedux can use
+    //   { store: createReduxStore({ requestsInFlight: null, .. }) }
+    // to pass an initial state to Redux.
+    store = createReduxStore(),
     ...renderOptions
   } = {}
-) => {
-  const store = createReduxStore(preloadedState);
-  return {
-    ...render(
-      <StoreProvider store={store}>
-        <div>
-          <NotificationsList domain={DOMAINS.GLOBAL} />
-          <NotificationsList domain={DOMAINS.PAGE} />
-          <NotificationsList domain={DOMAINS.SIDE} />
-          {ui}
-        </div>
-      </StoreProvider>,
-      renderOptions
-    ),
-    // adding `store` to the returned utilities to allow us
-    // to reference it in our tests (just try to avoid using
-    // this to test implementation details).
-    store,
-  };
-};
+) => ({
+  ...render(
+    <StoreProvider store={store}>
+      <div>
+        <NotificationsList domain={DOMAINS.GLOBAL} />
+        <NotificationsList domain={DOMAINS.PAGE} />
+        <NotificationsList domain={DOMAINS.SIDE} />
+        {ui}
+      </div>
+    </StoreProvider>,
+    renderOptions
+  ),
+  // adding `store` to the returned utilities to allow us
+  // to reference it in our tests (just try to avoid using
+  // this to test implementation details).
+  store,
+});
 
 // Renders UI without mocking ApolloProvider
 const experimentalRender = (ui, renderOptions) => {
