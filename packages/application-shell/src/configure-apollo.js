@@ -30,7 +30,8 @@ const httpLink = createHttpLink({
 const link = ApolloLink.from([
   headerLink,
   errorLink,
-  apolloLogger,
+  // Avoid logging queries in test environment
+  ...(process.env.NODE_ENV !== 'test' ? [apolloLogger] : []),
   tokenRetryLink,
   httpLink,
 ]);
