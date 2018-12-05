@@ -19,7 +19,7 @@ const AppBar = props => {
       <Spacings.Inline>
         <div className={styles.logo}>
           {!props.user ? (
-            <LoadingPlaceholder shape="square" size="l" />
+            <img src={LogoSVG} className={styles['logo-img']} alt="Logo" />
           ) : (
             <Link
               to={`/${previouslyUsedProjectKey ||
