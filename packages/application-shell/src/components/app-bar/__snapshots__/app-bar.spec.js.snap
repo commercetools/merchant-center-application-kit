@@ -12,11 +12,16 @@ exports[`rendering should match layout structure 1`] = `
     <div
       className="logo"
     >
-      <img
-        alt="Logo"
-        className="logo-img"
-        src="test-file-stub"
-      />
+      <Link
+        replace={false}
+        to="/test-default-project-key"
+      >
+        <img
+          alt="Logo"
+          className="logo-img"
+          src="test-file-stub"
+        />
+      </Link>
     </div>
     <div
       className="loader-container"
