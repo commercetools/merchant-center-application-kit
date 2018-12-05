@@ -242,7 +242,9 @@ describe('requestAccessToken', () => {
       });
     });
     it('should redirect to root path', () => {
-      expect(wrapper.instance().redirectTo).toHaveBeenLastCalledWith('/');
+      expect(wrapper.instance().redirectTo).toHaveBeenLastCalledWith(
+        'https://mc.commercetools.com'
+      );
     });
     it('should set loading to false', () => {
       expect(wrapper).toHaveState('loading', false);
@@ -251,10 +253,10 @@ describe('requestAccessToken', () => {
   describe('with redirectTo parameter', () => {
     let props;
     let wrapper;
-    beforeEach(() => {
+    const simulateRedirectFor = targetUrl => {
       handleSubmitPreventDefaultMock.mockClear();
       props = createTestProps({
-        location: { query: { redirectTo: '/foo/bar' } },
+        location: { query: { redirectTo: targetUrl } },
         requestAccessToken: jest.fn(() => Promise.resolve()),
       });
       wrapper = shallow(<Login {...props} />);
@@ -275,6 +277,9 @@ describe('requestAccessToken', () => {
       wrapper
         .find('PrimaryButton')
         .simulate('click', { preventDefault: handleSubmitPreventDefaultMock });
+    };
+    beforeEach(() => {
+      simulateRedirectFor('https://mc.commercetools.com/foo/bar');
     });
     it('should call preventDefault', () => {
       expect(handleSubmitPreventDefaultMock).toHaveBeenCalledTimes(1);
@@ -285,13 +290,38 @@ describe('requestAccessToken', () => {
         password: 'secret',
       });
     });
-    it('should redirect to given path', () => {
-      expect(wrapper.instance().redirectTo).toHaveBeenLastCalledWith(
-        '/foo/bar'
-      );
-    });
     it('should set loading to false', () => {
       expect(wrapper).toHaveState('loading', false);
+    });
+    describe('when target url is malformed', () => {
+      beforeEach(() => {
+        simulateRedirectFor('/foo/bar'); // <-- missing origin, parsing it will throw
+      });
+      it('should redirect to default path', () => {
+        expect(wrapper.instance().redirectTo).toHaveBeenLastCalledWith(
+          'https://mc.commercetools.com'
+        );
+      });
+    });
+    describe('when target url does not match origin', () => {
+      beforeEach(() => {
+        simulateRedirectFor('https://foo.com/foo/bar');
+      });
+      it('should redirect to default path', () => {
+        expect(wrapper.instance().redirectTo).toHaveBeenLastCalledWith(
+          'https://mc.commercetools.com'
+        );
+      });
+    });
+    describe('when target url matches current origin', () => {
+      beforeEach(() => {
+        simulateRedirectFor('https://mc.commercetools.com/foo/bar');
+      });
+      it('should redirect to default path', () => {
+        expect(wrapper.instance().redirectTo).toHaveBeenLastCalledWith(
+          'https://mc.commercetools.com/foo/bar'
+        );
+      });
     });
   });
   describe('when login fails', () => {

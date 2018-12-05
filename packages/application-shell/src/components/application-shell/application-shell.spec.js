@@ -617,7 +617,7 @@ describe('<UnrestrictedApplication>', () => {
             'to',
             expect.objectContaining({
               query: expect.objectContaining({
-                redirectTo: '/foo-1/products',
+                redirectTo: `${window.location.origin}/foo-1/products`,
               }),
             })
           );
