@@ -7,7 +7,7 @@ const LoadingPlaceholder = props => (
 );
 LoadingPlaceholder.displayName = 'LoadingPlaceholder';
 LoadingPlaceholder.propTypes = {
-  shape: PropTypes.oneOf(['dot', 'rect']).isRequired,
+  shape: PropTypes.oneOf(['dot', 'rect', 'square']).isRequired,
   size: PropTypes.oneOf(['s', 'm', 'l', 'xl']).isRequired,
 };
 

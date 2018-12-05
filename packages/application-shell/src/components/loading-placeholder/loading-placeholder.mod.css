@@ -8,6 +8,10 @@
   --rect-width-l: 450px;
   --rect-width-xl: 600px;
   --rect-height: 32px;
+  --square-size-s: 8px;
+  --square-size-m: 16px;
+  --square-size-l: 32px;
+  --square-size-xl: 64px;
 }
 
 .base {
@@ -77,4 +81,25 @@
   width: var(--rect-width-xl);
   height: var(--rect-height);
   border-radius: var(--radius-4);
+}
+
+.square-s {
+  composes: base;
+  width: var(--square-size-s);
+  height: var(--square-size-s);
+}
+.square-m {
+  composes: base;
+  width: var(--square-size-m);
+  height: var(--square-size-m);
+}
+.square-l {
+  composes: base;
+  width: var(--square-size-l);
+  height: var(--square-size-l);
+}
+.square-xl {
+  composes: base;
+  width: var(--square-size-xl);
+  height: var(--square-size-xl);
 }
