@@ -18,6 +18,8 @@ import LoginBox from '../login-box';
 import styles from './login.mod.css';
 import messages from './messages';
 
+const defaultTargetUrl = window.location.origin;
+
 export class Login extends React.PureComponent {
   static displayName = 'Login';
 
@@ -50,7 +52,9 @@ export class Login extends React.PureComponent {
     error: this.props.location.query.reason,
   };
 
-  redirectTo = targetUrl => window.location.replace(targetUrl);
+  redirectTo = targetUrl => {
+    window.location.replace(targetUrl);
+  };
 
   componentDidMount = () => {
     this.email.focus();
@@ -89,9 +93,22 @@ export class Login extends React.PureComponent {
         storage.remove(STORAGE_KEYS.LOGIN_STRATEGY);
         // Redirect to a `redirectTo` url, if present, otherwise to defaul route
         const nextTargetUrl = this.props.location.query.redirectTo;
-        // We force a browser redirect, to let the proxy server handle
-        // the new request URL.
-        this.redirectTo(nextTargetUrl || '/');
+        // Inspect the target url to see if the host is one of commercetools
+        try {
+          const nextTargetUrlObject = new URL(nextTargetUrl);
+          if (nextTargetUrlObject.hostname === window.location.hostname) {
+            // We force a browser redirect, to let the proxy server handle
+            // the new request URL.
+            this.redirectTo(nextTargetUrl);
+          } else {
+            // If the redirect url does not match the hostname, we discard it and
+            // redirect to the root path.
+            this.redirectTo(defaultTargetUrl);
+          }
+        } catch (error) {
+          // Fallback to normal redirect, in case the target url cannot be parsed
+          this.redirectTo(defaultTargetUrl);
+        }
       })
       .catch(error => {
         if (error) {

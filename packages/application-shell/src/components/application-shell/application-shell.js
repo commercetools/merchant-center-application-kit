@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { Router, Redirect, Route, Switch, matchPath } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ReconfigureFlopFlip, ToggleFeature } from '@flopflip/react-broadcast';
-import { joinPaths } from '@commercetools-frontend/url-utils';
+import {
+  joinPaths,
+  trimLeadingAndTrailingSlashes,
+} from '@commercetools-frontend/url-utils';
 import * as storage from '@commercetools-frontend/storage';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import history from '@commercetools-frontend/browser-history';
@@ -378,7 +381,11 @@ export const UnrestrictedApplication = () => (
           // to redirect to this location.
           ...(location.pathname === '/'
             ? {}
-            : { redirectTo: location.pathname }),
+            : {
+                redirectTo: trimLeadingAndTrailingSlashes(
+                  joinPaths(window.location.origin, location.pathname)
+                ),
+              }),
         };
         return (
           <Redirect
