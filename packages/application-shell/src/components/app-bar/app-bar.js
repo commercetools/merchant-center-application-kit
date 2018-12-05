@@ -23,7 +23,7 @@ const AppBar = props => {
           ) : (
             <Link
               to={`/${previouslyUsedProjectKey ||
-                props.user.defaultProjectKey}/dashboard`}
+                props.user.defaultProjectKey}`}
             >
               <img src={LogoSVG} className={styles['logo-img']} alt="Logo" />
             </Link>

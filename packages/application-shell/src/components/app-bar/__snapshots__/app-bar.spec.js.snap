@@ -14,7 +14,7 @@ exports[`rendering should match layout structure 1`] = `
     >
       <Link
         replace={false}
-        to="/test-default-project-key/dashboard"
+        to="/test-default-project-key"
       >
         <img
           alt="Logo"
