@@ -147,7 +147,7 @@ describe('rendering', () => {
 
             it('should not render <Link> with path to previous project (default project)', () => {
               expect(wrapper).toRender(Link);
-              expect(wrapper.find(Link)).toHaveProp(
+              expect(wrapper.find(Link).last()).toHaveProp(
                 'to',
                 `/${props.user.defaultProjectKey}`
               );
