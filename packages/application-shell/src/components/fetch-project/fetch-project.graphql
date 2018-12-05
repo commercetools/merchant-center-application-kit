@@ -31,8 +31,12 @@ query ProjectQuery($projectKey: String!) {
       canAddCustomers
       canAddCustomerGroups
       canAddDiscountCodes
+      canAddProductDiscounts
+      canAddCartDiscounts
       canAddOrders
       canAddPrices
+      canEditPrices
+      canDeletePrices
       canAddProducts
       canDeletePrices
       canDeleteProducts
@@ -55,7 +59,6 @@ query ProjectQuery($projectKey: String!) {
       canViewCategoriesList
       canViewCustomersList
       canViewOrdersList
-      canViewDiscountsList
       canViewProductDiscounts
       canViewProductTypes
       canViewProjectSettingsMisc
