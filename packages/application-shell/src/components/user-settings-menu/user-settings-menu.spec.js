@@ -10,7 +10,6 @@ const createTestProps = props => ({
   lastName: 'Doe',
   email: 'john@doe.com',
   gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
-  isAccountPath: false,
   ...props,
 });
 
@@ -74,31 +73,6 @@ describe('rendering', () => {
       it('should render link to "MCSupportFormURL', () => {
         expect(menuStateContainerRenderWrapper).toRender({
           href: MCSupportFormURL,
-        });
-      });
-      describe('when is in the account section', () => {
-        beforeEach(() => {
-          props = createTestProps({ isAccountPath: true });
-          wrapper = shallow(<UserSettingsMenu {...props} />);
-          downshiftProps = createDownshiftProps({ isOpen: true });
-          menuStateContainerRenderWrapper = shallow(
-            wrapper.find(Downshift).prop('children')(downshiftProps)
-          );
-        });
-        it('should not render link to "/account/profile"', () => {
-          expect(menuStateContainerRenderWrapper).not.toRender({
-            to: '/account/profile',
-          });
-        });
-        it('should not render link to "/account/organizations"', () => {
-          expect(menuStateContainerRenderWrapper).not.toRender({
-            to: '/account/organizations',
-          });
-        });
-        it('should not render link to "/account/projects"', () => {
-          expect(menuStateContainerRenderWrapper).not.toRender({
-            to: '/account/projects',
-          });
         });
       });
     });

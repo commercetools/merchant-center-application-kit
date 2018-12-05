@@ -9,7 +9,7 @@ export default defineMessages({
   manageOrganizations: {
     id: 'UserSettingsMenu.manageOrganizations',
     description: 'The label for manage organizations option',
-    defaultMessage: 'Manage Organizations',
+    defaultMessage: 'Manage Organizations & Teams',
   },
   manageProjects: {
     id: 'UserSettingsMenu.manageProjects',

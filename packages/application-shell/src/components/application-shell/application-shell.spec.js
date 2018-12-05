@@ -50,7 +50,6 @@ const createTestProps = props => ({
   showUnexpectedErrorNotification: jest.fn(),
   onRegisterErrorListeners: jest.fn(),
   INTERNAL__isApplicationFallback: false,
-  isAccountPath: false,
   ...props,
 });
 
