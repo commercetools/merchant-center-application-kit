@@ -1,3 +1,23 @@
+## [4.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v4.1.0...v4.2.0) (2018-12-04)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#175](https://github.com/commercetools/merchant-center-application-kit/pull/175) fix(test-utils): improve test setup ([@emmenko](https://github.com/emmenko))
+
+#### 💅 Type: Enhancement
+
+- `application-shell`, `i18n`
+  - [#183](https://github.com/commercetools/merchant-center-application-kit/pull/183) MCD-1523 : Refactor CT logo to be 🏠button ([@qmateub](https://github.com/qmateub))
+- `application-shell`
+  - [#175](https://github.com/commercetools/merchant-center-application-kit/pull/175) fix(test-utils): improve test setup ([@emmenko](https://github.com/emmenko))
+  - [#181](https://github.com/commercetools/merchant-center-application-kit/pull/181) refactor(login): validate same origin for redirect target url after login ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`, `i18n`
+  - [#182](https://github.com/commercetools/merchant-center-application-kit/pull/182) MCD-1509(user-settings-menu): address UX review ([@qmateub](https://github.com/qmateub))
+
 ## [4.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v4.0.1...v4.1.0) (2018-12-04)
 
 #### 🔮 Type: Chore
