@@ -28,6 +28,8 @@ const loggerMiddleware = createLogger({
   // Only enable if you want detailed debugging.
   diff: false,
   predicate: (getState, action) => {
+    if (process.env.NODE_ENV === 'test') return false;
+
     if (!action) return false;
 
     const { type, payload } = action;
