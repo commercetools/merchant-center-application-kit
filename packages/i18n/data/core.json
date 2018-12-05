@@ -158,7 +158,7 @@
   "QuickAccess.useProject": "Switch to project \"{projectName}\"",
   "TopNavigation.labelLoading": "Processing...",
   "UserSettingsMenu.logout": "Logout",
-  "UserSettingsMenu.manageOrganizations": "Manage Organizations",
+  "UserSettingsMenu.manageOrganizations": "Manage Organizations & Teams",
   "UserSettingsMenu.manageProjects": "Manage Projects",
   "UserSettingsMenu.manageTeams": "Manage Teams",
   "UserSettingsMenu.privacyPolicy": "Privacy Policy",

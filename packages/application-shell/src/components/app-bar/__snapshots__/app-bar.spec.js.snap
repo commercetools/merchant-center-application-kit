@@ -70,7 +70,6 @@ exports[`rendering should match layout structure 1`] = `
       <UserSettingsMenu
         firstName="John"
         gravatarHash="20c9c1b252b46ab49d6f7a4cee9c3e68"
-        isAccountPath={false}
         lastName="Snow"
       />
     </Inline>

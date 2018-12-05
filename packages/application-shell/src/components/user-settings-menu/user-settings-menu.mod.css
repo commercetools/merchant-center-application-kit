@@ -57,7 +57,3 @@
 .item-divider-account-section {
   border-bottom: 1px solid var(--color-gray);
 }
-
-.email-divider {
-  margin-bottom: var(--spacing-4);
-}

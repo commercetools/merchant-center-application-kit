@@ -70,7 +70,6 @@ export class UserSettingsMenu extends React.PureComponent {
     lastName: PropTypes.string,
     email: PropTypes.string,
     gravatarHash: PropTypes.string.isRequired,
-    isAccountPath: PropTypes.bool.isRequired,
   };
 
   render() {
@@ -92,76 +91,55 @@ export class UserSettingsMenu extends React.PureComponent {
               {isOpen && (
                 <Card className={styles.menu}>
                   <div {...getMenuProps()}>
-                    <div
-                      className={classnames({
-                        [styles['item-divider-account-section']]: this.props
-                          .isAccountPath,
-                      })}
-                    >
-                      <Spacings.Inset scale="xs">
-                        <Spacings.Inline scale="xs" alignItems="center">
-                          <Avatar
-                            firstName={this.props.firstName}
-                            lastName={this.props.lastName}
-                            gravatarHash={this.props.gravatarHash}
-                          />
-                          <div
-                            className={classnames({
-                              [styles['email-divider']]: this.props
-                                .isAccountPath,
-                            })}
-                          >
-                            <Text.Body isBold>
-                              {[this.props.firstName, this.props.lastName]
-                                .join(' ')
-                                .trim()}
-                            </Text.Body>
-                            <Text.Body truncate>{this.props.email}</Text.Body>
-                          </div>
-                        </Spacings.Inline>
-                      </Spacings.Inset>
-                    </div>
-                    {!this.props.isAccountPath && (
-                      <React.Fragment>
-                        <Link to="/account/profile" onClick={toggleMenu}>
-                          <div className={styles.item}>
-                            <Spacings.Inset scale="s">
-                              <FormattedMessage {...messages.userProfile} />
-                            </Spacings.Inset>
-                          </div>
-                        </Link>
-                        <ToggleFeature flag={ORGANIZATIONS_LIST}>
-                          <Link
-                            to="/account/organizations"
-                            onClick={toggleMenu}
-                          >
-                            <div className={styles.item}>
-                              <Spacings.Inset scale="s">
-                                <FormattedMessage
-                                  {...messages.manageOrganizations}
-                                />
-                              </Spacings.Inset>
-                            </div>
-                          </Link>
-                        </ToggleFeature>
-                        <ToggleFeature flag={PROJECTS_LIST}>
-                          <Link to="/account/projects" onClick={toggleMenu}>
-                            <div
-                              className={classnames(
-                                styles.item,
-                                styles['item-divider-account-section']
-                              )}
-                            >
-                              <Spacings.Inset scale="s">
-                                <FormattedMessage
-                                  {...messages.manageProjects}
-                                />
-                              </Spacings.Inset>
-                            </div>
-                          </Link>
-                        </ToggleFeature>
-                      </React.Fragment>
-                    )}
+                    <Spacings.Inset scale="xs">
+                      <Spacings.Inline scale="xs" alignItems="center">
+                        <Avatar
+                          firstName={this.props.firstName}
+                          lastName={this.props.lastName}
+                          gravatarHash={this.props.gravatarHash}
+                        />
+                        <div>
+                          <Text.Body isBold>
+                            {[this.props.firstName, this.props.lastName]
+                              .join(' ')
+                              .trim()}
+                          </Text.Body>
+                          <Text.Body truncate>{this.props.email}</Text.Body>
+                        </div>
+                      </Spacings.Inline>
+                    </Spacings.Inset>
+                    <Link to="/account/profile" onClick={toggleMenu}>
+                      <div className={styles.item}>
+                        <Spacings.Inset scale="s">
+                          <FormattedMessage {...messages.userProfile} />
+                        </Spacings.Inset>
+                      </div>
+                    </Link>
+                    <ToggleFeature flag={ORGANIZATIONS_LIST}>
+                      <Link to="/account/organizations" onClick={toggleMenu}>
+                        <div className={styles.item}>
+                          <Spacings.Inset scale="s">
+                            <FormattedMessage
+                              {...messages.manageOrganizations}
+                            />
+                          </Spacings.Inset>
+                        </div>
+                      </Link>
+                    </ToggleFeature>
+                    <ToggleFeature flag={PROJECTS_LIST}>
+                      <Link to="/account/projects" onClick={toggleMenu}>
+                        <div
+                          className={classnames(
+                            styles.item,
+                            styles['item-divider-account-section']
+                          )}
+                        >
+                          <Spacings.Inset scale="s">
+                            <FormattedMessage {...messages.manageProjects} />
+                          </Spacings.Inset>
+                        </div>
+                      </Link>
+                    </ToggleFeature>
                     <a
                       href={`https://commercetools.com/privacy`}
                       target="_blank"

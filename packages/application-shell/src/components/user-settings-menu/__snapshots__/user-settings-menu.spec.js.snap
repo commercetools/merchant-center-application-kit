@@ -17,40 +17,34 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
     type="raised"
   >
     <div>
-      <div
-        className=""
+      <Inset
+        scale="xs"
       >
-        <Inset
+        <Inline
+          alignItems="center"
           scale="xs"
         >
-          <Inline
-            alignItems="center"
-            scale="xs"
-          >
-            <Avatar
-              firstName="John Test"
-              gravatarHash="20c9c1b252b46ab49d6f7a4cee9c3e68"
-              isHighlighted={false}
-              lastName="Doe"
-              size="s"
-            />
-            <div
-              className=""
+          <Avatar
+            firstName="John Test"
+            gravatarHash="20c9c1b252b46ab49d6f7a4cee9c3e68"
+            isHighlighted={false}
+            lastName="Doe"
+            size="s"
+          />
+          <div>
+            <TextBody
+              isBold={true}
             >
-              <TextBody
-                isBold={true}
-              >
-                John Test Doe
-              </TextBody>
-              <TextBody
-                truncate={true}
-              >
-                john@doe.com
-              </TextBody>
-            </div>
-          </Inline>
-        </Inset>
-      </div>
+              John Test Doe
+            </TextBody>
+            <TextBody
+              truncate={true}
+            >
+              john@doe.com
+            </TextBody>
+          </div>
+        </Inline>
+      </Inset>
       <Link
         onClick={[MockFunction]}
         replace={false}
@@ -86,7 +80,7 @@ exports[`rendering menu when menu is open should render matching tree 1`] = `
               scale="s"
             >
               <FormattedMessage
-                defaultMessage="Manage Organizations"
+                defaultMessage="Manage Organizations & Teams"
                 description="The label for manage organizations option"
                 id="UserSettingsMenu.manageOrganizations"
                 values={Object {}}
