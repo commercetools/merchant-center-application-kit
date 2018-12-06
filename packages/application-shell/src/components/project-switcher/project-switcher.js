@@ -135,12 +135,14 @@ export class ProjectSwitcher extends React.PureComponent {
         className={classnames(styles['item-text-main'], {
           [styles['item-text-disabled']]:
             (project.suspension && project.suspension.isActive) ||
-            (project.expiry && project.expiry.isActive),
+            (project.expiry &&
+              (project.expiry.isActive || project.expiry.daysLeft < 0)),
         })}
       >
         {project.name}
         {((project.suspension && project.suspension.isActive) ||
-          (project.expiry && project.expiry.isActive)) && (
+          (project.expiry &&
+            (project.expiry.isActive || project.expiry.daysLeft < 0))) && (
           <span className={styles['disabled-icon-container']}>
             <ErrorIcon size="medium" />
           </span>
@@ -150,7 +152,8 @@ export class ProjectSwitcher extends React.PureComponent {
         className={classnames(styles['item-text-small'], {
           [styles['item-text-disabled']]:
             (project.suspension && project.suspension.isActive) ||
-            (project.expiry && project.expiry.isActive),
+            (project.expiry &&
+              (project.expiry.isActive || project.expiry.daysLeft < 0)),
         })}
       >
         {project.key}
@@ -160,11 +163,12 @@ export class ProjectSwitcher extends React.PureComponent {
           <FormattedMessage {...messages.suspended} />
         </div>
       )}
-      {project.expiry && project.expiry.isActive && (
-        <div className={classnames(styles.red, styles['item-text-small'])}>
-          <FormattedMessage {...messages.expired} />
-        </div>
-      )}
+      {project.expiry &&
+        (project.expiry.isActive || project.expiry.daysLeft < 0) && (
+          <div className={classnames(styles.red, styles['item-text-small'])}>
+            <FormattedMessage {...messages.expired} />
+          </div>
+        )}
     </div>
   );
 

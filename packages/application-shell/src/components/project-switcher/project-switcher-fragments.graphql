@@ -6,5 +6,6 @@ fragment projectFragment on Project {
   }
   expiry {
     isActive
+    daysLeft
   }
 }

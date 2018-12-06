@@ -155,12 +155,15 @@ export const RestrictedApplication = props => (
                                   if (isProjectLoading) return null;
 
                                   // when used outside of a project context,
-                                  // or when the project is expired or supsended
+                                  // or when the project is expired or suspended
                                   const useProjectContext =
                                     project &&
                                     !(
-                                      project.suspension?.isActive ||
-                                      project.expiry?.isActive
+                                      (project.suspension &&
+                                        project.suspension.isActive) ||
+                                      (project.expiry &&
+                                        (project.expiry.isActive ||
+                                          project.expiry.daysLeft < 0))
                                     );
 
                                   if (!useProjectContext)
