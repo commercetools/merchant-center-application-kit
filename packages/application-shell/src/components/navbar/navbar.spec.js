@@ -404,43 +404,81 @@ describe('rendering', () => {
           );
         });
         describe('<ToggledWithPermissions>', () => {
-          beforeEach(() => {
-            props = createDataMenuTestProps({
-              data: [
-                {
-                  key: 'Customers',
-                  labelKey: 'NavBar.Customers.title',
-                  uriPath: 'customers',
-                  icon: 'UserFilledIcon',
-                  submenu: [
-                    {
-                      key: 'Add Customer',
-                      labelKey: 'NavBar.Customers.add',
-                      uriPath: 'customers/new',
-                      permissions: [permissions.ManageCustomers],
-                      featureToggle: 'customerAdd',
-                    },
-                  ],
-                },
-              ],
+          describe('with submenu permissions', () => {
+            beforeEach(() => {
+              props = createDataMenuTestProps({
+                data: [
+                  {
+                    key: 'Customers',
+                    labelKey: 'NavBar.Customers.title',
+                    uriPath: 'customers',
+                    icon: 'UserFilledIcon',
+                    submenu: [
+                      {
+                        key: 'Add Customer',
+                        labelKey: 'NavBar.Customers.add',
+                        uriPath: 'customers/new',
+                        permissions: [permissions.AddCustomers],
+                        featureToggle: 'customerAdd',
+                      },
+                    ],
+                  },
+                ],
+              });
+              wrapper = shallow(<DataMenu {...props} />);
             });
-            wrapper = shallow(<DataMenu {...props} />);
+            it('should pass featureToggle as prop', () => {
+              expect(
+                wrapper
+                  .find(MenuGroup)
+                  .at(1)
+                  .find(ToggledWithPermissions)
+              ).toHaveProp('featureToggle', 'customerAdd');
+            });
+            it('should pass the submenus as a prop to the menu', () => {
+              expect(
+                wrapper
+                  .find(MenuGroup)
+                  .at(1)
+                  .find(ToggledWithPermissions)
+              ).toHaveProp('permissions', [permissions.AddCustomers]);
+            });
           });
-          it('should pass featureToggle as prop', () => {
-            expect(
-              wrapper
-                .find(MenuGroup)
-                .at(1)
-                .find(ToggledWithPermissions)
-            ).toHaveProp('featureToggle', 'customerAdd');
-          });
-          it('should pass permissions as prop', () => {
-            expect(
-              wrapper
-                .find(MenuGroup)
-                .at(1)
-                .find(ToggledWithPermissions)
-            ).toHaveProp('permissions', [permissions.ManageCustomers]);
+          describe('with menu permissions', () => {
+            beforeEach(() => {
+              props = createDataMenuTestProps({
+                data: [
+                  {
+                    key: 'Customers',
+                    labelKey: 'NavBar.Customers.title',
+                    uriPath: 'customers',
+                    icon: 'UserFilledIcon',
+                    permissions: [permissions.ViewCustomerGroups],
+                    submenu: [
+                      {
+                        key: 'Add Customer',
+                        labelKey: 'NavBar.Customers.add',
+                        uriPath: 'customers/new',
+                        permissions: [permissions.AddCustomers],
+                        featureToggle: 'customerAdd',
+                      },
+                    ],
+                  },
+                ],
+              });
+              wrapper = shallow(<DataMenu {...props} />);
+            });
+            it('should pass the combined permissions from the submenu and menu as a prop', () => {
+              expect(
+                wrapper
+                  .find(MenuGroup)
+                  .find(ToggledWithPermissions)
+                  .at(0)
+              ).toHaveProp('permissions', [
+                permissions.ViewCustomerGroups,
+                permissions.AddCustomers,
+              ]);
+            });
           });
         });
         describe('when item is active', () => {

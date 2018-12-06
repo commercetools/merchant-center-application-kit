@@ -452,11 +452,26 @@ export class DataMenu extends React.PureComponent {
   renderMenu = (menu, menuType, index) => {
     const isActive = this.state.activeItemIndex === `${menuType}-${index}`;
     const hasSubmenu = Boolean(menu.submenu) && menu.submenu.length > 0;
+    const permissionsOfAllSubmenus = hasSubmenu
+      ? menu.submenu
+          .reduce(
+            (combinedPermissions, submenu) => [
+              ...combinedPermissions,
+              ...(submenu.permissions ? submenu.permissions : []),
+            ],
+            []
+          )
+          .filter(Boolean)
+      : [];
+    const permissionsOfMenu = menu.permissions
+      ? menu.permissions.concat(permissionsOfAllSubmenus)
+      : permissionsOfAllSubmenus;
+
     return (
       <ToggledWithPermissions
         key={menu.key}
         featureToggle={menu.featureToggle}
-        permissions={menu.permissions}
+        permissions={permissionsOfMenu}
       >
         <React.Fragment>
           {menu.key === 'Settings' && <MenuItemDivider />}
@@ -516,9 +531,9 @@ export class DataMenu extends React.PureComponent {
                         <div className={styles.text}>
                           <MenuItemLink
                             linkTo={oneLineTrim`
-                            /${this.props.projectKey}
-                            /${submenu.uriPath}
-                          `}
+                              /${this.props.projectKey}
+                              /${submenu.uriPath}
+                            `}
                             exactMatch={true}
                             useFullRedirectsForLinks={
                               this.props.useFullRedirectsForLinks
