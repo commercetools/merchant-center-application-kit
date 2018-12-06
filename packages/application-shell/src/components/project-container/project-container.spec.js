@@ -253,6 +253,20 @@ describe('rendering', () => {
         expect(wrapper).toRender(ProjectExpired);
       });
     });
+    describe('when days left of trials are less than 0', () => {
+      beforeEach(() => {
+        wrapper = wrapper.find(FetchProject).renderProp('children', {
+          isLoading: false,
+          project: createTestProjectProps({
+            suspension: { isActive: false },
+            expiry: { isActive: false, daysLeft: -1 },
+          }),
+        });
+      });
+      it('should render <ProjectExpired>', () => {
+        expect(wrapper).toRender(ProjectExpired);
+      });
+    });
     describe('when project is in a valid state', () => {
       describe('<ProjectDataLocale>', () => {
         let wrapperDataLocale;

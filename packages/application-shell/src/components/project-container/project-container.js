@@ -132,7 +132,10 @@ export class ProjectContainer extends React.Component {
                   }
                 />
               );
-            if (project.expiry && project.expiry.isActive)
+            if (
+              project.expiry &&
+              (project.expiry.isActive || project.expiry.daysLeft < 0)
+            )
               return <ProjectExpired />;
 
             return (
