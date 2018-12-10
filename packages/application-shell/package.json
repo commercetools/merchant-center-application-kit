@@ -51,7 +51,7 @@
     "@commercetools-frontend/sentry": "4.0.0",
     "@commercetools-frontend/storage": "4.0.0",
     "@commercetools-frontend/url-utils": "4.0.0",
-    "@flopflip/launchdarkly-adapter": "2.4.4",
+    "@flopflip/launchdarkly-adapter": "2.4.5",
     "@flopflip/memory-adapter": "1.1.0",
     "@flopflip/react-broadcast": "7.2.3",
     "apollo-cache-inmemory": "1.3.11",
