@@ -35,5 +35,5 @@ export const GRAPHQL_TARGETS = {
   DASHBOARD_SERVICE: 'dashboard',
   PIM_INDEXER: 'pim-indexer',
   SETTINGS_SERVICE: 'settings',
-  CORE_WS: 'core-ws',
+  ADMINISTRATION_SERVICE: 'administration',
 };
