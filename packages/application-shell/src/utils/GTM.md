@@ -19,26 +19,23 @@ in the React Context. Or declaratively using the `data-track` attributes.
 ## Imperative Tracking
 
 ```jsx
+import { GtmContext } from '@commercetools-frontend/application-shell';
+
 // In your application tracking event whitelist
 const trackingEventWhitelist = {
   'InterestingComponent-MyInterestingFeature': 'InterestingComponent-MyInterestingFeature',
 };
 
 class ImperativeTrackingExample extends React.Component {
-  static contextTypes = {
-    mcng: PropTypes.shape({
-      track: PropTypes.func.isRequired,
-      getHierarchy: PropTypes.func.isRequired,
-    })
-  }
+  static contextType = GtmContext;
   handleInterestingUserBehaviour = () => {
     // passing the DOM node of this component so that the `track` function can
     // read that the context of this `track` call is `InterestingComponent` as
     // defined in the render method
     const componentNode = ReactDOM.findDOMNode(component);
-    this.context.mcgn.track('
+    this.context.track('
       click',
-      this.context.mcng.getHierarchy(componentNode),
+      this.context.getHierarchy(componentNode),
       'MyInterestingFeature'
     );
   }
@@ -56,7 +53,7 @@ const trackingEventWhitelist = {
   'InterestingComponent-InterestingButton':
     'InterestingComponent-InterestingButton',
 };
-const DeclarativeTrackignExample = () => (
+const DeclarativeTrackingExample = () => (
   <div data-track-component="InterestingComponent">
     <button data-track-component="InterestingButton" data-track-event="click">
       {
