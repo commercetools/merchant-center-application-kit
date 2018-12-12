@@ -31,8 +31,12 @@ query ProjectQuery($projectKey: String!) {
       canAddCustomers
       canAddCustomerGroups
       canAddDiscountCodes
+      canAddProductDiscounts
+      canAddCartDiscounts
       canAddOrders
       canAddPrices
+      canEditPrices
+      canDeletePrices
       canAddProducts
       canDeletePrices
       canDeleteProducts
@@ -51,11 +55,17 @@ query ProjectQuery($projectKey: String!) {
       canViewDiscounts
       canViewModifiedProducts
       canViewPimSearch
+      canViewProductsList
+      canViewCategoriesList
+      canViewCustomersList
+      canViewOrdersList
       canViewProductDiscounts
       canViewProductTypes
       canViewProjectSettingsMisc
       canViewSettings
       canViewShippingLists
+      canViewApiClients
+      canManageApiClients
     }
     owner {
       id
