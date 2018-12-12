@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Router, Redirect, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
+import { Provider as ReduxProvider } from 'react-redux';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
@@ -19,6 +20,7 @@ import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import { getSupportedLanguage } from '@commercetools-frontend/l10n';
 import { i18n } from '@commercetools-frontend/ui-kit';
+import internalReduxStore from '../../configure-store';
 import ProjectDataLocale from '../project-data-locale';
 import PortalsContainer from '../portals-container';
 import apolloClient from '../../configure-apollo';
@@ -423,7 +425,9 @@ export default class ApplicationShell extends React.Component {
     hasError: false,
   };
   componentDidMount() {
-    this.props.onRegisterErrorListeners();
+    this.props.onRegisterErrorListeners({
+      dispatch: internalReduxStore.dispatch,
+    });
     // NOTE: this is a temporary thingy, to ensure we clear the `token`
     // from localStorage.
     storage.remove('token');
@@ -443,70 +447,72 @@ export default class ApplicationShell extends React.Component {
 
     return (
       <ApplicationContextProvider environment={this.props.environment}>
-        <ApolloProvider client={apolloClient}>
-          <React.Suspense fallback={<ApplicationLoader />}>
-            {/* <VersionCheckSubscriber /> */}
-            <Router history={history}>
-              <GtmBooter
-                trackingEventWhitelist={this.props.trackingEventWhitelist}
-              >
-                <Switch>
-                  {/**
-                   * No matter if the user is authenticated or not, when we go
-                   * to this route we should always log the user out.
-                   */}
-                  <Route path="/logout" component={Logout} />
-                  <Route
-                    render={() => (
-                      <Authenticated>
-                        {({ isAuthenticated }) => {
-                          if (isAuthenticated)
+        <ReduxProvider store={internalReduxStore}>
+          <ApolloProvider client={apolloClient}>
+            <React.Suspense fallback={<ApplicationLoader />}>
+              {/* <VersionCheckSubscriber /> */}
+              <Router history={history}>
+                <GtmBooter
+                  trackingEventWhitelist={this.props.trackingEventWhitelist}
+                >
+                  <Switch>
+                    {/**
+                     * No matter if the user is authenticated or not, when we go
+                     * to this route we should always log the user out.
+                     */}
+                    <Route path="/logout" component={Logout} />
+                    <Route
+                      render={() => (
+                        <Authenticated>
+                          {({ isAuthenticated }) => {
+                            if (isAuthenticated)
+                              return (
+                                <RestrictedApplication
+                                  environment={this.props.environment}
+                                  defaultFeatureFlags={
+                                    this.props.defaultFeatureFlags
+                                  }
+                                  render={this.props.render}
+                                  applicationMessages={
+                                    this.props.applicationMessages
+                                  }
+                                  INTERNAL__isApplicationFallback={
+                                    this.props.INTERNAL__isApplicationFallback
+                                  }
+                                />
+                              );
+                            const browserLanguage = getBrowserLanguage(window);
+
                             return (
-                              <RestrictedApplication
-                                environment={this.props.environment}
-                                defaultFeatureFlags={
-                                  this.props.defaultFeatureFlags
-                                }
-                                render={this.props.render}
+                              <AsyncLocaleData
+                                locale={browserLanguage}
                                 applicationMessages={
                                   this.props.applicationMessages
                                 }
-                                INTERNAL__isApplicationFallback={
-                                  this.props.INTERNAL__isApplicationFallback
-                                }
-                              />
+                              >
+                                {({ language, messages }) => (
+                                  <ConfigureIntlProvider
+                                    language={language}
+                                    messages={mergeMessages(
+                                      messages,
+                                      i18n[language]
+                                    )}
+                                  >
+                                    <UnrestrictedApplication />
+                                  </ConfigureIntlProvider>
+                                )}
+                              </AsyncLocaleData>
                             );
-                          const browserLanguage = getBrowserLanguage(window);
-
-                          return (
-                            <AsyncLocaleData
-                              locale={browserLanguage}
-                              applicationMessages={
-                                this.props.applicationMessages
-                              }
-                            >
-                              {({ language, messages }) => (
-                                <ConfigureIntlProvider
-                                  language={language}
-                                  messages={mergeMessages(
-                                    messages,
-                                    i18n[language]
-                                  )}
-                                >
-                                  <UnrestrictedApplication />
-                                </ConfigureIntlProvider>
-                              )}
-                            </AsyncLocaleData>
-                          );
-                        }}
-                      </Authenticated>
-                    )}
-                  />
-                </Switch>
-              </GtmBooter>
-            </Router>
-          </React.Suspense>
-        </ApolloProvider>
+                          }}
+                        </Authenticated>
+                      )}
+                    />
+                  </Switch>
+                </GtmBooter>
+              </Router>
+            </React.Suspense>
+          </ApolloProvider>
+        </ReduxProvider>
       </ApplicationContextProvider>
     );
   }

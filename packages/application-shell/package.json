@@ -89,11 +89,9 @@
     "query-string": "5.1.0",
     "raven-js": "3.27.0",
     "react-modal": "3.7.1",
-    "react-redux": "5.1.1",
     "react-required-if": "1.0.3",
     "react-select": "1.2.1",
     "recompose": "^0.26.0",
-    "redux": "^4.0.1",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
     "reselect": "^4.0.0",
@@ -108,6 +106,7 @@
     "react-apollo": "2.3.3",
     "react-dom": "16.7.0",
     "react-intl": "2.7.2",
+    "react-redux": "6.0.0",
     "react-router": "4.4.0-beta.6",
     "react-router-dom": "4.4.0-beta.6",
     "react-testing-library": "5.4.2",
@@ -119,9 +118,11 @@
     "react-apollo": ">=2 <3",
     "react-dom": ">=16 <17",
     "react-intl": ">=2 <3",
+    "react-redux": ">=6 <7",
     "react-router": ">=4 <5 || >=4.4.0-beta.0 <5",
     "react-router-dom": ">=4 <5 || >=4.4.0-beta.0 <5",
-    "react-testing-library": ">=5 || <6"
+    "react-testing-library": ">=5 <6",
+    "redux": ">=4 <5"
   },
   "engines": {
     "node": ">=8",

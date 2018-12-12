@@ -1,8 +1,6 @@
 import React from 'react';
-import { Provider as StoreProvider } from 'react-redux';
 import {
   ApplicationShell,
-  reduxStore,
   setupGlobalErrorListener,
   RouteCatchAll,
 } from '@commercetools-frontend/application-shell';
@@ -31,39 +29,35 @@ const AsyncChannels = React.lazy(() =>
 
 // Ensure to setup the global error listener before any React component renders
 // in order to catch possible errors on rendering/mounting.
-setupGlobalErrorListener(reduxStore.dispatch);
+setupGlobalErrorListener();
 
 class EntryPoint extends React.Component {
   static displayName = 'EntryPoint';
   render() {
     return (
-      <StoreProvider store={reduxStore}>
-        <ApplicationShell
-          environment={window.app}
-          onRegisterErrorListeners={() => {
-            Sdk.Get.errorHandler = error =>
-              globalActions.handleActionError(error, 'sdk')(
-                reduxStore.dispatch
-              );
-          }}
-          applicationMessages={loadApplicationMessagesForLanguage}
-          render={() => (
-            <Switch>
-              {/* For development, it's useful to redirect to the actual
+      <ApplicationShell
+        environment={window.app}
+        onRegisterErrorListeners={({ dispatch }) => {
+          Sdk.Get.errorHandler = error =>
+            globalActions.handleActionError(error, 'sdk')(dispatch);
+        }}
+        applicationMessages={loadApplicationMessagesForLanguage}
+        render={() => (
+          <Switch>
+            {/* For development, it's useful to redirect to the actual
               application routes when you open the browser at http://localhost:3001 */
-              process.env.NODE_ENV === 'production' ? null : (
-                <Redirect
-                  from="/:projectKey/dashboard"
-                  to="/:projectKey/channels"
-                />
-              )}
-              <Route path="/:projectKey/channels" component={AsyncChannels} />
-              {/* Catch-all route */}
-              <RouteCatchAll />
-            </Switch>
-          )}
-        />
-      </StoreProvider>
+            process.env.NODE_ENV === 'production' ? null : (
+              <Redirect
+                from="/:projectKey/dashboard"
+                to="/:projectKey/channels"
+              />
+            )}
+            <Route path="/:projectKey/channels" component={AsyncChannels} />
+            {/* Catch-all route */}
+            <RouteCatchAll />
+          </Switch>
+        )}
+      />
     );
   }
 }

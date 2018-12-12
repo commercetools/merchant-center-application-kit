@@ -203,7 +203,3 @@ class LeftNavigation extends React.PureComponent {
   serializeable. Avoid setting functions on notifications. Again, use the
   `kind`, pass any required information and handle it in the component rendering
   the notification.
-
-MCNG: When a certain plugin must provide a way to render a notification, it can
-export it from the plugin and we can asynchronously add it to the notifications
-renderer on plugin activation.

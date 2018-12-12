@@ -5,12 +5,8 @@ import './public-path';
 
 export { default as ApplicationShell } from './components/application-shell';
 export { default as apolloClient } from './configure-apollo';
+export { useMiddlewares } from './configure-store';
 export { default as MeasureFirstPaint } from './components/performance-timing';
-export {
-  default as InjectReducer,
-  activePluginReducer,
-  createPluginReducer,
-} from './components/inject-reducer';
 export {
   DeprecatedFetchUser as FetchUser,
   deprecatedWithUser as withUser,
@@ -20,7 +16,6 @@ export {
   deprecatedWithProject as withProject,
 } from './components/fetch-project';
 export { default as RouteCatchAll } from './components/route-catch-all';
-export { default as reduxStore, createReduxStore } from './configure-store';
 export {
   default as setupGlobalErrorListener,
 } from './utils/setup-global-error-listener';

@@ -3,22 +3,11 @@ import {
   ADD_NOTIFICATION,
   REMOVE_NOTIFICATION,
 } from '@commercetools-frontend/notifications';
-import { __LOCAL } from './add-plugin-to-notification/constants';
-
-export const actionTransformer = action =>
-  action && action.type === __LOCAL && action.payload && action.payload.type
-    ? {
-        ...action.payload,
-        type: `LOCAL/${action.meta.plugin}/${action.payload.type}`,
-      }
-    : action;
 
 const loggerMiddleware = createLogger({
-  actionTransformer,
   collapsed: true,
   colors: {
-    title: action =>
-      /^LOCAL($|\/.*)/.test(action.type) ? '#FFA500' : '#000000',
+    title: () => '#000000',
     prevState: () => '#9E9E9E',
     action: () => '#03A9F4',
     nextState: () => '#4CAF50',
@@ -49,8 +38,6 @@ const loggerMiddleware = createLogger({
         const ignoredKinds = ['api-error', 'unexpected-error'];
         return !ignoredKinds.includes(payload.kind);
       }
-      case __LOCAL:
-        return payload && typeof payload.type === 'string';
       default:
         return true;
     }
