@@ -1,3 +1,15 @@
+## [4.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v4.2.0...v4.3.0) (2018-12-12)
+
+#### 🔮 Type: Chore
+
+- `application-shell`, `babel-preset-mc-app`, `eslint-config-mc-app`, `i18n`, `jest-preset-mc-app`, `mc-scripts`
+  - [#192](https://github.com/commercetools/merchant-center-application-kit/pull/192) Update dependencies across all packages ([@tdeekens](https://github.com/tdeekens))
+
+#### 💅 Type: Enhancement
+
+- `constants`
+  - [#195](https://github.com/commercetools/merchant-center-application-kit/pull/195) Add administration GraphQL target to constants ([@tdeekens](https://github.com/tdeekens))
+
 ## [4.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v4.1.0...v4.2.0) (2018-12-04)
 
 #### 🐛 Type: Bug
