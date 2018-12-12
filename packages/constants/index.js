@@ -35,4 +35,5 @@ export const GRAPHQL_TARGETS = {
   DASHBOARD_SERVICE: 'dashboard',
   PIM_INDEXER: 'pim-indexer',
   SETTINGS_SERVICE: 'settings',
+  ADMINISTRATION_SERVICE: 'administration',
 };
