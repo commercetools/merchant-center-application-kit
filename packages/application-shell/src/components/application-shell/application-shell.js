@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Router, Redirect, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
-import { ReconfigureFlopFlip, ToggleFeature } from '@flopflip/react-broadcast';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-frontend/url-utils';
+import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import * as storage from '@commercetools-frontend/storage';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import history from '@commercetools-frontend/browser-history';
@@ -50,7 +50,6 @@ import {
 import styles from './application-shell.mod.css';
 import './global-style-imports';
 import QuickAccess from '../quick-access';
-import { QUICK_ACCESS } from '../../feature-toggles';
 
 export const getBrowserLanguage = window => {
   const language = window && window.navigator && window.navigator.language;
@@ -139,67 +138,65 @@ export const RestrictedApplication = props => (
                         <NotificationsList domain={DOMAINS.GLOBAL} />
                       </div>
 
-                      <ToggleFeature flag={QUICK_ACCESS}>
-                        <Route
-                          render={routeProps => {
-                            if (!projectKeyFromUrl)
-                              return (
-                                <QuickAccess
-                                  history={routeProps.history}
-                                  user={user}
-                                />
-                              );
+                      <Route
+                        render={routeProps => {
+                          if (!projectKeyFromUrl)
                             return (
-                              <FetchProject projectKey={projectKeyFromUrl}>
-                                {({ isLoading: isProjectLoading, project }) => {
-                                  if (isProjectLoading) return null;
+                              <QuickAccess
+                                history={routeProps.history}
+                                user={user}
+                              />
+                            );
+                          return (
+                            <FetchProject projectKey={projectKeyFromUrl}>
+                              {({ isLoading: isProjectLoading, project }) => {
+                                if (isProjectLoading) return null;
 
-                                  // when used outside of a project context,
-                                  // or when the project is expired or supsended
-                                  const useProjectContext =
-                                    project &&
-                                    !(
-                                      project.suspension?.isActive ||
-                                      project.expiry?.isActive
-                                    );
+                                // when used outside of a project context,
+                                // or when the project is expired or supsended
+                                const useProjectContext =
+                                  project &&
+                                  !(
+                                    project.suspension?.isActive ||
+                                    project.expiry?.isActive
+                                  );
 
-                                  if (!useProjectContext)
-                                    return (
-                                      <QuickAccess
-                                        history={routeProps.history}
-                                        user={user}
-                                      />
-                                    );
+                                if (!useProjectContext)
                                   return (
-                                    <ProjectDataLocale
-                                      locales={project.languages}
-                                    >
-                                      {({ locale, setProjectDataLocale }) => (
-                                        <ApplicationContextProvider
-                                          user={user}
+                                    <QuickAccess
+                                      history={routeProps.history}
+                                      user={user}
+                                    />
+                                  );
+                                return (
+                                  <ProjectDataLocale
+                                    locales={project.languages}
+                                  >
+                                    {({ locale, setProjectDataLocale }) => (
+                                      <ApplicationContextProvider
+                                        user={user}
+                                        project={project}
+                                        projectDataLocale={locale}
+                                        environment={props.environment}
+                                      >
+                                        <QuickAccess
                                           project={project}
                                           projectDataLocale={locale}
-                                          environment={props.environment}
-                                        >
-                                          <QuickAccess
-                                            project={project}
-                                            projectDataLocale={locale}
-                                            onChangeProjectDataLocale={
-                                              setProjectDataLocale
-                                            }
-                                            history={routeProps.history}
-                                            user={user}
-                                          />
-                                        </ApplicationContextProvider>
-                                      )}
-                                    </ProjectDataLocale>
-                                  );
-                                }}
-                              </FetchProject>
-                            );
-                          }}
-                        />
-                      </ToggleFeature>
+                                          onChangeProjectDataLocale={
+                                            setProjectDataLocale
+                                          }
+                                          history={routeProps.history}
+                                          user={user}
+                                        />
+                                      </ApplicationContextProvider>
+                                    )}
+                                  </ProjectDataLocale>
+                                );
+                              }}
+                            </FetchProject>
+                          );
+                        }}
+                      />
 
                       <header>
                         <AppBar
