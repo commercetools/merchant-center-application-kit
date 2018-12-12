@@ -46,13 +46,14 @@
     "fast-equals": "1.6.1",
     "prop-types": "15.6.2",
     "query-string": "5.1.0",
-    "react-redux": "6.0.0",
     "unfetch": "3.1.1"
   },
   "devDependencies": {
-    "react": "16.7.0"
+    "react": "16.7.0",
+    "react-redux": "6.0.0"
   },
   "peerDependencies": {
-    "react": ">=16 <17"
+    "react": ">=16 <17",
+    "react-redux": ">=6 <7"
   }
 }
