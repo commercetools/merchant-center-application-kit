@@ -88,7 +88,7 @@
     "query-string": "5.1.0",
     "raven-js": "3.27.0",
     "react-modal": "3.6.1",
-    "react-redux": "6.0.0",
+    "react-redux": "5.1.1",
     "react-required-if": "1.0.3",
     "react-select": "1.2.1",
     "recompose": "^0.26.0",
