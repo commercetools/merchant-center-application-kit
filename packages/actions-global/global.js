@@ -15,7 +15,9 @@ export function showApiErrorNotification({ errors, source }) {
       kind: 'api-error',
       values: {
         source,
-        errors,
+        // NOTE: Some sources or errors (e.g. GraphQL) return an array or object.
+        // The cast into an array happens here so that consumers can pass both types.
+        errors: Array.isArray(errors) ? errors : [errors],
       },
       domain: DOMAINS.PAGE,
     },
