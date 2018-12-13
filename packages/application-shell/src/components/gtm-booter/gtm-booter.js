@@ -4,8 +4,8 @@ import * as gtm from '../../utils/gtm';
 import defaultTrackingEventWhitelist from '../../tracking-whitelist';
 
 export const GtmContext = React.createContext({
-  track: () => {},
-  getHierarchy: () => {},
+  track: gtm.track,
+  getHierarchy: gtm.getHierarchy,
 });
 
 class GtmBooter extends React.Component {
@@ -28,16 +28,7 @@ class GtmBooter extends React.Component {
     });
   }
   render() {
-    return (
-      <GtmContext.Provider
-        value={{
-          track: gtm.track,
-          getHierarchy: gtm.getHierarchy,
-        }}
-      >
-        {this.props.children}
-      </GtmContext.Provider>
-    );
+    return <GtmContext.Provider>{this.props.children}</GtmContext.Provider>;
   }
 }
 

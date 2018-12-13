@@ -33,7 +33,7 @@ const sdkMiddleware = createSdkMiddleware({
   getProjectKey: selectProjectKeyFromUrl,
 });
 
-export const useMiddlewares = (...middlewares) =>
+export const applyDefaultMiddlewares = (...middlewares) =>
   applyMiddleware(...middlewares, thunk, loggerMiddleware);
 
 // We use a factory as it's more practicable for tests
@@ -47,7 +47,7 @@ export const createReduxStore = (
     createInternalReducer(),
     preloadedState,
     compose(
-      useMiddlewares(
+      applyDefaultMiddlewares(
         ...middleware,
         sentryTrackingMiddleware,
         hideNotificationsMiddleware,

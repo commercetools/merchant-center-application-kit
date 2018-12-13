@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, compose, combineReducers } from 'redux';
-import { useMiddlewares } from '@commercetools-frontend/application-shell';
+import { applyDefaultMiddlewares } from '@commercetools-frontend/application-shell';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import ChannelsList from './components/channels-list';
 import { ApplicationStoreContext } from './store';
@@ -15,7 +15,8 @@ PageUnauthorized.displayName = 'PageUnauthorized';
 const reducer = combineReducers({
   foo: state => state,
 });
-const store = () => createStore(reducer, null, compose(useMiddlewares()));
+const store = () =>
+  createStore(reducer, null, compose(applyDefaultMiddlewares()));
 
 const ApplicationChannelRoutes = () => (
   <Provider store={store} context={ApplicationStoreContext}>
