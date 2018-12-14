@@ -18,7 +18,11 @@ $ git checkout git@github.com:commercetools/merchant-center-application-kit.git
 
 $ mkdir my-new-custom-application-project
 $ cp -R merchant-center-application-kit/examples/starter/* my-new-custom-application-project
+```
 
+Next, run the following command to install the dependencies:
+
+```bash
 $ cd my-new-custom-application-project
 $ yarn
 ```
