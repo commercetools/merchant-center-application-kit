@@ -5,11 +5,13 @@
   <b>Merchant Center Examples: Starter.</b>
 </p>
 
-This example contains the bare minimum setup to get you started with the development of the Merchant Center Application.
+This example application gives you the minimum setup to develop and launch a working Merchant Center application.
 
 ## Installation
 
 Checkout the github repository and copy-paste the `examples/starter` folder into your new project.
+
+To do so, run the following commands:
 
 ```bash
 $ git checkout git@github.com:commercetools/merchant-center-application-kit.git
@@ -22,6 +24,8 @@ $ yarn
 ```
 
 ## Start the development server
+
+Run the following command to start the development server and launch the application:
 
 ```bash
 $ yarn start
