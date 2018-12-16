@@ -1,4 +1,19 @@
-query QuickAccess($searchText: String!, $canViewProducts: Boolean!) {
+query QuickAccess($searchText: String!, $canViewProducts: Boolean!, $productsWhereClause: String!) {
+
+  productsById: products(where: $productsWhereClause) @include(if: $canViewProducts) {
+    total
+    results {
+      id,
+      masterData {
+        staged {
+          nameAllLocales {
+            locale
+            value
+          }
+        }
+      }
+    }
+  }
 
   productById: product(id: $searchText) @include(if: $canViewProducts) {
     key

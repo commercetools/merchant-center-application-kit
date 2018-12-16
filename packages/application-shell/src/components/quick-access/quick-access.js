@@ -4,6 +4,8 @@ import { compose } from 'recompose';
 import { injectIntl } from 'react-intl';
 import { injectFeatureToggles } from '@flopflip/react-broadcast';
 import { withApollo } from 'react-apollo';
+import { connect } from 'react-redux';
+import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { oneLineTrim } from 'common-tags';
 import debounce from 'debounce-async';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -22,10 +24,13 @@ import {
 import messages from './messages';
 import { saveHistory, loadHistory } from './history';
 
-const containsMatchByProductId = data => Boolean(data.productById);
-const containsMatchByProductKey = data => Boolean(data.productByKey);
-const containsMatchByVariantKey = data => Boolean(data.productByVariantKey);
-const containsMatchByVariantSku = data => Boolean(data.productByVariantSku);
+const containsMatchByProductId = data => Boolean(data && data.productById);
+const containsMatchesByProductIds = data => Boolean(data && data.productsById);
+const containsMatchByProductKey = data => Boolean(data && data.productByKey);
+const containsMatchByVariantKey = data =>
+  Boolean(data && data.productByVariantKey);
+const containsMatchByVariantSku = data =>
+  Boolean(data && data.productByVariantSku);
 
 class QuickAccess extends React.Component {
   static displayName = 'QuickAccess';
@@ -67,6 +72,7 @@ class QuickAccess extends React.Component {
     }).isRequired,
     projectDataLocale: PropTypes.string,
     onChangeProjectDataLocale: PropTypes.func,
+    dispatch: PropTypes.func.isRequired,
   };
 
   state = {
@@ -92,17 +98,46 @@ class QuickAccess extends React.Component {
     return command.subCommands(this.query);
   };
 
-  getProjectCommands = debounce(
-    searchText =>
-      this.query(QuickAccessQuery, {
-        searchText: sanitize(searchText),
-        target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-        // Pass conditional arguments to disable some of the queries
-        canViewProducts: hasSomePermissions(
-          [permissions.ViewProducts, permissions.ManageProducts],
-          this.props.project.permissions
-        ),
-      }).then(data => {
+  getProjectCommands = debounce(async searchText => {
+    const pimSearchProductIds = await this.props
+      .dispatch(
+        sdkActions.post({
+          uri: `/proxy/pim-search/${this.props.project.key}/search/products`,
+          payload: {
+            query: {
+              fullText: {
+                field: 'name',
+                language: 'en',
+                value: searchText,
+              },
+            },
+            sort: [
+              {
+                field: 'name',
+                language: 'en',
+                order: 'desc',
+              },
+            ],
+            limit: 9,
+            offset: 0,
+          },
+        })
+      )
+      .then(result => result.hits.map(hit => hit.id));
+
+    return this.query(QuickAccessQuery, {
+      searchText: sanitize(searchText),
+      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+      // Pass conditional arguments to disable some of the queries
+      canViewProducts: hasSomePermissions(
+        [permissions.ViewProducts, permissions.ManageProducts],
+        this.props.project.permissions
+      ),
+      productsWhereClause: `id in (${pimSearchProductIds
+        .map(id => JSON.stringify(id))
+        .join(', ')})`,
+    }).then(
+      data => {
         const commands = [];
 
         if (containsMatchByVariantKey(data)) {
@@ -181,6 +216,29 @@ class QuickAccess extends React.Component {
             }),
           });
         }
+        if (containsMatchesByProductIds(data)) {
+          data.productsById.results.forEach(product => {
+            commands.push({
+              id: `go/product-by-id/product(${product.id})`,
+              text: this.props.intl.formatMessage(messages.showProduct, {
+                productName: translate(
+                  product.masterData.staged.nameAllLocales,
+                  this.props.projectDataLocale
+                ),
+              }),
+              keywords: [product.id],
+              action: {
+                type: 'go',
+                to: `/${this.props.project.key}/products/${product.id}`,
+              },
+              subCommands: createProductTabsSubCommands({
+                intl: this.props.intl,
+                project: this.props.project,
+                productId: product.id,
+              }),
+            });
+          });
+        }
         if (containsMatchByProductKey(data)) {
           const productId = data.productByKey.id;
           commands.push({
@@ -201,10 +259,11 @@ class QuickAccess extends React.Component {
         }
 
         return commands;
-      }),
-    200,
-    { cancelObj: 'canceled' }
-  );
+      },
+      200,
+      { cancelObj: 'canceled' }
+    );
+  });
 
   search = async searchText => {
     const generalCommands = createCommands({
@@ -283,5 +342,9 @@ export default compose(
     'canViewDashboard',
     'canViewDiscounts',
     'customApplications',
-  ])
+  ]),
+  connect(
+    null,
+    dispatch => ({ dispatch })
+  )
 )(QuickAccess);
