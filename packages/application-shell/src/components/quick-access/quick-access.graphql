@@ -1,7 +1,6 @@
 query QuickAccess($searchText: String!, $canViewProducts: Boolean!, $productsWhereClause: String!) {
 
   productsById: products(where: $productsWhereClause) @include(if: $canViewProducts) {
-    total
     results {
       id,
       masterData {

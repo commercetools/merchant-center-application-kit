@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import {
+  hasSomePermissions,
+  permissions,
+} from '@commercetools-frontend/permissions';
 import * as gtm from '../../utils/gtm';
 import trackingEvents from './tracking-events';
 import ButlerContainer from './butler-container';
@@ -36,11 +42,14 @@ class QuickAccessContainer extends React.Component {
   }
 }
 
-export default class QuickAccessTrigger extends React.Component {
+export class QuickAccessTrigger extends React.Component {
   static displayName = 'QuickAccessTrigger';
 
   componentDidMount() {
     document.addEventListener('keydown', this.handler);
+    if (this.props.project) {
+      this.updatePimSearchInfo();
+    }
   }
 
   componentWillUnmount() {
@@ -61,6 +70,9 @@ export default class QuickAccessTrigger extends React.Component {
   state = {
     isVisible: false,
     hasError: false,
+    // We don't need to update this information when the project key changes,
+    // as changing a project always results in a full reload anyways.
+    isProjectIndexed: false,
   };
 
   handler = event => {
@@ -121,11 +133,74 @@ export default class QuickAccessTrigger extends React.Component {
     this.setState({ isVisible: false });
   };
 
+  // This function is written with the assumption that a project (including the
+  // existence of a project) never changes without a full page reload.
+  // Otherwise we'd need to
+  // - ensure the response we receive belongs to the current project
+  // - refetch the pim search info when the project key changes
+  updatePimSearchInfo = () => {
+    // skip when there is no project
+    if (!this.props.project) return;
+
+    const canViewProducts = hasSomePermissions(
+      [permissions.ViewProducts, permissions.ManageProducts],
+      this.props.project.permissions
+    );
+
+    // skip checking when user can't view products anyways
+    if (!canViewProducts) return;
+
+    this.props
+      .dispatch(
+        // TODO this should be sdkActions.head()
+        // and then we should check whether the response code is
+        // - 200 meaning the project is indexed
+        // - 404 meaning the project is not indexed
+        //
+        // But there is a problem in tne node-sdk client as it tries to
+        // .json()-parse the response to HEAD requests which results in an
+        // error, so we send a regular request for now and limit to no results
+        // instead to keep the payload minimal
+        sdkActions.post({
+          uri: `/proxy/pim-search/${this.props.project.key}/search/products`,
+          payload: {
+            query: {
+              fullText: {
+                field: 'name',
+                language: this.props.projectDataLocale,
+                value: '',
+              },
+            },
+            limit: 0,
+            offset: 0,
+          },
+        })
+      )
+      .then(
+        () => true,
+        // project is not using pim-indexer when response error code is 404,
+        // but we treat all errors as non-indexed as a safe guard
+        () => false
+      )
+      .then(isProjectIndexed => {
+        this.setState({ isProjectIndexed });
+      });
+  };
+
   render() {
     return this.state.isVisible && !this.state.hasError ? (
       <QuickAccessContainer>
-        <QuickAccessModal {...this.props} onClose={this.close} />
+        <QuickAccessModal
+          {...this.props}
+          onClose={this.close}
+          isProjectIndexed={this.state.isProjectIndexed}
+        />
       </QuickAccessContainer>
     ) : null;
   }
 }
+
+export default connect(
+  null,
+  dispatch => ({ dispatch })
+)(QuickAccessTrigger);

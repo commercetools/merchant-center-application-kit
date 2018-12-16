@@ -4,7 +4,6 @@ import { compose } from 'recompose';
 import { injectIntl } from 'react-intl';
 import { injectFeatureToggles } from '@flopflip/react-broadcast';
 import { withApollo } from 'react-apollo';
-import { connect } from 'react-redux';
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { oneLineTrim } from 'common-tags';
 import debounce from 'debounce-async';
@@ -40,6 +39,7 @@ class QuickAccess extends React.Component {
       languages: PropTypes.arrayOf(PropTypes.string).isRequired,
       permissions: PropTypes.object.isRequired,
     }),
+    isProjectIndexed: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
@@ -99,31 +99,35 @@ class QuickAccess extends React.Component {
   };
 
   getProjectCommands = debounce(async searchText => {
-    const pimSearchProductIds = await this.props
-      .dispatch(
-        sdkActions.post({
-          uri: `/proxy/pim-search/${this.props.project.key}/search/products`,
-          payload: {
-            query: {
-              fullText: {
-                field: 'name',
-                language: 'en',
-                value: searchText,
+    const pimSearchProductIds = this.props.isProjectIndexed
+      ? await this.props
+          .dispatch(
+            sdkActions.post({
+              uri: `/proxy/pim-search/${
+                this.props.project.key
+              }/search/products`,
+              payload: {
+                query: {
+                  fullText: {
+                    field: 'name',
+                    language: this.props.projectDataLocale,
+                    value: searchText,
+                  },
+                },
+                sort: [
+                  {
+                    field: 'name',
+                    language: this.props.projectDataLocale,
+                    order: 'desc',
+                  },
+                ],
+                limit: 9,
+                offset: 0,
               },
-            },
-            sort: [
-              {
-                field: 'name',
-                language: 'en',
-                order: 'desc',
-              },
-            ],
-            limit: 9,
-            offset: 0,
-          },
-        })
-      )
-      .then(result => result.hits.map(hit => hit.id));
+            })
+          )
+          .then(result => result.hits.map(hit => hit.id))
+      : [];
 
     return this.query(QuickAccessQuery, {
       searchText: sanitize(searchText),
@@ -342,9 +346,5 @@ export default compose(
     'canViewDashboard',
     'canViewDiscounts',
     'customApplications',
-  ]),
-  connect(
-    null,
-    dispatch => ({ dispatch })
-  )
+  ])
 )(QuickAccess);
