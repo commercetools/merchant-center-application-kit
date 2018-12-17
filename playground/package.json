@@ -21,7 +21,7 @@
     "@commercetools-frontend/permissions": "4.3.0",
     "@commercetools-frontend/sdk": "4.3.0",
     "@commercetools-frontend/ui-kit": "4.0.2",
-    "moment": "2.22.2",
+    "moment": "2.23.0",
     "moment-timezone": "0.5.23",
     "prop-types": "15.6.2",
     "react": "16.6.3",
