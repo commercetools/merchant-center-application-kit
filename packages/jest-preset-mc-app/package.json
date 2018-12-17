@@ -43,7 +43,7 @@
     "raf": "3.4.1"
   },
   "devDependencies": {
-    "react-testing-library": "5.3.2"
+    "react-testing-library": "5.4.0"
   },
   "peerDependencies": {
     "enzyme": ">=3",
