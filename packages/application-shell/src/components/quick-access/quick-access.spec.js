@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitForElement } from '../../test-utils';
+import { renderWithRedux, fireEvent, waitForElement } from '../../test-utils';
 import QuickAccessQuery from './quick-access.graphql';
 import * as gtm from '../../utils/gtm';
 import QuickAccess from './index';
@@ -13,11 +13,14 @@ const createMatchlessSearchMock = (searchText, variables = {}) => ({
       searchText,
       target: 'ctp',
       canViewProducts: true,
+      productsWhereClause: 'id in ()',
+      includeProductsByIds: false,
       ...variables,
     },
   },
   result: {
     data: {
+      productsById: null,
       productById: null,
       productByKey: null,
       productByVariantSku: null,
@@ -49,6 +52,7 @@ const createTestProps = custom => ({
       id: 'foo-id',
     },
   },
+  projectDataLocale: 'en',
   history: { push: jest.fn() },
   // client prop is provided by withApollo
   user: {
@@ -67,6 +71,63 @@ const createTestProps = custom => ({
   ...custom,
 });
 
+const createPimAvailabilityCheckSdkMock = (projectDataLocale = 'en') => ({
+  action: {
+    type: 'SDK',
+    payload: {
+      method: 'POST',
+      uri: '/proxy/pim-search/test-with-big-data-44/search/products',
+      payload: {
+        query: {
+          fullText: {
+            field: 'name',
+            language: projectDataLocale,
+            value: 'availability-check',
+          },
+        },
+        limit: 0,
+        offset: 0,
+      },
+    },
+  },
+  response: {},
+});
+
+const createPimSearchSdkMock = (
+  searchText,
+  { projectDataLocale = 'en' } = {}
+) => ({
+  action: {
+    type: 'SDK',
+    payload: {
+      method: 'POST',
+      uri: '/proxy/pim-search/test-with-big-data-44/search/products',
+      payload: {
+        query: {
+          fullText: {
+            field: 'name',
+            language: projectDataLocale,
+            value: searchText,
+          },
+        },
+        sort: [
+          {
+            field: 'name',
+            language: projectDataLocale,
+            order: 'desc',
+          },
+        ],
+        limit: 9,
+        offset: 0,
+      },
+    },
+  },
+  response: {},
+});
+
+const openDshbrdMock = createPimSearchSdkMock('Open dshbrd');
+const openPrdctsMock = createPimSearchSdkMock('Open prdcts');
+
 describe('QuickAccess', () => {
   beforeEach(() => {
     gtm.track.mockReset();
@@ -74,7 +135,10 @@ describe('QuickAccess', () => {
   });
 
   it('should open when pressing "f" on document body', async () => {
-    const { getByTestId } = render(<QuickAccess {...createTestProps()} />);
+    const { getByTestId } = renderWithRedux(
+      <QuickAccess {...createTestProps()} />,
+      { sdkMocks: [createPimAvailabilityCheckSdkMock()] }
+    );
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
@@ -88,13 +152,14 @@ describe('QuickAccess', () => {
   });
 
   it('should open when pressing "f" on an element with tabIndex="-1" (like a modal)', async () => {
-    const { getByTestId } = render(
+    const { getByTestId } = renderWithRedux(
       <div>
         <QuickAccess {...createTestProps()} />
         <div tabIndex="-1" data-testid="modal">
           Modal
         </div>
-      </div>
+      </div>,
+      { sdkMocks: [createPimAvailabilityCheckSdkMock()] }
     );
 
     // open quick-access
@@ -109,7 +174,10 @@ describe('QuickAccess', () => {
   });
 
   it('should not close when the search input is clicked', async () => {
-    const { getByTestId } = render(<QuickAccess {...createTestProps()} />);
+    const { getByTestId } = renderWithRedux(
+      <QuickAccess {...createTestProps()} />,
+      { sdkMocks: [createPimAvailabilityCheckSdkMock()] }
+    );
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
@@ -122,7 +190,10 @@ describe('QuickAccess', () => {
   });
 
   it('should not open when pressing "f" not directly on other focusable elements', async () => {
-    const { queryByTestId } = render(<QuickAccess {...createTestProps()} />);
+    const { queryByTestId } = renderWithRedux(
+      <QuickAccess {...createTestProps()} />,
+      { sdkMocks: [createPimAvailabilityCheckSdkMock()] }
+    );
 
     // open quick-access
     fireEvent.keyDown(document.body.firstChild, { key: 'f' });
@@ -130,7 +201,10 @@ describe('QuickAccess', () => {
   });
 
   it('should track when QuickAccess is opened', async () => {
-    const { getByTestId } = render(<QuickAccess {...createTestProps()} />);
+    const { getByTestId } = renderWithRedux(
+      <QuickAccess {...createTestProps()} />,
+      { sdkMocks: [createPimAvailabilityCheckSdkMock()] }
+    );
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
@@ -145,8 +219,9 @@ describe('QuickAccess', () => {
   });
 
   it('should close when pressing Escape', async () => {
-    const { getByTestId, queryByTestId } = render(
-      <QuickAccess {...createTestProps()} />
+    const { getByTestId, queryByTestId } = renderWithRedux(
+      <QuickAccess {...createTestProps()} />,
+      { sdkMocks: [createPimAvailabilityCheckSdkMock()] }
     );
 
     // open quick-access
@@ -164,9 +239,13 @@ describe('QuickAccess', () => {
 
   it('should show results when searching for Dashboard', async () => {
     const mocks = [createMatchlessSearchMock('Open dshbrd')];
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByText } = renderWithRedux(
       <QuickAccess {...createTestProps()} />,
-      { mocks, flags }
+      {
+        mocks,
+        flags,
+        sdkMocks: [createPimAvailabilityCheckSdkMock(), openDshbrdMock],
+      }
     );
 
     // open quick-access
@@ -201,14 +280,25 @@ describe('QuickAccess', () => {
               searchText: 'Open dshbrd-offline',
               canViewProducts: true,
               target: 'ctp',
+              productsWhereClause: 'id in ()',
+              includeProductsByIds: false,
             },
           },
           error: new Error('aw shucks'),
         },
       ];
-      const { getByTestId, getByText, queryByText } = render(
+      const { getByTestId, getByText, queryByText } = renderWithRedux(
         <QuickAccess {...createTestProps()} />,
-        { mocks }
+        // Note that this test setup isn't perfect as the sdk request
+        // currently succeeds while the Apollo request fails
+        // Under real conditions both requests would fail.
+        {
+          mocks,
+          sdkMocks: [
+            createPimAvailabilityCheckSdkMock(),
+            createPimSearchSdkMock('Open dshbrd-offline'),
+          ],
+        }
       );
       const offlineText = 'Offline';
 
@@ -238,9 +328,13 @@ describe('QuickAccess', () => {
   it('should open dashboard when chosing the "Open Dashboard" command', async () => {
     const mocks = [createMatchlessSearchMock('Open dshbrd')];
     const props = createTestProps();
-    const { getByTestId, queryByTestId, getByText } = render(
+    const { getByTestId, queryByTestId, getByText } = renderWithRedux(
       <QuickAccess {...props} />,
-      { mocks, flags }
+      {
+        mocks,
+        flags,
+        sdkMocks: [createPimAvailabilityCheckSdkMock(), openDshbrdMock],
+      }
     );
 
     // open quick-access
@@ -270,9 +364,13 @@ describe('QuickAccess', () => {
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by cmd+enter', async () => {
       const mocks = [createMatchlessSearchMock('Open dshbrd')];
       const props = createTestProps();
-      const { getByTestId, queryByTestId, getByText } = render(
+      const { getByTestId, queryByTestId, getByText } = renderWithRedux(
         <QuickAccess {...props} />,
-        { mocks, flags }
+        {
+          mocks,
+          flags,
+          sdkMocks: [createPimAvailabilityCheckSdkMock(), openDshbrdMock],
+        }
       );
 
       // open quick-access
@@ -297,9 +395,13 @@ describe('QuickAccess', () => {
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by cmd+click', async () => {
       const mocks = [createMatchlessSearchMock('Open dshbrd')];
       const props = createTestProps();
-      const { getByTestId, queryByTestId, getByText } = render(
+      const { getByTestId, queryByTestId, getByText } = renderWithRedux(
         <QuickAccess {...props} />,
-        { mocks, flags }
+        {
+          mocks,
+          flags,
+          sdkMocks: [createPimAvailabilityCheckSdkMock(), openDshbrdMock],
+        }
       );
 
       // open quick-access
@@ -333,9 +435,13 @@ describe('QuickAccess', () => {
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by ctrl+enter', async () => {
       const mocks = [createMatchlessSearchMock('Open dshbrd')];
       const props = createTestProps();
-      const { getByTestId, queryByTestId, getByText } = render(
+      const { getByTestId, queryByTestId, getByText } = renderWithRedux(
         <QuickAccess {...props} />,
-        { mocks, flags }
+        {
+          mocks,
+          flags,
+          sdkMocks: [createPimAvailabilityCheckSdkMock(), openDshbrdMock],
+        }
       );
 
       // open quick-access
@@ -360,9 +466,13 @@ describe('QuickAccess', () => {
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by ctrl+click', async () => {
       const mocks = [createMatchlessSearchMock('Open dshbrd')];
       const props = createTestProps();
-      const { getByTestId, queryByTestId, getByText } = render(
+      const { getByTestId, queryByTestId, getByText } = renderWithRedux(
         <QuickAccess {...props} />,
-        { mocks, flags }
+        {
+          mocks,
+          flags,
+          sdkMocks: [createPimAvailabilityCheckSdkMock(), openDshbrdMock],
+        }
       );
 
       // open quick-access
@@ -389,9 +499,13 @@ describe('QuickAccess', () => {
   it('should open dashboard in new tab when chosing the "Open Dashboard" command by click', async () => {
     const mocks = [createMatchlessSearchMock('Open dshbrd')];
     const props = createTestProps();
-    const { getByTestId, queryByTestId, getByText } = render(
+    const { getByTestId, queryByTestId, getByText } = renderWithRedux(
       <QuickAccess {...props} />,
-      { mocks, flags }
+      {
+        mocks,
+        flags,
+        sdkMocks: [createPimAvailabilityCheckSdkMock(), openDshbrdMock],
+      }
     );
 
     // open quick-access
@@ -417,9 +531,17 @@ describe('QuickAccess', () => {
       createMatchlessSearchMock('Open prdcts'),
     ];
     const props = createTestProps();
-    const { getByTestId, queryByTestId, getByText } = render(
+    const { getByTestId, queryByTestId, getByText } = renderWithRedux(
       <QuickAccess {...props} />,
-      { mocks, flags }
+      {
+        mocks,
+        flags,
+        sdkMocks: [
+          createPimAvailabilityCheckSdkMock(),
+          openDshbrdMock,
+          openPrdctsMock,
+        ],
+      }
     );
 
     // open quick-access
@@ -521,10 +643,13 @@ describe('QuickAccess', () => {
             searchText: 'party-parrot-sku',
             canViewProducts: true,
             target: 'ctp',
+            productsWhereClause: 'id in ()',
+            includeProductsByIds: false,
           },
         },
         result: {
           data: {
+            productsById: null,
             productById: null,
             productByKey: null,
             productByVariantSku: {
@@ -551,9 +676,15 @@ describe('QuickAccess', () => {
         },
       },
     ];
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByText } = renderWithRedux(
       <QuickAccess {...createTestProps()} />,
-      { mocks }
+      {
+        mocks,
+        sdkMocks: [
+          createPimAvailabilityCheckSdkMock(),
+          createPimSearchSdkMock('party-parrot-sku'),
+        ],
+      }
     );
 
     // open quick-access
@@ -585,10 +716,13 @@ describe('QuickAccess', () => {
             searchText: productId,
             canViewProducts: true,
             target: 'ctp',
+            productsWhereClause: 'id in ()',
+            includeProductsByIds: false,
           },
         },
         result: {
           data: {
+            productsById: null,
             productById: {
               id: productId,
               key: 'party-parrot-key',
@@ -605,9 +739,15 @@ describe('QuickAccess', () => {
         },
       },
     ];
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByText } = renderWithRedux(
       <QuickAccess {...createTestProps()} />,
-      { mocks }
+      {
+        mocks,
+        sdkMocks: [
+          createPimAvailabilityCheckSdkMock(),
+          createPimSearchSdkMock(productId),
+        ],
+      }
     );
 
     // open quick-access
@@ -634,10 +774,13 @@ describe('QuickAccess', () => {
             searchText: 'party-parrot',
             canViewProducts: true,
             target: 'ctp',
+            productsWhereClause: 'id in ()',
+            includeProductsByIds: false,
           },
         },
         result: {
           data: {
+            productsById: null,
             productById: null,
             productByKey: {
               key: 'party-parrot',
@@ -659,9 +802,15 @@ describe('QuickAccess', () => {
         },
       },
     ];
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByText } = renderWithRedux(
       <QuickAccess {...createTestProps()} />,
-      { mocks }
+      {
+        mocks,
+        sdkMocks: [
+          createPimAvailabilityCheckSdkMock(),
+          createPimSearchSdkMock('party-parrot'),
+        ],
+      }
     );
 
     // open quick-access
@@ -691,10 +840,13 @@ describe('QuickAccess', () => {
             searchText: productId,
             canViewProducts: true,
             target: 'ctp',
+            productsWhereClause: 'id in ()',
+            includeProductsByIds: false,
           },
         },
         result: {
           data: {
+            productsById: null,
             productById: {
               id: productId,
               key: 'party-parrot-key',
@@ -714,9 +866,15 @@ describe('QuickAccess', () => {
         },
       },
     ];
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByText } = renderWithRedux(
       <QuickAccess {...createTestProps({ projectDataLocale: 'de' })} />,
-      { mocks }
+      {
+        mocks,
+        sdkMocks: [
+          createPimAvailabilityCheckSdkMock('de'),
+          createPimSearchSdkMock(productId, { projectDataLocale: 'de' }),
+        ],
+      }
     );
 
     // open quick-access
@@ -737,9 +895,16 @@ describe('QuickAccess', () => {
   it('should find sub commands', async () => {
     const searchTerm = 'Open producttypesettings';
     const mocks = [createMatchlessSearchMock(searchTerm)];
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByText } = renderWithRedux(
       <QuickAccess {...createTestProps()} />,
-      { mocks, flags }
+      {
+        mocks,
+        flags,
+        sdkMocks: [
+          createPimAvailabilityCheckSdkMock(),
+          createPimSearchSdkMock(searchTerm),
+        ],
+      }
     );
 
     // open quick-access
@@ -755,9 +920,16 @@ describe('QuickAccess', () => {
   it('should be possible to navigate to sub commands and back out', async () => {
     const searchTerm = 'Open dshbrd';
     const mocks = [createMatchlessSearchMock(searchTerm)];
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByText } = renderWithRedux(
       <QuickAccess {...createTestProps()} />,
-      { mocks, flags }
+      {
+        mocks,
+        flags,
+        sdkMocks: [
+          createPimAvailabilityCheckSdkMock(),
+          createPimSearchSdkMock(searchTerm),
+        ],
+      }
     );
 
     // open quick-access
@@ -804,9 +976,16 @@ describe('QuickAccess', () => {
     const searchTerm = 'Open dshbrd';
     const mocks = [createMatchlessSearchMock(searchTerm)];
     const props = createTestProps();
-    const { getByTestId, queryByTestId, getByText } = render(
+    const { getByTestId, queryByTestId, getByText } = renderWithRedux(
       <QuickAccess {...props} />,
-      { mocks, flags }
+      {
+        mocks,
+        flags,
+        sdkMocks: [
+          createPimAvailabilityCheckSdkMock(),
+          createPimSearchSdkMock(searchTerm),
+        ],
+      }
     );
 
     // open quick-access
@@ -839,7 +1018,7 @@ describe('QuickAccess', () => {
     const searchTerm = 'Open Dashboard';
     const mocks = [createMatchlessSearchMock(searchTerm)];
     const props = createTestProps({ project: undefined });
-    const { getByTestId, queryByText, getByText } = render(
+    const { getByTestId, queryByText, getByText } = renderWithRedux(
       <QuickAccess {...props} />,
       { mocks }
     );
@@ -870,9 +1049,16 @@ describe('QuickAccess', () => {
         canViewProducts: true,
       };
 
-      const { getByTestId, queryByText, getByText } = render(
+      const { getByTestId, queryByText, getByText } = renderWithRedux(
         <QuickAccess {...props} />,
-        { mocks, flags }
+        {
+          mocks,
+          sdkMocks: [
+            createPimAvailabilityCheckSdkMock(),
+            createPimSearchSdkMock(searchTerm),
+          ],
+          flags,
+        }
       );
 
       // open quick-access
@@ -898,10 +1084,17 @@ describe('QuickAccess', () => {
         canViewProducts: true,
       };
 
-      const { getByTestId, getByText } = render(<QuickAccess {...props} />, {
-        mocks,
-        flags,
-      });
+      const { getByTestId, getByText } = renderWithRedux(
+        <QuickAccess {...props} />,
+        {
+          mocks,
+          sdkMocks: [
+            createPimAvailabilityCheckSdkMock(),
+            createPimSearchSdkMock(searchTerm),
+          ],
+          flags,
+        }
+      );
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
@@ -944,9 +1137,15 @@ describe('QuickAccess', () => {
               },
             },
           });
-          const { getByTestId, queryByText, getByText } = render(
+          const { getByTestId, queryByText, getByText } = renderWithRedux(
             <QuickAccess {...props} />,
-            { mocks }
+            {
+              mocks,
+              sdkMocks: [
+                createPimAvailabilityCheckSdkMock(),
+                createPimSearchSdkMock(searchTerm),
+              ],
+            }
           );
 
           // open quick-access
@@ -965,9 +1164,10 @@ describe('QuickAccess', () => {
 
       // describe('when project has more than one project-data-locale', () => {});
     });
+
     describe('when outside of a project', () => {
       it('should not show the option to change the project-data-locale', async () => {
-        const searchTerm = 'setreslang';
+        const searchTerm = 'setreslang2';
         const props = createTestProps({
           project: undefined,
           user: {
@@ -981,7 +1181,7 @@ describe('QuickAccess', () => {
             },
           },
         });
-        const { getByTestId, queryByText, getByText } = render(
+        const { getByTestId, queryByText, getByText } = renderWithRedux(
           <QuickAccess {...props} />
         );
 
@@ -1000,18 +1200,24 @@ describe('QuickAccess', () => {
     });
   });
 
-  // These are disabled while we await a new release of flopflip which
-  // will allow us to use memoryAdapter for tests by adding the "reset" method,
-  // and by not calling setState after the component unmounted.
   describe('feature toggles', () => {
     it('should not find PIM-Search when the feature is toggled off', async () => {
       const props = createTestProps();
       const searchTerm = 'Opn PIM Srch';
       const mocks = [createMatchlessSearchMock(searchTerm)];
-      const { getByTestId, queryByText, getByText, queryByTestId } = render(
-        <QuickAccess {...props} />,
-        { mocks, flags: { ...flags, pimSearch: false } }
-      );
+      const {
+        getByTestId,
+        queryByText,
+        getByText,
+        queryByTestId,
+      } = renderWithRedux(<QuickAccess {...props} />, {
+        mocks,
+        sdkMocks: [
+          createPimAvailabilityCheckSdkMock(),
+          createPimSearchSdkMock(searchTerm),
+        ],
+        flags: { ...flags, pimSearch: false },
+      });
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
@@ -1030,10 +1236,17 @@ describe('QuickAccess', () => {
       const props = createTestProps();
       const searchTerm = 'Opn PIM Srch';
       const mocks = [createMatchlessSearchMock(searchTerm)];
-      const { getByTestId, getByText } = render(<QuickAccess {...props} />, {
-        mocks,
-        flags: { pimSearch: true },
-      });
+      const { getByTestId, getByText } = renderWithRedux(
+        <QuickAccess {...props} />,
+        {
+          mocks,
+          sdkMocks: [
+            createPimAvailabilityCheckSdkMock(),
+            createPimSearchSdkMock(searchTerm),
+          ],
+          flags: { pimSearch: true },
+        }
+      );
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
@@ -1043,6 +1256,104 @@ describe('QuickAccess', () => {
       fireEvent.change(searchInput, { target: { value: searchTerm } });
       await waitForElement(() => getByText('Open PIM Search'));
       expect(getByText('Open PIM Search')).toBeVisible();
+    });
+  });
+
+  describe('when searching for a product with enabled pim-search', () => {
+    it('should find a product by full-text pim search', async () => {
+      const searchText = 'party';
+      const partyParrotId = '7a66d631-0e52-44f8-bb5d-2212839a2519';
+      const mocks = [
+        {
+          request: {
+            query: QuickAccessQuery,
+            variables: {
+              searchText,
+              canViewProducts: true,
+              target: 'ctp',
+              productsWhereClause: `id in ("${partyParrotId}")`,
+              includeProductsByIds: true,
+            },
+          },
+          result: {
+            data: {
+              productsByIds: {
+                results: [
+                  {
+                    id: partyParrotId,
+                    masterData: {
+                      staged: {
+                        nameAllLocales: [
+                          { locale: 'en', value: 'Party Parrot' },
+                        ],
+                      },
+                    },
+                  },
+                ],
+              },
+              productById: null,
+              productByKey: null,
+              productByVariantSku: null,
+              productByVariantKey: null,
+            },
+          },
+        },
+      ];
+      const { getByTestId, getByText } = renderWithRedux(
+        <QuickAccess {...createTestProps()} />,
+        {
+          mocks,
+          sdkMocks: [
+            createPimAvailabilityCheckSdkMock(),
+            {
+              action: {
+                type: 'SDK',
+                payload: {
+                  method: 'POST',
+                  uri:
+                    '/proxy/pim-search/test-with-big-data-44/search/products',
+                  payload: {
+                    query: {
+                      fullText: {
+                        field: 'name',
+                        language: 'en',
+                        value: searchText,
+                      },
+                    },
+                    sort: [{ field: 'name', language: 'en', order: 'desc' }],
+                    limit: 9,
+                    offset: 0,
+                  },
+                },
+              },
+              response: {
+                total: 1,
+                offset: 0,
+                limit: 9,
+                hits: [{ id: partyParrotId, version: 709, relevance: null }],
+                facets: null,
+                suggestions: null,
+              },
+            },
+          ],
+        }
+      );
+
+      // open quick-access
+      fireEvent.keyDown(document.body, { key: 'f' });
+      await waitForElement(() => getByTestId('quick-access-search-input'));
+
+      const searchInput = getByTestId('quick-access-search-input');
+
+      // create first history entry
+      fireEvent.change(searchInput, { target: { value: 'party' } });
+      await waitForElement(() => getByText('Show Product "Party Parrot"'));
+
+      expect(
+        getByTestId(
+          `quick-access-result(go/product-by-id/product(${partyParrotId}))`
+        )
+      ).toHaveClass('result activeResult');
     });
   });
 });

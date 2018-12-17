@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
+import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import { injectFeatureToggles } from '@flopflip/react-broadcast';
 import { withApollo } from 'react-apollo';
@@ -24,7 +25,8 @@ import messages from './messages';
 import { saveHistory, loadHistory } from './history';
 
 const containsMatchByProductId = data => Boolean(data && data.productById);
-const containsMatchesByProductIds = data => Boolean(data && data.productsById);
+const containsMatchesByProducstIds = data =>
+  Boolean(data && data.productsByIds);
 const containsMatchByProductKey = data => Boolean(data && data.productByKey);
 const containsMatchByVariantKey = data =>
   Boolean(data && data.productByVariantKey);
@@ -72,7 +74,7 @@ class QuickAccess extends React.Component {
     }).isRequired,
     projectDataLocale: PropTypes.string,
     onChangeProjectDataLocale: PropTypes.func,
-    dispatch: PropTypes.func.isRequired,
+    pimSearchProductIds: PropTypes.func.isRequired,
   };
 
   state = {
@@ -99,47 +101,26 @@ class QuickAccess extends React.Component {
   };
 
   getProjectCommands = debounce(async searchText => {
-    const pimSearchProductIds = this.props.isProjectIndexed
-      ? await this.props
-          .dispatch(
-            sdkActions.post({
-              uri: `/proxy/pim-search/${
-                this.props.project.key
-              }/search/products`,
-              payload: {
-                query: {
-                  fullText: {
-                    field: 'name',
-                    language: this.props.projectDataLocale,
-                    value: searchText,
-                  },
-                },
-                sort: [
-                  {
-                    field: 'name',
-                    language: this.props.projectDataLocale,
-                    order: 'desc',
-                  },
-                ],
-                limit: 9,
-                offset: 0,
-              },
-            })
-          )
-          .then(result => result.hits.map(hit => hit.id))
+    const idsOfProductsMatchingSearchText = this.props.isProjectIndexed
+      ? await this.props.pimSearchProductIds(searchText)
       : [];
+
+    const canViewProducts = hasSomePermissions(
+      [permissions.ViewProducts, permissions.ManageProducts],
+      this.props.project.permissions
+    );
 
     return this.query(QuickAccessQuery, {
       searchText: sanitize(searchText),
       target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
       // Pass conditional arguments to disable some of the queries
-      canViewProducts: hasSomePermissions(
-        [permissions.ViewProducts, permissions.ManageProducts],
-        this.props.project.permissions
-      ),
-      productsWhereClause: `id in (${pimSearchProductIds
+      canViewProducts,
+      productsWhereClause: `id in (${idsOfProductsMatchingSearchText
         .map(id => JSON.stringify(id))
         .join(', ')})`,
+      includeProductsByIds: Boolean(
+        canViewProducts && idsOfProductsMatchingSearchText.length > 0
+      ),
     }).then(
       data => {
         const commands = [];
@@ -220,8 +201,8 @@ class QuickAccess extends React.Component {
             }),
           });
         }
-        if (containsMatchesByProductIds(data)) {
-          data.productsById.results.forEach(product => {
+        if (containsMatchesByProducstIds(data)) {
+          data.productsByIds.results.forEach(product => {
             commands.push({
               id: `go/product-by-id/product(${product.id})`,
               text: this.props.intl.formatMessage(messages.showProduct, {
@@ -346,5 +327,36 @@ export default compose(
     'canViewDashboard',
     'canViewDiscounts',
     'customApplications',
-  ])
+  ]),
+  connect(
+    null,
+    (dispatch, props) => ({
+      pimSearchProductIds: searchText =>
+        dispatch(
+          sdkActions.post({
+            uri: `/proxy/pim-search/${props.project.key}/search/products`,
+            payload: {
+              query: {
+                fullText: {
+                  field: 'name',
+                  language: props.projectDataLocale,
+                  value: searchText,
+                },
+              },
+              sort: [
+                {
+                  field: 'name',
+                  language: props.projectDataLocale,
+                  order: 'desc',
+                },
+              ],
+              limit: 9,
+              offset: 0,
+            },
+          })
+        ).then(result =>
+          result && result.hits ? result.hits.map(hit => hit.id) : []
+        ),
+    })
+  )
 )(QuickAccess);

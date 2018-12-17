@@ -1,6 +1,6 @@
-query QuickAccess($searchText: String!, $canViewProducts: Boolean!, $productsWhereClause: String!) {
+query QuickAccess($searchText: String!, $canViewProducts: Boolean!, $productsWhereClause: String, $includeProductsByIds: Boolean!) {
 
-  productsById: products(where: $productsWhereClause) @include(if: $canViewProducts) {
+  productsByIds: products(where: $productsWhereClause) @include(if: $includeProductsByIds) {
     results {
       id,
       masterData {

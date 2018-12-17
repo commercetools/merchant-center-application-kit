@@ -45,6 +45,10 @@ class QuickAccessContainer extends React.Component {
 export class QuickAccessTrigger extends React.Component {
   static displayName = 'QuickAccessTrigger';
 
+  static propTypes = {
+    getPimSearchStatusForProject: PropTypes.func.isRequired,
+  };
+
   componentDidMount() {
     document.addEventListener('keydown', this.handler);
     if (this.props.project) {
@@ -138,7 +142,7 @@ export class QuickAccessTrigger extends React.Component {
   // Otherwise we'd need to
   // - ensure the response we receive belongs to the current project
   // - refetch the pim search info when the project key changes
-  updatePimSearchInfo = () => {
+  updatePimSearchInfo = async () => {
     // skip when there is no project
     if (!this.props.project) return;
 
@@ -150,41 +154,8 @@ export class QuickAccessTrigger extends React.Component {
     // skip checking when user can't view products anyways
     if (!canViewProducts) return;
 
-    this.props
-      .dispatch(
-        // TODO this should be sdkActions.head()
-        // and then we should check whether the response code is
-        // - 200 meaning the project is indexed
-        // - 404 meaning the project is not indexed
-        //
-        // But there is a problem in tne node-sdk client as it tries to
-        // .json()-parse the response to HEAD requests which results in an
-        // error, so we send a regular request for now and limit to no results
-        // instead to keep the payload minimal
-        sdkActions.post({
-          uri: `/proxy/pim-search/${this.props.project.key}/search/products`,
-          payload: {
-            query: {
-              fullText: {
-                field: 'name',
-                language: this.props.projectDataLocale,
-                value: '',
-              },
-            },
-            limit: 0,
-            offset: 0,
-          },
-        })
-      )
-      .then(
-        () => true,
-        // project is not using pim-indexer when response error code is 404,
-        // but we treat all errors as non-indexed as a safe guard
-        () => false
-      )
-      .then(isProjectIndexed => {
-        this.setState({ isProjectIndexed });
-      });
+    const isProjectIndexed = await this.props.getPimSearchStatusForProject();
+    this.setState({ isProjectIndexed });
   };
 
   render() {
@@ -202,5 +173,37 @@ export class QuickAccessTrigger extends React.Component {
 
 export default connect(
   null,
-  dispatch => ({ dispatch })
+  (dispatch, props) => ({
+    getPimSearchStatusForProject: () =>
+      dispatch(
+        // TODO this should be sdkActions.head()
+        // and then we should check whether the response code is
+        // - 200 meaning the project is indexed
+        // - 404 meaning the project is not indexed
+        //
+        // But there is a problem in tne node-sdk client as it tries to
+        // .json()-parse the response to HEAD requests which results in an
+        // error, so we send a regular request for now and limit to no results
+        // instead to keep the payload minimal
+        sdkActions.post({
+          uri: `/proxy/pim-search/${props.project.key}/search/products`,
+          payload: {
+            query: {
+              fullText: {
+                field: 'name',
+                language: props.projectDataLocale,
+                value: 'availability-check',
+              },
+            },
+            limit: 0,
+            offset: 0,
+          },
+        })
+      ).then(
+        () => true,
+        // project is not using pim-indexer when response error code is 404,
+        // but we treat all errors as non-indexed as a safe guard
+        () => false
+      ),
+  })
 )(QuickAccessTrigger);
