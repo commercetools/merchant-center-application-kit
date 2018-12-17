@@ -181,6 +181,15 @@ const renderWithRedux = (
     //       }
     //     ]
     //   })
+    // You can also fake a failing request using
+    //   renderWithRedux(ui, {
+    //     sdkMocks: [
+    //       {
+    //         action: { type: 'SDK', payload: {}},
+    //         error: new Error('foo'),
+    //       }
+    //     ]
+    //   })
     // Note that each response will only be used once. When multiple responses
     // are provided for identical actions, then they are used in the order
     // they are provided in.
@@ -233,13 +242,12 @@ const renderWithRedux = (
             )}`
           );
 
-        const { response } = clonedSdkMocks[index];
+        const { response, error } = clonedSdkMocks[index];
 
         // remove result as each result is only mocked once
         sdkMocks.splice(index, 1);
 
-        // It is not possible yet to fake a failing request.
-        return Promise.resolve(response);
+        return error ? Promise.reject(error) : Promise.resolve(response);
       }
 
       return next(action);
