@@ -6,7 +6,7 @@
   "scripts": {
     "build": "mc-scripts build",
     "start": "mc-scripts start",
-    "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js'",
+    "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations",
     "lint": "jest --projects jest.eslint.config.js jest.stylelint.config.js",
     "lint:js": "jest --config jest.eslint.config.js",
     "lint:css": "jest --config jest.stylelint.config.js",

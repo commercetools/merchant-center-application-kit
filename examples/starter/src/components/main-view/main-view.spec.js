@@ -14,7 +14,7 @@ describe('main view', () => {
     });
     await waitForElement(() => getByText(/Hello, world/i));
 
-    fireEvent.click(getByText('one'));
+    fireEvent.click(getByText(/Page one/i));
 
     await waitForElement(() => getByText(/View one/i));
 
