@@ -1351,7 +1351,7 @@ describe('QuickAccess', () => {
 
       expect(
         getByTestId(
-          `quick-access-result(go/product-by-id/product(${partyParrotId}))`
+          `quick-access-result(go/product-by-search-text/product(${partyParrotId}))`
         )
       ).toHaveClass('result activeResult');
     });

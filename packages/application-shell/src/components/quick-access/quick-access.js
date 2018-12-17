@@ -204,7 +204,7 @@ class QuickAccess extends React.Component {
         if (containsMatchesByProducstIds(data)) {
           data.productsByIds.results.forEach(product => {
             commands.push({
-              id: `go/product-by-id/product(${product.id})`,
+              id: `go/product-by-search-text/product(${product.id})`,
               text: this.props.intl.formatMessage(messages.showProduct, {
                 productName: translate(
                   product.masterData.staged.nameAllLocales,
