@@ -1,3 +1,15 @@
+## [4.4.0](https://github.com/commercetools/merchant-center-application-kit/compare/v4.3.0...v4.4.0) (2018-12-17)
+
+#### 💅 Type: Enhancement
+
+- `actions-global`
+  - [#198](https://github.com/commercetools/merchant-center-application-kit/pull/198) Add array wrapping to showApiErrorNotification (through .isArray) ([@tdeekens](https://github.com/tdeekens))
+
+#### 🔮 Type: Chore
+
+- `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `eslint-config-mc-app`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-scripts`, `react-notifications`, `sdk`
+  - [#207](https://github.com/commercetools/merchant-center-application-kit/pull/207) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+
 ## [4.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v4.2.0...v4.3.0) (2018-12-12)
 
 #### 🔮 Type: Chore

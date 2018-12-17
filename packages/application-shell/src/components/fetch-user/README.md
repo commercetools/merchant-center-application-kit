@@ -14,19 +14,19 @@ A React component that will pass user data to a `children` function.
 ### Usage
 
 ```js
-import { FetchUser } from '@commercetools-frontend/application-shell'
+import { FetchUser } from '@commercetools-frontend/application-shell';
 
 <FetchUser>
   {({ isLoading, user }) =>
-    isLoading
-      ? <Loading />
-      : (
-        <div>
-          <Profile firstName={user.firstName} />
-        </div>
-      )
+    isLoading ? (
+      <Loading />
+    ) : (
+      <div>
+        <Profile firstName={user.firstName} />
+      </div>
+    )
   }
-</FetchUser>
+</FetchUser>;
 ```
 
 ### Properties

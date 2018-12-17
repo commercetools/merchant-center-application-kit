@@ -14,20 +14,20 @@ A React component that will pass project data to a `children` function.
 ### Usage
 
 ```js
-import { FetchProject } from '@commercetools-frontend/application-shell'
+import { FetchProject } from '@commercetools-frontend/application-shell';
 
 <FetchProject projectKey="my-project">
   {({ isLoading, project }) =>
-    isLoading
-      ? <Loading />
-      : (
-        <div>
-          <h1>{project.name}</h1>
-          <Main />
-        </div>
-      )
+    isLoading ? (
+      <Loading />
+    ) : (
+      <div>
+        <h1>{project.name}</h1>
+        <Main />
+      </div>
+    )
   }
-</FetchProject>
+</FetchProject>;
 ```
 
 ### Properties
