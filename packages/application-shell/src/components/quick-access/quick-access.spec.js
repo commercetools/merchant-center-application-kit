@@ -125,9 +125,6 @@ const createPimSearchSdkMock = (
   response: {},
 });
 
-const openDshbrdMock = createPimSearchSdkMock('Open dshbrd');
-const openPrdctsMock = createPimSearchSdkMock('Open prdcts');
-
 describe('QuickAccess', () => {
   beforeEach(() => {
     gtm.track.mockReset();
@@ -244,7 +241,10 @@ describe('QuickAccess', () => {
       {
         mocks,
         flags,
-        sdkMocks: [createPimAvailabilityCheckSdkMock(), openDshbrdMock],
+        sdkMocks: [
+          createPimAvailabilityCheckSdkMock(),
+          createPimSearchSdkMock('Open dshbrd'),
+        ],
       }
     );
 
@@ -333,7 +333,10 @@ describe('QuickAccess', () => {
       {
         mocks,
         flags,
-        sdkMocks: [createPimAvailabilityCheckSdkMock(), openDshbrdMock],
+        sdkMocks: [
+          createPimAvailabilityCheckSdkMock(),
+          createPimSearchSdkMock('Open dshbrd'),
+        ],
       }
     );
 
@@ -369,7 +372,10 @@ describe('QuickAccess', () => {
         {
           mocks,
           flags,
-          sdkMocks: [createPimAvailabilityCheckSdkMock(), openDshbrdMock],
+          sdkMocks: [
+            createPimAvailabilityCheckSdkMock(),
+            createPimSearchSdkMock('Open dshbrd'),
+          ],
         }
       );
 
@@ -400,7 +406,10 @@ describe('QuickAccess', () => {
         {
           mocks,
           flags,
-          sdkMocks: [createPimAvailabilityCheckSdkMock(), openDshbrdMock],
+          sdkMocks: [
+            createPimAvailabilityCheckSdkMock(),
+            createPimSearchSdkMock('Open dshbrd'),
+          ],
         }
       );
 
@@ -440,7 +449,10 @@ describe('QuickAccess', () => {
         {
           mocks,
           flags,
-          sdkMocks: [createPimAvailabilityCheckSdkMock(), openDshbrdMock],
+          sdkMocks: [
+            createPimAvailabilityCheckSdkMock(),
+            createPimSearchSdkMock('Open dshbrd'),
+          ],
         }
       );
 
@@ -471,7 +483,10 @@ describe('QuickAccess', () => {
         {
           mocks,
           flags,
-          sdkMocks: [createPimAvailabilityCheckSdkMock(), openDshbrdMock],
+          sdkMocks: [
+            createPimAvailabilityCheckSdkMock(),
+            createPimSearchSdkMock('Open dshbrd'),
+          ],
         }
       );
 
@@ -504,7 +519,10 @@ describe('QuickAccess', () => {
       {
         mocks,
         flags,
-        sdkMocks: [createPimAvailabilityCheckSdkMock(), openDshbrdMock],
+        sdkMocks: [
+          createPimAvailabilityCheckSdkMock(),
+          createPimSearchSdkMock('Open dshbrd'),
+        ],
       }
     );
 
@@ -538,8 +556,8 @@ describe('QuickAccess', () => {
         flags,
         sdkMocks: [
           createPimAvailabilityCheckSdkMock(),
-          openDshbrdMock,
-          openPrdctsMock,
+          createPimSearchSdkMock('Open dshbrd'),
+          createPimSearchSdkMock('Open prdcts'),
         ],
       }
     );
