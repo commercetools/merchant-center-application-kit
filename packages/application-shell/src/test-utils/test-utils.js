@@ -6,6 +6,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Router } from 'react-router-dom';
+import { deepEqual } from 'fast-equals';
+import invariant from 'tiny-invariant';
 import { ApolloProvider } from 'react-apollo';
 import { render as rtlRender } from 'react-testing-library';
 import { createMemoryHistory } from 'history';
@@ -163,26 +165,106 @@ const renderWithRedux = (
     // Consumers of renderWithRedux can use
     //   { store: createReduxStore({ requestsInFlight: null, .. }) }
     // to pass an initial state to Redux.
-    store = createReduxStore(),
+    store = undefined,
+    // The store option is kept around to keep the API open as not all use-cases
+    // are known yet. Meanwhile storeState and sdkMocks provide convenient ways
+    // to work with the redux store.
+    storeState = undefined,
+    // renderWithRedux supports mocking requests made through the sdk
+    // middleware. The approach is inspired by ApolloMockProvider.
+    // You can pass responses for specific actions like
+    //   renderWithRedux(ui, {
+    //     sdkMocks: [
+    //       {
+    //         action: { type: 'SDK', payload: {}},
+    //         response: { foo: true },
+    //       }
+    //     ]
+    //   })
+    // Note that each response will only be used once. When multiple responses
+    // are provided for identical actions, then they are used in the order
+    // they are provided in.
+    sdkMocks = [],
     ...renderOptions
   } = {}
-) => ({
-  ...render(
-    <StoreProvider store={store}>
-      <div>
-        <NotificationsList domain={DOMAINS.GLOBAL} />
-        <NotificationsList domain={DOMAINS.PAGE} />
-        <NotificationsList domain={DOMAINS.SIDE} />
-        {ui}
-      </div>
-    </StoreProvider>,
-    renderOptions
-  ),
-  // adding `store` to the returned utilities to allow us
-  // to reference it in our tests (just try to avoid using
-  // this to test implementation details).
-  store,
-});
+) => {
+  invariant(
+    !(store && storeState),
+    'test-utils: You provided store and storeState. Provide one of them only.'
+  );
+  invariant(
+    !(store && sdkMocks.length > 0),
+    'test-utils: You provided store and sdkMocks. Provide one of them only.'
+  );
+
+  // Determine the redux store to use in tests.
+  // - When the user passed in a "store", we use that store and ignore
+  //   sdkMocks and storeState.
+  // - When the user passed in no sdkMocks, we create a store using the
+  //   provided storeState. If storeState is undefined, then the defaults kick
+  //   in anyways.
+  // - Lastly, when sdkMocks were provided (and no store was provided), we
+  //   create a store which applies a special middleware to allow mocking sdk
+  //   responses. We further initialize the store with the provided storeState.
+  //   If storeState is undefined, then the defaults kick in anyways.
+  const reduxStore = (() => {
+    if (store) return store;
+
+    if (sdkMocks.length === 0) return createReduxStore(storeState);
+
+    const clonedSdkMocks = sdkMocks ? [...sdkMocks] : [];
+    const testingMiddleware = () => next => action => {
+      // respond to fetch calls
+      if (action && action.type === 'SDK') {
+        const index = clonedSdkMocks.findIndex(item =>
+          deepEqual(item.action, action)
+        );
+
+        if (index === -1)
+          throw new Error(
+            `Could not find any more sdkMocks for action ${JSON.stringify(
+              action,
+              (k, v) => (v === undefined ? null : v),
+              2
+            )} in ${JSON.stringify(
+              sdkMocks,
+              (k, v) => (v === undefined ? null : v),
+              2
+            )}`
+          );
+
+        const { response } = clonedSdkMocks[index];
+
+        // remove result as each result is only mocked once
+        sdkMocks.splice(index, 1);
+
+        // It is not possible yet to fake a failing request.
+        return Promise.resolve(response);
+      }
+
+      return next(action);
+    };
+    return createReduxStore(storeState, [testingMiddleware]);
+  })();
+
+  return {
+    ...render(
+      <StoreProvider store={reduxStore}>
+        <div>
+          <NotificationsList domain={DOMAINS.GLOBAL} />
+          <NotificationsList domain={DOMAINS.PAGE} />
+          <NotificationsList domain={DOMAINS.SIDE} />
+          {ui}
+        </div>
+      </StoreProvider>,
+      renderOptions
+    ),
+    // adding `store` to the returned utilities to allow us
+    // to reference it in our tests (just try to avoid using
+    // this to test implementation details).
+    store: reduxStore,
+  };
+};
 
 // Renders UI without mocking ApolloProvider
 const experimentalRender = (ui, renderOptions) => {
