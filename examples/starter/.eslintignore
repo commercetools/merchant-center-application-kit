@@ -2,4 +2,3 @@ _translations/
 dist/
 node_modules/*
 **/node_modules/*
-packages/application-shell/test-utils/index.js

@@ -36,6 +36,10 @@ script:
   - yarn run jest --projects jest.*.config.js --maxWorkers=4 --reporters jest-silent-reporter
   - yarn build
   - yarn playground:build
+  - yarn --cwd examples/starter install --pure-lockfile
+  - yarn --cwd examples/starter lint
+  - yarn --cwd examples/starter test
+  - yarn --cwd examples/starter build
   - set +e
 
 after_success:

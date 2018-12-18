@@ -2,4 +2,3 @@ package.json
 packages/i18n/*.json
 **/dist/
 **/public/
-packages/application-shell/test-utils/index.js
