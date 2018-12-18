@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { wrapDisplayName } from 'recompose';
 import { defaultMemoize } from 'reselect';
 import moment from 'moment-timezone';
-import omit from 'lodash.omit';
 
 const Context = React.createContext({});
 
@@ -45,7 +44,13 @@ const mapProjectToApplicationContextProject = project => {
 const mapProjectToApplicationContextPermissions = project => {
   if (!project) return null;
 
-  return omit(project.permissions, ['__typename']);
+  return project.allAppliedPermissions.reduce(
+    (appliedPermissions, appliedPermission) => ({
+      ...appliedPermissions,
+      [appliedPermission.name]: appliedPermission.value,
+    }),
+    {}
+  );
 };
 
 const createApplicationContext = defaultMemoize(
@@ -105,7 +110,12 @@ ApplicationContextProvider.propTypes = {
     owner: PropTypes.shape({
       id: PropTypes.string.isRequired,
     }).isRequired,
-    permissions: PropTypes.object.isRequired,
+    allAppliedPermissions: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        value: PropTypes.bool.isRequired,
+      })
+    ).isRequired,
     // ...plus other fields that we don't want to expose
   }),
   projectDataLocale: PropTypes.string,

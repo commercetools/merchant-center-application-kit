@@ -28,7 +28,7 @@ describe('rendering', () => {
             countries: ['us'],
             currencies: ['USD'],
             languages: ['en'],
-            permissions: { canManageProject: true },
+            allAppliedPermissions: [{ name: 'canManageProject', value: true }],
             // Fields that should not be exposed
             expiry: { isActive: false },
             suspension: { isActive: false },
@@ -83,7 +83,9 @@ describe('rendering', () => {
       expect(wrapper).toHaveProp(
         'value',
         expect.objectContaining({
-          permissions: expect.any(Object),
+          permissions: {
+            canManageProject: true,
+          },
         })
       );
     });

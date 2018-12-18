@@ -28,6 +28,10 @@ query ProjectQuery($projectKey: String!) {
       canViewPayments
       canManagePayments
     }
+    allAppliedPermissions {
+      name
+      value
+    }
     owner {
       id
       name
