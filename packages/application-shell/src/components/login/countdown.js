@@ -5,12 +5,13 @@ import InfoDialog from '../../from-core/info-dialog';
 import messages from './messages';
 
 const initialCount = 3;
+const countInterval = process.NODE_ENV === 'test' ? 1 : 1000;
 
 export class Countdown extends React.PureComponent {
   static displayName = 'Countdown';
 
   static propTypes = {
-    redirectTo: PropTypes.func.isRequired,
+    onCountEnd: PropTypes.func.isRequired,
   };
 
   state = {
@@ -20,7 +21,7 @@ export class Countdown extends React.PureComponent {
 
   componentDidUpdate() {
     if (this.state.countdown === 0) {
-      this.props.redirectTo();
+      this.props.onCountEnd();
     }
   }
 
@@ -39,7 +40,7 @@ export class Countdown extends React.PureComponent {
           countdown: nextCountDown > 0 ? nextCountDown : 0,
         };
       });
-    }, 1000);
+    }, countInterval);
   };
 
   closeRedirectDialog = () => {

@@ -219,10 +219,9 @@ export class Login extends React.PureComponent {
                 </Spacings.Inline>
 
                 <Countdown
-                  redirectTo={() =>
+                  onCountEnd={() =>
                     redirect(`${this.props.adminCenterUrl}/reset-password`)
                   }
-                  isDisabled={this.state.loading}
                 >
                   {({ handleClick }) => (
                     <a

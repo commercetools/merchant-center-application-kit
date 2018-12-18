@@ -1,6 +1,11 @@
 import React from 'react';
 // import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import { renderWithRedux, waitForElement, fireEvent } from '../../test-utils';
+import {
+  renderWithRedux,
+  wait,
+  waitForElement,
+  fireEvent,
+} from '../../test-utils';
 import Login from './login';
 
 jest.mock('@commercetools-frontend/storage');
@@ -15,12 +20,6 @@ const createTestProps = props => ({
 
 // TODO: write new tests for the login interaction
 
-const delay = ms =>
-  new Promise(resolve => {
-    setTimeout(resolve, ms);
-  });
-
-/* New tests with react-testing-library */
 describe('reset password flow', () => {
   beforeEach(() => {
     window.location.replace = jest.fn();
@@ -41,10 +40,10 @@ describe('reset password flow', () => {
       )
     );
 
-    await delay(4000); // the countdown is 3 secods, we wait a bit more just to be sure
-
-    expect(window.location.replace).toHaveBeenCalledWith(
-      'http://ac.com/reset-password'
-    );
+    await wait(() => {
+      expect(window.location.replace).toHaveBeenCalledWith(
+        'http://ac.com/reset-password'
+      );
+    });
   });
 });
