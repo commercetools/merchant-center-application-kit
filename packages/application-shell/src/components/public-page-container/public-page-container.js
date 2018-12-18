@@ -9,22 +9,24 @@ import messages from './messages';
 const year = new Date().getUTCFullYear();
 
 const PublicPageContainer = props => (
-  <div className={styles.container}>
-    <div className={styles.login}>
-      <Spacings.Stack scale="m">
-        <PortalsContainer />
-        {props.children}
-        <div className={styles.footer}>
-          <a href={`https://commercetools.com/privacy`} target="_blank">
-            <Text.Detail>
-              <FormattedMessage {...messages.privacyPolicy} />
-            </Text.Detail>
-          </a>
-          <Text.Detail>{`${year} © commercetools`}</Text.Detail>
-        </div>
-      </Spacings.Stack>
+  <React.Fragment>
+    <PortalsContainer />
+    <div className={styles.container}>
+      <div className={styles.login}>
+        <Spacings.Stack scale="m">
+          {props.children}
+          <div className={styles.footer}>
+            <a href={`https://commercetools.com/privacy`} target="_blank">
+              <Text.Detail>
+                <FormattedMessage {...messages.privacyPolicy} />
+              </Text.Detail>
+            </a>
+            <Text.Detail>{`${year} © commercetools`}</Text.Detail>
+          </div>
+        </Spacings.Stack>
+      </div>
     </div>
-  </div>
+  </React.Fragment>
 );
 PublicPageContainer.displayName = 'PublicPageContainer';
 PublicPageContainer.propTypes = {

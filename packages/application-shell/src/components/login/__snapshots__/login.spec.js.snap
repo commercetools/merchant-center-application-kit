@@ -86,19 +86,12 @@ exports[`rendering should match tree 1`] = `
               tone="primary"
             />
           </div>
-          <a
-            className="forgot-pw"
-            data-track-component="ForgotPassword"
-            data-track-event="click"
-            onClick={[Function]}
+          <Contdown
+            isDisabled={false}
+            redirectTo={[Function]}
           >
-            <FormattedMessage
-              defaultMessage="Forgot password?"
-              description="The lable of the forgot password link"
-              id="LoginForm.forgotPassword"
-              values={Object {}}
-            />
-          </a>
+            <Component />
+          </Contdown>
         </Stack>
       </fieldset>
     </form>

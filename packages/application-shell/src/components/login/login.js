@@ -10,11 +10,11 @@ import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { Notification } from '@commercetools-frontend/react-notifications';
-import InfoDialog from '../../from-core/info-dialog';
 import Title from '../../from-core/title';
 import { STORAGE_KEYS } from '../../constants';
 import PublicPageContainer from '../public-page-container';
 import LoginBox from '../login-box';
+import Countdown from './countdown';
 import styles from './login.mod.css';
 import messages from './messages';
 
@@ -37,6 +37,7 @@ export class Login extends React.PureComponent {
     // Injected
     requestAccessToken: PropTypes.func.isRequired,
     adminCenterUrl: PropTypes.string.isRequired,
+    redirectTo: PropTypes.func.isRequired,
     intl: PropTypes.shape({
       formatMessage: PropTypes.func.isRequired,
     }).isRequired,
@@ -46,32 +47,11 @@ export class Login extends React.PureComponent {
     loading: false,
     email: null,
     password: null,
-    countdown: 10,
-    showRedirectDialog: null,
-    shouldRedirectPasswordForgot: false,
     error: this.props.location.query.reason,
-  };
-
-  redirectTo = targetUrl => {
-    window.location.replace(targetUrl);
   };
 
   componentDidMount = () => {
     this.email.focus();
-  };
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return prevState.error === LOGOUT_REASONS.NO_PROJECTS &&
-      !prevState.showRedirectDialog
-      ? {
-          showRedirectDialog: true,
-          countdown: 10,
-        }
-      : null;
-  }
-
-  componentWillUnmount = () => {
-    clearInterval(this.interval);
   };
 
   handleSubmit = event => {
@@ -99,15 +79,15 @@ export class Login extends React.PureComponent {
           if (nextTargetUrlObject.hostname === window.location.hostname) {
             // We force a browser redirect, to let the proxy server handle
             // the new request URL.
-            this.redirectTo(nextTargetUrl);
+            this.props.redirectTo(nextTargetUrl);
           } else {
             // If the redirect url does not match the hostname, we discard it and
             // redirect to the root path.
-            this.redirectTo(defaultTargetUrl);
+            this.props.redirectTo(defaultTargetUrl);
           }
         } catch (error) {
           // Fallback to normal redirect, in case the target url cannot be parsed
-          this.redirectTo(defaultTargetUrl);
+          this.props.redirectTo(defaultTargetUrl);
         }
       })
       .catch(error => {
@@ -133,6 +113,7 @@ export class Login extends React.PureComponent {
     } = event;
     this.setState({ [name]: value });
   };
+
   handleKeyPress = event => {
     if (event.keyCode === 13) this.handleSubmit(event);
   };
@@ -184,72 +165,9 @@ export class Login extends React.PureComponent {
     }
   };
 
-  renderForgotPasswordModal = () => {
-    if (!this.state.shouldRedirectPasswordForgot) return null;
-
-    return this.renderCountdownAlert(
-      `${this.props.adminCenterUrl}/reset-password`,
-      'forgotPassowordTitle',
-      'forgotPassowordSubtitle'
-    );
-  };
-
-  renderCountdownAlert = (redirectTo, titleKey, subtitleKey) => {
-    if (this.state.countdown === 0) {
-      clearInterval(this.interval);
-      window.location = redirectTo;
-    }
-
-    if (this.state.countdown === 10)
-      this.interval = setInterval(this.tickCountdown, 1000);
-
-    return (
-      <InfoDialog
-        isOpen={true}
-        overlayClassName={styles.overlay}
-        onClose={this.closeRedirectDialog}
-      >
-        <InfoDialog.Title>
-          <FormattedMessage {...messages[titleKey]} />
-        </InfoDialog.Title>
-        <InfoDialog.Body>
-          <FormattedMessage
-            {...messages[subtitleKey]}
-            values={{ countdown: this.state.countdown }}
-          />
-        </InfoDialog.Body>
-      </InfoDialog>
-    );
-  };
-
-  redirectToForgotPassword = event => {
-    event.preventDefault();
-    this.setState({
-      shouldRedirectPasswordForgot: true,
-      countdown: 10,
-    });
-  };
-
-  tickCountdown = () => {
-    this.setState(prevState => ({
-      countdown: prevState.countdown - 1,
-    }));
-  };
-
-  closeRedirectDialog = () => {
-    clearInterval(this.interval);
-    this.setState({
-      showRedirectDialog: false,
-      shouldRedirectPasswordForgot: false,
-      countdown: 10,
-    });
-  };
-
   render = () => (
     <PublicPageContainer>
       <LoginBox>
-        {this.renderForgotPasswordModal()}
-
         <form
           onSubmit={this.handleSubmit}
           onChange={this.handleInputChange}
@@ -304,20 +222,27 @@ export class Login extends React.PureComponent {
                 />
               </div>
 
-              <a
-                className={classnames(styles['forgot-pw'], {
-                  [styles.disabled]: this.state.loading,
-                })}
-                data-track-component="ForgotPassword"
-                data-track-event="click"
-                onClick={event =>
-                  !this.state.loading
-                    ? this.redirectToForgotPassword(event)
-                    : null
+              <Countdown
+                redirectTo={() =>
+                  this.props.redirectTo(
+                    `${this.props.adminCenterUrl}/reset-password`
+                  )
                 }
+                isDisabled={this.state.loading}
               >
-                <FormattedMessage {...messages.forgotPassword} />
-              </a>
+                {({ handleClick }) => (
+                  <a
+                    className={classnames(styles['forgot-pw'], {
+                      [styles.disabled]: this.state.loading,
+                    })}
+                    data-track-component="ForgotPassword"
+                    data-track-event="click"
+                    onClick={handleClick}
+                  >
+                    <FormattedMessage {...messages.forgotPassword} />
+                  </a>
+                )}
+              </Countdown>
             </Spacings.Stack>
           </fieldset>
         </form>
@@ -335,6 +260,7 @@ export default compose(
   injectIntl,
   withApplicationContext(({ environment }) => ({
     adminCenterUrl: environment.adminCenterUrl,
+    redirectTo: targetUrl => window.location.replace(targetUrl),
   })),
   connect(
     null,
