@@ -68,6 +68,11 @@ export default defineMessages({
   },
 
   // Error messages
+  invalidEmail: {
+    id: 'LoginForm.invalidEmail',
+    description: 'User credentials are wrong or invalid',
+    defaultMessage: 'Please enter a valid Email address.',
+  },
   InvalidCredentials: {
     id: 'LoginForm.InvalidCredentials',
     description: 'User credentials are wrong or invalid',

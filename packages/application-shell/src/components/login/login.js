@@ -140,6 +140,15 @@ export class Login extends React.PureComponent {
     }
   };
 
+  renderEmailErrors = key => {
+    switch (key) {
+      case 'invalid':
+        return <FormattedMessage {...messages.invalidEmail} />;
+      default:
+        return null;
+    }
+  };
+
   render = () => (
     <PublicPageContainer>
       <Formik
@@ -180,6 +189,7 @@ export class Login extends React.PureComponent {
                   onChange={formikProps.handleChange}
                   onBlur={formikProps.handleBlur}
                   isDisabled={formikProps.isSubmitting}
+                  renderError={this.renderEmailErrors}
                 />
                 <TextField
                   name="password"
