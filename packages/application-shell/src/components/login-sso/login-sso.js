@@ -2,14 +2,15 @@ import querystring from 'querystring';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { compose, withProps } from 'recompose';
-import { Formik, Field } from 'formik';
+import { compose } from 'recompose';
+import { Formik } from 'formik';
 import uuid from 'uuid/v4';
 import {
   Text,
   PrimaryButton,
   Spacings,
-  ErrorMessage,
+  TextField,
+  ContentNotification,
 } from '@commercetools-frontend/ui-kit';
 import {
   joinPaths,
@@ -17,13 +18,11 @@ import {
 } from '@commercetools-frontend/url-utils';
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { connect } from 'react-redux';
-import { Notification } from '@commercetools-frontend/react-notifications';
 import { ORGANIZATION_GENERAL_ERROR, STORAGE_KEYS } from '../../constants';
-import LabelField from '../../from-core/label-field';
-import Title from '../../from-core/title';
 import PublicPageContainer from '../public-page-container';
 import LoginBox from '../login-box';
 import messages from './messages';
+import { validate } from './validations';
 
 export const getMessageKeyForError = error => {
   switch (error) {
@@ -49,6 +48,10 @@ function generateAndCacheNonceWithState(state) {
   return nonce;
 }
 
+const originUrl = window.location.origin;
+
+const redirect = targetUrl => window.location.replace(targetUrl);
+
 export class LoginSSO extends React.PureComponent {
   static displayName = 'LoginSSO';
   static propTypes = {
@@ -58,21 +61,7 @@ export class LoginSSO extends React.PureComponent {
     intl: PropTypes.shape({
       formatMessage: PropTypes.func.isRequired,
     }).isRequired,
-    originUrl: PropTypes.string.isRequired,
-    redirectTo: PropTypes.func.isRequired,
     getOrganizationByName: PropTypes.func.isRequired,
-  };
-  initialFormValues = {
-    organizationName: '',
-  };
-  handleValidation = values => {
-    const errors = {};
-    if (!values.organizationName) {
-      errors.organizationName = this.props.intl.formatMessage(
-        messages.required
-      );
-    }
-    return errors;
   };
   handleSubmit = (values, actions) => {
     this.props.getOrganizationByName(values.organizationName).then(
@@ -92,13 +81,13 @@ export class LoginSSO extends React.PureComponent {
             // will consider the full URL to match as part of the callback whitelist.
             // Instead, we store additional information within the `nonce` value
             // which is stored in sessionStorage. See `generateAndCacheNonceWithState`.
-            joinPaths(this.props.originUrl, this.props.match.url, `callback`)
+            joinPaths(originUrl, this.props.match.url, `callback`)
           ),
           nonce: generateAndCacheNonceWithState({
             organizationId: authProvider.organizationId,
           }),
         });
-        this.props.redirectTo(`${authProvider.authorizeUrl}?${params}`);
+        redirect(`${authProvider.authorizeUrl}?${params}`);
       },
       error => {
         actions.setSubmitting(false);
@@ -116,74 +105,71 @@ export class LoginSSO extends React.PureComponent {
       <PublicPageContainer>
         <LoginBox>
           <Formik
-            initialValues={this.initialFormValues}
-            validateOnBlur={false}
-            validate={this.handleValidation}
+            initialValues={{ organizationName: '' }}
+            validate={validate}
             onSubmit={this.handleSubmit}
             render={formikProps => {
               const errorMessageKey = getMessageKeyForError(
                 formikProps.status && formikProps.status.errorMessage
               );
               return (
-                <Spacings.Stack scale="m">
-                  {formikProps.status && formikProps.status.errorMessage ? (
-                    <Notification type="error" domain="side" fixed={true}>
-                      <Text.Body>
-                        {messages[errorMessageKey] ? (
-                          <FormattedMessage {...messages[errorMessageKey]} />
-                        ) : (
-                          formikProps.status.errorMessage
-                        )}
-                      </Text.Body>
-                      {messages[`${errorMessageKey}Secondary`] ? (
-                        <Text.Body>
-                          <FormattedMessage
-                            {...messages[`${errorMessageKey}Secondary`]}
-                          />
-                        </Text.Body>
-                      ) : null}
-                    </Notification>
-                  ) : null}
-                  <Title>
-                    <FormattedMessage {...messages.title} />
-                  </Title>
-                  <div>
-                    <LabelField
-                      title={<FormattedMessage {...messages.organization} />}
-                      subtitle={
-                        <FormattedMessage {...messages.caseSensitive} />
-                      }
-                      isRequired={true}
-                    />
-                    <Field
-                      type="text"
+                <form onSubmit={formikProps.handleSubmit}>
+                  <Spacings.Stack scale="m">
+                    {formikProps.status && formikProps.status.errorMessage ? (
+                      <ContentNotification type="error">
+                        <Spacings.Stack scale="s">
+                          <Text.Body>
+                            {messages[errorMessageKey] ? (
+                              <FormattedMessage
+                                {...messages[errorMessageKey]}
+                              />
+                            ) : (
+                              formikProps.status.errorMessage
+                            )}
+                          </Text.Body>
+                          {messages[`${errorMessageKey}Secondary`] ? (
+                            <Text.Body>
+                              <FormattedMessage
+                                {...messages[`${errorMessageKey}Secondary`]}
+                              />
+                            </Text.Body>
+                          ) : null}
+                        </Spacings.Stack>
+                      </ContentNotification>
+                    ) : null}
+                    <Text.Subheadline elementType="h3">
+                      <FormattedMessage {...messages.title} />
+                    </Text.Subheadline>
+                    <TextField
                       name="organizationName"
-                      value={formikProps.values.organizationName}
-                      onChange={event => {
-                        formikProps.setFieldValue(
-                          'organizationName',
-                          event.target.value
-                        );
-                        formikProps.setFieldTouched('organizationName', true);
-                      }}
-                    />
-                    {formikProps.touched.organizationName &&
-                      formikProps.errors.organizationName && (
-                        <ErrorMessage>
-                          {formikProps.errors.organizationName}
-                        </ErrorMessage>
+                      title={this.props.intl.formatMessage(
+                        messages.organization
                       )}
-                  </div>
-                  <div>
-                    <PrimaryButton
-                      label={this.props.intl.formatMessage(messages.proceed)}
-                      onClick={formikProps.handleSubmit}
-                      isDisabled={
-                        !formikProps.isValid || formikProps.isSubmitting
-                      }
+                      hint={this.props.intl.formatMessage(
+                        messages.caseSensitive
+                      )}
+                      isAutofocussed={true}
+                      isRequired={true}
+                      value={formikProps.values.organizationName}
+                      touched={formikProps.touched.organizationName}
+                      errors={formikProps.errors.organizationName}
+                      onChange={formikProps.handleChange}
+                      onBlur={formikProps.handleBlur}
+                      isDisabled={formikProps.isSubmitting}
                     />
-                  </div>
-                </Spacings.Stack>
+                    <Spacings.Inline>
+                      {/* FIXME: the <PrimaryButton> current does not behave like a
+                      "submit" button, making it impossible to handle "submit on enter".
+                      Once that is fixed in the underlying component, the "submit on enter"
+                      will work. */}
+                      <PrimaryButton
+                        label={this.props.intl.formatMessage(messages.proceed)}
+                        onClick={formikProps.handleSubmit}
+                        isDisabled={formikProps.isSubmitting}
+                      />
+                    </Spacings.Inline>
+                  </Spacings.Stack>
+                </form>
               );
             }}
           />
@@ -200,10 +186,6 @@ const mapDispatchToProps = dispatch => ({
 
 export default compose(
   injectIntl,
-  withProps(() => ({
-    originUrl: window.location.origin,
-    redirectTo: target => window.location.replace(target),
-  })),
   connect(
     null,
     mapDispatchToProps

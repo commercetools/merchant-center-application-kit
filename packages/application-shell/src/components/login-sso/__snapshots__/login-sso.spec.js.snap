@@ -1,50 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`rendering <Formik> form elements should match layout 1`] = `
-<div
-  className="stack-mod_m__3s4LT stack-mod_stretch__1Ck4r"
+<form
+  onSubmit={[MockFunction]}
 >
-  <Title>
-    <FormattedMessage
-      defaultMessage="Sign in to your Organization"
-      id="Login.sso.title"
-      values={Object {}}
-    />
-  </Title>
-  <div>
-    <LabelField
+  <Stack
+    alignItems="stretch"
+    scale="m"
+  >
+    <TextSubheadline
+      elementType="h3"
+    >
+      <FormattedMessage
+        defaultMessage="Sign in to your Organization"
+        id="Login.sso.title"
+        values={Object {}}
+      />
+    </TextSubheadline>
+    <TextField
+      hint="Login.sso.caseSensitive"
+      horizontalConstraint="scale"
+      isAutofocussed={true}
+      isDisabled={false}
       isRequired={true}
-      subtitle={
-        <FormattedMessage
-          defaultMessage="This field is case sensitive"
-          id="Login.sso.caseSensitive"
-          values={Object {}}
-        />
-      }
-      title={
-        <FormattedMessage
-          defaultMessage="Enter your Organization's name to sign in"
-          id="Login.sso.organization"
-          values={Object {}}
-        />
-      }
-    />
-    <FormikConnect(FieldInner)
       name="organizationName"
-      onChange={[Function]}
-      type="text"
+      title="Login.sso.organization"
       value=""
     />
-  </div>
-  <div>
-    <PrimaryButton
-      isDisabled={true}
-      isToggleButton={false}
-      label="Login.sso.proceed"
-      onClick={[MockFunction]}
-      size="big"
-      tone="primary"
-    />
-  </div>
-</div>
+    <Inline
+      alignItems="flexStart"
+      scale="s"
+    >
+      <PrimaryButton
+        isDisabled={false}
+        isToggleButton={false}
+        label="Login.sso.proceed"
+        onClick={[MockFunction]}
+        size="big"
+        tone="primary"
+      />
+    </Inline>
+  </Stack>
+</form>
 `;

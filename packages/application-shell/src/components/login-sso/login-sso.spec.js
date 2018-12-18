@@ -2,9 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Formik } from 'formik';
 import {
+  ContentNotification,
   PrimaryButton,
   Text,
-  ErrorMessage,
 } from '@commercetools-frontend/ui-kit';
 import { ORGANIZATION_GENERAL_ERROR } from '../../constants';
 import { LoginSSO, getMessageKeyForError } from './login-sso';
@@ -16,8 +16,6 @@ const createTestProps = props => ({
   intl: {
     formatMessage: jest.fn(message => message.id),
   },
-  originUrl: 'http://mc.ct.com',
-  redirectTo: jest.fn(),
   getOrganizationByName: jest.fn(),
   ...props,
 });
@@ -42,6 +40,7 @@ describe('rendering', () => {
   let wrapper;
   let props;
   beforeEach(() => {
+    window.location.replace = jest.fn();
     props = createTestProps();
     wrapper = shallow(<LoginSSO {...props} />);
   });
@@ -54,13 +53,9 @@ describe('rendering', () => {
   });
   describe('<Formik>', () => {
     it('should pass initial form values', () => {
-      expect(wrapper.find(Formik)).toHaveProp(
-        'initialValues',
-        wrapper.instance().initialFormValues
-      );
-    });
-    it('should disable validation on blur', () => {
-      expect(wrapper.find(Formik)).toHaveProp('validateOnBlur', false);
+      expect(wrapper.find(Formik)).toHaveProp('initialValues', {
+        organizationName: '',
+      });
     });
     describe('form elements', () => {
       let formikProps;
@@ -79,22 +74,6 @@ describe('rendering', () => {
           formikRenderWrapper.find({ name: 'organizationName' })
         ).toHaveProp('value', '');
       });
-      describe('when organizationName is not valid', () => {
-        beforeEach(() => {
-          formikProps = createTestPropsForFormik({
-            touched: { organizationName: true },
-            errors: { organizationName: 'Required field' },
-          });
-          formikRenderWrapper = shallow(
-            wrapper.find(Formik).prop('render')(formikProps)
-          );
-        });
-        it('should render error message', () => {
-          expect(formikRenderWrapper).toContainReact(
-            <ErrorMessage>{'Required field'}</ErrorMessage>
-          );
-        });
-      });
       describe('general error message', () => {
         describe('when form status contains error message', () => {
           describe('when error message is matching the key ORGANIZATION_GENERAL_ERROR', () => {
@@ -106,8 +85,8 @@ describe('rendering', () => {
                 wrapper.find(Formik).prop('render')(formikProps)
               );
             });
-            it('should render <Notification>', () => {
-              expect(formikRenderWrapper).toRender('Notification');
+            it('should render <ContentNotification>', () => {
+              expect(formikRenderWrapper).toRender(ContentNotification);
             });
             it('should render message with matching key', () => {
               expect(formikRenderWrapper).toRender({
@@ -129,8 +108,8 @@ describe('rendering', () => {
                 wrapper.find(Formik).prop('render')(formikProps)
               );
             });
-            it('should render <Notification>', () => {
-              expect(formikRenderWrapper).toRender('Notification');
+            it('should render <ContentNotification>', () => {
+              expect(formikRenderWrapper).toRender(ContentNotification);
             });
             it('should render error message as-is', () => {
               expect(formikRenderWrapper).toContainReact(
@@ -146,22 +125,6 @@ describe('rendering', () => {
         });
       });
       describe('submit button', () => {
-        describe('when form is not valid', () => {
-          beforeEach(() => {
-            formikProps = createTestPropsForFormik({
-              isValid: false,
-            });
-            formikRenderWrapper = shallow(
-              wrapper.find(Formik).prop('render')(formikProps)
-            );
-          });
-          it('should disable button', () => {
-            expect(formikRenderWrapper.find(PrimaryButton)).toHaveProp(
-              'isDisabled',
-              true
-            );
-          });
-        });
         describe('when form is valid', () => {
           describe('when form is submitting', () => {
             beforeEach(() => {
@@ -235,24 +198,24 @@ describe('interaction', () => {
           );
         });
         it('should build authorize URL', () => {
-          expect(props.redirectTo).toHaveBeenCalledWith(
+          expect(window.location.replace).toHaveBeenCalledWith(
             expect.stringContaining('https://auth0.ct.com/authorize')
           );
         });
         it('should build authorize URL with scope param', () => {
-          expect(props.redirectTo).toHaveBeenCalledWith(
+          expect(window.location.replace).toHaveBeenCalledWith(
             expect.stringContaining(
               `scope=${encodeURIComponent('openid email profile')}`
             )
           );
         });
         it('should build authorize URL with response_type param', () => {
-          expect(props.redirectTo).toHaveBeenCalledWith(
+          expect(window.location.replace).toHaveBeenCalledWith(
             expect.stringContaining('response_type=id_token')
           );
         });
         it('should build authorize URL with client_id param', () => {
-          expect(props.redirectTo).toHaveBeenCalledWith(
+          expect(window.location.replace).toHaveBeenCalledWith(
             expect.stringContaining('client_id=123')
           );
         });
@@ -263,7 +226,7 @@ describe('interaction', () => {
           );
         });
         it('should build authorize URL with nonce param', () => {
-          expect(props.redirectTo).toHaveBeenCalledWith(
+          expect(window.location.replace).toHaveBeenCalledWith(
             expect.stringContaining('nonce=foo-uuid')
           );
         });
@@ -315,22 +278,6 @@ describe('interaction', () => {
             errorMessage: 'Oops',
           });
         });
-      });
-    });
-  });
-});
-
-describe('validation', () => {
-  let wrapper;
-  let props;
-  beforeEach(() => {
-    props = createTestProps();
-    wrapper = shallow(<LoginSSO {...props} />);
-  });
-  describe('missing organization name', () => {
-    it('should return an error', () => {
-      expect(wrapper.instance().handleValidation({})).toEqual({
-        organizationName: 'Validation.required',
       });
     });
   });

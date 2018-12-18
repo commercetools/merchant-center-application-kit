@@ -1,3 +1,4 @@
+import omitEmpty from 'omit-empty';
 import { TextInput } from '@commercetools-frontend/ui-kit';
 
 // Source: https://emailregex.com/
@@ -17,5 +18,5 @@ export const validate = values => {
   }
   if (TextInput.isEmpty(values.password)) errorsByField.password.missing = true;
 
-  return errorsByField;
+  return omitEmpty(errorsByField);
 };
