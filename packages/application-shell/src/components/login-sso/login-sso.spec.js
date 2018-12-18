@@ -1,7 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Formik } from 'formik';
-import { PrimaryButton, Text } from '@commercetools-frontend/ui-kit';
+import {
+  PrimaryButton,
+  Text,
+  ErrorMessage,
+} from '@commercetools-frontend/ui-kit';
 import { ORGANIZATION_GENERAL_ERROR } from '../../constants';
 import { LoginSSO, getMessageKeyForError } from './login-sso';
 
@@ -87,7 +91,7 @@ describe('rendering', () => {
         });
         it('should render error message', () => {
           expect(formikRenderWrapper).toContainReact(
-            <p className="error">{'Required field'}</p>
+            <ErrorMessage>{'Required field'}</ErrorMessage>
           );
         });
       });

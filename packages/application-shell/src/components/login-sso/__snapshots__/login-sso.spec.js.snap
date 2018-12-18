@@ -30,7 +30,6 @@ exports[`rendering <Formik> form elements should match layout 1`] = `
       }
     />
     <FormikConnect(FieldInner)
-      className="input-text"
       name="organizationName"
       onChange={[Function]}
       type="text"

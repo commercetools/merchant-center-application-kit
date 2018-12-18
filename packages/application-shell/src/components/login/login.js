@@ -2,23 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { compose } from 'recompose';
-import classnames from 'classnames';
+import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
-import { Spacings, PrimaryButton } from '@commercetools-frontend/ui-kit';
+import {
+  Spacings,
+  Text,
+  TextField,
+  ContentNotification,
+  PrimaryButton,
+} from '@commercetools-frontend/ui-kit';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { Notification } from '@commercetools-frontend/react-notifications';
-import Title from '../../from-core/title';
 import { STORAGE_KEYS } from '../../constants';
 import PublicPageContainer from '../public-page-container';
 import LoginBox from '../login-box';
 import Countdown from './countdown';
-import styles from './login.mod.css';
 import messages from './messages';
+import { validate } from './validations';
 
 const defaultTargetUrl = window.location.origin;
+
+const redirect = targetUrl => window.location.replace(targetUrl);
 
 export class Login extends React.PureComponent {
   static displayName = 'Login';
@@ -37,35 +43,23 @@ export class Login extends React.PureComponent {
     // Injected
     requestAccessToken: PropTypes.func.isRequired,
     adminCenterUrl: PropTypes.string.isRequired,
-    redirectTo: PropTypes.func.isRequired,
     intl: PropTypes.shape({
       formatMessage: PropTypes.func.isRequired,
     }).isRequired,
   };
 
   state = {
-    loading: false,
-    email: null,
-    password: null,
     error: this.props.location.query.reason,
   };
 
-  componentDidMount = () => {
-    this.email.focus();
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    this.setState({ loading: true });
-
-    this.props
-      .requestAccessToken({
-        email: this.state.email,
-        password: this.state.password,
+  handleSubmit = (formValues, addHandlers) =>
+    addHandlers(
+      this.props.requestAccessToken({
+        email: formValues.email,
+        password: formValues.password,
       })
+    )
       .then(() => {
-        this.setState({ loading: false });
         // Set a flag to indicate that the user has been authenticated
         storage.put(STORAGE_KEYS.IS_AUTHENTICATED, true);
         // Ensure to remove the IdP Url value from local storage, as in this
@@ -79,15 +73,15 @@ export class Login extends React.PureComponent {
           if (nextTargetUrlObject.hostname === window.location.hostname) {
             // We force a browser redirect, to let the proxy server handle
             // the new request URL.
-            this.props.redirectTo(nextTargetUrl);
+            redirect(nextTargetUrl);
           } else {
             // If the redirect url does not match the hostname, we discard it and
             // redirect to the root path.
-            this.props.redirectTo(defaultTargetUrl);
+            redirect(defaultTargetUrl);
           }
         } catch (error) {
           // Fallback to normal redirect, in case the target url cannot be parsed
-          this.props.redirectTo(defaultTargetUrl);
+          redirect(defaultTargetUrl);
         }
       })
       .catch(error => {
@@ -98,155 +92,143 @@ export class Login extends React.PureComponent {
           if (code === 'LockedAccount') {
             this.props.history.push('/login/locked');
           } else {
-            this.setState({
-              loading: false,
-              error: LOGOUT_REASONS.INVALID,
-            });
+            this.setState({ error: LOGOUT_REASONS.INVALID });
           }
         }
       });
-  };
 
-  handleInputChange = event => {
-    const {
-      target: { name, value },
-    } = event;
-    this.setState({ [name]: value });
-  };
+  renderErrorMessage = error => {
+    if (!error) return null;
 
-  handleKeyPress = event => {
-    if (event.keyCode === 13) this.handleSubmit(event);
-  };
-
-  renderErrorMessage = () => {
-    if (!this.state.error) return null;
-
-    switch (this.state.error) {
+    switch (error) {
       case LOGOUT_REASONS.NO_PROJECTS: {
         const link = (
-          <a
-            href={`${this.props.adminCenterUrl}/login`}
-            target="_blank"
-            className={styles.underline}
-          >
+          <a href={`${this.props.adminCenterUrl}/login`} target="_blank">
             <FormattedMessage {...messages.noProjectsLink} />
           </a>
         );
         return (
-          <Notification type="error" domain="side" fixed={true}>
+          <ContentNotification type="error">
             <FormattedMessage {...messages.noProjectsTitle} values={{ link }} />
-          </Notification>
+          </ContentNotification>
         );
       }
       case LOGOUT_REASONS.USER:
         return (
-          <Notification type="success" domain="side" fixed={true}>
+          <ContentNotification type="success">
             <FormattedMessage {...messages.logout} />
-          </Notification>
+          </ContentNotification>
         );
       case LOGOUT_REASONS.UNAUTHORIZED:
         return (
-          <Notification type="warning" domain="side" fixed={true}>
+          <ContentNotification type="warning">
             <FormattedMessage {...messages.unauthorized} />
-          </Notification>
+          </ContentNotification>
         );
       case LOGOUT_REASONS.INVALID:
         return (
-          <Notification type="error" domain="side" fixed={true}>
+          <ContentNotification type="error">
             <FormattedMessage {...messages.InvalidCredentials} />
-          </Notification>
+          </ContentNotification>
         );
       default:
         return (
-          <Notification type="error" domain="side" fixed={true}>
-            {this.state.error.message}
-          </Notification>
+          <ContentNotification type="error">
+            {error.message}
+          </ContentNotification>
         );
     }
   };
 
   render = () => (
     <PublicPageContainer>
-      <LoginBox>
-        <form
-          onSubmit={this.handleSubmit}
-          onChange={this.handleInputChange}
-          method="post"
-          className={styles.form}
-        >
-          {this.renderErrorMessage()}
-          <fieldset className={styles.fieldset}>
-            <Spacings.Stack scale="m">
-              <legend className={styles.title}>
-                <Title>
-                  <FormattedMessage {...messages.title} />
-                </Title>
-              </legend>
-
+      <Formik
+        initialValues={{ email: '', password: '' }}
+        validate={validate}
+        onSubmit={(values, formikBag) => {
+          const addHandlers = promise =>
+            promise.then(
+              result => {
+                formikBag.setSubmitting(false);
+                return result;
+              },
+              error => {
+                formikBag.setSubmitting(false);
+                throw error;
+              }
+            );
+          return this.handleSubmit(values, addHandlers);
+        }}
+        render={formikProps => (
+          <LoginBox>
+            <form onSubmit={formikProps.handleSubmit}>
               <Spacings.Stack scale="m">
-                <Spacings.Stack scale="s">
-                  <label className={styles.label} htmlFor="email">
-                    <FormattedMessage {...messages.email} />
-                  </label>
-                  <input
-                    className={styles['input-text']}
-                    type="text"
-                    name="email"
-                    ref={node => {
-                      this.email = node;
-                    }}
-                    onKeyDown={this.handleKeyPress}
-                  />
-                </Spacings.Stack>
-                <Spacings.Stack scale="s">
-                  <label className={styles.label} htmlFor="password">
-                    <FormattedMessage {...messages.password} />
-                  </label>
-                  <input
-                    className={styles['input-text']}
-                    type="password"
-                    name="password"
-                    onKeyDown={this.handleKeyPress}
-                  />
-                </Spacings.Stack>
-              </Spacings.Stack>
-
-              <div>
-                <PrimaryButton
-                  label={
-                    this.state.loading
-                      ? this.props.intl.formatMessage(messages.validating)
-                      : this.props.intl.formatMessage(messages.signin)
-                  }
-                  onClick={this.handleSubmit}
-                />
-              </div>
-
-              <Countdown
-                redirectTo={() =>
-                  this.props.redirectTo(
-                    `${this.props.adminCenterUrl}/reset-password`
-                  )
-                }
-                isDisabled={this.state.loading}
-              >
-                {({ handleClick }) => (
-                  <a
-                    className={classnames(styles['forgot-pw'], {
-                      [styles.disabled]: this.state.loading,
-                    })}
-                    data-track-component="ForgotPassword"
-                    data-track-event="click"
-                    onClick={handleClick}
-                  >
-                    <FormattedMessage {...messages.forgotPassword} />
-                  </a>
+                {this.renderErrorMessage(
+                  !formikProps.isSubmitting && this.state.error
                 )}
-              </Countdown>
-            </Spacings.Stack>
-          </fieldset>
-        </form>
-      </LoginBox>
+                <Text.Subheadline elementType="h3">
+                  <FormattedMessage {...messages.title} />
+                </Text.Subheadline>
+                <TextField
+                  name="email"
+                  title={this.props.intl.formatMessage(messages.email)}
+                  isAutofocussed={true}
+                  isRequired={true}
+                  value={formikProps.values.email}
+                  touched={formikProps.touched.email}
+                  errors={formikProps.errors.email}
+                  onChange={formikProps.handleChange}
+                  onBlur={formikProps.handleBlur}
+                  isDisabled={formikProps.isSubmitting}
+                />
+                <TextField
+                  name="password"
+                  title={this.props.intl.formatMessage(messages.password)}
+                  isRequired={true}
+                  value={formikProps.values.password}
+                  touched={formikProps.touched.password}
+                  errors={formikProps.errors.password}
+                  onChange={formikProps.handleChange}
+                  onBlur={formikProps.handleBlur}
+                  isDisabled={formikProps.isSubmitting}
+                />
+                <Spacings.Inline>
+                  {/* FIXME: the <PrimaryButton> current does not behave like a
+                  "submit" button, making it impossible to handle "submit on enter".
+                  Once that is fixed in the underlying component, the "submit on enter"
+                  will work. */}
+                  <PrimaryButton
+                    label={
+                      this.state.loading
+                        ? this.props.intl.formatMessage(messages.validating)
+                        : this.props.intl.formatMessage(messages.signin)
+                    }
+                    onClick={formikProps.handleSubmit}
+                    isDisabled={formikProps.isSubmitting}
+                  />
+                </Spacings.Inline>
+
+                <Countdown
+                  redirectTo={() =>
+                    redirect(`${this.props.adminCenterUrl}/reset-password`)
+                  }
+                  isDisabled={this.state.loading}
+                >
+                  {({ handleClick }) => (
+                    <a
+                      data-track-component="ForgotPassword"
+                      data-track-event="click"
+                      onClick={handleClick}
+                    >
+                      <FormattedMessage {...messages.forgotPassword} />
+                    </a>
+                  )}
+                </Countdown>
+              </Spacings.Stack>
+            </form>
+          </LoginBox>
+        )}
+      />
     </PublicPageContainer>
   );
 }
@@ -260,7 +242,6 @@ export default compose(
   injectIntl,
   withApplicationContext(({ environment }) => ({
     adminCenterUrl: environment.adminCenterUrl,
-    redirectTo: targetUrl => window.location.replace(targetUrl),
   })),
   connect(
     null,

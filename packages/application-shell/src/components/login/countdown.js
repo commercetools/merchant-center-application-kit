@@ -2,16 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import InfoDialog from '../../from-core/info-dialog';
-import styles from './login.mod.css';
 import messages from './messages';
 
 const initialCount = 3;
 
-export class Contdown extends React.PureComponent {
-  static displayName = 'Contdown';
+export class Countdown extends React.PureComponent {
+  static displayName = 'Countdown';
 
   static propTypes = {
-    isDisabled: PropTypes.bool.isRequired,
     redirectTo: PropTypes.func.isRequired,
   };
 
@@ -58,7 +56,6 @@ export class Contdown extends React.PureComponent {
         {this.props.children({ handleClick: this.openRedirectDialog })}
         <InfoDialog
           isOpen={this.state.isDialogOpen}
-          overlayClassName={styles.overlay}
           onClose={this.closeRedirectDialog}
         >
           <InfoDialog.Title>
@@ -73,4 +70,4 @@ export class Contdown extends React.PureComponent {
   }
 }
 
-export default Contdown;
+export default Countdown;

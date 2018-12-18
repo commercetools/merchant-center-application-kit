@@ -5,7 +5,12 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import { compose, withProps } from 'recompose';
 import { Formik, Field } from 'formik';
 import uuid from 'uuid/v4';
-import { Text, PrimaryButton, Spacings } from '@commercetools-frontend/ui-kit';
+import {
+  Text,
+  PrimaryButton,
+  Spacings,
+  ErrorMessage,
+} from '@commercetools-frontend/ui-kit';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
@@ -18,9 +23,7 @@ import LabelField from '../../from-core/label-field';
 import Title from '../../from-core/title';
 import PublicPageContainer from '../public-page-container';
 import LoginBox from '../login-box';
-import loginStyles from '../login/login.mod.css';
 import messages from './messages';
-import styles from './login-sso.mod.css';
 
 export const getMessageKeyForError = error => {
   switch (error) {
@@ -155,7 +158,6 @@ export class LoginSSO extends React.PureComponent {
                     <Field
                       type="text"
                       name="organizationName"
-                      className={loginStyles['input-text']}
                       value={formikProps.values.organizationName}
                       onChange={event => {
                         formikProps.setFieldValue(
@@ -167,9 +169,9 @@ export class LoginSSO extends React.PureComponent {
                     />
                     {formikProps.touched.organizationName &&
                       formikProps.errors.organizationName && (
-                        <p className={styles.error}>
+                        <ErrorMessage>
                           {formikProps.errors.organizationName}
-                        </p>
+                        </ErrorMessage>
                       )}
                   </div>
                   <div>
