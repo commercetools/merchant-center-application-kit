@@ -1,6 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
+import { renderWithRedux, waitForElement, fireEvent } from '../../test-utils';
 import { Login } from './login';
 
 jest.mock('@commercetools-frontend/storage');
@@ -14,6 +15,7 @@ const createTestProps = props => ({
   requestAccessToken: jest.fn(),
   // Injected
   adminCenterUrl: 'http://ac.com',
+  redirectTo: jest.fn(),
   intl: {
     formatMessage: jest.fn(message => message.id),
   },
@@ -21,7 +23,6 @@ const createTestProps = props => ({
 });
 
 const handleSubmitPreventDefaultMock = jest.fn();
-const forgotPasswordPreventDefaultMock = jest.fn();
 
 describe('rendering', () => {
   let wrapper;
@@ -49,10 +50,6 @@ describe('rendering', () => {
 
   it('should render password label', () => {
     expect(wrapper).toRender({ id: 'LoginForm.password' });
-  });
-
-  it('should render forgot password label', () => {
-    expect(wrapper).toRender({ id: 'LoginForm.forgotPassword' });
   });
 
   it('should render a <PrimaryButton>', () => {
@@ -184,9 +181,6 @@ describe('initial state', () => {
       loading: false,
       email: null,
       password: null,
-      countdown: 10,
-      showRedirectDialog: null,
-      shouldRedirectPasswordForgot: false,
       error: 'foo',
     });
   });
@@ -202,7 +196,6 @@ describe('requestAccessToken', () => {
         requestAccessToken: jest.fn(() => Promise.resolve()),
       });
       wrapper = shallow(<Login {...props} />);
-      wrapper.instance().redirectTo = jest.fn();
       wrapper.setState({ email: 'john@doe.com', password: 'secret' });
       wrapper.find('form').simulate('change', {
         target: {
@@ -242,7 +235,7 @@ describe('requestAccessToken', () => {
       });
     });
     it('should redirect to root path', () => {
-      expect(wrapper.instance().redirectTo).toHaveBeenLastCalledWith(
+      expect(props.redirectTo).toHaveBeenLastCalledWith(
         'https://mc.commercetools.com'
       );
     });
@@ -260,7 +253,6 @@ describe('requestAccessToken', () => {
         requestAccessToken: jest.fn(() => Promise.resolve()),
       });
       wrapper = shallow(<Login {...props} />);
-      wrapper.instance().redirectTo = jest.fn();
       wrapper.setState({ email: 'john@doe.com', password: 'secret' });
       wrapper.find('form').simulate('change', {
         target: {
@@ -298,7 +290,7 @@ describe('requestAccessToken', () => {
         simulateRedirectFor('/foo/bar'); // <-- missing origin, parsing it will throw
       });
       it('should redirect to default path', () => {
-        expect(wrapper.instance().redirectTo).toHaveBeenLastCalledWith(
+        expect(props.redirectTo).toHaveBeenLastCalledWith(
           'https://mc.commercetools.com'
         );
       });
@@ -308,7 +300,7 @@ describe('requestAccessToken', () => {
         simulateRedirectFor('https://foo.com/foo/bar');
       });
       it('should redirect to default path', () => {
-        expect(wrapper.instance().redirectTo).toHaveBeenLastCalledWith(
+        expect(props.redirectTo).toHaveBeenLastCalledWith(
           'https://mc.commercetools.com'
         );
       });
@@ -318,7 +310,7 @@ describe('requestAccessToken', () => {
         simulateRedirectFor('https://mc.commercetools.com/foo/bar');
       });
       it('should redirect to default path', () => {
-        expect(wrapper.instance().redirectTo).toHaveBeenLastCalledWith(
+        expect(props.redirectTo).toHaveBeenLastCalledWith(
           'https://mc.commercetools.com/foo/bar'
         );
       });
@@ -368,48 +360,31 @@ describe('requestAccessToken', () => {
   });
 });
 
-describe('ForgotPassword', () => {
-  describe('when login is not loading', () => {
-    let props;
-    let wrapper;
-    beforeEach(() => {
-      props = createTestProps();
-      wrapper = shallow(<Login {...props} />);
-    });
-    describe('when clicking "forgot password"', () => {
-      beforeEach(() => {
-        forgotPasswordPreventDefaultMock.mockClear();
-        const clickEvent = { preventDefault: forgotPasswordPreventDefaultMock };
-        wrapper.find('a').simulate('click', clickEvent);
-      });
-      it('preventDefault should be called', () => {
-        expect(forgotPasswordPreventDefaultMock).toHaveBeenCalledTimes(1);
-      });
-      it('should allow redirect', () => {
-        expect(wrapper.state('shouldRedirectPasswordForgot')).toBe(true);
-      });
-    });
+const delay = ms =>
+  new Promise(resolve => {
+    setTimeout(resolve, ms);
   });
-  describe('when login is loading', () => {
-    let props;
-    let wrapper;
-    beforeEach(() => {
-      props = createTestProps();
-      wrapper = shallow(<Login {...props} />);
-      wrapper.setState({ loading: true });
-    });
-    describe('when clicking "forgot password"', () => {
-      beforeEach(() => {
-        forgotPasswordPreventDefaultMock.mockClear();
-        const clickEvent = { preventDefault: forgotPasswordPreventDefaultMock };
-        wrapper.find('a').simulate('click', clickEvent);
-      });
-      it('preventDefault should not be called', () => {
-        expect(forgotPasswordPreventDefaultMock).toHaveBeenCalledTimes(0);
-      });
-      it('should not allow redirects', () => {
-        expect(wrapper.state('shouldRedirectPasswordForgot')).toBe(false);
-      });
-    });
+
+/* New tests with react-testing-library */
+describe('reset password flow', () => {
+  it('should open a dialog and redirect to the AC', async () => {
+    const props = createTestProps();
+    const { getByText } = renderWithRedux(<Login {...props} />);
+
+    await waitForElement(() => getByText(/Sign in to your account/));
+
+    fireEvent.click(getByText(/Forgot password/));
+
+    await waitForElement(() =>
+      getByText(
+        /We are redirecting you to the Forgot Password form in 3 seconds/
+      )
+    );
+
+    await delay(4000); // the countdown is 3 secods, we wait a bit more just to be sure
+
+    expect(props.redirectTo).toHaveBeenCalledWith(
+      `${props.adminCenterUrl}/reset-password`
+    );
   });
 });

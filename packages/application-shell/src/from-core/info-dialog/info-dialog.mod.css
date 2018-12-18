@@ -39,8 +39,19 @@
   transform: translateY(-50%) translateX(-50%);
 }
 
+/* ANIMATIONS */
+
 .transition-modal-overlay {
   composes: modal-overlay-base;
+  opacity: 0;
+}
+
+:global(.ReactModal__Overlay--after-open).transition-modal-overlay {
+  opacity: 1;
+  transition: opacity 150ms ease-in;
+}
+
+:global(.ReactModal__Overlay--before-close).transition-modal-overlay {
   opacity: 0;
 }
 
