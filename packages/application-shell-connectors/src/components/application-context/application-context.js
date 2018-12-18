@@ -44,13 +44,7 @@ const mapProjectToApplicationContextProject = project => {
 const mapProjectToApplicationContextPermissions = project => {
   if (!project) return null;
 
-  return project.allAppliedPermissions.reduce(
-    (appliedPermissions, appliedPermission) => ({
-      ...appliedPermissions,
-      [appliedPermission.name]: appliedPermission.value,
-    }),
-    {}
-  );
+  return project.permissions;
 };
 
 const createApplicationContext = defaultMemoize(
@@ -110,12 +104,7 @@ ApplicationContextProvider.propTypes = {
     owner: PropTypes.shape({
       id: PropTypes.string.isRequired,
     }).isRequired,
-    allAppliedPermissions: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        value: PropTypes.bool.isRequired,
-      })
-    ).isRequired,
+    permissions: PropTypes.object.isRequired,
     // ...plus other fields that we don't want to expose
   }),
   projectDataLocale: PropTypes.string,

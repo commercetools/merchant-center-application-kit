@@ -28,7 +28,7 @@ describe('rendering', () => {
             countries: ['us'],
             currencies: ['USD'],
             languages: ['en'],
-            allAppliedPermissions: [{ name: 'canManageProject', value: true }],
+            permissions: { canManageProject: true },
             // Fields that should not be exposed
             expiry: { isActive: false },
             suspension: { isActive: false },
