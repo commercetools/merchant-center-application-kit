@@ -4,8 +4,9 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import * as gtm from '../../utils/gtm';
 import trackingEvents from './tracking-events';
 import ButlerContainer from './butler-container';
+import pimIndexerStates from './pim-indexer-states';
 
-const QuickAccessModal = React.lazy(() =>
+const QuickAccess = React.lazy(() =>
   import('./quick-access' /* webpackChunkName: "quick-access" */)
 );
 
@@ -36,7 +37,7 @@ class QuickAccessContainer extends React.Component {
   }
 }
 
-export default class QuickAccessTrigger extends React.Component {
+export class QuickAccessTrigger extends React.Component {
   static displayName = 'QuickAccessTrigger';
 
   componentDidMount() {
@@ -61,6 +62,17 @@ export default class QuickAccessTrigger extends React.Component {
   state = {
     isVisible: false,
     hasError: false,
+    // We store the information of whether a project is indexed by pim-indexer,
+    // to avoid having to refetch that information every time Quick Access is
+    // opened. We can't move the information to the quick-access.js component
+    // as that component unmounts and would lose its state.
+    //
+    // We need to know whether a project is indexed by pim-indexer to know
+    // whether we should query pim-search or whether we can skip that request.
+    //
+    // We don't need to update this information when the project key changes,
+    // as changing a project always results in a full page reload anyways.
+    pimIndexerState: pimIndexerStates.UNCHECKED,
   };
 
   handler = event => {
@@ -124,8 +136,17 @@ export default class QuickAccessTrigger extends React.Component {
   render() {
     return this.state.isVisible && !this.state.hasError ? (
       <QuickAccessContainer>
-        <QuickAccessModal {...this.props} onClose={this.close} />
+        <QuickAccess
+          {...this.props}
+          onClose={this.close}
+          pimIndexerState={this.state.pimIndexerState}
+          onPimIndexerStateChange={pimIndexerState =>
+            this.setState({ pimIndexerState })
+          }
+        />
       </QuickAccessContainer>
     ) : null;
   }
 }
+
+export default QuickAccessTrigger;

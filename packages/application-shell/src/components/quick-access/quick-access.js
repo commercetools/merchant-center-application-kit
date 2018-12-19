@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
+import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import { injectFeatureToggles } from '@flopflip/react-broadcast';
 import { withApollo } from 'react-apollo';
+import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { oneLineTrim } from 'common-tags';
 import debounce from 'debounce-async';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -21,11 +23,16 @@ import {
 } from './sub-commands';
 import messages from './messages';
 import { saveHistory, loadHistory } from './history';
+import pimIndexerStates from './pim-indexer-states';
 
-const containsMatchByProductId = data => Boolean(data.productById);
-const containsMatchByProductKey = data => Boolean(data.productByKey);
-const containsMatchByVariantKey = data => Boolean(data.productByVariantKey);
-const containsMatchByVariantSku = data => Boolean(data.productByVariantSku);
+const containsMatchByProductId = data => Boolean(data && data.productById);
+const containsMatchesByProducstIds = data =>
+  Boolean(data && data.productsByIds);
+const containsMatchByProductKey = data => Boolean(data && data.productByKey);
+const containsMatchByVariantKey = data =>
+  Boolean(data && data.productByVariantKey);
+const containsMatchByVariantSku = data =>
+  Boolean(data && data.productByVariantSku);
 
 class QuickAccess extends React.Component {
   static displayName = 'QuickAccess';
@@ -35,6 +42,9 @@ class QuickAccess extends React.Component {
       languages: PropTypes.arrayOf(PropTypes.string).isRequired,
       permissions: PropTypes.object.isRequired,
     }),
+    pimIndexerState: PropTypes.oneOf(['UNCHECKED', 'INDEXED', 'NOT_INDEXED'])
+      .isRequired,
+    onPimIndexerStateChange: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
@@ -67,15 +77,45 @@ class QuickAccess extends React.Component {
     }).isRequired,
     projectDataLocale: PropTypes.string,
     onChangeProjectDataLocale: PropTypes.func,
+    pimSearchProductIds: PropTypes.func.isRequired,
+    getPimSearchStatus: PropTypes.func.isRequired,
   };
 
   state = {
     history: loadHistory(),
   };
 
+  componentDidMount() {
+    if (this.props.pimIndexerState === pimIndexerStates.UNCHECKED) {
+      this.getProjectIndexStatus().then(pimIndexerState =>
+        this.props.onPimIndexerStateChange(pimIndexerState)
+      );
+    }
+  }
+
   componentWillUnmount() {
     saveHistory(this.state.history);
   }
+
+  // This function is written with the assumption that a project (including the
+  // existence of a project) never changes without a full page reload.
+  // Otherwise we'd need to
+  // - ensure the response we receive belongs to the current project
+  // - refetch the pim search info when the project key changes
+  getProjectIndexStatus = async () => {
+    // skip when there is no project
+    if (!this.props.project) return pimIndexerStates.NOT_INDEXED;
+
+    const canViewProducts = hasSomePermissions(
+      [permissions.ViewProducts, permissions.ManageProducts],
+      this.props.project.permissions
+    );
+
+    // skip checking when user can't view products anyways
+    if (!canViewProducts) return pimIndexerStates.NOT_INDEXED;
+
+    return this.props.getPimSearchStatus();
+  };
 
   query = (Query, variables) =>
     this.props.client
@@ -93,14 +133,26 @@ class QuickAccess extends React.Component {
   };
 
   getProjectCommands = debounce(
-    searchText =>
-      this.query(QuickAccessQuery, {
+    async searchText => {
+      const idsOfProductsMatchingSearchText = this.props.pimIndexerState
+        ? await this.props.pimSearchProductIds(searchText)
+        : [];
+
+      const canViewProducts = hasSomePermissions(
+        [permissions.ViewProducts, permissions.ManageProducts],
+        this.props.project.permissions
+      );
+
+      return this.query(QuickAccessQuery, {
         searchText: sanitize(searchText),
         target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
         // Pass conditional arguments to disable some of the queries
-        canViewProducts: hasSomePermissions(
-          [permissions.ViewProducts, permissions.ManageProducts],
-          this.props.project.permissions
+        canViewProducts,
+        productsWhereClause: `id in (${idsOfProductsMatchingSearchText
+          .map(id => JSON.stringify(id))
+          .join(', ')})`,
+        includeProductsByIds: Boolean(
+          canViewProducts && idsOfProductsMatchingSearchText.length > 0
         ),
       }).then(data => {
         const commands = [];
@@ -181,6 +233,29 @@ class QuickAccess extends React.Component {
             }),
           });
         }
+        if (containsMatchesByProducstIds(data)) {
+          data.productsByIds.results.forEach(product => {
+            commands.push({
+              id: `go/product-by-search-text/product(${product.id})`,
+              text: this.props.intl.formatMessage(messages.showProduct, {
+                productName: translate(
+                  product.masterData.staged.nameAllLocales,
+                  this.props.projectDataLocale
+                ),
+              }),
+              keywords: [product.id],
+              action: {
+                type: 'go',
+                to: `/${this.props.project.key}/products/${product.id}`,
+              },
+              subCommands: createProductTabsSubCommands({
+                intl: this.props.intl,
+                project: this.props.project,
+                productId: product.id,
+              }),
+            });
+          });
+        }
         if (containsMatchByProductKey(data)) {
           const productId = data.productByKey.id;
           commands.push({
@@ -201,7 +276,8 @@ class QuickAccess extends React.Component {
         }
 
         return commands;
-      }),
+      });
+    },
     200,
     { cancelObj: 'canceled' }
   );
@@ -283,5 +359,68 @@ export default compose(
     'canViewDashboard',
     'canViewDiscounts',
     'customApplications',
-  ])
+  ]),
+  connect(
+    null,
+    (dispatch, props) => ({
+      pimSearchProductIds: searchText =>
+        dispatch(
+          sdkActions.post({
+            uri: `/proxy/pim-search/${props.project.key}/search/products`,
+            payload: {
+              query: {
+                fullText: {
+                  field: 'name',
+                  language: props.projectDataLocale,
+                  value: searchText,
+                },
+              },
+              sort: [
+                {
+                  field: 'name',
+                  language: props.projectDataLocale,
+                  order: 'desc',
+                },
+              ],
+              limit: 9,
+              offset: 0,
+            },
+          })
+        ).then(result =>
+          result && result.hits ? result.hits.map(hit => hit.id) : []
+        ),
+      getPimSearchStatus: () =>
+        dispatch(
+          // TODO this should be sdkActions.head()
+          // and then we should check whether the response code is
+          // - 200 meaning the project is indexed
+          // - 404 meaning the project is not indexed
+          //
+          // But there is a problem in tne node-sdk client as it tries to
+          // .json()-parse the response to HEAD requests which results in an
+          // error, so we send a regular request for now and limit to no results
+          // instead to keep the payload minimal
+          sdkActions.post({
+            uri: `/proxy/pim-search/${props.project.key}/search/products`,
+            payload: {
+              query: {
+                fullText: {
+                  field: 'name',
+                  language: props.projectDataLocale,
+                  value: 'availability-check',
+                },
+              },
+              limit: 0,
+              offset: 0,
+            },
+          })
+        ).then(
+          () => pimIndexerStates.INDEXED,
+          // project is not using pim-indexer when response error code is 404,
+          // but we treat all errors as non-indexed as a safe guard, so we're
+          // not checking the response error code at all
+          () => pimIndexerStates.NOT_INDEXED
+        ),
+    })
+  )
 )(QuickAccess);

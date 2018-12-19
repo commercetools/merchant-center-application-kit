@@ -36,7 +36,9 @@ const patchedGetCorrelationId = () =>
 // We use a factory as it's more practicable for tests
 // The application can import the configured store (the default export)
 export const createReduxStore = (
-  preloadedState = { requestsInFlight: null }
+  preloadedState = { requestsInFlight: null },
+  // additional middleware, used for testing
+  middleware = []
 ) => {
   const sdkMiddleware = createSdkMiddleware({
     getCorrelationId: patchedGetCorrelationId,
@@ -55,6 +57,7 @@ export const createReduxStore = (
     preloadedState,
     compose(
       applyMiddleware(
+        ...middleware,
         // Should be defined before `createExtractGlobalActions`
         addPluginToNotificationMiddleware,
         createExtractGlobalActions([
