@@ -23,8 +23,8 @@ const loadApplicationMessagesForLanguage = lang =>
 // Here we split up the main (app) bundle with the actual application business logic.
 // Splitting by route is usually recommended and you can potentially have a splitting
 // point for each route. More info at https://reactjs.org/docs/code-splitting.html
-const AsyncChannels = React.lazy(() =>
-  import('../../routes' /* webpackChunkName: "channels" */)
+const AsyncStateMachines = React.lazy(() =>
+  import('../../routes' /* webpackChunkName: "state-machines" */)
 );
 
 // Ensure to setup the global error listener before any React component renders
@@ -49,10 +49,13 @@ class EntryPoint extends React.Component {
             process.env.NODE_ENV === 'production' ? null : (
               <Redirect
                 from="/:projectKey/dashboard"
-                to="/:projectKey/channels"
+                to="/:projectKey/state-machines"
               />
             )}
-            <Route path="/:projectKey/channels" component={AsyncChannels} />
+            <Route
+              path="/:projectKey/state-machines"
+              component={AsyncStateMachines}
+            />
             {/* Catch-all route */}
             <RouteCatchAll />
           </Switch>

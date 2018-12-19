@@ -4,8 +4,11 @@ import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, compose, combineReducers } from 'redux';
 import { applyDefaultMiddlewares } from '@commercetools-frontend/application-shell';
-import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-import ChannelsList from './components/channels-list';
+import {
+  RestrictedByPermissions,
+  permissions,
+} from '@commercetools-frontend/permissions';
+import StateMachinesList from './components/state-machines-list';
 import { ApplicationStoreContext } from './store';
 
 // FIXME: import it from AppShell
@@ -13,33 +16,35 @@ const PageUnauthorized = () => <div>{'Unauthorized'}</div>;
 PageUnauthorized.displayName = 'PageUnauthorized';
 
 const reducer = combineReducers({
-  foo: state => state,
+  foo: state => state || null,
 });
-const store = () =>
-  createStore(reducer, null, compose(applyDefaultMiddlewares()));
+const store = createStore(
+  reducer,
+  undefined,
+  compose(applyDefaultMiddlewares())
+);
 
-const ApplicationChannelRoutes = () => (
+const ApplicationRoutes = () => (
   <Provider store={store} context={ApplicationStoreContext}>
     <Switch>
       <Route
         render={routerProps => (
           <RestrictedByPermissions
-            permissions={[
-              { mode: 'manage', resource: 'products' },
-              { mode: 'view', resource: 'products' },
-            ]}
+            permissions={[permissions.ViewStates, permissions.ManageStates]}
             unauthorizedComponent={PageUnauthorized}
             shouldMatchSomePermissions={true}
           >
-            <ChannelsList projectKey={routerProps.match.params.projectKey} />
+            <StateMachinesList
+              projectKey={routerProps.match.params.projectKey}
+            />
           </RestrictedByPermissions>
         )}
       />
     </Switch>
   </Provider>
 );
-ApplicationChannelRoutes.displayName = 'ApplicationChannelRoutes';
-ApplicationChannelRoutes.propTypes = {
+ApplicationRoutes.displayName = 'ApplicationRoutes';
+ApplicationRoutes.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       projectKey: PropTypes.string.isRequired,
@@ -47,4 +52,4 @@ ApplicationChannelRoutes.propTypes = {
   }).isRequired,
 };
 
-export default ApplicationChannelRoutes;
+export default ApplicationRoutes;
