@@ -7,7 +7,6 @@ import {
   LOGOUT_REASONS,
 } from '@commercetools-frontend/constants';
 import browserHistory from '@commercetools-frontend/browser-history';
-import toGlobal from './to-global';
 
 export function showApiErrorNotification({ errors, source }) {
   return showNotification(
@@ -66,11 +65,11 @@ export function showNotification(notification, meta = {}) {
   if (!isNumber(dismissAfter))
     dismissAfter = notification.kind === 'success' ? 5000 : 0;
 
-  return toGlobal(addNotification(notification, { ...meta, dismissAfter }));
+  return addNotification(notification, { ...meta, dismissAfter });
 }
 
 export function hideAllPageNotifications() {
-  return toGlobal({ type: HIDE_ALL_PAGE_NOTIFICATIONS });
+  return { type: HIDE_ALL_PAGE_NOTIFICATIONS };
 }
 
 export const handleActionError = (error, source) => dispatch => {

@@ -4,7 +4,6 @@ import {
   HIDE_LOADING,
   STATUS_CODES,
 } from '@commercetools-frontend/constants';
-import { toGlobal } from '@commercetools-frontend/actions-global';
 import { logRequest } from '../utils';
 import createClient from './client';
 
@@ -59,7 +58,7 @@ export default function createSdkMiddleware({
       // NOTE here the middleware is aware of the application
       // Instead we should probably convert to a middleware factory
       // and provide hooks for `onFetch`, `onResult` and `onError
-      dispatch(toGlobal({ type: SHOW_LOADING, payload: requestName }));
+      dispatch({ type: SHOW_LOADING, payload: requestName });
 
       // NOTE the promise returned by the client resolves to a custom format
       // it will contain { statusCode, headers, body }
@@ -115,7 +114,7 @@ export default function createSdkMiddleware({
         })
         .then(
           result => {
-            dispatch(toGlobal({ type: HIDE_LOADING, payload: requestName }));
+            dispatch({ type: HIDE_LOADING, payload: requestName });
             // The promise returned by "fetch" will reject when the request fails,
             // but only in certain cases. See "Checking that the fetch was successful"
             // in https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
@@ -124,7 +123,7 @@ export default function createSdkMiddleware({
             return result.body;
           },
           error => {
-            dispatch(toGlobal({ type: HIDE_LOADING, payload: requestName }));
+            dispatch({ type: HIDE_LOADING, payload: requestName });
             throw error;
           }
         );

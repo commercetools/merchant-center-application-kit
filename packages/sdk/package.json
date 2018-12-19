@@ -36,7 +36,6 @@
     "build:test-utils:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./src/test-utils/index.js --o ./test-utils/index.js"
   },
   "dependencies": {
-    "@commercetools-frontend/actions-global": "4.4.0",
     "@commercetools-frontend/constants": "4.3.0",
     "@commercetools/api-request-builder": "4.1.1",
     "@commercetools/sdk-client": "1.5.10",
