@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   LoadingSpinner,
@@ -11,6 +13,7 @@ import {
 } from '@commercetools-frontend/ui-kit';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import PageBottomSpacer from '../page-bottom-spacer';
+import { ApplicationStoreContext } from '../../store';
 import StateMachinesListConnector from '../state-machines-list-connector';
 import messages from './messages';
 import styles from './state-machines-list.mod.css';
@@ -105,4 +108,19 @@ export class StateMachinesList extends React.Component {
   }
 }
 
-export default withApplicationContext()(StateMachinesList);
+export default compose(
+  withApplicationContext(),
+  connect(state => {
+    console.log('global state', state);
+    return state;
+  }),
+  connect(
+    state => {
+      console.log('application state', state);
+      return state;
+    },
+    undefined,
+    undefined,
+    { context: ApplicationStoreContext }
+  )
+)(StateMachinesList);

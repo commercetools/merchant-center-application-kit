@@ -1,5 +1,11 @@
 import { createRequestBuilder } from '@commercetools/api-request-builder';
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
+import { actionTypes } from '../../reducers/cache';
+
+export const setStateMachines = payload => ({
+  type: actionTypes.SET_STATE_MACHINES,
+  payload,
+});
 
 export const getStateMachinesUri = (options, meta) => {
   const requestBuilder = createRequestBuilder({ projectKey: meta.projectKey });

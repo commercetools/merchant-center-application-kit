@@ -2,22 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore, compose, combineReducers } from 'redux';
+import { createStore, compose } from 'redux';
 import { applyDefaultMiddlewares } from '@commercetools-frontend/application-shell';
 import {
   RestrictedByPermissions,
   permissions,
 } from '@commercetools-frontend/permissions';
 import StateMachinesList from './components/state-machines-list';
+import reducer from './reducers';
 import { ApplicationStoreContext } from './store';
 
 // FIXME: import it from AppShell
 const PageUnauthorized = () => <div>{'Unauthorized'}</div>;
 PageUnauthorized.displayName = 'PageUnauthorized';
 
-const reducer = combineReducers({
-  foo: state => state || null,
-});
 const store = createStore(
   reducer,
   undefined,

@@ -1,9 +1,9 @@
 import createMiddleware from './src/middleware';
 import * as actions from './src/actions';
-import SdkGet from './src/components/sdk-get';
+import createSdkGet from './src/components/sdk-get';
 
 const Sdk = {
-  Get: SdkGet,
+  Get: createSdkGet(),
 };
 
-export { createMiddleware, actions, Sdk };
+export { createMiddleware, actions, Sdk, createSdkGet };
