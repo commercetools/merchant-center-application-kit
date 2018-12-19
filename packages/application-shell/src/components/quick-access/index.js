@@ -61,8 +61,16 @@ export class QuickAccessTrigger extends React.Component {
   state = {
     isVisible: false,
     hasError: false,
+    // We store the information of whether a project is indexed by pim-indexer,
+    // to avoid having to refetch that information every time Quick Access is
+    // opened. We can't move the information to the quick-access.js component
+    // as that component unmounts and would lose its state.
+    //
+    // We need to know whether a project is indexed by pim-indexer to know
+    // whether we should query pim-search or whether we can skip that request.
+    //
     // We don't need to update this information when the project key changes,
-    // as changing a project always results in a full reload anyways.
+    // as changing a project always results in a full page reload anyways.
     //
     // undefined: we did not check yet
     // true: the project is indexed by pim-indexer
