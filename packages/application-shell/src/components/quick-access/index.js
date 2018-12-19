@@ -4,6 +4,7 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import * as gtm from '../../utils/gtm';
 import trackingEvents from './tracking-events';
 import ButlerContainer from './butler-container';
+import pimIndexerStates from './pim-indexer-states';
 
 const QuickAccess = React.lazy(() =>
   import('./quick-access' /* webpackChunkName: "quick-access" */)
@@ -71,11 +72,7 @@ export class QuickAccessTrigger extends React.Component {
     //
     // We don't need to update this information when the project key changes,
     // as changing a project always results in a full page reload anyways.
-    //
-    // undefined: we did not check yet
-    // true: the project is indexed by pim-indexer
-    // false: the project is not indexed by pim-indexer
-    isProjectPimIndexed: undefined,
+    pimIndexerState: pimIndexerStates.UNCHECKED,
   };
 
   handler = event => {
@@ -142,9 +139,9 @@ export class QuickAccessTrigger extends React.Component {
         <QuickAccess
           {...this.props}
           onClose={this.close}
-          isProjectPimIndexed={this.state.isProjectPimIndexed}
-          onProjectPimIndexedChange={isProjectPimIndexed =>
-            this.setState({ isProjectPimIndexed })
+          pimIndexerState={this.state.pimIndexerState}
+          onPimIndexerStateChange={pimIndexerState =>
+            this.setState({ pimIndexerState })
           }
         />
       </QuickAccessContainer>

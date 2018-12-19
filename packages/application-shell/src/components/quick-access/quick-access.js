@@ -23,6 +23,7 @@ import {
 } from './sub-commands';
 import messages from './messages';
 import { saveHistory, loadHistory } from './history';
+import pimIndexerStates from './pim-indexer-states';
 
 const containsMatchByProductId = data => Boolean(data && data.productById);
 const containsMatchesByProducstIds = data =>
@@ -41,8 +42,9 @@ class QuickAccess extends React.Component {
       languages: PropTypes.arrayOf(PropTypes.string).isRequired,
       permissions: PropTypes.object.isRequired,
     }),
-    isProjectPimIndexed: PropTypes.bool,
-    onProjectPimIndexedChange: PropTypes.func.isRequired,
+    pimIndexerState: PropTypes.oneOf(['UNCHECKED', 'INDEXED', 'NOT_INDEXED'])
+      .isRequired,
+    onPimIndexerStateChange: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
@@ -84,12 +86,9 @@ class QuickAccess extends React.Component {
   };
 
   componentDidMount() {
-    // undefined: we did not check yet
-    // true: the project is indexed by pim-indexer
-    // false: the project is not indexed by pim-indexer
-    if (this.props.isProjectPimIndexed === undefined) {
-      this.getProjectIndexStatus().then(isProjectPimIndexed =>
-        this.props.onProjectPimIndexedChange(isProjectPimIndexed)
+    if (this.props.pimIndexerState === pimIndexerStates.UNCHECKED) {
+      this.getProjectIndexStatus().then(pimIndexerState =>
+        this.props.onPimIndexerStateChange(pimIndexerState)
       );
     }
   }
@@ -105,7 +104,7 @@ class QuickAccess extends React.Component {
   // - refetch the pim search info when the project key changes
   getProjectIndexStatus = async () => {
     // skip when there is no project
-    if (!this.props.project) return false;
+    if (!this.props.project) return pimIndexerStates.NOT_INDEXED;
 
     const canViewProducts = hasSomePermissions(
       [permissions.ViewProducts, permissions.ManageProducts],
@@ -113,7 +112,7 @@ class QuickAccess extends React.Component {
     );
 
     // skip checking when user can't view products anyways
-    if (!canViewProducts) return false;
+    if (!canViewProducts) return pimIndexerStates.NOT_INDEXED;
 
     return this.props.getPimSearchStatus();
   };
@@ -135,7 +134,7 @@ class QuickAccess extends React.Component {
 
   getProjectCommands = debounce(
     async searchText => {
-      const idsOfProductsMatchingSearchText = this.props.isProjectPimIndexed
+      const idsOfProductsMatchingSearchText = this.props.pimIndexerState
         ? await this.props.pimSearchProductIds(searchText)
         : [];
 
@@ -416,10 +415,11 @@ export default compose(
             },
           })
         ).then(
-          () => true,
+          () => pimIndexerStates.INDEXED,
           // project is not using pim-indexer when response error code is 404,
-          // but we treat all errors as non-indexed as a safe guard
-          () => false
+          // but we treat all errors as non-indexed as a safe guard, so we're
+          // not checking the response error code at all
+          () => pimIndexerStates.NOT_INDEXED
         ),
     })
   )
