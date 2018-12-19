@@ -24,7 +24,7 @@ const postcssReporter = require('postcss-reporter');
 const { pkg } = readPkgUp.sync({
   cwd: fs.realpathSync(process.cwd()),
 });
-
+const importReplacements = [{ original: 'lodash', replacement: 'lodash-es' }];
 const babelOptions = getBabelPreset();
 
 const config = {
@@ -37,10 +37,13 @@ const config = {
       includeDependencies: true,
     }),
     babel({
-      exclude: '**/node_modules/**',
       runtimeHelpers: true,
       ...babelOptions,
-      plugins: [babelPluginImportGraphQL.default, ...babelOptions.plugins],
+      plugins: [
+        babelPluginImportGraphQL.default,
+        ...babelOptions.plugins,
+        ['transform-rename-import', { replacements: importReplacements }],
+      ],
     }),
     // To convert CJS modules to ES6
     commonjs({
