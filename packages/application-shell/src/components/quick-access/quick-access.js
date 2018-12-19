@@ -41,7 +41,8 @@ class QuickAccess extends React.Component {
       languages: PropTypes.arrayOf(PropTypes.string).isRequired,
       permissions: PropTypes.object.isRequired,
     }),
-    isProjectIndexed: PropTypes.bool.isRequired,
+    isProjectPimIndexed: PropTypes.bool,
+    onProjectPimIndexedChange: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
@@ -75,15 +76,47 @@ class QuickAccess extends React.Component {
     projectDataLocale: PropTypes.string,
     onChangeProjectDataLocale: PropTypes.func,
     pimSearchProductIds: PropTypes.func.isRequired,
+    getPimSearchStatus: PropTypes.func.isRequired,
   };
 
   state = {
     history: loadHistory(),
   };
 
+  componentDidMount() {
+    // undefined: we did not check yet
+    // true: the project is indexed by pim-indexer
+    // false: the project is not indexed by pim-indexer
+    if (this.props.isProjectPimIndexed === undefined) {
+      this.getProjectIndexStatus().then(isProjectPimIndexed =>
+        this.props.onProjectPimIndexedChange(isProjectPimIndexed)
+      );
+    }
+  }
+
   componentWillUnmount() {
     saveHistory(this.state.history);
   }
+
+  // This function is written with the assumption that a project (including the
+  // existence of a project) never changes without a full page reload.
+  // Otherwise we'd need to
+  // - ensure the response we receive belongs to the current project
+  // - refetch the pim search info when the project key changes
+  getProjectIndexStatus = async () => {
+    // skip when there is no project
+    if (!this.props.project) return false;
+
+    const canViewProducts = hasSomePermissions(
+      [permissions.ViewProducts, permissions.ManageProducts],
+      this.props.project.permissions
+    );
+
+    // skip checking when user can't view products anyways
+    if (!canViewProducts) return false;
+
+    return this.props.getPimSearchStatus();
+  };
 
   query = (Query, variables) =>
     this.props.client
@@ -100,29 +133,29 @@ class QuickAccess extends React.Component {
     return command.subCommands(this.query);
   };
 
-  getProjectCommands = debounce(async searchText => {
-    const idsOfProductsMatchingSearchText = this.props.isProjectIndexed
-      ? await this.props.pimSearchProductIds(searchText)
-      : [];
+  getProjectCommands = debounce(
+    async searchText => {
+      const idsOfProductsMatchingSearchText = this.props.isProjectPimIndexed
+        ? await this.props.pimSearchProductIds(searchText)
+        : [];
 
-    const canViewProducts = hasSomePermissions(
-      [permissions.ViewProducts, permissions.ManageProducts],
-      this.props.project.permissions
-    );
+      const canViewProducts = hasSomePermissions(
+        [permissions.ViewProducts, permissions.ManageProducts],
+        this.props.project.permissions
+      );
 
-    return this.query(QuickAccessQuery, {
-      searchText: sanitize(searchText),
-      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
-      // Pass conditional arguments to disable some of the queries
-      canViewProducts,
-      productsWhereClause: `id in (${idsOfProductsMatchingSearchText
-        .map(id => JSON.stringify(id))
-        .join(', ')})`,
-      includeProductsByIds: Boolean(
-        canViewProducts && idsOfProductsMatchingSearchText.length > 0
-      ),
-    }).then(
-      data => {
+      return this.query(QuickAccessQuery, {
+        searchText: sanitize(searchText),
+        target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+        // Pass conditional arguments to disable some of the queries
+        canViewProducts,
+        productsWhereClause: `id in (${idsOfProductsMatchingSearchText
+          .map(id => JSON.stringify(id))
+          .join(', ')})`,
+        includeProductsByIds: Boolean(
+          canViewProducts && idsOfProductsMatchingSearchText.length > 0
+        ),
+      }).then(data => {
         const commands = [];
 
         if (containsMatchByVariantKey(data)) {
@@ -244,11 +277,11 @@ class QuickAccess extends React.Component {
         }
 
         return commands;
-      },
-      200,
-      { cancelObj: 'canceled' }
-    );
-  });
+      });
+    },
+    200,
+    { cancelObj: 'canceled' }
+  );
 
   search = async searchText => {
     const generalCommands = createCommands({
@@ -356,6 +389,37 @@ export default compose(
           })
         ).then(result =>
           result && result.hits ? result.hits.map(hit => hit.id) : []
+        ),
+      getPimSearchStatus: () =>
+        dispatch(
+          // TODO this should be sdkActions.head()
+          // and then we should check whether the response code is
+          // - 200 meaning the project is indexed
+          // - 404 meaning the project is not indexed
+          //
+          // But there is a problem in tne node-sdk client as it tries to
+          // .json()-parse the response to HEAD requests which results in an
+          // error, so we send a regular request for now and limit to no results
+          // instead to keep the payload minimal
+          sdkActions.post({
+            uri: `/proxy/pim-search/${props.project.key}/search/products`,
+            payload: {
+              query: {
+                fullText: {
+                  field: 'name',
+                  language: props.projectDataLocale,
+                  value: 'availability-check',
+                },
+              },
+              limit: 0,
+              offset: 0,
+            },
+          })
+        ).then(
+          () => true,
+          // project is not using pim-indexer when response error code is 404,
+          // but we treat all errors as non-indexed as a safe guard
+          () => false
         ),
     })
   )

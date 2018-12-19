@@ -1,17 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import {
-  hasSomePermissions,
-  permissions,
-} from '@commercetools-frontend/permissions';
 import * as gtm from '../../utils/gtm';
 import trackingEvents from './tracking-events';
 import ButlerContainer from './butler-container';
 
-const QuickAccessModal = React.lazy(() =>
+const QuickAccess = React.lazy(() =>
   import('./quick-access' /* webpackChunkName: "quick-access" */)
 );
 
@@ -45,15 +39,8 @@ class QuickAccessContainer extends React.Component {
 export class QuickAccessTrigger extends React.Component {
   static displayName = 'QuickAccessTrigger';
 
-  static propTypes = {
-    getPimSearchStatusForProject: PropTypes.func.isRequired,
-  };
-
   componentDidMount() {
     document.addEventListener('keydown', this.handler);
-    if (this.props.project) {
-      this.updatePimSearchInfo();
-    }
   }
 
   componentWillUnmount() {
@@ -76,7 +63,11 @@ export class QuickAccessTrigger extends React.Component {
     hasError: false,
     // We don't need to update this information when the project key changes,
     // as changing a project always results in a full reload anyways.
-    isProjectIndexed: false,
+    //
+    // undefined: we did not check yet
+    // true: the project is indexed by pim-indexer
+    // false: the project is not indexed by pim-indexer
+    isProjectPimIndexed: undefined,
   };
 
   handler = event => {
@@ -137,73 +128,20 @@ export class QuickAccessTrigger extends React.Component {
     this.setState({ isVisible: false });
   };
 
-  // This function is written with the assumption that a project (including the
-  // existence of a project) never changes without a full page reload.
-  // Otherwise we'd need to
-  // - ensure the response we receive belongs to the current project
-  // - refetch the pim search info when the project key changes
-  updatePimSearchInfo = async () => {
-    // skip when there is no project
-    if (!this.props.project) return;
-
-    const canViewProducts = hasSomePermissions(
-      [permissions.ViewProducts, permissions.ManageProducts],
-      this.props.project.permissions
-    );
-
-    // skip checking when user can't view products anyways
-    if (!canViewProducts) return;
-
-    const isProjectIndexed = await this.props.getPimSearchStatusForProject();
-    this.setState({ isProjectIndexed });
-  };
-
   render() {
     return this.state.isVisible && !this.state.hasError ? (
       <QuickAccessContainer>
-        <QuickAccessModal
+        <QuickAccess
           {...this.props}
           onClose={this.close}
-          isProjectIndexed={this.state.isProjectIndexed}
+          isProjectPimIndexed={this.state.isProjectPimIndexed}
+          onProjectPimIndexedChange={isProjectPimIndexed =>
+            this.setState({ isProjectPimIndexed })
+          }
         />
       </QuickAccessContainer>
     ) : null;
   }
 }
 
-export default connect(
-  null,
-  (dispatch, props) => ({
-    getPimSearchStatusForProject: () =>
-      dispatch(
-        // TODO this should be sdkActions.head()
-        // and then we should check whether the response code is
-        // - 200 meaning the project is indexed
-        // - 404 meaning the project is not indexed
-        //
-        // But there is a problem in tne node-sdk client as it tries to
-        // .json()-parse the response to HEAD requests which results in an
-        // error, so we send a regular request for now and limit to no results
-        // instead to keep the payload minimal
-        sdkActions.post({
-          uri: `/proxy/pim-search/${props.project.key}/search/products`,
-          payload: {
-            query: {
-              fullText: {
-                field: 'name',
-                language: props.projectDataLocale,
-                value: 'availability-check',
-              },
-            },
-            limit: 0,
-            offset: 0,
-          },
-        })
-      ).then(
-        () => true,
-        // project is not using pim-indexer when response error code is 404,
-        // but we treat all errors as non-indexed as a safe guard
-        () => false
-      ),
-  })
-)(QuickAccessTrigger);
+export default QuickAccessTrigger;
