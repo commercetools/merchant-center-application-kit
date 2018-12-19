@@ -10,10 +10,12 @@ import {
   Spacings,
   Constraints,
   Text,
+  DotIcon,
 } from '@commercetools-frontend/ui-kit';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import PageBottomSpacer from '../page-bottom-spacer';
 import { ApplicationStoreContext } from '../../store';
+import { selectStateMachinesFromCache } from '../../reducers/cache';
 import StateMachinesListConnector from '../state-machines-list-connector';
 import messages from './messages';
 import styles from './state-machines-list.mod.css';
@@ -42,6 +44,7 @@ export class StateMachinesList extends React.Component {
     applicationContext: PropTypes.shape({
       dataLocale: PropTypes.string.isRequired,
     }).isRequired,
+    hasCache: PropTypes.bool.isRequired,
   };
   measurementCache = null;
   registerMeasurementCache = cache => {
@@ -83,22 +86,32 @@ export class StateMachinesList extends React.Component {
                 );
               }
               return (
-                <Table
-                  columns={columnsDefinition}
-                  itemRenderer={item =>
-                    this.renderStateMachinesRow(result.results, item)
-                  }
-                  rowCount={result.count}
-                  // onRowClick={(_, rowIndex) =>
-                  //   this.handleRowClick(rowIndex, result.results)
-                  // }
-                  registerMeasurementCache={this.registerMeasurementCache}
-                  shouldFillRemainingVerticalSpace={true}
-                  items={result.results}
-                >
-                  {/* TODO: add <Pagination> component */}
-                  <PageBottomSpacer />
-                </Table>
+                <Spacings.Stack scale="m">
+                  {this.props.hasCache && (
+                    <Spacings.Inline alignItems="center">
+                      <DotIcon size="small" theme="green" />
+                      <Text.Detail isItalic={true}>
+                        {'The data has been cached'}
+                      </Text.Detail>
+                    </Spacings.Inline>
+                  )}
+                  <Table
+                    columns={columnsDefinition}
+                    itemRenderer={item =>
+                      this.renderStateMachinesRow(result.results, item)
+                    }
+                    rowCount={result.count}
+                    // onRowClick={(_, rowIndex) =>
+                    //   this.handleRowClick(rowIndex, result.results)
+                    // }
+                    registerMeasurementCache={this.registerMeasurementCache}
+                    shouldFillRemainingVerticalSpace={true}
+                    items={result.results}
+                  >
+                    {/* TODO: add <Pagination> component */}
+                    <PageBottomSpacer />
+                  </Table>
+                </Spacings.Stack>
               );
             }}
           </StateMachinesListConnector>
@@ -110,14 +123,14 @@ export class StateMachinesList extends React.Component {
 
 export default compose(
   withApplicationContext(),
-  connect(state => {
-    console.log('global state', state);
-    return state;
-  }),
   connect(
     state => {
-      console.log('application state', state);
-      return state;
+      const cachedStateMachine = selectStateMachinesFromCache(state);
+      return {
+        hasCache: Boolean(
+          cachedStateMachine && Object.keys(cachedStateMachine).length > 0
+        ),
+      };
     },
     undefined,
     undefined,

@@ -27,6 +27,23 @@ const AsyncStateMachines = React.lazy(() =>
   import('../../routes' /* webpackChunkName: "state-machines" */)
 );
 
+export const ApplicationStateMachines = () => (
+  <Switch>
+    {/* For development, it's useful to redirect to the actual
+      application routes when you open the browser at http://localhost:3001 */
+    process.env.NODE_ENV === 'production' ? null : (
+      <Redirect
+        from="/:projectKey/dashboard"
+        to="/:projectKey/state-machines"
+      />
+    )}
+    <Route path="/:projectKey/state-machines" component={AsyncStateMachines} />
+    {/* Catch-all route */}
+    <RouteCatchAll />
+  </Switch>
+);
+ApplicationStateMachines.displayName = 'ApplicationStateMachines';
+
 // Ensure to setup the global error listener before any React component renders
 // in order to catch possible errors on rendering/mounting.
 setupGlobalErrorListener();
@@ -42,24 +59,7 @@ class EntryPoint extends React.Component {
             globalActions.handleActionError(error, 'sdk')(dispatch);
         }}
         applicationMessages={loadApplicationMessagesForLanguage}
-        render={() => (
-          <Switch>
-            {/* For development, it's useful to redirect to the actual
-              application routes when you open the browser at http://localhost:3001 */
-            process.env.NODE_ENV === 'production' ? null : (
-              <Redirect
-                from="/:projectKey/dashboard"
-                to="/:projectKey/state-machines"
-              />
-            )}
-            <Route
-              path="/:projectKey/state-machines"
-              component={AsyncStateMachines}
-            />
-            {/* Catch-all route */}
-            <RouteCatchAll />
-          </Switch>
-        )}
+        render={() => <ApplicationStateMachines />}
       />
     );
   }

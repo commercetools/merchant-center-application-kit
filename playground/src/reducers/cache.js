@@ -98,8 +98,8 @@ export function merge(state, entities = {}) {
   return newState;
 }
 
-export function selectStateMachines(state) {
-  return state.cache.stateMachines;
+export function selectStateMachinesFromCache(state) {
+  return state.cache.stateMachine;
 }
 
 export function selectStateMachineById(state, stateMachineId) {
