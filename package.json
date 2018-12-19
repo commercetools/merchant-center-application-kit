@@ -7,7 +7,7 @@
   "scripts": {
     "changelog": "node scripts/changelog.js",
     "i18n:build": "./packages/mc-scripts/bin/mc-scripts.js extract-intl --output-path=$(pwd)/packages/i18n/data 'packages/**/!(*.spec).js'",
-    "i18n:pull": "node scripts/pull-i18n.js",
+    "i18n:pull": "tx pull --mode onlyreviewed",
     "l10n:build": "pushd packages/l10n; yarn generate-data",
     "lint": "jest --projects jest.eslint.config.js jest.stylelint.config.js",
     "lint:js": "jest --config jest.eslint.config.js",
