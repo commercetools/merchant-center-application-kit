@@ -22,6 +22,11 @@ import ProjectQuery from './fetch-project.graphql';
  *
  * The application below however expects permissions to be of the shape
  * `[name: string]: boolean` which is what the shape above is mapped into here.
+ *
+ * This function by concern belongs into the `permissions` package. However,
+ * for now it doesn't have to be shared and as a result can be co-located with
+ * the fetching logic. Given this mapping needs to be used elsewere feel free
+ * to move this over to `permissions` and export it there.
  */
 export const mapAppliedPermissionsToPermissions = appliedPermissions =>
   appliedPermissions.reduce(
