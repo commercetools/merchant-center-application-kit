@@ -221,11 +221,14 @@ const renderWithRedux = (
 
     if (sdkMocks.length === 0) return createReduxStore(storeState);
 
-    const clonedSdkMocks = sdkMocks ? [...sdkMocks] : [];
+    // We clone the sdkMocks so we can keep the user-provided mocks around for
+    // the debugging message. The sdkMocksStack gets mutated, while sdkMocks
+    // should never be mutated.
+    const sdkMocksStack = [...sdkMocks];
     const testingMiddleware = () => next => action => {
       // respond to fetch calls
       if (action && action.type === 'SDK') {
-        const index = clonedSdkMocks.findIndex(item =>
+        const index = sdkMocksStack.findIndex(item =>
           deepEqual(item.action, action)
         );
 
@@ -242,10 +245,10 @@ const renderWithRedux = (
             )}`
           );
 
-        const { response, error } = clonedSdkMocks[index];
+        const { response, error } = sdkMocksStack[index];
 
         // remove result as each result is only mocked once
-        sdkMocks.splice(index, 1);
+        sdkMocksStack.splice(index, 1);
 
         return error ? Promise.reject(error) : Promise.resolve(response);
       }
