@@ -41,14 +41,14 @@ export const applyDefaultMiddlewares = (...middlewares) =>
 export const createReduxStore = (
   preloadedState = { requestsInFlight: null },
   // additional middleware, used for testing
-  middleware = []
+  additionalMiddlewares = []
 ) =>
   createStore(
     createInternalReducer(),
     preloadedState,
     compose(
       applyDefaultMiddlewares(
-        ...middleware,
+        ...additionalMiddlewares,
         sentryTrackingMiddleware,
         hideNotificationsMiddleware,
         notificationsMiddleware,
