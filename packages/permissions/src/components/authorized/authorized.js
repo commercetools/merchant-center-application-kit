@@ -24,6 +24,14 @@ class Authorized extends React.Component {
   static displayName = 'Authorized';
   static propTypes = {
     shouldMatchSomePermissions: PropTypes.bool,
+    /**
+     * This custom prop-types verifies that any permission passed as
+     * `demandedPermissions` actually exists on the `actualPermissions`.
+     *
+     * This was previously achieved through a validation via the constants (`Object.keys(permissions)`).
+     * This was deemded to not be flexible enough to introduce new permissions as they have to be
+     * added to the constants and released each time.
+     */
     demandedPermissions(props, propName, componentName) {
       const namesOfNonConfiguredPermissions = getUnconfiguredPermissions(
         props.demandedPermissions,
