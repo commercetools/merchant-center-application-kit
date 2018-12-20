@@ -28,8 +28,8 @@ import ProjectQuery from './fetch-project.graphql';
  * the fetching logic. Given this mapping needs to be used elsewere feel free
  * to move this over to `permissions` and export it there.
  */
-export const mapAppliedPermissionsToPermissions = appliedPermissions =>
-  appliedPermissions.reduce(
+export const mapAppliedPermissionsToPermissions = allAppliedPermissions =>
+  allAppliedPermissions.reduce(
     (transfromedPermissions, appliedPermission) => ({
       ...transfromedPermissions,
       [appliedPermission.name]: appliedPermission.value,
@@ -55,7 +55,7 @@ const graphqlOptions = {
       project: projectData.project && {
         ...projectData.project,
         permissions: mapAppliedPermissionsToPermissions(
-          projectData.project.appliedPermissions
+          projectData.project.allAppliedPermissions
         ),
       },
     },
