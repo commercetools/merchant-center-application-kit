@@ -12,6 +12,31 @@ import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import deprecateComponent from '../../from-core/deprecate-component';
 import ProjectQuery from './fetch-project.graphql';
 
+/**
+ * NOTE:
+ *
+ * Permissions are being fetched though the `allAppliedPermissions` which
+ * is an array of `{ name: string, value: boolean }`. This gives more
+ * flexibility to introduce new permissions to apps without having to release
+ * the merchant-center-app-kit.
+ *
+ * The application below however expects permissions to be of the shape
+ * `[name: string]: boolean` which is what the shape above is mapped into here.
+ *
+ * This function by concern belongs into the `permissions` package. However,
+ * for now it doesn't have to be shared and as a result can be co-located with
+ * the fetching logic. Given this mapping needs to be used elsewere feel free
+ * to move this over to `permissions` and export it there.
+ */
+export const mapAppliedPermissionsToPermissions = allAppliedPermissions =>
+  allAppliedPermissions.reduce(
+    (transfromedPermissions, appliedPermission) => ({
+      ...transfromedPermissions,
+      [appliedPermission.name]: appliedPermission.value,
+    }),
+    {}
+  );
+
 const graphqlOptions = {
   alias: 'withProject',
   name: 'projectData',
@@ -27,7 +52,12 @@ const graphqlOptions = {
     projectData: {
       isLoading: projectData.loading,
       error: projectData.error,
-      project: projectData.project,
+      project: projectData.project && {
+        ...projectData.project,
+        permissions: mapAppliedPermissionsToPermissions(
+          projectData.project.allAppliedPermissions
+        ),
+      },
     },
   }),
 };

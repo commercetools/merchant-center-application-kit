@@ -83,7 +83,9 @@ describe('rendering', () => {
       expect(wrapper).toHaveProp(
         'value',
         expect.objectContaining({
-          permissions: expect.any(Object),
+          permissions: {
+            canManageProject: true,
+          },
         })
       );
     });

@@ -13,20 +13,9 @@ query ProjectQuery($projectKey: String!) {
     suspension {
       isActive
     }
-    permissions {
-      canManageOrganization
-      canManageProject
-      canViewProjectSettings
-      canViewProducts
-      canManageProducts
-      canViewOrders
-      canManageOrders
-      canViewCustomers
-      canManageCustomers
-      canViewTypes
-      canManageTypes
-      canViewPayments
-      canManagePayments
+    allAppliedPermissions {
+      name
+      value
     }
     owner {
       id

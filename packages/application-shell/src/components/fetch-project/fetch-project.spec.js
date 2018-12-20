@@ -1,6 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { FetchProject, withProject } from './fetch-project';
+import {
+  FetchProject,
+  withProject,
+  mapAppliedPermissionsToPermissions,
+} from './fetch-project';
 
 describe('rendering', () => {
   let props;
@@ -71,6 +75,26 @@ describe('rendering', () => {
       it('should render FetchProject internally', () => {
         expect(wrapper).toRender('FetchProject');
       });
+    });
+  });
+});
+
+describe('helpers', () => {
+  describe('mapAppliedPermissionsToPermissions', () => {
+    const allAppliedPermissions = [
+      {
+        name: 'manageProject',
+        value: true,
+      },
+    ];
+
+    it('should transform all permissions', () => {
+      const firstAppliedPermission = allAppliedPermissions[0];
+      expect(mapAppliedPermissionsToPermissions(allAppliedPermissions)).toEqual(
+        expect.objectContaining({
+          [firstAppliedPermission.name]: firstAppliedPermission.value,
+        })
+      );
     });
   });
 });

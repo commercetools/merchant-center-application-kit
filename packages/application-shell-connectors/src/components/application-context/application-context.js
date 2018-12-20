@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { wrapDisplayName } from 'recompose';
 import { defaultMemoize } from 'reselect';
 import moment from 'moment-timezone';
-import omit from 'lodash.omit';
 
 const Context = React.createContext({});
 
@@ -45,7 +44,7 @@ const mapProjectToApplicationContextProject = project => {
 const mapProjectToApplicationContextPermissions = project => {
   if (!project) return null;
 
-  return omit(project.permissions, ['__typename']);
+  return project.permissions;
 };
 
 const createApplicationContext = defaultMemoize(
