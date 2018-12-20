@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import isNil from 'lodash.isnil';
+import isNil from 'lodash/isNil';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';

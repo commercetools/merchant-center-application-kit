@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Perfume from 'perfume.js';
-import snakeCase from 'lodash.snakecase';
+import snakeCase from 'lodash/snakeCase';
 import convertToClosestMs from './conversions';
 import * as actions from './actions';
 

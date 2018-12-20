@@ -1,7 +1,7 @@
 /**
  * Google Tag Manager (GTM) Tracking Utilities
  */
-import camelcase from 'lodash.camelcase';
+import camelcase from 'lodash/camelCase';
 
 const getDataAttribute = (node, key) => {
   if (node.dataset) {

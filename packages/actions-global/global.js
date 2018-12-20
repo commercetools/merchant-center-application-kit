@@ -1,4 +1,4 @@
-import isNumber from 'lodash.isnumber';
+import isNumber from 'lodash/isNumber';
 import { addNotification } from '@commercetools-frontend/notifications';
 import {
   HIDE_ALL_PAGE_NOTIFICATIONS,

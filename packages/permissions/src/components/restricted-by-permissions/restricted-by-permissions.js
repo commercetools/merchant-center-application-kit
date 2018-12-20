@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import isNil from 'lodash.isnil';
+import isNil from 'lodash/isNil';
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import Authorized from '../authorized';
 

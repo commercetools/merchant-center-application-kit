@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Fuse from 'fuse.js';
 import { FormattedMessage } from 'react-intl';
-import last from 'lodash.last';
+import last from 'lodash/last';
 import classnames from 'classnames';
 import { SearchIcon } from '@commercetools-frontend/ui-kit';
 import { flattenResults } from '../utils';
