@@ -33,7 +33,7 @@ describe('list view', () => {
       sdkMocks: [createStateMachinesSdkMock()],
     });
     await waitForElement(() => getByText(/State machines/i));
-    await waitForElement(() => getByText(/The data has been cached/i));
+    await waitForElement(() => getByText(/There are 2 objects in the cache/i));
     // TODO: the <Table> does not seem to be correctly rendered in the DOM with RTL,
     // because the width=0 and the content of the <Table> won't get rendered.
     // await waitForElement(() => getByText('sm-1'));

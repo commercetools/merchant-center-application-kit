@@ -44,7 +44,7 @@ export class StateMachinesList extends React.Component {
     applicationContext: PropTypes.shape({
       dataLocale: PropTypes.string.isRequired,
     }).isRequired,
-    hasCache: PropTypes.bool.isRequired,
+    cachedStateMachineObjectsCount: PropTypes.number,
   };
   measurementCache = null;
   registerMeasurementCache = cache => {
@@ -87,11 +87,13 @@ export class StateMachinesList extends React.Component {
               }
               return (
                 <Spacings.Stack scale="m">
-                  {this.props.hasCache && (
+                  {this.props.cachedStateMachineObjectsCount !== null && (
                     <Spacings.Inline alignItems="center">
                       <DotIcon size="small" theme="green" />
                       <Text.Detail isItalic={true}>
-                        {'The data has been cached'}
+                        {`There are ${
+                          this.props.cachedStateMachineObjectsCount
+                        } objects in the cache`}
                       </Text.Detail>
                     </Spacings.Inline>
                   )}
@@ -127,9 +129,9 @@ export default compose(
     state => {
       const cachedStateMachine = selectStateMachinesFromCache(state);
       return {
-        hasCache: Boolean(
-          cachedStateMachine && Object.keys(cachedStateMachine).length > 0
-        ),
+        cachedStateMachineObjectsCount: cachedStateMachine
+          ? Object.keys(cachedStateMachine).length
+          : null,
       };
     },
     undefined,
