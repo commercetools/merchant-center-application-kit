@@ -22,7 +22,7 @@
     "react-apollo": "2.3.3",
     "react-dom": "16.7.0",
     "react-intl": "2.7.2",
-    "react-redux": "5.1.1",
+    "react-redux": "6.0.0",
     "react-router": "4.4.0-beta.6",
     "react-router-dom": "4.4.0-beta.6"
   },
