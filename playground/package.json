@@ -6,6 +6,7 @@
   "scripts": {
     "build": "mc-scripts build",
     "start": "mc-scripts start",
+    "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations",
     "deploy": "npm run build; rm dist/assets/*.js.map; npm run deploy:eu; npm run deploy:us",
     "deploy:eu": "now --local-config=now.eu.json --docker; now alias --local-config=now.eu.json",
     "deploy:us": "now --local-config=now.us.json --docker; now alias --local-config=now.us.json"
