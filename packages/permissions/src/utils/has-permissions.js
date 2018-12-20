@@ -1,3 +1,4 @@
+import isNil from 'lodash.isnil';
 import { permissions } from '../constants';
 
 // Build the permission key from the definition to match it to the format coming
@@ -68,4 +69,18 @@ export const hasEveryPermissions = (demandedPermissions, actualPermissions) =>
 export const hasSomePermissions = (demandedPermissions, actualPermissions) =>
   demandedPermissions.some(permission =>
     hasPermission(permission, actualPermissions)
+  );
+
+// Returns an Array<String> of unconfigured (not passed as `demandedPermissions`) permissions.
+// The shapes of the arguments are:
+// - demandedPermissions:
+//     ['ViewProducts', 'ManageOrders']
+// - actualPermissions:
+//     { canViewProducts: true, canManageOrders: false }
+export const getUnconfiguredPermissions = (
+  demandedPermissions,
+  actualPermissions
+) =>
+  demandedPermissions.filter(demandedPermission =>
+    isNil(actualPermissions[toCanCase(demandedPermission)])
   );

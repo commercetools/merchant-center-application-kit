@@ -9,8 +9,8 @@ import { ApplicationContext } from '@commercetools-frontend/application-shell-co
 import {
   hasSomePermissions,
   hasEveryPermissions,
+  getUnconfiguredPermissions,
 } from '../../utils/has-permissions';
-import { permissions } from '../../constants';
 
 const ensurePermissionsKeyShape = defaultMemoize(demandedPermissions =>
   demandedPermissions.map(permission =>
@@ -24,15 +24,26 @@ class Authorized extends React.Component {
   static displayName = 'Authorized';
   static propTypes = {
     shouldMatchSomePermissions: PropTypes.bool,
-    demandedPermissions: PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        PropTypes.oneOf(Object.values(permissions)),
-        PropTypes.shape({
-          mode: PropTypes.string.isRequired,
-          resource: PropTypes.string.isRequired,
-        }),
-      ]).isRequired
-    ).isRequired,
+    demandedPermissions(props, propName, componentName) {
+      const namesOfNonConfiguredPermissions = getUnconfiguredPermissions(
+        props.demandedPermissions,
+        props.actualPermissions
+      );
+
+      if (namesOfNonConfiguredPermissions.length > 0) {
+        return new Error(
+          `Invalid prop \`${propName}\` supplied to \`${componentName}\`. The permission(s) ${namesOfNonConfiguredPermissions.join(
+            ' '
+          )} is/are not configured through \`actualPermissions\`.`
+        );
+      }
+
+      // Legacy shape of permissions
+      return PropTypes.shape({
+        mode: PropTypes.string.isRequired,
+        resource: PropTypes.string.isRequired,
+      });
+    },
     actualPermissions: PropTypes.objectOf(PropTypes.bool).isRequired,
     render: PropTypes.func,
   };

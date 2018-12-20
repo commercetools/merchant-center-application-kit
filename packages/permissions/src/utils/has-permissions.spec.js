@@ -3,6 +3,7 @@ import {
   hasPermission,
   hasEveryPermissions,
   hasSomePermissions,
+  getUnconfiguredPermissions,
 } from './has-permissions';
 
 describe('hasPermission', () => {
@@ -102,5 +103,25 @@ describe('hasSomePermissions', () => {
         canViewOrders: true,
       })
     ).toBe(false);
+  });
+});
+
+describe('getUnconfiguredPermissions', () => {
+  describe('given all permissions are configured (passed as `actualPermissions`', () => {
+    it('should return no unconfigured permissions', () => {
+      expect(
+        getUnconfiguredPermissions(['ManageOrders'], { canManageOrders: true })
+      ).toHaveLength(0);
+    });
+  });
+
+  describe('given some permissions are not configured (not passed as `actualPermissions`', () => {
+    it('should return unconfigured permissions', () => {
+      expect(
+        getUnconfiguredPermissions(['ManageOrders', 'ViewStars'], {
+          canManageOrders: true,
+        })
+      ).toEqual(expect.arrayContaining(['ViewStars']));
+    });
   });
 });
