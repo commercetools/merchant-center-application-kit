@@ -1,19 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ApplicationShell } from '@commercetools-frontend/application-shell';
-import EntryPoint from './entry-point';
+import { ApplicationStateMachines } from './entry-point';
 
 describe('rendering', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<EntryPoint />);
+    wrapper = shallow(<ApplicationStateMachines />);
   });
-  describe('<ApplicationShell>', () => {
-    beforeEach(() => {
-      wrapper = wrapper.find(ApplicationShell).renderProp('render');
-    });
-    it('should render state machines route', () => {
-      expect(wrapper).toRender({ path: '/:projectKey/state-machines' });
-    });
+  it('should render state-machines route', () => {
+    expect(wrapper).toRender({ path: '/:projectKey/state-machines' });
   });
 });
