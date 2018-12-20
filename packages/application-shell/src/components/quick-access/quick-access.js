@@ -134,9 +134,10 @@ class QuickAccess extends React.Component {
 
   getProjectCommands = debounce(
     async searchText => {
-      const idsOfProductsMatchingSearchText = this.props.pimIndexerState
-        ? await this.props.pimSearchProductIds(searchText)
-        : [];
+      const idsOfProductsMatchingSearchText =
+        this.props.pimIndexerState === pimIndexerStates.INDEXED
+          ? await this.props.pimSearchProductIds(searchText)
+          : [];
 
       const canViewProducts = hasSomePermissions(
         [permissions.ViewProducts, permissions.ManageProducts],
