@@ -1,8 +1,3 @@
-// This file allows consumers of the application-shell to test
-// components rendered by the application shell.
-// They should
-// import { render } from ""@commercetools-frontend/application-shell/test-utils"
-// and then use it together with react-testing-library.
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Router } from 'react-router-dom';
@@ -199,11 +194,11 @@ const renderWithRedux = (
 ) => {
   invariant(
     !(store && storeState),
-    'test-utils: You provided store and storeState. Provide one of them only.'
+    'test-utils: You provided both `store` and `storeState`. Please provide only one of them.'
   );
   invariant(
     !(store && sdkMocks.length > 0),
-    'test-utils: You provided store and sdkMocks. Provide one of them only.'
+    'test-utils: You provided both `store` and `sdkMocks`. Please provide only one of them.'
   );
 
   // Determine the redux store to use in tests.
