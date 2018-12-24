@@ -44,7 +44,7 @@
     "warning": "4.0.2"
   },
   "devDependencies": {
-    "react": "16.6.3"
+    "react": "16.7.0"
   },
   "peerDependencies": {
     "react": ">=16 <17"
