@@ -27,6 +27,7 @@
     "@commercetools-frontend/ui-kit": "4.0.2",
     "prop-types": "15.6.2",
     "react": "16.7.0",
+    "react-apollo": "2.3.3",
     "react-dom": "16.7.0",
     "react-intl": "2.7.2",
     "react-redux": "5.1.1",
@@ -34,6 +35,7 @@
     "react-router-dom": "4.4.0-beta.6"
   },
   "devDependencies": {
+    "@commercetools-frontend/eslint-config-mc-app": "4.4.0",
     "@commercetools-frontend/jest-preset-mc-app": "4.3.0",
     "@commercetools-frontend/mc-scripts": "4.3.0",
     "@commitlint/cli": "7.2.1",
