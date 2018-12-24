@@ -44,7 +44,7 @@
     "json-loader": "0.5.7",
     "mini-css-extract-plugin": "0.4.0",
     "moment-locales-webpack-plugin": "1.0.7",
-    "mri": "1.1.1",
+    "mri": "1.1.4",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pegjs-loader": "0.5.4",
     "postcss": "7.0.7",

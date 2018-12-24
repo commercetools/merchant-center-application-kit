@@ -38,14 +38,6 @@ module.exports = {
     '^.+\\.graphql$': 'jest-transform-graphql',
     '^.+\\.pegjs$': 'pegjs-jest',
   },
-  transformIgnorePatterns: [
-    // This option tells Jest to ignore specific folders from being transpiled
-    // (e.g. with babel).
-    // However we need to instruct jest to actually transpile some packages.
-    // NOTE: this might not be necessary anymore once we ship packages already
-    // transpiled.
-    'node_modules/(?!(@commercetools-frontend)/)',
-    'node_modules/@commercetools-frontend/ui-kit',
-  ],
+  transformIgnorePatterns: ['node_modules'],
   watchPlugins: ['jest-plugin-filename', 'jest-watch-master'],
 };

@@ -1,4 +1,0 @@
-package.json
-packages/i18n/*.json
-**/dist/
-**/public/
