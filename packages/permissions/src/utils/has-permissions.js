@@ -77,7 +77,15 @@ export const hasSomePermissions = (demandedPermissions, actualPermissions) =>
 //     ['ViewProducts', 'ManageOrders']
 // - actualPermissions:
 //     { canViewProducts: true, canManageOrders: false }
-export const getInvalidPermissions = (demandedPermissions, actualPermissions) =>
-  demandedPermissions.filter(demandedPermission =>
+export const getInvalidPermissions = (
+  demandedPermissions,
+  actualPermissions
+) => {
+  // Given `ManageProject` is present no other permissions needs to be set and can be invalid.
+  // This is also often used in test scenarios where not all exact permissions are being passed.
+  if (hasManageProjectPermission(actualPermissions)) return [];
+  // Otherwise all demanded permissions need to be present as an actual permission.
+  return demandedPermissions.filter(demandedPermission =>
     isNil(actualPermissions[toCanCase(demandedPermission)])
   );
+};

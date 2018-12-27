@@ -108,7 +108,7 @@ describe('hasSomePermissions', () => {
 
 describe('getInvalidPermissions', () => {
   describe('given all permissions are configured (passed as `actualPermissions`)', () => {
-    it('should return no unconfigured permissions', () => {
+    it('should return no invalid permissions', () => {
       expect(
         getInvalidPermissions(['ManageOrders'], { canManageOrders: true })
       ).toHaveLength(0);
@@ -116,12 +116,23 @@ describe('getInvalidPermissions', () => {
   });
 
   describe('given some permissions are not configured (not passed as `actualPermissions`)', () => {
-    it('should return unconfigured permissions', () => {
-      expect(
-        getInvalidPermissions(['ManageOrders', 'ViewStars'], {
-          canManageOrders: true,
-        })
-      ).toEqual(expect.arrayContaining(['ViewStars']));
+    describe('given `ManageProject` is not configured', () => {
+      it('should return invalid permissions', () => {
+        expect(
+          getInvalidPermissions(['ManageOrders', 'ViewStars'], {
+            canManageOrders: true,
+          })
+        ).toEqual(expect.arrayContaining(['ViewStars']));
+      });
+    });
+    describe('given `ManageProject` is configured', () => {
+      it('should return no invalid permissions', () => {
+        expect(
+          getInvalidPermissions(['ManageOrders', 'ViewStars'], {
+            canManageProject: true,
+          })
+        ).toHaveLength(0);
+      });
     });
   });
 });
