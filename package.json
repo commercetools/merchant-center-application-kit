@@ -29,7 +29,6 @@
     "build:es:watch": "NODE_ENV=development lerna run --no-private --parallel build:es:watch"
   },
   "workspaces": [
-    "examples/*",
     "packages/*",
     "playground"
   ],
