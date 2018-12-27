@@ -6,7 +6,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Router } from 'react-router-dom';
-import { deepEqual } from 'fast-equals';
 import invariant from 'tiny-invariant';
 import { ApolloProvider } from 'react-apollo';
 import { render as rtlRender } from 'react-testing-library';
