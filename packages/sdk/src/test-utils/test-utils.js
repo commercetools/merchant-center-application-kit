@@ -3,12 +3,16 @@ import { deepEqual } from 'fast-equals';
 const serialize = data =>
   JSON.stringify(data, (k, v) => (v === undefined ? null : v), 2);
 
-const createTestMiddleware = mocks => {
+const throwIfNoMocksArePassed = mocks => {
   if (!mocks || !Array.isArray(mocks) || mocks.length === 0) {
     throw new Error(
       'Missing or invalid argument for `mocks`. Expected an array of mocked actions.'
     );
   }
+};
+
+const createTestMiddleware = mocks => {
+  throwIfNoMocksArePassed(mocks);
 
   // We clone the mocks so we can keep the user-provided mocks around for
   // the debugging message. The mocksStack gets mutated, while mocks

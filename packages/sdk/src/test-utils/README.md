@@ -26,7 +26,7 @@ This section describes the methods exported by `@commercetools-frontend/sdk/test
 
 **Return values**
 
-The `createTestMiddleware` returns a Promise if the action matches one of the provided mocks. The Promise is resolved with the provided `reponse` or rejected with the provided `error`.
+The `createTestMiddleware` returns a Promise if the action matches one of the provided mocks. The Promise is resolved with the provided `response` or rejected with the provided `error`.
 
 ### Examples
 
