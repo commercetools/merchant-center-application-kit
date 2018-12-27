@@ -107,7 +107,7 @@ describe('hasSomePermissions', () => {
 });
 
 describe('getUnconfiguredPermissions', () => {
-  describe('given all permissions are configured (passed as `actualPermissions`', () => {
+  describe('given all permissions are configured (passed as `actualPermissions`)', () => {
     it('should return no unconfigured permissions', () => {
       expect(
         getUnconfiguredPermissions(['ManageOrders'], { canManageOrders: true })
@@ -115,7 +115,7 @@ describe('getUnconfiguredPermissions', () => {
     });
   });
 
-  describe('given some permissions are not configured (not passed as `actualPermissions`', () => {
+  describe('given some permissions are not configured (not passed as `actualPermissions`)', () => {
     it('should return unconfigured permissions', () => {
       expect(
         getUnconfiguredPermissions(['ManageOrders', 'ViewStars'], {
