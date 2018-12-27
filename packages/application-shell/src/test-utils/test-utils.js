@@ -19,6 +19,7 @@ import { Provider as StoreProvider } from 'react-redux';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import { DOMAINS } from '@commercetools-frontend/constants';
+import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
 import { createReduxStore } from '../configure-store';
 import { createApolloClient } from '../configure-apollo';
 
@@ -221,40 +222,7 @@ const renderWithRedux = (
 
     if (sdkMocks.length === 0) return createReduxStore(storeState);
 
-    // We clone the sdkMocks so we can keep the user-provided mocks around for
-    // the debugging message. The sdkMocksStack gets mutated, while sdkMocks
-    // should never be mutated.
-    const sdkMocksStack = [...sdkMocks];
-    const testingMiddleware = () => next => action => {
-      // respond to fetch calls
-      if (action && action.type === 'SDK') {
-        const index = sdkMocksStack.findIndex(item =>
-          deepEqual(item.action, action)
-        );
-
-        if (index === -1)
-          throw new Error(
-            `Could not find any more sdkMocks for action ${JSON.stringify(
-              action,
-              (k, v) => (v === undefined ? null : v),
-              2
-            )} in ${JSON.stringify(
-              sdkMocks,
-              (k, v) => (v === undefined ? null : v),
-              2
-            )}`
-          );
-
-        const { response, error } = sdkMocksStack[index];
-
-        // remove result as each result is only mocked once
-        sdkMocksStack.splice(index, 1);
-
-        return error ? Promise.reject(error) : Promise.resolve(response);
-      }
-
-      return next(action);
-    };
+    const testingMiddleware = createSdkTestMiddleware(sdkMocks);
     return createReduxStore(storeState, [testingMiddleware]);
   })();
 

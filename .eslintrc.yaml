@@ -4,3 +4,5 @@ settings:
     version: '^16.0'
   import/ignore:
     - /test-utils/
+    - test-utils$
+    - test-utils.js
