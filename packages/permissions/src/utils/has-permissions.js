@@ -77,10 +77,7 @@ export const hasSomePermissions = (demandedPermissions, actualPermissions) =>
 //     ['ViewProducts', 'ManageOrders']
 // - actualPermissions:
 //     { canViewProducts: true, canManageOrders: false }
-export const getUnconfiguredPermissions = (
-  demandedPermissions,
-  actualPermissions
-) =>
+export const getInvalidPermissions = (demandedPermissions, actualPermissions) =>
   demandedPermissions.filter(demandedPermission =>
     isNil(actualPermissions[toCanCase(demandedPermission)])
   );

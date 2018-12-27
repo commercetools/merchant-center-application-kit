@@ -5,7 +5,7 @@ import { ApplicationContext } from '@commercetools-frontend/application-shell-co
 import {
   hasSomePermissions,
   hasEveryPermissions,
-  getUnconfiguredPermissions,
+  getInvalidPermissions,
 } from '../../utils/has-permissions';
 
 class Authorized extends React.Component {
@@ -21,16 +21,14 @@ class Authorized extends React.Component {
      * added to the constants and released each time.
      */
     demandedPermissions(props, propName, componentName) {
-      const namesOfNonConfiguredPermissions = getUnconfiguredPermissions(
+      const namesOfNonConfiguredPermissions = getInvalidPermissions(
         props.demandedPermissions,
         props.actualPermissions
       );
 
       if (namesOfNonConfiguredPermissions.length > 0) {
         return new Error(
-          `Invalid prop \`${propName}\` supplied to \`${componentName}\`. The permission(s) ${namesOfNonConfiguredPermissions.join(
-            ' '
-          )} is/are not configured through \`actualPermissions\`.`
+          `Invalid prop \`${propName}\` supplied to \`${componentName}\`. The permission(s) ${namesOfNonConfiguredPermissions.toString()} is/are not configured through \`actualPermissions\`.`
         );
       }
 
