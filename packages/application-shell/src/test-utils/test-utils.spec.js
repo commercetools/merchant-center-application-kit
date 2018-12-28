@@ -169,9 +169,7 @@ describe('ApplicationContext', () => {
 
   describe('permissions', () => {
     const TestComponent = () => (
-      <RestrictedByPermissions
-        permissions={[{ mode: 'manage', resource: 'products' }]}
-      >
+      <RestrictedByPermissions permissions={['ManageProducts']}>
         {({ isAuthorized }) => (isAuthorized ? 'Authorized' : 'Not allowed')}
       </RestrictedByPermissions>
     );

@@ -5,10 +5,7 @@ import { RestrictedByPermissions } from './restricted-by-permissions';
 
 const createTestProps = custom => ({
   shouldMatchSomePermissions: false,
-  permissions: [
-    { mode: 'view', resource: 'products' },
-    { mode: 'view', resource: 'orders' },
-  ],
+  permissions: ['ViewProducts', 'ViewOrders'],
   applicationContext: {
     permissions: {
       canViewProducts: true,
