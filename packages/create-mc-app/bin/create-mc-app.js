@@ -29,20 +29,26 @@ const projectDirectoryName = commands[0];
 if (!projectDirectoryName) {
   throw new Error('Missing required argument "<project-directory>"');
 }
+
+const throwIfTemplateIsNotSupported = templateName => {
+  if (!availableTemplates.includes(templateName)) {
+    throw new Error(
+      `The provided template name "${templateName}" does not exist. Available templates are "${availableTemplates.toString()}". Make sure you are also using the latest version of "@commercetools-frontend/create-mc-app".`
+    );
+  }
+};
 const templateName = flags.template || 'starter';
-if (!availableTemplates.includes(templateName)) {
-  throw new Error(
-    `The provided template name "${templateName}" does not exist. Available templates are "${availableTemplates.toString()}". Make sure you are also using the latest version of "@commercetools-frontend/create-mc-app".`
-  );
-}
+throwIfTemplateIsNotSupported(templateName);
 
+const throwIfProjectDirectoryExists = (dirName, dirPath) => {
+  if (fs.existsSync(dirPath)) {
+    throw new Error(
+      `A directory named "${dirName}" already exists at this location "${dirPath}". Please choose a different project name or remove the directory, then try running the command again.`
+    );
+  }
+};
 const projectDirectoryPath = path.resolve(projectDirectoryName);
-
-if (fs.existsSync(projectDirectoryPath)) {
-  throw new Error(
-    `A directory named "${projectDirectoryName}" already exists at this location "${projectDirectoryPath}". Please choose a different project name or remove the directory, then try running the command again.`
-  );
-}
+throwIfProjectDirectoryExists(projectDirectoryName, projectDirectoryPath);
 
 fs.mkdirSync(projectDirectoryPath);
 
@@ -60,6 +66,7 @@ const shouldUseYarn = () => {
 };
 
 const useYarn = shouldUseYarn();
+const packageManager = useYarn ? 'yarn' : 'npm';
 
 // TODO: we could check for min yarn/npm versions
 // See https://github.com/facebook/create-react-app/blob/0f4781e8507249ce29a9ac1409fece67c1a53c38/packages/create-react-app/createReactApp.js#L225-L254
@@ -85,6 +92,10 @@ const appPackageJson = JSON.parse(
   })
 );
 const updatedAppPackageJson = Object.assign({}, appPackageJson, {
+  // Given the package name is derived from the `projectDirectoryName`
+  // the latter needs to be sanitised to have a ensure a valid package name.
+  // The `projectDirectoryName` should not have restrictions (e.g. no `_`)
+  // as a result the package name potentially needs to be altered when derived.
   name: projectDirectoryName.toLowerCase().replace(/_/gi, '-'),
 });
 fs.writeFileSync(
@@ -95,7 +106,7 @@ fs.writeFileSync(
 
 // Install the dependencies
 try {
-  execSync(`${useYarn ? 'yarn' : 'npm'} install`);
+  execSync(`${packageManager} install`);
 } catch (error) {
   console.error(
     `Error while installing dependencies in "${projectDirectoryPath}":\n`,
