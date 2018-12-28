@@ -68,6 +68,7 @@ typings/
 dist
 public
 packages/application-shell/test-utils
+packages/sdk/test-utils
 
 # Editor/IDE
 .idea
