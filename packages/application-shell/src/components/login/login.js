@@ -18,6 +18,7 @@ import { withApplicationContext } from '@commercetools-frontend/application-shel
 import { STORAGE_KEYS } from '../../constants';
 import PublicPageContainer from '../public-page-container';
 import LoginBox from '../login-box';
+import PasswordField from './password-field';
 import Countdown from './countdown';
 import messages from './messages';
 import { validate } from './validations';
@@ -191,7 +192,7 @@ export class Login extends React.PureComponent {
                   isDisabled={formikProps.isSubmitting}
                   renderError={this.renderEmailErrors}
                 />
-                <TextField
+                <PasswordField
                   name="password"
                   title={this.props.intl.formatMessage(messages.password)}
                   isRequired={true}
