@@ -37,7 +37,7 @@
     "@commercetools-frontend/constants": "4.3.0",
     "lodash.get": "4.4.2",
     "lodash.omit": "4.5.0",
-    "moment-timezone": "0.5.23",
+    "moment-timezone": "^0.5.23",
     "prop-types": "15.6.2",
     "recompose": "0.26.0"
   },
