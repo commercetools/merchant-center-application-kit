@@ -1,3 +1,6 @@
+// Do this as the first thing so that any code reading it knows the right env.
+process.env.BUILD_ROLLUP = true;
+
 const fs = require('fs');
 const babel = require('rollup-plugin-babel');
 const readPkgUp = require('read-pkg-up');
