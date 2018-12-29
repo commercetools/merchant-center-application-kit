@@ -41,12 +41,12 @@
     "classnames": "2.2.6",
     "lodash.has": "4.5.2",
     "lodash.isnumber": "3.0.3",
-    "moment": "2.23.0",
-    "moment-timezone": "0.5.23",
+    "moment": "^2.23.0",
+    "moment-timezone": "^0.5.23",
     "prop-types": "15.6.2",
     "react-redux": "5.1.1",
-    "recompose": "0.26.0",
-    "reselect": "4.0.0"
+    "recompose": "^0.26.0",
+    "reselect": "^4.0.0"
   },
   "devDependencies": {
     "@commercetools-frontend/ui-kit": "4.0.2",

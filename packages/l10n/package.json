@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@commercetools-frontend/sentry": "4.0.0",
-    "moment": "2.23.0",
+    "moment": "^2.23.0",
     "prop-types": "15.6.2",
     "react": "16.7.0",
     "recompose": "0.26.0"
@@ -45,7 +45,7 @@
     "chalk": "2.4.1",
     "cldr": "4.13.0",
     "deep-diff": "1.0.2",
-    "moment-timezone": "0.5.23",
+    "moment-timezone": "^0.5.23",
     "node-fetch": "2.3.0",
     "rimraf": "2.6.2",
     "shelljs": "0.8.3"
