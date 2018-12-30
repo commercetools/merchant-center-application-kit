@@ -30,8 +30,8 @@
   "scripts": {
     "prebuild": "rimraf dist/** test-utils/**",
     "build": "npm run build:es && npm run build:cjs && npm run build:test-utils:cjs",
-    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.js --dir ./dist --chunkFileNames application-shell-[name]-[hash].cjs.js --entryFileNames application-shell-[name].cjs.js --experimentalCodeSplitting",
-    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js --dir ./dist --chunkFileNames application-shell-[name]-[hash].es.js --entryFileNames application-shell-[name].es.js --experimentalCodeSplitting",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.js --dir ./dist --chunkFileNames application-shell-[name]-[hash].cjs.js --entryFileNames application-shell-[name].cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js --dir ./dist --chunkFileNames application-shell-[name]-[hash].es.js --entryFileNames application-shell-[name].es.js",
     "build:es:watch": "npm run build:es -- -w",
     "build:test-utils:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./src/test-utils/index.js --o ./test-utils/index.js"
   },
