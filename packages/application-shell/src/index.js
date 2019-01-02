@@ -8,14 +8,6 @@ export { default as apolloClient } from './configure-apollo';
 export { applyDefaultMiddlewares } from './configure-store';
 export { default as MeasureFirstPaint } from './components/performance-timing';
 export { default as InjectReducers } from './components/inject-reducers';
-export {
-  DeprecatedFetchUser as FetchUser,
-  deprecatedWithUser as withUser,
-} from './components/fetch-user';
-export {
-  DeprecatedFetchProject as FetchProject,
-  deprecatedWithProject as withProject,
-} from './components/fetch-project';
 export { default as RouteCatchAll } from './components/route-catch-all';
 export {
   default as setupGlobalErrorListener,

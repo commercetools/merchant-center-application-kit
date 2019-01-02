@@ -21,12 +21,7 @@ enum Permission {
   ViewCustomers
   ViewOrders
   ViewProducts
-}
-
-// ⚠️ This is deprecated 👇
-type Permission {
-  mode: view|manage;
-  resource: String; // one of `products`, `orders`, ...
+  // ...
 }
 ```
 
@@ -65,7 +60,7 @@ branchOnPermissions(
 const TopFiveProducts = () =>
   // ...
 
-  branchOnPermissions([ViewProducts, ViewOrders])(TopFiveProducts);
+  branchOnPermissions(['ViewProducts', 'ViewOrders'])(TopFiveProducts);
 ```
 
 ```js
@@ -73,7 +68,7 @@ const TopFiveProducts = () =>
 const ReadOnlyInput = () => // ...
 const Input = () => // ...
 
-branchOnPermissions([ViewProducts], ReadOnlyInput)(Input)
+branchOnPermissions(['ViewProducts'], ReadOnlyInput)(Input)
 ```
 
 ## `<RestrictedByPermissions>`
@@ -116,13 +111,13 @@ const Unauthorized = () => <p>{'No permissions to see this'}</p>;
 const Dashboard = () => (
   <div>
     <RestrictedByPermissions
-      permissions={[ViewProducts]}
+      permissions={['ViewProducts']}
       unauthorizedComponent={Unauthorized}
     >
       <TopFiveProducts />
     </RestrictedByPermissions>
     <RestrictedByPermissions
-      permissions={[ViewProducts, ViewOrders]}
+      permissions={['ViewProducts', 'ViewOrders']}
       shouldMatchSomePermissions={true}
     >
       {({ isAuthorized }) => <RevenueChart isDisabled={!isAuthorized} />}
@@ -163,5 +158,5 @@ const InputField = props => (
   />
 );
 
-injectAuthorized([ViewProducts, ViewOrders])(InputField);
+injectAuthorized(['ViewProducts', 'ViewOrders'])(InputField);
 ```

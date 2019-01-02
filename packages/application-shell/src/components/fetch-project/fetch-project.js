@@ -9,7 +9,6 @@ import {
 import { deepEqual } from 'fast-equals';
 import { graphql } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import deprecateComponent from '../../from-core/deprecate-component';
 import ProjectQuery from './fetch-project.graphql';
 
 /**
@@ -106,19 +105,3 @@ export { withProject };
 
 // For testing
 export { ProjectQuery, FetchProject };
-
-// Exports with deprecated warnings
-const DeprecatedFetchProject = deprecateComponent({
-  message:
-    'The "FetchProject" component has been deprecated and will be removed in the next major release. Please use "ApplicationContext" from `@commercetools-frontend/application-shell-connectors` to access "user" and "project" information.',
-})(FetchProjectData);
-const deprecatedWithProject = (getProjectKey, mapDataToProps) => Component => {
-  const WrappedComponent = withProject(getProjectKey, mapDataToProps)(
-    Component
-  );
-  return deprecateComponent({
-    message:
-      'The "withProject" HOC has been deprecated and will be removed in the next major release. Please use "withApplicationContext" from `@commercetools-frontend/application-shell-connectors` to access "user" and "project" information.',
-  })(WrappedComponent);
-};
-export { DeprecatedFetchProject, deprecatedWithProject };
