@@ -7,10 +7,10 @@ export class InjectReducers extends React.PureComponent {
   static propTypes = {
     id: PropTypes.string.isRequired,
     reducers: PropTypes.objectOf(PropTypes.func).isRequired,
-    shouldCleanUpWhenUnmounts: PropTypes.bool,
+    shouldCleanUpOnUnmount: PropTypes.bool,
     children: PropTypes.node.isRequired,
   };
-  static defaultProps = { shouldCleanUpWhenUnmounts: true };
+  static defaultProps = { shouldCleanUpOnUnmount: true };
   static contextType = ReactReduxContext;
   state = {
     areReducersInjected: false,
@@ -25,7 +25,7 @@ export class InjectReducers extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    if (this.props.shouldCleanUpWhenUnmounts) {
+    if (this.props.shouldCleanUpOnUnmount) {
       this.context.store.removeReducers({
         id: this.props.id,
       });
