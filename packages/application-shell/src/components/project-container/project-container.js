@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
-import isNil from 'lodash.isnil';
+import isNil from 'lodash/isNil';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';

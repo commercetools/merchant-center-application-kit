@@ -37,6 +37,7 @@
     "@commitlint/cli": "7.2.1",
     "@commitlint/config-conventional": "7.1.2",
     "babel-plugin-import-graphql": "2.6.2",
+    "babel-plugin-transform-rename-import": "2.3.0",
     "cross-env": "5.2.0",
     "dotenv": "6.2.0",
     "enzyme": "3.8.0",

@@ -49,10 +49,6 @@ export class Notification extends React.PureComponent {
     fixed: false,
   };
 
-  static contextTypes = {
-    store: PropTypes.object,
-  };
-
   render() {
     return (
       <div

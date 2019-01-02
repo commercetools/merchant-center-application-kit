@@ -1,33 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
-import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-import ChannelsList from './components/channels-list';
+import { InjectReducers } from '@commercetools-frontend/application-shell';
+import {
+  RestrictedByPermissions,
+  permissions,
+} from '@commercetools-frontend/permissions';
+import StateMachinesList from './components/state-machines-list';
+import reducers from './reducers';
 
 // FIXME: import it from AppShell
 const PageUnauthorized = () => <div>{'Unauthorized'}</div>;
 PageUnauthorized.displayName = 'PageUnauthorized';
 
-const ApplicationChannelRoutes = () => (
-  <Switch>
-    <Route
-      render={routerProps => (
-        <RestrictedByPermissions
-          permissions={[
-            { mode: 'manage', resource: 'products' },
-            { mode: 'view', resource: 'products' },
-          ]}
-          unauthorizedComponent={PageUnauthorized}
-          shouldMatchSomePermissions={true}
-        >
-          <ChannelsList projectKey={routerProps.match.params.projectKey} />
-        </RestrictedByPermissions>
-      )}
-    />
-  </Switch>
+const ApplicationRoutes = () => (
+  <InjectReducers id="state-machines" reducers={reducers}>
+    <Switch>
+      <Route
+        render={routerProps => (
+          <RestrictedByPermissions
+            permissions={[permissions.ViewStates, permissions.ManageStates]}
+            unauthorizedComponent={PageUnauthorized}
+            shouldMatchSomePermissions={true}
+          >
+            <StateMachinesList
+              projectKey={routerProps.match.params.projectKey}
+            />
+          </RestrictedByPermissions>
+        )}
+      />
+    </Switch>
+  </InjectReducers>
 );
-ApplicationChannelRoutes.displayName = 'ApplicationChannelRoutes';
-ApplicationChannelRoutes.propTypes = {
+ApplicationRoutes.displayName = 'ApplicationRoutes';
+ApplicationRoutes.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       projectKey: PropTypes.string.isRequired,
@@ -35,4 +41,4 @@ ApplicationChannelRoutes.propTypes = {
   }).isRequired,
 };
 
-export default ApplicationChannelRoutes;
+export default ApplicationRoutes;

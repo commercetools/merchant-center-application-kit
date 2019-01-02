@@ -45,7 +45,6 @@ const createTestProps = props => ({
     side: [],
   },
   showNotification: jest.fn(),
-  mapPluginNotificationToComponent: jest.fn(),
   showApiErrorNotification: jest.fn(),
   showUnexpectedErrorNotification: jest.fn(),
   onRegisterErrorListeners: jest.fn(),

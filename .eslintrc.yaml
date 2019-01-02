@@ -5,4 +5,4 @@ settings:
   import/ignore:
     - /test-utils/
     - test-utils$
-    - test-utils.js
+    - test-utils\.js$

@@ -1,6 +1,5 @@
 import { ADD_NOTIFICATION } from '@commercetools-frontend/notifications';
 import { HIDE_ALL_PAGE_NOTIFICATIONS } from '@commercetools-frontend/constants';
-import toGlobal from './to-global';
 import {
   showApiErrorNotification,
   showUnexpectedErrorNotification,
@@ -16,23 +15,21 @@ describe('dispatching notifications', () => {
             errors: { code: 'oops' },
             source: 'FOO',
           })
-        ).toEqual(
-          toGlobal({
-            type: ADD_NOTIFICATION,
-            payload: {
-              kind: 'api-error',
-              domain: 'page',
-              values: {
-                errors: [{ code: 'oops' }],
-                source: 'FOO',
-                statusCode: undefined,
-              },
+        ).toEqual({
+          type: ADD_NOTIFICATION,
+          payload: {
+            kind: 'api-error',
+            domain: 'page',
+            values: {
+              errors: [{ code: 'oops' }],
+              source: 'FOO',
+              statusCode: undefined,
             },
-            meta: {
-              dismissAfter: 0,
-            },
-          })
-        );
+          },
+          meta: {
+            dismissAfter: 0,
+          },
+        });
       });
     });
 
@@ -43,23 +40,21 @@ describe('dispatching notifications', () => {
             errors: [{ code: 'oops' }],
             source: 'FOO',
           })
-        ).toEqual(
-          toGlobal({
-            type: ADD_NOTIFICATION,
-            payload: {
-              kind: 'api-error',
-              domain: 'page',
-              values: {
-                errors: [{ code: 'oops' }],
-                source: 'FOO',
-                statusCode: undefined,
-              },
+        ).toEqual({
+          type: ADD_NOTIFICATION,
+          payload: {
+            kind: 'api-error',
+            domain: 'page',
+            values: {
+              errors: [{ code: 'oops' }],
+              source: 'FOO',
+              statusCode: undefined,
             },
-            meta: {
-              dismissAfter: 0,
-            },
-          })
-        );
+          },
+          meta: {
+            dismissAfter: 0,
+          },
+        });
       });
     });
   });
@@ -72,32 +67,28 @@ describe('dispatching notifications', () => {
           source: 'FOO',
           errorId: 'myId',
         })
-      ).toEqual(
-        toGlobal({
-          type: ADD_NOTIFICATION,
-          payload: {
-            kind: 'unexpected-error',
-            values: {
-              source: 'FOO',
-              errorId: 'myId',
-              body: 'oops',
-            },
-            domain: 'page',
+      ).toEqual({
+        type: ADD_NOTIFICATION,
+        payload: {
+          kind: 'unexpected-error',
+          values: {
+            source: 'FOO',
+            errorId: 'myId',
+            body: 'oops',
           },
-          meta: {
-            dismissAfter: 0,
-            error: 'oops',
-          },
-        })
-      );
+          domain: 'page',
+        },
+        meta: {
+          dismissAfter: 0,
+          error: 'oops',
+        },
+      });
     });
   });
 });
 
 it('dispatches the HIDE_ALL_PAGE_NOTIFICATIONS action', () => {
-  expect(hideAllPageNotifications()).toEqual(
-    toGlobal({
-      type: HIDE_ALL_PAGE_NOTIFICATIONS,
-    })
-  );
+  expect(hideAllPageNotifications()).toEqual({
+    type: HIDE_ALL_PAGE_NOTIFICATIONS,
+  });
 });

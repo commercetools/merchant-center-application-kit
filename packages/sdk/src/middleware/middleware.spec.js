@@ -1,5 +1,4 @@
 import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
-import { toGlobal } from '@commercetools-frontend/actions-global';
 import createMiddleware from './middleware';
 import createClient from './client';
 
@@ -47,12 +46,10 @@ describe('when the action is of type SDK', () => {
       });
 
       it('should mark the request as started', () => {
-        expect(dispatch).toHaveBeenCalledWith(
-          toGlobal({
-            type: SHOW_LOADING,
-            payload: 'sdk.get(/test-project/product-types)',
-          })
-        );
+        expect(dispatch).toHaveBeenCalledWith({
+          type: SHOW_LOADING,
+          payload: 'sdk.get(/test-project/product-types)',
+        });
       });
 
       it('should not call `next`', () => {
@@ -81,12 +78,10 @@ describe('when the action is of type SDK', () => {
       });
 
       it('should mark the request as completed', () => {
-        expect(dispatch).toHaveBeenCalledWith(
-          toGlobal({
-            type: HIDE_LOADING,
-            payload: 'sdk.get(/test-project/product-types)',
-          })
-        );
+        expect(dispatch).toHaveBeenCalledWith({
+          type: HIDE_LOADING,
+          payload: 'sdk.get(/test-project/product-types)',
+        });
       });
 
       it('should return a resolving promise', async () => {
@@ -124,12 +119,10 @@ describe('when the action is of type SDK', () => {
 
       it('should mark the request as completed', () => {
         expect.hasAssertions();
-        expect(dispatch).toHaveBeenCalledWith(
-          toGlobal({
-            type: HIDE_LOADING,
-            payload: 'sdk.get(/test-project/product-types)',
-          })
-        );
+        expect(dispatch).toHaveBeenCalledWith({
+          type: HIDE_LOADING,
+          payload: 'sdk.get(/test-project/product-types)',
+        });
       });
 
       it('should return a rejecting promise', async () => {

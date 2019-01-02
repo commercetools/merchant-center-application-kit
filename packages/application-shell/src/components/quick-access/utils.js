@@ -1,4 +1,4 @@
-import flatMap from 'lodash.flatmap';
+import flatMap from 'lodash/flatMap';
 
 // copied from @commercetools-local/utils/query-string
 export const sanitize = param => {

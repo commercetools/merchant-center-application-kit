@@ -1,8 +1,6 @@
 import React from 'react';
-import { Provider as StoreProvider } from 'react-redux';
 import {
   ApplicationShell,
-  reduxStore,
   setupGlobalErrorListener,
   RouteCatchAll,
 } from '@commercetools-frontend/application-shell';
@@ -51,25 +49,21 @@ ApplicationStarter.displayName = 'ApplicationStarter';
 
 // Ensure to setup the global error listener before any React component renders
 // in order to catch possible errors on rendering/mounting.
-setupGlobalErrorListener(reduxStore.dispatch);
+setupGlobalErrorListener();
 
 class EntryPoint extends React.Component {
   static displayName = 'EntryPoint';
   render() {
     return (
-      <StoreProvider store={reduxStore}>
-        <ApplicationShell
-          environment={window.app}
-          onRegisterErrorListeners={() => {
-            Sdk.Get.errorHandler = error =>
-              globalActions.handleActionError(error, 'sdk')(
-                reduxStore.dispatch
-              );
-          }}
-          applicationMessages={loadApplicationMessagesForLanguage}
-          render={() => <ApplicationStarter />}
-        />
-      </StoreProvider>
+      <ApplicationShell
+        environment={window.app}
+        onRegisterErrorListeners={({ dispatch }) => {
+          Sdk.Get.errorHandler = error =>
+            globalActions.handleActionError(error, 'sdk')(dispatch);
+        }}
+        applicationMessages={loadApplicationMessagesForLanguage}
+        render={() => <ApplicationStarter />}
+      />
     );
   }
 }

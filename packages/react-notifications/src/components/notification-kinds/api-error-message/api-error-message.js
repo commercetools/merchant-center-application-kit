@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import has from 'lodash.has';
+import has from 'lodash/has';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import messages from './messages';
 

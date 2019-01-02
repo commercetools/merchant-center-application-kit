@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import isNumber from 'lodash.isnumber';
+import isNumber from 'lodash/isNumber';
 import * as globalActions from '@commercetools-frontend/actions-global';
 import { DOMAINS } from '@commercetools-frontend/constants';
 

@@ -1,11 +1,12 @@
 import { showUnexpectedErrorNotification } from '@commercetools-frontend/actions-global';
 import { boot as bootSentry } from '@commercetools-frontend/sentry';
+import internalReduxStore from '../../configure-store';
 
 // Ensure to initialize Sentry as soon as possible, so that we have the chance
 // of catching possible errors.
 bootSentry();
 
-export default function setupGlobalErrorListener(dispatch) {
+export default function setupGlobalErrorListener() {
   // Capture unhandled errors generated from rejected Promises.
   //
   // http://www.2ality.com/2016/04/unhandled-rejections.html
@@ -21,13 +22,15 @@ export default function setupGlobalErrorListener(dispatch) {
           'handled. This is most likely a bug in the software. Please ensure ' +
           'that the promise is correctly handled.'
       );
-    dispatch(
+    internalReduxStore.dispatch(
       showUnexpectedErrorNotification({ error: { message: event.reason } })
     );
   });
 
   // Capture normal global errors coming from non Promise code.
   window.addEventListener('error', errorEvent => {
-    dispatch(showUnexpectedErrorNotification({ error: errorEvent }));
+    internalReduxStore.dispatch(
+      showUnexpectedErrorNotification({ error: errorEvent })
+    );
   });
 }

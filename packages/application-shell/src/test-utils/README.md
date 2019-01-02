@@ -25,6 +25,7 @@ The `ApplicationShell` provides the following context:
     - [`locale` (`react-intl`)](#locale-react-intl)
     - [`dataLocale` (Localisation)](#datalocale-localisation)
     - [`mocks` (GraphQL)](#mocks-graphql)
+    - [`sdkMocks` (Redux)](#sdkmocks-redux)
     - [`flags` (Feature Flags)](#flags-feature-flags)
     - [Application Contenxt](#application-context)
     - [Permissions](#permissions)
@@ -117,8 +118,9 @@ This section describes the methods exported by `@commercetools-frontend/applicat
 | `ui`                  | React Element | React                                                                                                                                                                                              | React Element to render.                                                                                                                                                                                                                                                                                                                  |
 | `options.locale`      | `String`      | Localisation                                                                                                                                                                                       | Determines the UI language and number format. Is used to configure `IntlProvider`. Only _core_ messages will be available during tests, no matter the `locale`. The locale can be a full [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag), although the MC is currently only available in a limited set of languages. |
 | `options.dataLocale`  | `String`      | Localisation                                                                                                                                                                                       | Sets the locale which is used to display [`LocalizedString`](https://docs.commercetools.com/http-api-types#localizedstring)s.                                                                                                                                                                                                             |
-| `options.mocks`       | `Array`       | Apollo                                                                                                                                                                                             | Allows to mock requests made with Apollo. `mocks` is forwarded as the `mocks` argument to [`MockedProvider`](https://www.apollographql.com/docs/guides/testing-react-components.html#MockedProvider).                                                                                                                                     |
+| `options.mocks`       | `Array`       | Apollo                                                                                                                                                                                             | Allows mocking requests made with Apollo. `mocks` is forwarded as the `mocks` argument to [`MockedProvider`](https://www.apollographql.com/docs/guides/testing-react-components.html#MockedProvider).                                                                                                                                     |
 | `options.addTypename` | `Boolean`     | Apollo                                                                                                                                                                                             | If queries are lacking `__typename` (which happens when mocking) it’s important to pass `addTypename: false`, which is the default. See [`MockedProvider.addTypename`](https://www.apollographql.com/docs/guides/testing-react-components.html#addTypename) for more information.                                                         |
+| `options.sdkMocks`    | `Array`       | Redux                                                                                                                                                                                              | Allows mocking requests made with `@commercetools-frontend/sdk` (Redux). The `sdkMocks` is forwarded as `mocks` to the [SDK `test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/sdk/src/test-utils/README.md).                                                                            |
 | `options.route`       | `String`      | Routing                                                                                                                                                                                            | The route the user is on, like `/test-project/products`. Defaults to `/`.                                                                                                                                                                                                                                                                 |
 | `options.history`     | `Object`      | Routing                                                                                                                                                                                            | By default a memory-history is generated which has the provided `options.route` set as its initial history entry. It's possible to pass a custom history as well.                                                                                                                                                                         |
 | `options.adapter`     | `Object`      | Feature Toggles                                                                                                                                                                                    | The [flopflip](https://github.com/tdeekens/flopflip) adapter to use when configuring `flopflip`. Defaults to [`memoryAdapter`](https://github.com/tdeekens/flopflip/tree/master/packages/memory-adapter).                                                                                                                                 |
@@ -261,6 +263,99 @@ describe('BankAccountBalance', () => {
         },
       ],
     });
+    expect(container).toHaveTextContent('Loading..');
+    await wait(() => {
+      expect(container).toHaveTextContent('Your balance is 300€');
+    });
+  });
+});
+```
+
+#### `sdkMocks` (Redux)
+
+```jsx
+import * as globalActions from '@commercetools-frontend/actions-global';
+
+class BankAccountBalance extends React.Component {
+  static displayName = 'BankAccountBalance';
+  static propTypes = {
+    token: PropTypes.string.isRequired,
+    // Action creators
+    fetchAccountBalance: PropTypes.func.isRequired,
+    onActionError: PropTypes.func.isRequired,
+  };
+  state = {
+    isLoading: true,
+    accountBalance: null,
+  };
+  componentDidMount() {
+    this.props.fetchAccountBalance(this.props.token).then(
+      response => {
+        this.setState({
+          isLoading: false,
+          accountBalance: response.balance,
+        });
+      },
+      error => {
+        this.setState({ isLoading: false });
+        this.props.onActionError(
+          error,
+          'BankAccountBalance/fetchAccountBalance'
+        );
+      }
+    );
+  }
+  render() {
+    if (this.state.isLoading) {
+      return 'Loading..';
+    }
+    return `Your balance is ${this.state.accountBalance}€`;
+  }
+}
+const ConnectedBankAccount = connect(
+  null,
+  {
+    fetchAccountBalance: token =>
+      sdkActions.get({
+        uri: '/account/balance',
+        headers: {
+          Authorization: token,
+        },
+      }),
+    onActionError: globalActions.handleActionError,
+  }
+)(BankAccountBalance);
+export default ConnectedBankAccount;
+```
+
+```jsx
+import { renderWithRedux } from '@commercetools-frontend/application-shell/test-utils';
+import BankAccountBalance from './bank-account-balance';
+
+describe('BankAccountBalance', () => {
+  it('should render the balance', async () => {
+    const { container } = renderWithRedux(
+      <BankAccountBalance token="foo-bar" />,
+      {
+        sdkMocks: [
+          {
+            action: {
+              type: 'SDK',
+              payload: {
+                method: 'GET',
+                uri: '/account/balance',
+                headers: {
+                  Authorization: 'foo-bar',
+                },
+              },
+            },
+            response: {
+              balance: 300,
+            },
+          },
+        ],
+      }
+    );
     expect(container).toHaveTextContent('Loading..');
     await wait(() => {
       expect(container).toHaveTextContent('Your balance is 300€');
