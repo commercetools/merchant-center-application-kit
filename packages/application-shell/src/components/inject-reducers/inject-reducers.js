@@ -7,33 +7,34 @@ export class InjectReducers extends React.PureComponent {
   static propTypes = {
     id: PropTypes.string.isRequired,
     reducers: PropTypes.objectOf(PropTypes.func).isRequired,
+    shouldCleanUpWhenUnmounts: PropTypes.bool,
     children: PropTypes.node.isRequired,
   };
+  static defaultProps = { shouldCleanUpWhenUnmounts: true };
   static contextType = ReactReduxContext;
   state = {
-    hasPluginReducerBeenInjected: false,
+    areReducersInjected: false,
   };
 
   componentDidMount() {
-    const hasPluginReducerBeenInjected =
-      Reflect.has(this.context.store.injectedReducers, this.props.id) &&
-      this.context.store.injectedReducers[this.props.id] ===
-        this.props.reducers;
+    this.context.store.injectReducers({
+      id: this.props.id,
+      reducers: this.props.reducers,
+    });
+    this.setState({ areReducersInjected: true });
+  }
 
-    // In case the reducer has already been defined but the component mounts
-    // again we should avoid to inject it again.
-    if (!hasPluginReducerBeenInjected) {
-      this.context.store.injectReducers({
+  componentWillUnmount() {
+    if (this.props.shouldCleanUpWhenUnmounts) {
+      this.context.store.removeReducers({
         id: this.props.id,
-        reducers: this.props.reducers,
       });
-      this.setState({ hasPluginReducerBeenInjected: true });
     }
   }
 
   render() {
     // Render children only when the plugin reducers have been injected
-    if (this.state.hasPluginReducerBeenInjected) return this.props.children;
+    if (this.state.areReducersInjected) return this.props.children;
     return null;
   }
 }
