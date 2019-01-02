@@ -45,17 +45,13 @@ export default defineMessages({
       'Text for the link to the legacy MC when the user has no projects',
     defaultMessage: 'set up a project in the current Merchant Center',
   },
-  forgotPassowordTitle: {
-    id: 'LoginForm.forgotPassowordTitle',
+  forgotPasswordTitle: {
+    id: 'LoginForm.forgotPasswordTitle',
     description:
       'An informative message for redirecting the user to ' +
-      'forgot password page in the legacy MC',
-    defaultMessage: 'We are redirecting you to the Forgot Password form.',
-  },
-  forgotPassowordSubtitle: {
-    id: 'LoginForm.forgotPassowordSubtitle',
-    description: 'Countdown waiting for redirect',
-    defaultMessage: 'Please wait. {countdown}',
+      'forgot password page in the admin center',
+    defaultMessage:
+      'We are redirecting you to the Forgot Password form in {countdown} seconds.',
   },
   logout: {
     id: 'LoginForm.logout',
@@ -72,6 +68,11 @@ export default defineMessages({
   },
 
   // Error messages
+  invalidEmail: {
+    id: 'LoginForm.invalidEmail',
+    description: 'User credentials are wrong or invalid',
+    defaultMessage: 'Please enter a valid Email address.',
+  },
   InvalidCredentials: {
     id: 'LoginForm.InvalidCredentials',
     description: 'User credentials are wrong or invalid',

@@ -26,11 +26,4 @@ export default defineMessages({
     defaultMessage:
       'Either your Organization is not using SSO, is misspelled or does not exist. Try re-entering your Organization and contact your system administrator if you have any further questions.',
   },
-  // NOTE: this is duplicated from `@commercetools-local/utils/validation`.
-  // This should probably be defined in e.g. a uikit component or something.
-  required: {
-    id: 'Validation.required',
-    description: 'An error message to show if the field is required',
-    defaultMessage: 'Please fill in this required field.',
-  },
 });
