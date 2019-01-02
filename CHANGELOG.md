@@ -1,3 +1,62 @@
+## [5.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v4.4.0...v5.0.0) (2019-01-03)
+
+## BREAKING CHANGES 💣
+
+We dropped some legacy stuff related to Redux. Please refer to the PR [#197](https://github.com/commercetools/merchant-center-application-kit/pull/197) to get more detailed info and to follow the upgrade migration guide.
+
+Furthermore, we dropped support to the following deprecated things:
+
+- format of permissions as objects (`[{ mode: 'manage', resource: 'products' }]`) from the `@commercetools-frontend/permissions` package
+- components to access user and project data `<FetchUser>` and `<FetchProject>` from the `@commercetools-frontend/application-shell` package
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#216](https://github.com/commercetools/merchant-center-application-kit/pull/216) Fix test utils and quick access ([@dferber90](https://github.com/dferber90))
+- `application-shell`
+  - [#211](https://github.com/commercetools/merchant-center-application-kit/pull/211) fix(login): reset password dialog redirect, refactor to use formik ([@emmenko](https://github.com/emmenko))
+
+#### 💥 Type: Breaking Change
+
+- `application-shell`, `permissions`, `sdk`
+  - [#242](https://github.com/commercetools/merchant-center-application-kit/pull/242) chore: drop deprecated components ([@emmenko](https://github.com/emmenko))
+- `actions-global`, `application-shell-connectors`, `application-shell`, `create-mc-app`, `notifications`, `permissions`, `react-notifications`, `sdk`
+  - [#197](https://github.com/commercetools/merchant-center-application-kit/pull/197) Upgrade to react-redux v6, drop legacy plugin stuff 🔥 ([@emmenko](https://github.com/emmenko))
+
+#### 🔮 Type: Chore
+
+- `actions-global`, `application-shell-connectors`, `application-shell`, `permissions`, `react-notifications`
+  - [#197](https://github.com/commercetools/merchant-center-application-kit/pull/197) Use lodash-es for ESM builds for better tree-shaking support ([@emmenko](https://github.com/emmenko))
+
+#### 🚀 Type: New Feature
+
+- `create-mc-app`
+  - [#226](https://github.com/commercetools/merchant-center-application-kit/pull/226) feat(create-mc-app): add new package create-mc-app to bootstrap applications ([@emmenko](https://github.com/emmenko))
+
+You can now install a starter template with one command:
+
+```bash
+$ npm install --global @commercetools-frontend/create-mc-app
+$ create-mc-app my-new-custom-application-project --template starter
+
+# or
+
+$ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --template starter
+```
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`, `i18n`
+  - [#211](https://github.com/commercetools/merchant-center-application-kit/pull/211) Migrate login pages to formik and ui-kit form components ([@emmenko](https://github.com/emmenko))
+- `application-shell`, `sdk`
+  - [#227](https://github.com/commercetools/merchant-center-application-kit/pull/227) Move sdk mocks into sdk/test-utils ([@emmenko](https://github.com/emmenko))
+- `application-shell-connectors`, `application-shell`
+  - [#213](https://github.com/commercetools/merchant-center-application-kit/pull/213) Add `allAppliedPermissions` and remove `permissions` ([@tdeekens](https://github.com/tdeekens))
+- `application-shell`, `permissions`
+  - [#217](https://github.com/commercetools/merchant-center-application-kit/pull/217) Refactor `Authorized` in permissions pkg to not rely on constants ([@tdeekens](https://github.com/tdeekens))
+
+When using the `@commercetools-frontend/permissions` package, you need to pass a list of permissions as **String** (e.g. `['ViewProducts']`) to the `demandedPermissions` prop instead of using the **constants** (e.g. `[permissions.ViewProducts]`). With that, we can keep the list more flexible and we can avoid doing a release each time we add/remove permissions.
+
 ## [4.4.0](https://github.com/commercetools/merchant-center-application-kit/compare/v4.3.0...v4.4.0) (2018-12-17)
 
 #### 💅 Type: Enhancement
