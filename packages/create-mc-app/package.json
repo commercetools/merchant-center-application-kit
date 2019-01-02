@@ -1,7 +1,7 @@
 {
-  "name": "@commercetools-frontend/mc-http-server",
-  "version": "4.0.0",
-  "description": "Production HTTP server for running a MC application",
+  "name": "@commercetools-frontend/create-mc-app",
+  "version": "4.4.0",
+  "description": "Create Merchant Center applications to quickly get up and running",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
     "type": "git",
@@ -19,17 +19,10 @@
     "access": "public"
   },
   "bin": {
-    "mc-http-server": "./bin/start-mc.js"
+    "create-mc-app": "./bin/create-mc-app.js"
   },
   "dependencies": {
-    "@commercetools-frontend/mc-html-template": "4.0.0",
-    "@promster/express": "2.0.4",
-    "compression": "1.7.3",
-    "express": "4.16.4",
-    "morgan": "1.9.1",
-    "mri": "1.1.4",
-    "node-fetch": "2.3.0",
-    "shelljs": "0.8.3"
+    "mri": "1.1.4"
   },
   "engines": {
     "node": ">=8",
