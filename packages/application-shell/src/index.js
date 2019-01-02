@@ -22,7 +22,7 @@ export {
 } from './utils/setup-global-error-listener';
 export { selectUserId, selectProjectKeyFromUrl } from './utils';
 export { default as AsyncChunkLoader } from './components/async-chunk-loader';
-export { GetGtmTracking, withGtmTracking } from './components/gtm-booter';
+export { GtmContext } from './components/gtm-booter';
 
 /**
  * NOTE:
