@@ -14,7 +14,6 @@ import {
 } from '@commercetools-frontend/ui-kit';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import PageBottomSpacer from '../page-bottom-spacer';
-import { ApplicationStoreContext } from '../../store';
 import { selectStateMachinesFromCache } from '../../reducers/cache';
 import StateMachinesListConnector from '../state-machines-list-connector';
 import messages from './messages';
@@ -125,17 +124,12 @@ export class StateMachinesList extends React.Component {
 
 export default compose(
   withApplicationContext(),
-  connect(
-    state => {
-      const cachedStateMachine = selectStateMachinesFromCache(state);
-      return {
-        cachedStateMachineObjectsCount: cachedStateMachine
-          ? Object.keys(cachedStateMachine).length
-          : null,
-      };
-    },
-    undefined,
-    undefined,
-    { context: ApplicationStoreContext }
-  )
+  connect(state => {
+    const cachedStateMachine = selectStateMachinesFromCache(state);
+    return {
+      cachedStateMachineObjectsCount: cachedStateMachine
+        ? Object.keys(cachedStateMachine).length
+        : null,
+    };
+  })
 )(StateMachinesList);

@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createSdkGet } from '@commercetools-frontend/sdk';
-import { ApplicationStoreContext } from '../../store';
+import { Sdk } from '@commercetools-frontend/sdk';
 import * as actions from './actions';
-
-const SdkGet = createSdkGet({ context: ApplicationStoreContext });
 
 class StateMachinesListConnector extends React.Component {
   static displayName = 'StateMachinesListConnector';
@@ -17,7 +14,7 @@ class StateMachinesListConnector extends React.Component {
   };
   render() {
     return (
-      <SdkGet
+      <Sdk.Get
         actionCreator={requestParams =>
           actions.fetchStateMachines(requestParams, {
             projectKey: this.props.projectKey,
@@ -50,7 +47,5 @@ class StateMachinesListConnector extends React.Component {
 
 export default connect(
   null,
-  { setStateMachines: actions.setStateMachines },
-  undefined,
-  { context: ApplicationStoreContext }
+  { setStateMachines: actions.setStateMachines }
 )(StateMachinesListConnector);

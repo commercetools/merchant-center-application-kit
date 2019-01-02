@@ -22,10 +22,11 @@ const patchedGetCorrelationId = () =>
     userId: selectUserId({ apolloCache: apolloClient }),
   });
 
-const createInternalReducer = () =>
+const createInternalReducer = (injectedReducers = {}) =>
   combineReducers({
     requestsInFlight: requestsInFlightReducer,
     notifications: notificationsReducer,
+    ...injectedReducers,
   });
 
 const sdkMiddleware = createSdkMiddleware({
@@ -42,8 +43,8 @@ export const createReduxStore = (
   preloadedState = { requestsInFlight: null },
   // additional middleware, used for testing
   additionalMiddlewares = []
-) =>
-  createStore(
+) => {
+  const store = createStore(
     createInternalReducer(),
     preloadedState,
     compose(
@@ -61,5 +62,19 @@ export const createReduxStore = (
         : noop => noop
     )
   );
+  // Enable reducers to be injected on runtime (see `<InjectReducer>`)
+  store.injectedReducers = {};
+  store.injectReducers = ({ id, reducers }) => {
+    // Keep track of the reducer by id, so we can check if it's been injected aleady
+    store.injectedReducers[id] = reducers;
+    // ...when we create the new reducer though, we spread the reducers from each namespace
+    const allInjectedReducers = Object.entries(store.injectedReducers).reduce(
+      (allReducers, [, value]) => ({ ...allReducers, ...value }),
+      {}
+    );
+    store.replaceReducer(createInternalReducer(allInjectedReducers));
+  };
+  return store;
+};
 
 export default createReduxStore();

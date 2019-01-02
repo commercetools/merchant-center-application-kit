@@ -1,29 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { createStore, compose } from 'redux';
-import { applyDefaultMiddlewares } from '@commercetools-frontend/application-shell';
+import { InjectReducers } from '@commercetools-frontend/application-shell';
 import {
   RestrictedByPermissions,
   permissions,
 } from '@commercetools-frontend/permissions';
 import StateMachinesList from './components/state-machines-list';
-import reducer from './reducers';
-import { ApplicationStoreContext } from './store';
+import reducers from './reducers';
 
 // FIXME: import it from AppShell
 const PageUnauthorized = () => <div>{'Unauthorized'}</div>;
 PageUnauthorized.displayName = 'PageUnauthorized';
 
-const store = createStore(
-  reducer,
-  undefined,
-  compose(applyDefaultMiddlewares())
-);
-
 const ApplicationRoutes = () => (
-  <Provider store={store} context={ApplicationStoreContext}>
+  <InjectReducers id="state-machines" reducers={reducers}>
     <Switch>
       <Route
         render={routerProps => (
@@ -39,7 +30,7 @@ const ApplicationRoutes = () => (
         )}
       />
     </Switch>
-  </Provider>
+  </InjectReducers>
 );
 ApplicationRoutes.displayName = 'ApplicationRoutes';
 ApplicationRoutes.propTypes = {
