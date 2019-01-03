@@ -22,17 +22,20 @@ const itemsCategories = {
       key: 'Categories',
       labelKey: 'NavBar.Categories.list',
       uriPath: 'categories?mode=list',
+      visibilityOverwrite: 'hideCategoriesList',
     },
     {
       key: 'CategoriesSearch',
       labelKey: 'NavBar.Categories.search',
       uriPath: 'categories?mode=search',
+      visibilityOverwrite: 'hideCategoriesSearch',
     },
     {
       key: 'AddCategory',
       labelKey: 'NavBar.Categories.add',
       uriPath: 'categories/new',
       permissions: [permissions.ManageProducts],
+      visibilityOverwrite: 'hideAddCategory',
     },
   ],
 };
@@ -48,18 +51,21 @@ const itemsCustomers = {
       key: 'Customers',
       labelKey: 'NavBar.Customers.list',
       uriPath: 'customers',
+      visibilityOverwrite: 'hideCustomersList',
     },
     {
       key: 'AddCustomer',
       labelKey: 'NavBar.Customers.add',
       uriPath: 'customers/new',
       permissions: [permissions.ManageCustomers],
+      visibilityOverwrite: 'hideAddCustomer',
     },
     {
       key: 'CustomerGroups',
       labelKey: 'NavBar.CustomerGroups.list',
       featureToggle: CUSTOMER_GROUPS,
       uriPath: 'customers/customer-groups',
+      visibilityOverwrite: 'hideCustomerGroupsList',
     },
     {
       key: 'AddCustomerGroup',
@@ -67,6 +73,7 @@ const itemsCustomers = {
       featureToggle: CUSTOMER_GROUPS,
       uriPath: 'customers/customer-groups/new',
       permissions: [permissions.ManageCustomers],
+      visibilityOverwrite: 'hideAddCustomerGroup',
     },
   ],
 };
@@ -77,6 +84,7 @@ const itemsDashboard = {
   labelKey: 'NavBar.Dashboard.title',
   icon: 'SpeedometerIcon',
   permissions: [permissions.ViewOrders, permissions.ManageProducts],
+  visibilityOverwrite: 'hideDashboard',
   submenu: [],
 };
 
@@ -98,24 +106,28 @@ const itemsDiscounts = {
       labelKey: 'NavBar.ProductDiscounts.list',
       uriPath: 'discounts/products',
       permissions: [permissions.ViewProducts],
+      visibilityOverwrite: 'hideProductDiscountsList',
     },
     {
       key: 'CartDiscounts',
       labelKey: 'NavBar.CartDiscounts.list',
       uriPath: 'discounts/carts',
       permissions: [permissions.ViewOrders],
+      visibilityOverwrite: 'hideCartDiscountsList',
     },
     {
       key: 'DiscountCodes',
       labelKey: 'NavBar.DiscountCodes.list',
       uriPath: 'discounts/codes',
       permissions: [permissions.ViewOrders],
+      visibilityOverwrite: 'hideDiscountCodesList',
     },
     {
       key: 'AddDiscount',
       labelKey: 'NavBar.Discounts.add',
       uriPath: 'discounts/new',
       permissions: [permissions.ManageProducts, permissions.ManageOrders],
+      visibilityOverwrite: 'hideAddDiscounts',
     },
   ],
 };
@@ -132,12 +144,14 @@ const itemsOrders = {
       key: 'Orders',
       labelKey: 'NavBar.Orders.list',
       uriPath: 'orders',
+      visibilityOverwrite: 'hideOrdersList',
     },
     {
       key: 'AddOrders',
       labelKey: 'NavBar.Orders.add',
       uriPath: 'orders/new',
       permissions: [permissions.ManageOrders],
+      visibilityOverwrite: 'hideAddOrder',
     },
   ],
 };
@@ -153,12 +167,14 @@ const itemsProducts = {
       key: 'ProductList',
       labelKey: 'NavBar.Products.list',
       uriPath: 'products',
+      visibilityOverwrite: 'hideProductsList',
     },
     {
       key: 'ModifiedProducts',
       labelKey: 'NavBar.Products.reviewModifiedProducts',
       uriPath: 'products/modified',
       permissions: [permissions.ManageProducts],
+      visibilityOverwrite: 'hideModifiedProducts',
     },
     {
       key: 'PimSearchList',
@@ -166,17 +182,20 @@ const itemsProducts = {
       labelKey: 'NavBar.Products.pimSearchList',
       uriPath: 'products/pim-search',
       permissions: [permissions.ViewProducts, permissions.ManageProducts],
+      visibilityOverwrite: 'hidePimSearchList',
     },
     {
       key: 'AddProduct',
       labelKey: 'NavBar.Products.add',
       uriPath: 'products/new',
       permissions: [permissions.ManageProducts],
+      visibilityOverwrite: 'hideAddProduct',
     },
     {
       key: 'DirectAccess',
       labelKey: 'NavBar.Products.directAccess',
       uriPath: 'products/direct-access',
+      visibilityOverwrite: 'hideDirectAccess',
     },
   ],
 };
@@ -197,6 +216,7 @@ const itemsProjectSettings = {
       labelKey: 'NavBar.ProjectSettings.title',
       uriPath: 'settings/project',
       permissions: [permissions.ManageProject],
+      visibilityOverwrite: 'hideProjectSettings',
     },
     {
       key: 'Product types',
@@ -207,6 +227,7 @@ const itemsProjectSettings = {
         permissions.ManageProducts,
         permissions.ViewProducts,
       ],
+      visibilityOverwrite: 'hideProductTypes',
     },
     {
       key: 'Developer settings',
@@ -214,6 +235,7 @@ const itemsProjectSettings = {
       labelKey: 'NavBar.DeveloperSettings.title',
       uriPath: 'settings/developer',
       permissions: [permissions.ManageProject],
+      visibilityOverwrite: 'hideDeveloperSettings',
     },
     {
       key: 'Custom Applications',
@@ -221,6 +243,7 @@ const itemsProjectSettings = {
       labelKey: 'NavBar.CustomApplications.title',
       uriPath: 'settings/custom-applications',
       permissions: [permissions.ManageProject],
+      visibilityOverwrite: 'hideCustomApplications',
     },
   ],
 };
