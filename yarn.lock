@@ -1816,15 +1816,15 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@promster/express@2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@promster/express/-/express-2.0.4.tgz#d1aa35496f3961115025d199444d80c2cb5a052b"
-  integrity sha512-/F8SHJCFbfui18z1x+6QRefMhNF+slRhoZy/vswa8ebVgwTbet350p98G9NNM9o+iP7FdHbE6zNG9gpE/HeANA==
+"@promster/express@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@promster/express/-/express-2.1.0.tgz#0577c3e85513240502efdf138910c2f8091d3529"
+  integrity sha512-akvgn6q1wBsQjgvrBfznXdJ3Ke7Nu0rP4iD+Swjsx2VbjjcwUiRtNzuUociVcAy7A/imp04JOnoX8HHkPjr0jA==
   dependencies:
-    "@promster/metrics" "^2.0.4"
+    "@promster/metrics" "^2.1.0"
     merge-options "1.0.1"
 
-"@promster/metrics@^2.0.4":
+"@promster/metrics@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@promster/metrics/-/metrics-2.1.0.tgz#9f4263298cdfc70588bc79d5fd2e8ef23d6408c7"
   integrity sha512-wECGltNqRD0Gg0NJieVWr1sFz2eid66flObFF5GdcK7VWZb34Knhrl3fKGZ/JCNd3N39ONHvH43in7b21ue2/A==
