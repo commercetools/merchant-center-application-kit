@@ -32,10 +32,7 @@ import {
   GRAPHQL_TARGETS,
   NO_VALUE_FALLBACK,
 } from '@commercetools-frontend/constants';
-import {
-  RestrictedByPermissions,
-  permissions,
-} from '@commercetools-frontend/permissions';
+import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS } from '../../constants';
 import { PROJECT_EXTENSIONS } from './feature-toggles';
 import LoadingPlaceholder from '../loading-placeholder';
@@ -279,7 +276,7 @@ export const ToggledWithPermissions = props => {
 ToggledWithPermissions.displayName = 'ToggledWithPermissions';
 ToggledWithPermissions.propTypes = {
   featureToggle: PropTypes.string,
-  permissions: PropTypes.arrayOf(PropTypes.oneOf(Object.keys(permissions))),
+  permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
   children: PropTypes.element.isRequired,
 };
 ToggledWithPermissions.defaultProps = {
@@ -310,9 +307,7 @@ export class DataMenu extends React.PureComponent {
         tracking: PropTypes.object,
         icon: PropTypes.string.isRequired,
         featureToggle: PropTypes.string,
-        permissions: PropTypes.arrayOf(
-          PropTypes.oneOf(Object.keys(permissions))
-        ),
+        permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
         submenu: PropTypes.arrayOf(
           PropTypes.shape({
             key: PropTypes.string.isRequired,
@@ -325,9 +320,7 @@ export class DataMenu extends React.PureComponent {
             ),
             uriPath: PropTypes.string.isRequired,
             featureToggle: PropTypes.string,
-            permissions: PropTypes.arrayOf(
-              PropTypes.oneOf(Object.keys(permissions))
-            ),
+            permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
           })
         ),
       })
