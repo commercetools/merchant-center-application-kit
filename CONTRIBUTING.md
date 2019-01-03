@@ -150,6 +150,6 @@ The command will promote the version published on `next` to the `latest` npm dis
 
 On `master` branch, we automatically publish **canary** releases from CI to the `canary` distribution channel, _after_ the build runs successfully.
 
-Canary releases are useful to test early changes that are not yet released. Usually, they run for each Pull Request merged, as we squash the commits into one.
+Canary releases are useful to test early changes that should not be released yet to `next` or `latest`. They are automatically triggered and released after a Pull Request merged into `master`, unless the commit message contains `[skip publish]`.
 
-NOTE that canary releases won't create git tags and version bump commits.
+Note that canary releases __will not create git tags and version bump commits__.
