@@ -17,6 +17,10 @@ query ProjectQuery($projectKey: String!) {
       name
       value
     }
+    allAppliedVisibilityOverwrites {
+      name
+      value
+    }
     owner {
       id
       name

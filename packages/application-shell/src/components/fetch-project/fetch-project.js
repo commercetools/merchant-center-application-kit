@@ -14,20 +14,22 @@ import ProjectQuery from './fetch-project.graphql';
 /**
  * NOTE:
  *
- * Permissions are being fetched though the `allAppliedPermissions` which
- * is an array of `{ name: string, value: boolean }`. This gives more
- * flexibility to introduce new permissions to apps without having to release
- * the merchant-center-app-kit.
+ * Permissions and visibility overwrites are being fetched though the `allAppliedPermissions`
+ * and the `allAppliedVisibilityOverwrites` which both return an array of `{ name: string, value: boolean }`.
+ * This gives more flexibility to introduce new values to apps without having to release
+ * the merchant-center-app-kit by adding/exposing them from the mc-be (our proxy service).
  *
- * The application below however expects permissions to be of the shape
- * `[name: string]: boolean` which is what the shape above is mapped into here.
+ * The application below however expects both permissions an visibility overwrites to be of the shape
+ * `[name: string]: boolean` which is what the shape above is mapped into here. This object shape is easier
+ * to work with in application level code (while be a non breaking change to other packages) as you can just
+ * do `permissions.canViewProducts`.
  *
- * This function by concern belongs into the `permissions` package. However,
+ * This function considering its concern belongs into the `permissions` package. However,
  * for now it doesn't have to be shared and as a result can be co-located with
  * the fetching logic. Given this mapping needs to be used elsewere feel free
  * to move this over to `permissions` and export it there.
  */
-export const mapAppliedPermissionsToPermissions = allAppliedPermissions =>
+export const mapAllAppliedToObjectShape = allAppliedPermissions =>
   allAppliedPermissions.reduce(
     (transfromedPermissions, appliedPermission) => ({
       ...transfromedPermissions,
@@ -53,8 +55,11 @@ const graphqlOptions = {
       error: projectData.error,
       project: projectData.project && {
         ...projectData.project,
-        permissions: mapAppliedPermissionsToPermissions(
+        permissions: mapAllAppliedToObjectShape(
           projectData.project.allAppliedPermissions
+        ),
+        visibilityOverwrites: mapAllAppliedToObjectShape(
+          projectData.project.allAppliedVisibilityOverwrites
         ),
       },
     },

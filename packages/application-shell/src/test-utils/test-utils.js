@@ -57,6 +57,7 @@ const defaultProject = {
 };
 
 const defaultPermissions = { canManageProject: true };
+const defaultVisibilityOverwrites = {};
 
 // Allow consumers of `render` to extend the defaults by passing an object
 // or to completely omit the value by passing `null`
@@ -113,6 +114,7 @@ const render = (
     user,
     project,
     permissions = defaultPermissions,
+    visibilityOverwrites = defaultVisibilityOverwrites,
     dataLocale = 'en',
     ApolloProviderComponent = MockedApolloProvider,
     // gtm-context
@@ -132,7 +134,13 @@ const render = (
           <ConfigureFlopFlip adapter={adpater} defaultFlags={flags}>
             <ApplicationContextProvider
               user={mergedUser}
-              project={mergedProject && { ...mergedProject, permissions }}
+              project={
+                mergedProject && {
+                  ...mergedProject,
+                  permissions,
+                  visibilityOverwrites,
+                }
+              }
               environment={mergedEnvironment}
               projectDataLocale={dataLocale}
             >

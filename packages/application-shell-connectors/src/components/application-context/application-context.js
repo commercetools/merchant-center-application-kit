@@ -41,18 +41,15 @@ const mapProjectToApplicationContextProject = project => {
   };
 };
 
-const mapProjectToApplicationContextPermissions = project => {
-  if (!project) return null;
-
-  return project.permissions;
-};
-
 const createApplicationContext = defaultMemoize(
   (environment, user, project, projectDataLocale) => ({
     environment,
     user: mapUserToApplicationContextUser(user),
     project: mapProjectToApplicationContextProject(project),
-    permissions: mapProjectToApplicationContextPermissions(project),
+    permissions: project.permissions ? project.permissions : null,
+    visibilityOverwrites: project.visibilityOverwrites
+      ? project.visibilityOverwrites
+      : null,
     dataLocale: projectDataLocale,
   })
 );
@@ -105,6 +102,7 @@ ApplicationContextProvider.propTypes = {
       id: PropTypes.string.isRequired,
     }).isRequired,
     permissions: PropTypes.object.isRequired,
+    visibilityOverwrites: PropTypes.object.isRequired,
     // ...plus other fields that we don't want to expose
   }),
   projectDataLocale: PropTypes.string,
