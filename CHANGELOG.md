@@ -1,3 +1,15 @@
+## [5.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v5.0.0...v5.0.1) (2019-01-03)
+
+#### 🐛 Type: Bug
+
+- `create-mc-app`
+  - [#244](https://github.com/commercetools/merchant-center-application-kit/pull/244) chore: include create-mc-app templates in yarn workspaces, to define correct versions of dependencies ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+  - [#245](https://github.com/commercetools/merchant-center-application-kit/pull/245) refactor(application-shell): permission prop-type form navbar ([@tdeekens](https://github.com/tdeekens))
+
 ## [5.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v4.4.0...v5.0.0) (2019-01-03)
 
 ## BREAKING CHANGES 💣
