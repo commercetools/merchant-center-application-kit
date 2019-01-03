@@ -30,6 +30,7 @@
   },
   "workspaces": [
     "packages/*",
+    "packages/create-mc-app/templates/*",
     "playground"
   ],
   "dependencies": {},
