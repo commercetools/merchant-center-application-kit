@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/jest-preset-mc-app",
-  "version": "4.4.0",
+  "version": "5.0.0",
   "description": "Jest preset used by a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -22,7 +22,7 @@
   "module": "./jest-preset.js",
   "dependencies": {
     "@babel/core": "7.2.2",
-    "@commercetools-frontend/babel-preset-mc-app": "4.4.0",
+    "@commercetools-frontend/babel-preset-mc-app": "5.0.0",
     "@commercetools/enzyme-extensions": "3.0.1",
     "@commercetools/jest-enzyme-matchers": "1.1.2",
     "babel-core": "7.0.0-bridge.0",
@@ -32,8 +32,8 @@
     "enzyme-matchers": "7.0.1",
     "enzyme-to-json": "3.3.5",
     "identity-obj-proxy": "3.0.0",
-    "jest-enzyme": "7.0.1",
     "jest-dom": "3.0.0",
+    "jest-enzyme": "7.0.1",
     "jest-localstorage-mock": "2.3.0",
     "jest-plugin-filename": "0.0.1",
     "jest-silent-reporter": "0.1.1",
