@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/sdk",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Tools for declarative fetching",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -36,7 +36,7 @@
     "build:test-utils:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./src/test-utils/index.js --o ./test-utils/index.js"
   },
   "dependencies": {
-    "@commercetools-frontend/constants": "5.0.1",
+    "@commercetools-frontend/constants": "5.0.2",
     "@commercetools/api-request-builder": "4.1.1",
     "@commercetools/sdk-client": "1.5.10",
     "@commercetools/sdk-middleware-correlation-id": "1.0.1",
