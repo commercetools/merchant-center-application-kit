@@ -242,6 +242,9 @@ export const RestrictedApplication = props => (
                                     <NavBar
                                       applicationLanguage={language}
                                       projectKey={projectKeyFromUrl}
+                                      menuVisibilities={
+                                        project.menuVisibilities
+                                      }
                                       useFullRedirectsForLinks={
                                         props.INTERNAL__isApplicationFallback
                                       }

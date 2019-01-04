@@ -29,7 +29,6 @@ describe('rendering', () => {
             currencies: ['USD'],
             languages: ['en'],
             permissions: { canManageProject: true },
-            visibilityOverwrites: { hideDashboard: true },
             // Fields that should not be exposed
             expiry: { isActive: false },
             suspension: { isActive: false },
@@ -86,16 +85,6 @@ describe('rendering', () => {
         expect.objectContaining({
           permissions: {
             canManageProject: true,
-          },
-        })
-      );
-    });
-    it('should pass mapped visibility overwrites to Provider', () => {
-      expect(wrapper).toHaveProp(
-        'value',
-        expect.objectContaining({
-          visibilityOverwrites: {
-            hideDashboard: true,
           },
         })
       );

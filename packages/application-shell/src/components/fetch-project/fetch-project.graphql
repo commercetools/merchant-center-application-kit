@@ -17,7 +17,7 @@ query ProjectQuery($projectKey: String!) {
       name
       value
     }
-    allAppliedVisibilityOverwrites {
+    allAppliedMenuVisibilities {
       name
       value
     }

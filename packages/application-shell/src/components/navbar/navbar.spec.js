@@ -33,6 +33,9 @@ const createTestProps = props => ({
   projectKey: 'test-1',
   isForcedMenuOpen: false,
   useFullRedirectsForLinks: false,
+  menuVisibilities: {
+    hideOrdersList: true,
+  },
 
   // injectFeatureToggle
   areProjectExtensionsEnabled: false,
@@ -53,7 +56,7 @@ const createDataMenuTestProps = props => ({
           key: 'Add Customer',
           labelKey: 'NavBar.Customers.add',
           uriPath: 'customers/new',
-          visibilityOverwrite: 'hideCustomersList',
+          menuVisibility: 'hideCustomersList',
         },
       ],
     },
@@ -202,7 +205,7 @@ describe('rendering', () => {
                   key: 'Add Customer',
                   labelKey: 'NavBar.Customers.add',
                   uriPath: 'customers/new',
-                  visibilityOverwrite: 'hideAddCustomer',
+                  menuVisibility: 'hideAddCustomer',
                 },
               ],
             },
@@ -233,8 +236,8 @@ describe('rendering', () => {
             permissions.ViewCustomers,
           ]);
         });
-        it('should pass visibility overwrites of submenus as prop', () => {
-          expect(restrictedMenuItem).toHaveProp('visibilityOverwrites', [
+        it('should pass names of menu visibilities of submenus as prop', () => {
+          expect(restrictedMenuItem).toHaveProp('namesOfMenuVisibilities', [
             'hideAddCustomer',
           ]);
         });
@@ -435,7 +438,7 @@ describe('rendering', () => {
                       uriPath: 'customers/new',
                       permissions: [permissions.ManageCustomers],
                       featureToggle: 'customerAdd',
-                      visibilityOverwrite: 'hideAddCustomer',
+                      menuVisibility: 'hideAddCustomer',
                     },
                   ],
                 },
@@ -459,9 +462,9 @@ describe('rendering', () => {
               permissions.ManageCustomers,
             ]);
           });
-          it('should pass visibility overwrite as prop', () => {
+          it('should pass menu visibilities as prop', () => {
             expect(restrictedMenuItemWrapper).toHaveProp(
-              'visibilityOverwrites',
+              'namesOfMenuVisibilities',
               ['hideAddCustomer']
             );
           });
@@ -574,12 +577,6 @@ describe('rendering', () => {
     });
   });
   describe('<RestrictedMenuItem>', () => {
-    const createApplicationContextProps = custom => ({
-      visibilityOverwrites: {
-        hideOrdersList: true,
-      },
-      ...custom,
-    });
     const ItemChild = () => <span>{'foo'}</span>;
     describe('<ToggleFeature>', () => {
       describe('when featureToggle is defined', () => {
@@ -589,12 +586,13 @@ describe('rendering', () => {
               featureToggle: 'myFeature',
               permissions: [],
               actualPermissions: {},
+              menuVisibilities: {},
             };
             wrapper = shallow(
               <RestrictedMenuItem {...props}>
                 <ItemChild />
               </RestrictedMenuItem>
-            ).renderProp('render', createApplicationContextProps());
+            );
           });
           it('should match snapshot', () => {
             expect(wrapper).toMatchSnapshot();
@@ -615,12 +613,13 @@ describe('rendering', () => {
               featureToggle: 'myFeature',
               permissions: [permissions.ManageOrders],
               actualPermissions: {},
+              menuVisibilities: {},
             };
             wrapper = shallow(
               <RestrictedMenuItem {...props}>
                 <ItemChild />
               </RestrictedMenuItem>
-            ).renderProp('render', createApplicationContextProps());
+            );
           });
           it('should render <ToggleFeature>', () => {
             expect(wrapper).toRender(ToggleFeature);
@@ -652,12 +651,13 @@ describe('rendering', () => {
               featureToggle: undefined,
               permissions: [],
               actualPermissions: {},
+              menuVisibilities: {},
             };
             wrapper = shallow(
               <RestrictedMenuItem {...props}>
                 <ItemChild />
               </RestrictedMenuItem>
-            ).renderProp('render', createApplicationContextProps());
+            );
           });
           it('should not render <ToggleFeature>', () => {
             expect(wrapper).not.toRender(ToggleFeature);
@@ -672,12 +672,13 @@ describe('rendering', () => {
               featureToggle: undefined,
               permissions: [permissions.ManageOrders],
               actualPermissions: {},
+              menuVisibilities: {},
             };
             wrapper = shallow(
               <RestrictedMenuItem {...props}>
                 <ItemChild />
               </RestrictedMenuItem>
-            ).renderProp('render', createApplicationContextProps());
+            );
           });
           it('should not render <ToggleFeature>', () => {
             expect(wrapper).not.toRender(ToggleFeature);
@@ -708,12 +709,13 @@ describe('rendering', () => {
         beforeEach(() => {
           props = {
             permissions: [permissions.ViewProducts],
+            menuVisibilities: {},
           };
           wrapper = shallow(
             <RestrictedMenuItem {...props}>
               <ItemChild />
             </RestrictedMenuItem>
-          ).renderProp('render', createApplicationContextProps());
+          );
         });
         it('should match snapshot', () => {
           expect(wrapper).toMatchSnapshot();
@@ -732,17 +734,20 @@ describe('rendering', () => {
         });
       });
     });
-    describe('visibility overwrite', () => {
+    describe('menu visibility', () => {
       describe('when passed and all are `true`', () => {
         beforeEach(() => {
           props = {
-            visibilityOverwrites: ['hideOrders'],
+            namesOfMenuVisibilities: ['hideOrders'],
+            menuVisibilities: {
+              hideOrders: true,
+            },
           };
           wrapper = shallow(
             <RestrictedMenuItem {...props}>
               <ItemChild />
             </RestrictedMenuItem>
-          ).renderProp('render', createApplicationContextProps());
+          );
         });
         it('should not render <ToggleFeature>', () => {
           expect(wrapper).not.toRender(ToggleFeature);
@@ -754,18 +759,17 @@ describe('rendering', () => {
       describe('when passed and some are `false`', () => {
         beforeEach(() => {
           props = {
-            visibilityOverwrites: ['hideOrders'],
+            namesOfMenuVisibilities: ['hideOrders', 'hideDashboard'],
+            menuVisibilities: {
+              hideOrders: true,
+              hideDashboard: false,
+            },
             permissions: [permissions.ViewProducts],
           };
           wrapper = shallow(
             <RestrictedMenuItem {...props}>
               <ItemChild />
             </RestrictedMenuItem>
-          ).renderProp(
-            'render',
-            createApplicationContextProps({
-              hideOrders: false,
-            })
           );
         });
         it('should match snapshot', () => {

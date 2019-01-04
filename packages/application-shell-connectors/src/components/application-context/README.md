@@ -30,10 +30,6 @@ Use this component to access information about `user`, `project` and `environmen
 
 An object containing boolean flags about the permissions of the logged in user for the selected project (e.g. `{ canViewProducts: true, canManageOrders: false, ... }`)
 
-#### `visibilityOverwrites`
-
-An object containing boolean flags for visibility overwrites of the logged in user for the selected project (e.g. `{ hideDashboard: true, hideAddOrder: true, ... }`)
-
 #### `dataLocale`
 
 The selected project **locale** (from the locale switcher in the AppBar) used to render a localized field of the project data. The available values are based on the `project.languages`

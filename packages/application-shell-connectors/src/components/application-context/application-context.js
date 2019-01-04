@@ -47,10 +47,6 @@ const createApplicationContext = defaultMemoize(
     user: mapUserToApplicationContextUser(user),
     project: mapProjectToApplicationContextProject(project),
     permissions: project && project.permissions ? project.permissions : null,
-    visibilityOverwrites:
-      project && project.visibilityOverwrites
-        ? project.visibilityOverwrites
-        : null,
     dataLocale: projectDataLocale,
   })
 );
@@ -103,7 +99,6 @@ ApplicationContextProvider.propTypes = {
       id: PropTypes.string.isRequired,
     }).isRequired,
     permissions: PropTypes.object.isRequired,
-    visibilityOverwrites: PropTypes.object.isRequired,
     // ...plus other fields that we don't want to expose
   }),
   projectDataLocale: PropTypes.string,

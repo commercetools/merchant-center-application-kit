@@ -5,7 +5,6 @@ import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import { ToggleFeature, injectFeatureToggle } from '@flopflip/react-broadcast';
-import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
 import { oneLineTrim } from 'common-tags';
@@ -248,51 +247,49 @@ export const MenuItemDivider = () => (
 
 MenuItemDivider.displayName = 'MenuItemDivider';
 
-// This component wraps the `<ApplicationContext>`, `<RestrictedByPermissions>`
+// This component wraps `<RestrictedByPermissions>`
 // and the `<ToggleFeature>` components. However, it's necessary to have it as
 // the `<ToggleFeature>` wrapper should be rendered only if the `featureToggle`
 // prop is defined. This is because `<ToggleFeature>` will not render any
 // children if the flag is missing/not found.
-export const RestrictedMenuItem = props => (
-  <ApplicationContext
-    render={({ visibilityOverwrites: configuredVisibilityOverwrites }) => {
-      // NOTE: Custom application are activated/deactivated while their
-      // visibility is not controlled via a visibiility overwrite.
-      if (
-        props.visibilityOverwrites &&
-        props.visibilityOverwrites.every(
-          visibilityOverwrite =>
-            configuredVisibilityOverwrites[visibilityOverwrite] === true
-        )
-      )
-        return null;
+export const RestrictedMenuItem = props => {
+  // NOTE: Custom application are activated/deactivated while their
+  // visibility is not controlled via a visibiility overwrite.
+  if (
+    props.namesOfMenuVisibilities &&
+    props.namesOfMenuVisibilities.every(
+      nameOfMenuVisibility =>
+        props.menuVisibilities[nameOfMenuVisibility] === true
+    )
+  )
+    return null;
 
-      const permissionsWrapper =
-        props.permissions.length > 0 ? (
-          <RestrictedByPermissions
-            permissions={props.permissions}
-            // Always check that some of the given permissions match.
-            shouldMatchSomePermissions={true}
-          >
-            {props.children}
-          </RestrictedByPermissions>
-        ) : (
-          props.children
-        );
-      return props.featureToggle ? (
-        <ToggleFeature flag={props.featureToggle}>
-          {permissionsWrapper}
-        </ToggleFeature>
-      ) : (
-        permissionsWrapper
-      );
-    }}
-  />
-);
+  const permissionsWrapper =
+    props.permissions.length > 0 ? (
+      <RestrictedByPermissions
+        permissions={props.permissions}
+        // Always check that some of the given permissions match.
+        shouldMatchSomePermissions={true}
+      >
+        {props.children}
+      </RestrictedByPermissions>
+    ) : (
+      props.children
+    );
+
+  return props.featureToggle ? (
+    <ToggleFeature flag={props.featureToggle}>
+      {permissionsWrapper}
+    </ToggleFeature>
+  ) : (
+    permissionsWrapper
+  );
+};
 RestrictedMenuItem.displayName = 'RestrictedMenuItem';
 RestrictedMenuItem.propTypes = {
   featureToggle: PropTypes.string,
-  visibilityOverwrites: PropTypes.arrayOf(PropTypes.string),
+  namesOfMenuVisibilities: PropTypes.arrayOf(PropTypes.string),
+  menuVisibilities: PropTypes.object.isRequired,
   permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
   children: PropTypes.element.isRequired,
 };
@@ -325,7 +322,6 @@ export class DataMenu extends React.PureComponent {
         icon: PropTypes.string.isRequired,
         featureToggle: PropTypes.string,
         permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
-        visibilityOverwrites: PropTypes.arrayOf(PropTypes.string),
         submenu: PropTypes.arrayOf(
           PropTypes.shape({
             key: PropTypes.string.isRequired,
@@ -339,7 +335,7 @@ export class DataMenu extends React.PureComponent {
             uriPath: PropTypes.string.isRequired,
             featureToggle: PropTypes.string,
             permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
-            visibilityOverwrites: PropTypes.arrayOf(PropTypes.string),
+            nameOfMenuVisibility: PropTypes.string,
           })
         ),
       })
@@ -464,8 +460,8 @@ export class DataMenu extends React.PureComponent {
   renderMenu = (menu, menuType, index) => {
     const isActive = this.state.activeItemIndex === `${menuType}-${index}`;
     const hasSubmenu = Boolean(menu.submenu) && menu.submenu.length > 0;
-    const visibilityOverwritesOfAllSubmenus = hasSubmenu
-      ? menu.submenu.map(submenu => submenu.visibilityOverwrite).filter(Boolean)
+    const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
+      ? menu.submenu.map(submenu => submenu.menuVisibility).filter(Boolean)
       : [];
 
     return (
@@ -473,7 +469,8 @@ export class DataMenu extends React.PureComponent {
         key={menu.key}
         featureToggle={menu.featureToggle}
         permissions={menu.permissions}
-        visibilityOverwrites={visibilityOverwritesOfAllSubmenus}
+        namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
+        menuVisibilities={this.props.menuVisibilities}
       >
         <React.Fragment>
           {menu.key === 'Settings' && <MenuItemDivider />}
@@ -528,7 +525,8 @@ export class DataMenu extends React.PureComponent {
                       key={`${menu.key}-submenu-${submenu.key}`}
                       featureToggle={submenu.featureToggle}
                       permissions={submenu.permissions}
-                      visibilityOverwrites={[submenu.visibilityOverwrite]}
+                      namesOfMenuVisibilities={[submenu.menuVisibility]}
+                      menuVisibilities={this.props.menuVisibilities}
                     >
                       <li className={styles['sublist-item']}>
                         <div className={styles.text}>
@@ -621,6 +619,7 @@ export class NavBar extends React.PureComponent {
     applicationLanguage: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
     useFullRedirectsForLinks: PropTypes.bool.isRequired,
+    menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     // Injected
     location: PropTypes.object.isRequired,
     isForcedMenuOpen: PropTypes.bool,
