@@ -1,3 +1,9 @@
+## [5.0.2](https://github.com/commercetools/merchant-center-application-kit/compare/v5.0.1...v5.0.2) (2019-01-04)
+
+#### 🐛 Type: Bug
+
+- [#247](https://github.com/commercetools/merchant-center-application-kit/pull/247) fix(rollup): rename lodash import to lodash-es only for es bundle ([@emmenko](https://github.com/emmenko))
+
 ## [5.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v5.0.0...v5.0.1) (2019-01-03)
 
 #### 🐛 Type: Bug
