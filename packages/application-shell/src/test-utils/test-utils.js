@@ -14,6 +14,7 @@ import { ApplicationContextProvider } from '@commercetools-frontend/application-
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
+import { GtmContext } from '../components/gtm-booter';
 import { createReduxStore } from '../configure-store';
 import { createApolloClient } from '../configure-apollo';
 
@@ -77,6 +78,11 @@ MockedApolloProvider.propTypes = {
   addTypename: PropTypes.bool.isRequired,
 };
 
+const defaultGtmTracking = {
+  track: jest.fn(),
+  getHierarchy: jest.fn(),
+};
+
 // This function renders any component within the application context, as if it
 // was rendered inside <ApplicationShell />.
 // The context is not completely set up yet, some things are missing:
@@ -109,6 +115,8 @@ const render = (
     permissions = defaultPermissions,
     dataLocale = 'en',
     ApolloProviderComponent = MockedApolloProvider,
+    // gtm-context
+    gtmTracking = defaultGtmTracking,
     // forwarding to react-testing-library
     ...renderOptions
   } = {}
@@ -116,6 +124,7 @@ const render = (
   const mergedUser = mergeOptional(defaultUser, user);
   const mergedProject = mergeOptional(defaultProject, project);
   const mergedEnvironment = mergeOptional(defaultEnvironment, environment);
+  const mergedGtmTracking = mergeOptional(defaultGtmTracking, gtmTracking);
   return {
     ...rtlRender(
       <IntlProvider locale={locale}>
@@ -127,11 +136,13 @@ const render = (
               environment={mergedEnvironment}
               projectDataLocale={dataLocale}
             >
-              <Router history={history}>
-                <React.Suspense fallback={<LoadingFallback />}>
-                  {ui}
-                </React.Suspense>
-              </Router>
+              <GtmContext.Provider value={mergedGtmTracking}>
+                <Router history={history}>
+                  <React.Suspense fallback={<LoadingFallback />}>
+                    {ui}
+                  </React.Suspense>
+                </Router>
+              </GtmContext.Provider>
             </ApplicationContextProvider>
           </ConfigureFlopFlip>
         </ApolloProviderComponent>
@@ -148,6 +159,9 @@ const render = (
     user: mergedUser,
     project: mergedProject,
     environment: mergedEnvironment,
+    // Adding gtmTracking to the returned utilities to allow us
+    // to reference it in our tests.
+    gtmTracking: mergedGtmTracking,
   };
 };
 
@@ -157,13 +171,11 @@ const render = (
 const renderWithRedux = (
   ui,
   {
-    // Consumers of renderWithRedux can use
-    //   { store: createReduxStore({ requestsInFlight: null, .. }) }
-    // to pass an initial state to Redux.
-    store = undefined,
     // The store option is kept around to keep the API open as not all use-cases
     // are known yet. Meanwhile storeState and sdkMocks provide convenient ways
     // to work with the redux store.
+    store = undefined,
+    // Pass an initial state to Redux store.
     storeState = undefined,
     // renderWithRedux supports mocking requests made through the sdk
     // middleware. The approach is inspired by ApolloMockProvider.
