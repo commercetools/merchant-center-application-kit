@@ -335,7 +335,7 @@ export class DataMenu extends React.PureComponent {
             uriPath: PropTypes.string.isRequired,
             featureToggle: PropTypes.string,
             permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
-            nameOfMenuVisibility: PropTypes.string,
+            menuVisibility: PropTypes.string,
           })
         ),
       })
