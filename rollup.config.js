@@ -24,74 +24,81 @@ const postcssReporter = require('postcss-reporter');
 const { pkg } = readPkgUp.sync({
   cwd: fs.realpathSync(process.cwd()),
 });
-const importReplacements = [{ original: 'lodash', replacement: 'lodash-es' }];
 const babelOptions = getBabelPreset();
 
-const config = {
-  output: {
-    name: pkg.name,
-    sourcemap: true,
-  },
-  plugins: [
-    peerDeps({
-      includeDependencies: true,
-    }),
-    babel({
-      runtimeHelpers: true,
-      ...babelOptions,
-      plugins: [
-        babelPluginImportGraphQL.default,
-        ...babelOptions.plugins,
-        ['transform-rename-import', { replacements: importReplacements }],
-      ],
-    }),
-    // To convert CJS modules to ES6
-    commonjs({
-      include: 'node_modules/**',
-    }),
-    resolve({
-      module: true,
-      jsnext: true,
-      main: true,
-      preferBuiltins: true,
-      modulesOnly: true,
-    }),
-    json({ namedExports: false }),
-    builtins(),
-    postcss({
-      include: ['**/*.mod.css'],
-      exclude: ['node_modules/**/*.css'],
-      modules: true,
-      importLoaders: 1,
-      localIdentName: '[name]__[local]___[hash:base64:5]',
-      plugins: [
-        postcssImport(),
-        postcssPresetEnv({
-          browsers: browserslist.production,
-          autoprefixer: { grid: true },
-        }),
-        postcssCustomMediaQueries({
-          importFrom: require.resolve(
-            '@commercetools-frontend/ui-kit/materials/media-queries.mod.css'
-          ),
-        }),
-        // we need to place the postcssDiscardComments BEFORE postcssCustomProperties,
-        // otherwise we will end up with a bunch of empty :root elements
-        // wherever there are imported comments
-        // see https://github.com/postcss/postcss-custom-properties/issues/123
-        // and https://github.com/commercetools/ui-kit/pull/173
-        postcssDiscardComments(),
-        postcssCustomProperties({
-          preserve: false,
-          importFrom: require.resolve(
-            '@commercetools-frontend/ui-kit/materials/custom-properties.css'
-          ),
-        }),
-        postcssColorModFunction(),
-        postcssReporter(),
-      ],
-    }),
-  ],
+const createConfig = cliArgs => {
+  const isFormatEs = cliArgs.format === 'es';
+  return {
+    output: {
+      name: pkg.name,
+      sourcemap: true,
+    },
+    plugins: [
+      peerDeps({
+        includeDependencies: true,
+      }),
+      babel({
+        runtimeHelpers: true,
+        ...babelOptions,
+        plugins: [
+          babelPluginImportGraphQL.default,
+          ...babelOptions.plugins,
+          isFormatEs && [
+            'transform-rename-import',
+            {
+              replacements: [{ original: 'lodash', replacement: 'lodash-es' }],
+            },
+          ],
+        ].filter(Boolean),
+      }),
+      // To convert CJS modules to ES6
+      commonjs({
+        include: 'node_modules/**',
+      }),
+      resolve({
+        module: true,
+        jsnext: true,
+        main: true,
+        preferBuiltins: true,
+        modulesOnly: true,
+      }),
+      json({ namedExports: false }),
+      builtins(),
+      postcss({
+        include: ['**/*.mod.css'],
+        exclude: ['node_modules/**/*.css'],
+        modules: true,
+        importLoaders: 1,
+        localIdentName: '[name]__[local]___[hash:base64:5]',
+        plugins: [
+          postcssImport(),
+          postcssPresetEnv({
+            browsers: browserslist.production,
+            autoprefixer: { grid: true },
+          }),
+          postcssCustomMediaQueries({
+            importFrom: require.resolve(
+              '@commercetools-frontend/ui-kit/materials/media-queries.mod.css'
+            ),
+          }),
+          // we need to place the postcssDiscardComments BEFORE postcssCustomProperties,
+          // otherwise we will end up with a bunch of empty :root elements
+          // wherever there are imported comments
+          // see https://github.com/postcss/postcss-custom-properties/issues/123
+          // and https://github.com/commercetools/ui-kit/pull/173
+          postcssDiscardComments(),
+          postcssCustomProperties({
+            preserve: false,
+            importFrom: require.resolve(
+              '@commercetools-frontend/ui-kit/materials/custom-properties.css'
+            ),
+          }),
+          postcssColorModFunction(),
+          postcssReporter(),
+        ],
+      }),
+    ],
+  };
 };
 
-module.exports = config;
+module.exports = createConfig;
