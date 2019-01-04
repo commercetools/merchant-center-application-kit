@@ -1,3 +1,10 @@
+## [5.0.3](https://github.com/commercetools/merchant-center-application-kit/compare/v5.0.2...v5.0.3) (2019-01-04)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#252](https://github.com/commercetools/merchant-center-application-kit/pull/252) fix(app-shell): do not render GtmContext.Provider, so default value is used ([@emmenko](https://github.com/emmenko))
+
 ## [5.0.2](https://github.com/commercetools/merchant-center-application-kit/compare/v5.0.1...v5.0.2) (2019-01-04)
 
 #### 🐛 Type: Bug
