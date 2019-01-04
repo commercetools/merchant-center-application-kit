@@ -39,4 +39,5 @@ script:
   - set +e
 
 after_success:
+  - if [ "$TRAVIS_BRANCH" = "master" ] && [[ ! "$TRAVIS_COMMIT_MESSAGE" =~ \[skip\ publish\] ]]; then yarn release-canary; fi
   - ./scripts/push_translations.sh

@@ -110,7 +110,7 @@ You can also run the build in watch mode `yarn build:es:watch` alongside with `y
 
 ## Cutting a Release
 
-All releases go the the `next` distribution channel. This gives us a chance to test releases out before making them offical by moving the `latest` dist-tag along.
+By default, all releases go to the `next` distribution channel and should be considered **prereleases**. This gives us a chance to test out a release before marking it **stable** in the `latest` distribution channel.
 
 #### Draft release notes in the Changelog
 
@@ -120,6 +120,8 @@ All releases go the the `next` distribution channel. This gives us a chance to t
 - Copy `.env.template` and name it `.env`
 - You'll need an [access token for the GitHub API](https://help.github.com/articles/creating-an-access-token-for-command-line-use/). Save it to the environment variable: `GITHUB_AUTH`
 - Run `yarn changelog`. The command will find all the labeled pull requests merged since the last release and group them by the label and affected packages, and create a change log entry with all the changes and links to PRs and their authors. Copy and paste it to `CHANGELOG.md`.
+- The list of committers does not need to be included.
+- Check if some Pull Requests are referenced by different label types and decide if you want to keep only one entry or have it listed multiple times.
 - Add a four-space indented paragraph after each non-trivial list item, explaining what changed and why. For each breaking change also write who it affects and instructions for migrating existing code.
 - Maybe add some newlines here and there. Preview the result on GitHub to get a feel for it. Changelog generator output is a bit too terse for my taste, so try to make it visually pleasing and well grouped.
 
@@ -136,10 +138,18 @@ All releases go the the `next` distribution channel. This gives us a chance to t
 
 #### Moving the `latest` dist-tag to a release:
 
-After testing the `next` release on a production project, it's time to move to the `latest` dist-tag to make the release official.
+After testing the `next` release on a production project, if the version is **stable** it can be finally movede to the `latest` distribution channel.
 
 ```bash
 $ yarn release-to-latest
 ```
 
-The command will promote the version published on `next` to the `latest` dist-tag for each package.
+The command will promote the version published on `next` to the `latest` npm dist-tag, for each package.
+
+## Canary releases
+
+On `master` branch, we automatically publish **canary** releases from CI to the `canary` distribution channel, _after_ the build runs successfully.
+
+Canary releases are useful to test early changes that should not be released yet to `next` or `latest`. They are automatically triggered and released after a Pull Request merged into `master`, unless the commit message contains `[skip publish]`.
+
+Note that canary releases __will not create git tags and version bump commits__.
