@@ -46,10 +46,11 @@ const createApplicationContext = defaultMemoize(
     environment,
     user: mapUserToApplicationContextUser(user),
     project: mapProjectToApplicationContextProject(project),
-    permissions: project.permissions ? project.permissions : null,
-    visibilityOverwrites: project.visibilityOverwrites
-      ? project.visibilityOverwrites
-      : null,
+    permissions: project && project.permissions ? project.permissions : null,
+    visibilityOverwrites:
+      project && project.visibilityOverwrites
+        ? project.visibilityOverwrites
+        : null,
     dataLocale: projectDataLocale,
   })
 );

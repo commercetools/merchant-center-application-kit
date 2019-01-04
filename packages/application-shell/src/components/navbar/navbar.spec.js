@@ -202,7 +202,7 @@ describe('rendering', () => {
                   key: 'Add Customer',
                   labelKey: 'NavBar.Customers.add',
                   uriPath: 'customers/new',
-                  visibilityOverwrite: 'hideCustomersList',
+                  visibilityOverwrite: 'hideAddCustomer',
                 },
               ],
             },
@@ -235,7 +235,7 @@ describe('rendering', () => {
         });
         it('should pass visibility overwrites of submenus as prop', () => {
           expect(restrictedMenuItem).toHaveProp('visibilityOverwrites', [
-            'hideCustomersList',
+            'hideAddCustomer',
           ]);
         });
       });
