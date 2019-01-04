@@ -22,7 +22,7 @@
   "module": "./index.js",
   "dependencies": {
     "babel-eslint": "10.0.1",
-    "eslint": "5.10.0",
+    "eslint": "5.11.1",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "3.3.0",
     "eslint-formatter-pretty": "2.0.0",
