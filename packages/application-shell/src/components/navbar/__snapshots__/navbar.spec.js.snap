@@ -21,7 +21,7 @@ exports[`rendering <RestrictedMenuItem> <ToggleFeature> when featureToggle is de
 </ToggleFeature>
 `;
 
-exports[`rendering <RestrictedMenuItem> visibility overwrite when passed and \`false\` should match snapshot 1`] = `
+exports[`rendering <RestrictedMenuItem> visibility overwrite when passed and some are \`false\` should match snapshot 1`] = `
 <withApplicationContext(RestrictedByPermissions)
   permissions={
     Array [

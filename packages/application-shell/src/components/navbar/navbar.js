@@ -255,12 +255,15 @@ MenuItemDivider.displayName = 'MenuItemDivider';
 // children if the flag is missing/not found.
 export const RestrictedMenuItem = props => (
   <ApplicationContext
-    render={({ visibilityOverwrites }) => {
+    render={({ visibilityOverwrites: configuredVisibilityOverwrites }) => {
       // NOTE: Custom application are activated/deactivated while their
       // visibility is not controlled via a visibiility overwrite.
       if (
-        Boolean(props.visibilityOverwrite) &&
-        visibilityOverwrites[props.visibilityOverwrite] === true
+        props.visibilityOverwrites &&
+        props.visibilityOverwrites.every(
+          visibilityOverwrite =>
+            configuredVisibilityOverwrites[visibilityOverwrite] === true
+        )
       )
         return null;
 
@@ -289,7 +292,7 @@ export const RestrictedMenuItem = props => (
 RestrictedMenuItem.displayName = 'RestrictedMenuItem';
 RestrictedMenuItem.propTypes = {
   featureToggle: PropTypes.string,
-  visibilityOverwrite: PropTypes.string,
+  visibilityOverwrites: PropTypes.arrayOf(PropTypes.string),
   permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
   children: PropTypes.element.isRequired,
 };
@@ -322,7 +325,7 @@ export class DataMenu extends React.PureComponent {
         icon: PropTypes.string.isRequired,
         featureToggle: PropTypes.string,
         permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
-        visibilityOverwrite: PropTypes.string,
+        visibilityOverwrites: PropTypes.arrayOf(PropTypes.string),
         submenu: PropTypes.arrayOf(
           PropTypes.shape({
             key: PropTypes.string.isRequired,
@@ -336,7 +339,7 @@ export class DataMenu extends React.PureComponent {
             uriPath: PropTypes.string.isRequired,
             featureToggle: PropTypes.string,
             permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
-            visibilityOverwrite: PropTypes.string,
+            visibilityOverwrites: PropTypes.arrayOf(PropTypes.string),
           })
         ),
       })
@@ -461,12 +464,16 @@ export class DataMenu extends React.PureComponent {
   renderMenu = (menu, menuType, index) => {
     const isActive = this.state.activeItemIndex === `${menuType}-${index}`;
     const hasSubmenu = Boolean(menu.submenu) && menu.submenu.length > 0;
+    const visibilityOverwritesOfAllSubmenus = hasSubmenu
+      ? menu.submenu.map(submenu => submenu.visibilityOverwrite).filter(Boolean)
+      : [];
+
     return (
       <RestrictedMenuItem
         key={menu.key}
         featureToggle={menu.featureToggle}
         permissions={menu.permissions}
-        visibilityOverwrite={menu.visibilityOverwrite}
+        visibilityOverwrites={visibilityOverwritesOfAllSubmenus}
       >
         <React.Fragment>
           {menu.key === 'Settings' && <MenuItemDivider />}
@@ -521,7 +528,7 @@ export class DataMenu extends React.PureComponent {
                       key={`${menu.key}-submenu-${submenu.key}`}
                       featureToggle={submenu.featureToggle}
                       permissions={submenu.permissions}
-                      visibilityOverwrite={submenu.visibilityOverwrite}
+                      visibilityOverwrites={[submenu.visibilityOverwrite]}
                     >
                       <li className={styles['sublist-item']}>
                         <div className={styles.text}>

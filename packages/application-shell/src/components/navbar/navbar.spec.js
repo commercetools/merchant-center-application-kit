@@ -197,7 +197,14 @@ describe('rendering', () => {
               icon: 'UserFilledIcon',
               permissions: [permissions.ViewCustomers],
               featureToggle: 'customerList',
-              visibilityOverwrite: 'hideCustomersList',
+              submenu: [
+                {
+                  key: 'Add Customer',
+                  labelKey: 'NavBar.Customers.add',
+                  uriPath: 'customers/new',
+                  visibilityOverwrite: 'hideCustomersList',
+                },
+              ],
             },
           ],
         });
@@ -212,7 +219,8 @@ describe('rendering', () => {
           restrictedMenuItem = wrapper
             .find(MenuGroup)
             .at(0)
-            .find(RestrictedMenuItem);
+            .find(RestrictedMenuItem)
+            .at(0);
         });
         it('should pass featureToggle as prop', () => {
           expect(restrictedMenuItem).toHaveProp(
@@ -225,11 +233,10 @@ describe('rendering', () => {
             permissions.ViewCustomers,
           ]);
         });
-        it('should pass visibility overwrite as prop', () => {
-          expect(restrictedMenuItem).toHaveProp(
-            'visibilityOverwrite',
-            'hideCustomersList'
-          );
+        it('should pass visibility overwrites of submenus as prop', () => {
+          expect(restrictedMenuItem).toHaveProp('visibilityOverwrites', [
+            'hideCustomersList',
+          ]);
         });
       });
     });
@@ -454,8 +461,8 @@ describe('rendering', () => {
           });
           it('should pass visibility overwrite as prop', () => {
             expect(restrictedMenuItemWrapper).toHaveProp(
-              'visibilityOverwrite',
-              'hideAddCustomer'
+              'visibilityOverwrites',
+              ['hideAddCustomer']
             );
           });
         });
@@ -726,10 +733,10 @@ describe('rendering', () => {
       });
     });
     describe('visibility overwrite', () => {
-      describe('when passed and `true`', () => {
+      describe('when passed and all are `true`', () => {
         beforeEach(() => {
           props = {
-            visibilityOverwrite: 'hideOrders',
+            visibilityOverwrites: ['hideOrders'],
           };
           wrapper = shallow(
             <RestrictedMenuItem {...props}>
@@ -744,10 +751,10 @@ describe('rendering', () => {
           expect(wrapper).not.toRender(RestrictedByPermissions);
         });
       });
-      describe('when passed and `false`', () => {
+      describe('when passed and some are `false`', () => {
         beforeEach(() => {
           props = {
-            visibilityOverwrite: 'hideOrders',
+            visibilityOverwrites: ['hideOrders'],
             permissions: [permissions.ViewProducts],
           };
           wrapper = shallow(
