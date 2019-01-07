@@ -36,7 +36,7 @@ script:
   - yarn run jest --projects jest.*.config.js --maxWorkers=4 --reporters jest-silent-reporter
   - yarn build
   - yarn playground:build
-  - ./scripts/install_app_templates.sh
+  - ./scripts/install_app_template.sh starter
   - set +e
 
 after_success:
