@@ -30,8 +30,8 @@
     "build:es:watch": "NODE_ENV=development lerna run --no-private --parallel build:es:watch"
   },
   "workspaces": [
+    "application-templates/*",
     "packages/*",
-    "packages/create-mc-app/templates/*",
     "playground"
   ],
   "dependencies": {},
