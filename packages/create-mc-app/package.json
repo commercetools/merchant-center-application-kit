@@ -22,6 +22,7 @@
     "create-mc-app": "./bin/create-mc-app.js"
   },
   "dependencies": {
+    "@commercetools-frontend/application-template-starter": "0.0.0",
     "mri": "1.1.4"
   },
   "engines": {
