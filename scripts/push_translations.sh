@@ -5,7 +5,7 @@ set -e
 : "${TRANSIFEX_PASSWORD?Required env variable TRANSIFEX_PASSWORD}"
 
 # Always skip it if it's not master branch
-if [ "$TRAVIS_BRANCH" == "master" ]; then
+if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
   echo "Writing transifex configuration"
   cat > "$TRAVIS_BUILD_DIR/.transifexrc" << EOF
 [https://www.transifex.com]
