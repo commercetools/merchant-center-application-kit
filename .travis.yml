@@ -1,12 +1,12 @@
 sudo: false
 
-addons:
-  apt:
-    update: true
-    sources:
-      - deadsnakes
-    packages:
-      - python3.6
+# addons:
+#   apt:
+#     update: true
+#     sources:
+#       - deadsnakes
+#     packages:
+#       - python3.6
 
 language: node_js
 
@@ -16,29 +16,30 @@ node_js:
 notifications:
   email: false
 
-cache:
-  yarn: true
-  directories:
-    - node_modules
+# cache:
+#   yarn: true
+#   directories:
+#     - node_modules
 
-before_install:
-  # Install transifex
-  - curl https://bootstrap.pypa.io/get-pip.py | sudo -H python3.6
-  - (pip -V && pip3 -V && pip3.6 -V) | uniq
-  - python3.6 -m pip install --user transifex-client
-  - export PATH="$HOME/.local/bin:$PATH"
-  # Install yarn
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.12.3
-  - export PATH=$HOME/.yarn/bin:$PATH
+# before_install:
+#   # Install transifex
+#   - curl https://bootstrap.pypa.io/get-pip.py | sudo -H python3.6
+#   - (pip -V && pip3 -V && pip3.6 -V) | uniq
+#   - python3.6 -m pip install --user transifex-client
+#   - export PATH="$HOME/.local/bin:$PATH"
+#   # Install yarn
+#   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.12.3
+#   - export PATH=$HOME/.yarn/bin:$PATH
 
 script:
   - set -e
-  - ./scripts/install_app_templates.sh
+  - env | grep "TRAVIS"
+  # - ./scripts/install_app_templates.sh
   # - yarn run jest --projects jest.*.config.js --maxWorkers=4 --reporters jest-silent-reporter
   # - yarn build
   # - yarn playground:build
   - set +e
 
-after_success:
-  - ./scripts/release_canary.sh
-  - ./scripts/push_translations.sh
+# after_success:
+#   - ./scripts/release_canary.sh
+#   - ./scripts/push_translations.sh
