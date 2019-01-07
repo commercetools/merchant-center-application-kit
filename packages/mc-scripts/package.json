@@ -28,7 +28,7 @@
     "@commercetools-frontend/mc-html-template": "5.0.2",
     "@svgr/webpack": "4.1.0",
     "babel-core": "7.0.0-bridge.0",
-    "babel-loader": "8.0.4",
+    "babel-loader": "8.0.5",
     "babel-plugin-react-intl": "3.0.1",
     "babel-polyfill": "6.26.0",
     "browserslist": "4.3.6",
