@@ -5,9 +5,9 @@ const success = require('./success');
 const updatePackageInfo = require('./update-package-info');
 
 module.exports = {
-  updatePackageInfo,
   downloadTemplate,
   installDependencies,
   parseArguments,
   success,
+  updatePackageInfo,
 };

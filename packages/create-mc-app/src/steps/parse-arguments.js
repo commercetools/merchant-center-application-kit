@@ -1,7 +1,6 @@
-/* eslint-disable no-console */
-
 const path = require('path');
 const mri = require('mri');
+const logger = require('../logger');
 const {
   throwIfTemplateIsNotSupported,
   throwIfProjectDirectoryExists,
@@ -9,11 +8,13 @@ const {
 const { isSemVer } = require('../utils');
 
 module.exports = function parseArguments() {
+  logger.info(`🔍 Parsing command arguments...`);
+
   const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
   const commands = flags._;
 
   if (commands.length === 0 || (flags.help && commands.length === 0)) {
-    console.log(`
+    logger.note(`
     Usage: create-mc-app [project-directory] [options]
 
     Options:
@@ -42,16 +43,10 @@ module.exports = function parseArguments() {
   throwIfProjectDirectoryExists(projectDirectoryName, projectDirectoryPath);
   throwIfTemplateIsNotSupported(templateName);
 
-  const options = {
+  return {
     projectDirectoryName,
     projectDirectoryPath,
     templateName,
     tagOrBranchVersion,
   };
-
-  console.log(`==> Creating a new Merchant Center application with options:`);
-  console.log(JSON.stringify(options, null, 2));
-  console.log();
-
-  return options;
 };

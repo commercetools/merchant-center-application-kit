@@ -1,18 +1,15 @@
-/* eslint-disable no-console */
-
 const os = require('os');
 const path = require('path');
 const execSync = require('child_process').execSync;
+const logger = require('../logger');
 const { throwIfTemplateVersionDoesNotExist } = require('../validations');
 
-module.exports = function downloadTemplateFromRemoteRepository({
+module.exports = function downloadTemplate({
   projectDirectoryPath,
   templateName,
   tagOrBranchVersion,
 }) {
-  console.log(
-    `==> Downloading template "${templateName}" for version "${tagOrBranchVersion}"\n`
-  );
+  logger.info(`💻 Downloading template ${templateName}...`);
 
   const tmpDir = os.tmpdir();
   const tmpFolderNameForClonedRepository = [

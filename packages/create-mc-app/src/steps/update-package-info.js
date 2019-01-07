@@ -1,14 +1,17 @@
-/* eslint-disable no-console, prefer-object-spread/prefer-object-spread */
+/* eslint-disable prefer-object-spread/prefer-object-spread */
 
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
+const logger = require('../logger');
 const { slugify } = require('../utils');
 
 module.exports = function changePackageName({
   projectDirectoryName,
   projectDirectoryPath,
 }) {
+  logger.info(`📝 Updating package.json...`);
+
   // Change the package name based on the given project directory name
   const appPackageJson = JSON.parse(
     fs.readFileSync(path.join(projectDirectoryPath, 'package.json'), {
@@ -24,9 +27,6 @@ module.exports = function changePackageName({
     name: slugify(projectDirectoryName),
     description: '',
   });
-  console.log(
-    `==> Updating package.json name to "${updatedAppPackageJson.name}"\n`
-  );
   fs.writeFileSync(
     path.join(projectDirectoryPath, 'package.json'),
     JSON.stringify(updatedAppPackageJson, null, 2) + os.EOL,

@@ -1,11 +1,10 @@
-/* eslint-disable no-console, prefer-object-spread/prefer-object-spread */
-
 const execSync = require('child_process').execSync;
+const logger = require('../logger');
 const { shouldUseYarn } = require('../utils');
 
 module.exports = function installDependencies({ projectDirectoryPath }) {
-  console.log(`==> Installing dependencies\n`);
-  // Install the dependencies
+  logger.info(`🤖 Installing dependencies...`);
+
   const useYarn = shouldUseYarn();
   const packageManager = useYarn ? 'yarn' : 'npm';
   // TODO: we could check for min yarn/npm versions
