@@ -18,8 +18,9 @@ if (commands.length === 0 || (flags.help && commands.length === 0)) {
   Usage: create-mc-app [project-directory] [options]
 
   Options:
-  --template=<name>     (optional) The name of the template to install [default "starter"]
-                        Available options: ["starter"]
+  --template=<name>                (optional) The name of the template to install [default "starter"]
+                                   Available options: ["starter"]
+  --template-version=<version>     (optional) The version of the template to install [default "latest"]
   `);
   process.exit(0);
 }
@@ -53,7 +54,7 @@ throwIfProjectDirectoryExists(projectDirectoryName, projectDirectoryPath);
 fs.mkdirSync(projectDirectoryPath);
 
 console.log(
-  `==> Creating a new Merchant Center application in ${projectDirectoryPath}.\n`
+  `==> Creating a new Merchant Center application in ${projectDirectoryPath}\n`
 );
 
 const shouldUseYarn = () => {
@@ -71,12 +72,80 @@ const packageManager = useYarn ? 'yarn' : 'npm';
 // TODO: we could check for min yarn/npm versions
 // See https://github.com/facebook/create-react-app/blob/0f4781e8507249ce29a9ac1409fece67c1a53c38/packages/create-react-app/createReactApp.js#L225-L254
 
-const templatePath = path.join(__dirname, '../templates', templateName);
+const isSemVer = version => /^(v?)([0-9].[0-9].[0-9])+/.test(version);
+let tagOrBranchVersion = flags['template-version'] || 'master';
+tagOrBranchVersion =
+  isSemVer(tagOrBranchVersion) && !tagOrBranchVersion.startsWith('v')
+    ? `v${tagOrBranchVersion}`
+    : tagOrBranchVersion;
+
+console.log(
+  `==> Downloading template ${templateName} for version ${tagOrBranchVersion}\n`
+);
+
+const throwIfTemplateVersionDoesNotExist = (
+  templateFolderPath,
+  versionToCheck
+) => {
+  if (!fs.existsSync(templateFolderPath)) {
+    throw new Error(
+      `The downloaded template "${templateName}" does not exist for the given version "${versionToCheck}". Check the releases page if you are looking for a specific version: https://github.com/commercetools/merchant-center-application-kit/releases`
+    );
+  }
+  // In case the version is semver (usually release tags) we check that
+  // the cloned repository contains the template matching the given version
+  if (isSemVer(versionToCheck)) {
+    const templatePackageJson = JSON.parse(
+      fs.readFileSync(path.join(templateFolderPath, 'package.json'), {
+        encoding: 'utf8',
+      })
+    );
+    const versionAsNumber = versionToCheck.replace('v', '');
+    if (templatePackageJson.version !== versionAsNumber) {
+      throw new Error(
+        `The downloaded template "${templateName}" does not match the version "${versionAsNumber}", instead got "${
+          templatePackageJson.version
+        }". Check the releases page if you want to provide a specific version: https://github.com/commercetools/merchant-center-application-kit/releases`
+      );
+    }
+  }
+};
+const tmpDir = os.tmpdir();
+const tmpFolderNameForClonedRepository = [
+  'merchant-center-application-kit',
+  '--',
+  tagOrBranchVersion,
+  '--',
+  Date.now().toString(),
+].join('');
+const clonedRepositoryPath = path.join(
+  tmpDir,
+  tmpFolderNameForClonedRepository
+);
+const templateFolderPath = path.join(
+  clonedRepositoryPath,
+  'application-templates',
+  templateName
+);
+execSync(
+  [
+    'git clone',
+    `--branch=${tagOrBranchVersion}`,
+    '--depth=1',
+    'https://github.com/commercetools/merchant-center-application-kit.git',
+    tmpFolderNameForClonedRepository,
+  ].join(' '),
+  {
+    cwd: tmpDir,
+    stdio: 'ignore',
+  }
+);
+throwIfTemplateVersionDoesNotExist(clonedRepositoryPath, tagOrBranchVersion);
 
 try {
-  execSync(`cp -R ${templatePath}/ ${projectDirectoryPath}/`);
+  execSync(`cp -R ${templateFolderPath}/ ${projectDirectoryPath}/`);
 } catch (error) {
-  console.error(
+  throw new Error(
     `Error while installing template "${templateName}" into "${projectDirectoryPath}":\n`,
     error
   );
@@ -85,6 +154,7 @@ try {
 // Enter inside the project directory
 process.chdir(projectDirectoryPath);
 
+console.log(`==> Updating package name\n`);
 // Change the package name based on the given project directory name
 const appPackageJson = JSON.parse(
   fs.readFileSync(path.join(projectDirectoryPath, 'package.json'), {
@@ -104,11 +174,12 @@ fs.writeFileSync(
   { encoding: 'utf8' }
 );
 
+console.log(`==> Installing dependencies\n`);
 // Install the dependencies
 try {
   execSync(`${packageManager} install`);
 } catch (error) {
-  console.error(
+  throw new Error(
     `Error while installing dependencies in "${projectDirectoryPath}":\n`,
     error
   );
