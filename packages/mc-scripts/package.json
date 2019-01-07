@@ -31,7 +31,7 @@
     "babel-loader": "8.0.4",
     "babel-plugin-react-intl": "3.0.1",
     "babel-polyfill": "6.26.0",
-    "browserslist": "4.3.6",
+    "browserslist": "4.3.7",
     "chalk": "2.4.1",
     "clean-webpack-plugin": "1.0.0",
     "css-loader": "1.0.1",
