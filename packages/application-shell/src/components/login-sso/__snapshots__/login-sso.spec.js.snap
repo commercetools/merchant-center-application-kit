@@ -9,7 +9,7 @@ exports[`rendering <Formik> form elements should match layout 1`] = `
     scale="m"
   >
     <TextSubheadline
-      elementType="h3"
+      elementType="h4"
     >
       <FormattedMessage
         defaultMessage="Sign in to your Organization"
@@ -38,6 +38,7 @@ exports[`rendering <Formik> form elements should match layout 1`] = `
         onClick={[MockFunction]}
         size="big"
         tone="primary"
+        type="button"
       />
     </Inline>
   </Stack>

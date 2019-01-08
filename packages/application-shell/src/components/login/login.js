@@ -176,7 +176,7 @@ export class Login extends React.PureComponent {
                 {this.renderErrorMessage(
                   !formikProps.isSubmitting && this.state.error
                 )}
-                <Text.Subheadline elementType="h3">
+                <Text.Subheadline elementType="h4">
                   <FormattedMessage {...messages.title} />
                 </Text.Subheadline>
                 <TextField
