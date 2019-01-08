@@ -52,7 +52,7 @@
     "jest-runner-shellcheck": "1.0.2",
     "jest-runner-stylelint": "1.0.0",
     "jest-silent-reporter": "0.1.1",
-    "lerna": "3.8.0",
+    "lerna": "3.9.0",
     "lerna-changelog": "0.8.2",
     "lint-staged": "8.1.0",
     "prettier": "1.15.3",
