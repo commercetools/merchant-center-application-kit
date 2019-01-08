@@ -14,18 +14,20 @@ module.exports = function hintOutdatedVersion() {
       execSync(`npm view @commercetools-frontend/create-mc-app@next --json`)
     );
 
-    const hasNewerVersionLatest = semver.gt(
+    const hasBeenReleastedInLatestTag = semver.gt(
       packageInfoForTagLatest.version,
       currentVersion
     );
-    const hasNewerVersionNext = semver.gt(
+    const hasBeenReleasedInNextTag = semver.gt(
       packageInfoForTagNext.version,
       currentVersion
     );
 
     const hintNewerVersions = [
-      hasNewerVersionLatest && `${packageInfoForTagLatest.version} (stable)`,
-      hasNewerVersionNext && `${packageInfoForTagNext.version} (prerelease)`,
+      hasBeenReleastedInLatestTag &&
+        `${packageInfoForTagLatest.version} (stable)`,
+      hasBeenReleasedInNextTag &&
+        `${packageInfoForTagNext.version} (prerelease)`,
     ]
       .filter(Boolean)
       .join(', ');
