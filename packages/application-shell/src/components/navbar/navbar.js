@@ -470,7 +470,6 @@ export class DataMenu extends React.PureComponent {
         featureToggle={menu.featureToggle}
         permissions={menu.permissions}
         namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
-        menuVisibilities={this.props.menuVisibilities}
       >
         <React.Fragment>
           {menu.key === 'Settings' && <MenuItemDivider />}
@@ -526,7 +525,6 @@ export class DataMenu extends React.PureComponent {
                       featureToggle={submenu.featureToggle}
                       permissions={submenu.permissions}
                       namesOfMenuVisibilities={[submenu.menuVisibility]}
-                      menuVisibilities={this.props.menuVisibilities}
                     >
                       <li className={styles['sublist-item']}>
                         <div className={styles.text}>
