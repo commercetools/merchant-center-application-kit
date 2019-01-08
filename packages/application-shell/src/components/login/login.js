@@ -6,11 +6,12 @@ import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import {
+  ContentNotification,
+  PasswordField,
+  PrimaryButton,
   Spacings,
   Text,
   TextField,
-  ContentNotification,
-  PrimaryButton,
 } from '@commercetools-frontend/ui-kit';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
@@ -18,7 +19,6 @@ import { withApplicationContext } from '@commercetools-frontend/application-shel
 import { STORAGE_KEYS } from '../../constants';
 import PublicPageContainer from '../public-page-container';
 import LoginBox from '../login-box';
-import PasswordField from './password-field';
 import Countdown from './countdown';
 import messages from './messages';
 import { validate } from './validations';
@@ -176,7 +176,7 @@ export class Login extends React.PureComponent {
                 {this.renderErrorMessage(
                   !formikProps.isSubmitting && this.state.error
                 )}
-                <Text.Subheadline elementType="h3">
+                <Text.Subheadline elementType="h4">
                   <FormattedMessage {...messages.title} />
                 </Text.Subheadline>
                 <TextField

@@ -28,6 +28,7 @@ const createTestPropsForFormik = props => ({
   isValid: false,
   handleSubmit: jest.fn(),
   isSubmitting: false,
+  handleChange: () => {},
   setFieldValue: jest.fn(),
   setFieldTouched: jest.fn(),
   ...props,

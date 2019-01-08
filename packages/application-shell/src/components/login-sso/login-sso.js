@@ -137,7 +137,7 @@ export class LoginSSO extends React.PureComponent {
                         </Spacings.Stack>
                       </ContentNotification>
                     ) : null}
-                    <Text.Subheadline elementType="h3">
+                    <Text.Subheadline elementType="h4">
                       <FormattedMessage {...messages.title} />
                     </Text.Subheadline>
                     <TextField
