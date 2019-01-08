@@ -22,7 +22,8 @@
     "create-mc-app": "./bin/create-mc-app.js"
   },
   "dependencies": {
-    "mri": "1.1.4"
+    "mri": "1.1.4",
+    "signale": "1.3.0"
   },
   "engines": {
     "node": ">=8",
