@@ -19,7 +19,7 @@
     "access": "public"
   },
   "dependencies": {
-    "serialize-javascript": "1.5.0",
+    "serialize-javascript": "1.6.1",
     "uglify-es": "3.3.9",
     "uglifycss": "0.0.29"
   },
