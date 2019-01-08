@@ -8,6 +8,7 @@ const {
   throwIfProjectDirectoryExists,
 } = require('../validations');
 const { isSemVer } = require('../utils');
+const hintOutdatedVersion = require('./hint-outdated-version');
 
 module.exports = function parseArguments() {
   const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
@@ -29,6 +30,7 @@ module.exports = function parseArguments() {
   }
 
   logger.log(`Version: v${pkg.version}`);
+  hintOutdatedVersion();
   logger.log();
   logger.info(`🔍 Parsing command arguments...`);
 
