@@ -1,9 +1,13 @@
-const signale = require('signale');
+const { Signale } = require('signale');
 
-signale.config({
-  displayBadge: false,
+module.exports = new Signale({
+  config: { displayBadge: false, displayLabel: false },
+  scope: 'create-mc-app',
+  types: {
+    log: { color: '' },
+    success: { color: 'green' },
+    error: { color: 'red' },
+    info: { color: 'blue' },
+    note: { color: 'magenta' },
+  },
 });
-
-const logger = signale.scope('create-mc-app');
-
-module.exports = logger;

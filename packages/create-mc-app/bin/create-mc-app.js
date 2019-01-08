@@ -2,9 +2,6 @@
 
 const steps = require('../src/steps');
 const logger = require('../src/logger');
-const pkg = require('../package.json');
-
-logger.log(`create-mc-app v${pkg.version}`);
 
 try {
   const options = steps.parseArguments();

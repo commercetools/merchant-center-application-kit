@@ -51,11 +51,12 @@ module.exports = function downloadTemplate({
   );
 
   try {
-    execSync(`mv ${templateFolderPath} ${projectDirectoryPath}`);
+    execSync(`mv ${templateFolderPath} ${projectDirectoryPath}`, {
+      stdio: 'inherit',
+    });
   } catch (error) {
     throw new Error(
-      `Error while installing template "${templateName}" into "${projectDirectoryPath}":\n`,
-      error
+      `Could not copy template "${templateName}" into "${projectDirectoryPath}"`
     );
   }
 };
