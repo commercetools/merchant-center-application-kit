@@ -105,6 +105,7 @@ AppBar.propTypes = {
     gravatarHash: PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
     projects: PropTypes.shape({
       total: PropTypes.number.isRequired,
     }).isRequired,

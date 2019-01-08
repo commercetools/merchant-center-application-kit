@@ -53,6 +53,7 @@ MainView.displayName = 'MainView';
 MainView.propTypes = {
   match: PropTypes.shape({
     path: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
     params: PropTypes.shape({
       projectKey: PropTypes.string.isRequired,
     }).isRequired,

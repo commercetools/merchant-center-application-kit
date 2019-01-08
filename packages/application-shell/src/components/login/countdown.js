@@ -12,6 +12,7 @@ export class Countdown extends React.PureComponent {
 
   static propTypes = {
     onCountEnd: PropTypes.func.isRequired,
+    children: PropTypes.func.isRequired,
   };
 
   state = {

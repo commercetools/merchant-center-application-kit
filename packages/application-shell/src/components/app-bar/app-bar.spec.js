@@ -15,6 +15,7 @@ const createTestProps = props => ({
     defaultProjectKey: 'test-default-project-key',
     firstName: 'John',
     lastName: 'Snow',
+    email: 'john.snow@winter.com',
     gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
   },
   ...props,
