@@ -24,6 +24,7 @@ exports[`rendering <Formik> form elements should match layout 1`] = `
       isDisabled={false}
       isRequired={true}
       name="organizationName"
+      onChange={[Function]}
       title="Login.sso.organization"
       value=""
     />
