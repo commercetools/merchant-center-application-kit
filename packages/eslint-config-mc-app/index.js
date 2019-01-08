@@ -54,6 +54,7 @@ module.exports = {
       'always',
       {
         js: 'never',
+        mjs: 'never',
       },
     ],
     'import/no-extraneous-dependencies': 0,
