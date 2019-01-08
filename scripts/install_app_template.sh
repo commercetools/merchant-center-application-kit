@@ -11,9 +11,12 @@ fi
 
 TEMPLATE_VERSION="${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}"
 TEST_APP_NAME=test-install-app-starter
+REPO_BINARIES=$(yarn bin)
+
+pushd "$HOME"
 
 echo "Installing application for template $TEMPLATE"
-yarn run create-mc-app \
+node "$REPO_BINARIES/create-mc-app" \
   --template="$TEMPLATE" \
   --template-version="$TEMPLATE_VERSION" \
   "$TEST_APP_NAME"
