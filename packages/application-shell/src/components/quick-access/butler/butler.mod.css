@@ -85,6 +85,6 @@
   text-align: center;
   text-transform: uppercase;
   color: var(--color-white);
-  font-size: var(--token-font-size-small);
+  font-size: var(--font-size-small);
   padding: var(--spacing-4);
 }
