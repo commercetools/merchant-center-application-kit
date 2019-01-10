@@ -252,14 +252,22 @@ MenuItemDivider.displayName = 'MenuItemDivider';
 // the `<ToggleFeature>` wrapper should be rendered only if the `featureToggle`
 // prop is defined. This is because `<ToggleFeature>` will not render any
 // children if the flag is missing/not found.
+const hasMenuEveryMenuVisibilitySetToBeHidden = (
+  namesOfMenuVisibilities,
+  menuVisibilities
+) =>
+  Array.isArray(namesOfMenuVisibilities) &&
+  namesOfMenuVisibilities.length > 0 &&
+  namesOfMenuVisibilities.every(
+    nameOfMenuVisibility => menuVisibilities[nameOfMenuVisibility] === true
+  );
 export const RestrictedMenuItem = props => {
   // NOTE: Custom application are activated/deactivated while their
   // visibility is not controlled via a visibiility overwrite.
   if (
-    props.namesOfMenuVisibilities &&
-    props.namesOfMenuVisibilities.every(
-      nameOfMenuVisibility =>
-        props.menuVisibilities[nameOfMenuVisibility] === true
+    hasMenuEveryMenuVisibilitySetToBeHidden(
+      props.namesOfMenuVisibilities,
+      props.menuVisibilities
     )
   )
     return null;
@@ -340,6 +348,7 @@ export class DataMenu extends React.PureComponent {
         ),
       })
     ),
+    menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     applicationLanguage: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
     isForcedMenuOpen: PropTypes.bool,
@@ -469,6 +478,7 @@ export class DataMenu extends React.PureComponent {
         key={menu.key}
         featureToggle={menu.featureToggle}
         permissions={menu.permissions}
+        menuVisibilities={this.props.menuVisibilities}
         namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
       >
         <React.Fragment>
@@ -524,6 +534,7 @@ export class DataMenu extends React.PureComponent {
                       key={`${menu.key}-submenu-${submenu.key}`}
                       featureToggle={submenu.featureToggle}
                       permissions={submenu.permissions}
+                      menuVisibilities={this.props.menuVisibilities}
                       namesOfMenuVisibilities={[submenu.menuVisibility]}
                     >
                       <li className={styles['sublist-item']}>
@@ -658,6 +669,7 @@ export class NavBar extends React.PureComponent {
           }
           isForcedMenuOpen={this.props.isForcedMenuOpen}
           location={this.props.location}
+          menuVisibilities={this.props.menuVisibilities}
           applicationLanguage={this.props.applicationLanguage}
           projectKey={this.props.projectKey}
           useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}
