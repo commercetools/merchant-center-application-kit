@@ -767,10 +767,10 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@commercetools-frontend/ui-kit@6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-6.0.0.tgz#a53adfb1f81182cf89dace77834360c48d505864"
-  integrity sha512-qYXLKkWXKN7HLQgarofowfLDKjYeSlN13rKDeiRFGKkwByu7W2+SXHdxMCi5/KuhMXwQS/772MWHuJtW8bHmoA==
+"@commercetools-frontend/ui-kit@6.1.1":
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-6.1.1.tgz#b50bfdd74a0ad407473e21e15f18903f827217ea"
+  integrity sha512-wmt3Dk6yzpuMHbqZXgcr+ZLGgX0yViAxOmVPBDvwC8c6eBsbSqomCt1mOBGte9EL4mAL9VTvt/b5ed435Bg7iA==
   dependencies:
     "@emotion/core" "10.0.6"
     "@emotion/styled" "10.0.6"
