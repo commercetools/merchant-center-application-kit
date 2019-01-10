@@ -437,6 +437,8 @@ module.exports = ({
        */
       {
         test: /\.js$/,
+        include: /node_modules/,
+        exclude: sourceFolders,
         use: [
           require.resolve('thread-loader'),
           {
@@ -455,7 +457,6 @@ module.exports = ({
             },
           },
         ],
-        include: /node_modules/,
       },
       // Allow to import `*.graphql` SDL files.
       {
