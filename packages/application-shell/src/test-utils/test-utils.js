@@ -132,7 +132,12 @@ const render = (
           <ConfigureFlopFlip adapter={adpater} defaultFlags={flags}>
             <ApplicationContextProvider
               user={mergedUser}
-              project={mergedProject && { ...mergedProject, permissions }}
+              project={
+                mergedProject && {
+                  ...mergedProject,
+                  permissions,
+                }
+              }
               environment={mergedEnvironment}
               projectDataLocale={dataLocale}
             >

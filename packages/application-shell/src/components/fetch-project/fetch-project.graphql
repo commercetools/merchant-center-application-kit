@@ -17,6 +17,10 @@ query ProjectQuery($projectKey: String!) {
       name
       value
     }
+    allAppliedMenuVisibilities {
+      name
+      value
+    }
     owner {
       id
       name

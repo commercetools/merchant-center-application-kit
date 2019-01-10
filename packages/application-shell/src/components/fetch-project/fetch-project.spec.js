@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import {
   FetchProject,
   withProject,
-  mapAppliedPermissionsToPermissions,
+  mapAllAppliedToObjectShape,
 } from './fetch-project';
 
 describe('rendering', () => {
@@ -80,7 +80,7 @@ describe('rendering', () => {
 });
 
 describe('helpers', () => {
-  describe('mapAppliedPermissionsToPermissions', () => {
+  describe('mapAllAppliedToObjectShape', () => {
     const allAppliedPermissions = [
       {
         name: 'manageProject',
@@ -90,7 +90,7 @@ describe('helpers', () => {
 
     it('should transform all permissions', () => {
       const firstAppliedPermission = allAppliedPermissions[0];
-      expect(mapAppliedPermissionsToPermissions(allAppliedPermissions)).toEqual(
+      expect(mapAllAppliedToObjectShape(allAppliedPermissions)).toEqual(
         expect.objectContaining({
           [firstAppliedPermission.name]: firstAppliedPermission.value,
         })

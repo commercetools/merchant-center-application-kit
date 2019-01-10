@@ -247,12 +247,31 @@ export const MenuItemDivider = () => (
 
 MenuItemDivider.displayName = 'MenuItemDivider';
 
-// This component basically just wraps the `<RestrictedByPermissions>`
+// This component wraps `<RestrictedByPermissions>`
 // and the `<ToggleFeature>` components. However, it's necessary to have it as
 // the `<ToggleFeature>` wrapper should be rendered only if the `featureToggle`
 // prop is defined. This is because `<ToggleFeature>` will not render any
 // children if the flag is missing/not found.
-export const ToggledWithPermissions = props => {
+const hasMenuEveryMenuVisibilitySetToBeHidden = (
+  namesOfMenuVisibilities,
+  menuVisibilities
+) =>
+  Array.isArray(namesOfMenuVisibilities) &&
+  namesOfMenuVisibilities.length > 0 &&
+  namesOfMenuVisibilities.every(
+    nameOfMenuVisibility => menuVisibilities[nameOfMenuVisibility] === true
+  );
+export const RestrictedMenuItem = props => {
+  // NOTE: Custom application are activated/deactivated while their
+  // visibility is not controlled via a visibiility overwrite.
+  if (
+    hasMenuEveryMenuVisibilitySetToBeHidden(
+      props.namesOfMenuVisibilities,
+      props.menuVisibilities
+    )
+  )
+    return null;
+
   const permissionsWrapper =
     props.permissions.length > 0 ? (
       <RestrictedByPermissions
@@ -265,6 +284,7 @@ export const ToggledWithPermissions = props => {
     ) : (
       props.children
     );
+
   return props.featureToggle ? (
     <ToggleFeature flag={props.featureToggle}>
       {permissionsWrapper}
@@ -273,13 +293,15 @@ export const ToggledWithPermissions = props => {
     permissionsWrapper
   );
 };
-ToggledWithPermissions.displayName = 'ToggledWithPermissions';
-ToggledWithPermissions.propTypes = {
+RestrictedMenuItem.displayName = 'RestrictedMenuItem';
+RestrictedMenuItem.propTypes = {
   featureToggle: PropTypes.string,
+  namesOfMenuVisibilities: PropTypes.arrayOf(PropTypes.string),
+  menuVisibilities: PropTypes.object.isRequired,
   permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
   children: PropTypes.element.isRequired,
 };
-ToggledWithPermissions.defaultProps = {
+RestrictedMenuItem.defaultProps = {
   permissions: [],
 };
 export const getIconTheme = (menu, isActive) => {
@@ -321,10 +343,12 @@ export class DataMenu extends React.PureComponent {
             uriPath: PropTypes.string.isRequired,
             featureToggle: PropTypes.string,
             permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
+            menuVisibility: PropTypes.string,
           })
         ),
       })
     ),
+    menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     applicationLanguage: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
     isForcedMenuOpen: PropTypes.bool,
@@ -445,11 +469,17 @@ export class DataMenu extends React.PureComponent {
   renderMenu = (menu, menuType, index) => {
     const isActive = this.state.activeItemIndex === `${menuType}-${index}`;
     const hasSubmenu = Boolean(menu.submenu) && menu.submenu.length > 0;
+    const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
+      ? menu.submenu.map(submenu => submenu.menuVisibility).filter(Boolean)
+      : [];
+
     return (
-      <ToggledWithPermissions
+      <RestrictedMenuItem
         key={menu.key}
         featureToggle={menu.featureToggle}
         permissions={menu.permissions}
+        menuVisibilities={this.props.menuVisibilities}
+        namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
       >
         <React.Fragment>
           {menu.key === 'Settings' && <MenuItemDivider />}
@@ -500,18 +530,20 @@ export class DataMenu extends React.PureComponent {
             >
               {hasSubmenu
                 ? menu.submenu.map(submenu => (
-                    <ToggledWithPermissions
+                    <RestrictedMenuItem
                       key={`${menu.key}-submenu-${submenu.key}`}
                       featureToggle={submenu.featureToggle}
                       permissions={submenu.permissions}
+                      menuVisibilities={this.props.menuVisibilities}
+                      namesOfMenuVisibilities={[submenu.menuVisibility]}
                     >
                       <li className={styles['sublist-item']}>
                         <div className={styles.text}>
                           <MenuItemLink
                             linkTo={oneLineTrim`
-                            /${this.props.projectKey}
-                            /${submenu.uriPath}
-                          `}
+                              /${this.props.projectKey}
+                              /${submenu.uriPath}
+                            `}
                             exactMatch={true}
                             useFullRedirectsForLinks={
                               this.props.useFullRedirectsForLinks
@@ -521,13 +553,13 @@ export class DataMenu extends React.PureComponent {
                           </MenuItemLink>
                         </div>
                       </li>
-                    </ToggledWithPermissions>
+                    </RestrictedMenuItem>
                   ))
                 : null}
             </MenuGroup>
           </MenuItem>
         </React.Fragment>
-      </ToggledWithPermissions>
+      </RestrictedMenuItem>
     );
   };
 
@@ -596,6 +628,7 @@ export class NavBar extends React.PureComponent {
     applicationLanguage: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
     useFullRedirectsForLinks: PropTypes.bool.isRequired,
+    menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     // Injected
     location: PropTypes.object.isRequired,
     isForcedMenuOpen: PropTypes.bool,
@@ -636,6 +669,7 @@ export class NavBar extends React.PureComponent {
           }
           isForcedMenuOpen={this.props.isForcedMenuOpen}
           location={this.props.location}
+          menuVisibilities={this.props.menuVisibilities}
           applicationLanguage={this.props.applicationLanguage}
           projectKey={this.props.projectKey}
           useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}

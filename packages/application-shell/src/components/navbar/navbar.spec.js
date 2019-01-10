@@ -17,7 +17,7 @@ import {
   MenuGroup,
   MenuExpander,
   MenuItemDivider,
-  ToggledWithPermissions,
+  RestrictedMenuItem,
   getIconTheme,
   IconSwitcher,
 } from './navbar';
@@ -33,6 +33,9 @@ const createTestProps = props => ({
   projectKey: 'test-1',
   isForcedMenuOpen: false,
   useFullRedirectsForLinks: false,
+  menuVisibilities: {
+    hideOrdersList: true,
+  },
 
   // injectFeatureToggle
   areProjectExtensionsEnabled: false,
@@ -53,6 +56,7 @@ const createDataMenuTestProps = props => ({
           key: 'Add Customer',
           labelKey: 'NavBar.Customers.add',
           uriPath: 'customers/new',
+          menuVisibility: 'hideCustomersList',
         },
       ],
     },
@@ -162,8 +166,8 @@ describe('rendering', () => {
     it('should render <MenuGroup> level 1', () => {
       expect(wrapper.find(MenuGroup).at(0)).toHaveProp('level', 1);
     });
-    it('should render <ToggledWithPermissions>', () => {
-      expect(wrapper.find(MenuGroup).at(0)).toRender(ToggledWithPermissions);
+    it('should render <RestrictedMenuItem>', () => {
+      expect(wrapper.find(MenuGroup).at(0)).toRender(RestrictedMenuItem);
     });
     describe('when rendering the settings menu', () => {
       beforeEach(() => {
@@ -196,6 +200,14 @@ describe('rendering', () => {
               icon: 'UserFilledIcon',
               permissions: [permissions.ViewCustomers],
               featureToggle: 'customerList',
+              submenu: [
+                {
+                  key: 'Add Customer',
+                  labelKey: 'NavBar.Customers.add',
+                  uriPath: 'customers/new',
+                  menuVisibility: 'hideAddCustomer',
+                },
+              ],
             },
           ],
         });
@@ -204,22 +216,30 @@ describe('rendering', () => {
       it('should not render a MenuItemDivider', () => {
         expect(wrapper.find(MenuGroup).first()).not.toRender(MenuItemDivider);
       });
-      describe('<ToggledWithPermissions>', () => {
+      describe('<RestrictedMenuItem>', () => {
+        let restrictedMenuItem;
+        beforeEach(() => {
+          restrictedMenuItem = wrapper
+            .find(MenuGroup)
+            .at(0)
+            .find(RestrictedMenuItem)
+            .at(0);
+        });
         it('should pass featureToggle as prop', () => {
-          expect(
-            wrapper
-              .find(MenuGroup)
-              .at(0)
-              .find(ToggledWithPermissions)
-          ).toHaveProp('featureToggle', 'customerList');
+          expect(restrictedMenuItem).toHaveProp(
+            'featureToggle',
+            'customerList'
+          );
         });
         it('should pass permissions as prop', () => {
-          expect(
-            wrapper
-              .find(MenuGroup)
-              .at(0)
-              .find(ToggledWithPermissions)
-          ).toHaveProp('permissions', [permissions.ViewCustomers]);
+          expect(restrictedMenuItem).toHaveProp('permissions', [
+            permissions.ViewCustomers,
+          ]);
+        });
+        it('should pass names of menu visibilities of submenus as prop', () => {
+          expect(restrictedMenuItem).toHaveProp('namesOfMenuVisibilities', [
+            'hideAddCustomer',
+          ]);
         });
       });
     });
@@ -399,11 +419,10 @@ describe('rendering', () => {
           expect(wrapper.find(MenuGroup).at(1)).toHaveProp('level', 2);
         });
         it('should render', () => {
-          expect(wrapper.find(MenuGroup).at(1)).toRender(
-            ToggledWithPermissions
-          );
+          expect(wrapper.find(MenuGroup).at(1)).toRender(RestrictedMenuItem);
         });
-        describe('<ToggledWithPermissions>', () => {
+        describe('<RestrictedMenuItem>', () => {
+          let restrictedMenuItemWrapper;
           beforeEach(() => {
             props = createDataMenuTestProps({
               data: [
@@ -419,28 +438,35 @@ describe('rendering', () => {
                       uriPath: 'customers/new',
                       permissions: [permissions.ManageCustomers],
                       featureToggle: 'customerAdd',
+                      menuVisibility: 'hideAddCustomer',
                     },
                   ],
                 },
               ],
             });
             wrapper = shallow(<DataMenu {...props} />);
+
+            restrictedMenuItemWrapper = wrapper
+              .find(MenuGroup)
+              .at(1)
+              .find(RestrictedMenuItem);
           });
           it('should pass featureToggle as prop', () => {
-            expect(
-              wrapper
-                .find(MenuGroup)
-                .at(1)
-                .find(ToggledWithPermissions)
-            ).toHaveProp('featureToggle', 'customerAdd');
+            expect(restrictedMenuItemWrapper).toHaveProp(
+              'featureToggle',
+              'customerAdd'
+            );
           });
           it('should pass permissions as prop', () => {
-            expect(
-              wrapper
-                .find(MenuGroup)
-                .at(1)
-                .find(ToggledWithPermissions)
-            ).toHaveProp('permissions', [permissions.ManageCustomers]);
+            expect(restrictedMenuItemWrapper).toHaveProp('permissions', [
+              permissions.ManageCustomers,
+            ]);
+          });
+          it('should pass menu visibilities as prop', () => {
+            expect(restrictedMenuItemWrapper).toHaveProp(
+              'namesOfMenuVisibilities',
+              ['hideAddCustomer']
+            );
           });
         });
         describe('when item is active', () => {
@@ -550,7 +576,7 @@ describe('rendering', () => {
       });
     });
   });
-  describe('<ToggledWithPermissions>', () => {
+  describe('<RestrictedMenuItem>', () => {
     const ItemChild = () => <span>{'foo'}</span>;
     describe('<ToggleFeature>', () => {
       describe('when featureToggle is defined', () => {
@@ -560,12 +586,16 @@ describe('rendering', () => {
               featureToggle: 'myFeature',
               permissions: [],
               actualPermissions: {},
+              menuVisibilities: {},
             };
             wrapper = shallow(
-              <ToggledWithPermissions {...props}>
+              <RestrictedMenuItem {...props}>
                 <ItemChild />
-              </ToggledWithPermissions>
+              </RestrictedMenuItem>
             );
+          });
+          it('should match snapshot', () => {
+            expect(wrapper).toMatchSnapshot();
           });
           it('should render <ToggleFeature>', () => {
             expect(wrapper).toRender(ToggleFeature);
@@ -583,11 +613,12 @@ describe('rendering', () => {
               featureToggle: 'myFeature',
               permissions: [permissions.ManageOrders],
               actualPermissions: {},
+              menuVisibilities: {},
             };
             wrapper = shallow(
-              <ToggledWithPermissions {...props}>
+              <RestrictedMenuItem {...props}>
                 <ItemChild />
-              </ToggledWithPermissions>
+              </RestrictedMenuItem>
             );
           });
           it('should render <ToggleFeature>', () => {
@@ -620,11 +651,12 @@ describe('rendering', () => {
               featureToggle: undefined,
               permissions: [],
               actualPermissions: {},
+              menuVisibilities: {},
             };
             wrapper = shallow(
-              <ToggledWithPermissions {...props}>
+              <RestrictedMenuItem {...props}>
                 <ItemChild />
-              </ToggledWithPermissions>
+              </RestrictedMenuItem>
             );
           });
           it('should not render <ToggleFeature>', () => {
@@ -640,11 +672,12 @@ describe('rendering', () => {
               featureToggle: undefined,
               permissions: [permissions.ManageOrders],
               actualPermissions: {},
+              menuVisibilities: {},
             };
             wrapper = shallow(
-              <ToggledWithPermissions {...props}>
+              <RestrictedMenuItem {...props}>
                 <ItemChild />
-              </ToggledWithPermissions>
+              </RestrictedMenuItem>
             );
           });
           it('should not render <ToggleFeature>', () => {
@@ -676,11 +709,12 @@ describe('rendering', () => {
         beforeEach(() => {
           props = {
             permissions: [permissions.ViewProducts],
+            menuVisibilities: {},
           };
           wrapper = shallow(
-            <ToggledWithPermissions {...props}>
+            <RestrictedMenuItem {...props}>
               <ItemChild />
-            </ToggledWithPermissions>
+            </RestrictedMenuItem>
           );
         });
         it('should match snapshot', () => {
@@ -697,6 +731,52 @@ describe('rendering', () => {
             'shouldMatchSomePermissions',
             true
           );
+        });
+      });
+    });
+    describe('menu visibility', () => {
+      describe('when passed and all are `true`', () => {
+        beforeEach(() => {
+          props = {
+            namesOfMenuVisibilities: ['hideOrders'],
+            menuVisibilities: {
+              hideOrders: true,
+            },
+          };
+          wrapper = shallow(
+            <RestrictedMenuItem {...props}>
+              <ItemChild />
+            </RestrictedMenuItem>
+          );
+        });
+        it('should not render <ToggleFeature>', () => {
+          expect(wrapper).not.toRender(ToggleFeature);
+        });
+        it('should not render <RestrictedByPermissions>', () => {
+          expect(wrapper).not.toRender(RestrictedByPermissions);
+        });
+      });
+      describe('when passed and some are `false`', () => {
+        beforeEach(() => {
+          props = {
+            namesOfMenuVisibilities: ['hideOrders', 'hideDashboard'],
+            menuVisibilities: {
+              hideOrders: true,
+              hideDashboard: false,
+            },
+            permissions: [permissions.ViewProducts],
+          };
+          wrapper = shallow(
+            <RestrictedMenuItem {...props}>
+              <ItemChild />
+            </RestrictedMenuItem>
+          );
+        });
+        it('should match snapshot', () => {
+          expect(wrapper).toMatchSnapshot();
+        });
+        it('should render <RestrictedByPermissions>', () => {
+          expect(wrapper).toRender(RestrictedByPermissions);
         });
       });
     });

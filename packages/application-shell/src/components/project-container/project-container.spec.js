@@ -35,6 +35,7 @@ const createTestProjectProps = custom => ({
     id: 'foo-1',
   },
   permissions: { canManageProject: true },
+  menuVisibilities: { hideDashboard: true },
   ...custom,
 });
 

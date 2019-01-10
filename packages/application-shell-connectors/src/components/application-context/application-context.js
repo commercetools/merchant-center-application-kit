@@ -41,18 +41,12 @@ const mapProjectToApplicationContextProject = project => {
   };
 };
 
-const mapProjectToApplicationContextPermissions = project => {
-  if (!project) return null;
-
-  return project.permissions;
-};
-
 const createApplicationContext = defaultMemoize(
   (environment, user, project, projectDataLocale) => ({
     environment,
     user: mapUserToApplicationContextUser(user),
     project: mapProjectToApplicationContextProject(project),
-    permissions: mapProjectToApplicationContextPermissions(project),
+    permissions: project && project.permissions ? project.permissions : null,
     dataLocale: projectDataLocale,
   })
 );
