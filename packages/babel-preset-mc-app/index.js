@@ -124,6 +124,7 @@ module.exports = function getBabePresetConfigForMcApp() {
       isEnvTest &&
         // Transform dynamic import to require
         require('babel-plugin-transform-dynamic-import').default,
+      isEnvProduction && require('babel-plugin-transform-remove-console'),
     ].filter(Boolean),
   };
 };
