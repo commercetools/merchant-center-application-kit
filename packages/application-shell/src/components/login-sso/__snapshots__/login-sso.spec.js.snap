@@ -39,7 +39,7 @@ exports[`rendering <Formik> form elements should match layout 1`] = `
         onClick={[MockFunction]}
         size="big"
         tone="primary"
-        type="button"
+        type="submit"
       />
     </Inline>
   </Stack>

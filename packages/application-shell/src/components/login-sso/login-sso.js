@@ -158,11 +158,8 @@ export class LoginSSO extends React.PureComponent {
                       isDisabled={formikProps.isSubmitting}
                     />
                     <Spacings.Inline>
-                      {/* FIXME: the <PrimaryButton> current does not behave like a
-                      "submit" button, making it impossible to handle "submit on enter".
-                      Once that is fixed in the underlying component, the "submit on enter"
-                      will work. */}
                       <PrimaryButton
+                        type="submit"
                         label={this.props.intl.formatMessage(messages.proceed)}
                         onClick={formikProps.handleSubmit}
                         isDisabled={formikProps.isSubmitting}
