@@ -87,6 +87,7 @@ const defaultToggleFlags = {
   enableExtractCss: true,
   // Allow to disable index.html generation in case it's not necessary (e.g. for Storybook)
   generateIndexHtml: true,
+  enabledVendorOptimizations: false,
 };
 
 /**
@@ -435,7 +436,7 @@ module.exports = ({
        *    for the `babel-loader` including files from `node_modules` while removing
        *    the mentioned `prop-types` and console statements.
        */
-      {
+      toggleFlags.enabledVendorOptimizations && {
         test: /\.js$/,
         include: /node_modules/,
         exclude: sourceFolders,
@@ -468,7 +469,7 @@ module.exports = ({
         test: /\.pegjs$/,
         use: [require.resolve('pegjs-loader')],
       },
-    ],
+    ].filter(Boolean),
   },
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
