@@ -8,7 +8,6 @@
 #### 🔮 Type: Chore
 
 - `application-shell`
-
   - [#274](https://github.com/commercetools/merchant-center-application-kit/pull/274) chore(app-shell): remove unused components 🚮 ([@emmenko](https://github.com/emmenko))
 
 - `application-shell`, `react-notifications`
@@ -16,12 +15,12 @@
 - `application-shell`, `babel-preset-mc-app`, `create-mc-app`, `eslint-config-mc-app`, `jest-preset-mc-app`, `l10n`, `mc-html-template`, `mc-scripts`, `sdk`
   - [#267](https://github.com/commercetools/merchant-center-application-kit/pull/267) chore: update deps ([@tdeekens](https://github.com/tdeekens))
 - `mc-scripts`
-  - [#255](https://github.com/commercetools/merchant-center-application-kit/pull/255) fix(deps): update dependency webpack-dev-server to v3.1.14 [security](<[@renovate[bot]](https://github.com/apps/renovate)>)
+  - [#255](https://github.com/commercetools/merchant-center-application-kit/pull/255) fix(deps): update dependency webpack-dev-server to v3.1.14
 
 #### 🚀 Type: New Feature
 
 - `babel-preset-mc-app`, `mc-scripts`
-  - [#272](https://github.com/commercetools/merchant-center-application-kit/pull/272) feat(babel-preset-mc-app): disable console on production ([@tdeekens](https://github.com/tdeekens))
+  - [#272](https://github.com/commercetools/merchant-center-application-kit/pull/272) feat: allow to enable vendor optimizations in production webpack config ([@tdeekens](https://github.com/tdeekens))
 - `application-shell-connectors`, `application-shell`
   - [#251](https://github.com/commercetools/merchant-center-application-kit/pull/251) Add `menuVisibilities` and `allAppliedMenuVisibilities` ([@tdeekens](https://github.com/tdeekens))
 
