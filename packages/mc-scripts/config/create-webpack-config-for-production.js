@@ -96,19 +96,8 @@ const defaultToggleFlags = {
  * The function requires the file path to the related application
  * "entry point".
  */
-module.exports = ({
-  distPath,
-  entryPoint,
-  sourceFolders,
-  toggleFlags = defaultToggleFlags,
-}) => {
-  // NOTE: Without properly defauling passing one flag (e.g. `enabledVendorOptimizations`)
-  // would disable other flags defaulted to `true` (e.g. `enableExtractCss`).
-  const defaultedToggleFlags = {
-    ...defaultToggleFlags,
-    ...toggleFlags,
-  };
-
+module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
+  const mergedToggleFlags = { ...defaultToggleFlags, ...toggleFlags };
   return {
     // Don't attempt to continue if there are any errors.
     bail: true,
@@ -126,7 +115,7 @@ module.exports = ({
     optimization: {
       minimizer: [
         new UglifyJsPlugin(uglifyConfig),
-        defaultedToggleFlags.enableExtractCss &&
+        mergedToggleFlags.enableExtractCss &&
           new OptimizeCSSAssetsPlugin(optimizeCSSConfig),
       ].filter(Boolean),
       // Automatically split vendor and commons
@@ -134,7 +123,7 @@ module.exports = ({
       splitChunks: {
         chunks: 'all',
         // NOTE: if you enable `cacheGroups` for CSS, remember to toggle it with
-        // the `defaultedToggleFlags.enableExtractCss`
+        // the `mergedToggleFlags.enableExtractCss`
       },
       // Keep the runtime chunk seperated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
@@ -202,13 +191,13 @@ module.exports = ({
         outputPath: distPath,
         includeFields: ['entrypoints', 'assets', 'publicPath', 'time'],
       }),
-      defaultedToggleFlags.generateIndexHtml &&
+      mergedToggleFlags.generateIndexHtml &&
         new HtmlWebpackPlugin({
           inject: false,
           filename: 'index.html.template',
           template: require.resolve('@commercetools-frontend/mc-html-template'),
         }),
-      defaultedToggleFlags.enableExtractCss && // Extracts CSS into one CSS file to mimic CSS order in dev
+      mergedToggleFlags.enableExtractCss && // Extracts CSS into one CSS file to mimic CSS order in dev
         new MiniCssExtractPlugin({
           filename: '[name].[chunkhash].css',
           chunkFilename: '[id].[name].[chunkhash].css',
@@ -295,7 +284,7 @@ module.exports = ({
           test: /\.mod\.css$/,
           include: sourceFolders,
           use: [
-            defaultedToggleFlags.enableExtractCss
+            mergedToggleFlags.enableExtractCss
               ? MiniCssExtractPlugin.loader
               : require.resolve('style-loader'),
             {
@@ -350,7 +339,7 @@ module.exports = ({
               // Use "postcss" for all the included source folders.
               include: sourceFolders,
               use: [
-                defaultedToggleFlags.enableExtractCss
+                mergedToggleFlags.enableExtractCss
                   ? MiniCssExtractPlugin.loader
                   : require.resolve('style-loader'),
                 require.resolve('css-loader'),
@@ -387,7 +376,7 @@ module.exports = ({
               // But still use MiniCssExtractPlugin :)
               include: /node_modules/,
               loaders: [
-                defaultedToggleFlags.enableExtractCss
+                mergedToggleFlags.enableExtractCss
                   ? MiniCssExtractPlugin.loader
                   : require.resolve('style-loader'),
                 require.resolve('css-loader'),
@@ -431,7 +420,7 @@ module.exports = ({
          *    for the `babel-loader` including files from `node_modules` while removing
          *    the mentioned `prop-types` and console statements.
          */
-        defaultedToggleFlags.enabledVendorOptimizations && {
+        mergedToggleFlags.enabledVendorOptimizations && {
           test: /\.js$/,
           include: /node_modules/,
           exclude: sourceFolders,
