@@ -111,35 +111,26 @@ module.exports = ({
         NODE_ENV: JSON.stringify('development'),
       },
     }),
-  ]
-    .concat(
-      toggleFlags.generateIndexHtml
-        ? [
-            new HtmlWebpackPlugin({
-              inject: false,
-              filename: path.join(distPath, 'assets/index.html'),
-              template: require.resolve(
-                '@commercetools-frontend/mc-html-template'
-              ),
-            }),
-            (() => {
-              // eslint-disable-next-line global-require
-              const LocalHtmlWebpackPlugin = require('../webpack-plugins/local-html-webpack-plugin');
-              return new LocalHtmlWebpackPlugin();
-            })(),
-          ]
-        : []
-    )
-    .concat([
-      // Add module names to factory functions so they appear in browser profiler.
-      // https://webpack.js.org/guides/caching/
-      new webpack.NamedModulesPlugin(),
-      // Strip all locales except `en`, `de`
-      // (`en` is built into Moment and can't be removed).
-      new MomentLocalesPlugin({ localesToKeep: ['de', 'es'] }),
-      // This is necessary to emit hot updates (currently CSS only).
-      new webpack.HotModuleReplacementPlugin(),
-    ]),
+    toggleFlags.generateIndexHtml &&
+      new HtmlWebpackPlugin({
+        inject: false,
+        filename: path.join(distPath, 'assets/index.html'),
+        template: require.resolve('@commercetools-frontend/mc-html-template'),
+      }),
+    (() => {
+      // eslint-disable-next-line global-require
+      const LocalHtmlWebpackPlugin = require('../webpack-plugins/local-html-webpack-plugin');
+      return new LocalHtmlWebpackPlugin();
+    })(),
+    // Add module names to factory functions so they appear in browser profiler.
+    // https://webpack.js.org/guides/caching/
+    new webpack.NamedModulesPlugin(),
+    // Strip all locales except `en`, `de`
+    // (`en` is built into Moment and can't be removed).
+    new MomentLocalesPlugin({ localesToKeep: ['de', 'es'] }),
+    // This is necessary to emit hot updates (currently CSS only).
+    new webpack.HotModuleReplacementPlugin(),
+  ].filter(Boolean),
 
   module: {
     // Makes missing exports an error instead of warning.

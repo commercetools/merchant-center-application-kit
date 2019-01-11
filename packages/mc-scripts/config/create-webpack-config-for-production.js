@@ -116,11 +116,11 @@ module.exports = ({
   // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
   // https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a
   optimization: {
-    minimizer: [new UglifyJsPlugin(uglifyConfig)].concat(
-      toggleFlags.enableExtractCss
-        ? new OptimizeCSSAssetsPlugin(optimizeCSSConfig)
-        : []
-    ),
+    minimizer: [
+      new UglifyJsPlugin(uglifyConfig),
+      toggleFlags.enableExtractCss &&
+        new OptimizeCSSAssetsPlugin(optimizeCSSConfig),
+    ].filter(Boolean),
     // Automatically split vendor and commons
     // https://twitter.com/wSokra/status/969633336732905474
     splitChunks: {
@@ -171,62 +171,45 @@ module.exports = ({
         NODE_ENV: JSON.stringify('production'),
       },
     }),
-  ]
-    .concat(
-      toggleFlags.generateIndexHtml
-        ? [
-            new HtmlWebpackPlugin({
-              inject: false,
-              filename: 'index.html.template',
-              template: require.resolve(
-                '@commercetools-frontend/mc-html-template'
-              ),
-            }),
-          ]
-        : []
-    )
-    .concat([
-      // Add module names to factory functions so they appear in browser profiler.
-      // NOTE: instead of using `HashedModuleIdsPlugin`, we use `NamedModulesPlugin`
-      // for production as well, despite the `HashedModuleIdsPlugin` being the
-      // recommended choice for production.
-      // It appears that using `HashedModuleIdsPlugin` the gzipped bundles are
-      // bigger in size compared to the bundles produces by `NamedModulesPlugin`.
-      // Therefore we go for the choice of having smaller bundles.
-      // Refs:
-      // - https://gitlab.com/gitlab-org/gitlab-ce/issues/32835
-      // - https://medium.com/@schnibl/hashes-are-had-to-zip-pathnames-not-therefore-your-end-result-with-named-modules-is-unintuitively-94baa1a507e
-      new webpack.NamedModulesPlugin(),
-      // Strip all locales except `en`, `de`
-      // (`en` is built into Moment and can't be removed)
-      new MomentLocalesPlugin({ localesToKeep: ['de', 'es'] }),
+    // Add module names to factory functions so they appear in browser profiler.
+    // NOTE: instead of using `HashedModuleIdsPlugin`, we use `NamedModulesPlugin`
+    // for production as well, despite the `HashedModuleIdsPlugin` being the
+    // recommended choice for production.
+    // It appears that using `HashedModuleIdsPlugin` the gzipped bundles are
+    // bigger in size compared to the bundles produces by `NamedModulesPlugin`.
+    // Therefore we go for the choice of having smaller bundles.
+    // Refs:
+    // - https://gitlab.com/gitlab-org/gitlab-ce/issues/32835
+    // - https://medium.com/@schnibl/hashes-are-had-to-zip-pathnames-not-therefore-your-end-result-with-named-modules-is-unintuitively-94baa1a507e
+    new webpack.NamedModulesPlugin(),
+    // Strip all locales except `en`, `de`
+    // (`en` is built into Moment and can't be removed)
+    new MomentLocalesPlugin({ localesToKeep: ['de', 'es'] }),
 
-      // Generate a `stats.json` file containing information and paths to
-      // the assets that webpack created.
-      // This is necessary to programmatically refer to the correct bundle path
-      // in the `index.html`.
-      new FinalStatsWriterPlugin({
-        outputPath: distPath,
-        includeFields: ['entrypoints', 'assets', 'publicPath', 'time'],
+    // Generate a `stats.json` file containing information and paths to
+    // the assets that webpack created.
+    // This is necessary to programmatically refer to the correct bundle path
+    // in the `index.html`.
+    new FinalStatsWriterPlugin({
+      outputPath: distPath,
+      includeFields: ['entrypoints', 'assets', 'publicPath', 'time'],
+    }),
+    toggleFlags.generateIndexHtml &&
+      new HtmlWebpackPlugin({
+        inject: false,
+        filename: 'index.html.template',
+        template: require.resolve('@commercetools-frontend/mc-html-template'),
       }),
-    ])
-    // Optional plugins
-    .concat(
-      toggleFlags.enableExtractCss
-        ? // Extracts CSS into one CSS file to mimic CSS order in dev
-          new MiniCssExtractPlugin({
-            filename: '[name].[chunkhash].css',
-            chunkFilename: '[id].[name].[chunkhash].css',
-          })
-        : [],
-      process.env.ANALYZE_BUNDLE === 'true'
-        ? [
-            new BundleAnalyzerPlugin({
-              defaultSizes: 'gzip',
-            }),
-          ]
-        : []
-    ),
+    toggleFlags.enableExtractCss && // Extracts CSS into one CSS file to mimic CSS order in dev
+      new MiniCssExtractPlugin({
+        filename: '[name].[chunkhash].css',
+        chunkFilename: '[id].[name].[chunkhash].css',
+      }),
+    process.env.ANALYZE_BUNDLE === 'true' &&
+      new BundleAnalyzerPlugin({
+        defaultSizes: 'gzip',
+      }),
+  ].filter(Boolean),
 
   module: {
     // Makes missing exports an error instead of warning.
