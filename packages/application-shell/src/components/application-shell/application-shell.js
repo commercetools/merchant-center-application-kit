@@ -23,7 +23,7 @@ import { i18n } from '@commercetools-frontend/ui-kit';
 import internalReduxStore from '../../configure-store';
 import ProjectDataLocale from '../project-data-locale';
 import PortalsContainer from '../portals-container';
-import apolloClient from '../../configure-apollo';
+import { backendClient as apolloClient } from '../../configure-apollo';
 import FetchUser from '../fetch-user';
 import FetchProject from '../fetch-project';
 import ConfigureIntlProvider from '../configure-intl-provider';

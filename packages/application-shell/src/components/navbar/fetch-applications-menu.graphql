@@ -1,0 +1,36 @@
+query GetApplicationsMenu {
+  applicationsMenu {
+    navBar {
+      shouldRenderDivider
+      key
+      uriPath
+      icon
+      labelAllLocales {
+        locale
+        value
+      }
+      featureToggle
+      permissions
+      submenu {
+        key
+        uriPath
+        labelAllLocales {
+          locale
+          value
+        }
+        featureToggle
+        permissions
+      }
+    }
+    appBar {
+      key
+      uriPath
+      labelAllLocales {
+        locale
+        value
+      }
+      featureToggle
+      permissions
+    }
+  }
+}

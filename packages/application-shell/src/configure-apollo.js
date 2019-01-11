@@ -9,28 +9,6 @@ import {
 import { errorLink, headerLink, tokenRetryLink } from './apollo-links';
 import { isLoggerEnabled } from './utils/logger';
 
-const httpLink = createHttpLink({
-  uri: `${window.app.mcApiUrl}/graphql`,
-  credentials: 'include',
-  headers: {
-    accept: 'application/json',
-  },
-  fetch,
-});
-
-// order of links is relevant here
-// in the request-phase they are executed top to bottom
-// in the response/phase they are executed bottom to top
-// `tokenRetryLink` needs to stay after `errorLink` in order to be executed before `errorLink` for responses
-const link = ApolloLink.from([
-  headerLink,
-  errorLink,
-  // Avoid logging queries in test environment
-  ...(isLoggerEnabled() ? [apolloLogger] : []),
-  tokenRetryLink,
-  httpLink,
-]);
-
 /**
  * Note:
  *
@@ -65,8 +43,35 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData,
 });
 
-export const createApolloClient = () =>
-  new ApolloClient({
+export const createApolloClientForBackendApi = () => {
+  const httpLink = createHttpLink({
+    uri: `${window.app.mcApiUrl}/graphql`,
+    credentials: 'include',
+    headers: {
+      accept: 'application/json',
+    },
+    // manual polyfill for fetch to support older browsers like IE11
+    // for some reason that I wasn't able to figure out just importing
+    // isomorphic fetch didn't make Apollo use the global fetch :(
+    // they recommend using unfetch and passing it explicitly like we are doing
+    // here. https://www.apollographql.com/docs/link/links/http.html#fetch
+    fetch,
+  });
+
+  // order of links is relevant here
+  // in the request-phase they are executed top to bottom
+  // in the response/phase they are executed bottom to top
+  // `tokenRetryLink` needs to stay after `errorLink` in order to be executed before `errorLink` for responses
+  const link = ApolloLink.from([
+    headerLink,
+    errorLink,
+    // Avoid logging queries in test environment
+    ...(isLoggerEnabled() ? [apolloLogger] : []),
+    tokenRetryLink,
+    httpLink,
+  ]);
+
+  return new ApolloClient({
     link,
     cache: new InMemoryCache({
       fragmentMatcher,
@@ -83,5 +88,55 @@ export const createApolloClient = () =>
       },
     }),
   });
+};
 
-export default createApolloClient();
+export const createApolloClientForFrontendApi = () => {
+  const httpLink = createHttpLink({
+    // uri: `${window.location.origin}/graphql`,
+    uri: `https://mc-6116.gcp.escemo.com/graphql`,
+    headers: {
+      accept: 'application/json',
+    },
+    // manual polyfill for fetch to support older browsers like IE11
+    // for some reason that I wasn't able to figure out just importing
+    // isomorphic fetch didn't make Apollo use the global fetch :(
+    // they recommend using unfetch and passing it explicitly like we are doing
+    // here. https://www.apollographql.com/docs/link/links/http.html#fetch
+    fetch,
+  });
+
+  // order of links is relevant here
+  // in the request-phase they are executed top to bottom
+  // in the response/phase they are executed bottom to top
+  const link = ApolloLink.from([
+    errorLink,
+    // Avoid logging queries in test environment
+    ...(isLoggerEnabled() ? [apolloLogger] : []),
+    httpLink,
+  ]);
+
+  return new ApolloClient({
+    link,
+    cache: new InMemoryCache({
+      dataIdFromObject: result => {
+        if (result.__typename) {
+          if (result.id !== undefined) {
+            return `${result.__typename}:${result.id}`;
+          }
+          if (result._id !== undefined) {
+            return `${result.__typename}:${result._id}`;
+          }
+          if (result.key !== undefined) {
+            return `${result.__typename}:${result.key}`;
+          }
+        }
+        return null;
+      },
+    }),
+  });
+};
+
+const backendClient = createApolloClientForBackendApi();
+const frontendClient = createApolloClientForFrontendApi();
+
+export { backendClient, frontendClient };

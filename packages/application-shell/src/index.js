@@ -4,7 +4,7 @@
 import './public-path';
 
 export { default as ApplicationShell } from './components/application-shell';
-export { default as apolloClient } from './configure-apollo';
+export { backendClient as apolloClient } from './configure-apollo';
 export { applyDefaultMiddlewares } from './configure-store';
 export { default as MeasureFirstPaint } from './components/performance-timing';
 export { default as InjectReducers } from './components/inject-reducers';
