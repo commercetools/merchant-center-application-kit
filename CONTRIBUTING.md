@@ -152,4 +152,4 @@ On `master` branch, we automatically publish **canary** releases from CI to the 
 
 Canary releases are useful to test early changes that should not be released yet to `next` or `latest`. They are automatically triggered and released after a Pull Request merged into `master`, unless the commit message contains `[skip publish]`.
 
-Note that canary releases __will not create git tags and version bump commits__.
+Note that canary releases **will not create git tags and version bump commits**.
