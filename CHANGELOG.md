@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/commercetools/merchant-center-application-kit/compare/v5.1.0...v5.1.1) (2019-01-12)
+
+#### 🐛 Type: Bug
+
+- `mc-scripts`
+  - [#275](https://github.com/commercetools/merchant-center-application-kit/pull/275) fix(mc-scripts): add dynamic import plugin to fix vendor optimizations ([@tdeekens](https://github.com/tdeekens))
+
 ## [5.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v5.0.3...v5.1.0) (2019-01-10)
 
 #### 🐛 Type: Bug
@@ -8,6 +15,7 @@
 #### 🔮 Type: Chore
 
 - `application-shell`
+
   - [#274](https://github.com/commercetools/merchant-center-application-kit/pull/274) chore(app-shell): remove unused components 🚮 ([@emmenko](https://github.com/emmenko))
 
 - `application-shell`, `react-notifications`
