@@ -98,6 +98,7 @@ const defaultToggleFlags = {
  */
 module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
   const mergedToggleFlags = { ...defaultToggleFlags, ...toggleFlags };
+
   return {
     // Don't attempt to continue if there are any errors.
     bail: true,
@@ -431,6 +432,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
               options: {
                 babelrc: false,
                 plugins: [
+                  require.resolve('@babel/plugin-syntax-dynamic-import'),
                   require.resolve('babel-plugin-transform-remove-console'),
                   [
                     require.resolve(
