@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/mc-scripts",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "Configuration and scripts for developing a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -48,6 +48,7 @@
     "mri": "1.1.4",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pegjs-loader": "0.5.4",
+    "postcss": "7.0.7",
     "postcss-color-mod-function": "2.4.3",
     "postcss-custom-media": "7.0.7",
     "postcss-custom-properties": "8.0.9",
@@ -56,7 +57,6 @@
     "postcss-preset-env": "5.3.0",
     "postcss-reporter": "5.0.0",
     "postcss-safe-parser": "4.0.1",
-    "postcss": "7.0.7",
     "promise": "8.0.2",
     "react-dev-utils": "7.0.1",
     "shelljs": "0.8.3",
@@ -65,9 +65,9 @@
     "thread-loader": "2.1.1",
     "uglifyjs-webpack-plugin": "1.2.7",
     "url-loader": "1.1.2",
+    "webpack": "4.28.3",
     "webpack-bundle-analyzer": "3.0.3",
     "webpack-dev-server": "3.1.14",
-    "webpack": "4.28.3",
     "webpackbar": "3.1.4"
   },
   "engines": {
