@@ -10,4 +10,6 @@ ESLint config used by a MC application.
 
 ```bash
 $ npm install --save @commercetools-frontend/eslint-config-mc-app
+
+$ npx install-peerdeps --dev @commercetools-frontend/eslint-config-mc-app
 ```
