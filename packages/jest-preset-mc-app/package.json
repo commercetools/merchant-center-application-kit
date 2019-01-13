@@ -41,7 +41,8 @@
     "jest-watch-master": "1.0.0",
     "pegjs-jest": "0.0.2",
     "pkg-dir": "3.0.0",
-    "raf": "3.4.1"
+    "raf": "3.4.1",
+    "unfetch": "4.0.1"
   },
   "devDependencies": {
     "react-testing-library": "5.4.4"
