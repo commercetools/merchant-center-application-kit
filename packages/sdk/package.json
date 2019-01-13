@@ -52,7 +52,7 @@
     "react-redux": "6.0.0"
   },
   "peerDependencies": {
-    "react": ">=16 <17",
-    "react-redux": ">=6 <7"
+    "react": "16.x",
+    "react-redux": "6.x"
   }
 }

@@ -41,6 +41,6 @@
     "react": "16.7.0"
   },
   "peerDependencies": {
-    "react": ">=16 <17"
+    "react": "16.x"
   }
 }
