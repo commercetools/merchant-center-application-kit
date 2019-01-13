@@ -1,4 +1,4 @@
-query GetApplicationsMenu {
+query FetchApplicationsMenu {
   applicationsMenu {
     navBar {
       shouldRenderDivider

@@ -37,7 +37,7 @@ import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import { PROJECT_EXTENSIONS } from './feature-toggles';
 import LoadingPlaceholder from '../loading-placeholder';
 import { frontendClient } from '../../configure-apollo';
-import GetApplicationsMenu from './fetch-applications-menu.graphql';
+import FetchApplicationsMenu from './fetch-applications-menu.graphql';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
 import styles from './navbar.mod.css';
 import messages from './messages';
@@ -689,7 +689,7 @@ export default compose(
           : null,
     };
   }),
-  graphql(GetApplicationsMenu, {
+  graphql(FetchApplicationsMenu, {
     name: 'applicationsMenuQuery',
     options: () => ({
       // Pass a different apollo client here, as we are connecting to a different API
