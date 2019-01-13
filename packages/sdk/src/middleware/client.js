@@ -1,4 +1,3 @@
-import fetch from 'unfetch';
 import { createClient as createSdkClient } from '@commercetools/sdk-client';
 import { createHttpMiddleware as createSdkHttpMiddleware } from '@commercetools/sdk-middleware-http';
 import { createUserAgentMiddleware as createSdkUserAgentMiddleware } from '@commercetools/sdk-middleware-user-agent';

@@ -1,4 +1,3 @@
-import fetch from 'unfetch';
 import ApolloClient from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
 import apolloLogger from 'apollo-link-logger';
@@ -15,11 +14,6 @@ const httpLink = createHttpLink({
   headers: {
     accept: 'application/json',
   },
-  // manual polyfill for fetch to support older browsers like IE11
-  // for some reason that I wasn't able to figure out just importing
-  // isomorphic fetch didn't make Apollo use the global fetch :(
-  // they recommend using unfetch and passing it explicitly like we are doing
-  // here. https://www.apollographql.com/docs/link/links/http.html#fetch
   fetch,
 });
 
