@@ -46,8 +46,8 @@
     "react-apollo": "2.3.3"
   },
   "peerDependencies": {
-    "react": ">=16 <17",
-    "react-apollo": ">=2 <3"
+    "react": "16.x",
+    "react-apollo": "2.x"
   },
   "engines": {
     "node": ">=8",

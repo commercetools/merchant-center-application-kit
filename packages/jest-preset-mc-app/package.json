@@ -47,8 +47,8 @@
     "react-testing-library": "5.4.4"
   },
   "peerDependencies": {
-    "enzyme": ">=3",
-    "jest": ">=23",
-    "react-testing-library": ">=5 || <6"
+    "enzyme": "3.x",
+    "jest": "23.x",
+    "react-testing-library": "5.x"
   }
 }
