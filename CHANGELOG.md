@@ -1,3 +1,23 @@
+## [6.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v5.1.1...v6.0.0) (2019-01-13)
+
+## BREAKING CHANGES 💣
+
+ESLint is now a peer dependency in [#277](https://github.com/commercetools/merchant-center-application-kit/pull/277). Please make sure that ESLint and all required plugins are installed in your project. You can always check for the required list of plugins in the [package.json](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/eslint-config-mc-app/package.json) of `eslint-config-mc-app`. In order to install all peer dependencies with a single command run:
+
+```bash
+$ npx install-peerdeps --dev @commercetools-frontend/eslint-config-mc-app
+```
+
+#### 💥 Type: Breaking Change
+
+- `application-shell-connectors`, `application-shell`, `eslint-config-mc-app`, `i18n`, `jest-preset-mc-app`, `permissions`, `react-notifications`, `sdk`, `sentry`
+  - [#277](https://github.com/commercetools/merchant-center-application-kit/pull/277) chore(eslint-config-mc-app): use only peer deps ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`, `jest-preset-mc-app`, `mc-scripts`, `sdk`
+  - [#278](https://github.com/commercetools/merchant-center-application-kit/pull/278) fix(mc-scripts): use unfetch as polyfill ([@tdeekens](https://github.com/tdeekens))
+
 ## [5.1.1](https://github.com/commercetools/merchant-center-application-kit/compare/v5.1.0...v5.1.1) (2019-01-12)
 
 #### 🐛 Type: Bug
