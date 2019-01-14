@@ -11,6 +11,7 @@ const postcssCustomProperties = require('postcss-custom-properties');
 const postcssCustomMediaQueries = require('postcss-custom-media');
 const postcssColorModFunction = require('postcss-color-mod-function');
 const browserslist = require('./browserslist');
+const { getOptionalLoader } = require('./optional-loaders');
 
 const defaultToggleFlags = {
   // Allow to disable index.html generation in case it's not necessary (e.g. for Storybook)
@@ -335,11 +336,11 @@ module.exports = ({
         include: sourceFolders,
         use: [require.resolve('graphql-tag/loader')],
       },
-      {
-        test: /\.pegjs$/,
-        use: [require.resolve('pegjs-loader')],
-      },
-    ],
+      (() => {
+        const modulePath = getOptionalLoader('pegjs-loader');
+        return modulePath && { test: /\.pegjs$/, use: [modulePath] };
+      })(),
+    ].filter(Boolean),
   },
 
   // Some libraries import Node modules but don't use them in the browser.

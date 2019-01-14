@@ -47,7 +47,6 @@
     "moment-locales-webpack-plugin": "1.0.7",
     "mri": "1.1.4",
     "optimize-css-assets-webpack-plugin": "5.0.1",
-    "pegjs-loader": "0.5.4",
     "postcss": "7.0.11",
     "postcss-color-mod-function": "2.4.3",
     "postcss-custom-media": "7.0.7",
@@ -69,6 +68,10 @@
     "webpack-bundle-analyzer": "3.0.3",
     "webpack-dev-server": "3.1.14",
     "webpackbar": "3.1.5"
+  },
+  "optionalDependencies": {
+    "pegjs": "0.10.x",
+    "pegjs-loader": "0.5.x"
   },
   "engines": {
     "node": ">=8",

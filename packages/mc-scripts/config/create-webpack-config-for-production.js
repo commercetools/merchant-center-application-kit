@@ -21,6 +21,7 @@ const postcssCustomMediaQueries = require('postcss-custom-media');
 const postcssColorModFunction = require('postcss-color-mod-function');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 const browserslist = require('./browserslist');
+const { getOptionalLoader } = require('./optional-loaders');
 
 const optimizeCSSConfig = {
   // Since css-loader uses cssnano v3.1.0, it's best to stick with the
@@ -451,10 +452,10 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
           include: sourceFolders,
           use: [require.resolve('graphql-tag/loader')],
         },
-        {
-          test: /\.pegjs$/,
-          use: [require.resolve('pegjs-loader')],
-        },
+        (() => {
+          const modulePath = getOptionalLoader('pegjs-loader');
+          return modulePath && { test: /\.pegjs$/, use: [modulePath] };
+        })(),
       ].filter(Boolean),
     },
     // Some libraries import Node modules but don't use them in the browser.

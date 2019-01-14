@@ -36,6 +36,7 @@ module.exports = {
   transform: {
     '^.+\\.js$': resolveRelativePath('./transform-babel-jest.js'),
     '^.+\\.graphql$': 'jest-transform-graphql',
+    // NOTE: this is an optional dependency, we can keep the transform config here though
     '^.+\\.pegjs$': 'pegjs-jest',
   },
   transformIgnorePatterns: ['node_modules'],
