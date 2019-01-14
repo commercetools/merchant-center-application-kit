@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/url-utils",
-  "version": "5.0.2",
+  "version": "6.0.0",
   "description": "Utility functions to work with URLs",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {

@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/eslint-config-mc-app",
-  "version": "5.1.0",
+  "version": "6.0.0",
   "description": "ESLint config used by a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -20,7 +20,6 @@
   },
   "main": "./index.js",
   "module": "./index.js",
-  "dependencies": {},
   "peerDependencies": {
     "babel-eslint": "10.x",
     "eslint": "5.x",
