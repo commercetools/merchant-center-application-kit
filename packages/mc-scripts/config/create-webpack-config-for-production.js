@@ -87,7 +87,6 @@ const defaultToggleFlags = {
   enableExtractCss: true,
   // Allow to disable index.html generation in case it's not necessary (e.g. for Storybook)
   generateIndexHtml: true,
-  enabledVendorOptimizations: false,
 };
 
 /**
@@ -411,39 +410,6 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
             },
           ],
           include: sourceFolders,
-        },
-        /**
-         * NOTE:
-         *    Some dependencies may use `console.*` to log (e.g. Apollo). These log statements
-         *    should be removed for production builds. This could also be achieved using `UglifyJS`.
-         *    However, the fact that also `prop-types` (from dependencies in `node_modules`)
-         *    should be stripped from production builds requires a separate configuration
-         *    for the `babel-loader` including files from `node_modules` while removing
-         *    the mentioned `prop-types` and console statements.
-         */
-        mergedToggleFlags.enabledVendorOptimizations && {
-          test: /\.js$/,
-          include: /node_modules/,
-          exclude: sourceFolders,
-          use: [
-            require.resolve('thread-loader'),
-            {
-              loader: require.resolve('babel-loader'),
-              options: {
-                babelrc: false,
-                plugins: [
-                  require.resolve('@babel/plugin-syntax-dynamic-import'),
-                  require.resolve('babel-plugin-transform-remove-console'),
-                  [
-                    require.resolve(
-                      'babel-plugin-transform-react-remove-prop-types'
-                    ),
-                    { removeImport: true },
-                  ],
-                ],
-              },
-            },
-          ],
         },
         // Allow to import `*.graphql` SDL files.
         {

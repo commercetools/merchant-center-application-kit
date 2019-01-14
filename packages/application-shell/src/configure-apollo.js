@@ -7,6 +7,7 @@ import {
   IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory';
 import { errorLink, headerLink, tokenRetryLink } from './apollo-links';
+import { isLoggerEnabled } from './utils/logger';
 
 const httpLink = createHttpLink({
   uri: `${window.app.mcApiUrl}/graphql`,
@@ -25,7 +26,7 @@ const link = ApolloLink.from([
   headerLink,
   errorLink,
   // Avoid logging queries in test environment
-  ...(process.env.NODE_ENV !== 'test' ? [apolloLogger] : []),
+  ...(isLoggerEnabled() ? [apolloLogger] : []),
   tokenRetryLink,
   httpLink,
 ]);

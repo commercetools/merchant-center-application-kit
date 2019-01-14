@@ -1,4 +1,5 @@
 import qs from 'query-string';
+import logger from './logger';
 
 export const parseUri = uri => {
   const parser = document.createElement('a');
@@ -12,23 +13,21 @@ export const parseUri = uri => {
 
 export const logRequest = ({ method, request, response, error, action }) => {
   const uriParts = parseUri(request.uri);
-  /* eslint-disable no-console */
   const groupName = `%c${method} %c${uriParts.pathname}`;
-  console.groupCollapsed(
+  logger.groupCollapsed(
     groupName,
     `color: ${error ? 'red' : 'black'}; font-weight: bold;`,
     'color: gray; font-weight: lighter;'
   );
-  console.log('%caction', 'color: cadetblue; font-weight: bold;', action);
-  console.log('%crequest', `color: cornflowerblue; font-weight: bold;`, {
+  logger.log('%caction', 'color: cadetblue; font-weight: bold;', action);
+  logger.log('%crequest', `color: cornflowerblue; font-weight: bold;`, {
     headers: request.headers,
     uri: request.uri,
     params: uriParts.search,
     ...(method === 'POST' ? { body: action.payload.payload } : {}),
   });
   if (response)
-    console.log('%cresponse', `color: green; font-weight: bold;`, response);
-  if (error) console.log('%cerror', `color: red; font-weight: bold;`, error);
-  console.groupEnd(groupName);
-  /* eslint-enable no-console */
+    logger.log('%cresponse', `color: green; font-weight: bold;`, response);
+  if (error) logger.log('%cerror', `color: red; font-weight: bold;`, error);
+  logger.groupEnd(groupName);
 };

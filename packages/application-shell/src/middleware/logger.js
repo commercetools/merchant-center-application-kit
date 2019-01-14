@@ -3,8 +3,10 @@ import {
   ADD_NOTIFICATION,
   REMOVE_NOTIFICATION,
 } from '@commercetools-frontend/notifications';
+import logger from '../utils/logger';
 
 const loggerMiddleware = createLogger({
+  logger,
   collapsed: true,
   colors: {
     title: () => '#000000',
@@ -17,8 +19,6 @@ const loggerMiddleware = createLogger({
   // Only enable if you want detailed debugging.
   diff: false,
   predicate: (getState, action) => {
-    if (process.env.NODE_ENV === 'test') return false;
-
     if (!action) return false;
 
     const { type, payload } = action;

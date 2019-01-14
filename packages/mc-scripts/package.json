@@ -30,7 +30,6 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-loader": "8.0.5",
     "babel-plugin-react-intl": "3.0.1",
-    "babel-plugin-transform-dynamic-import": "2.1.0",
     "babel-polyfill": "6.26.0",
     "browserslist": "4.4.0",
     "chalk": "2.4.2",
