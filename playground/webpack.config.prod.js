@@ -9,7 +9,4 @@ module.exports = createWebpackConfigForProduction({
   distPath,
   entryPoint,
   sourceFolders,
-  toggleFlags: {
-    enabledVendorOptimizations: true,
-  },
 });
