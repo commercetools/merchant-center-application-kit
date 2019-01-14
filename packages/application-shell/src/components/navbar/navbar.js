@@ -4,7 +4,7 @@ import isNil from 'lodash/isNil';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';
-import { ToggleFeature, injectFeatureToggle } from '@flopflip/react-broadcast';
+import { ToggleFeature } from '@flopflip/react-broadcast';
 import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
 import { oneLineTrim } from 'common-tags';
@@ -34,7 +34,6 @@ import {
 } from '@commercetools-frontend/constants';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
-import { PROJECT_EXTENSIONS } from './feature-toggles';
 import LoadingPlaceholder from '../loading-placeholder';
 import { frontendClient } from '../../configure-apollo';
 import FetchApplicationsMenu from './fetch-applications-menu.graphql';
@@ -84,8 +83,6 @@ export const IconSwitcher = ({ iconName, ...iconProps }) => {
       return <BoxIcon {...iconProps} />;
     case 'GearIcon':
       return <GearIcon {...iconProps} />;
-    case 'SupportIcon':
-      return <SupportIcon {...iconProps} />;
     // Custom application icons set
     case 'HeartIcon':
       return <HeartIcon {...iconProps} />;
@@ -432,7 +429,6 @@ export class DataMenu extends React.PureComponent {
   };
 
   renderLabel = menu => {
-    if (menu.labelKey) return <FormattedMessage {...messages[menu.labelKey]} />;
     const localizedLabel = menu.labelAllLocales.find(
       loc => loc.locale === this.props.applicationLanguage
     );
@@ -589,23 +585,19 @@ export class DataMenu extends React.PureComponent {
   }
 }
 
-export const NavBarLayout = props => (
+export const NavBarLayout = React.forwardRef((props, ref) => (
   <nav
-    ref={props.getNode}
+    ref={ref}
     className={styles['left-navigation']}
     data-test="left-navigation"
     data-track-component="Navigation"
   >
     {props.children}
   </nav>
-);
+));
 NavBarLayout.displayName = 'NavBarLayout';
 NavBarLayout.propTypes = {
-  getNode: PropTypes.func.isRequired,
   children: PropTypes.node,
-};
-NavBarLayout.defaultProps = {
-  getNode: () => {},
 };
 
 export class NavBar extends React.PureComponent {
@@ -636,14 +628,9 @@ export class NavBar extends React.PureComponent {
         ).isRequired,
       }),
     }),
-
-    // injectFeatureToggle
-    areProjectExtensionsEnabled: PropTypes.bool.isRequired,
   };
 
-  getNode = node => {
-    this.node = node;
-  };
+  ref = React.createRef();
 
   render() {
     const navbarMenu =
@@ -659,9 +646,9 @@ export class NavBar extends React.PureComponent {
           )
         : [];
     return (
-      <NavBarLayout getNode={this.getNode}>
+      <NavBarLayout ref={this.ref}>
         <DataMenu
-          rootNode={this.node}
+          rootNode={this.ref.current}
           data={navbarMenu.concat(customAppsMenu)}
           isForcedMenuOpen={this.props.isForcedMenuOpen}
           location={this.props.location}
@@ -676,7 +663,6 @@ export class NavBar extends React.PureComponent {
 }
 
 export default compose(
-  injectFeatureToggle(PROJECT_EXTENSIONS, 'areProjectExtensionsEnabled'),
   withRouter, // Connect again, to access the `location` object
   withProps(() => {
     const cachedIsForcedMenuOpen = storage.get(
@@ -699,7 +685,6 @@ export default compose(
   }),
   graphql(FetchProjectExtensionsNavbar, {
     name: 'projectExtensionsQuery',
-    skip: ownProps => !ownProps.areProjectExtensionsEnabled,
     options: () => ({
       variables: {
         target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
@@ -709,25 +694,30 @@ export default compose(
   })
 )(NavBar);
 
-export const LoadingNavBar = () => (
-  <NavBarLayout>
-    <MenuGroup level={1}>
-      <React.Fragment>
-        {Array.from(new Array(5)).map((_, index) => (
-          <MenuItem
-            key={index}
-            hasSubmenu={false}
-            isMenuOpen={false}
-            isActive={false}
-            onClick={() => {}}
-          >
-            <div className={styles['loading-dot-container']}>
-              <LoadingPlaceholder shape="dot" size="m" />
-            </div>
-          </MenuItem>
-        ))}
-      </React.Fragment>
-    </MenuGroup>
-  </NavBarLayout>
-);
-LoadingNavBar.displayName = 'LoadingNavBar';
+export class LoadingNavBar extends React.Component {
+  static displayName = 'LoadingNavBar';
+  ref = React.createRef();
+  render() {
+    return (
+      <NavBarLayout ref={this.ref}>
+        <MenuGroup level={1}>
+          <React.Fragment>
+            {Array.from(new Array(5)).map((_, index) => (
+              <MenuItem
+                key={index}
+                hasSubmenu={false}
+                isMenuOpen={false}
+                isActive={false}
+                onClick={() => {}}
+              >
+                <div className={styles['loading-dot-container']}>
+                  <LoadingPlaceholder shape="dot" size="m" />
+                </div>
+              </MenuItem>
+            ))}
+          </React.Fragment>
+        </MenuGroup>
+      </NavBarLayout>
+    );
+  }
+}
