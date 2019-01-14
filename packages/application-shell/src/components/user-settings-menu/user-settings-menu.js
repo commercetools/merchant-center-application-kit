@@ -207,7 +207,9 @@ const ConnectedUserSettingsMenuBody = graphql(FetchApplicationsMenu, {
   options: () => ({
     // Pass a different apollo client here, as we are connecting to a different API
     client: frontendClient,
-    fetchPolicy: 'cache-and-network',
+    // We can assume here that the navbar already fetched the data, since this
+    // component gets rendered only when the user opens the menu
+    fetchPolicy: 'cache-only',
   }),
 })(UserSettingsMenuBody);
 
