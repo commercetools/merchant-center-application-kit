@@ -36,8 +36,8 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "@commitlint/cli": "7.2.1",
-    "@commitlint/config-conventional": "7.1.2",
+    "@commitlint/cli": "7.3.1",
+    "@commitlint/config-conventional": "7.3.1",
     "babel-eslint": "10.0.1",
     "babel-plugin-import-graphql": "2.6.2",
     "babel-plugin-transform-rename-import": "2.3.0",
