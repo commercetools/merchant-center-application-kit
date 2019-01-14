@@ -35,7 +35,6 @@ import {
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import LoadingPlaceholder from '../loading-placeholder';
-import { frontendClient } from '../../configure-apollo';
 import FetchApplicationsMenu from './fetch-applications-menu.graphql';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
 import styles from './navbar.mod.css';
@@ -679,8 +678,11 @@ export default compose(
     name: 'applicationsMenuQuery',
     options: () => ({
       // Pass a different apollo client here, as we are connecting to a different API
-      client: frontendClient,
-      fetchPolicy: 'cache-and-network',
+      fetchPolicy: 'cache-first',
+      context: {
+        // uri: `${window.location.origin}/api/graphql`,
+        uri: 'https://mc-6116.gcp.escemo.com/api/graphql',
+      },
     }),
   }),
   graphql(FetchProjectExtensionsNavbar, {

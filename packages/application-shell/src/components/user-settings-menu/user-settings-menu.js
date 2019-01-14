@@ -19,7 +19,6 @@ import {
 } from '@commercetools-frontend/constants';
 import Card from '../../from-core/card';
 import { MCSupportFormURL } from '../../constants';
-import { frontendClient } from '../../configure-apollo';
 import FetchApplicationsMenu from '../navbar/fetch-applications-menu.graphql';
 import styles from './user-settings-menu.mod.css';
 import messages from './messages';
@@ -206,10 +205,13 @@ const ConnectedUserSettingsMenuBody = graphql(FetchApplicationsMenu, {
   name: 'applicationsMenuQuery',
   options: () => ({
     // Pass a different apollo client here, as we are connecting to a different API
-    client: frontendClient,
     // We can assume here that the navbar already fetched the data, since this
     // component gets rendered only when the user opens the menu
     fetchPolicy: 'cache-only',
+    context: {
+      // uri: `${window.location.origin}/api/graphql`,
+      uri: 'https://mc-6116.gcp.escemo.com/api/graphql',
+    },
   }),
 })(UserSettingsMenuBody);
 

@@ -10,7 +10,7 @@ import hideNotificationsMiddleware from './middleware/hide-notifications';
 import loggerMiddleware from './middleware/logger';
 import sentryTrackingMiddleware from './middleware/sentry-tracking';
 import { requestsInFlightReducer } from './components/requests-in-flight-loader';
-import { backendClient as apolloClient } from './configure-apollo';
+import apolloClient from './configure-apollo';
 import {
   getCorrelationId,
   selectProjectKeyFromUrl,
