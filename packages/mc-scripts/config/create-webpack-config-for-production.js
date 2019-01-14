@@ -433,7 +433,6 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
                 babelrc: false,
                 plugins: [
                   require.resolve('@babel/plugin-syntax-dynamic-import'),
-                  require.resolve('babel-plugin-transform-remove-console'),
                   [
                     require.resolve(
                       'babel-plugin-transform-react-remove-prop-types'
