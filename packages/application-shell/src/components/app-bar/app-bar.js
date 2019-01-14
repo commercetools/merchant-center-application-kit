@@ -86,6 +86,7 @@ const AppBar = props => {
           <div className={styles.spacer} />
           {props.user ? (
             <UserSettingsMenu
+              locale={props.user.language}
               firstName={props.user.firstName}
               lastName={props.user.lastName}
               gravatarHash={props.user.gravatarHash}
@@ -102,6 +103,7 @@ const AppBar = props => {
 AppBar.displayName = 'AppBar';
 AppBar.propTypes = {
   user: PropTypes.shape({
+    language: PropTypes.string.isRequired,
     gravatarHash: PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,

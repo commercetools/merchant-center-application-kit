@@ -1,16 +1,42 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CaretDownIcon, Avatar } from '@commercetools-frontend/ui-kit';
+import { CaretDownIcon, Avatar, Text } from '@commercetools-frontend/ui-kit';
 import Downshift from 'downshift';
 import { MCSupportFormURL } from '../../constants';
-import { UserSettingsMenu, UserAvatar } from './user-settings-menu';
+import UserSettingsMenu, {
+  UserSettingsMenuBody,
+  ConnectedUserSettingsMenuBody,
+  UserAvatar,
+  UserAvatarWithHoverState,
+} from './user-settings-menu';
 
 const createTestProps = props => ({
-  firstName: 'John Test',
+  locale: 'en',
+  firstName: 'John',
   lastName: 'Doe',
   email: 'john@doe.com',
   gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
   ...props,
+});
+
+const createTestMenuConfig = props => ({
+  applicationsMenuQuery: {
+    applicationsMenu: {
+      appBar: [
+        {
+          key: 'profile',
+          labelAllLocales: [{ locale: 'en', value: 'Profile' }],
+          uriPath: 'profile',
+        },
+        {
+          key: 'organizations',
+          labelAllLocales: [{ locale: 'en', value: 'Organizations' }],
+          uriPath: 'organizations',
+        },
+      ],
+      ...props,
+    },
+  },
 });
 
 const createDownshiftProps = props => ({
@@ -38,53 +64,72 @@ describe('rendering', () => {
     let menuStateContainerRenderWrapper;
     beforeEach(() => {
       downshiftProps = createDownshiftProps();
-      menuStateContainerRenderWrapper = shallow(
-        wrapper.find(Downshift).prop('children')(downshiftProps)
-      );
+      menuStateContainerRenderWrapper = wrapper
+        .find(Downshift)
+        .renderProp('children', downshiftProps);
     });
     it('should render button', () => {
       expect(menuStateContainerRenderWrapper).toRender('button');
     });
-    it('should render WithMouseOverState(UserAvatar)', () => {
+    it('should render <UserAvatarWithHoverState>', () => {
       expect(menuStateContainerRenderWrapper).toRender(
-        'WithMouseOverState(UserAvatar)'
+        UserAvatarWithHoverState
       );
     });
     describe('when menu is open', () => {
       beforeEach(() => {
         downshiftProps = createDownshiftProps({ isOpen: true });
-        menuStateContainerRenderWrapper = shallow(
-          wrapper.find(Downshift).prop('children')(downshiftProps)
+        menuStateContainerRenderWrapper = wrapper
+          .find(Downshift)
+          .renderProp('children', downshiftProps);
+      });
+      it('should render <ConnectedUserSettingsMenuBody>', () => {
+        expect(menuStateContainerRenderWrapper).toRender(
+          ConnectedUserSettingsMenuBody
         );
-      });
-      it('should render matching tree', () => {
-        expect(menuStateContainerRenderWrapper).toMatchSnapshot();
-      });
-      it('should render link to "/account/profile"', () => {
-        expect(menuStateContainerRenderWrapper).toRender({
-          to: '/account/profile',
-        });
-      });
-      it('should render link to "/logout"', () => {
-        expect(menuStateContainerRenderWrapper).toRender({
-          href: '/logout?reason=user',
-        });
-      });
-      it('should render link to "MCSupportFormURL', () => {
-        expect(menuStateContainerRenderWrapper).toRender({
-          href: MCSupportFormURL,
-        });
       });
     });
-    describe('when menu is closed', () => {
-      beforeEach(() => {
-        downshiftProps = createDownshiftProps();
-        menuStateContainerRenderWrapper = shallow(
-          wrapper.find(Downshift).prop('children')(downshiftProps)
-        );
+  });
+
+  describe('<UserSettingsMenuBody>', () => {
+    beforeEach(() => {
+      props = createTestProps({
+        downshiftProps: createDownshiftProps(),
+        ...createTestMenuConfig(),
       });
-      it('should not render <Card>', () => {
-        expect(menuStateContainerRenderWrapper).not.toRender('Card');
+      wrapper = shallow(<UserSettingsMenuBody {...props} />);
+    });
+    it('should render <Avatar>', () => {
+      expect(wrapper).toRender(Avatar);
+    });
+    it('should render full name', () => {
+      expect(wrapper).toContainReact(
+        <Text.Body isBold>{'John Doe'}</Text.Body>
+      );
+    });
+    it('should render email', () => {
+      expect(wrapper).toContainReact(
+        <Text.Body truncate>{'john@doe.com'}</Text.Body>
+      );
+    });
+    it('should render link to "/account/profile"', () => {
+      expect(wrapper).toRender({
+        to: '/account/profile',
+      });
+    });
+    it('should render link to "/account/organizations"', () => {
+      expect(wrapper).toRender({
+        to: '/account/organizations',
+      });
+    });
+    it('should render link to "/logout"', () => {
+      expect(wrapper).toRender({
+        href: '/logout?reason=user',
+      });
+    });
+    it('should render link to "MCSupportFormURL', () => {
+      expect(wrapper).toRender({
+        href: MCSupportFormURL,
       });
     });
   });
@@ -111,7 +156,7 @@ describe('rendering', () => {
     });
 
     it('should pass prop firstName to `Avatar` component', () => {
-      expect(wrapper.find(Avatar)).toHaveProp('firstName', 'John Test');
+      expect(wrapper.find(Avatar)).toHaveProp('firstName', 'John');
     });
 
     it('should pass prop lastName to `Avatar` component', () => {
