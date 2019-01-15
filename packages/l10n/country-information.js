@@ -6,9 +6,9 @@ import extractLanguageFromLocale from './utils/extract-language-from-locale';
 const getImportChunk = lang => {
   switch (lang) {
     case 'de':
-      return import(/* webpackChunkName: "country-data-es" */ './data/countries/es.json');
-    case 'es':
       return import(/* webpackChunkName: "country-data-de" */ './data/countries/de.json');
+    case 'es':
+      return import(/* webpackChunkName: "country-data-es" */ './data/countries/es.json');
     default:
       return import(/* webpackChunkName: "country-data-en" */ './data/countries/en.json');
   }
