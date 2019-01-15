@@ -52,7 +52,7 @@ class EntryPoint extends React.Component {
             globalActions.handleActionError(error, 'sdk')(dispatch);
         }}
         applicationMessages={loadApplicationMessagesForLanguage}
-        DEV_ONLY__getNavbarMenuConfig={() => import('../../../menu.json')}
+        DEV_ONLY__loadNavbarMenuConfig={() => import('../../../menu.json')}
         render={() => <ApplicationStateMachines />}
       />
     );

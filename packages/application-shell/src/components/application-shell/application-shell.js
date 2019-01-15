@@ -204,8 +204,8 @@ export const RestrictedApplication = props => (
                         <AppBar
                           user={user}
                           projectKeyFromUrl={projectKeyFromUrl}
-                          DEV_ONLY__getAppbarMenuConfig={
-                            props.DEV_ONLY__getAppbarMenuConfig
+                          DEV_ONLY__loadAppbarMenuConfig={
+                            props.DEV_ONLY__loadAppbarMenuConfig
                           }
                         />
                       </header>
@@ -251,8 +251,8 @@ export const RestrictedApplication = props => (
                                       useFullRedirectsForLinks={
                                         props.INTERNAL__isApplicationFallback
                                       }
-                                      DEV_ONLY__getNavbarMenuConfig={
-                                        props.DEV_ONLY__getNavbarMenuConfig
+                                      DEV_ONLY__loadNavbarMenuConfig={
+                                        props.DEV_ONLY__loadNavbarMenuConfig
                                       }
                                     />
                                   </ApplicationContextProvider>
@@ -361,8 +361,8 @@ RestrictedApplication.propTypes = {
   applicationMessages: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     .isRequired,
   INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
-  DEV_ONLY__getAppbarMenuConfig: PropTypes.func,
-  DEV_ONLY__getNavbarMenuConfig: PropTypes.func,
+  DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
+  DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
 };
 
 /**
@@ -426,8 +426,8 @@ export default class ApplicationShell extends React.Component {
     applicationMessages: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
       .isRequired,
     // Only available in development mode
-    DEV_ONLY__getAppbarMenuConfig: PropTypes.func,
-    DEV_ONLY__getNavbarMenuConfig: PropTypes.func,
+    DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
+    DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
     // Internal usage only, does not need to be documented
     INTERNAL__isApplicationFallback: PropTypes.bool,
   };
@@ -493,11 +493,11 @@ export default class ApplicationShell extends React.Component {
                                   INTERNAL__isApplicationFallback={
                                     this.props.INTERNAL__isApplicationFallback
                                   }
-                                  DEV_ONLY__getAppbarMenuConfig={
-                                    this.props.DEV_ONLY__getAppbarMenuConfig
+                                  DEV_ONLY__loadAppbarMenuConfig={
+                                    this.props.DEV_ONLY__loadAppbarMenuConfig
                                   }
-                                  DEV_ONLY__getNavbarMenuConfig={
-                                    this.props.DEV_ONLY__getNavbarMenuConfig
+                                  DEV_ONLY__loadNavbarMenuConfig={
+                                    this.props.DEV_ONLY__loadNavbarMenuConfig
                                   }
                                 />
                               );

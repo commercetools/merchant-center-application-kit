@@ -35,8 +35,7 @@ import {
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import LoadingPlaceholder from '../loading-placeholder';
-import devonlyMenuLoader from './devonly-menu-loader';
-import FetchApplicationsMenu from './fetch-applications-menu.graphql';
+import withApplicationsMenu from '../with-applications-menu';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
 import styles from './navbar.mod.css';
 import messages from './messages';
@@ -676,35 +675,22 @@ export default compose(
           : null,
     };
   }),
-  graphql(FetchApplicationsMenu, {
-    name: 'applicationsMenuQuery',
-    skip: ownProps => ownProps.DEV_ONLY__getNavbarMenuConfig,
-    options: () => ({
-      fetchPolicy: 'cache-first',
-      context: {
-        uri: `${window.location.origin}/api/graphql`,
-      },
-    }),
-  }),
+  withApplicationsMenu(ownProps => ({
+    __DEV_CONFIG__: {
+      menuLoader: ownProps.DEV_ONLY__loadNavbarMenuConfig,
+      menuKey: 'navBar',
+    },
+  })),
   graphql(FetchProjectExtensionsNavbar, {
     name: 'projectExtensionsQuery',
-    skip: ownProps => ownProps.DEV_ONLY__getNavbarMenuConfig,
+    skip: ownProps => ownProps.DEV_ONLY__loadNavbarMenuConfig,
     options: () => ({
       variables: {
         target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
       },
       fetchPolicy: 'cache-and-network',
     }),
-  }),
-  devonlyMenuLoader(
-    ownProps => ownProps.DEV_ONLY__getNavbarMenuConfig,
-    menu =>
-      menu && {
-        applicationsMenuQuery: {
-          applicationsMenu: { navBar: Array.isArray(menu) ? menu : [menu] },
-        },
-      }
-  )
+  })
 )(NavBar);
 
 export class LoadingNavBar extends React.Component {

@@ -91,8 +91,8 @@ const AppBar = props => {
               lastName={props.user.lastName}
               gravatarHash={props.user.gravatarHash}
               email={props.user.email}
-              DEV_ONLY__getAppbarMenuConfig={
-                props.DEV_ONLY__getAppbarMenuConfig
+              DEV_ONLY__loadAppbarMenuConfig={
+                props.DEV_ONLY__loadAppbarMenuConfig
               }
             />
           ) : (
@@ -117,7 +117,7 @@ AppBar.propTypes = {
     defaultProjectKey: PropTypes.string.isRequired,
   }),
   projectKeyFromUrl: PropTypes.string,
-  DEV_ONLY__getAppbarMenuConfig: PropTypes.func,
+  DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
 };
 
 export default AppBar;
