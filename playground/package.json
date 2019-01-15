@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -14,14 +14,14 @@
   },
   "dependencies": {
     "@commercetools-frontend/actions-global": "6.0.0",
-    "@commercetools-frontend/application-shell": "6.0.0",
+    "@commercetools-frontend/application-shell": "6.0.1",
     "@commercetools-frontend/application-shell-connectors": "6.0.0",
     "@commercetools-frontend/constants": "6.0.0",
     "@commercetools-frontend/i18n": "6.0.0",
-    "@commercetools-frontend/l10n": "6.0.0",
+    "@commercetools-frontend/l10n": "6.0.1",
     "@commercetools-frontend/mc-http-server": "6.0.0",
     "@commercetools-frontend/permissions": "6.0.0",
-    "@commercetools-frontend/sdk": "6.0.0",
+    "@commercetools-frontend/sdk": "6.0.1",
     "@commercetools-frontend/ui-kit": "6.1.1",
     "lodash": "4.17.11",
     "lodash-es": "4.17.11",
@@ -39,6 +39,6 @@
     "redux": "4.0.1"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "6.0.0"
+    "@commercetools-frontend/mc-scripts": "6.0.1"
   }
 }
