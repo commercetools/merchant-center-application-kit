@@ -208,7 +208,6 @@ const ConnectedUserSettingsMenuBody = compose(
     name: 'applicationsMenuQuery',
     skip: ownProps => !!ownProps.DEV_ONLY__getMenuConfig,
     options: () => ({
-      // Pass a different apollo client here, as we are connecting to a different API
       // We can assume here that the navbar already fetched the data, since this
       // component gets rendered only when the user opens the menu
       fetchPolicy: 'cache-only',

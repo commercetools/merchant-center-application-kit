@@ -680,7 +680,6 @@ export default compose(
     name: 'applicationsMenuQuery',
     skip: ownProps => ownProps.DEV_ONLY__getNavbarMenuConfig,
     options: () => ({
-      // Pass a different apollo client here, as we are connecting to a different API
       fetchPolicy: 'cache-first',
       context: {
         uri: `${window.location.origin}/api/graphql`,
