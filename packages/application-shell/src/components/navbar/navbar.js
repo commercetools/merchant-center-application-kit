@@ -683,8 +683,7 @@ export default compose(
       // Pass a different apollo client here, as we are connecting to a different API
       fetchPolicy: 'cache-first',
       context: {
-        // uri: `${window.location.origin}/api/graphql`,
-        uri: 'https://mc-6116.gcp.escemo.com/api/graphql',
+        uri: `${window.location.origin}/api/graphql`,
       },
     }),
   }),

@@ -213,8 +213,7 @@ const ConnectedUserSettingsMenuBody = compose(
       // component gets rendered only when the user opens the menu
       fetchPolicy: 'cache-only',
       context: {
-        // uri: `${window.location.origin}/api/graphql`,
-        uri: 'https://mc-6116.gcp.escemo.com/api/graphql',
+        uri: `${window.location.origin}/api/graphql`,
       },
     }),
   }),
