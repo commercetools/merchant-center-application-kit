@@ -16,7 +16,7 @@ import { DOMAINS } from '@commercetools-frontend/constants';
 import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
 import { GtmContext } from '../components/gtm-booter';
 import { createReduxStore } from '../configure-store';
-import { createApolloClientForBackendApi } from '../configure-apollo';
+import { createApolloClient } from '../configure-apollo';
 
 // Reset memoryAdapter after each test, so that the next test accepts the
 // defaultFlags param.
@@ -258,7 +258,7 @@ const renderWithRedux = (
 
 // Renders UI without mocking ApolloProvider
 const experimentalRender = (ui, renderOptions) => {
-  const client = createApolloClientForBackendApi();
+  const client = createApolloClient();
   const RealApolloProvider = ({ children }) => (
     <ApolloProvider client={client}>{children}</ApolloProvider>
   );
