@@ -36,6 +36,7 @@ import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import LoadingPlaceholder from '../loading-placeholder';
 import withApplicationsMenu from '../with-applications-menu';
+import handleApolloErrors from '../handle-apollo-errors';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
 import styles from './navbar.mod.css';
 import messages from './messages';
@@ -691,7 +692,8 @@ export default compose(
       },
       fetchPolicy: 'cache-and-network',
     }),
-  })
+  }),
+  handleApolloErrors(['applicationsMenuQuery', 'projectExtensionsQuery'])
 )(NavBar);
 
 export class LoadingNavBar extends React.Component {

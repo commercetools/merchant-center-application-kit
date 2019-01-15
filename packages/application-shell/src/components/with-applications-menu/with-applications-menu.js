@@ -1,10 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import { wrapDisplayName } from 'recompose';
-import { connect } from 'react-redux';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import * as globalActions from '@commercetools-frontend/actions-global';
 import FetchApplicationsMenu from './fetch-applications-menu.graphql';
 
 const defaultApiUrl = window.location.origin;
@@ -66,11 +63,8 @@ function withApplicationsMenu(getOptions) {
                 uri: `${environment.mcProxyApiUrl ||
                   defaultApiUrl}/api/graphql`,
               }}
-              onError={props.handleActionError}
             >
-              {({ data }) => (
-                <Component {...props} {...{ [queryName]: data }} />
-              )}
+              {result => <Component {...props} {...{ [queryName]: result }} />}
             </Query>
           )}
         />
@@ -80,13 +74,7 @@ function withApplicationsMenu(getOptions) {
       Component,
       'withApplicationsMenu'
     );
-    WrappedComponent.propTypes = {
-      handleActionError: PropTypes.func.isRequired,
-    };
-    return connect(
-      null,
-      { handleActionError: globalActions.handleActionError }
-    )(WrappedComponent);
+    return WrappedComponent;
   };
 }
 
