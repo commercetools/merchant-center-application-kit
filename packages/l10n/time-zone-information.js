@@ -6,9 +6,9 @@ import extractLanguageFromLocale from './utils/extract-language-from-locale';
 const getImportChunk = lang => {
   switch (lang) {
     case 'de':
-      return import(/* webpackChunkName: "timezone-data-es" */ './data/time-zones/es.json');
-    case 'es':
       return import(/* webpackChunkName: "timezone-data-de" */ './data/time-zones/de.json');
+    case 'es':
+      return import(/* webpackChunkName: "timezone-data-es" */ './data/time-zones/es.json');
     default:
       return import(/* webpackChunkName: "timezone-data-en" */ './data/time-zones/en.json');
   }
