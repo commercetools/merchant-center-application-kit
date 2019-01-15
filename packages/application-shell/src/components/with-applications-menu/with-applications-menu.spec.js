@@ -1,0 +1,99 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import upperFirst from 'lodash/upperFirst';
+import { renderWithRedux, waitForElement } from '../../test-utils';
+import FetchApplicationsMenu from './fetch-applications-menu.graphql';
+import withApplicationsMenu from './with-applications-menu';
+
+const Test = props => {
+  if (props.menuQuery && props.menuQuery.applicationsMenu) {
+    return props.menuQuery.applicationsMenu.navBar.map(menu => (
+      <div key={menu.key}>{`Key: ${menu.key}`}</div>
+    ));
+  }
+  return <div>{'loading'}</div>;
+};
+Test.displayName = 'Test';
+Test.propTypes = {
+  menuQuery: PropTypes.shape({
+    applicationsMenu: PropTypes.shape({
+      navBar: PropTypes.arrayOf(PropTypes.shape({ key: PropTypes.string })),
+    }),
+  }),
+};
+
+const createTestMenuConfig = (key, props) => ({
+  key,
+  labelAllLocales: [{ locale: 'en', value: upperFirst(key) }],
+  uriPath: key,
+  icon: 'UserFilledIcon',
+  permissions: [],
+  featureToggle: null,
+  submenu: [
+    {
+      key: `${key}-new`,
+      labelAllLocales: [{ locale: 'en', value: `${upperFirst(key)} new` }],
+      uriPath: `${key}/new`,
+      permissions: [],
+      featureToggle: null,
+    },
+  ],
+  shouldRenderDivider: false,
+  ...props,
+});
+
+const createGraphqlResponse = custom => ({
+  loading: false,
+  applicationsMenu: {
+    appBar: [],
+    navBar: [createTestMenuConfig('orders')],
+  },
+  ...custom,
+});
+
+describe('fetching the menu query', () => {
+  const Connected = withApplicationsMenu(() => ({ queryName: 'menuQuery' }))(
+    Test
+  );
+  describe('when the query succeeds', () => {
+    it('should render menu key', async () => {
+      const { getByText } = renderWithRedux(<Connected />, {
+        mocks: [
+          {
+            request: {
+              query: FetchApplicationsMenu,
+            },
+            result: {
+              data: createGraphqlResponse(),
+            },
+          },
+        ],
+      });
+      await waitForElement(() => getByText('loading'));
+      await waitForElement(() => getByText(/Key: orders/i));
+    });
+  });
+  describe('when the query fails', () => {
+    beforeEach(() => {
+      console.error = jest.fn();
+    });
+    it('should render menu key', async () => {
+      const error = new Error('Oops');
+      const { getByText } = renderWithRedux(<Connected />, {
+        mocks: [
+          {
+            request: {
+              query: FetchApplicationsMenu,
+            },
+            error,
+          },
+        ],
+      });
+      await waitForElement(() => getByText('loading'));
+      // See error notification
+      await waitForElement(() =>
+        getByText(/Sorry, but there seems to be something wrong./i)
+      );
+    });
+  });
+});

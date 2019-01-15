@@ -10,7 +10,7 @@ import FetchApplicationsMenu from './fetch-applications-menu.graphql';
 const defaultApiUrl = window.location.origin;
 
 function withApplicationsMenu(getOptions) {
-  if (process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV === 'development') {
     return Component => {
       class WrappedComponent extends React.Component {
         static displayName = wrapDisplayName(Component, 'withApplicationsMenu');
