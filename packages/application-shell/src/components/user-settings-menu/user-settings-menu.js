@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { compose } from 'recompose';
 import classnames from 'classnames';
 import Downshift from 'downshift';
 import { ToggleFeature } from '@flopflip/react-broadcast';
@@ -19,6 +20,7 @@ import {
 import Card from '../../from-core/card';
 import { MCSupportFormURL } from '../../constants';
 import withApplicationsMenu from '../with-applications-menu';
+import handleApolloErrors from '../handle-apollo-errors';
 import styles from './user-settings-menu.mod.css';
 import messages from './messages';
 
@@ -200,18 +202,21 @@ UserSettingsMenuBody.propTypes = {
   }),
 };
 
-const ConnectedUserSettingsMenuBody = withApplicationsMenu(ownProps => ({
-  queryName: 'applicationsMenuQuery',
-  queryOptions: {
-    // We can assume here that the navbar already fetched the data, since this
-    // component gets rendered only when the user opens the menu
-    fetchPolicy: 'cache-only',
-  },
-  __DEV_CONFIG__: {
-    menuLoader: ownProps.DEV_ONLY__loadAppbarMenuConfig,
-    menuKey: 'appBar',
-  },
-}))(UserSettingsMenuBody);
+const ConnectedUserSettingsMenuBody = compose(
+  withApplicationsMenu(ownProps => ({
+    queryName: 'applicationsMenuQuery',
+    queryOptions: {
+      // We can assume here that the navbar already fetched the data, since this
+      // component gets rendered only when the user opens the menu
+      fetchPolicy: 'cache-only',
+    },
+    __DEV_CONFIG__: {
+      menuLoader: ownProps.DEV_ONLY__loadAppbarMenuConfig,
+      menuKey: 'appBar',
+    },
+  })),
+  handleApolloErrors(['applicationsMenuQuery'])
+)(UserSettingsMenuBody);
 
 const UserSettingsMenu = props => (
   <div data-test="user-settings-menu">

@@ -64,7 +64,12 @@ function withApplicationsMenu(getOptions) {
                   defaultApiUrl}/api/graphql`,
               }}
             >
-              {result => <Component {...props} {...{ [queryName]: result }} />}
+              {({ data, error }) => (
+                <Component
+                  {...props}
+                  {...{ [queryName]: { ...data, error } }}
+                />
+              )}
             </Query>
           )}
         />
