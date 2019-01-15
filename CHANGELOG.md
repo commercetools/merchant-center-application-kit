@@ -1,3 +1,20 @@
+## [6.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v6.0.0...v6.0.1) (2019-01-14)
+
+#### 💅 Type: Enhancement
+
+- `application-shell`, `babel-preset-mc-app`, `mc-scripts`, `sdk`
+  - [#286](https://github.com/commercetools/merchant-center-application-kit/pull/286) refactor: disable loggers based on runtime configuration ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`, `babel-preset-mc-app`, `mc-scripts`, `sdk`
+  - [#286](https://github.com/commercetools/merchant-center-application-kit/pull/286) refactor: disable loggers based on runtime configuration ([@emmenko](https://github.com/emmenko))
+
+#### 🐛 Type: Bug
+
+- `l10n`
+- [#290](https://github.com/commercetools/merchant-center-application-kit/pull/290) fix(l10n): use correct translated data ([@montezume](https://github.com/montezume))
+
 ## [6.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v5.1.1...v6.0.0) (2019-01-13)
 
 ## BREAKING CHANGES 💣
