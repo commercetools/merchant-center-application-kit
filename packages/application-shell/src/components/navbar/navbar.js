@@ -634,7 +634,6 @@ export class NavBar extends React.PureComponent {
   ref = React.createRef();
 
   render() {
-    console.log(this.props);
     const navbarMenu =
       (this.props.applicationsMenuQuery &&
         this.props.applicationsMenuQuery.applicationsMenu &&

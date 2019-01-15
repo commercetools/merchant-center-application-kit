@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { wrapDisplayName } from 'recompose';
 import { ReactReduxContext } from 'react-redux';
 import { handleActionError } from '@commercetools-frontend/actions-global';
@@ -7,6 +8,14 @@ function handleApolloErrors(queryResultNames) {
   return Component => {
     class WrappedComponent extends React.Component {
       static displayName = wrapDisplayName(Component, 'handleApolloErrors');
+      static propTypes = {
+        ...queryResultNames.reduce(
+          (names, name) => ({
+            [name]: PropTypes.shape({ error: PropTypes.object }),
+          }),
+          {}
+        ),
+      };
       static contextType = ReactReduxContext;
       dispatchedErrors = new Map();
       componentDidUpdate() {
