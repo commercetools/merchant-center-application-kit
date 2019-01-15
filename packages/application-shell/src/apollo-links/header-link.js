@@ -11,9 +11,18 @@ const isKnownTarget = target => Object.values(GRAPHQL_TARGETS).includes(target);
 /* eslint-disable import/prefer-default-export */
 // Use a middleware to update the request headers with the correct params.
 const headerLink = new ApolloLink((operation, forward) => {
-  const customUri = operation.getContext().uri;
+  const { uri, cache } = operation.getContext();
+
+  // In case the `context` contains a `uri`, it means that we are not sending
+  // the request to the MC API, but to another server.
+  // For now, if that's the case, we skip the `target` validation and we do
+  // not send the custom headers.
+  if (uri) {
+    return forward(operation);
+  }
+
   const target = operation.variables.target;
-  if (!customUri && !isKnownTarget(target))
+  if (!isKnownTarget(target))
     throw new Error(
       `GraphQL target "${target}" is missing or is not supported`
     );
@@ -28,7 +37,7 @@ const headerLink = new ApolloLink((operation, forward) => {
    */
   const projectKey =
     operation.variables.projectKey || selectProjectKeyFromUrl();
-  const userId = selectUserId({ apolloCache: operation.getContext().cache });
+  const userId = selectUserId({ apolloCache: cache });
 
   // NOTE: keep header names with capital letters to avoid possible conflicts or problems with nginx.
   operation.setContext({

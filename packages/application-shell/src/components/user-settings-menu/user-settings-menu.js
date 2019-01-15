@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { compose } from 'recompose';
 import classnames from 'classnames';
 import Downshift from 'downshift';
 import { graphql } from 'react-apollo';
@@ -20,6 +21,7 @@ import {
 import Card from '../../from-core/card';
 import { MCSupportFormURL } from '../../constants';
 import FetchApplicationsMenu from '../navbar/fetch-applications-menu.graphql';
+import devonlyMenuLoader from '../navbar/devonly-menu-loader';
 import styles from './user-settings-menu.mod.css';
 import messages from './messages';
 
@@ -201,19 +203,31 @@ UserSettingsMenuBody.propTypes = {
   }),
 };
 
-const ConnectedUserSettingsMenuBody = graphql(FetchApplicationsMenu, {
-  name: 'applicationsMenuQuery',
-  options: () => ({
-    // Pass a different apollo client here, as we are connecting to a different API
-    // We can assume here that the navbar already fetched the data, since this
-    // component gets rendered only when the user opens the menu
-    fetchPolicy: 'cache-only',
-    context: {
-      // uri: `${window.location.origin}/api/graphql`,
-      uri: 'https://mc-6116.gcp.escemo.com/api/graphql',
-    },
+const ConnectedUserSettingsMenuBody = compose(
+  graphql(FetchApplicationsMenu, {
+    name: 'applicationsMenuQuery',
+    skip: ownProps => !!ownProps.DEV_ONLY__getMenuConfig,
+    options: () => ({
+      // Pass a different apollo client here, as we are connecting to a different API
+      // We can assume here that the navbar already fetched the data, since this
+      // component gets rendered only when the user opens the menu
+      fetchPolicy: 'cache-only',
+      context: {
+        // uri: `${window.location.origin}/api/graphql`,
+        uri: 'https://mc-6116.gcp.escemo.com/api/graphql',
+      },
+    }),
   }),
-})(UserSettingsMenuBody);
+  devonlyMenuLoader(
+    ownProps => ownProps.DEV_ONLY__getAppbarMenuConfig,
+    menu =>
+      menu && {
+        applicationsMenuQuery: {
+          applicationsMenu: { appBar: Array.isArray(menu) ? menu : [menu] },
+        },
+      }
+  )
+)(UserSettingsMenuBody);
 
 const UserSettingsMenu = props => (
   <div data-test="user-settings-menu">
@@ -248,6 +262,7 @@ UserSettingsMenu.propTypes = {
   lastName: PropTypes.string,
   email: PropTypes.string.isRequired,
   gravatarHash: PropTypes.string.isRequired,
+  DEV_ONLY__getMenuConfig: PropTypes.func,
 };
 
 export default UserSettingsMenu;

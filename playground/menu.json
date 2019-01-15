@@ -1,0 +1,22 @@
+{
+  "key": "state-machines",
+  "uriPath": "state-machines",
+  "icon": "RocketIcon",
+  "permissions": ["ViewStates", "ManageStates"],
+  "featureToggle": null,
+  "submenu": [],
+  "labelAllLocales": [
+    {
+      "locale": "en",
+      "value": "State Machines"
+    },
+    {
+      "locale": "de",
+      "value": "State Machines"
+    },
+    {
+      "locale": "es",
+      "value": "State Machines"
+    }
+  ]
+}

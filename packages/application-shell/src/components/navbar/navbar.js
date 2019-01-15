@@ -35,6 +35,7 @@ import {
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import LoadingPlaceholder from '../loading-placeholder';
+import devonlyMenuLoader from './devonly-menu-loader';
 import FetchApplicationsMenu from './fetch-applications-menu.graphql';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
 import styles from './navbar.mod.css';
@@ -318,6 +319,7 @@ export class DataMenu extends React.PureComponent {
             menuVisibility: PropTypes.string,
           })
         ),
+        shouldRenderDivider: PropTypes.bool,
       })
     ),
     menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
@@ -676,6 +678,7 @@ export default compose(
   }),
   graphql(FetchApplicationsMenu, {
     name: 'applicationsMenuQuery',
+    skip: ownProps => ownProps.DEV_ONLY__getNavbarMenuConfig,
     options: () => ({
       // Pass a different apollo client here, as we are connecting to a different API
       fetchPolicy: 'cache-first',
@@ -687,13 +690,23 @@ export default compose(
   }),
   graphql(FetchProjectExtensionsNavbar, {
     name: 'projectExtensionsQuery',
+    skip: ownProps => ownProps.DEV_ONLY__getNavbarMenuConfig,
     options: () => ({
       variables: {
         target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
       },
       fetchPolicy: 'cache-and-network',
     }),
-  })
+  }),
+  devonlyMenuLoader(
+    ownProps => ownProps.DEV_ONLY__getNavbarMenuConfig,
+    menu =>
+      menu && {
+        applicationsMenuQuery: {
+          applicationsMenu: { navBar: Array.isArray(menu) ? menu : [menu] },
+        },
+      }
+  )
 )(NavBar);
 
 export class LoadingNavBar extends React.Component {

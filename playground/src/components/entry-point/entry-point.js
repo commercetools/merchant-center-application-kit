@@ -8,17 +8,10 @@ import { Sdk } from '@commercetools-frontend/sdk';
 import * as globalActions from '@commercetools-frontend/actions-global';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-const loadApplicationMessagesForLanguage = lang =>
-  new Promise((resolve, reject) =>
-    import(`../../i18n/data/${lang}.json` /* webpackChunkName: "application-messages-[request]" */).then(
-      response => {
-        resolve(response.default);
-      },
-      error => {
-        reject(error);
-      }
-    )
-  );
+const loadApplicationMessagesForLanguage = async lang => {
+  const messages = await import(`../../i18n/data/${lang}.json` /* webpackChunkName: "application-messages-[request]" */);
+  return messages.default;
+};
 
 // Here we split up the main (app) bundle with the actual application business logic.
 // Splitting by route is usually recommended and you can potentially have a splitting
@@ -59,6 +52,7 @@ class EntryPoint extends React.Component {
             globalActions.handleActionError(error, 'sdk')(dispatch);
         }}
         applicationMessages={loadApplicationMessagesForLanguage}
+        DEV_ONLY__getNavbarMenuConfig={() => import('../../../menu.json')}
         render={() => <ApplicationStateMachines />}
       />
     );
