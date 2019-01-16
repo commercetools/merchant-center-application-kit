@@ -676,6 +676,7 @@ export default compose(
     };
   }),
   withApplicationsMenu(ownProps => ({
+    queryName: 'applicationsMenuQuery',
     __DEV_CONFIG__: {
       menuLoader: ownProps.DEV_ONLY__loadNavbarMenuConfig,
       menuKey: 'navBar',
@@ -683,7 +684,7 @@ export default compose(
   })),
   graphql(FetchProjectExtensionsNavbar, {
     name: 'projectExtensionsQuery',
-    skip: ownProps => ownProps.DEV_ONLY__loadNavbarMenuConfig,
+    skip: () => process.env.NODE_ENV === 'development',
     options: () => ({
       variables: {
         target: GRAPHQL_TARGETS.SETTINGS_SERVICE,

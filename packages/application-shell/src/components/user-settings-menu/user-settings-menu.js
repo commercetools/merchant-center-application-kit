@@ -201,6 +201,7 @@ UserSettingsMenuBody.propTypes = {
 };
 
 const ConnectedUserSettingsMenuBody = withApplicationsMenu(ownProps => ({
+  queryName: 'applicationsMenuQuery',
   queryOptions: {
     // We can assume here that the navbar already fetched the data, since this
     // component gets rendered only when the user opens the menu
