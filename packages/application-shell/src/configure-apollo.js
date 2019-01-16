@@ -11,7 +11,6 @@ import { isLoggerEnabled } from './utils/logger';
 
 const httpLink = createHttpLink({
   uri: `${window.app.mcApiUrl}/graphql`,
-  credentials: 'include',
   headers: {
     accept: 'application/json',
   },

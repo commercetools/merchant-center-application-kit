@@ -39,8 +39,8 @@ const headerLink = new ApolloLink((operation, forward) => {
     operation.variables.projectKey || selectProjectKeyFromUrl();
   const userId = selectUserId({ apolloCache: cache });
 
-  // NOTE: keep header names with capital letters to avoid possible conflicts or problems with nginx.
   operation.setContext({
+    credentials: 'include',
     headers: {
       'X-Project-Key': projectKey,
       'X-Correlation-Id': getCorrelationId({ userId }),
