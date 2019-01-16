@@ -2,6 +2,7 @@
 
 exports[`with valid target should set headers matching snapshot 1`] = `
 Object {
+  "credentials": "include",
   "headers": Object {
     "X-Correlation-Id": "test-correlation-id",
     "X-Graphql-Target": "mc",
@@ -12,6 +13,7 @@ Object {
 
 exports[`with valid target with project key in variables should set headers matching snapshot 1`] = `
 Object {
+  "credentials": "include",
   "headers": Object {
     "X-Correlation-Id": "test-correlation-id",
     "X-Graphql-Target": "mc",
