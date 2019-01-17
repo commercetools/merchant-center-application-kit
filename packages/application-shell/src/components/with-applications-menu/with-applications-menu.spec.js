@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import upperFirst from 'lodash/upperFirst';
-import { renderWithRedux, waitForElement } from '../../test-utils';
+import { render, waitForElement } from '../../test-utils';
 import FetchApplicationsMenu from './fetch-applications-menu.graphql';
 import withApplicationsMenu from './with-applications-menu';
 
@@ -11,11 +11,15 @@ const Test = props => {
       <div key={menu.key}>{`Key: ${menu.key}`}</div>
     ));
   }
+  if (props.menuQuery && props.menuQuery.error) {
+    return <div>{`Error: ${props.menuQuery.error.message}`}</div>;
+  }
   return <div>{'loading'}</div>;
 };
 Test.displayName = 'Test';
 Test.propTypes = {
   menuQuery: PropTypes.shape({
+    error: PropTypes.shape({ message: PropTypes.string.isRequired }),
     applicationsMenu: PropTypes.shape({
       navBar: PropTypes.arrayOf(PropTypes.shape({ key: PropTypes.string })),
     }),
@@ -57,7 +61,7 @@ describe('fetching the menu query', () => {
   );
   describe('when the query succeeds', () => {
     it('should render menu key', async () => {
-      const { getByText } = renderWithRedux(<Connected />, {
+      const { getByText } = render(<Connected />, {
         mocks: [
           {
             request: {
@@ -77,9 +81,9 @@ describe('fetching the menu query', () => {
     beforeEach(() => {
       console.error = jest.fn();
     });
-    it('should render menu key', async () => {
+    it('should pass error as prop', async () => {
       const error = new Error('Oops');
-      const { getByText } = renderWithRedux(<Connected />, {
+      const { getByText } = render(<Connected />, {
         mocks: [
           {
             request: {
@@ -90,10 +94,7 @@ describe('fetching the menu query', () => {
         ],
       });
       await waitForElement(() => getByText('loading'));
-      // See error notification
-      await waitForElement(() =>
-        getByText(/Sorry, but there seems to be something wrong./i)
-      );
+      await waitForElement(() => getByText(/Error: Oops/i));
     });
   });
 });
