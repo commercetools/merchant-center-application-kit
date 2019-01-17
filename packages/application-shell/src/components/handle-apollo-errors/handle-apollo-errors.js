@@ -28,7 +28,9 @@ function handleApolloErrors(queryResultNames) {
           // If an error has not been dispatched yet, we keep track of it and we dispatch it.
           const queryResult = this.props[name];
           if (queryResult) {
-            const hasPreviouslyDispatchedError = Boolean(this.dispatchedErrors.get(name));
+            const hasPreviouslyDispatchedError = Boolean(
+              this.dispatchedErrors.get(name)
+            );
             const hasQueryErrored = Boolean(queryResult.error);
             if (hasPreviouslyDispatchedError && !hasQueryErrored) {
               this.dispatchedErrors.delete(name);
