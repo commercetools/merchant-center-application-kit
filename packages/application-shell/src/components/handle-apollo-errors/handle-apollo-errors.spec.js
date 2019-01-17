@@ -54,13 +54,13 @@ describe('given the graphql queries for "user"', () => {
   beforeAll(() => {
     console.error = jest.fn();
   });
-  const Connected = handleApolloErrors(['user'])(Test);
+  const WithApolloErrorHandling = handleApolloErrors(['user'])(Test);
   describe('when the "user" query fails', () => {
     it('should dispatch notification error', async () => {
       const error = new Error('Oops');
       const { getByText, getByTestId } = renderWithRedux(
         <QueryController name="user" queryResult={{ data: null, error }}>
-          <Connected />
+          <WithApolloErrorHandling />
         </QueryController>
       );
       await waitForElement(() => getByText('loading'));
@@ -77,7 +77,7 @@ describe('given the graphql queries for "user"', () => {
     it('should not dispatch any notification error', async () => {
       const { getByText, getByTestId } = renderWithRedux(
         <QueryController name="user" queryResult={{ data: { ok: true } }}>
-          <Connected />
+          <WithApolloErrorHandling />
         </QueryController>
       );
       await waitForElement(() => getByText('loading'));
