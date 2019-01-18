@@ -11,7 +11,10 @@ import { MockedProvider as ApolloMockProvider } from 'react-apollo/test-utils';
 import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import { NotificationsList } from '@commercetools-frontend/react-notifications';
+import {
+  NotificationsList,
+  NotificationProviderForCustomComponent,
+} from '@commercetools-frontend/react-notifications';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
 import { GtmContext } from '../components/gtm-booter';
@@ -206,6 +209,8 @@ const renderWithRedux = (
     // are provided for identical actions, then they are used in the order
     // they are provided in.
     sdkMocks = [],
+    // Pass a function to map custom notification components
+    mapNotificationToComponent = () => {},
     ...renderOptions
   } = {}
 ) => {
@@ -239,14 +244,18 @@ const renderWithRedux = (
 
   return {
     ...render(
-      <StoreProvider store={reduxStore}>
-        <div>
-          <NotificationsList domain={DOMAINS.GLOBAL} />
-          <NotificationsList domain={DOMAINS.PAGE} />
-          <NotificationsList domain={DOMAINS.SIDE} />
-          {ui}
-        </div>
-      </StoreProvider>,
+      <NotificationProviderForCustomComponent
+        mapNotificationToComponent={mapNotificationToComponent}
+      >
+        <StoreProvider store={reduxStore}>
+          <div>
+            <NotificationsList domain={DOMAINS.GLOBAL} />
+            <NotificationsList domain={DOMAINS.PAGE} />
+            <NotificationsList domain={DOMAINS.SIDE} />
+            {ui}
+          </div>
+        </StoreProvider>
+      </NotificationProviderForCustomComponent>,
       renderOptions
     ),
     // adding `store` to the returned utilities to allow us
