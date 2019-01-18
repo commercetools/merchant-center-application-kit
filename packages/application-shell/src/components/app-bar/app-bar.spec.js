@@ -13,6 +13,7 @@ const createTestProps = props => ({
       total: 0,
     },
     defaultProjectKey: 'test-default-project-key',
+    language: 'en',
     firstName: 'John',
     lastName: 'Snow',
     email: 'john.snow@winter.com',

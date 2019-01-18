@@ -86,10 +86,14 @@ const AppBar = props => {
           <div className={styles.spacer} />
           {props.user ? (
             <UserSettingsMenu
+              locale={props.user.language}
               firstName={props.user.firstName}
               lastName={props.user.lastName}
               gravatarHash={props.user.gravatarHash}
               email={props.user.email}
+              DEV_ONLY__loadAppbarMenuConfig={
+                props.DEV_ONLY__loadAppbarMenuConfig
+              }
             />
           ) : (
             <LoadingPlaceholder shape="dot" size="l" />
@@ -102,6 +106,7 @@ const AppBar = props => {
 AppBar.displayName = 'AppBar';
 AppBar.propTypes = {
   user: PropTypes.shape({
+    language: PropTypes.string.isRequired,
     gravatarHash: PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
@@ -112,6 +117,7 @@ AppBar.propTypes = {
     defaultProjectKey: PropTypes.string.isRequired,
   }),
   projectKeyFromUrl: PropTypes.string,
+  DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
 };
 
 export default AppBar;

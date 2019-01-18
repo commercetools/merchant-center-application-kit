@@ -1,0 +1,22 @@
+{
+  "key": "examples-starter",
+  "uriPath": "examples-starter",
+  "icon": "RocketIcon",
+  "permissions": ["ViewProducts", "ManageProducts"],
+  "featureToggle": null,
+  "submenu": [],
+  "labelAllLocales": [
+    {
+      "locale": "en",
+      "value": "Starter"
+    },
+    {
+      "locale": "de",
+      "value": "Starter"
+    },
+    {
+      "locale": "es",
+      "value": "Starter"
+    }
+  ]
+}

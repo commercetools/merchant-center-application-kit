@@ -11,7 +11,6 @@ import { isLoggerEnabled } from './utils/logger';
 
 const httpLink = createHttpLink({
   uri: `${window.app.mcApiUrl}/graphql`,
-  credentials: 'include',
   headers: {
     accept: 'application/json',
   },
@@ -79,6 +78,9 @@ export const createApolloClient = () =>
         // they would clash with the referenced resource.
         if (result.__typename === 'Reference')
           return `${result.__typename}:${result.id}`;
+        if (result.__typename && result.key !== undefined) {
+          return `${result.__typename}:${result.key}`;
+        }
         return result.id;
       },
     }),

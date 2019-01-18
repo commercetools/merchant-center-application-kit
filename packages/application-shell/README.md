@@ -18,92 +18,38 @@ $ npm install --save @commercetools-frontend/application-shell
 
 ## Usage
 
-```js
-/**
- * This is the entry point of an application.
- * See `@commercetools-frontend/application-shell` for usage.
- */
-import React from 'react';
-import { Provider as StoreProvider } from 'react-redux';
-import {
-  ApplicationShell,
-  reduxStore,
-  setupGlobalErrorListener,
-} from '@commercetools-frontend/application-shell';
-import { Sdk } from '@commercetools-frontend/sdk';
-import * as globalActions from '@commercetools-frontend/actions-global';
-import PageNotFound from '@commercetools-local/core/components/page-not-found';
-import applicationMessages from '../../i18n';
+For an usage example, we recommend to look at the [application templates](https://github.com/commercetools/merchant-center-application-kit/tree/master/application-templates) examples or at the [Playground](https://github.com/commercetools/merchant-center-application-kit/tree/master/playground) application.
 
-import trackingEventWhitelist from './tracking-whitelist';
-
-// Ensure to setup the global error listener before any React component renders
-// in order to catch possible errors on rendering/mounting.
-setupGlobalErrorListener(reduxStore.dispatch);
-
-const EntryPoint = () => (
-  <StoreProvider store={reduxStore}>
-    <ApplicationShell
-      applicationMessages={applicationMessages}
-      configuration={window.app}
-      trackingEventWhitelist={trackingEventWhitelist}
-      onRegisterErrorListeners={() => {
-        Sdk.Get.errorHandler = error =>
-          handleActionError(error, 'sdk')(reduxStore.dispatch);
-      }}
-      render={() => (
-        <Switch>
-          <Route path="/:projectKey/dashboard" component={AsyncDashboard} />
-          <Route path="/:projectKey/products" component={AsyncProducts} />
-          {/* Define a catch-all route */}
-          <Route component={PageNotFound} />
-        </Switch>
-      )}
-    />
-  </StoreProvider>
-);
-EntryPoint.displayName = 'EntryPoint';
-
-ReactDOM.render(<EntryPoint />, document.getElementById('root'));
-```
-
-## Loading i18n messages with code splitting
+### Loading i18n messages with code splitting
 
 ```js
 // define a function that accepts a language, and returns a promise.
 const loadApplicationMessagesForLanguage = lang =>
-  new Promise((resolve, reject) =>
-    import(`../../i18n/data/${lang}.json` /* webpackChunkName: "application-messages-[request]" */).then(
-      response => {
-        resolve(response.default);
-      },
-      error => {
-        reject(error);
-      }
-    )
+  import(`../../i18n/data/${lang}.json` /* webpackChunkName: "application-messages-[request]" */).then(
+    response => response.default
   );
 
 // pass this function to the <ApplicationShell />
 
 const EntryPoint = () => (
-  <StoreProvider store={reduxStore}>
-    <ApplicationShell
-      applicationMessages={loadApplicationMessagesForLanguage}
-      // ... same as above.
-    />
-  </StoreProvider>
+  <ApplicationShell
+    applicationMessages={loadApplicationMessagesForLanguage}
+    // ...other props
+  />
 );
 ```
 
 ## Props
 
-| Props                      | Type               | Required | Default | Description                                                                                                                                                                                                       |
-| -------------------------- | ------------------ | :------: | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `applicationMessages`      | `object` or `func` |    ✅    | -       | Either an object containing all the translated messages per locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`), or a function that returns a promise that resolves to such an object. |
-| `configuration`            | `object`           |    ✅    | -       | The current `window.app`.                                                                                                                                                                                         |
-| `render`                   | `func`             |    ✅    | -       | The function to render the application specific part. This function is executed only when the application specific part needs to be rendered.                                                                     |
-| `trackingEventWhitelist`   | `object`           |    ✅    | -       | An object containing a map of tracking events (_this mapping is required for backwards compatibility, it might be removed in the future_)                                                                         |
-| `onRegisterErrorListeners` | `func`             |    ✅    | -       | A callback function to setup global event listeners, called when the `ApplicationShell` is mounted                                                                                                                |
+| Props                            | Type               |        Required         | Default | Description                                                                                                                                                                                                                                                                                                                                                                      |
+| -------------------------------- | ------------------ | :---------------------: | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `applicationMessages`            | `object` or `func` |           ✅            | -       | Either an object containing all the translated messages per locale (`{ "en": { "Welcome": "Welcome" }, "de": { "Welcome": "Wilkommen" }}`), or a function that returns a Promise that resolves to such an object.                                                                                                                                                                |
+| `configuration`                  | `object`           |           ✅            | -       | The current `window.app`.                                                                                                                                                                                                                                                                                                                                                        |
+| `render`                         | `func`             |           ✅            | -       | The function to render the application specific part. This function is executed only when the application specific part needs to be rendered.                                                                                                                                                                                                                                    |
+| `trackingEventWhitelist`         | `object`           |           ✅            | -       | An object containing a map of tracking events (_this mapping is required for backwards compatibility, it might be removed in the future_)                                                                                                                                                                                                                                        |
+| `onRegisterErrorListeners`       | `func`             |           ✅            | -       | A callback function to setup global event listeners, called when the `ApplicationShell` is mounted. The function is called with the following named arguments: `dispatch` (the dispatch function of Redux).                                                                                                                                                                      |
+| `DEV_ONLY__loadNavbarMenuConfig` | `func`             | ✅ (`development` only) | -       | A function that returns a Promise to load the `menu.json` config for the navigation component on the left side. We usually recommend to use a dynamic `import` to load the file, so that bundlers can create a split point. **NOTE that this is only available in `development` mode, in `production` mode the menu config is loaded from a remote server.**                     |
+| `DEV_ONLY__loadAppbarMenuConfig` | `func`             | ✅ (`development` only) | -       | A function that returns a Promise to load the `menu.json` config for the account links in the application bar component on the top. We usually recommend to use a dynamic `import` to load the file, so that bundlers can create a split point. **NOTE that this is only available in `development` mode, in `production` mode the menu config is loaded from a remote server.** |
 
 ## Testing
 

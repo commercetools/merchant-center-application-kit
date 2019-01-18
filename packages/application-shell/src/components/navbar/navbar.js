@@ -4,7 +4,7 @@ import isNil from 'lodash/isNil';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';
-import { ToggleFeature, injectFeatureToggle } from '@flopflip/react-broadcast';
+import { ToggleFeature } from '@flopflip/react-broadcast';
 import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
 import { oneLineTrim } from 'common-tags';
@@ -33,12 +33,12 @@ import {
   NO_VALUE_FALLBACK,
 } from '@commercetools-frontend/constants';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-import { STORAGE_KEYS } from '../../constants';
-import { PROJECT_EXTENSIONS } from './feature-toggles';
+import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
 import LoadingPlaceholder from '../loading-placeholder';
+import withApplicationsMenu from '../with-applications-menu';
+import handleApolloErrors from '../handle-apollo-errors';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
 import styles from './navbar.mod.css';
-import { defaultNavigationItems } from './config';
 import messages from './messages';
 
 /*
@@ -83,8 +83,6 @@ export const IconSwitcher = ({ iconName, ...iconProps }) => {
       return <BoxIcon {...iconProps} />;
     case 'GearIcon':
       return <GearIcon {...iconProps} />;
-    case 'SupportIcon':
-      return <SupportIcon {...iconProps} />;
     // Custom application icons set
     case 'HeartIcon':
       return <HeartIcon {...iconProps} />;
@@ -189,33 +187,14 @@ export class MenuItemLink extends React.PureComponent {
   static propTypes = {
     linkTo: PropTypes.string,
     exactMatch: PropTypes.bool,
-    externalLink: PropTypes.string,
-    tracking: PropTypes.shape({
-      'data-track-component': PropTypes.string,
-      'data-track-event': PropTypes.string,
-      'data-track-label': PropTypes.string,
-    }),
     children: PropTypes.node.isRequired,
     useFullRedirectsForLinks: PropTypes.bool.isRequired,
   };
   static defaultProps = {
     exactMatch: false,
-    tracking: {},
   };
   redirectTo = targetUrl => window.location.replace(targetUrl);
   render() {
-    if (this.props.externalLink) {
-      return (
-        <a
-          href={this.props.externalLink}
-          rel="noopener noreferrer"
-          target="_blank"
-          {...this.props.tracking}
-        >
-          {this.props.children}
-        </a>
-      );
-    }
     return this.props.linkTo ? (
       <NavLink
         to={this.props.linkTo}
@@ -304,11 +283,9 @@ RestrictedMenuItem.propTypes = {
 RestrictedMenuItem.defaultProps = {
   permissions: [],
 };
-export const getIconTheme = (menu, isActive) => {
-  const baseIconTheme =
-    menu.key === 'Settings' || menu.key === 'Support' ? 'grey' : 'white';
+export const getIconTheme = (isActive, isAlternativeTheme) => {
   if (isActive) return 'green-light';
-  return baseIconTheme;
+  return isAlternativeTheme ? 'grey' : 'white';
 };
 export class DataMenu extends React.PureComponent {
   static displayName = 'DataMenu';
@@ -317,7 +294,6 @@ export class DataMenu extends React.PureComponent {
     data: PropTypes.arrayOf(
       PropTypes.shape({
         key: PropTypes.string.isRequired,
-        labelKey: PropTypes.string,
         labelAllLocales: PropTypes.arrayOf(
           PropTypes.shape({
             locale: PropTypes.string.isRequired,
@@ -325,15 +301,12 @@ export class DataMenu extends React.PureComponent {
           }).isRequired
         ),
         uriPath: PropTypes.string,
-        externalLink: PropTypes.string,
-        tracking: PropTypes.object,
         icon: PropTypes.string.isRequired,
         featureToggle: PropTypes.string,
         permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
         submenu: PropTypes.arrayOf(
           PropTypes.shape({
             key: PropTypes.string.isRequired,
-            labelKey: PropTypes.string,
             labelAllLocales: PropTypes.arrayOf(
               PropTypes.shape({
                 locale: PropTypes.string.isRequired,
@@ -346,6 +319,7 @@ export class DataMenu extends React.PureComponent {
             menuVisibility: PropTypes.string,
           })
         ),
+        shouldRenderDivider: PropTypes.bool,
       })
     ),
     menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
@@ -362,8 +336,6 @@ export class DataMenu extends React.PureComponent {
     isExpanderVisible: true,
     isMenuOpen: false,
   };
-
-  bottomMenuItems = ['Support'];
 
   componentDidMount() {
     window.addEventListener('click', this.shouldCloseMenuFly, true);
@@ -458,7 +430,6 @@ export class DataMenu extends React.PureComponent {
   };
 
   renderLabel = menu => {
-    if (menu.labelKey) return <FormattedMessage {...messages[menu.labelKey]} />;
     const localizedLabel = menu.labelAllLocales.find(
       loc => loc.locale === this.props.applicationLanguage
     );
@@ -481,143 +452,153 @@ export class DataMenu extends React.PureComponent {
         menuVisibilities={this.props.menuVisibilities}
         namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
       >
-        <React.Fragment>
-          {menu.key === 'Settings' && <MenuItemDivider />}
-          <MenuItem
-            hasSubmenu={hasSubmenu}
-            isActive={isActive}
-            isMenuOpen={this.state.isMenuOpen}
-            onClick={() => {
-              this.handleToggleItem(menuType, index);
-            }}
-            onMouseEnter={
-              this.state.isMenuOpen
-                ? null
-                : () => this.handleToggleItem(menuType, index)
+        <MenuItem
+          hasSubmenu={hasSubmenu}
+          isActive={isActive}
+          isMenuOpen={this.state.isMenuOpen}
+          onClick={() => {
+            this.handleToggleItem(menuType, index);
+          }}
+          onMouseEnter={
+            this.state.isMenuOpen
+              ? null
+              : () => this.handleToggleItem(menuType, index)
+          }
+          onMouseLeave={this.state.isMenuOpen ? null : this.shouldCloseMenuFly}
+        >
+          <MenuItemLink
+            linkTo={
+              !this.state.isMenuOpen || !hasSubmenu
+                ? `/${this.props.projectKey}/${menu.uriPath}`
+                : null
             }
-            onMouseLeave={
-              this.state.isMenuOpen ? null : this.shouldCloseMenuFly
-            }
+            useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}
           >
-            <MenuItemLink
-              externalLink={menu.externalLink}
-              tracking={menu.tracking}
-              linkTo={
-                !this.state.isMenuOpen || !hasSubmenu
-                  ? `/${this.props.projectKey}/${menu.uriPath}`
-                  : null
-              }
-              useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}
-            >
-              <div className={styles['item-icon-text']}>
-                <div className={styles.icon}>
-                  <IconSwitcher
-                    iconName={menu.icon}
-                    size="scale"
-                    theme={getIconTheme(
-                      menu,
-                      isActive || this.isMainMenuRouteActive(menu.uriPath)
-                    )}
-                  />
-                </div>
-                <div className={styles.title}>{this.renderLabel(menu)}</div>
+            <div className={styles['item-icon-text']}>
+              <div className={styles.icon}>
+                <IconSwitcher
+                  iconName={menu.icon}
+                  size="scale"
+                  theme={getIconTheme(
+                    isActive || this.isMainMenuRouteActive(menu.uriPath),
+                    menu.shouldRenderDivider
+                  )}
+                />
               </div>
-            </MenuItemLink>
-            <MenuGroup
-              level={2}
-              isActive={isActive}
-              isExpanded={this.state.isMenuOpen}
-            >
-              {hasSubmenu
-                ? menu.submenu.map(submenu => (
-                    <RestrictedMenuItem
-                      key={`${menu.key}-submenu-${submenu.key}`}
-                      featureToggle={submenu.featureToggle}
-                      permissions={submenu.permissions}
-                      menuVisibilities={this.props.menuVisibilities}
-                      namesOfMenuVisibilities={[submenu.menuVisibility]}
-                    >
-                      <li className={styles['sublist-item']}>
-                        <div className={styles.text}>
-                          <MenuItemLink
-                            linkTo={oneLineTrim`
+              <div className={styles.title}>{this.renderLabel(menu)}</div>
+            </div>
+          </MenuItemLink>
+          <MenuGroup
+            level={2}
+            isActive={isActive}
+            isExpanded={this.state.isMenuOpen}
+          >
+            {hasSubmenu
+              ? menu.submenu.map(submenu => (
+                  <RestrictedMenuItem
+                    key={`${menu.key}-submenu-${submenu.key}`}
+                    featureToggle={submenu.featureToggle}
+                    permissions={submenu.permissions}
+                    menuVisibilities={this.props.menuVisibilities}
+                    namesOfMenuVisibilities={[submenu.menuVisibility]}
+                  >
+                    <li className={styles['sublist-item']}>
+                      <div className={styles.text}>
+                        <MenuItemLink
+                          linkTo={oneLineTrim`
                               /${this.props.projectKey}
                               /${submenu.uriPath}
                             `}
-                            exactMatch={true}
-                            useFullRedirectsForLinks={
-                              this.props.useFullRedirectsForLinks
-                            }
-                          >
-                            {this.renderLabel(submenu)}
-                          </MenuItemLink>
-                        </div>
-                      </li>
-                    </RestrictedMenuItem>
-                  ))
-                : null}
-            </MenuGroup>
-          </MenuItem>
-        </React.Fragment>
+                          exactMatch={true}
+                          useFullRedirectsForLinks={
+                            this.props.useFullRedirectsForLinks
+                          }
+                        >
+                          {this.renderLabel(submenu)}
+                        </MenuItemLink>
+                      </div>
+                    </li>
+                  </RestrictedMenuItem>
+                ))
+              : null}
+          </MenuGroup>
+        </MenuItem>
       </RestrictedMenuItem>
+    );
+  };
+
+  renderSupportLink = () => {
+    const itemIndex = ['fixed', 'support'];
+    const isAlternativeTheme = true;
+    const isActive = this.state.activeItemIndex === itemIndex.join('-');
+    return (
+      <MenuItem
+        hasSubmenu={false}
+        isActive={false}
+        isMenuOpen={this.state.isMenuOpen}
+        onClick={() => {
+          this.handleToggleItem(...itemIndex);
+        }}
+        onMouseEnter={
+          this.state.isMenuOpen
+            ? null
+            : () => this.handleToggleItem(...itemIndex)
+        }
+        onMouseLeave={this.state.isMenuOpen ? null : this.shouldCloseMenuFly}
+      >
+        <a href={MCSupportFormURL} rel="noopener noreferrer" target="_blank">
+          <div className={styles['item-icon-text']}>
+            <div className={styles.icon}>
+              <SupportIcon
+                size="scale"
+                theme={getIconTheme(isActive, isAlternativeTheme)}
+              />
+            </div>
+            <div className={styles.title}>
+              <FormattedMessage {...messages['NavBar.MCSupport.title']} />
+            </div>
+          </div>
+        </a>
+      </MenuItem>
     );
   };
 
   render() {
     return (
       <MenuGroup level={1}>
-        <ScrollableMenu>
-          {this.props.data
-            .filter(menu => this.bottomMenuItems.indexOf(menu.key))
-            .map((menu, index) => this.renderMenu(menu, 'scrollable', index))}
-        </ScrollableMenu>
-        <FixedMenu>
-          {this.props.data
-            .filter(menu => !this.bottomMenuItems.indexOf(menu.key))
-            .map((menu, index) => this.renderMenu(menu, 'fixed', index))}
+        <div className={styles['scrollable-menu']}>
+          {this.props.data.map((menu, index) => (
+            <React.Fragment key={index}>
+              {menu.shouldRenderDivider && <MenuItemDivider />}
+              {this.renderMenu(menu, 'scrollable', index)}
+            </React.Fragment>
+          ))}
+        </div>
+        <div className={styles['fixed-menu']}>
+          {this.renderSupportLink()}
           <MenuExpander
             isVisible={this.state.isExpanderVisible}
             onClick={this.handleToggleMenu}
           />
-        </FixedMenu>
+        </div>
       </MenuGroup>
     );
   }
 }
 
-export const ScrollableMenu = props => (
-  <div className={styles['scrollable-menu']}>{props.children}</div>
-);
-ScrollableMenu.displayName = 'ScrollableMenu';
-ScrollableMenu.propTypes = {
-  children: PropTypes.node,
-};
-
-export const FixedMenu = props => (
-  <div className={styles['fixed-menu']}>{props.children}</div>
-);
-FixedMenu.displayName = 'FixedMenu';
-FixedMenu.propTypes = {
-  children: PropTypes.node,
-};
-
-export const NavBarLayout = props => (
+export const NavBarLayout = React.forwardRef((props, ref) => (
   <nav
-    ref={props.getNode}
+    ref={ref}
     className={styles['left-navigation']}
     data-test="left-navigation"
     data-track-component="Navigation"
   >
     {props.children}
   </nav>
-);
+));
 NavBarLayout.displayName = 'NavBarLayout';
 NavBarLayout.propTypes = {
-  getNode: PropTypes.func.isRequired,
   children: PropTypes.node,
-};
-NavBarLayout.defaultProps = {
-  getNode: () => {},
 };
 
 export class NavBar extends React.PureComponent {
@@ -632,6 +613,11 @@ export class NavBar extends React.PureComponent {
     // Injected
     location: PropTypes.object.isRequired,
     isForcedMenuOpen: PropTypes.bool,
+    applicationsMenuQuery: PropTypes.shape({
+      applicationsMenu: PropTypes.shape({
+        navBar: PropTypes.arrayOf(PropTypes.object).isRequired,
+      }),
+    }),
     projectExtensionsQuery: PropTypes.shape({
       projectExtension: PropTypes.shape({
         id: PropTypes.string.isRequired,
@@ -643,30 +629,28 @@ export class NavBar extends React.PureComponent {
         ).isRequired,
       }),
     }),
-
-    // injectFeatureToggle
-    areProjectExtensionsEnabled: PropTypes.bool.isRequired,
   };
 
-  getNode = node => {
-    this.node = node;
-  };
+  ref = React.createRef();
 
   render() {
+    const navbarMenu =
+      (this.props.applicationsMenuQuery &&
+        this.props.applicationsMenuQuery.applicationsMenu &&
+        this.props.applicationsMenuQuery.applicationsMenu.navBar) ||
+      [];
+    const customAppsMenu =
+      this.props.projectExtensionsQuery &&
+      this.props.projectExtensionsQuery.projectExtension
+        ? this.props.projectExtensionsQuery.projectExtension.applications.map(
+            app => app.navbarMenu
+          )
+        : [];
     return (
-      <NavBarLayout getNode={this.getNode}>
+      <NavBarLayout ref={this.ref}>
         <DataMenu
-          rootNode={this.node}
-          data={
-            this.props.projectExtensionsQuery &&
-            this.props.projectExtensionsQuery.projectExtension
-              ? defaultNavigationItems.concat(
-                  this.props.projectExtensionsQuery.projectExtension.applications.map(
-                    app => app.navbarMenu
-                  )
-                )
-              : defaultNavigationItems
-          }
+          rootNode={this.ref.current}
+          data={navbarMenu.concat(customAppsMenu)}
           isForcedMenuOpen={this.props.isForcedMenuOpen}
           location={this.props.location}
           menuVisibilities={this.props.menuVisibilities}
@@ -680,7 +664,6 @@ export class NavBar extends React.PureComponent {
 }
 
 export default compose(
-  injectFeatureToggle(PROJECT_EXTENSIONS, 'areProjectExtensionsEnabled'),
   withRouter, // Connect again, to access the `location` object
   withProps(() => {
     const cachedIsForcedMenuOpen = storage.get(
@@ -693,37 +676,50 @@ export default compose(
           : null,
     };
   }),
+  withApplicationsMenu(ownProps => ({
+    queryName: 'applicationsMenuQuery',
+    __DEV_CONFIG__: {
+      menuLoader: ownProps.DEV_ONLY__loadNavbarMenuConfig,
+      menuKey: 'navBar',
+    },
+  })),
   graphql(FetchProjectExtensionsNavbar, {
     name: 'projectExtensionsQuery',
-    skip: ownProps => !ownProps.areProjectExtensionsEnabled,
+    skip: () => process.env.NODE_ENV === 'development',
     options: () => ({
       variables: {
         target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
       },
       fetchPolicy: 'cache-and-network',
     }),
-  })
+  }),
+  handleApolloErrors(['applicationsMenuQuery', 'projectExtensionsQuery'])
 )(NavBar);
 
-export const LoadingNavBar = () => (
-  <NavBarLayout>
-    <MenuGroup level={1}>
-      <React.Fragment>
-        {Array.from(new Array(5)).map((_, index) => (
-          <MenuItem
-            key={index}
-            hasSubmenu={false}
-            isMenuOpen={false}
-            isActive={false}
-            onClick={() => {}}
-          >
-            <div className={styles['loading-dot-container']}>
-              <LoadingPlaceholder shape="dot" size="m" />
-            </div>
-          </MenuItem>
-        ))}
-      </React.Fragment>
-    </MenuGroup>
-  </NavBarLayout>
-);
-LoadingNavBar.displayName = 'LoadingNavBar';
+export class LoadingNavBar extends React.Component {
+  static displayName = 'LoadingNavBar';
+  ref = React.createRef();
+  render() {
+    return (
+      <NavBarLayout ref={this.ref}>
+        <MenuGroup level={1}>
+          <React.Fragment>
+            {Array.from(new Array(5)).map((_, index) => (
+              <MenuItem
+                key={index}
+                hasSubmenu={false}
+                isMenuOpen={false}
+                isActive={false}
+                onClick={() => {}}
+              >
+                <div className={styles['loading-dot-container']}>
+                  <LoadingPlaceholder shape="dot" size="m" />
+                </div>
+              </MenuItem>
+            ))}
+          </React.Fragment>
+        </MenuGroup>
+      </NavBarLayout>
+    );
+  }
+}

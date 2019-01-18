@@ -15,6 +15,9 @@ export {
 export { selectUserId, selectProjectKeyFromUrl } from './utils';
 export { default as AsyncChunkLoader } from './components/async-chunk-loader';
 export { GtmContext } from './components/gtm-booter';
+export {
+  default as handleApolloErrors,
+} from './components/handle-apollo-errors';
 
 /**
  * NOTE:

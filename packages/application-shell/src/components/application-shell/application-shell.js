@@ -204,6 +204,9 @@ export const RestrictedApplication = props => (
                         <AppBar
                           user={user}
                           projectKeyFromUrl={projectKeyFromUrl}
+                          DEV_ONLY__loadAppbarMenuConfig={
+                            props.DEV_ONLY__loadAppbarMenuConfig
+                          }
                         />
                       </header>
 
@@ -247,6 +250,9 @@ export const RestrictedApplication = props => (
                                       }
                                       useFullRedirectsForLinks={
                                         props.INTERNAL__isApplicationFallback
+                                      }
+                                      DEV_ONLY__loadNavbarMenuConfig={
+                                        props.DEV_ONLY__loadNavbarMenuConfig
                                       }
                                     />
                                   </ApplicationContextProvider>
@@ -355,6 +361,8 @@ RestrictedApplication.propTypes = {
   applicationMessages: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     .isRequired,
   INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
+  DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
+  DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
 };
 
 /**
@@ -417,6 +425,9 @@ export default class ApplicationShell extends React.Component {
     onRegisterErrorListeners: PropTypes.func.isRequired,
     applicationMessages: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
       .isRequired,
+    // Only available in development mode
+    DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
+    DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
     // Internal usage only, does not need to be documented
     INTERNAL__isApplicationFallback: PropTypes.bool,
   };
@@ -481,6 +492,12 @@ export default class ApplicationShell extends React.Component {
                                   }
                                   INTERNAL__isApplicationFallback={
                                     this.props.INTERNAL__isApplicationFallback
+                                  }
+                                  DEV_ONLY__loadAppbarMenuConfig={
+                                    this.props.DEV_ONLY__loadAppbarMenuConfig
+                                  }
+                                  DEV_ONLY__loadNavbarMenuConfig={
+                                    this.props.DEV_ONLY__loadNavbarMenuConfig
                                   }
                                 />
                               );

@@ -1,13 +1,14 @@
-import { shallow } from 'enzyme';
 import React from 'react';
+import { shallow } from 'enzyme';
 import { ToggleFeature } from '@flopflip/react-broadcast';
+import { NavLink } from 'react-router-dom';
+import upperFirst from 'lodash/upperFirst';
 import {
   RestrictedByPermissions,
   permissions,
 } from '@commercetools-frontend/permissions';
-import { NavLink } from 'react-router-dom';
 import * as storage from '@commercetools-frontend/storage';
-import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
+import { STORAGE_KEYS } from '../../constants';
 import {
   NavBar,
   NavBarLayout,
@@ -21,69 +22,70 @@ import {
   getIconTheme,
   IconSwitcher,
 } from './navbar';
-import { defaultNavigationItems } from './config';
 
 jest.mock('@commercetools-frontend/storage');
 
-const createTestProps = props => ({
-  location: {
-    pathname: '',
-  },
-  applicationLanguage: 'en',
-  projectKey: 'test-1',
-  isForcedMenuOpen: false,
-  useFullRedirectsForLinks: false,
-  menuVisibilities: {
-    hideOrdersList: true,
-  },
-
-  // injectFeatureToggle
-  areProjectExtensionsEnabled: false,
-  ...props,
-});
-
-const createDataMenuTestProps = props => ({
-  rootNode: { contains: () => true },
-  ...createTestProps(),
-  data: [
-    {
-      key: 'Customers',
-      labelKey: 'NavBar.Customers.title',
-      uriPath: 'customers',
-      icon: 'UserFilledIcon',
-      submenu: [
-        {
-          key: 'Add Customer',
-          labelKey: 'NavBar.Customers.add',
-          uriPath: 'customers/new',
-          menuVisibility: 'hideCustomersList',
-        },
-      ],
-    },
-  ],
-  ...props,
-});
-
-const createProjectExtensionNavbarProps = props => ({
-  key: 'Channels',
-  allLocaleLabels: [
-    { locale: 'en', value: 'Channels' },
-    { locale: 'de', value: 'Kanäle' },
-  ],
-  uriPath: 'channels',
-  icon: 'WorldIcon',
+const createTestMenuConfig = (key, props) => ({
+  key,
+  labelAllLocales: [{ locale: 'en', value: upperFirst(key) }],
+  uriPath: key,
+  icon: 'UserFilledIcon',
+  permissions: [],
   submenu: [
     {
-      key: 'Channels',
-      allLocaleLabels: [
-        { locale: 'en', value: 'Channels' },
-        { locale: 'de', value: 'Kanäle' },
-      ],
-      uriPath: 'channels',
+      key: `${key}-new`,
+      labelAllLocales: [{ locale: 'en', value: `${upperFirst(key)} new` }],
+      uriPath: `${key}/new`,
+      permissions: [],
     },
   ],
   ...props,
 });
+
+const createTestProps = props => ({
+  // From parent
+  applicationLanguage: 'en',
+  projectKey: 'test-1',
+  useFullRedirectsForLinks: false,
+  menuVisibilities: { hideOrdersList: true },
+  // Injected
+  location: { pathname: '' },
+  isForcedMenuOpen: false,
+  applicationsMenuQuery: {
+    applicationsMenu: {
+      navBar: [
+        createTestMenuConfig('orders'),
+        createTestMenuConfig('products'),
+      ],
+    },
+  },
+  projectExtensionsQuery: {
+    projectExtension: {
+      id: 'p1',
+      applications: [
+        { id: 'p1-a1', navbarMenu: createTestMenuConfig('channels') },
+      ],
+    },
+  },
+  ...props,
+});
+const createDataMenuTestProps = props => {
+  const navbarProps = createTestProps(props);
+  const {
+    applicationsMenuQuery,
+    projectExtensionsQuery,
+    ...passThroughProps
+  } = navbarProps;
+  return {
+    ...passThroughProps,
+    data: [
+      createTestMenuConfig('orders'),
+      createTestMenuConfig('products'),
+      createTestMenuConfig('channels'),
+    ],
+    ...props,
+  };
+};
 
 describe('rendering', () => {
   let props;
@@ -103,10 +105,14 @@ describe('rendering', () => {
       it('should pass rootNode as prop', () => {
         expect(wrapper.find(DataMenu)).toHaveProp('rootNode');
       });
-      it('should pass data as prop', () => {
+      it('should merge internal apps with custom apps config', () => {
         expect(wrapper.find(DataMenu)).toHaveProp(
           'data',
-          defaultNavigationItems
+          expect.arrayContaining([
+            expect.objectContaining({ key: 'orders' }),
+            expect.objectContaining({ key: 'products' }),
+            expect.objectContaining({ key: 'channels' }),
+          ])
         );
       });
       it('should pass applicationLanguage as prop', () => {
@@ -130,32 +136,6 @@ describe('rendering', () => {
       it('should pass location as prop', () => {
         expect(wrapper.find(DataMenu)).toHaveProp('location', props.location);
       });
-      describe('when there are project extensions', () => {
-        let extendedMenuItem;
-        beforeEach(() => {
-          extendedMenuItem = createProjectExtensionNavbarProps();
-          props = createTestProps({
-            projectExtensionsQuery: {
-              projectExtension: {
-                id: 'pe1',
-                applications: [
-                  {
-                    id: 'pe1a1',
-                    navbarMenu: extendedMenuItem,
-                  },
-                ],
-              },
-            },
-          });
-          wrapper = shallow(<NavBar {...props} />);
-        });
-        it('should pass data with extended menu items as prop', () => {
-          expect(wrapper.find(DataMenu)).toHaveProp(
-            'data',
-            defaultNavigationItems.concat(extendedMenuItem)
-          );
-        });
-      });
     });
   });
   describe('<DataMenu>', () => {
@@ -169,18 +149,12 @@ describe('rendering', () => {
     it('should render <RestrictedMenuItem>', () => {
       expect(wrapper.find(MenuGroup).at(0)).toRender(RestrictedMenuItem);
     });
-    describe('when rendering the settings menu', () => {
+    describe('when menu item has "shouldRenderDivider" set to "true"', () => {
       beforeEach(() => {
         props = createDataMenuTestProps({
           data: [
-            {
-              key: 'Settings',
-              labelKey: 'NavBar.Settings.title',
-              uriPath: 'settings',
-              icon: 'UserFilledIcon',
-              permissions: [permissions.ManageProject],
-              featureToggle: 'projectSettings',
-            },
+            createTestMenuConfig('orders'),
+            createTestMenuConfig('settings', { shouldRenderDivider: true }),
           ],
         });
         wrapper = shallow(<DataMenu {...props} />);
@@ -189,283 +163,215 @@ describe('rendering', () => {
         expect(wrapper.find(MenuGroup).first()).toRender(MenuItemDivider);
       });
     });
-    describe('when rendering any other menu', () => {
+
+    describe('<RestrictedMenuItem> for submenu', () => {
+      let restrictedMenuItem;
       beforeEach(() => {
+        const ordersMenu = createTestMenuConfig('orders');
         props = createDataMenuTestProps({
           data: [
-            {
-              key: 'Customers',
-              labelKey: 'NavBar.Customers.title',
-              uriPath: 'customers',
-              icon: 'UserFilledIcon',
-              permissions: [permissions.ViewCustomers],
-              featureToggle: 'customerList',
+            createTestMenuConfig('orders', {
+              ...ordersMenu,
               submenu: [
                 {
-                  key: 'Add Customer',
-                  labelKey: 'NavBar.Customers.add',
-                  uriPath: 'customers/new',
-                  menuVisibility: 'hideAddCustomer',
+                  ...ordersMenu.submenu[0],
+                  featureToggle: 'ordersList',
+                  permissions: [permissions.ViewOrders],
+                  menuVisibility: 'hideAddOrder',
                 },
               ],
-            },
+            }),
           ],
         });
         wrapper = shallow(<DataMenu {...props} />);
+        restrictedMenuItem = wrapper
+          .find({ level: 2 })
+          .find(RestrictedMenuItem);
       });
-      it('should not render a MenuItemDivider', () => {
-        expect(wrapper.find(MenuGroup).first()).not.toRender(MenuItemDivider);
+      it('should pass featureToggle as prop', () => {
+        expect(restrictedMenuItem).toHaveProp('featureToggle', 'ordersList');
       });
-      describe('<RestrictedMenuItem>', () => {
-        let restrictedMenuItem;
-        beforeEach(() => {
-          restrictedMenuItem = wrapper
-            .find(MenuGroup)
-            .at(0)
-            .find(RestrictedMenuItem)
-            .at(0);
-        });
-        it('should pass featureToggle as prop', () => {
-          expect(restrictedMenuItem).toHaveProp(
-            'featureToggle',
-            'customerList'
-          );
-        });
-        it('should pass permissions as prop', () => {
-          expect(restrictedMenuItem).toHaveProp('permissions', [
-            permissions.ViewCustomers,
-          ]);
-        });
-        it('should pass names of menu visibilities of submenus as prop', () => {
-          expect(restrictedMenuItem).toHaveProp('namesOfMenuVisibilities', [
-            'hideAddCustomer',
-          ]);
-        });
+      it('should pass permissions as prop', () => {
+        expect(restrictedMenuItem).toHaveProp('permissions', [
+          permissions.ViewOrders,
+        ]);
+      });
+      it('should pass names of menu visibilities of submenus as prop', () => {
+        expect(restrictedMenuItem).toHaveProp('namesOfMenuVisibilities', [
+          'hideAddOrder',
+        ]);
       });
     });
     describe('<MenuItem>', () => {
+      let menuItem;
+      beforeEach(() => {
+        menuItem = wrapper
+          .find(RestrictedMenuItem)
+          .first()
+          .find(MenuItem);
+      });
       it('should pass hasSubmenu as prop', () => {
-        expect(wrapper.find(MenuItem)).toHaveProp('hasSubmenu', true);
+        expect(menuItem).toHaveProp('hasSubmenu', true);
       });
       it('should pass isActive as prop', () => {
-        expect(wrapper.find(MenuItem)).toHaveProp('isActive', false);
+        expect(menuItem).toHaveProp('isActive', false);
       });
       it('should pass isMenuOpen as prop', () => {
-        expect(wrapper.find(MenuItem)).toHaveProp('isMenuOpen', false);
+        expect(menuItem).toHaveProp('isMenuOpen', false);
       });
       it('should pass onClick as prop', () => {
-        expect(wrapper.find(MenuItem)).toHaveProp(
-          'onClick',
-          expect.any(Function)
-        );
+        expect(menuItem).toHaveProp('onClick', expect.any(Function));
       });
       it('should pass onMouseEnter as prop', () => {
-        expect(wrapper.find(MenuItem)).toHaveProp(
-          'onMouseEnter',
-          expect.any(Function)
-        );
+        expect(menuItem).toHaveProp('onMouseEnter', expect.any(Function));
       });
       it('should pass onMouseLeave as prop', () => {
-        expect(wrapper.find(MenuItem)).toHaveProp(
-          'onMouseLeave',
-          expect.any(Function)
-        );
+        expect(menuItem).toHaveProp('onMouseLeave', expect.any(Function));
       });
       describe('<MenuItemLink>', () => {
-        it('should render menu labelKey', () => {
-          expect(wrapper.find(MenuItemLink).at(0)).toRender({
-            id: 'NavBar.Customers.title',
-          });
+        let menuItemLink;
+        beforeEach(() => {
+          menuItemLink = menuItem.find(MenuItemLink).first();
+        });
+        it('should render menu label', () => {
+          expect(menuItemLink).toContainReact(
+            <div className="title">Orders</div>
+          );
         });
         describe('when menu is not open', () => {
           beforeEach(() => {
             wrapper.setState({ isMenuOpen: false });
+            menuItemLink = menuItem.find(MenuItemLink).first();
           });
           it('should pass linkTo as prop', () => {
-            expect(wrapper.find(MenuItemLink).at(0)).toHaveProp(
-              'linkTo',
-              '/test-1/customers'
-            );
-          });
-        });
-        describe('when `externalLink` is passed', () => {
-          beforeEach(() => {
-            props = createDataMenuTestProps({
-              data: defaultNavigationItems.filter(
-                item => item.key === 'Support'
-              ),
-            });
-            wrapper = shallow(<DataMenu {...props} />);
-          });
-          it('should pass externalLink as prop', () => {
-            expect(wrapper.find(MenuItemLink).at(0)).toHaveProp(
-              'externalLink',
-              MCSupportFormURL
-            );
+            expect(menuItemLink).toHaveProp('linkTo', '/test-1/orders');
           });
         });
         describe('when menu is open but there is no submenu', () => {
           beforeEach(() => {
             props = createDataMenuTestProps({
-              data: [
-                {
-                  key: 'Customers',
-                  labelKey: 'NavBar.Customers.title',
-                  uriPath: 'customers',
-                  icon: 'UserFilledIcon',
-                },
-              ],
+              data: [createTestMenuConfig('orders', { submenu: [] })],
             });
             wrapper = shallow(<DataMenu {...props} />);
             wrapper.setState({ isMenuOpen: true });
+            menuItemLink = wrapper
+              .find(RestrictedMenuItem)
+              .first()
+              .find(MenuItem)
+              .find(MenuItemLink)
+              .first();
           });
           it('should pass linkTo as prop', () => {
-            expect(wrapper.find(MenuItemLink).at(0)).toHaveProp(
-              'linkTo',
-              '/test-1/customers'
-            );
-          });
-        });
-        describe('when menu is open but there is no submenu (empty list)', () => {
-          beforeEach(() => {
-            props = createDataMenuTestProps({
-              data: [
-                {
-                  key: 'Customers',
-                  labelKey: 'NavBar.Customers.title',
-                  uriPath: 'customers',
-                  icon: 'UserFilledIcon',
-                  submenu: [],
-                },
-              ],
-            });
-            wrapper = shallow(<DataMenu {...props} />);
-            wrapper.setState({ isMenuOpen: true });
-          });
-          it('should pass linkTo as prop', () => {
-            expect(wrapper.find(MenuItemLink).at(0)).toHaveProp(
-              'linkTo',
-              '/test-1/customers'
-            );
-          });
-        });
-        describe('when menu is open and there is a submenu', () => {
-          beforeEach(() => {
-            wrapper.setState({ isMenuOpen: true });
-          });
-          it('should pass linkTo as prop', () => {
-            expect(wrapper.find(MenuItemLink).at(0)).toHaveProp('linkTo', null);
+            expect(menuItemLink).toHaveProp('linkTo', '/test-1/orders');
           });
         });
         describe('when item is active', () => {
+          let icon;
           beforeEach(() => {
             wrapper.setState({ activeItemIndex: 'scrollable-0' });
+            icon = wrapper
+              .find(RestrictedMenuItem)
+              .first()
+              .find(MenuItem)
+              .find(MenuItemLink)
+              .first()
+              .find(IconSwitcher);
           });
           it('should pass iconName to IconSwitcher', () => {
-            expect(wrapper.find(IconSwitcher)).toHaveProp(
-              'iconName',
-              'UserFilledIcon'
-            );
+            expect(icon).toHaveProp('iconName', 'UserFilledIcon');
           });
           it('should render active icon', () => {
-            expect(wrapper.find(IconSwitcher)).toHaveProp(
-              'theme',
-              'green-light'
-            );
+            expect(icon).toHaveProp('theme', 'green-light');
           });
         });
         describe('when item is not active but the route is active', () => {
+          let icon;
           beforeEach(() => {
-            wrapper = shallow(
-              <DataMenu
-                {...props}
-                location={{ pathname: '/foo/customers' }}
-                projectKey="foo"
-              />
-            );
+            props = createDataMenuTestProps({
+              location: { pathname: '/test-1/orders' },
+            });
+            wrapper = shallow(<DataMenu {...props} />);
             wrapper.setState({ activeItemIndex: null });
+            icon = wrapper
+              .find(RestrictedMenuItem)
+              .first()
+              .find(MenuItem)
+              .find(MenuItemLink)
+              .first()
+              .find(IconSwitcher);
           });
           it('should pass iconName to IconSwitcher', () => {
-            expect(wrapper.find(IconSwitcher)).toHaveProp(
-              'iconName',
-              'UserFilledIcon'
-            );
+            expect(icon).toHaveProp('iconName', 'UserFilledIcon');
           });
           it('should render active icon', () => {
-            expect(wrapper.find(IconSwitcher)).toHaveProp(
-              'theme',
-              'green-light'
-            );
+            expect(icon).toHaveProp('theme', 'green-light');
           });
         });
         describe('when item and router are not active', () => {
+          let icon;
           beforeEach(() => {
-            wrapper = shallow(
-              <DataMenu
-                {...props}
-                location={{ pathname: '/foo/bar' }}
-                projectKey="foo"
-              />
-            );
+            props = createDataMenuTestProps({
+              location: { pathname: '/test-1/somethig-else' },
+            });
+            wrapper = shallow(<DataMenu {...props} />);
             wrapper.setState({ activeItemIndex: null });
+            icon = wrapper
+              .find(RestrictedMenuItem)
+              .first()
+              .find(MenuItem)
+              .find(MenuItemLink)
+              .first()
+              .find(IconSwitcher);
           });
           it('should render default icon', () => {
-            expect(wrapper.find(IconSwitcher)).toHaveProp('theme', 'white');
+            expect(icon).toHaveProp('theme', 'white');
           });
         });
       });
       describe('<MenuGroup> level 2', () => {
-        it('should pass level as prop', () => {
-          expect(wrapper.find(MenuGroup).at(1)).toHaveProp('level', 2);
-        });
-        it('should render', () => {
-          expect(wrapper.find(MenuGroup).at(1)).toRender(RestrictedMenuItem);
+        let menuLevel2;
+        beforeEach(() => {
+          const ordersMenu = createTestMenuConfig('orders');
+          props = createDataMenuTestProps({
+            data: [
+              createTestMenuConfig('orders', {
+                ...ordersMenu,
+                submenu: [
+                  {
+                    ...ordersMenu.submenu[0],
+                    featureToggle: 'ordersList',
+                    permissions: [permissions.ViewOrders],
+                    menuVisibility: 'hideAddOrder',
+                  },
+                ],
+              }),
+            ],
+          });
+          wrapper = shallow(<DataMenu {...props} />);
+          menuLevel2 = wrapper.find({ level: 2 });
         });
         describe('<RestrictedMenuItem>', () => {
           let restrictedMenuItemWrapper;
           beforeEach(() => {
-            props = createDataMenuTestProps({
-              data: [
-                {
-                  key: 'Customers',
-                  labelKey: 'NavBar.Customers.title',
-                  uriPath: 'customers',
-                  icon: 'UserFilledIcon',
-                  submenu: [
-                    {
-                      key: 'Add Customer',
-                      labelKey: 'NavBar.Customers.add',
-                      uriPath: 'customers/new',
-                      permissions: [permissions.ManageCustomers],
-                      featureToggle: 'customerAdd',
-                      menuVisibility: 'hideAddCustomer',
-                    },
-                  ],
-                },
-              ],
-            });
-            wrapper = shallow(<DataMenu {...props} />);
-
-            restrictedMenuItemWrapper = wrapper
-              .find(MenuGroup)
-              .at(1)
-              .find(RestrictedMenuItem);
+            restrictedMenuItemWrapper = menuLevel2
+              .find(RestrictedMenuItem)
+              .first();
           });
           it('should pass featureToggle as prop', () => {
             expect(restrictedMenuItemWrapper).toHaveProp(
               'featureToggle',
-              'customerAdd'
+              'ordersList'
             );
           });
           it('should pass permissions as prop', () => {
             expect(restrictedMenuItemWrapper).toHaveProp('permissions', [
-              permissions.ManageCustomers,
+              permissions.ViewOrders,
             ]);
           });
           it('should pass menu visibilities as prop', () => {
             expect(restrictedMenuItemWrapper).toHaveProp(
               'namesOfMenuVisibilities',
-              ['hideAddCustomer']
+              ['hideAddOrder']
             );
           });
         });
@@ -505,48 +411,6 @@ describe('rendering', () => {
               'isExpanded',
               false
             );
-          });
-        });
-        describe('when there is a submenu', () => {
-          it('should render <MenuItemLink>', () => {
-            expect(wrapper.find({ level: 2 })).toRender(MenuItemLink);
-          });
-          describe('<MenuItemLink>', () => {
-            it('should pass linkTo as prop', () => {
-              expect(wrapper.find(MenuItemLink).at(1)).toHaveProp(
-                'linkTo',
-                '/test-1/customers/new'
-              );
-            });
-            it('should pass "useFullRedirectsForLinks" as prop', () => {
-              expect(wrapper.find(MenuItemLink).at(1)).toHaveProp(
-                'useFullRedirectsForLinks',
-                props.useFullRedirectsForLinks
-              );
-            });
-            it('should render submenu labelKey', () => {
-              expect(wrapper.find(MenuItemLink).at(1)).toRender({
-                id: 'NavBar.Customers.add',
-              });
-            });
-          });
-        });
-        describe('when there is not a submenu', () => {
-          beforeEach(() => {
-            props = createDataMenuTestProps({
-              data: [
-                {
-                  key: 'Customers',
-                  labelKey: 'NavBar.Customers.title',
-                  uriPath: 'customers',
-                  icon: 'UserFilledIcon',
-                },
-              ],
-            });
-            wrapper = shallow(<DataMenu {...props} />);
-          });
-          it('should not render <MenuItemLink>', () => {
-            expect(wrapper.find({ level: 2 })).not.toRender(MenuItemLink);
           });
         });
       });
@@ -783,33 +647,6 @@ describe('rendering', () => {
   });
   describe('<MenuItemLink>', () => {
     const LinkLabel = () => <span>{'Customers'}</span>;
-    describe('when externalLink is defined', () => {
-      beforeEach(() => {
-        props = {
-          externalLink: '//www.externalLink.com',
-          exactMatch: true,
-          useFullRedirectsForLinks: false,
-          tracking: {
-            'data-track-component': 'Support-links',
-            'data-track-event': 'click',
-            'data-track-label': 'support_icon',
-          },
-        };
-        wrapper = shallow(
-          <MenuItemLink {...props}>
-            <LinkLabel />
-          </MenuItemLink>
-        );
-      });
-      it('should render <a> with provided href', () => {
-        expect(wrapper.find('a')).toHaveProp('href', props.externalLink);
-      });
-      it('should pass tracking props', () => {
-        expect(wrapper).toHaveProp('data-track-component', 'Support-links');
-        expect(wrapper).toHaveProp('data-track-event', 'click');
-        expect(wrapper).toHaveProp('data-track-label', 'support_icon');
-      });
-    });
     describe('when linkTo is defined', () => {
       beforeEach(() => {
         props = {
@@ -1285,74 +1122,36 @@ describe('instance methods', () => {
 
 describe('helpers', () => {
   describe('getIconTheme', () => {
+    let iconTheme;
     describe('when isActive is true', () => {
-      let iconTheme;
-      let menu;
       beforeEach(() => {
-        menu = {
-          key: 'menu',
-        };
-        iconTheme = getIconTheme(menu, true);
+        const isActive = true;
+        const isAlternativeTheme = false;
+        iconTheme = getIconTheme(isActive, isAlternativeTheme);
       });
       it('should get green theme', () => {
         expect(iconTheme).toBe('green-light');
       });
-      describe('when menu is settings', () => {
-        beforeEach(() => {
-          menu = {
-            key: 'Settings',
-          };
-          iconTheme = getIconTheme(menu, true);
-        });
-        it('should get green theme', () => {
-          expect(iconTheme).toBe('green-light');
-        });
-      });
-      describe('when menu is Support', () => {
-        beforeEach(() => {
-          menu = {
-            key: 'Support',
-          };
-          iconTheme = getIconTheme(menu, true);
-        });
-        it('should get green theme', () => {
-          expect(iconTheme).toBe('green-light');
-        });
-      });
     });
     describe('when isActive is false', () => {
-      let iconTheme;
-      let menu;
-      beforeEach(() => {
-        menu = {
-          key: 'menu',
-        };
-        iconTheme = getIconTheme(menu, false);
-      });
-      it('should get white theme', () => {
-        expect(iconTheme).toBe('white');
-      });
-
-      describe('when menu is settings', () => {
+      describe('when alternative theme is true', () => {
         beforeEach(() => {
-          menu = {
-            key: 'Settings',
-          };
-          iconTheme = getIconTheme(menu, false);
+          const isActive = false;
+          const isAlternativeTheme = true;
+          iconTheme = getIconTheme(isActive, isAlternativeTheme);
         });
         it('should get grey theme', () => {
           expect(iconTheme).toBe('grey');
         });
       });
-      describe('when menu is Support', () => {
+      describe('when alternative theme is false', () => {
         beforeEach(() => {
-          menu = {
-            key: 'Support',
-          };
-          iconTheme = getIconTheme(menu, false);
+          const isActive = false;
+          const isAlternativeTheme = false;
+          iconTheme = getIconTheme(isActive, isAlternativeTheme);
         });
-        it('should get grey theme', () => {
-          expect(iconTheme).toBe('grey');
+        it('should get white theme', () => {
+          expect(iconTheme).toBe('white');
         });
       });
     });
