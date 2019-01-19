@@ -1,3 +1,129 @@
+## [7.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v6.0.1...v7.0.0) (2019-01-18)
+
+## BREAKING CHANGES (local development only) 💣
+
+> This release contains mostly internal changes that **do not affect production environments**.
+
+Starting from version `7.0.0`, applications will load the navigation menu items on runtime (_the links in the left side navigation in the Merchant Center_). This change has the benefit of keeping the navigation items consistent and up-to-date for all running applications, as it's not hardcoded anymore in the ApplicationShell package.
+
+\*\*We recommend to upgrade your applications to this version as soon as possible".
+
+> Custom applications will still configure their navigation menu items within the Merchant Center.
+
+### Development setup
+
+When developing locally, you usually work on one application which has its own navigation menu items. It does not make sense to show all other possible navigation links because they don't work.
+Therefore, in `NODE_ENV=development` mode the navigation menu items are not being fetched (including the custom applications menu items). Instead, you should specify a `menu.json` file that will be loaded by the `<ApplicationShell>` instead of making the network request.
+
+```js
+<ApplicationShell
+  // ...
+  DEV_ONLY__loadNavbarMenuConfig={() =>
+    import('../../../menu.json').then(data => data.default || data)
+  }
+  render={() => {}}
+/>
+```
+
+This function is only executed in `NODE_ENV=development`. We recommend to use `import` so that bundlers can create a split point and the `menu.json` won't end up in the main bundle in production.
+
+The `menu.json` has the following structure:
+
+```json
+{
+  "key": "state-machines",
+  "uriPath": "state-machines",
+  "icon": "RocketIcon",
+  "permissions": ["ViewStates", "ManageStates"],
+  "featureToggle": null,
+  "labelAllLocales": [
+    {
+      "locale": "en",
+      "value": "State Machines"
+    },
+    {
+      "locale": "de",
+      "value": "Zustandsmaschinen"
+    },
+    {
+      "locale": "es",
+      "value": "Máquinas de estado"
+    }
+  ],
+  "submenu": [
+    {
+      "key": "state-machines-new",
+      "uriPath": "state-machines/new",
+      "permissions": ["ManageStates"],
+      "featureToggle": null,
+      "labelAllLocales": [
+        {
+          "locale": "en",
+          "value": "Add State Machine"
+        },
+        {
+          "locale": "de",
+          "value": "Zustandsmaschine hinzufügen"
+        },
+        {
+          "locale": "es",
+          "value": "Agregar máquina de estado"
+        }
+      ]
+    }
+  ]
+}
+```
+
+This is the GraphQL representation of the JSON shape:
+
+```graphql
+type NavbarMenu {
+  shouldRenderDivider: Boolean!
+  key: String!
+  uriPath: String!
+  icon: String!
+  labelAllLocales: [LocalizedField!]!
+  featureToggle: String
+  permissions: [String!]!
+  submenu: [BaseMenu!]!
+}
+
+type BaseMenu {
+  key: String!
+  uriPath: String!
+  labelAllLocales: [LocalizedField!]!
+  featureToggle: String
+  permissions: [String!]!
+}
+
+type LocalizedField {
+  locale: String!
+  value: String!
+}
+```
+
+#### 🐛 Type: Bug
+
+- `l10n`
+  - [#290](https://github.com/commercetools/merchant-center-application-kit/pull/290) fix(l10n): return correct localized information ([@montezume](https://github.com/montezume))
+
+#### ✍️ Type: Documentation
+
+- [#294](https://github.com/commercetools/merchant-center-application-kit/pull/294) docs(readme): update getting started and local development sections ([@emmenko](https://github.com/emmenko))
+
+#### 💅 Type: Enhancement
+
+- `application-shell`, `i18n`, `mc-scripts`
+  - [#289](https://github.com/commercetools/merchant-center-application-kit/pull/289) External menu configurations ([@emmenko](https://github.com/emmenko))
+- `application-shell`, `babel-preset-mc-app`, `mc-scripts`, `sdk`
+  - [#286](https://github.com/commercetools/merchant-center-application-kit/pull/286) refactor: disable loggers based on runtime configuration ([@emmenko](https://github.com/emmenko))
+
+#### 🚀 Type: New Feature
+
+- `application-shell`
+  - [#297](https://github.com/commercetools/merchant-center-application-kit/pull/297) feat(test-utils): allow to pass a mapNotificationToComponent function ([@emmenko](https://github.com/emmenko))
+
 ## [6.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v6.0.0...v6.0.1) (2019-01-14)
 
 #### 💅 Type: Enhancement
