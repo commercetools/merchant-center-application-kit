@@ -16,6 +16,7 @@ REPO_BINARIES=$(yarn bin)
 pushd "$HOME"
 
 echo "Installing application for template $TEMPLATE"
+echo "Using template version: $TEMPLATE_VERSION"
 node "$REPO_BINARIES/create-mc-app" \
   --template="$TEMPLATE" \
   --template-version="$TEMPLATE_VERSION" \

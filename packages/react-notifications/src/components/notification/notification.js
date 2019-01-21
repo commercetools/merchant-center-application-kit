@@ -8,7 +8,7 @@ import {
   ErrorIcon,
   WarningIcon,
   InfoIcon,
-  SuccessIcon,
+  CheckBoldIcon,
   IconButton,
 } from '@commercetools-frontend/ui-kit';
 import { DOMAINS } from '@commercetools-frontend/constants';
@@ -21,7 +21,7 @@ const NotificationIcon = props => {
   if (props.type === 'info') return <InfoIcon theme={props.theme} />;
   if (props.type === 'warning') return <WarningIcon theme={props.theme} />;
 
-  return <SuccessIcon theme={props.theme} />;
+  return <CheckBoldIcon theme={props.theme} />;
 };
 NotificationIcon.displayName = 'NotificationIcon';
 NotificationIcon.propTypes = {
