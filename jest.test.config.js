@@ -1,6 +1,11 @@
 module.exports = {
   preset: './packages/jest-preset-mc-app',
-  moduleDirectories: ['packages', 'playground', 'node_modules'],
+  moduleDirectories: [
+    'application-templates',
+    'packages',
+    'playground',
+    'node_modules',
+  ],
   modulePathIgnorePatterns: ['examples'],
   transformIgnorePatterns: [
     // This option tells Jest to ignore specific folders from being transpiled
