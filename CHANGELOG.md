@@ -1,3 +1,12 @@
+## [7.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v7.0.0...v7.1.0) (2019-01-22)
+
+#### 🔮 Type: Chore
+
+- `application-shell`, `react-notifications`
+  - [#305](https://github.com/commercetools/merchant-center-application-kit/pull/305) chore: update ui-kit to v7 ([@montezume](https://github.com/montezume))
+
+The `ui-kit` peer dependency now requires to use version `7.x`.
+
 ## [7.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v6.0.1...v7.0.0) (2019-01-18)
 
 ## BREAKING CHANGES (local development only) 💣
