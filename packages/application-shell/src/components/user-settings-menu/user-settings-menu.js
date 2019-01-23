@@ -79,9 +79,9 @@ OptionalFeatureToggle.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-const renderLabel = (menu, locale) => {
-  const localizedLabel = menu.labelAllLocales.find(
-    loc => loc.locale === locale
+const renderLabel = (menu, applicationLanguage) => {
+  const localizedLabel = menu.labelAllLocales.find(loc =>
+    applicationLanguage.startsWith(loc.locale)
   );
   if (localizedLabel) return localizedLabel.value;
   return NO_VALUE_FALLBACK;
