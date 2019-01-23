@@ -73,7 +73,7 @@ export const createApolloClient = () =>
       fragmentMatcher,
       dataIdFromObject: result => {
         if (typeNamesWithoutIdAsIdentifier.includes(result.__typename))
-          return result.key;
+          return `${result.__typename}:${result.key}`;
         // Generally all id's are unique accross the platform, so we don't need to
         // include the type name in the cache key.
         // However, a reference has the shape { typeId, id } where the id is the
