@@ -1,3 +1,10 @@
+## [7.1.1](https://github.com/commercetools/merchant-center-application-kit/compare/v7.1.0...v7.1.1) (2019-01-23)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#308](https://github.com/commercetools/merchant-center-application-kit/pull/308) fix(app-shell): to pick menu label based on user locale language tag only ([@emmenko](https://github.com/emmenko))
+
 ## [7.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v7.0.0...v7.1.0) (2019-01-22)
 
 #### 🔮 Type: Chore
