@@ -430,8 +430,8 @@ export class DataMenu extends React.PureComponent {
   };
 
   renderLabel = menu => {
-    const localizedLabel = menu.labelAllLocales.find(
-      loc => loc.locale === this.props.applicationLanguage
+    const localizedLabel = menu.labelAllLocales.find(loc =>
+      this.props.applicationLanguage.startsWith(loc.locale)
     );
     if (localizedLabel) return localizedLabel.value;
     return NO_VALUE_FALLBACK;
