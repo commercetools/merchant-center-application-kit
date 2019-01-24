@@ -1,3 +1,10 @@
+## [7.1.2](https://github.com/commercetools/merchant-center-application-kit/compare/v7.1.1...v7.1.2) (2019-01-24)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#310](https://github.com/commercetools/merchant-center-application-kit/pull/310) fix(app-shell): to be specific about cache key generation ([@tdeekens](https://github.com/tdeekens))
+
 ## [7.1.1](https://github.com/commercetools/merchant-center-application-kit/compare/v7.1.0...v7.1.1) (2019-01-23)
 
 #### 🐛 Type: Bug
