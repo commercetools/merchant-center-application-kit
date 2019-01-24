@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
@@ -528,20 +527,6 @@ describe('<RestrictedApplication>', () => {
         expect(wrapper.find(ProjectContainer)).toHaveProp(
           'render',
           props.render
-        );
-      });
-      it('should render <ReconfigureFlopflip>', () => {
-        expect(wrapper).toRender(ReconfigureFlopFlip);
-      });
-
-      it('should pass `projectKey` within `user` to `<ReconfigureFlopflip>`', () => {
-        expect(wrapper.find(ReconfigureFlopFlip)).toHaveProp(
-          'user',
-          expect.objectContaining({
-            custom: expect.objectContaining({
-              project: routerProps.match.params.projectKey,
-            }),
-          })
         );
       });
     });

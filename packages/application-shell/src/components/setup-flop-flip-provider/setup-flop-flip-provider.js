@@ -12,13 +12,10 @@ const ldClientSideIdProduction = '5979d95f6040390cd07b5e01';
 // one above only for `production` environment.
 const ldClientSideIdStaging = '5979d95f6040390cd07b5e00';
 
-export const getFlopflipReconfiguration = defaultMemoize(projectKey => ({
-  custom: { project: projectKey },
-}));
-
 export class SetupFlopFlipProvider extends React.PureComponent {
   static displayName = 'SetupFlopFlipProvider';
   static propTypes = {
+    projectKey: PropTypes.string,
     user: PropTypes.shape({
       id: PropTypes.string.isRequired,
       launchdarklyTrackingId: PropTypes.string.isRequired,
@@ -35,6 +32,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
     (
       clientSideId,
       userId,
+      projectKey,
       ldTrackingId,
       ldTrackingGroup,
       ldTrackingTeam,
@@ -45,6 +43,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
         key: userId,
         custom: {
           id: ldTrackingId,
+          project: projectKey,
           team: ldTrackingTeam,
           group: ldTrackingGroup,
           tenant: ldTrackingTenant,
@@ -62,6 +61,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
             ? ldClientSideIdProduction
             : ldClientSideIdStaging,
           this.props.user && this.props.user.id,
+          this.props.projectKey,
           this.props.user && this.props.user.launchdarklyTrackingId,
           this.props.user && this.props.user.launchdarklyTrackingGroup,
           this.props.user && this.props.user.launchdarklyTrackingTeam,

@@ -18,6 +18,7 @@ exports[`rendering should match snapshot 1`] = `
         "custom": Object {
           "group": "ct",
           "id": "123",
+          "project": "test-project-key",
           "team": Array [
             "abc",
             "def",

@@ -2,15 +2,6 @@
 
 exports[`<RestrictedApplication> rendering project container <Route> should match layout structure 1`] = `
 <Fragment>
-  <withReconfiguration(ReconfigureAdapter)
-    user={
-      Object {
-        "custom": Object {
-          "project": "foo-1",
-        },
-      }
-    }
-  />
   <InjectIntl(ProjectContainer)
     environment={
       Object {
