@@ -1,3 +1,14 @@
+## [7.1.3](https://github.com/commercetools/merchant-center-application-kit/compare/v7.1.2...v7.1.3) (2019-01-25)
+
+#### 🐛 Type: Bug
+
+- [#313](https://github.com/commercetools/merchant-center-application-kit/pull/313) fix(template/starter): add missing react-select css import [skip ci](<[@emmenko](https://github.com/emmenko)>)
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+  - [#314](https://github.com/commercetools/merchant-center-application-kit/pull/314) Refactor to not `ReconfigureFlopflip` but pass `projectKey` from url ([@tdeekens](https://github.com/tdeekens))
+
 ## [7.1.2](https://github.com/commercetools/merchant-center-application-kit/compare/v7.1.1...v7.1.2) (2019-01-24)
 
 #### 🐛 Type: Bug
