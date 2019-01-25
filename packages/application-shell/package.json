@@ -38,6 +38,7 @@
   "dependencies": {
     "@babel/runtime": "7.2.0",
     "@commercetools-frontend/actions-global": "7.0.0",
+    "@commercetools-frontend/application-components": "7.0.0",
     "@commercetools-frontend/application-shell-connectors": "7.0.0",
     "@commercetools-frontend/assets": "7.0.0",
     "@commercetools-frontend/browser-history": "7.0.0",

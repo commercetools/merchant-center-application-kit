@@ -78,7 +78,7 @@ const createConfig = cliArgs => {
           }),
           postcssCustomMediaQueries({
             importFrom: require.resolve(
-              '@commercetools-frontend/ui-kit/materials/media-queries.mod.css'
+              '@commercetools-frontend/application-components/materials/media-queries.css'
             ),
           }),
           // we need to place the postcssDiscardComments BEFORE postcssCustomProperties,

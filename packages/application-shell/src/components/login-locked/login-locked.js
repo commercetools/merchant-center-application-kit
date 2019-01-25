@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { Text } from '@commercetools-frontend/ui-kit';
 import ProjectSuspendedSVG from '@commercetools-frontend/assets/images/project-suspended.svg';
-import ServicePageResponseLayout from '../../from-core/service-page-response-layout';
+import { ServicePageResponseLayout } from '@commercetools-frontend/application-components';
 import messages from './messages';
 
 const year = new Date().getUTCFullYear();
