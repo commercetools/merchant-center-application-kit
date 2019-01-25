@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ServicePageResponseLayout from '../../from-core/service-page-response-layout';
+import { ServicePageResponseLayout } from '@commercetools-frontend/application-components';
 import ProjectSuspended from './project-suspended';
 
 describe('rendering', () => {
