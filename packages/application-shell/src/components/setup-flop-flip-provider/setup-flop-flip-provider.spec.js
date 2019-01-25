@@ -4,6 +4,7 @@ import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import { SetupFlopFlipProvider } from './setup-flop-flip-provider';
 
 const createTestProps = props => ({
+  projectKey: 'test-project-key',
   user: {
     id: 'u1',
     launchdarklyTrackingId: '123',
@@ -57,6 +58,18 @@ describe('rendering', () => {
         user: expect.objectContaining({
           custom: expect.objectContaining({
             id: props.user.launchdarklyTrackingId,
+          }),
+        }),
+      })
+    );
+  });
+  it('should pass "user.custom.project" as adapter arg', () => {
+    expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(
+      'adapterArgs',
+      expect.objectContaining({
+        user: expect.objectContaining({
+          custom: expect.objectContaining({
+            project: props.projectKey,
           }),
         }),
       })

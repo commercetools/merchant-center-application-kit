@@ -1,4 +1,1 @@
-export {
-  default,
-  getFlopflipReconfiguration,
-} from './setup-flop-flip-provider';
+export { default } from './setup-flop-flip-provider';

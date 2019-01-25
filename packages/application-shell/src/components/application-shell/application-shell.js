@@ -7,7 +7,6 @@ import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-frontend/url-utils';
-import { ReconfigureFlopFlip } from '@flopflip/react-broadcast';
 import * as storage from '@commercetools-frontend/storage';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import history from '@commercetools-frontend/browser-history';
@@ -35,9 +34,7 @@ import AsyncLoginSSO from '../login-sso/async';
 import AsyncLoginSSOCallback from '../login-sso-callback/async';
 import AsyncLoginLocked from '../login-locked/async';
 import Logout from '../logout';
-import SetupFlopFlipProvider, {
-  getFlopflipReconfiguration,
-} from '../setup-flop-flip-provider';
+import SetupFlopFlipProvider from '../setup-flop-flip-provider';
 // import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
@@ -126,6 +123,7 @@ export const RestrictedApplication = props => (
               >
                 <SetupFlopFlipProvider
                   user={user}
+                  projectKey={projectKeyFromUrl}
                   appEnv={props.environment.env}
                   defaultFlags={props.defaultFeatureFlags}
                 >
@@ -319,11 +317,6 @@ export const RestrictedApplication = props => (
                                 path="/:projectKey"
                                 render={routerProps => (
                                   <React.Fragment>
-                                    <ReconfigureFlopFlip
-                                      user={getFlopflipReconfiguration(
-                                        routerProps.match.params.projectKey
-                                      )}
-                                    />
                                     <ProjectContainer
                                       user={user}
                                       match={routerProps.match}

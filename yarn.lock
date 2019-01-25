@@ -1128,42 +1128,42 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.2.tgz#63985d3d8b02530e0869962f4da09142ee8e200e"
   integrity sha512-n/VQ4mbfr81aqkx/XmVicOLjviMuy02eenSdJY33SVA7S2J42EU0P1H0mOogfYedb3wXA0d/LVtBrgTSm04WEA==
 
-"@flopflip/launchdarkly-adapter@2.4.5":
-  version "2.4.5"
-  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.4.5.tgz#7e8987938d86fee3da2ecb63da90e63572b6de05"
-  integrity sha512-zadU2p6nICVMfup8HH4B/J7kwyEPxLWRZABxKJ4pI2hnKDfFdEauyMdGyAOLKnXpHHVoiW9T7IfGbs4RxfweAQ==
+"@flopflip/launchdarkly-adapter@2.4.6":
+  version "2.4.6"
+  resolved "https://registry.npmjs.org/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.4.6.tgz#005226c96626400ff018ce3b5a5f3cd0682cad85"
+  integrity sha512-/j4lIYH0VbNTN+BpQKpOftMT9shsYTFNsgzHXdqPPn4V6n6fynUhN6sQ6AmafzPSNcPhPpbEsAa9dUmF0c8prg==
   dependencies:
     ldclient-js "2.8.0"
     lodash.camelcase "4.3.0"
     lodash.isequal "4.5.0"
-    tiny-warning "1.0.0"
+    tiny-warning "1.0.2"
 
-"@flopflip/memory-adapter@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-1.1.0.tgz#2ac3afebc9987785bc52c72659c0f93f8dc00fd3"
-  integrity sha512-Q+HQpvTydjEV7KnUN5VRGIua+3V8BR7fydoFVvvs5bIfJZpXOopKzSi3GRuR6Mi3qGfdDMXzJN00uTc2ktEsgw==
+"@flopflip/memory-adapter@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/@flopflip/memory-adapter/-/memory-adapter-1.1.1.tgz#63e5d8f9711f12ce1173277157ec6d41a69f4adc"
+  integrity sha512-c/eksJRb3Uj8YYDdZJGhHd7jVOCGVMH4z99KqePbqcn6flwmUVKXC+5VrmX194RxLSXjOkpM01mSENQk/6qm6Q==
   dependencies:
     invariant "2.2.4"
     mitt "1.1.3"
 
-"@flopflip/react-broadcast@7.2.4":
-  version "7.2.4"
-  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-7.2.4.tgz#cc9f49dea0f5321b1c6802a8aacd0fa18f0ca05f"
-  integrity sha512-0VJ2lky65n4l3Tw5cim8HRQyeIdy1InvlNIywGAnIPvAvdIccHfIa5JKUYfeboMX5wLcwzUmXBni5VRItpgRsQ==
+"@flopflip/react-broadcast@7.2.5":
+  version "7.2.5"
+  resolved "https://registry.npmjs.org/@flopflip/react-broadcast/-/react-broadcast-7.2.5.tgz#6ed8df5e0040753c7bc48d5bd2d7a0424eb6ba2b"
+  integrity sha512-cCUsyYGiQ3wozZYkUEfMSmyc+blepgYGoRoghT+7cmBg+YvDnM5SUFw4GHFrufdfNvJ42ikFwExefpSLLKdRDA==
   dependencies:
-    "@flopflip/react" "^6.2.2"
-    "@flopflip/types" "^1.4.1"
+    "@flopflip/react" "^6.2.3"
+    "@flopflip/types" "^1.4.2"
     create-react-context "0.2.3"
     lodash.flowright "3.5.0"
     lodash.memoize "4.1.2"
 
-"@flopflip/react@^6.2.2":
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-6.2.2.tgz#aec195880df0eae0a738c6f1fea7172b8373ca27"
-  integrity sha512-dP+s2yEFHEaLve4bJQ4rbIH2T0ZIEbWw0a/yQ5kqKaTytVO11v1EKjBV3Ow/6G+g3wzNAcAXeEMjtk1DoGVWAQ==
+"@flopflip/react@^6.2.3":
+  version "6.2.3"
+  resolved "https://registry.npmjs.org/@flopflip/react/-/react-6.2.3.tgz#ba715cc9cbe813b2404d8ecf97ec2434126974d3"
+  integrity sha512-yJehbOqQA69WM1MdvVoziPNv3vWqGi4tfkjJENiZVWaku827S/OOXCMdvFI/eoONy0g6IJXeldBhoqQvwacbPw==
   dependencies:
     create-react-context "0.2.3"
-    deepmerge "2.2.1"
+    deepmerge "3.1.0"
     lodash.camelcase "4.3.0"
     lodash.flowright "3.5.0"
     lodash.intersection "4.4.0"
@@ -1171,13 +1171,13 @@
     lodash.omit "4.5.0"
     prop-types "15.6.2"
     react-fast-compare "2.0.4"
-    react-is "16.6.3"
-    tiny-warning "1.0.0"
+    react-is "16.7.0"
+    tiny-warning "1.0.2"
 
-"@flopflip/types@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-1.4.1.tgz#d041ea4cc55c209ef6d00104c349ddd8b520ac00"
-  integrity sha512-q8lcki+olyuW9i+lIYy99mkCZacwpvRUOs1JBjgZLjyPfrJvIvKXkcGCgS6uvWnkBY3wGpVJdu4Da3CHJYGlAA==
+"@flopflip/types@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.npmjs.org/@flopflip/types/-/types-1.4.2.tgz#cbd5a5b833eb0677b66193372f837c8d1ca470e4"
+  integrity sha512-o6m0DTCXiZKUAH7RyI50UMaaiPqpba8OwyauT/26Sq8O3NDJ+CAr5KyMjif5npe6tznV9Cf6NtIOpoXqyRAVtA==
 
 "@iamstarkov/listr-update-renderer@0.4.1":
   version "0.4.1"
@@ -4958,7 +4958,12 @@ deep-is@~0.1.3:
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
   integrity sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=
 
-deepmerge@2.2.1, deepmerge@^2.1.1:
+deepmerge@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.npmjs.org/deepmerge/-/deepmerge-3.1.0.tgz#a612626ce4803da410d77554bfd80361599c034d"
+  integrity sha512-/TnecbwXEdycfbsM2++O3eGiatEFHjjNciHEwJclM+T5Kd94qD1AP+2elP/Mq0L5b9VZJao5znR01Mz6eX8Seg==
+
+deepmerge@^2.1.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-2.2.1.tgz#5d3ff22a01c00f645405a2fbc17d0778a1801170"
   integrity sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==
@@ -12919,12 +12924,7 @@ react-intl@2.8.0:
     intl-relativeformat "^2.1.0"
     invariant "^2.1.1"
 
-react-is@16.6.3:
-  version "16.6.3"
-  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.6.3.tgz#d2d7462fcfcbe6ec0da56ad69047e47e56e7eac0"
-  integrity sha512-u7FDWtthB4rWibG/+mFbVd5FvdI20yde86qKGx4lVUTWmPlSWQ4QxbBIrrs+HnXGbxOUlUzTAP/VDmvCwaP2yA==
-
-react-is@^16.3.2, react-is@^16.5.2, react-is@^16.6.1, react-is@^16.6.3, react-is@^16.7.0:
+react-is@16.7.0, react-is@^16.3.2, react-is@^16.5.2, react-is@^16.6.1, react-is@^16.6.3, react-is@^16.7.0:
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
   integrity sha512-Z0VRQdF4NPDoI0tsXVMLkJLiwEBa+RP66g0xDHxgxysxSoCUccSten4RTF/UFvZF1dZvZ9Zu1sx+MDXwcOR34g==
@@ -15200,12 +15200,7 @@ tiny-invariant@1.0.3, tiny-invariant@^1.0.2:
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.0.3.tgz#91efaaa0269ccb6271f0296aeedb05fc3e067b7a"
   integrity sha512-ytQx8T4DL8PjlX53yYzcIC0WhIZbpR0p1qcYjw2pHu3w6UtgWwFJQ/02cnhOnBBhlFx/edUIfcagCaQSe3KMWg==
 
-tiny-warning@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.0.tgz#70fba262ea3645e10506fe8673aeb133d959fc93"
-  integrity sha512-6CrF/DMLSoYakJ7f6+1bz6nHJY6Tj6sEj8/9hjTzGi94MeuAZprPE+3jykGMUgoswnmuPA9NlKlYLNJaFVYHIw==
-
-tiny-warning@^1.0.0, tiny-warning@^1.0.2:
+tiny-warning@1.0.2, tiny-warning@^1.0.0, tiny-warning@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.2.tgz#1dfae771ee1a04396bdfde27a3adcebc6b648b28"
   integrity sha512-rru86D9CpQRLvsFG5XFdy0KdLAvjdQDyZCsRcuu60WtzFylDM3eAWSxEVz5kzL2Gp544XiUvPbVKtOA/txLi9Q==
