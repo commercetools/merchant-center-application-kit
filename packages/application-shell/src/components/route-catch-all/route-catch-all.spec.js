@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import PageNotFound from '@commercetools-frontend/application-components';
+import { PageNotFound } from '@commercetools-frontend/application-components';
 import { ForcePageReload, RouteCatchAll } from './route-catch-all';
 
 const createTestProps = props => ({
