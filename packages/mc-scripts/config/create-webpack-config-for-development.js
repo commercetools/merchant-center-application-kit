@@ -227,7 +227,7 @@ module.exports = ({
                 }),
                 postcssCustomMediaQueries({
                   importFrom: require.resolve(
-                    '@commercetools-frontend/ui-kit/materials/media-queries.mod.css'
+                    '@commercetools-frontend/application-components/materials/media-queries.mod.css'
                   ),
                 }),
                 postcssCustomProperties({
