@@ -1,64 +1,65 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@commercetools-frontend/application-shell/test-utils';
 import ServicePageResponseLayout from './service-page-response-layout';
 
 const createTestProps = props => ({
   imageSrc: '/assets/foo.svg',
-  title: <div>{'title'}</div>,
-  paragraph1: <div>{'title 1'}</div>,
+  title: 'title',
+  paragraph1: 'title 1',
   ...props,
 });
 
 describe('rendering', () => {
+  let props;
   describe('with only 1 paragraph', () => {
-    let wrapper;
-    let props;
     beforeEach(() => {
       props = createTestProps();
-      wrapper = shallow(<ServicePageResponseLayout {...props} />);
     });
-    it('outputs correct tree', () => {
-      expect(wrapper).toMatchSnapshot();
+    it('renders the title and paragraph', () => {
+      const { getByText } = render(<ServicePageResponseLayout {...props} />);
+      expect(getByText(props.title)).toBeInTheDocument();
+      expect(getByText(props.paragraph1)).toBeInTheDocument();
     });
   });
   describe('with both paragraphs', () => {
-    let wrapper;
-    let props;
     beforeEach(() => {
       props = createTestProps({
-        paragraph2: <div>{'title 2'}</div>,
+        paragraph2: 'title 2',
       });
-      wrapper = shallow(<ServicePageResponseLayout {...props} />);
     });
-    it('outputs correct tree', () => {
-      expect(wrapper).toMatchSnapshot();
+    it('renders the title and paragraphs', () => {
+      const { getByText } = render(<ServicePageResponseLayout {...props} />);
+      expect(getByText(props.title)).toBeInTheDocument();
+      expect(getByText(props.paragraph1)).toBeInTheDocument();
+      expect(getByText(props.paragraph2)).toBeInTheDocument();
     });
   });
   describe('with both paragraphs and a body content in between', () => {
-    let wrapper;
-    let props;
     beforeEach(() => {
       props = createTestProps({
-        paragraph2: <div>{'title 2'}</div>,
-        bodyContent: <div>{'content'}</div>,
+        paragraph2: 'title 2',
+        bodyContent: 'content',
       });
-      wrapper = shallow(<ServicePageResponseLayout {...props} />);
     });
-    it('outputs correct tree', () => {
-      expect(wrapper).toMatchSnapshot();
+    it('renders the title, paragraphs and body content', () => {
+      const { getByText } = render(<ServicePageResponseLayout {...props} />);
+      expect(getByText(props.title)).toBeInTheDocument();
+      expect(getByText(props.paragraph1)).toBeInTheDocument();
+      expect(getByText(props.paragraph2)).toBeInTheDocument();
+      expect(getByText(props.bodyContent)).toBeInTheDocument();
     });
   });
   describe('with only one paragraph and the body content', () => {
-    let wrapper;
-    let props;
     beforeEach(() => {
       props = createTestProps({
-        bodyContent: <div>{'content'}</div>,
+        bodyContent: 'content',
       });
-      wrapper = shallow(<ServicePageResponseLayout {...props} />);
     });
-    it('outputs correct tree', () => {
-      expect(wrapper).toMatchSnapshot();
+    it('renders the title, paragraphs and body content', () => {
+      const { getByText } = render(<ServicePageResponseLayout {...props} />);
+      expect(getByText(props.title)).toBeInTheDocument();
+      expect(getByText(props.paragraph1)).toBeInTheDocument();
+      expect(getByText(props.bodyContent)).toBeInTheDocument();
     });
   });
 });

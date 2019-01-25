@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PageNotFoundSVG from '@commercetools-frontend/assets/images/page-not-found.svg';
-import ServicePageResponseLayout from '@commercetools-frontend/application-components';
+import ServicePageResponseLayout from '../service-page-response-layout';
 import messages from './messages';
 import styles from './page-not-found.mod.css';
 

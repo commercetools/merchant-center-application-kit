@@ -38,13 +38,20 @@
     "prop-types": "15.6.2"
   },
   "devDependencies": {
+    "@commercetools-frontend/application-shell": "7.0.0",
+    "@commercetools-frontend/assets": "7.0.0",
     "@commercetools-frontend/ui-kit": "7.0.0",
     "react": "16.7.0",
-    "react-dom": "16.7.0"
+    "react-intl": "2.8.0",
+    "react-dom": "16.7.0",
+    "react-testing-library": "5.4.4"
   },
   "peerDependencies": {
+    "@commercetools-frontend/assets": "7.x",
     "@commercetools-frontend/ui-kit": "7.x",
     "react": "16.x",
-    "react-dom": "16.x"
+    "react-intl": "2.x",
+    "react-dom": "16.x",
+    "react-testing-library": "5.x"
   }
 }
