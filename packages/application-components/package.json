@@ -38,7 +38,6 @@
     "prop-types": "15.6.2"
   },
   "devDependencies": {
-    "@commercetools-frontend/application-shell": "7.0.0",
     "@commercetools-frontend/assets": "7.0.0",
     "@commercetools-frontend/ui-kit": "7.0.0",
     "react": "16.7.0",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@commercetools-frontend/application-shell/test-utils';
+import { render } from '../../../test-utils';
 import PageNotFound from './page-not-found';
 import messages from './messages';
 
