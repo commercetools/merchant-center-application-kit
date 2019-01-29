@@ -56,7 +56,7 @@
     "@flopflip/memory-adapter": "1.1.1",
     "@flopflip/react-broadcast": "7.2.5",
     "apollo-cache-inmemory": "1.4.2",
-    "apollo-client": "2.4.8",
+    "apollo-client": "2.4.12",
     "apollo-link": "1.2.6",
     "apollo-link-error": "1.1.5",
     "apollo-link-http": "1.5.9",
