@@ -1,3 +1,12 @@
+## [7.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v7.1.3...v7.2.0) (2019-01-29)
+
+#### 🔮 Type: Chore
+
+- `application-components`, `application-shell`, `mc-scripts`, `react-notifications`
+  - [#325](https://github.com/commercetools/merchant-center-application-kit/pull/325) chore: update ui-kit deps to 8.0.0 ([@emmenko](https://github.com/emmenko))
+- `application-shell-connectors`, `application-shell`
+  - [#326](https://github.com/commercetools/merchant-center-application-kit/pull/326) chore: update reps ([@emmenko](https://github.com/emmenko))
+
 ## [7.1.3](https://github.com/commercetools/merchant-center-application-kit/compare/v7.1.2...v7.1.3) (2019-01-25)
 
 #### 🐛 Type: Bug
