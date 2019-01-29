@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-components",
-  "version": "7.0.0",
+  "version": "7.2.0",
   "description": "Generic components for building Merchant Center applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -41,16 +41,16 @@
     "@commercetools-frontend/assets": "7.0.0",
     "@commercetools-frontend/ui-kit": "8.0.0",
     "react": "16.7.0",
-    "react-intl": "2.8.0",
     "react-dom": "16.7.0",
+    "react-intl": "2.8.0",
     "react-testing-library": "5.4.4"
   },
   "peerDependencies": {
     "@commercetools-frontend/assets": "7.x",
     "@commercetools-frontend/ui-kit": "8.x",
     "react": "16.x",
-    "react-intl": "2.x",
     "react-dom": "16.x",
+    "react-intl": "2.x",
     "react-testing-library": "5.x"
   }
 }
