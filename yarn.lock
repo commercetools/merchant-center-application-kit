@@ -767,18 +767,19 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@commercetools-frontend/ui-kit@7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-7.0.0.tgz#3822c59ea0b21ff9170d22eb1b7cfd71a327a2b2"
-  integrity sha512-ZEwXShHB5/OFJnb74of70bPCYFiYzhTKcpG8DhHrr/gyPFzMhgoM81AuJePJK8XCxeZrkcRVL9qrunwoFXAD7g==
+"@commercetools-frontend/ui-kit@8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-8.0.0.tgz#0fbcacbcdaed8438acb009209b152738db415059"
+  integrity sha512-MEsZGaGYqL7ZQtpba4YIcC3n0PZssczU8r03fXcJ3u6sjCDqFOjdnJFwe+UwUJ55W3kDHgdMrKqAaxiaBSzCBA==
   dependencies:
     "@emotion/core" "10.0.6"
     "@emotion/styled" "10.0.6"
     classnames "2.2.6"
     common-tags "1.8.0"
     dom-helpers "3.4.0"
-    downshift "3.1.12"
+    downshift "3.2.0"
     lodash.flatmap "4.5.0"
+    lodash.flowright "3.5.0"
     lodash.has "4.5.2"
     lodash.isnil "4.0.0"
     lodash.mapvalues "4.6.0"
@@ -791,7 +792,6 @@
     react-select "2.3.0"
     react-textarea-autosize "7.1.0"
     react-virtualized "9.21.0"
-    recompose "0.30.0"
     tiny-invariant "1.0.3"
     warning "4.0.2"
 
@@ -5140,7 +5140,17 @@ dotenv@6.2.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
   integrity sha512-HygQCKUBSFl8wKQZBSemMywRWcEDNidvNbjGVyZu3nbZ8qq9ubiPoGLMdRDpfSrpkkm9BXYFkpKxxFX38o/76w==
 
-downshift@3.1.12, downshift@^3.1.12:
+downshift@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/downshift/-/downshift-3.2.0.tgz#820f40575683d3fc521a9ffd409ef4a69cef531d"
+  integrity sha512-IXZ3IB7xU51R04olRGSp8GBmJhPlCL8tW5FjZrJh8e4kB4BGUWsQHZ9tNsO+qNLABieR5DIgYBZ9MncPlwZSDg==
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+    compute-scroll-into-view "^1.0.9"
+    prop-types "^15.6.0"
+    react-is "^16.5.2"
+
+downshift@^3.1.12:
   version "3.1.12"
   resolved "https://registry.yarnpkg.com/downshift/-/downshift-3.1.12.tgz#70da0bfb92711393717206cc008b865e7f9fde4d"
   integrity sha512-dkDlHVIHFT9kFxvPcmlp/kIwV1Uq/aI4rC70nNQkDGZNrpcexfnv4sIVK0hkIuewr9ZNo+Keqcwr3ao476YqJQ==
@@ -12466,7 +12476,7 @@ react-is@16.7.0, react-is@^16.3.2, react-is@^16.5.2, react-is@^16.6.1, react-is@
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
   integrity sha512-Z0VRQdF4NPDoI0tsXVMLkJLiwEBa+RP66g0xDHxgxysxSoCUccSten4RTF/UFvZF1dZvZ9Zu1sx+MDXwcOR34g==
 
-react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
+react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
@@ -12801,18 +12811,6 @@ recompose@0.26.0, recompose@^0.26.0:
     change-emitter "^0.1.2"
     fbjs "^0.8.1"
     hoist-non-react-statics "^2.3.1"
-    symbol-observable "^1.0.4"
-
-recompose@0.30.0:
-  version "0.30.0"
-  resolved "https://registry.yarnpkg.com/recompose/-/recompose-0.30.0.tgz#82773641b3927e8c7d24a0d87d65aeeba18aabd0"
-  integrity sha512-ZTrzzUDa9AqUIhRk4KmVFihH0rapdCSMFXjhHbNrjAWxBuUD/guYlyysMnuHjlZC/KRiOKRtB4jf96yYSkKE8w==
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    change-emitter "^0.1.2"
-    fbjs "^0.8.1"
-    hoist-non-react-statics "^2.3.1"
-    react-lifecycles-compat "^3.0.2"
     symbol-observable "^1.0.4"
 
 recursive-readdir@2.2.2:
