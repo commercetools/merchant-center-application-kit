@@ -355,7 +355,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
                       }),
                       postcssCustomMediaQueries({
                         importFrom: require.resolve(
-                          '@commercetools-frontend/ui-kit/materials/media-queries.css'
+                          '@commercetools-frontend/application-components/materials/media-queries.css'
                         ),
                       }),
                       postcssCustomProperties({
