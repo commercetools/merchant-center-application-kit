@@ -27,7 +27,7 @@ import {
   ConnectedSquareIcon,
 } from '@commercetools-frontend/ui-kit';
 import MissingImageSvg from '@commercetools-frontend/assets/images/image__missing_image.svg';
-import * as storage from '@commercetools-frontend/storage';
+import { localStorage } from '@commercetools-frontend/storage';
 import {
   GRAPHQL_TARGETS,
   NO_VALUE_FALLBACK,
@@ -424,7 +424,7 @@ export class DataMenu extends React.PureComponent {
 
     this.setState(prevState => {
       const nextIsMenuOpen = !prevState.isMenuOpen;
-      storage.put(STORAGE_KEYS.IS_FORCED_MENU_OPEN, nextIsMenuOpen);
+      localStorage.put(STORAGE_KEYS.IS_FORCED_MENU_OPEN, nextIsMenuOpen);
       return { isMenuOpen: nextIsMenuOpen };
     });
   };
@@ -666,7 +666,7 @@ export class NavBar extends React.PureComponent {
 export default compose(
   withRouter, // Connect again, to access the `location` object
   withProps(() => {
-    const cachedIsForcedMenuOpen = storage.get(
+    const cachedIsForcedMenuOpen = localStorage.get(
       STORAGE_KEYS.IS_FORCED_MENU_OPEN
     );
     return {

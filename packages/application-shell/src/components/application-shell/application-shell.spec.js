@@ -18,7 +18,6 @@ import ApplicationShell, {
   mergeMessages,
 } from './application-shell';
 
-jest.mock('@commercetools-frontend/storage');
 jest.mock('@commercetools-frontend/sentry');
 jest.mock('../../utils');
 

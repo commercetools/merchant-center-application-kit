@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import * as storage from '@commercetools-frontend/storage';
+import { localStorage } from '@commercetools-frontend/storage';
 import { STORAGE_KEYS } from '../../constants';
 
 const getIsAuthenticated = () =>
-  storage.get(STORAGE_KEYS.IS_AUTHENTICATED) === 'true';
+  localStorage.get(STORAGE_KEYS.IS_AUTHENTICATED) === 'true';
 
 const Authenticated = props => {
   const isAuthenticated = getIsAuthenticated();

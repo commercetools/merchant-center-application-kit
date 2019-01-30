@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import * as storage from '@commercetools-frontend/storage';
+import { localStorage } from '@commercetools-frontend/storage';
 import { STORAGE_KEYS } from '../../constants';
 import ProjectDataLocale from './project-data-locale';
 
@@ -62,7 +62,7 @@ describe('lifecycle', () => {
       });
       describe('when locale has been already cached', () => {
         beforeEach(() => {
-          storage.get.mockReturnValue('de');
+          localStorage.get.mockReturnValue('de');
           nextProps = { locales: ['it', 'de'] };
           derivedState = ProjectDataLocale.getDerivedStateFromProps(
             nextProps,
@@ -82,7 +82,7 @@ describe('lifecycle', () => {
       });
       describe('when cached locale is not listed in the project locales', () => {
         beforeEach(() => {
-          storage.put(STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
+          localStorage.put(STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
           nextProps = { locales: ['it', 'de'] };
           derivedState = ProjectDataLocale.getDerivedStateFromProps(
             nextProps,

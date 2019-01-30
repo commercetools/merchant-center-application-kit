@@ -6,6 +6,7 @@ import {
   PrimaryButton,
   Text,
 } from '@commercetools-frontend/ui-kit';
+import { sessionStorage } from '@commercetools-frontend/storage';
 import { ORGANIZATION_GENERAL_ERROR } from '../../constants';
 import { LoginSSO, getMessageKeyForError } from './login-sso';
 
@@ -175,7 +176,6 @@ describe('interaction', () => {
     describe('when request is successful', () => {
       describe('when authProvider protocol is "oidc"', () => {
         beforeEach(() => {
-          window.sessionStorage = jest.fn();
           props = createTestProps({
             getOrganizationByName: jest.fn(() =>
               Promise.resolve({
@@ -221,7 +221,7 @@ describe('interaction', () => {
           );
         });
         it('should save state in nonce', () => {
-          expect(window.sessionStorage.setItem).toHaveBeenCalledWith(
+          expect(sessionStorage.put).toHaveBeenCalledWith(
             expect.stringContaining('nonce_foo-uuid'),
             JSON.stringify({ organizationId: 'o1' })
           );

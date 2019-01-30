@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import * as storage from '@commercetools-frontend/storage';
+import { localStorage } from '@commercetools-frontend/storage';
 import Authenticated from './authenticated';
 
 jest.mock('@commercetools-frontend/storage');
@@ -15,7 +15,7 @@ describe('rendering', () => {
   let props;
   describe('when user is authenticated', () => {
     beforeEach(() => {
-      storage.get.mockReturnValue('true');
+      localStorage.get.mockReturnValue('true');
       props = createTestProps();
       createWrapper(props);
     });
@@ -26,7 +26,7 @@ describe('rendering', () => {
   });
   describe('when the user is not logged in', () => {
     beforeEach(() => {
-      storage.get.mockReturnValue('false');
+      localStorage.get.mockReturnValue('false');
       props = createTestProps();
       createWrapper(props);
     });

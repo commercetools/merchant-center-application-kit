@@ -16,6 +16,7 @@ import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-frontend/url-utils';
+import { sessionStorage } from '@commercetools-frontend/storage';
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { connect } from 'react-redux';
 import { ORGANIZATION_GENERAL_ERROR, STORAGE_KEYS } from '../../constants';
@@ -41,10 +42,7 @@ function generateAndCacheNonceWithState(state) {
   // the id_token and, once validated, we can retrieve and use
   // the state object.
   // https://auth0.com/docs/protocols/oauth2/oauth-state#how-to-use-the-parameter-to-restore-application-state
-  window.sessionStorage.setItem(
-    `${STORAGE_KEYS.NONCE}_${nonce}`,
-    JSON.stringify(state)
-  );
+  sessionStorage.put(`${STORAGE_KEYS.NONCE}_${nonce}`, JSON.stringify(state));
   return nonce;
 }
 

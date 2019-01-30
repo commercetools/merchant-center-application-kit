@@ -7,7 +7,7 @@ import {
   RestrictedByPermissions,
   permissions,
 } from '@commercetools-frontend/permissions';
-import * as storage from '@commercetools-frontend/storage';
+import { localStorage } from '@commercetools-frontend/storage';
 import { STORAGE_KEYS } from '../../constants';
 import {
   NavBar,
@@ -1098,7 +1098,7 @@ describe('instance methods', () => {
           wrapper.instance().handleToggleMenu();
         });
         it('should update isForcedMenuOpen to false', () => {
-          expect(storage.put).toHaveBeenCalledWith(
+          expect(localStorage.put).toHaveBeenCalledWith(
             STORAGE_KEYS.IS_FORCED_MENU_OPEN,
             false
           );
@@ -1110,7 +1110,7 @@ describe('instance methods', () => {
           wrapper.instance().handleToggleMenu();
         });
         it('should update isForcedMenuOpen to true', () => {
-          expect(storage.put).toHaveBeenCalledWith(
+          expect(localStorage.put).toHaveBeenCalledWith(
             STORAGE_KEYS.IS_FORCED_MENU_OPEN,
             true
           );

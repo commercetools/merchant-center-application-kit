@@ -2,7 +2,7 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { Redirect } from 'react-router-dom';
 import { shallow } from 'enzyme';
-import * as storage from '@commercetools-frontend/storage';
+import { localStorage } from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import ProjectExpired from '../project-expired';
@@ -450,12 +450,12 @@ describe('lifecycle', () => {
   describe('componentDidUpdate', () => {
     beforeEach(() => {
       props = createTestProps({ match: { params: { projectKey: 'p1' } } });
-      storage.get.mockReturnValueOnce('p1');
+      localStorage.get.mockReturnValueOnce('p1');
       wrapper = shallow(<ProjectContainer {...props} />);
       wrapper.instance().componentDidUpdate(props);
     });
     it('should store the project key in localStorage', () => {
-      expect(storage.put).toHaveBeenCalledWith(
+      expect(localStorage.put).toHaveBeenCalledWith(
         STORAGE_KEYS.ACTIVE_PROJECT_KEY,
         'p1'
       );

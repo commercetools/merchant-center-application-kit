@@ -7,7 +7,7 @@ import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-frontend/url-utils';
-import * as storage from '@commercetools-frontend/storage';
+import { localStorage } from '@commercetools-frontend/storage';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import history from '@commercetools-frontend/browser-history';
 import {
@@ -35,7 +35,6 @@ import AsyncLoginSSOCallback from '../login-sso-callback/async';
 import AsyncLoginLocked from '../login-locked/async';
 import Logout from '../logout';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
-// import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
 import GtmBooter from '../gtm-booter';
@@ -437,7 +436,7 @@ export default class ApplicationShell extends React.Component {
     });
     // NOTE: this is a temporary thingy, to ensure we clear the `token`
     // from localStorage.
-    storage.remove('token');
+    localStorage.remove('token');
   }
   componentDidCatch(error, errorInfo) {
     this.setState({ hasError: true });

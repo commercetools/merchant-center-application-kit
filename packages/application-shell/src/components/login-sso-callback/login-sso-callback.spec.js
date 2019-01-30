@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { sessionStorage } from '@commercetools-frontend/storage';
 import { STORAGE_KEYS } from '../../constants';
 import FailedAuthentication from '../failed-authentication';
 import { LoginSSOCallback } from './login-sso-callback';
@@ -57,7 +58,7 @@ describe('lifecylcle', () => {
 
     describe('when nonce is correct', () => {
       beforeEach(() => {
-        window.sessionStorage.getItem.mockReturnValue(
+        sessionStorage.get.mockReturnValue(
           JSON.stringify({ organizationId: 'o1' })
         );
         wrapper.instance().componentDidMount();
@@ -80,7 +81,7 @@ describe('lifecylcle', () => {
             ),
           });
           wrapper = shallow(<LoginSSOCallback {...props} />);
-          window.sessionStorage.setItem(
+          sessionStorage.get(
             `${STORAGE_KEYS.NONCE}_EY`,
             JSON.stringify({
               organizationId: 'o1',
@@ -98,7 +99,7 @@ describe('lifecylcle', () => {
             requestAccessToken: jest.fn(() => Promise.reject(new Error())),
           });
           wrapper = shallow(<LoginSSOCallback {...props} />);
-          window.sessionStorage.getItem.mockReturnValue(
+          sessionStorage.get.mockReturnValue(
             JSON.stringify({
               organizationId: 'o1',
             })
@@ -116,7 +117,7 @@ describe('lifecylcle', () => {
 
     describe('when nonce is wrong', () => {
       beforeEach(() => {
-        window.sessionStorage.getItem.mockReturnValue(null);
+        sessionStorage.get.mockReturnValue(null);
         wrapper.instance().componentDidMount();
       });
       it('should set hasAuthenticationFailed to true', () => {

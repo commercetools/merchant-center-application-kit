@@ -4,14 +4,14 @@ import { compose, withProps } from 'recompose';
 import qs from 'query-string';
 import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
-import * as storage from '@commercetools-frontend/storage';
+import { localStorage, sessionStorage } from '@commercetools-frontend/storage';
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { STORAGE_KEYS } from '../../constants';
 import ApplicationLoader from '../application-loader';
 import FailedAuthentication from '../failed-authentication';
 
 const loadSessionState = key => {
-  const sessionState = window.sessionStorage.getItem(key);
+  const sessionState = sessionStorage.get(key);
   if (sessionState) {
     try {
       return JSON.parse(sessionState);
@@ -50,7 +50,7 @@ export class LoginSSOCallback extends React.PureComponent {
     const nonceKey = `${STORAGE_KEYS.NONCE}_${decodedIdToken.nonce}`;
     const sessionState = loadSessionState(nonceKey);
     // Clear the nonce, we don't need it anymore
-    window.sessionStorage.removeItem(nonceKey);
+    sessionStorage.remove(nonceKey);
 
     if (!sessionState) {
       this.setAuthenticationFailed(true);
@@ -62,9 +62,9 @@ export class LoginSSOCallback extends React.PureComponent {
         })
         .then(payload => {
           // Set a flag to indicate that the user has been authenticated
-          storage.put(STORAGE_KEYS.IS_AUTHENTICATED, true);
+          localStorage.put(STORAGE_KEYS.IS_AUTHENTICATED, true);
           // Store the IdP Url, useful for redirecting logic on logout.
-          storage.put(STORAGE_KEYS.LOGIN_STRATEGY, payload.loginStrategy);
+          localStorage.put(STORAGE_KEYS.LOGIN_STRATEGY, payload.loginStrategy);
 
           this.props.redirectTo('/');
         })

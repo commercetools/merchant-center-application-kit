@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import * as storage from '@commercetools-frontend/storage';
+import { localStorage } from '@commercetools-frontend/storage';
 import {
   LOGIN_STRATEGY_SSO,
   LOGIN_STRATEGY_DEFAULT,
@@ -34,19 +34,23 @@ describe('componentDidMount', () => {
   let props;
   beforeEach(() => {
     props = createTestProps();
-    storage.get.mockReturnValue('foo-1');
+    localStorage.get.mockReturnValue('foo-1');
 
     const wrapper = shallow(<Logout {...props} />);
     wrapper.instance().componentDidMount();
   });
   it('should remove isAuthenticated from storage', () => {
-    expect(storage.remove).toHaveBeenCalledWith(STORAGE_KEYS.IS_AUTHENTICATED);
+    expect(localStorage.remove).toHaveBeenCalledWith(
+      STORAGE_KEYS.IS_AUTHENTICATED
+    );
   });
   it('should remove loginStrategy from storage', () => {
-    expect(storage.remove).toHaveBeenCalledWith(STORAGE_KEYS.LOGIN_STRATEGY);
+    expect(localStorage.remove).toHaveBeenCalledWith(
+      STORAGE_KEYS.LOGIN_STRATEGY
+    );
   });
   it('should remove projectKey from storage', () => {
-    expect(storage.remove).toHaveBeenCalledWith(
+    expect(localStorage.remove).toHaveBeenCalledWith(
       STORAGE_KEYS.ACTIVE_PROJECT_KEY
     );
   });
@@ -91,7 +95,7 @@ describe('componentDidMount', () => {
 describe('getLoginStrategy', () => {
   describe('when IdP URL is defined', () => {
     beforeEach(() => {
-      storage.get.mockReturnValue('sso');
+      localStorage.get.mockReturnValue('sso');
     });
     it('should return SSO as the login strategy', () => {
       expect(getLoginStrategy()).toBe(LOGIN_STRATEGY_SSO);
@@ -99,7 +103,7 @@ describe('getLoginStrategy', () => {
   });
   describe('when IdP URL is not defined', () => {
     beforeEach(() => {
-      storage.get.mockReturnValue(null);
+      localStorage.get.mockReturnValue(null);
     });
     it('should return default as the login strategy', () => {
       expect(getLoginStrategy()).toBe(LOGIN_STRATEGY_DEFAULT);
