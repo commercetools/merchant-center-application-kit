@@ -1,7 +1,7 @@
 {
   "name": "@commercetools-frontend/storage",
   "version": "7.0.0",
-  "description": "Getters and setters for window.localStorage",
+  "description": "Getters and setters for window.localStorage and window.sessionStorage",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
     "type": "git",
