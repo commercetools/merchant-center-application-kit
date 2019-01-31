@@ -22,7 +22,7 @@
   "module": "dist/application-components.es.js",
   "files": [
     "dist",
-    "materials/media-queries.mod.css",
+    "materials/media-queries.css",
     "package.json",
     "LICENSE",
     "README.md"
