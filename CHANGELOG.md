@@ -1,3 +1,10 @@
+## [7.2.1](https://github.com/commercetools/merchant-center-application-kit/compare/v7.2.0...v7.2.1) (2019-01-31)
+
+#### 🐛 Type: Bug
+
+- `application-components`
+  - [#329](https://github.com/commercetools/merchant-center-application-kit/pull/329) fix(application-components): media-queries.css publish file path ([@emmenko](https://github.com/emmenko))
+
 ## [7.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v7.1.3...v7.2.0) (2019-01-29)
 
 #### 🔮 Type: Chore
