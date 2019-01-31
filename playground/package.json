@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "7.2.0",
+  "version": "7.2.1",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@commercetools-frontend/actions-global": "7.0.0",
-    "@commercetools-frontend/application-shell": "7.2.0",
+    "@commercetools-frontend/application-shell": "7.2.1",
     "@commercetools-frontend/application-shell-connectors": "7.2.0",
     "@commercetools-frontend/constants": "7.0.0",
     "@commercetools-frontend/i18n": "7.0.0",
