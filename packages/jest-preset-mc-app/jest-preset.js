@@ -25,6 +25,7 @@ module.exports = {
     resolveRelativePath('./setup-tests.js'),
     'jest-localstorage-mock',
   ],
+  setupFilesAfterEnv: [resolveRelativePath('./setup-test-framework.js')],
   setupTestFrameworkScriptFile: resolveRelativePath(
     './setup-test-framework.js'
   ),
