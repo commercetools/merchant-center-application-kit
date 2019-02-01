@@ -1,3 +1,15 @@
+## [7.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v7.2.1...v7.3.0) (2019-02-01)
+
+#### 🔮 Type: Chore
+
+- `jest-preset-mc-app`
+  - [#331](https://github.com/commercetools/merchant-center-application-kit/pull/331) chore: add setupFilesAfterEnv (for jest@24) ([@tdeekens](https://github.com/tdeekens))
+
+#### 💅 Type: Enhancement
+
+- `mc-http-server`
+  - [#332](https://github.com/commercetools/merchant-center-application-kit/pull/332) Add graceful shutdown and isolated Prometheus metrics server to mc-http-server ([@tdeekens](https://github.com/tdeekens))
+
 ## [7.2.1](https://github.com/commercetools/merchant-center-application-kit/compare/v7.2.0...v7.2.1) (2019-01-31)
 
 #### 🐛 Type: Bug
