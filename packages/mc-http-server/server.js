@@ -13,7 +13,6 @@ const {
 const compression = require('compression');
 const express = require('express');
 const logout = require('./routes/logout');
-const getMetrics = require('./routes/metrics');
 const options = require('./load-options');
 
 const publicFolderPath = path.join(__dirname, 'public');
@@ -71,7 +70,6 @@ const serverIndexMiddleware = (request, response) => {
 // Configure and start the HTTP server.
 const app = express()
   .disable('x-powered-by')
-  .get('/metrics', getMetrics)
   .get('/version', (request, response) => {
     response.setHeader('Content-Type', 'application/json');
     response.end(
