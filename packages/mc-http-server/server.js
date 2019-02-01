@@ -3,9 +3,13 @@ const fs = require('fs');
 const path = require('path');
 const http = require('http');
 const morgan = require('morgan');
+const { createLightship } = require('lightship');
 const {
   createMiddleware: createPrometheusMetricsMiddleware,
 } = require('@promster/express');
+const {
+  createServer: createPrometheusMetricsServer,
+} = require('@promster/server');
 const compression = require('compression');
 const express = require('express');
 const logout = require('./routes/logout');
@@ -23,7 +27,12 @@ try {
 
 // Config
 const serverPort = process.env.HTTP_PORT || 3001;
-const serverUrl = `http://localhost:${serverPort}`;
+const serverUri = `http://localhost`;
+const serverUrl = `${serverUri}:${serverPort}`;
+
+const lightship = createLightship({
+  detectKubernetes: true,
+});
 
 /**
  * 👇 Middlewares
@@ -94,7 +103,28 @@ const app = express()
   // Catch all middleware to serve the `index.html` (for SPA routes)
   .use('*', serverIndexMiddleware);
 
-http.createServer(app).listen(serverPort, error => {
-  if (error) throw error;
+http.createServer(app).listen(serverPort, async error => {
+  if (error) {
+    lightship.signalNotReady();
+    throw error;
+  }
+
+  const prometheusMetricsServer = await createPrometheusMetricsServer();
+
+  lightship.registerShutdownHandler(async () => {
+    /**
+     * NOTE: The default k8s grace period is 60 seconds. It is often
+     * recommended to not exceed the grace period given by k8s by half.
+     * 20 seconds is chosen here under the assumption that any outstanging
+     * request just settle by then.
+     */
+    await new Promise(resolve => setTimeout(resolve, 20000));
+
+    prometheusMetricsServer.close();
+  });
+
+  lightship.signalReady();
+
   console.log(`Server is listening on ${serverUrl}...`);
+  console.log(`Prometheus metrics available on ${serverUri}:7788...`);
 });

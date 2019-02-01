@@ -1830,6 +1830,13 @@
   optionalDependencies:
     gc-stats "1.2.1"
 
+"@promster/server@2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@promster/server/-/server-2.0.5.tgz#a9d95ddc9e4d04417358175758581db5fe471490"
+  integrity sha512-QD+HveZjSGWHtE2YJkdyIefrgcPxR3o6dWJ4q1FBv+bEk4B4skRT0qOT9o3j7N95OE1NxTTpafSGCzlBDJgefQ==
+  dependencies:
+    "@promster/metrics" "^2.1.0"
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
@@ -2490,6 +2497,11 @@ array-flatten@1.1.1:
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
   integrity sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
 
+array-flatten@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-2.1.1.tgz#426bb9da84090c1838d812c8150af20a8331e296"
+  integrity sha1-Qmu52oQJDBg42BLIFQryCoMx4pY=
+
 array-flatten@^2.1.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-2.1.2.tgz#24ef80a28c1a893617e2149b0c6d0d788293b099"
@@ -3142,6 +3154,11 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
+
+boolean@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/boolean/-/boolean-0.2.0.tgz#808dff32ce1c87b828cc381428dc3b158d4f85cb"
+  integrity sha512-mDcM3ChboDuhv4glLXEH1us7jMiWXRSs3R13Okoo+kkFOlLIjvF1y88507wTfDf9zsuv0YffSDFUwX95VAT/mg==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -5821,6 +5838,43 @@ express@4.16.4, express@^4.16.2, express@^4.16.3:
     proxy-addr "~2.0.4"
     qs "6.5.2"
     range-parser "~1.2.0"
+    safe-buffer "5.1.2"
+    send "0.16.2"
+    serve-static "1.13.2"
+    setprototypeof "1.1.0"
+    statuses "~1.4.0"
+    type-is "~1.6.16"
+    utils-merge "1.0.1"
+    vary "~1.1.2"
+
+express@^5.0.0-alpha.6:
+  version "5.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/express/-/express-5.0.0-alpha.7.tgz#879bfb1bd52834646a9d8c3a773863c36e4d494c"
+  integrity sha512-3FW+yXzYCViXf6Ty9TN9IKLW+rC8qok3ktS4hS1FILAEnMnfnDpQ+23rZVvWC0Ul1alYpJXx7xSBSBp073970g==
+  dependencies:
+    accepts "~1.3.5"
+    array-flatten "2.1.1"
+    body-parser "1.18.3"
+    content-disposition "0.5.2"
+    content-type "~1.0.4"
+    cookie "0.3.1"
+    cookie-signature "1.0.6"
+    debug "3.1.0"
+    depd "~1.1.2"
+    encodeurl "~1.0.2"
+    escape-html "~1.0.3"
+    etag "~1.8.1"
+    finalhandler "1.1.1"
+    fresh "0.5.2"
+    merge-descriptors "1.0.1"
+    methods "~1.1.2"
+    on-finished "~2.3.0"
+    parseurl "~1.3.2"
+    path-is-absolute "1.0.1"
+    proxy-addr "~2.0.4"
+    qs "6.5.2"
+    range-parser "~1.2.0"
+    router "2.0.0-alpha.1"
     safe-buffer "5.1.2"
     send "0.16.2"
     serve-static "1.13.2"
@@ -9015,6 +9069,15 @@ libnpmteam@^1.0.1:
     get-stream "^4.0.0"
     npm-registry-fetch "^3.8.0"
 
+lightship@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/lightship/-/lightship-3.0.0.tgz#6131744e1cbd0d06e971b4c51c6dc2965c813fde"
+  integrity sha512-ZZC9zX4gifIQ1rrHTPaNttwFzIb0woOb/JXUKHocvxbwI/ey0M/mGT/YHvL9UmQlmofSDzoBSM0z6w7T0yysgg==
+  dependencies:
+    express "^5.0.0-alpha.6"
+    roarr "^2.11.9"
+    serialize-error "^3.0.0"
+
 lint-staged@8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-8.1.0.tgz#dbc3ae2565366d8f20efb9f9799d076da64863f2"
@@ -10975,7 +11038,7 @@ path-exists@^3.0.0:
   resolved "https://registry.yarnpkg.com/path-exists/-/path-exists-3.0.0.tgz#ce0ebeaa5f78cb18925ea7d810d7b59b010fd515"
   integrity sha1-zg6+ql94yxiSXqfYENe1mwEP1RU=
 
-path-is-absolute@^1.0.0, path-is-absolute@^1.0.1:
+path-is-absolute@1.0.1, path-is-absolute@^1.0.0, path-is-absolute@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
   integrity sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
@@ -13289,6 +13352,16 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
+roarr@^2.11.9:
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/roarr/-/roarr-2.12.1.tgz#69d3032987406fd66fe1c31c5727e8547f38beed"
+  integrity sha512-MHd5rLuloaMsW7HRKLLDej8j/G3QwhBfCYTMLJgcge7cJKl/r9Jv74OmuGnbqPAIXXuS/Ivc6gpbpryESHbvlA==
+  dependencies:
+    boolean "^0.2.0"
+    json-stringify-safe "^5.0.1"
+    semver-compare "^1.0.0"
+    sprintf-js "^1.1.1"
+
 rollup-plugin-babel@4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/rollup-plugin-babel/-/rollup-plugin-babel-4.3.2.tgz#8c0e1bd7aa9826e90769cf76895007098ffd1413"
@@ -13383,6 +13456,19 @@ rollup@1.1.2:
     "@types/estree" "0.0.39"
     "@types/node" "*"
     acorn "^6.0.5"
+
+router@2.0.0-alpha.1:
+  version "2.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/router/-/router-2.0.0-alpha.1.tgz#9188213b972215e03ef830e0ac77837870085f6d"
+  integrity sha512-fz/T/qLkJM6RTtbqGqA1+uZ88ejqJoPyKeJAeXPYjebA7HzV/UyflH4gXWqW/Y6SERnp4kDwNARjqy6se3PcOw==
+  dependencies:
+    array-flatten "2.1.1"
+    debug "3.1.0"
+    methods "~1.1.2"
+    parseurl "~1.3.2"
+    path-to-regexp "0.1.7"
+    setprototypeof "1.1.0"
+    utils-merge "1.0.1"
 
 rst-selector-parser@^2.2.3:
   version "2.2.3"
@@ -13544,6 +13630,11 @@ seq@^0.3.5:
   dependencies:
     chainsaw ">=0.0.7 <0.1"
     hashish ">=0.0.2 <0.1"
+
+serialize-error@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/serialize-error/-/serialize-error-3.0.0.tgz#80100282b09be33c611536f50033481cb9cc87cf"
+  integrity sha512-+y3nkkG/go1Vdw+2f/+XUXM1DXX1XcxTl99FfiD/OEPUNw4uo0i6FKABfTAN5ZcgGtjTRZcEbxcE/jtXbEY19A==
 
 serialize-javascript@1.6.1, serialize-javascript@^1.4.0:
   version "1.6.1"
@@ -13963,6 +14054,11 @@ split@^1.0.0:
   integrity sha512-mTyOoPbrivtXnwnIxZRFYRrPNtEFKlpB2fvjSnCQUiAA6qAZzqwna5envK4uk6OIeP17CsdF3rSBGYVBsU0Tkg==
   dependencies:
     through "2"
+
+sprintf-js@^1.1.1:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.1.2.tgz#da1765262bf8c0f571749f2ad6c26300207ae673"
+  integrity sha512-VE0SOVEHCk7Qc8ulkWw3ntAzXuqf7S2lvwQaDLRnUeIEaKNQJzV6BwmLKhOqT61aGhfUMrXeaBk+oDGCzvhcug==
 
 sprintf-js@~1.0.2:
   version "1.0.3"
