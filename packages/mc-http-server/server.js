@@ -123,6 +123,10 @@ http.createServer(app).listen(serverPort, async error => {
 
   lightship.signalReady();
 
-  console.log(`Server is listening on ${serverUrl}...`);
-  console.log(`Prometheus metrics available on ${serverUri}:7788...`);
+  console.log(
+    `[@commercetools-frontend/mc-http-server] server is listening on ${serverUrl}`
+  );
+  console.log(
+    `[@commercetools-frontend/mc-http-server] Prometheus metrics available on ${serverUri}:7788`
+  );
 });
