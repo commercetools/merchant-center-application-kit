@@ -42,7 +42,7 @@
     "@commercetools/sdk-middleware-correlation-id": "2.0.0",
     "@commercetools/sdk-middleware-http": "5.0.0",
     "@commercetools/sdk-middleware-user-agent": "2.0.0",
-    "fast-equals": "1.6.1",
+    "fast-equals": "1.6.2",
     "prop-types": "15.6.2",
     "query-string": "5.1.0",
     "unfetch": "4.0.1"
