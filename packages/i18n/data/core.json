@@ -73,6 +73,7 @@
   "ProjectSwitcher.projects": "Projects",
   "ProjectSwitcher.searchPlaceholder": "Search for a project",
   "ProjectSwitcher.suspended": "Suspended",
+  "QuickAccess.inputPlaceholder": "Go to...",
   "QuickAccess.logout": "Logout",
   "QuickAccess.offline": "Offline",
   "QuickAccess.openAddCartDiscount": "Open Add Cart Discount",

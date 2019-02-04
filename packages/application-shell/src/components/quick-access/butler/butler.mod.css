@@ -77,6 +77,10 @@
   padding: var(--spacing-16) var(--spacing-16) var(--spacing-8) var(--spacing-8);
 }
 
+.searchText::placeholder {
+  color: var(--color-gray-60);
+}
+
 .offlineWarning {
   overflow: hidden;
   white-space: nowrap;
