@@ -1,3 +1,15 @@
+## [7.3.1](https://github.com/commercetools/merchant-center-application-kit/compare/v7.3.0...v7.3.1) (2019-02-04)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#341](https://github.com/commercetools/merchant-center-application-kit/pull/341) fix(apollo-cache): to use \_\_typename + key for whitelisted types only if the id is not present ([@emmenko](https://github.com/emmenko))
+
+#### 🚀 Type: New Feature
+
+- `application-shell`, `i18n`
+  - [#342](https://github.com/commercetools/merchant-center-application-kit/pull/342) Add placeholder to quick-access input ([@tdeekens](https://github.com/tdeekens))
+
 ## [7.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v7.2.1...v7.3.0) (2019-02-01)
 
 #### 🔮 Type: Chore
