@@ -1,6 +1,10 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
+  inputPlacehoder: {
+    id: 'QuickAccess.inputPlaceholder',
+    defaultMessage: 'Go to...',
+  },
   offline: {
     id: 'QuickAccess.offline',
     defaultMessage: 'Offline',

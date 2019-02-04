@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Fuse from 'fuse.js';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import last from 'lodash/last';
 import classnames from 'classnames';
 import { SearchIcon } from '@commercetools-frontend/ui-kit';
@@ -44,7 +44,7 @@ const hasNewWindowModifier = event => {
   }
 };
 
-export default class Butler extends React.Component {
+export class Butler extends React.Component {
   static displayName = 'Butler';
 
   static propTypes = {
@@ -63,6 +63,10 @@ export default class Butler extends React.Component {
     getNextCommands: PropTypes.func.isRequired,
     executeCommand: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
+    // injectIntl
+    intl: PropTypes.shape({
+      formatMessage: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
   state = {
@@ -430,6 +434,9 @@ export default class Butler extends React.Component {
             <input
               id="quick-access-search-input"
               ref={this.searchInputRef}
+              placeholder={this.props.intl.formatMessage(
+                messages.inputPlacehoder
+              )}
               type="text"
               className={styles.searchText}
               value={this.state.searchText}
@@ -484,3 +491,5 @@ export default class Butler extends React.Component {
     );
   }
 }
+
+export default injectIntl(Butler);
