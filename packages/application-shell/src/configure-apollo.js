@@ -72,7 +72,10 @@ export const createApolloClient = () =>
     cache: new InMemoryCache({
       fragmentMatcher,
       dataIdFromObject: result => {
-        if (typeNamesWithoutIdAsIdentifier.includes(result.__typename))
+        if (
+          !result.id &&
+          typeNamesWithoutIdAsIdentifier.includes(result.__typename)
+        )
           return `${result.__typename}:${result.key}`;
         // Generally all id's are unique accross the platform, so we don't need to
         // include the type name in the cache key.
