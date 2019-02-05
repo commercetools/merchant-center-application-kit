@@ -34,7 +34,6 @@
     "build:es:watch": "npm run build:es -- -w"
   },
   "dependencies": {
-    "common-tags": "1.8.0",
-    "deep-freeze": "0.0.1"
+    "common-tags": "1.8.0"
   }
 }

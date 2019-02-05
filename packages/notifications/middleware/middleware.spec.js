@@ -1,4 +1,3 @@
-import deepFreeze from 'deep-freeze';
 import oneLine from 'common-tags/lib/oneLine';
 import middleware from '.';
 import { addNotification, removeNotification } from '../action-creators';
@@ -14,7 +13,7 @@ describe('dispatching add/remove notification actions', () => {
       });
     };
     const next = (/* action */) => {};
-    const notification = deepFreeze({ foo: 'bar' });
+    const notification = { foo: 'bar' };
     const action = addNotification(notification);
     const handle = middleware({ dispatch })(next)(action);
     expect(handle.id).toBe(NOTIFICATION_ID);
@@ -23,7 +22,7 @@ describe('dispatching add/remove notification actions', () => {
 
   it('should dispatch the add notification action', () => {
     const NOTIFICATION_ID = 2;
-    const notification = deepFreeze({ foo: 'bar' });
+    const notification = { foo: 'bar' };
     const dispatch = (/* action */) => {};
     const next = action => {
       expect(action).toEqual({
@@ -49,7 +48,7 @@ describe('dispatching add/remove notification actions', () => {
       });
       middleware({ dispatch: noop })(next)(removeAction);
     };
-    const notification = deepFreeze({ foo: 'bar' });
+    const notification = { foo: 'bar' };
     const action = addNotification(notification, {
       onDismiss(notificationId) {
         expect(notificationId).toBe(NOTIFICATION_ID);
@@ -75,7 +74,7 @@ describe('dispatching add/remove notification actions', () => {
         });
         middleware({ dispatch: noop })(next)(removeAction);
       };
-      const notification = deepFreeze({ foo: 'bar' });
+      const notification = { foo: 'bar' };
       const action = addNotification(notification, {
         dismissAfter: 300,
         onDismiss(notificationId) {
@@ -91,7 +90,7 @@ describe('dispatching add/remove notification actions', () => {
     const NOTIFICATION_ID = 5;
     const next = (/* action */) => {};
     const dispatch = (/* action */) => {};
-    const notification = deepFreeze({ foo: 'bar' });
+    const notification = { foo: 'bar' };
     const action = addNotification(notification, {
       onDismiss(notificationId) {
         expect(notificationId).toBe(NOTIFICATION_ID);
