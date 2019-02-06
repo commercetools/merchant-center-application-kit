@@ -1,3 +1,15 @@
+## [7.3.2](https://github.com/commercetools/merchant-center-application-kit/compare/v7.3.1...v7.3.2) (2019-02-06)
+
+#### 🔮 Type: Chore
+
+- `notifications`
+  - [#345](https://github.com/commercetools/merchant-center-application-kit/pull/345) chore: drop unnecessary deep-freeze dependency ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`, `babel-preset-mc-app`, `jest-preset-mc-app`, `mc-scripts`
+  - [#346](https://github.com/commercetools/merchant-center-application-kit/pull/346) refactor: to not setupTestFramework for jest (so we can update) ([@tdeekens](https://github.com/tdeekens))
+
 ## [7.3.1](https://github.com/commercetools/merchant-center-application-kit/compare/v7.3.0...v7.3.1) (2019-02-04)
 
 #### 🐛 Type: Bug
