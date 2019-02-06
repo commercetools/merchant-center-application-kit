@@ -1,0 +1,11 @@
+description: mc-http-server, the server for commercetools Merchant Center Plugins!
+name: mc-http-server
+version: 0.0.0
+appVersion: 7.3.0
+home: https://github.com/commercetools/merchant-center-application-kit/tree/master/packages/mc-http-server
+maintainers:
+sources:
+  - https://github.com/commercetools/merchant-center-application-kit/tree/master/packages/mc-http-server
+keywords:
+  - commercetools
+  - merchant-center-plugin

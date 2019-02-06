@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: {{ template "mc-http-server.fullname" . }}
+  labels:
+    app: {{ template "mc-http-server.name" . }}
+    chart: {{ template "mc-http-server.chart" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+  annotations:
+    checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+spec:
+  minReadySeconds: {{.Values.mc-http-server.minReadySeconds}}
+  replicas: {{.Values.mc-http-server.replicas}}
+  selector:
+    matchLabels:
+      app: {{ template "mc-http-server.name" . }}
+      chart: {{ template "mc-http-server.chart" . }}
+      heritage: {{ .Release.Service }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      name: {{ template "mc-http-server.fullname" . }}
+      labels:
+        app: {{ template "mc-http-server.name" . }}
+        chart: {{ template "mc-http-server.chart" . }}
+        heritage: {{ .Release.Service }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        args:
+          - --config=/etc/mc-http-server/env.json
+        image: {{ .Values.mc-http-server.image}}:{{ .Values.mc-http-server.tag}}
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          httpGet:
+            path: /version
+            port: {{.Values.mc-http-server.port}}
+          initialDelaySeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /version
+            port: {{.Values.mc-http-server.port}}
+          initialDelaySeconds: 5
+        name: mc-http-server
+        ports:
+          - name: mc-http-server
+            containerPort: {{ .Values.mc-http-server.port }}
+        volumeMounts:
+          - name: config
+            mountPath: /etc/mc-http-server/env.json
+            readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: {{ template "mc-http-server.fullname" . }}-config

@@ -1,0 +1,6 @@
+mc-http-server:
+  config:
+  minReadySeconds: 5
+  replicas: 3
+  image: eu.gcr.io/ct-images/mc-http-server
+  tag: v0.0.0
