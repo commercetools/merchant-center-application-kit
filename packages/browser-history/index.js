@@ -1,7 +1,9 @@
 import createBrowserHistory from 'history/createBrowserHistory';
 import withQuery from 'history-query-enhancer';
-import queryString from 'query-string';
+import { encode, decode } from 'qss';
 
-const history = withQuery(queryString)(createBrowserHistory());
+const history = withQuery({ parse: decode, stringify: encode })(
+  createBrowserHistory()
+);
 
 export default history;
