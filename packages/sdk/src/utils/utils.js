@@ -7,7 +7,7 @@ export const parseUri = uri => {
 
   return {
     pathname: parser.pathname,
-    search: decode(parser.search),
+    search: decode(parser.search.substring(1)),
   };
 };
 

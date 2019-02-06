@@ -9,7 +9,7 @@ jest.mock('@commercetools-frontend/storage');
 
 const createTestProps = props => ({
   location: {
-    hash: '#id_token=111',
+    hash: '#id_token=abcTestIdToken',
   },
   redirectTo: jest.fn(),
   requestAccessToken: jest.fn(),
@@ -64,7 +64,7 @@ describe('lifecylcle', () => {
       });
       it('should call requestAccessToken with idToken', () => {
         expect(props.requestAccessToken).toHaveBeenCalledWith(
-          expect.objectContaining({ idToken: '111' })
+          expect.objectContaining({ idToken: 'abcTestIdToken' })
         );
       });
       it('should call requestAccessToken with organization id', () => {
