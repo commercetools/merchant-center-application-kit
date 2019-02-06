@@ -1,4 +1,4 @@
-import qs from 'query-string';
+import { decode } from 'qss';
 import logger from './logger';
 
 export const parseUri = uri => {
@@ -7,7 +7,7 @@ export const parseUri = uri => {
 
   return {
     pathname: parser.pathname,
-    search: qs.parse(parser.search),
+    search: decode(parser.search.substring(1)),
   };
 };
 

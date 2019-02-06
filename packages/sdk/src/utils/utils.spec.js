@@ -18,13 +18,13 @@ describe('parseUri', () => {
     beforeEach(() => {
       result = parseUri('/project/products/new?foo=true&bar=5');
     });
-    it('should extract the', () => {
+    it('should extract the pathname', () => {
       expect(result.pathname).toBe('/project/products/new');
     });
     it('should extract the search', () => {
       expect(result.search).toEqual({
-        foo: 'true',
-        bar: '5',
+        foo: true,
+        bar: 5,
       });
     });
   });

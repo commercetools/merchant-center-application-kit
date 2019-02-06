@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose, withProps } from 'recompose';
-import qs from 'query-string';
+import { decode } from 'qss';
 import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
 import * as storage from '@commercetools-frontend/storage';
@@ -41,7 +41,7 @@ export class LoginSSOCallback extends React.PureComponent {
   };
 
   componentDidMount() {
-    const fragments = qs.parse(this.props.location.hash.substring(1));
+    const fragments = decode(this.props.location.hash.substring(1));
     const idToken = fragments.id_token;
     const decodedIdToken = jwtDecode(idToken);
     // Validate the nonce.
