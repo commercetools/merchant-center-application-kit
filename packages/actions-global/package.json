@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/actions-global",
-  "version": "7.3.2",
+  "version": "7.3.3",
   "description": "Global redux actions for a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -34,7 +34,7 @@
     "build:es:watch": "npm run build:es -- -w"
   },
   "dependencies": {
-    "@commercetools-frontend/browser-history": "7.0.0",
+    "@commercetools-frontend/browser-history": "7.3.3",
     "@commercetools-frontend/constants": "7.0.0",
     "@commercetools-frontend/notifications": "7.3.2",
     "lodash": "4.17.11",
