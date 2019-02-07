@@ -1,3 +1,15 @@
+## [7.3.3](https://github.com/commercetools/merchant-center-application-kit/compare/v7.3.2...v7.3.3) (2019-02-07)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#352](https://github.com/commercetools/merchant-center-application-kit/pull/352) Fix fetching custom application menu only when feature is enabled ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`, `browser-history`, `sdk`
+  - [#348](https://github.com/commercetools/merchant-center-application-kit/pull/348) Replace `query-string` with `qss` ([@tdeekens](https://github.com/tdeekens))
+
 ## [7.3.2](https://github.com/commercetools/merchant-center-application-kit/compare/v7.3.1...v7.3.2) (2019-02-06)
 
 #### 🔮 Type: Chore
