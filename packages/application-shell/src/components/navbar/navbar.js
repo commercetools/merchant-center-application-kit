@@ -611,7 +611,7 @@ export class NavBar extends React.PureComponent {
     useFullRedirectsForLinks: PropTypes.bool.isRequired,
     menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     // Injected
-    areCustomApplicationsEnabled: PropTypes.bool.isRequired,
+    areProjectExtensionsEnabled: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
     isForcedMenuOpen: PropTypes.bool,
     applicationsMenuQuery: PropTypes.shape({
@@ -666,7 +666,7 @@ export class NavBar extends React.PureComponent {
 
 export default compose(
   withRouter, // Connect again, to access the `location` object
-  injectFeatureToggle('customApplications', 'areCustomApplicationsEnabled'),
+  injectFeatureToggle('projectExtensions', 'areProjectExtensionsEnabled'),
   withProps(() => {
     const cachedIsForcedMenuOpen = storage.get(
       STORAGE_KEYS.IS_FORCED_MENU_OPEN
@@ -688,7 +688,7 @@ export default compose(
   graphql(FetchProjectExtensionsNavbar, {
     name: 'projectExtensionsQuery',
     skip: ownProps =>
-      !ownProps.areCustomApplicationsEnabled ||
+      !ownProps.areProjectExtensionsEnabled ||
       process.env.NODE_ENV === 'development',
     options: () => ({
       variables: {
