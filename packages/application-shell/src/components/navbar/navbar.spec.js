@@ -49,6 +49,7 @@ const createTestProps = props => ({
   useFullRedirectsForLinks: false,
   menuVisibilities: { hideOrdersList: true },
   // Injected
+  areProjectExtensionsEnabled: true,
   location: { pathname: '' },
   isForcedMenuOpen: false,
   applicationsMenuQuery: {

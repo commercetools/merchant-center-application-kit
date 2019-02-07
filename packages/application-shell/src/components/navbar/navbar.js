@@ -4,7 +4,7 @@ import isNil from 'lodash/isNil';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';
-import { ToggleFeature } from '@flopflip/react-broadcast';
+import { ToggleFeature, injectFeatureToggle } from '@flopflip/react-broadcast';
 import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
 import { oneLineTrim } from 'common-tags';
@@ -611,6 +611,7 @@ export class NavBar extends React.PureComponent {
     useFullRedirectsForLinks: PropTypes.bool.isRequired,
     menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     // Injected
+    areProjectExtensionsEnabled: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
     isForcedMenuOpen: PropTypes.bool,
     applicationsMenuQuery: PropTypes.shape({
@@ -665,6 +666,7 @@ export class NavBar extends React.PureComponent {
 
 export default compose(
   withRouter, // Connect again, to access the `location` object
+  injectFeatureToggle('projectExtensions', 'areProjectExtensionsEnabled'),
   withProps(() => {
     const cachedIsForcedMenuOpen = storage.get(
       STORAGE_KEYS.IS_FORCED_MENU_OPEN
@@ -685,7 +687,9 @@ export default compose(
   })),
   graphql(FetchProjectExtensionsNavbar, {
     name: 'projectExtensionsQuery',
-    skip: () => process.env.NODE_ENV === 'development',
+    skip: ownProps =>
+      !ownProps.areProjectExtensionsEnabled ||
+      process.env.NODE_ENV === 'development',
     options: () => ({
       variables: {
         target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
