@@ -87,6 +87,7 @@ module.exports = (env, options) => {
         'clientstream.launchdarkly.com',
         'events.launchdarkly.com',
         'app.getsentry.com',
+        'sentry.io',
         'www.google-analytics.com',
       ].concat(
         isMcDevEnv ? ['ws:', 'localhost:8080', 'webpack-internal:'] : []
