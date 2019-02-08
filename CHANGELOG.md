@@ -1,3 +1,10 @@
+## [7.3.4](https://github.com/commercetools/merchant-center-application-kit/compare/v7.3.3...v7.3.4) (2019-02-08)
+
+#### 🐛 Type: Bug
+
+- `browser-history`
+  - [#355](https://github.com/commercetools/merchant-center-application-kit/pull/355) fix(browser-history): to omit the question mark ([@tdeekens](https://github.com/tdeekens))
+
 ## [7.3.3](https://github.com/commercetools/merchant-center-application-kit/compare/v7.3.2...v7.3.3) (2019-02-07)
 
 #### 🐛 Type: Bug
