@@ -485,15 +485,15 @@ describe('<RestrictedApplication>', () => {
         path: '/:projectKey',
       });
     });
-    describe('<Redirect> to dashboard', () => {
+    describe('<Redirect> to welcome', () => {
       beforeEach(() => {
         wrapper = wrapper
           .find('.main')
           .find({ exact: true, path: '/:projectKey' })
           .renderProp('render', { match: { url: '/foo-1' } });
       });
-      it('should render <Redirect> to "/dashboard"', () => {
-        expect(wrapper.find('Redirect')).toHaveProp('to', '/foo-1/dashboard');
+      it('should render <Redirect> to "/welcome"', () => {
+        expect(wrapper.find('Redirect')).toHaveProp('to', '/foo-1/welcome');
       });
     });
     it('should render <Route> matching ":projectKey" path', () => {

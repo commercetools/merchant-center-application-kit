@@ -285,13 +285,13 @@ export const RestrictedApplication = props => (
                                 render={props.render}
                               />
                               {/* Project routes */}
-                              {/* Redirect from base project route to dashboard */}
+                              {/* Redirect from base project route to welcome */}
                               <Route
                                 exact={true}
                                 path="/:projectKey"
                                 render={({ match }) => (
                                   <Redirect
-                                    to={joinPaths(match.url, 'dashboard')}
+                                    to={joinPaths(match.url, 'welcome')}
                                   />
                                 )}
                               />
