@@ -56,7 +56,7 @@
     "postcss-reporter": "5.0.0",
     "postcss-safe-parser": "4.0.1",
     "promise": "8.0.2",
-    "react-dev-utils": "7.0.1",
+    "react-dev-utils": "7.0.2",
     "shelljs": "0.8.3",
     "style-loader": "0.23.1",
     "svg-url-loader": "2.3.2",
