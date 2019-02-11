@@ -9,6 +9,7 @@ const safeParser = require('postcss-safe-parser');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 // as "aliasing v1.0.0 as webpack.optimize.UglifyJsPlugin is scheduled for
 // webpack v4.0.0" (https://webpack.js.org/plugins/uglifyjs-webpack-plugin/)
 // we need to explicitly use the library to be using the newest version
@@ -153,6 +154,14 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
 
     plugins: [
       new CleanWebpackPlugin([distPath], { allowExternal: true }),
+      // Silence mini-css-extract-plugin generating lots of warnings for CSS ordering.
+      // We use CSS modules that should not care for the order of CSS imports, so we
+      // should be safe to ignore these.
+      //
+      // See: https://github.com/webpack-contrib/mini-css-extract-plugin/issues/250
+      new FilterWarningsPlugin({
+        exclude: /mini-css-extract-plugin[^]*Conflicting order between:/,
+      }),
       // Allows to "assign" custom options to the `webpack` object.
       // At the moment, this is used to share some props with `postcss.config`.
       new webpack.LoaderOptionsPlugin({
