@@ -96,7 +96,7 @@
     "warning": "4.0.2"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "8.0.0",
+    "@commercetools-frontend/ui-kit": "8.1.1",
     "react": "16.7.0",
     "react-apollo": "2.4.1",
     "react-dom": "16.7.0",

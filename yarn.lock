@@ -783,10 +783,10 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@commercetools-frontend/ui-kit@8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-8.0.0.tgz#0fbcacbcdaed8438acb009209b152738db415059"
-  integrity sha512-MEsZGaGYqL7ZQtpba4YIcC3n0PZssczU8r03fXcJ3u6sjCDqFOjdnJFwe+UwUJ55W3kDHgdMrKqAaxiaBSzCBA==
+"@commercetools-frontend/ui-kit@8.1.1":
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-8.1.1.tgz#4fe4d3cdc17f1ec8ea80b9844fef9688a30ee14c"
+  integrity sha512-YYNp1v/iOPDtVzdOV41u8Azf/9jFWTkKb1bTfsXKi3AUfaJ4UtsM9PEKeARZFRjtkXUXnTPIfQuL7x7I33ZWkQ==
   dependencies:
     "@emotion/core" "10.0.6"
     "@emotion/styled" "10.0.6"
