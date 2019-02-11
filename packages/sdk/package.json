@@ -43,12 +43,12 @@
     "@commercetools/sdk-middleware-http": "5.0.0",
     "@commercetools/sdk-middleware-user-agent": "2.0.0",
     "fast-equals": "1.6.2",
-    "prop-types": "15.6.2",
+    "prop-types": "15.7.1",
     "qss": "2.0.1",
     "unfetch": "4.0.1"
   },
   "devDependencies": {
-    "react": "16.7.0",
+    "react": "16.8.1",
     "react-redux": "6.0.0"
   },
   "peerDependencies": {
