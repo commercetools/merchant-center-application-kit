@@ -18,6 +18,9 @@ export { GtmContext } from './components/gtm-booter';
 export {
   default as handleApolloErrors,
 } from './components/handle-apollo-errors';
+export {
+  default as withApplicationsMenu,
+} from './components/with-applications-menu';
 
 /**
  * NOTE:
