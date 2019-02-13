@@ -30,7 +30,7 @@ describe('reset password flow', () => {
       environment: { adminCenterUrl: 'http://ac.com' },
     });
 
-    await waitForElement(() => getByText(/Sign in to your account/));
+    await waitForElement(() => getByText(/Login/));
 
     fireEvent.click(getByText(/Forgot password/));
 

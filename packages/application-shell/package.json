@@ -52,6 +52,7 @@
     "@commercetools-frontend/sentry": "8.0.0",
     "@commercetools-frontend/storage": "8.0.0",
     "@commercetools-frontend/url-utils": "8.0.0",
+    "@emotion/core": "10.0.7",
     "@flopflip/launchdarkly-adapter": "2.4.6",
     "@flopflip/memory-adapter": "1.1.1",
     "@flopflip/react-broadcast": "7.2.5",

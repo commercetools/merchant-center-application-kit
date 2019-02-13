@@ -6,19 +6,20 @@ import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import {
-  ContentNotification,
+  Card,
+  Text,
+  Spacings,
+  TextField,
+  Constraints,
   PasswordField,
   PrimaryButton,
-  Spacings,
-  Text,
-  TextField,
+  ContentNotification,
 } from '@commercetools-frontend/ui-kit';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { STORAGE_KEYS } from '../../constants';
 import PublicPageContainer from '../public-page-container';
-import LoginBox from '../login-box';
 import Countdown from './countdown';
 import messages from './messages';
 import { validate } from './validations';
@@ -152,90 +153,100 @@ export class Login extends React.PureComponent {
 
   render = () => (
     <PublicPageContainer>
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        validate={validate}
-        onSubmit={(values, formikBag) => {
-          const addHandlers = promise =>
-            promise.then(
-              result => {
-                formikBag.setSubmitting(false);
-                return result;
-              },
-              error => {
-                formikBag.setSubmitting(false);
-                throw error;
-              }
-            );
-          return this.handleSubmit(values, addHandlers);
-        }}
-        render={formikProps => (
-          <LoginBox>
-            <form onSubmit={formikProps.handleSubmit}>
-              <Spacings.Stack scale="m">
-                {this.renderErrorMessage(
-                  !formikProps.isSubmitting && this.state.error
-                )}
-                <Text.Subheadline elementType="h4">
-                  <FormattedMessage {...messages.title} />
-                </Text.Subheadline>
-                <TextField
-                  name="email"
-                  title={this.props.intl.formatMessage(messages.email)}
-                  isAutofocussed={true}
-                  isRequired={true}
-                  value={formikProps.values.email}
-                  touched={formikProps.touched.email}
-                  errors={formikProps.errors.email}
-                  onChange={formikProps.handleChange}
-                  onBlur={formikProps.handleBlur}
-                  isDisabled={formikProps.isSubmitting}
-                  renderError={this.renderEmailErrors}
-                />
-                <PasswordField
-                  name="password"
-                  title={this.props.intl.formatMessage(messages.password)}
-                  isRequired={true}
-                  value={formikProps.values.password}
-                  touched={formikProps.touched.password}
-                  errors={formikProps.errors.password}
-                  onChange={formikProps.handleChange}
-                  onBlur={formikProps.handleBlur}
-                  isDisabled={formikProps.isSubmitting}
-                />
-                <Spacings.Inline>
-                  <PrimaryButton
-                    label={
-                      this.state.loading
-                        ? this.props.intl.formatMessage(messages.validating)
-                        : this.props.intl.formatMessage(messages.signin)
-                    }
-                    type="submit"
-                    onClick={formikProps.handleSubmit}
-                    isDisabled={formikProps.isSubmitting}
-                  />
-                </Spacings.Inline>
-
-                <Countdown
-                  onCountEnd={() =>
-                    redirect(`${this.props.adminCenterUrl}/reset-password`)
+      <Constraints.Horizontal constraint="m">
+        <Card>
+          <Formik
+            initialValues={{ email: '', password: '' }}
+            validate={validate}
+            onSubmit={(values, formikBag) => {
+              const addHandlers = promise =>
+                promise.then(
+                  result => {
+                    formikBag.setSubmitting(false);
+                    return result;
+                  },
+                  error => {
+                    formikBag.setSubmitting(false);
+                    throw error;
                   }
-                >
-                  {({ handleClick }) => (
-                    <a
-                      data-track-component="ForgotPassword"
-                      data-track-event="click"
-                      onClick={handleClick}
-                    >
-                      <FormattedMessage {...messages.forgotPassword} />
-                    </a>
+                );
+              return this.handleSubmit(values, addHandlers);
+            }}
+            render={formikProps => (
+              <form onSubmit={formikProps.handleSubmit}>
+                <Spacings.Stack scale="l">
+                  <Text.Headline elementType="h2">
+                    <FormattedMessage {...messages.title} />
+                  </Text.Headline>
+                  {this.renderErrorMessage(
+                    !formikProps.isSubmitting && this.state.error
                   )}
-                </Countdown>
-              </Spacings.Stack>
-            </form>
-          </LoginBox>
-        )}
-      />
+                  <Spacings.Stack scale="m">
+                    <TextField
+                      name="email"
+                      value={formikProps.values.email}
+                      title={this.props.intl.formatMessage(messages.email)}
+                      onBlur={formikProps.handleBlur}
+                      errors={formikProps.errors.email}
+                      touched={formikProps.touched.email}
+                      onChange={formikProps.handleChange}
+                      isRequired={true}
+                      isDisabled={formikProps.isSubmitting}
+                      renderError={this.renderEmailErrors}
+                      placeholder={this.props.intl.formatMessage(
+                        messages.email
+                      )}
+                      isAutofocussed={true}
+                    />
+                    <Spacings.Stack>
+                      <PasswordField
+                        name="password"
+                        value={formikProps.values.password}
+                        title={this.props.intl.formatMessage(messages.password)}
+                        onBlur={formikProps.handleBlur}
+                        errors={formikProps.errors.password}
+                        touched={formikProps.touched.password}
+                        onChange={formikProps.handleChange}
+                        isRequired={true}
+                        isDisabled={formikProps.isSubmitting}
+                      />
+                      <Countdown
+                        onCountEnd={() =>
+                          redirect(
+                            `${this.props.adminCenterUrl}/reset-password`
+                          )
+                        }
+                      >
+                        {({ handleClick }) => (
+                          <a
+                            onClick={handleClick}
+                            data-track-event="click"
+                            data-track-component="ForgotPassword"
+                          >
+                            <FormattedMessage {...messages.forgotPassword} />
+                          </a>
+                        )}
+                      </Countdown>
+                    </Spacings.Stack>
+                  </Spacings.Stack>
+                  <Spacings.Inline justifyContent="flex-end">
+                    <PrimaryButton
+                      type="submit"
+                      label={
+                        this.state.loading
+                          ? this.props.intl.formatMessage(messages.validating)
+                          : this.props.intl.formatMessage(messages.signin)
+                      }
+                      onClick={formikProps.handleSubmit}
+                      isDisabled={formikProps.isSubmitting}
+                    />
+                  </Spacings.Inline>
+                </Spacings.Stack>
+              </form>
+            )}
+          />
+        </Card>
+      </Constraints.Horizontal>
     </PublicPageContainer>
   );
 }

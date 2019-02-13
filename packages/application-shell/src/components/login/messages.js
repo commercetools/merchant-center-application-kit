@@ -4,7 +4,7 @@ export default defineMessages({
   title: {
     id: 'LoginForm.title',
     description: 'The title message for the login form',
-    defaultMessage: 'Sign in to your account',
+    defaultMessage: 'Login',
   },
   email: {
     id: 'LoginForm.email',
@@ -16,10 +16,15 @@ export default defineMessages({
     description: 'The label for the login input field (password)',
     defaultMessage: 'Password',
   },
+  signup: {
+    id: 'LoginForm.signup',
+    description: 'The label of the signup button',
+    defaultMessage: 'Create Account',
+  },
   signin: {
     id: 'LoginForm.signin',
     description: 'The label of the signin button',
-    defaultMessage: 'Sign in',
+    defaultMessage: 'Log in',
   },
   validating: {
     id: 'LoginForm.validating',
@@ -28,8 +33,8 @@ export default defineMessages({
   },
   forgotPassword: {
     id: 'LoginForm.forgotPassword',
-    description: 'The lable of the forgot password link',
-    defaultMessage: 'Forgot password?',
+    description: 'The label of the forgot password link',
+    defaultMessage: 'Forgot password',
   },
   noProjectsTitle: {
     id: 'LoginForm.noProjectsTitle',
