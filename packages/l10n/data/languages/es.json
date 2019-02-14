@@ -1272,11 +1272,12 @@
     "country": "Nueva Zelanda"
   },
   "mk": {
-    "language": "macedonio"
+    "language": "macedonio",
+    "country": "Macedonia del Norte"
   },
   "mk-MK": {
     "language": "macedonio",
-    "country": "Macedonia"
+    "country": "Macedonia del Norte"
   },
   "ml": {
     "language": "malayalam"

@@ -1272,11 +1272,12 @@
     "country": "Neuseeland"
   },
   "mk": {
-    "language": "Mazedonisch"
+    "language": "Mazedonisch",
+    "country": "Nordmazedonien"
   },
   "mk-MK": {
     "language": "Mazedonisch",
-    "country": "Mazedonien"
+    "country": "Nordmazedonien"
   },
   "ml": {
     "language": "Malayalam"
