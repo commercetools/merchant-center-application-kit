@@ -1272,11 +1272,12 @@
     "country": "New Zealand"
   },
   "mk": {
-    "language": "Macedonian"
+    "language": "Macedonian",
+    "country": "North Macedonia"
   },
   "mk-MK": {
     "language": "Macedonian",
-    "country": "Macedonia"
+    "country": "North Macedonia"
   },
   "ml": {
     "language": "Malayalam"
