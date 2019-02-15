@@ -21,7 +21,7 @@ Stretched.propTypes = { children: PropTypes.node.isRequired };
 const InfoDialog = props => (
   <ModalContainer
     isOpen={props.isOpen}
-    closeAfter={props.closeTimeoutMS}
+    closeTimeoutMS={props.closeAfter}
     onRequestClose={props.onClose}
     overlayClassName={styles['modal-overlay']}
     className={styles['modal-content']}
@@ -58,11 +58,11 @@ InfoDialog.propTypes = {
   // React modal props
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  closeTimeoutMS: PropTypes.number,
+  closeAfter: PropTypes.number,
 };
 InfoDialog.defaultProps = {
   horizontalConstraint: 'm',
-  closeTimeoutMS: 150,
+  closeAfter: 150,
 };
 
 export default InfoDialog;
