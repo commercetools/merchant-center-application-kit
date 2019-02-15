@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LogoBWWhiteSVG from '@commercetools-frontend/assets/images/ct_logo_bw_white.svg';
-import Card from '../../from-core/card';
+import { Card } from '@commercetools-frontend/ui-kit';
 import styles from './login-box.mod.css';
 
 const LoginBox = props => (

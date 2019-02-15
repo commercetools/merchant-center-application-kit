@@ -1,0 +1,41 @@
+# InfoDialog
+
+## Usage
+
+```js
+import { InfoDialog } from '@commercetools-frontend/application-components';
+```
+
+#### Description
+
+Info dialogs are controlled components used to show more information about a particular feature, UI element, etc. They are mainly composed of text paragraphs.
+
+#### Usage
+
+```js
+<InfoDialog
+  title={<FormattedMessage {...messages.infoTitle} />}
+  isOpen={isOpen}
+  onClose={handleClose}
+>
+  <Spacings.Stack scale="m">
+    <div>
+      <Text.Body>{'Lorem ipsus ...'}</Text.Body>
+    </div>
+    <div>
+      <Text.Body>{'Lorem ipsus ...'}</Text.Body>
+    </div>
+  </Spacings.Stack>
+</InfoDialog>
+```
+
+#### Properties
+
+| Props                  | Type       | Required | Values   | Default | Description                                                                                                                 |
+| ---------------------- | ---------- | :------: | -------- | ------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `title`                | `node`     |    ✅    | -        | -       | The title of the Info Dialog                                                                                                |
+| `isOpen`               | `boolean`  |    ✅    | -        | -       | Indicates whether the dialog should open or not                                                                             |
+| `onClose`              | `function` |    ✅    | -        | -       | Called when the dialog closes (click on overlay, click on close button, press ESC)                                          |
+| `closeTimeoutMS`       | `number`   |    -     | -        | `150`   | The timeout in ms for the dialog to close                                                                                   |
+| `children`             | `node`     |    ✅    | -        | -       | Content rendered within the dialog. If the content is long in height (depending on the screen size) a scrollbar will appear |
+| `horizontalConstraint` | `string`   |          | `m`, `l` | `m`     | Horizontal width limit of the dialog card                                                                                   |

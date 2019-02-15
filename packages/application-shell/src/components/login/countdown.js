@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import InfoDialog from '../../from-core/info-dialog';
+import { InfoDialog } from '@commercetools-frontend/application-components';
 import messages from './messages';
 
 const initialCount = 3;
@@ -57,15 +57,14 @@ export class Countdown extends React.PureComponent {
       <React.Fragment>
         {this.props.children({ handleClick: this.openRedirectDialog })}
         <InfoDialog
+          title={<FormattedMessage {...messages.forgotPassword} />}
           isOpen={this.state.isDialogOpen}
           onClose={this.closeRedirectDialog}
         >
-          <InfoDialog.Title>
-            <FormattedMessage
-              {...messages.forgotPasswordTitle}
-              values={{ countdown: this.state.countdown }}
-            />
-          </InfoDialog.Title>
+          <FormattedMessage
+            {...messages.forgotPasswordTitle}
+            values={{ countdown: this.state.countdown }}
+          />
         </InfoDialog>
       </React.Fragment>
     );

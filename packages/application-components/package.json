@@ -37,7 +37,9 @@
     "storybook:start": "start-storybook -p 9002 -s .storybook/assets"
   },
   "dependencies": {
-    "prop-types": "15.7.2"
+    "@commercetools-frontend/constants": "7.0.0",
+    "prop-types": "15.7.2",
+    "react-modal": "3.8.1"
   },
   "devDependencies": {
     "@commercetools-frontend/assets": "8.0.0",
