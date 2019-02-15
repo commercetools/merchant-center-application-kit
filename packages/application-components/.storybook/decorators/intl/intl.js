@@ -13,7 +13,7 @@ const availableLocales = ['en', 'de', 'es'];
 
 export default storyFn => {
   const locale = select('global locale', availableLocales, availableLocales[0]);
-  const messages = require(`../../../packages/i18n/data/${locale}.json`);
+  const messages = require(`../../../../i18n/data/${locale}.json`);
   return (
     <IntlProvider locale={locale} messages={messages}>
       {storyFn()}

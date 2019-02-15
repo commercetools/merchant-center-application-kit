@@ -19,11 +19,7 @@ addDecorator(
   })
 );
 
-const srcStories = require.context(
-  '../packages/application-components/src',
-  true,
-  /\.story\.js$/
-);
+const srcStories = require.context('../src', true, /\.story\.js$/);
 
 function loadStories() {
   require('./welcome.story');

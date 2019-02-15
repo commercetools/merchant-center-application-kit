@@ -1,13 +1,14 @@
 const path = require('path');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
-const createWebpackConfig = require('@commercetools-frontend/mc-scripts/config/create-webpack-config-for-development');
+const createWebpackConfig = require('../../mc-scripts/config/create-webpack-config-for-development');
 
 const mcWebpackConfig = createWebpackConfig({
   distPath: 'unused',
   entryPoint: 'unused',
   sourceFolders: [
     path.resolve(__dirname),
-    path.resolve(__dirname, '../packages/application-components'),
+    path.resolve(__dirname, '../../../README.md'),
+    path.resolve(__dirname, '../src'),
   ],
   toggleFlags: {
     generateIndexHtml: false,

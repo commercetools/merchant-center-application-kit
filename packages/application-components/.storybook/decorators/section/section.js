@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const sectionStyles = {
   padding: 16,
-  height: '100%'
+  height: '100%',
 };
 
 const Section = props => <div style={sectionStyles}>{props.children}</div>;
