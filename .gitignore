@@ -64,6 +64,9 @@ typings/
 # next.js build output
 .next
 
+# Storybook build output
+.public
+
 # Build
 dist
 public

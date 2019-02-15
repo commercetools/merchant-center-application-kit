@@ -117,11 +117,12 @@ module.exports = ({
         filename: path.join(distPath, 'assets/index.html'),
         template: require.resolve('@commercetools-frontend/mc-html-template'),
       }),
-    (() => {
-      // eslint-disable-next-line global-require
-      const LocalHtmlWebpackPlugin = require('../webpack-plugins/local-html-webpack-plugin');
-      return new LocalHtmlWebpackPlugin();
-    })(),
+    toggleFlags.generateIndexHtml &&
+      (() => {
+        // eslint-disable-next-line global-require
+        const LocalHtmlWebpackPlugin = require('../webpack-plugins/local-html-webpack-plugin');
+        return new LocalHtmlWebpackPlugin();
+      })(),
     // Add module names to factory functions so they appear in browser profiler.
     // https://webpack.js.org/guides/caching/
     new webpack.NamedModulesPlugin(),
