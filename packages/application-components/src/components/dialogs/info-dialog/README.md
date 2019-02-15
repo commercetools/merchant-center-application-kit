@@ -15,12 +15,8 @@ Info dialogs are controlled components used to show more information about a par
 ```js
 <InfoDialog title="Lorem ipsus" isOpen={isOpen} onClose={handleClose}>
   <Spacings.Stack scale="m">
-    <div>
-      <Text.Body>{'Lorem ipsus ...'}</Text.Body>
-    </div>
-    <div>
-      <Text.Body>{'Lorem ipsus ...'}</Text.Body>
-    </div>
+    <Text.Body>{'Lorem ipsus ...'}</Text.Body>
+    <Text.Body>{'Lorem ipsus ...'}</Text.Body>
   </Spacings.Stack>
 </InfoDialog>
 ```
