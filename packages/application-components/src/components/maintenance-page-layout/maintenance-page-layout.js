@@ -42,6 +42,6 @@ export default MaintenancePageLayout;
 
 const ServicePageResponseLayout = MaintenancePageLayout;
 ServicePageResponseLayout.displayName = 'ServicePageResponseLayout';
-export const DeprecatedServicePageResponseLayout = deprecateComponent(
-  ServicePageResponseLayout
-);
+export const DeprecatedServicePageResponseLayout = deprecateComponent({
+  message: `The "ServicePageResponseLayout" component has been renamed to "MaintenancePageLayout". The named export will be removed in the next major release.`,
+})(ServicePageResponseLayout);

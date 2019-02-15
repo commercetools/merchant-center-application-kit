@@ -1,11 +1,11 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import FailedAuthenticationSVG from '@commercetools-frontend/assets/images/failed-authentication.svg';
-import { ServicePageResponseLayout } from '@commercetools-frontend/application-components';
+import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import messages from './messages';
 
 const FailedAuthentication = () => (
-  <ServicePageResponseLayout
+  <MaintenancePageLayout
     imageSrc={FailedAuthenticationSVG}
     title={<FormattedMessage {...messages.title} />}
     paragraph1={<FormattedMessage {...messages.paragraph1} />}

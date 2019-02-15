@@ -1,29 +1,19 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { ServicePageResponseLayout } from '@commercetools-frontend/application-components';
+import { Route } from 'react-router';
+import { render, waitForElement } from '../../test-utils';
 import ProjectSuspended from './project-suspended';
 
 describe('rendering', () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = shallow(<ProjectSuspended />);
-  });
-
-  it('should match snapshot', () => {
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should render layout component', () => {
-    expect(wrapper).toRender(ServicePageResponseLayout);
-  });
-
-  describe('when suspension is temporary', () => {
-    beforeEach(() => {
-      wrapper = shallow(<ProjectSuspended isTemporary={true} />);
-    });
-
-    it('should match snapshot', () => {
-      expect(wrapper).toMatchSnapshot();
-    });
+  it('when suspension is temporary it should print correct message', async () => {
+    const { getByText } = render(
+      <Route
+        path="/:projectKey"
+        render={() => <ProjectSuspended isTemporary={true} />}
+      />,
+      { route: '/my-project' }
+    );
+    await waitForElement(() =>
+      getByText(/Your Project is temporarily suspended due to maintenance/)
+    );
   });
 });
