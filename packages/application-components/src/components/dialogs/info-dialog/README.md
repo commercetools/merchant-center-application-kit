@@ -13,11 +13,7 @@ Info dialogs are controlled components used to show more information about a par
 #### Usage
 
 ```js
-<InfoDialog
-  title={<FormattedMessage {...messages.infoTitle} />}
-  isOpen={isOpen}
-  onClose={handleClose}
->
+<InfoDialog title="Lorem ipsus" isOpen={isOpen} onClose={handleClose}>
   <Spacings.Stack scale="m">
     <div>
       <Text.Body>{'Lorem ipsus ...'}</Text.Body>
@@ -33,8 +29,8 @@ Info dialogs are controlled components used to show more information about a par
 
 | Props                  | Type       | Required | Values   | Default | Description                                                                                                                 |
 | ---------------------- | ---------- | :------: | -------- | ------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `title`                | `node`     |    ✅    | -        | -       | The title of the Info Dialog                                                                                                |
-| `isOpen`               | `boolean`  |    ✅    | -        | -       | Indicates whether the dialog should open or not                                                                             |
+| `title`                | `string`   |    ✅    | -        | -       | The title of the Info Dialog                                                                                                |
+| `isOpen`               | `boolean`  |    ✅    | -        | -       | Indicates whether the dialog is open or closed                                                                              |
 | `onClose`              | `function` |    ✅    | -        | -       | Called when the dialog closes (click on overlay, click on close button, press ESC)                                          |
 | `closeTimeoutMS`       | `number`   |    -     | -        | `150`   | The timeout in ms for the dialog to close                                                                                   |
 | `children`             | `node`     |    ✅    | -        | -       | Content rendered within the dialog. If the content is long in height (depending on the screen size) a scrollbar will appear |

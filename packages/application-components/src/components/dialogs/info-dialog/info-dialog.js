@@ -21,7 +21,7 @@ Stretched.propTypes = { children: PropTypes.node.isRequired };
 const InfoDialog = props => (
   <ModalContainer
     isOpen={props.isOpen}
-    closeTimeoutMS={props.closeTimeoutMS}
+    closeAfter={props.closeTimeoutMS}
     onRequestClose={props.onClose}
     overlayClassName={styles['modal-overlay']}
     className={styles['modal-content']}
@@ -34,7 +34,7 @@ const InfoDialog = props => (
             <Text.Subheadline
               elementType="h4"
               truncate={true}
-              title={typeof props.title === 'string' ? props.title : undefined}
+              title={props.title}
             >
               {props.title}
             </Text.Subheadline>
@@ -52,7 +52,7 @@ const InfoDialog = props => (
 );
 InfoDialog.displayName = 'InfoDialog';
 InfoDialog.propTypes = {
-  title: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   horizontalConstraint: PropTypes.oneOf(['m', 'l']),
   // React modal props
