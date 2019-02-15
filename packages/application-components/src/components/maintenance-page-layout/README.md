@@ -1,19 +1,19 @@
-# ServicePageResponseLayout
+# MaintenancePageLayout
 
 #### Description
 
-The ServicePageResponseLayout component can be used as a template to scaffold merchant center application pages.
+This component should be used as a template to scaffold maintenance pages.
 
 #### Usage
 
 ```js
-import { ServicePageResponseLayout } from '@commercetools-frontend/application-components';
+import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import PageNotFoundSVG from '@commercetools-frontend/assets/images/page-not-found.svg';
 
 const PageNotFound = () => (
-  <ServicePageResponseLayout
+  <MaintenancePageLayout
     imageSrc={PageNotFoundSVG}
-    title="Page not found" />}
+    title="Page not found"
     paragraph1="We could not find the page you were looking for."
   />
 );
