@@ -30,8 +30,7 @@ Info dialogs are controlled components used to show more information about a par
 | Props                  | Type       | Required | Values   | Default | Description                                                                                                                 |
 | ---------------------- | ---------- | :------: | -------- | ------- | --------------------------------------------------------------------------------------------------------------------------- |
 | `title`                | `string`   |    ✅    | -        | -       | The title of the Info Dialog                                                                                                |
-| `isOpen`               | `boolean`  |    ✅    | -        | -       | Indicates whether the dialog is open or closed                                                                              |
+| `isOpen`               | `boolean`  |    ✅    | -        | -       | Indicates whether the dialog is open or closed. The parent component needs to manage this state                             |
 | `onClose`              | `function` |    ✅    | -        | -       | Called when the dialog closes (click on overlay, click on close button, press ESC)                                          |
-| `closeTimeoutMS`       | `number`   |    -     | -        | `150`   | The timeout in ms for the dialog to close                                                                                   |
 | `children`             | `node`     |    ✅    | -        | -       | Content rendered within the dialog. If the content is long in height (depending on the screen size) a scrollbar will appear |
 | `horizontalConstraint` | `string`   |          | `m`, `l` | `m`     | Horizontal width limit of the dialog card                                                                                   |
