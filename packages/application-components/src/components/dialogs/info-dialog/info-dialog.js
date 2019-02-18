@@ -1,55 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Card,
-  CloseIcon,
-  Constraints,
-  SecondaryIconButton,
-  Spacings,
-  Text,
-} from '@commercetools-frontend/ui-kit';
-import ModalContainer from '../modal-container';
-import styles from './info-dialog.mod.css';
-
-// Like "Spacings.Inline", but with the `justify-content: space-between` style
-const Stretched = props => (
-  <div className={styles.stretched}>{props.children}</div>
-);
-Stretched.displayName = 'Stretched';
-Stretched.propTypes = { children: PropTypes.node.isRequired };
+import DialogContainer from '../internals/dialog-container';
+import DialogHeader from '../internals/dialog-header';
+import DialogContent from '../internals/dialog-content';
 
 const InfoDialog = props => (
-  <ModalContainer
+  <DialogContainer
     isOpen={props.isOpen}
-    onRequestClose={props.onClose}
-    overlayClassName={styles['modal-overlay']}
-    className={styles['modal-content']}
-    contentLabel="info-dialog"
+    onClose={props.onClose}
+    horizontalConstraint={props.horizontalConstraint}
   >
-    <Constraints.Horizontal constraint={props.horizontalConstraint}>
-      <div className={styles['dialog-container']}>
-        <Card>
-          <Spacings.Stack scale="m">
-            <Stretched>
-              <Text.Subheadline
-                elementType="h4"
-                truncate={true}
-                title={props.title}
-              >
-                {props.title}
-              </Text.Subheadline>
-              <SecondaryIconButton
-                label="Close dialog"
-                onClick={props.onClose}
-                icon={<CloseIcon size="medium" />}
-              />
-            </Stretched>
-            <div className={styles['dialog-content']}>{props.children}</div>
-          </Spacings.Stack>
-        </Card>
-      </div>
-    </Constraints.Horizontal>
-  </ModalContainer>
+    <DialogHeader title={props.title} onClose={props.onClose} />
+    <DialogContent>{props.children}</DialogContent>
+  </DialogContainer>
 );
 InfoDialog.displayName = 'InfoDialog';
 InfoDialog.propTypes = {
@@ -59,9 +22,6 @@ InfoDialog.propTypes = {
   // React modal props
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-};
-InfoDialog.defaultProps = {
-  horizontalConstraint: 'm',
 };
 
 export default InfoDialog;
