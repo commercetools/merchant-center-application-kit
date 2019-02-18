@@ -34,7 +34,11 @@ class App extends React.Component {
               <div>
                 <h1>Visual Testing App</h1>
                 <ul>
-                  <li>here</li>
+                  {Object.values(allComponents).map(Component => (
+                    <li key={Component.routePath}>
+                      <a href={Component.routePath}>{Component.routePath}</a>
+                    </li>
+                  ))}
                 </ul>
               </div>
             )}
