@@ -479,23 +479,6 @@ describe('<RestrictedApplication>', () => {
     it('should render <Route> for redirect to "/account"', () => {
       expect(wrapper.find('.main')).toRender({ to: '/account/profile' });
     });
-    it('should render <Route> matching exact ":projectKey" path', () => {
-      expect(wrapper.find('.main')).toRender({
-        exact: true,
-        path: '/:projectKey',
-      });
-    });
-    describe('<Redirect> to dashboard', () => {
-      beforeEach(() => {
-        wrapper = wrapper
-          .find('.main')
-          .find({ exact: true, path: '/:projectKey' })
-          .renderProp('render', { match: { url: '/foo-1' } });
-      });
-      it('should render <Redirect> to "/dashboard"', () => {
-        expect(wrapper.find('Redirect')).toHaveProp('to', '/foo-1/dashboard');
-      });
-    });
     it('should render <Route> matching ":projectKey" path', () => {
       expect(wrapper.find('.main')).toRender({
         exact: false,
