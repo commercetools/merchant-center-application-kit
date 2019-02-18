@@ -6,3 +6,16 @@ settings:
     - /test-utils/
     - test-utils$
     - test-utils\.js$
+overrides:
+  - files: ['*.spec.js']
+    rules:
+      'react/display-name': 0
+  - files: ['*.visualroute.js']
+    rules:
+      'import/extensions': [2, { ignore: ['application-components'] }]
+      'import/no-unresolved': [2, { ignore: ['application-components'] }]
+      'react/display-name': 0
+  - files: ['*.visualspec.js']
+    globals:
+      page: true
+      HOST: true
