@@ -32,8 +32,6 @@ describe('rendering', () => {
             title="Lorem ipsus"
             isOpen={isOpen}
             onClose={() => toggle(false)}
-            labelSecondary={ConfirmationDialog.Intl.cancel}
-            labelPrimary={ConfirmationDialog.Intl.confirm}
             onCancel={onCancel}
             onConfirm={onConfirm}
           >

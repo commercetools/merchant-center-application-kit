@@ -54,6 +54,10 @@ ConfirmationDialog.propTypes = {
   dataAttributesSecondaryButton: PropTypes.object,
   dataAttributesPrimaryButton: PropTypes.object,
 };
+ConfirmationDialog.defaultProps = {
+  labelSecondary: messages.cancel,
+  labelPrimary: messages.confirm,
+};
 // Make some default intl messages available to use
 ConfirmationDialog.Intl = messages;
 

@@ -57,8 +57,8 @@ storiesOf('Components|Dialogs', module)
             isOpen={isOpen}
             onClose={() => toggle(false)}
             horizontalConstraint={select('constraint', ['m', 'l'], 'm')}
-            labelSecondary={ConfirmationDialog.Intl.cancel}
-            labelPrimary={ConfirmationDialog.Intl.confirm}
+            labelSecondary={text('label secondary', '') || undefined}
+            labelPrimary={text('label primary', '') || undefined}
             isPrimaryButtonDisabled={boolean('isPrimaryButtonDisabled', false)}
             onCancel={() => {
               alert('cancelled');
