@@ -3791,10 +3791,10 @@ classnames@2.2.6, classnames@^2.2.3, classnames@^2.2.4, classnames@^2.2.5, class
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
-cldr@4.13.0:
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/cldr/-/cldr-4.13.0.tgz#a10ea41bbd7c5d965eda5fdd3531ba8291c4d71b"
-  integrity sha512-azSL1aMvsZM9Im6ZrnMhW/b3xF02YhoFckB7zzyjDKipUGjbVgkQSGukgJP+kFlEYCxKrCzU4Fj/nCchjjqZcw==
+cldr@4.14.0:
+  version "4.14.0"
+  resolved "https://registry.yarnpkg.com/cldr/-/cldr-4.14.0.tgz#7c4d430077d6ac822f7787944777c8497317611a"
+  integrity sha512-M3nhAyMPwInQin4fgeMTngHHZMPkxgiuWoTDteySCsYT38wvTArgX9xVY/vnUIA2degu6sRuouf9Yhmr6+frYQ==
   dependencies:
     escodegen "^1.11.0"
     esprima "^4.0.1"
