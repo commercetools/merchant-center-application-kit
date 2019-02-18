@@ -3547,6 +3547,11 @@ array-differ@^1.0.0:
   resolved "https://registry.yarnpkg.com/array-differ/-/array-differ-1.0.0.tgz#eff52e3758249d33be402b8bb8e564bb2b5d4031"
   integrity sha1-7/UuN1gknTO+QCuLuOVkuytdQDE=
 
+array-differ@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/array-differ/-/array-differ-2.0.3.tgz#0195bb00ccccf271106efee4a4786488b7180712"
+  integrity sha1-AZW7AMzM8nEQbv7kpHhkiLcYBxI=
+
 array-equal@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/array-equal/-/array-equal-1.0.0.tgz#8c2a5ef2472fd9ea742b04c77a75093ba2757c93"
@@ -12160,6 +12165,16 @@ multimatch@^2.1.0:
     array-union "^1.0.1"
     arrify "^1.0.0"
     minimatch "^3.0.0"
+
+multimatch@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/multimatch/-/multimatch-3.0.0.tgz#0e2534cc6bc238d9ab67e1b9cd5fcd85a6dbf70b"
+  integrity sha512-22foS/gqQfANZ3o+W7ST2x25ueHDVNWl/b9OlGcLpy/iKxjCpvcNCM51YCenUi7Mt/jAjjqv8JwZRs8YP5sRjA==
+  dependencies:
+    array-differ "^2.0.3"
+    array-union "^1.0.2"
+    arrify "^1.0.1"
+    minimatch "^3.0.4"
 
 mute-stream@0.0.7:
   version "0.0.7"
