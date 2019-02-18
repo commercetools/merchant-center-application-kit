@@ -9,7 +9,7 @@ This release introduces a **breaking change** which may entail some **migration 
 - `application-shell`
   - [#354](https://github.com/commercetools/merchant-center-application-kit/pull/354) fix(application-shell): redirect to welcome by default ([@tdeekens](https://github.com/tdeekens))
 
-Previously the `<ApplicationShell />` redirected to the `<projectKey>/dashboard` by default given the `/<projectKey>` route was matched exactly. This automatic redirect was removed. Instead our internal infrastructure (a proxy) now redirects to a welcome screen at `<projectKey>/welcome`. This means that your application can not rely anymore on being redirected to the dashboard.
+Previously the `<ApplicationShell>` had an internal redirect from `/:projectKey` to `/:projectKey/dashboard`. This redirect is now removed and it's done by our internal proxy router as we are rolling out a new landing page called **Welcome screen** (`/:projectKey/welcome`). However, for **development**, you need to adjust the redirect as illustrated below:
 
 If you for instance had a:
 
