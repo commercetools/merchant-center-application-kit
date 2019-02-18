@@ -7,3 +7,6 @@ export { default as PageNotFound } from './components/page-not-found';
 
 // Dialogs
 export { default as InfoDialog } from './components/dialogs/info-dialog';
+export {
+  default as ConfirmationDialog,
+} from './components/dialogs/confirmation-dialog';

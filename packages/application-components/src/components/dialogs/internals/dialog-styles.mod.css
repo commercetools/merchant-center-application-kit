@@ -54,3 +54,12 @@
   max-height: 80vh;
   max-width: 80vw;
 }
+
+.align-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.align-right > * + * {
+  margin: 0 0 0 var(--spacing-16);
+}
