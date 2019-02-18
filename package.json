@@ -30,6 +30,7 @@
     "storybook:start": "yarn --cwd packages/application-components storybook:start",
     "visual-testing-app:build": "yarn --cwd visual-testing-app build",
     "visual-testing-app:serve": "yarn --cwd visual-testing-app serve",
+    "percy": "node scripts/run-percy.js --verbose=FALSE",
     "build": "NODE_ENV=production lerna run build --no-private",
     "build:es": "NODE_ENV=production lerna run build:es --no-private",
     "build:es:watch": "NODE_ENV=development lerna run --no-private --parallel build:es:watch"
@@ -85,6 +86,7 @@
     "rollup-plugin-peer-deps-external": "2.2.0",
     "rollup-plugin-postcss": "2.0.3",
     "rollup-plugin-replace": "2.1.0",
+    "run-when": "^1.1.0",
     "shelljs": "0.8.3",
     "stylelint": "9.10.1",
     "stylelint-config-standard": "17.0.0",
