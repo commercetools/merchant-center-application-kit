@@ -24,13 +24,14 @@
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
     "test:visual": "jest --config jest.visual.config.js --runInBand",
+    "run-percy-if-changes": "node scripts/run-percy.js",
+    "percy": "percy exec -- jest --config jest.visual.config.js --runInBand",
     "playground:start": "yarn --cwd playground start",
     "playground:build": "yarn --cwd playground build",
     "storybook:build": "yarn --cwd packages/application-components storybook:build",
     "storybook:start": "yarn --cwd packages/application-components storybook:start",
     "visual-testing-app:build": "yarn --cwd visual-testing-app build",
     "visual-testing-app:serve": "yarn --cwd visual-testing-app serve",
-    "percy": "node scripts/run-percy.js --verbose=FALSE",
     "build": "NODE_ENV=production lerna run build --no-private",
     "build:es": "NODE_ENV=production lerna run build:es --no-private",
     "build:es:watch": "NODE_ENV=development lerna run --no-private --parallel build:es:watch"
@@ -44,6 +45,7 @@
   "devDependencies": {
     "@commitlint/cli": "7.5.2",
     "@commitlint/config-conventional": "7.5.0",
+    "@percy/puppeteer": "^1.0.5",
     "babel-eslint": "10.0.1",
     "babel-plugin-import-graphql": "2.6.2",
     "babel-plugin-transform-rename-import": "2.3.0",
