@@ -34,11 +34,11 @@
     "build:es:watch": "npm run build:es -- -w"
   },
   "dependencies": {
-    "prop-types": "15.7.1",
+    "prop-types": "15.7.2",
     "raven-js": "3.27.0"
   },
   "devDependencies": {
-    "react": "16.8.1"
+    "react": "16.8.2"
   },
   "peerDependencies": {
     "react": "16.x"

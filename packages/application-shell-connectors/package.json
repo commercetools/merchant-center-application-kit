@@ -38,11 +38,11 @@
     "lodash": "4.17.11",
     "lodash-es": "4.17.11",
     "moment-timezone": "^0.5.23",
-    "prop-types": "15.7.1",
+    "prop-types": "15.7.2",
     "recompose": "0.26.0"
   },
   "devDependencies": {
-    "react": "16.8.1",
+    "react": "16.8.2",
     "react-apollo": "2.4.1"
   },
   "peerDependencies": {
