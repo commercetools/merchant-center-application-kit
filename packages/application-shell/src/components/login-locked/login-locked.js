@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { Text } from '@commercetools-frontend/ui-kit';
 import ProjectSuspendedSVG from '@commercetools-frontend/assets/images/project-suspended.svg';
-import { ServicePageResponseLayout } from '@commercetools-frontend/application-components';
+import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import messages from './messages';
 
 const year = new Date().getUTCFullYear();
@@ -27,7 +27,7 @@ export const ResetPasswordLink = () => (
 ResetPasswordLink.displayName = 'ResetPasswordLink';
 
 const LoginLocked = () => (
-  <ServicePageResponseLayout
+  <MaintenancePageLayout
     imageSrc={ProjectSuspendedSVG}
     title={<FormattedMessage {...messages.title} />}
     paragraph1={

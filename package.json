@@ -25,6 +25,8 @@
     "test:watch": "jest --config jest.test.config.js --watch",
     "playground:start": "yarn --cwd playground start",
     "playground:build": "yarn --cwd playground build",
+    "storybook:build": "yarn --cwd packages/application-components storybook:build",
+    "storybook:start": "yarn --cwd packages/application-components storybook:start",
     "build": "NODE_ENV=production lerna run build --no-private",
     "build:es": "NODE_ENV=production lerna run build:es --no-private",
     "build:es:watch": "NODE_ENV=development lerna run --no-private --parallel build:es:watch"

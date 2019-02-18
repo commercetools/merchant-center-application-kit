@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '../../../test-utils';
-import ServicePageResponseLayout from './service-page-response-layout';
+import MaintenancePageLayout from './maintenance-page-layout';
 
 const createTestProps = props => ({
   imageSrc: '/assets/foo.svg',
@@ -16,7 +16,7 @@ describe('rendering', () => {
       props = createTestProps();
     });
     it('renders the title and paragraph', () => {
-      const { getByText } = render(<ServicePageResponseLayout {...props} />);
+      const { getByText } = render(<MaintenancePageLayout {...props} />);
       expect(getByText(props.title)).toBeInTheDocument();
       expect(getByText(props.paragraph1)).toBeInTheDocument();
     });
@@ -28,7 +28,7 @@ describe('rendering', () => {
       });
     });
     it('renders the title and paragraphs', () => {
-      const { getByText } = render(<ServicePageResponseLayout {...props} />);
+      const { getByText } = render(<MaintenancePageLayout {...props} />);
       expect(getByText(props.title)).toBeInTheDocument();
       expect(getByText(props.paragraph1)).toBeInTheDocument();
       expect(getByText(props.paragraph2)).toBeInTheDocument();
@@ -42,7 +42,7 @@ describe('rendering', () => {
       });
     });
     it('renders the title, paragraphs and body content', () => {
-      const { getByText } = render(<ServicePageResponseLayout {...props} />);
+      const { getByText } = render(<MaintenancePageLayout {...props} />);
       expect(getByText(props.title)).toBeInTheDocument();
       expect(getByText(props.paragraph1)).toBeInTheDocument();
       expect(getByText(props.paragraph2)).toBeInTheDocument();
@@ -56,7 +56,7 @@ describe('rendering', () => {
       });
     });
     it('renders the title, paragraphs and body content', () => {
-      const { getByText } = render(<ServicePageResponseLayout {...props} />);
+      const { getByText } = render(<MaintenancePageLayout {...props} />);
       expect(getByText(props.title)).toBeInTheDocument();
       expect(getByText(props.paragraph1)).toBeInTheDocument();
       expect(getByText(props.bodyContent)).toBeInTheDocument();
