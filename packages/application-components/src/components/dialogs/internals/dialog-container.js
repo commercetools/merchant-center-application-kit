@@ -46,11 +46,11 @@ DialogContainer.displayName = 'DialogContainer';
 DialogContainer.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  horizontalConstraint: PropTypes.oneOf(['m', 'l', 'scale']),
+  horizontalConstraint: PropTypes.oneOf(['m', 'l']),
   children: PropTypes.node.isRequired,
 };
 DialogContainer.defaultProps = {
-  horizontalConstraint: 'l',
+  horizontalConstraint: 'm',
 };
 
 export default DialogContainer;
