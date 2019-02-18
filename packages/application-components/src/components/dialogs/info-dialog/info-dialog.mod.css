@@ -6,9 +6,7 @@
 }
 
 .modal-overlay {
-  display: grid;
-  align-items: center;
-  justify-content: center;
+  display: flex;
   position: absolute;
   top: 0;
   width: 100%;
@@ -33,9 +31,20 @@
   justify-content: center;
   height: 100%;
   width: 100%;
+  outline: none;
+
+  /* To ensure that the mouse click on the overlay surface goes "through"
+  and triggers the modal to close, we need to turn off the pointer events. */
+  pointer-events: none;
 }
 
-.content {
+.dialog-container {
+  /* For the actual container with the content, we need to use normal pointer
+  events so that clicking on it does not close the dialog. */
+  pointer-events: auto;
+}
+
+.dialog-content {
   border-top: 1px solid var(--border-color-separator);
   padding-top: var(--spacing-16);
   max-height: 80vh;

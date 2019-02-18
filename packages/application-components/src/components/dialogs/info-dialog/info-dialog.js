@@ -27,25 +27,27 @@ const InfoDialog = props => (
     contentLabel="info-dialog"
   >
     <Constraints.Horizontal constraint={props.horizontalConstraint}>
-      <Card>
-        <Spacings.Stack scale="m">
-          <Stretched>
-            <Text.Subheadline
-              elementType="h4"
-              truncate={true}
-              title={props.title}
-            >
-              {props.title}
-            </Text.Subheadline>
-            <SecondaryIconButton
-              label="Close dialog"
-              onClick={props.onClose}
-              icon={<CloseIcon size="medium" />}
-            />
-          </Stretched>
-          <div className={styles.content}>{props.children}</div>
-        </Spacings.Stack>
-      </Card>
+      <div className={styles['dialog-container']}>
+        <Card>
+          <Spacings.Stack scale="m">
+            <Stretched>
+              <Text.Subheadline
+                elementType="h4"
+                truncate={true}
+                title={props.title}
+              >
+                {props.title}
+              </Text.Subheadline>
+              <SecondaryIconButton
+                label="Close dialog"
+                onClick={props.onClose}
+                icon={<CloseIcon size="medium" />}
+              />
+            </Stretched>
+            <div className={styles['dialog-content']}>{props.children}</div>
+          </Spacings.Stack>
+        </Card>
+      </div>
     </Constraints.Horizontal>
   </ModalContainer>
 );
