@@ -43,14 +43,14 @@
     "lodash-es": "4.17.11",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.23",
-    "prop-types": "15.7.1",
+    "prop-types": "15.7.2",
     "recompose": "^0.26.0",
     "reselect": "^4.0.0"
   },
   "devDependencies": {
     "@commercetools-frontend/ui-kit": "8.3.0",
-    "react": "16.8.1",
-    "react-dom": "16.8.1",
+    "react": "16.8.2",
+    "react-dom": "16.8.2",
     "react-intl": "2.8.0",
     "react-redux": "6.0.0",
     "react-router": "4.4.0-beta.6",

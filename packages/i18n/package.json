@@ -37,7 +37,7 @@
     "@babel/runtime": "7.3.1",
     "@commercetools-frontend/sentry": "7.0.0",
     "moment": "^2.24.0",
-    "prop-types": "15.7.1"
+    "prop-types": "15.7.2"
   },
   "peerDependencies": {
     "react": "16.x",
