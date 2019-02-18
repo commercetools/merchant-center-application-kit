@@ -39,7 +39,8 @@
   "workspaces": [
     "application-templates/*",
     "packages/*",
-    "playground"
+    "playground",
+    "visual-testing-app"
   ],
   "dependencies": {},
   "devDependencies": {
@@ -89,12 +90,10 @@
     "rollup-plugin-peer-deps-external": "2.2.0",
     "rollup-plugin-postcss": "2.0.3",
     "rollup-plugin-replace": "2.1.0",
-    "serve": "10.1.2",
     "shelljs": "0.8.3",
     "stylelint": "9.10.1",
     "stylelint-config-standard": "17.0.0",
-    "stylelint-order": "0.8.1",
-    "webpack-cli": "^3.2.3"
+    "stylelint-order": "0.8.1"
   },
   "engines": {
     "node": ">=8.9.4",

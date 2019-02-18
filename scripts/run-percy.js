@@ -22,7 +22,7 @@ const rulesGlob = [
 ];
 
 const diff = multimatch(changedFiles, rulesGlob);
-console.log('diff', diff);
+
 if (diff.length > 0) {
   console.log('Building visual testing app');
   shelljs.exec('yarn visual-testing-app:build');
