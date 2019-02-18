@@ -1,3 +1,50 @@
+## [8.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v7.3.4...v8.0.0) (2019-02-18
+
+## BREAKING CHANGES 💣
+
+This release introduces a **breaking change** which may entail some **migration steps**. We'll go through them now:
+
+#### 💥 Type: Breaking Change
+
+- `application-shell`
+  - [#354](https://github.com/commercetools/merchant-center-application-kit/pull/354) fix(application-shell): redirect to welcome by default ([@tdeekens](https://github.com/tdeekens))
+
+Previously the `<ApplicationShell />` redirected to the `<projectKey>/dashboard` by default given the `/<projectKey>` route was matched exactly. This automatic redirect was removed. Instead our internal infrastructure (a proxy) now redirects to a welcome screen at `<projectKey>/welcome`. This means that your application can not rely anymore on being redirected to the dashboard.
+
+If you for instance had a:
+
+```jsx
+<Switch>
+  {process.env.NODE_ENV === 'production' ? null : (
+    <Redirect from="/:projectKey/dashboard" to="/:projectKey/welcome" />
+  )}
+</Switch>
+```
+
+or any other redirect assuming the dashboard route could have been rendered inadvertently, please change it to:
+
+```jsx
+<Switch>
+  {process.env.NODE_ENV === 'production' ? null : (
+    <Redirect exact={true} from="/:projectKey" to="/:projectKey/welcome" />
+  )}
+</Switch>
+```
+
+given during development you intended to not end up on `/<projectKey>` by default.
+
+#### 🔮 Type: Chore
+
+- `application-components`, `application-shell`, `mc-scripts`
+  - [#366](https://github.com/commercetools/merchant-center-application-kit/pull/366) Add Storybook for developing application components ([@emmenko](https://github.com/emmenko))
+- `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-scripts`, `permissions`, `react-notifications`, `sdk`, `sentry`
+  - [#362](https://github.com/commercetools/merchant-center-application-kit/pull/362) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+
+- `application-components`, `application-shell`, `mc-scripts`
+  - [#366](https://github.com/commercetools/merchant-center-application-kit/pull/366) Add Storybook for developing application components ([@emmenko](https://github.com/emmenko))
+
 ## [7.3.4](https://github.com/commercetools/merchant-center-application-kit/compare/v7.3.3...v7.3.4) (2019-02-08)
 
 #### 🐛 Type: Bug
