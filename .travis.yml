@@ -33,7 +33,7 @@ before_install:
 
 script:
   - set -e
-  # - yarn run jest --projects jest.test.config.js jest.eslint.config.js jest.stylelint.config.js --maxWorkers=4 --reporters jest-silent-reporter
+  - yarn run jest --projects jest.test.config.js jest.eslint.config.js jest.stylelint.config.js --maxWorkers=4 --reporters jest-silent-reporter
   - yarn build
   - yarn run-if:percy
   - yarn playground:build
