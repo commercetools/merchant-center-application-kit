@@ -33,11 +33,11 @@ before_install:
 
 script:
   - set -e
-  - echo $TRAVIS_COMMIT_RANGE
-  # - yarn run jest --projects jest.*.config.js --maxWorkers=4 --reporters jest-silent-reporter
-  # - yarn build
-  # - yarn playground:build
-  # - yarn --cwd application-templates/starter build
+  - yarn run jest --projects jest.*.config.js --maxWorkers=4 --reporters jest-silent-reporter
+  - yarn build
+  - yarn run-if:percy
+  - yarn playground:build
+  - yarn --cwd application-templates/starter build
   - set +e
 
 after_success:

@@ -24,7 +24,7 @@
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
     "test:visual": "jest --config jest.visual.config.js --runInBand",
-    "run-percy-if-changes": "node scripts/run-percy.js",
+    "run-if:percy": "node scripts/run-percy.js",
     "percy": "percy exec -- jest --config jest.visual.config.js --runInBand",
     "playground:start": "yarn --cwd playground start",
     "playground:build": "yarn --cwd playground build",
