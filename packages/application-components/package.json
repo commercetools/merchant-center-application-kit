@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-components",
-  "version": "7.2.1",
+  "version": "8.0.0",
   "description": "Generic components for building Merchant Center applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -40,7 +40,7 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@commercetools-frontend/assets": "7.0.0",
+    "@commercetools-frontend/assets": "8.0.0",
     "@commercetools-frontend/ui-kit": "8.3.0",
     "@storybook/addon-actions": "4.1.11",
     "@storybook/addon-knobs": "4.1.11",
