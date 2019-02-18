@@ -31,7 +31,18 @@ or any other redirect assuming the dashboard route could have been rendered inad
 </Switch>
 ```
 
-given during development you intended to not end up on `/<projectKey>` by default.
+In short a diff of the change required to the `<Redirect />` would be:
+
+```diff
+<Redirect
++  exact={true}
+-  from="/:projectKey/dashboard"
++  from="/:projectKey"
+  to="/:projectKey/xxx"
+/>
+```
+
+Given during development you intended to not end up on `/<projectKey>` by default.
 
 #### 🔮 Type: Chore
 
