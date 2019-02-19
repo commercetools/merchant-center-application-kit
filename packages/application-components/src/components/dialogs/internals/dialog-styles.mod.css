@@ -39,6 +39,9 @@
 }
 
 .dialog-container {
+  justify-content: center;
+  max-width: 90%;
+
   /* For the actual container with the content, we need to use normal pointer
   events so that clicking on it does not close the dialog. */
   pointer-events: auto;
