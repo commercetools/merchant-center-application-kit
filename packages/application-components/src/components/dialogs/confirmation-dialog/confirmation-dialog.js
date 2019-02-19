@@ -28,7 +28,7 @@ const ConfirmationDialog = props => (
 ConfirmationDialog.displayName = 'ConfirmationDialog';
 ConfirmationDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
   title: PropTypes.string.isRequired,
   horizontalConstraint: PropTypes.oneOf(['m', 'l']),
   children: PropTypes.node.isRequired,

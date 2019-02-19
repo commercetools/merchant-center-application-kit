@@ -27,6 +27,8 @@ const DialogContainer = props => (
   <Modal
     isOpen={props.isOpen}
     onRequestClose={props.onClose}
+    shouldCloseOnOverlayClick={Boolean(props.onClose)}
+    shouldCloseOnEsc={Boolean(props.onClose)}
     overlayClassName={styles['modal-overlay']}
     className={styles['modal-content']}
     contentLabel="info-dialog"
@@ -45,7 +47,7 @@ const DialogContainer = props => (
 DialogContainer.displayName = 'DialogContainer';
 DialogContainer.propTypes = {
   isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
   horizontalConstraint: PropTypes.oneOf(['m', 'l', 'scale']),
   children: PropTypes.node.isRequired,
 };

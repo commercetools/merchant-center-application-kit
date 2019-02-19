@@ -58,4 +58,33 @@ describe('rendering', () => {
       expect(queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
     });
   });
+  it('should not be able to close the modal when onClose is not provided', async () => {
+    const onCancel = jest.fn();
+    const onConfirm = jest.fn();
+    const { queryByText, getByLabelText } = render(
+      <DialogController>
+        {({ isOpen }) => (
+          <ConfirmationDialog
+            title="Lorem ipsus"
+            isOpen={isOpen}
+            onCancel={onCancel}
+            onConfirm={onConfirm}
+          >
+            {'Hello'}
+          </ConfirmationDialog>
+        )}
+      </DialogController>
+    );
+    expect(queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
+
+    fireEvent.click(getByLabelText(/Open Confirmation Dialog/i));
+    await wait(() => {
+      expect(queryByText(/Lorem ipsus/i)).toBeInTheDocument();
+    });
+    expect(queryByText(/Hello/i)).toBeInTheDocument();
+
+    await wait(() => {
+      expect(queryByText(/Close dialog/i)).not.toBeInTheDocument();
+    });
+  });
 });
