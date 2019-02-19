@@ -18,7 +18,7 @@ InfoDialog.displayName = 'InfoDialog';
 InfoDialog.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  horizontalConstraint: PropTypes.oneOf(['m', 'l']),
+  horizontalConstraint: PropTypes.oneOf(['m', 'l', 'scale']),
   // React modal props
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,

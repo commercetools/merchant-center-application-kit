@@ -56,7 +56,11 @@ storiesOf('Components|Dialogs', module)
             title={text('title', 'Lorem Ipsum')}
             isOpen={isOpen}
             onClose={() => toggle(false)}
-            horizontalConstraint={select('constraint', ['m', 'l'], 'm')}
+            horizontalConstraint={select(
+              'constraint',
+              ['m', 'l', 'scale'],
+              'l'
+            )}
           >
             <Spacings.Stack scale="m">
               {boolean('show paragraph 1', true) && (
