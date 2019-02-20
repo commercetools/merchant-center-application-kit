@@ -55,7 +55,9 @@ storiesOf('Components|Dialogs', module)
           <ConfirmationDialog
             title={text('title', 'Lorem Ipsum')}
             isOpen={isOpen}
-            onClose={() => toggle(false)}
+            onClose={
+              boolean('disable close', false) ? undefined : () => toggle(false)
+            }
             horizontalConstraint={select(
               'constraint',
               ['m', 'l', 'scale'],
