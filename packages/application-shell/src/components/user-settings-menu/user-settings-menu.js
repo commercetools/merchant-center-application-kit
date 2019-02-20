@@ -12,7 +12,6 @@ import {
   Text,
   Spacings,
   Avatar,
-  Card,
 } from '@commercetools-frontend/ui-kit';
 import {
   LOGOUT_REASONS,
@@ -95,7 +94,7 @@ const UserSettingsMenuBody = props => {
     [];
 
   return (
-    <Card className={styles.menu}>
+    <div className={styles.menu}>
       <div {...props.downshiftProps.getMenuProps()}>
         <Spacings.Inset scale="xs">
           <Spacings.Inline scale="xs" alignItems="center">
@@ -180,7 +179,7 @@ const UserSettingsMenuBody = props => {
           </div>
         </a>
       </div>
-    </Card>
+    </div>
   );
 };
 UserSettingsMenuBody.displayName = 'UserSettingsMenuBody';
