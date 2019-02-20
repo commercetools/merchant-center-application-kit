@@ -1,7 +1,10 @@
-.box {
+.container {
   width: 350px;
-  margin: 0 auto;
-  padding: 0;
+}
+
+.card {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .header {
@@ -15,12 +18,4 @@
   width: 163px;
   height: 45px;
   padding: 3px 0;
-}
-
-.holder {
-  text-align: left;
-  background: var(--color-white);
-  border-bottom-left-radius: var(--border-radius-6);
-  border-bottom-right-radius: var(--border-radius-6);
-  padding: var(--spacing-24);
 }
