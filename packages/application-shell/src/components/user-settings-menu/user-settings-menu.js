@@ -12,12 +12,12 @@ import {
   Text,
   Spacings,
   Avatar,
+  Card,
 } from '@commercetools-frontend/ui-kit';
 import {
   LOGOUT_REASONS,
   NO_VALUE_FALLBACK,
 } from '@commercetools-frontend/constants';
-import Card from '../../from-core/card';
 import { MCSupportFormURL } from '../../constants';
 import withApplicationsMenu from '../with-applications-menu';
 import handleApolloErrors from '../handle-apollo-errors';

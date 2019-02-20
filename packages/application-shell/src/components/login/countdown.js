@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
-import InfoDialog from '../../from-core/info-dialog';
+import { FormattedMessage, injectIntl } from 'react-intl';
+import { InfoDialog } from '@commercetools-frontend/application-components';
+import { Text } from '@commercetools-frontend/ui-kit';
 import messages from './messages';
 
 const initialCount = 3;
@@ -13,6 +14,9 @@ export class Countdown extends React.PureComponent {
   static propTypes = {
     onCountEnd: PropTypes.func.isRequired,
     children: PropTypes.func.isRequired,
+    intl: PropTypes.shape({
+      formatMessage: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
   state = {
@@ -57,19 +61,20 @@ export class Countdown extends React.PureComponent {
       <React.Fragment>
         {this.props.children({ handleClick: this.openRedirectDialog })}
         <InfoDialog
+          title={this.props.intl.formatMessage(messages.forgotPassword)}
           isOpen={this.state.isDialogOpen}
           onClose={this.closeRedirectDialog}
         >
-          <InfoDialog.Title>
+          <Text.Body>
             <FormattedMessage
               {...messages.forgotPasswordTitle}
               values={{ countdown: this.state.countdown }}
             />
-          </InfoDialog.Title>
+          </Text.Body>
         </InfoDialog>
       </React.Fragment>
     );
   }
 }
 
-export default Countdown;
+export default injectIntl(Countdown);

@@ -2,7 +2,7 @@ import React from 'react';
 import { getDisplayName } from 'recompose';
 import warning from 'warning';
 
-export default function({ message = '' }) {
+export default function deprecateComponent({ message = '' }) {
   return Component =>
     class DeprecateComponent extends React.PureComponent {
       static displayName = `Deprecated(${getDisplayName(Component)})`;

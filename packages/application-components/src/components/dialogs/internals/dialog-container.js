@@ -1,7 +1,9 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
+import { Card, Constraints, Spacings } from '@commercetools-frontend/ui-kit';
+import styles from './dialog-styles.mod.css';
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under
@@ -21,14 +23,34 @@ const parentSelector = () =>
     ? document.body
     : document.querySelector(`#${PORTALS_CONTAINER_ID}`);
 
-const ModalContainer = props => (
-  <Modal {...props} parentSelector={parentSelector} ariaHideApp={false}>
-    {props.children}
+const DialogContainer = props => (
+  <Modal
+    isOpen={props.isOpen}
+    onRequestClose={props.onClose}
+    overlayClassName={styles['modal-overlay']}
+    className={styles['modal-content']}
+    contentLabel="info-dialog"
+    parentSelector={parentSelector}
+    ariaHideApp={false}
+  >
+    <Constraints.Horizontal constraint={props.horizontalConstraint}>
+      <div className={styles['dialog-container']}>
+        <Card>
+          <Spacings.Stack scale="m">{props.children}</Spacings.Stack>
+        </Card>
+      </div>
+    </Constraints.Horizontal>
   </Modal>
 );
-ModalContainer.displayName = 'ModalContainer';
-ModalContainer.propTypes = {
-  children: PropTypes.node,
+DialogContainer.displayName = 'DialogContainer';
+DialogContainer.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  horizontalConstraint: PropTypes.oneOf(['m', 'l', 'scale']),
+  children: PropTypes.node.isRequired,
+};
+DialogContainer.defaultProps = {
+  horizontalConstraint: 'l',
 };
 
-export default ModalContainer;
+export default DialogContainer;
