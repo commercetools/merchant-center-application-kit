@@ -6,7 +6,8 @@ exports[`rendering should match layout structure 1`] = `
   data-test="top-navigation"
 >
   <Inline
-    alignItems="flexStart"
+    alignItems="flex-start"
+    justifyContent="flex-start"
     scale="s"
   >
     <div
@@ -33,6 +34,7 @@ exports[`rendering should match layout structure 1`] = `
   >
     <Inline
       alignItems="center"
+      justifyContent="flex-start"
       scale="m"
     >
       <div
@@ -40,6 +42,7 @@ exports[`rendering should match layout structure 1`] = `
       >
         <Inline
           alignItems="center"
+          justifyContent="flex-start"
           scale="s"
         >
           <div
@@ -53,6 +56,7 @@ exports[`rendering should match layout structure 1`] = `
               <Inline
                 alignItems="center"
                 data-test="back-to-project"
+                justifyContent="flex-start"
                 scale="s"
               >
                 <AngleLeftIcon
