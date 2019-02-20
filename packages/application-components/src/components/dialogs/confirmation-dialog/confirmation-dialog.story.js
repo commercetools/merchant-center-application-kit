@@ -56,7 +56,11 @@ storiesOf('Components|Dialogs', module)
             title={text('title', 'Lorem Ipsum')}
             isOpen={isOpen}
             onClose={() => toggle(false)}
-            horizontalConstraint={select('constraint', ['m', 'l'], 'm')}
+            horizontalConstraint={select(
+              'constraint',
+              ['m', 'l', 'scale'],
+              'l'
+            )}
             labelSecondary={text('label secondary', '') || undefined}
             labelPrimary={text('label primary', '') || undefined}
             isPrimaryButtonDisabled={boolean('isPrimaryButtonDisabled', false)}
@@ -71,34 +75,28 @@ storiesOf('Components|Dialogs', module)
           >
             <Spacings.Stack scale="m">
               {boolean('show paragraph 1', true) && (
-                <div>
-                  <Text.Body>
-                    {text(
-                      'paragraph 1',
-                      `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`
-                    )}
-                  </Text.Body>
-                </div>
+                <Text.Body>
+                  {text(
+                    'paragraph 1',
+                    `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`
+                  )}
+                </Text.Body>
               )}
               {boolean('show paragraph 2', true) && (
-                <div>
-                  <Text.Body>
-                    {text(
-                      'paragraph 2',
-                      `Nam id orci ut risus accumsan pellentesque. Quisque efficitur eu arcu ut tristique. Praesent ornare varius leo, ut consequat lacus rutrum vel. Donec mollis leo id lectus vehicula tempor. Nulla facilisi. Fusce fringilla tellus ac ligula consequat suscipit. Sed consectetur molestie quam eu pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst.`
-                    )}
-                  </Text.Body>
-                </div>
+                <Text.Body>
+                  {text(
+                    'paragraph 2',
+                    `Nam id orci ut risus accumsan pellentesque. Quisque efficitur eu arcu ut tristique. Praesent ornare varius leo, ut consequat lacus rutrum vel. Donec mollis leo id lectus vehicula tempor. Nulla facilisi. Fusce fringilla tellus ac ligula consequat suscipit. Sed consectetur molestie quam eu pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst.`
+                  )}
+                </Text.Body>
               )}
               {boolean('show paragraph 3', true) && (
-                <div>
-                  <Text.Body>
-                    {text(
-                      'paragraph 3',
-                      `Sed elementum leo vitae viverra bibendum. Donec iaculis tempor enim, ut interdum purus ornare vel. Mauris laoreet metus in laoreet sagittis. Aenean non suscipit mi. Etiam hendrerit ultricies tortor, et blandit risus ultricies eget. Suspendisse porta est ac nisi posuere, eu lobortis felis pulvinar. Duis eget convallis ligula. Quisque aliquam cursus mi quis auctor. Maecenas tristique, libero et blandit blandit, magna neque vulputate augue, sit amet lobortis est libero sed diam. In egestas, elit non imperdiet condimentum, mi ante ullamcorper tortor, vel euismod nulla eros sed elit. Aenean quis ullamcorper est, quis pretium lorem. Donec et vestibulum est. Nam pharetra quam sem, ac tempus lectus condimentum nec. Morbi porta lorem nunc, non tempus lacus accumsan id. Sed eleifend nunc eu libero vestibulum maximus. Nullam in lorem blandit, tempor felis ac, pellentesque odio.`
-                    )}
-                  </Text.Body>
-                </div>
+                <Text.Body>
+                  {text(
+                    'paragraph 3',
+                    `Sed elementum leo vitae viverra bibendum. Donec iaculis tempor enim, ut interdum purus ornare vel. Mauris laoreet metus in laoreet sagittis. Aenean non suscipit mi. Etiam hendrerit ultricies tortor, et blandit risus ultricies eget. Suspendisse porta est ac nisi posuere, eu lobortis felis pulvinar. Duis eget convallis ligula. Quisque aliquam cursus mi quis auctor. Maecenas tristique, libero et blandit blandit, magna neque vulputate augue, sit amet lobortis est libero sed diam. In egestas, elit non imperdiet condimentum, mi ante ullamcorper tortor, vel euismod nulla eros sed elit. Aenean quis ullamcorper est, quis pretium lorem. Donec et vestibulum est. Nam pharetra quam sem, ac tempus lectus condimentum nec. Morbi porta lorem nunc, non tempus lacus accumsan id. Sed eleifend nunc eu libero vestibulum maximus. Nullam in lorem blandit, tempor felis ac, pellentesque odio.`
+                  )}
+                </Text.Body>
               )}
             </Spacings.Stack>
           </ConfirmationDialog>

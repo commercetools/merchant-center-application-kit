@@ -30,7 +30,7 @@ ConfirmationDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func,
   title: PropTypes.string.isRequired,
-  horizontalConstraint: PropTypes.oneOf(['m', 'l']),
+  horizontalConstraint: PropTypes.oneOf(['m', 'l', 'scale']),
   children: PropTypes.node.isRequired,
   labelSecondary: PropTypes.oneOfType([
     PropTypes.string,

@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
-import { SecondaryButton, PrimaryButton } from '@commercetools-frontend/ui-kit';
+import {
+  SecondaryButton,
+  PrimaryButton,
+  Spacings,
+} from '@commercetools-frontend/ui-kit';
 import filterDataAttributes from '../../../utils/filter-data-attributes';
-import styles from './dialog-styles.mod.css';
 
 const useLabel = (label, intl) =>
   typeof label === 'string' ? label : intl.formatMessage(label);
 
 const DialogFooter = props => (
-  <div className={styles['align-right']}>
+  <Spacings.Inline scale="m" alignItems="center" justifyContent="flex-end">
     <SecondaryButton
       label={useLabel(props.labelSecondary, props.intl)}
       onClick={props.onCancel}
@@ -21,7 +24,7 @@ const DialogFooter = props => (
       isDisabled={props.isPrimaryButtonDisabled}
       {...filterDataAttributes(props.dataAttributesPrimaryButton)}
     />
-  </div>
+  </Spacings.Inline>
 );
 DialogFooter.displayName = 'DialogFooter';
 DialogFooter.propTypes = {
