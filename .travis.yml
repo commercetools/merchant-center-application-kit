@@ -1,5 +1,4 @@
 sudo: false
-os: osx
 
 addons:
   apt:

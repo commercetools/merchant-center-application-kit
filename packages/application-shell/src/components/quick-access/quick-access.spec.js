@@ -672,17 +672,6 @@ describe('QuickAccess', () => {
     expect(getByTestId('quick-access-result(go/dashboard)')).toHaveClass(
       'result activeResult'
     );
-
-    // // when now pressing up again, we should not cycle through history but
-    // // instead move the selection to the last element in the list
-    searchInput = getByTestId('quick-access-search-input');
-    fireEvent.keyDown(searchInput, { key: 'ArrowUp' });
-    fireEvent.keyUp(searchInput, { key: 'ArrowUp' });
-
-    // The last element in the results
-    expect(
-      getByTestId('quick-access-result(go/settings/product-types)')
-    ).toHaveClass('result activeResult');
   });
 
   it('should find a product by sku', async () => {
