@@ -10,7 +10,7 @@ import {
   Text,
 } from '@commercetools-frontend/ui-kit';
 import Readme from './README.md';
-import InfoDialog from './info-dialog';
+import ConfirmationDialog from './confirmation-dialog';
 
 const DialogController = props => {
   const [isOpen, toggle] = React.useState(false);
@@ -26,11 +26,11 @@ const DialogController = props => {
     >
       <Spacings.Stack>
         <Text.Headline elementType="h3">
-          {'Open the Info Dialog by clicking on the button'}
+          {'Open the Confirmation Dialog by clicking on the button'}
         </Text.Headline>
         <Spacings.Inline>
           <SecondaryButton
-            label="Open Info Dialog"
+            label="Open Confirmation Dialog"
             onClick={() => toggle(true)}
           />
         </Spacings.Inline>
@@ -47,20 +47,33 @@ DialogController.propTypes = {
 storiesOf('Components|Dialogs', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(Readme))
-  .add('InfoDialog', () => (
+  .add('ConfirmationDialog', () => (
     <React.Fragment>
       <div id={PORTALS_CONTAINER_ID} />
       <DialogController>
         {({ isOpen, toggle }) => (
-          <InfoDialog
+          <ConfirmationDialog
             title={text('title', 'Lorem Ipsum')}
             isOpen={isOpen}
-            onClose={() => toggle(false)}
+            onClose={
+              boolean('disable close', false) ? undefined : () => toggle(false)
+            }
             horizontalConstraint={select(
               'constraint',
               ['m', 'l', 'scale'],
               'l'
             )}
+            labelSecondary={text('label secondary', '') || undefined}
+            labelPrimary={text('label primary', '') || undefined}
+            isPrimaryButtonDisabled={boolean('isPrimaryButtonDisabled', false)}
+            onCancel={() => {
+              alert('cancelled');
+              toggle(false);
+            }}
+            onConfirm={() => {
+              alert('confirmed');
+              toggle(false);
+            }}
           >
             <Spacings.Stack scale="m">
               {boolean('show paragraph 1', true) && (
@@ -88,7 +101,7 @@ storiesOf('Components|Dialogs', module)
                 </Text.Body>
               )}
             </Spacings.Stack>
-          </InfoDialog>
+          </ConfirmationDialog>
         )}
       </DialogController>
     </React.Fragment>

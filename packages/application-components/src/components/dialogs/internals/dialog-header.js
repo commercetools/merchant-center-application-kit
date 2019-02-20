@@ -12,17 +12,19 @@ const DialogHeader = props => (
     <Text.Subheadline elementType="h4" truncate={true} title={props.title}>
       {props.title}
     </Text.Subheadline>
-    <SecondaryIconButton
-      label="Close dialog"
-      onClick={props.onClose}
-      icon={<CloseIcon size="medium" />}
-    />
+    {props.onClose && (
+      <SecondaryIconButton
+        label="Close dialog"
+        onClick={props.onClose}
+        icon={<CloseIcon size="medium" />}
+      />
+    )}
   </Spacings.Inline>
 );
 DialogHeader.displayName = 'DialogHeader';
 DialogHeader.propTypes = {
   title: PropTypes.string.isRequired,
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
 };
 
 export default DialogHeader;
