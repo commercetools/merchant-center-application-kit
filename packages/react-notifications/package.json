@@ -48,7 +48,7 @@
     "reselect": "^4.0.0"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "8.3.0",
+    "@commercetools-frontend/ui-kit": "9.0.0",
     "react": "16.8.2",
     "react-dom": "16.8.2",
     "react-intl": "2.8.0",
@@ -57,7 +57,7 @@
     "react-router-dom": "4.4.0-beta.6"
   },
   "peerDependencies": {
-    "@commercetools-frontend/ui-kit": "8.x",
+    "@commercetools-frontend/ui-kit": "9.x",
     "react": "16.x",
     "react-dom": "16.x",
     "react-intl": "2.x",

@@ -16,7 +16,7 @@
     "@commercetools-frontend/i18n": "8.0.0",
     "@commercetools-frontend/mc-http-server": "8.0.0",
     "@commercetools-frontend/permissions": "8.0.0",
-    "@commercetools-frontend/ui-kit": "8.3.0",
+    "@commercetools-frontend/ui-kit": "9.0.0",
     "prop-types": "15.7.2",
     "react": "16.8.2",
     "react-apollo": "2.4.1",
