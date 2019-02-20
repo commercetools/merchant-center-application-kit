@@ -54,12 +54,3 @@
   max-height: 80vh;
   max-width: 80vw;
 }
-
-.stretched {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.stretched > * + * {
-  margin: 0 0 0 var(--spacing-16);
-}

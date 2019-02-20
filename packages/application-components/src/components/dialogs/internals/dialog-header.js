@@ -4,11 +4,11 @@ import {
   CloseIcon,
   SecondaryIconButton,
   Text,
+  Spacings,
 } from '@commercetools-frontend/ui-kit';
-import styles from './dialog-styles.mod.css';
 
 const DialogHeader = props => (
-  <div className={styles.stretched}>
+  <Spacings.Inline scale="m" alignItems="center" justifyContent="space-between">
     <Text.Subheadline elementType="h4" truncate={true} title={props.title}>
       {props.title}
     </Text.Subheadline>
@@ -17,7 +17,7 @@ const DialogHeader = props => (
       onClick={props.onClose}
       icon={<CloseIcon size="medium" />}
     />
-  </div>
+  </Spacings.Inline>
 );
 DialogHeader.displayName = 'DialogHeader';
 DialogHeader.propTypes = {
