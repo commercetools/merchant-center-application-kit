@@ -54,3 +54,15 @@
   max-height: 80vh;
   max-width: 80vw;
 }
+
+.size-m {
+  width: var(--constraint-m);
+}
+
+.size-l {
+  width: var(--constraint-l);
+}
+
+.size-scale {
+  width: var(--constraint-scale);
+}

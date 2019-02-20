@@ -1,6 +1,6 @@
 import React from 'react';
-import { getDisplayName } from 'recompose';
 import warning from 'warning';
+import getDisplayName from './get-display-name';
 
 export default function deprecateComponent({ message = '' }) {
   return Component =>
