@@ -6,7 +6,7 @@ export const routePath = '/page-not-found';
 
 export const component = () => (
   <Suite>
-    <Spec label="PageNotFound">
+    <Spec label="PageNotFound" size="l" contentAlignment="center">
       <PageNotFound />
     </Spec>
   </Suite>

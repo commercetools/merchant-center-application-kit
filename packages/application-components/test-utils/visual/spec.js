@@ -3,6 +3,18 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { customProperties } from '@commercetools-frontend/ui-kit';
 
+const getContainerHeight = size => {
+  console.log('size', size);
+  switch (size) {
+    case 'l':
+      return 550;
+    case 'xl':
+      return 750;
+    default:
+      return 400;
+  }
+};
+
 const SpecContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -11,7 +23,7 @@ const SpecContainer = styled.div`
     remaining states below it, so we establish a min-height for each spec to
     prevent that.
   */
-  min-height: 400px;
+  min-height: ${props => `${getContainerHeight(props.size)}px`};
 `;
 
 const Label = styled.div`
@@ -49,6 +61,15 @@ const PropValue = styled.span`
 
 const Box = styled.div`
   background-color: ${props => (props.inverted ? '#111' : '#eee')};
+  ${props =>
+    props.alignment === 'center'
+      ? `
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      `
+      : ``}
 `;
 
 const Pill = props => {
@@ -99,15 +120,19 @@ Props.propTypes = {
 };
 
 const Spec = props => (
-  <SpecContainer>
+  <SpecContainer size={props.size}>
     <Label>{props.label}</Label>
     {!props.omitPropsList && <Props>{props.children}</Props>}
-    <Box inverted={props.inverted}>{props.children}</Box>
+    <Box inverted={props.inverted} alignment={props.contentAlignment}>
+      {props.children}
+    </Box>
   </SpecContainer>
 );
 
 Spec.propTypes = {
   label: PropTypes.string.isRequired,
+  size: PropTypes.oneOf(['m', 'l', 'xl']),
+  contentAlignment: PropTypes.oneOf(['default', 'center']),
   children: PropTypes.node,
   inverted: PropTypes.bool,
   omitPropsList: PropTypes.bool,
@@ -115,6 +140,8 @@ Spec.propTypes = {
 
 Spec.defaultProps = {
   omitPropsList: false,
+  size: 'm',
+  contentAlignment: 'default',
 };
 
 Spec.displayName = 'Spec';
