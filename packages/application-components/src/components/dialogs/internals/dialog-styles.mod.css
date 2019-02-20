@@ -39,9 +39,6 @@
 }
 
 .dialog-container {
-  justify-content: center;
-  max-width: 90%;
-
   /* For the actual container with the content, we need to use normal pointer
   events so that clicking on it does not close the dialog. */
   pointer-events: auto;
@@ -50,8 +47,12 @@
 .dialog-content {
   border-top: 1px solid var(--border-color-separator);
   padding-top: var(--spacing-16);
-  max-height: 80vh;
   overflow: auto;
+
+  /* NOTE: we might need to look into those values again, specifically for the `scale`
+  mode, where the dialog is supposed to scale to the window size. */
+  max-height: 80vh;
+  max-width: 80vw;
 }
 
 .stretched {
