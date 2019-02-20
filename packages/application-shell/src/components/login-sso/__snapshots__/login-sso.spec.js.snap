@@ -29,7 +29,8 @@ exports[`rendering <Formik> form elements should match layout 1`] = `
       value=""
     />
     <Inline
-      alignItems="flexStart"
+      alignItems="flex-start"
+      justifyContent="flex-start"
       scale="s"
     >
       <PrimaryButton
