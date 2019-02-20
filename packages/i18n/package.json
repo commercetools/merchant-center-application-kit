@@ -39,6 +39,10 @@
     "moment": "^2.24.0",
     "prop-types": "15.7.2"
   },
+  "devDependencies": {
+    "react": "16.8.2",
+    "react-intl": "2.8.0"
+  },
   "peerDependencies": {
     "react": "16.x",
     "react-intl": "2.x"
