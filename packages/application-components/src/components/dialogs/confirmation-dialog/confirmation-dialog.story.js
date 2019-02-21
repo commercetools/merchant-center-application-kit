@@ -58,11 +58,7 @@ storiesOf('Components|Dialogs', module)
             onClose={
               boolean('disable close', false) ? undefined : () => toggle(false)
             }
-            horizontalConstraint={select(
-              'constraint',
-              ['m', 'l', 'scale'],
-              'l'
-            )}
+            size={select('size', ['m', 'l', 'scale'], 'l')}
             labelSecondary={text('label secondary', '') || undefined}
             labelPrimary={text('label primary', '') || undefined}
             isPrimaryButtonDisabled={boolean('isPrimaryButtonDisabled', false)}

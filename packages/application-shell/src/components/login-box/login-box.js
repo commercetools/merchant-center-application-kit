@@ -5,16 +5,16 @@ import { Card } from '@commercetools-frontend/ui-kit';
 import styles from './login-box.mod.css';
 
 const LoginBox = props => (
-  <Card className={styles.box}>
+  <div className={styles.container}>
     <div className={styles.header}>
       <div className={styles.logo}>
         <img src={LogoBWWhiteSVG} />
       </div>
     </div>
-    <div className={styles.holder} data-test="login-form">
+    <Card className={styles.card} data-test="login-form">
       {props.children}
-    </div>
-  </Card>
+    </Card>
+  </div>
 );
 LoginBox.displayName = 'LoginBox';
 LoginBox.propTypes = {

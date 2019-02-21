@@ -12,19 +12,17 @@ const PublicPageContainer = props => (
   <React.Fragment>
     <PortalsContainer />
     <div className={styles.container}>
-      <div className={styles.login}>
-        <Spacings.Stack scale="m">
-          {props.children}
-          <div className={styles.footer}>
-            <a href={`https://commercetools.com/privacy`} target="_blank">
-              <Text.Detail>
-                <FormattedMessage {...messages.privacyPolicy} />
-              </Text.Detail>
-            </a>
-            <Text.Detail>{`${year} © commercetools`}</Text.Detail>
-          </div>
-        </Spacings.Stack>
-      </div>
+      <Spacings.Stack scale="m">
+        {props.children}
+        <Spacings.Inline justifyContent="space-between">
+          <a href={`https://commercetools.com/privacy`} target="_blank">
+            <Text.Detail>
+              <FormattedMessage {...messages.privacyPolicy} />
+            </Text.Detail>
+          </a>
+          <Text.Detail>{`${year} © commercetools`}</Text.Detail>
+        </Spacings.Inline>
+      </Spacings.Stack>
     </div>
   </React.Fragment>
 );

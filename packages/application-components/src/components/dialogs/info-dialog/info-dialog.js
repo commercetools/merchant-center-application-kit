@@ -8,7 +8,7 @@ const InfoDialog = props => (
   <DialogContainer
     isOpen={props.isOpen}
     onClose={props.onClose}
-    horizontalConstraint={props.horizontalConstraint}
+    size={props.size}
   >
     <DialogHeader title={props.title} onClose={props.onClose} />
     <DialogContent>{props.children}</DialogContent>
@@ -18,7 +18,7 @@ InfoDialog.displayName = 'InfoDialog';
 InfoDialog.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  horizontalConstraint: PropTypes.oneOf(['m', 'l', 'scale']),
+  size: PropTypes.oneOf(['m', 'l', 'scale']),
   // React modal props
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,

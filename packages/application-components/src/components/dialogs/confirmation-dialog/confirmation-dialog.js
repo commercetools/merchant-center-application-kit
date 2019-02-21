@@ -10,7 +10,7 @@ const ConfirmationDialog = props => (
   <DialogContainer
     isOpen={props.isOpen}
     onClose={props.onClose}
-    horizontalConstraint={props.horizontalConstraint}
+    size={props.size}
   >
     <DialogHeader title={props.title} onClose={props.onClose} />
     <DialogContent>{props.children}</DialogContent>
@@ -30,7 +30,7 @@ ConfirmationDialog.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func,
   title: PropTypes.string.isRequired,
-  horizontalConstraint: PropTypes.oneOf(['m', 'l', 'scale']),
+  size: PropTypes.oneOf(['m', 'l', 'scale']),
   children: PropTypes.node.isRequired,
   labelSecondary: PropTypes.oneOfType([
     PropTypes.string,

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import { Card, Constraints, Spacings } from '@commercetools-frontend/ui-kit';
+import { Card, Spacings } from '@commercetools-frontend/ui-kit';
 import styles from './dialog-styles.mod.css';
 
 // When running tests, we don't render the AppShell. Instead we mock the
@@ -35,24 +35,24 @@ const DialogContainer = props => (
     parentSelector={parentSelector}
     ariaHideApp={false}
   >
-    <Constraints.Horizontal constraint={props.horizontalConstraint}>
+    <div className={styles[`size-${props.size}`]}>
       <div className={styles['dialog-container']}>
         <Card>
           <Spacings.Stack scale="m">{props.children}</Spacings.Stack>
         </Card>
       </div>
-    </Constraints.Horizontal>
+    </div>
   </Modal>
 );
 DialogContainer.displayName = 'DialogContainer';
 DialogContainer.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func,
-  horizontalConstraint: PropTypes.oneOf(['m', 'l', 'scale']),
+  size: PropTypes.oneOf(['m', 'l', 'scale']),
   children: PropTypes.node.isRequired,
 };
 DialogContainer.defaultProps = {
-  horizontalConstraint: 'l',
+  size: 'l',
 };
 
 export default DialogContainer;

@@ -1,17 +1,7 @@
 .container {
-  display: flex;
-  justify-content: center;
-  background: var(--color-gray-95);
+  display: grid;
   height: 100vh;
-}
-
-.login {
-  margin-top: calc(var(--spacing-32) * 2);
-}
-
-.footer {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
+  background: var(--color-gray-95);
 }

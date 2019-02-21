@@ -11,20 +11,12 @@ const MaintenancePageLayout = props => (
         <div>
           <img src={props.imageSrc} />
         </div>
-        <div>
-          <Text.Headline elementType="h2">{props.title}</Text.Headline>
-        </div>
-        <div>
-          <Text.Body>{props.paragraph1}</Text.Body>
-        </div>
+        <Text.Headline elementType="h2">{props.title}</Text.Headline>
+        <Text.Body>{props.paragraph1}</Text.Body>
         {props.bodyContent && (
           <div className={styles.body}>{props.bodyContent}</div>
         )}
-        {props.paragraph2 && (
-          <div>
-            <Text.Body>{props.paragraph2}</Text.Body>
-          </div>
-        )}
+        {props.paragraph2 && <Text.Body>{props.paragraph2}</Text.Body>}
       </Spacings.Stack>
     </Constraints.Horizontal>
   </div>
