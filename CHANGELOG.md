@@ -1,3 +1,24 @@
+## [8.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v8.0.0...v8.1.0) (2019-02-21)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#381](https://github.com/commercetools/merchant-center-application-kit/pull/381) fix(app-shell): quick-access to support full reloads ([@tdeekens](https://github.com/tdeekens))
+- `application-components`, `application-shell`
+  - [#380](https://github.com/commercetools/merchant-center-application-kit/pull/380) fix: broken layouts due to Card component structure changes ([@emmenko](https://github.com/emmenko))
+
+#### 💅 Type: Enhancement
+
+- `application-components`, `application-shell`
+  - [#380](https://github.com/commercetools/merchant-center-application-kit/pull/380) fix: broken layouts due to Card component structure changes ([@emmenko](https://github.com/emmenko))
+
+#### 🚀 Type: New Feature
+
+- `application-components`
+  - [#377](https://github.com/commercetools/merchant-center-application-kit/pull/377) feat: add <ConfirmationDialog> ([@emmenko](https://github.com/emmenko))
+- `application-components`, `application-shell`
+  - [#367](https://github.com/commercetools/merchant-center-application-kit/pull/367) feat: add <InfoDialog> ([@emmenko](https://github.com/emmenko))
+
 ## [8.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v7.3.4...v8.0.0) (2019-02-18
 
 ## BREAKING CHANGES 💣
