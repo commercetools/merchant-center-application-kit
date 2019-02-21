@@ -166,6 +166,9 @@ export const RestrictedApplication = props => (
                                     <QuickAccess
                                       history={routeProps.history}
                                       user={user}
+                                      useFullRedirectsForLinks={
+                                        props.INTERNAL__isApplicationFallback
+                                      }
                                     />
                                   );
                                 return (
@@ -187,6 +190,9 @@ export const RestrictedApplication = props => (
                                           }
                                           history={routeProps.history}
                                           user={user}
+                                          useFullRedirectsForLinks={
+                                            props.INTERNAL__isApplicationFallback
+                                          }
                                         />
                                       </ApplicationContextProvider>
                                     )}

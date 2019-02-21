@@ -325,7 +325,7 @@ describe('QuickAccess', () => {
     });
   });
 
-  it('should open dashboard when chosing the "Open Dashboard" command', async () => {
+  it('should open (route to) dashboard when chosing the "Open Dashboard" command', async () => {
     const mocks = [createMatchlessSearchMock('Open dshbrd')];
     const props = createTestProps();
     const { getByTestId, queryByTestId, getByText } = renderWithRedux(
@@ -349,6 +349,39 @@ describe('QuickAccess', () => {
     await waitForElement(() => getByText('Open Dashboard'));
     fireEvent.keyUp(searchInput, { key: 'Enter' });
     expect(props.history.push).toHaveBeenCalledWith(
+      '/test-with-big-data-44/dashboard'
+    );
+
+    // should close quick access
+    expect(queryByTestId('quick-access')).not.toBeInTheDocument();
+  });
+
+  it('should open (reload to) dashboard when chosing the "Open Dashboard" command when using full redirects for links', async () => {
+    const mocks = [createMatchlessSearchMock('Open dshbrd')];
+    const props = createTestProps({
+      useFullRedirectsForLinks: true,
+    });
+    const { getByTestId, queryByTestId, getByText } = renderWithRedux(
+      <QuickAccess {...props} />,
+      {
+        mocks,
+        flags,
+        sdkMocks: [
+          createPimAvailabilityCheckSdkMock(),
+          createPimSearchSdkMock('Open dshbrd'),
+        ],
+      }
+    );
+
+    // open quick-access
+    fireEvent.keyDown(document.body, { key: 'f' });
+    await waitForElement(() => getByTestId('quick-access-search-input'));
+
+    const searchInput = getByTestId('quick-access-search-input');
+    fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
+    await waitForElement(() => getByText('Open Dashboard'));
+    fireEvent.keyUp(searchInput, { key: 'Enter' });
+    expect(global.open).toHaveBeenCalledWith(
       '/test-with-big-data-44/dashboard'
     );
 

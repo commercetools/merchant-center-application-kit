@@ -79,6 +79,7 @@ class QuickAccess extends React.Component {
     onChangeProjectDataLocale: PropTypes.func,
     pimSearchProductIds: PropTypes.func.isRequired,
     getPimSearchStatus: PropTypes.func.isRequired,
+    useFullRedirectsForLinks: PropTypes.bool,
   };
 
   state = {
@@ -320,6 +321,8 @@ class QuickAccess extends React.Component {
         // and always open other pages in a new window
         if (meta.openInNewTab || !command.action.to.startsWith('/')) {
           open(command.action.to, '_blank');
+        } else if (this.props.useFullRedirectsForLinks) {
+          open(command.action.to);
         } else {
           this.props.history.push(command.action.to);
         }
