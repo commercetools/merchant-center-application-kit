@@ -9,6 +9,7 @@ const InfoDialog = props => (
     isOpen={props.isOpen}
     onClose={props.onClose}
     size={props.size}
+    zIndex={props.zIndex}
   >
     <DialogHeader title={props.title} onClose={props.onClose} />
     <DialogContent>{props.children}</DialogContent>
@@ -16,12 +17,12 @@ const InfoDialog = props => (
 );
 InfoDialog.displayName = 'InfoDialog';
 InfoDialog.propTypes = {
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  size: PropTypes.oneOf(['m', 'l', 'scale']),
-  // React modal props
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  size: PropTypes.oneOf(['m', 'l', 'scale']),
+  zIndex: PropTypes.number,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default InfoDialog;

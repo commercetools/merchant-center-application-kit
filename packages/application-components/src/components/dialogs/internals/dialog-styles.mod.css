@@ -1,8 +1,5 @@
 :root {
   --color-modalBackground: rgba(32, 62, 72, 0.5);
-
-  /* Modals */
-  --z-index--overlay: 1000;
 }
 
 .modal-overlay {
@@ -12,7 +9,6 @@
   width: 100%;
   height: 100%;
   background-color: var(--color-modalBackground);
-  z-index: var(--z-index--overlay);
   opacity: 0;
 }
 

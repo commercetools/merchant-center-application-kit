@@ -30,3 +30,4 @@ Info dialogs are controlled components used to show more information about a par
 | `onClose`  | `function` |    ✅    | -                 | -       | Called when the dialog closes (click on overlay, click on close button, press ESC)                                          |
 | `children` | `node`     |    ✅    | -                 | -       | Content rendered within the dialog. If the content is long in height (depending on the screen size) a scrollbar will appear |
 | `size`     | `string`   |          | `m`, `l`, `scale` | `l`     | Horizontal width of the dialog card                                                                                         |
+| `zIndex`   | `number`   |          | -                 | `1000`  | The `z-index` value to be applied to the overlay container (useful if you have stacking modals)                             |

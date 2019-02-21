@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
+import {
+  withKnobs,
+  text,
+  select,
+  boolean,
+  number,
+} from '@storybook/addon-knobs';
 import withReadme from 'storybook-readme/with-readme';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import {
@@ -59,6 +65,7 @@ storiesOf('Components|Dialogs', module)
               boolean('disable close', false) ? undefined : () => toggle(false)
             }
             size={select('size', ['m', 'l', 'scale'], 'l')}
+            zIndex={number('z-index', 1000)}
             labelSecondary={text('label secondary', '') || undefined}
             labelPrimary={text('label primary', '') || undefined}
             isPrimaryButtonDisabled={boolean('isPrimaryButtonDisabled', false)}
