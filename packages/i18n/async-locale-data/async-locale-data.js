@@ -29,6 +29,8 @@ class AsyncLocaleData extends React.Component {
     messages: null,
   };
 
+  isUnmounting = false;
+
   componentDidMount() {
     if (this.props.locale) this.loadLocaleData(this.props.locale);
   }
@@ -37,6 +39,10 @@ class AsyncLocaleData extends React.Component {
     if (this.props.locale && prevProps.locale !== this.props.locale) {
       this.loadLocaleData(this.props.locale);
     }
+  }
+
+  componentWillUnmount() {
+    this.isUnmounting = true;
   }
 
   loadLocaleData = async locale => {
@@ -48,28 +54,26 @@ class AsyncLocaleData extends React.Component {
       applicationMessagePromise = this.props.applicationMessages(language);
     }
 
-    const messageFetchingPromises = do {
-      if (applicationMessagePromise) {
-        [loadI18n(language), applicationMessagePromise];
-      } else {
-        [loadI18n(language)];
-      }
-    };
+    const messageFetchingPromises = applicationMessagePromise
+      ? [loadI18n(language), applicationMessagePromise]
+      : [loadI18n(language)];
 
     try {
       const [messages, applicationMessages] = await Promise.all(
         messageFetchingPromises
       );
-      this.setState({
-        isLoading: false,
-        language,
-        messages: mergeMessages(
-          messages,
-          applicationMessages ||
-            (this.props.applicationMessages &&
-              this.props.applicationMessages[language])
-        ),
-      });
+      if (!this.isUnmounting) {
+        this.setState({
+          isLoading: false,
+          language,
+          messages: mergeMessages(
+            messages,
+            applicationMessages ||
+              (this.props.applicationMessages &&
+                this.props.applicationMessages[language])
+          ),
+        });
+      }
     } catch (error) {
       reportErrorToSentry(error, {});
     }

@@ -10,12 +10,13 @@ import ProjectContainer from '../project-container';
 import FetchUser from '../fetch-user';
 import FetchProject from '../fetch-project';
 import NavBar, { LoadingNavBar } from '../navbar';
-import ApplicationShell, {
-  RestrictedApplication,
-  UnrestrictedApplication,
-  extractLanguageFromLocale,
+import {
   getBrowserLanguage,
   mergeMessages,
+} from '../application-shell-provider/utils';
+import ApplicationShell, {
+  RestrictedApplication,
+  extractLanguageFromLocale,
 } from './application-shell';
 
 jest.mock('@commercetools-frontend/storage');
@@ -67,98 +68,18 @@ const renderForAsyncData = ({ props, userData, localeData = testLocaleData }) =>
 describe('rendering', () => {
   let props;
   let wrapper;
-  beforeEach(() => {
-    props = createTestProps();
-    wrapper = shallow(<ApplicationShell {...props} />);
-  });
-  describe('providers', () => {
-    it('should pass "environment" to <ApplicationContextProvider>', () => {
-      expect(wrapper.find(ApplicationContextProvider)).toHaveProp(
-        'environment',
-        props.environment
-      );
-    });
-  });
-  describe('trackers', () => {
-    it('should render <GtmBooter> below <Router>', () => {
-      expect(wrapper).toRender('Router > GtmBooter');
-    });
-    it('should pass "trackingEventWhitelist" to <GtmBooter>', () => {
-      expect(wrapper.find('GtmBooter')).toHaveProp(
-        'trackingEventWhitelist',
-        props.trackingEventWhitelist
-      );
-    });
-    it('should render <Switch> after track components', () => {
-      expect(wrapper).toRender('GtmBooter > Switch');
-    });
-  });
-  it('should render <Route> for "/logout"', () => {
-    expect(wrapper).toRender({ path: '/logout' });
-  });
-
-  describe('<Authenticated>', () => {
-    let routeRenderWrapper;
-    let authRenderWrapper;
+  describe('when user is not authenticated', () => {
     beforeEach(() => {
-      routeRenderWrapper = shallow(
-        <div>
-          {wrapper
-            .find('Switch > Route')
-            .last()
-            .prop('render')({
-            location: { pathname: '/account' },
-          })}
-        </div>
+      props = createTestProps();
+      wrapper = shallow(<ApplicationShell {...props} />).renderProp(
+        'children',
+        {
+          isAuthenticated: false,
+        }
       );
     });
-    describe('when user is authenticated', () => {
-      beforeEach(() => {
-        authRenderWrapper = routeRenderWrapper
-          .find('Authenticated')
-          .renderProp('children', {
-            isAuthenticated: true,
-          });
-      });
-      it('should render <RestrictedApplication> after track components', () => {
-        expect(authRenderWrapper).toRender(RestrictedApplication);
-      });
-    });
-
-    describe('when user is not authenticated', () => {
-      beforeEach(() => {
-        authRenderWrapper = routeRenderWrapper
-          .find('Authenticated')
-          .renderProp('children', {
-            isAuthenticated: false,
-          })
-          .find(AsyncLocaleData)
-          .renderProp('children', {
-            language: 'en',
-            messages: testLocaleData.messages,
-          });
-      });
-      it('should pass "language" to <ConfigureIntlProvider>', () => {
-        expect(authRenderWrapper.find(ConfigureIntlProvider)).toHaveProp(
-          'language',
-          'en'
-        );
-      });
-      it('should pass default "messages" to <ConfigureIntlProvider>', () => {
-        expect(authRenderWrapper.find(ConfigureIntlProvider)).toHaveProp(
-          'messages',
-          expect.objectContaining({ 'AppKit.title': 'Title en' })
-        );
-      });
-      it('should pass custom app "messages" to <ConfigureIntlProvider>', () => {
-        expect(authRenderWrapper.find(ConfigureIntlProvider)).toHaveProp(
-          'messages',
-          expect.objectContaining({ 'AppKit.title': 'Title en' })
-        );
-      });
-      it('should render <UnrestrictedApplication> after track components', () => {
-        expect(authRenderWrapper).toRender('UnrestrictedApplication');
-      });
+    it('should render <Route> for "/login"', () => {
+      expect(wrapper).toRender({ path: '/login' });
     });
   });
 });
@@ -527,10 +448,10 @@ describe('<UnrestrictedApplication>', () => {
   describe('rendering', () => {
     beforeEach(() => {
       props = createTestProps();
-      wrapper = shallow(<UnrestrictedApplication {...props} />);
-    });
-    it('should match layout structure', () => {
-      expect(wrapper).toMatchSnapshot();
+      wrapper = shallow(<ApplicationShell {...props} />).renderProp(
+        'children',
+        { isAuthenticated: false }
+      );
     });
     describe('catch <Route>', () => {
       let renderWrapper;
