@@ -11,6 +11,7 @@ const ConfirmationDialog = props => (
     isOpen={props.isOpen}
     onClose={props.onClose}
     size={props.size}
+    zIndex={props.zIndex}
   >
     <DialogHeader title={props.title} onClose={props.onClose} />
     <DialogContent>{props.children}</DialogContent>
@@ -31,6 +32,7 @@ ConfirmationDialog.propTypes = {
   onClose: PropTypes.func,
   title: PropTypes.string.isRequired,
   size: PropTypes.oneOf(['m', 'l', 'scale']),
+  zIndex: PropTypes.number,
   children: PropTypes.node.isRequired,
   labelSecondary: PropTypes.oneOfType([
     PropTypes.string,

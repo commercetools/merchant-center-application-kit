@@ -34,6 +34,11 @@ const DialogContainer = props => (
     contentLabel="info-dialog"
     parentSelector={parentSelector}
     ariaHideApp={false}
+    style={{
+      overlay: {
+        zIndex: props.zIndex,
+      },
+    }}
   >
     <div className={styles[`size-${props.size}`]}>
       <div className={styles['dialog-container']}>
@@ -49,10 +54,12 @@ DialogContainer.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func,
   size: PropTypes.oneOf(['m', 'l', 'scale']),
+  zIndex: PropTypes.number,
   children: PropTypes.node.isRequired,
 };
 DialogContainer.defaultProps = {
   size: 'l',
+  zIndex: 1000,
 };
 
 export default DialogContainer;
