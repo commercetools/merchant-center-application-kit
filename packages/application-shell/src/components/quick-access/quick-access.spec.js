@@ -129,6 +129,7 @@ describe('QuickAccess', () => {
   beforeEach(() => {
     gtm.track.mockReset();
     global.open = jest.fn();
+    global.location.replace = jest.fn();
   });
 
   it('should open when pressing "f" on document body', async () => {
@@ -381,7 +382,7 @@ describe('QuickAccess', () => {
     fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
     await waitForElement(() => getByText('Open Dashboard'));
     fireEvent.keyUp(searchInput, { key: 'Enter' });
-    expect(global.open).toHaveBeenCalledWith(
+    expect(global.location.replace).toHaveBeenCalledWith(
       '/test-with-big-data-44/dashboard'
     );
 

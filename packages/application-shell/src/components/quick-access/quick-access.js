@@ -322,7 +322,7 @@ class QuickAccess extends React.Component {
         if (meta.openInNewTab || !command.action.to.startsWith('/')) {
           open(command.action.to, '_blank');
         } else if (this.props.useFullRedirectsForLinks) {
-          open(command.action.to);
+          window.location.replace(command.action.to);
         } else {
           this.props.history.push(command.action.to);
         }
