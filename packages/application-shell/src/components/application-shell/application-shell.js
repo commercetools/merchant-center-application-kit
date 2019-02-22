@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Router, Redirect, Route, Switch } from 'react-router-dom';
-import { ApolloProvider } from 'react-apollo';
-import { Provider as ReduxProvider } from 'react-redux';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
 } from '@commercetools-frontend/url-utils';
-import * as storage from '@commercetools-frontend/storage';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import history from '@commercetools-frontend/browser-history';
 import {
   reportErrorToSentry,
   SentryUserTracker,
@@ -17,28 +13,27 @@ import {
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
-import { getSupportedLanguage } from '@commercetools-frontend/l10n';
 import { i18n } from '@commercetools-frontend/ui-kit';
 import internalReduxStore from '../../configure-store';
 import ProjectDataLocale from '../project-data-locale';
 import PortalsContainer from '../portals-container';
-import apolloClient from '../../configure-apollo';
+import ApplicationShellProvider from '../application-shell-provider';
+import {
+  getBrowserLanguage,
+  mergeMessages,
+} from '../application-shell-provider/utils';
 import FetchUser from '../fetch-user';
 import FetchProject from '../fetch-project';
 import ConfigureIntlProvider from '../configure-intl-provider';
-import Authenticated from '../authenticated';
 import AppBar from '../app-bar';
 import ProjectContainer from '../project-container';
 import AsyncLogin from '../login/async';
 import AsyncLoginSSO from '../login-sso/async';
 import AsyncLoginSSOCallback from '../login-sso-callback/async';
 import AsyncLoginLocked from '../login-locked/async';
-import Logout from '../logout';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
-// import VersionCheckSubscriber from '../version-check-subscriber';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
-import GtmBooter from '../gtm-booter';
 import NavBar, { LoadingNavBar } from '../navbar';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
@@ -47,18 +42,10 @@ import {
   selectProjectKeyFromUrl,
 } from '../../utils';
 import styles from './application-shell.mod.css';
-import './global-style-imports';
 import QuickAccess from '../quick-access';
-
-export const getBrowserLanguage = window => {
-  const language = window && window.navigator && window.navigator.language;
-  return getSupportedLanguage(language);
-};
 
 export const extractLanguageFromLocale = locale =>
   locale.includes('-') ? locale.split('-')[0] : locale;
-
-export const mergeMessages = (...messages) => Object.assign({}, ...messages);
 
 /**
  * This component is rendered whenever the user is considered "authenticated"
@@ -354,51 +341,6 @@ RestrictedApplication.propTypes = {
   DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
 };
 
-/**
- * This component is rendered whenever the user is not considered "authenticated"
- * and contains application parts that can be accessed publicly.
- */
-export const UnrestrictedApplication = () => (
-  <Switch>
-    {/* Public routes */}
-    <Route path="/login/sso/callback" component={AsyncLoginSSOCallback} />
-    <Route path="/login/sso" component={AsyncLoginSSO} />
-    <Route path="/login/locked" component={AsyncLoginLocked} />
-    <Route path="/login" component={AsyncLogin} />
-    <Route
-      render={({ location }) => {
-        // If the user tries to access a route (e.g. `/my-project/orders`)
-        // and he's not logged in, we will be redirected to the login page
-        // as usual but as soon as he logs in, he'll be redirected to the
-        // location that he tried to access before. This is handled by the
-        // query parameter `redirectTo`.
-        const searchQuery = {
-          reason: LOGOUT_REASONS.UNAUTHORIZED,
-          // This will be used after being logged in,
-          // to redirect to this location.
-          ...(location.pathname === '/'
-            ? {}
-            : {
-                redirectTo: trimLeadingAndTrailingSlashes(
-                  joinPaths(window.location.origin, location.pathname)
-                ),
-              }),
-        };
-        return (
-          <Redirect
-            to={{
-              pathname: '/login',
-              query: searchQuery,
-            }}
-          />
-        );
-      }}
-    />
-  </Switch>
-);
-
-UnrestrictedApplication.displayName = 'UnrestrictedApplication';
-
 export default class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
   static propTypes = {
@@ -424,105 +366,85 @@ export default class ApplicationShell extends React.Component {
     trackingEventWhitelist: {},
     INTERNAL__isApplicationFallback: false,
   };
-  state = {
-    hasError: false,
-  };
   componentDidMount() {
     this.props.onRegisterErrorListeners({
       dispatch: internalReduxStore.dispatch,
     });
-    // NOTE: this is a temporary thingy, to ensure we clear the `token`
-    // from localStorage.
-    storage.remove('token');
-  }
-  componentDidCatch(error, errorInfo) {
-    this.setState({ hasError: true });
-    // Note: In development mode componentDidCatch is not based on try-catch
-    // to catch exceptions. Thus exceptions caught here will also be caught in
-    // the global `error` event listener (setup-global-error-listener.js).
-    // see: https://github.com/facebook/react/issues/10474
-    reportErrorToSentry(error, { extra: errorInfo });
   }
   render() {
-    if (this.state.hasError) {
-      return <ErrorApologizer />;
-    }
-
     return (
-      <ApplicationContextProvider environment={this.props.environment}>
-        <ReduxProvider store={internalReduxStore}>
-          <ApolloProvider client={apolloClient}>
-            <React.Suspense fallback={<ApplicationLoader />}>
-              {/* <VersionCheckSubscriber /> */}
-              <Router history={history}>
-                <GtmBooter
-                  trackingEventWhitelist={this.props.trackingEventWhitelist}
-                >
-                  <Switch>
-                    {/**
-                     * No matter if the user is authenticated or not, when we go
-                     * to this route we should always log the user out.
-                     */}
-                    <Route path="/logout" component={Logout} />
-                    <Route
-                      render={() => (
-                        <Authenticated>
-                          {({ isAuthenticated }) => {
-                            if (isAuthenticated)
-                              return (
-                                <RestrictedApplication
-                                  environment={this.props.environment}
-                                  defaultFeatureFlags={
-                                    this.props.defaultFeatureFlags
-                                  }
-                                  render={this.props.render}
-                                  applicationMessages={
-                                    this.props.applicationMessages
-                                  }
-                                  INTERNAL__isApplicationFallback={
-                                    this.props.INTERNAL__isApplicationFallback
-                                  }
-                                  DEV_ONLY__loadAppbarMenuConfig={
-                                    this.props.DEV_ONLY__loadAppbarMenuConfig
-                                  }
-                                  DEV_ONLY__loadNavbarMenuConfig={
-                                    this.props.DEV_ONLY__loadNavbarMenuConfig
-                                  }
-                                />
-                              );
-                            const browserLanguage = getBrowserLanguage(window);
+      <ApplicationShellProvider
+        environment={this.props.environment}
+        trackingEventWhitelist={this.props.trackingEventWhitelist}
+        applicationMessages={this.props.applicationMessages}
+      >
+        {({ isAuthenticated }) => {
+          if (isAuthenticated)
+            return (
+              <RestrictedApplication
+                environment={this.props.environment}
+                defaultFeatureFlags={this.props.defaultFeatureFlags}
+                render={this.props.render}
+                applicationMessages={this.props.applicationMessages}
+                INTERNAL__isApplicationFallback={
+                  this.props.INTERNAL__isApplicationFallback
+                }
+                DEV_ONLY__loadAppbarMenuConfig={
+                  this.props.DEV_ONLY__loadAppbarMenuConfig
+                }
+                DEV_ONLY__loadNavbarMenuConfig={
+                  this.props.DEV_ONLY__loadNavbarMenuConfig
+                }
+              />
+            );
 
-                            return (
-                              <AsyncLocaleData
-                                locale={browserLanguage}
-                                applicationMessages={
-                                  this.props.applicationMessages
-                                }
-                              >
-                                {({ language, messages }) => (
-                                  <ConfigureIntlProvider
-                                    language={language}
-                                    messages={mergeMessages(
-                                      messages,
-                                      i18n[language]
-                                    )}
-                                  >
-                                    <UnrestrictedApplication />
-                                  </ConfigureIntlProvider>
-                                )}
-                              </AsyncLocaleData>
-                            );
-                          }}
-                        </Authenticated>
-                      )}
+          return (
+            <Switch>
+              {/* Public routes */}
+              <Route
+                path="/login/sso/callback"
+                component={AsyncLoginSSOCallback}
+              />
+              <Route path="/login/sso" component={AsyncLoginSSO} />
+              <Route path="/login/locked" component={AsyncLoginLocked} />
+              <Route path="/login" component={AsyncLogin} />
+              <Route
+                render={({ location }) => {
+                  // If the user tries to access a route (e.g. `/my-project/orders`)
+                  // and he's not logged in, we will be redirected to the login page
+                  // as usual but as soon as he logs in, he'll be redirected to the
+                  // location that he tried to access before. This is handled by the
+                  // query parameter `redirectTo`.
+                  const searchQuery = {
+                    reason: LOGOUT_REASONS.UNAUTHORIZED,
+                    // This will be used after being logged in,
+                    // to redirect to this location.
+                    ...(location.pathname === '/'
+                      ? {}
+                      : {
+                          redirectTo: trimLeadingAndTrailingSlashes(
+                            joinPaths(window.location.origin, location.pathname)
+                          ),
+                        }),
+                  };
+                  // TODO: when we remove the login routes from the AppShell, this component
+                  // should do a redirect/hard page reload to the login route.
+                  // For development, we should only do a redirect to the staging domain, as the
+                  // login screen will not be part of the AppShell anymore.
+                  return (
+                    <Redirect
+                      to={{
+                        pathname: '/login',
+                        query: searchQuery,
+                      }}
                     />
-                  </Switch>
-                </GtmBooter>
-              </Router>
-            </React.Suspense>
-          </ApolloProvider>
-        </ReduxProvider>
-      </ApplicationContextProvider>
+                  );
+                }}
+              />
+            </Switch>
+          );
+        }}
+      </ApplicationShellProvider>
     );
   }
 }
