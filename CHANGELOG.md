@@ -1,4 +1,24 @@
-## [8.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v7.3.4...v8.0.0) (2019-02-18
+## [9.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v8.0.0...v9.0.0) (2019-02-22)
+
+## BREAKING CHANGES 💣
+
+The `ui-kit` peer dependency has been bumped to `v9.x`.
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#381](https://github.com/commercetools/merchant-center-application-kit/pull/381) fix(app-shell): quick-access to support full reloads ([@tdeekens](https://github.com/tdeekens))
+
+#### 🚀 Type: New Feature
+
+- `application-shell`, `i18n`
+  - [#385](https://github.com/commercetools/merchant-center-application-kit/pull/385) chore(app-shell): expose ApplicationShellProvider ([@emmenko](https://github.com/emmenko))
+- `application-components`
+  - [#377](https://github.com/commercetools/merchant-center-application-kit/pull/377) feat: add <ConfirmationDialog> ([@emmenko](https://github.com/emmenko))
+- `application-components`, `application-shell`
+  - [#367](https://github.com/commercetools/merchant-center-application-kit/pull/367) feat: add <InfoDialog> ([@emmenko](https://github.com/emmenko))
+
+## [8.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v7.3.4...v8.0.0) (2019-02-18)
 
 ## BREAKING CHANGES 💣
 
