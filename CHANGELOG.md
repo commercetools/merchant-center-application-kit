@@ -1,3 +1,10 @@
+## [9.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v9.0.0...v9.0.1) (2019-02-22)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#387](https://github.com/commercetools/merchant-center-application-kit/pull/387) fix(app-shell): to not open in new tab ([@tdeekens](https://github.com/tdeekens))
+
 ## [9.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v8.0.0...v9.0.0) (2019-02-22)
 
 ## BREAKING CHANGES 💣
