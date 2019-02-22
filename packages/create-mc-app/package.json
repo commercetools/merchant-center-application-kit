@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/create-mc-app",
-  "version": "8.0.0",
+  "version": "9.0.0",
   "description": "Create Merchant Center applications to quickly get up and running",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
