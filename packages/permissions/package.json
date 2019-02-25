@@ -38,7 +38,7 @@
     "lodash": "4.17.11",
     "lodash-es": "4.17.11",
     "prop-types": "15.7.2",
-    "recompose": "^0.26.0",
+    "recompose": "^0.30.0",
     "reselect": "^4.0.0",
     "warning": "4.0.3"
   },
