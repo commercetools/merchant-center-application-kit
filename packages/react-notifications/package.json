@@ -44,7 +44,7 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.23",
     "prop-types": "15.7.2",
-    "recompose": "^0.30.0",
+    "recompose": "^0.26.0",
     "reselect": "^4.0.0"
   },
   "devDependencies": {
