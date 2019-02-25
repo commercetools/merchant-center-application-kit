@@ -30,7 +30,7 @@
     "babel-loader": "8.0.5",
     "babel-plugin-react-intl": "3.0.1",
     "babel-polyfill": "6.26.0",
-    "browserslist": "4.4.1",
+    "browserslist": "4.4.2",
     "chalk": "2.4.2",
     "clean-webpack-plugin": "1.0.1",
     "css-loader": "2.1.0",
@@ -56,7 +56,7 @@
     "postcss-reporter": "5.0.0",
     "postcss-safe-parser": "4.0.1",
     "promise": "8.0.2",
-    "react-dev-utils": "7.0.1",
+    "react-dev-utils": "7.0.3",
     "shelljs": "0.8.3",
     "style-loader": "0.23.1",
     "svg-url-loader": "2.3.2",
@@ -65,7 +65,7 @@
     "url-loader": "1.1.2",
     "webpack": "4.29.5",
     "webpack-bundle-analyzer": "3.0.4",
-    "webpack-dev-server": "3.1.14",
+    "webpack-dev-server": "3.2.0",
     "webpackbar": "3.1.5"
   },
   "engines": {
