@@ -1,3 +1,32 @@
+## [10.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v9.0.0...v9.0.1) (2019-02-25)
+
+This release introduces a **breaking change** which may entail some **migration steps**. We'll go through them now:
+
+#### 💥 Type: Breaking Change
+
+- `mc-scripts`
+  - [#397](https://github.com/commercetools/merchant-center-application-kit/pull/397) Update uglify plugin / stop shipping es6 code to ie ([@montezume](https://github.com/montezume))
+
+Previously our production webpack builds would pass if you imported vendors that shipped untranspiled code. However, now they will have. If you get an error building your production build, you should pass these vendors to `create-webpack-config-for-production` like below:
+
+```js
+const path = require('path');
+const createWebpackConfigForProduction = require('@commercetools-frontend/mc-scripts/config/create-webpack-config-for-production');
+
+const distPath = path.resolve(__dirname, 'dist');
+const entryPoint = path.resolve(__dirname, 'src/index.js');
+const vendorsToTranspile = [/node_modules\/vendor/];
+
+const sourceFolders = [path.resolve(__dirname, 'src')];
+
+module.exports = createWebpackConfigForProduction({
+  distPath,
+  entryPoint,
+  sourceFolders,
+  vendorsToTranspile,
+});
+```
+
 ## [9.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v9.0.0...v9.0.1) (2019-02-22)
 
 #### 🐛 Type: Bug
