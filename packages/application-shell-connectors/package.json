@@ -39,7 +39,7 @@
     "lodash-es": "4.17.11",
     "moment-timezone": "^0.5.23",
     "prop-types": "15.7.2",
-    "recompose": "^0.30.0"
+    "recompose": "^0.26.0"
   },
   "devDependencies": {
     "react": "16.8.3",
