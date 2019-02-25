@@ -61,7 +61,7 @@
     "storybook-readme": "4.0.5"
   },
   "peerDependencies": {
-    "@commercetools-frontend/assets": "7.x",
+    "@commercetools-frontend/assets": "9.x",
     "@commercetools-frontend/ui-kit": "9.x",
     "react": "16.x",
     "react-dom": "16.x",
