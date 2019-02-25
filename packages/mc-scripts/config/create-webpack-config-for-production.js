@@ -55,7 +55,10 @@ module.exports = ({
   entryPoint,
   sourceFolders,
   toggleFlags,
-  vendorJsFolders = [],
+  // some vendors ship es6 code that has not been transpiled to es5.
+  // in order to keep compatibility with browsers, and to save build time
+  // we don't run babel on node_modules, just on the required modules
+  vendorsToTranspile = [],
 }) => {
   const mergedToggleFlags = { ...defaultToggleFlags, ...toggleFlags };
 
@@ -370,7 +373,7 @@ module.exports = ({
               },
             },
           ],
-          include: sourceFolders.concat(vendorJsFolders),
+          include: sourceFolders.concat(vendorsToTranspile),
         },
         // Allow to import `*.graphql` SDL files.
         {
