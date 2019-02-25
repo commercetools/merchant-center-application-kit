@@ -37,51 +37,6 @@ const optimizeCSSConfig = {
   },
 };
 
-const uglifyConfig = {
-  // This configuration is from the slack team:
-  // https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1
-  uglifyOptions: {
-    compress: {
-      arrows: false,
-      booleans: false,
-      collapse_vars: false,
-      comparisons: false,
-      computed_props: false,
-      hoist_funs: false,
-      hoist_props: false,
-      hoist_vars: false,
-      if_return: false,
-      inline: false,
-      join_vars: false,
-      keep_infinity: true,
-      loops: false,
-      negate_iife: false,
-      properties: false,
-      reduce_funcs: false,
-      reduce_vars: false,
-      sequences: false,
-      side_effects: false,
-      switches: false,
-      top_retain: false,
-      toplevel: false,
-      typeofs: false,
-      unused: false,
-
-      // Switch off all types of compression except those needed to convince
-      // react-devtools that we're using a production build
-      // (here are the checks react devtools makes
-      // https://github.com/facebook/react-devtools/blob/7443291103bc619e7e9b8ab009fb6da1281ba302/backend/installGlobalHook.js#L52-L118)
-      conditionals: true,
-      dead_code: true,
-      evaluate: true,
-    },
-    mangle: true,
-  },
-  warningsFilter: () => true,
-  sourceMap: true,
-  parallel: true,
-};
-
 const defaultToggleFlags = {
   // Allow to disable CSS extraction in case it's not necessary (e.g. for Storybook)
   enableExtractCss: true,
@@ -114,7 +69,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
     // https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a
     optimization: {
       minimizer: [
-        new UglifyJsPlugin(uglifyConfig),
+        new UglifyJsPlugin(),
         mergedToggleFlags.enableExtractCss &&
           new OptimizeCSSAssetsPlugin(optimizeCSSConfig),
       ].filter(Boolean),
