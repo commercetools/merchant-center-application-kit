@@ -7,7 +7,7 @@ This release introduces a **breaking change** which may entail some **migration 
 - `mc-scripts`
   - [#397](https://github.com/commercetools/merchant-center-application-kit/pull/397) Update uglify plugin / stop shipping es6 code to ie ([@montezume](https://github.com/montezume))
 
-Previously our production webpack builds would pass if you imported vendors that shipped untranspiled code. However, now they will have. If you get an error building your production build, you should pass these vendors to `create-webpack-config-for-production` like below:
+Previously our production webpack builds would pass if you imported vendors that shipped untranspiled code. However, now they will fail, as our uglify plugin does not support es6 code. If you get an error building your production build, you should pass these vendors to `create-webpack-config-for-production` like below:
 
 ```js
 const path = require('path');
