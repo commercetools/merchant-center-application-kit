@@ -50,7 +50,13 @@ const defaultToggleFlags = {
  * The function requires the file path to the related application
  * "entry point".
  */
-module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
+module.exports = ({
+  distPath,
+  entryPoint,
+  sourceFolders,
+  toggleFlags,
+  vendorJsFolders = [],
+}) => {
   const mergedToggleFlags = { ...defaultToggleFlags, ...toggleFlags };
 
   return {
@@ -364,7 +370,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
               },
             },
           ],
-          include: sourceFolders,
+          include: sourceFolders.concat(vendorJsFolders),
         },
         // Allow to import `*.graphql` SDL files.
         {
