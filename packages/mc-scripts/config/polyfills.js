@@ -10,7 +10,7 @@
  *    This is why `unfetch` is still used as a polyfill. Overwriting or
  *    stubbing a ponyfill is not possible as JavaScript modules are read-only.
  */
-import 'unfetch/polyfill';
+import 'unfetch/polyfill/index';
 
 if (typeof Promise === 'undefined') {
   // Rejection tracking prevents a common issue where React gets into an
