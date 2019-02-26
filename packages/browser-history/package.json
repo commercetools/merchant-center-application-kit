@@ -36,6 +36,6 @@
   "dependencies": {
     "history": "4.7.2",
     "history-query-enhancer": "1.0.4",
-    "qss": "2.0.1"
+    "qss": "2.0.2"
   }
 }

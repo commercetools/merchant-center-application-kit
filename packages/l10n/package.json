@@ -38,12 +38,12 @@
     "@commercetools-frontend/sentry": "9.0.0",
     "moment": "^2.24.0",
     "prop-types": "15.7.2",
-    "react": "16.8.2",
-    "recompose": "0.26.0"
+    "react": "16.8.3",
+    "recompose": "^0.26.0"
   },
   "devDependencies": {
     "chalk": "2.4.2",
-    "cldr": "4.14.0",
+    "cldr": "5.0.0",
     "deep-diff": "1.0.2",
     "moment-timezone": "0.5.23",
     "node-fetch": "2.3.0",
