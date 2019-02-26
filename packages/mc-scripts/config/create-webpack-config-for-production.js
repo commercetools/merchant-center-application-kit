@@ -22,6 +22,20 @@ const postcssColorModFunction = require('postcss-color-mod-function');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 const browserslist = require('./browserslist');
 
+const uglifyConfig = {
+  uglifyOptions: {
+    warnings: false,
+    parse: {},
+    compress: {},
+    mangle: true,
+    output: null,
+    toplevel: false,
+    nameCache: null,
+    ie8: false,
+    keep_fnames: false,
+  },
+};
+
 const optimizeCSSConfig = {
   // Since css-loader uses cssnano v3.1.0, it's best to stick with the
   // same version here
@@ -78,7 +92,7 @@ module.exports = ({
     // https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a
     optimization: {
       minimizer: [
-        new UglifyJsPlugin(),
+        new UglifyJsPlugin(uglifyConfig),
         mergedToggleFlags.enableExtractCss &&
           new OptimizeCSSAssetsPlugin(optimizeCSSConfig),
       ].filter(Boolean),
