@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defaultMemoize } from 'reselect';
-import { compose, withProps, setDisplayName } from 'recompose';
 import { graphql } from 'react-apollo';
 import Select from 'react-select';
 import { FormattedMessage, injectIntl } from 'react-intl';
+import flowRight from 'lodash/flowRight';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import classnames from 'classnames';
 import { ErrorIcon } from '@commercetools-frontend/ui-kit';
@@ -29,8 +29,6 @@ export class ProjectSwitcher extends React.PureComponent {
   static propTypes = {
     projectKey: PropTypes.string.isRequired,
     total: PropTypes.number.isRequired,
-    // withProps
-    redirectTo: PropTypes.func.isRequired,
     // injectIntl
     intl: PropTypes.shape({
       formatMessage: PropTypes.func.isRequired,
@@ -72,6 +70,8 @@ export class ProjectSwitcher extends React.PureComponent {
     this.resizeDropdown();
   }
 
+  redirectTo = targetUrl => window.location.replace(targetUrl);
+
   resizeDropdown = () => {
     if (this.props.projectsQuery.loading) return;
 
@@ -106,7 +106,7 @@ export class ProjectSwitcher extends React.PureComponent {
       // We simply redirect to a "new" browser page, instead of using the
       // history router. This will simplify a lot of things and avoid possible
       // problems like e.g. resetting the store/state.
-      this.props.redirectTo(`/${selectedProjectKey}`);
+      this.redirectTo(`/${selectedProjectKey}`);
   };
 
   renderProjectName = () => {
@@ -219,11 +219,7 @@ export class ProjectSwitcher extends React.PureComponent {
   }
 }
 
-export default compose(
-  setDisplayName('ProjectSwitcher'),
-  withProps(() => ({
-    redirectTo: targetUrl => window.location.replace(targetUrl),
-  })),
+export default flowRight(
   graphql(ProjectsQuery, {
     name: 'projectsQuery',
     options: () => ({

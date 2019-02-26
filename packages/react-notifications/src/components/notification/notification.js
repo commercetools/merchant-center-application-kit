@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose, setDisplayName, getDisplayName } from 'recompose';
-import { injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import classnames from 'classnames';
 import {
   CloseBoldIcon,
@@ -29,65 +28,54 @@ NotificationIcon.propTypes = {
   theme: PropTypes.string.isRequired,
 };
 
-export class Notification extends React.PureComponent {
-  static displayName = 'Notification';
-
-  static propTypes = {
-    type: PropTypes.oneOf(['error', 'info', 'warning', 'success']).isRequired,
-    domain: PropTypes.oneOf(Object.values(DOMAINS)).isRequired,
-    onCloseClick: PropTypes.func,
-    fixed: PropTypes.bool,
-    children: PropTypes.node,
-
-    // HoC
-    intl: PropTypes.shape({
-      formatMessage: PropTypes.func.isRequired,
-    }).isRequired,
-  };
-
-  static defaultProps = {
-    fixed: false,
-  };
-
-  render() {
-    return (
-      <div
-        className={classnames(
-          styles[
-            `notification-${this.props.domain}-${this.props.type}-${
-              this.props.fixed ? 'fixed' : 'dynamic'
-            }`
-          ]
-        )}
-        {...filterDataAttributes(this.props)}
-      >
-        <div className={styles.content}>{this.props.children}</div>
-        {this.props.onCloseClick ? (
+const Notification = props => (
+  <div
+    className={classnames(
+      styles[
+        `notification-${props.domain}-${props.type}-${
+          props.fixed ? 'fixed' : 'dynamic'
+        }`
+      ]
+    )}
+    {...filterDataAttributes(props)}
+  >
+    <div className={styles.content}>{props.children}</div>
+    {props.onCloseClick ? (
+      <FormattedMessage {...messages.hideNotification}>
+        {label => (
           <IconButton
-            label={this.props.intl.formatMessage(messages.hideNotification)}
-            onClick={this.props.onCloseClick}
+            label={label}
+            onClick={props.onCloseClick}
             icon={<CloseBoldIcon />}
             size="medium"
           />
-        ) : null}
-        <div
-          className={
-            this.props.domain === DOMAINS.SIDE
-              ? classnames(
-                  styles['icon-type-container'],
-                  styles[`icon-type-container--${this.props.type}`]
-                )
-              : styles.hidden
-          }
-        >
-          <NotificationIcon type={this.props.type} theme="white" />
-        </div>
-      </div>
-    );
-  }
-}
+        )}
+      </FormattedMessage>
+    ) : null}
+    <div
+      className={
+        props.domain === DOMAINS.SIDE
+          ? classnames(
+              styles['icon-type-container'],
+              styles[`icon-type-container--${props.type}`]
+            )
+          : styles.hidden
+      }
+    >
+      <NotificationIcon type={props.type} theme="white" />
+    </div>
+  </div>
+);
+Notification.displayName = 'Notification';
+Notification.propTypes = {
+  type: PropTypes.oneOf(['error', 'info', 'warning', 'success']).isRequired,
+  domain: PropTypes.oneOf(Object.values(DOMAINS)).isRequired,
+  onCloseClick: PropTypes.func,
+  fixed: PropTypes.bool,
+  children: PropTypes.node,
+};
+Notification.defaultProps = {
+  fixed: false,
+};
 
-export default compose(
-  setDisplayName(getDisplayName(Notification)),
-  injectIntl
-)(Notification);
+export default Notification;

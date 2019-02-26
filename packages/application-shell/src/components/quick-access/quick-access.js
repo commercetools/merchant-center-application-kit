@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose } from 'recompose';
+import flowRight from 'lodash/flowRight';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import { injectFeatureToggles } from '@flopflip/react-broadcast';
@@ -349,7 +349,7 @@ class QuickAccess extends React.Component {
   }
 }
 
-export default compose(
+export default flowRight(
   withApollo,
   injectIntl,
   injectFeatureToggles([

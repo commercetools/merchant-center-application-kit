@@ -1,1 +1,1 @@
-export { default, withUser } from './fetch-user';
+export { default } from './fetch-user';

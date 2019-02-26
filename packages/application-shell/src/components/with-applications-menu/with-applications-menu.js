@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { wrapDisplayName } from 'recompose';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import getDisplayName from '../../utils/get-display-name';
 import FetchApplicationsMenu from './fetch-applications-menu.graphql';
 
 const defaultApiUrl = window.location.origin;
@@ -10,7 +10,9 @@ function withApplicationsMenu(getOptions) {
   if (process.env.NODE_ENV === 'development') {
     return Component => {
       class WrappedComponent extends React.Component {
-        static displayName = wrapDisplayName(Component, 'withApplicationsMenu');
+        static displayName = `withApplicationsMenu(${getDisplayName(
+          Component
+        )})`;
         state = {
           menu: null,
         };
@@ -75,10 +77,9 @@ function withApplicationsMenu(getOptions) {
         />
       );
     };
-    WrappedComponent.displayName = wrapDisplayName(
-      Component,
-      'withApplicationsMenu'
-    );
+    WrappedComponent.displayName = `withApplicationsMenu(${getDisplayName(
+      Component
+    )})`;
     return WrappedComponent;
   };
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import { wrapDisplayName } from 'recompose';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import getDisplayName from '../utils/get-display-name';
 
 export default function createL10NInjector({
   displayName,
@@ -10,7 +10,9 @@ export default function createL10NInjector({
 }) {
   return mapPropsToLocale => WrappedComponent => {
     class L10NComponent extends React.Component {
-      static displayName = wrapDisplayName(WrappedComponent, displayName);
+      static displayName = `${displayName}(${getDisplayName(
+        WrappedComponent
+      )})`;
       state = { [propLoadingKey]: true, [propKey]: {} };
       componentDidMount() {
         this.loadCountries(this.props);

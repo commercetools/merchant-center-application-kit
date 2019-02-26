@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withProps } from 'recompose';
 import { SentryUserLogoutTracker } from '@commercetools-frontend/sentry';
 import * as storage from '@commercetools-frontend/storage';
 import {
@@ -26,18 +25,14 @@ export class Logout extends React.PureComponent {
       // - `redirectTo`
       search: PropTypes.string.isRequired,
     }).isRequired,
-
-    // Injected
-    redirectTo: PropTypes.func.isRequired,
-    loginStrategy: PropTypes.oneOf([
-      LOGIN_STRATEGY_DEFAULT,
-      LOGIN_STRATEGY_SSO,
-    ]),
   };
+
+  redirectTo = targetUrl => window.location.replace(targetUrl);
 
   componentDidMount() {
     let redirectUrl;
-    switch (this.props.loginStrategy) {
+    const loginStrategy = getLoginStrategy();
+    switch (loginStrategy) {
       case LOGIN_STRATEGY_SSO:
         redirectUrl = '/login/sso';
         break;
@@ -55,7 +50,7 @@ export class Logout extends React.PureComponent {
     // We simply redirect to a "new" browser page, instead of using the
     // history router. This will simplify a lot of things and avoid possible
     // problems like e.g. resetting the store/state.
-    this.props.redirectTo(redirectUrl + this.props.location.search);
+    this.redirectTo(redirectUrl + this.props.location.search);
   }
   render() {
     return (
@@ -67,7 +62,4 @@ export class Logout extends React.PureComponent {
   }
 }
 
-export default withProps(() => ({
-  loginStrategy: getLoginStrategy(),
-  redirectTo: targetUrl => window.location.replace(targetUrl),
-}))(Logout);
+export default Logout;

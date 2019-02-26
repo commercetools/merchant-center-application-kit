@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { wrapDisplayName } from 'recompose';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   hasSomePermissions,
   hasEveryPermissions,
   getInvalidPermissions,
 } from '../../utils/has-permissions';
+import getDisplayName from '../../utils/get-display-name';
 
 class Authorized extends React.Component {
   static displayName = 'Authorized';
@@ -75,10 +75,9 @@ const injectAuthorized = (
       )}
     />
   );
-  WrappedComponent.displayName = wrapDisplayName(
-    Component,
-    'withUserPermissions'
-  );
+  WrappedComponent.displayName = `withUserPermissions(${getDisplayName(
+    Component
+  )})`;
   return WrappedComponent;
 };
 

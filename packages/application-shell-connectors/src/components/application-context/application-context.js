@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { wrapDisplayName } from 'recompose';
 import { defaultMemoize } from 'reselect';
 import moment from 'moment-timezone';
+import getDisplayName from '../../utils/get-display-name';
 
 const Context = React.createContext({});
 
@@ -126,10 +126,9 @@ const withApplicationContext = mapApplicationContextToProps => Component => {
       }}
     />
   );
-  WrappedComponent.displayName = wrapDisplayName(
-    Component,
-    'withApplicationContext'
-  );
+  WrappedComponent.displayName = `withApplicationContext(${getDisplayName(
+    Component
+  )})`;
   return WrappedComponent;
 };
 

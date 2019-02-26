@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose, withProps } from 'recompose';
 import { decode } from 'qss';
 import jwtDecode from 'jwt-decode';
 import { connect } from 'react-redux';
@@ -32,13 +31,14 @@ export class LoginSSOCallback extends React.PureComponent {
     location: PropTypes.shape({
       hash: PropTypes.string.isRequired,
     }).isRequired,
-    redirectTo: PropTypes.func.isRequired,
     requestAccessToken: PropTypes.func.isRequired,
   };
 
   state = {
     hasAuthenticationFailed: false,
   };
+
+  redirectTo = targetUrl => window.location.replace(targetUrl);
 
   componentDidMount() {
     const fragments = decode(this.props.location.hash.substring(1));
@@ -66,7 +66,7 @@ export class LoginSSOCallback extends React.PureComponent {
           // Store the IdP Url, useful for redirecting logic on logout.
           storage.put(STORAGE_KEYS.LOGIN_STRATEGY, payload.loginStrategy);
 
-          this.props.redirectTo('/');
+          this.redirectTo('/');
         })
         .catch(() => {
           this.setAuthenticationFailed(true);
@@ -92,10 +92,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(sdkActions.post({ uri: `/tokens/sso`, payload })),
 });
 
-export default compose(
-  withProps(() => ({ redirectTo: target => window.location.replace(target) })),
-  connect(
-    null,
-    mapDispatchToProps
-  )
+export default connect(
+  null,
+  mapDispatchToProps
 )(LoginSSOCallback);

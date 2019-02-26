@@ -2,7 +2,7 @@ import querystring from 'querystring';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { compose } from 'recompose';
+import flowRight from 'lodash/flowRight';
 import { Formik } from 'formik';
 import uuid from 'uuid/v4';
 import {
@@ -181,7 +181,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(sdkActions.get({ uri: `/sso/organization?name=${name}` })),
 });
 
-export default compose(
+export default flowRight(
   injectIntl,
   connect(
     null,

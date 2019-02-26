@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { compose } from 'recompose';
+import flowRight from 'lodash/flowRight';
 import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
@@ -245,7 +245,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(sdkActions.post({ uri: `/tokens`, payload })),
 });
 
-export default compose(
+export default flowRight(
   injectIntl,
   withApplicationContext(({ environment }) => ({
     adminCenterUrl: environment.adminCenterUrl,

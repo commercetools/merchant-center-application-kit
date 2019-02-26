@@ -1,81 +1,133 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import {
-  FetchProject,
-  withProject,
-  mapAllAppliedToObjectShape,
-} from './fetch-project';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { render, waitForElement } from '../../test-utils';
+import ProjectQuery from './fetch-project.graphql';
+import FetchProject, { mapAllAppliedToObjectShape } from './fetch-project';
+
+const renderProject = options =>
+  render(
+    <FetchProject projectKey="test-1">
+      {({ isLoading, error, project }) => {
+        if (isLoading) return <div>{'loading...'}</div>;
+        if (error) return <div>{`Error: ${error.message}`}</div>;
+        if (project) return <div>{`Project: ${project.name}`}</div>;
+        return null;
+      }}
+    </FetchProject>,
+    options
+  );
+
+const createGraphqlResponseForProjectQuery = custom => ({
+  loading: false,
+  project: {
+    __typename: 'Project',
+    key: 'test-1',
+    version: 1,
+    name: 'Test 1',
+    countries: ['de'],
+    currencies: ['EUR'],
+    languages: ['de'],
+    expiry: {
+      __typename: 'ProjectExpiry',
+      isActive: true,
+      daysLeft: null,
+    },
+    suspension: {
+      __typename: 'ProjectSuspension',
+      isActive: false,
+    },
+    allAppliedPermissions: [
+      {
+        __typename: 'AppliedPermission',
+        name: 'canManageProject',
+        value: true,
+      },
+    ],
+    allAppliedMenuVisibilities: [
+      {
+        __typename: 'AppliedMenuVisibilities',
+        name: 'hideDashboard',
+        value: false,
+      },
+    ],
+    owner: {
+      __typename: 'Organization',
+      id: 'owner-id',
+      name: 'commercetools',
+      createdAt: '2019-01-01T00:00:00.000Z',
+      teams: {
+        __typename: 'TeamQueryResult',
+        count: 1,
+      },
+    },
+    settings: {
+      __typename: 'ProjectSetting',
+      id: 'settings-id',
+      productSettings: ['product-settings-id-1'],
+      currentProductSettings: 'product-settings-id-1',
+    },
+  },
+  ...custom,
+});
 
 describe('rendering', () => {
-  let props;
-  let wrapper;
-
-  describe('<FetchProject>', () => {
-    beforeEach(() => {
-      props = {
-        projectKey: 'my-project',
-        children: jest.fn(),
-        // this is usually injected by graphql
-        projectData: {
-          isLoading: false,
-          project: {
-            name: 'My Project',
+  it('should fetch project and pass data to children function', async () => {
+    const { getByText } = renderProject({
+      mocks: [
+        {
+          request: {
+            query: ProjectQuery,
+            variables: {
+              target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+              projectKey: 'test-1',
+            },
+          },
+          result: {
+            data: createGraphqlResponseForProjectQuery(),
           },
         },
-      };
-      wrapper = shallow(<FetchProject {...props} />);
+      ],
     });
-    it('should call children with projectData object', () => {
-      expect(props.children).toHaveBeenCalledWith(props.projectData);
-    });
+    await waitForElement(() => getByText(/Test 1/i));
   });
-
-  describe('withProject()', () => {
-    let wrapperRender;
-
-    describe('when mapDataToProps is defined', () => {
-      beforeEach(() => {
-        // eslint-disable-next-line react/prop-types
-        const ProjectTitle = ({ name }) => <div>{name}</div>;
-        const ProfileTitleWithProject = withProject(
-          ownProps => ownProps.projectKey,
-          projectData => ({ name: projectData.project.name })
-        )(ProjectTitle);
-        wrapper = shallow(
-          <ProfileTitleWithProject foo="bar" projectKey="my-project" />
-        );
-        wrapperRender = shallow(
-          wrapper.prop('children')({ project: { name: 'My Project' } })
-        );
-      });
-      it('should render <ProjectTitle> with name', () => {
-        expect(wrapperRender).toMatchElement(<div>{'My Project'}</div>);
-      });
-      it('should render FetchProject internally', () => {
-        expect(wrapper).toRender('FetchProject');
-      });
+  it('should render loading state', async () => {
+    const { getByText } = renderProject({
+      mocks: [
+        {
+          request: {
+            query: ProjectQuery,
+            variables: {
+              target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+              projectKey: 'test-1',
+            },
+          },
+          result: {
+            data: createGraphqlResponseForProjectQuery({
+              loading: true,
+              project: null,
+            }),
+          },
+        },
+      ],
     });
-    describe('when mapDataToProps is not defined', () => {
-      beforeEach(() => {
-        // eslint-disable-next-line react/prop-types
-        const ProjectTitle = ({ project }) => <div>{project.name}</div>;
-        const ProfileTitleWithProject = withProject(
-          ownProps => ownProps.projectKey
-        )(ProjectTitle);
-        wrapper = shallow(
-          <ProfileTitleWithProject foo="bar" projectKey="my-project" />
-        );
-        wrapperRender = shallow(
-          wrapper.prop('children')({ project: { name: 'My Project' } })
-        );
-      });
-      it('should render <ProjectTitle> with name', () => {
-        expect(wrapperRender).toMatchElement(<div>{'My Project'}</div>);
-      });
-      it('should render FetchProject internally', () => {
-        expect(wrapper).toRender('FetchProject');
-      });
+    await waitForElement(() => getByText(/Loading/i));
+  });
+  it('should render error state', async () => {
+    const { getByText } = renderProject({
+      mocks: [
+        {
+          request: {
+            query: ProjectQuery,
+            variables: {
+              target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+              projectKey: 'test-1',
+            },
+          },
+          error: new Error('Oops'),
+        },
+      ],
     });
+    await waitForElement(() => getByText(/Error: Oops/i));
   });
 });
 

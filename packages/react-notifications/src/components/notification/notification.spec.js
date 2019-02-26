@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Notification } from './notification';
+import Notification from './notification';
 
 const TestComponent = () => <div />;
 
