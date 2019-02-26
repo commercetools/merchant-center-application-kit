@@ -34,7 +34,7 @@
     "build:es:watch": "npm run build:es -- -w"
   },
   "dependencies": {
-    "@babel/runtime": "7.3.1",
+    "@babel/runtime": "7.3.4",
     "@commercetools-frontend/sentry": "9.0.0",
     "moment": "^2.24.0",
     "prop-types": "15.7.2"

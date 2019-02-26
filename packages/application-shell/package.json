@@ -36,7 +36,7 @@
     "build:test-utils:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./src/test-utils/index.js --o ./test-utils/index.js"
   },
   "dependencies": {
-    "@babel/runtime": "7.3.1",
+    "@babel/runtime": "7.3.4",
     "@commercetools-frontend/actions-global": "9.0.0",
     "@commercetools-frontend/application-components": "9.0.0",
     "@commercetools-frontend/application-shell-connectors": "9.0.0",
