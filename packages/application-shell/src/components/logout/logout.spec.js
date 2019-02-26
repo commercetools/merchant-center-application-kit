@@ -14,7 +14,6 @@ const createTestProps = props => ({
   location: {
     search: '',
   },
-  redirectTo: jest.fn(),
   loginStrategy: 'default',
   ...props,
 });
@@ -35,7 +34,8 @@ describe('componentDidMount', () => {
   beforeEach(() => {
     props = createTestProps();
     storage.get.mockReturnValue('foo-1');
-
+    delete window.location;
+    window.location = { replace: () => {} };
     const wrapper = shallow(<Logout {...props} />);
     wrapper.instance().componentDidMount();
   });
@@ -51,39 +51,48 @@ describe('componentDidMount', () => {
     );
   });
   describe('when login strategy is default', () => {
+    const replace = jest.fn();
     beforeEach(() => {
       props = createTestProps({ loginStrategy: 'default' });
+      delete window.location;
+      window.location = { replace };
       const wrapper = shallow(<Logout {...props} />);
+
       wrapper.instance().componentDidMount();
     });
     it('should redirect to the default login page', () => {
-      expect(props.redirectTo).toHaveBeenCalledTimes(1);
-      expect(props.redirectTo).toHaveBeenLastCalledWith('/login');
+      expect(replace).toHaveBeenCalledTimes(1);
+      expect(replace).toHaveBeenLastCalledWith('/login');
     });
   });
   describe('when login strategy is sso', () => {
+    const replace = jest.fn();
     beforeEach(() => {
+      delete window.location;
+      window.location = { replace };
+      storage.get.mockReturnValue('sso');
       props = createTestProps({ loginStrategy: 'sso' });
       const wrapper = shallow(<Logout {...props} />);
       wrapper.instance().componentDidMount();
     });
     it('should redirect to the sso login page', () => {
-      expect(props.redirectTo).toHaveBeenCalledTimes(1);
-      expect(props.redirectTo).toHaveBeenLastCalledWith('/login/sso');
+      expect(replace).toHaveBeenCalledTimes(1);
+      expect(replace).toHaveBeenLastCalledWith('/login/sso');
     });
   });
   describe('when location query contains a reason', () => {
+    const replace = jest.fn();
     beforeEach(() => {
       props = createTestProps({
         location: { search: '?reason=unauthorized' },
       });
+      delete window.location;
+      window.location = { replace };
       const wrapper = shallow(<Logout {...props} />);
       wrapper.instance().componentDidMount();
     });
     it('should redirect to login page with query parameter', () => {
-      expect(props.redirectTo).toHaveBeenLastCalledWith(
-        '/login?reason=unauthorized'
-      );
+      expect(replace).toHaveBeenLastCalledWith('/login?reason=unauthorized');
     });
   });
 });
