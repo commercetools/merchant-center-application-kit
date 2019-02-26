@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-application-template-starter",
-  "version": "9.0.1",
+  "version": "10.0.0",
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
@@ -11,11 +11,11 @@
     "test:watch": "jest --config jest.test.config.js --watch"
   },
   "dependencies": {
-    "@commercetools-frontend/actions-global": "9.0.0",
-    "@commercetools-frontend/application-shell": "9.0.1",
-    "@commercetools-frontend/i18n": "9.0.0",
-    "@commercetools-frontend/mc-http-server": "9.0.0",
-    "@commercetools-frontend/permissions": "9.0.0",
+    "@commercetools-frontend/actions-global": "10.0.0",
+    "@commercetools-frontend/application-shell": "10.0.0",
+    "@commercetools-frontend/i18n": "10.0.0",
+    "@commercetools-frontend/mc-http-server": "10.0.0",
+    "@commercetools-frontend/permissions": "10.0.0",
     "@commercetools-frontend/ui-kit": "9.0.0",
     "prop-types": "15.7.2",
     "react": "16.8.3",
@@ -28,8 +28,8 @@
     "redux": "4.0.1"
   },
   "devDependencies": {
-    "@commercetools-frontend/jest-preset-mc-app": "9.0.0",
-    "@commercetools-frontend/mc-scripts": "9.0.0",
+    "@commercetools-frontend/jest-preset-mc-app": "10.0.0",
+    "@commercetools-frontend/mc-scripts": "10.0.0",
     "enzyme": "3.9.0",
     "jest": "24.1.0",
     "react-testing-library": "6.0.0"
