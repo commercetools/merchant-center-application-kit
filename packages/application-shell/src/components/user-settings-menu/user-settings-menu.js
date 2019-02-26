@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import { compose } from 'recompose';
+import flowRight from 'lodash/flowRight';
 import classnames from 'classnames';
 import Downshift from 'downshift';
 import { ToggleFeature } from '@flopflip/react-broadcast';
@@ -201,7 +201,7 @@ UserSettingsMenuBody.propTypes = {
   }),
 };
 
-const ConnectedUserSettingsMenuBody = compose(
+const ConnectedUserSettingsMenuBody = flowRight(
   withApplicationsMenu(ownProps => ({
     queryName: 'applicationsMenuQuery',
     queryOptions: {

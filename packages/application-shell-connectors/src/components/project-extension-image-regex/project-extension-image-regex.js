@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { wrapDisplayName } from 'recompose';
 import { Query } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import getDisplayName from '../../utils/get-display-name';
 import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.graphql';
 
 const defaultValue = {};
@@ -51,10 +51,9 @@ const withProjectExtensionImageRegex = (
       )}
     />
   );
-  WrappedComponent.displayName = wrapDisplayName(
-    Component,
-    'withProjectExtensionImageRegex'
-  );
+  WrappedComponent.displayName = `withProjectExtensionImageRegex(${getDisplayName(
+    Component
+  )})`;
   return WrappedComponent;
 };
 

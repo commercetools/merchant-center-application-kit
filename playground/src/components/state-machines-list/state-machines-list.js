@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { compose } from 'recompose';
+import flowRight from 'lodash/flowRight';
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   LoadingSpinner,
@@ -122,7 +122,7 @@ export class StateMachinesList extends React.Component {
   }
 }
 
-export default compose(
+export default flowRight(
   withApplicationContext(),
   connect(state => {
     const cachedStateMachine = selectStateMachinesFromCache(state);

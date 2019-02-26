@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isNil from 'lodash/isNil';
+import flowRight from 'lodash/flowRight';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import { ToggleFeature, injectFeatureToggle } from '@flopflip/react-broadcast';
-import { compose, withProps } from 'recompose';
 import classnames from 'classnames';
 import { oneLineTrim } from 'common-tags';
 import {
@@ -34,6 +34,7 @@ import {
 } from '@commercetools-frontend/constants';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
+import getDisplayName from '../../utils/get-display-name';
 import LoadingPlaceholder from '../loading-placeholder';
 import withApplicationsMenu from '../with-applications-menu';
 import handleApolloErrors from '../handle-apollo-errors';
@@ -664,20 +665,32 @@ export class NavBar extends React.PureComponent {
   }
 }
 
-export default compose(
-  withRouter, // Connect again, to access the `location` object
-  injectFeatureToggle('projectExtensions', 'areProjectExtensionsEnabled'),
-  withProps(() => {
+const injectMenuToggleState = Component => {
+  const WrappedComponent = props => {
     const cachedIsForcedMenuOpen = storage.get(
       STORAGE_KEYS.IS_FORCED_MENU_OPEN
     );
-    return {
-      isForcedMenuOpen:
-        typeof cachedIsForcedMenuOpen === 'string'
-          ? cachedIsForcedMenuOpen === 'true'
-          : null,
-    };
-  }),
+    return (
+      <Component
+        {...props}
+        isForcedMenuOpen={
+          typeof cachedIsForcedMenuOpen === 'string'
+            ? cachedIsForcedMenuOpen === 'true'
+            : null
+        }
+      />
+    );
+  };
+  WrappedComponent.displayName = `injectMenuToggleState(${getDisplayName(
+    Component
+  )})`;
+  return WrappedComponent;
+};
+
+export default flowRight(
+  withRouter, // Connect again, to access the `location` object
+  injectFeatureToggle('projectExtensions', 'areProjectExtensionsEnabled'),
+  injectMenuToggleState,
   withApplicationsMenu(ownProps => ({
     queryName: 'applicationsMenuQuery',
     __DEV_CONFIG__: {

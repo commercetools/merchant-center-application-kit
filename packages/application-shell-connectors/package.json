@@ -38,8 +38,7 @@
     "lodash": "4.17.11",
     "lodash-es": "4.17.11",
     "moment-timezone": "^0.5.23",
-    "prop-types": "15.7.2",
-    "recompose": "^0.26.0"
+    "prop-types": "15.7.2"
   },
   "devDependencies": {
     "react": "16.8.3",

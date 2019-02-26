@@ -66,6 +66,6 @@
     "react": "16.x",
     "react-dom": "16.x",
     "react-intl": "2.x",
-    "react-testing-library": ">=5 <7"
+    "react-testing-library": "6.x || 7.x"
   }
 }

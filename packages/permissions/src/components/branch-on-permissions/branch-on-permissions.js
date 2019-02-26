@@ -1,16 +1,29 @@
-import { compose, branch, renderNothing, renderComponent } from 'recompose';
+import React from 'react';
+import PropTypes from 'prop-types';
+import getDisplayName from '../../utils/get-display-name';
 import { injectAuthorized } from '../authorized';
 
-const branchUnauthorized = FallbackComponent =>
-  branch(
-    props => !props.isAuthorized,
-    FallbackComponent ? renderComponent(FallbackComponent) : renderNothing
-  );
-
-const branchOnPermissions = (demandedPermissions, FallbackComponent, options) =>
-  compose(
-    injectAuthorized(demandedPermissions, options),
-    branchUnauthorized(FallbackComponent)
-  );
+const branchOnPermissions = (
+  demandedPermissions,
+  FallbackComponent,
+  options
+) => Component => {
+  const WrappedComponent = props => {
+    if (props.isAuthorized) {
+      return <Component {...props} />;
+    }
+    if (FallbackComponent) {
+      return <FallbackComponent />;
+    }
+    return null;
+  };
+  WrappedComponent.displayName = `branchOnPermissions(${getDisplayName(
+    Component
+  )})`;
+  WrappedComponent.propTypes = {
+    isAuthorized: PropTypes.bool.isRequired,
+  };
+  return injectAuthorized(demandedPermissions, options)(WrappedComponent);
+};
 
 export default branchOnPermissions;
