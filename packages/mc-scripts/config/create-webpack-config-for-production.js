@@ -32,6 +32,8 @@ const uglifyConfig = {
     toplevel: false,
     nameCache: null,
     ie8: false,
+    // https://github.com/mishoo/UglifyJS2/issues/1609
+    collapse_vars: false,
     keep_fnames: false,
   },
 };
