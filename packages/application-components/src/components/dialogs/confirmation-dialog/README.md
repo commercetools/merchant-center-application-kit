@@ -54,4 +54,5 @@ Exposes common intl messages to be used for the secondary/primary buttons
 ```js
 ConfirmationDialog.Intl.cancel;
 ConfirmationDialog.Intl.confirm;
+// ...
 ```

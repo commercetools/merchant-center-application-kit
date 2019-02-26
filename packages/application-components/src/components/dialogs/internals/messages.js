@@ -9,6 +9,22 @@ const messages = defineMessages({
     id: 'Components.Dialog.labelConfirm',
     defaultMessage: 'Confirm',
   },
+  save: {
+    id: 'Components.Dialog.labelSave',
+    defaultMessage: 'Save',
+  },
+  update: {
+    id: 'Components.Dialog.labelUpdate',
+    defaultMessage: 'Update',
+  },
+  create: {
+    id: 'Components.Dialog.labelCreate',
+    defaultMessage: 'Create',
+  },
+  delete: {
+    id: 'Components.Dialog.labelDelete',
+    defaultMessage: 'Delete',
+  },
 });
 
 export default messages;
