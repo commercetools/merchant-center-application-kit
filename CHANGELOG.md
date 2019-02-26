@@ -1,3 +1,43 @@
+## [10.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v9.0.1...v10.0.0) (2019-02-26)
+
+This release introduces a **breaking change** which may entail some **migration steps**. We'll go through them now:
+
+#### 💥 Type: Breaking Change
+
+- `mc-scripts`
+  - [#397](https://github.com/commercetools/merchant-center-application-kit/pull/397) Update uglify plugin / stop shipping es6 code to ie ([@montezume](https://github.com/montezume))
+
+Previously building an application in `production` mode would succeeds, even if you imported vendors that shipped untranspiled code. However, **now they will fail**, as our uglify plugin does not support es6 code. If you get an error building your `production` build, you should pass a list of vendor packages that need to be transpiled to the `create-webpack-config-for-production` like below:
+
+```js
+const path = require('path');
+const createWebpackConfigForProduction = require('@commercetools-frontend/mc-scripts/config/create-webpack-config-for-production');
+
+const distPath = path.resolve(__dirname, 'dist');
+const entryPoint = path.resolve(__dirname, 'src/index.js');
+// For example, `omit-empty` should be transpiled
+const vendorsToTranspile = [/node_modules\/omit-empty/];
+
+const sourceFolders = [path.resolve(__dirname, 'src')];
+
+module.exports = createWebpackConfigForProduction({
+  distPath,
+  entryPoint,
+  sourceFolders,
+  vendorsToTranspile,
+});
+```
+
+#### 🚀 Type: New Feature
+
+- `application-components`
+  - [#399](https://github.com/commercetools/merchant-center-application-kit/pull/399) feat(components/dialogs): add FormDialog ([@emmenko](https://github.com/emmenko))
+
+#### 🔮 Type: Chore
+
+- [#395](https://github.com/commercetools/merchant-center-application-kit/pull/395) chore: update deps ([@montezume](https://github.com/montezume))
+- [#400](https://github.com/commercetools/merchant-center-application-kit/pull/400) drop recompose ([@emmenko](https://github.com/emmenko))
+
 ## [9.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v9.0.0...v9.0.1) (2019-02-22)
 
 #### 🐛 Type: Bug
