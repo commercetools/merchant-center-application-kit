@@ -27,6 +27,11 @@ module.exports = createWebpackConfigForProduction({
 });
 ```
 
+#### 🚀 Type: New Feature
+
+- `application-components`
+  - [#399](https://github.com/commercetools/merchant-center-application-kit/pull/399) feat(components/dialogs): add FormDialog ([@emmenko](https://github.com/emmenko))
+
 ## [9.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v9.0.0...v9.0.1) (2019-02-22)
 
 #### 🐛 Type: Bug
