@@ -11,7 +11,6 @@ const createTestProps = props => ({
   location: {
     hash: '#id_token=abcTestIdToken',
   },
-  redirectTo: jest.fn(),
   requestAccessToken: jest.fn(),
   ...props,
 });
@@ -48,6 +47,7 @@ describe('lifecylcle', () => {
   describe('componentDidMount', () => {
     let wrapper;
     let props;
+    let replace;
     beforeEach(() => {
       props = createTestProps({
         requestAccessToken: jest.fn(() => Promise.resolve({ token: 'xxx' })),
@@ -74,6 +74,9 @@ describe('lifecylcle', () => {
       });
       describe('when request is successful', () => {
         beforeEach(() => {
+          replace = jest.fn();
+          delete window.location;
+          window.location = { replace };
           props = createTestProps({
             requestAccessToken: jest.fn(() =>
               Promise.resolve({ token: 'xxx' })
@@ -89,11 +92,14 @@ describe('lifecylcle', () => {
           wrapper.instance().componentDidMount();
         });
         it('should redirect to /', () => {
-          expect(props.redirectTo).toHaveBeenCalledWith('/');
+          expect(replace).toHaveBeenCalledWith('/');
         });
       });
       describe('when request fails', () => {
         beforeEach(() => {
+          replace = jest.fn();
+          delete window.location;
+          window.location = { replace };
           props = createTestProps({
             requestAccessToken: jest.fn(() => Promise.reject(new Error())),
           });
@@ -109,7 +115,7 @@ describe('lifecylcle', () => {
           expect(wrapper).toHaveState('hasAuthenticationFailed', true);
         });
         it('should not redirect', () => {
-          expect(props.redirectTo).not.toHaveBeenCalled();
+          expect(replace).not.toHaveBeenCalled();
         });
       });
     });
