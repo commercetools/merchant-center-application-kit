@@ -43,7 +43,6 @@ const createTestProps = props => ({
   projectKey: 'key1',
   total: 4,
   projectsQuery: createProjectsQuery(),
-  redirectTo: jest.fn(),
   intl: { formatMessage: jest.fn() },
   ...props,
 });
@@ -226,25 +225,33 @@ describe('callbacks', () => {
     let props;
 
     describe('when the user selects a different project from the current one', () => {
+      let replace;
       beforeEach(() => {
+        replace = jest.fn();
+        delete window.location;
+        window.location = { replace };
         props = createTestProps();
         wrapper = shallow(<ProjectSwitcher {...props} />);
         wrapper.find(Select).simulate('change', { key: 'key2' });
       });
       it('should redirect to the new project url', () => {
-        expect(props.redirectTo).toHaveBeenCalledTimes(1);
-        expect(props.redirectTo).toHaveBeenLastCalledWith('/key2');
+        expect(replace).toHaveBeenCalledTimes(1);
+        expect(replace).toHaveBeenLastCalledWith('/key2');
       });
     });
 
     describe('when the user selects same project as the current one', () => {
+      let replace;
       beforeEach(() => {
+        replace = jest.fn();
+        delete window.location;
+        window.location = { replace };
         props = createTestProps({ projectKey: 'key1' });
         wrapper = shallow(<ProjectSwitcher {...props} />);
         wrapper.find(Select).simulate('change', { key: 'key1' });
       });
       it('should not redirect to the new project', () => {
-        expect(props.redirectTo).toHaveBeenCalledTimes(0);
+        expect(replace).toHaveBeenCalledTimes(0);
       });
     });
   });
