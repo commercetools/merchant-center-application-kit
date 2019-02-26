@@ -49,6 +49,6 @@
   "peerDependencies": {
     "enzyme": "3.x",
     "jest": "23.x",
-    "react-testing-library": "6.x || 7.x"
+    "react-testing-library": "5.x || 6.x"
   }
 }
