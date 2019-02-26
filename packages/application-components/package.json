@@ -54,8 +54,8 @@
     "html-loader": "0.5.5",
     "markdown-loader": "5.0.0",
     "moment-locales-webpack-plugin": "1.0.7",
-    "react": "16.8.2",
-    "react-dom": "16.8.2",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
     "react-intl": "2.8.0",
     "react-testing-library": "5.8.0",
     "storybook-readme": "4.0.5"

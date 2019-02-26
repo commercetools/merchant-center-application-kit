@@ -48,7 +48,7 @@
     "unfetch": "4.0.1"
   },
   "devDependencies": {
-    "react": "16.8.2",
+    "react": "16.8.3",
     "react-redux": "6.0.0"
   },
   "peerDependencies": {
