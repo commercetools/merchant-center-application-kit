@@ -36,6 +36,7 @@ module.exports = createWebpackConfigForProduction({
 #### 🔮 Type: Chore
 
 - [#395](https://github.com/commercetools/merchant-center-application-kit/pull/395) chore: update deps ([@montezume](https://github.com/montezume))
+- [#400](https://github.com/commercetools/merchant-center-application-kit/pull/400) drop recompose ([@emmenko](https://github.com/emmenko))
 
 ## [9.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v9.0.0...v9.0.1) (2019-02-22)
 
