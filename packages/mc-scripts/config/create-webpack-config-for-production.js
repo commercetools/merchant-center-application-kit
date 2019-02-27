@@ -78,7 +78,15 @@ module.exports = ({
     // https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a
     optimization: {
       minimizer: [
-        new UglifyJsPlugin({ sourceMap: true }),
+        new UglifyJsPlugin({
+          uglifyOptions: {
+            compress: {
+              // seems to be caused by using `tether :(`
+              collapse_vars: false,
+            },
+          },
+          sourceMap: true,
+        }),
         mergedToggleFlags.enableExtractCss &&
           new OptimizeCSSAssetsPlugin(optimizeCSSConfig),
       ].filter(Boolean),
