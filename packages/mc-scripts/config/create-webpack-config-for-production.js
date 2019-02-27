@@ -78,7 +78,7 @@ module.exports = ({
     // https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a
     optimization: {
       minimizer: [
-        new UglifyJsPlugin(),
+        new UglifyJsPlugin({ sourceMap: true }),
         mergedToggleFlags.enableExtractCss &&
           new OptimizeCSSAssetsPlugin(optimizeCSSConfig),
       ].filter(Boolean),
