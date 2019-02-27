@@ -336,10 +336,6 @@ module.exports = ({
         include: sourceFolders,
         use: [require.resolve('graphql-tag/loader')],
       },
-      {
-        test: /\.pegjs$/,
-        use: [require.resolve('pegjs-loader')],
-      },
     ],
   },
 

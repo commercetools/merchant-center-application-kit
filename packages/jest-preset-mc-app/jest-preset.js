@@ -34,7 +34,6 @@ module.exports = {
   transform: {
     '^.+\\.js$': resolveRelativePath('./transform-babel-jest.js'),
     '^.+\\.graphql$': 'jest-transform-graphql',
-    '^.+\\.pegjs$': 'pegjs-jest',
   },
   transformIgnorePatterns: ['node_modules'],
   watchPlugins: ['jest-plugin-filename', 'jest-watch-master'],
