@@ -1,3 +1,47 @@
+## [11.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v10.0.0...v11.0.0) (2019-02-28)
+
+> NOTE: the breaking change only affects our internal discount application. However, we want to follow strict semver and therefore we should mark it as a major version bump.
+
+#### 🐛 Type: Bug
+
+- `application-components`
+  - [#408](https://github.com/commercetools/merchant-center-application-kit/pull/408) fix(components/dialog): to pass title for modal aria-label ([@emmenko](https://github.com/emmenko))
+- `application-shell`, `browser-history`
+  - [#413](https://github.com/commercetools/merchant-center-application-kit/pull/413) fix(test-utils): create default memory history with the enhanced location ([@emmenko](https://github.com/emmenko))
+
+#### 💥 Type: Breaking Change
+
+- `jest-preset-mc-app`, `mc-scripts`
+  - [#402](https://github.com/commercetools/merchant-center-application-kit/pull/402) feat: remove pegjs loader from webpack config ([@montezume](https://github.com/montezume))
+
+#### 🔮 Type: Chore
+
+- `application-shell-connectors`, `application-shell`
+  - [#423](https://github.com/commercetools/merchant-center-application-kit/pull/423) chore: upgrade deps ([@emmenko](https://github.com/emmenko))
+- `application-shell`, `react-notifications`
+  - [#415](https://github.com/commercetools/merchant-center-application-kit/pull/415) chore: upgrade to react-router v4.4.0-beta.7 ([@emmenko](https://github.com/emmenko))
+- `permissions`
+  - [#414](https://github.com/commercetools/merchant-center-application-kit/pull/414) chore: consistently use lodash-es import ([@emmenko](https://github.com/emmenko))
+- `application-components`
+  - [#375](https://github.com/commercetools/merchant-center-application-kit/pull/375) Add Percy VRT tests ([@montezume](https://github.com/montezume))
+- `i18n`
+  - [#405](https://github.com/commercetools/merchant-center-application-kit/pull/405) chore: pull translations [skip ci](<[@emmenko](https://github.com/emmenko)>)
+
+#### ✍️ Type: Documentation
+
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `assets`, `babel-preset-mc-app`, `browser-history`, `constants`, `create-mc-app`, `eslint-config-mc-app`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-html-template`, `mc-http-server`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sdk`, `sentry`, `storage`, `url-utils`
+  - [#416](https://github.com/commercetools/merchant-center-application-kit/pull/416) docs(readme): update badges [skip ci](<[@emmenko](https://github.com/emmenko)>)
+
+#### 💅 Type: Enhancement
+
+- `application-components`
+  - [#412](https://github.com/commercetools/merchant-center-application-kit/pull/412) Dialog layout fixes, add VRT tests 💅 ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `application-components`
+  - [#411](https://github.com/commercetools/merchant-center-application-kit/pull/411) fix(components/dialog): to have bottom padding for content container ([@emmenko](https://github.com/emmenko))
+
 ## [10.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v9.0.1...v10.0.0) (2019-02-26)
 
 This release introduces a **breaking change** which may entail some **migration steps**. We'll go through them now:
