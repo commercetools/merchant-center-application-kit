@@ -31,7 +31,7 @@ const DialogContainer = props => (
     shouldCloseOnEsc={Boolean(props.onClose)}
     overlayClassName={styles['modal-overlay']}
     className={styles['modal-content']}
-    contentLabel="info-dialog"
+    contentLabel={props.title}
     parentSelector={parentSelector}
     ariaHideApp={false}
     style={{
@@ -55,6 +55,7 @@ DialogContainer.propTypes = {
   onClose: PropTypes.func,
   size: PropTypes.oneOf(['m', 'l', 'scale']),
   zIndex: PropTypes.number,
+  title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
 DialogContainer.defaultProps = {
