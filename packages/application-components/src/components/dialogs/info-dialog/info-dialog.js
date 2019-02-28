@@ -10,6 +10,7 @@ const InfoDialog = props => (
     onClose={props.onClose}
     size={props.size}
     zIndex={props.zIndex}
+    title={props.title}
   >
     <DialogHeader title={props.title} onClose={props.onClose} />
     <DialogContent>{props.children}</DialogContent>
