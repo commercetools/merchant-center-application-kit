@@ -66,8 +66,6 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 
 const typeNamesWithoutIdAsIdentifier = ['Project', 'BaseMenu', 'NavbarMenu'];
 
-const typeNameWithReferencedEntity = ['Reference', 'DeliveryItem'];
-
 export const createApolloClient = () =>
   new ApolloClient({
     link,
@@ -84,10 +82,7 @@ export const createApolloClient = () =>
         // However, a reference has the shape { typeId, id } where the id is the
         // id of the referenced entity. If we didn't prefix ids of References
         // they would clash with the referenced resource.
-        // The same use case happens for DeliveryItem type in which the `id`
-        // is really the lineItem id referenced in the delivery
-        // https://docs.commercetools.com/http-api-projects-orders.html#deliveryitem
-        if (typeNameWithReferencedEntity.includes(result.__typename))
+        if (result.__typename === 'Reference')
           return `${result.__typename}:${result.id}`;
 
         return result.id;
