@@ -42,7 +42,7 @@
 
 .dialog-content {
   border-top: 1px solid var(--border-color-separator);
-  padding-top: var(--spacing-16);
+  padding: var(--spacing-16) 0 var(--spacing-8);
   overflow: auto;
 
   /* NOTE: we might need to look into those values again, specifically for the `scale`
