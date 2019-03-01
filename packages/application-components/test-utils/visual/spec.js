@@ -60,7 +60,16 @@ const PropValue = styled.span`
 `;
 
 const Box = styled.div`
-  background-color: ${props => (props.inverted ? '#111' : '#eee')};
+  background-color: ${props => {
+    switch (props.tone) {
+      case 'secondary':
+        return '#eee';
+      case 'inverted':
+        return '#111';
+      default:
+        return '#fff';
+    }
+  }};
   ${props =>
     props.alignment === 'center'
       ? `
@@ -123,7 +132,7 @@ const Spec = props => (
   <SpecContainer size={props.size}>
     <Label>{props.label}</Label>
     {!props.omitPropsList && <Props>{props.children}</Props>}
-    <Box inverted={props.inverted} alignment={props.contentAlignment}>
+    <Box tone={props.tone} alignment={props.contentAlignment}>
       {props.children}
     </Box>
   </SpecContainer>
@@ -134,7 +143,7 @@ Spec.propTypes = {
   size: PropTypes.oneOf(['m', 'l', 'xl']),
   contentAlignment: PropTypes.oneOf(['default', 'center']),
   children: PropTypes.node,
-  inverted: PropTypes.bool,
+  tone: PropTypes.oneOf(['normal', 'secondary', 'inverted']),
   omitPropsList: PropTypes.bool,
 };
 
@@ -142,6 +151,7 @@ Spec.defaultProps = {
   omitPropsList: false,
   size: 'm',
   contentAlignment: 'default',
+  tone: 'normal',
 };
 
 Spec.displayName = 'Spec';
