@@ -11,6 +11,7 @@ const InfoDialog = props => (
     size={props.size}
     zIndex={props.zIndex}
     title={props.title}
+    getParentSelector={props.getParentSelector}
   >
     <DialogHeader title={props.title} onClose={props.onClose} />
     <DialogContent>{props.children}</DialogContent>
@@ -24,6 +25,7 @@ InfoDialog.propTypes = {
   zIndex: PropTypes.number,
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  getParentSelector: PropTypes.func,
 };
 
 export default InfoDialog;
