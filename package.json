@@ -23,10 +23,16 @@
     "release-to-latest": "lerna exec --no-bail --no-private --no-sort --stream -- '[ -n \"$(npm v . dist-tags.next)\" ] && npm dist-tag add ${LERNA_PACKAGE_NAME}@$(npm v . dist-tags.next) latest'",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
+    "test:visual": "jest --config jest.visual.config.js --runInBand",
+    "run-if:percy": "node scripts/run-percy.js",
+    "vrt": "percy exec -- jest --config jest.visual.config.js --runInBand",
+    "vrt:dummy": "percy exec -- jest --config jest.visual-dummy.config.js --runInBand",
     "playground:start": "yarn --cwd playground start",
     "playground:build": "yarn --cwd playground build",
     "storybook:build": "yarn --cwd packages/application-components storybook:build",
     "storybook:start": "yarn --cwd packages/application-components storybook:start",
+    "visual-testing-app:build": "yarn --cwd visual-testing-app build",
+    "visual-testing-app:start": "yarn --cwd visual-testing-app start",
     "build": "NODE_ENV=production lerna run build --no-private",
     "build:es": "NODE_ENV=production lerna run build:es --no-private",
     "build:es:watch": "NODE_ENV=development lerna run --no-private --parallel build:es:watch"
@@ -34,12 +40,14 @@
   "workspaces": [
     "application-templates/*",
     "packages/*",
-    "playground"
+    "playground",
+    "visual-testing-app"
   ],
   "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "7.5.2",
     "@commitlint/config-conventional": "7.5.0",
+    "@percy/puppeteer": "1.0.5",
     "babel-eslint": "10.0.1",
     "babel-plugin-import-graphql": "2.6.2",
     "babel-plugin-transform-rename-import": "2.3.0",
@@ -61,6 +69,7 @@
     "jest": "24.1.0",
     "jest-each": "24.0.0",
     "jest-plugin-filename": "0.0.1",
+    "jest-puppeteer": "4.0.0",
     "jest-runner-eslint": "0.7.3",
     "jest-runner-shellcheck": "1.0.2",
     "jest-runner-stylelint": "1.0.0",
@@ -69,6 +78,7 @@
     "lerna-changelog": "0.8.2",
     "lint-staged": "8.1.4",
     "prettier": "1.16.4",
+    "puppeteer": "1.12.2",
     "rcfile": "1.0.3",
     "read-pkg-up": "4.0.0",
     "rollup": "1.3.0",
