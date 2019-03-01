@@ -12,7 +12,7 @@ const useLabel = (label, intl) =>
   typeof label === 'string' ? label : intl.formatMessage(label);
 
 const DialogFooter = props => (
-  <Spacings.Inline scale="m" alignItems="center" justifyContent="flex-end">
+  <Spacings.Inline scale="l" alignItems="center" justifyContent="flex-end">
     <SecondaryButton
       label={useLabel(props.labelSecondary, props.intl)}
       onClick={props.onCancel}
