@@ -10,7 +10,9 @@ addLocaleData(de);
 addLocaleData(es);
 
 const Suite = props => (
-  <IntlProvider locale={props.locale}>{props.children}</IntlProvider>
+  <IntlProvider locale={props.locale}>
+    <div>{props.children}</div>
+  </IntlProvider>
 );
 
 Suite.defualtProps = {
@@ -19,7 +21,7 @@ Suite.defualtProps = {
 
 Suite.propTypes = {
   children: PropTypes.node.isRequired,
-  locale: PropTypes.string.isRequired,
+  locale: PropTypes.string,
 };
 
 Suite.displayName = 'Suite';
