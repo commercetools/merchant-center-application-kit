@@ -6,7 +6,11 @@ export const routePath = '/dummy';
 export const component = () => (
   <Suite>
     <Spec label="Dummy">
-      <div>{'Dummy'}</div>
+      <div>
+        {
+          'This is a dummy test, to have at least one test running on Percy in case there are no changes to the UI components.'
+        }
+      </div>
     </Spec>
   </Suite>
 );
