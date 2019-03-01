@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import { Card, Spacings } from '@commercetools-frontend/ui-kit';
+import { Card } from '@commercetools-frontend/ui-kit';
 import styles from './dialog-styles.mod.css';
 
 // When running tests, we don't render the AppShell. Instead we mock the
@@ -46,7 +46,7 @@ const DialogContainer = props => (
     <div className={styles['grid-area-footer']} />
     <div className={styles['dialog-container']}>
       <Card className={styles['dialog-card']}>
-        <Spacings.Stack scale="m">{props.children}</Spacings.Stack>
+        <div className={styles['dialog-card-spacer']}>{props.children}</div>
       </Card>
     </div>
   </Modal>
