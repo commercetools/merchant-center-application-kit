@@ -1,6 +1,6 @@
 module.exports = {
   server: {
-    command: 'yarn visual-testing-app:serve',
+    command: 'yarn visual-testing-app:start',
     port: 3999,
   },
 };
