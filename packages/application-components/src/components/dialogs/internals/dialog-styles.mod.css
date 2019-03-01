@@ -76,6 +76,7 @@
 .dialog-card > div {
   display: flex;
   flex-direction: column;
+  height: 100%;
 
   /* For the actual container with the content, we need to use normal pointer
   events so that clicking on it does not close the dialog. */
@@ -85,12 +86,11 @@
   min-height: 0;
 }
 
-/* NOTE: this is exactly like the `<Spacings.Stack>` component, except that
-we need to pass the extra property `min-height`. */
 .dialog-card-spacer {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  height: 100%;
 
   /* Ref: https://stackoverflow.com/questions/28636832/firefox-overflow-y-not-working-with-nested-flexbox/28639686#28639686 */
   min-height: 0;
