@@ -57,7 +57,15 @@ if (shouldSkipPercy()) {
   process.exit(0);
 }
 
-const matchingFiles = ['packages/application-components'].join('|');
+const matchingFiles = [
+  'packages/application-components',
+  'packages/assets',
+  'scripts/run-percy.js',
+  'visual-testing-app',
+  '.percy.yaml',
+  'jest-visual',
+  'package.json',
+].join('|');
 
 console.log('Building visual testing app');
 exitOnError(shelljs.exec('yarn visual-testing-app:build'));
