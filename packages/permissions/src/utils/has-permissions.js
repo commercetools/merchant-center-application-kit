@@ -1,4 +1,4 @@
-import isNil from 'lodash.isnil';
+import isNil from 'lodash/isNil';
 import { permissions } from '../constants';
 
 // Build the permission key from the definition to match it to the format coming
