@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -13,15 +13,15 @@
     "deploy:us": "now --local-config=now.us.json --docker; now alias --local-config=now.us.json"
   },
   "dependencies": {
-    "@commercetools-frontend/actions-global": "10.0.0",
-    "@commercetools-frontend/application-shell": "10.0.0",
-    "@commercetools-frontend/application-shell-connectors": "10.0.0",
-    "@commercetools-frontend/constants": "10.0.0",
-    "@commercetools-frontend/i18n": "10.0.0",
-    "@commercetools-frontend/l10n": "10.0.0",
-    "@commercetools-frontend/mc-http-server": "10.0.0",
-    "@commercetools-frontend/permissions": "10.0.0",
-    "@commercetools-frontend/sdk": "10.0.0",
+    "@commercetools-frontend/actions-global": "11.0.0",
+    "@commercetools-frontend/application-shell": "11.0.0",
+    "@commercetools-frontend/application-shell-connectors": "11.0.0",
+    "@commercetools-frontend/constants": "11.0.0",
+    "@commercetools-frontend/i18n": "11.0.0",
+    "@commercetools-frontend/l10n": "11.0.0",
+    "@commercetools-frontend/mc-http-server": "11.0.0",
+    "@commercetools-frontend/permissions": "11.0.0",
+    "@commercetools-frontend/sdk": "11.0.0",
     "@commercetools-frontend/ui-kit": "9.0.0",
     "lodash": "4.17.11",
     "lodash-es": "4.17.11",
@@ -39,6 +39,6 @@
     "redux": "4.0.1"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "10.0.0"
+    "@commercetools-frontend/mc-scripts": "11.0.0"
   }
 }
