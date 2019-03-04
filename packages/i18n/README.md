@@ -1,7 +1,7 @@
 # @commercetools-frontend/i18n
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@commercetools-frontend/i18n"><img src="https://img.shields.io/npm/v/@commercetools-frontend/i18n.svg"></a>
+  <a href="https://www.npmjs.com/package/@commercetools-frontend/i18n"><img src="https://badgen.net/npm/v/@commercetools-frontend/i18n" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-frontend/i18n"><img src="https://badgen.net/npm/v/@commercetools-frontend/i18n/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-frontend/i18n"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-frontend/i18n" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/master/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
 </p>
 
 This package contains JSON data about the i18n messages from the different application-kit packages (e.g. `application-shell`, etc). Additionally, it also loads locale data for `moment` and `react-intl`, which is necessary for runtime usage.
