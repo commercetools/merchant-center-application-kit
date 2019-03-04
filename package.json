@@ -76,7 +76,7 @@
     "jest-silent-reporter": "0.1.1",
     "lerna": "3.13.0",
     "lerna-changelog": "0.8.2",
-    "lint-staged": "8.1.4",
+    "lint-staged": "8.1.5",
     "prettier": "1.16.4",
     "puppeteer": "1.12.2",
     "rcfile": "1.0.3",
