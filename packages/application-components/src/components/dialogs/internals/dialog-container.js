@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import { Card, Spacings } from '@commercetools-frontend/ui-kit';
+import { Card } from '@commercetools-frontend/ui-kit';
 import styles from './dialog-styles.mod.css';
 
 // When running tests, we don't render the AppShell. Instead we mock the
@@ -18,7 +18,7 @@ import styles from './dialog-styles.mod.css';
 // instead of a specific element that will be cleaned up, resulting in
 // console errors (even though the test passes). We only need to to this in
 // test environment.
-const parentSelector = () =>
+const getDefaultParentSelector = () =>
   process.env.NODE_ENV === 'test'
     ? document.body
     : document.querySelector(`#${PORTALS_CONTAINER_ID}`);
@@ -30,9 +30,9 @@ const DialogContainer = props => (
     shouldCloseOnOverlayClick={Boolean(props.onClose)}
     shouldCloseOnEsc={Boolean(props.onClose)}
     overlayClassName={styles['modal-overlay']}
-    className={styles['modal-content']}
+    className={styles[`modal-content-${props.size}`]}
     contentLabel={props.title}
-    parentSelector={parentSelector}
+    parentSelector={props.getParentSelector}
     ariaHideApp={false}
     style={{
       overlay: {
@@ -40,12 +40,14 @@ const DialogContainer = props => (
       },
     }}
   >
-    <div className={styles[`size-${props.size}`]}>
-      <div className={styles['dialog-container']}>
-        <Card>
-          <Spacings.Stack scale="m">{props.children}</Spacings.Stack>
-        </Card>
-      </div>
+    <div className={styles['grid-area-top']} />
+    <div className={styles['grid-area-left']} />
+    <div className={styles['grid-area-right']} />
+    <div className={styles['grid-area-footer']} />
+    <div className={styles['dialog-container']}>
+      <Card className={styles['dialog-card']}>
+        <div className={styles['dialog-card-spacer']}>{props.children}</div>
+      </Card>
     </div>
   </Modal>
 );
@@ -57,10 +59,12 @@ DialogContainer.propTypes = {
   zIndex: PropTypes.number,
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  getParentSelector: PropTypes.func,
 };
 DialogContainer.defaultProps = {
   size: 'l',
   zIndex: 1000,
+  getParentSelector: getDefaultParentSelector,
 };
 
 export default DialogContainer;

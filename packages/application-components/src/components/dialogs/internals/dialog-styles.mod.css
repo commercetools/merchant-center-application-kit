@@ -9,22 +9,11 @@
   width: 100%;
   height: 100%;
   background-color: var(--color-modalBackground);
-  opacity: 0;
-}
-
-:global(.ReactModal__Overlay--after-open).modal-overlay {
   opacity: 1;
-  transition: opacity 150ms ease-in;
-}
-
-:global(.ReactModal__Overlay--before-close).modal-overlay {
-  opacity: 0;
 }
 
 .modal-content {
   display: grid;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   width: 100%;
   outline: none;
@@ -34,31 +23,102 @@
   pointer-events: none;
 }
 
-.dialog-container {
+.modal-content-m {
+  composes: modal-content;
+  grid: [row1-start] 'top top top' minmax(var(--spacing-32), 1fr) [row1-end]
+        [row2-start] 'left main right' minmax(0, 100%) [row2-end]
+        [row3-start] 'bottom bottom bottom' minmax(var(--spacing-32), 1fr) [row3-end]
+        / minmax(var(--spacing-32), 1fr) var(--constraint-m) minmax(var(--spacing-32), 1fr);
+}
+
+.modal-content-l {
+  composes: modal-content;
+  grid: [row1-start] 'top top top' minmax(var(--spacing-32), 1fr) [row1-end]
+        [row2-start] 'left main right' minmax(0, 100%) [row2-end]
+        [row3-start] 'bottom bottom bottom' minmax(var(--spacing-32), 1fr) [row3-end]
+        / minmax(var(--spacing-32), 1fr) var(--constraint-l) minmax(var(--spacing-32), 1fr);
+}
+
+.modal-content-scale {
+  composes: modal-content;
+  grid: [row1-start] 'top top top' minmax(var(--spacing-32), 1fr) [row1-end]
+        [row2-start] 'left main right' minmax(0, 100%) [row2-end]
+        [row3-start] 'bottom bottom bottom' minmax(var(--spacing-32), 1fr) [row3-end]
+        / var(--spacing-32) 1fr var(--spacing-32);
+}
+
+.grid-area-top {
+  grid-area: top;
+}
+
+.grid-area-left {
+  grid-area: left;
+}
+
+.grid-area-right {
+  grid-area: right;
+}
+
+.grid-area-bottom {
+  grid-area: bottom;
+}
+
+/* For the scale size, we want the card to stretch to 100% height */
+.modal-content-scale .dialog-card {
+  height: 100%;
+}
+
+.dialog-card {
+  /* Ref: https://stackoverflow.com/questions/28636832/firefox-overflow-y-not-working-with-nested-flexbox/28639686#28639686 */
+  min-height: 0;
+}
+
+.dialog-card > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
   /* For the actual container with the content, we need to use normal pointer
   events so that clicking on it does not close the dialog. */
   pointer-events: auto;
+
+  /* Ref: https://stackoverflow.com/questions/28636832/firefox-overflow-y-not-working-with-nested-flexbox/28639686#28639686 */
+  min-height: 0;
+}
+
+.dialog-card-spacer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
+
+  /* Ref: https://stackoverflow.com/questions/28636832/firefox-overflow-y-not-working-with-nested-flexbox/28639686#28639686 */
+  min-height: 0;
+}
+
+.dialog-card-spacer > * + * {
+  margin: var(--spacing-16) 0 0;
+}
+
+.dialog-container {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+.dialog-header {
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .dialog-content {
   border-top: 1px solid var(--border-color-separator);
   padding: var(--spacing-16) 0 var(--spacing-8);
   overflow: auto;
-
-  /* NOTE: we might need to look into those values again, specifically for the `scale`
-  mode, where the dialog is supposed to scale to the window size. */
-  max-height: 80vh;
-  max-width: 80vw;
-}
-
-.size-m {
-  width: var(--constraint-m);
-}
-
-.size-l {
-  width: var(--constraint-l);
-}
-
-.size-scale {
-  width: var(--constraint-scale);
+  flex: 1;
 }

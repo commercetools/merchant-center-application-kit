@@ -13,6 +13,7 @@ const ConfirmationDialog = props => (
     size={props.size}
     zIndex={props.zIndex}
     title={props.title}
+    getParentSelector={props.getParentSelector}
   >
     <DialogHeader title={props.title} onClose={props.onClose} />
     <DialogContent>{props.children}</DialogContent>
@@ -56,6 +57,7 @@ ConfirmationDialog.propTypes = {
   onConfirm: PropTypes.func.isRequired,
   dataAttributesSecondaryButton: PropTypes.object,
   dataAttributesPrimaryButton: PropTypes.object,
+  getParentSelector: PropTypes.func,
 };
 ConfirmationDialog.defaultProps = {
   labelSecondary: messages.cancel,

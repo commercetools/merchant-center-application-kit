@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import { customProperties } from '@commercetools-frontend/ui-kit';
 
 const getContainerHeight = size => {
-  console.log('size', size);
   switch (size) {
     case 'l':
       return 550;
@@ -77,6 +76,7 @@ const Box = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
       `
       : ``}
 `;
