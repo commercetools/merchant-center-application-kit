@@ -49,7 +49,7 @@
     "@commitlint/config-conventional": "7.5.0",
     "@percy/puppeteer": "1.0.5",
     "babel-eslint": "10.0.1",
-    "babel-plugin-import-graphql": "2.6.2",
+    "babel-plugin-import-graphql": "2.7.0",
     "babel-plugin-transform-rename-import": "2.3.0",
     "cross-env": "5.2.0",
     "dotenv": "6.2.0",
