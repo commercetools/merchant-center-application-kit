@@ -10,6 +10,7 @@ import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 import { MockedProvider as ApolloMockProvider } from 'react-apollo/test-utils';
 import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
+import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import {
   NotificationsList,
@@ -107,7 +108,9 @@ const render = (
     addTypename = false,
     // react-router
     route = '/',
-    history = createMemoryHistory({ initialEntries: [route] }),
+    history = createEnhancedHistory(
+      createMemoryHistory({ initialEntries: [route] })
+    ),
     // flopflip
     adpater = memoryAdapter,
     flags = {},
