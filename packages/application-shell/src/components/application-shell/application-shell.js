@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { defaultMemoize } from 'reselect';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
@@ -335,15 +336,24 @@ RestrictedApplication.propTypes = {
   DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
 };
 
-const shallowlyCoerceBooleanValues = obj =>
-  Object.keys(obj).reduce((updatedObj, key) => {
-    const value = obj[key];
-    const isBoolean = value === 'true' || value === 'false';
-    return {
-      ...updatedObj,
-      [key]: isBoolean ? value === 'true' : value,
-    };
-  }, {});
+const isBooleanAsString = environmentValue =>
+  environmentValue === 'true' || environmentValue === 'false';
+
+const shallowlyCoerceBooleanValues = defaultMemoize(
+  uncoercedEnvironmentValues =>
+    Object.keys(uncoercedEnvironmentValues).reduce(
+      (coercedEnvironmentValues, key) => {
+        const uncoercedEnvironmentValue = uncoercedEnvironmentValues[key];
+        return {
+          ...coercedEnvironmentValues,
+          [key]: isBooleanAsString(uncoercedEnvironmentValue)
+            ? uncoercedEnvironmentValue === 'true'
+            : uncoercedEnvironmentValue,
+        };
+      },
+      {}
+    )
+);
 
 export default class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
@@ -373,12 +383,12 @@ export default class ApplicationShell extends React.Component {
     });
   }
   render() {
-    const environmentValues = shallowlyCoerceBooleanValues(
+    const coercedEnvironmentValues = shallowlyCoerceBooleanValues(
       this.props.environment
     );
     return (
       <ApplicationShellProvider
-        environment={environmentValues}
+        environment={coercedEnvironmentValues}
         trackingEventWhitelist={this.props.trackingEventWhitelist}
         applicationMessages={this.props.applicationMessages}
       >
@@ -386,7 +396,7 @@ export default class ApplicationShell extends React.Component {
           if (isAuthenticated)
             return (
               <RestrictedApplication
-                environment={environmentValues}
+                environment={coercedEnvironmentValues}
                 defaultFeatureFlags={this.props.defaultFeatureFlags}
                 render={this.props.render}
                 applicationMessages={this.props.applicationMessages}
