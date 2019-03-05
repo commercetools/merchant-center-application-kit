@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { defaultMemoize } from 'reselect';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
@@ -153,9 +154,7 @@ export const RestrictedApplication = props => (
                                     <QuickAccess
                                       history={routeProps.history}
                                       user={user}
-                                      useFullRedirectsForLinks={
-                                        props.INTERNAL__isApplicationFallback
-                                      }
+                                      environment={props.environment}
                                     />
                                   );
                                 return (
@@ -177,9 +176,7 @@ export const RestrictedApplication = props => (
                                           }
                                           history={routeProps.history}
                                           user={user}
-                                          useFullRedirectsForLinks={
-                                            props.INTERNAL__isApplicationFallback
-                                          }
+                                          environment={props.environment}
                                         />
                                       </ApplicationContextProvider>
                                     )}
@@ -195,6 +192,7 @@ export const RestrictedApplication = props => (
                         <AppBar
                           user={user}
                           projectKeyFromUrl={projectKeyFromUrl}
+                          environment={props.environment}
                           DEV_ONLY__loadAppbarMenuConfig={
                             props.DEV_ONLY__loadAppbarMenuConfig
                           }
@@ -239,9 +237,7 @@ export const RestrictedApplication = props => (
                                       menuVisibilities={
                                         project.menuVisibilities
                                       }
-                                      useFullRedirectsForLinks={
-                                        props.INTERNAL__isApplicationFallback
-                                      }
+                                      environment={props.environment}
                                       DEV_ONLY__loadNavbarMenuConfig={
                                         props.DEV_ONLY__loadNavbarMenuConfig
                                       }
@@ -336,10 +332,28 @@ RestrictedApplication.propTypes = {
   render: PropTypes.func.isRequired,
   applicationMessages: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     .isRequired,
-  INTERNAL__isApplicationFallback: PropTypes.bool.isRequired,
   DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
   DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
 };
+
+const isBooleanAsString = environmentValue =>
+  environmentValue === 'true' || environmentValue === 'false';
+
+const shallowlyCoerceBooleanValues = defaultMemoize(
+  uncoercedEnvironmentValues =>
+    Object.keys(uncoercedEnvironmentValues).reduce(
+      (coercedEnvironmentValues, key) => {
+        const uncoercedEnvironmentValue = uncoercedEnvironmentValues[key];
+        return {
+          ...coercedEnvironmentValues,
+          [key]: isBooleanAsString(uncoercedEnvironmentValue)
+            ? uncoercedEnvironmentValue === 'true'
+            : uncoercedEnvironmentValue,
+        };
+      },
+      {}
+    )
+);
 
 export default class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
@@ -359,12 +373,9 @@ export default class ApplicationShell extends React.Component {
     // Only available in development mode
     DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
     DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
-    // Internal usage only, does not need to be documented
-    INTERNAL__isApplicationFallback: PropTypes.bool,
   };
   static defaultProps = {
     trackingEventWhitelist: {},
-    INTERNAL__isApplicationFallback: false,
   };
   componentDidMount() {
     this.props.onRegisterErrorListeners({
@@ -372,9 +383,12 @@ export default class ApplicationShell extends React.Component {
     });
   }
   render() {
+    const coercedEnvironmentValues = shallowlyCoerceBooleanValues(
+      this.props.environment
+    );
     return (
       <ApplicationShellProvider
-        environment={this.props.environment}
+        environment={coercedEnvironmentValues}
         trackingEventWhitelist={this.props.trackingEventWhitelist}
         applicationMessages={this.props.applicationMessages}
       >
@@ -382,13 +396,10 @@ export default class ApplicationShell extends React.Component {
           if (isAuthenticated)
             return (
               <RestrictedApplication
-                environment={this.props.environment}
+                environment={coercedEnvironmentValues}
                 defaultFeatureFlags={this.props.defaultFeatureFlags}
                 render={this.props.render}
                 applicationMessages={this.props.applicationMessages}
-                INTERNAL__isApplicationFallback={
-                  this.props.INTERNAL__isApplicationFallback
-                }
                 DEV_ONLY__loadAppbarMenuConfig={
                   this.props.DEV_ONLY__loadAppbarMenuConfig
                 }

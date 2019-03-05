@@ -202,18 +202,21 @@ UserSettingsMenuBody.propTypes = {
 };
 
 const ConnectedUserSettingsMenuBody = flowRight(
-  withApplicationsMenu(ownProps => ({
+  withApplicationsMenu({
     queryName: 'applicationsMenuQuery',
     queryOptions: {
       // We can assume here that the navbar already fetched the data, since this
       // component gets rendered only when the user opens the menu
       fetchPolicy: 'cache-only',
     },
-    __DEV_CONFIG__: {
-      menuLoader: ownProps.DEV_ONLY__loadAppbarMenuConfig,
-      menuKey: 'appBar',
-    },
-  })),
+    skipRemoteQuery: ownProps => !ownProps.environment.servedByProxy,
+    options: ownProps => ({
+      __DEV_CONFIG__: {
+        menuLoader: ownProps.DEV_ONLY__loadAppbarMenuConfig,
+        menuKey: 'appBar',
+      },
+    }),
+  }),
   handleApolloErrors(['applicationsMenuQuery'])
 )(UserSettingsMenuBody);
 

@@ -56,9 +56,7 @@ const createGraphqlResponse = custom => ({
 });
 
 describe('fetching the menu query', () => {
-  const Connected = withApplicationsMenu(() => ({ queryName: 'menuQuery' }))(
-    Test
-  );
+  const Connected = withApplicationsMenu({ queryName: 'menuQuery' })(Test);
   describe('when the query succeeds', () => {
     it('should render menu key', async () => {
       const { getByText } = render(<Connected />, {

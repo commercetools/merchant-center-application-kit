@@ -6,54 +6,54 @@ import FetchApplicationsMenu from './fetch-applications-menu.graphql';
 
 const defaultApiUrl = window.location.origin;
 
-function withApplicationsMenu(getOptions) {
-  if (process.env.NODE_ENV === 'development') {
-    return Component => {
-      class WrappedComponent extends React.Component {
-        static displayName = `withApplicationsMenu(${getDisplayName(
-          Component
-        )})`;
-        state = {
-          menu: null,
-        };
-        getDevConfig = () => {
-          const { __DEV_CONFIG__: devConfig } = getOptions(this.props);
-          if (!devConfig) {
-            throw new Error(
-              'In development mode, you need to pass `__DEV_CONFIG__` options to `withApplicationsMenu`.'
-            );
-          }
-          return devConfig;
-        };
-        componentDidMount() {
-          const devConfig = this.getDevConfig();
-          if (devConfig.menuLoader) {
-            devConfig.menuLoader().then(menu => this.setState({ menu }));
-          }
-        }
-        render() {
-          const devConfig = this.getDevConfig();
-          const { queryName } = getOptions(this.props);
-          const fakeGraphqlResponse = this.state.menu
-            ? {
-                [queryName]: {
-                  applicationsMenu: {
-                    [devConfig.menuKey]: Array.isArray(this.state.menu)
-                      ? this.state.menu
-                      : [this.state.menu],
-                  },
-                },
-              }
-            : {};
-          return <Component {...this.props} {...fakeGraphqlResponse} />;
+const defaultConfig = {
+  queryName: 'applicationsMenuQuery',
+  skipRemoteQuery: () => false,
+  options: () => ({}),
+};
+
+const withApplicationsMenu = (config = {}) => Component => {
+  const mergedConfig = { ...defaultConfig, ...config };
+  class WrappedComponent extends React.Component {
+    static displayName = `withApplicationsMenu(${getDisplayName(Component)})`;
+    state = {
+      menu: null,
+    };
+    getDevConfig = () => {
+      const { __DEV_CONFIG__: devConfig } = mergedConfig.options(this.props);
+      if (!devConfig) {
+        throw new Error(
+          'In development mode, you need to pass `__DEV_CONFIG__` options to `withApplicationsMenu`.'
+        );
+      }
+      return devConfig;
+    };
+    componentDidMount() {
+      if (mergedConfig.skipRemoteQuery(this.props)) {
+        const devConfig = this.getDevConfig();
+        if (devConfig.menuLoader) {
+          devConfig.menuLoader().then(menu => this.setState({ menu }));
         }
       }
-      return WrappedComponent;
-    };
-  }
-  return Component => {
-    const WrappedComponent = props => {
-      const { queryName, queryOptions = {} } = getOptions(props);
+    }
+    render() {
+      if (mergedConfig.skipRemoteQuery(this.props)) {
+        const devConfig = this.getDevConfig();
+        const fakeGraphqlResponse = this.state.menu
+          ? {
+              [mergedConfig.queryName]: {
+                applicationsMenu: {
+                  [devConfig.menuKey]: Array.isArray(this.state.menu)
+                    ? this.state.menu
+                    : [this.state.menu],
+                },
+              },
+            }
+          : {};
+        return <Component {...this.props} {...fakeGraphqlResponse} />;
+      }
+
+      const { queryOptions = {} } = mergedConfig.options(this.props);
       return (
         <ApplicationContext
           render={({ environment }) => (
@@ -68,20 +68,17 @@ function withApplicationsMenu(getOptions) {
             >
               {({ data, error }) => (
                 <Component
-                  {...props}
-                  {...{ [queryName]: { ...data, error } }}
+                  {...this.props}
+                  {...{ [mergedConfig.queryName]: { ...data, error } }}
                 />
               )}
             </Query>
           )}
         />
       );
-    };
-    WrappedComponent.displayName = `withApplicationsMenu(${getDisplayName(
-      Component
-    )})`;
-    return WrappedComponent;
-  };
-}
+    }
+  }
+  return WrappedComponent;
+};
 
 export default withApplicationsMenu;

@@ -21,10 +21,7 @@ export class ForcePageReload extends React.PureComponent {
 export class RouteCatchAll extends React.PureComponent {
   static displayName = 'RouteCatchAll';
   static propTypes = {
-    servedByProxy: PropTypes.oneOfType([
-      PropTypes.bool.isRequired,
-      PropTypes.oneOf(['true', 'false']).isRequired,
-    ]),
+    servedByProxy: PropTypes.bool,
   };
   // NOTE: it's important that the return value is a `Route` component!
   render() {
@@ -40,11 +37,7 @@ export class RouteCatchAll extends React.PureComponent {
     // the request to the discounts app.
     // If no route matches, the application fallback will handle the request
     // instead, showing e.g. a 404 page.
-    if (
-      this.props.servedByProxy === true ||
-      this.props.servedByProxy === 'true'
-    )
-      return <Route component={ForcePageReload} />;
+    if (this.props.servedByProxy) return <Route component={ForcePageReload} />;
 
     // In case we are developing the app locally, we simply render a 404
     // page because we most likely don't have other "apps" running at the same
