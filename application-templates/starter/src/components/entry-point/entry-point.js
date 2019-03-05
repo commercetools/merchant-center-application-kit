@@ -26,7 +26,8 @@ export const ApplicationStarter = () => (
       application routes when you open the browser at http://localhost:3001 */
     process.env.NODE_ENV === 'production' ? null : (
       <Redirect
-        from="/:projectKey/dashboard"
+        exact={true}
+        from="/:projectKey"
         to="/:projectKey/examples-starter"
       />
     )}
