@@ -68,6 +68,7 @@ const createTestProps = custom => ({
       ],
     },
   },
+  environment: { useFullRedirectsForLinks: false },
   ...custom,
 });
 
@@ -360,7 +361,7 @@ describe('QuickAccess', () => {
   it('should open (reload to) dashboard when chosing the "Open Dashboard" command when using full redirects for links', async () => {
     const mocks = [createMatchlessSearchMock('Open dshbrd')];
     const props = createTestProps({
-      useFullRedirectsForLinks: true,
+      environment: { useFullRedirectsForLinks: true },
     });
     const { getByTestId, queryByTestId, getByText } = renderWithRedux(
       <QuickAccess {...props} />,

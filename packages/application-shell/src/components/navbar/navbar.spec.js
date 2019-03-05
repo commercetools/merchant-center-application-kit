@@ -46,7 +46,10 @@ const createTestProps = props => ({
   // From parent
   applicationLanguage: 'en',
   projectKey: 'test-1',
-  useFullRedirectsForLinks: false,
+  environment: {
+    servedByProxy: false,
+    useFullRedirectsForLinks: false,
+  },
   menuVisibilities: { hideOrdersList: true },
   // Injected
   areProjectExtensionsEnabled: true,
@@ -79,6 +82,7 @@ const createDataMenuTestProps = props => {
   } = navbarProps;
   return {
     ...passThroughProps,
+    useFullRedirectsForLinks: false,
     data: [
       createTestMenuConfig('orders'),
       createTestMenuConfig('products'),

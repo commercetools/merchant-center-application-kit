@@ -609,7 +609,11 @@ export class NavBar extends React.PureComponent {
     // From parent
     applicationLanguage: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
-    useFullRedirectsForLinks: PropTypes.bool.isRequired,
+    environment: PropTypes.shape({
+      servedByProxy: PropTypes.oneOf([true, false, 'true', 'false']).isRequired,
+      useFullRedirectsForLinks: PropTypes.oneOf([true, false, 'true', 'false'])
+        .isRequired,
+    }).isRequired,
     menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     // Injected
     areProjectExtensionsEnabled: PropTypes.bool.isRequired,
@@ -658,7 +662,9 @@ export class NavBar extends React.PureComponent {
           menuVisibilities={this.props.menuVisibilities}
           applicationLanguage={this.props.applicationLanguage}
           projectKey={this.props.projectKey}
-          useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}
+          useFullRedirectsForLinks={[true, 'true'].includes(
+            this.props.environment.useFullRedirectsForLinks
+          )}
         />
       </NavBarLayout>
     );
@@ -691,18 +697,22 @@ export default flowRight(
   withRouter, // Connect again, to access the `location` object
   injectFeatureToggle('projectExtensions', 'areProjectExtensionsEnabled'),
   injectMenuToggleState,
-  withApplicationsMenu(ownProps => ({
+  withApplicationsMenu({
     queryName: 'applicationsMenuQuery',
-    __DEV_CONFIG__: {
-      menuLoader: ownProps.DEV_ONLY__loadNavbarMenuConfig,
-      menuKey: 'navBar',
-    },
-  })),
+    skipRemoteQuery: ownProps =>
+      [false, 'false'].includes(ownProps.environment.servedByProxy),
+    options: ownProps => ({
+      __DEV_CONFIG__: {
+        menuLoader: ownProps.DEV_ONLY__loadNavbarMenuConfig,
+        menuKey: 'navBar',
+      },
+    }),
+  }),
   graphql(FetchProjectExtensionsNavbar, {
     name: 'projectExtensionsQuery',
     skip: ownProps =>
-      !ownProps.areProjectExtensionsEnabled ||
-      process.env.NODE_ENV === 'development',
+      [false, 'false'].includes(ownProps.environment.servedByProxy) ||
+      !ownProps.areProjectExtensionsEnabled,
     options: () => ({
       variables: {
         target: GRAPHQL_TARGETS.SETTINGS_SERVICE,

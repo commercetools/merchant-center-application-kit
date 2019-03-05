@@ -48,7 +48,6 @@ const createTestProps = props => ({
   showApiErrorNotification: jest.fn(),
   showUnexpectedErrorNotification: jest.fn(),
   onRegisterErrorListeners: jest.fn(),
-  INTERNAL__isApplicationFallback: false,
   ...props,
 });
 
@@ -319,10 +318,10 @@ describe('<RestrictedApplication>', () => {
             'en'
           );
         });
-        it('should pass "useFullRedirectsForLinks"', () => {
+        it('should pass "environment"', () => {
           expect(wrapperAside.find(NavBar)).toHaveProp(
-            'useFullRedirectsForLinks',
-            props.INTERNAL__isApplicationFallback
+            'environment',
+            props.environment
           );
         });
         describe('when user, locale and project are loading', () => {
