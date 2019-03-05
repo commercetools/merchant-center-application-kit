@@ -26,18 +26,7 @@ describe('rendering', () => {
     });
   });
   describe('<RouteCatchAll>', () => {
-    describe('when "servedByProxy" is "true" (string)', () => {
-      beforeEach(() => {
-        props = createTestProps({
-          servedByProxy: 'true',
-        });
-        wrapper = shallow(<RouteCatchAll {...props} />);
-      });
-      it('should render Route with <ForcePageReload>', () => {
-        expect(wrapper.find('Route')).toHaveProp('component', ForcePageReload);
-      });
-    });
-    describe('when "servedByProxy" is "true" (boolean)', () => {
+    describe('when "servedByProxy" is "true"', () => {
       beforeEach(() => {
         props = createTestProps({
           servedByProxy: true,
