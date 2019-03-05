@@ -209,8 +209,7 @@ const ConnectedUserSettingsMenuBody = flowRight(
       // component gets rendered only when the user opens the menu
       fetchPolicy: 'cache-only',
     },
-    skipRemoteQuery: ownProps =>
-      [false, 'false'].includes(ownProps.environment.servedByProxy),
+    skipRemoteQuery: ownProps => !ownProps.environment.servedByProxy,
     options: ownProps => ({
       __DEV_CONFIG__: {
         menuLoader: ownProps.DEV_ONLY__loadAppbarMenuConfig,

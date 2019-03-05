@@ -335,6 +335,16 @@ RestrictedApplication.propTypes = {
   DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
 };
 
+const shallowlyCoerceBooleanValues = obj =>
+  Object.keys(obj).reduce((updatedObj, key) => {
+    const value = obj[key];
+    const isBoolean = value === 'true' || value === 'false';
+    return {
+      ...updatedObj,
+      [key]: isBoolean ? value === 'true' : value,
+    };
+  }, {});
+
 export default class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
   static propTypes = {
@@ -363,9 +373,12 @@ export default class ApplicationShell extends React.Component {
     });
   }
   render() {
+    const environmentValues = shallowlyCoerceBooleanValues(
+      this.props.environment
+    );
     return (
       <ApplicationShellProvider
-        environment={this.props.environment}
+        environment={environmentValues}
         trackingEventWhitelist={this.props.trackingEventWhitelist}
         applicationMessages={this.props.applicationMessages}
       >
@@ -373,7 +386,7 @@ export default class ApplicationShell extends React.Component {
           if (isAuthenticated)
             return (
               <RestrictedApplication
-                environment={this.props.environment}
+                environment={environmentValues}
                 defaultFeatureFlags={this.props.defaultFeatureFlags}
                 render={this.props.render}
                 applicationMessages={this.props.applicationMessages}

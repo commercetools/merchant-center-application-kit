@@ -119,7 +119,7 @@ AppBar.propTypes = {
   }),
   projectKeyFromUrl: PropTypes.string,
   environment: PropTypes.shape({
-    servedByProxy: PropTypes.oneOf([true, false, 'true', 'false']).isRequired,
+    servedByProxy: PropTypes.bool.isRequired,
   }).isRequired,
   DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
 };

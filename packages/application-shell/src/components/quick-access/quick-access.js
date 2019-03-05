@@ -80,8 +80,7 @@ class QuickAccess extends React.Component {
     pimSearchProductIds: PropTypes.func.isRequired,
     getPimSearchStatus: PropTypes.func.isRequired,
     environment: PropTypes.shape({
-      useFullRedirectsForLinks: PropTypes.oneOf([true, false, 'true', 'false'])
-        .isRequired,
+      useFullRedirectsForLinks: PropTypes.bool,
     }).isRequired,
   };
 
@@ -324,11 +323,7 @@ class QuickAccess extends React.Component {
         // and always open other pages in a new window
         if (meta.openInNewTab || !command.action.to.startsWith('/')) {
           open(command.action.to, '_blank');
-        } else if (
-          [true, 'true'].includes(
-            this.props.environment.useFullRedirectsForLinks
-          )
-        ) {
+        } else if (this.props.environment.useFullRedirectsForLinks) {
           window.location.replace(command.action.to);
         } else {
           this.props.history.push(command.action.to);

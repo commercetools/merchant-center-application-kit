@@ -610,9 +610,8 @@ export class NavBar extends React.PureComponent {
     applicationLanguage: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
     environment: PropTypes.shape({
-      servedByProxy: PropTypes.oneOf([true, false, 'true', 'false']).isRequired,
-      useFullRedirectsForLinks: PropTypes.oneOf([true, false, 'true', 'false'])
-        .isRequired,
+      servedByProxy: PropTypes.bool.isRequired,
+      useFullRedirectsForLinks: PropTypes.bool.isRequired,
     }).isRequired,
     menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     // Injected
@@ -662,9 +661,9 @@ export class NavBar extends React.PureComponent {
           menuVisibilities={this.props.menuVisibilities}
           applicationLanguage={this.props.applicationLanguage}
           projectKey={this.props.projectKey}
-          useFullRedirectsForLinks={[true, 'true'].includes(
+          useFullRedirectsForLinks={
             this.props.environment.useFullRedirectsForLinks
-          )}
+          }
         />
       </NavBarLayout>
     );
@@ -699,8 +698,7 @@ export default flowRight(
   injectMenuToggleState,
   withApplicationsMenu({
     queryName: 'applicationsMenuQuery',
-    skipRemoteQuery: ownProps =>
-      [false, 'false'].includes(ownProps.environment.servedByProxy),
+    skipRemoteQuery: ownProps => !ownProps.environment.servedByProxy,
     options: ownProps => ({
       __DEV_CONFIG__: {
         menuLoader: ownProps.DEV_ONLY__loadNavbarMenuConfig,
@@ -711,7 +709,7 @@ export default flowRight(
   graphql(FetchProjectExtensionsNavbar, {
     name: 'projectExtensionsQuery',
     skip: ownProps =>
-      [false, 'false'].includes(ownProps.environment.servedByProxy) ||
+      !ownProps.environment.servedByProxy ||
       !ownProps.areProjectExtensionsEnabled,
     options: () => ({
       variables: {
