@@ -19,8 +19,8 @@ notifications:
 cache:
   yarn: true
   directories:
-    - node_modules
-    - .cache
+    # Includes both yarn and Cypress caches
+    - ~/.cache
 
 before_install:
   # Install transifex
