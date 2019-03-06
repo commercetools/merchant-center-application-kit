@@ -26,7 +26,6 @@
     "test:visual": "jest --config jest.visual.config.js --runInBand",
     "run-if:percy": "node scripts/run-percy.js",
     "vrt": "percy exec -- jest --config jest.visual.config.js --runInBand",
-    "vrt:dummy": "percy exec -- jest --config jest.visual-dummy.config.js --runInBand",
     "playground:start": "yarn --cwd playground start",
     "playground:build": "yarn --cwd playground build",
     "storybook:build": "yarn --cwd packages/application-components storybook:build",

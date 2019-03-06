@@ -67,14 +67,13 @@ const matchingFiles = [
   'package.json',
 ].join('|');
 
-console.log('Building visual testing app');
-exitOnError(shelljs.exec('yarn visual-testing-app:build'));
-
 if (hasChangesInMatchingFiles(matchingFiles)) {
+  console.log('Building visual testing app');
+  exitOnError(shelljs.exec('yarn visual-testing-app:build'));
   exitOnError(shelljs.exec('yarn vrt'));
 } else {
   console.warn(
-    'No changes were detected in the matching files, falling back to run a dummy snapshot'
+    'No changes were detected in the matching files, skipping Percy run'
   );
-  exitOnError(shelljs.exec('yarn vrt:dummy'));
+  process.exit(0);
 }
