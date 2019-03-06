@@ -11,7 +11,7 @@ addons:
 language: node_js
 
 node_js:
-  - '10'
+  - "10"
 
 notifications:
   email: false
@@ -19,7 +19,8 @@ notifications:
 cache:
   yarn: true
   directories:
-    - node_modules
+    # Includes both yarn and Cypress caches
+    - ~/.cache
 
 before_install:
   # Install transifex
@@ -28,7 +29,7 @@ before_install:
   - python3.6 -m pip install --user transifex-client
   - export PATH="$HOME/.local/bin:$PATH"
   # Install yarn
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.12.3
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.13.0
   - export PATH=$HOME/.yarn/bin:$PATH
 
 script:
@@ -37,7 +38,9 @@ script:
   - yarn build
   - yarn run-if:percy
   - yarn playground:build
-  - yarn --cwd application-templates/starter build
+  - yarn run server-test playground:start:prod:local 3001 test:e2e:playground
+  - yarn template-starter:build
+  - yarn run server-test template-starter:start:prod:local 3001 test:e2e:template-starter
   - set +e
 
 after_success:
