@@ -1,3 +1,12 @@
+## [11.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v11.0.0...v11.0.1) (2019-03-06)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#426](https://github.com/commercetools/merchant-center-application-kit/pull/426) fix(apps-menu): to trigger remote query based on servedByProxy value ([@emmenko](https://github.com/emmenko))
+- `application-shell`, `react-notifications`
+  - [#425](https://github.com/commercetools/merchant-center-application-kit/pull/425) fix: pin react-router to 4.4.0-beta.6 ([@emmenko](https://github.com/emmenko))
+
 ## [11.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v10.0.0...v11.0.0) (2019-02-28)
 
 > NOTE: the breaking change only affects our internal discount application. However, we want to follow strict semver and therefore we should mark it as a major version bump.
