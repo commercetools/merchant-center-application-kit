@@ -88,12 +88,12 @@ const Application = props => (
 
 ### Generating translation files
 
-After you have defined the `intl` messages in your React components, you should extract those messages into `core.json`. This file contains a key-value map of the message `id` and the message value.
+After you have defined the `intl` messages in your React components, you should extract those messages into the source file `core.json`. This file contains a key-value map of the message `id` and the message value.
 
 To extract the messages simply run `mc-scripts extract-intl [options]`.
 
 ### Syncing translations with Transifex
 
-We use Transifex as our translation tool. Once we have extracted new messages into `core.json`, the file will be pushed to Transifex from CircleCI (see `push_translations` job).
+We use [Transifex](https://www.transifex.com/) as our translation tool. Once we have extracted new messages into the source file `core.json` (see `mc-scripts extract-inl`) and pushed/merged to `master`, the file will be automatically synced with Transifex using the [Transifex GitHub Integration](https://docs.transifex.com/integrations/transifex-github-integration).
 
-When finally the translations have been provided in Transifex, we need to pull them back into our codebase. This process will update the `<lang>.json` files depending on the synced translations.
+Translations that have been **reviewed** in Transifex will be automatically pushed back to GitHub by the Transifex Bot via a Pull Request.

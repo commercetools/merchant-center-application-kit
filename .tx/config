@@ -1,8 +1,0 @@
-[main]
-host = https://www.transifex.com
-
-[application-kit.core]
-file_filter = packages/i18n/data/<lang>.json
-source_file = packages/i18n/data/core.json
-source_lang = en_US
-type = KEYVALUEJSON
