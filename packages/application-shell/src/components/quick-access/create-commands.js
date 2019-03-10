@@ -382,7 +382,7 @@ export default ({
       id: 'go/privacy-policy',
       text: intl.formatMessage(messages.showPrivacyPolicy),
       keywords: ['Open Privacy Policy'],
-      action: { type: 'go', to: 'https://commercetools.com/privacy' },
+      action: { type: 'go', to: 'https://commercetools.com/privacy#suppliers' },
     },
     {
       id: 'go/logout',

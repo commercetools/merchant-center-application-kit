@@ -135,7 +135,7 @@ const UserSettingsMenuBody = props => {
           )}
         />
         <a
-          href={`https://commercetools.com/privacy`}
+          href={`https://commercetools.com/privacy#suppliers`}
           target="_blank"
           onClick={props.downshiftProps.toggleMenu}
         >

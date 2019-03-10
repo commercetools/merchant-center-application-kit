@@ -15,7 +15,10 @@ const PublicPageContainer = props => (
       <Spacings.Stack scale="m">
         {props.children}
         <Spacings.Inline justifyContent="space-between">
-          <a href={`https://commercetools.com/privacy`} target="_blank">
+          <a
+            href={`https://commercetools.com/privacy#suppliers`}
+            target="_blank"
+          >
             <Text.Detail>
               <FormattedMessage {...messages.privacyPolicy} />
             </Text.Detail>
