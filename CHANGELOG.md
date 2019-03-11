@@ -1,3 +1,10 @@
+## [11.0.2](https://github.com/commercetools/merchant-center-application-kit/compare/v11.0.1...v11.0.2) (2019-03-11)
+
+#### 🔮 Type: Chore
+
+- `application-shell`
+  - [#436](https://github.com/commercetools/merchant-center-application-kit/pull/436) chore: update privacy link ([@emmenko](https://github.com/emmenko))
+
 ## [11.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v11.0.0...v11.0.1) (2019-03-06)
 
 #### 🐛 Type: Bug
