@@ -64,24 +64,6 @@ const renderForAsyncData = ({ props, userData, localeData = testLocaleData }) =>
     .find(AsyncLocaleData)
     .renderProp('children', localeData);
 
-describe('rendering', () => {
-  let props;
-  let wrapper;
-  describe('when user is not authenticated', () => {
-    beforeEach(() => {
-      props = createTestProps();
-      wrapper = shallow(<ApplicationShell {...props} />).renderProp(
-        'children',
-        {
-          isAuthenticated: false,
-        }
-      );
-    });
-    it('should render <Route> for "/login"', () => {
-      expect(wrapper).toRender({ path: '/login' });
-    });
-  });
-});
 describe('<RestrictedApplication>', () => {
   let props;
   let wrapper;
