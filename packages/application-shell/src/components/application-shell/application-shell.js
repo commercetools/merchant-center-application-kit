@@ -12,6 +12,7 @@ import {
   SentryUserTracker,
 } from '@commercetools-frontend/sentry';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
+import { encode } from 'qss';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import { i18n } from '@commercetools-frontend/ui-kit';
@@ -28,10 +29,6 @@ import FetchProject from '../fetch-project';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import AppBar from '../app-bar';
 import ProjectContainer from '../project-container';
-import AsyncLogin from '../login/async';
-import AsyncLoginSSO from '../login-sso/async';
-import AsyncLoginSSOCallback from '../login-sso-callback/async';
-import AsyncLoginLocked from '../login-locked/async';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
@@ -377,6 +374,7 @@ export default class ApplicationShell extends React.Component {
   static defaultProps = {
     trackingEventWhitelist: {},
   };
+  redirectTo = targetUrl => window.location.replace(targetUrl);
   componentDidMount() {
     this.props.onRegisterErrorListeners({
       dispatch: internalReduxStore.dispatch,
@@ -413,13 +411,6 @@ export default class ApplicationShell extends React.Component {
             <Switch>
               {/* Public routes */}
               <Route
-                path="/login/sso/callback"
-                component={AsyncLoginSSOCallback}
-              />
-              <Route path="/login/sso" component={AsyncLoginSSO} />
-              <Route path="/login/locked" component={AsyncLoginLocked} />
-              <Route path="/login" component={AsyncLogin} />
-              <Route
                 render={({ location }) => {
                   // If the user tries to access a route (e.g. `/my-project/orders`)
                   // and he's not logged in, we will be redirected to the login page
@@ -438,17 +429,19 @@ export default class ApplicationShell extends React.Component {
                           ),
                         }),
                   };
-                  // TODO: when we remove the login routes from the AppShell, this component
-                  // should do a redirect/hard page reload to the login route.
-                  // For development, we should only do a redirect to the staging domain, as the
-                  // login screen will not be part of the AppShell anymore.
-                  return (
-                    <Redirect
-                      to={{
-                        pathname: '/login',
-                        query: searchQuery,
-                      }}
-                    />
+
+                  /**
+                   * NOTE:
+                   *   Given the application runs in production we redirect to that host's login application.
+                   *   Given the application is in development mode (locally) we redirect to the application on staging.
+                   */
+                  const frontendHost =
+                    process.env.NODE_ENV === 'production'
+                      ? ''
+                      : this.props.environment.frontendHost;
+
+                  this.redirectTo(
+                    `${frontendHost}/login${encode(searchQuery)}`
                   );
                 }}
               />
