@@ -441,7 +441,7 @@ export default class ApplicationShell extends React.Component {
                       : this.props.environment.frontendHost;
 
                   this.redirectTo(
-                    `${frontendHost}/login${encode(searchQuery)}`
+                    `${frontendHost}/login?${encode(searchQuery)}`
                   );
                 }}
               />

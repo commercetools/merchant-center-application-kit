@@ -1,6 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { DOMAINS } from '@commercetools-frontend/constants';
+import { encode } from 'qss';
+import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
+import {
+  joinPaths,
+  trimLeadingAndTrailingSlashes,
+} from '@commercetools-frontend/url-utils';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
@@ -71,6 +76,7 @@ describe('<RestrictedApplication>', () => {
   let localeData;
   describe('rendering', () => {
     beforeEach(() => {
+      window.location.replace = jest.fn();
       props = createTestProps();
       userData = {
         isLoading: false,
@@ -446,18 +452,18 @@ describe('<UnrestrictedApplication>', () => {
           .last()
           .renderProp('render', routerProps);
       });
-      it('should render <Redirect> to "/login', () => {
-        expect(renderWrapper.find('Redirect')).toHaveProp(
-          'to',
-          expect.objectContaining({ pathname: '/login' })
+      it('should redirect "/login"', () => {
+        expect(window.location.replace).toHaveBeenCalledWith(
+          expect.stringContaining('/login')
         );
       });
-      it('should render <Redirect> with "reason" in search param', () => {
-        expect(renderWrapper.find('Redirect')).toHaveProp(
-          'to',
-          expect.objectContaining({
-            query: expect.objectContaining({ reason: 'unauthorized' }),
-          })
+      it('should redirect with "reason" in search param', () => {
+        expect(window.location.replace).toHaveBeenCalledWith(
+          expect.stringContaining(
+            encode({
+              reason: LOGOUT_REASONS.UNAUTHORIZED,
+            })
+          )
         );
       });
       describe('when location pathname is "/"', () => {
@@ -482,14 +488,18 @@ describe('<UnrestrictedApplication>', () => {
             .last()
             .renderProp('render', routerProps);
         });
-        it('should render <Redirect> with "redirectTo" search param', () => {
-          expect(renderWrapper.find('Redirect')).toHaveProp(
-            'to',
-            expect.objectContaining({
-              query: expect.objectContaining({
-                redirectTo: `${window.location.origin}/foo-1/products`,
-              }),
-            })
+        it('should redirect with "redirectTo" search param', () => {
+          expect(window.location.replace).toHaveBeenCalledWith(
+            expect.stringContaining(
+              encode({
+                redirectTo: trimLeadingAndTrailingSlashes(
+                  joinPaths(
+                    window.location.origin,
+                    routerProps.location.pathname
+                  )
+                ),
+              })
+            )
           );
         });
       });
