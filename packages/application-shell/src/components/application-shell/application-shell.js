@@ -421,13 +421,9 @@ export default class ApplicationShell extends React.Component {
                     reason: LOGOUT_REASONS.UNAUTHORIZED,
                     // This will be used after being logged in,
                     // to redirect to this location.
-                    ...(location.pathname === '/'
-                      ? {}
-                      : {
-                          redirectTo: trimLeadingAndTrailingSlashes(
-                            joinPaths(window.location.origin, location.pathname)
-                          ),
-                        }),
+                    redirectTo: trimLeadingAndTrailingSlashes(
+                      joinPaths(window.location.origin, location.pathname)
+                    ),
                   };
 
                   /**
@@ -437,7 +433,7 @@ export default class ApplicationShell extends React.Component {
                    */
                   const authUrl = this.props.environment.servedByProxy
                     ? window.location.origin
-                    : this.props.environment.authUrl;
+                    : this.props.environment.mcAuthUrl;
 
                   this.redirectTo(`${authUrl}/login?${encode(searchQuery)}`);
                 }}
