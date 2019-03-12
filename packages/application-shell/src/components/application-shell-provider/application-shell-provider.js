@@ -18,6 +18,26 @@ import ErrorApologizer from '../error-apologizer';
 import './global-style-imports';
 import { getBrowserLanguage, mergeMessages } from './utils';
 
+class LogoutRedirector extends React.PureComponent {
+  static displayName = 'LogoutRedirector';
+  static propTypes = {
+    environment: PropTypes.shape({
+      servedByProxy: PropTypes.bool.isRequired,
+      authUrl: PropTypes.string.isRequired,
+    }).isRequired,
+  };
+  redirectTo = targetUrl => window.location.replace(targetUrl);
+  componentDidMount() {
+    const authUrl = this.props.environment.servedByProxy
+      ? window.location.origin
+      : this.props.environment.authUrl;
+    this.redirectTo(`${authUrl}/logout`);
+  }
+  render() {
+    return null;
+  }
+}
+
 export default class ApplicationShellProvider extends React.Component {
   static displayName = 'ApplicationShellProvider';
   static propTypes = {
@@ -46,7 +66,6 @@ export default class ApplicationShellProvider extends React.Component {
     // see: https://github.com/facebook/react/issues/10474
     reportErrorToSentry(error, { extra: errorInfo });
   }
-  redirectTo = targetUrl => window.location.replace(targetUrl);
   render() {
     if (this.state.hasError) {
       return <ErrorApologizer />;
@@ -65,18 +84,14 @@ export default class ApplicationShellProvider extends React.Component {
                     {/**
                      * No matter if the user is authenticated or not, when we go
                      * to this route we should always log the user out.
-                     * TODO: do a hard page reload once we move the login routes
-                     * to a different app.
                      */}
                     <Route
                       path="/logout"
-                      render={() => {
-                        const authUrl = this.props.environment.servedByProxy
-                          ? window.location.origin
-                          : this.props.environment.authUrl;
-
-                        this.redirectTo(`${authUrl}/logout}`);
-                      }}
+                      render={() => (
+                        <LogoutRedirector
+                          environment={this.props.environment}
+                        />
+                      )}
                     />
                     <Route
                       render={() => (
