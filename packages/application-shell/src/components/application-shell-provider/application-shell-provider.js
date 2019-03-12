@@ -71,12 +71,11 @@ export default class ApplicationShellProvider extends React.Component {
                     <Route
                       path="/logout"
                       render={() => {
-                        const frontendHost = this.props.environment
-                          .servedByProxy
+                        const authUrl = this.props.environment.servedByProxy
                           ? window.location.origin
-                          : this.props.environment.frontendHost;
+                          : this.props.environment.authUrl;
 
-                        this.redirectTo(`${frontendHost}/logout}`);
+                        this.redirectTo(`${authUrl}/logout}`);
                       }}
                     />
                     <Route
