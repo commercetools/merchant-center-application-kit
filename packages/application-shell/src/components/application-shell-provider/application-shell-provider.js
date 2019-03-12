@@ -95,8 +95,8 @@ export default class ApplicationShellProvider extends React.Component {
                     />
                     <Route
                       render={() => (
-                        <Authenticated>
-                          {({ isAuthenticated }) => {
+                        <Authenticated
+                          render={({ isAuthenticated }) => {
                             if (isAuthenticated)
                               return this.props.children({ isAuthenticated });
 
@@ -122,7 +122,7 @@ export default class ApplicationShellProvider extends React.Component {
                               </AsyncLocaleData>
                             );
                           }}
-                        </Authenticated>
+                        />
                       )}
                     />
                   </Switch>
