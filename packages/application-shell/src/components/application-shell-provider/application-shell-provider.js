@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Router } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { Provider as ReduxProvider } from 'react-redux';
 import history from '@commercetools-frontend/browser-history';
@@ -46,6 +46,7 @@ export default class ApplicationShellProvider extends React.Component {
     // see: https://github.com/facebook/react/issues/10474
     reportErrorToSentry(error, { extra: errorInfo });
   }
+  redirectTo = targetUrl => window.location.replace(targetUrl);
   render() {
     if (this.state.hasError) {
       return <ErrorApologizer />;
@@ -60,32 +61,57 @@ export default class ApplicationShellProvider extends React.Component {
                 <GtmBooter
                   trackingEventWhitelist={this.props.trackingEventWhitelist}
                 >
-                  <Authenticated>
-                    {({ isAuthenticated }) => {
-                      if (isAuthenticated)
-                        return this.props.children({ isAuthenticated });
+                  <Switch>
+                    {/**
+                     * No matter if the user is authenticated or not, when we go
+                     * to this route we should always log the user out.
+                     * TODO: do a hard page reload once we move the login routes
+                     * to a different app.
+                     */}
+                    <Route
+                      path="/logout"
+                      render={() => {
+                        const frontendHost = this.props.environment
+                          .servedByProxy
+                          ? window.location.origin
+                          : this.props.environment.frontendHost;
 
-                      const browserLanguage = getBrowserLanguage(window);
-                      return (
-                        <AsyncLocaleData
-                          locale={browserLanguage}
-                          applicationMessages={this.props.applicationMessages}
-                        >
-                          {({ language, messages }) => (
-                            <ConfigureIntlProvider
-                              language={language}
-                              messages={mergeMessages(
-                                messages,
-                                uikitMessages[language]
-                              )}
-                            >
-                              {this.props.children({ isAuthenticated })}
-                            </ConfigureIntlProvider>
-                          )}
-                        </AsyncLocaleData>
-                      );
-                    }}
-                  </Authenticated>
+                        this.redirectTo(`${frontendHost}/logout}`);
+                      }}
+                    />
+                    <Route
+                      render={() => (
+                        <Authenticated>
+                          {({ isAuthenticated }) => {
+                            if (isAuthenticated)
+                              return this.props.children({ isAuthenticated });
+
+                            const browserLanguage = getBrowserLanguage(window);
+                            return (
+                              <AsyncLocaleData
+                                locale={browserLanguage}
+                                applicationMessages={
+                                  this.props.applicationMessages
+                                }
+                              >
+                                {({ language, messages }) => (
+                                  <ConfigureIntlProvider
+                                    language={language}
+                                    messages={mergeMessages(
+                                      messages,
+                                      uikitMessages[language]
+                                    )}
+                                  >
+                                    {this.props.children({ isAuthenticated })}
+                                  </ConfigureIntlProvider>
+                                )}
+                              </AsyncLocaleData>
+                            );
+                          }}
+                        </Authenticated>
+                      )}
+                    />
+                  </Switch>
                 </GtmBooter>
               </Router>
             </React.Suspense>
