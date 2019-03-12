@@ -435,13 +435,11 @@ export default class ApplicationShell extends React.Component {
                    *   Given the application runs in production we redirect to that host's login application.
                    *   Given the application is in development mode (locally) we redirect to the application on staging.
                    */
-                  const frontendHost = this.props.environment.servedByProxy
+                  const authUrl = this.props.environment.servedByProxy
                     ? window.location.origin
-                    : this.props.environment.frontendHost;
+                    : this.props.environment.authUrl;
 
-                  this.redirectTo(
-                    `${frontendHost}/login?${encode(searchQuery)}`
-                  );
+                  this.redirectTo(`${authUrl}/login?${encode(searchQuery)}`);
                 }}
               />
             </Switch>
