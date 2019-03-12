@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { Provider as ReduxProvider } from 'react-redux';
+import { encode } from 'qss';
+import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import history from '@commercetools-frontend/browser-history';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
@@ -31,7 +33,17 @@ class LogoutRedirector extends React.PureComponent {
     const authUrl = this.props.environment.servedByProxy
       ? window.location.origin
       : this.props.environment.mcAuthUrl;
-    this.redirectTo(`${authUrl}/logout`);
+    const searchQuery = {
+      reason: LOGOUT_REASONS.USER,
+      ...(this.props.environment.servedByProxy
+        ? {}
+        : {
+            // This will be used after being logged in,
+            // to redirect to this location.
+            redirectTo: window.location.origin,
+          }),
+    };
+    this.redirectTo(`${authUrl}/logout?${encode(searchQuery)}`);
   }
   render() {
     return null;
