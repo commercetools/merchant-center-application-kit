@@ -23,14 +23,14 @@ class LogoutRedirector extends React.PureComponent {
   static propTypes = {
     environment: PropTypes.shape({
       servedByProxy: PropTypes.bool.isRequired,
-      authUrl: PropTypes.string.isRequired,
+      mcAuthUrl: PropTypes.string.isRequired,
     }).isRequired,
   };
   redirectTo = targetUrl => window.location.replace(targetUrl);
   componentDidMount() {
     const authUrl = this.props.environment.servedByProxy
       ? window.location.origin
-      : this.props.environment.authUrl;
+      : this.props.environment.mcAuthUrl;
     this.redirectTo(`${authUrl}/logout`);
   }
   render() {
