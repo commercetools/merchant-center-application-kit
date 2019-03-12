@@ -40,6 +40,7 @@ const createTestProps = props => ({
     location: 'eu',
     env: 'development',
     cdnUrl: 'http://localhost:3001',
+    authUrl: 'http://ct-auth.com',
     servedByProxy: false,
   },
   trackingEventWhitelist: {},
@@ -451,6 +452,13 @@ describe('<UnrestrictedApplication>', () => {
           .find('Route')
           .last()
           .renderProp('render', routerProps);
+      });
+      describe('when not `servedByProxy`', () => {
+        it('should redirect to the authUrl', () => {
+          expect(window.location.replace).toHaveBeenCalledWith(
+            expect.stringContaining(props.environment.authUrl)
+          );
+        });
       });
       it('should redirect "/login"', () => {
         expect(window.location.replace).toHaveBeenCalledWith(
