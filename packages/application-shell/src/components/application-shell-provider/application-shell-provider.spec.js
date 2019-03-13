@@ -4,6 +4,8 @@ import { FormattedMessage } from 'react-intl';
 import { render, wait, waitForElement } from 'react-testing-library';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { GtmContext } from '../gtm-booter';
+// eslint-disable-next-line import/named
+import { setIsAuthenticated } from '../authenticated';
 import { getBrowserLanguage, mergeMessages } from './utils';
 import ApplicationShellProvider from './application-shell-provider';
 
@@ -32,8 +34,7 @@ const createTestProps = props => ({
 
 describe('rendering', () => {
   beforeEach(() => {
-    // eslint-disable-next-line global-require
-    require('../authenticated').setIsAuthenticated('true');
+    setIsAuthenticated('true');
   });
   it('should access environment from application context', async () => {
     const { getByText } = render(
@@ -96,8 +97,7 @@ describe('rendering', () => {
     expect(isAuth).toBe(true);
   });
   it('should pass isAuthenticated=false if local storage does not have auth key', async () => {
-    // eslint-disable-next-line global-require
-    require('../authenticated').setIsAuthenticated('false');
+    setIsAuthenticated('false');
     let isAuth;
     render(
       <ApplicationShellProvider {...createTestProps()}>
@@ -112,8 +112,7 @@ describe('rendering', () => {
     });
   });
   it('when not authenticated, it should setup intl provider', async () => {
-    // eslint-disable-next-line global-require
-    require('../authenticated').setIsAuthenticated('false');
+    setIsAuthenticated('false');
     getBrowserLanguage.mockReturnValue('de');
     mergeMessages.mockImplementation((...messages) =>
       Object.assign({}, ...messages)
