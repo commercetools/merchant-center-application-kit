@@ -333,6 +333,47 @@ RestrictedApplication.propTypes = {
   DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
 };
 
+class Redirector extends React.PureComponent {
+  static displayName = 'Redirector';
+  static propTypes = {
+    to: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      query: PropTypes.shape({
+        reason: PropTypes.oneOf(Object.keys(LOGOUT_REASONS)).isRequired,
+      }),
+    }).isRequired,
+    environment: PropTypes.shape({
+      servedByProxy: PropTypes.bool.isRequired,
+      mcAuthUrl: PropTypes.string.isRequired,
+    }).isRequired,
+    queryParams: PropTypes.shape({
+      reason: PropTypes.oneOf(Object.keys(LOGOUT_REASONS)).isRequired,
+      redirectTo: PropTypes.string,
+    }).isRequired,
+  };
+  redirectTo = targetUrl => window.location.replace(targetUrl);
+  componentDidMount() {
+    // When the application runs behind the proxy router, we use
+    // the same host domain to redirect to the login route.
+    // In the other cases (e.g. local development) we use a url
+    // that is provided as an environment variable, usually production
+    // or staging domains.
+    const authUrl = this.props.environment.servedByProxy
+      ? window.location.origin
+      : this.props.environment.mcAuthUrl;
+
+    const searchQuery = {
+      ...this.props.queryParams,
+      ...(this.props.location.query || {}),
+    };
+
+    this.redirectTo(`${authUrl}/${this.props.to}?${encode(searchQuery)}`);
+  }
+  render() {
+    return null;
+  }
+}
+
 const isBooleanAsString = environmentValue =>
   environmentValue === 'true' || environmentValue === 'false';
 
@@ -393,52 +434,65 @@ export default class ApplicationShell extends React.Component {
         {({ isAuthenticated }) => {
           if (isAuthenticated)
             return (
-              <RestrictedApplication
-                environment={coercedEnvironmentValues}
-                defaultFeatureFlags={this.props.defaultFeatureFlags}
-                render={this.props.render}
-                applicationMessages={this.props.applicationMessages}
-                DEV_ONLY__loadAppbarMenuConfig={
-                  this.props.DEV_ONLY__loadAppbarMenuConfig
-                }
-                DEV_ONLY__loadNavbarMenuConfig={
-                  this.props.DEV_ONLY__loadNavbarMenuConfig
-                }
-              />
+              <Switch>
+                {/* When the application redirects to this route,
+                we always force a hard redirect to the logout route of
+                the authentication service. */}
+                <Route
+                  path="/logout"
+                  render={({ location }) => (
+                    <Redirector
+                      to="logout"
+                      location={location}
+                      environment={coercedEnvironmentValues}
+                      queryParams={{
+                        reason: LOGOUT_REASONS.USER,
+                        ...(coercedEnvironmentValues.servedByProxy
+                          ? {}
+                          : {
+                              // This will be used after being logged in,
+                              // to redirect to this location.
+                              redirectTo: window.location.origin,
+                            }),
+                      }}
+                    />
+                  )}
+                />
+                <Route
+                  render={() => (
+                    <RestrictedApplication
+                      environment={coercedEnvironmentValues}
+                      defaultFeatureFlags={this.props.defaultFeatureFlags}
+                      render={this.props.render}
+                      applicationMessages={this.props.applicationMessages}
+                      DEV_ONLY__loadAppbarMenuConfig={
+                        this.props.DEV_ONLY__loadAppbarMenuConfig
+                      }
+                      DEV_ONLY__loadNavbarMenuConfig={
+                        this.props.DEV_ONLY__loadNavbarMenuConfig
+                      }
+                    />
+                  )}
+                />
+              </Switch>
             );
 
           return (
-            <Switch>
-              {/* Public routes */}
-              <Route
-                render={({ location }) => {
-                  // If the user tries to access a route (e.g. `/my-project/orders`)
-                  // and he's not logged in, we will be redirected to the login page
-                  // as usual but as soon as he logs in, he'll be redirected to the
-                  // location that he tried to access before. This is handled by the
-                  // query parameter `redirectTo`.
-                  const searchQuery = {
+            <Route
+              render={({ location }) => (
+                <Redirector
+                  to="login"
+                  location={location}
+                  environment={coercedEnvironmentValues}
+                  queryParams={{
                     reason: LOGOUT_REASONS.UNAUTHORIZED,
-                    // This will be used after being logged in,
-                    // to redirect to this location.
                     redirectTo: trimLeadingAndTrailingSlashes(
                       joinPaths(window.location.origin, location.pathname)
                     ),
-                  };
-
-                  /**
-                   * NOTE:
-                   *   Given the application runs in production we redirect to that host's login application.
-                   *   Given the application is in development mode (locally) we redirect to the application on staging.
-                   */
-                  const authUrl = this.props.environment.servedByProxy
-                    ? window.location.origin
-                    : this.props.environment.mcAuthUrl;
-
-                  this.redirectTo(`${authUrl}/login?${encode(searchQuery)}`);
-                }}
-              />
-            </Switch>
+                  }}
+                />
+              )}
+            />
           );
         }}
       </ApplicationShellProvider>
