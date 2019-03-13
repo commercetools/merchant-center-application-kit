@@ -430,7 +430,7 @@ describe('<RestrictedApplication>', () => {
   });
 });
 
-describe('<UnrestrictedApplication>', () => {
+describe('when user is not logged in', () => {
   let props;
   let wrapper;
   describe('rendering', () => {
