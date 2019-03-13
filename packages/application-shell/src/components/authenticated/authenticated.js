@@ -35,7 +35,7 @@ const Authenticated = props => {
     >
       {({ loading, data, error }) => {
         if (error) {
-          console.error(error);
+          // No matter what error, we consider it as a failed authentication
           return props.render({ isAuthenticated: false });
         }
         if (!loading && data && data.amILoggedIn) {
