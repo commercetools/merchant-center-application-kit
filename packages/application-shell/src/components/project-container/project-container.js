@@ -112,7 +112,10 @@ export class ProjectContainer extends React.Component {
     if (this.state.hasError) {
       return <ErrorApologizer />;
     }
-    // TODO: do something if there is an `error`?
+
+    // TODO: we need to redirect to the account application, so that the user
+    // can create a new project.
+    // We need to redirect only if the user is not in the accounts app already.
     if (this.props.user && this.props.user.projects.total === 0)
       return <Redirect to="/logout?reason=no-projects" />;
 
