@@ -23,6 +23,29 @@ describe('get', () => {
   });
 });
 
+describe('head', () => {
+  it('should have `type`', () => {
+    expect(actions.head({})).toEqual({
+      payload: expect.any(Object),
+      type: 'SDK',
+    });
+  });
+
+  it('should have `payload`', () => {
+    expect(actions.head({ foo: true })).toEqual({
+      payload: expect.objectContaining({ foo: true }),
+      type: expect.any(String),
+    });
+  });
+
+  it('should have `HEAD` `method` in payload', () => {
+    expect(actions.head({ foo: true })).toEqual({
+      payload: expect.objectContaining({ method: 'HEAD' }),
+      type: expect.any(String),
+    });
+  });
+});
+
 describe('post', () => {
   it('should have `type`', () => {
     expect(actions.post({})).toEqual({

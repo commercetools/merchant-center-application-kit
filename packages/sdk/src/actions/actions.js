@@ -12,3 +12,7 @@ export function del(payload) {
 export function post(payload) {
   return { type: 'SDK', payload: { method: 'POST', ...payload } };
 }
+
+export function head(payload) {
+  return { type: 'SDK', payload: { method: 'HEAD', ...payload } };
+}
