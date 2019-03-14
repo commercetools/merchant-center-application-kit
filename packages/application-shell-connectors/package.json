@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "react": "16.8.3",
-    "react-apollo": "2.5.1"
+    "react-apollo": "2.5.2"
   },
   "peerDependencies": {
     "react": "16.x",

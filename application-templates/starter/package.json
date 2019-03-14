@@ -20,7 +20,7 @@
     "@commercetools-frontend/ui-kit": "9.0.0",
     "prop-types": "15.7.2",
     "react": "16.8.3",
-    "react-apollo": "2.5.1",
+    "react-apollo": "2.5.2",
     "react-dom": "16.8.3",
     "react-intl": "2.8.0",
     "react-redux": "6.0.1",
