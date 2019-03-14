@@ -85,6 +85,8 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
   public: allowedHost,
   proxy,
   before(app) {
+    app.set('views', path.join(__dirname, 'views'));
+    app.set('view engine', 'pug');
     // This lets us open files from the runtime error overlay.
     app.use(errorOverlayMiddleware());
     // This service worker file is effectively a 'no-op' that will reset any
@@ -107,20 +109,21 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
         })
       );
     });
+    app.use('/login', (request, response) => {
+      response.render('login', { env: localEnv });
+    });
     // Intercept the /logout page and "remove" the auth cookie value
-    app.use((request, response, next) => {
-      if (request.url.startsWith('/logout')) {
-        response.setHeader(
-          'Set-Cookie',
-          [
-            `mcAccessToken=''`, // <-- unset the value
-            'Path=/',
-            `Expires=${new Date(0).toUTCString()}`, // <-- put a date in the past
-            'HttpOnly',
-          ].join('; ')
-        );
-      }
-      next();
+    app.use('/logout', (request, response) => {
+      response.setHeader(
+        'Set-Cookie',
+        [
+          `mcAccessToken=''`, // <-- unset the value
+          'Path=/',
+          `Expires=${new Date(0).toUTCString()}`, // <-- put a date in the past
+          'HttpOnly',
+        ].join('; ')
+      );
+      response.render('logout', { env: localEnv });
     });
   },
 });
