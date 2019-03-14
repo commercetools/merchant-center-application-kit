@@ -5,7 +5,6 @@ exports[`<RestrictedApplication> rendering project container <Route> should matc
   <InjectIntl(ProjectContainer)
     environment={
       Object {
-        "mcAuthUrl": "http://ct-auth.com",
         "cdnUrl": "http://localhost:3001",
         "env": "development",
         "frontendHost": "localhost:3001",
