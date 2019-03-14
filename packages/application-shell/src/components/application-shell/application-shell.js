@@ -344,7 +344,6 @@ class Redirector extends React.PureComponent {
     }).isRequired,
     environment: PropTypes.shape({
       servedByProxy: PropTypes.bool.isRequired,
-      mcAuthUrl: PropTypes.string.isRequired,
     }).isRequired,
     queryParams: PropTypes.shape({
       reason: PropTypes.oneOf(Object.keys(LOGOUT_REASONS)).isRequired,
@@ -353,14 +352,9 @@ class Redirector extends React.PureComponent {
   };
   redirectTo = targetUrl => window.location.replace(targetUrl);
   componentDidMount() {
-    // When the application runs behind the proxy router, we use
-    // the same host domain to redirect to the login route.
-    // In the other cases (e.g. local development) we use a url
-    // that is provided as an environment variable, usually production
-    // or staging domains.
-    const authUrl = this.props.environment.servedByProxy
-      ? window.location.origin
-      : this.props.environment.mcAuthUrl;
+    // For now the authentication service runs on the same domain as the application,
+    // even on development (using the webpack dev server).
+    const authUrl = window.location.origin;
 
     const searchQuery = {
       ...this.props.queryParams,
