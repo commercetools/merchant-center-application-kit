@@ -1,3 +1,10 @@
+## [11.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v11.0.2...v11.1.0) (2019-03-14)
+
+#### 🚀 Type: New Feature
+
+- `sdk`
+  - [#446](https://github.com/commercetools/merchant-center-application-kit/pull/446) Support HEAD-requests ([@pa3](https://github.com/pa3))
+
 ## [11.0.2](https://github.com/commercetools/merchant-center-application-kit/compare/v11.0.1...v11.0.2) (2019-03-11)
 
 #### 🔮 Type: Chore
