@@ -61,7 +61,7 @@
     "cypress-testing-library": "2.3.6",
     "dotenv": "6.2.0",
     "enzyme": "3.9.0",
-    "eslint": "5.15.0",
+    "eslint": "5.15.1",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "4.0.0",
     "eslint-formatter-pretty": "2.1.1",
