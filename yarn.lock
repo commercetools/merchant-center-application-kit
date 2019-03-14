@@ -1074,10 +1074,10 @@
   resolved "https://registry.yarnpkg.com/@commercetools/sdk-middleware-correlation-id/-/sdk-middleware-correlation-id-2.0.0.tgz#6824cf06ce02aae2d2937d19ff551726c0af24c5"
   integrity sha512-EGCbT4Z8rSLzVz8+FDPAN2+0vvHykMb6zcE+cLSqGSbMh+zDJ3vNW3mUVx6RhmuL94tBi5oixIWuMg49hnMqaw==
 
-"@commercetools/sdk-middleware-http@5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@commercetools/sdk-middleware-http/-/sdk-middleware-http-5.0.1.tgz#4d7103451d00f056c00b1e57691cc59f4fe38d42"
-  integrity sha512-Ri9vhdV7P6+kWbmp0YdM9ilosHDaMiYD1bnkeMPheiXsLKiIRlFwL5KnNgrTqzwj328chV98V8n1DIiRHIlMNg==
+"@commercetools/sdk-middleware-http@5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/sdk-middleware-http/-/sdk-middleware-http-5.1.0.tgz#1f8739767feace532873bcedac1cde76aa1bafa4"
+  integrity sha512-YZV/qz5rtwO/PgNLlt9sHd3bIhHCI+5mUrNX6OcZTczbNCiDYJmWsqjQkVqopGhtGwsF4PspsMQcOsWl+XtUqw==
 
 "@commercetools/sdk-middleware-user-agent@2.0.1":
   version "2.0.1"
