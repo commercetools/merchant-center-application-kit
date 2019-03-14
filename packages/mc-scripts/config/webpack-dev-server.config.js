@@ -111,11 +111,15 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
         })
       );
     });
-    app.use('/login', (request, response) => {
-      response.render('login', { env: localEnv });
+    app.use('/login', (request, response, next) => {
+      if (localEnv.disableAuthRoutesOfDevServer) {
+        next();
+      } else {
+        response.render('login', { env: localEnv });
+      }
     });
     // Intercept the /logout page and "remove" the auth cookie value
-    app.use('/logout', (request, response) => {
+    app.use('/logout', (request, response, next) => {
       response.setHeader(
         'Set-Cookie',
         [
@@ -125,7 +129,11 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
           'HttpOnly',
         ].join('; ')
       );
-      response.render('logout', { env: localEnv });
+      if (localEnv.disableAuthRoutesOfDevServer) {
+        next();
+      } else {
+        response.render('logout', { env: localEnv });
+      }
     });
   },
 });
