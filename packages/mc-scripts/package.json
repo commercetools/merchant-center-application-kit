@@ -54,6 +54,7 @@
     "postcss-reporter": "6.0.1",
     "postcss-safe-parser": "4.0.1",
     "promise": "8.0.3",
+    "pug": "2.0.3",
     "react-dev-utils": "7.0.3",
     "regenerator-runtime": "0.13.2",
     "shelljs": "0.8.3",
