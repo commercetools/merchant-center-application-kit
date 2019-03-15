@@ -57,6 +57,26 @@ export const RestrictedApplication = props => (
       // about the error message and give detailed instructions.
 
       if (error) {
+        // In case there is an unauthorized error, we redirect to the login page
+        if (error.graphQLErrors && Array.isArray(error.graphQLErrors)) {
+          const hasUnauthorizedError = error.graphQLErrors.find(
+            gqlError =>
+              gqlError.extensions &&
+              gqlError.extensions.code &&
+              gqlError.extensions.code === 'UNAUTHENTICATED'
+          );
+          if (hasUnauthorizedError) {
+            return (
+              <Redirector
+                to="login"
+                environment={props.environment}
+                queryParams={{
+                  reason: LOGOUT_REASONS.UNAUTHORIZED,
+                }}
+              />
+            );
+          }
+        }
         // Since we do not know the locale of the user, we pick it from the
         // user's browser to attempt to match the language for the correct translations.
         const userLocale = getBrowserLanguage(window);
@@ -339,16 +359,19 @@ class Redirector extends React.PureComponent {
     to: PropTypes.string.isRequired,
     location: PropTypes.shape({
       query: PropTypes.shape({
-        reason: PropTypes.oneOf(Object.keys(LOGOUT_REASONS)).isRequired,
+        reason: PropTypes.oneOf(Object.values(LOGOUT_REASONS)).isRequired,
       }),
     }).isRequired,
     environment: PropTypes.shape({
       servedByProxy: PropTypes.bool.isRequired,
     }).isRequired,
     queryParams: PropTypes.shape({
-      reason: PropTypes.oneOf(Object.keys(LOGOUT_REASONS)).isRequired,
+      reason: PropTypes.oneOf(Object.values(LOGOUT_REASONS)).isRequired,
       redirectTo: PropTypes.string,
     }).isRequired,
+  };
+  static defaultProps = {
+    location: {},
   };
   redirectTo = targetUrl => window.location.replace(targetUrl);
   componentDidMount() {

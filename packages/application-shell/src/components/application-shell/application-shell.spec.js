@@ -1,11 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { encode } from 'qss';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import {
-  joinPaths,
-  trimLeadingAndTrailingSlashes,
-} from '@commercetools-frontend/url-utils';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
@@ -445,62 +440,22 @@ describe('when user is not logged in', () => {
       let routerProps;
       beforeEach(() => {
         routerProps = {
-          location: { pathname: '/' },
+          location: { pathname: '/foo' },
         };
-        renderWrapper = wrapper
-          .find('Route')
-          .last()
-          .renderProp('render', routerProps);
+        renderWrapper = wrapper.find('Route').renderProp('render', routerProps);
       });
       it('should redirect "/login"', () => {
-        expect(window.location.replace).toHaveBeenCalledWith(
-          expect.stringContaining('/login')
-        );
+        expect(renderWrapper).toHaveProp('to', 'login');
       });
-      it('should redirect with "reason" in search param', () => {
-        expect(window.location.replace).toHaveBeenCalledWith(
-          expect.stringContaining(
-            encode({
-              reason: LOGOUT_REASONS.UNAUTHORIZED,
-            })
-          )
-        );
+      it('should pass location', () => {
+        expect(renderWrapper).toHaveProp('location', routerProps.location);
       });
-      describe('when location pathname is "/"', () => {
-        it('should render <Redirect> without "redirectTo" search param', () => {
-          expect(renderWrapper.find('Redirect')).not.toHaveProp(
-            'to',
-            expect.objectContaining({
-              query: expect.objectContaining({
-                redirectTo: expect.any(String),
-              }),
-            })
-          );
-        });
-      });
-      describe('when location pathname is "/foo-1/products"', () => {
-        beforeEach(() => {
-          routerProps = {
-            location: { pathname: '/foo-1/products' },
-          };
-          renderWrapper = wrapper
-            .find('Route')
-            .last()
-            .renderProp('render', routerProps);
-        });
-        it('should redirect with "redirectTo" search param', () => {
-          expect(window.location.replace).toHaveBeenCalledWith(
-            expect.stringContaining(
-              encode({
-                redirectTo: trimLeadingAndTrailingSlashes(
-                  joinPaths(
-                    window.location.origin,
-                    routerProps.location.pathname
-                  )
-                ),
-              })
-            )
-          );
+      it('should pass queryParams', () => {
+        expect(renderWrapper).toHaveProp('queryParams', {
+          reason: LOGOUT_REASONS.UNAUTHORIZED,
+          redirectTo: `${window.location.origin}${
+            routerProps.location.pathname
+          }`,
         });
       });
     });
