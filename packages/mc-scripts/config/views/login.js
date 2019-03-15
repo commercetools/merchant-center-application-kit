@@ -1,6 +1,5 @@
 /* eslint-disable no-var,vars-on-top */
 window.addEventListener('load', function loaded() {
-  // Access the form element...
   var form = document.getElementById('login');
   form.addEventListener('submit', function onSubmit(event) {
     event.preventDefault();
@@ -20,19 +19,25 @@ window.addEventListener('load', function loaded() {
       container.removeChild(container.firstChild);
     }
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', data.get('url'));
-    xhr.setRequestHeader('Accept', 'application/json');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onreadystatechange = function onResponse() {
-      // Call a function when the state changes.
-      if (this.readyState === XMLHttpRequest.DONE) {
-        if (this.status === 200) {
-          window.localStorage.setItem('isAuthenticated', true);
-          var searchParams = new URLSearchParams(window.location.search);
-          var redirectTo = searchParams.get('redirectTo') || '/';
-          window.location.replace(redirectTo);
-        } else {
+    window
+      .fetch(data.get('url'), {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+      .then(function handleResponse(response) {
+        if (response.ok) {
+          return response.json().then(function onSuccess() {
+            window.localStorage.setItem('isAuthenticated', true);
+            var searchParams = new URLSearchParams(window.location.search);
+            var redirectTo = searchParams.get('redirectTo') || '/';
+            window.location.replace(redirectTo);
+          });
+        }
+        return response.text().then(function onError() {
           var message;
           try {
             var parsedResponse = JSON.parse(this.responseText);
@@ -44,9 +49,13 @@ window.addEventListener('load', function loaded() {
           var errorContainer = document.createElement('div');
           errorContainer.appendChild(errorMessage);
           container.appendChild(errorContainer, container);
-        }
-      }
-    };
-    xhr.send(JSON.stringify(payload));
+        });
+      })
+      .catch(function onNetworkError(error) {
+        var errorMessage = document.createTextNode(error.message);
+        var errorContainer = document.createElement('div');
+        errorContainer.appendChild(errorMessage);
+        container.appendChild(errorContainer, container);
+      });
   }
 });
