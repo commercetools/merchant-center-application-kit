@@ -53,9 +53,6 @@ export const extractLanguageFromLocale = locale =>
 export const RestrictedApplication = props => (
   <FetchUser>
     {({ isLoading: isLoadingUser, user, error }) => {
-      // TODO: inspect the error in case we want to be more specific
-      // about the error message and give detailed instructions.
-
       if (error) {
         // In case there is an unauthorized error, we redirect to the login page
         if (error.graphQLErrors && Array.isArray(error.graphQLErrors)) {
