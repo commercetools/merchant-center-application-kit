@@ -1,4 +1,10 @@
 html
   head
+    title Logout (development only)
     script
       include logout.js
+  body
+    div
+      h3 This is the logout page for local development.
+      p Be aware that you might still have an active session as the cookie is assigned to a production domain (e.g. commercetools.com) which we can't unset from localhost. This is only a problem on local development and we will fix this in the future.
+      p You can #[a(href="/login") go to the login page] now.
