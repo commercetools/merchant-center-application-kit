@@ -26,6 +26,7 @@ window.addEventListener('load', function loaded() {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(payload),
       })
       .then(function handleResponse(response) {
