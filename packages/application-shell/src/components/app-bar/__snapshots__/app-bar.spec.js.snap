@@ -14,7 +14,6 @@ exports[`rendering should match layout structure 1`] = `
       className="logo"
     >
       <Link
-        replace={false}
         to="/test-default-project-key"
       >
         <img
@@ -50,7 +49,6 @@ exports[`rendering should match layout structure 1`] = `
           />
           <TextDetail>
             <Link
-              replace={false}
               to="/test-default-project-key"
             >
               <Inline
