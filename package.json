@@ -105,8 +105,8 @@
     "stylelint-order": "0.8.1"
   },
   "resolutions": {
-    "react-router": "4.4.0-beta.6",
-    "react-router-dom": "4.4.0-beta.6"
+    "react-router": "4.4.0",
+    "react-router-dom": "4.4.0"
   },
   "engines": {
     "node": ">=8.9",
