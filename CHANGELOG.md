@@ -1,3 +1,17 @@
+## [11.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v11.1.0...v11.2.0) (2019-03-18)
+
+#### 🔮 Type: Chore
+
+- `mc-scripts`
+  - [#458](https://github.com/commercetools/merchant-center-application-kit/pull/458) fix(mc-scripts): use terser as minifier ([@tdeekens](https://github.com/tdeekens))
+- `application-shell`, `browser-history`, `react-notifications`
+  - [#449](https://github.com/commercetools/merchant-center-application-kit/pull/449) React Router v4.4.0 ([@emmenko](https://github.com/emmenko))
+
+#### 💅 Type: Enhancement
+
+- `application-shell`
+  - [#457](https://github.com/commercetools/merchant-center-application-kit/pull/457) feat(app-shell): add re-export of gtm logout and flopflip ([@tdeekens](https://github.com/tdeekens))
+
 ## [11.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v11.0.2...v11.1.0) (2019-03-14)
 
 #### 🚀 Type: New Feature
