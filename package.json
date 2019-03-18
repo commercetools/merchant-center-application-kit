@@ -57,7 +57,7 @@
     "babel-plugin-import-graphql": "2.7.0",
     "babel-plugin-transform-rename-import": "2.3.0",
     "cross-env": "5.2.0",
-    "cypress": "3.1.5",
+    "cypress": "3.2.0",
     "cypress-testing-library": "2.3.6",
     "dotenv": "6.2.0",
     "enzyme": "3.9.0",
