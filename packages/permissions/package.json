@@ -42,7 +42,7 @@
     "warning": "4.0.3"
   },
   "devDependencies": {
-    "react": "16.8.3",
+    "react": "16.8.4",
     "react-testing-library": "6.0.0"
   },
   "peerDependencies": {

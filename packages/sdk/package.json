@@ -44,11 +44,11 @@
     "@commercetools/sdk-middleware-user-agent": "2.0.1",
     "fast-equals": "1.6.2",
     "prop-types": "15.7.2",
-    "qss": "2.0.2",
-    "unfetch": "4.0.1"
+    "qss": "2.0.3",
+    "unfetch": "4.1.0"
   },
   "devDependencies": {
-    "react": "16.8.3",
+    "react": "16.8.4",
     "react-redux": "6.0.1"
   },
   "peerDependencies": {
