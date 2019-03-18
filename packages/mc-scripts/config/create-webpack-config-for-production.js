@@ -159,7 +159,7 @@ module.exports = ({
 
     plugins: [
       new CleanWebpackPlugin([distPath], {
-        dangerouslyAllowCleanPatternsOutsideProject: true,
+        allowExternal: true,
       }),
       // Allows to "assign" custom options to the `webpack` object.
       // At the moment, this is used to share some props with `postcss.config`.
