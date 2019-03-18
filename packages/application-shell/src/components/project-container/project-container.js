@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
 import isNil from 'lodash/isNil';
 import { DOMAINS } from '@commercetools-frontend/constants';
@@ -28,6 +28,15 @@ const shouldShowNotificationForTrialExpired = daysLeft =>
   daysLeft <= minDaysToDisplayNotification &&
   daysLeft >= maxDaysToDisplayNotification;
 
+export class RedirectToProjectCreate extends React.Component {
+  static displayName = 'RedirectToProjectCreate';
+  componentDidMount() {
+    window.location.replace('/account/projects/new');
+  }
+  render() {
+    return null;
+  }
+}
 export class ProjectContainer extends React.Component {
   static displayName = 'ProjectContainer';
   static propTypes = {
@@ -113,11 +122,18 @@ export class ProjectContainer extends React.Component {
       return <ErrorApologizer />;
     }
 
-    // TODO: we need to redirect to the account application, so that the user
-    // can create a new project.
-    // We need to redirect only if the user is not in the accounts app already.
+    /**
+     * Given the user does not have project (and as a result is not part of an organization)
+     * the account application gets control over render. If any other application
+     * is requested to render a full page redirect (to have the proxy serve the request) occurs.
+     */
     if (this.props.user && this.props.user.projects.total === 0)
-      return <Redirect to="/logout?reason=no-projects" />;
+      return (
+        <Switch>
+          <Route path="/account" render={this.props.render} />
+          <Route component={RedirectToProjectCreate} />
+        </Switch>
+      );
 
     return (
       <React.Suspense fallback={<ApplicationLoader />}>

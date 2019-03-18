@@ -1,7 +1,7 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
-import { Redirect } from 'react-router-dom';
 import { shallow } from 'enzyme';
+import { Switch } from 'react-router-dom';
 import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
@@ -91,11 +91,8 @@ describe('rendering', () => {
       });
       wrapper = shallow(<ProjectContainer {...props} />);
     });
-    it('should render <Redirect> with target to logout', () => {
-      expect(wrapper.find(Redirect)).toHaveProp(
-        'to',
-        '/logout?reason=no-projects'
-      );
+    it('should render <Switch>', () => {
+      expect(wrapper).toRender(Switch);
     });
   });
   describe('when user has projects', () => {
