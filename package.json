@@ -77,7 +77,7 @@
     "jest": "24.1.0",
     "jest-each": "24.0.0",
     "jest-plugin-filename": "0.0.1",
-    "jest-puppeteer": "4.0.0",
+    "jest-puppeteer": "4.1.0",
     "jest-runner-eslint": "0.7.3",
     "jest-runner-shellcheck": "1.0.2",
     "jest-runner-stylelint": "1.0.0",
