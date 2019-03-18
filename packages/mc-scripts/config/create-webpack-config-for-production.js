@@ -12,7 +12,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 // as "aliasing v1.0.0 as webpack.optimize.UglifyJsPlugin is scheduled for
 // webpack v4.0.0" (https://webpack.js.org/plugins/uglifyjs-webpack-plugin/)
 // we need to explicitly use the library to be using the newest version
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const postcssImport = require('postcss-import');
 const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
@@ -22,48 +22,6 @@ const postcssColorModFunction = require('postcss-color-mod-function');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 const browserslist = require('./browserslist');
 
-const uglifyConfig = {
-  // This configuration is from the slack team:
-  // https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1
-  uglifyOptions: {
-    compress: {
-      booleans: false,
-      collapse_vars: false,
-      comparisons: false,
-      hoist_funs: false,
-      hoist_props: false,
-      hoist_vars: false,
-      if_return: false,
-      inline: false,
-      join_vars: false,
-      keep_infinity: true,
-      loops: false,
-      negate_iife: false,
-      properties: false,
-      reduce_funcs: false,
-      reduce_vars: false,
-      sequences: false,
-      side_effects: false,
-      switches: false,
-      top_retain: false,
-      toplevel: false,
-      typeofs: false,
-      unused: false,
-
-      // Switch off all types of compression except those needed to convince
-      // react-devtools that we're using a production build
-      // (here are the checks react devtools makes
-      // https://github.com/facebook/react-devtools/blob/7443291103bc619e7e9b8ab009fb6da1281ba302/backend/installGlobalHook.js#L52-L118)
-      conditionals: true,
-      dead_code: true,
-      evaluate: true,
-    },
-    mangle: true,
-  },
-  warningsFilter: () => true,
-  sourceMap: true,
-  parallel: true,
-};
 const optimizeCSSConfig = {
   // Since css-loader uses cssnano v3.1.0, it's best to stick with the
   // same version here
@@ -120,7 +78,10 @@ module.exports = ({
     // https://medium.com/webpack/webpack-4-mode-and-optimization-5423a6bc597a
     optimization: {
       minimizer: [
-        new UglifyJsPlugin(uglifyConfig),
+        new TerserPlugin({
+          parallel: true,
+          sourceMap: true,
+        }),
         mergedToggleFlags.enableExtractCss &&
           new OptimizeCSSAssetsPlugin(optimizeCSSConfig),
       ].filter(Boolean),
