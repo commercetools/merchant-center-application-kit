@@ -19,6 +19,12 @@ export { selectUserId, selectProjectKeyFromUrl } from './utils';
 export { default as AsyncChunkLoader } from './components/async-chunk-loader';
 export { GtmContext } from './components/gtm-booter';
 export {
+  default as GtmUserLogoutTracker,
+} from './components/gtm-user-logout-tracker';
+export {
+  default as SetupFlopFlipProvider,
+} from './components/setup-flop-flip-provider';
+export {
   default as handleApolloErrors,
 } from './components/handle-apollo-errors';
 
