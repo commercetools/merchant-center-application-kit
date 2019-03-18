@@ -37,14 +37,14 @@
     "storybook:start": "start-storybook -p 9002 -s .storybook/assets"
   },
   "dependencies": {
-    "@commercetools-frontend/constants": "7.0.0",
+    "@commercetools-frontend/constants": "11.0.0",
     "prop-types": "15.7.2",
     "react-modal": "3.8.1",
     "warning": "4.0.3"
   },
   "devDependencies": {
     "@commercetools-frontend/assets": "11.0.0",
-    "@commercetools-frontend/ui-kit": "9.0.0",
+    "@commercetools-frontend/ui-kit": "9.1.0",
     "@storybook/addon-actions": "4.1.14",
     "@storybook/addon-knobs": "4.1.14",
     "@storybook/addon-links": "4.1.14",
@@ -54,8 +54,8 @@
     "html-loader": "0.5.5",
     "markdown-loader": "5.0.0",
     "moment-locales-webpack-plugin": "1.0.7",
-    "react": "16.8.3",
-    "react-dom": "16.8.3",
+    "react": "16.8.4",
+    "react-dom": "16.8.4",
     "react-intl": "2.8.0",
     "react-testing-library": "6.0.0",
     "storybook-readme": "4.0.5"

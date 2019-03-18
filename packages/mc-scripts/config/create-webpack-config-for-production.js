@@ -158,7 +158,9 @@ module.exports = ({
     },
 
     plugins: [
-      new CleanWebpackPlugin([distPath], { allowExternal: true }),
+      new CleanWebpackPlugin([distPath], {
+        allowExternal: true,
+      }),
       // Allows to "assign" custom options to the `webpack` object.
       // At the moment, this is used to share some props with `postcss.config`.
       new webpack.LoaderOptionsPlugin({
