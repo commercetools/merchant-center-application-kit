@@ -23,7 +23,6 @@ export const STATUS_CODES = {
 };
 
 export const LOGOUT_REASONS = {
-  NO_PROJECTS: 'no-projects',
   USER: 'user',
   UNAUTHORIZED: 'unauthorized',
   INVALID: 'invalid',
