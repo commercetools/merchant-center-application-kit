@@ -1,4 +1,11 @@
 /* eslint-disable no-var,vars-on-top */
+/**
+ * NOTE:
+ *   This code is only used in development mode.
+ *   It authenticates a developer using the same mechanisms
+ *   as when not running in development. However,
+ *   this runs on the same domain as the developer.
+ */
 window.addEventListener('load', function loaded() {
   var form = document.getElementById('login');
   form.addEventListener('submit', function onSubmit(event) {
