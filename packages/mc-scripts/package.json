@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@babel/core": "7.4.0",
-    "@babel/runtime": "7.4.2",
+    "@babel/runtime-corejs2": "7.4.2",
     "@commercetools-frontend/babel-preset-mc-app": "11.0.0",
     "@commercetools-frontend/mc-html-template": "11.0.0",
     "@svgr/webpack": "4.1.0",
