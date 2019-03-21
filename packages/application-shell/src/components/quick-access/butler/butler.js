@@ -4,7 +4,7 @@ import Fuse from 'fuse.js';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import last from 'lodash/last';
 import classnames from 'classnames';
-import { SearchIcon } from '@commercetools-frontend/ui-kit';
+import { SearchIcon, LoadingSpinner } from '@commercetools-frontend/ui-kit';
 import { flattenResults } from '../utils';
 import ButlerCommand from '../butler-command';
 import ButlerContainer from '../butler-container';
@@ -71,6 +71,7 @@ export class Butler extends React.Component {
 
   state = {
     hasNetworkError: false,
+    isLoading: false,
     searchText: '',
     selectedResult: -1,
     // Used for UX when browsing through history
@@ -85,6 +86,18 @@ export class Butler extends React.Component {
 
   setNetworkError = () => {
     this.setState({ hasNetworkError: true });
+  };
+
+  setIsLoading = () => {
+    this.setState({
+      isLoading: true,
+    });
+  };
+
+  setIsNotLoading = () => {
+    this.setState({
+      isLoading: false,
+    });
   };
 
   shake = () => {
@@ -315,9 +328,17 @@ export class Butler extends React.Component {
       return;
     }
 
+    // A search via network is only triggered when there
+    // are more than three characters. So no false loading
+    // indication is given.
+    if (searchText.trim().length > 3) {
+      this.setIsLoading();
+    }
+
     this.props.search(searchText).then(
       asyncResults => {
         this.setState({ hasNetworkError: false });
+        this.setIsNotLoading();
         const flatResults = flattenResults(asyncResults);
 
         const fuse = new Fuse(flatResults, {
@@ -344,6 +365,7 @@ export class Butler extends React.Component {
       error => {
         // eslint-disable-next-line no-console
         if (process.env.NODE_ENV !== 'production') console.error(error);
+        this.setIsNotLoading();
         this.setNetworkError();
       }
     );
@@ -446,6 +468,11 @@ export class Butler extends React.Component {
               autoFocus={true}
               data-testid="quick-access-search-input"
             />
+            {this.state.isLoading && (
+              <div className={styles.loadingSpinnerWrapper}>
+                <LoadingSpinner />
+              </div>
+            )}
           </div>
           {(() => {
             if (this.state.hasNetworkError)
