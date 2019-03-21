@@ -64,6 +64,12 @@
   margin-top: var(--spacing-8);
 }
 
+.loadingSpinnerWrapper {
+  align-self: center;
+  margin-top: var(--spacing-8);
+  margin-right: var(--spacing-8);
+}
+
 .magnifyingGlass > * {
   display: block;
 }
