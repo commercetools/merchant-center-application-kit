@@ -15,8 +15,11 @@ email=npmjs@commercetools.com
 //registry.npmjs.org/:_authToken=$NPM_TOKEN
 EOF
 
+  echo "Working tree status"
+  git status
+
   echo "Releasing canary version"
-  yarn release-canary
+  yarn release:canary
 
 else
   echo "Not on master branch, skipping release"
