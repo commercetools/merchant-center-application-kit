@@ -1,23 +1,25 @@
-import { configure, addDecorator } from '@storybook/react';
-import { withOptions } from '@storybook/addon-options';
+import { addParameters, configure, addDecorator } from '@storybook/react';
+import { create } from '@storybook/theming';
 import IntlDecorator from './decorators/intl';
 
-addDecorator(
-  withOptions({
-    name: 'Application Kit',
-    // url: 'https://mc-app-kit.commercetools.com',
-    goFullScreen: false,
-    showStoriesPanel: true,
-    showAddonPanel: true,
-    showSearchBox: false,
-    addonPanelInRight: true,
+addParameters({
+  options: {
+    theme: create({
+      base: 'light',
+      brandTitle: 'Application Kit',
+      // To control appearance:
+      brandImage:
+        'http://cdn.rawgit.com/commercetools/press-kit/master/PNG/72DPI/CT%20logo%20chrom%20black%20horizontal%20RGB%2072dpi.png',
+    }),
+    isFullScreen: false,
+    panelPosition: 'right',
+    showNav: true,
+    showPanel: true,
     sortStoriesByKind: false,
     hierarchySeparator: /\//,
     hierarchyRootSeparator: /\|/,
-
-    resolveStoryHierarchy: storyName => storyName.split('/'),
-  })
-);
+  },
+});
 
 const srcStories = require.context('../src', true, /\.story\.js$/);
 

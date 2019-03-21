@@ -7,7 +7,7 @@ import {
   select,
   boolean,
   number,
-} from '@storybook/addon-knobs';
+} from '@storybook/addon-knobs/react';
 import withReadme from 'storybook-readme/with-readme';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import {
