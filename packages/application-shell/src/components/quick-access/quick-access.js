@@ -201,11 +201,11 @@ class QuickAccess extends React.Component {
             action: {
               type: 'go',
               to: oneLineTrim`
-              /${this.props.project.key}
-              /products
-              /${productId}
-              /${variantId}
-            `,
+                /${this.props.project.key}
+                /products
+                /${productId}
+                /${variantId}
+              `,
             },
             subCommands: createProductVariantSubCommands({
               intl: this.props.intl,

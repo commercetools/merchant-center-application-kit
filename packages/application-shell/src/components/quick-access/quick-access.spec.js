@@ -259,19 +259,69 @@ describe('QuickAccess', () => {
     await waitForElement(() => getByText('Open Dashboard'));
     expect(getByText('Open Dashboard')).toBeInTheDocument();
   });
+  describe('when there are no results', () => {
+    it('should show information message when searching does not yield results', async () => {
+      const mocks = [
+        {
+          request: {
+            query: QuickAccessQuery,
+            variables: {
+              searchText: 'A thing which does not exist',
+              canViewProducts: true,
+              target: 'ctp',
+              productsWhereClause: 'id in ()',
+              includeProductsByIds: false,
+            },
+          },
+          result: {
+            data: {
+              productsByIds: null,
+              productById: null,
+              productByKey: null,
+              productByVariantSku: null,
+              productByVariantKey: null,
+            },
+          },
+        },
+      ];
+      const { getByTestId, getByText, queryByText } = renderWithRedux(
+        <QuickAccess {...createTestProps()} />,
+        // Note that this test setup isn't perfect as the sdk request
+        // currently succeeds while the Apollo request fails
+        // Under real conditions both requests would fail.
+        {
+          mocks,
+          sdkMocks: [
+            createPimAvailabilityCheckSdkMock(),
+            createPimSearchSdkMock('A thing which does not exist'),
+          ],
+        }
+      );
+      const noResultsText = 'No results found';
 
+      // open quick-access
+      fireEvent.keyDown(document.body, { key: 'f' });
+      await waitForElement(() => getByTestId('quick-access-search-input'));
+
+      const searchInput = getByTestId('quick-access-search-input');
+      fireEvent.change(searchInput, {
+        target: { value: 'A thing which does not exist' },
+      });
+      await waitForElement(() => getByText(noResultsText));
+      // it should show the no results text
+      expect(getByText(noResultsText)).toBeVisible();
+
+      // when input is cleared again
+      fireEvent.change(searchInput, { target: { value: '' } });
+
+      // the no results text should be removed
+      expect(queryByText(noResultsText)).toBeNull();
+    });
+  });
   describe('when there is an error', () => {
-    let error;
     beforeEach(() => {
       // eslint-disable-next-line no-console
-      error = console.error;
-      // eslint-disable-next-line no-console
       console.error = jest.fn();
-    });
-    afterEach(() => {
-      // eslint-disable-next-line no-console
-      console.error = error;
-      error = null;
     });
     it('should show error message when searching while offline', async () => {
       const mocks = [
@@ -315,9 +365,6 @@ describe('QuickAccess', () => {
       await waitForElement(() => getByText(offlineText));
       // it should show the offline warning
       expect(getByText(offlineText)).toBeVisible();
-      // it should log the error
-      // eslint-disable-next-line no-console
-      expect(console.error).toHaveBeenCalledTimes(1);
 
       // when input is cleared again
       fireEvent.change(searchInput, { target: { value: '' } });

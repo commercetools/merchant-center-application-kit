@@ -92,3 +92,15 @@
   font-size: var(--font-size-small);
   padding: var(--spacing-4);
 }
+
+.noResultsWarning {
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: default;
+  background: var(--color-grey);
+  color: var(--color-black);
+  text-align: center;
+  text-transform: uppercase;
+  font-size: var(--font-size-small);
+  padding: var(--spacing-4);
+}

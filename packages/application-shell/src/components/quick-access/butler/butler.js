@@ -455,7 +455,12 @@ export class Butler extends React.Component {
                 </div>
               );
 
-            if (!this.state.results) return null;
+            if (this.state.results.length === 0 && this.state.searchText !== '')
+              return (
+                <div className={classnames(styles.noResultsWarning)}>
+                  <FormattedMessage {...messages.noResults} />
+                </div>
+              );
 
             return this.state.results.map((command, index) => (
               <ButlerCommand
