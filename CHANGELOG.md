@@ -1,3 +1,17 @@
+## [11.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v11.2.0...v11.3.0) (2019-03-21)
+
+#### 💅 Type: Enhancement
+
+- `application-shell`
+  - [#462](https://github.com/commercetools/merchant-center-application-kit/pull/462) feat(app-shell): quick-access to have noresults message ([@tdeekens](https://github.com/tdeekens))
+- `application-shell`
+  - [#463](https://github.com/commercetools/merchant-center-application-kit/pull/463) feat(app-shell): quick access to have loading indicator ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`, `react-notifications`
+  - [#460](https://github.com/commercetools/merchant-center-application-kit/pull/460) fix: update react-router to v5 ([@tdeekens](https://github.com/tdeekens))
+
 ## [11.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v11.1.0...v11.2.0) (2019-03-18)
 
 #### 🔮 Type: Chore
