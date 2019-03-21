@@ -2,7 +2,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import withReadme from 'storybook-readme/with-readme';
-import { withKnobs, text, select } from '@storybook/addon-knobs';
+import { withKnobs, text, select } from '@storybook/addon-knobs/react';
 import PageNotFoundSVG from '@commercetools-frontend/assets/images/page-not-found.svg';
 import ProjectExpiredSVG from '@commercetools-frontend/assets/images/project-expired.svg';
 import ProjectSuspendedSVG from '@commercetools-frontend/assets/images/project-suspended.svg';
