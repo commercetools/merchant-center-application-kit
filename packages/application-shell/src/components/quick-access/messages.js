@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'QuickAccess.offline',
     defaultMessage: 'Offline',
   },
+  noResults: {
+    id: 'QuickAccess.noResults',
+    defaultMessage: 'No results found',
+  },
   // create-commands
   setResourceLanguage: {
     id: 'QuickAccess.setResourceLanguage',
