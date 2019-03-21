@@ -455,7 +455,10 @@ export class Butler extends React.Component {
                 </div>
               );
 
-            if (this.state.results.length === 0 && this.state.searchText !== '')
+            if (
+              this.state.results.length === 0 &&
+              this.state.searchText.trim().length > 0
+            )
               return (
                 <div className={classnames(styles.noResultsWarning)}>
                   <FormattedMessage {...messages.noResults} />
