@@ -43,8 +43,9 @@ module.exports = function getBabePresetConfigForMcApp() {
           // the targeted browsers. This is safer than `usage` which performs
           // static code analysis to determine what's required.
           // This is probably a fine default to help trim down bundles when
-          // end-users inevitably import '@babel/polyfill'.
+          // end-users inevitably import 'core-js/stable'.
           useBuiltIns: 'entry',
+          corejs: 3,
           // Do not transform modules to CJS
           modules: false,
           include: ['transform-classes'],
@@ -96,6 +97,7 @@ module.exports = function getBabePresetConfigForMcApp() {
       [
         require('@babel/plugin-transform-runtime').default,
         {
+          corejs: 3,
           helpers: false,
           regenerator: true,
         },
