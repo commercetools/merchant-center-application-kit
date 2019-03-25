@@ -43,11 +43,11 @@
     "unfetch": "4.1.0"
   },
   "devDependencies": {
-    "react-testing-library": "6.0.0"
+    "react-testing-library": "6.0.2"
   },
   "peerDependencies": {
     "enzyme": "3.x",
     "jest": "23.x",
-    "react-testing-library": "5.x || 6.x"
+    "react-testing-library": "6.x"
   }
 }
