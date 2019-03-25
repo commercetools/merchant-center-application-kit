@@ -1,4 +1,4 @@
-import omitEmpty from 'omit-empty';
+import omitEmpty from 'omit-empty-es';
 import { TextInput } from '@commercetools-frontend/ui-kit';
 
 // eslint-disable-next-line import/prefer-default-export
