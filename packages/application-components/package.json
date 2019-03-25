@@ -60,7 +60,7 @@
     "react-dom": "16.8.4",
     "react-intl": "2.8.0",
     "react-testing-library": "6.0.2",
-    "storybook-readme": "5.0.0"
+    "storybook-readme": "5.0.1"
   },
   "peerDependencies": {
     "@commercetools-frontend/assets": "9.x",
