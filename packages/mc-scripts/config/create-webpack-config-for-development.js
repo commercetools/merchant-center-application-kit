@@ -56,7 +56,7 @@ module.exports = ({
     app: [
       // Ship a few polyfills by default
       require.resolve('./polyfills'),
-      require.resolve('core-js/stable'),
+      require.resolve('babel-polyfill'),
       require.resolve('regenerator-runtime/runtime'),
       // Include an alternative client for WebpackDevServer. A client's job is to
       // connect to WebpackDevServer by a socket and get notified about changes.

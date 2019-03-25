@@ -43,7 +43,7 @@ module.exports = function getBabePresetConfigForMcApp() {
           // the targeted browsers. This is safer than `usage` which performs
           // static code analysis to determine what's required.
           // This is probably a fine default to help trim down bundles when
-          // end-users inevitably import 'core-js/stable'.
+          // end-users inevitably import '@babel/polyfill'.
           useBuiltIns: 'entry',
           corejs: 2,
           // Do not transform modules to CJS

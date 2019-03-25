@@ -101,7 +101,7 @@ module.exports = ({
     entry: {
       app: [
         require.resolve('./polyfills'),
-        require.resolve('core-js/stable'),
+        require.resolve('babel-polyfill'),
         require.resolve('regenerator-runtime/runtime'),
         entryPoint,
       ],
