@@ -61,7 +61,7 @@
     "react-dom": "16.x",
     "react-intl": "2.x",
     "react-redux": "6.x",
-    "react-router": "4.4.x",
-    "react-router-dom": "4.4.x"
+    "react-router": "5.x",
+    "react-router-dom": "5.x"
   }
 }
