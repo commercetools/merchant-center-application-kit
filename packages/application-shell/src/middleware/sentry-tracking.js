@@ -1,5 +1,5 @@
 /* global process */
-import Raven from 'raven-js';
+import * as Sentry from '@sentry/browser';
 import { ADD_NOTIFICATION } from '@commercetools-frontend/notifications';
 
 // Note: this middleware should be placed before the middleware that
@@ -23,9 +23,7 @@ export default () => next => action => {
     if (process.env.NODE_ENV !== 'production') return next(action);
 
     // Send the error to Sentry
-    Raven.captureException(error);
-    // Generate a unique ID referring to the last generated Sentry error
-    const errorId = Raven.lastEventId();
+    const errorId = Sentry.captureException(error);
 
     // The error stack should be available in Sentry, so there is no
     // need to print it in the console as well.
