@@ -1,178 +1,95 @@
-import { createSentryErrorReporter } from './sentry';
+import * as Sentry from '@sentry/browser';
+import sentryTestkit from 'sentry-testkit';
+import waitForExpect from 'wait-for-expect';
+import { reportErrorToSentry } from './sentry';
 
-const createDebugLogger = () => ({
-  error: jest.fn(),
-  log: jest.fn(),
-  warn: jest.fn(),
-});
+const { testkit, sentryTransport } = sentryTestkit();
 
-const mockId = 'mock-id';
-const createProductionLogger = () => ({
-  captureException: jest.fn(),
-  captureMessage: jest.fn(),
-  lastEventId: jest.fn(() => mockId),
-});
+const DUMMY_DSN = 'https://acacaeaccacacacabcaacdacdacadaca@sentry.io/000001';
 
-describe('with "production"-environment', () => {
-  let debugLogger;
+describe('reportErrorToSentry', () => {
   let error;
-  let productionLogger;
-  let reportError;
+
+  beforeAll(() => {
+    Sentry.init({
+      dsn: DUMMY_DSN,
+      release: 'test',
+      transport: sentryTransport,
+    });
+  });
 
   beforeEach(() => {
-    debugLogger = createDebugLogger();
-    productionLogger = createProductionLogger();
-    reportError = createSentryErrorReporter(
-      'production',
-      debugLogger,
-      productionLogger
-    );
+    console.error = jest.fn();
+    testkit.reset();
   });
 
-  describe('with an instance of `Error` as argument', () => {
-    beforeEach(() => {
+  describe('without extra info', () => {
+    beforeEach(async () => {
       error = new Error('Boom');
-      reportError(error);
+      reportErrorToSentry(error, null, () => true);
+
+      // Wait for the reports to have been sent
+      await waitForExpect(() => expect(testkit.reports()).toHaveLength(1));
     });
 
-    it('it should should call `productionLogger.captureException` once', () => {
-      expect(productionLogger.captureException).toHaveBeenCalledTimes(1);
-    });
-
-    it('should call `productionLogger.captureException` with the error-object', () => {
-      expect(productionLogger.captureException).toHaveBeenCalledWith(
-        error,
-        undefined
-      );
-    });
-
-    it('should call `productionLogger.captureException` with undefined as the second argument', () => {
-      expect(productionLogger.captureException).toHaveBeenCalledWith(
-        expect.anything(),
-        undefined
-      );
-    });
-
-    it('should call `debugLogger.error` with the generated `errorId`', () => {
-      expect(debugLogger.error).toHaveBeenCalledWith(
-        expect.stringContaining(mockId)
+    it('should send report', () => {
+      const report = testkit.reports()[0];
+      expect(report.exception).toMatchObject({
+        values: [{ type: 'Error', value: 'Boom' }],
+      });
+      expect(report).toHaveProperty('event_id', expect.any(String));
+      expect(report).not.toHaveProperty('extra');
+      expect(console.error).toHaveBeenCalledWith(
+        expect.stringContaining(report.event_id)
       );
     });
   });
 
-  describe('with a string as argument', () => {
-    beforeEach(() => {
-      error = 'Boom';
-      reportError(error);
-    });
-
-    it('it should should call `productionLogger.captureException` once', () => {
-      expect(productionLogger.captureMessage).toHaveBeenCalledTimes(1);
-    });
-
-    it('should call `productionLogger.captureException` with the error-object', () => {
-      expect(productionLogger.captureMessage).toHaveBeenCalledWith(
-        error,
-        undefined
-      );
-    });
-
-    it('should call `debugLogger.error` with the generated `errorId`', () => {
-      expect(debugLogger.error).toHaveBeenCalledWith(
-        expect.stringContaining(mockId)
-      );
-    });
-  });
-
-  describe('with `extraInfo` as second argument', () => {
-    let extraInfo;
-    beforeEach(() => {
+  describe('with extra info as object', () => {
+    beforeEach(async () => {
       error = new Error('Boom');
-      extraInfo = {
-        level: 'info',
-      };
-      reportError(error, extraInfo);
+      reportErrorToSentry(error, { extra: { name: 'foo' } }, () => true);
+
+      // Wait for the reports to have been sent
+      await waitForExpect(() => expect(testkit.reports()).toHaveLength(1));
     });
 
-    it('should call `productionLogger.captureException` with the error-object', () => {
-      expect(productionLogger.captureException).toHaveBeenCalledWith(
-        expect.anything(),
-        extraInfo
-      );
+    it('should send report with extra info', () => {
+      const report = testkit.reports()[0];
+      expect(report).toHaveProperty('extra', { name: 'foo' });
     });
   });
-});
 
-describe('with "development"-environment', () => {
-  let debugLogger;
-  let error;
-  let productionLogger;
-  let reportError;
-
-  beforeEach(() => {
-    debugLogger = createDebugLogger();
-    productionLogger = createProductionLogger();
-    reportError = createSentryErrorReporter(
-      'development',
-      debugLogger,
-      productionLogger
-    );
-  });
-
-  describe('with an instance of `Error` as parameter', () => {
-    beforeEach(() => {
+  describe('with extra info as string', () => {
+    beforeEach(async () => {
       error = new Error('Boom');
-      reportError(error);
+      reportErrorToSentry(error, { extra: 'hello' }, () => true);
+
+      // Wait for the reports to have been sent
+      await waitForExpect(() => expect(testkit.reports()).toHaveLength(1));
     });
 
-    it('should not call `productionLogger.captureException`', () => {
-      expect(productionLogger.captureException).not.toHaveBeenCalled();
-    });
-
-    it('should call `debugLogger.error` with `error`', () => {
-      expect(debugLogger.error).toHaveBeenCalledWith(expect.any(String), error);
-    });
-  });
-
-  describe('with a non `Error`-Object as parameter', () => {
-    beforeEach(() => {
-      error = 'Boom';
-      reportError(error);
-    });
-
-    it('should warn about the parameter', () => {
-      expect(debugLogger.warn).toHaveBeenCalled();
-    });
-
-    it('should call `debugLogger.error` with `error`', () => {
-      expect(debugLogger.error).toHaveBeenCalledWith(expect.any(String), error);
+    it('should send report with extra info', () => {
+      const report = testkit.reports()[0];
+      expect(report).toHaveProperty('extra', { extra: 'hello' });
     });
   });
-});
 
-describe('with "test"-environment', () => {
-  let debugLogger;
-  let error;
-  let productionLogger;
-  let reportError;
+  describe('when error is not an instance of Error', () => {
+    describe('when sentry is not enabled', () => {
+      beforeEach(() => {
+        console.warn = jest.fn();
+        error = 'Boom';
+        reportErrorToSentry(error, null, () => false);
+      });
 
-  beforeEach(() => {
-    debugLogger = createDebugLogger();
-    productionLogger = createProductionLogger();
-    reportError = createSentryErrorReporter(
-      'test',
-      debugLogger,
-      productionLogger
-    );
-    error = new Error('Boom');
-    reportError(error);
-  });
-
-  it('should not call `productionLogger.captureException`', () => {
-    expect(productionLogger.captureException).not.toHaveBeenCalled();
-  });
-
-  it('should not call `debugLogger.error`', () => {
-    expect(debugLogger.error).not.toHaveBeenCalledWith();
+      it('should warn about malformed error object', () => {
+        expect(console.warn).toHaveBeenCalledWith(
+          expect.stringContaining(
+            `You called "reportErrorToSentry" with an argument that is not an instance of "Error"`
+          )
+        );
+      });
+    });
   });
 });
