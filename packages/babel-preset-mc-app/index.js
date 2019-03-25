@@ -45,7 +45,7 @@ module.exports = function getBabePresetConfigForMcApp() {
           // This is probably a fine default to help trim down bundles when
           // end-users inevitably import 'core-js/stable'.
           useBuiltIns: 'entry',
-          corejs: 3,
+          corejs: 2,
           // Do not transform modules to CJS
           modules: false,
           include: ['transform-classes'],
@@ -97,7 +97,7 @@ module.exports = function getBabePresetConfigForMcApp() {
       [
         require('@babel/plugin-transform-runtime').default,
         {
-          corejs: 3,
+          corejs: 2,
           helpers: false,
           regenerator: true,
         },
