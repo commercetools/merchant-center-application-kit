@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "12.2.0",
+  "version": "12.0.1-pre-canary.27",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -13,15 +13,15 @@
     "deploy:us": "now --local-config=now.us.json --docker; now alias --local-config=now.us.json"
   },
   "dependencies": {
-    "@commercetools-frontend/actions-global": "12.0.0",
-    "@commercetools-frontend/application-shell": "12.2.0",
-    "@commercetools-frontend/application-shell-connectors": "12.0.0",
-    "@commercetools-frontend/constants": "12.0.0",
-    "@commercetools-frontend/i18n": "12.0.0",
+    "@commercetools-frontend/actions-global": "12.0.1-pre-canary.27",
+    "@commercetools-frontend/application-shell": "12.0.1-pre-canary.27",
+    "@commercetools-frontend/application-shell-connectors": "12.0.1-pre-canary.27",
+    "@commercetools-frontend/constants": "12.0.1-pre-canary.27",
+    "@commercetools-frontend/i18n": "12.0.1-pre-canary.27",
     "@commercetools-frontend/l10n": "12.0.0",
-    "@commercetools-frontend/mc-http-server": "12.2.0",
-    "@commercetools-frontend/permissions": "12.0.0",
-    "@commercetools-frontend/sdk": "12.0.0",
+    "@commercetools-frontend/mc-http-server": "12.0.0",
+    "@commercetools-frontend/permissions": "12.0.1-pre-canary.27",
+    "@commercetools-frontend/sdk": "12.0.1-pre-canary.27",
     "@commercetools-frontend/ui-kit": "9.1.0",
     "lodash": "4.17.11",
     "lodash-es": "4.17.11",
@@ -39,6 +39,6 @@
     "redux": "4.0.1"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "12.2.0"
+    "@commercetools-frontend/mc-scripts": "12.0.1-pre-canary.27"
   }
 }
