@@ -1,3 +1,19 @@
+## [11.4.0](https://github.com/commercetools/merchant-center-application-kit/compare/v11.3.0...v11.4.0) (2019-03-26)
+
+#### 🔮 Type: Chore
+
+- `mc-html-template`
+  - [#478](https://github.com/commercetools/merchant-center-application-kit/pull/478) chore: remove csp report-uri ([@emmenko](https://github.com/emmenko))
+- `application-shell`, `babel-preset-mc-app`, `i18n`, `jest-preset-mc-app`, `mc-scripts`
+  - [#477](https://github.com/commercetools/merchant-center-application-kit/pull/477) chore: upgrade to babel 7.4 ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`, `sentry`
+  - [#476](https://github.com/commercetools/merchant-center-application-kit/pull/476) refactor(sentry): to use newest sdk over deprecated raven client ([@emmenko](https://github.com/emmenko))
+- `application-components`
+  - [#466](https://github.com/commercetools/merchant-center-application-kit/pull/466) fix: update storybook to v5 ([@tdeekens](https://github.com/tdeekens))
+
 ## [11.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v11.2.0...v11.3.0) (2019-03-21)
 
 #### 💅 Type: Enhancement
