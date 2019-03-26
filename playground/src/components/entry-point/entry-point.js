@@ -27,6 +27,10 @@ export const ApplicationStateMachines = () => (
         to="/:projectKey/state-machines"
       />
     )}
+    <Route
+      route="/account/projects/new"
+      render={() => 'You do not have any projects yet.'}
+    />
     <Route path="/:projectKey/state-machines" component={AsyncStateMachines} />
     {/* Catch-all route */}
     <RouteCatchAll />
