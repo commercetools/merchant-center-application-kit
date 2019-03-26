@@ -1,3 +1,25 @@
+## [12.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v11.4.0...v12.0.0) (2019-03-26)
+
+This release introduces a **breaking change** on the `test-utils` which requires some **migration steps**. We'll go through them now:
+
+#### 💥 Type: Breaking Change
+
+- `application-shell`
+  - [#482](https://github.com/commercetools/merchant-center-application-kit/pull/482) refactor(test-utils): to avoid conflicting named exports with rtl render function ([@emmenko](https://github.com/emmenko))
+
+The `@commercetools-frontend/application-shell/test-utils` render functions have been renamed to avoid naming conflicts with the re-exported properties of `react-testing-library` (e.g. `render`).
+
+| Before               | After                            |
+| -------------------- | -------------------------------- |
+| `render`             | `renderApp`                      |
+| `renderWithRedux`    | `renderAppWithRedux`             |
+| `experimentalRender` | `experimentalRenderAppWithRedux` |
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#481](https://github.com/commercetools/merchant-center-application-kit/pull/481) chore: update omit-empty-es to v1.0.3 ([@emmenko](https://github.com/emmenko))
+
 ## [11.4.0](https://github.com/commercetools/merchant-center-application-kit/compare/v11.3.0...v11.4.0) (2019-03-26)
 
 #### 🔮 Type: Chore
