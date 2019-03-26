@@ -118,9 +118,6 @@ module.exports = (env, options) => {
           // NOTE: prefer this over `block-all-mixed-content`.
           // https://youtu.be/j-0Bj40juMI?t=11m47s
           'upgrade-insecure-requests': '',
-          'report-uri':
-            // For now we report to the staging project to avoid spamming production.
-            'https://sentry.io/api/201984/csp-report/?sentry_key=ccb1fd8c25c241a18e801104bb687ac5',
         }
     // NOTE: we might want to define further policies in the future, for example
     // - `require-sri-for style script` (at the moment not possible because
