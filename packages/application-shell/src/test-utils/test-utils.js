@@ -30,23 +30,6 @@ afterEach(memoryAdapter.reset);
 
 // These default values get merged with the values provided by the test from
 // the call to "render"
-const defaultUser = {
-  id: 'user-id-1',
-  email: 'sheldon.cooper@caltech.edu',
-  firstName: 'Sheldon',
-  lastName: 'Cooper',
-  language: 'en',
-  timeZone: 'Etc/UTC',
-};
-
-const defaultEnvironment = {
-  frontendHost: 'localhost:3001',
-  mcApiUrl: 'https://mc-api.commercetools.com',
-  location: 'eu',
-  env: 'production',
-  cdnUrl: 'http://localhost:3001',
-  servedByProxy: false,
-};
 
 const defaultProject = {
   key: 'test-with-big-data',
@@ -58,6 +41,30 @@ const defaultProject = {
   owner: {
     id: 'project-id-1',
   },
+};
+
+const defaultUser = {
+  id: 'user-id-1',
+  email: 'sheldon.cooper@caltech.edu',
+  firstName: 'Sheldon',
+  lastName: 'Cooper',
+  language: 'en',
+  timeZone: 'Etc/UTC',
+  defaultProjectKey: defaultProject.key,
+  projects: {
+    total: 1,
+    count: 1,
+    results: [defaultProject],
+  },
+};
+
+const defaultEnvironment = {
+  frontendHost: 'localhost:3001',
+  mcApiUrl: 'https://mc-api.commercetools.com',
+  location: 'eu',
+  env: 'production',
+  cdnUrl: 'http://localhost:3001',
+  servedByProxy: false,
 };
 
 const defaultPermissions = { canManageProject: true };

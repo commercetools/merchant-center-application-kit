@@ -27,11 +27,12 @@ export const ApplicationStateMachines = () => (
         to="/:projectKey/state-machines"
       />
     )}
+    <Route path="/:projectKey/state-machines" component={AsyncStateMachines} />
+    {/* Given a user does not have any projects yet, then the app-shell redirects here. The playground renders a message instead of letting the <RouteCatchAll> handle it. */}
     <Route
       route="/account/projects/new"
       render={() => 'You do not have any projects yet.'}
     />
-    <Route path="/:projectKey/state-machines" component={AsyncStateMachines} />
     {/* Catch-all route */}
     <RouteCatchAll />
   </Switch>
