@@ -78,7 +78,7 @@
     "lodash-es": "4.17.11",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.23",
-    "omit-empty-es": "1.0.0",
+    "omit-empty-es": "1.0.1",
     "perfume.js": "1.1.4",
     "prop-types": "15.7.2",
     "qss": "2.0.3",
