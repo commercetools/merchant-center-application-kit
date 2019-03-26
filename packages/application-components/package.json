@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-components",
-  "version": "11.4.0",
+  "version": "12.0.0",
   "description": "Generic components for building Merchant Center applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -37,13 +37,13 @@
     "storybook:start": "start-storybook -p 9002 -s .storybook/assets"
   },
   "dependencies": {
-    "@commercetools-frontend/constants": "11.0.0",
+    "@commercetools-frontend/constants": "12.0.0",
     "prop-types": "15.7.2",
     "react-modal": "3.8.1",
     "warning": "4.0.3"
   },
   "devDependencies": {
-    "@commercetools-frontend/assets": "11.0.0",
+    "@commercetools-frontend/assets": "12.0.0",
     "@commercetools-frontend/ui-kit": "9.1.0",
     "@storybook/addon-actions": "5.0.5",
     "@storybook/addon-info": "5.0.5",
