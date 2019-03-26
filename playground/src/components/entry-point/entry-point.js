@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import {
   ApplicationShell,
   setupGlobalErrorListener,
@@ -6,12 +7,7 @@ import {
 } from '@commercetools-frontend/application-shell';
 import { Sdk } from '@commercetools-frontend/sdk';
 import * as globalActions from '@commercetools-frontend/actions-global';
-import { Redirect, Route, Switch } from 'react-router-dom';
-
-const loadApplicationMessagesForLanguage = async lang => {
-  const messages = await import(`../../i18n/data/${lang}.json` /* webpackChunkName: "application-messages-[request]" */);
-  return messages.default;
-};
+import loadMessages from '../../messages';
 
 // Here we split up the main (app) bundle with the actual application business logic.
 // Splitting by route is usually recommended and you can potentially have a splitting
@@ -52,7 +48,7 @@ class EntryPoint extends React.Component {
           Sdk.Get.errorHandler = error =>
             globalActions.handleActionError(error, 'sdk')(dispatch);
         }}
-        applicationMessages={loadApplicationMessagesForLanguage}
+        applicationMessages={loadMessages}
         DEV_ONLY__loadNavbarMenuConfig={() =>
           import('../../../menu.json').then(data => data.default || data)
         }

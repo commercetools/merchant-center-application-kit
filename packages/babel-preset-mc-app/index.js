@@ -39,6 +39,7 @@ module.exports = function getBabePresetConfigForMcApp() {
           targets: {
             browsers: ['last 1 versions'],
           },
+          corejs: { version: 3, proposals: true },
           // `entry` transforms `@babel/polyfill` into individual requires for
           // the targeted browsers. This is safer than `usage` which performs
           // static code analysis to determine what's required.
@@ -96,6 +97,7 @@ module.exports = function getBabePresetConfigForMcApp() {
       [
         require('@babel/plugin-transform-runtime').default,
         {
+          corejs: 3,
           helpers: false,
           regenerator: true,
         },

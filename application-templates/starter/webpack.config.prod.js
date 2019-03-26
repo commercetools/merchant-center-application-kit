@@ -3,13 +3,10 @@ const createWebpackConfigForProduction = require('@commercetools-frontend/mc-scr
 
 const distPath = path.resolve(__dirname, 'dist');
 const entryPoint = path.resolve(__dirname, 'src/index.js');
-const vendorsToTranspile = [/node_modules\/omit-empty/];
-
 const sourceFolders = [path.resolve(__dirname, 'src')];
 
 module.exports = createWebpackConfigForProduction({
   distPath,
   entryPoint,
   sourceFolders,
-  vendorsToTranspile,
 });
