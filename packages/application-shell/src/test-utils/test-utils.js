@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Router } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import { ApolloProvider } from 'react-apollo';
-import { render as rtlRender } from 'react-testing-library';
+import * as rtl from 'react-testing-library';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
@@ -98,7 +98,7 @@ const defaultGtmTracking = {
 
 // Inspired by
 // https://github.com/kentcdodds/react-testing-library-course/blob/2a5b1560656790bb1d9c055fba3845780b2c2c97/src/__tests__/react-router-03.js
-const render = (
+const renderApp = (
   ui,
   {
     // react-intl
@@ -132,7 +132,7 @@ const render = (
   const mergedEnvironment = mergeOptional(defaultEnvironment, environment);
   const mergedGtmTracking = mergeOptional(defaultGtmTracking, gtmTracking);
   return {
-    ...rtlRender(
+    ...rtl.render(
       <IntlProvider locale={locale}>
         <ApolloProviderComponent mocks={mocks} addTypename={addTypename}>
           <ConfigureFlopFlip adapter={adpater} defaultFlags={flags}>
@@ -179,7 +179,7 @@ const render = (
 // Test setup for rendering with Redux
 // We expose a sophisticated function because we plan to get rid of Redux
 // Use this function only when your test actually needs Redux
-const renderWithRedux = (
+const renderAppWithRedux = (
   ui,
   {
     // The store option is kept around to keep the API open as not all use-cases
@@ -188,10 +188,10 @@ const renderWithRedux = (
     store = undefined,
     // Pass an initial state to Redux store.
     storeState = undefined,
-    // renderWithRedux supports mocking requests made through the sdk
+    // renderAppWithRedux supports mocking requests made through the sdk
     // middleware. The approach is inspired by ApolloMockProvider.
     // You can pass responses for specific actions like
-    //   renderWithRedux(ui, {
+    //   renderAppWithRedux(ui, {
     //     sdkMocks: [
     //       {
     //         action: { type: 'SDK', payload: {}},
@@ -200,7 +200,7 @@ const renderWithRedux = (
     //     ]
     //   })
     // You can also fake a failing request using
-    //   renderWithRedux(ui, {
+    //   renderAppWithRedux(ui, {
     //     sdkMocks: [
     //       {
     //         action: { type: 'SDK', payload: {}},
@@ -246,7 +246,7 @@ const renderWithRedux = (
   })();
 
   return {
-    ...render(
+    ...renderApp(
       <NotificationProviderForCustomComponent
         mapNotificationToComponent={mapNotificationToComponent}
       >
@@ -269,7 +269,7 @@ const renderWithRedux = (
 };
 
 // Renders UI without mocking ApolloProvider
-const experimentalRender = (ui, renderOptions) => {
+const experimentalRenderAppWithRedux = (ui, renderOptions) => {
   const client = createApolloClient();
   const RealApolloProvider = ({ children }) => (
     <ApolloProvider client={client}>{children}</ApolloProvider>
@@ -279,7 +279,7 @@ const experimentalRender = (ui, renderOptions) => {
     children: PropTypes.node.isRequired,
   };
 
-  return renderWithRedux(ui, {
+  return renderAppWithRedux(ui, {
     ...renderOptions,
     ApolloProviderComponent: RealApolloProvider,
   });
@@ -288,11 +288,4 @@ const experimentalRender = (ui, renderOptions) => {
 // re-export everything
 export * from 'react-testing-library';
 
-export {
-  // override render method of react-testing-library
-  render,
-  renderWithRedux,
-  experimentalRender,
-  // the original "render" method of react-testing-library
-  rtlRender,
-};
+export { renderApp, renderAppWithRedux, experimentalRenderAppWithRedux };

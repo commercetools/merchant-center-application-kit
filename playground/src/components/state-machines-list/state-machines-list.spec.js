@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  renderWithRedux,
+  renderAppWithRedux,
   waitForElement,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { ApplicationStateMachines } from '../entry-point';
@@ -33,7 +33,7 @@ describe('list view', () => {
   console.warn = jest.fn();
   it('the user can see a list of state machines', async () => {
     const initialRoute = '/my-project/state-machines';
-    const { getByText } = renderWithRedux(<ApplicationStateMachines />, {
+    const { getByText } = renderAppWithRedux(<ApplicationStateMachines />, {
       route: initialRoute,
       sdkMocks: [createStateMachinesSdkMock()],
     });

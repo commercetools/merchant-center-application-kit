@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import upperFirst from 'lodash/upperFirst';
-import { render, waitForElement } from '../../test-utils';
+import { renderApp, waitForElement } from '../../test-utils';
 import FetchApplicationsMenu from './fetch-applications-menu.graphql';
 import withApplicationsMenu from './with-applications-menu';
 
@@ -59,7 +59,7 @@ describe('fetching the menu query', () => {
   const Connected = withApplicationsMenu({ queryName: 'menuQuery' })(Test);
   describe('when the query succeeds', () => {
     it('should render menu key', async () => {
-      const { getByText } = render(<Connected />, {
+      const { getByText } = renderApp(<Connected />, {
         mocks: [
           {
             request: {
@@ -81,7 +81,7 @@ describe('fetching the menu query', () => {
     });
     it('should pass error as prop', async () => {
       const error = new Error('Oops');
-      const { getByText } = render(<Connected />, {
+      const { getByText } = renderApp(<Connected />, {
         mocks: [
           {
             request: {

@@ -1,5 +1,9 @@
 import React from 'react';
-import { renderWithRedux, fireEvent, waitForElement } from '../../test-utils';
+import {
+  renderAppWithRedux,
+  fireEvent,
+  waitForElement,
+} from '../../test-utils';
 import QuickAccessQuery from './quick-access.graphql';
 import * as gtm from '../../utils/gtm';
 import QuickAccess from './index';
@@ -134,7 +138,7 @@ describe('QuickAccess', () => {
   });
 
   it('should open when pressing "f" on document body', async () => {
-    const { getByTestId } = renderWithRedux(
+    const { getByTestId } = renderAppWithRedux(
       <QuickAccess {...createTestProps()} />,
       { sdkMocks: [createPimAvailabilityCheckSdkMock()] }
     );
@@ -151,7 +155,7 @@ describe('QuickAccess', () => {
   });
 
   it('should open when pressing "f" on an element with tabIndex="-1" (like a modal)', async () => {
-    const { getByTestId } = renderWithRedux(
+    const { getByTestId } = renderAppWithRedux(
       <div>
         <QuickAccess {...createTestProps()} />
         <div tabIndex="-1" data-testid="modal">
@@ -173,7 +177,7 @@ describe('QuickAccess', () => {
   });
 
   it('should not close when the search input is clicked', async () => {
-    const { getByTestId } = renderWithRedux(
+    const { getByTestId } = renderAppWithRedux(
       <QuickAccess {...createTestProps()} />,
       { sdkMocks: [createPimAvailabilityCheckSdkMock()] }
     );
@@ -189,7 +193,7 @@ describe('QuickAccess', () => {
   });
 
   it('should not open when pressing "f" not directly on other focusable elements', async () => {
-    const { queryByTestId } = renderWithRedux(
+    const { queryByTestId } = renderAppWithRedux(
       <QuickAccess {...createTestProps()} />,
       { sdkMocks: [createPimAvailabilityCheckSdkMock()] }
     );
@@ -200,7 +204,7 @@ describe('QuickAccess', () => {
   });
 
   it('should track when QuickAccess is opened', async () => {
-    const { getByTestId } = renderWithRedux(
+    const { getByTestId } = renderAppWithRedux(
       <QuickAccess {...createTestProps()} />,
       { sdkMocks: [createPimAvailabilityCheckSdkMock()] }
     );
@@ -218,7 +222,7 @@ describe('QuickAccess', () => {
   });
 
   it('should close when pressing Escape', async () => {
-    const { getByTestId, queryByTestId } = renderWithRedux(
+    const { getByTestId, queryByTestId } = renderAppWithRedux(
       <QuickAccess {...createTestProps()} />,
       { sdkMocks: [createPimAvailabilityCheckSdkMock()] }
     );
@@ -238,7 +242,7 @@ describe('QuickAccess', () => {
 
   it('should show results when searching for Dashboard', async () => {
     const mocks = [createMatchlessSearchMock('Open dshbrd')];
-    const { getByTestId, getByText } = renderWithRedux(
+    const { getByTestId, getByText } = renderAppWithRedux(
       <QuickAccess {...createTestProps()} />,
       {
         mocks,
@@ -284,7 +288,7 @@ describe('QuickAccess', () => {
           },
         },
       ];
-      const { getByTestId, getByText, queryByText } = renderWithRedux(
+      const { getByTestId, getByText, queryByText } = renderAppWithRedux(
         <QuickAccess {...createTestProps()} />,
         // Note that this test setup isn't perfect as the sdk request
         // currently succeeds while the Apollo request fails
@@ -339,7 +343,7 @@ describe('QuickAccess', () => {
           error: new Error('aw shucks'),
         },
       ];
-      const { getByTestId, getByText, queryByText } = renderWithRedux(
+      const { getByTestId, getByText, queryByText } = renderAppWithRedux(
         <QuickAccess {...createTestProps()} />,
         // Note that this test setup isn't perfect as the sdk request
         // currently succeeds while the Apollo request fails
@@ -377,7 +381,7 @@ describe('QuickAccess', () => {
   it('should open (route to) dashboard when chosing the "Open Dashboard" command', async () => {
     const mocks = [createMatchlessSearchMock('Open dshbrd')];
     const props = createTestProps();
-    const { getByTestId, queryByTestId, getByText } = renderWithRedux(
+    const { getByTestId, queryByTestId, getByText } = renderAppWithRedux(
       <QuickAccess {...props} />,
       {
         mocks,
@@ -410,7 +414,7 @@ describe('QuickAccess', () => {
     const props = createTestProps({
       environment: { useFullRedirectsForLinks: true },
     });
-    const { getByTestId, queryByTestId, getByText } = renderWithRedux(
+    const { getByTestId, queryByTestId, getByText } = renderAppWithRedux(
       <QuickAccess {...props} />,
       {
         mocks,
@@ -449,7 +453,7 @@ describe('QuickAccess', () => {
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by cmd+enter', async () => {
       const mocks = [createMatchlessSearchMock('Open dshbrd')];
       const props = createTestProps();
-      const { getByTestId, queryByTestId, getByText } = renderWithRedux(
+      const { getByTestId, queryByTestId, getByText } = renderAppWithRedux(
         <QuickAccess {...props} />,
         {
           mocks,
@@ -483,7 +487,7 @@ describe('QuickAccess', () => {
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by cmd+click', async () => {
       const mocks = [createMatchlessSearchMock('Open dshbrd')];
       const props = createTestProps();
-      const { getByTestId, queryByTestId, getByText } = renderWithRedux(
+      const { getByTestId, queryByTestId, getByText } = renderAppWithRedux(
         <QuickAccess {...props} />,
         {
           mocks,
@@ -526,7 +530,7 @@ describe('QuickAccess', () => {
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by ctrl+enter', async () => {
       const mocks = [createMatchlessSearchMock('Open dshbrd')];
       const props = createTestProps();
-      const { getByTestId, queryByTestId, getByText } = renderWithRedux(
+      const { getByTestId, queryByTestId, getByText } = renderAppWithRedux(
         <QuickAccess {...props} />,
         {
           mocks,
@@ -560,7 +564,7 @@ describe('QuickAccess', () => {
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by ctrl+click', async () => {
       const mocks = [createMatchlessSearchMock('Open dshbrd')];
       const props = createTestProps();
-      const { getByTestId, queryByTestId, getByText } = renderWithRedux(
+      const { getByTestId, queryByTestId, getByText } = renderAppWithRedux(
         <QuickAccess {...props} />,
         {
           mocks,
@@ -596,7 +600,7 @@ describe('QuickAccess', () => {
   it('should open dashboard in new tab when chosing the "Open Dashboard" command by click', async () => {
     const mocks = [createMatchlessSearchMock('Open dshbrd')];
     const props = createTestProps();
-    const { getByTestId, queryByTestId, getByText } = renderWithRedux(
+    const { getByTestId, queryByTestId, getByText } = renderAppWithRedux(
       <QuickAccess {...props} />,
       {
         mocks,
@@ -631,7 +635,7 @@ describe('QuickAccess', () => {
       createMatchlessSearchMock('Open prdcts'),
     ];
     const props = createTestProps();
-    const { getByTestId, queryByTestId, getByText } = renderWithRedux(
+    const { getByTestId, queryByTestId, getByText } = renderAppWithRedux(
       <QuickAccess {...props} />,
       {
         mocks,
@@ -765,7 +769,7 @@ describe('QuickAccess', () => {
         },
       },
     ];
-    const { getByTestId, getByText } = renderWithRedux(
+    const { getByTestId, getByText } = renderAppWithRedux(
       <QuickAccess {...createTestProps()} />,
       {
         mocks,
@@ -828,7 +832,7 @@ describe('QuickAccess', () => {
         },
       },
     ];
-    const { getByTestId, getByText } = renderWithRedux(
+    const { getByTestId, getByText } = renderAppWithRedux(
       <QuickAccess {...createTestProps()} />,
       {
         mocks,
@@ -891,7 +895,7 @@ describe('QuickAccess', () => {
         },
       },
     ];
-    const { getByTestId, getByText } = renderWithRedux(
+    const { getByTestId, getByText } = renderAppWithRedux(
       <QuickAccess {...createTestProps()} />,
       {
         mocks,
@@ -955,7 +959,7 @@ describe('QuickAccess', () => {
         },
       },
     ];
-    const { getByTestId, getByText } = renderWithRedux(
+    const { getByTestId, getByText } = renderAppWithRedux(
       <QuickAccess {...createTestProps({ projectDataLocale: 'de' })} />,
       {
         mocks,
@@ -984,7 +988,7 @@ describe('QuickAccess', () => {
   it('should find sub commands', async () => {
     const searchTerm = 'Open producttypesettings';
     const mocks = [createMatchlessSearchMock(searchTerm)];
-    const { getByTestId, getByText } = renderWithRedux(
+    const { getByTestId, getByText } = renderAppWithRedux(
       <QuickAccess {...createTestProps()} />,
       {
         mocks,
@@ -1009,7 +1013,7 @@ describe('QuickAccess', () => {
   it('should be possible to navigate to sub commands and back out', async () => {
     const searchTerm = 'Open dshbrd';
     const mocks = [createMatchlessSearchMock(searchTerm)];
-    const { getByTestId, getByText } = renderWithRedux(
+    const { getByTestId, getByText } = renderAppWithRedux(
       <QuickAccess {...createTestProps()} />,
       {
         mocks,
@@ -1065,7 +1069,7 @@ describe('QuickAccess', () => {
     const searchTerm = 'Open dshbrd';
     const mocks = [createMatchlessSearchMock(searchTerm)];
     const props = createTestProps();
-    const { getByTestId, queryByTestId, getByText } = renderWithRedux(
+    const { getByTestId, queryByTestId, getByText } = renderAppWithRedux(
       <QuickAccess {...props} />,
       {
         mocks,
@@ -1107,7 +1111,7 @@ describe('QuickAccess', () => {
     const searchTerm = 'Open Dashboard';
     const mocks = [createMatchlessSearchMock(searchTerm)];
     const props = createTestProps({ project: undefined });
-    const { getByTestId, queryByText, getByText } = renderWithRedux(
+    const { getByTestId, queryByText, getByText } = renderAppWithRedux(
       <QuickAccess {...props} />,
       { mocks }
     );
@@ -1138,7 +1142,7 @@ describe('QuickAccess', () => {
         canViewProducts: true,
       };
 
-      const { getByTestId, queryByText, getByText } = renderWithRedux(
+      const { getByTestId, queryByText, getByText } = renderAppWithRedux(
         <QuickAccess {...props} />,
         {
           mocks,
@@ -1173,7 +1177,7 @@ describe('QuickAccess', () => {
         canViewProducts: true,
       };
 
-      const { getByTestId, getByText } = renderWithRedux(
+      const { getByTestId, getByText } = renderAppWithRedux(
         <QuickAccess {...props} />,
         {
           mocks,
@@ -1226,7 +1230,7 @@ describe('QuickAccess', () => {
               },
             },
           });
-          const { getByTestId, queryByText, getByText } = renderWithRedux(
+          const { getByTestId, queryByText, getByText } = renderAppWithRedux(
             <QuickAccess {...props} />,
             {
               mocks,
@@ -1270,7 +1274,7 @@ describe('QuickAccess', () => {
             },
           },
         });
-        const { getByTestId, queryByText, getByText } = renderWithRedux(
+        const { getByTestId, queryByText, getByText } = renderAppWithRedux(
           <QuickAccess {...props} />
         );
 
@@ -1299,7 +1303,7 @@ describe('QuickAccess', () => {
         queryByText,
         getByText,
         queryByTestId,
-      } = renderWithRedux(<QuickAccess {...props} />, {
+      } = renderAppWithRedux(<QuickAccess {...props} />, {
         mocks,
         sdkMocks: [
           createPimAvailabilityCheckSdkMock(),
@@ -1325,7 +1329,7 @@ describe('QuickAccess', () => {
       const props = createTestProps();
       const searchTerm = 'Opn PIM Srch';
       const mocks = [createMatchlessSearchMock(searchTerm)];
-      const { getByTestId, getByText } = renderWithRedux(
+      const { getByTestId, getByText } = renderAppWithRedux(
         <QuickAccess {...props} />,
         {
           mocks,
@@ -1388,7 +1392,7 @@ describe('QuickAccess', () => {
           },
         },
       ];
-      const { getByTestId, getByText } = renderWithRedux(
+      const { getByTestId, getByText } = renderAppWithRedux(
         <QuickAccess {...createTestProps()} />,
         {
           mocks,

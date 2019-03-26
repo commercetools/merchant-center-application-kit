@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { renderWithRedux, waitForElement, fireEvent } from '../../test-utils';
+import {
+  renderAppWithRedux,
+  waitForElement,
+  fireEvent,
+} from '../../test-utils';
 import handleApolloErrors from './handle-apollo-errors';
 
 const createGraphqlResultProps = props => ({
@@ -58,7 +62,7 @@ describe('given the graphql queries for "user"', () => {
   describe('when the "user" query fails', () => {
     it('should dispatch notification error', async () => {
       const error = new Error('Oops');
-      const { getByText, getByTestId } = renderWithRedux(
+      const { getByText, getByTestId } = renderAppWithRedux(
         <QueryController name="user" queryResult={{ data: null, error }}>
           <WithApolloErrorHandling />
         </QueryController>
@@ -75,7 +79,7 @@ describe('given the graphql queries for "user"', () => {
   });
   describe('when no query fails', () => {
     it('should not dispatch any notification error', async () => {
-      const { getByText, getByTestId } = renderWithRedux(
+      const { getByText, getByTestId } = renderAppWithRedux(
         <QueryController name="user" queryResult={{ data: { ok: true } }}>
           <WithApolloErrorHandling />
         </QueryController>

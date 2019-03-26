@@ -1,7 +1,7 @@
 import React from 'react';
 // import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import {
-  renderWithRedux,
+  renderAppWithRedux,
   wait,
   waitForElement,
   fireEvent,
@@ -26,7 +26,7 @@ describe('reset password flow', () => {
   });
   it('should open a dialog and redirect to the AC', async () => {
     const props = createTestProps();
-    const { getByText } = renderWithRedux(<Login {...props} />, {
+    const { getByText } = renderAppWithRedux(<Login {...props} />, {
       environment: { adminCenterUrl: 'http://ac.com' },
     });
 

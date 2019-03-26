@@ -18,9 +18,8 @@ The `ApplicationShell` provides the following context:
 - [test-utils](#test-utils-1)
   - [Basics](#basics)
   - [API](#api)
-    - [render(ui: ReactElement, options: Object)](#renderui-reactelement-options-object)
-    - [renderWithRedux(ui: ReactElement, options: Object)](#renderwithreduxui-reactelement-options-object)
-    - [rtlRender(ui: ReactElement, options: Object)](#rtlrenderui-reactelement-options-object)
+    - [renderApp(ui: ReactElement, options: Object)](#renderappui-reactelement-options-object)
+    - [renderAppWithRedux(ui: ReactElement, options: Object)](#renderappwithreduxui-reactelement-options-object)
   - [Examples](#examples)
     - [`locale` (`react-intl`)](#locale-react-intl)
     - [`dataLocale` (Localisation)](#datalocale-localisation)
@@ -35,7 +34,9 @@ The `ApplicationShell` provides the following context:
 
 [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) allows you to interact with the component using the DOM. It is a great testing library due to its philosophy of testing from a user-perspective, instead of testing the implementation. The assertions are written against the produced DOM, and the component-under-test is interacted with using DOM events.
 
-The `render` method exposed by `react-testing-library` is used to render your component and returns a bunch of getters to query the DOM produced by the component-under-test. `ApplicationShell`s `test-utils` export an enhanced `render` method which adds more context to the component-under-test, so that it can be rendered as-if it was rendered by `ApplicationShell` itself.
+The `render` method exposed by `react-testing-library` is used to render your component and returns a bunch of getters to query the DOM produced by the component-under-test. `ApplicationShell`s `test-utils` export an enhanced `renderApp` method which adds more context to the component-under-test, so that it can be rendered as-if it was rendered by `ApplicationShell` itself.
+
+> All exports of `react-testing-library` are re-exported from `test-utils`.
 
 ## `test-utils`
 
@@ -59,11 +60,11 @@ This component uses [`ApplicationContext`](https://github.com/commercetools/merc
 A test which verifies the authenticated user's first name being rendered by this component can look like this:
 
 ```jsx
-import { render } from '@commercetools-frontend/application-shell/test-utils';
+import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
 
 describe('FirstName', () => {
   it('should render the authenticated users first name', () => {
-    const { container, user } = render(<FirstName />);
+    const { container, user } = renderApp(<FirstName />);
     expect(container).toHaveTextContent('Sheldon');
   });
 });
@@ -74,11 +75,11 @@ This test renders the `FirstName` component and then verifies that the name _"Sh
 We can make the test more robust by explicitly declaring the authenticated users first name. This ensures the test keeps working even when the defaults change, and makes it easier to follow.
 
 ```jsx
-import { render } from '@commercetools-frontend/application-shell/test-utils';
+import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
 
 describe('FirstName', () => {
   it('should render the authenticated users first name', () => {
-    const { container, user } = render(<FirstName />, {
+    const { container, user } = renderApp(<FirstName />, {
       user: {
         firstName: 'Leonard',
       },
@@ -93,11 +94,11 @@ Here we overwrite the authenticated user's `firstName` for our test. The data we
 We can also test the case in which no user is authenticated by passing `{ user: null }`:
 
 ```jsx
-import { render } from '@commercetools-frontend/application-shell/test-utils';
+import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
 
 describe('FirstName', () => {
   it('should render the authenticated users first name', () => {
-    const { container, user } = render(<FirstName />, { user: null });
+    const { container, user } = renderApp(<FirstName />, { user: null });
     expect(container).toHaveTextContent('Anonymous');
   });
 });
@@ -109,9 +110,9 @@ When passing `null` for `user` the default `user` will not be added to the conte
 
 This section describes the methods exported by `@commercetools-frontend/application-shell/test-utils`.
 
-`test-utils` is builds on top of `react-testing-library`, so all [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) exports are available. It should not be necessary for you to import `react-testing-library` into your tests. The following section describes the additional exports added on top of `react-testing-library` and the overwritten `render` of `react-testing-library` itself.
+`test-utils` is builds on top of `react-testing-library`, so all [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) exports are available. The following section describes the additional exports added on top of `react-testing-library`.
 
-#### `render(ui: ReactElement, options: Object)`
+#### `renderApp(ui: ReactElement, options: Object)`
 
 | Argument              | Type          | Concern                                                                                                                                                                                            | Description                                                                                                                                                                                                                                                                                                                                                                        |
 | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -132,23 +133,23 @@ This section describes the methods exported by `@commercetools-frontend/applicat
 
 **Additional return values**
 
-Calling `render` returns an object which contains all keys `react-testing-library`'s `render` method contains, but also contains these additional entries:
+Calling `renderApp` returns an object which contains all keys `react-testing-library`'s original `render` method contains, but also contains these additional entries:
 
 | Entry         | Type     | Description                                                                                                                                                                                                                                                                                                       |
 | ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `history`     | `Object` | The history created by `render` which is passed to the rotuer. It can be used to simulate location changes and so on.                                                                                                                                                                                             |
+| `history`     | `Object` | The history created by `renderApp` which is passed to the rotuer. It can be used to simulate location changes and so on.                                                                                                                                                                                          |
 | `user`        | `Object` | The `user` object used to configure `ApplicationContextProvider`, so the result of merging the default user with `options.user`. Note that this is not the same as `applicationContext.user`. Can be `undefined` when no user is authenticated (when `options.user` was `null`).                                  |
 | `project`     | `Object` | The `project` object used to configure `ApplicationContextProvider`, so the result of merging the default project with `options.project`. Note that this is not the same as `applicationContext.project`. Can be `undefined` when no project was set (when `options.project` was `null`).                         |
 | `environment` | `Object` | The `environment` object used to configure `ApplicationContextProvider`, so the result of merging the default environment with `options.environment`. Note that this is not the same as `applicationContext.environment`. Can be `undefined` when no environment was set (when `options.environment` was `null`). |
 
-#### `renderWithRedux(ui: ReactElement, options: Object)`
+#### `renderAppWithRedux(ui: ReactElement, options: Object)`
 
 > This function might change in the future. Use with caution.
 
-This render function simply wraps the `render` with some components related to Redux.
+This render function simply wraps the `renderApp` with some components related to Redux.
 It's recommended to use this render function if some of your component-under-test uses Redux `connect`.
 
-The function accepts all options from `render` plus the following:
+The function accepts all options from `renderApp` plus the following:
 
 | Argument                             | Type       | Concern | Description                                                                                                                                                                                                                                                    |
 | ------------------------------------ | ---------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -157,15 +158,11 @@ The function accepts all options from `render` plus the following:
 | `options.sdkMocks`                   | `Array`    | Redux   | Allows mocking requests made with `@commercetools-frontend/sdk` (Redux). The `sdkMocks` is forwarded as `mocks` to the [SDK `test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/sdk/src/test-utils/README.md). |
 | `options.mapNotificationToComponent` | `Function` | Redux   | Pass a function to map a notification to a custom component.                                                                                                                                                                                                   |
 
-#### `rtlRender(ui: ReactElement, options: Object)`
-
-This is the renamed original bare-bones `render` method of `react-testing-library`. `rtl` is short for `react-testing-library`. See the the original [`render` documentation](https://github.com/kentcdodds/react-testing-library#render).
-
 ### Examples
 
 #### `locale` (`react-intl`)
 
-The component-under- rendered with `render` will get rendered in `react-intl`s `IntlProvider`. During tests, the core-messages will be used. It's still possible to use a different locale though.
+The component-under-test will get rendered in `react-intl`s `IntlProvider`. During tests, the core-messages will be used. It's still possible to use a different locale though.
 
 ```jsx
 const Flag = props => {
@@ -179,16 +176,16 @@ export default injectIntl(Flag);
 ```
 
 ```jsx
-import { render } from '@commercetools-frontend/application-shell/test-utils';
+import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
 import Flag from './flag';
 
 describe('Flag', () => {
   it('should render the british flag when the locale is english', () => {
-    const { container } = render(<Flag />);
+    const { container } = renderApp(<Flag />);
     expect(container).toHaveTextContent('🇬🇧');
   });
   it('should render the german flag when the locale is german', () => {
-    const { container } = render(<Flag />, { locale: 'de' });
+    const { container } = renderApp(<Flag />, { locale: 'de' });
     expect(container).toHaveTextContent('🇩🇪');
   });
 });
@@ -207,7 +204,7 @@ export const ProductName = props => (
 ```
 
 ```jsx
-import { render } from '@commercetools-frontend/application-shell/test-utils';
+import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
 import { ProductName } from './product-name';
 
 describe('ProductName', () => {
@@ -215,13 +212,13 @@ describe('ProductName', () => {
     name: { en: 'Party Parrot', de: 'Party Papagei' },
   };
   it('should render the product name in the given data locale', async () => {
-    const { container } = render(<ProductName product={partyParrot} />, {
+    const { container } = renderApp(<ProductName product={partyParrot} />, {
       dataLocale: 'en',
     });
     expect(container).toHaveTextContent('Party Parrot');
   });
   it('should render the product name in the given data locale', async () => {
-    const { container } = render(<ProductName product={partyParrot} />, {
+    const { container } = renderApp(<ProductName product={partyParrot} />, {
       dataLocale: 'de',
     });
     expect(container).toHaveTextContent('Party Papagei');
@@ -253,7 +250,7 @@ export const BankAccountBalance = props => (
 ```
 
 ```jsx
-import { render } from '@commercetools-frontend/application-shell/test-utils';
+import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
 import {
   BankAccountBalance,
   BankAccountBalanceQuery,
@@ -261,7 +258,7 @@ import {
 
 describe('BankAccountBalance', () => {
   it('should render the balance', async () => {
-    const { container } = render(<BankAccountBalance token="foo-bar" />, {
+    const { container } = renderApp(<BankAccountBalance token="foo-bar" />, {
       mocks: [
         {
           request: {
@@ -338,12 +335,12 @@ export default ConnectedBankAccount;
 ```
 
 ```jsx
-import { renderWithRedux } from '@commercetools-frontend/application-shell/test-utils';
+import { renderAppWithRedux } from '@commercetools-frontend/application-shell/test-utils';
 import BankAccountBalance from './bank-account-balance';
 
 describe('BankAccountBalance', () => {
   it('should render the balance', async () => {
-    const { container } = renderWithRedux(
+    const { container } = renderAppWithRedux(
       <BankAccountBalance token="foo-bar" />,
       {
         sdkMocks: [
@@ -389,14 +386,14 @@ export default injectFeatureToggle('experimentalAgeOnProfileFlag', 'showAge')(
 ```
 
 ```jsx
-import { render } from '@commercetools-frontend/application-shell/test-utils';
+import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
 import Profile from './profile';
 
 describe('Profile', () => {
   const baseProps = { name: 'Penny', age: 32 };
 
   it('should show no age when feature is toggled off', () => {
-    const { container } = render(<Profile {...baseProps} />, {
+    const { container } = renderApp(<Profile {...baseProps} />, {
       flags: { experimentalAgeOnProfileFlag: false },
     });
     expect(container).toHaveTextContent('Penny');
@@ -404,7 +401,7 @@ describe('Profile', () => {
   });
 
   it('should show age when feature toggle is on', () => {
-    const { container } = render(<Profile {...baseProps} />, {
+    const { container } = renderApp(<Profile {...baseProps} />, {
       flags: { experimentalAgeOnProfileFlag: true },
     });
     expect(container).toHaveTextContent('Penny (32)');
@@ -433,18 +430,18 @@ const DeleteProductButton = () => (
 ```
 
 ```jsx
-import { render } from '@commercetools-frontend/application-shell/test-utils';
+import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
 import DeleteProductButton from './delete-product-button';
 
 describe('DeleteProductButton', () => {
   it('should be disabled when the user does not have permission to manage products', () => {
-    const { getByText } = render(<DeleteProductButton />, {
+    const { getByText } = renderApp(<DeleteProductButton />, {
       permissions: { canManageProducts: false },
     });
     expect(getByText('Delete Product')).toBeDisabled();
   });
   it('should be enabled when the user has permission to manage products', () => {
-    const { getByText } = render(<DeleteProductButton />, {
+    const { getByText } = renderApp(<DeleteProductButton />, {
       permissions: { canManageProducts: true },
     });
     expect(getByText('Delete Product')).not.toBeDisabled();
@@ -468,24 +465,24 @@ export const ProductTabs = () => (
 ```
 
 ```jsx
-import { render } from '@commercetools-frontend/application-shell/test-utils';
+import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
 import ProductTabs from './product-tabs';
 
 describe('router', () => {
   it('should redirect to "general" when no tab is given', () => {
-    const { container } = render(<ProductTabs />, {
+    const { container } = renderApp(<ProductTabs />, {
       route: '/products/party-parrot',
     });
     expect(container).toHaveTextContent('General');
   });
   it('should render "general" when on general tab', () => {
-    const { container } = render(<ProductTabs />, {
+    const { container } = renderApp(<ProductTabs />, {
       route: '/products/party-parrot/general',
     });
     expect(container).toHaveTextContent('General');
   });
   it('should render "pricing" when on pricing tab', () => {
-    const { container } = render(<ProductTabs />, {
+    const { container } = renderApp(<ProductTabs />, {
       route: '/products/party-parrot/pricing',
     });
     expect(container).toHaveTextContent('Pricing');

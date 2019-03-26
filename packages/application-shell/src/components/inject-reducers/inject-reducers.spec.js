@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { renderWithRedux, waitForElement, fireEvent } from '../../test-utils';
+import {
+  renderAppWithRedux,
+  waitForElement,
+  fireEvent,
+} from '../../test-utils';
 import InjectReducers from './inject-reducers';
 
 const Counter = props => (
@@ -37,7 +41,7 @@ const reducers = { counter: counterReducer };
 
 describe('injecting reducers', () => {
   it('should inject reducers and render count from connected store', async () => {
-    const { getByText, getByTestId } = renderWithRedux(
+    const { getByText, getByTestId } = renderAppWithRedux(
       <InjectReducers id="test" reducers={reducers}>
         <ConnectedCounter />
       </InjectReducers>
