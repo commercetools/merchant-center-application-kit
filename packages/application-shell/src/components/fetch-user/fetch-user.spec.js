@@ -1,11 +1,11 @@
 import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { render, waitForElement } from '../../test-utils';
+import { renderApp, waitForElement } from '../../test-utils';
 import LoggedInUserQuery from './fetch-user.graphql';
 import FetchUser from './fetch-user';
 
 const renderUser = options =>
-  render(
+  renderApp(
     <FetchUser>
       {({ isLoading, error, user }) => {
         if (isLoading) return <div>{'loading...'}</div>;

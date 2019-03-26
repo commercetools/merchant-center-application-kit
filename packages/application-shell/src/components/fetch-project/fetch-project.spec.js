@@ -1,11 +1,11 @@
 import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { render, waitForElement } from '../../test-utils';
+import { renderApp, waitForElement } from '../../test-utils';
 import ProjectQuery from './fetch-project.graphql';
 import FetchProject, { mapAllAppliedToObjectShape } from './fetch-project';
 
 const renderProject = options =>
-  render(
+  renderApp(
     <FetchProject projectKey="test-1">
       {({ isLoading, error, project }) => {
         if (isLoading) return <div>{'loading...'}</div>;

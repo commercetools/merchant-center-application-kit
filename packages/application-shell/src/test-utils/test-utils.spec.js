@@ -12,16 +12,16 @@ import { injectFeatureToggle } from '@flopflip/react-broadcast';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { Switch, Route } from 'react-router';
-import { render, wait } from './test-utils';
+import { renderApp, wait } from './test-utils';
 
 describe('Intl', () => {
   const TestComponent = injectIntl(props => props.intl.locale);
   it('should have intl', () => {
-    const { container } = render(<TestComponent />);
+    const { container } = renderApp(<TestComponent />);
     expect(container).toHaveTextContent('en');
   });
   it('should be possible to overwrite', () => {
-    const { container } = render(<TestComponent />, {
+    const { container } = renderApp(<TestComponent />, {
       locale: 'de',
     });
     expect(container).toHaveTextContent('de');
@@ -45,7 +45,7 @@ describe('ApolloMockProvider', () => {
     </Query>
   );
   it('should be possible to fake GraphQL requests', async () => {
-    const { container } = render(<TestComponent />, {
+    const { container } = renderApp(<TestComponent />, {
       mocks: [
         {
           request: {
@@ -69,11 +69,11 @@ describe('FlopFlip', () => {
     props => (props.isFooBarEnabled ? 'enabled' : 'disabled')
   );
   it('should not have feature toggles by default', () => {
-    const { container } = render(<TestComponent />);
+    const { container } = renderApp(<TestComponent />);
     expect(container).toHaveTextContent('disabled');
   });
   it('should be possible to provide feature toggles', () => {
-    const { container } = render(<TestComponent />, {
+    const { container } = renderApp(<TestComponent />, {
       flags: { [FEATURE_NAME]: true },
     });
     expect(container).toHaveTextContent('enabled');
@@ -89,7 +89,7 @@ describe('ApplicationContext', () => {
     );
 
     it('should render with defaults', () => {
-      const { container, user } = render(<TestComponent />);
+      const { container, user } = renderApp(<TestComponent />);
       expect(container).toHaveTextContent('Sheldon Cooper');
       // the user should be returned from "render"
       expect(user).toEqual({
@@ -103,7 +103,7 @@ describe('ApplicationContext', () => {
     });
 
     it('should respect user overwrites', () => {
-      const { container, user } = render(<TestComponent />, {
+      const { container, user } = renderApp(<TestComponent />, {
         user: { firstName: 'Leonard' },
       });
       // shows that data gets merged and overwrites have priority
@@ -128,7 +128,7 @@ describe('ApplicationContext', () => {
     );
 
     it('should render with defaults', () => {
-      const { container, project } = render(<TestComponent />);
+      const { container, project } = renderApp(<TestComponent />);
       expect(container).toHaveTextContent(
         'test-with-big-data Test with big data'
       );
@@ -147,7 +147,7 @@ describe('ApplicationContext', () => {
     });
 
     it('should respect project overwrites', () => {
-      const { container, project } = render(<TestComponent />, {
+      const { container, project } = renderApp(<TestComponent />, {
         project: { name: 'Geek' },
       });
       // shows that data gets merged and overwrites have priority
@@ -174,11 +174,11 @@ describe('ApplicationContext', () => {
       </RestrictedByPermissions>
     );
     it('should have all permissions by default', () => {
-      const { container } = render(<TestComponent />);
+      const { container } = renderApp(<TestComponent />);
       expect(container).toHaveTextContent('Authorized');
     });
     it('should allow overwriting permissions', () => {
-      const { container } = render(<TestComponent />, {
+      const { container } = renderApp(<TestComponent />, {
         permissions: { canManageProducts: false },
       });
       expect(container).toHaveTextContent('Not allowed');
@@ -190,7 +190,7 @@ describe('ApplicationContext', () => {
       <ApplicationContext render={({ dataLocale }) => dataLocale} />
     );
     it('should add the locale to the project', () => {
-      const { container } = render(<TestComponent />, { dataLocale: 'de' });
+      const { container } = renderApp(<TestComponent />, { dataLocale: 'de' });
       expect(container).toHaveTextContent('de');
     });
   });
@@ -205,7 +205,7 @@ describe('ApplicationContext', () => {
     );
 
     it('should render with defaults', () => {
-      const { container, environment } = render(<TestComponent />);
+      const { container, environment } = renderApp(<TestComponent />);
       // shows that data gets merged and overwrites have priority
       expect(container).toHaveTextContent('eu production');
       // the project should be returned from "render"
@@ -220,7 +220,7 @@ describe('ApplicationContext', () => {
     });
 
     it('should respect user overwrites', () => {
-      const { container, environment } = render(<TestComponent />, {
+      const { container, environment } = renderApp(<TestComponent />, {
         environment: { location: 'us' },
       });
       // shows that data gets merged and overwrites have priority
@@ -247,17 +247,17 @@ describe('router', () => {
     </Switch>
   );
   it('should render fallback when no route is provided', () => {
-    const { container } = render(<TestComponent />);
+    const { container } = renderApp(<TestComponent />);
     expect(container).not.toHaveTextContent('Foo');
     expect(container).toHaveTextContent('None');
   });
   it('should render the route when a route is provided', () => {
-    const { container } = render(<TestComponent />, { route: '/foo' });
+    const { container } = renderApp(<TestComponent />, { route: '/foo' });
     expect(container).toHaveTextContent('Foo');
     expect(container).not.toHaveTextContent('None');
   });
   it('should return a history object', () => {
-    const { history } = render(<TestComponent />, { route: '/foo' });
+    const { history } = renderApp(<TestComponent />, { route: '/foo' });
     expect(history.location.pathname).toBe('/foo');
   });
 });
