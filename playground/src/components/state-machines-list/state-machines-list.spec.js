@@ -25,6 +25,14 @@ const createStateMachinesSdkMock = () => ({
   },
 });
 
+const render = (options = {}) => {
+  const route = options.route || '/my-project/state-machines';
+  return renderAppWithRedux(<ApplicationStateMachines />, {
+    route,
+    ...options,
+  });
+};
+
 describe('list view', () => {
   // The `CellMeasurerCache` used in the `Table` component logs a warning
   // because we are using it to have dynamic width and height (causing CI to fail).
@@ -32,9 +40,7 @@ describe('list view', () => {
   // implementation. For now we can simply mock `console.warn`.
   console.warn = jest.fn();
   it('the user can see a list of state machines', async () => {
-    const initialRoute = '/my-project/state-machines';
-    const { getByText } = renderAppWithRedux(<ApplicationStateMachines />, {
-      route: initialRoute,
+    const { getByText } = render({
       sdkMocks: [createStateMachinesSdkMock()],
     });
     await waitForElement(() => getByText(/State machines/i));
