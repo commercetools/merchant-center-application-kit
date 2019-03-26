@@ -141,7 +141,7 @@ By default, all releases go to the `next` distribution channel and should be con
 After testing the `next` release on a production project, if the version is **stable** it can be finally movede to the `latest` distribution channel.
 
 ```bash
-$ yarn release:from-canary-to-latest
+$ yarn release:from-next-to-latest
 ```
 
 The command will promote the version published on `next` to the `latest` npm dist-tag, for each package.
