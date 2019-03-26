@@ -21,7 +21,7 @@
     "release": "lerna publish --exact --dist-tag next",
     "prerelease:canary": "npm run build",
     "release:canary": "lerna publish --exact --dist-tag canary --canary --preid canary --yes",
-    "release:from-canary-to-latest": "lerna exec --no-bail --no-private --no-sort --stream -- '[ -n \"$(npm v . dist-tags.next)\" ] && npm dist-tag add ${LERNA_PACKAGE_NAME}@$(npm v . dist-tags.next) latest'",
+    "release:from-next-to-latest": "lerna exec --no-bail --no-private --no-sort --stream -- '[ -n \"$(npm v . dist-tags.next)\" ] && npm dist-tag add ${LERNA_PACKAGE_NAME}@$(npm v . dist-tags.next) latest'",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
     "test:visual": "jest --config jest.visual.config.js --runInBand",
