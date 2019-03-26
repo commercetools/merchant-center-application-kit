@@ -13040,10 +13040,10 @@ octokit-pagination-methods@^1.1.0:
   resolved "https://registry.yarnpkg.com/octokit-pagination-methods/-/octokit-pagination-methods-1.1.0.tgz#cf472edc9d551055f9ef73f6e42b4dbb4c80bea4"
   integrity sha512-fZ4qZdQ2nxJvtcasX7Ghl+WlWS/d9IgnBIwFZXVNNZUmzpno91SX5bc5vuxiuKoCtK78XxGGNuSCrDC7xYB3OQ==
 
-omit-empty-es@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/omit-empty-es/-/omit-empty-es-1.0.2.tgz#e0a7877f9a882c4a637995024503d4c0a93849d0"
-  integrity sha512-7g3l5Is3DbS0SLcPj83NJ+g5V+eyCqPVm4hCCCs/7eYe0F4mzZdGdxeOljeEsAeH+AF8crebzp9hAO67JC6rGQ==
+omit-empty-es@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/omit-empty-es/-/omit-empty-es-1.0.3.tgz#b6577b40756ff7d8da6e2d0ed4b4c79c883793e1"
+  integrity sha512-SobkOViA9e2sNtw7ebBDEfgy76zKbXx+quKqgCZ17a4Y7FZ6JduHwOlABsjs0Rdz6d/YAf9/bRS0Q+V6idWxOQ==
 
 on-finished@~2.3.0:
   version "2.3.0"
