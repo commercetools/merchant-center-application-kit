@@ -1,7 +1,7 @@
 import React from 'react';
 import * as storage from '@commercetools-frontend/storage';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { render, wait } from '../../test-utils';
+import { renderApp, wait } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import AmILoggedInQuery from './authenticated.graphql';
 import Authenticated from './authenticated';
@@ -19,7 +19,7 @@ describe('rendering', () => {
     beforeEach(() => {
       storage.get.mockReturnValue('true');
       props = createTestProps();
-      render(<Authenticated {...props} />);
+      renderApp(<Authenticated {...props} />);
     });
     it('should call render with `isAuthenticated` set to true', () => {
       expect(props.render).toHaveBeenCalledWith({ isAuthenticated: true });
@@ -32,7 +32,7 @@ describe('rendering', () => {
     });
     describe('when authentication request succeeds', () => {
       beforeEach(() => {
-        render(<Authenticated {...props} />, {
+        renderApp(<Authenticated {...props} />, {
           mocks: [
             {
               request: {
@@ -65,7 +65,7 @@ describe('rendering', () => {
     describe('when authentication request fails', () => {
       beforeEach(() => {
         console.error = jest.fn();
-        render(<Authenticated {...props} />, {
+        renderApp(<Authenticated {...props} />, {
           mocks: [
             {
               request: {
@@ -98,7 +98,7 @@ describe('rendering', () => {
     });
     describe('when authentication request is loading', () => {
       beforeEach(() => {
-        render(<Authenticated {...props} />, {
+        renderApp(<Authenticated {...props} />, {
           mocks: [
             {
               request: {
