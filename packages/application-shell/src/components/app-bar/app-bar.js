@@ -12,6 +12,20 @@ import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/c
 import messages from './messages';
 import styles from './app-bar.mod.css';
 
+export const BackToProjectLink = props => (
+  <Text.Detail>
+    <Link to={`/${props.projectKey}`}>
+      <Spacings.Inline alignItems="center" data-test="back-to-project">
+        <AngleLeftIcon theme="green" size="small" />
+        <FormattedMessage {...messages.backToProjectLink} />
+      </Spacings.Inline>
+    </Link>
+  </Text.Detail>
+);
+BackToProjectLink.displayName = 'BackToProjectLink';
+BackToProjectLink.propTypes = {
+  projectKey: PropTypes.string.isRequired,
+};
 const AppBar = props => {
   const previouslyUsedProjectKey = selectProjectKeyFromLocalStorage();
   return (
@@ -42,45 +56,38 @@ const AppBar = props => {
             <Spacings.Inline alignItems="center">
               {/* This node is used by a react portal */}
               <div id="locale-switcher" />
-              {do {
+              {(() => {
                 if (!props.user) {
-                  <LoadingPlaceholder shape="rect" size="s" />;
+                  return <LoadingPlaceholder shape="rect" size="s" />;
                 }
                 // The `<ProjectSwitcher>` should be rendered only if the
                 // user is fetched and the user has projects while the app runs in an project context.
-                else if (
-                  props.user.projects.total > 0 &&
-                  props.projectKeyFromUrl
-                )
-                  <ProjectSwitcher
-                    // In this case it's not necessary to check if the `projectKey` param
-                    // is included in the list of projects. In such case
-                    // the dropdown will still be rendered but no project will be selected.
-                    // This is fine becase the user has still the possibility to "switch"
-                    // to a project.
+                if (props.user.projects.total > 0 && props.projectKeyFromUrl)
+                  return (
+                    <ProjectSwitcher
+                      // In this case it's not necessary to check if the `projectKey` param
+                      // is included in the list of projects. In such case
+                      // the dropdown will still be rendered but no project will be selected.
+                      // This is fine becase the user has still the possibility to "switch"
+                      // to a project.
+                      projectKey={
+                        props.projectKeyFromUrl ||
+                        previouslyUsedProjectKey ||
+                        props.user.defaultProjectKey
+                      }
+                      total={props.user.projects.total}
+                    />
+                  );
+                if (!props.user.defaultProjectKey) return '';
+
+                return (
+                  <BackToProjectLink
                     projectKey={
-                      props.projectKeyFromUrl ||
-                      previouslyUsedProjectKey ||
-                      props.user.defaultProjectKey
+                      previouslyUsedProjectKey || props.user.defaultProjectKey
                     }
-                    total={props.user.projects.total}
-                  />;
-                else
-                  <Text.Detail>
-                    <Link
-                      to={`/${previouslyUsedProjectKey ||
-                        props.user.defaultProjectKey}`}
-                    >
-                      <Spacings.Inline
-                        alignItems="center"
-                        data-test="back-to-project"
-                      >
-                        <AngleLeftIcon theme="green" size="small" />
-                        <FormattedMessage {...messages.backToProjectLink} />
-                      </Spacings.Inline>
-                    </Link>
-                  </Text.Detail>;
-              }}
+                  />
+                );
+              })()}
             </Spacings.Inline>
           </div>
           <div className={styles.spacer} />
@@ -115,7 +122,7 @@ AppBar.propTypes = {
     projects: PropTypes.shape({
       total: PropTypes.number.isRequired,
     }).isRequired,
-    defaultProjectKey: PropTypes.string.isRequired,
+    defaultProjectKey: PropTypes.string,
   }),
   projectKeyFromUrl: PropTypes.string,
   environment: PropTypes.shape({

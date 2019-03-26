@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { Link } from 'react-router-dom';
 import ProjectSwitcher from '../project-switcher';
 import UserSettingsMenu from '../user-settings-menu';
-import AppBar from './app-bar';
+import AppBar, { BackToProjectLink } from './app-bar';
 
 jest.mock('../../utils');
 
@@ -106,28 +106,72 @@ describe('rendering', () => {
           });
         });
         describe('when user has projects', () => {
+          describe('when url contains a `projectKey`', () => {
+            describe('<ProjectSwitcher>', () => {
+              beforeEach(() => {
+                props = createTestProps({
+                  user: {
+                    ...props.user,
+                    projects: { total: 1 },
+                  },
+                  projectKeyFromUrl: 'test-project-key',
+                });
+                wrapper = shallow(<AppBar {...props} />);
+              });
+              it('should render <ProjectSwitcher>', () => {
+                expect(wrapper).toRender(ProjectSwitcher);
+              });
+              it('should pass projectKey to <ProjectSwitcher>', () => {
+                expect(wrapper.find(ProjectSwitcher)).toHaveProp(
+                  'projectKey',
+                  props.projectKeyFromUrl
+                );
+              });
+              it('should pass total to <ProjectSwitcher>', () => {
+                expect(wrapper.find(ProjectSwitcher)).toHaveProp('total', 1);
+              });
+              it('should not render <BackToProjectLink>', () => {
+                expect(wrapper).not.toRender(BackToProjectLink);
+              });
+            });
+          });
+          describe('when url contains no `projectKey`', () => {
+            describe('<ProjectSwitcher>', () => {
+              beforeEach(() => {
+                props = createTestProps({
+                  user: {
+                    ...props.user,
+                    projects: { total: 1 },
+                  },
+                  projectKeyFromUrl: null,
+                });
+                wrapper = shallow(<AppBar {...props} />);
+              });
+              it('should not render <ProjectSwitcher>', () => {
+                expect(wrapper).not.toRender(ProjectSwitcher);
+              });
+              it('should render <BackToProjectLink>', () => {
+                expect(wrapper).toRender(BackToProjectLink);
+              });
+            });
+          });
+        });
+        describe('when user has not default project', () => {
           describe('<ProjectSwitcher>', () => {
             beforeEach(() => {
               props = createTestProps({
                 user: {
                   ...props.user,
-                  projects: { total: 1 },
+                  defaultProjectKey: null,
                 },
-                projectKeyFromUrl: 'test-project-key',
               });
               wrapper = shallow(<AppBar {...props} />);
             });
-            it('should render <ProjectSwitcher>', () => {
-              expect(wrapper).toRender(ProjectSwitcher);
+            it('should not render <ProjectSwitcher>', () => {
+              expect(wrapper).not.toRender(ProjectSwitcher);
             });
-            it('should pass projectKey to <ProjectSwitcher>', () => {
-              expect(wrapper.find(ProjectSwitcher)).toHaveProp(
-                'projectKey',
-                props.projectKeyFromUrl
-              );
-            });
-            it('should pass total to <ProjectSwitcher>', () => {
-              expect(wrapper.find(ProjectSwitcher)).toHaveProp('total', 1);
+            it('should not render <BackToProjectLink>', () => {
+              expect(wrapper).not.toRender(BackToProjectLink);
             });
           });
         });
