@@ -21,6 +21,9 @@ executors:
       - image: circleci/node:11.10
     working_directory: *working_directory
 
+orbs:
+  cypress: cypress-io/cypress@1
+
 commands:
   install_dependencies:
     description: 'Installing dependencies'
@@ -52,7 +55,17 @@ commands:
   test_playground_e2e:
     description: 'Running E2E tests on playground'
     steps:
-      - run: yarn run server-test playground:start:prod:local 3001 test:e2e:playground
+      - cypress/run:
+          name: 'e2e-playground'
+          yarn: true
+          spec: 'cypress/integration/playground/**/*.js'
+          start: yarn run server-test playground:start:prod:local 3001 test:e2e:playground
+          wait-on: 'http://localhost:3001'
+          requires:
+            - cypress/install
+          store_artifacts: true
+          parallel: false
+          parallelism: 1
   build_starter:
     description: 'Building starter'
     steps:
@@ -60,7 +73,17 @@ commands:
   test_starter_e2e:
     description: 'Running E2E tests on starter'
     steps:
-      - run: yarn run server-test template-starter:start:prod:local 3001 test:e2e:template-starter
+      - cypress/run:
+          name: 'e2e-starter'
+          yarn: true
+          spec: 'cypress/integration/template-starter/**/*.js'
+          start: yarn run server-test template-starter:start:prod:local 3001
+          wait-on: 'http://localhost:3001'
+          requires:
+            - cypress/install
+          store_artifacts: true
+          parallel: false
+          parallelism: 1
   publish_to_canary:
     steps:
       - install_dependencies
