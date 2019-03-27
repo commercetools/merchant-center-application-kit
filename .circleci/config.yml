@@ -105,7 +105,7 @@ workflows:
           requires:
             - lint
 
-  build_and_e2e_test:
+  e2e_test:
     jobs:
       - cypress/install:
           name: cypress/install/e2e_playground
