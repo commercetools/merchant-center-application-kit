@@ -6,7 +6,7 @@ if (!process.env.CI) {
 }
 
 const COMMIT_RANGE = shelljs.exec(
-  `${process.env.CIRCLE_COMPARE_URL} | cut -d/ -f7`
+  `echo ${process.env.CIRCLE_COMPARE_URL} | cut -d/ -f7`
 );
 
 const hasChangesInMatchingFiles = matchingFiles => {

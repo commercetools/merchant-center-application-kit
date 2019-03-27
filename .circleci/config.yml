@@ -16,9 +16,9 @@ aliases:
       - ~/.cache/yarn
 
 executors:
-  node_11:
+  node_10:
     docker:
-      - image: circleci/node:11.10
+      - image: circleci/node:10.15
     working_directory: *working_directory
 
 orbs:
@@ -32,7 +32,7 @@ commands:
       - restore_cache: *restore_yarn_cache
       - run: yarn install --pure-lockfile
       - save_cache: *save_yarn_cache
-  build_artefacts:
+  build_artifacts:
     description: 'Building artefacts'
     steps:
       - run: yarn build
@@ -59,33 +59,38 @@ commands:
   publish_to_canary:
     steps:
       - install_dependencies
-      - build_artefacts
+      - build_artifacts
       - run:
           name: Publishing to npm registry
           command: ./scripts/release_canary.sh
 
 jobs:
   lint:
-    executor: node_11
+    executor: node_10
     steps:
       - install_dependencies
       - lint
   unit_test:
-    executor: node_11
+    executor: node_10
     steps:
       - install_dependencies
       - unit_test
-      - build_artefacts
-      - vrt_test
-  publish:
-    executor: node_11
+  vrt_test:
+    executor: node_10
     steps:
       - install_dependencies
-      - build_artefacts
+      - build_artifacts
+      - vrt_test
+  publish:
+    executor: node_10
+    steps:
+      - install_dependencies
+      - build_artifacts
       - publish_to_canary
 
 workflows:
   version: 2
+
   build_and_test:
     jobs:
       - lint:
@@ -96,11 +101,15 @@ workflows:
       - unit_test:
           requires:
             - lint
+      - vrt_test:
+          requires:
+            - lint
 
   build_and_e2e_test:
     jobs:
       - cypress/install:
           name: cypress/install/e2e_playground
+          yarn: true
           build: yarn playground:build
       - cypress/run:
           name: cypress/run/e2e_playground
@@ -115,6 +124,7 @@ workflows:
           parallelism: 1
       - cypress/install:
           name: cypress/install/e2e_starter
+          yarn: true
           build: yarn template-starter:build
       - cypress/run:
           name: cypress/run/e2e_starter
