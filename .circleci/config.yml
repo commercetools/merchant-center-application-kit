@@ -103,14 +103,13 @@ workflows:
             - lint
       - vrt_test:
           requires:
-            - lint
-
-  e2e_test:
-    jobs:
+            - unit_test
       - cypress/install:
           name: cypress/install/e2e_playground
+          requires:
+            - unit_test
           yarn: true
-          build: yarn playground:build
+          build: yarn playground:build  --ignore-engines
       - cypress/run:
           name: cypress/run/e2e_playground
           requires:
@@ -124,8 +123,10 @@ workflows:
           parallelism: 1
       - cypress/install:
           name: cypress/install/e2e_starter
+          requires:
+            - unit_test
           yarn: true
-          build: yarn template-starter:build
+          build: yarn template-starter:build --ignore-engines
       - cypress/run:
           name: cypress/run/e2e_starter
           requires:
