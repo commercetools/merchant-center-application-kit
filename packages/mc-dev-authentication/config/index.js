@@ -1,0 +1,3 @@
+module.exports = {
+  viewEngine: 'pug',
+};

@@ -6,6 +6,7 @@ const path = require('path');
 const shell = require('shelljs');
 const fetch = require('node-fetch');
 const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-html-template/utils/replace-html-placeholders');
+const startServer = require('../server');
 const options = require('../load-options');
 
 if (process.env.NODE_ENV !== 'production')
@@ -99,10 +100,13 @@ const start = async () => {
   );
 
   // Start the server
-  require('../server');
+  startServer({
+    enableDevAuthentication: Boolean(options.useDevAuthentication),
+    env: options.env,
+  }).catch(error => {
+    console.error(error);
+    process.exit(1);
+  });
 };
 
-start().catch(error => {
-  console.error(error);
-  process.exit(1);
-});
+start();
