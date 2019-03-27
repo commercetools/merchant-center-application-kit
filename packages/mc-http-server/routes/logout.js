@@ -1,3 +1,5 @@
+const devAuthentication = require('@commercetools-frontend/mc-dev-authentication');
+
 /* eslint-disable global-require */
 // If the file is required in "production" mode, we additionally check
 // if the MC_ENV is development or not. The only case where this might
@@ -6,28 +8,22 @@
 const isDev =
   process.env.NODE_ENV !== 'production' || process.env.MC_ENV === 'development';
 
-module.exports = function logout(request, response, next) {
-  if (request.url.startsWith('/logout')) {
-    response.setHeader(
-      'Set-Cookie',
-      [
-        `mcAccessToken=''`, // <-- unset the value
-        'Path=/',
-        `Expires=${new Date(0).toUTCString()}`, // <-- put a date in the past
-        'HttpOnly',
-      ]
-        .concat(
-          isDev
-            ? []
-            : [
-                `Domain=${
-                  require('../load-options').env.frontendHost.split('mc.')[1]
-                }`,
-                'Secure',
-              ]
-        )
-        .join('; ')
-    );
+module.exports = env => (request, response, next) => {
+  devAuthentication.routes.logout(
+    response,
+    isDev
+      ? []
+      : [
+          `Domain=${
+            require('../load-options').env.frontendHost.split('mc.')[1]
+          }`,
+          'Secure',
+        ]
+  );
+
+  if (!env.servedByProxy) {
+    response.render('logout', { env });
+  } else {
+    next();
   }
-  next();
 };
