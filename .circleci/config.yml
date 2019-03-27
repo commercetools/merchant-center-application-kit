@@ -30,7 +30,7 @@ commands:
     steps:
       - checkout
       - restore_cache: *restore_yarn_cache
-      - run: yarn install --pure-lockfile
+      - run: yarn install --pure-lockfile --ignore-engines
       - save_cache: *save_yarn_cache
   build_artifacts:
     description: 'Building artefacts'
@@ -109,7 +109,7 @@ workflows:
           requires:
             - unit_test
           yarn: true
-          build: yarn playground:build  --ignore-engines
+          build: yarn playground:build
       - cypress/run:
           name: run/e2e_playground
           requires:
@@ -126,7 +126,7 @@ workflows:
           requires:
             - unit_test
           yarn: true
-          build: yarn template-starter:build --ignore-engines
+          build: yarn template-starter:build
       - cypress/run:
           name: run/e2e_starter
           requires:
