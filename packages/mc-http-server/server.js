@@ -68,7 +68,7 @@ const serverIndexMiddleware = (request, response) => {
   response.sendFile(path.join(publicFolderPath, 'index.html'));
 };
 
-const startServer = env => {
+const startServer = config => {
   // Configure and start the HTTP server.
   const app = express()
     .disable('x-powered-by')
@@ -84,8 +84,8 @@ const startServer = env => {
     // Request access logs
     .use(morgan('combined', { stream: process.stdout }))
     // Intercept the /logout page and "remove" the auth cookie value
-    .get('logout', createLogoutHandler(env))
-    .get('login', createLoginHandler(env))
+    .get('/logout', createLogoutHandler(config.env))
+    .get('/login', createLoginHandler(config.env))
     // Keep this after the scraping endpoint `/metrics`
     .use(prometheusMetricsMiddleware)
     // From here on, compress all responses
