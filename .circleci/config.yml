@@ -105,15 +105,15 @@ workflows:
           requires:
             - unit_test
       - cypress/install:
-          name: cypress/install/e2e_playground
+          name: install/e2e_playground
           requires:
             - unit_test
           yarn: true
           build: yarn playground:build  --ignore-engines
       - cypress/run:
-          name: cypress/run/e2e_playground
+          name: run/e2e_playground
           requires:
-            - cypress/install/e2e_playground
+            - install/e2e_playground
           yarn: true
           spec: 'cypress/integration/playground/**/*.js'
           start: yarn run server-test playground:start:prod:local 3001 test:e2e:playground
@@ -122,15 +122,15 @@ workflows:
           parallel: false
           parallelism: 1
       - cypress/install:
-          name: cypress/install/e2e_starter
+          name: install/e2e_starter
           requires:
             - unit_test
           yarn: true
           build: yarn template-starter:build --ignore-engines
       - cypress/run:
-          name: cypress/run/e2e_starter
+          name: run/e2e_starter
           requires:
-            - cypress/install/e2e_starter
+            - install/e2e_starter
           yarn: true
           spec: 'cypress/integration/template-starter/**/*.js'
           start: yarn run server-test template-starter:start:prod:local 3001
@@ -140,8 +140,8 @@ workflows:
           parallelism: 1
       - publish:
           requires:
-            - cypress/run/e2e_playground
-            - cypress/run/e2e_starter
+            - run/e2e_playground
+            - run/e2e_starter
           filters:
             branches:
               only:
