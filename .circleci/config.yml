@@ -48,42 +48,14 @@ commands:
     description: 'Running Visual Regression Tests'
     steps:
       - run: yarn run-if:percy
-  build_playgrond:
+  build_playground:
     description: 'Building playground'
     steps:
       - run: yarn playground:build
-  test_playground_e2e:
-    description: 'Running E2E tests on playground'
-    steps:
-      - cypress/run:
-          name: 'e2e-playground'
-          yarn: true
-          spec: 'cypress/integration/playground/**/*.js'
-          start: yarn run server-test playground:start:prod:local 3001 test:e2e:playground
-          wait-on: 'http://localhost:3001'
-          requires:
-            - cypress/install
-          store_artifacts: true
-          parallel: false
-          parallelism: 1
   build_starter:
     description: 'Building starter'
     steps:
       - run: yarn template-starter:build
-  test_starter_e2e:
-    description: 'Running E2E tests on starter'
-    steps:
-      - cypress/run:
-          name: 'e2e-starter'
-          yarn: true
-          spec: 'cypress/integration/template-starter/**/*.js'
-          start: yarn run server-test template-starter:start:prod:local 3001
-          wait-on: 'http://localhost:3001'
-          requires:
-            - cypress/install
-          store_artifacts: true
-          parallel: false
-          parallelism: 1
   publish_to_canary:
     steps:
       - install_dependencies
@@ -98,20 +70,18 @@ jobs:
     steps:
       - install_dependencies
       - lint
-  test:
+  unit_test:
     executor: node_11
     steps:
       - install_dependencies
       - unit_test
       - build_artefacts
       - vrt_test
-      - build_playgrond
-      - test_playground_e2e
-      - build_starter
-      - test_starter_e2e
   publish:
     executor: node_11
     steps:
+      - install_dependencies
+      - build_artefacts
       - publish_to_canary
 
 workflows:
@@ -123,12 +93,44 @@ workflows:
             branches:
               only:
                 - refactor/use-circleci
-      - test:
+      - unit_test:
           requires:
             - lint
+
+  build_and_e2e_test:
+    jobs:
+      - cypress/install:
+          name: cypress/install/e2e_playground
+          build: yarn playground:build
+      - cypress/run:
+          name: cypress/run/e2e_playground
+          requires:
+            - cypress/install/e2e_playground
+          yarn: true
+          spec: 'cypress/integration/playground/**/*.js'
+          start: yarn run server-test playground:start:prod:local 3001 test:e2e:playground
+          wait-on: 'http://localhost:3001'
+          store_artifacts: true
+          parallel: false
+          parallelism: 1
+      - cypress/install:
+          name: cypress/install/e2e_starter
+          build: yarn template-starter:build
+      - cypress/run:
+          name: cypress/run/e2e_starter
+          requires:
+            - cypress/install/e2e_starter
+          yarn: true
+          spec: 'cypress/integration/template-starter/**/*.js'
+          start: yarn run server-test template-starter:start:prod:local 3001
+          wait-on: 'http://localhost:3001'
+          store_artifacts: true
+          parallel: false
+          parallelism: 1
       - publish:
           requires:
-            - test
+            - cypress/run/e2e_playground
+            - cypress/run/e2e_starter
           filters:
             branches:
               only:
