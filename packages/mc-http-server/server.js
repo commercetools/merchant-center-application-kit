@@ -18,13 +18,6 @@ const options = require('./load-options');
 
 const publicFolderPath = path.join(__dirname, 'public');
 
-// Make sure that the `index.html` is available.
-try {
-  fs.accessSync(path.join(publicFolderPath, 'index.html'), fs.F_OK);
-} catch (error) {
-  throw new Error('Missing "index.html" file in "public" folder.');
-}
-
 // Config
 const serverPort = process.env.HTTP_PORT || 3001;
 const serverUri = `http://localhost`;
@@ -67,8 +60,18 @@ const serverIndexMiddleware = (request, response) => {
   // Fall back to index.html
   response.sendFile(path.join(publicFolderPath, 'index.html'));
 };
+const throwIfIndexHtmlIsMissing = () => {
+  // Make sure that the `index.html` is available.
+  try {
+    fs.accessSync(path.join(publicFolderPath, 'index.html'), fs.F_OK);
+  } catch (error) {
+    throw new Error('Missing "index.html" file in "public" folder.');
+  }
+};
 
 const startServer = config => {
+  throwIfIndexHtmlIsMissing();
+
   // Configure and start the HTTP server.
   const app = express()
     .disable('x-powered-by')
