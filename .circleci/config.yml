@@ -32,11 +32,11 @@ commands:
     description: 'Building artefacts'
     steps:
       - run: yarn build
-  unit_lint:
+  lint:
     description: 'Running linters'
     steps:
       - run: yarn run jest --projects jest.eslint.config.js jest.stylelint.config.js --maxWorkers=3 --reporters jest-silent-reporter
-  test:
+  unit_test:
     description: 'Running tests'
     steps:
       - run: yarn run jest --projects jest.test.config.js --maxWorkers=3 --reporters jest-silent-reporter
@@ -75,10 +75,10 @@ jobs:
       - install_dependencies
       - lint
   test:
-    executor: node_8
+    executor: node_11
     steps:
       - install_dependencies
-      - unit_lint
+      - unit_test
       - build_artefacts
       - vrt_test
       - build_playgrond
@@ -102,7 +102,7 @@ workflows:
       - test:
           requires:
             - lint
-      - publish_to_canary:
+      - publish:
           requires:
             - test
           filters:
