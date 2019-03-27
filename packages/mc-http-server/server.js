@@ -107,34 +107,42 @@ const startServer = config => {
   app.set('views', devAuthentication.views);
   app.set('view engine', devAuthentication.config.viewEngine);
 
-  http.createServer(app).listen(serverPort, async error => {
-    if (error) {
-      lightship.signalNotReady();
-      throw error;
-    }
+  const server = http.createServer(app);
 
-    const prometheusMetricsServer = await createPrometheusMetricsServer();
+  return new Promise((resolve, reject) => {
+    server.listen(serverPort, async error => {
+      if (error) {
+        lightship.signalNotReady();
+        reject(error);
+      }
 
-    lightship.registerShutdownHandler(async () => {
-      /**
-       * NOTE: The default k8s grace period is 60 seconds. It is often
-       * recommended to not exceed the grace period given by k8s by half.
-       * 20 seconds is chosen here under the assumption that any outstanging
-       * request just settle by then.
-       */
-      await new Promise(resolve => setTimeout(resolve, 20000));
+      const prometheusMetricsServer = await createPrometheusMetricsServer();
 
-      prometheusMetricsServer.close();
+      lightship.registerShutdownHandler(async () => {
+        /**
+         * NOTE: The default k8s grace period is 60 seconds. It is often
+         * recommended to not exceed the grace period given by k8s by half.
+         * 20 seconds is chosen here under the assumption that any outstanging
+         * request just settle by then.
+         */
+        await new Promise(resolveShutdownDelay =>
+          setTimeout(resolveShutdownDelay, 20000)
+        );
+
+        prometheusMetricsServer.close();
+      });
+
+      lightship.signalReady();
+
+      console.log(
+        `[@commercetools-frontend/mc-http-server] server is listening on ${serverUrl}`
+      );
+      console.log(
+        `[@commercetools-frontend/mc-http-server] Prometheus metrics available on ${serverUri}:7788`
+      );
+
+      resolve();
     });
-
-    lightship.signalReady();
-
-    console.log(
-      `[@commercetools-frontend/mc-http-server] server is listening on ${serverUrl}`
-    );
-    console.log(
-      `[@commercetools-frontend/mc-http-server] Prometheus metrics available on ${serverUri}:7788`
-    );
   });
 };
 

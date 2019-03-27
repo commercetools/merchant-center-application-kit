@@ -100,13 +100,13 @@ const start = async () => {
   );
 
   // Start the server
-  startServer({
-    enableDevAuthentication: Boolean(options.useDevAuthentication),
+  await startServer({
+    enableDevAuthentication: !options.env.servedByProxy,
     env: options.env,
-  }).catch(error => {
-    console.error(error);
-    process.exit(1);
   });
 };
 
-start();
+start().catch(error => {
+  console.error(error);
+  process.exit(1);
+});
