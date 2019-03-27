@@ -1002,10 +1002,10 @@
   dependencies:
     pug "2.0.3"
 
-"@commercetools-frontend/mc-http-server@12.0.1-pre-canary.0+d7bf0a7e":
-  version "12.0.1-pre-canary.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-frontend/mc-http-server/-/mc-http-server-12.0.1-pre-canary.0.tgz#168494ada0c2c6d7d62ab5ddaaab3619595ecd50"
-  integrity sha512-n1lK8bATqKCw4v/3NZEPMtwFsjtHdI/xyfk+sAxaOruoBGzNoR4Ohi6cdFkRbCxSmAraGDG9n60ketxowPSTYQ==
+"@commercetools-frontend/mc-http-server@12.0.1-pre-canary.2+c3905694":
+  version "12.0.1-pre-canary.2"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/mc-http-server/-/mc-http-server-12.0.1-pre-canary.2.tgz#2acb9f96211804085d7bcc7d6d59babdbc4981f4"
+  integrity sha512-SNM4HbqsgMtiIc08sKldhplIEoIzKMW7hpmzxbbFqtD73d9vQgK/vCGUeYhEgj9xCMsQvR4maNXw6q8TiZJ7wg==
   dependencies:
     "@commercetools-frontend/mc-dev-authentication" "12.0.1-pre-canary.0+d7bf0a7e"
     "@commercetools-frontend/mc-html-template" "12.0.0"
