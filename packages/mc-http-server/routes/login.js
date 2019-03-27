@@ -1,6 +1,6 @@
-module.exports = config => (request, response, next) => {
-  if (config.enableDevAuthentication) {
-    response.render('login', { env: config.env });
+module.exports = env => (request, response, next) => {
+  if (!env.servedByProxy) {
+    response.render('login', { env });
   } else {
     next();
   }

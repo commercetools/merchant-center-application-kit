@@ -101,7 +101,6 @@ const start = async () => {
 
   // Start the server
   await startServer({
-    enableDevAuthentication: !options.env.servedByProxy,
     env: options.env,
   });
 };

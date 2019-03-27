@@ -8,7 +8,7 @@ const devAuthentication = require('@commercetools-frontend/mc-dev-authentication
 const isDev =
   process.env.NODE_ENV !== 'production' || process.env.MC_ENV === 'development';
 
-module.exports = config => (request, response, next) => {
+module.exports = env => (request, response, next) => {
   devAuthentication.routes.logout(
     response,
     isDev
@@ -21,8 +21,8 @@ module.exports = config => (request, response, next) => {
         ]
   );
 
-  if (config.enableDevAuthentication) {
-    response.render('logout', { env: config.env });
+  if (!env.servedByProxy) {
+    response.render('logout', { env });
   } else {
     next();
   }
