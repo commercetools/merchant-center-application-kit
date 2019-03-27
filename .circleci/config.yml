@@ -106,6 +106,7 @@ workflows:
             - unit_test
       - cypress/install:
           name: install/e2e_playground
+          executor: node_10
           requires:
             - unit_test
           yarn: true
@@ -114,8 +115,8 @@ workflows:
           name: run/e2e_playground
           requires:
             - install/e2e_playground
-          yarn: true
           spec: 'cypress/integration/playground/**/*.js'
+          yarn: true
           start: yarn run server-test playground:start:prod:local 3001 test:e2e:playground
           wait-on: 'http://localhost:3001'
           store_artifacts: true
@@ -123,6 +124,7 @@ workflows:
           parallelism: 1
       - cypress/install:
           name: install/e2e_starter
+          executor: node_10
           requires:
             - unit_test
           yarn: true
@@ -131,8 +133,8 @@ workflows:
           name: run/e2e_starter
           requires:
             - install/e2e_starter
-          yarn: true
           spec: 'cypress/integration/template-starter/**/*.js'
+          yarn: true
           start: yarn run server-test template-starter:start:prod:local 3001
           wait-on: 'http://localhost:3001'
           store_artifacts: true
