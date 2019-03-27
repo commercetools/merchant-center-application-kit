@@ -1,0 +1,107 @@
+version: 2.1
+
+aliases:
+  - &working_directory ~/merchant-center-application-kit
+
+  - &restore_yarn_cache
+    name: 'Restoring yarn cache'
+    keys:
+      - v1-yarn-cache-{{ checksum "yarn.lock" }}
+      - v1-yarn-cache
+
+  - &save_yarn_cache
+    name: 'Saving yarn cache'
+    key: v1-yarn-cache-{{ checksum "yarn.lock" }}
+    paths:
+      - ~/.cache/yarn
+
+executors:
+  node_11:
+    docker:
+      - image: circleci/node:11.10
+    working_directory: *working_directory
+
+commands:
+  install_dependencies:
+    description: 'Installing dependencies'
+    steps:
+      - checkout
+      - restore_cache: *restore_yarn_cache
+      - run: yarn install --pure-lockfile
+  build_artefacts:
+    description: 'Building artefacts'
+    steps:
+      - run: yarn build
+  unit_lint:
+    description: 'Running linters'
+    steps:
+      - run: yarn run jest --projects jest.eslint.config.js jest.stylelint.config.js --maxWorkers=3 --reporters jest-silent-reporter
+  test:
+    description: 'Running tests'
+    steps:
+      - run: yarn run jest --projects jest.test.config.js --maxWorkers=3 --reporters jest-silent-reporter
+  vrt_test:
+    description: 'Running Visual Regression Tests'
+    steps:
+      - run: yarn run-if:percy
+  build_playgrond:
+    description: 'Building playground'
+    steps:
+      - run: yarn playground:build
+  test_playground_e2e:
+    description: 'Running E2E tests on playground'
+    steps:
+      - run: yarn run server-test playground:start:prod:local 3001 test:e2e:playground
+  build_starter:
+    description: 'Building starter'
+    steps:
+      - run: yarn template-starter:build
+  test_starter_e2e:
+    description: 'Running E2E tests on starter'
+    steps:
+      - run: yarn run server-test template-starter:start:prod:local 3001 test:e2e:template-starter
+  publish_to_canary:
+    steps:
+      - install_dependencies
+      - build_artefacts
+      - run:
+          name: Publishing to npm registry
+          command: ./scripts/release_canary.sh
+
+jobs:
+  lint:
+    executor: node_11
+    steps:
+      - install_dependencies
+      - lint
+  test:
+    executor: node_8
+    steps:
+      - install_dependencies
+      - unit_lint
+      - build_artefacts
+      - vrt_test
+      - build_playgrond
+      - test_playground_e2e
+      - build_starter
+      - test_starter_e2e
+  publish:
+    executor: node_11
+    steps:
+      - publish_to_canary
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - lint
+      - test:
+          requires:
+            - lint
+      - publish_to_canary:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
