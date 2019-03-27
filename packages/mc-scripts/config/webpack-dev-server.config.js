@@ -1,6 +1,7 @@
 const path = require('path');
 const loadEnv = require('@commercetools-frontend/mc-html-template/load-env');
 const loadHeaders = require('@commercetools-frontend/mc-html-template/load-headers');
+const devAuthentication = require('@commercetools-frontend/mc-dev-authentication');
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
 
@@ -85,8 +86,8 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
   public: allowedHost,
   proxy,
   before(app) {
-    app.set('views', path.join(__dirname, 'views'));
-    app.set('view engine', 'pug');
+    app.set('views', devAuthentication.views);
+    app.set('view engine', devAuthentication.config.viewEngine);
     // This lets us open files from the runtime error overlay.
     app.use(errorOverlayMiddleware());
     // This service worker file is effectively a 'no-op' that will reset any
@@ -118,18 +119,8 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
     });
     // Intercept the /logout page and "remove" the auth cookie value
     app.use('/logout', (request, response, next) => {
-      // NOTE: removing the cookie only works if your are running the MC API
-      // locally, otherwise the cookie won't get removed as it's set to a
-      // proper domain (e.g. commercetools.com), which we can't unset from localhost.
-      response.setHeader(
-        'Set-Cookie',
-        [
-          `mcAccessToken=''`, // <-- unset the value
-          'Path=/',
-          `Expires=${new Date(0).toUTCString()}`, // <-- put a date in the past
-          'HttpOnly',
-        ].join('; ')
-      );
+      devAuthentication.routes.logout(response);
+
       if (localEnv.disableAuthRoutesOfDevServer) {
         next();
       } else {

@@ -10,9 +10,9 @@ if (flags.help) {
   Usage: mc-http-server [options]
 
   Options:
-  --config=<path>        (required) The path to the environment config (defined as a JSON file, e.g. "env.json").
-  --csp=<path>           (optional) The path to the custom CSP directives config (defined as a JSON file, e.g. "csp.json").
-  --use-local-assets     (optional) If this option is enabled, the "dist/assets" will be used to start the http-server package. This requires that the assets have been built before running this script.
+  --config=<path>           (required) The path to the environment config (defined as a JSON file, e.g. "env.json").
+  --csp=<path>              (optional) The path to the custom CSP directives config (defined as a JSON file, e.g. "csp.json").
+  --use-local-assets        (optional) If this option is enabled, the "dist/assets" will be used to start the http-server package. This requires that the assets have been built before running this script.
   `);
 }
 if (!flags.config) {
