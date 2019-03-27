@@ -25,7 +25,7 @@
     "@babel/core": "7.4.0",
     "@commercetools-frontend/babel-preset-mc-app": "12.0.0",
     "@commercetools-frontend/mc-html-template": "12.2.0",
-    "@commercetools-frontend/mc-dev-authentication": "1.0.0",
+    "@commercetools-frontend/mc-dev-authentication": "12.0.1-pre-canary.0+d7bf0a7e",
     "@svgr/webpack": "4.1.0",
     "babel-loader": "8.0.5",
     "babel-plugin-react-intl": "3.0.1",
