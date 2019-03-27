@@ -11,6 +11,8 @@ const {
 const {
   packageLocation: assetsPath,
 } = require('@commercetools-frontend/assets');
+const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-html-template/utils/replace-html-placeholders');
+const startServer = require('../server');
 const options = require('../load-options');
 
 if (process.env.NODE_ENV !== 'production')
@@ -104,7 +106,9 @@ const start = async () => {
   );
 
   // Start the server
-  require('../server');
+  await startServer({
+    env: options.env,
+  });
 };
 
 start().catch(error => {
