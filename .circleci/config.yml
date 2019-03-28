@@ -20,9 +20,12 @@ executors:
     docker:
       - image: circleci/node:10.15
     working_directory: *working_directory
-
-orbs:
-  cypress: cypress-io/cypress@1
+  cypress:
+    working_directory: *working_directory
+    docker:
+      - image: 'cypress/base:10'
+        environment:
+          TERM: xterm
 
 commands:
   install_dependencies:
@@ -41,12 +44,7 @@ commands:
       - persist_to_workspace:
           root: *working_directory
           paths:
-            - packages
-      # Persisting the packages for Cypress which attaches at `~/` which is not configurable.
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - merchant-center-application-kit/packages
+            - packages/**/dist
   restore_workspace:
     steps:
       - attach_workspace:
@@ -100,8 +98,70 @@ jobs:
   vrt_test:
     executor: node_10
     steps:
+      - install_dependencies
       - restore_workspace
       - vrt_test
+  e2e_test:
+    executor: cypress
+    parameters:
+      record:
+        type: boolean
+        default: false
+      parallel:
+        type: boolean
+        default: false
+      parallelism:
+        type: integer
+        default: 1
+      start:
+        type: string
+        default: ''
+      build:
+        type: string
+        default: ''
+      wait-on:
+        type: string
+        default: ''
+      spec:
+        type: string
+        default: ''
+      group:
+        type: string
+        default: ''
+      store_artifacts:
+        type: boolean
+        default: false
+    steps:
+      - install_dependencies
+      - restore_workspace
+      - when:
+          condition: <<parameters.build>>
+          steps:
+            - run:
+                name: Building
+                command: <<parameters.build>>
+      - when:
+          condition: <<parameters.start>>
+          steps:
+            - run:
+                name: Starting
+                command: <<parameters.start>>
+                background: true
+      - when:
+          condition: <<parameters.wait-on>>
+          steps:
+            - run:
+                name: Waiting on <<parameters.wait-on>>
+                command: npx wait-on <<parameters.wait-on>>
+      - run:
+          name: Run Cypress tests
+          command: |
+            npx cypress run \
+              <<# parameters.spec>> --spec '<<parameters.spec>>' <</ parameters.spec>> \
+              <<# parameters.record >> --record \
+                <<# parameters.group>> --group '<<parameters.group>>' <</ parameters.group>> \
+                <<# parameters.parallel>> --parallel <</ parameters.parallel>> \
+              <</ parameters.record>>
   publish:
     executor: node_10
     steps:
@@ -122,50 +182,31 @@ workflows:
           requires:
             - unit_test
             - lint
-      - cypress/install:
-          name: install/e2e_playground
+      - vrt_test:
           requires:
             - build
-          yarn: true
-          build: yarn playground:build
-      - cypress/run:
-          name: run/e2e_playground
+      - e2e_test:
+          name: e2e_playground
           requires:
-            - install/e2e_playground
+            - build
           spec: 'cypress/integration/playground/**/*.js'
-          yarn: true
+          build: yarn playground:build
           start: yarn playground:start:prod:local
           wait-on: 'http://localhost:3001'
           store_artifacts: true
-          # Parallel is needed as otherwise Cypress will not attach the workspace
-          parallel: true
-          parallelism: 1
-      - cypress/install:
-          name: install/e2e_starter
+      - e2e_test:
+          name: e2e_starter
           requires:
             - build
-          yarn: true
-          build: yarn template-starter:build
-      - vrt_test:
-          requires:
-            - install/e2e_playground
-            - install/e2e_starter
-      - cypress/run:
-          name: run/e2e_starter
-          requires:
-            - install/e2e_starter
           spec: 'cypress/integration/template-starter/**/*.js'
-          yarn: true
+          build: yarn template-starter:build
           start: yarn template-starter:start:prod:local
           wait-on: 'http://localhost:3001'
           store_artifacts: true
-          # Parallel is needed as otherwise Cypress will not attach the workspace
-          parallel: true
-          parallelism: 1
       - publish:
           requires:
-            - run/e2e_playground
-            - run/e2e_starter
+            - e2e_playground
+            - e2e_starter
           filters:
             branches:
               only:
