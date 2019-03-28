@@ -10,9 +10,14 @@ COMMIT_MESSAGE=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
 # Only trigger the canary release when:
 # - the commit message does not contain `[skip publish]`
 if [[ ! "$COMMIT_MESSAGE" =~ \[skip\ publish\] ]]; then
+  echo "Current directory"
+  echo $PWD
+
+  echo "Current tree"
+  tree -L 3 -I "node_modules"
+
   echo "Configuring npm for automation bot"
 
-  touch $CIRCLE_WORKING_DIRECTORY/.npmrc
   cat > $CIRCLE_WORKING_DIRECTORY/.npmrc << EOF
 email=npmjs@commercetools.com
 //registry.npmjs.org/:_authToken=$NPM_TOKEN
