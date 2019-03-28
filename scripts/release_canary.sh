@@ -12,8 +12,8 @@ COMMIT_MESSAGE=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
 if [[ ! "$COMMIT_MESSAGE" =~ \[skip\ publish\] ]]; then
   echo "Configuring npm for automation bot"
 
-  touch ~/$CIRCLE_WORKING_DIRECTORY/.npmrc
-  cat > ~/$CIRCLE_WORKING_DIRECTORY/.npmrc << EOF
+  touch $CIRCLE_WORKING_DIRECTORY/.npmrc
+  cat > $CIRCLE_WORKING_DIRECTORY/.npmrc << EOF
 email=npmjs@commercetools.com
 //registry.npmjs.org/:_authToken=$NPM_TOKEN
 EOF
