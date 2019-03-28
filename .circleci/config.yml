@@ -186,6 +186,7 @@ jobs:
     executor: node_10
     steps:
       - checkout
+      - install_dependencies
       - restore_workspace
       - publish_to_canary
 
