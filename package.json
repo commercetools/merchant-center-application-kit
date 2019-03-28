@@ -19,7 +19,6 @@
     "start": "yarn playground:start",
     "prerelease": "npm run build",
     "release": "lerna publish --exact --dist-tag next",
-    "prerelease:canary": "npm run build",
     "release:canary": "lerna publish --exact --dist-tag canary --canary --preid canary --yes",
     "release:from-next-to-latest": "lerna exec --no-bail --no-private --no-sort --stream -- '[ -n \"$(npm v . dist-tags.next)\" ] && npm dist-tag add ${LERNA_PACKAGE_NAME}@$(npm v . dist-tags.next) latest'",
     "test": "jest --config jest.test.config.js",
