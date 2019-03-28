@@ -30,7 +30,7 @@ commands:
     steps:
       - checkout
       - restore_cache: *restore_yarn_cache
-      - run: yarn install --pure-lockfile --ignore-engines
+      - run: yarn install --pure-lockfile
       - save_cache: *save_yarn_cache
   build_artifacts:
     description: 'Building artefacts'
