@@ -98,16 +98,15 @@ workflows:
             branches:
               only:
                 - refactor/use-circleci
-      - unit_test:
-          requires:
-            - lint
+      - unit_test
       - vrt_test:
           requires:
+            - lint
             - unit_test
       - cypress/install:
           name: install/e2e_playground
-          executor: node_10
           requires:
+            - lint
             - unit_test
           yarn: true
           build: yarn playground:build
@@ -124,8 +123,8 @@ workflows:
           parallelism: 1
       - cypress/install:
           name: install/e2e_starter
-          executor: node_10
           requires:
+            - lint
             - unit_test
           yarn: true
           build: yarn template-starter:build
