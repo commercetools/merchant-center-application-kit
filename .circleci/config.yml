@@ -33,7 +33,7 @@ commands:
       - run: yarn install --pure-lockfile
       - save_cache: *save_yarn_cache
   build_artifacts:
-    description: 'Building artefacts'
+    description: 'Building artifacts'
     steps:
       - run: yarn build
   lint:
