@@ -33,7 +33,7 @@ const hasChangesInMatchingFiles = matchingFiles => {
 };
 
 const shouldSkipPercy = () => {
-  const isPullRequest = !process.env.CIRCLE_PULL_REQUEST;
+  const isPullRequest = Boolean(process.env.CIRCLE_PULL_REQUEST);
   const ignoredBranches = [/^renovate\//];
 
   if (isPullRequest) {
