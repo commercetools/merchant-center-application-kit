@@ -188,6 +188,7 @@ jobs:
   publish:
     executor: node_10
     steps:
+      - checkout
       - restore_workspace
       - publish_to_canary
 
