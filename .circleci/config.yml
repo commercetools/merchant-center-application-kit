@@ -133,7 +133,7 @@ workflows:
             - install/e2e_playground
           spec: 'cypress/integration/playground/**/*.js'
           yarn: true
-          start: yarn run server-test playground:start:prod:local 3001
+          start: yarn playground:start:prod:local
           wait-on: 'http://localhost:3001'
           store_artifacts: true
           # Parallel is needed as otherwise Cypress will not attach the workspace
@@ -157,7 +157,7 @@ workflows:
             - install/e2e_starter
           spec: 'cypress/integration/template-starter/**/*.js'
           yarn: true
-          start: yarn run server-test template-starter:start:prod:local 3001
+          start: yarn template-starter:start:prod:local
           wait-on: 'http://localhost:3001'
           store_artifacts: true
           # Parallel is needed as otherwise Cypress will not attach the workspace
