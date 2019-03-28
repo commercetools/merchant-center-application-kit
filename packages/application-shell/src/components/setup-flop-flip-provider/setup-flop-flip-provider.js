@@ -26,6 +26,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
     defaultFlags: PropTypes.object,
     appEnv: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
+    shouldDeferAdapterConfiguration: PropTypes.bool,
   };
 
   createLaunchdarklyAdapterArgs = defaultMemoize(
@@ -68,7 +69,11 @@ export class SetupFlopFlipProvider extends React.PureComponent {
           this.props.user && this.props.user.launchdarklyTrackingTenant
         )}
         defaultFlags={this.props.defaultFlags}
-        shouldDeferAdapterConfiguration={!this.props.user}
+        shouldDeferAdapterConfiguration={
+          typeof this.props.shouldDeferAdapterConfiguration === 'boolean'
+            ? this.props.shouldDeferAdapterConfiguration
+            : !this.props.user
+        }
       >
         {this.props.children}
       </ConfigureFlopFlip>

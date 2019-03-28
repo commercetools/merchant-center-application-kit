@@ -111,24 +111,52 @@ describe('rendering', () => {
       })
     );
   });
-  describe('when user is not defined', () => {
-    beforeEach(() => {
-      props = createTestProps({ user: null });
-      wrapper = shallow(<SetupFlopFlipProvider {...props} />);
+  describe('when shouldDeferAdapterConfiguration is defined', () => {
+    describe('when its true', () => {
+      beforeEach(() => {
+        props = createTestProps({ shouldDeferAdapterConfiguration: true });
+        wrapper = shallow(<SetupFlopFlipProvider {...props} />);
+      });
+      it('should set "shouldDeferAdapterConfiguration" to true', () => {
+        expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(
+          'shouldDeferAdapterConfiguration',
+          true
+        );
+      });
     });
-    it('should set "shouldDeferAdapterConfiguration" to true', () => {
-      expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(
-        'shouldDeferAdapterConfiguration',
-        true
-      );
+    describe('when its false', () => {
+      beforeEach(() => {
+        props = createTestProps({ shouldDeferAdapterConfiguration: false });
+        wrapper = shallow(<SetupFlopFlipProvider {...props} />);
+      });
+      it('should set "shouldDeferAdapterConfiguration" to false', () => {
+        expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(
+          'shouldDeferAdapterConfiguration',
+          false
+        );
+      });
     });
   });
-  describe('when user is defined', () => {
-    it('should set "shouldDeferAdapterConfiguration" to false', () => {
-      expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(
-        'shouldDeferAdapterConfiguration',
-        false
-      );
+  describe('when shouldDeferAdapterConfiguration is not defined', () => {
+    describe('when user is not defined', () => {
+      beforeEach(() => {
+        props = createTestProps({ user: null });
+        wrapper = shallow(<SetupFlopFlipProvider {...props} />);
+      });
+      it('should set "shouldDeferAdapterConfiguration" to true', () => {
+        expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(
+          'shouldDeferAdapterConfiguration',
+          true
+        );
+      });
+    });
+    describe('when user is defined', () => {
+      it('should set "shouldDeferAdapterConfiguration" to false', () => {
+        expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(
+          'shouldDeferAdapterConfiguration',
+          false
+        );
+      });
     });
   });
   describe('when env is production', () => {
