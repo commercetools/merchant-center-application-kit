@@ -100,8 +100,8 @@ jobs:
   publish:
     executor: node_10
     steps:
+      - open_workspace
       - install_dependencies
-      - build_artifacts
       - publish_to_canary
 
 workflows:
@@ -124,7 +124,9 @@ workflows:
           requires:
             - build
           yarn: true
-          build: yarn playground:build
+          # Building again is needed as Cypress writes/attaches to `~/`
+          # which is not configurable and we can not use as a root.
+          build: yarn build && yarn playground:build
       - cypress/run:
           name: run/e2e_playground
           requires:
@@ -134,14 +136,17 @@ workflows:
           start: yarn run server-test playground:start:prod:local 3001
           wait-on: 'http://localhost:3001'
           store_artifacts: true
-          parallel: false
+          # Parallel is needed as otherwise Cypress will not attach the workspace
+          parallel: true
           parallelism: 1
       - cypress/install:
           name: install/e2e_starter
           requires:
             - build
           yarn: true
-          build: yarn template-starter:build
+          # Building again is needed as Cypress writes/attaches to `~/`
+          # which is not configurable and we can not use as a root.
+          build: yarn build && yarn template-starter:build
       - vrt_test:
           requires:
             - install/e2e_playground
@@ -155,7 +160,8 @@ workflows:
           start: yarn run server-test template-starter:start:prod:local 3001
           wait-on: 'http://localhost:3001'
           store_artifacts: true
-          parallel: false
+          # Parallel is needed as otherwise Cypress will not attach the workspace
+          parallel: true
           parallelism: 1
       - publish:
           requires:
