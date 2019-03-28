@@ -5,8 +5,14 @@ if (!process.env.CI) {
   throw new Error(`This script is meant to be executed only on CI`);
 }
 
-const COMMIT_RANGE = shelljs.exec(
-  `echo ${process.env.CIRCLE_COMPARE_URL} | cut -d/ -f7`
+const COMPARE_URL = shelljs.exec(
+  `cat ${process.env.CIRCLE_WORKING_DIRECTORY}/CIRCLE_COMPARE_URL.txt`
+);
+const partsOfCompareUrl = COMPARE_URL.split('/');
+const COMMIT_RANGE = COMPARE_URL.split('/')[partsOfCompareUrl.length - 1];
+
+console.warn(
+  `\nCircleCI orb has compare url: ${COMPARE_URL} and constructed commit range of: ${COMMIT_RANGE}.\n`
 );
 
 const hasChangesInMatchingFiles = matchingFiles => {
