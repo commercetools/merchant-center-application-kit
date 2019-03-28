@@ -36,6 +36,21 @@ commands:
     description: 'Building artifacts'
     steps:
       - run: yarn build
+  save_workspace:
+    steps:
+      - persist_to_workspace:
+          root: *working_directory
+          paths:
+            - packages
+      # Persisting the packages for Cypress which attaches at `~/` which is not configurable.
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - merchant-center-application-kit/packages
+  restore_workspace:
+    steps:
+      - attach_workspace:
+          at: *working_directory
   lint:
     description: 'Running linters'
     steps:
@@ -48,6 +63,10 @@ commands:
     description: 'Running Visual Regression Tests'
     steps:
       - run: yarn run-if:percy
+  build_packages:
+    steps:
+      - build_artifacts
+      - save_workspace
   build_playground:
     description: 'Building playground'
     steps:
@@ -58,8 +77,6 @@ commands:
       - run: yarn template-starter:build
   publish_to_canary:
     steps:
-      - install_dependencies
-      - build_artifacts
       - run:
           name: Publishing to npm registry
           command: ./scripts/release_canary.sh
@@ -79,23 +96,20 @@ jobs:
     executor: node_10
     steps:
       - install_dependencies
-      - build_artifacts
+      - build_packages
   vrt_test:
     executor: node_10
     steps:
-      - install_dependencies
-      - build_artifacts
+      - restore_workspace
       - vrt_test
   publish:
     executor: node_10
     steps:
-      - install_dependencies
-      - build_artifacts
+      - restore_workspace
       - publish_to_canary
 
 workflows:
   version: 2
-
   build_and_test:
     jobs:
       - lint:
@@ -113,9 +127,7 @@ workflows:
           requires:
             - build
           yarn: true
-          # Building again is needed as Cypress writes/attaches to `~/`
-          # which is not configurable and we can not use as a root.
-          build: yarn build && yarn playground:build
+          build: yarn playground:build
       - cypress/run:
           name: run/e2e_playground
           requires:
@@ -133,9 +145,7 @@ workflows:
           requires:
             - build
           yarn: true
-          # Building again is needed as Cypress writes/attaches to `~/`
-          # which is not configurable and we can not use as a root.
-          build: yarn build && yarn template-starter:build
+          build: yarn template-starter:build
       - vrt_test:
           requires:
             - install/e2e_playground
