@@ -34,9 +34,10 @@ const hasChangesInMatchingFiles = matchingFiles => {
 
 const shouldSkipPercy = () => {
   const isPullRequest = !process.env.CIRCLE_PULL_REQUEST;
+  const ignoredBranches = [/^renovate\//];
 
   if (isPullRequest) {
-    const isIgnoredBranch = [/^renovate\//].some(regex =>
+    const isIgnoredBranch = ignoredBranches.some(regex =>
       regex.test(process.env.CIRCLE_BRANCH)
     );
     return isIgnoredBranch;
