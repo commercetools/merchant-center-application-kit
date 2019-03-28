@@ -4,7 +4,7 @@ set -e
 
 : "${NPM_TOKEN?Required env variable NPM_TOKEN}"
 
-COMMIT_MESSAGE=$(git log --format=oneline -n 1 $CIRCLE_SHA1))
+COMMIT_MESSAGE=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
 
 # Only trigger the canary release when:
 # - the commit message does not contain `[skip publish]`
