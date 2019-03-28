@@ -3,7 +3,7 @@
   <i>✨ Monorepository with tools and components for developing Merchant Center Applications 🛠</i>
 </p>
 <p align="center">
-  <a href="https://travis-ci.org/commercetools/merchant-center-application-kit"><img src="https://badgen.net/github/status/commercetools/merchant-center-application-kit" alt="CI status" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/releases"><img src="https://badgen.net/github/release/commercetools/merchant-center-application-kit" alt="Latest release" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/master/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
+  <a href="https://circleci.com/gh/commercetools/merchant-center-application-kit"><img src="https://circleci.com/gh/commercetools/merchant-center-application-kit.svg?style=shield&circle-token=2c30a67460ed10ad965404b648940c774b3b34a3" alt="CI status" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/releases"><img src="https://badgen.net/github/release/commercetools/merchant-center-application-kit" alt="Latest release" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/master/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
 </p>
 
 > To help you developing Merchant Center Applications, be sure to check out our [ui-kit](https://github.com/commercetools/ui-kit) components library.

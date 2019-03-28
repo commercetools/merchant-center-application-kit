@@ -5,40 +5,46 @@ if (!process.env.CI) {
   throw new Error(`This script is meant to be executed only on CI`);
 }
 
+const COMPARE_URL = shelljs.exec(
+  `cat ${process.env.CIRCLE_WORKING_DIRECTORY}/CIRCLE_COMPARE_URL.txt`
+);
+const partsOfCompareUrl = COMPARE_URL.split('/');
+const COMMIT_RANGE = COMPARE_URL.split('/')[partsOfCompareUrl.length - 1];
+
+console.warn(
+  `\nCircleCI orb has compare url: ${COMPARE_URL} and constructed commit range of: ${COMMIT_RANGE}.\n`
+);
+
 const hasChangesInMatchingFiles = matchingFiles => {
   const isCommitRangeValidResult = shelljs.exec(
-    `git diff --name-only "${process.env.TRAVIS_COMMIT_RANGE}"`
+    `git diff --name-only "${COMMIT_RANGE}"`
   );
   if (isCommitRangeValidResult.code > 0) {
     console.warn(
-      `TravisCI has an invalid commit range ("${
-        process.env.TRAVIS_COMMIT_RANGE
-      }"), probably due to a new PR or a force push (rebase), falling back to single commit...`
+      `CircleCI has an invalid commit range ("${COMMIT_RANGE}"), probably due to a new PR or a force push (rebase), falling back to single commit...`
     );
 
     const isMatchingFilesForSingleCommit = shelljs.exec(
       `git diff-tree --no-commit-id --name-only -r "${
-        process.env.TRAVIS_COMMIT
+        process.env.CIRCLE_SHA1
       }" | grep --quiet -E "${matchingFiles}"`
     );
     return isMatchingFilesForSingleCommit.code === 0;
   }
 
   const isMatchingFilesForCommitRange = shelljs.exec(
-    `git diff --no-commit-id --name-only -r "${
-      process.env.TRAVIS_COMMIT_RANGE
-    }" | grep --quiet -E "${matchingFiles}"`
+    `git diff --no-commit-id --name-only -r "${COMMIT_RANGE}" | grep --quiet -E "${matchingFiles}"`
   );
   return isMatchingFilesForCommitRange.code === 0;
 };
 
 const shouldSkipPercy = () => {
-  const isPullRequest = process.env.TRAVIS_PULL_REQUEST !== 'false';
-  const isTargetBranchMaster = process.env.TRAVIS_BRANCH === 'master';
+  const isPullRequest = Boolean(process.env.CIRCLE_PULL_REQUEST);
+  const ignoredBranches = [/^renovate\//];
 
-  if (isPullRequest || isTargetBranchMaster) {
-    const isIgnoredBranch = [/^renovate\//].some(regex =>
-      regex.test(process.env.TRAVIS_PULL_REQUEST_BRANCH)
+  if (isPullRequest) {
+    const isIgnoredBranch = ignoredBranches.some(regex =>
+      regex.test(process.env.CIRCLE_BRANCH)
     );
     return isIgnoredBranch;
   }
