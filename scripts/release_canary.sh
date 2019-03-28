@@ -3,6 +3,7 @@
 set -e
 
 : "${NPM_TOKEN?Required env variable NPM_TOKEN}"
+: "${CIRCLE_WORKING_DIRECTORY?Required env variable CIRCLE_WORKING_DIRECTORY}"
 
 COMMIT_MESSAGE=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
 
@@ -10,7 +11,7 @@ COMMIT_MESSAGE=$(git log --format=oneline -n 1 $CIRCLE_SHA1)
 # - the commit message does not contain `[skip publish]`
 if [[ ! "$COMMIT_MESSAGE" =~ \[skip\ publish\] ]]; then
   echo "Configuring npm for automation bot"
-  cat > ~/.npmrc << EOF
+  cat > ~/$CIRCLE_WORKING_DIRECTORY/.npmrc << EOF
 email=npmjs@commercetools.com
 //registry.npmjs.org/:_authToken=$NPM_TOKEN
 EOF
@@ -22,5 +23,5 @@ EOF
   yarn release:canary
 
 else
-  echo "Not on master branch, skipping release"
+  echo "Skipping release due to commit message..."
 fi
