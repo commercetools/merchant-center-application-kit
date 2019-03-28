@@ -172,11 +172,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - lint:
-          filters:
-            branches:
-              only:
-                - refactor/use-circleci
+      - lint
       - unit_test
       - build:
           requires:
