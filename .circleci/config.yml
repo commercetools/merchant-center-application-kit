@@ -32,6 +32,16 @@ commands:
       - restore_cache: *restore_yarn_cache
       - run: yarn install --pure-lockfile
       - save_cache: *save_yarn_cache
+  write_workspace:
+    steps:
+      - persist_to_workspace:
+          root: *working_directory
+          paths:
+            - packages
+  open_workspace:
+    steps:
+      - attach_workspace:
+          at: *working_directory
   build_artifacts:
     description: 'Building artefacts'
     steps:
@@ -75,11 +85,17 @@ jobs:
     steps:
       - install_dependencies
       - unit_test
-  vrt_test:
+  build:
     executor: node_10
     steps:
       - install_dependencies
       - build_artifacts
+      - write_workspace
+  vrt_test:
+    executor: node_10
+    steps:
+      - open_workspace
+      - install_dependencies
       - vrt_test
   publish:
     executor: node_10
@@ -99,15 +115,14 @@ workflows:
               only:
                 - refactor/use-circleci
       - unit_test
-      - vrt_test:
+      - build:
           requires:
-            - lint
             - unit_test
+            - lint
       - cypress/install:
           name: install/e2e_playground
           requires:
-            - lint
-            - unit_test
+            - build
           yarn: true
           build: yarn playground:build
       - cypress/run:
@@ -116,7 +131,7 @@ workflows:
             - install/e2e_playground
           spec: 'cypress/integration/playground/**/*.js'
           yarn: true
-          start: yarn run server-test playground:start:prod:local 3001 test:e2e:playground
+          start: yarn run server-test playground:start:prod:local 3001
           wait-on: 'http://localhost:3001'
           store_artifacts: true
           parallel: false
@@ -124,10 +139,13 @@ workflows:
       - cypress/install:
           name: install/e2e_starter
           requires:
-            - lint
-            - unit_test
+            - build
           yarn: true
           build: yarn template-starter:build
+      - vrt_test:
+          requires:
+            - install/e2e_playground
+            - install/e2e_starter
       - cypress/run:
           name: run/e2e_starter
           requires:
