@@ -32,16 +32,6 @@ commands:
       - restore_cache: *restore_yarn_cache
       - run: yarn install --pure-lockfile
       - save_cache: *save_yarn_cache
-  write_workspace:
-    steps:
-      - persist_to_workspace:
-          root: *working_directory
-          paths:
-            - packages
-  open_workspace:
-    steps:
-      - attach_workspace:
-          at: *working_directory
   build_artifacts:
     description: 'Building artefacts'
     steps:
@@ -90,18 +80,17 @@ jobs:
     steps:
       - install_dependencies
       - build_artifacts
-      - write_workspace
   vrt_test:
     executor: node_10
     steps:
-      - open_workspace
       - install_dependencies
+      - build_artifacts
       - vrt_test
   publish:
     executor: node_10
     steps:
-      - open_workspace
       - install_dependencies
+      - build_artifacts
       - publish_to_canary
 
 workflows:
