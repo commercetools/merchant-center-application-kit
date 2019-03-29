@@ -1,8 +1,6 @@
 /**
  * THIS IS THE MODULE ENTRY POINT!
  */
-import './public-path';
-
 export { default as ApplicationShell } from './components/application-shell';
 export {
   default as ApplicationShellProvider,
