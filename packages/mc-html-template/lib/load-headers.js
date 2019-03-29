@@ -141,6 +141,7 @@ module.exports = (env, options) => {
     'X-Frame-Options': 'DENY',
     'Content-Security-Policy': cspHeaderString,
   };
+  // Memoize the headers for faster reads
   loadedHeaders = headers;
   return loadedHeaders;
 };

@@ -117,7 +117,9 @@ module.exports = ({
       new HtmlWebpackPlugin({
         inject: false,
         filename: path.join(distPath, 'assets/index.html'),
-        template: require.resolve('@commercetools-frontend/mc-html-template'),
+        template: require.resolve(
+          '@commercetools-frontend/mc-html-template/webpack'
+        ),
       }),
     toggleFlags.generateIndexHtml &&
       (() => {

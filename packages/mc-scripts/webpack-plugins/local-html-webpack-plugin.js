@@ -1,7 +1,9 @@
 /* eslint-disable class-methods-use-this,no-param-reassign,prefer-object-spread/prefer-object-spread */
 const path = require('path');
-const loadEnv = require('@commercetools-frontend/mc-html-template/load-env');
-const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-html-template/utils/replace-html-placeholders');
+const {
+  loadEnv,
+  replaceHtmlPlaceholders,
+} = require('@commercetools-frontend/mc-html-template');
 
 const sourcePath = process.cwd();
 const localEnv = loadEnv(path.join(sourcePath, 'env.json'));

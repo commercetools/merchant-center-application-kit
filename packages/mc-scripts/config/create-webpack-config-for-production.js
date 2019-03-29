@@ -166,7 +166,9 @@ module.exports = ({
         new HtmlWebpackPlugin({
           inject: false,
           filename: 'index.html.template',
-          template: require.resolve('@commercetools-frontend/mc-html-template'),
+          template: require.resolve(
+            '@commercetools-frontend/mc-html-template/webpack'
+          ),
         }),
       mergedToggleFlags.enableExtractCss && // Extracts CSS into one CSS file to mimic CSS order in dev
         new MiniCssExtractPlugin({

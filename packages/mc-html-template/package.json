@@ -18,6 +18,8 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
   "dependencies": {
     "serialize-javascript": "1.6.1",
     "uglify-es": "3.3.9",

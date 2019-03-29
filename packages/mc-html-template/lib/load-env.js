@@ -20,8 +20,8 @@ module.exports = configPath => {
     'cdnUrl',
   ];
   requiredKeys.forEach(key => {
-    const value = config[key];
-    if (!value)
+    const hasKey = Object.prototype.hasOwnProperty.call(config, key);
+    if (!hasKey)
       throw new Error(
         `Missing '${key}' required configuration field. ${rawConfig}`
       );
