@@ -22,7 +22,7 @@
     "mc-http-server": "./bin/start-mc.js"
   },
   "dependencies": {
-    "@commercetools-frontend/mc-dev-authentication": "12.0.1-pre-canary.0+d7bf0a7e",
+    "@commercetools-frontend/mc-dev-authentication": "12.0.1-pre-canary.28",
     "@commercetools-frontend/mc-html-template": "12.0.0",
     "@promster/express": "2.1.0",
     "@promster/server": "2.0.5",
