@@ -1395,12 +1395,13 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.2.tgz#63985d3d8b02530e0869962f4da09142ee8e200e"
   integrity sha512-n/VQ4mbfr81aqkx/XmVicOLjviMuy02eenSdJY33SVA7S2J42EU0P1H0mOogfYedb3wXA0d/LVtBrgTSm04WEA==
 
-"@flopflip/launchdarkly-adapter@2.4.10":
-  version "2.4.10"
-  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.4.10.tgz#1130fd9bc006bf61b8e050da8d1acb93c5998ffb"
-  integrity sha512-HOq7yZh3wkVD4a8CARrX7ASTc5EEGJWZTMGHgM1ga8PhgYvNXcBsNOK+nu9MbJYkEn9wlRCKsIh8xoVmzeYZag==
+"@flopflip/launchdarkly-adapter@2.4.11":
+  version "2.4.11"
+  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.4.11.tgz#7adb503e6c16ad80fe5825ce1e9a4d09134c4c3c"
+  integrity sha512-qjV8yN0vUCa5fd4MctgI1/msHwWo6WG37mYiForxDfFngIAT25iIrPNStcwBE+/QogH+EBxTSSnFJzUQkPwiYQ==
   dependencies:
     "@babel/runtime" "7.4.2"
+    deepmerge "3.2.0"
     ldclient-js "2.9.5"
     lodash "4.17.11"
     tiny-warning "1.0.2"
