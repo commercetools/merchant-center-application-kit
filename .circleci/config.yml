@@ -68,11 +68,11 @@ commands:
     description: 'Running Visual Regression Tests'
     steps:
       - run:
-          name: apt-get update
+          name: Updating (apt-get update)
           working_directory: *working_directory
           command: sudo apt-get update -y
       - run:
-          name: apt-get upgrade
+          name: Upgrading (apt-get upgrade)
           working_directory: *working_directory
           command: sudo apt-get upgrade -y
       - run:
