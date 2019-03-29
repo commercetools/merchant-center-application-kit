@@ -1,3 +1,19 @@
+## [12.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v12.0.0...v12.1.0) (2019-03-29)
+
+#### 💅 Type: Enhancement
+
+- `application-shell`
+  - [#487](https://github.com/commercetools/merchant-center-application-kit/pull/487) feat(app-shell): Add prop do defer adapter config on flop flip provider setup ([@jonnybel](https://github.com/jonnybel))
+
+#### ⛑ Type: Refactoring
+
+- [#486](https://github.com/commercetools/merchant-center-application-kit/pull/486) refactor(ci): migrate to CircleCI ([@tdeekens](https://github.com/tdeekens))
+
+#### 🔮 Type: Chore
+
+- `application-shell`
+  - [#493](https://github.com/commercetools/merchant-center-application-kit/pull/493) chore: update launchdarkly-adapter and flopflip ([@tdeekens](https://github.com/tdeekens))
+
 ## [12.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v11.4.0...v12.0.0) (2019-03-26)
 
 This release introduces a **breaking change** on the `test-utils` which requires some **migration steps**. We'll go through them now:
