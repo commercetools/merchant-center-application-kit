@@ -49,6 +49,9 @@ commands:
           root: *working_directory
           paths:
             - packages/**/dist
+            - playground/dist
+            - visual-testing-app/dist
+            - application-templates/**/dist
   restore_workspace:
     steps:
       - attach_workspace:
