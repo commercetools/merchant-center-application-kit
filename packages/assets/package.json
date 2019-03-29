@@ -23,5 +23,7 @@
     "package.json",
     "LICENSE",
     "README.md"
-  ]
+  ],
+  "main": "index.js",
+  "module": "index.js"
 }

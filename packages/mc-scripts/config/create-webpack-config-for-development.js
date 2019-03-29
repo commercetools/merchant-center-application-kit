@@ -56,6 +56,7 @@ module.exports = ({
     app: [
       // Ship a few polyfills by default
       require.resolve('./polyfills'),
+      require.resolve('./application-runtime'),
       require.resolve('core-js/stable'),
       require.resolve('regenerator-runtime/runtime'),
       // Include an alternative client for WebpackDevServer. A client's job is to
@@ -116,7 +117,9 @@ module.exports = ({
       new HtmlWebpackPlugin({
         inject: false,
         filename: path.join(distPath, 'assets/index.html'),
-        template: require.resolve('@commercetools-frontend/mc-html-template'),
+        template: require.resolve(
+          '@commercetools-frontend/mc-html-template/webpack'
+        ),
       }),
     toggleFlags.generateIndexHtml &&
       (() => {

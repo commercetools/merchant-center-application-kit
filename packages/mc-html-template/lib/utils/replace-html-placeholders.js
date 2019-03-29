@@ -14,8 +14,10 @@ const replaceHtmlPlaceholders = (indexHtmlContent, config) =>
   indexHtmlContent
     .replace(
       new RegExp('__CDN_URL__', 'g'),
-      // Ensure there is a trailing slash
-      `${config.cdnUrl.replace(/\/$/, '')}/`
+      config.cdnUrl
+        ? // Ensure there is a trailing slash
+          `${config.cdnUrl.replace(/\/$/, '')}/`
+        : ''
     )
     .replace(new RegExp('__MC_API_URL__', 'g'), config.mcApiUrl)
     .replace(

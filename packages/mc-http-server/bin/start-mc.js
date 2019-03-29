@@ -5,7 +5,12 @@ const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
 const fetch = require('node-fetch');
-const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-html-template/utils/replace-html-placeholders');
+const {
+  replaceHtmlPlaceholders,
+} = require('@commercetools-frontend/mc-html-template');
+const {
+  packageLocation: assetsPath,
+} = require('@commercetools-frontend/assets');
 const options = require('../load-options');
 
 if (process.env.NODE_ENV !== 'production')
@@ -27,7 +32,7 @@ if (process.env.NODE_ENV !== 'production')
 // Which means that the 3 static files (favicon, google**.html, robots.txt)
 // need to be put somewhere else (public-assets) and copy into the public
 // folder when the server starts.
-const publicAssetsFolderPath = path.join(__dirname, '../public-assets/*');
+const publicAssetsFolderPath = path.join(`${assetsPath}/html-page/*`);
 const publicFolderPath = path.join(__dirname, '../public');
 
 shell.rm('-rf', publicFolderPath);

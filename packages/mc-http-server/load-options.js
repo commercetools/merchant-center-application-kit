@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 const mri = require('mri');
-const loadEnv = require('@commercetools-frontend/mc-html-template/load-env');
-const loadHeaders = require('@commercetools-frontend/mc-html-template/load-headers');
+const {
+  loadEnv,
+  loadHeaders,
+} = require('@commercetools-frontend/mc-html-template');
 
 const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
 

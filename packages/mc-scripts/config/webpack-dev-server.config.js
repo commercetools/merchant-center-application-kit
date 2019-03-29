@@ -1,6 +1,8 @@
 const path = require('path');
-const loadEnv = require('@commercetools-frontend/mc-html-template/load-env');
-const loadHeaders = require('@commercetools-frontend/mc-html-template/load-headers');
+const {
+  loadEnv,
+  loadHeaders,
+} = require('@commercetools-frontend/mc-html-template');
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
 
