@@ -112,7 +112,7 @@ describe('rendering', () => {
     );
   });
   describe('when shouldDeferAdapterConfiguration is defined', () => {
-    describe('when its true', () => {
+    describe('when is true', () => {
       beforeEach(() => {
         props = createTestProps({ shouldDeferAdapterConfiguration: true });
         wrapper = shallow(<SetupFlopFlipProvider {...props} />);
@@ -124,7 +124,7 @@ describe('rendering', () => {
         );
       });
     });
-    describe('when its false', () => {
+    describe('when is false', () => {
       beforeEach(() => {
         props = createTestProps({ shouldDeferAdapterConfiguration: false });
         wrapper = shallow(<SetupFlopFlipProvider {...props} />);
