@@ -26,8 +26,10 @@ window.addEventListener('load', function loaded() {
       container.removeChild(container.firstChild);
     }
 
+    const url = data.get('url');
+
     window
-      .fetch(data.get('url'), {
+      .fetch(url, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -50,7 +52,9 @@ window.addEventListener('load', function loaded() {
           try {
             var parsedResponse = JSON.parse(this.responseText);
             message = parsedResponse.message;
-          } catch {
+          } catch (e) {
+            console.warn(`Request to ${url} failed with exception:`, e);
+
             message = this.responseText;
           }
           var errorMessage = document.createTextNode(message);
