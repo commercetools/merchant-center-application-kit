@@ -947,7 +947,7 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0", "@babel/runtime@^7.3.1", "@babel/runtime@^7.3.4":
+"@babel/runtime@7.4.2", "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0", "@babel/runtime@^7.3.1", "@babel/runtime@^7.3.4":
   version "7.4.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.2.tgz#f5ab6897320f16decd855eed70b705908a313fe8"
   integrity sha512-7Bl2rALb7HpvXFL7TETNzKSAeBVCPHELzc0C//9FCxN8nsiueWSJBqaF+2oIJScyILStASR/Cx5WMkXGYTiJFA==
@@ -1395,56 +1395,53 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.2.tgz#63985d3d8b02530e0869962f4da09142ee8e200e"
   integrity sha512-n/VQ4mbfr81aqkx/XmVicOLjviMuy02eenSdJY33SVA7S2J42EU0P1H0mOogfYedb3wXA0d/LVtBrgTSm04WEA==
 
-"@flopflip/launchdarkly-adapter@2.4.6":
-  version "2.4.6"
-  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.4.6.tgz#005226c96626400ff018ce3b5a5f3cd0682cad85"
-  integrity sha512-/j4lIYH0VbNTN+BpQKpOftMT9shsYTFNsgzHXdqPPn4V6n6fynUhN6sQ6AmafzPSNcPhPpbEsAa9dUmF0c8prg==
+"@flopflip/launchdarkly-adapter@2.4.10":
+  version "2.4.10"
+  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.4.10.tgz#1130fd9bc006bf61b8e050da8d1acb93c5998ffb"
+  integrity sha512-HOq7yZh3wkVD4a8CARrX7ASTc5EEGJWZTMGHgM1ga8PhgYvNXcBsNOK+nu9MbJYkEn9wlRCKsIh8xoVmzeYZag==
   dependencies:
-    ldclient-js "2.8.0"
-    lodash.camelcase "4.3.0"
-    lodash.isequal "4.5.0"
+    "@babel/runtime" "7.4.2"
+    ldclient-js "2.9.5"
+    lodash "4.17.11"
     tiny-warning "1.0.2"
 
-"@flopflip/memory-adapter@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-1.1.1.tgz#63e5d8f9711f12ce1173277157ec6d41a69f4adc"
-  integrity sha512-c/eksJRb3Uj8YYDdZJGhHd7jVOCGVMH4z99KqePbqcn6flwmUVKXC+5VrmX194RxLSXjOkpM01mSENQk/6qm6Q==
+"@flopflip/memory-adapter@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-1.2.2.tgz#1ee083cebae4343c4c35085e62e755f43d5315b4"
+  integrity sha512-1v+eQG3LboAn+eH4nWBACfbYCZY5T0Odbb6f78NNar88D87Gg2hVkPdHNgLjhgp4QcK9L4ZWdjvKxCOM2bzjOQ==
   dependencies:
+    "@babel/runtime" "7.4.2"
     invariant "2.2.4"
     mitt "1.1.3"
 
-"@flopflip/react-broadcast@7.2.5":
-  version "7.2.5"
-  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-7.2.5.tgz#6ed8df5e0040753c7bc48d5bd2d7a0424eb6ba2b"
-  integrity sha512-cCUsyYGiQ3wozZYkUEfMSmyc+blepgYGoRoghT+7cmBg+YvDnM5SUFw4GHFrufdfNvJ42ikFwExefpSLLKdRDA==
+"@flopflip/react-broadcast@8.0.3":
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-8.0.3.tgz#ef4d8928e5f3036ac568a75bd08324db17cdd32a"
+  integrity sha512-56WROTTdQwjm1aXbmLguywxqRrJIGDpZPVswUpe5G9LwXUH4oFyqMES/mo/pNnZTHzvGdzZqdW+mkEKIduRhEQ==
   dependencies:
-    "@flopflip/react" "^6.2.3"
-    "@flopflip/types" "^1.4.2"
+    "@babel/runtime" "7.4.2"
+    "@flopflip/react" "^7.0.3"
+    "@flopflip/types" "^2.0.1"
     create-react-context "0.2.3"
-    lodash.flowright "3.5.0"
-    lodash.memoize "4.1.2"
+    lodash "4.17.11"
 
-"@flopflip/react@^6.2.3":
-  version "6.2.3"
-  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-6.2.3.tgz#ba715cc9cbe813b2404d8ecf97ec2434126974d3"
-  integrity sha512-yJehbOqQA69WM1MdvVoziPNv3vWqGi4tfkjJENiZVWaku827S/OOXCMdvFI/eoONy0g6IJXeldBhoqQvwacbPw==
+"@flopflip/react@^7.0.3":
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-7.0.3.tgz#398b174a466266c3b1c947368bec36b6a2af29d7"
+  integrity sha512-DGXIcSiQ3CTJYL2PkXzQE1z1RE6degDFGwLB2myNYEHGgl5rhxf1GwWTGyZwbAiyQpdtqI0ehHgEYhwqiwDBCg==
   dependencies:
+    "@babel/runtime" "7.4.2"
     create-react-context "0.2.3"
-    deepmerge "3.1.0"
-    lodash.camelcase "4.3.0"
-    lodash.flowright "3.5.0"
-    lodash.intersection "4.4.0"
-    lodash.isnil "4.0.0"
-    lodash.omit "4.5.0"
-    prop-types "15.6.2"
+    deepmerge "3.2.0"
+    lodash "4.17.11"
     react-fast-compare "2.0.4"
-    react-is "16.7.0"
+    react-is "16.8.6"
     tiny-warning "1.0.2"
 
-"@flopflip/types@^1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-1.4.2.tgz#cbd5a5b833eb0677b66193372f837c8d1ca470e4"
-  integrity sha512-o6m0DTCXiZKUAH7RyI50UMaaiPqpba8OwyauT/26Sq8O3NDJ+CAr5KyMjif5npe6tznV9Cf6NtIOpoXqyRAVtA==
+"@flopflip/types@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-2.0.1.tgz#f2c5d936d1c3e9a3bdc2fb6d55cf31b144a631ed"
+  integrity sha512-c3hxvTjZt3jA2WgH1mMIQG6ooiQYdt71HqyPsgbz2VCZQw2B4JkbVZOGZKXRvpAKA5AmgfGGl7axsVpXzfTwWw==
 
 "@icons/material@^0.2.4":
   version "0.2.4"
@@ -6611,11 +6608,6 @@ deep-object-diff@^1.1.0:
   resolved "https://registry.yarnpkg.com/deep-object-diff/-/deep-object-diff-1.1.0.tgz#d6fabf476c2ed1751fc94d5ca693d2ed8c18bc5a"
   integrity sha512-b+QLs5vHgS+IoSNcUE4n9HP2NwcHj7aqnJWsjPtuG75Rh5TOaGt0OjAYInh77d5T16V5cRDC+Pw/6ZZZiETBGw==
 
-deepmerge@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-3.1.0.tgz#a612626ce4803da410d77554bfd80361599c034d"
-  integrity sha512-/TnecbwXEdycfbsM2++O3eGiatEFHjjNciHEwJclM+T5Kd94qD1AP+2elP/Mq0L5b9VZJao5znR01Mz6eX8Seg==
-
 deepmerge@3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-3.2.0.tgz#58ef463a57c08d376547f8869fdc5bcee957f44e"
@@ -11056,14 +11048,21 @@ lcid@^2.0.0:
   dependencies:
     invert-kv "^2.0.0"
 
-ldclient-js@2.8.0:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/ldclient-js/-/ldclient-js-2.8.0.tgz#ed1a1bc6999cb3aa2cb6dd5d6e11e2b5b0f031cb"
-  integrity sha512-PaWEUlWMMn0vH9or6b6TrBLuyVuvQpMBAGB158j7RBK8FC+HvymQpKLIYWUh/GvbktA0OLBD4xXc9If0um7E8Q==
+ldclient-js-common@^2.9.5:
+  version "2.9.5"
+  resolved "https://registry.yarnpkg.com/ldclient-js-common/-/ldclient-js-common-2.9.5.tgz#5a0b60508e9e0ebc5d1e10e60ec289f1ddc6573e"
+  integrity sha512-Bwu5qDTEaAXGYAgHNbTAeD1UurwMdDg//zhBiOpw9HoB8aVO5nT/WGGks2QY5eu8xkhO+Zpv+1trFmzL89kHpQ==
   dependencies:
     base64-js "1.3.0"
-    escape-string-regexp "1.0.5"
     fast-deep-equal "2.0.1"
+
+ldclient-js@2.9.5:
+  version "2.9.5"
+  resolved "https://registry.yarnpkg.com/ldclient-js/-/ldclient-js-2.9.5.tgz#35dd4499321e09db44044e8c82a2d0fcffeffa26"
+  integrity sha512-VTkVtF5ABWgIKR/mnTnRJOqbSgOAeUd7vSMVdlKWmYh79sGj5cg6RYiw2VpoX0AeG8rRjW9+P4PzByVnmjF8Lg==
+  dependencies:
+    escape-string-regexp "1.0.5"
+    ldclient-js-common "^2.9.5"
 
 left-pad@^1.3.0:
   version "1.3.0"
@@ -11493,7 +11492,7 @@ lodash._reinterpolate@~3.0.0:
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
   integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
 
-lodash.camelcase@4.3.0, lodash.camelcase@^4.3.0:
+lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
   integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
@@ -11552,11 +11551,6 @@ lodash.has@4.5.2:
   resolved "https://registry.yarnpkg.com/lodash.has/-/lodash.has-4.5.2.tgz#d19f4dc1095058cccbe2b0cdf4ee0fe4aa37c862"
   integrity sha1-0Z9NwQlQWMzL4rDN9O4P5Ko3yGI=
 
-lodash.intersection@4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/lodash.intersection/-/lodash.intersection-4.4.0.tgz#0a11ba631d0e95c23c7f2f4cbb9a692ed178e705"
-  integrity sha1-ChG6Yx0OlcI8fy9Mu5ppLtF45wU=
-
 lodash.isarguments@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/lodash.isarguments/-/lodash.isarguments-3.1.0.tgz#2f573d85c6a24289ff00663b491c1d338ff3458a"
@@ -11567,11 +11561,6 @@ lodash.isarray@^3.0.0:
   resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
   integrity sha1-eeTriMNqgSKvhvhEqpvNhRtfu1U=
 
-lodash.isequal@4.5.0, lodash.isequal@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
-  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
-
 lodash.isequal@^3.0:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-3.0.4.tgz#1c35eb3b6ef0cd1ff51743e3ea3cf7fdffdacb64"
@@ -11579,6 +11568,11 @@ lodash.isequal@^3.0:
   dependencies:
     lodash._baseisequal "^3.0.0"
     lodash._bindcallback "^3.0.0"
+
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
 
 lodash.isnil@4.0.0:
   version "4.0.0"
@@ -14734,14 +14728,6 @@ promzard@^0.3.0:
   dependencies:
     read "1"
 
-prop-types@15.6.2:
-  version "15.6.2"
-  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
-  integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==
-  dependencies:
-    loose-envify "^1.3.1"
-    object-assign "^4.1.1"
-
 prop-types@15.7.2, prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
@@ -15250,17 +15236,12 @@ react-intl@2.8.0:
     intl-relativeformat "^2.1.0"
     invariant "^2.1.1"
 
-react-is@16.7.0:
-  version "16.7.0"
-  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
-  integrity sha512-Z0VRQdF4NPDoI0tsXVMLkJLiwEBa+RP66g0xDHxgxysxSoCUccSten4RTF/UFvZF1dZvZ9Zu1sx+MDXwcOR34g==
-
 react-is@16.8.3:
   version "16.8.3"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.3.tgz#4ad8b029c2a718fc0cfc746c8d4e1b7221e5387d"
   integrity sha512-Y4rC1ZJmsxxkkPuMLwvKvlL1Zfpbcu+Bf4ZigkHup3v9EfdYhAlWAaVyA19olXq2o2mGn0w+dFKvk3pVVlYcIA==
 
-react-is@^16.5.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.2, react-is@^16.8.4, react-is@^16.8.6:
+react-is@16.8.6, react-is@^16.5.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.2, react-is@^16.8.4, react-is@^16.8.6:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
   integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
