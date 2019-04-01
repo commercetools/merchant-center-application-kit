@@ -1,3 +1,9 @@
+## [12.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v12.1.0...v12.2.0) (2019-04-01)
+
+#### 💅 Type: Refactoring
+
+- [#492](https://github.com/commercetools/merchant-center-application-kit/pull/492) Decoupled html template from Webpack ([@emmenko](https://github.com/emmenko))
+
 ## [12.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v12.0.0...v12.1.0) (2019-03-29)
 
 #### 💅 Type: Enhancement
