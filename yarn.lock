@@ -995,6 +995,11 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@commercetools-frontend/assets@12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/assets/-/assets-12.0.0.tgz#9425dddaf545da1ab821ba1bffebe5c265fac127"
+  integrity sha512-IfLniv1eqgxwYQdku9H+BH/96gk31/S9MG1ZJ/s+Nq+qFevYstbul4CtVA+Yxb1bVKhJ5U4U4HMQBdi93jfTBw==
+
 "@commercetools-frontend/ui-kit@9.1.0":
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-9.1.0.tgz#7308e4a53a0d632e80f35edc129d3b3d1c5d1849"
