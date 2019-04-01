@@ -125,13 +125,18 @@ export class ProjectContainer extends React.Component {
     /**
      * Given the user does not have project (and as a result is not part of an organization)
      * the account application gets control over render. If any other application
-     * is requested to render a full page redirect (to have the proxy serve the request) occurs.
+     * is requested to render a full page redirect (to have the proxy serve the request) occurs
+     * given the application is served by the proxy.
+     * Given the application is not served by the proxy we do not perform a redirect as
+     * otherwise a redirect loop can occur as no application is able to handle the route.
      */
     if (this.props.user && this.props.user.projects.total === 0)
       return (
         <Switch>
           <Route path="/account" render={this.props.render} />
-          <Route component={RedirectToProjectCreate} />
+          {this.props.environment.servedByProxy && (
+            <Route component={RedirectToProjectCreate} />
+          )}
         </Switch>
       );
 
