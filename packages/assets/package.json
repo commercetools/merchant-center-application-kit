@@ -18,12 +18,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": [
-    "images",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
   "main": "index.js",
   "module": "index.js"
 }
