@@ -5,6 +5,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
 import isNil from 'lodash/isNil';
 import flowRight from 'lodash/flowRight';
+import { Spacings, Text } from '@commercetools-frontend/ui-kit';
 import { injectFeatureToggle } from '@flopflip/react-broadcast';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
@@ -39,6 +40,22 @@ export class RedirectToProjectCreate extends React.Component {
     return null;
   }
 }
+const NoProjects = () => {
+  return (
+    <Spacings.Stack>
+      <Text.Headline elementType="h3">
+        {'Please create a project!'}
+      </Text.Headline>
+      <Text.Detail>
+        {
+          'You do not have any projects and the application is not served by the proxy (`env.json`).'
+        }
+      </Text.Detail>
+    </Spacings.Stack>
+  );
+};
+NoProjects.displayName = 'NoProjects';
+
 export class ProjectContainer extends React.Component {
   static displayName = 'ProjectContainer';
   static propTypes = {
@@ -121,6 +138,8 @@ export class ProjectContainer extends React.Component {
   );
 
   render() {
+    const hasNoProjects =
+      this.props.user && this.props.user.projects.total === 0;
     if (this.state.hasError) {
       return <ErrorApologizer />;
     }
@@ -137,16 +156,20 @@ export class ProjectContainer extends React.Component {
      *    otherwise a redirect loop can occur as no application is able to handle the route.
      */
     if (
-      this.props.user.projects.total === 0 &&
-      !this.props.isAccountCreationEnabled
+      hasNoProjects &&
+      !this.props.isAccountCreationEnabled &&
+      this.props.environment.servedByProxy
     )
       return <Redirect to="/logout?reason=no-projects" />;
-    if (this.props.user && this.props.user.projects.total === 0)
+    if (hasNoProjects && this.props.isAccountCreationEnabled)
       return (
         <Switch>
           <Route path="/account" render={this.props.render} />
           {this.props.environment.servedByProxy && (
             <Route component={RedirectToProjectCreate} />
+          )}
+          {!this.props.environment.servedByProxy && (
+            <Route component={NoProjects} />
           )}
         </Switch>
       );
