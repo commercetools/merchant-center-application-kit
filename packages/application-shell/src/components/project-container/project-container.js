@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
 import isNil from 'lodash/isNil';
+import flowRight from 'lodash/flowRight';
+import { injectFeatureToggle } from '@flopflip/react-broadcast';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
@@ -58,6 +60,7 @@ export class ProjectContainer extends React.Component {
     intl: PropTypes.shape({
       formatMessage: PropTypes.func.isRequired,
     }).isRequired,
+    isAccountCreationEnabled: PropTypes.bool.isRequired,
   };
   state = {
     hasError: false,
@@ -123,13 +126,21 @@ export class ProjectContainer extends React.Component {
     }
 
     /**
+     * Given the user does not have any projects and account creation (sign up) is not yet
+     * enabled the user will be logged out.
+     *
      * Given the user does not have project (and as a result is not part of an organization)
      * the account application gets control over render. If any other application
      * is requested to render a full page redirect (to have the proxy serve the request) occurs
      * given the application is served by the proxy.
-     * Given the application is not served by the proxy we do not perform a redirect as
-     * otherwise a redirect loop can occur as no application is able to handle the route.
+     *    Given the application is not served by the proxy we do not perform a redirect as
+     *    otherwise a redirect loop can occur as no application is able to handle the route.
      */
+    if (
+      this.props.user.projects.total === 0 &&
+      !this.props.isAccountCreationEnabled
+    )
+      return <Redirect to="/logout?reason=no-projects" />;
     if (this.props.user && this.props.user.projects.total === 0)
       return (
         <Switch>
@@ -212,4 +223,7 @@ export class ProjectContainer extends React.Component {
   }
 }
 
-export default injectIntl(ProjectContainer);
+export default flowRight(
+  injectIntl(ProjectContainer),
+  injectFeatureToggle('createAccount', 'isAccountCreationEnabled')
+);
