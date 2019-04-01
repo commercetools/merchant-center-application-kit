@@ -33,6 +33,6 @@
     "@commercetools-frontend/mc-scripts": "12.2.0",
     "enzyme": "3.9.0",
     "jest": "24.5.0",
-    "react-testing-library": "6.0.2"
+    "react-testing-library": "6.0.4"
   }
 }
