@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/mc-http-server",
-  "version": "12.0.1-pre-canary.29",
+  "version": "12.0.1-pre-canary.30",
   "description": "Production HTTP server for running a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "@commercetools-frontend/assets": "12.2.0",
+    "@commercetools-frontend/mc-dev-authentication": "12.0.1-pre-canary.30",
     "@commercetools-frontend/mc-html-template": "12.2.0",
-    "@commercetools-frontend/mc-dev-authentication": "12.0.1-pre-canary.29",
     "@promster/express": "2.1.0",
     "@promster/server": "2.0.5",
     "compression": "1.7.4",
