@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/constants",
-  "version": "12.0.1-pre-canary.28",
+  "version": "12.0.1-pre-canary.32",
   "description": "Shared constants for MC applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
