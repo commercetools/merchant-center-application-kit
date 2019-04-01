@@ -224,6 +224,6 @@ export class ProjectContainer extends React.Component {
 }
 
 export default flowRight(
-  injectIntl(ProjectContainer),
+  injectIntl,
   injectFeatureToggle('createAccount', 'isAccountCreationEnabled')
-);
+)(ProjectContainer);
