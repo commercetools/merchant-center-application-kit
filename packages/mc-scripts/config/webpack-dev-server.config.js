@@ -3,8 +3,6 @@ const {
   loadEnv,
   loadHeaders,
 } = require('@commercetools-frontend/mc-html-template');
-const loadEnv = require('@commercetools-frontend/mc-html-template/load-env');
-const loadHeaders = require('@commercetools-frontend/mc-html-template/load-headers');
 const devAuthentication = require('@commercetools-frontend/mc-dev-authentication');
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');

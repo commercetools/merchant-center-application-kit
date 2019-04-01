@@ -11,7 +11,6 @@ const {
 const {
   packageLocation: assetsPath,
 } = require('@commercetools-frontend/assets');
-const replaceHtmlPlaceholders = require('@commercetools-frontend/mc-html-template/utils/replace-html-placeholders');
 const startServer = require('../server');
 const options = require('../load-options');
 
