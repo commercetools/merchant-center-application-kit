@@ -51,6 +51,11 @@
   position: relative;
 }
 
+:global(.ReactModal__Body--open) .app-layout > .main {
+  /* When a modal is open, we should prevent the content to be scrollable */
+  overflow: hidden;
+}
+
 .content {
   flex-grow: 1;
   display: flex;
