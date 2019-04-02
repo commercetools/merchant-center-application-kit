@@ -105,10 +105,6 @@
     "stylelint-config-standard": "17.0.0",
     "stylelint-order": "0.8.1"
   },
-  "resolutions": {
-    "react-router": "5.0.0",
-    "react-router-dom": "5.0.0"
-  },
   "engines": {
     "node": ">=8.9",
     "npm": ">=5",
