@@ -47,7 +47,7 @@
     "reselect": "^4.0.0"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "9.1.0",
+    "@commercetools-frontend/ui-kit": "9.1.2",
     "react": "16.8.5",
     "react-dom": "16.8.5",
     "react-intl": "2.8.0",
