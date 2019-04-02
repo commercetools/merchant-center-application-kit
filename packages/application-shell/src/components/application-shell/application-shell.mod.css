@@ -3,6 +3,10 @@
   --menuWidth: 200px;
 }
 
+:global(#app) {
+  height: 100%;
+}
+
 .app-layout {
   height: 100vh;
   display: grid;
