@@ -186,6 +186,13 @@ jobs:
                 <<# parameters.group>> --group '<<parameters.group>>' <</ parameters.group>> \
                 <<# parameters.parallel>> --parallel <</ parameters.parallel>> \
               <</ parameters.record>>
+      - when:
+          condition: << parameters.store_artifacts >>
+          steps:
+            - store_artifacts:
+                path: cypress/videos
+            - store_artifacts:
+                path: cypress/screenshots
   publish:
     executor: node_10
     steps:
