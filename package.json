@@ -62,7 +62,7 @@
     "cypress-testing-library": "2.3.6",
     "dotenv": "7.0.0",
     "enzyme": "3.9.0",
-    "eslint": "5.15.3",
+    "eslint": "5.16.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "4.1.0",
     "eslint-formatter-pretty": "2.1.1",
@@ -87,10 +87,10 @@
     "lerna-changelog": "0.8.2",
     "lint-staged": "8.1.5",
     "prettier": "1.16.4",
-    "puppeteer": "1.13.0",
+    "puppeteer": "1.14.0",
     "rcfile": "1.0.3",
     "read-pkg-up": "5.0.0",
-    "rollup": "1.7.3",
+    "rollup": "1.8.0",
     "rollup-plugin-babel": "4.3.2",
     "rollup-plugin-commonjs": "9.2.2",
     "rollup-plugin-json": "4.0.0",
@@ -104,10 +104,6 @@
     "stylelint": "9.10.1",
     "stylelint-config-standard": "17.0.0",
     "stylelint-order": "0.8.1"
-  },
-  "resolutions": {
-    "react-router": "5.0.0",
-    "react-router-dom": "5.0.0"
   },
   "engines": {
     "node": ">=8.9",

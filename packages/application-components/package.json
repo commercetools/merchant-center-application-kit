@@ -44,7 +44,7 @@
     "warning": "4.0.3"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "9.1.0",
+    "@commercetools-frontend/ui-kit": "9.1.2",
     "@storybook/addon-actions": "5.0.5",
     "@storybook/addon-info": "5.0.5",
     "@storybook/addon-knobs": "5.0.5",
@@ -59,7 +59,7 @@
     "react": "16.8.5",
     "react-dom": "16.8.5",
     "react-intl": "2.8.0",
-    "react-testing-library": "6.0.2",
+    "react-testing-library": "6.0.4",
     "storybook-readme": "5.0.1"
   },
   "peerDependencies": {
