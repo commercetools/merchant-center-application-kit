@@ -1,3 +1,18 @@
+## [12.2.2](https://github.com/commercetools/merchant-center-application-kit/compare/v12.2.1...v12.2.2) (2019-04-03)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#509](https://github.com/commercetools/merchant-center-application-kit/pull/509) fix(app-shell): prevent main content to be scrollable when modals are open ([@emmenko](https://github.com/emmenko))
+  - [#506](https://github.com/commercetools/merchant-center-application-kit/pull/506) fix(app-shell): css height for app container ([@emmenko](https://github.com/emmenko))
+- Other
+  - [#508](https://github.com/commercetools/merchant-center-application-kit/pull/508) fix: store cypress artifacts ([@tdeekens](https://github.com/tdeekens))
+
+#### 🔮 Type: Chore
+
+- `application-components`, `application-shell`, `jest-preset-mc-app`, `l10n`, `permissions`, `react-notifications`, `sentry`
+  - [#507](https://github.com/commercetools/merchant-center-application-kit/pull/507) Update dependencies ([@emmenko](https://github.com/emmenko))
+
 ## [12.2.1](https://github.com/commercetools/merchant-center-application-kit/compare/v12.2.0...v12.2.1) (2019-04-01)
 
 #### 🐛 Type: Bug
