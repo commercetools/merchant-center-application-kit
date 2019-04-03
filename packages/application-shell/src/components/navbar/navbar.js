@@ -324,7 +324,7 @@ export class DataMenu extends React.PureComponent {
       })
     ),
     menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
-    applicationLanguage: PropTypes.string.isRequired,
+    applicationLocale: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
     isForcedMenuOpen: PropTypes.bool,
     location: PropTypes.shape({
@@ -432,7 +432,7 @@ export class DataMenu extends React.PureComponent {
 
   renderLabel = menu => {
     const localizedLabel = menu.labelAllLocales.find(loc =>
-      this.props.applicationLanguage.startsWith(loc.locale)
+      this.props.applicationLocale.startsWith(loc.locale)
     );
     if (localizedLabel) return localizedLabel.value;
     return NO_VALUE_FALLBACK;
@@ -607,7 +607,7 @@ export class NavBar extends React.PureComponent {
 
   static propTypes = {
     // From parent
-    applicationLanguage: PropTypes.string.isRequired,
+    applicationLocale: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
     environment: PropTypes.shape({
       servedByProxy: PropTypes.bool.isRequired,
@@ -659,7 +659,7 @@ export class NavBar extends React.PureComponent {
           isForcedMenuOpen={this.props.isForcedMenuOpen}
           location={this.props.location}
           menuVisibilities={this.props.menuVisibilities}
-          applicationLanguage={this.props.applicationLanguage}
+          applicationLocale={this.props.applicationLocale}
           projectKey={this.props.projectKey}
           useFullRedirectsForLinks={
             this.props.environment.useFullRedirectsForLinks

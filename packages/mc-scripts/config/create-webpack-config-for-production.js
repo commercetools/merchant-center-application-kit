@@ -152,7 +152,7 @@ module.exports = ({
       new webpack.NamedModulesPlugin(),
       // Strip all locales except `en`, `de`
       // (`en` is built into Moment and can't be removed)
-      new MomentLocalesPlugin({ localesToKeep: ['de', 'es'] }),
+      new MomentLocalesPlugin({ localesToKeep: ['de', 'es', 'fr', 'zh-cn'] }),
 
       // Generate a `stats.json` file containing information and paths to
       // the assets that webpack created.

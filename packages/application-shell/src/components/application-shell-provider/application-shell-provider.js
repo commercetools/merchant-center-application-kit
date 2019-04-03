@@ -16,7 +16,7 @@ import GtmBooter from '../gtm-booter';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
 import './global-style-imports';
-import { getBrowserLanguage, mergeMessages } from './utils';
+import { getBrowserLocale, mergeMessages } from './utils';
 
 export default class ApplicationShellProvider extends React.Component {
   static displayName = 'ApplicationShellProvider';
@@ -65,18 +65,20 @@ export default class ApplicationShellProvider extends React.Component {
                       if (isAuthenticated)
                         return this.props.children({ isAuthenticated });
 
-                      const browserLanguage = getBrowserLanguage(window);
+                      const browserLocale = getBrowserLocale(window);
                       return (
                         <AsyncLocaleData
-                          locale={browserLanguage}
+                          locale={browserLocale}
                           applicationMessages={this.props.applicationMessages}
                         >
-                          {({ language, messages }) => (
+                          {({ locale, messages }) => (
                             <ConfigureIntlProvider
-                              language={language}
+                              locale={locale}
                               messages={mergeMessages(
                                 messages,
-                                uikitMessages[language]
+                                AsyncLocaleData.getMessagesForLocale(
+                                  uikitMessages
+                                )
                               )}
                             >
                               {this.props.children({ isAuthenticated })}

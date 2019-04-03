@@ -838,7 +838,7 @@
   },
   "fr-CG": {
     "language": "francés",
-    "country": "República del Congo"
+    "country": "Congo"
   },
   "fr-CH": {
     "language": "francés",
@@ -1272,12 +1272,11 @@
     "country": "Nueva Zelanda"
   },
   "mk": {
-    "language": "macedonio",
-    "country": "Macedonia del Norte"
+    "language": "macedonio"
   },
   "mk-MK": {
     "language": "macedonio",
-    "country": "Macedonia del Norte"
+    "country": "Macedonia"
   },
   "ml": {
     "language": "malayalam"
@@ -1654,10 +1653,10 @@
     "country": "Suazilandia"
   },
   "st": {
-    "language": "sesotho meridional"
+    "language": "sotho meridional"
   },
   "st-LS": {
-    "language": "sesotho meridional",
+    "language": "sotho meridional",
     "country": "Lesoto"
   },
   "su": {

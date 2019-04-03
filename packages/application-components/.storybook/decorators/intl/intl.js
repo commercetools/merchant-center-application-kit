@@ -4,12 +4,16 @@ import { select } from '@storybook/addon-knobs/react';
 import en from 'react-intl/locale-data/en';
 import de from 'react-intl/locale-data/de';
 import es from 'react-intl/locale-data/es';
+import frFR from 'react-intl/locale-data/fr';
+import zhCN from 'react-intl/locale-data/zh';
 
 addLocaleData(en);
 addLocaleData(de);
 addLocaleData(es);
+addLocaleData(frFR);
+addLocaleData(zhCN);
 
-const availableLocales = ['en', 'de', 'es'];
+const availableLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN'];
 
 export default storyFn => {
   const locale = select('global locale', availableLocales, availableLocales[0]);

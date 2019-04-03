@@ -15,12 +15,23 @@ const L10N_KEYS = {
   LANGUAGE: 'language',
 };
 
+const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN'];
+
 // This are excluded countries since cldr returns them in its list
 // but our API does not allow them. After some investigation with the
 // data files of the cldr library there is nothing for identifying them
 // since they are valid codes in the ISO 3166 and its following updates
 // https://www.drupal.org/project/drupal/issues/2036219
 const excludedCountries = ['QO', 'UN', 'ZZ'];
+
+const mapLocaleToCldrLocale = locale => {
+  switch (locale) {
+    case 'zh-CN':
+      return 'zh_hans_cn';
+    default:
+      return locale;
+  }
+};
 
 const extractCountryDataForLocale = locale => {
   const countryNames = cldr.extractTerritoryDisplayNames(locale);
@@ -249,7 +260,8 @@ const mapDiffToWarnings = (oldData, newData) => {
 const updateLocaleData = async (key, locales) => {
   const results = await Promise.all(
     locales.map(async locale => {
-      const newLocaleData = await DATA_DIR[key].transform(locale);
+      const cldrLocale = mapLocaleToCldrLocale(locale);
+      const newLocaleData = await DATA_DIR[key].transform(cldrLocale);
       const targetFolder = path.join(__dirname, '..', DATA_DIR[key].path);
       const targetFile = path.join(targetFolder, `${locale}.json`);
 
@@ -289,7 +301,7 @@ const updateLocaleData = async (key, locales) => {
 };
 
 const run = async key => {
-  await updateLocaleData(key, ['en', 'de', 'es']);
+  await updateLocaleData(key, supportedLocales);
 };
 
 Promise.all(

@@ -1,6 +1,6 @@
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import getDisplayName from '../utils/get-display-name';
+import { getDisplayName } from '../utils';
 
 export default function createL10NInjector({
   displayName,

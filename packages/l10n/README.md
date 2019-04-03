@@ -12,6 +12,14 @@ React bindings to load l10n data.
 $ npm install --save @commercetools-frontend/l10n
 ```
 
+## Supported locales
+
+- `en`
+- `de`
+- `es`
+- `fr-FR`
+- `zh-CN`
+
 ## Components
 
 ```js

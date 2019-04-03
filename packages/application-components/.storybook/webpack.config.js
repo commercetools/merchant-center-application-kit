@@ -16,7 +16,9 @@ const mcWebpackConfig = createWebpackConfig({
 });
 
 module.exports = ({ config }) => {
-  config.plugins.push(new MomentLocalesPlugin({ localesToKeep: ['de', 'es'] }));
+  config.plugins.push(
+    new MomentLocalesPlugin({ localesToKeep: ['de', 'es', 'fr', 'zh-cn'] })
+  );
   config.devtool = 'cheap-module-source-map'; // TODO: should we use something differen?
   config.module.rules = [
     // Disable require.ensure as it's not a standard language feature.

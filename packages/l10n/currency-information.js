@@ -1,13 +1,17 @@
 import createL10NInjector from './create-l10n-injector';
-import getSupportedLanguage from './utils/get-supported-language';
-import extractLanguageFromLocale from './utils/extract-language-from-locale';
+import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
 
-const getImportChunk = lang => {
-  switch (lang) {
+const getImportChunk = locale => {
+  const intlLocale = mapLocaleToIntlLocale(locale);
+  switch (intlLocale) {
     case 'de':
       return import(/* webpackChunkName: "currency-data-de" */ './data/currencies/de.json');
     case 'es':
       return import(/* webpackChunkName: "currency-data-es" */ './data/currencies/es.json');
+    case 'fr-FR':
+      return import(/* webpackChunkName: "currency-data-fr-FR" */ './data/currencies/fr-FR.json');
+    case 'zh-CN':
+      return import(/* webpackChunkName: "currency-data-zh-CN" */ './data/currencies/zh-CN.json');
     default:
       return import(/* webpackChunkName: "currency-data-en" */ './data/currencies/en.json');
   }
@@ -18,8 +22,7 @@ const getImportChunk = lang => {
  * a function that asynchronously loads the country data.
  */
 const getCurrenciesForLocale = (locale, cb) => {
-  const languageFromLocale = extractLanguageFromLocale(locale);
-  const supportedLocale = getSupportedLanguage(languageFromLocale);
+  const supportedLocale = getSupportedLocale(locale);
   // Use default webpackMode (lazy) so that we generate one file per locale.
   // The files are named like "currency-data-en-json.chunk.js" after compilation
   // https://webpack.js.org/api/module-methods/#import-

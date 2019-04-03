@@ -132,7 +132,7 @@ module.exports = ({
     new webpack.NamedModulesPlugin(),
     // Strip all locales except `en`, `de`
     // (`en` is built into Moment and can't be removed).
-    new MomentLocalesPlugin({ localesToKeep: ['de', 'es'] }),
+    new MomentLocalesPlugin({ localesToKeep: ['de', 'es', 'fr', 'zh-cn'] }),
     // This is necessary to emit hot updates (currently CSS only).
     new webpack.HotModuleReplacementPlugin(),
   ].filter(Boolean),
