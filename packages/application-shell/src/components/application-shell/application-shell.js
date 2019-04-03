@@ -42,9 +42,6 @@ import {
 import styles from './application-shell.mod.css';
 import QuickAccess from '../quick-access';
 
-export const extractLanguageTagFromLocale = locale =>
-  locale.includes('-') ? locale.split('-')[0] : locale;
-
 /**
  * This component is rendered whenever the user is considered "authenticated"
  * and contains the "restricted" application part.

@@ -14,10 +14,7 @@ import {
   getBrowserLocale,
   mergeMessages,
 } from '../application-shell-provider/utils';
-import ApplicationShell, {
-  RestrictedApplication,
-  extractLanguageTagFromLocale,
-} from './application-shell';
+import ApplicationShell, { RestrictedApplication } from './application-shell';
 
 jest.mock('@commercetools-frontend/storage');
 jest.mock('@commercetools-frontend/sentry');
@@ -500,29 +497,6 @@ describe('getBrowserLocale', () => {
     });
     it('should return the default locale, `en`', () => {
       expect(getBrowserLocale(testWindow)).toBe('en');
-    });
-  });
-});
-
-describe('extractLanguageTagFromLocale', () => {
-  let locale;
-  let languageFromLocale;
-  describe('when the locale is a combination of language and region', () => {
-    beforeEach(() => {
-      locale = 'en-US';
-      languageFromLocale = extractLanguageTagFromLocale(locale);
-    });
-    it('should return only the language', () => {
-      expect(languageFromLocale).toBe('en');
-    });
-  });
-  describe('when the locale is just the language', () => {
-    beforeEach(() => {
-      locale = 'de';
-      languageFromLocale = extractLanguageTagFromLocale(locale);
-    });
-    it('should return the locale itself', () => {
-      expect(languageFromLocale).toBe('de');
     });
   });
 });

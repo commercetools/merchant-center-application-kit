@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
-const cldr = require('cldr');
+const cldr = require('cldr').load(path.join(__dirname, '../cldr-v35'));
 const chalk = require('chalk');
 const fetch = require('node-fetch');
 const moment = require('moment-timezone');
