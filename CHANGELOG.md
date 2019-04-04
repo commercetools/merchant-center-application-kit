@@ -8,7 +8,7 @@ In short:
 2. All routes and components around login and logout have been removed from the `@commercetools-frontend/application-shell` and have been migrated into an internal Merchant Center application
 3. Redirects upon creating an account are not pointing to the account application, where the user can create the first organization + project
 
-For commercetools developers there is more in-depth documentation in our internal repositories. To not hestitate to reach out for further questions.
+For commercetools developers there is more in-depth documentation in our internal repositories. Do not hestitate to reach out for further questions.
 
 #### 💥 Type: Breaking Change
 
