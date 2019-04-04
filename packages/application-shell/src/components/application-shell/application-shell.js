@@ -20,7 +20,7 @@ import ProjectDataLocale from '../project-data-locale';
 import PortalsContainer from '../portals-container';
 import ApplicationShellProvider from '../application-shell-provider';
 import {
-  getBrowserLanguage,
+  getBrowserLocale,
   mergeMessages,
 } from '../application-shell-provider/utils';
 import FetchUser from '../fetch-user';
@@ -41,9 +41,6 @@ import {
 } from '../../utils';
 import styles from './application-shell.mod.css';
 import QuickAccess from '../quick-access';
-
-export const extractLanguageFromLocale = locale =>
-  locale.includes('-') ? locale.split('-')[0] : locale;
 
 /**
  * This component is rendered whenever the user is considered "authenticated"
@@ -76,18 +73,21 @@ export const RestrictedApplication = props => (
         }
         // Since we do not know the locale of the user, we pick it from the
         // user's browser to attempt to match the language for the correct translations.
-        const userLocale = getBrowserLanguage(window);
+        const userLocale = getBrowserLocale(window);
         return (
           <AsyncLocaleData
             locale={userLocale}
             applicationMessages={props.applicationMessages}
           >
-            {({ language, messages }) => {
+            {({ locale, messages }) => {
               reportErrorToSentry(error, {});
               return (
                 <ConfigureIntlProvider
-                  language={language}
-                  messages={mergeMessages(messages, i18n[language])}
+                  locale={locale}
+                  messages={mergeMessages(
+                    messages,
+                    AsyncLocaleData.getMessagesForLocale(i18n, locale)
+                  )}
                 >
                   <ErrorApologizer />
                 </ConfigureIntlProvider>
@@ -112,15 +112,18 @@ export const RestrictedApplication = props => (
             locale={user && user.language}
             applicationMessages={props.applicationMessages}
           >
-            {({ isLoading: isLoadingLocaleData, language, messages }) => (
+            {({ isLoading: isLoadingLocaleData, locale, messages }) => (
               <ConfigureIntlProvider
                 // We do not want to pass the language as long as the locale data
                 // is not loaded.
                 {...(isLoadingLocaleData
                   ? {}
                   : {
-                      language,
-                      messages: mergeMessages(messages, i18n[language]),
+                      locale,
+                      messages: mergeMessages(
+                        messages,
+                        AsyncLocaleData.getMessagesForLocale(i18n, locale)
+                      ),
                     })}
               >
                 <SetupFlopFlipProvider
@@ -175,16 +178,19 @@ export const RestrictedApplication = props => (
                                   <ProjectDataLocale
                                     locales={project.languages}
                                   >
-                                    {({ locale, setProjectDataLocale }) => (
+                                    {({
+                                      locale: dataLocale,
+                                      setProjectDataLocale,
+                                    }) => (
                                       <ApplicationContextProvider
                                         user={user}
                                         project={project}
-                                        projectDataLocale={locale}
+                                        projectDataLocale={dataLocale}
                                         environment={props.environment}
                                       >
                                         <QuickAccess
                                           project={project}
-                                          projectDataLocale={locale}
+                                          projectDataLocale={dataLocale}
                                           onChangeProjectDataLocale={
                                             setProjectDataLocale
                                           }
@@ -246,7 +252,7 @@ export const RestrictedApplication = props => (
                                     environment={props.environment}
                                   >
                                     <NavBar
-                                      applicationLanguage={language}
+                                      applicationLocale={locale}
                                       projectKey={projectKeyFromUrl}
                                       menuVisibilities={
                                         project.menuVisibilities

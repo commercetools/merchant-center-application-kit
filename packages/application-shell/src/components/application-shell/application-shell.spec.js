@@ -11,13 +11,10 @@ import FetchUser from '../fetch-user';
 import FetchProject from '../fetch-project';
 import NavBar, { LoadingNavBar } from '../navbar';
 import {
-  getBrowserLanguage,
+  getBrowserLocale,
   mergeMessages,
 } from '../application-shell-provider/utils';
-import ApplicationShell, {
-  RestrictedApplication,
-  extractLanguageFromLocale,
-} from './application-shell';
+import ApplicationShell, { RestrictedApplication } from './application-shell';
 
 jest.mock('@commercetools-frontend/storage');
 jest.mock('@commercetools-frontend/sentry');
@@ -53,7 +50,7 @@ const createTestProps = props => ({
 
 const testLocaleData = {
   isLoading: false,
-  language: 'en',
+  locale: 'en',
   messages: { 'AppKit.title': 'Title en', 'CustomApp.title': 'Title en' },
 };
 
@@ -151,12 +148,12 @@ describe('<RestrictedApplication>', () => {
           .find(AsyncLocaleData)
           .renderProp('children', {
             isLoading: true,
-            language: null,
+            locale: null,
             messages: null,
           });
       });
-      it('should not pass "language" prop to <ConfigureIntlProvider>', () => {
-        expect(wrapper.find(ConfigureIntlProvider)).not.toHaveProp('language');
+      it('should not pass "locale" prop to <ConfigureIntlProvider>', () => {
+        expect(wrapper.find(ConfigureIntlProvider)).not.toHaveProp('locale');
       });
       it('should not pass "messages" prop to <ConfigureIntlProvider>', () => {
         expect(wrapper.find(ConfigureIntlProvider)).not.toHaveProp('messages');
@@ -172,11 +169,8 @@ describe('<RestrictedApplication>', () => {
         };
         wrapper = renderForAsyncData({ props, userData });
       });
-      it('should pass "language" to <ConfigureIntlProvider>', () => {
-        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
-          'language',
-          'en'
-        );
+      it('should pass "locale" to <ConfigureIntlProvider>', () => {
+        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp('locale', 'en');
       });
       it('should render <ErrorApologizer>', () => {
         expect(wrapper).toRender('ErrorApologizer');
@@ -297,7 +291,7 @@ describe('<RestrictedApplication>', () => {
         });
         it('should pass the application language', () => {
           expect(wrapperAside.find(NavBar)).toHaveProp(
-            'applicationLanguage',
+            'applicationLocale',
             'en'
           );
         });
@@ -479,18 +473,18 @@ describe('lifecycle', () => {
   });
 });
 
-describe('getBrowserLanguage', () => {
+describe('getBrowserLocale', () => {
   let testWindow;
   describe('when the locale is supported by the MC', () => {
     beforeEach(() => {
       testWindow = {
         navigator: {
-          language: 'de',
+          language: 'de-DE',
         },
       };
     });
-    it('should return the language', () => {
-      expect(getBrowserLanguage(testWindow)).toBe('de');
+    it('should return the locale', () => {
+      expect(getBrowserLocale(testWindow)).toBe('de-DE');
     });
   });
   describe('when locale is not supported by the MC', () => {
@@ -501,31 +495,8 @@ describe('getBrowserLanguage', () => {
         },
       };
     });
-    it('should return the default language, `en`', () => {
-      expect(getBrowserLanguage(testWindow)).toBe('en');
-    });
-  });
-});
-
-describe('extractLanguageFromLocale', () => {
-  let locale;
-  let languageFromLocale;
-  describe('when the locale is a combination of language and region', () => {
-    beforeEach(() => {
-      locale = 'en-US';
-      languageFromLocale = extractLanguageFromLocale(locale);
-    });
-    it('should return only the language', () => {
-      expect(languageFromLocale).toBe('en');
-    });
-  });
-  describe('when the locale is just the language', () => {
-    beforeEach(() => {
-      locale = 'de';
-      languageFromLocale = extractLanguageFromLocale(locale);
-    });
-    it('should return the locale itself', () => {
-      expect(languageFromLocale).toBe('de');
+    it('should return the default locale, `en`', () => {
+      expect(getBrowserLocale(testWindow)).toBe('en');
     });
   });
 });

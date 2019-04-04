@@ -4,7 +4,7 @@ import { IntlProvider } from 'react-intl';
 import ConfigureIntlProvider from './configure-intl-provider';
 
 const createTestProps = props => ({
-  language: 'de',
+  locale: 'de',
   messages: { title: 'Title' },
   ...props,
 });
@@ -12,7 +12,7 @@ const createTestProps = props => ({
 describe('rendering', () => {
   let props;
   let wrapper;
-  describe('when language is defined', () => {
+  describe('when locale is defined', () => {
     beforeEach(() => {
       props = createTestProps();
       wrapper = shallow(
@@ -30,9 +30,9 @@ describe('rendering', () => {
       });
     });
   });
-  describe('when language is not defined', () => {
+  describe('when locale is not defined', () => {
     beforeEach(() => {
-      props = createTestProps({ language: null, messages: null });
+      props = createTestProps({ locale: null, messages: null });
       wrapper = shallow(
         <ConfigureIntlProvider {...props}>
           <div />

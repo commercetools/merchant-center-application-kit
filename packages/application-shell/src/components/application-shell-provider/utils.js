@@ -1,8 +1,8 @@
-import { getSupportedLanguage } from '@commercetools-frontend/l10n';
+import { getSupportedLocale } from '@commercetools-frontend/l10n';
 
-export const getBrowserLanguage = window => {
-  const language = window && window.navigator && window.navigator.language;
-  return getSupportedLanguage(language);
+export const getBrowserLocale = window => {
+  const browserLocale = window && window.navigator && window.navigator.language;
+  return getSupportedLocale(browserLocale);
 };
 
 export const mergeMessages = (...messages) => Object.assign({}, ...messages);

@@ -1,650 +1,650 @@
 {
   "AED": {
-    "label": "United Arab Emirates Dirham",
+    "label": "dirham des Émirats arabes unis",
     "symbol": "د.إ.‏"
   },
   "AFN": {
-    "label": "Afghan Afghani",
+    "label": "afghani afghan",
     "symbol": "؋"
   },
   "ALL": {
-    "label": "Albanian Lek",
+    "label": "lek albanais",
     "symbol": "Lekë"
   },
   "AMD": {
-    "label": "Armenian Dram",
+    "label": "dram arménien",
     "symbol": "֏"
   },
   "ANG": {
-    "label": "Netherlands Antillean Guilder",
+    "label": "florin antillais",
     "symbol": "NAf."
   },
   "AOA": {
-    "label": "Angolan Kwanza",
+    "label": "kwanza angolais",
     "symbol": "Kz"
   },
   "ARS": {
-    "label": "Argentine Peso",
+    "label": "peso argentin",
     "symbol": "$"
   },
   "AUD": {
-    "label": "Australian Dollar",
+    "label": "dollar australien",
     "symbol": "$"
   },
   "AWG": {
-    "label": "Aruban Florin",
+    "label": "florin arubais",
     "symbol": "Afl."
   },
   "AZN": {
-    "label": "Azerbaijani Manat",
+    "label": "manat azéri",
     "symbol": "₼"
   },
   "BAM": {
-    "label": "Bosnia-Herzegovina Convertible Mark",
+    "label": "mark convertible bosniaque",
     "symbol": "КМ"
   },
   "BBD": {
-    "label": "Barbadian Dollar",
+    "label": "dollar barbadien",
     "symbol": "$"
   },
   "BDT": {
-    "label": "Bangladeshi Taka",
+    "label": "taka bangladeshi",
     "symbol": "৳"
   },
   "BGN": {
-    "label": "Bulgarian Lev",
+    "label": "lev bulgare",
     "symbol": "лв."
   },
   "BHD": {
-    "label": "Bahraini Dinar",
+    "label": "dinar bahreïni",
     "symbol": "د.ب.‏"
   },
   "BIF": {
-    "label": "Burundian Franc",
+    "label": "franc burundais",
     "symbol": "FBu"
   },
   "BMD": {
-    "label": "Bermudan Dollar",
+    "label": "dollar bermudien",
     "symbol": "$"
   },
   "BND": {
-    "label": "Brunei Dollar",
+    "label": "dollar brunéien",
     "symbol": "$"
   },
   "BOB": {
-    "label": "Bolivian Boliviano",
+    "label": "boliviano bolivien",
     "symbol": "Bs"
   },
   "BOV": {
-    "label": "Bolivian Mvdol",
+    "label": "mvdol bolivien",
     "symbol": "BOV"
   },
   "BRL": {
-    "label": "Brazilian Real",
+    "label": "réal brésilien",
     "symbol": "R$"
   },
   "BSD": {
-    "label": "Bahamian Dollar",
+    "label": "dollar bahaméen",
     "symbol": "$"
   },
   "BTN": {
-    "label": "Bhutanese Ngultrum",
+    "label": "ngultrum bouthanais",
     "symbol": "Nu."
   },
   "BWP": {
-    "label": "Botswanan Pula",
+    "label": "pula botswanais",
     "symbol": "P"
   },
   "BYN": {
-    "label": "Belarusian Ruble",
+    "label": "rouble biélorusse",
     "symbol": "Br"
   },
   "BZD": {
-    "label": "Belize Dollar",
+    "label": "dollar bélizéen",
     "symbol": "$"
   },
   "CAD": {
-    "label": "Canadian Dollar",
+    "label": "dollar canadien",
     "symbol": "$"
   },
   "CDF": {
-    "label": "Congolese Franc",
+    "label": "franc congolais",
     "symbol": "FC"
   },
   "CHE": {
-    "label": "WIR Euro",
+    "label": "euro WIR",
     "symbol": "CHE"
   },
   "CHF": {
-    "label": "Swiss Franc",
+    "label": "franc suisse",
     "symbol": "CHF"
   },
   "CHW": {
-    "label": "WIR Franc",
+    "label": "franc WIR",
     "symbol": "CHW"
   },
   "CLF": {
-    "label": "Chilean Unit of Account (UF)",
+    "label": "unité d’investissement chilienne",
     "symbol": "CLF"
   },
   "CLP": {
-    "label": "Chilean Peso",
+    "label": "peso chilien",
     "symbol": "$"
   },
   "CNH": {
-    "label": "Chinese Yuan (offshore)",
+    "label": "yuan chinois (zone extracôtière)",
     "symbol": "CNH"
   },
   "CNY": {
-    "label": "Chinese Yuan",
+    "label": "yuan renminbi chinois",
     "symbol": "¥"
   },
   "COP": {
-    "label": "Colombian Peso",
+    "label": "peso colombien",
     "symbol": "$"
   },
   "COU": {
-    "label": "Colombian Real Value Unit",
+    "label": "unité de valeur réelle colombienne",
     "symbol": "COU"
   },
   "CRC": {
-    "label": "Costa Rican Colón",
+    "label": "colón costaricain",
     "symbol": "₡"
   },
   "CUC": {
-    "label": "Cuban Convertible Peso",
+    "label": "peso cubain convertible",
     "symbol": "CUC"
   },
   "CUP": {
-    "label": "Cuban Peso",
+    "label": "peso cubain",
     "symbol": "$"
   },
   "CVE": {
-    "label": "Cape Verdean Escudo",
+    "label": "escudo capverdien",
     "symbol": "​"
   },
   "CZK": {
-    "label": "Czech Koruna",
+    "label": "couronne tchèque",
     "symbol": "Kč"
   },
   "DJF": {
-    "label": "Djiboutian Franc",
+    "label": "franc djiboutien",
     "symbol": "Fdj"
   },
   "DKK": {
-    "label": "Danish Krone",
+    "label": "couronne danoise",
     "symbol": "kr."
   },
   "DOP": {
-    "label": "Dominican Peso",
+    "label": "peso dominicain",
     "symbol": "RD$"
   },
   "DZD": {
-    "label": "Algerian Dinar",
+    "label": "dinar algérien",
     "symbol": "د.ج.‏"
   },
   "EGP": {
-    "label": "Egyptian Pound",
+    "label": "livre égyptienne",
     "symbol": "ج.م.‏"
   },
   "ERN": {
-    "label": "Eritrean Nakfa",
+    "label": "nafka érythréen",
     "symbol": "Nfk"
   },
   "ETB": {
-    "label": "Ethiopian Birr",
+    "label": "birr éthiopien",
     "symbol": "ብር"
   },
   "EUR": {
-    "label": "Euro",
+    "label": "euro",
     "symbol": "€"
   },
   "FJD": {
-    "label": "Fijian Dollar",
+    "label": "dollar fidjien",
     "symbol": "$"
   },
   "FKP": {
-    "label": "Falkland Islands Pound",
+    "label": "livre des îles Malouines",
     "symbol": "£"
   },
   "GBP": {
-    "label": "British Pound",
+    "label": "livre sterling",
     "symbol": "£"
   },
   "GEL": {
-    "label": "Georgian Lari",
+    "label": "lari géorgien",
     "symbol": "₾"
   },
   "GHS": {
-    "label": "Ghanaian Cedi",
+    "label": "cédi ghanéen",
     "symbol": "GH₵"
   },
   "GIP": {
-    "label": "Gibraltar Pound",
+    "label": "livre de Gibraltar",
     "symbol": "£"
   },
   "GMD": {
-    "label": "Gambian Dalasi",
+    "label": "dalasi gambien",
     "symbol": "D"
   },
   "GNF": {
-    "label": "Guinean Franc",
+    "label": "franc guinéen",
     "symbol": "FG"
   },
   "GTQ": {
-    "label": "Guatemalan Quetzal",
+    "label": "quetzal guatémaltèque",
     "symbol": "Q"
   },
   "GYD": {
-    "label": "Guyanaese Dollar",
+    "label": "dollar du Guyana",
     "symbol": "$"
   },
   "HKD": {
-    "label": "Hong Kong Dollar",
+    "label": "dollar de Hong Kong",
     "symbol": "HK$"
   },
   "HNL": {
-    "label": "Honduran Lempira",
+    "label": "lempira hondurien",
     "symbol": "L"
   },
   "HRK": {
-    "label": "Croatian Kuna",
+    "label": "kuna croate",
     "symbol": "HRK"
   },
   "HTG": {
-    "label": "Haitian Gourde",
+    "label": "gourde haïtienne",
     "symbol": "G"
   },
   "HUF": {
-    "label": "Hungarian Forint",
+    "label": "forint hongrois",
     "symbol": "Ft"
   },
   "IDR": {
-    "label": "Indonesian Rupiah",
+    "label": "roupie indonésienne",
     "symbol": "Rp"
   },
   "ILS": {
-    "label": "Israeli New Shekel",
+    "label": "nouveau shekel israélien",
     "symbol": "₪"
   },
   "INR": {
-    "label": "Indian Rupee",
+    "label": "roupie indienne",
     "symbol": "₹"
   },
   "IQD": {
-    "label": "Iraqi Dinar",
+    "label": "dinar irakien",
     "symbol": "د.ع.‏"
   },
   "IRR": {
-    "label": "Iranian Rial",
+    "label": "riyal iranien",
     "symbol": "IRR"
   },
   "ISK": {
-    "label": "Icelandic Króna",
+    "label": "couronne islandaise",
     "symbol": "ISK"
   },
   "JMD": {
-    "label": "Jamaican Dollar",
+    "label": "dollar jamaïcain",
     "symbol": "$"
   },
   "JOD": {
-    "label": "Jordanian Dinar",
+    "label": "dinar jordanien",
     "symbol": "د.أ.‏"
   },
   "JPY": {
-    "label": "Japanese Yen",
+    "label": "yen japonais",
     "symbol": "￥"
   },
   "KES": {
-    "label": "Kenyan Shilling",
+    "label": "shilling kényan",
     "symbol": "Ksh"
   },
   "KGS": {
-    "label": "Kyrgystani Som",
+    "label": "som kirghize",
     "symbol": "сом"
   },
   "KHR": {
-    "label": "Cambodian Riel",
+    "label": "riel cambodgien",
     "symbol": "៛"
   },
   "KMF": {
-    "label": "Comorian Franc",
+    "label": "franc comorien",
     "symbol": "CF"
   },
   "KPW": {
-    "label": "North Korean Won",
+    "label": "won nord-coréen",
     "symbol": "KPW"
   },
   "KRW": {
-    "label": "South Korean Won",
+    "label": "won sud-coréen",
     "symbol": "₩"
   },
   "KWD": {
-    "label": "Kuwaiti Dinar",
+    "label": "dinar koweïtien",
     "symbol": "د.ك.‏"
   },
   "KYD": {
-    "label": "Cayman Islands Dollar",
+    "label": "dollar des îles Caïmans",
     "symbol": "$"
   },
   "KZT": {
-    "label": "Kazakhstani Tenge",
+    "label": "tenge kazakh",
     "symbol": "₸"
   },
   "LAK": {
-    "label": "Laotian Kip",
+    "label": "kip loatien",
     "symbol": "₭"
   },
   "LBP": {
-    "label": "Lebanese Pound",
+    "label": "livre libanaise",
     "symbol": "ل.ل.‏"
   },
   "LKR": {
-    "label": "Sri Lankan Rupee",
+    "label": "roupie srilankaise",
     "symbol": "රු."
   },
   "LRD": {
-    "label": "Liberian Dollar",
+    "label": "dollar libérien",
     "symbol": "$"
   },
   "LSL": {
-    "label": "Lesotho Loti",
+    "label": "loti lesothan",
     "symbol": "LSL"
   },
   "LYD": {
-    "label": "Libyan Dinar",
+    "label": "dinar libyen",
     "symbol": "د.ل.‏"
   },
   "MAD": {
-    "label": "Moroccan Dirham",
+    "label": "dirham marocain",
     "symbol": "د.م.‏"
   },
   "MDL": {
-    "label": "Moldovan Leu",
+    "label": "leu moldave",
     "symbol": "L"
   },
   "MGA": {
-    "label": "Malagasy Ariary",
+    "label": "ariary malgache",
     "symbol": "Ar"
   },
   "MKD": {
-    "label": "Macedonian Denar",
+    "label": "denar macédonien",
     "symbol": "ден"
   },
   "MMK": {
-    "label": "Myanmar Kyat",
+    "label": "kyat myanmarais",
     "symbol": "K"
   },
   "MNT": {
-    "label": "Mongolian Tugrik",
+    "label": "tugrik mongol",
     "symbol": "₮"
   },
   "MOP": {
-    "label": "Macanese Pataca",
+    "label": "pataca macanaise",
     "symbol": "MOP$"
   },
   "MRO": {
-    "label": "Mauritanian Ouguiya (1973–2017)",
+    "label": "ouguiya mauritanien (1973–2017)",
     "symbol": "أ.م.‏"
   },
   "MUR": {
-    "label": "Mauritian Rupee",
+    "label": "roupie mauricienne",
     "symbol": "Rs"
   },
   "MWK": {
-    "label": "Malawian Kwacha",
+    "label": "kwacha malawite",
     "symbol": "MK"
   },
   "MXN": {
-    "label": "Mexican Peso",
+    "label": "peso mexicain",
     "symbol": "$"
   },
   "MXV": {
-    "label": "Mexican Investment Unit",
+    "label": "unité de conversion mexicaine (UDI)",
     "symbol": "MXV"
   },
   "MYR": {
-    "label": "Malaysian Ringgit",
+    "label": "ringgit malais",
     "symbol": "RM"
   },
   "MZN": {
-    "label": "Mozambican Metical",
+    "label": "metical mozambicain",
     "symbol": "MTn"
   },
   "NAD": {
-    "label": "Namibian Dollar",
+    "label": "dollar namibien",
     "symbol": "$"
   },
   "NGN": {
-    "label": "Nigerian Naira",
+    "label": "naira nigérian",
     "symbol": "₦"
   },
   "NIO": {
-    "label": "Nicaraguan Córdoba",
+    "label": "córdoba oro nicaraguayen",
     "symbol": "C$"
   },
   "NOK": {
-    "label": "Norwegian Krone",
+    "label": "couronne norvégienne",
     "symbol": "kr"
   },
   "NPR": {
-    "label": "Nepalese Rupee",
+    "label": "roupie népalaise",
     "symbol": "नेरू"
   },
   "NZD": {
-    "label": "New Zealand Dollar",
+    "label": "dollar néo-zélandais",
     "symbol": "$"
   },
   "OMR": {
-    "label": "Omani Rial",
+    "label": "riyal omanais",
     "symbol": "ر.ع.‏"
   },
   "PAB": {
-    "label": "Panamanian Balboa",
+    "label": "balboa panaméen",
     "symbol": "B/."
   },
   "PEN": {
-    "label": "Peruvian Sol",
+    "label": "sol péruvien",
     "symbol": "S/"
   },
   "PGK": {
-    "label": "Papua New Guinean Kina",
+    "label": "kina papouan-néo-guinéen",
     "symbol": "K"
   },
   "PHP": {
-    "label": "Philippine Piso",
+    "label": "peso philippin",
     "symbol": "₱"
   },
   "PKR": {
-    "label": "Pakistani Rupee",
+    "label": "roupie pakistanaise",
     "symbol": "Rs"
   },
   "PLN": {
-    "label": "Polish Zloty",
+    "label": "zloty polonais",
     "symbol": "zł"
   },
   "PYG": {
-    "label": "Paraguayan Guarani",
+    "label": "guaraní paraguayen",
     "symbol": "Gs."
   },
   "QAR": {
-    "label": "Qatari Rial",
+    "label": "riyal qatari",
     "symbol": "ر.ق.‏"
   },
   "RON": {
-    "label": "Romanian Leu",
+    "label": "leu roumain",
     "symbol": "RON"
   },
   "RSD": {
-    "label": "Serbian Dinar",
+    "label": "dinar serbe",
     "symbol": "RSD"
   },
   "RUB": {
-    "label": "Russian Ruble",
+    "label": "rouble russe",
     "symbol": "₽"
   },
   "RWF": {
-    "label": "Rwandan Franc",
+    "label": "franc rwandais",
     "symbol": "RF"
   },
   "SAR": {
-    "label": "Saudi Riyal",
+    "label": "riyal saoudien",
     "symbol": "ر.س.‏"
   },
   "SBD": {
-    "label": "Solomon Islands Dollar",
+    "label": "dollar des îles Salomon",
     "symbol": "$"
   },
   "SCR": {
-    "label": "Seychellois Rupee",
+    "label": "roupie des Seychelles",
     "symbol": "SR"
   },
   "SDG": {
-    "label": "Sudanese Pound",
+    "label": "livre soudanaise",
     "symbol": "ج.س."
   },
   "SEK": {
-    "label": "Swedish Krona",
+    "label": "couronne suédoise",
     "symbol": "kr"
   },
   "SGD": {
-    "label": "Singapore Dollar",
+    "label": "dollar de Singapour",
     "symbol": "$"
   },
   "SHP": {
-    "label": "St. Helena Pound",
+    "label": "livre de Sainte-Hélène",
     "symbol": "£"
   },
   "SLL": {
-    "label": "Sierra Leonean Leone",
+    "label": "leone sierra-léonais",
     "symbol": "Le"
   },
   "SOS": {
-    "label": "Somali Shilling",
+    "label": "shilling somalien",
     "symbol": "S"
   },
   "SRD": {
-    "label": "Surinamese Dollar",
+    "label": "dollar surinamais",
     "symbol": "$"
   },
   "SSP": {
-    "label": "South Sudanese Pound",
+    "label": "livre sud-soudanaise",
     "symbol": "£"
   },
   "STN": {
-    "label": "São Tomé & Príncipe Dobra",
+    "label": "dobra santoméen",
     "symbol": "STN"
   },
   "SYP": {
-    "label": "Syrian Pound",
+    "label": "livre syrienne",
     "symbol": "ل.س.‏"
   },
   "SZL": {
-    "label": "Swazi Lilangeni",
+    "label": "lilangeni swazi",
     "symbol": "E"
   },
   "THB": {
-    "label": "Thai Baht",
+    "label": "baht thaïlandais",
     "symbol": "THB"
   },
   "TJS": {
-    "label": "Tajikistani Somoni",
+    "label": "somoni tadjik",
     "symbol": "сом."
   },
   "TND": {
-    "label": "Tunisian Dinar",
+    "label": "dinar tunisien",
     "symbol": "د.ت.‏"
   },
   "TOP": {
-    "label": "Tongan Paʻanga",
+    "label": "pa’anga tongan",
     "symbol": "T$"
   },
   "TRY": {
-    "label": "Turkish Lira",
+    "label": "livre turque",
     "symbol": "₺"
   },
   "TTD": {
-    "label": "Trinidad & Tobago Dollar",
+    "label": "dollar trinidadien",
     "symbol": "$"
   },
   "TWD": {
-    "label": "New Taiwan Dollar",
+    "label": "nouveau dollar taïwanais",
     "symbol": "$"
   },
   "TZS": {
-    "label": "Tanzanian Shilling",
+    "label": "shilling tanzanien",
     "symbol": "TSh"
   },
   "UAH": {
-    "label": "Ukrainian Hryvnia",
+    "label": "hryvnia ukrainienne",
     "symbol": "₴"
   },
   "UGX": {
-    "label": "Ugandan Shilling",
+    "label": "shilling ougandais",
     "symbol": "USh"
   },
   "USD": {
-    "label": "US Dollar",
+    "label": "dollar des États-Unis",
     "symbol": "$"
   },
   "USN": {
-    "label": "US Dollar (Next day)",
+    "label": "dollar des Etats-Unis (jour suivant)",
     "symbol": "USN"
   },
   "UYI": {
-    "label": "Uruguayan Peso (Indexed Units)",
+    "label": "peso uruguayen (unités indexées)",
     "symbol": "UYI"
   },
   "UYU": {
-    "label": "Uruguayan Peso",
+    "label": "peso uruguayen",
     "symbol": "$"
   },
   "UZS": {
-    "label": "Uzbekistani Som",
+    "label": "sum ouzbek",
     "symbol": "сўм"
   },
   "VEF": {
-    "label": "Venezuelan Bolívar (2008–2018)",
+    "label": "bolivar vénézuélien (2008–2018)",
     "symbol": "Bs."
   },
   "VND": {
-    "label": "Vietnamese Dong",
+    "label": "dông vietnamien",
     "symbol": "₫"
   },
   "VUV": {
-    "label": "Vanuatu Vatu",
+    "label": "vatu vanuatuan",
     "symbol": "VT"
   },
   "WST": {
-    "label": "Samoan Tala",
+    "label": "tala samoan",
     "symbol": "WS$"
   },
   "XAF": {
-    "label": "Central African CFA Franc",
+    "label": "franc CFA (BEAC)",
     "symbol": "FCFA"
   },
   "XCD": {
-    "label": "East Caribbean Dollar",
+    "label": "dollar des Caraïbes orientales",
     "symbol": "$"
   },
   "XOF": {
-    "label": "West African CFA Franc",
+    "label": "franc CFA (BCEAO)",
     "symbol": "CFA"
   },
   "XPF": {
-    "label": "CFP Franc",
+    "label": "franc CFP",
     "symbol": "FCFP"
   },
   "YER": {
-    "label": "Yemeni Rial",
+    "label": "riyal yéménite",
     "symbol": "ر.ي.‏"
   },
   "ZAR": {
-    "label": "South African Rand",
+    "label": "rand sud-africain",
     "symbol": "R"
   },
   "ZMW": {
-    "label": "Zambian Kwacha",
+    "label": "kwacha zambien",
     "symbol": "K"
   }
 }

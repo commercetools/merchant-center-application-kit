@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import { extractLanguageTagFromLocale } from '../utils';
 import loadI18n from '../load-i18n';
 
 const mergeMessages = (...messages) => Object.assign({}, ...messages);
 
-export const extractLanguageFromLocale = locale =>
-  locale.includes('-') ? locale.split('-')[0] : locale;
+const getMessagesForLocale = (data, locale) => {
+  if (!data || !locale) return {};
+  if (data[locale]) return data[locale];
+  const fallbackLanguage = extractLanguageTagFromLocale(locale);
+  return data[fallbackLanguage];
+};
 
 class AsyncLocaleData extends React.Component {
   static displayName = 'AsyncLocaleData';
@@ -22,10 +27,11 @@ class AsyncLocaleData extends React.Component {
       PropTypes.object,
     ]),
   };
+  static getMessagesForLocale = getMessagesForLocale;
 
   state = {
     isLoading: true,
-    language: null,
+    locale: null,
     messages: null,
   };
 
@@ -46,17 +52,15 @@ class AsyncLocaleData extends React.Component {
   }
 
   loadLocaleData = async locale => {
-    const language = extractLanguageFromLocale(locale);
-
     let applicationMessagePromise = null;
 
     if (typeof this.props.applicationMessages === 'function') {
-      applicationMessagePromise = this.props.applicationMessages(language);
+      applicationMessagePromise = this.props.applicationMessages(locale);
     }
 
     const messageFetchingPromises = applicationMessagePromise
-      ? [loadI18n(language), applicationMessagePromise]
-      : [loadI18n(language)];
+      ? [loadI18n(locale), applicationMessagePromise]
+      : [loadI18n(locale)];
 
     try {
       const [messages, applicationMessages] = await Promise.all(
@@ -65,12 +69,11 @@ class AsyncLocaleData extends React.Component {
       if (!this.isUnmounting) {
         this.setState({
           isLoading: false,
-          language,
+          locale,
           messages: mergeMessages(
             messages,
             applicationMessages ||
-              (this.props.applicationMessages &&
-                this.props.applicationMessages[language])
+              getMessagesForLocale(this.props.applicationMessages, locale)
           ),
         });
       }

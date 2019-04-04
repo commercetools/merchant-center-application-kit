@@ -62,7 +62,7 @@ describe('rendering', () => {
       it('should call `children` with state', () => {
         expect(props.children).toHaveBeenCalledWith({
           isLoading: false,
-          language: 'en',
+          locale: 'en-US',
           messages: { title: 'Title en', ...props.applicationMessages.en },
         });
       });
@@ -96,7 +96,7 @@ describe('rendering', () => {
       });
 
       it('should call `loadIntl` with `de`', () => {
-        expect(loadI18n).toHaveBeenCalledWith('de');
+        expect(loadI18n).toHaveBeenCalledWith('de-AT');
       });
     });
   });
@@ -126,14 +126,14 @@ describe('rendering', () => {
         expect(props.applicationMessages).toHaveBeenCalled();
       });
 
-      it('should call `applicationMessagePromise` with `en`', () => {
-        expect(props.applicationMessages).toHaveBeenCalledWith('en');
+      it('should call `applicationMessagePromise` with `en-CA`', () => {
+        expect(props.applicationMessages).toHaveBeenCalledWith('en-CA');
       });
 
       it('should call `children` with state', () => {
         expect(props.children).toHaveBeenCalledWith({
           isLoading: false,
-          language: 'en',
+          locale: 'en-CA',
           messages: { title: 'Title en', 'CustomApp.title': 'New title en' },
         });
       });
@@ -152,7 +152,7 @@ describe('rendering', () => {
     it('should call `children` with state', () => {
       expect(props.children).toHaveBeenCalledWith({
         isLoading: true,
-        language: null,
+        locale: null,
         messages: null,
       });
     });

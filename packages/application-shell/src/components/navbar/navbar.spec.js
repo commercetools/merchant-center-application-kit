@@ -44,7 +44,7 @@ const createTestMenuConfig = (key, props) => ({
 
 const createTestProps = props => ({
   // From parent
-  applicationLanguage: 'en',
+  applicationLocale: 'en',
   projectKey: 'test-1',
   environment: {
     servedByProxy: false,
@@ -120,10 +120,10 @@ describe('rendering', () => {
           ])
         );
       });
-      it('should pass applicationLanguage as prop', () => {
+      it('should pass applicationLocale as prop', () => {
         expect(wrapper.find(DataMenu)).toHaveProp(
-          'applicationLanguage',
-          props.applicationLanguage
+          'applicationLocale',
+          props.applicationLocale
         );
       });
       it('should pass projectKey as prop', () => {

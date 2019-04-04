@@ -1,8 +1,4 @@
-export {
-  extractLanguageFromLocale,
-  getSupportedLanguage,
-  getSymbolFromCurrency,
-} from './utils';
+export { getSupportedLocale, getSymbolFromCurrency } from './utils';
 
 export { withCountries, countriesShape } from './country-information';
 export { withCurrencies } from './currency-information';

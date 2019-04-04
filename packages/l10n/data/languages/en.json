@@ -588,7 +588,7 @@
   },
   "en-SZ": {
     "language": "English",
-    "country": "Swaziland"
+    "country": "Eswatini"
   },
   "en-TC": {
     "language": "English",
@@ -1272,8 +1272,7 @@
     "country": "New Zealand"
   },
   "mk": {
-    "language": "Macedonian",
-    "country": "North Macedonia"
+    "language": "Macedonian"
   },
   "mk-MK": {
     "language": "Macedonian",
@@ -1467,7 +1466,7 @@
   },
   "pt-MO": {
     "language": "Portuguese",
-    "country": "Macau SAR China"
+    "country": "Macao SAR China"
   },
   "pt-MZ": {
     "language": "Portuguese",
@@ -1651,7 +1650,7 @@
   },
   "ss-SZ": {
     "language": "Swati",
-    "country": "Swaziland"
+    "country": "Eswatini"
   },
   "st": {
     "language": "Southern Sotho"
@@ -1849,7 +1848,7 @@
   },
   "zh-MO": {
     "language": "Chinese",
-    "country": "Macau SAR China"
+    "country": "Macao SAR China"
   },
   "zh-SG": {
     "language": "Chinese",

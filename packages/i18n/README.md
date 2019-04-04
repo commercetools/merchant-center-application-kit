@@ -6,17 +6,19 @@
 
 This package contains JSON data about the i18n messages from the different application-kit packages (e.g. `application-shell`, etc). Additionally, it also loads locale data for `moment` and `react-intl`, which is necessary for runtime usage.
 
-Supported languages are:
-
-- `en` (_default_)
-- `de`
-- `es`
-
 ## Install
 
 ```bash
 $ npm install --save @commercetools-frontend/i18n
 ```
+
+## Supported locales
+
+- `en`
+- `de`
+- `es`
+- `fr-FR`
+- `zh-CN`
 
 ### Usage
 
@@ -37,11 +39,11 @@ const MyApplication = props => (
     locale={props.user.locale}
     applicationMessages={myApplicationMessages}
   >
-    {({ isLoading, language, messages }) => {
+    {({ isLoading, locale, messages }) => {
       if (isLoading) return null;
 
       return (
-        <ConfigureIntlProvider language={language} messages={messages}>
+        <ConfigureIntlProvider locale={locale} messages={messages}>
           ...
         </ConfigureIntlProvider>
       );
@@ -56,28 +58,43 @@ const MyApplication = props => (
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import { ConfigureIntlProvider } from '@commercetools-frontend/application-shell';
 
-const loadApplicationMessagesForLanguage = lang =>
-  new Promise((resolve, reject) =>
-    import(`../../i18n/data/${lang}.json` /* webpackChunkName: "application-messages-[request]" */).then(
-      response => {
-        resolve(response.default);
-      },
-      error => {
-        reject(error);
-      }
-    )
+const loadMessages = lang => {
+  let loadAppI18nPromise;
+  switch (lang) {
+    case 'de':
+      loadAppI18nPromise = import('./i18n/data/de.json' /* webpackChunkName: "app-i18n-de" */);
+      break;
+    case 'es':
+      loadAppI18nPromise = import('./i18n/data/es.json' /* webpackChunkName: "app-i18n-es" */);
+      break;
+    default:
+      loadAppI18nPromise = import('./i18n/data/en.json' /* webpackChunkName: "app-i18n-en" */);
+  }
+
+  return loadAppI18nPromise.then(
+    result => result.default,
+    error => {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `Something went wrong while loading the app messages for ${lang}`,
+        error
+      );
+
+      return {};
+    }
   );
+};
 
 const Application = props => (
   <AsyncLocaleData
     locale={props.user.locale}
-    applicationMessages={loadApplicationMessagesForLanguage}
+    applicationMessages={loadMessages}
   >
-    {({ isLoading, language, messages }) => {
+    {({ isLoading, locale, messages }) => {
       if (isLoading) return null;
 
       return (
-        <ConfigureIntlProvider language={language} messages={messages}>
+        <ConfigureIntlProvider locale={locale} messages={messages}>
           ...
         </ConfigureIntlProvider>
       );

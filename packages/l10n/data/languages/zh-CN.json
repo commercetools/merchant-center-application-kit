@@ -1,0 +1,1885 @@
+{
+  "aa": {
+    "language": "阿法尔语"
+  },
+  "ab": {
+    "language": "阿布哈西亚语"
+  },
+  "ae": {
+    "language": "阿维斯塔语"
+  },
+  "af": {
+    "language": "南非荷兰语"
+  },
+  "ak": {
+    "language": "阿肯语"
+  },
+  "am": {
+    "language": "阿姆哈拉语"
+  },
+  "am-ET": {
+    "language": "阿姆哈拉语",
+    "country": "埃塞俄比亚"
+  },
+  "an": {
+    "language": "阿拉贡语"
+  },
+  "ar": {
+    "language": "阿拉伯语"
+  },
+  "ar-AE": {
+    "language": "阿拉伯语",
+    "country": "阿拉伯联合酋长国"
+  },
+  "ar-BH": {
+    "language": "阿拉伯语",
+    "country": "巴林"
+  },
+  "ar-DJ": {
+    "language": "阿拉伯语",
+    "country": "吉布提"
+  },
+  "ar-DZ": {
+    "language": "阿拉伯语",
+    "country": "阿尔及利亚"
+  },
+  "ar-EG": {
+    "language": "阿拉伯语",
+    "country": "埃及"
+  },
+  "ar-EH": {
+    "language": "阿拉伯语",
+    "country": "西撒哈拉"
+  },
+  "ar-ER": {
+    "language": "阿拉伯语",
+    "country": "厄立特里亚"
+  },
+  "ar-IL": {
+    "language": "阿拉伯语",
+    "country": "以色列"
+  },
+  "ar-IQ": {
+    "language": "阿拉伯语",
+    "country": "伊拉克"
+  },
+  "ar-JO": {
+    "language": "阿拉伯语",
+    "country": "约旦"
+  },
+  "ar-KM": {
+    "language": "阿拉伯语",
+    "country": "科摩罗"
+  },
+  "ar-KW": {
+    "language": "阿拉伯语",
+    "country": "科威特"
+  },
+  "ar-LB": {
+    "language": "阿拉伯语",
+    "country": "黎巴嫩"
+  },
+  "ar-LY": {
+    "language": "阿拉伯语",
+    "country": "利比亚"
+  },
+  "ar-MA": {
+    "language": "阿拉伯语",
+    "country": "摩洛哥"
+  },
+  "ar-MR": {
+    "language": "阿拉伯语",
+    "country": "毛里塔尼亚"
+  },
+  "ar-OM": {
+    "language": "阿拉伯语",
+    "country": "阿曼"
+  },
+  "ar-PS": {
+    "language": "阿拉伯语",
+    "country": "巴勒斯坦领土"
+  },
+  "ar-QA": {
+    "language": "阿拉伯语",
+    "country": "卡塔尔"
+  },
+  "ar-SA": {
+    "language": "阿拉伯语",
+    "country": "沙特阿拉伯"
+  },
+  "ar-SD": {
+    "language": "阿拉伯语",
+    "country": "苏丹"
+  },
+  "ar-SO": {
+    "language": "阿拉伯语",
+    "country": "索马里"
+  },
+  "ar-SY": {
+    "language": "阿拉伯语",
+    "country": "叙利亚"
+  },
+  "ar-TD": {
+    "language": "阿拉伯语",
+    "country": "乍得"
+  },
+  "ar-TN": {
+    "language": "阿拉伯语",
+    "country": "突尼斯"
+  },
+  "ar-YE": {
+    "language": "阿拉伯语",
+    "country": "也门"
+  },
+  "as": {
+    "language": "阿萨姆语"
+  },
+  "av": {
+    "language": "阿瓦尔语"
+  },
+  "ay": {
+    "language": "艾马拉语"
+  },
+  "ay-BO": {
+    "language": "艾马拉语",
+    "country": "玻利维亚"
+  },
+  "az": {
+    "language": "阿塞拜疆语"
+  },
+  "az-AZ": {
+    "language": "阿塞拜疆语",
+    "country": "阿塞拜疆"
+  },
+  "ba": {
+    "language": "巴什基尔语"
+  },
+  "be": {
+    "language": "白俄罗斯语"
+  },
+  "be-BY": {
+    "language": "白俄罗斯语",
+    "country": "白俄罗斯"
+  },
+  "bg": {
+    "language": "保加利亚语"
+  },
+  "bg-BG": {
+    "language": "保加利亚语",
+    "country": "保加利亚"
+  },
+  "bi": {
+    "language": "比斯拉马语"
+  },
+  "bi-VU": {
+    "language": "比斯拉马语",
+    "country": "瓦努阿图"
+  },
+  "bm": {
+    "language": "班巴拉语"
+  },
+  "bn": {
+    "language": "孟加拉语"
+  },
+  "bn-BD": {
+    "language": "孟加拉语",
+    "country": "孟加拉国"
+  },
+  "bo": {
+    "language": "藏语"
+  },
+  "br": {
+    "language": "布列塔尼语"
+  },
+  "bs": {
+    "language": "波斯尼亚语"
+  },
+  "bs-BA": {
+    "language": "波斯尼亚语",
+    "country": "波斯尼亚和黑塞哥维那"
+  },
+  "ca": {
+    "language": "加泰罗尼亚语"
+  },
+  "ca-AD": {
+    "language": "加泰罗尼亚语",
+    "country": "安道尔"
+  },
+  "ce": {
+    "language": "车臣语"
+  },
+  "ch": {
+    "language": "查莫罗语"
+  },
+  "ch-GU": {
+    "language": "查莫罗语",
+    "country": "关岛"
+  },
+  "co": {
+    "language": "科西嘉语"
+  },
+  "cr": {
+    "language": "克里族语"
+  },
+  "cs": {
+    "language": "捷克语"
+  },
+  "cs-CZ": {
+    "language": "捷克语",
+    "country": "捷克"
+  },
+  "cu": {
+    "language": "教会斯拉夫语"
+  },
+  "cv": {
+    "language": "楚瓦什语"
+  },
+  "cy": {
+    "language": "威尔士语"
+  },
+  "da": {
+    "language": "丹麦语"
+  },
+  "da-DK": {
+    "language": "丹麦语",
+    "country": "丹麦"
+  },
+  "de": {
+    "language": "德语"
+  },
+  "de-AT": {
+    "language": "德语",
+    "country": "奥地利"
+  },
+  "de-BE": {
+    "language": "德语",
+    "country": "比利时"
+  },
+  "de-CH": {
+    "language": "德语",
+    "country": "瑞士"
+  },
+  "de-DE": {
+    "language": "德语",
+    "country": "德国"
+  },
+  "de-LI": {
+    "language": "德语",
+    "country": "列支敦士登"
+  },
+  "de-LU": {
+    "language": "德语",
+    "country": "卢森堡"
+  },
+  "dv": {
+    "language": "迪维希语"
+  },
+  "dv-MV": {
+    "language": "迪维希语",
+    "country": "马尔代夫"
+  },
+  "dz": {
+    "language": "宗卡语"
+  },
+  "dz-BT": {
+    "language": "宗卡语",
+    "country": "不丹"
+  },
+  "ee": {
+    "language": "埃维语"
+  },
+  "el": {
+    "language": "希腊语"
+  },
+  "el-CY": {
+    "language": "希腊语",
+    "country": "塞浦路斯"
+  },
+  "el-GR": {
+    "language": "希腊语",
+    "country": "希腊"
+  },
+  "en": {
+    "language": "英语"
+  },
+  "en-AG": {
+    "language": "英语",
+    "country": "安提瓜和巴布达"
+  },
+  "en-AI": {
+    "language": "英语",
+    "country": "安圭拉"
+  },
+  "en-AS": {
+    "language": "英语",
+    "country": "美属萨摩亚"
+  },
+  "en-AU": {
+    "language": "英语",
+    "country": "澳大利亚"
+  },
+  "en-BB": {
+    "language": "英语",
+    "country": "巴巴多斯"
+  },
+  "en-BI": {
+    "language": "英语",
+    "country": "布隆迪"
+  },
+  "en-BM": {
+    "language": "英语",
+    "country": "百慕大"
+  },
+  "en-BS": {
+    "language": "英语",
+    "country": "巴哈马"
+  },
+  "en-BW": {
+    "language": "英语",
+    "country": "博茨瓦纳"
+  },
+  "en-BZ": {
+    "language": "英语",
+    "country": "伯利兹"
+  },
+  "en-CA": {
+    "language": "英语",
+    "country": "加拿大"
+  },
+  "en-CC": {
+    "language": "英语",
+    "country": "科科斯（基林）群岛"
+  },
+  "en-CK": {
+    "language": "英语",
+    "country": "库克群岛"
+  },
+  "en-CM": {
+    "language": "英语",
+    "country": "喀麦隆"
+  },
+  "en-CX": {
+    "language": "英语",
+    "country": "圣诞岛"
+  },
+  "en-DG": {
+    "language": "英语",
+    "country": "迪戈加西亚岛"
+  },
+  "en-DM": {
+    "language": "英语",
+    "country": "多米尼克"
+  },
+  "en-ER": {
+    "language": "英语",
+    "country": "厄立特里亚"
+  },
+  "en-FJ": {
+    "language": "英语",
+    "country": "斐济"
+  },
+  "en-FK": {
+    "language": "英语",
+    "country": "福克兰群岛"
+  },
+  "en-FM": {
+    "language": "英语",
+    "country": "密克罗尼西亚"
+  },
+  "en-GB": {
+    "language": "英语",
+    "country": "英国"
+  },
+  "en-GD": {
+    "language": "英语",
+    "country": "格林纳达"
+  },
+  "en-GG": {
+    "language": "英语",
+    "country": "根西岛"
+  },
+  "en-GH": {
+    "language": "英语",
+    "country": "加纳"
+  },
+  "en-GI": {
+    "language": "英语",
+    "country": "直布罗陀"
+  },
+  "en-GM": {
+    "language": "英语",
+    "country": "冈比亚"
+  },
+  "en-GU": {
+    "language": "英语",
+    "country": "关岛"
+  },
+  "en-GY": {
+    "language": "英语",
+    "country": "圭亚那"
+  },
+  "en-HK": {
+    "language": "英语",
+    "country": "中国香港特别行政区"
+  },
+  "en-IE": {
+    "language": "英语",
+    "country": "爱尔兰"
+  },
+  "en-IM": {
+    "language": "英语",
+    "country": "马恩岛"
+  },
+  "en-IN": {
+    "language": "英语",
+    "country": "印度"
+  },
+  "en-IO": {
+    "language": "英语",
+    "country": "英属印度洋领地"
+  },
+  "en-JE": {
+    "language": "英语",
+    "country": "泽西岛"
+  },
+  "en-JM": {
+    "language": "英语",
+    "country": "牙买加"
+  },
+  "en-KE": {
+    "language": "英语",
+    "country": "肯尼亚"
+  },
+  "en-KI": {
+    "language": "英语",
+    "country": "基里巴斯"
+  },
+  "en-KN": {
+    "language": "英语",
+    "country": "圣基茨和尼维斯"
+  },
+  "en-KY": {
+    "language": "英语",
+    "country": "开曼群岛"
+  },
+  "en-LC": {
+    "language": "英语",
+    "country": "圣卢西亚"
+  },
+  "en-LR": {
+    "language": "英语",
+    "country": "利比里亚"
+  },
+  "en-LS": {
+    "language": "英语",
+    "country": "莱索托"
+  },
+  "en-MG": {
+    "language": "英语",
+    "country": "马达加斯加"
+  },
+  "en-MH": {
+    "language": "英语",
+    "country": "马绍尔群岛"
+  },
+  "en-MP": {
+    "language": "英语",
+    "country": "北马里亚纳群岛"
+  },
+  "en-MS": {
+    "language": "英语",
+    "country": "蒙特塞拉特"
+  },
+  "en-MT": {
+    "language": "英语",
+    "country": "马耳他"
+  },
+  "en-MU": {
+    "language": "英语",
+    "country": "毛里求斯"
+  },
+  "en-MW": {
+    "language": "英语",
+    "country": "马拉维"
+  },
+  "en-NA": {
+    "language": "英语",
+    "country": "纳米比亚"
+  },
+  "en-NF": {
+    "language": "英语",
+    "country": "诺福克岛"
+  },
+  "en-NG": {
+    "language": "英语",
+    "country": "尼日利亚"
+  },
+  "en-NR": {
+    "language": "英语",
+    "country": "瑙鲁"
+  },
+  "en-NU": {
+    "language": "英语",
+    "country": "纽埃"
+  },
+  "en-NZ": {
+    "language": "英语",
+    "country": "新西兰"
+  },
+  "en-PG": {
+    "language": "英语",
+    "country": "巴布亚新几内亚"
+  },
+  "en-PH": {
+    "language": "英语",
+    "country": "菲律宾"
+  },
+  "en-PK": {
+    "language": "英语",
+    "country": "巴基斯坦"
+  },
+  "en-PN": {
+    "language": "英语",
+    "country": "皮特凯恩群岛"
+  },
+  "en-PR": {
+    "language": "英语",
+    "country": "波多黎各"
+  },
+  "en-PW": {
+    "language": "英语",
+    "country": "帕劳"
+  },
+  "en-RW": {
+    "language": "英语",
+    "country": "卢旺达"
+  },
+  "en-SB": {
+    "language": "英语",
+    "country": "所罗门群岛"
+  },
+  "en-SC": {
+    "language": "英语",
+    "country": "塞舌尔"
+  },
+  "en-SD": {
+    "language": "英语",
+    "country": "苏丹"
+  },
+  "en-SG": {
+    "language": "英语",
+    "country": "新加坡"
+  },
+  "en-SH": {
+    "language": "英语",
+    "country": "圣赫勒拿"
+  },
+  "en-SL": {
+    "language": "英语",
+    "country": "塞拉利昂"
+  },
+  "en-SS": {
+    "language": "英语",
+    "country": "南苏丹"
+  },
+  "en-SX": {
+    "language": "英语",
+    "country": "荷属圣马丁"
+  },
+  "en-SZ": {
+    "language": "英语",
+    "country": "斯威士兰"
+  },
+  "en-TC": {
+    "language": "英语",
+    "country": "特克斯和凯科斯群岛"
+  },
+  "en-TK": {
+    "language": "英语",
+    "country": "托克劳"
+  },
+  "en-TO": {
+    "language": "英语",
+    "country": "汤加"
+  },
+  "en-TT": {
+    "language": "英语",
+    "country": "特立尼达和多巴哥"
+  },
+  "en-TV": {
+    "language": "英语",
+    "country": "图瓦卢"
+  },
+  "en-TZ": {
+    "language": "英语",
+    "country": "坦桑尼亚"
+  },
+  "en-UG": {
+    "language": "英语",
+    "country": "乌干达"
+  },
+  "en-UM": {
+    "language": "英语",
+    "country": "美国本土外小岛屿"
+  },
+  "en-US": {
+    "language": "英语",
+    "country": "美国"
+  },
+  "en-VC": {
+    "language": "英语",
+    "country": "圣文森特和格林纳丁斯"
+  },
+  "en-VG": {
+    "language": "英语",
+    "country": "英属维尔京群岛"
+  },
+  "en-VI": {
+    "language": "英语",
+    "country": "美属维尔京群岛"
+  },
+  "en-VU": {
+    "language": "英语",
+    "country": "瓦努阿图"
+  },
+  "en-WS": {
+    "language": "英语",
+    "country": "萨摩亚"
+  },
+  "en-ZA": {
+    "language": "英语",
+    "country": "南非"
+  },
+  "en-ZM": {
+    "language": "英语",
+    "country": "赞比亚"
+  },
+  "en-ZW": {
+    "language": "英语",
+    "country": "津巴布韦"
+  },
+  "eo": {
+    "language": "世界语"
+  },
+  "es": {
+    "language": "西班牙语"
+  },
+  "es-AR": {
+    "language": "西班牙语",
+    "country": "阿根廷"
+  },
+  "es-BO": {
+    "language": "西班牙语",
+    "country": "玻利维亚"
+  },
+  "es-CL": {
+    "language": "西班牙语",
+    "country": "智利"
+  },
+  "es-CO": {
+    "language": "西班牙语",
+    "country": "哥伦比亚"
+  },
+  "es-CR": {
+    "language": "西班牙语",
+    "country": "哥斯达黎加"
+  },
+  "es-CU": {
+    "language": "西班牙语",
+    "country": "古巴"
+  },
+  "es-DO": {
+    "language": "西班牙语",
+    "country": "多米尼加共和国"
+  },
+  "es-EA": {
+    "language": "西班牙语",
+    "country": "休达及梅利利亚"
+  },
+  "es-EC": {
+    "language": "西班牙语",
+    "country": "厄瓜多尔"
+  },
+  "es-ES": {
+    "language": "西班牙语",
+    "country": "西班牙"
+  },
+  "es-GQ": {
+    "language": "西班牙语",
+    "country": "赤道几内亚"
+  },
+  "es-GT": {
+    "language": "西班牙语",
+    "country": "危地马拉"
+  },
+  "es-HN": {
+    "language": "西班牙语",
+    "country": "洪都拉斯"
+  },
+  "es-IC": {
+    "language": "西班牙语",
+    "country": "加纳利群岛"
+  },
+  "es-MX": {
+    "language": "西班牙语",
+    "country": "墨西哥"
+  },
+  "es-NI": {
+    "language": "西班牙语",
+    "country": "尼加拉瓜"
+  },
+  "es-PA": {
+    "language": "西班牙语",
+    "country": "巴拿马"
+  },
+  "es-PE": {
+    "language": "西班牙语",
+    "country": "秘鲁"
+  },
+  "es-PR": {
+    "language": "西班牙语",
+    "country": "波多黎各"
+  },
+  "es-PY": {
+    "language": "西班牙语",
+    "country": "巴拉圭"
+  },
+  "es-SV": {
+    "language": "西班牙语",
+    "country": "萨尔瓦多"
+  },
+  "es-UY": {
+    "language": "西班牙语",
+    "country": "乌拉圭"
+  },
+  "es-VE": {
+    "language": "西班牙语",
+    "country": "委内瑞拉"
+  },
+  "et": {
+    "language": "爱沙尼亚语"
+  },
+  "et-EE": {
+    "language": "爱沙尼亚语",
+    "country": "爱沙尼亚"
+  },
+  "eu": {
+    "language": "巴斯克语"
+  },
+  "fa": {
+    "language": "波斯语"
+  },
+  "fa-AF": {
+    "language": "波斯语",
+    "country": "阿富汗"
+  },
+  "fa-IR": {
+    "language": "波斯语",
+    "country": "伊朗"
+  },
+  "ff": {
+    "language": "富拉语"
+  },
+  "fi": {
+    "language": "芬兰语"
+  },
+  "fi-FI": {
+    "language": "芬兰语",
+    "country": "芬兰"
+  },
+  "fj": {
+    "language": "斐济语"
+  },
+  "fj-FJ": {
+    "language": "斐济语",
+    "country": "斐济"
+  },
+  "fo": {
+    "language": "法罗语"
+  },
+  "fo-FO": {
+    "language": "法罗语",
+    "country": "法罗群岛"
+  },
+  "fr": {
+    "language": "法语"
+  },
+  "fr-BE": {
+    "language": "法语",
+    "country": "比利时"
+  },
+  "fr-BF": {
+    "language": "法语",
+    "country": "布基纳法索"
+  },
+  "fr-BI": {
+    "language": "法语",
+    "country": "布隆迪"
+  },
+  "fr-BJ": {
+    "language": "法语",
+    "country": "贝宁"
+  },
+  "fr-BL": {
+    "language": "法语",
+    "country": "圣巴泰勒米"
+  },
+  "fr-CA": {
+    "language": "法语",
+    "country": "加拿大"
+  },
+  "fr-CD": {
+    "language": "法语",
+    "country": "刚果（金）"
+  },
+  "fr-CF": {
+    "language": "法语",
+    "country": "中非共和国"
+  },
+  "fr-CG": {
+    "language": "法语",
+    "country": "刚果（布）"
+  },
+  "fr-CH": {
+    "language": "法语",
+    "country": "瑞士"
+  },
+  "fr-CI": {
+    "language": "法语",
+    "country": "科特迪瓦"
+  },
+  "fr-CM": {
+    "language": "法语",
+    "country": "喀麦隆"
+  },
+  "fr-DJ": {
+    "language": "法语",
+    "country": "吉布提"
+  },
+  "fr-DZ": {
+    "language": "法语",
+    "country": "阿尔及利亚"
+  },
+  "fr-FR": {
+    "language": "法语",
+    "country": "法国"
+  },
+  "fr-GA": {
+    "language": "法语",
+    "country": "加蓬"
+  },
+  "fr-GF": {
+    "language": "法语",
+    "country": "法属圭亚那"
+  },
+  "fr-GN": {
+    "language": "法语",
+    "country": "几内亚"
+  },
+  "fr-GP": {
+    "language": "法语",
+    "country": "瓜德罗普"
+  },
+  "fr-GQ": {
+    "language": "法语",
+    "country": "赤道几内亚"
+  },
+  "fr-HT": {
+    "language": "法语",
+    "country": "海地"
+  },
+  "fr-KM": {
+    "language": "法语",
+    "country": "科摩罗"
+  },
+  "fr-LU": {
+    "language": "法语",
+    "country": "卢森堡"
+  },
+  "fr-MA": {
+    "language": "法语",
+    "country": "摩洛哥"
+  },
+  "fr-MC": {
+    "language": "法语",
+    "country": "摩纳哥"
+  },
+  "fr-MF": {
+    "language": "法语",
+    "country": "法属圣马丁"
+  },
+  "fr-MG": {
+    "language": "法语",
+    "country": "马达加斯加"
+  },
+  "fr-ML": {
+    "language": "法语",
+    "country": "马里"
+  },
+  "fr-MQ": {
+    "language": "法语",
+    "country": "马提尼克"
+  },
+  "fr-MU": {
+    "language": "法语",
+    "country": "毛里求斯"
+  },
+  "fr-NC": {
+    "language": "法语",
+    "country": "新喀里多尼亚"
+  },
+  "fr-NE": {
+    "language": "法语",
+    "country": "尼日尔"
+  },
+  "fr-PF": {
+    "language": "法语",
+    "country": "法属波利尼西亚"
+  },
+  "fr-PM": {
+    "language": "法语",
+    "country": "圣皮埃尔和密克隆群岛"
+  },
+  "fr-RE": {
+    "language": "法语",
+    "country": "留尼汪"
+  },
+  "fr-RW": {
+    "language": "法语",
+    "country": "卢旺达"
+  },
+  "fr-SC": {
+    "language": "法语",
+    "country": "塞舌尔"
+  },
+  "fr-SN": {
+    "language": "法语",
+    "country": "塞内加尔"
+  },
+  "fr-SY": {
+    "language": "法语",
+    "country": "叙利亚"
+  },
+  "fr-TD": {
+    "language": "法语",
+    "country": "乍得"
+  },
+  "fr-TG": {
+    "language": "法语",
+    "country": "多哥"
+  },
+  "fr-TN": {
+    "language": "法语",
+    "country": "突尼斯"
+  },
+  "fr-VU": {
+    "language": "法语",
+    "country": "瓦努阿图"
+  },
+  "fr-WF": {
+    "language": "法语",
+    "country": "瓦利斯和富图纳"
+  },
+  "fr-YT": {
+    "language": "法语",
+    "country": "马约特"
+  },
+  "fy": {
+    "language": "西弗里西亚语"
+  },
+  "ga": {
+    "language": "爱尔兰语"
+  },
+  "ga-IE": {
+    "language": "爱尔兰语",
+    "country": "爱尔兰"
+  },
+  "gd": {
+    "language": "苏格兰盖尔语"
+  },
+  "gl": {
+    "language": "加利西亚语"
+  },
+  "gn": {
+    "language": "瓜拉尼语"
+  },
+  "gn-PY": {
+    "language": "瓜拉尼语",
+    "country": "巴拉圭"
+  },
+  "gu": {
+    "language": "古吉拉特语"
+  },
+  "gv": {
+    "language": "马恩语"
+  },
+  "gv-IM": {
+    "language": "马恩语",
+    "country": "马恩岛"
+  },
+  "ha": {
+    "language": "豪萨语"
+  },
+  "he": {
+    "language": "希伯来语"
+  },
+  "he-IL": {
+    "language": "希伯来语",
+    "country": "以色列"
+  },
+  "hi": {
+    "language": "印地语"
+  },
+  "hi-IN": {
+    "language": "印地语",
+    "country": "印度"
+  },
+  "ho": {
+    "language": "希里莫图语"
+  },
+  "ho-PG": {
+    "language": "希里莫图语",
+    "country": "巴布亚新几内亚"
+  },
+  "hr": {
+    "language": "克罗地亚语"
+  },
+  "hr-BA": {
+    "language": "克罗地亚语",
+    "country": "波斯尼亚和黑塞哥维那"
+  },
+  "hr-HR": {
+    "language": "克罗地亚语",
+    "country": "克罗地亚"
+  },
+  "ht": {
+    "language": "海地克里奥尔语"
+  },
+  "ht-HT": {
+    "language": "海地克里奥尔语",
+    "country": "海地"
+  },
+  "hu": {
+    "language": "匈牙利语"
+  },
+  "hu-HU": {
+    "language": "匈牙利语",
+    "country": "匈牙利"
+  },
+  "hy": {
+    "language": "亚美尼亚语"
+  },
+  "hy-AM": {
+    "language": "亚美尼亚语",
+    "country": "亚美尼亚"
+  },
+  "hz": {
+    "language": "赫雷罗语"
+  },
+  "ia": {
+    "language": "国际语"
+  },
+  "id": {
+    "language": "印度尼西亚语"
+  },
+  "id-ID": {
+    "language": "印度尼西亚语",
+    "country": "印度尼西亚"
+  },
+  "ig": {
+    "language": "伊博语"
+  },
+  "ii": {
+    "language": "四川彝语"
+  },
+  "ik": {
+    "language": "伊努皮克语"
+  },
+  "is": {
+    "language": "冰岛语"
+  },
+  "is-IS": {
+    "language": "冰岛语",
+    "country": "冰岛"
+  },
+  "it": {
+    "language": "意大利语"
+  },
+  "it-CH": {
+    "language": "意大利语",
+    "country": "瑞士"
+  },
+  "it-IT": {
+    "language": "意大利语",
+    "country": "意大利"
+  },
+  "it-SM": {
+    "language": "意大利语",
+    "country": "圣马力诺"
+  },
+  "it-VA": {
+    "language": "意大利语",
+    "country": "梵蒂冈"
+  },
+  "iu": {
+    "language": "因纽特语"
+  },
+  "ja": {
+    "language": "日语"
+  },
+  "ja-JP": {
+    "language": "日语",
+    "country": "日本"
+  },
+  "jv": {
+    "language": "爪哇语"
+  },
+  "ka": {
+    "language": "格鲁吉亚语"
+  },
+  "ka-GE": {
+    "language": "格鲁吉亚语",
+    "country": "格鲁吉亚"
+  },
+  "kg": {
+    "language": "刚果语"
+  },
+  "ki": {
+    "language": "吉库尤语"
+  },
+  "kj": {
+    "language": "宽亚玛语"
+  },
+  "kk": {
+    "language": "哈萨克语"
+  },
+  "kk-KZ": {
+    "language": "哈萨克语",
+    "country": "哈萨克斯坦"
+  },
+  "kl": {
+    "language": "格陵兰语"
+  },
+  "kl-GL": {
+    "language": "格陵兰语",
+    "country": "格陵兰"
+  },
+  "km": {
+    "language": "高棉语"
+  },
+  "km-KH": {
+    "language": "高棉语",
+    "country": "柬埔寨"
+  },
+  "kn": {
+    "language": "卡纳达语"
+  },
+  "ko": {
+    "language": "韩语"
+  },
+  "ko-KP": {
+    "language": "韩语",
+    "country": "朝鲜"
+  },
+  "ko-KR": {
+    "language": "韩语",
+    "country": "韩国"
+  },
+  "kr": {
+    "language": "卡努里语"
+  },
+  "ks": {
+    "language": "克什米尔语"
+  },
+  "ku": {
+    "language": "库尔德语"
+  },
+  "kv": {
+    "language": "科米语"
+  },
+  "kw": {
+    "language": "康沃尔语"
+  },
+  "ky": {
+    "language": "柯尔克孜语"
+  },
+  "ky-KG": {
+    "language": "柯尔克孜语",
+    "country": "吉尔吉斯斯坦"
+  },
+  "la": {
+    "language": "拉丁语"
+  },
+  "lb": {
+    "language": "卢森堡语"
+  },
+  "lb-LU": {
+    "language": "卢森堡语",
+    "country": "卢森堡"
+  },
+  "lg": {
+    "language": "卢干达语"
+  },
+  "li": {
+    "language": "林堡语"
+  },
+  "ln": {
+    "language": "林加拉语"
+  },
+  "lo": {
+    "language": "老挝语"
+  },
+  "lo-LA": {
+    "language": "老挝语",
+    "country": "老挝"
+  },
+  "lt": {
+    "language": "立陶宛语"
+  },
+  "lt-LT": {
+    "language": "立陶宛语",
+    "country": "立陶宛"
+  },
+  "lu": {
+    "language": "鲁巴加丹加语"
+  },
+  "lv": {
+    "language": "拉脱维亚语"
+  },
+  "lv-LV": {
+    "language": "拉脱维亚语",
+    "country": "拉脱维亚"
+  },
+  "mg": {
+    "language": "马拉加斯语"
+  },
+  "mg-MG": {
+    "language": "马拉加斯语",
+    "country": "马达加斯加"
+  },
+  "mh": {
+    "language": "马绍尔语"
+  },
+  "mh-MH": {
+    "language": "马绍尔语",
+    "country": "马绍尔群岛"
+  },
+  "mi": {
+    "language": "毛利语"
+  },
+  "mi-NZ": {
+    "language": "毛利语",
+    "country": "新西兰"
+  },
+  "mk": {
+    "language": "马其顿语"
+  },
+  "mk-MK": {
+    "language": "马其顿语",
+    "country": "北马其顿"
+  },
+  "ml": {
+    "language": "马拉雅拉姆语"
+  },
+  "mn": {
+    "language": "蒙古语"
+  },
+  "mn-MN": {
+    "language": "蒙古语",
+    "country": "蒙古"
+  },
+  "mr": {
+    "language": "马拉地语"
+  },
+  "ms": {
+    "language": "马来语"
+  },
+  "ms-BN": {
+    "language": "马来语",
+    "country": "文莱"
+  },
+  "ms-MY": {
+    "language": "马来语",
+    "country": "马来西亚"
+  },
+  "ms-SG": {
+    "language": "马来语",
+    "country": "新加坡"
+  },
+  "mt": {
+    "language": "马耳他语"
+  },
+  "mt-MT": {
+    "language": "马耳他语",
+    "country": "马耳他"
+  },
+  "my": {
+    "language": "缅甸语"
+  },
+  "my-MM": {
+    "language": "缅甸语",
+    "country": "缅甸"
+  },
+  "na": {
+    "language": "瑙鲁语"
+  },
+  "na-NR": {
+    "language": "瑙鲁语",
+    "country": "瑙鲁"
+  },
+  "nb": {
+    "language": "书面挪威语"
+  },
+  "nb-NO": {
+    "language": "书面挪威语",
+    "country": "挪威"
+  },
+  "nb-SJ": {
+    "language": "书面挪威语",
+    "country": "斯瓦尔巴和扬马延"
+  },
+  "nd": {
+    "language": "北恩德贝勒语"
+  },
+  "nd-ZW": {
+    "language": "北恩德贝勒语",
+    "country": "津巴布韦"
+  },
+  "ne": {
+    "language": "尼泊尔语"
+  },
+  "ne-NP": {
+    "language": "尼泊尔语",
+    "country": "尼泊尔"
+  },
+  "ng": {
+    "language": "恩东加语"
+  },
+  "nl": {
+    "language": "荷兰语"
+  },
+  "nl-AW": {
+    "language": "荷兰语",
+    "country": "阿鲁巴"
+  },
+  "nl-BE": {
+    "language": "荷兰语",
+    "country": "比利时"
+  },
+  "nl-BQ": {
+    "language": "荷兰语",
+    "country": "荷属加勒比区"
+  },
+  "nl-CW": {
+    "language": "荷兰语",
+    "country": "库拉索"
+  },
+  "nl-NL": {
+    "language": "荷兰语",
+    "country": "荷兰"
+  },
+  "nl-SR": {
+    "language": "荷兰语",
+    "country": "苏里南"
+  },
+  "nl-SX": {
+    "language": "荷兰语",
+    "country": "荷属圣马丁"
+  },
+  "nn": {
+    "language": "挪威尼诺斯克语"
+  },
+  "nn-NO": {
+    "language": "挪威尼诺斯克语",
+    "country": "挪威"
+  },
+  "nr": {
+    "language": "南恩德贝勒语"
+  },
+  "nv": {
+    "language": "纳瓦霍语"
+  },
+  "ny": {
+    "language": "齐切瓦语"
+  },
+  "ny-MW": {
+    "language": "齐切瓦语",
+    "country": "马拉维"
+  },
+  "oc": {
+    "language": "奥克语"
+  },
+  "oj": {
+    "language": "奥吉布瓦语"
+  },
+  "om": {
+    "language": "奥罗莫语"
+  },
+  "or": {
+    "language": "奥里亚语"
+  },
+  "os": {
+    "language": "奥塞梯语"
+  },
+  "pa": {
+    "language": "旁遮普语"
+  },
+  "pi": {
+    "language": "巴利语"
+  },
+  "pl": {
+    "language": "波兰语"
+  },
+  "pl-PL": {
+    "language": "波兰语",
+    "country": "波兰"
+  },
+  "ps": {
+    "language": "普什图语"
+  },
+  "ps-AF": {
+    "language": "普什图语",
+    "country": "阿富汗"
+  },
+  "pt": {
+    "language": "葡萄牙语"
+  },
+  "pt-AO": {
+    "language": "葡萄牙语",
+    "country": "安哥拉"
+  },
+  "pt-BR": {
+    "language": "葡萄牙语",
+    "country": "巴西"
+  },
+  "pt-CV": {
+    "language": "葡萄牙语",
+    "country": "佛得角"
+  },
+  "pt-GQ": {
+    "language": "葡萄牙语",
+    "country": "赤道几内亚"
+  },
+  "pt-GW": {
+    "language": "葡萄牙语",
+    "country": "几内亚比绍"
+  },
+  "pt-MO": {
+    "language": "葡萄牙语",
+    "country": "中国澳门特别行政区"
+  },
+  "pt-MZ": {
+    "language": "葡萄牙语",
+    "country": "莫桑比克"
+  },
+  "pt-PT": {
+    "language": "葡萄牙语",
+    "country": "葡萄牙"
+  },
+  "pt-ST": {
+    "language": "葡萄牙语",
+    "country": "圣多美和普林西比"
+  },
+  "pt-TL": {
+    "language": "葡萄牙语",
+    "country": "东帝汶"
+  },
+  "qu": {
+    "language": "克丘亚语"
+  },
+  "qu-BO": {
+    "language": "克丘亚语",
+    "country": "玻利维亚"
+  },
+  "qu-EC": {
+    "language": "克丘亚语",
+    "country": "厄瓜多尔"
+  },
+  "qu-PE": {
+    "language": "克丘亚语",
+    "country": "秘鲁"
+  },
+  "rm": {
+    "language": "罗曼什语"
+  },
+  "rn": {
+    "language": "隆迪语"
+  },
+  "rn-BI": {
+    "language": "隆迪语",
+    "country": "布隆迪"
+  },
+  "ro": {
+    "language": "罗马尼亚语"
+  },
+  "ro-MD": {
+    "language": "罗马尼亚语",
+    "country": "摩尔多瓦"
+  },
+  "ro-RO": {
+    "language": "罗马尼亚语",
+    "country": "罗马尼亚"
+  },
+  "ru": {
+    "language": "俄语"
+  },
+  "ru-BY": {
+    "language": "俄语",
+    "country": "白俄罗斯"
+  },
+  "ru-KG": {
+    "language": "俄语",
+    "country": "吉尔吉斯斯坦"
+  },
+  "ru-KZ": {
+    "language": "俄语",
+    "country": "哈萨克斯坦"
+  },
+  "ru-RU": {
+    "language": "俄语",
+    "country": "俄罗斯"
+  },
+  "ru-UA": {
+    "language": "俄语",
+    "country": "乌克兰"
+  },
+  "rw": {
+    "language": "卢旺达语"
+  },
+  "rw-RW": {
+    "language": "卢旺达语",
+    "country": "卢旺达"
+  },
+  "sa": {
+    "language": "梵语"
+  },
+  "sc": {
+    "language": "萨丁语"
+  },
+  "sd": {
+    "language": "信德语"
+  },
+  "se": {
+    "language": "北方萨米语"
+  },
+  "sg": {
+    "language": "桑戈语"
+  },
+  "sg-CF": {
+    "language": "桑戈语",
+    "country": "中非共和国"
+  },
+  "si": {
+    "language": "僧伽罗语"
+  },
+  "si-LK": {
+    "language": "僧伽罗语",
+    "country": "斯里兰卡"
+  },
+  "sk": {
+    "language": "斯洛伐克语"
+  },
+  "sk-SK": {
+    "language": "斯洛伐克语",
+    "country": "斯洛伐克"
+  },
+  "sl": {
+    "language": "斯洛文尼亚语"
+  },
+  "sl-SI": {
+    "language": "斯洛文尼亚语",
+    "country": "斯洛文尼亚"
+  },
+  "sm": {
+    "language": "萨摩亚语"
+  },
+  "sm-AS": {
+    "language": "萨摩亚语",
+    "country": "美属萨摩亚"
+  },
+  "sm-WS": {
+    "language": "萨摩亚语",
+    "country": "萨摩亚"
+  },
+  "sn": {
+    "language": "绍纳语"
+  },
+  "sn-ZW": {
+    "language": "绍纳语",
+    "country": "津巴布韦"
+  },
+  "so": {
+    "language": "索马里语"
+  },
+  "so-SO": {
+    "language": "索马里语",
+    "country": "索马里"
+  },
+  "sq": {
+    "language": "阿尔巴尼亚语"
+  },
+  "sq-AL": {
+    "language": "阿尔巴尼亚语",
+    "country": "阿尔巴尼亚"
+  },
+  "sq-XK": {
+    "language": "阿尔巴尼亚语",
+    "country": "科索沃"
+  },
+  "sr": {
+    "language": "塞尔维亚语"
+  },
+  "sr-BA": {
+    "language": "塞尔维亚语",
+    "country": "波斯尼亚和黑塞哥维那"
+  },
+  "sr-ME": {
+    "language": "塞尔维亚语",
+    "country": "黑山"
+  },
+  "sr-RS": {
+    "language": "塞尔维亚语",
+    "country": "塞尔维亚"
+  },
+  "sr-XK": {
+    "language": "塞尔维亚语",
+    "country": "科索沃"
+  },
+  "ss": {
+    "language": "斯瓦蒂语"
+  },
+  "ss-SZ": {
+    "language": "斯瓦蒂语",
+    "country": "斯威士兰"
+  },
+  "st": {
+    "language": "南索托语"
+  },
+  "st-LS": {
+    "language": "南索托语",
+    "country": "莱索托"
+  },
+  "su": {
+    "language": "巽他语"
+  },
+  "sv": {
+    "language": "瑞典语"
+  },
+  "sv-AX": {
+    "language": "瑞典语",
+    "country": "奥兰群岛"
+  },
+  "sv-FI": {
+    "language": "瑞典语",
+    "country": "芬兰"
+  },
+  "sv-SE": {
+    "language": "瑞典语",
+    "country": "瑞典"
+  },
+  "sw": {
+    "language": "斯瓦希里语"
+  },
+  "sw-KE": {
+    "language": "斯瓦希里语",
+    "country": "肯尼亚"
+  },
+  "sw-TZ": {
+    "language": "斯瓦希里语",
+    "country": "坦桑尼亚"
+  },
+  "sw-UG": {
+    "language": "斯瓦希里语",
+    "country": "乌干达"
+  },
+  "ta": {
+    "language": "泰米尔语"
+  },
+  "ta-LK": {
+    "language": "泰米尔语",
+    "country": "斯里兰卡"
+  },
+  "ta-SG": {
+    "language": "泰米尔语",
+    "country": "新加坡"
+  },
+  "te": {
+    "language": "泰卢固语"
+  },
+  "tg": {
+    "language": "塔吉克语"
+  },
+  "tg-TJ": {
+    "language": "塔吉克语",
+    "country": "塔吉克斯坦"
+  },
+  "th": {
+    "language": "泰语"
+  },
+  "th-TH": {
+    "language": "泰语",
+    "country": "泰国"
+  },
+  "ti": {
+    "language": "提格利尼亚语"
+  },
+  "ti-ER": {
+    "language": "提格利尼亚语",
+    "country": "厄立特里亚"
+  },
+  "tk": {
+    "language": "土库曼语"
+  },
+  "tk-TM": {
+    "language": "土库曼语",
+    "country": "土库曼斯坦"
+  },
+  "tn": {
+    "language": "茨瓦纳语"
+  },
+  "tn-BW": {
+    "language": "茨瓦纳语",
+    "country": "博茨瓦纳"
+  },
+  "to": {
+    "language": "汤加语"
+  },
+  "to-TO": {
+    "language": "汤加语",
+    "country": "汤加"
+  },
+  "tr": {
+    "language": "土耳其语"
+  },
+  "tr-CY": {
+    "language": "土耳其语",
+    "country": "塞浦路斯"
+  },
+  "tr-TR": {
+    "language": "土耳其语",
+    "country": "土耳其"
+  },
+  "ts": {
+    "language": "聪加语"
+  },
+  "tt": {
+    "language": "鞑靼语"
+  },
+  "ty": {
+    "language": "塔希提语"
+  },
+  "ty-PF": {
+    "language": "塔希提语",
+    "country": "法属波利尼西亚"
+  },
+  "ug": {
+    "language": "维吾尔语"
+  },
+  "uk": {
+    "language": "乌克兰语"
+  },
+  "uk-UA": {
+    "language": "乌克兰语",
+    "country": "乌克兰"
+  },
+  "ur": {
+    "language": "乌尔都语"
+  },
+  "ur-PK": {
+    "language": "乌尔都语",
+    "country": "巴基斯坦"
+  },
+  "uz": {
+    "language": "乌兹别克语"
+  },
+  "uz-UZ": {
+    "language": "乌兹别克语",
+    "country": "乌兹别克斯坦"
+  },
+  "ve": {
+    "language": "文达语"
+  },
+  "vi": {
+    "language": "越南语"
+  },
+  "vi-VN": {
+    "language": "越南语",
+    "country": "越南"
+  },
+  "vo": {
+    "language": "沃拉普克语"
+  },
+  "wa": {
+    "language": "瓦隆语"
+  },
+  "wo": {
+    "language": "沃洛夫语"
+  },
+  "wo-SN": {
+    "language": "沃洛夫语",
+    "country": "塞内加尔"
+  },
+  "xh": {
+    "language": "科萨语"
+  },
+  "yi": {
+    "language": "意第绪语"
+  },
+  "yo": {
+    "language": "约鲁巴语"
+  },
+  "yo-NG": {
+    "language": "约鲁巴语",
+    "country": "尼日利亚"
+  },
+  "za": {
+    "language": "壮语"
+  },
+  "zh": {
+    "language": "中文"
+  },
+  "zh-CN": {
+    "language": "中文",
+    "country": "中国"
+  },
+  "zh-HK": {
+    "language": "中文",
+    "country": "中国香港特别行政区"
+  },
+  "zh-MO": {
+    "language": "中文",
+    "country": "中国澳门特别行政区"
+  },
+  "zh-SG": {
+    "language": "中文",
+    "country": "新加坡"
+  },
+  "zh-TW": {
+    "language": "中文",
+    "country": "台湾"
+  },
+  "zu": {
+    "language": "祖鲁语"
+  },
+  "sh": {
+    "language": "塞尔维亚-克罗地亚语"
+  },
+  "no": {
+    "language": "挪威语"
+  },
+  "tl": {
+    "language": "他加禄语"
+  },
+  "tw": {
+    "language": "契维语"
+  },
+  "bh": {
+    "language": "博杰普尔语"
+  },
+  "ie": {
+    "language": "国际文字（E）"
+  },
+  "io": {
+    "language": "伊多语"
+  }
+}

@@ -12,6 +12,14 @@ React bindings to load l10n data.
 $ npm install --save @commercetools-frontend/l10n
 ```
 
+## Supported locales
+
+- `en`
+- `de`
+- `es`
+- `fr-FR`
+- `zh-CN`
+
 ## Components
 
 ```js
@@ -43,3 +51,22 @@ withLanguages(ownProps => ownProps.locale)(Component);
 // Case with language of a region
 // { "es-AR": { "language": "Spanish", "country": "Argentina" } }
 ```
+
+## Generating localization data
+
+The `data` directory contains all the localization data for the supported locales. The data is generated using the script `scripts/generate-l10n-data.js`, which uses the [`cldr` data](http://cldr.unicode.org).
+
+#### Using a custom version of the cldr data
+
+In case the npm library `cldr` does not contain the latest cldr data, we can manually download it and point the `cldr` library to use that data.
+
+```js
+// For example, using the v35 of cldr
+const cldr = require('cldr').load(path.join(__dirname, '../cldr-v35'));
+```
+
+First, download the data (`core.zip`) for a specific version from the [downloads page](http://cldr.unicode.org/index/downloads).
+
+Then extract the data and copy the `core` folder to this package, and rename it to e.g. `cldr-v35`. Then point the `cldr` library to the folder location.
+
+Run the script, which uses the new data.

@@ -1,650 +1,650 @@
 {
   "AED": {
-    "label": "United Arab Emirates Dirham",
+    "label": "阿联酋迪拉姆",
     "symbol": "د.إ.‏"
   },
   "AFN": {
-    "label": "Afghan Afghani",
+    "label": "阿富汗尼",
     "symbol": "؋"
   },
   "ALL": {
-    "label": "Albanian Lek",
+    "label": "阿尔巴尼亚列克",
     "symbol": "Lekë"
   },
   "AMD": {
-    "label": "Armenian Dram",
+    "label": "亚美尼亚德拉姆",
     "symbol": "֏"
   },
   "ANG": {
-    "label": "Netherlands Antillean Guilder",
+    "label": "荷属安的列斯盾",
     "symbol": "NAf."
   },
   "AOA": {
-    "label": "Angolan Kwanza",
+    "label": "安哥拉宽扎",
     "symbol": "Kz"
   },
   "ARS": {
-    "label": "Argentine Peso",
+    "label": "阿根廷比索",
     "symbol": "$"
   },
   "AUD": {
-    "label": "Australian Dollar",
+    "label": "澳大利亚元",
     "symbol": "$"
   },
   "AWG": {
-    "label": "Aruban Florin",
+    "label": "阿鲁巴弗罗林",
     "symbol": "Afl."
   },
   "AZN": {
-    "label": "Azerbaijani Manat",
+    "label": "阿塞拜疆马纳特",
     "symbol": "₼"
   },
   "BAM": {
-    "label": "Bosnia-Herzegovina Convertible Mark",
+    "label": "波斯尼亚-黑塞哥维那可兑换马克",
     "symbol": "КМ"
   },
   "BBD": {
-    "label": "Barbadian Dollar",
+    "label": "巴巴多斯元",
     "symbol": "$"
   },
   "BDT": {
-    "label": "Bangladeshi Taka",
+    "label": "孟加拉塔卡",
     "symbol": "৳"
   },
   "BGN": {
-    "label": "Bulgarian Lev",
+    "label": "保加利亚列弗",
     "symbol": "лв."
   },
   "BHD": {
-    "label": "Bahraini Dinar",
+    "label": "巴林第纳尔",
     "symbol": "د.ب.‏"
   },
   "BIF": {
-    "label": "Burundian Franc",
+    "label": "布隆迪法郎",
     "symbol": "FBu"
   },
   "BMD": {
-    "label": "Bermudan Dollar",
+    "label": "百慕大元",
     "symbol": "$"
   },
   "BND": {
-    "label": "Brunei Dollar",
+    "label": "文莱元",
     "symbol": "$"
   },
   "BOB": {
-    "label": "Bolivian Boliviano",
+    "label": "玻利维亚诺",
     "symbol": "Bs"
   },
   "BOV": {
-    "label": "Bolivian Mvdol",
+    "label": "玻利维亚 Mvdol（资金）",
     "symbol": "BOV"
   },
   "BRL": {
-    "label": "Brazilian Real",
+    "label": "巴西雷亚尔",
     "symbol": "R$"
   },
   "BSD": {
-    "label": "Bahamian Dollar",
+    "label": "巴哈马元",
     "symbol": "$"
   },
   "BTN": {
-    "label": "Bhutanese Ngultrum",
+    "label": "不丹努尔特鲁姆",
     "symbol": "Nu."
   },
   "BWP": {
-    "label": "Botswanan Pula",
+    "label": "博茨瓦纳普拉",
     "symbol": "P"
   },
   "BYN": {
-    "label": "Belarusian Ruble",
+    "label": "白俄罗斯卢布",
     "symbol": "Br"
   },
   "BZD": {
-    "label": "Belize Dollar",
+    "label": "伯利兹元",
     "symbol": "$"
   },
   "CAD": {
-    "label": "Canadian Dollar",
+    "label": "加拿大元",
     "symbol": "$"
   },
   "CDF": {
-    "label": "Congolese Franc",
+    "label": "刚果法郎",
     "symbol": "FC"
   },
   "CHE": {
-    "label": "WIR Euro",
+    "label": "欧元 (WIR)",
     "symbol": "CHE"
   },
   "CHF": {
-    "label": "Swiss Franc",
+    "label": "瑞士法郎",
     "symbol": "CHF"
   },
   "CHW": {
-    "label": "WIR Franc",
+    "label": "法郎 (WIR)",
     "symbol": "CHW"
   },
   "CLF": {
-    "label": "Chilean Unit of Account (UF)",
+    "label": "智利（资金）",
     "symbol": "CLF"
   },
   "CLP": {
-    "label": "Chilean Peso",
+    "label": "智利比索",
     "symbol": "$"
   },
   "CNH": {
-    "label": "Chinese Yuan (offshore)",
+    "label": "人民币（离岸）",
     "symbol": "CNH"
   },
   "CNY": {
-    "label": "Chinese Yuan",
+    "label": "人民币",
     "symbol": "¥"
   },
   "COP": {
-    "label": "Colombian Peso",
+    "label": "哥伦比亚比索",
     "symbol": "$"
   },
   "COU": {
-    "label": "Colombian Real Value Unit",
+    "label": "哥伦比亚币",
     "symbol": "COU"
   },
   "CRC": {
-    "label": "Costa Rican Colón",
+    "label": "哥斯达黎加科朗",
     "symbol": "₡"
   },
   "CUC": {
-    "label": "Cuban Convertible Peso",
+    "label": "古巴可兑换比索",
     "symbol": "CUC"
   },
   "CUP": {
-    "label": "Cuban Peso",
+    "label": "古巴比索",
     "symbol": "$"
   },
   "CVE": {
-    "label": "Cape Verdean Escudo",
+    "label": "佛得角埃斯库多",
     "symbol": "​"
   },
   "CZK": {
-    "label": "Czech Koruna",
+    "label": "捷克克朗",
     "symbol": "Kč"
   },
   "DJF": {
-    "label": "Djiboutian Franc",
+    "label": "吉布提法郎",
     "symbol": "Fdj"
   },
   "DKK": {
-    "label": "Danish Krone",
+    "label": "丹麦克朗",
     "symbol": "kr."
   },
   "DOP": {
-    "label": "Dominican Peso",
+    "label": "多米尼加比索",
     "symbol": "RD$"
   },
   "DZD": {
-    "label": "Algerian Dinar",
+    "label": "阿尔及利亚第纳尔",
     "symbol": "د.ج.‏"
   },
   "EGP": {
-    "label": "Egyptian Pound",
+    "label": "埃及镑",
     "symbol": "ج.م.‏"
   },
   "ERN": {
-    "label": "Eritrean Nakfa",
+    "label": "厄立特里亚纳克法",
     "symbol": "Nfk"
   },
   "ETB": {
-    "label": "Ethiopian Birr",
+    "label": "埃塞俄比亚比尔",
     "symbol": "ብር"
   },
   "EUR": {
-    "label": "Euro",
+    "label": "欧元",
     "symbol": "€"
   },
   "FJD": {
-    "label": "Fijian Dollar",
+    "label": "斐济元",
     "symbol": "$"
   },
   "FKP": {
-    "label": "Falkland Islands Pound",
+    "label": "福克兰群岛镑",
     "symbol": "£"
   },
   "GBP": {
-    "label": "British Pound",
+    "label": "英镑",
     "symbol": "£"
   },
   "GEL": {
-    "label": "Georgian Lari",
+    "label": "格鲁吉亚拉里",
     "symbol": "₾"
   },
   "GHS": {
-    "label": "Ghanaian Cedi",
+    "label": "加纳塞地",
     "symbol": "GH₵"
   },
   "GIP": {
-    "label": "Gibraltar Pound",
+    "label": "直布罗陀镑",
     "symbol": "£"
   },
   "GMD": {
-    "label": "Gambian Dalasi",
+    "label": "冈比亚达拉西",
     "symbol": "D"
   },
   "GNF": {
-    "label": "Guinean Franc",
+    "label": "几内亚法郎",
     "symbol": "FG"
   },
   "GTQ": {
-    "label": "Guatemalan Quetzal",
+    "label": "危地马拉格查尔",
     "symbol": "Q"
   },
   "GYD": {
-    "label": "Guyanaese Dollar",
+    "label": "圭亚那元",
     "symbol": "$"
   },
   "HKD": {
-    "label": "Hong Kong Dollar",
+    "label": "港元",
     "symbol": "HK$"
   },
   "HNL": {
-    "label": "Honduran Lempira",
+    "label": "洪都拉斯伦皮拉",
     "symbol": "L"
   },
   "HRK": {
-    "label": "Croatian Kuna",
+    "label": "克罗地亚库纳",
     "symbol": "HRK"
   },
   "HTG": {
-    "label": "Haitian Gourde",
+    "label": "海地古德",
     "symbol": "G"
   },
   "HUF": {
-    "label": "Hungarian Forint",
+    "label": "匈牙利福林",
     "symbol": "Ft"
   },
   "IDR": {
-    "label": "Indonesian Rupiah",
+    "label": "印度尼西亚盾",
     "symbol": "Rp"
   },
   "ILS": {
-    "label": "Israeli New Shekel",
+    "label": "以色列新谢克尔",
     "symbol": "₪"
   },
   "INR": {
-    "label": "Indian Rupee",
+    "label": "印度卢比",
     "symbol": "₹"
   },
   "IQD": {
-    "label": "Iraqi Dinar",
+    "label": "伊拉克第纳尔",
     "symbol": "د.ع.‏"
   },
   "IRR": {
-    "label": "Iranian Rial",
+    "label": "伊朗里亚尔",
     "symbol": "IRR"
   },
   "ISK": {
-    "label": "Icelandic Króna",
+    "label": "冰岛克朗",
     "symbol": "ISK"
   },
   "JMD": {
-    "label": "Jamaican Dollar",
+    "label": "牙买加元",
     "symbol": "$"
   },
   "JOD": {
-    "label": "Jordanian Dinar",
+    "label": "约旦第纳尔",
     "symbol": "د.أ.‏"
   },
   "JPY": {
-    "label": "Japanese Yen",
+    "label": "日元",
     "symbol": "￥"
   },
   "KES": {
-    "label": "Kenyan Shilling",
+    "label": "肯尼亚先令",
     "symbol": "Ksh"
   },
   "KGS": {
-    "label": "Kyrgystani Som",
+    "label": "吉尔吉斯斯坦索姆",
     "symbol": "сом"
   },
   "KHR": {
-    "label": "Cambodian Riel",
+    "label": "柬埔寨瑞尔",
     "symbol": "៛"
   },
   "KMF": {
-    "label": "Comorian Franc",
+    "label": "科摩罗法郎",
     "symbol": "CF"
   },
   "KPW": {
-    "label": "North Korean Won",
+    "label": "朝鲜元",
     "symbol": "KPW"
   },
   "KRW": {
-    "label": "South Korean Won",
+    "label": "韩元",
     "symbol": "₩"
   },
   "KWD": {
-    "label": "Kuwaiti Dinar",
+    "label": "科威特第纳尔",
     "symbol": "د.ك.‏"
   },
   "KYD": {
-    "label": "Cayman Islands Dollar",
+    "label": "开曼元",
     "symbol": "$"
   },
   "KZT": {
-    "label": "Kazakhstani Tenge",
+    "label": "哈萨克斯坦坚戈",
     "symbol": "₸"
   },
   "LAK": {
-    "label": "Laotian Kip",
+    "label": "老挝基普",
     "symbol": "₭"
   },
   "LBP": {
-    "label": "Lebanese Pound",
+    "label": "黎巴嫩镑",
     "symbol": "ل.ل.‏"
   },
   "LKR": {
-    "label": "Sri Lankan Rupee",
+    "label": "斯里兰卡卢比",
     "symbol": "රු."
   },
   "LRD": {
-    "label": "Liberian Dollar",
+    "label": "利比里亚元",
     "symbol": "$"
   },
   "LSL": {
-    "label": "Lesotho Loti",
+    "label": "莱索托洛蒂",
     "symbol": "LSL"
   },
   "LYD": {
-    "label": "Libyan Dinar",
+    "label": "利比亚第纳尔",
     "symbol": "د.ل.‏"
   },
   "MAD": {
-    "label": "Moroccan Dirham",
+    "label": "摩洛哥迪拉姆",
     "symbol": "د.م.‏"
   },
   "MDL": {
-    "label": "Moldovan Leu",
+    "label": "摩尔多瓦列伊",
     "symbol": "L"
   },
   "MGA": {
-    "label": "Malagasy Ariary",
+    "label": "马达加斯加阿里亚里",
     "symbol": "Ar"
   },
   "MKD": {
-    "label": "Macedonian Denar",
+    "label": "马其顿第纳尔",
     "symbol": "ден"
   },
   "MMK": {
-    "label": "Myanmar Kyat",
+    "label": "缅甸元",
     "symbol": "K"
   },
   "MNT": {
-    "label": "Mongolian Tugrik",
+    "label": "蒙古图格里克",
     "symbol": "₮"
   },
   "MOP": {
-    "label": "Macanese Pataca",
+    "label": "澳门币",
     "symbol": "MOP$"
   },
   "MRO": {
-    "label": "Mauritanian Ouguiya (1973–2017)",
+    "label": "毛里塔尼亚乌吉亚 (1973–2017)",
     "symbol": "أ.م.‏"
   },
   "MUR": {
-    "label": "Mauritian Rupee",
+    "label": "毛里求斯卢比",
     "symbol": "Rs"
   },
   "MWK": {
-    "label": "Malawian Kwacha",
+    "label": "马拉维克瓦查",
     "symbol": "MK"
   },
   "MXN": {
-    "label": "Mexican Peso",
+    "label": "墨西哥比索",
     "symbol": "$"
   },
   "MXV": {
-    "label": "Mexican Investment Unit",
+    "label": "墨西哥（资金）",
     "symbol": "MXV"
   },
   "MYR": {
-    "label": "Malaysian Ringgit",
+    "label": "马来西亚林吉特",
     "symbol": "RM"
   },
   "MZN": {
-    "label": "Mozambican Metical",
+    "label": "莫桑比克美提卡",
     "symbol": "MTn"
   },
   "NAD": {
-    "label": "Namibian Dollar",
+    "label": "纳米比亚元",
     "symbol": "$"
   },
   "NGN": {
-    "label": "Nigerian Naira",
+    "label": "尼日利亚奈拉",
     "symbol": "₦"
   },
   "NIO": {
-    "label": "Nicaraguan Córdoba",
+    "label": "尼加拉瓜科多巴",
     "symbol": "C$"
   },
   "NOK": {
-    "label": "Norwegian Krone",
+    "label": "挪威克朗",
     "symbol": "kr"
   },
   "NPR": {
-    "label": "Nepalese Rupee",
+    "label": "尼泊尔卢比",
     "symbol": "नेरू"
   },
   "NZD": {
-    "label": "New Zealand Dollar",
+    "label": "新西兰元",
     "symbol": "$"
   },
   "OMR": {
-    "label": "Omani Rial",
+    "label": "阿曼里亚尔",
     "symbol": "ر.ع.‏"
   },
   "PAB": {
-    "label": "Panamanian Balboa",
+    "label": "巴拿马巴波亚",
     "symbol": "B/."
   },
   "PEN": {
-    "label": "Peruvian Sol",
+    "label": "秘鲁索尔",
     "symbol": "S/"
   },
   "PGK": {
-    "label": "Papua New Guinean Kina",
+    "label": "巴布亚新几内亚基那",
     "symbol": "K"
   },
   "PHP": {
-    "label": "Philippine Piso",
+    "label": "菲律宾比索",
     "symbol": "₱"
   },
   "PKR": {
-    "label": "Pakistani Rupee",
+    "label": "巴基斯坦卢比",
     "symbol": "Rs"
   },
   "PLN": {
-    "label": "Polish Zloty",
+    "label": "波兰兹罗提",
     "symbol": "zł"
   },
   "PYG": {
-    "label": "Paraguayan Guarani",
+    "label": "巴拉圭瓜拉尼",
     "symbol": "Gs."
   },
   "QAR": {
-    "label": "Qatari Rial",
+    "label": "卡塔尔里亚尔",
     "symbol": "ر.ق.‏"
   },
   "RON": {
-    "label": "Romanian Leu",
+    "label": "罗马尼亚列伊",
     "symbol": "RON"
   },
   "RSD": {
-    "label": "Serbian Dinar",
+    "label": "塞尔维亚第纳尔",
     "symbol": "RSD"
   },
   "RUB": {
-    "label": "Russian Ruble",
+    "label": "俄罗斯卢布",
     "symbol": "₽"
   },
   "RWF": {
-    "label": "Rwandan Franc",
+    "label": "卢旺达法郎",
     "symbol": "RF"
   },
   "SAR": {
-    "label": "Saudi Riyal",
+    "label": "沙特里亚尔",
     "symbol": "ر.س.‏"
   },
   "SBD": {
-    "label": "Solomon Islands Dollar",
+    "label": "所罗门群岛元",
     "symbol": "$"
   },
   "SCR": {
-    "label": "Seychellois Rupee",
+    "label": "塞舌尔卢比",
     "symbol": "SR"
   },
   "SDG": {
-    "label": "Sudanese Pound",
+    "label": "苏丹镑",
     "symbol": "ج.س."
   },
   "SEK": {
-    "label": "Swedish Krona",
+    "label": "瑞典克朗",
     "symbol": "kr"
   },
   "SGD": {
-    "label": "Singapore Dollar",
+    "label": "新加坡元",
     "symbol": "$"
   },
   "SHP": {
-    "label": "St. Helena Pound",
+    "label": "圣赫勒拿群岛磅",
     "symbol": "£"
   },
   "SLL": {
-    "label": "Sierra Leonean Leone",
+    "label": "塞拉利昂利昂",
     "symbol": "Le"
   },
   "SOS": {
-    "label": "Somali Shilling",
+    "label": "索马里先令",
     "symbol": "S"
   },
   "SRD": {
-    "label": "Surinamese Dollar",
+    "label": "苏里南元",
     "symbol": "$"
   },
   "SSP": {
-    "label": "South Sudanese Pound",
+    "label": "南苏丹镑",
     "symbol": "£"
   },
   "STN": {
-    "label": "São Tomé & Príncipe Dobra",
+    "label": "圣多美和普林西比多布拉",
     "symbol": "STN"
   },
   "SYP": {
-    "label": "Syrian Pound",
+    "label": "叙利亚镑",
     "symbol": "ل.س.‏"
   },
   "SZL": {
-    "label": "Swazi Lilangeni",
+    "label": "斯威士兰里兰吉尼",
     "symbol": "E"
   },
   "THB": {
-    "label": "Thai Baht",
+    "label": "泰铢",
     "symbol": "THB"
   },
   "TJS": {
-    "label": "Tajikistani Somoni",
+    "label": "塔吉克斯坦索莫尼",
     "symbol": "сом."
   },
   "TND": {
-    "label": "Tunisian Dinar",
+    "label": "突尼斯第纳尔",
     "symbol": "د.ت.‏"
   },
   "TOP": {
-    "label": "Tongan Paʻanga",
+    "label": "汤加潘加",
     "symbol": "T$"
   },
   "TRY": {
-    "label": "Turkish Lira",
+    "label": "土耳其里拉",
     "symbol": "₺"
   },
   "TTD": {
-    "label": "Trinidad & Tobago Dollar",
+    "label": "特立尼达和多巴哥元",
     "symbol": "$"
   },
   "TWD": {
-    "label": "New Taiwan Dollar",
+    "label": "新台币",
     "symbol": "$"
   },
   "TZS": {
-    "label": "Tanzanian Shilling",
+    "label": "坦桑尼亚先令",
     "symbol": "TSh"
   },
   "UAH": {
-    "label": "Ukrainian Hryvnia",
+    "label": "乌克兰格里夫纳",
     "symbol": "₴"
   },
   "UGX": {
-    "label": "Ugandan Shilling",
+    "label": "乌干达先令",
     "symbol": "USh"
   },
   "USD": {
-    "label": "US Dollar",
+    "label": "美元",
     "symbol": "$"
   },
   "USN": {
-    "label": "US Dollar (Next day)",
+    "label": "美元（次日）",
     "symbol": "USN"
   },
   "UYI": {
-    "label": "Uruguayan Peso (Indexed Units)",
+    "label": "乌拉圭比索（索引单位）",
     "symbol": "UYI"
   },
   "UYU": {
-    "label": "Uruguayan Peso",
+    "label": "乌拉圭比索",
     "symbol": "$"
   },
   "UZS": {
-    "label": "Uzbekistani Som",
+    "label": "乌兹别克斯坦苏姆",
     "symbol": "сўм"
   },
   "VEF": {
-    "label": "Venezuelan Bolívar (2008–2018)",
+    "label": "委内瑞拉玻利瓦尔 (2008–2018)",
     "symbol": "Bs."
   },
   "VND": {
-    "label": "Vietnamese Dong",
+    "label": "越南盾",
     "symbol": "₫"
   },
   "VUV": {
-    "label": "Vanuatu Vatu",
+    "label": "瓦努阿图瓦图",
     "symbol": "VT"
   },
   "WST": {
-    "label": "Samoan Tala",
+    "label": "萨摩亚塔拉",
     "symbol": "WS$"
   },
   "XAF": {
-    "label": "Central African CFA Franc",
+    "label": "中非法郎",
     "symbol": "FCFA"
   },
   "XCD": {
-    "label": "East Caribbean Dollar",
+    "label": "东加勒比元",
     "symbol": "$"
   },
   "XOF": {
-    "label": "West African CFA Franc",
+    "label": "西非法郎",
     "symbol": "CFA"
   },
   "XPF": {
-    "label": "CFP Franc",
+    "label": "太平洋法郎",
     "symbol": "FCFP"
   },
   "YER": {
-    "label": "Yemeni Rial",
+    "label": "也门里亚尔",
     "symbol": "ر.ي.‏"
   },
   "ZAR": {
-    "label": "South African Rand",
+    "label": "南非兰特",
     "symbol": "R"
   },
   "ZMW": {
-    "label": "Zambian Kwacha",
+    "label": "赞比亚克瓦查",
     "symbol": "K"
   }
 }
