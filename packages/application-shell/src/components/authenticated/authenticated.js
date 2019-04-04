@@ -32,6 +32,12 @@ const Authenticated = props => {
         // is not shared anymore.
         storage.put(STORAGE_KEYS.IS_AUTHENTICATED, true);
       }}
+      onError={() => {
+        // The query fails without the `mcAccessToken`. In this case the caching
+        // needs to be unset as otherwise the application will end up in a infinte
+        // redirect loop.
+        storage.remove(STORAGE_KEYS.IS_AUTHENTICATED);
+      }}
     >
       {({ loading, data, error }) => {
         if (error) {

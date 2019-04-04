@@ -14,6 +14,9 @@ const createTestProps = custom => ({
 });
 
 describe('rendering', () => {
+  beforeEach(() => {
+    storage.put.mockClear();
+  });
   let props;
   describe('when authenticated state was cached in local storage', () => {
     beforeEach(() => {
@@ -90,7 +93,17 @@ describe('rendering', () => {
       it('should not put `isAuthenticated` into local storage', async () => {
         await wait(
           () => {
-            expect(storage.put).not.toHaveBeenCalledWith();
+            expect(storage.put).not.toHaveBeenCalled();
+          },
+          { timeout: 1000 }
+        );
+      });
+      it('should unset any previous `isAuthenticated` in local storage', async () => {
+        await wait(
+          () => {
+            expect(storage.remove).toHaveBeenCalledWith(
+              STORAGE_KEYS.IS_AUTHENTICATED
+            );
           },
           { timeout: 1000 }
         );
