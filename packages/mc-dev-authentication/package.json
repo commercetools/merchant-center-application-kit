@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/mc-dev-authentication",
-  "version": "1.0.0",
+  "version": "13.0.0",
   "description": "Authentication views when running mc-http-server or webpack-dev-server in development mode",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
