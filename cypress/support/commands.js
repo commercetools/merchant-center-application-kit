@@ -44,7 +44,7 @@ Cypress.Commands.add('login', () => {
   cy.get('[name=password]').type(Cypress.env('LOGIN_PASSWORD'));
 
   // Sign in
-  cy.getByText('Sign in').click();
+  cy.get('[aria-label="Sign in"]').click();
 
   // Make sure that sign in worked
   cy.get('[data-test=top-navigation').should('exist');
