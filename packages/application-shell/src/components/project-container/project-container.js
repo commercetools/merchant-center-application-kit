@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
 import isNil from 'lodash/isNil';
+import flowRight from 'lodash/flowRight';
+import { Spacings, Text } from '@commercetools-frontend/ui-kit';
+import { injectFeatureToggle } from '@flopflip/react-broadcast';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
@@ -28,6 +31,31 @@ const shouldShowNotificationForTrialExpired = daysLeft =>
   daysLeft <= minDaysToDisplayNotification &&
   daysLeft >= maxDaysToDisplayNotification;
 
+export class RedirectToProjectCreate extends React.Component {
+  static displayName = 'RedirectToProjectCreate';
+  componentDidMount() {
+    window.location.replace('/account/projects/new');
+  }
+  render() {
+    return null;
+  }
+}
+const NoProjects = () => {
+  return (
+    <Spacings.Stack>
+      <Text.Headline elementType="h3">
+        {'Please create a project!'}
+      </Text.Headline>
+      <Text.Detail>
+        {
+          'You do not have any projects and the application is not served by the proxy (`env.json`).'
+        }
+      </Text.Detail>
+    </Spacings.Stack>
+  );
+};
+NoProjects.displayName = 'NoProjects';
+
 export class ProjectContainer extends React.Component {
   static displayName = 'ProjectContainer';
   static propTypes = {
@@ -49,6 +77,7 @@ export class ProjectContainer extends React.Component {
     intl: PropTypes.shape({
       formatMessage: PropTypes.func.isRequired,
     }).isRequired,
+    isAccountCreationEnabled: PropTypes.bool.isRequired,
   };
   state = {
     hasError: false,
@@ -109,12 +138,41 @@ export class ProjectContainer extends React.Component {
   );
 
   render() {
+    const hasNoProjects =
+      this.props.user && this.props.user.projects.total === 0;
     if (this.state.hasError) {
       return <ErrorApologizer />;
     }
-    // TODO: do something if there is an `error`?
-    if (this.props.user && this.props.user.projects.total === 0)
+
+    /**
+     * Given the user does not have any projects and account creation (sign up) is not yet
+     * enabled the user will be logged out.
+     *
+     * Given the user does not have project (and as a result is not part of an organization)
+     * the account application gets control over render. If any other application
+     * is requested to render a full page redirect (to have the proxy serve the request) occurs
+     * given the application is served by the proxy.
+     *    Given the application is not served by the proxy we do not perform a redirect as
+     *    otherwise a redirect loop can occur as no application is able to handle the route.
+     */
+    if (
+      hasNoProjects &&
+      !this.props.isAccountCreationEnabled &&
+      this.props.environment.servedByProxy
+    )
       return <Redirect to="/logout?reason=no-projects" />;
+    if (hasNoProjects && this.props.isAccountCreationEnabled)
+      return (
+        <Switch>
+          <Route path="/account" render={this.props.render} />
+          {this.props.environment.servedByProxy && (
+            <Route component={RedirectToProjectCreate} />
+          )}
+          {!this.props.environment.servedByProxy && (
+            <Route component={NoProjects} />
+          )}
+        </Switch>
+      );
 
     return (
       <React.Suspense fallback={<ApplicationLoader />}>
@@ -188,4 +246,7 @@ export class ProjectContainer extends React.Component {
   }
 }
 
-export default injectIntl(ProjectContainer);
+export default flowRight(
+  injectIntl,
+  injectFeatureToggle('createAccount', 'isAccountCreationEnabled')
+)(ProjectContainer);

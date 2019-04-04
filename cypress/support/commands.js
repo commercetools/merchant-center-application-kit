@@ -31,13 +31,22 @@ Cypress.Commands.add('logout', () => {
 });
 
 Cypress.Commands.add('login', () => {
+  // Clear and previous session data (cookie and local storage)
   cy.visit('/logout');
   cy.visit('/login');
+
+  // Make sure all needed fields exist
   cy.getByText('Email').should('exist');
   cy.getByText('Password').should('exist');
+
+  // Fill out the form from `.env` or environment variables (CI)
   cy.get('[name=email]').type(Cypress.env('LOGIN_USER'));
   cy.get('[name=password]').type(Cypress.env('LOGIN_PASSWORD'));
+
+  // Sign in
   cy.get('[aria-label="Sign in"]').click();
+
+  // Make sure that sign in worked
   cy.get('[data-test=top-navigation').should('exist');
 });
 

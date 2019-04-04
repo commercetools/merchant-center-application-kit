@@ -1,0 +1,67 @@
+html,
+body {
+  font: 1em sans-serif;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.title {
+  width: 355px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 355px;
+}
+
+form > * + * {
+  margin: 16px 0 0;
+}
+
+.field {
+  border: 0;
+}
+
+.field > * + * {
+  margin: 8px 0 0;
+}
+
+label {
+  display: block;
+}
+
+input {
+  width: 100%;
+  height: 24px;
+  outline: none;
+}
+
+input:focus {
+  border: 1px solid cornflowerblue;
+}
+
+input:focus:invalid {
+  border-color: red;
+}
+
+abbr {
+  text-decoration: none;
+  color: orangered;
+}
+
+#errors > div {
+  background-color: red;
+  color: #eee;
+  padding: 8px;
+}

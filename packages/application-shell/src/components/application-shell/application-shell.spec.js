@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { DOMAINS } from '@commercetools-frontend/constants';
+import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
@@ -64,24 +64,6 @@ const renderForAsyncData = ({ props, userData, localeData = testLocaleData }) =>
     .find(AsyncLocaleData)
     .renderProp('children', localeData);
 
-describe('rendering', () => {
-  let props;
-  let wrapper;
-  describe('when user is not authenticated', () => {
-    beforeEach(() => {
-      props = createTestProps();
-      wrapper = shallow(<ApplicationShell {...props} />).renderProp(
-        'children',
-        {
-          isAuthenticated: false,
-        }
-      );
-    });
-    it('should render <Route> for "/login"', () => {
-      expect(wrapper).toRender({ path: '/login' });
-    });
-  });
-});
 describe('<RestrictedApplication>', () => {
   let props;
   let wrapper;
@@ -89,6 +71,7 @@ describe('<RestrictedApplication>', () => {
   let localeData;
   describe('rendering', () => {
     beforeEach(() => {
+      window.location.replace = jest.fn();
       props = createTestProps();
       userData = {
         isLoading: false,
@@ -441,7 +424,7 @@ describe('<RestrictedApplication>', () => {
   });
 });
 
-describe('<UnrestrictedApplication>', () => {
+describe('when user is not logged in', () => {
   let props;
   let wrapper;
   describe('rendering', () => {
@@ -457,58 +440,22 @@ describe('<UnrestrictedApplication>', () => {
       let routerProps;
       beforeEach(() => {
         routerProps = {
-          location: { pathname: '/' },
+          location: { pathname: '/foo' },
         };
-        renderWrapper = wrapper
-          .find('Route')
-          .last()
-          .renderProp('render', routerProps);
+        renderWrapper = wrapper.find('Route').renderProp('render', routerProps);
       });
-      it('should render <Redirect> to "/login', () => {
-        expect(renderWrapper.find('Redirect')).toHaveProp(
-          'to',
-          expect.objectContaining({ pathname: '/login' })
-        );
+      it('should redirect "/login"', () => {
+        expect(renderWrapper).toHaveProp('to', 'login');
       });
-      it('should render <Redirect> with "reason" in search param', () => {
-        expect(renderWrapper.find('Redirect')).toHaveProp(
-          'to',
-          expect.objectContaining({
-            query: expect.objectContaining({ reason: 'unauthorized' }),
-          })
-        );
+      it('should pass location', () => {
+        expect(renderWrapper).toHaveProp('location', routerProps.location);
       });
-      describe('when location pathname is "/"', () => {
-        it('should render <Redirect> without "redirectTo" search param', () => {
-          expect(renderWrapper.find('Redirect')).not.toHaveProp(
-            'to',
-            expect.objectContaining({
-              query: expect.objectContaining({
-                redirectTo: expect.any(String),
-              }),
-            })
-          );
-        });
-      });
-      describe('when location pathname is "/foo-1/products"', () => {
-        beforeEach(() => {
-          routerProps = {
-            location: { pathname: '/foo-1/products' },
-          };
-          renderWrapper = wrapper
-            .find('Route')
-            .last()
-            .renderProp('render', routerProps);
-        });
-        it('should render <Redirect> with "redirectTo" search param', () => {
-          expect(renderWrapper.find('Redirect')).toHaveProp(
-            'to',
-            expect.objectContaining({
-              query: expect.objectContaining({
-                redirectTo: `${window.location.origin}/foo-1/products`,
-              }),
-            })
-          );
+      it('should pass queryParams', () => {
+        expect(renderWrapper).toHaveProp('queryParams', {
+          reason: LOGOUT_REASONS.UNAUTHORIZED,
+          redirectTo: `${window.location.origin}${
+            routerProps.location.pathname
+          }`,
         });
       });
     });

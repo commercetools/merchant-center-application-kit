@@ -4,6 +4,7 @@ import {
   hasSomePermissions,
   permissions,
 } from '@commercetools-frontend/permissions';
+import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import messages from './messages';
 
 export default ({
@@ -388,7 +389,7 @@ export default ({
       id: 'go/logout',
       text: intl.formatMessage(messages.logout),
       keywords: ['Sign out'],
-      action: { type: 'go', to: `/logout?reason=user` },
+      action: { type: 'go', to: `/logout?reason=${LOGOUT_REASONS.USER}` },
     },
     ...(user
       ? user.projects.results.map(userProject => ({

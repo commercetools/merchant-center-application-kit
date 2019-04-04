@@ -92,14 +92,16 @@ describe('ApplicationContext', () => {
       const { container, user } = renderApp(<TestComponent />);
       expect(container).toHaveTextContent('Sheldon Cooper');
       // the user should be returned from "render"
-      expect(user).toEqual({
-        email: 'sheldon.cooper@caltech.edu',
-        firstName: 'Sheldon',
-        id: 'user-id-1',
-        language: 'en',
-        lastName: 'Cooper',
-        timeZone: 'Etc/UTC',
-      });
+      expect(user).toEqual(
+        expect.objectContaining({
+          id: 'user-id-1',
+          email: 'sheldon.cooper@caltech.edu',
+          firstName: 'Sheldon',
+          lastName: 'Cooper',
+          language: 'en',
+          timeZone: 'Etc/UTC',
+        })
+      );
     });
 
     it('should respect user overwrites', () => {
@@ -109,14 +111,12 @@ describe('ApplicationContext', () => {
       // shows that data gets merged and overwrites have priority
       expect(container).toHaveTextContent('Leonard Cooper');
       // the merged user should be returned from "render"
-      expect(user).toEqual({
-        email: 'sheldon.cooper@caltech.edu',
-        firstName: 'Leonard',
-        id: 'user-id-1',
-        language: 'en',
-        lastName: 'Cooper',
-        timeZone: 'Etc/UTC',
-      });
+      expect(user).toEqual(
+        expect.objectContaining({
+          email: 'sheldon.cooper@caltech.edu',
+          firstName: 'Leonard',
+        })
+      );
     });
   });
 
@@ -133,17 +133,19 @@ describe('ApplicationContext', () => {
         'test-with-big-data Test with big data'
       );
       // the project should be returned from "render"
-      expect(project).toEqual({
-        countries: ['de', 'en'],
-        currencies: ['EUR', 'GBP'],
-        key: 'test-with-big-data',
-        languages: ['de', 'en-GB'],
-        name: 'Test with big data',
-        version: 43,
-        owner: {
-          id: 'project-id-1',
-        },
-      });
+      expect(project).toEqual(
+        expect.objectContaining({
+          key: 'test-with-big-data',
+          version: 43,
+          name: 'Test with big data',
+          countries: ['de', 'en'],
+          currencies: ['EUR', 'GBP'],
+          languages: ['de', 'en-GB'],
+          owner: {
+            id: 'project-id-1',
+          },
+        })
+      );
     });
 
     it('should respect project overwrites', () => {
@@ -153,17 +155,12 @@ describe('ApplicationContext', () => {
       // shows that data gets merged and overwrites have priority
       expect(container).toHaveTextContent('test-with-big-data Geek');
       // the merged project should be returned from "render"
-      expect(project).toEqual({
-        countries: ['de', 'en'],
-        currencies: ['EUR', 'GBP'],
-        key: 'test-with-big-data',
-        languages: ['de', 'en-GB'],
-        name: 'Geek',
-        version: 43,
-        owner: {
-          id: 'project-id-1',
-        },
-      });
+      expect(project).toEqual(
+        expect.objectContaining({
+          key: 'test-with-big-data',
+          name: 'Geek',
+        })
+      );
     });
   });
 
@@ -209,14 +206,16 @@ describe('ApplicationContext', () => {
       // shows that data gets merged and overwrites have priority
       expect(container).toHaveTextContent('eu production');
       // the project should be returned from "render"
-      expect(environment).toEqual({
-        frontendHost: 'localhost:3001',
-        mcApiUrl: 'https://mc-api.commercetools.com',
-        location: 'eu',
-        env: 'production',
-        cdnUrl: 'http://localhost:3001',
-        servedByProxy: false,
-      });
+      expect(environment).toEqual(
+        expect.objectContaining({
+          frontendHost: 'localhost:3001',
+          mcApiUrl: 'https://mc-api.commercetools.com',
+          location: 'eu',
+          env: 'production',
+          cdnUrl: 'http://localhost:3001',
+          servedByProxy: false,
+        })
+      );
     });
 
     it('should respect user overwrites', () => {
@@ -226,14 +225,12 @@ describe('ApplicationContext', () => {
       // shows that data gets merged and overwrites have priority
       expect(container).toHaveTextContent('us production');
       // the merged project should be returned from "render"
-      expect(environment).toEqual({
-        frontendHost: 'localhost:3001',
-        mcApiUrl: 'https://mc-api.commercetools.com',
-        location: 'us',
-        env: 'production',
-        cdnUrl: 'http://localhost:3001',
-        servedByProxy: false,
-      });
+      expect(environment).toEqual(
+        expect.objectContaining({
+          frontendHost: 'localhost:3001',
+          location: 'us',
+        })
+      );
     });
   });
 });

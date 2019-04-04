@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { Provider as ReduxProvider } from 'react-redux';
 import history from '@commercetools-frontend/browser-history';
@@ -12,7 +12,6 @@ import internalReduxStore from '../../configure-store';
 import apolloClient from '../../configure-apollo';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import Authenticated from '../authenticated';
-import Logout from '../logout';
 import GtmBooter from '../gtm-booter';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
@@ -61,47 +60,32 @@ export default class ApplicationShellProvider extends React.Component {
                 <GtmBooter
                   trackingEventWhitelist={this.props.trackingEventWhitelist}
                 >
-                  <Switch>
-                    {/**
-                     * No matter if the user is authenticated or not, when we go
-                     * to this route we should always log the user out.
-                     * TODO: do a hard page reload once we move the login routes
-                     * to a different app.
-                     */}
-                    <Route path="/logout" component={Logout} />
-                    <Route
-                      render={() => (
-                        <Authenticated>
-                          {({ isAuthenticated }) => {
-                            if (isAuthenticated)
-                              return this.props.children({ isAuthenticated });
+                  <Authenticated
+                    render={({ isAuthenticated }) => {
+                      if (isAuthenticated)
+                        return this.props.children({ isAuthenticated });
 
-                            const browserLanguage = getBrowserLanguage(window);
-                            return (
-                              <AsyncLocaleData
-                                locale={browserLanguage}
-                                applicationMessages={
-                                  this.props.applicationMessages
-                                }
-                              >
-                                {({ language, messages }) => (
-                                  <ConfigureIntlProvider
-                                    language={language}
-                                    messages={mergeMessages(
-                                      messages,
-                                      uikitMessages[language]
-                                    )}
-                                  >
-                                    {this.props.children({ isAuthenticated })}
-                                  </ConfigureIntlProvider>
-                                )}
-                              </AsyncLocaleData>
-                            );
-                          }}
-                        </Authenticated>
-                      )}
-                    />
-                  </Switch>
+                      const browserLanguage = getBrowserLanguage(window);
+                      return (
+                        <AsyncLocaleData
+                          locale={browserLanguage}
+                          applicationMessages={this.props.applicationMessages}
+                        >
+                          {({ language, messages }) => (
+                            <ConfigureIntlProvider
+                              language={language}
+                              messages={mergeMessages(
+                                messages,
+                                uikitMessages[language]
+                              )}
+                            >
+                              {this.props.children({ isAuthenticated })}
+                            </ConfigureIntlProvider>
+                          )}
+                        </AsyncLocaleData>
+                      );
+                    }}
+                  />
                 </GtmBooter>
               </Router>
             </React.Suspense>

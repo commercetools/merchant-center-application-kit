@@ -1,0 +1,43 @@
+html
+  head
+    title Login (development only)
+    style
+      include login.css
+  body
+    div(class="title")
+      h3 Welcome to the Merchant Center authorization page for local development
+      small This page is only available in development mode and is necessary to authenticate yourself. In production environment, we use our own authentication service.
+    form(id="login")
+      div(id="errors")
+      div(class="field")
+        label(for="email") Email
+          abbr(title="This field is mandatory") *
+        input(
+          id="email"
+          name="email"
+          type="text"
+          required
+        )
+      div(class="field")
+        label(for="password") Password
+          abbr(title="This field is mandatory") *
+        input(
+          id="password"
+          name="password"
+          type="password"
+          required
+        )
+      input(
+        id="url"
+        name="url"
+        value=env.mcApiUrl + "/tokens"
+        style="display: none;"
+      )
+      div
+        button(
+          type="submit"
+          aria-label="Sign in"
+        ) ➡ Sign in 🚀
+
+    script
+      include login.js

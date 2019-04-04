@@ -28,16 +28,13 @@ import FetchProject from '../fetch-project';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import AppBar from '../app-bar';
 import ProjectContainer from '../project-container';
-import AsyncLogin from '../login/async';
-import AsyncLoginSSO from '../login-sso/async';
-import AsyncLoginSSOCallback from '../login-sso-callback/async';
-import AsyncLoginLocked from '../login-locked/async';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
 import NavBar, { LoadingNavBar } from '../navbar';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
+import Redirector from '../redirector';
 import {
   selectProjectKeyFromLocalStorage,
   selectProjectKeyFromUrl,
@@ -56,10 +53,27 @@ export const extractLanguageFromLocale = locale =>
 export const RestrictedApplication = props => (
   <FetchUser>
     {({ isLoading: isLoadingUser, user, error }) => {
-      // TODO: inspect the error in case we want to be more specific
-      // about the error message and give detailed instructions.
-
       if (error) {
+        // In case there is an unauthorized error, we redirect to the login page
+        if (error.graphQLErrors && Array.isArray(error.graphQLErrors)) {
+          const hasUnauthorizedError = error.graphQLErrors.find(
+            gqlError =>
+              gqlError.extensions &&
+              gqlError.extensions.code &&
+              gqlError.extensions.code === 'UNAUTHENTICATED'
+          );
+          if (hasUnauthorizedError) {
+            return (
+              <Redirector
+                to="login"
+                environment={props.environment}
+                queryParams={{
+                  reason: LOGOUT_REASONS.UNAUTHORIZED,
+                }}
+              />
+            );
+          }
+        }
         // Since we do not know the locale of the user, we pick it from the
         // user's browser to attempt to match the language for the correct translations.
         const userLocale = getBrowserLanguage(window);
@@ -377,6 +391,7 @@ export default class ApplicationShell extends React.Component {
   static defaultProps = {
     trackingEventWhitelist: {},
   };
+  redirectTo = targetUrl => window.location.replace(targetUrl);
   componentDidMount() {
     this.props.onRegisterErrorListeners({
       dispatch: internalReduxStore.dispatch,
@@ -395,64 +410,65 @@ export default class ApplicationShell extends React.Component {
         {({ isAuthenticated }) => {
           if (isAuthenticated)
             return (
-              <RestrictedApplication
-                environment={coercedEnvironmentValues}
-                defaultFeatureFlags={this.props.defaultFeatureFlags}
-                render={this.props.render}
-                applicationMessages={this.props.applicationMessages}
-                DEV_ONLY__loadAppbarMenuConfig={
-                  this.props.DEV_ONLY__loadAppbarMenuConfig
-                }
-                DEV_ONLY__loadNavbarMenuConfig={
-                  this.props.DEV_ONLY__loadNavbarMenuConfig
-                }
-              />
+              <Switch>
+                {/* When the application redirects to this route,
+                we always force a hard redirect to the logout route of
+                the authentication service. */}
+                <Route
+                  path="/logout"
+                  render={({ location }) => (
+                    <Redirector
+                      to="logout"
+                      location={location}
+                      environment={coercedEnvironmentValues}
+                      queryParams={{
+                        reason: LOGOUT_REASONS.USER,
+                        ...(coercedEnvironmentValues.servedByProxy
+                          ? {}
+                          : {
+                              // This will be used after being logged in,
+                              // to redirect to this location.
+                              redirectTo: window.location.origin,
+                            }),
+                      }}
+                    />
+                  )}
+                />
+                <Route
+                  render={() => (
+                    <RestrictedApplication
+                      environment={coercedEnvironmentValues}
+                      defaultFeatureFlags={this.props.defaultFeatureFlags}
+                      render={this.props.render}
+                      applicationMessages={this.props.applicationMessages}
+                      DEV_ONLY__loadAppbarMenuConfig={
+                        this.props.DEV_ONLY__loadAppbarMenuConfig
+                      }
+                      DEV_ONLY__loadNavbarMenuConfig={
+                        this.props.DEV_ONLY__loadNavbarMenuConfig
+                      }
+                    />
+                  )}
+                />
+              </Switch>
             );
 
           return (
-            <Switch>
-              {/* Public routes */}
-              <Route
-                path="/login/sso/callback"
-                component={AsyncLoginSSOCallback}
-              />
-              <Route path="/login/sso" component={AsyncLoginSSO} />
-              <Route path="/login/locked" component={AsyncLoginLocked} />
-              <Route path="/login" component={AsyncLogin} />
-              <Route
-                render={({ location }) => {
-                  // If the user tries to access a route (e.g. `/my-project/orders`)
-                  // and he's not logged in, we will be redirected to the login page
-                  // as usual but as soon as he logs in, he'll be redirected to the
-                  // location that he tried to access before. This is handled by the
-                  // query parameter `redirectTo`.
-                  const searchQuery = {
+            <Route
+              render={({ location }) => (
+                <Redirector
+                  to="login"
+                  location={location}
+                  environment={coercedEnvironmentValues}
+                  queryParams={{
                     reason: LOGOUT_REASONS.UNAUTHORIZED,
-                    // This will be used after being logged in,
-                    // to redirect to this location.
-                    ...(location.pathname === '/'
-                      ? {}
-                      : {
-                          redirectTo: trimLeadingAndTrailingSlashes(
-                            joinPaths(window.location.origin, location.pathname)
-                          ),
-                        }),
-                  };
-                  // TODO: when we remove the login routes from the AppShell, this component
-                  // should do a redirect/hard page reload to the login route.
-                  // For development, we should only do a redirect to the staging domain, as the
-                  // login screen will not be part of the AppShell anymore.
-                  return (
-                    <Redirect
-                      to={{
-                        pathname: '/login',
-                        query: searchQuery,
-                      }}
-                    />
-                  );
-                }}
-              />
-            </Switch>
+                    redirectTo: trimLeadingAndTrailingSlashes(
+                      joinPaths(window.location.origin, location.pathname)
+                    ),
+                  }}
+                />
+              )}
+            />
           );
         }}
       </ApplicationShellProvider>
