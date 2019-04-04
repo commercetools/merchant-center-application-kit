@@ -1,3 +1,10 @@
+## [13.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.0.1...v13.0.1) (2019-04-04)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#515](https://github.com/commercetools/merchant-center-application-kit/pull/515) fix(app-shell): to unset previously set cached value ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v12.2.2...v13.0.0) (2019-04-04)
 
 This release introduces a **breaking change** which however will not entail any **migration steps** as it only affects internal packages. However, we want to follow strict semver and therefore we should mark it as a major version bump.
