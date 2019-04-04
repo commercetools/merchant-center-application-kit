@@ -6,14 +6,19 @@ In short:
 
 1. A new package called `mc-dev-authentication` now contains routes and views for login and logout shared by both the `webpack-dev-server` and `mc-http-server`
 2. All routes and components around login and logout have been removed from the `@commercetools-frontend/application-shell` and have been migrated into an internal Merchant Center application
-3. Redirects when signing up (still disabled) will be performed allowing users to create their first organization and project
+3. Redirects upon creating an account are not pointing to the account application, where the user can create the first organization + project
 
-There is far more internal documentation available internally to any commercetools developer. To not hestitate to reach out.
+For commercetools developers there is more in-depth documentation in our internal repositories. To not hestitate to reach out for further questions.
 
 #### 💥 Type: Breaking Change
 
 - `application-shell-connectors`, `application-shell`, `constants`, `i18n`, `mc-dev-authentication`, `mc-http-server`, `mc-scripts`
   - [#444](https://github.com/commercetools/merchant-center-application-kit/pull/444) Remove login/logout components and redirect to urls ([@tdeekens](https://github.com/tdeekens))
+
+#### 🚀 Type: New Feature
+
+- `application-components`, `application-shell`, `i18n`, `l10n`, `mc-scripts`
+  - [#511](https://github.com/commercetools/merchant-center-application-kit/pull/511) feat(i18n): support new locales fr-FR and zh-CN ([@emmenko](https://github.com/emmenko))
 
 ## [12.2.2](https://github.com/commercetools/merchant-center-application-kit/compare/v12.2.1...v12.2.2) (2019-04-03)
 
