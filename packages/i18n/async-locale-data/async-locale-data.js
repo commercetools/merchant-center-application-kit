@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { extractLanguageTagFromLocale } from '../utils';
+import { extractLanguageTagFromLocale, mergeMessages } from '../utils';
 import loadI18n from '../load-i18n';
-
-const mergeMessages = (...messages) => Object.assign({}, ...messages);
 
 const getMessagesForLocale = (data, locale) => {
   if (!data || !locale) return {};
@@ -27,7 +25,6 @@ class AsyncLocaleData extends React.Component {
       PropTypes.object,
     ]),
   };
-  static getMessagesForLocale = getMessagesForLocale;
 
   state = {
     isLoading: true,

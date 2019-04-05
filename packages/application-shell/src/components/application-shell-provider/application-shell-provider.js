@@ -1,3 +1,4 @@
+import './global-style-imports';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Router } from 'react-router-dom';
@@ -7,7 +8,6 @@ import history from '@commercetools-frontend/browser-history';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
-import { i18n as uikitMessages } from '@commercetools-frontend/ui-kit';
 import internalReduxStore from '../../configure-store';
 import apolloClient from '../../configure-apollo';
 import ConfigureIntlProvider from '../configure-intl-provider';
@@ -15,8 +15,7 @@ import Authenticated from '../authenticated';
 import GtmBooter from '../gtm-booter';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
-import './global-style-imports';
-import { getBrowserLocale, mergeMessages } from './utils';
+import { getBrowserLocale } from './utils';
 
 export default class ApplicationShellProvider extends React.Component {
   static displayName = 'ApplicationShellProvider';
@@ -74,12 +73,7 @@ export default class ApplicationShellProvider extends React.Component {
                           {({ locale, messages }) => (
                             <ConfigureIntlProvider
                               locale={locale}
-                              messages={mergeMessages(
-                                messages,
-                                AsyncLocaleData.getMessagesForLocale(
-                                  uikitMessages
-                                )
-                              )}
+                              messages={messages}
                             >
                               {this.props.children({ isAuthenticated })}
                             </ConfigureIntlProvider>
