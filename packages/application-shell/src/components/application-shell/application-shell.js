@@ -62,7 +62,7 @@ export const RestrictedApplication = props => (
           if (hasUnauthorizedError) {
             return (
               <Redirector
-                to="login"
+                to="logout"
                 environment={props.environment}
                 queryParams={{
                   reason: LOGOUT_REASONS.UNAUTHORIZED,
