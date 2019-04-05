@@ -1,4 +1,11 @@
-## [13.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.0.1...v13.0.1) (2019-04-04)
+## [13.0.2](https://github.com/commercetools/merchant-center-application-kit/compare/v13.0.1...v13.0.2) (2019-04-05)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#517](https://github.com/commercetools/merchant-center-application-kit/pull/517) fix(app-shell): redirect to logout when catching unauthorized error ([@tdeekens](https://github.com/tdeekens))
+
+## [13.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.0.0...v13.0.1) (2019-04-04)
 
 #### 🐛 Type: Bug
 
