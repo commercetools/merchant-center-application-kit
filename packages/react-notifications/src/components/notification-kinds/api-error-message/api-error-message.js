@@ -8,7 +8,7 @@ import messages from './messages';
 const regexInvalidOperationRequiredAttribute = /Required attribute '(.*)' cannot be removed/;
 
 export const ApiErrorMessage = props => {
-  if (props.error.localizedMessage) {
+  if (props.error.errorByExtension) {
     const localizedMessage = props.error.localizedMessage[props.intl.locale];
 
     return localizedMessage || props.error.message;
