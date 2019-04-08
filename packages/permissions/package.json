@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "react": "16.8.5",
-    "react-testing-library": "6.0.4"
+    "react-testing-library": "6.1.2"
   },
   "peerDependencies": {
     "react": "16.x"
