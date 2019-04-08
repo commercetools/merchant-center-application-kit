@@ -16,13 +16,18 @@ export class SetupFlopFlipProvider extends React.PureComponent {
   static displayName = 'SetupFlopFlipProvider';
   static propTypes = {
     projectKey: PropTypes.string,
-    user: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      launchdarklyTrackingId: PropTypes.string.isRequired,
-      launchdarklyTrackingGroup: PropTypes.string.isRequired,
-      launchdarklyTrackingTeam: PropTypes.array.isRequired,
-      launchdarklyTrackingTenant: PropTypes.string.isRequired,
-    }),
+    user: PropTypes.oneOfType([
+      PropTypes.shape({
+        launchdarklyTrackingTenant: PropTypes.string.isRequired,
+      }),
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        launchdarklyTrackingId: PropTypes.string.isRequired,
+        launchdarklyTrackingGroup: PropTypes.string.isRequired,
+        launchdarklyTrackingTeam: PropTypes.array.isRequired,
+        launchdarklyTrackingTenant: PropTypes.string.isRequired,
+      }),
+    ]),
     defaultFlags: PropTypes.object,
     appEnv: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
