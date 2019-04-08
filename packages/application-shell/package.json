@@ -54,7 +54,7 @@
     "@flopflip/launchdarkly-adapter": "2.4.11",
     "@flopflip/memory-adapter": "1.2.2",
     "@flopflip/react-broadcast": "8.0.3",
-    "@sentry/browser": "4.6.6",
+    "@sentry/browser": "5.0.6",
     "apollo-cache-inmemory": "1.5.1",
     "apollo-client": "2.5.1",
     "apollo-link": "1.2.11",

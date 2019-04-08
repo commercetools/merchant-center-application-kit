@@ -58,9 +58,7 @@ export const reportErrorToSentry = (error, extraInfo, getIsEnabled) => {
       if (extraInfo && extraInfo.extra) {
         if (typeof extraInfo.extra === 'object') {
           // See https://docs.sentry.io/platforms/javascript/react/
-          Object.keys(extraInfo.extra).forEach(key => {
-            scope.setExtra(key, extraInfo.extra[key]);
-          });
+          scope.setExtras(extraInfo.extra);
         } else {
           scope.setExtra('extra', extraInfo.extra);
         }
