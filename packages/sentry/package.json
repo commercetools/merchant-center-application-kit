@@ -38,8 +38,8 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "react": "16.8.5",
-    "sentry-testkit": "2.1.0",
+    "react": "16.8.6",
+    "sentry-testkit": "2.2.0",
     "wait-for-expect": "1.1.1"
   },
   "peerDependencies": {

@@ -19,9 +19,9 @@
     "@commercetools-frontend/permissions": "13.0.0",
     "@commercetools-frontend/ui-kit": "9.1.2",
     "prop-types": "15.7.2",
-    "react": "16.8.5",
+    "react": "16.8.6",
     "react-apollo": "2.5.2",
-    "react-dom": "16.8.5",
+    "react-dom": "16.8.6",
     "react-intl": "2.8.0",
     "react-redux": "6.0.1",
     "react-router": "5.0.0",
@@ -32,7 +32,7 @@
     "@commercetools-frontend/jest-preset-mc-app": "13.0.0",
     "@commercetools-frontend/mc-scripts": "13.0.0",
     "enzyme": "3.9.0",
-    "jest": "24.5.0",
+    "jest": "24.7.1",
     "react-testing-library": "6.1.2"
   }
 }
