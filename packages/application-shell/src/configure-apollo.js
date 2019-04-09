@@ -64,7 +64,12 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData,
 });
 
-const typeNamesWithoutIdAsIdentifier = ['Project', 'BaseMenu', 'NavbarMenu'];
+const typeNamesWithoutIdAsIdentifier = [
+  'Project',
+  'BaseMenu',
+  'NavbarMenu',
+  'Store',
+];
 
 export const createApolloClient = () =>
   new ApolloClient({
