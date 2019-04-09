@@ -1,3 +1,15 @@
+## [13.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.0.2...v13.1.0) (2019-04-08)
+
+#### 🚀 Type: New Feature
+
+- `application-shell`
+  - [#528](https://github.com/commercetools/merchant-center-application-kit/pull/528) feat(app-shell): add allowing to pass ldTrackingTenant alone ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+
+- `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `create-mc-app`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-scripts`, `permissions`, `react-notifications`, `sdk`, `sentry`
+  - [#526](https://github.com/commercetools/merchant-center-application-kit/pull/526) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.0.2](https://github.com/commercetools/merchant-center-application-kit/compare/v13.0.1...v13.0.2) (2019-04-05)
 
 #### 🐛 Type: Bug
