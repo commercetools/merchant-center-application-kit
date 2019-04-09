@@ -54,8 +54,8 @@ describe('rendering', () => {
       <ApplicationShellProvider {...createTestProps()}>
         {() => (
           <ReactReduxContext.Consumer>
-            {({ storeState }) => {
-              if (storeState) {
+            {({ store }) => {
+              if (store) {
                 hasStore = true;
               }
               return null;

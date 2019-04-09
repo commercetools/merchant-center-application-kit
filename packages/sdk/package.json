@@ -49,10 +49,10 @@
   },
   "devDependencies": {
     "react": "16.8.6",
-    "react-redux": "6.0.1"
+    "react-redux": "7.0.1"
   },
   "peerDependencies": {
     "react": "16.x",
-    "react-redux": "6.x"
+    "react-redux": "6.x || 7.x"
   }
 }
