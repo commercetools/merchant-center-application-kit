@@ -1,3 +1,10 @@
+## [13.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.1.0...v13.2.0) (2019-04-09)
+
+#### 💅 Type: Enhancement
+
+- `application-shell`
+  - [#531](https://github.com/commercetools/merchant-center-application-kit/pull/531) feat(configure-apollo): add special mapping for Store entity ([@qmateub](https://github.com/qmateub))
+
 ## [13.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.0.2...v13.1.0) (2019-04-08)
 
 #### 🚀 Type: New Feature
