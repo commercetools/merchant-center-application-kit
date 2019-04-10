@@ -119,6 +119,6 @@
 .dialog-content {
   border-top: 1px solid var(--border-color-separator);
   padding: var(--spacing-16) 0 var(--spacing-8);
-  overflow: auto;
+  overflow: visible;
   flex: 1;
 }

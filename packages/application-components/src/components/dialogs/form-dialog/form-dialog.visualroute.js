@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
-import { Spacings, TextField } from '@commercetools-frontend/ui-kit';
+import {
+  Spacings,
+  TextField,
+  SelectField,
+} from '@commercetools-frontend/ui-kit';
 import { FormDialog } from 'application-components';
 import { Suite, Spec } from '../../../../test-utils/visual';
 
@@ -49,6 +53,69 @@ FormDialogExample.propTypes = {
   portalId: PropTypes.string.isRequired,
 };
 
+const options = [
+  { value: 'daft punk', label: 'Daft Punk' },
+  { value: 'lcd soundsystem', label: 'LCD Soundsystem' },
+  { value: 'the cure', label: 'The Cure' },
+];
+
+const FormDialogOverflowExample = props => (
+  <Formik
+    initialValues={{
+      email: '',
+      favoriteBand: 'daft punk',
+    }}
+    onSubmit={() => {}}
+    render={formikProps => (
+      <React.Fragment>
+        <div id={props.portalId} style={{ flex: 1 }} />
+        <FormDialog
+          title="Lorem ipsum"
+          size={props.size}
+          isOpen={true}
+          onClose={() => {}}
+          onSecondaryButtonClick={() => {}}
+          onPrimaryButtonClick={() => {}}
+          isPrimaryButtonDisabled={false}
+          getParentSelector={() => document.querySelector(`#${props.portalId}`)}
+        >
+          <Spacings.Stack scale="m">
+            <TextField
+              name="email"
+              title="Email"
+              isRequired={true}
+              value={formikProps.values.email}
+              errors={formikProps.errors.email}
+              touched={formikProps.touched.email}
+              onChange={formikProps.handleChange}
+              onBlur={formikProps.handleBlur}
+              onFocus={formikProps.handleFocus}
+            />
+            <SelectField
+              id="favorite-band-select"
+              name="favoriteBand"
+              title="Favorite Band"
+              isRequired={true}
+              options={options}
+              value={formikProps.values.favoriteBand}
+              errors={formikProps.errors.favoriteBand}
+              touched={formikProps.touched.favoriteBand}
+              onChange={formikProps.handleChange}
+              onBlur={formikProps.handleBlur}
+              onFocus={formikProps.handleFocus}
+            />
+          </Spacings.Stack>
+        </FormDialog>
+      </React.Fragment>
+    )}
+  />
+);
+FormDialogOverflowExample.displayName = 'FormDialogOverflowExample';
+FormDialogOverflowExample.propTypes = {
+  size: PropTypes.oneOf(['m', 'l', 'scale']).isRequired,
+  portalId: PropTypes.string.isRequired,
+};
+
 export const component = () => (
   <Suite>
     <Spec label="FormDialog - Size M" size="l" contentAlignment="center">
@@ -70,6 +137,9 @@ export const component = () => (
         isPrimaryButtonDisabled={true}
         portalId="dialog-disabled"
       />
+    </Spec>
+    <Spec label="FormDialog - another" size="l" contentAlignment="center">
+      <FormDialogOverflowExample size="m" portalId="dialog-overflow" />
     </Spec>
   </Suite>
 );

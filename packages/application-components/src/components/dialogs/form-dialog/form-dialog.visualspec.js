@@ -7,6 +7,7 @@ describe(`FormDialog`, () => {
 
   it('Default', async () => {
     await expect(page).toMatch('FormDialog');
+    await page.click('#favorite-band-select');
     await percySnapshot(page, `FormDialog`);
   });
 });
