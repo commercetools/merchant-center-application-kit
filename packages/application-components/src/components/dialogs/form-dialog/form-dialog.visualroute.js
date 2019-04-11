@@ -92,7 +92,7 @@ const FormDialogOverflowExample = props => (
               onFocus={formikProps.handleFocus}
             />
             <SelectField
-              id="favorite-band-select"
+              id="select-input"
               name="favoriteBand"
               title="Favorite Band"
               isRequired={true}
