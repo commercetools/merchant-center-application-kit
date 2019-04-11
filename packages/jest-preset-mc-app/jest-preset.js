@@ -36,5 +36,5 @@ module.exports = {
     '^.+\\.graphql$': 'jest-transform-graphql',
   },
   transformIgnorePatterns: ['node_modules'],
-  watchPlugins: ['jest-plugin-filename', 'jest-watch-master'],
+  watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-master'],
 };
