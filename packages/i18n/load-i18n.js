@@ -1,6 +1,7 @@
 import { addLocaleData } from 'react-intl';
 import {
   extractLanguageTagFromLocale,
+  mergeMessages,
   mapLocaleToMomentLocale,
   mapLocaleToIntlLocale,
 } from './utils';
@@ -38,7 +39,23 @@ const getMomentChunkImport = locale => {
   }
 };
 
-const getLocalizedStringsChunkImport = locale => {
+const getUiKitChunkImport = locale => {
+  const intlLocale = mapLocaleToIntlLocale(locale);
+  switch (intlLocale) {
+    case 'de':
+      return import(/* webpackChunkName: "i18n-ui-kit-locale-de" */ '@commercetools-frontend/ui-kit/i18n/data/de.json');
+    case 'es':
+      return import(/* webpackChunkName: "i18n-ui-kit-locale-es" */ '@commercetools-frontend/ui-kit/i18n/data/es.json');
+    case 'fr-FR':
+      return import(/* webpackChunkName: "i18n-ui-kit-locale-fr-FR" */ '@commercetools-frontend/ui-kit/i18n/data/fr-FR.json');
+    case 'zh-CN':
+      return import(/* webpackChunkName: "i18n-ui-kit-locale-zh-CN" */ '@commercetools-frontend/ui-kit/i18n/data/zh-CN.json');
+    default:
+      return import(/* webpackChunkName: "i18n-ui-kit-locale-en" */ '@commercetools-frontend/ui-kit/i18n/data/en.json');
+  }
+};
+
+const getAppKitChunkImport = locale => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
@@ -57,13 +74,23 @@ const getLocalizedStringsChunkImport = locale => {
 // Use default (lazy) so that we will receive one chunk per
 // locale. https://webpack.js.org/api/module-methods/#import-
 export default async function loadI18n(locale) {
+  // Load react-intl localizations
   const reactIntlChunkImport = await getReactIntlChunkImport(locale);
   addLocaleData(reactIntlChunkImport.default);
 
+  // Load moment localizations
   await getMomentChunkImport(locale);
 
-  const intlChunkImport = await getLocalizedStringsChunkImport(locale);
+  // Load ui-kit translations
+  const uiKitChunkImport = await getUiKitChunkImport(locale);
+
+  // Load app-kit translations
+  const appKitChunkImport = await getAppKitChunkImport(locale);
+
   // Prefer loading `default` (for ESM bundles) and
   // fall back to normal import (for CJS bundles).
-  return intlChunkImport.default || intlChunkImport;
+  return mergeMessages(
+    uiKitChunkImport,
+    appKitChunkImport.default || appKitChunkImport
+  );
 }

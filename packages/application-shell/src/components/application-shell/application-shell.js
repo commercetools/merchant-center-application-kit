@@ -14,15 +14,11 @@ import {
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
-import { i18n } from '@commercetools-frontend/ui-kit';
 import internalReduxStore from '../../configure-store';
 import ProjectDataLocale from '../project-data-locale';
 import PortalsContainer from '../portals-container';
 import ApplicationShellProvider from '../application-shell-provider';
-import {
-  getBrowserLocale,
-  mergeMessages,
-} from '../application-shell-provider/utils';
+import { getBrowserLocale } from '../application-shell-provider/utils';
 import FetchUser from '../fetch-user';
 import FetchProject from '../fetch-project';
 import ConfigureIntlProvider from '../configure-intl-provider';
@@ -82,13 +78,7 @@ export const RestrictedApplication = props => (
             {({ locale, messages }) => {
               reportErrorToSentry(error, {});
               return (
-                <ConfigureIntlProvider
-                  locale={locale}
-                  messages={mergeMessages(
-                    messages,
-                    AsyncLocaleData.getMessagesForLocale(i18n, locale)
-                  )}
-                >
+                <ConfigureIntlProvider locale={locale} messages={messages}>
                   <ErrorApologizer />
                 </ConfigureIntlProvider>
               );
@@ -116,15 +106,7 @@ export const RestrictedApplication = props => (
               <ConfigureIntlProvider
                 // We do not want to pass the language as long as the locale data
                 // is not loaded.
-                {...(isLoadingLocaleData
-                  ? {}
-                  : {
-                      locale,
-                      messages: mergeMessages(
-                        messages,
-                        AsyncLocaleData.getMessagesForLocale(i18n, locale)
-                      ),
-                    })}
+                {...(isLoadingLocaleData ? {} : { locale, messages })}
               >
                 <SetupFlopFlipProvider
                   user={user}

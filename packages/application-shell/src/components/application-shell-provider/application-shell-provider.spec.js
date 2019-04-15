@@ -6,7 +6,7 @@ import { ApplicationContext } from '@commercetools-frontend/application-shell-co
 import { GtmContext } from '../gtm-booter';
 // eslint-disable-next-line import/named
 import { setIsAuthenticated } from '../authenticated';
-import { getBrowserLocale, mergeMessages } from './utils';
+import { getBrowserLocale } from './utils';
 import ApplicationShellProvider from './application-shell-provider';
 
 jest.mock('@commercetools-frontend/sentry');
@@ -114,9 +114,6 @@ describe('rendering', () => {
   it('when not authenticated, it should setup intl provider', async () => {
     setIsAuthenticated('false');
     getBrowserLocale.mockReturnValue('de');
-    mergeMessages.mockImplementation((...messages) =>
-      Object.assign({}, ...messages)
-    );
     const { getByText } = render(
       <ApplicationShellProvider {...createTestProps()}>
         {({ isAuthenticated }) =>

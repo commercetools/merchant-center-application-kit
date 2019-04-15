@@ -10,10 +10,7 @@ import ProjectContainer from '../project-container';
 import FetchUser from '../fetch-user';
 import FetchProject from '../fetch-project';
 import NavBar, { LoadingNavBar } from '../navbar';
-import {
-  getBrowserLocale,
-  mergeMessages,
-} from '../application-shell-provider/utils';
+import { getBrowserLocale } from '../application-shell-provider/utils';
 import ApplicationShell, { RestrictedApplication } from './application-shell';
 
 jest.mock('@commercetools-frontend/storage');
@@ -497,21 +494,6 @@ describe('getBrowserLocale', () => {
     });
     it('should return the default locale, `en`', () => {
       expect(getBrowserLocale(testWindow)).toBe('en');
-    });
-  });
-});
-
-describe('mergeMessages', () => {
-  it('should merge multiple arguments', () => {
-    expect(mergeMessages({ a: 1 }, { b: 2 }, { c: 3 })).toEqual({
-      a: 1,
-      b: 2,
-      c: 3,
-    });
-  });
-  it('should merge even if arguments are not defined', () => {
-    expect(mergeMessages(null, undefined, { c: 3 })).toEqual({
-      c: 3,
     });
   });
 });

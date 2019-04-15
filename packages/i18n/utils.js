@@ -1,6 +1,8 @@
 export const extractLanguageTagFromLocale = locale =>
   locale.includes('-') ? locale.split('-')[0] : locale;
 
+export const mergeMessages = (...messages) => Object.assign({}, ...messages);
+
 export const mapLocaleToMomentLocale = locale => {
   if (locale.startsWith('de')) return 'de';
   if (locale.startsWith('es')) return 'es';
