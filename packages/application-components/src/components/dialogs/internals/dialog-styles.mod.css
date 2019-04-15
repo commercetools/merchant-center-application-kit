@@ -119,6 +119,8 @@
 .dialog-content {
   border-top: 1px solid var(--border-color-separator);
   padding: var(--spacing-16) 0 var(--spacing-8);
-  overflow: visible;
   flex: 1;
+
+  /* The overflow should be `auto`, to make the container scrollable */
+  overflow: auto;
 }
