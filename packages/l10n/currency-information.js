@@ -5,15 +5,25 @@ const getImportChunk = locale => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
-      return import(/* webpackChunkName: "currency-data-de" */ './data/currencies/de.json');
+      return import(
+        /* webpackChunkName: "currency-data-de" */ './data/currencies/de.json'
+      );
     case 'es':
-      return import(/* webpackChunkName: "currency-data-es" */ './data/currencies/es.json');
+      return import(
+        /* webpackChunkName: "currency-data-es" */ './data/currencies/es.json'
+      );
     case 'fr-FR':
-      return import(/* webpackChunkName: "currency-data-fr-FR" */ './data/currencies/fr-FR.json');
+      return import(
+        /* webpackChunkName: "currency-data-fr-FR" */ './data/currencies/fr-FR.json'
+      );
     case 'zh-CN':
-      return import(/* webpackChunkName: "currency-data-zh-CN" */ './data/currencies/zh-CN.json');
+      return import(
+        /* webpackChunkName: "currency-data-zh-CN" */ './data/currencies/zh-CN.json'
+      );
     default:
-      return import(/* webpackChunkName: "currency-data-en" */ './data/currencies/en.json');
+      return import(
+        /* webpackChunkName: "currency-data-en" */ './data/currencies/en.json'
+      );
   }
 };
 
