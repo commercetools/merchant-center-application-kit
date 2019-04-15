@@ -86,7 +86,7 @@
     "lerna": "3.13.1",
     "lerna-changelog": "0.8.2",
     "lint-staged": "8.1.5",
-    "prettier": "1.16.4",
+    "prettier": "1.17.0",
     "puppeteer": "1.14.0",
     "rcfile": "1.0.3",
     "read-pkg-up": "5.0.0",
