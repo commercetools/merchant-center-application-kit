@@ -11,7 +11,7 @@
 }
 
 .base {
-  background-color: var(--color-gray);
+  background-color: var(--color-neutral);
   animation-name: pulse;
   animation-duration: 1s;
   animation-timing-function: ease-out;
@@ -22,35 +22,35 @@
 
 @keyframes pulse {
   0% {
-    background-color: var(--color-gray);
+    background-color: var(--color-neutral);
   }
   100% {
-    background-color: var(--color-gray-95);
+    background-color: var(--color-neutral-95);
   }
 }
 
 .dot-s {
   composes: base;
-  width: var(--spacing-8);
-  height: var(--spacing-8);
+  width: var(--spacing-s);
+  height: var(--spacing-s);
   border-radius: var(--radius-4);
 }
 .dot-m {
   composes: base;
-  width: var(--spacing-16);
-  height: var(--spacing-16);
+  width: var(--spacing-m);
+  height: var(--spacing-m);
   border-radius: var(--radius-8);
 }
 .dot-l {
   composes: base;
-  width: var(--spacing-24);
-  height: var(--spacing-24);
+  width: var(--spacing-l);
+  height: var(--spacing-l);
   border-radius: var(--radius-12);
 }
 .dot-xl {
   composes: base;
-  width: var(--spacing-32);
-  height: var(--spacing-32);
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
   border-radius: var(--radius-16);
 }
 

@@ -26,7 +26,7 @@
 
 .switchers :global(.Select-control) {
   /* We can't set the border to transparent due to a safari bug */
-  border: 1px var(--color-white) solid;
+  border: 1px var(--color-surface) solid;
 }
 
 .switchers :global(.Select-input > input) {
@@ -55,13 +55,13 @@
   float: right;
   font-weight: normal;
   font-size: 1rem;
-  margin-right: var(--spacing-16);
+  margin-right: var(--spacing-m);
   display: flex;
   align-items: center;
 }
 
 .item-link:hover {
-  color: var(--color-navy);
+  color: var(--color-accent);
 }
 
 /* Loader */
@@ -72,7 +72,7 @@
 }
 
 .spacer {
-  border-left: 1px var(--color-gray-90) solid;
+  border-left: 1px var(--color-neutral-90) solid;
   height: var(--height-app-bar);
 }
 

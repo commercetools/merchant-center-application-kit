@@ -1,7 +1,7 @@
 :root {
   --expander-height: 50px;
   --icon-size: 32px;
-  --submenu-margin: calc(var(--icon-size) + var(--spacing-16));
+  --submenu-margin: calc(var(--icon-size) + var(--spacing-m));
 
   /* Left navigation */
   --width-leftNavigation: 64px;
@@ -14,7 +14,7 @@
   flex-grow: 1;
   width: var(--width-leftNavigation);
   z-index: 19999;
-  background: var(--color-navy);
+  background: var(--color-accent);
 }
 
 .list {
@@ -35,15 +35,15 @@
 .list-item {
   width: 64px;
   height: 64px;
-  background: var(--color-navy);
+  background: var(--color-accent);
   margin: 0;
   list-style: none;
   cursor: pointer;
 }
 
 .item-link {
-  color: var(--color-white);
-  padding: var(--spacing-16);
+  color: var(--color-surface);
+  padding: var(--spacing-m);
   width: 100%;
   position: relative;
   display: block;
@@ -65,7 +65,7 @@
   flex: 1;
   font-size: 1rem;
   font-weight: 100;
-  color: var(--color-white);
+  color: var(--color-surface);
   display: none;
   opacity: 0;
   transition: all 0.25s ease-in-out;
@@ -91,7 +91,7 @@
 }
 
 .expand-icon {
-  background: var(--color-black);
+  background: var(--color-solid);
   align-items: center;
   border-radius: 32px;
   cursor: pointer;
@@ -108,7 +108,7 @@
 }
 
 .list-item:hover {
-  background-color: var(--color-navy-30);
+  background-color: var(--color-accent-30);
 }
 
 .item__active .title {
@@ -143,7 +143,7 @@
 /* left-nav open */
 
 :global(.body__menu-open) .title {
-  color: var(--color-white);
+  color: var(--color-surface);
   font-weight: 100;
 }
 
@@ -168,8 +168,8 @@
   display: block;
   white-space: nowrap;
   opacity: 1;
-  margin-left: var(--spacing-16);
-  color: var(--color-white);
+  margin-left: var(--spacing-m);
+  color: var(--color-surface);
 }
 
 :global(.body__menu-open) .expand-icon {
@@ -186,9 +186,9 @@
   z-index: 1;
   left: 0;
   margin: 0 0 0 var(--submenu-margin);
-  padding: var(--spacing-8) 0 0;
+  padding: var(--spacing-s) 0 0;
   background-color: transparent;
-  border-top: 1px var(--color-gray-60) solid;
+  border-top: 1px var(--color-neutral-60) solid;
 }
 
 :global(.body__menu-open) .sublist.sublist-no-children {
@@ -204,7 +204,7 @@
 }
 
 :global(.body__menu-open) .title-copy:hover {
-  color: var(--color-green-40);
+  color: var(--color-primary-40);
 }
 
 :global(.body__menu-open) .expander {
@@ -214,10 +214,10 @@
 /*  Second level menu */
 
 .sublist {
-  padding: 55px var(--spacing-16) var(--spacing-16);
+  padding: 55px var(--spacing-m) var(--spacing-m);
   font-weight: 100;
   position: absolute;
-  background-color: var(--color-navy-30);
+  background-color: var(--color-accent-30);
   top: 0;
   left: 64px;
   z-index: -1;
@@ -235,8 +235,8 @@
 }
 
 .sublist-item:hover {
-  /* background-color: --color-navy-30; */
-  color: var(--color-green-40);
+  /* background-color: --color-accent-30; */
+  color: var(--color-primary-40);
 }
 
 .text {
@@ -250,7 +250,7 @@
 }
 
 .text-link:hover {
-  color: var(--color-green-40);
+  color: var(--color-primary-40);
 }
 
 .title-text {
@@ -261,7 +261,7 @@
 
 /* Item active */
 .item__active {
-  background: var(--color-navy-30);
+  background: var(--color-accent-30);
 }
 
 .list-item.item__active .item-icon-text {
@@ -279,7 +279,7 @@
 }
 
 :global(.body__menu-open) .list-item.item__active .item-icon-text .title {
-  margin-left: var(--spacing-16);
+  margin-left: var(--spacing-m);
 }
 
 :global(.body__menu-open) .list-item.item__active .item-icon-text {
@@ -302,7 +302,7 @@
 }
 
 .highlighted {
-  color: var(--color-green-40) !important;
+  color: var(--color-primary-40) !important;
 }
 
 .hidden {
@@ -310,11 +310,11 @@
 }
 
 .divider-first-item {
-  border-top: 1px solid var(--color-black);
+  border-top: 1px solid var(--color-solid);
 }
 
 .divider-second-item {
-  border-top: 1px solid var(--color-navy-40);
+  border-top: 1px solid var(--color-accent-40);
 }
 
 .loading-dot-container {

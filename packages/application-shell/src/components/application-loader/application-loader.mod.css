@@ -5,9 +5,9 @@
   flex: 1;
   flex-direction: column;
   height: 100vh;
-  padding: var(--spacing-24);
+  padding: var(--spacing-l);
 }
 
 .container > * + * {
-  margin: var(--spacing-24) 0 0;
+  margin: var(--spacing-l) 0 0;
 }

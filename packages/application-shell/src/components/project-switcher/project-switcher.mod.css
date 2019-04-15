@@ -5,8 +5,8 @@
 }
 
 .react-select-wrapper.is-open :global(.Select-control) {
-  border: 1px var(--color-gray) solid;
-  background: var(--color-gray-95);
+  border: 1px var(--color-neutral) solid;
+  background: var(--color-neutral-95);
 }
 
 :global(.Select--single).react-select-wrapper :global(.Select-value) {
@@ -18,10 +18,10 @@
 }
 
 .react-select-container :global(.Select-control) {
-  color: var(--color-black);
+  color: var(--color-solid);
   border-radius: 6px;
   border: 0;
-  background-color: var(--color-gray-95);
+  background-color: var(--color-neutral-95);
   cursor: pointer;
   min-width: 200px;
   right: 0;
@@ -51,7 +51,7 @@
 
 .project-name {
   composes: ellipsis;
-  color: var(--color-navy);
+  color: var(--color-accent);
   line-height: 23px;
   padding-right: 0;
   width: calc(100% - 55px);
@@ -64,8 +64,8 @@
   height: 22px;
   border-radius: 22px;
   padding: 3px;
-  background: var(--color-navy-40);
-  color: var(--color-white);
+  background: var(--color-accent-40);
+  color: var(--color-surface);
   display: inline-block;
   font-size: 0.9rem;
   text-align: center;
@@ -81,11 +81,11 @@
 }
 
 .item-text-main {
-  color: var(--color-navy);
+  color: var(--color-accent);
 }
 
 .item-text-disabled {
-  color: var(--color-gray);
+  color: var(--color-neutral);
 }
 
 .item-text-main.item-text-disabled {
@@ -99,7 +99,7 @@
 }
 
 .red {
-  color: var(--color-red);
+  color: var(--color-error);
 }
 
 .disabled-icon-container {

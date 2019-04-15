@@ -1,6 +1,6 @@
 .result {
   display: flex;
-  padding: 0 var(--spacing-16);
+  padding: 0 var(--spacing-m);
   height: 36px;
   font-size: 16px;
   font-weight: 200;
@@ -25,6 +25,6 @@
 }
 
 .activeResult {
-  background: var(--color-navy);
-  color: var(--color-white);
+  background: var(--color-accent);
+  color: var(--color-surface);
 }
