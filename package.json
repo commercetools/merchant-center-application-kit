@@ -78,7 +78,7 @@
     "jest": "24.7.1",
     "jest-each": "24.7.1",
     "jest-watch-typeahead": "0.3.0",
-    "jest-puppeteer": "4.1.0",
+    "jest-puppeteer": "4.1.1",
     "jest-runner-eslint": "0.7.3",
     "jest-runner-shellcheck": "1.0.2",
     "jest-runner-stylelint": "1.0.0",
