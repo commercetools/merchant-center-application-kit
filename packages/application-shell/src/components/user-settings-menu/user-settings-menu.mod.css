@@ -15,14 +15,14 @@
 
 .menu {
   position: absolute;
-  background: var(--color-white);
-  border: 1px var(--color-green-40) solid;
+  background: var(--color-surface);
+  border: 1px var(--color-primary-40) solid;
   border-radius: var(--border-radius-6);
   box-shadow: var(--shadow-7-first), var(--shadow-7-second);
   width: var(--menu-width);
   right: var(--menu-position-right);
   top: var(--menu-position-top);
-  padding: var(--spacing-4);
+  padding: var(--spacing-xs);
   overflow: hidden;
 }
 
@@ -40,22 +40,22 @@
   content: '';
   position: absolute;
   right: var(--menu-offset-right);
-  top: calc(var(--spacing-8) * -1);
+  top: calc(var(--spacing-s) * -1);
   border-style: solid;
-  border-width: 0 var(--spacing-8) var(--spacing-8);
+  border-width: 0 var(--spacing-s) var(--spacing-s);
   z-index: 0;
 }
 
 .item {
   width: 100%;
   cursor: pointer;
-  color: var(--color-black);
+  color: var(--color-solid);
 }
 
 .item:hover {
-  background-color: var(--color-gray-90);
+  background-color: var(--color-neutral-90);
 }
 
 .item-divider-account-section {
-  border-bottom: 1px solid var(--color-gray);
+  border-bottom: 1px solid var(--color-neutral);
 }

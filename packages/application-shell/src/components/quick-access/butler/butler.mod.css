@@ -9,7 +9,7 @@
 }
 
 .alfred {
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
   border: 0;
   border-radius: var(--border-radius-4);
   min-height: 40px;
@@ -22,7 +22,7 @@
   -webkit-box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.75);
   box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.75);
-  padding-bottom: var(--spacing-8);
+  padding-bottom: var(--spacing-s);
 }
 
 .alfred.offline {
@@ -60,14 +60,14 @@
 
 .magnifyingGlass {
   align-self: center;
-  padding-left: var(--spacing-16);
-  margin-top: var(--spacing-8);
+  padding-left: var(--spacing-m);
+  margin-top: var(--spacing-s);
 }
 
 .loadingSpinnerWrapper {
   align-self: center;
-  margin-top: var(--spacing-8);
-  margin-right: var(--spacing-8);
+  margin-top: var(--spacing-s);
+  margin-right: var(--spacing-s);
 }
 
 .magnifyingGlass > * {
@@ -80,23 +80,23 @@
   outline: 0;
   font-size: 22px;
   font-weight: 300;
-  padding: var(--spacing-16) var(--spacing-16) var(--spacing-8) var(--spacing-8);
+  padding: var(--spacing-m) var(--spacing-m) var(--spacing-s) var(--spacing-s);
 }
 
 .searchText::placeholder {
-  color: var(--color-gray-60);
+  color: var(--color-neutral-60);
 }
 
 .offlineWarning {
   overflow: hidden;
   white-space: nowrap;
   cursor: default;
-  background: var(--color-red);
+  background: var(--color-error);
   text-align: center;
   text-transform: uppercase;
-  color: var(--color-white);
+  color: var(--color-surface);
   font-size: var(--font-size-small);
-  padding: var(--spacing-4);
+  padding: var(--spacing-xs);
 }
 
 .noResultsWarning {
@@ -104,9 +104,9 @@
   white-space: nowrap;
   cursor: default;
   background: var(--color-grey);
-  color: var(--color-black);
+  color: var(--color-solid);
   text-align: center;
   text-transform: uppercase;
   font-size: var(--font-size-small);
-  padding: var(--spacing-4);
+  padding: var(--spacing-xs);
 }

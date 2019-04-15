@@ -11,13 +11,13 @@
 .content {
   flex-basis: 100%;
   flex-grow: 1;
-  padding: 0 var(--spacing-8);
+  padding: 0 var(--spacing-s);
   margin: 0;
 }
 
 .content p,
 .content a {
-  color: var(--color-white);
+  color: var(--color-surface);
 }
 
 .content ul {
@@ -37,13 +37,13 @@
 
 .icon-container {
   background: transparent;
-  border-color: var(--color-white);
-  color: var(--color-white);
+  border-color: var(--color-surface);
+  color: var(--color-surface);
   position: relative;
 }
 
 .icon-container:hover {
-  color: var(--color-white);
+  color: var(--color-surface);
 }
 
 /* NOTIFICATIONS - SIDE - ICON */
@@ -57,28 +57,28 @@
   top: 0;
   width: 48px;
   height: 100%;
-  color: var(--color-white);
+  color: var(--color-surface);
   border-radius: 3px 0 0 3px;
 }
 
 .icon-type-container--success {
-  background: var(--color-green);
+  background: var(--color-primary);
 }
 
 .icon-type-container--info {
-  background: var(--color-blue);
+  background: var(--color-info);
 }
 
 .icon-type-container--error {
-  background: var(--color-red);
+  background: var(--color-error);
 }
 
 .icon-type-container--warning {
-  background: var(--color-orange);
+  background: var(--color-warning);
 }
 
 .extra-padding {
-  padding: var(--spacing-16) var(--spacing-16) var(--spacing-16)
+  padding: var(--spacing-m) var(--spacing-m) var(--spacing-m)
     var(--width-for-type-spacing) !important;
 }
 
@@ -125,7 +125,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: var(--spacing-16);
+  padding: var(--spacing-m);
 }
 
 .notification-page {
@@ -135,15 +135,15 @@
 }
 
 .notification-page > * + * {
-  margin-left: var(--spacing-8);
+  margin-left: var(--spacing-s);
 }
 
 .notification-side {
   composes: notification;
   composes: extra-padding;
   text-align: left;
-  background: var(--color-white);
-  border: 1px solid var(--color-white);
+  background: var(--color-surface);
+  border: 1px solid var(--color-surface);
   box-shadow: var(--shadow-1-second);
   border-radius: var(--border-radius-6);
   word-break: break-word;
@@ -155,22 +155,22 @@
   composes: show-notification-side !important;
   position: relative;
   z-index: 10000;
-  margin-top: var(--spacing-24) !important;
-  right: var(--spacing-32);
+  margin-top: var(--spacing-l) !important;
+  right: var(--spacing-xl);
   float: right;
   clear: both;
   max-width: 50%;
 }
 
 .notification-side .icon-container {
-  color: var(--color-gray-60);
-  border-color: var(--color-gray);
+  color: var(--color-neutral-60);
+  border-color: var(--color-neutral);
 }
 
 .notification-side,
 .notification-side .content a,
 .notification-side .content p {
-  color: var(--color-black);
+  color: var(--color-solid);
 }
 
 .notification-side .content {
@@ -185,57 +185,57 @@
 
 .notification-global-error-dynamic {
   composes: notification-page;
-  background-color: var(--color-red);
+  background-color: var(--color-error);
 }
 
 .notification-global-info-dynamic {
   composes: notification-page;
-  background-color: var(--color-blue);
+  background-color: var(--color-info);
 }
 
 .notification-global-warning-dynamic {
   composes: notification-page;
-  background-color: var(--color-orange);
+  background-color: var(--color-warning);
 }
 
 /* NOTIFICATIONS - PAGE */
 
 .notification-page-error-dynamic {
   composes: notification-page;
-  background-color: var(--color-red);
+  background-color: var(--color-error);
 }
 
 .notification-page-info-dynamic {
   composes: notification-page;
-  background-color: var(--color-blue);
+  background-color: var(--color-info);
 }
 
 .notification-page-warning-dynamic {
   composes: notification-page;
-  background-color: var(--color-orange);
+  background-color: var(--color-warning);
 }
 
 .notification-page-success-dynamic {
   composes: notification-page;
-  background-color: var(--color-green);
+  background-color: var(--color-primary);
 }
 
 /* NOTIFICATIONS - SIDE */
 
 .border-error {
-  border: 1px solid var(--color-red);
+  border: 1px solid var(--color-error);
 }
 
 .border-warning {
-  border: 1px solid var(--color-orange);
+  border: 1px solid var(--color-warning);
 }
 
 .border-info {
-  border: 1px solid var(--color-blue);
+  border: 1px solid var(--color-info);
 }
 
 .border-success {
-  border: 1px solid var(--color-green);
+  border: 1px solid var(--color-primary);
 }
 
 .notification-side-error-fixed {

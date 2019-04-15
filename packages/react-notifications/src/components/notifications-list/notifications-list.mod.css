@@ -3,7 +3,7 @@
 }
 
 .container {
-  color: var(--color-white);
+  color: var(--color-surface);
   position: relative;
   width: 100%;
   z-index: 10000;
@@ -39,5 +39,5 @@
 }
 
 .container-page .notification {
-  padding: var(--spacing-16) var(--spacing-24);
+  padding: var(--spacing-m) var(--spacing-l);
 }

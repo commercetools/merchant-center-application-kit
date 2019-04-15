@@ -1,6 +1,6 @@
 .text {
   margin-right: 10px;
-  color: var(--color-navy);
+  color: var(--color-accent);
   position: relative;
   bottom: 13px;
 }
@@ -10,8 +10,8 @@
 }
 
 .react-select-container :global(.Select-control) {
-  background: var(--color-gray-95);
-  color: var(--color-black);
+  background: var(--color-neutral-95);
+  color: var(--color-solid);
   border-radius: 6px;
   cursor: pointer;
   width: 160px;
@@ -27,8 +27,8 @@
   height: 22px;
   border-radius: 22px;
   padding: 3px;
-  background: var(--color-navy-40);
-  color: var(--color-white);
+  background: var(--color-accent-40);
+  color: var(--color-surface);
   display: inline-block;
   font-size: 0.9rem;
   text-align: center;
@@ -51,5 +51,5 @@
 .label {
   display: inline-block;
   margin: 2px 5px 0 0;
-  color: var(--color-navy);
+  color: var(--color-accent);
 }
