@@ -144,11 +144,6 @@
     "abbr": "AKDT",
     "offset": "-08:00"
   },
-  "America/Chihuahua": {
-    "name": "America/Chihuahua",
-    "abbr": "MST",
-    "offset": "-07:00"
-  },
   "America/Creston": {
     "name": "America/Creston",
     "abbr": "MST",
@@ -182,11 +177,6 @@
   "America/Los_Angeles": {
     "name": "America/Los_Angeles",
     "abbr": "PDT",
-    "offset": "-07:00"
-  },
-  "America/Mazatlan": {
-    "name": "America/Mazatlan",
-    "abbr": "MST",
     "offset": "-07:00"
   },
   "America/Phoenix": {
@@ -239,11 +229,6 @@
     "abbr": "PDT",
     "offset": "-07:00"
   },
-  "Mexico/BajaSur": {
-    "name": "Mexico/BajaSur",
-    "abbr": "MST",
-    "offset": "-07:00"
-  },
   "PST8PDT": {
     "name": "PST8PDT",
     "abbr": "PDT",
@@ -264,11 +249,6 @@
     "abbr": "PDT",
     "offset": "-07:00"
   },
-  "America/Bahia_Banderas": {
-    "name": "America/Bahia_Banderas",
-    "abbr": "CST",
-    "offset": "-06:00"
-  },
   "America/Belize": {
     "name": "America/Belize",
     "abbr": "CST",
@@ -281,6 +261,11 @@
   },
   "America/Cambridge_Bay": {
     "name": "America/Cambridge_Bay",
+    "abbr": "MDT",
+    "offset": "-06:00"
+  },
+  "America/Chihuahua": {
+    "name": "America/Chihuahua",
     "abbr": "MDT",
     "offset": "-06:00"
   },
@@ -319,19 +304,9 @@
     "abbr": "CST",
     "offset": "-06:00"
   },
-  "America/Merida": {
-    "name": "America/Merida",
-    "abbr": "CST",
-    "offset": "-06:00"
-  },
-  "America/Mexico_City": {
-    "name": "America/Mexico_City",
-    "abbr": "CST",
-    "offset": "-06:00"
-  },
-  "America/Monterrey": {
-    "name": "America/Monterrey",
-    "abbr": "CST",
+  "America/Mazatlan": {
+    "name": "America/Mazatlan",
+    "abbr": "MDT",
     "offset": "-06:00"
   },
   "America/Ojinaga": {
@@ -374,6 +349,11 @@
     "abbr": "CST",
     "offset": "-06:00"
   },
+  "Chile/EasterIsland": {
+    "name": "Chile/EasterIsland",
+    "abbr": "-06",
+    "offset": "-06:00"
+  },
   "Etc/GMT+6": {
     "name": "Etc/GMT+6",
     "abbr": "-06",
@@ -384,14 +364,19 @@
     "abbr": "MDT",
     "offset": "-06:00"
   },
-  "Mexico/General": {
-    "name": "Mexico/General",
-    "abbr": "CST",
+  "Mexico/BajaSur": {
+    "name": "Mexico/BajaSur",
+    "abbr": "MDT",
     "offset": "-06:00"
   },
   "Navajo": {
     "name": "Navajo",
     "abbr": "MDT",
+    "offset": "-06:00"
+  },
+  "Pacific/Easter": {
+    "name": "Pacific/Easter",
+    "abbr": "-06",
     "offset": "-06:00"
   },
   "Pacific/Galapagos": {
@@ -407,6 +392,11 @@
   "America/Atikokan": {
     "name": "America/Atikokan",
     "abbr": "EST",
+    "offset": "-05:00"
+  },
+  "America/Bahia_Banderas": {
+    "name": "America/Bahia_Banderas",
+    "abbr": "CDT",
     "offset": "-05:00"
   },
   "America/Bogota": {
@@ -479,6 +469,21 @@
     "abbr": "CDT",
     "offset": "-05:00"
   },
+  "America/Merida": {
+    "name": "America/Merida",
+    "abbr": "CDT",
+    "offset": "-05:00"
+  },
+  "America/Mexico_City": {
+    "name": "America/Mexico_City",
+    "abbr": "CDT",
+    "offset": "-05:00"
+  },
+  "America/Monterrey": {
+    "name": "America/Monterrey",
+    "abbr": "CDT",
+    "offset": "-05:00"
+  },
   "America/North_Dakota/Beulah": {
     "name": "America/North_Dakota/Beulah",
     "abbr": "CDT",
@@ -544,11 +549,6 @@
     "abbr": "CDT",
     "offset": "-05:00"
   },
-  "Chile/EasterIsland": {
-    "name": "Chile/EasterIsland",
-    "abbr": "-05",
-    "offset": "-05:00"
-  },
   "EST": {
     "name": "EST",
     "abbr": "EST",
@@ -564,9 +564,9 @@
     "abbr": "EST",
     "offset": "-05:00"
   },
-  "Pacific/Easter": {
-    "name": "Pacific/Easter",
-    "abbr": "-05",
+  "Mexico/General": {
+    "name": "Mexico/General",
+    "abbr": "CDT",
     "offset": "-05:00"
   },
   "US/Central": {
@@ -809,6 +809,11 @@
     "abbr": "AST",
     "offset": "-04:00"
   },
+  "America/Santiago": {
+    "name": "America/Santiago",
+    "abbr": "-04",
+    "offset": "-04:00"
+  },
   "America/Santo_Domingo": {
     "name": "America/Santo_Domingo",
     "abbr": "AST",
@@ -867,6 +872,11 @@
   "Canada/Eastern": {
     "name": "Canada/Eastern",
     "abbr": "EDT",
+    "offset": "-04:00"
+  },
+  "Chile/Continental": {
+    "name": "Chile/Continental",
+    "abbr": "-04",
     "offset": "-04:00"
   },
   "Cuba": {
@@ -1069,11 +1079,6 @@
     "abbr": "-03",
     "offset": "-03:00"
   },
-  "America/Santiago": {
-    "name": "America/Santiago",
-    "abbr": "-03",
-    "offset": "-03:00"
-  },
   "America/Sao_Paulo": {
     "name": "America/Sao_Paulo",
     "abbr": "-03",
@@ -1112,11 +1117,6 @@
   "Canada/Atlantic": {
     "name": "Canada/Atlantic",
     "abbr": "ADT",
-    "offset": "-03:00"
-  },
-  "Chile/Continental": {
-    "name": "Chile/Continental",
-    "abbr": "-03",
     "offset": "-03:00"
   },
   "Etc/GMT+3": {
@@ -2619,6 +2619,16 @@
     "abbr": "KST",
     "offset": "+09:00"
   },
+  "Australia/Adelaide": {
+    "name": "Australia/Adelaide",
+    "abbr": "ACST",
+    "offset": "+09:30"
+  },
+  "Australia/Broken_Hill": {
+    "name": "Australia/Broken_Hill",
+    "abbr": "ACST",
+    "offset": "+09:30"
+  },
   "Australia/Darwin": {
     "name": "Australia/Darwin",
     "abbr": "ACST",
@@ -2626,6 +2636,16 @@
   },
   "Australia/North": {
     "name": "Australia/North",
+    "abbr": "ACST",
+    "offset": "+09:30"
+  },
+  "Australia/South": {
+    "name": "Australia/South",
+    "abbr": "ACST",
+    "offset": "+09:30"
+  },
+  "Australia/Yancowinna": {
+    "name": "Australia/Yancowinna",
     "abbr": "ACST",
     "offset": "+09:30"
   },
@@ -2644,8 +2664,28 @@
     "abbr": "+10",
     "offset": "+10:00"
   },
+  "Australia/ACT": {
+    "name": "Australia/ACT",
+    "abbr": "AEST",
+    "offset": "+10:00"
+  },
   "Australia/Brisbane": {
     "name": "Australia/Brisbane",
+    "abbr": "AEST",
+    "offset": "+10:00"
+  },
+  "Australia/Canberra": {
+    "name": "Australia/Canberra",
+    "abbr": "AEST",
+    "offset": "+10:00"
+  },
+  "Australia/Currie": {
+    "name": "Australia/Currie",
+    "abbr": "AEST",
+    "offset": "+10:00"
+  },
+  "Australia/Hobart": {
+    "name": "Australia/Hobart",
     "abbr": "AEST",
     "offset": "+10:00"
   },
@@ -2654,8 +2694,33 @@
     "abbr": "AEST",
     "offset": "+10:00"
   },
+  "Australia/Melbourne": {
+    "name": "Australia/Melbourne",
+    "abbr": "AEST",
+    "offset": "+10:00"
+  },
+  "Australia/NSW": {
+    "name": "Australia/NSW",
+    "abbr": "AEST",
+    "offset": "+10:00"
+  },
   "Australia/Queensland": {
     "name": "Australia/Queensland",
+    "abbr": "AEST",
+    "offset": "+10:00"
+  },
+  "Australia/Sydney": {
+    "name": "Australia/Sydney",
+    "abbr": "AEST",
+    "offset": "+10:00"
+  },
+  "Australia/Tasmania": {
+    "name": "Australia/Tasmania",
+    "abbr": "AEST",
+    "offset": "+10:00"
+  },
+  "Australia/Victoria": {
+    "name": "Australia/Victoria",
     "abbr": "AEST",
     "offset": "+10:00"
   },
@@ -2694,24 +2759,14 @@
     "abbr": "+10",
     "offset": "+10:00"
   },
-  "Australia/Adelaide": {
-    "name": "Australia/Adelaide",
-    "abbr": "ACDT",
+  "Australia/LHI": {
+    "name": "Australia/LHI",
+    "abbr": "+1030",
     "offset": "+10:30"
   },
-  "Australia/Broken_Hill": {
-    "name": "Australia/Broken_Hill",
-    "abbr": "ACDT",
-    "offset": "+10:30"
-  },
-  "Australia/South": {
-    "name": "Australia/South",
-    "abbr": "ACDT",
-    "offset": "+10:30"
-  },
-  "Australia/Yancowinna": {
-    "name": "Australia/Yancowinna",
-    "abbr": "ACDT",
+  "Australia/Lord_Howe": {
+    "name": "Australia/Lord_Howe",
+    "abbr": "+1030",
     "offset": "+10:30"
   },
   "Antarctica/Macquarie": {
@@ -2732,61 +2787,6 @@
   "Asia/Srednekolymsk": {
     "name": "Asia/Srednekolymsk",
     "abbr": "+11",
-    "offset": "+11:00"
-  },
-  "Australia/ACT": {
-    "name": "Australia/ACT",
-    "abbr": "AEDT",
-    "offset": "+11:00"
-  },
-  "Australia/Canberra": {
-    "name": "Australia/Canberra",
-    "abbr": "AEDT",
-    "offset": "+11:00"
-  },
-  "Australia/Currie": {
-    "name": "Australia/Currie",
-    "abbr": "AEDT",
-    "offset": "+11:00"
-  },
-  "Australia/Hobart": {
-    "name": "Australia/Hobart",
-    "abbr": "AEDT",
-    "offset": "+11:00"
-  },
-  "Australia/LHI": {
-    "name": "Australia/LHI",
-    "abbr": "+11",
-    "offset": "+11:00"
-  },
-  "Australia/Lord_Howe": {
-    "name": "Australia/Lord_Howe",
-    "abbr": "+11",
-    "offset": "+11:00"
-  },
-  "Australia/Melbourne": {
-    "name": "Australia/Melbourne",
-    "abbr": "AEDT",
-    "offset": "+11:00"
-  },
-  "Australia/NSW": {
-    "name": "Australia/NSW",
-    "abbr": "AEDT",
-    "offset": "+11:00"
-  },
-  "Australia/Sydney": {
-    "name": "Australia/Sydney",
-    "abbr": "AEDT",
-    "offset": "+11:00"
-  },
-  "Australia/Tasmania": {
-    "name": "Australia/Tasmania",
-    "abbr": "AEDT",
-    "offset": "+11:00"
-  },
-  "Australia/Victoria": {
-    "name": "Australia/Victoria",
-    "abbr": "AEDT",
     "offset": "+11:00"
   },
   "Etc/GMT-11": {
@@ -2834,6 +2834,16 @@
     "abbr": "+11",
     "offset": "+11:00"
   },
+  "Antarctica/McMurdo": {
+    "name": "Antarctica/McMurdo",
+    "abbr": "NZST",
+    "offset": "+12:00"
+  },
+  "Antarctica/South_Pole": {
+    "name": "Antarctica/South_Pole",
+    "abbr": "NZST",
+    "offset": "+12:00"
+  },
   "Asia/Anadyr": {
     "name": "Asia/Anadyr",
     "abbr": "+12",
@@ -2852,6 +2862,16 @@
   "Kwajalein": {
     "name": "Kwajalein",
     "abbr": "+12",
+    "offset": "+12:00"
+  },
+  "NZ": {
+    "name": "NZ",
+    "abbr": "NZST",
+    "offset": "+12:00"
+  },
+  "Pacific/Auckland": {
+    "name": "Pacific/Auckland",
+    "abbr": "NZST",
     "offset": "+12:00"
   },
   "Pacific/Fiji": {
@@ -2894,29 +2914,24 @@
     "abbr": "+12",
     "offset": "+12:00"
   },
-  "Antarctica/McMurdo": {
-    "name": "Antarctica/McMurdo",
-    "abbr": "NZDT",
-    "offset": "+13:00"
+  "NZ-CHAT": {
+    "name": "NZ-CHAT",
+    "abbr": "+1245",
+    "offset": "+12:45"
   },
-  "Antarctica/South_Pole": {
-    "name": "Antarctica/South_Pole",
-    "abbr": "NZDT",
-    "offset": "+13:00"
+  "Pacific/Chatham": {
+    "name": "Pacific/Chatham",
+    "abbr": "+1245",
+    "offset": "+12:45"
   },
   "Etc/GMT-13": {
     "name": "Etc/GMT-13",
     "abbr": "+13",
     "offset": "+13:00"
   },
-  "NZ": {
-    "name": "NZ",
-    "abbr": "NZDT",
-    "offset": "+13:00"
-  },
-  "Pacific/Auckland": {
-    "name": "Pacific/Auckland",
-    "abbr": "NZDT",
+  "Pacific/Apia": {
+    "name": "Pacific/Apia",
+    "abbr": "+13",
     "offset": "+13:00"
   },
   "Pacific/Enderbury": {
@@ -2934,23 +2949,8 @@
     "abbr": "+13",
     "offset": "+13:00"
   },
-  "NZ-CHAT": {
-    "name": "NZ-CHAT",
-    "abbr": "+1345",
-    "offset": "+13:45"
-  },
-  "Pacific/Chatham": {
-    "name": "Pacific/Chatham",
-    "abbr": "+1345",
-    "offset": "+13:45"
-  },
   "Etc/GMT-14": {
     "name": "Etc/GMT-14",
-    "abbr": "+14",
-    "offset": "+14:00"
-  },
-  "Pacific/Apia": {
-    "name": "Pacific/Apia",
     "abbr": "+14",
     "offset": "+14:00"
   },
