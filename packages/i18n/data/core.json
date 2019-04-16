@@ -47,6 +47,8 @@
   "ProjectNotFound.paragraph1": "The Project you are looking for either does not exists or you are not authorized to view it. Select another Project to view.",
   "ProjectNotFound.paragraph2": "Please contact your system administrator if you have any further questions.",
   "ProjectNotFound.title": "We could not find this Project",
+  "ProjectNotInitialized.paragraph1": "Initialization should not take longer than a few minutes. Please contact us at {mailto} in case the project does not get initialized.",
+  "ProjectNotInitialized.title": "Your project is not initialized yet",
   "ProjectSuspended.defaultSuspensionMessage": "Your Project has been suspended",
   "ProjectSuspended.paragraph1": "Please contact your system administrator if you have any further questions or select another Project to view.",
   "ProjectSuspended.temporaryMaintenanceSuspensionMessage": "Your Project is temporarily suspended due to maintenance.",
