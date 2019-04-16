@@ -137,7 +137,7 @@
   },
   "CNY": {
     "label": "yuan renminbi chinois",
-    "symbol": "¥"
+    "symbol": "￥"
   },
   "COP": {
     "label": "peso colombien",
@@ -369,7 +369,7 @@
   },
   "MKD": {
     "label": "denar macédonien",
-    "symbol": "ден"
+    "symbol": "den"
   },
   "MMK": {
     "label": "kyat myanmarais",
