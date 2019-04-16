@@ -6,6 +6,7 @@ query ProjectQuery($projectKey: String!) {
     countries
     currencies
     languages
+    inititalized
     expiry {
       isActive
       daysLeft
