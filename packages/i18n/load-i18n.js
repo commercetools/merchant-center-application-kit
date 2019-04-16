@@ -63,15 +63,25 @@ const getUiKitChunkImport = locale => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
-      return import(/* webpackChunkName: "i18n-ui-kit-locale-de" */ '@commercetools-frontend/ui-kit/i18n/data/de.json');
+      return import(
+        /* webpackChunkName: "i18n-ui-kit-locale-de" */ '@commercetools-frontend/ui-kit/i18n/data/de.json'
+      );
     case 'es':
-      return import(/* webpackChunkName: "i18n-ui-kit-locale-es" */ '@commercetools-frontend/ui-kit/i18n/data/es.json');
+      return import(
+        /* webpackChunkName: "i18n-ui-kit-locale-es" */ '@commercetools-frontend/ui-kit/i18n/data/es.json'
+      );
     case 'fr-FR':
-      return import(/* webpackChunkName: "i18n-ui-kit-locale-fr-FR" */ '@commercetools-frontend/ui-kit/i18n/data/fr-FR.json');
+      return import(
+        /* webpackChunkName: "i18n-ui-kit-locale-fr-FR" */ '@commercetools-frontend/ui-kit/i18n/data/fr-FR.json'
+      );
     case 'zh-CN':
-      return import(/* webpackChunkName: "i18n-ui-kit-locale-zh-CN" */ '@commercetools-frontend/ui-kit/i18n/data/zh-CN.json');
+      return import(
+        /* webpackChunkName: "i18n-ui-kit-locale-zh-CN" */ '@commercetools-frontend/ui-kit/i18n/data/zh-CN.json'
+      );
     default:
-      return import(/* webpackChunkName: "i18n-ui-kit-locale-en" */ '@commercetools-frontend/ui-kit/i18n/data/en.json');
+      return import(
+        /* webpackChunkName: "i18n-ui-kit-locale-en" */ '@commercetools-frontend/ui-kit/i18n/data/en.json'
+      );
   }
 };
 
