@@ -3,7 +3,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   title: {
     id: 'ProjectNotInitialized.title',
-    defaultMessage: 'Your project is not yet been initialized',
+    defaultMessage: 'Your project has not yet been initialized',
   },
   paragraph1: {
     id: 'ProjectNotInitialized.paragraph1',
