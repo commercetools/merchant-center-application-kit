@@ -1,3 +1,12 @@
+## [13.3.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.0...v13.3.1) (2019-04-17)
+
+#### 🔮 Type: Chore
+
+- `application-shell`
+  - [#550](https://github.com/commercetools/merchant-center-application-kit/pull/550) refactor: to pass intl message to Text components ([@emmenko](https://github.com/emmenko))
+- `application-components`, `application-shell`, `mc-html-template`, `mc-http-server`, `mc-scripts`, `react-notifications`, `sdk`, `sentry`
+  - [#551](https://github.com/commercetools/merchant-center-application-kit/pull/551) fix: update deps ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.2.0...v13.3.0) (2019-04-17)
 
 #### 🚀 Type: New Feature
