@@ -34,7 +34,7 @@
     "build:es:watch": "npm run build:es -- -w"
   },
   "dependencies": {
-    "@sentry/browser": "5.0.6",
+    "@sentry/browser": "5.0.8",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
