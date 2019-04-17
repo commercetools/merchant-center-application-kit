@@ -27,6 +27,7 @@ const createGraphqlResponseForProjectQuery = custom => ({
     countries: ['de'],
     currencies: ['EUR'],
     languages: ['de'],
+    initialized: true,
     expiry: {
       __typename: 'ProjectExpiry',
       isActive: true,

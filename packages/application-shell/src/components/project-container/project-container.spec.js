@@ -8,6 +8,7 @@ import { ApplicationContextProvider } from '@commercetools-frontend/application-
 import ProjectExpired from '../project-expired';
 import ProjectNotFound from '../project-not-found';
 import ProjectSuspended from '../project-suspended';
+import ProjectNotInitialized from '../project-not-initialized';
 import { STORAGE_KEYS } from '../../constants';
 import ApplicationLoader from '../application-loader';
 import FetchProject from '../fetch-project';
@@ -28,6 +29,7 @@ const createTestProjectProps = custom => ({
   key: 'foo-1',
   version: 1,
   name: 'Foo 1',
+  initialized: true,
   countries: ['us'],
   currencies: ['USD'],
   languages: ['en'],
@@ -250,6 +252,19 @@ describe('rendering', () => {
       });
       it('should render <ProjectExpired>', () => {
         expect(wrapper).toRender(ProjectExpired);
+      });
+    });
+    describe('when project is not initialized', () => {
+      beforeEach(() => {
+        wrapper = wrapper.find(FetchProject).renderProp('children', {
+          isLoading: false,
+          project: createTestProjectProps({
+            initialized: false,
+          }),
+        });
+      });
+      it('should render <ProjectNotInitialized>', () => {
+        expect(wrapper).toRender(ProjectNotInitialized);
       });
     });
     describe('when project is in a valid state', () => {

@@ -19,6 +19,7 @@ import ProjectDataLocale from '../project-data-locale';
 import FetchProject from '../fetch-project';
 import ProjectNotFound from '../project-not-found';
 import ProjectExpired from '../project-expired';
+import ProjectNotInitialized from '../project-not-initialized';
 import ProjectSuspended from '../project-suspended';
 import ErrorApologizer from '../error-apologizer';
 import messages from './messages';
@@ -192,6 +193,7 @@ export class ProjectContainer extends React.Component {
               );
             if (project.expiry && project.expiry.isActive)
               return <ProjectExpired />;
+            if (project.initialized === false) return <ProjectNotInitialized />;
 
             return (
               <ProjectDataLocale locales={project.languages}>
