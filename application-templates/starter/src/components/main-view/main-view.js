@@ -17,9 +17,7 @@ import styles from './main-view.mod.css';
 const MainView = props => (
   <Spacings.Inset scale="m">
     <Spacings.Stack scale="m">
-      <Text.Headline elementType="h1">
-        <FormattedMessage {...messages.title} />
-      </Text.Headline>
+      <Text.Headline elementType="h1" intlMessage={messages.title} />
       <div className={styles['nav-header']}>
         <Spacings.Inline scale="s">
           <FormattedMessage {...messages.labelLinkOne}>

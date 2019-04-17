@@ -70,9 +70,7 @@ export class StateMachinesList extends React.Component {
     return (
       <Spacings.Inset scale="m">
         <Spacings.Stack scale="m">
-          <Text.Headline elementType="h2">
-            <FormattedMessage {...messages.title} />
-          </Text.Headline>
+          <Text.Headline elementType="h2" intlMessage={messages.title} />
           <StateMachinesListConnector projectKey={this.props.projectKey}>
             {({ isLoading, result, error, hasNoResults /* , refresh */ }) => {
               if (isLoading) return <LoadingSpinner />;
@@ -80,7 +78,7 @@ export class StateMachinesList extends React.Component {
               if (hasNoResults) {
                 return (
                   <div className={styles['empty-results']}>
-                    <FormattedMessage {...messages.noResultsText} />
+                    <Text.Body intlMessage={messages.noResultsText} />
                   </div>
                 );
               }
@@ -90,9 +88,12 @@ export class StateMachinesList extends React.Component {
                     <Spacings.Inline alignItems="center">
                       <DotIcon size="small" theme="green" />
                       <Text.Detail isItalic={true}>
-                        {`There are ${
-                          this.props.cachedStateMachineObjectsCount
-                        } objects in the cache`}
+                        <FormattedMessage
+                          {...messages.objectsInCache}
+                          values={{
+                            count: this.props.cachedStateMachineObjectsCount,
+                          }}
+                        />
                       </Text.Detail>
                     </Spacings.Inline>
                   )}

@@ -1,13 +1,8 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import { Text } from '@commercetools-frontend/ui-kit';
 import messages from './messages';
 
-const ViewTwo = () => (
-  <Text.Body>
-    <FormattedMessage {...messages.title} />
-  </Text.Body>
-);
+const ViewTwo = () => <Text.Body intlMessage={messages.title} />;
 ViewTwo.displayName = 'ViewTwo';
 
 export default ViewTwo;

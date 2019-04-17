@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { Spacings, Text, AngleLeftIcon } from '@commercetools-frontend/ui-kit';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
@@ -13,14 +12,12 @@ import messages from './messages';
 import styles from './app-bar.mod.css';
 
 export const BackToProjectLink = props => (
-  <Text.Detail>
-    <Link to={`/${props.projectKey}`}>
-      <Spacings.Inline alignItems="center" data-test="back-to-project">
-        <AngleLeftIcon theme="green" size="small" />
-        <FormattedMessage {...messages.backToProjectLink} />
-      </Spacings.Inline>
-    </Link>
-  </Text.Detail>
+  <Link to={`/${props.projectKey}`}>
+    <Spacings.Inline alignItems="center" data-test="back-to-project">
+      <AngleLeftIcon theme="green" size="small" />
+      <Text.Detail intlMessage={messages.backToProjectLink} />
+    </Spacings.Inline>
+  </Link>
 );
 BackToProjectLink.displayName = 'BackToProjectLink';
 BackToProjectLink.propTypes = {
