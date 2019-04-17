@@ -1,3 +1,28 @@
+## [13.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.2.0...v13.3.0) (2019-04-17)
+
+#### 🚀 Type: New Feature
+
+- `application-components`, `application-shell`, `i18n`, `react-notifications`
+  - [#519](https://github.com/commercetools/merchant-center-application-kit/pull/519) refactor(i18n): to load the i18n messages async ([@emmenko](https://github.com/emmenko))
+- `application-shell`, `assets`, `i18n`
+  - [#545](https://github.com/commercetools/merchant-center-application-kit/pull/545) feat: add project not initialized screen ([@tdeekens](https://github.com/tdeekens))
+
+#### 🐛 Type: Bug
+
+- `application-components`
+  - [#542](https://github.com/commercetools/merchant-center-application-kit/pull/542) fix(dialogs): content overflow. Refs #534 ([@emmenko](https://github.com/emmenko))
+- `jest-preset-mc-app`
+  - [#535](https://github.com/commercetools/merchant-center-application-kit/pull/535) fix: replace deprecated and broken package jest-plugin-filename with jest-watch-typeahead ([@M1r1k](https://github.com/M1r1k))
+
+#### 🔮 Type: Chore
+
+- `i18n`
+  - [#547](https://github.com/commercetools/merchant-center-application-kit/pull/547) chore: fix formatting ([@tdeekens](https://github.com/tdeekens))
+- `application-shell`, `i18n`, `l10n`
+  - [#544](https://github.com/commercetools/merchant-center-application-kit/pull/544) chore: update deps ([@gnerkus](https://github.com/gnerkus))
+- `application-components`, `application-shell`, `react-notifications`
+  - [#543](https://github.com/commercetools/merchant-center-application-kit/pull/543) chore: use non deprecated custom properties ([@montezume](https://github.com/montezume))
+
 ## [13.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.1.0...v13.2.0) (2019-04-09)
 
 #### 💅 Type: Enhancement
