@@ -96,6 +96,8 @@ const FormDialogOverflowExample = props => (
               name="favoriteBand"
               title="Favorite Band"
               isRequired={true}
+              menuPortalTarget={document.body}
+              menuPortalZIndex={1000}
               options={options}
               value={formikProps.values.favoriteBand}
               errors={formikProps.errors.favoriteBand}
