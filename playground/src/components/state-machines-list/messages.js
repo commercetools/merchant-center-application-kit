@@ -21,4 +21,9 @@ export default defineMessages({
     description: 'Text for no results',
     defaultMessage: 'There are no results matching your search criteria.',
   },
+  objectsInCache: {
+    id: 'StateMachines.ListView.objectsInCache',
+    description: 'How many objects are in the cache',
+    defaultMessage: 'There are {count} objects in the cache.',
+  },
 });
