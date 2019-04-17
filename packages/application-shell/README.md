@@ -25,9 +25,9 @@ For an usage example, we recommend to look at the [application templates](https:
 ```js
 // define a function that accepts a language, and returns a promise.
 const loadApplicationMessagesForLanguage = lang =>
-  import(`../../i18n/data/${lang}.json` /* webpackChunkName: "application-messages-[request]" */).then(
-    response => response.default
-  );
+  import(
+    `../../i18n/data/${lang}.json` /* webpackChunkName: "application-messages-[request]" */
+  ).then(response => response.default);
 
 // pass this function to the <ApplicationShell />
 
