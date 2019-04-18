@@ -1,3 +1,10 @@
+## [13.3.2](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.1...v13.3.2) (2019-04-18)
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+  - [#555](https://github.com/commercetools/merchant-center-application-kit/pull/555) fix(app-shell): add env variable for enabling sign up ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.3.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.0...v13.3.1) (2019-04-17)
 
 #### 🔮 Type: Chore
