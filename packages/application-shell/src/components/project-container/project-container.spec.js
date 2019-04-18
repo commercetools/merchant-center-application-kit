@@ -57,9 +57,9 @@ const createTestProps = custom => ({
     env: 'development',
     cdnUrl: 'http://localhost:3001',
     servedByProxy: false,
+    enableSignUp: true,
   },
   render: jest.fn(),
-  isAccountCreationEnabled: true,
   ...custom,
 });
 
