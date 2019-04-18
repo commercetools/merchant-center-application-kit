@@ -59,7 +59,7 @@ const createTestProps = custom => ({
     servedByProxy: false,
   },
   render: jest.fn(),
-  isAccountCreationEnabled: true,
+  isSignUpEnabled: true,
   ...custom,
 });
 
