@@ -2,7 +2,7 @@
 
 exports[`<RestrictedApplication> rendering project container <Route> should match layout structure 1`] = `
 <Fragment>
-  <InjectIntl(withApplicationContext(ProjectContainer))
+  <InjectIntl(ProjectContainer)
     environment={
       Object {
         "cdnUrl": "http://localhost:3001",

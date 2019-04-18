@@ -6,10 +6,7 @@ import { injectIntl } from 'react-intl';
 import isNil from 'lodash/isNil';
 import flowRight from 'lodash/flowRight';
 import { Spacings, Text } from '@commercetools-frontend/ui-kit';
-import {
-  withApplicationContext,
-  ApplicationContextProvider,
-} from '@commercetools-frontend/application-shell-connectors';
+import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
@@ -80,7 +77,6 @@ export class ProjectContainer extends React.Component {
     intl: PropTypes.shape({
       formatMessage: PropTypes.func.isRequired,
     }).isRequired,
-    isSignUpEnabled: PropTypes.bool.isRequired,
   };
   state = {
     hasError: false,
@@ -160,11 +156,11 @@ export class ProjectContainer extends React.Component {
      */
     if (
       hasNoProjects &&
-      !this.props.isSignUpEnabled &&
+      this.props.environment.enableSignUp !== true &&
       this.props.environment.servedByProxy
     )
       return <Redirect to="/logout?reason=no-projects" />;
-    if (hasNoProjects && this.props.isSignUpEnabled)
+    if (hasNoProjects && this.props.environment.enableSignUp)
       return (
         <Switch>
           <Route path="/account" render={this.props.render} />
@@ -250,9 +246,4 @@ export class ProjectContainer extends React.Component {
   }
 }
 
-export default flowRight(
-  injectIntl,
-  withApplicationContext(({ environment }) => ({
-    isSignUpEnabled: Boolean(environment.enableSignUp),
-  }))
-)(ProjectContainer);
+export default flowRight(injectIntl)(ProjectContainer);
