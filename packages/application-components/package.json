@@ -44,7 +44,7 @@
     "warning": "4.0.3"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "9.3.0",
+    "@commercetools-frontend/ui-kit": "9.4.0",
     "@storybook/addon-actions": "5.0.10",
     "@storybook/addon-info": "5.0.10",
     "@storybook/addon-knobs": "5.0.10",
