@@ -81,3 +81,7 @@ packages/sdk/test-utils
 # Cypress
 cypress/screenshots
 cypress/videos
+
+# Gatsby
+.cache
+public

@@ -47,9 +47,12 @@
     "application-templates/*",
     "packages/*",
     "playground",
-    "visual-testing-app"
+    "visual-testing-app",
+    "website"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "gatsby-cli": "^2.5.9"
+  },
   "devDependencies": {
     "@commitlint/cli": "7.5.2",
     "@commitlint/config-conventional": "7.5.0",

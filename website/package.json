@@ -1,0 +1,36 @@
+{
+  "name": "merchant-center-application-kit-website",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "gatsby build",
+    "start": "gatsby develop",
+    "serve": "gatsby serve"
+  },
+  "dependencies": {
+    "@babel/core": "7.4.3",
+    "@emotion/core": "10.0.10",
+    "@emotion/styled": "10.0.10",
+    "@mdx-js/mdx": "1.0.6",
+    "@mdx-js/react": "1.0.6",
+    "core-js": "3.0.1",
+    "gatsby": "2.3.25",
+    "gatsby-image": "2.0.39",
+    "gatsby-mdx": "0.6.2",
+    "gatsby-plugin-emotion": "4.0.6",
+    "gatsby-plugin-google-fonts": "0.0.4",
+    "gatsby-plugin-manifest": "2.0.29",
+    "gatsby-plugin-offline": "2.0.25",
+    "gatsby-plugin-react-helmet": "3.0.12",
+    "gatsby-plugin-sharp": "2.0.35",
+    "gatsby-source-filesystem": "2.0.29",
+    "gatsby-transformer-sharp": "2.1.18",
+    "prism-react-renderer": "0.1.6",
+    "prop-types": "15.7.2",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "react-helmet": "5.2.0",
+    "remark-emoji": "2.0.2",
+    "remark-slug": "5.1.1"
+  }
+}
