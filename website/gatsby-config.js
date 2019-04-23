@@ -4,7 +4,30 @@ module.exports = {
   siteMetadata: {
     title: `Merchant Center Application Kit`,
     description: ``,
-    author: `@emmenko`,
+    author: `commercetools`,
+    navbarLinks: [
+      {
+        label: 'Getting started',
+        subgroup: [
+          { label: 'Installation', linkTo: '/getting-started/installation' },
+          { label: 'Usage', linkTo: '/getting-started/usage' },
+        ],
+      },
+      {
+        label: 'Components API',
+        subgroup: [
+          {
+            label: 'Dialogs',
+            subgroup: [
+              {
+                label: 'InfoDialog',
+                linkTo: '/components/dialogs/info-dialog',
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
