@@ -1,3 +1,15 @@
+## [13.3.3](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.2...v13.3.3) (2019-04-23)
+
+#### 🔮 Type: Chore
+
+- `application-components`, `application-shell`, `l10n`, `react-notifications`, `sentry`
+  - [#564](https://github.com/commercetools/merchant-center-application-kit/pull/564) chore: update deps ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `sentry`
+  - [#563](https://github.com/commercetools/merchant-center-application-kit/pull/563) refactor(sentry): to also pass location to sentry environment, enable sentry based on tracking value ([@emmenko](https://github.com/emmenko))
+
 ## [13.3.2](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.1...v13.3.2) (2019-04-18)
 
 #### ⛑ Type: Refactoring
