@@ -17,15 +17,15 @@ import messages from './messages';
 import styles from './app-bar.mod.css';
 
 export const BackToProjectLink = props => (
-  <LinkButton
-    to={`/${props.projectKey}`}
-    iconLeft={<AngleLeftIcon />}
-    label={
-      <FormattedMessage {...messages.backToProjectLink}>
-        {txt => txt}
-      </FormattedMessage>
-    }
-  />
+  <FormattedMessage {...messages.backToProjectLink}>
+    {backToProjectMessage => (
+      <LinkButton
+        to={`/${props.projectKey}`}
+        iconLeft={<AngleLeftIcon />}
+        label={backToProjectMessage}
+      />
+    )}
+  </FormattedMessage>
 );
 BackToProjectLink.displayName = 'BackToProjectLink';
 

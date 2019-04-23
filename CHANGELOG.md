@@ -1,3 +1,10 @@
+## [13.3.4](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.3...v13.3.4) (2019-04-23)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#567](https://github.com/commercetools/merchant-center-application-kit/pull/567) fix(app-shell): back to project link colour ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.3.3](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.2...v13.3.3) (2019-04-23)
 
 #### 🔮 Type: Chore
