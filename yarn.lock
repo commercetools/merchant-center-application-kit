@@ -1064,6 +1064,29 @@
     tiny-invariant "1.0.4"
     warning "4.0.3"
 
+"@commercetools-frontend/ui-kit@9.4.0":
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-9.4.0.tgz#abee9fff4099b9b1a2a5d7079791d09e865bd629"
+  integrity sha512-jVxP7QcM8WzQF0EbtgchT8asQWWIA1rp757FT+dypo9DIy5dOBAFhc8rZbtn60ekrCQH+5uU4AjumfkxlSAp6w==
+  dependencies:
+    "@emotion/core" "10.0.10"
+    "@emotion/styled" "10.0.10"
+    classnames "2.2.6"
+    common-tags "1.8.0"
+    dom-helpers "3.4.0"
+    downshift "3.2.8"
+    lodash "4.17.11"
+    lodash-es "4.17.11"
+    prop-types "15.7.2"
+    react-is "16.8.6"
+    react-popper "1.3.3"
+    react-required-if "1.0.3"
+    react-select "2.4.3"
+    react-textarea-autosize "7.1.0"
+    react-virtualized "9.21.0"
+    tiny-invariant "1.0.4"
+    warning "4.0.3"
+
 "@commercetools/api-request-builder@5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@commercetools/api-request-builder/-/api-request-builder-5.0.0.tgz#55564651303e4665bf54780636f2ceadde472c45"
@@ -8335,6 +8358,16 @@ downshift@^3.2.7:
     prop-types "^15.6.0"
     react-is "^16.5.2"
 
+downshift@3.2.8:
+  version "3.2.8"
+  resolved "https://registry.yarnpkg.com/downshift/-/downshift-3.2.8.tgz#9fb20b2001a241357d7dc8c6e7f8dde6c20473b3"
+  integrity sha512-f36UiLKMJ8wLgyMQ6aBBLV9yDhWC6+DRUygmBQZIxx2Y5NabWbAH6xRgJTr6Gt4ww5aCVAonDJ9uMdmQLmRYUw==
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+    compute-scroll-into-view "^1.0.9"
+    prop-types "^15.6.0"
+    react-is "^16.5.2"
+
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -15214,6 +15247,13 @@ moment-timezone@^0.5.23:
   dependencies:
     moment ">= 2.9.0"
 
+moment-timezone@0.5.25:
+  version "0.5.25"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.25.tgz#a11bfa2f74e088327f2cd4c08b3e7bdf55957810"
+  integrity sha512-DgEaTyN/z0HFaVcVbSyVCUU6HeFdnNC3vE4c9cgu2dgMTvjBUBdBzWfasTBmAW45u5OIMeCJtU8yNjM22DHucw==
+  dependencies:
+    moment ">= 2.9.0"
+
 moment@2.24.0, "moment@>= 2.9.0", moment@^2.21.0, moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
@@ -18822,6 +18862,19 @@ react-select@^2.3.0:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/react-select/-/react-select-2.4.2.tgz#27da80e3880e92b081be607207bebdf63bcf4f3a"
   integrity sha512-5xFOQ6JJktkY5NTaHrc6x9mKwIjhNIiBkGic1j71uyY+ulFpRFra6f4WKLd9fuCylk4WjLpO5zDhdF4CAcwFzA==
+  dependencies:
+    classnames "^2.2.5"
+    emotion "^9.1.2"
+    memoize-one "^5.0.0"
+    prop-types "^15.6.0"
+    raf "^3.4.0"
+    react-input-autosize "^2.2.1"
+    react-transition-group "^2.2.1"
+
+react-select@2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/react-select/-/react-select-2.4.3.tgz#62efdf76d7e33e9bde22d907a0cc8abd0aeab656"
+  integrity sha512-cmxNaiHpviRYkojeW9rGEUJ4jpX7QTmPe2wcscwA4d1lStzw/cJtr4ft5H2O/YhfpkrcwaLghu3XmEYdXhBo8Q==
   dependencies:
     classnames "^2.2.5"
     emotion "^9.1.2"

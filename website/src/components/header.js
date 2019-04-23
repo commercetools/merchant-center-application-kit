@@ -1,37 +1,50 @@
-import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
+import { Link } from 'gatsby';
+import {
+  customProperties,
+  Spacings,
+  CodeViewIcon,
+} from '@commercetools-frontend/ui-kit';
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
+const Header = props => (
+  <div
+    className={props.className}
+    css={css`
+      background-color: ${customProperties.colorNavy40};
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      flex: 1;
+    `}
   >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
+    <Link
+      to="/"
+      css={css`
+        text-decoration: none;
+        font-size: 2rem;
+        color: ${customProperties.colorNavy98};
+        white-space: nowrap;
+      `}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
+      <Spacings.Inline scale="m" alignItems="center">
+        <CodeViewIcon size="scale" theme="white" />
+        {/* TODO: replace this with a proper logo */}
+        <div
+          css={css`
+            color: ${customProperties.colorNavy98};
+          `}
         >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
+          {props.siteTitle}
+        </div>
+      </Spacings.Inline>
+    </Link>
+  </div>
 );
 Header.displayName = 'Header';
 Header.propTypes = {
+  className: PropTypes.string,
   siteTitle: PropTypes.string,
 };
 Header.defaultProps = {
