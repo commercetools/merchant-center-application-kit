@@ -5,6 +5,7 @@ import { css, Global } from '@emotion/core';
 import { customProperties } from '@commercetools-frontend/ui-kit';
 import Header from './header';
 import Navbar from './navbar';
+import Pagination from './pagination';
 import Footer from './footer';
 
 const Layout = props => (
@@ -99,6 +100,7 @@ const Layout = props => (
               `}
             >
               {props.children}
+              <Pagination />
               <Footer />
             </div>
           </div>
