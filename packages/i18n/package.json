@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/i18n",
-  "version": "13.3.1",
+  "version": "13.3.3",
   "description": "MC i18n messages",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -34,7 +34,7 @@
     "build:es:watch": "npm run build:es -- -w"
   },
   "dependencies": {
-    "@commercetools-frontend/sentry": "13.3.1",
+    "@commercetools-frontend/sentry": "13.3.3",
     "moment": "^2.24.0",
     "prop-types": "15.7.2"
   },

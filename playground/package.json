@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "13.3.2",
+  "version": "13.3.3",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -14,11 +14,11 @@
   },
   "dependencies": {
     "@commercetools-frontend/actions-global": "13.0.0",
-    "@commercetools-frontend/application-shell": "13.3.2",
+    "@commercetools-frontend/application-shell": "13.3.3",
     "@commercetools-frontend/application-shell-connectors": "13.1.0",
     "@commercetools-frontend/constants": "13.0.0",
-    "@commercetools-frontend/i18n": "13.3.1",
-    "@commercetools-frontend/l10n": "13.3.1",
+    "@commercetools-frontend/i18n": "13.3.3",
+    "@commercetools-frontend/l10n": "13.3.3",
     "@commercetools-frontend/mc-http-server": "13.3.1",
     "@commercetools-frontend/permissions": "13.1.0",
     "@commercetools-frontend/sdk": "13.3.1",
