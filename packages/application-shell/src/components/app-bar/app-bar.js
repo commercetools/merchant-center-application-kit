@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Spacings, Text, AngleLeftIcon } from '@commercetools-frontend/ui-kit';
+import { FormattedMessage } from 'react-intl';
+import {
+  Spacings,
+  AngleLeftIcon,
+  LinkButton,
+} from '@commercetools-frontend/ui-kit';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
 import { selectProjectKeyFromLocalStorage } from '../../utils';
 import UserSettingsMenu from '../user-settings-menu';
@@ -12,14 +17,18 @@ import messages from './messages';
 import styles from './app-bar.mod.css';
 
 export const BackToProjectLink = props => (
-  <Link to={`/${props.projectKey}`}>
-    <Spacings.Inline alignItems="center" data-test="back-to-project">
-      <AngleLeftIcon theme="green" size="small" />
-      <Text.Detail intlMessage={messages.backToProjectLink} />
-    </Spacings.Inline>
-  </Link>
+  <LinkButton
+    to={`/${props.projectKey}`}
+    iconLeft={<AngleLeftIcon />}
+    label={
+      <FormattedMessage {...messages.backToProjectLink}>
+        {txt => txt}
+      </FormattedMessage>
+    }
+  />
 );
 BackToProjectLink.displayName = 'BackToProjectLink';
+
 BackToProjectLink.propTypes = {
   projectKey: PropTypes.string.isRequired,
 };
