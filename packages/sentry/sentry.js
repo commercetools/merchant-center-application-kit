@@ -1,11 +1,11 @@
 import * as Sentry from '@sentry/browser';
 
 export const boot = () => {
-  if (window.app.env === 'production') {
+  if (window.app.trackingSentry) {
     Sentry.init({
       dsn: window.app.trackingSentry,
       release: window.app.revision,
-      environment: window.app.env,
+      environment: `${window.app.env}-${window.app.location}`,
       // in order to reduce the noise in sentry we only track errors that come
       // from our code and ignore errors that come from other services
       // https://blog.sentry.io/2017/03/27/tips-for-reducing-javascript-error-noise.html
@@ -18,7 +18,7 @@ export const boot = () => {
 };
 
 export const updateUser = user => {
-  if (user && window.app.env === 'production') {
+  if (user && window.app.trackingSentry) {
     // to avoid sending personal data to sentry we anonymize the email address
     // by only sending the domain part or the email
     const emailTld = user.email.split('@')[1];
@@ -32,17 +32,14 @@ export const updateUser = user => {
 };
 
 export const stopTrackingUser = () => {
-  if (window.app.env === 'production')
+  if (window.app.trackingSentry)
     Sentry.configureScope(scope => {
       scope.clear();
     });
 };
 
 export const reportErrorToSentry = (error, extraInfo, getIsEnabled) => {
-  const environment = window.app.env || process.env.NODE_ENV;
-  const isEnabled = getIsEnabled
-    ? getIsEnabled(environment)
-    : environment === 'production';
+  const isEnabled = getIsEnabled ? getIsEnabled() : window.app.trackingSentry;
 
   if (error instanceof Error === false && !isEnabled) {
     console.warn(
