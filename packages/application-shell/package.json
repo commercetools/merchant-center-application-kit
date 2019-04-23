@@ -54,7 +54,7 @@
     "@flopflip/launchdarkly-adapter": "2.4.11",
     "@flopflip/memory-adapter": "1.2.2",
     "@flopflip/react-broadcast": "8.0.3",
-    "@sentry/browser": "5.0.8",
+    "@sentry/browser": "5.1.0",
     "apollo-cache-inmemory": "1.5.1",
     "apollo-client": "2.5.1",
     "apollo-link": "1.2.11",
@@ -94,7 +94,7 @@
     "warning": "4.0.3"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "9.3.0",
+    "@commercetools-frontend/ui-kit": "9.4.0",
     "react": "16.8.6",
     "react-apollo": "2.5.4",
     "react-dom": "16.8.6",
