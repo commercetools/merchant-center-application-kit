@@ -4,17 +4,11 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css, ClassNames } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Spacings, customProperties } from '@commercetools-frontend/ui-kit';
+import { TextHighlight } from './styled';
 import * as colors from '../colors';
 
-const NavbarLinkTitle = styled.div`
+const NavbarLinkTitle = styled(TextHighlight)`
   font-size: 1.2rem;
-  background-image: linear-gradient(
-    ${colors.light.primary},
-    ${colors.light.primary}
-  );
-  background-repeat: no-repeat;
-  background-size: 100% 0.2em;
-  background-position: 0 85%;
 `;
 const NavbarLinkSubtitle = styled.div`
   font-size: 1rem;

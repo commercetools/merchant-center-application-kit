@@ -17,16 +17,8 @@ import RegisterItSvg from '../images/register-it.svg';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import CodeBlock from '../components/code-block';
+import { TextHighlight } from '../components/styled';
 
-const TextHighlight = styled.span`
-  background-image: linear-gradient(
-    ${colors.light.primary},
-    ${colors.light.primary}
-  );
-  background-repeat: no-repeat;
-  background-size: 100% 0.2em;
-  background-position: 0 85%;
-`;
 const SectionTitle = styled.div`
   font-size: 1.5rem;
 `;
