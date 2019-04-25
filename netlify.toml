@@ -1,0 +1,7 @@
+[build]
+  command = "yarn --cwd website build"
+  publish = "website/public"
+
+[build.environment]
+  YARN_FLAGS = "--pure-lockfile"
+  YARN_VERSION = "1.15.2"
