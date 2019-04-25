@@ -49,7 +49,10 @@ const Pagination = () => {
 
   const links = flattenLinks(data.site.siteMetadata.navbarLinks);
   const index = links.findIndex(
-    link => link.linkTo === window.location.pathname.replace(/\/$/, '')
+    link =>
+      link.linkTo ===
+      (typeof window !== 'undefined' &&
+        window.location.pathname.replace(/\/$/, ''))
   );
   const hasPagination = index > -1;
   const previous = links[index - 1];
