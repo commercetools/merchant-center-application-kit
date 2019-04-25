@@ -2,45 +2,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { Link } from 'gatsby';
-import {
-  customProperties,
-  Spacings,
-  CodeViewIcon,
-} from '@commercetools-frontend/ui-kit';
+import { customProperties, Spacings } from '@commercetools-frontend/ui-kit';
+import * as colors from '../colors';
+import LogoSvg from '../images/logo.svg';
+import GitHubSvg from '../images/github.svg';
 
 const Header = props => (
-  <div
+  <header
     className={props.className}
     css={css`
-      background-color: ${customProperties.colorNavy40};
       display: flex;
       align-items: center;
-      padding: 0 16px;
+      justify-content: space-between;
+      padding: 0 ${customProperties.spacingM};
       flex: 1;
     `}
   >
     <Link
       to="/"
       css={css`
+        color: ${colors.light.text};
         text-decoration: none;
-        font-size: 2rem;
-        color: ${customProperties.colorNavy98};
         white-space: nowrap;
       `}
     >
       <Spacings.Inline scale="m" alignItems="center">
-        <CodeViewIcon size="scale" theme="white" />
-        {/* TODO: replace this with a proper logo */}
+        <LogoSvg height={36} />
         <div
           css={css`
-            color: ${customProperties.colorNavy98};
+            font-size: 1.4rem;
           `}
         >
-          {props.siteTitle}
+          {'App Kit'}
         </div>
       </Spacings.Inline>
     </Link>
-  </div>
+    <a href="https://github.com/commercetools/merchant-center-application-kit">
+      <GitHubSvg />
+    </a>
+  </header>
 );
 Header.displayName = 'Header';
 Header.propTypes = {

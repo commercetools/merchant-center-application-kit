@@ -1,7 +1,18 @@
 import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
-import { Spacings } from '@commercetools-frontend/ui-kit';
+import styled from '@emotion/styled';
+import { Spacings, customProperties } from '@commercetools-frontend/ui-kit';
+import * as colors from '../colors';
+
+const TextLink = styled(Link)`
+  text-decoration: none;
+  color: ${colors.light.text};
+
+  :hover {
+    opacity: 0.8;
+  }
+`;
 
 const flattenLinks = links => {
   return links.reduce((flat, link) => {
@@ -47,26 +58,28 @@ const Pagination = () => {
   return (
     <div
       css={css`
-                display: 'flex',
-                justify-content: 'space-between',
-              `}
+        display: flex;
+        justify-content: space-between;
+        padding: ${customProperties.spacingM};
+        margin-top: ${customProperties.spacingM};
+      `}
     >
       {hasPagination && previous && (
-        <Link to={previous.linkTo}>
+        <TextLink to={previous.linkTo}>
           <Spacings.Stack scale="s">
             <small>Previous:</small>
             {previous.label}
           </Spacings.Stack>
-        </Link>
+        </TextLink>
       )}
       <div css={{ margin: 'auto' }} />
       {hasPagination && next && (
-        <Link to={next.linkTo}>
+        <TextLink to={next.linkTo}>
           <Spacings.Stack scale="s">
             <small>Next:</small>
             {next.label}
           </Spacings.Stack>
-        </Link>
+        </TextLink>
       )}
     </div>
   );

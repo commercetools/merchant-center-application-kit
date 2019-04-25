@@ -18,6 +18,7 @@ exports.createPages = async ({ actions, graphql }) => {
               id
               title
               permalink
+              redirect_from
             }
           }
         }
@@ -41,5 +42,16 @@ exports.createPages = async ({ actions, graphql }) => {
         id: edge.node.frontmatter.id,
       },
     });
+
+    if (edge.node.frontmatter.redirect_from) {
+      edge.node.frontmatter.redirect_from.forEach(fromPath => {
+        actions.createRedirect({
+          fromPath,
+          toPath: edge.node.frontmatter.permalink,
+          isPermanent: true,
+          redirectInBrowser: true,
+        });
+      });
+    }
   });
 };

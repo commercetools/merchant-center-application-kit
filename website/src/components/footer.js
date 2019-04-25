@@ -1,43 +1,37 @@
 import React from 'react';
 import { css } from '@emotion/core';
-// import { Link } from 'gatsby';
-import { customProperties, Spacings } from '@commercetools-frontend/ui-kit';
+import { Spacings, customProperties } from '@commercetools-frontend/ui-kit';
+import * as colors from '../colors';
 
 const Footer = () => (
   <div
     css={css`
-      background-color: ${customProperties.colorNavy40};
-      padding: 32px;
+      background-color: ${colors.light.cards};
+      padding: ${customProperties.spacingXl};
     `}
   >
     <div
       css={css`
-        width: 80%;
-        max-width: 900px;
+        width: 90%;
         margin: 0 auto;
       `}
     >
       <Spacings.Stack scale="l">
-        <div
-          css={css`
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-          `}
-        >
+        <Spacings.Inline alignItems="center" justifyContent="space-around">
           <Spacings.Stack scale="m">
             <div>{'Documentation'}</div>
           </Spacings.Stack>
           <Spacings.Stack scale="m">
             <div>{'Resources'}</div>
           </Spacings.Stack>
-        </div>
+        </Spacings.Inline>
         <div
           css={css`
             text-align: center;
+            color: ${colors.light.text};
           `}
         >
-          {'copyright'}
+          {'copyright'} &copy; {`commercetools ${new Date().getFullYear()}`}
         </div>
       </Spacings.Stack>
     </div>

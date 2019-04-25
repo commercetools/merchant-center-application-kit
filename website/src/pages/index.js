@@ -1,22 +1,230 @@
 import React from 'react';
+import { useTransition, animated } from 'react-spring';
 import { Link } from 'gatsby';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
+import {
+  customProperties,
+  Grid,
+  Spacings,
+} from '@commercetools-frontend/ui-kit';
+import { stripIndent } from 'common-tags';
 import pkg from '../../package.json';
+import * as colors from '../colors';
+import DevelopItSvg from '../images/develop-it.svg';
+import DeployItSvg from '../images/deploy-it.svg';
+import RegisterItSvg from '../images/register-it.svg';
 import Layout from '../components/layout';
-import Image from '../components/image';
 import SEO from '../components/seo';
+import CodeBlock from '../components/code-block';
 
-const IndexPage = () => (
-  <Layout showSidebar={false}>
-    <SEO title="Home" keywords={pkg.keywords} />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-);
+const TextHighlight = styled.span`
+  background-image: linear-gradient(
+    ${colors.light.primary},
+    ${colors.light.primary}
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 0.2em;
+  background-position: 0 85%;
+`;
+const SectionTitle = styled.div`
+  font-size: 1.5rem;
+`;
+const PageContainer = styled.div`
+  width: 90%;
+  margin: 48px auto;
+`;
+const ButtonLink = styled(Link)`
+  border: 3px solid ${colors.light.primary};
+  padding: ${customProperties.spacingM};
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: ${colors.light.text};
+  background-color: ${colors.light.cards};
+
+  :hover {
+    color: ${colors.light.primary};
+    background-color: ${colors.light.surface};
+  }
+`;
+const Code = styled.code`
+  background-color: ${colors.light.cards};
+  color: ${colors.light.primary};
+  padding: 2px 4px;
+  font-size: 1rem;
+`;
+
+const heroSlides = [
+  { id: 0, component: DevelopItSvg },
+  { id: 1, component: DeployItSvg },
+  { id: 2, component: RegisterItSvg },
+];
+
+const IndexPage = () => {
+  const [slideIndex, nextSlide] = React.useState(0);
+  const transitions = useTransition(slideIndex, i => i, {
+    from: { opacity: 0, transform: 'translate3d(0, 100%,0)' },
+    enter: { opacity: 1, transform: 'translate3d(0,0,0)' },
+    leave: { opacity: 0, transform: 'translate3d(0, -50%,0)' },
+  });
+  React.useEffect(() => {
+    setInterval(() => nextSlide(state => (state + 1) % 3), 3000);
+  }, []);
+  return (
+    <Layout showSidebar={false}>
+      <SEO title="Home" keywords={pkg.keywords} />
+      <PageContainer>
+        <Grid
+          gridGap={customProperties.spacingL}
+          gridAutoColumns="1fr"
+          gridTemplateColumns="repeat(auto-fit, minmax(350px, 1fr))"
+        >
+          <Grid.Item>
+            <div
+              css={css`
+                width: 100%;
+                height: 250px;
+                position: relative;
+              `}
+            >
+              {transitions.map(({ item, props, key }) => {
+                const Image = heroSlides[item].component;
+                return (
+                  <animated.div
+                    key={key}
+                    style={{
+                      ...props,
+                      position: 'absolute',
+                      left: 0,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                    }}
+                  >
+                    <Image width="100%" height="100%" />
+                  </animated.div>
+                );
+              })}
+            </div>
+          </Grid.Item>
+          <Grid.Item>
+            <div
+              css={css`
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+              `}
+            >
+              <div
+                css={css`
+                  flex-grow: 1;
+                  font-size: 3rem;
+                `}
+              >
+                <TextHighlight>
+                  {'Develop applications for the Merchant Center'}
+                </TextHighlight>
+              </div>
+              <div
+                css={css`
+                  margin-top: ${customProperties.spacingL};
+                  display: flex;
+                  justify-content: flex-start;
+                `}
+              >
+                <ButtonLink to="/getting-started">
+                  {'Get started 🙌'}
+                </ButtonLink>
+              </div>
+            </div>
+          </Grid.Item>
+        </Grid>
+      </PageContainer>
+      <PageContainer>
+        <Grid
+          gridGap={customProperties.spacingL}
+          gridAutoColumns="1fr"
+          gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))"
+        >
+          <Grid.Item>
+            <SectionTitle>
+              {'🚀 '}
+              <TextHighlight>{'Built on modern technologies'}</TextHighlight>
+            </SectionTitle>
+            <p>
+              {
+                'Develop JavaScript applications with React, GraphQL, Webpack and other modern technologies.'
+              }
+            </p>
+          </Grid.Item>
+          <Grid.Item>
+            <SectionTitle>
+              {'🎨 '}
+              <TextHighlight>{'Based on a solid Design System'}</TextHighlight>
+            </SectionTitle>
+            <p>
+              {
+                'Merchant Center applications are built and designed according to our Design System, which provides rules, patterns and best practices to ease development and focus on the business logic.'
+              }
+            </p>
+          </Grid.Item>
+          <Grid.Item>
+            <SectionTitle>
+              {'📦 '}
+              <TextHighlight>{'Zero config development tools'}</TextHighlight>
+            </SectionTitle>
+            <p>
+              {
+                'Focus more on implementing the right features instead of configuration. Our packages provide all the necessary tools to get started seamlessly.'
+              }
+            </p>
+          </Grid.Item>
+        </Grid>
+      </PageContainer>
+      <PageContainer
+        css={css`
+          max-width: 864px;
+        `}
+      >
+        <Spacings.Stack>
+          <SectionTitle>{'Quick Start'}</SectionTitle>
+          <p
+            css={css`
+              font-size: 0.8rem;
+            `}
+          >
+            {
+              'We provide starter templates that you can install and run right away:'
+            }
+          </p>
+          <CodeBlock>
+            {stripIndent`
+$ npm install --global @commercetools-frontend/create-mc-app
+$ create-mc-app \\
+    my-new-custom-application-project \\
+    --template starter
+            `}
+          </CodeBlock>
+          <p
+            css={css`
+              font-size: 0.8rem;
+            `}
+          >
+            {'Or using '}
+            <Code>{'npx'}</Code>
+          </p>
+          <CodeBlock>
+            {stripIndent`
+$ npx @commercetools-frontend/create-mc-app \\
+    my-new-custom-application-project \\
+    --template starter
+            `}
+          </CodeBlock>
+        </Spacings.Stack>
+      </PageContainer>
+    </Layout>
+  );
+};
 IndexPage.displayName = 'IndexPage';
 
 export default IndexPage;
