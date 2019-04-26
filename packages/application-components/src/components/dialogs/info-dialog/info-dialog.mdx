@@ -1,0 +1,69 @@
+---
+id: components-info-dialog
+title: Info Dialog - Components
+permalink: /components/info-dialog
+---
+
+# InfoDialog
+
+## Usage
+
+```js
+import { InfoDialog } from '@commercetools-frontend/application-components';
+```
+
+#### Description
+
+Info dialogs are controlled components used to show more information about a particular feature, UI element, etc. They are mainly composed of text paragraphs.
+
+import { InfoDialog } from '@commercetools-frontend/application-components';
+import { Spacings, Text } from '@commercetools-frontend/ui-kit';
+
+<div
+  style={{
+    position: 'relative',
+    width: '100%',
+    height: '400px',
+  }}
+>
+  <div id="info-dialog" style={{ flex: 1 }} />
+  <InfoDialog
+    title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    size="l"
+    isOpen={true}
+    onClose={() => {}}
+    getParentSelector={() => document.querySelector(`#info-dialog`)}
+  >
+    <Spacings.Stack scale="m">
+      <Text.Body>
+        {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
+      </Text.Body>
+      <Text.Body>
+        {`Nam id orci ut risus accumsan pellentesque. Quisque efficitur eu arcu ut tristique. Praesent ornare varius leo, ut consequat lacus rutrum vel. Donec mollis leo id lectus vehicula tempor. Nulla facilisi. Fusce fringilla tellus ac ligula consequat suscipit. Sed consectetur molestie quam eu pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst.`}
+      </Text.Body>
+    </Spacings.Stack>
+  </InfoDialog>
+</div>
+
+#### Usage
+
+```js
+<InfoDialog title="Lorem ipsus" isOpen={isOpen} onClose={handleClose}>
+  <Spacings.Stack scale="m">
+    <Text.Body>{'Lorem ipsus ...'}</Text.Body>
+    <Text.Body>{'Lorem ipsus ...'}</Text.Body>
+  </Spacings.Stack>
+</InfoDialog>
+```
+
+#### Properties
+
+| Props               | Type       | Required | Values            | Default | Description                                                                                                                                                                                                                                                                                                 |
+| ------------------- | ---------- | :------: | ----------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`             | `string`   |    ✅    | -                 | -       | The title of the Info Dialog                                                                                                                                                                                                                                                                                |
+| `isOpen`            | `boolean`  |    ✅    | -                 | -       | Indicates whether the dialog is open or closed. The parent component needs to manage this state                                                                                                                                                                                                             |
+| `onClose`           | `function` |    ✅    | -                 | -       | Called when the dialog closes (click on overlay, click on close button, press ESC)                                                                                                                                                                                                                          |
+| `children`          | `node`     |    ✅    | -                 | -       | Content rendered within the dialog. If the content is long in height (depending on the screen size) a scrollbar will appear                                                                                                                                                                                 |
+| `size`              | `string`   |    -     | `m`, `l`, `scale` | `l`     | Horizontal width of the dialog card                                                                                                                                                                                                                                                                         |
+| `zIndex`            | `number`   |    -     | -                 | `1000`  | The `z-index` value to be applied to the overlay container (useful if you have stacking modals)                                                                                                                                                                                                             |
+| `getParentSelector` | `function` |    -     | -                 | -       | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In `NODE_ENV=test` environment, the default HTML element is `body`. |

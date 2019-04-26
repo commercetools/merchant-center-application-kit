@@ -69,11 +69,13 @@ const MarkdownLayout = props => (
     <MDXProvider components={components}>
       <div
         css={css`
+          font-family: 'Raleway', sans-serif;
           padding: 16px;
         `}
       >
         <SEO title={props.frontmatter.title} />
-        {props.children}
+        {/* This wrapper div is important to ensure the vertical space */}
+        <div>{props.children}</div>
       </div>
     </MDXProvider>
   </Layout>

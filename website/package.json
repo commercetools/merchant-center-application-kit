@@ -10,6 +10,7 @@
   "dependencies": {
     "@babel/core": "7.4.4",
     "@commercetools-frontend/assets": "13.3.5",
+    "@commercetools-frontend/application-components": "13.3.5",
     "@commercetools-frontend/ui-kit": "9.4.0",
     "@emotion/core": "10.0.10",
     "@emotion/styled": "10.0.10",
