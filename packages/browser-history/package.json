@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/browser-history",
-  "version": "13.0.0",
+  "version": "13.3.5",
   "description": "Enhances browser history",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
