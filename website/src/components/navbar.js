@@ -2,11 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css, ClassNames } from '@emotion/core';
-import {
-  Text,
-  Spacings,
-  customProperties,
-} from '@commercetools-frontend/ui-kit';
+import styled from '@emotion/styled';
+import { Spacings, customProperties } from '@commercetools-frontend/ui-kit';
+import { TextHighlight } from './styled';
+import * as colors from '../colors';
+
+const NavbarLinkTitle = styled(TextHighlight)`
+  font-size: 1.2rem;
+`;
+const NavbarLinkSubtitle = styled.div`
+  font-size: 1rem;
+`;
+const NavbarLinkText = styled.div`
+  font-size: 0.8rem;
+`;
 
 const NavbarLink = props => {
   const { level, ...restProps } = props;
@@ -16,18 +25,22 @@ const NavbarLink = props => {
       {({ css: makeClassName }) => (
         <Link
           css={css`
-            border-left: 4px solid ${customProperties.colorNavy95};
-            padding-left: calc(${indentation}px - 4px);
+            border-left: ${customProperties.spacingXs} solid
+              ${colors.light.surface};
+            padding-left: calc(
+              ${indentation}px - ${customProperties.spacingXs}
+            );
             text-decoration: none;
+            color: ${colors.light.text};
             &:hover {
-              h5 {
-                color: ${customProperties.colorNavy40};
-              }
+              color: ${colors.light.primary};
             }
           `}
           activeClassName={makeClassName`
-            border-left: 4px solid ${customProperties.colorNavy40} !important;
-            h5 { color: ${customProperties.colorNavy40}; }
+            border-left: ${customProperties.spacingXs} solid ${
+            colors.light.primary
+          } !important;
+            color: ${colors.light.primary};
           `}
           {...restProps}
         />
@@ -65,9 +78,7 @@ const Navbar = () => {
       <Spacings.Stack scale="l">
         {data.site.siteMetadata.navbarLinks.map((link, index) => (
           <Spacings.Stack scale="s" key={index}>
-            <Text.Subheadline elementType="h4" tone="secondary">
-              {link.label}
-            </Text.Subheadline>
+            <NavbarLinkTitle>{link.label}</NavbarLinkTitle>
             {link.subgroup.map((subLink, subGroupIndex) => {
               if (subLink.subgroup) {
                 return (
@@ -77,9 +88,7 @@ const Navbar = () => {
                         padding-left: ${customProperties.spacing16};
                       `}
                     >
-                      <Text.Subheadline elementType="h5" tone="secondary">
-                        {subLink.label}
-                      </Text.Subheadline>
+                      <NavbarLinkSubtitle>{subLink.label}</NavbarLinkSubtitle>
                     </div>
                     {subLink.subgroup.map(subSubLink => (
                       <NavbarLink
@@ -87,7 +96,7 @@ const Navbar = () => {
                         key={subSubLink.linkTo}
                         level={2}
                       >
-                        <Text.Detail>{subSubLink.label}</Text.Detail>
+                        <NavbarLinkText>{subSubLink.label}</NavbarLinkText>
                       </NavbarLink>
                     ))}
                   </Spacings.Stack>
@@ -95,9 +104,7 @@ const Navbar = () => {
               }
               return (
                 <NavbarLink to={subLink.linkTo} key={subLink.linkTo} level={1}>
-                  <Text.Subheadline elementType="h5">
-                    {subLink.label}
-                  </Text.Subheadline>
+                  <NavbarLinkSubtitle>{subLink.label}</NavbarLinkSubtitle>
                 </NavbarLink>
               );
             })}

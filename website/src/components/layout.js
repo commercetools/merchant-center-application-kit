@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import { css, Global } from '@emotion/core';
-import { customProperties } from '@commercetools-frontend/ui-kit';
+import * as colors from '../colors';
 import Header from './header';
 import Navbar from './navbar';
 import Pagination from './pagination';
@@ -28,7 +28,8 @@ const Layout = props => {
             padding: 0;
             margin: 0;
             height: 100vh;
-            font-family: ${customProperties.fontFamilyDefault};
+            font-family: 'roboto mono';
+            color: ${colors.light.text};
           }
         `}
       />
@@ -37,7 +38,7 @@ const Layout = props => {
         css={css`
           height: 100vh;
           display: grid;
-          grid-template-rows: 96px 1fr;
+          grid-template-rows: 50px 1fr;
           grid-template-columns: auto 1fr;
         `}
       >
@@ -45,7 +46,9 @@ const Layout = props => {
           css={css`
             grid-row: 1;
             grid-column: 1/3;
-            height: 96px;
+            height: 50px;
+            width: 90%;
+            margin: 0 auto;
           `}
           siteTitle={data.site.siteMetadata.title}
         />
@@ -57,8 +60,7 @@ const Layout = props => {
               display: flex;
               flex-direction: column;
               width: 256px;
-              border-right: 1px solid ${customProperties.colorGray};
-              background-color: ${customProperties.colorNavy95};
+              border-right: 1px solid ${colors.light.borders};
             `}
           >
             <Navbar />
@@ -71,25 +73,25 @@ const Layout = props => {
             grid-row: 2;
 
             /*
-                Allow this flex child to grow smaller than its smallest content.
-                This is needed when there is a really wide text inside that would stretch
-                this node to be wider than the parent.
-              */
+              Allow this flex child to grow smaller than its smallest content.
+              This is needed when there is a really wide text inside that would stretch
+              this node to be wider than the parent.
+            */
             min-width: 0;
             overflow-x: hidden;
             overflow-y: scroll;
 
             /*
-                layout the children. There will always be the page and side notification
-                about the actual content. The content should stretch to fill the rest of
-                the page.
-              */
+              layout the children. There will always be the page and side notification
+              about the actual content. The content should stretch to fill the rest of
+              the page.
+            */
             display: flex;
             flex-direction: column;
 
             /*
-                set position to relative to layout notifications and modals
-              */
+              set position to relative to layout notifications and modals
+            */
             position: relative;
           `}
         >
@@ -101,8 +103,8 @@ const Layout = props => {
             `}
           >
             {props.children}
-            <Pagination />
-            <Footer />
+            {props.showSidebar && <Pagination />}
+            {props.showFooter && <Footer />}
           </div>
         </div>
       </div>
@@ -112,10 +114,12 @@ const Layout = props => {
 Layout.displayName = 'Layout';
 Layout.propTypes = {
   showSidebar: PropTypes.bool,
+  showFooter: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };
 Layout.defaultProps = {
   showSidebar: true,
+  showFooter: true,
 };
 
 export default Layout;
