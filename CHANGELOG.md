@@ -1,3 +1,10 @@
+## [13.3.5](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.4...v13.3.5) (2019-04-26)
+
+#### 🐛 Type: Bug
+
+- `mc-scripts`
+  - [#571](https://github.com/commercetools/merchant-center-application-kit/pull/571) fix(mc-scripts): do not use ip address as socket host. Closes [#569](https://github.com/commercetools/merchant-center-application-kit/issues/569) ([@emmenko](https://github.com/emmenko))
+
 ## [13.3.4](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.3...v13.3.4) (2019-04-23)
 
 #### 🐛 Type: Bug
