@@ -103,6 +103,8 @@ const FormDialogOverflowExample = props => (
               onChange={formikProps.handleChange}
               onBlur={formikProps.handleBlur}
               onFocus={formikProps.handleFocus}
+              menuPortalTarget={document.body}
+              menuPortalZIndex={1001}
             />
           </Spacings.Stack>
         </FormDialog>
