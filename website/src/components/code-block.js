@@ -4,23 +4,17 @@ import Highlight, { defaultProps } from 'prism-react-renderer';
 import { customProperties } from '@commercetools-frontend/ui-kit';
 import * as colors from '../colors';
 
-// TODO: improve colors
 const theme = {
   plain: {
-    backgroundColor: colors.light.surface,
+    backgroundColor: colors.light.cards,
     color: colors.light.text,
   },
   styles: [
     {
-      types: ['comment'],
+      types: ['comment', 'prolog', 'doctype', 'cdata'],
       style: {
-        color: 'rgb(173, 197, 214)',
-      },
-    },
-    {
-      types: ['prolog', 'doctype', 'cdata', 'punctuation'],
-      style: {
-        color: colors.light.text,
+        color: '#999988',
+        fontStyle: 'italic',
       },
     },
     {
@@ -30,78 +24,57 @@ const theme = {
       },
     },
     {
-      types: ['tag', 'operator', 'number'],
+      types: ['string', 'attr-value'],
       style: {
-        color: 'rgb(87, 156, 135)',
+        color: colors.light.primary,
       },
     },
     {
-      types: ['property', 'function'],
+      types: ['punctuation', 'operator'],
       style: {
-        color: 'rgb(254, 127, 45)',
-      },
-    },
-    {
-      types: ['tag-id', 'selector', 'atrule-id'],
-      style: {
-        color: colors.light.cards,
-      },
-    },
-    {
-      types: ['attr-name'],
-      style: {
-        color: 'rgb(254, 127, 45)',
+        color: colors.light.borders,
       },
     },
     {
       types: [
-        'boolean',
-        'string',
         'entity',
         'url',
-        'attr-value',
-        'keyword',
-        'control',
-        'directive',
-        'unit',
-        'statement',
-        'regex',
-        'at-rule',
-        'placeholder',
+        'symbol',
+        'number',
+        'boolean',
         'variable',
+        'constant',
+        'property',
+        'regex',
+        'inserted',
       ],
       style: {
-        color: colors.light.primary,
+        color: 'rgb(107, 80, 255)',
       },
     },
     {
-      types: ['deleted'],
+      types: ['atrule', 'keyword', 'attr-name', 'selector'],
       style: {
-        textDecorationLine: 'line-through',
-      },
-    },
-    {
-      types: ['inserted'],
-      style: {
-        textDecorationLine: 'underline',
-      },
-    },
-    {
-      types: ['italic'],
-      style: {
+        color: 'rgb(236, 160, 48)',
         fontStyle: 'italic',
       },
     },
     {
-      types: ['important', 'bold'],
+      types: ['function', 'deleted', 'tag'],
       style: {
-        fontWeight: 'bold',
+        color: 'rgb(236, 160, 48)',
       },
     },
     {
-      types: ['important'],
+      types: ['function-variable'],
       style: {
-        color: colors.light.primary,
+        color: 'rgb(107, 80, 255)',
+      },
+    },
+    {
+      types: ['tag', 'selector', 'keyword'],
+      style: {
+        color: 'rgb(4, 138, 191)',
       },
     },
   ],
@@ -132,9 +105,13 @@ const CodeBlock = props => {
         >
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token, key })} />
-              ))}
+              {line.map((token, key) => {
+                if (tokens.length === i + 1 && token.empty) {
+                  return null;
+                }
+                const tokenProps = getTokenProps({ token, key });
+                return <span key={key} {...tokenProps} />;
+              })}
             </div>
           ))}
         </pre>

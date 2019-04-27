@@ -33,14 +33,16 @@ const NavbarLink = props => {
             text-decoration: none;
             color: ${colors.light.text};
             &:hover {
-              color: ${colors.light.primary};
+              border-left: ${customProperties.spacingXs} solid
+                ${colors.light.primarySoft};
+              color: ${colors.light.primarySoft};
             }
           `}
           activeClassName={makeClassName`
             border-left: ${customProperties.spacingXs} solid ${
             colors.light.primary
           } !important;
-            color: ${colors.light.primary};
+            color: ${colors.light.primary} !important;
           `}
           {...restProps}
         />

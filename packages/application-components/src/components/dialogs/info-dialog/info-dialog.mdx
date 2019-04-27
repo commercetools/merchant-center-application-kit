@@ -6,16 +6,6 @@ permalink: /components/info-dialog
 
 # InfoDialog
 
-## Usage
-
-```js
-import { InfoDialog } from '@commercetools-frontend/application-components';
-```
-
-#### Description
-
-Info dialogs are controlled components used to show more information about a particular feature, UI element, etc. They are mainly composed of text paragraphs.
-
 import { InfoDialog } from '@commercetools-frontend/application-components';
 import { Spacings, Text } from '@commercetools-frontend/ui-kit';
 
@@ -45,9 +35,15 @@ import { Spacings, Text } from '@commercetools-frontend/ui-kit';
   </InfoDialog>
 </div>
 
-#### Usage
+### Description
 
-```js
+Info dialogs are controlled components used to show more information about a particular feature, UI element, etc. They are mainly composed of text paragraphs.
+
+### Usage
+
+```jsx
+import { InfoDialog } from '@commercetools-frontend/application-components';
+
 <InfoDialog title="Lorem ipsus" isOpen={isOpen} onClose={handleClose}>
   <Spacings.Stack scale="m">
     <Text.Body>{'Lorem ipsus ...'}</Text.Body>
@@ -56,7 +52,7 @@ import { Spacings, Text } from '@commercetools-frontend/ui-kit';
 </InfoDialog>
 ```
 
-#### Properties
+### Properties
 
 | Props               | Type       | Required | Values            | Default | Description                                                                                                                                                                                                                                                                                                 |
 | ------------------- | ---------- | :------: | ----------------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

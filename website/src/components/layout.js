@@ -60,7 +60,7 @@ const Layout = props => {
               display: flex;
               flex-direction: column;
               width: 256px;
-              border-right: 1px solid ${colors.light.borders};
+              border-right: 2px solid ${colors.light.cards};
             `}
           >
             <Navbar />

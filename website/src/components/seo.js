@@ -9,10 +9,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
-import favicon from '@commercetools-frontend/assets/html-page/favicon.png';
-import faviconS from '@commercetools-frontend/assets/html-page/favicon_57x57px.png';
-import faviconM from '@commercetools-frontend/assets/html-page/favicon_72x72px.png';
-import faviconL from '@commercetools-frontend/assets/html-page/favicon_144x144px.png';
 
 const SEO = ({ description, lang, meta, keywords, title }) => {
   const data = useStaticQuery(
@@ -81,27 +77,6 @@ const SEO = ({ description, lang, meta, keywords, title }) => {
             : []
         )
         .concat(meta)}
-      link={[
-        { rel: 'shortcut icon', type: 'image/png', href: `${favicon}` },
-        { rel: 'apple-touch-icon', sizes: '57x57', href: `${faviconS}` },
-        {
-          rel: 'apple-touch-icon-precomposed',
-          sizes: '57x57',
-          href: `${faviconS}`,
-        },
-        { rel: 'apple-touch-icon', sizes: '72x72', href: `${faviconM}` },
-        {
-          rel: 'apple-touch-icon-precomposed',
-          sizes: '72x72',
-          href: `${faviconM}`,
-        },
-        { rel: 'apple-touch-icon', sizes: '144x144', href: `${faviconL}` },
-        {
-          rel: 'apple-touch-icon-precomposed',
-          sizes: '144x144',
-          href: `${faviconL}`,
-        },
-      ]}
     />
   );
 };

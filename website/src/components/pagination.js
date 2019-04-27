@@ -65,6 +65,8 @@ const Pagination = () => {
         justify-content: space-between;
         padding: ${customProperties.spacingM};
         margin-top: ${customProperties.spacingM};
+        border-top: 2px solid ${colors.light.cards};
+        background-color: ${colors.light.cardsSoft};
       `}
     >
       {hasPagination && previous && (
