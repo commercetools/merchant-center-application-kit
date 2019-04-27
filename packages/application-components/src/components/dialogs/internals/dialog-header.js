@@ -6,10 +6,16 @@ import {
   Text,
   Spacings,
 } from '@commercetools-frontend/ui-kit';
-import styles from './dialog-styles.mod.css';
+import { css } from '@emotion/core';
 
 const DialogHeader = props => (
-  <div className={styles['dialog-header']}>
+  <div
+    css={css`
+      flex: 0 1 auto;
+      display: flex;
+      flex-direction: column;
+    `}
+  >
     <Spacings.Inline
       scale="m"
       alignItems="center"
