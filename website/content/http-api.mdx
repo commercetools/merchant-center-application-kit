@@ -1,0 +1,81 @@
+---
+id: http-api
+title: HTTP API - Merchant Center
+permalink: /http-api
+---
+
+# Merchant Center HTTP API
+
+Merchant Center applications need to fetch data from different sources in the commercetools platform. A custom application might need to access channel or product information, role and permission settings, and more. Each of these data sources is exposed as an API, and each of these APIs requires an authentication mechanism.
+
+However, for security reasons, client-side applications **cannot be trusted** with sensitive credentials, which makes it difficult to connect to an API directly from a browser.
+
+To solve these issues, the Merchant Center provides an HTTP API that works as an **HTTP Gateway**, which proxies requests to a specific API through the Gateway. Requests made through the proxy will be authenticated with the correct authentication mechanism specific to the targeted API. This way, a client-side application only needs to [authenticate](#authentication) to the Merchant Center HTTP API without needing to store credentials for the targeted APIs.
+
+![HTTP API](/assets/custom-applications/mc-http-api.png)
+
+For example, to make requests to the [commercetools platform HTTP API](https://docs.commercetools.com/http-api.html), you would prefix the request with `/proxy/ctp`
+
+```js
+// Direct request to the commercetools platform HTTP API
+fetch(`https://api.commercetools.com/${projectKey}/orders`, {
+  method: 'GET',
+  headers: {
+    Accept: 'application/json',
+    Authentication: `Bearer ${oauthToken}`,
+  },
+});
+
+// Proxied request to the commercetools platform HTTP API
+fetch(`https://mc-api.commercetools.com/proxy/ctp/${projectKey}/orders`, {
+  method: 'GET',
+  headers: { Accept: 'application/json' },
+  credentials: 'include', // <-- this will send along the cookie "mcAccessToken"
+});
+```
+
+## Authentication
+
+The Merchant Center uses a **secure** JWT ([JSON Web Token](https://jwt.io/)) `Cookie` named `mcAccessToken` to transport session information about the user.
+Using a `Cookie` allows network requests to send it without your application needing to explicitly handle the access token.
+
+The [project starter example](https://github.com/commercetools/merchant-center-application-kit/tree/master/application-templates/starter) has no explicity authentication code. Authentication is built into the `<ApplicationShell>` and managed for you.
+
+### Obtaining an access token
+
+The `mcAccessToken` is granted upon user login and is stored in the **secure** `Cookie` from the Merchant Center HTTP API.
+
+There are two endpoints available for different login strategies:
+
+- `/tokens`: Logins using `email` and `password`.
+- `/tokens/sso`: Logins using an `idToken` from an SSO workflow.
+
+As mentioned above, the `<ApplicationShell>` provides authentication. You won't need to manually request a token from these endpoints.
+
+## API Proxy endpoints
+
+The Merchant Center HTTP API exposes the following proxy endpoints:
+
+- `/proxy/ctp`: Proxies requests to the [commercetools platform HTTP API](https://docs.commercetools.com/http-api.html)
+- `/proxy/ml`: Proxies requests to the [machine learning API](https://docs.commercetools.com/http-api-ml.html)
+- _other endpoints that are only used for internal services_
+
+## GraphQL endpoint
+
+For client-side applications, GraphQL provides benefits in terms of performance, state management, maintainability and user experience. At commercetools, the [main method of data fetching](https://techblog.commercetools.com/graphql-adoption-at-commercetools-cab25a1d1f4a) used by the Merchant Center is using the GraphQL API.
+
+Merchant Center applications use first-class [Apollo Client](https://www.apollographql.com/docs/react/) support to connect to the `/graphql` endpoint in the Merchant Center API.
+
+However, because the Merchant Center HTTP API works more like a Gateway proxy, we need to proxy GraphQL requests to the targeted services as well. To do so, we pass specific custom HTTP headers to the `/graphql` request:
+
+- `X-Graphql-Target`: Specifies the GraphQL server to connect to, either one of:
+
+  - `ctp`: This GraphQL server the is official [GraphQL API](https://docs.commercetools.com/graphql-api.html) for the commercetools platform.
+  - `mc`: This GraphQL server handles things like users, authentication, etc.
+  - `administration`: This GraphQL server handles things like managing projects and organizations.
+  - `settings`: This GraphQL server handles settings related to Merchant Center applications.
+
+  These values are available in the `@commercetools-frontend/constants` package.
+  When sending queries from React components, you need to pass the value as a `variables.target`. For an example of a fully constructed request, see [Data fetching](./getting-started/development#data-fetching).
+
+- `X-Project-Key`: Specifies the project key to be used by the targeted GraphQL server. This value is not always required (depending on the query), but it's recommended to always send it whenever possible.

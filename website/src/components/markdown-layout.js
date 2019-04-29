@@ -13,7 +13,8 @@ const TypographyPage = styled.div`
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
   line-height: 1.45;
-  padding: ${customProperties.spacingM};
+  padding: ${customProperties.spacingL};
+  max-width: 740px;
 `;
 const headerStyles = () => css`
   line-height: 1.15;
@@ -63,14 +64,15 @@ const Blockquote = styled.blockquote`
   border-left: 0.25em solid ${colors.light.cards};
   color: ${colors.light.textSoft};
   background-color: ${colors.light.cardsSoft};
+  font-style: italic;
   padding: 0.25rem 1rem;
   margin: 0;
   margin-bottom: ${customProperties.spacingM};
 
-  > :first-child {
+  > :first-of-type {
     margin-top: 0;
   }
-  > :last-child {
+  > :last-of-type {
     margin-bottom: 0;
   }
 `;
@@ -173,6 +175,8 @@ const Delete = styled.span`
   text-decoration: line-through;
 `;
 const Hr = styled(ThematicBreak)``;
+// The external icon style has been taken from https://codepen.io/simevidas/pen/MKdmeV
+// The base64 icon has been generated from https://icons8.com/icons/set/external-link
 const Link = styled.a`
   color: ${colors.light.primary};
   text-decoration: none;
@@ -186,6 +190,21 @@ const Link = styled.a`
   }
   :visited {
     color: ${colors.light.primarySoft};
+  }
+
+  &[href^='http']::after {
+    content: '(external link)';
+    display: inline-block;
+    width: 0.7em;
+    height: 0.7em;
+    text-indent: 0.7em;
+    white-space: nowrap;
+    overflow: hidden;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABJwAAAScBjbzwzAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADgSURBVDiNxVJBTsMwEJx1l09wAztcyAtaiPqA3tsPgPgBfIErv0DiE1WfYCeHyqdWST9hZXsiQsYJlkBiTqvx7OystcB/g3JEjo3EXBk8AYDKMSiDpzJ4EsgCkNPXN/4s7KxYKcibEK6i/tcy+BfLek7Ah4La9JDt95gX5mDZLFMJLOu5Y901XFRjK6VJAI71wrHuar65n9SmyLjZsXlODUka5E7mmBhA6oGE1rdhvxvV/LRCjibrDqYwGBDQ1nx9NyZsuKhAOMb88Ae90BORendsLlMGAmlV3z/+NvHf4wx/vFAagc71gAAAAABJRU5ErkJggg==);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    margin-left: 0.1em;
   }
 `;
 const Img = styled.img`

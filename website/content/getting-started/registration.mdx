@@ -1,0 +1,56 @@
+---
+id: getting-started-registration
+title: Registration - Getting started
+permalink: /getting-started/registration
+---
+
+import { ContentNotification } from '@commercetools-frontend/ui-kit';
+
+<ContentNotification type="info">
+  This feature is marked as `beta` and may be affected by changes. Use with caution for production.
+</ContentNotification>
+
+# Registering a Custom Application in the Merchant Center
+
+Once you've [deployed your Custom Application](./deployment), you'll need to register it with a Merchant Center project.
+
+> **Note:** Custom Applications are currently in a **limited pre-release beta**. The Custom Applications screen is not available in the Merchant Center by default. Contact [platform support](https://support.commercetools.com) to access the Custom Applications screen.
+
+To register your Custom Application with a Merchant Center project:
+
+1. In the left-hand navigation of the Merchant Center, navigate to **Settings > Custom Applications**. Click the **Register a custom application** button.
+2. Fill in the _required_ fields as follows:
+
+- **Name**: The Custom Application's display name in the Merchant Center.
+- **Application URL**: The URL that hosts your application (e.g. `https://my-custom-app.com`). This should be the same as the `frontendHost` in your project's `env.json` file.
+- **Application route path**: The main route path that serves your application. For example, in the [project starter example](https://github.com/commercetools/merchant-center-application-kit/tree/master/application-templates/starter) the value is `example-starter`.
+
+3. In the **Navigation links** section, fill in the fields as follows:
+
+- **Link labels**: The left-hand navigation link text for your application. This is what most users will see. Click **Show all languages** to provide labels for all languages (`en`, `de`, `es`).
+- **Link permissions**: Optionally requires a set of permissions to the main link in the left-hand navigation. Users with matching permissions will be able to see the link. The permissions are configured in the Team's settings.<br/>
+  **Note: these permissions only apply to the link in the left-hand navigation.** To restrict the application routes and views you must also apply the permissions in your application's code by using the `@commercetools-frontend/permissions` package.
+- **Link icon**: The icon for your main link in the left-hand navigation.
+
+4. Optionally, to add as many navigation sub-links as needed to sub-routes of your application, click the **Add sub-links** button. Fill in the fields as follows:
+
+- **Link to**: The route relative to the main application route path.
+- **Link labels**: _Same as in the main navigation link_.
+- **Link permissions**: _Same as in the main navigation link_.
+
+5. Click **Register Custom Application**.
+
+All Custom Applications registered with a project appear on the Custom Applications screen:
+
+![Application inactive](/assets/custom-applications/mc-apps-inactive.png)
+
+By default, all Custom Applications are **inactive** when created. To **activate** a Custom Application:
+
+1. Open a Custom Application's detail page by clicking on the **Edit** button.
+2. Click the **Status** toggle in the upper right to **activate** the application.
+   ![Activation toggle](/assets/custom-applications/mc-apps-activation.png)
+3. In the confirmation dialog, click **Confirm**.
+
+The activated application is now visible in the left-hand navigation and is **Active** and ready to be used.
+
+![Application activated](/assets/custom-applications/mc-apps-activated.png)

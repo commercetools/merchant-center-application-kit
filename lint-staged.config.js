@@ -1,5 +1,5 @@
 module.exports = {
-  '*.md': ['yarn format:md', 'git add'],
+  '*.{md,mdx}': ['yarn format:md', 'git add'],
   '*.yaml': ['yarn format:yaml', 'git add'],
   '*.js': [
     // NOTE: apparently if you pass some argument that is not a flag AFTER the `reporters`
