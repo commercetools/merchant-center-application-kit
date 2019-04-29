@@ -1,3 +1,22 @@
+## [13.3.6](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.5...v13.3.6) (2019-04-29)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#582](https://github.com/commercetools/merchant-center-application-kit/pull/582) fix(app-shell): routing to project without key ([@tdeekens](https://github.com/tdeekens))
+
+#### 🔮 Type: Chore
+
+- `application-components`, `babel-preset-mc-app`
+  - [#574](https://github.com/commercetools/merchant-center-application-kit/pull/574) refactor(components): to use emotion styles ([@emmenko](https://github.com/emmenko))
+- `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `jest-preset-mc-app`, `l10n`, `mc-http-server`, `mc-scripts`, `permissions`, `react-notifications`, `sdk`, `sentry`
+  - [#581](https://github.com/commercetools/merchant-center-application-kit/pull/581) chore: update dependencies ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+
+- `application-components`, `babel-preset-mc-app`
+  - [#574](https://github.com/commercetools/merchant-center-application-kit/pull/574) refactor(components): to use emotion styles ([@emmenko](https://github.com/emmenko))
+
 ## [13.3.5](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.4...v13.3.5) (2019-04-26)
 
 #### 🐛 Type: Bug
