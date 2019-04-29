@@ -19,6 +19,8 @@ const Layout = props => {
     }
   `);
 
+  const [isMenuOpen, setMenuOpen] = React.useState(false);
+
   return (
     <React.Fragment>
       <Global
@@ -51,19 +53,34 @@ const Layout = props => {
             margin: 0 auto;
           `}
           siteTitle={data.site.siteMetadata.title}
+          isMenuOpen={isMenuOpen}
+          toggleMenu={() => {
+            setMenuOpen(!isMenuOpen);
+          }}
         />
         {props.showSidebar && (
           <aside
             css={css`
               position: relative;
               grid-row: 2;
-              display: flex;
               flex-direction: column;
-              width: 256px;
-              border-right: 2px solid ${colors.light.cards};
+              border-right: 1px solid ${colors.light.cards};
+
+              display: ${isMenuOpen ? 'flex' : 'none'};
+              grid-column: 1/3;
+
+              @media screen and (min-width: 40em) {
+                display: flex;
+                width: 256px;
+                grid-column: 1;
+              }
             `}
           >
-            <Navbar />
+            <Navbar
+              onLinkClick={() => {
+                setMenuOpen(false);
+              }}
+            />
           </aside>
         )}
         <div
@@ -93,6 +110,14 @@ const Layout = props => {
               set position to relative to layout notifications and modals
             */
             position: relative;
+
+            grid-column: 1/3;
+            grid-row: ${isMenuOpen ? '3' : '2'};
+
+            @media screen and (min-width: 40em) {
+              grid-column: 2;
+              grid-row: 2;
+            }
           `}
         >
           <div

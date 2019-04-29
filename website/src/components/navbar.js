@@ -55,7 +55,7 @@ NavbarLink.propTypes = {
   level: PropTypes.oneOf([1, 2]),
 };
 
-const Navbar = () => {
+const Navbar = props => {
   const data = useStaticQuery(graphql`
     query NavbarQuery {
       site {
@@ -97,6 +97,7 @@ const Navbar = () => {
                         to={subSubLink.linkTo}
                         key={subSubLink.linkTo}
                         level={2}
+                        onClick={props.onLinkClick}
                       >
                         <NavbarLinkText>{subSubLink.label}</NavbarLinkText>
                       </NavbarLink>
@@ -105,7 +106,12 @@ const Navbar = () => {
                 );
               }
               return (
-                <NavbarLink to={subLink.linkTo} key={subLink.linkTo} level={1}>
+                <NavbarLink
+                  to={subLink.linkTo}
+                  key={subLink.linkTo}
+                  level={1}
+                  onClick={props.onLinkClick}
+                >
                   <NavbarLinkSubtitle>{subLink.label}</NavbarLinkSubtitle>
                 </NavbarLink>
               );
@@ -117,5 +123,8 @@ const Navbar = () => {
   );
 };
 Navbar.displayName = 'Navbar';
+Navbar.propTypes = {
+  onLinkClick: PropTypes.func.isRequired,
+};
 
 export default Navbar;
