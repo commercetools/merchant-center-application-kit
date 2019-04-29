@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/react-notifications",
-  "version": "13.3.5",
+  "version": "13.3.6",
   "description": "React bindings for @commercetools-frontend/notifications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -37,7 +37,7 @@
     "@commercetools-frontend/actions-global": "13.3.5",
     "@commercetools-frontend/constants": "13.3.5",
     "@commercetools-frontend/notifications": "13.3.5",
-    "@commercetools-frontend/sentry": "13.3.5",
+    "@commercetools-frontend/sentry": "13.3.6",
     "classnames": "2.2.6",
     "lodash": "4.17.11",
     "lodash-es": "4.17.11",
