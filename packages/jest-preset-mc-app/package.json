@@ -21,7 +21,7 @@
   "main": "./jest-preset.js",
   "module": "./jest-preset.js",
   "dependencies": {
-    "@babel/core": "7.4.3",
+    "@babel/core": "7.4.4",
     "@commercetools-frontend/babel-preset-mc-app": "13.3.5",
     "@commercetools/enzyme-extensions": "3.0.1",
     "@commercetools/jest-enzyme-matchers": "1.1.2",
@@ -43,11 +43,11 @@
     "unfetch": "4.1.0"
   },
   "devDependencies": {
-    "react-testing-library": "6.1.2"
+    "react-testing-library": "7.0.0"
   },
   "peerDependencies": {
     "enzyme": "3.x",
     "jest": "23.x",
-    "react-testing-library": "6.x"
+    "react-testing-library": "6.x || 7.x"
   }
 }
