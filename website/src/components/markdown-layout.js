@@ -95,18 +95,68 @@ const Table = styled.table`
   tbody {
     border-top: 4px solid ${colors.light.cards};
   }
+
+  @media screen and (max-width: 40em) {
+    display: block;
+    tbody {
+      display: block;
+    }
+    thead {
+      display: block;
+    }
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    ${props => {
+      const tableHeaders = React.Children.toArray(props.children).find(
+        elem => elem.props.mdxType === 'thead'
+      );
+      const rowHeaders = tableHeaders.props.children;
+      return React.Children.toArray(rowHeaders.props.children).reduce(
+        (styles, elem, index) => `
+        ${styles}
+        td:nth-of-type(${index + 1}):before { content: "${
+          elem.props.children
+        }"; }
+      `,
+        ''
+      );
+    }}
+  }
 `;
 const TableRow = styled.tr`
   > * + * {
     border-left: 1px solid ${colors.light.cards};
   }
+
+  @media screen and (max-width: 40em) {
+    display: block;
+    border: 1px solid #ccc;
+  }
 `;
 const TableCell = styled.td`
   border-bottom: 2px solid ${colors.light.cards};
   padding: ${customProperties.spacingS};
+
+  @media screen and (max-width: 40em) {
+    display: block;
+    border: none;
+    border-bottom: 1px solid ${colors.light.cards};
+
+    :before {
+      display: flex;
+      font-weight: 700;
+    }
+  }
 `;
 const TableHeader = styled.th`
   padding: ${customProperties.spacingS};
+
+  @media screen and (max-width: 40em) {
+    display: block;
+  }
 `;
 const Pre = props => props.children;
 const Code = CodeBlock;
@@ -158,7 +208,16 @@ const components = {
   ul: Ul,
   ol: Ol,
   li: Li,
-  table: Table,
+  // eslint-disable-next-line react/display-name
+  table: props => (
+    <div
+      css={css`
+        overflow: auto;
+      `}
+    >
+      <Table {...props} />
+    </div>
+  ),
   tr: TableRow,
   td: TableCell,
   th: TableHeader,
