@@ -62,6 +62,13 @@ module.exports = function getBabePresetConfigForMcApp() {
           useBuiltIns: true,
         },
       ],
+      [
+        '@emotion/babel-preset-css-prop',
+        {
+          sourceMap: isEnvDevelopment,
+          autoLabel: !isEnvProduction,
+        },
+      ],
     ].filter(Boolean),
     plugins: [
       // Experimental macros support. Will be documented after it's had some time

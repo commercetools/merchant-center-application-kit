@@ -1,13 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './dialog-styles.mod.css';
+import styled from '@emotion/styled';
+import { customProperties } from '@commercetools-frontend/ui-kit';
 
-const DialogContent = props => (
-  <div className={styles['dialog-content']}>{props.children}</div>
-);
-DialogContent.displayName = 'DialogContent';
-DialogContent.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+// The overflow should be "auto", to make the container scrollable
+const DialogContent = styled.div`
+  border-top: 1px solid ${customProperties.borderColorSeparator};
+  padding: ${customProperties.spacingM} 0 ${customProperties.spacingS};
+  flex: 1;
+  overflow: auto;
+`;
 
 export default DialogContent;

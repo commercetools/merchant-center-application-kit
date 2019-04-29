@@ -39,6 +39,7 @@
     "@babel/preset-env": "7.4.4",
     "@babel/preset-react": "7.0.0",
     "@babel/runtime-corejs3": "7.4.4",
+    "@emotion/babel-preset-css-prop": "10.0.9",
     "babel-plugin-macros": "2.5.1",
     "babel-plugin-transform-dynamic-import": "2.1.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",

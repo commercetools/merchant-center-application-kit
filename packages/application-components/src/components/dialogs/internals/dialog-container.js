@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
+import { css, ClassNames } from '@emotion/core';
+import styled from '@emotion/styled';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import { Card } from '@commercetools-frontend/ui-kit';
-import styles from './dialog-styles.mod.css';
+import { Card, customProperties } from '@commercetools-frontend/ui-kit';
+import { getModalOverlayStyles, getModalContentStyles } from './dialog.styles';
+
+const GridArea = styled.div`
+  grid-area: ${props => props.name};
+`;
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under
@@ -24,32 +30,76 @@ const getDefaultParentSelector = () =>
     : document.querySelector(`#${PORTALS_CONTAINER_ID}`);
 
 const DialogContainer = props => (
-  <Modal
-    isOpen={props.isOpen}
-    onRequestClose={props.onClose}
-    shouldCloseOnOverlayClick={Boolean(props.onClose)}
-    shouldCloseOnEsc={Boolean(props.onClose)}
-    overlayClassName={styles['modal-overlay']}
-    className={styles[`modal-content-${props.size}`]}
-    contentLabel={props.title}
-    parentSelector={props.getParentSelector}
-    ariaHideApp={false}
-    style={{
-      overlay: {
-        zIndex: props.zIndex,
-      },
-    }}
-  >
-    <div className={styles['grid-area-top']} />
-    <div className={styles['grid-area-left']} />
-    <div className={styles['grid-area-right']} />
-    <div className={styles['grid-area-footer']} />
-    <div className={styles['dialog-container']}>
-      <Card className={styles['dialog-card']}>
-        <div className={styles['dialog-card-spacer']}>{props.children}</div>
-      </Card>
-    </div>
-  </Modal>
+  <ClassNames>
+    {({ css: makeClassName }) => (
+      <Modal
+        isOpen={props.isOpen}
+        onRequestClose={props.onClose}
+        shouldCloseOnOverlayClick={Boolean(props.onClose)}
+        shouldCloseOnEsc={Boolean(props.onClose)}
+        overlayClassName={makeClassName(getModalOverlayStyles(props))}
+        className={makeClassName(getModalContentStyles(props))}
+        contentLabel={props.title}
+        parentSelector={props.getParentSelector}
+        ariaHideApp={false}
+        style={{
+          overlay: {
+            zIndex: props.zIndex,
+          },
+        }}
+      >
+        <GridArea name="top" />
+        <GridArea name="left" />
+        <GridArea name="right" />
+        <GridArea name="bottom" />
+        <GridArea
+          name="main"
+          css={css`
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            overflow: hidden;
+          `}
+        >
+          <Card
+            // 1. For the min-height: https://stackoverflow.com/questions/28636832/firefox-overflow-y-not-working-with-nested-flexbox/28639686#28639686
+            // 2. For the scale size, we want the card to stretch to 100% height
+            // 3. For the actual "> div" container with the content, we need to use normal pointer events so that clicking on it does not close the dialog.
+            css={css`
+              min-height: 0;
+              ${props.size === 'scale' ? 'height: 100%;' : ''}
+
+              > div {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                pointer-events: auto;
+                min-height: 0;
+              }
+            `}
+          >
+            <div
+              css={css`
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                height: 100%;
+                min-height: 0;
+
+                > * + * {
+                  margin: ${customProperties.spacingM} 0 0;
+                }
+              `}
+            >
+              {props.children}
+            </div>
+          </Card>
+        </GridArea>
+      </Modal>
+    )}
+  </ClassNames>
 );
 DialogContainer.displayName = 'DialogContainer';
 DialogContainer.propTypes = {

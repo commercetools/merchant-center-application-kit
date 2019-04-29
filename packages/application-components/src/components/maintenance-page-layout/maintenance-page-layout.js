@@ -1,11 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 import { Constraints, Text, Spacings } from '@commercetools-frontend/ui-kit';
 import deprecateComponent from '../../utils/deprecate-component';
-import styles from './maintenance-page-layout.mod.css';
 
 const MaintenancePageLayout = props => (
-  <div className={styles.container}>
+  <div
+    css={css`
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      white-space: pre-wrap;
+      text-align: center;
+    `}
+  >
     <Constraints.Horizontal constraint="l">
       <Spacings.Stack scale="m">
         <div>
@@ -14,7 +23,14 @@ const MaintenancePageLayout = props => (
         <Text.Headline elementType="h2">{props.title}</Text.Headline>
         <Text.Body>{props.paragraph1}</Text.Body>
         {props.bodyContent && (
-          <div className={styles.body}>{props.bodyContent}</div>
+          <div
+            css={css`
+              display: flex;
+              justify-content: center;
+            `}
+          >
+            {props.bodyContent}
+          </div>
         )}
         {props.paragraph2 && <Text.Body>{props.paragraph2}</Text.Body>}
       </Spacings.Stack>
