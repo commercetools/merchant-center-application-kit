@@ -86,7 +86,7 @@
     "jest-runner-stylelint": "1.0.0",
     "jest-silent-reporter": "0.1.2",
     "jest-watch-typeahead": "0.3.0",
-    "lerna": "3.13.3",
+    "lerna": "3.13.4",
     "lerna-changelog": "0.8.2",
     "lint-staged": "8.1.5",
     "prettier": "1.17.0",
