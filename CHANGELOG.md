@@ -1,3 +1,10 @@
+## [13.3.7](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.6...v13.3.7) (2019-04-29)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#584](https://github.com/commercetools/merchant-center-application-kit/pull/584) fix(app-shell): project key being set to null ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.3.6](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.5...v13.3.6) (2019-04-29)
 
 #### 🐛 Type: Bug
