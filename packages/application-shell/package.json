@@ -115,7 +115,7 @@
     "react-redux": "6.x || 7.x",
     "react-router": "5.x",
     "react-router-dom": "5.x",
-    "react-testing-library": "6.x",
+    "react-testing-library": "6.x || 7.x",
     "redux": "4.x"
   },
   "engines": {
