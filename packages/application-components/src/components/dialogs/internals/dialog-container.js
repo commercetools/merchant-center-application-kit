@@ -2,8 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { css, ClassNames } from '@emotion/core';
+import styled from '@emotion/styled';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import { Card, customProperties } from '@commercetools-frontend/ui-kit';
+import { getModalOverlayStyles, getModalContentStyles } from './dialog.styles';
+
+const GridArea = styled.div`
+  grid-area: ${props => props.name};
+`;
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under
@@ -23,87 +29,6 @@ const getDefaultParentSelector = () =>
     ? document.body
     : document.querySelector(`#${PORTALS_CONTAINER_ID}`);
 
-const getModalContentStyles = props => {
-  // To ensure that the mouse click on the overlay surface goes "through"
-  // and triggers the modal to close, we need to turn off the pointer events.
-  const baseStyles = css`
-    display: grid;
-    height: 100%;
-    width: 100%;
-    outline: none;
-    pointer-events: none;
-  `;
-  switch (props.size) {
-    case 'm':
-      return [
-        baseStyles,
-        css`
-          grid:
-            [row1-start] 'top top top' minmax(
-              ${customProperties.spacingXl},
-              1fr
-            )
-            [row1-end]
-            [row2-start] 'left main right' minmax(0, 100%) [row2-end]
-            [row3-start] 'bottom bottom bottom' minmax(
-              ${customProperties.spacingXl},
-              1fr
-            )
-            [row3-end]
-            / minmax(${customProperties.spacingXl}, 1fr)
-            ${customProperties.constraintM} minmax(
-              ${customProperties.spacingXl},
-              1fr
-            );
-        `,
-      ];
-    case 'scale':
-      return [
-        baseStyles,
-        css`
-          grid:
-            [row1-start] 'top top top' minmax(
-              ${customProperties.spacingXl},
-              1fr
-            )
-            [row1-end]
-            [row2-start] 'left main right' minmax(0, 100%) [row2-end]
-            [row3-start] 'bottom bottom bottom' minmax(
-              ${customProperties.spacingXl},
-              1fr
-            )
-            [row3-end]
-            / ${customProperties.spacingXl} 1fr ${customProperties.spacingXl};
-        `,
-      ];
-
-    default:
-      // size: l
-      return [
-        baseStyles,
-        css`
-          grid:
-            [row1-start] 'top top top' minmax(
-              ${customProperties.spacingXl},
-              1fr
-            )
-            [row1-end]
-            [row2-start] 'left main right' minmax(0, 100%) [row2-end]
-            [row3-start] 'bottom bottom bottom' minmax(
-              ${customProperties.spacingXl},
-              1fr
-            )
-            [row3-end]
-            / minmax(${customProperties.spacingXl}, 1fr)
-            ${customProperties.constraintL} minmax(
-              ${customProperties.spacingXl},
-              1fr
-            );
-        `,
-      ];
-  }
-};
-
 const DialogContainer = props => (
   <ClassNames>
     {({ css: makeClassName }) => (
@@ -112,15 +37,7 @@ const DialogContainer = props => (
         onRequestClose={props.onClose}
         shouldCloseOnOverlayClick={Boolean(props.onClose)}
         shouldCloseOnEsc={Boolean(props.onClose)}
-        overlayClassName={makeClassName`
-          display: flex;
-          position: absolute;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(32, 62, 72, 0.5);
-          opacity: 1;
-        `}
+        overlayClassName={makeClassName(getModalOverlayStyles(props))}
         className={makeClassName(getModalContentStyles(props))}
         contentLabel={props.title}
         parentSelector={props.getParentSelector}
@@ -131,29 +48,13 @@ const DialogContainer = props => (
           },
         }}
       >
-        <div
+        <GridArea name="top" />
+        <GridArea name="left" />
+        <GridArea name="right" />
+        <GridArea name="bottom" />
+        <GridArea
+          name="main"
           css={css`
-            grid-area: top;
-          `}
-        />
-        <div
-          css={css`
-            grid-area: left;
-          `}
-        />
-        <div
-          css={css`
-            grid-area: right;
-          `}
-        />
-        <div
-          css={css`
-            grid-area: bottom;
-          `}
-        />
-        <div
-          css={css`
-            grid-area: main;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -168,7 +69,7 @@ const DialogContainer = props => (
             // 3. For the actual "> div" container with the content, we need to use normal pointer events so that clicking on it does not close the dialog.
             css={css`
               min-height: 0;
-              ${props.size === 'scale' ? `height: 100%;` : ``}
+              ${props.size === 'scale' ? 'height: 100%;' : ''}
 
               > div {
                 display: flex;
@@ -195,7 +96,7 @@ const DialogContainer = props => (
               {props.children}
             </div>
           </Card>
-        </div>
+        </GridArea>
       </Modal>
     )}
   </ClassNames>
