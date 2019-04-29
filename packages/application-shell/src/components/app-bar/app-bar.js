@@ -32,8 +32,21 @@ BackToProjectLink.displayName = 'BackToProjectLink';
 BackToProjectLink.propTypes = {
   projectKey: PropTypes.string.isRequired,
 };
+
+const getPreviousProjectKey = defaultProjectKeyOfUser => {
+  const previouslyUsedProjectKeyFromLocalStorage = selectProjectKeyFromLocalStorage();
+
+  if (previouslyUsedProjectKeyFromLocalStorage)
+    return previouslyUsedProjectKeyFromLocalStorage;
+  if (defaultProjectKeyOfUser) return defaultProjectKeyOfUser;
+
+  return '';
+};
 const AppBar = props => {
-  const previouslyUsedProjectKey = selectProjectKeyFromLocalStorage();
+  const previousProjectKey = getPreviousProjectKey(
+    props.user && props.user.defaultProjectKey
+  );
+
   return (
     <div className={styles['app-bar']} data-test="top-navigation">
       <Spacings.Inline>
@@ -41,10 +54,7 @@ const AppBar = props => {
           {!props.user ? (
             <img src={LogoSVG} className={styles['logo-img']} alt="Logo" />
           ) : (
-            <Link
-              to={`/${previouslyUsedProjectKey ||
-                props.user.defaultProjectKey}`}
-            >
+            <Link to={`/${previousProjectKey}`}>
               <img src={LogoSVG} className={styles['logo-img']} alt="Logo" />
             </Link>
           )}
@@ -78,7 +88,7 @@ const AppBar = props => {
                       // to a project.
                       projectKey={
                         props.projectKeyFromUrl ||
-                        previouslyUsedProjectKey ||
+                        previousProjectKey ||
                         props.user.defaultProjectKey
                       }
                       total={props.user.projects.total}
@@ -89,7 +99,7 @@ const AppBar = props => {
                 return (
                   <BackToProjectLink
                     projectKey={
-                      previouslyUsedProjectKey || props.user.defaultProjectKey
+                      previousProjectKey || props.user.defaultProjectKey
                     }
                   />
                 );
