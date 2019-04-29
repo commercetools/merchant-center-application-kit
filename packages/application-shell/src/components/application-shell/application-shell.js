@@ -31,10 +31,7 @@ import NavBar, { LoadingNavBar } from '../navbar';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
 import Redirector from '../redirector';
-import {
-  selectProjectKeyFromLocalStorage,
-  selectProjectKeyFromUrl,
-} from '../../utils';
+import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import styles from './application-shell.mod.css';
 import QuickAccess from '../quick-access';
 
@@ -279,19 +276,21 @@ export const RestrictedApplication = props => (
                               <Route
                                 exact={true}
                                 path="/"
-                                render={() =>
-                                  user ? (
-                                    // This is the only case where we need to look into localStorage
-                                    // to attempt to get the previously known `projectKey`.
-                                    // If none is found, we use the `defaultProjectKey` set by the API.
+                                render={() => {
+                                  const previousProjectKey = getPreviousProjectKey(
+                                    user && user.defaultProjectKey
+                                  );
+
+                                  if (!user) return <ApplicationLoader />;
+
+                                  // NOTE: Given no previous `projectKey` is found,
+                                  // we redirect to the base url.
+                                  return (
                                     <Redirect
-                                      to={`/${selectProjectKeyFromLocalStorage() ||
-                                        user.defaultProjectKey}`}
+                                      to={`/${previousProjectKey || ''}`}
                                     />
-                                  ) : (
-                                    <ApplicationLoader />
-                                  )
-                                }
+                                  );
+                                }}
                               />
                               <Route
                                 exact={false}
