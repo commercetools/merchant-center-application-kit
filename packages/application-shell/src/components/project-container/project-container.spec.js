@@ -462,16 +462,32 @@ describe('lifecycle', () => {
   let wrapper;
   describe('componentDidUpdate', () => {
     beforeEach(() => {
-      props = createTestProps({ match: { params: { projectKey: 'p1' } } });
-      storage.get.mockReturnValueOnce('p1');
-      wrapper = shallow(<ProjectContainer {...props} />);
-      wrapper.instance().componentDidUpdate(props);
+      storage.put.mockClear();
     });
-    it('should store the project key in localStorage', () => {
-      expect(storage.put).toHaveBeenCalledWith(
-        STORAGE_KEYS.ACTIVE_PROJECT_KEY,
-        'p1'
-      );
+    describe('when `projectKey` is in url', () => {
+      beforeEach(() => {
+        props = createTestProps({ match: { params: { projectKey: 'p1' } } });
+        storage.get.mockReturnValueOnce('p1');
+        wrapper = shallow(<ProjectContainer {...props} />);
+        wrapper.instance().componentDidUpdate(props);
+      });
+      it('should store the project key in localStorage', () => {
+        expect(storage.put).toHaveBeenCalledWith(
+          STORAGE_KEYS.ACTIVE_PROJECT_KEY,
+          'p1'
+        );
+      });
+    });
+    describe('when `projectKey` is not in url', () => {
+      beforeEach(() => {
+        props = createTestProps({ match: { params: { projectKey: null } } });
+        storage.get.mockReturnValueOnce('p1');
+        wrapper = shallow(<ProjectContainer {...props} />);
+        wrapper.instance().componentDidUpdate(props);
+      });
+      it('should not store the project key in localStorage', () => {
+        expect(storage.put).not.toHaveBeenCalled();
+      });
     });
   });
   describe('when the user navigated to a different route', () => {
