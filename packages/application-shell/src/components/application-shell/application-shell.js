@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { defaultMemoize } from 'reselect';
+import { Spacings, Text, LinkButton } from '@commercetools-frontend/ui-kit';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
@@ -283,8 +284,36 @@ export const RestrictedApplication = props => (
 
                                   if (!user) return <ApplicationLoader />;
 
-                                  // NOTE: Given no previous `projectKey` is found,
-                                  // we redirect to the base url.
+                                  if (
+                                    props.environment.servedByProxy !== true &&
+                                    !previousProjectKey
+                                  )
+                                    return (
+                                      <Spacings.Stack scale="m">
+                                        <Text.Headline elementType="h2">
+                                          Development mode without projects
+                                        </Text.Headline>
+                                        <Text.Body>
+                                          You are using the Merchant Center in
+                                          development mode - it is not served by
+                                          a proxy. Moreover, you do not have any
+                                          projects yet. As a result we did not
+                                          redirect you anywhere (e.g. another
+                                          application).
+                                        </Text.Body>
+                                        <Text.Body>
+                                          Please go to the
+                                          `application-accounts` to create a
+                                          project first.
+                                        </Text.Body>
+                                        <LinkButton
+                                          to={`account/projects/new`}
+                                          label="Create project"
+                                        />
+                                      </Spacings.Stack>
+                                    );
+
+                                  // NOTE: Given no previous `projectKey` is found we redirect to the base url.
                                   return (
                                     <Redirect
                                       to={`/${previousProjectKey || ''}`}
