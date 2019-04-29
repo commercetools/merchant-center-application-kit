@@ -133,7 +133,7 @@ const TableRow = styled.tr`
 
   @media screen and (max-width: 40em) {
     display: block;
-    border: 1px solid #ccc;
+    border: 1px solid ${colors.light.cards};
   }
 `;
 const TableCell = styled.td`
