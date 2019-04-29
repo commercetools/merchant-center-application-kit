@@ -62,7 +62,7 @@
     "babel-plugin-transform-rename-import": "2.3.0",
     "cross-env": "5.2.0",
     "cypress": "3.2.0",
-    "cypress-testing-library": "2.4.0",
+    "cypress-testing-library": "2.6.0",
     "dotenv": "7.0.0",
     "enzyme": "3.9.0",
     "eslint": "5.16.0",
