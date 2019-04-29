@@ -10,6 +10,7 @@
   "dependencies": {
     "@babel/core": "7.4.4",
     "@commercetools-frontend/assets": "13.3.5",
+    "@commercetools-frontend/application-components": "13.3.5",
     "@commercetools-frontend/ui-kit": "9.4.0",
     "@emotion/core": "10.0.10",
     "@emotion/styled": "10.0.10",
@@ -22,6 +23,7 @@
     "gatsby-image": "2.0.40",
     "gatsby-mdx": "0.6.2",
     "gatsby-plugin-emotion": "4.0.6",
+    "gatsby-plugin-favicon": "3.1.6",
     "gatsby-plugin-google-fonts": "0.0.4",
     "gatsby-plugin-meta-redirect": "1.1.1",
     "gatsby-plugin-react-helmet": "3.0.12",

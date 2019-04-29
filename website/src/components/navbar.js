@@ -7,7 +7,7 @@ import { Spacings, customProperties } from '@commercetools-frontend/ui-kit';
 import { TextHighlight } from './styled';
 import * as colors from '../colors';
 
-const NavbarLinkTitle = styled(TextHighlight)`
+const NavbarLinkTitle = styled.div`
   font-size: 1.2rem;
 `;
 const NavbarLinkSubtitle = styled.div`
@@ -33,14 +33,16 @@ const NavbarLink = props => {
             text-decoration: none;
             color: ${colors.light.text};
             &:hover {
-              color: ${colors.light.primary};
+              border-left: ${customProperties.spacingXs} solid
+                ${colors.light.primarySoft};
+              color: ${colors.light.primarySoft};
             }
           `}
           activeClassName={makeClassName`
             border-left: ${customProperties.spacingXs} solid ${
             colors.light.primary
           } !important;
-            color: ${colors.light.primary};
+            color: ${colors.light.primary} !important;
           `}
           {...restProps}
         />
@@ -53,7 +55,7 @@ NavbarLink.propTypes = {
   level: PropTypes.oneOf([1, 2]),
 };
 
-const Navbar = () => {
+const Navbar = props => {
   const data = useStaticQuery(graphql`
     query NavbarQuery {
       site {
@@ -78,7 +80,9 @@ const Navbar = () => {
       <Spacings.Stack scale="l">
         {data.site.siteMetadata.navbarLinks.map((link, index) => (
           <Spacings.Stack scale="s" key={index}>
-            <NavbarLinkTitle>{link.label}</NavbarLinkTitle>
+            <NavbarLinkTitle>
+              <TextHighlight>{link.label}</TextHighlight>
+            </NavbarLinkTitle>
             {link.subgroup.map((subLink, subGroupIndex) => {
               if (subLink.subgroup) {
                 return (
@@ -95,6 +99,7 @@ const Navbar = () => {
                         to={subSubLink.linkTo}
                         key={subSubLink.linkTo}
                         level={2}
+                        onClick={props.onLinkClick}
                       >
                         <NavbarLinkText>{subSubLink.label}</NavbarLinkText>
                       </NavbarLink>
@@ -103,7 +108,12 @@ const Navbar = () => {
                 );
               }
               return (
-                <NavbarLink to={subLink.linkTo} key={subLink.linkTo} level={1}>
+                <NavbarLink
+                  to={subLink.linkTo}
+                  key={subLink.linkTo}
+                  level={1}
+                  onClick={props.onLinkClick}
+                >
                   <NavbarLinkSubtitle>{subLink.label}</NavbarLinkSubtitle>
                 </NavbarLink>
               );
@@ -115,5 +125,8 @@ const Navbar = () => {
   );
 };
 Navbar.displayName = 'Navbar';
+Navbar.propTypes = {
+  onLinkClick: PropTypes.func.isRequired,
+};
 
 export default Navbar;

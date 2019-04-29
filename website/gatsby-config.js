@@ -21,7 +21,7 @@ module.exports = {
             subgroup: [
               {
                 label: 'InfoDialog',
-                linkTo: '/components/dialogs/info-dialog',
+                linkTo: '/components/info-dialog',
               },
             ],
           },
@@ -45,7 +45,20 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
-        fonts: ['roboto mono'],
+        fonts: [
+          'roboto mono',
+          // https://design.google/library/spectral-new-screen-first-typeface/
+          // 'Spectral:400,700',
+          // https://design.google/library/choosing-web-fonts-beginners-guide/
+          // 'Libre+Baskerville:400,400i,700',
+          'Raleway:400,400i,700,700i',
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-favicon`,
+      options: {
+        logo: `${__dirname}/src/images/logo.svg`,
       },
     },
     {

@@ -31,7 +31,8 @@ const Footer = () => (
             color: ${colors.light.text};
           `}
         >
-          {'copyright'} &copy; {`commercetools ${new Date().getFullYear()}`}
+          {'copyright'} &copy;{' '}
+          {`${new Date().getFullYear()} commercetools GmbH`}
         </div>
       </Spacings.Stack>
     </div>
