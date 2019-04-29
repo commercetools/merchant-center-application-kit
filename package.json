@@ -50,9 +50,6 @@
     "visual-testing-app",
     "website"
   ],
-  "dependencies": {
-    "gatsby-cli": "^2.5.12"
-  },
   "devDependencies": {
     "@commitlint/cli": "7.5.2",
     "@commitlint/config-conventional": "7.5.0",
