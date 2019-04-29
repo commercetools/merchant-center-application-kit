@@ -7,7 +7,7 @@ import { Spacings, customProperties } from '@commercetools-frontend/ui-kit';
 import { TextHighlight } from './styled';
 import * as colors from '../colors';
 
-const NavbarLinkTitle = styled(TextHighlight)`
+const NavbarLinkTitle = styled.div`
   font-size: 1.2rem;
 `;
 const NavbarLinkSubtitle = styled.div`
@@ -80,7 +80,9 @@ const Navbar = props => {
       <Spacings.Stack scale="l">
         {data.site.siteMetadata.navbarLinks.map((link, index) => (
           <Spacings.Stack scale="s" key={index}>
-            <NavbarLinkTitle>{link.label}</NavbarLinkTitle>
+            <NavbarLinkTitle>
+              <TextHighlight>{link.label}</TextHighlight>
+            </NavbarLinkTitle>
             {link.subgroup.map((subLink, subGroupIndex) => {
               if (subLink.subgroup) {
                 return (
