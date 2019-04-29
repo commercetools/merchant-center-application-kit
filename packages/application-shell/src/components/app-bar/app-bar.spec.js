@@ -203,6 +203,28 @@ describe('rendering', () => {
             });
           });
         });
+        describe('when user has not projects', () => {
+          describe('<ProjectSwitcher>', () => {
+            beforeEach(() => {
+              props = createTestProps({
+                user: {
+                  ...props.user,
+                  defaultProjectKey: null,
+                  projects: { total: 0 },
+                },
+              });
+              wrapper = shallow(<AppBar {...props} />);
+            });
+            it('should not render <ProjectSwitcher>', () => {
+              expect(wrapper).not.toRender(ProjectSwitcher);
+            });
+
+            it('should not render <Link> without path to previous project', () => {
+              expect(wrapper).toRender(Link);
+              expect(wrapper.find(Link).last()).toHaveProp('to', `/`);
+            });
+          });
+        });
       });
     });
   });
