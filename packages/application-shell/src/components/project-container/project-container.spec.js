@@ -485,7 +485,7 @@ describe('lifecycle', () => {
         wrapper = shallow(<ProjectContainer {...props} />);
         wrapper.instance().componentDidUpdate(props);
       });
-      it('should store the project key in localStorage', () => {
+      it('should not store the project key in localStorage', () => {
         expect(storage.put).not.toHaveBeenCalled();
       });
     });
