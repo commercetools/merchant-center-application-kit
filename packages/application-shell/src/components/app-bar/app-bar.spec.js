@@ -5,8 +5,6 @@ import ProjectSwitcher from '../project-switcher';
 import UserSettingsMenu from '../user-settings-menu';
 import AppBar, { BackToProjectLink } from './app-bar';
 
-jest.mock('../../utils');
-
 const createTestProps = props => ({
   user: {
     projects: {

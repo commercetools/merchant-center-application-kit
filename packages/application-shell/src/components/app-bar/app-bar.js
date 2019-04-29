@@ -8,9 +8,9 @@ import {
   LinkButton,
 } from '@commercetools-frontend/ui-kit';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
-import { selectProjectKeyFromLocalStorage } from '../../utils';
 import UserSettingsMenu from '../user-settings-menu';
 import ProjectSwitcher from '../project-switcher';
+import { getPreviousProjectKey } from '../../utils';
 import LoadingPlaceholder from '../loading-placeholder';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/constants';
 import messages from './messages';
@@ -20,7 +20,7 @@ export const BackToProjectLink = props => (
   <FormattedMessage {...messages.backToProjectLink}>
     {backToProjectMessage => (
       <LinkButton
-        to={`/${props.projectKey}`}
+        to={`/${props.projectKey || ''}`}
         iconLeft={<AngleLeftIcon />}
         label={backToProjectMessage}
       />
@@ -30,18 +30,9 @@ export const BackToProjectLink = props => (
 BackToProjectLink.displayName = 'BackToProjectLink';
 
 BackToProjectLink.propTypes = {
-  projectKey: PropTypes.string.isRequired,
+  projectKey: PropTypes.string,
 };
 
-const getPreviousProjectKey = defaultProjectKeyOfUser => {
-  const previouslyUsedProjectKeyFromLocalStorage = selectProjectKeyFromLocalStorage();
-
-  if (previouslyUsedProjectKeyFromLocalStorage)
-    return previouslyUsedProjectKeyFromLocalStorage;
-  if (defaultProjectKeyOfUser) return defaultProjectKeyOfUser;
-
-  return '';
-};
 const AppBar = props => {
   const previousProjectKey = getPreviousProjectKey(
     props.user && props.user.defaultProjectKey
@@ -54,7 +45,7 @@ const AppBar = props => {
           {!props.user ? (
             <img src={LogoSVG} className={styles['logo-img']} alt="Logo" />
           ) : (
-            <Link to={`/${previousProjectKey}`}>
+            <Link to={`/${previousProjectKey || ''}`}>
               <img src={LogoSVG} className={styles['logo-img']} alt="Logo" />
             </Link>
           )}
@@ -86,23 +77,13 @@ const AppBar = props => {
                       // the dropdown will still be rendered but no project will be selected.
                       // This is fine becase the user has still the possibility to "switch"
                       // to a project.
-                      projectKey={
-                        props.projectKeyFromUrl ||
-                        previousProjectKey ||
-                        props.user.defaultProjectKey
-                      }
+                      projectKey={props.projectKeyFromUrl || previousProjectKey}
                       total={props.user.projects.total}
                     />
                   );
                 if (!props.user.defaultProjectKey) return '';
 
-                return (
-                  <BackToProjectLink
-                    projectKey={
-                      previousProjectKey || props.user.defaultProjectKey
-                    }
-                  />
-                );
+                return <BackToProjectLink projectKey={previousProjectKey} />;
               })()}
             </Spacings.Inline>
           </div>

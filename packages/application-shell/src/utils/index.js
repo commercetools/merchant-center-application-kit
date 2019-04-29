@@ -6,3 +6,4 @@ export {
 } from './select-project-key-from-url';
 export { default as selectUserId } from './select-user-id';
 export { default as getCorrelationId } from './get-correlation-id';
+export { default as getPreviousProjectKey } from './get-previous-project-key';
