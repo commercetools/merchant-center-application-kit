@@ -35,8 +35,12 @@ export const mapAllAppliedToObjectShape = allAppliedShape =>
 class FetchProject extends React.Component {
   static displayName = 'FetchProject';
   static propTypes = {
-    projectKey: PropTypes.string.isRequired,
+    projectKey: PropTypes.string,
+    skip: PropTypes.bool,
     children: PropTypes.func.isRequired,
+  };
+  static defaultProps = {
+    skip: false,
   };
   shouldComponentUpdate(nextProps) {
     return !deepEqual(this.props, nextProps);
@@ -49,6 +53,7 @@ class FetchProject extends React.Component {
           target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
           projectKey: this.props.projectKey,
         }}
+        skip={this.props.skip}
       >
         {({ data, loading, error }) =>
           this.props.children({
