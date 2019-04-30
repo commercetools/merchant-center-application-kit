@@ -286,9 +286,9 @@ export const RestrictedApplication = props => (
                                    * NOTE:
                                    *   Given the user has not been loaded a loading spinner is shown.
                                    *   Given the user was not working on a project previously nor has a default
-                                   *   project she/she will be promted to create one.
-                                   *   Given the user was working in a project previously or has a default
-                                   *   project a redirect to it happens.
+                                   *   project, the user will be prompted to create one.
+                                   *   Given the user was working on a project previously or has a default
+                                   *   project, the application will redirect to that project.
                                    */
 
                                   if (!user) return <ApplicationLoader />;
