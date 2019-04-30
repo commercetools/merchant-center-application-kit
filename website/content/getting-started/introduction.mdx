@@ -1,0 +1,49 @@
+---
+id: getting-started-introduction
+title: Introduction - Getting started
+permalink: /getting-started/introduction
+redirect_from:
+  - /getting-started
+---
+
+import { ContentNotification } from '@commercetools-frontend/ui-kit';
+
+<ContentNotification type="info">
+  This feature is marked as `beta` and may be affected by changes. Use with caution for production.
+</ContentNotification>
+
+# Custom Applications
+
+Merchant Center Custom Applications allow you to extend the functionalities of Merchant Center for your business needs by developing and integrating new UI elements into the Merchant Center.
+
+## Architecture overview
+
+The Merchant Center is composed of **multiple applications** running behind a Proxy. When you switch from the Products view to the Customers view, the Merchant Center reloads the browser page, and the Proxy forwards the request to a different application. However, each application is served within the **same domain**, for example `https://mc.commercetools.com`, which makes it look like it's one single application.
+
+Custom Applications use the same architecture. You develop and host an application and register it in the Merchant Center. If the browser request matches your **application main route path**, the proxy forwards the request to your application.
+
+![Architecture Diagram](/assets/custom-applications/mc-fe-architecture.png)
+
+There are several benefits to this architecture:
+
+- 🚨 **Security controls**: The `mc.commercetools.com` domain is the same for all applications, allowing the Merchant Center to enforce restrictions and security measures, like **CORS rules** and **Content Security Policies** across all applications.
+- 🔑 **Built-in Authentication**: The Merchant Center uses a **secure** `Cookie` to transport session information about the user. The authentication logic is handled in the `@commercetools-frontend/application-shell` package, For more information, see [Merchant Center HTTP API](../http-api#authentication).
+- 🤖 **Built-in application bootstrapping**: The `@commercetools-frontend/application-shell` package provides most of the application setup, including fetching and authenticating the user, initializing Providers (Redux, Apollo, Intl, etc.), setting up the main routes and main layout (including the left and top navigation), and more.
+- 🚀 **Independent development workflows**: Developers can work on applications specific to their team's business domains, decoupled from each other. This allows teams to choose the development workflows that better suits their requirements, including deployments and release cycles.
+
+## Development tools
+
+To develop Merchant Center custom applications we provide the following Open Source libraries:
+
+- [`application-kit`](https://github.com/commercetools/merchant-center-application-kit): Contains tools and components for developing Merchant Center Custom Applications,
+- [`ui-kit`](https://github.com/commercetools/ui-kit): Our UI components library, based on the commercetools design system.
+
+All packages are published in the [`@commercetools-frontend`](https://www.npmjs.com/org/commercetools-frontend) npm organization.
+
+## Get your first Custom Application up and running on production
+
+In this guide, we will walk you through the main steps that you need to take in order to get your first Custom Application running on production.
+
+1. 👩‍💻 [Develop your Custom Application](./development)
+2. 🚀 [Deploy your Custom Application to a server](./deployment)
+3. ✍ [Register your Custom Application in the Merchant Center](./registration)

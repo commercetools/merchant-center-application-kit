@@ -14,7 +14,7 @@
     "format": "npm run format:js && npm run format:css & npm run format:md & npm run format:yaml",
     "format:js": "prettier --write '**/*.js'",
     "format:css": "prettier --write --parser css '**/*.css'",
-    "format:md": "prettier --write --parser markdown '**/*.md'",
+    "format:md": "prettier --write --parser markdown '**/*.{md,mdx}'",
     "format:yaml": "prettier --write --parser yaml '**/*.yaml'",
     "start": "yarn playground:start",
     "prerelease": "npm run build",
