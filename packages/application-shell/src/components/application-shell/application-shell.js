@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { defaultMemoize } from 'reselect';
-import { Spacings, Text, LinkButton } from '@commercetools-frontend/ui-kit';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
@@ -32,6 +31,7 @@ import NavBar, { LoadingNavBar } from '../navbar';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
 import Redirector from '../redirector';
+import RedirectToProjectCreate from '../redirect-to-project-create';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import styles from './application-shell.mod.css';
 import QuickAccess from '../quick-access';
@@ -282,42 +282,20 @@ export const RestrictedApplication = props => (
                                     user && user.defaultProjectKey
                                   );
 
+                                  /**
+                                   * NOTE:
+                                   *   Given the user has not been loaded a loading spinner is shown.
+                                   *   Given the user was not working on a project previously nor has a default
+                                   *   project, the user will be prompted to create one.
+                                   *   Given the user was working on a project previously or has a default
+                                   *   project, the application will redirect to that project.
+                                   */
+
                                   if (!user) return <ApplicationLoader />;
-
-                                  if (
-                                    props.environment.servedByProxy !== true &&
-                                    !previousProjectKey
-                                  )
-                                    return (
-                                      <Spacings.Stack scale="m">
-                                        <Text.Headline elementType="h2">
-                                          Development mode without projects
-                                        </Text.Headline>
-                                        <Text.Body>
-                                          You are using the Merchant Center in
-                                          development mode - it is not served by
-                                          a proxy. Moreover, you do not have any
-                                          projects yet. As a result we did not
-                                          redirect you anywhere (e.g. another
-                                          application).
-                                        </Text.Body>
-                                        <Text.Body>
-                                          Please go to the
-                                          `application-accounts` to create a
-                                          project first.
-                                        </Text.Body>
-                                        <LinkButton
-                                          to={`account/projects/new`}
-                                          label="Create project"
-                                        />
-                                      </Spacings.Stack>
-                                    );
-
-                                  // NOTE: Given no previous `projectKey` is found we redirect to the base url.
+                                  if (!previousProjectKey)
+                                    return <RedirectToProjectCreate />;
                                   return (
-                                    <Redirect
-                                      to={`/${previousProjectKey || ''}`}
-                                    />
+                                    <Redirect to={`/${previousProjectKey}`} />
                                   );
                                 }}
                               />
