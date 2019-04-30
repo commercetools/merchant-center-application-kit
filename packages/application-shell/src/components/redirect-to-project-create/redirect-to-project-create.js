@@ -14,8 +14,11 @@ export const RedirectToProjectCreate = props => {
    *   In turn this intends wo make explicit that we never want to
    *   render and instead just navigate away.
    */
-  if (props.servedByProxy === true)
+  if (props.servedByProxy === true) {
     window.location.replace('/account/projects/new');
+
+    return null;
+  }
 
   return (
     <Spacings.Stack>

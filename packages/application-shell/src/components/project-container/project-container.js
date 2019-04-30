@@ -43,6 +43,7 @@ export class ProjectContainer extends React.Component {
       pathname: PropTypes.string.isRequired,
     }).isRequired,
     user: PropTypes.shape({
+      defaultProjectKey: PropTypes.string,
       projects: PropTypes.shape({
         total: PropTypes.number.isRequired,
       }).isRequired,
@@ -146,7 +147,10 @@ export class ProjectContainer extends React.Component {
 
     return (
       <React.Suspense fallback={<ApplicationLoader />}>
-        <FetchProject projectKey={this.props.match.params.projectKey}>
+        <FetchProject
+          skip={!this.props.user.defaultProjectKey}
+          projectKey={this.props.match.params.projectKey}
+        >
           {({ isLoading: isProjectLoading, project }) => {
             // TODO: do something if there is an `error`?
             if (isProjectLoading) return <ApplicationLoader />;
