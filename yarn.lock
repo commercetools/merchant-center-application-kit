@@ -1407,6 +1407,17 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@commercetools-frontend/application-components@13.3.5":
+  version "13.3.5"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/application-components/-/application-components-13.3.5.tgz#86cbf894c8bc7be1882099839715ce11b80221b5"
+  integrity sha512-67rTvO0TNPq6SE5Qov+lQF8HQbLMd5MniC8ScJKou8FdBnjIb3lcpi+NCyPUlB4mwB+nH9k53AVNPN3i3Kf/gg==
+  dependencies:
+    "@commercetools-frontend/assets" "13.3.5"
+    "@commercetools-frontend/constants" "13.3.5"
+    prop-types "15.7.2"
+    react-modal "3.8.1"
+    warning "4.0.3"
+
 "@commercetools-frontend/ui-kit@9.4.0":
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-9.4.0.tgz#abee9fff4099b9b1a2a5d7079791d09e865bd629"
