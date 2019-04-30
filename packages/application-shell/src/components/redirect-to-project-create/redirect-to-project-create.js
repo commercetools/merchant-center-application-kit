@@ -16,8 +16,8 @@ export const RedirectToProjectCreate = props => {
         a result we did not redirect you anywhere (e.g. another application).
       </Text.Body>
       <Text.Body>
-        Please go to the `application-accounts` while having it runnign to
-        create a project first.
+        Please go to the `application-accounts` while having it running to
+        create a project first. Note, that you can do the same on staging.
       </Text.Body>
       <LinkButton to={`account/projects/new`} label="Create project" />
     </Spacings.Stack>
