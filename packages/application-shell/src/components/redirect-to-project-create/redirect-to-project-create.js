@@ -4,6 +4,16 @@ import { withApplicationContext } from '@commercetools-frontend/application-shel
 import { Spacings, Text, LinkButton } from '@commercetools-frontend/ui-kit';
 
 export const RedirectToProjectCreate = props => {
+  /**
+   * NOTE:
+   *   This looks a bit unusual: redirecting in render.
+   *   However, when doing it in `cDM` we loose time
+   *   we we actually do never want to render anything or
+   *   interact with anything rendered. Instead we should should
+   *   redirect away. Using a constructor would result in the same.
+   *   In turn this intends wo make explicit that we never want to
+   *   render and instead just navigate away.
+   */
   if (props.servedByProxy === true)
     window.location.replace('/account/projects/new');
 
