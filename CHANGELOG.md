@@ -1,3 +1,15 @@
+## [13.3.8](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.7...v13.3.8) (2019-04-30)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#590](https://github.com/commercetools/merchant-center-application-kit/pull/590) refactor(app-shell): to have redirect-to-project-create component ([@tdeekens](https://github.com/tdeekens))
+
+#### 🔮 Type: Chore
+
+- `application-shell`
+  - [#592](https://github.com/commercetools/merchant-center-application-kit/pull/592) chore(app-shell): to not fetch project without key ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.3.7](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.6...v13.3.7) (2019-04-29)
 
 #### 🐛 Type: Bug
