@@ -216,18 +216,25 @@ const Link = props => {
     );
   }
 
-  // At this point, `href` values are relative but the link router expects
-  // a full relative path from the base URL path.
-  // E.g. if `href="./foo"` and we're on page `/getting-started/bar`, the
-  // value we need is `/getting-started/foo`.
-  // To achieve that, we let the DOM API build the full URL, then we simply
-  // extract the relative path.
-  const linkElement = document.createElement('a');
-  linkElement.href = props.href;
-  const absoluteUrl = linkElement.href; // <-- this now is the full absolute URL
-  const [, relativePath] = absoluteUrl.split(window.location.origin);
+  // Since `document` is not available in SSR, we need to replace
+  // the link with the proper value once the component is mounted.
+  const [linkTo, setLink] = React.useState(props.href);
+  React.useEffect(() => {
+    // At this point, `href` values are relative but the link router expects
+    // a full relative path from the base URL path.
+    // E.g. if `href="./foo"` and we're on page `/getting-started/bar`, the
+    // value we need is `/getting-started/foo`.
+    // To achieve that, we let the DOM API build the full URL, then we simply
+    // extract the relative path.
+    const linkElement = document.createElement('a');
+    linkElement.href = props.href;
+    const absoluteUrl = linkElement.href; // <-- this now is the full absolute URL
+    const [, relativePath] = absoluteUrl.split(window.location.origin);
+    setLink(relativePath);
+  });
+
   return (
-    <HistoryLink to={relativePath} css={linkStyles}>
+    <HistoryLink to={linkTo} css={linkStyles}>
       {props.children}
     </HistoryLink>
   );
