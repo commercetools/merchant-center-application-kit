@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import LayoutContainer from './internals/layout-container';
 import LayoutHeader from './internals/layout-header';
 import LayoutSidebar from './internals/layout-sidebar';
+import LayoutToc from './internals/layout-toc';
 import LayoutFooter from './internals/layout-footer';
 import LayoutMain from './internals/layout-main';
 import Globals from './internals/globals';
@@ -20,7 +21,7 @@ const LayoutContent = props => {
         <LayoutMain
           columns={3}
           css={css`
-            grid-column: 1/3;
+            grid-column: auto;
             grid-row: ${isMenuOpen ? '3' : '2'};
 
             @media screen and (min-width: 40em) {
@@ -33,12 +34,16 @@ const LayoutContent = props => {
           <ContentPagination />
           <LayoutFooter />
         </LayoutMain>
+        <LayoutToc tableOfContents={props.pageData.tableOfContents} />
       </LayoutContainer>
     </React.Fragment>
   );
 };
 LayoutContent.displayName = 'LayoutContent';
 LayoutContent.propTypes = {
+  pageData: PropTypes.shape({
+    tableOfContents: PropTypes.object.isRequired,
+  }).isRequired,
   children: PropTypes.node.isRequired,
 };
 
