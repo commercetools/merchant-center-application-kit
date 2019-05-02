@@ -47,7 +47,7 @@ exports[`rendering should match layout structure 1`] = `
           <div
             id="locale-switcher"
           />
-          <BackToProjectLink
+          <BackToProject
             projectKey="test-default-project-key"
           />
         </Inline>
