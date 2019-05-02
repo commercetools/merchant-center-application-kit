@@ -70,7 +70,7 @@ ListItems.propTypes = {
   children: PropTypes.node,
 };
 
-const LayoutToc = props => {
+const LayoutTOC = props => {
   return (
     <div
       css={css`
@@ -115,11 +115,11 @@ const LayoutToc = props => {
     </div>
   );
 };
-LayoutToc.displayName = 'LayoutToc';
-LayoutToc.propTypes = {
+LayoutTOC.displayName = 'LayoutTOC';
+LayoutTOC.propTypes = {
   tableOfContents: PropTypes.shape({
     items: itemsType,
   }),
 };
 
-export default LayoutToc;
+export default LayoutTOC;

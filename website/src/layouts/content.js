@@ -4,7 +4,7 @@ import { css } from '@emotion/core';
 import LayoutContainer from './internals/layout-container';
 import LayoutHeader from './internals/layout-header';
 import LayoutSidebar from './internals/layout-sidebar';
-import LayoutToc from './internals/layout-toc';
+import LayoutTOC from './internals/layout-toc';
 import LayoutFooter from './internals/layout-footer';
 import LayoutMain from './internals/layout-main';
 import Globals from './internals/globals';
@@ -34,7 +34,7 @@ const LayoutContent = props => {
           <ContentPagination />
           <LayoutFooter />
         </LayoutMain>
-        <LayoutToc tableOfContents={props.pageData.tableOfContents} />
+        <LayoutTOC tableOfContents={props.pageData.tableOfContents} />
       </LayoutContainer>
     </React.Fragment>
   );
