@@ -1,9 +1,9 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import { Spacings, customProperties } from '@commercetools-frontend/ui-kit';
-import * as colors from '../colors';
+import * as colors from '../../colors';
 
-const Footer = () => (
+const LayoutFooter = () => (
   <div
     css={css`
       background-color: ${colors.light.cards};
@@ -38,6 +38,6 @@ const Footer = () => (
     </div>
   </div>
 );
-Footer.displayName = 'Footer';
+LayoutFooter.displayName = 'LayoutFooter';
 
-export default Footer;
+export default LayoutFooter;
