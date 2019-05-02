@@ -1,3 +1,10 @@
+## [13.3.9](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.8...v13.3.9) (2019-05-02)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#590](https://github.com/commercetools/merchant-center-application-kit/pull/594) fix(app-shell): back to project peforming full page reload ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.3.8](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.7...v13.3.8) (2019-04-30)
 
 #### 🐛 Type: Bug
