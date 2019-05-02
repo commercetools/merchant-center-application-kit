@@ -3,7 +3,7 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Spacings, customProperties } from '@commercetools-frontend/ui-kit';
-import * as colors from '../colors';
+import * as colors from '../../colors';
 
 const TextLink = styled(Link)`
   text-decoration: none;

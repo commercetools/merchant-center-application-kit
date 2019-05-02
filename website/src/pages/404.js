@@ -1,11 +1,11 @@
 import React from 'react';
 import Lottie from 'react-lottie';
 import { css } from '@emotion/core';
-import Layout from '../components/layout';
+import { LayoutMarketing } from '../layouts';
 import pageMissingAnimation from './page-missing.json';
 
 const NotFoundPage = () => (
-  <Layout showSidebar={false} showFooter={false}>
+  <LayoutMarketing>
     <div
       css={css`
         display: flex;
@@ -32,7 +32,7 @@ const NotFoundPage = () => (
         />
       </div>
     </div>
-  </Layout>
+  </LayoutMarketing>
 );
 NotFoundPage.displayName = 'NotFoundPage';
 

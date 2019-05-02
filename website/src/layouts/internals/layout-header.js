@@ -1,40 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import { customProperties, Spacings } from '@commercetools-frontend/ui-kit';
-import * as colors from '../colors';
-import LogoSvg from '../images/logo.svg';
-import GitHubSvg from '../images/github.svg';
-import BurgerIcon from './burger-icon';
+import * as colors from '../../colors';
+import LogoSvg from '../../images/logo.svg';
+import GitHubSvg from '../../images/github.svg';
 
-const MenuButton = styled.button`
-  appearance: none;
-  border: 0;
-  color: inherit;
-  padding: 2px;
-  background-color: transparent;
-  border-radius: 4px;
-
-  :focus {
-    outline: 1px solid ${colors.light.cards};
-  }
-
-  @media screen and (min-width: 40em) {
-    display: none;
-  }
-`;
-
-const Header = props => (
+const LayoutHeader = () => (
   <header
-    className={props.className}
     css={css`
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 ${customProperties.spacingM};
       flex: 1;
+      grid-row: 1;
+      grid-column: 1/3;
+      height: 50px;
+      width: 90%;
+      margin: 0 auto;
     `}
   >
     <Link
@@ -65,21 +49,16 @@ const Header = props => (
       >
         <GitHubSvg />
       </a>
-      <MenuButton onClick={props.toggleMenu}>
-        <BurgerIcon isActive={props.isMenuOpen} />
-      </MenuButton>
+      {/* Injected by React portal */}
+      <div
+        id="sidebar-menu-toggle"
+        css={css`
+          display: flex;
+        `}
+      />
     </Spacings.Inline>
   </header>
 );
-Header.displayName = 'Header';
-Header.propTypes = {
-  className: PropTypes.string,
-  siteTitle: PropTypes.string,
-  toggleMenu: PropTypes.func.isRequired,
-  isMenuOpen: PropTypes.bool.isRequired,
-};
-Header.defaultProps = {
-  siteTitle: ``,
-};
+LayoutHeader.displayName = 'LayoutHeader';
 
-export default Header;
+export default LayoutHeader;

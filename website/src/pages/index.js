@@ -14,10 +14,8 @@ import * as colors from '../colors';
 import DevelopItSvg from '../images/develop-it.svg';
 import DeployItSvg from '../images/deploy-it.svg';
 import RegisterItSvg from '../images/register-it.svg';
-import Layout from '../components/layout';
-import SEO from '../components/seo';
-import CodeBlock from '../components/code-block';
-import { TextHighlight } from '../components/styled';
+import { TextHighlight, CodeBlock, SEO } from '../components';
+import { LayoutMarketing } from '../layouts';
 
 const SectionTitle = styled.div`
   font-size: 1.5rem;
@@ -63,7 +61,7 @@ const IndexPage = () => {
     setInterval(() => nextSlide(state => (state + 1) % 3), 3000);
   }, []);
   return (
-    <Layout showSidebar={false}>
+    <LayoutMarketing>
       <SEO title="Home" keywords={pkg.keywords} />
       <PageContainer>
         <Grid
@@ -214,7 +212,7 @@ $ npx @commercetools-frontend/create-mc-app \\
           </CodeBlock>
         </Spacings.Stack>
       </PageContainer>
-    </Layout>
+    </LayoutMarketing>
   );
 };
 IndexPage.displayName = 'IndexPage';
