@@ -1,37 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
-import {
-  Spacings,
-  AngleLeftIcon,
-  LinkButton,
-} from '@commercetools-frontend/ui-kit';
+import { Spacings } from '@commercetools-frontend/ui-kit';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
 import UserSettingsMenu from '../user-settings-menu';
 import ProjectSwitcher from '../project-switcher';
+import BackToProject from '../back-to-project';
 import { getPreviousProjectKey } from '../../utils';
 import LoadingPlaceholder from '../loading-placeholder';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/constants';
-import messages from './messages';
 import styles from './app-bar.mod.css';
-
-export const BackToProjectLink = props => (
-  <FormattedMessage {...messages.backToProjectLink}>
-    {backToProjectMessage => (
-      <LinkButton
-        to={`/${props.projectKey || ''}`}
-        iconLeft={<AngleLeftIcon />}
-        label={backToProjectMessage}
-      />
-    )}
-  </FormattedMessage>
-);
-BackToProjectLink.displayName = 'BackToProjectLink';
-
-BackToProjectLink.propTypes = {
-  projectKey: PropTypes.string,
-};
 
 const AppBar = props => {
   const previousProjectKey = getPreviousProjectKey(
@@ -83,7 +61,7 @@ const AppBar = props => {
                   );
                 if (!props.user.defaultProjectKey) return '';
 
-                return <BackToProjectLink projectKey={previousProjectKey} />;
+                return <BackToProject projectKey={previousProjectKey} />;
               })()}
             </Spacings.Inline>
           </div>

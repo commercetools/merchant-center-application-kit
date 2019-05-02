@@ -3,7 +3,8 @@ import { shallow } from 'enzyme';
 import { Link } from 'react-router-dom';
 import ProjectSwitcher from '../project-switcher';
 import UserSettingsMenu from '../user-settings-menu';
-import AppBar, { BackToProjectLink } from './app-bar';
+import AppBar from './app-bar';
+import BackToProject from '../back-to-project';
 
 const createTestProps = props => ({
   user: {
@@ -128,8 +129,8 @@ describe('rendering', () => {
               it('should pass total to <ProjectSwitcher>', () => {
                 expect(wrapper.find(ProjectSwitcher)).toHaveProp('total', 1);
               });
-              it('should not render <BackToProjectLink>', () => {
-                expect(wrapper).not.toRender(BackToProjectLink);
+              it('should not render <BackToProject>', () => {
+                expect(wrapper).not.toRender(BackToProject);
               });
             });
           });
@@ -148,8 +149,8 @@ describe('rendering', () => {
               it('should not render <ProjectSwitcher>', () => {
                 expect(wrapper).not.toRender(ProjectSwitcher);
               });
-              it('should render <BackToProjectLink>', () => {
-                expect(wrapper).toRender(BackToProjectLink);
+              it('should render <BackToProject>', () => {
+                expect(wrapper).toRender(BackToProject);
               });
             });
           });
@@ -168,8 +169,8 @@ describe('rendering', () => {
             it('should not render <ProjectSwitcher>', () => {
               expect(wrapper).not.toRender(ProjectSwitcher);
             });
-            it('should not render <BackToProjectLink>', () => {
-              expect(wrapper).not.toRender(BackToProjectLink);
+            it('should not render <BackToProject>', () => {
+              expect(wrapper).not.toRender(BackToProject);
             });
           });
         });
