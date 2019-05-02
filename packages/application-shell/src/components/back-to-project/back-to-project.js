@@ -16,7 +16,7 @@ export const BackToProject = props => (
     {backToProjectMessage => (
       <FlatButton
         onClick={() => redirectToProject(props.projectKey || '')}
-        iconLeft={<AngleLeftIcon />}
+        icon={<AngleLeftIcon />}
         label={backToProjectMessage}
       />
     )}
