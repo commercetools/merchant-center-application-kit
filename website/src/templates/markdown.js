@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
+import { graphql, Link as HistoryLink } from 'gatsby';
 import { MDXRenderer } from 'gatsby-mdx';
 import { MDXProvider } from '@mdx-js/react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { customProperties } from '@commercetools-frontend/ui-kit';
 import * as colors from '../colors';
+import ExternalLinkSvg from '../images/external-link.svg';
 import { LayoutContent } from '../layouts';
 import { SEO, CodeBlock } from '../components';
 
@@ -176,9 +177,7 @@ const Delete = styled.span`
   text-decoration: line-through;
 `;
 const Hr = styled(ThematicBreak)``;
-// The external icon style has been taken from https://codepen.io/simevidas/pen/MKdmeV
-// The base64 icon has been generated from https://icons8.com/icons/set/external-link
-const Link = styled.a`
+const linkStyles = css`
   color: ${colors.light.primary};
   text-decoration: none;
 
@@ -192,22 +191,52 @@ const Link = styled.a`
   :visited {
     color: ${colors.light.primarySoft};
   }
-
-  &[href^='http']::after {
-    content: '(external link)';
-    display: inline-block;
-    width: 0.7em;
-    height: 0.7em;
-    text-indent: 0.7em;
-    white-space: nowrap;
-    overflow: hidden;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABJwAAAScBjbzwzAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADgSURBVDiNxVJBTsMwEJx1l09wAztcyAtaiPqA3tsPgPgBfIErv0DiE1WfYCeHyqdWST9hZXsiQsYJlkBiTqvx7OystcB/g3JEjo3EXBk8AYDKMSiDpzJ4EsgCkNPXN/4s7KxYKcibEK6i/tcy+BfLek7Ah4La9JDt95gX5mDZLFMJLOu5Y901XFRjK6VJAI71wrHuar65n9SmyLjZsXlODUka5E7mmBhA6oGE1rdhvxvV/LRCjibrDqYwGBDQ1nx9NyZsuKhAOMb88Ae90BORendsLlMGAmlV3z/+NvHf4wx/vFAagc71gAAAAABJRU5ErkJggg==);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100%;
-    margin-left: 0.1em;
-  }
 `;
+// eslint-disable-next-line react/display-name
+const Link = props => {
+  const isExternalLink =
+    /^https?/.test(props.href) || (props.target && props.target === '_blank');
+
+  if (isExternalLink) {
+    return (
+      <span
+        css={css`
+          display: inline-flex;
+          align-items: center;
+        `}
+      >
+        <a
+          {...props}
+          css={linkStyles}
+          target="_blank"
+          rel="noopener noreferrer"
+        />
+        <ExternalLinkSvg />
+      </span>
+    );
+  }
+
+  // At this point, `href` values are relative but the link router expects
+  // a full relative path from the base URL path.
+  // E.g. if `href="./foo"` and we're on page `/getting-started/bar`, the
+  // value we need is `/getting-started/foo`.
+  // To achieve that, we let the DOM API build the full URL, then we simply
+  // extract the relative path.
+  const linkElement = document.createElement('a');
+  linkElement.href = props.href;
+  const absoluteUrl = linkElement.href; // <-- this now is the full absolute URL
+  const [, relativePath] = absoluteUrl.split(window.location.origin);
+  return (
+    <HistoryLink to={relativePath} css={linkStyles}>
+      {props.children}
+    </HistoryLink>
+  );
+};
+Link.propTypes = {
+  href: PropTypes.string.isRequired,
+  target: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
 const Img = styled.img`
   background-color: ${colors.light.surface};
   box-sizing: content-box;
