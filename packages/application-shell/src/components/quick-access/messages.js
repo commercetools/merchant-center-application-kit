@@ -190,6 +190,10 @@ export default defineMessages({
     id: 'QuickAccess.useProject',
     defaultMessage: 'Switch to project "{projectName}"',
   },
+  openManageProjects: {
+    id: 'QuickAccess.openManageProject',
+    defaultMessage: 'Open Manage Projects',
+  },
 
   // subcommands
   openVariantById: {

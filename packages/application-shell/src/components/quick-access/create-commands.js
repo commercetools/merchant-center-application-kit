@@ -391,6 +391,16 @@ export default ({
       keywords: ['Sign out'],
       action: { type: 'go', to: `/logout?reason=${LOGOUT_REASONS.USER}` },
     },
+    {
+      id: 'go/manage-projects',
+      text: intl.formatMessage(messages.openManageProjects),
+      keywords: [
+        'Go to manage projects',
+        'Go to projects',
+        'Open projects list',
+      ],
+      action: { type: 'go', to: `/account/projects` },
+    },
     ...(user
       ? user.projects.results.map(userProject => ({
           id: `go/project(${userProject.key})`,
