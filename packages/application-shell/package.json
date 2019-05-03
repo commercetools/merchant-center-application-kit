@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-shell",
-  "version": "13.4.0",
+  "version": "13.4.1",
   "description": "React component to bootstrap the general MC application logic",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
