@@ -297,7 +297,7 @@ const components = {
   table: props => (
     <div
       css={css`
-        overflow: auto;
+        overflow-x: auto;
       `}
     >
       <Table {...props} />

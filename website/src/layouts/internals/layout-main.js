@@ -11,7 +11,8 @@ const LayoutMain = props => (
       grid-row: 2;
       min-width: 0;
       overflow-x: hidden;
-      overflow-y: scroll;
+      overflow-y: scroll; /* has to be scroll, not auto */
+      -webkit-overflow-scrolling: touch; /* enables "momentum" style scrolling */
       display: flex;
       flex-direction: column;
       position: relative;
