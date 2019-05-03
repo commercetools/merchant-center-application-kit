@@ -1,3 +1,17 @@
+## [13.4.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.9...v13.4.0) (2019-05-03)
+
+#### 🔮 Type: Chore
+
+- `i18n`
+  - [#600](https://github.com/commercetools/merchant-center-application-kit/pull/600) Translate '/packages/i18n/data/core.json' in 'de' ([@transifex-integration[bot]](https://github.com/apps/transifex-integration))
+- `application-components`, `application-shell`, `jest-preset-mc-app`, `l10n`, `mc-http-server`, `mc-scripts`, `sdk`, `sentry`
+  - [#598](https://github.com/commercetools/merchant-center-application-kit/pull/598) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+
+#### 💅 Type: Enhancement
+
+- `application-shell`, `i18n`
+  - [#599](https://github.com/commercetools/merchant-center-application-kit/pull/599) feat(app-shell): add "Manage Projects" to Quick Access ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.3.9](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.8...v13.3.9) (2019-05-02)
 
 #### 🐛 Type: Bug
