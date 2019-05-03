@@ -1,3 +1,10 @@
+## [13.4.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.4.0...v13.4.1) (2019-05-03)
+
+#### 🐛 Type: Chore
+
+- `application-shell`
+  - [#602](https://github.com/commercetools/merchant-center-application-kit/pull/602) refactor(app-shell): remove old feature flags ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.4.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.9...v13.4.0) (2019-05-03)
 
 #### 🔮 Type: Chore
