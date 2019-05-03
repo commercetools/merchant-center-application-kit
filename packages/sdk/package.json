@@ -40,9 +40,9 @@
     "@commercetools/api-request-builder": "5.0.0",
     "@commercetools/sdk-client": "2.0.0",
     "@commercetools/sdk-middleware-correlation-id": "2.0.0",
-    "@commercetools/sdk-middleware-http": "5.1.0",
+    "@commercetools/sdk-middleware-http": "5.1.1",
     "@commercetools/sdk-middleware-user-agent": "2.0.1",
-    "fast-equals": "1.6.2",
+    "fast-equals": "1.6.3",
     "prop-types": "15.7.2",
     "qss": "2.0.3",
     "unfetch": "4.1.0"
