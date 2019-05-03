@@ -65,6 +65,7 @@ class QuickAccess extends React.Component {
     }).isRequired,
     featureToggles: PropTypes.shape({
       pimSearch: PropTypes.bool,
+      projectsList: PropTypes.bool,
       customerGroups: PropTypes.bool,
       projectSettings: PropTypes.bool,
       developerSettings: PropTypes.bool,
@@ -356,6 +357,7 @@ export default flowRight(
   injectIntl,
   injectFeatureToggles([
     'pimSearch',
+    'projectsList',
     'customerGroups',
     'projectSettings',
     'developerSettings',
