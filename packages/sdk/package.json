@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/sdk",
-  "version": "13.3.6",
+  "version": "13.4.0",
   "description": "Tools for declarative fetching",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
