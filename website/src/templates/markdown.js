@@ -10,6 +10,7 @@ import * as colors from '../colors';
 import ExternalLinkSvg from '../images/external-link.svg';
 import { LayoutContent } from '../layouts';
 import { SEO, CodeBlock } from '../components';
+import AnchorLinkSvg from '../images/anchor-link.svg';
 
 const TypographyPage = styled.div`
   font-family: 'Raleway', sans-serif;
@@ -250,15 +251,43 @@ const Img = styled.img`
   max-width: 100%;
 `;
 
+/* eslint-disable react/display-name,react/prop-types */
+const withAnchorLink = Component => props => {
+  return (
+    <Component
+      {...props}
+      css={css`
+        a {
+          margin-left: -${customProperties.spacingM};
+        }
+        svg {
+          visibility: hidden;
+        }
+        :hover {
+          svg {
+            visibility: visible;
+          }
+        }
+      `}
+    >
+      <a href={`#${props.id}`}>
+        <AnchorLinkSvg aria-hidden="true" width="16" height="16" />
+      </a>
+      {props.children}
+    </Component>
+  );
+};
+/* eslint-enable */
+
 // See https://mdxjs.com/getting-started#table-of-components
 const components = {
   p: Paragraph,
   h1: H1,
-  h2: H2,
-  h3: H3,
-  h4: H4,
-  h5: H5,
-  h6: H6,
+  h2: withAnchorLink(H2),
+  h3: withAnchorLink(H3),
+  h4: withAnchorLink(H4),
+  h5: withAnchorLink(H5),
+  h6: withAnchorLink(H6),
   thematicBreak: ThematicBreak,
   blockquote: Blockquote,
   ul: Ul,
@@ -289,7 +318,7 @@ const components = {
 };
 
 const MarkdownTemplate = props => (
-  <LayoutContent>
+  <LayoutContent pageData={props.data.mdx}>
     <MDXProvider components={components}>
       <TypographyPage>
         <SEO title={props.data.mdx.frontmatter.title} />
@@ -313,6 +342,7 @@ MarkdownTemplate.propTypes = {
       code: PropTypes.shape({
         body: PropTypes.string.isRequired,
       }).isRequired,
+      tableOfContents: PropTypes.object.isRequired,
     }).isRequired,
   }).isRequired,
 };
@@ -330,6 +360,7 @@ export const pageQuery = graphql`
       code {
         body
       }
+      tableOfContents(maxDepth: 2)
     }
   }
 `;
