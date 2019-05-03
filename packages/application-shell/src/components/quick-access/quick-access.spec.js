@@ -37,10 +37,8 @@ const managePermissions = { canManageProject: true };
 
 const flags = {
   pimSearch: true,
-  customerGroups: true,
-  projectSettings: true,
-  developerSettings: true,
-  projectSettingsChannels: true,
+  projectsList: true,
+  customApplications: true,
   canViewOrders: true,
   canViewCategories: true,
   canViewDashboard: true,
