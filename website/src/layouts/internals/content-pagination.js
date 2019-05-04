@@ -61,31 +61,37 @@ const Pagination = () => {
   return (
     <div
       css={css`
-        display: flex;
-        justify-content: space-between;
-        padding: ${customProperties.spacingM};
-        margin-top: ${customProperties.spacingM};
-        border-top: 2px solid ${colors.light.cards};
-        background-color: ${colors.light.cardsSoft};
+        display: block;
       `}
     >
-      {hasPagination && previous && (
-        <TextLink to={previous.linkTo}>
-          <Spacings.Stack scale="s">
-            <small>Previous:</small>
-            {previous.label}
-          </Spacings.Stack>
-        </TextLink>
-      )}
-      <div css={{ margin: 'auto' }} />
-      {hasPagination && next && (
-        <TextLink to={next.linkTo}>
-          <Spacings.Stack scale="s">
-            <small>Next:</small>
-            {next.label}
-          </Spacings.Stack>
-        </TextLink>
-      )}
+      <div
+        css={css`
+          display: flex;
+          justify-content: space-between;
+          padding: ${customProperties.spacingM};
+          margin-top: ${customProperties.spacingM};
+          border-top: 2px solid ${colors.light.cards};
+          background-color: ${colors.light.cardsSoft};
+        `}
+      >
+        {hasPagination && previous && (
+          <TextLink to={previous.linkTo}>
+            <Spacings.Stack scale="s">
+              <small>Previous:</small>
+              {previous.label}
+            </Spacings.Stack>
+          </TextLink>
+        )}
+        <div css={{ margin: 'auto' }} />
+        {hasPagination && next && (
+          <TextLink to={next.linkTo}>
+            <Spacings.Stack scale="s">
+              <small>Next:</small>
+              {next.label}
+            </Spacings.Stack>
+          </TextLink>
+        )}
+      </div>
     </div>
   );
 };
