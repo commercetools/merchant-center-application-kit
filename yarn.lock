@@ -1822,21 +1822,21 @@
     invariant "2.2.4"
     mitt "1.1.3"
 
-"@flopflip/react-broadcast@8.1.0":
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-8.1.0.tgz#f718b7443fbd8e76e38cee22df0944c6267a4fc4"
-  integrity sha512-RDyk8SM9JqkRwVIZOS97GABc9gt3W/0vPGO7nFmOrvX6Fhw/JJ4uUARDkbGs/YkvFYrRhvGxtChcvq1PSa29Ew==
+"@flopflip/react-broadcast@8.2.1":
+  version "8.2.1"
+  resolved "https://registry.npmjs.org/@flopflip/react-broadcast/-/react-broadcast-8.2.1.tgz#1fe880a95e117dad51566fca16839cde0995c770"
+  integrity sha512-PF/Kz83DVCyu83hEy06yASNn3RWwH7HYD8AXX1pXc6qnrvaVZfjLdORl3sz+clUv623MCCgRLjQoW6nDQjuHRQ==
   dependencies:
     "@babel/runtime" "7.4.4"
-    "@flopflip/react" "^7.1.0"
+    "@flopflip/react" "^7.2.1"
     "@flopflip/types" "^2.1.0"
     create-react-context "0.2.3"
     lodash "4.17.11"
 
-"@flopflip/react@^7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-7.1.0.tgz#f4bc9d9c6746e61f6b8a1c406f3a2f9455f55f29"
-  integrity sha512-Ib1bDFEjWci4+ngrSheBJSxhdqRuKXpniaPQQSRqlO6TZaTIUpguhGyv1qYXddm7L+void70V2hVCOrLAifFMg==
+"@flopflip/react@^7.2.1":
+  version "7.2.1"
+  resolved "https://registry.npmjs.org/@flopflip/react/-/react-7.2.1.tgz#50bdad0ab2dca3e70d0d62d17c19fbd8e9926abe"
+  integrity sha512-vuXrXJQ03yrbEsX4NXFcEtmgATzKotlvpj9vETLNIHJhscHh+BnNdBoErpR/DqrOTZLI0kkG8DSk+hjgOeAo9Q==
   dependencies:
     "@babel/runtime" "7.4.4"
     create-react-context "0.2.3"
