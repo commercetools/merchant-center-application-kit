@@ -1,7 +1,7 @@
 module.exports = {
   '*.{md,mdx}': ['yarn format:md', 'git add'],
   '*.yaml': ['yarn format:yaml', 'git add'],
-  '*.js': [
+  '*.{js,ts,tsx}': [
     // NOTE: apparently if you pass some argument that is not a flag AFTER the `reporters`
     // flag, jest does not seem correctly parse the arguments.
     //

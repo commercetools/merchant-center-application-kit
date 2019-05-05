@@ -1,11 +1,25 @@
-extends: '@commercetools-frontend/eslint-config-mc-app'
+extends:
+  - xo
+  - '@commercetools-frontend/eslint-config-mc-app'
+  - xo-react
+  - xo-typescript
+  - prettier/@typescript-eslint
+rules:
+  '@typescript-eslint/explicit-function-return-type': false
+  '@typescript-eslint/no-var-requires': false
+  '@typescript-eslint/no-require-imports': false
+  '@typescript-eslint/promise-function-async': false
+  'react/jsx-tag-spacing': false
 settings:
   react:
-    version: '^16.0'
+    version: 'detect'
   import/ignore:
     - /test-utils/
     - test-utils$
     - test-utils\.js$
+  import/resolver:
+    typescript:
+      directory: ./tsconfig.json
 overrides:
   - files: ['*.spec.js']
     rules:
@@ -19,3 +33,12 @@ overrides:
     globals:
       page: true
       HOST: true
+  - files: ['*.ts', '*.tsx']
+    rules:
+      import/extensions:
+        - error
+        - always
+        - js: never
+        - mjs: never
+        - ts: never
+        - tsx: never

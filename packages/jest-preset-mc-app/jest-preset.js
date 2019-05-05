@@ -12,6 +12,7 @@ module.exports = {
       NODE_ENV: 'test',
     },
   },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
   moduleDirectories: ['src', 'node_modules'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': resolveRelativePath(
@@ -30,9 +31,10 @@ module.exports = {
   testEnvironment: 'jsdom',
   testURL: 'https://mc.commercetools.com/',
   testPathIgnorePatterns: ['node_modules', 'cypress'],
-  testRegex: '\\.spec\\.js$',
+  testRegex: '\\.spec\\.[j|t]sx?$',
   transform: {
     '^.+\\.js$': resolveRelativePath('./transform-babel-jest.js'),
+    '^.+\\.tsx?$': 'ts-jest',
     '^.+\\.graphql$': 'jest-transform-graphql',
   },
   transformIgnorePatterns: ['node_modules'],
