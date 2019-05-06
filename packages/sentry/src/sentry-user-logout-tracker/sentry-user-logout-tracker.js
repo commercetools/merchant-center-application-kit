@@ -1,7 +1,10 @@
-import React from 'react';
+// @flow strict
+import * as React from 'react';
 import * as sentry from '../sentry';
 
-class SentryUserLogoutTracker extends React.Component {
+type Props = {};
+
+class SentryUserLogoutTracker extends React.Component<Props> {
   static displayName = 'SentryUserLogoutTracker';
   componentDidMount() {
     // When the user is not logged in anymore (e.g. on logout) we still track

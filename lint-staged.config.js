@@ -11,6 +11,7 @@ module.exports = {
     //
     // For that reason, we move the `--onlyChanged` flag next to it.
     'yarn lint:js --reporters=jest-silent-reporter --onlyChanged',
+    'flow focus-check',
   ],
   '*.css': [
     // NOTE: apparently if you pass some argument that is not a flag AFTER the `reporters`

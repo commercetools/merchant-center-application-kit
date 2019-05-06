@@ -34,6 +34,7 @@ const createConfig = cliArgs => {
       sourcemap: true,
     },
     plugins: [
+      patchedFlowEntry({ mode: 'strict' }),
       peerDeps({
         includeDependencies: true,
       }),
@@ -56,9 +57,7 @@ const createConfig = cliArgs => {
         include: 'node_modules/**',
       }),
       resolve({
-        module: true,
-        jsnext: true,
-        main: true,
+        mainFiels: ['module', 'jsnext', 'main'],
         preferBuiltins: true,
         modulesOnly: true,
       }),
@@ -102,3 +101,25 @@ const createConfig = cliArgs => {
 };
 
 module.exports = createConfig;
+
+// This plugin is based on https://github.com/swansontec/rollup-plugin-flow-entry
+// We need this to be able to specify the correct path to the
+// flow files (`dist/types`)
+function patchedFlowEntry(config = {}) {
+  const mode = config.mode ? ` ${config.mode}` : '';
+  return {
+    name: 'rollup-plugin-flow-entry-patched',
+    generateBundle(opts, bundle) {
+      Object.keys(bundle).forEach(key => {
+        const file = bundle[key];
+        if (file.isAsset || !file.isEntry || file.facadeModuleId == null) {
+          return;
+        }
+        const source = `// @flow${mode}\n\nexport * from './types'\n`;
+        const fileName = `${file.fileName}.flow`;
+        // eslint-disable-next-line no-param-reassign
+        bundle[fileName] = { fileName, isAsset: true, source };
+      });
+    },
+  };
+}

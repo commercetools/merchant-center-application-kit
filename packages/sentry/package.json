@@ -28,10 +28,11 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist/**",
-    "build": "npm run build:es && npm run build:cjs",
-    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.js -o ./dist/sentry.cjs.js",
-    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js -o ./dist/sentry.es.js",
-    "build:es:watch": "npm run build:es -- -w"
+    "build": "yarn build:es && yarn build:cjs && yarn build:flow",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js -o ./dist/sentry.cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.js -o ./dist/sentry.es.js",
+    "build:es:watch": "yarn build:es -- -w",
+    "build:flow": "flow-copy-source src dist/types --ignore '**/*.spec.js'"
   },
   "dependencies": {
     "@sentry/browser": "5.1.2",

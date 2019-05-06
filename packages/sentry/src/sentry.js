@@ -1,15 +1,26 @@
+// @flow strict
 import * as Sentry from '@sentry/browser';
 
+type App = {
+  revision: string,
+  env: string,
+  location: string,
+  cdnUrl: string,
+  frontendHost: string,
+  trackingSentry?: string,
+};
+
 export const boot = () => {
-  if (window.app.trackingSentry) {
+  const app: App = window.app;
+  if (app.trackingSentry) {
     Sentry.init({
-      dsn: window.app.trackingSentry,
-      release: window.app.revision,
-      environment: `${window.app.env}-${window.app.location}`,
+      dsn: app.trackingSentry,
+      release: app.revision,
+      environment: `${app.env}-${app.location}`,
       // in order to reduce the noise in sentry we only track errors that come
       // from our code and ignore errors that come from other services
       // https://blog.sentry.io/2017/03/27/tips-for-reducing-javascript-error-noise.html
-      whitelistUrls: [window.app.cdnUrl, window.app.frontendHost],
+      whitelistUrls: [app.cdnUrl, app.frontendHost],
     });
     Sentry.configureScope(scope => {
       scope.setTag('role', 'frontend');
@@ -17,8 +28,14 @@ export const boot = () => {
   }
 };
 
-export const updateUser = user => {
-  if (user && window.app.trackingSentry) {
+export type User = {
+  id: string,
+  email: string,
+};
+
+export const updateUser = (user?: User) => {
+  const app: App = window.app;
+  if (user && app.trackingSentry) {
     // to avoid sending personal data to sentry we anonymize the email address
     // by only sending the domain part or the email
     const emailTld = user.email.split('@')[1];
@@ -32,14 +49,24 @@ export const updateUser = user => {
 };
 
 export const stopTrackingUser = () => {
-  if (window.app.trackingSentry)
+  const app: App = window.app;
+  if (app.trackingSentry)
     Sentry.configureScope(scope => {
       scope.clear();
     });
 };
 
-export const reportErrorToSentry = (error, extraInfo, getIsEnabled) => {
-  const isEnabled = getIsEnabled ? getIsEnabled() : window.app.trackingSentry;
+type ExtraInfo = {
+  extra?: { [key: string]: mixed } | string,
+};
+
+export const reportErrorToSentry = (
+  error: Error | string,
+  extraInfo?: ExtraInfo,
+  getIsEnabled: () => boolean
+) => {
+  const app: App = window.app;
+  const isEnabled = getIsEnabled ? getIsEnabled() : app.trackingSentry;
 
   if (error instanceof Error === false && !isEnabled) {
     console.warn(

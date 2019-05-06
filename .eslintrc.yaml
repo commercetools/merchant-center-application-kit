@@ -1,4 +1,6 @@
-extends: '@commercetools-frontend/eslint-config-mc-app'
+extends:
+  - '@commercetools-frontend/eslint-config-mc-app'
+  - plugin:flowtype/recommended
 settings:
   react:
     version: '^16.0'
@@ -6,6 +8,8 @@ settings:
     - /test-utils/
     - test-utils$
     - test-utils\.js$
+  flowtype:
+    onlyFilesWithFlowAnnotation: true
 overrides:
   - files: ['*.spec.js']
     rules:
