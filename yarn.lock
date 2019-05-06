@@ -19430,10 +19430,10 @@ react-color@^2.17.0:
     reactcss "^1.2.0"
     tinycolor2 "^1.4.1"
 
-react-dev-utils@7.0.3:
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-7.0.3.tgz#f1316cfffd792fd41b0c28ad5db86c1d74484d6f"
-  integrity sha512-KEFsH1CewnmddPLXIuU+QWKTH/hpJKZClL2+74XN54NkPnR2KnB5gGmuQ0E7DwcCkUpdMxxqBX+rB7aB5sZS4A==
+react-dev-utils@7.0.5, react-dev-utils@^7.0.0, react-dev-utils@^7.0.1:
+  version "7.0.5"
+  resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-7.0.5.tgz#cb95375d01ae71ca27b3c7616006ef7a77d14e8e"
+  integrity sha512-zJnqqb0x6gd63E3xoz5pXAxBPNaW75Hyz7GgQp0qPhMroBCRQtRvG67AoTZZY1z4yCYVJQZAfQJFdnea0Ujbug==
   dependencies:
     "@babel/code-frame" "7.0.0"
     address "1.0.3"
@@ -19453,7 +19453,7 @@ react-dev-utils@7.0.3:
     loader-utils "1.2.3"
     opn "5.4.0"
     pkg-up "2.0.0"
-    react-error-overlay "^5.1.3"
+    react-error-overlay "^5.1.4"
     recursive-readdir "2.2.2"
     shell-quote "1.6.1"
     sockjs-client "1.3.0"
@@ -19482,36 +19482,6 @@ react-dev-utils@^4.2.1:
     shell-quote "1.6.1"
     sockjs-client "1.1.4"
     strip-ansi "3.0.1"
-    text-table "0.2.0"
-
-react-dev-utils@^7.0.0, react-dev-utils@^7.0.1:
-  version "7.0.5"
-  resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-7.0.5.tgz#cb95375d01ae71ca27b3c7616006ef7a77d14e8e"
-  integrity sha512-zJnqqb0x6gd63E3xoz5pXAxBPNaW75Hyz7GgQp0qPhMroBCRQtRvG67AoTZZY1z4yCYVJQZAfQJFdnea0Ujbug==
-  dependencies:
-    "@babel/code-frame" "7.0.0"
-    address "1.0.3"
-    browserslist "4.4.1"
-    chalk "2.4.2"
-    cross-spawn "6.0.5"
-    detect-port-alt "1.1.6"
-    escape-string-regexp "1.0.5"
-    filesize "3.6.1"
-    find-up "3.0.0"
-    global-modules "2.0.0"
-    globby "8.0.2"
-    gzip-size "5.0.0"
-    immer "1.10.0"
-    inquirer "6.2.1"
-    is-root "2.0.0"
-    loader-utils "1.2.3"
-    opn "5.4.0"
-    pkg-up "2.0.0"
-    react-error-overlay "^5.1.4"
-    recursive-readdir "2.2.2"
-    shell-quote "1.6.1"
-    sockjs-client "1.3.0"
-    strip-ansi "5.0.0"
     text-table "0.2.0"
 
 react-display-name@0.2.0:
@@ -19575,7 +19545,7 @@ react-error-overlay@^3.0.0:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
   integrity sha512-XzgvowFrwDo6TWcpJ/WTiarb9UI6lhA4PMzS7n1joK3sHfBBBOQHUc0U4u57D6DWO9vHv6lVSWx2Q/Ymfyv4hw==
 
-react-error-overlay@^5.1.3, react-error-overlay@^5.1.4:
+react-error-overlay@^5.1.4:
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.4.tgz#88dfb88857c18ceb3b9f95076f850d7121776991"
   integrity sha512-fp+U98OMZcnduQ+NSEiQa4s/XMsbp+5KlydmkbESOw4P69iWZ68ZMFM5a2BuE0FgqPBKApJyRuYHR95jM8lAmg==
