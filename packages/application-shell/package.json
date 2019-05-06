@@ -53,7 +53,7 @@
     "@commercetools-frontend/url-utils": "13.3.5",
     "@flopflip/launchdarkly-adapter": "2.5.0",
     "@flopflip/memory-adapter": "1.2.3",
-    "@flopflip/react-broadcast": "8.1.0",
+    "@flopflip/react-broadcast": "8.2.1",
     "@sentry/browser": "5.1.2",
     "apollo-cache-inmemory": "1.5.1",
     "apollo-client": "2.5.1",
