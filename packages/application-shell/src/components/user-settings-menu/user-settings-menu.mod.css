@@ -18,7 +18,7 @@
   background: var(--color-surface);
   border: 1px var(--color-primary-40) solid;
   border-radius: var(--border-radius-6);
-  box-shadow: var(--shadow-7-first), var(--shadow-7-second);
+  box-shadow: var(--shadow-7);
   width: var(--menu-width);
   right: var(--menu-position-right);
   top: var(--menu-position-top);
