@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import Select from 'react-select';
-import { ProjectSwitcher } from './project-switcher';
+import { SelectInput } from '@commercetools-frontend/ui-kit';
+import { ProjectSwitcher, Option, ValueContainer } from './project-switcher';
 
 const createProjectsQuery = custom => ({
   loading: false,
@@ -61,8 +61,8 @@ describe('rendering', () => {
       wrapper = shallow(<ProjectSwitcher {...props} />);
     });
 
-    it('should not render a `<Select>`', () => {
-      expect(wrapper).not.toRender(Select);
+    it('should not render a `<SelectInput>`', () => {
+      expect(wrapper).not.toRender(SelectInput);
     });
   });
 
@@ -76,59 +76,57 @@ describe('rendering', () => {
       wrapper = shallow(<ProjectSwitcher {...props} />);
     });
 
-    it('should render a `<Select>`', () => {
-      expect(wrapper).toRenderElementTimes(Select, 1);
+    it('should render a `<SelectInput>`', () => {
+      expect(wrapper).toRenderElementTimes(SelectInput, 1);
     });
 
-    it('should pass empty `options` to `<Select>`', () => {
-      expect(wrapper.find(Select)).toHaveProp('options', null);
+    it('should pass empty `options` to `<SelectInput>`', () => {
+      expect(wrapper.find(SelectInput)).toHaveProp('options', null);
     });
   });
 
   describe('when loaded', () => {
-    let valueRenderer;
+    let valueContainer;
     beforeEach(() => {
       props = createTestProps();
       wrapper = shallow(<ProjectSwitcher {...props} />);
-      valueRenderer = wrapper.find(Select).prop('valueRenderer')();
+      valueContainer = shallow(
+        <ValueContainer
+          projectCount={props.projectsQuery.user.projects.results.length}
+        >
+          test project
+        </ValueContainer>
+      );
     });
 
     it('should match snapshot', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it('should render a `<Select>`', () => {
-      expect(wrapper).toRenderElementTimes(Select, 1);
+    it('should render a `<SelectInput>`', () => {
+      expect(wrapper).toRenderElementTimes(SelectInput, 1);
     });
 
-    it('should render a `<Select>` with the value set to the current project', () => {
-      expect(wrapper.find(Select).prop('value')).toBe(props.projectKey);
-    });
-
-    it('should render the current name in the selector', () => {
-      const selectedName = valueRenderer.props.children[0];
-      expect(selectedName.props.children).toBe('name1');
+    it('should render a `<SelectInput>` with the value set to the current project', () => {
+      expect(wrapper.find(SelectInput).prop('value')).toBe(props.projectKey);
     });
 
     it('should render the number of projects in the selector', () => {
-      const projectNumber = valueRenderer.props.children[1];
-      expect(projectNumber.props.children).toBe(
-        props.projectsQuery.user.projects.results.length
-      );
+      expect(valueContainer).toIncludeText('4');
     });
 
     describe('dropdown option item', () => {
       describe('project is not expired or suspended', () => {
         let optionWrapper;
         beforeEach(() => {
-          optionWrapper = shallow(
-            wrapper.instance().handleRenderItemName({
-              name: 'Project A',
-              key: 'project-a',
-              expiry: { isActive: false },
-              suspension: { isActive: false },
-            })
-          );
+          const data = {
+            name: 'Project A',
+            key: 'project-a',
+            expiry: { isActive: false },
+            suspension: { isActive: false },
+          };
+
+          optionWrapper = shallow(<Option data={data} />);
         });
         it('should render item name', () => {
           expect(optionWrapper.find('.item-text-main')).toIncludeText(
@@ -150,14 +148,14 @@ describe('rendering', () => {
       describe('project is has suspension', () => {
         let optionWrapper;
         beforeEach(() => {
-          optionWrapper = shallow(
-            wrapper.instance().handleRenderItemName({
-              name: 'Project A',
-              key: 'project-a',
-              expiry: { isActive: false },
-              suspension: { isActive: true },
-            })
-          );
+          const data = {
+            name: 'Project A',
+            key: 'project-a',
+            expiry: { isActive: false },
+            suspension: { isActive: true },
+          };
+
+          optionWrapper = shallow(<Option data={data} />);
         });
         it('should render item name', () => {
           expect(
@@ -182,16 +180,16 @@ describe('rendering', () => {
       describe('project is expired', () => {
         let optionWrapper;
         beforeEach(() => {
-          optionWrapper = shallow(
-            wrapper.instance().handleRenderItemName({
-              name: 'Project A',
-              key: 'project-a',
-              expiry: { isActive: true },
-              suspension: {
-                isActive: false,
-              },
-            })
-          );
+          const data = {
+            name: 'Project A',
+            key: 'project-a',
+            expiry: { isActive: true },
+            suspension: {
+              isActive: false,
+            },
+          };
+
+          optionWrapper = shallow(<Option data={data} />);
         });
         it('should render item name', () => {
           expect(
@@ -232,7 +230,9 @@ describe('callbacks', () => {
         window.location = { replace };
         props = createTestProps();
         wrapper = shallow(<ProjectSwitcher {...props} />);
-        wrapper.find(Select).simulate('change', { key: 'key2' });
+        wrapper
+          .find(SelectInput)
+          .simulate('change', { target: { value: 'key2' } });
       });
       it('should redirect to the new project url', () => {
         expect(replace).toHaveBeenCalledTimes(1);
@@ -248,7 +248,9 @@ describe('callbacks', () => {
         window.location = { replace };
         props = createTestProps({ projectKey: 'key1' });
         wrapper = shallow(<ProjectSwitcher {...props} />);
-        wrapper.find(Select).simulate('change', { key: 'key1' });
+        wrapper
+          .find(SelectInput)
+          .simulate('change', { target: { value: 'key1' } });
       });
       it('should not redirect to the new project', () => {
         expect(replace).toHaveBeenCalledTimes(0);

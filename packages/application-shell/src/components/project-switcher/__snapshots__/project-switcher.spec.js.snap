@@ -6,45 +6,18 @@ exports[`rendering when loaded should match snapshot 1`] = `
   data-track-component="ProjectSwitch"
   data-track-event="click"
 >
-  <Select
-    arrowRenderer={[Function]}
-    autoBlur={true}
-    autosize={true}
-    backspaceRemoves={false}
-    backspaceToRemoveMessage="Press backspace to remove {label}"
-    className="react-select-container"
-    clearAllText="Clear all"
-    clearRenderer={[Function]}
-    clearValueText="Clear value"
-    clearable={false}
-    closeOnSelect={true}
-    deleteRemoves={true}
-    delimiter=","
-    disabled={false}
-    escapeClearsValue={true}
-    filterOptions={[Function]}
-    ignoreAccents={true}
-    ignoreCase={true}
-    inputProps={Object {}}
-    isLoading={false}
-    joinValues={false}
-    labelKey="name"
-    matchPos="any"
-    matchProp="any"
-    menuBuffer={0}
-    menuRenderer={[Function]}
-    multi={false}
+  <InjectIntl(SelectInput)
+    backspaceRemovesValue={false}
+    components={
+      Object {
+        "Option": [Function],
+        "ValueContainer": [Function],
+      }
+    }
+    isClearable={false}
     name="project-switcher"
-    noResultsText="No results found"
-    onBlurResetsInput={true}
+    noOptionsMessage={[Function]}
     onChange={[Function]}
-    onClose={[Function]}
-    onCloseResetsInput={true}
-    onOpen={[Function]}
-    onSelectResetsInput={true}
-    openOnClick={true}
-    optionComponent={[Function]}
-    optionRenderer={[Function]}
     options={
       Array [
         Object {
@@ -52,57 +25,52 @@ exports[`rendering when loaded should match snapshot 1`] = `
             "isActive": false,
           },
           "key": "key4",
+          "label": "name4",
           "name": "name4",
           "suspension": Object {
             "isActive": false,
           },
+          "value": "key4",
         },
         Object {
           "expiry": Object {
             "isActive": false,
           },
           "key": "key2",
+          "label": "name2",
           "name": "name2",
           "suspension": Object {
             "isActive": false,
           },
+          "value": "key2",
         },
         Object {
           "expiry": Object {
             "isActive": false,
           },
           "key": "key1",
+          "label": "name1",
           "name": "name1",
           "suspension": Object {
             "isActive": false,
           },
+          "value": "key1",
         },
         Object {
           "expiry": Object {
             "isActive": false,
           },
           "key": "key3",
+          "label": "name3",
           "name": "name3",
           "suspension": Object {
             "isActive": false,
           },
+          "value": "key3",
         },
       ]
     }
-    pageSize={5}
-    placeholder="Select..."
-    removeSelected={true}
-    required={false}
-    rtl={false}
-    scrollMenuIntoView={true}
-    searchable={true}
-    simpleValue={false}
-    tabSelectsValue={true}
-    trimFilter={true}
     value="key1"
-    valueComponent={[Function]}
-    valueKey="key"
-    valueRenderer={[Function]}
   />
 </div>
 `;
