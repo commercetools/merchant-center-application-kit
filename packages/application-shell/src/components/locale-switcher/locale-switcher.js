@@ -3,7 +3,7 @@ import React from 'react';
 import { SelectInput, WorldIcon } from '@commercetools-frontend/ui-kit';
 import styles from './locale-switcher.mod.css';
 
-const SingleValue = props => (
+export const SingleValue = props => (
   <div className={styles.singleValueContainer}>
     <WorldIcon size="big" />
     <span className={styles.label}>{props.children}</span>

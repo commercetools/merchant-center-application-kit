@@ -1,7 +1,8 @@
 import { shallow } from 'enzyme';
 import PropTypes from 'prop-types';
+import { SelectInput } from '@commercetools-frontend/ui-kit';
 import React from 'react';
-import LocaleSwitcher from './locale-switcher';
+import LocaleSwitcher, { SingleValue } from './locale-switcher';
 
 const createTestProps = props => ({
   projectDataLocale: 'en',
@@ -21,20 +22,21 @@ describe('render base elements', () => {
   });
 
   it('should render Select component', () => {
-    expect(wrapper).toRender('Select');
+    expect(wrapper).toRender(SelectInput);
   });
 
   describe('dropdown label', () => {
     let wrapperLabel;
     beforeEach(() => {
       const props = createTestProps();
-      wrapper = shallow(<LocaleSwitcher {...props} />);
       wrapperLabel = shallow(
-        <TestLabel>{wrapper.instance().renderLabel()}</TestLabel>
+        <SingleValue localeCount={props.availableLocales.length}>
+          {props.projectDataLocale}
+        </SingleValue>
       );
     });
     it('should render dropdown label', () => {
-      expect(wrapperLabel).toIncludeText('en3');
+      expect(wrapperLabel).toIncludeText('3');
     });
     it('should render WorldIcon', () => {
       expect(wrapperLabel).toRender('WorldIcon');
@@ -47,7 +49,7 @@ describe('callbacks', () => {
   beforeEach(() => {
     props = createTestProps();
     const wrapper = shallow(<LocaleSwitcher {...props} />);
-    wrapper.find('Select').prop('onChange')({ key: 'de' });
+    wrapper.find(SelectInput).prop('onChange')({ target: { value: 'de' } });
   });
 
   it('should call setProjectDataLocale', () => {
