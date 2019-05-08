@@ -1,4 +1,4 @@
-.singleValueContainer {
+.single-value-container {
   flex: 1;
   align-items: center;
   display: flex;
@@ -6,7 +6,7 @@
 
 .container {
   position: relative;
-  width: 160px;
+  width: var(--constraint-s);
 }
 
 .language-counter {

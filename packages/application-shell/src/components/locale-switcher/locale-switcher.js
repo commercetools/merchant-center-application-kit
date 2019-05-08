@@ -4,7 +4,7 @@ import { SelectInput, WorldIcon } from '@commercetools-frontend/ui-kit';
 import styles from './locale-switcher.mod.css';
 
 export const SingleValue = props => (
-  <div className={styles.singleValueContainer}>
+  <div className={styles['single-value-container']}>
     <WorldIcon size="big" />
     <span className={styles.label}>{props.children}</span>
     <span className={styles['language-counter']}>{props.localeCount}</span>
