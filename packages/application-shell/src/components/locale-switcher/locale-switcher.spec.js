@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import PropTypes from 'prop-types';
-import { SelectInput } from '@commercetools-frontend/ui-kit';
+import { SelectInput, WorldIcon } from '@commercetools-frontend/ui-kit';
 import React from 'react';
 import LocaleSwitcher, { SingleValue } from './locale-switcher';
 
@@ -39,7 +39,7 @@ describe('render base elements', () => {
       expect(wrapperLabel).toIncludeText('3');
     });
     it('should render WorldIcon', () => {
-      expect(wrapperLabel).toRender('WorldIcon');
+      expect(wrapperLabel).toRender(WorldIcon);
     });
   });
 });
