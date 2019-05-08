@@ -3,9 +3,6 @@ import React from 'react';
 import { SelectInput, WorldIcon } from '@commercetools-frontend/ui-kit';
 import styles from './locale-switcher.mod.css';
 
-// have access to SelectInput.defaultComponents :)
-// and access to SelectInput.customizedComponents :)
-
 const SingleValue = props => (
   <div className={styles.singleValueContainer}>
     <WorldIcon size="big" />
