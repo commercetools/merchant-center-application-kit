@@ -1,4 +1,5 @@
 export {
+  Context,
   ApplicationContext,
   ApplicationContextProvider,
   withApplicationContext,
