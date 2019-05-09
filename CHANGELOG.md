@@ -2,6 +2,15 @@
 
 Now `application-components` is relying on version `9.2.0` or newer of `@commeretools-frontend/ui-kit`. If you are using an older version, please update that as well.
 
+Also, now that `application-shell` no longer uses `react-select` version 1, you can remove the CSS import in your app entry point. If your application doesn't explicity use `react-select` version 1, you should remove this import.
+
+```js
+// remove this next line
+import 'react-select/dist/react-select.css';
+import React from 'react';
+// etc
+```
+
 #### 🔮 Type: Chore
 
 - `application-shell`
