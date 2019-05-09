@@ -1,3 +1,22 @@
+## [13.5.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.4.2...v13.5.0) (2019-05-09)
+
+#### 🐛 Type: Bug
+
+- `application-shell`, `react-notifications`
+  - [#625](https://github.com/commercetools/merchant-center-application-kit/pull/625) fix(application-shell, react-notifications): fix invalid shadow ([@montezume](https://github.com/montezume))
+- `application-components`
+  - [#619](https://github.com/commercetools/merchant-center-application-kit/pull/619) fix(application-components): ui-kit peer dep ([@montezume](https://github.com/montezume))
+
+#### 🚀 Type: New Feature
+
+- `application-shell-connectors`, `permissions`
+  - [#624](https://github.com/commercetools/merchant-center-application-kit/pull/624) feat(permissions): add use-is-authorized hook ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+  - [#623](https://github.com/commercetools/merchant-center-application-kit/pull/623) refactor: remove projects list toggle ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.4.2](https://github.com/commercetools/merchant-center-application-kit/compare/v13.4.1...v13.4.2) (2019-05-09)
 
 Now `application-components` is relying on version `9.2.0` or newer of `@commeretools-frontend/ui-kit`. If you are using an older version, please update that as well.
