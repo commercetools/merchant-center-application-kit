@@ -1,40 +1,15 @@
 .react-select-wrapper {
-  max-width: 400px;
-  min-width: 200px;
-  transition-delay: 0s;
+  width: 225px;
 }
 
-.react-select-wrapper.is-open :global(.Select-control) {
-  border: 1px var(--color-neutral) solid;
-  background: var(--color-neutral-95);
+.option-container {
+  word-wrap: break-word;
 }
 
-:global(.Select--single).react-select-wrapper :global(.Select-value) {
-  padding-right: 65px;
-}
-
-.react-select-container {
-  position: relative;
-}
-
-.react-select-container :global(.Select-control) {
-  color: var(--color-solid);
-  border-radius: 6px;
-  border: 0;
-  background-color: var(--color-neutral-95);
-  cursor: pointer;
-  min-width: 200px;
-  right: 0;
-  width: 100%;
-}
-
-.react-select-container :global(.Select-control:hover) {
-  box-shadow: none;
-}
-
-/* Name of project  */
-.react-select-container :global(.Select-option) .item-text-main {
-  word-break: break-all;
+.single-value-container {
+  flex: 1;
+  align-items: center;
+  display: flex;
 }
 
 .dropdown-container {
@@ -50,16 +25,20 @@
 }
 
 .project-name {
-  composes: ellipsis;
   color: var(--color-accent);
-  line-height: 23px;
-  padding-right: 0;
-  width: calc(100% - 55px);
-  display: inline-block;
-  vertical-align: middle;
 }
 
-.counter {
+.value-container {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.value-wrapper {
+  flex: 1;
+}
+
+.project-counter {
   width: 22px;
   height: 22px;
   border-radius: 22px;
@@ -69,15 +48,6 @@
   display: inline-block;
   font-size: 0.9rem;
   text-align: center;
-  position: absolute;
-  margin-top: 3px;
-  line-height: 17px;
-}
-
-.project-counter {
-  composes: counter;
-  margin: 0;
-  right: 33px;
 }
 
 .item-text-main {
