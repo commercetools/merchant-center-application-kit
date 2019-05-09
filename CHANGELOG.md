@@ -1,3 +1,32 @@
+## [13.4.2](https://github.com/commercetools/merchant-center-application-kit/compare/v13.4.1...v13.4.2) (2019-05-09)
+
+Now `application-components` is relying on version `9.2.0` or newer of `@commeretools-frontend/ui-kit`. If you are using an older version, please update that as well.
+
+Also, now that `application-shell` no longer uses `react-select` version 1, you can remove the CSS import in your app entry point. If your application doesn't explicity use `react-select` version 1, you should remove this import.
+
+```js
+// remove this next line
+import 'react-select/dist/react-select.css';
+import React from 'react';
+// etc
+```
+
+#### 🔮 Type: Chore
+
+- `application-shell`
+  - [#621](https://github.com/commercetools/merchant-center-application-kit/pull/621) chore: remove react-select v1 ([@montezume](https://github.com/montezume))
+  - [#606](https://github.com/commercetools/merchant-center-application-kit/pull/606) 👯‍♀️ chore: update flopflip 👯‍♀️ ([@tdeekens](https://github.com/tdeekens))
+- `application-shell`, `react-notifications`
+  - [#616](https://github.com/commercetools/merchant-center-application-kit/pull/616) chore: move deprecated custom prop internal ([@montezume](https://github.com/montezume))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+  - [#617](https://github.com/commercetools/merchant-center-application-kit/pull/617) refactor(application-shell): use ui kit select input for locale switcher ([@montezume](https://github.com/montezume))
+  - [#618](https://github.com/commercetools/merchant-center-application-kit/pull/618) refactor(project-switcher): refactor to use ui kit select input ([@montezume](https://github.com/montezume))
+- `application-components`
+  - [#615](https://github.com/commercetools/merchant-center-application-kit/pull/615) refactor: use non deprecated custom props ([@montezume](https://github.com/montezume))
+
 ## [13.4.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.4.0...v13.4.1) (2019-05-03)
 
 #### 🐛 Type: Chore
