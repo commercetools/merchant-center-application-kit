@@ -1,0 +1,75 @@
+---
+id: api-gateway-proxy-to-external-api
+title: Proxy to external API - API Gateway
+permalink: /api-gateway/proxy-to-external-api
+---
+
+import { ContentNotification } from '@commercetools-frontend/ui-kit';
+
+<ContentNotification type="info">
+  This feature is marked as `beta` and may be affected by changes. Use with caution for production.
+</ContentNotification>
+
+# Proxy to external API
+
+Developing custom applications might require to have your own backend server, for several reasons: storing sensitive credentials for 3rd-party services, performing custom server logic, etc.
+
+If that's the case, you're probably facing a problem: _how do you authenticate requests to your API?_
+
+Merchant Center applications can make [authenticated requests](./authentication) using the [proxy endpoints](./proxy-endpoints) to the underlying APIs that are configured and supported for the Merchant Center. Requests are authenticated via the `mcAccessToken` stored in a secure cookie, which is set only for `commercetools.com` domains.
+
+Since your backend server is hosted on a different domain, you can't send authenticated requests to your server from your custom application. Well, you can but you don't know if the request comes from an authenticated user or not.
+
+## Validating authenticated requests
+
+To be able to validate that the request comes from an authenticated user, we implemented a mechanism to allow your server to verify the validity of the `mcAccessToken`.
+
+Requests to your backend server should be configured as following:
+
+- send the request to `/proxy/forward-to` endpoint of the Merchant Center API Gateway
+- define the original request URL to your backend server as an HTTP header `X-Forward-To`
+
+The request will be then validated from the Merchant Center API Gateway and proxied to the specified HTTP header, sending alongside an `Authorization: Bearer <token>` HTTP header that contains the `mcAccessToken` value, in the form of a JWT.
+
+### Using JSON Web Key Set endpoint
+
+At this point, your backend server will receive the request with the `Authorization` header, which you can use to validate that the JWT is valid.
+The validation is performed by using the `/.well-known/jwks.json` endpoint exposed by the Merchant Center API Gateway. You can read more about JWKS [here](https://auth0.com/docs/jwks) and [here](https://tools.ietf.org/html/rfc7517).
+
+The endpoint exposes a public key which can be used to verify the JWT signature, according to the OIDC spec. We also expose a `/.well-known/openid-configuration` discovery endpoint.
+
+If your backend server is implemented with JavaScript, we recommend to use the [`express-jwt`](https://www.npmjs.com/package/express-jwt) package that acts as an Express middleware to automatically verify the authentication request.
+
+```js
+const express = require('express');
+const jwt = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
+
+// Initialize the app.
+const app = express();
+
+// This value is the same as the Merchant Center API Gateway host.
+const issuer = 'mc-api.commercetools.com';
+const audience = `https://${issuer}`;
+
+app.use(
+  jwt({
+    // Dynamically provide a signing key based on the kid in the header
+    // and the singing keys provided by the JWKS endpoint
+    secret: jwksRsa.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      // The JWKS endpoint is also available from the discovery endpoint
+      // `${audience}/.well-known/openid-configuration`
+      // in case you wish to retrieve it programmatically.
+      jwksUri: `${audience}/.well-known/jwks.json`,
+    }),
+
+    // Validate the audience and the issuer.
+    audience,
+    issuer,
+    algorithms: ['RS256'],
+  })
+);
+```

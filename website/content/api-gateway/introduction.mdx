@@ -1,0 +1,24 @@
+---
+id: api-gateway-introduction
+title: Introduction - API Gateway
+permalink: /api-gateway/introduction
+redirect_from:
+  - /api-gateway
+---
+
+# Merchant Center API Gateway
+
+Merchant Center applications need to fetch data from different sources in the commercetools platform. A custom application might need to access channel or product information, role and permission settings, and more. Each of these data sources is exposed as an API, and each of these APIs requires an authentication mechanism.
+
+However, for security reasons, client-side applications **cannot be trusted** with sensitive credentials, which makes it difficult to connect to an API directly from a browser.
+
+To solve these issues, the Merchant Center provides an **API Gateway**, which proxies requests to a underlying APIs. Requests made through the proxy will be authenticated with the correct authentication mechanism specific to the targeted API. This way, a client-side application only needs to [authenticate](#authentication) to the Merchant Center API Gateway without needing to store credentials for the targeted APIs.
+
+![HTTP API](/assets/custom-applications/mc-http-api.png)
+
+All Merchant Center applications should send requests through the API Gateway, which is available at the same domain of the Merchant Center but with the `mc` subdomain being `mc-api`.
+
+Official domains:
+
+- `https://mc-api.commercetools.com` for projects in **Europe** running on Google Cloud Platform
+- `https://mc-api.commercetools.co` for projects in the **United States** running on Google Cloud Platform
