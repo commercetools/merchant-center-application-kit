@@ -150,6 +150,7 @@ const useApplicationContext = React.useContext
 
 // Exports
 export {
+  Context,
   ApplicationContext,
   ApplicationContextProvider,
   withApplicationContext,
