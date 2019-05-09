@@ -388,7 +388,7 @@ export default ({
       keywords: ['Sign out'],
       action: { type: 'go', to: `/logout?reason=${LOGOUT_REASONS.USER}` },
     },
-    featureToggles.projectsList && {
+    {
       id: 'go/manage-projects',
       text: intl.formatMessage(messages.openManageProjects),
       keywords: [
