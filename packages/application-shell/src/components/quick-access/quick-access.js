@@ -65,7 +65,6 @@ class QuickAccess extends React.Component {
     }).isRequired,
     featureToggles: PropTypes.shape({
       pimSearch: PropTypes.bool,
-      projectsList: PropTypes.bool,
       customApplications: PropTypes.bool,
       canViewOrders: PropTypes.bool,
       canViewCategories: PropTypes.bool,
@@ -353,7 +352,6 @@ export default flowRight(
   injectIntl,
   injectFeatureToggles([
     'pimSearch',
-    'projectsList',
     'customApplications',
     'canViewOrders',
     'canViewCategories',
