@@ -2,7 +2,7 @@
   --margin-left-logo: 20px;
   --height-app-bar: 43px;
   --width-dropdown: 60px;
-  --shadow-1-second: '0 1px 2px rgba(0, 0, 0, 0.24)';
+  --shadow-1-second: 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 /* Top Navigation */
