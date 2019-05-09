@@ -1,8 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Select from 'react-select';
-import { WorldIcon } from '@commercetools-frontend/ui-kit';
+import { SelectInput, WorldIcon } from '@commercetools-frontend/ui-kit';
 import styles from './locale-switcher.mod.css';
+
+export const SingleValue = props => (
+  <div className={styles['single-value-container']}>
+    <WorldIcon size="big" />
+    <span className={styles.label}>{props.children}</span>
+    <span className={styles['language-counter']}>{props.localeCount}</span>
+  </div>
+);
+
+SingleValue.propTypes = {
+  children: PropTypes.node.isRequired,
+  localeCount: PropTypes.number.isRequired,
+};
+
+SingleValue.displayName = 'SingleValue';
 
 export default class LocaleSwitcher extends React.PureComponent {
   static displayName = 'LocaleSwitcher';
@@ -13,41 +27,31 @@ export default class LocaleSwitcher extends React.PureComponent {
     availableLocales: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   };
 
-  handleSelection = ({ key: language }) => {
-    this.props.setProjectDataLocale(language);
-  };
-
-  renderLabel = () => (
-    <span>
-      <div className={styles.icon}>
-        <WorldIcon size="big" />
-      </div>
-      <span className={styles.label}>{`${this.props.projectDataLocale}`}</span>
-      <span className={styles['language-counter']}>
-        {this.props.availableLocales.length}
-      </span>
-    </span>
-  );
+  handleSelection = event =>
+    this.props.setProjectDataLocale(event.target.value);
 
   render() {
     return (
       <div className={styles.container} data-track-component="LocaleSwitch">
-        <Select
-          valueRenderer={this.renderLabel}
-          labelKey="name"
-          valueKey="key"
-          className={styles['react-select-container']}
+        <SelectInput
           value={this.props.projectDataLocale}
           name="locale-switcher"
           onChange={this.handleSelection}
-          autoBlur={true}
           options={this.props.availableLocales.map(locale => ({
-            name: locale,
-            key: locale,
+            label: locale,
+            value: locale,
           }))}
-          clearable={false}
-          backspaceRemoves={false}
-          searchable={false}
+          components={{
+            SingleValue: props => (
+              <SingleValue
+                {...props}
+                localeCount={this.props.availableLocales.length}
+              />
+            ),
+          }}
+          isClearable={false}
+          backspaceRemovesValue={false}
+          isSearchable={false}
         />
       </div>
     );

@@ -1,28 +1,15 @@
-.text {
-  margin-right: 10px;
-  color: var(--color-accent);
+.single-value-container {
+  flex: 1;
+  align-items: center;
+  display: flex;
+}
+
+.container {
   position: relative;
-  bottom: 13px;
+  width: var(--constraint-s);
 }
 
-.react-select-container {
-  position: relative;
-}
-
-.react-select-container :global(.Select-control) {
-  background: var(--color-neutral-95);
-  color: var(--color-solid);
-  border-radius: 6px;
-  cursor: pointer;
-  width: 160px;
-  right: 0;
-}
-
-.react-select-container :global(.Select-control:hover) {
-  box-shadow: none;
-}
-
-.counter {
+.language-counter {
   width: 22px;
   height: 22px;
   border-radius: 22px;
@@ -32,24 +19,10 @@
   display: inline-block;
   font-size: 0.9rem;
   text-align: center;
-  position: absolute;
-  margin-top: 3px;
-  line-height: 17px;
-}
-
-.language-counter {
-  composes: counter;
-  right: 33px;
-}
-
-.icon {
-  float: left;
-  margin: 3px 5px 0 -5px;
-  font-size: 1.6em;
 }
 
 .label {
-  display: inline-block;
-  margin: 2px 5px 0 0;
+  margin-left: 2px;
+  flex: 1;
   color: var(--color-accent);
 }
