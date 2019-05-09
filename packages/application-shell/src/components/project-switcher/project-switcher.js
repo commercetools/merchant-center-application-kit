@@ -11,14 +11,14 @@ import styles from './project-switcher.mod.css';
 import ProjectsQuery from './project-switcher.graphql';
 import messages from './messages';
 
-export const ValueContainer = ({ children, projectCount, ...props }) => (
+export const ValueContainer = props => (
   <div className={styles['value-container']}>
     <div className={styles['value-wrapper']}>
       <SelectInput.ValueContainer {...props}>
-        {children}
+        {props.children}
       </SelectInput.ValueContainer>
     </div>
-    <span className={styles['project-counter']}>{projectCount}</span>
+    <span className={styles['project-counter']}>{props.projectCount}</span>
   </div>
 );
 
@@ -29,50 +29,46 @@ ValueContainer.propTypes = {
 
 ValueContainer.displayName = 'ValueContainer';
 
-export const Option = props => {
-  const { data: project } = props;
-
-  return (
-    <SelectInput.Option {...props}>
-      <div className={styles['option-container']}>
-        <div
-          className={classnames(styles['item-text-main'], {
-            [styles['item-text-disabled']]:
-              (project.suspension && project.suspension.isActive) ||
-              (project.expiry && project.expiry.isActive),
-          })}
-        >
-          {project.name}
-          {((project.suspension && project.suspension.isActive) ||
-            (project.expiry && project.expiry.isActive)) && (
-            <span className={styles['disabled-icon-container']}>
-              <ErrorIcon size="medium" />
-            </span>
-          )}
-        </div>
-        <div
-          className={classnames(styles['item-text-small'], {
-            [styles['item-text-disabled']]:
-              (project.suspension && project.suspension.isActive) ||
-              (project.expiry && project.expiry.isActive),
-          })}
-        >
-          {project.key}
-        </div>
-        {project.suspension && project.suspension.isActive && (
-          <div className={classnames(styles.red, styles['item-text-small'])}>
-            <FormattedMessage {...messages.suspended} />
-          </div>
-        )}
-        {project.expiry && project.expiry.isActive && (
-          <div className={classnames(styles.red, styles['item-text-small'])}>
-            <FormattedMessage {...messages.expired} />
-          </div>
+export const Option = props => (
+  <SelectInput.Option {...props}>
+    <div className={styles['option-container']}>
+      <div
+        className={classnames(styles['item-text-main'], {
+          [styles['item-text-disabled']]:
+            (props.data.suspension && props.data.suspension.isActive) ||
+            (props.data.expiry && props.data.expiry.isActive),
+        })}
+      >
+        {props.data.name}
+        {((props.data.suspension && props.data.suspension.isActive) ||
+          (props.data.expiry && props.data.expiry.isActive)) && (
+          <span className={styles['disabled-icon-container']}>
+            <ErrorIcon size="medium" />
+          </span>
         )}
       </div>
-    </SelectInput.Option>
-  );
-};
+      <div
+        className={classnames(styles['item-text-small'], {
+          [styles['item-text-disabled']]:
+            (props.data.suspension && props.data.suspension.isActive) ||
+            (props.data.expiry && props.data.expiry.isActive),
+        })}
+      >
+        {props.data.key}
+      </div>
+      {props.data.suspension && props.data.suspension.isActive && (
+        <div className={classnames(styles.red, styles['item-text-small'])}>
+          <FormattedMessage {...messages.suspended} />
+        </div>
+      )}
+      {props.data.expiry && props.data.expiry.isActive && (
+        <div className={classnames(styles.red, styles['item-text-small'])}>
+          <FormattedMessage {...messages.expired} />
+        </div>
+      )}
+    </div>
+  </SelectInput.Option>
+);
 
 Option.propTypes = {
   data: PropTypes.shape({
