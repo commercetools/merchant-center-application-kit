@@ -447,7 +447,7 @@ export class DataMenu extends React.PureComponent {
     const hasSubmenu = Boolean(menu.submenu) && menu.submenu.length > 0;
     const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
       ? getMenuVisibilitiesOfSubmenus(menu)
-      : getMenuVisibilityOfMainmenu(menu.menuVisibility);
+      : getMenuVisibilityOfMainmenu(menu);
 
     return (
       <RestrictedMenuItem
