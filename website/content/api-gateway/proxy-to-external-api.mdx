@@ -27,7 +27,20 @@ Requests to your backend server should be configured as following:
 - send the request to `/proxy/forward-to` endpoint of the Merchant Center API Gateway
 - define the original request URL to your backend server as an HTTP header `X-Forward-To`
 
-The request will be then validated from the Merchant Center API Gateway and proxied to the specified HTTP header, sending alongside an `Authorization: Bearer <token>` HTTP header that contains the `mcAccessToken` value, in the form of a JWT.
+```js
+fetch(`https://mc-api.commercetools.com/proxy/forward-to`, {
+  method: 'GET',
+  headers: {
+    Accept: 'application/json',
+    'X-Forward-To': 'https://my-custom-app.com/foo/bar',
+  },
+  credentials: 'include',
+});
+```
+
+The request will be then validated from the Merchant Center API Gateway and proxied to the specified HTTP header, sending alongside an `Authorization: Bearer <token>` HTTP header, in the form of a JWT.
+
+> NOTE that for security reasons, the exchanged JWT has an expiration date of 60 seconds, as the token should only be used to verify that the request is authorized.
 
 ### Using JSON Web Key Set endpoint
 
