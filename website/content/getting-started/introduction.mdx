@@ -27,7 +27,7 @@ Custom Applications use the same architecture. You develop and host an applicati
 There are several benefits to this architecture:
 
 - 🚨 **Security controls**: The `mc.commercetools.com` domain is the same for all applications, allowing the Merchant Center to enforce restrictions and security measures, like **CORS rules** and **Content Security Policies** across all applications.
-- 🔑 **Built-in Authentication**: The Merchant Center uses a **secure** `Cookie` to transport session information about the user. The authentication logic is handled in the `@commercetools-frontend/application-shell` package, For more information, see [Merchant Center HTTP API](../http-api#authentication).
+- 🔑 **Built-in Authentication**: The Merchant Center uses a **secure** `Cookie` to transport session information about the user. The authentication logic is handled in the `@commercetools-frontend/application-shell` package, For more information, see [Merchant Center API Gateway Authentication](../api-gateway/authentication).
 - 🤖 **Built-in application bootstrapping**: The `@commercetools-frontend/application-shell` package provides most of the application setup, including fetching and authenticating the user, initializing Providers (Redux, Apollo, Intl, etc.), setting up the main routes and main layout (including the left and top navigation), and more.
 - 🚀 **Independent development workflows**: Developers can work on applications specific to their team's business domains, decoupled from each other. This allows teams to choose the development workflows that better suits their requirements, including deployments and release cycles.
 

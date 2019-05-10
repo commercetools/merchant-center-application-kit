@@ -1,0 +1,54 @@
+---
+id: api-gateway-authentication
+title: Authentication - API Gateway
+permalink: /api-gateway/authentication
+---
+
+# API Gateway authentication
+
+The Merchant Center uses a **secure** JWT ([JSON Web Token](https://jwt.io/)) `Cookie` named `mcAccessToken` to transport session information about the user.
+Using a `Cookie` allows network requests to send it without your application needing to explicitly handle the access token.
+
+The [project starter example](https://github.com/commercetools/merchant-center-application-kit/tree/master/application-templates/starter) has no explicity authentication code. Authentication is built into the `<ApplicationShell>` and managed for you.
+
+## Obtaining an access token
+
+The `mcAccessToken` is granted upon user login and is stored in the **secure** `Cookie` from the Merchant Center API Gateway.
+
+There are two endpoints available for different login strategies:
+
+- `/tokens`: Logins using `email` and `password`.
+- `/tokens/sso`: Logins using an `idToken` from an SSO workflow (_beta feature, contact support for more information_).
+
+Each Merchant Center application uses the `<ApplicationShell>` React component, which provides a built-in authentication mechanism for the HTTP clients. You won't need to manually request a token from these endpoints.
+
+## Sending an authenticated request
+
+Given that the `mcAccessToken` is stored in a secure cookie, HTTP clients only need to tell the browser to send the cookies with the request.
+
+For example, to make requests to the [commercetools platform HTTP API](https://docs.commercetools.com/http-api.html), you would prefix the request with `/proxy/ctp` and set `credentials: "include"`
+
+```js
+// Direct request to the commercetools platform HTTP API
+fetch(`https://api.commercetools.com/${projectKey}/orders`, {
+  method: 'GET',
+  headers: {
+    Accept: 'application/json',
+    Authentication: `Bearer ${oauthToken}`,
+  },
+});
+
+// Proxied request to the commercetools platform HTTP API
+fetch(`https://mc-api.commercetools.com/proxy/ctp/${projectKey}/orders`, {
+  method: 'GET',
+  headers: { Accept: 'application/json' },
+  credentials: 'include', // <-- this will send along the cookie "mcAccessToken"
+});
+```
+
+The Merchant Center applications have access to 2 built-in clients:
+
+- a REST client that is a wrapper to the commercetools JS SDK, available from the `@commercetools-frontend/sdk` package
+- an Apollo GraphQL client, which is automatically configured from the `<ApplicationShell>` React component
+
+Both clients are configured to send the cookies with each request.

@@ -71,6 +71,15 @@ ListItems.propTypes = {
 };
 
 const LayoutTOC = props => {
+  let mainItems = props.tableOfContents.items;
+  // In case there is only one main child, we drop one depth level.
+  if (mainItems && mainItems.length === 1) {
+    mainItems = mainItems[0].items;
+  }
+  if (!mainItems || mainItems.length === 0) {
+    return null;
+  }
+
   return (
     <div
       css={css`
@@ -92,24 +101,11 @@ const LayoutTOC = props => {
     >
       <Spacings.Inset scale="l">
         <Spacings.Stack scale="l">
-          {(() => {
-            let mainItems = props.tableOfContents.items;
-            // In case there is only one main child, we drop one depth level.
-            if (mainItems && mainItems.length === 1) {
-              mainItems = mainItems[0].items;
-            }
-            if (!mainItems || mainItems.length === 0) {
-              return null;
-            }
-
-            return (
-              <ListItemGroup items={mainItems}>
-                <ListItems>
-                  <ListItems />
-                </ListItems>
-              </ListItemGroup>
-            );
-          })()}
+          <ListItemGroup items={mainItems}>
+            <ListItems>
+              <ListItems />
+            </ListItems>
+          </ListItemGroup>
         </Spacings.Stack>
       </Spacings.Inset>
     </div>

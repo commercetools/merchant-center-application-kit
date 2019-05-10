@@ -1,4 +1,7 @@
+import React from 'react';
 import styled from '@emotion/styled';
+import { ThemeProvider } from 'emotion-theming';
+import * as colors from '../../colors';
 
 const LayoutContainer = styled.div`
   height: 100vh;
@@ -7,4 +10,11 @@ const LayoutContainer = styled.div`
   grid-template-columns: auto 1fr auto;
 `;
 
-export default LayoutContainer;
+// eslint-disable-next-line react/display-name
+export default props => (
+  <ThemeProvider
+    theme={{ fontFamilyDefault: 'roboto mono', colorSolid: colors.light.text }}
+  >
+    <LayoutContainer {...props} />
+  </ThemeProvider>
+);

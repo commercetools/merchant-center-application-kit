@@ -1,0 +1,36 @@
+---
+id: api-gateway-graphql
+title: GraphQL - API Gateway
+permalink: /api-gateway/graphql
+---
+
+# GraphQL
+
+For client-side applications, GraphQL provides benefits in terms of performance, state management, maintainability and user experience. At commercetools, the [main method of data fetching](https://techblog.commercetools.com/graphql-adoption-at-commercetools-cab25a1d1f4a) used by the Merchant Center is using the GraphQL API.
+
+The Merchant Center API Gateway exposes a `/graphql` endpoint, in addition to the [proxy endpoints](./proxy-endpoints). This endpoint should also be considered a proxy endpoint, as it connects to different underlying GraphQL APIs.
+
+## Available GraphQL schemas
+
+The following GraphQL schemas are available:
+
+- **commercetools platform projects**: this is the official [GraphQL API](https://docs.commercetools.com/graphql-api.html) for the commercetools platform
+- **commercetools platform administration**: this GraphQL API handles things like managing projects and organizations
+- **Merchant Center users**: this GraphQL API handles things like authentication, users, etc.
+- **Merchant Center settings**: this GraphQL API handles things like UI settings, custom applications, etc.
+
+## Request format
+
+Requests to the `/graphql` endpoint require one or more HTTP headers, to determine the proxy target.
+
+- `X-Graphql-Target` (_required_): Specifies the GraphQL server to connect to, either one of:
+
+  - `ctp`: to target the **commercetools platform projects** API
+  - `administration`: to target the **commercetools platform administration** API
+  - `mc`: to target the **Merchant Center users** API
+  - `settings`: to target the **Merchant Center settings** API
+
+  These values are available in the `@commercetools-frontend/constants` package.
+  When sending queries from React components, you need to pass the value as a `variables.target`. For an example of a fully constructed request, see [Data fetching](./getting-started/development#data-fetching).
+
+- `X-Project-Key` (_optional_): Specifies the project key to be used by the targeted GraphQL server. This value is not always required (depending on the query), but it's recommended to always send it whenever possible.

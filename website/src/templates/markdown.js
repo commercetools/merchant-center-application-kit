@@ -195,6 +195,10 @@ const linkStyles = css`
 `;
 // eslint-disable-next-line react/display-name
 const Link = props => {
+  if (props.href.startsWith('/static')) {
+    return <a {...props} />;
+  }
+
   const isExternalLink =
     /^https?/.test(props.href) || (props.target && props.target === '_blank');
 
@@ -219,7 +223,7 @@ const Link = props => {
 
   // Since `document` is not available in SSR, we need to replace
   // the link with the proper value once the component is mounted.
-  const [linkTo, setLink] = React.useState(props.href);
+  const [linkTo, setLink] = React.useState();
   React.useEffect(() => {
     // At this point, `href` values are relative but the link router expects
     // a full relative path from the base URL path.
@@ -233,12 +237,14 @@ const Link = props => {
     const [, relativePath] = absoluteUrl.split(window.location.origin);
     setLink(relativePath);
   });
-
-  return (
-    <HistoryLink to={linkTo} css={linkStyles}>
-      {props.children}
-    </HistoryLink>
-  );
+  if (linkTo) {
+    return (
+      <HistoryLink to={linkTo} css={linkStyles}>
+        {props.children}
+      </HistoryLink>
+    );
+  }
+  return props.children;
 };
 Link.propTypes = {
   href: PropTypes.string.isRequired,

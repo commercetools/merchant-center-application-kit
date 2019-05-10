@@ -32,8 +32,17 @@ module.exports = {
         ],
       },
       {
-        label: 'Advanced',
-        subgroup: [{ label: 'HTTP API', linkTo: '/http-api' }],
+        label: 'API Gateway',
+        subgroup: [
+          { label: 'Introduction', linkTo: '/api-gateway/introduction' },
+          { label: 'Authentication', linkTo: '/api-gateway/authentication' },
+          { label: 'Proxy endpoints', linkTo: '/api-gateway/proxy-endpoints' },
+          { label: 'GraphQL', linkTo: '/api-gateway/graphql' },
+          {
+            label: 'Proxy to external API',
+            linkTo: '/api-gateway/proxy-to-external-api',
+          },
+        ],
       },
     ],
   },
