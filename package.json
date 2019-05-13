@@ -51,8 +51,8 @@
     "website"
   ],
   "devDependencies": {
-    "@commitlint/cli": "7.5.2",
-    "@commitlint/config-conventional": "7.5.0",
+    "@commitlint/cli": "7.6.1",
+    "@commitlint/config-conventional": "7.6.0",
     "@percy/puppeteer": "1.0.8",
     "babel-eslint": "10.0.1",
     "babel-plugin-import-graphql": "2.7.0",
