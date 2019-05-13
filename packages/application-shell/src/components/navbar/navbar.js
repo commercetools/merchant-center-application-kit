@@ -288,6 +288,10 @@ export const getIconTheme = (isActive, isAlternativeTheme) => {
   if (isActive) return 'green-light';
   return isAlternativeTheme ? 'grey' : 'white';
 };
+const getMenuVisibilitiesOfSubmenus = menu =>
+  menu.submenu.map(submenu => submenu.menuVisibility).filter(Boolean);
+const getMenuVisibilityOfMainmenu = menu =>
+  [menu.menuVisibility].filter(Boolean);
 export class DataMenu extends React.PureComponent {
   static displayName = 'DataMenu';
   static propTypes = {
@@ -442,8 +446,8 @@ export class DataMenu extends React.PureComponent {
     const isActive = this.state.activeItemIndex === `${menuType}-${index}`;
     const hasSubmenu = Boolean(menu.submenu) && menu.submenu.length > 0;
     const namesOfMenuVisibilitiesOfAllSubmenus = hasSubmenu
-      ? menu.submenu.map(submenu => submenu.menuVisibility).filter(Boolean)
-      : [];
+      ? getMenuVisibilitiesOfSubmenus(menu)
+      : getMenuVisibilityOfMainmenu(menu);
 
     return (
       <RestrictedMenuItem
