@@ -13,7 +13,7 @@
     "@commercetools-frontend/assets": "13.3.5",
     "@commercetools-frontend/ui-kit": "9.4.0",
     "@emotion/core": "10.0.10",
-    "@emotion/styled": "10.0.10",
+    "@emotion/styled": "10.0.11",
     "@mdx-js/mdx": "1.0.16",
     "@mdx-js/react": "1.0.16",
     "common-tags": "1.8.0",
