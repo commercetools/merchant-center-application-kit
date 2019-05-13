@@ -1,3 +1,12 @@
+## [13.5.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.5.1...v13.5.0) (2019-05-13)
+
+#### 🔮 Type: Chore
+
+- `application-components`, `application-shell`, `jest-preset-mc-app`, `mc-scripts`, `sentry`
+  - [#634](https://github.com/commercetools/merchant-center-application-kit/pull/634) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+- `application-shell`
+  - [#627](https://github.com/commercetools/merchant-center-application-kit/pull/627) fix(app-shell): to default to menu if no submenus are defined ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.5.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.4.2...v13.5.0) (2019-05-09)
 
 #### 🐛 Type: Bug
