@@ -11,3 +11,5 @@ export {
   default as ConfirmationDialog,
 } from './components/dialogs/confirmation-dialog';
 export { default as FormDialog } from './components/dialogs/form-dialog';
+
+export { default as ModalPage } from './components/modal-page';
