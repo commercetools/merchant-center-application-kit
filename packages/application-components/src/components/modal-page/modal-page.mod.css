@@ -1,0 +1,68 @@
+.modal-overlay {
+  display: flex;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(32, 62, 72, 0.5);
+  opacity: 1;
+}
+
+.modal-content {
+  display: grid;
+  grid-template-rows: 100%;
+  height: 100%;
+  width: 100%;
+  outline: none;
+
+  /* To ensure that the mouse click on the overlay surface goes "through"
+  and triggers the modal to close, we need to turn off the pointer events. */
+  pointer-events: none;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  /* For the actual container with the content, we need to use normal pointer
+  events so that clicking on it does not close the dialog. */
+  pointer-events: auto;
+}
+
+.page-card {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  height: 100%;
+}
+
+/* Targets the inner container of the `Card` component */
+.page-card > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Targets the `Spacings.Stack` container (needed for FF),
+which is placed inside the `Card` component */
+.page-card > div > div {
+  height: 100%;
+}
+
+.page-header {
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header > * + * {
+  margin: var(--spacing-s) 0 0;
+}
+
+.page-content {
+  border-top: 1px solid var(--border-color-separator);
+  padding-top: var(--spacing-m);
+  overflow: auto;
+  flex: 1;
+}
