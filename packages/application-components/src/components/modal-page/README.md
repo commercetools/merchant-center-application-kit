@@ -3,7 +3,7 @@
 ## Usage
 
 ```js
-import ModalPage from '@commercetools-local/components/modal-page';
+import { ModalPage } from '@commercetools-frontend/application-components';
 ```
 
 #### Description
