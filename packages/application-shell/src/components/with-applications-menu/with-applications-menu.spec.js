@@ -33,10 +33,12 @@ const createTestMenuConfig = (key, props) => ({
   icon: 'UserFilledIcon',
   permissions: [],
   featureToggle: null,
+  menuVisibility: `hide${upperFirst(key)}`,
   submenu: [
     {
       key: `${key}-new`,
       labelAllLocales: [{ locale: 'en', value: `${upperFirst(key)} new` }],
+      menuVisibility: `hide${upperFirst(key)}New`,
       uriPath: `${key}/new`,
       permissions: [],
       featureToggle: null,
