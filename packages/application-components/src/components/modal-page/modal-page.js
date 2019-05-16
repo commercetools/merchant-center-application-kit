@@ -96,7 +96,7 @@ const ModalPage = props => (
     overlayClassName={styles['modal-overlay']}
     className={styles['modal-content']}
     contentLabel={props.title}
-    parentSelector={parentSelector}
+    parentSelector={props.parentSelector || parentSelector}
     ariaHideApp={false}
     style={getStyles(props)}
   >
@@ -153,6 +153,7 @@ ModalPage.propTypes = {
   }),
   level: PropTypes.oneOf(['one', 'two', 'three']),
   children: PropTypes.node.isRequired,
+  parentSelector: PropTypes.string,
 };
 ModalPage.defaultProps = {
   baseZIndex: 1000,
