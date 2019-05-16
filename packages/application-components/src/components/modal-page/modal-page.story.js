@@ -14,18 +14,20 @@ import {
 import Readme from './README.md';
 import ModalPage from './modal-page';
 
+const wallOfText = (
+  <Text.Body>
+    {`
+  Lorem ipsum dolor sit amet, consectetuer justo tellus wisi nulla, vel gravida ac mi eu, amet id integer placerat ipsum. Vestibulum augue quam facilis, aptent magna orci semper netus, sed elementum fringilla ut. Phasellus sociis nec volutpat, metus primis sit adipiscing, itaque sit ante dolor eget. Hac quis semper adipiscing et, mus sodales nunc sit. Et enim neque sit aliquam, libero eu sociis accumsan, excepturi integer lacus mi, repellendus nibh vestibulum est etiam. Neque rutrum nonummy in dolor, nibh facilisis aliquam parturient neque. Massa habitant risus fermentum, nibh lectus porttitor sagittis nibh, congue ultrices vestibulum nibh.
+  Ut facilisi maecenas iusto amet, ligula suspendisse wisi nunc amet, pharetra aute et donec bibendum, ligula curabitur fermentum eu. Magna orci pellentesque elementum, curabitur magna turpis feugiat, ut pulvinar pretium sed, tellus malesuada maecenas nulla. Nulla sagittis parturient platea tortor, justo pede eu sed vivamus, ipsum taciti placerat quisque pellentesque, vulputate adipiscing luctus erat placerat. Ac ipsum et sapien massa, non turpis diam dolorem. Consequat erat est vitae, vehicula lacus nunc donec sociosqu, elit qui et placerat leo, ac aliquam nunc ante. Mauris arcu wisi vestibulum, vitae lacus ultrices pellentesque, dui viverra metus mauris, nunc mauris diam non. Mollis conubia vitae lorem, felis in nec quis, risus fusce amet duis in. Reiciendis orci euismod magna dapibus, accumsan erat id vivamus hendrerit.
+  Inceptos ante voluptatum platea, suspendisse accumsan porttitor integer scelerisque, felis eu nec turpis, orci aliquam integer aliquet quam. Justo lacus et porta, quam sem suspendisse suscipit, faucibus penatibus potenti arcu. Proin nibh velit suscipit suspendisse, phasellus pede ut in, feugiat fringilla enim diam, tellus a congue eu. Non semper velit erat fusce, fringilla tortor nunc metus lectus, dictumst tellus sed elit sem, justo arcu id faucibus. Euismod et ante rhoncus proin, sem tristique sit elit, ut vivamus eget luctus, tortor molestie libero nostrud arcu. Wisi mi suspendisse vitae, luctus tristique elit elit, eget dictumst wisi enim. Ut gravida sed orci, vitae at convallis aenean aenean.
+`}
+  </Text.Body>
+);
+
 const ModalController = props => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100%',
-        width: '100%',
-      }}
-    >
+    <Spacings.Inset>
       <Spacings.Stack>
         <Text.Headline elementType="h3">
           {'Open a Modal Page by clicking the button'}
@@ -38,7 +40,7 @@ const ModalController = props => {
         </Spacings.Inline>
         {props.children({ isOpen, setIsOpen })}
       </Spacings.Stack>
-    </div>
+    </Spacings.Inset>
   );
 };
 ModalController.displayName = 'ModalController';
@@ -55,47 +57,68 @@ storiesOf('Components|Modals', module)
       <ModalController>
         {({ isOpen, setIsOpen }) => (
           <ModalPage
+            title="Modal Page Title"
             isOpen={isOpen}
             onClose={() => setIsOpen(false)}
-            title={'Lorem ipsus'}
-            subtitle={<Text.Body>{'Lorem ipsus ...'}</Text.Body>}
-            components={{
-              actions: (
-                <Spacings.Inline alignItems="flex-start">
-                  <SecondaryButton
-                    label="Cancel"
-                    onClick={() =>
-                      action('onSecondaryControlButtonClick')('clicked')
-                    }
-                  />
-                  <PrimaryButton
-                    label="Save"
-                    onClick={() =>
-                      action('onPrimaryControlButtonClick')('clicked')
-                    }
-                  />
-                </Spacings.Inline>
-              ),
+            subtitle="This is a Header"
+            topBarLabels={{
+              previousPath: 'Go Back',
+              currentPath: 'First Level Modal Page',
             }}
+            headerActions={
+              <Spacings.Inline alignItems="flex-start">
+                <SecondaryButton
+                  label="Cancel"
+                  onClick={() =>
+                    action('onSecondaryControlButtonClick')('clicked')
+                  }
+                />
+                <PrimaryButton
+                  label="Save"
+                  onClick={() =>
+                    action('onPrimaryControlButtonClick')('clicked')
+                  }
+                />
+              </Spacings.Inline>
+            }
           >
-            <Spacings.Stack scale="m">
-              <Text.Body>{'Lorem ipsus ...'}</Text.Body>
+            <Spacings.Inset scale="m">
+              <Text.Body>{"I'm a Modal Page on the first level"}</Text.Body>
               <ModalController>
                 {/* eslint-disable-next-line no-shadow */}
                 {({ isOpen, setIsOpen }) => (
                   <ModalPage
-                    level="two"
+                    level={2}
+                    title="Nested Modal Page"
                     isOpen={isOpen}
                     onClose={() => setIsOpen(false)}
+                    showHeader={false}
+                    topBarTone="gray"
+                    topBarLabels={{
+                      previousPath: 'First Modal',
+                      currentPath: 'Nested Modal with gray top bar',
+                    }}
                   >
-                    <Spacings.Stack scale="m">
-                      <Text.Body>{'Lorem ipsus ...'}</Text.Body>
-                      <Text.Body>{'Lorem ipsus ...'}</Text.Body>
-                    </Spacings.Stack>
+                    <React.Fragment>
+                      <div
+                        style={{ backgroundColor: ' #f2f2f2', padding: '16px' }}
+                      >
+                        <Text.Subheadline elementType="h4">
+                          {'This is not a header'}
+                        </Text.Subheadline>
+                        <Text.Detail>
+                          {
+                            'Even though this section is matching the color of the top bar'
+                          }
+                        </Text.Detail>
+                      </div>
+                      <Spacings.Inset scale="m">{wallOfText}</Spacings.Inset>
+                    </React.Fragment>
                   </ModalPage>
                 )}
               </ModalController>
-            </Spacings.Stack>
+              {wallOfText}
+            </Spacings.Inset>
           </ModalPage>
         )}
       </ModalController>

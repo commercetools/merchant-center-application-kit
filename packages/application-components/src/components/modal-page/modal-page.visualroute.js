@@ -22,7 +22,7 @@ const ModalPageExample = props => (
 );
 ModalPageExample.displayName = 'ModalPageExample';
 ModalPageExample.propTypes = {
-  level: PropTypes.oneOf(['one', 'two', 'three']),
+  level: PropTypes.number,
   children: PropTypes.node,
   portalId: PropTypes.string.isRequired,
 };
@@ -42,8 +42,8 @@ export const component = () => (
       </ModalPageExample>
     </Spec>
     <Spec label="ModalPage - Nested" size="l" contentAlignment="center">
-      <ModalPageExample portalId="modal-two" level="one">
-        <ModalPageExample portalId="modal-two" level="two">
+      <ModalPageExample portalId="modal-two" level={1}>
+        <ModalPageExample portalId="modal-two" level={2}>
           <Spacings.Stack scale="m">
             <Text.Body>
               {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
