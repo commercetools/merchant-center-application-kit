@@ -1,6 +1,6 @@
 {
   "name": "visual-testing-app",
-  "version": "13.3.6",
+  "version": "13.5.1",
   "description": "An app to facilitate visual testing",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@emotion/core": "10.0.10",
-    "@emotion/styled": "10.0.10",
+    "@emotion/styled": "10.0.11",
     "formik": "1.5.4",
     "react": "16.8.6",
     "react-dom": "16.8.6",
@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "serve": "11.0.0",
-    "webpack": "4.30.0",
-    "webpack-cli": "3.3.1"
+    "webpack": "4.31.0",
+    "webpack-cli": "3.3.2"
   }
 }

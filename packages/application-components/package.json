@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-components",
-  "version": "13.3.9",
+  "version": "13.6.0",
   "description": "Generic components for building Merchant Center applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -40,7 +40,7 @@
     "@commercetools-frontend/assets": "13.3.5",
     "@commercetools-frontend/constants": "13.3.5",
     "@emotion/core": "10.0.10",
-    "@emotion/styled": "10.0.10",
+    "@emotion/styled": "10.0.11",
     "prop-types": "15.7.2",
     "react-modal": "3.8.1",
     "warning": "4.0.3"
@@ -60,12 +60,12 @@
     "moment-locales-webpack-plugin": "1.0.7",
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-intl": "2.8.0",
+    "react-intl": "2.9.0",
     "react-testing-library": "7.0.0",
     "storybook-readme": "5.0.3"
   },
   "peerDependencies": {
-    "@commercetools-frontend/ui-kit": "9.x",
+    "@commercetools-frontend/ui-kit": "^9.2",
     "react": "16.x",
     "react-dom": "16.x",
     "react-intl": "2.x",

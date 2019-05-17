@@ -4,11 +4,9 @@ title: Deployment - Getting started
 permalink: /getting-started/deployment
 ---
 
-import { ContentNotification } from '@commercetools-frontend/ui-kit';
+import NotificationFeature from '../../src/components/notification-feature';
 
-<ContentNotification type="info">
-  This feature is marked as `beta` and may be affected by changes. Use with caution for production.
-</ContentNotification>
+<NotificationFeature flag="beta" />
 
 # Deploying a Merchant Center application
 
@@ -85,9 +83,7 @@ When you start the `mc-http-server`, you need to pass a `--config` option pointi
 The `env.json` file contains runtime configuration available as a global state, `window.app`. The `window.app` object is passed to the `<ApplicationShell>` component as an `environment` prop. The `window.app` object may contain any configuration specific to the application, plus the following **required** fields:
 
 - `frontendHost`: The host where the Merchant Center custom application is running (e.g. `mc.commercetools.com`)
-- `mcApiUrl`: The API URL for the [Merchant Center HTTP API](../http-api). This is either:
-  - `https://mc-api.commercetools.com` for projects in **Europe**
-  - `https://mc-api.commercetools.co` for projects in the **United States**.
+- `mcApiUrl`: The API URL for the [Merchant Center API Gateway](../api-gateway)
 - `location`: The location where the Merchant Center custom application is running. This is either:
   - `eu` for projects in **Europe**
   - `us` for projects in the **United States**.
@@ -272,6 +268,6 @@ However, if you try to log in, you will get an error:
 
 ![Now login failed](/assets/custom-applications/mc-dev-now-login-failed.png)
 
-**This is expected**. The domain `mc-examples-starter.now.sh` **is not allowed by the CORS rules** defined in the [Merchant Center HTTP API](../http-api). It's a security measure as the Custom Application should only be served behind the Merchant Center Proxy.
+**This is expected**. The domain `mc-examples-starter.now.sh` **is not allowed by the CORS rules** defined in the [Merchant Center API Gateway](../api-gateway). It's a security measure as the Custom Application should only be served behind the Merchant Center Proxy.
 
 Now you're ready to [Register your Custom Application](./registration) and start using it!

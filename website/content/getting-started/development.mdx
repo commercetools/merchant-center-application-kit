@@ -4,11 +4,9 @@ title: Development - Getting started
 permalink: /getting-started/development
 ---
 
-import { ContentNotification } from '@commercetools-frontend/ui-kit';
+import NotificationFeature from '../../src/components/notification-feature';
 
-<ContentNotification type="info">
-  This feature is marked as `beta` and may be affected by changes. Use with caution for production.
-</ContentNotification>
+<NotificationFeature flag="beta" />
 
 # Developing a Custom Application for the Merchant Center
 
@@ -297,7 +295,7 @@ As mentioned in the [general concepts](./introduction#development-tools) section
 
 Some of the packages are required by all custom applications, and others are optional, or simply implicitly used by other packages.
 
-#### Required packages
+### Required packages
 
 The following packages should always be used when developing a Merchant Center Custom Application:
 

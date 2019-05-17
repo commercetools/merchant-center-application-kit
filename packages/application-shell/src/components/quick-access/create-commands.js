@@ -115,7 +115,7 @@ export default ({
             text: intl.formatMessage(messages.openAddCustomer),
             action: { type: 'go', to: `/${project.key}/customers/new` },
           },
-          featureToggles.customerGroups && {
+          {
             id: 'go/customer/customer-groups',
             text: intl.formatMessage(messages.openCustomerGroupsList),
             action: {
@@ -123,15 +123,14 @@ export default ({
               to: `/${project.key}/customers/customer-groups`,
             },
           },
-          featureToggles.customerGroups &&
-            hasPermission(permissions.ManageCustomers, project.permissions) && {
-              id: 'go/customers/customer-groups/add',
-              text: intl.formatMessage(messages.openAddCustomerGroup),
-              action: {
-                type: 'go',
-                to: `/${project.key}/customers/customer-groups/new`,
-              },
+          hasPermission(permissions.ManageCustomers, project.permissions) && {
+            id: 'go/customers/customer-groups/add',
+            text: intl.formatMessage(messages.openAddCustomerGroup),
+            action: {
+              type: 'go',
+              to: `/${project.key}/customers/customer-groups/new`,
             },
+          },
         ].filter(Boolean),
       },
     project &&
@@ -242,7 +241,6 @@ export default ({
         ].filter(Boolean),
       },
     project &&
-      featureToggles.projectSettings &&
       hasSomePermissions(
         [
           permissions.ManageProject,
@@ -292,7 +290,7 @@ export default ({
                   to: `/${project.key}/settings/project/shipping-methods`,
                 },
               },
-              featureToggles.projectSettingsChannels && {
+              {
                 id: 'go/settings/project/channels',
                 text: intl.formatMessage(
                   messages.openProjectSettingsChannelsTab
@@ -312,16 +310,15 @@ export default ({
               to: `/${project.key}/settings/product-types`,
             },
           },
-          featureToggles.developerSettings &&
-            hasPermission(permissions.ManageProject, project.permissions) && {
-              id: 'go/settings/developer',
-              text: intl.formatMessage(messages.openDeveloperSettings),
-              action: {
-                type: 'go',
-                to: `/${project.key}/settings/developer/api-clients`,
-              },
+          hasPermission(permissions.ManageProject, project.permissions) && {
+            id: 'go/settings/developer',
+            text: intl.formatMessage(messages.openDeveloperSettings),
+            action: {
+              type: 'go',
+              to: `/${project.key}/settings/developer/api-clients`,
             },
-          featureToggles.customApplicationsSettings &&
+          },
+          featureToggles.customApplications &&
             hasPermission(permissions.ManageProject, project.permissions) && {
               id: 'go/settings/custom-applications',
               text: intl.formatMessage(messages.openCustomApplicationsSettings),
@@ -391,7 +388,7 @@ export default ({
       keywords: ['Sign out'],
       action: { type: 'go', to: `/logout?reason=${LOGOUT_REASONS.USER}` },
     },
-    featureToggles.projectsList && {
+    {
       id: 'go/manage-projects',
       text: intl.formatMessage(messages.openManageProjects),
       keywords: [
@@ -400,6 +397,16 @@ export default ({
         'Open projects list',
       ],
       action: { type: 'go', to: `/account/projects` },
+    },
+    featureToggles.organizationsList && {
+      id: 'go/manage-organizations',
+      text: intl.formatMessage(messages.openManageOrganizations),
+      keywords: [
+        'Go to manage organizations',
+        'Go to organizations',
+        'Open organizations list',
+      ],
+      action: { type: 'go', to: `/account/organizations` },
     },
     ...(user
       ? user.projects.results.map(userProject => ({

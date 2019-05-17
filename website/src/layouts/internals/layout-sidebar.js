@@ -13,7 +13,7 @@ const Container = styled.aside`
   border-right: 1px solid ${colors.light.cards};
 
   display: ${props => (props.isMenuOpen ? 'flex' : 'none')};
-  grid-column: 1/3;
+  grid-column: auto;
 
   @media screen and (min-width: 40em) {
     display: flex;

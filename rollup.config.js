@@ -21,7 +21,7 @@ const postcssImport = require('postcss-import');
 const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
 
-const { pkg } = readPkgUp.sync({
+const { package: pkg } = readPkgUp.sync({
   cwd: fs.realpathSync(process.cwd()),
 });
 const babelOptions = getBabelPreset();

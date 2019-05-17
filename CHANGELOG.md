@@ -1,3 +1,95 @@
+## [13.6.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.6.0...v13.5.1) (2019-05-17)
+
+#### 🔮 Type: Chore
+
+- `application-components`, `application-shell`, `i18n`, `l10n`, `mc-http-server`, `mc-scripts`, `react-notifications`, `sentry`
+  - [#638](https://github.com/commercetools/merchant-center-application-kit/pull/638) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+
+#### 🚀 Type: New Feature
+
+- `application-shell`
+  - [#637](https://github.com/commercetools/merchant-center-application-kit/pull/637) feat(app-shell): add menuVisibility to menu query ([@tdeekens](https://github.com/tdeekens))
+- `application-components`
+  - [#636](https://github.com/commercetools/merchant-center-application-kit/pull/636) feat(components): add ModalPage component ([@jonnybel](https://github.com/jonnybel))
+
+## [13.5.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.5.1...v13.5.0) (2019-05-13)
+
+#### 🔮 Type: Chore
+
+- `application-components`, `application-shell`, `jest-preset-mc-app`, `mc-scripts`, `sentry`
+  - [#634](https://github.com/commercetools/merchant-center-application-kit/pull/634) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+- `application-shell`
+  - [#627](https://github.com/commercetools/merchant-center-application-kit/pull/627) fix(app-shell): to default to menu if no submenus are defined ([@tdeekens](https://github.com/tdeekens))
+
+## [13.5.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.4.2...v13.5.0) (2019-05-09)
+
+#### 🐛 Type: Bug
+
+- `application-shell`, `react-notifications`
+  - [#625](https://github.com/commercetools/merchant-center-application-kit/pull/625) fix(application-shell, react-notifications): fix invalid shadow ([@montezume](https://github.com/montezume))
+- `application-components`
+  - [#619](https://github.com/commercetools/merchant-center-application-kit/pull/619) fix(application-components): ui-kit peer dep ([@montezume](https://github.com/montezume))
+
+#### 🚀 Type: New Feature
+
+- `application-shell-connectors`, `permissions`
+  - [#624](https://github.com/commercetools/merchant-center-application-kit/pull/624) feat(permissions): add use-is-authorized hook ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+  - [#623](https://github.com/commercetools/merchant-center-application-kit/pull/623) refactor: remove projects list toggle ([@tdeekens](https://github.com/tdeekens))
+
+## [13.4.2](https://github.com/commercetools/merchant-center-application-kit/compare/v13.4.1...v13.4.2) (2019-05-09)
+
+Now `application-components` is relying on version `9.2.0` or newer of `@commeretools-frontend/ui-kit`. If you are using an older version, please update that as well.
+
+Also, now that `application-shell` no longer uses `react-select` version 1, you can remove the CSS import in your app entry point. If your application doesn't explicity use `react-select` version 1, you should remove this import.
+
+```js
+// remove this next line
+import 'react-select/dist/react-select.css';
+import React from 'react';
+// etc
+```
+
+#### 🔮 Type: Chore
+
+- `application-shell`
+  - [#621](https://github.com/commercetools/merchant-center-application-kit/pull/621) chore: remove react-select v1 ([@montezume](https://github.com/montezume))
+  - [#606](https://github.com/commercetools/merchant-center-application-kit/pull/606) 👯‍♀️ chore: update flopflip 👯‍♀️ ([@tdeekens](https://github.com/tdeekens))
+- `application-shell`, `react-notifications`
+  - [#616](https://github.com/commercetools/merchant-center-application-kit/pull/616) chore: move deprecated custom prop internal ([@montezume](https://github.com/montezume))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+  - [#617](https://github.com/commercetools/merchant-center-application-kit/pull/617) refactor(application-shell): use ui kit select input for locale switcher ([@montezume](https://github.com/montezume))
+  - [#618](https://github.com/commercetools/merchant-center-application-kit/pull/618) refactor(project-switcher): refactor to use ui kit select input ([@montezume](https://github.com/montezume))
+- `application-components`
+  - [#615](https://github.com/commercetools/merchant-center-application-kit/pull/615) refactor: use non deprecated custom props ([@montezume](https://github.com/montezume))
+
+## [13.4.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.4.0...v13.4.1) (2019-05-03)
+
+#### 🐛 Type: Chore
+
+- `application-shell`
+  - [#602](https://github.com/commercetools/merchant-center-application-kit/pull/602) refactor(app-shell): remove old feature flags ([@tdeekens](https://github.com/tdeekens))
+
+## [13.4.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.9...v13.4.0) (2019-05-03)
+
+#### 🔮 Type: Chore
+
+- `i18n`
+  - [#600](https://github.com/commercetools/merchant-center-application-kit/pull/600) Translate '/packages/i18n/data/core.json' in 'de' ([@transifex-integration[bot]](https://github.com/apps/transifex-integration))
+- `application-components`, `application-shell`, `jest-preset-mc-app`, `l10n`, `mc-http-server`, `mc-scripts`, `sdk`, `sentry`
+  - [#598](https://github.com/commercetools/merchant-center-application-kit/pull/598) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+
+#### 💅 Type: Enhancement
+
+- `application-shell`, `i18n`
+  - [#599](https://github.com/commercetools/merchant-center-application-kit/pull/599) feat(app-shell): add "Manage Projects" to Quick Access ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.3.9](https://github.com/commercetools/merchant-center-application-kit/compare/v13.3.8...v13.3.9) (2019-05-02)
 
 #### 🐛 Type: Bug

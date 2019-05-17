@@ -15,7 +15,7 @@ const LayoutHeader = () => (
       padding: 0 ${customProperties.spacingM};
       flex: 1;
       grid-row: 1;
-      grid-column: 1/3;
+      grid-column: 1/4;
       height: 50px;
       width: 90%;
       margin: 0 auto;
