@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "react": "16.8.6",
-    "react-intl": "2.8.0"
+    "react-intl": "2.9.0"
   },
   "peerDependencies": {
     "react": "16.x",

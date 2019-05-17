@@ -28,11 +28,11 @@
     "@promster/express": "2.2.1",
     "@promster/server": "2.1.0",
     "compression": "1.7.4",
-    "express": "4.16.4",
+    "express": "4.17.0",
     "lightship": "3.0.1",
     "morgan": "1.9.1",
     "mri": "1.1.4",
-    "node-fetch": "2.5.0",
+    "node-fetch": "2.6.0",
     "shelljs": "0.8.3"
   },
   "engines": {
