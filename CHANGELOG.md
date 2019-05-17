@@ -1,3 +1,17 @@
+## [13.6.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.6.0...v13.5.1) (2019-05-17)
+
+#### 🔮 Type: Chore
+
+- `application-components`, `application-shell`, `i18n`, `l10n`, `mc-http-server`, `mc-scripts`, `react-notifications`, `sentry`
+  - [#638](https://github.com/commercetools/merchant-center-application-kit/pull/638) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+
+#### 🚀 Type: New Feature
+
+- `application-shell`
+  - [#637](https://github.com/commercetools/merchant-center-application-kit/pull/637) feat(app-shell): add menuVisibility to menu query ([@tdeekens](https://github.com/tdeekens))
+- `application-components`
+  - [#636](https://github.com/commercetools/merchant-center-application-kit/pull/636) feat(components): add ModalPage component ([@jonnybel](https://github.com/jonnybel))
+
 ## [13.5.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.5.1...v13.5.0) (2019-05-13)
 
 #### 🔮 Type: Chore
