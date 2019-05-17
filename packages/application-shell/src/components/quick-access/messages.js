@@ -194,6 +194,10 @@ export default defineMessages({
     id: 'QuickAccess.openManageProject',
     defaultMessage: 'Open Manage Projects',
   },
+  openManageOrganizations: {
+    id: 'QuickAccess.openManageOrganizations',
+    defaultMessage: 'Open Manage Organizations',
+  },
 
   // subcommands
   openVariantById: {
