@@ -398,6 +398,16 @@ export default ({
       ],
       action: { type: 'go', to: `/account/projects` },
     },
+    featureToggles.organizationsList && {
+      id: 'go/manage-organizations',
+      text: intl.formatMessage(messages.openManageOrganizations),
+      keywords: [
+        'Go to manage organizations',
+        'Go to organizations',
+        'Open organizations list',
+      ],
+      action: { type: 'go', to: `/account/organizations` },
+    },
     ...(user
       ? user.projects.results.map(userProject => ({
           id: `go/project(${userProject.key})`,
