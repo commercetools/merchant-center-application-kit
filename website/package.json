@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-application-kit-website",
-  "version": "13.5.1",
+  "version": "13.6.0",
   "private": true,
   "scripts": {
     "build": "gatsby build",
