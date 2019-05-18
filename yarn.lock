@@ -1810,10 +1810,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.2.tgz#63985d3d8b02530e0869962f4da09142ee8e200e"
   integrity sha512-n/VQ4mbfr81aqkx/XmVicOLjviMuy02eenSdJY33SVA7S2J42EU0P1H0mOogfYedb3wXA0d/LVtBrgTSm04WEA==
 
-"@flopflip/launchdarkly-adapter@2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.5.0.tgz#44fe73dae9acf745c5bcf244ab596df41e6c820e"
-  integrity sha512-ftUY34Q9ya3Q+hj9ketoxDJI/K5BHwt/Ibv/vRiI4eXXWb3YAujGweJmI9ObaKztDZHqhErHOjC1x3msHV0X+A==
+"@flopflip/launchdarkly-adapter@2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.6.0.tgz#4cc0a92ff234a83d49ea79a0c613f56adb4d5da8"
+  integrity sha512-syl/kcy7jhfhRKRCIyELLVm1P8ig9HPslvo0L9eMScx/wfjMtKrZFIOwPozGINR9ceUMcEHvJI/kOcFGHD1M2A==
   dependencies:
     "@babel/runtime" "7.4.4"
     deepmerge "3.2.0"
@@ -1830,21 +1830,21 @@
     invariant "2.2.4"
     mitt "1.1.3"
 
-"@flopflip/react-broadcast@8.2.1":
-  version "8.2.1"
-  resolved "https://registry.npmjs.org/@flopflip/react-broadcast/-/react-broadcast-8.2.1.tgz#1fe880a95e117dad51566fca16839cde0995c770"
-  integrity sha512-PF/Kz83DVCyu83hEy06yASNn3RWwH7HYD8AXX1pXc6qnrvaVZfjLdORl3sz+clUv623MCCgRLjQoW6nDQjuHRQ==
+"@flopflip/react-broadcast@8.2.2":
+  version "8.2.2"
+  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-8.2.2.tgz#aac022655b10ab00ed78057b1d5df2e6b0dcf431"
+  integrity sha512-rzEI4JLdcdiqmQ3Jmh7CevegViBY7byH/ZLW/MpqOrl486J9sn9MeAoyB4ZBsh7F4kyiPZr3CnQgDGlqD5JAow==
   dependencies:
     "@babel/runtime" "7.4.4"
-    "@flopflip/react" "^7.2.1"
+    "@flopflip/react" "^7.2.2"
     "@flopflip/types" "^2.1.0"
     create-react-context "0.2.3"
     lodash "4.17.11"
 
-"@flopflip/react@^7.2.1":
-  version "7.2.1"
-  resolved "https://registry.npmjs.org/@flopflip/react/-/react-7.2.1.tgz#50bdad0ab2dca3e70d0d62d17c19fbd8e9926abe"
-  integrity sha512-vuXrXJQ03yrbEsX4NXFcEtmgATzKotlvpj9vETLNIHJhscHh+BnNdBoErpR/DqrOTZLI0kkG8DSk+hjgOeAo9Q==
+"@flopflip/react@^7.2.2":
+  version "7.2.2"
+  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-7.2.2.tgz#33759064468cd77685d368dbb8c1a0702c7aaf18"
+  integrity sha512-u49FmSL/B49jGEPqo3aejiMNP7Zv3YaAnFvNbMJh4POqDKFoMyayFTqEhfSRAIL5d7z8keNADzkH46V4pDzBuA==
   dependencies:
     "@babel/runtime" "7.4.4"
     create-react-context "0.2.3"
