@@ -29,7 +29,7 @@ executors:
           TERM: xterm
 
 orbs:
-  compare-url: iynere/compare-url@0.4.10
+  compare-url: iynere/compare-url@1.0.0
 
 commands:
   install_dependencies:
