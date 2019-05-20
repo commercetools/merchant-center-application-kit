@@ -34,11 +34,9 @@ export const getContainerStyles = props => css`
 
 export const getOverlayStyles = props => css`
   position: absolute;
-  z-index: ${
-    typeof props.zIndex === 'number'
-      ? props.zIndex
-      : props.baseZIndex + props.level
-  }
+  z-index: ${typeof props.zIndex === 'number'
+    ? props.zIndex
+    : props.baseZIndex + props.level};
   top: 0;
   left: 0;
   width: 100%;
