@@ -27,7 +27,7 @@
     "@commercetools/jest-enzyme-matchers": "1.1.2",
     "babel-jest": "24.8.0",
     "colors": "1.3.3",
-    "enzyme-adapter-react-16": "1.13.0",
+    "enzyme-adapter-react-16": "1.13.1",
     "enzyme-matchers": "7.0.2",
     "enzyme-to-json": "3.3.5",
     "identity-obj-proxy": "3.0.0",
@@ -43,7 +43,7 @@
     "unfetch": "4.1.0"
   },
   "devDependencies": {
-    "react-testing-library": "7.0.0"
+    "react-testing-library": "7.0.1"
   },
   "peerDependencies": {
     "enzyme": "3.x",
