@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "chalk": "2.4.2",
-    "cldr": "5.2.0",
+    "cldr": "5.3.0",
     "deep-diff": "1.0.2",
     "moment-timezone": "0.5.25",
     "node-fetch": "2.6.0",
