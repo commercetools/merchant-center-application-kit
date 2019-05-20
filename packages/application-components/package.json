@@ -61,7 +61,7 @@
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-intl": "2.9.0",
-    "react-testing-library": "7.0.0",
+    "react-testing-library": "7.0.1",
     "storybook-readme": "5.0.3"
   },
   "peerDependencies": {

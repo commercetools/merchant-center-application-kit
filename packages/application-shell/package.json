@@ -100,7 +100,7 @@
     "react-redux": "7.0.3",
     "react-router": "5.0.0",
     "react-router-dom": "5.0.0",
-    "react-testing-library": "7.0.0",
+    "react-testing-library": "7.0.1",
     "redux": "4.0.1",
     "wait-for-observables": "1.0.3"
   },
