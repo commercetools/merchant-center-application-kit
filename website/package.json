@@ -17,7 +17,7 @@
     "@mdx-js/mdx": "1.0.19",
     "@mdx-js/react": "1.0.16",
     "common-tags": "1.8.0",
-    "core-js": "3.0.1",
+    "core-js": "3.1.0",
     "emotion-theming": "10.0.10",
     "gatsby": "2.5.0",
     "gatsby-cli": "^2.5.14",
