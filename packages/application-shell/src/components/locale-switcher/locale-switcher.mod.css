@@ -12,13 +12,13 @@
 .language-counter {
   width: 22px;
   height: 22px;
-  border-radius: 22px;
-  padding: 3px;
+  border-radius: 100%;
   background: var(--color-accent-40);
   color: var(--color-surface);
-  display: inline-block;
   font-size: 0.9rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .label {
