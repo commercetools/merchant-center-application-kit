@@ -1,3 +1,24 @@
+## [13.7.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.7.0...v13.6.0) (2019-05-23)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#652](https://github.com/commercetools/merchant-center-application-kit/pull/652) fix(app-shell): Switcher counter not properly centered ([@jonnybel](https://github.com/jonnybel))
+
+#### 🔮 Type: Chore
+
+- `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `create-mc-app`, `jest-preset-mc-app`, `mc-scripts`, `sdk`, `sentry`
+  - [#654](https://github.com/commercetools/merchant-center-application-kit/pull/654) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+- `application-components`, `application-shell`, `babel-preset-mc-app`, `jest-preset-mc-app`, `l10n`, `mc-scripts`, `permissions`
+  - [#650](https://github.com/commercetools/merchant-center-application-kit/pull/650) chore: update deps ([@montezume](https://github.com/montezume))
+- `application-shell`
+  - [#643](https://github.com/commercetools/merchant-center-application-kit/pull/643) chore: update flopflip ([@tdeekens](https://github.com/tdeekens))
+
+#### 💅 Type: Enhancement
+
+- `application-shell`, `i18n`
+  - [#640](https://github.com/commercetools/merchant-center-application-kit/pull/640) feat(app-shell): add manage organizations ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.6.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.6.0...v13.5.1) (2019-05-17)
 
 #### 🔮 Type: Chore
