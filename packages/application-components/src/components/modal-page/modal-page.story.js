@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs/react';
+import { withKnobs, boolean, text, select } from '@storybook/addon-knobs/react';
 import { action } from '@storybook/addon-actions';
 import withReadme from 'storybook-readme/with-readme';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
@@ -11,6 +11,7 @@ import {
   Spacings,
   Text,
 } from '@commercetools-frontend/ui-kit';
+import { number } from '@storybook/addon-knobs/dist/deprecated';
 import Readme from './README.md';
 import ModalPage from './modal-page';
 
@@ -51,76 +52,86 @@ ModalController.propTypes = {
 storiesOf('Components|Modals', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(Readme))
-  .add('ModalPage', () => (
-    <React.Fragment>
-      <div id={PORTALS_CONTAINER_ID} />
-      <ModalController>
-        {({ isOpen, setIsOpen }) => (
-          <ModalPage
-            title="Modal Page Title"
-            isOpen={isOpen}
-            onClose={() => setIsOpen(false)}
-            subtitle="This is a Header"
-            topBarLabels={{
-              previousPath: 'Go Back',
-              currentPath: 'First Level Modal Page',
-            }}
-            headerActions={
-              <Spacings.Inline alignItems="flex-start">
-                <SecondaryButton
-                  label="Cancel"
-                  onClick={() =>
-                    action('onSecondaryControlButtonClick')('clicked')
-                  }
-                />
-                <PrimaryButton
-                  label="Save"
-                  onClick={() =>
-                    action('onPrimaryControlButtonClick')('clicked')
-                  }
-                />
-              </Spacings.Inline>
-            }
-          >
-            <Spacings.Inset scale="m">
-              <Text.Body>{"I'm a Modal Page on the first level"}</Text.Body>
-              <ModalController>
-                {/* eslint-disable-next-line no-shadow */}
-                {({ isOpen, setIsOpen }) => (
-                  <ModalPage
-                    level={2}
-                    title="Nested Modal Page"
-                    isOpen={isOpen}
-                    onClose={() => setIsOpen(false)}
-                    showHeader={false}
-                    topBarTone="gray"
-                    topBarLabels={{
-                      previousPath: 'First Modal',
-                      currentPath: 'Nested Modal with gray top bar',
-                    }}
-                  >
-                    <React.Fragment>
-                      <div
-                        style={{ backgroundColor: ' #f2f2f2', padding: '16px' }}
-                      >
-                        <Text.Subheadline elementType="h4">
-                          {'This is not a header'}
-                        </Text.Subheadline>
-                        <Text.Detail>
-                          {
-                            'Even though this section is matching the color of the top bar'
-                          }
-                        </Text.Detail>
-                      </div>
-                      <Spacings.Inset scale="m">{wallOfText}</Spacings.Inset>
-                    </React.Fragment>
-                  </ModalPage>
-                )}
-              </ModalController>
-              {wallOfText}
-            </Spacings.Inset>
-          </ModalPage>
-        )}
-      </ModalController>
-    </React.Fragment>
-  ));
+  .add('ModalPage', () => {
+    const firstModalLevel = number('level', 1);
+
+    return (
+      <React.Fragment>
+        <div id={PORTALS_CONTAINER_ID} />
+        <ModalController>
+          {({ isOpen, setIsOpen }) => (
+            <ModalPage
+              level={firstModalLevel}
+              title={text('title', 'Modal Page Title')}
+              isOpen={isOpen}
+              onClose={() => setIsOpen(false)}
+              subtitle={text('subtitle', 'Subtitle')}
+              showHeader={boolean('showHeader', true)}
+              showTopBar={boolean('showTopBar', true)}
+              topBarTone={select('topBarTone', ['white', 'gray'], 'white')}
+              topBarLabels={{
+                previousPath: text('topBarLabels.previousPath', 'Go Back'),
+                currentPath: text('topBarLabels.currentPath', 'Modal'),
+              }}
+              headerActions={
+                <Spacings.Inline alignItems="flex-start">
+                  <SecondaryButton
+                    label="Cancel"
+                    onClick={() =>
+                      action('onSecondaryControlButtonClick')('clicked')
+                    }
+                  />
+                  <PrimaryButton
+                    label="Save"
+                    onClick={() =>
+                      action('onPrimaryControlButtonClick')('clicked')
+                    }
+                  />
+                </Spacings.Inline>
+              }
+            >
+              <Spacings.Inset scale="m">
+                <ModalController>
+                  {/* eslint-disable-next-line no-shadow */}
+                  {({ isOpen, setIsOpen }) => (
+                    <ModalPage
+                      level={firstModalLevel + 1}
+                      title="Nested Modal Page"
+                      isOpen={isOpen}
+                      onClose={() => setIsOpen(false)}
+                      showHeader={false}
+                      topBarTone="gray"
+                      topBarLabels={{
+                        previousPath: 'First Modal',
+                        currentPath: 'Nested Modal with gray top bar',
+                      }}
+                    >
+                      <React.Fragment>
+                        <div
+                          style={{
+                            backgroundColor: ' #f2f2f2',
+                            padding: '16px',
+                          }}
+                        >
+                          <Text.Subheadline elementType="h4">
+                            {'This is not a header'}
+                          </Text.Subheadline>
+                          <Text.Detail>
+                            {
+                              'Even though this section is matching the color of the top bar'
+                            }
+                          </Text.Detail>
+                        </div>
+                        <Spacings.Inset scale="m">{wallOfText}</Spacings.Inset>
+                      </React.Fragment>
+                    </ModalPage>
+                  )}
+                </ModalController>
+                {wallOfText}
+              </Spacings.Inset>
+            </ModalPage>
+          )}
+        </ModalController>
+      </React.Fragment>
+    );
+  });
