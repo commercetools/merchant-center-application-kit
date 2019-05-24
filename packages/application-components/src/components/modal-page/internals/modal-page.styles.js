@@ -1,4 +1,5 @@
 import { css, keyframes } from '@emotion/core';
+import styled from '@emotion/styled';
 import { customProperties } from '@commercetools-frontend/ui-kit';
 
 const slideFromLeft = keyframes`
@@ -24,7 +25,7 @@ export const getContainerStyles = props => css`
   top: 0;
   right: 0;
   height: 100%;
-  width: calc(100% - (${customProperties.spacingXl} * ${props.level}));
+  width: calc(100% - (48px * ${props.level}));
   display: flex;
   flex-direction: column;
   background-color: ${customProperties.colorSurface};
@@ -45,16 +46,8 @@ export const getOverlayStyles = props => css`
   animation: ${fadeIn} 0.2s ease;
 `;
 
-export const getTopBarStyles = props => css`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+export const ContentWrapper = styled.div`
+  flex: 1;
   padding: ${customProperties.spacingS} ${customProperties.spacingM};
-  background-color: ${props.tone === 'gray'
-    ? customProperties.colorGray95
-    : customProperties.colorWhite};
-  border-bottom: 1px solid
-    ${props.tone === 'gray'
-      ? customProperties.colorWhite
-      : customProperties.colorGray};
+  overflow: auto;
 `;

@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean, text, select } from '@storybook/addon-knobs/react';
-import { action } from '@storybook/addon-actions';
+import { withKnobs, text } from '@storybook/addon-knobs/react';
 import withReadme from 'storybook-readme/with-readme';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import {
-  PrimaryButton,
-  SecondaryButton,
-  Spacings,
   Text,
+  Spacings,
+  SecondaryButton,
 } from '@commercetools-frontend/ui-kit';
 import { number } from '@storybook/addon-knobs/dist/deprecated';
 import Readme from './README.md';
-import ModalPage from './modal-page';
+import TabularModalPage from './tabular-modal-page';
 
+// This is to see the scroll behaviour inside the Modal content
 const wallOfText = (
   <Text.Body>
     {`
@@ -26,20 +25,17 @@ const wallOfText = (
 );
 
 const ModalController = props => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, toggle] = React.useState(false);
   return (
     <Spacings.Inset>
       <Spacings.Stack>
-        <Text.Headline elementType="h3">
-          {'Open a Modal Page by clicking the button'}
-        </Text.Headline>
         <Spacings.Inline>
           <SecondaryButton
-            label="Open Modal Page"
-            onClick={() => setIsOpen(true)}
+            label="Open an Tabular Modal Page"
+            onClick={() => toggle(true)}
           />
+          {props.children({ isOpen, toggle })}
         </Spacings.Inline>
-        {props.children({ isOpen, setIsOpen })}
       </Spacings.Stack>
     </Spacings.Inset>
   );
@@ -52,84 +48,43 @@ ModalController.propTypes = {
 storiesOf('Components|Modals', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(Readme))
-  .add('ModalPage', () => {
+  .add('TabularModalPage', () => {
     const firstModalLevel = number('level', 1);
 
     return (
       <React.Fragment>
         <div id={PORTALS_CONTAINER_ID} />
         <ModalController>
-          {({ isOpen, setIsOpen }) => (
-            <ModalPage
+          {({ isOpen, toggle }) => (
+            <TabularModalPage
               level={firstModalLevel}
-              title={text('title', 'Modal Page Title')}
+              title={text('title', 'Tabular Modal Page Title')}
               isOpen={isOpen}
-              onClose={() => setIsOpen(false)}
-              subtitle={text('subtitle', 'Subtitle')}
-              showHeader={boolean('showHeader', true)}
-              showTopBar={boolean('showTopBar', true)}
-              topBarTone={select('topBarTone', ['white', 'gray'], 'white')}
-              topBarLabels={{
-                previousPath: text('topBarLabels.previousPath', 'Go Back'),
-                currentPath: text('topBarLabels.currentPath', 'Modal'),
-              }}
-              headerActions={
-                <Spacings.Inline alignItems="flex-start">
-                  <SecondaryButton
-                    label="Cancel"
-                    onClick={() =>
-                      action('onSecondaryControlButtonClick')('clicked')
-                    }
-                  />
-                  <PrimaryButton
-                    label="Save"
-                    onClick={() =>
-                      action('onPrimaryControlButtonClick')('clicked')
-                    }
-                  />
-                </Spacings.Inline>
+              onClose={() => toggle(false)}
+              topBarPreviousPathLabel={
+                text('topBarPreviousPathLabel', '') || undefined
+              }
+              topBarCurrentPathLabel={
+                text('topBarCurrentPathLabel', '') || undefined
               }
             >
-              <Spacings.Inset scale="m">
-                <ModalController>
-                  {/* eslint-disable-next-line no-shadow */}
-                  {({ isOpen, setIsOpen }) => (
-                    <ModalPage
-                      level={firstModalLevel + 1}
-                      title="Nested Modal Page"
-                      isOpen={isOpen}
-                      onClose={() => setIsOpen(false)}
-                      showHeader={false}
-                      topBarTone="gray"
-                      topBarLabels={{
-                        previousPath: 'First Modal',
-                        currentPath: 'Nested Modal with gray top bar',
-                      }}
-                    >
-                      <React.Fragment>
-                        <div
-                          style={{
-                            backgroundColor: ' #f2f2f2',
-                            padding: '16px',
-                          }}
-                        >
-                          <Text.Subheadline elementType="h4">
-                            {'This is not a header'}
-                          </Text.Subheadline>
-                          <Text.Detail>
-                            {
-                              'Even though this section is matching the color of the top bar'
-                            }
-                          </Text.Detail>
-                        </div>
-                        <Spacings.Inset scale="m">{wallOfText}</Spacings.Inset>
-                      </React.Fragment>
-                    </ModalPage>
-                  )}
-                </ModalController>
-                {wallOfText}
-              </Spacings.Inset>
-            </ModalPage>
+              <div
+                style={{
+                  backgroundColor: ' #f2f2f2',
+                  padding: '16px',
+                }}
+              >
+                <Text.Subheadline elementType="h4">
+                  {'This is not a header'}
+                </Text.Subheadline>
+                <Text.Detail>
+                  {
+                    'Even though this section is matching the color of the top bar'
+                  }
+                </Text.Detail>
+              </div>
+              <Spacings.Inset scale="m">{wallOfText}</Spacings.Inset>
+            </TabularModalPage>
           )}
         </ModalController>
       </React.Fragment>

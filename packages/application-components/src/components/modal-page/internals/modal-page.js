@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
-import { ClassNames, css } from '@emotion/core';
+import { ClassNames } from '@emotion/core';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import {
-  getOverlayStyles,
-  getContainerStyles,
-} from './internals/modal-page.styles';
-import ModalPageTopBar from './internals/modal-page-top-bar';
-import ModalPageHeader from './internals/modal-page-header';
+import { getOverlayStyles, getContainerStyles } from './modal-page.styles';
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under
@@ -42,30 +37,7 @@ const ModalPage = props => (
         shouldCloseOnEsc={Boolean(props.onClose)}
         shouldCloseOnOverlayClick={Boolean(props.onClose)}
       >
-        {props.showTopBar && (
-          <ModalPageTopBar
-            onClose={props.onClose}
-            currentPath={props.topBarLabels.currentPath || props.title}
-            previousPath={props.topBarLabels.previousPath}
-            tone={props.topBarTone}
-          />
-        )}
-
-        {props.showHeader && (
-          <ModalPageHeader
-            title={props.title}
-            actions={props.headerActions}
-            subtitle={props.subtitle}
-          />
-        )}
-        <div
-          css={css`
-            overflow: auto;
-            flex: 1;
-          `}
-        >
-          {props.children}
-        </div>
+        {props.children}
       </Modal>
     )}
   </ClassNames>
@@ -77,25 +49,13 @@ ModalPage.propTypes = {
   zIndex: PropTypes.number,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func,
-  subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   children: PropTypes.node.isRequired,
-  showTopBar: PropTypes.bool,
-  showHeader: PropTypes.bool,
   baseZIndex: PropTypes.number,
-  topBarTone: PropTypes.oneOf(['white', 'gray']),
-  topBarLabels: PropTypes.shape({
-    currentPath: PropTypes.string,
-    previousPath: PropTypes.string,
-  }),
-  headerActions: PropTypes.node,
   parentSelector: PropTypes.string,
 };
 ModalPage.defaultProps = {
   level: 1,
   baseZIndex: 1000,
-  showTopBar: true,
-  showHeader: true,
-  topBarLabels: {},
 };
 
 export default ModalPage;
