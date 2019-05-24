@@ -1,3 +1,10 @@
+## [13.7.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.7.0...v13.7.1) (2019-05-24)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#656](https://github.com/commercetools/merchant-center-application-kit/pull/656) fix(app-shell): quick access env not always set ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.7.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.7.0...v13.6.0) (2019-05-23)
 
 #### 🐛 Type: Bug
