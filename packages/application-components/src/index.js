@@ -14,4 +14,12 @@ export {
 } from './components/dialogs/confirmation-dialog';
 export { default as FormDialog } from './components/dialogs/form-dialog';
 
-export { default as ModalPage } from './components/modal-page';
+export {
+  default as InfoModalPage,
+} from './components/modal-pages/info-modal-page';
+export {
+  default as FormModalPage,
+} from './components/modal-pages/form-modal-page';
+export {
+  default as TabularModalPage,
+} from './components/modal-pages/tabular-modal-page';
