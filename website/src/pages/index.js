@@ -98,13 +98,7 @@ const IndexPage = () => {
             </div>
           </Grid.Item>
           <Grid.Item>
-            <div
-              css={css`
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-              `}
-            >
+            <Spacings.Stack scale="m">
               <div
                 css={css`
                   flex-grow: 1;
@@ -126,7 +120,7 @@ const IndexPage = () => {
                   {'Get started 🙌'}
                 </ButtonLink>
               </div>
-            </div>
+            </Spacings.Stack>
           </Grid.Item>
         </Grid>
       </PageContainer>

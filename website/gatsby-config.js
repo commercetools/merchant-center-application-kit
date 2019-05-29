@@ -5,6 +5,9 @@ module.exports = {
     title: `Merchant Center Application Kit`,
     description: ``,
     author: `commercetools`,
+    repositoryUrl:
+      'https://github.com/commercetools/merchant-center-application-kit',
+    currentVersion: require('../lerna.json').version,
     navbarLinks: [
       {
         label: 'Getting started',
@@ -121,7 +124,6 @@ module.exports = {
               // the content container as this plugin uses this as the
               // base for generating different widths of each image.
               maxWidth: 740,
-              sizeByPixelDensity: true,
             },
           },
         ],
