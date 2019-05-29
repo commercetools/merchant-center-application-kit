@@ -6,7 +6,7 @@ exports[`rendering when loaded should match snapshot 1`] = `
   data-track-component="ProjectSwitch"
   data-track-event="click"
 >
-  <InjectIntl(SelectInput)
+  <WithTheme(InjectIntl(SelectInput))
     backspaceRemovesValue={false}
     components={
       Object {
