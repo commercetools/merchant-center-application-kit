@@ -9,7 +9,7 @@ import { customProperties } from '@commercetools-frontend/ui-kit';
 import * as colors from '../colors';
 import ExternalLinkSvg from '../images/external-link.svg';
 import { LayoutContent } from '../layouts';
-import { SEO, CodeBlock } from '../components';
+import { SEO, CodeBlock, ExternalLink } from '../components';
 import AnchorLinkSvg from '../images/anchor-link.svg';
 
 const TypographyPage = styled.div`
@@ -178,21 +178,6 @@ const Delete = styled.span`
   text-decoration: line-through;
 `;
 const Hr = styled(ThematicBreak)``;
-const linkStyles = css`
-  color: ${colors.light.primary};
-  text-decoration: none;
-
-  :hover {
-    text-decoration: underline;
-  }
-  :hover,
-  :active {
-    outline-width: 0;
-  }
-  :visited {
-    color: ${colors.light.primarySoft};
-  }
-`;
 // eslint-disable-next-line react/display-name
 const Link = props => {
   if (props.href.startsWith('/static')) {
@@ -210,12 +195,7 @@ const Link = props => {
           align-items: center;
         `}
       >
-        <a
-          {...props}
-          css={linkStyles}
-          target="_blank"
-          rel="noopener noreferrer"
-        />
+        <ExternalLink {...props} />
         <ExternalLinkSvg />
       </span>
     );
@@ -239,7 +219,7 @@ const Link = props => {
   });
   if (linkTo) {
     return (
-      <HistoryLink to={linkTo} css={linkStyles}>
+      <HistoryLink to={linkTo} css={ExternalLink.linkStyles}>
         {props.children}
       </HistoryLink>
     );
