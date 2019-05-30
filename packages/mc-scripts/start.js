@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console,global-require,import/no-dynamic-require */
 
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'development';
@@ -13,9 +13,9 @@ process.on('unhandledRejection', err => {
 
 const fs = require('fs');
 const path = require('path');
-const chalk = require('chalk');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+const chalk = require('react-dev-utils/chalk');
 const clearConsole = require('react-dev-utils/clearConsole');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const {
@@ -26,33 +26,32 @@ const {
 const openBrowser = require('react-dev-utils/openBrowser');
 const createDevServerConfig = require('./config/webpack-dev-server.config');
 
+// Make sure any symlinks in the project folder are resolved:
+// https://github.com/facebook/create-react-app/issues/637
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+
 // Resolve the absolute path of the caller location. This is necessary
 // to point to files within that folder.
-const appPackagePath = process.cwd();
 const paths = {
-  packageJson: path.join(appPackagePath, 'package.json'),
-  appPublic: path.join(appPackagePath, 'public'),
-  appWebpackConfig: path.join(appPackagePath, 'webpack.config.dev.js'),
+  appPackageJson: resolveApp('package.json'),
+  appIndexJs: resolveApp('src/index.js'),
+  appPublic: resolveApp('public'),
+  appWebpackConfig: resolveApp('webpack.config.dev.js'),
+  yarnLockFile: resolveApp('yarn.lock'),
 };
 
 const useYarn = fs.existsSync(paths.yarnLockFile);
 const isInteractive = process.stdout.isTTY;
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appWebpackConfig])) {
+if (!checkRequiredFiles([paths.appWebpackConfig, paths.appIndexJs])) {
   process.exit(1);
 }
 
 // Tools like Cloud9 rely on this.
 const DEFAULT_PORT = parseInt(process.env.HTTP_PORT, 10) || 3001;
 const HOST = process.env.HOST || '0.0.0.0';
-
-const getApplicationName = () => {
-  const packageJsonData = fs.readFileSync(paths.packageJson, {
-    encoding: 'utf8',
-  });
-  return JSON.parse(packageJsonData).name;
-};
 
 // We attempt to use the default port but if it is busy, we offer the user to
 // run on a different port. `detect()` Promise resolves to the next free port.
@@ -63,15 +62,15 @@ choosePort(HOST, DEFAULT_PORT)
       return;
     }
     const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+    const appName = require(paths.appPackageJson).name;
     const urls = prepareUrls(protocol, HOST, port);
     // Get webpack config
-    // eslint-disable-next-line global-require,import/no-dynamic-require
     const config = require(paths.appWebpackConfig);
     // Create a webpack compiler that is configured with custom messages.
     const compiler = createCompiler({
       webpack,
       config,
-      appName: getApplicationName(),
+      appName,
       urls,
       useYarn,
     });
