@@ -128,7 +128,6 @@ module.exports = ({
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
       splitChunks: {
         chunks: 'all',
-        name: false,
         // NOTE: if you enable `cacheGroups` for CSS, remember to toggle it with
         // the `mergedToggleFlags.enableExtractCss`
       },
