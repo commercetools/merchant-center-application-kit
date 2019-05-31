@@ -5,7 +5,7 @@ const loadEnv = require('./load-env');
 const loadHeaders = require('./load-headers');
 const replaceHtmlPlaceholders = require('./utils/replace-html-placeholders');
 
-const requiredOptions = ['envPath', 'cspPath', 'publicAssetsPath'];
+const requiredOptions = ['envPath', 'publicAssetsPath'];
 
 /**
  * Options:
