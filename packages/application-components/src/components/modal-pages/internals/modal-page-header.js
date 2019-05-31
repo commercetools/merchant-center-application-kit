@@ -14,43 +14,52 @@ import filterDataAttributes from '../../../utils/filter-data-attributes';
 const ModalPageHeader = props => (
   <div
     css={css`
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
       margin: 0 ${customProperties.spacingM};
       padding: ${customProperties.spacingM} 0;
       border-bottom: 1px solid #afafaf;
+      & > * + * {
+        margin-left: ${customProperties.spacingM};
+      }
     `}
   >
-    <Spacings.Inline
-      scale="m"
-      alignItems="flex-end"
-      justifyContent="space-between"
+    <div
+      css={css`
+        overflow: hidden;
+        & * + * {
+          margin-top: ${customProperties.spacingM} !important;
+        }
+      `}
     >
-      <Spacings.Stack>
-        <Text.Subheadline elementType="h4" truncate>
-          {props.title}
-        </Text.Subheadline>
-        {typeof props.subtitle === 'string' ? (
-          <Text.Body>{props.subtitle}</Text.Body>
-        ) : (
-          props.subtitle
-        )}
-      </Spacings.Stack>
-      {props.showControls &&
-        (props.customControls || (
-          <Spacings.Inline scale="m">
-            <SecondaryButton
-              label={props.labelSecondaryButton}
-              onClick={props.onSecondaryButtonClick}
-              {...filterDataAttributes(props.dataAttributesSecondaryButton)}
-            />
-            <PrimaryButton
-              label={props.labelPrimaryButton}
-              onClick={props.onPrimaryButtonClick}
-              isDisabled={props.isPrimaryButtonDisabled}
-              {...filterDataAttributes(props.dataAttributesPrimaryButton)}
-            />
-          </Spacings.Inline>
-        ))}
-    </Spacings.Inline>
+      <Text.Subheadline elementType="h4" title={props.title} truncate>
+        {props.title}
+      </Text.Subheadline>
+      {typeof props.subtitle === 'string' ? (
+        <Text.Body title={props.subtitle} truncate>
+          {props.subtitle}
+        </Text.Body>
+      ) : (
+        props.subtitle
+      )}
+    </div>
+    {props.showControls &&
+      (props.customControls || (
+        <Spacings.Inline alignItems="flex-end" scale="m">
+          <SecondaryButton
+            label={props.labelSecondaryButton}
+            onClick={props.onSecondaryButtonClick}
+            {...filterDataAttributes(props.dataAttributesSecondaryButton)}
+          />
+          <PrimaryButton
+            label={props.labelPrimaryButton}
+            onClick={props.onPrimaryButtonClick}
+            isDisabled={props.isPrimaryButtonDisabled}
+            {...filterDataAttributes(props.dataAttributesPrimaryButton)}
+          />
+        </Spacings.Inline>
+      ))}
   </div>
 );
 ModalPageHeader.displayName = 'ModalPageHeader';

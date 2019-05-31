@@ -25,16 +25,16 @@ const wallOfText = (
 );
 
 const ModalController = props => {
-  const [isOpen, toggle] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
     <Spacings.Inset>
       <Spacings.Stack>
         <Spacings.Inline>
           <SecondaryButton
             label="Open an Tabular Modal Page"
-            onClick={() => toggle(true)}
+            onClick={() => setIsOpen(true)}
           />
-          {props.children({ isOpen, toggle })}
+          {props.children({ isOpen, setIsOpen })}
         </Spacings.Inline>
       </Spacings.Stack>
     </Spacings.Inset>
@@ -55,12 +55,12 @@ storiesOf('Components|Modals', module)
       <React.Fragment>
         <div id={PORTALS_CONTAINER_ID} />
         <ModalController>
-          {({ isOpen, toggle }) => (
+          {({ isOpen, setIsOpen }) => (
             <TabularModalPage
               level={firstModalLevel}
               title={text('title', 'Tabular Modal Page Title')}
               isOpen={isOpen}
-              onClose={() => toggle(false)}
+              onClose={() => setIsOpen(false)}
               topBarPreviousPathLabel={
                 text('topBarPreviousPathLabel', '') || undefined
               }

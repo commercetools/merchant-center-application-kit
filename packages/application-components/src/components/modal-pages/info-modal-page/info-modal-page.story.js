@@ -58,10 +58,10 @@ storiesOf('Components|Modals', module)
           {({ isOpen, setIsOpen }) => (
             <InfoModalPage
               level={firstModalLevel}
-              title={text('title', 'Info Modal Page Title')}
+              title={text('title', 'Info Modal Title')}
               isOpen={isOpen}
               onClose={() => setIsOpen(false)}
-              subtitle={text('subtitle', 'Subtitle text') || undefined}
+              subtitle={text('subtitle', 'Subtitle Text') || undefined}
               topBarPreviousPathLabel={
                 text('topBarPreviousPathLabel', '') || undefined
               }

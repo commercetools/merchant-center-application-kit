@@ -5,7 +5,6 @@ import { injectIntl } from 'react-intl';
 import {
   Text,
   CloseIcon,
-  Spacings,
   FlatButton,
   AngleLeftIcon,
   SecondaryIconButton,
@@ -17,14 +16,17 @@ import messages from './messages';
 const LargeCloseIcon = props => (
   <span
     css={css`
-      position: absolute;
-      height: 35px;
-      width: 48px;
-      top: 0;
-      right: 0;
       display: flex;
       align-items: center;
       justify-content: center;
+      &::after {
+        content: '';
+        position: absolute;
+        height: 35px;
+        width: 48px;
+        top: 0;
+        right: 0;
+        }
     }`}
   >
     <CloseIcon size="medium" {...props} />
@@ -47,9 +49,17 @@ const ModalPageTopBar = props => (
         ${props.color === 'gray'
           ? customProperties.colorWhite
           : customProperties.colorGray};
+      & * + * {
+        margin-left: ${customProperties.spacingS};
+      }
     `}
   >
-    <Spacings.Inline>
+    <div
+      css={css`
+        display: flex;
+        overflow: hidden;
+      `}
+    >
       <FlatButton
         tone="primary"
         label={
@@ -61,9 +71,11 @@ const ModalPageTopBar = props => (
         onClick={props.onClose}
       />
       {props.currentPathLabel && (
-        <Text.Detail isInline>{`/ ${props.currentPathLabel}`}</Text.Detail>
+        <Text.Detail title={props.currentPathLabel} isInline truncate>
+          {`/ ${props.currentPathLabel}`}
+        </Text.Detail>
       )}
-    </Spacings.Inline>
+    </div>
     {props.onClose && (
       <SecondaryIconButton
         label={props.intl.formatMessage(messages.close)}

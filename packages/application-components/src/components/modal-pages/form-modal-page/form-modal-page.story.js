@@ -16,17 +16,17 @@ import Readme from './README.md';
 import FormModalPage from './form-modal-page';
 
 const ModalController = props => {
-  const [isOpen, toggle] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
     <Spacings.Inset>
       <Spacings.Stack>
         <Spacings.Inline>
           <SecondaryButton
             label="Open a Form Modal Page"
-            onClick={() => toggle(true)}
+            onClick={() => setIsOpen(true)}
           />
         </Spacings.Inline>
-        {props.children({ isOpen, toggle })}
+        {props.children({ isOpen, setIsOpen })}
       </Spacings.Stack>
     </Spacings.Inset>
   );
@@ -46,7 +46,7 @@ storiesOf('Components|Modals', module)
       <React.Fragment>
         <div id={PORTALS_CONTAINER_ID} />
         <ModalController>
-          {({ isOpen, toggle }) => (
+          {({ isOpen, setIsOpen }) => (
             <Formik
               initialValues={{ email: '' }}
               validate={formikValues => {
@@ -57,14 +57,14 @@ storiesOf('Components|Modals', module)
               }}
               onSubmit={formikValues => {
                 alert(`email: ${formikValues.email}`);
-                toggle(false);
+                setIsOpen(false);
               }}
               render={formikProps => (
                 <FormModalPage
                   level={firstModalLevel}
                   title={text('title', 'Modal Page Title')}
                   isOpen={isOpen}
-                  onClose={() => toggle(false)}
+                  onClose={() => setIsOpen(false)}
                   subtitle={text('subtitle', 'Subtitle text') || undefined}
                   topBarPreviousPathLabel={
                     text('topBarPreviousPathLabel', '') || undefined
@@ -74,7 +74,7 @@ storiesOf('Components|Modals', module)
                   }
                   onSecondaryButtonClick={() => {
                     alert('cancelled');
-                    toggle(false);
+                    setIsOpen(false);
                   }}
                   onPrimaryButtonClick={formikProps.handleSubmit}
                   labelPrimaryButton={
