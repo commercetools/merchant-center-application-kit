@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console,global-require,import/no-dynamic-require */
 
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'production';
@@ -12,9 +12,9 @@ process.on('unhandledRejection', err => {
 });
 
 const path = require('path');
-const chalk = require('chalk');
 const fs = require('fs-extra');
 const webpack = require('webpack');
+const chalk = require('react-dev-utils/chalk');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
@@ -28,16 +28,21 @@ const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
 const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
 const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 
+// Make sure any symlinks in the project folder are resolved:
+// https://github.com/facebook/create-react-app/issues/637
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+
 // Resolve the absolute path of the caller location. This is necessary
 // to point to files within that folder.
-const appPackagePath = process.cwd();
 const paths = {
-  appBuild: path.join(appPackagePath, 'dist', 'assets'),
-  appWebpackConfig: path.join(appPackagePath, 'webpack.config.prod.js'),
+  appIndexJs: resolveApp('src/index.js'),
+  appBuild: resolveApp('dist/assets'),
+  appWebpackConfig: resolveApp('webpack.config.prod.js'),
 };
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appWebpackConfig])) {
+if (!checkRequiredFiles([paths.appWebpackConfig, paths.appIndexJs])) {
   process.exit(1);
 }
 
@@ -85,20 +90,35 @@ measureFileSizesBeforeBuild(paths.appBuild)
       printBuildError(err);
       process.exit(1);
     }
-  );
+  )
+  .catch(err => {
+    if (err && err.message) {
+      console.log(err.message);
+    }
+    process.exit(1);
+  });
 
 // Create the production build and print the deployment instructions.
 function build(previousFileSizes) {
   console.log('Creating an optimized production build...');
 
-  // eslint-disable-next-line global-require,import/no-dynamic-require
   const compiler = webpack(require(paths.appWebpackConfig));
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
+      let messages;
       if (err) {
-        return reject(err);
+        if (!err.message) {
+          return reject(err);
+        }
+        messages = formatWebpackMessages({
+          errors: [err.message],
+          warnings: [],
+        });
+      } else {
+        messages = formatWebpackMessages(
+          stats.toJson({ all: false, warnings: true, errors: true })
+        );
       }
-      const messages = formatWebpackMessages(stats.toJson({}, true));
       if (messages.errors.length) {
         // Only keep the first error. Others are often indicative
         // of the same problem, but confuse the reader with noise.
@@ -121,6 +141,7 @@ function build(previousFileSizes) {
         );
         return reject(new Error(messages.warnings.join('\n\n')));
       }
+
       return resolve({
         stats,
         previousFileSizes,
