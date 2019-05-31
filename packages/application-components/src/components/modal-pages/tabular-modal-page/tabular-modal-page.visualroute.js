@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text } from '@commercetools-frontend/ui-kit';
-import { InfoModalPage } from 'application-components';
+import { Text, Spacings } from '@commercetools-frontend/ui-kit';
+import { TabularModalPage } from 'application-components';
 import { Suite, Spec } from '../../../../test-utils/visual';
 
-export const routePath = '/info-modal-page';
+export const routePath = '/tabular-modal-page';
 
 const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
   <React.Fragment>
@@ -15,12 +15,11 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
         height: '750px',
       }}
     />
-    <InfoModalPage
+    <TabularModalPage
       title="Lorem ipsum"
       level={1}
       isOpen={true}
       onClose={() => {}}
-      subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       topBarCurrentPathLabel="The current modal"
       topBarPreviousPathLabel="Back"
       parentSelector={() => document.querySelector(`#${portalId}`)}
@@ -36,34 +35,16 @@ ModalPageWithPortalParentSelector.propTypes = {
 
 export const component = () => (
   <Suite>
-    <Spec label="InfoModalPage - First Level" size="xl">
-      <ModalPageWithPortalParentSelector portalId="info-modal-one">
-        <Text.Body>
-          {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
-        </Text.Body>
-        <Text.Body>
-          {`Nam id orci ut risus accumsan pellentesque. Quisque efficitur eu arcu ut tristique. Praesent ornare varius leo, ut consequat lacus rutrum vel. Donec mollis leo id lectus vehicula tempor. Nulla facilisi. Fusce fringilla tellus ac ligula consequat suscipit. Sed consectetur molestie quam eu pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst.`}
-        </Text.Body>
-      </ModalPageWithPortalParentSelector>
-    </Spec>
-    <Spec label="InfoModalPage - Nested" size="xl">
-      <ModalPageWithPortalParentSelector portalId="info-modal-two">
-        <InfoModalPage
-          title="Second Level Modal"
-          level={2}
-          isOpen={true}
-          onClose={() => {}}
-          topBarCurrentPathLabel="Nested Modal"
-          topBarPreviousPathLabel="First Level Modal"
-          parentSelector={() => document.querySelector(`#info-modal-two`)}
-        >
+    <Spec label="TabularModalPage" size="xl">
+      <ModalPageWithPortalParentSelector portalId="tabular-modal-one">
+        <Spacings.Inset>
           <Text.Body>
             {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
           </Text.Body>
           <Text.Body>
             {`Nam id orci ut risus accumsan pellentesque. Quisque efficitur eu arcu ut tristique. Praesent ornare varius leo, ut consequat lacus rutrum vel. Donec mollis leo id lectus vehicula tempor. Nulla facilisi. Fusce fringilla tellus ac ligula consequat suscipit. Sed consectetur molestie quam eu pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst.`}
           </Text.Body>
-        </InfoModalPage>
+        </Spacings.Inset>
       </ModalPageWithPortalParentSelector>
     </Spec>
   </Suite>
