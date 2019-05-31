@@ -6,8 +6,8 @@
   "scripts": {
     "build": "mc-scripts build",
     "start": "mc-scripts start",
-    "static:eu": "NODE_ENV=production mc-scripts static --csp=$(pwd)/production-eu.csp.json --config=$(pwd)/production-eu.env.json --use-local-assets --transformer $(pwd)/config/transformer-now.js",
-    "static:us": "NODE_ENV=production mc-scripts static --csp=$(pwd)/production-us.csp.json --config=$(pwd)/production-us.env.json --use-local-assets --transformer $(pwd)/config/transformer-now.js",
+    "static:eu": "mc-scripts static --csp=$(pwd)/production-eu.csp.json --config=$(pwd)/production-eu.env.json --use-local-assets --transformer $(pwd)/config/transformer-now.js",
+    "static:us": "mc-scripts static --csp=$(pwd)/production-us.csp.json --config=$(pwd)/production-us.env.json --use-local-assets --transformer $(pwd)/config/transformer-now.js",
     "start:prod:local": "NODE_ENV=production mc-http-server --csp=$(pwd)/csp.json --config=$(pwd)/env.json --use-local-assets",
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations",
     "deploy": "yarn build && yarn deploy:eu && yarn deploy:us",
