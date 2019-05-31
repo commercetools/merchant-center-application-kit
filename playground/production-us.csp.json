@@ -1,0 +1,5 @@
+{
+  "script-src": ["mc-app-state-machines-production-us.now.sh"],
+  "connect-src": ["mc-app-state-machines-production-us.now.sh"],
+  "style-src": ["mc-app-state-machines-production-us.now.sh"]
+}

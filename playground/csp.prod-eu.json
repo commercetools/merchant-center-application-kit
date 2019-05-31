@@ -1,5 +1,0 @@
-{
-  "script-src": ["mc-extensions-channels-prod-eu.now.sh"],
-  "connect-src": ["mc-extensions-channels-prod-eu.now.sh"],
-  "style-src": ["mc-extensions-channels-prod-eu.now.sh"]
-}

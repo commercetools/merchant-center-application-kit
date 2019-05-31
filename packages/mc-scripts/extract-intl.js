@@ -32,7 +32,7 @@ const commands = flags._;
 
 if (commands.length === 0 || (flags.help && commands.length === 0)) {
   console.log(`
-  Usage: mc-scripts extract-inl [options] <glob-pattern>..
+  Usage: mc-scripts extract-intl [options] <glob-pattern>..
 
   Options:
   --output-path                       The location where to put the extracted messages
@@ -53,7 +53,7 @@ const { presets, plugins } = babelConfig;
 
 // Resolve the absolute path of the caller location. This is necessary
 // to point to files within that folder.
-const rootPath = process.cwd();
+const rootPath = fs.realpathSync(process.cwd());
 const defaultLocale = flags.locale;
 const locales = flags.locales;
 const outputPath = flags['output-path'];

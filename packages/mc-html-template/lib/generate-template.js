@@ -1,4 +1,7 @@
-module.exports = ({ cssChunks = [], scriptChunks = [] }) => {
+module.exports = function generateTemplate({
+  cssChunks = [],
+  scriptChunks = [],
+}) {
   const cssImports = cssChunks.map(
     chunkPath =>
       `<link href="__CDN_URL__${chunkPath}" rel='stylesheet' type='text/css'></link>`
