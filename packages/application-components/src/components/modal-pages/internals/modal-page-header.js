@@ -36,7 +36,7 @@ const ModalPageHeader = props => (
       <Text.Subheadline elementType="h4" title={props.title} truncate>
         {props.title}
       </Text.Subheadline>
-      {typeof props.subtitle === 'string' ? (
+      {!React.isValidElement(props.subtitle) ? (
         <Text.Body title={props.subtitle} truncate>
           {props.subtitle}
         </Text.Body>
