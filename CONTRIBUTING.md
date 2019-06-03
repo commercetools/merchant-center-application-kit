@@ -16,16 +16,19 @@ This repository is managed as a monorepo, meaning it contains multiple (sub)pack
 ```
 packages/
   actions-global/
+  application-components/
   application-shell/
   application-shell-connectors/
   assets/
   babel-preset-mc-app/
   browser-history/
   constants/
+  create-mc-app/
   eslint-config-mc-app/
   i18n/
   jest-preset-mc-app/
   l10n/
+  mc-dev-authentication/
   mc-html-template/
   mc-http-server/
   mc-scripts/
@@ -41,6 +44,10 @@ packages/
 ### Overview of main packages
 
 Below a short description of the most import packages:
+
+#### [application-components](./packages/application-components)
+
+This package contains React components for developing Merchant Center applications, similarly to what the `@commercetools-frontend/ui-kit` implements.
 
 #### [application-shell](./packages/application-shell)
 
@@ -58,6 +65,10 @@ This package contains static assets, such as SVG images.
 #### [constants](./packages/constants)
 
 This package contains a set of useful constant variables.
+
+#### [constants](./packages/create-mc-app)
+
+This package contains a CLI to bootstrap a starter application based on a predefined template.
 
 #### [eslint-config-mc-app](./packages/eslint-config-mc-app)
 
