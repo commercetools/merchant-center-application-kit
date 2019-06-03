@@ -6,9 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   target: 'web',
-  // note: we have to use 'development' for now, because when we use production
-  // our emotion styles aren't displayed in our percy snapshots.
-  mode: 'development',
+  mode: 'production',
   stats: 'minimal',
   entry: './src/index.js',
   output: {
