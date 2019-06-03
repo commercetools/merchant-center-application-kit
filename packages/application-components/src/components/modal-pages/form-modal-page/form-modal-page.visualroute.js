@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
-import { TextField } from '@commercetools-frontend/ui-kit';
+import {
+  TextField,
+  Spacings,
+  IconButton,
+  SearchIcon,
+  FlameIcon,
+  BinLinearIcon,
+} from '@commercetools-frontend/ui-kit';
 import { FormModalPage } from 'application-components';
 import { Suite, Spec } from '../../../../test-utils/visual';
 
@@ -71,6 +78,18 @@ export const component = () => (
         portalId="form-modal-long"
         title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         subtitle="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      />
+    </Spec>
+    <Spec label="FormModalPage - with Custom Controls" size="xl">
+      <ModalPageWithPortalParentSelector
+        customControls={
+          <Spacings.Inline>
+            <IconButton icon={<SearchIcon />} onClick={() => {}} />
+            <IconButton icon={<FlameIcon />} onClick={() => {}} />
+            <IconButton icon={<BinLinearIcon />} onClick={() => {}} />
+          </Spacings.Inline>
+        }
+        portalId="form-modal-custom"
       />
     </Spec>
   </Suite>

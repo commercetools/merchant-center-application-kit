@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
+import { css } from '@emotion/core';
 import { withKnobs, text } from '@storybook/addon-knobs/react';
 import withReadme from 'storybook-readme/with-readme';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
@@ -8,6 +9,7 @@ import {
   Text,
   Spacings,
   SecondaryButton,
+  customProperties,
 } from '@commercetools-frontend/ui-kit';
 import { number } from '@storybook/addon-knobs/dist/deprecated';
 import Readme from './README.md';
@@ -31,7 +33,7 @@ const ModalController = props => {
       <Spacings.Stack>
         <Spacings.Inline>
           <SecondaryButton
-            label="Open an Tabular Modal Page"
+            label="Open a Tabular Modal Page"
             onClick={() => setIsOpen(true)}
           />
           {props.children({ isOpen, setIsOpen })}
@@ -69,21 +71,60 @@ storiesOf('Components|Modals', module)
               }
             >
               <div
-                style={{
-                  backgroundColor: ' #f2f2f2',
-                  padding: '16px',
-                }}
+                css={css`
+                  background-color: #f2f2f2;
+                  padding: 16px 16px 0;
+                `}
               >
-                <Text.Subheadline elementType="h4">
-                  {'This is not a header'}
-                </Text.Subheadline>
-                <Text.Detail>
-                  {
-                    'Even though this section is matching the color of the top bar'
-                  }
-                </Text.Detail>
+                <Spacings.Stack size="xl">
+                  <Text.Headline elementType="h2">
+                    {'Tabular Content'}
+                  </Text.Headline>
+                  <div
+                    css={css`
+                      min-height: 30px;
+                      display: flex;
+                      > * {
+                        min-width: 50px;
+                        cursor: pointer;
+                        &:first-of-type {
+                          border-bottom: 3px solid
+                            ${customProperties.colorPrimary};
+                          & > * {
+                            color: ${customProperties.colorPrimary};
+                          }
+                        }
+                      }
+                      > * + * {
+                        margin-left: 16px;
+                      }
+                    `}
+                  >
+                    <span>
+                      <Text.Subheadline elementType="h4">
+                        Tab One
+                      </Text.Subheadline>
+                    </span>
+                    <span>
+                      <Text.Subheadline elementType="h4">
+                        Tab Two
+                      </Text.Subheadline>
+                    </span>
+                    <span>
+                      <Text.Subheadline elementType="h4">
+                        Tab Three
+                      </Text.Subheadline>
+                    </span>
+                  </div>
+                </Spacings.Stack>
               </div>
-              <Spacings.Inset scale="m">{wallOfText}</Spacings.Inset>
+              <div
+                css={css`
+                  overflow: auto;
+                `}
+              >
+                <Spacings.Inset scale="m">{wallOfText}</Spacings.Inset>
+              </div>
             </TabularModalPage>
           )}
         </ModalController>
