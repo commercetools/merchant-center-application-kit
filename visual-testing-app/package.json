@@ -17,7 +17,7 @@
     "react-router-dom": "5.0.0"
   },
   "devDependencies": {
-    "serve": "11.0.0",
+    "serve": "11.0.1",
     "webpack": "4.32.2",
     "webpack-cli": "3.3.2"
   }
