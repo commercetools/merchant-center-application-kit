@@ -36,13 +36,12 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 // Resolve the absolute path of the caller location. This is necessary
 // to point to files within that folder.
 const paths = {
-  appIndexJs: resolveApp('src/index.js'),
   appBuild: resolveApp('dist/assets'),
   appWebpackConfig: resolveApp('webpack.config.prod.js'),
 };
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appWebpackConfig, paths.appIndexJs])) {
+if (!checkRequiredFiles([paths.appWebpackConfig])) {
   process.exit(1);
 }
 
