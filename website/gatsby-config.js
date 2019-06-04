@@ -40,6 +40,23 @@ module.exports = {
               },
             ],
           },
+          {
+            label: 'ModalPages',
+            subgroup: [
+              {
+                label: 'InfoModalPage',
+                linkTo: '/components/info-modal-page',
+              },
+              {
+                label: 'FormModalPage',
+                linkTo: '/components/form-modal-page',
+              },
+              {
+                label: 'TabularModalPage',
+                linkTo: '/components/tabular-modal-page',
+              },
+            ],
+          },
         ],
       },
       {
