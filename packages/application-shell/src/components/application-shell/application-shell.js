@@ -145,8 +145,9 @@ export const RestrictedApplication = props => (
                                 const useProjectContext =
                                   project &&
                                   !(
-                                    project.suspension?.isActive ||
-                                    project.expiry?.isActive
+                                    (project.suspension &&
+                                      project.suspension.isActive) ||
+                                    (project.expiry && project.expiry.isActive)
                                   );
 
                                 if (!useProjectContext)
