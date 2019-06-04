@@ -35,7 +35,6 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 // to point to files within that folder.
 const paths = {
   appPackageJson: resolveApp('package.json'),
-  appIndexJs: resolveApp('src/index.js'),
   appPublic: resolveApp('public'),
   appWebpackConfig: resolveApp('webpack.config.dev.js'),
   yarnLockFile: resolveApp('yarn.lock'),
@@ -45,7 +44,7 @@ const useYarn = fs.existsSync(paths.yarnLockFile);
 const isInteractive = process.stdout.isTTY;
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appWebpackConfig, paths.appIndexJs])) {
+if (!checkRequiredFiles([paths.appWebpackConfig])) {
   process.exit(1);
 }
 
