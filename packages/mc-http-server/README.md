@@ -40,4 +40,3 @@ Besides generating and serving the `index.html`, the HTTP server does additional
 
 - gathers `/metrics` for Prometheus
 - provides a `/version` endpoint with the current revision hash (git SHA)
-- intercepts `/logout` redirects to clear the HTTP cookie for the access token
