@@ -1,3 +1,10 @@
+## [13.8.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.8.0...v13.8.1) (2019-06-04)
+
+#### 🐛 Type: Bug
+
+- `mc-scripts`
+  - [#686](https://github.com/commercetools/merchant-center-application-kit/pull/686) fix(mc-scripts): do not assume that the application entry point is at src/index.js ([@emmenko](https://github.com/emmenko))
+
 ## [13.8.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.7.1...v13.8.0) (2019-06-04)
 
 #### 🔮 Type: Chore
