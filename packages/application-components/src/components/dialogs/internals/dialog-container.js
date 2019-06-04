@@ -29,10 +29,14 @@ const getDefaultParentSelector = () =>
     ? document.body
     : document.querySelector(`#${PORTALS_CONTAINER_ID}`);
 
-const sizesStyles = props =>
-  css`
-    ${props.size === 'scale' ? 'height: 100%;' : ''}
-  `;
+const sizeStyles = props => {
+  if (props.size === 'scale')
+    return css`
+      height: 100%;
+    `;
+
+  return css``;
+};
 
 const DialogContainer = props => (
   <ClassNames>
@@ -75,7 +79,7 @@ const DialogContainer = props => (
             // 3. For the actual "> div" container with the content, we need to use normal pointer events so that clicking on it does not close the dialog.
             css={css`
               min-height: 0;
-              ${sizesStyles}
+              ${sizeStyles}
 
               > div {
                 display: flex;

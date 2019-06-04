@@ -8,18 +8,18 @@ import {
 } from '@commercetools-frontend/ui-kit';
 import filterDataAttributes from '../../../utils/filter-data-attributes';
 
-const useLabel = (label, intl) =>
+const getLabel = (label, intl) =>
   typeof label === 'string' ? label : intl.formatMessage(label);
 
 const DialogFooter = props => (
   <Spacings.Inline scale="m" alignItems="center" justifyContent="flex-end">
     <SecondaryButton
-      label={useLabel(props.labelSecondary, props.intl)}
+      label={getLabel(props.labelSecondary, props.intl)}
       onClick={props.onCancel}
       {...filterDataAttributes(props.dataAttributesSecondaryButton)}
     />
     <PrimaryButton
-      label={useLabel(props.labelPrimary, props.intl)}
+      label={getLabel(props.labelPrimary, props.intl)}
       onClick={props.onConfirm}
       isDisabled={props.isPrimaryButtonDisabled}
       {...filterDataAttributes(props.dataAttributesPrimaryButton)}
