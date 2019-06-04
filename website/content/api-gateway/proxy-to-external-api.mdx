@@ -59,9 +59,10 @@ const jwksRsa = require('jwks-rsa');
 // Initialize the app.
 const app = express();
 
-// This value is the same as the Merchant Center API Gateway host.
-const issuer = 'mc-api.commercetools.com';
-const audience = `https://${issuer}`;
+// The issuer refers to the Merchant Center API Gateway URL.
+const issuer = 'https://mc-api.commercetools.com';
+// The audience refers to the forwared target URL (same value as in `X-Forward-To` header)
+const audience = 'https://my-custom-app.com/foo/bar';
 
 app.use(
   jwt({
@@ -74,7 +75,7 @@ app.use(
       // The JWKS endpoint is also available from the discovery endpoint
       // `${audience}/.well-known/openid-configuration`
       // in case you wish to retrieve it programmatically.
-      jwksUri: `${audience}/.well-known/jwks.json`,
+      jwksUri: `${issuer}/.well-known/jwks.json`,
     }),
 
     // Validate the audience and the issuer.
