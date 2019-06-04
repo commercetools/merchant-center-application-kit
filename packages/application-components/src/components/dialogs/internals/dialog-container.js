@@ -79,7 +79,7 @@ const DialogContainer = props => (
             // 3. For the actual "> div" container with the content, we need to use normal pointer events so that clicking on it does not close the dialog.
             css={css`
               min-height: 0;
-              ${sizeStyles}
+              ${sizeStyles(props)}
 
               > div {
                 display: flex;
