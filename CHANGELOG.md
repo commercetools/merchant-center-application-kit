@@ -1,3 +1,29 @@
+## [13.8.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.7.1...v13.8.0) (2019-06-04)
+
+#### 🔮 Type: Chore
+
+- Other
+  - [#679](https://github.com/commercetools/merchant-center-application-kit/pull/679) chore: remove note and usage of dev mode in webpack for vrt app ([@montezume](https://github.com/montezume))
+  - [#678](https://github.com/commercetools/merchant-center-application-kit/pull/678) chore: update deps ([@emmenko](https://github.com/emmenko))
+- `mc-scripts`
+  - [#669](https://github.com/commercetools/merchant-center-application-kit/pull/669) chore(mc-scripts): update with upstream react-scripts for (relevant) latest changes ([@emmenko](https://github.com/emmenko))
+- `jest-preset-mc-app`, `mc-http-server`, `mc-scripts`
+  - [#664](https://github.com/commercetools/merchant-center-application-kit/pull/664) chore: update deps ([@montezume](https://github.com/montezume))
+
+#### ✍️ Type: Documentation
+
+- [#681](https://github.com/commercetools/merchant-center-application-kit/pull/681) docs(website): fix issuer and audience example ([@emmenko](https://github.com/emmenko))
+
+#### 🚀 Type: New Feature
+
+- `application-components`, `assets`
+  - [#683](https://github.com/commercetools/merchant-center-application-kit/pull/683) feat(assets): add ct logos ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `mc-http-server`
+  - [#682](https://github.com/commercetools/merchant-center-application-kit/pull/682) refactor(http-server): to unset cookie only for local development ([@emmenko](https://github.com/emmenko))
+
 ## [13.7.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.7.0...v13.7.1) (2019-05-24)
 
 #### 🐛 Type: Bug
