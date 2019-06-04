@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://commercetools.com/">
-    <img alt="commercetools logo" src="http://cdn.rawgit.com/commercetools/press-kit/master/PNG/72DPI/CT%20logo%20chrom%20black%20horizontal%20RGB%2072dpi.png">
+    <img alt="commercetools logo" src="https://unpkg.com/@commercetools-frontend/assets/logos/commercetools_primary-logo_horizontal_RGB.png">
   </a>
   <b>Merchant Center Playground Application.</b>
 </p>
