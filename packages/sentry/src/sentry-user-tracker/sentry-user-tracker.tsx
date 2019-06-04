@@ -1,9 +1,9 @@
 import React from 'react';
 import * as sentry from '../sentry';
 
-type Props = {
+interface Props {
   user?: sentry.User;
-};
+}
 
 /**
  * This component will let sentry know if any information about the user has

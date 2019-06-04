@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -137,6 +138,7 @@ const UserSettingsMenuBody = props => {
         <a
           href={`https://commercetools.com/privacy#suppliers`}
           target="_blank"
+          rel="noopener noreferrer"
           onClick={props.downshiftProps.toggleMenu}
         >
           <div className={styles.item}>

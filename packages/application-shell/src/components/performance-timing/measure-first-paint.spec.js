@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import React from 'react';
 import { shallow } from 'enzyme';
 import { MeasureFirstPaint } from './measure-first-paint';

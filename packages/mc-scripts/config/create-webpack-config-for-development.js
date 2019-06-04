@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable prettier/prettier */
 const path = require('path');
 const webpack = require('webpack');
