@@ -1,5 +1,8 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-prettier"
+  ],
   "plugins": [
     "stylelint-order"
   ],
@@ -28,6 +31,12 @@
     "rule-empty-line-before": null,
     "value-list-comma-newline-after": null,
     "indentation": null,
-    "selector-descendant-combinator-no-non-space": null
+    "selector-descendant-combinator-no-non-space": null,
+    "no-descending-specificity": null,
+    "no-duplicate-selectors": null,
+    "no-empty-source": null,
+    "declaration-empty-line-before": null,
+    "no-missing-end-of-source-newline": null,
+    "function-name-case": null,
   }
 }

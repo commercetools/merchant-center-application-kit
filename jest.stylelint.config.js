@@ -1,8 +1,15 @@
 module.exports = {
   runner: 'jest-runner-stylelint',
   displayName: 'stylelint',
-  moduleFileExtensions: ['css'],
-  modulePathIgnorePatterns: ['dist'],
-  testMatch: ['<rootDir>/**/*.css'],
+  moduleFileExtensions: ['css', 'js'],
+  modulePathIgnorePatterns: [
+    'dist',
+    '.spec.js',
+    '.visualspec.js',
+    '.visualroute.js',
+    '.story.js',
+    'packages/mc-http-server/public/',
+  ],
+  testMatch: ['<rootDir>/**/*.css', '<rootDir>/packages/**/*.js'],
   watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-master'],
 };

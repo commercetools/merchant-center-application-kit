@@ -29,6 +29,11 @@ const getDefaultParentSelector = () =>
     ? document.body
     : document.querySelector(`#${PORTALS_CONTAINER_ID}`);
 
+const sizesStyles = props =>
+  css`
+    ${props.size === 'scale' ? 'height: 100%;' : ''}
+  `;
+
 const DialogContainer = props => (
   <ClassNames>
     {({ css: makeClassName }) => (
@@ -43,6 +48,7 @@ const DialogContainer = props => (
         parentSelector={props.getParentSelector}
         ariaHideApp={false}
         style={{
+          // stylelint-disable-next-line selector-type-no-unknown
           overlay: {
             zIndex: props.zIndex,
           },
@@ -69,7 +75,7 @@ const DialogContainer = props => (
             // 3. For the actual "> div" container with the content, we need to use normal pointer events so that clicking on it does not close the dialog.
             css={css`
               min-height: 0;
-              ${props.size === 'scale' ? 'height: 100%;' : ''}
+              ${sizesStyles}
 
               > div {
                 display: flex;
