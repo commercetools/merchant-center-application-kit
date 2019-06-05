@@ -82,7 +82,7 @@ When you start the `mc-http-server`, you need to pass a `--config` option pointi
 
 The `env.json` file contains runtime configuration available as a global state, `window.app`. The `window.app` object is passed to the `<ApplicationShell>` component as an `environment` prop. The `window.app` object may contain any configuration specific to the application, plus the following **required** fields:
 
-- `applicationName`: the name of the application (usually the same as in the `package.json`)
+- `applicationName`: the name of the application (usually the same as in `package.json`)
 - `frontendHost`: The host where the Merchant Center custom application is running (e.g. `mc.commercetools.com`)
 - `mcApiUrl`: The API URL for the [Merchant Center API Gateway](../api-gateway)
 - `location`: The location where the Merchant Center custom application is running. This is either:
