@@ -71,6 +71,7 @@ ApplicationContextProvider.displayName = 'ApplicationContextProvider';
 ApplicationContextProvider.propTypes = {
   // This is the environment configuration coming from `windows.app`
   environment: PropTypes.shape({
+    applicationName: PropTypes.string,
     frontendHost: PropTypes.string.isRequired,
     mcApiUrl: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,

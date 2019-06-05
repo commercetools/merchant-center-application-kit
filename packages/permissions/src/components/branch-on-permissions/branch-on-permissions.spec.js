@@ -33,6 +33,7 @@ const renderWithPermissions = demandedPermissions => {
       }}
       projectDataLocale="en"
       environment={{
+        applicationName: 'my-app',
         frontendHost: 'localhost:3001',
         mcApiUrl: 'https://mc-api.commercetools.com',
         location: 'eu',

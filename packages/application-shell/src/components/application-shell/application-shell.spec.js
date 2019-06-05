@@ -24,6 +24,7 @@ const createTestProps = props => ({
     de: { 'CustomApp.title': 'Titel' },
   },
   environment: {
+    applicationName: 'my-app',
     frontendHost: 'localhost:3001',
     mcApiUrl: 'https://mc-api.commercetools.com',
     location: 'eu',

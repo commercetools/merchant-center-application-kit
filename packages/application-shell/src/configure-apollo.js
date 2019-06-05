@@ -15,7 +15,7 @@ import version from './version';
 const userAgent = createHttpUserAgent({
   name: 'apollo-client',
   version: apolloVersion,
-  libraryName: '@commercetools-frontend/application-shell',
+  libraryName: [window.app.name, 'application-shell'].join('/'),
   libraryVersion: version,
   contactUrl:
     'https://github.com/commercetools/merchant-center-application-kit/issues/new/choose',

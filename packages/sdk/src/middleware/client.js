@@ -6,7 +6,7 @@ import version from '../version';
 
 const userAgent = createHttpUserAgent({
   name: '@commercetools/sdk-client',
-  libraryName: '@commercetools-frontend/sdk',
+  libraryName: [window.app.name, 'sdk'].join('/'),
   libraryVersion: version,
   contactUrl:
     'https://github.com/commercetools/merchant-center-application-kit/issues/new/choose',

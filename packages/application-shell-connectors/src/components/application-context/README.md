@@ -40,6 +40,7 @@ This object contains application specific environment information defined in the
 
 The following are common fields defined in `env.json`. However, each application can provide more specific fields that cannot be documented.
 
+- `applicationName`: the name of the application (usually the same as in the `package.json`)
 - `frontendHost`: the host where the Merchant Center application is running (e.g. `mc.commercetools.com`)
 - `mcApiUrl`: the API URL of the Merchant Center (`https://mc-api.commercetools.com` for projects in `EU` and `https://mc-api.commercetools.co` for projects in `US`)
 - `location`: the location where the Merchant Center is running, usually `eu` or `us`
