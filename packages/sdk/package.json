@@ -36,12 +36,12 @@
     "build:test-utils:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./src/test-utils/index.js --o ./test-utils/index.js"
   },
   "dependencies": {
-    "@commercetools-frontend/constants": "13.3.5",
     "@commercetools/api-request-builder": "5.1.0",
+    "@commercetools/http-user-agent": "2.1.0",
     "@commercetools/sdk-client": "2.1.0",
     "@commercetools/sdk-middleware-correlation-id": "2.1.0",
     "@commercetools/sdk-middleware-http": "5.2.0",
-    "@commercetools/sdk-middleware-user-agent": "2.1.0",
+    "@commercetools-frontend/constants": "13.3.5",
     "fast-equals": "2.0.0",
     "prop-types": "15.7.2",
     "qss": "2.0.3",
