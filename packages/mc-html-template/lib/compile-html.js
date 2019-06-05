@@ -30,14 +30,14 @@ module.exports = async function compileHtml(options) {
       path.join(options.publicAssetsPath, 'index.html.template'),
       'utf8'
     );
-    const updatedIndexHtmlContent = replaceHtmlPlaceholders(
+    const interpolatedIndexHtmlContent = replaceHtmlPlaceholders(
       indexHtmlContent,
       env
     );
     return {
       env,
       headers,
-      indexHtmlContent: updatedIndexHtmlContent,
+      indexHtmlContent: interpolatedIndexHtmlContent,
     };
   }
 
@@ -54,13 +54,13 @@ module.exports = async function compileHtml(options) {
     return Promise.reject(error);
   }
   const remoteIndexHtmlContent = await remoteIndexHtmlResponse.text();
-  const updatedIndexHtmlContent = replaceHtmlPlaceholders(
+  const interpolatedIndexHtmlContent = replaceHtmlPlaceholders(
     remoteIndexHtmlContent,
     env
   );
   return {
     env,
     headers,
-    indexHtmlContent: updatedIndexHtmlContent,
+    indexHtmlContent: interpolatedIndexHtmlContent,
   };
 };
