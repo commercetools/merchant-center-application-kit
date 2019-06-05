@@ -26,8 +26,8 @@ const LargeCloseIcon = props => (
         width: 48px;
         top: 0;
         right: 0;
-        }
-    }`}
+      }
+    `}
   >
     <CloseIcon size="medium" {...props} />
   </span>
