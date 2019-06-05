@@ -31,6 +31,7 @@ import NavBar, { LoadingNavBar } from '../navbar';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
 import Redirector from '../redirector';
+import version from '../../version';
 import RedirectToProjectCreate from '../redirect-to-project-create';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import styles from './application-shell.mod.css';
@@ -385,6 +386,7 @@ export default class ApplicationShell extends React.Component {
   static defaultProps = {
     trackingEventWhitelist: {},
   };
+  static version = version;
   redirectTo = targetUrl => window.location.replace(targetUrl);
   componentDidMount() {
     this.props.onRegisterErrorListeners({
