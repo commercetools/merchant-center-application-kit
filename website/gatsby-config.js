@@ -30,6 +30,14 @@ module.exports = {
                 label: 'InfoDialog',
                 linkTo: '/components/info-dialog',
               },
+              {
+                label: 'ConfirmationDialog',
+                linkTo: '/components/confirmation-dialog',
+              },
+              {
+                label: 'FormDialog',
+                linkTo: '/components/form-dialog',
+              },
             ],
           },
         ],

@@ -1,16 +1,20 @@
+---
+id: components-confirmation-dialog
+title: Confirmation Dialog - Components
+permalink: /components/confirmation-dialog
+---
+
 # ConfirmationDialog
 
-## Usage
+import ConfirmationDialogExample from './confirmation-dialog.example';
 
-```js
-import { ConfirmationDialog } from '@commercetools-frontend/application-components';
-```
+<ConfirmationDialogExample />
 
-#### Description
+## Description
 
 Confirmation dialogs are controlled components used to prompt the user to confirm an important or destructive action. They are similar to Info dialogs but they have a primary and secondary button in the footer area.
 
-#### Usage
+## Usage
 
 ```js
 <ConfirmationDialog
@@ -27,7 +31,7 @@ Confirmation dialogs are controlled components used to prompt the user to confir
 </ConfirmationDialog>
 ```
 
-#### Properties
+## Properties
 
 | Props                           | Type                       | Required | Values            | Default                           | Description                                                                                                                                                                                                                                                                                                 |
 | ------------------------------- | -------------------------- | :------: | ----------------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -46,9 +50,9 @@ Confirmation dialogs are controlled components used to prompt the user to confir
 | `dataAttributesPrimaryButton`   | `object`                   |    -     | -                 | -                                 | Use this prop to pass `data-` attributes to the primary button                                                                                                                                                                                                                                              |
 | `getParentSelector`             | `function`                 |    -     | -                 | -                                 | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In `NODE_ENV=test` environment, the default HTML element is `body`. |
 
-### Static properties
+## Static properties
 
-#### `ConfirmationDialog.Intl`
+### `ConfirmationDialog.Intl`
 
 Exposes common intl messages to be used for the secondary/primary buttons
 

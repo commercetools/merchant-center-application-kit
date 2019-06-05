@@ -1,18 +1,22 @@
+---
+id: components-form-dialog
+title: Form Dialog - Components
+permalink: /components/form-dialog
+---
+
 # FormDialog
 
-## Usage
+import FormDialogExample from './form-dialog.example';
 
-```js
-import { FormDialog } from '@commercetools-frontend/application-components';
-```
+<FormDialogExample />
 
-#### Description
+## Description
 
 Form dialogs are controlled components used to render a form or something that requires user input. They are very similar to Confirmation dialogs but semantically they fulfill a different role.
 
-#### Usage
+## Usage
 
-```js
+```jsx
 <FormDialog
   title="Lorem ipsus"
   isOpen={isOpen}
@@ -27,7 +31,7 @@ Form dialogs are controlled components used to render a form or something that r
 </FormDialog>
 ```
 
-#### Properties
+## Properties
 
 | Props                           | Type                       | Required | Values            | Default                   | Description                                                                                                                                                                                                                                                                                                 |
 | ------------------------------- | -------------------------- | :------: | ----------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -46,9 +50,9 @@ Form dialogs are controlled components used to render a form or something that r
 | `dataAttributesPrimaryButton`   | `object`                   |    -     | -                 | -                         | Use this prop to pass `data-` attributes to the primary button                                                                                                                                                                                                                                              |
 | `getParentSelector`             | `function`                 |    -     | -                 | -                         | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In `NODE_ENV=test` environment, the default HTML element is `body`. |
 
-### Static properties
+## Static properties
 
-#### `FormDialog.Intl`
+### `FormDialog.Intl`
 
 Exposes common intl messages to be used for the secondary/primary buttons
 
