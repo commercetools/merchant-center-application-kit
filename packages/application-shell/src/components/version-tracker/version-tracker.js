@@ -4,14 +4,13 @@ import flowRight from 'lodash/flowRight';
 import { connect } from 'react-redux';
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import applicationShellVersion from '../../version';
-import pkg from '../../../package.json';
 import * as actions from './actions';
 
 const createVersionMetric = ({ applicationName }) => ({
   metricName: 'versions',
   metricLabels: {
     application: applicationName || 'unknown',
-    package_name: pkg.name,
+    package_name: '@commercetools-frontend/application-shell',
     package_version: applicationShellVersion,
   },
 });
