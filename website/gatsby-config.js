@@ -185,6 +185,7 @@ module.exports = {
           // https://design.google/library/choosing-web-fonts-beginners-guide/
           // 'Libre+Baskerville:400,400i,700',
           'Raleway:400,400i,700,700i',
+          'Open+Sans:300,300i,400,400i,600,600i,700,700i',
         ],
       },
     },
