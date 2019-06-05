@@ -1,16 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, number } from '@storybook/addon-knobs/react';
 import withReadme from 'storybook-readme/with-readme';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import {
-  Text,
-  Spacings,
-  SecondaryButton,
-} from '@commercetools-frontend/ui-kit';
+import { Text } from '@commercetools-frontend/ui-kit';
 import Readme from './README.md';
 import InfoModalPage from './info-modal-page';
+import ModalController from '../../internals/for-docs/modal-controller';
 
 // This is to see the scroll behaviour inside the Modal content
 const wallOfText = (
@@ -23,27 +19,6 @@ const wallOfText = (
   </Text.Body>
 );
 
-const ModalController = props => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  return (
-    <Spacings.Inset>
-      <Spacings.Stack>
-        <Spacings.Inline>
-          <SecondaryButton
-            label="Open an Info Modal Page"
-            onClick={() => setIsOpen(true)}
-          />
-          {props.children({ isOpen, setIsOpen })}
-        </Spacings.Inline>
-      </Spacings.Stack>
-    </Spacings.Inset>
-  );
-};
-ModalController.displayName = 'ModalController';
-ModalController.propTypes = {
-  children: PropTypes.func.isRequired,
-};
-
 storiesOf('Components|Modals', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(Readme))
@@ -53,7 +28,10 @@ storiesOf('Components|Modals', module)
     return (
       <React.Fragment>
         <div id={PORTALS_CONTAINER_ID} />
-        <ModalController>
+        <ModalController
+          title="Open the Info Modal Page by clicking on the button"
+          buttonLabel="Open Info Modal"
+        >
           {({ isOpen, setIsOpen }) => (
             <InfoModalPage
               level={firstModalLevel}
@@ -68,7 +46,10 @@ storiesOf('Components|Modals', module)
                 text('topBarCurrentPathLabel', '') || undefined
               }
             >
-              <ModalController>
+              <ModalController
+                title="Open another Info Modal Page by clicking on the button"
+                buttonLabel="Open Info Modal"
+              >
                 {/* eslint-disable-next-line no-shadow */}
                 {({ isOpen, setIsOpen }) => (
                   <InfoModalPage
@@ -83,7 +64,6 @@ storiesOf('Components|Modals', module)
                   </InfoModalPage>
                 )}
               </ModalController>
-              {wallOfText}
             </InfoModalPage>
           )}
         </ModalController>

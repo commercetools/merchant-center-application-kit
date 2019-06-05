@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import { css } from '@emotion/core';
 import { withKnobs, text, number } from '@storybook/addon-knobs/react';
@@ -8,11 +7,11 @@ import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import {
   Text,
   Spacings,
-  SecondaryButton,
   customProperties,
 } from '@commercetools-frontend/ui-kit';
 import Readme from './README.md';
 import TabularModalPage from './tabular-modal-page';
+import ModalController from '../../internals/for-docs/modal-controller';
 
 // This is to see the scroll behaviour inside the Modal content
 const wallOfText = (
@@ -25,27 +24,6 @@ const wallOfText = (
   </Text.Body>
 );
 
-const ModalController = props => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  return (
-    <Spacings.Inset>
-      <Spacings.Stack>
-        <Spacings.Inline>
-          <SecondaryButton
-            label="Open a Tabular Modal Page"
-            onClick={() => setIsOpen(true)}
-          />
-          {props.children({ isOpen, setIsOpen })}
-        </Spacings.Inline>
-      </Spacings.Stack>
-    </Spacings.Inset>
-  );
-};
-ModalController.displayName = 'ModalController';
-ModalController.propTypes = {
-  children: PropTypes.func.isRequired,
-};
-
 storiesOf('Components|Modals', module)
   .addDecorator(withKnobs)
   .addDecorator(withReadme(Readme))
@@ -55,7 +33,10 @@ storiesOf('Components|Modals', module)
     return (
       <React.Fragment>
         <div id={PORTALS_CONTAINER_ID} />
-        <ModalController>
+        <ModalController
+          title="Open the Tabular Modal Page by clicking on the button"
+          buttonLabel="Open Tabular Modal"
+        >
           {({ isOpen, setIsOpen }) => (
             <TabularModalPage
               level={firstModalLevel}

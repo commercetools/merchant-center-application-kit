@@ -1,39 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs/react';
 import withReadme from 'storybook-readme/with-readme';
 import { Formik } from 'formik';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import {
-  Spacings,
-  TextInput,
-  TextField,
-  SecondaryButton,
-} from '@commercetools-frontend/ui-kit';
+import { TextInput, TextField } from '@commercetools-frontend/ui-kit';
 import Readme from './README.md';
 import FormModalPage from './form-modal-page';
-
-const ModalController = props => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  return (
-    <Spacings.Inset>
-      <Spacings.Stack>
-        <Spacings.Inline>
-          <SecondaryButton
-            label="Open a Form Modal Page"
-            onClick={() => setIsOpen(true)}
-          />
-        </Spacings.Inline>
-        {props.children({ isOpen, setIsOpen })}
-      </Spacings.Stack>
-    </Spacings.Inset>
-  );
-};
-ModalController.displayName = 'ModalController';
-ModalController.propTypes = {
-  children: PropTypes.func.isRequired,
-};
+import ModalController from '../../internals/for-docs/modal-controller';
 
 storiesOf('Components|Modals', module)
   .addDecorator(withKnobs)
@@ -44,7 +18,10 @@ storiesOf('Components|Modals', module)
     return (
       <React.Fragment>
         <div id={PORTALS_CONTAINER_ID} />
-        <ModalController>
+        <ModalController
+          title="Open the Form Modal Page by clicking on the button"
+          buttonLabel="Open Form Modal"
+        >
           {({ isOpen, setIsOpen }) => (
             <Formik
               initialValues={{ email: '' }}

@@ -6,29 +6,9 @@ permalink: /components/form-modal-page
 
 # FormModalPage
 
-import { FormModalPage } from '@commercetools-frontend/application-components';
-import { Spacings, Text, TextField } from '@commercetools-frontend/ui-kit';
+import FormModalPageExample from './form-modal-page.example';
 
-<div
-  style={{
-    position: 'relative',
-    width: '100%',
-    height: '400px',
-  }}
->
-  <div id="form-modal-page-1" style={{ flex: 1 }} />
-    <FormModalPage
-      title="Lorem ipsum"
-      isOpen={true}
-      onClose={() => {}}
-      subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-      onSecondaryButtonClick={() => {}}
-      onPrimaryButtonClick={() => {}}
-      parentSelector={() => document.querySelector('#form-modal-page-1')}
-    >
-      <TextField name="email" title="Email"/>
-    </FormModalPage>
-</div>
+<FormModalPageExample />
 
 ### Description
 
