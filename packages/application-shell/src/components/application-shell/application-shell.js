@@ -385,6 +385,8 @@ export default class ApplicationShell extends React.Component {
   static defaultProps = {
     trackingEventWhitelist: {},
   };
+  static version = process.env.npm_package_version;
+
   redirectTo = targetUrl => window.location.replace(targetUrl);
   componentDidMount() {
     this.props.onRegisterErrorListeners({

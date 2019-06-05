@@ -1045,6 +1045,11 @@
     react-modal "3.8.1"
     warning "4.0.3"
 
+"@commercetools-frontend/assets@13.3.5":
+  version "13.3.5"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/assets/-/assets-13.3.5.tgz#16806a319c11223e75ae228b9c5de42ccdbd5633"
+  integrity sha512-PvXjkHbsGwgp34acuq7tKoHti2Nd31g7WVe4Tw/ho/XhjLvfi85iolFVeVdwZnkJ6qxg+EOKDCwaIocuhWfMMw==
+
 "@commercetools-frontend/ui-kit@9.8.1":
   version "9.8.1"
   resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-9.8.1.tgz#16b1971ebe5999805f5cd7540b3e696607d43052"
