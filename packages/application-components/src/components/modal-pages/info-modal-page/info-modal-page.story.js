@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text } from '@storybook/addon-knobs/react';
+import { withKnobs, text, number } from '@storybook/addon-knobs/react';
 import withReadme from 'storybook-readme/with-readme';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import {
@@ -9,7 +9,6 @@ import {
   Spacings,
   SecondaryButton,
 } from '@commercetools-frontend/ui-kit';
-import { number } from '@storybook/addon-knobs/dist/deprecated';
 import Readme from './README.md';
 import InfoModalPage from './info-modal-page';
 

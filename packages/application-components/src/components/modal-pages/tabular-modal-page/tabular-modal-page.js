@@ -14,7 +14,7 @@ const TabularModalPage = props => (
     parentSelector={props.parentSelector}
   >
     <ModalPageTopBar
-      color="gray"
+      color="neutral"
       onClose={props.onClose}
       currentPathLabel={props.topBarCurrentPathLabel || props.title}
       previousPathLabel={props.topBarPreviousPathLabel}

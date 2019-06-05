@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import { css } from '@emotion/core';
-import { withKnobs, text } from '@storybook/addon-knobs/react';
+import { withKnobs, text, number } from '@storybook/addon-knobs/react';
 import withReadme from 'storybook-readme/with-readme';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import {
@@ -11,7 +11,6 @@ import {
   SecondaryButton,
   customProperties,
 } from '@commercetools-frontend/ui-kit';
-import { number } from '@storybook/addon-knobs/dist/deprecated';
 import Readme from './README.md';
 import TabularModalPage from './tabular-modal-page';
 

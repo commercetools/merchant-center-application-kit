@@ -42,13 +42,13 @@ const ModalPageTopBar = props => (
       align-items: center;
       justify-content: space-between;
       padding: ${customProperties.spacingS} ${customProperties.spacingM};
-      background-color: ${props.color === 'gray'
-        ? customProperties.colorGray95
-        : customProperties.colorWhite};
+      background-color: ${props.color === 'neutral'
+        ? customProperties.colorNeutral95
+        : customProperties.colorSurface};
       border-bottom: 1px solid
-        ${props.color === 'gray'
-          ? customProperties.colorWhite
-          : customProperties.colorGray};
+        ${props.color === 'neutral'
+          ? customProperties.colorSurface
+          : customProperties.colorNeutral};
       & * + * {
         margin-left: ${customProperties.spacingS};
       }
@@ -87,7 +87,7 @@ const ModalPageTopBar = props => (
 );
 ModalPageTopBar.displayName = 'ModalPageTopBar';
 ModalPageTopBar.propTypes = {
-  color: PropTypes.oneOf(['white', 'gray']),
+  color: PropTypes.oneOf(['surface', 'neutral']),
   onClose: PropTypes.func.isRequired,
   currentPathLabel: PropTypes.string,
   previousPathLabel: PropTypes.oneOfType([
@@ -104,9 +104,9 @@ ModalPageTopBar.propTypes = {
   }),
 };
 ModalPageTopBar.defaultProps = {
-  color: 'white',
+  color: 'surface',
   previousPathLabel: messages.back,
 };
-ModalPageTopBar.Intl = messages;
+ModalPageTopBar.Intl = { back: messages.back };
 
 export default injectIntl(ModalPageTopBar);

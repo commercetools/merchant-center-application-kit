@@ -7,7 +7,7 @@ import ModalPageHeader from '../internals/modal-page-header';
 import { ContentWrapper } from '../internals/modal-page.styles';
 import messages from '../internals/messages';
 
-const useLabel = (label, intl) =>
+const getFormattedLabel = (label, intl) =>
   typeof label === 'string' ? label : intl.formatMessage(label);
 
 const FormModalPage = props => (
@@ -29,8 +29,14 @@ const FormModalPage = props => (
       title={props.title}
       subtitle={props.subtitle}
       customControls={props.customControls}
-      labelPrimaryButton={useLabel(props.labelPrimaryButton, props.intl)}
-      labelSecondaryButton={useLabel(props.labelSecondaryButton, props.intl)}
+      labelPrimaryButton={getFormattedLabel(
+        props.labelPrimaryButton,
+        props.intl
+      )}
+      labelSecondaryButton={getFormattedLabel(
+        props.labelSecondaryButton,
+        props.intl
+      )}
       onPrimaryButtonClick={props.onPrimaryButtonClick}
       onSecondaryButtonClick={props.onSecondaryButtonClick}
       isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
@@ -85,6 +91,6 @@ FormModalPage.defaultProps = {
   labelSecondaryButton: messages.cancel,
 };
 
-FormModalPage.Intl = messages;
+FormModalPage.Intl = { confirm: messages.confirm, cancel: messages.cancel };
 
 export default injectIntl(FormModalPage);
