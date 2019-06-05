@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import {
   withKnobs,
@@ -10,45 +9,10 @@ import {
 } from '@storybook/addon-knobs/react';
 import withReadme from 'storybook-readme/with-readme';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import {
-  SecondaryButton,
-  Spacings,
-  Text,
-} from '@commercetools-frontend/ui-kit';
+import { Spacings, Text } from '@commercetools-frontend/ui-kit';
+import ModalController from '../../internals/for-docs/modal-controller';
 import Readme from './README.md';
 import InfoDialog from './info-dialog';
-
-const DialogController = props => {
-  const [isOpen, toggle] = React.useState(false);
-  return (
-    <div
-      style={{
-        display: 'grid',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100%',
-        width: '100%',
-      }}
-    >
-      <Spacings.Stack>
-        <Text.Headline elementType="h3">
-          {'Open the Info Dialog by clicking on the button'}
-        </Text.Headline>
-        <Spacings.Inline>
-          <SecondaryButton
-            label="Open Info Dialog"
-            onClick={() => toggle(true)}
-          />
-        </Spacings.Inline>
-        {props.children({ isOpen, toggle })}
-      </Spacings.Stack>
-    </div>
-  );
-};
-DialogController.displayName = 'DialogController';
-DialogController.propTypes = {
-  children: PropTypes.func.isRequired,
-};
 
 storiesOf('Components|Dialogs', module)
   .addDecorator(withKnobs)
@@ -56,7 +20,10 @@ storiesOf('Components|Dialogs', module)
   .add('InfoDialog', () => (
     <React.Fragment>
       <div id={PORTALS_CONTAINER_ID} />
-      <DialogController>
+      <ModalController
+        title="Open the Info Dialog by clicking on the button"
+        buttonLabel="Open Info Dialog"
+      >
         {({ isOpen, toggle }) => (
           <InfoDialog
             title={text('title', 'Lorem Ipsum')}
@@ -93,6 +60,6 @@ storiesOf('Components|Dialogs', module)
             </Spacings.Stack>
           </InfoDialog>
         )}
-      </DialogController>
+      </ModalController>
     </React.Fragment>
   ));

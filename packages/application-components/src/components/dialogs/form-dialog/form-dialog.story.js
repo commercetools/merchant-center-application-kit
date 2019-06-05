@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import {
   withKnobs,
@@ -11,47 +10,10 @@ import {
 import withReadme from 'storybook-readme/with-readme';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import { Formik } from 'formik';
-import {
-  SecondaryButton,
-  Spacings,
-  Text,
-  TextField,
-  TextInput,
-} from '@commercetools-frontend/ui-kit';
+import { Spacings, TextField, TextInput } from '@commercetools-frontend/ui-kit';
+import ModalController from '../../internals/for-docs/modal-controller';
 import Readme from './README.md';
 import FormDialog from './form-dialog';
-
-const DialogController = props => {
-  const [isOpen, toggle] = React.useState(false);
-  return (
-    <div
-      style={{
-        display: 'grid',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100%',
-        width: '100%',
-      }}
-    >
-      <Spacings.Stack>
-        <Text.Headline elementType="h3">
-          {'Open the Form Dialog by clicking on the button'}
-        </Text.Headline>
-        <Spacings.Inline>
-          <SecondaryButton
-            label="Open Form Dialog"
-            onClick={() => toggle(true)}
-          />
-        </Spacings.Inline>
-        {props.children({ isOpen, toggle })}
-      </Spacings.Stack>
-    </div>
-  );
-};
-DialogController.displayName = 'DialogController';
-DialogController.propTypes = {
-  children: PropTypes.func.isRequired,
-};
 
 storiesOf('Components|Dialogs', module)
   .addDecorator(withKnobs)
@@ -59,7 +21,10 @@ storiesOf('Components|Dialogs', module)
   .add('FormDialog', () => (
     <React.Fragment>
       <div id={PORTALS_CONTAINER_ID} />
-      <DialogController>
+      <ModalController
+        title="Open the Form Dialog by clicking on the button"
+        buttonLabel="Open Form Dialog"
+      >
         {({ isOpen, toggle }) => (
           <Formik
             initialValues={{ email: '' }}
@@ -113,6 +78,6 @@ storiesOf('Components|Dialogs', module)
             )}
           />
         )}
-      </DialogController>
+      </ModalController>
     </React.Fragment>
   ));
