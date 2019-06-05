@@ -25,6 +25,7 @@ export {
 export {
   default as handleApolloErrors,
 } from './components/handle-apollo-errors';
+export { default as version } from './version';
 
 /**
  * NOTE:
