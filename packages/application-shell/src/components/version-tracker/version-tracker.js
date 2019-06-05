@@ -19,7 +19,7 @@ export class VersionTracker extends React.Component {
   static displayName = 'VersionTracker';
   static propTypes = {
     // withApplicationContext
-    applicationName: PropTypes.string.isRequired,
+    applicationName: PropTypes.string,
     // connect
     pushVersionCounter: PropTypes.func.isRequired,
   };
