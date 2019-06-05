@@ -8,6 +8,7 @@ import ExampleWrapper from '../../internals/for-docs/example-wrapper';
 const FormModalPageExample = () => (
   <ExampleWrapper
     containerId="form-modal-page"
+    containerHeight="600px"
     controllerTitle="Open the Form Modal Page by clicking on the button"
     controllerButtonLabel="Open Form Modal Page"
   >

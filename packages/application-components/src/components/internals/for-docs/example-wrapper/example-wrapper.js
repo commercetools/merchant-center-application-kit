@@ -196,5 +196,8 @@ ExampleWrapper.propTypes = {
   ).isRequired,
   children: PropTypes.func.isRequired,
 };
+ExampleWrapper.defaultProps = {
+  containerHeight: '400px',
+};
 
 export default ExampleWrapper;

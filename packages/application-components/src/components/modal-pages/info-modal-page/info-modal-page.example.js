@@ -8,6 +8,7 @@ import ModalController from '../../internals/for-docs/modal-controller';
 const InfoModalPageExample = () => (
   <ExampleWrapper
     containerId="info-modal"
+    containerHeight="600px"
     controllerTitle="Open the Info Modal Page by clicking on the button"
     controllerButtonLabel="Open Info Modal Page"
   >
