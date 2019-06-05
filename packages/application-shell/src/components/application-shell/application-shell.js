@@ -20,6 +20,7 @@ import PortalsContainer from '../portals-container';
 import ApplicationShellProvider from '../application-shell-provider';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import FetchUser from '../fetch-user';
+import VersionTracker from '../version-tracker';
 import FetchProject from '../fetch-project';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import AppBar from '../app-bar';
@@ -113,217 +114,222 @@ export const RestrictedApplication = props => (
                   appEnv={props.environment.env}
                   defaultFlags={props.defaultFeatureFlags}
                 >
-                  <React.Fragment>
-                    {/* NOTE: the requests in flight loader will render a loading
+                  <VersionTracker>
+                    <React.Fragment>
+                      {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
-                    <RequestsInFlightLoader />
-                    <SentryUserTracker user={user} />
-                    <GtmUserTracker user={user} />
-                    <div className={styles['app-layout']}>
-                      <div className={styles['global-notifications']}>
-                        <NotificationsList domain={DOMAINS.GLOBAL} />
-                      </div>
+                      <RequestsInFlightLoader />
+                      <SentryUserTracker user={user} />
+                      <GtmUserTracker user={user} />
+                      <div className={styles['app-layout']}>
+                        <div className={styles['global-notifications']}>
+                          <NotificationsList domain={DOMAINS.GLOBAL} />
+                        </div>
 
-                      <Route
-                        render={routeProps => {
-                          if (!projectKeyFromUrl)
+                        <Route
+                          render={routeProps => {
+                            if (!projectKeyFromUrl)
+                              return (
+                                <QuickAccess
+                                  history={routeProps.history}
+                                  user={user}
+                                />
+                              );
                             return (
-                              <QuickAccess
-                                history={routeProps.history}
-                                user={user}
-                              />
-                            );
-                          return (
-                            <FetchProject projectKey={projectKeyFromUrl}>
-                              {({ isLoading: isProjectLoading, project }) => {
-                                if (isProjectLoading) return null;
+                              <FetchProject projectKey={projectKeyFromUrl}>
+                                {({ isLoading: isProjectLoading, project }) => {
+                                  if (isProjectLoading) return null;
 
-                                // when used outside of a project context,
-                                // or when the project is expired or supsended
-                                const useProjectContext =
-                                  project &&
-                                  !(
-                                    project.suspension?.isActive ||
-                                    project.expiry?.isActive
-                                  );
+                                  // when used outside of a project context,
+                                  // or when the project is expired or supsended
+                                  const useProjectContext =
+                                    project &&
+                                    !(
+                                      project.suspension?.isActive ||
+                                      project.expiry?.isActive
+                                    );
 
-                                if (!useProjectContext)
-                                  return (
-                                    <QuickAccess
-                                      history={routeProps.history}
-                                      user={user}
-                                      environment={props.environment}
-                                    />
-                                  );
-                                return (
-                                  <ProjectDataLocale
-                                    locales={project.languages}
-                                  >
-                                    {({
-                                      locale: dataLocale,
-                                      setProjectDataLocale,
-                                    }) => (
-                                      <ApplicationContextProvider
+                                  if (!useProjectContext)
+                                    return (
+                                      <QuickAccess
+                                        history={routeProps.history}
                                         user={user}
-                                        project={project}
-                                        projectDataLocale={dataLocale}
                                         environment={props.environment}
-                                      >
-                                        <QuickAccess
+                                      />
+                                    );
+                                  return (
+                                    <ProjectDataLocale
+                                      locales={project.languages}
+                                    >
+                                      {({
+                                        locale: dataLocale,
+                                        setProjectDataLocale,
+                                      }) => (
+                                        <ApplicationContextProvider
+                                          user={user}
                                           project={project}
                                           projectDataLocale={dataLocale}
-                                          onChangeProjectDataLocale={
-                                            setProjectDataLocale
-                                          }
-                                          history={routeProps.history}
-                                          user={user}
                                           environment={props.environment}
-                                        />
-                                      </ApplicationContextProvider>
-                                    )}
-                                  </ProjectDataLocale>
-                                );
-                              }}
-                            </FetchProject>
-                          );
-                        }}
-                      />
-
-                      <header>
-                        <AppBar
-                          user={user}
-                          projectKeyFromUrl={projectKeyFromUrl}
-                          environment={props.environment}
-                          DEV_ONLY__loadAppbarMenuConfig={
-                            props.DEV_ONLY__loadAppbarMenuConfig
-                          }
-                        />
-                      </header>
-
-                      <aside>
-                        {(() => {
-                          // The <NavBar> should only be rendered within a project
-                          // context, therefore when there is a `projectKey`.
-                          // If there is no `projectKey` in the URL (e.g. `/account`
-                          // routes), we don't render it.
-                          // NOTE: we also "cache" the `projectKey` in localStorage
-                          // but this should only be used to "re-hydrate" the URL
-                          // location (e.g when you go to `/`, there should be a
-                          // redirect to `/:projectKey`). Therefore, we should not
-                          // rely on the value in localStorage to determine which
-                          // `projectKey` is currently used.
-                          if (!projectKeyFromUrl) return null;
-                          return (
-                            <FetchProject projectKey={projectKeyFromUrl}>
-                              {({ isLoading: isLoadingProject, project }) => {
-                                // Render the loading navbar as long as all the data
-                                // hasn't been loaded, or if the project does not exist.
-                                if (
-                                  isLoadingUser ||
-                                  isLoadingLocaleData ||
-                                  isLoadingProject ||
-                                  !project
-                                )
-                                  return <LoadingNavBar />;
-
-                                return (
-                                  <ApplicationContextProvider
-                                    user={user}
-                                    project={project}
-                                    environment={props.environment}
-                                  >
-                                    <NavBar
-                                      applicationLocale={locale}
-                                      projectKey={projectKeyFromUrl}
-                                      menuVisibilities={
-                                        project.menuVisibilities
-                                      }
-                                      environment={props.environment}
-                                      DEV_ONLY__loadNavbarMenuConfig={
-                                        props.DEV_ONLY__loadNavbarMenuConfig
-                                      }
-                                    />
-                                  </ApplicationContextProvider>
-                                );
-                              }}
-                            </FetchProject>
-                          );
-                        })()}
-                      </aside>
-
-                      {/**
-                       * NOTE: in IE11 main can't be a grid-child apparently.
-                       * So we have to use a div and give it the role `main`
-                       * to achieve the same semantic result
-                       */}
-                      {isLoadingUser || isLoadingLocaleData ? (
-                        <div role="main" className={styles.main}>
-                          <ApplicationLoader />
-                        </div>
-                      ) : (
-                        <div role="main" className={styles.main}>
-                          <PortalsContainer />
-                          <NotificationsList domain={DOMAINS.PAGE} />
-                          <NotificationsList domain={DOMAINS.SIDE} />
-                          <div className={styles.content}>
-                            <Switch>
-                              <Redirect from="/profile" to="/account/profile" />
-                              <Route
-                                path="/account"
-                                // Render the children and pass the control to the
-                                // specific application part
-                                render={props.render}
-                              />
-                              {/* Project routes */}
-                              <Route
-                                exact={true}
-                                path="/"
-                                render={() => {
-                                  const previousProjectKey = getPreviousProjectKey(
-                                    user && user.defaultProjectKey
-                                  );
-
-                                  /**
-                                   * NOTE:
-                                   *   Given the user has not been loaded a loading spinner is shown.
-                                   *   Given the user was not working on a project previously nor has a default
-                                   *   project, the user will be prompted to create one.
-                                   *   Given the user was working on a project previously or has a default
-                                   *   project, the application will redirect to that project.
-                                   */
-
-                                  if (!user) return <ApplicationLoader />;
-                                  if (!previousProjectKey)
-                                    return <RedirectToProjectCreate />;
-                                  return (
-                                    <Redirect to={`/${previousProjectKey}`} />
+                                        >
+                                          <QuickAccess
+                                            project={project}
+                                            projectDataLocale={dataLocale}
+                                            onChangeProjectDataLocale={
+                                              setProjectDataLocale
+                                            }
+                                            history={routeProps.history}
+                                            user={user}
+                                            environment={props.environment}
+                                          />
+                                        </ApplicationContextProvider>
+                                      )}
+                                    </ProjectDataLocale>
                                   );
                                 }}
-                              />
-                              <Route
-                                exact={false}
-                                path="/:projectKey"
-                                render={routerProps => (
-                                  <React.Fragment>
-                                    <ProjectContainer
+                              </FetchProject>
+                            );
+                          }}
+                        />
+
+                        <header>
+                          <AppBar
+                            user={user}
+                            projectKeyFromUrl={projectKeyFromUrl}
+                            environment={props.environment}
+                            DEV_ONLY__loadAppbarMenuConfig={
+                              props.DEV_ONLY__loadAppbarMenuConfig
+                            }
+                          />
+                        </header>
+
+                        <aside>
+                          {(() => {
+                            // The <NavBar> should only be rendered within a project
+                            // context, therefore when there is a `projectKey`.
+                            // If there is no `projectKey` in the URL (e.g. `/account`
+                            // routes), we don't render it.
+                            // NOTE: we also "cache" the `projectKey` in localStorage
+                            // but this should only be used to "re-hydrate" the URL
+                            // location (e.g when you go to `/`, there should be a
+                            // redirect to `/:projectKey`). Therefore, we should not
+                            // rely on the value in localStorage to determine which
+                            // `projectKey` is currently used.
+                            if (!projectKeyFromUrl) return null;
+                            return (
+                              <FetchProject projectKey={projectKeyFromUrl}>
+                                {({ isLoading: isLoadingProject, project }) => {
+                                  // Render the loading navbar as long as all the data
+                                  // hasn't been loaded, or if the project does not exist.
+                                  if (
+                                    isLoadingUser ||
+                                    isLoadingLocaleData ||
+                                    isLoadingProject ||
+                                    !project
+                                  )
+                                    return <LoadingNavBar />;
+
+                                  return (
+                                    <ApplicationContextProvider
                                       user={user}
-                                      match={routerProps.match}
-                                      location={routerProps.location}
+                                      project={project}
                                       environment={props.environment}
-                                      // This effectively renders the
-                                      // children, which is the application
-                                      // specific part
-                                      render={props.render}
-                                    />
-                                  </React.Fragment>
-                                )}
-                              />
-                            </Switch>
+                                    >
+                                      <NavBar
+                                        applicationLocale={locale}
+                                        projectKey={projectKeyFromUrl}
+                                        menuVisibilities={
+                                          project.menuVisibilities
+                                        }
+                                        environment={props.environment}
+                                        DEV_ONLY__loadNavbarMenuConfig={
+                                          props.DEV_ONLY__loadNavbarMenuConfig
+                                        }
+                                      />
+                                    </ApplicationContextProvider>
+                                  );
+                                }}
+                              </FetchProject>
+                            );
+                          })()}
+                        </aside>
+
+                        {/**
+                         * NOTE: in IE11 main can't be a grid-child apparently.
+                         * So we have to use a div and give it the role `main`
+                         * to achieve the same semantic result
+                         */}
+                        {isLoadingUser || isLoadingLocaleData ? (
+                          <div role="main" className={styles.main}>
+                            <ApplicationLoader />
                           </div>
-                        </div>
-                      )}
-                    </div>
-                  </React.Fragment>
+                        ) : (
+                          <div role="main" className={styles.main}>
+                            <PortalsContainer />
+                            <NotificationsList domain={DOMAINS.PAGE} />
+                            <NotificationsList domain={DOMAINS.SIDE} />
+                            <div className={styles.content}>
+                              <Switch>
+                                <Redirect
+                                  from="/profile"
+                                  to="/account/profile"
+                                />
+                                <Route
+                                  path="/account"
+                                  // Render the children and pass the control to the
+                                  // specific application part
+                                  render={props.render}
+                                />
+                                {/* Project routes */}
+                                <Route
+                                  exact={true}
+                                  path="/"
+                                  render={() => {
+                                    const previousProjectKey = getPreviousProjectKey(
+                                      user && user.defaultProjectKey
+                                    );
+
+                                    /**
+                                     * NOTE:
+                                     *   Given the user has not been loaded a loading spinner is shown.
+                                     *   Given the user was not working on a project previously nor has a default
+                                     *   project, the user will be prompted to create one.
+                                     *   Given the user was working on a project previously or has a default
+                                     *   project, the application will redirect to that project.
+                                     */
+
+                                    if (!user) return <ApplicationLoader />;
+                                    if (!previousProjectKey)
+                                      return <RedirectToProjectCreate />;
+                                    return (
+                                      <Redirect to={`/${previousProjectKey}`} />
+                                    );
+                                  }}
+                                />
+                                <Route
+                                  exact={false}
+                                  path="/:projectKey"
+                                  render={routerProps => (
+                                    <React.Fragment>
+                                      <ProjectContainer
+                                        user={user}
+                                        match={routerProps.match}
+                                        location={routerProps.location}
+                                        environment={props.environment}
+                                        // This effectively renders the
+                                        // children, which is the application
+                                        // specific part
+                                        render={props.render}
+                                      />
+                                    </React.Fragment>
+                                  )}
+                                />
+                              </Switch>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </React.Fragment>
+                  </VersionTracker>
                 </SetupFlopFlipProvider>
               </ConfigureIntlProvider>
             )}
