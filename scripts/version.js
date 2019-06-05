@@ -16,7 +16,7 @@ if (commands.length === 0 || (flags.help && commands.length === 0)) {
     Usage: version [command] [options]
     Commands:
       print        Prints the version and package name
-      amend        Amends the version to the built files
+      replace        Replaces the version to the built files
   `);
   process.exit(0);
 }
