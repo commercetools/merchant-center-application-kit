@@ -9,14 +9,6 @@ const messages = defineMessages({
     id: 'Components.ModalPage.TopBar.Close',
     defaultMessage: 'Close Modal Page',
   },
-  cancel: {
-    id: 'Components.FormModalPage.Header.labelCancel',
-    defaultMessage: 'Cancel',
-  },
-  confirm: {
-    id: 'Components.FormModalPage.Header.labelConfirm',
-    defaultMessage: 'Save',
-  },
 });
 
 export default messages;

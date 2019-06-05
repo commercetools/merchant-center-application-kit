@@ -5,7 +5,7 @@ import ModalPage from '../internals/modal-page';
 import ModalPageTopBar from '../internals/modal-page-top-bar';
 import ModalPageHeader from '../internals/modal-page-header';
 import { ContentWrapper } from '../internals/modal-page.styles';
-import messages from '../internals/messages';
+import buttonMessages from '../../../utils/button-messages';
 
 const getFormattedLabel = (label, intl) =>
   typeof label === 'string' ? label : intl.formatMessage(label);
@@ -87,10 +87,10 @@ FormModalPage.propTypes = {
   }).isRequired,
 };
 FormModalPage.defaultProps = {
-  labelPrimaryButton: messages.confirm,
-  labelSecondaryButton: messages.cancel,
+  labelPrimaryButton: buttonMessages.confirm,
+  labelSecondaryButton: buttonMessages.cancel,
 };
 
-FormModalPage.Intl = { confirm: messages.confirm, cancel: messages.cancel };
+FormModalPage.Intl = buttonMessages;
 
 export default injectIntl(FormModalPage);

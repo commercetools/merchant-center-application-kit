@@ -4,7 +4,7 @@ import DialogContainer from '../internals/dialog-container';
 import DialogHeader from '../internals/dialog-header';
 import DialogContent from '../internals/dialog-content';
 import DialogFooter from '../internals/dialog-footer';
-import messages from '../internals/messages';
+import buttonMessages from '../../../utils/button-messages';
 
 const ConfirmationDialog = props => (
   <DialogContainer
@@ -60,10 +60,10 @@ ConfirmationDialog.propTypes = {
   getParentSelector: PropTypes.func,
 };
 ConfirmationDialog.defaultProps = {
-  labelSecondary: messages.cancel,
-  labelPrimary: messages.confirm,
+  labelSecondary: buttonMessages.cancel,
+  labelPrimary: buttonMessages.confirm,
 };
 // Make some default intl messages available to use
-ConfirmationDialog.Intl = messages;
+ConfirmationDialog.Intl = buttonMessages;
 
 export default ConfirmationDialog;
