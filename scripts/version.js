@@ -7,7 +7,6 @@ const replace = require('replace');
 
 const versionOfPackage = process.env.npm_package_version;
 const nameOfPackage = process.env.npm_package_name;
-const pwd = process.env.PWD;
 
 const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
 const commands = flags._;
@@ -16,8 +15,8 @@ if (commands.length === 0 || (flags.help && commands.length === 0)) {
   console.log(`
     Usage: version [command] [options]
     Commands:
-    print        Print the version
-    amend        Amends the version to the built files
+      print        Prints the version and package name
+      amend        Amends the version to the built files
   `);
   process.exit(0);
 }
@@ -31,9 +30,11 @@ switch (command) {
     );
     break;
   }
-  case 'amend': {
-    const distFolder = path.join(pwd, 'dist');
-    const paths = [distFolder];
+  case 'replace': {
+    const pkgDirectory = fs.realpathSync(process.env.pwd);
+    const resolvePkg = relativePath => path.resolve(pkgDirectory, relativePath);
+
+    const paths = [resolvePkg('dist')];
 
     replace({
       regex: '__@APPLICATION_KIT_PACKAGE/VERSION_OF_RELEASE__',
@@ -43,10 +44,12 @@ switch (command) {
       silent: true,
     });
 
-    console.log(`Amended for ${nameOfPackage} for release ${versionOfPackage}`);
+    console.log(
+      `Replaced placeholder for ${nameOfPackage} and release ${versionOfPackage}`
+    );
     break;
   }
   default:
-    console.log(`Unknown script "${command}".`);
+    console.log(`Unknown command "${command}".`);
     break;
 }
