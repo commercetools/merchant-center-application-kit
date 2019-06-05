@@ -8,8 +8,7 @@ const userAgent = createHttpUserAgent({
   name: '@commercetools/sdk-client',
   libraryName: [window.app.name, 'sdk'].join('/'),
   libraryVersion: version,
-  contactUrl:
-    'https://github.com/commercetools/merchant-center-application-kit/issues/new/choose',
+  contactUrl: 'https://git.io/fjuyC', // points to the appkit repo issues
   contactEmail: 'mc@commercetools.com',
 });
 

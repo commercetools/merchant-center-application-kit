@@ -17,8 +17,7 @@ const userAgent = createHttpUserAgent({
   version: apolloVersion,
   libraryName: [window.app.name, 'application-shell'].join('/'),
   libraryVersion: version,
-  contactUrl:
-    'https://github.com/commercetools/merchant-center-application-kit/issues/new/choose',
+  contactUrl: 'https://git.io/fjuyC', // points to the appkit repo issues
   contactEmail: 'mc@commercetools.com',
 });
 
