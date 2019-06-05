@@ -21,18 +21,8 @@ export class VersionTracker extends React.Component {
   static propTypes = {
     // withApplicationContext
     applicationName: PropTypes.string.isRequired,
-    children: PropTypes.node,
     // connect
     pushVersionCounter: PropTypes.func.isRequired,
-  };
-  static defaultProps = {
-    /**
-     * NOTE:
-     *   In the e.g. application-account runs out of a `projectKey` context.
-     *   In order to not have `"undefined"` in our Prometheus metrics we
-     *   send an empty string whenever no `projectKey` is passed.
-     */
-    projectKey: '',
   };
   componentDidMount() {
     this.props
@@ -47,7 +37,7 @@ export class VersionTracker extends React.Component {
       });
   }
   render() {
-    return this.props.children;
+    return null;
   }
 }
 const mapDispatchToProps = {
