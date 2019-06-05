@@ -13,6 +13,9 @@ module.exports = configPath => {
 
   // List the required fields in order to validate them
   const requiredKeys = [
+    // NOTE: for now we keep it optional, but eventually we want to enforce
+    // this field to be required.
+    // 'applicationName',
     'frontendHost',
     'mcApiUrl',
     'location',

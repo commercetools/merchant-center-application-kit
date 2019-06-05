@@ -1072,7 +1072,7 @@
     lodash.omit "^4.5.0"
     react-display-name "0.2.4"
 
-"@commercetools/http-user-agent@^2.1.0":
+"@commercetools/http-user-agent@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@commercetools/http-user-agent/-/http-user-agent-2.1.0.tgz#30b8a617c6e1cb299dd2cd364c1b635fafb8c3de"
   integrity sha512-Dl0hHZWzquB7yM3t1c+J+V8hMYGSBvJhdF5KPlzzn++eD01yYJ656SSVUM5v2TQ3WOfJijZPGVvS6TbztDiEIQ==
@@ -1099,13 +1099,6 @@
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@commercetools/sdk-middleware-http/-/sdk-middleware-http-5.2.0.tgz#6cf8bc9d9760db9590cb10949658ef688605d1ab"
   integrity sha512-JsE1A3JX5BsBra9kE3+Dy067o6m1uv+URWO2zHc9s2d4YfGJg9SQscfhPKMn7SujdGWrOA6x+H/vZ+QxOZJ+hg==
-
-"@commercetools/sdk-middleware-user-agent@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@commercetools/sdk-middleware-user-agent/-/sdk-middleware-user-agent-2.1.0.tgz#21f8ae84b85508c1bf50c2e1026b06d240b073dd"
-  integrity sha512-/2uWwC5+BjMdy1XD3p43lRO8TUqq1uDu+B2/fjVAXJQPCO1KQSI41lgAZYePaUvLqhMP5dxzRhYqwFpD7j5QGA==
-  dependencies:
-    "@commercetools/http-user-agent" "^2.1.0"
 
 "@commitlint/cli@7.6.1":
   version "7.6.1"

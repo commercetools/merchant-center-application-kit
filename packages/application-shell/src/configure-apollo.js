@@ -1,4 +1,5 @@
 import ApolloClient from 'apollo-client';
+import apolloVersion from 'apollo-client/version';
 import { ApolloLink } from 'apollo-link';
 import apolloLogger from 'apollo-link-logger';
 import { createHttpLink } from 'apollo-link-http';
@@ -6,13 +7,25 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from 'apollo-cache-inmemory';
+import createHttpUserAgent from '@commercetools/http-user-agent';
 import { errorLink, headerLink, tokenRetryLink } from './apollo-links';
 import { isLoggerEnabled } from './utils/logger';
+import version from './version';
+
+const userAgent = createHttpUserAgent({
+  name: 'apollo-client',
+  version: apolloVersion,
+  libraryName: [window.app.name, 'application-shell'].join('/'),
+  libraryVersion: version,
+  contactUrl: 'https://git.io/fjuyC', // points to the appkit repo issues
+  contactEmail: 'mc@commercetools.com',
+});
 
 const httpLink = createHttpLink({
   uri: `${window.app.mcApiUrl}/graphql`,
   headers: {
     accept: 'application/json',
+    'x-user-agent': userAgent,
   },
   fetch,
 });

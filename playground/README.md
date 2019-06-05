@@ -40,6 +40,7 @@ A project for developing a Merchant Center Application usually consists of the f
   - `routes.js` contains the sub-routes and components rendered by the application (the main route is defined in the `<EntryPoint>` and is loaded asynchronously using code splitting)
 - `dist` contains the production bundles (this is created once you run `yarn build`)
 - `env.json` contains runtime configuration available as a global state `window.app`. The object has to be passed to the `<ApplicationShell>` as `environment` prop. The object can contain any configuration specific to the application, plus the following **required** fields:
+  - `applicationName`: the name of the application (usually the same as in`package.json`)
   - `frontendHost`: the host where the Merchant Center application is running (e.g. `mc.commercetools.com`)
   - `mcApiUrl`: the API URL of the Merchant Center (`https://mc-api.commercetools.com` for projects in `EU` and `https://mc-api.commercetools.co` for projects in `US`)
   - `location`: the location where the Merchant Center is running, usually `eu` or `us`

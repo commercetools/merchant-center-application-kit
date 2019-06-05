@@ -1,16 +1,27 @@
 import { createClient as createSdkClient } from '@commercetools/sdk-client';
 import { createHttpMiddleware as createSdkHttpMiddleware } from '@commercetools/sdk-middleware-http';
-import { createUserAgentMiddleware as createSdkUserAgentMiddleware } from '@commercetools/sdk-middleware-user-agent';
 import { createCorrelationIdMiddleware as createSdkCorrelationIdMiddleware } from '@commercetools/sdk-middleware-correlation-id';
+import createHttpUserAgent from '@commercetools/http-user-agent';
+import version from '../version';
 
-// NOTE we should not use these directly but rather have them passed in from
-// the application
-const userAgentMiddleware = createSdkUserAgentMiddleware({
-  libraryName: 'merchant-center-frontend',
-  libraryVersion: '1.0.0',
-  contactUrl: 'https://mc.commercetools.com',
+const userAgent = createHttpUserAgent({
+  name: '@commercetools/sdk-client',
+  libraryName: [window.app.name, 'sdk'].join('/'),
+  libraryVersion: version,
+  contactUrl: 'https://git.io/fjuyC', // points to the appkit repo issues
   contactEmail: 'mc@commercetools.com',
 });
+
+const customUserAgentMiddleware = next => (request, response) => {
+  const requestWithCustomUserAgent = {
+    ...request,
+    headers: {
+      ...request.headers,
+      'X-User-Agent': userAgent,
+    },
+  };
+  next(requestWithCustomUserAgent, response);
+};
 
 // NOTE we should not use these directly but rather have them passed in from
 // the application
@@ -30,7 +41,7 @@ const createClient = ({ getCorrelationId }) =>
   createSdkClient({
     middlewares: [
       createCorrelationIdMiddleware({ getCorrelationId }),
-      userAgentMiddleware,
+      customUserAgentMiddleware,
       httpMiddleware,
     ],
   });

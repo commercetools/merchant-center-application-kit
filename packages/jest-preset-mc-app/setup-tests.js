@@ -4,6 +4,7 @@ const colors = require('colors/safe');
 const pkgDir = require('pkg-dir');
 
 global.window.app = {
+  applicationName: 'my-app',
   mcApiUrl: 'http://localhost:8080',
 };
 
