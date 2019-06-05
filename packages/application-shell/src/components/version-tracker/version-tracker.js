@@ -23,7 +23,6 @@ export class VersionTracker extends React.Component {
     applicationName: PropTypes.string.isRequired,
     children: PropTypes.node,
     // connect
-    userAgent: PropTypes.string.isRequired,
     pushVersionCounter: PropTypes.func.isRequired,
   };
   static defaultProps = {
@@ -51,16 +50,12 @@ export class VersionTracker extends React.Component {
     return this.props.children;
   }
 }
-
-const mapStateToProps = () => ({
-  userAgent: window.navigator.userAgent,
-});
 const mapDispatchToProps = {
   pushVersionCounter: actions.pushVersionCounter,
 };
 export default flowRight(
   connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
   ),
   withApplicationContext(({ environment }) => ({
