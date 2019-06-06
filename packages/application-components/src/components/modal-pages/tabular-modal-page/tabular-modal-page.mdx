@@ -10,11 +10,11 @@ import TabularModalPageExample from './tabular-modal-page.example';
 
 <TabularModalPageExample />
 
-### Description
+## Description
 
 Tabular Modal pages are controlled components used to render a page with custom navigational controls and content, for instance, with Tabs. Similar to `InfoModalPage`, but with no Header and a gray Top bar.
 
-### Usage
+## Usage
 
 ```jsx
 import { TabularModalPage } from '@commercetools-frontend/application-components';
@@ -31,7 +31,7 @@ import { TabularModalPage } from '@commercetools-frontend/application-components
 </TabularModalPage>;
 ```
 
-### Properties
+## Properties
 
 | Props                     | Type       | Required | Default                  | Description                                                                                                                                                                                                                                                                                                 |
 | ------------------------- | ---------- | :------: | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -45,3 +45,15 @@ import { TabularModalPage } from '@commercetools-frontend/application-components
 | `topBarPreviousPathLabel` | `string`   |          | `"Go Back"` (translated) | The label to appear as the previous path of the top bar of the modal                                                                                                                                                                                                                                        |
 | `children`                | `node`     |    ✅    | -                        | Content rendered within the page. It isn't wrapped by anything except the Modal Container itself, so its expected to have its style fully customized.                                                                                                                                                       |
 | `parentSelector`          | `function` |    -     | -                        | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In `NODE_ENV=test` environment, the default HTML element is `body`. |
+
+## Static properties
+
+### `TabularModalPage.Intl`
+
+Exposes common intl messages to be used for the secondary/primary buttons
+
+```js
+FormDialog.Intl.cancel;
+FormDialog.Intl.confirm;
+// ...
+```

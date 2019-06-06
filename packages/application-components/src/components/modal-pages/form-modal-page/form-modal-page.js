@@ -1,14 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl } from 'react-intl';
+import buttonMessages from '../../../utils/button-messages';
 import ModalPage from '../internals/modal-page';
 import ModalPageTopBar from '../internals/modal-page-top-bar';
 import ModalPageHeader from '../internals/modal-page-header';
 import { ContentWrapper } from '../internals/modal-page.styles';
-import buttonMessages from '../../../utils/button-messages';
-
-const getFormattedLabel = (label, intl) =>
-  typeof label === 'string' ? label : intl.formatMessage(label);
 
 const FormModalPage = props => (
   <ModalPage
@@ -29,14 +25,8 @@ const FormModalPage = props => (
       title={props.title}
       subtitle={props.subtitle}
       customControls={props.customControls}
-      labelPrimaryButton={getFormattedLabel(
-        props.labelPrimaryButton,
-        props.intl
-      )}
-      labelSecondaryButton={getFormattedLabel(
-        props.labelSecondaryButton,
-        props.intl
-      )}
+      labelPrimaryButton={props.labelPrimaryButton}
+      labelSecondaryButton={props.labelSecondaryButton}
       onPrimaryButtonClick={props.onPrimaryButtonClick}
       onSecondaryButtonClick={props.onSecondaryButtonClick}
       isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
@@ -64,6 +54,7 @@ FormModalPage.propTypes = {
   customControls: PropTypes.node,
   labelSecondaryButton: PropTypes.oneOfType([
     PropTypes.string,
+    // intl message
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       defaultMessage: PropTypes.string.isRequired,
@@ -71,6 +62,7 @@ FormModalPage.propTypes = {
   ]).isRequired,
   labelPrimaryButton: PropTypes.oneOfType([
     PropTypes.string,
+    // intl message
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       defaultMessage: PropTypes.string.isRequired,
@@ -81,10 +73,6 @@ FormModalPage.propTypes = {
   isPrimaryButtonDisabled: PropTypes.bool,
   dataAttributesPrimaryButton: PropTypes.object,
   dataAttributesSecondaryButton: PropTypes.object,
-  // injected
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func.isRequired,
-  }).isRequired,
 };
 FormModalPage.defaultProps = {
   labelPrimaryButton: buttonMessages.confirm,
@@ -93,4 +81,4 @@ FormModalPage.defaultProps = {
 
 FormModalPage.Intl = buttonMessages;
 
-export default injectIntl(FormModalPage);
+export default FormModalPage;

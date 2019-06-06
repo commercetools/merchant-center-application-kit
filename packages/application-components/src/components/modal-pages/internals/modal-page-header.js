@@ -1,15 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
-import {
-  customProperties,
-  Text,
-  Spacings,
-  PrimaryButton,
-  SecondaryButton,
-} from '@commercetools-frontend/ui-kit';
+import { customProperties } from '@commercetools-frontend/ui-kit';
 import { css } from '@emotion/core';
-import filterDataAttributes from '../../../utils/filter-data-attributes';
+import ModalPageHeaderTitle from './modal-page-header-title';
+import ModalPageHeaderDefaultControls from './modal-page-header-default-controls';
 
 const ModalPageHeader = props => (
   <div
@@ -25,40 +20,18 @@ const ModalPageHeader = props => (
       }
     `}
   >
-    <div
-      css={css`
-        overflow: hidden;
-        & * + * {
-          margin-top: ${customProperties.spacingM} !important;
-        }
-      `}
-    >
-      <Text.Subheadline elementType="h4" title={props.title} truncate>
-        {props.title}
-      </Text.Subheadline>
-      {!React.isValidElement(props.subtitle) ? (
-        <Text.Body title={props.subtitle} truncate>
-          {props.subtitle}
-        </Text.Body>
-      ) : (
-        props.subtitle
-      )}
-    </div>
+    <ModalPageHeaderTitle title={props.title} subtitle={props.subtitle} />
     {props.showControls &&
       (props.customControls || (
-        <Spacings.Inline alignItems="flex-end" scale="m">
-          <SecondaryButton
-            label={props.labelSecondaryButton}
-            onClick={props.onSecondaryButtonClick}
-            {...filterDataAttributes(props.dataAttributesSecondaryButton)}
-          />
-          <PrimaryButton
-            label={props.labelPrimaryButton}
-            onClick={props.onPrimaryButtonClick}
-            isDisabled={props.isPrimaryButtonDisabled}
-            {...filterDataAttributes(props.dataAttributesPrimaryButton)}
-          />
-        </Spacings.Inline>
+        <ModalPageHeaderDefaultControls
+          labelSecondaryButton={props.labelSecondaryButton}
+          labelPrimaryButton={props.labelPrimaryButton}
+          isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
+          onSecondaryButtonClick={props.onSecondaryButtonClick}
+          onPrimaryButtonClick={props.onPrimaryButtonClick}
+          dataAttributesSecondaryButton={props.dataAttributesSecondaryButton}
+          dataAttributesPrimaryButton={props.dataAttributesPrimaryButton}
+        />
       ))}
   </div>
 );
@@ -67,32 +40,45 @@ ModalPageHeader.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   showControls: PropTypes.bool,
+  // Replaces default control buttons
   customControls: PropTypes.node,
-  labelPrimaryButton: requiredIf(
-    PropTypes.string,
-    props => props.showControls || props.customControls
-  ),
+  // For default control buttons
   labelSecondaryButton: requiredIf(
-    PropTypes.string,
-    props => props.showControls || props.customControls
+    PropTypes.oneOfType([
+      PropTypes.string,
+      // intl message
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        defaultMessage: PropTypes.string.isRequired,
+      }),
+    ]),
+    props => !props.customControls
+  ),
+  labelPrimaryButton: requiredIf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      // intl message
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        defaultMessage: PropTypes.string.isRequired,
+      }),
+    ]),
+    props => !props.customControls
+  ),
+  onSecondaryButtonClick: requiredIf(
+    PropTypes.func,
+    props => !props.customControls
+  ),
+  onPrimaryButtonClick: requiredIf(
+    PropTypes.func,
+    props => !props.customControls
   ),
   isPrimaryButtonDisabled: PropTypes.bool,
   dataAttributesPrimaryButton: PropTypes.object,
   dataAttributesSecondaryButton: PropTypes.object,
-  onPrimaryButtonClick: requiredIf(
-    PropTypes.func,
-    props => props.showControls || props.customControls
-  ),
-  onSecondaryButtonClick: requiredIf(
-    PropTypes.func,
-    props => props.showControls || props.customControls
-  ),
 };
 ModalPageHeader.defaultProps = {
   showControls: true,
-  isPrimaryButtonDisabled: false,
-  dataAttributesPrimaryButton: {},
-  dataAttributesSecondaryButton: {},
 };
 
 export default ModalPageHeader;

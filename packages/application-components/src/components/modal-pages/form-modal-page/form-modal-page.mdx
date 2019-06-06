@@ -10,11 +10,11 @@ import FormModalPageExample from './form-modal-page.example';
 
 <FormModalPageExample />
 
-### Description
+## Description
 
 Form Modal pages are controlled components used to render a page with a form or something that requires user input, similar to `InfoModalPage` but semantically with a different role. The header includes buttons to control the submission or cancellation of the form (or which can be overriden with other custom controls).
 
-### Usage
+## Usage
 
 ```jsx
 import { FormModalPage } from '@commercetools-frontend/application-components';
@@ -31,7 +31,7 @@ import { FormModalPage } from '@commercetools-frontend/application-components';
 </FormModalPage>;
 ```
 
-### Properties
+## Properties
 
 | Props                           | Type                       | Required | Default                  | Description                                                                                                                                                                                                                                                                                                 |
 | ------------------------------- | -------------------------- | :------: | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -56,3 +56,15 @@ import { FormModalPage } from '@commercetools-frontend/application-components';
 | `parentSelector`                | `function`                 |    -     | -                        | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In `NODE_ENV=test` environment, the default HTML element is `body`. |
 
 > NOTE: If `customControls` are passed, the `on*Click` props will no longer be required, and among with the `label*Button`, `isPrimaryButtonDisabled` and `dataAttributes*` props will no longer have any effect.
+
+## Static properties
+
+### `FormModalPage.Intl`
+
+Exposes common intl messages to be used for the secondary/primary buttons
+
+```js
+FormDialog.Intl.cancel;
+FormDialog.Intl.confirm;
+// ...
+```
