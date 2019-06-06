@@ -29,6 +29,7 @@
     "README.md"
   ],
   "scripts": {
+    "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",
     "build": "yarn build:es && yarn build:cjs && yarn build:typings",
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings",
