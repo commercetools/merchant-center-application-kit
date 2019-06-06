@@ -20,6 +20,7 @@ import PortalsContainer from '../portals-container';
 import ApplicationShellProvider from '../application-shell-provider';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import FetchUser from '../fetch-user';
+import VersionTracker from '../version-tracker';
 import FetchProject from '../fetch-project';
 import ConfigureIntlProvider from '../configure-intl-provider';
 import AppBar from '../app-bar';
@@ -114,6 +115,7 @@ export const RestrictedApplication = props => (
                   defaultFlags={props.defaultFeatureFlags}
                 >
                   <React.Fragment>
+                    <VersionTracker />
                     {/* NOTE: the requests in flight loader will render a loading
                       spinner into the AppBar. */}
                     <RequestsInFlightLoader />
