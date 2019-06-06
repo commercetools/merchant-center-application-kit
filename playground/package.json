@@ -27,7 +27,7 @@
     "lodash-es": "4.17.11",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
-    "normalizr": "3.3.0",
+    "normalizr": "3.4.0",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
