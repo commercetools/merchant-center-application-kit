@@ -10,7 +10,6 @@ declare module 'sentry-testkit' {
   }
   interface Report {
     exception: Exception;
-    // eslint-disable-next-line @typescript-eslint/camelcase
     event_id: string;
     extra: object;
   }

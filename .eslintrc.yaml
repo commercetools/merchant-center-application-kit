@@ -22,6 +22,7 @@ plugins:
   - react
   - '@typescript-eslint/eslint-plugin'
 rules:
+  '@typescript-eslint/camelcase': 0
   '@typescript-eslint/no-var-requires': 0
   '@typescript-eslint/no-use-before-define':
     - error
