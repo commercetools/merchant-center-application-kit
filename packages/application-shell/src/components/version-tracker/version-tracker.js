@@ -6,14 +6,16 @@ import { withApplicationContext } from '@commercetools-frontend/application-shel
 import applicationShellVersion from '../../version';
 import * as actions from './actions';
 
-const createVersionMetric = ({ applicationName }) => ({
-  metricName: 'versions',
-  metricLabels: {
-    application: applicationName || 'unknown',
-    package_name: '@commercetools-frontend/application-shell',
-    package_version: applicationShellVersion,
+const createVersionMetric = ({ applicationName }) => [
+  {
+    metricName: 'npm_dependency_versions',
+    metricLabels: {
+      application: applicationName || 'unknown',
+      package_name: '@commercetools-frontend/application-shell',
+      package_version: applicationShellVersion,
+    },
   },
-});
+];
 
 export class VersionTracker extends React.Component {
   static displayName = 'VersionTracker';
@@ -21,11 +23,11 @@ export class VersionTracker extends React.Component {
     // withApplicationContext
     applicationName: PropTypes.string,
     // connect
-    pushVersionCounter: PropTypes.func.isRequired,
+    pushDependencyVersionCounter: PropTypes.func.isRequired,
   };
   componentDidMount() {
     this.props
-      .pushVersionCounter({
+      .pushDependencyVersionCounter({
         payload: createVersionMetric({
           applicationName: this.props.applicationName,
         }),
@@ -40,7 +42,7 @@ export class VersionTracker extends React.Component {
   }
 }
 const mapDispatchToProps = {
-  pushVersionCounter: actions.pushVersionCounter,
+  pushDependencyVersionCounter: actions.pushDependencyVersionCounter,
 };
 export default flowRight(
   connect(
