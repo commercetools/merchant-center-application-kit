@@ -40,21 +40,27 @@ const TabularModalPage = props => (
             subtitle={props.subtitle}
           />
         )}
-        <Spacings.Inline alignItems="center" justifyContent="space-between">
+        <Spacings.Inline alignItems="flex-end" justifyContent="space-between">
           {props.tabControls}
-          {props.customControls || (
-            <ModalPageHeaderDefaultControls
-              labelSecondaryButton={props.labelSecondaryButton}
-              labelPrimaryButton={props.labelPrimaryButton}
-              isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
-              onSecondaryButtonClick={props.onSecondaryButtonClick}
-              onPrimaryButtonClick={props.onPrimaryButtonClick}
-              dataAttributesSecondaryButton={
-                props.dataAttributesSecondaryButton
-              }
-              dataAttributesPrimaryButton={props.dataAttributesPrimaryButton}
-            />
-          )}
+          <div
+            css={css`
+              margin-bottom: 16px !important;
+            `}
+          >
+            {props.customControls || (
+              <ModalPageHeaderDefaultControls
+                labelSecondaryButton={props.labelSecondaryButton}
+                labelPrimaryButton={props.labelPrimaryButton}
+                isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
+                onSecondaryButtonClick={props.onSecondaryButtonClick}
+                onPrimaryButtonClick={props.onPrimaryButtonClick}
+                dataAttributesSecondaryButton={
+                  props.dataAttributesSecondaryButton
+                }
+                dataAttributesPrimaryButton={props.dataAttributesPrimaryButton}
+              />
+            )}
+          </div>
         </Spacings.Inline>
       </Spacings.Stack>
     </div>
