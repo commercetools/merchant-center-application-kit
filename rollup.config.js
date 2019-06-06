@@ -56,9 +56,7 @@ const createConfig = cliArgs => {
         include: 'node_modules/**',
       }),
       resolve({
-        module: true,
-        jsnext: true,
-        main: true,
+        mainFields: ['module', 'main', 'jsnext'],
         preferBuiltins: true,
         modulesOnly: true,
       }),
