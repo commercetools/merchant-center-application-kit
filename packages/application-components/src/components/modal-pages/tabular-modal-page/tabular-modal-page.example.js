@@ -148,6 +148,7 @@ const TabularModalPageExample = () => {
         <Spacings.Inline alignItems="center">
           <ToggleInput
             name="Use Custom Title Row"
+            size="small"
             isChecked={useCustomTitleRow}
             onChange={event => {
               setUseCustomTitleRow(event.target.checked);
@@ -158,6 +159,7 @@ const TabularModalPageExample = () => {
         <Spacings.Inline alignItems="center">
           <ToggleInput
             name="Use Custom Controls"
+            size="small"
             isChecked={useCustomControls}
             onChange={event => {
               setUseCustomControls(event.target.checked);

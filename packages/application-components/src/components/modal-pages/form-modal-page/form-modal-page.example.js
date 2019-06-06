@@ -82,6 +82,7 @@ const FormModalPageExample = () => {
       <Spacings.Inline alignItems="center">
         <ToggleInput
           name="Use Custom Controls"
+          size="small"
           isChecked={useCustomControls}
           onChange={event => {
             setUseCustomControls(event.target.checked);
