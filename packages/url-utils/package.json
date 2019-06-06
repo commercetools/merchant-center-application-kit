@@ -33,5 +33,8 @@
     "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js -o ./dist/url-utils.cjs.js",
     "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.js -o ./dist/url-utils.es.js",
     "build:es:watch": "npm run build:es -- -w"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "7.4.5"
   }
 }

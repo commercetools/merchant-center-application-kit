@@ -38,6 +38,7 @@
     "build:es:watch": "yarn build:es -- -w"
   },
   "dependencies": {
+    "@babel/runtime-corejs3": "7.4.5",
     "@sentry/browser": "5.4.0"
   },
   "devDependencies": {
