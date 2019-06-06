@@ -1,11 +1,50 @@
-extends: '@commercetools-frontend/eslint-config-mc-app'
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 8
+  sourceType: module
+extends:
+  - plugin:@typescript-eslint/recommended
+  - plugin:import/errors
+  - plugin:import/warnings
+  - plugin:import/typescript
+  - plugin:jest/recommended
+  - plugin:react/recommended
+  - prettier
+  - prettier/react
+  - prettier/@typescript-eslint
+plugins:
+  - import
+  - jest
+  - jsx-a11y
+  - prettier
+  - react
+  - '@typescript-eslint/eslint-plugin'
+rules:
+  '@typescript-eslint/camelcase': 0
+  '@typescript-eslint/no-var-requires': 0
+  '@typescript-eslint/no-use-before-define':
+    - error
+    - functions: false
+  react/jsx-tag-spacing: 0
+  import/no-extraneous-dependencies: 0
+  import/no-named-as-default: 0
+  import/no-unresolved: 2
 settings:
   react:
-    version: '^16.0'
+    version: 'detect'
   import/ignore:
     - /test-utils/
     - test-utils$
     - test-utils\.js$
+  import/parsers:
+    '@typescript-eslint/parser': ['.ts', '.tsx']
+  import/resolver:
+    eslint-import-resolver-typescript: true
+    typescript: {}
+    node:
+      extensions: ['.js', '.jsx', '.ts', '.tsx']
 overrides:
   - files: ['*.spec.js']
     rules:
@@ -19,3 +58,17 @@ overrides:
     globals:
       page: true
       HOST: true
+  - files: ['*.ts', '*.tsx']
+    rules:
+      '@typescript-eslint/explicit-function-return-type': 0
+      '@typescript-eslint/explicit-member-accessibility':
+        [2, { accessibility: 'no-public' }]
+      '@typescript-eslint/no-require-imports': 0
+      '@typescript-eslint/promise-function-async': 0
+  #     import/extensions:
+  #       - error
+  #       - always
+  #       - js: never
+  #       - mjs: never
+  #       - ts: never
+  #       - tsx: never

@@ -24,6 +24,7 @@ const postcssReporter = require('postcss-reporter');
 const { package: pkg } = readPkgUp.sync({
   cwd: fs.realpathSync(process.cwd()),
 });
+const extensions = ['.js', '.ts', '.tsx'];
 const babelOptions = getBabelPreset();
 
 const createConfig = cliArgs => {
@@ -38,6 +39,7 @@ const createConfig = cliArgs => {
         includeDependencies: true,
       }),
       babel({
+        extensions,
         runtimeHelpers: true,
         ...babelOptions,
         plugins: [
@@ -56,6 +58,7 @@ const createConfig = cliArgs => {
         include: 'node_modules/**',
       }),
       resolve({
+        extensions,
         mainFields: ['module', 'main', 'jsnext'],
         preferBuiltins: true,
         modulesOnly: true,

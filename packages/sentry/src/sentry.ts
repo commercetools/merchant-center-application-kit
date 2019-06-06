@@ -1,5 +1,10 @@
 import * as Sentry from '@sentry/browser';
 
+export interface User {
+  id: string;
+  email: string;
+}
+
 export const boot = () => {
   if (window.app.trackingSentry) {
     Sentry.init({
@@ -17,8 +22,8 @@ export const boot = () => {
   }
 };
 
-export const updateUser = user => {
-  if (user && window.app.trackingSentry) {
+export const updateUser = (user: User) => {
+  if (window.app.trackingSentry) {
     // to avoid sending personal data to sentry we anonymize the email address
     // by only sending the domain part or the email
     const emailTld = user.email.split('@')[1];
@@ -32,13 +37,18 @@ export const updateUser = user => {
 };
 
 export const stopTrackingUser = () => {
-  if (window.app.trackingSentry)
+  if (window.app.trackingSentry) {
     Sentry.configureScope(scope => {
       scope.clear();
     });
+  }
 };
 
-export const reportErrorToSentry = (error, extraInfo, getIsEnabled) => {
+export const reportErrorToSentry = (
+  error: Error | string,
+  extraInfo?: { extra?: object | string },
+  getIsEnabled?: () => boolean
+) => {
   const isEnabled = getIsEnabled ? getIsEnabled() : window.app.trackingSentry;
 
   if (error instanceof Error === false && !isEnabled) {

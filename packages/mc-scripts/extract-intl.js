@@ -194,7 +194,7 @@ const extractFromFile = async fileName => {
           // eslint-disable-next-line prefer-object-spread/prefer-object-spread
           Object.assign({}, updatedMessages, {
             [messageKey]:
-              // If the message key already exists in the core.json file, we won't update it
+            // If the message key already exists in the core.json file, we won't update it
               existingCoreMessages[messageKey] ||
               sortedCoreMessages[messageKey],
           }),

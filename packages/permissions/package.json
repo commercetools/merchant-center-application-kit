@@ -27,6 +27,7 @@
     "README.md"
   ],
   "scripts": {
+    "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",
     "build": "npm run build:es && npm run build:cjs",
     "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js -o ./dist/permissions.cjs.js",

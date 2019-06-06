@@ -26,7 +26,7 @@ describe('reportErrorToSentry', () => {
   describe('without extra info', () => {
     beforeEach(async () => {
       error = new Error('Boom');
-      reportErrorToSentry(error, null, () => true);
+      reportErrorToSentry(error, undefined, () => true);
 
       // Wait for the reports to have been sent
       await waitForExpect(() => expect(testkit.reports()).toHaveLength(1));
@@ -80,7 +80,7 @@ describe('reportErrorToSentry', () => {
       beforeEach(() => {
         console.warn = jest.fn();
         error = 'Boom';
-        reportErrorToSentry(error, null, () => false);
+        reportErrorToSentry(error, undefined, () => false);
       });
 
       it('should warn about malformed error object', () => {

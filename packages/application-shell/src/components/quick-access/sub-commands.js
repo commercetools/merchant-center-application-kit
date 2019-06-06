@@ -81,6 +81,18 @@ export const createProductVariantSubCommands = ({
       ]
     : [];
 
+const formatVariantMessage = (variant, intl) => {
+  if (variant.sku)
+    return intl.formatMessage(messages.openVariantBySku, {
+      sku: variant.sku,
+    });
+  if (variant.key)
+    return intl.formatMessage(messages.openVariantByKey, {
+      key: variant.key,
+    });
+  return intl.formatMessage(messages.openVariantById, { id: variant.id });
+};
+
 export const createProductVariantListSubCommands = ({
   project,
   intl,
@@ -97,17 +109,7 @@ export const createProductVariantListSubCommands = ({
       }).then(data =>
         data.product.masterData.staged.allVariants.map(variant => ({
           id: `go/product(${productId})/variant(${variant.id})`,
-          text: do {
-            if (variant.sku)
-              intl.formatMessage(messages.openVariantBySku, {
-                sku: variant.sku,
-              });
-            if (variant.key)
-              intl.formatMessage(messages.openVariantByKey, {
-                key: variant.key,
-              });
-            intl.formatMessage(messages.openVariantById, { id: variant.id });
-          },
+          text: formatVariantMessage(variant, intl),
           subCommands: createProductVariantSubCommands({
             intl,
             project,
