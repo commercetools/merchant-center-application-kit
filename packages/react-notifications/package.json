@@ -47,13 +47,13 @@
     "reselect": "^4.0.0"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "9.8.1",
+    "@commercetools-frontend/ui-kit": "9.8.3",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-intl": "2.9.0",
     "react-redux": "7.0.3",
-    "react-router": "5.0.0",
-    "react-router-dom": "5.0.0"
+    "react-router": "5.0.1",
+    "react-router-dom": "5.0.1"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "9.x",

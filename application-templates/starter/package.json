@@ -17,21 +17,21 @@
     "@commercetools-frontend/i18n": "13.7.0",
     "@commercetools-frontend/mc-http-server": "13.8.0",
     "@commercetools-frontend/permissions": "13.7.0",
-    "@commercetools-frontend/ui-kit": "9.8.1",
+    "@commercetools-frontend/ui-kit": "9.8.3",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-apollo": "2.5.6",
     "react-dom": "16.8.6",
     "react-intl": "2.9.0",
     "react-redux": "7.0.3",
-    "react-router": "5.0.0",
-    "react-router-dom": "5.0.0",
+    "react-router": "5.0.1",
+    "react-router-dom": "5.0.1",
     "redux": "4.0.1"
   },
   "devDependencies": {
     "@commercetools-frontend/jest-preset-mc-app": "13.8.0",
     "@commercetools-frontend/mc-scripts": "13.8.1",
-    "enzyme": "3.9.0",
+    "enzyme": "3.10.0",
     "jest": "24.8.0",
     "react-testing-library": "7.0.1"
   }
