@@ -38,6 +38,7 @@
     "storybook:start": "start-storybook -p 9002 -s .storybook/assets"
   },
   "dependencies": {
+    "@babel/runtime-corejs3": "7.4.5",
     "@commercetools-frontend/assets": "13.8.0",
     "@commercetools-frontend/constants": "13.3.5",
     "@emotion/core": "10.0.10",

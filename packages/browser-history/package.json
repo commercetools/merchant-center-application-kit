@@ -35,6 +35,7 @@
     "build:es:watch": "npm run build:es -- -w"
   },
   "dependencies": {
+    "@babel/runtime-corejs3": "7.4.5",
     "history": "4.9.0",
     "history-query-enhancer": "1.0.4",
     "qss": "2.0.3"
