@@ -1,6 +1,5 @@
-export { getSupportedLocale, getSymbolFromCurrency } from './utils';
-
-export { withCountries, countriesShape } from './country-information';
-export { withCurrencies } from './currency-information';
-export { withLanguages, languagesShape } from './language-information';
-export { withTimeZones, timeZonesShape } from './time-zone-information';
+// This file exists  because we want jest to use our non-compiled code to run tests
+// if this file is missing, and you have a `module` or `main` that points to a non-existing file
+// (ie, a bundle that hasn't been built yet) then jest will fail if the bundle is not yet built.
+// all apps should export all their named exports from their root index.js
+export * from './src';

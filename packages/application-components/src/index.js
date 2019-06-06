@@ -1,3 +1,5 @@
+export { default as version } from './version';
+
 // Maintenance pages
 export {
   default as MaintenancePageLayout,

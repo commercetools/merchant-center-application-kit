@@ -7,23 +7,23 @@ const getImportChunk = locale => {
   switch (intlLocale) {
     case 'de':
       return import(
-        /* webpackChunkName: "timezone-data-de" */ './data/time-zones/de.json'
+        /* webpackChunkName: "timezone-data-de" */ '../data/time-zones/de.json'
       );
     case 'es':
       return import(
-        /* webpackChunkName: "timezone-data-es" */ './data/time-zones/es.json'
+        /* webpackChunkName: "timezone-data-es" */ '../data/time-zones/es.json'
       );
     case 'fr-FR':
       return import(
-        /* webpackChunkName: "timezone-data-fr-FR" */ './data/time-zones/fr-FR.json'
+        /* webpackChunkName: "timezone-data-fr-FR" */ '../data/time-zones/fr-FR.json'
       );
     case 'zh-CN':
       return import(
-        /* webpackChunkName: "timezone-data-zh-CN" */ './data/time-zones/zh-CN.json'
+        /* webpackChunkName: "timezone-data-zh-CN" */ '../data/time-zones/zh-CN.json'
       );
     default:
       return import(
-        /* webpackChunkName: "timezone-data-en" */ './data/time-zones/en.json'
+        /* webpackChunkName: "timezone-data-en" */ '../data/time-zones/en.json'
       );
   }
 };

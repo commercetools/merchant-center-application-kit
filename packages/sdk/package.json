@@ -31,8 +31,8 @@
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/** test-utils/**",
     "build": "npm run build:es && npm run build:cjs && npm run build:test-utils:cjs",
-    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.js -o ./dist/sdk.cjs.js",
-    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js -o ./dist/sdk.es.js",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js -o ./dist/sdk.cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.js -o ./dist/sdk.es.js",
     "build:es:watch": "npm run build:es -- -w",
     "build:test-utils:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./src/test-utils/index.js --o ./test-utils/index.js"
   },

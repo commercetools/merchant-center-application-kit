@@ -1,3 +1,4 @@
+export { default as version } from './version';
 export {
   default as RestrictedByPermissions,
 } from './components/restricted-by-permissions';
