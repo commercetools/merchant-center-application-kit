@@ -10,7 +10,7 @@ const postcssReporter = require('postcss-reporter');
 const postcssCustomProperties = require('postcss-custom-properties');
 const postcssCustomMediaQueries = require('postcss-custom-media');
 const postcssColorModFunction = require('postcss-color-mod-function');
-const browserslist = require('./browserslist');
+const { browserslist } = require('../package.json');
 
 const defaultToggleFlags = {
   // Allow to disable index.html generation in case it's not necessary (e.g. for Storybook)
