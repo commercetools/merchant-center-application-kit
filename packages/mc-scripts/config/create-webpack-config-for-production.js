@@ -20,7 +20,7 @@ const postcssCustomProperties = require('postcss-custom-properties');
 const postcssCustomMediaQueries = require('postcss-custom-media');
 const postcssColorModFunction = require('postcss-color-mod-function');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
-const browserslist = require('./browserslist');
+const { browserslist } = require('../package.json');
 
 const optimizeCSSConfig = {
   // Since css-loader uses cssnano v3.1.0, it's best to stick with the
