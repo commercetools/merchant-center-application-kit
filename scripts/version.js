@@ -1,8 +1,10 @@
 #!/usr/bin/env node
-/* eslint-disable */
+
+/* eslint-disable no-console */
 
 const mri = require('mri');
 const path = require('path');
+const fs = require('fs');
 const replace = require('replace');
 
 const versionOfPackage = process.env.npm_package_version;
@@ -38,7 +40,7 @@ switch (command) {
 
     replace({
       regex: '__@APPLICATION_KIT_PACKAGE/VERSION_OF_RELEASE__',
-      replacement: version,
+      replacement: versionOfPackage,
       paths,
       recursive: true,
       silent: true,
