@@ -23,7 +23,7 @@ export const boot = () => {
 };
 
 export const updateUser = (user: User) => {
-  if (user && window.app.trackingSentry) {
+  if (window.app.trackingSentry) {
     // to avoid sending personal data to sentry we anonymize the email address
     // by only sending the domain part or the email
     const emailTld = user.email.split('@')[1];
