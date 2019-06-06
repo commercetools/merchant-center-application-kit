@@ -5,7 +5,9 @@ const fs = require('fs');
 const babel = require('rollup-plugin-babel');
 const readPkgUp = require('read-pkg-up');
 const getBabelPreset = require('@commercetools-frontend/babel-preset-mc-app');
-const browserslist = require('@commercetools-frontend/mc-scripts/config/browserslist');
+const {
+  browserslist,
+} = require('@commercetools-frontend/mc-scripts/package.json');
 const resolve = require('rollup-plugin-node-resolve');
 const json = require('rollup-plugin-json');
 const commonjs = require('rollup-plugin-commonjs');
