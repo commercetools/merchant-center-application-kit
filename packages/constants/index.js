@@ -1,38 +1,5 @@
-export const PORTALS_CONTAINER_ID = 'portals-container';
-
-export const __GLOBAL = 'GLOBAL';
-
-// NOTIFICATIONS
-export const SHOW_LOADING = 'SHOW_LOADING';
-export const HIDE_LOADING = 'HIDE_LOADING';
-export const HIDE_ALL_PAGE_NOTIFICATIONS = 'HIDE_ALL_PAGE_NOTIFICATIONS';
-export const DOMAINS = {
-  GLOBAL: 'global',
-  PAGE: 'page',
-  SIDE: 'side',
-};
-
-// NO VALUE FALLBACK
-export const NO_VALUE_FALLBACK = '- - - -';
-
-export const STATUS_CODES = {
-  UNAUTHORIZED: 401,
-  FORBIDDEN: 403,
-  UNAUTHENTICATED: 299,
-  NOT_FOUND: 404,
-};
-
-export const LOGOUT_REASONS = {
-  USER: 'user',
-  UNAUTHORIZED: 'unauthorized',
-  INVALID: 'invalid',
-};
-
-export const GRAPHQL_TARGETS = {
-  MERCHANT_CENTER_BACKEND: 'mc',
-  COMMERCETOOLS_PLATFORM: 'ctp',
-  DASHBOARD_SERVICE: 'dashboard',
-  PIM_INDEXER: 'pim-indexer',
-  SETTINGS_SERVICE: 'settings',
-  ADMINISTRATION_SERVICE: 'administration',
-};
+// This file exists  because we want jest to use our non-compiled code to run tests
+// if this file is missing, and you have a `module` or `main` that points to a non-existing file
+// (ie, a bundle that hasn't been built yet) then jest will fail if the bundle is not yet built.
+// all apps should export all their named exports from their root index.js
+export * from './src';

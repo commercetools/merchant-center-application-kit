@@ -1,12 +1,6 @@
-import { createBrowserHistory } from 'history';
-import withQuery from 'history-query-enhancer';
-import { encode, decode } from 'qss';
-
-// Note: the "?" needs to be removed.
-const parse = search => decode(search.substring(1));
-
-export const createEnhancedHistory = withQuery({ parse, stringify: encode });
-
-const browserHistory = createEnhancedHistory(createBrowserHistory());
-
-export default browserHistory;
+// This file exists  because we want jest to use our non-compiled code to run tests
+// if this file is missing, and you have a `module` or `main` that points to a non-existing file
+// (ie, a bundle that hasn't been built yet) then jest will fail if the bundle is not yet built.
+// all apps should export all their named exports from their root index.js
+export { default } from './src';
+export * from './src';

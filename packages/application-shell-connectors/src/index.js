@@ -1,3 +1,5 @@
+export { default as version } from './version';
+
 export {
   Context,
   ApplicationContext,

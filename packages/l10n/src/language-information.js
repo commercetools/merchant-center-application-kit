@@ -7,23 +7,23 @@ const getImportChunk = locale => {
   switch (intlLocale) {
     case 'de':
       return import(
-        /* webpackChunkName: "language-data-de" */ './data/languages/de.json'
+        /* webpackChunkName: "language-data-de" */ '../data/languages/de.json'
       );
     case 'es':
       return import(
-        /* webpackChunkName: "language-data-es" */ './data/languages/es.json'
+        /* webpackChunkName: "language-data-es" */ '../data/languages/es.json'
       );
     case 'fr-FR':
       return import(
-        /* webpackChunkName: "language-data-fr-FR" */ './data/languages/fr-FR.json'
+        /* webpackChunkName: "language-data-fr-FR" */ '../data/languages/fr-FR.json'
       );
     case 'zh-CN':
       return import(
-        /* webpackChunkName: "language-data-zh-CN" */ './data/languages/zh-CN.json'
+        /* webpackChunkName: "language-data-zh-CN" */ '../data/languages/zh-CN.json'
       );
     default:
       return import(
-        /* webpackChunkName: "language-data-en" */ './data/languages/en.json'
+        /* webpackChunkName: "language-data-en" */ '../data/languages/en.json'
       );
   }
 };
