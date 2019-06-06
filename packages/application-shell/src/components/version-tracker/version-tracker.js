@@ -15,6 +15,14 @@ const createVersionMetric = ({ applicationName }) => [
       package_version: applicationShellVersion,
     },
   },
+  {
+    metricName: 'npm_dependency_versions',
+    metricLabels: {
+      application: applicationName || 'unknown',
+      package_name: 'react',
+      package_version: React.version,
+    },
+  },
 ];
 
 export class VersionTracker extends React.Component {
