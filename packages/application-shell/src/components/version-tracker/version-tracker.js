@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
 import { connect } from 'react-redux';
+import { version as uiKitVersion } from '@commercetools-frontend/ui-kit';
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import applicationShellVersion from '../../version';
 import * as actions from './actions';
@@ -21,6 +22,14 @@ const createVersionMetric = ({ applicationName }) => [
       application: applicationName || 'unknown',
       package_name: 'react',
       package_version: React.version,
+    },
+  },
+  {
+    metricName: 'npm_dependency_versions',
+    metricLabels: {
+      application: applicationName || 'unknown',
+      package_name: '@commercetools-frontend/ui-kit',
+      package_version: uiKitVersion || 'unknown',
     },
   },
 ];
