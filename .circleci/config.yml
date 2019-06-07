@@ -28,8 +28,8 @@ executors:
         environment:
           TERM: xterm
 
-orbs:
-  compare-url: iynere/compare-url@1.1.0
+# orbs:
+#   compare-url: iynere/compare-url@1.1.0
 
 commands:
   install_dependencies:
@@ -85,8 +85,23 @@ commands:
             libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
             libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
             ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget --fix-missing
-      - compare-url/reconstruct:
-          project-path: *working_directory
+      # - compare-url/reconstruct:
+      #     project-path: *working_directory
+      # FIXME: this is a minimal workaround to get a compare url (https://discuss.circleci.com/t/circle-compare-url-is-empty-when-running-a-workflow-job/25299/6)
+      # Why is this not built-in in CircleCI anymore, you may ask? The hell with them...
+      # See current issue: https://github.com/iynere/compare-url/issues/25
+      - run:
+          name: Reconstruct CIRCLE_COMPARE_URL
+          when: always
+          command: |
+            LAST_SUCCESSFUL_BUILD_URL="https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH?filter=completed&limit=1"
+            LAST_SUCCESSFUL_COMMIT=`curl -Ss -u "$API_KEY:" $LAST_SUCCESSFUL_BUILD_URL | jq -r '.[0]["vcs_revision"]'`
+            CIRCLE_COMPARE_URL="https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/compare/${LAST_SUCCESSFUL_COMMIT:0:12}...${CIRCLE_SHA1:0:12}"
+            $CIRCLE_COMPARE_URL > CIRCLE_COMPARE_URL.txt
+      - persist_to_workspace:
+          root: .
+          paths:
+            - CIRCLE_COMPARE_URL.txt
       - run:
           name: Running Percy
           command: yarn run-if:percy
