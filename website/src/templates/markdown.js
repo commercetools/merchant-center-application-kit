@@ -122,7 +122,7 @@ const Table = styled.table`
       return React.Children.toArray(rowHeaders.props.children).reduce(
         (styles, elem, index) => `
         ${styles}
-        td:nth-of-type(${index + 1}):before { content: "${
+        td:nth-of-type(${index + 1})::before { content: "${
           elem.props.children
         }"; }
       `,
@@ -150,7 +150,7 @@ const TableCell = styled.td`
     border: none;
     border-bottom: 1px solid ${colors.light.cards};
 
-    :before {
+    ::before {
       display: flex;
       font-weight: 700;
     }
