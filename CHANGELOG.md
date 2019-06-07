@@ -1,3 +1,10 @@
+## [13.9.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.9.0...v13.9.1) (2019-06-07)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#710](https://github.com/commercetools/merchant-center-application-kit/pull/710) fix(app-shell): do not re-export the version field from flopflip ([@emmenko](https://github.com/emmenko))
+
 ## [13.9.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.8.1...v13.9.0) (2019-06-07)
 
 With this release, each package (besides the tooling related packages) exports a `version` field, which can be used to see and track the version of the package being used.
