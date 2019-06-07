@@ -11,7 +11,7 @@ const Globals = () => (
         padding: 0;
         margin: 0;
         height: 100vh;
-        font-family: 'roboto mono';
+        font-family: 'roboto mono', sans-serif;
         color: ${colors.light.text};
       }
     `}

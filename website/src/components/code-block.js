@@ -100,6 +100,8 @@ const CodeBlock = props => {
             ...style,
             padding: customProperties.spacingM,
             border: `1px solid ${colors.light.cards}`,
+            // seem to be an open bug -> https://github.com/stylelint/stylelint/issues/4020
+            /* stylelint-disable-next-line property-no-unknown */
             overflowX: 'auto',
           }}
         >
