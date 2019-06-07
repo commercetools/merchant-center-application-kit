@@ -1,3 +1,12 @@
+interface Currency {
+  label: string;
+  symbol: string;
+}
+
+interface Currencies {
+  [key: string]: Currency;
+}
+
 export const mapLocaleToIntlLocale = (locale: string) => {
   if (locale.startsWith('de')) return 'de';
   if (locale.startsWith('es')) return 'es';
@@ -22,7 +31,7 @@ export function getSupportedLocale(locale: string) {
 // [{ label, symbol }], we return the symbol.
 export const getSymbolFromCurrency = (
   currencyCode: string,
-  currencies: any
+  currencies: Currencies
 ) => {
   if (currencies[currencyCode] && currencies[currencyCode].symbol) {
     return currencies[currencyCode].symbol;
