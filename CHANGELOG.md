@@ -1,3 +1,20 @@
+## [13.9.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.8.1...v13.9.0) (2019-06-07)
+
+#### 🔮 Type: Chore
+
+- `application-components`, `application-shell`, `babel-preset-mc-app`, `create-mc-app`, `jest-preset-mc-app`, `mc-http-server`, `mc-scripts`, `react-notifications`, `sdk`, `sentry`
+  - [#699](https://github.com/commercetools/merchant-center-application-kit/pull/699) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+- `application-shell`, `sdk`
+  - [#696](https://github.com/commercetools/merchant-center-application-kit/pull/696) fix: setup of custom user agent ([@emmenko](https://github.com/emmenko))
+- `application-shell-connectors`, `application-shell`, `jest-preset-mc-app`, `mc-html-template`, `permissions`, `sdk`
+  - [#694](https://github.com/commercetools/merchant-center-application-kit/pull/694) refactor: for the http clients to send a x-user-agent with the package versions ([@emmenko](https://github.com/emmenko))
+
+#### 💅 Type: Enhancement
+
+- `application-shell`
+  - [#697](https://github.com/commercetools/merchant-center-application-kit/pull/697) feat(app-shell): add reporting react version ([@tdeekens](https://github.com/tdeekens))
+  - [#695](https://github.com/commercetools/merchant-center-application-kit/pull/695) feat(app-shell): add version tracker ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.8.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.8.0...v13.8.1) (2019-06-04)
 
 #### 🐛 Type: Bug
