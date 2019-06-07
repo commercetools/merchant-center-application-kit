@@ -18,7 +18,7 @@ const TabularModalPage = props => (
     zIndex={props.zIndex}
     onClose={props.onClose}
     baseZIndex={props.baseZIndex}
-    parentSelector={props.parentSelector}
+    getParentSelector={props.getParentSelector}
   >
     <ModalPageTopBar
       color="neutral"
@@ -76,7 +76,7 @@ TabularModalPage.propTypes = {
   onClose: PropTypes.func,
   children: PropTypes.node.isRequired,
   baseZIndex: PropTypes.number,
-  parentSelector: PropTypes.string,
+  getParentSelector: PropTypes.string,
   // For topbar
   topBarCurrentPathLabel: PropTypes.string,
   topBarPreviousPathLabel: PropTypes.string,

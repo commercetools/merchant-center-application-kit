@@ -30,7 +30,7 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
       level={1}
       isOpen={true}
       onClose={() => {}}
-      parentSelector={() => document.querySelector(`#${portalId}`)}
+      getParentSelector={() => document.querySelector(`#${portalId}`)}
       tabControls={
         <div
           css={css`

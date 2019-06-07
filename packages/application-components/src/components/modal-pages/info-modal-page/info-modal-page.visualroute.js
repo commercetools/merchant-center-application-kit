@@ -21,7 +21,7 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
       isOpen={true}
       onClose={() => {}}
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-      parentSelector={() => document.querySelector(`#${portalId}`)}
+      getParentSelector={() => document.querySelector(`#${portalId}`)}
       {...props}
     />
   </React.Fragment>
@@ -67,7 +67,7 @@ export const component = () => (
           onClose={() => {}}
           topBarCurrentPathLabel="Nested Modal"
           topBarPreviousPathLabel="First Level Modal"
-          parentSelector={() => document.querySelector(`#info-modal-two`)}
+          getParentSelector={() => document.querySelector(`#info-modal-two`)}
         >
           <Text.Body>
             {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
@@ -85,21 +85,23 @@ export const component = () => (
           level={2}
           isOpen={true}
           onClose={() => {}}
-          parentSelector={() => document.querySelector(`#info-modal-nested`)}
+          getParentSelector={() => document.querySelector(`#info-modal-nested`)}
         >
           <InfoModalPage
             title="Third Level Modal"
             level={3}
             isOpen={true}
             onClose={() => {}}
-            parentSelector={() => document.querySelector(`#info-modal-nested`)}
+            getParentSelector={() =>
+              document.querySelector(`#info-modal-nested`)
+            }
           >
             <InfoModalPage
               title="Fourth Level Modal"
               level={4}
               isOpen={true}
               onClose={() => {}}
-              parentSelector={() =>
+              getParentSelector={() =>
                 document.querySelector(`#info-modal-nested`)
               }
             >
@@ -108,7 +110,7 @@ export const component = () => (
                 level={5}
                 isOpen={true}
                 onClose={() => {}}
-                parentSelector={() =>
+                getParentSelector={() =>
                   document.querySelector(`#info-modal-nested`)
                 }
               >

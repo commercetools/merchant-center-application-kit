@@ -18,7 +18,7 @@ import { getOverlayStyles, getContainerStyles } from './modal-page.styles';
 // instead of a specific element that will be cleaned up, resulting in
 // console errors (even though the test passes). We only need to to this in
 // test environment.
-const parentSelector = () =>
+const getParentSelector = () =>
   process.env.NODE_ENV === 'test'
     ? document.body
     : document.querySelector(`#${PORTALS_CONTAINER_ID}`);
@@ -32,7 +32,7 @@ const ModalPage = props => (
         ariaHideApp={false}
         contentLabel={props.title}
         onRequestClose={props.onClose}
-        parentSelector={props.parentSelector || parentSelector}
+        getParentSelector={props.getParentSelector || getParentSelector}
         overlayClassName={makeClassName(getOverlayStyles(props))}
         shouldCloseOnEsc={Boolean(props.onClose)}
         shouldCloseOnOverlayClick={Boolean(props.onClose)}
@@ -51,7 +51,7 @@ ModalPage.propTypes = {
   onClose: PropTypes.func,
   children: PropTypes.node.isRequired,
   baseZIndex: PropTypes.number,
-  parentSelector: PropTypes.string,
+  getParentSelector: PropTypes.string,
 };
 ModalPage.defaultProps = {
   level: 1,

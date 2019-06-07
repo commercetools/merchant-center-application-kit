@@ -59,7 +59,7 @@ const FormModalPageExample = () => {
                   toggle(false);
                 }}
                 onPrimaryButtonClick={formikProps.handleSubmit}
-                parentSelector={() =>
+                getParentSelector={() =>
                   document.querySelector('#form-modal-page')
                 }
               >

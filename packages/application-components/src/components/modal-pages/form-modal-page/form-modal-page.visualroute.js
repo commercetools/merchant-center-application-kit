@@ -35,7 +35,7 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
           onSecondaryButtonClick={() => {}}
           onPrimaryButtonClick={() => {}}
           isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
-          parentSelector={() => document.querySelector(`#${portalId}`)}
+          getParentSelector={() => document.querySelector(`#${portalId}`)}
           {...props}
         >
           <TextField

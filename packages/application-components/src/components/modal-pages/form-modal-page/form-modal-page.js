@@ -14,7 +14,7 @@ const FormModalPage = props => (
     zIndex={props.zIndex}
     onClose={props.onClose}
     baseZIndex={props.baseZIndex}
-    parentSelector={props.parentSelector}
+    getParentSelector={props.getParentSelector}
   >
     <ModalPageTopBar
       onClose={props.onClose}
@@ -45,7 +45,7 @@ FormModalPage.propTypes = {
   onClose: PropTypes.func,
   children: PropTypes.node.isRequired,
   baseZIndex: PropTypes.number,
-  parentSelector: PropTypes.string,
+  getParentSelector: PropTypes.string,
   // TopBar props
   topBarCurrentPathLabel: PropTypes.string,
   topBarPreviousPathLabel: PropTypes.string,

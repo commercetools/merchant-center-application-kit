@@ -19,7 +19,7 @@ const InfoModalPageExample = () => (
         isOpen={isOpen}
         subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         onClose={() => toggle(false)}
-        parentSelector={() => document.querySelector(`#info-modal`)}
+        getParentSelector={() => document.querySelector(`#info-modal`)}
       >
         <ModalController
           title="Open Another Modal Page by clicking the button"
@@ -33,7 +33,7 @@ const InfoModalPageExample = () => (
               isOpen={isOpen}
               subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
               onClose={() => toggle(false)}
-              parentSelector={() => document.querySelector(`#info-modal`)}
+              getParentSelector={() => document.querySelector(`#info-modal`)}
             >
               <ModalController
                 title="Open Another Modal Page by clicking the button"
@@ -47,7 +47,9 @@ const InfoModalPageExample = () => (
                     isOpen={isOpen}
                     subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     onClose={() => toggle(false)}
-                    parentSelector={() => document.querySelector(`#info-modal`)}
+                    getParentSelector={() =>
+                      document.querySelector(`#info-modal`)
+                    }
                   >
                     <ModalController
                       title="Open Another Modal Page by clicking the button"
@@ -61,7 +63,7 @@ const InfoModalPageExample = () => (
                           isOpen={isOpen}
                           subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                           onClose={() => toggle(false)}
-                          parentSelector={() =>
+                          getParentSelector={() =>
                             document.querySelector(`#info-modal`)
                           }
                         >
@@ -77,7 +79,7 @@ const InfoModalPageExample = () => (
                                 isOpen={isOpen}
                                 subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                                 onClose={() => toggle(false)}
-                                parentSelector={() =>
+                                getParentSelector={() =>
                                   document.querySelector(`#info-modal`)
                                 }
                               >

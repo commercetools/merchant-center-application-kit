@@ -66,7 +66,7 @@ const TabularModalPageExample = () => {
             title="Lorem ipsum"
             isOpen={isOpen}
             onClose={() => toggle(false)}
-            parentSelector={() => document.querySelector(`#tabular-modal`)}
+            getParentSelector={() => document.querySelector(`#tabular-modal`)}
             // FIXME: use proper Tab components
             tabControls={
               <div
