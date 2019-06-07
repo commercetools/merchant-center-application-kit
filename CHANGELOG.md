@@ -1,5 +1,9 @@
 ## [13.9.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.8.1...v13.9.0) (2019-06-07)
 
+With this release, each package (besides the tooling related packages) exports a `version` field, which can be used to see and track the version of the package being used.
+
+Additionally, we decided to introduce TypeScript to our repository. We will start migrating the packages to use TypeScript and expose type declarations. The `sentry` package has already been migrated as a starting point.
+
 #### 🔮 Type: Chore
 
 - `application-components`, `application-shell`, `babel-preset-mc-app`, `create-mc-app`, `jest-preset-mc-app`, `mc-http-server`, `mc-scripts`, `react-notifications`, `sdk`, `sentry`
