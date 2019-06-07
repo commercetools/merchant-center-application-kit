@@ -45,6 +45,7 @@
     "@emotion/styled": "10.0.12",
     "prop-types": "15.7.2",
     "react-modal": "3.8.1",
+    "react-required-if": "1.0.3",
     "warning": "4.0.3"
   },
   "devDependencies": {

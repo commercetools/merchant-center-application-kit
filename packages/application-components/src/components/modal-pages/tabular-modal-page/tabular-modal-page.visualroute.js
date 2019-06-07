@@ -18,13 +18,7 @@ export const routePath = '/tabular-modal-page';
 
 const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
   <React.Fragment>
-    <div
-      id={portalId}
-      style={{
-        position: 'relative',
-        height: '750px',
-      }}
-    />
+    <div id={portalId} style={{ position: 'relative', height: '750px' }} />
     <TabularModalPage
       title="Lorem ipsum"
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -172,7 +166,7 @@ export const component = () => (
             </Spacings.Inline>
           </Spacings.Inline>
         }
-        portalId="tabular-modal-page-custom-title-row-no-controls"
+        portalId="tabular-modal-page-custom-title-row-default-controls"
       >
         <Content />
       </ModalPageWithPortalParentSelector>
@@ -209,7 +203,7 @@ export const component = () => (
             <IconButton icon={<BinLinearIcon />} onClick={() => {}} />
           </Spacings.Inline>
         }
-        portalId="tabular-modal-page-custom-title-row-no-controls"
+        portalId="tabular-modal-page-custom-title-row-and-custom-controls"
       >
         <Content />
       </ModalPageWithPortalParentSelector>
@@ -217,7 +211,7 @@ export const component = () => (
     <Spec label="TabularModalPage - long content" size="xl">
       <ModalPageWithPortalParentSelector
         customControls={<React.Fragment />}
-        portalId="tabular-modal-page-custom-title-row-no-controls"
+        portalId="tabular-modal-page-custom-title-row-long-content"
       >
         <Content />
         <Content />

@@ -18,7 +18,7 @@ import { getOverlayStyles, getContainerStyles } from './modal-page.styles';
 // instead of a specific element that will be cleaned up, resulting in
 // console errors (even though the test passes). We only need to to this in
 // test environment.
-const getParentSelector = () =>
+const getDefaultParentSelector = () =>
   process.env.NODE_ENV === 'test'
     ? document.body
     : document.querySelector(`#${PORTALS_CONTAINER_ID}`);
@@ -28,14 +28,20 @@ const ModalPage = props => (
     {({ css: makeClassName }) => (
       <Modal
         isOpen={props.isOpen}
-        className={makeClassName(getContainerStyles(props))}
-        ariaHideApp={false}
-        contentLabel={props.title}
         onRequestClose={props.onClose}
-        getParentSelector={props.getParentSelector || getParentSelector}
-        overlayClassName={makeClassName(getOverlayStyles(props))}
-        shouldCloseOnEsc={Boolean(props.onClose)}
         shouldCloseOnOverlayClick={Boolean(props.onClose)}
+        shouldCloseOnEsc={Boolean(props.onClose)}
+        overlayClassName={makeClassName(getOverlayStyles(props))}
+        className={makeClassName(getContainerStyles(props))}
+        contentLabel={props.title}
+        parentSelector={props.getParentSelector}
+        ariaHideApp={false}
+        style={{
+          // stylelint-disable-next-line selector-type-no-unknown
+          overlay: {
+            zIndex: props.zIndex,
+          },
+        }}
       >
         {props.children}
       </Modal>
@@ -51,11 +57,12 @@ ModalPage.propTypes = {
   onClose: PropTypes.func,
   children: PropTypes.node.isRequired,
   baseZIndex: PropTypes.number,
-  getParentSelector: PropTypes.string,
+  getParentSelector: PropTypes.func,
 };
 ModalPage.defaultProps = {
   level: 1,
   baseZIndex: 1000,
+  getParentSelector: getDefaultParentSelector,
 };
 
 export default ModalPage;

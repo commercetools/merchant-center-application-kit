@@ -16,13 +16,7 @@ export const routePath = '/form-modal-page';
 
 const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
   <React.Fragment>
-    <div
-      id={portalId}
-      style={{
-        position: 'relative',
-        height: '750px',
-      }}
-    />
+    <div id={portalId} style={{ position: 'relative', height: '750px' }} />
     <Formik
       initialValues={{ email: '' }}
       onSubmit={() => {}}
