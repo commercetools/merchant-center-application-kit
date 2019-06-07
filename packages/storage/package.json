@@ -20,6 +20,8 @@
   },
   "main": "./dist/storage.cjs.js",
   "module": "./dist/storage.es.js",
+  "typings": "./dist/typings/index.d.ts",
+  "types": "./dist/typings/index.d.ts",
   "files": [
     "dist",
     "package.json",
@@ -29,9 +31,10 @@
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",
-    "build": "yarn build:es && yarn build:cjs",
-    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.js -o ./dist/storage.cjs.js",
-    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.js -o ./dist/storage.es.js",
+    "build": "yarn build:es && yarn build:cjs && yarn build:typings",
+    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir ./dist/typings",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.ts -o ./dist/storage.cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.ts -o ./dist/storage.es.js",
     "build:es:watch": "yarn build:es -w"
   }
 }
