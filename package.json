@@ -68,6 +68,7 @@
     "babel-eslint": "10.0.1",
     "babel-plugin-import-graphql": "2.7.0",
     "babel-plugin-transform-rename-import": "2.3.0",
+    "babel-plugin-typescript-to-proptypes": "0.17.1",
     "cross-env": "5.2.0",
     "cypress": "3.3.1",
     "cypress-testing-library": "3.0.1",
