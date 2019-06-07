@@ -36,4 +36,17 @@ export { default as version } from './version';
  *
  *    More information can be found here: https://github.com/commercetools/fe-chapter-notes/issues/61
  */
-export * from '@flopflip/react-broadcast';
+export {
+  // NOTE: do not re-export the `version` field, otherwise it will break the bundle as it conflicts
+  // with our own exported `version` field.
+  //    TypeError: Cannot set property version of [object Object] which has only a getter
+  ToggleFeature,
+  injectFeatureToggle,
+  injectFeatureToggles,
+  branchOnFeatureToggle,
+  ConfigureFlopFlip,
+  ReconfigureFlopFlip,
+  useFeatureToggle,
+  useAdapterStatus,
+  useAdapterReconfiguration,
+} from '@flopflip/react-broadcast';
