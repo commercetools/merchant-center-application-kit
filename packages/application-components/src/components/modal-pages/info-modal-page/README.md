@@ -6,11 +6,11 @@
 import { InfoModalPage } from '@commercetools-frontend/application-components';
 ```
 
-#### Description
+## Description
 
 Info Modal pages are controlled components used to render a page using a modal container, which makes it appear on top of the normal page. This is useful to render detailed data that normally requires some space.
 
-#### Usage
+## Usage
 
 ```js
 <InfoModalPage
@@ -25,7 +25,7 @@ Info Modal pages are controlled components used to render a page using a modal c
 </InfoModalPage>
 ```
 
-#### Properties
+## Properties
 
 | Props                     | Type               | Required | Default                  | Description                                                                                                                                                                                                                                                                                                 |
 | ------------------------- | ------------------ | :------: | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
