@@ -1,9 +1,9 @@
 const matchLeadingAndTrailingSlashes = /^\/|\/$/g;
 
-export const trimLeadingAndTrailingSlashes = url =>
+export const trimLeadingAndTrailingSlashes = (url: string) =>
   url.replace(matchLeadingAndTrailingSlashes, '');
 
-export const joinPaths = (...paths) => {
+export const joinPaths = (...paths: string[]) => {
   const joint = paths
     .map(path => {
       if (typeof path !== 'string')

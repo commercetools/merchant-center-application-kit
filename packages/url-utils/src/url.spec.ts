@@ -24,6 +24,7 @@ describe('joinPaths', () => {
     ).toBe('http://localhost:4000/bar');
   });
   it('should throw if a path is not a string', () => {
+    // @ts-ignore
     expect(() => joinPaths('foo', 2)).toThrow(
       'Expected path "2" to be a "string", but got "number"'
     );
