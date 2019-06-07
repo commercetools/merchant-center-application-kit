@@ -96,6 +96,14 @@ export const component = () => (
         <Content />
       </ModalPageWithPortalParentSelector>
     </Spec>
+    <Spec label="TabularModalPage - with primary button disabled" size="xl">
+      <ModalPageWithPortalParentSelector
+        portalId="tabular-modal-page-primary-button-disabled"
+        isPrimaryButtonDisabled={true}
+      >
+        <Content />
+      </ModalPageWithPortalParentSelector>
+    </Spec>
     <Spec label="TabularModalPage - with Custom Controls" size="xl">
       <ModalPageWithPortalParentSelector
         customControls={
