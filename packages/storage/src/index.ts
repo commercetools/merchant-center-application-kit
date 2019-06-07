@@ -1,3 +1,4 @@
+export { default as version } from './version';
 export const put = (key: string, value: string) =>
   window.localStorage.setItem(key, value);
 export const get = (key: string) => window.localStorage.getItem(key);
