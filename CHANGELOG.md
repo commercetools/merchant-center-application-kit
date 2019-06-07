@@ -1,6 +1,9 @@
 ## [13.9.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.8.1...v13.9.0) (2019-06-07)
 
 With this release, each package (besides the tooling related packages) exports a `version` field, which can be used to see and track the version of the package being used.
+We also introduced a new field `applicationName` for the `env.json` config file. This field is used to track the version used of e.g. application-shell package, which will help us to monitor and mitigate how we introduce future breaking changes.
+
+> In the next major version of app-kit, we will make the field `applicationName` required.
 
 Additionally, we decided to introduce TypeScript to our repository. We will start migrating the packages to use TypeScript and expose type declarations. The `sentry` package has already been migrated as a starting point.
 
