@@ -2,13 +2,22 @@ import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { getDisplayName } from '../utils';
 
+interface Props {
+  displayName: string;
+  propKey: string;
+  propLoadingKey: string;
+  loadLocale: Function;
+}
+
 export default function createL10NInjector({
   displayName,
   propKey,
   propLoadingKey,
   loadLocale,
-}) {
-  return mapPropsToLocale => WrappedComponent => {
+}: Props) {
+  return (mapPropsToLocale: Function) => (
+    WrappedComponent: React.ComponentClass<any>
+  ): React.ComponentClass<any> => {
     class L10NComponent extends React.Component {
       static displayName = `${displayName}(${getDisplayName(
         WrappedComponent
@@ -21,14 +30,17 @@ export default function createL10NInjector({
         this.isUnmounting = true;
       }
       // eslint-disable-next-line camelcase
-      UNSAFE_componentWillReceiveProps(nextProps) {
+      UNSAFE_componentWillReceiveProps(nextProps: any) {
         if (mapPropsToLocale(this.props) !== mapPropsToLocale(nextProps)) {
           this.loadCountries(nextProps);
         }
       }
-      loadCountries = props => {
+
+      isUnmounting = false;
+
+      loadCountries = (props: any) => {
         this.setState({ [propLoadingKey]: true });
-        loadLocale(mapPropsToLocale(props), (error, data) => {
+        loadLocale(mapPropsToLocale(props), (error: Error, data: any) => {
           if (error) {
             reportErrorToSentry(error);
           }

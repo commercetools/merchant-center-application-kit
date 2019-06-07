@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import createL10NInjector from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
 
-const getImportChunk = locale => {
+const getImportChunk = (locale: string) => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
@@ -39,7 +39,7 @@ export const languagesShape = PropTypes.objectOf(
  * If running through webpack, code splitting makes `getLanguagesForLocale`
  * a function that asynchronously loads the country data.
  */
-const getLanguagesForLocale = (locale, cb) => {
+const getLanguagesForLocale = (locale: string, cb: Function) => {
   const supportedLocale = getSupportedLocale(locale);
   // Use default webpackMode (lazy) so that we generate one file per locale.
   // The files are named like "language-data-en-json.chunk.js" after compilation
