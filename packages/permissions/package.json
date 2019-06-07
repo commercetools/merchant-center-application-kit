@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/permissions",
-  "version": "13.7.0",
+  "version": "13.9.0",
   "description": "React components to declaratively handle MC permissions",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.4.5",
-    "@commercetools-frontend/application-shell-connectors": "13.7.0",
+    "@commercetools-frontend/application-shell-connectors": "13.9.0",
     "lodash": "4.17.11",
     "lodash-es": "4.17.11",
     "prop-types": "15.7.2",
