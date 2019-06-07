@@ -8,7 +8,7 @@
     "start": "mc-scripts start",
     "start:prod:local": "NODE_ENV=production mc-http-server --csp=$(pwd)/csp.json --config=$(pwd)/env.json --use-local-assets",
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations",
-    "deploy": "npm run build; rm dist/assets/*.js.map; npm run deploy:eu; npm run deploy:us",
+    "deploy": "yarn build; rm dist/assets/*.js.map; yarn deploy:eu; yarn deploy:us",
     "deploy:eu": "now --local-config=now.eu.json --docker; now alias --local-config=now.eu.json",
     "deploy:us": "now --local-config=now.us.json --docker; now alias --local-config=now.us.json"
   },

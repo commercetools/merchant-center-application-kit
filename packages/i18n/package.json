@@ -29,10 +29,10 @@
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",
-    "build": "npm run build:es && npm run build:cjs",
+    "build": "yarn build:es && yarn build:cjs",
     "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js --dir ./dist --chunkFileNames i18n-[name]-[hash].cjs.js --entryFileNames i18n-[name].cjs.js",
     "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.js --dir ./dist --chunkFileNames i18n-[name]-[hash].es.js --entryFileNames i18n-[name].es.js",
-    "build:es:watch": "npm run build:es -- -w"
+    "build:es:watch": "yarn build:es -w"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.4.5",
