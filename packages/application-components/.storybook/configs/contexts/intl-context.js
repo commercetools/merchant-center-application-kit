@@ -34,9 +34,9 @@ const namifyLocale = locale => {
       return 'Español';
     case 'de':
       return 'Deutsch';
-    case 'frFR':
+    case 'fr-FR':
       return 'Français';
-    case 'zhCN':
+    case 'zh-CN':
       return '简化字';
     default:
       return locale;
