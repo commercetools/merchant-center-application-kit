@@ -39,7 +39,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.4.5",
-    "@sentry/browser": "5.4.0"
+    "@sentry/browser": "5.4.0",
+    "prop-types": "15.7.2"
   },
   "devDependencies": {
     "react": "16.8.6",

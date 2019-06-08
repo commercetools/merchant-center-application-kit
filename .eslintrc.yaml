@@ -27,6 +27,7 @@ rules:
   '@typescript-eslint/no-use-before-define':
     - error
     - functions: false
+  '@typescript-eslint/prefer-interface': 0
   react/jsx-tag-spacing: 0
   import/no-extraneous-dependencies: 0
   import/no-named-as-default: 0
