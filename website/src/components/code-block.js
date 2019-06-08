@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import { customProperties } from '@commercetools-frontend/ui-kit';
 import * as colors from '../colors';
+import CodeEditor from './code-editor';
 
 const theme = {
   plain: {
@@ -86,6 +87,10 @@ const CodeBlock = props => {
     ? props.className.replace(/language-/, '')
     : undefined;
 
+  if (props.live === 'true') {
+    return <CodeEditor code={props.children} theme={theme} />;
+  }
+
   return (
     <Highlight
       {...defaultProps}
@@ -125,6 +130,7 @@ CodeBlock.displayName = 'CodeBlock';
 CodeBlock.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
+  live: PropTypes.string,
 };
 
 export default CodeBlock;

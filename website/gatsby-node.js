@@ -7,6 +7,7 @@
 // You can delete this file if you're not using it
 
 const path = require('path');
+const crypto = require('crypto');
 
 exports.createPages = async ({ actions, graphql }) => {
   const allMarkdown = await graphql(`
@@ -55,3 +56,41 @@ exports.createPages = async ({ actions, graphql }) => {
     }
   });
 };
+
+const createContentDigest = obj =>
+  crypto
+    .createHash(`md5`)
+    .update(obj)
+    .digest(`hex`);
+
+// // Store code snippets in GraphQL for the home page examples.
+// // Snippets will be matched with markdown templates of the same name.
+// exports.onCreateNode = async ({ actions, node, loadNodeContent }) => {
+//   const { createNode } = actions;
+//   const {
+//     absolutePath,
+//     ext,
+//     name,
+//     relativeDirectory,
+//     sourceInstanceName,
+//   } = node;
+
+//   if (
+//     // refers to the `options.name` of one of the `gatsby-source-filesystem` config
+//     sourceInstanceName === 'components' &&
+//     /\.example$/.test(name)
+//   ) {
+//     const code = await loadNodeContent(node);
+//     createNode({
+//       id: name,
+//       children: [],
+//       parent: node.id,
+//       code,
+//       // mdAbsolutePath: absolutePath.replace(/\.js$/, '.md'),
+//       internal: {
+//         type: 'ExampleCode',
+//         contentDigest: createContentDigest(JSON.stringify(code)),
+//       },
+//     });
+//   }
+// };
