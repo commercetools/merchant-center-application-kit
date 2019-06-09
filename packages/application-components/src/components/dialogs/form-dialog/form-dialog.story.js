@@ -11,7 +11,7 @@ import withReadme from 'storybook-readme/with-readme';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import { Formik } from 'formik';
 import { Spacings, TextField, TextInput } from '@commercetools-frontend/ui-kit';
-import ModalController from '../../internals/for-docs/modal-controller';
+import ModalController from '../../../../../../website/src/components/modal-controller';
 import Readme from './README.md';
 import FormDialog from './form-dialog';
 

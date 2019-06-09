@@ -88,7 +88,9 @@ const CodeBlock = props => {
     : undefined;
 
   if (props.live === 'true') {
-    return <CodeEditor code={props.children} theme={theme} />;
+    return (
+      <CodeEditor code={props.children} theme={theme} height={props.height} />
+    );
   }
 
   return (
@@ -131,6 +133,7 @@ CodeBlock.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   live: PropTypes.string,
+  height: PropTypes.string,
 };
 
 export default CodeBlock;

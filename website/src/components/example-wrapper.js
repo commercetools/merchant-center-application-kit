@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'emotion-theming';
+import { css } from '@emotion/core';
 import { IntlProvider } from 'react-intl';
 import { customProperties } from '@commercetools-frontend/ui-kit';
 import ModalController from './modal-controller';
@@ -10,17 +11,16 @@ const ExampleWrapper = props => (
     theme={{
       // Reset theme to default styles, so that the example uses the default uikit tokens
       fontFamilyDefault: customProperties.fontFamilyDefault,
-      colorSolid: customProperties.colorsSolid,
+      colorSolid: customProperties.colorSolid,
     }}
   >
     <IntlProvider locale="en">
       <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          height: '400px',
-          border: `1px solid ${customProperties.colorNeutral95}`,
-        }}
+        css={css`
+          position: relative;
+          width: 100%;
+          height: 100%;
+        `}
       >
         <div id={props.containerId} style={{ flex: 1 }} />
         <ModalController
