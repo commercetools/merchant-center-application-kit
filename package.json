@@ -91,7 +91,7 @@
     "jest": "24.8.0",
     "jest-each": "24.8.0",
     "jest-puppeteer": "4.2.0",
-    "jest-runner-eslint": "0.7.3",
+    "jest-runner-eslint": "0.7.4",
     "jest-runner-prettier": "0.2.6",
     "jest-runner-shellcheck": "1.0.2",
     "jest-runner-stylelint": "1.0.0",
