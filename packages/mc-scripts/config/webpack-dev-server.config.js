@@ -101,9 +101,7 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
     app.use('/api/graphql', (request, response) => {
       response.statusCode = 400;
       response.setHeader('Content-Type', 'application/json');
-      const errorMessage = `This GraphQL endpoint is not available in ${
-        process.env.NODE_ENV
-      } mode as it's not necessary. The menu configuration is loaded from the file "menu.json" (more info at https://www.npmjs.com/package/@commercetools-frontend/application-shell). In case you do need to test things out, you can pass a "mcProxyApiUrl" to your "env.json" and point it to e.g. "https://mc.commercetools.com/api/graphql"`;
+      const errorMessage = `This GraphQL endpoint is not available in ${process.env.NODE_ENV} mode as it's not necessary. The menu configuration is loaded from the file "menu.json" (more info at https://www.npmjs.com/package/@commercetools-frontend/application-shell). In case you do need to test things out, you can pass a "mcProxyApiUrl" to your "env.json" and point it to e.g. "https://mc.commercetools.com/api/graphql"`;
       const fakeApolloError = new Error(errorMessage);
       response.end(
         JSON.stringify({

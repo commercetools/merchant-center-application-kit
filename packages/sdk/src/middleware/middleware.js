@@ -13,9 +13,7 @@ const actionToUri = (action, projectKey) => {
   // Validate that `projectKey` exists
   if (!projectKey) {
     throw new Error(
-      `Expected projectKey to be defined for action service "${
-        action.payload.service
-      }" (method "${action.payload.method}")`
+      `Expected projectKey to be defined for action service "${action.payload.service}" (method "${action.payload.method}")`
     );
   }
 

@@ -39,9 +39,7 @@ const NavbarLink = props => {
             }
           `}
           activeClassName={makeClassName`
-            border-left: ${customProperties.spacingXs} solid ${
-            colors.light.primary
-          } !important;
+            border-left: ${customProperties.spacingXs} solid ${colors.light.primary} !important;
             color: ${colors.light.primary} !important;
           `}
           {...restProps}

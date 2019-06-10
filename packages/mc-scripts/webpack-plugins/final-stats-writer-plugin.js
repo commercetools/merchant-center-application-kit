@@ -50,9 +50,7 @@ class FinalStatsWriterPlugin {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.warn(
-        `[FinalStatsWriterPlugin] The dist folder could not be found at ${
-          this.config.outputPath
-        }. Check the console for errors during the webpack compilation.`
+        `[FinalStatsWriterPlugin] The dist folder could not be found at ${this.config.outputPath}. Check the console for errors during the webpack compilation.`
       );
     }
   }

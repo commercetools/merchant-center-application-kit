@@ -25,9 +25,7 @@ const hasChangesInMatchingFiles = matchingFiles => {
     );
 
     const isMatchingFilesForSingleCommit = shelljs.exec(
-      `git diff-tree --no-commit-id --name-only -r "${
-        process.env.CIRCLE_SHA1
-      }" | grep --quiet -E "${matchingFiles}"`
+      `git diff-tree --no-commit-id --name-only -r "${process.env.CIRCLE_SHA1}" | grep --quiet -E "${matchingFiles}"`
     );
     return isMatchingFilesForSingleCommit.code === 0;
   }

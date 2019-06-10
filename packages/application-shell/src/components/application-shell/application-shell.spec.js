@@ -445,9 +445,7 @@ describe('when user is not logged in', () => {
       it('should pass queryParams', () => {
         expect(renderWrapper).toHaveProp('queryParams', {
           reason: LOGOUT_REASONS.UNAUTHORIZED,
-          redirectTo: `${window.location.origin}${
-            routerProps.location.pathname
-          }`,
+          redirectTo: `${window.location.origin}${routerProps.location.pathname}`,
         });
       });
     });
