@@ -55,9 +55,7 @@ const LayoutHeader = () => {
       <Spacings.Inline alignItems="center">
         <Spacings.Inline alignItems="center" scale="l">
           <ExternalLink
-            href={`${data.site.siteMetadata.repositoryUrl}/releases/tag/v${
-              data.site.siteMetadata.currentVersion
-            }`}
+            href={`${data.site.siteMetadata.repositoryUrl}/releases/tag/v${data.site.siteMetadata.currentVersion}`}
           >
             {`v${data.site.siteMetadata.currentVersion}`}
           </ExternalLink>

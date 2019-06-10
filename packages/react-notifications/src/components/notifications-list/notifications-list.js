@@ -78,9 +78,7 @@ class NotificationsList extends React.PureComponent {
                     if (process.env.NODE_ENV !== 'production')
                       // eslint-disable-next-line no-console
                       console.error(
-                        `Saw unexpected notification kind "${
-                          notification.kind
-                        }".`,
+                        `Saw unexpected notification kind "${notification.kind}".`,
                         notification
                       );
                     return null;

@@ -41,9 +41,7 @@ const throwIfTemplateVersionDoesNotExist = (
     const versionAsNumber = versionToCheck.replace('v', '');
     if (templatePackageJson.version !== versionAsNumber) {
       throw new Error(
-        `The downloaded template "${templateName}" does not match the version "${versionAsNumber}", instead got "${
-          templatePackageJson.version
-        }". Check the releases page if you want to provide a specific version: https://github.com/commercetools/merchant-center-application-kit/releases`
+        `The downloaded template "${templateName}" does not match the version "${versionAsNumber}", instead got "${templatePackageJson.version}". Check the releases page if you want to provide a specific version: https://github.com/commercetools/merchant-center-application-kit/releases`
       );
     }
   }

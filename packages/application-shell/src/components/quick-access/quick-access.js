@@ -172,9 +172,7 @@ class QuickAccess extends React.Component {
             keywords: [data.productByVariantKey.masterData.staged.variant.key],
             action: {
               type: 'go',
-              to: `/${
-                this.props.project.key
-              }/products/${productId}/${variantId}`,
+              to: `/${this.props.project.key}/products/${productId}/${variantId}`,
             },
             subCommands: createProductVariantSubCommands({
               intl: this.props.intl,
