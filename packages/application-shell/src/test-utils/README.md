@@ -1,6 +1,6 @@
 # Test Utils
 
-If you'd like to write integration tests using `react-testing-library`](https://github.com/kentcdodds/react-testing-library), we expose some **test utils** which simulate the components-under-test as if it was rendered by the `<ApplicationShell>`.
+If you'd like to write integration tests using `@testing-library/react`](https://github.com/kentcdodds/react-testing-library), we expose some **test utils** which simulate the components-under-test as if it was rendered by the `<ApplicationShell>`.
 
 We want to make it easy to test features of the application you're building with `ApplicationShell`. `ApplicationShell` renders your components with quite some context. It should be easy to influence this context in the tests so that your component can be tested under different circumstances as rendered by `ApplicationShell`.
 
@@ -14,7 +14,7 @@ The `ApplicationShell` provides the following context:
 
 ## Table of Contents
 
-- [react-testing-library](#react-testing-library)
+- [@testing-library/react](#@testing-library-react)
 - [test-utils](#test-utils-1)
   - [Basics](#basics)
   - [API](#api)
@@ -30,13 +30,13 @@ The `ApplicationShell` provides the following context:
     - [Permissions](#permissions)
     - [Router (`react-router`)](#router-react-router)
 
-## `react-testing-library`
+## `@testing-library/react`
 
-[`react-testing-library`](https://github.com/kentcdodds/react-testing-library) allows you to interact with the component using the DOM. It is a great testing library due to its philosophy of testing from a user-perspective, instead of testing the implementation. The assertions are written against the produced DOM, and the component-under-test is interacted with using DOM events.
+[`@testing-library/react`](https://github.com/kentcdodds/react-testing-library) allows you to interact with the component using the DOM. It is a great testing library due to its philosophy of testing from a user-perspective, instead of testing the implementation. The assertions are written against the produced DOM, and the component-under-test is interacted with using DOM events.
 
-The `render` method exposed by `react-testing-library` is used to render your component and returns a bunch of getters to query the DOM produced by the component-under-test. `ApplicationShell`s `test-utils` export an enhanced `renderApp` method which adds more context to the component-under-test, so that it can be rendered as-if it was rendered by `ApplicationShell` itself.
+The `render` method exposed by `@testing-library/react` is used to render your component and returns a bunch of getters to query the DOM produced by the component-under-test. `ApplicationShell`s `test-utils` export an enhanced `renderApp` method which adds more context to the component-under-test, so that it can be rendered as-if it was rendered by `ApplicationShell` itself.
 
-> All exports of `react-testing-library` are re-exported from `test-utils`.
+> All exports of `@testing-library/react` are re-exported from `test-utils`.
 
 ## `test-utils`
 
@@ -110,7 +110,7 @@ When passing `null` for `user` the default `user` will not be added to the conte
 
 This section describes the methods exported by `@commercetools-frontend/application-shell/test-utils`.
 
-`test-utils` is builds on top of `react-testing-library`, so all [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) exports are available. The following section describes the additional exports added on top of `react-testing-library`.
+`test-utils` is builds on top of `@testing-library/react`, so all [`@testing-library/react`](https://github.com/kentcdodds/react-testing-library) exports are available. The following section describes the additional exports added on top of `@testing-library/react`.
 
 #### `renderApp(ui: ReactElement, options: Object)`
 
@@ -133,7 +133,7 @@ This section describes the methods exported by `@commercetools-frontend/applicat
 
 **Additional return values**
 
-Calling `renderApp` returns an object which contains all keys `react-testing-library`'s original `render` method contains, but also contains these additional entries:
+Calling `renderApp` returns an object which contains all keys `@testing-library/react`'s original `render` method contains, but also contains these additional entries:
 
 | Entry         | Type     | Description                                                                                                                                                                                                                                                                                                       |
 | ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

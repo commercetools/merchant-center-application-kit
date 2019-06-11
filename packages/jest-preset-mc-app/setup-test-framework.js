@@ -1,7 +1,7 @@
 require('unfetch/polyfill');
 require('jest-enzyme');
 require('jest-dom/extend-expect');
-require('react-testing-library/cleanup-after-each');
+require('@testing-library/react/cleanup-after-each');
 const Enzyme = require('enzyme');
 const Adapter = require('enzyme-adapter-react-16');
 const ShallowWrapper = require('enzyme/ShallowWrapper');

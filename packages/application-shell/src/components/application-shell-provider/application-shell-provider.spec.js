@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactReduxContext } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { render, wait, waitForElement } from 'react-testing-library';
+import { render, wait, waitForElement } from '@testing-library/react';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { GtmContext } from '../gtm-booter';
 // eslint-disable-next-line import/named

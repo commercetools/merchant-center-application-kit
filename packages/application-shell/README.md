@@ -53,4 +53,4 @@ const EntryPoint = () => (
 
 ## Testing
 
-This package contains test-utils which enable you to test your components as if they were rendered inside `ApplicationShell`'s `render` prop using [`react-testing-library`](https://github.com/kentcdodds/react-testing-library). It can simulate the user, project, permissions, feature flags, routing and more. Check out [test-utils/README.md](./src/test-utils/README.md).
+This package contains test-utils which enable you to test your components as if they were rendered inside `ApplicationShell`'s `render` prop using [`@testing-library/react`](https://github.com/kentcdodds/react-testing-library). It can simulate the user, project, permissions, feature flags, routing and more. Check out [test-utils/README.md](./src/test-utils/README.md).

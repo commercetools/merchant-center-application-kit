@@ -265,15 +265,15 @@ $ yarn test:watch
 To test React components, use one of the following methods:
 
 - [`shallow` rendering](https://github.com/airbnb/enzyme) for normal unit tests.
-- [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) for normal unit tests as well as integration tests (or user flow tests).
+- [`@testing-library/react`](https://github.com/kentcdodds/react-testing-library) for normal unit tests as well as integration tests (or user flow tests).
 - [`cypress`](https://www.cypress.io/) for end-to-end tests.
 
-The `@commercetools-frontend/application-shell` has a [`test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell/src/test-utils/README.md) export which contains helpers for writing tests using `react-testing-library`. This is our **recommended approach** for writing tests for your application.
+The `@commercetools-frontend/application-shell` has a [`test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell/src/test-utils/README.md) export which contains helpers for writing tests using `@testing-library/react`. This is our **recommended approach** for writing tests for your application.
 
 The [project starter example](https://github.com/commercetools/merchant-center-application-kit/tree/master/application-templates/starter) contains two examples of testing components:
 
 - `src/components/entry-point/entry-point.spec.js`: Tests a component using **shallow rendering**.
-- `src/components/main-view/main-view.spec.js`: Tests a component using **react-testing-library**.
+- `src/components/main-view/main-view.spec.js`: Tests a component using **@testing-library/react**.
 
 ## Translations
 
