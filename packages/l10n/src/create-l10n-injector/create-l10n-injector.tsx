@@ -1,13 +1,17 @@
 import React from 'react';
+import * as PropTypes from 'prop-types';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { getDisplayName } from '../utils';
+import { InferPropTypes } from '../type-utils';
 
-interface Props {
-  displayName: string;
-  propKey: string;
-  propLoadingKey: string;
-  loadLocale: Function;
-}
+export const propTypes = {
+  displayName: PropTypes.string,
+  propKey: PropTypes.string,
+  propLoadingKey: PropTypes.string,
+  loadLocale: PropTypes.func,
+};
+
+type Props = InferPropTypes<typeof propTypes>;
 
 export default function createL10NInjector({
   displayName,
