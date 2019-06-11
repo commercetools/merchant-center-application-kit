@@ -1,7 +1,16 @@
 import createL10NInjector from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
 
-const getImportChunk = (locale: string) => {
+type Currency = {
+  label: string;
+  symbol: string;
+};
+
+type Currencies = {
+  default: Record<string, Currency>;
+};
+
+const getImportChunk = (locale: string): Promise<Currencies> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
@@ -31,7 +40,10 @@ const getImportChunk = (locale: string) => {
  * If running through webpack, code splitting makes `getCurrenciesForLocale`
  * a function that asynchronously loads the country data.
  */
-const getCurrenciesForLocale = (locale: string, cb: Function) => {
+const getCurrenciesForLocale = (
+  locale: string,
+  cb: (error?: Error, countries?: Record<string, Currency>) => void
+) => {
   const supportedLocale = getSupportedLocale(locale);
   // Use default webpackMode (lazy) so that we generate one file per locale.
   // The files are named like "currency-data-en-json.chunk.js" after compilation
@@ -39,7 +51,7 @@ const getCurrenciesForLocale = (locale: string, cb: Function) => {
   getImportChunk(supportedLocale)
     // Prefer loading `default` (for ESM bundles) and
     // fall back to normal import (for CJS bundles).
-    .then(currencies => cb(null, currencies.default || currencies))
+    .then(currencies => cb(undefined, currencies.default || currencies))
     .catch(error => cb(error));
 };
 

@@ -13,15 +13,22 @@ export const propTypes = {
 
 type Props = InferPropTypes<typeof propTypes>;
 
-export default function createL10NInjector({
+type InjectorOptions<T> = {
+  displayName: string;
+  propKey: string;
+  propLoadingKey: string;
+  loadLocale: (locale: string, cb: (error?: Error, data?: T) => void) => void;
+};
+
+export default function createL10NInjector<T>({
   displayName,
   propKey,
   propLoadingKey,
   loadLocale,
-}: Props) {
-  return (mapPropsToLocale: Function) => (
-    WrappedComponent: React.ComponentClass<any>
-  ): React.ComponentClass<any> => {
+}: InjectorOptions<T>) {
+  return (mapPropsToLocale: (props: any) => string) => (
+    WrappedComponent: React.ComponentType<any>
+  ): React.ComponentClass<Props> => {
     class L10NComponent extends React.Component<Props> {
       static displayName = `${displayName}(${getDisplayName(
         WrappedComponent
@@ -44,7 +51,7 @@ export default function createL10NInjector({
 
       loadCountries = (props: Props) => {
         this.setState({ [propLoadingKey]: true });
-        loadLocale(mapPropsToLocale(props), (error: Error, data: any) => {
+        loadLocale(mapPropsToLocale(props), (error?: Error, data?: T) => {
           if (error) {
             reportErrorToSentry(error);
           }

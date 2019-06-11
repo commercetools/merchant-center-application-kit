@@ -8,5 +8,5 @@ export type InferPropTypes<
 > = {
   [Key in keyof Props]: Key extends keyof DefaultProps
     ? Props[Key] | DefaultProps[Key]
-    : Props[Key]
+    : Props[Key];
 };

@@ -1,11 +1,9 @@
-interface Currency {
+type Currency = {
   label: string;
   symbol: string;
-}
+};
 
-interface Currencies {
-  [key: string]: Currency;
-}
+type Currencies = Record<string, Currency>;
 
 export const mapLocaleToIntlLocale = (locale: string) => {
   if (locale.startsWith('de')) return 'de';

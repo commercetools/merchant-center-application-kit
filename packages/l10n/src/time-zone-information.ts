@@ -2,7 +2,15 @@ import * as PropTypes from 'prop-types';
 import createL10NInjector from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
 
-const getImportChunk = (locale: string) => {
+type Timezone = {
+  name: string;
+  abbr: string;
+  offset: string;
+};
+
+type Timezones = { default: Record<string, Timezone> };
+
+const getImportChunk = (locale: string): Promise<Timezones> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
@@ -40,7 +48,10 @@ export const timeZonesShape = PropTypes.objectOf(
  * If running through webpack, code splitting makes `getTimeZonesForLocale`
  * a function that asynchronously loads the country data.
  */
-const getTimeZonesForLocale = (locale: string, cb: Function) => {
+const getTimeZonesForLocale = (
+  locale: string,
+  cb: (error?: Error, languages?: Record<string, Timezone>) => void
+) => {
   const supportedLocale = getSupportedLocale(locale);
   // Use default webpackMode (lazy) so that we generate one file per locale.
   // The files are named like "time-zone-data-en-json.chunk.js" after compilation
@@ -48,7 +59,7 @@ const getTimeZonesForLocale = (locale: string, cb: Function) => {
   getImportChunk(supportedLocale)
     // Prefer loading `default` (for ESM bundles) and
     // fall back to normal import (for CJS bundles).
-    .then(timeZones => cb(null, timeZones.default || timeZones))
+    .then(timeZones => cb(undefined, timeZones.default || timeZones))
     .catch(error => cb(error));
 };
 

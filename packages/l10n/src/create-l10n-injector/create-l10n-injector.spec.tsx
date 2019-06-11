@@ -1,11 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 import { shallow } from 'enzyme';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import createL10NInjector from './create-l10n-injector';
 
 jest.mock('@commercetools-frontend/sentry');
 
-const mockData = {
+type MockData = Record<string, any>;
+type Wrapper = any;
+
+const mockData: MockData = {
   en: {
     1: 'sugar',
     2: 'fruit',
@@ -30,8 +33,8 @@ const Foo = () => <div />;
 Foo.displayName = 'Foo';
 
 describe('rendering', () => {
-  let WrappedComponent;
-  let wrapper;
+  let WrappedComponent: React.ComponentClass<any>;
+  let wrapper: Wrapper;
   beforeEach(() => {
     loadLocalesMock.mockClear();
     WrappedComponent = withCandies(props => props.locale)(Foo);
@@ -63,9 +66,11 @@ describe('rendering', () => {
 });
 
 describe('lifecycle', () => {
-  let wrapper;
+  let wrapper: Wrapper;
   beforeAll(() => {
-    const WrappedComponent = withCandies(props => props.locale)(Foo);
+    const WrappedComponent: React.ComponentClass<any> = withCandies(
+      props => props.locale
+    )(Foo);
     wrapper = shallow(<WrappedComponent locale="en" />);
   });
   describe('componentDidMount', () => {
@@ -126,7 +131,7 @@ describe('lifecycle', () => {
 });
 
 describe('when there is an error loading L10n data', () => {
-  let wrapper;
+  let wrapper: Wrapper;
   const error = new Error('unknown locale');
   beforeEach(() => {
     const loadLocalesErrorMock = jest.fn((locale, cb) =>
@@ -138,7 +143,9 @@ describe('when there is an error loading L10n data', () => {
       propLoadingKey: 'l10nInjector',
       loadLocale: loadLocalesErrorMock,
     });
-    const WrappedComponent = l10nInjector(props => props.locale)(Foo);
+    const WrappedComponent: React.ComponentClass<any> = l10nInjector(
+      props => props.locale
+    )(Foo);
     wrapper = shallow(<WrappedComponent locale="es" />);
     wrapper.instance().componentDidMount();
   });
