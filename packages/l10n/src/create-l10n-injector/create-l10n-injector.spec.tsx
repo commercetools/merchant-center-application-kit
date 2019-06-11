@@ -5,7 +5,9 @@ import createL10NInjector from './create-l10n-injector';
 
 jest.mock('@commercetools-frontend/sentry');
 
-type MockData = Record<string, any>;
+type Mock = Record<number, string>;
+
+type MockData = Record<string, Mock>;
 
 const mockData: MockData = {
   en: {
@@ -65,7 +67,7 @@ describe('rendering', () => {
 });
 
 describe('lifecycle', () => {
-  let wrapper: ShallowWrapper = shallow(<div />);
+  let wrapper: ShallowWrapper;
   beforeAll(() => {
     const WrappedComponent: React.ComponentClass<any> = withCandies(
       props => props.locale
