@@ -52,6 +52,15 @@ const ModalPageTopBar = props => (
       & * + * {
         margin-left: ${customProperties.spacingS};
       }
+
+      /* FIXME: these "dirty" styles should be removed when the new Breadcrumbs component is implemented */
+      p {
+        font-size: 12px !important;
+      }
+      svg {
+        height: 12px !important;
+        width: 12px !important;
+      }
     `}
   >
     <div
@@ -71,9 +80,12 @@ const ModalPageTopBar = props => (
         onClick={props.onClose}
       />
       {props.currentPathLabel && (
-        <Text.Detail title={props.currentPathLabel} isInline truncate>
-          {`/ ${props.currentPathLabel}`}
-        </Text.Detail>
+        <React.Fragment>
+          <Text.Detail isInline>/</Text.Detail>
+          <Text.Detail title={props.currentPathLabel} isInline truncate>
+            {props.currentPathLabel}
+          </Text.Detail>
+        </React.Fragment>
       )}
     </div>
     {props.onClose && (

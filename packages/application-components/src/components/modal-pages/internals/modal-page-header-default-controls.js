@@ -13,7 +13,7 @@ const getFormattedLabel = (label, intl) =>
   typeof label === 'string' ? label : intl.formatMessage(label);
 
 const ModalPageHeaderDefaultControls = props => (
-  <Spacings.Inline alignItems="flex-end" scale="m">
+  <Spacings.Inline alignItems="flex-end">
     <SecondaryButton
       label={getFormattedLabel(props.labelSecondaryButton, props.intl)}
       onClick={props.onSecondaryButtonClick}

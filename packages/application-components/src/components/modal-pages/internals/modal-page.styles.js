@@ -29,6 +29,7 @@ export const getContainerStyles = props => css`
   display: flex;
   flex-direction: column;
   background-color: ${customProperties.colorSurface};
+  box-shadow: ${customProperties.shadow4}, ${customProperties.shadow6};
   outline: 0;
   animation: ${slideFromLeft} 0.2s ease;
 `;

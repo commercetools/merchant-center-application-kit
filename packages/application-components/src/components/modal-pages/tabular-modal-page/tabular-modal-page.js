@@ -30,18 +30,21 @@ const TabularModalPage = props => (
       css={css`
         background-color: ${customProperties.colorNeutral95};
         padding: ${customProperties.spacingM} ${customProperties.spacingM} 0;
+        border-bottom: 1px ${customProperties.colorNeutral} solid;
       `}
     >
       <Spacings.Stack size="l">
         {props.customTitleRow || (
-          <ModalPageHeaderTitle
-            title={props.title}
-            titleSize="big"
-            subtitle={props.subtitle}
-          />
+          <ModalPageHeaderTitle title={props.title} subtitle={props.subtitle} />
         )}
         <Spacings.Inline alignItems="flex-end" justifyContent="space-between">
-          {props.tabControls}
+          <div
+            css={css`
+              margin-top: 8px;
+            `}
+          >
+            {props.tabControls}
+          </div>
           <div
             css={css`
               margin-bottom: 16px !important;
