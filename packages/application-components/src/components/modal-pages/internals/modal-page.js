@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { ClassNames } from '@emotion/core';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import { getOverlayStyles, getContainerStyles } from './modal-page.styles';
+import {
+  getOverlayStyles,
+  getContainerStyles,
+  getAfterOpenOverlayAnimation,
+  getAfterOpenContainerAnimation,
+  getBeforeCloseOverlayAnimation,
+  getBeforeCloseContainerAnimation,
+} from './modal-page.styles';
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under
@@ -31,11 +38,21 @@ const ModalPage = props => (
         onRequestClose={props.onClose}
         shouldCloseOnOverlayClick={Boolean(props.onClose)}
         shouldCloseOnEsc={Boolean(props.onClose)}
-        overlayClassName={makeClassName(getOverlayStyles(props))}
-        className={makeClassName(getContainerStyles(props))}
+        overlayClassName={{
+          base: makeClassName(getOverlayStyles(props)),
+          afterOpen: makeClassName(getAfterOpenOverlayAnimation()),
+          beforeClose: makeClassName(getBeforeCloseOverlayAnimation()),
+        }}
+        className={{
+          base: makeClassName(getContainerStyles(props)),
+          afterOpen: makeClassName(getAfterOpenContainerAnimation()),
+          beforeClose: makeClassName(getBeforeCloseContainerAnimation()),
+        }}
         contentLabel={props.title}
         parentSelector={props.getParentSelector}
         ariaHideApp={false}
+        // Adjust this value if the (beforeClose) animation duration is changed
+        closeTimeoutMS={200}
         style={{
           // stylelint-disable-next-line selector-type-no-unknown
           overlay: {
