@@ -9,30 +9,34 @@ import {
 const ModalController = props => {
   const [isOpen, toggle] = React.useState(false);
   return (
-    <div
-      style={{
-        display: 'grid',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100%',
-        width: '100%',
-      }}
-    >
-      <Spacings.Stack>
-        <Text.Body>{props.title}</Text.Body>
-        <Spacings.Inline>
-          <SecondaryButton
-            label={props.buttonLabel}
-            onClick={() => toggle(true)}
-          />
-        </Spacings.Inline>
-        {props.children({ isOpen, toggle })}
-      </Spacings.Stack>
-    </div>
+    <>
+      <div id={props.containerId} style={{ flex: 1 }} />
+      <div
+        style={{
+          display: 'grid',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100%',
+          width: '100%',
+        }}
+      >
+        <Spacings.Stack>
+          <Text.Body>{props.title}</Text.Body>
+          <Spacings.Inline>
+            <SecondaryButton
+              label={props.buttonLabel}
+              onClick={() => toggle(true)}
+            />
+          </Spacings.Inline>
+          {props.children({ isOpen, toggle })}
+        </Spacings.Stack>
+      </div>
+    </>
   );
 };
 ModalController.displayName = 'ModalController';
 ModalController.propTypes = {
+  containerId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   buttonLabel: PropTypes.string.isRequired,
   children: PropTypes.func.isRequired,
