@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, ShallowWrapper } from 'enzyme';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import createL10NInjector from './create-l10n-injector';
 
 jest.mock('@commercetools-frontend/sentry');
 
 type MockData = Record<string, any>;
-type Wrapper = any;
 
 const mockData: MockData = {
   en: {
@@ -34,7 +33,7 @@ Foo.displayName = 'Foo';
 
 describe('rendering', () => {
   let WrappedComponent: React.ComponentClass<any>;
-  let wrapper: Wrapper;
+  let wrapper: ShallowWrapper;
   beforeEach(() => {
     loadLocalesMock.mockClear();
     WrappedComponent = withCandies(props => props.locale)(Foo);
@@ -66,7 +65,7 @@ describe('rendering', () => {
 });
 
 describe('lifecycle', () => {
-  let wrapper: Wrapper;
+  let wrapper: ShallowWrapper = shallow(<div />);
   beforeAll(() => {
     const WrappedComponent: React.ComponentClass<any> = withCandies(
       props => props.locale
@@ -76,7 +75,10 @@ describe('lifecycle', () => {
   describe('componentDidMount', () => {
     beforeAll(() => {
       loadLocalesMock.mockClear();
-      wrapper.instance().componentDidMount();
+      const instance = wrapper.instance();
+      if (instance && instance.componentDidMount) {
+        instance.componentDidMount();
+      }
     });
     it('should load candies', () => {
       expect(loadLocalesMock).toHaveBeenCalledTimes(1);
@@ -99,7 +101,10 @@ describe('lifecycle', () => {
     describe('locale changes', () => {
       beforeAll(() => {
         loadLocalesMock.mockClear();
-        wrapper.instance().UNSAFE_componentWillReceiveProps({ locale: 'de' });
+        const instance = wrapper.instance();
+        if (instance.UNSAFE_componentWillReceiveProps) {
+          instance.UNSAFE_componentWillReceiveProps({ locale: 'de' }, {});
+        }
       });
       it('should load candies', () => {
         expect(loadLocalesMock).toHaveBeenCalledTimes(1);
@@ -121,7 +126,10 @@ describe('lifecycle', () => {
     describe('locale does not change', () => {
       beforeAll(() => {
         loadLocalesMock.mockClear();
-        wrapper.instance().UNSAFE_componentWillReceiveProps({ locale: 'en' });
+        const instance = wrapper.instance();
+        if (instance.UNSAFE_componentWillReceiveProps) {
+          instance.UNSAFE_componentWillReceiveProps({ locale: 'en' }, {});
+        }
       });
       it('should not load candies', () => {
         expect(loadLocalesMock).toHaveBeenCalledTimes(0);
@@ -131,7 +139,7 @@ describe('lifecycle', () => {
 });
 
 describe('when there is an error loading L10n data', () => {
-  let wrapper: Wrapper;
+  let wrapper: ShallowWrapper;
   const error = new Error('unknown locale');
   beforeEach(() => {
     const loadLocalesErrorMock = jest.fn((locale, cb) =>
@@ -147,7 +155,10 @@ describe('when there is an error loading L10n data', () => {
       props => props.locale
     )(Foo);
     wrapper = shallow(<WrappedComponent locale="es" />);
-    wrapper.instance().componentDidMount();
+    const instance = wrapper.instance();
+    if (instance.componentDidMount) {
+      instance.componentDidMount();
+    }
   });
 
   it('should call reportErrorToSentry', () => {

@@ -44,7 +44,7 @@ const getCountriesForLocale = (
 ) => {
   const supportedLocale = getSupportedLocale(locale);
   // Use default webpackMode (lazy) so that we generate one file per locale.
-  // The files are named like "country-data-en-json.chunk.js" after compilation
+  // The files are named like "country-sdata-en-json.chunk.js" after compilation
   // https://webpack.js.org/api/module-methods/#import-
   getImportChunk(supportedLocale)
     // Prefer loading `default` (for ESM bundles) and
@@ -53,7 +53,7 @@ const getCountriesForLocale = (
     .catch(error => cb(error, undefined));
 };
 
-export const withCountries = createL10NInjector({
+export const withCountries = createL10NInjector<Record<string, string>>({
   displayName: 'withCountries',
   propKey: 'countries',
   propLoadingKey: 'isLoadingCountries',
