@@ -1,7 +1,6 @@
 import { addParameters, configure, addDecorator } from '@storybook/react';
-import { withContexts } from '@storybook/addon-contexts/react';
 import { create } from '@storybook/theming';
-import { contexts } from './configs/contexts';
+import IntlDecorator from './decorators/intl';
 
 addParameters({
   options: {
@@ -29,6 +28,6 @@ function loadStories() {
   srcStories.keys().forEach(filename => srcStories(filename));
 }
 
-addDecorator(withContexts(contexts));
+addDecorator(IntlDecorator);
 
 configure(loadStories, module);
