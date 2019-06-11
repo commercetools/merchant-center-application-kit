@@ -1,26 +1,26 @@
 declare module 'sentry-testkit' {
   import { TransportClass, Transport } from '@sentry/types';
 
-  interface ExceptionValue {
+  type ExceptionValue = {
     type: string;
     value: string;
-  }
-  interface Exception {
+  };
+  type Exception = {
     values: ExceptionValue[];
-  }
-  interface Report {
+  };
+  type Report = {
     exception: Exception;
     event_id: string;
     extra: object;
-  }
-  interface TestKit {
+  };
+  type TestKit = {
     reports(): Report[];
     reset(): void;
-  }
-  interface SentryTestKit {
+  };
+  type SentryTestKit = {
     testkit: TestKit;
     sentryTransport: TransportClass<Transport>;
-  }
+  };
   const createTestKit: () => SentryTestKit;
   export default createTestKit;
 }

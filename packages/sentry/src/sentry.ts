@@ -1,9 +1,13 @@
+import * as PropTypes from 'prop-types';
 import * as Sentry from '@sentry/browser';
+import { InferPropTypes } from './type-utils';
 
-export interface User {
-  id: string;
-  email: string;
-}
+export const userPropTypes = {
+  id: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+};
+
+type User = InferPropTypes<typeof userPropTypes>;
 
 export const boot = () => {
   if (window.app.trackingSentry) {
