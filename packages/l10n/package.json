@@ -20,6 +20,8 @@
   },
   "main": "dist/l10n-index.cjs.js",
   "module": "dist/l10n-index.es.js",
+  "typings": "./dist/typings/index.d.ts",
+  "types": "./dist/typings/index.d.ts",
   "files": [
     "dist",
     "package.json",
