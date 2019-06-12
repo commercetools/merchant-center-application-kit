@@ -5,11 +5,14 @@ import { render, wait, fireEvent } from '../../../../test-utils';
 import InfoDialog from './info-dialog';
 
 const DialogController = props => {
-  const [isOpen, toggle] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div>
-      <SecondaryButton label="Open Info Dialog" onClick={() => toggle(true)} />
-      {props.children({ isOpen, toggle })}
+      <SecondaryButton
+        label="Open Info Dialog"
+        onClick={() => setIsOpen(true)}
+      />
+      {props.children({ isOpen, setIsOpen })}
     </div>
   );
 };
@@ -22,11 +25,11 @@ describe('rendering', () => {
   it('should open the modal and close it by clicking on the close button', async () => {
     const { queryByText, getByLabelText } = render(
       <DialogController>
-        {({ isOpen, toggle }) => (
+        {({ isOpen, setIsOpen }) => (
           <InfoDialog
             title="Lorem ipsus"
             isOpen={isOpen}
-            onClose={() => toggle(false)}
+            onClose={() => setIsOpen(false)}
           >
             {'Hello'}
           </InfoDialog>

@@ -5,14 +5,14 @@ import { render, wait, fireEvent } from '../../../../test-utils';
 import ConfirmationDialog from './confirmation-dialog';
 
 const DialogController = props => {
-  const [isOpen, toggle] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div>
       <SecondaryButton
         label="Open Confirmation Dialog"
-        onClick={() => toggle(true)}
+        onClick={() => setIsOpen(true)}
       />
-      {props.children({ isOpen, toggle })}
+      {props.children({ isOpen, setIsOpen })}
     </div>
   );
 };
@@ -27,11 +27,11 @@ describe('rendering', () => {
     const onConfirm = jest.fn();
     const { queryByText, getByLabelText } = render(
       <DialogController>
-        {({ isOpen, toggle }) => (
+        {({ isOpen, setIsOpen }) => (
           <ConfirmationDialog
             title="Lorem ipsus"
             isOpen={isOpen}
-            onClose={() => toggle(false)}
+            onClose={() => setIsOpen(false)}
             onCancel={onCancel}
             onConfirm={onConfirm}
           >

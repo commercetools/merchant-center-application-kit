@@ -5,11 +5,14 @@ import { render, wait, fireEvent } from '../../../../test-utils';
 import FormDialog from './form-dialog';
 
 const DialogController = props => {
-  const [isOpen, toggle] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div>
-      <SecondaryButton label="Open Form Dialog" onClick={() => toggle(true)} />
-      {props.children({ isOpen, toggle })}
+      <SecondaryButton
+        label="Open Form Dialog"
+        onClick={() => setIsOpen(true)}
+      />
+      {props.children({ isOpen, setIsOpen })}
     </div>
   );
 };
@@ -24,11 +27,11 @@ describe('rendering', () => {
     const onConfirm = jest.fn();
     const { queryByText, getByLabelText } = render(
       <DialogController>
-        {({ isOpen, toggle }) => (
+        {({ isOpen, setIsOpen }) => (
           <FormDialog
             title="Lorem ipsus"
             isOpen={isOpen}
-            onClose={() => toggle(false)}
+            onClose={() => setIsOpen(false)}
             onSecondaryButtonClick={onCancel}
             onPrimaryButtonClick={onConfirm}
           >

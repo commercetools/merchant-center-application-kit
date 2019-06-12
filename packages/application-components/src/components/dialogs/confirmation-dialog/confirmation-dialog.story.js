@@ -24,12 +24,14 @@ storiesOf('Components|Dialogs', module)
         title="Open the Confirmation Dialog by clicking on the button"
         buttonLabel="Open Confirmation Dialog"
       >
-        {({ isOpen, toggle }) => (
+        {({ isOpen, setIsOpen }) => (
           <ConfirmationDialog
             title={text('title', 'Lorem Ipsum')}
             isOpen={isOpen}
             onClose={
-              boolean('disable close', false) ? undefined : () => toggle(false)
+              boolean('disable close', false)
+                ? undefined
+                : () => setIsOpen(false)
             }
             size={select('size', ['m', 'l', 'scale'], 'l')}
             zIndex={number('z-index', 1000)}
@@ -38,11 +40,11 @@ storiesOf('Components|Dialogs', module)
             isPrimaryButtonDisabled={boolean('isPrimaryButtonDisabled', false)}
             onCancel={() => {
               alert('cancelled');
-              toggle(false);
+              setIsOpen(false);
             }}
             onConfirm={() => {
               alert('confirmed');
-              toggle(false);
+              setIsOpen(false);
             }}
           >
             <Spacings.Stack scale="m">

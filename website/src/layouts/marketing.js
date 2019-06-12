@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 import LayoutContainer from './internals/layout-container';
 import LayoutHeader from './internals/layout-header';
 import LayoutFooter from './internals/layout-footer';
@@ -11,7 +12,11 @@ const LayoutMarketing = props => (
     <Globals />
     <LayoutContainer>
       <LayoutHeader />
-      <LayoutMain columns={1}>
+      <LayoutMain
+        css={css`
+          grid-column: 1/4;
+        `}
+      >
         {props.children}
         <LayoutFooter />
       </LayoutMain>

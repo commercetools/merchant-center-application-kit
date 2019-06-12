@@ -15,7 +15,7 @@ import Readme from './README.md';
 import ModalPage from './modal-page';
 
 const ModalController = props => {
-  const [isOpen, toggle] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div
       style={{
@@ -33,10 +33,10 @@ const ModalController = props => {
         <Spacings.Inline>
           <SecondaryButton
             label="Open Modal Page"
-            onClick={() => toggle(true)}
+            onClick={() => setIsOpen(true)}
           />
         </Spacings.Inline>
-        {props.children({ isOpen, toggle })}
+        {props.children({ isOpen, setIsOpen })}
       </Spacings.Stack>
     </div>
   );
@@ -53,10 +53,10 @@ storiesOf('Components|Modals', module)
     <React.Fragment>
       <div id={PORTALS_CONTAINER_ID} />
       <ModalController>
-        {({ isOpen, toggle }) => (
+        {({ isOpen, setIsOpen }) => (
           <ModalPage
             isOpen={isOpen}
-            onClose={() => toggle(false)}
+            onClose={() => setIsOpen(false)}
             title={'Lorem ipsus'}
             subtitle={<Text.Body>{'Lorem ipsus ...'}</Text.Body>}
             components={{
@@ -82,11 +82,11 @@ storiesOf('Components|Modals', module)
               <Text.Body>{'Lorem ipsus ...'}</Text.Body>
               <ModalController>
                 {/* eslint-disable-next-line no-shadow */}
-                {({ isOpen, toggle }) => (
+                {({ isOpen, setIsOpen }) => (
                   <ModalPage
                     level="two"
                     isOpen={isOpen}
-                    onClose={() => toggle(false)}
+                    onClose={() => setIsOpen(false)}
                   >
                     <Spacings.Stack scale="m">
                       <Text.Body>{'Lorem ipsus ...'}</Text.Body>
