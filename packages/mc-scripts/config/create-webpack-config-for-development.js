@@ -227,8 +227,10 @@ module.exports = ({
               plugins: () => [
                 postcssImport({ path: sourceFolders }),
                 postcssPresetEnv({
-                  browsers: browserslist.development,
-                  autoprefixer: { grid: true },
+                  autoprefixer: {
+                    grid: true,
+                    overrideBrowserslist: browserslist.development,
+                  },
                 }),
                 postcssCustomMediaQueries({
                   importFrom: require.resolve(
@@ -273,8 +275,10 @@ module.exports = ({
                   plugins: () => [
                     postcssImport(),
                     postcssPresetEnv({
-                      browsers: browserslist.development,
-                      autoprefixer: { grid: true },
+                      autoprefixer: {
+                        grid: true,
+                        overrideBrowserslist: browserslist.development,
+                      },
                     }),
                     postcssCustomMediaQueries({
                       importFrom: require.resolve(
