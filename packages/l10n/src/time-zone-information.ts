@@ -1,16 +1,13 @@
 import * as PropTypes from 'prop-types';
 import createL10NInjector from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
+import { TimeZones } from './types';
 
-type Timezone = {
-  name: string;
-  abbr: string;
-  offset: string;
+type ImportData = {
+  default: TimeZones;
 };
 
-type Timezones = { default: Record<string, Timezone> };
-
-const getImportChunk = (locale: string): Promise<Timezones> => {
+const getImportChunk = (locale: string): Promise<ImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
@@ -50,7 +47,7 @@ export const timeZonesShape = PropTypes.objectOf(
  */
 const getTimeZonesForLocale = (
   locale: string,
-  cb: (error?: Error, languages?: Record<string, Timezone>) => void
+  cb: (error?: Error, timeZones?: TimeZones) => void
 ) => {
   const supportedLocale = getSupportedLocale(locale);
   // Use default webpackMode (lazy) so that we generate one file per locale.
@@ -63,7 +60,7 @@ const getTimeZonesForLocale = (
     .catch(error => cb(error));
 };
 
-export const withTimeZones = createL10NInjector({
+export const withTimeZones = createL10NInjector<TimeZones>({
   displayName: 'withTimeZones',
   propKey: 'timeZones',
   propLoadingKey: 'isLoadingTimeZones',

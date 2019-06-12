@@ -1,16 +1,13 @@
+import * as PropTypes from 'prop-types';
 import createL10NInjector from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
+import { Currencies } from './types';
 
-type Currency = {
-  label: string;
-  symbol: string;
+type ImportData = {
+  default: Currencies;
 };
 
-export type Currencies = {
-  default: Record<string, Currency>;
-};
-
-const getImportChunk = (locale: string): Promise<Currencies> => {
+const getImportChunk = (locale: string): Promise<ImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
@@ -36,13 +33,17 @@ const getImportChunk = (locale: string): Promise<Currencies> => {
   }
 };
 
+export const currenciesShape = PropTypes.objectOf(
+  PropTypes.shape({ label: PropTypes.string, symbol: PropTypes.string })
+);
+
 /**
  * If running through webpack, code splitting makes `getCurrenciesForLocale`
  * a function that asynchronously loads the country data.
  */
 const getCurrenciesForLocale = (
   locale: string,
-  cb: (error?: Error, countries?: Record<string, Currency>) => void
+  cb: (error?: Error, currencies?: Currencies) => void
 ) => {
   const supportedLocale = getSupportedLocale(locale);
   // Use default webpackMode (lazy) so that we generate one file per locale.
@@ -56,7 +57,7 @@ const getCurrenciesForLocale = (
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export const withCurrencies = createL10NInjector({
+export const withCurrencies = createL10NInjector<Currencies>({
   displayName: 'withCurrencies',
   propKey: 'currencies',
   propLoadingKey: 'isLoadingCurrencies',

@@ -1,15 +1,13 @@
 import * as PropTypes from 'prop-types';
 import createL10NInjector from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
+import { Languages } from './types';
 
-type Language = {
-  language: string;
-  country?: string;
+type ImportData = {
+  default: Languages;
 };
 
-type Languages = { default: Record<string, Language> };
-
-const getImportChunk = (locale: string): Promise<Languages> => {
+const getImportChunk = (locale: string): Promise<ImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
@@ -48,7 +46,7 @@ export const languagesShape = PropTypes.objectOf(
  */
 const getLanguagesForLocale = (
   locale: string,
-  cb: (error?: Error, languages?: Record<string, Language>) => void
+  cb: (error?: Error, languages?: Languages) => void
 ) => {
   const supportedLocale = getSupportedLocale(locale);
   // Use default webpackMode (lazy) so that we generate one file per locale.
@@ -60,7 +58,7 @@ const getLanguagesForLocale = (
     .then(languages => cb(undefined, languages.default || languages))
     .catch(error => cb(error));
 };
-export const withLanguages = createL10NInjector({
+export const withLanguages = createL10NInjector<Languages>({
   displayName: 'withLanguages',
   propKey: 'languages',
   propLoadingKey: 'isLoadingLanguages',
