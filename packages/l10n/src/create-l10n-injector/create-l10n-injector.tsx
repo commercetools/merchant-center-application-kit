@@ -2,25 +2,28 @@ import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { getDisplayName } from '../utils';
 
-type InjectorOptions<T> = {
+type InjectorOptions<LoadedData> = {
   displayName: string;
   propKey: string;
   propLoadingKey: string;
-  loadLocale: (locale: string, cb: (error?: Error, data?: T) => void) => void;
+  loadLocale: (
+    locale: string,
+    cb: (error?: Error, data?: LoadedData) => void
+  ) => void;
 };
 
-export default function createL10NInjector<T>({
+export default function createL10NInjector<LoadedData>({
   displayName,
   propKey,
   propLoadingKey,
   loadLocale,
-}: InjectorOptions<T>) {
+}: InjectorOptions<LoadedData>) {
   return function createHOC<Props>(mapPropsToLocale: (props: Props) => string) {
     return (
       WrappedComponent: React.ComponentType<Props>
     ): React.ComponentClass<Props> => {
       return class L10NComponent extends React.Component<Props> {
-        static displayName = `${displayName}(${getDisplayName(
+        static displayName = `${displayName}(${getDisplayName<Props>(
           WrappedComponent
         )})`;
         state = { [propLoadingKey]: true, [propKey]: {} };
@@ -41,13 +44,16 @@ export default function createL10NInjector<T>({
 
         loadCountries = (props: Props) => {
           this.setState({ [propLoadingKey]: true });
-          loadLocale(mapPropsToLocale(props), (error?: Error, data?: T) => {
-            if (error) {
-              reportErrorToSentry(error);
+          loadLocale(
+            mapPropsToLocale(props),
+            (error?: Error, data?: LoadedData) => {
+              if (error) {
+                reportErrorToSentry(error);
+              }
+              if (!this.isUnmounting)
+                this.setState({ [propKey]: data, [propLoadingKey]: false });
             }
-            if (!this.isUnmounting)
-              this.setState({ [propKey]: data, [propLoadingKey]: false });
-          });
+          );
         };
         render() {
           return <WrappedComponent {...this.props} {...this.state} />;
