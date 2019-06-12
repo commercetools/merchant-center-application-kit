@@ -16,6 +16,11 @@ import {
 } from '@commercetools-frontend/ui-kit';
 import { InfoDialog } from '@commercetools-frontend/application-components';
 
+const TooltipWrapperComponent = styled.div`
+  /* default z-index for dialogs is 1000 */
+  z-index: 1001;
+`;
+
 const PreviewContainer = styled.div`
   position: relative;
   width: 100%;
@@ -147,7 +152,13 @@ const ExampleWrapper = props => {
                 {props.children({ values, isPlaygroundMode: false })}
               </PreviewContainer>
               <Spacings.Inline>
-                <Tooltip position="top" title="Enter playground mode">
+                <Tooltip
+                  position="top"
+                  title="Enter playground mode"
+                  components={{
+                    TooltipWrapperComponent,
+                  }}
+                >
                   <IconButton
                     icon={<CodeViewIcon />}
                     label="Enter playground mode"
