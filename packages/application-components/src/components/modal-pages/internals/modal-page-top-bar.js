@@ -57,7 +57,9 @@ const ModalPageTopBar = props => (
       p {
         font-size: 12px !important;
       }
-      svg {
+
+      /*  specific selector for the svg of the FlatButton */
+      button > span > svg {
         height: 12px !important;
         width: 12px !important;
       }
