@@ -19,16 +19,19 @@ const {
 } = require('@commercetools-frontend/assets');
 const { compileHtml } = require('@commercetools-frontend/mc-html-template');
 
-const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
+const flags = mri(process.argv.slice(2), {
+  alias: { help: ['h'] },
+  default: { 'use-local-assets': false },
+});
 
 if (flags.help) {
   console.log(`
-  Usage: mc-scripts static [options]
+  Usage: mc-scripts compile-html [options]
 
   Options:
   --config=<path>           (required) The path to the environment config (defined as a JSON file, e.g. "env.json").
   --csp=<path>              (optional) The path to the custom CSP directives config (defined as a JSON file, e.g. "csp.json").
-  --use-local-assets        (optional) If this option is enabled, the "dist/assets" will be used to start the http-server package. This requires that the assets have been built before running this script.
+  --use-local-assets        (optional) If this option is enabled, the index.html.template will be taken from the local "dist/assets" folder, otherwise it will be downloaded from the remove URL provided in "cdnUrl" in the "env.json" file (requires "mc-scripts build" to run before) [default "false"]
   --transformer=<path>      (optional) The path to a JS module that can be used to generate a configuration for a specific cloud provider (e.g. Netlify, Now).
   `);
   process.exit(0);
@@ -38,7 +41,7 @@ if (!flags.config) {
   throw new Error('Missing required option "--config"');
 }
 
-const useLocalAssets = flags['use-local-assets'];
+const shouldUseLocalAssets = flags['use-local-assets'];
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
@@ -72,7 +75,7 @@ shelljs.cp('-R', paths.publicAssetsFolderPath, paths.publicAssetsPath);
 
 // This should only be used locally, as we're relying on relative paths
 // outside of this package.
-if (useLocalAssets) {
+if (shouldUseLocalAssets) {
   // Resolve the absolute path of the caller location. This is necessary
   // to point to files within that folder.
   const assetsFrom = resolveApp('dist/assets');
@@ -81,7 +84,7 @@ if (useLocalAssets) {
     fs.accessSync(assetsFrom, fs.F_OK);
   } catch (error) {
     throw new Error(
-      'Could not find "dist/assets" folder. Did you run `yarn build` before starting the server?'
+      'Could not find "dist/assets" folder. Did you run `mc-scripts build` first?'
     );
   }
   // Copy the `dist/assets` folder into the `public` folder.
@@ -93,7 +96,7 @@ const generateStatic = async () => {
     envPath: paths.envPath,
     cspPath: paths.cspPath,
     publicAssetsPath: paths.publicAssetsPath,
-    useLocalAssets,
+    shouldUseLocalAssets,
   });
 
   fs.writeFileSync(
@@ -107,9 +110,7 @@ const generateStatic = async () => {
       require.resolve(flags.transformer);
     } catch (error) {
       throw new Error(
-        `Could not load transformer module "${flags.transformer}"\n${
-          error.stack
-        }`
+        `Could not load transformer module "${flags.transformer}"\n${error.stack}`
       );
     }
     const transformerFn = require(flags.transformer);

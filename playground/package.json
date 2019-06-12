@@ -6,13 +6,13 @@
   "scripts": {
     "build": "mc-scripts build",
     "start": "mc-scripts start",
-    "static:eu": "mc-scripts static --csp=$(pwd)/production-eu.csp.json --config=$(pwd)/production-eu.env.json --use-local-assets --transformer $(pwd)/config/transformer-now.js",
-    "static:us": "mc-scripts static --csp=$(pwd)/production-us.csp.json --config=$(pwd)/production-us.env.json --use-local-assets --transformer $(pwd)/config/transformer-now.js",
+    "compile-html:eu": "mc-scripts compile-html --csp=$(pwd)/production-eu.csp.json --config=$(pwd)/production-eu.env.json --use-local-assets --transformer $(pwd)/config/transformer-now.js",
+    "compile-html:us": "mc-scripts compile-html --csp=$(pwd)/production-us.csp.json --config=$(pwd)/production-us.env.json --use-local-assets --transformer $(pwd)/config/transformer-now.js",
     "start:prod:local": "NODE_ENV=production mc-http-server --csp=$(pwd)/csp.json --config=$(pwd)/env.json --use-local-assets",
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations",
     "deploy": "yarn build && yarn deploy:eu && yarn deploy:us",
-    "deploy:eu": "yarn static:eu && now --local-config=production-eu.now.json --target production",
-    "deploy:us": "yarn static:us && now --local-config=production-us.now.json --target production"
+    "deploy:eu": "yarn compile-html:eu && now --local-config=production-eu.now.json --target production",
+    "deploy:us": "yarn compile-html:us && now --local-config=production-us.now.json --target production"
   },
   "dependencies": {
     "@commercetools-frontend/actions-global": "13.9.0",
