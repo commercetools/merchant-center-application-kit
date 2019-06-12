@@ -15,11 +15,11 @@ export default function createL10NInjector<T>({
   propLoadingKey,
   loadLocale,
 }: InjectorOptions<T>) {
-  return function createHOC<U>(mapPropsToLocale: (props: any) => string) {
+  return function createHOC<Props>(mapPropsToLocale: (props: any) => string) {
     return (
-      WrappedComponent: React.ComponentType<U>
-    ): React.ComponentClass<U> => {
-      class L10NComponent extends React.Component<U> {
+      WrappedComponent: React.ComponentType<Props>
+    ): React.ComponentClass<Props> => {
+      class L10NComponent extends React.Component<Props> {
         static displayName = `${displayName}(${getDisplayName(
           WrappedComponent
         )})`;
@@ -31,7 +31,7 @@ export default function createL10NInjector<T>({
           this.isUnmounting = true;
         }
         // eslint-disable-next-line camelcase
-        UNSAFE_componentWillReceiveProps(nextProps: U) {
+        UNSAFE_componentWillReceiveProps(nextProps: Props) {
           if (mapPropsToLocale(this.props) !== mapPropsToLocale(nextProps)) {
             this.loadCountries(nextProps);
           }
@@ -39,7 +39,7 @@ export default function createL10NInjector<T>({
 
         isUnmounting = false;
 
-        loadCountries = (props: U) => {
+        loadCountries = (props: Props) => {
           this.setState({ [propLoadingKey]: true });
           loadLocale(mapPropsToLocale(props), (error?: Error, data?: T) => {
             if (error) {

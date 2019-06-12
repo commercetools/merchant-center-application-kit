@@ -34,7 +34,7 @@ const Foo = () => <div />;
 Foo.displayName = 'Foo';
 
 describe('rendering', () => {
-  let WrappedComponent: React.ComponentClass<any>;
+  let WrappedComponent: React.ComponentType<any>;
   let wrapper: ShallowWrapper;
   beforeEach(() => {
     loadLocalesMock.mockClear();
@@ -69,7 +69,7 @@ describe('rendering', () => {
 describe('lifecycle', () => {
   let wrapper: ShallowWrapper;
   beforeAll(() => {
-    const WrappedComponent: React.ComponentClass<any> = withCandies(
+    const WrappedComponent: React.ComponentType<any> = withCandies(
       props => props.locale
     )(Foo);
     wrapper = shallow(<WrappedComponent locale="en" />);
@@ -153,7 +153,7 @@ describe('when there is an error loading L10n data', () => {
       propLoadingKey: 'l10nInjector',
       loadLocale: loadLocalesErrorMock,
     });
-    const WrappedComponent: React.ComponentClass<any> = l10nInjector(
+    const WrappedComponent: React.ComponentType<any> = l10nInjector(
       props => props.locale
     )(Foo);
     wrapper = shallow(<WrappedComponent locale="es" />);
