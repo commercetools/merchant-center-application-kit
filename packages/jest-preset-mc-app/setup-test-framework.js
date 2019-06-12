@@ -4,8 +4,6 @@ require('jest-dom/extend-expect');
 require('react-testing-library/cleanup-after-each');
 const Enzyme = require('enzyme');
 const Adapter = require('enzyme-adapter-react-16');
-const ShallowWrapper = require('enzyme/ShallowWrapper');
-const configureEnzymeExtensions = require('@commercetools/enzyme-extensions');
 const commerceToolsEnzymeMatchers = require('@commercetools/jest-enzyme-matchers');
 
 Enzyme.configure({ adapter: new Adapter(), disableLifecycleMethods: true });
@@ -20,5 +18,3 @@ expect.extend({
 });
 
 expect.extend(commerceToolsEnzymeMatchers);
-
-configureEnzymeExtensions(ShallowWrapper);

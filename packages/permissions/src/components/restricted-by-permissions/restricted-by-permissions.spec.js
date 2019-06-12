@@ -23,7 +23,7 @@ describe('rendering', () => {
       props = createTestProps({ render: jest.fn() });
       shallow(<RestrictedByPermissions {...props} />)
         .find(Authorized)
-        .renderProp('render', true);
+        .renderProp('render')(true);
     });
     it('should call render prop with isAuthorized true', () => {
       expect(props.render).toHaveBeenCalledWith({ isAuthorized: true });
@@ -34,7 +34,7 @@ describe('rendering', () => {
       props = createTestProps({ children: jest.fn() });
       shallow(<RestrictedByPermissions {...props} />)
         .find(Authorized)
-        .renderProp('render', true);
+        .renderProp('render')(true);
     });
     it('should call children prop with isAuthorized true', () => {
       expect(props.children).toHaveBeenCalledWith({ isAuthorized: true });
@@ -50,7 +50,7 @@ describe('rendering', () => {
           </RestrictedByPermissions>
         )
           .find(Authorized)
-          .renderProp('render', true);
+          .renderProp('render')(true);
       });
       it('should render children', () => {
         expect(wrapper).toHaveText('Authorized');
@@ -65,7 +65,7 @@ describe('rendering', () => {
           </RestrictedByPermissions>
         )
           .find(Authorized)
-          .renderProp('render', false);
+          .renderProp('render')(false);
       });
       it('should render null', () => {
         expect(wrapper.type()).toBe(null);
@@ -84,7 +84,7 @@ describe('rendering', () => {
             </RestrictedByPermissions>
           )
             .find(Authorized)
-            .renderProp('render', false);
+            .renderProp('render')(false);
         });
         it('should render unauthorizedComponent', () => {
           expect(wrapper).toRender(Unauthorized);

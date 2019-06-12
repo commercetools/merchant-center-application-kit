@@ -66,7 +66,7 @@ describe('rendering', () => {
       downshiftProps = createDownshiftProps();
       menuStateContainerRenderWrapper = wrapper
         .find(Downshift)
-        .renderProp('children', downshiftProps);
+        .renderProp('children')(downshiftProps);
     });
     it('should render button', () => {
       expect(menuStateContainerRenderWrapper).toRender('button');
@@ -81,7 +81,7 @@ describe('rendering', () => {
         downshiftProps = createDownshiftProps({ isOpen: true });
         menuStateContainerRenderWrapper = wrapper
           .find(Downshift)
-          .renderProp('children', downshiftProps);
+          .renderProp('children')(downshiftProps);
       });
       it('should render <ConnectedUserSettingsMenuBody>', () => {
         expect(menuStateContainerRenderWrapper).toRender(

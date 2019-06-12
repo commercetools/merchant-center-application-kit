@@ -47,6 +47,7 @@ const createConfig = cliArgs => {
         plugins: [
           babelPluginImportGraphQL.default,
           ...babelOptions.plugins,
+          'babel-plugin-typescript-to-proptypes',
           isFormatEs && [
             'transform-rename-import',
             {

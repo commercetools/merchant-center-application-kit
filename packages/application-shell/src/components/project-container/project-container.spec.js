@@ -112,7 +112,7 @@ describe('rendering', () => {
     });
     describe('when project is loading', () => {
       beforeEach(() => {
-        wrapper = wrapper.find(FetchProject).renderProp('children', {
+        wrapper = wrapper.find(FetchProject).renderProp('children')({
           isLoading: true,
         });
       });
@@ -122,7 +122,7 @@ describe('rendering', () => {
     });
     describe('when project is not found', () => {
       beforeEach(() => {
-        wrapper = wrapper.find(FetchProject).renderProp('children', {
+        wrapper = wrapper.find(FetchProject).renderProp('children')({
           isLoading: false,
           project: null,
         });
@@ -136,10 +136,10 @@ describe('rendering', () => {
       beforeEach(() => {
         projectSuspendedWrapper = wrapper
           .find(FetchProject)
-          .renderProp('children', {
-            isLoading: false,
-            project: createTestProjectProps({ suspension: { isActive: true } }),
-          });
+          .renderProp('children')({
+          isLoading: false,
+          project: createTestProjectProps({ suspension: { isActive: true } }),
+        });
       });
       it('should render <ProjectSuspended>', () => {
         expect(projectSuspendedWrapper).toRender(ProjectSuspended);
@@ -148,15 +148,15 @@ describe('rendering', () => {
         beforeEach(() => {
           projectSuspendedWrapper = wrapper
             .find(FetchProject)
-            .renderProp('children', {
-              isLoading: false,
-              project: createTestProjectProps({
-                suspension: {
-                  isActive: true,
-                  reason: 'TemporaryMaintenance',
-                },
-              }),
-            });
+            .renderProp('children')({
+            isLoading: false,
+            project: createTestProjectProps({
+              suspension: {
+                isActive: true,
+                reason: 'TemporaryMaintenance',
+              },
+            }),
+          });
         });
 
         it('should render <ProjectSuspended>', () => {
@@ -176,7 +176,7 @@ describe('rendering', () => {
         beforeEach(() => {
           wrapper = wrapper
             .find(FetchProject)
-            .renderProp('children', {
+            .renderProp('children')({
               isLoading: false,
               project: createTestProjectProps({
                 suspension: { isActive: false },
@@ -186,9 +186,9 @@ describe('rendering', () => {
               }),
             })
             .find(ProjectDataLocale)
-            .renderProp('children', {
-              locales: ['de'],
-            });
+            .renderProp('children')({
+            locales: ['de'],
+          });
         });
         it('should render Notifier component', () => {
           expect(wrapper).toRender(Notifier);
@@ -198,7 +198,7 @@ describe('rendering', () => {
         beforeEach(() => {
           wrapper = wrapper
             .find(FetchProject)
-            .renderProp('children', {
+            .renderProp('children')({
               isLoading: false,
               project: createTestProjectProps({
                 suspension: { isActive: false, daysLeft: 16 },
@@ -208,9 +208,9 @@ describe('rendering', () => {
               }),
             })
             .find(ProjectDataLocale)
-            .renderProp('children', {
-              locales: ['de'],
-            });
+            .renderProp('children')({
+            locales: ['de'],
+          });
         });
 
         it('should not render Notifier component', () => {
@@ -221,7 +221,7 @@ describe('rendering', () => {
         beforeEach(() => {
           wrapper = wrapper
             .find(FetchProject)
-            .renderProp('children', {
+            .renderProp('children')({
               isLoading: false,
               project: createTestProjectProps({
                 suspension: { isActive: false },
@@ -231,9 +231,9 @@ describe('rendering', () => {
               }),
             })
             .find(ProjectDataLocale)
-            .renderProp('children', {
-              locales: ['de'],
-            });
+            .renderProp('children')({
+            locales: ['de'],
+          });
         });
 
         it('should render Notifier component', () => {
@@ -243,7 +243,7 @@ describe('rendering', () => {
     });
     describe('when project is expired', () => {
       beforeEach(() => {
-        wrapper = wrapper.find(FetchProject).renderProp('children', {
+        wrapper = wrapper.find(FetchProject).renderProp('children')({
           isLoading: false,
           project: createTestProjectProps({
             suspension: { isActive: false },
@@ -257,7 +257,7 @@ describe('rendering', () => {
     });
     describe('when project is not initialized', () => {
       beforeEach(() => {
-        wrapper = wrapper.find(FetchProject).renderProp('children', {
+        wrapper = wrapper.find(FetchProject).renderProp('children')({
           isLoading: false,
           project: createTestProjectProps({
             initialized: false,
@@ -283,15 +283,15 @@ describe('rendering', () => {
           dataLocale = 'de';
           wrapperDataLocale = wrapper
             .find(FetchProject)
-            .renderProp('children', {
+            .renderProp('children')({
               isLoading: false,
               project,
             })
             .find(ProjectDataLocale)
-            .renderProp('children', {
-              locale: dataLocale,
-              setProjectDataLocale: jest.fn(),
-            });
+            .renderProp('children')({
+            locale: dataLocale,
+            setProjectDataLocale: jest.fn(),
+          });
         });
         it('should pass "user" to <ApplicationContextProvider>', () => {
           expect(wrapperDataLocale.find(ApplicationContextProvider)).toHaveProp(
@@ -323,7 +323,7 @@ describe('rendering', () => {
             wrapper.setState({ localeSwitcherNode: el });
             wrapperDataLocale = wrapper
               .find(FetchProject)
-              .renderProp('children', {
+              .renderProp('children')({
                 isLoading: false,
                 project: createTestProjectProps({
                   suspension: { isActive: false },
@@ -333,10 +333,10 @@ describe('rendering', () => {
                 }),
               })
               .find(ProjectDataLocale)
-              .renderProp('children', {
-                locale: 'de',
-                setProjectDataLocale: jest.fn(),
-              });
+              .renderProp('children')({
+              locale: 'de',
+              setProjectDataLocale: jest.fn(),
+            });
           });
           it('should call render function', () => {
             expect(props.render).toHaveBeenCalled();
@@ -347,7 +347,7 @@ describe('rendering', () => {
               wrapper.setState({ localeSwitcherNode: el });
               wrapperDataLocale = wrapper
                 .find(FetchProject)
-                .renderProp('children', {
+                .renderProp('children')({
                   isLoading: false,
                   project: createTestProjectProps({
                     suspension: { isActive: false },
@@ -357,10 +357,10 @@ describe('rendering', () => {
                   }),
                 })
                 .find(ProjectDataLocale)
-                .renderProp('children', {
-                  locale: 'de',
-                  setProjectDataLocale: jest.fn(),
-                });
+                .renderProp('children')({
+                locale: 'de',
+                setProjectDataLocale: jest.fn(),
+              });
             });
             it('should render portal', () => {
               expect(wrapperDataLocale).toRender(
@@ -374,7 +374,7 @@ describe('rendering', () => {
               wrapper.setState({ localeSwitcherNode: el });
               wrapperDataLocale = wrapper
                 .find(FetchProject)
-                .renderProp('children', {
+                .renderProp('children')({
                   isLoading: false,
                   project: createTestProjectProps({
                     suspension: { isActive: false },
@@ -384,10 +384,10 @@ describe('rendering', () => {
                   }),
                 })
                 .find(ProjectDataLocale)
-                .renderProp('children', {
-                  locale: 'de',
-                  setProjectDataLocale: jest.fn(),
-                });
+                .renderProp('children')({
+                locale: 'de',
+                setProjectDataLocale: jest.fn(),
+              });
             });
             it('should not render <LocalSwitcher> through a portal', () => {
               expect(wrapperDataLocale).not.toRender(
@@ -400,7 +400,7 @@ describe('rendering', () => {
           beforeEach(() => {
             wrapperDataLocale = wrapper
               .find(FetchProject)
-              .renderProp('children', {
+              .renderProp('children')({
                 isLoading: false,
                 project: createTestProjectProps({
                   suspension: { isActive: false },
@@ -410,10 +410,10 @@ describe('rendering', () => {
                 }),
               })
               .find(ProjectDataLocale)
-              .renderProp('children', {
-                locale: 'de',
-                setProjectDataLocale: jest.fn(),
-              });
+              .renderProp('children')({
+              locale: 'de',
+              setProjectDataLocale: jest.fn(),
+            });
           });
           it('should not render <LocalSwitcher> through a portal', () => {
             expect(wrapperDataLocale).not.toRender(
