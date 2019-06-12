@@ -19,7 +19,7 @@ export default function createL10NInjector<T>({
     return (
       WrappedComponent: React.ComponentType<Props>
     ): React.ComponentClass<Props> => {
-      class L10NComponent extends React.Component<Props> {
+      return class L10NComponent extends React.Component<Props> {
         static displayName = `${displayName}(${getDisplayName(
           WrappedComponent
         )})`;
@@ -52,8 +52,7 @@ export default function createL10NInjector<T>({
         render() {
           return <WrappedComponent {...this.props} {...this.state} />;
         }
-      }
-      return L10NComponent;
+      };
     };
   };
 }
