@@ -28,6 +28,6 @@
     "baseUrl": ".",
     "paths": { "*": ["@types/*"] }
   },
-  "include": ["**/src/**/*", "jest.d.ts", "graphql.d.ts"],
+  "include": ["**/src/**/*", "jest.d.ts"],
   "exclude": ["**/node_modules", "**/dist/**/*"]
 }
