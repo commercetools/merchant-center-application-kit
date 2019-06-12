@@ -76,8 +76,10 @@ const createConfig = cliArgs => {
         plugins: [
           postcssImport(),
           postcssPresetEnv({
-            browsers: browserslist.production,
-            autoprefixer: { grid: true },
+            autoprefixer: {
+              grid: true,
+              overrideBrowserslist: browserslist.production,
+            },
           }),
           postcssCustomMediaQueries({
             importFrom: require.resolve(
