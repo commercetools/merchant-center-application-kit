@@ -9,6 +9,10 @@ type Mock = Record<number, string>;
 
 type MockData = Record<string, Mock>;
 
+type TestProps = {
+  locale: string;
+};
+
 const mockData: MockData = {
   en: {
     1: 'sugar',
@@ -38,7 +42,7 @@ describe('rendering', () => {
   let wrapper: ShallowWrapper;
   beforeEach(() => {
     loadLocalesMock.mockClear();
-    WrappedComponent = withCandies(props => props.locale)(Foo);
+    WrappedComponent = withCandies<TestProps>(props => props.locale)(Foo);
     wrapper = shallow(<WrappedComponent locale="en" />);
   });
   describe('wrapped component', () => {
@@ -69,7 +73,7 @@ describe('rendering', () => {
 describe('lifecycle', () => {
   let wrapper: ShallowWrapper;
   beforeAll(() => {
-    const WrappedComponent: React.ComponentType<any> = withCandies(
+    const WrappedComponent: React.ComponentType<any> = withCandies<TestProps>(
       props => props.locale
     )(Foo);
     wrapper = shallow(<WrappedComponent locale="en" />);
@@ -153,7 +157,7 @@ describe('when there is an error loading L10n data', () => {
       propLoadingKey: 'l10nInjector',
       loadLocale: loadLocalesErrorMock,
     });
-    const WrappedComponent: React.ComponentType<any> = l10nInjector(
+    const WrappedComponent: React.ComponentType<any> = l10nInjector<TestProps>(
       props => props.locale
     )(Foo);
     wrapper = shallow(<WrappedComponent locale="es" />);

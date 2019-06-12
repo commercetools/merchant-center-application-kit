@@ -15,7 +15,7 @@ export default function createL10NInjector<T>({
   propLoadingKey,
   loadLocale,
 }: InjectorOptions<T>) {
-  return function createHOC<Props>(mapPropsToLocale: (props: any) => string) {
+  return function createHOC<Props>(mapPropsToLocale: (props: Props) => string) {
     return (
       WrappedComponent: React.ComponentType<Props>
     ): React.ComponentClass<Props> => {

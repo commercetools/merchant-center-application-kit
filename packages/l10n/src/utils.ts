@@ -38,7 +38,7 @@ export const getSymbolFromCurrency = (
 };
 
 // From https://github.com/acdlite/recompose/blob/master/src/packages/recompose/getDisplayName.js
-export const getDisplayName = (Component: React.ComponentType<any>) => {
+export const getDisplayName = <T>(Component: React.ComponentType<T>) => {
   if (typeof Component === 'string') {
     return Component;
   }
