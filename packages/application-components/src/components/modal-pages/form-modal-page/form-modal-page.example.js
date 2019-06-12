@@ -2,17 +2,16 @@ import React from 'react';
 import { Formik } from 'formik';
 import { FormModalPage } from '@commercetools-frontend/application-components';
 import {
-  Text,
   Spacings,
   TextInput,
   TextField,
   FlameIcon,
   IconButton,
   SearchIcon,
-  ToggleInput,
   BinLinearIcon,
 } from '@commercetools-frontend/ui-kit';
 import ExampleWrapper from '../../internals/for-docs/example-wrapper';
+import ModalController from '../../internals/for-docs/modal-controller';
 
 const exampleCustomControls = (
   <Spacings.Inline>
@@ -22,77 +21,98 @@ const exampleCustomControls = (
   </Spacings.Inline>
 );
 
-// This component is supposed to be used in the mdx documentation
-const FormModalPageExample = () => {
-  const [useCustomControls, setUseCustomControls] = React.useState(false);
-
-  return (
-    <React.Fragment>
-      <ExampleWrapper
-        containerId="form-modal-page"
-        containerHeight="600px"
-        controllerTitle="Open the Form Modal Page by clicking on the button"
-        controllerButtonLabel="Open Form Modal Page"
-      >
-        {({ isOpen, toggle }) => (
-          <Formik
-            initialValues={{ email: '' }}
-            validate={formikValues => {
-              if (TextInput.isEmpty(formikValues.email)) {
-                return { email: { missing: true } };
-              }
-              return {};
-            }}
-            onSubmit={formikValues => {
-              alert(`email: ${formikValues.email}`);
-              toggle(false);
-            }}
-            render={formikProps => (
-              <FormModalPage
-                title="Lorem Ipsum"
-                isOpen={isOpen}
-                onClose={() => toggle(false)}
-                customControls={useCustomControls && exampleCustomControls}
-                isPrimaryButtonDisabled={formikProps.isSubmitting}
-                onSecondaryButtonClick={() => {
-                  formikProps.resetForm();
-                  toggle(false);
-                }}
-                onPrimaryButtonClick={formikProps.handleSubmit}
-                getParentSelector={() =>
-                  document.querySelector('#form-modal-page')
-                }
-              >
-                <TextField
-                  name="email"
-                  title="Email"
-                  isRequired={true}
-                  value={formikProps.values.email}
-                  errors={formikProps.errors.email}
-                  touched={formikProps.touched.email}
-                  onChange={formikProps.handleChange}
-                  onBlur={formikProps.handleBlur}
-                  onFocus={formikProps.handleFocus}
-                />
-              </FormModalPage>
-            )}
-          />
-        )}
-      </ExampleWrapper>
-      <Spacings.Inline alignItems="center">
-        <ToggleInput
-          name="Use Custom Controls"
-          size="small"
-          isChecked={useCustomControls}
-          onChange={event => {
-            setUseCustomControls(event.target.checked);
-          }}
-        />
-        <Text.Body>Use Custom Controls</Text.Body>
-      </Spacings.Inline>
-    </React.Fragment>
-  );
+const customControls = option => {
+  if (option === 'custom') return exampleCustomControls;
+  if (option === 'none') return <React.Fragment />;
+  return undefined;
 };
+
+// This component is supposed to be used in the mdx documentation
+const FormModalPageExample = () => (
+  <React.Fragment>
+    <ExampleWrapper
+      knobs={[
+        {
+          kind: 'text',
+          name: 'title',
+          label: 'Title',
+          initialValue:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        },
+        {
+          kind: 'select',
+          name: 'useCustomControls',
+          label: 'Form Controls',
+          valueOptions: [
+            { value: 'default', label: 'Default' },
+            { value: 'custom', label: 'Custom (Icon Buttons example)' },
+            { value: 'none', label: 'None' },
+          ],
+          initialValue: false,
+        },
+      ]}
+    >
+      {({ values, isPlaygroundMode }) => {
+        const containerId = isPlaygroundMode
+          ? 'form-modal-page-playground'
+          : 'form-modal-page';
+        return (
+          <ModalController
+            title="Open the Form Modal Page by clicking on the button"
+            buttonLabel="Open Form Modal Page"
+            containerId={containerId}
+          >
+            {({ isOpen, setIsOpen }) => (
+              <Formik
+                initialValues={{ email: '' }}
+                validate={formikValues => {
+                  if (TextInput.isEmpty(formikValues.email)) {
+                    return { email: { missing: true } };
+                  }
+                  return {};
+                }}
+                onSubmit={formikValues => {
+                  alert(`email: ${formikValues.email}`);
+                  setIsOpen(false);
+                }}
+                render={formikProps => (
+                  <FormModalPage
+                    title={values.title}
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                    customControls={customControls(values.useCustomControls)}
+                    isPrimaryButtonDisabled={formikProps.isSubmitting}
+                    onSecondaryButtonClick={() => {
+                      formikProps.resetForm();
+                      setIsOpen(false);
+                    }}
+                    onPrimaryButtonClick={formikProps.handleSubmit}
+                    getParentSelector={() =>
+                      document.querySelector(`#${containerId}`)
+                    }
+                  >
+                    <TextField
+                      name="email"
+                      title="Email"
+                      isRequired={true}
+                      value={formikProps.values.email}
+                      errors={formikProps.errors.email}
+                      touched={formikProps.touched.email}
+                      onChange={formikProps.handleChange}
+                      onBlur={formikProps.handleBlur}
+                      onFocus={formikProps.handleFocus}
+                    />
+                  </FormModalPage>
+                )}
+              />
+            )}
+          </ModalController>
+        );
+      }}
+    </ExampleWrapper>
+  </React.Fragment>
+);
+
 FormModalPageExample.displayName = 'FormModalPageExample';
 
 export default FormModalPageExample;
