@@ -19,7 +19,6 @@ const LayoutContent = props => {
         <LayoutHeader />
         <LayoutSidebar isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
         <LayoutMain
-          columns={3}
           css={css`
             grid-column: auto;
             grid-row: ${isMenuOpen ? '3' : '2'};

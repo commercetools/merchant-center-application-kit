@@ -7,7 +7,6 @@ const LayoutMain = props => (
     role="main"
     className={props.className}
     css={css`
-      grid-column: ${props.columns};
       grid-row: 2;
       min-width: 0;
       overflow-x: hidden;
@@ -32,7 +31,6 @@ const LayoutMain = props => (
 LayoutMain.displayName = 'LayoutMain';
 LayoutMain.propTypes = {
   className: PropTypes.string,
-  columns: PropTypes.oneOf([1, 2, 3]),
   children: PropTypes.node.isRequired,
 };
 
