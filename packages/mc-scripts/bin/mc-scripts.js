@@ -14,8 +14,9 @@ if (commands.length === 0 || (flags.help && commands.length === 0)) {
 
   Commands:
   build            Bundles the application in production mode
-  start            Starts the application using webpack dev server
+  compile-html     Compiles index.html.template into index.html, with all the related runtime configuration applied as well as the properly security headers (requires "mc-scripts build" to run before)
   extract-intl     Extracts intl messages into JSON files
+  start            Starts the application using webpack dev server
   `);
   process.exit(0);
 }
@@ -24,6 +25,7 @@ const command = commands[0];
 
 switch (command) {
   case 'build':
+  case 'compile-html':
   case 'extract-intl':
   case 'start': {
     const commandArgs = process.argv.slice(2).filter(arg => command !== arg);

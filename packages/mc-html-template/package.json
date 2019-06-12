@@ -21,6 +21,7 @@
   "main": "./lib/index.js",
   "module": "./lib/index.js",
   "dependencies": {
+    "node-fetch": "2.6.0",
     "serialize-javascript": "1.7.0",
     "uglify-es": "3.3.9",
     "uglifycss": "0.0.29"

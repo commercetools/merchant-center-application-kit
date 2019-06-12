@@ -4,10 +4,6 @@ const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
 const htmlScripts = require('./html-scripts');
 // const htmlStyles = require('./html-styles');
 
-// Keep a reference to the loaded config so that requiring the module
-// again will result in returning the cached value.
-let loadedHeaders;
-
 const loadCustomCspDirectives = customCspPath => {
   let rawConfig;
   try {
@@ -41,8 +37,6 @@ const mergeCspDirectives = (...csps) =>
   );
 
 module.exports = (env, options) => {
-  if (loadedHeaders) return loadedHeaders;
-
   const isMcDevEnv = env.env === 'development';
 
   // List hashes for injected inline scripts.
@@ -134,14 +128,11 @@ module.exports = (env, options) => {
     .map(([directive, value]) => `${directive} ${value.join(' ')}`)
     .join('; ');
 
-  const headers = {
+  return {
     'Strict-Transport-Security': 'max-age=31536000',
     'X-XSS-Protection': '1; mode=block',
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
     'Content-Security-Policy': cspHeaderString,
   };
-  // Memoize the headers for faster reads
-  loadedHeaders = headers;
-  return loadedHeaders;
 };

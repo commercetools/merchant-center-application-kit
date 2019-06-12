@@ -1,0 +1,7 @@
+dist
+node_modules
+src
+Dockerfile
+csp.json
+env.json
+menu.json

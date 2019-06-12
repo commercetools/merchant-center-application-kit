@@ -14,9 +14,6 @@ const compression = require('compression');
 const devAuthentication = require('@commercetools-frontend/mc-dev-authentication');
 const express = require('express');
 const { createLogoutHandler, createLoginHandler } = require('./routes');
-const options = require('./load-options');
-
-const publicFolderPath = path.join(__dirname, 'public');
 
 // Config
 const serverPort = process.env.HTTP_PORT || 3001;
@@ -52,25 +49,33 @@ const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
   },
 });
 
-const serverIndexMiddleware = (request, response) => {
+const createServerIndexMiddleware = options => (request, response) => {
   // Define security headers!
   Object.keys(options.headers).forEach(key => {
     response.setHeader(key, options.headers[key]);
   });
   // Fall back to index.html
-  response.sendFile(path.join(publicFolderPath, 'index.html'));
+  response.sendFile(path.join(options.paths.publicAssetsPath, 'index.html'));
 };
-const throwIfIndexHtmlIsMissing = () => {
+const throwIfIndexHtmlIsMissing = options => {
   // Make sure that the `index.html` is available.
+  const indexHtmlPath = path.join(options.paths.publicAssetsPath, 'index.html');
   try {
-    fs.accessSync(path.join(publicFolderPath, 'index.html'), fs.F_OK);
+    fs.accessSync(indexHtmlPath, fs.F_OK);
   } catch (error) {
-    throw new Error('Missing "index.html" file in "public" folder.');
+    throw new Error(
+      `Cannot find "index.html" file in ${path.join(
+        options.paths.publicAssetsPath,
+        'index.html'
+      )}`
+    );
   }
 };
 
-const startServer = config => {
-  throwIfIndexHtmlIsMissing();
+const startServer = options => {
+  throwIfIndexHtmlIsMissing(options);
+
+  const serverIndexMiddleware = createServerIndexMiddleware(options);
 
   // Configure and start the HTTP server.
   const app = express()
@@ -87,8 +92,8 @@ const startServer = config => {
     // Request access logs
     .use(morgan('combined', { stream: process.stdout }))
     // Intercept the /logout page and "remove" the auth cookie value
-    .get('/logout', createLogoutHandler(config.env))
-    .get('/login', createLoginHandler(config.env))
+    .get('/logout', createLogoutHandler(options.env))
+    .get('/login', createLoginHandler(options.env))
     // Keep this after the scraping endpoint `/metrics`
     .use(prometheusMetricsMiddleware)
     // From here on, compress all responses
@@ -103,7 +108,7 @@ const startServer = config => {
     })
     // Try serving a static file that matches the url, otherwise go to
     // the next middleware (e.g. favicon.png)
-    .use(express.static(publicFolderPath))
+    .use(express.static(options.paths.publicAssetsPath))
     // Catch all middleware to serve the `index.html` (for SPA routes)
     .use('*', serverIndexMiddleware);
 
