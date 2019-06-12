@@ -1,9 +1,4 @@
-type Currency = {
-  label: string;
-  symbol: string;
-};
-
-type Currencies = Record<string, Currency>;
+import { Currencies } from './currency-information';
 
 export const mapLocaleToIntlLocale = (locale: string) => {
   if (locale.startsWith('de')) return 'de';

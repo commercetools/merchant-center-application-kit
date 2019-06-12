@@ -6,7 +6,7 @@ type Currency = {
   symbol: string;
 };
 
-type Currencies = {
+export type Currencies = {
   default: Record<string, Currency>;
 };
 
