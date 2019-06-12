@@ -75,9 +75,7 @@ describe('rendering', () => {
 describe('lifecycle', () => {
   let wrapper: ShallowWrapper;
   beforeAll(() => {
-    const WrappedComponent: React.ComponentType<TestProps> = withCandies<
-      TestProps
-    >(props => props.locale)(Foo);
+    const WrappedComponent = withCandies<TestProps>(props => props.locale)(Foo);
     wrapper = shallow(<WrappedComponent locale="en" />);
   });
   describe('componentDidMount', () => {
@@ -160,9 +158,9 @@ describe('when there is an error loading L10n data', () => {
       propLoadingKey: 'l10nInjector',
       loadLocale: loadLocalesErrorMock,
     });
-    const WrappedComponent: React.ComponentType<TestProps> = l10nInjector<
-      TestProps
-    >(props => props.locale)(Foo);
+    const WrappedComponent = l10nInjector<TestProps>(props => props.locale)(
+      Foo
+    );
     wrapper = shallow(<WrappedComponent locale="es" />);
     const instance = wrapper.instance();
     if (instance.componentDidMount) {
