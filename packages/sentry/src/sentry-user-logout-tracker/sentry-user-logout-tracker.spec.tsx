@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from 'react-testing-library';
-import { stopTrackingUser } from '../sentry';
-import SentryUserLogoutTracker from './sentry-user-logout-tracker';
+import SentryUserLogoutTracker, {
+  stopTrackingUser,
+} from './sentry-user-logout-tracker';
 
 jest.mock('../sentry');
 

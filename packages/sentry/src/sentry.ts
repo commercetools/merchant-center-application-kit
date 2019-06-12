@@ -1,13 +1,4 @@
-import * as PropTypes from 'prop-types';
 import * as Sentry from '@sentry/browser';
-import { InferPropTypes } from './type-utils';
-
-export const userPropTypes = {
-  id: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-};
-
-type User = InferPropTypes<typeof userPropTypes>;
 
 export const boot = () => {
   if (window.app.trackingSentry) {
@@ -22,28 +13,6 @@ export const boot = () => {
     });
     Sentry.configureScope(scope => {
       scope.setTag('role', 'frontend');
-    });
-  }
-};
-
-export const updateUser = (user: User) => {
-  if (window.app.trackingSentry) {
-    // to avoid sending personal data to sentry we anonymize the email address
-    // by only sending the domain part or the email
-    const emailTld = user.email.split('@')[1];
-    Sentry.configureScope(scope => {
-      scope.setUser({
-        email: `xxx@${emailTld}`,
-        id: user.id,
-      });
-    });
-  }
-};
-
-export const stopTrackingUser = () => {
-  if (window.app.trackingSentry) {
-    Sentry.configureScope(scope => {
-      scope.clear();
     });
   }
 };

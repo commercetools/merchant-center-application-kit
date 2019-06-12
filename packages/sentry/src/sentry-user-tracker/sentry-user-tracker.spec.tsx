@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from 'react-testing-library';
-import { updateUser } from '../sentry';
-import SentryUserTracker from './sentry-user-tracker';
+import SentryUserTracker, { updateUser } from './sentry-user-tracker';
 
 jest.mock('../sentry');
 
