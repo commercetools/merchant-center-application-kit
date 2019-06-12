@@ -5,19 +5,14 @@ import createL10NInjector from './create-l10n-injector';
 
 jest.mock('@commercetools-frontend/sentry');
 
-type Mock = Record<number, string>;
-
-type MockData = Record<string, Mock>;
+type Candy = Record<number, string>;
+type Candies = Record<string, Candy>;
 
 type TestProps = {
   locale: string;
 };
 
-type WrappedComponentProps = {
-  locale: string;
-};
-
-const mockData: MockData = {
+const candies: Candies = {
   en: {
     1: 'sugar',
     2: 'fruit',
@@ -30,7 +25,10 @@ const mockData: MockData = {
   },
 };
 
-const loadLocalesMock = jest.fn((locale, cb) => cb(null, mockData[locale]));
+const loadLocalesMock = jest.fn(
+  (locale: string, cb: (error?: Error, data?: Candies) => void) =>
+    cb(undefined, candies[locale])
+);
 const withCandies = createL10NInjector({
   displayName: 'withCandies',
   propKey: 'candies',
@@ -42,7 +40,7 @@ const Foo = () => <div />;
 Foo.displayName = 'Foo';
 
 describe('rendering', () => {
-  let WrappedComponent: React.ComponentType<WrappedComponentProps>;
+  let WrappedComponent: React.ComponentType<TestProps>;
   let wrapper: ShallowWrapper;
   beforeEach(() => {
     loadLocalesMock.mockClear();
@@ -77,9 +75,9 @@ describe('rendering', () => {
 describe('lifecycle', () => {
   let wrapper: ShallowWrapper;
   beforeAll(() => {
-    const WrappedComponent: React.ComponentType<
-      WrappedComponentProps
-    > = withCandies<TestProps>(props => props.locale)(Foo);
+    const WrappedComponent: React.ComponentType<TestProps> = withCandies<
+      TestProps
+    >(props => props.locale)(Foo);
     wrapper = shallow(<WrappedComponent locale="en" />);
   });
   describe('componentDidMount', () => {
@@ -152,8 +150,9 @@ describe('when there is an error loading L10n data', () => {
   let wrapper: ShallowWrapper;
   const error = new Error('unknown locale');
   beforeEach(() => {
-    const loadLocalesErrorMock = jest.fn((locale, cb) =>
-      cb(error, mockData[locale])
+    const loadLocalesErrorMock = jest.fn(
+      (_locale: string, cb: (error?: Error, data?: Candies) => void) =>
+        cb(error)
     );
     const l10nInjector = createL10NInjector({
       displayName: 'l10nInjector',
@@ -161,9 +160,9 @@ describe('when there is an error loading L10n data', () => {
       propLoadingKey: 'l10nInjector',
       loadLocale: loadLocalesErrorMock,
     });
-    const WrappedComponent: React.ComponentType<
-      WrappedComponentProps
-    > = l10nInjector<TestProps>(props => props.locale)(Foo);
+    const WrappedComponent: React.ComponentType<TestProps> = l10nInjector<
+      TestProps
+    >(props => props.locale)(Foo);
     wrapper = shallow(<WrappedComponent locale="es" />);
     const instance = wrapper.instance();
     if (instance.componentDidMount) {
