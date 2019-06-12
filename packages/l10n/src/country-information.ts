@@ -50,7 +50,7 @@ const getCountriesForLocale = (
     // Prefer loading `default` (for ESM bundles) and
     // fall back to normal import (for CJS bundles).
     .then(countries => cb(undefined, countries.default || countries))
-    .catch(error => cb(error, undefined));
+    .catch(error => cb(error));
 };
 
 export const withCountries = createL10NInjector<Record<string, string>>({

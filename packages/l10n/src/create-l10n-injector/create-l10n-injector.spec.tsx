@@ -13,6 +13,10 @@ type TestProps = {
   locale: string;
 };
 
+type WrappedComponentProps = {
+  locale: string;
+};
+
 const mockData: MockData = {
   en: {
     1: 'sugar',
@@ -38,7 +42,7 @@ const Foo = () => <div />;
 Foo.displayName = 'Foo';
 
 describe('rendering', () => {
-  let WrappedComponent: React.ComponentType<any>;
+  let WrappedComponent: React.ComponentType<WrappedComponentProps>;
   let wrapper: ShallowWrapper;
   beforeEach(() => {
     loadLocalesMock.mockClear();
@@ -73,9 +77,9 @@ describe('rendering', () => {
 describe('lifecycle', () => {
   let wrapper: ShallowWrapper;
   beforeAll(() => {
-    const WrappedComponent: React.ComponentType<any> = withCandies<TestProps>(
-      props => props.locale
-    )(Foo);
+    const WrappedComponent: React.ComponentType<
+      WrappedComponentProps
+    > = withCandies<TestProps>(props => props.locale)(Foo);
     wrapper = shallow(<WrappedComponent locale="en" />);
   });
   describe('componentDidMount', () => {
@@ -157,9 +161,9 @@ describe('when there is an error loading L10n data', () => {
       propLoadingKey: 'l10nInjector',
       loadLocale: loadLocalesErrorMock,
     });
-    const WrappedComponent: React.ComponentType<any> = l10nInjector<TestProps>(
-      props => props.locale
-    )(Foo);
+    const WrappedComponent: React.ComponentType<
+      WrappedComponentProps
+    > = l10nInjector<TestProps>(props => props.locale)(Foo);
     wrapper = shallow(<WrappedComponent locale="es" />);
     const instance = wrapper.instance();
     if (instance.componentDidMount) {
