@@ -40,7 +40,7 @@ const FormDialogExample = () => {
             title="Open the Form Dialog by clicking on the button"
             buttonLabel="Open Form Dialog"
           >
-            {({ isOpen, toggle }) => (
+            {({ isOpen, setIsOpen }) => (
               <Formik
                 initialValues={{ email: '' }}
                 validate={formikValues => {
@@ -51,18 +51,18 @@ const FormDialogExample = () => {
                 }}
                 onSubmit={formikValues => {
                   alert(`email: ${formikValues.email}`);
-                  toggle(false);
+                  setIsOpen(false);
                 }}
                 render={formikProps => (
                   <FormDialog
                     title={values.title}
                     isOpen={isOpen}
-                    onClose={() => toggle(false)}
+                    onClose={() => setIsOpen(false)}
                     size={values.size}
                     isPrimaryButtonDisabled={formikProps.isSubmitting}
                     onSecondaryButtonClick={() => {
                       formikProps.resetForm();
-                      toggle(false);
+                      setIsOpen(false);
                     }}
                     onPrimaryButtonClick={formikProps.handleSubmit}
                     getParentSelector={() =>

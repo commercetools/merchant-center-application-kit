@@ -45,18 +45,18 @@ const ConfirmationDialogExample = () => {
             title="Open the Confirmation Dialog by clicking on the button"
             buttonLabel="Open Confirmation Dialog"
           >
-            {({ isOpen, toggle }) => (
+            {({ isOpen, setIsOpen }) => (
               <ConfirmationDialog
                 title={values.title}
                 isOpen={isOpen}
-                onClose={() => toggle(false)}
+                onClose={() => setIsOpen(false)}
                 size={values.size}
                 onCancel={() => {
-                  toggle(false);
+                  setIsOpen(false);
                 }}
                 onConfirm={() => {
                   alert('confirmed');
-                  toggle(false);
+                  setIsOpen(false);
                 }}
                 getParentSelector={() =>
                   document.querySelector(`#${containerId}`)

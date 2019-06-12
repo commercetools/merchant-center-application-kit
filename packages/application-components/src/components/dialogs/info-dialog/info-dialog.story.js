@@ -24,11 +24,11 @@ storiesOf('Components|Dialogs', module)
         title="Open the Info Dialog by clicking on the button"
         buttonLabel="Open Info Dialog"
       >
-        {({ isOpen, toggle }) => (
+        {({ isOpen, setIsOpen }) => (
           <InfoDialog
             title={text('title', 'Lorem Ipsum')}
             isOpen={isOpen}
-            onClose={() => toggle(false)}
+            onClose={() => setIsOpen(false)}
             size={select('size', ['m', 'l', 'scale'], 'l')}
             zIndex={number('z-index', 1000)}
           >

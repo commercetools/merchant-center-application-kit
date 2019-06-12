@@ -130,7 +130,7 @@ KnobsController.propTypes = {
 };
 
 const ExampleWrapper = props => {
-  const [isOpen, toggle] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
     <ThemeProvider
       theme={{
@@ -151,7 +151,7 @@ const ExampleWrapper = props => {
                   <IconButton
                     icon={<CodeViewIcon />}
                     label="Enter playground mode"
-                    onClick={() => toggle(true)}
+                    onClick={() => setIsOpen(true)}
                   />
                 </Tooltip>
               </Spacings.Inline>
@@ -159,7 +159,7 @@ const ExampleWrapper = props => {
                 title="Playground"
                 size="scale"
                 isOpen={isOpen}
-                onClose={() => toggle(false)}
+                onClose={() => setIsOpen(false)}
                 getParentSelector={() => document.body}
               >
                 <ColumnsContainer>

@@ -25,7 +25,7 @@ storiesOf('Components|Dialogs', module)
         title="Open the Form Dialog by clicking on the button"
         buttonLabel="Open Form Dialog"
       >
-        {({ isOpen, toggle }) => (
+        {({ isOpen, setIsOpen }) => (
           <Formik
             initialValues={{ email: '' }}
             validate={formikValues => {
@@ -36,7 +36,7 @@ storiesOf('Components|Dialogs', module)
             }}
             onSubmit={formikValues => {
               alert(`email: ${formikValues.email}`);
-              toggle(false);
+              setIsOpen(false);
             }}
             render={formikProps => (
               <FormDialog
@@ -45,7 +45,7 @@ storiesOf('Components|Dialogs', module)
                 onClose={
                   boolean('disable close', false)
                     ? undefined
-                    : () => toggle(false)
+                    : () => setIsOpen(false)
                 }
                 size={select('size', ['m', 'l', 'scale'], 'l')}
                 zIndex={number('z-index', 1000)}
@@ -57,7 +57,7 @@ storiesOf('Components|Dialogs', module)
                 }
                 onSecondaryButtonClick={() => {
                   alert('cancelled');
-                  toggle(false);
+                  setIsOpen(false);
                 }}
                 onPrimaryButtonClick={formikProps.handleSubmit}
               >

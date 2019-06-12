@@ -45,12 +45,12 @@ const InfoDialogExample = () => {
             title="Open the Info Dialog by clicking on the button"
             buttonLabel="Open Info Dialog"
           >
-            {({ isOpen, toggle }) => (
+            {({ isOpen, setIsOpen }) => (
               <InfoDialog
                 title={values.title}
                 size={values.size}
                 isOpen={isOpen}
-                onClose={() => toggle(false)}
+                onClose={() => setIsOpen(false)}
                 getParentSelector={() =>
                   document.querySelector(`#${containerId}`)
                 }
