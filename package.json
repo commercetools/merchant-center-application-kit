@@ -54,7 +54,6 @@
   "devDependencies": {
     "@commitlint/cli": "8.0.0",
     "@commitlint/config-conventional": "8.0.0",
-    "@graphql-codegen/typescript-graphql-files-modules": "1.2.1",
     "@percy/puppeteer": "1.0.8",
     "@types/enzyme": "3.9.3",
     "@types/graphql": "14.2.0",
