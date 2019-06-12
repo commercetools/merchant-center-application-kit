@@ -30,9 +30,10 @@
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",
     "build": "yarn build:es && yarn build:cjs",
-    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js --dir ./dist --chunkFileNames l10n-[name]-[hash].cjs.js --entryFileNames l10n-[name].cjs.js",
-    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.js --dir ./dist --chunkFileNames l10n-[name]-[hash].es.js --entryFileNames l10n-[name].es.js",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.ts --dir ./dist --chunkFileNames l10n-[name]-[hash].cjs.js --entryFileNames l10n-[name].cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.ts --dir ./dist --chunkFileNames l10n-[name]-[hash].es.js --entryFileNames l10n-[name].es.js",
     "build:es:watch": "yarn build:es -w",
+    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings",
     "generate-data": "node ./scripts/generate-l10n-data.js"
   },
   "dependencies": {
