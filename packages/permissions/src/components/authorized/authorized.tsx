@@ -9,19 +9,22 @@ import {
 } from '../../utils/has-permissions';
 import getDisplayName from '../../utils/get-display-name';
 
+const defaultProps = {
+  shouldMatchSomePermissions: false,
+};
+type DefaultProps = typeof defaultProps;
 type RenderProp = (isAuthorized: boolean) => React.ReactNode;
 type Props = {
   shouldMatchSomePermissions?: boolean;
   demandedPermissions: TPermissionName[];
   actualPermissions: TPermissions;
   render: RenderProp;
-};
+  children?: never;
+} & DefaultProps;
 
 class Authorized extends React.Component<Props> {
   static displayName = 'Authorized';
-  static defaultProps = {
-    shouldMatchSomePermissions: false,
-  };
+  static defaultProps = defaultProps;
   render() {
     const namesOfNonConfiguredPermissions = getInvalidPermissions(
       this.props.demandedPermissions,
@@ -46,12 +49,15 @@ class Authorized extends React.Component<Props> {
   }
 }
 
+type InjectedProps = {
+  [propName: string]: boolean;
+};
 const injectAuthorized = <Props extends {}>(
   demandedPermissions: TPermissionName[],
   options: { shouldMatchSomePermissions?: boolean } = {},
   propName = 'isAuthorized'
-) => (Component: React.ComponentType<Props>) => {
-  const WrappedComponent = props => (
+) => (Component: React.ComponentType<Props & InjectedProps>) => {
+  const WrappedComponent = (props: Props) => (
     <ApplicationContext
       render={applicationContext => (
         <Authorized

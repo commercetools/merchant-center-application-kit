@@ -6,9 +6,6 @@ import {
   hasEveryPermissions,
 } from '../../utils/has-permissions';
 
-type SelectedApplicationContext = {
-  permissions: TPermissions;
-};
 // Forward-compatibility with React Hooks 🎉
 const useIsAuthorized = ({
   demandedPermissions,
@@ -22,7 +19,7 @@ const useIsAuthorized = ({
       `React hooks do not seem to be available yet in the installed React version "${React.version}". Please check the React Hooks documentation for more info: https://reactjs.org/hooks.`
     );
 
-  const actualPermissions = useApplicationContext<SelectedApplicationContext>(
+  const actualPermissions = useApplicationContext<TPermissions>(
     applicationContext => applicationContext.permissions
   );
 

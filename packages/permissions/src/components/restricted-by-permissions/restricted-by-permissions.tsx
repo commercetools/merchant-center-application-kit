@@ -13,8 +13,8 @@ type Props = {
   shouldMatchSomePermissions?: boolean;
   permissions: TPermissionName[];
   unauthorizedComponent?: React.ComponentType;
-  children: React.ReactNode | TRenderProp;
-  render: TRenderProp;
+  children?: TRenderProp;
+  render?: TRenderProp;
 };
 type InjectedProps = {
   applicationContext: {
