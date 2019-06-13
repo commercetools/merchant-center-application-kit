@@ -1068,10 +1068,10 @@
   resolved "https://registry.yarnpkg.com/@commercetools/api-request-builder/-/api-request-builder-5.3.0.tgz#bd6475bfec2199734c77f2d8775b53382e5379f1"
   integrity sha512-RYbrsvdKq6uO4aWi6tjwmRZWVIZL/S8YEJ+wRUZNsq1OH/c6Yz8+/Cze6i8j8xs5HTfUKl3nENpu/uK4KWnS/A==
 
-"@commercetools/enzyme-extensions@3.0.1", "@commercetools/enzyme-extensions@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@commercetools/enzyme-extensions/-/enzyme-extensions-4.0.0.tgz#0951c8967a91e799041ef86b27823bd05839f453"
-  integrity sha512-GMmevbi4wdj85St445M48aq2sq6lB1wxk2JBeCgeObm7e4afJfGf/lkhag3KTsGMJZyHPrXghdgHSrMKUOEmmQ==
+"@commercetools/enzyme-extensions@3.0.1", "@commercetools/enzyme-extensions@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/enzyme-extensions/-/enzyme-extensions-5.0.0.tgz#0ba0841b02384069ae60e76165d65ee170874fe9"
+  integrity sha512-oK80WDnFwmgE7BfEKvEQ95uRgnIpuEXC1RiSWxasEYO+hUuuyCW0fgz4EEdhjbq3O+JhifprBvvcI1rOBaoNHg==
   dependencies:
     common-tags "1.8.0"
     lodash.omit "^4.5.0"
