@@ -1,1 +1,1 @@
-export { default, updateUser } from './sentry-user-tracker';
+export { default } from './sentry-user-tracker';

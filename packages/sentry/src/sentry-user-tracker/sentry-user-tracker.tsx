@@ -9,20 +9,6 @@ type Props = {
   user?: SentryUser;
 };
 
-export const updateUser = (user: SentryUser) => {
-  if (window.app.trackingSentry) {
-    // to avoid sending personal data to sentry we anonymize the email address
-    // by only sending the domain part or the email
-    const emailTld = user.email.split('@')[1];
-    Sentry.configureScope(scope => {
-      scope.setUser({
-        email: `xxx@${emailTld}`,
-        id: user.id,
-      });
-    });
-  }
-};
-
 /**
  * This component will let sentry know if any information about the user has
  * changed.
@@ -39,8 +25,14 @@ class SentryUserTracker extends React.PureComponent<Props> {
     this.syncUser();
   }
   syncUser = () => {
-    if (this.props.user) {
-      updateUser(this.props.user);
+    if (this.props.user && window.app.trackingSentry) {
+      // to avoid sending personal data to sentry we anonymize the email address
+      // by only sending the domain part or the email
+      const emailTld = this.props.user.email.split('@')[1];
+      Sentry.setUser({
+        email: `xxx@${emailTld}`,
+        id: this.props.user.id,
+      });
     }
   };
   render() {
