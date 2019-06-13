@@ -27,14 +27,14 @@ describe('rendering', () => {
     beforeEach(() => {
       wrapper = wrapper
         .find(NotificationsConnector)
-        .renderProp('children', {
+        .renderProp('children')({
           notifications: [
             { id: 1, domain: DOMAINS.PAGE, kind: 'success', text: 'some-text' },
           ],
           removeNotification: jest.fn(),
         })
         .find(GetCustomNotificationComponent)
-        .renderProp('render', mapCustomComponent);
+        .renderProp('render')(mapCustomComponent);
     });
     it('should render the <CustomComponent> notification component', () => {
       expect(wrapper).toRender(CustomComponent);
@@ -46,7 +46,7 @@ describe('rendering', () => {
         beforeEach(() => {
           wrapper = wrapper
             .find(NotificationsConnector)
-            .renderProp('children', {
+            .renderProp('children')({
               notifications: [
                 {
                   id: 1,
@@ -58,7 +58,7 @@ describe('rendering', () => {
               removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
-            .renderProp('render', () => null);
+            .renderProp('render')(() => null);
         });
         it('should render the <ApiErrorNotification> notification component', () => {
           expect(wrapper).toRender(ApiErrorNotification);
@@ -68,7 +68,7 @@ describe('rendering', () => {
         beforeEach(() => {
           wrapper = wrapper
             .find(NotificationsConnector)
-            .renderProp('children', {
+            .renderProp('children')({
               notifications: [
                 {
                   id: 1,
@@ -80,7 +80,7 @@ describe('rendering', () => {
               removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
-            .renderProp('render', () => null);
+            .renderProp('render')(() => null);
         });
         it('should render the <UnexpectedErrorNotification> notification component', () => {
           expect(wrapper).toRender(UnexpectedErrorNotification);
@@ -90,7 +90,7 @@ describe('rendering', () => {
         beforeEach(() => {
           wrapper = wrapper
             .find(NotificationsConnector)
-            .renderProp('children', {
+            .renderProp('children')({
               notifications: [
                 {
                   id: 1,
@@ -102,7 +102,7 @@ describe('rendering', () => {
               removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
-            .renderProp('render', () => null);
+            .renderProp('render')(() => null);
         });
         it('should render the <GenericNotification> notification component', () => {
           expect(wrapper).toRender(GenericNotification);
@@ -114,7 +114,7 @@ describe('rendering', () => {
           console.error = jest.fn();
           wrapper = wrapper
             .find(NotificationsConnector)
-            .renderProp('children', {
+            .renderProp('children')({
               notifications: [
                 {
                   id: 1,
@@ -126,7 +126,7 @@ describe('rendering', () => {
               removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
-            .renderProp('render', () => null);
+            .renderProp('render')(() => null);
         });
         it('should render null', () => {
           expect(wrapper).not.toRender({ notification: expect.any(Object) });
@@ -145,7 +145,7 @@ describe('rendering', () => {
         beforeEach(() => {
           wrapper = wrapper
             .find(NotificationsConnector)
-            .renderProp('children', {
+            .renderProp('children')({
               notifications: [
                 {
                   id: 1,
@@ -157,7 +157,7 @@ describe('rendering', () => {
               removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
-            .renderProp('render', () => null);
+            .renderProp('render')(() => null);
         });
         it('should render the <UnexpectedErrorNotification> notification component', () => {
           expect(wrapper).toRender(UnexpectedErrorNotification);
@@ -167,7 +167,7 @@ describe('rendering', () => {
         beforeEach(() => {
           wrapper = wrapper
             .find(NotificationsConnector)
-            .renderProp('children', {
+            .renderProp('children')({
               notifications: [
                 {
                   id: 1,
@@ -179,7 +179,7 @@ describe('rendering', () => {
               removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
-            .renderProp('render', () => null);
+            .renderProp('render')(() => null);
         });
         it('should render the <GenericNotification> notification component', () => {
           expect(wrapper).toRender(GenericNotification);
@@ -189,7 +189,7 @@ describe('rendering', () => {
         beforeEach(() => {
           wrapper = wrapper
             .find(NotificationsConnector)
-            .renderProp('children', {
+            .renderProp('children')({
               notifications: [
                 {
                   id: 1,
@@ -201,7 +201,7 @@ describe('rendering', () => {
               removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
-            .renderProp('render', () => null);
+            .renderProp('render')(() => null);
         });
         it('should render null', () => {
           expect(wrapper).not.toRender({ notification: expect.any(Object) });
@@ -220,7 +220,7 @@ describe('rendering', () => {
         beforeEach(() => {
           wrapper = wrapper
             .find(NotificationsConnector)
-            .renderProp('children', {
+            .renderProp('children')({
               notifications: [
                 {
                   id: 1,
@@ -232,7 +232,7 @@ describe('rendering', () => {
               removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
-            .renderProp('render', () => null);
+            .renderProp('render')(() => null);
         });
         it('should render the <GenericNotification> notification component', () => {
           expect(wrapper).toRender(GenericNotification);
@@ -242,7 +242,7 @@ describe('rendering', () => {
         beforeEach(() => {
           wrapper = wrapper
             .find(NotificationsConnector)
-            .renderProp('children', {
+            .renderProp('children')({
               notifications: [
                 {
                   id: 1,
@@ -254,7 +254,7 @@ describe('rendering', () => {
               removeNotification: jest.fn(),
             })
             .find(GetCustomNotificationComponent)
-            .renderProp('render', () => null);
+            .renderProp('render')(() => null);
         });
         it('should render null', () => {
           expect(wrapper).not.toRender({ notification: expect.any(Object) });

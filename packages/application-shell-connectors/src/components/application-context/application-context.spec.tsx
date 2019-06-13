@@ -1,14 +1,16 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, ShallowWrapper } from 'enzyme';
 import { ApplicationContextProvider } from './application-context';
 
+type AdditionalEnvironmentProps = { foo: string };
+
 describe('rendering', () => {
-  let wrapper;
+  let wrapper: ShallowWrapper;
 
   describe('Provider', () => {
     beforeEach(() => {
       wrapper = shallow(
-        <ApplicationContextProvider
+        <ApplicationContextProvider<AdditionalEnvironmentProps>
           user={{
             id: 'u1',
             email: 'foo@bar.com',
@@ -43,6 +45,8 @@ describe('rendering', () => {
             env: 'development',
             cdnUrl: 'http://localhost:3001',
             servedByProxy: false,
+            // extra props
+            foo: 'bar',
           }}
         >
           <div />

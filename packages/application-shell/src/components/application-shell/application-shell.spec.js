@@ -55,9 +55,9 @@ const testLocaleData = {
 const renderForAsyncData = ({ props, userData, localeData = testLocaleData }) =>
   shallow(<RestrictedApplication {...props} />)
     .find(FetchUser)
-    .renderProp('children', userData)
+    .renderProp('children')(userData)
     .find(AsyncLocaleData)
-    .renderProp('children', localeData);
+    .renderProp('children')(localeData);
 
 describe('<RestrictedApplication>', () => {
   let props;
@@ -98,7 +98,7 @@ describe('<RestrictedApplication>', () => {
         };
         wrapper = shallow(<RestrictedApplication {...props} />)
           .find(FetchUser)
-          .renderProp('children', userData);
+          .renderProp('children')(userData);
       });
       it('should pass "locale" as undefined to <AsyncLocaleData>', () => {
         expect(wrapper.find(AsyncLocaleData)).toHaveProp('locale', undefined);
@@ -122,7 +122,7 @@ describe('<RestrictedApplication>', () => {
         props = createTestProps();
         wrapper = shallow(<RestrictedApplication {...props} />)
           .find(FetchUser)
-          .renderProp('children', userData);
+          .renderProp('children')(userData);
       });
       it('should pass "user" to <ApplicationContextProvider>', () => {
         expect(wrapper.find(ApplicationContextProvider)).toHaveProp(
@@ -142,13 +142,13 @@ describe('<RestrictedApplication>', () => {
         reportErrorToSentry.mockClear();
         wrapper = shallow(<RestrictedApplication {...props} />)
           .find(FetchUser)
-          .renderProp('children', userData)
+          .renderProp('children')(userData)
           .find(AsyncLocaleData)
-          .renderProp('children', {
-            isLoading: true,
-            locale: null,
-            messages: null,
-          });
+          .renderProp('children')({
+          isLoading: true,
+          locale: null,
+          messages: null,
+        });
       });
       it('should not pass "locale" prop to <ConfigureIntlProvider>', () => {
         expect(wrapper.find(ConfigureIntlProvider)).not.toHaveProp('locale');
@@ -261,10 +261,10 @@ describe('<RestrictedApplication>', () => {
           wrapperAside = wrapper
             .find('aside')
             .find(FetchProject)
-            .renderProp('children', {
-              isLoading: false,
-              project,
-            });
+            .renderProp('children')({
+            isLoading: false,
+            project,
+          });
         });
         it('should pass "user" to <ApplicationContextProvider>', () => {
           expect(wrapperAside.find(ApplicationContextProvider)).toHaveProp(
@@ -311,9 +311,9 @@ describe('<RestrictedApplication>', () => {
             wrapperAside = wrapper
               .find('aside')
               .find(FetchProject)
-              .renderProp('children', {
-                isLoading: true,
-              });
+              .renderProp('children')({
+              isLoading: true,
+            });
           });
           it('should render <LoadingNavBar>', () => {
             expect(wrapperAside).toRender(LoadingNavBar);
@@ -328,9 +328,9 @@ describe('<RestrictedApplication>', () => {
             wrapperAside = wrapper
               .find('aside')
               .find(FetchProject)
-              .renderProp('children', {
-                isLoading: true,
-              });
+              .renderProp('children')({
+              isLoading: true,
+            });
           });
           it('should render <LoadingNavBar>', () => {
             expect(wrapperAside).toRender(LoadingNavBar);
@@ -342,9 +342,9 @@ describe('<RestrictedApplication>', () => {
             wrapperAside = wrapper
               .find('aside')
               .find(FetchProject)
-              .renderProp('children', {
-                isLoading: true,
-              });
+              .renderProp('children')({
+              isLoading: true,
+            });
           });
           it('should render <LoadingNavBar>', () => {
             expect(wrapperAside).toRender(LoadingNavBar);
@@ -390,7 +390,7 @@ describe('<RestrictedApplication>', () => {
         wrapper = wrapper
           .find('.main')
           .find({ exact: false, path: '/:projectKey' })
-          .renderProp('render', routerProps);
+          .renderProp('render')(routerProps);
       });
       it('should match layout structure', () => {
         expect(wrapper).toMatchSnapshot();
@@ -422,8 +422,7 @@ describe('when user is not logged in', () => {
   describe('rendering', () => {
     beforeEach(() => {
       props = createTestProps();
-      wrapper = shallow(<ApplicationShell {...props} />).renderProp(
-        'children',
+      wrapper = shallow(<ApplicationShell {...props} />).renderProp('children')(
         { isAuthenticated: false }
       );
     });
@@ -434,7 +433,7 @@ describe('when user is not logged in', () => {
         routerProps = {
           location: { pathname: '/foo' },
         };
-        renderWrapper = wrapper.find('Route').renderProp('render', routerProps);
+        renderWrapper = wrapper.find('Route').renderProp('render')(routerProps);
       });
       it('should redirect "/login"', () => {
         expect(renderWrapper).toHaveProp('to', 'login');

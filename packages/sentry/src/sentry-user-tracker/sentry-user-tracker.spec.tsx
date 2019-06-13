@@ -1,22 +1,23 @@
 import React from 'react';
 import { render } from 'react-testing-library';
-import { updateUser } from '../sentry';
+import * as Sentry from '@sentry/browser';
 import SentryUserTracker from './sentry-user-tracker';
 
-jest.mock('../sentry');
+jest.mock('@sentry/browser');
 
 describe('rendering', () => {
   describe('when user is not defined', () => {
     it('should not sync user', () => {
       render(<SentryUserTracker />);
-      expect(updateUser).not.toHaveBeenCalled();
+      expect(Sentry.setUser).not.toHaveBeenCalled();
     });
   });
   describe('when user is defined', () => {
     it('should sync user', () => {
+      window.app.trackingSentry = 'enabled';
       render(<SentryUserTracker user={{ id: '1', email: 'john@snow.got' }} />);
-      expect(updateUser).toHaveBeenCalledWith(
-        expect.objectContaining({ email: 'john@snow.got' })
+      expect(Sentry.setUser).toHaveBeenCalledWith(
+        expect.objectContaining({ email: 'xxx@snow.got' })
       );
     });
   });

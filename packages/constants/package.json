@@ -20,6 +20,8 @@
   },
   "main": "dist/constants.cjs.js",
   "module": "dist/constants.es.js",
+  "typings": "./dist/typings/index.d.ts",
+  "types": "./dist/typings/index.d.ts",
   "files": [
     "dist",
     "package.json",
@@ -29,9 +31,10 @@
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",
-    "build": "yarn build:es && yarn build:cjs",
-    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js -o dist/constants.cjs.js",
-    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.js -o dist/constants.es.js",
-    "build:es:watch": "yarn build:es -w"
+    "build": "yarn build:es && yarn build:cjs && yarn build:typings",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.ts -o dist/constants.cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.ts -o dist/constants.es.js",
+    "build:es:watch": "yarn build:es -w",
+    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
   }
 }

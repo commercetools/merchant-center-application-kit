@@ -1,22 +1,21 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
-import { InferPropTypes } from '../type-utils';
-import * as sentry from '../sentry';
+import * as Sentry from '@sentry/browser';
 
-const userTrackerPropTypes = {
-  user: PropTypes.shape(sentry.userPropTypes),
+type SentryUser = {
+  id: string;
+  email: string;
 };
-
-type UserTrackerProps = InferPropTypes<typeof userTrackerPropTypes>;
+type Props = {
+  user?: SentryUser;
+};
 
 /**
  * This component will let sentry know if any information about the user has
  * changed.
  */
 
-class SentryUserTracker extends React.PureComponent<UserTrackerProps> {
+class SentryUserTracker extends React.PureComponent<Props> {
   static displayName = 'SentryUserTracker';
-  static propTypes = userTrackerPropTypes;
   componentDidMount() {
     // since the user and project could have been loaded from the apollo cache
     // they could be preset already when mounting
@@ -26,8 +25,14 @@ class SentryUserTracker extends React.PureComponent<UserTrackerProps> {
     this.syncUser();
   }
   syncUser = () => {
-    if (this.props.user) {
-      sentry.updateUser(this.props.user);
+    if (this.props.user && window.app.trackingSentry) {
+      // to avoid sending personal data to sentry we anonymize the email address
+      // by only sending the domain part or the email
+      const emailTld = this.props.user.email.split('@')[1];
+      Sentry.setUser({
+        email: `xxx@${emailTld}`,
+        id: this.props.user.id,
+      });
     }
   };
   render() {

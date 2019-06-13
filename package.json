@@ -56,8 +56,10 @@
     "@commitlint/config-conventional": "8.0.0",
     "@percy/puppeteer": "1.0.8",
     "@types/enzyme": "3.9.3",
+    "@types/graphql": "14.2.0",
     "@types/history": "4.7.2",
     "@types/jest": "24.0.13",
+    "@types/moment-timezone": "0.5.12",
     "@types/node": "10.14.8",
     "@types/prop-types": "15.7.1",
     "@types/react": "16.8.19",
@@ -69,6 +71,7 @@
     "babel-eslint": "10.0.1",
     "babel-plugin-import-graphql": "2.7.0",
     "babel-plugin-transform-rename-import": "2.3.0",
+    "babel-plugin-typescript-to-proptypes": "0.17.1",
     "cross-env": "5.2.0",
     "cypress": "3.3.1",
     "cypress-testing-library": "3.0.1",
@@ -125,6 +128,7 @@
     "typescript": "3.5.1"
   },
   "resolutions": {
+    "@commercetools/enzyme-extensions": "5.0.0",
     "@types/react": "16.8.19",
     "jest-runner-stylelint/stylelint": "10.0.1"
   },

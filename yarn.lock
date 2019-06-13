@@ -1068,12 +1068,12 @@
   resolved "https://registry.yarnpkg.com/@commercetools/api-request-builder/-/api-request-builder-5.3.0.tgz#bd6475bfec2199734c77f2d8775b53382e5379f1"
   integrity sha512-RYbrsvdKq6uO4aWi6tjwmRZWVIZL/S8YEJ+wRUZNsq1OH/c6Yz8+/Cze6i8j8xs5HTfUKl3nENpu/uK4KWnS/A==
 
-"@commercetools/enzyme-extensions@3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@commercetools/enzyme-extensions/-/enzyme-extensions-3.0.1.tgz#28d77dbe4ddbf877aec73be749086157fedeee1c"
-  integrity sha512-N7ojdtpN6WbIGCF9lEViVXmNpY0ObZKSpgFOEZQ+FcMaDWz2K9M34TDBGW5IDybdawe+Z3hsVEMEh8CduHGYAA==
+"@commercetools/enzyme-extensions@3.0.1", "@commercetools/enzyme-extensions@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/enzyme-extensions/-/enzyme-extensions-5.0.0.tgz#0ba0841b02384069ae60e76165d65ee170874fe9"
+  integrity sha512-oK80WDnFwmgE7BfEKvEQ95uRgnIpuEXC1RiSWxasEYO+hUuuyCW0fgz4EEdhjbq3O+JhifprBvvcI1rOBaoNHg==
   dependencies:
-    common-tags "1.7.2"
+    common-tags "1.8.0"
     lodash.omit "^4.5.0"
     react-display-name "0.2.4"
 
@@ -3630,6 +3630,11 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
+"@types/graphql@14.2.0":
+  version "14.2.0"
+  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-14.2.0.tgz#74e1da5f2a4a744ac6eb3ed57b48242ea9367202"
+  integrity sha512-lELg5m6eBOmATWyCZl8qULEOvnPIUG6B443yXKj930glXIgwQirIBPp5rthP2amJW0YSzUg2s5sfgba4mRRCNw==
+
 "@types/history@*", "@types/history@4.7.2":
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.2.tgz#0e670ea254d559241b6eeb3894f8754991e73220"
@@ -3691,6 +3696,13 @@
   version "0.3.29"
   resolved "https://registry.yarnpkg.com/@types/mkdirp/-/mkdirp-0.3.29.tgz#7f2ad7ec55f914482fc9b1ec4bb1ae6028d46066"
   integrity sha1-fyrX7FX5FEgvybHsS7GuYCjUYGY=
+
+"@types/moment-timezone@0.5.12":
+  version "0.5.12"
+  resolved "https://registry.yarnpkg.com/@types/moment-timezone/-/moment-timezone-0.5.12.tgz#0fb680c03db194fe8ff4551eaeb1eec8d3d80e9f"
+  integrity sha512-hnHH2+Efg2vExr/dSz+IX860nSiyk9Sk4pJF2EmS11lRpMcNXeB4KBW5xcgw2QPsb9amTXdsVNEe5IoJXiT0uw==
+  dependencies:
+    moment ">=2.14.0"
 
 "@types/node@*", "@types/node@>=6", "@types/node@^12.0.7":
   version "12.0.7"
@@ -5407,6 +5419,15 @@ babel-plugin-transform-undefined-to-void@^6.9.4:
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-undefined-to-void/-/babel-plugin-transform-undefined-to-void-6.9.4.tgz#be241ca81404030678b748717322b89d0c8fe280"
   integrity sha1-viQcqBQEAwZ4t0hxcyK4nQyP4oA=
 
+babel-plugin-typescript-to-proptypes@0.17.1:
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-typescript-to-proptypes/-/babel-plugin-typescript-to-proptypes-0.17.1.tgz#9874735be3565ba4d7fc7f3cafb04fec40f55a83"
+  integrity sha512-yREUfvDlmn6QjM0QbywXUkXBQMD/iFfLVTl+jig4X7ZLUg9lq8ZLuex8HIM2SQ4X3vcjGnWPFowodlMcXhwxdQ==
+  dependencies:
+    "@babel/helper-module-imports" "^7.0.0"
+    "@babel/helper-plugin-utils" "^7.0.0"
+    "@babel/plugin-syntax-typescript" "^7.2.0"
+
 babel-polyfill@6.26.0, babel-polyfill@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-polyfill/-/babel-polyfill-6.26.0.tgz#379937abc67d7895970adc621f284cd966cf2153"
@@ -7103,13 +7124,6 @@ common-tags@1.4.0:
   integrity sha1-EYe+Tz1M8MBCfUP3Tu8fc1AWFMA=
   dependencies:
     babel-runtime "^6.18.0"
-
-common-tags@1.7.2:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/common-tags/-/common-tags-1.7.2.tgz#24d9768c63d253a56ecff93845b44b4df1d52771"
-  integrity sha512-joj9ZlUOjCrwdbmiLqafeUSgkUM74NqhLsZtSqDmhKudaIY197zTrb8JMl31fMnCUuxwFT23eC/oWvrZzDLRJQ==
-  dependencies:
-    babel-runtime "^6.26.0"
 
 common-tags@1.8.0, common-tags@^1.4.0, common-tags@^1.8.0:
   version "1.8.0"
@@ -15976,7 +15990,7 @@ moment-timezone@0.5.25, moment-timezone@^0.5.25:
   dependencies:
     moment ">= 2.9.0"
 
-moment@2.24.0, "moment@>= 2.9.0", moment@^2.21.0, moment@^2.24.0:
+moment@2.24.0, "moment@>= 2.9.0", moment@>=2.14.0, moment@^2.21.0, moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==

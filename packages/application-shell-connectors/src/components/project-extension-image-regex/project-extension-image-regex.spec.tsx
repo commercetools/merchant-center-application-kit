@@ -1,9 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, ShallowWrapper } from 'enzyme';
 import { ProjectExtensionProviderForImageRegex } from './project-extension-image-regex';
 
 describe('rendering', () => {
-  let wrapper;
+  let wrapper: ShallowWrapper;
 
   describe('Provider', () => {
     describe('when data is not defined yet', () => {
@@ -12,7 +12,7 @@ describe('rendering', () => {
           <ProjectExtensionProviderForImageRegex>
             <div />
           </ProjectExtensionProviderForImageRegex>
-        ).renderProp('children', { loading: true, data: undefined });
+        ).renderProp('children')({ loading: true, data: undefined });
       });
       it('should pass value object with "isLoading" state "true" to Provider', () => {
         expect(wrapper).toHaveProp(
@@ -33,7 +33,7 @@ describe('rendering', () => {
           <ProjectExtensionProviderForImageRegex>
             <div />
           </ProjectExtensionProviderForImageRegex>
-        ).renderProp('children', {
+        ).renderProp('children')({
           loading: false,
           data: {
             projectExtension: {

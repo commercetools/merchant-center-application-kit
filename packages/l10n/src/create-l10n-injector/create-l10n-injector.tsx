@@ -18,12 +18,10 @@ export default function createL10NInjector<LoadedData>({
   propLoadingKey,
   loadLocale,
 }: InjectorOptions<LoadedData>) {
-  return function createHOC<Props extends object>(
+  return function createHOC<Props extends {}>(
     mapPropsToLocale: (props: Props) => string
   ) {
-    return (
-      WrappedComponent: React.ComponentType<Props>
-    ): React.ComponentClass<Props> => {
+    return (WrappedComponent: React.ComponentType<Props>) => {
       return class L10NComponent extends React.Component<Props> {
         static displayName = `${displayName}(${getDisplayName<Props>(
           WrappedComponent

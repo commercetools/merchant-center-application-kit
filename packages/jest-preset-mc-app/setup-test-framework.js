@@ -20,5 +20,4 @@ expect.extend({
 });
 
 expect.extend(commerceToolsEnzymeMatchers);
-
 configureEnzymeExtensions(ShallowWrapper);
