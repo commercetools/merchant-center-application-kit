@@ -14,7 +14,7 @@ const ModalPageHeader = props => (
       justify-content: space-between;
       margin: 0 ${customProperties.spacingM};
       padding: ${customProperties.spacingM} 0;
-      border-bottom: 1px solid #afafaf;
+      border-bottom: 1px solid ${customProperties.colorNeutral60};
       & > * + * {
         margin-left: ${customProperties.spacingM};
       }

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { IntlProvider } from 'react-intl';
 import { graphql, Link as HistoryLink } from 'gatsby';
 import { MDXRenderer } from 'gatsby-mdx';
 import { MDXProvider } from '@mdx-js/react';
@@ -323,17 +322,15 @@ const components = {
 
 const MarkdownTemplate = props => (
   <LayoutContent pageData={props.data.mdx}>
-    <IntlProvider locale="en">
-      <MDXProvider components={components}>
-        <TypographyPage>
-          <SEO title={props.data.mdx.frontmatter.title} />
-          {/* This wrapper div is important to ensure the vertical space */}
-          <div>
-            <MDXRenderer>{props.data.mdx.code.body}</MDXRenderer>
-          </div>
-        </TypographyPage>
-      </MDXProvider>
-    </IntlProvider>
+    <MDXProvider components={components}>
+      <TypographyPage>
+        <SEO title={props.data.mdx.frontmatter.title} />
+        {/* This wrapper div is important to ensure the vertical space */}
+        <div>
+          <MDXRenderer>{props.data.mdx.code.body}</MDXRenderer>
+        </div>
+      </TypographyPage>
+    </MDXProvider>
   </LayoutContent>
 );
 
