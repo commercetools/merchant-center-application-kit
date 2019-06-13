@@ -202,10 +202,10 @@ function withApplicationContext<
 
 // Use function overloading to declare two possible signatures with two
 // distict return types, based on the selector function argument.
-function useApplicationContext<
+function useApplicationContextHook<
   AdditionalEnvironmentProperties extends {} = {}
 >(): TApplicationContext<AdditionalEnvironmentProperties>;
-function useApplicationContext<
+function useApplicationContextHook<
   SelectedContext,
   AdditionalEnvironmentProperties extends {} = {}
 >(
@@ -216,7 +216,7 @@ function useApplicationContext<
 
 // Then implement the function. Typescript will pick the appropriate signature
 // based on the function arguments.
-function useApplicationContext<
+function useApplicationContextHook<
   SelectedContext,
   AdditionalEnvironmentProperties extends {} = {}
 >(
@@ -241,6 +241,11 @@ function useApplicationContext<
   >;
   return selector ? selector(applicationContext) : applicationContext;
 }
+
+// This is a workaround to trick babel/rollup to correctly export the function.
+// Most likely the problem arises with the use of overloading.
+// See related issue: https://github.com/babel/babel/issues/8361
+const useApplicationContext = useApplicationContextHook;
 
 // Exports
 export {
