@@ -1068,6 +1068,15 @@
   resolved "https://registry.yarnpkg.com/@commercetools/api-request-builder/-/api-request-builder-5.3.0.tgz#bd6475bfec2199734c77f2d8775b53382e5379f1"
   integrity sha512-RYbrsvdKq6uO4aWi6tjwmRZWVIZL/S8YEJ+wRUZNsq1OH/c6Yz8+/Cze6i8j8xs5HTfUKl3nENpu/uK4KWnS/A==
 
+"@commercetools/enzyme-extensions@3.0.1", "@commercetools/enzyme-extensions@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/enzyme-extensions/-/enzyme-extensions-4.0.0.tgz#0951c8967a91e799041ef86b27823bd05839f453"
+  integrity sha512-GMmevbi4wdj85St445M48aq2sq6lB1wxk2JBeCgeObm7e4afJfGf/lkhag3KTsGMJZyHPrXghdgHSrMKUOEmmQ==
+  dependencies:
+    common-tags "1.8.0"
+    lodash.omit "^4.5.0"
+    react-display-name "0.2.4"
+
 "@commercetools/http-user-agent@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@commercetools/http-user-agent/-/http-user-agent-2.1.0.tgz#30b8a617c6e1cb299dd2cd364c1b635fafb8c3de"
@@ -15028,6 +15037,11 @@ lodash.merge@^4.4.0:
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
   integrity sha512-AOYza4+Hf5z1/0Hztxpm2/xiPZgi/cjMqdnKTUWTBSKchJlxXXuUSxCCl8rJlf4g6yww/j6mA8nC8Hw/EZWxKQ==
 
+lodash.omit@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.omit/-/lodash.omit-4.5.0.tgz#6eb19ae5a1ee1dd9df0b969e66ce0b7fa30b5e60"
+  integrity sha1-brGa5aHuHdnfC5aeZs4Lf6MLXmA=
+
 lodash.once@4.1.1, lodash.once@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
@@ -19211,6 +19225,11 @@ react-display-name@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/react-display-name/-/react-display-name-0.2.0.tgz#0e1f7086e45a32d07764df35ed32ff16f1259790"
   integrity sha1-Dh9whuRaMtB3ZN817TL/FvEll5A=
+
+react-display-name@0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/react-display-name/-/react-display-name-0.2.4.tgz#e2a670b81d79a2204335510c01246f4c92ff12cf"
+  integrity sha512-zvU6iouW+SWwHTyThwxGICjJYCMZFk/6r/+jmOdC7ntQoPlS/Pqb81MkxaMf2bHTSq9TN3K3zX2/ayMW/jCtyA==
 
 react-docgen@^4.1.0:
   version "4.1.1"
