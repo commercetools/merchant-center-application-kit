@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "declaration": true,
     "emitDecoratorMetadata": false,
     "experimentalDecorators": false,
     "esModuleInterop": true,
     "importHelpers": true,
+    // See https://devblogs.microsoft.com/typescript/typescript-and-babel-7/
+    "isolatedModules": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],
     "module": "esnext",
@@ -23,7 +24,7 @@
     "strict": true,
     "strictNullChecks": true,
     "stripInternal": true,
-    "target": "es5",
+    "target": "esnext",
     "allowJs": false,
     "baseUrl": ".",
     "paths": { "*": ["@types/*"] }
