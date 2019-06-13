@@ -50,28 +50,28 @@ type TApplicationContextEnvironment = {
   cdnUrl: string;
   servedByProxy: string | boolean;
 };
-type TApplicationContext<ExtendedEnvironment extends {}> = {
-  environment: ExtendedEnvironment & TApplicationContextEnvironment;
+type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
+  environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment;
   user: TApplicationContextUser | null;
   project: TApplicationContextProject | null;
   permissions: TApplicationContextPermissions | null;
   dataLocale: string | null;
 };
-type ProviderProps<ExtendedEnvironment extends {}> = {
-  environment: ExtendedEnvironment & TApplicationContextEnvironment;
+type ProviderProps<AdditionalEnvironmentProperties extends {}> = {
+  environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment;
   user?: TRawUser;
   project?: TRawProject;
   projectDataLocale?: string;
   children: React.ReactNode;
 };
-type ConsumerProps<ExtendedEnvironment extends {}> = {
+type ConsumerProps<AdditionalEnvironmentProperties extends {}> = {
   render: (
-    context: TApplicationContext<ExtendedEnvironment> | {}
+    context: TApplicationContext<AdditionalEnvironmentProperties> | {}
   ) => React.ReactNode;
   children?: never;
 };
-type DefaultMappedProps<ExtendedEnvironment extends {}> = {
-  applicationContext: TApplicationContext<ExtendedEnvironment> | {};
+type DefaultMappedProps<AdditionalEnvironmentProperties extends {}> = {
+  applicationContext: TApplicationContext<AdditionalEnvironmentProperties> | {};
 };
 
 const Context = React.createContext<TApplicationContext<{}> | {}>({});
@@ -115,12 +115,12 @@ const mapProjectToApplicationContextProject = (
   };
 };
 
-const createApplicationContext: <ExtendedEnvironment extends {}>(
-  environment: ExtendedEnvironment & TApplicationContextEnvironment,
+const createApplicationContext: <AdditionalEnvironmentProperties extends {}>(
+  environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment,
   user?: TRawUser,
   project?: TRawProject,
   projectDataLocale?: string
-) => TApplicationContext<ExtendedEnvironment> = (
+) => TApplicationContext<AdditionalEnvironmentProperties> = (
   environment,
   user,
   project,
@@ -133,11 +133,11 @@ const createApplicationContext: <ExtendedEnvironment extends {}>(
   dataLocale: projectDataLocale || null,
 });
 
-const ApplicationContextProvider = <ExtendedEnvironment extends {}>(
-  props: ProviderProps<ExtendedEnvironment>
+const ApplicationContextProvider = <AdditionalEnvironmentProperties extends {}>(
+  props: ProviderProps<AdditionalEnvironmentProperties>
 ) => (
   <Context.Provider
-    value={createApplicationContext<ExtendedEnvironment>(
+    value={createApplicationContext<AdditionalEnvironmentProperties>(
       props.environment,
       props.user,
       props.project,
@@ -149,8 +149,8 @@ const ApplicationContextProvider = <ExtendedEnvironment extends {}>(
 );
 ApplicationContextProvider.displayName = 'ApplicationContextProvider';
 
-const ApplicationContext = <ExtendedEnvironment extends {}>(
-  props: ConsumerProps<ExtendedEnvironment>
+const ApplicationContext = <AdditionalEnvironmentProperties extends {}>(
+  props: ConsumerProps<AdditionalEnvironmentProperties>
 ) => (
   <Context.Consumer>
     {applicationContext => props.render(applicationContext)}
@@ -161,16 +161,16 @@ ApplicationContext.displayName = 'ApplicationContext';
 function withApplicationContext<
   Props extends {},
   MappedProps extends {} = {},
-  ExtendedEnvironment extends {} = {}
+  AdditionalEnvironmentProperties extends {} = {}
 >(
   mapApplicationContextToProps?: (
-    context: TApplicationContext<ExtendedEnvironment> | {}
+    context: TApplicationContext<AdditionalEnvironmentProperties> | {}
   ) => MappedProps
 ) {
   return (
     Component: React.ComponentType<
       | Props
-      | Props & DefaultMappedProps<ExtendedEnvironment>
+      | Props & DefaultMappedProps<AdditionalEnvironmentProperties>
       | Props & MappedProps
     >
   ) => {
@@ -193,11 +193,17 @@ function withApplicationContext<
 
 // Forward-compatibility with React Hooks 🎉
 const useApplicationContext = React.useContext
-  ? <SelectedContext extends {} = {}, ExtendedEnvironment extends {} = {}>(
+  ? <
+      SelectedContext extends {} = {},
+      AdditionalEnvironmentProperties extends {} = {}
+    >(
       selector?: (
-        context: TApplicationContext<ExtendedEnvironment> | {}
+        context: TApplicationContext<AdditionalEnvironmentProperties> | {}
       ) => SelectedContext
-    ): SelectedContext | TApplicationContext<ExtendedEnvironment> | {} => {
+    ):
+      | SelectedContext
+      | TApplicationContext<AdditionalEnvironmentProperties>
+      | {} => {
       const applicationContext = React.useContext(Context);
       return selector ? selector(applicationContext) : applicationContext;
     }
