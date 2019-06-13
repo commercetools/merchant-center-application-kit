@@ -24,6 +24,7 @@ const TooltipWrapperComponent = styled.div`
 const PreviewContainer = styled.div`
   position: relative;
   width: 100%;
+  overflow: hidden;
   height: ${props => props.height};
   border: 1px solid ${customProperties.colorNeutral95};
 `;
@@ -170,6 +171,7 @@ const ExampleWrapper = props => {
                 title="Playground"
                 size="scale"
                 isOpen={isOpen}
+                zIndex={1100}
                 onClose={() => setIsOpen(false)}
                 getParentSelector={() => document.body}
               >
@@ -206,6 +208,9 @@ ExampleWrapper.propTypes = {
     }).isRequired
   ).isRequired,
   children: PropTypes.func.isRequired,
+};
+ExampleWrapper.defaultProps = {
+  containerHeight: '400px',
 };
 
 export default ExampleWrapper;

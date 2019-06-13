@@ -1,5 +1,8 @@
 import { defineMessages } from 'react-intl';
 
+// Shared messages for button labels, to avoid duplicating translations.
+// NOTE: avoid changing the message id, otherwise you need to translate
+// them again in Transifex.
 const messages = defineMessages({
   cancel: {
     id: 'Components.Dialog.labelCancel',

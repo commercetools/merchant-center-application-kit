@@ -4,7 +4,7 @@ import DialogContainer from '../internals/dialog-container';
 import DialogHeader from '../internals/dialog-header';
 import DialogContent from '../internals/dialog-content';
 import DialogFooter from '../internals/dialog-footer';
-import messages from '../internals/messages';
+import buttonMessages from '../../../utils/button-messages';
 
 const FormDialog = props => (
   <DialogContainer
@@ -60,10 +60,10 @@ FormDialog.propTypes = {
   getParentSelector: PropTypes.func,
 };
 FormDialog.defaultProps = {
-  labelSecondary: messages.cancel,
-  labelPrimary: messages.save,
+  labelSecondary: buttonMessages.cancel,
+  labelPrimary: buttonMessages.save,
 };
 // Make some default intl messages available to use
-FormDialog.Intl = messages;
+FormDialog.Intl = buttonMessages;
 
 export default FormDialog;
