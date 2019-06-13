@@ -200,30 +200,47 @@ function withApplicationContext<
   };
 }
 
-// Forward-compatibility with React Hooks 🎉
-const useApplicationContext = React.useContext
-  ? <SelectedContext, AdditionalEnvironmentProperties extends {} = {}>(
-      selector?: (
-        context: TApplicationContext<AdditionalEnvironmentProperties>
-      ) => SelectedContext
-    ):
-      | SelectedContext
-      | TApplicationContext<AdditionalEnvironmentProperties> => {
-      const context = React.useContext(Context);
-      // Because of the way the ApplicationShell configures the Context.Provider,
-      // we ensure that, when we read from the context, we always get actual
-      // context object and not the initial value.
-      // Therefore, we can safely cast the value to be out `TApplicationContext` type.
-      const applicationContext = context as TApplicationContext<
-        AdditionalEnvironmentProperties
-      >;
-      return selector ? selector(applicationContext) : applicationContext;
-    }
-  : () => {
-      throw new Error(
-        `React hooks do not seem to be available yet in the installed React version "${React.version}". Please check the React Hooks documentation for more info: https://reactjs.org/hooks.`
-      );
-    };
+// Use function overloading to declare two possible signatures with two
+// distict return types, based on the selector function argument.
+function useApplicationContext<
+  AdditionalEnvironmentProperties extends {} = {}
+>(): TApplicationContext<AdditionalEnvironmentProperties>;
+function useApplicationContext<
+  SelectedContext,
+  AdditionalEnvironmentProperties extends {} = {}
+>(
+  selector: (
+    context: TApplicationContext<AdditionalEnvironmentProperties>
+  ) => SelectedContext
+): SelectedContext;
+
+// Then implement the function. Typescript will pick the appropriate signature
+// based on the function arguments.
+function useApplicationContext<
+  SelectedContext,
+  AdditionalEnvironmentProperties extends {} = {}
+>(
+  selector?: (
+    context: TApplicationContext<AdditionalEnvironmentProperties>
+  ) => SelectedContext
+) {
+  // Forward-compatibility with React Hooks 🎉
+  if (!React.useContext) {
+    throw new Error(
+      `React hooks do not seem to be available yet in the installed React version "${React.version}". Please check the React Hooks documentation for more info: https://reactjs.org/hooks.`
+    );
+  }
+
+  const context = React.useContext(Context);
+  // Because of the way the ApplicationShell configures the Context.Provider,
+  // we ensure that, when we read from the context, we always get actual
+  // context object and not the initial value.
+  // Therefore, we can safely cast the value to be out `TApplicationContext` type.
+  const applicationContext = context as TApplicationContext<
+    AdditionalEnvironmentProperties
+  >;
+  return selector ? selector(applicationContext) : applicationContext;
+}
 
 // Exports
 export {
