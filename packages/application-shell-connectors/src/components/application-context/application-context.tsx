@@ -66,15 +66,15 @@ type ProviderProps<AdditionalEnvironmentProperties extends {}> = {
 };
 type ConsumerProps<AdditionalEnvironmentProperties extends {}> = {
   render: (
-    context: TApplicationContext<AdditionalEnvironmentProperties> | {}
+    context: TApplicationContext<AdditionalEnvironmentProperties>
   ) => React.ReactNode;
   children?: never;
 };
 type DefaultMappedProps<AdditionalEnvironmentProperties extends {}> = {
-  applicationContext: TApplicationContext<AdditionalEnvironmentProperties> | {};
+  applicationContext: TApplicationContext<AdditionalEnvironmentProperties>;
 };
 
-const Context = React.createContext<TApplicationContext<{}> | {}>({});
+const Context = React.createContext({});
 
 const defaultTimeZone = moment.tz.guess() || 'Etc/UTC';
 
@@ -153,7 +153,16 @@ const ApplicationContext = <AdditionalEnvironmentProperties extends {}>(
   props: ConsumerProps<AdditionalEnvironmentProperties>
 ) => (
   <Context.Consumer>
-    {applicationContext => props.render(applicationContext)}
+    {context => {
+      // Because of the way the ApplicationShell configures the Context.Provider,
+      // we ensure that, when we read from the context, we always get actual
+      // context object and not the initial value.
+      // Therefore, we can safely cast the value to be out `TApplicationContext` type.
+      const applicationContext = context as TApplicationContext<
+        AdditionalEnvironmentProperties
+      >;
+      return props.render(applicationContext);
+    }}
   </Context.Consumer>
 );
 ApplicationContext.displayName = 'ApplicationContext';
@@ -175,7 +184,7 @@ function withApplicationContext<
     >
   ) => {
     const WrappedComponent = (props: Props) => (
-      <ApplicationContext
+      <ApplicationContext<AdditionalEnvironmentProperties>
         render={applicationContext => {
           const mappedProps = mapApplicationContextToProps
             ? mapApplicationContextToProps(applicationContext)
@@ -193,18 +202,21 @@ function withApplicationContext<
 
 // Forward-compatibility with React Hooks 🎉
 const useApplicationContext = React.useContext
-  ? <
-      SelectedContext extends {} = {},
-      AdditionalEnvironmentProperties extends {} = {}
-    >(
+  ? <SelectedContext, AdditionalEnvironmentProperties extends {} = {}>(
       selector?: (
-        context: TApplicationContext<AdditionalEnvironmentProperties> | {}
+        context: TApplicationContext<AdditionalEnvironmentProperties>
       ) => SelectedContext
     ):
       | SelectedContext
-      | TApplicationContext<AdditionalEnvironmentProperties>
-      | {} => {
-      const applicationContext = React.useContext(Context);
+      | TApplicationContext<AdditionalEnvironmentProperties> => {
+      const context = React.useContext(Context);
+      // Because of the way the ApplicationShell configures the Context.Provider,
+      // we ensure that, when we read from the context, we always get actual
+      // context object and not the initial value.
+      // Therefore, we can safely cast the value to be out `TApplicationContext` type.
+      const applicationContext = context as TApplicationContext<
+        AdditionalEnvironmentProperties
+      >;
       return selector ? selector(applicationContext) : applicationContext;
     }
   : () => {
