@@ -1,5 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import invariant from 'tiny-invariant';
+import { TPermissions, TPermissionName } from '../../types';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   hasSomePermissions,
@@ -8,40 +9,29 @@ import {
 } from '../../utils/has-permissions';
 import getDisplayName from '../../utils/get-display-name';
 
-class Authorized extends React.Component {
+type RenderProp = (isAuthorized: boolean) => React.ReactNode;
+type Props = {
+  shouldMatchSomePermissions?: boolean;
+  demandedPermissions: TPermissionName[];
+  actualPermissions: TPermissions;
+  render: RenderProp;
+};
+
+class Authorized extends React.Component<Props> {
   static displayName = 'Authorized';
-  static propTypes = {
-    shouldMatchSomePermissions: PropTypes.bool,
-    /**
-     * This custom prop-types verifies that any permission passed as
-     * `demandedPermissions` actually exists on the `actualPermissions`.
-     *
-     * This was previously achieved through a validation via the constants (`Object.keys(permissions)`).
-     * This was deemded to not be flexible enough to introduce new permissions as they have to be
-     * added to the constants and released each time.
-     */
-    demandedPermissions(props, propName, componentName) {
-      const namesOfNonConfiguredPermissions = getInvalidPermissions(
-        props.demandedPermissions,
-        props.actualPermissions
-      );
-
-      if (namesOfNonConfiguredPermissions.length > 0) {
-        return new Error(
-          `Invalid prop \`${propName}\` supplied to \`${componentName}\`. The permission(s) ${namesOfNonConfiguredPermissions.toString()} is/are not configured through \`actualPermissions\`.`
-        );
-      }
-
-      // Legacy shape of permissions
-      return null;
-    },
-    actualPermissions: PropTypes.objectOf(PropTypes.bool).isRequired,
-    render: PropTypes.func,
-  };
   static defaultProps = {
     shouldMatchSomePermissions: false,
   };
   render() {
+    const namesOfNonConfiguredPermissions = getInvalidPermissions(
+      this.props.demandedPermissions,
+      this.props.actualPermissions
+    );
+    invariant(
+      !(namesOfNonConfiguredPermissions.length > 0),
+      '@commercetools-frontend/permissions/Authorized: Invalid prop `demandedPermissions` supplied. The permission(s) ${namesOfNonConfiguredPermissions.toString()} is/are not configured through `actualPermissions`.'
+    );
+
     const isAuthorized = this.props.shouldMatchSomePermissions
       ? hasSomePermissions(
           this.props.demandedPermissions,
@@ -56,11 +46,11 @@ class Authorized extends React.Component {
   }
 }
 
-const injectAuthorized = (
-  demandedPermissions,
-  options = {},
+const injectAuthorized = <Props extends {}>(
+  demandedPermissions: TPermissionName[],
+  options: { shouldMatchSomePermissions?: boolean } = {},
   propName = 'isAuthorized'
-) => Component => {
+) => (Component: React.ComponentType<Props>) => {
   const WrappedComponent = props => (
     <ApplicationContext
       render={applicationContext => (

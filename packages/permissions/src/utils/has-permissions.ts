@@ -1,9 +1,10 @@
 import isNil from 'lodash/isNil';
+import { TPermissionName, TPermissions } from '../types';
 import { permissions } from '../constants';
 
 // Build the permission key from the definition to match it to the format coming
 // from the API.
-const toCanCase = permissionKey => `can${permissionKey}`;
+const toCanCase = (permissionName: TPermissionName) => `can${permissionName}`;
 
 // Check that the user permissions match EXACTLY the required permission.
 // The shapes of the arguments are:
@@ -11,8 +12,10 @@ const toCanCase = permissionKey => `can${permissionKey}`;
 //     'ViewProducts'
 // - actualPermissions:
 //     { canViewProducts: true, canManageOrders: false }
-const hasExactPermission = (demandedPermission, actualPermissions) =>
-  actualPermissions[toCanCase(demandedPermission)];
+const hasExactPermission = (
+  demandedPermission: TPermissionName,
+  actualPermissions: TPermissions
+) => actualPermissions[toCanCase(demandedPermission)];
 
 // Check that the user permissions match the required MANAGE permission.
 // The shapes of the arguments are:
@@ -20,7 +23,10 @@ const hasExactPermission = (demandedPermission, actualPermissions) =>
 //     'ViewProducts'
 // - actualPermissions:
 //     { canViewProducts: true, canManageOrders: false }
-const hasManagePermission = (demandedPermission, actualPermissions) =>
+const hasManagePermission = (
+  demandedPermission: TPermissionName,
+  actualPermissions: TPermissions
+) =>
   demandedPermission.startsWith('View') &&
   actualPermissions[toCanCase(demandedPermission.replace('View', 'Manage'))];
 
@@ -28,7 +34,7 @@ const hasManagePermission = (demandedPermission, actualPermissions) =>
 // The shapes of the arguments are:
 // - actualPermissions:
 //     { canViewProducts: true, canManageOrders: false }
-const hasManageProjectPermission = actualPermissions =>
+const hasManageProjectPermission = (actualPermissions: TPermissions) =>
   actualPermissions[toCanCase(permissions.ManageProject)];
 
 // Check the user permissions using one of the defined matchers.
@@ -40,7 +46,10 @@ const hasManageProjectPermission = actualPermissions =>
 // NOTE: in case the `actualPermissions` are not defined, fall back to an empty object.
 // This might be the case when the permissions for a user/project could not be loaded
 // (e.g. project not found).
-export const hasPermission = (demandedPermission, actualPermissions = {}) =>
+export const hasPermission = (
+  demandedPermission: TPermissionName,
+  actualPermissions: TPermissions = {}
+) =>
   // First checking the existence of the exact permission
   hasExactPermission(demandedPermission, actualPermissions) ||
   // Then checking if a manage permission is present superposing/implying a
@@ -55,8 +64,11 @@ export const hasPermission = (demandedPermission, actualPermissions = {}) =>
 //     ['ViewProducts', 'ManageOrders']
 // - actualPermissions:
 //     { canViewProducts: true, canManageOrders: false }
-export const hasEveryPermissions = (demandedPermissions, actualPermissions) =>
-  demandedPermissions.every(permission =>
+export const hasEveryPermissions = (
+  demandedPermissions: TPermissionName[],
+  actualPermissions: TPermissions
+) =>
+  demandedPermissions.every((permission: TPermissionName) =>
     hasPermission(permission, actualPermissions)
   );
 
@@ -66,8 +78,11 @@ export const hasEveryPermissions = (demandedPermissions, actualPermissions) =>
 //     ['ViewProducts', 'ManageOrders']
 // - actualPermissions:
 //     { canViewProducts: true, canManageOrders: false }
-export const hasSomePermissions = (demandedPermissions, actualPermissions) =>
-  demandedPermissions.some(permission =>
+export const hasSomePermissions = (
+  demandedPermissions: TPermissionName[],
+  actualPermissions: TPermissions
+) =>
+  demandedPermissions.some((permission: TPermissionName) =>
     hasPermission(permission, actualPermissions)
   );
 
@@ -78,14 +93,14 @@ export const hasSomePermissions = (demandedPermissions, actualPermissions) =>
 // - actualPermissions:
 //     { canViewProducts: true, canManageOrders: false }
 export const getInvalidPermissions = (
-  demandedPermissions,
-  actualPermissions
+  demandedPermissions: TPermissionName[],
+  actualPermissions: TPermissions
 ) => {
   // Given `ManageProject` is present no other permissions needs to be set and can be invalid.
   // This is also often used in test scenarios where not all exact permissions are being passed.
   if (hasManageProjectPermission(actualPermissions)) return [];
   // Otherwise all demanded permissions need to be present as an actual permission.
-  return demandedPermissions.filter(demandedPermission =>
+  return demandedPermissions.filter((demandedPermission: TPermissionName) =>
     isNil(actualPermissions[toCanCase(demandedPermission)])
   );
 };

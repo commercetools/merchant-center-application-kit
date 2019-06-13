@@ -1,4 +1,6 @@
-const permissions = {
+import { TPermissionNames } from './types';
+
+const permissions: TPermissionNames = {
   ManageProject: 'ManageProject',
   ManageCustomers: 'ManageCustomers',
   ManageOrders: 'ManageOrders',

@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { TPermissionName } from '../../types';
 import getDisplayName from '../../utils/get-display-name';
 import { injectAuthorized } from '../authorized';
 
-const branchOnPermissions = (
-  demandedPermissions,
-  FallbackComponent,
-  options
-) => Component => {
-  const WrappedComponent = props => {
+type InjectedProps = {
+  isAuthorized: boolean;
+};
+
+const branchOnPermissions = <Props extends {}>(
+  demandedPermissions: TPermissionName[],
+  FallbackComponent: React.ComponentType,
+  options: { shouldMatchSomePermissions: boolean }
+) => (Component: React.ComponentType<Props>) => {
+  const WrappedComponent = (props: Props & InjectedProps) => {
     if (props.isAuthorized) {
       return <Component {...props} />;
     }
@@ -17,7 +22,8 @@ const branchOnPermissions = (
     }
     return null;
   };
-  WrappedComponent.displayName = `branchOnPermissions(${getDisplayName(
+
+  WrappedComponent.displayName = `branchOnPermissions(${getDisplayName<Props>(
     Component
   )})`;
   WrappedComponent.propTypes = {
