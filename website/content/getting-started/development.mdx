@@ -222,12 +222,9 @@ const createQueryVariables = custom => ({
   ...custom,
 });
 const UserProfile = () => (
-  <Query
-    query={UserQuery}
-    variables={createQueryVariables()}
-  >
+  <Query query={UserQuery} variables={createQueryVariables()}>
     {({ loading, error, data }) => {
-      if (loading) return "Loading...";
+      if (loading) return 'Loading...';
       if (error) return `Error! ${error.message}`;
 
       return (
