@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/actions-global",
-  "version": "13.9.0",
+  "version": "13.10.0",
   "description": "Global redux actions for a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -37,7 +37,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "7.4.5",
     "@commercetools-frontend/browser-history": "13.9.0",
-    "@commercetools-frontend/constants": "13.9.0",
+    "@commercetools-frontend/constants": "13.10.0",
     "@commercetools-frontend/notifications": "13.9.0",
     "lodash": "4.17.11",
     "lodash-es": "4.17.11"
