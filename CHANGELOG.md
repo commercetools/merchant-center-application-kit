@@ -1,4 +1,4 @@
-## [13.10.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.9.1...v13.10.0) (2019-06-07)
+## [13.10.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.9.1...v13.10.0) (2019-06-14)
 
 In this new release, we have a few highlights:
 
