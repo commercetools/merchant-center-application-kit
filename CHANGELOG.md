@@ -1,3 +1,57 @@
+## [13.10.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.9.1...v13.10.0) (2019-06-07)
+
+In this new release, we have a few highlights:
+
+- we started migrating some of the packages to TypeScript, so future releases will include type declarations
+- we have new _Modal Pages_ components in the `@commercetools-frontend/application-components` package
+- we have a new command `mc-scripts compile-html ...` to help deploying Merchant Center applications as static apps (check out the playground app to see how we can use it to deploy the app to Zeit Now, _more in-depth documentation will follow soon_)
+
+#### 🐛 Type: Bug
+
+- `application-components`
+  - [#735](https://github.com/commercetools/merchant-center-application-kit/pull/735) fix(website): tooltip z-index fix ([@montezume](https://github.com/montezume))
+
+#### 🔮 Type: Chore
+
+- `application-components`
+  - [#731](https://github.com/commercetools/merchant-center-application-kit/pull/731) revert(storybook): contexts addon, since it's missing the core-js dependency ([@emmenko](https://github.com/emmenko))
+  * [#741](https://github.com/commercetools/merchant-center-application-kit/pull/741) chore: unrevert contexts for app-components storybook. ([@montezume](https://github.com/montezume))
+  * [#744](https://github.com/commercetools/merchant-center-application-kit/pull/744) feat(website): add intl controller for playground mode ([@emmenko](https://github.com/emmenko))
+
+* `application-components`, `application-shell-connectors`, `application-shell`, `create-mc-app`, `jest-preset-mc-app`, `l10n`, `mc-scripts`, `permissions`, `react-notifications`, `sdk`
+  - [#728](https://github.com/commercetools/merchant-center-application-kit/pull/728) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+
+#### ✍️ Type: Documentation
+
+- `sdk`
+  - [#743](https://github.com/commercetools/merchant-center-application-kit/pull/743) docs(sdk): fix example code ([@TimonRey](https://github.com/TimonRey))
+
+#### 💅 Type: Enhancement
+
+- `i18n`
+  - [#729](https://github.com/commercetools/merchant-center-application-kit/pull/729) Translate '/packages/i18n/data/core.json' in 'zh_CN' ([@transifex-integration[bot]](https://github.com/apps/transifex-integration))
+
+#### 🚀 Type: New Feature
+
+- `application-components`
+  - [#642](https://github.com/commercetools/merchant-center-application-kit/pull/642) feat(components): new Modal Page design ([@jonnybel](https://github.com/jonnybel))
+- `mc-html-template`, `mc-http-server`, `mc-scripts`
+  - [#670](https://github.com/commercetools/merchant-center-application-kit/pull/670) feat(mc-scripts): add static command to compile final index.html file (and security headers) ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell-connectors`, `application-shell`, `constants`, `jest-preset-mc-app`, `l10n`, `permissions`, `react-notifications`, `sentry`
+  - [#737](https://github.com/commercetools/merchant-center-application-kit/pull/737) refactor: migrate application-shell-connectors to TypeScript ([@emmenko](https://github.com/emmenko))
+  - [#740](https://github.com/commercetools/merchant-center-application-kit/pull/740) fix(app-shell-connectors): to cast context type to not be empty, use function overloading for useApplicationContext ([@emmenko](https://github.com/emmenko))
+- `mc-scripts`
+  - [#736](https://github.com/commercetools/merchant-center-application-kit/pull/736) fix(build): use `overrideBrowsersList` to comply with new autoprefixer API ([@adnasa](https://github.com/adnasa))
+- `l10n`, `sentry`
+  - [#718](https://github.com/commercetools/merchant-center-application-kit/pull/718) feat(l10n): use typescript ([@montezume](https://github.com/montezume))
+- `url-utils`
+  - [#717](https://github.com/commercetools/merchant-center-application-kit/pull/717) refactor(url-utils): use typescript ([@montezume](https://github.com/montezume))
+- `sentry`, `storage`
+  - [#715](https://github.com/commercetools/merchant-center-application-kit/pull/715) feat(storage): use typescript ([@montezume](https://github.com/montezume))
+
 ## [13.9.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.9.0...v13.9.1) (2019-06-07)
 
 #### 🐛 Type: Bug
@@ -1363,9 +1417,7 @@ You can find out more on how to access this information in the [`ApplicationCont
   render={applicationContext => (
     <div>
       <h2>{`Hello ${applicationContext.user.firstName}`}</h2>
-      <p>{`You are currently in project "${
-        applicationContext.project.key
-      }"`}</p>
+      <p>{`You are currently in project "${applicationContext.project.key}"`}</p>
     </div>
   )}
 />
