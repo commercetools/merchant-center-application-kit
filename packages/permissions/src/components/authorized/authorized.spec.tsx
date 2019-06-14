@@ -1,9 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { TPermissions, TPermissionName } from '../../types';
 import { permissions } from '../../constants';
 import Authorized from './authorized';
 
+type TPermissionName = string;
+type TPermissions = {
+  [key: string]: boolean;
+};
 type TestProps = {
   shouldMatchSomePermissions: boolean;
   demandedPermissions: TPermissionName[];

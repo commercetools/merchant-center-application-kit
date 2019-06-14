@@ -1,8 +1,9 @@
 import React from 'react';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { TPermissionName } from '../../types';
 import getDisplayName from '../../utils/get-display-name';
 import Authorized from '../authorized';
+
+type TPermissionName = string;
 
 const branchOnPermissions = <OwnProps extends {}>(
   demandedPermissions: TPermissionName[],

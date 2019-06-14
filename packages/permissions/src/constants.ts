@@ -1,4 +1,6 @@
-import { TPermissionNames } from './types';
+export type TPermissionNames = {
+  [key: string]: string;
+};
 
 const defaultPermissions = {
   ManageProject: 'ManageProject',

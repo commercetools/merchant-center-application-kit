@@ -1,14 +1,16 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { TPermissions, TPermissionName } from '../../types';
 import Authorized from '../authorized';
 import RestrictedByPermissions from './restricted-by-permissions';
 
+type TPermissionName = string;
+type TPermissions = {
+  [key: string]: boolean;
+};
 type TApplicationContext = {
   permissions: TPermissions | null;
 };
-
 type TestProps = {
   shouldMatchSomePermissions: boolean;
   permissions: TPermissionName[];

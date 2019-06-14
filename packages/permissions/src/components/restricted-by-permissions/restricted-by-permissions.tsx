@@ -1,6 +1,5 @@
 import React from 'react';
 import invariant from 'tiny-invariant';
-import { TPermissionName } from '../../types';
 import isNil from 'lodash/isNil';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import Authorized from '../authorized';
@@ -8,6 +7,7 @@ import Authorized from '../authorized';
 const getHasChildren = (children: React.ReactNode) =>
   React.Children.count(children) > 0;
 
+type TPermissionName = string;
 type TRenderProp = (props: { isAuthorized: boolean }) => React.ReactNode;
 type Props = {
   shouldMatchSomePermissions?: boolean;

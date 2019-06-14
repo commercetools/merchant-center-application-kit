@@ -1,6 +1,5 @@
 import React from 'react';
 import invariant from 'tiny-invariant';
-import { TPermissions, TPermissionName } from '../../types';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   hasSomePermissions,
@@ -8,6 +7,11 @@ import {
   getInvalidPermissions,
 } from '../../utils/has-permissions';
 import getDisplayName from '../../utils/get-display-name';
+
+type TPermissions = {
+  [key: string]: boolean;
+};
+type TPermissionName = string;
 
 const defaultProps = {
   shouldMatchSomePermissions: false,

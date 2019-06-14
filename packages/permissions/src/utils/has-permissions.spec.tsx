@@ -1,4 +1,3 @@
-import { TPermissionName, TPermissions } from '../types';
 import { permissions } from '../constants';
 import {
   hasPermission,
@@ -6,6 +5,11 @@ import {
   hasSomePermissions,
   getInvalidPermissions,
 } from './has-permissions';
+
+type TPermissionName = string;
+type TPermissions = {
+  [key: string]: boolean;
+};
 
 describe('hasPermission', () => {
   let demandedPermission: TPermissionName;
