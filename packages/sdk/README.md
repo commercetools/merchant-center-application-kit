@@ -116,9 +116,9 @@ const fetchProductById = productId =>
 ```
 
 ```js
-import * as globalActions from '@commercetools-frontend/sdk';
+import * as globalActions from '@commercetools-frontend/actions-global';
 
-class Foo extends React.Component {
+class ProductPage extends React.Component {
   state = { product: null };
   componentDidMount() {
     this.props.fetchProductById(this.props.productId).then(
@@ -126,7 +126,7 @@ class Foo extends React.Component {
         this.setState({ product });
       },
       error => {
-        this.props.onActionError(error, 'Foo/fetchProductById');
+        this.props.onActionError(error, 'ProductPage/fetchProductById');
       }
     );
   }
@@ -144,5 +144,5 @@ export default connect(
     fetchProductById: productsActions.fetchProductById,
     onActionError: globalActions.handleActionError,
   }
-);
+)(ProductPage);
 ```
