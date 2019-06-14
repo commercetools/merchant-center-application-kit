@@ -1,41 +1,40 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { TPermissionName } from '../../types';
 import getDisplayName from '../../utils/get-display-name';
-import { injectAuthorized } from '../authorized';
+import Authorized from '../authorized';
 
-type InjectedProps = {
-  isAuthorized: boolean;
-};
-
-const branchOnPermissions = <
-  Props extends {},
-  TFallbackComponent = React.ComponentType
->(
+const branchOnPermissions = <OwnProps extends {}>(
   demandedPermissions: TPermissionName[],
-  FallbackComponent: TFallbackComponent,
+  FallbackComponent: React.ComponentType<unknown>,
   options: { shouldMatchSomePermissions: boolean }
 ) => (
-  Component: React.ComponentType<Props>
-): React.ComponentType<Props> | TFallbackComponent => {
-  const WrappedComponent = (props: Props & InjectedProps) => {
-    if (props.isAuthorized) {
-      return <Component {...props} />;
-    }
-    if (FallbackComponent) {
-      return <FallbackComponent />;
-    }
-    return null;
-  };
-
-  WrappedComponent.displayName = `branchOnPermissions(${getDisplayName<Props>(
-    Component
-  )})`;
-  WrappedComponent.propTypes = {
-    isAuthorized: PropTypes.bool.isRequired,
-  };
-
-  return injectAuthorized(demandedPermissions, options)(WrappedComponent);
+  Component: React.ComponentType<OwnProps>
+): React.ComponentType<OwnProps> => {
+  const WrappedComponent = (props: OwnProps) => (
+    <ApplicationContext
+      render={applicationContext => (
+        <Authorized
+          shouldMatchSomePermissions={options.shouldMatchSomePermissions}
+          demandedPermissions={demandedPermissions}
+          actualPermissions={applicationContext.permissions}
+          render={isAuthorized => {
+            if (isAuthorized) {
+              return <Component {...props} />;
+            }
+            if (FallbackComponent) {
+              return <FallbackComponent />;
+            }
+            return <React.Fragment></React.Fragment>;
+          }}
+        />
+      )}
+    />
+  );
+  WrappedComponent.displayName = `branchOnPermissions(${getDisplayName<
+    OwnProps
+  >(Component)})`;
+  return WrappedComponent;
 };
 
 export default branchOnPermissions;

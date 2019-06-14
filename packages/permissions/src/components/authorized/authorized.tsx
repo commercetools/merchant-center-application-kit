@@ -43,17 +43,17 @@ const Authorized = (props: Props) => {
 Authorized.displayName = 'Authorized';
 Authorized.defaultProps = defaultProps;
 
-type InjectedProps = {
-  [propName: string]: boolean;
-};
-const injectAuthorized = <Props extends {}>(
+const injectAuthorized = <
+  OwnProps extends { isAuthorized?: boolean },
+  InjectedProps extends OwnProps & { [key: string]: boolean }
+>(
   demandedPermissions: TPermissionName[],
   options: { shouldMatchSomePermissions?: boolean } = {},
-  propName = 'isAuthorized'
+  propName: string = 'isAuthorized'
 ) => (
-  Component: React.ComponentType<Props>
-): React.ComponentType<Props & InjectedProps> => {
-  const WrappedComponent = (props: Props) => (
+  Component: React.ComponentType<OwnProps>
+): React.ComponentType<OwnProps & InjectedProps> => {
+  const WrappedComponent = (props: OwnProps) => (
     <ApplicationContext
       render={applicationContext => (
         <Authorized
@@ -67,9 +67,9 @@ const injectAuthorized = <Props extends {}>(
       )}
     />
   );
-  WrappedComponent.displayName = `withUserPermissions(${getDisplayName<Props>(
-    Component
-  )})`;
+  WrappedComponent.displayName = `withUserPermissions(${getDisplayName<
+    OwnProps
+  >(Component)})`;
   return WrappedComponent;
 };
 
