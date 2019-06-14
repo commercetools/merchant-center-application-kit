@@ -7,7 +7,9 @@ import Authorized from '../authorized';
 const branchOnPermissions = <OwnProps extends {}>(
   demandedPermissions: TPermissionName[],
   FallbackComponent: React.ComponentType<unknown>,
-  options: { shouldMatchSomePermissions: boolean }
+  options: { shouldMatchSomePermissions: boolean } = {
+    shouldMatchSomePermissions: false,
+  }
 ) => (
   Component: React.ComponentType<OwnProps>
 ): React.ComponentType<OwnProps> => {
