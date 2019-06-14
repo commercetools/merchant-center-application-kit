@@ -32,8 +32,8 @@
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",
     "build": "yarn build:es && yarn build:cjs && yarn build:typings",
-    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.ts -o dist/application-shell-connectors.cjs.js",
-    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.ts -o dist/application-shell-connectors.es.js",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./index.ts -o ./dist/application-shell-connectors.cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./index.ts -o ./dist/application-shell-connectors.es.js",
     "build:es:watch": "yarn build:es -w",
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
   },
