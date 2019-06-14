@@ -18,7 +18,7 @@ type Props = {
 };
 type InjectedProps = {
   applicationContext: {
-    permissions: TPermissions;
+    permissions: TPermissions | null;
   };
 };
 

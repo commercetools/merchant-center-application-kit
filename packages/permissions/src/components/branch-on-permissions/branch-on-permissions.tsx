@@ -8,11 +8,16 @@ type InjectedProps = {
   isAuthorized: boolean;
 };
 
-const branchOnPermissions = <Props extends {}>(
+const branchOnPermissions = <
+  Props extends {},
+  TFallbackComponent = React.ComponentType
+>(
   demandedPermissions: TPermissionName[],
-  FallbackComponent: React.ComponentType,
+  FallbackComponent: TFallbackComponent,
   options: { shouldMatchSomePermissions: boolean }
-) => (Component: React.ComponentType<Props>) => {
+) => (
+  Component: React.ComponentType<Props>
+): React.ComponentType<Props> | TFallbackComponent => {
   const WrappedComponent = (props: Props & InjectedProps) => {
     if (props.isAuthorized) {
       return <Component {...props} />;

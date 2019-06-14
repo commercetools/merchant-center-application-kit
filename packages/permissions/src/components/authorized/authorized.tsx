@@ -17,7 +17,7 @@ type RenderProp = (isAuthorized: boolean) => React.ReactNode;
 type Props = {
   shouldMatchSomePermissions?: boolean;
   demandedPermissions: TPermissionName[];
-  actualPermissions: TPermissions;
+  actualPermissions: TPermissions | null;
   render: RenderProp;
   children?: never;
 } & DefaultProps;
@@ -26,6 +26,8 @@ class Authorized extends React.Component<Props> {
   static displayName = 'Authorized';
   static defaultProps = defaultProps;
   render() {
+    if (!this.props.actualPermissions) return this.props.render(false);
+
     const namesOfNonConfiguredPermissions = getInvalidPermissions(
       this.props.demandedPermissions,
       this.props.actualPermissions
