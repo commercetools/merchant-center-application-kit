@@ -13,43 +13,35 @@ const defaultProps = {
   shouldMatchSomePermissions: false,
 };
 type DefaultProps = typeof defaultProps;
-type RenderProp = (isAuthorized: boolean) => React.ReactNode;
 type Props = {
   shouldMatchSomePermissions?: boolean;
   demandedPermissions: TPermissionName[];
   actualPermissions: TPermissions | null;
-  render: RenderProp;
+  render: (isAuthorized: boolean) => React.ReactNode;
   children?: never;
 } & DefaultProps;
 
-class Authorized extends React.Component<Props> {
-  static displayName = 'Authorized';
-  static defaultProps = defaultProps;
-  render() {
-    if (!this.props.actualPermissions) return this.props.render(false);
+const Authorized = (props: Props) => {
+  if (!props.actualPermissions)
+    return <React.Fragment>{props.render(false)}</React.Fragment>;
 
-    const namesOfNonConfiguredPermissions = getInvalidPermissions(
-      this.props.demandedPermissions,
-      this.props.actualPermissions
-    );
-    invariant(
-      !(namesOfNonConfiguredPermissions.length > 0),
-      '@commercetools-frontend/permissions/Authorized: Invalid prop `demandedPermissions` supplied. The permission(s) ${namesOfNonConfiguredPermissions.toString()} is/are not configured through `actualPermissions`.'
-    );
+  const namesOfNonConfiguredPermissions = getInvalidPermissions(
+    props.demandedPermissions,
+    props.actualPermissions
+  );
+  invariant(
+    !(namesOfNonConfiguredPermissions.length > 0),
+    `@commercetools-frontend/permissions/Authorized: Invalid prop "demandedPermissions" supplied. The permission(s) ${namesOfNonConfiguredPermissions.toString()} is/are not configured through "actualPermissions"`
+  );
 
-    const isAuthorized = this.props.shouldMatchSomePermissions
-      ? hasSomePermissions(
-          this.props.demandedPermissions,
-          this.props.actualPermissions
-        )
-      : hasEveryPermissions(
-          this.props.demandedPermissions,
-          this.props.actualPermissions
-        );
+  const isAuthorized = props.shouldMatchSomePermissions
+    ? hasSomePermissions(props.demandedPermissions, props.actualPermissions)
+    : hasEveryPermissions(props.demandedPermissions, props.actualPermissions);
 
-    return this.props.render(isAuthorized);
-  }
-}
+  return <React.Fragment>{props.render(isAuthorized)}</React.Fragment>;
+};
+Authorized.displayName = 'Authorized';
+Authorized.defaultProps = defaultProps;
 
 type InjectedProps = {
   [propName: string]: boolean;
@@ -75,7 +67,7 @@ const injectAuthorized = <Props extends {}>(
       )}
     />
   );
-  WrappedComponent.displayName = `withUserPermissions(${getDisplayName(
+  WrappedComponent.displayName = `withUserPermissions(${getDisplayName<Props>(
     Component
   )})`;
   return WrappedComponent;

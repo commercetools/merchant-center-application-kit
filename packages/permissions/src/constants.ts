@@ -1,6 +1,6 @@
 import { TPermissionNames } from './types';
 
-const permissions: TPermissionNames = {
+const defaultPermissions = {
   ManageProject: 'ManageProject',
   ManageCustomers: 'ManageCustomers',
   ManageOrders: 'ManageOrders',
@@ -14,6 +14,11 @@ const permissions: TPermissionNames = {
   ViewStates: 'ViewStates',
   ViewTypes: 'ViewTypes',
 };
+
+type TPermissionNamesWithDefaults = typeof defaultPermissions &
+  TPermissionNames;
+
+const permissions: TPermissionNamesWithDefaults = defaultPermissions;
 
 /* eslint-disable import/prefer-default-export */
 export { permissions };

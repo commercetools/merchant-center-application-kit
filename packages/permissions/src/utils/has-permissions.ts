@@ -48,15 +48,15 @@ const hasManageProjectPermission = (actualPermissions: TPermissions) =>
 // (e.g. project not found).
 export const hasPermission = (
   demandedPermission: TPermissionName,
-  actualPermissions: TPermissions = {}
+  actualPermissions: TPermissions | null
 ) =>
   // First checking the existence of the exact permission
-  hasExactPermission(demandedPermission, actualPermissions) ||
+  hasExactPermission(demandedPermission, actualPermissions || {}) ||
   // Then checking if a manage permission is present superposing/implying a
   // view persmission
-  hasManagePermission(demandedPermission, actualPermissions) ||
+  hasManagePermission(demandedPermission, actualPermissions || {}) ||
   // To finally check for a manage project permission which trumps all
-  hasManageProjectPermission(actualPermissions);
+  hasManageProjectPermission(actualPermissions || {});
 
 // Check that the user permissions match EVERY one of the required permissions.
 // The shapes of the arguments are:
@@ -66,7 +66,7 @@ export const hasPermission = (
 //     { canViewProducts: true, canManageOrders: false }
 export const hasEveryPermissions = (
   demandedPermissions: TPermissionName[],
-  actualPermissions: TPermissions
+  actualPermissions: TPermissions | null
 ) =>
   demandedPermissions.every((permission: TPermissionName) =>
     hasPermission(permission, actualPermissions)
@@ -80,7 +80,7 @@ export const hasEveryPermissions = (
 //     { canViewProducts: true, canManageOrders: false }
 export const hasSomePermissions = (
   demandedPermissions: TPermissionName[],
-  actualPermissions: TPermissions
+  actualPermissions: TPermissions | null
 ) =>
   demandedPermissions.some((permission: TPermissionName) =>
     hasPermission(permission, actualPermissions)
