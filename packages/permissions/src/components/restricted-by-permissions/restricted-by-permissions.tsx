@@ -1,8 +1,8 @@
 import React from 'react';
 import invariant from 'tiny-invariant';
-import { TPermissions, TPermissionName } from '../../types';
+import { TPermissionName } from '../../types';
 import isNil from 'lodash/isNil';
-import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import Authorized from '../authorized';
 
 const getHasChildren = (children: React.ReactNode) =>
@@ -16,57 +16,49 @@ type Props = {
   children?: TRenderProp;
   render?: TRenderProp;
 };
-type InjectedProps = {
-  applicationContext: {
-    permissions: TPermissions | null;
-  };
-};
 
-export class RestrictedByPermissions extends React.Component<
-  Props & InjectedProps
-> {
-  static displayName = 'RestrictedByPermissions';
+const RestrictedByPermissions = (props: Props) => {
+  invariant(
+    !(
+      typeof props.children === 'function' &&
+      !isNil(props.unauthorizedComponent)
+    ),
+    '@commercetools-frontend/permissions/RestrictedByPermissions: You provided both `children` and `unauthorizedComponent`. Please provide only one of them.'
+  );
 
-  render() {
-    invariant(
-      !(
-        typeof this.props.children === 'function' &&
-        !isNil(this.props.unauthorizedComponent)
-      ),
-      '@commercetools-frontend/permissions/RestrictedByPermissions: You provided both `children` and `unauthorizedComponent`. Please provide only one of them.'
-    );
+  return (
+    <ApplicationContext
+      render={applicationContext => (
+        <Authorized
+          shouldMatchSomePermissions={props.shouldMatchSomePermissions}
+          demandedPermissions={props.permissions}
+          actualPermissions={applicationContext.permissions}
+          render={(isAuthorized: boolean) => {
+            if (typeof props.children === 'function')
+              return props.children({
+                isAuthorized,
+              });
+            if (typeof props.render === 'function')
+              return props.render({
+                isAuthorized,
+              });
 
-    return (
-      <Authorized
-        shouldMatchSomePermissions={this.props.shouldMatchSomePermissions}
-        demandedPermissions={this.props.permissions}
-        actualPermissions={this.props.applicationContext.permissions}
-        render={(isAuthorized: boolean) => {
-          if (typeof this.props.children === 'function')
-            return this.props.children({
-              isAuthorized,
-            });
-          if (typeof this.props.render === 'function')
-            return this.props.render({
-              isAuthorized,
-            });
-
-          if (isAuthorized) {
-            if (this.props.children && getHasChildren(this.props.children))
-              return React.Children.only(this.props.children);
-          } else if (!isAuthorized) {
-            if (this.props.unauthorizedComponent) {
-              return React.createElement(this.props.unauthorizedComponent);
+            if (isAuthorized) {
+              if (props.children && getHasChildren(props.children))
+                return React.Children.only(props.children);
+            } else if (!isAuthorized) {
+              if (props.unauthorizedComponent) {
+                return React.createElement(props.unauthorizedComponent);
+              }
             }
-          }
 
-          return null;
-        }}
-      />
-    );
-  }
-}
+            return null;
+          }}
+        />
+      )}
+    />
+  );
+};
+RestrictedByPermissions.displayName = 'RestrictedByPermissions';
 
-export default withApplicationContext<Props, InjectedProps>()(
-  RestrictedByPermissions
-);
+export default RestrictedByPermissions;
