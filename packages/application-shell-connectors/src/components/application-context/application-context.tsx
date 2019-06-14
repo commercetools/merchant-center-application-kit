@@ -70,9 +70,6 @@ type ConsumerProps<AdditionalEnvironmentProperties extends {}> = {
   ) => React.ReactNode;
   children?: never;
 };
-type DefaultMappedProps<AdditionalEnvironmentProperties extends {}> = {
-  applicationContext: TApplicationContext<AdditionalEnvironmentProperties>;
-};
 
 const Context = React.createContext({});
 
@@ -168,22 +165,20 @@ const ApplicationContext = <AdditionalEnvironmentProperties extends {}>(
 ApplicationContext.displayName = 'ApplicationContext';
 
 function withApplicationContext<
-  Props extends {},
-  MappedProps extends {} = {},
-  AdditionalEnvironmentProperties extends {} = {}
+  OwnProps extends {},
+  MappedProps extends {
+    applicationContext?: TApplicationContext<AdditionalEnvironmentProperties>;
+  },
+  AdditionalEnvironmentProperties extends {}
 >(
   mapApplicationContextToProps?: (
     context: TApplicationContext<AdditionalEnvironmentProperties>
   ) => MappedProps
 ) {
   return (
-    Component: React.ComponentType<
-      | Props
-      | Props & DefaultMappedProps<AdditionalEnvironmentProperties>
-      | Props & MappedProps
-    >
-  ) => {
-    const WrappedComponent = (props: Props) => (
+    Component: React.ComponentType<OwnProps>
+  ): React.ComponentType<OwnProps & MappedProps> => {
+    const WrappedComponent = (props: OwnProps) => (
       <ApplicationContext<AdditionalEnvironmentProperties>
         render={applicationContext => {
           const mappedProps = mapApplicationContextToProps
@@ -194,7 +189,7 @@ function withApplicationContext<
       />
     );
     WrappedComponent.displayName = `withApplicationContext(${getDisplayName<
-      Props
+      OwnProps
     >(Component)})`;
     return WrappedComponent;
   };
