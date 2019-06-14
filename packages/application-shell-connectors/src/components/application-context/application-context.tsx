@@ -173,7 +173,7 @@ function withApplicationContext<
   AdditionalEnvironmentProperties extends {} = {}
 >(
   mapApplicationContextToProps?: (
-    context: TApplicationContext<AdditionalEnvironmentProperties> | {}
+    context: TApplicationContext<AdditionalEnvironmentProperties>
   ) => MappedProps
 ) {
   return (
