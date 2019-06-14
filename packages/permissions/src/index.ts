@@ -9,6 +9,7 @@ export {
   default as Authorized,
   injectAuthorized,
 } from './components/authorized';
+export { default as useIsAuthorized } from './hooks/use-is-authorized';
 export {
   hasPermission,
   hasEveryPermissions,

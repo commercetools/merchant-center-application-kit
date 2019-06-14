@@ -18,8 +18,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/permissions.cjs.js",
-  "module": "dist/permissions.es.js",
+  "main": "dist/permissions-index.cjs.js",
+  "module": "dist/permissions-index.es.js",
+  "typings": "./dist/typings/index.d.ts",
+  "types": "./dist/typings/index.d.ts",
   "files": [
     "dist",
     "package.json",
@@ -29,10 +31,11 @@
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",
-    "build": "yarn build:es && yarn build:cjs",
-    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js -o ./dist/permissions.cjs.js",
-    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.js -o ./dist/permissions.es.js",
-    "build:es:watch": "yarn build:es -w"
+    "build": "yarn build:es && yarn build:cjs && yarn build:typings",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.ts --dir ./dist --chunkFileNames permissions-[name]-[hash].cjs.js --entryFileNames permissions-[name].cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.ts --dir ./dist --chunkFileNames permissions-[name]-[hash].es.js --entryFileNames permissions-[name].es.js",
+    "build:es:watch": "yarn build:es -w",
+    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.4.5",

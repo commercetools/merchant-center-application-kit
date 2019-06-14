@@ -1,9 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { TPermissions, TPermissionName } from '../../types';
 import { permissions } from '../../constants';
 import Authorized from './authorized';
 
-const createTestProps = custom => ({
+type TestProps = {
+  shouldMatchSomePermissions: boolean;
+  demandedPermissions: TPermissionName[];
+  actualPermissions: TPermissions | null;
+  render: jest.Mock;
+};
+
+const createTestProps = (custom: Partial<TestProps>) => ({
   shouldMatchSomePermissions: false,
   demandedPermissions: [permissions.ViewProducts, permissions.ViewOrders],
   actualPermissions: {
@@ -15,7 +23,7 @@ const createTestProps = custom => ({
 });
 
 describe('rendering', () => {
-  let props;
+  let props: TestProps;
   describe('if should match SOME permissions', () => {
     describe('if can view products', () => {
       beforeEach(() => {
