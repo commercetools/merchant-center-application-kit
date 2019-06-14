@@ -7,15 +7,32 @@ import {
   permissions,
 } from '@commercetools-frontend/permissions';
 import StateMachinesList from './components/state-machines-list';
+import StateMachinesDetails from './components/state-machines-details';
 import reducers from './reducers';
 
 // FIXME: import it from AppShell
 const PageUnauthorized = () => <div>{'Unauthorized'}</div>;
 PageUnauthorized.displayName = 'PageUnauthorized';
 
-const ApplicationRoutes = () => (
+const ApplicationRoutes = props => (
   <InjectReducers id="state-machines" reducers={reducers}>
     <Switch>
+      <Route
+        path={`${props.match.path}/:id`}
+        render={routerProps => (
+          <RestrictedByPermissions
+            permissions={[permissions.ViewStates, permissions.ManageStates]}
+            unauthorizedComponent={PageUnauthorized}
+            shouldMatchSomePermissions={true}
+          >
+            <StateMachinesDetails
+              id={routerProps.match.params.id}
+              projectKey={routerProps.match.params.projectKey}
+              backToListPath={props.match.url}
+            />
+          </RestrictedByPermissions>
+        )}
+      />
       <Route
         render={routerProps => (
           <RestrictedByPermissions
@@ -25,6 +42,9 @@ const ApplicationRoutes = () => (
           >
             <StateMachinesList
               projectKey={routerProps.match.params.projectKey}
+              goToStateMachineDetail={id => {
+                props.history.push(`${props.match.url}/${id}`);
+              }}
             />
           </RestrictedByPermissions>
         )}
@@ -35,9 +55,14 @@ const ApplicationRoutes = () => (
 ApplicationRoutes.displayName = 'ApplicationRoutes';
 ApplicationRoutes.propTypes = {
   match: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
     params: PropTypes.shape({
       projectKey: PropTypes.string.isRequired,
     }).isRequired,
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
   }).isRequired,
 };
 
