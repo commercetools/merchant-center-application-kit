@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Authorized from '../authorized';
-import { RestrictedByPermissions } from './restricted-by-permissions';
+import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import RestrictedByPermissions from './restricted-by-permissions';
 
 const createTestProps = custom => ({
   shouldMatchSomePermissions: false,
@@ -14,6 +15,12 @@ const createTestProps = custom => ({
   },
   ...custom,
 });
+const createApplicationContext = custom => ({
+  permissions: {
+    canManageProject: true,
+  },
+  ...custom,
+});
 
 describe('rendering', () => {
   let props;
@@ -22,6 +29,8 @@ describe('rendering', () => {
     beforeEach(() => {
       props = createTestProps({ render: jest.fn() });
       shallow(<RestrictedByPermissions {...props} />)
+        .find(ApplicationContext)
+        .renderProp('render')(createApplicationContext())
         .find(Authorized)
         .renderProp('render')(true);
     });
@@ -33,6 +42,8 @@ describe('rendering', () => {
     beforeEach(() => {
       props = createTestProps({ children: jest.fn() });
       shallow(<RestrictedByPermissions {...props} />)
+        .find(ApplicationContext)
+        .renderProp('render')(createApplicationContext())
         .find(Authorized)
         .renderProp('render')(true);
     });
@@ -49,6 +60,8 @@ describe('rendering', () => {
             <div>{'Authorized'}</div>
           </RestrictedByPermissions>
         )
+          .find(ApplicationContext)
+          .renderProp('render')(createApplicationContext())
           .find(Authorized)
           .renderProp('render')(true);
       });
@@ -64,6 +77,8 @@ describe('rendering', () => {
             <div>{'Authorized'}</div>
           </RestrictedByPermissions>
         )
+          .find(ApplicationContext)
+          .renderProp('render')(createApplicationContext())
           .find(Authorized)
           .renderProp('render')(false);
       });
@@ -83,6 +98,8 @@ describe('rendering', () => {
               <div>{'Authorized'}</div>
             </RestrictedByPermissions>
           )
+            .find(ApplicationContext)
+            .renderProp('render')(createApplicationContext())
             .find(Authorized)
             .renderProp('render')(false);
         });
