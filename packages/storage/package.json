@@ -32,7 +32,7 @@
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",
     "build": "yarn build:es && yarn build:cjs && yarn build:typings",
-    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir ./dist/typings",
+    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings",
     "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.ts -o ./dist/storage.cjs.js",
     "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.ts -o ./dist/storage.es.js",
     "build:es:watch": "yarn build:es -w"
