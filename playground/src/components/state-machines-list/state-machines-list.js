@@ -38,6 +38,10 @@ const getErrorMessage = error =>
 export class StateMachinesList extends React.Component {
   static displayName = 'StateMachinesList';
   static propTypes = {
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
+    listPath: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
     // injected
     applicationContext: PropTypes.shape({
@@ -49,6 +53,10 @@ export class StateMachinesList extends React.Component {
   registerMeasurementCache = cache => {
     this.measurementCache = cache;
   };
+  handleRowClick = (rowIndex, results) => {
+    this.props.history.push(`${this.props.listPath}/${results[rowIndex].id}`);
+  };
+
   renderStateMachinesRow = (results, { rowIndex, columnKey }) => {
     const value = results[rowIndex][columnKey];
 
@@ -103,9 +111,9 @@ export class StateMachinesList extends React.Component {
                       this.renderStateMachinesRow(result.results, item)
                     }
                     rowCount={result.count}
-                    // onRowClick={(_, rowIndex) =>
-                    //   this.handleRowClick(rowIndex, result.results)
-                    // }
+                    onRowClick={(_, rowIndex) => {
+                      this.handleRowClick(rowIndex, result.results);
+                    }}
                     registerMeasurementCache={this.registerMeasurementCache}
                     shouldFillRemainingVerticalSpace={true}
                     items={result.results}
