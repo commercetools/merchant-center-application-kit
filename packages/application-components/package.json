@@ -33,9 +33,7 @@
     "build": "yarn build:es && yarn build:cjs",
     "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js -o ./dist/application-components.cjs.js",
     "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.js -o ./dist/application-components.es.js",
-    "build:es:watch": "yarn build:es -w",
-    "storybook:build": "build-storybook -o .public -s .storybook/assets",
-    "storybook:start": "start-storybook -p 9002 -s .storybook/assets"
+    "build:es:watch": "yarn build:es -w"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.4.5",
@@ -50,23 +48,10 @@
   },
   "devDependencies": {
     "@commercetools-frontend/ui-kit": "9.8.3",
-    "@storybook/addon-actions": "5.1.5",
-    "@storybook/addon-contexts": "5.1.5",
-    "@storybook/addon-info": "5.1.5",
-    "@storybook/addon-knobs": "5.1.5",
-    "@storybook/addon-links": "5.1.5",
-    "@storybook/addon-options": "5.1.5",
-    "@storybook/addon-storysource": "5.1.5",
-    "@storybook/react": "5.1.5",
-    "@storybook/theming": "5.1.5",
-    "html-loader": "0.5.5",
-    "markdown-loader": "5.0.0",
-    "moment-locales-webpack-plugin": "1.0.7",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-intl": "2.9.0",
-    "react-testing-library": "7.0.1",
-    "storybook-readme": "5.0.3"
+    "react-testing-library": "7.0.1"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "^9.2",

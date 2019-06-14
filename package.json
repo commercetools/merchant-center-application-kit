@@ -33,8 +33,6 @@
     "playground:build": "yarn --cwd playground build",
     "playground:start": "yarn --cwd playground start",
     "playground:start:prod:local": "yarn --cwd playground start:prod:local",
-    "storybook:build": "yarn --cwd packages/application-components storybook:build",
-    "storybook:start": "yarn --cwd packages/application-components storybook:start",
     "visual-testing-app:build": "yarn --cwd visual-testing-app build",
     "visual-testing-app:start": "yarn --cwd visual-testing-app start",
     "template-starter:build": "yarn --cwd application-templates/starter build",
