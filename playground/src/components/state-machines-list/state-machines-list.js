@@ -38,10 +38,7 @@ const getErrorMessage = error =>
 export class StateMachinesList extends React.Component {
   static displayName = 'StateMachinesList';
   static propTypes = {
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired,
-    }).isRequired,
-    listPath: PropTypes.string.isRequired,
+    goToStateMachineDetail: PropTypes.func.isRequired,
     projectKey: PropTypes.string.isRequired,
     // injected
     applicationContext: PropTypes.shape({
@@ -54,7 +51,7 @@ export class StateMachinesList extends React.Component {
     this.measurementCache = cache;
   };
   handleRowClick = (rowIndex, results) => {
-    this.props.history.push(`${this.props.listPath}/${results[rowIndex].id}`);
+    this.props.goToStateMachineDetail(results[rowIndex].id);
   };
 
   renderStateMachinesRow = (results, { rowIndex, columnKey }) => {

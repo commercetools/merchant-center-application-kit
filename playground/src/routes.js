@@ -42,8 +42,9 @@ const ApplicationRoutes = props => (
           >
             <StateMachinesList
               projectKey={routerProps.match.params.projectKey}
-              history={routerProps.history}
-              listPath={props.match.url}
+              goToStateMachineDetail={id => {
+                props.history.push(`${props.match.url}/${id}`);
+              }}
             />
           </RestrictedByPermissions>
         )}

@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import flowRight from 'lodash/flowRight';
-import {
-  withApplicationContext,
-  Context,
-} from '@commercetools-frontend/application-shell-connectors';
+import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { connect } from 'react-redux';
 import {
   LoadingSpinner,
@@ -72,15 +69,15 @@ export class StateMachinesDetails extends React.Component {
               gridAutoColumns="1fr"
               gridTemplateColumns="repeat(2, 1fr)"
             >
-              <Text.Body>Type</Text.Body>
+              <Text.Body>{'Type'}</Text.Body>
               <Text.Body>{this.state.data.type}</Text.Body>
-              <Text.Body>Built In</Text.Body>
+              <Text.Body>{'Built In'}</Text.Body>
               <Text.Body>
-                {this.state.data.builtIn ? <CheckBoldIcon /> : null}
+                {this.state.data.builtIn ? <CheckBoldIcon /> : ''}
               </Text.Body>
-              <Text.Body>Initial</Text.Body>
+              <Text.Body>{'Initial'}</Text.Body>
               <Text.Body>
-                {this.state.data.initial ? <CheckBoldIcon /> : null}
+                {this.state.data.initial ? <CheckBoldIcon /> : ''}
               </Text.Body>
             </Grid>
           </Constraints.Horizontal>
@@ -91,11 +88,7 @@ export class StateMachinesDetails extends React.Component {
 }
 
 export default flowRight(
-  withApplicationContext(context => {
-    return {
-      dataLocale: context.dataLocale,
-    };
-  }),
+  withApplicationContext(context => ({ dataLocale: context.dataLocale })),
   connect(
     null,
     {
