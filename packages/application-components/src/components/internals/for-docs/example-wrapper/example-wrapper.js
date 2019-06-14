@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import { ThemeProvider } from 'emotion-theming';
 import styled from '@emotion/styled';
-import { IntlProvider } from 'react-intl';
 import {
   Spacings,
   TextField,
@@ -15,6 +14,7 @@ import {
   CodeViewIcon,
 } from '@commercetools-frontend/ui-kit';
 import { InfoDialog } from '@commercetools-frontend/application-components';
+import IntlController from '../intl-controller';
 
 const TooltipWrapperComponent = styled.div`
   /* default z-index for dialogs is 1000 */
@@ -60,6 +60,15 @@ const KnobsController = props => {
       render={formikProps => {
         const form = (
           <Spacings.Stack size="m">
+            <SelectField
+              name="locale"
+              title="Locale"
+              options={props.availableLocaleOptions}
+              value={props.locale}
+              onChange={event => {
+                props.setLocale(event.target.value);
+              }}
+            />
             {props.knobs.map(knobConfig => {
               switch (knobConfig.kind) {
                 case 'text':
@@ -132,6 +141,14 @@ KnobsController.propTypes = {
       ),
     }).isRequired
   ).isRequired,
+  locale: PropTypes.string.isRequired,
+  setLocale: PropTypes.func.isRequired,
+  availableLocaleOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
   children: PropTypes.func.isRequired,
 };
 
@@ -145,49 +162,51 @@ const ExampleWrapper = props => {
         colorSolid: customProperties.colorsSolid,
       }}
     >
-      <IntlProvider locale="en">
-        <KnobsController knobs={props.knobs}>
-          {({ form, values }) => (
-            <Spacings.Stack>
-              <PreviewContainer height="400px">
-                {props.children({ values, isPlaygroundMode: false })}
-              </PreviewContainer>
-              <Spacings.Inline>
-                <Tooltip
-                  position="top"
-                  title="Enter playground mode"
-                  components={{
-                    TooltipWrapperComponent,
-                  }}
+      <IntlController>
+        {intlProps => (
+          <KnobsController knobs={props.knobs} {...intlProps}>
+            {({ form, values }) => (
+              <Spacings.Stack>
+                <PreviewContainer height="400px">
+                  {props.children({ values, isPlaygroundMode: false })}
+                </PreviewContainer>
+                <Spacings.Inline>
+                  <Tooltip
+                    position="top"
+                    title="Enter playground mode"
+                    components={{
+                      TooltipWrapperComponent,
+                    }}
+                  >
+                    <IconButton
+                      icon={<CodeViewIcon />}
+                      label="Enter playground mode"
+                      onClick={() => setIsOpen(true)}
+                    />
+                  </Tooltip>
+                </Spacings.Inline>
+                <InfoDialog
+                  title="Playground"
+                  size="scale"
+                  isOpen={isOpen}
+                  zIndex={1100}
+                  onClose={() => setIsOpen(false)}
+                  getParentSelector={() => document.body}
                 >
-                  <IconButton
-                    icon={<CodeViewIcon />}
-                    label="Enter playground mode"
-                    onClick={() => setIsOpen(true)}
-                  />
-                </Tooltip>
-              </Spacings.Inline>
-              <InfoDialog
-                title="Playground"
-                size="scale"
-                isOpen={isOpen}
-                zIndex={1100}
-                onClose={() => setIsOpen(false)}
-                getParentSelector={() => document.body}
-              >
-                <ColumnsContainer>
-                  <ColumnLeft>
-                    <PreviewContainer height="100%">
-                      {props.children({ values, isPlaygroundMode: true })}
-                    </PreviewContainer>
-                  </ColumnLeft>
-                  <ColumnRight>{form}</ColumnRight>
-                </ColumnsContainer>
-              </InfoDialog>
-            </Spacings.Stack>
-          )}
-        </KnobsController>
-      </IntlProvider>
+                  <ColumnsContainer>
+                    <ColumnLeft>
+                      <PreviewContainer height="100%">
+                        {props.children({ values, isPlaygroundMode: true })}
+                      </PreviewContainer>
+                    </ColumnLeft>
+                    <ColumnRight>{form}</ColumnRight>
+                  </ColumnsContainer>
+                </InfoDialog>
+              </Spacings.Stack>
+            )}
+          </KnobsController>
+        )}
+      </IntlController>
     </ThemeProvider>
   );
 };

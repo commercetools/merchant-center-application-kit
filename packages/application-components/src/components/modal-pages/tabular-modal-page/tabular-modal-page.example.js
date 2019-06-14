@@ -73,10 +73,10 @@ const TabularModalPageExample = () => (
           name: 'useCustomTitleRow',
           label: 'Title Row',
           valueOptions: [
-            { value: false, label: 'Default' },
-            { value: true, label: 'Custom (form example)' },
+            { value: 'default', label: 'Default' },
+            { value: 'custom', label: 'Custom (form example)' },
           ],
-          initialValue: false,
+          initialValue: 'default',
         },
         {
           kind: 'select',
