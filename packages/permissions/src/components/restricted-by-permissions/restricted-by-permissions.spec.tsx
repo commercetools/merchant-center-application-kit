@@ -1,10 +1,24 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import Authorized from '../authorized';
+import { shallow, ShallowWrapper } from 'enzyme';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { TPermissions, TPermissionName } from '../../types';
+import Authorized from '../authorized';
 import RestrictedByPermissions from './restricted-by-permissions';
 
-const createTestProps = custom => ({
+type TApplicationContext = {
+  permissions: TPermissions | null;
+};
+
+type TestProps = {
+  shouldMatchSomePermissions: boolean;
+  permissions: TPermissionName[];
+  applicationContext: TApplicationContext;
+  unauthorizedComponent?: React.ComponentType;
+  render?: jest.Mock;
+  children?: jest.Mock;
+};
+
+const createTestProps = (custom: Partial<TestProps> = {}) => ({
   shouldMatchSomePermissions: false,
   permissions: ['ViewProducts', 'ViewOrders'],
   applicationContext: {
@@ -15,7 +29,21 @@ const createTestProps = custom => ({
   },
   ...custom,
 });
-const createApplicationContext = custom => ({
+const createApplicationContext = (
+  custom: Partial<TApplicationContext> = {}
+) => ({
+  environment: {
+    applicationName: 'my-app',
+    frontendHost: 'localhost:3001',
+    mcApiUrl: 'https://mc-api.commercetools.com',
+    location: 'eu',
+    env: 'development',
+    cdnUrl: 'http://localhost:3001',
+    servedByProxy: false,
+  },
+  user: null,
+  project: null,
+  dataLocale: null,
   permissions: {
     canManageProject: true,
   },
@@ -23,8 +51,8 @@ const createApplicationContext = custom => ({
 });
 
 describe('rendering', () => {
-  let props;
-  let wrapper;
+  let props: TestProps;
+  let wrapper: ShallowWrapper;
   describe('if render prop is defined', () => {
     beforeEach(() => {
       props = createTestProps({ render: jest.fn() });

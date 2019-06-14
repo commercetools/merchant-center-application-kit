@@ -13,8 +13,8 @@ type Props = {
   shouldMatchSomePermissions?: boolean;
   permissions: TPermissionName[];
   unauthorizedComponent?: React.ComponentType;
-  children?: TRenderProp;
   render?: TRenderProp;
+  children?: TRenderProp | React.ReactNode;
 };
 
 const RestrictedByPermissions = (props: Props) => {

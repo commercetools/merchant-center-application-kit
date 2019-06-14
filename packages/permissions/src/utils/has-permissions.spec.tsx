@@ -1,3 +1,4 @@
+import { TPermissionName, TPermissions } from '../types';
 import { permissions } from '../constants';
 import {
   hasPermission,
@@ -7,8 +8,8 @@ import {
 } from './has-permissions';
 
 describe('hasPermission', () => {
-  let demandedPermission;
-  let actualPermissions;
+  let demandedPermission: TPermissionName;
+  let actualPermissions: TPermissions | null;
   describe('when the user has the demanded permission', () => {
     beforeEach(() => {
       demandedPermission = permissions.ManageProducts;

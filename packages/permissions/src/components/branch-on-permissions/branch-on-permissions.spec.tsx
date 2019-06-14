@@ -1,13 +1,14 @@
 import React from 'react';
 import { render, waitForElement } from 'react-testing-library';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
+import { TPermissionName } from '../../types';
 import { permissions } from '../../constants';
 import branchOnPermissions from './branch-on-permissions';
 
 const AuthorizedComponent = () => <div>{'Authorized'}</div>;
 const UnauthorizedComponent = () => <div>{'Not authorized'}</div>;
 
-const renderWithPermissions = demandedPermissions => {
+const renderWithPermissions = (demandedPermissions: TPermissionName[]) => {
   const Wrapped = branchOnPermissions(
     demandedPermissions,
     UnauthorizedComponent
