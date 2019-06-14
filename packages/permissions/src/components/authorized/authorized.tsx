@@ -56,7 +56,9 @@ const injectAuthorized = <Props extends {}>(
   demandedPermissions: TPermissionName[],
   options: { shouldMatchSomePermissions?: boolean } = {},
   propName = 'isAuthorized'
-) => (Component: React.ComponentType<Props & InjectedProps>) => {
+) => (
+  Component: React.ComponentType<Props>
+): React.ComponentType<Props & InjectedProps> => {
   const WrappedComponent = (props: Props) => (
     <ApplicationContext
       render={applicationContext => (
