@@ -29,6 +29,7 @@ const branchOnPermissions = <Props extends {}>(
   WrappedComponent.propTypes = {
     isAuthorized: PropTypes.bool.isRequired,
   };
+
   return injectAuthorized(demandedPermissions, options)(WrappedComponent);
 };
 
