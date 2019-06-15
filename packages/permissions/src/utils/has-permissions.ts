@@ -1,6 +1,10 @@
 import isNil from 'lodash/isNil';
-import { TPermissionName, TPermissions } from '../types';
 import { permissions } from '../constants';
+
+type TPermissionName = string;
+type TPermissions = {
+  [key: string]: boolean;
+};
 
 // Build the permission key from the definition to match it to the format coming
 // from the API.

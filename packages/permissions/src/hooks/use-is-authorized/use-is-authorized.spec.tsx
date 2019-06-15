@@ -1,10 +1,13 @@
 import React from 'react';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { render } from 'react-testing-library';
-import { TPermissions, TPermissionName } from '../../types';
 import { permissions } from '../../constants';
 import useIsAuthorized from './use-is-authorized';
 
+type TPermissionName = string;
+type TPermissions = {
+  [key: string]: boolean;
+};
 type TestProps = {
   demandedPermissions: TPermissionName[];
   shouldMatchSomePermissions: boolean;
