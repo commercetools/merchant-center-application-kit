@@ -1,38 +1,14 @@
 [
   {
-    "id": 1158981072,
-    "name": "Semver: BREAKING",
-    "color": "e3f166",
-    "description": "A breaking change"
-  },
-  {
-    "id": 1158980916,
-    "name": "Semver: FEATURE",
-    "color": "e3f166",
-    "description": "A feature in semver"
-  },
-  {
-    "id": 1158979979,
-    "name": "Semver: FIX",
-    "color": "daf257",
-    "description": "A fix in semver (patch)"
-  },
-  {
-    "id": 1158979615,
-    "name": "Semver: UNRELATED",
-    "color": "e3f166",
-    "description": "A change that does not effect the version"
-  },
-  {
     "id": 1295395245,
-    "name": "⚠️ Blocked ‼",
-    "color": "db756f",
+    "name": "⚠️ Status: Blocked",
+    "color": "222222",
     "description": ""
   },
   {
     "id": 1083802571,
     "name": "⛑ Type: Refactoring",
-    "color": "bfd4f2",
+    "color": "58ce3d",
     "description": ""
   },
   {
@@ -44,37 +20,37 @@
   {
     "id": 1083802563,
     "name": "❌ Type: Invalid",
-    "color": "e4e669",
+    "color": "d73a4a",
     "description": "This doesn't seem right"
   },
   {
     "id": 1083802567,
     "name": "❓ Type: Question",
-    "color": "d876e3",
+    "color": "fad8c7",
     "description": "Further information is requested"
   },
   {
     "id": 1083802559,
     "name": "🌊 Resolution: Wont Fix",
-    "color": "ffffff",
+    "color": "EEEEEE",
     "description": "This will not be worked on"
   },
   {
     "id": 1083802560,
     "name": "🌗 good rotation topic",
-    "color": "bfdadc",
+    "color": "FFEB3A",
     "description": "Good to rotate a member into Application Kit to work on this topic"
   },
   {
     "id": 1083802556,
-    "name": "🏕 Technical Exploration",
-    "color": "1d76db",
+    "name": "🏕 Type: Technical Exploration",
+    "color": "fad8c7",
     "description": "Try out a new library or approach"
   },
   {
     "id": 1083802553,
     "name": "🏩 help wanted",
-    "color": "008672",
+    "color": "FFEB3A",
     "description": "Extra attention is needed"
   },
   {
@@ -86,37 +62,37 @@
   {
     "id": 1083802558,
     "name": "👨‍⚕️ Type: Tests",
-    "color": "0b3377",
+    "color": "58ce3d",
     "description": ""
   },
   {
     "id": 1083802557,
     "name": "👨‍🎨 Status: UI/UX Review",
-    "color": "d4c5f9",
+    "color": "FFF2DF",
     "description": "Requires review from design team"
   },
   {
     "id": 1083802555,
     "name": "👯 Resolution: duplicate",
-    "color": "cfd3d7",
+    "color": "EEEEEE",
     "description": "This issue or pull request already exists"
   },
   {
     "id": 1083802561,
     "name": "👶 good first contribution",
-    "color": "7057ff",
+    "color": "FFEB3A",
     "description": "Good for newcomers"
   },
   {
     "id": 1083802566,
     "name": "💅 Type: Enhancement",
-    "color": "88fca1",
-    "description": "Improves an existing code"
+    "color": "58ce3d",
+    "description": "Improves existing code"
   },
   {
     "id": 1083802573,
     "name": "💡 Type: Idea",
-    "color": "ffccd7",
+    "color": "fad8c7",
     "description": "Propose a new idea"
   },
   {
@@ -128,26 +104,26 @@
   {
     "id": 1083802570,
     "name": "📬 Resolution: Accepted",
-    "color": "fef2c0",
+    "color": "EEEEEE",
     "description": "An issue was accepted during triaging"
   },
   {
     "id": 1083802572,
     "name": "🔮 Type: Chore",
-    "color": "98db59",
+    "color": "d876e3",
     "description": ""
   },
   {
     "id": 1083802565,
     "name": "🖐 Status: On Hold",
-    "color": "fef2c0",
+    "color": "d3a550",
     "description": ""
   },
   {
     "id": 1083802562,
     "name": "🙏 Status: Dev Review",
-    "color": "5319e7",
-    "description": ""
+    "color": "FFF2DF",
+    "description": "Waiting for technical reviews"
   },
   {
     "id": 1084711241,
@@ -164,7 +140,32 @@
   {
     "id": 1083802564,
     "name": "🧟 Type: Technical Debt",
-    "color": "be1fdd",
+    "color": "d73a4a",
+    "description": ""
+  },
+  {
+    "name": "🤖 Type: Dependencies",
+    "color": "d876e3",
+    "description": "Dependency updates or something similar"
+  },
+  {
+    "name": "📞 Type: Customer request",
+    "color": "fad8c7",
+    "description": ""
+  },
+  {
+    "name": "🚨 Type: Security",
+    "color": "d73a4a",
+    "description": ""
+  },
+  {
+    "name": "📊 Type: Metrics",
+    "color": "fad8c7",
+    "description": ""
+  },
+  {
+    "name": "🖥 Type: Website",
+    "color": "fad8c7",
     "description": ""
   }
 ]
