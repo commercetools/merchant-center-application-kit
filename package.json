@@ -50,6 +50,7 @@
     "website"
   ],
   "devDependencies": {
+    "@commercetools/github-labels": "1.0.1",
     "@commitlint/cli": "8.0.0",
     "@commitlint/config-conventional": "8.0.0",
     "@percy/puppeteer": "1.0.8",
