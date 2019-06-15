@@ -7,7 +7,6 @@ module.exports = {
     '.spec.js',
     '.visualspec.js',
     '.visualroute.js',
-    '.story.js',
     'packages/mc-http-server/public/',
   ],
   testMatch: [
