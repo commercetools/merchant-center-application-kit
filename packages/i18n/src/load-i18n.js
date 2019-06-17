@@ -98,11 +98,11 @@ const getAppKitChunkImport = locale => {
       );
     case 'fr-FR':
       return import(
-        /* webpackChunkName: "i18n-app-kit-locale-fr-FR" */ '../data/fr-FR.json'
+        /* webpackChunkName: "i18n-app-kit-locale-fr-FR" */ '../data/fr_FR.json'
       );
     case 'zh-CN':
       return import(
-        /* webpackChunkName: "i18n-app-kit-locale-zh-CN" */ '../data/zh-CN.json'
+        /* webpackChunkName: "i18n-app-kit-locale-zh-CN" */ '../data/zh_CN.json'
       );
     default:
       return import(
