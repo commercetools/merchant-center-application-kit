@@ -24,7 +24,7 @@
     "@commercetools-frontend/mc-http-server": "13.10.0",
     "@commercetools-frontend/permissions": "13.10.0",
     "@commercetools-frontend/sdk": "13.10.0",
-    "@commercetools-frontend/ui-kit": "9.8.3",
+    "@commercetools-frontend/ui-kit": "9.9.0",
     "lodash": "4.17.11",
     "lodash-es": "4.17.11",
     "moment": "^2.24.0",
@@ -34,7 +34,7 @@
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-intl": "2.9.0",
-    "react-redux": "7.0.3",
+    "react-redux": "7.1.0",
     "react-router": "5.0.1",
     "react-router-dom": "5.0.1",
     "redux": "4.0.1"
