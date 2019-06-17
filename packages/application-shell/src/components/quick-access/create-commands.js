@@ -398,7 +398,7 @@ export default ({
       ],
       action: { type: 'go', to: `/account/projects` },
     },
-    featureToggles.organizationsList && {
+    {
       id: 'go/manage-organizations',
       text: intl.formatMessage(messages.openManageOrganizations),
       keywords: [

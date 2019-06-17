@@ -353,7 +353,6 @@ export default flowRight(
   injectIntl,
   injectFeatureToggles([
     'pimSearch',
-    'organizationsList',
     'customApplications',
     'canViewOrders',
     'canViewCategories',
