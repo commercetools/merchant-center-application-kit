@@ -37,7 +37,6 @@ const managePermissions = { canManageProject: true };
 
 const flags = {
   pimSearch: true,
-  organizationsList: true,
   customApplications: true,
   canViewOrders: true,
   canViewCategories: true,

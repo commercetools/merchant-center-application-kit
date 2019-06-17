@@ -11,4 +11,3 @@
  */
 
 // eslint-disable-next-line import/prefer-default-export
-export const ORGANIZATIONS_LIST = 'organizationsList';
