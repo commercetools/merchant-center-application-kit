@@ -20,13 +20,13 @@
   {
     "id": 1083802563,
     "name": "❌ Type: Invalid",
-    "color": "d73a4a",
+    "color": "EEEEEE",
     "description": "This doesn't seem right"
   },
   {
     "id": 1083802567,
     "name": "❓ Type: Question",
-    "color": "fad8c7",
+    "color": "EEEEEE",
     "description": "Further information is requested"
   },
   {
@@ -44,7 +44,7 @@
   {
     "id": 1083802556,
     "name": "🏕 Type: Technical Exploration",
-    "color": "fad8c7",
+    "color": "d876e3",
     "description": "Try out a new library or approach"
   },
   {
@@ -92,13 +92,25 @@
   {
     "id": 1083802573,
     "name": "💡 Type: Idea",
-    "color": "fad8c7",
+    "color": "EEEEEE",
     "description": "Propose a new idea"
   },
   {
     "id": 1084713639,
     "name": "💥 Type: Breaking Change",
     "color": "222222",
+    "description": ""
+  },
+  {
+    "id": 1411935429,
+    "name": "📊 Type: Metrics",
+    "color": "d876e3",
+    "description": ""
+  },
+  {
+    "id": 1411935428,
+    "name": "📞 Type: Customer request",
+    "color": "fad8c7",
     "description": ""
   },
   {
@@ -120,6 +132,12 @@
     "description": ""
   },
   {
+    "id": 1411935430,
+    "name": "🖥 Type: Website",
+    "color": "fad8c7",
+    "description": ""
+  },
+  {
     "id": 1083802562,
     "name": "🙏 Status: Dev Review",
     "color": "FFF2DF",
@@ -138,34 +156,21 @@
     "description": "Work in progress"
   },
   {
-    "id": 1083802564,
-    "name": "🧟 Type: Technical Debt",
-    "color": "d73a4a",
-    "description": ""
-  },
-  {
-    "name": "🤖 Type: Dependencies",
-    "color": "d876e3",
-    "description": "Dependency updates or something similar"
-  },
-  {
-    "name": "📞 Type: Customer request",
-    "color": "fad8c7",
-    "description": ""
-  },
-  {
+    "id": 1411935587,
     "name": "🚨 Type: Security",
     "color": "d73a4a",
     "description": ""
   },
   {
-    "name": "📊 Type: Metrics",
-    "color": "fad8c7",
-    "description": ""
+    "id": 1411935467,
+    "name": "🤖 Type: Dependencies",
+    "color": "d876e3",
+    "description": "Dependency updates or something similar"
   },
   {
-    "name": "🖥 Type: Website",
-    "color": "fad8c7",
+    "id": 1083802564,
+    "name": "🧟 Type: Technical Debt",
+    "color": "d876e3",
     "description": ""
   }
 ]
