@@ -39,6 +39,7 @@
     "template-starter:start": "yarn --cwd application-templates/starter start",
     "template-starter:start:prod:local": "yarn --cwd application-templates/starter start:prod:local",
     "build": "NODE_ENV=production lerna run build --no-private",
+    "build:typings": "NODE_ENV=production lerna run build:typings --no-private",
     "build:es": "NODE_ENV=production lerna run build:es --no-private",
     "build:es:watch": "NODE_ENV=development lerna run --no-private --parallel build:es:watch"
   },
