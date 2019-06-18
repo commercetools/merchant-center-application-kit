@@ -31,9 +31,10 @@ import * as storage from '@commercetools-frontend/storage';
 import {
   GRAPHQL_TARGETS,
   NO_VALUE_FALLBACK,
+  SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-import { STORAGE_KEYS, MCSupportFormURL } from '../../constants';
+import { STORAGE_KEYS } from '../../constants';
 import getDisplayName from '../../utils/get-display-name';
 import LoadingPlaceholder from '../loading-placeholder';
 import withApplicationsMenu from '../with-applications-menu';
@@ -551,7 +552,7 @@ export class DataMenu extends React.PureComponent {
         }
         onMouseLeave={this.state.isMenuOpen ? null : this.shouldCloseMenuFly}
       >
-        <a href={MCSupportFormURL} rel="noopener noreferrer" target="_blank">
+        <a href={SUPPORT_PORTAL_URL} rel="noopener noreferrer" target="_blank">
           <div className={styles['item-icon-text']}>
             <div className={styles.icon}>
               <SupportIcon
