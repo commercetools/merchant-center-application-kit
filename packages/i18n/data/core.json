@@ -32,6 +32,8 @@
   "Components.Dialog.labelDelete": "Delete",
   "Components.Dialog.labelSave": "Save",
   "Components.Dialog.labelUpdate": "Update",
+  "Components.ModalPage.TopBar.Back": "Go Back",
+  "Components.ModalPage.TopBar.Close": "Close Modal Page",
   "ErrorApologizer.notifiedTeam": "Our team has been notified about this issue.",
   "ErrorApologizer.title": "Sorry! An unexpected error occured.",
   "FailedAuthentication.paragraph1": "Please try again and contact your system administrator if you have any further questions.",
