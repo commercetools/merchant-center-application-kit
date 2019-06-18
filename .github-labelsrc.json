@@ -1,0 +1,170 @@
+[
+  {
+    "id": 1158981072,
+    "name": "Semver: BREAKING",
+    "color": "e3f166",
+    "description": "A breaking change"
+  },
+  {
+    "id": 1158980916,
+    "name": "Semver: FEATURE",
+    "color": "e3f166",
+    "description": "A feature in semver"
+  },
+  {
+    "id": 1158979979,
+    "name": "Semver: FIX",
+    "color": "daf257",
+    "description": "A fix in semver (patch)"
+  },
+  {
+    "id": 1158979615,
+    "name": "Semver: UNRELATED",
+    "color": "e3f166",
+    "description": "A change that does not effect the version"
+  },
+  {
+    "id": 1295395245,
+    "name": "⚠️ Blocked ‼",
+    "color": "db756f",
+    "description": ""
+  },
+  {
+    "id": 1083802571,
+    "name": "⛑ Type: Refactoring",
+    "color": "bfd4f2",
+    "description": ""
+  },
+  {
+    "id": 1083802568,
+    "name": "✍️ Type: Documentation",
+    "color": "fad8c7",
+    "description": ""
+  },
+  {
+    "id": 1083802563,
+    "name": "❌ Type: Invalid",
+    "color": "e4e669",
+    "description": "This doesn't seem right"
+  },
+  {
+    "id": 1083802567,
+    "name": "❓ Type: Question",
+    "color": "d876e3",
+    "description": "Further information is requested"
+  },
+  {
+    "id": 1083802559,
+    "name": "🌊 Resolution: Wont Fix",
+    "color": "ffffff",
+    "description": "This will not be worked on"
+  },
+  {
+    "id": 1083802560,
+    "name": "🌗 good rotation topic",
+    "color": "bfdadc",
+    "description": "Good to rotate a member into Application Kit to work on this topic"
+  },
+  {
+    "id": 1083802556,
+    "name": "🏕 Technical Exploration",
+    "color": "1d76db",
+    "description": "Try out a new library or approach"
+  },
+  {
+    "id": 1083802553,
+    "name": "🏩 help wanted",
+    "color": "008672",
+    "description": "Extra attention is needed"
+  },
+  {
+    "id": 1083802569,
+    "name": "🐛 Type: Bug",
+    "color": "d73a4a",
+    "description": "Something isn't working"
+  },
+  {
+    "id": 1083802558,
+    "name": "👨‍⚕️ Type: Tests",
+    "color": "0b3377",
+    "description": ""
+  },
+  {
+    "id": 1083802557,
+    "name": "👨‍🎨 Status: UI/UX Review",
+    "color": "d4c5f9",
+    "description": "Requires review from design team"
+  },
+  {
+    "id": 1083802555,
+    "name": "👯 Resolution: duplicate",
+    "color": "cfd3d7",
+    "description": "This issue or pull request already exists"
+  },
+  {
+    "id": 1083802561,
+    "name": "👶 good first contribution",
+    "color": "7057ff",
+    "description": "Good for newcomers"
+  },
+  {
+    "id": 1083802566,
+    "name": "💅 Type: Enhancement",
+    "color": "88fca1",
+    "description": "Improves an existing code"
+  },
+  {
+    "id": 1083802573,
+    "name": "💡 Type: Idea",
+    "color": "ffccd7",
+    "description": "Propose a new idea"
+  },
+  {
+    "id": 1084713639,
+    "name": "💥 Type: Breaking Change",
+    "color": "222222",
+    "description": ""
+  },
+  {
+    "id": 1083802570,
+    "name": "📬 Resolution: Accepted",
+    "color": "fef2c0",
+    "description": "An issue was accepted during triaging"
+  },
+  {
+    "id": 1083802572,
+    "name": "🔮 Type: Chore",
+    "color": "98db59",
+    "description": ""
+  },
+  {
+    "id": 1083802565,
+    "name": "🖐 Status: On Hold",
+    "color": "fef2c0",
+    "description": ""
+  },
+  {
+    "id": 1083802562,
+    "name": "🙏 Status: Dev Review",
+    "color": "5319e7",
+    "description": ""
+  },
+  {
+    "id": 1084711241,
+    "name": "🚀 Type: New Feature",
+    "color": "58ce3d",
+    "description": "Something new"
+  },
+  {
+    "id": 1083802554,
+    "name": "🚧 Status: WIP",
+    "color": "d3a550",
+    "description": "Work in progress"
+  },
+  {
+    "id": 1083802564,
+    "name": "🧟 Type: Technical Debt",
+    "color": "be1fdd",
+    "description": ""
+  }
+]
