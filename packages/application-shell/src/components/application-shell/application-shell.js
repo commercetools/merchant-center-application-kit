@@ -43,25 +43,45 @@ import QuickAccess from '../quick-access';
  * and contains the "restricted" application part.
  */
 
+const getHasUnauthorizedError = graphQLErrors =>
+  graphQLErrors.find(
+    gqlError =>
+      gqlError.extensions &&
+      gqlError.extensions.code &&
+      gqlError.extensions.code === 'UNAUTHENTICATED'
+  );
+const getHasUserBeenDeletedError = graphQLErrors =>
+  graphQLErrors.find(
+    gqlError =>
+      gqlError.message &&
+      // NOTE: The CTP API does not provide an error code in this case.
+      gqlError.message.includes('was not found.')
+  );
 export const RestrictedApplication = props => (
   <FetchUser>
     {({ isLoading: isLoadingUser, user, error }) => {
       if (error) {
         // In case there is an unauthorized error, we redirect to the login page
         if (error.graphQLErrors && Array.isArray(error.graphQLErrors)) {
-          const hasUnauthorizedError = error.graphQLErrors.find(
-            gqlError =>
-              gqlError.extensions &&
-              gqlError.extensions.code &&
-              gqlError.extensions.code === 'UNAUTHENTICATED'
+          const hasUnauthorizedError = getHasUnauthorizedError(
+            error.graphQLErrors
           );
-          if (hasUnauthorizedError) {
+          const hasUserBeenDeletedError = getHasUserBeenDeletedError(
+            error.graphQLErrors
+          );
+
+          if (hasUnauthorizedError || hasUserBeenDeletedError) {
             return (
               <Redirector
                 to="logout"
                 environment={props.environment}
                 queryParams={{
-                  reason: LOGOUT_REASONS.UNAUTHORIZED,
+                  reason: (() => {
+                    if (hasUnauthorizedError)
+                      return LOGOUT_REASONS.UNAUTHORIZED;
+                    else if (hasUserBeenDeletedError)
+                      return LOGOUT_REASONS.DELETED;
+                  })(),
                 }}
               />
             );

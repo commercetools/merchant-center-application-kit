@@ -26,6 +26,7 @@ export const LOGOUT_REASONS = {
   USER: 'user',
   UNAUTHORIZED: 'unauthorized',
   INVALID: 'invalid',
+  DELETED: 'deleted',
 };
 
 export const GRAPHQL_TARGETS = {
