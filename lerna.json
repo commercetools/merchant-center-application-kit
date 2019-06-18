@@ -19,7 +19,10 @@
       "✍️ Type: Documentation": "✍️ Type: Documentation",
       "💅 Type: Enhancement": "💅 Type: Enhancement",
       "🚀 Type: New Feature": "🚀 Type: New Feature",
-      "⛑ Type: Refactoring": "⛑ Type: Refactoring"
+      "⛑ Type: Refactoring": "⛑ Type: Refactoring",
+      "🖥 Type: Website": "🖥 Type: Website",
+      "🚨 Type: Security": "🖥 T🚨 Type: Security",
+      "🤖 Type: Dependencies": "🤖 Type: Dependencies"
     }
   }
 }
