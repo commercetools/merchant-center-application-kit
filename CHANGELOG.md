@@ -1,3 +1,28 @@
+## [13.11.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.10.0...v13.11.0) (2019-06-18)
+
+#### 💅 Type: Enhancement
+
+- `application-shell`, `constants`
+  - [#764](https://github.com/commercetools/merchant-center-application-kit/pull/764) feat(app-shell): add user deleted logout reason ([@tdeekens](https://github.com/tdeekens))
+- `i18n`
+  - [#761](https://github.com/commercetools/merchant-center-application-kit/pull/761) Translate '/packages/i18n/data/core.json' in 'en' ([@transifex-integration[bot]](https://github.com/apps/transifex-integration))
+- `application-shell`, `permissions`, `storage`, `url-utils`
+  - [#739](https://github.com/commercetools/merchant-center-application-kit/pull/739) feat(permissions): add ts-typings ([@tdeekens](https://github.com/tdeekens))
+
+#### 🐛 Type: Bug
+
+- `i18n`
+  - [#762](https://github.com/commercetools/merchant-center-application-kit/pull/762) fix(i18n): fix naming bug for french and chinese translations ([@montezume](https://github.com/montezume))
+
+#### 🔮 Type: Chore
+
+- `application-shell`
+  - [#760](https://github.com/commercetools/merchant-center-application-kit/pull/760) chore(app-shell): remove org list toggle ([@tdeekens](https://github.com/tdeekens))
+- `application-components`
+  - [#749](https://github.com/commercetools/merchant-center-application-kit/pull/749) chore: remove storybook ([@emmenko](https://github.com/emmenko))
+- `actions-global`, `application-components`, `application-shell-connectors`, `browser-history`, `constants`, `permissions`
+  - [#746](https://github.com/commercetools/merchant-center-application-kit/pull/746) chore: keep rollup command simple and consistent ([@emmenko](https://github.com/emmenko))
+
 ## [13.10.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.9.1...v13.10.0) (2019-06-14)
 
 In this new release, we have a few highlights:
