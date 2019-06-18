@@ -1,0 +1,130 @@
+---
+id: main-concepts-data-fetching
+title: Data Fetching - Main concepts
+permalink: /main-concepts/data-fetching
+---
+
+# Data fetching
+
+In client-side applications, data fetching is not always easy and it usually involves a lot of boilerplate code around implementation, state management, data normalization, etc.
+
+Since the commercetools platform has first-class support for GraphQL, in Merchant Center we prefer and recommend to use GraphQL as the main data fetching choice.
+
+## GraphQL endpoints
+
+To handle requests to the [GraphQL APIs](./graphql) we use the [Apollo GraphQL Client](https://www.apollographql.com/docs/react/), which comes already configured within the [`<ApplicationShell>`](./application-shell).
+
+In the example below, we query for a [Channel](https://docs.commercetools.com/http-api-projects-channels).
+First we define the GraphQL query in a `.graphql` file:
+
+```graphql
+# channels.graphql
+query FetchChannelQuery($id: String!, $locale: Locale) {
+  channel(id: $id) {
+    id
+    version
+    key
+    roles
+    name(locale: $locale)
+    description(locale: $locale)
+    createdAt
+    lastModifiedAt
+  }
+}
+```
+
+Then we use the `Query` component of Apollo to send the query and render the result:
+
+```jsx
+// channel-details.js
+import React from 'react';
+import { Query } from 'react-apollo';
+import { Text } from '@commercetools-frontend/ui-kit';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { FetchChannelQuery } from './channels.graphql';
+
+const createQueryVariables = custom => ({
+  target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
+  ...custom,
+});
+const ChannelDetails = props => (
+  <Query
+    query={FetchChannelQuery}
+    variables={createQueryVariables({
+      id: props.channelId,
+      locale: props.locale,
+    })}
+  >
+    {({ loading, error, data }) => {
+      if (loading) return 'Loading...';
+      if (error) return `Error! ${error.message}`;
+
+      return (
+        <Text.Headline elementType="h1">
+          {`Channel: ${data.channel.name}`}
+        </Text.Headline>
+      );
+    }}
+  </Query>
+);
+export default ChannelDetails;
+```
+
+That's it, Apollo will then take care of data normalization, caching, etc.
+
+## REST endpoints
+
+Some enpdoints or APIs might not be available as GraphQL, which means that we need to fetch the data using a normal HTTP REST endpoint.
+There are different options here: you can build and send requests manually, using e.g. the [`fetch`](https://github.github.io/fetch/) library or any HTTP client.
+
+However, we recommend to use our own declarative fetching library [`@commercetools-frontend/sdk`](https://www.npmjs.com/package/@commercetools-frontend/sdk), which builds on top of the [SDK client](https://commercetools.github.io/nodejs/sdk/api/sdkClient.html) and [Redux](https://redux.js.org/) and is already configured within the [`<ApplicationShell>`](./application-shell).
+
+> The library does not include features like data normalization, caching, etc. You will need to build those on your onw.
+
+In the example below, we fetch a [Channel](https://docs.commercetools.com/http-api-projects-channels).
+First we define the action creator:
+
+```js
+// actions.js
+import { actions as sdkActions } from '@commercetools-frontend/sdk';
+
+const fetchChannelById = id =>
+  sdkActions.get({
+    service: 'channels',
+    options: { id },
+  });
+```
+
+Then we can use the `Sdk.Get` component to send the request and render the result:
+
+```jsx
+// channel-details.js
+import React from 'react';
+import { Query } from 'react-apollo';
+import { Text } from '@commercetools-frontend/ui-kit';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import * as actions from './actions';
+
+const ChannelDetails = props => (
+  <Sdk.Get
+    actionCreator={() => actions.fetchChannelById(props.channelId)}
+    render={({ isLoading, error, result }) => {
+      if (isLoading) return 'Loading...';
+      if (error) return `Error! ${error.message}`;
+
+      return (
+        <Text.Headline elementType="h1">
+          {`Channel: ${result.name}`}
+        </Text.Headline>
+      );
+    }}
+  />
+);
+export default connect(
+  null,
+  // Important: bind the action creator in order to dispatch the action
+  { fetchChannelById: actions.fetchChannelById }
+)(ChannelDetails);
+```
+
+Ideally, you would want to also handle data normalization, caching etc. The data/state should also be lifted up to the global Redux store, which allows then other components to access the same data.

@@ -351,7 +351,7 @@ MarkdownTemplate.propTypes = {
 };
 export default MarkdownTemplate;
 
-export const pageQuery = graphql`
+export const query = graphql`
   query QueryMarkdownPage($id: String!) {
     mdx(frontmatter: { id: { eq: $id } }) {
       id

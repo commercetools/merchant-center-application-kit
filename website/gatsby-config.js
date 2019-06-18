@@ -11,17 +11,36 @@ module.exports = {
     navbarLinks: [
       {
         label: 'Getting started',
+        groupKey: 'getting-started',
         subgroup: [
-          { label: 'Introduction', linkTo: '/getting-started/introduction' },
-          { label: 'Development', linkTo: '/getting-started/development' },
-          { label: 'Deployment', linkTo: '/getting-started/deployment' },
-          { label: 'Registration', linkTo: '/getting-started/registration' },
-          { label: 'Usage', linkTo: '/getting-started/usage' },
-          { label: 'Installation', linkTo: '/getting-started/installation' },
+          {
+            label: 'Installing a starter application',
+            linkTo: '/getting-started/installing-a-starter-application',
+          },
+          { label: 'Tooling', linkTo: '/getting-started/tooling' },
         ],
       },
       {
-        label: 'Components API',
+        label: 'Development',
+        groupKey: 'development',
+        subgroup: [
+          {
+            label: 'Available scripts',
+            linkTo: '/development/available-scripts',
+          },
+          {
+            label: 'Folder structure',
+            linkTo: '/development/folder-structure',
+          },
+          { label: 'Menu links', linkTo: '/development/menu-links' },
+          { label: 'Styling', linkTo: '/development/styling' },
+          { label: 'Testing', linkTo: '/development/testing' },
+          { label: 'Translations', linkTo: '/development/translations' },
+        ],
+      },
+      {
+        label: 'UI Components',
+        groupKey: 'components',
         subgroup: [
           {
             label: 'Dialogs',
@@ -57,19 +76,68 @@ module.exports = {
               },
             ],
           },
+          { label: 'UI-Kit', linkTo: '/components/ui-kit' },
         ],
       },
       {
-        label: 'API Gateway',
+        label: 'Deployment',
+        groupKey: 'deployment',
         subgroup: [
-          { label: 'Introduction', linkTo: '/api-gateway/introduction' },
-          { label: 'Authentication', linkTo: '/api-gateway/authentication' },
-          { label: 'Proxy endpoints', linkTo: '/api-gateway/proxy-endpoints' },
-          { label: 'GraphQL', linkTo: '/api-gateway/graphql' },
+          { label: 'Production build', linkTo: '/deployment/production-build' },
+          {
+            label: 'Runtime configuration',
+            linkTo: '/deployment/runtime-configuration',
+          },
+          { label: 'HTTP server', linkTo: '/deployment/http-server' },
+          { label: 'Static server', linkTo: '/deployment/static-server' },
+          {
+            label: 'Serving static assets',
+            linkTo: '/deployment/serving-static-assets',
+          },
+          { label: 'Example: Now v1', linkTo: '/deployment/example-now-v1' },
+          { label: 'Example: Now v2', linkTo: '/deployment/example-now-v2' },
+        ],
+      },
+      {
+        label: 'Register applications',
+        groupKey: 'register-applications',
+        subgroup: [
+          {
+            label: 'Configuring a custom application',
+            linkTo: '/register-applications/configuring-a-custom-application',
+          },
+          {
+            label: 'Activating a custom application',
+            linkTo: '/register-applications/activating-a-custom-application',
+          },
+          {
+            label: 'Deleting a custom application',
+            linkTo: '/register-applications/deleting-a-custom-application',
+          },
+          { label: 'Caveats', linkTo: '/register-applications/caveats' },
+        ],
+      },
+      {
+        label: 'Main concepts',
+        groupKey: 'main-concepts',
+        subgroup: [
+          { label: 'Architecture', linkTo: '/main-concepts/architecture' },
+          { label: 'Authentication', linkTo: '/main-concepts/authentication' },
+          { label: 'API Gateway', linkTo: '/main-concepts/api-gateway' },
+          { label: 'GraphQL API', linkTo: '/main-concepts/graphql' },
+          {
+            label: 'Proxy endpoints',
+            linkTo: '/main-concepts/proxy-endpoints',
+          },
           {
             label: 'Proxy to external API',
-            linkTo: '/api-gateway/proxy-to-external-api',
+            linkTo: '/main-concepts/proxy-to-external-api',
           },
+          {
+            label: 'Application Shell',
+            linkTo: '/main-concepts/application-shell',
+          },
+          { label: 'Data fetching', linkTo: '/main-concepts/data-fetching' },
         ],
       },
     ],

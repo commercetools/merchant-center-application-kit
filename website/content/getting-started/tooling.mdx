@@ -1,0 +1,50 @@
+---
+id: getting-started-tooling
+title: Tooling - Getting started
+permalink: /getting-started/tooling
+---
+
+import NotificationFeature from '../../src/components/notification-feature';
+
+<NotificationFeature flag="beta" />
+
+# Tooling
+
+We strive to provide the _best developer experience_ for building custom applications, as we want you to focus on building features and business logic instead of focussing on tooling.
+Our open source packages can be grouped into two categories: **development tools** and **application libraries**.
+
+## Development tools
+
+The packages in this category are used for things around development like starting a dev server, providing babel/jest/eslint presets, etc.
+
+- [`@commercetools-frontend/babel-preset-mc-app`](https://www.npmjs.com/package/@commercetools-frontend/babel-preset-mc-app): This package provides an advanced Babel configuration that includes plugins for basic features as well as optional features. Check out the package main module to see the exact list.
+- [`@commercetools-frontend/create-mc-app`](https://www.npmjs.com/package/@commercetools-frontend/create-mc-app): This package is used to bootstrap and install one of the application starter templates.
+- [`@commercetools-frontend/eslint-config-mc-app`](https://www.npmjs.com/package/@commercetools-frontend/eslint-config-mc-app): This package provides an ESLint configuration that we internally use for the Merchant Center applications.
+- [`@commercetools-frontend/jest-preset-mc-app`](https://www.npmjs.com/package/@commercetools-frontend/jest-preset-mc-app): This package provides a configuration for running Jest tests, optimized for Merchant Center applications.
+- [`@commercetools-frontend/mc-dev-authentication`](https://www.npmjs.com/package/@commercetools-frontend/mc-dev-authentication): This package provides auth routes for local development (_you should not need to use this package directly_).
+- [`@commercetools-frontend/mc-html-template`](https://www.npmjs.com/package/@commercetools-frontend/mc-html-template): This package provides functions and scripts to generate and compile the final `index.html` as well as the security headers like Content Security Policy (_you should not need to use this package directly_).
+- [`@commercetools-frontend/mc-http-server`](https://www.npmjs.com/package/@commercetools-frontend/mc-http-server): This package provides a NodeJS HTTP server that you can use to serve your Merchant Center application in production.
+- [`@commercetools-frontend/mc-scripts`](https://www.npmjs.com/package/@commercetools-frontend/mc-scripts): This package is a CLI that provides several commands for development. See [available scripts](../development/available-scripts) for more information.
+
+## Application libraries
+
+The packages in this category are used for developing the React application. They are bundled with Rollup for both CJS and ESM targets.
+Some of those packages should not need to be used directly, others are necessary to build an application.
+
+- [`@commercetools-frontend/actions-global`](https://www.npmjs.com/package/@commercetools-frontend/actions-global): This package exposes redux actions that can be used to e.g. report errors, show notifications, etc.
+- [`@commercetools-frontend/application-components`](https://www.npmjs.com/package/@commercetools-frontend/application-components): This package exposes UI components that can be used to build specific parts of the application's UI.
+  The components follow the same principles of the [@commercetools-frontend/ui-kit](https://www.npmjs.com/package/@commercetools-frontend/ui-kit) components, but are more specific to Merchant Center applications.
+- [`@commercetools-frontend/application-shell`](https://www.npmjs.com/package/@commercetools-frontend/application-shell): This package is **the main library** used to run a Merchant Center application. See [Application Shell](../main-concepts/application-shell) for more information.
+- [`@commercetools-frontend/application-shell-connectors`](https://www.npmjs.com/package/@commercetools-frontend/application-shell-connectors): This package exposes components that use React Context and therefore can be used to retrieve data from any part of the application.
+- [`@commercetools-frontend/assets`](https://www.npmjs.com/package/@commercetools-frontend/assets): This package provides static assets such as images, etc that can be used throughout the Merchant Center application.
+- [`@commercetools-frontend/browser-history`](https://www.npmjs.com/package/@commercetools-frontend/browser-history): This package exposes an enhanced version of the browser history, used by the React Router.
+- [`@commercetools-frontend/constants`](https://www.npmjs.com/package/@commercetools-frontend/constants): This package exposes useful constant variables for a variety of things.
+- [`@commercetools-frontend/i18n`](https://www.npmjs.com/package/@commercetools-frontend/i18n): This package provides translations for all the app-kit packages (_you should not need to use this package directly_).
+- [`@commercetools-frontend/l10n`](https://www.npmjs.com/package/@commercetools-frontend/l10n): This package provides localized data for things like countries, currencies, etc.
+- [`@commercetools-frontend/notifications`](https://www.npmjs.com/package/@commercetools-frontend/notifications): This package exposes a notification system built on top of Redux (_you should not need to use this package directly_).
+- [`@commercetools-frontend/permissions`](https://www.npmjs.com/package/@commercetools-frontend/permissions): This package exposes components to deal with permissions, in order to "protect" certain parts of the UI.
+- [`@commercetools-frontend/react-notifications`](https://www.npmjs.com/package/@commercetools-frontend/react-notifications): This package exposes components as React bindings for the notifications package.
+- [`@commercetools-frontend/sdk`](https://www.npmjs.com/package/@commercetools-frontend/sdk): This package exposes components and Redux actions for declarative data fetching, built on top of the [JS SDK](https://github.com/commercetools/nodejs/). This package should be used for connecting to REST APIs, as for GraphQL we use React Apollo.
+- [`@commercetools-frontend/sentry`](https://www.npmjs.com/package/@commercetools-frontend/sentry): This package exposes functions to report errors to Sentry.
+- [`@commercetools-frontend/storage`](https://www.npmjs.com/package/@commercetools-frontend/storage): This package exposes functions that wraps the localStorage API. _This package is deprecated_
+- [`@commercetools-frontend/url-utils`](https://www.npmjs.com/package/@commercetools-frontend/url-utils): This package exposes functions to help working with URLs.

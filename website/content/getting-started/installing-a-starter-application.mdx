@@ -1,0 +1,75 @@
+---
+id: getting-started-installing-a-starter-application
+title: Installing a starter application - Getting started
+permalink: /getting-started/installing-a-starter-application
+redirect_from:
+  - /getting-started
+---
+
+import NotificationFeature from '../../src/components/notification-feature';
+
+<NotificationFeature flag="beta" />
+
+# Getting started
+
+Get up and running in a few steps and start developing **custom applications** for the [Merchant Center](https://docs.commercetools.com/getting-started.html).
+
+## Prerequisites
+
+Before you start development, you should have the following:
+
+- A [commercetools](https://docs.commercetools.com/getting-started.html) account and a project.
+- [Node.JS](https://nodejs.org/en/) installed (version `>=8`).
+  - Either [`yarn`](https://yarnpkg.com/) or [`npm`](https://www.npmjs.com/get-npm) as a package manager.
+- Basic knowledge of [React](https://reactjs.org/) as well as some experience working with Web-Applications.
+
+## Installing a starter application
+
+1. Install one of the [_starter templates_](https://github.com/commercetools/merchant-center-application-kit/tree/master/application-templates) using the `create-mc-app` package:
+
+```
+$ npx @commercetools-frontend/create-mc-app \
+  my-new-custom-application-project \
+  --template starter
+```
+
+2. Start the development server:
+
+```
+$ cd my-new-custom-application-project
+$ npm start
+```
+
+If you use `yarn`:
+
+```
+$ cd my-new-custom-application-project
+$ yarn start
+```
+
+The browser opens a new tab pointing to `http://localhost:3001`, with a login screen (for development only). Log in using your commercetools account as usual.
+
+![Login screen](/assets/custom-applications/mc-dev-starter-login.png)
+
+Once you've authenticated, you are redirected to the application `http://localhost:3001/:projectKey/examples-starter`, where `:projectKey` is your commercetools project.
+
+![Main screen](/assets/custom-applications/mc-dev-starter-main.png)
+
+## Renaming the application main route path
+
+The starter application defines `example-starter` as the **main application route path** (see `src/components/entry-point`). This is the route that identifies your application and used by the Proxy Router. Check out the [Merchant Center architecture](../main-concepts/architecture) to know more about this.
+
+> Be sure to choose a value that does not conflict with one of the official route values, otherwise your Custom Application will never be served.
+
+The official _main route path_ values are (_the list can be extended at any time_):
+
+- `authentication`
+- `dashboard`
+- `products`
+- `categories`
+- `orders`
+- `customers`
+- `discounts`
+- `settings`
+
+You should choose a value that fits with the purpose of the application you are developing. For example, if you're application manages state machines, you can choose to name the route `state-machines`.

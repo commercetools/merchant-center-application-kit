@@ -1,0 +1,79 @@
+---
+id: deployment-runtime-configuration
+title: Runtime configuration - Deployment
+permalink: /deployment/runtime-configuration
+---
+
+import NotificationFeature from '../../src/components/notification-feature';
+
+<NotificationFeature flag="beta" />
+
+# Runtime configuration
+
+Merchant Center applications require a runtime configuration in order to work. This is useful for several reason and for convenience to be able to deploy the application in different environments.
+
+## `env.json`
+
+The configuration is defined in a file named `env.json`. The following fields are **required** but you can provide additional fields specific to your application:
+
+- `applicationName`: the name of the application (usually the same as in `package.json`)
+- `frontendHost`: The host where the Merchant Center custom application is running (e.g. `mc.commercetools.com`)
+- `mcApiUrl`: The API URL for the [Merchant Center API Gateway](../main-concepts/api-gateway)
+- `location`: The location where the Merchant Center custom application is running. This can be something like:
+  - `eu` for projects in **Europe**
+  - `us` for projects in the **United States**
+- `env`: The environment where the Merchant Center custom application is running, usually `production` or `development`
+- `cdnUrl`: The URL where the static assets are stored (see [Serving static assets](./serving-static-assets))
+- `servedByProxy`: A flag to indicate if the application is running behind the Merchant Center Proxy or not. This is either:
+  - `true` for **production**
+  - `false` for **local development**
+
+The `env.json` object will eventually be injected into `window.app`, when the `index.html.template` gets compiled into `index.html`.
+The `window.app` object is then passed to the `<ApplicationShell>` component as an `environment` prop and will be available in the application context:
+
+```jsx
+import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+
+const MyComponent = () => (
+  <ApplicationContext
+    render={({ environment }) => <div>{environment.applicationName}</div>}
+  />
+);
+```
+
+> Note: For `development` the `env.json` file must be in the root path of the project as it's automatically loaded by the webpack dev-server.
+
+An example configuration for local development:
+
+```json
+{
+  "applicationName": "merchant-center-application-template-starter",
+  "frontendHost": "localhost:3001",
+  "mcApiUrl": "https://mc-api.commercetools.com",
+  "location": "eu",
+  "env": "development",
+  "cdnUrl": "http://localhost:3001",
+  "servedByProxy": false
+}
+```
+
+## `csp.json`
+
+When you deploy your application to a server and domain of your choice, the application will fail to make requests to the [API Gateway](../main-concepts/api-gateway) as the custom domain is not whitelisted. This is why the application can only be accessed through the [Proxy Router](../main-concepts/api-gateway). Setting the `servedByProxy` in the `env.json` is also important.
+
+However, there are additional security measures that prevents requests or scripts to be executed, based on the [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP). You can enhance the policy by whitelisting the domains where the application is hosted.
+To do so, you can specify a `csp.json` file where you configure some of the CSP directives. This is important as e.g. [static assets](./serving-static-assets) may be served by a CDN that is not whitelisted.
+
+For `production`, we recommended defining at a minimum the following directives, where `my-apps.com` is the domain hosting the Custom Application:
+
+```json
+{
+  "script-src": ["my-apps.com"],
+  "connect-src": ["my-apps.com"],
+  "style-src": ["my-apps.com"]
+}
+```
+
+You can find the list of default directives in the `load-headers.js` file in the `@commercetools-frontend/mc-html-template` package.
+
+> Note: For `development` this configuration is **optional**. If you use it, the `csp.json` file must be in the root path of the project and is automatically loaded by the webpack dev-server.

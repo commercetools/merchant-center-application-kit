@@ -1,0 +1,121 @@
+---
+id: deployment-example-now-v1
+title: Example Now v1 - Deployment
+permalink: /deployment/example-now-v1
+---
+
+# Example: Now v1
+
+This deployment example refers to the [Now serverless deployment](https://zeit.co/now).
+
+There are different deployment strategies but we will focus on deployments using **Docker containers**.
+
+> Note: this example refers to `now` version `1`. The version `2` has deprecated those deployment types and is based on **Lambda** functions (or static files) to run the application. See the [Now v2 example](./example-now-v2) for more information.
+
+## Prerequisites
+
+Before you get started, you need to have:
+
+- A [Now](https://zeit.co/signup) account
+- The [Now Desktop](https://zeit.co/download) or [Now CLI](https://zeit.co/download#now-cli) applications
+- [Docker](https://docs.docker.com/install/) installed
+
+We're going to deploy the application under the domain `mc-examples-starter.now.sh`.
+
+> Note: The `mc-examples-starter.now.sh` domain is already in use. Pick a different one if you choose to deploy using Now.
+
+## Configuration
+
+The first thing to do is to define a `now.json` file to configure the deployment with the following JSON:
+
+```json
+{
+  "version": 1,
+  "public": true,
+  "name": "mc-examples-starter",
+  "alias": "mc-examples-starter",
+  "regions": ["bru"],
+  "files": ["dist", "csp.json", "env.prod.json", "now.json", "package.json"]
+}
+```
+
+Some fields may vary based on your setup and requirements (e.g. `public`, `regions`).
+
+The `files` field determines the list of files for uploading to the cloud servers. The`env.prod.json` file, contains the configuration for **production** use, to differentiate it from the `env.json` used for **development**.
+
+Next, we need to create an `env.prod.json` file with the following JSON:
+
+```json
+{
+  "applicationName": "my-app",
+  "frontendHost": "mc-examples-starter.now.sh",
+  "mcApiUrl": "https://mc-api.commercetools.com",
+  "location": "eu",
+  "env": "production",
+  "cdnUrl": "http://mc-examples-starter.now.sh",
+  "servedByProxy": true
+}
+```
+
+We also need a `csp.json` file. You can also have a `csp.prod.json` file if you want to use a different configuration for `development`.
+
+```json
+{
+  "script-src": ["mc-examples-starter.now.sh"],
+  "connect-src": ["mc-examples-starter.now.sh"],
+  "style-src": ["mc-examples-starter.now.sh"]
+}
+```
+
+As a next step, we need a `Dockerfile` which contains the runtime configuration for starting the HTTP server:
+
+```docker
+FROM node:10-stretch
+
+WORKDIR /app
+
+COPY ./dist /app/dist
+
+COPY ./package.json /app/
+RUN yarn install --production
+
+COPY ./csp.json /app/
+COPY ./env.prod.json /app/
+
+ENV NODE_ENV=production
+
+EXPOSE 3001
+
+CMD /app/node_modules/.bin/mc-http-server --config /app/env.prod.json --csp /app/csp.json --use-local-assets
+```
+
+For the sake of the example, the setup includes the static assets within the HTTP server as described [here](./serving-static-assets#serving-assets-using-the-http-server). For **real production use** we recommend uploading static assets to a CDN or Cloud Storage as described [here](./serving-static-assets#serving-assets-on-a-remote-cdn-or-cloud-storage).
+
+We also assume that the assets are built first with `yarn build` and then **copied** into the Docker image (`COPY ./dist /app/dist`).
+
+## Deployment
+
+Finally, we can trigger the deployment using the [Now CLI](https://zeit.co/download#now-cli):
+
+```
+$ yarn build
+
+$ now
+$ now alias
+```
+
+![Now deploy - part 1](/assets/custom-applications/mc-dev-now_1.png)
+![Now deploy - part 2](/assets/custom-applications/mc-dev-now_2.png)
+![Now alias](/assets/custom-applications/mc-dev-now-alias.png)
+
+If we go to `https://mc-examples-starter.now.sh` we can see the application loading and we can inspect the Developer Console to see that the configuration is correct:
+
+![Now deployed](/assets/custom-applications/mc-dev-now-deployed.png)
+
+However, if you try to log in, you will get an error:
+
+![Now login failed](/assets/custom-applications/mc-dev-now-login-failed.png)
+
+**This is expected**. The domain `mc-examples-starter.now.sh` **is not allowed by the CORS rules** defined in the [Merchant Center API Gateway](../main-concepts/api-gateway). It's a security measure as the Custom Application should only be served behind the Merchant Center Proxy.
+
+Now you're ready to [Register your Custom Application](./register-applications) and start using it!

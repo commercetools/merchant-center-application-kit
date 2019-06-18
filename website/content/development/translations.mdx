@@ -1,0 +1,53 @@
+---
+id: development-translations
+title: Translations - Development
+permalink: /development/translations
+---
+
+import NotificationFeature from '../../src/components/notification-feature';
+
+<NotificationFeature flag="beta" />
+
+# Translations
+
+Merchant Center applications use [`react-intl`](https://github.com/formatjs/react-intl), a library built on top of the [ECMAScript Internationalization API](http://www.ecma-international.org/ecma-402/1.0/).
+
+In the React components, you can use things like `<FormattedMessage>` or `intl.formatMessage` to render the correct translation message based on the active `locale`.
+
+We usually define a `messages.js` file co-located to the React component using those messages. The file defines messages as following:
+
+```js
+import { defineMessages } from 'react-intl';
+
+export default defineMessages({
+  title: {
+    id: 'StateMachines.ListView.title',
+    description: 'The page title of state machines list',
+    defaultMessage: 'State Machines',
+  },
+});
+```
+
+This is the _default message_, which will be used in case there is no translation available for the given `locale`.
+
+## Extracting messages for translations
+
+To generate translation files, we provide a `mc-scripts extract-intl` script, which will aggregate all react intl messages into a `core.json` file:
+
+```json
+{
+  "StateMachines.ListView.title": "State Machines"
+}
+```
+
+The `core.json` is the so-called source file, which should be used as the reference file for the translations in the other locales.
+
+Depending on your translation process, you can decide to manage the translations in a separate service (at commercetools we use [Transifex]()) or to manually provide the translations.
+
+The `mc-scripts extract-intl` command provides some extra options to deal with different scenarios.
+
+![Extract intl messages](/assets/custom-applications/mc-dev-yarn-i18n-build.png)
+
+The extracted JSON files ard loaded on runtime by the application and passed to the `<ApplicationShell>`.
+
+You can see an example of asynchronously loading the JSON messages for a specific `locale` in the `<EntryPoint>` component, using a feature called [Code-Splitting](https://reactjs.org/docs/code-splitting.html).

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
@@ -19,14 +20,14 @@ const flattenLinks = links => {
     if (link.subgroup) {
       return [...flat, ...flattenLinks(link.subgroup)];
     }
-    if (link.linkTo && link.label) {
+    if (link.label && link.linkTo) {
       return [...flat, { linkTo: link.linkTo, label: link.label }];
     }
     return flat;
   }, []);
 };
 
-const Pagination = () => {
+const Pagination = props => {
   const data = useStaticQuery(graphql`
     query GetNavbarLinks {
       site {
@@ -46,8 +47,12 @@ const Pagination = () => {
       }
     }
   `);
-
-  const links = flattenLinks(data.site.siteMetadata.navbarLinks);
+  const groupKey = props.permalink.replace(/^\/(.*)\/(.*)$/, '$1');
+  const links = flattenLinks(
+    data.site.siteMetadata.navbarLinks.filter(
+      link => link.groupKey === groupKey
+    )
+  );
   const index = links.findIndex(
     link =>
       link.linkTo ===
@@ -96,5 +101,8 @@ const Pagination = () => {
   );
 };
 Pagination.displayName = 'Pagination';
+Pagination.propTypes = {
+  permalink: PropTypes.string,
+};
 
 export default Pagination;
