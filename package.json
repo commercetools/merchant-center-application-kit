@@ -40,7 +40,8 @@
     "template-starter:start:prod:local": "yarn --cwd application-templates/starter start:prod:local",
     "build": "NODE_ENV=production lerna run build --no-private",
     "build:es": "NODE_ENV=production lerna run build:es --no-private",
-    "build:es:watch": "NODE_ENV=development lerna run --no-private --parallel build:es:watch"
+    "build:es:watch": "NODE_ENV=development lerna run --no-private --parallel build:es:watch",
+    "labels:sync": "github-labels sync"
   },
   "workspaces": [
     "application-templates/*",
@@ -50,7 +51,7 @@
     "website"
   ],
   "devDependencies": {
-    "@commercetools/github-labels": "1.0.1",
+    "@commercetools/github-labels": "1.0.2",
     "@commitlint/cli": "8.0.0",
     "@commitlint/config-conventional": "8.0.0",
     "@percy/puppeteer": "1.0.8",
