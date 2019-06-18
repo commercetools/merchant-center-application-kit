@@ -4,7 +4,10 @@ import {
   hasSomePermissions,
   permissions,
 } from '@commercetools-frontend/permissions';
-import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
+import {
+  LOGOUT_REASONS,
+  SUPPORT_PORTAL_URL,
+} from '@commercetools-frontend/constants';
 import messages from './messages';
 
 export default ({
@@ -366,8 +369,7 @@ export default ({
       keywords: ['Go to support'],
       action: {
         type: 'go',
-        to:
-          'https://jira.commercetools.com/servicedesk/customer/portal/1/create/99',
+        to: SUPPORT_PORTAL_URL,
       },
     },
     {

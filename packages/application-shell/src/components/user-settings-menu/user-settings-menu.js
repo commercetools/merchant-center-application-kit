@@ -16,8 +16,8 @@ import {
 import {
   LOGOUT_REASONS,
   NO_VALUE_FALLBACK,
+  SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
-import { MCSupportFormURL } from '../../constants';
 import withApplicationsMenu from '../with-applications-menu';
 import handleApolloErrors from '../handle-apollo-errors';
 import styles from './user-settings-menu.mod.css';
@@ -147,7 +147,7 @@ const UserSettingsMenuBody = props => {
           </div>
         </a>
         <a
-          href={MCSupportFormURL}
+          href={SUPPORT_PORTAL_URL}
           rel="noopener noreferrer"
           target="_blank"
           data-track-component="Navigation-Support-links"

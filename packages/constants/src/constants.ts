@@ -1,5 +1,8 @@
 export const PORTALS_CONTAINER_ID = 'portals-container';
 
+export const SUPPORT_PORTAL_URL =
+  'https://jira.commercetools.com/servicedesk/customer/portal/1/create/167';
+
 export const __GLOBAL = 'GLOBAL';
 
 // NOTIFICATIONS

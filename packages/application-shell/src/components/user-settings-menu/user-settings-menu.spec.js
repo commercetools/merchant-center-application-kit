@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { CaretDownIcon, Avatar, Text } from '@commercetools-frontend/ui-kit';
+import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import Downshift from 'downshift';
-import { MCSupportFormURL } from '../../constants';
 import UserSettingsMenu, {
   UserSettingsMenuBody,
   ConnectedUserSettingsMenuBody,
@@ -127,9 +127,9 @@ describe('rendering', () => {
         href: '/logout?reason=user',
       });
     });
-    it('should render link to "MCSupportFormURL', () => {
+    it('should render link to support url', () => {
       expect(wrapper).toRender({
-        href: MCSupportFormURL,
+        href: SUPPORT_PORTAL_URL,
       });
     });
   });

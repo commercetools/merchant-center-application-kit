@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PageNotFoundSVG from '@commercetools-frontend/assets/images/page-not-found.svg';
+import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import MaintenancePageLayout from '../maintenance-page-layout';
 import messages from './messages';
 
@@ -14,7 +15,7 @@ const PageNotFound = () => (
         values={{
           link: (
             <a
-              href={'https://support.commercetools.com'}
+              href={SUPPORT_PORTAL_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
