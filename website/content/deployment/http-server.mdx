@@ -1,0 +1,40 @@
+---
+id: deployment-http-server
+title: HTTP Server - Deployment
+permalink: /deployment/http-server
+---
+
+import NotificationFeature from '../../src/components/notification-feature';
+
+<NotificationFeature flag="beta" />
+
+# HTTP Server
+
+We **recommend using** our [`@commercetools-frontend/mc-http-server`](https://www.npmjs.com/package/@commercetools-frontend/mc-http-server) package to run the application in `production` mode.
+
+The [`@commercetools-frontend/mc-http-server`](https://www.npmjs.com/package/@commercetools-frontend/mc-http-server) has built-in functionality that is necessary for the application to work. Most importantly:
+
+- Compiling the `index.html.template` into `index.html` (to inject the runtime configuration in the [`env.json`](./runtime-configuration) file).
+- Preparing the HTTP response headers, including the custom [`csp.json`](./runtime-configuration) configuration (**Content Security Policy**).
+
+The package comes with a binary `mc-http-server` that sets up all the necessary configurations and starts a small Node.JS server.
+
+```
+$ mc-http-server --config $(pwd)/env.json --csp $(pwd)/csp.json
+```
+
+## Docker image
+
+There is also a pre-built **Docker image** (`eu.gcr.io/ct-images/mc-http-server`) that you can use to run the application:
+
+```
+$ docker pull eu.gcr.io/ct-images/mc-http-server
+$ docker run \
+  -v $(pwd):/etc/app \
+  -p 8080:8080 \
+  eu.gcr.io/ct-images/mc-http-server \
+  --config /etc/app/env.json \
+  --csp /etc/app/csp.json
+```
+
+The version of the **Docker image** is the same as the [last release of the `merchant-center-application-kit`](https://github.com/commercetools/merchant-center-application-kit/releases).

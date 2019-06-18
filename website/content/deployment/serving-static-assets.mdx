@@ -1,0 +1,41 @@
+---
+id: deployment-serving-static-assets
+title: Serving static assets - Deployment
+permalink: /deployment/serving-static-assets
+---
+
+import NotificationFeature from '../../src/components/notification-feature';
+
+<NotificationFeature flag="beta" />
+
+# Serving static assets
+
+When you start the HTTP server, you need to make a decision where to host **CSS** and **JavaScript** assets. There are two choices:
+
+- Upload the static assets to a remote CDN (Content Delivery Network) or Cloud Storage (**recommended**).
+- Keep the static assets on the HTTP server.
+
+We strongly recommend uploading static assets to a **remote CDN or Cloud Storage** if possible. This prevents broken references. A broken reference is when a file is requested by the browser which is no longer found on the server. It often happens during application re-deploys.
+For example, imagine if a user has the Merchant Center opened. The `index.html` page contains references to the static assets, for example, `app.v1.js`. If we have the static assets served by the HTTP server, when a new version of the application is deployed, the `app.v1.js` file is no longer present on the HTTP server. If the user performs an action without reloading the browser, there is a chance that the `app.v1.js` file is requested by the browser, is unavailable, and causes a runtime error. If the static assets are uploaded to a remote CDN or Cloud Storage instead, uploading new versions of the application don't affect old versions still receiving outdated assets. When a user reloads the page, their browser requests the new assets, and the application launch is seamless.
+
+## Serving assets on a remote CDN or Cloud Storage
+
+First, upload the assets from `dist/assets` directory to a CDN or Cloud Storage. Then define the location URL of the storage directory in the `cdnUrl` in the `env.json`.
+
+For example, Merchant Center static assets are uploaded to a Google Cloud Storage bucket named `mc-production-eu` for the `eu` region's production assets. Then simply reference the URL in `cdnUrl` in the `env.json.`
+
+```json
+{
+  "cdnUrl": "https://storage.googleapis.com/mc-production-eu"
+}
+```
+
+## Serving assets using the HTTP server
+
+> We do not recommend serving assets using the HTTP server for production use.
+
+To serve static assets in using the HTTP server, do the following:
+
+- Include the `/dist` directory in the project or in the Docker container.
+- Explicitly enable this option when running the `mc-http-server` by passing the `--use-local-assets` flag.
+- In the `env.json` file, set the `cdnUrl` to the **root domain** where the server is hosted. For example, if the application is hosted at `https://my-custom-app.com`, the `cdnUrl` should be `https://my-custom-app.com`.

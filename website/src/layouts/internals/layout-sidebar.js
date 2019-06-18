@@ -8,6 +8,7 @@ import Navbar from './navbar';
 
 const Container = styled.aside`
   position: relative;
+  overflow: auto;
   grid-row: 2;
   flex-direction: column;
   border-right: 1px solid ${colors.light.cards};
@@ -50,6 +51,7 @@ const LayoutSidebar = props => {
         onLinkClick={() => {
           props.setMenuOpen(false);
         }}
+        permalink={props.permalink}
       />
       {portalNode &&
         ReactDOM.createPortal(
@@ -69,6 +71,7 @@ LayoutSidebar.displayName = 'LayoutSidebar';
 LayoutSidebar.propTypes = {
   isMenuOpen: PropTypes.bool.isRequired,
   setMenuOpen: PropTypes.func.isRequired,
+  permalink: PropTypes.string.isRequired,
 };
 
 export default LayoutSidebar;

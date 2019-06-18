@@ -1,0 +1,35 @@
+---
+id: development-available-scripts
+title: Available scripts - Development
+permalink: /development/available-scripts
+redirect_from:
+  - /development
+---
+
+import NotificationFeature from '../../src/components/notification-feature';
+
+<NotificationFeature flag="beta" />
+
+# Available scripts
+
+To develop Merchant Center custom applications we recommend to use [`@commercetools-frontend/mc-scripts`](https://www.npmjs.com/package/@commercetools-frontend/mc-scripts).
+It's a CLI inspired by [`react-scripts`](https://www.npmjs.com/package/react-scripts) to develop and build a React application.
+
+## `mc-scripts start`
+
+Starts the application in `development` mode. The page will reload if you edit source files.
+
+## `mc-scripts build`
+
+Bundles the application in `production` mode to the `dist/assets` folder.
+It also creates a `index.html.template`, which contains references to the generated bundle entry points. This file will need to be compiled to `index.html` based on runtime values. See the [deployment](./deployment) section for more information.
+
+## `mc-scripts compile-html`
+
+> This script requires `mc-scripts build` to be executed first.
+
+Compiles `index.html.template` into `index.html`, based on some runtime configuration defined in `env.json`. Additionally it also generates Content Security Policy headers, including sha hashes based on the runtime configuration. See the [deployment](./deployment) section for more information.
+
+## `mc-scripts extract-intl`
+
+Extracts intl messages into JSON files. See the command `--help` for more information.

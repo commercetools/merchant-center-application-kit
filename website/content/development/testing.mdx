@@ -1,0 +1,32 @@
+---
+id: development-testing
+title: Testing - Development
+permalink: /development/testing
+---
+
+import NotificationFeature from '../../src/components/notification-feature';
+
+<NotificationFeature flag="beta" />
+
+# Testing
+
+We try to provide first-class tooling for testing your application, so that you have a variety of options to choose from, whatever fits best with you.
+
+> We really recommend to use [Jest](https://jestjs.io/) as your testing framework, as we also provide the appropriate configs in the [`@commercetools-frontend/jest-preset-mc-app`](https://www.npmjs.com/package/@commercetools-frontend/jest-preset-mc-app).
+
+To test React components, we recommend to use one of the following approaches:
+
+- [`shallow` rendering](https://github.com/airbnb/enzyme) for normal unit tests
+
+> This is not the recommended approach anymore, instead you should use the "Testing Library" approach (see below).
+
+- [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) for normal unit tests as well as integration tests (or user flow tests).
+
+This library describe the testing problem as following:
+
+> You want to write maintainable tests for your React components. As a part of this goal, you want your tests to avoid including implementation details of your components and rather focus on making your tests give you the confidence for which they are intended. As part of this, you want your testbase to be maintainable in the long run so refactors of your components (changes to implementation but not functionality) don't break your tests and slow you and your team down.
+
+This is the **recommended approach** for writing component and UI tests.
+To make it easier to test parts of the application, we additionally provide [`test-utils`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell/src/test-utils/README.md) in the [`@commercetools-frontend/application-shell`](https://www.npmjs.com/package/@commercetools-frontend/application-shell) package.
+
+- [`cypress`](https://www.cypress.io/) for end-to-end tests. Check out the [app-kit cypress setup](https://github.com/commercetools/merchant-center-application-kit/tree/master/cypress) for more information.

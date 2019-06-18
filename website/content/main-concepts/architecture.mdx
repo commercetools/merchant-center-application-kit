@@ -1,0 +1,40 @@
+---
+id: main-concepts-architecture
+title: Architecture - Main concepts
+permalink: /main-concepts/architecture
+---
+
+import NotificationFeature from '../../src/components/notification-feature';
+
+<NotificationFeature flag="beta" />
+
+# Merchant Center architecture
+
+The Merchant Center is a web application composed of **multiple single-page web applications** running behind a Proxy Router. The Proxy Router matches the incoming requests and forwards them to the appropriate application, which will serve a static `index.html` and the related JavaScript/CSS assets.
+
+![Architecture Diagram](/assets/custom-applications/mc-fe-architecture.png)
+
+The Merchant Center by default comes with a set of applications that focus on a specific platform domain:
+
+- `authentication`
+- `dashboard`
+- `products`
+- `categories`
+- `orders`
+- `customers`
+- `discounts`
+- `settings`
+
+Each application is "registered" to a specific **main route path**, which is used by the Proxy Router to determine which application should handle the request. For example, if you try to access `/:projectKey/products`, the Proxy Router will forward the request to the _products_ application.
+Each application can define their own internal routes, which are sub-routes of the **application main route path**. Navigating within those routes will be performed by the _browser history router_. However, if you try to navigate to a different route (e.g. `/:projectKey/orders`) the application will force a page reload, giving the navigation control back to the Proxy Router.
+
+This mechanism allows the Merchant Center to be served on **one single domain** (e.g. `https://mc.commercetools.com`) making it look like it's one web application, even though there are different applications running underneath.
+
+Custom Applications follow the same principles. You develop and host an application independently, using the tooling and the components that we provide. Then you register it in the Merchant Center so that the Proxy Router can match requests to your **application main route path** and forward them to your application.
+
+Using such an architecture brings several benefits:
+
+- 🚨 **Security controls**: The `mc.commercetools.com` domain is the same for all applications, allowing the Merchant Center to enforce restrictions and security measures, like **CORS rules** and **Content Security Policies** across all applications.
+- 🔑 **Built-in Authentication**: The Merchant Center uses a **secure** `Cookie` to transport session information about the user. The authentication logic is handled in the `@commercetools-frontend/application-shell` package, For more information, see [Merchant Center API Gateway Authentication](./authentication).
+- 🤖 **Built-in application bootstrapping**: The `@commercetools-frontend/application-shell` package provides most of the application setup, including fetching and authenticating the user, initializing Providers (Redux, Apollo, Intl, etc.), setting up the main routes and main layout (including the left and top navigation), and more.
+- 🚀 **Independent development workflows**: Developers can work on applications specific to their team's business domains, decoupled from each other. This allows teams to choose the development workflows that better suits their requirements, including deployments and release cycles.

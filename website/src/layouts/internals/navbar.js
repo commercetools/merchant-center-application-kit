@@ -3,10 +3,19 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css, ClassNames } from '@emotion/core';
 import styled from '@emotion/styled';
-import { Spacings, customProperties } from '@commercetools-frontend/ui-kit';
+import {
+  Spacings,
+  CollapsibleMotion,
+  AngleThinRightIcon,
+  AngleDownIcon,
+  customProperties,
+} from '@commercetools-frontend/ui-kit';
 import { TextHighlight } from '../../components';
 import * as colors from '../../colors';
 
+const ToggableTitle = styled.div`
+  cursor: pointer;
+`;
 const NavbarLinkTitle = styled.div`
   font-size: 1.2rem;
 `;
@@ -60,6 +69,7 @@ const Navbar = props => {
         siteMetadata {
           navbarLinks {
             label
+            groupKey
             subgroup {
               label
               linkTo
@@ -73,50 +83,91 @@ const Navbar = props => {
       }
     }
   `);
+  const groupKey = props.permalink.replace(/^\/(.*)\/(.*)$/, '$1');
+  const [activeGroupKey, setActiveGroupKey] = React.useState(groupKey);
   return (
     <Spacings.Inset scale="l">
       <Spacings.Stack scale="l">
         {data.site.siteMetadata.navbarLinks.map((link, index) => (
-          <Spacings.Stack scale="s" key={index}>
-            <NavbarLinkTitle>
-              <TextHighlight>{link.label}</TextHighlight>
-            </NavbarLinkTitle>
-            {link.subgroup.map((subLink, subGroupIndex) => {
-              if (subLink.subgroup) {
-                return (
-                  <Spacings.Stack scale="xs" key={subGroupIndex}>
-                    <div
-                      css={css`
-                        padding-left: ${customProperties.spacing16};
-                      `}
-                    >
-                      <NavbarLinkSubtitle>{subLink.label}</NavbarLinkSubtitle>
-                    </div>
-                    {subLink.subgroup.map(subSubLink => (
-                      <NavbarLink
-                        to={subSubLink.linkTo}
-                        key={subSubLink.linkTo}
-                        level={2}
-                        onClick={props.onLinkClick}
-                      >
-                        <NavbarLinkText>{subSubLink.label}</NavbarLinkText>
-                      </NavbarLink>
-                    ))}
-                  </Spacings.Stack>
-                );
+          <CollapsibleMotion
+            key={index}
+            isDefaultClosed={true}
+            isClosed={link.groupKey !== activeGroupKey}
+            onToggle={() => {
+              if (link.groupKey !== activeGroupKey) {
+                setActiveGroupKey(link.groupKey);
+              } else {
+                setActiveGroupKey(null);
               }
-              return (
-                <NavbarLink
-                  to={subLink.linkTo}
-                  key={subLink.linkTo}
-                  level={1}
-                  onClick={props.onLinkClick}
-                >
-                  <NavbarLinkSubtitle>{subLink.label}</NavbarLinkSubtitle>
-                </NavbarLink>
-              );
-            })}
-          </Spacings.Stack>
+            }}
+          >
+            {({ isOpen, toggle, containerStyles, registerContentNode }) => (
+              <Spacings.Stack scale="s">
+                <ToggableTitle onClick={toggle}>
+                  <Spacings.Inline
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
+                    <NavbarLinkTitle>
+                      <TextHighlight>{link.label}</TextHighlight>
+                    </NavbarLinkTitle>
+                    {isOpen ? (
+                      <AngleDownIcon size="medium" theme="grey" />
+                    ) : (
+                      <AngleThinRightIcon size="medium" theme="grey" />
+                    )}
+                  </Spacings.Inline>
+                </ToggableTitle>
+                <div style={containerStyles}>
+                  <div ref={registerContentNode}>
+                    <Spacings.Stack scale="s">
+                      {link.subgroup.map((subLink, subGroupIndex) => {
+                        if (subLink.subgroup) {
+                          return (
+                            <Spacings.Stack scale="xs" key={subGroupIndex}>
+                              <div
+                                css={css`
+                                  padding-left: ${customProperties.spacing16};
+                                `}
+                              >
+                                <NavbarLinkSubtitle>
+                                  {subLink.label}
+                                </NavbarLinkSubtitle>
+                              </div>
+                              {subLink.subgroup.map(subSubLink => (
+                                <NavbarLink
+                                  to={subSubLink.linkTo}
+                                  key={subSubLink.linkTo}
+                                  level={2}
+                                  onClick={props.onLinkClick}
+                                >
+                                  <NavbarLinkText>
+                                    {subSubLink.label}
+                                  </NavbarLinkText>
+                                </NavbarLink>
+                              ))}
+                            </Spacings.Stack>
+                          );
+                        }
+                        return (
+                          <NavbarLink
+                            to={subLink.linkTo}
+                            key={subLink.linkTo}
+                            level={1}
+                            onClick={props.onLinkClick}
+                          >
+                            <NavbarLinkSubtitle>
+                              {subLink.label}
+                            </NavbarLinkSubtitle>
+                          </NavbarLink>
+                        );
+                      })}
+                    </Spacings.Stack>
+                  </div>
+                </div>
+              </Spacings.Stack>
+            )}
+          </CollapsibleMotion>
         ))}
       </Spacings.Stack>
     </Spacings.Inset>
@@ -125,6 +176,7 @@ const Navbar = props => {
 Navbar.displayName = 'Navbar';
 Navbar.propTypes = {
   onLinkClick: PropTypes.func.isRequired,
+  permalink: PropTypes.string.isRequired,
 };
 
 export default Navbar;

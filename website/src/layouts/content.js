@@ -17,7 +17,11 @@ const LayoutContent = props => {
       <Globals />
       <LayoutContainer>
         <LayoutHeader />
-        <LayoutSidebar isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
+        <LayoutSidebar
+          isMenuOpen={isMenuOpen}
+          setMenuOpen={setMenuOpen}
+          permalink={props.pageData.frontmatter.permalink}
+        />
         <LayoutMain
           css={css`
             grid-column: auto;
@@ -30,7 +34,7 @@ const LayoutContent = props => {
           `}
         >
           {props.children}
-          <ContentPagination />
+          <ContentPagination permalink={props.pageData.frontmatter.permalink} />
           <LayoutFooter />
         </LayoutMain>
         <LayoutTOC tableOfContents={props.pageData.tableOfContents} />
@@ -41,6 +45,9 @@ const LayoutContent = props => {
 LayoutContent.displayName = 'LayoutContent';
 LayoutContent.propTypes = {
   pageData: PropTypes.shape({
+    frontmatter: PropTypes.shape({
+      permalink: PropTypes.string,
+    }).isRequired,
     tableOfContents: PropTypes.object.isRequired,
   }).isRequired,
   children: PropTypes.node.isRequired,
