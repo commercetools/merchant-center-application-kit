@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ModalPage from '../internals/modal-page';
-import ModalPageTopBar from '../internals/modal-page-top-bar';
 import ModalPageHeader from '../internals/modal-page-header';
 import { ContentWrapper } from '../internals/modal-page.styles';
 
@@ -13,13 +12,11 @@ const InfoModalPage = props => (
     zIndex={props.zIndex}
     onClose={props.onClose}
     baseZIndex={props.baseZIndex}
+    currentPathLabel={props.topBarCurrentPathLabel || props.title}
+    previousPathLabel={props.topBarPreviousPathLabel}
+    shouldDelayOnClose={props.shouldDelayOnClose}
     getParentSelector={props.getParentSelector}
   >
-    <ModalPageTopBar
-      onClose={props.onClose}
-      currentPathLabel={props.topBarCurrentPathLabel || props.title}
-      previousPathLabel={props.topBarPreviousPathLabel}
-    />
     <ModalPageHeader
       title={props.title}
       subtitle={props.subtitle}
@@ -38,6 +35,7 @@ InfoModalPage.propTypes = {
   children: PropTypes.node.isRequired,
   baseZIndex: PropTypes.number,
   getParentSelector: PropTypes.string,
+  shouldDelayOnClose: PropTypes.bool,
   // TopBar Props
   topBarCurrentPathLabel: PropTypes.string,
   topBarPreviousPathLabel: PropTypes.string,

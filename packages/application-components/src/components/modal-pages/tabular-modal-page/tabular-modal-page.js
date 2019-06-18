@@ -5,7 +5,6 @@ import { css } from '@emotion/core';
 import { customProperties, Spacings } from '@commercetools-frontend/ui-kit';
 import buttonMessages from '../../../utils/button-messages';
 import ModalPage from '../internals/modal-page';
-import ModalPageTopBar from '../internals/modal-page-top-bar';
 import ModalPageHeaderTitle from '../internals/modal-page-header-title';
 import ModalPageHeaderDefaultControls from '../internals/modal-page-header-default-controls';
 import { ContentWrapper } from '../internals/modal-page.styles';
@@ -18,14 +17,12 @@ const TabularModalPage = props => (
     zIndex={props.zIndex}
     onClose={props.onClose}
     baseZIndex={props.baseZIndex}
+    topBarColor="neutral"
+    currentPathLabel={props.topBarCurrentPathLabel || props.title}
+    previousPathLabel={props.topBarPreviousPathLabel}
     getParentSelector={props.getParentSelector}
+    shouldDelayOnClose={props.shouldDelayOnClose}
   >
-    <ModalPageTopBar
-      color="neutral"
-      onClose={props.onClose}
-      currentPathLabel={props.topBarCurrentPathLabel || props.title}
-      previousPathLabel={props.topBarPreviousPathLabel}
-    />
     <div
       css={css`
         background-color: ${customProperties.colorNeutral95};
@@ -80,6 +77,7 @@ TabularModalPage.propTypes = {
   children: PropTypes.node.isRequired,
   baseZIndex: PropTypes.number,
   getParentSelector: PropTypes.string,
+  shouldDelayOnClose: PropTypes.bool,
   // For topbar
   topBarCurrentPathLabel: PropTypes.string,
   topBarPreviousPathLabel: PropTypes.string,

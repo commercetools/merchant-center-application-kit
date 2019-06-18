@@ -2,7 +2,7 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { customProperties } from '@commercetools-frontend/ui-kit';
 
-export const getContainerStyles = props => css`
+export const getContainerStyles = (props, transitionDuration) => css`
   position: absolute;
   top: 0;
   right: 0;
@@ -14,7 +14,21 @@ export const getContainerStyles = props => css`
   box-shadow: ${customProperties.shadow4}, ${customProperties.shadow6};
   outline: 0;
   transform: translate3d(30px, 0, 0);
-  transition: transform 0.2s ease;
+  transition: transform ${transitionDuration}ms ease;
+`;
+
+export const getOverlayStyles = (props, transitionDuration) => css`
+  position: absolute;
+  z-index: ${typeof props.zIndex === 'number'
+    ? props.zIndex
+    : props.baseZIndex + props.level};
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(32, 62, 72, 0.5);
+  opacity: 0;
+  transition: opacity ${transitionDuration}ms ease;
 `;
 
 export const getAfterOpenContainerAnimation = () => css`
@@ -31,20 +45,6 @@ export const getBeforeCloseContainerAnimation = () => css`
 
 export const getBeforeCloseOverlayAnimation = () => css`
   opacity: 0 !important;
-`;
-
-export const getOverlayStyles = props => css`
-  position: absolute;
-  z-index: ${typeof props.zIndex === 'number'
-    ? props.zIndex
-    : props.baseZIndex + props.level};
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(32, 62, 72, 0.5);
-  opacity: 0;
-  transition: opacity 0.2s ease;
 `;
 
 export const ContentWrapper = styled.div`
