@@ -67,16 +67,12 @@ class ModalPage extends React.Component {
     getParentSelector: getDefaultParentSelector,
     shouldDelayOnClose: true,
   };
-  static getDerivedStateFromProps(props) {
-    return { isOpen: props.isOpen };
-  }
+
+  state = { forceIsOpen: null };
 
   componentDidUpdate(prevProps) {
-    if (
-      this.props.shouldDelayOnClose &&
-      prevProps.isOpen !== this.props.isOpen
-    ) {
-      this.setState({ isOpen: this.props.isOpen });
+    if (prevProps.isOpen === false && this.props.isOpen === true) {
+      this.setState({ forceIsOpen: null });
     }
   }
 
@@ -88,7 +84,10 @@ class ModalPage extends React.Component {
 
   handleClose = () => {
     if (this.props.shouldDelayOnClose) {
-      this.setState({ isOpen: false });
+      // In this case we want the closing animation to be shown
+      // and therefore we need wait for it to be completed
+      // before calling `onClose`.
+      this.setState({ forceIsOpen: false });
       this.closingTimer = setTimeout(() => {
         this.props.onClose();
       }, TRANSITION_DURATION);
@@ -102,7 +101,11 @@ class ModalPage extends React.Component {
       <ClassNames>
         {({ css: makeClassName }) => (
           <Modal
-            isOpen={this.state.isOpen}
+            isOpen={
+              this.state.forceIsOpen !== null
+                ? this.state.forceIsOpen
+                : this.props.isOpen
+            }
             onRequestClose={this.handleClose}
             shouldCloseOnOverlayClick={Boolean(this.props.onClose)}
             shouldCloseOnEsc={Boolean(this.props.onClose)}
