@@ -149,7 +149,7 @@ const TabularModalPageExample = () => (
                   </div>
                 }
                 customTitleRow={
-                  values.useCustomTitleRow && exampleCustomTitleRow
+                  values.useCustomTitleRow === 'custom' && exampleCustomTitleRow
                 }
                 customControls={customControls(values.useCustomControls)}
               >

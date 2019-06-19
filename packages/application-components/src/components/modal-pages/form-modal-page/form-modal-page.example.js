@@ -48,7 +48,7 @@ const FormModalPageExample = () => (
             { value: 'custom', label: 'Custom (Icon Buttons example)' },
             { value: 'none', label: 'None' },
           ],
-          initialValue: 'none',
+          initialValue: 'default',
         },
       ]}
     >
