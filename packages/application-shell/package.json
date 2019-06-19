@@ -18,8 +18,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/application-shell-index.cjs.js",
-  "module": "dist/application-shell-index.es.js",
+  "main": "./dist/application-shell-index.cjs.js",
+  "module": "./dist/application-shell-index.es.js",
   "files": [
     "dist",
     "test-utils",

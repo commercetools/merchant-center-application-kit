@@ -44,7 +44,6 @@
   },
   "devDependencies": {
     "react": "16.8.6",
-    "react-testing-library": "7.0.1",
     "sentry-testkit": "2.2.1",
     "wait-for-expect": "1.2.0"
   },

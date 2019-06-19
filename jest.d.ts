@@ -1,5 +1,6 @@
 declare namespace jest {
   interface Matchers<R> {
+    toHaveTextContent(selector: string): R;
     // The following matchers are part of https://www.npmjs.com/package/@commercetools/jest-enzyme-matchers
     toHaveProp(selector: string, expected?: unknown): R;
     toRender(selector: string): R;

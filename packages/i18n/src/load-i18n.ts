@@ -1,4 +1,5 @@
 import { addLocaleData } from 'react-intl';
+import moment from 'moment';
 import {
   extractLanguageTagFromLocale,
   mergeMessages,
@@ -6,7 +7,29 @@ import {
   mapLocaleToIntlLocale,
 } from './utils';
 
-const getReactIntlChunkImport = locale => {
+type ReactIntlImportData = {
+  default: ReactIntl.Locale | ReactIntl.Locale[];
+};
+type MomentImportData = {
+  default: moment.Locale;
+};
+type UIKitImportData = {
+  default: {
+    [key: string]: string;
+  };
+};
+type AppKitImportData = {
+  default: {
+    [key: string]: string;
+  };
+};
+type MergedMessages = {
+  [key: string]: string;
+};
+
+const getReactIntlChunkImport = (
+  locale: string
+): Promise<ReactIntlImportData> => {
   // NOTE: react-intl only has locale data for language tags
   const language = extractLanguageTagFromLocale(locale);
   switch (language) {
@@ -33,7 +56,7 @@ const getReactIntlChunkImport = locale => {
   }
 };
 
-const getMomentChunkImport = locale => {
+const getMomentChunkImport = (locale: string): Promise<MomentImportData> => {
   const momentLocale = mapLocaleToMomentLocale(locale);
   switch (momentLocale) {
     case 'de':
@@ -59,7 +82,7 @@ const getMomentChunkImport = locale => {
   }
 };
 
-const getUiKitChunkImport = locale => {
+const getUiKitChunkImport = (locale: string): Promise<UIKitImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
@@ -85,7 +108,7 @@ const getUiKitChunkImport = locale => {
   }
 };
 
-const getAppKitChunkImport = locale => {
+const getAppKitChunkImport = (locale: string): Promise<AppKitImportData> => {
   const intlLocale = mapLocaleToIntlLocale(locale);
   switch (intlLocale) {
     case 'de':
@@ -113,7 +136,9 @@ const getAppKitChunkImport = locale => {
 
 // Use default (lazy) so that we will receive one chunk per
 // locale. https://webpack.js.org/api/module-methods/#import-
-export default async function loadI18n(locale) {
+export default async function loadI18n(
+  locale: string
+): Promise<MergedMessages> {
   // Load react-intl localizations
   const reactIntlChunkImport = await getReactIntlChunkImport(locale);
   addLocaleData(reactIntlChunkImport.default);
@@ -130,7 +155,7 @@ export default async function loadI18n(locale) {
   // Prefer loading `default` (for ESM bundles) and
   // fall back to normal import (for CJS bundles).
   return mergeMessages(
-    uiKitChunkImport,
+    uiKitChunkImport.default || uiKitChunkImport,
     appKitChunkImport.default || appKitChunkImport
   );
 }

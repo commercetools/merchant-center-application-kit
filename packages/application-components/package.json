@@ -18,8 +18,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/application-components.cjs.js",
-  "module": "dist/application-components.es.js",
+  "main": "./dist/application-components.cjs.js",
+  "module": "./dist/application-components.es.js",
   "files": [
     "dist",
     "materials/media-queries.css",
@@ -50,14 +50,12 @@
     "@commercetools-frontend/ui-kit": "9.9.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-intl": "2.9.0",
-    "react-testing-library": "7.0.1"
+    "react-intl": "2.9.0"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "^9.2",
     "react": "16.x",
     "react-dom": "16.x",
-    "react-intl": "2.x",
-    "react-testing-library": "6.x || 7.x"
+    "react-intl": "2.x"
   }
 }

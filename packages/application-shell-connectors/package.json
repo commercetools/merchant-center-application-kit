@@ -18,8 +18,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/application-shell-connectors.cjs.js",
-  "module": "dist/application-shell-connectors.es.js",
+  "main": "./dist/application-shell-connectors.cjs.js",
+  "module": "./dist/application-shell-connectors.es.js",
   "typings": "./dist/typings/index.d.ts",
   "types": "./dist/typings/index.d.ts",
   "files": [
