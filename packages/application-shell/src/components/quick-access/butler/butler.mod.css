@@ -103,7 +103,7 @@
   overflow: hidden;
   white-space: nowrap;
   cursor: default;
-  background: var(--color-grey);
+  background: var(--color-neutral);
   color: var(--color-solid);
   text-align: center;
   text-transform: uppercase;
