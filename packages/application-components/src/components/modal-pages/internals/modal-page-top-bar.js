@@ -121,6 +121,5 @@ ModalPageTopBar.defaultProps = {
   color: 'surface',
   previousPathLabel: messages.back,
 };
-ModalPageTopBar.Intl = { back: messages.back };
 
 export default injectIntl(ModalPageTopBar);

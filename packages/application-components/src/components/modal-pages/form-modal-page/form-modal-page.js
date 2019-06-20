@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import buttonMessages from '../../../utils/button-messages';
 import ModalPage from '../internals/modal-page';
-import ModalPageTopBar from '../internals/modal-page-top-bar';
 import ModalPageHeader from '../internals/modal-page-header';
 import { ContentWrapper } from '../internals/modal-page.styles';
 
@@ -14,13 +13,11 @@ const FormModalPage = props => (
     zIndex={props.zIndex}
     onClose={props.onClose}
     baseZIndex={props.baseZIndex}
+    currentPathLabel={props.topBarCurrentPathLabel || props.title}
+    previousPathLabel={props.topBarPreviousPathLabel}
     getParentSelector={props.getParentSelector}
+    shouldDelayOnClose={props.shouldDelayOnClose}
   >
-    <ModalPageTopBar
-      onClose={props.onClose}
-      currentPathLabel={props.topBarCurrentPathLabel || props.title}
-      previousPathLabel={props.topBarPreviousPathLabel}
-    />
     <ModalPageHeader
       title={props.title}
       subtitle={props.subtitle}
@@ -46,6 +43,7 @@ FormModalPage.propTypes = {
   children: PropTypes.node.isRequired,
   baseZIndex: PropTypes.number,
   getParentSelector: PropTypes.string,
+  shouldDelayOnClose: PropTypes.bool,
   // TopBar props
   topBarCurrentPathLabel: PropTypes.string,
   topBarPreviousPathLabel: PropTypes.string,
