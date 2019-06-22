@@ -1,9 +1,10 @@
-export const extractLanguageTagFromLocale = locale =>
+export const extractLanguageTagFromLocale = (locale: string) =>
   locale.includes('-') ? locale.split('-')[0] : locale;
 
-export const mergeMessages = (...messages) => Object.assign({}, ...messages);
+export const mergeMessages = (...messages: { [key: string]: string }[]) =>
+  Object.assign({}, ...messages);
 
-export const mapLocaleToMomentLocale = locale => {
+export const mapLocaleToMomentLocale = (locale: string) => {
   if (locale.startsWith('de')) return 'de';
   if (locale.startsWith('es')) return 'es';
   if (locale.startsWith('fr')) return 'fr';
@@ -11,7 +12,7 @@ export const mapLocaleToMomentLocale = locale => {
   return 'en-gb';
 };
 
-export const mapLocaleToIntlLocale = locale => {
+export const mapLocaleToIntlLocale = (locale: string) => {
   if (locale.startsWith('de')) return 'de';
   if (locale.startsWith('es')) return 'es';
   if (locale.startsWith('fr')) return 'fr-FR';

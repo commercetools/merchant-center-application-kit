@@ -110,6 +110,7 @@
     "prettier": "1.18.2",
     "puppeteer": "1.17.0",
     "rcfile": "1.0.3",
+    "react-testing-library": "7.0.1",
     "read-pkg-up": "6.0.0",
     "replace": "1.1.0",
     "rollup": "1.15.6",

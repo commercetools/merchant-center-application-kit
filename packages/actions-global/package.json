@@ -18,8 +18,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/actions-global.cjs.js",
-  "module": "dist/actions-global.es.js",
+  "main": "./dist/actions-global.cjs.js",
+  "module": "./dist/actions-global.es.js",
   "files": [
     "dist",
     "package.json",

@@ -18,8 +18,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/constants.cjs.js",
-  "module": "dist/constants.es.js",
+  "main": "./dist/constants.cjs.js",
+  "module": "./dist/constants.es.js",
   "typings": "./dist/typings/index.d.ts",
   "types": "./dist/typings/index.d.ts",
   "files": [

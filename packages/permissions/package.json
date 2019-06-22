@@ -18,8 +18,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/permissions.cjs.js",
-  "module": "dist/permissions.es.js",
+  "main": "./dist/permissions.cjs.js",
+  "module": "./dist/permissions.es.js",
   "typings": "./dist/typings/index.d.ts",
   "types": "./dist/typings/index.d.ts",
   "files": [
@@ -47,8 +47,7 @@
     "warning": "4.0.3"
   },
   "devDependencies": {
-    "react": "16.8.6",
-    "react-testing-library": "7.0.1"
+    "react": "16.8.6"
   },
   "peerDependencies": {
     "react": "16.x"

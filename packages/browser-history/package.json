@@ -18,8 +18,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/browser-history.cjs.js",
-  "module": "dist/browser-history.es.js",
+  "main": "./dist/browser-history.cjs.js",
+  "module": "./dist/browser-history.es.js",
   "files": [
     "dist",
     "package.json",
