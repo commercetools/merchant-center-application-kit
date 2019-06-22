@@ -1,9 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Spacings } from '@commercetools-frontend/ui-kit';
 import * as colors from '../../colors';
+
+const TOCContainer = styled.div`
+  position: relative;
+  grid-row: 2;
+  flex-direction: column;
+  border-left: 1px solid ${colors.light.cards};
+  background-color: ${colors.light.cardsSoft};
+
+  display: none;
+  grid-column: 1/3;
+
+  @media screen and (min-width: 70em) {
+    display: flex;
+    width: 256px;
+    grid-column: 3;
+  }
+`;
 
 const itemType = {
   url: PropTypes.string.isRequired,
@@ -17,7 +33,7 @@ const itemsType = PropTypes.arrayOf(
 );
 
 const Link = styled.a`
-  font-size: ${props => (props.size === 's' ? '0.5rem' : '0.8rem')};
+  font-size: ${props => (props.size === 's' ? '0.8rem' : '1rem')};
   line-height: 1.1;
   color: ${colors.light.text};
   text-decoration: none;
@@ -77,30 +93,13 @@ const LayoutTOC = props => {
     mainItems = mainItems[0].items;
   }
   if (!mainItems || mainItems.length === 0) {
-    return null;
+    return <TOCContainer />;
   }
 
   return (
-    <div
-      css={css`
-        position: relative;
-        grid-row: 2;
-        flex-direction: column;
-        border-left: 1px solid ${colors.light.cards};
-        background-color: ${colors.light.cardsSoft};
-
-        display: none;
-        grid-column: 1/3;
-
-        @media screen and (min-width: 70em) {
-          display: flex;
-          width: 256px;
-          grid-column: 3;
-        }
-      `}
-    >
+    <TOCContainer>
       <Spacings.Inset scale="l">
-        <Spacings.Stack scale="l">
+        <Spacings.Stack scale="m">
           <ListItemGroup items={mainItems}>
             <ListItems>
               <ListItems />
@@ -108,7 +107,7 @@ const LayoutTOC = props => {
           </ListItemGroup>
         </Spacings.Stack>
       </Spacings.Inset>
-    </div>
+    </TOCContainer>
   );
 };
 LayoutTOC.displayName = 'LayoutTOC';

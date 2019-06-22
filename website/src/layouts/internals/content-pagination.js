@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { Spacings, customProperties } from '@commercetools-frontend/ui-kit';
+import {
+  Spacings,
+  Text,
+  customProperties,
+} from '@commercetools-frontend/ui-kit';
 import * as colors from '../../colors';
 
 const TextLink = styled(Link)`
   text-decoration: none;
+  font-size: 1.2rem;
   color: ${colors.light.text};
 
   :hover {
@@ -34,6 +39,7 @@ const Pagination = props => {
         siteMetadata {
           navbarLinks {
             label
+            groupKey
             subgroup {
               label
               linkTo
@@ -82,7 +88,7 @@ const Pagination = props => {
         {hasPagination && previous && (
           <TextLink to={previous.linkTo}>
             <Spacings.Stack scale="s">
-              <small>Previous:</small>
+              <Text.Detail>Previous:</Text.Detail>
               {previous.label}
             </Spacings.Stack>
           </TextLink>
@@ -91,7 +97,7 @@ const Pagination = props => {
         {hasPagination && next && (
           <TextLink to={next.linkTo}>
             <Spacings.Stack scale="s">
-              <small>Next:</small>
+              <Text.Detail>Next:</Text.Detail>
               {next.label}
             </Spacings.Stack>
           </TextLink>

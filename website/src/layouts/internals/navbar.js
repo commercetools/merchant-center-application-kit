@@ -17,13 +17,13 @@ const ToggableTitle = styled.div`
   cursor: pointer;
 `;
 const NavbarLinkTitle = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 `;
 const NavbarLinkSubtitle = styled.div`
-  font-size: 1rem;
+  font-size: 1.2rem;
 `;
 const NavbarLinkText = styled.div`
-  font-size: 0.8rem;
+  font-size: 1rem;
 `;
 
 const NavbarLink = props => {

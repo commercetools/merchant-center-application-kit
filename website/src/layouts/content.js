@@ -15,7 +15,7 @@ const LayoutContent = props => {
   return (
     <React.Fragment>
       <Globals />
-      <LayoutContainer>
+      <LayoutContainer isMenuOpen={isMenuOpen}>
         <LayoutHeader />
         <LayoutSidebar
           isMenuOpen={isMenuOpen}
