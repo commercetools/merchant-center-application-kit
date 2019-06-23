@@ -6,7 +6,7 @@ import * as colors from '../../colors';
 const LayoutContainer = styled.div`
   height: 100vh;
   display: grid;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 50px ${props => (props.isMenuOpen ? 'auto 1fr' : '1fr')};
   grid-template-columns: auto 1fr auto;
 `;
 

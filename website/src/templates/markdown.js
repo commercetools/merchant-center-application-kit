@@ -15,26 +15,35 @@ import AnchorLinkSvg from '../images/anchor-link.svg';
 // Typography sizes have been calculated from https://type-scale.com
 // Ref: https://medium.com/sketch-app-sources/exploring-responsive-type-scales-cf1da541be54
 const typographyScale = {
-  perfectFourth: {
-    h1: '4.209em',
-    h2: '3.157em',
-    h3: '2.369em',
-    h4: '1.777em',
-    h5: '1.333em',
-  },
-  augmentedFourth: {
-    h1: '5.653em',
-    h2: '3.998em',
-    h3: '2.827em',
-    h4: '1.999em',
-    h5: '1.414em',
+  // perfectFourth: {
+  //   h1: '4.209em',
+  //   h2: '3.157em',
+  //   h3: '2.369em',
+  //   h4: '1.777em',
+  //   h5: '1.333em',
+  // },
+  // augmentedFourth: {
+  //   h1: '5.653em',
+  //   h2: '3.998em',
+  //   h3: '2.827em',
+  //   h4: '1.999em',
+  //   h5: '1.414em',
+  // },
+  normalized: {
+    h1: '5rem',
+    h2: '3.5rem',
+    h3: '2.5rem',
+    h4: '2rem',
+    h5: '1.7rem',
+    body: '1.2rem',
   },
 };
 
 const TypographyPage = styled.div`
   font-family: 'Raleway', sans-serif;
+  font-size: ${typographyScale.normalized.body};
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.5;
   padding: ${customProperties.spacingL};
   max-width: 740px;
 `;
@@ -48,24 +57,24 @@ const Paragraph = styled.p`
 `;
 const H1 = styled.h1`
   ${headerStyles};
-  font-size: ${typographyScale.perfectFourth.h1};
+  font-size: ${typographyScale.normalized.h1};
   margin-top: 0;
 `;
 const H2 = styled.h2`
   ${headerStyles};
-  font-size: ${typographyScale.perfectFourth.h2};
+  font-size: ${typographyScale.normalized.h2};
 `;
 const H3 = styled.h3`
   ${headerStyles};
-  font-size: ${typographyScale.perfectFourth.h3};
+  font-size: ${typographyScale.normalized.h3};
 `;
 const H4 = styled.h4`
   ${headerStyles};
-  font-size: ${typographyScale.perfectFourth.h4};
+  font-size: ${typographyScale.normalized.h4};
 `;
 const H5 = styled.h5`
   ${headerStyles};
-  font-size: ${typographyScale.perfectFourth.h5};
+  font-size: ${typographyScale.normalized.h5};
 `;
 const H6 = styled.h6`
   ${headerStyles};
