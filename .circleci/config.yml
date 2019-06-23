@@ -4,7 +4,17 @@ aliases:
   - &project_directory ~/project
   - &working_directory ~/project/merchant-center-application-kit
   - &project_folder merchant-center-application-kit
-  - &cypress_cache_folder cypress_cache
+  - &restore_cache
+      name: Restoring yarn cache
+      keys:
+        - v3-yarn-cache-{{ checksum "yarn.lock" }}
+        - v3-yarn-cache
+  - &save_cache
+      name: Saving yarn cache
+      key: v3-yarn-cache-{{ checksum "yarn.lock" }}
+      paths:
+        - ~/.cache/yarn
+        - ~/.cache/Cypress
 
 executors:
   node_10:
@@ -17,7 +27,6 @@ executors:
       - image: cypress/base:10
         environment:
           TERM: xterm
-          CYPRESS_CACHE_FOLDER: *cypress_cache_folder
 
 # orbs:
 #   compare-url: iynere/compare-url@1.1.0
@@ -27,21 +36,11 @@ commands:
     description: Installing dependencies
     steps:
       - checkout
-      - restore_cache:
-          name: Restoring yarn cache
-          keys:
-            - v2-yarn-cache-{{ checksum "yarn.lock" }}
-            - v2-yarn-cache
+      - restore_cache: *restore_cache
       - run:
           name: Installing dependencies
-          command: yarn install --pure-lockfile
-          environment:
-            CYPRESS_CACHE_FOLDER: *cypress_cache_folder
-      - save_cache:
-          name: Saving yarn cache
-          key: v2-yarn-cache-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules/
+          command: yarn install --frozen-lockfile
+      - save_cache: *save_cache
   restore_workspace:
     description: Restoring workspace
     steps:
@@ -303,7 +302,6 @@ jobs:
   lint_and_test:
     executor: node_10
     steps:
-      - restore_workspace
       - install_dependencies
       - lint
       - unit_test
@@ -351,6 +349,7 @@ jobs:
         default: false
     steps:
       - restore_workspace
+      - restore_cache: *restore_cache
       - when:
           condition: <<parameters.build>>
           steps:
