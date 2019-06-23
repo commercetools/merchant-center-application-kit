@@ -4,6 +4,7 @@ aliases:
   - &project_directory ~/project
   - &working_directory ~/project/merchant-center-application-kit
   - &project_folder merchant-center-application-kit
+  - &cypress_cache_folder /home/circleci/.cache/Cypress
   - &restore_cache
       name: Restoring yarn cache
       keys:
@@ -27,6 +28,7 @@ executors:
       - image: cypress/base:10
         environment:
           TERM: xterm
+          CYPRESS_CACHE_FOLDER: *cypress_cache_folder
 
 # orbs:
 #   compare-url: iynere/compare-url@1.1.0
@@ -372,7 +374,7 @@ jobs:
       - run:
           name: Run Cypress tests
           command: |
-            npx cypress run \
+            yarn run cypress run \
               <<# parameters.spec>> --spec '<<parameters.spec>>' <</ parameters.spec>> \
               <<# parameters.record >> --record \
                 <<# parameters.group>> --group '<<parameters.group>>' <</ parameters.group>> \
