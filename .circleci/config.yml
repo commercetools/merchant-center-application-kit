@@ -1,19 +1,7 @@
 version: 2.1
 
 aliases:
-  - &working_directory ~/merchant-center-application-kit
-
-  - &restore_yarn_cache
-    name: 'Restoring yarn cache'
-    keys:
-      - v1-yarn-cache-{{ checksum "yarn.lock" }}
-      - v1-yarn-cache
-
-  - &save_yarn_cache
-    name: 'Saving yarn cache'
-    key: v1-yarn-cache-{{ checksum "yarn.lock" }}
-    paths:
-      - node_modules/
+  - &working_directory ~/project/merchant-center-application-kit
 
 executors:
   node_10:
@@ -35,26 +23,33 @@ commands:
     description: 'Installing dependencies'
     steps:
       - checkout
-      - restore_cache: *restore_yarn_cache
+      - restore_cache:
+          name: 'Restoring yarn cache'
+          keys:
+            - v1-yarn-cache-{{ checksum "yarn.lock" }}
+            - v1-yarn-cache
       - run: yarn install --pure-lockfile
-      - save_cache: *save_yarn_cache
+      - save_cache:
+          name: 'Saving yarn cache'
+          key: v1-yarn-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules/
+  restore_workspace:
+    description: 'Restoring workspace'
+    steps:
+      - attach_workspace:
+          at: ~/project
+  save_workspace:
+    description: 'Persisting workspace'
+    steps:
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - merchant-center-application-kit
   build_artifacts:
     description: 'Building artifacts'
     steps:
       - run: yarn build
-  save_workspace:
-    steps:
-      - persist_to_workspace:
-          root: *working_directory
-          paths:
-            - packages
-            - playground
-            - visual-testing-app
-            - application-templates
-  restore_workspace:
-    steps:
-      - attach_workspace:
-          at: *working_directory
   lint:
     description: 'Running linters'
     steps:
@@ -266,9 +261,9 @@ commands:
           name: Running Percy
           command: yarn run-if:percy
   build_packages:
+    description: 'Building packages'
     steps:
       - build_artifacts
-      - save_workspace
   build_playground:
     description: 'Building playground'
     steps:
@@ -287,18 +282,20 @@ jobs:
   lint_and_test:
     executor: node_10
     steps:
+      - restore_workspace
       - install_dependencies
       - lint
       - unit_test
+      - save_workspace
   build:
     executor: node_10
     steps:
-      - install_dependencies
+      - restore_workspace
       - build_packages
+      - save_workspace
   vrt_test:
     executor: node_10
     steps:
-      - install_dependencies
       - restore_workspace
       - vrt_test
   e2e_test:
@@ -332,7 +329,6 @@ jobs:
         type: boolean
         default: false
     steps:
-      - install_dependencies
       - restore_workspace
       - when:
           condition: <<parameters.build>>
@@ -372,8 +368,6 @@ jobs:
   publish:
     executor: node_10
     steps:
-      - checkout
-      - install_dependencies
       - restore_workspace
       - publish_to_canary
 
