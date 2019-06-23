@@ -1,7 +1,10 @@
 version: 2.1
 
 aliases:
+  - &project_directory ~/project
   - &working_directory ~/project/merchant-center-application-kit
+  - &project_folder merchant-center-application-kit
+  - &cypress_cache_folder cypress_cache
 
 executors:
   node_10:
@@ -11,56 +14,67 @@ executors:
   cypress:
     working_directory: *working_directory
     docker:
-      - image: 'cypress/base:10'
+      - image: cypress/base:10
         environment:
           TERM: xterm
+          CYPRESS_CACHE_FOLDER: *cypress_cache_folder
 
 # orbs:
 #   compare-url: iynere/compare-url@1.1.0
 
 commands:
   install_dependencies:
-    description: 'Installing dependencies'
+    description: Installing dependencies
     steps:
       - checkout
       - restore_cache:
-          name: 'Restoring yarn cache'
+          name: Restoring yarn cache
           keys:
-            - v1-yarn-cache-{{ checksum "yarn.lock" }}
-            - v1-yarn-cache
-      - run: yarn install --pure-lockfile
+            - v2-yarn-cache-{{ checksum "yarn.lock" }}
+            - v2-yarn-cache
+      - run:
+          name: Installing dependencies
+          command: yarn install --pure-lockfile
+          environment:
+            CYPRESS_CACHE_FOLDER: *cypress_cache_folder
       - save_cache:
-          name: 'Saving yarn cache'
-          key: v1-yarn-cache-{{ checksum "yarn.lock" }}
+          name: Saving yarn cache
+          key: v2-yarn-cache-{{ checksum "yarn.lock" }}
           paths:
             - node_modules/
   restore_workspace:
-    description: 'Restoring workspace'
+    description: Restoring workspace
     steps:
       - attach_workspace:
-          at: ~/project
+          at: *project_directory
   save_workspace:
-    description: 'Persisting workspace'
+    description: Persisting workspace
     steps:
       - persist_to_workspace:
-          root: ~/project
+          root: *project_directory
           paths:
-            - merchant-center-application-kit
+            - *project_folder
   build_artifacts:
-    description: 'Building artifacts'
+    description: Building artifacts
     steps:
       - run: yarn build
   lint:
-    description: 'Running linters'
+    description: Running linters
     steps:
-      - run: yarn run jest --projects jest.eslint.config.js jest.stylelint.config.js --maxWorkers=3 --reporters jest-silent-reporter
-      - run: yarn typecheck
+      - run:
+          name: Running linters
+          command: yarn run jest --projects jest.eslint.config.js jest.stylelint.config.js --maxWorkers=3 --reporters jest-silent-reporter
+      - run:
+          name: Running typescript type checks
+          command: yarn typecheck
   unit_test:
-    description: 'Running tests'
+    description: Running tests
     steps:
-      - run: yarn run jest --projects jest.test.config.js --maxWorkers=3 --reporters jest-silent-reporter
+      - run:
+          name: Running tests
+          command: yarn run jest --projects jest.test.config.js --maxWorkers=3 --reporters jest-silent-reporter
   vrt_test:
-    description: 'Running Visual Regression Tests'
+    description: Running Visual Regression Tests
     steps:
       - run:
           name: Updating (apt-get update)
@@ -261,17 +275,24 @@ commands:
           name: Running Percy
           command: yarn run-if:percy
   build_packages:
-    description: 'Building packages'
+    description: Building packages
     steps:
-      - build_artifacts
+      - run:
+          name: Building packages
+          command: yarn build
+
   build_playground:
-    description: 'Building playground'
+    description: Building playground
     steps:
-      - run: yarn playground:build
+      - run:
+          name: Building playground application
+          command: yarn playground:build
   build_starter:
-    description: 'Building starter'
+    description: Building starter
     steps:
-      - run: yarn template-starter:build
+      - run:
+          name: Building starter application
+          command: yarn template-starter:build
   publish_to_canary:
     steps:
       - run:
