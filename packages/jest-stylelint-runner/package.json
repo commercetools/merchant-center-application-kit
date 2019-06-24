@@ -24,8 +24,13 @@
     "stylelint": ">= 9.5"
   },
   "devDependencies": {
-    "postcss": "^7.0.17",
-    "postcss-css-variables": "^0.13.0",
+    "@commercetools-frontend/ui-kit": "9.9.0",
+    "postcss": "7.0.17",
+    "postcss-css-variables": "0.13.0",
     "stylelint": "10.1.0"
+  },
+  "dependencies": {
+    "postcss-custom-properties": "8.0.11",
+    "postcss-load-config": "^2.1.0"
   }
 }

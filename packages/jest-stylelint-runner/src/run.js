@@ -1,11 +1,10 @@
 const { pass, fail } = require('create-jest-runner');
 const stylelint = require('stylelint');
-const postcssImport = require('postcss-import');
-const postcssCustomMediaQueries = require('postcss-custom-media');
-const cssVariables = require('postcss-css-variables');
-const uiKitVariables = require('@commercetools-frontend/ui-kit/materials/custom-properties.json');
 const fs = require('fs');
 const postcss = require('postcss');
+const postcssrc = require('postcss-load-config');
+
+const ctx = { parser: true, map: 'inline' };
 
 const createLinter = testPath => {
   return options => {
@@ -38,7 +37,7 @@ const createLinter = testPath => {
 };
 
 const endsWithAny = (suffixes, string) => {
-  return suffixes.some(function(suffix) {
+  return suffixes.some(suffix => {
     return string.endsWith(suffix);
   });
 };
@@ -57,22 +56,15 @@ module.exports = ({ testPath }) => {
 
   const css = fs.readFileSync(testPath, 'utf8');
 
-  return postcss([
-    postcssImport,
-    postcssCustomMediaQueries({
-      importFrom: require.resolve(
-        '@commercetools-frontend/application-components/materials/media-queries.css'
-      ),
-    }),
-    cssVariables({
-      variables: uiKitVariables,
-    }),
-  ])
-    .process(css, { from: testPath })
-    .then(result => {
-      return linter({
-        code: result.css,
-        formatter: 'string',
+  return postcssrc(ctx, testPath).then(({ plugins, options }) => {
+    return postcss(plugins)
+      .process(css, { ...options, from: testPath })
+      .then(result => {
+        console.log('result', result.css);
+        return linter({
+          code: result.css,
+          formatter: 'string',
+        });
       });
-    });
+  });
 };
