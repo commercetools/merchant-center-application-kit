@@ -10,7 +10,7 @@ module.exports = ctx => {
           {
             customProperties: {
               '--color-primary': 'green',
-              '--color-dark': 'black',
+              '--color-info': 'blue',
             },
           },
         ],

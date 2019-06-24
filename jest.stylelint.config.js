@@ -9,6 +9,7 @@ module.exports = {
     '.visualroute.js',
     'website/public',
     'packages/mc-http-server/public/',
+    'packages/jest-stylelint-runner',
   ],
   testMatch: [
     '<rootDir>/**/*.css',
