@@ -1,3 +1,4 @@
+/* stylelint-disable */
 /* MAX-WIDTH */
 @custom-media --screen-max-mobile (max-width: 767px); /* xsm */
 @custom-media --screen-max-desktop (max-width: 1023px); /* sm */

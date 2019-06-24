@@ -1,5 +1,5 @@
 module.exports = {
-  runner: 'jest-runner-stylelint',
+  runner: '@commercetools-frontend/jest-preset-mc-app/stylelint-runner',
   displayName: 'stylelint',
   moduleFileExtensions: ['css', 'js'],
   modulePathIgnorePatterns: [
@@ -7,6 +7,7 @@ module.exports = {
     '.spec.js',
     '.visualspec.js',
     '.visualroute.js',
+    'website/public',
     'packages/mc-http-server/public/',
   ],
   testMatch: [

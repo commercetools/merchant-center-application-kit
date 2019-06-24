@@ -39,6 +39,7 @@
     "jest-watch-master": "1.0.0",
     "jest-watch-typeahead": "0.3.1",
     "pkg-dir": "4.2.0",
+    "postcss-css-variables": "0.13.0",
     "raf": "3.4.1",
     "ts-jest": "24.0.2",
     "unfetch": "4.1.0"
