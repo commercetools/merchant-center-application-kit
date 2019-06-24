@@ -7,7 +7,6 @@ import classnames from 'classnames';
 import Downshift from 'downshift';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import {
-  withMouseOverState,
   CaretDownIcon,
   Text,
   Spacings,
@@ -19,6 +18,7 @@ import {
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
 import withApplicationsMenu from '../with-applications-menu';
+import withMouseOverState from '../with-mouse-over-state';
 import handleApolloErrors from '../handle-apollo-errors';
 import styles from './user-settings-menu.mod.css';
 import messages from './messages';
