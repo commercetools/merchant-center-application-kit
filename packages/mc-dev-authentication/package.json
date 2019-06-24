@@ -19,7 +19,7 @@
     "access": "public"
   },
   "dependencies": {
-    "pug": "2.0.3"
+    "pug": "2.0.4"
   },
   "engines": {
     "node": ">=8",

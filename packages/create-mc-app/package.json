@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "mri": "1.1.4",
-    "semver": "6.1.1",
+    "semver": "6.1.2",
     "signale": "1.4.0"
   },
   "engines": {

@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types, react/display/name */
 import React from 'react';
 
-// eslint-disable-next-line react/prop-types, react/display-name
 const Table = ({ columns, items, itemRenderer, onRowClick, children }) => (
   <div>
     <table>
