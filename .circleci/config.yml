@@ -30,7 +30,7 @@ executors:
   cypress:
     working_directory: *working_directory
     docker:
-      - image: 'cypress/base:10.16'
+      - image: 'cypress/base:10.16.0'
         environment:
           TERM: xterm
 
