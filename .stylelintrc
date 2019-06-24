@@ -4,7 +4,8 @@
     "stylelint-config-prettier"
   ],
   "plugins": [
-    "stylelint-order"
+    "stylelint-order",
+    "stylelint-value-no-unknown-custom-properties",
   ],
   "rules": {
     "font-family-name-quotes": ["always-unless-keyword"],
@@ -38,5 +39,10 @@
     "declaration-empty-line-before": null,
     "no-missing-end-of-source-newline": null,
     "function-name-case": null,
+    "csstools/value-no-unknown-custom-properties": [true, {
+      "importFrom": [
+        "node_modules/@commercetools-frontend/ui-kit/materials/custom-properties.css"
+      ]
+    }]
   }
 }
