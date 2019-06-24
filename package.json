@@ -70,7 +70,7 @@
     "@types/react-router-dom": "4.3.4",
     "@typescript-eslint/eslint-plugin": "1.10.2",
     "@typescript-eslint/parser": "1.10.2",
-    "babel-eslint": "10.0.1",
+    "babel-eslint": "10.0.2",
     "babel-plugin-import-graphql": "2.7.0",
     "babel-plugin-transform-rename-import": "2.3.0",
     "babel-plugin-typescript-to-proptypes": "0.17.1",
