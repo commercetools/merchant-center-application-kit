@@ -4,23 +4,29 @@ aliases:
   - &working_directory ~/merchant-center-application-kit
 
   - &restore_yarn_cache
-    name: 'Restoring yarn cache'
-    keys:
-      - v1-yarn-cache-{{ checksum "yarn.lock" }}
-      - v1-yarn-cache
+    restore_cache:
+      name: 'Restoring yarn cache'
+      keys:
+        - v1-yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - v1-yarn-cache-{{ .Branch }}
+        - v1-yarn-cache
 
   - &save_yarn_cache
-    name: 'Saving yarn cache'
-    key: v1-yarn-cache-{{ checksum "yarn.lock" }}
-    paths:
-      - ~/.cache/yarn
-      - node_modules
+    save_cache:
+      name: 'Saving yarn cache'
+      key: v1-yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      paths:
+        - ~/.cache/yarn
+
+  - &run_yarn
+    run: yarn --frozen-lockfile
 
 executors:
   node_10:
+    working_directory: *working_directory
     docker:
       - image: circleci/node:10.16
-    working_directory: *working_directory
+
   cypress:
     working_directory: *working_directory
     docker:
@@ -32,41 +38,38 @@ executors:
 #   compare-url: iynere/compare-url@1.1.0
 
 commands:
-  install_dependencies:
-    description: 'Installing dependencies'
+  setup_dependencies:
+    description: Installing dependencies
     steps:
       - checkout
-      - restore_cache: *restore_yarn_cache
-      - run: yarn install --pure-lockfile
-      - save_cache: *save_yarn_cache
-  build_artifacts:
-    description: 'Building artifacts'
-    steps:
-      - run: yarn build
-  save_workspace:
+      - *restore_yarn_cache
+      - *run_yarn
+  save_package_bundles:
     steps:
       - persist_to_workspace:
           root: *working_directory
           paths:
-            - packages
-            - playground
-            - visual-testing-app
-            - application-templates
-  restore_workspace:
+            - packages/**/dist/
+  restore_package_bundles:
     steps:
       - attach_workspace:
           at: *working_directory
   lint:
-    description: 'Running linters'
+    description: Running linters
     steps:
       - run: yarn run jest --projects jest.eslint.config.js jest.stylelint.config.js --maxWorkers=3 --reporters jest-silent-reporter
       - run: yarn typecheck
   unit_test:
-    description: 'Running tests'
+    description: Running tests
     steps:
       - run: yarn run jest --projects jest.test.config.js --maxWorkers=3 --reporters jest-silent-reporter
+  build_packages:
+    description: Building packages
+    steps:
+      - run: yarn build
+      - save_package_bundles
   vrt_test:
-    description: 'Running Visual Regression Tests'
+    description: Running Visual Regression Tests
     steps:
       - run:
           name: Updating (apt-get update)
@@ -266,41 +269,29 @@ commands:
       - run:
           name: Running Percy
           command: yarn run-if:percy
-  build_packages:
-    steps:
-      - build_artifacts
-      - save_workspace
-  build_playground:
-    description: 'Building playground'
-    steps:
-      - run: yarn playground:build
-  build_starter:
-    description: 'Building starter'
-    steps:
-      - run: yarn template-starter:build
   publish_to_canary:
+    description: Publishing to npm registry
     steps:
-      - run:
-          name: Publishing to npm registry
-          command: ./scripts/release_canary.sh
+      - run: ./scripts/release_canary.sh
 
 jobs:
   lint_and_test:
     executor: node_10
     steps:
-      - install_dependencies
+      - setup_dependencies
+      - *save_yarn_cache
       - lint
       - unit_test
   build:
     executor: node_10
     steps:
-      - install_dependencies
+      - setup_dependencies
       - build_packages
   vrt_test:
     executor: node_10
     steps:
-      - install_dependencies
-      - restore_workspace
+      - setup_dependencies
+      - restore_package_bundles
       - vrt_test
   e2e_test:
     executor: cypress
@@ -333,8 +324,8 @@ jobs:
         type: boolean
         default: false
     steps:
-      - install_dependencies
-      - restore_workspace
+      - setup_dependencies
+      - restore_package_bundles
       - when:
           condition: <<parameters.build>>
           steps:
@@ -373,9 +364,8 @@ jobs:
   publish:
     executor: node_10
     steps:
-      - checkout
-      - install_dependencies
-      - restore_workspace
+      - setup_dependencies
+      - restore_package_bundles
       - publish_to_canary
 
 workflows:
