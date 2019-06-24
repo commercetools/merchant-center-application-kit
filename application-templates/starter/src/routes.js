@@ -28,6 +28,7 @@ const ApplicationRoutes = ({ match }) => (
 ApplicationRoutes.displayName = 'ApplicationRoutes';
 ApplicationRoutes.propTypes = {
   match: PropTypes.shape({
+    path: PropTyeps.string,
     params: PropTypes.shape({
       projectKey: PropTypes.string.isRequired,
     }).isRequired,
