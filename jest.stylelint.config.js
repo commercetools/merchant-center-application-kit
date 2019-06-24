@@ -1,5 +1,5 @@
 module.exports = {
-  runner: '@commercetools-frontend/jest-preset-mc-app/stylelint-runner',
+  runner: '@commercetools-frontend/jest-stylelint-runner',
   displayName: 'stylelint',
   moduleFileExtensions: ['css', 'js'],
   modulePathIgnorePatterns: [
