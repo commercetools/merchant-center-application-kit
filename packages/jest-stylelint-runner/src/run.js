@@ -60,7 +60,6 @@ module.exports = ({ testPath }) => {
     return postcss(plugins)
       .process(css, { ...options, from: testPath })
       .then(result => {
-        console.log('result', result.css);
         return linter({
           code: result.css,
           formatter: 'string',
