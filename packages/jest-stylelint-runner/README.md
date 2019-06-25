@@ -13,7 +13,7 @@ However, it has two main distinctions.
 
 ### Install
 
-Install `jest`_(it needs Jest 21+)_ and `jest-stylelint-runner`
+Install `jest`_(it needs Jest 21+)_,`jest-stylelint-runner`, `postcss` and any postcss plugins you need.
 
 ```bash
 yarn add --dev jest postcss @commercetools-frontend/jest-stylelint-runner
