@@ -1,6 +1,6 @@
+const fs = require('fs');
 const { pass, fail } = require('create-jest-runner');
 const stylelint = require('stylelint');
-const fs = require('fs');
 const postcss = require('postcss');
 const loadPostCssConfig = require('postcss-load-config');
 
