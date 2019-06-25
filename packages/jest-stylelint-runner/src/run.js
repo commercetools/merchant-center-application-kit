@@ -10,29 +10,24 @@ const createLinter = testPath => {
   return options => {
     const start = new Date();
 
-    return stylelint
-      .lint(options)
-      .then(data => {
-        if (data.errored) {
-          return fail({
-            start,
-            end: new Date(),
-            test: {
-              path: testPath,
-              errorMessage: data.output,
-            },
-          });
-        }
-
-        return pass({
+    return stylelint.lint(options).then(data => {
+      if (data.errored) {
+        return fail({
           start,
           end: new Date(),
-          test: { path: testPath },
+          test: {
+            path: testPath,
+            errorMessage: data.output,
+          },
         });
-      })
-      .catch(err => {
-        throw err;
+      }
+
+      return pass({
+        start,
+        end: new Date(),
+        test: { path: testPath },
       });
+    });
   };
 };
 
