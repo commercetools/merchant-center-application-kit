@@ -40,13 +40,10 @@ const endsWithAny = (suffixes, string) => {
 module.exports = ({ testPath }) => {
   const linter = createLinter(testPath);
   if (endsWithAny(['js', 'jsx', 'ts', 'tsx'], testPath)) {
-    return linter(
-      {
-        files: testPath,
-        formatter: 'string',
-      },
-      testPath
-    );
+    return linter({
+      files: testPath,
+      formatter: 'string',
+    });
   }
 
   const css = fs.readFileSync(testPath, 'utf8');
