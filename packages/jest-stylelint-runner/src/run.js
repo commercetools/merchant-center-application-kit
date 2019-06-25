@@ -2,7 +2,7 @@ const { pass, fail } = require('create-jest-runner');
 const stylelint = require('stylelint');
 const fs = require('fs');
 const postcss = require('postcss');
-const postcssrc = require('postcss-load-config');
+const loadPostCssConfig = require('postcss-load-config');
 
 const ctx = { parser: true, map: 'inline' };
 
@@ -56,7 +56,7 @@ module.exports = ({ testPath }) => {
 
   const css = fs.readFileSync(testPath, 'utf8');
 
-  return postcssrc(ctx, testPath).then(({ plugins, options }) => {
+  return loadPostCssConfig(ctx, testPath).then(({ plugins, options }) => {
     return postcss(plugins)
       .process(css, { ...options, from: testPath })
       .then(result => {

@@ -1,4 +1,4 @@
-module.exports = ctx => {
+module.exports = () => {
   return {
     parser: false,
     map: false,
@@ -11,6 +11,8 @@ module.exports = ctx => {
             customProperties: {
               '--color-primary': 'green',
               '--color-info': 'blue',
+              '--small-spacing': '4px',
+              '--large-spacing': '8px',
             },
           },
         ],

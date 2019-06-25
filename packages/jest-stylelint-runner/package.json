@@ -26,11 +26,10 @@
   "devDependencies": {
     "@commercetools-frontend/ui-kit": "9.9.0",
     "postcss": "7.0.17",
-    "postcss-css-variables": "0.13.0",
-    "stylelint": "10.1.0"
+    "postcss-custom-properties": "8.0.11",
+    "postcss-import": "12.0.1"
   },
   "dependencies": {
-    "postcss-custom-properties": "8.0.11",
-    "postcss-load-config": "^2.1.0"
+    "postcss-load-config": "2.1.0"
   }
 }
