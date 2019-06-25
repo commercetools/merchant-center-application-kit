@@ -1,0 +1,5 @@
+.container {
+  color: var(--color-primary);
+  border: 1px solid var(--color-info);
+  padding: var(--small-spacing) var(--large-spacing);
+}

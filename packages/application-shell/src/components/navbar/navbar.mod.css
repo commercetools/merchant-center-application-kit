@@ -2,7 +2,6 @@
   --expander-height: 50px;
   --icon-size: 32px;
   --submenu-margin: calc(var(--icon-size) + var(--spacing-m));
-
   /* Left navigation */
   --width-leftNavigation: 64px;
 }
