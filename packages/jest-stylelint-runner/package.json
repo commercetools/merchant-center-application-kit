@@ -20,6 +20,7 @@
   },
   "files": [
     "package.json",
+    "run.js",
     "LICENSE",
     "README.md"
   ],
