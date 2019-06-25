@@ -21,6 +21,7 @@
   "files": [
     "package.json",
     "run.js",
+    "index.js",
     "LICENSE",
     "README.md"
   ],
