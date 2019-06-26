@@ -49,6 +49,6 @@ export const getBeforeCloseOverlayAnimation = () => css`
 
 export const ContentWrapper = styled.div`
   flex: 1;
-  padding: ${customProperties.spacingS} ${customProperties.spacingM};
+  padding: ${customProperties.spacingM};
   overflow: auto;
 `;
