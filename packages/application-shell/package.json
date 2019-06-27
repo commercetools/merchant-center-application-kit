@@ -57,7 +57,7 @@
     "@flopflip/react-broadcast": "8.3.0",
     "@sentry/browser": "5.4.3",
     "apollo-cache-inmemory": "1.6.2",
-    "apollo-client": "2.6.2",
+    "apollo-client": "2.6.3",
     "apollo-link": "1.2.12",
     "apollo-link-error": "1.1.11",
     "apollo-link-http": "1.5.15",
@@ -95,7 +95,7 @@
   "devDependencies": {
     "@commercetools-frontend/ui-kit": "9.9.0",
     "react": "16.8.6",
-    "react-apollo": "2.5.6",
+    "react-apollo": "2.5.8",
     "react-dom": "16.8.6",
     "react-intl": "2.9.0",
     "react-redux": "7.1.0",
