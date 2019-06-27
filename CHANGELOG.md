@@ -1,3 +1,10 @@
+## [13.12.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.12.0...v13.12.1) (2019-06-27)
+
+#### 🐛 Type: Bug
+
+- `babel-preset-mc-app`
+  - [#797](https://github.com/commercetools/merchant-center-application-kit/pull/797) fix(babel-preset): to remove plugin-transform-react-constant-elements ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.12.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.11.0...v13.12.0) (2019-06-27)
 
 #### 💅 Type: Enhancement
