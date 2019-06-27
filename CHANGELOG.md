@@ -1,9 +1,16 @@
 ## [13.12.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.11.0...v13.12.0) (2019-06-27)
 
+#### 💅 Type: Enhancement
+
+- `application-components`
+
+  - [#766](https://github.com/commercetools/merchant-center-application-kit/pull/766) feat(modal-pages): add delay before calling onClose to let animations finish ([@jonnybel](https://github.com/jonnybel))
+
+- `jest-stylelint-runner` [Readme](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/jest-stylelint-runner/README.md)
+  - [#789](https://github.com/commercetools/merchant-center-application-kit/pull/789) fix(jest-stylelint-runner): include run file ([@montezume](https://github.com/montezume))
+
 #### 🐛 Type: Bug
 
-- `jest-stylelint-runner`
-  - [#789](https://github.com/commercetools/merchant-center-application-kit/pull/789) fix(jest-stylelint-runner): include run file ([@montezume](https://github.com/montezume))
 - `application-components`, `application-shell`, `constants`
   - [#769](https://github.com/commercetools/merchant-center-application-kit/pull/769) fix: support link url ([@emmenko](https://github.com/emmenko))
 
@@ -19,11 +26,6 @@
   - [#791](https://github.com/commercetools/merchant-center-application-kit/pull/791) chore: add babel plugin transform react constant ([@montezume](https://github.com/montezume))
 - Other
   - [#786](https://github.com/commercetools/merchant-center-application-kit/pull/786) refactor(circleci): to try improving CI workflow run time, additionally clean things up ([@emmenko](https://github.com/emmenko))
-
-#### 💅 Type: Enhancement
-
-- `application-components`
-  - [#766](https://github.com/commercetools/merchant-center-application-kit/pull/766) feat(modal-pages): add delay before calling onClose to let animations finish ([@jonnybel](https://github.com/jonnybel))
 
 #### ⛑ Type: Refactoring
 
