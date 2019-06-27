@@ -126,7 +126,6 @@ module.exports = function getBabePresetConfigForMcApp() {
           async: false,
         },
       ],
-      require('@babel/plugin-transform-react-constant-elements').default,
       require('@babel/plugin-proposal-do-expressions').default,
       require('@babel/plugin-proposal-optional-chaining').default,
       require('@babel/plugin-proposal-nullish-coalescing-operator').default,
