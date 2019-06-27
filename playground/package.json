@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "13.12.0",
+  "version": "13.12.1",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -40,6 +40,6 @@
     "redux": "4.0.1"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "13.12.0"
+    "@commercetools-frontend/mc-scripts": "13.12.1"
   }
 }
