@@ -92,7 +92,7 @@ describe('rendering', () => {
       )
     );
   });
-  it('should be clear that is suspended and should not be clickable', async () => {
+  it('should prevent clicking on a suspended project', async () => {
     await waitForElement(() => rendered.getByLabelText('Project switcher'));
     const input = rendered.getByLabelText('Project switcher');
     fireEvent.focus(input);
@@ -101,7 +101,7 @@ describe('rendering', () => {
 
     await wait(() => expect(window.location.replace).not.toHaveBeenCalled());
   });
-  it('should be clear that is expired and should not be clickable', async () => {
+  it('should prevent clicking on an expired project', async () => {
     await waitForElement(() => rendered.getByLabelText('Project switcher'));
     const input = rendered.getByLabelText('Project switcher');
     fireEvent.focus(input);
