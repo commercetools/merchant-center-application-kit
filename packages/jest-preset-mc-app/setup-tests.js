@@ -12,8 +12,8 @@ global.window.app = {
 const logOrThrow = (log, method, messages) => {
   const warning = `console.${method} calls not allowed in tests`;
   if (process.env.CI) {
-    log(...messages);
-    throw new Error(warning);
+    log(warning, '\n', ...messages);
+    throw new Error(...messages);
   } else {
     log(colors.bgYellow.black(' WARN '), warning, '\n', ...messages);
   }
