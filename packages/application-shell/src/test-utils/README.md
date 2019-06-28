@@ -166,13 +166,15 @@ The component-under-test will get rendered in `react-intl`s `IntlProvider`. Duri
 
 ```jsx
 const Flag = props => {
-  if (props.intl.locale.startsWith('en-US')) return '🇺🇸';
-  if (props.intl.locale.startsWith('en')) return '🇬🇧';
-  if (props.intl.locale.startsWith('de')) return '🇩🇪';
+  const intl = useIntl();
+
+  if (intl.locale.startsWith('en-US')) return '🇺🇸';
+  if (intl.locale.startsWith('en')) return '🇬🇧';
+  if (intl.locale.startsWith('de')) return '🇩🇪';
   return '🏳️';
 };
 
-export default injectIntl(Flag);
+export default Flag;
 ```
 
 ```jsx

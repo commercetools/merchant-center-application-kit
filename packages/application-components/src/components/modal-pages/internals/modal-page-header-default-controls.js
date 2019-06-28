@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import requiredIf from 'react-required-if';
 import {
   Spacings,
@@ -12,21 +12,24 @@ import filterDataAttributes from '../../../utils/filter-data-attributes';
 const getFormattedLabel = (label, intl) =>
   typeof label === 'string' ? label : intl.formatMessage(label);
 
-const ModalPageHeaderDefaultControls = props => (
-  <Spacings.Inline alignItems="flex-end">
-    <SecondaryButton
-      label={getFormattedLabel(props.labelSecondaryButton, props.intl)}
-      onClick={props.onSecondaryButtonClick}
-      {...filterDataAttributes(props.dataAttributesSecondaryButton)}
-    />
-    <PrimaryButton
-      label={getFormattedLabel(props.labelPrimaryButton, props.intl)}
-      onClick={props.onPrimaryButtonClick}
-      isDisabled={props.isPrimaryButtonDisabled}
-      {...filterDataAttributes(props.dataAttributesPrimaryButton)}
-    />
-  </Spacings.Inline>
-);
+const ModalPageHeaderDefaultControls = props => {
+  const intl = useIntl();
+  return (
+    <Spacings.Inline alignItems="flex-end">
+      <SecondaryButton
+        label={getFormattedLabel(props.labelSecondaryButton, intl)}
+        onClick={props.onSecondaryButtonClick}
+        {...filterDataAttributes(props.dataAttributesSecondaryButton)}
+      />
+      <PrimaryButton
+        label={getFormattedLabel(props.labelPrimaryButton, intl)}
+        onClick={props.onPrimaryButtonClick}
+        isDisabled={props.isPrimaryButtonDisabled}
+        {...filterDataAttributes(props.dataAttributesPrimaryButton)}
+      />
+    </Spacings.Inline>
+  );
+};
 ModalPageHeaderDefaultControls.displayName = 'ModalPageHeaderDefaultControls';
 ModalPageHeaderDefaultControls.propTypes = {
   labelSecondaryButton: requiredIf(
@@ -62,10 +65,6 @@ ModalPageHeaderDefaultControls.propTypes = {
   isPrimaryButtonDisabled: PropTypes.bool,
   dataAttributesPrimaryButton: PropTypes.object,
   dataAttributesSecondaryButton: PropTypes.object,
-  // injected
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func.isRequired,
-  }).isRequired,
 };
 ModalPageHeaderDefaultControls.defaultProps = {
   isPrimaryButtonDisabled: false,
@@ -73,4 +72,4 @@ ModalPageHeaderDefaultControls.defaultProps = {
   dataAttributesSecondaryButton: {},
 };
 
-export default injectIntl(ModalPageHeaderDefaultControls);
+export default ModalPageHeaderDefaultControls;
