@@ -219,13 +219,6 @@ function useApplicationContextHook<
     context: TApplicationContext<AdditionalEnvironmentProperties>
   ) => SelectedContext
 ) {
-  // Forward-compatibility with React Hooks 🎉
-  if (!React.useContext) {
-    throw new Error(
-      `React hooks do not seem to be available yet in the installed React version "${React.version}". Please check the React Hooks documentation for more info: https://reactjs.org/hooks.`
-    );
-  }
-
   const context = React.useContext(Context);
   // Because of the way the ApplicationShell configures the Context.Provider,
   // we ensure that, when we read from the context, we always get actual
