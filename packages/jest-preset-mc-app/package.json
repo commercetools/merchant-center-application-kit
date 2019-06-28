@@ -23,7 +23,7 @@
   "dependencies": {
     "@babel/core": "7.4.5",
     "@commercetools-frontend/babel-preset-mc-app": "13.12.2",
-    "@commercetools/enzyme-extensions": "3.0.1",
+    "@commercetools/enzyme-extensions": "5.0.0",
     "@commercetools/jest-enzyme-matchers": "1.1.2",
     "babel-jest": "24.8.0",
     "colors": "1.3.3",
