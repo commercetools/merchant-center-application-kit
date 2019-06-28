@@ -59,8 +59,8 @@
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "9.x",
-    "react": "16.x",
-    "react-dom": "16.x",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
     "react-intl": "2.x",
     "react-redux": "6.x || 7.x",
     "react-router": "5.x",
