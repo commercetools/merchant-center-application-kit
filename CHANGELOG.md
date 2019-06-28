@@ -1,3 +1,7 @@
+## [13.12.2](https://github.com/commercetools/merchant-center-application-kit/compare/v13.12.1...v13.12.2) (2019-06-28)
+
+This release does not contain any changes compared to `v13.12.1`. However, the `v13.12.0` release contained a [babel plugin that broke the builds](#791) and therefore we had to bundle and bump the version of all packages again to fix it.
+
 ## [13.12.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.12.0...v13.12.1) (2019-06-27)
 
 #### 🐛 Type: Bug
