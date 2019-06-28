@@ -23,12 +23,15 @@ import styles from './user-settings-menu.mod.css';
 import messages from './messages';
 
 const UserAvatar = props => {
-  const [isMouseOver, setMouseOver] = React.useState(false);
+  const [isMouseOver, setIsMouseOver] = React.useState(false);
+  const handleMouseOver = React.useCallback(() => {
+    setIsMouseOver(true);
+  }, []);
+  const handleMouseOut = React.useCallback(() => {
+    setIsMouseOver(false);
+  }, []);
   return (
-    <div
-      onMouseOver={() => setMouseOver(true)}
-      onMouseOut={() => setMouseOver(false)}
-    >
+    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
       <Spacings.Inline alignItems="center">
         <Avatar
           gravatarHash={props.gravatarHash}
