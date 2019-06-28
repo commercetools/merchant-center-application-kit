@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import flowRight from 'lodash/flowRight';
 import Downshift from 'downshift';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import {
@@ -19,8 +18,8 @@ import {
   NO_VALUE_FALLBACK,
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
-import withApplicationsMenu from '../with-applications-menu';
-import handleApolloErrors from '../handle-apollo-errors';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import useApplicationsMenu from '../../hooks/use-applications-menu';
 import messages from './messages';
 
 const UserAvatar = props => {
@@ -108,11 +107,23 @@ const MenuItem = styled.div`
 `;
 
 const UserSettingsMenuBody = props => {
-  const menuLinks =
-    (props.applicationsMenuQuery &&
-      props.applicationsMenuQuery.applicationsMenu &&
-      props.applicationsMenuQuery.applicationsMenu.appBar) ||
-    [];
+  const applicationsMenu = useApplicationsMenu({
+    queryOptions: {
+      // We can assume here that the navbar already fetched the data, since this
+      // component gets rendered only when the user opens the menu
+      fetchPolicy: 'cache-only',
+      onError: reportErrorToSentry,
+    },
+    skipRemoteQuery: !props.environment.servedByProxy,
+    options: {
+      __DEV_CONFIG__: {
+        menuLoader: props.DEV_ONLY__loadAppbarMenuConfig,
+        menuKey: 'appBar',
+      },
+    },
+  });
+
+  const menuLinks = (applicationsMenu && applicationsMenu.appBar) || [];
 
   return (
     <div
@@ -218,32 +229,11 @@ UserSettingsMenuBody.propTypes = {
     toggleMenu: PropTypes.func.isRequired,
     getMenuProps: PropTypes.func.isRequired,
   }).isRequired,
-  // graphql
-  applicationsMenuQuery: PropTypes.shape({
-    applicationsMenu: PropTypes.shape({
-      appBar: PropTypes.arrayOf(PropTypes.object).isRequired,
-    }),
-  }),
+  environment: PropTypes.shape({
+    servedByProxy: PropTypes.bool.isRequired,
+  }).isRequired,
+  DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
 };
-
-const ConnectedUserSettingsMenuBody = flowRight(
-  withApplicationsMenu({
-    queryName: 'applicationsMenuQuery',
-    queryOptions: {
-      // We can assume here that the navbar already fetched the data, since this
-      // component gets rendered only when the user opens the menu
-      fetchPolicy: 'cache-only',
-    },
-    skipRemoteQuery: ownProps => !ownProps.environment.servedByProxy,
-    options: ownProps => ({
-      __DEV_CONFIG__: {
-        menuLoader: ownProps.DEV_ONLY__loadAppbarMenuConfig,
-        menuKey: 'appBar',
-      },
-    }),
-  }),
-  handleApolloErrors(['applicationsMenuQuery'])
-)(UserSettingsMenuBody);
 
 const UserSettingsMenu = props => (
   <div data-test="user-settings-menu">
@@ -268,10 +258,7 @@ const UserSettingsMenu = props => (
             />
           </button>
           {downshiftProps.isOpen && (
-            <ConnectedUserSettingsMenuBody
-              {...props}
-              downshiftProps={downshiftProps}
-            />
+            <UserSettingsMenuBody {...props} downshiftProps={downshiftProps} />
           )}
         </div>
       )}
@@ -285,10 +272,13 @@ UserSettingsMenu.propTypes = {
   lastName: PropTypes.string,
   email: PropTypes.string.isRequired,
   gravatarHash: PropTypes.string.isRequired,
-  DEV_ONLY__getMenuConfig: PropTypes.func,
+  environment: PropTypes.shape({
+    servedByProxy: PropTypes.bool.isRequired,
+  }).isRequired,
+  DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
 };
 
 export default UserSettingsMenu;
 
 // For testing
-export { UserAvatar, UserSettingsMenuBody, ConnectedUserSettingsMenuBody };
+export { UserAvatar, UserSettingsMenuBody };

@@ -1,30 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import upperFirst from 'lodash/upperFirst';
-import { renderApp, waitForElement } from '../../test-utils';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import { renderApp, waitForElement, wait } from '../../test-utils';
 import FetchApplicationsMenu from './fetch-applications-menu.graphql';
-import withApplicationsMenu from './with-applications-menu';
+import useApplicationsMenu from './use-applications-menu';
 
+jest.mock('@commercetools-frontend/sentry');
+
+/* eslint-disable react/prop-types */
 const Test = props => {
-  if (props.menuQuery && props.menuQuery.applicationsMenu) {
-    return props.menuQuery.applicationsMenu.navBar.map(menu => (
+  const applicationsMenu = useApplicationsMenu(props.menuConfig);
+  if (applicationsMenu) {
+    return applicationsMenu.navBar.map(menu => (
       <div key={menu.key}>{`Key: ${menu.key}`}</div>
     ));
   }
-  if (props.menuQuery && props.menuQuery.error) {
-    return <div>{`Error: ${props.menuQuery.error.message}`}</div>;
-  }
   return <div>{'loading'}</div>;
 };
-Test.displayName = 'Test';
-Test.propTypes = {
-  menuQuery: PropTypes.shape({
-    error: PropTypes.shape({ message: PropTypes.string.isRequired }),
-    applicationsMenu: PropTypes.shape({
-      navBar: PropTypes.arrayOf(PropTypes.shape({ key: PropTypes.string })),
-    }),
-  }),
-};
+/* eslint-enable react/prop-types */
 
 const createTestMenuConfig = (key, props) => ({
   key,
@@ -60,10 +53,9 @@ const createGraphqlResponse = custom => ({
 });
 
 describe('fetching the menu query', () => {
-  const Connected = withApplicationsMenu({ queryName: 'menuQuery' })(Test);
   describe('when the query succeeds', () => {
     it('should render menu key', async () => {
-      const { getByText } = renderApp(<Connected />, {
+      const { getByText } = renderApp(<Test />, {
         mocks: [
           {
             request: {
@@ -80,23 +72,31 @@ describe('fetching the menu query', () => {
     });
   });
   describe('when the query fails', () => {
-    beforeEach(() => {
+    it('should report error to sentry', async () => {
       console.error = jest.fn();
-    });
-    it('should pass error as prop', async () => {
+      reportErrorToSentry.mockClear();
       const error = new Error('Oops');
-      const { getByText } = renderApp(<Connected />, {
-        mocks: [
-          {
-            request: {
-              query: FetchApplicationsMenu,
+      const { getByText } = renderApp(
+        <Test
+          menuConfig={{
+            queryOptions: { onError: reportErrorToSentry },
+          }}
+        />,
+        {
+          mocks: [
+            {
+              request: {
+                query: FetchApplicationsMenu,
+              },
+              error,
             },
-            error,
-          },
-        ],
-      });
+          ],
+        }
+      );
       await waitForElement(() => getByText('loading'));
-      await waitForElement(() => getByText(/Error: Oops/i));
+      await wait(() => {
+        expect(reportErrorToSentry).toHaveBeenCalled();
+      });
     });
   });
 });

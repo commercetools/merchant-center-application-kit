@@ -7,7 +7,7 @@ import * as rtl from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { MockedProvider as ApolloMockProvider } from 'react-apollo/test-utils';
+import { MockedProvider as ApolloMockProvider } from '@apollo/react-testing';
 import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
