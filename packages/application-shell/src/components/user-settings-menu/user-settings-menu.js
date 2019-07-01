@@ -18,39 +18,39 @@ import {
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
 import withApplicationsMenu from '../with-applications-menu';
-import withMouseOverState from '../with-mouse-over-state';
 import handleApolloErrors from '../handle-apollo-errors';
 import styles from './user-settings-menu.mod.css';
 import messages from './messages';
 
-const UserAvatar = props => (
-  <div onMouseOver={props.handleMouseOver} onMouseOut={props.handleMouseOut}>
-    <Spacings.Inline alignItems="center">
-      <Avatar
-        gravatarHash={props.gravatarHash}
-        firstName={props.firstName}
-        lastName={props.lastName}
-        isHighlighted={props.isMouseOver}
-      />
-      <CaretDownIcon
-        size="small"
-        theme={props.isMouseOver ? 'grey' : 'black'}
-      />
-    </Spacings.Inline>
-  </div>
-);
+const UserAvatar = props => {
+  const [isMouseOver, setIsMouseOver] = React.useState(false);
+  const handleMouseOver = React.useCallback(() => {
+    setIsMouseOver(true);
+  }, []);
+  const handleMouseOut = React.useCallback(() => {
+    setIsMouseOver(false);
+  }, []);
+  return (
+    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+      <Spacings.Inline alignItems="center">
+        <Avatar
+          gravatarHash={props.gravatarHash}
+          firstName={props.firstName}
+          lastName={props.lastName}
+          isHighlighted={isMouseOver}
+        />
+        <CaretDownIcon size="small" theme={isMouseOver ? 'grey' : 'black'} />
+      </Spacings.Inline>
+    </div>
+  );
+};
 UserAvatar.displayName = 'UserAvatar';
 UserAvatar.propTypes = {
   gravatarHash: PropTypes.string.isRequired,
   firstName: PropTypes.string,
   lastName: PropTypes.string,
   email: PropTypes.string,
-  // Injected
-  handleMouseOver: PropTypes.func.isRequired,
-  handleMouseOut: PropTypes.func.isRequired,
-  isMouseOver: PropTypes.bool.isRequired,
 };
-const UserAvatarWithHoverState = withMouseOverState(UserAvatar);
 
 function stateReducer(state, changes) {
   switch (changes.type) {
@@ -230,7 +230,7 @@ const UserSettingsMenu = props => (
             className={styles['settings-container']}
             {...downshiftProps.getToggleButtonProps()}
           >
-            <UserAvatarWithHoverState
+            <UserAvatar
               firstName={props.firstName}
               lastName={props.lastName}
               gravatarHash={props.gravatarHash}
@@ -260,9 +260,4 @@ UserSettingsMenu.propTypes = {
 export default UserSettingsMenu;
 
 // For testing
-export {
-  UserAvatar,
-  UserAvatarWithHoverState,
-  UserSettingsMenuBody,
-  ConnectedUserSettingsMenuBody,
-};
+export { UserAvatar, UserSettingsMenuBody, ConnectedUserSettingsMenuBody };
