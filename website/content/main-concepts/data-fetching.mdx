@@ -17,7 +17,7 @@ To handle requests to the [GraphQL APIs](./graphql) we use the [Apollo GraphQL C
 In the example below, we query for a [Channel](https://docs.commercetools.com/http-api-projects-channels).
 First we define the GraphQL query in a `.graphql` file:
 
-```graphql
+```
 # channels.graphql
 query FetchChannelQuery($id: String!, $locale: Locale) {
   channel(id: $id) {

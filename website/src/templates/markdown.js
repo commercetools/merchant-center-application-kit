@@ -9,7 +9,7 @@ import { customProperties } from '@commercetools-frontend/ui-kit';
 import * as colors from '../colors';
 import ExternalLinkSvg from '../images/external-link.svg';
 import { LayoutContent } from '../layouts';
-import { SEO, CodeBlock, ExternalLink } from '../components';
+import { SEO, ExternalLink } from '../components';
 import AnchorLinkSvg from '../images/anchor-link.svg';
 
 // Typography sizes have been calculated from https://type-scale.com
@@ -189,8 +189,6 @@ const TableHeader = styled.th`
     display: block;
   }
 `;
-const Pre = props => props.children;
-const Code = CodeBlock;
 const InlineCode = styled.code`
   border: 1px solid ${colors.light.cards};
   border-bottom: 3px solid ${colors.light.cards};
@@ -318,8 +316,6 @@ const components = {
   tr: TableRow,
   td: TableCell,
   th: TableHeader,
-  pre: Pre,
-  code: Code,
   inlineCode: InlineCode,
   em: Em,
   strong: Strong,
