@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import isNil from 'lodash/isNil';
-import flowRight from 'lodash/flowRight';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { DOMAINS } from '@commercetools-frontend/constants';
 import * as storage from '@commercetools-frontend/storage';
@@ -50,9 +49,6 @@ export class ProjectContainer extends React.Component {
     }),
     environment: PropTypes.object.isRequired,
     render: PropTypes.func.isRequired,
-    intl: PropTypes.shape({
-      formatMessage: PropTypes.func.isRequired,
-    }).isRequired,
   };
   state = {
     hasError: false,
@@ -181,14 +177,20 @@ export class ProjectContainer extends React.Component {
                       {shouldShowNotificationForTrialExpired(
                         project.expiry.daysLeft
                       ) && (
-                        <Notifier
-                          kind="warning"
-                          domain={DOMAINS.GLOBAL}
-                          text={this.props.intl.formatMessage(
-                            messages.trialDaysLeft,
-                            { daysLeft: project.expiry.daysLeft }
+                        <FormattedMessage
+                          {...messages.trialDaysLeft}
+                          values={{
+                            daysLeft: project.expiry.daysLeft,
+                          }}
+                        >
+                          {label => (
+                            <Notifier
+                              kind="warning"
+                              domain={DOMAINS.GLOBAL}
+                              text={label}
+                            />
                           )}
-                        />
+                        </FormattedMessage>
                       )}
                       {/* Render <LocaleSwitcher> using a portal */}
                       {this.state.localeSwitcherNode &&
@@ -221,4 +223,4 @@ export class ProjectContainer extends React.Component {
   }
 }
 
-export default flowRight(injectIntl)(ProjectContainer);
+export default ProjectContainer;
