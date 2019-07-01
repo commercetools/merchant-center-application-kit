@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Router } from 'react-router-dom';
 import invariant from 'tiny-invariant';
 import { ApolloProvider } from 'react-apollo';
-import * as rtl from 'react-testing-library';
+import * as rtl from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
@@ -131,7 +131,7 @@ const renderApp = (
     ApolloProviderComponent = MockedApolloProvider,
     // gtm-context
     gtmTracking = defaultGtmTracking,
-    // forwarding to react-testing-library
+    // forwarding to @testing-library/react
     ...renderOptions
   } = {}
 ) => {
@@ -294,6 +294,6 @@ const experimentalRenderAppWithRedux = (ui, renderOptions) => {
 };
 
 // re-export everything
-export * from 'react-testing-library';
+export * from '@testing-library/react';
 
 export { renderApp, renderAppWithRedux, experimentalRenderAppWithRedux };

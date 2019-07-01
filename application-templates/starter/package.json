@@ -31,8 +31,8 @@
   "devDependencies": {
     "@commercetools-frontend/jest-preset-mc-app": "13.12.2",
     "@commercetools-frontend/mc-scripts": "13.12.2",
+    "@testing-library/react": "8.0.4",
     "enzyme": "3.10.0",
-    "jest": "24.8.0",
-    "react-testing-library": "7.0.1"
+    "jest": "24.8.0"
   }
 }
