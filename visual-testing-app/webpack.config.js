@@ -2,7 +2,7 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   target: 'web',
@@ -51,7 +51,6 @@ module.exports = {
         test: /\.svg$/,
         use: {
           loader: require.resolve('svg-url-loader'),
-          options: { noquotes: true },
         },
       },
     ],
@@ -65,7 +64,7 @@ module.exports = {
     },
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html',
     }),
