@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import has from 'lodash/has';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import messages from './messages';
@@ -8,8 +8,10 @@ import messages from './messages';
 const regexInvalidOperationRequiredAttribute = /Required attribute '(.*)' cannot be removed/;
 
 export const ApiErrorMessage = props => {
+  const intl = useIntl();
+
   if (props.error.errorByExtension) {
-    const localizedMessage = props.error.localizedMessage[props.intl.locale];
+    const localizedMessage = props.error.localizedMessage[intl.locale];
 
     return localizedMessage || props.error.message;
   }
@@ -102,19 +104,22 @@ export const ApiErrorMessage = props => {
     );
 
   const message = messages[props.error.code];
-  if (!message) {
-    // This error is not mapped / translated yet,
-    // we log, report it to sentry and show the original error, unless `error.code` is `invalid_scope`
-    // which an error code emitted for expired project(s)
-    // NOTE this is a side-effect within the render function, which is bad!
-    // This should be moved to componentDidMount
-    if (
-      props.error.code !== 'invalid_scope' &&
-      !props.error.message.includes('has expired')
-    ) {
-      reportErrorToSentry(new Error('Unmapped error'), { extra: props.error });
+  React.useEffect(() => {
+    if (!message) {
+      // This error is not mapped / translated yet,
+      // we log, report it to sentry and show the original error, unless `error.code` is `invalid_scope`
+      // which an error code emitted for expired project(s)
+      if (
+        props.error.code !== 'invalid_scope' &&
+        !props.error.message.includes('has expired')
+      ) {
+        reportErrorToSentry(new Error('Unmapped error'), {
+          extra: props.error,
+        });
+      }
     }
-
+  }, [message]);
+  if (!message) {
     return (
       <div>
         <span>{props.error.message}</span>
@@ -180,11 +185,6 @@ ApiErrorMessage.propTypes = {
       message: PropTypes.string.isRequired,
     }),
   ]).isRequired,
-
-  // Intl
-  intl: PropTypes.shape({
-    locale: PropTypes.string.isRequired,
-  }),
 };
 
-export default injectIntl(ApiErrorMessage);
+export default ApiErrorMessage;

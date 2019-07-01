@@ -1,17 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { IntlProvider, addLocaleData } from 'react-intl';
-import en from 'react-intl/locale-data/en';
-import de from 'react-intl/locale-data/de';
-import es from 'react-intl/locale-data/es';
-import frFR from 'react-intl/locale-data/fr';
-import zhCN from 'react-intl/locale-data/zh';
-
-addLocaleData(en);
-addLocaleData(de);
-addLocaleData(es);
-addLocaleData(frFR);
-addLocaleData(zhCN);
+import { IntlProvider } from 'react-intl';
 
 const availableLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN'];
 

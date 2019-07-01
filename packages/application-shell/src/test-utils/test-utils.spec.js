@@ -5,7 +5,7 @@
 // This is a bit different from our usual tests, as we are testing our testing
 // tools here instead of actual components.
 import React from 'react';
-import { injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { injectFeatureToggle } from '@flopflip/react-broadcast';
@@ -15,7 +15,10 @@ import { Switch, Route } from 'react-router';
 import { renderApp, wait } from './test-utils';
 
 describe('Intl', () => {
-  const TestComponent = injectIntl(props => props.intl.locale);
+  const TestComponent = () => {
+    const intl = useIntl();
+    return <span>{intl.locale}</span>;
+  };
   it('should have intl', () => {
     const { container } = renderApp(<TestComponent />);
     expect(container).toHaveTextContent('en');
