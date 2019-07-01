@@ -187,8 +187,10 @@ describe('rendering', () => {
             })
             .find(ProjectDataLocale)
             .renderProp('children')({
-            locales: ['de'],
-          });
+              locales: ['de'],
+            })
+            .find({ id: 'Project.trialDaysLeft' })
+            .renderProp('children')('Trial expired');
         });
         it('should render Notifier component', () => {
           expect(wrapper).toRender(Notifier);
@@ -214,7 +216,7 @@ describe('rendering', () => {
         });
 
         it('should not render Notifier component', () => {
-          expect(wrapper).not.toRender(Notifier);
+          expect(wrapper).not.toRender({ id: 'Project.trialDaysLeft' });
         });
       });
       describe('when trial days are equal to two weeks (14 days)', () => {
@@ -232,8 +234,10 @@ describe('rendering', () => {
             })
             .find(ProjectDataLocale)
             .renderProp('children')({
-            locales: ['de'],
-          });
+              locales: ['de'],
+            })
+            .find({ id: 'Project.trialDaysLeft' })
+            .renderProp('children')('Trial expired');
         });
 
         it('should render Notifier component', () => {

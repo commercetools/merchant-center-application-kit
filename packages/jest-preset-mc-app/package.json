@@ -31,6 +31,7 @@
     "enzyme-matchers": "7.0.2",
     "enzyme-to-json": "3.3.5",
     "identity-obj-proxy": "3.0.0",
+    "intl": "1.2.5",
     "jest-dom": "3.5.0",
     "jest-enzyme": "7.0.2",
     "jest-localstorage-mock": "2.4.0",

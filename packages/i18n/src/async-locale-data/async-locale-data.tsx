@@ -75,7 +75,6 @@ class AsyncLocaleData extends React.Component<Props, State> {
           this.props.applicationMessages,
           locale
         );
-
         this.setState({
           isLoading: false,
           locale,
