@@ -223,14 +223,16 @@ module.exports = {
           {
             resolve: `gatsby-remark-vscode`,
             options: {
-              colorTheme: 'Dracula',
+              colorTheme: 'Quiet Light',
               injectStyles: true,
-              extensions: [
-                {
-                  identifier: 'dracula-theme.theme-dracula',
-                  version: '2.18.0',
-                },
-              ],
+              // NOTE: somehow downloaded extensions seem to be "corrupted" while cached.
+              // For now we just use one of the default themes.
+              // extensions: [
+              //   {
+              //     identifier: 'dracula-theme.theme-dracula',
+              //     version: '2.18.0',
+              //   },
+              // ],
             },
           },
         ],
