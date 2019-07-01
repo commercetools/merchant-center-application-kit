@@ -8,7 +8,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const safeParser = require('postcss-safe-parser');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // as "aliasing v1.0.0 as webpack.optimize.UglifyJsPlugin is scheduled for
 // webpack v4.0.0" (https://webpack.js.org/plugins/uglifyjs-webpack-plugin/)
 // we need to explicitly use the library to be using the newest version
@@ -160,8 +160,10 @@ module.exports = ({
     },
 
     plugins: [
-      new CleanWebpackPlugin([distPath], {
-        allowExternal: true,
+      new CleanWebpackPlugin({
+        dangerouslyAllowCleanPatternsOutsideProject: true,
+        dry: true,
+        cleanOnceBeforeBuildPatterns: [distPath],
       }),
       // Allows to "assign" custom options to the `webpack` object.
       // At the moment, this is used to share some props with `postcss.config`.
