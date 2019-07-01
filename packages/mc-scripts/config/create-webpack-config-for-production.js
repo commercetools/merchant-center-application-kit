@@ -280,7 +280,6 @@ module.exports = ({
           use: [
             {
               loader: require.resolve('svg-url-loader'),
-              options: { noquotes: true },
             },
           ],
         },
