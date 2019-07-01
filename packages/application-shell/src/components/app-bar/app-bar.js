@@ -56,7 +56,6 @@ const AppBar = props => {
                       // This is fine becase the user has still the possibility to "switch"
                       // to a project.
                       projectKey={props.projectKeyFromUrl || previousProjectKey}
-                      total={props.user.projects.total}
                     />
                   );
                 if (!props.user.defaultProjectKey) return '';

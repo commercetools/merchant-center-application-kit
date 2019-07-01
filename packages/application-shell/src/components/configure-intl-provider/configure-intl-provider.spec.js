@@ -1,49 +1,45 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { IntlProvider } from 'react-intl';
+import { render } from 'react-testing-library';
+import { FormattedMessage } from 'react-intl';
 import ConfigureIntlProvider from './configure-intl-provider';
 
-const createTestProps = props => ({
-  locale: 'de',
-  messages: { title: 'Title' },
-  ...props,
-});
-
 describe('rendering', () => {
-  let props;
-  let wrapper;
-  describe('when locale is defined', () => {
+  let rendered;
+  describe('when locale is defined and there is a translation', () => {
     beforeEach(() => {
-      props = createTestProps();
-      wrapper = shallow(
-        <ConfigureIntlProvider {...props}>
-          <div />
+      rendered = render(
+        <ConfigureIntlProvider locale="de" messages={{ title: 'Auto' }}>
+          <FormattedMessage id="title" defaultMessage="Car" />
         </ConfigureIntlProvider>
       );
     });
-    it('should pass locale to <IntlProvider>', () => {
-      expect(wrapper.find(IntlProvider)).toHaveProp('locale', 'de');
+    it('should render translated message', () => {
+      expect(rendered.queryByText('Auto')).toBeInTheDocument();
     });
-    it('should pass messages for given language to <IntlProvider>', () => {
-      expect(wrapper.find(IntlProvider)).toHaveProp('messages', {
-        title: 'Title',
-      });
+  });
+  describe('when locale is defined but there is no translation', () => {
+    beforeEach(() => {
+      console.error = jest.fn();
+      rendered = render(
+        <ConfigureIntlProvider locale="it" messages={{}}>
+          <FormattedMessage id="title" defaultMessage="Car" />
+        </ConfigureIntlProvider>
+      );
+    });
+    it('should render default message', () => {
+      expect(rendered.queryByText('Car')).toBeInTheDocument();
     });
   });
   describe('when locale is not defined', () => {
     beforeEach(() => {
-      props = createTestProps({ locale: null, messages: null });
-      wrapper = shallow(
-        <ConfigureIntlProvider {...props}>
-          <div />
+      rendered = render(
+        <ConfigureIntlProvider>
+          <FormattedMessage id="title" defaultMessage="Car" />
         </ConfigureIntlProvider>
       );
     });
-    it('should pass fallback locale to <IntlProvider>', () => {
-      expect(wrapper.find(IntlProvider)).toHaveProp('locale', 'en');
-    });
-    it('should pass fallback messages to <IntlProvider>', () => {
-      expect(wrapper.find(IntlProvider)).toHaveProp('messages', {});
+    it('should render nothing', () => {
+      expect(rendered.queryByText('Car')).not.toBeInTheDocument();
     });
   });
 });

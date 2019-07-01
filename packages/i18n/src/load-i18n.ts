@@ -1,15 +1,10 @@
-import { addLocaleData } from 'react-intl';
 import moment from 'moment';
 import {
-  extractLanguageTagFromLocale,
   mergeMessages,
   mapLocaleToMomentLocale,
   mapLocaleToIntlLocale,
 } from './utils';
 
-type ReactIntlImportData = {
-  default: ReactIntl.Locale | ReactIntl.Locale[];
-};
 type MomentImportData = {
   default: moment.Locale;
 };
@@ -25,35 +20,6 @@ type AppKitImportData = {
 };
 type MergedMessages = {
   [key: string]: string;
-};
-
-const getReactIntlChunkImport = (
-  locale: string
-): Promise<ReactIntlImportData> => {
-  // NOTE: react-intl only has locale data for language tags
-  const language = extractLanguageTagFromLocale(locale);
-  switch (language) {
-    case 'de':
-      return import(
-        /* webpackChunkName: "react-intl-data-de" */ 'react-intl/locale-data/de'
-      );
-    case 'es':
-      return import(
-        /* webpackChunkName: "react-intl-data-es" */ 'react-intl/locale-data/es'
-      );
-    case 'fr':
-      return import(
-        /* webpackChunkName: "react-intl-data-fr" */ 'react-intl/locale-data/fr'
-      );
-    case 'zh':
-      return import(
-        /* webpackChunkName: "react-intl-data-zh" */ 'react-intl/locale-data/zh'
-      );
-    default:
-      return import(
-        /* webpackChunkName: "react-intl-data-en" */ 'react-intl/locale-data/en'
-      );
-  }
 };
 
 const getMomentChunkImport = (locale: string): Promise<MomentImportData> => {
@@ -139,10 +105,6 @@ const getAppKitChunkImport = (locale: string): Promise<AppKitImportData> => {
 export default async function loadI18n(
   locale: string
 ): Promise<MergedMessages> {
-  // Load react-intl localizations
-  const reactIntlChunkImport = await getReactIntlChunkImport(locale);
-  addLocaleData(reactIntlChunkImport.default);
-
   // Load moment localizations
   await getMomentChunkImport(locale);
 

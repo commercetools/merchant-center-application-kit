@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import once from 'lodash/once';
 import { IntlProvider } from 'react-intl';
 
-const hideAppLoader = once(() => {
+const hideAppLoader = () => {
   /**
    * NOTE:
    *   This function is defined in the `index.html` in a script-tag
@@ -17,14 +16,19 @@ const hideAppLoader = once(() => {
    *       the app would never show (always show the loading screen)
    */
   if (window.onAppLoaded) window.onAppLoaded();
-});
+};
 
 const ConfigureIntlProvider = props => {
-  hideAppLoader();
+  if (!props.locale) {
+    return null;
+  }
+
+  React.useEffect(() => {
+    hideAppLoader();
+  }, []);
+
   return (
-    // In case the locale is not defined yet, we temporary fall back to `en` so
-    // that react-intl does not complain.
-    <IntlProvider locale={props.locale || 'en'} messages={props.messages || {}}>
+    <IntlProvider locale={props.locale} messages={props.messages}>
       {props.children}
     </IntlProvider>
   );
