@@ -219,6 +219,20 @@ module.exports = {
               maxWidth: 740,
             },
           },
+          // For syntax code highlighting
+          {
+            resolve: `gatsby-remark-vscode`,
+            options: {
+              colorTheme: 'Dracula',
+              injectStyles: true,
+              extensions: [
+                {
+                  identifier: 'dracula-theme.theme-dracula',
+                  version: '2.18.0',
+                },
+              ],
+            },
+          },
         ],
       },
     },

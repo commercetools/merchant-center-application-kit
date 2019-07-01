@@ -6370,6 +6370,13 @@ commander@~2.8.1:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
+comment-json@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/comment-json/-/comment-json-1.1.3.tgz#6986c3330fee0c4c9e00c2398cd61afa5d8f239e"
+  integrity sha1-aYbDMw/uDEyeAMI5jNYa+l2PI54=
+  dependencies:
+    json-parser "^1.0.0"
+
 common-tags@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/common-tags/-/common-tags-1.4.0.tgz#1187be4f3d4cf0c0427d43f74eef1f73501614c0"
@@ -8662,6 +8669,11 @@ espree@^5.0.1:
     acorn-jsx "^5.0.0"
     eslint-visitor-keys "^1.0.0"
 
+esprima@^2.7.0:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/esprima/-/esprima-2.7.3.tgz#96e3b70d5779f6ad49cd032673d1c312767ba581"
+  integrity sha1-luO3DVd59q1JzQMmc9HDEnZ7pYE=
+
 esprima@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-3.1.3.tgz#fdca51cee6133895e3c88d535ce49dbff62a4633"
@@ -9996,6 +10008,20 @@ gatsby-remark-relative-images@0.2.2:
     lodash "4.17.11"
     slash "2.0.0"
     unist-util-select "1.5.0"
+
+gatsby-remark-vscode@1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-vscode/-/gatsby-remark-vscode-1.0.6.tgz#c7e625de059dbcbb4feb0893fd83b376b6bf7b54"
+  integrity sha512-X3QhB9wZlFkdhtPLooH8DdxwcepL52h1mEN3MM6se1iKVZOM9W0JYExsinegcdrsbc/2c3QiZKQNb1fw9CUvEQ==
+  dependencies:
+    comment-json "^1.1.3"
+    decompress "^4.2.0"
+    lodash.escape "^4.0.1"
+    lodash.uniq "^4.5.0"
+    oniguruma "^7.2.0"
+    plist "^3.0.1"
+    unist-util-visit "^1.4.0"
+    vscode-textmate "^4.1.0"
 
 gatsby-source-filesystem@2.1.1:
   version "2.1.1"
@@ -13111,6 +13137,13 @@ json-parse-better-errors@^1.0.0, json-parse-better-errors@^1.0.1, json-parse-bet
   resolved "https://registry.yarnpkg.com/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
   integrity sha512-mrqyZKfX5EhL7hvqcV6WG1yYjnjeuYDzDhhcAAUrq8Po85NBQBJP+ZDUT75qZQ98IkUoBqdkExkukOU7Ts2wrw==
 
+json-parser@^1.0.0:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/json-parser/-/json-parser-1.1.5.tgz#e62ec5261d1a6a5fc20e812a320740c6d9005677"
+  integrity sha1-5i7FJh0aal/CDoEqMgdAxtkAVnc=
+  dependencies:
+    esprima "^2.7.0"
+
 json-schema-traverse@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz#69f6a87d9513ab8bb8fe63bdb0979c448e684660"
@@ -14851,7 +14884,7 @@ name-all-modules-plugin@^1.0.1:
   resolved "https://registry.yarnpkg.com/name-all-modules-plugin/-/name-all-modules-plugin-1.0.1.tgz#0abfb6ad835718b9fb4def0674e06657a954375c"
   integrity sha1-Cr+2rYNXGLn7Te8GdOBmV6lUN1w=
 
-nan@^2.12.1, nan@^2.13.2:
+nan@^2.12.1, nan@^2.13.2, nan@^2.14.0:
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
   integrity sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
@@ -15500,6 +15533,13 @@ onetime@^2.0.0:
   integrity sha1-BnQoIw/WdEOyeUsiu6UotoZ5YtQ=
   dependencies:
     mimic-fn "^1.0.0"
+
+oniguruma@^7.0.0, oniguruma@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/oniguruma/-/oniguruma-7.2.0.tgz#c9a59c1ea7b9fe67e237a02e02139b638856f3af"
+  integrity sha512-bh+ZLdykY1sdIx8jBp2zpLbVFDBc3XmKH4Ceo2lijNaN1WhEqtnpqFlmtCbRuDB17nJ58RAUStVwfW8e8uEbnA==
+  dependencies:
+    nan "^2.14.0"
 
 opener@^1.5.1:
   version "1.5.1"
@@ -16290,6 +16330,15 @@ please-upgrade-node@^3.0.2, please-upgrade-node@^3.1.1:
   integrity sha512-KY1uHnQ2NlQHqIJQpnh/i54rKkuxCEBx+voJIS/Mvb+L2iYd2NMotwduhKTMjfC1uKoX3VXOxLjIYG66dfJTVQ==
   dependencies:
     semver-compare "^1.0.0"
+
+plist@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/plist/-/plist-3.0.1.tgz#a9b931d17c304e8912ef0ba3bdd6182baf2e1f8c"
+  integrity sha512-GpgvHHocGRyQm74b6FWEZZVRroHKE1I0/BTjAmySaohK+cUn+hZpbqXkc3KWgW3gQYkqcQej35FohcT0FRlkRQ==
+  dependencies:
+    base64-js "^1.2.3"
+    xmlbuilder "^9.0.7"
+    xmldom "0.1.x"
 
 plur@^3.0.1:
   version "3.1.1"
@@ -17241,11 +17290,6 @@ pretty-time@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pretty-time/-/pretty-time-1.1.0.tgz#ffb7429afabb8535c346a34e41873adf3d74dd0e"
   integrity sha512-28iF6xPQrP8Oa6uxE6a1biz+lWeTOAPKggvjB8HAs6nVMKZwf5bG++632Dx614hIWgUPkgivRfG+a8uAXGTIbA==
-
-prism-react-renderer@0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-0.1.7.tgz#dc273d0cb6e4a498ba0775094e9a8b01a3ad2eaa"
-  integrity sha512-EhnM0sYfLK103ASK0ViSv0rta//ZGB0dBA9TiFyOvA+zOj5peLmGEG01sLEDwl9sMe+gSqncInafBe1VFTCMvA==
 
 private@^0.1.6:
   version "0.1.8"
@@ -21802,6 +21846,13 @@ void-elements@^2.0.1:
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
   integrity sha1-wGavtYK7HLQSjWDqkjkulNXp2+w=
 
+vscode-textmate@^4.1.0:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/vscode-textmate/-/vscode-textmate-4.1.1.tgz#857e836fbc13a376ec624242437e1747d79610a9"
+  integrity sha512-xBjq9LH6fMhWDhIVkbKlB1JeCu6lT3FI/QKN24Xi4RKPBUm16IhHTqs6Q6SUGewkNsFZGkb1tJdZsuMnlmVpgw==
+  dependencies:
+    oniguruma "^7.0.0"
+
 w3c-hr-time@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/w3c-hr-time/-/w3c-hr-time-1.0.1.tgz#82ac2bff63d950ea9e3189a58a65625fedf19045"
@@ -22418,12 +22469,12 @@ xmlbuilder@^4.1.0:
   dependencies:
     lodash "^4.0.0"
 
-xmlbuilder@~9.0.1:
+xmlbuilder@^9.0.7, xmlbuilder@~9.0.1:
   version "9.0.7"
   resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-9.0.7.tgz#132ee63d2ec5565c557e20f4c22df9aca686b10d"
   integrity sha1-Ey7mPS7FVlxVfiD0wi35rKaGsQ0=
 
-xmldom@^0.1.27:
+xmldom@0.1.x, xmldom@^0.1.27:
   version "0.1.27"
   resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.1.27.tgz#d501f97b3bdb403af8ef9ecc20573187aadac0e9"
   integrity sha1-1QH5ezvbQDr4757MIFcxh6rawOk=

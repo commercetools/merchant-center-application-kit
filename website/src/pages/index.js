@@ -14,8 +14,10 @@ import * as colors from '../colors';
 import DevelopItSvg from '../images/develop-it.svg';
 import DeployItSvg from '../images/deploy-it.svg';
 import RegisterItSvg from '../images/register-it.svg';
-import { TextHighlight, CodeBlock, SEO } from '../components';
+import { TextHighlight, SEO } from '../components';
 import { LayoutMarketing } from '../layouts';
+import CodeSnippetNpmInstall from './code-snippets/getting-started-npm-install.mdx';
+import CodeSnippetNpxInstall from './code-snippets/getting-started-npx-install.mdx';
 
 const SectionTitle = styled.div`
   font-size: 1.5rem;
@@ -181,14 +183,7 @@ const IndexPage = () => {
               'We provide starter templates that you can install and run right away:'
             }
           </p>
-          <CodeBlock>
-            {stripIndent`
-$ npm install --global @commercetools-frontend/create-mc-app
-$ create-mc-app \\
-    my-new-custom-application-project \\
-    --template starter
-            `}
-          </CodeBlock>
+          <CodeSnippetNpmInstall />
           <p
             css={css`
               font-size: 0.8rem;
@@ -197,13 +192,7 @@ $ create-mc-app \\
             {'Or using '}
             <Code>{'npx'}</Code>
           </p>
-          <CodeBlock>
-            {stripIndent`
-$ npx @commercetools-frontend/create-mc-app \\
-    my-new-custom-application-project \\
-    --template starter
-            `}
-          </CodeBlock>
+          <CodeSnippetNpxInstall />
         </Spacings.Stack>
       </PageContainer>
     </LayoutMarketing>
