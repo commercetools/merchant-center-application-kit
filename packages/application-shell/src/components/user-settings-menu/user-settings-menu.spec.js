@@ -7,7 +7,6 @@ import UserSettingsMenu, {
   UserSettingsMenuBody,
   ConnectedUserSettingsMenuBody,
   UserAvatar,
-  UserAvatarWithHoverState,
 } from './user-settings-menu';
 
 const createTestProps = props => ({
@@ -71,10 +70,8 @@ describe('rendering', () => {
     it('should render button', () => {
       expect(menuStateContainerRenderWrapper).toRender('button');
     });
-    it('should render <UserAvatarWithHoverState>', () => {
-      expect(menuStateContainerRenderWrapper).toRender(
-        UserAvatarWithHoverState
-      );
+    it('should render <UserAvatar>', () => {
+      expect(menuStateContainerRenderWrapper).toRender(UserAvatar);
     });
     describe('when menu is open', () => {
       beforeEach(() => {
