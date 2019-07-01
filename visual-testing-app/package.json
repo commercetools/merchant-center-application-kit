@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "serve": "11.0.2",
-    "webpack": "4.35.1",
+    "webpack": "4.35.2",
     "webpack-cli": "3.3.5"
   }
 }
