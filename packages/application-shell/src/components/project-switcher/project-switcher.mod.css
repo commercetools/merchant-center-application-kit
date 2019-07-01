@@ -6,28 +6,6 @@
   word-wrap: break-word;
 }
 
-.single-value-container {
-  flex: 1;
-  align-items: center;
-  display: flex;
-}
-
-.dropdown-container {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.project-name {
-  color: var(--color-accent);
-}
-
 .value-container {
   display: flex;
   flex: 1;
@@ -68,7 +46,7 @@
   font-size: 11px;
 }
 
-.red {
+.item-text-error {
   color: var(--color-error);
 }
 

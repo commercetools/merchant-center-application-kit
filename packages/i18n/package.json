@@ -45,12 +45,10 @@
   },
   "devDependencies": {
     "@commercetools-frontend/ui-kit": "9.9.0",
-    "react": "16.8.6",
-    "react-intl": "2.9.0"
+    "react": "16.8.6"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "9.x",
-    "react": ">=16.8.0",
-    "react-intl": "2.x"
+    "react": ">=16.8.0"
   }
 }

@@ -126,9 +126,6 @@ describe('rendering', () => {
                   props.projectKeyFromUrl
                 );
               });
-              it('should pass total to <ProjectSwitcher>', () => {
-                expect(wrapper.find(ProjectSwitcher)).toHaveProp('total', 1);
-              });
               it('should not render <BackToProject>', () => {
                 expect(wrapper).not.toRender(BackToProject);
               });

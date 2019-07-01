@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import {
   SecondaryButton,
   PrimaryButton,
@@ -11,21 +11,24 @@ import filterDataAttributes from '../../../utils/filter-data-attributes';
 const getFormattedLabel = (label, intl) =>
   typeof label === 'string' ? label : intl.formatMessage(label);
 
-const DialogFooter = props => (
-  <Spacings.Inline scale="m" alignItems="center" justifyContent="flex-end">
-    <SecondaryButton
-      label={getFormattedLabel(props.labelSecondary, props.intl)}
-      onClick={props.onCancel}
-      {...filterDataAttributes(props.dataAttributesSecondaryButton)}
-    />
-    <PrimaryButton
-      label={getFormattedLabel(props.labelPrimary, props.intl)}
-      onClick={props.onConfirm}
-      isDisabled={props.isPrimaryButtonDisabled}
-      {...filterDataAttributes(props.dataAttributesPrimaryButton)}
-    />
-  </Spacings.Inline>
-);
+const DialogFooter = props => {
+  const intl = useIntl();
+  return (
+    <Spacings.Inline scale="m" alignItems="center" justifyContent="flex-end">
+      <SecondaryButton
+        label={getFormattedLabel(props.labelSecondary, intl)}
+        onClick={props.onCancel}
+        {...filterDataAttributes(props.dataAttributesSecondaryButton)}
+      />
+      <PrimaryButton
+        label={getFormattedLabel(props.labelPrimary, intl)}
+        onClick={props.onConfirm}
+        isDisabled={props.isPrimaryButtonDisabled}
+        {...filterDataAttributes(props.dataAttributesPrimaryButton)}
+      />
+    </Spacings.Inline>
+  );
+};
 DialogFooter.displayName = 'DialogFooter';
 DialogFooter.propTypes = {
   labelSecondary: PropTypes.oneOfType([
@@ -49,11 +52,6 @@ DialogFooter.propTypes = {
   onConfirm: PropTypes.func.isRequired,
   dataAttributesSecondaryButton: PropTypes.object,
   dataAttributesPrimaryButton: PropTypes.object,
-
-  // injected
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func.isRequired,
-  }).isRequired,
 };
 DialogFooter.defaultProps = {
   isPrimaryButtonDisabled: false,
@@ -61,4 +59,4 @@ DialogFooter.defaultProps = {
   dataAttributesPrimaryButton: {},
 };
 
-export default injectIntl(DialogFooter);
+export default DialogFooter;
