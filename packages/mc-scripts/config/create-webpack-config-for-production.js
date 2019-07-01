@@ -303,9 +303,12 @@ module.exports = ({
             {
               loader: require.resolve('css-loader'),
               options: {
-                modules: true,
+                modules: {
+                  mode: 'local',
+                  localIdentName: '[name]__[local]___[hash:base64:5]',
+                  hashPrefix: 'ct',
+                },
                 importLoaders: 1,
-                localIdentName: '[name]__[local]___[hash:base64:5]',
               },
             },
             {
