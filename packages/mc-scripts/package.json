@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/mc-scripts",
-  "version": "13.12.2",
+  "version": "13.12.3",
   "description": "Configuration and scripts for developing a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
