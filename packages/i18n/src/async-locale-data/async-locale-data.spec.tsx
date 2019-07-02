@@ -1,7 +1,7 @@
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { render, wait } from 'react-testing-library';
+import { render, wait } from '@testing-library/react';
 import loadI18n from '../load-i18n';
 import AsyncLocaleData, {
   State,
