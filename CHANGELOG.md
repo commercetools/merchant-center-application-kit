@@ -1,3 +1,14 @@
+## [13.12.3](https://github.com/commercetools/merchant-center-application-kit/compare/v13.12.2...v13.12.3) (2019-07-01)
+
+#### 🖥 Type: Website
+* [#810](https://github.com/commercetools/merchant-center-application-kit/pull/810) refactor(website): to use syntax highlighting plugin for vscode themes ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+* `jest-stylelint-runner`, `mc-scripts`
+  * [#809](https://github.com/commercetools/merchant-center-application-kit/pull/809) chore: update webpack loaders ([@tdeekens](https://github.com/tdeekens))
+* `application-components`, `create-mc-app`, `mc-http-server`, `mc-scripts`
+  * [#808](https://github.com/commercetools/merchant-center-application-kit/pull/808) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.12.2](https://github.com/commercetools/merchant-center-application-kit/compare/v13.12.1...v13.12.2) (2019-06-28)
 
 This release does not contain any changes compared to `v13.12.1`. However, the `v13.12.0` release contained a [babel plugin that broke the builds](#791) and therefore we had to bundle and bump the version of all packages again to fix it.
