@@ -3236,6 +3236,25 @@
     "@svgr/plugin-svgo" "^4.3.1"
     loader-utils "^1.2.3"
 
+"@testing-library/dom@^5.0.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-5.4.0.tgz#49f41c99473286a4102721242bc47571fb7efef0"
+  integrity sha512-0OQsquNYfbxgqqoGf9RZ9lglXEYgKlhSe+W9UFQGDAvT554Y9PG6hGe0RHYggAXe/GoNPccSsl65nn+qq0cFKw==
+  dependencies:
+    "@babel/runtime" "^7.4.5"
+    "@sheerun/mutationobserver-shim" "^0.3.2"
+    aria-query "3.0.0"
+    pretty-format "^24.8.0"
+    wait-for-expect "^1.2.0"
+
+"@testing-library/react@8.0.4":
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-8.0.4.tgz#6ed405ba88b625ec53d7cfa78c038a950bafc1fa"
+  integrity sha512-omm4D00Z0aMaWfPRRP4X6zIaOVb0Kf1Yc1H5VE4id9D0pQRiBcTtmjbN0kZgT8rQGxHhVAuv1NuwFwMTwKzFqg==
+  dependencies:
+    "@babel/runtime" "^7.4.5"
+    "@testing-library/dom" "^5.0.0"
+
 "@types/anymatch@*":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
@@ -4411,7 +4430,7 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
-aria-query@^3.0.0:
+aria-query@3.0.0, aria-query@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/aria-query/-/aria-query-3.0.0.tgz#65b3fcc1ca1155a8c9ae64d6eee297f15d5133cc"
   integrity sha1-ZbP8wcoRVajJrmTW7uKX8V1RM8w=
@@ -7898,7 +7917,7 @@ dom-serializer@0, dom-serializer@~0.1.0, dom-serializer@~0.1.1:
     domelementtype "^1.3.0"
     entities "^1.1.1"
 
-dom-testing-library@^4.0.0, dom-testing-library@^4.1.0:
+dom-testing-library@^4.0.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/dom-testing-library/-/dom-testing-library-4.1.1.tgz#615af61bee06db51bd8ecea60c113eba7cb49dda"
   integrity sha512-PUsG7aY5BJxzulDrOtkksqudRRypcVQF6d4RGAyj9xNwallOFqrNLOyg2QW2mCpFaNVPELX8hBX/wbHQtOto/A==
@@ -18178,14 +18197,6 @@ react-test-renderer@^16.0.0-0:
     react-is "^16.8.6"
     scheduler "^0.13.6"
 
-react-testing-library@7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/react-testing-library/-/react-testing-library-7.0.1.tgz#0cf113bb53a78599f018378f6854e91a52dbf205"
-  integrity sha512-doQkM3/xPcIm22x9jgTkGxU8xqXg4iWvM1WwbbQ7CI5/EMk3DhloYBwMyk+Ywtta3dIAIh9sC7llXoKovf3L+w==
-  dependencies:
-    "@babel/runtime" "^7.4.3"
-    dom-testing-library "^4.1.0"
-
 react-textarea-autosize@7.1.0:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/react-textarea-autosize/-/react-textarea-autosize-7.1.0.tgz#3132cb77e65d94417558d37c0bfe415a5afd3445"
@@ -21952,7 +21963,7 @@ w3c-hr-time@^1.0.1:
   dependencies:
     browser-process-hrtime "^0.1.2"
 
-wait-for-expect@1.2.0, wait-for-expect@^1.1.1:
+wait-for-expect@1.2.0, wait-for-expect@^1.1.1, wait-for-expect@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/wait-for-expect/-/wait-for-expect-1.2.0.tgz#fdab6a26e87d2039101db88bff3d8158e5c3e13f"
   integrity sha512-EJhKpA+5UHixduMBEGhTFuLuVgQBKWxkFbefOdj2bbk2/OpA5Opsc4aUTGmF+qJ+v3kTGxDRNYwKaT4j6g5n8Q==

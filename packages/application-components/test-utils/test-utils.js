@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 
 const customRender = (node, { locale = 'en', ...rtlOptions } = {}) => ({
@@ -7,7 +7,7 @@ const customRender = (node, { locale = 'en', ...rtlOptions } = {}) => ({
 });
 
 // re-export everything
-export * from 'react-testing-library';
+export * from '@testing-library/react';
 
 // override render method
 export { customRender as render };
