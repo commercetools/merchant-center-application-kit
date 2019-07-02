@@ -56,10 +56,6 @@ const createGraphqlResponseForProjectQuery = custom => ({
       id: 'owner-id',
       name: 'commercetools',
       createdAt: '2019-01-01T00:00:00.000Z',
-      teams: {
-        __typename: 'TeamQueryResult',
-        count: 1,
-      },
     },
     settings: {
       __typename: 'ProjectSetting',

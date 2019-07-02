@@ -26,9 +26,6 @@ query ProjectQuery($projectKey: String!) {
       id
       name
       createdAt
-      teams {
-        count
-      }
     }
     settings {
       id
