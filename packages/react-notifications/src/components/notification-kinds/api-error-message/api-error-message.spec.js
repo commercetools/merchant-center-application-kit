@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, wait } from 'react-testing-library';
+import { render, wait } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { ApiErrorMessage } from './api-error-message';
