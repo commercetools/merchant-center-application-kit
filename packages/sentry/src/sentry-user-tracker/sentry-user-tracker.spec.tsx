@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import * as Sentry from '@sentry/browser';
 import SentryUserTracker from './sentry-user-tracker';
 
