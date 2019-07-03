@@ -49,6 +49,7 @@ const createTestProps = props => ({
   environment: {
     servedByProxy: false,
     useFullRedirectsForLinks: false,
+    disableDashboard: true,
   },
   menuVisibilities: { hideOrdersList: true },
   // Injected
@@ -75,11 +76,7 @@ const createTestProps = props => ({
 });
 const createDataMenuTestProps = props => {
   const navbarProps = createTestProps(props);
-  const {
-    applicationsMenuQuery,
-    projectExtensionsQuery,
-    ...passThroughProps
-  } = navbarProps;
+  const { ...passThroughProps } = navbarProps;
   return {
     ...passThroughProps,
     useFullRedirectsForLinks: false,
@@ -456,6 +453,10 @@ describe('rendering', () => {
               permissions: [],
               actualPermissions: {},
               menuVisibilities: {},
+              uriPath: 'products',
+              environment: {
+                disabledDashboard: false,
+              },
             };
             wrapper = shallow(
               <RestrictedMenuItem {...props}>
@@ -483,6 +484,10 @@ describe('rendering', () => {
               permissions: [permissions.ManageOrders],
               actualPermissions: {},
               menuVisibilities: {},
+              uriPath: 'products',
+              environment: {
+                disabledDashboard: false,
+              },
             };
             wrapper = shallow(
               <RestrictedMenuItem {...props}>
@@ -521,6 +526,10 @@ describe('rendering', () => {
               permissions: [],
               actualPermissions: {},
               menuVisibilities: {},
+              uriPath: 'products',
+              environment: {
+                disabledDashboard: false,
+              },
             };
             wrapper = shallow(
               <RestrictedMenuItem {...props}>
@@ -542,6 +551,10 @@ describe('rendering', () => {
               permissions: [permissions.ManageOrders],
               actualPermissions: {},
               menuVisibilities: {},
+              uriPath: 'products',
+              environment: {
+                disabledDashboard: false,
+              },
             };
             wrapper = shallow(
               <RestrictedMenuItem {...props}>
@@ -579,6 +592,10 @@ describe('rendering', () => {
           props = {
             permissions: [permissions.ViewProducts],
             menuVisibilities: {},
+            uriPath: 'products',
+            environment: {
+              disabledDashboard: false,
+            },
           };
           wrapper = shallow(
             <RestrictedMenuItem {...props}>
@@ -611,6 +628,10 @@ describe('rendering', () => {
             menuVisibilities: {
               hideOrders: true,
             },
+            uriPath: 'orders',
+            environment: {
+              disabledDashboard: false,
+            },
           };
           wrapper = shallow(
             <RestrictedMenuItem {...props}>
@@ -634,6 +655,10 @@ describe('rendering', () => {
               hideDashboard: false,
             },
             permissions: [permissions.ViewProducts],
+            uriPath: 'products',
+            environment: {
+              disabledDashboard: false,
+            },
           };
           wrapper = shallow(
             <RestrictedMenuItem {...props}>

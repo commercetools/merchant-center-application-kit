@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isNil from 'lodash/isNil';
 import flowRight from 'lodash/flowRight';
+import camelCase from 'lodash/camelCase';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, withRouter } from 'react-router-dom';
 import { graphql } from 'react-apollo';
@@ -39,6 +40,7 @@ import getDisplayName from '../../utils/get-display-name';
 import LoadingPlaceholder from '../loading-placeholder';
 import withApplicationsMenu from '../with-applications-menu';
 import handleApolloErrors from '../handle-apollo-errors';
+import { slugify } from '../../utils';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
 import styles from './navbar.mod.css';
 import messages from './messages';
@@ -242,6 +244,12 @@ const hasMenuEveryMenuVisibilitySetToBeHidden = (
   namesOfMenuVisibilities.every(
     nameOfMenuVisibility => menuVisibilities[nameOfMenuVisibility] === true
   );
+const isDisabledForEnvironment = (uriOfMenu, environment) => {
+  const nameOfEnvironmentKey = camelCase(`disable-${slugify(uriOfMenu)}`);
+  const valueOfEnvironmentKey = environment[nameOfEnvironmentKey];
+
+  return valueOfEnvironmentKey === true || valueOfEnvironmentKey === 'true';
+};
 export const RestrictedMenuItem = props => {
   // NOTE: Custom application are activated/deactivated while their
   // visibility is not controlled via a visibiility overwrite.
@@ -249,7 +257,8 @@ export const RestrictedMenuItem = props => {
     hasMenuEveryMenuVisibilitySetToBeHidden(
       props.namesOfMenuVisibilities,
       props.menuVisibilities
-    )
+    ) ||
+    isDisabledForEnvironment(props.uriPath, props.environment)
   )
     return null;
 
@@ -277,8 +286,10 @@ export const RestrictedMenuItem = props => {
 RestrictedMenuItem.displayName = 'RestrictedMenuItem';
 RestrictedMenuItem.propTypes = {
   featureToggle: PropTypes.string,
+  uriPath: PropTypes.string.isRequired,
   namesOfMenuVisibilities: PropTypes.arrayOf(PropTypes.string),
   menuVisibilities: PropTypes.object.isRequired,
+  environment: PropTypes.object.isRequired,
   permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
   children: PropTypes.element.isRequired,
 };
@@ -331,6 +342,7 @@ export class DataMenu extends React.PureComponent {
     menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     applicationLocale: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
+    environment: PropTypes.object.isRequired,
     isForcedMenuOpen: PropTypes.bool,
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
@@ -454,9 +466,11 @@ export class DataMenu extends React.PureComponent {
       <RestrictedMenuItem
         key={menu.key}
         featureToggle={menu.featureToggle}
+        uriPath={menu.uriPath}
         permissions={menu.permissions}
         menuVisibilities={this.props.menuVisibilities}
         namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
+        environment={this.props.environment}
       >
         <MenuItem
           hasSubmenu={hasSubmenu}
@@ -504,17 +518,19 @@ export class DataMenu extends React.PureComponent {
                   <RestrictedMenuItem
                     key={`${menu.key}-submenu-${submenu.key}`}
                     featureToggle={submenu.featureToggle}
+                    uriPath={submenu.uriPath}
                     permissions={submenu.permissions}
                     menuVisibilities={this.props.menuVisibilities}
                     namesOfMenuVisibilities={[submenu.menuVisibility]}
+                    environment={this.props.environment}
                   >
                     <li className={styles['sublist-item']}>
                       <div className={styles.text}>
                         <MenuItemLink
                           linkTo={oneLineTrim`
-                              /${this.props.projectKey}
-                              /${submenu.uriPath}
-                            `}
+                            /${this.props.projectKey}
+                            /${submenu.uriPath}
+                          `}
                           exactMatch={true}
                           useFullRedirectsForLinks={
                             this.props.useFullRedirectsForLinks
@@ -666,6 +682,7 @@ export class NavBar extends React.PureComponent {
           menuVisibilities={this.props.menuVisibilities}
           applicationLocale={this.props.applicationLocale}
           projectKey={this.props.projectKey}
+          environment={this.props.environment}
           useFullRedirectsForLinks={
             this.props.environment.useFullRedirectsForLinks
           }
