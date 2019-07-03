@@ -30,7 +30,7 @@ describe('rendering', () => {
             countries: ['us'],
             currencies: ['USD'],
             languages: ['en'],
-            permissions: { canManageProject: true },
+            permissions: { canManageProjectSettings: true },
             // Fields that should not be exposed
             expiry: { isActive: false },
             suspension: { isActive: false },
@@ -89,7 +89,7 @@ describe('rendering', () => {
         'value',
         expect.objectContaining({
           permissions: {
-            canManageProject: true,
+            canManageProjectSettings: true,
           },
         })
       );

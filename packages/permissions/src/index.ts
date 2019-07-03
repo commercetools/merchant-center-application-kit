@@ -15,4 +15,3 @@ export {
   hasEveryPermissions,
   hasSomePermissions,
 } from './utils/has-permissions';
-export { permissions } from './constants';

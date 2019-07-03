@@ -1,4 +1,3 @@
-import { permissions } from '../constants';
 import {
   hasPermission,
   hasEveryPermissions,
@@ -16,7 +15,7 @@ describe('hasPermission', () => {
   let actualPermissions: TPermissions | null;
   describe('when the user has the demanded permission', () => {
     beforeEach(() => {
-      demandedPermission = permissions.ManageProducts;
+      demandedPermission = 'ManageOrders';
       actualPermissions = { canManageProducts: true };
     });
     it('should return true', () => {
@@ -25,7 +24,7 @@ describe('hasPermission', () => {
   });
   describe('when a view permission is demanded', () => {
     beforeEach(() => {
-      demandedPermission = permissions.ViewProducts;
+      demandedPermission = 'ViewProducts';
     });
     describe('when the user has the manage permission for same resource', () => {
       beforeEach(() => {
@@ -43,7 +42,7 @@ describe('hasPermission', () => {
         actualPermissions = {
           canViewProducts: false,
           canManageProducts: false,
-          canManageProject: true,
+          canManageProjectSettings: true,
         };
       });
       it('should return true', () => {
@@ -55,7 +54,7 @@ describe('hasPermission', () => {
         actualPermissions = {
           canViewProducts: false,
           canManageProducts: false,
-          canManageProject: false,
+          canManageProjectSettings: false,
         };
       });
       it('should return false', () => {
@@ -70,24 +69,18 @@ describe('hasPermission', () => {
 describe('hasEveryPermission', () => {
   it('should return true if every demanded permission match', () => {
     expect(
-      hasEveryPermissions(
-        [permissions.ViewProducts, permissions.ManageOrders],
-        {
-          canViewProducts: true,
-          canManageOrders: true,
-        }
-      )
+      hasEveryPermissions(['ViewProducts', 'ManageOrders'], {
+        canViewProducts: true,
+        canManageOrders: true,
+      })
     ).toBe(true);
   });
   it('should return false if at least one demanded permission does not match', () => {
     expect(
-      hasEveryPermissions(
-        [permissions.ViewProducts, permissions.ManageOrders],
-        {
-          canViewProducts: true,
-          canViewOrders: true,
-        }
-      )
+      hasEveryPermissions(['ViewProducts', 'ManageOrders'], {
+        canViewProducts: true,
+        canViewOrders: true,
+      })
     ).toBe(false);
   });
 });
@@ -95,7 +88,7 @@ describe('hasEveryPermission', () => {
 describe('hasSomePermissions', () => {
   it('should return true if at least one demanded permission matches', () => {
     expect(
-      hasSomePermissions([permissions.ViewProducts, permissions.ManageOrders], {
+      hasSomePermissions(['ViewProducts', 'ManageOrders'], {
         canViewProducts: true,
         canViewOrders: true,
       })
@@ -103,7 +96,7 @@ describe('hasSomePermissions', () => {
   });
   it('should return false if none of the demanded permissions match', () => {
     expect(
-      hasSomePermissions([permissions.ViewCustomers], {
+      hasSomePermissions(['ViewCustomers'], {
         canViewProducts: true,
         canViewOrders: true,
       })
@@ -121,23 +114,12 @@ describe('getInvalidPermissions', () => {
   });
 
   describe('given some permissions are not configured (not passed as `actualPermissions`)', () => {
-    describe('given `ManageProject` is not configured', () => {
-      it('should return invalid permissions', () => {
-        expect(
-          getInvalidPermissions(['ManageOrders', 'ViewStars'], {
-            canManageOrders: true,
-          })
-        ).toEqual(expect.arrayContaining(['ViewStars']));
-      });
-    });
-    describe('given `ManageProject` is configured', () => {
-      it('should return no invalid permissions', () => {
-        expect(
-          getInvalidPermissions(['ManageOrders', 'ViewStars'], {
-            canManageProject: true,
-          })
-        ).toHaveLength(0);
-      });
+    it('should return invalid permissions', () => {
+      expect(
+        getInvalidPermissions(['ManageOrders', 'ViewStars'], {
+          canManageOrders: true,
+        })
+      ).toEqual(expect.arrayContaining(['ViewStars']));
     });
   });
 });

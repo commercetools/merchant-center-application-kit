@@ -2,7 +2,6 @@ import { oneLineTrim } from 'common-tags';
 import {
   hasPermission,
   hasSomePermissions,
-  permissions,
 } from '@commercetools-frontend/permissions';
 import {
   LOGOUT_REASONS,
@@ -22,12 +21,7 @@ export default ({
     project &&
       featureToggles.canViewDashboard &&
       hasSomePermissions(
-        [
-          permissions.ViewProducts,
-          permissions.ManageProducts,
-          permissions.ViewOrders,
-          permissions.ManageOrders,
-        ],
+        ['ViewProducts', 'ManageProducts', 'ViewOrders', 'ManageOrders'],
         project.permissions
       ) && {
         id: 'go/dashboard',
@@ -37,7 +31,7 @@ export default ({
       },
     project &&
       hasSomePermissions(
-        [permissions.ViewProducts, permissions.ManageProducts],
+        ['ViewProducts', 'ManageProducts'],
         project.permissions
       ) && {
         id: 'go/products',
@@ -60,7 +54,7 @@ export default ({
             text: intl.formatMessage(messages.openPimSearch),
             action: { type: 'go', to: `/${project.key}/products/pim-search` },
           },
-          hasPermission(permissions.ManageProducts, project.permissions) && {
+          hasPermission('ManageProducts', project.permissions) && {
             id: 'go/products/add',
             text: intl.formatMessage(messages.openAddProducts),
             action: { type: 'go', to: `/${project.key}/products/new` },
@@ -70,7 +64,7 @@ export default ({
     project &&
       featureToggles.canViewCategories &&
       hasSomePermissions(
-        [permissions.ViewProducts, permissions.ManageProducts],
+        ['ViewProducts', 'ManageProducts'],
         project.permissions
       ) && {
         id: 'go/categories',
@@ -91,7 +85,7 @@ export default ({
               to: `/${project.key}/categories?mode=search`,
             },
           },
-          hasPermission(permissions.ManageProducts, project.permissions) && {
+          hasPermission('ManageProducts', project.permissions) && {
             id: 'go/categories/add',
             text: intl.formatMessage(messages.openAddCategory),
             action: { type: 'go', to: `/${project.key}/categories/new` },
@@ -100,7 +94,7 @@ export default ({
       },
     project &&
       hasSomePermissions(
-        [permissions.ViewCustomers, permissions.ManageCustomers],
+        ['ViewCustomers', 'ManageCustomers'],
         project.permissions
       ) && {
         id: 'go/customers',
@@ -113,7 +107,7 @@ export default ({
             text: intl.formatMessage(messages.openCustomersList),
             action: { type: 'go', to: `/${project.key}/customers` },
           },
-          hasPermission(permissions.ManageCustomers, project.permissions) && {
+          hasPermission('ManageCustomers', project.permissions) && {
             id: 'go/customers/new',
             text: intl.formatMessage(messages.openAddCustomer),
             action: { type: 'go', to: `/${project.key}/customers/new` },
@@ -126,7 +120,7 @@ export default ({
               to: `/${project.key}/customers/customer-groups`,
             },
           },
-          hasPermission(permissions.ManageCustomers, project.permissions) && {
+          hasPermission('ManageCustomers', project.permissions) && {
             id: 'go/customers/customer-groups/add',
             text: intl.formatMessage(messages.openAddCustomerGroup),
             action: {
@@ -139,7 +133,7 @@ export default ({
     project &&
       featureToggles.canViewOrders &&
       hasSomePermissions(
-        [permissions.ViewOrders, permissions.ManageOrders],
+        ['ViewOrders', 'ManageOrders'],
         project.permissions
       ) && {
         id: 'go/orders',
@@ -152,7 +146,7 @@ export default ({
             text: intl.formatMessage(messages.openOrdersList),
             action: { type: 'go', to: `/${project.key}/orders` },
           },
-          hasPermission(permissions.ManageOrders, project.permissions) && {
+          hasPermission('ManageOrders', project.permissions) && {
             id: 'go/orders/add',
             text: intl.formatMessage(messages.openAddOrder),
             action: { type: 'go', to: `/${project.key}/orders/new` },
@@ -162,12 +156,7 @@ export default ({
     project &&
       featureToggles.canViewDiscounts &&
       hasSomePermissions(
-        [
-          permissions.ViewProducts,
-          permissions.ManageProducts,
-          permissions.ViewOrders,
-          permissions.ManageOrders,
-        ],
+        ['ViewProducts', 'ManageProducts', 'ViewOrders', 'ManageOrders'],
         project.permissions
       ) && {
         id: 'go/discounts',
@@ -176,7 +165,7 @@ export default ({
         action: { type: 'go', to: `/${project.key}/discounts` },
         subCommands: [
           hasSomePermissions(
-            [permissions.ViewProducts, permissions.ManageProducts],
+            ['ViewProducts', 'ManageProducts'],
             project.permissions
           ) && {
             id: 'go/discounts/products/list',
@@ -184,7 +173,7 @@ export default ({
             action: { type: 'go', to: `/${project.key}/discounts/products` },
           },
           hasSomePermissions(
-            [permissions.ViewOrders, permissions.ManageOrders],
+            ['ViewOrders', 'ManageOrders'],
             project.permissions
           ) && {
             id: 'go/discounts/carts/list',
@@ -192,7 +181,7 @@ export default ({
             action: { type: 'go', to: `/${project.key}/discounts/carts` },
           },
           hasSomePermissions(
-            [permissions.ViewOrders, permissions.ManageOrders],
+            ['ViewOrders', 'ManageOrders'],
             project.permissions
           ) && {
             id: 'go/discounts/codes/list',
@@ -200,22 +189,14 @@ export default ({
             action: { type: 'go', to: `/${project.key}/discounts/codes` },
           },
           hasSomePermissions(
-            [
-              permissions.ViewProducts,
-              permissions.ManageProducts,
-              permissions.ViewOrders,
-              permissions.ManageOrders,
-            ],
+            ['ViewProducts', 'ManageProducts', 'ViewOrders', 'ManageOrders'],
             project.permissions
           ) && {
             id: 'go/discounts/add',
             text: intl.formatMessage(messages.openAddDiscount),
             action: { type: 'go', to: `/${project.key}/discounts/new` },
             subCommands: [
-              hasPermission(
-                permissions.ManageProducts,
-                project.permissions
-              ) && {
+              hasPermission('ManageProducts', project.permissions) && {
                 id: 'go/discounts/product/add',
                 text: intl.formatMessage(messages.openAddProductDiscount),
                 action: {
@@ -223,7 +204,7 @@ export default ({
                   to: `/${project.key}/discounts/products/new`,
                 },
               },
-              hasPermission(permissions.ManageOrders, project.permissions) && {
+              hasPermission('ManageOrders', project.permissions) && {
                 id: 'go/discounts/cart/add',
                 text: intl.formatMessage(messages.openAddCartDiscount),
                 action: {
@@ -231,7 +212,7 @@ export default ({
                   to: `/${project.key}/discounts/carts/new`,
                 },
               },
-              hasPermission(permissions.ManageOrders, project.permissions) && {
+              hasPermission('ManageOrders', project.permissions) && {
                 id: 'go/discounts/code/add',
                 text: intl.formatMessage(messages.openAddCartDiscount),
                 action: {
@@ -246,9 +227,12 @@ export default ({
     project &&
       hasSomePermissions(
         [
-          permissions.ManageProject,
-          permissions.ViewProducts,
-          permissions.ManageProducts,
+          'ManageProjectSettings',
+          'ManageDeveloperSettings',
+          'ManageProductTypes',
+          'ViewProjectSettings',
+          'ViewDeveloperSettings',
+          'ViewProductTypes',
         ],
         project.permissions
       ) && {
@@ -260,7 +244,10 @@ export default ({
           to: `/${project.key}/settings/project/international`,
         },
         subCommands: [
-          hasPermission(permissions.ManageProject, project.permissions) && {
+          hasSomePermissions(
+            ['ManageProjectSettings', 'ViewProjectSettings'],
+            project.permissions
+          ) && {
             id: 'go/settings/project',
             text: intl.formatMessage(messages.openProjectSettings),
             action: { type: 'go', to: `/${project.key}/settings/project` },
@@ -305,7 +292,10 @@ export default ({
               },
             ].filter(Boolean),
           },
-          {
+          hasSomePermissions(
+            ['ManageProductTypes', 'ViewProductTypes'],
+            project.permissions
+          ) && {
             id: 'go/settings/product-types',
             text: intl.formatMessage(messages.openProductTypesSettings),
             action: {
@@ -313,7 +303,10 @@ export default ({
               to: `/${project.key}/settings/product-types`,
             },
           },
-          hasPermission(permissions.ManageProject, project.permissions) && {
+          hasSomePermissions(
+            ['ManageDeveloperSettings', 'ViewDeveloperSettings'],
+            project.permissions
+          ) && {
             id: 'go/settings/developer',
             text: intl.formatMessage(messages.openDeveloperSettings),
             action: {
@@ -322,7 +315,10 @@ export default ({
             },
           },
           featureToggles.customApplications &&
-            hasPermission(permissions.ManageProject, project.permissions) && {
+            hasSomePermissions(
+              ['ManageProjectSettings', 'ViewProjectSettings'],
+              project.permissions
+            ) && {
               id: 'go/settings/custom-applications',
               text: intl.formatMessage(messages.openCustomApplicationsSettings),
               action: {

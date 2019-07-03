@@ -9,10 +9,7 @@ import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { oneLineTrim } from 'common-tags';
 import debounce from 'debounce-async';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import {
-  hasSomePermissions,
-  permissions,
-} from '@commercetools-frontend/permissions';
+import { hasSomePermissions } from '@commercetools-frontend/permissions';
 import Butler from './butler';
 import QuickAccessQuery from './quick-access.graphql';
 import createCommands from './create-commands';
@@ -106,7 +103,7 @@ class QuickAccess extends React.Component {
     if (!this.props.project) return pimIndexerStates.NOT_INDEXED;
 
     const canViewProducts = hasSomePermissions(
-      [permissions.ViewProducts, permissions.ManageProducts],
+      ['ViewProducts', 'ManageProducts'],
       this.props.project.permissions
     );
 
@@ -139,7 +136,7 @@ class QuickAccess extends React.Component {
           : [];
 
       const canViewProducts = hasSomePermissions(
-        [permissions.ViewProducts, permissions.ManageProducts],
+        ['ViewProducts', 'ManageProducts'],
         this.props.project.permissions
       );
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, waitForElement } from '@testing-library/react';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import { permissions } from '../../constants';
 import branchOnPermissions from './branch-on-permissions';
 
 const AuthorizedComponent = () => <div>{'Authorized'}</div>;
@@ -50,7 +49,7 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
 describe('rendering', () => {
   describe('when permissions match', () => {
     it('should render component', async () => {
-      const { getByText } = renderWithPermissions([permissions.ViewProducts]);
+      const { getByText } = renderWithPermissions(['ViewProducts']);
       await waitForElement(() => getByText('Authorized'));
     });
   });

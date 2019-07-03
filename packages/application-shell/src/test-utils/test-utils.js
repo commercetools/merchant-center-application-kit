@@ -68,7 +68,7 @@ const defaultEnvironment = {
   servedByProxy: false,
 };
 
-const defaultPermissions = { canManageProject: true };
+const defaultPermissions = {};
 
 // Allow consumers of `render` to extend the defaults by passing an object
 // or to completely omit the value by passing `null`

@@ -33,7 +33,7 @@ const createMatchlessSearchMock = (searchText, variables = {}) => ({
   },
 });
 
-const managePermissions = { canManageProject: true };
+const managePermissions = { canManageProjectSettings: true };
 
 const flags = {
   pimSearch: true,
@@ -1134,7 +1134,7 @@ describe('QuickAccess', () => {
 
       const props = createTestProps();
       props.project.permissions = {
-        canManageProject: false,
+        canManageProjectSettings: false,
         canViewOrders: false,
         canViewProducts: true,
       };
@@ -1169,7 +1169,7 @@ describe('QuickAccess', () => {
 
       const props = createTestProps();
       props.project.permissions = {
-        canManageProject: false,
+        canManageProjectSettings: false,
         canViewOrders: true,
         canViewProducts: true,
       };

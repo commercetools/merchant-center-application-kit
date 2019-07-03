@@ -1,9 +1,6 @@
 import { oneLineTrim } from 'common-tags';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import {
-  hasSomePermissions,
-  permissions,
-} from '@commercetools-frontend/permissions';
+import { hasSomePermissions } from '@commercetools-frontend/permissions';
 import QuickAccessProductQuery from './quick-access-product.graphql';
 import messages from './messages';
 
@@ -13,10 +10,7 @@ export const createProductVariantSubCommands = ({
   productId,
   variantId,
 }) =>
-  hasSomePermissions(
-    [permissions.ViewProducts, permissions.ManageProducts],
-    project.permissions
-  )
+  hasSomePermissions(['ViewProducts', 'ManageProducts'], project.permissions)
     ? [
         {
           id: `go/product(${productId})/variant(${variantId})/attributes`,
@@ -99,10 +93,7 @@ export const createProductVariantListSubCommands = ({
   query,
   productId,
 }) =>
-  hasSomePermissions(
-    [permissions.ViewProducts, permissions.ManageProducts],
-    project.permissions
-  )
+  hasSomePermissions(['ViewProducts', 'ManageProducts'], project.permissions)
     ? query(QuickAccessProductQuery, {
         productId,
         target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
@@ -125,10 +116,7 @@ export const createProductVariantListSubCommands = ({
     : [];
 
 export const createProductTabsSubCommands = ({ intl, project, productId }) =>
-  hasSomePermissions(
-    [permissions.ViewProducts, permissions.ManageProducts],
-    project.permissions
-  )
+  hasSomePermissions(['ViewProducts', 'ManageProducts'], project.permissions)
     ? [
         {
           id: `go/product(${productId})/general`,

@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
-import {
-  RestrictedByPermissions,
-  permissions,
-} from '@commercetools-frontend/permissions';
+import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import MainView from './components/main-view';
+import { PERMISSIONS } from './constants';
 
 const PageUnauthorized = () => <div>{'Unauthorized'}</div>;
 PageUnauthorized.displayName = 'PageUnauthorized';
 
 const ApplicationRoutes = ({ match }) => (
   <RestrictedByPermissions
-    permissions={[permissions.ManageProducts, permissions.ViewProducts]}
+    permissions={[PERMISSIONS.ManageProducts, PERMISSIONS.ViewProducts]}
     unauthorizedComponent={PageUnauthorized}
     shouldMatchSomePermissions={true}
   >

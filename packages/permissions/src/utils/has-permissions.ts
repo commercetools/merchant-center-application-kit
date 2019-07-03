@@ -1,5 +1,4 @@
 import isNil from 'lodash/isNil';
-import { permissions } from '../constants';
 
 type TPermissionName = string;
 type TPermissions = {
@@ -34,13 +33,6 @@ const hasManagePermission = (
   demandedPermission.startsWith('View') &&
   actualPermissions[toCanCase(demandedPermission.replace('View', 'Manage'))];
 
-// Check that the user permissions match the required MANAGE_PROJECT permission.
-// The shapes of the arguments are:
-// - actualPermissions:
-//     { canViewProducts: true, canManageOrders: false }
-const hasManageProjectPermission = (actualPermissions: TPermissions) =>
-  actualPermissions[toCanCase(permissions.ManageProject)];
-
 // Check the user permissions using one of the defined matchers.
 // The shapes of the arguments are:
 // - demandedPermission:
@@ -56,11 +48,8 @@ export const hasPermission = (
 ) =>
   // First checking the existence of the exact permission
   hasExactPermission(demandedPermission, actualPermissions || {}) ||
-  // Then checking if a manage permission is present superposing/implying a
-  // view persmission
-  hasManagePermission(demandedPermission, actualPermissions || {}) ||
-  // To finally check for a manage project permission which trumps all
-  hasManageProjectPermission(actualPermissions || {});
+  // Then checking if a manage permission is inferred as a view permission
+  hasManagePermission(demandedPermission, actualPermissions || {});
 
 // Check that the user permissions match EVERY one of the required permissions.
 // The shapes of the arguments are:
@@ -100,10 +89,7 @@ export const getInvalidPermissions = (
   demandedPermissions: TPermissionName[],
   actualPermissions: TPermissions
 ) => {
-  // Given `ManageProject` is present no other permissions needs to be set and can be invalid.
-  // This is also often used in test scenarios where not all exact permissions are being passed.
-  if (hasManageProjectPermission(actualPermissions)) return [];
-  // Otherwise all demanded permissions need to be present as an actual permission.
+  // All demanded permissions need to be present as an actual permission.
   return demandedPermissions.filter((demandedPermission: TPermissionName) =>
     isNil(actualPermissions[toCanCase(demandedPermission)])
   );
