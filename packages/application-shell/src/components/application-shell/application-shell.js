@@ -379,13 +379,13 @@ RestrictedApplication.propTypes = {
  *   - `JSON.parse('1')` => `1`
  *   - `JSON.parse('["a", "b"]')` => `['a', 'b']`
  */
-const getIfJSONValue = environmentValueAsString => {
+const getCoerceEnvironmentValue = environmentValueAsString => {
   let parsedEnvironmentValue;
 
   try {
     parsedEnvironmentValue = JSON.parse(environmentValueAsString);
   } catch (e) {
-    return false;
+    return environmentValueAsString;
   }
 
   return parsedEnvironmentValue;
@@ -397,9 +397,7 @@ const shallowlyCoerceValues = defaultMemoize(uncoercedEnvironmentValues =>
       const uncoercedEnvironmentValue = uncoercedEnvironmentValues[key];
       return {
         ...coercedEnvironmentValues,
-        [key]:
-          getIfJSONValue(uncoercedEnvironmentValue) ||
-          uncoercedEnvironmentValue,
+        [key]: getCoerceEnvironmentValue(uncoercedEnvironmentValue),
       };
     },
     {}
