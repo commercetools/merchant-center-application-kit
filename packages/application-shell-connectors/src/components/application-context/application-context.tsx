@@ -3,6 +3,16 @@ import moment from 'moment-timezone';
 import getDisplayName from '../../utils/get-display-name';
 
 type AdditionalProperties = { [key: string]: unknown };
+type TRawUserProjectsResult = {
+  name: string;
+  key: string;
+  suspension: { isActive: boolean };
+  expiry: { isActive: boolean };
+};
+type TRawUserProjects = {
+  total: number;
+  results: TRawUserProjectsResult[];
+};
 type TRawUser = {
   id: string;
   email: string;
@@ -10,6 +20,7 @@ type TRawUser = {
   lastName: string;
   language: string;
   timeZone?: string;
+  projects: TRawUserProjects;
 } & AdditionalProperties;
 type TApplicationContextUser = {
   id: string;
@@ -18,6 +29,7 @@ type TApplicationContextUser = {
   lastName: string;
   locale: string;
   timeZone?: string;
+  projects: TRawUserProjects;
 };
 type TApplicationContextPermissions = { [key: string]: boolean };
 type TRawProject = {
@@ -91,6 +103,7 @@ const mapUserToApplicationContextUser = (
     // a locale (language + country).
     locale: user.language,
     timeZone: user.timeZone || defaultTimeZone,
+    projects: user.projects,
   };
 };
 

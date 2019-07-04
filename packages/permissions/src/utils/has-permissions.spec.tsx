@@ -15,7 +15,7 @@ describe('hasPermission', () => {
   let actualPermissions: TPermissions | null;
   describe('when the user has the demanded permission', () => {
     beforeEach(() => {
-      demandedPermission = 'ManageOrders';
+      demandedPermission = 'ManageProducts';
       actualPermissions = { canManageProducts: true };
     });
     it('should return true', () => {
@@ -37,19 +37,7 @@ describe('hasPermission', () => {
         expect(hasPermission(demandedPermission, actualPermissions)).toBe(true);
       });
     });
-    describe('when the user has the manage project permission', () => {
-      beforeEach(() => {
-        actualPermissions = {
-          canViewProducts: false,
-          canManageProducts: false,
-          canManageProjectSettings: true,
-        };
-      });
-      it('should return true', () => {
-        expect(hasPermission(demandedPermission, actualPermissions)).toBe(true);
-      });
-    });
-    describe('when the user has no permission', () => {
+    describe('when the user has no matching permission', () => {
       beforeEach(() => {
         actualPermissions = {
           canViewProducts: false,

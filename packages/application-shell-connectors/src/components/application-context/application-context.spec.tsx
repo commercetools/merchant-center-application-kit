@@ -22,6 +22,17 @@ describe('rendering', () => {
             gravatarHash: 'aaa',
             launchdarklyTrackingId: '1',
             defaultProjectKey: 'aaaa',
+            projects: {
+              total: 1,
+              results: [
+                {
+                  key: 'p1',
+                  name: 'P1 ',
+                  expiry: { isActive: false },
+                  suspension: { isActive: false },
+                },
+              ],
+            },
           }}
           project={{
             key: 'foo-1',
@@ -64,6 +75,12 @@ describe('rendering', () => {
             lastName: expect.any(String),
             locale: expect.any(String),
             timeZone: expect.any(String),
+            projects: expect.objectContaining({
+              total: 1,
+              results: expect.arrayContaining([
+                expect.objectContaining({ key: expect.any(String) }),
+              ]),
+            }),
           },
         })
       );

@@ -19,6 +19,17 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
         firstName: 'foo',
         lastName: 'bar',
         language: 'en',
+        projects: {
+          total: 1,
+          results: [
+            {
+              key: 'p1',
+              name: 'P1 ',
+              expiry: { isActive: false },
+              suspension: { isActive: false },
+            },
+          ],
+        },
       }}
       project={{
         key: 'foo-1',

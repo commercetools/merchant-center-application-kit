@@ -41,6 +41,8 @@ const defaultProject = {
   owner: {
     id: 'project-id-1',
   },
+  suspension: { isActive: false },
+  expiry: { isActive: false },
 };
 
 const defaultUser = {
@@ -53,7 +55,6 @@ const defaultUser = {
   defaultProjectKey: defaultProject.key,
   projects: {
     total: 1,
-    count: 1,
     results: [defaultProject],
   },
 };

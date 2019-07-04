@@ -9,222 +9,287 @@ import {
 } from '@commercetools-frontend/constants';
 import messages from './messages';
 
-export default ({
-  project,
-  user,
+export default function createCommands({
+  applicationContext,
   intl,
   featureToggles,
-  projectDataLocale,
   changeProjectDataLocale,
-}) =>
-  [
-    project &&
+}) {
+  return [
+    applicationContext.project &&
+      applicationContext.permissions &&
       featureToggles.canViewDashboard &&
       hasSomePermissions(
         ['ViewProducts', 'ManageProducts', 'ViewOrders', 'ManageOrders'],
-        project.permissions
+        applicationContext.permissions
       ) && {
         id: 'go/dashboard',
         text: intl.formatMessage(messages.openDashboard),
         keywords: ['Go to Dashboard'],
-        action: { type: 'go', to: `/${project.key}/dashboard` },
+        action: {
+          type: 'go',
+          to: `/${applicationContext.project.key}/dashboard`,
+        },
       },
-    project &&
+    applicationContext.project &&
+      applicationContext.permissions &&
       hasSomePermissions(
         ['ViewProducts', 'ManageProducts'],
-        project.permissions
+        applicationContext.permissions
       ) && {
         id: 'go/products',
         text: intl.formatMessage(messages.openProducts),
         keywords: ['Go to Products'],
-        action: { type: 'go', to: `/${project.key}/products` },
+        action: {
+          type: 'go',
+          to: `/${applicationContext.project.key}/products`,
+        },
         subCommands: [
           {
             id: 'go/products/list',
             text: intl.formatMessage(messages.openProductList),
-            action: { type: 'go', to: `/${project.key}/products` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/products`,
+            },
           },
           {
             id: 'go/products/modified',
             text: intl.formatMessage(messages.openModifiedProducts),
-            action: { type: 'go', to: `/${project.key}/products/modified` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/products/modified`,
+            },
           },
           featureToggles.pimSearch && {
             id: 'go/products/pim-search',
             text: intl.formatMessage(messages.openPimSearch),
-            action: { type: 'go', to: `/${project.key}/products/pim-search` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/products/pim-search`,
+            },
           },
-          hasPermission('ManageProducts', project.permissions) && {
+          hasPermission('ManageProducts', applicationContext.permissions) && {
             id: 'go/products/add',
             text: intl.formatMessage(messages.openAddProducts),
-            action: { type: 'go', to: `/${project.key}/products/new` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/products/new`,
+            },
           },
         ].filter(Boolean),
       },
-    project &&
+    applicationContext.project &&
+      applicationContext.permissions &&
       featureToggles.canViewCategories &&
       hasSomePermissions(
         ['ViewProducts', 'ManageProducts'],
-        project.permissions
+        applicationContext.permissions
       ) && {
         id: 'go/categories',
         text: intl.formatMessage(messages.openCategories),
         keywords: ['Go to Categories'],
-        action: { type: 'go', to: `/${project.key}/categories` },
+        action: {
+          type: 'go',
+          to: `/${applicationContext.project.key}/categories`,
+        },
         subCommands: [
           {
             id: 'go/categories/list',
             text: intl.formatMessage(messages.openCategoriesList),
-            action: { type: 'go', to: `/${project.key}/categories?mode=list` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/categories?mode=list`,
+            },
           },
           {
             id: 'go/categories/search',
             text: intl.formatMessage(messages.openCategoriesSearch),
             action: {
               type: 'go',
-              to: `/${project.key}/categories?mode=search`,
+              to: `/${applicationContext.project.key}/categories?mode=search`,
             },
           },
-          hasPermission('ManageProducts', project.permissions) && {
+          hasPermission('ManageProducts', applicationContext.permissions) && {
             id: 'go/categories/add',
             text: intl.formatMessage(messages.openAddCategory),
-            action: { type: 'go', to: `/${project.key}/categories/new` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/categories/new`,
+            },
           },
         ],
       },
-    project &&
+    applicationContext.project &&
+      applicationContext.permissions &&
       hasSomePermissions(
         ['ViewCustomers', 'ManageCustomers'],
-        project.permissions
+        applicationContext.permissions
       ) && {
         id: 'go/customers',
         text: intl.formatMessage(messages.openCustomers),
         keywords: ['Go to Customers'],
-        action: { type: 'go', to: `/${project.key}/customers` },
+        action: {
+          type: 'go',
+          to: `/${applicationContext.project.key}/customers`,
+        },
         subCommands: [
           {
             id: 'go/customers/list',
             text: intl.formatMessage(messages.openCustomersList),
-            action: { type: 'go', to: `/${project.key}/customers` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/customers`,
+            },
           },
-          hasPermission('ManageCustomers', project.permissions) && {
+          hasPermission('ManageCustomers', applicationContext.permissions) && {
             id: 'go/customers/new',
             text: intl.formatMessage(messages.openAddCustomer),
-            action: { type: 'go', to: `/${project.key}/customers/new` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/customers/new`,
+            },
           },
           {
             id: 'go/customer/customer-groups',
             text: intl.formatMessage(messages.openCustomerGroupsList),
             action: {
               type: 'go',
-              to: `/${project.key}/customers/customer-groups`,
+              to: `/${applicationContext.project.key}/customers/customer-groups`,
             },
           },
-          hasPermission('ManageCustomers', project.permissions) && {
+          hasPermission('ManageCustomers', applicationContext.permissions) && {
             id: 'go/customers/customer-groups/add',
             text: intl.formatMessage(messages.openAddCustomerGroup),
             action: {
               type: 'go',
-              to: `/${project.key}/customers/customer-groups/new`,
+              to: `/${applicationContext.project.key}/customers/customer-groups/new`,
             },
           },
         ].filter(Boolean),
       },
-    project &&
+    applicationContext.project &&
+      applicationContext.permissions &&
       featureToggles.canViewOrders &&
       hasSomePermissions(
         ['ViewOrders', 'ManageOrders'],
-        project.permissions
+        applicationContext.permissions
       ) && {
         id: 'go/orders',
         text: intl.formatMessage(messages.openOrders),
         keywords: ['Go to Orders'],
-        action: { type: 'go', to: `/${project.key}/orders` },
+        action: { type: 'go', to: `/${applicationContext.project.key}/orders` },
         subCommands: [
           {
             id: 'go/orders/list',
             text: intl.formatMessage(messages.openOrdersList),
-            action: { type: 'go', to: `/${project.key}/orders` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/orders`,
+            },
           },
-          hasPermission('ManageOrders', project.permissions) && {
+          hasPermission('ManageOrders', applicationContext.permissions) && {
             id: 'go/orders/add',
             text: intl.formatMessage(messages.openAddOrder),
-            action: { type: 'go', to: `/${project.key}/orders/new` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/orders/new`,
+            },
           },
         ].filter(Boolean),
       },
-    project &&
+    applicationContext.project &&
+      applicationContext.permissions &&
       featureToggles.canViewDiscounts &&
       hasSomePermissions(
         ['ViewProducts', 'ManageProducts', 'ViewOrders', 'ManageOrders'],
-        project.permissions
+        applicationContext.permissions
       ) && {
         id: 'go/discounts',
         text: intl.formatMessage(messages.openDiscounts),
         keywords: ['Go to Discounts'],
-        action: { type: 'go', to: `/${project.key}/discounts` },
+        action: {
+          type: 'go',
+          to: `/${applicationContext.project.key}/discounts`,
+        },
         subCommands: [
           hasSomePermissions(
             ['ViewProducts', 'ManageProducts'],
-            project.permissions
+            applicationContext.permissions
           ) && {
             id: 'go/discounts/products/list',
             text: intl.formatMessage(messages.openProductDiscountsList),
-            action: { type: 'go', to: `/${project.key}/discounts/products` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/discounts/products`,
+            },
           },
           hasSomePermissions(
             ['ViewOrders', 'ManageOrders'],
-            project.permissions
+            applicationContext.permissions
           ) && {
             id: 'go/discounts/carts/list',
             text: intl.formatMessage(messages.openCartDiscountsList),
-            action: { type: 'go', to: `/${project.key}/discounts/carts` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/discounts/carts`,
+            },
           },
           hasSomePermissions(
             ['ViewOrders', 'ManageOrders'],
-            project.permissions
+            applicationContext.permissions
           ) && {
             id: 'go/discounts/codes/list',
             text: intl.formatMessage(messages.openDiscountCodesList),
-            action: { type: 'go', to: `/${project.key}/discounts/codes` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/discounts/codes`,
+            },
           },
           hasSomePermissions(
             ['ViewProducts', 'ManageProducts', 'ViewOrders', 'ManageOrders'],
-            project.permissions
+            applicationContext.permissions
           ) && {
             id: 'go/discounts/add',
             text: intl.formatMessage(messages.openAddDiscount),
-            action: { type: 'go', to: `/${project.key}/discounts/new` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/discounts/new`,
+            },
             subCommands: [
-              hasPermission('ManageProducts', project.permissions) && {
+              hasPermission(
+                'ManageProducts',
+                applicationContext.permissions
+              ) && {
                 id: 'go/discounts/product/add',
                 text: intl.formatMessage(messages.openAddProductDiscount),
                 action: {
                   type: 'go',
-                  to: `/${project.key}/discounts/products/new`,
+                  to: `/${applicationContext.project.key}/discounts/products/new`,
                 },
               },
-              hasPermission('ManageOrders', project.permissions) && {
+              hasPermission('ManageOrders', applicationContext.permissions) && {
                 id: 'go/discounts/cart/add',
                 text: intl.formatMessage(messages.openAddCartDiscount),
                 action: {
                   type: 'go',
-                  to: `/${project.key}/discounts/carts/new`,
+                  to: `/${applicationContext.project.key}/discounts/carts/new`,
                 },
               },
-              hasPermission('ManageOrders', project.permissions) && {
+              hasPermission('ManageOrders', applicationContext.permissions) && {
                 id: 'go/discounts/code/add',
                 text: intl.formatMessage(messages.openAddCartDiscount),
                 action: {
                   type: 'go',
-                  to: `/${project.key}/discounts/codes/new`,
+                  to: `/${applicationContext.project.key}/discounts/codes/new`,
                 },
               },
             ].filter(Boolean),
           },
         ].filter(Boolean),
       },
-    project &&
+    applicationContext.project &&
+      applicationContext.permissions &&
       hasSomePermissions(
         [
           'ManageProjectSettings',
@@ -234,23 +299,26 @@ export default ({
           'ViewDeveloperSettings',
           'ViewProductTypes',
         ],
-        project.permissions
+        applicationContext.permissions
       ) && {
         id: 'go/settings',
         text: intl.formatMessage(messages.openSettings),
         keywords: ['Go to Settings'],
         action: {
           type: 'go',
-          to: `/${project.key}/settings/project/international`,
+          to: `/${applicationContext.project.key}/settings/project/international`,
         },
         subCommands: [
           hasSomePermissions(
             ['ManageProjectSettings', 'ViewProjectSettings'],
-            project.permissions
+            applicationContext.permissions
           ) && {
             id: 'go/settings/project',
             text: intl.formatMessage(messages.openProjectSettings),
-            action: { type: 'go', to: `/${project.key}/settings/project` },
+            action: {
+              type: 'go',
+              to: `/${applicationContext.project.key}/settings/project`,
+            },
             subCommands: [
               {
                 id: 'go/settings/project/international',
@@ -259,7 +327,7 @@ export default ({
                 ),
                 action: {
                   type: 'go',
-                  to: `/${project.key}/settings/project/international`,
+                  to: `/${applicationContext.project.key}/settings/project/international`,
                 },
               },
               {
@@ -267,7 +335,7 @@ export default ({
                 text: intl.formatMessage(messages.openProjectSettingsTaxesTab),
                 action: {
                   type: 'go',
-                  to: `/${project.key}/settings/project/taxes`,
+                  to: `/${applicationContext.project.key}/settings/project/taxes`,
                 },
               },
               {
@@ -277,7 +345,7 @@ export default ({
                 ),
                 action: {
                   type: 'go',
-                  to: `/${project.key}/settings/project/shipping-methods`,
+                  to: `/${applicationContext.project.key}/settings/project/shipping-methods`,
                 },
               },
               {
@@ -287,50 +355,50 @@ export default ({
                 ),
                 action: {
                   type: 'go',
-                  to: `/${project.key}/settings/project/channels`,
+                  to: `/${applicationContext.project.key}/settings/project/channels`,
                 },
               },
             ].filter(Boolean),
           },
           hasSomePermissions(
             ['ManageProductTypes', 'ViewProductTypes'],
-            project.permissions
+            applicationContext.permissions
           ) && {
             id: 'go/settings/product-types',
             text: intl.formatMessage(messages.openProductTypesSettings),
             action: {
               type: 'go',
-              to: `/${project.key}/settings/product-types`,
+              to: `/${applicationContext.project.key}/settings/product-types`,
             },
           },
           hasSomePermissions(
             ['ManageDeveloperSettings', 'ViewDeveloperSettings'],
-            project.permissions
+            applicationContext.permissions
           ) && {
             id: 'go/settings/developer',
             text: intl.formatMessage(messages.openDeveloperSettings),
             action: {
               type: 'go',
-              to: `/${project.key}/settings/developer/api-clients`,
+              to: `/${applicationContext.project.key}/settings/developer/api-clients`,
             },
           },
           featureToggles.customApplications &&
             hasSomePermissions(
               ['ManageProjectSettings', 'ViewProjectSettings'],
-              project.permissions
+              applicationContext.permissions
             ) && {
               id: 'go/settings/custom-applications',
               text: intl.formatMessage(messages.openCustomApplicationsSettings),
               action: {
                 type: 'go',
-                to: `/${project.key}/settings/custom-applications`,
+                to: `/${applicationContext.project.key}/settings/custom-applications`,
               },
             },
         ].filter(Boolean),
       },
-    project &&
-      project.languages &&
-      project.languages.length > 1 && {
+    applicationContext.project &&
+      applicationContext.project.languages &&
+      applicationContext.project.languages.length > 1 && {
         id: 'action/set-resource-language',
         text: intl.formatMessage(messages.setResourceLanguage),
         keywords: [
@@ -341,11 +409,11 @@ export default ({
         // We would know these statically, but we define them here as we don't
         // want to include them in the top-level search results
         subCommands: async () =>
-          project.languages.map(language => ({
+          applicationContext.project.languages.map(language => ({
             id: `action/set-resource-language/${language}`,
             text: oneLineTrim`
               ${language}
-              ${language === projectDataLocale ? ' (active)' : ''}
+              ${language === applicationContext.dataLocale ? ' (active)' : ''}
             `,
             action: () => {
               changeProjectDataLocale(language);
@@ -406,8 +474,8 @@ export default ({
       ],
       action: { type: 'go', to: `/account/organizations` },
     },
-    ...(user
-      ? user.projects.results.map(userProject => ({
+    ...(applicationContext.user
+      ? applicationContext.user.projects.results.map(userProject => ({
           id: `go/project(${userProject.key})`,
           text: intl.formatMessage(messages.useProject, {
             projectName: userProject.name,
@@ -421,3 +489,4 @@ export default ({
         }))
       : []),
   ].filter(Boolean);
+}
