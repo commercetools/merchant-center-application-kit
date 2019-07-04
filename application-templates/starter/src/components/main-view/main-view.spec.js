@@ -10,6 +10,7 @@ describe('main view', () => {
   it('the user can click on the link to "one" and the page should show a text with "View one"', async () => {
     const initialRoute = '/my-project/examples-starter';
     const { getByText, history } = renderApp(<ApplicationStarter />, {
+      permissions: { canViewProducts: true, canManageProducts: true },
       route: initialRoute,
     });
     await waitForElement(() => getByText(/Hello, world/i));
