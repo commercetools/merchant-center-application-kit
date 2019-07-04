@@ -40,7 +40,6 @@ import getDisplayName from '../../utils/get-display-name';
 import LoadingPlaceholder from '../loading-placeholder';
 import withApplicationsMenu from '../with-applications-menu';
 import handleApolloErrors from '../handle-apollo-errors';
-import { slugify } from '../../utils';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
 import styles from './navbar.mod.css';
 import messages from './messages';
@@ -244,12 +243,8 @@ const hasMenuEveryMenuVisibilitySetToBeHidden = (
   namesOfMenuVisibilities.every(
     nameOfMenuVisibility => menuVisibilities[nameOfMenuVisibility] === true
   );
-const isDisabledForEnvironment = (uriOfMenu, environment) => {
-  const nameOfEnvironmentKey = camelCase(`disable-${slugify(uriOfMenu)}`);
-  const valueOfEnvironmentKey = environment[nameOfEnvironmentKey];
-
-  return valueOfEnvironmentKey === true || valueOfEnvironmentKey === 'true';
-};
+const isMenuItemDisabledForEnvironment = (keyOfMenuItem, disabledMenuItems) =>
+  disabledMenuItems && disabledMenuItems.includes(keyOfMenuItem);
 export const RestrictedMenuItem = props => {
   // NOTE: Custom application are activated/deactivated while their
   // visibility is not controlled via a visibiility overwrite.
@@ -258,7 +253,10 @@ export const RestrictedMenuItem = props => {
       props.namesOfMenuVisibilities,
       props.menuVisibilities
     ) ||
-    isDisabledForEnvironment(props.uriPath, props.environment)
+    isMenuItemDisabledForEnvironment(
+      props.keyOfMenuItem,
+      props.disabledMenuItems
+    )
   )
     return null;
 
@@ -286,10 +284,10 @@ export const RestrictedMenuItem = props => {
 RestrictedMenuItem.displayName = 'RestrictedMenuItem';
 RestrictedMenuItem.propTypes = {
   featureToggle: PropTypes.string,
-  uriPath: PropTypes.string.isRequired,
   namesOfMenuVisibilities: PropTypes.arrayOf(PropTypes.string),
   menuVisibilities: PropTypes.object.isRequired,
-  environment: PropTypes.object.isRequired,
+  disabledMenuItems: PropTypes.arrayOf(PropTypes.string),
+  keyOfMenuItem: PropTypes.string.isRequired,
   permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
   children: PropTypes.element.isRequired,
 };
@@ -465,12 +463,12 @@ export class DataMenu extends React.PureComponent {
     return (
       <RestrictedMenuItem
         key={menu.key}
+        keyOfMenuItem={menu.key}
         featureToggle={menu.featureToggle}
-        uriPath={menu.uriPath}
         permissions={menu.permissions}
         menuVisibilities={this.props.menuVisibilities}
         namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
-        environment={this.props.environment}
+        disabledMenuItems={this.props.environment.disabledMenuItems}
       >
         <MenuItem
           hasSubmenu={hasSubmenu}
@@ -517,12 +515,12 @@ export class DataMenu extends React.PureComponent {
               ? menu.submenu.map(submenu => (
                   <RestrictedMenuItem
                     key={`${menu.key}-submenu-${submenu.key}`}
+                    keyOfMenuItem={`${menu.key}-submenu-${submenu.key}`}
                     featureToggle={submenu.featureToggle}
-                    uriPath={submenu.uriPath}
                     permissions={submenu.permissions}
                     menuVisibilities={this.props.menuVisibilities}
                     namesOfMenuVisibilities={[submenu.menuVisibility]}
-                    environment={this.props.environment}
+                    disabledMenuItems={this.props.environment.disabledMenuItems}
                   >
                     <li className={styles['sublist-item']}>
                       <div className={styles.text}>
@@ -633,6 +631,7 @@ export class NavBar extends React.PureComponent {
     environment: PropTypes.shape({
       servedByProxy: PropTypes.bool.isRequired,
       useFullRedirectsForLinks: PropTypes.bool.isRequired,
+      disabledMenuItems: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
     menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     // Injected
