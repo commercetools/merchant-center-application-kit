@@ -29,3 +29,5 @@ configureEnzymeExtensions(ShallowWrapper);
 Intl.Collator = IntlPolyfill.Collator;
 Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat;
 Intl.NumberFormat = IntlPolyfill.NumberFormat;
+Intl.PluralRules = IntlPolyfill.PluralRules;
+Intl.RelativeTimeFormat = IntlPolyfill.RelativeTimeFormat;
