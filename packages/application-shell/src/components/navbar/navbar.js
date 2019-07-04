@@ -242,6 +242,8 @@ const hasMenuEveryMenuVisibilitySetToBeHidden = (
   namesOfMenuVisibilities.every(
     nameOfMenuVisibility => menuVisibilities[nameOfMenuVisibility] === true
   );
+const isMenuItemDisabledForEnvironment = (keyOfMenuItem, disabledMenuItems) =>
+  disabledMenuItems && disabledMenuItems.includes(keyOfMenuItem);
 export const RestrictedMenuItem = props => {
   // NOTE: Custom application are activated/deactivated while their
   // visibility is not controlled via a visibiility overwrite.
@@ -249,6 +251,10 @@ export const RestrictedMenuItem = props => {
     hasMenuEveryMenuVisibilitySetToBeHidden(
       props.namesOfMenuVisibilities,
       props.menuVisibilities
+    ) ||
+    isMenuItemDisabledForEnvironment(
+      props.keyOfMenuItem,
+      props.disabledMenuItems
     )
   )
     return null;
@@ -279,6 +285,8 @@ RestrictedMenuItem.propTypes = {
   featureToggle: PropTypes.string,
   namesOfMenuVisibilities: PropTypes.arrayOf(PropTypes.string),
   menuVisibilities: PropTypes.object.isRequired,
+  disabledMenuItems: PropTypes.arrayOf(PropTypes.string),
+  keyOfMenuItem: PropTypes.string.isRequired,
   permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
   children: PropTypes.element.isRequired,
 };
@@ -331,6 +339,9 @@ export class DataMenu extends React.PureComponent {
     menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     applicationLocale: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
+    environment: PropTypes.shape({
+      disabledMenuItems: PropTypes.arrayOf(PropTypes.string.isRequired),
+    }).isRequired,
     isForcedMenuOpen: PropTypes.bool,
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
@@ -453,10 +464,12 @@ export class DataMenu extends React.PureComponent {
     return (
       <RestrictedMenuItem
         key={menu.key}
+        keyOfMenuItem={menu.key}
         featureToggle={menu.featureToggle}
         permissions={menu.permissions}
         menuVisibilities={this.props.menuVisibilities}
         namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
+        disabledMenuItems={this.props.environment.disabledMenuItems}
       >
         <MenuItem
           hasSubmenu={hasSubmenu}
@@ -503,18 +516,20 @@ export class DataMenu extends React.PureComponent {
               ? menu.submenu.map(submenu => (
                   <RestrictedMenuItem
                     key={`${menu.key}-submenu-${submenu.key}`}
+                    keyOfMenuItem={submenu.key}
                     featureToggle={submenu.featureToggle}
                     permissions={submenu.permissions}
                     menuVisibilities={this.props.menuVisibilities}
                     namesOfMenuVisibilities={[submenu.menuVisibility]}
+                    disabledMenuItems={this.props.environment.disabledMenuItems}
                   >
                     <li className={styles['sublist-item']}>
                       <div className={styles.text}>
                         <MenuItemLink
                           linkTo={oneLineTrim`
-                              /${this.props.projectKey}
-                              /${submenu.uriPath}
-                            `}
+                            /${this.props.projectKey}
+                            /${submenu.uriPath}
+                          `}
                           exactMatch={true}
                           useFullRedirectsForLinks={
                             this.props.useFullRedirectsForLinks
@@ -617,6 +632,7 @@ export class NavBar extends React.PureComponent {
     environment: PropTypes.shape({
       servedByProxy: PropTypes.bool.isRequired,
       useFullRedirectsForLinks: PropTypes.bool.isRequired,
+      disabledMenuItems: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
     menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     // Injected
@@ -666,6 +682,7 @@ export class NavBar extends React.PureComponent {
           menuVisibilities={this.props.menuVisibilities}
           applicationLocale={this.props.applicationLocale}
           projectKey={this.props.projectKey}
+          environment={this.props.environment}
           useFullRedirectsForLinks={
             this.props.environment.useFullRedirectsForLinks
           }

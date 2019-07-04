@@ -29,6 +29,7 @@ const createTestMenuConfig = (key, props) => ({
   key,
   labelAllLocales: [{ locale: 'en', value: upperFirst(key) }],
   uriPath: key,
+  keyOfMenuItem: key,
   icon: 'UserFilledIcon',
   permissions: [],
   submenu: [
@@ -75,11 +76,7 @@ const createTestProps = props => ({
 });
 const createDataMenuTestProps = props => {
   const navbarProps = createTestProps(props);
-  const {
-    applicationsMenuQuery,
-    projectExtensionsQuery,
-    ...passThroughProps
-  } = navbarProps;
+  const { ...passThroughProps } = navbarProps;
   return {
     ...passThroughProps,
     useFullRedirectsForLinks: false,
@@ -347,6 +344,7 @@ describe('rendering', () => {
                     featureToggle: 'ordersList',
                     permissions: [permissions.ViewOrders],
                     menuVisibility: 'hideAddOrder',
+                    keyOfMenuItem: 'add-orders',
                   },
                 ],
               }),
@@ -456,6 +454,7 @@ describe('rendering', () => {
               permissions: [],
               actualPermissions: {},
               menuVisibilities: {},
+              keyOfMenuItem: 'products',
             };
             wrapper = shallow(
               <RestrictedMenuItem {...props}>
@@ -483,6 +482,7 @@ describe('rendering', () => {
               permissions: [permissions.ManageOrders],
               actualPermissions: {},
               menuVisibilities: {},
+              keyOfMenuItem: 'products',
             };
             wrapper = shallow(
               <RestrictedMenuItem {...props}>
@@ -521,6 +521,7 @@ describe('rendering', () => {
               permissions: [],
               actualPermissions: {},
               menuVisibilities: {},
+              keyOfMenuItem: 'products',
             };
             wrapper = shallow(
               <RestrictedMenuItem {...props}>
@@ -542,6 +543,7 @@ describe('rendering', () => {
               permissions: [permissions.ManageOrders],
               actualPermissions: {},
               menuVisibilities: {},
+              keyOfMenuItem: 'products',
             };
             wrapper = shallow(
               <RestrictedMenuItem {...props}>
@@ -579,6 +581,7 @@ describe('rendering', () => {
           props = {
             permissions: [permissions.ViewProducts],
             menuVisibilities: {},
+            keyOfMenuItem: 'products',
           };
           wrapper = shallow(
             <RestrictedMenuItem {...props}>
@@ -611,6 +614,7 @@ describe('rendering', () => {
             menuVisibilities: {
               hideOrders: true,
             },
+            keyOfMenuItem: 'orders',
           };
           wrapper = shallow(
             <RestrictedMenuItem {...props}>
@@ -634,6 +638,50 @@ describe('rendering', () => {
               hideDashboard: false,
             },
             permissions: [permissions.ViewProducts],
+            keyOfMenuItem: 'products',
+          };
+          wrapper = shallow(
+            <RestrictedMenuItem {...props}>
+              <ItemChild />
+            </RestrictedMenuItem>
+          );
+        });
+        it('should match snapshot', () => {
+          expect(wrapper).toMatchSnapshot();
+        });
+        it('should render <RestrictedByPermissions>', () => {
+          expect(wrapper).toRender(RestrictedByPermissions);
+        });
+      });
+    });
+    describe('disabled menu items', () => {
+      describe('when passed menu item should be disabled', () => {
+        beforeEach(() => {
+          props = {
+            menuVisibilities: {},
+            keyOfMenuItem: 'orders',
+            disabledMenuItems: ['orders'],
+          };
+          wrapper = shallow(
+            <RestrictedMenuItem {...props}>
+              <ItemChild />
+            </RestrictedMenuItem>
+          );
+        });
+        it('should not render <ToggleFeature>', () => {
+          expect(wrapper).not.toRender(ToggleFeature);
+        });
+        it('should not render <RestrictedByPermissions>', () => {
+          expect(wrapper).not.toRender(RestrictedByPermissions);
+        });
+      });
+      describe('when passed but menu item should not be disabled', () => {
+        beforeEach(() => {
+          props = {
+            menuVisibilities: {},
+            permissions: [permissions.ViewProducts],
+            keyOfMenuItem: 'products',
+            disabledMenuItems: ['orders'],
           };
           wrapper = shallow(
             <RestrictedMenuItem {...props}>

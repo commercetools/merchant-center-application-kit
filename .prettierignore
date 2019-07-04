@@ -5,3 +5,4 @@ packages/i18n/*.json
 packages/application-shell/test-utils/index.js
 .percy.yml
 .cache
+.yarn

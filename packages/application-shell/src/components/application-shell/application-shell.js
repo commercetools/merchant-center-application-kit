@@ -368,23 +368,36 @@ RestrictedApplication.propTypes = {
   DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
 };
 
-const isBooleanAsString = environmentValue =>
-  environmentValue === 'true' || environmentValue === 'false';
+/**
+ * NOTE:
+ *   This function try-catches around a `JSON.parse` and return
+ *   the parsed value whenever possible.
+ *
+ *   This allows parsing most primitive values.
+ *
+ *   - `JSON.parse('null')` => `null`
+ *   - `JSON.parse('1')` => `1`
+ *   - `JSON.parse('["a", "b"]')` => `['a', 'b']`
+ */
+const getCoerceEnvironmentValue = environmentValueAsString => {
+  try {
+    return JSON.parse(environmentValueAsString);
+  } catch (e) {
+    return environmentValueAsString;
+  }
+};
 
-const shallowlyCoerceBooleanValues = defaultMemoize(
-  uncoercedEnvironmentValues =>
-    Object.keys(uncoercedEnvironmentValues).reduce(
-      (coercedEnvironmentValues, key) => {
-        const uncoercedEnvironmentValue = uncoercedEnvironmentValues[key];
-        return {
-          ...coercedEnvironmentValues,
-          [key]: isBooleanAsString(uncoercedEnvironmentValue)
-            ? uncoercedEnvironmentValue === 'true'
-            : uncoercedEnvironmentValue,
-        };
-      },
-      {}
-    )
+const shallowlyCoerceValues = defaultMemoize(uncoercedEnvironmentValues =>
+  Object.keys(uncoercedEnvironmentValues).reduce(
+    (coercedEnvironmentValues, key) => {
+      const uncoercedEnvironmentValue = uncoercedEnvironmentValues[key];
+      return {
+        ...coercedEnvironmentValues,
+        [key]: getCoerceEnvironmentValue(uncoercedEnvironmentValue),
+      };
+    },
+    {}
+  )
 );
 
 export default class ApplicationShell extends React.Component {
@@ -417,7 +430,7 @@ export default class ApplicationShell extends React.Component {
     });
   }
   render() {
-    const coercedEnvironmentValues = shallowlyCoerceBooleanValues(
+    const coercedEnvironmentValues = shallowlyCoerceValues(
       this.props.environment
     );
     return (

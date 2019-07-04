@@ -21,6 +21,19 @@ exports[`rendering <RestrictedMenuItem> <ToggleFeature> when featureToggle is de
 </ToggleFeature>
 `;
 
+exports[`rendering <RestrictedMenuItem> disabled menu items when passed but menu item should not be disabled should match snapshot 1`] = `
+<RestrictedByPermissions
+  permissions={
+    Array [
+      "ViewProducts",
+    ]
+  }
+  shouldMatchSomePermissions={true}
+>
+  <ItemChild />
+</RestrictedByPermissions>
+`;
+
 exports[`rendering <RestrictedMenuItem> menu visibility when passed and some are \`false\` should match snapshot 1`] = `
 <RestrictedByPermissions
   permissions={
