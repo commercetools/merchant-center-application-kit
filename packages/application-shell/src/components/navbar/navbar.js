@@ -340,7 +340,9 @@ export class DataMenu extends React.PureComponent {
     menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     applicationLocale: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
-    environment: PropTypes.object.isRequired,
+    environment: PropTypes.shape({
+      disabledMenuItems: PropTypes.arrayOf(PropTypes.string.isRequired),
+    }).isRequired,
     isForcedMenuOpen: PropTypes.bool,
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
@@ -515,7 +517,7 @@ export class DataMenu extends React.PureComponent {
               ? menu.submenu.map(submenu => (
                   <RestrictedMenuItem
                     key={`${menu.key}-submenu-${submenu.key}`}
-                    keyOfMenuItem={`${menu.key}-submenu-${submenu.key}`}
+                    keyOfMenuItem={submenu.key}
                     featureToggle={submenu.featureToggle}
                     permissions={submenu.permissions}
                     menuVisibilities={this.props.menuVisibilities}

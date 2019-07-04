@@ -660,7 +660,7 @@ describe('rendering', () => {
           props = {
             menuVisibilities: {},
             keyOfMenuItem: 'orders',
-            disabledMenuTiems: ['orders'],
+            disabledMenuItems: ['orders'],
           };
           wrapper = shallow(
             <RestrictedMenuItem {...props}>
@@ -681,7 +681,7 @@ describe('rendering', () => {
             menuVisibilities: {},
             permissions: [permissions.ViewProducts],
             keyOfMenuItem: 'products',
-            disabledMenuTiems: ['orders'],
+            disabledMenuItems: ['orders'],
           };
           wrapper = shallow(
             <RestrictedMenuItem {...props}>
