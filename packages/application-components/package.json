@@ -50,7 +50,7 @@
     "@commercetools-frontend/ui-kit": "9.9.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-intl": "3.0.0-beta-8"
+    "react-intl": "3.0.0-beta.14"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "^9.2",
