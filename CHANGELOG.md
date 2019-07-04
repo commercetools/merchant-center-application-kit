@@ -1,3 +1,13 @@
+## [13.13.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.13.3...v13.13.0) (2019-07-04)
+
+#### 🚀 Type: New Feature
+* `application-shell`
+  * [#814](https://github.com/commercetools/merchant-center-application-kit/pull/814) feat(app-shell): allow to disable menu items per env ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+* `application-shell`
+  * [#813](https://github.com/commercetools/merchant-center-application-kit/pull/813) refactor(app-shell): to remove team count ([@tdeekens](https://github.com/tdeekens))
+
 ## [13.12.3](https://github.com/commercetools/merchant-center-application-kit/compare/v13.12.2...v13.12.3) (2019-07-01)
 
 #### 🖥 Type: Website
