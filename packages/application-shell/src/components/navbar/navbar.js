@@ -121,7 +121,7 @@ export const MenuExpander = props => (
         FIXME: define hover effect.
         https://github.com/commercetools/merchant-center-frontend/issues/2216
       */}
-      <BackIcon theme="white" size="big" />
+      <BackIcon color="surface" size="big" />
     </div>
   </li>
 );
@@ -299,9 +299,9 @@ RestrictedMenuItem.propTypes = {
 RestrictedMenuItem.defaultProps = {
   permissions: [],
 };
-export const getIconTheme = (isActive, isAlternativeTheme) => {
-  if (isActive) return 'green-light';
-  return isAlternativeTheme ? 'grey' : 'white';
+export const getIconColor = (isActive, isAlternativeTheme) => {
+  if (isActive) return 'primary40';
+  return isAlternativeTheme ? 'neutral60' : 'surface';
 };
 const getMenuVisibilitiesOfSubmenus = menu =>
   menu.submenu.map(submenu => submenu.menuVisibility).filter(Boolean);
@@ -506,7 +506,7 @@ export class DataMenu extends React.PureComponent {
                 <IconSwitcher
                   iconName={menu.icon}
                   size="scale"
-                  theme={getIconTheme(
+                  color={getIconColor(
                     isActive || this.isMainMenuRouteActive(menu.uriPath),
                     menu.shouldRenderDivider
                   )}
@@ -581,7 +581,7 @@ export class DataMenu extends React.PureComponent {
             <div className={styles.icon}>
               <SupportIcon
                 size="scale"
-                theme={getIconTheme(isActive, isAlternativeTheme)}
+                color={getIconColor(isActive, isAlternativeTheme)}
               />
             </div>
             <div className={styles.title}>
