@@ -146,15 +146,9 @@ export const RestrictedApplication = props => (
                         <NotificationsList domain={DOMAINS.GLOBAL} />
                       </div>
 
-                      <Route
-                        render={routeProps => {
-                          if (!projectKeyFromUrl)
-                            return (
-                              <QuickAccess
-                                history={routeProps.history}
-                                user={user}
-                              />
-                            );
+                      <Route>
+                        {() => {
+                          if (!projectKeyFromUrl) return <QuickAccess />;
                           return (
                             <FetchProject projectKey={projectKeyFromUrl}>
                               {({ isLoading: isProjectLoading, project }) => {
@@ -170,14 +164,7 @@ export const RestrictedApplication = props => (
                                     (project.expiry && project.expiry.isActive)
                                   );
 
-                                if (!useProjectContext)
-                                  return (
-                                    <QuickAccess
-                                      history={routeProps.history}
-                                      user={user}
-                                      environment={props.environment}
-                                    />
-                                  );
+                                if (!useProjectContext) return <QuickAccess />;
                                 return (
                                   <ProjectDataLocale
                                     locales={project.languages}
@@ -193,14 +180,9 @@ export const RestrictedApplication = props => (
                                         environment={props.environment}
                                       >
                                         <QuickAccess
-                                          project={project}
-                                          projectDataLocale={dataLocale}
                                           onChangeProjectDataLocale={
                                             setProjectDataLocale
                                           }
-                                          history={routeProps.history}
-                                          user={user}
-                                          environment={props.environment}
                                         />
                                       </ApplicationContextProvider>
                                     )}
@@ -210,7 +192,7 @@ export const RestrictedApplication = props => (
                             </FetchProject>
                           );
                         }}
-                      />
+                      </Route>
 
                       <header>
                         <AppBar

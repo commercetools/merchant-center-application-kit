@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { permissions } from '../../constants';
 import Authorized from './authorized';
 
 type TPermissionName = string;
@@ -16,7 +15,7 @@ type TestProps = {
 
 const createTestProps = (custom: Partial<TestProps>) => ({
   shouldMatchSomePermissions: false,
-  demandedPermissions: [permissions.ViewProducts, permissions.ViewOrders],
+  demandedPermissions: ['ViewProducts', 'ViewOrders'],
   actualPermissions: {
     canViewProducts: true,
     canViewOrders: true,

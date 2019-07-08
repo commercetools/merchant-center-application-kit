@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 import { InjectReducers } from '@commercetools-frontend/application-shell';
-import {
-  RestrictedByPermissions,
-  permissions,
-} from '@commercetools-frontend/permissions';
+import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import StateMachinesList from './components/state-machines-list';
 import StateMachinesDetails from './components/state-machines-details';
 import reducers from './reducers';
+import { PERMISSIONS } from './constants';
 
 // FIXME: import it from AppShell
 const PageUnauthorized = () => <div>{'Unauthorized'}</div>;
@@ -21,7 +19,7 @@ const ApplicationRoutes = props => (
         path={`${props.match.path}/:id`}
         render={routerProps => (
           <RestrictedByPermissions
-            permissions={[permissions.ViewStates, permissions.ManageStates]}
+            permissions={[PERMISSIONS.ViewStates, PERMISSIONS.ManageStates]}
             unauthorizedComponent={PageUnauthorized}
             shouldMatchSomePermissions={true}
           >
@@ -36,7 +34,7 @@ const ApplicationRoutes = props => (
       <Route
         render={routerProps => (
           <RestrictedByPermissions
-            permissions={[permissions.ViewStates, permissions.ManageStates]}
+            permissions={[PERMISSIONS.ViewStates, PERMISSIONS.ManageStates]}
             unauthorizedComponent={PageUnauthorized}
             shouldMatchSomePermissions={true}
           >
