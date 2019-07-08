@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Fuse from 'fuse.js';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import last from 'lodash/last';
 import classnames from 'classnames';
 import { SearchIcon, LoadingSpinner } from '@commercetools-frontend/ui-kit';
@@ -48,7 +48,10 @@ export class Butler extends React.Component {
   static displayName = 'Butler';
 
   static propTypes = {
-    history: PropTypes.arrayOf(
+    intl: PropTypes.shape({
+      formatMessage: PropTypes.func.isRequired,
+    }).isRequired,
+    historyEntries: PropTypes.arrayOf(
       PropTypes.shape({
         searchText: PropTypes.string.isRequired,
         results: PropTypes.arrayOf(
@@ -58,15 +61,11 @@ export class Butler extends React.Component {
         ),
       })
     ).isRequired,
-    onHistoryChange: PropTypes.func.isRequired,
+    onHistoryEntriesChange: PropTypes.func.isRequired,
     search: PropTypes.func.isRequired,
     getNextCommands: PropTypes.func.isRequired,
     executeCommand: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
-    // injectIntl
-    intl: PropTypes.shape({
-      formatMessage: PropTypes.func.isRequired,
-    }).isRequired,
   };
 
   state = {
@@ -172,7 +171,7 @@ export class Butler extends React.Component {
               ? // When going back the first step
                 -1
               : // When going back more than one step
-                this.props.history.findIndex(
+                this.props.historyEntries.findIndex(
                   command => command.searchText === prevState.searchText
                 );
           // Pick the previous command from the history
@@ -180,11 +179,11 @@ export class Butler extends React.Component {
             selectedIndex === -1
               ? // previous command on top of the history when going back on
                 // first step
-                last(this.props.history)
+                last(this.props.historyEntries)
               : // previous command is deeper down
                 // When the history does not exist (negative index), then
                 // this implicitly returns undefined
-                this.props.history[selectedIndex - 1];
+                this.props.historyEntries[selectedIndex - 1];
           // Skip when no previous entry exists in the history
           if (!prevCommand) return null;
           return {
@@ -419,8 +418,8 @@ export class Butler extends React.Component {
     // with the same search text. This effectively "moves" that entry to the
     // top of the history (with the most recent results), or appends a new entry
     // when it didn't exist before.
-    this.props.onHistoryChange([
-      ...this.props.history.filter(
+    this.props.onHistoryEntriesChange([
+      ...this.props.historyEntries.filter(
         command => command.searchText !== entry.searchText
       ),
       entry,
@@ -527,4 +526,4 @@ export class Butler extends React.Component {
   }
 }
 
-export default injectIntl(Butler);
+export default Butler;

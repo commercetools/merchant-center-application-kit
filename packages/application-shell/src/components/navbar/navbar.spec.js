@@ -3,10 +3,7 @@ import { shallow } from 'enzyme';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import { NavLink } from 'react-router-dom';
 import upperFirst from 'lodash/upperFirst';
-import {
-  RestrictedByPermissions,
-  permissions,
-} from '@commercetools-frontend/permissions';
+import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import * as storage from '@commercetools-frontend/storage';
 import { renderApp, fireEvent, wait } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
@@ -184,7 +181,7 @@ describe('rendering', () => {
                 {
                   ...ordersMenu.submenu[0],
                   featureToggle: 'ordersList',
-                  permissions: [permissions.ViewOrders],
+                  permissions: ['ViewOrders'],
                   menuVisibility: 'hideAddOrder',
                 },
               ],
@@ -200,9 +197,7 @@ describe('rendering', () => {
         expect(restrictedMenuItem).toHaveProp('featureToggle', 'ordersList');
       });
       it('should pass permissions as prop', () => {
-        expect(restrictedMenuItem).toHaveProp('permissions', [
-          permissions.ViewOrders,
-        ]);
+        expect(restrictedMenuItem).toHaveProp('permissions', ['ViewOrders']);
       });
       it('should pass names of menu visibilities of submenus as prop', () => {
         expect(restrictedMenuItem).toHaveProp('namesOfMenuVisibilities', [
@@ -348,7 +343,7 @@ describe('rendering', () => {
                   {
                     ...ordersMenu.submenu[0],
                     featureToggle: 'ordersList',
-                    permissions: [permissions.ViewOrders],
+                    permissions: ['ViewOrders'],
                     menuVisibility: 'hideAddOrder',
                     keyOfMenuItem: 'add-orders',
                   },
@@ -374,7 +369,7 @@ describe('rendering', () => {
           });
           it('should pass permissions as prop', () => {
             expect(restrictedMenuItemWrapper).toHaveProp('permissions', [
-              permissions.ViewOrders,
+              'ViewOrders',
             ]);
           });
           it('should pass menu visibilities as prop', () => {
@@ -485,7 +480,7 @@ describe('rendering', () => {
           beforeEach(() => {
             props = {
               featureToggle: 'myFeature',
-              permissions: [permissions.ManageOrders],
+              permissions: ['ManageOrders'],
               actualPermissions: {},
               menuVisibilities: {},
               keyOfMenuItem: 'products',
@@ -546,7 +541,7 @@ describe('rendering', () => {
           beforeEach(() => {
             props = {
               featureToggle: undefined,
-              permissions: [permissions.ManageOrders],
+              permissions: ['ManageOrders'],
               actualPermissions: {},
               menuVisibilities: {},
               keyOfMenuItem: 'products',
@@ -585,7 +580,7 @@ describe('rendering', () => {
       describe('when permissions are defined', () => {
         beforeEach(() => {
           props = {
-            permissions: [permissions.ViewProducts],
+            permissions: ['ViewProducts'],
             menuVisibilities: {},
             keyOfMenuItem: 'products',
           };
@@ -601,7 +596,7 @@ describe('rendering', () => {
         it('should pass permissions as prop', () => {
           expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
             'permissions',
-            [permissions.ViewProducts]
+            ['ViewProducts']
           );
         });
         it('should pass shouldMatchSomePermissions as prop (true)', () => {
@@ -643,7 +638,7 @@ describe('rendering', () => {
               hideOrders: true,
               hideDashboard: false,
             },
-            permissions: [permissions.ViewProducts],
+            permissions: ['ViewProducts'],
             keyOfMenuItem: 'products',
           };
           wrapper = shallow(
@@ -685,7 +680,7 @@ describe('rendering', () => {
         beforeEach(() => {
           props = {
             menuVisibilities: {},
-            permissions: [permissions.ViewProducts],
+            permissions: ['ViewProducts'],
             keyOfMenuItem: 'products',
             disabledMenuItems: ['orders'],
           };

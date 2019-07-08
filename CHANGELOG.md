@@ -1,23 +1,27 @@
 ## [13.13.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.13.3...v13.13.0) (2019-07-04)
 
 #### 🚀 Type: New Feature
-* `application-shell`
-  * [#814](https://github.com/commercetools/merchant-center-application-kit/pull/814) feat(app-shell): allow to disable menu items per env ([@tdeekens](https://github.com/tdeekens))
+
+- `application-shell`
+  - [#814](https://github.com/commercetools/merchant-center-application-kit/pull/814) feat(app-shell): allow to disable menu items per env ([@tdeekens](https://github.com/tdeekens))
 
 #### ⛑ Type: Refactoring
-* `application-shell`
-  * [#813](https://github.com/commercetools/merchant-center-application-kit/pull/813) refactor(app-shell): to remove team count ([@tdeekens](https://github.com/tdeekens))
+
+- `application-shell`
+  - [#813](https://github.com/commercetools/merchant-center-application-kit/pull/813) refactor(app-shell): to remove team count ([@tdeekens](https://github.com/tdeekens))
 
 ## [13.12.3](https://github.com/commercetools/merchant-center-application-kit/compare/v13.12.2...v13.12.3) (2019-07-01)
 
 #### 🖥 Type: Website
-* [#810](https://github.com/commercetools/merchant-center-application-kit/pull/810) refactor(website): to use syntax highlighting plugin for vscode themes ([@emmenko](https://github.com/emmenko))
+
+- [#810](https://github.com/commercetools/merchant-center-application-kit/pull/810) refactor(website): to use syntax highlighting plugin for vscode themes ([@emmenko](https://github.com/emmenko))
 
 #### 🤖 Type: Dependencies
-* `jest-stylelint-runner`, `mc-scripts`
-  * [#809](https://github.com/commercetools/merchant-center-application-kit/pull/809) chore: update webpack loaders ([@tdeekens](https://github.com/tdeekens))
-* `application-components`, `create-mc-app`, `mc-http-server`, `mc-scripts`
-  * [#808](https://github.com/commercetools/merchant-center-application-kit/pull/808) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+
+- `jest-stylelint-runner`, `mc-scripts`
+  - [#809](https://github.com/commercetools/merchant-center-application-kit/pull/809) chore: update webpack loaders ([@tdeekens](https://github.com/tdeekens))
+- `application-components`, `create-mc-app`, `mc-http-server`, `mc-scripts`
+  - [#808](https://github.com/commercetools/merchant-center-application-kit/pull/808) chore: update deps ([@tdeekens](https://github.com/tdeekens))
 
 ## [13.12.2](https://github.com/commercetools/merchant-center-application-kit/compare/v13.12.1...v13.12.2) (2019-06-28)
 
