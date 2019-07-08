@@ -62,7 +62,7 @@ const Notification = props => (
           : styles.hidden
       }
     >
-      <NotificationIcon type={props.type} theme="surface" />
+      <NotificationIcon type={props.type} color="surface" />
     </div>
   </div>
 );
