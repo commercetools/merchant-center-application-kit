@@ -173,15 +173,17 @@ describe('ApplicationContext', () => {
         {({ isAuthorized }) => (isAuthorized ? 'Authorized' : 'Not allowed')}
       </RestrictedByPermissions>
     );
-    it('should have all permissions by default', () => {
-      const { container } = renderApp(<TestComponent />);
-      expect(container).toHaveTextContent('Authorized');
-    });
-    it('should allow overwriting permissions', () => {
+    it('should render unauthorized when ManageProducts permission is false', () => {
       const { container } = renderApp(<TestComponent />, {
         permissions: { canManageProducts: false },
       });
       expect(container).toHaveTextContent('Not allowed');
+    });
+    it('should render authorized when ManageProducts permission is true', () => {
+      const { container } = renderApp(<TestComponent />, {
+        permissions: { canManageProducts: true },
+      });
+      expect(container).toHaveTextContent('Authorized');
     });
   });
 

@@ -40,7 +40,7 @@ const createGraphqlResponseForProjectQuery = custom => ({
     allAppliedPermissions: [
       {
         __typename: 'AppliedPermission',
-        name: 'canManageProject',
+        name: 'canManageProjectSettings',
         value: true,
       },
     ],

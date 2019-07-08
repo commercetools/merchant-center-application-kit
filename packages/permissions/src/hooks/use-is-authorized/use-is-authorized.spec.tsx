@@ -1,7 +1,6 @@
 import React from 'react';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { render } from '@testing-library/react';
-import { permissions } from '../../constants';
 import useIsAuthorized from './use-is-authorized';
 
 type TPermissionName = string;
@@ -28,7 +27,7 @@ const TestComponent = (props: TestProps) => {
 const testRender = ({
   demandedPermissions,
   shouldMatchSomePermissions,
-  actualPermissions = { canManageProject: true },
+  actualPermissions = { canManageProjectSettings: true },
 }: {
   demandedPermissions: TPermissionName[];
   shouldMatchSomePermissions: boolean;
@@ -70,10 +69,7 @@ describe('when only one permission matches', () => {
   describe('when it should match some permission', () => {
     it('should indicate being authorized', () => {
       const { queryByText } = testRender({
-        demandedPermissions: [
-          permissions.ManageCustomers,
-          permissions.ManageOrders,
-        ],
+        demandedPermissions: ['ManageCustomers', 'ManageOrders'],
         actualPermissions: {
           canManageCustomers: true,
         },
@@ -84,34 +80,16 @@ describe('when only one permission matches', () => {
     });
   });
   describe('when it should not match some permission', () => {
-    describe('when `ManageProject` permission is set', () => {
-      it('should indicate being authorized', () => {
-        const { queryByText } = testRender({
-          demandedPermissions: [
-            permissions.ManageCustomers,
-            permissions.ManageProject,
-          ],
-          shouldMatchSomePermissions: false,
-        });
-
-        expect(queryByText('Is authorized: Yes')).toBeInTheDocument();
+    it('should indicate being not authorized', () => {
+      const { queryByText } = testRender({
+        actualPermissions: {
+          canManageCustomers: true,
+        },
+        demandedPermissions: ['ManageCustomers', 'ManageOrders'],
+        shouldMatchSomePermissions: false,
       });
-    });
-    describe('when `ManageProject` permission is not set', () => {
-      it('should indicate being not authorized', () => {
-        const { queryByText } = testRender({
-          actualPermissions: {
-            canManageCustomers: true,
-          },
-          demandedPermissions: [
-            permissions.ManageCustomers,
-            permissions.ManageProject,
-          ],
-          shouldMatchSomePermissions: false,
-        });
 
-        expect(queryByText('Is authorized: No')).toBeInTheDocument();
-      });
+      expect(queryByText('Is authorized: No')).toBeInTheDocument();
     });
   });
 });

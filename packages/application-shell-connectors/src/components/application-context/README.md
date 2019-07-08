@@ -16,6 +16,7 @@ Use this component to access information about `user`, `project` and `environmen
 - `lastName`
 - `locale`
 - `timeZone`
+- `projects`
 
 #### `project`
 

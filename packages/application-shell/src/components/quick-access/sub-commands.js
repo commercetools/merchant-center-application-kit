@@ -7,13 +7,13 @@ import messages from './messages';
 
 export const createProductVariantSubCommands = ({
   intl,
-  project,
+  applicationContext,
   productId,
   variantId,
 }) =>
   hasSomePermissions(
     [permissions.ViewProducts, permissions.ManageProducts],
-    project.permissions
+    applicationContext.permissions
   )
     ? [
         {
@@ -22,7 +22,7 @@ export const createProductVariantSubCommands = ({
           action: {
             type: 'go',
             to: oneLineTrim`
-              /${project.key}
+              /${applicationContext.project.key}
               /products
               /${productId}
               /variants
@@ -37,7 +37,7 @@ export const createProductVariantSubCommands = ({
           action: {
             type: 'go',
             to: oneLineTrim`
-              /${project.key}
+              /${applicationContext.project.key}
               /products
               /${productId}
               /variants
@@ -52,7 +52,7 @@ export const createProductVariantSubCommands = ({
           action: {
             type: 'go',
             to: oneLineTrim`
-              /${project.key}
+              /${applicationContext.project.key}
               /products
               /${productId}
               /variants
@@ -67,7 +67,7 @@ export const createProductVariantSubCommands = ({
           action: {
             type: 'go',
             to: oneLineTrim`
-              /${project.key}
+              /${applicationContext.project.key}
               /products
               /${productId}
               /variants
@@ -92,14 +92,14 @@ const formatVariantMessage = (variant, intl) => {
 };
 
 export const createProductVariantListSubCommands = ({
-  project,
+  applicationContext,
   intl,
   query,
   productId,
 }) =>
   hasSomePermissions(
     [permissions.ViewProducts, permissions.ManageProducts],
-    project.permissions
+    applicationContext.permissions
   )
     ? query(QuickAccessProductQuery, {
         productId,
@@ -110,13 +110,13 @@ export const createProductVariantListSubCommands = ({
           text: formatVariantMessage(variant, intl),
           subCommands: createProductVariantSubCommands({
             intl,
-            project,
+            applicationContext,
             productId,
             variantId: variant.id,
           }),
           action: {
             type: 'go',
-            to: `/${project.key}/products/${productId}/variants/${variant.id}`,
+            to: `/${applicationContext.project.key}/products/${productId}/variants/${variant.id}`,
           },
         }))
       )
@@ -125,7 +125,7 @@ export const createProductVariantListSubCommands = ({
 export const createProductTabsSubCommands = ({ intl, project, productId }) =>
   hasSomePermissions(
     [permissions.ViewProducts, permissions.ManageProducts],
-    project.permissions
+    applicationContext.permissions
   )
     ? [
         {
@@ -133,7 +133,7 @@ export const createProductTabsSubCommands = ({ intl, project, productId }) =>
           text: intl.formatMessage(messages.openProductVariantGeneral),
           action: {
             type: 'go',
-            to: `/${project.key}/products/${productId}/general`,
+            to: `/${applicationContext.project.key}/products/${productId}/general`,
           },
         },
         {
@@ -148,7 +148,7 @@ export const createProductTabsSubCommands = ({ intl, project, productId }) =>
             }),
           action: {
             type: 'go',
-            to: `/${project.key}/products/${productId}/variants`,
+            to: `/${applicationContext.project.key}/products/${productId}/variants`,
           },
         },
         {
@@ -156,7 +156,7 @@ export const createProductTabsSubCommands = ({ intl, project, productId }) =>
           text: intl.formatMessage(messages.openProductVariantSearch),
           action: {
             type: 'go',
-            to: `/${project.key}/products/${productId}/search`,
+            to: `/${applicationContext.project.key}/products/${productId}/search`,
           },
         },
       ]

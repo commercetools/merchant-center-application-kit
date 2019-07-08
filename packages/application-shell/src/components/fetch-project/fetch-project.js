@@ -16,7 +16,7 @@ import ProjectQuery from './fetch-project.graphql';
  * The application below however expects both permissions an menu visibilities to be of the shape
  * `[name: string]: boolean` which is what the shape above is mapped into here. This object shape is easier
  * to work with in application level code (while be a non breaking change to other packages) as you can just
- * do `permissions.canViewProducts`.
+ * do `canViewProducts`.
  *
  * This function considering its concern belongs into the `permissions` package. However,
  * for now it doesn't have to be shared and as a result can be co-located with
