@@ -8,14 +8,14 @@ const renderTitle = (size, title) => {
   switch (size) {
     case 'big':
       return (
-        <Text.Headline elementType="h2" title={title} truncate>
+        <Text.Headline as="h2" title={title} truncate>
           {title}
         </Text.Headline>
       );
 
     default:
       return (
-        <Text.Subheadline elementType="h4" title={title} truncate>
+        <Text.Subheadline as="h4" title={title} truncate>
           {title}
         </Text.Subheadline>
       );

@@ -60,9 +60,7 @@ const ChannelDetails = props => (
       if (error) return `Error! ${error.message}`;
 
       return (
-        <Text.Headline elementType="h1">
-          {`Channel: ${data.channel.name}`}
-        </Text.Headline>
+        <Text.Headline as="h1">{`Channel: ${data.channel.name}`}</Text.Headline>
       );
     }}
   </Query>
@@ -112,11 +110,7 @@ const ChannelDetails = props => (
       if (isLoading) return 'Loading...';
       if (error) return `Error! ${error.message}`;
 
-      return (
-        <Text.Headline elementType="h1">
-          {`Channel: ${result.name}`}
-        </Text.Headline>
-      );
+      return <Text.Headline as="h1">{`Channel: ${result.name}`}</Text.Headline>;
     }}
   />
 );

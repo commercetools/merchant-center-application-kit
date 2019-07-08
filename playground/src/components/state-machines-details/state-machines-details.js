@@ -56,7 +56,7 @@ export class StateMachinesDetails extends React.Component {
             to={this.props.backToListPath}
           />
           <Spacings.Stack scale="xs">
-            <Text.Headline elementType="h2">
+            <Text.Headline as="h2">
               {this.state.data.name
                 ? this.state.data.name[this.props.dataLocale]
                 : 'n/a'}
