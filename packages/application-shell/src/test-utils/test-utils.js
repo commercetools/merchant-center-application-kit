@@ -41,6 +41,8 @@ const defaultProject = {
   owner: {
     id: 'project-id-1',
   },
+  suspension: { isActive: false },
+  expiry: { isActive: false },
 };
 
 const defaultUser = {
@@ -53,7 +55,6 @@ const defaultUser = {
   defaultProjectKey: defaultProject.key,
   projects: {
     total: 1,
-    count: 1,
     results: [defaultProject],
   },
 };
@@ -68,7 +69,7 @@ const defaultEnvironment = {
   servedByProxy: false,
 };
 
-const defaultPermissions = { canManageProject: true };
+const defaultPermissions = {};
 
 // Allow consumers of `render` to extend the defaults by passing an object
 // or to completely omit the value by passing `null`

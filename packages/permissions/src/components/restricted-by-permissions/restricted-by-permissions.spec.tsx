@@ -47,7 +47,7 @@ const createApplicationContext = (
   project: null,
   dataLocale: null,
   permissions: {
-    canManageProject: true,
+    canManageProjectSettings: true,
   },
   ...custom,
 });

@@ -255,7 +255,7 @@ describe('<RestrictedApplication>', () => {
             owner: {
               id: 'foo-id',
             },
-            permissions: { canManageProject: true },
+            permissions: { canManageProjectSettings: true },
             menuVisibilities: { hideDashboard: true },
           };
           wrapperAside = wrapper

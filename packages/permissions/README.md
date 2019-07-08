@@ -10,25 +10,41 @@ React components to declaratively handle MC permissions.
 - `<RestrictedByPermissions>`
 - `injectAuthorized()`
 
-A requested permission has the following shape:
-
-```js
-enum Permission {
-  ManageProject
-  ManageCustomers
-  ManageOrders
-  ManageProducts
-  ViewCustomers
-  ViewOrders
-  ViewProducts
-  // ...
-}
-```
-
 ## Install
 
 ```bash
 $ npm install --save @commercetools-frontend/permissions
+```
+
+## Available permissions
+
+A `Permission` is represented as a `String` with a prefix of `View` or `Manage`, followed by one of the following resource names:
+
+- `Products`
+- `Categories`
+- `Customers`
+- `CustomerGroups`
+- `Orders`
+- `ProductDiscounts`
+- `CartDiscounts`
+- `DiscountCodes`
+- `ProjectSettings`
+- `ProductTypes`
+- `DeveloperSettings`
+
+We recommend to put the permissions used by your application into a `constants.js` file.
+
+```js
+// constants.js
+export const PERMISSIONS = {
+  // Resource Accesses
+  ViewProducts: 'ViewProducts',
+  ManageProducts: 'ManageProducts',
+  ViewOrders: 'ViewOrders',
+  ViewStates: 'ViewStates',
+  ManageProductTypes: 'ManageProductTypes',
+  ViewProductTypes: 'ViewProductTypes',
+};
 ```
 
 ## `branchOnPermissions(permissions, [FallbackComponent], [options])`
