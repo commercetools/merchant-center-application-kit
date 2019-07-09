@@ -59,18 +59,18 @@ const ModalPageTopBar = props => {
         p {
           font-size: 12px !important;
         }
-
-        /*  specific selector for the svg of the FlatButton */
-        button > span > svg {
-          height: 12px !important;
-          width: 12px !important;
-        }
       `}
     >
       <div
         css={css`
           display: flex;
           overflow: hidden;
+
+          /*  specific selector for the svg of the FlatButton */
+          button:first-child svg {
+            height: 12px !important;
+            width: 12px !important;
+          }
         `}
       >
         <FlatButton
