@@ -36,6 +36,7 @@ import {
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { STORAGE_KEYS } from '../../constants';
 import getDisplayName from '../../utils/get-display-name';
+import { GtmContext } from '../gtm-booter';
 import LoadingPlaceholder from '../loading-placeholder';
 import withApplicationsMenu from '../with-applications-menu';
 import handleApolloErrors from '../handle-apollo-errors';
@@ -196,6 +197,7 @@ export class MenuItemLink extends React.PureComponent {
   static defaultProps = {
     exactMatch: false,
   };
+  static contextType = GtmContext;
   redirectTo = targetUrl => window.location.replace(targetUrl);
   render() {
     return this.props.linkTo ? (
@@ -208,7 +210,10 @@ export class MenuItemLink extends React.PureComponent {
           if (this.props.useFullRedirectsForLinks) {
             event.preventDefault();
             this.redirectTo(this.props.linkTo);
-          } else this.props.onClick && this.props.onClick();
+          } else if (this.props.onClick) {
+            event.persist();
+            this.props.onClick(event, this.context.track);
+          }
         }}
       >
         {this.props.children}
@@ -494,9 +499,7 @@ export class DataMenu extends React.PureComponent {
                 : null
             }
             useFullRedirectsForLinks={this.props.useFullRedirectsForLinks}
-            onClick={() =>
-              this.props.onMenuItemClick && this.props.onMenuItemClick(menu)
-            }
+            onClick={this.props.onMenuItemClick}
           >
             <div className={styles['item-icon-text']}>
               <div className={styles.icon}>
@@ -539,10 +542,7 @@ export class DataMenu extends React.PureComponent {
                           useFullRedirectsForLinks={
                             this.props.useFullRedirectsForLinks
                           }
-                          onClick={() =>
-                            this.props.onMenuItemClick &&
-                            this.props.onMenuItemClick(submenu)
-                          }
+                          onClick={this.props.onMenuItemClick}
                         >
                           {this.renderLabel(submenu)}
                         </MenuItemLink>
