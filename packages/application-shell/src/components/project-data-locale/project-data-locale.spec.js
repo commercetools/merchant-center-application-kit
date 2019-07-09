@@ -1,10 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import * as storage from '@commercetools-frontend/storage';
 import { STORAGE_KEYS } from '../../constants';
 import ProjectDataLocale from './project-data-locale';
-
-jest.mock('@commercetools-frontend/storage');
 
 const createTestProps = props => ({
   locales: null,
@@ -37,6 +34,10 @@ describe('rendering', () => {
 });
 
 describe('lifecycle', () => {
+  beforeEach(() => {
+    window.localStorage.getItem = jest.fn();
+    window.localStorage.setItem = jest.fn();
+  });
   describe('getDerivedStateFromProps', () => {
     let derivedState;
     let nextProps;
@@ -62,7 +63,7 @@ describe('lifecycle', () => {
       });
       describe('when locale has been already cached', () => {
         beforeEach(() => {
-          storage.get.mockReturnValue('de');
+          window.localStorage.getItem.mockReturnValue('de');
           nextProps = { locales: ['it', 'de'] };
           derivedState = ProjectDataLocale.getDerivedStateFromProps(
             nextProps,
@@ -82,7 +83,7 @@ describe('lifecycle', () => {
       });
       describe('when cached locale is not listed in the project locales', () => {
         beforeEach(() => {
-          storage.put(STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
+          window.localStorage.setItem(STORAGE_KEYS.SELECTED_DATA_LOCALE, 'de');
           nextProps = { locales: ['it', 'de'] };
           derivedState = ProjectDataLocale.getDerivedStateFromProps(
             nextProps,

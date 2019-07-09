@@ -2,7 +2,6 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { shallow } from 'enzyme';
 import { Switch } from 'react-router-dom';
-import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import ProjectExpired from '../project-expired';
@@ -65,7 +64,6 @@ const createTestProps = custom => ({
 });
 
 jest.mock('react-dom');
-jest.mock('@commercetools-frontend/storage');
 
 describe('rendering', () => {
   let props;
@@ -467,17 +465,18 @@ describe('lifecycle', () => {
   let wrapper;
   describe('componentDidUpdate', () => {
     beforeEach(() => {
-      storage.put.mockClear();
+      window.localStorage.getItem = jest.fn();
+      window.localStorage.setItem = jest.fn();
     });
     describe('when `projectKey` is in url', () => {
       beforeEach(() => {
         props = createTestProps({ match: { params: { projectKey: 'p1' } } });
-        storage.get.mockReturnValueOnce('p1');
+        window.localStorage.getItem.mockReturnValueOnce('p1');
         wrapper = shallow(<ProjectContainer {...props} />);
         wrapper.instance().componentDidUpdate(props);
       });
       it('should store the project key in localStorage', () => {
-        expect(storage.put).toHaveBeenCalledWith(
+        expect(window.localStorage.setItem).toHaveBeenCalledWith(
           STORAGE_KEYS.ACTIVE_PROJECT_KEY,
           'p1'
         );
@@ -486,12 +485,12 @@ describe('lifecycle', () => {
     describe('when `projectKey` is not in url', () => {
       beforeEach(() => {
         props = createTestProps({ match: { params: { projectKey: null } } });
-        storage.get.mockReturnValueOnce('p1');
+        window.localStorage.getItem.mockReturnValueOnce('p1');
         wrapper = shallow(<ProjectContainer {...props} />);
         wrapper.instance().componentDidUpdate(props);
       });
       it('should not store the project key in localStorage', () => {
-        expect(storage.put).not.toHaveBeenCalled();
+        expect(window.localStorage.setItem).not.toHaveBeenCalled();
       });
     });
   });

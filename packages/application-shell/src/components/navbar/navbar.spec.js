@@ -4,7 +4,6 @@ import { ToggleFeature } from '@flopflip/react-broadcast';
 import { NavLink } from 'react-router-dom';
 import upperFirst from 'lodash/upperFirst';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-import * as storage from '@commercetools-frontend/storage';
 import { renderApp, fireEvent, wait } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import {
@@ -20,8 +19,6 @@ import {
   getIconColor,
   IconSwitcher,
 } from './navbar';
-
-jest.mock('@commercetools-frontend/storage');
 
 const createTestMenuConfig = (key, props) => ({
   key,
@@ -97,6 +94,9 @@ describe('rendering', () => {
   let wrapper;
   describe('<NavBar>', () => {
     beforeEach(() => {
+      window.localStorage.getItem = jest.fn();
+      window.localStorage.setItem = jest.fn();
+      window.localStorage.removeItem = jest.fn();
       props = createTestProps();
       wrapper = shallow(<NavBar {...props} />);
     });
@@ -1160,7 +1160,7 @@ describe('instance methods', () => {
           wrapper.instance().handleToggleMenu();
         });
         it('should update isForcedMenuOpen to false', () => {
-          expect(storage.put).toHaveBeenCalledWith(
+          expect(window.localStorage.setItem).toHaveBeenCalledWith(
             STORAGE_KEYS.IS_FORCED_MENU_OPEN,
             false
           );
@@ -1172,7 +1172,7 @@ describe('instance methods', () => {
           wrapper.instance().handleToggleMenu();
         });
         it('should update isForcedMenuOpen to true', () => {
-          expect(storage.put).toHaveBeenCalledWith(
+          expect(window.localStorage.setItem).toHaveBeenCalledWith(
             STORAGE_KEYS.IS_FORCED_MENU_OPEN,
             true
           );

@@ -1,12 +1,9 @@
 import React from 'react';
-import * as storage from '@commercetools-frontend/storage';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { renderApp, wait } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import AmILoggedInQuery from './authenticated.graphql';
 import Authenticated from './authenticated';
-
-jest.mock('@commercetools-frontend/storage');
 
 const createTestProps = custom => ({
   render: jest.fn(() => <div />),
@@ -15,12 +12,14 @@ const createTestProps = custom => ({
 
 describe('rendering', () => {
   beforeEach(() => {
-    storage.put.mockClear();
+    window.localStorage.getItem = jest.fn();
+    window.localStorage.setItem = jest.fn();
+    window.localStorage.removeItem = jest.fn();
   });
   let props;
   describe('when authenticated state was cached in local storage', () => {
     beforeEach(() => {
-      storage.get.mockReturnValue('true');
+      window.localStorage.getItem.mockReturnValue('true');
       props = createTestProps();
       renderApp(<Authenticated {...props} />);
     });
@@ -30,7 +29,7 @@ describe('rendering', () => {
   });
   describe('when authenticated state is not in local storage', () => {
     beforeEach(() => {
-      storage.get.mockReturnValue(null);
+      window.localStorage.getItem.mockReturnValue(null);
       props = createTestProps();
     });
     describe('when authentication request succeeds', () => {
@@ -58,7 +57,7 @@ describe('rendering', () => {
       });
       it('should put `isAuthenticated` into local storage', async () => {
         await wait(() => {
-          expect(storage.put).toHaveBeenCalledWith(
+          expect(window.localStorage.setItem).toHaveBeenCalledWith(
             STORAGE_KEYS.IS_AUTHENTICATED,
             true
           );
@@ -93,7 +92,7 @@ describe('rendering', () => {
       it('should not put `isAuthenticated` into local storage', async () => {
         await wait(
           () => {
-            expect(storage.put).not.toHaveBeenCalled();
+            expect(window.localStorage.setItem).not.toHaveBeenCalled();
           },
           { timeout: 1000 }
         );
@@ -101,7 +100,7 @@ describe('rendering', () => {
       it('should unset any previous `isAuthenticated` in local storage', async () => {
         await wait(
           () => {
-            expect(storage.remove).toHaveBeenCalledWith(
+            expect(window.localStorage.removeItem).toHaveBeenCalledWith(
               STORAGE_KEYS.IS_AUTHENTICATED
             );
           },

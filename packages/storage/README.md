@@ -1,3 +1,5 @@
+> This package is deprecated. Please use the native localstorage API `window.localStorage`.
+
 # @commercetools-frontend/storage
 
 <p align="center">
