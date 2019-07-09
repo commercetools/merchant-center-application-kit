@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import { NavLink } from 'react-router-dom';
 import upperFirst from 'lodash/upperFirst';
-import { track } from '../../utils/gtm';
 import {
   RestrictedByPermissions,
   permissions,
@@ -25,7 +24,6 @@ import {
 } from './navbar';
 
 jest.mock('@commercetools-frontend/storage');
-jest.mock('../../utils/gtm');
 
 const createTestMenuConfig = (key, props) => ({
   key,
@@ -74,6 +72,7 @@ const createTestProps = props => ({
       ],
     },
   },
+  onMenuItemClick: jest.fn(),
   ...props,
 });
 const createDataMenuTestProps = props => {
@@ -244,6 +243,12 @@ describe('rendering', () => {
         it('should render menu label', () => {
           expect(menuItemLink).toContainReact(
             <div className="title">Orders</div>
+          );
+        });
+        it('should invoke `onMenuItemClick` callback', () => {
+          menuItemLink.prop('onClick')();
+          expect(props.onMenuItemClick).toHaveBeenCalledWith(
+            createTestMenuConfig('orders')
           );
         });
         describe('when menu is not open', () => {
@@ -712,6 +717,7 @@ describe('rendering', () => {
           linkTo: '/test-1/customers',
           exactMatch: true,
           useFullRedirectsForLinks: false,
+          onClick: jest.fn(),
         };
         wrapper = shallow(
           <MenuItemLink {...props}>
@@ -777,34 +783,8 @@ describe('rendering', () => {
           it('should not call redirectTo', () => {
             expect(wrapper.instance().redirectTo).not.toHaveBeenCalled();
           });
-
-          describe('when trackingEvent is provided', () => {
-            beforeEach(() => {
-              mockedEvent = { preventDefault: jest.fn() };
-              wrapper = shallow(
-                <MenuItemLink
-                  {...props}
-                  useFullRedirectsForLinks={false}
-                  trackingEvent={{
-                    category: 'test-category',
-                    event: 'test-event',
-                    label: 'test-label',
-                  }}
-                >
-                  <LinkLabel />
-                </MenuItemLink>
-              );
-              wrapper.instance().redirectTo = jest.fn();
-              wrapper.find(NavLink).prop('onClick')(mockedEvent);
-            });
-
-            it('should track clicking on the MenuItemLink', () => {
-              expect(track).toHaveBeenCalledWith(
-                'test-event',
-                'test-category',
-                'test-label'
-              );
-            });
+          it('should invoke `onClick` callback', () => {
+            expect(props.onClick).toHaveBeenCalled();
           });
         });
       });

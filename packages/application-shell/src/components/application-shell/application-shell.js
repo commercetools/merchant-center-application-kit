@@ -265,6 +265,7 @@ export const RestrictedApplication = props => (
                                       DEV_ONLY__loadNavbarMenuConfig={
                                         props.DEV_ONLY__loadNavbarMenuConfig
                                       }
+                                      onMenuItemClick={props.onMenuItemClick}
                                     />
                                   </ApplicationContextProvider>
                                 );
@@ -364,6 +365,7 @@ RestrictedApplication.propTypes = {
   render: PropTypes.func.isRequired,
   applicationMessages: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     .isRequired,
+  onMenuItemClick: PropTypes.func,
   DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
   DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
 };
@@ -413,6 +415,7 @@ export default class ApplicationShell extends React.Component {
     ),
     render: PropTypes.func.isRequired,
     onRegisterErrorListeners: PropTypes.func.isRequired,
+    onMenuItemClick: PropTypes.func,
     applicationMessages: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
       .isRequired,
     // Only available in development mode
@@ -473,6 +476,7 @@ export default class ApplicationShell extends React.Component {
                       defaultFeatureFlags={this.props.defaultFeatureFlags}
                       render={this.props.render}
                       applicationMessages={this.props.applicationMessages}
+                      onMenuItemClick={this.props.onMenuItemClick}
                       DEV_ONLY__loadAppbarMenuConfig={
                         this.props.DEV_ONLY__loadAppbarMenuConfig
                       }
