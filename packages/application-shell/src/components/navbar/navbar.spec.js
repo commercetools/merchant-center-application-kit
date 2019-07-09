@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import { NavLink } from 'react-router-dom';
 import upperFirst from 'lodash/upperFirst';
+import { track } from '../../utils/gtm';
 import {
   RestrictedByPermissions,
   permissions,
@@ -24,6 +25,7 @@ import {
 } from './navbar';
 
 jest.mock('@commercetools-frontend/storage');
+jest.mock('../../utils/gtm');
 
 const createTestMenuConfig = (key, props) => ({
   key,
@@ -88,6 +90,10 @@ const createDataMenuTestProps = props => {
     ...props,
   };
 };
+
+beforeEach(() => {
+  jest.clearAllMocks();
+});
 
 describe('rendering', () => {
   let props;
@@ -764,11 +770,41 @@ describe('rendering', () => {
             wrapper.instance().redirectTo = jest.fn();
             wrapper.find(NavLink).prop('onClick')(mockedEvent);
           });
+
           it('should not call preventDefault on the event', () => {
             expect(mockedEvent.preventDefault).not.toHaveBeenCalled();
           });
           it('should not call redirectTo', () => {
             expect(wrapper.instance().redirectTo).not.toHaveBeenCalled();
+          });
+
+          describe('when trackingEvent is provided', () => {
+            beforeEach(() => {
+              mockedEvent = { preventDefault: jest.fn() };
+              wrapper = shallow(
+                <MenuItemLink
+                  {...props}
+                  useFullRedirectsForLinks={false}
+                  trackingEvent={{
+                    category: 'test-category',
+                    event: 'test-event',
+                    label: 'test-label',
+                  }}
+                >
+                  <LinkLabel />
+                </MenuItemLink>
+              );
+              wrapper.instance().redirectTo = jest.fn();
+              wrapper.find(NavLink).prop('onClick')(mockedEvent);
+            });
+
+            it('should track clicking on the MenuItemLink', () => {
+              expect(track).toHaveBeenCalledWith(
+                'test-event',
+                'test-category',
+                'test-label'
+              );
+            });
           });
         });
       });

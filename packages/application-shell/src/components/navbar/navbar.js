@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isNil from 'lodash/isNil';
+import * as gtm from '../../utils/gtm';
 import flowRight from 'lodash/flowRight';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, withRouter } from 'react-router-dom';
@@ -187,6 +188,11 @@ MenuItem.propTypes = {
 export class MenuItemLink extends React.PureComponent {
   static displayName = 'MenuItemLink';
   static propTypes = {
+    trackingEvent: PropTypes.shape({
+      event: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      label: PropTypes.string,
+    }),
     linkTo: PropTypes.string,
     exactMatch: PropTypes.bool,
     children: PropTypes.node.isRequired,
@@ -207,6 +213,9 @@ export class MenuItemLink extends React.PureComponent {
           if (this.props.useFullRedirectsForLinks) {
             event.preventDefault();
             this.redirectTo(this.props.linkTo);
+          } else if (this.props.trackingEvent) {
+            const { event, category, label } = this.props.trackingEvent;
+            gtm.track(event, category, label);
           }
         }}
       >
@@ -331,6 +340,11 @@ export class DataMenu extends React.PureComponent {
             featureToggle: PropTypes.string,
             permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
             menuVisibility: PropTypes.string,
+            trackingEvent: PropTypes.shape({
+              event: PropTypes.string.isRequired,
+              category: PropTypes.string.isRequired,
+              label: PropTypes.string,
+            }),
           })
         ),
         shouldRenderDivider: PropTypes.bool,
@@ -534,6 +548,7 @@ export class DataMenu extends React.PureComponent {
                           useFullRedirectsForLinks={
                             this.props.useFullRedirectsForLinks
                           }
+                          trackingEvent={submenu.trackingEvent}
                         >
                           {this.renderLabel(submenu)}
                         </MenuItemLink>
