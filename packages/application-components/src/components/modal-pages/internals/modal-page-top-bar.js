@@ -59,6 +59,12 @@ const ModalPageTopBar = props => {
         p {
           font-size: 12px !important;
         }
+
+        /*  specific selector for the svg of the FlatButton */
+        button > span > svg {
+          height: 12px !important;
+          width: 12px !important;
+        }
       `}
     >
       <div
@@ -74,7 +80,7 @@ const ModalPageTopBar = props => {
               ? props.previousPathLabel
               : intl.formatMessage(props.previousPathLabel)
           }
-          icon={<AngleLeftIcon size="small" theme="green" />}
+          icon={<AngleLeftIcon size="medium" theme="green" />}
           onClick={props.onClose}
         />
         {props.currentPathLabel && (
