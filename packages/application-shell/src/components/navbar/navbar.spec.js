@@ -86,7 +86,7 @@ const createDataMenuTestProps = props => {
 };
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  windowMocks.localStorage();
 });
 
 describe('rendering', () => {
@@ -94,9 +94,6 @@ describe('rendering', () => {
   let wrapper;
   describe('<NavBar>', () => {
     beforeEach(() => {
-      window.localStorage.getItem = jest.fn();
-      window.localStorage.setItem = jest.fn();
-      window.localStorage.removeItem = jest.fn();
       props = createTestProps();
       wrapper = shallow(<NavBar {...props} />);
     });

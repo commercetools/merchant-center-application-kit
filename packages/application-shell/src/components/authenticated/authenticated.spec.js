@@ -1,6 +1,6 @@
 import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { renderApp, wait } from '../../test-utils';
+import { renderApp, wait, windowMocks } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import AmILoggedInQuery from './authenticated.graphql';
 import Authenticated from './authenticated';
@@ -10,12 +10,11 @@ const createTestProps = custom => ({
   ...custom,
 });
 
+beforeEach(() => {
+  windowMocks.localStorage();
+});
+
 describe('rendering', () => {
-  beforeEach(() => {
-    window.localStorage.getItem = jest.fn();
-    window.localStorage.setItem = jest.fn();
-    window.localStorage.removeItem = jest.fn();
-  });
   let props;
   describe('when authenticated state was cached in local storage', () => {
     beforeEach(() => {

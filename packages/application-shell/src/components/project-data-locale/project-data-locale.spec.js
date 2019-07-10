@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { windowMocks } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import ProjectDataLocale from './project-data-locale';
 
@@ -7,6 +8,10 @@ const createTestProps = props => ({
   locales: null,
   children: jest.fn(() => <div />),
   ...props,
+});
+
+beforeEach(() => {
+  windowMocks.localStorage();
 });
 
 describe('rendering', () => {
@@ -34,10 +39,6 @@ describe('rendering', () => {
 });
 
 describe('lifecycle', () => {
-  beforeEach(() => {
-    window.localStorage.getItem = jest.fn();
-    window.localStorage.setItem = jest.fn();
-  });
   describe('getDerivedStateFromProps', () => {
     let derivedState;
     let nextProps;
