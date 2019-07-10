@@ -21,7 +21,7 @@ const DialogHeader = props => (
       alignItems="center"
       justifyContent="space-between"
     >
-      <Text.Subheadline elementType="h4" truncate={true} title={props.title}>
+      <Text.Subheadline as="h4" truncate={true} title={props.title}>
         {props.title}
       </Text.Subheadline>
       {props.onClose && (

@@ -127,7 +127,7 @@ const Navbar = props => {
                             <Spacings.Stack scale="xs" key={subGroupIndex}>
                               <div
                                 css={css`
-                                  padding-left: ${customProperties.spacing16};
+                                  padding-left: ${customProperties.spacingL};
                                 `}
                               >
                                 <NavbarLinkSubtitle>

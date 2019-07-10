@@ -31,7 +31,7 @@ const Label = styled.div`
   box-sizing: border-box;
   background-color: #774caf;
   padding: 5px;
-  color: ${customProperties.colorWhite};
+  color: ${customProperties.colorSurface};
   font-size: ${customProperties.fontSizeDefault};
 `;
 
@@ -42,7 +42,7 @@ const PropList = styled.div`
   box-sizing: border-box;
   font-size: 8pt;
   font-family: monospace;
-  color: ${customProperties.colorWhite};
+  color: ${customProperties.colorSurface};
 `;
 
 const PropLabel = styled.span`
