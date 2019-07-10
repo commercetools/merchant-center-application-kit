@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { Constraints, Text, Spacings } from '@commercetools-frontend/ui-kit';
-import deprecateComponent from '../../utils/deprecate-component';
 
 const MaintenancePageLayout = props => (
   <div
@@ -47,9 +46,3 @@ MaintenancePageLayout.propTypes = {
 };
 
 export default MaintenancePageLayout;
-
-const ServicePageResponseLayout = MaintenancePageLayout;
-ServicePageResponseLayout.displayName = 'ServicePageResponseLayout';
-export const DeprecatedServicePageResponseLayout = deprecateComponent({
-  message: `The "ServicePageResponseLayout" component has been renamed to "MaintenancePageLayout". The named export will be removed in the next major release.`,
-})(ServicePageResponseLayout);

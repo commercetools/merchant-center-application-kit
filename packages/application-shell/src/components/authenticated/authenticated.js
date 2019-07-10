@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
-import * as storage from '@commercetools-frontend/storage';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { STORAGE_KEYS } from '../../constants';
 import AmILoggedInQuery from './authenticated.graphql';
 
 const hasCachedAuthenticationState = () =>
-  storage.get(STORAGE_KEYS.IS_AUTHENTICATED) === 'true';
+  window.localStorage.getItem(STORAGE_KEYS.IS_AUTHENTICATED) === 'true';
 
 const Authenticated = props => {
   // We attempt to see if the user was already authenticated by looking
@@ -30,13 +29,13 @@ const Authenticated = props => {
         // we do it here as well. This will help in the future when we eventually
         // move the auth service to itw own domain, in which case the local storage
         // is not shared anymore.
-        storage.put(STORAGE_KEYS.IS_AUTHENTICATED, true);
+        window.localStorage.setItem(STORAGE_KEYS.IS_AUTHENTICATED, true);
       }}
       onError={() => {
         // The query fails without the `mcAccessToken`. In this case the caching
         // needs to be unset as otherwise the application will end up in a infinte
         // redirect loop.
-        storage.remove(STORAGE_KEYS.IS_AUTHENTICATED);
+        window.localStorage.removeItem(STORAGE_KEYS.IS_AUTHENTICATED);
       }}
     >
       {({ loading, data, error }) => {

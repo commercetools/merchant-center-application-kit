@@ -6,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 import isNil from 'lodash/isNil';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { DOMAINS } from '@commercetools-frontend/constants';
-import * as storage from '@commercetools-frontend/storage';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { STORAGE_KEYS, SUSPENSION_REASONS } from '../../constants';
@@ -89,7 +88,8 @@ export class ProjectContainer extends React.Component {
     // Ensure to sync the `projectKey` from the URL with localStorage.
     const projectKey = this.props.match.params.projectKey;
 
-    if (projectKey) storage.put(STORAGE_KEYS.ACTIVE_PROJECT_KEY, projectKey);
+    if (projectKey)
+      window.localStorage.setItem(STORAGE_KEYS.ACTIVE_PROJECT_KEY, projectKey);
   }
   componentDidCatch(error, errorInfo) {
     this.setState({ hasError: true });

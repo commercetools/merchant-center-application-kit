@@ -293,7 +293,6 @@ const experimentalRenderAppWithRedux = (ui, renderOptions) => {
     ApolloProviderComponent: RealApolloProvider,
   });
 };
-
 // re-export everything
 export * from '@testing-library/react';
 

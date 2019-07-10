@@ -13,7 +13,6 @@ import NavBar, { LoadingNavBar } from '../navbar';
 import { getBrowserLocale } from '../application-shell-provider/utils';
 import ApplicationShell, { RestrictedApplication } from './application-shell';
 
-jest.mock('@commercetools-frontend/storage');
 jest.mock('@commercetools-frontend/sentry');
 jest.mock('../../utils');
 
