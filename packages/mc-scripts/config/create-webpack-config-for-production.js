@@ -50,16 +50,7 @@ const defaultToggleFlags = {
  * The function requires the file path to the related application
  * "entry point".
  */
-module.exports = ({
-  distPath,
-  entryPoint,
-  sourceFolders,
-  toggleFlags,
-  // some vendors ship es6 code that has not been transpiled to es5.
-  // in order to keep compatibility with browsers, and to save build time
-  // we don't run babel on node_modules, just on the required modules
-  vendorsToTranspile = [],
-}) => {
+module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
   const mergedToggleFlags = { ...defaultToggleFlags, ...toggleFlags };
 
   return {
@@ -429,7 +420,7 @@ module.exports = ({
               },
             },
           ],
-          include: sourceFolders.concat(vendorsToTranspile),
+          include: sourceFolders,
         },
         // Allow to import `*.graphql` SDL files.
         {
