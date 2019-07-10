@@ -24,7 +24,6 @@ module.exports = async function compileHtml(options) {
   const env = loadEnv(options.envPath);
   const headers = loadHeaders(env, { cspPath: options.cspPath });
 
-  // For local usage only!
   if (options.useLocalAssets) {
     const indexHtmlContent = fs.readFileSync(
       path.join(options.publicAssetsPath, 'index.html.template'),
