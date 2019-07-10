@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { deepEqual } from 'fast-equals';
-import * as storage from '@commercetools-frontend/storage';
 import { STORAGE_KEYS } from '../../constants';
 
 const defaultLocale = 'en';
@@ -12,7 +11,9 @@ const getSelectedDataLocaleForProject = projectLocales => {
   // value is. When the user access a proper project, this value will
   // be correctly picked.
   if (!projectLocales) return defaultLocale;
-  const cachedDataLocale = storage.get(STORAGE_KEYS.SELECTED_DATA_LOCALE);
+  const cachedDataLocale = window.localStorage.getItem(
+    STORAGE_KEYS.SELECTED_DATA_LOCALE
+  );
   // Make sure the cached locale is listed in the selected project
   const isCachedDataLocaleIncludedInProjectLanguages = projectLocales.includes(
     cachedDataLocale
@@ -21,7 +22,10 @@ const getSelectedDataLocaleForProject = projectLocales => {
   // Pick the first locale from the list
   const defaultDataLocaleForProject = projectLocales[0];
   // Cache it
-  storage.put(STORAGE_KEYS.SELECTED_DATA_LOCALE, defaultDataLocaleForProject);
+  window.localStorage.setItem(
+    STORAGE_KEYS.SELECTED_DATA_LOCALE,
+    defaultDataLocaleForProject
+  );
   return defaultDataLocaleForProject;
 };
 
@@ -49,7 +53,7 @@ export default class ProjectDataLocale extends React.PureComponent {
   handleSetProjectDataLocale = locale => {
     this.setState({ locale });
     // Cache it
-    storage.put(STORAGE_KEYS.SELECTED_DATA_LOCALE, locale);
+    window.localStorage.setItem(STORAGE_KEYS.SELECTED_DATA_LOCALE, locale);
   };
 
   render() {
