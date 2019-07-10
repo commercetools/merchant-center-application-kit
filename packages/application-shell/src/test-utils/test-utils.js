@@ -293,27 +293,7 @@ const experimentalRenderAppWithRedux = (ui, renderOptions) => {
     ApolloProviderComponent: RealApolloProvider,
   });
 };
-
-// Mock utilities
-const windowMocks = {
-  localStorage: () =>
-    Object.defineProperty(window, 'localStorage', {
-      configurable: true,
-      writable: true,
-      value: {
-        getItem: jest.fn(),
-        setItem: jest.fn(),
-        removeItem: jest.fn(),
-      },
-    }),
-};
-
 // re-export everything
 export * from '@testing-library/react';
 
-export {
-  renderApp,
-  renderAppWithRedux,
-  experimentalRenderAppWithRedux,
-  windowMocks,
-};
+export { renderApp, renderAppWithRedux, experimentalRenderAppWithRedux };

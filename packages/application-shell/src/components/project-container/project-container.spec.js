@@ -4,7 +4,6 @@ import { shallow } from 'enzyme';
 import { Switch } from 'react-router-dom';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import { windowMocks } from '../../test-utils';
 import ProjectExpired from '../project-expired';
 import ProjectNotFound from '../project-not-found';
 import ProjectSuspended from '../project-suspended';
@@ -67,7 +66,9 @@ const createTestProps = custom => ({
 jest.mock('react-dom');
 
 beforeEach(() => {
-  windowMocks.localStorage();
+  window.localStorage.setItem.mockClear();
+  window.localStorage.getItem.mockClear();
+  window.localStorage.removeItem.mockClear();
 });
 
 describe('rendering', () => {

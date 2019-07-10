@@ -1,6 +1,6 @@
 import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { renderApp, wait, windowMocks } from '../../test-utils';
+import { renderApp, wait } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import AmILoggedInQuery from './authenticated.graphql';
 import Authenticated from './authenticated';
@@ -11,7 +11,9 @@ const createTestProps = custom => ({
 });
 
 beforeEach(() => {
-  windowMocks.localStorage();
+  window.localStorage.setItem.mockClear();
+  window.localStorage.getItem.mockClear();
+  window.localStorage.removeItem.mockClear();
 });
 
 describe('rendering', () => {

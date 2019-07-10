@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { windowMocks } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import ProjectDataLocale from './project-data-locale';
 
@@ -11,7 +10,9 @@ const createTestProps = props => ({
 });
 
 beforeEach(() => {
-  windowMocks.localStorage();
+  window.localStorage.setItem.mockClear();
+  window.localStorage.getItem.mockClear();
+  window.localStorage.removeItem.mockClear();
 });
 
 describe('rendering', () => {

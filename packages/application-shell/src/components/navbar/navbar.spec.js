@@ -86,7 +86,9 @@ const createDataMenuTestProps = props => {
 };
 
 beforeEach(() => {
-  windowMocks.localStorage();
+  window.localStorage.setItem.mockClear();
+  window.localStorage.getItem.mockClear();
+  window.localStorage.removeItem.mockClear();
 });
 
 describe('rendering', () => {
