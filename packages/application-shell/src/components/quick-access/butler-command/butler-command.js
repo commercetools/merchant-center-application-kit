@@ -18,7 +18,7 @@ const ButlerCommand = ({ command, onMouseEnter, onClick, isSelected }) => (
       <div className={styles.subCommandsArrow}>
         <AngleThinRightIcon
           size="medium"
-          theme={isSelected ? 'white' : 'grey'}
+          color={isSelected ? 'surface' : 'neutral60'}
         />
       </div>
     )}

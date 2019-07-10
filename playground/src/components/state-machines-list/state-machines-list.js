@@ -75,7 +75,7 @@ export class StateMachinesList extends React.Component {
     return (
       <Spacings.Inset scale="m">
         <Spacings.Stack scale="m">
-          <Text.Headline elementType="h2" intlMessage={messages.title} />
+          <Text.Headline as="h2" intlMessage={messages.title} />
           <StateMachinesListConnector projectKey={this.props.projectKey}>
             {({ isLoading, result, error, hasNoResults /* , refresh */ }) => {
               if (isLoading) return <LoadingSpinner />;

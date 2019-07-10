@@ -16,16 +16,16 @@ import styles from './notification.mod.css';
 import messages from './messages';
 
 const NotificationIcon = props => {
-  if (props.type === 'error') return <ErrorIcon theme={props.theme} />;
-  if (props.type === 'info') return <InfoIcon theme={props.theme} />;
-  if (props.type === 'warning') return <WarningIcon theme={props.theme} />;
+  if (props.type === 'error') return <ErrorIcon color={props.color} />;
+  if (props.type === 'info') return <InfoIcon color={props.color} />;
+  if (props.type === 'warning') return <WarningIcon color={props.color} />;
 
-  return <CheckBoldIcon theme={props.theme} />;
+  return <CheckBoldIcon color={props.color} />;
 };
 NotificationIcon.displayName = 'NotificationIcon';
 NotificationIcon.propTypes = {
   type: PropTypes.oneOf(['error', 'info', 'warning', 'success']).isRequired,
-  theme: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
 };
 
 const Notification = props => (
@@ -62,7 +62,7 @@ const Notification = props => (
           : styles.hidden
       }
     >
-      <NotificationIcon type={props.type} theme="white" />
+      <NotificationIcon type={props.type} color="surface" />
     </div>
   </div>
 );

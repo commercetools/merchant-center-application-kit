@@ -20,7 +20,7 @@ const MaintenancePageLayout = props => (
         <div>
           <img src={props.imageSrc} />
         </div>
-        <Text.Headline elementType="h2">{props.title}</Text.Headline>
+        <Text.Headline as="h2">{props.title}</Text.Headline>
         <Text.Body>{props.paragraph1}</Text.Body>
         {props.bodyContent && (
           <div
