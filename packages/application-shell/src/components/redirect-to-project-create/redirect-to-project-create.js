@@ -22,7 +22,7 @@ export const RedirectToProjectCreate = props => {
 
   return (
     <Spacings.Stack>
-      <Text.Headline elementType="h3">Please create a project!</Text.Headline>
+      <Text.Headline as="h3">Please create a project!</Text.Headline>
       <Text.Body>
         You are using the Merchant Center in development mode - it is not served
         by a proxy (`env.json`). Moreover, you do not have any projects yet. As

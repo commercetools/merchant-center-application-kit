@@ -39,7 +39,10 @@ const UserAvatar = props => {
           lastName={props.lastName}
           isHighlighted={isMouseOver}
         />
-        <CaretDownIcon size="small" theme={isMouseOver ? 'grey' : 'black'} />
+        <CaretDownIcon
+          size="small"
+          color={isMouseOver ? 'neutral60' : 'solid'}
+        />
       </Spacings.Inline>
     </div>
   );

@@ -47,13 +47,13 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
           `}
         >
           <span>
-            <Text.Subheadline elementType="h4">Tab One</Text.Subheadline>
+            <Text.Subheadline as="h4">Tab One</Text.Subheadline>
           </span>
           <span>
-            <Text.Subheadline elementType="h4">Tab Two</Text.Subheadline>
+            <Text.Subheadline as="h4">Tab Two</Text.Subheadline>
           </span>
           <span>
-            <Text.Subheadline elementType="h4">Tab Three</Text.Subheadline>
+            <Text.Subheadline as="h4">Tab Three</Text.Subheadline>
           </span>
         </div>
       }

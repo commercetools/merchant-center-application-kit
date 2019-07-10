@@ -17,7 +17,7 @@ import {
   MenuExpander,
   MenuItemDivider,
   RestrictedMenuItem,
-  getIconTheme,
+  getIconColor,
   IconSwitcher,
 } from './navbar';
 
@@ -284,7 +284,7 @@ describe('rendering', () => {
             expect(icon).toHaveProp('iconName', 'UserFilledIcon');
           });
           it('should render active icon', () => {
-            expect(icon).toHaveProp('theme', 'green-light');
+            expect(icon).toHaveProp('color', 'primary40');
           });
         });
         describe('when item is not active but the route is active', () => {
@@ -307,7 +307,7 @@ describe('rendering', () => {
             expect(icon).toHaveProp('iconName', 'UserFilledIcon');
           });
           it('should render active icon', () => {
-            expect(icon).toHaveProp('theme', 'green-light');
+            expect(icon).toHaveProp('color', 'primary40');
           });
         });
         describe('when item and router are not active', () => {
@@ -327,7 +327,7 @@ describe('rendering', () => {
               .find(IconSwitcher);
           });
           it('should render default icon', () => {
-            expect(icon).toHaveProp('theme', 'white');
+            expect(icon).toHaveProp('color', 'surface');
           });
         });
       });
@@ -1183,16 +1183,16 @@ describe('instance methods', () => {
 });
 
 describe('helpers', () => {
-  describe('getIconTheme', () => {
+  describe('getIconColor', () => {
     let iconTheme;
     describe('when isActive is true', () => {
       beforeEach(() => {
         const isActive = true;
         const isAlternativeTheme = false;
-        iconTheme = getIconTheme(isActive, isAlternativeTheme);
+        iconTheme = getIconColor(isActive, isAlternativeTheme);
       });
-      it('should get green theme', () => {
-        expect(iconTheme).toBe('green-light');
+      it('should get green color', () => {
+        expect(iconTheme).toBe('primary40');
       });
     });
     describe('when isActive is false', () => {
@@ -1200,20 +1200,20 @@ describe('helpers', () => {
         beforeEach(() => {
           const isActive = false;
           const isAlternativeTheme = true;
-          iconTheme = getIconTheme(isActive, isAlternativeTheme);
+          iconTheme = getIconColor(isActive, isAlternativeTheme);
         });
         it('should get grey theme', () => {
-          expect(iconTheme).toBe('grey');
+          expect(iconTheme).toBe('neutral60');
         });
       });
       describe('when alternative theme is false', () => {
         beforeEach(() => {
           const isActive = false;
           const isAlternativeTheme = false;
-          iconTheme = getIconTheme(isActive, isAlternativeTheme);
+          iconTheme = getIconColor(isActive, isAlternativeTheme);
         });
         it('should get white theme', () => {
-          expect(iconTheme).toBe('white');
+          expect(iconTheme).toBe('surface');
         });
       });
     });
