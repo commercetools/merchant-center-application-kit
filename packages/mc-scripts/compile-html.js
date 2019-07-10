@@ -41,7 +41,7 @@ if (!flags.config) {
   throw new Error('Missing required option "--config"');
 }
 
-const shouldUseLocalAssets = flags['use-local-assets'];
+const useLocalAssets = flags['use-local-assets'];
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
@@ -75,7 +75,7 @@ shelljs.cp('-R', paths.publicAssetsFolderPath, paths.publicAssetsPath);
 
 // This should only be used locally, as we're relying on relative paths
 // outside of this package.
-if (shouldUseLocalAssets) {
+if (useLocalAssets) {
   // Resolve the absolute path of the caller location. This is necessary
   // to point to files within that folder.
   const assetsFrom = resolveApp('dist/assets');
@@ -96,7 +96,7 @@ const generateStatic = async () => {
     envPath: paths.envPath,
     cspPath: paths.cspPath,
     publicAssetsPath: paths.publicAssetsPath,
-    shouldUseLocalAssets,
+    useLocalAssets,
   });
 
   fs.writeFileSync(
