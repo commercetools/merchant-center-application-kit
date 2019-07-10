@@ -8,6 +8,7 @@ import {
   permissions,
 } from '@commercetools-frontend/permissions';
 import * as storage from '@commercetools-frontend/storage';
+import { renderApp, fireEvent, wait } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import {
   NavBar,
@@ -72,6 +73,7 @@ const createTestProps = props => ({
       ],
     },
   },
+  onMenuItemClick: jest.fn(),
   ...props,
 });
 const createDataMenuTestProps = props => {
@@ -88,6 +90,10 @@ const createDataMenuTestProps = props => {
     ...props,
   };
 };
+
+beforeEach(() => {
+  jest.clearAllMocks();
+});
 
 describe('rendering', () => {
   let props;
@@ -706,6 +712,7 @@ describe('rendering', () => {
           linkTo: '/test-1/customers',
           exactMatch: true,
           useFullRedirectsForLinks: false,
+          onClick: jest.fn(),
         };
         wrapper = shallow(
           <MenuItemLink {...props}>
@@ -754,21 +761,28 @@ describe('rendering', () => {
           });
         });
         describe('if useFullRedirectsForLinks is false', () => {
+          let rendered;
+          let trackedLink;
           beforeEach(() => {
-            mockedEvent = { preventDefault: jest.fn() };
-            wrapper = shallow(
-              <MenuItemLink {...props} useFullRedirectsForLinks={false}>
+            window.location.replace = jest.fn();
+            rendered = renderApp(
+              <MenuItemLink
+                {...props}
+                useFullRedirectsForLinks={false}
+                onClick={event => {
+                  trackedLink = event.currentTarget.pathname;
+                }}
+              >
                 <LinkLabel />
               </MenuItemLink>
             );
-            wrapper.instance().redirectTo = jest.fn();
-            wrapper.find(NavLink).prop('onClick')(mockedEvent);
+            fireEvent.click(rendered.getByText('Customers'));
           });
-          it('should not call preventDefault on the event', () => {
-            expect(mockedEvent.preventDefault).not.toHaveBeenCalled();
-          });
-          it('should not call redirectTo', () => {
-            expect(wrapper.instance().redirectTo).not.toHaveBeenCalled();
+          it('should invoke onClick instead of redirecting', async () => {
+            await wait(() => {
+              expect(window.location.replace).not.toHaveBeenCalled();
+              expect(trackedLink).toBe(props.linkTo);
+            });
           });
         });
       });
