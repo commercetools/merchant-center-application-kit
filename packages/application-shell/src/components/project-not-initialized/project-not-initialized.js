@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import ProjectNotInitializedSVG from '@commercetools-frontend/assets/images/project-not-initialized.svg';
+import ProjectNotInitializedSVG from '@commercetools-frontend/assets/images/hourglass.svg';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import ServicePageProjectSwitcher from '../service-page-project-switcher';
 import messages from './messages';
