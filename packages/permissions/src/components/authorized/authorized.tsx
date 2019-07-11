@@ -1,5 +1,5 @@
 import React from 'react';
-import invariant from 'tiny-invariant';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   hasSomePermissions,
@@ -33,10 +33,14 @@ const Authorized = (props: Props) => {
     props.demandedPermissions,
     props.actualPermissions
   );
-  invariant(
-    !(namesOfNonConfiguredPermissions.length > 0),
-    `@commercetools-frontend/permissions/Authorized: Invalid prop "demandedPermissions" supplied. The permission(s) ${namesOfNonConfiguredPermissions.toString()} is/are not configured through "actualPermissions"`
-  );
+
+  if (namesOfNonConfiguredPermissions.length > 0)
+    reportErrorToSentry(
+      new Error(
+        `@commercetools-frontend/permissions/Authorized: Invalid prop "demandedPermissions" supplied. The permission(s) ${namesOfNonConfiguredPermissions.toString()} is/are not configured through "actualPermissions".`
+      ),
+      { extra: namesOfNonConfiguredPermissions }
+    );
 
   const isAuthorized = props.shouldMatchSomePermissions
     ? hasSomePermissions(props.demandedPermissions, props.actualPermissions)
