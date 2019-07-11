@@ -40,7 +40,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "7.4.5",
     "@commercetools-frontend/application-shell-connectors": "13.12.2",
-    "lodash": "4.17.11",
+    "lodash": "4.17.14",
     "lodash-es": "4.17.14",
     "prop-types": "15.7.2",
     "reselect": "^4.0.0",
