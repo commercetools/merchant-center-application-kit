@@ -40,6 +40,6 @@
     "@commercetools-frontend/constants": "13.12.2",
     "@commercetools-frontend/notifications": "13.12.2",
     "lodash": "4.17.11",
-    "lodash-es": "4.17.11"
+    "lodash-es": "4.17.14"
   }
 }
