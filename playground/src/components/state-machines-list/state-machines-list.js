@@ -91,7 +91,7 @@ export class StateMachinesList extends React.Component {
                 <Spacings.Stack scale="m">
                   {this.props.cachedStateMachineObjectsCount !== null && (
                     <Spacings.Inline alignItems="center">
-                      <DotIcon size="small" theme="green" />
+                      <DotIcon size="small" color="primary" />
                       <Text.Detail isItalic={true}>
                         <FormattedMessage
                           {...messages.objectsInCache}

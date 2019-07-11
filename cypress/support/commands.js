@@ -1,5 +1,10 @@
 import 'cypress-testing-library/add-commands';
 
+function isLocalhost() {
+  const url = new URL(Cypress.config('baseUrl'));
+  return url.hostname === 'localhost';
+}
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -30,25 +35,33 @@ Cypress.Commands.add('logout', () => {
   cy.visit('/logout');
 });
 
-Cypress.Commands.add('login', () => {
-  // Clear and previous session data (cookie and local storage)
-  cy.visit('/logout');
-  cy.visit('/login');
-
-  // Make sure all needed fields exist
-  cy.getByText('Email').should('exist');
-  cy.getByText('Password').should('exist');
-
-  // Fill out the form from `.env` or environment variables (CI)
-  cy.get('[name=email]').type(Cypress.env('LOGIN_USER'));
-  cy.get('[name=password]').type(Cypress.env('LOGIN_PASSWORD'));
-
-  // Sign in
-  cy.get('[aria-label="Sign in"]').click();
-
-  // Make sure that sign in worked
-  cy.get('[data-test=top-navigation').should('exist');
-});
+Cypress.Commands.add(
+  'login',
+  ({ redirectToUri, isForcedMenuOpen = false } = {}) => {
+    cy.setDesktopViewport();
+    cy.window().then(win =>
+      win.localStorage.setItem('isForcedMenuOpen', isForcedMenuOpen)
+    );
+    cy.visit('/logout');
+    // Wait to be in the "/login" route, then redirect to "/login" again
+    // to ensure we clear all query parameters, as they seem to interfer
+    // with the login form.
+    if (!isLocalhost()) {
+      cy.url().should('include', '/login');
+    }
+    cy.visit(`/login`);
+    cy.getByText('Email').should('exist');
+    cy.getByText('Password').should('exist');
+    cy.getByLabelText(/email/i).type(Cypress.env('LOGIN_USER'));
+    cy.getByLabelText(/password/i).type(Cypress.env('LOGIN_PASSWORD'), {
+      log: false,
+    });
+    cy.get('[aria-label="Sign in"]').click();
+    cy.get('[data-test=top-navigation').should('exist');
+    cy.visit(`${Cypress.config('baseUrl')}${redirectToUri}`);
+    cy.url().should('include', redirectToUri);
+  }
+);
 
 Cypress.Commands.add('setDesktopViewport', () => {
   // we use ui-elements which only render elements to the DOM when they are visible to the user
