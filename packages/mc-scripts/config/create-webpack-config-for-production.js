@@ -130,7 +130,6 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
     // In production, we only want to load the polyfills and the app code.
     entry: {
       app: [
-        require.resolve('./polyfills'),
         require.resolve('./application-runtime'),
         require.resolve('core-js/stable'),
         require.resolve('regenerator-runtime/runtime'),

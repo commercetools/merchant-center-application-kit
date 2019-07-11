@@ -54,8 +54,6 @@ module.exports = ({
 
   entry: {
     app: [
-      // Ship a few polyfills by default
-      require.resolve('./polyfills'),
       require.resolve('./application-runtime'),
       require.resolve('core-js/stable'),
       require.resolve('regenerator-runtime/runtime'),
