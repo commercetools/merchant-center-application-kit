@@ -26,7 +26,7 @@ import {
   StarIcon,
   ConnectedSquareIcon,
 } from '@commercetools-frontend/ui-kit';
-import MissingImageSvg from '@commercetools-frontend/assets/images/image__missing_image.svg';
+import MissingImageSvg from '@commercetools-frontend/assets/images/diagonal-line.svg';
 import {
   GRAPHQL_TARGETS,
   NO_VALUE_FALLBACK,
