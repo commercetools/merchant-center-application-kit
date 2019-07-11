@@ -25,7 +25,7 @@
     "@commercetools-frontend/permissions": "13.12.2",
     "@commercetools-frontend/sdk": "13.12.2",
     "@commercetools-frontend/ui-kit": "9.9.0",
-    "lodash": "4.17.11",
+    "lodash": "4.17.13",
     "lodash-es": "4.17.11",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
