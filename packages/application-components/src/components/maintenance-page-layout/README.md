@@ -8,7 +8,7 @@ This component should be used as a template to scaffold maintenance pages.
 
 ```js
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
-import PageNotFoundSVG from '@commercetools-frontend/assets/images/page-not-found.svg';
+import PageNotFoundSVG from '@commercetools-frontend/assets/images/desert-fox.svg';
 
 const PageNotFound = () => (
   <MaintenancePageLayout

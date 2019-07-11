@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import PageNotFoundSVG from '@commercetools-frontend/assets/images/page-not-found.svg';
+import PageNotFoundSVG from '@commercetools-frontend/assets/images/desert-fox.svg';
 import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import MaintenancePageLayout from '../maintenance-page-layout';
 import messages from './messages';
