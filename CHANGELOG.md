@@ -1,3 +1,10 @@
+## [13.13.2](https://github.com/commercetools/merchant-center-application-kit/compare/v13.13.1...v13.13.2) (2019-07-11)
+
+#### ⛑ Type: Refactoring
+* `permissions`
+  * [#838](https://github.com/commercetools/merchant-center-application-kit/pull/838) refactor(permissions): to use sentry for error reporting ([@tdeekens](https://github.com/tdeekens))
+
+
 ## [13.13.1](https://github.com/commercetools/merchant-center-application-kit/compare/v13.13.0...v13.13.1) (2019-07-11)
 
 #### 🐛 Type: Bug
