@@ -11,11 +11,11 @@ This package contains image assets that can be used in the creation of Merchant 
 ```js
 import React from 'react';
 // Import requires a bundler to deal with SVG files
-import ProjectExpired from '@commercetools-frontend/assets/images/project-expired.svg';
+import Hourglass from '@commercetools-frontend/assets/images/hourglass.svg';
 
 const Component = () => (
   <div>
-    <img src={ProjectExpired} />
+    <img src={Hourglass} />
   </div>
 );
 ```
