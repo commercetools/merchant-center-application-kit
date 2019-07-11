@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import ProjectExpiredSVG from '@commercetools-frontend/assets/images/project-expired.svg';
+import ProjectExpiredSVG from '@commercetools-frontend/assets/images/hourglass.svg';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import ServicePageProjectSwitcher from '../service-page-project-switcher';
 import messages from './messages';

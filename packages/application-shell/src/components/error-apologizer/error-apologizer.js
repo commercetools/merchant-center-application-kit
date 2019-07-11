@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import UnexpectedErrorSVG from '@commercetools-frontend/assets/images/unexpected-error.svg';
+import UnexpectedErrorSVG from '@commercetools-frontend/assets/images/icecream.svg';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import messages from './messages';
 
