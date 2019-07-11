@@ -25,7 +25,7 @@
     "production": [
       ">1%",
       "not op_mini all",
-      "ie 11"
+      "not dead"
     ],
     "development": [
       "last 2 firefox versions",
