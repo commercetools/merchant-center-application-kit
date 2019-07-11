@@ -60,7 +60,10 @@ describe('list view', () => {
   it('the user can see a list of state machines', async () => {
     const { getByText } = render({
       sdkMocks: [createStateMachinesListSdkMock()],
-      permissions: { canViewStates: true, canManageStates: true },
+      permissions: {
+        canViewDeveloperSettings: true,
+        canManageDeveloperSettings: true,
+      },
     });
     await waitForElement(() => getByText(/State machines/i));
     await waitForElement(() => getByText(/There are 2 objects in the cache/i));
@@ -73,7 +76,10 @@ describe('list view', () => {
         createStateMachinesListSdkMock(),
         createStateMachinesDetailSdkMock(),
       ],
-      permissions: { canViewStates: true, canManageStates: true },
+      permissions: {
+        canViewDeveloperSettings: true,
+        canManageDeveloperSettings: true,
+      },
     });
     await waitForElement(() => getByText(/There are 2 objects in the cache/i));
     fireEvent.click(getByText('sm-1'));

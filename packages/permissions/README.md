@@ -37,11 +37,9 @@ We recommend to put the permissions used by your application into a `constants.j
 ```js
 // constants.js
 export const PERMISSIONS = {
-  // Resource Accesses
   ViewProducts: 'ViewProducts',
   ManageProducts: 'ManageProducts',
   ViewOrders: 'ViewOrders',
-  ViewStates: 'ViewStates',
   ManageProductTypes: 'ManageProductTypes',
   ViewProductTypes: 'ViewProductTypes',
 };

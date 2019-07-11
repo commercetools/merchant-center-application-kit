@@ -19,7 +19,10 @@ const ApplicationRoutes = props => (
         path={`${props.match.path}/:id`}
         render={routerProps => (
           <RestrictedByPermissions
-            permissions={[PERMISSIONS.ViewStates, PERMISSIONS.ManageStates]}
+            permissions={[
+              PERMISSIONS.ViewDeveloperSettings,
+              PERMISSIONS.ManageDeveloperSettings,
+            ]}
             unauthorizedComponent={PageUnauthorized}
             shouldMatchSomePermissions={true}
           >
@@ -34,7 +37,10 @@ const ApplicationRoutes = props => (
       <Route
         render={routerProps => (
           <RestrictedByPermissions
-            permissions={[PERMISSIONS.ViewStates, PERMISSIONS.ManageStates]}
+            permissions={[
+              PERMISSIONS.ViewDeveloperSettings,
+              PERMISSIONS.ManageDeveloperSettings,
+            ]}
             unauthorizedComponent={PageUnauthorized}
             shouldMatchSomePermissions={true}
           >

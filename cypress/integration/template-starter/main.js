@@ -1,11 +1,8 @@
-import { URL_BASE } from '../../support/urls';
+import { URL_EXAMPLES_STARTER } from '../../support/urls';
 
 describe('Main view', () => {
   it('should render page', () => {
-    cy.setDesktopViewport();
-    cy.login();
-    cy.visit(`${URL_BASE}/examples-starter`);
-
+    cy.login({ redirectToUri: URL_EXAMPLES_STARTER });
     cy.getByText('Hello, world').should('exist');
   });
 });
