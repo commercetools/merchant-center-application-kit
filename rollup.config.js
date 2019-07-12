@@ -13,6 +13,7 @@ const json = require('rollup-plugin-json');
 const commonjs = require('rollup-plugin-commonjs');
 const postcss = require('rollup-plugin-postcss');
 const peerDeps = require('rollup-plugin-peer-deps-external');
+const replace = require('rollup-plugin-replace');
 const builtins = require('rollup-plugin-node-builtins');
 const babelPluginImportGraphQL = require('babel-plugin-import-graphql');
 const postcssCustomProperties = require('postcss-custom-properties');
@@ -37,6 +38,9 @@ const createConfig = cliArgs => {
       sourcemap: true,
     },
     plugins: [
+      replace({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      }),
       peerDeps({
         includeDependencies: true,
       }),
