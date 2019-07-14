@@ -348,11 +348,7 @@ class QuickAccess extends React.Component {
 export default flowRight(
   withApollo,
   injectIntl,
-  injectFeatureToggles([
-    'pimSearch',
-    'customApplications',
-    'canViewDashboard'
-  ]),
+  injectFeatureToggles(['pimSearch', 'customApplications', 'canViewDashboard']),
   connect(
     null,
     (dispatch, props) => ({
