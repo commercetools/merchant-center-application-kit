@@ -38,10 +38,7 @@ const managePermissions = { canManageProject: true };
 const flags = {
   pimSearch: true,
   customApplications: true,
-  canViewOrders: true,
-  canViewCategories: true,
   canViewDashboard: true,
-  canViewDiscounts: true,
 };
 
 const createTestProps = custom => ({

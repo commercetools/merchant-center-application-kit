@@ -68,7 +68,6 @@ export default ({
         ].filter(Boolean),
       },
     project &&
-      featureToggles.canViewCategories &&
       hasSomePermissions(
         [permissions.ViewProducts, permissions.ManageProducts],
         project.permissions
@@ -137,7 +136,6 @@ export default ({
         ].filter(Boolean),
       },
     project &&
-      featureToggles.canViewOrders &&
       hasSomePermissions(
         [permissions.ViewOrders, permissions.ManageOrders],
         project.permissions
@@ -160,7 +158,6 @@ export default ({
         ].filter(Boolean),
       },
     project &&
-      featureToggles.canViewDiscounts &&
       hasSomePermissions(
         [
           permissions.ViewProducts,
