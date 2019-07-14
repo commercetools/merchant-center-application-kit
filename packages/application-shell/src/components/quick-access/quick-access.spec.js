@@ -33,7 +33,19 @@ const createMatchlessSearchMock = (searchText, variables = {}) => ({
   },
 });
 
-const managePermissions = { canManageProject: true };
+const managePermissions = {
+  canManageOrders: true,
+  canManageProducts: true,
+  canManageCategories: true,
+  canManageCustomers: true,
+  canManageCustomerGroups: true,
+  canManageProductDiscounts: true,
+  canManageDiscountCodes: true,
+  canManageCartDiscounts: true,
+  canManageProjectSettings: true,
+  canManageDeveloperSettings: true,
+  canManageProductTypes: true,
+};
 
 const flags = {
   pimSearch: true,
