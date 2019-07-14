@@ -1143,7 +1143,6 @@ describe('QuickAccess', () => {
 
       const props = createTestProps();
       props.project.permissions = {
-        canManageProject: false,
         canViewOrders: false,
         canViewProducts: true,
       };
@@ -1166,7 +1165,7 @@ describe('QuickAccess', () => {
 
       const searchInput = getByTestId('quick-access-search-input');
       fireEvent.change(searchInput, { target: { value: searchTerm } });
-      await waitForElement(() => getByText('Open Dashboard'));
+      await waitForElement(() => getByText('Open Manage Organizations'));
 
       // results should not contain "Open Orders"
       expect(queryByText('Open Orders')).toBeNull();
@@ -1178,7 +1177,6 @@ describe('QuickAccess', () => {
 
       const props = createTestProps();
       props.project.permissions = {
-        canManageProject: false,
         canViewOrders: true,
         canViewProducts: true,
       };
