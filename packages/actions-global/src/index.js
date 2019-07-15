@@ -1,3 +1,4 @@
 export { default as version } from './version';
 
-export * from './global';
+export * from './actions';
+export * from './hooks';

@@ -1,10 +1,8 @@
 import { ADD_NOTIFICATION } from '@commercetools-frontend/notifications';
 import { HIDE_ALL_PAGE_NOTIFICATIONS } from '@commercetools-frontend/constants';
-import {
-  showApiErrorNotification,
-  showUnexpectedErrorNotification,
-  hideAllPageNotifications,
-} from './global';
+import showApiErrorNotification from './show-api-error-notification';
+import showUnexpectedErrorNotification from './show-unexpected-error-notification';
+import hideAllPageNotifications from './hide-all-page-notifications';
 
 describe('dispatching notifications', () => {
   describe('api errors', () => {
