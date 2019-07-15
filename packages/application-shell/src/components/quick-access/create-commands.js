@@ -1,8 +1,5 @@
 import { oneLineTrim } from 'common-tags';
-import {
-  hasPermission,
-  hasSomePermissions,
-} from '@commercetools-frontend/permissions';
+import { hasSomePermissions } from '@commercetools-frontend/permissions';
 import {
   LOGOUT_REASONS,
   SUPPORT_PORTAL_URL,
@@ -46,8 +43,8 @@ export default function createCommands({
           to: `/${applicationContext.project.key}/products`,
         },
         subCommands: [
-          hasPermission(
-            permissions.ViewProducts,
+          hasSomePermissions(
+            [permissions.ViewProducts],
             applicationContext.permissions
           ) && {
             id: 'go/products/list',
@@ -57,8 +54,8 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/products`,
             },
           },
-          hasPermission(
-            permissions.ViewProducts,
+          hasSomePermissions(
+            [permissions.ViewProducts],
             applicationContext.permissions
           ) && {
             id: 'go/products/modified',
@@ -68,8 +65,8 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/products/modified`,
             },
           },
-          hasPermission(
-            permissions.ViewProducts,
+          hasSomePermissions(
+            [permissions.ViewProducts],
             applicationContext.permissions
           ) &&
             featureToggles.pimSearch && {
@@ -80,8 +77,8 @@ export default function createCommands({
                 to: `/${applicationContext.project.key}/products/pim-search`,
               },
             },
-          hasPermission(
-            permissions.ManageProducts,
+          hasSomePermissions(
+            [permissions.ManageProducts],
             applicationContext.permissions
           ) && {
             id: 'go/products/add',
@@ -107,8 +104,8 @@ export default function createCommands({
           to: `/${applicationContext.project.key}/categories`,
         },
         subCommands: [
-          hasPermission(
-            permissions.ViewCategories,
+          hasSomePermissions(
+            [permissions.ViewCategories],
             applicationContext.permissions
           ) && {
             id: 'go/categories/list',
@@ -118,8 +115,8 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/categories?mode=list`,
             },
           },
-          hasPermission(
-            permissions.ViewCategories,
+          hasSomePermissions(
+            [permissions.ViewCategories],
             applicationContext.permissions
           ) && {
             id: 'go/categories/search',
@@ -129,8 +126,8 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/categories?mode=search`,
             },
           },
-          hasPermission(
-            permissions.ManageCategories,
+          hasSomePermissions(
+            [permissions.ManageCategories],
             applicationContext.permissions
           ) && {
             id: 'go/categories/add',
@@ -161,8 +158,8 @@ export default function createCommands({
           to: `/${applicationContext.project.key}/customers`,
         },
         subCommands: [
-          hasPermission(
-            permissions.ViewCustomers,
+          hasSomePermissions(
+            [permissions.ViewCustomers],
             applicationContext.permissions
           ) && {
             id: 'go/customers/list',
@@ -172,8 +169,8 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/customers`,
             },
           },
-          hasPermission(
-            permissions.ManageCustomers,
+          hasSomePermissions(
+            [permissions.ManageCustomers],
             applicationContext.permissions
           ) && {
             id: 'go/customers/new',
@@ -183,8 +180,8 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/customers/new`,
             },
           },
-          hasPermission(
-            permissions.ViewCustomerGroups,
+          hasSomePermissions(
+            [permissions.ViewCustomerGroups],
             applicationContext.permissions
           ) && {
             id: 'go/customer/customer-groups',
@@ -194,8 +191,8 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/customers/customer-groups`,
             },
           },
-          hasPermission(
-            permissions.ManageCustomerGroups,
+          hasSomePermissions(
+            [permissions.ManageCustomerGroups],
             applicationContext.permissions
           ) && {
             id: 'go/customers/customer-groups/add',
@@ -218,8 +215,8 @@ export default function createCommands({
         keywords: ['Go to Orders'],
         action: { type: 'go', to: `/${applicationContext.project.key}/orders` },
         subCommands: [
-          hasPermission(
-            permissions.ViewOrders,
+          hasSomePermissions(
+            [permissions.ViewOrders],
             applicationContext.permissions
           ) && {
             id: 'go/orders/list',
@@ -229,8 +226,8 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/orders`,
             },
           },
-          hasPermission(
-            permissions.ManageOrders,
+          hasSomePermissions(
+            [permissions.ManageOrders],
             applicationContext.permissions
           ) && {
             id: 'go/orders/add',
@@ -263,8 +260,8 @@ export default function createCommands({
           to: `/${applicationContext.project.key}/discounts`,
         },
         subCommands: [
-          hasPermission(
-            permissions.ViewProductDiscounts,
+          hasSomePermissions(
+            [permissions.ViewProductDiscounts],
             applicationContext.permissions
           ) && {
             id: 'go/discounts/products/list',
@@ -274,8 +271,8 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/discounts/products`,
             },
           },
-          hasPermission(
-            permissions.ViewCartDiscounts,
+          hasSomePermissions(
+            [permissions.ViewCartDiscounts],
             applicationContext.permissions
           ) && {
             id: 'go/discounts/carts/list',
@@ -285,8 +282,8 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/discounts/carts`,
             },
           },
-          hasPermission(
-            permissions.ViewDiscountCodes,
+          hasSomePermissions(
+            [permissions.ViewDiscountCodes],
             applicationContext.permissions
           ) && {
             id: 'go/discounts/codes/list',
@@ -311,8 +308,8 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/discounts/new`,
             },
             subCommands: [
-              hasPermission(
-                permissions.ManageProductDiscounts,
+              hasSomePermissions(
+                [permissions.ManageProductDiscounts],
                 applicationContext.permissions
               ) && {
                 id: 'go/discounts/product/add',
@@ -322,8 +319,8 @@ export default function createCommands({
                   to: `/${applicationContext.project.key}/discounts/products/new`,
                 },
               },
-              hasPermission(
-                permissions.ManageCartDiscounts,
+              hasSomePermissions(
+                [permissions.ManageCartDiscounts],
                 applicationContext.permissions
               ) && {
                 id: 'go/discounts/cart/add',
@@ -333,8 +330,8 @@ export default function createCommands({
                   to: `/${applicationContext.project.key}/discounts/carts/new`,
                 },
               },
-              hasPermission(
-                permissions.ManageDiscountCodes,
+              hasSomePermissions(
+                [permissions.ManageDiscountCodes],
                 applicationContext.permissions
               ) && {
                 id: 'go/discounts/code/add',
@@ -450,7 +447,7 @@ export default function createCommands({
           },
           featureToggles.customApplications &&
             hasSomePermissions(
-              permissions.ManageProjectSettings,
+              [permissions.ManageProjectSettings],
               applicationContext.permissions
             ) && {
               id: 'go/settings/custom-applications',
