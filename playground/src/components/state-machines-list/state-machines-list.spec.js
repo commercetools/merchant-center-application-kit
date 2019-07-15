@@ -27,7 +27,7 @@ const createStateMachinesListSdkMock = () => ({
     ],
   },
 });
-const createStateMachinesDetailSdkMock = () => ({
+const createStateMachinesDetailSdkMockForId1 = () => ({
   action: {
     type: 'SDK',
     payload: {
@@ -44,8 +44,39 @@ const createStateMachinesDetailSdkMock = () => ({
     builtIn: true,
   },
 });
+const createStateMachinesDetailSdkMockForId2 = () => ({
+  action: {
+    type: 'SDK',
+    payload: {
+      method: 'GET',
+      service: 'states',
+      options: { id: 'sm2' },
+    },
+  },
+  response: {
+    id: 'sm2',
+    key: 'sm-2',
+    type: 'LineItemState',
+    initial: true,
+    builtIn: true,
+  },
+});
+const createStateMachinesDetailSdkErrorMock = () => ({
+  action: {
+    type: 'SDK',
+    payload: {
+      method: 'GET',
+      service: 'states',
+      options: { id: 'sm1' },
+    },
+  },
+  error: {
+    statusCode: 500,
+    message: 'Something went wrong',
+  },
+});
 
-const render = (options = {}) => {
+const renderApp = (options = {}) => {
   const route = options.route || '/my-project/state-machines';
   return renderAppWithRedux(<ApplicationStateMachines />, {
     route,
@@ -54,38 +85,100 @@ const render = (options = {}) => {
 };
 
 describe('list view', () => {
+  let rendered;
   beforeAll(() => {
     applyUiKitMocks();
   });
   it('the user can see a list of state machines', async () => {
-    const { getByText } = render({
+    rendered = renderApp({
       sdkMocks: [createStateMachinesListSdkMock()],
       permissions: {
         canViewDeveloperSettings: true,
         canManageDeveloperSettings: true,
       },
     });
-    await waitForElement(() => getByText(/State machines/i));
-    await waitForElement(() => getByText(/There are 2 objects in the cache/i));
-    await waitForElement(() => getByText('sm-1'));
-    await waitForElement(() => getByText('sm-2'));
+    await waitForElement(() => rendered.getByText(/State machines/i));
+    await waitForElement(() =>
+      rendered.getByText(/There are 2 objects in the cache/i)
+    );
+    await waitForElement(() => rendered.getByText('sm-1'));
+    await waitForElement(() => rendered.getByText('sm-2'));
   });
   it('the user can click on the state machines to get to the details page', async () => {
-    const { getByText, history } = render({
+    rendered = renderApp({
       sdkMocks: [
         createStateMachinesListSdkMock(),
-        createStateMachinesDetailSdkMock(),
+        createStateMachinesDetailSdkMockForId1(),
       ],
       permissions: {
         canViewDeveloperSettings: true,
         canManageDeveloperSettings: true,
       },
     });
-    await waitForElement(() => getByText(/There are 2 objects in the cache/i));
-    fireEvent.click(getByText('sm-1'));
+    await waitForElement(() =>
+      rendered.getByText(/There are 2 objects in the cache/i)
+    );
+    fireEvent.click(rendered.getByText('sm-1'));
     await wait(() => {
-      expect(history.location.pathname).toBe('/my-project/state-machines/sm1');
+      expect(rendered.history.location.pathname).toBe(
+        '/my-project/state-machines/sm1'
+      );
     });
-    await waitForElement(() => getByText(/sm-1/i));
+    await waitForElement(() => rendered.getByText(/sm-1/i));
+  });
+});
+
+describe('details view', () => {
+  let rendered;
+  beforeAll(() => {
+    applyUiKitMocks();
+  });
+  describe('when request is successful', () => {
+    it('should render data on page', async () => {
+      rendered = renderApp({
+        route: '/my-project/state-machines/sm1',
+        sdkMocks: [createStateMachinesDetailSdkMockForId1()],
+        permissions: {
+          canViewDeveloperSettings: true,
+          canManageDeveloperSettings: true,
+        },
+      });
+      await waitForElement(() => rendered.getByText(/sm-1/i));
+    });
+    it('should retrigger request if id changes', async () => {
+      rendered = renderApp({
+        route: '/my-project/state-machines/sm1',
+        sdkMocks: [
+          createStateMachinesDetailSdkMockForId1(),
+          createStateMachinesDetailSdkMockForId2(),
+        ],
+        permissions: {
+          canViewDeveloperSettings: true,
+          canManageDeveloperSettings: true,
+        },
+      });
+      await waitForElement(() => rendered.getByText(/sm-1/i));
+
+      rendered.history.push('/my-project/state-machines/sm2');
+      await waitForElement(() => rendered.getByText(/sm-2/i));
+    });
+  });
+  describe('when request returns an error', () => {
+    beforeEach(() => {
+      console.error = jest.fn();
+    });
+    it('should render notification error message', async () => {
+      rendered = renderApp({
+        route: '/my-project/state-machines/sm1',
+        sdkMocks: [createStateMachinesDetailSdkErrorMock()],
+        permissions: {
+          canViewDeveloperSettings: true,
+          canManageDeveloperSettings: true,
+        },
+      });
+      await waitForElement(() =>
+        rendered.getByText(/^Sorry, but there seems to be something wrong/i)
+      );
+    });
   });
 });
