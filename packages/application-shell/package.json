@@ -111,7 +111,7 @@
     "react-apollo": "2.x",
     "react-dom": ">=16.8.0",
     "react-intl": "3.x",
-    "react-redux": "6.x || 7.x",
+    "react-redux": "7.x",
     "react-router": "5.x",
     "react-router-dom": "5.x",
     "redux": "4.x"
