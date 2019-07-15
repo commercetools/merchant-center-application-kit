@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 const defaultCustomMapNotificationToComponent = () => null;
 
-const { Provider, Consumer } = React.createContext(
-  defaultCustomMapNotificationToComponent
-);
+const Context = React.createContext(defaultCustomMapNotificationToComponent);
 
 const NotificationProviderForCustomComponent = props => (
-  <Provider value={props.mapNotificationToComponent}>{props.children}</Provider>
+  <Context.Provider value={props.mapNotificationToComponent}>
+    {props.children}
+  </Context.Provider>
 );
 NotificationProviderForCustomComponent.displayName =
   'NotificationProviderForCustomComponent';
@@ -18,17 +18,22 @@ NotificationProviderForCustomComponent.propTypes = {
 };
 
 const GetCustomNotificationComponent = props => (
-  <Consumer>
+  <Context.Consumer>
     {mapCustomNotificationToComponent =>
       props.render(mapCustomNotificationToComponent)
     }
-  </Consumer>
+  </Context.Consumer>
 );
 GetCustomNotificationComponent.displayName = 'GetCustomNotificationComponent';
 GetCustomNotificationComponent.propTypes = {
   render: PropTypes.func.isRequired,
 };
 
+const useCustomNotificationComponent = () => React.useContext(Context);
+
 // Exports
 export default GetCustomNotificationComponent;
-export { NotificationProviderForCustomComponent };
+export {
+  NotificationProviderForCustomComponent,
+  useCustomNotificationComponent,
+};
