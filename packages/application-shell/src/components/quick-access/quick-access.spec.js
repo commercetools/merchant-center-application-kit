@@ -3,6 +3,7 @@ import {
   renderAppWithRedux,
   fireEvent,
   waitForElement,
+  wait,
 } from '../../test-utils';
 import * as gtm from '../../utils/gtm';
 import QuickAccessQuery from './quick-access.graphql';
@@ -1108,7 +1109,7 @@ describe('QuickAccess', () => {
     it('should not find "Open Orders" when user has no orders permission', async () => {
       const searchTerm = 'Opn Ordrs';
       const mocks = [createMatchlessSearchMock(searchTerm)];
-      const { getByTestId, queryByText, getByText } = renderAppWithRedux(
+      const { getByTestId, queryByText, getAllByText } = renderAppWithRedux(
         <QuickAccess />,
         {
           mocks,
@@ -1132,10 +1133,15 @@ describe('QuickAccess', () => {
         getByTestId('quick-access-search-input')
       );
       fireEvent.change(searchInput, { target: { value: searchTerm } });
-      await waitForElement(() => getByText('Open Manage Organizations'));
+      await waitForElement(() => getAllByText(/^Open/));
 
-      // results should not contain "Open Orders"
-      expect(queryByText('Open Orders')).toBeNull();
+      await wait(
+        () => {
+          // results should not contain "Open Orders"
+          expect(queryByText('Open Orders')).toBeNull();
+        },
+        { timeout: 1000 }
+      );
     });
 
     it('should find "Open Orders" when user has the view orders permission', async () => {
