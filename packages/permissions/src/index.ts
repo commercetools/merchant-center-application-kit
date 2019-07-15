@@ -11,7 +11,6 @@ export {
 } from './components/authorized';
 export { default as useIsAuthorized } from './hooks/use-is-authorized';
 export {
-  hasPermission,
   hasEveryPermissions,
   hasSomePermissions,
 } from './utils/has-permissions';

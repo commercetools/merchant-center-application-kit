@@ -230,7 +230,7 @@ class QuickAccess extends React.Component {
             },
             subCommands: createProductTabsSubCommands({
               intl: this.props.intl,
-              project: this.props.applicationContext.project,
+              applicationContext: this.props.applicationContext,
               productId,
             }),
           });
@@ -252,7 +252,7 @@ class QuickAccess extends React.Component {
               },
               subCommands: createProductTabsSubCommands({
                 intl: this.props.intl,
-                project: this.props.applicationContext.project,
+                applicationContext: this.props.applicationContext,
                 productId: product.id,
               }),
             });
@@ -271,7 +271,7 @@ class QuickAccess extends React.Component {
             },
             subCommands: createProductTabsSubCommands({
               intl: this.props.intl,
-              project: this.props.applicationContext.project,
+              applicationContext: this.props.applicationContext,
               productId,
             }),
           });

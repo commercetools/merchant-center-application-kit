@@ -122,7 +122,11 @@ export const createProductVariantListSubCommands = ({
       )
     : [];
 
-export const createProductTabsSubCommands = ({ intl, project, productId }) =>
+export const createProductTabsSubCommands = ({
+  intl,
+  applicationContext,
+  productId,
+}) =>
   hasSomePermissions(
     [permissions.ViewProducts, permissions.ManageProducts],
     applicationContext.permissions
