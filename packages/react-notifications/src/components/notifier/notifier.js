@@ -1,53 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import isNumber from 'lodash/isNumber';
 import * as globalActions from '@commercetools-frontend/actions-global';
 import { DOMAINS } from '@commercetools-frontend/constants';
 
-export class Notifier extends React.Component {
-  static displayName = 'Notifier';
-  static propTypes = {
-    showNotification: PropTypes.func.isRequired,
-    domain: PropTypes.oneOf(Object.values(DOMAINS)).isRequired,
-    kind: PropTypes.string.isRequired,
-    text: PropTypes.string,
-    meta: PropTypes.object,
-    dismissAfter: PropTypes.number,
-  };
+const Notifier = props => {
+  const showNotification = globalActions.useShowNotification();
 
-  static defaultProps = {
-    domain: DOMAINS.SIDE,
-    kind: 'success',
-  };
-
-  notificationHandle = false;
-
-  componentDidMount() {
-    this.notificationHandle = this.props.showNotification(
+  React.useEffect(() => {
+    const notification = showNotification(
       {
-        domain: this.props.domain,
-        kind: this.props.kind,
-        text: this.props.text,
+        domain: props.domain,
+        kind: props.kind,
+        text: props.text,
       },
-      isNumber(this.props.dismissAfter)
-        ? { ...this.props.meta, dismissAfter: this.props.dismissAfter }
-        : this.props.meta
+      isNumber(props.dismissAfter)
+        ? { ...props.meta, dismissAfter: props.dismissAfter }
+        : props.meta
     );
-  }
+    return () => {
+      // Remove notification when component "unmounts"
+      notification.dismiss();
+    };
+  }, []); // run only once
 
-  componentWillUnmount() {
-    this.notificationHandle.dismiss();
-  }
+  return null;
+};
+Notifier.displayName = 'Notifier';
+Notifier.propTypes = {
+  domain: PropTypes.oneOf(Object.values(DOMAINS)).isRequired,
+  kind: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  meta: PropTypes.object,
+  dismissAfter: PropTypes.number,
+};
+Notifier.defaultProps = {
+  domain: DOMAINS.SIDE,
+  kind: 'success',
+};
 
-  render() {
-    return null;
-  }
-}
-
-export default connect(
-  null,
-  {
-    showNotification: globalActions.showNotification,
-  }
-)(Notifier);
+export default Notifier;

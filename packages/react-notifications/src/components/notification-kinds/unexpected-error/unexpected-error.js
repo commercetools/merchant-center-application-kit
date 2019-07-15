@@ -5,34 +5,28 @@ import { DOMAINS } from '@commercetools-frontend/constants';
 import apiErrorMessages from '../api-error-message/messages';
 import Notification from '../../notification';
 
-class UnexpectedErrorNotification extends React.PureComponent {
-  static displayName = 'UnexpectedErrorNotification';
-
-  static propTypes = {
-    dismiss: PropTypes.func.isRequired,
-    notification: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      domain: PropTypes.oneOf([DOMAINS.PAGE]).isRequired,
-      kind: PropTypes.oneOf(['unexpected-error']).isRequired,
-      values: PropTypes.shape({ errorId: PropTypes.string }),
-    }),
-  };
-
-  render() {
-    return (
-      <Notification
-        type="error"
-        domain={this.props.notification.domain}
-        onCloseClick={this.props.dismiss}
-      >
-        <FormattedMessage {...apiErrorMessages.General} />
-        {this.props.notification.values.errorId && <br />}
-        {this.props.notification.values.errorId && (
-          <span>{`ID (${this.props.notification.values.errorId})`}</span>
-        )}
-      </Notification>
-    );
-  }
-}
+const UnexpectedErrorNotification = props => (
+  <Notification
+    type="error"
+    domain={props.notification.domain}
+    onCloseClick={props.dismiss}
+  >
+    <FormattedMessage {...apiErrorMessages.General} />
+    {props.notification.values.errorId && <br />}
+    {props.notification.values.errorId && (
+      <span>{`ID (${props.notification.values.errorId})`}</span>
+    )}
+  </Notification>
+);
+UnexpectedErrorNotification.displayName = 'UnexpectedErrorNotification';
+UnexpectedErrorNotification.propTypes = {
+  dismiss: PropTypes.func.isRequired,
+  notification: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    domain: PropTypes.oneOf([DOMAINS.PAGE]).isRequired,
+    kind: PropTypes.oneOf(['unexpected-error']).isRequired,
+    values: PropTypes.shape({ errorId: PropTypes.string }),
+  }),
+};
 
 export default UnexpectedErrorNotification;
