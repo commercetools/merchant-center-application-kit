@@ -1,3 +1,15 @@
+## [13.13.3](https://github.com/commercetools/merchant-center-application-kit/compare/v13.13.2...v13.13.3) (2019-07-15)
+
+#### ⛑ Type: Refactoring
+* `application-shell`
+  * [#842](https://github.com/commercetools/merchant-center-application-kit/pull/842) refactor(app-shell/quick-acess): to use new permissions ([@tdeekens](https://github.com/tdeekens))
+
+#### 🤖 Type: Dependencies
+* Other
+  * [#849](https://github.com/commercetools/merchant-center-application-kit/pull/849) chore: update deps ([@emmenko](https://github.com/emmenko))
+* `actions-global`, `application-shell-connectors`, `application-shell`, `permissions`, `react-notifications`
+  * [#840](https://github.com/commercetools/merchant-center-application-kit/pull/840) chore: update dependencies ([@emmenko](https://github.com/emmenko))
+
 ## [13.13.2](https://github.com/commercetools/merchant-center-application-kit/compare/v13.13.1...v13.13.2) (2019-07-11)
 
 #### ⛑ Type: Refactoring
