@@ -4,30 +4,14 @@ import { DOMAINS } from '@commercetools-frontend/constants';
 import Notification from '../../notification';
 import ApiErrorMessage from '../api-error-message';
 
-class ApiErrorNotification extends React.PureComponent {
-  static displayName = 'ApiErrorNotification';
-
-  static propTypes = {
-    dismiss: PropTypes.func.isRequired,
-    notification: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      domain: PropTypes.oneOf([DOMAINS.PAGE]).isRequired,
-      kind: PropTypes.oneOf(['api-error']).isRequired,
-      values: PropTypes.shape({
-        message: PropTypes.string,
-        errors: PropTypes.arrayOf(
-          PropTypes.shape({
-            code: PropTypes.string,
-            message: PropTypes.string,
-          })
-        ).isRequired,
-      }),
-    }),
-  };
-
-  renderApiErrors = errors => (
+const ApiErrorNotification = props => (
+  <Notification
+    type="error"
+    domain={props.notification.domain}
+    onCloseClick={props.dismiss}
+  >
     <ul>
-      {errors.map((error, idx) => {
+      {props.notification.values.errors.map((error, idx) => {
         if (!error.code && process.env.NODE_ENV !== 'production') {
           /**
            * NOTE: This is an API error which usually contains
@@ -45,19 +29,25 @@ class ApiErrorNotification extends React.PureComponent {
         );
       })}
     </ul>
-  );
-
-  render() {
-    return (
-      <Notification
-        type="error"
-        domain={this.props.notification.domain}
-        onCloseClick={this.props.dismiss}
-      >
-        {this.renderApiErrors(this.props.notification.values.errors)}
-      </Notification>
-    );
-  }
-}
+  </Notification>
+);
+ApiErrorNotification.displayName = 'ApiErrorNotification';
+ApiErrorNotification.propTypes = {
+  dismiss: PropTypes.func.isRequired,
+  notification: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    domain: PropTypes.oneOf([DOMAINS.PAGE]).isRequired,
+    kind: PropTypes.oneOf(['api-error']).isRequired,
+    values: PropTypes.shape({
+      message: PropTypes.string,
+      errors: PropTypes.arrayOf(
+        PropTypes.shape({
+          code: PropTypes.string,
+          message: PropTypes.string,
+        })
+      ).isRequired,
+    }),
+  }),
+};
 
 export default ApiErrorNotification;

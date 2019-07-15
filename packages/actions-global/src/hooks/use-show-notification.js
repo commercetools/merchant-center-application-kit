@@ -13,8 +13,8 @@ import { useDispatch } from 'react-redux';
 export default function useShowNotification(notificationFragment) {
   const dispatch = useDispatch();
   return React.useCallback(
-    content => {
-      dispatch(showNotification({ ...notificationFragment, ...content }));
+    (content, meta) => {
+      dispatch(showNotification({ ...notificationFragment, ...content }, meta));
     },
     [dispatch, notificationFragment]
   );
