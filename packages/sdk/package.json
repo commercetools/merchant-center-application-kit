@@ -54,6 +54,6 @@
   },
   "peerDependencies": {
     "react": ">=16.8.0",
-    "react-redux": "6.x || 7.x"
+    "react-redux": "7.x"
   }
 }
