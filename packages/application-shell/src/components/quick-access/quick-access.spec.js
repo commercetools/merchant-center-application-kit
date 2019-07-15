@@ -33,15 +33,24 @@ const createMatchlessSearchMock = (searchText, variables = {}) => ({
   },
 });
 
-const managePermissions = { canManageProject: true };
+const managePermissions = {
+  canManageOrders: true,
+  canManageProducts: true,
+  canManageCategories: true,
+  canManageCustomers: true,
+  canManageCustomerGroups: true,
+  canManageProductDiscounts: true,
+  canManageDiscountCodes: true,
+  canManageCartDiscounts: true,
+  canManageProjectSettings: true,
+  canManageDeveloperSettings: true,
+  canManageProductTypes: true,
+};
 
 const flags = {
   pimSearch: true,
   customApplications: true,
-  canViewOrders: true,
-  canViewCategories: true,
   canViewDashboard: true,
-  canViewDiscounts: true,
 };
 
 const createTestProps = custom => ({
@@ -1134,7 +1143,6 @@ describe('QuickAccess', () => {
 
       const props = createTestProps();
       props.project.permissions = {
-        canManageProject: false,
         canViewOrders: false,
         canViewProducts: true,
       };
@@ -1157,7 +1165,7 @@ describe('QuickAccess', () => {
 
       const searchInput = getByTestId('quick-access-search-input');
       fireEvent.change(searchInput, { target: { value: searchTerm } });
-      await waitForElement(() => getByText('Open Dashboard'));
+      await waitForElement(() => getByText('Open Manage Organizations'));
 
       // results should not contain "Open Orders"
       expect(queryByText('Open Orders')).toBeNull();
@@ -1169,7 +1177,6 @@ describe('QuickAccess', () => {
 
       const props = createTestProps();
       props.project.permissions = {
-        canManageProject: false,
         canViewOrders: true,
         canViewProducts: true,
       };
