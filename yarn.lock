@@ -910,10 +910,10 @@
     lodash.omit "^4.5.0"
     react-display-name "0.2.4"
 
-"@commercetools/github-labels@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@commercetools/github-labels/-/github-labels-1.0.2.tgz#b7f87d6deb403a99525f0cb513bd5d14f1566060"
-  integrity sha512-285RirvT2o1FxkEIKUGTRrnREHJNv/V4g+Tttvvz5grZ8wWRxbmDl1d7llM1Yu2DKwFo4gy8CGsK60SgRlz2gw==
+"@commercetools/github-labels@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@commercetools/github-labels/-/github-labels-1.1.0.tgz#0be242831fad863cd5bd7b41b7366763ea7dbeea"
+  integrity sha512-MNOUZDUyXKf6jRk67esFdvWjIdjUY9/9pAIdUt++VDPbYA8kbY4HZWs6dPgqxBfD9Krwax4Xqvon9zFvm25aPQ==
   dependencies:
     "@commercetools/http-user-agent" "^2.0.0"
     "@octokit/rest" "^16.25.0"
