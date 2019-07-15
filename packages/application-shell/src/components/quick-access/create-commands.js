@@ -108,10 +108,7 @@ export default ({
         keywords: ['Go to Customers'],
         action: { type: 'go', to: `/${project.key}/customers` },
         subCommands: [
-          hasSomePermissions(
-            [permissions.ViewCustomers],
-            project.permissions
-          ) && {
+          hasPermission(permissions.ViewCustomers, project.permissions) && {
             id: 'go/customers/list',
             text: intl.formatMessage(messages.openCustomersList),
             action: { type: 'go', to: `/${project.key}/customers` },
@@ -121,8 +118,8 @@ export default ({
             text: intl.formatMessage(messages.openAddCustomer),
             action: { type: 'go', to: `/${project.key}/customers/new` },
           },
-          hasSomePermissions(
-            [permissions.ViewCustomerGroups],
+          hasPermission(
+            permissions.ViewCustomerGroups,
             project.permissions
           ) && {
             id: 'go/customer/customer-groups',
@@ -184,29 +181,20 @@ export default ({
         keywords: ['Go to Discounts'],
         action: { type: 'go', to: `/${project.key}/discounts` },
         subCommands: [
-          hasSomePermissions(
-            [
-              permissions.ViewProductDiscounts,
-              permissions.ManageProductDiscounts,
-            ],
+          hasPermission(
+            permissions.ViewProductDiscounts,
             project.permissions
           ) && {
             id: 'go/discounts/products/list',
             text: intl.formatMessage(messages.openProductDiscountsList),
             action: { type: 'go', to: `/${project.key}/discounts/products` },
           },
-          hasSomePermissions(
-            [permissions.ViewCartDiscounts, permissions.ManageCartDiscounts],
-            project.permissions
-          ) && {
+          hasPermission(permissions.ViewCartDiscounts, project.permissions) && {
             id: 'go/discounts/carts/list',
             text: intl.formatMessage(messages.openCartDiscountsList),
             action: { type: 'go', to: `/${project.key}/discounts/carts` },
           },
-          hasSomePermissions(
-            [permissions.ViewDiscountCodes, permissions.ManageDiscountCodes],
-            project.permissions
-          ) && {
+          hasPermission(permissions.ViewDiscountCodes, project.permissions) && {
             id: 'go/discounts/codes/list',
             text: intl.formatMessage(messages.openDiscountCodesList),
             action: { type: 'go', to: `/${project.key}/discounts/codes` },
