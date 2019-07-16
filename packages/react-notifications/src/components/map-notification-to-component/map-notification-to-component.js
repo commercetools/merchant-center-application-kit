@@ -17,23 +17,7 @@ NotificationProviderForCustomComponent.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const GetCustomNotificationComponent = props => (
-  <Context.Consumer>
-    {mapCustomNotificationToComponent =>
-      props.render(mapCustomNotificationToComponent)
-    }
-  </Context.Consumer>
-);
-GetCustomNotificationComponent.displayName = 'GetCustomNotificationComponent';
-GetCustomNotificationComponent.propTypes = {
-  render: PropTypes.func.isRequired,
-};
-
-const useCustomNotificationComponent = () => React.useContext(Context);
+export const useCustomNotificationComponent = () => React.useContext(Context);
 
 // Exports
-export default GetCustomNotificationComponent;
-export {
-  NotificationProviderForCustomComponent,
-  useCustomNotificationComponent,
-};
+export default NotificationProviderForCustomComponent;

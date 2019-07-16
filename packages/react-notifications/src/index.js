@@ -1,8 +1,6 @@
 export { default as version } from './version';
 export {
-  default as GetCustomNotificationComponent,
-  NotificationProviderForCustomComponent,
-  useCustomNotificationComponent,
+  default as NotificationProviderForCustomComponent,
 } from './components/map-notification-to-component';
 export { default as Notification } from './components/notification';
 export {
