@@ -8,6 +8,7 @@ jest.mock('../utils');
 const middlewareOptions = {
   getCorrelationId: jest.fn(),
   getProjectKey: jest.fn(() => 'test-project'),
+  getTeamId: jest.fn(() => 'test-team'),
 };
 
 describe('when the action is of type SDK', () => {

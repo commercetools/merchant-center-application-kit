@@ -14,6 +14,7 @@ import apolloClient from './configure-apollo';
 import {
   getCorrelationId,
   selectProjectKeyFromUrl,
+  selectTeamIdFromLocalStorage,
   selectUserId,
 } from './utils';
 
@@ -35,6 +36,7 @@ const createInternalReducer = (injectedReducers = {}) =>
 const sdkMiddleware = createSdkMiddleware({
   getCorrelationId: patchedGetCorrelationId,
   getProjectKey: selectProjectKeyFromUrl,
+  getTeamId: selectTeamIdFromLocalStorage,
 });
 
 export const applyDefaultMiddlewares = (...middlewares) =>
