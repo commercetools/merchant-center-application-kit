@@ -45,9 +45,9 @@ const headerLink = new ApolloLink((operation, forward) => {
     credentials: 'include',
     headers: {
       'X-Project-Key': projectKey,
-      'X-Team-Id': teamId,
       'X-Correlation-Id': getCorrelationId({ userId }),
       'X-Graphql-Target': target,
+      ...(teamId && { 'X-Team-Id': teamId }),
     },
   });
   return forward(operation);

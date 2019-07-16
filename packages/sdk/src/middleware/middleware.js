@@ -72,7 +72,7 @@ export default function createSdkMiddleware({
           ...(action.payload.headers || {}),
           ...(shouldRenewToken ? { 'X-Force-Token': 'true' } : {}),
           'X-Project-Key': projectKey,
-          'X-Team-Id': teamId,
+          ...(teamId && { 'X-Team-Id': teamId }),
         };
         const body =
           action.payload.method === 'POST' ? action.payload.payload : undefined;
