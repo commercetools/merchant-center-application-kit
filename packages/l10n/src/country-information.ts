@@ -1,5 +1,5 @@
 import * as PropTypes from 'prop-types';
-import createL10NInjector from './create-l10n-injector';
+import { createL10NInjector, createL10NHook } from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
 import { Countries } from './types';
 
@@ -60,3 +60,5 @@ export const withCountries = createL10NInjector<Countries>({
   propLoadingKey: 'isLoadingCountries',
   loadLocale: getCountriesForLocale,
 });
+
+export const useCountries = createL10NHook(getCountriesForLocale);

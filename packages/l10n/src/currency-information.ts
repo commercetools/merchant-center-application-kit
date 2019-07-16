@@ -1,5 +1,5 @@
 import * as PropTypes from 'prop-types';
-import createL10NInjector from './create-l10n-injector';
+import { createL10NInjector, createL10NHook } from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
 import { Currencies } from './types';
 
@@ -56,10 +56,11 @@ const getCurrenciesForLocale = (
     .catch(error => cb(error));
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const withCurrencies = createL10NInjector<Currencies>({
   displayName: 'withCurrencies',
   propKey: 'currencies',
   propLoadingKey: 'isLoadingCurrencies',
   loadLocale: getCurrenciesForLocale,
 });
+
+export const useCurrencies = createL10NHook(getCurrenciesForLocale);

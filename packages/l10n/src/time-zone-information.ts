@@ -1,5 +1,5 @@
 import * as PropTypes from 'prop-types';
-import createL10NInjector from './create-l10n-injector';
+import { createL10NInjector, createL10NHook } from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
 import { TimeZones } from './types';
 
@@ -66,3 +66,5 @@ export const withTimeZones = createL10NInjector<TimeZones>({
   propLoadingKey: 'isLoadingTimeZones',
   loadLocale: getTimeZonesForLocale,
 });
+
+export const useTimeZones = createL10NHook(getTimeZonesForLocale);
