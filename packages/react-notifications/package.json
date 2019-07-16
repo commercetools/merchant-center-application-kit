@@ -62,7 +62,7 @@
     "@commercetools-frontend/ui-kit": "10.x",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
-    "react-intl": "3.x",
+    "react-intl": ">=3.0.0-beta.14 || 3.x",
     "react-redux": "7.x",
     "react-router": "5.x",
     "react-router-dom": "5.x"

@@ -1,3 +1,226 @@
+## [14.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.13.3...v14.0.0) (2019-07-18)
+
+This release introduces several **breaking changes**, as documented below, mostly around React Hooks and our own permission functionality.
+
+> You can read the v14 announcement and release tracker here: https://github.com/commercetools/merchant-center-application-kit/issues/748
+
+### Full support for React Hooks
+
+In order to support Hooks the following peer dependencies have to be updated:
+
+- `react >=16.8`
+- `react-dom >=16.8`
+- `react-intl >=3` (_currently still in beta_)
+- `react-redux >=7`
+
+> If you need more information about React Hooks, we recommend to have a look at the following resources. Hooks are another way to write components as they come with many benefits:
+>
+> - https://reactjs.org/docs/hooks-intro.html
+> - https://egghead.io/courses/simplify-react-apps-with-react-hooks
+> - https://usehooks.com/
+>
+> TL;DR; with Hooks code can become more readable, easier to test while often improving performance and reducing bundlesize.
+
+Some of the AppKit packages now export different Hooks (_more might come in the future_). Here is a quick overview of existing and new Hooks:
+
+- `actions-global`: provides Hooks to dispatch notifications. Previously we had to _bind_ the action creators using `connect` from `react-redux`. Now the binding is done within the Hooks.
+  - `useShowNotification`
+  - `useShowApiErrorNotification`
+  - `useShowUnexpectedErrorNotification`
+
+```js
+const showSuccessNotification = useShowNotification({
+  kind: 'success',
+  domain: DOMAINS.SIDE,
+});
+showSuccessNotification({ text: 'All good!' });
+
+const showApiErrorNotification = useShowApiErrorNotification();
+showApiErrorNotification({ errors });
+
+const showUnexpectedErrorNotification = useShowUnexpectedErrorNotification();
+showUnexpectedErrorNotification({ error });
+```
+
+- `application-shell-connectors`: provides Hooks to connect to the application context.
+  - `useApplicationContext`
+
+```js
+const projectName = useApplicationContext(context => context.project.name);
+const projectDataLocale = useApplicationContext(context => context.dataLocale);
+const user = useApplicationContext(context => context.user);
+// ...
+```
+
+- `l10n`: provides Hooks to get l10n data.
+  - `useCountries`
+  - `useCurrencies`
+  - `useLanguages`
+  - `useTimeZones`
+
+```js
+import {
+  useCountries,
+  useCurrencies,
+  useLanguages,
+  useTimeZones,
+} from '@commercetools-frontend/l10n';
+
+const countriesData = useCountries('en');
+const currenciesData = useCurrencies('en');
+const languagesData = useLanguages('en');
+const timeZonesData = useTimeZones('en');
+
+// each `xxxData` value has the following shape:
+// {
+//   isLoading: bool,
+//   data: Object,
+//   error: Error
+// }
+```
+
+- `permissions`: provides a Hook to check if the user is authorized to access the given project permissions.
+  - `useIsAuthorized`
+
+```js
+const canViewProducts = useIsAuthorized({
+  demandedPermissions: ['ViewProducts'],
+});
+```
+
+Other than that, we also recommend to use Hooks from other libraries:
+
+- `react`: https://reactjs.org/docs/hooks-reference.html
+- `react-intl`: https://github.com/formatjs/react-intl/blob/master/docs/Upgrade-Guide.md#new-useintl-hook-as-an-alternative-of-injectintl-hoc
+- `react-redux`: https://react-redux.js.org/next/api/hooks
+
+### Permissions
+
+On July 18, 2019 we will be migrating the commercetools organizations to our new permissions system ([read the announcement](https://docs.commercetools.com/merchant-center/releases/permissions-upgrade-on-july-18-2019.html)).
+From a technical perspective the following things changed:
+
+- `ManageProject` permission does not exist anymore. If your code relies on this, you need to change it to one or more of the available resource permissions:
+
+```
+ManageProducts
+ViewProducts
+ManageCategories
+ViewCategories
+ManageCustomers
+ViewCustomers
+ManageCustomerGroups
+ViewCustomerGroups
+ManageOrders
+ViewOrders
+ManageProductDiscounts
+ViewProductDiscounts
+ManageCartDiscounts
+ViewCartDiscounts
+ManageDiscountCodes
+ViewDiscountCodes
+ManageProjectSettings
+ViewProjectSettings
+ManageProductTypes
+ViewProductTypes
+ManageDeveloperSettings
+ViewDeveloperSettings
+```
+
+- the `@commercetools-frontend/permissions` package does not expose the constants `permissions` anymore, as we don't want to keep things coupled between the package and the API. Instead, we recommend to simply list the permissions that your application uses in a `constants.js` file:
+
+```js
+// constants.js
+export const PERMISSIONS = {
+  ViewProducts: 'ViewProducts',
+  ManageProducts: 'ManageProducts',
+  ViewOrders: 'ViewOrders',
+  ManageProductTypes: 'ManageProductTypes',
+  ViewProductTypes: 'ViewProductTypes',
+  // ...
+};
+```
+
+- the `@commercetools-frontend/permissions` package does not expose the `hasPermission` function anymore. Instead we recommend to use `hasSomePermissions` or `hasEveryPermissions`, which accept a list of permissions (_you probably weren't using this function anyway_).
+
+Other than that, things should work as before.
+
+### UIKit migration to v10
+
+This release also bumps the peer dependency of `@commercetools-frontend/ui-kit >=10`. We recommend to follow the [release notes](https://github.com/commercetools/ui-kit/releases/tag/v10.0.0) in the UIKit repository.
+
+### Other dependencies upgrades
+
+Apart from the bumped dependency versions documented above, we also bumped other dependencies:
+
+- `@testing-library/react`: previously this was named `react-testing-library`. We removed the `react-testing-library` peer dependency and defined `@testing-library/react >=8` instead.
+
+  > NOTE that upgrading to the latest RTL library might cause some tests to break, depending on how you were querying elements. More info [here](https://github.com/testing-library/dom-testing-library/releases/tag/v4.0.0).
+
+- `@commercetools/enzyme-extensions`: if you write enzyme tests, and use the `renderProp` method (_available when using our `@commercetools-frontend/jest-preset-mc-app` setup_), the signature of the API changed now.
+
+```js
+// before
+wrapper.renderProp('children', { loading: true, data: undefined });
+
+// after
+wrapper.renderProp('children')({ loading: true, data: undefined });
+```
+
+### Things renamed
+
+We took the chance to also rename different things:
+
+- `assets`: we renamed the SVG files to have more generic names that reflect the actual image content.
+  [#834](https://github.com/commercetools/merchant-center-application-kit/pull/834)
+
+| Before                                                             | After                                                         |
+| ------------------------------------------------------------------ | ------------------------------------------------------------- |
+| @commercetools-frontend/assets/images/failed-authentication.svg    | @commercetools-frontend/assets/images/locked-diamond.svg      |
+| @commercetools-frontend/assets/images/failed-authorization.svg     | @commercetools-frontend/assets/images/folder-full-locked.svg  |
+| @commercetools-frontend/assets/images/image\_\_broken.svg          | @commercetools-frontend/assets/images/camera-crossed.svg      |
+| @commercetools-frontend/assets/images/image\_\_missing_image.svg   | @commercetools-frontend/assets/images/diagonal-line.svg       |
+| @commercetools-frontend/assets/images/image\_\_no_image.svg        | @commercetools-frontend/assets/images/camera.svg              |
+| @commercetools-frontend/assets/images/link-external\_\_broken.svg  | @commercetools-frontend/assets/images/camera-chain-broken.svg |
+| @commercetools-frontend/assets/images/link-external\_\_working.svg | @commercetools-frontend/assets/images/camera-chain.svg        |
+| @commercetools-frontend/assets/images/page-not-found.svg           | @commercetools-frontend/assets/images/desert-fox.svg          |
+| @commercetools-frontend/assets/images/project-expired.svg          | @commercetools-frontend/assets/images/hourglass.svg           |
+| @commercetools-frontend/assets/images/project-not-initialized.svg  | @commercetools-frontend/assets/images/hourglass.svg           |
+| @commercetools-frontend/assets/images/project-suspended.svg        | @commercetools-frontend/assets/images/doors-closed.svg        |
+| @commercetools-frontend/assets/images/unexpected-error.svg         | @commercetools-frontend/assets/images/icecream.svg            |
+
+### Things removed
+
+We removed some exports that are not necessary anymore:
+
+- `application-components`:
+  - `ServicePageResponseLayout` (was _deprecated_)
+- `permissions`:
+  - `hasPermission`
+  - `permissions`
+- `react-notifications`:
+  - `GetCustomNotificationComponent`
+
+### Dropped support for IE 11
+
+We decided to drop support for IE 11 as we want to reduce the maintainance costs due to transpilation and polyfills. As a result, we dropped those things from our tooling.
+
+### Deprecated packages
+
+The `@commercetools-frontend/storage` package has been deprecated and won't be maintained anymore. We recommend to use `window.localStorage` directly.
+For tests, we use the package `jest-localstorage-mock`, which provides mocks for the `localStorage` API. It's included in the `@commercetools-frontend/jest-preset-mc-app`.
+
+```js
+beforeEach(() => {
+  window.localStorage.setItem.mockClear();
+  window.localStorage.getItem.mockClear();
+  window.localStorage.removeItem.mockClear();
+
+  window.localStorage.getItem.mockReturnValue('foo');
+});
+
+expect(window.localStorage.setItem).toHaveBeenCalledWith('bar');
+```
+
 ## [13.13.3](https://github.com/commercetools/merchant-center-application-kit/compare/v13.13.2...v13.13.3) (2019-07-15)
 
 #### ⛑ Type: Refactoring
