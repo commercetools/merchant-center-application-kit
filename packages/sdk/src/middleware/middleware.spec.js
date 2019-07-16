@@ -330,6 +330,7 @@ describe('when the projectKey is not defined', () => {
       createMiddleware({
         getCorrelationId: jest.fn(),
         getProjectKey: jest.fn(() => null),
+        getTeamId: jest.fn(() => null),
       })({ dispatch })(next)(action)
     ).toThrow(
       'Expected projectKey to be defined for action service "productTypes" (method "GET")'

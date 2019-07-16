@@ -7,6 +7,7 @@ Object {
     "X-Correlation-Id": "test-correlation-id",
     "X-Graphql-Target": "mc",
     "X-Project-Key": "project-1",
+    "X-Team-Id": "team-1",
   },
 }
 `;
@@ -18,6 +19,19 @@ Object {
     "X-Correlation-Id": "test-correlation-id",
     "X-Graphql-Target": "mc",
     "X-Project-Key": "test-project-key",
+    "X-Team-Id": "team-1",
+  },
+}
+`;
+
+exports[`with valid target with team id in variables should set headers matching snapshot 1`] = `
+Object {
+  "credentials": "include",
+  "headers": Object {
+    "X-Correlation-Id": "test-correlation-id",
+    "X-Graphql-Target": "mc",
+    "X-Project-Key": "project-1",
+    "X-Team-Id": "test-team-id",
   },
 }
 `;
