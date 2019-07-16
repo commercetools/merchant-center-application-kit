@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
-import flowRight from 'lodash/flowRight';
-import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { useSelector } from 'react-redux';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import {
   LoadingSpinner,
   Table,
@@ -35,107 +34,84 @@ export const columnsDefinition = [
 const getErrorMessage = error =>
   error.stack || error.message || error.toString();
 
-export class StateMachinesList extends React.Component {
-  static displayName = 'StateMachinesList';
-  static propTypes = {
-    goToStateMachineDetail: PropTypes.func.isRequired,
-    projectKey: PropTypes.string.isRequired,
-    // injected
-    applicationContext: PropTypes.shape({
-      dataLocale: PropTypes.string.isRequired,
-    }).isRequired,
-    cachedStateMachineObjectsCount: PropTypes.number,
-  };
-  measurementCache = null;
-  registerMeasurementCache = cache => {
-    this.measurementCache = cache;
-  };
-  handleRowClick = (rowIndex, results) => {
-    this.props.goToStateMachineDetail(results[rowIndex].id);
-  };
+const StateMachinesList = props => {
+  const cachedStateMachine = useSelector(selectStateMachinesFromCache);
+  const cachedStateMachineObjectsCount = cachedStateMachine
+    ? Object.keys(cachedStateMachine).length
+    : null;
 
-  renderStateMachinesRow = (results, { rowIndex, columnKey }) => {
-    const value = results[rowIndex][columnKey];
+  const dataLocale = useApplicationContext(context => context.dataLocale);
 
-    switch (columnKey) {
-      case 'name':
-        return value ? (
-          <Constraints.Horizontal constraint="m">
-            <Text.Wrap>
-              {value[this.props.applicationContext.dataLocale] ||
-                NO_VALUE_FALLBACK}
-            </Text.Wrap>
-          </Constraints.Horizontal>
-        ) : null;
-      default:
-        return value;
-    }
-  };
-  render() {
-    return (
-      <Spacings.Inset scale="m">
-        <Spacings.Stack scale="m">
-          <Text.Headline as="h2" intlMessage={messages.title} />
-          <StateMachinesListConnector projectKey={this.props.projectKey}>
-            {({ isLoading, result, error, hasNoResults /* , refresh */ }) => {
-              if (isLoading) return <LoadingSpinner />;
-              if (error) return <div>{getErrorMessage(error)}</div>;
-              if (hasNoResults) {
-                return (
-                  <div className={styles['empty-results']}>
-                    <Text.Body intlMessage={messages.noResultsText} />
-                  </div>
-                );
-              }
+  return (
+    <Spacings.Inset scale="m">
+      <Spacings.Stack scale="m">
+        <Text.Headline as="h2" intlMessage={messages.title} />
+        <StateMachinesListConnector projectKey={props.projectKey}>
+          {({ isLoading, result, error, hasNoResults /* , refresh */ }) => {
+            if (isLoading) return <LoadingSpinner />;
+            if (error) return <div>{getErrorMessage(error)}</div>;
+            if (hasNoResults) {
               return (
-                <Spacings.Stack scale="m">
-                  {this.props.cachedStateMachineObjectsCount !== null && (
-                    <Spacings.Inline alignItems="center">
-                      <DotIcon size="small" color="primary" />
-                      <Text.Detail isItalic={true}>
-                        <FormattedMessage
-                          {...messages.objectsInCache}
-                          values={{
-                            count: this.props.cachedStateMachineObjectsCount,
-                          }}
-                        />
-                      </Text.Detail>
-                    </Spacings.Inline>
-                  )}
-                  <Table
-                    columns={columnsDefinition}
-                    itemRenderer={item =>
-                      this.renderStateMachinesRow(result.results, item)
-                    }
-                    rowCount={result.count}
-                    onRowClick={(_, rowIndex) => {
-                      this.handleRowClick(rowIndex, result.results);
-                    }}
-                    registerMeasurementCache={this.registerMeasurementCache}
-                    shouldFillRemainingVerticalSpace={true}
-                    items={result.results}
-                  >
-                    {/* TODO: add <Pagination> component */}
-                    <PageBottomSpacer />
-                  </Table>
-                </Spacings.Stack>
+                <div className={styles['empty-results']}>
+                  <Text.Body intlMessage={messages.noResultsText} />
+                </div>
               );
-            }}
-          </StateMachinesListConnector>
-        </Spacings.Stack>
-      </Spacings.Inset>
-    );
-  }
-}
+            }
+            return (
+              <Spacings.Stack scale="m">
+                {cachedStateMachineObjectsCount !== null && (
+                  <Spacings.Inline alignItems="center">
+                    <DotIcon size="small" color="primary" />
+                    <Text.Detail isItalic={true}>
+                      <FormattedMessage
+                        {...messages.objectsInCache}
+                        values={{
+                          count: cachedStateMachineObjectsCount,
+                        }}
+                      />
+                    </Text.Detail>
+                  </Spacings.Inline>
+                )}
+                <Table
+                  columns={columnsDefinition}
+                  itemRenderer={item => {
+                    const value = result.results[item.rowIndex][item.columnKey];
 
-export default flowRight(
-  withApplicationContext(),
-  connect(state => {
-    const cachedStateMachine = selectStateMachinesFromCache(state);
-    return {
-      cachedStateMachineObjectsCount: cachedStateMachine
-        ? Object.keys(cachedStateMachine).length
-        : null,
-    };
-  })
-)(StateMachinesList);
+                    switch (item.columnKey) {
+                      case 'name':
+                        return value ? (
+                          <Constraints.Horizontal constraint="m">
+                            <Text.Wrap>
+                              {value[dataLocale] || NO_VALUE_FALLBACK}
+                            </Text.Wrap>
+                          </Constraints.Horizontal>
+                        ) : null;
+                      default:
+                        return value;
+                    }
+                  }}
+                  rowCount={result.count}
+                  onRowClick={(_, rowIndex) => {
+                    props.goToStateMachineDetail(result.results[rowIndex].id);
+                  }}
+                  shouldFillRemainingVerticalSpace={true}
+                  items={result.results}
+                >
+                  {/* TODO: add <Pagination> component */}
+                  <PageBottomSpacer />
+                </Table>
+              </Spacings.Stack>
+            );
+          }}
+        </StateMachinesListConnector>
+      </Spacings.Stack>
+    </Spacings.Inset>
+  );
+};
+StateMachinesList.displayName = 'StateMachinesList';
+StateMachinesList.propTypes = {
+  goToStateMachineDetail: PropTypes.func.isRequired,
+  projectKey: PropTypes.string.isRequired,
+};
+
+export default StateMachinesList;
