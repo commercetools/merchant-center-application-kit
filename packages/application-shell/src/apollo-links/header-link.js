@@ -3,6 +3,7 @@ import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import {
   getCorrelationId,
   selectProjectKeyFromUrl,
+  selectTeamIdFromLocalStorage,
   selectUserId,
 } from '../utils';
 
@@ -37,12 +38,14 @@ const headerLink = new ApolloLink((operation, forward) => {
    */
   const projectKey =
     operation.variables.projectKey || selectProjectKeyFromUrl();
+  const teamId = operation.variables.teamId || selectTeamIdFromLocalStorage();
   const userId = selectUserId({ apolloCache: cache });
 
   operation.setContext({
     credentials: 'include',
     headers: {
       'X-Project-Key': projectKey,
+      'X-Team-Id': teamId,
       'X-Correlation-Id': getCorrelationId({ userId }),
       'X-Graphql-Target': target,
     },

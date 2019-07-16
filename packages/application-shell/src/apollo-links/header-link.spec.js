@@ -8,6 +8,7 @@ import headerLink from './header-link';
 jest.mock('../utils/', () => ({
   getCorrelationId: jest.fn(() => 'test-correlation-id'),
   selectProjectKeyFromUrl: jest.fn(() => 'project-1'),
+  selectTeamIdFromLocalStorage: jest.fn(() => 'team-1'),
   selectUserId: jest.fn(() => 'user-1'),
 }));
 
@@ -62,6 +63,14 @@ describe('with valid target', () => {
     );
   });
 
+  it('should set `X-Team-Id`-Header', () => {
+    expect(context.headers).toEqual(
+      expect.objectContaining({
+        'X-Team-Id': 'team-1',
+      })
+    );
+  });
+
   it('should set `X-Graphql-Target`-Header', () => {
     expect(context.headers).toEqual(
       expect.objectContaining({
@@ -105,6 +114,34 @@ describe('with valid target', () => {
       expect(context.headers).toEqual(
         expect.objectContaining({
           'X-Project-Key': projectKey,
+        })
+      );
+    });
+  });
+
+  describe('with team id in variables', () => {
+    const teamId = 'test-team-id';
+
+    beforeEach(async () => {
+      await waitFor(
+        execute(link, {
+          query,
+          variables: {
+            target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+            teamId,
+          },
+        })
+      );
+    });
+
+    it('should set headers matching snapshot', () => {
+      expect(context).toMatchSnapshot();
+    });
+
+    it('should set `X-Team-Id`-Header', () => {
+      expect(context.headers).toEqual(
+        expect.objectContaining({
+          'X-Team-Id': teamId,
         })
       );
     });
