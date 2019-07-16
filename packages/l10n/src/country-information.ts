@@ -1,5 +1,5 @@
 import * as PropTypes from 'prop-types';
-import createL10NInjector from './create-l10n-injector';
+import { createL10NInjector, createL10NHook } from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
 import { Countries } from './types';
 
@@ -39,19 +39,15 @@ export const countriesShape = PropTypes.objectOf(PropTypes.string);
  * If running through webpack, code splitting makes `getCountriesForLocale`
  * a function that asynchronously loads the country data.
  */
-const getCountriesForLocale = (
-  locale: string,
-  cb: (error?: Error, countries?: Countries) => void
-) => {
+const getCountriesForLocale = async (locale: string) => {
   const supportedLocale = getSupportedLocale(locale);
   // Use default webpackMode (lazy) so that we generate one file per locale.
   // The files are named like "country-data-en-json.chunk.js" after compilation
   // https://webpack.js.org/api/module-methods/#import-
-  getImportChunk(supportedLocale)
-    // Prefer loading `default` (for ESM bundles) and
-    // fall back to normal import (for CJS bundles).
-    .then(countries => cb(undefined, countries.default || countries))
-    .catch(error => cb(error));
+  const countries = await getImportChunk(supportedLocale);
+  // Prefer loading `default` (for ESM bundles) and
+  // fall back to normal import (for CJS bundles).
+  return countries.default || countries;
 };
 
 export const withCountries = createL10NInjector<Countries>({
@@ -60,3 +56,5 @@ export const withCountries = createL10NInjector<Countries>({
   propLoadingKey: 'isLoadingCountries',
   loadLocale: getCountriesForLocale,
 });
+
+export const useCountries = createL10NHook(getCountriesForLocale);
