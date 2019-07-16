@@ -20,10 +20,23 @@ $ npm install --save @commercetools-frontend/l10n
 - `fr-FR`
 - `zh-CN`
 
-## Components
+## Hooks
 
 ```js
-import { withCountries, countriesShape } from '@commercetools-frontend/l10n';
+import {
+  useCountries,
+  useCurrencies,
+  useLanguages,
+  useTimeZones,
+} from '@commercetools-frontend/l10n';
+
+const { isLoading, data, error } = useCountries('en');
+```
+
+## Higher Order Components
+
+```js
+import { withCountries } from '@commercetools-frontend/l10n';
 
 withCountries(ownProps => ownProps.locale)(Component);
 
@@ -41,7 +54,7 @@ withCurrencies(ownProps => ownProps.locale)(Component);
 ```
 
 ```js
-import { withLanguages, languagesShape } from '@commercetools-frontend/l10n';
+import { withLanguages } from '@commercetools-frontend/l10n';
 
 withLanguages(ownProps => ownProps.locale)(Component);
 
@@ -50,6 +63,19 @@ withLanguages(ownProps => ownProps.locale)(Component);
 // { "es": { "language": "Spanish" } }
 // Case with language of a region
 // { "es-AR": { "language": "Spanish", "country": "Argentina" } }
+```
+
+```js
+import { withTimeZones } from '@commercetools-frontend/l10n';
+
+withTimeZones(ownProps => ownProps.locale)(Component);
+
+// format: { timezone: { name, abbr, offset } }
+// Case with main language
+// { "es": { "Europe/Berlin": { "name": "Europe/Berlin", "abbr": "CEST", "offset": "+02:00" } } }
+// Case with language of a region
+// { "fr-FR": { "Europe/Berlin": { "name": "Europe/Berlin", "abbr": "CEST", "offset": "+02:00" } } }
+// { "es-AR": { "Europe/Berlin": { "name": "Europe/Berlin", "abbr": "CEST", "offset": "+02:00" } } }
 ```
 
 ## Generating localization data
