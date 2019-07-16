@@ -1,61 +1,65 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
+import LockedDiamondSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
+import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import { InjectReducers } from '@commercetools-frontend/application-shell';
-import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
+import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import StateMachinesList from './components/state-machines-list';
 import StateMachinesDetails from './components/state-machines-details';
 import reducers from './reducers';
 import { PERMISSIONS } from './constants';
 
-// FIXME: import it from AppShell
-const PageUnauthorized = () => <div>{'Unauthorized'}</div>;
-PageUnauthorized.displayName = 'PageUnauthorized';
-
-const ApplicationRoutes = props => (
-  <InjectReducers id="state-machines" reducers={reducers}>
-    <Switch>
-      <Route
-        path={`${props.match.path}/:id`}
-        render={routerProps => (
-          <RestrictedByPermissions
-            permissions={[
-              PERMISSIONS.ViewDeveloperSettings,
-              PERMISSIONS.ManageDeveloperSettings,
-            ]}
-            unauthorizedComponent={PageUnauthorized}
-            shouldMatchSomePermissions={true}
-          >
-            <StateMachinesDetails
-              id={routerProps.match.params.id}
-              projectKey={routerProps.match.params.projectKey}
-              backToListPath={props.match.url}
-            />
-          </RestrictedByPermissions>
-        )}
-      />
-      <Route
-        render={routerProps => (
-          <RestrictedByPermissions
-            permissions={[
-              PERMISSIONS.ViewDeveloperSettings,
-              PERMISSIONS.ManageDeveloperSettings,
-            ]}
-            unauthorizedComponent={PageUnauthorized}
-            shouldMatchSomePermissions={true}
-          >
-            <StateMachinesList
-              projectKey={routerProps.match.params.projectKey}
-              goToStateMachineDetail={id => {
-                props.history.push(`${props.match.url}/${id}`);
-              }}
-            />
-          </RestrictedByPermissions>
-        )}
-      />
-    </Switch>
-  </InjectReducers>
+const PageUnauthorized = () => (
+  <MaintenancePageLayout
+    imageSrc={LockedDiamondSVG}
+    title="Not enough permissions to access this resource"
+    paragraph1="We recommend to contact your project administrators for further questions."
+  />
 );
+
+const ApplicationRoutes = props => {
+  const canViewDeveloperSettings = useIsAuthorized({
+    demandedPermissions: [PERMISSIONS.ViewDeveloperSettings],
+    shouldMatchSomePermissions: true,
+  });
+  return (
+    <InjectReducers id="state-machines" reducers={reducers}>
+      <Switch>
+        <Route
+          path={`${props.match.path}/:id`}
+          render={routerProps => {
+            if (!canViewDeveloperSettings) {
+              return <PageUnauthorized />;
+            }
+            return (
+              <StateMachinesDetails
+                id={routerProps.match.params.id}
+                projectKey={routerProps.match.params.projectKey}
+                backToListPath={props.match.url}
+              />
+            );
+          }}
+        />
+        <Route
+          render={routerProps => {
+            if (!canViewDeveloperSettings) {
+              return <PageUnauthorized />;
+            }
+            return (
+              <StateMachinesList
+                projectKey={routerProps.match.params.projectKey}
+                goToStateMachineDetail={id => {
+                  props.history.push(`${props.match.url}/${id}`);
+                }}
+              />
+            );
+          }}
+        />
+      </Switch>
+    </InjectReducers>
+  );
+};
 ApplicationRoutes.displayName = 'ApplicationRoutes';
 ApplicationRoutes.propTypes = {
   match: PropTypes.shape({

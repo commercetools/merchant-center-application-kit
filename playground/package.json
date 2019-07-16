@@ -16,8 +16,10 @@
   },
   "dependencies": {
     "@commercetools-frontend/actions-global": "13.13.3",
+    "@commercetools-frontend/application-components": "13.12.3",
     "@commercetools-frontend/application-shell": "13.13.3",
     "@commercetools-frontend/application-shell-connectors": "13.13.3",
+    "@commercetools-frontend/assets": "13.12.2",
     "@commercetools-frontend/constants": "13.12.2",
     "@commercetools-frontend/i18n": "13.12.2",
     "@commercetools-frontend/l10n": "13.12.2",

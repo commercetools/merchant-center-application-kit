@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import flowRight from 'lodash/flowRight';
-import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { useShowApiErrorNotification } from '@commercetools-frontend/actions-global';
 import {
   LoadingSpinner,
   Spacings,
@@ -15,84 +15,120 @@ import {
 } from '@commercetools-frontend/ui-kit';
 import { fetchStateMachine } from './actions';
 
-export class StateMachinesDetails extends React.Component {
-  static displayName = 'StateMachinesDetails';
+const initialState = {
+  isLoading: true,
+  error: null,
+  data: null,
+};
+
+// NOTE: using `useEffect` for asynchronously update the state, thus re-rendering
+// the component, has currently a limitation when testing the component, as it throws
+// a warning about `act`. This will be fixed in react@16.9.
+// In the meantime we can use a plain old stateful class component.
+class StateMachinesDetailsFetcher extends React.Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
-    projectKey: PropTypes.string.isRequired,
-    backToListPath: PropTypes.string.isRequired,
-    // withApplicationContext
     dataLocale: PropTypes.string.isRequired,
-    // connect
-    fetchStateMachine: PropTypes.func.isRequired,
+    fetcher: PropTypes.func.isRequired,
+    showApiErrorNotification: PropTypes.func.isRequired,
+    children: PropTypes.func.isRequired,
   };
-  state = {
-    isLoading: true,
-    error: null,
-    data: null,
-  };
+  state = initialState;
+  isUnmounting = false;
   componentDidMount() {
-    this.props.fetchStateMachine(this.props.id).then(
+    this.fetchData(this.props.id);
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.id !== this.props.id) {
+      this.fetchData(this.props.id);
+    } else if (prevProps.dataLocale !== this.props.dataLocale) {
+      this.fetchData(this.props.id);
+    }
+  }
+  componentWillUnmount() {
+    this.isUnmounting = true;
+  }
+  fetchData = id => {
+    this.setState({ isLoading: true, data: null, error: null });
+    this.props.fetcher(id).then(
       data => {
-        this.setState({ data, isLoading: false });
+        !this.isUnmounting &&
+          this.setState({ isLoading: false, data, error: null });
       },
       error => {
-        this.setState({ error, isLoading: false });
-        throw error;
+        !this.isUnmounting &&
+          this.setState({ isLoading: false, data: null, error });
+        this.props.showApiErrorNotification({ errors: [error] });
       }
     );
-  }
-
+  };
   render() {
-    if (this.state.isLoading) {
-      return <LoadingSpinner />;
-    }
-    return (
-      <Spacings.Inset scale="m">
-        <Spacings.Stack scale="l">
-          <LinkButton
-            iconLeft={<ListIcon />}
-            label="Back to list"
-            to={this.props.backToListPath}
-          />
-          <Spacings.Stack scale="xs">
-            <Text.Headline as="h2">
-              {this.state.data.name
-                ? this.state.data.name[this.props.dataLocale]
-                : 'n/a'}
-            </Text.Headline>
-            <Text.Detail>{this.state.data.key}</Text.Detail>
-          </Spacings.Stack>
-          <Constraints.Horizontal constraint="m">
-            <Grid
-              gridGap="16px"
-              gridAutoColumns="1fr"
-              gridTemplateColumns="repeat(2, 1fr)"
-            >
-              <Text.Body>{'Type'}</Text.Body>
-              <Text.Body>{this.state.data.type}</Text.Body>
-              <Text.Body>{'Built In'}</Text.Body>
-              <Text.Body>
-                {this.state.data.builtIn ? <CheckBoldIcon /> : ''}
-              </Text.Body>
-              <Text.Body>{'Initial'}</Text.Body>
-              <Text.Body>
-                {this.state.data.initial ? <CheckBoldIcon /> : ''}
-              </Text.Body>
-            </Grid>
-          </Constraints.Horizontal>
-        </Spacings.Stack>
-      </Spacings.Inset>
-    );
+    return this.props.children(this.state);
   }
 }
 
-export default flowRight(
-  withApplicationContext(context => ({ dataLocale: context.dataLocale })),
-  connect(
-    null,
-    {
-      fetchStateMachine,
-    }
-  )
-)(StateMachinesDetails);
+const StateMachinesDetails = props => {
+  const dataLocale = useApplicationContext(context => context.dataLocale);
+  const dispatch = useDispatch();
+  const fetcher = React.useCallback(
+    (...args) => dispatch(fetchStateMachine(...args)),
+    [dispatch]
+  );
+  const showApiErrorNotification = useShowApiErrorNotification();
+
+  return (
+    <StateMachinesDetailsFetcher
+      id={props.id}
+      dataLocale={dataLocale}
+      fetcher={fetcher}
+      showApiErrorNotification={showApiErrorNotification}
+    >
+      {({ isLoading, data, error }) => {
+        if (isLoading) {
+          return <LoadingSpinner />;
+        }
+        if (error) {
+          return null;
+        }
+        return (
+          <Spacings.Inset scale="m">
+            <Spacings.Stack scale="l">
+              <LinkButton
+                iconLeft={<ListIcon />}
+                label="Back to list"
+                to={props.backToListPath}
+              />
+              <Spacings.Stack scale="xs">
+                <Text.Headline as="h2">
+                  {data.name ? data.name[dataLocale] : 'n/a'}
+                </Text.Headline>
+                <Text.Detail>{data.key}</Text.Detail>
+              </Spacings.Stack>
+              <Constraints.Horizontal constraint="m">
+                <Grid
+                  gridGap="16px"
+                  gridAutoColumns="1fr"
+                  gridTemplateColumns="repeat(2, 1fr)"
+                >
+                  <Text.Body>{'Type'}</Text.Body>
+                  <Text.Body>{data.type}</Text.Body>
+                  <Text.Body>{'Built In'}</Text.Body>
+                  <Text.Body>{data.builtIn ? <CheckBoldIcon /> : ''}</Text.Body>
+                  <Text.Body>{'Initial'}</Text.Body>
+                  <Text.Body>{data.initial ? <CheckBoldIcon /> : ''}</Text.Body>
+                </Grid>
+              </Constraints.Horizontal>
+            </Spacings.Stack>
+          </Spacings.Inset>
+        );
+      }}
+    </StateMachinesDetailsFetcher>
+  );
+};
+StateMachinesDetails.displayName = 'StateMachinesDetails';
+StateMachinesDetails.propTypes = {
+  id: PropTypes.string.isRequired,
+  backToListPath: PropTypes.string.isRequired,
+};
+
+export default StateMachinesDetails;
