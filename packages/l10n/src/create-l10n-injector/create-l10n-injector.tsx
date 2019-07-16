@@ -2,14 +2,12 @@ import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { getDisplayName } from '../utils';
 
+type LoadLocale<LoadedData> = (locale: string) => Promise<LoadedData>;
 type InjectorOptions<LoadedData> = {
   displayName: string;
   propKey: string;
   propLoadingKey: string;
-  loadLocale: (
-    locale: string,
-    cb: (error?: Error, data?: LoadedData) => void
-  ) => void;
+  loadLocale: LoadLocale<LoadedData>;
 };
 type State<Data> = {
   isLoading: boolean;
@@ -41,12 +39,7 @@ function reducer<Data>(
   }
 }
 
-export function createL10NHook<LoadedData>(
-  loadLocale: (
-    locale: string,
-    cb: (error?: Error, data?: LoadedData) => void
-  ) => void
-) {
+export function createL10NHook<LoadedData>(loadLocale: LoadLocale<LoadedData>) {
   return (locale: string) => {
     const [data, dispatch] = React.useReducer<
       (
@@ -58,19 +51,16 @@ export function createL10NHook<LoadedData>(
     React.useEffect(() => {
       let cleaning = false;
       dispatch({ type: 'loading' });
-      loadLocale(locale, (error?: Error, data?: LoadedData) => {
-        if (error) {
+      async function run() {
+        try {
+          const data = await loadLocale(locale);
+          !cleaning && dispatch({ type: 'ok', data });
+        } catch (error) {
           reportErrorToSentry(error);
+          !cleaning && dispatch({ type: 'error', error });
         }
-        if (!cleaning) {
-          if (error) {
-            dispatch({ type: 'error', error });
-          }
-          if (data) {
-            dispatch({ type: 'ok', data });
-          }
-        }
-      });
+      }
+      run();
       return () => {
         cleaning = true;
       };

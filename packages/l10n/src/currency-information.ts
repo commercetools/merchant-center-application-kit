@@ -41,19 +41,15 @@ export const currenciesShape = PropTypes.objectOf(
  * If running through webpack, code splitting makes `getCurrenciesForLocale`
  * a function that asynchronously loads the country data.
  */
-const getCurrenciesForLocale = (
-  locale: string,
-  cb: (error?: Error, currencies?: Currencies) => void
-) => {
+const getCurrenciesForLocale = async (locale: string) => {
   const supportedLocale = getSupportedLocale(locale);
   // Use default webpackMode (lazy) so that we generate one file per locale.
   // The files are named like "currency-data-en-json.chunk.js" after compilation
   // https://webpack.js.org/api/module-methods/#import-
-  getImportChunk(supportedLocale)
-    // Prefer loading `default` (for ESM bundles) and
-    // fall back to normal import (for CJS bundles).
-    .then(currencies => cb(undefined, currencies.default || currencies))
-    .catch(error => cb(error));
+  const currencies = await getImportChunk(supportedLocale);
+  // Prefer loading `default` (for ESM bundles) and
+  // fall back to normal import (for CJS bundles).
+  return currencies.default || currencies;
 };
 
 export const withCurrencies = createL10NInjector<Currencies>({

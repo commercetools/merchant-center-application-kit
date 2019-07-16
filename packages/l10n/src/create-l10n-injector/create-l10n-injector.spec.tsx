@@ -23,23 +23,11 @@ const candies: Candies = {
     3: 'gummibär',
   },
 };
-const loadLocalesMock = jest.fn(
-  (locale: string, cb: (error?: Error, data?: Candies) => void) =>
-    new Promise(resolve => {
-      setTimeout(() => {
-        resolve();
-        cb(undefined, candies[locale]);
-      }, 10);
-    })
+const loadLocalesMock = jest.fn((locale: string) =>
+  Promise.resolve(candies[locale])
 );
-const errorLoadingLocalesMock = jest.fn(
-  (_locale: string, cb: (error?: Error, data?: Candies) => void) =>
-    new Promise(reject => {
-      setTimeout(() => {
-        reject();
-        cb(new Error('Oops'));
-      }, 10);
-    })
+const errorLoadingLocalesMock = jest.fn(() =>
+  Promise.reject(new Error('Oops'))
 );
 
 // https://github.com/testing-library/react-hooks-testing-library/blob/ebf8460716ac59618cffdc16094c534a3ca59ffe/docs/usage/advanced-hooks.md#act-warning
