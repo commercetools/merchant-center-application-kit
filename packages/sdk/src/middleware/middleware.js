@@ -30,11 +30,13 @@ const actionToUri = (action, projectKey) => {
 export default function createSdkMiddleware({
   getCorrelationId,
   getProjectKey,
+  getTeamId,
 }) {
   const client = createClient({ getCorrelationId });
 
   return ({ dispatch }) => next => action => {
     const projectKey = getProjectKey();
+    const teamId = getTeamId();
     if (!action) return next(action);
 
     if (action.type === 'SDK') {
@@ -70,6 +72,7 @@ export default function createSdkMiddleware({
           ...(action.payload.headers || {}),
           ...(shouldRenewToken ? { 'X-Force-Token': 'true' } : {}),
           'X-Project-Key': projectKey,
+          ...(teamId && { 'X-Team-Id': teamId }),
         };
         const body =
           action.payload.method === 'POST' ? action.payload.payload : undefined;
