@@ -21,7 +21,7 @@ const createTestUserProps = custom => ({
   firstName: 'Foo',
   lastName: 'Bar',
   language: 'eu',
-  projects: { total: 0 },
+  projects: { total: 0, results: [] },
   ...custom,
 });
 const createTestProjectProps = custom => ({
@@ -95,7 +95,7 @@ describe('rendering', () => {
     beforeEach(() => {
       props = createTestProps({
         isLoadingUser: false,
-        user: createTestUserProps({ projects: { total: 0 } }),
+        user: createTestUserProps({ projects: { total: 0, results: [] } }),
       });
       wrapper = shallow(<ProjectContainer {...props} />);
     });
@@ -107,7 +107,19 @@ describe('rendering', () => {
     beforeEach(() => {
       props = createTestProps({
         isLoadingUser: false,
-        user: createTestUserProps({ projects: { total: 1 } }),
+        user: createTestUserProps({
+          projects: {
+            total: 1,
+            results: [
+              {
+                key: 'p1',
+                name: 'P1 ',
+                expiry: { isActive: false },
+                suspension: { isActive: false },
+              },
+            ],
+          },
+        }),
       });
       wrapper = shallow(<ProjectContainer {...props} />);
     });
