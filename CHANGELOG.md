@@ -96,7 +96,7 @@ Other than that, we also recommend to use Hooks from other libraries:
 
 ### Permissions
 
-On July 18, 2019 we will be migrating the commercetools organizations to our new permissions system ([read the announcement](https://docs.commercetools.com/merchant-center/releases/permissions-upgrade-on-july-18-2019.html)).
+On July 18, 2019 we migrated the commercetools organizations to our new permissions system ([read the announcement](https://docs.commercetools.com/merchant-center/releases/permissions-upgrade-on-july-18-2019.html)).
 From a technical perspective the following things changed:
 
 - `ManageProject` permission does not exist anymore. If your code relies on this, you need to change it to one or more of the available resource permissions:
@@ -124,6 +124,30 @@ ManageProductTypes
 ViewProductTypes
 ManageDeveloperSettings
 ViewDeveloperSettings
+```
+
+This change also implies a change in the `@commercetools-frontend/application-shell/test-utils` as the `permissions` property is now empty. This means that **you need to explicitly pass the expected permissions that your application deals with**, otherwise tests will fail.
+
+```js
+import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
+
+// Before
+// Here we don't specify any permission, which will probably cause the test to throw errors
+it('should render the app', async () => {
+  const rendered = renderApp(<MyApplication />);
+});
+
+// After
+// Here we explicitly specify the permission of the application
+it('should render the app', async () => {
+  const rendered = renderApp(<MyApplication />, {
+    permissions: {
+      canManageProducts: true,
+      canViewProducts: true,
+      // ...
+    },
+  });
+});
 ```
 
 - the `@commercetools-frontend/permissions` package does not expose the constants `permissions` anymore, as we don't want to keep things coupled between the package and the API. Instead, we recommend to simply list the permissions that your application uses in a `constants.js` file:
