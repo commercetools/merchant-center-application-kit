@@ -51,7 +51,7 @@ describe('loading data', () => {
         useL10n('en')
       );
       expect(result.current.isLoading).toBe(true);
-      expect(result.current.data).not.toBeDefined();
+      expect(result.current.data).toEqual({});
       expect(result.current.error).not.toBeDefined();
 
       await waitForNextUpdate();
@@ -69,7 +69,7 @@ describe('error loading data', () => {
         useL10n('en')
       );
       expect(result.current.isLoading).toBe(true);
-      expect(result.current.data).not.toBeDefined();
+      expect(result.current.data).toEqual({});
       expect(result.current.error).not.toBeDefined();
 
       await waitForNextUpdate();
