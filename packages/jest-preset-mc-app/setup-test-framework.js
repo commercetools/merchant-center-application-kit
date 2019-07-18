@@ -2,12 +2,12 @@ require('unfetch/polyfill');
 require('jest-enzyme');
 require('jest-dom/extend-expect');
 require('@testing-library/react/cleanup-after-each');
-const IntlPolyfill = require('intl');
 const Enzyme = require('enzyme');
 const Adapter = require('enzyme-adapter-react-16');
 const ShallowWrapper = require('enzyme/ShallowWrapper');
 const configureEnzymeExtensions = require('@commercetools/enzyme-extensions');
 const commerceToolsEnzymeMatchers = require('@commercetools/jest-enzyme-matchers');
+require('./polyfills/intl');
 
 Enzyme.configure({ adapter: new Adapter(), disableLifecycleMethods: true });
 
@@ -22,12 +22,3 @@ expect.extend({
 
 expect.extend(commerceToolsEnzymeMatchers);
 configureEnzymeExtensions(ShallowWrapper);
-
-// Polyfill `Intl` for NodeJS, as `react-intl` (v3) relies on the `intl-locales-supported`
-// package, which checks if the locale is supported by the following constructors.
-// In the browser everything is fine, however in NodeJS environment we need to polyfill it.
-Intl.Collator = IntlPolyfill.Collator;
-Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat;
-Intl.NumberFormat = IntlPolyfill.NumberFormat;
-Intl.PluralRules = IntlPolyfill.PluralRules;
-Intl.RelativeTimeFormat = IntlPolyfill.RelativeTimeFormat;
