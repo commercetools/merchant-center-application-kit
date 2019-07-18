@@ -77,6 +77,7 @@ describe('<RestrictedApplication>', () => {
           lastName: 'Snow',
           projects: {
             total: 0,
+            results: [],
           },
           defaultProjectKey: 'foo-0',
           language: 'en-US',
