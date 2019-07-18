@@ -67,7 +67,7 @@ const ModalPageTopBar = props => {
           overflow: hidden;
 
           /*  specific selector for the svg of the FlatButton */
-          button:first-child svg {
+          button:first-of-type svg {
             height: 12px !important;
             width: 12px !important;
           }
