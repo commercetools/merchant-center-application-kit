@@ -41,16 +41,18 @@ const Notification = props => (
   >
     <div className={styles.content}>{props.children}</div>
     {props.onCloseClick ? (
-      <FormattedMessage {...messages.hideNotification}>
-        {label => (
-          <IconButton
-            label={label}
-            onClick={props.onCloseClick}
-            icon={<CloseBoldIcon />}
-            size="medium"
-          />
-        )}
-      </FormattedMessage>
+      <div>
+        <FormattedMessage {...messages.hideNotification}>
+          {label => (
+            <IconButton
+              label={label}
+              onClick={props.onCloseClick}
+              icon={<CloseBoldIcon />}
+              size="medium"
+            />
+          )}
+        </FormattedMessage>
+      </div>
     ) : null}
     <div
       className={
