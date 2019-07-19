@@ -872,10 +872,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-frontend/ui-kit@10.0.0":
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-10.0.0.tgz#d97f7bfb6b282a222038230f3864e545402e7830"
-  integrity sha512-p1gjaKPATYGsHfBVZ8K/zXSUN4lhgcx9vpCQOxzzCDgTE/1EEIT5MxCUIJJS5p42682u0+HC7Rx70V29Rt6LLA==
+"@commercetools-frontend/ui-kit@10.0.1":
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-10.0.1.tgz#eb1652ef6ed5edc22ab86ea43b746a4e2c624fe6"
+  integrity sha512-q2k/IvXPRr0CiRbuHt6GOxFSfwzOuyLbqExFO/Xh6Rb9kGLGrJ/NsUwtHPqWBpp/B0veDPUUEUklyisM7pTEkw==
   dependencies:
     "@emotion/core" "10.0.14"
     "@emotion/styled" "10.0.14"
@@ -883,8 +883,8 @@
     dom-helpers "3.4.0"
     downshift "3.2.10"
     emotion-theming "10.0.14"
-    lodash "4.17.11"
-    lodash-es "4.17.11"
+    lodash "4.17.13"
+    lodash-es "4.17.14"
     prop-types "15.7.2"
     react-is "16.8.6"
     react-popper "1.3.3"
@@ -13818,15 +13818,15 @@ lockfile@^1.0.4:
   dependencies:
     signal-exit "^3.0.2"
 
-lodash-es@4.17.11, lodash-es@^4.17.11:
-  version "4.17.11"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.11.tgz#145ab4a7ac5c5e52a3531fb4f310255a152b4be0"
-  integrity sha512-DHb1ub+rMjjrxqlB3H56/6MXtm1lSksDp2rA2cNWjG8mlDUYFhUj3Di2Zn5IwSU87xLv8tNIQ7sSwE/YOX/D/Q==
-
 lodash-es@4.17.14:
   version "4.17.14"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.14.tgz#12a95a963cc5955683cee3b74e85458954f37ecc"
   integrity sha512-7zchRrGa8UZXjD/4ivUWP1867jDkhzTG2c/uj739utSd7O/pFFdxspCemIFKEEjErbcqRzn8nKnGsi7mvTgRPA==
+
+lodash-es@^4.17.11:
+  version "4.17.11"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.11.tgz#145ab4a7ac5c5e52a3531fb4f310255a152b4be0"
+  integrity sha512-DHb1ub+rMjjrxqlB3H56/6MXtm1lSksDp2rA2cNWjG8mlDUYFhUj3Di2Zn5IwSU87xLv8tNIQ7sSwE/YOX/D/Q==
 
 lodash._baseisequal@^3.0.0:
   version "3.0.7"
@@ -14068,6 +14068,11 @@ lodash@4.17.11, lodash@^4.0.0, lodash@^4.11.1, lodash@^4.15.0, lodash@^4.17.10, 
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
+
+lodash@4.17.13:
+  version "4.17.13"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.13.tgz#0bdc3a6adc873d2f4e0c4bac285df91b64fc7b93"
+  integrity sha512-vm3/XWXfWtRua0FkUyEHBZy8kCPjErNBT9fJx8Zvs+U6zjqPbTUOpkaoum3O5uiA8sm+yNMHXfYkTUHFoMxFNA==
 
 lodash@4.17.14, lodash@^4.17.14:
   version "4.17.14"
