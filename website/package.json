@@ -11,7 +11,7 @@
     "@babel/core": "7.4.5",
     "@commercetools-frontend/application-components": "13.12.3",
     "@commercetools-frontend/assets": "13.12.2",
-    "@commercetools-frontend/ui-kit": "10.0.0",
+    "@commercetools-frontend/ui-kit": "10.0.1",
     "@emotion/core": "10.0.14",
     "@emotion/styled": "10.0.14",
     "@mdx-js/mdx": "1.0.21",
