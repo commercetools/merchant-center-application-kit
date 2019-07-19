@@ -13,7 +13,7 @@ type InjectorOptions<LoadedData extends {}> = {
 };
 type State<Data extends {}> = {
   isLoading: boolean;
-  data?: Data | {};
+  data: Data | {};
   error?: Error;
 };
 type Action<Data extends {}> =
@@ -23,6 +23,8 @@ type Action<Data extends {}> =
 
 const initialState = {
   isLoading: true,
+  // Keep it as an empty object, for backwards compatibility
+  data: {},
 };
 
 function reducer<Data extends {}>(
@@ -31,11 +33,11 @@ function reducer<Data extends {}>(
 ): State<Data> {
   switch (action.type) {
     case 'loading':
-      return { isLoading: true, data: {} };
+      return { ...state, isLoading: true, data: {} };
     case 'ok':
-      return { isLoading: false, data: action.data };
+      return { ...state, isLoading: false, data: action.data };
     case 'error':
-      return { isLoading: false, error: action.error };
+      return { ...state, isLoading: false, error: action.error };
     default:
       return state;
   }
