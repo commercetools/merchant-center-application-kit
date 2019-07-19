@@ -75,7 +75,7 @@ describe('error loading data', () => {
       await waitForNextUpdate();
 
       expect(result.current.isLoading).toBe(false);
-      expect(result.current.data).not.toBeDefined();
+      expect(result.current.data).toEqual({});
       expect(result.current.error).toEqual(
         expect.objectContaining({ message: 'Oops' })
       );
