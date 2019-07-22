@@ -51,6 +51,7 @@ typings/
 
 # Output of 'npm pack'
 *.tgz
+!.yarn-offline-mirror/*.tgz
 
 # Yarn Integrity file
 .yarn-integrity

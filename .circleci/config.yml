@@ -19,7 +19,7 @@ aliases:
         - ~/.cache/yarn
 
   - &run_yarn
-    run: yarn --frozen-lockfile
+    run: yarn install --offline --frozen-lockfile
 
 executors:
   node_10:
