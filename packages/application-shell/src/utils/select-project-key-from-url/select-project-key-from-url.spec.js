@@ -1,6 +1,5 @@
 import selectProjectKeyFromUrl from './select-project-key-from-url';
 
-// eslint-disable-next-line jest/valid-describe
 describe.each([
   ['/login', undefined],
   ['/logout', undefined],
