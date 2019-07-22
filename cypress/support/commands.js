@@ -1,4 +1,4 @@
-import 'cypress-testing-library/add-commands';
+import '@testing-library/cypress/add-commands';
 
 function isLocalhost() {
   const url = new URL(Cypress.config('baseUrl'));
