@@ -204,11 +204,6 @@ workflows:
       - vrt_test:
           requires:
             - build
-          filters:
-            branches:
-              ignore:
-                - master
-                - /renovate\/.*/
       - e2e_test:
           name: e2e_playground
           requires:
@@ -231,6 +226,7 @@ workflows:
           requires:
             - e2e_playground
             - e2e_starter
+            - vrt_test
           filters:
             branches:
               only:
