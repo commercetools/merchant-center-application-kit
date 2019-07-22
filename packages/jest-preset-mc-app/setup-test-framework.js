@@ -1,6 +1,6 @@
 require('unfetch/polyfill');
 require('jest-enzyme');
-require('jest-dom/extend-expect');
+require('@testing-library/jest-dom/extend-expect');
 require('@testing-library/react/cleanup-after-each');
 const Enzyme = require('enzyme');
 const Adapter = require('enzyme-adapter-react-16');
