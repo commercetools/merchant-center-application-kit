@@ -41,8 +41,8 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
         permissions: { canViewProducts: true },
         actionRights: {
           products: {
-            canEditPrices: false
-          }
+            canEditPrices: false,
+          },
         },
         owner: { id: 'o1' },
       }}

@@ -70,7 +70,7 @@ const defaultEnvironment = {
 };
 
 const defaultPermissions = {};
-const defaultActionRights = {}
+const defaultActionRights = {};
 
 // Allow consumers of `render` to extend the defaults by passing an object
 // or to completely omit the value by passing `null`
