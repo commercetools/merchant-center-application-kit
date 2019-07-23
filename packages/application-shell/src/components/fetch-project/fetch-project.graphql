@@ -18,6 +18,11 @@ query ProjectQuery($projectKey: String!) {
       name
       value
     }
+    allAppliedActionRights {
+      group
+      name
+      value
+    }
     allAppliedMenuVisibilities {
       name
       value
