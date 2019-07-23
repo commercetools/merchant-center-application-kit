@@ -57,6 +57,7 @@
     "@percy/puppeteer": "1.0.8",
     "@testing-library/cypress": "4.0.4",
     "@testing-library/react": "8.0.4",
+    "@types/common-tags": "1.8.0",
     "@types/enzyme": "3.10.3",
     "@types/graphql": "14.2.2",
     "@types/history": "4.7.2",
