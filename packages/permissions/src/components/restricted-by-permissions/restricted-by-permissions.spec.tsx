@@ -68,6 +68,7 @@ const createApplicationContext = (
   permissions: {
     canManageProjectSettings: true,
   },
+  actionRights: {},
   ...custom,
 });
 
