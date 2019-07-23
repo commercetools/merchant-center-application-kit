@@ -70,6 +70,7 @@ const defaultEnvironment = {
 };
 
 const defaultPermissions = {};
+const defaultActionRights = {}
 
 // Allow consumers of `render` to extend the defaults by passing an object
 // or to completely omit the value by passing `null`
@@ -128,6 +129,7 @@ const renderApp = (
     user,
     project,
     permissions = defaultPermissions,
+    actionRights = defaultActionRights,
     dataLocale = 'en',
     ApolloProviderComponent = MockedApolloProvider,
     // gtm-context
@@ -151,6 +153,7 @@ const renderApp = (
                 mergedProject && {
                   ...mergedProject,
                   permissions,
+                  actionRights,
                 }
               }
               environment={mergedEnvironment}
