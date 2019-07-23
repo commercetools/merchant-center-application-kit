@@ -6,10 +6,25 @@ type TPermissionName = string;
 type TPermissions = {
   [key: string]: boolean;
 };
+type TActionRight = {
+  [key: string]: boolean;
+};
+type TActionRights = {
+  [key: string]: TActionRight;
+};
+type TActionRightName = string;
+type TActionRightGroup = string;
+type TDemandedActionRight = {
+  group: TActionRightGroup;
+  name: TActionRightName;
+};
+
 type TestProps = {
   shouldMatchSomePermissions: boolean;
   demandedPermissions: TPermissionName[];
+  demandedActionRights?: TDemandedActionRight[];
   actualPermissions: TPermissions | null;
+  actualActionRights: TActionRights | null;
   render: jest.Mock;
 };
 
@@ -19,6 +34,11 @@ const createTestProps = (custom: Partial<TestProps>) => ({
   actualPermissions: {
     canViewProducts: true,
     canViewOrders: true,
+  },
+  actualActionRights: {
+    products: {
+      canEditPrices: true,
+    },
   },
   render: jest.fn(),
   ...custom,
@@ -109,6 +129,48 @@ describe('rendering', () => {
       });
       it('should pass isAuthorized as "false"', () => {
         expect(props.render).toHaveBeenCalledWith(false);
+      });
+    });
+  });
+  describe('if action rights', () => {
+    describe('if can view products', () => {
+      describe('if can not publish products on products group', () => {
+        beforeEach(() => {
+          props = createTestProps({
+            shouldMatchSomePermissions: true,
+            demandedActionRights: [
+              { group: 'products', name: 'PublishProducts' },
+            ],
+          });
+          shallow(<Authorized {...props} />);
+        });
+        it('should pass isAuthorized as "false"', () => {
+          expect(props.render).toHaveBeenCalledWith(false);
+        });
+      });
+      describe('if can edit prices on products group', () => {
+        beforeEach(() => {
+          props = createTestProps({
+            shouldMatchSomePermissions: true,
+            demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
+          });
+          shallow(<Authorized {...props} />);
+        });
+        it('should pass isAuthorized as "true"', () => {
+          expect(props.render).toHaveBeenCalledWith(true);
+        });
+      });
+      describe('if can edit prices on orders group', () => {
+        beforeEach(() => {
+          props = createTestProps({
+            shouldMatchSomePermissions: true,
+            demandedActionRights: [{ group: 'orders', name: 'EditPrices' }],
+          });
+          shallow(<Authorized {...props} />);
+        });
+        it('should pass isAuthorized as "false"', () => {
+          expect(props.render).toHaveBeenCalledWith(false);
+        });
       });
     });
   });

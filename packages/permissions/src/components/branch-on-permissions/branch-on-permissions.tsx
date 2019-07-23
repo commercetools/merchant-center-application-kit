@@ -21,6 +21,7 @@ const branchOnPermissions = <OwnProps extends {}>(
           shouldMatchSomePermissions={options.shouldMatchSomePermissions}
           demandedPermissions={demandedPermissions}
           actualPermissions={applicationContext.permissions}
+          actualActionRights={applicationContext.actionRights}
           render={isAuthorized => {
             if (isAuthorized) {
               return <Component {...props} />;
