@@ -4,6 +4,18 @@ type TPermissionName = string;
 type TPermissions = {
   [key: string]: boolean;
 };
+type TActionRightName = string;
+type TActionRightGroup = string;
+type TDemandedActionRight = {
+  group: TActionRightGroup;
+  name: TActionRightName;
+};
+type TActionRight = {
+  [key: string]: boolean;
+};
+type TActionRights = {
+  [key: string]: TActionRight;
+};
 
 // Build the permission key from the definition to match it to the format coming
 // from the API.
@@ -51,6 +63,24 @@ export const hasPermission = (
   // Then checking if a manage permission is inferred as a view permission
   hasManagePermission(demandedPermission, actualPermissions || {});
 
+// Check the user action rights using one of the defined matchers.
+// The shapes of the arguments are:
+// - demandedActionRights:
+//     '[{ group: 'products', name: 'editPrices' }]'
+// - actualActionRights:
+//     { orders: { editPrices: false }, products: { editPrices: true } }
+export const hasActionRight = (
+  demandedActionRight: TDemandedActionRight,
+  actualActionRights: TActionRights | null
+) => {
+  const actionRightGroup =
+    actualActionRights && actualActionRights[demandedActionRight.group];
+
+  return Boolean(
+    actionRightGroup && actionRightGroup[toCanCase(demandedActionRight.name)]
+  );
+};
+
 // Check that the user permissions match EVERY one of the required permissions.
 // The shapes of the arguments are:
 // - demandedPermissions:
@@ -63,6 +93,23 @@ export const hasEveryPermissions = (
 ) =>
   demandedPermissions.every((permission: TPermissionName) =>
     hasPermission(permission, actualPermissions)
+  );
+
+// Check that the user action rights match EVERY one of the required action rights.
+// The shapes of the arguments are:
+// - demandedActionRights:
+//     [
+//       { group: 'products', name: 'editPrices' },
+//       { group: 'products', name: 'publishProducts' },
+//     ]
+// - actualPermissions:
+//     { products: { editPrices: true, publishProducts: true } }
+export const hasEveryActionRight = (
+  demandedActionRights: TDemandedActionRight[],
+  actualActionRights: TActionRights | null
+) =>
+  demandedActionRights.every((actionRight: TDemandedActionRight) =>
+    hasActionRight(actionRight, actualActionRights)
   );
 
 // Check that the user permissions match SOME one of the required permissions.
@@ -79,7 +126,7 @@ export const hasSomePermissions = (
     hasPermission(permission, actualPermissions)
   );
 
-// Returns an Array<String> of unconfigured (not passed as `demandedPermissions`) permissions.
+// Returns an Array<String> of unconfigured (not passed as `actualPermissions`) permissions.
 // The shapes of the arguments are:
 // - demandedPermissions:
 //     ['ViewProducts', 'ManageOrders']
