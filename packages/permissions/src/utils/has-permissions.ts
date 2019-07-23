@@ -65,10 +65,10 @@ export const hasPermission = (
 
 // Check the user action rights using one of the defined matchers.
 // The shapes of the arguments are:
-// - demandedActionRights:
-//     '[{ group: 'products', name: 'editPrices' }]'
+// - demandedActionRight:
+//     '{ group: 'products', name: 'editPrices' }'
 // - actualActionRights:
-//     { orders: { editPrices: false }, products: { editPrices: true } }
+//     { orders: { canEditPrices: false }, products: { canEditPrices: true } }
 export const hasActionRight = (
   demandedActionRight: TDemandedActionRight,
   actualActionRights: TActionRights | null
@@ -102,8 +102,8 @@ export const hasEveryPermissions = (
 //       { group: 'products', name: 'editPrices' },
 //       { group: 'products', name: 'publishProducts' },
 //     ]
-// - actualPermissions:
-//     { products: { editPrices: true, publishProducts: true } }
+// - actualActionRights:
+//     { products: { canEditPrices: true, canPublishProducts: true } }
 export const hasEveryActionRight = (
   demandedActionRights: TDemandedActionRight[],
   actualActionRights: TActionRights | null
