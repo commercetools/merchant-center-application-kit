@@ -4,12 +4,11 @@ module.exports = {
   moduleFileExtensions: ['css', 'js'],
   modulePathIgnorePatterns: [
     'dist',
+    'public',
     '.spec.js',
     '.visualspec.js',
     '.visualroute.js',
-    'website/public',
-    'packages/mc-http-server/public/',
-    'packages/jest-stylelint-runner',
+    'packages/jest-stylelint-runner/',
   ],
   testMatch: [
     '<rootDir>/**/*.css',

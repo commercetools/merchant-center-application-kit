@@ -8,7 +8,6 @@ import {
   Grid,
   Spacings,
 } from '@commercetools-frontend/ui-kit';
-import { stripIndent } from 'common-tags';
 import pkg from '../../package.json';
 import * as colors from '../colors';
 import DevelopItSvg from '../images/develop-it.svg';
