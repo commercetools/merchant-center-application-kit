@@ -20,6 +20,8 @@
   },
   "main": "./dist/actions-global.cjs.js",
   "module": "./dist/actions-global.es.js",
+  "typings": "./dist/typings/index.d.ts",
+  "types": "./dist/typings/index.d.ts",
   "files": [
     "dist",
     "package.json",
@@ -29,10 +31,11 @@
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",
-    "build": "yarn build:es && yarn build:cjs",
-    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js -o ./dist/actions-global.cjs.js",
-    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.js -o ./dist/actions-global.es.js",
-    "build:es:watch": "yarn build:es -w"
+    "build": "yarn build:es && yarn build:cjs && yarn build:typings",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.ts -o ./dist/actions-global.cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.ts -o ./dist/actions-global.es.js",
+    "build:es:watch": "yarn build:es -w",
+    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.4.5",
@@ -44,10 +47,12 @@
   },
   "devDependencies": {
     "react": "16.8.6",
-    "react-redux": "7.1.0"
+    "react-redux": "7.1.0",
+    "redux": "4.0.4"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
-    "react-redux": "7.x"
+    "react-redux": "7.x",
+    "redux": "4.x"
   }
 }

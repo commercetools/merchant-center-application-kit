@@ -1,17 +1,20 @@
 import { DOMAINS } from '@commercetools-frontend/constants';
+import { TApiErrorNotification, TApiErrorNotificationOptions } from '../types';
 import showNotification from './show-notification';
 
-export default function showApiErrorNotification({ errors, source }) {
-  return showNotification(
+export default function showApiErrorNotification({
+  errors,
+}: TApiErrorNotificationOptions) {
+  return showNotification<TApiErrorNotification>(
     {
+      id: 0,
+      domain: DOMAINS.PAGE,
       kind: 'api-error',
       values: {
-        source,
         // NOTE: Some sources or errors (e.g. GraphQL) return an array or object.
         // The cast into an array happens here so that consumers can pass both types.
         errors: Array.isArray(errors) ? errors : [errors],
       },
-      domain: DOMAINS.PAGE,
     },
     {
       dismissAfter: 0,

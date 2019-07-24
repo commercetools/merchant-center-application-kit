@@ -22,7 +22,9 @@ export const reportErrorToSentry = (
   extraInfo?: { extra?: object | string },
   getIsEnabled?: () => boolean
 ) => {
-  const isEnabled = getIsEnabled ? getIsEnabled() : window.app.trackingSentry;
+  const isEnabled = getIsEnabled
+    ? getIsEnabled()
+    : Boolean(window.app.trackingSentry);
 
   if (error instanceof Error === false && !isEnabled) {
     console.warn(
