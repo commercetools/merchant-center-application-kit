@@ -50,6 +50,7 @@ commands:
           root: *working_directory
           paths:
             - packages/**/dist/
+            - packages/**/test-utils/
   restore_package_bundles:
     steps:
       - attach_workspace:
