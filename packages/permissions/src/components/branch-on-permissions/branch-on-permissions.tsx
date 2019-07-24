@@ -4,11 +4,21 @@ import getDisplayName from '../../utils/get-display-name';
 import Authorized from '../authorized';
 
 type TPermissionName = string;
+type TActionRightName = string;
+type TActionRightGroup = string;
+type TDemandedActionRight = {
+  group: TActionRightGroup;
+  name: TActionRightName;
+};
+type TOptions = {
+  shouldMatchSomePermissions?: boolean;
+  actionRights?: TDemandedActionRight[];
+};
 
 const branchOnPermissions = <OwnProps extends {}>(
   demandedPermissions: TPermissionName[],
   FallbackComponent: React.ComponentType<unknown>,
-  options: { shouldMatchSomePermissions: boolean } = {
+  options: TOptions = {
     shouldMatchSomePermissions: false,
   }
 ) => (
@@ -20,6 +30,7 @@ const branchOnPermissions = <OwnProps extends {}>(
         <Authorized
           shouldMatchSomePermissions={options.shouldMatchSomePermissions}
           demandedPermissions={demandedPermissions}
+          demandedActionRights={options.actionRights}
           actualPermissions={applicationContext.permissions}
           actualActionRights={applicationContext.actionRights}
           render={isAuthorized => {
