@@ -7,14 +7,28 @@ type TPermissionName = string;
 type TPermissions = {
   [key: string]: boolean;
 };
+type TActionRightName = string;
+type TActionRightGroup = string;
+type TDemandedActionRight = {
+  group: TActionRightGroup;
+  name: TActionRightName;
+};
+type TActionRight = {
+  [key: string]: boolean;
+};
+type TActionRights = {
+  [key: string]: TActionRight;
+};
 type TestProps = {
   demandedPermissions: TPermissionName[];
+  demandedActionRights?: TDemandedActionRight[];
   shouldMatchSomePermissions: boolean;
 };
 
 const TestComponent = (props: TestProps) => {
   const isAuthorized = useIsAuthorized({
     demandedPermissions: props.demandedPermissions,
+    demandedActionRights: props.demandedActionRights,
     shouldMatchSomePermissions: props.shouldMatchSomePermissions,
   });
   return (
@@ -26,12 +40,16 @@ const TestComponent = (props: TestProps) => {
 
 const testRender = ({
   demandedPermissions,
+  demandedActionRights,
   shouldMatchSomePermissions,
   actualPermissions = { canManageProjectSettings: true },
+  actualActionRights = {},
 }: {
   demandedPermissions: TPermissionName[];
+  demandedActionRights?: TDemandedActionRight[];
   shouldMatchSomePermissions: boolean;
   actualPermissions?: TPermissions;
+  actualActionRights?: TActionRights;
 }) =>
   render(
     <ApplicationContextProvider
@@ -46,6 +64,7 @@ const testRender = ({
           id: 'project-id-1',
         },
         permissions: actualPermissions,
+        actionRights: actualActionRights,
       }}
       environment={{
         applicationName: 'my-app',
@@ -60,6 +79,7 @@ const testRender = ({
     >
       <TestComponent
         demandedPermissions={demandedPermissions}
+        demandedActionRights={demandedActionRights}
         shouldMatchSomePermissions={shouldMatchSomePermissions}
       />
     </ApplicationContextProvider>
@@ -73,6 +93,7 @@ describe('when only one permission matches', () => {
         actualPermissions: {
           canManageCustomers: true,
         },
+        actualActionRights: {},
         shouldMatchSomePermissions: true,
       });
 
@@ -90,6 +111,42 @@ describe('when only one permission matches', () => {
       });
 
       expect(queryByText('Is authorized: No')).toBeInTheDocument();
+    });
+  });
+  describe('when it should not match an action right', () => {
+    it('should indicate being not authorized', () => {
+      const { queryByText } = testRender({
+        actualPermissions: {
+          canManageCustomers: true,
+        },
+        actualActionRights: {
+          products: {
+            canEditPrices: true,
+          },
+        },
+        demandedPermissions: ['ManageCustomers'],
+        demandedActionRights: [{ group: 'products', name: 'PublishProducts' }],
+        shouldMatchSomePermissions: false,
+      });
+
+      expect(queryByText('Is authorized: No')).toBeInTheDocument();
+    });
+    it('should indicate being authorized', () => {
+      const { queryByText } = testRender({
+        actualPermissions: {
+          canManageCustomers: true,
+        },
+        actualActionRights: {
+          products: {
+            canEditPrices: true,
+          },
+        },
+        demandedPermissions: ['ManageCustomers'],
+        demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
+        shouldMatchSomePermissions: false,
+      });
+
+      expect(queryByText('Is authorized: Yes')).toBeInTheDocument();
     });
   });
 });

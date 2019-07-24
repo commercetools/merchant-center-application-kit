@@ -4,6 +4,7 @@ import { ApplicationContext } from '@commercetools-frontend/application-shell-co
 import {
   hasSomePermissions,
   hasEveryPermissions,
+  hasEveryActionRight,
   getInvalidPermissions,
 } from '../../utils/has-permissions';
 import getDisplayName from '../../utils/get-display-name';
@@ -12,6 +13,18 @@ type TPermissions = {
   [key: string]: boolean;
 };
 type TPermissionName = string;
+type TActionRightName = string;
+type TActionRightGroup = string;
+type TDemandedActionRight = {
+  group: TActionRightGroup;
+  name: TActionRightName;
+};
+type TActionRight = {
+  [key: string]: boolean;
+};
+type TActionRights = {
+  [key: string]: TActionRight;
+};
 
 const defaultProps = {
   shouldMatchSomePermissions: false,
@@ -20,7 +33,9 @@ type DefaultProps = typeof defaultProps;
 type Props = {
   shouldMatchSomePermissions?: boolean;
   demandedPermissions: TPermissionName[];
+  demandedActionRights?: TDemandedActionRight[];
   actualPermissions: TPermissions | null;
+  actualActionRights: TActionRights | null;
   render: (isAuthorized: boolean) => React.ReactNode;
   children?: never;
 } & DefaultProps;
@@ -42,21 +57,34 @@ const Authorized = (props: Props) => {
       { extra: namesOfNonConfiguredPermissions }
     );
 
-  const isAuthorized = props.shouldMatchSomePermissions
+  const hasDemandedPermissions = props.shouldMatchSomePermissions
     ? hasSomePermissions(props.demandedPermissions, props.actualPermissions)
     : hasEveryPermissions(props.demandedPermissions, props.actualPermissions);
 
-  return <React.Fragment>{props.render(isAuthorized)}</React.Fragment>;
+  const hasDemandedActionRights = hasEveryActionRight(
+    props.demandedActionRights || [],
+    props.actualActionRights
+  );
+
+  return (
+    <React.Fragment>
+      {props.render(hasDemandedPermissions && hasDemandedActionRights)}
+    </React.Fragment>
+  );
 };
 Authorized.displayName = 'Authorized';
 Authorized.defaultProps = defaultProps;
 
+type TInjectAuthorizedOptions = {
+  shouldMatchSomePermissions?: boolean;
+  actionRights?: TDemandedActionRight[];
+};
 const injectAuthorized = <
   OwnProps extends { isAuthorized?: boolean },
   InjectedProps extends OwnProps & { [key: string]: boolean }
 >(
   demandedPermissions: TPermissionName[],
-  options: { shouldMatchSomePermissions?: boolean } = {},
+  options: TInjectAuthorizedOptions = {},
   propName: string = 'isAuthorized'
 ) => (
   Component: React.ComponentType<OwnProps>
@@ -67,7 +95,9 @@ const injectAuthorized = <
         <Authorized
           shouldMatchSomePermissions={options.shouldMatchSomePermissions}
           demandedPermissions={demandedPermissions}
+          demandedActionRights={options.actionRights}
           actualPermissions={applicationContext.permissions}
+          actualActionRights={applicationContext.actionRights}
           render={isAuthorized => (
             <Component {...props} {...{ [propName]: isAuthorized }} />
           )}

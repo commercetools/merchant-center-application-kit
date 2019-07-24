@@ -2,7 +2,10 @@ import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { renderApp, waitForElement } from '../../test-utils';
 import ProjectQuery from './fetch-project.graphql';
-import FetchProject, { mapAllAppliedToObjectShape } from './fetch-project';
+import FetchProject, {
+  mapAllAppliedToObjectShape,
+  mapAllAppliedToGroupedObjectShape,
+} from './fetch-project';
 
 const renderProject = options =>
   renderApp(
@@ -41,6 +44,14 @@ const createGraphqlResponseForProjectQuery = custom => ({
       {
         __typename: 'AppliedPermission',
         name: 'canManageProjectSettings',
+        value: true,
+      },
+    ],
+    allAppliedActionRights: [
+      {
+        __typename: 'AppliedActionRight',
+        group: 'products',
+        name: 'canEditPrices',
         value: true,
       },
     ],
@@ -143,6 +154,39 @@ describe('helpers', () => {
         expect.objectContaining({
           [firstAppliedPermission.name]: firstAppliedPermission.value,
         })
+      );
+    });
+  });
+  describe('mapAllAppliedToGroupedObjectShape', () => {
+    const allAppliedActionRights = [
+      {
+        group: 'products',
+        name: 'canEditPrices',
+        value: true,
+      },
+      {
+        group: 'orders',
+        name: 'canEditPrices',
+        value: true,
+      },
+      {
+        group: 'products',
+        name: 'canPublishProducts',
+        value: false,
+      },
+    ];
+
+    it('should transform all action rights', () => {
+      expect(mapAllAppliedToGroupedObjectShape(allAppliedActionRights)).toEqual(
+        {
+          products: {
+            canEditPrices: true,
+            canPublishProducts: false,
+          },
+          orders: {
+            canEditPrices: true,
+          },
+        }
       );
     });
   });

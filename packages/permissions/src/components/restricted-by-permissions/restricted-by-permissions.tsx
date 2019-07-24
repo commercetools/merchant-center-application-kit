@@ -8,10 +8,17 @@ const getHasChildren = (children: React.ReactNode) =>
   React.Children.count(children) > 0;
 
 type TPermissionName = string;
+type TActionRightName = string;
+type TActionRightGroup = string;
+type TDemandedActionRight = {
+  group: TActionRightGroup;
+  name: TActionRightName;
+};
 type TRenderProp = (props: { isAuthorized: boolean }) => React.ReactNode;
 type Props = {
   shouldMatchSomePermissions?: boolean;
   permissions: TPermissionName[];
+  actionRights?: TDemandedActionRight[];
   unauthorizedComponent?: React.ComponentType;
   render?: TRenderProp;
   children?: TRenderProp | React.ReactNode;
@@ -33,6 +40,7 @@ const RestrictedByPermissions = (props: Props) => {
           shouldMatchSomePermissions={props.shouldMatchSomePermissions}
           demandedPermissions={props.permissions}
           actualPermissions={applicationContext.permissions}
+          actualActionRights={applicationContext.actionRights}
           render={(isAuthorized: boolean) => {
             if (typeof props.children === 'function')
               return props.children({

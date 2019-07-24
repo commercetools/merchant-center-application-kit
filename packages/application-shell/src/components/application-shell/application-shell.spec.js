@@ -257,6 +257,7 @@ describe('<RestrictedApplication>', () => {
             },
             permissions: { canManageProjectSettings: true },
             menuVisibilities: { hideDashboard: true },
+            actionRights: {},
           };
           wrapperAside = wrapper
             .find('aside')

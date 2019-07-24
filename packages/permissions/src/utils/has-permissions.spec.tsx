@@ -1,5 +1,7 @@
 import {
   hasPermission,
+  hasActionRight,
+  hasEveryActionRight,
   hasEveryPermissions,
   hasSomePermissions,
   getInvalidPermissions,
@@ -8,6 +10,18 @@ import {
 type TPermissionName = string;
 type TPermissions = {
   [key: string]: boolean;
+};
+type TActionRightName = string;
+type TActionRightGroup = string;
+type TDemandedActionRight = {
+  group: TActionRightGroup;
+  name: TActionRightName;
+};
+type TActionRight = {
+  [key: string]: boolean;
+};
+type TActionRights = {
+  [key: string]: TActionRight;
 };
 
 describe('hasPermission', () => {
@@ -88,6 +102,86 @@ describe('hasSomePermissions', () => {
         canViewProducts: true,
         canViewOrders: true,
       })
+    ).toBe(false);
+  });
+});
+
+describe('hasActionRight', () => {
+  let demandedActionRight: TDemandedActionRight;
+  let actualActionRights: TActionRights | null;
+
+  describe('when the user has the demanded action right', () => {
+    beforeEach(() => {
+      demandedActionRight = { group: 'products', name: 'EditPrices' };
+      actualActionRights = { products: { canEditPrices: true } };
+    });
+    it('should return true', () => {
+      expect(hasActionRight(demandedActionRight, actualActionRights)).toBe(
+        true
+      );
+    });
+  });
+  describe('when the user does not have the demanded action right', () => {
+    describe('with the action right group', () => {
+      beforeEach(() => {
+        demandedActionRight = { group: 'products', name: 'PublishProducts' };
+        actualActionRights = { products: { canEditPrices: true } };
+      });
+      it('should return false', () => {
+        expect(hasActionRight(demandedActionRight, actualActionRights)).toBe(
+          false
+        );
+      });
+    });
+    describe('without the action right group', () => {
+      beforeEach(() => {
+        demandedActionRight = { group: 'orders', name: 'EditPrices' };
+        actualActionRights = { products: { canEditPrices: true } };
+      });
+      it('should return false', () => {
+        expect(hasActionRight(demandedActionRight, actualActionRights)).toBe(
+          false
+        );
+      });
+    });
+  });
+});
+
+describe('hasEveryActionRight', () => {
+  it('should return true if every demanded action rights match', () => {
+    expect(
+      hasEveryActionRight(
+        [
+          { group: 'orders', name: 'EditPrices' },
+          { group: 'products', name: 'PublishProducts' },
+        ],
+        {
+          orders: {
+            canEditPrices: true,
+          },
+          products: {
+            canPublishProducts: true,
+          },
+        }
+      )
+    ).toBe(true);
+  });
+  it('should return false if at least one demanded action rights do not match', () => {
+    expect(
+      hasEveryActionRight(
+        [
+          { group: 'orders', name: 'EditPrices' },
+          { group: 'products', name: 'PublishProducts' },
+        ],
+        {
+          orders: {
+            canEditPrices: true,
+          },
+          products: {
+            canEditPrices: true,
+          },
+        }
+      )
     ).toBe(false);
   });
 });

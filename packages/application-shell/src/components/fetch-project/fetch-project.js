@@ -31,6 +31,18 @@ export const mapAllAppliedToObjectShape = allAppliedShape =>
     }),
     {}
   );
+export const mapAllAppliedToGroupedObjectShape = allAppliedShape =>
+  allAppliedShape.reduce((transformedAllApplied, allApplied) => {
+    const previousAllAppliedGroup = transformedAllApplied[allApplied.group];
+
+    return {
+      ...transformedAllApplied,
+      [allApplied.group]: {
+        ...previousAllAppliedGroup,
+        [allApplied.name]: allApplied.value,
+      },
+    };
+  }, {});
 
 class FetchProject extends React.Component {
   static displayName = 'FetchProject';
@@ -64,6 +76,9 @@ class FetchProject extends React.Component {
                 ...data.project,
                 permissions: mapAllAppliedToObjectShape(
                   data.project.allAppliedPermissions
+                ),
+                actionRights: mapAllAppliedToGroupedObjectShape(
+                  data.project.allAppliedActionRights
                 ),
                 menuVisibilities: mapAllAppliedToObjectShape(
                   data.project.allAppliedMenuVisibilities

@@ -39,6 +39,11 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
         currencies: ['USD'],
         languages: ['en'],
         permissions: { canViewProducts: true },
+        actionRights: {
+          products: {
+            canEditPrices: false,
+          },
+        },
         owner: { id: 'o1' },
       }}
       projectDataLocale="en"

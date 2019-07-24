@@ -32,6 +32,13 @@ type TApplicationContextUser = {
   projects: TRawUserProjects;
 };
 type TApplicationContextPermissions = { [key: string]: boolean };
+type TActionRight = {
+  [key: string]: boolean;
+};
+type TApplicationContextActionRights = {
+  [key: string]: TActionRight;
+};
+
 type TRawProject = {
   key: string;
   version: number;
@@ -43,6 +50,7 @@ type TRawProject = {
     id: string;
   };
   permissions: TApplicationContextPermissions;
+  actionRights: TApplicationContextActionRights;
 } & AdditionalProperties;
 type TApplicationContextProject = {
   key: string;
@@ -67,6 +75,7 @@ type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
   user: TApplicationContextUser | null;
   project: TApplicationContextProject | null;
   permissions: TApplicationContextPermissions | null;
+  actionRights: TApplicationContextActionRights | null;
   dataLocale: string | null;
 };
 type ProviderProps<AdditionalEnvironmentProperties extends {}> = {
@@ -140,6 +149,7 @@ const createApplicationContext: <AdditionalEnvironmentProperties extends {}>(
   user: mapUserToApplicationContextUser(user),
   project: mapProjectToApplicationContextProject(project),
   permissions: project && project.permissions ? project.permissions : null,
+  actionRights: project && project.actionRights ? project.actionRights : null,
   dataLocale: projectDataLocale || null,
 });
 

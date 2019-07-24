@@ -8,12 +8,26 @@ type TPermissionName = string;
 type TPermissions = {
   [key: string]: boolean;
 };
+type TActionRight = {
+  [key: string]: boolean;
+};
+type TActionRights = {
+  [key: string]: TActionRight;
+};
+type TActionRightName = string;
+type TActionRightGroup = string;
+type TDemandedActionRight = {
+  group: TActionRightGroup;
+  name: TActionRightName;
+};
 type TApplicationContext = {
   permissions: TPermissions | null;
+  actionRights: TActionRights | null;
 };
 type TestProps = {
   shouldMatchSomePermissions: boolean;
   permissions: TPermissionName[];
+  actionRights?: TDemandedActionRight[];
   applicationContext: TApplicationContext;
   unauthorizedComponent?: React.ComponentType;
   render?: jest.Mock;
@@ -27,6 +41,11 @@ const createTestProps = (custom: Partial<TestProps> = {}) => ({
     permissions: {
       canViewProducts: true,
       canViewOrders: true,
+    },
+    actionRights: {
+      products: {
+        canEditPrices: true,
+      },
     },
   },
   ...custom,
@@ -49,6 +68,7 @@ const createApplicationContext = (
   permissions: {
     canManageProjectSettings: true,
   },
+  actionRights: {},
   ...custom,
 });
 
