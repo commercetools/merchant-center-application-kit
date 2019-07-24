@@ -1,5 +1,7 @@
 import React from 'react';
+import { Dispatch } from 'redux';
 import { showNotification } from '../actions';
+import { TShowNotification } from '../types';
 import { useDispatch } from 'react-redux';
 
 // Returns a function that dispatches a notification, pre-configured to
@@ -10,11 +12,17 @@ import { useDispatch } from 'react-redux';
 //     domain: DOMAINS.SIDE,
 //   });
 //   showSuccessNotification({ text: "All good!" });
-export default function useShowNotification(notificationFragment) {
-  const dispatch = useDispatch();
+export default function useShowNotification<
+  Notification extends TShowNotification
+>(notificationFragment: Partial<Notification>) {
+  const dispatch = useDispatch<Dispatch<ReturnType<typeof showNotification>>>();
   return React.useCallback(
     (content, meta) => {
-      dispatch(showNotification({ ...notificationFragment, ...content }, meta));
+      const notification = showNotification<Notification>(
+        { ...notificationFragment, ...content },
+        meta
+      );
+      dispatch(notification);
     },
     [dispatch, notificationFragment]
   );

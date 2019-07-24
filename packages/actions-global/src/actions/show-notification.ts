@@ -1,8 +1,14 @@
 import isNumber from 'lodash/isNumber';
-import { addNotification } from '@commercetools-frontend/notifications';
+import {
+  addNotification,
+  TNotificationMetaOptions,
+} from '@commercetools-frontend/notifications';
 import { DOMAINS } from '@commercetools-frontend/constants';
+import { TShowNotification } from '../types';
 
-export default function showNotification(notification, meta = {}) {
+export default function showNotification<
+  Notification extends TShowNotification
+>(notification: Notification, meta: TNotificationMetaOptions = {}) {
   if (process.env.NODE_ENV !== 'production')
     if (notification.domain) {
       if (!Object.values(DOMAINS).includes(notification.domain))
@@ -19,5 +25,8 @@ export default function showNotification(notification, meta = {}) {
   if (!isNumber(dismissAfter))
     dismissAfter = notification.kind === 'success' ? 5000 : 0;
 
-  return addNotification(notification, { ...meta, dismissAfter });
+  return addNotification<Pick<Notification, 'id'>>(notification, {
+    ...meta,
+    dismissAfter,
+  });
 }

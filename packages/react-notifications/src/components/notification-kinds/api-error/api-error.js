@@ -39,7 +39,6 @@ ApiErrorNotification.propTypes = {
     domain: PropTypes.oneOf([DOMAINS.PAGE]).isRequired,
     kind: PropTypes.oneOf(['api-error']).isRequired,
     values: PropTypes.shape({
-      message: PropTypes.string,
       errors: PropTypes.arrayOf(
         PropTypes.shape({
           code: PropTypes.string,

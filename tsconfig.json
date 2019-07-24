@@ -29,6 +29,6 @@
     "baseUrl": ".",
     "paths": { "*": ["@types/*"] }
   },
-  "include": ["**/src/**/*", "jest.d.ts"],
+  "include": ["**/src/**/*", "jest.d.ts", "globals.d.ts"],
   "exclude": ["**/node_modules", "**/dist/**/*"]
 }
