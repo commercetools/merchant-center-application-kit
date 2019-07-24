@@ -1,8 +1,9 @@
 import React from 'react';
 import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
+import { TNotificationMetaOptions } from '@commercetools-frontend/notifications';
 import { showNotification } from '../actions';
 import { TShowNotification } from '../types';
-import { useDispatch } from 'react-redux';
 
 // Returns a function that dispatches a notification, pre-configured to
 // a speficic notification.
@@ -14,15 +15,16 @@ import { useDispatch } from 'react-redux';
 //   showSuccessNotification({ text: "All good!" });
 export default function useShowNotification<
   Notification extends TShowNotification
->(notificationFragment: Partial<Notification>) {
+  // FIXME: remove the `notificationFragment`, it makes the typing unnecessarily complex
+>(notificationFragment?: Partial<Notification>) {
   const dispatch = useDispatch<Dispatch<ReturnType<typeof showNotification>>>();
   return React.useCallback(
-    (content, meta) => {
+    (content: Notification, meta?: TNotificationMetaOptions) => {
       const notification = showNotification<Notification>(
         { ...notificationFragment, ...content },
         meta
       );
-      dispatch(notification);
+      return dispatch(notification);
     },
     [dispatch, notificationFragment]
   );
