@@ -47,7 +47,7 @@ export const PERMISSIONS = {
 
 ## Available action rights
 
-An `Action Right` is represented as an object with the shape `{ group: string, name: string }`. The `group` relates to the permission while the `name` is the action right itself. Currently the following action rights for the `products` `group` exist:
+An `ActionRight` is represented as an object with the shape `{ group: string, name: string }`. The `group` relates to the permission while the `name` is the action right itself. Currently the following action rights for the `group: 'products'` exist:
 
 - `PublishProducts`
 - `UnpublishProducts`
@@ -82,7 +82,7 @@ branchOnPermissions(
   unauthorizedComponent: ?UnauthorizedComponent,
   options?: {
     shouldMatchSomePermissions: boolean,
-    actionRights: [ActionRight],
+    actionRights?: [ActionRight],
   }
 ): HoC
 ```
@@ -135,7 +135,7 @@ match, otherwise a fallback component.
 ### Props
 
 - `permissions`: an array of `Permission`, requested by the component
-- `actionRights`: an array of `Action Right`, requested by the component
+- `actionRights`: an array of `ActionRight`, requested by the component
 - `unauthorizedComponent`: (_optional_) a function return an React element to be
   rendered in case the permissions don't match
 - `render`: (_optional_) a function returning an React element or a node to be
