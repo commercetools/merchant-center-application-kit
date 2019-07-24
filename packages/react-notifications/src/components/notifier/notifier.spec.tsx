@@ -1,25 +1,33 @@
 /* eslint-disable react/prop-types */
+import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import {
   render,
   fireEvent,
   waitForElement,
   wait,
+  RenderResult,
 } from '@testing-library/react';
-import { DOMAINS } from '@commercetools-frontend/constants';
-import { useShowNotification } from '@commercetools-frontend/actions-global';
+import {
+  TAddNotificationAction,
+  ADD_NOTIFICATION,
+} from '@commercetools-frontend/notifications';
+import {
+  NOTIFICATION_DOMAINS,
+  NOTIFICATION_KINDS_SIDE,
+} from '@commercetools-frontend/constants';
+import {
+  useShowNotification,
+  TShowNotification,
+} from '@commercetools-frontend/actions-global';
 import Notifier from './notifier';
 
 jest.mock('@commercetools-frontend/actions-global');
 
-const createTestProps = custom => ({
-  domain: DOMAINS.SIDE,
-  kind: 'success',
-  text: 'foo',
-  ...custom,
-});
-
-const TestController = props => {
+type TextControllerProps = {
+  children: React.ReactNode;
+};
+const TestController = (props: TextControllerProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
   // This is just to test a rendering of the children
   const [counter, setCounter] = React.useState(0);
@@ -39,19 +47,29 @@ const TestController = props => {
 };
 
 describe('rendering', () => {
-  let rendered;
-  let dismiss;
-  let showNotification;
+  let rendered: RenderResult;
+  let dismiss: () => void;
+  let showNotification: (
+    notification: TShowNotification
+  ) => TAddNotificationAction<Pick<TShowNotification, 'id'>>;
   beforeEach(() => {
     dismiss = jest.fn();
-    showNotification = jest.fn(() => ({ dismiss }));
-    useShowNotification.mockClear();
-    useShowNotification.mockReturnValue(showNotification);
+    showNotification = jest.fn(() => ({
+      type: ADD_NOTIFICATION,
+      payload: { id: 1 },
+      dismiss,
+    }));
+    mocked(useShowNotification).mockClear();
+    mocked(useShowNotification).mockReturnValue(showNotification);
   });
   it('should dispatch notification when component renders, then remove the notification when component is removed', async () => {
     rendered = render(
       <TestController>
-        <Notifier {...createTestProps()} />
+        <Notifier
+          domain={NOTIFICATION_DOMAINS.SIDE}
+          kind="success"
+          text="foo"
+        />
       </TestController>
     );
     await waitForElement(() => rendered.getByText('Open'));
@@ -60,8 +78,8 @@ describe('rendering', () => {
     await wait(() => {
       expect(showNotification).toHaveBeenCalledWith(
         expect.objectContaining({
-          domain: DOMAINS.SIDE,
-          kind: 'success',
+          domain: NOTIFICATION_DOMAINS.SIDE,
+          kind: NOTIFICATION_KINDS_SIDE.success,
           text: 'foo',
         }),
         undefined

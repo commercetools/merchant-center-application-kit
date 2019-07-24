@@ -40,7 +40,7 @@ describe('reportErrorToSentry', () => {
       expect(report).toHaveProperty('event_id', expect.any(String));
       expect(report).not.toHaveProperty('extra');
       expect(console.error).toHaveBeenCalledWith(
-        expect.stringContaining(report.event_id)
+        expect.stringContaining(report.event_id as string)
       );
     });
   });

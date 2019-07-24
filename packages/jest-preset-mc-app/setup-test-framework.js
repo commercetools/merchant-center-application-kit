@@ -1,13 +1,13 @@
-require('unfetch/polyfill');
-require('jest-enzyme');
-require('@testing-library/jest-dom/extend-expect');
-require('@testing-library/react/cleanup-after-each');
-const Enzyme = require('enzyme');
-const Adapter = require('enzyme-adapter-react-16');
-const ShallowWrapper = require('enzyme/ShallowWrapper');
-const configureEnzymeExtensions = require('@commercetools/enzyme-extensions');
-const commerceToolsEnzymeMatchers = require('@commercetools/jest-enzyme-matchers');
-require('./polyfills/intl');
+import 'unfetch/polyfill';
+import 'jest-enzyme';
+import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/react/cleanup-after-each';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import ShallowWrapper from 'enzyme/ShallowWrapper';
+import configureEnzymeExtensions from '@commercetools/enzyme-extensions';
+import * as commerceToolsEnzymeMatchers from '@commercetools/jest-enzyme-matchers';
+import './polyfills/intl';
 
 Enzyme.configure({ adapter: new Adapter(), disableLifecycleMethods: true });
 

@@ -3,7 +3,10 @@ import {
   addNotification,
   TNotificationMetaOptions,
 } from '@commercetools-frontend/notifications';
-import { DOMAINS } from '@commercetools-frontend/constants';
+import {
+  NOTIFICATION_DOMAINS,
+  NOTIFICATION_KINDS_SIDE,
+} from '@commercetools-frontend/constants';
 import { TShowNotification } from '../types';
 
 export default function showNotification<
@@ -11,7 +14,7 @@ export default function showNotification<
 >(notification: Notification, meta: TNotificationMetaOptions = {}) {
   if (process.env.NODE_ENV !== 'production')
     if (notification.domain) {
-      if (!Object.values(DOMAINS).includes(notification.domain))
+      if (!Object.values(NOTIFICATION_DOMAINS).includes(notification.domain))
         // eslint-disable-next-line no-console
         console.warn(
           `Unknown notification domain "${notification.domain}"`,
@@ -23,7 +26,8 @@ export default function showNotification<
 
   let dismissAfter = meta.dismissAfter;
   if (!isNumber(dismissAfter))
-    dismissAfter = notification.kind === 'success' ? 5000 : 0;
+    dismissAfter =
+      notification.kind === NOTIFICATION_KINDS_SIDE.success ? 5000 : 0;
 
   return addNotification<Pick<Notification, 'id'>>(notification, {
     ...meta,

@@ -9,8 +9,8 @@ import { TShowNotification } from '../types';
 // a speficic notification.
 // Example:
 //   const showSuccessNotification = useShowNotification({
-//     kind: 'success',
-//     domain: DOMAINS.SIDE,
+//     domain: NOTIFICATION_DOMAINS.SIDE,
+//     kind: NOTIFICATION_KINDS_SIDE.success,
 //   });
 //   showSuccessNotification({ text: "All good!" });
 export default function useShowNotification<
