@@ -1,3 +1,17 @@
+## [14.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v14.0.0...v14.1.0) (2019-07-24)
+
+#### 🚀 Type: New Feature
+
+- `application-shell-connectors`, `application-shell`, `permissions`
+  - [#883](https://github.com/commercetools/merchant-center-application-kit/pull/883) feat: add support for action rights through `allAppliedActionRights` query ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+
+- `notifications`
+  - [#884](https://github.com/commercetools/merchant-center-application-kit/pull/884) refactor(notifications): to convert to TS ([@emmenko](https://github.com/emmenko))
+- `browser-history`
+  - [#885](https://github.com/commercetools/merchant-center-application-kit/pull/885) refactor(browser-history): to convert to TS ([@emmenko](https://github.com/emmenko))
+
 ## [14.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v13.13.3...v14.0.0) (2019-07-18)
 
 This release introduces several **breaking changes**, as documented below, mostly around React Hooks and our own permission functionality.
