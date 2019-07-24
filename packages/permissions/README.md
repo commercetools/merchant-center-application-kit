@@ -45,6 +45,32 @@ export const PERMISSIONS = {
 };
 ```
 
+## Available action rights
+
+An `Action Right` is represented as an object with the shape `{ group: string, name: string }`. The `group` relates to the permission while the `name` is the action right itself. Currently the following action rights for the `products` `group` exist:
+
+- `PublishProducts`
+- `UnpublishProducts`
+- `AddPrices`
+- `EditPrices`
+- `DeletePrices`
+- `DeleteProducts`
+- `AddProducts`
+
+We recommend to put the action rights used by your application into a `constants.js` file.
+
+```js
+export const ACTION_RIGHTS = {
+  PublishProducts: { group: 'products', name: 'PublishProducts' },
+  UnpublishProducts: { group: 'products', name: 'UnpublishProducts' },
+  AddPrices: { group: 'products', name: 'AddPrices' },
+  EditPrices: { group: 'products', name: 'EditPrices' },
+  DeletePrices: { group: 'products', name: 'DeletePrices' },
+  DeleteProducts: { group: 'products', name: 'DeleteProducts' },
+  AddProducts: { group: 'products', name: 'AddProducts' },
+};
+```
+
 ## `branchOnPermissions(permissions, [FallbackComponent], [options])`
 
 A HoC that will render a fallback component if the requested permissions don't
@@ -54,7 +80,10 @@ match with the user permissions.
 branchOnPermissions(
   permissions: [Permission],
   unauthorizedComponent: ?UnauthorizedComponent,
-  options: ?Object
+  options?: {
+    shouldMatchSomePermissions: boolean,
+    actionRights: [ActionRight],
+  }
 ): HoC
 ```
 
@@ -64,8 +93,9 @@ branchOnPermissions(
 - `UnauthorizedComponent`: (_optional_) a reference to a React component to be
   rendered in case the permissions don't match
 - `options` (_optional_)
-  - `some`: determines if _some_ or _every_ requested permission should match
+  - `shouldMatchSomePermissions`: determines if _some_ or _every_ requested permission should match
     (default `false`)
+  - `actionRights`: an array of action rights (mentioned above)
 
 ### Example
 
@@ -105,6 +135,7 @@ match, otherwise a fallback component.
 ### Props
 
 - `permissions`: an array of `Permission`, requested by the component
+- `actionRights`: an array of `Action Right`, requested by the component
 - `unauthorizedComponent`: (_optional_) a function return an React element to be
   rendered in case the permissions don't match
 - `render`: (_optional_) a function returning an React element or a node to be
@@ -159,8 +190,9 @@ injectAuthorized(
 - `permissions`: an array of `Permission`, requested for the child component to
   be allowed to render
 - `options` (_optional_)
-  - `some`: determines if _some_ or _every_ requested permission should match
+  - `shouldMatchSomePermissions`: determines if _some_ or _every_ requested permission should match
     (default `false`)
+  - `actionRights`: an array of action rights (mentioned above)
 
 ### Example
 
