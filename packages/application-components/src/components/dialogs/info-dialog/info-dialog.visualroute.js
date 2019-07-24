@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Spacings, Text } from '@commercetools-frontend/ui-kit';
-import { InfoDialog } from 'application-components';
-import { Suite, Spec } from '../../../../test-utils/visual';
+import { InfoDialog } from '@local-build/application-components';
+import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
 
 export const routePath = '/info-dialog';
 

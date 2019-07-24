@@ -53,8 +53,28 @@ overrides:
       'react/display-name': 0
   - files: ['*.visualroute.js']
     rules:
-      'import/extensions': [2, { ignore: ['application-components'] }]
-      'import/no-unresolved': [2, { ignore: ['application-components'] }]
+      'import/extensions':
+        [
+          2,
+          {
+            ignore:
+              [
+                '@local-build/application-components',
+                '@local-build/react-notifications',
+              ],
+          },
+        ]
+      'import/no-unresolved':
+        [
+          2,
+          {
+            ignore:
+              [
+                '@local-build/application-components',
+                '@local-build/react-notifications',
+              ],
+          },
+        ]
       'react/display-name': 0
   - files: ['*.visualspec.js']
     globals:

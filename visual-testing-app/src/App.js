@@ -6,21 +6,29 @@ const applicationComponentsContext = require.context(
   true,
   /\.visualroute\.js$/
 );
-
-const allComponents = applicationComponentsContext
-  .keys()
-  .reduce((components, file) => {
-    const Comp = applicationComponentsContext(file);
-    // trim leading slash
-    const label = Comp.routePath.substring(1);
-    if (components[label]) {
-      // eslint-disable-next-line no-console
-      console.error(`Duplicate route generated for: /${label}`);
-    }
-    // eslint-disable-next-line no-param-reassign
-    components[label] = Comp;
-    return components;
-  }, {});
+const reactNotificationsContext = require.context(
+  '../../packages/react-notifications/',
+  true,
+  /\.visualroute\.js$/
+);
+const allComponents = [
+  ...applicationComponentsContext
+    .keys()
+    .map(key => applicationComponentsContext(key)),
+  ...reactNotificationsContext
+    .keys()
+    .map(key => reactNotificationsContext(key)),
+].reduce((allComponents, Component) => {
+  // trim leading slash
+  const label = Component.routePath.substring(1);
+  if (allComponents[label]) {
+    // eslint-disable-next-line no-console
+    console.error(`Duplicate route generated for: /${label}`);
+  }
+  // eslint-disable-next-line no-param-reassign
+  allComponents[label] = Component;
+  return allComponents;
+}, {});
 
 class App extends React.Component {
   render() {

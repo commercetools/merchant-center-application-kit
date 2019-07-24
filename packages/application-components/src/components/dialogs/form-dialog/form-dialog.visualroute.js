@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import { Spacings, TextField } from '@commercetools-frontend/ui-kit';
-import { FormDialog } from 'application-components';
-import { Suite, Spec } from '../../../../test-utils/visual';
+import { FormDialog } from '@local-build/application-components';
+import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
 
 export const routePath = '/form-dialog';
 
