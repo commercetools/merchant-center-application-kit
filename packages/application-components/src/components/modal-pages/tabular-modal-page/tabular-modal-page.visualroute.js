@@ -11,8 +11,8 @@ import {
   BinLinearIcon,
   customProperties,
 } from '@commercetools-frontend/ui-kit';
-import { TabularModalPage } from 'application-components';
-import { Suite, Spec } from '../../../../test-utils/visual';
+import { TabularModalPage } from '@local-build/application-components';
+import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
 
 export const routePath = '/tabular-modal-page';
 

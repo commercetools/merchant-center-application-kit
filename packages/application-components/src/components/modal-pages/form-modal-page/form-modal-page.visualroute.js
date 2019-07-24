@@ -9,8 +9,8 @@ import {
   FlameIcon,
   BinLinearIcon,
 } from '@commercetools-frontend/ui-kit';
-import { FormModalPage } from 'application-components';
-import { Suite, Spec } from '../../../../test-utils/visual';
+import { FormModalPage } from '@local-build/application-components';
+import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
 
 export const routePath = '/form-modal-page';
 

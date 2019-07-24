@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text } from '@commercetools-frontend/ui-kit';
-import { InfoModalPage } from 'application-components';
-import { Suite, Spec } from '../../../../test-utils/visual';
+import { InfoModalPage } from '@local-build/application-components';
+import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
 
 export const routePath = '/info-modal-page';
 

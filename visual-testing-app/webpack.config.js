@@ -23,9 +23,15 @@ module.exports = {
           chunks: 'all',
           priority: -20,
         },
-        'application-components': {
-          test: /application-components/,
-          name: 'application-components',
+        '@local-build/application-components': {
+          test: /@local-build\/application-components/,
+          name: '@local-build/application-components',
+          chunks: 'all',
+          priority: -15,
+        },
+        '@local-build/application-components': {
+          test: /@local-build\/application-components/,
+          name: '@local-build/application-components',
           chunks: 'all',
           priority: -15,
         },
@@ -36,7 +42,11 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: [/(node_modules)/, /(application-components.es)/],
+        exclude: [
+          /(node_modules)/,
+          /(application-components.es)/,
+          /(react-notifications.es)/,
+        ],
         use: {
           loader: 'babel-loader',
           query: {
@@ -57,9 +67,13 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'application-components': path.resolve(
+      '@local-build/application-components': path.resolve(
         __dirname,
         '../packages/application-components/dist/application-components.es.js'
+      ),
+      '@local-build/react-notifications': path.resolve(
+        __dirname,
+        '../packages/react-notifications/dist/react-notifications.es.js'
       ),
     },
   },
