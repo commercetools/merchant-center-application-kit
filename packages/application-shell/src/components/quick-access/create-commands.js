@@ -442,8 +442,32 @@ export default function createCommands({
             text: intl.formatMessage(messages.openDeveloperSettings),
             action: {
               type: 'go',
-              to: `/${applicationContext.project.key}/settings/developer/api-clients`,
+              to: `/${applicationContext.project.key}/settings/developer`,
             },
+            subCommands: [
+              hasSomePermissions(
+                [permissions.ViewDeveloperSettings],
+                applicationContext.permissions
+              ) && {
+                id: 'go/settings/developer/api-clients/list',
+                text: intl.formatMessage(messages.openApiClientsList),
+                action: {
+                  type: 'go',
+                  to: `/${applicationContext.project.key}/settings/developer/api-clients`,
+                },
+              },
+              hasSomePermissions(
+                [permissions.ManageDeveloperSettings],
+                applicationContext.permissions
+              ) && {
+                id: 'go/settings/developer/api-clients/add',
+                text: intl.formatMessage(messages.openAddApiClient),
+                action: {
+                  type: 'go',
+                  to: `/${applicationContext.project.key}/settings/developer/api-clients/new`,
+                },
+              },
+            ].filter(Boolean),
           },
           featureToggles.customApplications &&
             hasSomePermissions(
