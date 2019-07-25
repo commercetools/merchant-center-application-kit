@@ -170,6 +170,14 @@ export default defineMessages({
     id: 'QuickAccess.openCustomApplicationsSettings',
     defaultMessage: 'Open Custom Applications Settings',
   },
+  openApiClientsList: {
+    id: 'QuickAccess.openApiClientsList',
+    defaultMessage: 'Open API Clients',
+  },
+  openAddApiClient: {
+    id: 'QuickAccess.openAddApiClient',
+    defaultMessage: 'Open Add API Client',
+  },
   openSupport: {
     id: 'QuickAccess.openSupport',
     defaultMessage: 'Open Support',
