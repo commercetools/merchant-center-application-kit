@@ -1,3 +1,13 @@
+## [14.1.1](https://github.com/commercetools/merchant-center-application-kit/compare/v14.1.0...v14.1.1) (2019-07-25)
+
+#### 🐛 Type: Bug
+* `permissions`
+  * [#891](https://github.com/commercetools/merchant-center-application-kit/pull/891) fix(permissions): to drill props ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+* `actions-global`, `constants`, `notifications`, `react-notifications`, `sentry`
+  * [#888](https://github.com/commercetools/merchant-center-application-kit/pull/888) refactor(actions-global): to convert to TS ([@emmenko](https://github.com/emmenko))
+
 ## [14.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v14.0.0...v14.1.0) (2019-07-24)
 
 #### 🚀 Type: New Feature
