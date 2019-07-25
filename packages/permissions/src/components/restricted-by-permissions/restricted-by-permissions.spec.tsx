@@ -1,10 +1,8 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import Authorized from '../authorized';
+import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
+import { render } from '@testing-library/react';
 import RestrictedByPermissions from './restricted-by-permissions';
 
-type TPermissionName = string;
 type TPermissions = {
   [key: string]: boolean;
 };
@@ -20,142 +18,222 @@ type TDemandedActionRight = {
   group: TActionRightGroup;
   name: TActionRightName;
 };
-type TApplicationContext = {
-  permissions: TPermissions | null;
-  actionRights: TActionRights | null;
-};
-type TestProps = {
-  shouldMatchSomePermissions: boolean;
-  permissions: TPermissionName[];
+
+const testRender = ({
+  actualPermissions = { canManageProjectSettings: true },
+  actualActionRights = {},
+  component,
+}: {
+  actualPermissions?: TPermissions;
+  actualActionRights?: TActionRights;
+  component: React.ReactElement;
+}) =>
+  render(
+    <ApplicationContextProvider
+      project={{
+        key: 'test-with-big-data',
+        version: 43,
+        name: 'Test with big data',
+        countries: ['de', 'en'],
+        currencies: ['EUR', 'GBP'],
+        languages: ['de', 'en-GB'],
+        owner: {
+          id: 'project-id-1',
+        },
+        permissions: actualPermissions,
+        actionRights: actualActionRights,
+      }}
+      environment={{
+        applicationName: 'my-app',
+        frontendHost: 'localhost:3001',
+        mcApiUrl: 'https://mc-api.commercetools.com',
+        location: 'eu',
+        env: 'production',
+        cdnUrl: 'http://localhost:3001',
+        servedByProxy: false,
+      }}
+      projectDataLocale="en"
+    >
+      {component}
+    </ApplicationContextProvider>
+  );
+
+const FaaCTestComponent = (props: {
   actionRights?: TDemandedActionRight[];
-  applicationContext: TApplicationContext;
+}) => (
+  <RestrictedByPermissions
+    permissions={['ManageCustomers']}
+    actionRights={props.actionRights}
+  >
+    {({ isAuthorized }) => <p>Is authorized: {isAuthorized ? 'Yes' : 'No'}</p>}
+  </RestrictedByPermissions>
+);
+const RenderPropTestComponent = () => (
+  <RestrictedByPermissions
+    permissions={['ManageCustomers']}
+    render={({ isAuthorized }) => (
+      <p>Is authorized: {isAuthorized ? 'Yes' : 'No'}</p>
+    )}
+  />
+);
+const TestComponent = (props: {
   unauthorizedComponent?: React.ComponentType;
-  render?: jest.Mock;
-  children?: jest.Mock;
-};
+}) => (
+  <RestrictedByPermissions
+    permissions={['ManageCustomers']}
+    unauthorizedComponent={props.unauthorizedComponent}
+  >
+    <p>Is authorized: Yes</p>
+  </RestrictedByPermissions>
+);
 
-const createTestProps = (custom: Partial<TestProps> = {}) => ({
-  shouldMatchSomePermissions: false,
-  permissions: ['ViewProducts', 'ViewOrders'],
-  applicationContext: {
-    permissions: {
-      canViewProducts: true,
-      canViewOrders: true,
-    },
-    actionRights: {
-      products: {
-        canEditPrices: true,
-      },
-    },
-  },
-  ...custom,
-});
-const createApplicationContext = (
-  custom: Partial<TApplicationContext> = {}
-) => ({
-  environment: {
-    applicationName: 'my-app',
-    frontendHost: 'localhost:3001',
-    mcApiUrl: 'https://mc-api.commercetools.com',
-    location: 'eu',
-    env: 'development',
-    cdnUrl: 'http://localhost:3001',
-    servedByProxy: false,
-  },
-  user: null,
-  project: null,
-  dataLocale: null,
-  permissions: {
-    canManageProjectSettings: true,
-  },
-  actionRights: {},
-  ...custom,
-});
+describe('with permissions', () => {
+  describe('when demanded permissions are present', () => {
+    describe('with `FaaC`', () => {
+      it('should indicatged being authorzied', () => {
+        const rendered = testRender({
+          actualPermissions: {
+            canManageCustomers: true,
+          },
+          component: <FaaCTestComponent />,
+        });
 
-describe('rendering', () => {
-  let props: TestProps;
-  let wrapper: ShallowWrapper;
-  describe('if render prop is defined', () => {
-    beforeEach(() => {
-      props = createTestProps({ render: jest.fn() });
-      shallow(<RestrictedByPermissions {...props} />)
-        .find(ApplicationContext)
-        .renderProp('render')(createApplicationContext())
-        .find(Authorized)
-        .renderProp('render')(true);
+        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+      });
     });
-    it('should call render prop with isAuthorized true', () => {
-      expect(props.render).toHaveBeenCalledWith({ isAuthorized: true });
+
+    describe('with `render`-prop', () => {
+      it('should indicatged being authorzied', () => {
+        const rendered = testRender({
+          actualPermissions: {
+            canManageCustomers: true,
+          },
+          component: <RenderPropTestComponent />,
+        });
+
+        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+      });
+    });
+
+    describe('with `children` being a `ReactNode`', () => {
+      it('should indicatged being authorzied', () => {
+        const rendered = testRender({
+          actualPermissions: {
+            canManageCustomers: true,
+          },
+          component: <TestComponent />,
+        });
+
+        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+      });
     });
   });
-  describe('if children prop is defined and is a function', () => {
-    beforeEach(() => {
-      props = createTestProps({ children: jest.fn() });
-      shallow(<RestrictedByPermissions {...props} />)
-        .find(ApplicationContext)
-        .renderProp('render')(createApplicationContext())
-        .find(Authorized)
-        .renderProp('render')(true);
+
+  describe('when demanded permissions are not present', () => {
+    describe('with `FaaC`', () => {
+      it('should indicatged not being authorzied', () => {
+        const rendered = testRender({
+          actualPermissions: {
+            canManageCustomers: false,
+            canManageOrders: true,
+          },
+          component: <FaaCTestComponent />,
+        });
+
+        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+      });
     });
-    it('should call children prop with isAuthorized true', () => {
-      expect(props.children).toHaveBeenCalledWith({ isAuthorized: true });
+    describe('with `render`-prop', () => {
+      it('should indicatged not being authorzied', () => {
+        const rendered = testRender({
+          actualPermissions: {
+            canManageCustomers: false,
+            canManageOrders: true,
+          },
+          component: <RenderPropTestComponent />,
+        });
+
+        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+      });
+    });
+    describe('with `children` being a `ReactNode`', () => {
+      it('should indicatged not being authorzied', () => {
+        const rendered = testRender({
+          actualPermissions: {
+            canManageCustomers: false,
+            canManageOrders: true,
+          },
+          component: <TestComponent />,
+        });
+
+        expect(
+          rendered.queryByText('Is authorized: Yes')
+        ).not.toBeInTheDocument();
+      });
+    });
+    describe('with `unauthorizedComponent` being a `ReactNode`', () => {
+      it('should indicatged not being authorzied', () => {
+        const UnauthorizedComponent = () => <p>Is authorized: No</p>;
+        const rendered = testRender({
+          actualPermissions: {
+            canManageCustomers: false,
+            canManageOrders: true,
+          },
+          component: (
+            <TestComponent unauthorizedComponent={UnauthorizedComponent} />
+          ),
+        });
+
+        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+      });
     });
   });
-  describe('if children prop is defined and is a react node', () => {
-    describe('if isAuthorized is true', () => {
-      beforeEach(() => {
-        props = createTestProps();
-        wrapper = shallow(
-          <RestrictedByPermissions {...props}>
-            <div>{'Authorized'}</div>
-          </RestrictedByPermissions>
-        )
-          .find(ApplicationContext)
-          .renderProp('render')(createApplicationContext())
-          .find(Authorized)
-          .renderProp('render')(true);
-      });
-      it('should render children', () => {
-        expect(wrapper).toHaveText('Authorized');
+});
+
+describe('with action rights', () => {
+  describe('when demanded action rights are present', () => {
+    describe('with `FaaC`', () => {
+      it('should indicatged being authorzied', () => {
+        const rendered = testRender({
+          actualPermissions: {
+            canManageCustomers: true,
+          },
+          actualActionRights: {
+            products: {
+              canPublishProducts: true,
+            },
+          },
+          component: (
+            <FaaCTestComponent
+              actionRights={[{ group: 'products', name: 'PublishProducts' }]}
+            />
+          ),
+        });
+
+        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
-    describe('if isAuthorized is false', () => {
-      beforeEach(() => {
-        props = createTestProps();
-        wrapper = shallow(
-          <RestrictedByPermissions {...props}>
-            <div>{'Authorized'}</div>
-          </RestrictedByPermissions>
-        )
-          .find(ApplicationContext)
-          .renderProp('render')(createApplicationContext())
-          .find(Authorized)
-          .renderProp('render')(false);
-      });
-      it('should render null', () => {
-        expect(wrapper.type()).toBe(null);
-      });
-    });
-    describe('if unautorizedComponent is defined', () => {
-      const Unauthorized = () => <div>{'Unauthorized'}</div>;
-      describe('if isAuthorized is false', () => {
-        beforeEach(() => {
-          props = createTestProps({
-            unauthorizedComponent: Unauthorized,
-          });
-          wrapper = shallow(
-            <RestrictedByPermissions {...props}>
-              <div>{'Authorized'}</div>
-            </RestrictedByPermissions>
-          )
-            .find(ApplicationContext)
-            .renderProp('render')(createApplicationContext())
-            .find(Authorized)
-            .renderProp('render')(false);
+  });
+  describe('when demanded action rights are not present', () => {
+    describe('with `FaaC`', () => {
+      it('should indicatged being not authorzied', () => {
+        const rendered = testRender({
+          actualPermissions: {
+            canManageCustomers: true,
+          },
+          actualActionRights: {
+            products: {
+              canPublishProducts: false,
+            },
+          },
+          component: (
+            <FaaCTestComponent
+              actionRights={[{ group: 'products', name: 'PublishProducts' }]}
+            />
+          ),
         });
-        it('should render unauthorizedComponent', () => {
-          expect(wrapper).toRender(Unauthorized);
-        });
+
+        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });
