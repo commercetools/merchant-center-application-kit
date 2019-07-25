@@ -39,6 +39,7 @@ const RestrictedByPermissions = (props: Props) => {
         <Authorized
           shouldMatchSomePermissions={props.shouldMatchSomePermissions}
           demandedPermissions={props.permissions}
+          demandedActionRights={props.actionRights}
           actualPermissions={applicationContext.permissions}
           actualActionRights={applicationContext.actionRights}
           render={(isAuthorized: boolean) => {
