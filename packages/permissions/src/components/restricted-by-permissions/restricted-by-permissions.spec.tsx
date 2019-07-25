@@ -90,7 +90,7 @@ const TestComponent = (props: {
 describe('with permissions', () => {
   describe('when demanded permissions are present', () => {
     describe('with `FaaC`', () => {
-      it('should indicatged being authorzied', () => {
+      it('should indicate being authorized', () => {
         const rendered = testRender({
           actualPermissions: {
             canManageCustomers: true,
@@ -103,7 +103,7 @@ describe('with permissions', () => {
     });
 
     describe('with `render`-prop', () => {
-      it('should indicatged being authorzied', () => {
+      it('should indicate being authorized', () => {
         const rendered = testRender({
           actualPermissions: {
             canManageCustomers: true,
@@ -116,7 +116,7 @@ describe('with permissions', () => {
     });
 
     describe('with `children` being a `ReactNode`', () => {
-      it('should indicatged being authorzied', () => {
+      it('should indicate being authorized', () => {
         const rendered = testRender({
           actualPermissions: {
             canManageCustomers: true,
@@ -131,7 +131,7 @@ describe('with permissions', () => {
 
   describe('when demanded permissions are not present', () => {
     describe('with `FaaC`', () => {
-      it('should indicatged not being authorzied', () => {
+      it('should indicate not being authorized', () => {
         const rendered = testRender({
           actualPermissions: {
             canManageCustomers: false,
@@ -144,7 +144,7 @@ describe('with permissions', () => {
       });
     });
     describe('with `render`-prop', () => {
-      it('should indicatged not being authorzied', () => {
+      it('should indicate not being authorized', () => {
         const rendered = testRender({
           actualPermissions: {
             canManageCustomers: false,
@@ -157,7 +157,7 @@ describe('with permissions', () => {
       });
     });
     describe('with `children` being a `ReactNode`', () => {
-      it('should indicatged not being authorzied', () => {
+      it('should indicate not being authorized', () => {
         const rendered = testRender({
           actualPermissions: {
             canManageCustomers: false,
@@ -172,7 +172,7 @@ describe('with permissions', () => {
       });
     });
     describe('with `unauthorizedComponent` being a `ReactNode`', () => {
-      it('should indicatged not being authorzied', () => {
+      it('should indicate not being authorized', () => {
         const UnauthorizedComponent = () => <p>Is authorized: No</p>;
         const rendered = testRender({
           actualPermissions: {
@@ -193,7 +193,7 @@ describe('with permissions', () => {
 describe('with action rights', () => {
   describe('when demanded action rights are present', () => {
     describe('with `FaaC`', () => {
-      it('should indicatged being authorzied', () => {
+      it('should indicate not being authorized', () => {
         const rendered = testRender({
           actualPermissions: {
             canManageCustomers: true,
@@ -216,7 +216,7 @@ describe('with action rights', () => {
   });
   describe('when demanded action rights are not present', () => {
     describe('with `FaaC`', () => {
-      it('should indicatged being not authorzied', () => {
+      it('should indicate not being authorized', () => {
         const rendered = testRender({
           actualPermissions: {
             canManageCustomers: true,
