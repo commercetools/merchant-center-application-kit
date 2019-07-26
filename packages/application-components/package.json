@@ -36,7 +36,7 @@
     "build:es:watch": "yarn build:es -w"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.4.5",
+    "@babel/runtime-corejs3": "7.5.5",
     "@commercetools-frontend/assets": "14.0.0",
     "@commercetools-frontend/constants": "14.1.1",
     "@emotion/core": "10.0.14",

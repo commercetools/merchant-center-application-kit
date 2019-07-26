@@ -33,7 +33,7 @@
     ]
   },
   "dependencies": {
-    "@babel/core": "7.4.5",
+    "@babel/core": "7.5.5",
     "@commercetools-frontend/assets": "14.0.0",
     "@commercetools-frontend/babel-preset-mc-app": "14.0.0",
     "@commercetools-frontend/mc-dev-authentication": "14.0.0",
