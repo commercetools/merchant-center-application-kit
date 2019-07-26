@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.5.5",
-    "@sentry/browser": "5.4.3",
+    "@sentry/browser": "5.5.0",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
