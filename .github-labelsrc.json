@@ -1,7 +1,7 @@
 [
   {
     "id": 1295395245,
-    "name": "⚠️ Status: Blocked",
+    "name": "🛑 Status: blocked",
     "color": "222222",
     "description": ""
   },
@@ -172,5 +172,11 @@
     "name": "🧟 Type: Technical Debt",
     "color": "d876e3",
     "description": ""
+  },
+  {
+    "id": 1469909491,
+    "name": "🚀 Status: ship it",
+    "color": "9dff42",
+    "description": "Triggers an merge if rules match via bot"
   }
 ]
