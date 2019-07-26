@@ -40,8 +40,8 @@
   "dependencies": {
     "@babel/runtime-corejs3": "7.5.5",
     "@commercetools-frontend/constants": "14.1.1",
-    "lodash": "4.17.14",
-    "lodash-es": "4.17.14",
+    "lodash": "4.17.15",
+    "lodash-es": "4.17.15",
     "moment-timezone": "^0.5.25",
     "prop-types": "15.7.2"
   },

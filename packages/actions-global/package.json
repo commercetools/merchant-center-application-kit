@@ -42,8 +42,8 @@
     "@commercetools-frontend/browser-history": "14.1.0",
     "@commercetools-frontend/constants": "14.1.1",
     "@commercetools-frontend/notifications": "14.1.1",
-    "lodash": "4.17.14",
-    "lodash-es": "4.17.14"
+    "lodash": "4.17.15",
+    "lodash-es": "4.17.15"
   },
   "devDependencies": {
     "react": "16.8.6",
