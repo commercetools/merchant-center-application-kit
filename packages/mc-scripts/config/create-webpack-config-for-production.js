@@ -132,7 +132,6 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
       app: [
         require.resolve('./application-runtime'),
         require.resolve('core-js/stable'),
-        require.resolve('regenerator-runtime/runtime'),
         entryPoint,
       ],
     },
