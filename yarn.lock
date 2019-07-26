@@ -3283,35 +3283,34 @@
     string-width "^2.0.0"
     strip-ansi "^3"
 
-"@promster/express@2.2.4":
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/@promster/express/-/express-2.2.4.tgz#5ef92ecf9c023ea96c44dfc9955af931d16585c4"
-  integrity sha512-eZhWzhO4YH2r0J0aMJqV/+fljAlqAwfijarXGWHXlJcxr6JlbBi6jFTOlKNEAl/cNv1Qx9umCzhYOB/6PbPU4w==
+"@promster/express@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@promster/express/-/express-3.1.0.tgz#c2e32abf66dde47ba388bd781b44fe1f708eefaa"
+  integrity sha512-0BFn5pXXl0z5DUu9uNEu7caM19MJ8Suia665EjBuXsG0RYj8o4Vvt7LqvvTok5Bgkb8O4IUsfyXfbG3SBWmfbg==
   dependencies:
-    "@promster/metrics" "^2.2.3"
+    "@promster/metrics" "^3.1.0"
     merge-options "1.0.1"
 
-"@promster/metrics@^2.2.3":
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/@promster/metrics/-/metrics-2.2.3.tgz#a57e459d9b15a6c398d87ae02ad0128ed49f9630"
-  integrity sha512-1/OaPskHEcT3pDEjS8ofnJH/UxXY1I5Zl78AW4GMGJmbXGTk/yeNHEbgXMOiA6tTIoR6EinK2Ly9+kxYTxOyZw==
+"@promster/metrics@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@promster/metrics/-/metrics-3.1.0.tgz#ba5ac1c558a9556c07667d335a600048251d334d"
+  integrity sha512-QIztGXeI1CWRPF1bwugUmu4oIU+/pPAoKE2AViIup9Z+GPfwRKxv0YF0oDjitE6zCIMxXJZ4KMhzesYo/G7Eyg==
   dependencies:
     lodash.memoize "4.1.2"
     lodash.once "4.1.1"
     merge-options "1.0.1"
     optional "0.1.4"
-    prom-client "11.5.3"
     url "0.11.0"
     url-value-parser "2.0.1"
   optionalDependencies:
     gc-stats "1.4.0"
 
-"@promster/server@2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@promster/server/-/server-2.1.3.tgz#b6a2fdf4985d49c3f4b766ff6bcfa7abc9f507f9"
-  integrity sha512-6SOX5uaq9QMav4C3NkxP+J77Z8Fw/htQpd+6eOxkurC+C9Gx6ldBf/Texfjh3eUYHEGsunmkBZKs5WPpU+/Rrw==
+"@promster/server@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@promster/server/-/server-3.1.0.tgz#1c8edb639fbb7e2697a7af19286b6d1c076aa018"
+  integrity sha512-Z7m/poWudU7/mYibTR9ecCKUiymbKew2+ribCNG1BerpwmiXiHzMSKMFvQ9989SfwgTk+XQmWbvTqS7rY4UOsQ==
   dependencies:
-    "@promster/metrics" "^2.2.3"
+    "@promster/metrics" "^3.1.0"
 
 "@reach/router@^1.1.1":
   version "1.2.1"
