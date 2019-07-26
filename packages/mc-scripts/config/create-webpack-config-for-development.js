@@ -56,7 +56,6 @@ module.exports = ({
     app: [
       require.resolve('./application-runtime'),
       require.resolve('core-js/stable'),
-      require.resolve('regenerator-runtime/runtime'),
       // Include an alternative client for WebpackDevServer. A client's job is to
       // connect to WebpackDevServer by a socket and get notified about changes.
       // When you save a file, the client will either apply hot updates (in case
