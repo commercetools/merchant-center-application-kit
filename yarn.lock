@@ -1187,10 +1187,10 @@
     tiny-invariant "1.0.4"
     warning "4.0.3"
 
-"@commercetools/api-request-builder@5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@commercetools/api-request-builder/-/api-request-builder-5.3.0.tgz#bd6475bfec2199734c77f2d8775b53382e5379f1"
-  integrity sha512-RYbrsvdKq6uO4aWi6tjwmRZWVIZL/S8YEJ+wRUZNsq1OH/c6Yz8+/Cze6i8j8xs5HTfUKl3nENpu/uK4KWnS/A==
+"@commercetools/api-request-builder@5.3.2":
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/@commercetools/api-request-builder/-/api-request-builder-5.3.2.tgz#271b0f39cb515280e318d33faa12e48e224f6c71"
+  integrity sha512-FycXQDC5VDluGXEpmZLKc4QRnQUoHncOZW8NGrUrodQJ0O3SKDNG1s8dVcPr94gJdf703iV6rtnXSFbBrMcYAw==
 
 "@commercetools/enzyme-extensions@5.0.0":
   version "5.0.0"
@@ -1214,7 +1214,12 @@
     mri "^1.1.4"
     shelljs "^0.8.3"
 
-"@commercetools/http-user-agent@2.1.0", "@commercetools/http-user-agent@^2.0.0":
+"@commercetools/http-user-agent@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@commercetools/http-user-agent/-/http-user-agent-2.1.1.tgz#4e24107af7f3e8e06137d0b3e63c898eeff55ca1"
+  integrity sha512-qME9LkOkKmyEZ+DkhdJ02m/x/iwq3ifn3nInE4+HXljGoE/+XNqecxRAkROhROftpgzAQKgwySLSQEra1BuS1Q==
+
+"@commercetools/http-user-agent@^2.0.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@commercetools/http-user-agent/-/http-user-agent-2.1.0.tgz#30b8a617c6e1cb299dd2cd364c1b635fafb8c3de"
   integrity sha512-Dl0hHZWzquB7yM3t1c+J+V8hMYGSBvJhdF5KPlzzn++eD01yYJ656SSVUM5v2TQ3WOfJijZPGVvS6TbztDiEIQ==
@@ -1237,10 +1242,10 @@
   resolved "https://registry.yarnpkg.com/@commercetools/sdk-middleware-correlation-id/-/sdk-middleware-correlation-id-2.1.0.tgz#f0a03371c4dcb1e5d9f7d141cf24bf5eec1c8c70"
   integrity sha512-BzlbUF5Fa+oZ86ocabtd56/ruUDB6BUMUDQvlgbu9cyIejNlR1BTj46vDd1KwreQVg8di/OFipugzKFE9SXTbw==
 
-"@commercetools/sdk-middleware-http@5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@commercetools/sdk-middleware-http/-/sdk-middleware-http-5.2.0.tgz#6cf8bc9d9760db9590cb10949658ef688605d1ab"
-  integrity sha512-JsE1A3JX5BsBra9kE3+Dy067o6m1uv+URWO2zHc9s2d4YfGJg9SQscfhPKMn7SujdGWrOA6x+H/vZ+QxOZJ+hg==
+"@commercetools/sdk-middleware-http@5.2.1":
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@commercetools/sdk-middleware-http/-/sdk-middleware-http-5.2.1.tgz#c2462acc092baa53531ee7c17c6e6c8428bed7c3"
+  integrity sha512-B9CFKJC1WMozCuGWayrM7k8YuzbneyOqMzf2q/DWIb85+vmXBvoK61c4JVwK4Y9ICtR764DWyueK3f1gznxIzw==
 
 "@commitlint/cli@8.1.0":
   version "8.1.0"
