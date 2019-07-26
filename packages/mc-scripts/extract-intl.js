@@ -163,7 +163,10 @@ const extractFromFile = async fileName => {
   const memoryTaskDone = task('Storing language files in memory');
   const files = (await glob(globFilesToParse)).filter(
     // exclude node_modules on non-root-level (due to monorepo-setup)
-    file => !file.match(/node_modules/) && !file.match(/dist/)
+    file =>
+      !file.match(/node_modules/) &&
+      !file.match(/dist/) &&
+      !file.match(/public/)
   );
   memoryTaskDone();
 
