@@ -44,7 +44,7 @@
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.25",
+    "moment-timezone": "^0.5.26",
     "prop-types": "15.7.2",
     "reselect": "^4.0.0"
   },
