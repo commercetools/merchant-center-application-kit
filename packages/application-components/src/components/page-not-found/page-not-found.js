@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PageNotFoundSVG from '@commercetools-frontend/assets/images/desert-fox.svg';
@@ -13,13 +14,13 @@ const PageNotFound = () => (
       <FormattedMessage
         {...messages.paragraph1}
         values={{
-          link: (
+          a: msg => (
             <a
               href={SUPPORT_PORTAL_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FormattedMessage {...messages.helpDesk} />
+              {msg}
             </a>
           ),
         }}

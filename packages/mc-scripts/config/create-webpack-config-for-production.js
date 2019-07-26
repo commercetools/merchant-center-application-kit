@@ -21,6 +21,7 @@ const postcssCustomMediaQueries = require('postcss-custom-media');
 const postcssColorModFunction = require('postcss-color-mod-function');
 const FinalStatsWriterPlugin = require('../webpack-plugins/final-stats-writer-plugin');
 const { browserslist } = require('../package.json');
+const vendorsToTranspile = require('./vendors-to-transpile');
 
 const optimizeCSSConfig = {
   // Since css-loader uses cssnano v3.1.0, it's best to stick with the
@@ -418,7 +419,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
               },
             },
           ],
-          include: sourceFolders,
+          include: sourceFolders.concat(vendorsToTranspile),
         },
         // Allow to import `*.graphql` SDL files.
         {

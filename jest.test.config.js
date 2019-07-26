@@ -1,3 +1,5 @@
+const vendorsToTranspile = require('./packages/jest-preset-mc-app/vendors-to-transpile');
+
 module.exports = {
   preset: './packages/jest-preset-mc-app',
   moduleDirectories: [
@@ -8,13 +10,9 @@ module.exports = {
   ],
   modulePathIgnorePatterns: ['examples'],
   transformIgnorePatterns: [
-    // This option tells Jest to ignore specific folders from being transpiled
-    // (e.g. with babel).
-    // However we need to instruct jest to actually transpile our local shared
-    // dependencies (e.g. `packages`) which are symlinked as dependencies
-    // in node_modules. Since the name of those packages are scoped with
-    // `@commercetools-local` we simply match the JS files within those folders.
+    // Transpile also our local packages as they are only symlinked.
+    // Exclude ui-kit from being transpiled though.
     'node_modules/@commercetools-frontend/ui-kit',
-    'node_modules/(?!(@commercetools-frontend)/)',
+    `node_modules/(?!(${vendorsToTranspile}|@commercetools-frontend)/)`,
   ],
 };

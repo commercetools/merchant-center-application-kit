@@ -11,6 +11,7 @@ const postcssCustomProperties = require('postcss-custom-properties');
 const postcssCustomMediaQueries = require('postcss-custom-media');
 const postcssColorModFunction = require('postcss-color-mod-function');
 const { browserslist } = require('../package.json');
+const vendorsToTranspile = require('./vendors-to-transpile');
 
 const defaultToggleFlags = {
   // Allow to disable index.html generation in case it's not necessary (e.g. for Storybook)
@@ -335,7 +336,7 @@ module.exports = ({
             },
           },
         ],
-        include: sourceFolders,
+        include: sourceFolders.concat(vendorsToTranspile),
       },
       // Allow to import `*.graphql` SDL files.
       {
