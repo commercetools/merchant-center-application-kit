@@ -28,12 +28,12 @@
     "react-redux": "7.1.0",
     "react-router": "5.0.1",
     "react-router-dom": "5.0.1",
-    "redux": "4.0.1"
+    "redux": "4.0.4"
   },
   "devDependencies": {
     "@commercetools-frontend/jest-preset-mc-app": "14.0.0",
     "@commercetools-frontend/mc-scripts": "14.0.0",
-    "@testing-library/react": "8.0.4",
+    "@testing-library/react": "8.0.6",
     "enzyme": "3.10.0",
     "jest": "24.8.0"
   }

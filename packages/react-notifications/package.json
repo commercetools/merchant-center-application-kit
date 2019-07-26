@@ -35,22 +35,22 @@
     "build:es:watch": "yarn build:es -w"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.4.5",
+    "@babel/runtime-corejs3": "7.5.5",
     "@commercetools-frontend/actions-global": "14.1.1",
     "@commercetools-frontend/constants": "14.1.1",
     "@commercetools-frontend/notifications": "14.1.1",
     "@commercetools-frontend/sentry": "14.1.1",
     "classnames": "2.2.6",
-    "lodash": "4.17.14",
-    "lodash-es": "4.17.14",
+    "lodash": "4.17.15",
+    "lodash-es": "4.17.15",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.25",
+    "moment-timezone": "^0.5.26",
     "prop-types": "15.7.2",
     "reselect": "^4.0.0"
   },
   "devDependencies": {
     "@commercetools-frontend/ui-kit": "10.0.1",
-    "@testing-library/react": "8.0.4",
+    "@testing-library/react": "8.0.6",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-intl": "3.0.0-beta.14",

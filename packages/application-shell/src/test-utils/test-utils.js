@@ -96,6 +96,7 @@ const defaultGtmTracking = {
   track: jest.fn(),
   getHierarchy: jest.fn(),
 };
+const defaultFlopflipAdapterArgs = {};
 
 // This function renders any component within the application context, as if it
 // was rendered inside <ApplicationShell />.
@@ -146,7 +147,11 @@ const renderApp = (
     ...rtl.render(
       <IntlProvider locale={locale}>
         <ApolloProviderComponent mocks={mocks} addTypename={addTypename}>
-          <ConfigureFlopFlip adapter={adpater} defaultFlags={flags}>
+          <ConfigureFlopFlip
+            adapter={adpater}
+            defaultFlags={flags}
+            adapterArgs={defaultFlopflipAdapterArgs}
+          >
             <ApplicationContextProvider
               user={mergedUser}
               project={

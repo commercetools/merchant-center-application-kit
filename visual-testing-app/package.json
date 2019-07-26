@@ -11,7 +11,7 @@
     "@commercetools-frontend/ui-kit": "10.0.1",
     "@emotion/core": "10.0.14",
     "@emotion/styled": "10.0.14",
-    "formik": "1.5.7",
+    "formik": "1.5.8",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "serve": "11.1.0",
-    "webpack": "4.35.2",
-    "webpack-cli": "3.3.5"
+    "webpack": "4.38.0",
+    "webpack-cli": "3.3.6"
   }
 }

@@ -27,10 +27,10 @@
     "@commercetools-frontend/permissions": "14.1.1",
     "@commercetools-frontend/sdk": "14.1.1",
     "@commercetools-frontend/ui-kit": "10.0.1",
-    "lodash": "4.17.14",
-    "lodash-es": "4.17.14",
+    "lodash": "4.17.15",
+    "lodash-es": "4.17.15",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.25",
+    "moment-timezone": "^0.5.26",
     "normalizr": "3.4.0",
     "prop-types": "15.7.2",
     "react": "16.8.6",
@@ -39,7 +39,7 @@
     "react-redux": "7.1.0",
     "react-router": "5.0.1",
     "react-router-dom": "5.0.1",
-    "redux": "4.0.1"
+    "redux": "4.0.4"
   },
   "devDependencies": {
     "@commercetools-frontend/mc-scripts": "14.0.0"
