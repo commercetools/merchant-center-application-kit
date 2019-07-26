@@ -14672,12 +14672,10 @@ make-fetch-happen@^5.0.0:
     socks-proxy-agent "^4.0.0"
     ssri "^6.0.0"
 
-make-plural@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/make-plural/-/make-plural-4.3.0.tgz#f23de08efdb0cac2e0c9ba9f315b0dff6b4c2735"
-  integrity sha512-xTYd4JVHpSCW+aqDof6w/MebaMVNTVYBZhbB/vi513xXdiPT92JMVCo0Jq8W2UZnzYRFeVbQiQ+I25l13JuKvA==
-  optionalDependencies:
-    minimist "^1.2.0"
+make-plural@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/make-plural/-/make-plural-5.0.0.tgz#70fe4e16ee9c3b65ba59ad492b18619b555a58f2"
+  integrity sha512-1YH9im20TwiLUnpD72uoe6JJrdER04SOMCz4BLk0PWqrW1QxKW47SsJBSOf7HHH1ZYb8YZk10yXG60skmwiHlw==
 
 makeerror@1.0.x:
   version "1.0.11"
