@@ -1085,17 +1085,17 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@7.4.5", "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.3", "@babel/runtime@^7.4.4", "@babel/runtime@^7.4.5":
-  version "7.4.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
-  integrity sha512-TuI4qpWZP6lGOGIuGWtp9sPluqYICmbk8T/1vpSysqJxRPkudh/ofFWyqdcMsDf2s7KvDL4/YHgKyvcS3g9CJQ==
-  dependencies:
-    regenerator-runtime "^0.13.2"
-
-"@babel/runtime@^7.5.1":
+"@babel/runtime@7.5.5", "@babel/runtime@^7.5.1":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.5.5.tgz#74fba56d35efbeca444091c7850ccd494fd2f132"
   integrity sha512-28QvEGyQyNkB0/m2B4FU7IEZGK2NUrcMtT6BZEFALTguLk+AUT6ofsHtPk5QyjAdUkpMJ+/Em+quwz4HOt30AQ==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.3", "@babel/runtime@^7.4.4", "@babel/runtime@^7.4.5":
+  version "7.4.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
+  integrity sha512-TuI4qpWZP6lGOGIuGWtp9sPluqYICmbk8T/1vpSysqJxRPkudh/ofFWyqdcMsDf2s7KvDL4/YHgKyvcS3g9CJQ==
   dependencies:
     regenerator-runtime "^0.13.2"
 
@@ -1586,49 +1586,49 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@flopflip/launchdarkly-adapter@2.7.0":
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.7.0.tgz#c3cb0eadba3486cb6590b582f74b545f5ff520b5"
-  integrity sha512-06kDUiUFCeksufpzvfL+YhAnnEAdF1qXTRmwdh9pE9ud1qiS27qrbKs8E6P+oKvMU5Viw52UYzf8S1r/CMwMYQ==
+"@flopflip/launchdarkly-adapter@2.7.1":
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.7.1.tgz#a9554d9f6f1f4351922b86f03fe60f7264cec59d"
+  integrity sha512-c32T3BiWq2t/l0cSLKJDMy/z8sdJ48/7VsEY7IA1Zxs0/eF4Z1/Gr3Htas0WbZ0PpYkfPMLjjaBmY1NI0xnSBg==
   dependencies:
-    "@babel/runtime" "7.4.5"
-    deepmerge "3.2.0"
+    "@babel/runtime" "7.5.5"
+    deepmerge "4.0.0"
     ldclient-js "2.10.2"
-    lodash "4.17.11"
-    tiny-warning "1.0.2"
+    lodash "4.17.15"
+    tiny-warning "1.0.3"
 
-"@flopflip/memory-adapter@1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-1.3.0.tgz#6cc3a4ab10dc3dde62ea651d428959c4f416582b"
-  integrity sha512-xgrFHX8DhUfB4uL60FWSj1+XQHoBla000yLsFeo/PYMaw6BXfY0iYq51nu1HJKXgRTAQxtr7+mQyRA6EpheKcA==
+"@flopflip/memory-adapter@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-1.3.1.tgz#e33b1af1f77b7e0fc49d8e16870d746f26ad86a8"
+  integrity sha512-plBG077UMLZLxPbz+w8ItLrUzt5SO7XzS2B3H7yRadsD1TrWfx08drxdeKn2RwZ78Yd9KYmq6UkmCy4i36uAlw==
   dependencies:
-    "@babel/runtime" "7.4.5"
+    "@babel/runtime" "7.5.5"
     invariant "2.2.4"
     mitt "1.1.3"
 
-"@flopflip/react-broadcast@8.3.0":
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-8.3.0.tgz#791eeccf4e13dc39af4fe9b1f38c3fec821f38d4"
-  integrity sha512-AYWC7GycvzNuIZfDK506Y+5+qB2J7Y9Ol/8rgOfLmaIi+CJM9hX7f/zT7KnBphr2spCMoYc9NDupdslDcSrpuw==
+"@flopflip/react-broadcast@8.3.1":
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-8.3.1.tgz#9364f9bda7617cd4c10f89cb1767533650fe0e99"
+  integrity sha512-javKTE1qnF4wFs9pnInjhfSt9jQ4vo3alxCCF/KHcUGFoKEhmmX1uZbWMrsp9TuVG0rAJlmw5x0W2Yv1vpceaw==
   dependencies:
-    "@babel/runtime" "7.4.5"
-    "@flopflip/react" "^7.3.0"
+    "@babel/runtime" "7.5.5"
+    "@flopflip/react" "^7.3.1"
     "@flopflip/types" "^2.1.0"
-    create-react-context "0.2.3"
-    lodash "4.17.11"
+    create-react-context "0.3.0"
+    lodash "4.17.15"
 
-"@flopflip/react@^7.3.0":
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-7.3.0.tgz#3dc985dcfad18844cf3e057e84af6830f225931f"
-  integrity sha512-xWcZaQMunDIA/sdEpAPnSVWQAD8P8c10t6KgOk8U83Q/BlXu4rOdYyyUlc2ykVHqPLsdWohGvjLnwDfYZeITmg==
+"@flopflip/react@^7.3.1":
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-7.3.1.tgz#cdae2a0c86c3483270bdf010c1f9b2860e6342a4"
+  integrity sha512-kmnKaufZcpXDh0jgMY9LS99ouOqJr/Sn2SpgbwKvRzh0qol/5hDe/RgaM/9Wx+40HEjQyOBZ+RDAthXTYECvkQ==
   dependencies:
-    "@babel/runtime" "7.4.5"
-    create-react-context "0.2.3"
-    deepmerge "3.2.0"
-    lodash "4.17.11"
+    "@babel/runtime" "7.5.5"
+    create-react-context "0.3.0"
+    deepmerge "4.0.0"
+    lodash "4.17.15"
     react-fast-compare "2.0.4"
     react-is "16.8.6"
-    tiny-warning "1.0.2"
+    tiny-warning "1.0.3"
 
 "@flopflip/types@^2.1.0":
   version "2.1.0"
@@ -7327,18 +7327,26 @@ create-react-class@^15.6.0:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
-create-react-context@0.2.3, create-react-context@^0.2.1, create-react-context@^0.2.2:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.2.3.tgz#9ec140a6914a22ef04b8b09b7771de89567cb6f3"
-  integrity sha512-CQBmD0+QGgTaxDL3OX1IDXYqjkp2It4RIbcb99jS6AEg27Ga+a9G3JtK6SIu0HBwPLZlmwt9F7UwWA4Bn92Rag==
+create-react-context@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.3.0.tgz#546dede9dc422def0d3fc2fe03afe0bc0f4f7d8c"
+  integrity sha512-dNldIoSuNSvlTJ7slIKC/ZFGKexBMBrrcc+TTe1NdmROnaASuLPvqpwj9v4XS4uXZ8+YPu0sNmShX2rXI5LNsw==
   dependencies:
-    fbjs "^0.8.0"
     gud "^1.0.0"
+    warning "^4.0.3"
 
 create-react-context@<=0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.2.2.tgz#9836542f9aaa22868cd7d4a6f82667df38019dca"
   integrity sha512-KkpaLARMhsTsgp0d2NA/R94F/eDLbhXERdIq3LvX2biCAXcDvHYoOqHfWCHf1+OLj+HKBotLG3KqaOOf+C1C+A==
+  dependencies:
+    fbjs "^0.8.0"
+    gud "^1.0.0"
+
+create-react-context@^0.2.1, create-react-context@^0.2.2:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.2.3.tgz#9ec140a6914a22ef04b8b09b7771de89567cb6f3"
+  integrity sha512-CQBmD0+QGgTaxDL3OX1IDXYqjkp2It4RIbcb99jS6AEg27Ga+a9G3JtK6SIu0HBwPLZlmwt9F7UwWA4Bn92Rag==
   dependencies:
     fbjs "^0.8.0"
     gud "^1.0.0"
@@ -7975,15 +7983,15 @@ deep-map@1.5.0:
     lodash "^4.17.4"
     tslib "^1.6.0"
 
-deepmerge@3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-3.2.0.tgz#58ef463a57c08d376547f8869fdc5bcee957f44e"
-  integrity sha512-6+LuZGU7QCNUnAJyX8cIrlzoEgggTM6B7mm+znKOX4t5ltluT9KLjN6g61ECMS0LTsLW7yDpNoxhix5FZcrIow==
-
 deepmerge@3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-3.3.0.tgz#d3c47fd6f3a93d517b14426b0628a17b0125f5f7"
   integrity sha512-GRQOafGHwMHpjPx9iCvTgpu9NojZ49q794EEL94JVEw6VaeA8XTUyBKvAkOOjBX9oJNiV6G3P+T+tihFjo2TqA==
+
+deepmerge@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.0.0.tgz#3e3110ca29205f120d7cb064960a39c3d2087c09"
+  integrity sha512-YZ1rOP5+kHor4hMAH+HRQnBQHg+wvS1un1hAOuIcxcBy0hzcUf6Jg2a1w65kpoOUnurOfZbERwjI1TfZxNjcww==
 
 deepmerge@^2.0.1, deepmerge@^2.1.1:
   version "2.2.1"
@@ -14451,7 +14459,7 @@ lodash@4.17.14, lodash@^4.17.14:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
   integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
 
-lodash@^4.17.13:
+lodash@4.17.15, lodash@^4.17.13:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -21346,7 +21354,12 @@ tiny-invariant@1.0.4, tiny-invariant@^1.0.2:
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.0.4.tgz#346b5415fd93cb696b0c4e8a96697ff590f92463"
   integrity sha512-lMhRd/djQJ3MoaHEBrw8e2/uM4rs9YMNk0iOr8rHQ0QdbM7D4l0gFl3szKdeixrlyfm9Zqi4dxHCM2qVG8ND5g==
 
-tiny-warning@1.0.2, tiny-warning@^1.0.0, tiny-warning@^1.0.2:
+tiny-warning@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
+  integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==
+
+tiny-warning@^1.0.0, tiny-warning@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.2.tgz#1dfae771ee1a04396bdfde27a3adcebc6b648b28"
   integrity sha512-rru86D9CpQRLvsFG5XFdy0KdLAvjdQDyZCsRcuu60WtzFylDM3eAWSxEVz5kzL2Gp544XiUvPbVKtOA/txLi9Q==
