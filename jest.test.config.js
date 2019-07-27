@@ -1,7 +1,7 @@
 const vendorsToTranspile = require('./packages/jest-preset-mc-app/vendors-to-transpile');
 
 module.exports = {
-  preset: './packages/jest-preset-mc-app',
+  preset: './packages/jest-preset-mc-app/jest-preset-for-typescript',
   moduleDirectories: [
     'application-templates',
     'packages',
