@@ -42,7 +42,8 @@ const Notifier = (props: Props) => {
       // Remove notification when component "unmounts"
       notification.dismiss && notification.dismiss();
     };
-  }, []); // run only once
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // We want to run this only once, when the component mounts the first time. Therefore we need to pass an empty array, even though the eslint rule shows a warning.
 
   return null;
 };

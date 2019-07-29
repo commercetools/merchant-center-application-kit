@@ -20,6 +20,7 @@ plugins:
   - jsx-a11y
   - prettier
   - react
+  - react-hooks
   - '@typescript-eslint/eslint-plugin'
 rules:
   '@typescript-eslint/camelcase': 0
@@ -33,6 +34,8 @@ rules:
   import/no-extraneous-dependencies: 0
   import/no-named-as-default: 0
   import/no-unresolved: 2
+  'react-hooks/rules-of-hooks': 'error'
+  'react-hooks/exhaustive-deps': 'warn'
 settings:
   react:
     version: 'detect'

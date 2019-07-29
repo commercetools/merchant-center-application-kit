@@ -203,6 +203,37 @@ const Delete = styled.span`
 `;
 const Hr = styled(ThematicBreak)``;
 // eslint-disable-next-line react/display-name
+const PatchedLink = props => {
+  // Since `document` is not available in SSR, we need to replace
+  // the link with the proper value once the component is mounted.
+  const [linkTo, setLink] = React.useState();
+  React.useEffect(() => {
+    // At this point, `href` values are relative but the link router expects
+    // a full relative path from the base URL path.
+    // E.g. if `href="./foo"` and we're on page `/getting-started/bar`, the
+    // value we need is `/getting-started/foo`.
+    // To achieve that, we let the DOM API build the full URL, then we simply
+    // extract the relative path.
+    const linkElement = document.createElement('a');
+    linkElement.href = props.href;
+    const absoluteUrl = linkElement.href; // <-- this now is the full absolute URL
+    const [, relativePath] = absoluteUrl.split(window.location.origin);
+    setLink(relativePath);
+  }, [props.href]);
+  if (linkTo) {
+    return (
+      <HistoryLink to={linkTo} css={ExternalLink.linkStyles}>
+        {props.children}
+      </HistoryLink>
+    );
+  }
+  return props.children;
+};
+PatchedLink.propTypes = {
+  href: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
+// eslint-disable-next-line react/display-name
 const Link = props => {
   if (props.href.startsWith('/static')) {
     return <a {...props} />;
@@ -225,30 +256,7 @@ const Link = props => {
     );
   }
 
-  // Since `document` is not available in SSR, we need to replace
-  // the link with the proper value once the component is mounted.
-  const [linkTo, setLink] = React.useState();
-  React.useEffect(() => {
-    // At this point, `href` values are relative but the link router expects
-    // a full relative path from the base URL path.
-    // E.g. if `href="./foo"` and we're on page `/getting-started/bar`, the
-    // value we need is `/getting-started/foo`.
-    // To achieve that, we let the DOM API build the full URL, then we simply
-    // extract the relative path.
-    const linkElement = document.createElement('a');
-    linkElement.href = props.href;
-    const absoluteUrl = linkElement.href; // <-- this now is the full absolute URL
-    const [, relativePath] = absoluteUrl.split(window.location.origin);
-    setLink(relativePath);
-  });
-  if (linkTo) {
-    return (
-      <HistoryLink to={linkTo} css={ExternalLink.linkStyles}>
-        {props.children}
-      </HistoryLink>
-    );
-  }
-  return props.children;
+  return <PatchedLink {...props} />;
 };
 Link.propTypes = {
   href: PropTypes.string.isRequired,
