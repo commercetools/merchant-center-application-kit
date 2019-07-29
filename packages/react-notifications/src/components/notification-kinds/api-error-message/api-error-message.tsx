@@ -31,21 +31,18 @@ type Props = {
   error: TAppNotificationApiError<ExtraErrorFields>;
 };
 
-const ApiErrorMessage = (props: Props) => {
+// Type-guard validation for error code to be included in the message object keys.
+const hasErrorCodeAMatchingMessage = (
+  errorCode: string
+): errorCode is keyof typeof messages => errorCode in messages;
+
+const FormattedErrorMessage = (props: Props) => {
   const intl = useIntl();
-
-  // Attempt to map the error to a specific error message
-  const formattedMessage = getMessageByErrorCode(props.error, intl);
-  if (formattedMessage) {
-    return <>{formattedMessage}</>;
-  }
-
   // Attempt to map the error by code
-  const messageCode = props.error.code && messages[props.error.code];
-  if (messageCode) {
-    // The `error` object might contain extra fields for the specific `code`.
-    return <>{intl.formatMessage(messageCode, props.error)}</>;
-  }
+  const messageCode =
+    props.error.code && hasErrorCodeAMatchingMessage(props.error.code)
+      ? messages[props.error.code]
+      : undefined;
 
   React.useEffect(() => {
     if (!messageCode) {
@@ -61,7 +58,12 @@ const ApiErrorMessage = (props: Props) => {
         });
       }
     }
-  }, [messageCode]);
+  }, [messageCode, props.error]);
+
+  if (messageCode) {
+    // The `error` object might contain extra fields for the specific `code`.
+    return <>{intl.formatMessage(messageCode, props.error)}</>;
+  }
 
   return (
     <>
@@ -75,11 +77,30 @@ const ApiErrorMessage = (props: Props) => {
     </>
   );
 };
+FormattedErrorMessage.displayName = 'FormattedErrorMessage';
+
+const ApiErrorMessage = (props: Props) => {
+  const intl = useIntl();
+
+  // Attempt to map the error to a specific error message
+  const specialFormattedMessage = getSpecialFormattedMessageByErrorCode(
+    props.error,
+    intl
+  );
+  if (specialFormattedMessage) {
+    return <>{specialFormattedMessage}</>;
+  }
+
+  return <FormattedErrorMessage {...props} />;
+};
 ApiErrorMessage.displayName = 'ApiErrorMessage';
 
 export default ApiErrorMessage;
 
-function getMessageByErrorCode(error: Props['error'], intl: IntlShape) {
+function getSpecialFormattedMessageByErrorCode(
+  error: Props['error'],
+  intl: IntlShape
+) {
   if (error.errorByExtension) {
     let extensionMessage;
     if (error.localizedMessage) {
@@ -90,17 +111,6 @@ function getMessageByErrorCode(error: Props['error'], intl: IntlShape) {
 
   if (!error.code || error.code === 'InvalidInput')
     return intl.formatMessage(messages.General);
-
-  // The following three checks are from the API Error Extension Scope
-  // https://docs.commercetools.com/http-api-projects-api-extensions.html#error-cases
-  if (error.code === 'ExtensionNoResponse')
-    return intl.formatMessage(messages.ExtensionNoResponse);
-
-  if (error.code === 'ExtensionBadResponse')
-    return intl.formatMessage(messages.ExtensionBadResponse);
-
-  if (error.code === 'ExtensionUpdateActionsFailed')
-    return intl.formatMessage(messages.ExtensionUpdateActionsFailed);
 
   // TODO: this is a temporary solution until we have proper pages about 403
   if (error.code === 'insufficient_scope')
