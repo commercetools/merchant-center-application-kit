@@ -19,13 +19,15 @@ const hideAppLoader = () => {
 };
 
 const ConfigureIntlProvider = props => {
+  React.useEffect(() => {
+    if (props.locale) {
+      hideAppLoader();
+    }
+  }, [props.locale]);
+
   if (!props.locale) {
     return null;
   }
-
-  React.useEffect(() => {
-    hideAppLoader();
-  }, []);
 
   return (
     <IntlProvider locale={props.locale} messages={props.messages}>

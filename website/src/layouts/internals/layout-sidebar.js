@@ -44,7 +44,7 @@ const LayoutSidebar = props => {
   const [portalNode, setPortalNode] = React.useState();
   React.useEffect(() => {
     setPortalNode(document.getElementById('sidebar-menu-toggle'));
-  });
+  }, []);
   return (
     <Container isMenuOpen={props.isMenuOpen}>
       <Navbar
