@@ -1,3 +1,35 @@
+## [14.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v14.1.1...v14.2.0) (2019-07-29)
+
+#### 🚀 Type: New Feature
+* `application-shell`, `i18n`
+  * [#894](https://github.com/commercetools/merchant-center-application-kit/pull/894) feat(app-shell): add api clients to quick access ([@tdeekens](https://github.com/tdeekens))
+
+#### 🐛 Type: Bug
+* `mc-scripts`
+  * [#905](https://github.com/commercetools/merchant-center-application-kit/pull/905) fix(mc-scripts): to use paths to package directory instead of entry points ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+* `jest-preset-mc-app`
+  * [#902](https://github.com/commercetools/merchant-center-application-kit/pull/902) refactor(jest-preset): to split typescript config from default preset ([@emmenko](https://github.com/emmenko))
+
+#### 🔮 Type: Chore
+* `storage`
+  * [#904](https://github.com/commercetools/merchant-center-application-kit/pull/904) chore: remove (deprecated) storage package ([@emmenko](https://github.com/emmenko))
+* Other
+  * [#903](https://github.com/commercetools/merchant-center-application-kit/pull/903) chore: use recent version 5.4.3 of intl-messageformat ([@tdeekens](https://github.com/tdeekens))
+* `mc-scripts`
+  * [#899](https://github.com/commercetools/merchant-center-application-kit/pull/899) chore: remove regenerator-runtime ([@tdeekens](https://github.com/tdeekens))
+
+#### 🤖 Type: Dependencies
+* `application-components`, `application-shell`, `react-notifications`
+  * [#901](https://github.com/commercetools/merchant-center-application-kit/pull/901) chore: update react-intl to 3.0.0-beta.20 ([@emmenko](https://github.com/emmenko))
+* `application-components`, `application-shell`, `i18n`, `jest-preset-mc-app`, `mc-scripts`, `react-notifications`
+  * [#897](https://github.com/commercetools/merchant-center-application-kit/pull/897) chore: update react-intl to 3.0.0-beta.19 ([@emmenko](https://github.com/emmenko))
+* `application-components`, `application-shell`, `jest-preset-mc-app`, `mc-http-server`, `react-notifications`
+  * [#912](https://github.com/commercetools/merchant-center-application-kit/pull/912) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+* `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `create-mc-app`, `i18n`, `jest-preset-mc-app`, `jest-stylelint-runner`, `l10n`, `mc-http-server`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sdk`, `sentry`, `url-utils`
+  * [#898](https://github.com/commercetools/merchant-center-application-kit/pull/898) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+
 ## [14.1.1](https://github.com/commercetools/merchant-center-application-kit/compare/v14.1.0...v14.1.1) (2019-07-25)
 
 #### 🐛 Type: Bug
