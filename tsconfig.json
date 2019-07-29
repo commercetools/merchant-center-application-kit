@@ -26,9 +26,8 @@
     "stripInternal": true,
     "target": "esnext",
     "allowJs": false,
-    "baseUrl": ".",
-    "paths": { "*": ["@types/*"] }
+    "baseUrl": "."
   },
-  "include": ["**/src/**/*", "jest.d.ts", "globals.d.ts"],
+  "include": ["@types/**/*"],
   "exclude": ["**/node_modules", "**/dist/**/*"]
 }

@@ -2,8 +2,8 @@ import { Dispatch } from 'redux';
 import {
   STATUS_CODES,
   LOGOUT_REASONS,
-  TStatusCode,
   TAppNotificationApiError,
+  TStatusCode,
 } from '@commercetools-frontend/constants';
 import browserHistory from '@commercetools-frontend/browser-history';
 import showApiErrorNotification from './show-api-error-notification';
@@ -51,7 +51,7 @@ export default function handleActionError(error: ActionError) {
       showApiErrorNotification({
         errors: error.body.errors || [
           // Pass a fallback error so that our error components can handle it
-          { message: error.body.message, code: 'Unknown' },
+          { message: error.body.message },
         ],
       })
     );

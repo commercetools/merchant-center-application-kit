@@ -68,7 +68,6 @@
     "@types/prop-types": "15.7.1",
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.5",
-    "@types/react-intl": "2.3.18",
     "@types/react-redux": "7.1.1",
     "@types/react-router-dom": "4.3.4",
     "@typescript-eslint/eslint-plugin": "1.13.0",

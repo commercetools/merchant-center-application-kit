@@ -1,17 +1,18 @@
+import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import { render, wait } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { ApiErrorMessage } from './api-error-message';
+import ApiErrorMessage from './api-error-message';
 
 jest.mock('@commercetools-frontend/sentry');
 
-const renderMessage = ui =>
+const renderMessage = (ui: React.ReactElement) =>
   render(<IntlProvider locale="en">{ui}</IntlProvider>);
 
 describe('render', () => {
   it('should show message for InvalidInput', () => {
-    const error = { code: 'InvalidInput' };
+    const error = { code: 'InvalidInput', message: 'message-content' };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
       rendered.queryByText(/Sorry, but there seems to be something wrong/i)
@@ -20,6 +21,7 @@ describe('render', () => {
   it('should show message for OverlappingPrices', () => {
     const error = {
       code: 'unnecessary code',
+      message: 'message-content',
       invalidValue: { overlappingPrices: 'overlappingPricesContent' },
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
@@ -42,6 +44,7 @@ describe('render', () => {
   it('should show message for InvalidDateRange', () => {
     const error = {
       code: 'InvalidField',
+      message: 'message-content',
       field: 'price',
       invalidValue: {
         validFrom: 'foo',
@@ -54,23 +57,22 @@ describe('render', () => {
     ).toBeInTheDocument();
   });
   it('should show message for unmapped error and report to sentry', async () => {
-    reportErrorToSentry.mockReset();
+    mocked(reportErrorToSentry).mockReset();
     const error = {
       code: 'unmapped error message foo 123',
-      message: 'messageContent',
-      detailedErrorMessage: 'detailedErrorMessageContent',
+      message: 'message-content',
+      detailedErrorMessage: 'detailed-error-message-content',
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
-    expect(rendered.queryByText('messageContent')).toBeInTheDocument();
     expect(
-      rendered.queryByText('(detailedErrorMessageContent)')
+      rendered.queryByText('message-content (detailed-error-message-content)')
     ).toBeInTheDocument();
     await wait(() => {
       expect(reportErrorToSentry).toHaveBeenCalledTimes(1);
     });
   });
   it('should show message for unmapped error and not report to sentry for project expired', async () => {
-    reportErrorToSentry.mockReset();
+    mocked(reportErrorToSentry).mockReset();
     const error = {
       code: 'invalid_scope',
       message: 'has expired',
@@ -84,6 +86,7 @@ describe('render', () => {
   it('should show message for DuplicateSlug', () => {
     const error = {
       code: 'DuplicateField',
+      message: 'message-content',
       field: 'slug',
       duplicateValue: 'duplicateValueContent',
     };
@@ -95,7 +98,7 @@ describe('render', () => {
   it('should show message for DuplicateAttributeValue', () => {
     const error = {
       code: 'DuplicateAttributeValue',
-      message: 'messageContent',
+      message: 'message-content',
       attribute: {
         name: 'attribute-name',
       },
@@ -110,7 +113,7 @@ describe('render', () => {
   it('should show message for Unauthorized', () => {
     const error = {
       code: 'Unauthorized',
-      message: 'messageContent',
+      message: 'message-content',
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
@@ -122,7 +125,7 @@ describe('render', () => {
   it('should show message for Forbidden', () => {
     const error = {
       code: 'insufficient_scope',
-      message: 'messageContent',
+      message: 'message-content',
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
@@ -163,7 +166,7 @@ describe('render', () => {
   it('should show message for ExtensionNoResponse', () => {
     const error = {
       code: 'ExtensionNoResponse',
-      message: 'messageContent',
+      message: 'message-content',
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
@@ -175,7 +178,7 @@ describe('render', () => {
   it('should show message for ExtensionBadResponse', () => {
     const error = {
       code: 'ExtensionBadResponse',
-      message: 'messageContent',
+      message: 'message-content',
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
@@ -187,6 +190,7 @@ describe('render', () => {
   it('should show message for ExtensionUpdateActionsFailed', () => {
     const error = {
       code: 'ExtensionUpdateActionsFailed',
+      message: 'message-content',
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
