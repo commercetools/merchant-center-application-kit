@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 import {
   CloseBoldIcon,
   ErrorIcon,
@@ -40,42 +40,40 @@ const NotificationIcon = (props: PropsIcon) => {
 };
 NotificationIcon.displayName = 'NotificationIcon';
 
-const defaultProps = {
-  fixed: false,
-};
-type DefaultProps = typeof defaultProps;
 export type Props = {
   domain: TAppNotificationDomain;
   type: TAppNotificationKind;
   fixed: boolean;
   onCloseClick: (event: React.SyntheticEvent) => void;
   children: React.ReactNode;
-} & DefaultProps;
+};
+const defaultProps: Pick<Props, 'fixed'> = {
+  fixed: false,
+};
 
-const Notification = (props: Props) => (
-  <div css={getStylesForNotification(props)} {...filterDataAttributes(props)}>
-    <div css={getStylesForContent(props)}>{props.children}</div>
-    {props.onCloseClick ? (
-      <div>
-        <FormattedMessage {...messages.hideNotification}>
-          {label => (
-            <IconButton
-              label={label}
-              onClick={props.onCloseClick}
-              icon={<CloseBoldIcon />}
-              size="medium"
-            />
-          )}
-        </FormattedMessage>
-      </div>
-    ) : null}
-    {props.domain === NOTIFICATION_DOMAINS.SIDE ? (
-      <div css={getStylesForIcon(props)}>
-        <NotificationIcon type={props.type} color="surface" />
-      </div>
-    ) : null}
-  </div>
-);
+const Notification = (props: Props) => {
+  const intl = useIntl();
+  return (
+    <div css={getStylesForNotification(props)} {...filterDataAttributes(props)}>
+      <div css={getStylesForContent(props)}>{props.children}</div>
+      {props.onCloseClick ? (
+        <div>
+          <IconButton
+            label={intl.formatMessage(messages.hideNotification)}
+            onClick={props.onCloseClick}
+            icon={<CloseBoldIcon />}
+            size="medium"
+          />
+        </div>
+      ) : null}
+      {props.domain === NOTIFICATION_DOMAINS.SIDE ? (
+        <div css={getStylesForIcon(props)}>
+          <NotificationIcon type={props.type} color="surface" />
+        </div>
+      ) : null}
+    </div>
+  );
+};
 Notification.displayName = 'Notification';
 Notification.defaultProps = defaultProps;
 
