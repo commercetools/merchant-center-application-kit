@@ -26,10 +26,6 @@ type TActionRights = {
   [key: string]: TActionRight;
 };
 
-const defaultProps = {
-  shouldMatchSomePermissions: false,
-};
-type DefaultProps = typeof defaultProps;
 type Props = {
   shouldMatchSomePermissions?: boolean;
   demandedPermissions: TPermissionName[];
@@ -38,7 +34,10 @@ type Props = {
   actualActionRights: TActionRights | null;
   render: (isAuthorized: boolean) => React.ReactNode;
   children?: never;
-} & DefaultProps;
+};
+const defaultProps: Pick<Props, 'shouldMatchSomePermissions'> = {
+  shouldMatchSomePermissions: false,
+};
 
 const Authorized = (props: Props) => {
   if (!props.actualPermissions)

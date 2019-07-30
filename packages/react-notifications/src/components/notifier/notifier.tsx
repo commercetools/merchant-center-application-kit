@@ -8,18 +8,17 @@ import {
   NOTIFICATION_KINDS_SIDE,
 } from '@commercetools-frontend/constants';
 
-const defaultProps = {
-  domain: NOTIFICATION_DOMAINS.SIDE,
-  kind: NOTIFICATION_KINDS_SIDE.success,
-};
-type DefaultProps = typeof defaultProps;
 type Props = {
   domain: TAppNotificationDomain;
   kind: TAppNotificationKind;
   text?: string;
   meta?: { [key: string]: unknown };
   dismissAfter?: number;
-} & DefaultProps;
+};
+const defaultProps: Pick<Props, 'domain' | 'kind'> = {
+  domain: NOTIFICATION_DOMAINS.SIDE,
+  kind: NOTIFICATION_KINDS_SIDE.success,
+};
 
 const Notifier = (props: Props) => {
   const showNotification = globalActions.useShowNotification<
