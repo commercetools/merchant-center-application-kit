@@ -1,12 +1,13 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { IntlProvider } from 'react-intl';
+import { render, RenderResult, fireEvent } from '@testing-library/react';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_SIDE,
 } from '@commercetools-frontend/constants';
 import Notification, { Props } from './notification';
 
-const TestComponent = () => <div />;
+const TestComponent = () => <div>{'Test'}</div>;
 
 type CustomDataAttributes = {
   'data-track-component': string;
@@ -25,51 +26,27 @@ const createTestProps = (
   ...props,
 });
 
+const renderComponent = (props: ReturnType<typeof createTestProps>) =>
+  render(
+    <IntlProvider locale="en" messages={{}}>
+      <Notification {...props} />
+    </IntlProvider>
+  );
+
 describe('rendering', () => {
-  let wrapper: ShallowWrapper;
-  let props;
+  let rendered: RenderResult;
+  let props: ReturnType<typeof createTestProps>;
   beforeEach(() => {
     props = createTestProps();
-    wrapper = shallow(<Notification {...props} />);
+    rendered = renderComponent(props);
   });
 
   it('should render children', () => {
-    expect(wrapper).toRender(TestComponent);
+    expect(rendered.queryByText('Test')).toBeInTheDocument();
   });
 
-  describe('with data-* props', () => {
-    beforeEach(() => {
-      props = createTestProps({
-        'data-track-component': 'Notification',
-        'data-track-label': 'Notification',
-        'data-track-event': 'click',
-        'data-test': 'notification',
-      });
-      wrapper = shallow(<Notification {...props} />);
-    });
-    it('should apply given `data-track-component` to Notification', () => {
-      expect(wrapper).toHaveProp(
-        'data-track-component',
-        expect.stringMatching('Notification')
-      );
-    });
-    it('should apply given `data-track-event` to Notification', () => {
-      expect(wrapper).toHaveProp(
-        'data-track-event',
-        expect.stringMatching('click')
-      );
-    });
-    it('should apply given `data-track-label` to Notification', () => {
-      expect(wrapper).toHaveProp(
-        'data-track-label',
-        expect.stringMatching('Notification')
-      );
-    });
-    it('should apply given `data-test` to Notification', () => {
-      expect(wrapper).toHaveProp(
-        'data-test',
-        expect.stringMatching('notification')
-      );
-    });
+  it('should trigger onCloseClick', async () => {
+    fireEvent.click(rendered.getByLabelText('Hide notification'));
+    expect(props.onCloseClick).toHaveBeenCalled();
   });
 });
