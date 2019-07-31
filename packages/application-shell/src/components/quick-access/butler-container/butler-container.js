@@ -1,15 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './butler-container.mod.css';
+import styled from '@emotion/styled';
 
-const ButlerContainer = props => (
-  <div className={styles.container} tabIndex={-1} {...props}>
-    {props.children}
-  </div>
-);
-ButlerContainer.displayName = 'ButlerContainer';
-ButlerContainer.propTypes = {
-  children: PropTypes.node,
-};
+const ButlerContainer = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 20001;
+`;
 
 export default ButlerContainer;

@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import Fuse from 'fuse.js';
 import { FormattedMessage } from 'react-intl';
 import last from 'lodash/last';
-import classnames from 'classnames';
-import { SearchIcon, LoadingSpinner } from '@commercetools-frontend/ui-kit';
+import { css, keyframes, ClassNames } from '@emotion/core';
+import {
+  SearchIcon,
+  LoadingSpinner,
+  customProperties,
+} from '@commercetools-frontend/ui-kit';
 import { flattenResults } from '../utils';
 import ButlerCommand from '../butler-command';
 import ButlerContainer from '../butler-container';
 import messages from '../messages';
-import styles from './butler.mod.css';
 
 const isSelectAllCombo = event =>
   event.key === 'a' &&
@@ -44,6 +47,25 @@ const hasNewWindowModifier = event => {
   }
 };
 
+const shakeAnimation = keyframes`
+  from,
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  14%,
+  42%,
+  70% {
+    transform: translate3d(-3px, 0, 0);
+  }
+
+  28%,
+  56%,
+  84% {
+    transform: translate3d(3px, 0, 0);
+  }
+`;
+
 export class Butler extends React.Component {
   static displayName = 'Butler';
 
@@ -66,6 +88,7 @@ export class Butler extends React.Component {
     getNextCommands: PropTypes.func.isRequired,
     executeCommand: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
+    classNameShakeAnimation: PropTypes.string.isRequired,
   };
 
   state = {
@@ -100,11 +123,15 @@ export class Butler extends React.Component {
   };
 
   shake = () => {
-    this.searchContainerRef.current.classList.remove(styles.shake);
+    this.searchContainerRef.current.classList.remove(
+      this.props.classNameShakeAnimation
+    );
     // -> triggering reflow
     // eslint-disable-next-line no-void
     void this.searchContainerRef.current.offsetWidth;
-    this.searchContainerRef.current.classList.add(styles.shake);
+    this.searchContainerRef.current.classList.add(
+      this.props.classNameShakeAnimation
+    );
   };
 
   handleKeyDown = event => {
@@ -431,12 +458,28 @@ export class Butler extends React.Component {
       <ButlerContainer
         onClick={this.handleContainerClick}
         data-testid="quick-access"
+        tabIndex={-1}
       >
         <div
           ref={this.searchContainerRef}
-          className={classnames(styles.alfred, {
-            [styles.offline]: this.state.hasNetworkError,
-          })}
+          css={css`
+            background-color: ${customProperties.colorSurface};
+            border: 0;
+            border-radius: ${customProperties.borderRadius4};
+            min-height: 40px;
+
+            /* one more than app-bar (20000) and one more than the overlay (20001) */
+            z-index: 20002;
+            width: 400px;
+            margin: 40px auto;
+            overflow: hidden;
+            -webkit-box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.75);
+            box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.75);
+            padding-bottom: ${this.state.hasNetworkError
+              ? '0'
+              : customProperties.spacingS};
+          `}
           onClick={event => {
             // Avoid closing when the searchContainer itself is clicked
             // If we don't do this, then the overlay will close when e.g.
@@ -445,10 +488,18 @@ export class Butler extends React.Component {
             event.preventDefault();
           }}
         >
-          <div className={styles.inputWrapper}>
+          <div
+            css={css`
+              display: flex;
+            `}
+          >
             <label
               htmlFor="quick-access-search-input"
-              className={styles.magnifyingGlass}
+              css={css`
+                align-self: center;
+                padding-left: ${customProperties.spacingM};
+                margin-top: ${customProperties.spacingS};
+              `}
             >
               <SearchIcon theme="grey" />
             </label>
@@ -459,7 +510,19 @@ export class Butler extends React.Component {
                 messages.inputPlacehoder
               )}
               type="text"
-              className={styles.searchText}
+              css={css`
+                width: 100%;
+                border: 0;
+                outline: 0;
+                font-size: 22px;
+                font-weight: 300;
+                padding: ${customProperties.spacingM}
+                  ${customProperties.spacingM} ${customProperties.spacingS}
+                  ${customProperties.spacingS};
+                &::placeholder {
+                  color: ${customProperties.colorNeutral60};
+                }
+              `}
               value={this.state.searchText}
               onChange={this.handleChange}
               onKeyDown={this.handleKeyDown}
@@ -468,7 +531,13 @@ export class Butler extends React.Component {
               data-testid="quick-access-search-input"
             />
             {this.state.isLoading && (
-              <div className={styles.loadingSpinnerWrapper}>
+              <div
+                css={css`
+                  align-self: center;
+                  margin-top: ${customProperties.spacingS};
+                  margin-right: ${customProperties.spacingS};
+                `}
+              >
                 <LoadingSpinner />
               </div>
             )}
@@ -476,7 +545,19 @@ export class Butler extends React.Component {
           {(() => {
             if (this.state.hasNetworkError)
               return (
-                <div className={classnames(styles.offlineWarning)}>
+                <div
+                  css={css`
+                    overflow: hidden;
+                    white-space: nowrap;
+                    cursor: default;
+                    background: ${customProperties.colorError};
+                    text-align: center;
+                    text-transform: uppercase;
+                    color: ${customProperties.colorSurface};
+                    font-size: ${customProperties.fontSizeSmall};
+                    padding: ${customProperties.spacingXs};
+                  `}
+                >
                   <FormattedMessage {...messages.offline} />
                 </div>
               );
@@ -486,7 +567,19 @@ export class Butler extends React.Component {
               this.state.searchText.trim().length > 0
             )
               return (
-                <div className={classnames(styles.noResultsWarning)}>
+                <div
+                  css={css`
+                    overflow: hidden;
+                    white-space: nowrap;
+                    cursor: default;
+                    background: ${customProperties.colorNeutral};
+                    color: ${customProperties.colorSolid};
+                    text-align: center;
+                    text-transform: uppercase;
+                    font-size: ${customProperties.fontSizeSmall};
+                    padding: ${customProperties.spacingXs};
+                  `}
+                >
                   <FormattedMessage {...messages.noResults} />
                 </div>
               );
@@ -526,4 +619,19 @@ export class Butler extends React.Component {
   }
 }
 
-export default Butler;
+const ButlerWithAnimation = props => (
+  <ClassNames>
+    {({ css }) => (
+      <Butler
+        {...props}
+        classNameShakeAnimation={css`
+          animation-duration: 0.45s;
+          animation-fill-mode: both;
+          animation-name: ${shakeAnimation};
+        `}
+      />
+    )}
+  </ClassNames>
+);
+
+export default ButlerWithAnimation;

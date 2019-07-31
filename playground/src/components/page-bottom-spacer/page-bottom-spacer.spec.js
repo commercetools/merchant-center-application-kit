@@ -14,9 +14,6 @@ describe('rendering', () => {
     props = createTestProps();
     wrapper = shallow(<PageBottomSpacer {...props} />);
   });
-  it('should match snapshot', () => {
-    expect(wrapper).toMatchSnapshot();
-  });
   describe('with default size', () => {
     it('should have class `height-m` by default', () => {
       expect(wrapper).toHaveClassName('height-m');

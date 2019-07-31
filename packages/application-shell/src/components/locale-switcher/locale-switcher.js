@@ -1,13 +1,45 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import { SelectInput, WorldIcon } from '@commercetools-frontend/ui-kit';
-import styles from './locale-switcher.mod.css';
+import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
+import {
+  SelectInput,
+  WorldIcon,
+  customProperties,
+} from '@commercetools-frontend/ui-kit';
 
 export const SingleValue = props => (
-  <div className={styles['single-value-container']}>
+  <div
+    css={css`
+      flex: 1;
+      align-items: center;
+      display: flex;
+    `}
+  >
     <WorldIcon size="big" />
-    <span className={styles.label}>{props.children}</span>
-    <span className={styles['language-counter']}>{props.localeCount}</span>
+    <span
+      css={css`
+        margin-left: 2px;
+        flex: 1;
+        color: ${customProperties.colorAccent};
+      `}
+    >
+      {props.children}
+    </span>
+    <span
+      css={css`
+        width: 22px;
+        height: 22px;
+        border-radius: 100%;
+        background: ${customProperties.colorAccent40};
+        color: ${customProperties.colorSurface};
+        font-size: 0.9rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      `}
+    >
+      {props.localeCount}
+    </span>
   </div>
 );
 
@@ -32,7 +64,13 @@ export default class LocaleSwitcher extends React.PureComponent {
 
   render() {
     return (
-      <div className={styles.container} data-track-component="LocaleSwitch">
+      <div
+        css={css`
+          position: relative;
+          width: ${customProperties.constraintS};
+        `}
+        data-track-component="LocaleSwitch"
+      >
         <SelectInput
           value={this.props.projectDataLocale}
           name="locale-switcher"

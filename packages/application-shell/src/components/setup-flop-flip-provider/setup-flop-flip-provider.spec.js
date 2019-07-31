@@ -27,9 +27,6 @@ describe('rendering', () => {
     props = createTestProps();
     wrapper = shallow(<SetupFlopFlipProvider {...props} />);
   });
-  it('should match snapshot', () => {
-    expect(wrapper).toMatchSnapshot();
-  });
   it('should render <ConfigureFlopFlip>', () => {
     expect(wrapper).toRender(ConfigureFlopFlip);
   });

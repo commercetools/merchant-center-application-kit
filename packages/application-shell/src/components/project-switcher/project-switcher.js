@@ -3,22 +3,49 @@ import PropTypes from 'prop-types';
 import { defaultMemoize } from 'reselect';
 import { graphql } from 'react-apollo';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { css } from '@emotion/core';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import classnames from 'classnames';
-import { SelectInput, ErrorIcon } from '@commercetools-frontend/ui-kit';
-import styles from './project-switcher.mod.css';
+import {
+  SelectInput,
+  ErrorIcon,
+  customProperties,
+} from '@commercetools-frontend/ui-kit';
 import ProjectsQuery from './project-switcher.graphql';
 import messages from './messages';
 
 export const ProjectSwitcherValueContainer = props => (
-  <div className={styles['value-container']}>
-    <div className={styles['value-wrapper']}>
+  <div
+    css={css`
+      display: flex;
+      flex: 1;
+      align-items: center;
+    `}
+  >
+    <div
+      css={css`
+        flex: 1;
+      `}
+    >
       <SelectInput.ValueContainer {...props}>
         {props.children}
       </SelectInput.ValueContainer>
     </div>
-    <span className={styles['project-counter']}>{props.projectCount}</span>
+    <span
+      css={css`
+        width: 22px;
+        height: 22px;
+        border-radius: 100%;
+        background: ${customProperties.colorAccent40};
+        color: ${customProperties.colorSurface};
+        font-size: 0.9rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      `}
+    >
+      {props.projectCount}
+    </span>
   </div>
 );
 
@@ -30,42 +57,56 @@ ProjectSwitcherValueContainer.propTypes = {
 
 export const ProjectSwitcherOption = props => (
   <SelectInput.Option {...props}>
-    <div className={styles['option-container']}>
+    <div
+      css={css`
+        word-wrap: break-word;
+      `}
+    >
       <div
-        className={classnames(styles['item-text-main'], {
-          [styles['item-text-disabled']]: props.isDisabled,
-        })}
+        css={css`
+          color: ${props.isDisabled
+            ? customProperties.colorNeutral
+            : customProperties.colorAccent};
+        `}
       >
         {props.data.name}
         {props.isDisabled && (
-          <span className={styles['disabled-icon-container']}>
+          <span
+            css={css`
+              font-size: 1.5rem;
+              display: flex;
+            `}
+          >
             <ErrorIcon size="medium" />
           </span>
         )}
       </div>
       <div
-        className={classnames(styles['item-text-small'], {
-          [styles['item-text-disabled']]: props.isDisabled,
-        })}
+        css={css`
+          font-size: 11px;
+          color: ${props.isDisabled
+            ? customProperties.colorNeutral
+            : 'inherit'};
+        `}
       >
         {props.data.key}
       </div>
       {props.data.suspension && props.data.suspension.isActive && (
         <div
-          className={classnames(
-            styles['item-text-error'],
-            styles['item-text-small']
-          )}
+          css={css`
+            font-size: 11px;
+            color: ${customProperties.colorError};
+          `}
         >
           <FormattedMessage {...messages.suspended} />
         </div>
       )}
       {props.data.expiry && props.data.expiry.isActive && (
         <div
-          className={classnames(
-            styles['item-text-error'],
-            styles['item-text-small']
-          )}
+          css={css`
+            font-size: 11px;
+            color: ${customProperties.colorError};
+          `}
         >
           <FormattedMessage {...messages.expired} />
         </div>
@@ -108,7 +149,9 @@ const ProjectSwitcher = props => {
 
   return (
     <div
-      className={styles['react-select-wrapper']}
+      css={css`
+        width: 225px;
+      `}
       data-track-component="ProjectSwitch"
       data-track-event="click"
     >

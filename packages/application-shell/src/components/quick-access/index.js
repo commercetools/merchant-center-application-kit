@@ -30,7 +30,7 @@ class QuickAccessContainer extends React.Component {
     // render no overlay in case of loding error, just show nothing then
     if (this.state.hasError) return null;
     return (
-      <React.Suspense fallback={<ButlerContainer />}>
+      <React.Suspense fallback={<ButlerContainer tabIndex={-1} />}>
         {this.props.children}
       </React.Suspense>
     );
