@@ -47,6 +47,15 @@ const createGraphqlResponseForProjectQuery = custom => ({
         value: true,
       },
     ],
+    allAppliedDataFences: [
+      {
+        __typename: 'StoreDataFence',
+        storeKey: 'usa',
+        group: 'orders',
+        resourceAccessPermission: 'canManageOrders',
+        type: 'store',
+      },
+    ],
     allAppliedActionRights: [
       {
         __typename: 'AppliedActionRight',

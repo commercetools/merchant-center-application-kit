@@ -77,6 +77,7 @@ class FetchProject extends React.Component {
                 permissions: mapAllAppliedToObjectShape(
                   data.project.allAppliedPermissions
                 ),
+                dataFences: data.project.allAppliedDataFences,
                 actionRights: mapAllAppliedToGroupedObjectShape(
                   data.project.allAppliedActionRights
                 ),
