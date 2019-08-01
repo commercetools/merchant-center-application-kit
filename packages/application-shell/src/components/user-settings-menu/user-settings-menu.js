@@ -1,9 +1,10 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 import flowRight from 'lodash/flowRight';
-import classnames from 'classnames';
 import Downshift from 'downshift';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import {
@@ -11,6 +12,7 @@ import {
   Text,
   Spacings,
   Avatar,
+  customProperties,
 } from '@commercetools-frontend/ui-kit';
 import {
   LOGOUT_REASONS,
@@ -19,7 +21,6 @@ import {
 } from '@commercetools-frontend/constants';
 import withApplicationsMenu from '../with-applications-menu';
 import handleApolloErrors from '../handle-apollo-errors';
-import styles from './user-settings-menu.mod.css';
 import messages from './messages';
 
 const UserAvatar = props => {
@@ -89,6 +90,23 @@ const renderLabel = (menu, applicationLanguage) => {
   return NO_VALUE_FALLBACK;
 };
 
+const MenuItem = styled.div`
+  width: 100%;
+  cursor: pointer;
+  color: ${customProperties.colorSolid};
+
+  :hover {
+    background-color: ${customProperties.colorNeutral90};
+  }
+
+  ${props =>
+    props.hasDivider
+      ? css`
+          border-bottom: 1px solid ${customProperties.colorNeutral};
+        `
+      : ''};
+`;
+
 const UserSettingsMenuBody = props => {
   const menuLinks =
     (props.applicationsMenuQuery &&
@@ -97,7 +115,20 @@ const UserSettingsMenuBody = props => {
     [];
 
   return (
-    <div className={styles.menu}>
+    <div
+      css={css`
+        position: absolute;
+        background: ${customProperties.colorSurface};
+        border: 1px ${customProperties.colorPrimary40} solid;
+        border-radius: ${customProperties.borderRadius6};
+        box-shadow: ${customProperties.shadow7};
+        width: 315px;
+        right: 14px;
+        top: 40px;
+        padding: ${customProperties.spacingXs};
+        overflow: hidden;
+      `}
+    >
       <div {...props.downshiftProps.getMenuProps()}>
         <Spacings.Inset scale="xs">
           <Spacings.Inline scale="xs" alignItems="center">
@@ -123,31 +154,26 @@ const UserSettingsMenuBody = props => {
               to={`/account/${menu.uriPath}`}
               onClick={props.downshiftProps.toggleMenu}
             >
-              <div className={styles.item}>
+              <MenuItem>
                 <Spacings.Inset scale="s">
                   {renderLabel(menu, props.locale)}
                 </Spacings.Inset>
-              </div>
+              </MenuItem>
             </Link>
           </OptionalFeatureToggle>
         ))}
-        <div
-          className={classnames(
-            styles.item,
-            styles['item-divider-account-section']
-          )}
-        />
+        <MenuItem hasDivider={true} />
         <a
           href={`https://commercetools.com/privacy#suppliers`}
           target="_blank"
           rel="noopener noreferrer"
           onClick={props.downshiftProps.toggleMenu}
         >
-          <div className={styles.item}>
+          <MenuItem>
             <Spacings.Inset scale="s">
               <FormattedMessage {...messages.privacyPolicy} />
             </Spacings.Inset>
-          </div>
+          </MenuItem>
         </a>
         <a
           href={SUPPORT_PORTAL_URL}
@@ -158,29 +184,24 @@ const UserSettingsMenuBody = props => {
           data-track-label="support_textlink"
           onClick={props.downshiftProps.toggleMenu}
         >
-          <div className={styles.item}>
+          <MenuItem>
             <Spacings.Inset scale="s">
               <FormattedMessage {...messages.support} />
             </Spacings.Inset>
-          </div>
+          </MenuItem>
         </a>
-        <div
-          className={classnames(
-            styles.item,
-            styles['item-divider-account-section']
-          )}
-        />
+        <MenuItem hasDivider={true} />
         <a
           // NOTE: we want to redirect to a new page so that the
           // server can remove things like cookie for access token.
           href={`/logout?reason=${LOGOUT_REASONS.USER}`}
           data-test="logout-button"
         >
-          <div className={styles.item} tabIndex="0">
+          <MenuItem tabIndex="0">
             <Spacings.Inset scale="s">
               <FormattedMessage {...messages.logout} />
             </Spacings.Inset>
-          </div>
+          </MenuItem>
         </a>
       </div>
     </div>
@@ -230,7 +251,14 @@ const UserSettingsMenu = props => (
       {downshiftProps => (
         <div>
           <button
-            className={styles['settings-container']}
+            role="user-menu-toggle"
+            css={css`
+              cursor: pointer;
+              border: none;
+              padding: 0;
+              display: flex;
+              background: transparent;
+            `}
             {...downshiftProps.getToggleButtonProps()}
           >
             <UserAvatar

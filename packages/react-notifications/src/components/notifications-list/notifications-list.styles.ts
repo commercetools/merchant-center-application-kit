@@ -23,18 +23,10 @@ const getStyles = (props: StyleProps) => {
         ${baseStyles};
         text-align: center;
         width: 100% !important;
-
-        > {
-          display: inline-flex;
-          padding-right: 48px;
-          height: 100%;
-          width: 100%;
-        }
       `;
     case NOTIFICATION_DOMAINS.PAGE:
       return css`
         ${baseStyles};
-        padding: ${customProperties.spacingM} ${customProperties.spacingL};
       `;
     case NOTIFICATION_DOMAINS.SIDE:
       return css`

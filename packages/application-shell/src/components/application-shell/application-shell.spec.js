@@ -9,9 +9,14 @@ import ConfigureIntlProvider from '../configure-intl-provider';
 import ProjectContainer from '../project-container';
 import FetchUser from '../fetch-user';
 import FetchProject from '../fetch-project';
+import AppBar from '../app-bar';
 import NavBar, { LoadingNavBar } from '../navbar';
+import ApplicationShellProvider from '../application-shell-provider';
 import { getBrowserLocale } from '../application-shell-provider/utils';
-import ApplicationShell, { RestrictedApplication } from './application-shell';
+import ApplicationShell, {
+  RestrictedApplication,
+  MainContainer,
+} from './application-shell';
 
 jest.mock('@commercetools-frontend/sentry');
 jest.mock('../../utils');
@@ -201,20 +206,27 @@ describe('<RestrictedApplication>', () => {
     });
 
     describe('layout', () => {
-      it('should render "global-notifications" container inside "app-layout"', () => {
-        expect(wrapper).toRender('.app-layout > .global-notifications');
+      it('should render "global-notifications" container inside "application-layout"', () => {
+        expect(
+          wrapper.find({ role: 'application-layout' }).find({
+            role: 'global-notifications',
+          })
+        ).toBeDefined();
       });
-      it('should render "header" element inside "app-layout"', () => {
-        expect(wrapper).toRender('.app-layout > header');
+      it('should render "header" element inside "application-layout"', () => {
+        expect(
+          wrapper.find({ role: 'application-layout' }).find({ role: 'header' })
+        ).toBeDefined();
       });
-      it('should render "aside" element inside "app-layout"', () => {
-        expect(wrapper).toRender('.app-layout > aside');
+      it('should render "aside" element inside "application-layout"', () => {
+        expect(
+          wrapper.find({ role: 'application-layout' }).find({ role: 'aside' })
+        ).toBeDefined();
       });
-      it('should render "main" container inside "app-layout"', () => {
-        expect(wrapper).toRender('.app-layout > .main');
-      });
-      it('should mark "main" container with "main" role', () => {
-        expect(wrapper).toRender('.app-layout > .main[role="main"]');
+      it('should render "main" container inside "application-layout"', () => {
+        expect(
+          wrapper.find({ role: 'application-layout' }).find({ role: 'main' })
+        ).toBeDefined();
       });
     });
     it('should render GLOBAL <NotificationsList>', () => {
@@ -236,7 +248,7 @@ describe('<RestrictedApplication>', () => {
       );
     });
     it('should render <AppBar> below header element', () => {
-      expect(wrapper).toRender('header > AppBar');
+      expect(wrapper.find('header').find(AppBar)).toBeDefined();
     });
     describe('<NavBar>', () => {
       let wrapperAside;
@@ -260,7 +272,7 @@ describe('<RestrictedApplication>', () => {
             actionRights: {},
           };
           wrapperAside = wrapper
-            .find('aside')
+            .find({ role: 'aside' })
             .find(FetchProject)
             .renderProp('children')({
             isLoading: false,
@@ -310,7 +322,7 @@ describe('<RestrictedApplication>', () => {
             };
             wrapper = renderForAsyncData({ props, userData, localeData });
             wrapperAside = wrapper
-              .find('aside')
+              .find({ role: 'aside' })
               .find(FetchProject)
               .renderProp('children')({
               isLoading: true,
@@ -327,7 +339,7 @@ describe('<RestrictedApplication>', () => {
             };
             wrapper = renderForAsyncData({ props, userData, localeData });
             wrapperAside = wrapper
-              .find('aside')
+              .find({ role: 'aside' })
               .find(FetchProject)
               .renderProp('children')({
               isLoading: true,
@@ -341,7 +353,7 @@ describe('<RestrictedApplication>', () => {
           beforeEach(() => {
             wrapper = renderForAsyncData({ props, userData });
             wrapperAside = wrapper
-              .find('aside')
+              .find({ role: 'aside' })
               .find(FetchProject)
               .renderProp('children')({
               isLoading: true,
@@ -356,7 +368,7 @@ describe('<RestrictedApplication>', () => {
         beforeEach(() => {
           appShellUtils.selectProjectKeyFromUrl.mockReturnValue();
           wrapper = renderForAsyncData({ props, userData });
-          wrapperAside = wrapper.find('aside');
+          wrapperAside = wrapper.find({ role: 'aside' });
         });
         it('should not render <LoadingNavBar>', () => {
           expect(wrapperAside).not.toRender(LoadingNavBar);
@@ -367,16 +379,16 @@ describe('<RestrictedApplication>', () => {
       });
     });
     it('should render <Route> for "/account"', () => {
-      expect(wrapper.find('.main')).toRender({
+      expect(wrapper.find(MainContainer)).toRender({
         path: '/account',
         render: props.render,
       });
     });
     it('should render <Route> for redirect to "/account"', () => {
-      expect(wrapper.find('.main')).toRender({ to: '/account/profile' });
+      expect(wrapper.find(MainContainer)).toRender({ to: '/account/profile' });
     });
     it('should render <Route> matching ":projectKey" path', () => {
-      expect(wrapper.find('.main')).toRender({
+      expect(wrapper.find(MainContainer)).toRender({
         exact: false,
         path: '/:projectKey',
       });
@@ -389,12 +401,9 @@ describe('<RestrictedApplication>', () => {
           match: { params: { projectKey: 'foo-1' } },
         };
         wrapper = wrapper
-          .find('.main')
+          .find(MainContainer)
           .find({ exact: false, path: '/:projectKey' })
           .renderProp('render')(routerProps);
-      });
-      it('should match layout structure', () => {
-        expect(wrapper).toMatchSnapshot();
       });
       it('should pass "match" to <ProjectContainer>', () => {
         expect(wrapper.find(ProjectContainer)).toHaveProp(
@@ -410,7 +419,7 @@ describe('<RestrictedApplication>', () => {
       });
     });
     it('should render <Route> matching "/" path', () => {
-      expect(wrapper.find('.main')).toRender({
+      expect(wrapper.find(MainContainer)).toRender({
         path: '/',
       });
     });
@@ -423,9 +432,9 @@ describe('when user is not logged in', () => {
   describe('rendering', () => {
     beforeEach(() => {
       props = createTestProps();
-      wrapper = shallow(<ApplicationShell {...props} />).renderProp('children')(
-        { isAuthenticated: false }
-      );
+      wrapper = shallow(<ApplicationShell {...props} />)
+        .find(ApplicationShellProvider)
+        .renderProp('children')({ isAuthenticated: false });
     });
     describe('catch <Route>', () => {
       let renderWrapper;

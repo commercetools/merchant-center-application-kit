@@ -1,21 +1,53 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import { AngleThinRightIcon } from '@commercetools-frontend/ui-kit';
-import styles from './butler-command.mod.css';
+import { css } from '@emotion/core';
+import {
+  AngleThinRightIcon,
+  customProperties,
+} from '@commercetools-frontend/ui-kit';
 
 const ButlerCommand = ({ command, onMouseEnter, onClick, isSelected }) => (
   <div
     key={command.id}
     data-testid={`quick-access-result(${command.id})`}
-    className={classnames(styles.result, { [styles.activeResult]: isSelected })}
+    css={css`
+      display: flex;
+      padding: 0 ${customProperties.spacingM};
+      height: 36px;
+      font-size: 16px;
+      font-weight: 200;
+      line-height: 36px;
+      cursor: default;
+      ${isSelected
+        ? `
+            background: ${customProperties.colorAccent};
+            color: ${customProperties.colorSurface};
+          `
+        : ''}
+    `}
     onMouseEnter={onMouseEnter}
     onClick={onClick}
   >
-    <div className={styles.resultText}>{command.text}</div>
+    <div
+      css={css`
+        flex: 1 auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      `}
+    >
+      {command.text}
+    </div>
     {((Array.isArray(command.subCommands) && command.subCommands.length > 0) ||
       typeof command.subCommands === 'function') && (
-      <div className={styles.subCommandsArrow}>
+      <div
+        css={css`
+          align-self: center;
+          > * {
+            display: block;
+          }
+        `}
+      >
         <AngleThinRightIcon
           size="medium"
           color={isSelected ? 'surface' : 'neutral60'}

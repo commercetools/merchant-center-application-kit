@@ -1,4 +1,5 @@
 import React from 'react';
+import { customProperties } from '@commercetools-frontend/ui-kit';
 import {
   renderAppWithRedux,
   fireEvent,
@@ -700,8 +701,8 @@ describe('QuickAccess', () => {
     fireEvent.keyDown(searchInput, { key: 'ArrowDown' });
     fireEvent.keyUp(searchInput, { key: 'ArrowDown' });
 
-    expect(getByTestId('quick-access-result(go/orders)')).toHaveClass(
-      'result activeResult'
+    expect(getByTestId('quick-access-result(go/orders)')).toHaveStyle(
+      `color: ${customProperties.colorSurface};`
     );
 
     // when pressing up, it should jump up again
@@ -709,8 +710,8 @@ describe('QuickAccess', () => {
     fireEvent.keyDown(searchInput, { key: 'ArrowUp' });
     fireEvent.keyUp(searchInput, { key: 'ArrowUp' });
 
-    expect(getByTestId('quick-access-result(go/dashboard)')).toHaveClass(
-      'result activeResult'
+    expect(getByTestId('quick-access-result(go/dashboard)')).toHaveStyle(
+      `color: ${customProperties.colorSurface};`
     );
   });
 
@@ -781,7 +782,7 @@ describe('QuickAccess', () => {
       getByTestId(
         'quick-access-result(go/product-variant-by-sku/product(party-parrot-id)/variant(1))'
       )
-    ).toHaveClass('result activeResult');
+    ).toHaveStyle(`color: ${customProperties.colorSurface};`);
   });
 
   it('should find a product by id', async () => {
@@ -838,7 +839,7 @@ describe('QuickAccess', () => {
 
     expect(
       getByTestId('quick-access-result(go/product-by-id/product(01a1b2c3))')
-    ).toHaveClass('result activeResult');
+    ).toHaveStyle(`color: ${customProperties.colorSurface};`);
   });
 
   it('should find a product by key', async () => {
@@ -901,7 +902,7 @@ describe('QuickAccess', () => {
       getByTestId(
         'quick-access-result(go/product-by-key/product(party-parrot-id))'
       )
-    ).toHaveClass('result activeResult');
+    ).toHaveStyle(`color: ${customProperties.colorSurface};`);
   });
 
   it('should show products in the projectDataLocale', async () => {
@@ -962,7 +963,7 @@ describe('QuickAccess', () => {
 
     expect(
       getByTestId(`quick-access-result(go/product-by-id/product(${productId}))`)
-    ).toHaveClass('result activeResult');
+    ).toHaveStyle(`color: ${customProperties.colorSurface};`);
   });
 
   it('should find sub commands', async () => {
@@ -1016,8 +1017,8 @@ describe('QuickAccess', () => {
     fireEvent.keyDown(searchInput, { key: 'ArrowDown' });
     fireEvent.keyUp(searchInput, { key: 'ArrowDown' });
 
-    expect(getByTestId('quick-access-result(go/orders)')).toHaveClass(
-      'result activeResult'
+    expect(getByTestId('quick-access-result(go/orders)')).toHaveStyle(
+      `color: ${customProperties.colorSurface};`
     );
 
     // navigate into sub commands
@@ -1025,8 +1026,8 @@ describe('QuickAccess', () => {
     fireEvent.keyUp(searchInput, { key: 'ArrowRight' });
 
     await waitForElement(() => getByText('Open Orders List'));
-    expect(getByTestId('quick-access-result(go/orders/list)')).toHaveClass(
-      'result activeResult'
+    expect(getByTestId('quick-access-result(go/orders/list)')).toHaveStyle(
+      `color: ${customProperties.colorSurface};`
     );
 
     // navigate back out
@@ -1035,10 +1036,12 @@ describe('QuickAccess', () => {
     await waitForElement(() => getByText('Open Orders'));
 
     // it should select the first element in the list
-    expect(getByTestId('quick-access-result(go/dashboard)')).toHaveClass(
-      'result activeResult'
+    expect(getByTestId('quick-access-result(go/dashboard)')).toHaveStyle(
+      `color: ${customProperties.colorSurface};`
     );
-    expect(getByTestId('quick-access-result(go/orders)')).toHaveClass('result');
+    expect(getByTestId('quick-access-result(go/orders)')).not.toHaveStyle(
+      `color: ${customProperties.colorSurface};`
+    );
   });
 
   it('should support selection by mouse', async () => {
@@ -1072,7 +1075,9 @@ describe('QuickAccess', () => {
     fireEvent.mouseEnter(openOrdersResult);
 
     // it should highlight the hovered result
-    expect(openOrdersResult).toHaveClass('result activeResult');
+    expect(openOrdersResult).toHaveStyle(
+      `color: ${customProperties.colorSurface};`
+    );
 
     // Click the selected result
     fireEvent.click(openOrdersResult);
@@ -1461,7 +1466,7 @@ describe('QuickAccess', () => {
         getByTestId(
           `quick-access-result(go/product-by-search-text/product(${partyParrotId}))`
         )
-      ).toHaveClass('result activeResult');
+      ).toHaveStyle(`color: ${customProperties.colorSurface};`);
     });
   });
 });

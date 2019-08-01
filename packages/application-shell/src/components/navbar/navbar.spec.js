@@ -462,9 +462,6 @@ describe('rendering', () => {
               </RestrictedMenuItem>
             );
           });
-          it('should match snapshot', () => {
-            expect(wrapper).toMatchSnapshot();
-          });
           it('should render <ToggleFeature>', () => {
             expect(wrapper).toRender(ToggleFeature);
           });
@@ -589,9 +586,6 @@ describe('rendering', () => {
             </RestrictedMenuItem>
           );
         });
-        it('should match snapshot', () => {
-          expect(wrapper).toMatchSnapshot();
-        });
         it('should pass permissions as prop', () => {
           expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
             'permissions',
@@ -646,9 +640,6 @@ describe('rendering', () => {
             </RestrictedMenuItem>
           );
         });
-        it('should match snapshot', () => {
-          expect(wrapper).toMatchSnapshot();
-        });
         it('should render <RestrictedByPermissions>', () => {
           expect(wrapper).toRender(RestrictedByPermissions);
         });
@@ -688,9 +679,6 @@ describe('rendering', () => {
               <ItemChild />
             </RestrictedMenuItem>
           );
-        });
-        it('should match snapshot', () => {
-          expect(wrapper).toMatchSnapshot();
         });
         it('should render <RestrictedByPermissions>', () => {
           expect(wrapper).toRender(RestrictedByPermissions);

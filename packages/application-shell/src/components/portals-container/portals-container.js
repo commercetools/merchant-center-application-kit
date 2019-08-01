@@ -1,11 +1,16 @@
 import React from 'react';
+import { css } from '@emotion/core';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import styles from './portals-container.mod.css';
 
 // This is used so we can render all overlays inside here
 // Otherwise (if appended to <body>), notifications will overlap it
 const PortalsContainer = () => (
-  <div id={PORTALS_CONTAINER_ID} className={styles.portals} />
+  <div
+    id={PORTALS_CONTAINER_ID}
+    css={css`
+      display: flex;
+    `}
+  />
 );
 PortalsContainer.displayName = 'PortalsContainer';
 

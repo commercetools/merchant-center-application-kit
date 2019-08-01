@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { defaultMemoize } from 'reselect';
+import { Global, css } from '@emotion/core';
+import styled from '@emotion/styled';
 import {
   joinPaths,
   trimLeadingAndTrailingSlashes,
@@ -35,7 +37,6 @@ import Redirector from '../redirector';
 import version from '../../version';
 import RedirectToProjectCreate from '../redirect-to-project-create';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
-import styles from './application-shell.mod.css';
 import QuickAccess from '../quick-access';
 
 /**
@@ -57,6 +58,34 @@ const getHasUserBeenDeletedError = graphQLErrors =>
       // NOTE: The CTP API does not provide an error code in this case.
       gqlError.message.includes('was not found.')
   );
+
+export const MainContainer = styled.main`
+  grid-column: 2;
+  grid-row: 3;
+
+  /*
+    Allow the this flex child to grow smaller than its smallest content.
+    This is needed when there is a really wide text inside that would stretch
+    this node to be wider than the parent.
+  */
+  min-width: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  /*
+    layout the children. There will always be the page and side notification
+    about the actual content. The content should stretch to fill the rest of
+    the page.
+  */
+  display: flex;
+  flex-direction: column;
+
+  /*
+    set position to relative to layout notifications and modals
+  */
+  position: relative;
+`;
+
 export const RestrictedApplication = props => (
   <FetchUser>
     {({ isLoading: isLoadingUser, user, error }) => {
@@ -141,8 +170,22 @@ export const RestrictedApplication = props => (
                     <RequestsInFlightLoader />
                     <SentryUserTracker user={user} />
                     <GtmUserTracker user={user} />
-                    <div className={styles['app-layout']}>
-                      <div className={styles['global-notifications']}>
+                    <div
+                      role="application-layout"
+                      css={css`
+                        height: 100vh;
+                        display: grid;
+                        grid-template-rows: auto 43px 1fr;
+                        grid-template-columns: auto 1fr;
+                      `}
+                    >
+                      <div
+                        role="global-notifications"
+                        css={css`
+                          grid-row: 1;
+                          grid-column: 1/3;
+                        `}
+                      >
                         <NotificationsList domain={DOMAINS.GLOBAL} />
                       </div>
 
@@ -194,7 +237,13 @@ export const RestrictedApplication = props => (
                         }}
                       </Route>
 
-                      <header>
+                      <header
+                        role="header"
+                        css={css`
+                          grid-row: 2;
+                          grid-column: 1/3;
+                        `}
+                      >
                         <AppBar
                           user={user}
                           projectKeyFromUrl={projectKeyFromUrl}
@@ -205,7 +254,15 @@ export const RestrictedApplication = props => (
                         />
                       </header>
 
-                      <aside>
+                      <aside
+                        role="aside"
+                        css={css`
+                          position: relative;
+                          grid-row: 3;
+                          display: flex;
+                          flex-direction: column;
+                        `}
+                      >
                         {(() => {
                           // The <NavBar> should only be rendered within a project
                           // context, therefore when there is a `projectKey`.
@@ -257,21 +314,36 @@ export const RestrictedApplication = props => (
                         })()}
                       </aside>
 
-                      {/**
-                       * NOTE: in IE11 main can't be a grid-child apparently.
-                       * So we have to use a div and give it the role `main`
-                       * to achieve the same semantic result
-                       */}
                       {isLoadingUser || isLoadingLocaleData ? (
-                        <div role="main" className={styles.main}>
+                        <MainContainer role="main">
                           <ApplicationLoader />
-                        </div>
+                        </MainContainer>
                       ) : (
-                        <div role="main" className={styles.main}>
+                        <MainContainer role="main">
                           <PortalsContainer />
                           <NotificationsList domain={DOMAINS.PAGE} />
                           <NotificationsList domain={DOMAINS.SIDE} />
-                          <div className={styles.content}>
+                          <div
+                            css={css`
+                              flex-grow: 1;
+                              display: flex;
+                              flex-direction: column;
+
+                              /*
+                                This is only necessary because we have an intermediary <div> wrapping the
+                                <View> component that is used to wrap every content-view. This intermediary
+                                <div> is solely used for adding the tracking context to the content-view.
+                                However, this could be done by passing the tracking context to the <View>
+                                and let it do the layout, so we can avoid laying our from the outside as we
+                                do here.
+                              */
+                              > * {
+                                flex-grow: 1;
+                                display: flex;
+                                flex-direction: column;
+                              }
+                            `}
+                          >
                             <Switch>
                               <Redirect from="/profile" to="/account/profile" />
                               <Route
@@ -326,7 +398,7 @@ export const RestrictedApplication = props => (
                               />
                             </Switch>
                           </div>
-                        </div>
+                        </MainContainer>
                       )}
                     </div>
                   </React.Fragment>
@@ -419,77 +491,90 @@ export default class ApplicationShell extends React.Component {
       this.props.environment
     );
     return (
-      <ApplicationShellProvider
-        environment={coercedEnvironmentValues}
-        trackingEventWhitelist={this.props.trackingEventWhitelist}
-        applicationMessages={this.props.applicationMessages}
-      >
-        {({ isAuthenticated }) => {
-          if (isAuthenticated)
-            return (
-              <Switch>
-                {/* When the application redirects to this route,
+      <>
+        <Global
+          styles={css`
+            #app {
+              height: 100%;
+            }
+            .ReactModal__Body--open main {
+              /* When a modal is open, we should prevent the content to be scrollable */
+              overflow: hidden;
+            }
+          `}
+        />
+        <ApplicationShellProvider
+          environment={coercedEnvironmentValues}
+          trackingEventWhitelist={this.props.trackingEventWhitelist}
+          applicationMessages={this.props.applicationMessages}
+        >
+          {({ isAuthenticated }) => {
+            if (isAuthenticated)
+              return (
+                <Switch>
+                  {/* When the application redirects to this route,
                 we always force a hard redirect to the logout route of
                 the authentication service. */}
-                <Route
-                  path="/logout"
-                  render={({ location }) => (
-                    <Redirector
-                      to="logout"
-                      location={location}
-                      environment={coercedEnvironmentValues}
-                      queryParams={{
-                        reason: LOGOUT_REASONS.USER,
-                        ...(coercedEnvironmentValues.servedByProxy
-                          ? {}
-                          : {
-                              // This will be used after being logged in,
-                              // to redirect to this location.
-                              redirectTo: window.location.origin,
-                            }),
-                      }}
-                    />
-                  )}
-                />
-                <Route
-                  render={() => (
-                    <RestrictedApplication
-                      environment={coercedEnvironmentValues}
-                      defaultFeatureFlags={this.props.defaultFeatureFlags}
-                      render={this.props.render}
-                      applicationMessages={this.props.applicationMessages}
-                      onMenuItemClick={this.props.onMenuItemClick}
-                      DEV_ONLY__loadAppbarMenuConfig={
-                        this.props.DEV_ONLY__loadAppbarMenuConfig
-                      }
-                      DEV_ONLY__loadNavbarMenuConfig={
-                        this.props.DEV_ONLY__loadNavbarMenuConfig
-                      }
-                    />
-                  )}
-                />
-              </Switch>
-            );
+                  <Route
+                    path="/logout"
+                    render={({ location }) => (
+                      <Redirector
+                        to="logout"
+                        location={location}
+                        environment={coercedEnvironmentValues}
+                        queryParams={{
+                          reason: LOGOUT_REASONS.USER,
+                          ...(coercedEnvironmentValues.servedByProxy
+                            ? {}
+                            : {
+                                // This will be used after being logged in,
+                                // to redirect to this location.
+                                redirectTo: window.location.origin,
+                              }),
+                        }}
+                      />
+                    )}
+                  />
+                  <Route
+                    render={() => (
+                      <RestrictedApplication
+                        environment={coercedEnvironmentValues}
+                        defaultFeatureFlags={this.props.defaultFeatureFlags}
+                        render={this.props.render}
+                        applicationMessages={this.props.applicationMessages}
+                        onMenuItemClick={this.props.onMenuItemClick}
+                        DEV_ONLY__loadAppbarMenuConfig={
+                          this.props.DEV_ONLY__loadAppbarMenuConfig
+                        }
+                        DEV_ONLY__loadNavbarMenuConfig={
+                          this.props.DEV_ONLY__loadNavbarMenuConfig
+                        }
+                      />
+                    )}
+                  />
+                </Switch>
+              );
 
-          return (
-            <Route
-              render={({ location }) => (
-                <Redirector
-                  to="login"
-                  location={location}
-                  environment={coercedEnvironmentValues}
-                  queryParams={{
-                    reason: LOGOUT_REASONS.UNAUTHORIZED,
-                    redirectTo: trimLeadingAndTrailingSlashes(
-                      joinPaths(window.location.origin, location.pathname)
-                    ),
-                  }}
-                />
-              )}
-            />
-          );
-        }}
-      </ApplicationShellProvider>
+            return (
+              <Route
+                render={({ location }) => (
+                  <Redirector
+                    to="login"
+                    location={location}
+                    environment={coercedEnvironmentValues}
+                    queryParams={{
+                      reason: LOGOUT_REASONS.UNAUTHORIZED,
+                      redirectTo: trimLeadingAndTrailingSlashes(
+                        joinPaths(window.location.origin, location.pathname)
+                      ),
+                    }}
+                  />
+                )}
+              />
+            );
+          }}
+        </ApplicationShellProvider>
+      </>
     );
   }
 }

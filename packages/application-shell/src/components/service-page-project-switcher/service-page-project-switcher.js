@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
+import styled from '@emotion/styled';
 import ProjectSwitcher from '../project-switcher';
 import FetchUser from '../fetch-user';
-import styles from './service-page-project-switcher.mod.css';
+
+const Container = styled.div`
+  width: 200px;
+  text-align: left;
+  margin: 0 auto;
+`;
 
 export const ServicePageProjectSwitcher = props => (
-  <div className={styles.container}>
+  <Container>
     <FetchUser>
       {({ isLoading, user }) =>
         !isLoading && user && user.projects.total > 0 ? (
@@ -22,7 +28,7 @@ export const ServicePageProjectSwitcher = props => (
         ) : null
       }
     </FetchUser>
-  </div>
+  </Container>
 );
 ServicePageProjectSwitcher.displayName = 'ServicePageProjectSwitcher';
 ServicePageProjectSwitcher.propTypes = {

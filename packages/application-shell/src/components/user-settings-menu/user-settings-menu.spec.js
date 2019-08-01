@@ -68,7 +68,9 @@ describe('rendering', () => {
         .renderProp('children')(downshiftProps);
     });
     it('should render button', () => {
-      expect(menuStateContainerRenderWrapper).toRender('button');
+      expect(menuStateContainerRenderWrapper).toRender({
+        role: 'user-menu-toggle',
+      });
     });
     it('should render <UserAvatar>', () => {
       expect(menuStateContainerRenderWrapper).toRender(UserAvatar);

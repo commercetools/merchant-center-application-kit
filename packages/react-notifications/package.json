@@ -45,7 +45,6 @@
     "@commercetools-frontend/sentry": "14.2.0",
     "@emotion/core": "10.0.14",
     "@emotion/styled": "10.0.14",
-    "classnames": "2.2.6",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
     "moment": "^2.24.0",

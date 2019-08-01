@@ -1,25 +1,30 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { LoadingSpinner } from '@commercetools-frontend/ui-kit';
+import { render, wait } from '@testing-library/react';
 import ApplicationLoader from './application-loader';
 
 describe('rendering', () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = shallow(<ApplicationLoader />);
-  });
-  it('should render LoadingSpinner', () => {
-    expect(wrapper).toRender(LoadingSpinner);
-  });
-  it('should render the commercetools logo', () => {
-    expect(wrapper).not.toRender('img');
-  });
+  let rendered;
   describe('when "showLogo" is "true"', () => {
     beforeEach(() => {
-      wrapper = shallow(<ApplicationLoader showLogo={true} />);
+      rendered = render(<ApplicationLoader showLogo={true} />);
     });
     it('should render the commercetools logo', () => {
-      expect(wrapper).toRender('img');
+      expect(rendered.queryByAltText('commercetools logo')).toBeInTheDocument();
+    });
+  });
+  describe('when "showLogo" is "false"', () => {
+    beforeEach(() => {
+      rendered = render(<ApplicationLoader />);
+    });
+    it('should render the commercetools logo', async () => {
+      await wait(
+        () => {
+          expect(
+            rendered.queryByAltText('commercetools logo')
+          ).not.toBeInTheDocument();
+        },
+        { timeout: 1000 }
+      );
     });
   });
 });
