@@ -69,51 +69,31 @@ const AppBar = props => {
         `}
       >
         <Spacings.Inline scale="m" alignItems="center">
-          <div
-            css={css`
-              /* Special sizes for dropdowns */
-              .Select-input,
-              .Select-control {
-                height: 28px;
+          <Spacings.Inline alignItems="center">
+            {/* This node is used by a react portal */}
+            <div id="locale-switcher" />
+            {(() => {
+              if (!props.user) {
+                return <LoadingPlaceholder shape="rect" size="s" />;
               }
-              .Select-control {
-                /* We can't set the border to transparent due to a safari bug */
-                border: 1px ${customProperties.colorSurface} solid;
-              }
-              .Select-input > input {
-                padding: 5px 0 12px;
-              }
-              .Select-value {
-                line-height: 24px !important;
-              }
-            `}
-          >
-            <Spacings.Inline alignItems="center">
-              {/* This node is used by a react portal */}
-              <div id="locale-switcher" />
-              {(() => {
-                if (!props.user) {
-                  return <LoadingPlaceholder shape="rect" size="s" />;
-                }
-                // The `<ProjectSwitcher>` should be rendered only if the
-                // user is fetched and the user has projects while the app runs in an project context.
-                if (props.user.projects.total > 0 && props.projectKeyFromUrl)
-                  return (
-                    <ProjectSwitcher
-                      // In this case it's not necessary to check if the `projectKey` param
-                      // is included in the list of projects. In such case
-                      // the dropdown will still be rendered but no project will be selected.
-                      // This is fine becase the user has still the possibility to "switch"
-                      // to a project.
-                      projectKey={props.projectKeyFromUrl || previousProjectKey}
-                    />
-                  );
-                if (!props.user.defaultProjectKey) return '';
+              // The `<ProjectSwitcher>` should be rendered only if the
+              // user is fetched and the user has projects while the app runs in an project context.
+              if (props.user.projects.total > 0 && props.projectKeyFromUrl)
+                return (
+                  <ProjectSwitcher
+                    // In this case it's not necessary to check if the `projectKey` param
+                    // is included in the list of projects. In such case
+                    // the dropdown will still be rendered but no project will be selected.
+                    // This is fine becase the user has still the possibility to "switch"
+                    // to a project.
+                    projectKey={props.projectKeyFromUrl || previousProjectKey}
+                  />
+                );
+              if (!props.user.defaultProjectKey) return '';
 
-                return <BackToProject projectKey={previousProjectKey} />;
-              })()}
-            </Spacings.Inline>
-          </div>
+              return <BackToProject projectKey={previousProjectKey} />;
+            })()}
+          </Spacings.Inline>
           <div
             css={css`
               border-left: 1px ${customProperties.colorNeutral90} solid;
