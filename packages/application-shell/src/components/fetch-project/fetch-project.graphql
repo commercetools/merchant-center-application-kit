@@ -30,9 +30,9 @@ query ProjectQuery($projectKey: String!) {
     allAppliedDataFences {
       ... on StoreDataFence {
         type
+        name
         storeKey
         group
-        resourceAccessPermission
         __typename
       }
     }

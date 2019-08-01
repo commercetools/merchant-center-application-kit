@@ -52,7 +52,7 @@ const createGraphqlResponseForProjectQuery = custom => ({
         __typename: 'StoreDataFence',
         storeKey: 'usa',
         group: 'orders',
-        resourceAccessPermission: 'canManageOrders',
+        name: 'canManageOrders',
         type: 'store',
       },
     ],
