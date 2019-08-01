@@ -5,6 +5,7 @@ import ProjectQuery from './fetch-project.graphql';
 import FetchProject, {
   mapAllAppliedToObjectShape,
   mapAllAppliedToGroupedObjectShape,
+  mapAllDataFencesToGroupedObjectShape,
 } from './fetch-project';
 
 const renderProject = options =>
@@ -50,7 +51,7 @@ const createGraphqlResponseForProjectQuery = custom => ({
     allAppliedDataFences: [
       {
         __typename: 'StoreDataFence',
-        storeKey: 'usa',
+        value: 'usa',
         group: 'orders',
         name: 'canManageOrders',
         type: 'store',
@@ -197,6 +198,85 @@ describe('helpers', () => {
           },
         }
       );
+    });
+  });
+  describe('mapAllDataFencesToGroupedObjectShape', () => {
+    describe('with store types', () => {
+      const allAppliedDataFences = [
+        {
+          value: 'usa',
+          type: 'store',
+          group: 'orders',
+          name: 'canManageOrders',
+        },
+        {
+          value: 'germany',
+          type: 'store',
+          group: 'orders',
+          name: 'canManageOrders',
+        },
+        {
+          value: 'canada',
+          type: 'store',
+          group: 'orders',
+          name: 'canViewOrders',
+        },
+      ];
+      it('should transform all applied dataFences', () => {
+        expect(
+          mapAllDataFencesToGroupedObjectShape(allAppliedDataFences)
+        ).toEqual({
+          store: {
+            orders: {
+              canManageOrders: {
+                values: ['usa', 'germany'],
+              },
+              canViewOrders: {
+                values: ['canada'],
+              },
+            },
+          },
+        });
+      });
+    });
+    describe('with categories as datafence types', () => {
+      const allAppliedDataFences = [
+        {
+          value: 'category-1',
+          type: 'categories',
+          group: 'products',
+          name: 'canAddCategories',
+        },
+        {
+          value: 'category-2',
+          type: 'categories',
+          group: 'products',
+          name: 'canAddCategories',
+        },
+        {
+          value: 'category-3',
+          type: 'categories',
+          group: 'products',
+          name: 'canDeleteCategories',
+        },
+      ];
+
+      it('should transform all applied dataFences', () => {
+        expect(
+          mapAllDataFencesToGroupedObjectShape(allAppliedDataFences)
+        ).toEqual({
+          categories: {
+            products: {
+              canAddCategories: {
+                values: ['category-1', 'category-2'],
+              },
+              canDeleteCategories: {
+                values: ['category-3'],
+              },
+            },
+          },
+        });
+      });
     });
   });
 });
