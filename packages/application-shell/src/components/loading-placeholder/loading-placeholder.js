@@ -12,7 +12,7 @@ const animationPulse = keyframes`
   }
 `;
 
-const getWitdhBySize = props => {
+const getWidthBySize = props => {
   switch (props.shape) {
     case 'dot':
       switch (props.size) {
@@ -47,7 +47,7 @@ const getWitdhBySize = props => {
 const getHeightBySize = props => {
   switch (props.shape) {
     case 'dot':
-      return getWitdhBySize(props);
+      return getWidthBySize(props);
     case 'rect':
       return '32px';
     default:
@@ -85,7 +85,7 @@ const LoadingPlaceholder = styled.div`
   animation-direction: alternate;
   animation-iteration-count: infinite;
 
-  width: ${getWitdhBySize};
+  width: ${getWidthBySize};
   height: ${getHeightBySize};
   border-radius: ${getRadiusBySize};
 `;
