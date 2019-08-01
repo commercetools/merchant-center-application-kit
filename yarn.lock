@@ -1364,7 +1364,7 @@
   resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-2.1.1.tgz#937d705e552215f626ba4bd5f8942912811afbd6"
   integrity sha512-RPOFqJJTCd/ov+8UvhONpigCnxRLg/Nf1LtICqv26c653FzNuTevOyySBonvC6SEgg2GN9AKyYWEqffG+6KyMA==
 
-"@formatjs/intl-relativetimeformat@^2.5.0":
+"@formatjs/intl-relativetimeformat@^2.4.2":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@formatjs/intl-relativetimeformat/-/intl-relativetimeformat-2.5.0.tgz#c800926e044e7827f9ade99f2436028b449566df"
   integrity sha512-FMpsEYnojhnF6RFkK38fzB6k+8Z9hQAf7utB+aCwEDECVM46aMftDkLC/yreB9owtFq3bg3scwXQvZLpR6En6A==
@@ -9226,9 +9226,9 @@ fastq@^1.6.0:
   dependencies:
     reusify "^1.0.0"
 
-"favicons-webpack-plugin@https://github.com/Creatiwity/favicons-webpack-plugin.git#0872de414061baaad0a2853c77ae75bc38b8bbbf":
+"favicons-webpack-plugin@git+https://github.com/Creatiwity/favicons-webpack-plugin.git#0872de414061baaad0a2853c77ae75bc38b8bbbf":
   version "0.0.9"
-  resolved "https://github.com/Creatiwity/favicons-webpack-plugin.git#0872de414061baaad0a2853c77ae75bc38b8bbbf"
+  resolved "git+https://github.com/Creatiwity/favicons-webpack-plugin.git#0872de414061baaad0a2853c77ae75bc38b8bbbf"
   dependencies:
     core-js "^2.5.7"
     favicons "^5.1.1"
@@ -11876,7 +11876,7 @@ interpret@1.2.0, interpret@^1.0.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
   integrity sha512-mT34yGKMNceBQUoVn7iCDKDntA7SC6gycMAWzGx1z/CMCTV7b2AAtXlo3nRyHZ1FelRkQbQjprHSYGwzLtkVbw==
 
-intl-format-cache@^4.1.4:
+intl-format-cache@^4.1.2, intl-format-cache@^4.1.3:
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/intl-format-cache/-/intl-format-cache-4.1.4.tgz#cd959e4ac5c7f5494a53880d8c856d636bd3e5b8"
   integrity sha512-lT1EiDa0ISNhfwmCTAKTGC62yN6onDZQECJqGi1ekbOFlJzoaP3Vv2ZAtnt3Ar1kNWZB6MiElJ8mQrG4fsBB8Q==
@@ -11891,18 +11891,13 @@ intl-messageformat-parser@^2.1.3:
   resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-2.1.3.tgz#c918e36a08bd7ff01349d8ea3736262c986aaeb1"
   integrity sha512-YOP2GuQ8Y+f3j2Vti1/abcozYlkv/WsIffsRP8cgtN4Oha5hjhNnucxzyfmeAoDgDHw4s/lNyLylB01369a5lg==
 
-intl-messageformat-parser@^3.0.0, intl-messageformat-parser@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-3.0.1.tgz#3d46d108708c0dda3abed73d768be598e057fd24"
-  integrity sha512-3qVo8VvONtNu3Ky8nH8avuLyC0te5bx4oZCIUmFwArhJ3xBhcikfZBWcSB1WU6y+BdEMLEuwgRVQyoueVe0GpA==
-
-intl-messageformat@^6.0.0:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-6.0.1.tgz#e36394c1ec7c1ce7d5621196557e36040882f57d"
-  integrity sha512-3fGFmClwoHM1pyKxNRGZyM3F1y4s4jTLAS0erbJhgJzMvkKb5NMFRXLwbfO3LAPWdP+lNOy/pqjFNkvhZSkpfQ==
+intl-messageformat@^5.4.2:
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-5.4.3.tgz#3864f6201d779e61b09c1afb6b8ed386163a18dc"
+  integrity sha512-wiGIeeokY6D/TFC6JYoBIUmZJ2AzkTHJuWp5QulDH4h77aghFTBm+8MvjTLIUiQ/z7xiY3SUQN2UBG7EtwYTAg==
   dependencies:
-    intl-format-cache "^4.1.4"
-    intl-messageformat-parser "^3.0.1"
+    intl-format-cache "^4.1.3"
+    intl-messageformat-parser "^2.1.3"
 
 intl@1.2.5:
   version "1.2.5"
@@ -18223,20 +18218,20 @@ react-input-autosize@^2.2.1:
   dependencies:
     prop-types "^15.5.8"
 
-react-intl@3.0.0-beta.22:
-  version "3.0.0-beta.22"
-  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-3.0.0-beta.22.tgz#6e0567a57f814e55c3aa6a366b20a701c9af35ca"
-  integrity sha512-e0PE51zqkykHtOES4z6CFsMZ5BLHDsm5mq8/1uOYEsyBlEh2uFvyjWaI6ORdEzBrRu9Dquqv2RwSAHBDyhNTMQ==
+react-intl@3.0.0-beta.20:
+  version "3.0.0-beta.20"
+  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-3.0.0-beta.20.tgz#63b3e03d005183b77f5cb4b7acfcef695f0dc8f9"
+  integrity sha512-JXBJpdZyjLbUxMtSBbZpFfeLlW1tZay8zTyF8kVDpMzMjkqNqhinu9R7Gk1aK6Mc38ig+lmqRFK4UrYF60Gijw==
   dependencies:
-    "@formatjs/intl-relativetimeformat" "^2.5.0"
+    "@formatjs/intl-relativetimeformat" "^2.4.2"
     "@types/hoist-non-react-statics" "^3.3.1"
     "@types/invariant" "^2.2.30"
     "@types/react" "^16.8.23"
     hoist-non-react-statics "^3.3.0"
-    intl-format-cache "^4.1.4"
+    intl-format-cache "^4.1.2"
     intl-locales-supported "^1.4.2"
-    intl-messageformat "^6.0.0"
-    intl-messageformat-parser "^3.0.0"
+    intl-messageformat "^5.4.2"
+    intl-messageformat-parser "^2.1.3"
     invariant "^2.1.1"
     react "^16.3.0"
     shallow-equal "^1.1.0"
