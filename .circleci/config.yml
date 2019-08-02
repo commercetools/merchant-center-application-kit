@@ -55,15 +55,15 @@ commands:
     steps:
       - attach_workspace:
           at: *working_directory
-  lint:
-    description: Running linters
+  lint_and_test:
+    description: Running linters and tests
     steps:
-      - run: yarn run jest --projects jest.eslint.config.js jest.stylelint.config.js --maxWorkers=3 --reporters jest-silent-reporter
-      - run: yarn typecheck
-  unit_test:
-    description: Running tests
-    steps:
-      - run: yarn run jest --projects jest.test.config.js --maxWorkers=3 --reporters jest-silent-reporter
+      - run:
+          name: Running static type checking
+          command: yarn typecheck
+      - run:
+          name: Running linters and tests
+          command: yarn run jest --projects jest.{eslint,stylelint,test}.config.js --maxWorkers=3 --reporters jest-silent-reporter
   build_packages:
     description: Building packages
     steps:
@@ -106,8 +106,7 @@ jobs:
     steps:
       - setup_dependencies
       - *save_yarn_cache
-      - lint
-      - unit_test
+      - lint_and_test
   build:
     executor: node_10
     steps:
