@@ -7,14 +7,14 @@ aliases:
     restore_cache:
       name: 'Restoring yarn cache'
       keys:
-        - v2-yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
-        - v2-yarn-cache-{{ .Branch }}
-        - v2-yarn-cache
+        - v3-yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+        - v3-yarn-cache-{{ .Branch }}
+        - v3-yarn-cache
 
   - &save_yarn_cache
     save_cache:
       name: 'Saving yarn cache'
-      key: v2-yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      key: v3-yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
       paths:
         - ~/.cache/yarn
 
@@ -58,8 +58,8 @@ commands:
   lint:
     description: Running linters
     steps:
-      - run: yarn run jest --projects jest.eslint.config.js jest.stylelint.config.js --maxWorkers=3 --reporters jest-silent-reporter
       - run: yarn typecheck
+      - run: yarn run jest --projects jest.eslint.config.js jest.stylelint.config.js --maxWorkers=3 --reporters jest-silent-reporter
   unit_test:
     description: Running tests
     steps:
