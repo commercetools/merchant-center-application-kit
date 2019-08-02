@@ -532,25 +532,25 @@ declare module '@commercetools-frontend/ui-kit' {
     defaultProps: Pick<PrimaryActionDropdownOptionProps, 'isDisabled'>;
   };
 
-  export const CloseBoldIcon: React.ElementType;
+  // export const CloseBoldIcon: React.ElementType;
   export const ErrorIcon: React.ElementType;
   export const WarningIcon: React.ElementType;
   export const InfoIcon: React.ElementType;
   export const CheckBoldIcon: React.ElementType;
-  // // Icons
-  // export type IconProps = {
-  //   color?:
-  //     | 'solid'
-  //     | 'neutral60'
-  //     | 'surface'
-  //     | 'info'
-  //     | 'primary'
-  //     | 'primary40'
-  //     | 'warning'
-  //     | 'error';
-  //   size: 'small' | 'medium' | 'big' | 'scale';
-  //   children?: never;
-  // };
+  // Icons
+  export type IconProps = {
+    color?:
+      | 'solid'
+      | 'neutral60'
+      | 'surface'
+      | 'info'
+      | 'primary'
+      | 'primary40'
+      | 'warning'
+      | 'error';
+    size: 'small' | 'medium' | 'big' | 'scale';
+    children?: never;
+  };
   // export const AngleDownIcon: {
   //   (props: IconProps): JSX.Element;
   //   displayName: string;
@@ -721,11 +721,11 @@ declare module '@commercetools-frontend/ui-kit' {
   //   displayName: string;
   //   defaultProps: Pick<IconProps, 'size'>;
   // };
-  // export const CloseBoldIcon: {
-  //   (props: IconProps): JSX.Element;
-  //   displayName: string;
-  //   defaultProps: Pick<IconProps, 'size'>;
-  // };
+  export const CloseBoldIcon: {
+    (props: IconProps): JSX.Element;
+    displayName: string;
+    defaultProps: Pick<IconProps, 'size'>;
+  };
   // export const CloseIcon: {
   //   (props: IconProps): JSX.Element;
   //   displayName: string;
