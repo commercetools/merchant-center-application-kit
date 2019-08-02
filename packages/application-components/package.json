@@ -20,6 +20,8 @@
   },
   "main": "./dist/application-components.cjs.js",
   "module": "./dist/application-components.es.js",
+  "typings": "./dist/typings/index.d.ts",
+  "types": "./dist/typings/index.d.ts",
   "files": [
     "dist",
     "materials/media-queries.css",
@@ -30,10 +32,11 @@
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",
-    "build": "yarn build:es && yarn build:cjs",
-    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js -o ./dist/application-components.cjs.js",
-    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.js -o ./dist/application-components.es.js",
-    "build:es:watch": "yarn build:es -w"
+    "build": "yarn build:es && yarn build:cjs && yarn build:typings",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.ts -o ./dist/application-components.cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.ts -o ./dist/application-components.es.js",
+    "build:es:watch": "yarn build:es -w",
+    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.5.5",
@@ -41,6 +44,8 @@
     "@commercetools-frontend/constants": "14.1.1",
     "@emotion/core": "10.0.14",
     "@emotion/styled": "10.0.14",
+    "lodash": "4.17.15",
+    "lodash-es": "4.17.15",
     "prop-types": "15.7.2",
     "react-modal": "3.9.1",
     "react-required-if": "1.0.3",

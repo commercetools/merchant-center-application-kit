@@ -1,10 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import DialogContainer from '../internals/dialog-container';
 import DialogHeader from '../internals/dialog-header';
 import DialogContent from '../internals/dialog-content';
 
-const InfoDialog = props => (
+type Props = {
+  isOpen: boolean;
+  onClose: (event: React.SyntheticEvent) => void;
+  size?: 'm' | 'l' | 'scale';
+  zIndex?: number;
+  title: string;
+  children: React.ReactNode;
+  getParentSelector?: () => HTMLElement;
+};
+
+const InfoDialog = (props: Props) => (
   <DialogContainer
     isOpen={props.isOpen}
     onClose={props.onClose}
@@ -18,14 +27,5 @@ const InfoDialog = props => (
   </DialogContainer>
 );
 InfoDialog.displayName = 'InfoDialog';
-InfoDialog.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  size: PropTypes.oneOf(['m', 'l', 'scale']),
-  zIndex: PropTypes.number,
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  getParentSelector: PropTypes.func,
-};
 
 export default InfoDialog;

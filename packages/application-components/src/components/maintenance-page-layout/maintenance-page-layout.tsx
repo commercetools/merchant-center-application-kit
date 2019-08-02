@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { Constraints, Text, Spacings } from '@commercetools-frontend/ui-kit';
 
-const MaintenancePageLayout = props => (
+export type Props = {
+  imageSrc: string;
+  title: React.ReactNode;
+  paragraph1: React.ReactNode;
+  paragraph2?: React.ReactNode;
+  bodyContent?: React.ReactNode;
+  children?: never;
+};
+
+const MaintenancePageLayout = (props: Props) => (
   <div
     css={css`
       display: grid;

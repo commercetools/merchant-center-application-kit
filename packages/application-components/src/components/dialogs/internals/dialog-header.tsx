@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   CloseIcon,
   SecondaryIconButton,
@@ -8,7 +7,13 @@ import {
 } from '@commercetools-frontend/ui-kit';
 import { css } from '@emotion/core';
 
-const DialogHeader = props => (
+type Props = {
+  title: string;
+  onClose?: (event: React.SyntheticEvent) => void;
+  children?: never;
+};
+
+const DialogHeader = (props: Props) => (
   <div
     css={css`
       flex: 0 1 auto;
@@ -35,9 +40,5 @@ const DialogHeader = props => (
   </div>
 );
 DialogHeader.displayName = 'DialogHeader';
-DialogHeader.propTypes = {
-  title: PropTypes.string.isRequired,
-  onClose: PropTypes.func,
-};
 
 export default DialogHeader;
