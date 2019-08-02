@@ -533,10 +533,10 @@ declare module '@commercetools-frontend/ui-kit' {
   };
 
   // export const CloseBoldIcon: React.ElementType;
-  export const ErrorIcon: React.ElementType;
-  export const WarningIcon: React.ElementType;
-  export const InfoIcon: React.ElementType;
-  export const CheckBoldIcon: React.ElementType;
+  // export const ErrorIcon: React.ElementType;
+  // export const WarningIcon: React.ElementType;
+  // export const InfoIcon: React.ElementType;
+  // export const CheckBoldIcon: React.ElementType;
   // Icons
   export type IconProps = {
     color?:
@@ -691,11 +691,11 @@ declare module '@commercetools-frontend/ui-kit' {
   //   displayName: string;
   //   defaultProps: Pick<IconProps, 'size'>;
   // };
-  // export const CheckBoldIcon: {
-  //   (props: IconProps): JSX.Element;
-  //   displayName: string;
-  //   defaultProps: Pick<IconProps, 'size'>;
-  // };
+  export const CheckBoldIcon: {
+    (props: IconProps): JSX.Element;
+    displayName: string;
+    defaultProps: Pick<IconProps, 'size'>;
+  };
   // export const CheckInactiveIcon: {
   //   (props: IconProps): JSX.Element;
   //   displayName: string;
@@ -796,11 +796,11 @@ declare module '@commercetools-frontend/ui-kit' {
   //   displayName: string;
   //   defaultProps: Pick<IconProps, 'size'>;
   // };
-  // export const ErrorIcon: {
-  //   (props: IconProps): JSX.Element;
-  //   displayName: string;
-  //   defaultProps: Pick<IconProps, 'size'>;
-  // };
+  export const ErrorIcon: {
+    (props: IconProps): JSX.Element;
+    displayName: string;
+    defaultProps: Pick<IconProps, 'size'>;
+  };
   // export const ExpandIcon: {
   //   (props: IconProps): JSX.Element;
   //   displayName: string;
@@ -881,11 +881,11 @@ declare module '@commercetools-frontend/ui-kit' {
   //   displayName: string;
   //   defaultProps: Pick<IconProps, 'size'>;
   // };
-  // export const InfoIcon: {
-  //   (props: IconProps): JSX.Element;
-  //   displayName: string;
-  //   defaultProps: Pick<IconProps, 'size'>;
-  // };
+  export const InfoIcon: {
+    (props: IconProps): JSX.Element;
+    displayName: string;
+    defaultProps: Pick<IconProps, 'size'>;
+  };
   // export const InformationIcon: {
   //   (props: IconProps): JSX.Element;
   //   displayName: string;
@@ -1101,11 +1101,11 @@ declare module '@commercetools-frontend/ui-kit' {
   //   displayName: string;
   //   defaultProps: Pick<IconProps, 'size'>;
   // };
-  // export const WarningIcon: {
-  //   (props: IconProps): JSX.Element;
-  //   displayName: string;
-  //   defaultProps: Pick<IconProps, 'size'>;
-  // };
+  export const WarningIcon: {
+    (props: IconProps): JSX.Element;
+    displayName: string;
+    defaultProps: Pick<IconProps, 'size'>;
+  };
   // export const WorldIcon: {
   //   (props: IconProps): JSX.Element;
   //   displayName: string;
