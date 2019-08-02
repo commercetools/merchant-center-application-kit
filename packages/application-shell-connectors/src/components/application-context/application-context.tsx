@@ -40,18 +40,26 @@ type TApplicationContextActionRights = {
 };
 
 type TApplicationContextGroupedByPermission = {
-  [key: string]: {
-    values: string[];
-  };
+  // E.g. { canManageOrders: { values: [] } }
+  [key: string]: { values: string[] };
 };
 type TApplicationContextGroupedByResourceType = {
+  // E.g. { orders: {...} }
   [key: string]: TApplicationContextGroupedByPermission;
 };
-type TApplicationContextDataFenceGroupedByDataFenceType = {
-  [key: string]: TApplicationContextGroupedByResourceType;
-};
+/**
+ * dataFence: {
+ *   store: {
+ *     orders: {
+ *       canManageOrders: { values: ['usa', 'germany'] },
+ *       canViewOrders: { values: ['canada'] },
+ *     }
+ *   }
+ * }
+ */
 type TApplicationContextDataFences = {
-  [key: string]: TApplicationContextDataFenceGroupedByDataFenceType;
+  // E.g. { store: {...} }
+  [key: string]: TApplicationContextGroupedByResourceType;
 };
 
 type TRawProject = {
