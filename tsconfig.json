@@ -29,6 +29,11 @@
     "allowJs": false,
     "baseUrl": "."
   },
-  "include": ["@types/**/*"],
+  "include": [
+    "@types/**/*",
+    "node_modules/intl-messageformat/**/*",
+    "node_modules/react-intl/**/*",
+    "node_modules/@formatjs/intl-relativetimeformat/**/*"
+  ],
   "exclude": ["**/node_modules", "**/dist/**/*"]
 }
