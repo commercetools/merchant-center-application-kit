@@ -7,7 +7,6 @@ import {
   InfoIcon,
   CheckBoldIcon,
   IconButton,
-  IconProps,
 } from '@commercetools-frontend/ui-kit';
 import {
   NOTIFICATION_DOMAINS,
@@ -25,7 +24,16 @@ import {
 
 type PropsIcon = {
   type: TAppNotificationKind;
-  color: IconProps['color'];
+  // TODO: get list of supported colors from uikit
+  color:
+    | 'error'
+    | 'warning'
+    | 'info'
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'primary'
+    | 'primary40';
 };
 
 const NotificationIcon = (props: PropsIcon) => {
