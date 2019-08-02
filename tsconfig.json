@@ -29,13 +29,6 @@
     "allowJs": false,
     "baseUrl": "."
   },
-  "include": [
-    "@types/**/*",
-    "node_modules/intl-messageformat/core.ts",
-    "node_modules/intl-messageformat/src/core.ts",
-    "node_modules/react-intl/core.ts",
-    "node_modules/react-intl/src/core.ts",
-    "node_modules/@formatjs/intl-relativetimeformat/src/core.ts",
-  ],
+  "include": ["@types/**/*"],
   "exclude": ["**/node_modules", "**/dist/**/*"]
 }
