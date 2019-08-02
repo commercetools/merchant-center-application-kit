@@ -39,6 +39,21 @@ type TApplicationContextActionRights = {
   [key: string]: TActionRight;
 };
 
+type TApplicationContextGroupedByPermission = {
+  [key: string]: {
+    values: string[];
+  };
+};
+type TApplicationContextGroupedByResourceType = {
+  [key: string]: TApplicationContextGroupedByPermission;
+};
+type TApplicationContextDataFenceGroupedByDataFenceType = {
+  [key: string]: TApplicationContextGroupedByResourceType;
+};
+type TApplicationContextDataFences = {
+  [key: string]: TApplicationContextDataFenceGroupedByDataFenceType;
+};
+
 type TRawProject = {
   key: string;
   version: number;
@@ -51,6 +66,7 @@ type TRawProject = {
   };
   permissions: TApplicationContextPermissions;
   actionRights: TApplicationContextActionRights;
+  dataFences: TApplicationContextDataFences;
 } & AdditionalProperties;
 type TApplicationContextProject = {
   key: string;
@@ -76,6 +92,7 @@ type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
   project: TApplicationContextProject | null;
   permissions: TApplicationContextPermissions | null;
   actionRights: TApplicationContextActionRights | null;
+  dataFences: TApplicationContextDataFenceGroupedByDataFenceType | null;
   dataLocale: string | null;
 };
 type ProviderProps<AdditionalEnvironmentProperties extends {}> = {
@@ -150,6 +167,7 @@ const createApplicationContext: <AdditionalEnvironmentProperties extends {}>(
   project: mapProjectToApplicationContextProject(project),
   permissions: project && project.permissions ? project.permissions : null,
   actionRights: project && project.actionRights ? project.actionRights : null,
+  dataFences: project && project.dataFences ? project.dataFences : null,
   dataLocale: projectDataLocale || null,
 });
 

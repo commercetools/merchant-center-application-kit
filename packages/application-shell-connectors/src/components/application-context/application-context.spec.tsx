@@ -43,6 +43,7 @@ describe('rendering', () => {
             languages: ['en'],
             permissions: { canManageProjectSettings: true },
             actionRights: {},
+            dataFences: {},
             // Fields that should not be exposed
             expiry: { isActive: false },
             suspension: { isActive: false },
