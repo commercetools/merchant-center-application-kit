@@ -75,7 +75,7 @@ const TabularModalPage = (props: Props) => (
         border-bottom: 1px ${customProperties.colorNeutral} solid;
       `}
     >
-      <Spacings.Stack scale="l">
+      <Spacings.Stack>
         {props.customTitleRow || (
           <ModalPageHeaderTitle title={props.title} subtitle={props.subtitle} />
         )}
