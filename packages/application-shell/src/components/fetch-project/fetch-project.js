@@ -81,6 +81,36 @@ const mapAppliedDataFencesByResourceType = dataFences => {
   );
 };
 
+// input:
+// [
+//   {
+//     type: 'store',
+//     name: 'canManageOrders',
+//     value: 'usa',
+//     group: 'orders',
+//   },
+//   {
+//     type: 'store',
+//     name: 'canManageOrders',
+//     value: 'germany',
+//     group: 'orders',
+//   },
+//   {
+//     type: 'store',
+//     name: 'canViewOrders',
+//     value: 'canada',
+//     group: 'orders',
+//   },
+// ]
+// output:
+// {
+//   store: {
+//     orders: {
+//       canManageOrders: { values: ['usa', 'germany'] },
+//       canViewOrders: { values: ['canada'] },
+//     }
+//   }
+// }
 export const mapAllDataFencesToGroupedObjectShape = allAppliedDataFences => {
   const groupedByType = allAppliedDataFences.reduce(
     (previousGroupsOfSameType, appliedDataFence) => {
