@@ -25,15 +25,7 @@ import {
 type PropsIcon = {
   type: TAppNotificationKind;
   // TODO: get list of supported colors from uikit
-  color:
-    | 'error'
-    | 'warning'
-    | 'info'
-    | 'solid'
-    | 'neutral60'
-    | 'surface'
-    | 'primary'
-    | 'primary40';
+  color: string;
 };
 
 const NotificationIcon = (props: PropsIcon) => {
