@@ -9244,9 +9244,9 @@ fastq@^1.6.0:
   dependencies:
     reusify "^1.0.0"
 
-"favicons-webpack-plugin@git+https://github.com/Creatiwity/favicons-webpack-plugin.git#0872de414061baaad0a2853c77ae75bc38b8bbbf":
+"favicons-webpack-plugin@https://github.com/Creatiwity/favicons-webpack-plugin.git#0872de414061baaad0a2853c77ae75bc38b8bbbf":
   version "0.0.9"
-  resolved "git+https://github.com/Creatiwity/favicons-webpack-plugin.git#0872de414061baaad0a2853c77ae75bc38b8bbbf"
+  resolved "https://github.com/Creatiwity/favicons-webpack-plugin.git#0872de414061baaad0a2853c77ae75bc38b8bbbf"
   dependencies:
     core-js "^2.5.7"
     favicons "^5.1.1"
@@ -18241,10 +18241,10 @@ react-input-autosize@^2.2.1:
   dependencies:
     prop-types "^15.5.8"
 
-react-intl@3.0.0-beta.22:
-  version "3.0.0-beta.22"
-  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-3.0.0-beta.22.tgz#6e0567a57f814e55c3aa6a366b20a701c9af35ca"
-  integrity sha512-e0PE51zqkykHtOES4z6CFsMZ5BLHDsm5mq8/1uOYEsyBlEh2uFvyjWaI6ORdEzBrRu9Dquqv2RwSAHBDyhNTMQ==
+react-intl@3.0.0-beta.23:
+  version "3.0.0-beta.23"
+  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-3.0.0-beta.23.tgz#bf2382f577137024b6bfcb75a8d14b0756443c4f"
+  integrity sha512-yK68NePewfd99j4fA5ANAHYAXCLj6LwDUyubB2SqXkcEl8wwDdStL0fe/wF0mVqEMOi9dZr+gpnksn/5+a8hWw==
   dependencies:
     "@formatjs/intl-relativetimeformat" "^2.5.0"
     "@types/hoist-non-react-statics" "^3.3.1"
