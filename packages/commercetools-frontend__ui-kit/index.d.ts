@@ -531,7 +531,7 @@ export const PrimaryActionDropdownOption: {
 };
 
 // Icons
-export type IconProps = {
+export type AngleDownIconProps = {
   color?:
     | 'solid'
     | 'neutral60'
@@ -545,562 +545,2005 @@ export type IconProps = {
   children?: never;
 };
 export const AngleDownIcon: {
-  (props: IconProps): JSX.Element;
+  (props: AngleDownIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<AngleDownIconProps, 'size'>;
+};
+export type AngleLeftIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const AngleLeftIcon: {
-  (props: IconProps): JSX.Element;
+  (props: AngleLeftIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<AngleLeftIconProps, 'size'>;
+};
+export type AngleRightIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const AngleRightIcon: {
-  (props: IconProps): JSX.Element;
+  (props: AngleRightIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<AngleRightIconProps, 'size'>;
+};
+export type AngleThinLeftIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const AngleThinLeftIcon: {
-  (props: IconProps): JSX.Element;
+  (props: AngleThinLeftIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<AngleThinLeftIconProps, 'size'>;
+};
+export type AngleThinRightIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const AngleThinRightIcon: {
-  (props: IconProps): JSX.Element;
+  (props: AngleThinRightIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<AngleThinRightIconProps, 'size'>;
+};
+export type AngleUpIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const AngleUpIcon: {
-  (props: IconProps): JSX.Element;
+  (props: AngleUpIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<AngleUpIconProps, 'size'>;
+};
+export type ArrowDownIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ArrowDownIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ArrowDownIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ArrowDownIconProps, 'size'>;
+};
+export type ArrowLeftIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ArrowLeftIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ArrowLeftIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ArrowLeftIconProps, 'size'>;
+};
+export type ArrowLongDownIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ArrowLongDownIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ArrowLongDownIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ArrowLongDownIconProps, 'size'>;
+};
+export type ArrowRightIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ArrowRightIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ArrowRightIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ArrowRightIconProps, 'size'>;
+};
+export type ArrowTriangleDownIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ArrowTriangleDownIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ArrowTriangleDownIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ArrowTriangleDownIconProps, 'size'>;
+};
+export type ArrowTriangleUpIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ArrowTriangleUpIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ArrowTriangleUpIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ArrowTriangleUpIconProps, 'size'>;
+};
+export type ArrowUpIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ArrowUpIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ArrowUpIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ArrowUpIconProps, 'size'>;
+};
+export type ArrowsIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ArrowsIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ArrowsIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ArrowsIconProps, 'size'>;
+};
+export type BackIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const BackIcon: {
-  (props: IconProps): JSX.Element;
+  (props: BackIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<BackIconProps, 'size'>;
+};
+export type BidirectionalArrowIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const BidirectionalArrowIcon: {
-  (props: IconProps): JSX.Element;
+  (props: BidirectionalArrowIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<BidirectionalArrowIconProps, 'size'>;
+};
+export type BinFilledIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const BinFilledIcon: {
-  (props: IconProps): JSX.Element;
+  (props: BinFilledIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<BinFilledIconProps, 'size'>;
+};
+export type BinLinearIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const BinLinearIcon: {
-  (props: IconProps): JSX.Element;
+  (props: BinLinearIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<BinLinearIconProps, 'size'>;
+};
+export type BoxIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const BoxIcon: {
-  (props: IconProps): JSX.Element;
+  (props: BoxIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<BoxIconProps, 'size'>;
+};
+export type BrainIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const BrainIcon: {
-  (props: IconProps): JSX.Element;
+  (props: BrainIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<BrainIconProps, 'size'>;
+};
+export type CalendarIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CalendarIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CalendarIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CalendarIconProps, 'size'>;
+};
+export type CameraIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CameraIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CameraIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CameraIconProps, 'size'>;
+};
+export type CaretDownIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CaretDownIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CaretDownIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CaretDownIconProps, 'size'>;
+};
+export type CaretUpIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CaretUpIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CaretUpIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CaretUpIconProps, 'size'>;
+};
+export type CartIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CartIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CartIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CartIconProps, 'size'>;
+};
+export type ChainBrokenIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ChainBrokenIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ChainBrokenIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ChainBrokenIconProps, 'size'>;
+};
+export type ChainIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ChainIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ChainIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ChainIconProps, 'size'>;
+};
+export type CheckActiveIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CheckActiveIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CheckActiveIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CheckActiveIconProps, 'size'>;
+};
+export type CheckBoldIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CheckBoldIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CheckBoldIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CheckBoldIconProps, 'size'>;
+};
+export type CheckInactiveIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CheckInactiveIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CheckInactiveIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CheckInactiveIconProps, 'size'>;
+};
+export type CheckThinIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CheckThinIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CheckThinIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CheckThinIconProps, 'size'>;
+};
+export type CircleIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CircleIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CircleIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CircleIconProps, 'size'>;
+};
+export type ClipboardIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ClipboardIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ClipboardIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ClipboardIconProps, 'size'>;
+};
+export type ClockIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ClockIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ClockIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ClockIconProps, 'size'>;
+};
+export type CloseBoldIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CloseBoldIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CloseBoldIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CloseBoldIconProps, 'size'>;
+};
+export type CloseIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CloseIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CloseIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CloseIconProps, 'size'>;
+};
+export type CodeViewIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CodeViewIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CodeViewIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CodeViewIconProps, 'size'>;
+};
+export type CoinsIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CoinsIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CoinsIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CoinsIconProps, 'size'>;
+};
+export type ColumnsIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ColumnsIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ColumnsIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ColumnsIconProps, 'size'>;
+};
+export type ConnectedSquareIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ConnectedSquareIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ConnectedSquareIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ConnectedSquareIconProps, 'size'>;
+};
+export type ConnectedTriangleIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ConnectedTriangleIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ConnectedTriangleIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ConnectedTriangleIconProps, 'size'>;
+};
+export type CopyIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CopyIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CopyIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CopyIconProps, 'size'>;
+};
+export type CubeIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CubeIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CubeIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CubeIconProps, 'size'>;
+};
+export type CubesIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const CubesIcon: {
-  (props: IconProps): JSX.Element;
+  (props: CubesIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<CubesIconProps, 'size'>;
+};
+export type DotIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const DotIcon: {
-  (props: IconProps): JSX.Element;
+  (props: DotIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<DotIconProps, 'size'>;
+};
+export type DownloadIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const DownloadIcon: {
-  (props: IconProps): JSX.Element;
+  (props: DownloadIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<DownloadIconProps, 'size'>;
+};
+export type DragDropIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const DragDropIcon: {
-  (props: IconProps): JSX.Element;
+  (props: DragDropIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<DragDropIconProps, 'size'>;
+};
+export type DragIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const DragIcon: {
-  (props: IconProps): JSX.Element;
+  (props: DragIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<DragIconProps, 'size'>;
+};
+export type EditIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const EditIcon: {
-  (props: IconProps): JSX.Element;
+  (props: EditIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<EditIconProps, 'size'>;
+};
+export type ErrorIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ErrorIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ErrorIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ErrorIconProps, 'size'>;
+};
+export type ExpandIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ExpandIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ExpandIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ExpandIconProps, 'size'>;
+};
+export type ExportIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ExportIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ExportIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ExportIconProps, 'size'>;
+};
+export type ExternalLinkIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ExternalLinkIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ExternalLinkIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ExternalLinkIconProps, 'size'>;
+};
+export type EyeCrossedIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const EyeCrossedIcon: {
-  (props: IconProps): JSX.Element;
+  (props: EyeCrossedIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<EyeCrossedIconProps, 'size'>;
+};
+export type EyeIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const EyeIcon: {
-  (props: IconProps): JSX.Element;
+  (props: EyeIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<EyeIconProps, 'size'>;
+};
+export type FilterIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const FilterIcon: {
-  (props: IconProps): JSX.Element;
+  (props: FilterIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<FilterIconProps, 'size'>;
+};
+export type FlagFilledIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const FlagFilledIcon: {
-  (props: IconProps): JSX.Element;
+  (props: FlagFilledIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<FlagFilledIconProps, 'size'>;
+};
+export type FlagLinearIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const FlagLinearIcon: {
-  (props: IconProps): JSX.Element;
+  (props: FlagLinearIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<FlagLinearIconProps, 'size'>;
+};
+export type FlameIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const FlameIcon: {
-  (props: IconProps): JSX.Element;
+  (props: FlameIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<FlameIconProps, 'size'>;
+};
+export type FractionDigitsIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const FractionDigitsIcon: {
-  (props: IconProps): JSX.Element;
+  (props: FractionDigitsIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<FractionDigitsIconProps, 'size'>;
+};
+export type GearIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const GearIcon: {
-  (props: IconProps): JSX.Element;
+  (props: GearIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<GearIconProps, 'size'>;
+};
+export type GraduationCapIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const GraduationCapIcon: {
-  (props: IconProps): JSX.Element;
+  (props: GraduationCapIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<GraduationCapIconProps, 'size'>;
+};
+export type GraphIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const GraphIcon: {
-  (props: IconProps): JSX.Element;
+  (props: GraphIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<GraphIconProps, 'size'>;
+};
+export type GridIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const GridIcon: {
-  (props: IconProps): JSX.Element;
+  (props: GridIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<GridIconProps, 'size'>;
+};
+export type HeartIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const HeartIcon: {
-  (props: IconProps): JSX.Element;
+  (props: HeartIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<HeartIconProps, 'size'>;
+};
+export type ImportIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ImportIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ImportIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ImportIconProps, 'size'>;
+};
+export type InfoIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const InfoIcon: {
-  (props: IconProps): JSX.Element;
+  (props: InfoIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<InfoIconProps, 'size'>;
+};
+export type InformationIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const InformationIcon: {
-  (props: IconProps): JSX.Element;
+  (props: InformationIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<InformationIconProps, 'size'>;
+};
+export type ListIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ListIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ListIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ListIconProps, 'size'>;
+};
+export type LogoutIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const LogoutIcon: {
-  (props: IconProps): JSX.Element;
+  (props: LogoutIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<LogoutIconProps, 'size'>;
+};
+export type MailIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const MailIcon: {
-  (props: IconProps): JSX.Element;
+  (props: MailIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<MailIconProps, 'size'>;
+};
+export type MinimizeIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const MinimizeIcon: {
-  (props: IconProps): JSX.Element;
+  (props: MinimizeIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<MinimizeIconProps, 'size'>;
+};
+export type NestedViewIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const NestedViewIcon: {
-  (props: IconProps): JSX.Element;
+  (props: NestedViewIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<NestedViewIconProps, 'size'>;
+};
+export type PageGearIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const PageGearIcon: {
-  (props: IconProps): JSX.Element;
+  (props: PageGearIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<PageGearIconProps, 'size'>;
+};
+export type PagesIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const PagesIcon: {
-  (props: IconProps): JSX.Element;
+  (props: PagesIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<PagesIconProps, 'size'>;
+};
+export type PaperBillInvertedIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const PaperBillInvertedIcon: {
-  (props: IconProps): JSX.Element;
+  (props: PaperBillInvertedIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<PaperBillInvertedIconProps, 'size'>;
+};
+export type PaperclipIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const PaperclipIcon: {
-  (props: IconProps): JSX.Element;
+  (props: PaperclipIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<PaperclipIconProps, 'size'>;
+};
+export type PinFilledIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const PinFilledIcon: {
-  (props: IconProps): JSX.Element;
+  (props: PinFilledIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<PinFilledIconProps, 'size'>;
+};
+export type PinGearIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const PinGearIcon: {
-  (props: IconProps): JSX.Element;
+  (props: PinGearIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<PinGearIconProps, 'size'>;
+};
+export type PinLinearIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const PinLinearIcon: {
-  (props: IconProps): JSX.Element;
+  (props: PinLinearIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<PinLinearIconProps, 'size'>;
+};
+export type PluginIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const PluginIcon: {
-  (props: IconProps): JSX.Element;
+  (props: PluginIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<PluginIconProps, 'size'>;
+};
+export type PlusBoldIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const PlusBoldIcon: {
-  (props: IconProps): JSX.Element;
+  (props: PlusBoldIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<PlusBoldIconProps, 'size'>;
+};
+export type PlusThinIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const PlusThinIcon: {
-  (props: IconProps): JSX.Element;
+  (props: PlusThinIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<PlusThinIconProps, 'size'>;
+};
+export type RefreshIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const RefreshIcon: {
-  (props: IconProps): JSX.Element;
+  (props: RefreshIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<RefreshIconProps, 'size'>;
+};
+export type RestoreIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const RestoreIcon: {
-  (props: IconProps): JSX.Element;
+  (props: RestoreIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<RestoreIconProps, 'size'>;
+};
+export type RevertIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const RevertIcon: {
-  (props: IconProps): JSX.Element;
+  (props: RevertIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<RevertIconProps, 'size'>;
+};
+export type ReviewIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ReviewIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ReviewIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ReviewIconProps, 'size'>;
+};
+export type RocketIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const RocketIcon: {
-  (props: IconProps): JSX.Element;
+  (props: RocketIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<RocketIconProps, 'size'>;
+};
+export type ScreenGearIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ScreenGearIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ScreenGearIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ScreenGearIconProps, 'size'>;
+};
+export type ScreenUserIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const ScreenUserIcon: {
-  (props: IconProps): JSX.Element;
+  (props: ScreenUserIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<ScreenUserIconProps, 'size'>;
+};
+export type SearchIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const SearchIcon: {
-  (props: IconProps): JSX.Element;
+  (props: SearchIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<SearchIconProps, 'size'>;
+};
+export type SortingIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const SortingIcon: {
-  (props: IconProps): JSX.Element;
+  (props: SortingIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<SortingIconProps, 'size'>;
+};
+export type SpeechBubbleIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const SpeechBubbleIcon: {
-  (props: IconProps): JSX.Element;
+  (props: SpeechBubbleIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<SpeechBubbleIconProps, 'size'>;
+};
+export type SpeedometerIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const SpeedometerIcon: {
-  (props: IconProps): JSX.Element;
+  (props: SpeedometerIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<SpeedometerIconProps, 'size'>;
+};
+export type SplitIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const SplitIcon: {
-  (props: IconProps): JSX.Element;
+  (props: SplitIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<SplitIconProps, 'size'>;
+};
+export type StackIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const StackIcon: {
-  (props: IconProps): JSX.Element;
+  (props: StackIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<StackIconProps, 'size'>;
+};
+export type StarIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const StarIcon: {
-  (props: IconProps): JSX.Element;
+  (props: StarIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<StarIconProps, 'size'>;
+};
+export type SubdirectoryArrowIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const SubdirectoryArrowIcon: {
-  (props: IconProps): JSX.Element;
+  (props: SubdirectoryArrowIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<SubdirectoryArrowIconProps, 'size'>;
+};
+export type SupportIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const SupportIcon: {
-  (props: IconProps): JSX.Element;
+  (props: SupportIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<SupportIconProps, 'size'>;
+};
+export type SwitcherIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const SwitcherIcon: {
-  (props: IconProps): JSX.Element;
+  (props: SwitcherIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<SwitcherIconProps, 'size'>;
+};
+export type TableIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const TableIcon: {
-  (props: IconProps): JSX.Element;
+  (props: TableIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<TableIconProps, 'size'>;
+};
+export type TagMultiIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const TagMultiIcon: {
-  (props: IconProps): JSX.Element;
+  (props: TagMultiIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<TagMultiIconProps, 'size'>;
+};
+export type TagStackedIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const TagStackedIcon: {
-  (props: IconProps): JSX.Element;
+  (props: TagStackedIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<TagStackedIconProps, 'size'>;
+};
+export type TagIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const TagIcon: {
-  (props: IconProps): JSX.Element;
+  (props: TagIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<TagIconProps, 'size'>;
+};
+export type TerminalIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const TerminalIcon: {
-  (props: IconProps): JSX.Element;
+  (props: TerminalIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<TerminalIconProps, 'size'>;
+};
+export type TreeStructureIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const TreeStructureIcon: {
-  (props: IconProps): JSX.Element;
+  (props: TreeStructureIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<TreeStructureIconProps, 'size'>;
+};
+export type TruckIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const TruckIcon: {
-  (props: IconProps): JSX.Element;
+  (props: TruckIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<TruckIconProps, 'size'>;
+};
+export type UserFilledIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const UserFilledIcon: {
-  (props: IconProps): JSX.Element;
+  (props: UserFilledIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<UserFilledIconProps, 'size'>;
+};
+export type UserLinearIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const UserLinearIcon: {
-  (props: IconProps): JSX.Element;
+  (props: UserLinearIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<UserLinearIconProps, 'size'>;
+};
+export type VerifiedIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const VerifiedIcon: {
-  (props: IconProps): JSX.Element;
+  (props: VerifiedIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<VerifiedIconProps, 'size'>;
+};
+export type WarningIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const WarningIcon: {
-  (props: IconProps): JSX.Element;
+  (props: WarningIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<WarningIconProps, 'size'>;
+};
+export type WorldIconProps = {
+  color?:
+    | 'solid'
+    | 'neutral60'
+    | 'surface'
+    | 'info'
+    | 'primary'
+    | 'primary40'
+    | 'warning'
+    | 'error';
+  size: 'small' | 'medium' | 'big' | 'scale';
+  children?: never;
 };
 export const WorldIcon: {
-  (props: IconProps): JSX.Element;
+  (props: WorldIconProps): JSX.Element;
   displayName: string;
-  defaultProps: Pick<IconProps, 'size'>;
+  defaultProps: Pick<WorldIconProps, 'size'>;
 };
