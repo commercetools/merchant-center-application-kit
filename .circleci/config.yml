@@ -63,7 +63,7 @@ commands:
           command: yarn typecheck
       - run:
           name: Running linters and tests
-          command: yarn run jest --projects jest.{eslint,stylelint,test}.config.js --maxWorkers=3 --reporters jest-silent-reporter
+          command: yarn run jest --projects jest.{eslint,stylelint,test}.config.js --maxWorkers=3
   build_packages:
     description: Building packages
     steps:
