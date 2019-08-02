@@ -100,7 +100,7 @@ type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
   project: TApplicationContextProject | null;
   permissions: TApplicationContextPermissions | null;
   actionRights: TApplicationContextActionRights | null;
-  dataFences: TApplicationContextDataFenceGroupedByDataFenceType | null;
+  dataFences: TApplicationContextDataFences | null;
   dataLocale: string | null;
 };
 type ProviderProps<AdditionalEnvironmentProperties extends {}> = {
