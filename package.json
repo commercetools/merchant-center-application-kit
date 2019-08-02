@@ -43,13 +43,18 @@
     "build:es:watch": "NODE_ENV=development lerna run --no-private --parallel build:es:watch",
     "labels:sync": "github-labels sync"
   },
-  "workspaces": [
-    "application-templates/*",
-    "packages/*",
-    "playground",
-    "visual-testing-app",
-    "website"
-  ],
+  "workspaces": {
+    "packages": [
+      "application-templates/*",
+      "packages/*",
+      "playground",
+      "visual-testing-app",
+      "website"
+    ],
+    "nohoist": [
+      "**/react-apollo"
+    ]
+  },
   "devDependencies": {
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "8.1.0",
