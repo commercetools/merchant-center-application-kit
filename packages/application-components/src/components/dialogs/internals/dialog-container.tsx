@@ -44,8 +44,8 @@ const defaultProps: Pick<Props, 'size' | 'zIndex' | 'getParentSelector'> = {
 type GridAreaProps = {
   name: string;
 };
-const GridArea = styled<'div', GridAreaProps>('div')`
-  grid-area: ${(props: GridAreaProps) => props.name};
+const GridArea = styled.div<GridAreaProps>`
+  grid-area: ${props => props.name};
 `;
 
 const sizeStyles = (props: Pick<Props, 'size'>) => {

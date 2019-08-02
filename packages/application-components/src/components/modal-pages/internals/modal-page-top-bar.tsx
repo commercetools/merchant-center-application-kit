@@ -13,7 +13,7 @@ import {
 import messages from './messages';
 
 // Component to have a larger the clickable surface
-const LargeIconWrapper = styled('span')`
+const LargeIconWrapper = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
