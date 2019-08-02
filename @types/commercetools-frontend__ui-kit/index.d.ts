@@ -1,6 +1,11 @@
 declare module '@commercetools-frontend/ui-kit' {
   import * as React from 'react';
-  import { MessageDescriptor } from 'react-intl';
+
+  export type MessageDescriptor = {
+    id: string;
+    description?: string;
+    defaultMessage: string;
+  };
 
   export const version: string;
 
