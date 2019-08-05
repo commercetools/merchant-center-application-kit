@@ -198,7 +198,7 @@ module.exports = {
 
     // For querying MDX
     {
-      resolve: 'gatsby-mdx',
+      resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: [
           '.mdx',
@@ -236,6 +236,7 @@ module.exports = {
             },
           },
         ],
+        plugins: ['gatsby-remark-images'], // workaround https://github.com/gatsbyjs/gatsby/issues/15486#issuecomment-510153237
       },
     },
 
