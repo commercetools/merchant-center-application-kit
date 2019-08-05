@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import { useIntl } from 'react-intl';
+import styled from '@emotion/styled';
+import { useIntl, MessageDescriptor } from 'react-intl';
 import {
   Text,
   CloseIcon,
@@ -13,28 +13,34 @@ import {
 import messages from './messages';
 
 // Component to have a larger the clickable surface
-const LargeCloseIcon = props => (
-  <span
-    css={css`
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      &::after {
-        content: '';
-        position: absolute;
-        height: 35px;
-        width: 48px;
-        top: 0;
-        right: 0;
-      }
-    `}
-  >
-    <CloseIcon size="medium" {...props} />
-  </span>
-);
-LargeCloseIcon.displayName = 'LargeCloseIcon';
+const LargeIconWrapper = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &::after {
+    content: '';
+    position: absolute;
+    height: 35px;
+    width: 48px;
+    top: 0;
+    right: 0;
+  }
+`;
 
-const ModalPageTopBar = props => {
+type Label = string | MessageDescriptor;
+type Props = {
+  color: 'surface' | 'neutral';
+  currentPathLabel?: string;
+  previousPathLabel: Label;
+  onClose: (event: React.SyntheticEvent) => void;
+  children?: never;
+};
+const defaultProps: Pick<Props, 'color' | 'previousPathLabel'> = {
+  color: 'surface',
+  previousPathLabel: messages.back,
+};
+
+const ModalPageTopBar = (props: Props) => {
   const intl = useIntl();
   return (
     <div
@@ -80,7 +86,7 @@ const ModalPageTopBar = props => {
               ? props.previousPathLabel
               : intl.formatMessage(props.previousPathLabel)
           }
-          icon={<AngleLeftIcon size="medium" theme="green" />}
+          icon={<AngleLeftIcon size="medium" color="primary" />}
           onClick={props.onClose}
         />
         {props.currentPathLabel && (
@@ -96,29 +102,17 @@ const ModalPageTopBar = props => {
         <SecondaryIconButton
           label={intl.formatMessage(messages.close)}
           onClick={props.onClose}
-          icon={<LargeCloseIcon />}
+          icon={
+            <LargeIconWrapper>
+              <CloseIcon size="medium" />
+            </LargeIconWrapper>
+          }
         />
       )}
     </div>
   );
 };
 ModalPageTopBar.displayName = 'ModalPageTopBar';
-ModalPageTopBar.propTypes = {
-  color: PropTypes.oneOf(['surface', 'neutral']),
-  onClose: PropTypes.func.isRequired,
-  currentPathLabel: PropTypes.string,
-  previousPathLabel: PropTypes.oneOfType([
-    PropTypes.string,
-    // default intl message
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      defaultMessage: PropTypes.string.isRequired,
-    }),
-  ]).isRequired,
-};
-ModalPageTopBar.defaultProps = {
-  color: 'surface',
-  previousPathLabel: messages.back,
-};
+ModalPageTopBar.defaultProps = defaultProps;
 
 export default ModalPageTopBar;

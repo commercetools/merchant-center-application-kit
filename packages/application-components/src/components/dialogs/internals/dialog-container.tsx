@@ -1,15 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { css, ClassNames } from '@emotion/core';
 import styled from '@emotion/styled';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 import { Card, customProperties } from '@commercetools-frontend/ui-kit';
 import { getModalOverlayStyles, getModalContentStyles } from './dialog.styles';
-
-const GridArea = styled.div`
-  grid-area: ${props => props.name};
-`;
 
 // When running tests, we don't render the AppShell. Instead we mock the
 // application context to make the data available to the application under
@@ -27,9 +22,33 @@ const GridArea = styled.div`
 const getDefaultParentSelector = () =>
   process.env.NODE_ENV === 'test'
     ? document.body
-    : document.querySelector(`#${PORTALS_CONTAINER_ID}`);
+    : (document.querySelector<HTMLElement>(
+        `#${PORTALS_CONTAINER_ID}`
+      ) as HTMLElement);
 
-const sizeStyles = props => {
+type Props = {
+  isOpen: boolean;
+  onClose?: (event: React.SyntheticEvent) => void;
+  size: 'm' | 'l' | 'scale';
+  zIndex: number;
+  title: string;
+  children: React.ReactNode;
+  getParentSelector: typeof getDefaultParentSelector;
+};
+const defaultProps: Pick<Props, 'size' | 'zIndex' | 'getParentSelector'> = {
+  size: 'l',
+  zIndex: 1000,
+  getParentSelector: getDefaultParentSelector,
+};
+
+type GridAreaProps = {
+  name: string;
+};
+const GridArea = styled.div<GridAreaProps>`
+  grid-area: ${props => props.name};
+`;
+
+const sizeStyles = (props: Pick<Props, 'size'>) => {
   if (props.size === 'scale')
     return css`
       height: 100%;
@@ -38,7 +57,7 @@ const sizeStyles = props => {
   return css``;
 };
 
-const DialogContainer = props => (
+const DialogContainer = (props: Props) => (
   <ClassNames>
     {({ css: makeClassName }) => (
       <Modal
@@ -46,7 +65,7 @@ const DialogContainer = props => (
         onRequestClose={props.onClose}
         shouldCloseOnOverlayClick={Boolean(props.onClose)}
         shouldCloseOnEsc={Boolean(props.onClose)}
-        overlayClassName={makeClassName(getModalOverlayStyles(props))}
+        overlayClassName={makeClassName(getModalOverlayStyles())}
         className={makeClassName(getModalContentStyles(props))}
         contentLabel={props.title}
         parentSelector={props.getParentSelector}
@@ -112,19 +131,6 @@ const DialogContainer = props => (
   </ClassNames>
 );
 DialogContainer.displayName = 'DialogContainer';
-DialogContainer.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func,
-  size: PropTypes.oneOf(['m', 'l', 'scale']),
-  zIndex: PropTypes.number,
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  getParentSelector: PropTypes.func,
-};
-DialogContainer.defaultProps = {
-  size: 'l',
-  zIndex: 1000,
-  getParentSelector: getDefaultParentSelector,
-};
+DialogContainer.defaultProps = defaultProps;
 
 export default DialogContainer;

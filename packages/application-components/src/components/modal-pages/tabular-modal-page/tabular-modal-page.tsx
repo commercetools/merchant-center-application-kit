@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import requiredIf from 'react-required-if';
+import { MessageDescriptor } from 'react-intl';
 import { css } from '@emotion/core';
 import { customProperties, Spacings } from '@commercetools-frontend/ui-kit';
 import buttonMessages from '../../../utils/button-messages';
@@ -9,7 +8,53 @@ import ModalPageHeaderTitle from '../internals/modal-page-header-title';
 import ModalPageHeaderDefaultControls from '../internals/modal-page-header-default-controls';
 import { ContentWrapper } from '../internals/modal-page.styles';
 
-const TabularModalPage = props => (
+type Label = string | MessageDescriptor;
+type CommonProps = {
+  level?: number;
+  title: string;
+  isOpen: boolean;
+  onClose?: (event: React.SyntheticEvent) => void;
+  children: React.ReactNode;
+  zIndex?: number;
+  baseZIndex?: number;
+  getParentSelector?: () => HTMLElement;
+  shouldDelayOnClose?: boolean;
+  // TopBar Props
+  topBarCurrentPathLabel?: string;
+  topBarPreviousPathLabel: Label;
+  // Replaces the title/subtitle row with a custom one (for special use cases)
+  customTitleRow?: React.ReactNode;
+  // Pass tab components
+  tabControls: React.ReactNode;
+  // Header Props
+  subtitle?: string | React.ReactElement;
+  isPrimaryButtonDisabled?: boolean;
+  dataAttributesPrimaryButton?: { [key: string]: string };
+  dataAttributesSecondaryButton?: { [key: string]: string };
+};
+type PropsWithCustomControls = CommonProps & {
+  customControls: React.ReactNode;
+};
+type PropsWithoutCustomControls = CommonProps & {
+  labelSecondaryButton: Label;
+  labelPrimaryButton: Label;
+  onSecondaryButtonClick: (event: React.SyntheticEvent) => void;
+  onPrimaryButtonClick: (event: React.SyntheticEvent) => void;
+};
+type Props = PropsWithCustomControls | PropsWithoutCustomControls;
+const defaultProps: Pick<
+  PropsWithoutCustomControls,
+  'labelPrimaryButton' | 'labelSecondaryButton'
+> = {
+  labelPrimaryButton: buttonMessages.confirm,
+  labelSecondaryButton: buttonMessages.cancel,
+};
+
+// Type-guard validation for the correct props, based on the existance `customControls`
+const hasCustomControls = (props: Props): props is PropsWithCustomControls =>
+  'customControls' in props;
+
+const TabularModalPage = (props: Props) => (
   <ModalPage
     level={props.level}
     title={props.title}
@@ -30,7 +75,7 @@ const TabularModalPage = props => (
         border-bottom: 1px ${customProperties.colorNeutral} solid;
       `}
     >
-      <Spacings.Stack size="l">
+      <Spacings.Stack>
         {props.customTitleRow || (
           <ModalPageHeaderTitle title={props.title} subtitle={props.subtitle} />
         )}
@@ -47,7 +92,9 @@ const TabularModalPage = props => (
               margin-bottom: 16px !important;
             `}
           >
-            {props.customControls || (
+            {hasCustomControls(props) ? (
+              props.customControls
+            ) : (
               <ModalPageHeaderDefaultControls
                 labelSecondaryButton={props.labelSecondaryButton}
                 labelPrimaryButton={props.labelPrimaryButton}
@@ -68,67 +115,7 @@ const TabularModalPage = props => (
   </ModalPage>
 );
 TabularModalPage.displayName = 'TabularModalPage';
-TabularModalPage.propTypes = {
-  level: PropTypes.number,
-  title: PropTypes.string.isRequired,
-  zIndex: PropTypes.number,
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func,
-  children: PropTypes.node.isRequired,
-  baseZIndex: PropTypes.number,
-  getParentSelector: PropTypes.string,
-  shouldDelayOnClose: PropTypes.bool,
-  // For topbar
-  topBarCurrentPathLabel: PropTypes.string,
-  topBarPreviousPathLabel: PropTypes.string,
-  // For header
-  subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  // Replaces the title/subtitle row with a custom one (for special use cases)
-  customTitleRow: PropTypes.node,
-  // Pass tab components
-  tabControls: PropTypes.node.isRequired,
-  // Replaces default control buttons
-  customControls: PropTypes.node,
-  // For default control buttons
-  labelSecondaryButton: requiredIf(
-    PropTypes.oneOfType([
-      PropTypes.string,
-      // intl message
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        defaultMessage: PropTypes.string.isRequired,
-      }),
-    ]),
-    props => !props.customControls
-  ),
-  labelPrimaryButton: requiredIf(
-    PropTypes.oneOfType([
-      PropTypes.string,
-      // intl message
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        defaultMessage: PropTypes.string.isRequired,
-      }),
-    ]),
-    props => !props.customControls
-  ),
-  onSecondaryButtonClick: requiredIf(
-    PropTypes.func,
-    props => !props.customControls
-  ),
-  onPrimaryButtonClick: requiredIf(
-    PropTypes.func,
-    props => !props.customControls
-  ),
-  isPrimaryButtonDisabled: PropTypes.bool,
-  dataAttributesPrimaryButton: PropTypes.object,
-  dataAttributesSecondaryButton: PropTypes.object,
-};
-TabularModalPage.defaultProps = {
-  labelPrimaryButton: buttonMessages.confirm,
-  labelSecondaryButton: buttonMessages.cancel,
-};
-
+TabularModalPage.defaultProps = defaultProps;
 TabularModalPage.Intl = buttonMessages;
 
 export default TabularModalPage;

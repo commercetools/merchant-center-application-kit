@@ -1,7 +1,11 @@
 import { css } from '@emotion/core';
 import { customProperties } from '@commercetools-frontend/ui-kit';
 
-export const getModalContentStyles = props => {
+type StyleProps = {
+  size: 'm' | 'l' | 'scale';
+};
+
+export const getModalContentStyles = (props: StyleProps) => {
   // To ensure that the mouse click on the overlay surface goes "through"
   // and triggers the modal to close, we need to turn off the pointer events.
   const baseStyles = css`

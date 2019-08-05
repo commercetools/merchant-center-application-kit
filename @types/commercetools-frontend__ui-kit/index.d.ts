@@ -273,6 +273,7 @@ declare module '@commercetools-frontend/ui-kit' {
   export const TextBody: {
     (props: TextBodyProps): JSX.Element;
     displayName: string;
+    defaultProps: Pick<TextBodyProps, 'as'>;
   };
 
   // <Text.Detail>
@@ -356,7 +357,11 @@ declare module '@commercetools-frontend/ui-kit' {
     label: string;
     to:
       | string
-      | { pathname: string; search?: string; query?: Record<string, string> };
+      | {
+          pathname: string;
+          search?: string;
+          query?: { [key: string]: string };
+        };
     iconLeft?: React.ReactNode;
     isDisabled: boolean;
     isExternal: boolean;
@@ -410,7 +415,11 @@ declare module '@commercetools-frontend/ui-kit' {
     onClick?: (event: React.SyntheticEvent) => void;
     linkTo?:
       | string
-      | { pathname: string; search?: string; query?: Record<string, string> };
+      | {
+          pathname: string;
+          search?: string;
+          query?: { [key: string]: string };
+        };
     children?: never;
   };
   export const SecondaryButton: {

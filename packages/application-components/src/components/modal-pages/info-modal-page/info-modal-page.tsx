@@ -1,10 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { MessageDescriptor } from 'react-intl';
 import ModalPage from '../internals/modal-page';
 import ModalPageHeader from '../internals/modal-page-header';
 import { ContentWrapper } from '../internals/modal-page.styles';
 
-const InfoModalPage = props => (
+type Label = string | MessageDescriptor;
+type Props = {
+  level?: number;
+  title: string;
+  isOpen: boolean;
+  onClose?: (event: React.SyntheticEvent) => void;
+  children: React.ReactNode;
+  zIndex?: number;
+  baseZIndex?: number;
+  getParentSelector?: () => HTMLElement;
+  shouldDelayOnClose?: boolean;
+  // TopBar Props
+  topBarCurrentPathLabel?: string;
+  topBarPreviousPathLabel: Label;
+  // Header Props
+  subtitle?: string | React.ReactElement;
+};
+
+const InfoModalPage = (props: Props) => (
   <ModalPage
     level={props.level}
     title={props.title}
@@ -17,30 +35,10 @@ const InfoModalPage = props => (
     shouldDelayOnClose={props.shouldDelayOnClose}
     getParentSelector={props.getParentSelector}
   >
-    <ModalPageHeader
-      title={props.title}
-      subtitle={props.subtitle}
-      showControls={false}
-    />
+    <ModalPageHeader title={props.title} subtitle={props.subtitle} />
     <ContentWrapper>{props.children}</ContentWrapper>
   </ModalPage>
 );
 InfoModalPage.displayName = 'InfoModalPage';
-InfoModalPage.propTypes = {
-  level: PropTypes.number,
-  title: PropTypes.string.isRequired,
-  zIndex: PropTypes.number,
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func,
-  children: PropTypes.node.isRequired,
-  baseZIndex: PropTypes.number,
-  getParentSelector: PropTypes.string,
-  shouldDelayOnClose: PropTypes.bool,
-  // TopBar Props
-  topBarCurrentPathLabel: PropTypes.string,
-  topBarPreviousPathLabel: PropTypes.string,
-  // Header Props
-  subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-};
 
 export default InfoModalPage;
