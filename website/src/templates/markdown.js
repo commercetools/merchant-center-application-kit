@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, Link as HistoryLink } from 'gatsby';
-import { MDXRenderer } from 'gatsby-mdx';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
@@ -340,7 +340,7 @@ const MarkdownTemplate = props => (
         <SEO title={props.data.mdx.frontmatter.title} />
         {/* This wrapper div is important to ensure the vertical space */}
         <div>
-          <MDXRenderer>{props.data.mdx.code.body}</MDXRenderer>
+          <MDXRenderer>{props.data.mdx.body}</MDXRenderer>
         </div>
       </TypographyPage>
     </MDXProvider>
@@ -355,9 +355,7 @@ MarkdownTemplate.propTypes = {
         title: PropTypes.string,
         permalink: PropTypes.string,
       }).isRequired,
-      code: PropTypes.shape({
-        body: PropTypes.string.isRequired,
-      }).isRequired,
+      body: PropTypes.string.isRequired,
       tableOfContents: PropTypes.object.isRequired,
     }).isRequired,
   }).isRequired,
@@ -373,9 +371,7 @@ export const query = graphql`
         title
         permalink
       }
-      code {
-        body
-      }
+      body
       tableOfContents(maxDepth: 2)
     }
   }
