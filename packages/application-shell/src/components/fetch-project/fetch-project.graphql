@@ -27,6 +27,15 @@ query ProjectQuery($projectKey: String!) {
       name
       value
     }
+    allAppliedDataFences {
+      ... on StoreDataFence {
+        type
+        name
+        value
+        group
+        __typename
+      }
+    }
     owner {
       id
       name
@@ -39,3 +48,4 @@ query ProjectQuery($projectKey: String!) {
     }
   }
 }
+

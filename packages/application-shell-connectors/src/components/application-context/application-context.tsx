@@ -39,6 +39,29 @@ type TApplicationContextActionRights = {
   [key: string]: TActionRight;
 };
 
+type TApplicationContextGroupedByPermission = {
+  // E.g. { canManageOrders: { values: [] } }
+  [key: string]: { values: string[] };
+};
+type TApplicationContextGroupedByResourceType = {
+  // E.g. { orders: {...} }
+  [key: string]: TApplicationContextGroupedByPermission;
+};
+/**
+ * dataFence: {
+ *   store: {
+ *     orders: {
+ *       canManageOrders: { values: ['usa', 'germany'] },
+ *       canViewOrders: { values: ['canada'] },
+ *     }
+ *   }
+ * }
+ */
+type TApplicationContextDataFences = {
+  // E.g. { store: {...} }
+  [key: string]: TApplicationContextGroupedByResourceType;
+};
+
 type TRawProject = {
   key: string;
   version: number;
@@ -51,6 +74,7 @@ type TRawProject = {
   };
   permissions: TApplicationContextPermissions;
   actionRights: TApplicationContextActionRights;
+  dataFences: TApplicationContextDataFences;
 } & AdditionalProperties;
 type TApplicationContextProject = {
   key: string;
@@ -76,6 +100,7 @@ type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
   project: TApplicationContextProject | null;
   permissions: TApplicationContextPermissions | null;
   actionRights: TApplicationContextActionRights | null;
+  dataFences: TApplicationContextDataFences | null;
   dataLocale: string | null;
 };
 type ProviderProps<AdditionalEnvironmentProperties extends {}> = {
@@ -150,6 +175,7 @@ const createApplicationContext: <AdditionalEnvironmentProperties extends {}>(
   project: mapProjectToApplicationContextProject(project),
   permissions: project && project.permissions ? project.permissions : null,
   actionRights: project && project.actionRights ? project.actionRights : null,
+  dataFences: project && project.dataFences ? project.dataFences : null,
   dataLocale: projectDataLocale || null,
 });
 

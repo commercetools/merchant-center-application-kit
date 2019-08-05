@@ -44,6 +44,95 @@ export const mapAllAppliedToGroupedObjectShape = allAppliedShape =>
     };
   }, {});
 
+const mapAppliedDataFencesByResourceType = dataFences => {
+  const groupedByResourceType = dataFences.reduce(
+    (previousGroupsOfSameType, appliedDataFence) => {
+      const previousGroup = previousGroupsOfSameType[appliedDataFence.group];
+      return {
+        ...previousGroupsOfSameType,
+        [appliedDataFence.group]: [...(previousGroup || []), appliedDataFence],
+      };
+    },
+    {}
+  );
+  return Object.entries(groupedByResourceType).reduce(
+    (previousGroupedByResourceType, [resourceType, dataFences]) => {
+      const groupByDataFenceName = dataFences.reduce(
+        (nextDataFenceValues, dataFence) => {
+          const dataFenceByName = nextDataFenceValues[dataFence.name] || {
+            values: [],
+          };
+          return {
+            ...nextDataFenceValues,
+            [dataFence.name]: {
+              ...dataFenceByName,
+              values: [...dataFenceByName.values, dataFence.value],
+            },
+          };
+        },
+        {}
+      );
+      return {
+        ...previousGroupedByResourceType,
+        [resourceType]: groupByDataFenceName,
+      };
+    },
+    {}
+  );
+};
+
+// input:
+// [
+//   {
+//     type: 'store',
+//     name: 'canManageOrders',
+//     value: 'usa',
+//     group: 'orders',
+//   },
+//   {
+//     type: 'store',
+//     name: 'canManageOrders',
+//     value: 'germany',
+//     group: 'orders',
+//   },
+//   {
+//     type: 'store',
+//     name: 'canViewOrders',
+//     value: 'canada',
+//     group: 'orders',
+//   },
+// ]
+// output:
+// {
+//   store: {
+//     orders: {
+//       canManageOrders: { values: ['usa', 'germany'] },
+//       canViewOrders: { values: ['canada'] },
+//     }
+//   }
+// }
+export const mapAllDataFencesToGroupedObjectShape = allAppliedDataFences => {
+  const groupedByType = allAppliedDataFences.reduce(
+    (previousGroupsOfSameType, appliedDataFence) => {
+      const previousGroup = previousGroupsOfSameType[appliedDataFence.type];
+      return {
+        ...previousGroupsOfSameType,
+        [appliedDataFence.type]: [...(previousGroup || []), appliedDataFence],
+      };
+    },
+    {}
+  );
+  return Object.entries(groupedByType).reduce(
+    (previousTransformed, [dataFenceType, dataFences]) => ({
+      [dataFenceType]: {
+        ...previousTransformed,
+        ...mapAppliedDataFencesByResourceType(dataFences),
+      },
+    }),
+    {}
+  );
+};
+
 class FetchProject extends React.Component {
   static displayName = 'FetchProject';
   static propTypes = {
@@ -76,6 +165,9 @@ class FetchProject extends React.Component {
                 ...data.project,
                 permissions: mapAllAppliedToObjectShape(
                   data.project.allAppliedPermissions
+                ),
+                dataFences: mapAllDataFencesToGroupedObjectShape(
+                  data.project.allAppliedDataFences
                 ),
                 actionRights: mapAllAppliedToGroupedObjectShape(
                   data.project.allAppliedActionRights
