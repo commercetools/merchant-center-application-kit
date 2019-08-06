@@ -97,10 +97,10 @@ commands:
           command: PERCY_TOKEN="$PERCY_TOKEN_UI_COMPONENTS" yarn vrt
       - run:
           name: Building Documentation Website
-          command: yarn --cwd website build
+          command: BUILD_TARGET=percy yarn --cwd website build
       - run:
           name: Running Percy snapshots
-          command: PERCY_TOKEN="$PERCY_TOKEN_WEBSITE" yarn run percy snapshot website/public --ignore-files "website/public/code-snippets/**/*.html"
+          command: PERCY_TOKEN="$PERCY_TOKEN_WEBSITE" yarn run percy snapshot website/public
   publish_to_canary:
     description: Publishing to npm registry
     steps:
