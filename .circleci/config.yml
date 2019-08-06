@@ -69,7 +69,7 @@ commands:
     steps:
       - run: yarn build
       - save_package_bundles
-  vrt_test:
+  vrt_tests:
     description: Running Visual Regression Tests
     steps:
       - run:
@@ -90,11 +90,17 @@ commands:
             libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
             ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget --fix-missing
       - run:
-          name: Building VRT app
+          name: Building VRT application for UI components
           command: yarn visual-testing-app:build
       - run:
-          name: Running VRT app
+          name: Running VRT application for UI components
           command: yarn vrt
+      - run:
+          name: Building Documentation Website
+          command: yarn --cwd website build
+      - run:
+          name: Running Percy snapshots
+          command: yarn run percy snapshot website/public
   publish_to_canary:
     description: Publishing to npm registry
     steps:
@@ -117,7 +123,7 @@ jobs:
     steps:
       - setup_dependencies
       - restore_package_bundles
-      - vrt_test
+      - vrt_tests
   e2e_test:
     executor: cypress
     parameters:
