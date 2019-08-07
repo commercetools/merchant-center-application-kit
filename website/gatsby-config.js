@@ -102,7 +102,7 @@ module.exports = {
           },
           {
             label: 'Example: AWS - S3 & CloudFront',
-            linkTo: '/deployment/example-aws',
+            linkTo: '/deployment/example-aws-s3-cloudfront',
           },
         ],
       },
