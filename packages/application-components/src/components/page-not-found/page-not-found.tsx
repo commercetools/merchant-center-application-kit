@@ -11,7 +11,9 @@ const PageNotFound = () => (
     imageSrc={PageNotFoundSVG}
     title={<FormattedMessage {...messages.title} />}
     paragraph1={
-      <FormattedMessage
+      <FormattedMessage<
+        Record<string, (msg: React.ReactNodeArray) => JSX.Element>
+      >
         {...messages.paragraph1}
         values={{
           a: msg => (

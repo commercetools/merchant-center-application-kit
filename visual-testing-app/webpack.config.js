@@ -29,9 +29,9 @@ module.exports = {
           chunks: 'all',
           priority: -15,
         },
-        '@local-build/application-components': {
-          test: /@local-build\/application-components/,
-          name: '@local-build/application-components',
+        '@local-build/react-notifications': {
+          test: /@local-build\/react-notifications/,
+          name: '@local-build/react-notifications',
           chunks: 'all',
           priority: -15,
         },
@@ -40,6 +40,12 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        // Fix for react-intl
+        // https://github.com/formatjs/formatjs/issues/143#issuecomment-518774786
+        test: /\.mjs$/,
+        type: 'javascript/auto',
+      },
       {
         test: /\.js$/,
         exclude: [
