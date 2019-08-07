@@ -100,7 +100,10 @@ module.exports = {
             label: 'Example: Firebase',
             linkTo: '/deployment/example-firebase',
           },
-          { label: 'Example: AWS', linkTo: '/deployment/example-aws' },
+          {
+            label: 'Example: AWS - S3 & CloudFront',
+            linkTo: '/deployment/example-aws',
+          },
         ],
       },
       {

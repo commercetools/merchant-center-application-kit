@@ -40,13 +40,17 @@ To connect your local project to your Firebase project, run the following comman
 $ firebase init
 ```
 
-1. Select to set up **Hosting**.
+1. Select to set up **Hosting** and **Functions**.
 
 2. Select a Firebase project to connect to your local project directory. This will be the project created in the previous section.
 
-3. Select the default directory to use as your public root directory. The default is `public` and is where the compiled files will be placed.
+3. Select **JavaScript** as the language to write Cloud Functions.
 
-4. Configure your site as a single-page app to automatically add rewrite configurations.
+4. Choose if you would like to use ESLint and install dependencies with npm (both recommended). It is safe to decline if you want to manage dependencies in another way.
+
+5. Select the default directory to use as your public root directory. The default is `public` and is where the compiled files will be placed.
+
+6. Configure your site as a single-page app to automatically add rewrite configurations.
 
    ![Firebase Initialization](/assets/custom-applications/mc-dev-firebase-init.png)
 
@@ -55,6 +59,39 @@ After initialization, Firebase automatically creates and adds two files to the r
 - A `firebase.json` configuration file that lists your project configuration.
 
 - A `.firebaserc` file that stores your project aliases.
+
+To support Cloud Functions, Firebase also adds the following structure to your project:
+
+```
+project
+ +- functions/     # Directory containing all your functions code
+      |
+      +- .eslintrc.json  # Optional file containing rules for JavaScript linting.
+      |
+      +- package.json  # npm package file describing your Cloud Functions code
+      |
+      +- index.js      # main source file for your Cloud Functions code
+      |
+      +- node_modules/ # directory where your dependencies (declared in
+                       # package.json) are installed
+```
+
+## Configure Fallback Route
+
+To provide a more user-friendly experience when the Custom Application is viewed directly, we must create a Cloud Function to redirect the user to.
+
+Add these lines to `functions/index.js`:
+
+```javascript
+exports.customAppFallback = functions.https.onRequest((req, res) => {
+  res.end(
+    'This is not a real route. If you are seeing this, you most likely are accessing the custom application\n' +
+      'directly from the hosted domain. Instead, you need to access the custom application from within the Merchant Center\n' +
+      'domain, as custom applications are served behind a proxy router.\n' +
+      'To do so, you need to first register the custom application in Merchant Center > Settings > Custom Applications.'
+  );
+});
+```
 
 ## _(Optional)_ Set up a Hosting Site
 
@@ -122,11 +159,12 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = ({ headers }) => {
-  const baseConfig = {
+  const config = {
     hosting: {
       public: 'public',
       ignore: ['firebase.json', '**/.*', '**/node_modules/**'],
       rewrites: [
+        { source: '/@(login|logout)', function: 'customAppFallback' },
         {
           source: '**',
           destination: '/index.html',
@@ -157,7 +195,10 @@ module.exports = ({ headers }) => {
   };
 
   const target = process.env.FIREBASE_TARGET;
-  const config = target ? { ...baseConfig, target } : baseConfig;
+
+  if (target) {
+    config.hosting.target = target;
+  }
 
   fs.writeFileSync(
     path.join(__dirname, '../firebase.json'),
@@ -197,6 +238,8 @@ $ firebase deploy
 
 > Note: Deployment assumes that you have compiled assets in the `public` directory.
 
-If you go to `https://[projectID].firebaseapp.com`, you will see the application in an authorization redirection loop. **This is expected** as the application is not being loaded behind the Merchant Center Proxy.
+If you go to `https://[projectID].firebaseapp.com`, you will see the message supplied in the Cloud Function. **This is expected** as the application is not being loaded behind the Merchant Center Proxy.
+
+![Firebase Fallback](/assets/custom-applications/mc-dev-firebase-fallback.png)
 
 Now you're ready to [Register your Custom Application](./register-applications) and start using it!
