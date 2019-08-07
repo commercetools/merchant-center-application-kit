@@ -21,6 +21,12 @@
 
 /* eslint-disable global-require */
 
+const percyHealthCheck = require('@percy/cypress/task');
+
+module.exports = on => {
+  on('task', percyHealthCheck);
+};
+
 // plugins file
 module.exports = (on, cypressConfig) => {
   // Load the config
@@ -30,6 +36,8 @@ module.exports = (on, cypressConfig) => {
     console.log('Loading environment variables from', envPath);
     require('dotenv').config({ path: envPath });
   }
+
+  on('task', percyHealthCheck);
 
   return Object.assign({}, cypressConfig, {
     env: Object.assign({}, cypressConfig.env, {

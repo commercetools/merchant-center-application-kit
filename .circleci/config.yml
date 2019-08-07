@@ -94,13 +94,13 @@ commands:
           command: yarn visual-testing-app:build
       - run:
           name: Running VRT application for UI components
-          command: PERCY_TOKEN="$PERCY_TOKEN_UI_COMPONENTS" yarn vrt
+          command: PERCY_TOKEN="$PERCY_TOKEN_UI_COMPONENTS" yarn vrt:components
       - run:
           name: Building Documentation Website
           command: BUILD_TARGET=percy yarn --cwd website build
       - run:
           name: Running Percy snapshots
-          command: PERCY_TOKEN="$PERCY_TOKEN_WEBSITE" yarn run percy snapshot website/public
+          command: PERCY_TOKEN="$PERCY_TOKEN_WEBSITE" yarn vrt:website
   publish_to_canary:
     description: Publishing to npm registry
     steps:
@@ -179,7 +179,7 @@ jobs:
       - run:
           name: Run Cypress tests
           command: |
-            npx cypress run \
+            PERCY_TOKEN="$PERCY_TOKEN_E2E" yarn vrt:e2e \
               <<# parameters.spec>> --spec '<<parameters.spec>>' <</ parameters.spec>> \
               <<# parameters.record >> --record \
                 <<# parameters.group>> --group '<<parameters.group>>' <</ parameters.group>> \
