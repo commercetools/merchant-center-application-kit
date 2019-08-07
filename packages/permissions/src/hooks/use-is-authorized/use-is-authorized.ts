@@ -40,7 +40,6 @@ const useIsAuthorized = ({
   const actualActionRights = useApplicationContext<TActionRights | null>(
     applicationContext => applicationContext.actionRights
   );
-
   const hasDemandedPermissions = shouldMatchSomePermissions
     ? hasSomePermissions(demandedPermissions, actualPermissions)
     : hasEveryPermissions(demandedPermissions, actualPermissions);

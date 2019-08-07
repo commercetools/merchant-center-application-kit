@@ -1,4 +1,5 @@
 import isNil from 'lodash/isNil';
+import get from 'lodash/get';
 
 type TPermissionName = string;
 type TPermissions = {
@@ -15,6 +16,36 @@ type TActionRight = {
 };
 type TActionRights = {
   [key: string]: TActionRight;
+};
+type TDataFence = {
+  // E.g. { store: {...} }
+  [key: string]: {};
+};
+type TDataFenceByPermissionName = TDataFence & {
+  values: string[];
+};
+type TDemandedDataFence = {
+  group: string;
+  name: string;
+  type: string;
+};
+type TKeyReference = {
+  typeId: string;
+  key: string;
+};
+type TResourceToApplyDataFence = {
+  id: string;
+  // Orders
+  storeRef?: {
+    key?: string;
+  };
+  // Customers
+  storesRef?: TKeyReference[];
+};
+type TOptionsForAppliedDataFence = {
+  demandedDataFence: TDemandedDataFence;
+  actualDataFences: TDataFence[];
+  actualPermissions: TPermissions;
 };
 
 // Build the permission key from the definition to match it to the format coming
@@ -140,4 +171,72 @@ export const getInvalidPermissions = (
   return demandedPermissions.filter((demandedPermission: TPermissionName) =>
     isNil(actualPermissions[toCanCase(demandedPermission)])
   );
+};
+
+const hasDemandedDataFenceForStore = (
+  resourceToApplyDataFence: TResourceToApplyDataFence,
+  options: {
+    actualDataFence: TDataFenceByPermissionName;
+    actualDataFenceName: string;
+    demandedDataFence: TDemandedDataFence;
+  }
+): boolean => {
+  const hasDemandedPermission = hasPermission(options.demandedDataFence.name, {
+    [options.actualDataFenceName]: true,
+  });
+  if (!hasDemandedPermission) return false;
+  switch (options.demandedDataFence.group) {
+    case 'orders': {
+      return options.actualDataFence.values.includes(
+        resourceToApplyDataFence.storeRef &&
+          resourceToApplyDataFence.storeRef.key
+          ? resourceToApplyDataFence.storeRef.key
+          : ''
+      );
+    }
+    default:
+      return false;
+  }
+};
+
+export const createHasAppliedDataFence = (
+  options: TOptionsForAppliedDataFence
+) => (resourceToApplyDataFence: TResourceToApplyDataFence): boolean => {
+  // First check that the demanded dataFence is enforced on `projectPermissions`
+  const hasDemandedProjectPermission = hasPermission(
+    options.demandedDataFence.name,
+    options.actualPermissions
+  );
+  // Given that dataFence structure on `applicationContext`, we get the value by a path
+  // e.g given dataFence with { store: { orders: { canManageOrders: { values: } } } }
+  // we read the dataFence by the [type] and [group]
+  // dataFence[type][group] = dataFence.store.group
+  // with value = there is a dataFence to apply, overrules `hasDemandedProjectPermissions`
+  // without value = there is no dataFence to apply, overruled by `hasDemandedProjectPermissions`
+  const actualDataFenceByResourceGroup = get(
+    options.actualDataFences,
+    `${options.demandedDataFence.type}.${options.demandedDataFence.group}`
+  );
+  // { canManageOrders: { values: [] }}
+  if (actualDataFenceByResourceGroup) {
+    const hasDemandedDataFence = Object.entries(
+      actualDataFenceByResourceGroup
+    ).every(([actualDataFenceName, actualDataFence]): boolean => {
+      switch (options.demandedDataFence.type) {
+        case 'store':
+          return hasDemandedDataFenceForStore(resourceToApplyDataFence, {
+            actualDataFenceName,
+            actualDataFence,
+            demandedDataFence: options.demandedDataFence,
+          });
+        default:
+          false;
+      }
+      return false;
+    });
+
+    return hasDemandedProjectPermission || hasDemandedDataFence;
+  }
+
+  return hasDemandedProjectPermission;
 };
