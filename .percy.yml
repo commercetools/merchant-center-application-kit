@@ -5,4 +5,4 @@ snapshot:
 static-snapshots:
   base-url: /
   snapshot-files: '**/*.html,**/*.htm'
-  ignore-files: 'code-snippets/**/*.html'
+  ignore-files: 'code-snippets/**/*.html,404.html,404/index.html'

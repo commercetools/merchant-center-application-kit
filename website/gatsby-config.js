@@ -13,6 +13,7 @@ module.exports = {
       process.env.BUILD_TARGET === 'percy'
         ? '0.0.0'
         : require('../lerna.json').version,
+    disableAnimations: process.env.BUILD_TARGET === 'percy',
     navbarLinks: [
       {
         label: 'Getting started',
