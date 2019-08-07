@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery } from 'react-apollo';
+import { useLazyQuery } from '@apollo/react-hooks';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import FetchApplicationsMenu from './fetch-applications-menu.graphql';
 
@@ -25,7 +25,7 @@ const useApplicationsMenu = (config = {}) => {
       );
     }
     return devConfig;
-  }, [config]);
+  }, [mergedConfig.options]);
 
   // Trigger loading the menu from local file, for local development
   React.useEffect(() => {
@@ -35,8 +35,22 @@ const useApplicationsMenu = (config = {}) => {
         devConfig.menuLoader().then(setMenu);
       }
     }
-  }, [config]);
+  }, [getDevConfig, mergedConfig.skipRemoteQuery]);
 
+  // Prepare to fetch config.
+  // We set up the apollo query as lazy, in order to execute it conditionally
+  // since hooks cannot be defined conditionally.
+  const environment = useApplicationContext(context => context.environment);
+  const [loadMenuData, { called, data }] = useLazyQuery(FetchApplicationsMenu, {
+    ...mergedConfig.queryOptions,
+    fetchPolicy: mergedConfig.queryOptions.fetchPolicy || 'cache-first',
+    context: {
+      // Allow to overwrite the API url from `env.json`
+      uri: `${environment.mcProxyApiUrl || defaultApiUrl}/api/graphql`,
+    },
+  });
+
+  // Return the local config
   if (mergedConfig.skipRemoteQuery) {
     const devConfig = getDevConfig();
     const fakeGraphqlResponse = menu
@@ -47,16 +61,11 @@ const useApplicationsMenu = (config = {}) => {
     return fakeGraphqlResponse;
   }
 
-  // Fetch the config remotely
-  const environment = useApplicationContext(context => context.environment);
-  const { data } = useQuery(FetchApplicationsMenu, {
-    ...mergedConfig.queryOptions,
-    fetchPolicy: mergedConfig.queryOptions.fetchPolicy || 'cache-first',
-    context: {
-      // Allow to overwrite the API url from `env.json`
-      uri: `${environment.mcProxyApiUrl || defaultApiUrl}/api/graphql`,
-    },
-  });
+  // Fetch the query remotely
+  if (!called) {
+    loadMenuData();
+    return null;
+  }
   return data && data.applicationsMenu;
 };
 
