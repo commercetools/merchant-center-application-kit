@@ -8,7 +8,7 @@ import AmILoggedInQuery from './authenticated.graphql';
 const hasCachedAuthenticationState = () =>
   window.localStorage.getItem(STORAGE_KEYS.IS_AUTHENTICATED) === 'true';
 
-const AmILoggedIn = () => {
+const AmILoggedIn = props => {
   // ...otherwise, we ping a "secured" endpoint in the MC API to see if there is
   // a valid access token. If we get an error, we assume that the user is not
   // authenticated. If we don't get any error, the access token sent with the cookie
@@ -45,6 +45,9 @@ const AmILoggedIn = () => {
   return null;
 };
 AmILoggedIn.displayName = 'AmILoggedIn';
+AmILoggedIn.propTypes = {
+  render: PropTypes.func.isRequired,
+};
 
 const Authenticated = props => {
   // We attempt to see if the user was already authenticated by looking
@@ -54,7 +57,7 @@ const Authenticated = props => {
     return props.render({ isAuthenticated: true });
   }
 
-  return <AmILoggedIn />;
+  return <AmILoggedIn {...props} />;
 };
 Authenticated.displayName = 'Authenticated';
 Authenticated.propTypes = {
