@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -7,14 +8,7 @@ import AmILoggedInQuery from './authenticated.graphql';
 const hasCachedAuthenticationState = () =>
   window.localStorage.getItem(STORAGE_KEYS.IS_AUTHENTICATED) === 'true';
 
-const Authenticated = props => {
-  // We attempt to see if the user was already authenticated by looking
-  // at the "cached" flag in local storage.
-  const cachedAuthenticationState = hasCachedAuthenticationState();
-  if (cachedAuthenticationState) {
-    return props.render({ isAuthenticated: true });
-  }
-
+const AmILoggedIn = () => {
   // ...otherwise, we ping a "secured" endpoint in the MC API to see if there is
   // a valid access token. If we get an error, we assume that the user is not
   // authenticated. If we don't get any error, the access token sent with the cookie
@@ -49,6 +43,18 @@ const Authenticated = props => {
     return props.render({ isAuthenticated: true });
   }
   return null;
+};
+AmILoggedIn.displayName = 'AmILoggedIn';
+
+const Authenticated = props => {
+  // We attempt to see if the user was already authenticated by looking
+  // at the "cached" flag in local storage.
+  const cachedAuthenticationState = hasCachedAuthenticationState();
+  if (cachedAuthenticationState) {
+    return props.render({ isAuthenticated: true });
+  }
+
+  return <AmILoggedIn />;
 };
 Authenticated.displayName = 'Authenticated';
 Authenticated.propTypes = {
