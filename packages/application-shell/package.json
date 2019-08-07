@@ -37,6 +37,7 @@
     "build:test-utils:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./src/test-utils/index.js --o ./test-utils/index.js"
   },
   "dependencies": {
+    "@apollo/react-hooks": "3.0.0",
     "@apollo/react-testing": "3.0.0",
     "@commercetools-frontend/actions-global": "14.4.1",
     "@commercetools-frontend/application-components": "14.4.0",
