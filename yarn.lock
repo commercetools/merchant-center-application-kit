@@ -893,17 +893,16 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-frontend/ui-kit@10.1.0":
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-10.1.0.tgz#fb7220c128b9db8dcf81202a0ebcdcc9fc0e2534"
-  integrity sha512-RSl+5ZvFx1hxxA0QdZGOmkQjCgbxg4v2Rw5FeRS7jgdw8QmCYYN9KcTap7kj2teFdu+ibqF3T0vnKcbKoiZ5ZQ==
+"@commercetools-frontend/ui-kit@10.1.1":
+  version "10.1.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-10.1.1.tgz#a88c2262ce2b62e2842e375eeb73c77078757053"
+  integrity sha512-pLaQG3zLLdS2XQ/AsD1HuKpYW7bCYThXNbl7+pAj9g/h8HnzSvCgtXEx5A6/yql2Ii5Q1AbZ0NjJij0bWpmrIw==
   dependencies:
     "@emotion/core" "10.0.15"
     "@emotion/styled" "10.0.15"
     common-tags "1.8.0"
     dom-helpers "3.4.0"
     downshift "3.2.10"
-    emotion-theming "10.0.14"
     lodash "4.17.15"
     lodash-es "4.17.15"
     prop-types "15.7.2"
@@ -9301,9 +9300,9 @@ fastq@^1.6.0:
   dependencies:
     reusify "^1.0.0"
 
-"favicons-webpack-plugin@git+https://github.com/Creatiwity/favicons-webpack-plugin.git#0872de414061baaad0a2853c77ae75bc38b8bbbf":
+"favicons-webpack-plugin@https://github.com/Creatiwity/favicons-webpack-plugin.git#0872de414061baaad0a2853c77ae75bc38b8bbbf":
   version "0.0.9"
-  resolved "git+https://github.com/Creatiwity/favicons-webpack-plugin.git#0872de414061baaad0a2853c77ae75bc38b8bbbf"
+  resolved "https://github.com/Creatiwity/favicons-webpack-plugin.git#0872de414061baaad0a2853c77ae75bc38b8bbbf"
   dependencies:
     core-js "^2.5.7"
     favicons "^5.1.1"

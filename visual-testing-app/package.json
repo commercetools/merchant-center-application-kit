@@ -8,7 +8,7 @@
     "start": "serve dist --no-clipboard --single --listen 3999"
   },
   "dependencies": {
-    "@commercetools-frontend/ui-kit": "10.1.0",
+    "@commercetools-frontend/ui-kit": "10.1.1",
     "@emotion/core": "10.0.14",
     "@emotion/styled": "10.0.14",
     "formik": "1.5.8",
