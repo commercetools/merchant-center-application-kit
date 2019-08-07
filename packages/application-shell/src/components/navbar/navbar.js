@@ -41,6 +41,7 @@ import LoadingPlaceholder from '../loading-placeholder';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
 import styles from './navbar.mod.css';
 import messages from './messages';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
 /*
 <DataMenu data={[]}>
@@ -362,9 +363,7 @@ export class DataMenu extends React.PureComponent {
     menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     applicationLocale: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
-    environment: PropTypes.shape({
-      disabledMenuItems: PropTypes.arrayOf(PropTypes.string.isRequired),
-    }).isRequired,
+    disabledMenuItems: PropTypes.arrayOf(PropTypes.string.isRequired),
     isForcedMenuOpen: PropTypes.bool,
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
@@ -497,7 +496,7 @@ export class DataMenu extends React.PureComponent {
         actionRights={menu.actionRights}
         menuVisibilities={this.props.menuVisibilities}
         namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
-        disabledMenuItems={this.props.environment.disabledMenuItems}
+        disabledMenuItems={this.props.disabledMenuItems}
       >
         <MenuItem
           hasSubmenu={hasSubmenu}
@@ -551,7 +550,7 @@ export class DataMenu extends React.PureComponent {
                     actionRights={submenu.actionRights}
                     menuVisibilities={this.props.menuVisibilities}
                     namesOfMenuVisibilities={[submenu.menuVisibility]}
-                    disabledMenuItems={this.props.environment.disabledMenuItems}
+                    disabledMenuItems={this.props.disabledMenuItems}
                   >
                     <li className={styles['sublist-item']}>
                       <div className={styles.text}>
@@ -656,6 +655,9 @@ NavBarLayout.propTypes = {
 export const NavBar = props => {
   const ref = React.useRef();
   const areProjectExtensionsEnabled = useFeatureToggle(PROJECT_EXTENSIONS);
+  const disabledMenuItems = useApplicationContext(
+    context => context.environment.disabledMenuItems
+  );
   const applicationsMenu = useApplicationsMenu({
     queryOptions: {
       onError: reportErrorToSentry,
@@ -686,7 +688,9 @@ export const NavBar = props => {
           app => app.navbarMenu
         )
       : [];
-  const cachedIsForcedMenuOpen = storage.get(STORAGE_KEYS.IS_FORCED_MENU_OPEN);
+  const cachedIsForcedMenuOpen = window.localStorage.getItem(
+    STORAGE_KEYS.IS_FORCED_MENU_OPEN
+  );
   const isForcedMenuOpen =
     typeof cachedIsForcedMenuOpen === 'string'
       ? cachedIsForcedMenuOpen === 'true'
@@ -702,6 +706,7 @@ export const NavBar = props => {
         menuVisibilities={props.menuVisibilities}
         applicationLocale={props.applicationLocale}
         projectKey={props.projectKey}
+        disabledMenuItems={disabledMenuItems}
         useFullRedirectsForLinks={props.environment.useFullRedirectsForLinks}
         onMenuItemClick={props.onMenuItemClick}
       />
