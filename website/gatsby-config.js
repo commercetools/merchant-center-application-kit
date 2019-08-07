@@ -7,7 +7,13 @@ module.exports = {
     author: `commercetools`,
     repositoryUrl:
       'https://github.com/commercetools/merchant-center-application-kit',
-    currentVersion: require('../lerna.json').version,
+    currentVersion:
+      // Keep the version fixed in case we build the website for snapshot testing.
+      // This way, we avoid invalid snapshots every time we release a new version.
+      process.env.BUILD_TARGET === 'percy'
+        ? '0.0.0'
+        : require('../lerna.json').version,
+    disableAnimations: process.env.BUILD_TARGET === 'percy',
     navbarLinks: [
       {
         label: 'Getting started',

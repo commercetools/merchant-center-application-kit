@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTransition, animated } from 'react-spring';
-import { Link } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
@@ -51,7 +51,7 @@ const heroSlides = [
   { id: 2, component: RegisterItSvg },
 ];
 
-const IndexPage = () => {
+const AnimatedHeroSlides = () => {
   const [slideIndex, nextSlide] = React.useState(0);
   const transitions = useTransition(slideIndex, i => i, {
     from: { opacity: 0, transform: 'translate3d(0, 100%,0)' },
@@ -61,6 +61,41 @@ const IndexPage = () => {
   React.useEffect(() => {
     setInterval(() => nextSlide(state => (state + 1) % 3), 3000);
   }, []);
+  return (
+    <>
+      {transitions.map(({ item, props, key }) => {
+        const Image = heroSlides[item].component;
+        return (
+          <animated.div
+            key={key}
+            style={{
+              ...props,
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+            }}
+          >
+            <Image width="100%" height="100%" />
+          </animated.div>
+        );
+      })}
+    </>
+  );
+};
+
+const IndexPage = () => {
+  const siteConfig = useStaticQuery(graphql`
+    query GetAnimationsStatus {
+      site {
+        siteMetadata {
+          disableAnimations
+        }
+      }
+    }
+  `);
+
   return (
     <LayoutMarketing>
       <SEO title="Home" keywords={pkg.keywords} />
@@ -78,24 +113,10 @@ const IndexPage = () => {
                 position: relative;
               `}
             >
-              {transitions.map(({ item, props, key }) => {
-                const Image = heroSlides[item].component;
-                return (
-                  <animated.div
-                    key={key}
-                    style={{
-                      ...props,
-                      position: 'absolute',
-                      left: 0,
-                      right: 0,
-                      top: 0,
-                      bottom: 0,
-                    }}
-                  >
-                    <Image width="100%" height="100%" />
-                  </animated.div>
-                );
-              })}
+              {siteConfig.site.siteMetadata.disableAnimations ===
+              true ? null : (
+                <AnimatedHeroSlides />
+              )}
             </div>
           </Grid.Item>
           <Grid.Item>
