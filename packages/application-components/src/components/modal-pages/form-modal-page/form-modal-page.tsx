@@ -19,7 +19,7 @@ type CommonProps = {
   shouldDelayOnClose?: boolean;
   // TopBar Props
   topBarCurrentPathLabel?: string;
-  topBarPreviousPathLabel: Label;
+  topBarPreviousPathLabel?: Label;
   // Header Props
   subtitle?: string | React.ReactElement;
   isPrimaryButtonDisabled?: boolean;
@@ -44,9 +44,9 @@ const defaultProps: Pick<
   labelSecondaryButton: buttonMessages.cancel,
 };
 
-// Type-guard validation for the correct props, based on the existance `customControls`
+// Type-guard validation for the correct props, based on the existence `customControls`
 const hasCustomControls = (props: Props): props is PropsWithCustomControls =>
-  'customControls' in props;
+  'customControls' in props && props.customControls !== undefined;
 
 const FormModalPage = (props: Props) => (
   <ModalPage

@@ -48,7 +48,7 @@ type Props = {
   // TopBar props:
   topBarColor?: 'surface' | 'neutral';
   currentPathLabel?: string;
-  previousPathLabel: Label;
+  previousPathLabel?: Label;
 };
 const defaultProps: Pick<
   Props,

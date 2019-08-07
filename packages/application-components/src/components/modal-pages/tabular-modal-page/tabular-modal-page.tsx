@@ -21,7 +21,7 @@ type CommonProps = {
   shouldDelayOnClose?: boolean;
   // TopBar Props
   topBarCurrentPathLabel?: string;
-  topBarPreviousPathLabel: Label;
+  topBarPreviousPathLabel?: Label;
   // Replaces the title/subtitle row with a custom one (for special use cases)
   customTitleRow?: React.ReactNode;
   // Pass tab components
@@ -50,9 +50,9 @@ const defaultProps: Pick<
   labelSecondaryButton: buttonMessages.cancel,
 };
 
-// Type-guard validation for the correct props, based on the existance `customControls`
+// Type-guard validation for the correct props, based on the existence `customControls`
 const hasCustomControls = (props: Props): props is PropsWithCustomControls =>
-  'customControls' in props;
+  'customControls' in props && props.customControls !== undefined;
 
 const TabularModalPage = (props: Props) => (
   <ModalPage
