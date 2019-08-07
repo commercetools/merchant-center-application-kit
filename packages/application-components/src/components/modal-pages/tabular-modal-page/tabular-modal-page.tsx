@@ -21,7 +21,7 @@ type CommonProps = {
   shouldDelayOnClose?: boolean;
   // TopBar Props
   topBarCurrentPathLabel?: string;
-  topBarPreviousPathLabel: Label;
+  topBarPreviousPathLabel?: Label;
   // Replaces the title/subtitle row with a custom one (for special use cases)
   customTitleRow?: React.ReactNode;
   // Pass tab components

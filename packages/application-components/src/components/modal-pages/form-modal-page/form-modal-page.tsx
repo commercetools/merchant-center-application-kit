@@ -19,7 +19,7 @@ type CommonProps = {
   shouldDelayOnClose?: boolean;
   // TopBar Props
   topBarCurrentPathLabel?: string;
-  topBarPreviousPathLabel: Label;
+  topBarPreviousPathLabel?: Label;
   // Header Props
   subtitle?: string | React.ReactElement;
   isPrimaryButtonDisabled?: boolean;
