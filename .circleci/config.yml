@@ -94,13 +94,13 @@ commands:
           command: yarn visual-testing-app:build
       - run:
           name: Running VRT application for UI components
-          command: PERCY_TOKEN="$PERCY_TOKEN_UI_COMPONENTS" yarn vrt
+          command: PERCY_TOKEN="$PERCY_TOKEN_UI_COMPONENTS" yarn vrt:components
       - run:
           name: Building Documentation Website
           command: BUILD_TARGET=percy yarn --cwd website build
       - run:
           name: Running Percy snapshots
-          command: PERCY_TOKEN="$PERCY_TOKEN_WEBSITE" yarn run percy snapshot website/public
+          command: PERCY_TOKEN="$PERCY_TOKEN_WEBSITE" yarn vrt:website
   publish_to_canary:
     description: Publishing to npm registry
     steps:
@@ -145,6 +145,9 @@ jobs:
       wait-on:
         type: string
         default: ''
+      run-command:
+        type: string
+        default: ''
       spec:
         type: string
         default: ''
@@ -179,7 +182,7 @@ jobs:
       - run:
           name: Run Cypress tests
           command: |
-            npx cypress run \
+            <<parameters.run-command>> \
               <<# parameters.spec>> --spec '<<parameters.spec>>' <</ parameters.spec>> \
               <<# parameters.record >> --record \
                 <<# parameters.group>> --group '<<parameters.group>>' <</ parameters.group>> \
@@ -218,6 +221,7 @@ workflows:
           build: yarn playground:build
           start: yarn playground:start:prod:local
           wait-on: 'http://localhost:3001'
+          run-command: PERCY_TOKEN="$PERCY_TOKEN_E2E_PLAYGROUND" yarn vrt:e2e
           store_artifacts: true
       - e2e_test:
           name: e2e_starter
@@ -227,6 +231,7 @@ workflows:
           build: yarn template-starter:build
           start: yarn template-starter:start:prod:local
           wait-on: 'http://localhost:3001'
+          run-command: PERCY_TOKEN="$PERCY_TOKEN_E2E_STARTER" yarn vrt:e2e
           store_artifacts: true
       - publish:
           requires:

@@ -1,3 +1,4 @@
+import '@percy/cypress';
 import '@testing-library/cypress/add-commands';
 
 function isLocalhost() {
