@@ -1,3 +1,10 @@
+## [14.3.3](https://github.com/commercetools/merchant-center-application-kit/compare/v14.3.2...v14.3.3) (2019-08-08)
+
+#### 🐛 Type: Bug
+
+- `react-notifications`
+  - [#951](https://github.com/commercetools/merchant-center-application-kit/pull/951) fix(react-notifications): onCloseClick is optional ([@emmenko](https://github.com/emmenko))
+
 ## [14.3.2](https://github.com/commercetools/merchant-center-application-kit/compare/v14.3.1...v14.3.2) (2019-08-08)
 
 #### 🐛 Type: Bug
