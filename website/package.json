@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-application-kit-website",
-  "version": "14.2.0",
+  "version": "14.3.0",
   "private": true,
   "scripts": {
     "build": "gatsby build",
@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@babel/core": "7.5.5",
-    "@commercetools-frontend/application-components": "14.2.0",
-    "@commercetools-frontend/assets": "14.0.0",
+    "@commercetools-frontend/application-components": "14.3.0",
+    "@commercetools-frontend/assets": "14.3.0",
     "@commercetools-frontend/ui-kit": "10.0.1",
     "@emotion/core": "10.0.14",
     "@emotion/styled": "10.0.14",
@@ -26,8 +26,8 @@
     "gatsby-plugin-emotion": "4.1.2",
     "gatsby-plugin-favicon": "3.1.6",
     "gatsby-plugin-google-fonts": "1.0.1",
-    "gatsby-plugin-meta-redirect": "1.1.1",
     "gatsby-plugin-mdx": "1.0.22",
+    "gatsby-plugin-meta-redirect": "1.1.1",
     "gatsby-plugin-react-helmet": "3.1.2",
     "gatsby-plugin-react-svg": "2.1.1",
     "gatsby-plugin-sharp": "2.2.9",
