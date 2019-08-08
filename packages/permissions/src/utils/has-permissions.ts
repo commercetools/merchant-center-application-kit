@@ -1,5 +1,6 @@
 import isNil from 'lodash/isNil';
 import get from 'lodash/get';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 
 const DATA_FENCE_GROUPS = {
   ORDERS: 'orders',
@@ -197,8 +198,22 @@ const hasDemandedDataFenceForStore = (
           : ''
       );
     }
-    default:
+    default: {
+      if (process.env.NODE_ENV !== 'production') {
+        throw new Error(
+          'Trying to map dataFence permissions for unsupported "group"'
+        );
+      }
+      reportErrorToSentry(
+        new Error(
+          'Trying to map dataFence permissions for unsupported "group"'
+        ),
+        {
+          extra: options.demandedDataFence,
+        }
+      );
       return false;
+    }
   }
 };
 
@@ -233,8 +248,22 @@ export const createHasAppliedDataFence = (
                 actualDataFence: { name, dataFenceValue: value },
                 demandedDataFence,
               });
-            default:
-              false;
+            default: {
+              if (process.env.NODE_ENV !== 'production') {
+                throw new Error(
+                  'Trying to map dataFence permissions for unsupported "type"'
+                );
+              }
+              reportErrorToSentry(
+                new Error(
+                  'Trying to map dataFence permissions for unsupported "type"'
+                ),
+                {
+                  extra: demandedDataFence,
+                }
+              );
+              return false;
+            }
           }
           return false;
         });
