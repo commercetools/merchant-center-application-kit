@@ -32,9 +32,18 @@ type TActionRights = {
   [key: string]: TActionRight;
 };
 type TDataFence = {
-  // E.g. { store: {...} }
   [key: string]: {};
 };
+type TResourceToApplyDataFence = {
+  id: string;
+  // Orders
+  storeRef?: {
+    key?: string;
+  };
+  // Customers
+  storesRef?: TKeyReference[];
+};
+type TAuthorizationContext = TResourceToApplyDataFence;
 type Props = {
   shouldMatchSomePermissions?: boolean;
   demandedPermissions: TPermissionName[];
@@ -96,15 +105,11 @@ type TInjectAuthorizedOptions = {
   dataFences?: TDemandedDataFence[];
 };
 
-type TResourceToApplyDataFence = {
-  id: string;
-};
-
 const injectAuthorized = <
   OwnProps extends {
     isAuthorized?:
       | boolean
-      | ((resourceToApplyDataFence: TResourceToApplyDataFence) => boolean);
+      | ((authorizationContext: TAuthorizationContext) => boolean);
   },
   InjectedProps extends OwnProps & { [key: string]: boolean }
 >(

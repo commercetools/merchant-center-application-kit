@@ -46,6 +46,7 @@ type TResourceToApplyDataFence = {
   // Customers
   storesRef?: TKeyReference[];
 };
+type TAuthorizationContext = TResourceToApplyDataFence;
 type TOptionsForAppliedDataFence = {
   demandedDataFences: TDemandedDataFence[];
   actualDataFences: TDataFence[];
@@ -178,7 +179,7 @@ export const getInvalidPermissions = (
 };
 
 const hasDemandedDataFenceForStore = (
-  resourceToApplyDataFence: TResourceToApplyDataFence,
+  authorizationContext: TAuthorizationContext,
   options: {
     actualDataFence: TActualDataFence;
     demandedDataFence: TDemandedDataFence;
@@ -191,9 +192,8 @@ const hasDemandedDataFenceForStore = (
   switch (options.demandedDataFence.group) {
     case DATA_FENCE_GROUPS.ORDERS: {
       return options.actualDataFence.dataFenceValue.values.includes(
-        resourceToApplyDataFence.storeRef &&
-          resourceToApplyDataFence.storeRef.key
-          ? resourceToApplyDataFence.storeRef.key
+        authorizationContext.storeRef && authorizationContext.storeRef.key
+          ? authorizationContext.storeRef.key
           : ''
       );
     }
@@ -204,7 +204,7 @@ const hasDemandedDataFenceForStore = (
 
 export const createHasAppliedDataFence = (
   options: TOptionsForAppliedDataFence
-) => (resourceToApplyDataFence: TResourceToApplyDataFence): boolean =>
+) => (authorizationContext: TAuthorizationContext): boolean =>
   options.demandedDataFences.every(
     (demandedDataFence: TDemandedDataFence): boolean => {
       // First check that the demanded dataFence is enforced on `projectPermissions`
@@ -229,7 +229,7 @@ export const createHasAppliedDataFence = (
         ).every(([name, value]): boolean => {
           switch (demandedDataFence.type) {
             case 'store':
-              return hasDemandedDataFenceForStore(resourceToApplyDataFence, {
+              return hasDemandedDataFenceForStore(authorizationContext, {
                 actualDataFence: { name, dataFenceValue: value },
                 demandedDataFence,
               });
