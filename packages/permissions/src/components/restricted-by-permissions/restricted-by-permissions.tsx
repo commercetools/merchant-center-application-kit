@@ -14,11 +14,17 @@ type TDemandedActionRight = {
   group: TActionRightGroup;
   name: TActionRightName;
 };
+type TDemandedDataFence = {
+  group: string;
+  name: string;
+  type: string;
+};
 type TRenderProp = (props: { isAuthorized: boolean }) => React.ReactNode;
 type Props = {
   shouldMatchSomePermissions?: boolean;
   permissions: TPermissionName[];
   actionRights?: TDemandedActionRight[];
+  dataFences?: TDemandedDataFence[];
   unauthorizedComponent?: React.ComponentType;
   render?: TRenderProp;
   children?: TRenderProp | React.ReactNode;
@@ -32,7 +38,6 @@ const RestrictedByPermissions = (props: Props) => {
     ),
     '@commercetools-frontend/permissions/RestrictedByPermissions: You provided both `children` and `unauthorizedComponent`. Please provide only one of them.'
   );
-
   return (
     <ApplicationContext
       render={applicationContext => (
@@ -40,8 +45,10 @@ const RestrictedByPermissions = (props: Props) => {
           shouldMatchSomePermissions={props.shouldMatchSomePermissions}
           demandedPermissions={props.permissions}
           demandedActionRights={props.actionRights}
+          demandedDataFences={props.dataFences}
           actualPermissions={applicationContext.permissions}
           actualActionRights={applicationContext.actionRights}
+          actualDataFences={applicationContext.dataFences}
           render={(isAuthorized: boolean) => {
             if (typeof props.children === 'function')
               return props.children({
