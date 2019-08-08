@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Spacings } from '@commercetools-frontend/ui-kit';
 import * as colors from '../../colors';
@@ -86,6 +87,23 @@ ListItems.propTypes = {
   children: PropTypes.node,
 };
 
+const TOCContent = () => (
+  <TOCContainer>
+    <Spacings.Inset scale="l">
+      <Spacings.Stack scale="m">
+        <div
+          css={css`
+            font-size: 1.4rem;
+          `}
+        >
+          {'Table of contents'}
+        </div>
+      </Spacings.Stack>
+    </Spacings.Inset>
+  </TOCContainer>
+);
+TOCContent.displayName = 'TOCContent';
+
 const LayoutTOC = props => {
   let mainItems = props.tableOfContents.items;
   // In case there is only one main child, we drop one depth level.
@@ -93,21 +111,17 @@ const LayoutTOC = props => {
     mainItems = mainItems[0].items;
   }
   if (!mainItems || mainItems.length === 0) {
-    return <TOCContainer />;
+    return <TOCContent />;
   }
 
   return (
-    <TOCContainer>
-      <Spacings.Inset scale="l">
-        <Spacings.Stack scale="m">
-          <ListItemGroup items={mainItems}>
-            <ListItems>
-              <ListItems />
-            </ListItems>
-          </ListItemGroup>
-        </Spacings.Stack>
-      </Spacings.Inset>
-    </TOCContainer>
+    <TOCContent>
+      <ListItemGroup items={mainItems}>
+        <ListItems>
+          <ListItems />
+        </ListItems>
+      </ListItemGroup>
+    </TOCContent>
   );
 };
 LayoutTOC.displayName = 'LayoutTOC';

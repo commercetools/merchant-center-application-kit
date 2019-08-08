@@ -5,7 +5,6 @@ import LayoutContainer from './internals/layout-container';
 import LayoutHeader from './internals/layout-header';
 import LayoutSidebar from './internals/layout-sidebar';
 import LayoutTOC from './internals/layout-toc';
-import LayoutFooter from './internals/layout-footer';
 import LayoutMain from './internals/layout-main';
 import Globals from './internals/globals';
 import ContentPagination from './internals/content-pagination';
@@ -35,7 +34,6 @@ const LayoutContent = props => {
         >
           {props.children}
           <ContentPagination permalink={props.pageData.frontmatter.permalink} />
-          <LayoutFooter />
         </LayoutMain>
         <LayoutTOC tableOfContents={props.pageData.tableOfContents} />
       </LayoutContainer>

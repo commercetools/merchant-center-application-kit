@@ -237,8 +237,9 @@ module.exports = {
           {
             resolve: `gatsby-remark-vscode`,
             options: {
-              colorTheme: 'Quiet Light',
+              colorTheme: 'Monokai Dimmed',
               injectStyles: true,
+              wrapperClassName: 'code-highlight-overrides',
               // NOTE: somehow downloaded extensions seem to be "corrupted" while cached.
               // For now we just use one of the default themes.
               // extensions: [
@@ -278,13 +279,9 @@ module.exports = {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
         fonts: [
-          'roboto mono',
-          // https://design.google/library/spectral-new-screen-first-typeface/
-          // 'Spectral:400,700',
           // https://design.google/library/choosing-web-fonts-beginners-guide/
-          // 'Libre+Baskerville:400,400i,700',
-          'Raleway:400,400i,700,700i',
           'Open+Sans:300,300i,400,400i,600,600i,700,700i',
+          'Barlow:400,400i,600',
         ],
       },
     },

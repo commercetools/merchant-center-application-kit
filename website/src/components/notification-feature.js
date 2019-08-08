@@ -16,10 +16,11 @@ const NotificationFeature = props => (
   >
     <ContentNotification type="info">
       <Spacings.Stack>
-        <Text.Detail isBold={true}>{props.flag.toUpperCase()}</Text.Detail>
+        <Text.Body isBold={true}>{props.flag.toUpperCase()}</Text.Body>
         <Text.Detail>
-          This feature is in a pre-release state and might change or have
-          limited support. Use with caution for production.
+          {
+            'This feature is in a pre-release state and might change or have limited support. Use with caution for production.'
+          }
         </Text.Detail>
       </Spacings.Stack>
     </ContentNotification>

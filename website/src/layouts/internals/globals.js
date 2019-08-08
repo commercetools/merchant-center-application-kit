@@ -13,7 +13,7 @@ const Globals = () => (
         margin: 0;
         height: 100vh;
         color: ${colors.light.text};
-        font-family: 'roboto mono', sans-serif;
+        font-family: 'Barlow', sans-serif;
 
         /* Keep it to 13px, so that the component examples have the "correct" size
         that we use in the MC. The content font size can be adjusted separately in
@@ -23,6 +23,10 @@ const Globals = () => (
 
       *[aria-label='Playground'] {
         font-family: ${customProperties.fontFamilyDefault};
+      }
+
+      .code-highlight-overrides {
+        font-size: 1.3rem;
       }
     `}
   />
