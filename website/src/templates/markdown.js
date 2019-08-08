@@ -10,7 +10,6 @@ import * as colors from '../colors';
 import ExternalLinkSvg from '../images/external-link.svg';
 import { LayoutContent } from '../layouts';
 import { SEO, ExternalLink } from '../components';
-import AnchorLinkSvg from '../images/anchor-link.svg';
 
 // Typography sizes have been calculated from https://type-scale.com
 // Ref: https://medium.com/sketch-app-sources/exploring-responsive-type-scales-cf1da541be54
@@ -35,15 +34,16 @@ const typographyScale = {
     h3: '2.5rem',
     h4: '2rem',
     h5: '1.7rem',
-    body: '1.2rem',
+    body: '1.4rem',
   },
 };
 
 const TypographyPage = styled.div`
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Barlow', sans-serif;
   font-size: ${typographyScale.normalized.body};
-  font-weight: 400;
+  font-weight: normal;
   line-height: 1.5;
+  word-spacing: 3px;
   padding: ${customProperties.spacingL};
   max-width: 740px;
 `;
@@ -122,7 +122,7 @@ const Ol = styled.ol`
 const Li = styled.li``;
 const Table = styled.table`
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   tbody {
     border-top: 4px solid ${colors.light.cards};
   }
@@ -184,6 +184,7 @@ const TableCell = styled.td`
 `;
 const TableHeader = styled.th`
   padding: ${customProperties.spacingS};
+  text-align: left;
 
   @media screen and (max-width: 40em) {
     display: block;
@@ -193,8 +194,8 @@ const InlineCode = styled.code`
   border: 1px solid ${colors.light.cards};
   border-bottom: 3px solid ${colors.light.cards};
   color: ${colors.light.primary};
-  padding: 1px 4px;
-  font-size: 1rem;
+  padding: 2px 4px;
+  font-size: 1.3rem;
 `;
 const Em = styled.em``;
 const Strong = styled.strong``;
@@ -276,22 +277,30 @@ const withAnchorLink = Component => props => {
       {...props}
       css={css`
         a {
-          margin-left: -${customProperties.spacingM};
+          margin-left: ${customProperties.spacingM};
+          color: ${customProperties.colorNeutral};
+          font-size: 0.7em;
         }
-        svg {
+        [role='anchor-link'] {
           visibility: hidden;
         }
         :hover {
-          svg {
+          [role='anchor-link'] {
             visibility: visible;
           }
         }
+        display: flex;
+        align-items: center;
       `}
     >
-      <a href={`#${props.id}`}>
-        <AnchorLinkSvg aria-hidden="true" width="16" height="16" />
-      </a>
       {props.children}
+      <a href={`#${props.id}`}>
+        <span
+          role="anchor-link"
+          aria-hidden="true"
+          dangerouslySetInnerHTML={{ __html: '&#8267;' }}
+        />
+      </a>
     </Component>
   );
 };

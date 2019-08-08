@@ -15,34 +15,24 @@ import DeployItSvg from '../images/deploy-it.svg';
 import RegisterItSvg from '../images/register-it.svg';
 import { TextHighlight, SEO } from '../components';
 import { LayoutMarketing } from '../layouts';
-import CodeSnippetNpmInstall from './code-snippets/getting-started-npm-install.mdx';
-import CodeSnippetNpxInstall from './code-snippets/getting-started-npx-install.mdx';
 
 const SectionTitle = styled.div`
-  font-size: 1.5rem;
+  font-size: 2rem;
 `;
 const PageContainer = styled.div`
   width: 90%;
-  margin: 48px auto;
+  max-width: 1024px;
+  margin: 72px auto;
 `;
 const ButtonLink = styled(Link)`
-  border: 3px solid ${colors.light.primary};
-  padding: ${customProperties.spacingM};
+  padding: ${customProperties.spacingM} ${customProperties.spacingXl};
   text-decoration: none;
   font-size: 1.5rem;
   color: ${colors.light.text};
-  background-color: ${colors.light.cards};
-
-  :hover {
-    color: ${colors.light.primary};
-    background-color: ${colors.light.surface};
-  }
-`;
-const Code = styled.code`
-  background-color: ${colors.light.cards};
-  color: ${colors.light.primary};
-  padding: 2px 4px;
-  font-size: 1rem;
+  background-color: ${colors.light.primarySoft};
+  border: 1px solid ${colors.light.primary};
+  border-bottom: 3px solid ${colors.light.primary};
+  border-radius: ${customProperties.borderRadius6};
 `;
 
 const heroSlides = [
@@ -120,7 +110,7 @@ const IndexPage = () => {
             </div>
           </Grid.Item>
           <Grid.Item>
-            <Spacings.Stack scale="m">
+            <Spacings.Stack scale="xl">
               <div
                 css={css`
                   flex-grow: 1;
@@ -133,14 +123,11 @@ const IndexPage = () => {
               </div>
               <div
                 css={css`
-                  margin-top: ${customProperties.spacingL};
                   display: flex;
                   justify-content: flex-start;
                 `}
               >
-                <ButtonLink to="/getting-started">
-                  {'Get started 🙌'}
-                </ButtonLink>
+                <ButtonLink to="/getting-started">{'Get started'}</ButtonLink>
               </div>
             </Spacings.Stack>
           </Grid.Item>
@@ -186,34 +173,6 @@ const IndexPage = () => {
             </p>
           </Grid.Item>
         </Grid>
-      </PageContainer>
-      <PageContainer
-        css={css`
-          max-width: 864px;
-        `}
-      >
-        <Spacings.Stack>
-          <SectionTitle>{'Quick Start'}</SectionTitle>
-          <p
-            css={css`
-              font-size: 0.8rem;
-            `}
-          >
-            {
-              'We provide starter templates that you can install and run right away:'
-            }
-          </p>
-          <CodeSnippetNpmInstall />
-          <p
-            css={css`
-              font-size: 0.8rem;
-            `}
-          >
-            {'Or using '}
-            <Code>{'npx'}</Code>
-          </p>
-          <CodeSnippetNpxInstall />
-        </Spacings.Stack>
       </PageContainer>
     </LayoutMarketing>
   );
