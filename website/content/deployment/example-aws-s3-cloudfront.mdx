@@ -368,7 +368,7 @@ For both `env.prod.json` and `csp.json`, `[cloudfront-domain]` should be replace
 
 In order to generate the correct configuration for AWS, the `mc-scripts compile-html` script must use an AWS transformer. This transformer will generate a `lambda.js` file with the custom security headers required for Merchant Center Custom Applications.
 
-```javascript
+```js
 const fs = require('fs');
 const path = require('path');
 
