@@ -52,7 +52,7 @@ export type Props = {
   domain: TAppNotificationDomain;
   type: TAppNotificationKind;
   fixed: boolean;
-  onCloseClick: (event: React.SyntheticEvent) => void;
+  onCloseClick?: (event: React.SyntheticEvent) => void;
   children: React.ReactNode;
 };
 const defaultProps: Pick<Props, 'fixed'> = {
