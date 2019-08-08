@@ -44,7 +44,7 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "10.1.1",
+    "@commercetools-frontend/ui-kit": "10.1.2",
     "react": "16.8.6"
   },
   "peerDependencies": {
