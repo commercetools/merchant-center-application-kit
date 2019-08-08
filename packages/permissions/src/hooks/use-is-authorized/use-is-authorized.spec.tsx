@@ -19,6 +19,13 @@ type TActionRight = {
 type TActionRights = {
   [key: string]: TActionRight;
 };
+type TDataFences = {
+  [key: string]: {
+    [key: string]: {
+      [key: string]: { values: string[] };
+    };
+  };
+};
 type TestProps = {
   demandedPermissions: TPermissionName[];
   demandedActionRights?: TDemandedActionRight[];
@@ -44,12 +51,14 @@ const testRender = ({
   shouldMatchSomePermissions,
   actualPermissions = { canManageProjectSettings: true },
   actualActionRights = {},
+  actualDataFences = {},
 }: {
   demandedPermissions: TPermissionName[];
   demandedActionRights?: TDemandedActionRight[];
   shouldMatchSomePermissions: boolean;
   actualPermissions?: TPermissions;
   actualActionRights?: TActionRights;
+  actualDataFences?: TDataFences;
 }) =>
   render(
     <ApplicationContextProvider
@@ -65,6 +74,7 @@ const testRender = ({
         },
         permissions: actualPermissions,
         actionRights: actualActionRights,
+        dataFences: actualDataFences,
       }}
       environment={{
         applicationName: 'my-app',
