@@ -10,9 +10,15 @@ type TDemandedActionRight = {
   group: TActionRightGroup;
   name: TActionRightName;
 };
+type TDemandedDataFence = {
+  group: string;
+  name: string;
+  type: string;
+};
 type TOptions = {
   shouldMatchSomePermissions?: boolean;
   actionRights?: TDemandedActionRight[];
+  dataFences?: TDemandedDataFence[];
 };
 
 const branchOnPermissions = <OwnProps extends {}>(
@@ -31,8 +37,10 @@ const branchOnPermissions = <OwnProps extends {}>(
           shouldMatchSomePermissions={options.shouldMatchSomePermissions}
           demandedPermissions={demandedPermissions}
           demandedActionRights={options.actionRights}
+          demandedDataFences={options.dataFences}
           actualPermissions={applicationContext.permissions}
           actualActionRights={applicationContext.actionRights}
+          actualDataFences={applicationContext.dataFences}
           render={isAuthorized => {
             if (isAuthorized) {
               return <Component {...props} />;
