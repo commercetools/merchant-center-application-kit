@@ -85,16 +85,25 @@ const Authorized = (props: Props) => {
     props.actualActionRights
   );
 
-  const isAuthorized = Boolean(
-    props.demandedDataFences && props.demandedDataFences.length
-  )
-    ? createHasAppliedDataFence({
-        demandedDataFences: props.demandedDataFences,
-        actualPermissions: props.actualPermissions,
-        actualDataFences: props.actualDataFences,
-      })
-    : hasDemandedPermissions && hasDemandedActionRights;
-  return <React.Fragment>{props.render(isAuthorized)}</React.Fragment>;
+  if (Boolean(props.demandedDataFences && props.demandedDataFences.length)) {
+    return (
+      <React.Fragment>
+        {props.render(
+          createHasAppliedDataFence({
+            demandedDataFences: props.demandedDataFences,
+            actualPermissions: props.actualPermissions,
+            actualDataFences: props.actualDataFences,
+          })
+        )}
+      </React.Fragment>
+    );
+  }
+
+  return (
+    <React.Fragment>
+      {props.render(hasDemandedPermissions && hasDemandedActionRights)}
+    </React.Fragment>
+  );
 };
 Authorized.displayName = 'Authorized';
 Authorized.defaultProps = defaultProps;
