@@ -18,11 +18,11 @@ type TActionRights = {
   [key: string]: TActionRight;
 };
 type TDataFence = {
-  // E.g. { store: {...} }
   [key: string]: {};
 };
-type TDataFenceByPermissionName = TDataFence & {
-  values: string[];
+type TActualDataFence = {
+  name: string;
+  dataFenceValue: { values: string[] };
 };
 type TDemandedDataFence = {
   group: string;
@@ -176,18 +176,17 @@ export const getInvalidPermissions = (
 const hasDemandedDataFenceForStore = (
   resourceToApplyDataFence: TResourceToApplyDataFence,
   options: {
-    actualDataFence: TDataFenceByPermissionName;
-    actualDataFenceName: string;
+    actualDataFence: TActualDataFence;
     demandedDataFence: TDemandedDataFence;
   }
 ): boolean => {
   const hasDemandedPermission = hasPermission(options.demandedDataFence.name, {
-    [options.actualDataFenceName]: true,
+    [options.actualDataFence.name]: true,
   });
   if (!hasDemandedPermission) return false;
   switch (options.demandedDataFence.group) {
     case 'orders': {
-      return options.actualDataFence.values.includes(
+      return options.actualDataFence.dataFenceValue.values.includes(
         resourceToApplyDataFence.storeRef &&
           resourceToApplyDataFence.storeRef.key
           ? resourceToApplyDataFence.storeRef.key
@@ -223,12 +222,11 @@ export const createHasAppliedDataFence = (
       if (actualDataFenceByResourceGroup) {
         const hasDemandedDataFence = Object.entries(
           actualDataFenceByResourceGroup
-        ).every(([actualDataFenceName, actualDataFence]): boolean => {
+        ).every(([name, value]): boolean => {
           switch (demandedDataFence.type) {
             case 'store':
               return hasDemandedDataFenceForStore(resourceToApplyDataFence, {
-                actualDataFenceName,
-                actualDataFence,
+                actualDataFence: { name, dataFenceValue: value },
                 demandedDataFence,
               });
             default:
