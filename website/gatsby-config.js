@@ -102,6 +102,14 @@ module.exports = {
           },
           { label: 'Example: Now v1', linkTo: '/deployment/example-now-v1' },
           { label: 'Example: Now v2', linkTo: '/deployment/example-now-v2' },
+          {
+            label: 'Example: Firebase',
+            linkTo: '/deployment/example-firebase',
+          },
+          {
+            label: 'Example: AWS - S3 & CloudFront',
+            linkTo: '/deployment/example-aws-s3-cloudfront',
+          },
         ],
       },
       {
