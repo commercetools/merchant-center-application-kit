@@ -9,6 +9,17 @@ import ModalPageHeaderDefaultControls from '../internals/modal-page-header-defau
 import { ContentWrapper } from '../internals/modal-page.styles';
 
 type Label = string | MessageDescriptor;
+// [conditional A]
+type WithCustomControls = {
+  customControls?: React.ReactNode;
+};
+// [conditional B]
+type WithoutCustomControls = {
+  labelSecondaryButton?: Label;
+  labelPrimaryButton?: Label;
+  onSecondaryButtonClick?: (event: React.SyntheticEvent) => void;
+  onPrimaryButtonClick?: (event: React.SyntheticEvent) => void;
+};
 type CommonProps = {
   level?: number;
   title: string;
@@ -32,18 +43,11 @@ type CommonProps = {
   dataAttributesPrimaryButton?: { [key: string]: string };
   dataAttributesSecondaryButton?: { [key: string]: string };
 };
-type PropsWithCustomControls = CommonProps & {
-  customControls: React.ReactNode;
-};
-type PropsWithoutCustomControls = CommonProps & {
-  labelSecondaryButton: Label;
-  labelPrimaryButton: Label;
-  onSecondaryButtonClick: (event: React.SyntheticEvent) => void;
-  onPrimaryButtonClick: (event: React.SyntheticEvent) => void;
-};
-type Props = PropsWithCustomControls | PropsWithoutCustomControls;
+type Props = CommonProps & WithCustomControls & WithoutCustomControls;
+type PropsWithCustomControls = CommonProps & Required<WithCustomControls>;
+type PropsWithoutCustomControls = CommonProps & Required<WithoutCustomControls>;
 const defaultProps: Pick<
-  PropsWithoutCustomControls,
+  Props,
   'labelPrimaryButton' | 'labelSecondaryButton'
 > = {
   labelPrimaryButton: buttonMessages.confirm,
@@ -51,8 +55,35 @@ const defaultProps: Pick<
 };
 
 // Type-guard validation for the correct props, based on the existence `customControls`
-const hasCustomControls = (props: Props): props is PropsWithCustomControls =>
+const hasCustomControls = (
+  props: PropsWithCustomControls | PropsWithoutCustomControls
+): props is PropsWithCustomControls =>
   'customControls' in props && props.customControls !== undefined;
+const getConditionalProps = (props: Props) => {
+  if ('customControls' in props && props.customControls !== undefined) {
+    return props as PropsWithCustomControls;
+  }
+  return props as PropsWithoutCustomControls;
+};
+
+const TabularModalPageHeaderControls = (
+  props: PropsWithCustomControls | PropsWithoutCustomControls
+) => {
+  if (hasCustomControls(props)) {
+    return <>{props.customControls}</>;
+  }
+  return (
+    <ModalPageHeaderDefaultControls
+      labelSecondaryButton={props.labelSecondaryButton}
+      labelPrimaryButton={props.labelPrimaryButton}
+      isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
+      onSecondaryButtonClick={props.onSecondaryButtonClick}
+      onPrimaryButtonClick={props.onPrimaryButtonClick}
+      dataAttributesSecondaryButton={props.dataAttributesSecondaryButton}
+      dataAttributesPrimaryButton={props.dataAttributesPrimaryButton}
+    />
+  );
+};
 
 const TabularModalPage = (props: Props) => (
   <ModalPage
@@ -92,21 +123,7 @@ const TabularModalPage = (props: Props) => (
               margin-bottom: 16px !important;
             `}
           >
-            {hasCustomControls(props) ? (
-              props.customControls
-            ) : (
-              <ModalPageHeaderDefaultControls
-                labelSecondaryButton={props.labelSecondaryButton}
-                labelPrimaryButton={props.labelPrimaryButton}
-                isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
-                onSecondaryButtonClick={props.onSecondaryButtonClick}
-                onPrimaryButtonClick={props.onPrimaryButtonClick}
-                dataAttributesSecondaryButton={
-                  props.dataAttributesSecondaryButton
-                }
-                dataAttributesPrimaryButton={props.dataAttributesPrimaryButton}
-              />
-            )}
+            <TabularModalPageHeaderControls {...getConditionalProps(props)} />
           </div>
         </Spacings.Inline>
       </Spacings.Stack>
