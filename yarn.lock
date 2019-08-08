@@ -893,10 +893,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-frontend/ui-kit@10.1.1":
-  version "10.1.1"
-  resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-10.1.1.tgz#a88c2262ce2b62e2842e375eeb73c77078757053"
-  integrity sha512-pLaQG3zLLdS2XQ/AsD1HuKpYW7bCYThXNbl7+pAj9g/h8HnzSvCgtXEx5A6/yql2Ii5Q1AbZ0NjJij0bWpmrIw==
+"@commercetools-frontend/ui-kit@10.1.2":
+  version "10.1.2"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/ui-kit/-/ui-kit-10.1.2.tgz#5286f5335282fcfb5a335ace10e70b84c66e2b87"
+  integrity sha512-IgbAL6zXMluOx/akwUa5O0HxFRaTMVLYR5hEPnMwSuoO4fUAfcLSZuBbizIfwBu48s3wVGoJ3NZwVzP/PCir4w==
   dependencies:
     "@emotion/core" "10.0.15"
     "@emotion/styled" "10.0.15"
