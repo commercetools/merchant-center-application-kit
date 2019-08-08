@@ -1,3 +1,25 @@
+## [14.3.2](https://github.com/commercetools/merchant-center-application-kit/compare/v14.3.1...v14.3.2) (2019-08-08)
+
+#### 🐛 Type: Bug
+
+- `jest-preset-mc-app`
+  - [#948](https://github.com/commercetools/merchant-center-application-kit/pull/948) fix(jest): use cjs syntax ([@emmenko](https://github.com/emmenko))
+
+#### 🔮 Type: Chore
+
+- `application-components`, `application-shell`, `i18n`, `react-notifications`
+  - [#938](https://github.com/commercetools/merchant-center-application-kit/pull/938) chore: update ui-kit ([@montezume](https://github.com/montezume))
+
+#### ⛑ Type: Refactoring
+
+- `application-components`
+  - [#949](https://github.com/commercetools/merchant-center-application-kit/pull/949) fix(application-components): rewrite conditional props logic, to account prop-types transformer ([@emmenko](https://github.com/emmenko))
+
+#### 🖥 Type: Website
+
+- `application-components`
+  - [#946](https://github.com/commercetools/merchant-center-application-kit/pull/946) fix(website): syntax highlighting and font-family for UI components ([@emmenko](https://github.com/emmenko))
+
 ## [14.3.1](https://github.com/commercetools/merchant-center-application-kit/compare/v14.3.0...v14.3.1) (2019-08-08)
 
 #### 🐛 Type: Bug
