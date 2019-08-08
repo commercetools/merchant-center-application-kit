@@ -27,12 +27,14 @@ const createTestMenuConfig = (key, props) => ({
   keyOfMenuItem: key,
   icon: 'UserFilledIcon',
   permissions: [],
+  actionRights: [],
   submenu: [
     {
       key: `${key}-new`,
       labelAllLocales: [{ locale: 'en', value: `${upperFirst(key)} new` }],
       uriPath: `${key}/new`,
       permissions: [],
+      actionRights: [],
     },
   ],
   ...props,
@@ -181,6 +183,12 @@ describe('rendering', () => {
                   ...ordersMenu.submenu[0],
                   featureToggle: 'ordersList',
                   permissions: ['ViewOrders'],
+                  actionRights: [
+                    {
+                      group: 'Orders',
+                      name: 'AddOrders',
+                    },
+                  ],
                   menuVisibility: 'hideAddOrder',
                 },
               ],
@@ -197,6 +205,14 @@ describe('rendering', () => {
       });
       it('should pass permissions as prop', () => {
         expect(restrictedMenuItem).toHaveProp('permissions', ['ViewOrders']);
+      });
+      it('should pass actionRights as prop', () => {
+        expect(restrictedMenuItem).toHaveProp('actionRights', [
+          {
+            group: 'Orders',
+            name: 'AddOrders',
+          },
+        ]);
       });
       it('should pass names of menu visibilities of submenus as prop', () => {
         expect(restrictedMenuItem).toHaveProp('namesOfMenuVisibilities', [
@@ -343,6 +359,12 @@ describe('rendering', () => {
                     ...ordersMenu.submenu[0],
                     featureToggle: 'ordersList',
                     permissions: ['ViewOrders'],
+                    actionRights: [
+                      {
+                        group: 'Orders',
+                        name: 'AddOrders',
+                      },
+                    ],
                     menuVisibility: 'hideAddOrder',
                     keyOfMenuItem: 'add-orders',
                   },
@@ -369,6 +391,14 @@ describe('rendering', () => {
           it('should pass permissions as prop', () => {
             expect(restrictedMenuItemWrapper).toHaveProp('permissions', [
               'ViewOrders',
+            ]);
+          });
+          it('should pass actionRights as prop', () => {
+            expect(restrictedMenuItemWrapper).toHaveProp('actionRights', [
+              {
+                group: 'Orders',
+                name: 'AddOrders',
+              },
             ]);
           });
           it('should pass menu visibilities as prop', () => {
@@ -477,6 +507,12 @@ describe('rendering', () => {
             props = {
               featureToggle: 'myFeature',
               permissions: ['ManageOrders'],
+              actionRights: [
+                {
+                  group: 'Orders',
+                  name: 'AddOrders',
+                },
+              ],
               actualPermissions: {},
               menuVisibilities: {},
               keyOfMenuItem: 'products',
@@ -500,6 +536,12 @@ describe('rendering', () => {
             expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
               'permissions',
               props.permissions
+            );
+          });
+          it('should pass "actionRights" as prop to <RestrictedByPermissions>', () => {
+            expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
+              'actionRights',
+              props.actionRights
             );
           });
           it('should pass "shouldMatchSomePermissions" as prop to <RestrictedByPermissions>', () => {
@@ -538,6 +580,12 @@ describe('rendering', () => {
             props = {
               featureToggle: undefined,
               permissions: ['ManageOrders'],
+              actionRights: [
+                {
+                  group: 'Orders',
+                  name: 'AddOrders',
+                },
+              ],
               actualPermissions: {},
               menuVisibilities: {},
               keyOfMenuItem: 'products',
@@ -560,6 +608,12 @@ describe('rendering', () => {
               props.permissions
             );
           });
+          it('should pass "actionRights" as prop to <RestrictedByPermissions>', () => {
+            expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
+              'actionRights',
+              props.actionRights
+            );
+          });
           it('should pass "shouldMatchSomePermissions" as prop to <RestrictedByPermissions>', () => {
             expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
               'shouldMatchSomePermissions',
@@ -577,6 +631,12 @@ describe('rendering', () => {
         beforeEach(() => {
           props = {
             permissions: ['ViewProducts'],
+            actionRights: [
+              {
+                group: 'Orders',
+                name: 'AddOrders',
+              },
+            ],
             menuVisibilities: {},
             keyOfMenuItem: 'products',
           };
@@ -590,6 +650,17 @@ describe('rendering', () => {
           expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
             'permissions',
             ['ViewProducts']
+          );
+        });
+        it('should pass actionRights as prop', () => {
+          expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
+            'actionRights',
+            [
+              {
+                group: 'Orders',
+                name: 'AddOrders',
+              },
+            ]
           );
         });
         it('should pass shouldMatchSomePermissions as prop (true)', () => {
