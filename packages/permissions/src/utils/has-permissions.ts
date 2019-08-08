@@ -1,6 +1,10 @@
 import isNil from 'lodash/isNil';
 import get from 'lodash/get';
 
+const DATA_FENCE_GROUPS = {
+  ORDERS: 'orders',
+};
+
 type TPermissionName = string;
 type TPermissions = {
   [key: string]: boolean;
@@ -185,7 +189,7 @@ const hasDemandedDataFenceForStore = (
   });
   if (!hasDemandedPermission) return false;
   switch (options.demandedDataFence.group) {
-    case 'orders': {
+    case DATA_FENCE_GROUPS.ORDERS: {
       return options.actualDataFence.dataFenceValue.values.includes(
         resourceToApplyDataFence.storeRef &&
           resourceToApplyDataFence.storeRef.key
