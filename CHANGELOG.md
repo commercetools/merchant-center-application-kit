@@ -1,3 +1,43 @@
+## [14.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v14.2.0...v14.3.0) (2019-08-08)
+
+#### 🚀 Type: New Feature
+* `application-shell`
+  * [#942](https://github.com/commercetools/merchant-center-application-kit/pull/942) feat(app-shell/navbar): add ability to hide menu by action rights ([@tdeekens](https://github.com/tdeekens))
+* `application-shell-connectors`, `application-shell`
+  * [#918](https://github.com/commercetools/merchant-center-application-kit/pull/918) feat(application-shell/project-query): add `allAppliedDataFences` ([@adnasa](https://github.com/adnasa))
+* `jest-preset-mc-app`, `react-notifications`
+  * [#924](https://github.com/commercetools/merchant-center-application-kit/pull/924) chore(types/ui-kit): add more type declarations ([@emmenko](https://github.com/emmenko))
+
+#### 🐛 Type: Bug
+* `application-components`
+  * [#939](https://github.com/commercetools/merchant-center-application-kit/pull/939) fix: Modal Pages custom controls  ([@jonnybel](https://github.com/jonnybel))
+
+#### ⛑ Type: Refactoring
+* `application-components`, `assets`
+  * [#921](https://github.com/commercetools/merchant-center-application-kit/pull/921) refactor(application-components): to convert to TS ([@emmenko](https://github.com/emmenko))
+* `application-shell`, `react-notifications`
+  * [#917](https://github.com/commercetools/merchant-center-application-kit/pull/917) refactor: to use emotion styles ([@emmenko](https://github.com/emmenko))
+  * [#914](https://github.com/commercetools/merchant-center-application-kit/pull/914) chore: enable eslint rules for react hooks ([@emmenko](https://github.com/emmenko))
+* `permissions`, `react-notifications`
+  * [#916](https://github.com/commercetools/merchant-center-application-kit/pull/916) refactor: default props type declarations ([@emmenko](https://github.com/emmenko))
+* `actions-global`, `application-shell-connectors`, `browser-history`, `constants`, `i18n`, `jest-preset-mc-app`, `l10n`, `notifications`, `permissions`, `react-notifications`, `sentry`, `url-utils`
+  * [#896](https://github.com/commercetools/merchant-center-application-kit/pull/896) refactor(react-notifications): to convert to TS ([@emmenko](https://github.com/emmenko))
+
+#### 🔮 Type: Chore
+* `mc-http-server`
+  * [#915](https://github.com/commercetools/merchant-center-application-kit/pull/915) chore(mc-http-server): update to node v12 ([@tdeekens](https://github.com/tdeekens))
+
+#### 🤖 Type: Dependencies
+* `application-components`, `application-shell`, `mc-scripts`, `react-notifications`
+  * [#937](https://github.com/commercetools/merchant-center-application-kit/pull/937) chore: update to stable react-intl v3 ([@emmenko](https://github.com/emmenko))
+* `application-components`, `application-shell`, `react-notifications`
+  * [#923](https://github.com/commercetools/merchant-center-application-kit/pull/923) chore: update react-intl to 3.0.0-beta.23 ([@emmenko](https://github.com/emmenko))
+  
+#### 🖥 Type: Website
+* [#940](https://github.com/commercetools/merchant-center-application-kit/pull/940) fix(website): use default font-family of ui-kit for playground container ([@emmenko](https://github.com/emmenko))
+* [#934](https://github.com/commercetools/merchant-center-application-kit/pull/934) feat(circleci): snapshot testing for documentation website ([@emmenko](https://github.com/emmenko))
+* [#933](https://github.com/commercetools/merchant-center-application-kit/pull/933) chore(website): update to gatsby-plugin-mdx, workaround for remark images bug ([@emmenko](https://github.com/emmenko))
+
 ## [14.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v14.1.1...v14.2.0) (2019-07-29)
 
 #### 🚀 Type: New Feature
