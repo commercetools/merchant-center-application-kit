@@ -43,7 +43,7 @@ type TResourceToApplyDataFence = {
   storesRef?: TKeyReference[];
 };
 type TOptionsForAppliedDataFence = {
-  demandedDataFence: TDemandedDataFence;
+  demandedDataFences: TDemandedDataFence[];
   actualDataFences: TDataFence[];
   actualPermissions: TPermissions;
 };
@@ -201,42 +201,44 @@ const hasDemandedDataFenceForStore = (
 
 export const createHasAppliedDataFence = (
   options: TOptionsForAppliedDataFence
-) => (resourceToApplyDataFence: TResourceToApplyDataFence): boolean => {
-  // First check that the demanded dataFence is enforced on `projectPermissions`
-  const hasDemandedProjectPermission = hasPermission(
-    options.demandedDataFence.name,
-    options.actualPermissions
-  );
-  // Given that dataFence structure on `applicationContext`, we get the value by a path
-  // e.g given dataFence with { store: { orders: { canManageOrders: { values: } } } }
-  // we read the dataFence by the [type] and [group]
-  // dataFence[type][group] = dataFence.store.group
-  // with value = there is a dataFence to apply, overrules `hasDemandedProjectPermissions`
-  // without value = there is no dataFence to apply, overruled by `hasDemandedProjectPermissions`
-  const actualDataFenceByResourceGroup = get(
-    options.actualDataFences,
-    `${options.demandedDataFence.type}.${options.demandedDataFence.group}`
-  );
-  // { canManageOrders: { values: [] }}
-  if (actualDataFenceByResourceGroup) {
-    const hasDemandedDataFence = Object.entries(
-      actualDataFenceByResourceGroup
-    ).every(([actualDataFenceName, actualDataFence]): boolean => {
-      switch (options.demandedDataFence.type) {
-        case 'store':
-          return hasDemandedDataFenceForStore(resourceToApplyDataFence, {
-            actualDataFenceName,
-            actualDataFence,
-            demandedDataFence: options.demandedDataFence,
-          });
-        default:
-          false;
+) => (resourceToApplyDataFence: TResourceToApplyDataFence): boolean =>
+  options.demandedDataFences.every(
+    (demandedDataFence: TDemandedDataFence): boolean => {
+      // First check that the demanded dataFence is enforced on `projectPermissions`
+      const hasDemandedProjectPermission = hasPermission(
+        demandedDataFence.name,
+        options.actualPermissions
+      );
+      // Given that dataFence structure on `applicationContext`, we get the value by a path
+      // e.g given dataFence with { store: { orders: { canManageOrders: { values: } } } }
+      // we read the dataFence by the [type] and [group]
+      // dataFence[type][group] = dataFence.store.group
+      // with value = there is a dataFence to apply, overrules `hasDemandedProjectPermissions`
+      // without value = there is no dataFence to apply, overruled by `hasDemandedProjectPermissions`
+      const actualDataFenceByResourceGroup = get(
+        options.actualDataFences,
+        `${demandedDataFence.type}.${demandedDataFence.group}`
+      );
+      // { canManageOrders: { values: [] }}
+      if (actualDataFenceByResourceGroup) {
+        const hasDemandedDataFence = Object.entries(
+          actualDataFenceByResourceGroup
+        ).every(([actualDataFenceName, actualDataFence]): boolean => {
+          switch (demandedDataFence.type) {
+            case 'store':
+              return hasDemandedDataFenceForStore(resourceToApplyDataFence, {
+                actualDataFenceName,
+                actualDataFence,
+                demandedDataFence,
+              });
+            default:
+              false;
+          }
+          return false;
+        });
+        return hasDemandedProjectPermission || hasDemandedDataFence;
       }
-      return false;
-    });
 
-    return hasDemandedProjectPermission || hasDemandedDataFence;
-  }
-
-  return hasDemandedProjectPermission;
-};
+      return hasDemandedProjectPermission;
+    }
+  );

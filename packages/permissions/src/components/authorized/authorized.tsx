@@ -41,7 +41,7 @@ type Props = {
   demandedActionRights?: TDemandedActionRight[];
   actualPermissions: TPermissions | null;
   actualActionRights: TActionRights | null;
-  demandedDataFence?: TDemandedDataFence;
+  demandedDataFences?: TDemandedDataFence[];
   actualDataFences: TDataFence | null;
   render: (isAuthorized: boolean) => React.ReactNode;
   children?: never;
@@ -76,9 +76,11 @@ const Authorized = (props: Props) => {
     props.actualActionRights
   );
 
-  const isAuthorized = props.demandedDataFence
+  const isAuthorized = Boolean(
+    props.demandedDataFences && props.demandedDataFences.length
+  )
     ? createHasAppliedDataFence({
-        demandedDataFence: props.demandedDataFence,
+        demandedDataFences: props.demandedDataFences,
         actualPermissions: props.actualPermissions,
         actualDataFences: props.actualDataFences,
       })
@@ -91,7 +93,7 @@ Authorized.defaultProps = defaultProps;
 type TInjectAuthorizedOptions = {
   shouldMatchSomePermissions?: boolean;
   actionRights?: TDemandedActionRight[];
-  dataFence?: TDemandedDataFence;
+  dataFences?: TDemandedDataFence[];
 };
 
 type TResourceToApplyDataFence = {
@@ -112,26 +114,24 @@ const injectAuthorized = <
 ) => (
   Component: React.ComponentType<OwnProps>
 ): React.ComponentType<OwnProps & InjectedProps> => {
-  const WrappedComponent = (props: OwnProps) => {
-    return (
-      <ApplicationContext
-        render={applicationContext => (
-          <Authorized
-            shouldMatchSomePermissions={options.shouldMatchSomePermissions}
-            demandedPermissions={demandedPermissions}
-            demandedActionRights={options.actionRights}
-            demandedDataFence={options.dataFence}
-            actualPermissions={applicationContext.permissions}
-            actualActionRights={applicationContext.actionRights}
-            actualDataFences={applicationContext.dataFences}
-            render={isAuthorized => (
-              <Component {...props} {...{ [propName]: isAuthorized }} />
-            )}
-          />
-        )}
-      />
-    );
-  };
+  const WrappedComponent = (props: OwnProps) => (
+    <ApplicationContext
+      render={applicationContext => (
+        <Authorized
+          shouldMatchSomePermissions={options.shouldMatchSomePermissions}
+          demandedPermissions={demandedPermissions}
+          demandedActionRights={options.actionRights}
+          demandedDataFences={options.dataFences}
+          actualPermissions={applicationContext.permissions}
+          actualActionRights={applicationContext.actionRights}
+          actualDataFences={applicationContext.dataFences}
+          render={isAuthorized => (
+            <Component {...props} {...{ [propName]: isAuthorized }} />
+          )}
+        />
+      )}
+    />
+  );
   WrappedComponent.displayName = `withUserPermissions(${getDisplayName<
     OwnProps
   >(Component)})`;
