@@ -110,7 +110,13 @@ const TabularModalPage = (props: Props) => (
         {props.customTitleRow || (
           <ModalPageHeaderTitle title={props.title} subtitle={props.subtitle} />
         )}
-        <Spacings.Inline alignItems="flex-end" justifyContent="space-between">
+        <div
+          css={css`
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+          `}
+        >
           <div
             css={css`
               margin-top: 8px;
@@ -120,12 +126,12 @@ const TabularModalPage = (props: Props) => (
           </div>
           <div
             css={css`
-              margin-bottom: 16px !important;
+              margin-bottom: 16px;
             `}
           >
             <TabularModalPageHeaderControls {...getConditionalProps(props)} />
           </div>
-        </Spacings.Inline>
+        </div>
       </Spacings.Stack>
     </div>
     <ContentWrapper>{props.children}</ContentWrapper>
