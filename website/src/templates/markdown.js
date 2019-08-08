@@ -95,8 +95,7 @@ const Blockquote = styled.blockquote`
   background-color: ${colors.light.cardsSoft};
   font-style: italic;
   padding: 0.25rem 1rem;
-  margin: 0;
-  margin-bottom: ${customProperties.spacingM};
+  margin: ${customProperties.spacingM} 0;
 
   > :first-of-type {
     margin-top: 0;

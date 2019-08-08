@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import { ThemeProvider } from 'emotion-theming';
+import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
   Spacings,
@@ -158,55 +159,60 @@ const ExampleWrapper = props => {
     <ThemeProvider
       theme={{
         // Reset theme to default styles, so that the example uses the default uikit tokens
-        fontFamilyDefault: customProperties.fontFamilyDefault,
-        colorSolid: customProperties.colorsSolid,
+        colorSolid: customProperties.colorSolid,
       }}
     >
-      <IntlController>
-        {intlProps => (
-          <KnobsController knobs={props.knobs} {...intlProps}>
-            {({ form, values }) => (
-              <Spacings.Stack>
-                <PreviewContainer height="400px">
-                  {props.children({ values, isPlaygroundMode: false })}
-                </PreviewContainer>
-                <Spacings.Inline>
-                  <Tooltip
-                    position="top"
-                    title="Enter playground mode"
-                    components={{
-                      TooltipWrapperComponent,
-                    }}
+      <div
+        css={css`
+          font-family: 'Open Sans', sans-serif;
+        `}
+      >
+        <IntlController>
+          {intlProps => (
+            <KnobsController knobs={props.knobs} {...intlProps}>
+              {({ form, values }) => (
+                <Spacings.Stack>
+                  <PreviewContainer height="400px">
+                    {props.children({ values, isPlaygroundMode: false })}
+                  </PreviewContainer>
+                  <Spacings.Inline>
+                    <Tooltip
+                      position="top"
+                      title="Enter playground mode"
+                      components={{
+                        TooltipWrapperComponent,
+                      }}
+                    >
+                      <IconButton
+                        icon={<CodeViewIcon />}
+                        label="Enter playground mode"
+                        onClick={() => setIsOpen(true)}
+                      />
+                    </Tooltip>
+                  </Spacings.Inline>
+                  <InfoDialog
+                    title="Playground"
+                    size="scale"
+                    isOpen={isOpen}
+                    zIndex={1100}
+                    onClose={() => setIsOpen(false)}
+                    getParentSelector={() => document.body}
                   >
-                    <IconButton
-                      icon={<CodeViewIcon />}
-                      label="Enter playground mode"
-                      onClick={() => setIsOpen(true)}
-                    />
-                  </Tooltip>
-                </Spacings.Inline>
-                <InfoDialog
-                  title="Playground"
-                  size="scale"
-                  isOpen={isOpen}
-                  zIndex={1100}
-                  onClose={() => setIsOpen(false)}
-                  getParentSelector={() => document.body}
-                >
-                  <ColumnsContainer>
-                    <ColumnLeft>
-                      <PreviewContainer height="100%">
-                        {props.children({ values, isPlaygroundMode: true })}
-                      </PreviewContainer>
-                    </ColumnLeft>
-                    <ColumnRight>{form}</ColumnRight>
-                  </ColumnsContainer>
-                </InfoDialog>
-              </Spacings.Stack>
-            )}
-          </KnobsController>
-        )}
-      </IntlController>
+                    <ColumnsContainer>
+                      <ColumnLeft>
+                        <PreviewContainer height="100%">
+                          {props.children({ values, isPlaygroundMode: true })}
+                        </PreviewContainer>
+                      </ColumnLeft>
+                      <ColumnRight>{form}</ColumnRight>
+                    </ColumnsContainer>
+                  </InfoDialog>
+                </Spacings.Stack>
+              )}
+            </KnobsController>
+          )}
+        </IntlController>
+      </div>
     </ThemeProvider>
   );
 };

@@ -36,7 +36,7 @@ Before you get started, you need to have:
 
 To connect your local project to your Firebase project, run the following command from the root of your local project directory:
 
-```
+```zsh
 $ firebase init
 ```
 
@@ -62,19 +62,18 @@ After initialization, Firebase automatically creates and adds two files to the r
 
 To support Cloud Functions, Firebase also adds the following structure to your project:
 
+```zsh
+.
+└── functions
+    ├── .eslintrc.json
+    ├── index.js
+    ├── node_modules/
+    └── package.json
 ```
-project
- +- functions/     # Directory containing all your functions code
-      |
-      +- .eslintrc.json  # Optional file containing rules for JavaScript linting.
-      |
-      +- package.json  # npm package file describing your Cloud Functions code
-      |
-      +- index.js      # main source file for your Cloud Functions code
-      |
-      +- node_modules/ # directory where your dependencies (declared in
-                       # package.json) are installed
-```
+
+- `.eslintrc.json`: Optional file containing rules for JavaScript linting.
+- `package.json`: npm package file describing your Cloud Functions code
+- `index.js`: main source file for your Cloud Functions code
 
 ## Configure Fallback Route
 
@@ -82,7 +81,7 @@ To provide a more user-friendly experience when the Custom Application is access
 
 Add these lines to `functions/index.js`:
 
-```javascript
+```js
 exports.customAppFallback = functions.https.onRequest((req, res) => {
   res.end(
     'This is not a real route. If you are seeing this, you most likely are accessing the custom application\n' +
@@ -93,7 +92,7 @@ exports.customAppFallback = functions.https.onRequest((req, res) => {
 });
 ```
 
-## _(Optional)_ Set up a Hosting Site
+## Set up a Hosting Site (_optional_)
 
 You can set up one or more Firebase Hosting sites in a single Firebase project. This is useful if you would like to host multiple custom applications on a single Firebase/GCP project.
 
@@ -154,7 +153,7 @@ For both `env.prod.json` and `csp.json`, `[projectID]` should be replaced with y
 
 In order to generate the correct configuration for Firebase, the `mc-scripts compile-html` script must use a Firebase transformer. This transformer will generate a `firebase.json` file with the custom security headers required for Merchant Center Custom Applications.
 
-```javascript
+```js
 const fs = require('fs');
 const path = require('path');
 
