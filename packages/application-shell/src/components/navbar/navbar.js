@@ -268,6 +268,7 @@ export const RestrictedMenuItem = props => {
     props.permissions.length > 0 ? (
       <RestrictedByPermissions
         permissions={props.permissions}
+        actionRights={props.actionRights}
         // Always check that some of the given permissions match.
         shouldMatchSomePermissions={true}
       >
@@ -293,6 +294,12 @@ RestrictedMenuItem.propTypes = {
   disabledMenuItems: PropTypes.arrayOf(PropTypes.string),
   keyOfMenuItem: PropTypes.string.isRequired,
   permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
+  actionRights: PropTypes.arrayOf(
+    PropTypes.shape({
+      group: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired
+  ),
   children: PropTypes.element.isRequired,
 };
 RestrictedMenuItem.defaultProps = {
@@ -323,6 +330,12 @@ export class DataMenu extends React.PureComponent {
         icon: PropTypes.string.isRequired,
         featureToggle: PropTypes.string,
         permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
+        actionRights: PropTypes.arrayOf(
+          PropTypes.shape({
+            group: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+          }).isRequired
+        ),
         submenu: PropTypes.arrayOf(
           PropTypes.shape({
             key: PropTypes.string.isRequired,
@@ -335,6 +348,12 @@ export class DataMenu extends React.PureComponent {
             uriPath: PropTypes.string.isRequired,
             featureToggle: PropTypes.string,
             permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
+            actionRights: PropTypes.arrayOf(
+              PropTypes.shape({
+                group: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired,
+              }).isRequired
+            ),
             menuVisibility: PropTypes.string,
           })
         ),
@@ -476,6 +495,7 @@ export class DataMenu extends React.PureComponent {
         keyOfMenuItem={menu.key}
         featureToggle={menu.featureToggle}
         permissions={menu.permissions}
+        actionRights={menu.actionRights}
         menuVisibilities={this.props.menuVisibilities}
         namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
         disabledMenuItems={this.props.environment.disabledMenuItems}
@@ -529,6 +549,7 @@ export class DataMenu extends React.PureComponent {
                     keyOfMenuItem={submenu.key}
                     featureToggle={submenu.featureToggle}
                     permissions={submenu.permissions}
+                    actionRights={submenu.actionRights}
                     menuVisibilities={this.props.menuVisibilities}
                     namesOfMenuVisibilities={[submenu.menuVisibility]}
                     disabledMenuItems={this.props.environment.disabledMenuItems}
