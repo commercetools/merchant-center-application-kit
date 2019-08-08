@@ -17,7 +17,7 @@ type Props = {
   shouldDelayOnClose?: boolean;
   // TopBar Props
   topBarCurrentPathLabel?: string;
-  topBarPreviousPathLabel: Label;
+  topBarPreviousPathLabel?: Label;
   // Header Props
   subtitle?: string | React.ReactElement;
 };
