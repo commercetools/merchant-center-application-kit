@@ -1,3 +1,10 @@
+## [14.3.4](https://github.com/commercetools/merchant-center-application-kit/compare/v14.3.3...v14.3.4) (2019-08-09)
+
+#### 🐛 Type: Bug
+
+- `application-components`
+  - [#953](https://github.com/commercetools/merchant-center-application-kit/pull/953) fix(application-components): prop is optional ([@emmenko](https://github.com/emmenko))
+
 ## [14.3.3](https://github.com/commercetools/merchant-center-application-kit/compare/v14.3.2...v14.3.3) (2019-08-08)
 
 #### 🐛 Type: Bug
