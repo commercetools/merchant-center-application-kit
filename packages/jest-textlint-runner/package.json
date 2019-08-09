@@ -1,7 +1,7 @@
 {
-  "name": "@commercetools-frontend/jest-stylelint-runner",
+  "name": "@commercetools-frontend/jest-textlint-runner",
   "version": "14.2.0",
-  "description": "Jest runner that will transform css with postcss before running stylelint",
+  "description": "Jest runner that will lint text files",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
     "type": "git",
@@ -10,11 +10,13 @@
   "keywords": [
     "javascript",
     "frontend",
-    "react",
-    "toolkit"
+    "textlint",
+    "toolkit",
+    "markdown",
+    "jest"
   ],
   "license": "MIT",
-  "private": false,
+  "private": true,
   "publishConfig": {
     "access": "public"
   },
@@ -28,16 +30,9 @@
   "main": "index.js",
   "module": "index.js",
   "peerDependencies": {
-    "postcss": ">= 7",
-    "stylelint": ">= 9.5"
-  },
-  "devDependencies": {
-    "postcss": "7.0.17",
-    "postcss-custom-properties": "9.0.2",
-    "postcss-import": "12.0.1"
+    "textlint": "11.x"
   },
   "dependencies": {
-    "create-jest-runner": "0.5.3",
-    "postcss-load-config": "2.1.0"
+    "create-jest-runner": "0.5.3"
   }
 }

@@ -1,0 +1,35 @@
+{
+  "plugins": {
+    "@textlint/markdown": {
+      "extensions": [".md", ".mdx"]
+    }
+  },
+  "filters": {
+    "comments": true
+  },
+  "rules": {
+    "no-start-duplicated-conjunction": true,
+    "apostrophe": true,
+    "common-misspellings": true,
+    "diacritics": true,
+    "en-capitalization": true,
+    "eslint": {
+      "configFile": ".eslintrc.yaml",
+      "ignoreParsingErrors": true
+    },
+    "ginger": true,
+    "max-comma": false,
+    "no-dead-link": true,
+    "period-in-list-item": true,
+    "sentence-length": false,
+    "stop-words": true,
+    "terminology": true,
+    "title-case": true,
+    "unexpanded-acronym": {
+      "min_acronym_len" : 3,
+      "max_acronym_len" : 5,
+      "ignore_acronyms" : ["OSS", "CORS"]
+    },
+    "write-good": true
+  }
+}
