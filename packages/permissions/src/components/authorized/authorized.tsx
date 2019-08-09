@@ -20,10 +20,11 @@ type TDemandedActionRight = {
   group: TActionRightGroup;
   name: TActionRightName;
 };
+type TDataFenceType = 'store';
 type TDemandedDataFence = {
   group: string;
   name: string;
-  type: string;
+  type: TDataFenceType;
 };
 type TActionRight = {
   [key: string]: boolean;
@@ -31,27 +32,31 @@ type TActionRight = {
 type TActionRights = {
   [key: string]: TActionRight;
 };
-type TDataFence = {
-  [key: string]: {};
+type TDataFenceGroupedByPermission = {
+  // E.g. { canManageOrders: { values: [] } }
+  [key: string]: { values: string[] };
 };
-type TResourceToApplyDataFence = {
-  id: string;
-  // Orders
-  storeRef?: {
-    key?: string;
-  };
-  // Customers
-  storesRef?: TKeyReference[];
+type TDataFenceGroupedByResourceType = {
+  // E.g. { orders: {...} }
+  [key: string]: TDataFenceGroupedByPermission;
 };
-type TAuthorizationContext = TResourceToApplyDataFence;
+type TDataFences = {
+  // E.g. { store: {...} }
+  [key: string]: TDataFenceGroupedByResourceType;
+};
+type TSelectDataFenceDataByType = (dataFenceWithType: {
+  type: TDataFenceType;
+}) => string[] | null;
+
 type Props = {
   shouldMatchSomePermissions?: boolean;
   demandedPermissions: TPermissionName[];
   demandedActionRights?: TDemandedActionRight[];
+  demandedDataFences?: TDemandedDataFence[];
+  selectDataFenceDataByType?: TSelectDataFenceDataByType;
   actualPermissions: TPermissions | null;
   actualActionRights: TActionRights | null;
-  demandedDataFences?: TDemandedDataFence[];
-  actualDataFences: TDataFence | null;
+  actualDataFences: TDataFences | null;
   render: (isAuthorized: boolean) => React.ReactNode;
   children?: never;
 };
@@ -85,14 +90,23 @@ const Authorized = (props: Props) => {
     props.actualActionRights
   );
 
-  if (Boolean(props.demandedDataFences && props.demandedDataFences.length)) {
+  if (
+    props.actualDataFences &&
+    props.demandedDataFences &&
+    props.demandedDataFences.length > 0
+  ) {
+    if (!props.selectDataFenceDataByType) {
+      console.error('DataFences are demanded but no selector provided');
+      return <React.Fragment>{props.render(false)}</React.Fragment>;
+    }
     return (
       <React.Fragment>
         {props.render(
           createHasAppliedDataFence({
-            demandedDataFences: props.demandedDataFences,
             actualPermissions: props.actualPermissions,
+            demandedDataFences: props.demandedDataFences,
             actualDataFences: props.actualDataFences,
+            selectDataFenceDataByType: props.selectDataFenceDataByType,
           })
         )}
       </React.Fragment>
@@ -108,22 +122,24 @@ const Authorized = (props: Props) => {
 Authorized.displayName = 'Authorized';
 Authorized.defaultProps = defaultProps;
 
-type TInjectAuthorizedOptions = {
+type TInjectAuthorizedOptions<OwnProps extends {}> = {
   shouldMatchSomePermissions?: boolean;
   actionRights?: TDemandedActionRight[];
   dataFences?: TDemandedDataFence[];
+
+  getSelectDataFenceDataByType?: (
+    ownProps: OwnProps
+  ) => TSelectDataFenceDataByType;
 };
 
 const injectAuthorized = <
   OwnProps extends {
-    isAuthorized?:
-      | boolean
-      | ((authorizationContext: TAuthorizationContext) => boolean);
+    isAuthorized?: boolean;
   },
   InjectedProps extends OwnProps & { [key: string]: boolean }
 >(
   demandedPermissions: TPermissionName[],
-  options: TInjectAuthorizedOptions = {},
+  options: TInjectAuthorizedOptions<OwnProps> = {},
   propName: string = 'isAuthorized'
 ) => (
   Component: React.ComponentType<OwnProps>
@@ -139,6 +155,10 @@ const injectAuthorized = <
           actualPermissions={applicationContext.permissions}
           actualActionRights={applicationContext.actionRights}
           actualDataFences={applicationContext.dataFences}
+          selectDataFenceDataByType={
+            options.getSelectDataFenceDataByType &&
+            options.getSelectDataFenceDataByType(props)
+          }
           render={isAuthorized => (
             <Component {...props} {...{ [propName]: isAuthorized }} />
           )}

@@ -1,10 +1,6 @@
 import isNil from 'lodash/isNil';
-import get from 'lodash/get';
+// import get from 'lodash/get';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-
-const DATA_FENCE_GROUPS = {
-  ORDERS: 'orders',
-};
 
 type TPermissionName = string;
 type TPermissions = {
@@ -22,9 +18,20 @@ type TActionRight = {
 type TActionRights = {
   [key: string]: TActionRight;
 };
-type TDataFence = {
-  [key: string]: {};
+
+type TDataFenceGroupedByPermission = {
+  // E.g. { canManageOrders: { values: [] } }
+  [key: string]: { values: string[] };
 };
+type TDataFenceGroupedByResourceType = {
+  // E.g. { orders: {...} }
+  [key: string]: TDataFenceGroupedByPermission;
+};
+type TDataFences = {
+  // E.g. { store: {...} }
+  [key: string]: TDataFenceGroupedByResourceType;
+};
+type TDataFenceType = 'store';
 type TActualDataFence = {
   name: string;
   dataFenceValue: { values: string[] };
@@ -32,26 +39,18 @@ type TActualDataFence = {
 type TDemandedDataFence = {
   group: string;
   name: string;
-  type: string;
+  type: TDataFenceType;
 };
-type TKeyReference = {
-  typeId: string;
-  key: string;
-};
-type TResourceToApplyDataFence = {
-  id: string;
-  // Orders
-  storeRef?: {
-    key?: string;
-  };
-  // Customers
-  storesRef?: TKeyReference[];
-};
-type TAuthorizationContext = TResourceToApplyDataFence;
+
+type TSelectDataFenceDataByType = (dataFenceWithType: {
+  type: TDataFenceType;
+}) => string[] | null;
+
 type TOptionsForAppliedDataFence = {
   demandedDataFences: TDemandedDataFence[];
-  actualDataFences: TDataFence[];
+  actualDataFences: TDataFences;
   actualPermissions: TPermissions;
+  selectDataFenceDataByType: TSelectDataFenceDataByType;
 };
 
 // Build the permission key from the definition to match it to the format coming
@@ -179,47 +178,36 @@ export const getInvalidPermissions = (
   );
 };
 
-const hasDemandedDataFenceForStore = (
-  authorizationContext: TAuthorizationContext,
-  options: {
-    actualDataFence: TActualDataFence;
-    demandedDataFence: TDemandedDataFence;
-  }
-): boolean => {
+const hasDemandedDataFenceByType = (options: {
+  actualDataFence: TActualDataFence;
+  demandedDataFence: TDemandedDataFence;
+  selectDataFenceDataByType: TSelectDataFenceDataByType;
+}): boolean => {
   const hasDemandedPermission = hasPermission(options.demandedDataFence.name, {
     [options.actualDataFence.name]: true,
   });
   if (!hasDemandedPermission) return false;
-  switch (options.demandedDataFence.group) {
-    case DATA_FENCE_GROUPS.ORDERS: {
-      return options.actualDataFence.dataFenceValue.values.includes(
-        authorizationContext.storeRef && authorizationContext.storeRef.key
-          ? authorizationContext.storeRef.key
-          : ''
-      );
-    }
-    default: {
-      if (process.env.NODE_ENV !== 'production') {
-        throw new Error(
-          'Trying to map dataFence permissions for unsupported "group"'
-        );
-      }
-      reportErrorToSentry(
-        new Error(
-          'Trying to map dataFence permissions for unsupported "group"'
-        ),
-        {
-          extra: options.demandedDataFence,
-        }
-      );
-      return false;
-    }
+
+  const selectedDataFenceData = options.selectDataFenceDataByType({
+    type: options.demandedDataFence.type,
+  });
+
+  if (!selectedDataFenceData) {
+    reportErrorToSentry(
+      new Error(`missing mapper for type "${options.demandedDataFence.type}"`),
+      { extra: options.demandedDataFence.type }
+    );
+    return false;
   }
+
+  return selectedDataFenceData.every(value =>
+    options.actualDataFence.dataFenceValue.values.includes(value)
+  );
 };
 
 export const createHasAppliedDataFence = (
   options: TOptionsForAppliedDataFence
-) => (authorizationContext: TAuthorizationContext): boolean =>
+) =>
   options.demandedDataFences.every(
     (demandedDataFence: TDemandedDataFence): boolean => {
       // First check that the demanded dataFence is enforced on `projectPermissions`
@@ -233,39 +221,21 @@ export const createHasAppliedDataFence = (
       // dataFence[type][group] = dataFence.store.group
       // with value = there is a dataFence to apply, overrules `hasDemandedProjectPermissions`
       // without value = there is no dataFence to apply, overruled by `hasDemandedProjectPermissions`
-      const actualDataFenceByResourceGroup = get(
-        options.actualDataFences,
-        `${demandedDataFence.type}.${demandedDataFence.group}`
-      );
+
+      const actualDataFenceByPermissionGroup =
+        options.actualDataFences[demandedDataFence.type][
+          demandedDataFence.group
+        ];
       // { canManageOrders: { values: [] }}
-      if (actualDataFenceByResourceGroup) {
+      if (actualDataFenceByPermissionGroup) {
         const hasDemandedDataFence = Object.entries(
-          actualDataFenceByResourceGroup
+          actualDataFenceByPermissionGroup
         ).every(([name, value]): boolean => {
-          switch (demandedDataFence.type) {
-            case 'store':
-              return hasDemandedDataFenceForStore(authorizationContext, {
-                actualDataFence: { name, dataFenceValue: value },
-                demandedDataFence,
-              });
-            default: {
-              if (process.env.NODE_ENV !== 'production') {
-                throw new Error(
-                  'Trying to map dataFence permissions for unsupported "type"'
-                );
-              }
-              reportErrorToSentry(
-                new Error(
-                  'Trying to map dataFence permissions for unsupported "type"'
-                ),
-                {
-                  extra: demandedDataFence,
-                }
-              );
-              return false;
-            }
-          }
-          return false;
+          return hasDemandedDataFenceByType({
+            actualDataFence: { name, dataFenceValue: value },
+            demandedDataFence,
+            selectDataFenceDataByType: options.selectDataFenceDataByType,
+          });
         });
         return hasDemandedProjectPermission || hasDemandedDataFence;
       }

@@ -45,7 +45,6 @@ const RestrictedByPermissions = (props: Props) => {
           shouldMatchSomePermissions={props.shouldMatchSomePermissions}
           demandedPermissions={props.permissions}
           demandedActionRights={props.actionRights}
-          demandedDataFences={props.dataFences}
           actualPermissions={applicationContext.permissions}
           actualActionRights={applicationContext.actionRights}
           actualDataFences={applicationContext.dataFences}
