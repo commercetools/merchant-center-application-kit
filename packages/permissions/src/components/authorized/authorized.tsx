@@ -6,25 +6,21 @@ import {
   hasEveryPermissions,
   hasEveryActionRight,
   getInvalidPermissions,
-  createHasAppliedDataFence,
+  hasAppliedDataFence,
 } from '../../utils/has-permissions';
 import getDisplayName from '../../utils/get-display-name';
 
+// Permissions
+type TPermissionName = string;
 type TPermissions = {
   [key: string]: boolean;
 };
-type TPermissionName = string;
+// Action rights
 type TActionRightName = string;
 type TActionRightGroup = string;
 type TDemandedActionRight = {
   group: TActionRightGroup;
   name: TActionRightName;
-};
-type TDataFenceType = 'store';
-type TDemandedDataFence = {
-  group: string;
-  name: string;
-  type: TDataFenceType;
 };
 type TActionRight = {
   [key: string]: boolean;
@@ -32,17 +28,24 @@ type TActionRight = {
 type TActionRights = {
   [key: string]: TActionRight;
 };
+// Data fences
 type TDataFenceGroupedByPermission = {
   // E.g. { canManageOrders: { values: [] } }
-  [key: string]: { values: string[] };
+  [key: string]: { values: string[] } | null;
 };
 type TDataFenceGroupedByResourceType = {
   // E.g. { orders: {...} }
-  [key: string]: TDataFenceGroupedByPermission;
+  [key: string]: TDataFenceGroupedByPermission | null;
 };
+type TDataFenceType = 'store';
 type TDataFences = {
   // E.g. { store: {...} }
-  [key: string]: TDataFenceGroupedByResourceType;
+  [key in TDataFenceType]: TDataFenceGroupedByResourceType;
+};
+type TDemandedDataFence = {
+  group: string;
+  name: string;
+  type: TDataFenceType;
 };
 type TSelectDataFenceDataByType = (dataFenceWithType: {
   type: TDataFenceType;
@@ -102,7 +105,7 @@ const Authorized = (props: Props) => {
     return (
       <React.Fragment>
         {props.render(
-          createHasAppliedDataFence({
+          hasAppliedDataFence({
             actualPermissions: props.actualPermissions,
             demandedDataFences: props.demandedDataFences,
             actualDataFences: props.actualDataFences,

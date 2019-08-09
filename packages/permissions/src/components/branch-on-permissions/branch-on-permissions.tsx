@@ -10,10 +10,11 @@ type TDemandedActionRight = {
   group: TActionRightGroup;
   name: TActionRightName;
 };
+type TDataFenceType = 'store';
 type TDemandedDataFence = {
   group: string;
   name: string;
-  type: string;
+  type: TDataFenceType;
 };
 type TOptions = {
   shouldMatchSomePermissions?: boolean;

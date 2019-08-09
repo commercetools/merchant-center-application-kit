@@ -57,9 +57,10 @@ type TApplicationContextGroupedByResourceType = {
  *   }
  * }
  */
+type TApplicationContextDataFenceType = 'store';
 type TApplicationContextDataFences = {
   // E.g. { store: {...} }
-  [key: string]: TApplicationContextGroupedByResourceType;
+  [key in TApplicationContextDataFenceType]: TApplicationContextGroupedByResourceType;
 };
 
 type TRawProject = {
