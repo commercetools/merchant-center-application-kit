@@ -1,4 +1,4 @@
-# Component to fetch the logged in user
+# Component to Fetch the Logged in User
 
 This is a data fetching component to fetch the logged in user.
 You can use this component (or the complementary HoC) to retrieve user data and use it when needed.

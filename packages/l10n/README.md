@@ -1,4 +1,4 @@
-# @commercetools-frontend/l10n
+# @commercetools-Frontend/l10n
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@commercetools-frontend/l10n"><img src="https://badgen.net/npm/v/@commercetools-frontend/l10n" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-frontend/l10n"><img src="https://badgen.net/npm/v/@commercetools-frontend/l10n/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-frontend/l10n"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-frontend/l10n" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/master/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
@@ -12,7 +12,7 @@ React bindings to load l10n data.
 $ npm install --save @commercetools-frontend/l10n
 ```
 
-## Supported locales
+## Supported Locales
 
 - `en`
 - `de`
@@ -33,7 +33,7 @@ import {
 const { isLoading, data, error } = useCountries('en');
 ```
 
-## Higher Order Components
+## Higher-Order Components
 
 ```js
 import { withCountries } from '@commercetools-frontend/l10n';
@@ -78,11 +78,11 @@ withTimeZones(ownProps => ownProps.locale)(Component);
 // { "es-AR": { "Europe/Berlin": { "name": "Europe/Berlin", "abbr": "CEST", "offset": "+02:00" } } }
 ```
 
-## Generating localization data
+## Generating Localization Data
 
 The `data` directory contains all the localization data for the supported locales. The data is generated using the script `scripts/generate-l10n-data.js`, which uses the [`cldr` data](http://cldr.unicode.org).
 
-#### Using a custom version of the cldr data
+#### Using a Custom Version of the Cldr Data
 
 In case the npm library `cldr` does not contain the latest cldr data, we can manually download it and point the `cldr` library to use that data.
 

@@ -1,4 +1,4 @@
-# @commercetools-frontend/permissions
+# @commercetools-Frontend/permissions
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@commercetools-frontend/permissions"><img src="https://badgen.net/npm/v/@commercetools-frontend/permissions" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-frontend/permissions"><img src="https://badgen.net/npm/v/@commercetools-frontend/permissions/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-frontend/permissions"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-frontend/permissions" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/master/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
@@ -16,7 +16,7 @@ React components to declaratively handle MC permissions.
 $ npm install --save @commercetools-frontend/permissions
 ```
 
-## Available permissions
+## Available Permissions
 
 A `Permission` is represented as a `String` with a prefix of `View` or `Manage`, followed by one of the following resource names:
 
@@ -45,7 +45,7 @@ export const PERMISSIONS = {
 };
 ```
 
-## Available action rights
+## Available Action Rights
 
 An `ActionRight` is represented as an object with the shape `{ group: string, name: string }`. The `group` relates to the permission while the `name` is the action right itself. Currently the following action rights for the `group: 'products'` exist:
 
@@ -138,11 +138,11 @@ match, otherwise a fallback component.
 - `actionRights`: an array of `ActionRight`, requested by the component
 - `unauthorizedComponent`: (_optional_) a function return an React element to be
   rendered in case the permissions don't match
-- `render`: (_optional_) a function returning an React element or a node to be
+- `render`: (_optional_) a function returning an React element or a Node.js to be
   rendered in case the permissions match
   - Note: when a function is passed it will get an invoked with an object
     containing `isAuthorized` e.g. `({ isAuthorized }) => <div />`
-- `children`: (_optional_) a function returning an React element or a node to be
+- `children`: (_optional_) a function returning an React element or a Node.js to be
   rendered in case the permissions match
   - Note: when a function is passed it will get an invoked with an object
     containing `isAuthorized` e.g. `({ isAuthorized }) => <div />`

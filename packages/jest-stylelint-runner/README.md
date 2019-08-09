@@ -1,13 +1,13 @@
 #jest-stylelint-runner
 
-## description
+## Description
 
-jest-stylelint-runner is inspired by [jest-runner-stylelint](https://github.com/keplersj/jest-runner-stylelint).
+Jest-stylelint-runner is inspired by [jest-runner-stylelint](https://github.com/keplersj/jest-runner-stylelint).
 
 However, it has two main distinctions.
 
-- `jest-stylelint-runner` will process your CSS with PostCSS given a `postcss.config.js` file in your project. This means that it can resolve imports and custom properties through the use of postcss plugins.
-- `jest-stylelint-runner` has `stylelint` as a peer dependency.
+- `jest-stylelint-runner` will process your CSS with PostCSS given a `postcss.config.js` file in your project. This means that it can resolve imports and custom properties through the use of postcss plugins
+- `jest-stylelint-runner` has `stylelint` as a peer dependency
 
 ## Usage
 
@@ -23,7 +23,7 @@ yarn add --dev jest postcss @commercetools-frontend/jest-stylelint-runner
 npm install --save-dev jest postcss @commercetools-frontend/jest-stylelint-runner
 ```
 
-### Add it to your Jest config
+### Add It to Your Jest Config
 
 In your `package.json`
 
@@ -47,7 +47,7 @@ module.exports = {
 };
 ```
 
-### Define your postcss config
+### Define Your Postcss Config
 
 In your `postcss.config.js`
 

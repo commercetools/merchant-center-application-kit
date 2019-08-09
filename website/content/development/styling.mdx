@@ -10,13 +10,13 @@ import NotificationFeature from '../../src/components/notification-feature';
 
 # Styling
 
-We support both [CSS Modules](https://github.com/css-modules/css-modules) and CSS-in-JS with [Emotion](https://emotion.sh/), so you can pick your preferred style choice.
+We support both [CSS Modules](https://github.com/css-modules/css-modules) and CSS-in-JS with [Emotion](https://emotion.sh/docs/introduction), so you can pick your preferred style choice.
 
-If you use CSS modules, the file should be named `*.mod.css`, so that the PostCSS loaders in Webapack will pick it up. We recommend to co-locate the file next to the component (`<component-name>.mod.css`).
+If you use CSS modules, the file should be named `*.mod.css`, so that the PostCSS loaders in Webapack will pick it up. We recommend to colocate the file next to the component (`<component-name>.mod.css`).
 
 If you opt in using Emotion, we also support the `css` prop.
 
-## Using design tokens
+## Using Design Tokens
 
 Merchant Center applications are built with components that follow and implement our _Design System_. The [`@commercetools-frontend/ui-kit`](https://www.npmjs.com/package/@commercetools-frontend/ui-kit) package exposes [Design Tokens](https://uikit.commercetools.com/?path=/story/basics-tokens--all-tokens) that are used to style the UI components.
 When implementing custom styles, we should make use of the _Design Tokens_ whenever possible.

@@ -1,4 +1,4 @@
-# Connectors for project extension `imageRegex`
+# Connectors for Project Extension `imageRegex`
 
 This component exposes getters/setters to set and retrieve the `imageRegex` from the project extension setting.
 

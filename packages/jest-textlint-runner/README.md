@@ -1,7 +1,6 @@
 #jest-textlint-runner
 
-## description
-
+## Description
 
 ## Usage
 
@@ -17,7 +16,7 @@ yarn add --dev jest textlint @commercetools-frontend/jest-textlint-runner
 npm install --save-dev jest textlint @commercetools-frontend/jest-textlint-runner
 ```
 
-### Add it to your Jest config
+### Add It to Your Jest Config
 
 In your `package.json`
 

@@ -8,7 +8,7 @@ import NotificationFeature from '../../src/components/notification-feature';
 
 <NotificationFeature flag="alpha" />
 
-# Proxy to external API
+# Proxy to External API
 
 Developing custom applications might require to have your own backend server, for several reasons: storing sensitive credentials for 3rd-party services, performing custom server logic, etc.
 
@@ -18,14 +18,14 @@ Merchant Center applications can make [authenticated requests](./authentication)
 
 Since your backend server is hosted on a different domain, you can't send authenticated requests to your server from your custom application. Well, you can but you don't know if the request comes from an authenticated user or not.
 
-## Validating authenticated requests
+## Validating Authenticated Requests
 
 To be able to validate that the request comes from an authenticated user, we implemented a mechanism to allow your server to verify the validity of the `mcAccessToken`.
 
 Requests to your backend server should be configured as following:
 
-- send the request to `/proxy/forward-to` endpoint of the Merchant Center API Gateway
-- define the original request URL to your backend server as an HTTP header `X-Forward-To`
+- Send the request to `/proxy/forward-to` endpoint of the Merchant Center API Gateway
+- Define the original request URL to your backend server as an HTTP header `X-Forward-To`
 
 ```js
 fetch(`https://mc-api.commercetools.com/proxy/forward-to`, {
@@ -42,7 +42,7 @@ The request will be then validated from the Merchant Center API Gateway and prox
 
 > NOTE that for security reasons, the exchanged JWT has an expiration date of 60 seconds, as the token should only be used to verify that the request is authorized.
 
-### Using JSON Web Key Set endpoint
+### Using JSON Web Key Set Endpoint
 
 At this point, your backend server will receive the request with the `Authorization` header, which you can use to validate that the JWT is valid.
 The validation is performed by using the `/.well-known/jwks.json` endpoint exposed by the Merchant Center API Gateway. You can read more about JWKS [here](https://auth0.com/docs/jwks) and [here](https://tools.ietf.org/html/rfc7517).

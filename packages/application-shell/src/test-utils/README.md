@@ -6,7 +6,7 @@ We want to make it easy to test features of the application you're building with
 
 The `ApplicationShell` provides the following context:
 
-- `IntlProvider` for i18n and l10n ([`react-intl`](https://github.com/yahoo/react-intl))
+- `IntlProvider` for i18n and l10n ([`react-intl`](https://github.com/formatjs/react-intl))
 - `ApolloProvider` for GraphQL ([`react-apollo`](https://github.com/apollographql/react-apollo))
 - `ConfigureFlopFlip` for feature-toggles ([`flopflip`](https://github.com/tdeekens/flopflip))
 - `ApplicationContextprovider` for information about the MC application like `user`, `project`, `environment`, `dataLocale` and `permissions` ([`application-shell-connectors`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md))
@@ -30,7 +30,7 @@ The `ApplicationShell` provides the following context:
     - [Permissions](#permissions)
     - [Router (`react-router`)](#router-react-router)
 
-## `@testing-library/react`
+## `@testing-Library/react`
 
 [`@testing-library/react`](https://github.com/testing-library/react-testing-library) allows you to interact with the component using the DOM. It is a great testing library due to its philosophy of testing from a user-perspective, instead of testing the implementation. The assertions are written against the produced DOM, and the component-under-test is interacted with using DOM events.
 
@@ -38,7 +38,7 @@ The `render` method exposed by `@testing-library/react` is used to render your c
 
 > All exports of `@testing-library/react` are re-exported from `test-utils`.
 
-## `test-utils`
+## `test-Utils`
 
 ### Basics
 
@@ -112,15 +112,15 @@ This section describes the methods exported by `@commercetools-frontend/applicat
 
 `test-utils` is builds on top of `@testing-library/react`, so all [`@testing-library/react`](https://github.com/testing-library/react-testing-library) exports are available. The following section describes the additional exports added on top of `@testing-library/react`.
 
-#### `renderApp(ui: ReactElement, options: Object)`
+#### `renderApp(ui: ReactElement, Options: Object)`
 
 | Argument              | Type          | Concern                                                                                                                                                                                            | Description                                                                                                                                                                                                                                                                                                                                                                        |
 | --------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ui`                  | React Element | React                                                                                                                                                                                              | React Element to render.                                                                                                                                                                                                                                                                                                                                                           |
 | `options.locale`      | `String`      | Localisation                                                                                                                                                                                       | Determines the UI language and number format. Is used to configure `IntlProvider`. Only _core_ messages will be available during tests, no matter the `locale`. The locale can be a full [IETF language tag](https://en.wikipedia.org/wiki/IETF_language_tag), although the MC is currently only available in a limited set of languages.                                          |
 | `options.dataLocale`  | `String`      | Localisation                                                                                                                                                                                       | Sets the locale which is used to display [`LocalizedString`](https://docs.commercetools.com/http-api-types#localizedstring)s.                                                                                                                                                                                                                                                      |
-| `options.mocks`       | `Array`       | Apollo                                                                                                                                                                                             | Allows mocking requests made with Apollo. `mocks` is forwarded as the `mocks` argument to [`MockedProvider`](https://www.apollographql.com/docs/guides/testing-react-components.html#MockedProvider).                                                                                                                                                                              |
-| `options.addTypename` | `Boolean`     | Apollo                                                                                                                                                                                             | If queries are lacking `__typename` (which happens when mocking) it’s important to pass `addTypename: false`, which is the default. See [`MockedProvider.addTypename`](https://www.apollographql.com/docs/guides/testing-react-components.html#addTypename) for more information.                                                                                                  |
+| `options.mocks`       | `Array`       | Apollo                                                                                                                                                                                             | Allows mocking requests made with Apollo. `mocks` is forwarded as the `mocks` argument to [`MockedProvider`](https://www.apollographql.com/docs/react/recipes/testing/#MockedProvider).                                                                                                                                                                                            |
+| `options.addTypename` | `Boolean`     | Apollo                                                                                                                                                                                             | If queries are lacking `__typename` (which happens when mocking) it’s important to pass `addTypename: false`, which is the default. See [`MockedProvider.addTypename`](https://www.apollographql.com/docs/react/recipes/testing/#addTypename) for more information.                                                                                                                |
 | `options.route`       | `String`      | Routing                                                                                                                                                                                            | The route the user is on, like `/test-project/products`. Defaults to `/`.                                                                                                                                                                                                                                                                                                          |
 | `options.history`     | `Object`      | Routing                                                                                                                                                                                            | By default a memory-history is generated which has the provided `options.route` set as its initial history entry. It's possible to pass a custom history as well. In that case, we recommend using the factory function `createEnhancedHistory` from the `@commercetools-frontend/browser-history` package, as it contains the enhanced `location` with the parsed `query` object. |
 | `options.adapter`     | `Object`      | Feature Toggles                                                                                                                                                                                    | The [flopflip](https://github.com/tdeekens/flopflip) adapter to use when configuring `flopflip`. Defaults to [`memoryAdapter`](https://github.com/tdeekens/flopflip/tree/master/packages/memory-adapter).                                                                                                                                                                          |
@@ -142,7 +142,7 @@ Calling `renderApp` returns an object which contains all keys `@testing-library/
 | `project`     | `Object` | The `project` object used to configure `ApplicationContextProvider`, so the result of merging the default project with `options.project`. Note that this is not the same as `applicationContext.project`. Can be `undefined` when no project was set (when `options.project` was `null`).                         |
 | `environment` | `Object` | The `environment` object used to configure `ApplicationContextProvider`, so the result of merging the default environment with `options.environment`. Note that this is not the same as `applicationContext.environment`. Can be `undefined` when no environment was set (when `options.environment` was `null`). |
 
-#### `renderAppWithRedux(ui: ReactElement, options: Object)`
+#### `renderAppWithRedux(ui: ReactElement, Options: Object)`
 
 > This function might change in the future. Use with caution.
 
@@ -160,7 +160,7 @@ The function accepts all options from `renderApp` plus the following:
 
 ### Examples
 
-#### `locale` (`react-intl`)
+#### `locale` (`react-Intl`)
 
 The component-under-test will get rendered in `react-intl`s `IntlProvider`. During tests, the core-messages will be used. It's still possible to use a different locale though.
 
@@ -451,7 +451,7 @@ describe('DeleteProductButton', () => {
 });
 ```
 
-#### Router (`react-router`)
+#### Router (`react-Router`)
 
 ```jsx
 import { Switch, Route, Redirect } from 'react-router';

@@ -12,7 +12,7 @@ To facilitate testing components that implement action creators, we expose some 
   - [Examples](#examples)
     - [`createTestMiddleware`](#createtestmiddleware)
 
-## `test-utils`
+## `test-Utils`
 
 ### API
 

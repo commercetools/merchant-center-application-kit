@@ -18,7 +18,16 @@
     },
     "eslint": {
       "configFile": ".eslintrc.yaml",
-      "ignoreParsingErrors": true
+      "ignoreParsingErrors": true,
+      "langs": [
+        "js",
+        "jsx",
+        "javascript",
+        "json",
+        "css",
+        "bash",
+        "zsh"
+      ]
     },
     "no-dead-link": {
       "ignore": [

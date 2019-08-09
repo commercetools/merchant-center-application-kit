@@ -1,11 +1,11 @@
-# Configure <IntlProvider> with the proper locale
+# Configure <IntlProvider> With the Proper Locale
 
 This component is used to configure `<IntlProvider>` based on the proper
 `locale`.
 The `locale` is determined by:
 
-- the user setting, in case the user is logged in
-- the browser language, in case the user is not logged in
+- The user setting, in case the user is logged in
+- The browser language, in case the user is not logged in
 
 ## `<ConfigureIntlProvider>`
 

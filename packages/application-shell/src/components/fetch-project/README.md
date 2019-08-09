@@ -1,4 +1,4 @@
-# Component to fetch the project data
+# Component to Fetch the Project Data
 
 This is a data fetching component to fetch a project.
 You can use this component (or the complementary HoC) to retrieve project data and use it when needed.

@@ -8,7 +8,7 @@ import NotificationFeature from '../../src/components/notification-feature';
 
 <NotificationFeature flag="beta" />
 
-# Menu links
+# Menu Links
 
 The navigation menu links (the menu on the left side of the Merchant Center) contains links to all the different applications within a project.
 
@@ -17,7 +17,7 @@ Instead, the links are rendered dynamically on runtime, by fetching the configur
 
 Additionally, links to custom applications are also fetched dynamically, based on the registered applications within a project.
 
-## Links for local development
+## Links for Local Development
 
 However, when developing a custom application locally, we can't fetch any configuration dynamically. This is because only one application is running locally and therefore links to other applications are pretty much useless.
 Therefore, in development only the application links should be rendered. To do so, you need to configure the links in the `menu.json`. The file is then loaded through a special prop that is only available in `development` mode.
@@ -37,7 +37,7 @@ const EntryPoint = () => (
 
 > NOTE that the `menu.json` is only used for development. For production usage, the configuration of the links needs to be registered in the Merchant Center.
 
-Furthermore, when you visit the url `http://localhost:3001/` in development, you will get redirected to the default route `/:projectKey`, but your application can't handle this route and shows a 404 page. To fix that, we can provide an extra redirect to your **main application route path**, which is only used in `development` mode.
+Furthermore, when you visit the URL `http://localhost:3001/` in development, you will get redirected to the default route `/:projectKey`, but your application can't handle this route and shows a 404 page. To fix that, we can provide an extra redirect to your **main application route path**, which is only used in `development` mode.
 
 ```jsx
 // entry-point.js

@@ -1,4 +1,4 @@
-# @commercetools-frontend/notifications
+# @commercetools-Frontend/notifications
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@commercetools-frontend/notifications"><img src="https://badgen.net/npm/v/@commercetools-frontend/notifications" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-frontend/notifications"><img src="https://badgen.net/npm/v/@commercetools-frontend/notifications/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-frontend/notifications"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-frontend/notifications" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/master/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
@@ -19,14 +19,14 @@ $ npm install --save @commercetools-frontend/notifications
 #### Arguments
 
 1.  `notification` _(Object)_: This notification will get added to the list. See
-    `Notification`.
+    `Notification`
 1.  `[options]` _(Object)_: If specified, further customizes the behavior of the
-    notification.
+    notification
 
 - `[dismissAfter = 0]` _(Number)_: dismiss the component after this duration
   (milliseconds)
 - `[onDismiss]` _(Function)_: Callback which will get called with the
-  notification's `id` before it is dismissed.
+  notification's `id` before it is dismissed
 
 The payload must be a `Notification` object. The `id` will be added by the
 middleware automatically.
@@ -72,7 +72,7 @@ middleware automatically, plus any props passed as the payload on creation.
 
 1.  `id` _(Number)_: This notification will be removed
 
-#### Example action
+#### Example Action
 
 ```js
 {
@@ -85,10 +85,10 @@ middleware automatically, plus any props passed as the payload on creation.
 
 The middleware
 
-- adds a unique `id` to every notification
-- handles scheduling removal of notifications specifying `dismissAfter`
-- returns a `notificationHandle` for each dispatched notification containing its
-  `id` and a `dismiss` function for convenience.
+- Adds a unique `id` to every notification
+- Handles scheduling removal of notifications specifying `dismissAfter`
+- Returns a `notificationHandle` for each dispatched notification containing its
+  `id` and a `dismiss` function for convenience
 
 ### Integration
 
@@ -184,22 +184,22 @@ class LeftNavigation extends React.PureComponent {
 
 - The notification system is unaware of the types of notifications you are going
   to dispatch. It's recommended to call the types of notifications you have
-  `kind`, to not confuse it with Action Types.
+  `kind`, to not confuse it with Action Types
 - The notification system is also unaware of the `domain`'s used in the
   application. A domain is the part of the application where the notification
   will be displayed. We currently have: `global`, `page` and `side`
 - `addNotification` is a low-level function. It's recommended to use it in your
   own action-creators, and use your own action-creators in your application
-  exclusively calling `addNotification` behind the scenes.
-- to hide all notifications, iterate over the notifications in the state and
+  exclusively calling `addNotification` behind the scenes
+- To hide all notifications, iterate over the notifications in the state and
   call `removeNotification(id)` on each one: `state.notifications.forEach(notif => removeNotification(notif.id))`. Simply resetting the state would lead to
-  the `onDismiss` callbacks not being fired.
+  the `onDismiss` callbacks not being fired
 - It's entirely up to you to render the notifications. Connect to the store and
-  iterate over them.
+  iterate over them
 - If your notifications need to have different styles or even different React
   components when rendering, use the `kind` to decide which component to render
-  or which style to use.
+  or which style to use
 - Since notifications are stored in the Redux store, they should be
   serializeable. Avoid setting functions on notifications. Again, use the
   `kind`, pass any required information and handle it in the component rendering
-  the notification.
+  the notification

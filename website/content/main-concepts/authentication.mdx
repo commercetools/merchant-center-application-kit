@@ -4,25 +4,25 @@ title: Authentication - Main concepts
 permalink: /main-concepts/authentication
 ---
 
-# API Gateway authentication
+# API Gateway Authentication
 
 The Merchant Center uses a **secure** JWT ([JSON Web Token](https://jwt.io/)) `Cookie` named `mcAccessToken` to transport session information about the user.
 Using a `Cookie` allows network requests to send it without your application needing to explicitly handle the access token.
 
 The [project starter example](https://github.com/commercetools/merchant-center-application-kit/tree/master/application-templates/starter) has no explicity authentication code. Authentication is built into the `<ApplicationShell>` and managed for you.
 
-## Obtaining an access token
+## Obtaining an Access Token
 
 The `mcAccessToken` is granted upon user login and is stored in the **secure** `Cookie` from the Merchant Center API Gateway.
 
 There are two endpoints available for different login strategies:
 
-- `/tokens`: Logins using `email` and `password`.
-- `/tokens/sso`: Logins using an `idToken` from an SSO workflow (_beta feature, contact support for more information_).
+- `/tokens`: Logins using `email` and `password`
+- `/tokens/sso`: Logins using an `idToken` from an SSO workflow (_beta feature, contact support for more information_)
 
 Each Merchant Center application uses the `<ApplicationShell>` React component, which provides a built-in authentication mechanism for the HTTP clients. You won't need to manually request a token from these endpoints.
 
-## Sending an authenticated request
+## Sending an Authenticated Request
 
 Given that the `mcAccessToken` is stored in a secure cookie, HTTP clients only need to tell the browser to send the cookies with the request.
 
@@ -48,7 +48,7 @@ fetch(`https://mc-api.commercetools.com/proxy/ctp/${projectKey}/orders`, {
 
 The Merchant Center applications have access to 2 built-in clients:
 
-- a REST client that is a wrapper to the commercetools JS SDK, available from the `@commercetools-frontend/sdk` package
-- an Apollo GraphQL client, which is automatically configured from the `<ApplicationShell>` React component
+- A REST client that is a wrapper to the commercetools JS SDK, available from the `@commercetools-frontend/sdk` package
+- An Apollo GraphQL client, which is automatically configured from the `<ApplicationShell>` React component
 
 Both clients are configured to send the cookies with each request.

@@ -1,17 +1,17 @@
 # Google Tag Manager (GTM) Tracking Utilities
 
-## What is Google Tag Manager?
+## What Is Google Tag Manager?
 
 A service for collecting tracking data and mapping that tracking data to all
 kinds of analytics services like Google Analytics.
 
-## Why not directly use Google Analytics (GA)?
+## Why Not Directly Use Google Analytics (GA)?
 
 There is no really strong reason here. GTM allows to plugin in multiple
 different analytics solutions without needing to change any code. This is
 cool, but we are only sending data to Google Analytics right now.
 
-## How can I track events?
+## How Can I Track Events?
 
 There are two ways. Imperatively by calling the `track` function that lies
 in the React Context. Or declaratively using the `data-track` attributes.

@@ -1,4 +1,4 @@
-# @commercetools-frontend/sdk
+# @commercetools-Frontend/sdk
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@commercetools-frontend/sdk"><img src="https://badgen.net/npm/v/@commercetools-frontend/sdk" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-frontend/sdk"><img src="https://badgen.net/npm/v/@commercetools-frontend/sdk/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-frontend/sdk"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-frontend/sdk" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/master/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
@@ -16,12 +16,12 @@ $ npm install --save @commercetools-frontend/sdk
 
 There are two sides to declarative fetching:
 
-- describing the data we need to fetch declaratively
-- fetching by rendering a component instead of triggering the fetch imperatively
+- Describing the data we need to fetch declaratively
+- Fetching by rendering a component instead of triggering the fetch imperatively
 
 This module aims to provide the necessary parts for both.
 
-## Declaring the fetch using a component
+## Declaring the Fetch Using a Component
 
 > **⚠️ Deprecated** This component will likely not get developed any further. Use regular redux-style action creators for now. In the future we plan to use Apollo to replace this completely.
 
@@ -29,7 +29,7 @@ The provided `Sdk.Get` component can be rendered to fetch data. It uses the
 middleware behind the scenes but adds some features on top. See
 [components/sdk-fetch/README.md](./components/sdk-fetch/README.md) for details.
 
-## Describing data declaratively
+## Describing Data Declaratively
 
 The provided middleware takes an object which describes what data should be
 fetched. The middleware transforms that description into a promise and resolves
@@ -41,7 +41,7 @@ The middleware is a thin wrapper around [`sdk-client`](https://commercetools.git
 
 A Redux action using one of the action creators below needs to be dispatched. It contains the description of what to get/post/delete. The `sdk` middleware then turns the declarative description into imperative API calls on `sdk-client`. The dispatched action resolves with the result of `sdk-client`.
 
-### Action creators
+### Action Creators
 
 The action creators can be imported as
 
@@ -57,16 +57,16 @@ There are three action creators which all have the same behavior and API. The on
 - `sdkActions.post(description)`: `POST`
 - `sdkActions.del(description)`: `DELETE`
 
-#### Specifying an endpoint
+#### Specifying an Endpoint
 
 There are two ways to describe an endpoint:
 
-- direct: `description.uri` is used as-is
-- combined: `description.service` and `description.options` are combined to form a `uri`
+- Direct: `description.uri` is used as-is
+- Combined: `description.service` and `description.options` are combined to form a `uri`
 
 A `payload` can be provided in either case. It is only used by the `sdkActions.post` action creator. It contains the request payload.
 
-##### Usage with `uri`
+##### Usage With `uri`
 
 ```js
 {
@@ -81,7 +81,7 @@ This approach must be used when querying something other than the CTP API. In ca
 
 When both, `uri` and `options` (or `service`) are present, the `uri` takes precedence.
 
-##### Usage with `service` and `options`
+##### Usage With `service` and `options`
 
 ```js
 {
@@ -95,7 +95,7 @@ Before using the `sdk-client` the `sdk` middleware combines `service` and `optio
 
 The supported `options` can be found in the `api-request-builder`'s documentation under the [Declarative Usage](https://commercetools.github.io/nodejs/sdk/api/apiRequestBuilder.html#declarative-usage) section.
 
-### Error handling
+### Error Handling
 
 Failed requests will result in a rejected promise. The `sdk-client`'s error handling applies, so network errors and CTP API errors on the content itself result in a rejected promise.
 

@@ -14,7 +14,7 @@ Merchant Center applications use [`react-intl`](https://github.com/formatjs/reac
 
 In the React components, you can use things like `<FormattedMessage>` or `intl.formatMessage` to render the correct translation message based on the active `locale`.
 
-We usually define a `messages.js` file co-located to the React component using those messages. The file defines messages as following:
+We usually define a `messages.js` file colocated to the React component using those messages. The file defines messages as following:
 
 ```js
 import { defineMessages } from 'react-intl';
@@ -30,7 +30,7 @@ export default defineMessages({
 
 This is the _default message_, which will be used in case there is no translation available for the given `locale`.
 
-## Extracting messages for translations
+## Extracting Messages for Translations
 
 To generate translation files, we provide a `mc-scripts extract-intl` script, which will aggregate all react intl messages into a `core.json` file:
 
@@ -50,4 +50,4 @@ The `mc-scripts extract-intl` command provides some extra options to deal with d
 
 The extracted JSON files ard loaded on runtime by the application and passed to the `<ApplicationShell>`.
 
-You can see an example of asynchronously loading the JSON messages for a specific `locale` in the `<EntryPoint>` component, using a feature called [Code-Splitting](https://reactjs.org/docs/code-splitting.html).
+You can see an example of asynchronously loading the JSON messages for a specific `locale` in the `<EntryPoint>` component, using a feature called [Code splitting](https://reactjs.org/docs/code-splitting.html).

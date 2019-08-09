@@ -1,4 +1,4 @@
-# @commercetools-frontend/mc-http-server
+# @commercetools-Frontend/mc-Http-Server
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@commercetools-frontend/mc-http-server"><img src="https://badgen.net/npm/v/@commercetools-frontend/mc-http-server" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-frontend/mc-http-server"><img src="https://badgen.net/npm/v/@commercetools-frontend/mc-http-server/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-frontend/mc-http-server"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-frontend/mc-http-server" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/master/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
@@ -14,7 +14,7 @@ This package contains the HTTP server to run a MC application in production.
 $ npm install --save @commercetools-frontend/mc-http-server
 ```
 
-### Docker image
+### Docker Image
 
 We also provide a docker image to run the server:
 
@@ -22,7 +22,7 @@ We also provide a docker image to run the server:
 $ docker run -p 3001:3001 eu.gcr.io/ct-images/mc-http-server:v0.0.0 mc-http-server --config="$(pwd)/env.json"
 ```
 
-## Why do we need an HTTP Server?
+## Why Do We Need an HTTP Server?
 
 Since a SPA consists of mainly JS bundles and CSS, it's usually not necessary to have an actual HTTP server running.
 In theory it's enough to serve a _static HTML page_ from e.g. a CDN.
@@ -34,9 +34,9 @@ For that reason, before the server starts, we pull the `index.html.template` gen
 
 > All static assets are served from the `public` folder.
 
-## Additional responsibilities
+## Additional Responsibilities
 
 Besides generating and serving the `index.html`, the HTTP server does additionally a couple of things:
 
-- gathers `/metrics` for Prometheus
-- provides a `/version` endpoint with the current revision hash (git SHA)
+- Gathers `/metrics` for Prometheus
+- Provides a `/version` endpoint with the current revision hash (git SHA)
