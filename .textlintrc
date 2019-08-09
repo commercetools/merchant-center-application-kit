@@ -11,7 +11,11 @@
     "no-start-duplicated-conjunction": true,
     "common-misspellings": true,
     "diacritics": true,
-    "en-capitalization": true,
+    "en-capitalization": {
+      "allowWords": [
+        "import"
+      ]
+    },
     "eslint": {
       "configFile": ".eslintrc.yaml",
       "ignoreParsingErrors": true
