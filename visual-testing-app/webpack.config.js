@@ -41,6 +41,12 @@ module.exports = {
   module: {
     rules: [
       {
+        // Fix for react-intl
+        // https://github.com/formatjs/formatjs/issues/143#issuecomment-518774786
+        test: /\.mjs$/,
+        type: 'javascript/auto',
+      },
+      {
         test: /\.js$/,
         exclude: [
           /(node_modules)/,
