@@ -20,17 +20,19 @@ type TSelectDataFenceDataByType = (dataFenceWithType: {
   type: TDataFenceType;
 }) => string[] | null;
 
-type TOptions = {
+type TOptions<OwnProps extends {}> = {
   shouldMatchSomePermissions?: boolean;
   actionRights?: TDemandedActionRight[];
   dataFences?: TDemandedDataFence[];
-  selectDataFenceDataByType?: TSelectDataFenceDataByType;
+  getSelectDataFenceDataByType?: (
+    ownProps: OwnProps
+  ) => TSelectDataFenceDataByType;
 };
 
 const branchOnPermissions = <OwnProps extends {}>(
   demandedPermissions: TPermissionName[],
   FallbackComponent: React.ComponentType<unknown>,
-  options: TOptions = {
+  options: TOptions<OwnProps> = {
     shouldMatchSomePermissions: false,
   }
 ) => (
@@ -47,7 +49,10 @@ const branchOnPermissions = <OwnProps extends {}>(
           demandedPermissions={demandedPermissions}
           demandedActionRights={options.actionRights}
           demandedDataFences={options.dataFences}
-          selectDataFenceDataByType={options.selectDataFenceDataByType}
+          selectDataFenceDataByType={
+            options.getSelectDataFenceDataByType &&
+            options.getSelectDataFenceDataByType(props)
+          }
           render={isAuthorized => {
             if (isAuthorized) {
               return <Component {...props} />;

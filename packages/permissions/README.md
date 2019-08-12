@@ -71,6 +71,30 @@ export const ACTION_RIGHTS = {
 };
 ```
 
+## Available dataFences
+
+A `DataFence` is represented as an object with the shape `{ group: string, name: string, type: string }`. currently there is only dataFences of type `store`. The `group` relates to what the permission applies to and the `name` is the permission itself. Currently the following datafences for the `group: 'orders'` exist:
+
+- `ViewOrders`
+- `ManageOrders`
+
+We recommend to put the dataFences used by your application into a `constants.js` file.
+
+```js
+export const DATA_FENCES = {
+  ViewOrders: {
+    type: 'store',
+    group: 'orders',
+    name: 'ViewOrders',
+  },
+  ManageOrders: {
+    type: 'store',
+    group: 'orders',
+    name: 'ManageOrders',
+  },
+};
+```
+
 ## `branchOnPermissions(permissions, [FallbackComponent], [options])`
 
 A HoC that will render a fallback component if the requested permissions don't
@@ -83,6 +107,8 @@ branchOnPermissions(
   options?: {
     shouldMatchSomePermissions: boolean,
     actionRights?: [ActionRight],
+    dataFences?: [DataFence],
+    getSelectDataFenceDataByType?: ownProps => func
   }
 ): HoC
 ```
@@ -95,7 +121,9 @@ branchOnPermissions(
 - `options` (_optional_)
   - `shouldMatchSomePermissions`: determines if _some_ or _every_ requested permission should match
     (default `false`)
-  - `actionRights`: an array of action rights (mentioned above)
+  - `actionRights`: an array of `ActionRight` (mentioned above)
+  - `dataFences`: an array of `DataFence` (mentioned above)
+  - `getSelectDataFenceDataByType`: if `dataFences` option is specified, `getSelectDataFenceDataByType` will be called with the component's `ownProps`. The result is a mapper function which we can use to pick the necessary data to compare with depending on the `type` of the dataFence.
 
 ### Example
 
@@ -105,6 +133,30 @@ const TopFiveProducts = () =>
   // ...
 
   branchOnPermissions(['ViewProducts', 'ViewOrders'])(TopFiveProducts);
+```
+
+```js
+// Only render a component when the user has the the requested dataFence
+const LastOrder = ({ order : { store: "Germany" }}) =>
+  // ...
+
+  branchOnPermissions([], options: {
+    dataFences: [
+      {
+        name: 'ManageOrders',
+        group: 'orders',
+        type: 'store'
+      }
+    ],
+    getSelectDataFenceDataByType: ownProps => ({ type }) => {
+      switch (type) {
+        case 'store':
+          return [ownProps.order.store];
+        default:
+          return null
+      }
+    }
+  })(LastOrder);
 ```
 
 ```js
@@ -135,7 +187,9 @@ match, otherwise a fallback component.
 ### Props
 
 - `permissions`: an array of `Permission`, requested by the component
-- `actionRights`: an array of `ActionRight`, requested by the component
+- `actionRights`: (_optional_) an array of `ActionRight`, requested by the component
+- `dataFences`: (_optional_) an array of `DataFence`, requested by the component
+- `selectDataFenceDataByType`: (_optional_) a mapper function which we can use to pick the necessary data to compare with depending on the `type` of the dataFence when `dataFences` option is specified
 - `unauthorizedComponent`: (_optional_) a function return an React element to be
   rendered in case the permissions don't match
 - `render`: (_optional_) a function returning an React element or a node to be
@@ -190,9 +244,11 @@ injectAuthorized(
 - `permissions`: an array of `Permission`, requested for the child component to
   be allowed to render
 - `options` (_optional_)
-  - `shouldMatchSomePermissions`: determines if _some_ or _every_ requested permission should match
+  - `shouldMatchSomePermissions`: (_optional_) determines if _some_ or _every_ requested permission should match
     (default `false`)
-  - `actionRights`: an array of action rights (mentioned above)
+  - `actionRights`: (_optional_) an array of action rights (mentioned above)
+  - `dataFences`: (_optional_) an array of `DataFence` (mentioned above)
+  - `getSelectDataFenceDataByType`: (_optional_) if `dataFences` option is specified, `getSelectDataFenceDataByType` will be called with the component's `ownProps`. The result is a mapper function which we can use to pick the necessary data to compare with depending on the `type` of the dataFence.
 
 ### Example
 
