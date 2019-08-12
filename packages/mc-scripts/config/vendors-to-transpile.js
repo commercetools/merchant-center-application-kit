@@ -6,8 +6,4 @@ const resolvePathToPackageDir = packageName =>
     // means we need to "cut" the path from the package directory onwards.
     .replace(new RegExp(`(.*)/${packageName}/(.*)`), `$1/${packageName}`);
 
-module.exports = [
-  resolvePathToPackageDir('react-intl'),
-  resolvePathToPackageDir('intl-messageformat'),
-  resolvePathToPackageDir('intl-messageformat-parser'),
-];
+module.exports = [resolvePathToPackageDir('react-intl')];
