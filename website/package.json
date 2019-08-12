@@ -5,7 +5,8 @@
   "scripts": {
     "build": "gatsby build",
     "start": "gatsby develop",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "vrt": "percy snapshot public"
   },
   "dependencies": {
     "@babel/core": "7.5.5",
