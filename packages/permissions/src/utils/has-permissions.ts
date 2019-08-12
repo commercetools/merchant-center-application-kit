@@ -185,6 +185,7 @@ const hasDemandedDataFenceByType = (options: {
   const hasDemandedPermission = hasPermission(options.demandedDataFence.name, {
     [options.actualDataFence.name]: true,
   });
+
   if (!hasDemandedPermission) return false;
 
   const selectedDataFenceData = options.selectDataFenceDataByType({
@@ -226,7 +227,6 @@ export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) =>
     // dataFence[type][group] = dataFence.store.group
     // with value = there is a dataFence to apply, overrules `hasDemandedProjectPermissions`
     // without value = there is no dataFence to apply, overruled by `hasDemandedProjectPermissions`
-
     const actualDataFenceByPermissionGroup = getDataFenceByPermissionGroup(
       options.actualDataFences,
       demandedDataFence.type,
@@ -246,8 +246,8 @@ export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) =>
         }
         return false;
       });
-      return hasDemandedProjectPermission || hasDemandedDataFence;
+      return hasDemandedDataFence;
     }
 
-    return hasDemandedProjectPermission;
+    return false;
   });
