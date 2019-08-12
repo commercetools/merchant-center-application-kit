@@ -49,7 +49,6 @@ type TActualDataFence = {
 type TOptionsForAppliedDataFence = {
   demandedDataFences: TDemandedDataFence[];
   actualDataFences: TDataFences;
-  actualPermissions: TPermissions;
   selectDataFenceDataByType: TSelectDataFenceDataByType;
 };
 
@@ -221,11 +220,6 @@ const getDataFenceByPermissionGroup = (
 
 export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) =>
   options.demandedDataFences.every((demandedDataFence: TDemandedDataFence) => {
-    // First check that the demanded dataFence is enforced on `projectPermissions`
-    const hasDemandedProjectPermission = hasPermission(
-      demandedDataFence.name,
-      options.actualPermissions
-    );
     // Given that dataFence structure on `applicationContext`, we get the value by a path
     // e.g given dataFence with { store: { orders: { canManageOrders: { values: } } } }
     // we read the dataFence by the [type] and [group]

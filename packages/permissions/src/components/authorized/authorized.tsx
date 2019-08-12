@@ -106,7 +106,6 @@ const Authorized = (props: Props) => {
       <React.Fragment>
         {props.render(
           hasAppliedDataFence({
-            actualPermissions: props.actualPermissions,
             demandedDataFences: props.demandedDataFences,
             actualDataFences: props.actualDataFences,
             selectDataFenceDataByType: props.selectDataFenceDataByType,
