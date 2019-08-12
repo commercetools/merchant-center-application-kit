@@ -16,7 +16,7 @@ const PageNotFound = () => (
       >
         {...messages.paragraph1}
         values={{
-          a: (msg: React.ReactNodeArray) => (
+          a: msg => (
             <a
               href={SUPPORT_PORTAL_URL}
               target="_blank"
