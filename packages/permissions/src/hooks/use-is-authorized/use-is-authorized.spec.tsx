@@ -19,12 +19,18 @@ type TActionRight = {
 type TActionRights = {
   [key: string]: TActionRight;
 };
+type TDataFenceGroupedByPermission = {
+  // E.g. { canManageOrders: { values: [] } }
+  [key: string]: { values: string[] } | null;
+};
+type TDataFenceGroupedByResourceType = {
+  // E.g. { orders: {...} }
+  [key: string]: TDataFenceGroupedByPermission | null;
+};
+type TDataFenceType = 'store';
 type TDataFences = {
-  [key: string]: {
-    [key: string]: {
-      [key: string]: { values: string[] };
-    };
-  };
+  // E.g. { store: {...} }
+  [key in TDataFenceType]: TDataFenceGroupedByResourceType;
 };
 type TestProps = {
   demandedPermissions: TPermissionName[];
@@ -50,8 +56,8 @@ const testRender = ({
   demandedActionRights,
   shouldMatchSomePermissions,
   actualPermissions = { canManageProjectSettings: true },
-  actualActionRights = {},
-  actualDataFences = {},
+  actualActionRights = null,
+  actualDataFences = null,
 }: {
   demandedPermissions: TPermissionName[];
   demandedActionRights?: TDemandedActionRight[];

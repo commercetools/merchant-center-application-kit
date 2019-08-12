@@ -68,6 +68,34 @@ const defaultProps: Pick<Props, 'shouldMatchSomePermissions'> = {
 };
 
 const Authorized = (props: Props) => {
+  // Check first for data fences
+  if (
+    props.actualDataFences &&
+    props.demandedDataFences &&
+    props.demandedDataFences.length > 0
+  ) {
+    if (!props.selectDataFenceDataByType) {
+      reportErrorToSentry(
+        new Error(
+          `@commercetools-frontend/permissions/Authorized: Missing data fences selector "selectDataFenceDataByType".`
+        )
+      );
+      return <React.Fragment>{props.render(false)}</React.Fragment>;
+    }
+    return (
+      <React.Fragment>
+        {props.render(
+          hasAppliedDataFence({
+            demandedDataFences: props.demandedDataFences,
+            actualDataFences: props.actualDataFences,
+            selectDataFenceDataByType: props.selectDataFenceDataByType,
+          })
+        )}
+      </React.Fragment>
+    );
+  }
+
+  // If no data fences have been provided, fall back to normal permissions + action rights.
   if (!props.actualPermissions)
     return <React.Fragment>{props.render(false)}</React.Fragment>;
 
@@ -92,28 +120,6 @@ const Authorized = (props: Props) => {
     props.demandedActionRights || [],
     props.actualActionRights
   );
-
-  if (
-    props.actualDataFences &&
-    props.demandedDataFences &&
-    props.demandedDataFences.length > 0
-  ) {
-    if (!props.selectDataFenceDataByType) {
-      console.error('DataFences are demanded but no selector provided');
-      return <React.Fragment>{props.render(false)}</React.Fragment>;
-    }
-    return (
-      <React.Fragment>
-        {props.render(
-          hasAppliedDataFence({
-            demandedDataFences: props.demandedDataFences,
-            actualDataFences: props.actualDataFences,
-            selectDataFenceDataByType: props.selectDataFenceDataByType,
-          })
-        )}
-      </React.Fragment>
-    );
-  }
 
   return (
     <React.Fragment>

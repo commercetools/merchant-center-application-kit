@@ -6,9 +6,10 @@
 
 React components to declaratively handle MC permissions.
 
-- `branchOnPermissions()`
-- `<RestrictedByPermissions>`
+- `useIsAuthorized()`
 - `injectAuthorized()`
+- `<RestrictedByPermissions>`
+- `branchOnPermissions()`
 
 ## Install
 
@@ -95,6 +96,131 @@ export const DATA_FENCES = {
 };
 ```
 
+## `useIsAuthorized(options)`
+
+```js
+useIsAutorized(options: HookOptions): boolean
+```
+
+### Named arguments
+
+- `demandedPermissions`: an array of `Permission`, requested for the child component to
+  be allowed to render
+- `demandedAtionRights`: (_optional_) an array of action rights (mentioned above)
+- `demandedDataFences`: (_optional_) an array of `DataFence` (mentioned above)
+- `getSelectDataFenceDataByType`: (_optional_) if `dataFences` option is specified, `getSelectDataFenceDataByType` will be called with the component's `ownProps`. The result is a mapper function which we can use to pick the necessary data to compare with depending on the `type` of the dataFence.
+- `shouldMatchSomePermissions`: (_optional_) determines if _some_ or _every_ requested permission should match (default `false`)
+
+### Example
+
+```js
+const Test = () => {
+  const canAccessProducts = useIsAuthorized({
+    demandedPermissions: ['ManageProducts'],
+  });
+  if (canAccessProducts) {
+    return <span>{'Authorized'}</span>;
+  }
+  return <span>{'Not authorized'}</span>;
+};
+```
+
+## `injectAuthorized(permissions, [options])`
+
+Like `branchOnPermissions`, but without the `FallbackComponent`.
+
+> This is meant to be used in cases where only the `isAuthorized` prop is needed
+> to be injected.
+
+```js
+injectAuthorized(
+  permissions: [Permission],
+  options: ?Object
+): HoC
+```
+
+### Arguments
+
+- `permissions`: an array of `Permission`, requested for the child component to
+  be allowed to render
+- `options` (_optional_)
+  - `shouldMatchSomePermissions`: (_optional_) determines if _some_ or _every_ requested permission should match
+    (default `false`)
+  - `actionRights`: (_optional_) an array of action rights (mentioned above)
+  - `dataFences`: (_optional_) an array of `DataFence` (mentioned above)
+  - `getSelectDataFenceDataByType`: (_optional_) if `dataFences` option is specified, `getSelectDataFenceDataByType` will be called with the component's `ownProps`. The result is a mapper function which we can use to pick the necessary data to compare with depending on the `type` of the dataFence.
+
+### Example
+
+```js
+const InputField = props => (
+  <Input
+    //...
+    disabled={!props.isAuthorized}
+  />
+);
+
+injectAuthorized(['ViewProducts', 'ViewOrders'])(InputField);
+```
+
+## `<RestrictedByPermissions>`
+
+A React component that will render its children if the requested permissions
+match, otherwise a fallback component.
+
+> This is the React version of the `branchOnPermissions` HoC.
+
+```js
+<RestrictedByPermissions
+  permissions={[]}
+  unauthorizedComponent={Unauthorized}
+  shouldMatchSomePermissions={true}
+>
+  <MyAuthorizedComponent />
+</RestrictedByPermissions>
+```
+
+### Props
+
+- `permissions`: an array of `Permission`, requested by the component
+- `actionRights`: (_optional_) an array of `ActionRight`, requested by the component
+- `dataFences`: (_optional_) an array of `DataFence`, requested by the component
+- `selectDataFenceDataByType`: (_optional_) a mapper function which we can use to pick the necessary data to compare with depending on the `type` of the dataFence when `dataFences` option is specified
+- `unauthorizedComponent`: (_optional_) a function return an React element to be
+  rendered in case the permissions don't match
+- `render`: (_optional_) a function returning an React element or a node to be
+  rendered in case the permissions match
+  - Note: when a function is passed it will get an invoked with an object
+    containing `isAuthorized` e.g. `({ isAuthorized }) => <div />`
+- `children`: (_optional_) a function returning an React element or a node to be
+  rendered in case the permissions match
+  - Note: when a function is passed it will get an invoked with an object
+    containing `isAuthorized` e.g. `({ isAuthorized }) => <div />`
+- `shouldMatchSomePermissions`: (_optional_) determines if _some_ or _every_
+  requested permission should match (default `false`)
+
+### Examples
+
+```js
+const Unauthorized = () => <p>{'No permissions to see this'}</p>;
+const Dashboard = () => (
+  <div>
+    <RestrictedByPermissions
+      permissions={['ViewProducts']}
+      unauthorizedComponent={Unauthorized}
+    >
+      <TopFiveProducts />
+    </RestrictedByPermissions>
+    <RestrictedByPermissions
+      permissions={['ViewProducts', 'ViewOrders']}
+      shouldMatchSomePermissions={true}
+    >
+      {({ isAuthorized }) => <RevenueChart isDisabled={!isAuthorized} />}
+    </RestrictedByPermissions>
+  </div>
+);
+```
+
 ## `branchOnPermissions(permissions, [FallbackComponent], [options])`
 
 A HoC that will render a fallback component if the requested permissions don't
@@ -165,100 +291,4 @@ const ReadOnlyInput = () => // ...
 const Input = () => // ...
 
 branchOnPermissions(['ViewProducts'], ReadOnlyInput)(Input)
-```
-
-## `<RestrictedByPermissions>`
-
-A React component that will render its children if the requested permissions
-match, otherwise a fallback component.
-
-> This is the React version of the `branchOnPermissions` HoC.
-
-```js
-<RestrictedByPermissions
-  permissions={[]}
-  unauthorizedComponent={Unauthorized}
-  shouldMatchSomePermissions={true}
->
-  <MyAuthorizedComponent />
-</RestrictedByPermissions>
-```
-
-### Props
-
-- `permissions`: an array of `Permission`, requested by the component
-- `actionRights`: (_optional_) an array of `ActionRight`, requested by the component
-- `dataFences`: (_optional_) an array of `DataFence`, requested by the component
-- `selectDataFenceDataByType`: (_optional_) a mapper function which we can use to pick the necessary data to compare with depending on the `type` of the dataFence when `dataFences` option is specified
-- `unauthorizedComponent`: (_optional_) a function return an React element to be
-  rendered in case the permissions don't match
-- `render`: (_optional_) a function returning an React element or a node to be
-  rendered in case the permissions match
-  - Note: when a function is passed it will get an invoked with an object
-    containing `isAuthorized` e.g. `({ isAuthorized }) => <div />`
-- `children`: (_optional_) a function returning an React element or a node to be
-  rendered in case the permissions match
-  - Note: when a function is passed it will get an invoked with an object
-    containing `isAuthorized` e.g. `({ isAuthorized }) => <div />`
-- `shouldMatchSomePermissions`: (_optional_) determines if _some_ or _every_
-  requested permission should match (default `false`)
-
-### Examples
-
-```js
-const Unauthorized = () => <p>{'No permissions to see this'}</p>;
-const Dashboard = () => (
-  <div>
-    <RestrictedByPermissions
-      permissions={['ViewProducts']}
-      unauthorizedComponent={Unauthorized}
-    >
-      <TopFiveProducts />
-    </RestrictedByPermissions>
-    <RestrictedByPermissions
-      permissions={['ViewProducts', 'ViewOrders']}
-      shouldMatchSomePermissions={true}
-    >
-      {({ isAuthorized }) => <RevenueChart isDisabled={!isAuthorized} />}
-    </RestrictedByPermissions>
-  </div>
-);
-```
-
-## `injectAuthorized(permissions, [options])`
-
-Like `branchOnPermissions`, but without the `FallbackComponent`.
-
-> This is meant to be used in cases where only the `isAuthorized` prop is needed
-> to be injected.
-
-```js
-injectAuthorized(
-  permissions: [Permission],
-  options: ?Object
-): HoC
-```
-
-### Arguments
-
-- `permissions`: an array of `Permission`, requested for the child component to
-  be allowed to render
-- `options` (_optional_)
-  - `shouldMatchSomePermissions`: (_optional_) determines if _some_ or _every_ requested permission should match
-    (default `false`)
-  - `actionRights`: (_optional_) an array of action rights (mentioned above)
-  - `dataFences`: (_optional_) an array of `DataFence` (mentioned above)
-  - `getSelectDataFenceDataByType`: (_optional_) if `dataFences` option is specified, `getSelectDataFenceDataByType` will be called with the component's `ownProps`. The result is a mapper function which we can use to pick the necessary data to compare with depending on the `type` of the dataFence.
-
-### Example
-
-```js
-const InputField = props => (
-  <Input
-    //...
-    disabled={!props.isAuthorized}
-  />
-);
-
-injectAuthorized(['ViewProducts', 'ViewOrders'])(InputField);
 ```

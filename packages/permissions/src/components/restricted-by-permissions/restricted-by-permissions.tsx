@@ -7,22 +7,28 @@ import Authorized from '../authorized';
 const getHasChildren = (children: React.ReactNode) =>
   React.Children.count(children) > 0;
 
+// Permissions
 type TPermissionName = string;
+// Action rights
 type TActionRightName = string;
 type TActionRightGroup = string;
 type TDemandedActionRight = {
   group: TActionRightGroup;
   name: TActionRightName;
 };
+// Data fences
+type TDataFenceType = 'store';
 type TDemandedDataFence = {
   group: string;
   name: string;
-  type: string;
+  type: TDataFenceType;
 };
 type TSelectDataFenceDataByType = (dataFenceWithType: {
   type: TDataFenceType;
 }) => string[] | null;
+
 type TRenderProp = (props: { isAuthorized: boolean }) => React.ReactNode;
+
 type Props = {
   shouldMatchSomePermissions?: boolean;
   permissions: TPermissionName[];

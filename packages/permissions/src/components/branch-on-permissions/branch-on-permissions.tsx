@@ -3,13 +3,16 @@ import { ApplicationContext } from '@commercetools-frontend/application-shell-co
 import getDisplayName from '../../utils/get-display-name';
 import Authorized from '../authorized';
 
+// Permissions
 type TPermissionName = string;
+// Action rights
 type TActionRightName = string;
 type TActionRightGroup = string;
 type TDemandedActionRight = {
   group: TActionRightGroup;
   name: TActionRightName;
 };
+// Data fences
 type TDataFenceType = 'store';
 type TDemandedDataFence = {
   group: string;
