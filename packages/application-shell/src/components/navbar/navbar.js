@@ -392,7 +392,7 @@ export class DataMenu extends React.PureComponent {
       document.body.classList.remove('body__menu-open');
   }
 
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     window.removeEventListener('resize', this.checkSize);
     window.removeEventListener('click', this.shouldCloseMenuFly, true);
   }
