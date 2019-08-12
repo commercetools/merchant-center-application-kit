@@ -3268,13 +3268,7 @@
     "@babel/runtime" "^7.5.5"
     "@testing-library/dom" "^6.0.0"
 
-<<<<<<< HEAD
-"@testing-library/dom@^5.5.4":
-||||||| parent of 5fb4d26c... chore(deps): update dependency @testing-library/react to v8.0.9
-"@testing-library/dom@^5.5.4", "@testing-library/dom@^5.6.0":
-=======
-"@testing-library/dom@^5.6.0", "@testing-library/dom@^5.6.1":
->>>>>>> 5fb4d26c... chore(deps): update dependency @testing-library/react to v8.0.9
+"@testing-library/dom@^5.6.1":
   version "5.6.1"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-5.6.1.tgz#705a1cb4a039b877c1e69e916824038e837ab637"
   integrity sha512-Y1T2bjtvQMewffn1CJ28kpgnuvPYKsBcZMagEH0ppfEMZPDc8AkkEnTk4smrGZKw0cblNB3lhM2FMnpfLExlHg==
