@@ -16,10 +16,15 @@ type TDemandedDataFence = {
   name: string;
   type: TDataFenceType;
 };
+type TSelectDataFenceDataByType = (dataFenceWithType: {
+  type: TDataFenceType;
+}) => string[] | null;
+
 type TOptions = {
   shouldMatchSomePermissions?: boolean;
   actionRights?: TDemandedActionRight[];
   dataFences?: TDemandedDataFence[];
+  selectDataFenceDataByType?: TSelectDataFenceDataByType;
 };
 
 const branchOnPermissions = <OwnProps extends {}>(
@@ -36,12 +41,13 @@ const branchOnPermissions = <OwnProps extends {}>(
       render={applicationContext => (
         <Authorized
           shouldMatchSomePermissions={options.shouldMatchSomePermissions}
-          demandedPermissions={demandedPermissions}
-          demandedActionRights={options.actionRights}
-          demandedDataFences={options.dataFences}
           actualPermissions={applicationContext.permissions}
           actualActionRights={applicationContext.actionRights}
           actualDataFences={applicationContext.dataFences}
+          demandedPermissions={demandedPermissions}
+          demandedActionRights={options.actionRights}
+          demandedDataFences={options.dataFences}
+          selectDataFenceDataByType={options.selectDataFenceDataByType}
           render={isAuthorized => {
             if (isAuthorized) {
               return <Component {...props} />;
