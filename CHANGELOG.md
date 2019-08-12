@@ -1,3 +1,12 @@
+## [14.3.5](https://github.com/commercetools/merchant-center-application-kit/compare/v14.3.4...v14.3.5) (2019-08-12)
+
+#### 🤖 Type: Dependencies
+
+- `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `jest-preset-mc-app`, `mc-scripts`, `react-notifications`, `sentry`
+  - [#963](https://github.com/commercetools/merchant-center-application-kit/pull/963) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+- Other
+  - [#961](https://github.com/commercetools/merchant-center-application-kit/pull/961) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+
 ## [14.3.4](https://github.com/commercetools/merchant-center-application-kit/compare/v14.3.3...v14.3.4) (2019-08-09)
 
 #### 🐛 Type: Bug
