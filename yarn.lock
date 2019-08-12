@@ -1307,10 +1307,10 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@flopflip/launchdarkly-adapter@2.8.0":
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.8.0.tgz#4dc84847e16104425d49460d59758830776d85ff"
-  integrity sha512-QWboKkFu5EEBg9WcNnS+cXA3Ge12LthcFRNTCubkfwCUGeRfx1PJq+XkqyY8ADsZVaH0Cvzt4WpnWem27NWDqg==
+"@flopflip/launchdarkly-adapter@2.8.1":
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.8.1.tgz#583435bb68f27eb241419c650da479d648813681"
+  integrity sha512-fK4ETppuhlvNqtduqqmVv6s/XQcaU1po2TeS3trWXVdu4/aeG8NvZxEhac8hzL13VdpNUnPG2aJjV8YPtasxvQ==
   dependencies:
     "@babel/runtime" "7.5.5"
     debounce-fn "3.0.1"
@@ -1328,21 +1328,21 @@
     invariant "2.2.4"
     mitt "1.1.3"
 
-"@flopflip/react-broadcast@9.0.0":
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-9.0.0.tgz#310f26ad42c6135da93de38d69962b7528510682"
-  integrity sha512-lCnKxj+U2KtxkrWQErBETI1tMFiDkxvNb8SEw7ULrr7m30hYyOBA/NV2Nk8i9eqQLs1GpqmAfpgmCwguEYsbFg==
+"@flopflip/react-broadcast@9.0.1":
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-9.0.1.tgz#ad871e3d6ec4a1fa47ca7b5362f2e43110b3267d"
+  integrity sha512-n1Llqq0zVtBem1bUvCuBXAeT9vg7gWblbKo8AMn5VHUy37JMxWeqlXlkV/C/l/sB9ax5RTv/oD9+1eyhU8d2Xw==
   dependencies:
     "@babel/runtime" "7.5.5"
-    "@flopflip/react" "^8.0.0"
+    "@flopflip/react" "^8.0.1"
     "@flopflip/types" "^2.1.1"
     create-react-context "0.3.0"
     lodash "4.17.15"
 
-"@flopflip/react@^8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-8.0.0.tgz#a9a1c09522f4c9a68f9777588e4f070b0a2e9302"
-  integrity sha512-d06q7K0o98y6BFF/XkZUpdUOclC9mqUvvgg/qu8i4KRAaL0+BJctPU0P5GKxP3cwphDDcItMCLfC4mO9u5MOng==
+"@flopflip/react@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-8.0.1.tgz#11d8fae3f72f89e2e845c953a0133ef61bba3b01"
+  integrity sha512-2HyQD2+ffSKLNQP/t3/W+jY4OXt/TiBh/DcTdxLp5/pG0wkmLQQzUW7K9lSNxIajZP59ixRia9+qU/aJqv+6gg==
   dependencies:
     "@babel/runtime" "7.5.5"
     create-react-context "0.3.0"
