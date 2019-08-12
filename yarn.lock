@@ -1140,7 +1140,7 @@
     "@emotion/babel-plugin-jsx-pragmatic" "^0.1.3"
     babel-plugin-emotion "^10.0.14"
 
-"@emotion/cache@^10.0.14", "@emotion/cache@^10.0.15", "@emotion/cache@^10.0.9":
+"@emotion/cache@^10.0.15", "@emotion/cache@^10.0.9":
   version "10.0.15"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.15.tgz#b81767b48015aae2689c60373992145c67b8de02"
   integrity sha512-8VthgeKhlGeTXSW1JN7I14AnAaiFPbOrqNqg3dPoGCZ3bnMjkrmRU0zrx0BtBw9esBaPaQgDB9y0tVgAGT2Mrg==
@@ -1149,18 +1149,6 @@
     "@emotion/stylis" "0.8.4"
     "@emotion/utils" "0.11.2"
     "@emotion/weak-memoize" "0.2.3"
-
-"@emotion/core@10.0.14":
-  version "10.0.14"
-  resolved "https://registry.yarnpkg.com/@emotion/core/-/core-10.0.14.tgz#cac5c334b278d5b7688cfff39e460a5b50abb71c"
-  integrity sha512-G9FbyxLm3lSnPfLDcag8fcOQBKui/ueXmWOhV+LuEQg9HrqExuWnWaO6gm6S5rNe+AMcqLXVljf8pYgAdFLNSg==
-  dependencies:
-    "@babel/runtime" "^7.4.3"
-    "@emotion/cache" "^10.0.14"
-    "@emotion/css" "^10.0.14"
-    "@emotion/serialize" "^0.11.8"
-    "@emotion/sheet" "0.9.3"
-    "@emotion/utils" "0.11.2"
 
 "@emotion/core@10.0.15", "@emotion/core@^10.0.9":
   version "10.0.15"
@@ -1216,7 +1204,7 @@
   resolved "https://registry.yarnpkg.com/@emotion/sheet/-/sheet-0.9.3.tgz#689f135ecf87d3c650ed0c4f5ddcbe579883564a"
   integrity sha512-c3Q6V7Df7jfwSq5AzQWbXHa5soeE4F5cbqi40xn0CzXxWW9/6Mxq48WJEtqfWzbZtW9odZdnRAkwCQwN12ob4A==
 
-"@emotion/styled-base@^10.0.14", "@emotion/styled-base@^10.0.15":
+"@emotion/styled-base@^10.0.15":
   version "10.0.15"
   resolved "https://registry.yarnpkg.com/@emotion/styled-base/-/styled-base-10.0.15.tgz#481dbfa5496259c8c64923fa24dfc9f456d83218"
   integrity sha512-u1mtdoEip9uf0Wa/CrgLNFiu5pP6annTHyZGGinBisk/dRGyfq3NB7suum8HeMu26xXk7b5/qseDlrsoHq75KQ==
@@ -1225,14 +1213,6 @@
     "@emotion/is-prop-valid" "0.8.2"
     "@emotion/serialize" "^0.11.9"
     "@emotion/utils" "0.11.2"
-
-"@emotion/styled@10.0.14":
-  version "10.0.14"
-  resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-10.0.14.tgz#538bcf0d67bf8f6de946bcfbee53dc7d0187b346"
-  integrity sha512-Ae8d5N/FmjvZKXjqWcjfhZhjCdkvxZSqD95Q72BYDNQnsOKLHIA4vWlMolLXDNkw1dIxV3l2pp82Z87HXj6eYQ==
-  dependencies:
-    "@emotion/styled-base" "^10.0.14"
-    babel-plugin-emotion "^10.0.14"
 
 "@emotion/styled@10.0.15":
   version "10.0.15"
