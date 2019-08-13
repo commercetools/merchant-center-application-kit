@@ -160,7 +160,7 @@ const InputField = props => (
   />
 );
 
-injectAuthorized(['ViewProducts', 'ViewOrders'])(InputField);
+injectAuthorized([Permissions.ViewProducts, Permissions.ViewOrders])(InputField);
 ```
 
 ## `<RestrictedByPermissions>`
