@@ -1,6 +1,7 @@
 import React from 'react';
-import { Query } from 'react-apollo';
+import { useQuery } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import getDisplayName from '../../utils/get-display-name';
 import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.graphql';
 
@@ -27,27 +28,27 @@ type ConsumerProps = {
 
 const Context = React.createContext<TImageRegexContext | {}>({});
 
-const ProjectExtensionProviderForImageRegex = (props: ProviderProps) => (
-  <Query<
+const ProjectExtensionProviderForImageRegex = (props: ProviderProps) => {
+  const { loading, data } = useQuery<
     { projectExtension?: { imageRegex?: TImageRegex } },
-    { target: string }
-  >
-    query={FetchProjectExtensionImageRegex}
-    variables={{ target: GRAPHQL_TARGETS.SETTINGS_SERVICE }}
-  >
-    {({ loading, data }) => (
-      <Context.Provider
-        value={{
-          isLoading: loading,
-          imageRegex:
-            data && data.projectExtension && data.projectExtension.imageRegex,
-        }}
-      >
-        {props.children}
-      </Context.Provider>
-    )}
-  </Query>
-);
+    { target: typeof GRAPHQL_TARGETS.SETTINGS_SERVICE }
+  >(FetchProjectExtensionImageRegex, {
+    onError: reportErrorToSentry,
+    variables: { target: GRAPHQL_TARGETS.SETTINGS_SERVICE },
+  });
+
+  return (
+    <Context.Provider
+      value={{
+        isLoading: loading,
+        imageRegex:
+          data && data.projectExtension && data.projectExtension.imageRegex,
+      }}
+    >
+      {props.children}
+    </Context.Provider>
+  );
+};
 ProjectExtensionProviderForImageRegex.displayName =
   'ProjectExtensionProviderForImageRegex';
 
