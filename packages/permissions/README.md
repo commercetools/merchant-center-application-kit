@@ -74,7 +74,12 @@ export const ACTION_RIGHTS = {
 
 ## Available dataFences
 
-A `DataFence` is represented as an object with the shape `{ group: string, name: string, type: string }`. currently there is only dataFences of type `store`. The `group` relates to what the permission applies to and the `name` is the permission itself. Currently the following datafences for the `group: 'orders'` exist:
+> This is a **beta** feature and should be used with caution. For more information, please [open an issue](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose).
+
+A `DataFence` is represented as an object with the shape `{ group: string, name: string, type: string }`, where:
+- `type`: is one of `['store']`
+- `name`: is the `Permission` value
+- `group`: is one of the resource types (e.g. `orders`)
 
 - `ViewOrders`
 - `ManageOrders`
