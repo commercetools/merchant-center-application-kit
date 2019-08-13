@@ -236,10 +236,10 @@ export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) =>
     if (actualDataFenceByPermissionGroup) {
       const hasDemandedDataFence = Object.entries(
         actualDataFenceByPermissionGroup
-      ).every(([name, value]) => {
-        if (value) {
+      ).every(([dataFenceName, dataFenceValue]) => {
+        if (dataFenceValue) {
           return hasDemandedDataFenceByType({
-            actualDataFence: { name, dataFenceValue: value },
+            actualDataFence: { name: dataFenceName, dataFenceValue },
             demandedDataFence,
             selectDataFenceDataByType: options.selectDataFenceDataByType,
           });
