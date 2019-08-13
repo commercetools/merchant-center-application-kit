@@ -3,22 +3,39 @@ import { ApplicationContext } from '@commercetools-frontend/application-shell-co
 import getDisplayName from '../../utils/get-display-name';
 import Authorized from '../authorized';
 
+// Permissions
 type TPermissionName = string;
+// Action rights
 type TActionRightName = string;
 type TActionRightGroup = string;
 type TDemandedActionRight = {
   group: TActionRightGroup;
   name: TActionRightName;
 };
-type TOptions = {
+// Data fences
+type TDataFenceType = 'store';
+type TDemandedDataFence = {
+  group: string;
+  name: string;
+  type: TDataFenceType;
+};
+type TSelectDataFenceDataByType = (dataFenceWithType: {
+  type: TDataFenceType;
+}) => string[] | null;
+
+type TOptions<OwnProps extends {}> = {
   shouldMatchSomePermissions?: boolean;
   actionRights?: TDemandedActionRight[];
+  dataFences?: TDemandedDataFence[];
+  getSelectDataFenceDataByType?: (
+    ownProps: OwnProps
+  ) => TSelectDataFenceDataByType;
 };
 
 const branchOnPermissions = <OwnProps extends {}>(
   demandedPermissions: TPermissionName[],
   FallbackComponent: React.ComponentType<unknown>,
-  options: TOptions = {
+  options: TOptions<OwnProps> = {
     shouldMatchSomePermissions: false,
   }
 ) => (
@@ -29,10 +46,16 @@ const branchOnPermissions = <OwnProps extends {}>(
       render={applicationContext => (
         <Authorized
           shouldMatchSomePermissions={options.shouldMatchSomePermissions}
-          demandedPermissions={demandedPermissions}
-          demandedActionRights={options.actionRights}
           actualPermissions={applicationContext.permissions}
           actualActionRights={applicationContext.actionRights}
+          actualDataFences={applicationContext.dataFences}
+          demandedPermissions={demandedPermissions}
+          demandedActionRights={options.actionRights}
+          demandedDataFences={options.dataFences}
+          selectDataFenceDataByType={
+            options.getSelectDataFenceDataByType &&
+            options.getSelectDataFenceDataByType(props)
+          }
           render={isAuthorized => {
             if (isAuthorized) {
               return <Component {...props} />;

@@ -18,13 +18,38 @@ type TDemandedActionRight = {
   group: TActionRightGroup;
   name: TActionRightName;
 };
+// Data fences
+type TDataFenceGroupedByPermission = {
+  // E.g. { canManageOrders: { values: [] } }
+  [key: string]: { values: string[] } | null;
+};
+type TDataFenceGroupedByResourceType = {
+  // E.g. { orders: {...} }
+  [key: string]: TDataFenceGroupedByPermission | null;
+};
+type TDataFenceType = 'store';
+type TDataFences = {
+  // E.g. { store: {...} }
+  [key in TDataFenceType]: TDataFenceGroupedByResourceType;
+};
+type TDemandedDataFence = {
+  group: string;
+  name: string;
+  type: TDataFenceType;
+};
+type TSelectDataFenceDataByType = (dataFenceWithType: {
+  type: TDataFenceType;
+}) => string[] | null;
 
 type TestProps = {
   shouldMatchSomePermissions: boolean;
   demandedPermissions: TPermissionName[];
   demandedActionRights?: TDemandedActionRight[];
+  demandedDataFences?: TDemandedDataFence[];
   actualPermissions: TPermissions | null;
   actualActionRights: TActionRights | null;
+  actualDataFences: TDataFences | null;
+  selectDataFenceDataByType?: TSelectDataFenceDataByType;
   render: jest.Mock;
 };
 
@@ -170,6 +195,79 @@ describe('rendering', () => {
         });
         it('should pass isAuthorized as "false"', () => {
           expect(props.render).toHaveBeenCalledWith(false);
+        });
+      });
+    });
+  });
+
+  describe('dataFence to view orders on specific store', () => {
+    beforeEach(() => {
+      props = createTestProps({
+        actualDataFences: {
+          store: {
+            orders: {
+              canViewOrders: {
+                values: ['store-1'],
+              },
+            },
+          },
+        },
+      });
+    });
+    describe('if cannot view or manage orders', () => {
+      beforeEach(() => {
+        props = {
+          ...props,
+          ...createTestProps({
+            actualPermissions: {
+              canViewOrders: false,
+              canManageOrders: false,
+              canViewProducts: true,
+            },
+          }),
+        };
+      });
+      describe('has demanded dataFence to MANAGE orders on the specific store', () => {
+        beforeEach(() => {
+          props = {
+            ...props,
+            ...createTestProps({
+              demandedDataFences: [
+                {
+                  type: 'store',
+                  group: 'orders',
+                  name: 'ManageOrders',
+                },
+              ],
+              selectDataFenceDataByType: ({ type }) => ['store-1'],
+            }),
+          };
+          shallow(<Authorized {...props} />);
+        });
+        it('should pass isAuthorized as "false"', () => {
+          expect(props.render).toHaveBeenCalledWith(false);
+        });
+      });
+
+      describe('has demanded dataFence to VIEW orders on the specific store', () => {
+        beforeEach(() => {
+          props = {
+            ...props,
+            ...createTestProps({
+              demandedDataFences: [
+                {
+                  type: 'store',
+                  group: 'orders',
+                  name: 'ViewOrders',
+                },
+              ],
+              selectDataFenceDataByType: ({ type }) => ['store-1'],
+            }),
+          };
+          shallow(<Authorized {...props} />);
+        });
+        it('should pass isAuthorized as "true"', () => {
+          expect(props.render).toHaveBeenCalledWith(true);
         });
       });
     });

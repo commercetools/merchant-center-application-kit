@@ -1,9 +1,12 @@
 import isNil from 'lodash/isNil';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 
+// Permissions
 type TPermissionName = string;
 type TPermissions = {
   [key: string]: boolean;
 };
+// Action rights
 type TActionRightName = string;
 type TActionRightGroup = string;
 type TDemandedActionRight = {
@@ -15,6 +18,38 @@ type TActionRight = {
 };
 type TActionRights = {
   [key: string]: TActionRight;
+};
+// Data fences
+type TDataFenceGroupedByPermission = {
+  // E.g. { canManageOrders: { values: [] } }
+  [key: string]: { values: string[] } | null;
+};
+type TDataFenceGroupedByResourceType = {
+  // E.g. { orders: {...} }
+  [key: string]: TDataFenceGroupedByPermission | null;
+};
+type TDataFenceType = 'store';
+type TDataFences = {
+  // E.g. { store: {...} }
+  [key in TDataFenceType]: TDataFenceGroupedByResourceType;
+};
+type TDemandedDataFence = {
+  group: string;
+  name: string;
+  type: TDataFenceType;
+};
+type TSelectDataFenceDataByType = (dataFenceWithType: {
+  type: TDataFenceType;
+}) => string[] | null;
+type TActualDataFence = {
+  name: string;
+  dataFenceValue: { values: string[] };
+};
+
+type TOptionsForAppliedDataFence = {
+  demandedDataFences: TDemandedDataFence[];
+  actualDataFences: TDataFences;
+  selectDataFenceDataByType: TSelectDataFenceDataByType;
 };
 
 // Build the permission key from the definition to match it to the format coming
@@ -141,3 +176,78 @@ export const getInvalidPermissions = (
     isNil(actualPermissions[toCanCase(demandedPermission)])
   );
 };
+
+const hasDemandedDataFenceByType = (options: {
+  actualDataFence: TActualDataFence;
+  demandedDataFence: TDemandedDataFence;
+  selectDataFenceDataByType: TSelectDataFenceDataByType;
+}): boolean => {
+  const hasDemandedPermission = hasPermission(options.demandedDataFence.name, {
+    [options.actualDataFence.name]: true,
+  });
+
+  if (!hasDemandedPermission) return false;
+
+  const selectedDataFenceData = options.selectDataFenceDataByType({
+    type: options.demandedDataFence.type,
+  });
+
+  if (!selectedDataFenceData) {
+    reportErrorToSentry(
+      new Error(`missing mapper for type "${options.demandedDataFence.type}"`),
+      { extra: options.demandedDataFence.type }
+    );
+    return false;
+  }
+
+  return selectedDataFenceData.every(value =>
+    options.actualDataFence.dataFenceValue.values.includes(value)
+  );
+};
+
+const getDataFenceByPermissionGroup = (
+  dataFences: TDataFences,
+  storeKey: TDataFenceType,
+  groupKey: string
+) => {
+  if (storeKey in dataFences) {
+    const resourceType = dataFences[storeKey];
+    if (groupKey in resourceType) {
+      return resourceType[groupKey];
+    }
+  }
+  return null;
+};
+
+export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) =>
+  options.demandedDataFences.every((demandedDataFence: TDemandedDataFence) => {
+    // Given that dataFence structure on `applicationContext`, we get the value by a path
+    // e.g given dataFence with { store: { orders: { canManageOrders: { values: } } } }
+    // we read the dataFence by the [type] and [group]
+    // dataFence[type][group] = dataFence.store.group
+    // with value = there is a dataFence to apply, overrules `hasDemandedProjectPermissions`
+    // without value = there is no dataFence to apply, overruled by `hasDemandedProjectPermissions`
+    const actualDataFenceByPermissionGroup = getDataFenceByPermissionGroup(
+      options.actualDataFences,
+      demandedDataFence.type,
+      demandedDataFence.group
+    );
+
+    if (actualDataFenceByPermissionGroup) {
+      const hasDemandedDataFence = Object.entries(
+        actualDataFenceByPermissionGroup
+      ).every(([dataFenceName, dataFenceValue]) => {
+        if (dataFenceValue) {
+          return hasDemandedDataFenceByType({
+            actualDataFence: { name: dataFenceName, dataFenceValue },
+            demandedDataFence,
+            selectDataFenceDataByType: options.selectDataFenceDataByType,
+          });
+        }
+        return false;
+      });
+      return hasDemandedDataFence;
+    }
+
+    return false;
+  });
