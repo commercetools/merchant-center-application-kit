@@ -134,7 +134,7 @@ Like `branchOnPermissions`, but without the `FallbackComponent`.
 
 ```js
 injectAuthorized(
-  permissions: [Permission],
+  permissions: [Permissions.ManageOrders],
   options: ?Object
 ): HoC
 ```
