@@ -12,6 +12,10 @@ query FetchApplicationsMenu {
       featureToggle
       menuVisibility
       permissions
+      actionRights {
+        group
+        name
+      }
       submenu {
         key
         uriPath
@@ -22,6 +26,10 @@ query FetchApplicationsMenu {
         featureToggle
         menuVisibility
         permissions
+        actionRights {
+          group
+          name
+        }
       }
     }
     appBar {
