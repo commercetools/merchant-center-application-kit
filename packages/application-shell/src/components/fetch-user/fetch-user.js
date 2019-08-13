@@ -1,34 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { deepEqual } from 'fast-equals';
-import { Query } from 'react-apollo';
+import { useQuery } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import LoggedInUserQuery from './fetch-user.graphql';
 
-class FetchUser extends React.Component {
-  static displayName = 'FetchUser';
-  static propTypes = {
-    children: PropTypes.func.isRequired,
-  };
-  shouldComponentUpdate(nextProps) {
-    return !deepEqual(this.props, nextProps);
-  }
-  render() {
-    return (
-      <Query
-        query={LoggedInUserQuery}
-        variables={{ target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND }}
-      >
-        {({ data, loading, error }) =>
-          this.props.children({
-            isLoading: loading,
-            user: data && data.user,
-            error,
-          })
-        }
-      </Query>
-    );
-  }
-}
+const FetchUser = props => {
+  const { loading, data, error } = useQuery(LoggedInUserQuery, {
+    onError: reportErrorToSentry,
+    variables: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
+  });
+  return (
+    <>
+      {props.children({ isLoading: loading, user: user && data.user, error })}
+    </>
+  );
+};
+FetchUser.displayName = 'FetchUser';
+FetchUser.propTypes = {
+  children: PropTypes.func.isRequired,
+};
 
 export default FetchUser;
