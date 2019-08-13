@@ -147,7 +147,7 @@
   },
   "resolutions": {
     "@types/react": "16.9.2",
-    "react": "16.8.6"
+    "react": "16.9.0"
   },
   "engines": {
     "node": ">=8.9",

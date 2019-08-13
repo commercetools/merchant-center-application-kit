@@ -45,7 +45,7 @@ class StateMachinesDetailsFetcher extends React.Component {
       this.fetchData(this.props.id);
     }
   }
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     this.isUnmounting = true;
   }
   fetchData = id => {
