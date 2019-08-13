@@ -95,7 +95,7 @@ class QuickAccess extends React.Component {
     }
   }
 
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     saveHistoryEntries(this.state.historyEntries);
   }
 
