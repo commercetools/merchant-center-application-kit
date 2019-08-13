@@ -134,7 +134,7 @@ export function createLegacyL10NInjector<LoadedData extends {}>({
         componentDidMount() {
           this.loadCountries(this.props);
         }
-        componentWillUnmount() {
+        UNSAFE_componentWillUnmount() {
           this.isUnmounting = true;
         }
         // eslint-disable-next-line camelcase
