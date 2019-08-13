@@ -69,10 +69,6 @@ const defaultEnvironment = {
   servedByProxy: false,
 };
 
-const defaultPermissions = {};
-const defaultActionRights = null;
-const defaultDataFences = null;
-
 // Allow consumers of `render` to extend the defaults by passing an object
 // or to completely omit the value by passing `null`
 const mergeOptional = (defaultValue, value) =>
@@ -130,7 +126,7 @@ const renderApp = (
     environment,
     user,
     project,
-    permissions = defaultPermissions,
+    permissions,
     actionRights,
     dataFences,
     dataLocale = 'en',
