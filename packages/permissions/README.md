@@ -77,6 +77,7 @@ export const ACTION_RIGHTS = {
 > This is a **beta** feature and should be used with caution. For more information, please [open an issue](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose).
 
 A `DataFence` is represented as an object with the shape `{ group: string, name: string, type: string }`, where:
+
 - `type`: is one of `['store']`
 - `name`: is the `Permission` value
 - `group`: is one of the resource types (e.g. `orders`)
@@ -120,10 +121,10 @@ useIsAutorized(options: HookOptions): boolean
 
 ```js
 const Test = () => {
-  const canAccessProducts = useIsAuthorized({
+  const canManageProducts = useIsAuthorized({
     demandedPermissions: ['ManageProducts'],
   });
-  if (canAccessProducts) {
+  if (canManageProducts) {
     return <span>{'Authorized'}</span>;
   }
   return <span>{'Not authorized'}</span>;
@@ -165,7 +166,9 @@ const InputField = props => (
   />
 );
 
-injectAuthorized([Permissions.ViewProducts, Permissions.ViewOrders])(InputField);
+injectAuthorized([Permissions.ViewProducts, Permissions.ViewOrders])(
+  InputField
+);
 ```
 
 ## `<RestrictedByPermissions>`
