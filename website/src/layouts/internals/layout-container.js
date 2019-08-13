@@ -9,6 +9,11 @@ const LayoutContainer = styled.div`
   grid-template-rows: 50px ${props => (props.isMenuOpen ? 'auto 1fr' : '1fr')};
   grid-template-columns: auto 1fr auto;
   font-size: 1.3rem;
+
+  @media only percy {
+    /* Unset the 100vh to make view scrollable in order to take full page snapshots */
+    height: auto;
+  }
 `;
 
 // eslint-disable-next-line react/display-name
