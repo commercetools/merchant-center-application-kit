@@ -32,6 +32,7 @@ const createTestMenuConfig = (key, props) => ({
   uriPath: key,
   icon: 'UserFilledIcon',
   permissions: [],
+  actionRights: null,
   featureToggle: null,
   menuVisibility: `hide${upperFirst(key)}`,
   submenu: [
@@ -41,6 +42,7 @@ const createTestMenuConfig = (key, props) => ({
       menuVisibility: `hide${upperFirst(key)}New`,
       uriPath: `${key}/new`,
       permissions: [],
+      actionRights: null,
       featureToggle: null,
     },
   ],
