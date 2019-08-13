@@ -148,7 +148,7 @@ injectAuthorized(
     (default `false`)
   - `actionRights`: (_optional_) an array of action rights (mentioned above)
   - `dataFences`: (_optional_) an array of `DataFence` (mentioned above)
-  - `getSelectDataFenceDataByType`: (_optional_) if `dataFences` option is specified, `getSelectDataFenceDataByType` will be called with the component's `ownProps`. The result is a mapper function which we can use to pick the necessary data to compare with depending on the `type` of the dataFence.
+  - `getSelectDataFenceDataByType`: (_optional_ unless `dataFences` is specified) the function is called with the component `props` and must return a new function that will be called on each specified `dataFence` and should return the mapped value specific to the data fence. The returned function usually contains a switch-case logic based on the data fence `type`, with the return value based on the `props`. For example, with `type: 'order'`, the return value would be something like `ownProps.order.storeRef.key`.
 
 ### Example
 
