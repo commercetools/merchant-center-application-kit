@@ -70,8 +70,8 @@ const defaultEnvironment = {
 };
 
 const defaultPermissions = {};
-const defaultActionRights = {};
-const defaultDataFences = {};
+const defaultActionRights = null;
+const defaultDataFences = null;
 
 // Allow consumers of `render` to extend the defaults by passing an object
 // or to completely omit the value by passing `null`
@@ -131,8 +131,8 @@ const renderApp = (
     user,
     project,
     permissions = defaultPermissions,
-    actionRights = defaultActionRights,
-    dataFences = defaultDataFences,
+    actionRights,
+    dataFences,
     dataLocale = 'en',
     ApolloProviderComponent = MockedApolloProvider,
     // gtm-context

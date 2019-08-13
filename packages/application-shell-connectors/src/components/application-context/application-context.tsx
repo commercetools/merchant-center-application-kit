@@ -73,9 +73,9 @@ type TRawProject = {
   owner: {
     id: string;
   };
-  permissions: TApplicationContextPermissions;
-  actionRights: TApplicationContextActionRights;
-  dataFences: TApplicationContextDataFences;
+  permissions: TApplicationContextPermissions | null;
+  actionRights: TApplicationContextActionRights | null;
+  dataFences: TApplicationContextDataFences | null;
 } & AdditionalProperties;
 type TApplicationContextProject = {
   key: string;

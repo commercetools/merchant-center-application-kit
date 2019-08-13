@@ -55,6 +55,10 @@ commands:
     steps:
       - attach_workspace:
           at: *working_directory
+  build_packages:
+    description: Building packages
+    steps:
+      - run: yarn build
   lint_and_test:
     description: Running linters and tests
     steps:
@@ -64,11 +68,6 @@ commands:
       - run:
           name: Running linters and tests
           command: yarn run jest --projects jest.{eslint,stylelint,test}.config.js --maxWorkers=3 --reporters jest-silent-reporter
-  build_packages:
-    description: Building packages
-    steps:
-      - run: yarn build
-      - save_package_bundles
   vrt_tests:
     description: Running Visual Regression Tests
     steps:
@@ -107,17 +106,14 @@ commands:
       - run: ./scripts/release_canary.sh
 
 jobs:
-  lint_and_test:
+  build_lint_and_test:
     executor: node_10
     steps:
       - setup_dependencies
       - *save_yarn_cache
-      - lint_and_test
-  build:
-    executor: node_10
-    steps:
-      - setup_dependencies
       - build_packages
+      - lint_and_test
+      - save_package_bundles
   vrt_test:
     executor: node_10
     steps:
@@ -206,17 +202,14 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - lint_and_test
-      - build:
-          requires:
-            - lint_and_test
+      - build_lint_and_test
       - vrt_test:
           requires:
-            - build
+            - build_lint_and_test
       - e2e_test:
           name: e2e_playground
           requires:
-            - build
+            - build_lint_and_test
           spec: 'cypress/integration/playground/**/*.js'
           build: yarn playground:build
           start: yarn playground:start:prod:local
@@ -226,7 +219,7 @@ workflows:
       - e2e_test:
           name: e2e_starter
           requires:
-            - build
+            - build_lint_and_test
           spec: 'cypress/integration/template-starter/**/*.js'
           build: yarn template-starter:build
           start: yarn template-starter:start:prod:local

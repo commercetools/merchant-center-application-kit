@@ -42,6 +42,7 @@ const testRender = ({
         },
         permissions: actualPermissions,
         actionRights: actualActionRights,
+        dataFences: null,
       }}
       environment={{
         applicationName: 'my-app',

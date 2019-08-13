@@ -23,16 +23,24 @@ import ProjectQuery from './fetch-project.graphql';
  * the fetching logic. Given this mapping needs to be used elsewere feel free
  * to move this over to `permissions` and export it there.
  */
-export const mapAllAppliedToObjectShape = allAppliedShape =>
-  allAppliedShape.reduce(
+export const mapAllAppliedToObjectShape = allAppliedShape => {
+  if (allAppliedShape.length === 0) {
+    return null;
+  }
+  return allAppliedShape.reduce(
     (transformedAllApplied, allApplied) => ({
       ...transformedAllApplied,
       [allApplied.name]: allApplied.value,
     }),
     {}
   );
-export const mapAllAppliedToGroupedObjectShape = allAppliedShape =>
-  allAppliedShape.reduce((transformedAllApplied, allApplied) => {
+};
+
+export const mapAllAppliedToGroupedObjectShape = allAppliedShape => {
+  if (allAppliedShape.length === 0) {
+    return null;
+  }
+  return allAppliedShape.reduce((transformedAllApplied, allApplied) => {
     const previousAllAppliedGroup = transformedAllApplied[allApplied.group];
 
     return {
@@ -43,6 +51,7 @@ export const mapAllAppliedToGroupedObjectShape = allAppliedShape =>
       },
     };
   }, {});
+};
 
 const mapAppliedDataFencesByResourceType = dataFences => {
   const groupedByResourceType = dataFences.reduce(
@@ -112,6 +121,9 @@ const mapAppliedDataFencesByResourceType = dataFences => {
 //   }
 // }
 export const mapAllDataFencesToGroupedObjectShape = allAppliedDataFences => {
+  if (allAppliedDataFences.length === 0) {
+    return null;
+  }
   const groupedByType = allAppliedDataFences.reduce(
     (previousGroupsOfSameType, appliedDataFence) => {
       const previousGroup = previousGroupsOfSameType[appliedDataFence.type];

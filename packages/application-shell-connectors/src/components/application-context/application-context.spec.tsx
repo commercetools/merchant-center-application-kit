@@ -42,8 +42,8 @@ describe('rendering', () => {
             currencies: ['USD'],
             languages: ['en'],
             permissions: { canManageProjectSettings: true },
-            actionRights: {},
-            dataFences: {},
+            actionRights: null,
+            dataFences: null,
             // Fields that should not be exposed
             expiry: { isActive: false },
             suspension: { isActive: false },
