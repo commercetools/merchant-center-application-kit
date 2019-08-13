@@ -12,7 +12,7 @@ const FetchUser = props => {
   });
   return (
     <>
-      {props.children({ isLoading: loading, user: user && data.user, error })}
+      {props.children({ isLoading: loading, user: data && data.user, error })}
     </>
   );
 };

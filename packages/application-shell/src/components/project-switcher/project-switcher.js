@@ -144,7 +144,7 @@ const redirectTo = targetUrl => window.location.replace(targetUrl);
 
 const ProjectSwitcher = props => {
   const intl = useIntl();
-  const { loading, data: user } = useQuery(ProjectsQuery, {
+  const { loading, data } = useQuery(ProjectsQuery, {
     onError: reportErrorToSentry,
     variables: {
       target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
@@ -173,7 +173,9 @@ const ProjectSwitcher = props => {
             // problems like e.g. resetting the store/state.
             redirectTo(`/${selectedProjectKey}`);
         }}
-        options={user && mapProjectsToOptions(user.projects.results)}
+        options={
+          data && data.user && mapProjectsToOptions(data.user.projects.results)
+        }
         isOptionDisabled={option =>
           option.suspension.isActive || option.expiry.isActive
         }
@@ -184,7 +186,7 @@ const ProjectSwitcher = props => {
           ValueContainer: valueContainerProps => (
             <ProjectSwitcherValueContainer
               {...valueContainerProps}
-              projectCount={user.projects.results.length}
+              projectCount={data.user.projects.results.length}
             />
           ),
         }}
