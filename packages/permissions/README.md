@@ -190,7 +190,7 @@ match, otherwise a fallback component.
 - `permissions`: an array of `Permission`, requested by the component
 - `actionRights`: (_optional_) an array of `ActionRight`, requested by the component
 - `dataFences`: (_optional_) an array of `DataFence`, requested by the component
-- `selectDataFenceDataByType`: (_optional_) a mapper function which we can use to pick the necessary data to compare with depending on the `type` of the dataFence when `dataFences` option is specified
+- `selectDataFenceDataByType`: (_optional_ unless `dataFences` is specified) the function is called on each specified `dataFence` and should return the mapped value specific to the data fence. The function usually contains a switch-case logic based on the data fence `type`, with the return value based on the `props`. For example, with `type: 'order'`, the return value would be something like `ownProps.order.storeRef.key`.
 - `unauthorizedComponent`: (_optional_) a function return an React element to be
   rendered in case the permissions don't match
 - `render`: (_optional_) a function returning an React element or a node to be
