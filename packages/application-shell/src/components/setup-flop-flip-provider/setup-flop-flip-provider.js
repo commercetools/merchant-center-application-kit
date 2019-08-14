@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { defaultMemoize } from 'reselect';
+import memoize from 'memoize-one';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
 
@@ -34,7 +34,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
     shouldDeferAdapterConfiguration: PropTypes.bool,
   };
 
-  createLaunchdarklyAdapterArgs = defaultMemoize(
+  createLaunchdarklyAdapterArgs = memoize(
     (
       clientSideId,
       userId,

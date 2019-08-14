@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { defaultMemoize } from 'reselect';
+import memoize from 'memoize-one';
 import { graphql } from 'react-apollo';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { css } from '@emotion/core';
@@ -129,7 +129,7 @@ ProjectSwitcherOption.propTypes = {
   }).isRequired,
 };
 
-const mapProjectsToOptions = defaultMemoize(projects =>
+const mapProjectsToOptions = memoize(projects =>
   projects.map(project => ({
     key: project.key,
     name: project.name,
