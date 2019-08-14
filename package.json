@@ -144,7 +144,8 @@
     "typescript": "3.5.3"
   },
   "resolutions": {
-    "@types/react": "16.9.1"
+    "@types/react": "16.9.1",
+    "react": "16.8.6"
   },
   "engines": {
     "node": ">=8.9",
