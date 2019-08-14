@@ -9,15 +9,19 @@ import browserHistory from '@commercetools-frontend/browser-history';
 import showApiErrorNotification from './show-api-error-notification';
 import showUnexpectedErrorNotification from './show-unexpected-error-notification';
 
-type ActionError =
-  | Error
-  | {
-      statusCode: TStatusCode;
-      body: {
-        message: string;
-        errors?: TAppNotificationApiError | TAppNotificationApiError[];
-      };
-    };
+type SdkError = {
+  statusCode: TStatusCode;
+  body: {
+    message: string;
+    errors?: TAppNotificationApiError | TAppNotificationApiError[];
+  };
+};
+
+type ActionError = Error | SdkError;
+
+function isSdkError(error: ActionError): error is SdkError {
+  return (error as SdkError).body !== undefined;
+}
 
 export default function handleActionError(error: ActionError) {
   return (
@@ -31,11 +35,7 @@ export default function handleActionError(error: ActionError) {
     if (window.app.env !== 'production')
       console.error(error, error instanceof Error && error.stack);
 
-    // All native errors that might occur within a Promise handler,
-    // are caught here as well. In this case we dispatch an unexpected
-    // error notification.
-    if (error instanceof Error)
-      return dispatch(showUnexpectedErrorNotification());
+    if (!isSdkError(error)) return dispatch(showUnexpectedErrorNotification());
 
     // logout when unauthorized
     if (error.statusCode === STATUS_CODES.UNAUTHORIZED) {
