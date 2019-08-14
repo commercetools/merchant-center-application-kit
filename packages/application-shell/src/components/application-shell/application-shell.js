@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { defaultMemoize } from 'reselect';
+import memoize from 'memoize-one';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
@@ -443,7 +443,7 @@ const getCoerceEnvironmentValue = environmentValueAsString => {
   }
 };
 
-const shallowlyCoerceValues = defaultMemoize(uncoercedEnvironmentValues =>
+const shallowlyCoerceValues = memoize(uncoercedEnvironmentValues =>
   Object.keys(uncoercedEnvironmentValues).reduce(
     (coercedEnvironmentValues, key) => {
       const uncoercedEnvironmentValue = uncoercedEnvironmentValues[key];
