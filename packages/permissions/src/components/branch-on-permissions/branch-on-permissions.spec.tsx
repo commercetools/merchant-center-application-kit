@@ -44,6 +44,7 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
             canEditPrices: false,
           },
         },
+        dataFences: null,
         owner: { id: 'o1' },
       }}
       projectDataLocale="en"

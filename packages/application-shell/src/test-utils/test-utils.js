@@ -69,10 +69,6 @@ const defaultEnvironment = {
   servedByProxy: false,
 };
 
-const defaultPermissions = {};
-const defaultActionRights = {};
-const defaultDataFences = {};
-
 // Allow consumers of `render` to extend the defaults by passing an object
 // or to completely omit the value by passing `null`
 const mergeOptional = (defaultValue, value) =>
@@ -130,9 +126,9 @@ const renderApp = (
     environment,
     user,
     project,
-    permissions = defaultPermissions,
-    actionRights = defaultActionRights,
-    dataFences = defaultDataFences,
+    permissions,
+    actionRights,
+    dataFences,
     dataLocale = 'en',
     ApolloProviderComponent = MockedApolloProvider,
     // gtm-context
