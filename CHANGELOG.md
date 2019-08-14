@@ -1,3 +1,29 @@
+## [14.4.0](https://github.com/commercetools/merchant-center-application-kit/compare/v14.3.5...v14.4.0) (2019-08-14)
+
+#### 🚀 Type: New Feature
+
+- `application-shell`, `permissions`
+  - [#894](https://github.com/commercetools/merchant-center-application-kit/pull/941) feat(app-shell): add support for dataFences ([@adnasa](https://github.com/adnasa))
+
+#### 🐛 Type: Bug
+
+- `application-shell-connectors`, `application-shell`, `permissions`
+  - [#973](https://github.com/commercetools/merchant-center-application-kit/pull/973) fix: prop-types for dataFences optional field ([@emmenko](https://github.com/emmenko))
+
+#### 🔮 Type: Chore
+
+- `application-shell`
+  - [#972](https://github.com/commercetools/merchant-center-application-kit/pull/972) feat(app-shell): load actionRights from gql for menu ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+
+- `constants`
+  - [#971](https://github.com/commercetools/merchant-center-application-kit/pull/971) refactor(constants): use const assertion ([@emmenko](https://github.com/emmenko))
+
+#### 🖥 Type: Website
+
+- [#970](https://github.com/commercetools/merchant-center-application-kit/pull/970) fix: percy snapshots for website ([@emmenko](https://github.com/emmenko))
+
 ## [14.3.5](https://github.com/commercetools/merchant-center-application-kit/compare/v14.3.4...v14.3.5) (2019-08-12)
 
 #### 🤖 Type: Dependencies
