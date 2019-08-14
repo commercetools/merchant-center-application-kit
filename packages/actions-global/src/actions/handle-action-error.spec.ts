@@ -25,8 +25,8 @@ describe('handleActionError', () => {
     });
   });
 
-  it('notifies user about sdk error', () => {
-    class FakeSdkError extends Error {
+  it('notifies user about API error', () => {
+    class FakeApiError extends Error {
       statusCode: TStatusCode;
       body: {
         message: string;
@@ -41,7 +41,7 @@ describe('handleActionError', () => {
       }
     }
 
-    const error = new FakeSdkError(
+    const error = new FakeApiError(
       401,
       "Required attribute 'key-required' cannot be removed."
     );

@@ -9,7 +9,7 @@ import browserHistory from '@commercetools-frontend/browser-history';
 import showApiErrorNotification from './show-api-error-notification';
 import showUnexpectedErrorNotification from './show-unexpected-error-notification';
 
-type SdkError = {
+type ApiError = {
   statusCode: TStatusCode;
   body: {
     message: string;
@@ -17,10 +17,10 @@ type SdkError = {
   };
 };
 
-type ActionError = Error | SdkError;
+type ActionError = Error | ApiError;
 
-function isSdkError(error: ActionError): error is SdkError {
-  return (error as SdkError).body !== undefined;
+function isApiError(error: ActionError): error is ApiError {
+  return (error as ApiError).body !== undefined;
 }
 
 export default function handleActionError(error: ActionError) {
@@ -35,7 +35,7 @@ export default function handleActionError(error: ActionError) {
     if (window.app.env !== 'production')
       console.error(error, error instanceof Error && error.stack);
 
-    if (!isSdkError(error)) return dispatch(showUnexpectedErrorNotification());
+    if (!isApiError(error)) return dispatch(showUnexpectedErrorNotification());
 
     // logout when unauthorized
     if (error.statusCode === STATUS_CODES.UNAUTHORIZED) {
