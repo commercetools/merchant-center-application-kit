@@ -1,3 +1,15 @@
+## [14.4.1](https://github.com/commercetools/merchant-center-application-kit/compare/v14.4.0...v14.4.1) (2019-08-14)
+
+#### 🐛 Type: Bug
+
+- `actions-global`
+  - [#976](https://github.com/commercetools/merchant-center-application-kit/pull/976) fix(actions-global): distinguish unknown/api errors based on presence of body field ([@pa3](https://github.com/pa3))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`, `permissions`, `react-notifications`
+  - [#975](https://github.com/commercetools/merchant-center-application-kit/pull/975) refactor: remove reselect ([@tdeekens](https://github.com/tdeekens))
+
 ## [14.4.0](https://github.com/commercetools/merchant-center-application-kit/compare/v14.3.5...v14.4.0) (2019-08-14)
 
 #### 🚀 Type: New Feature
