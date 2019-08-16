@@ -9,7 +9,6 @@ import { setIsAuthenticated } from '../authenticated';
 import { getBrowserLocale } from './utils';
 import ApplicationShellProvider from './application-shell-provider';
 
-jest.mock('@commercetools-frontend/sentry');
 jest.mock('../authenticated');
 jest.mock('./utils');
 
