@@ -4,6 +4,8 @@ import { renderApp, waitForElement } from '../../test-utils';
 import LoggedInUserQuery from './fetch-user.graphql';
 import FetchUser from './fetch-user';
 
+jest.mock('@commercetools-frontend/sentry');
+
 const renderUser = options =>
   renderApp(
     <FetchUser>

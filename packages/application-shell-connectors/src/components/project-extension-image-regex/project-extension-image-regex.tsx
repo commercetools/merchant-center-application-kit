@@ -10,23 +10,23 @@ type TImageRegexOptions = {
   replace: string;
   search: string;
 };
-type TImageRegex = {
+export type TImageRegex = {
   thumb?: TImageRegexOptions;
   small?: TImageRegexOptions;
 };
 type TImageRegexContext = {
   isLoading: boolean;
-  imageRegex: TImageRegex | null;
+  imageRegex?: TImageRegex;
 };
 type ProviderProps = {
   children: React.ReactNode;
 };
 type ConsumerProps = {
-  render: (imageRegex: TImageRegexContext | {}) => React.ReactNode;
+  render: (imageRegex: TImageRegexContext) => React.ReactNode;
   children?: never;
 };
 
-const Context = React.createContext<TImageRegexContext | {}>({});
+const Context = React.createContext<TImageRegexContext>({ isLoading: true });
 
 const ProjectExtensionProviderForImageRegex = (props: ProviderProps) => {
   const { loading, data } = useQuery<
@@ -53,7 +53,9 @@ ProjectExtensionProviderForImageRegex.displayName =
   'ProjectExtensionProviderForImageRegex';
 
 const GetProjectExtensionImageRegex = (props: ConsumerProps) => (
-  <Context.Consumer>{imageRegex => props.render(imageRegex)}</Context.Consumer>
+  <Context.Consumer>
+    {imageRegexContext => props.render(imageRegexContext)}
+  </Context.Consumer>
 );
 GetProjectExtensionImageRegex.displayName = 'GetProjectExtensionImageRegex';
 
