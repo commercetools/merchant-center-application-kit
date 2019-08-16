@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react-hooks';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { createL10NHook } from './create-l10n-injector';
 

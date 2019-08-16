@@ -82,17 +82,6 @@ export function createL10NInjector<LoadedData extends {}>({
   propLoadingKey,
   loadLocale,
 }: InjectorOptions<LoadedData>) {
-  if (process.env.NODE_ENV === 'test') {
-    if (React.version.startsWith('16.8')) {
-      return createLegacyL10NInjector({
-        displayName,
-        propKey,
-        propLoadingKey,
-        loadLocale,
-      });
-    }
-  }
-
   return function createHOC<Props extends {}>(
     mapPropsToLocale: (props: Props) => string
   ) {
@@ -112,54 +101,6 @@ export function createL10NInjector<LoadedData extends {}>({
         WrappedComponent
       )})`;
       return L10NComponent;
-    };
-  };
-}
-
-export function createLegacyL10NInjector<LoadedData extends {}>({
-  displayName,
-  propKey,
-  propLoadingKey,
-  loadLocale,
-}: InjectorOptions<LoadedData>) {
-  return function createHOC<Props extends {}>(
-    mapPropsToLocale: (props: Props) => string
-  ) {
-    return (WrappedComponent: React.ComponentType<Props>) => {
-      return class L10NComponent extends React.Component<Props> {
-        static displayName = `${displayName}(${getDisplayName<Props>(
-          WrappedComponent
-        )})`;
-        state = { [propLoadingKey]: true, [propKey]: {} };
-        componentDidMount() {
-          this.loadCountries(this.props);
-        }
-        UNSAFE_componentWillUnmount() {
-          this.isUnmounting = true;
-        }
-        // eslint-disable-next-line camelcase
-        UNSAFE_componentWillReceiveProps(nextProps: Props) {
-          if (mapPropsToLocale(this.props) !== mapPropsToLocale(nextProps)) {
-            this.loadCountries(nextProps);
-          }
-        }
-
-        isUnmounting = false;
-
-        loadCountries = async (props: Props) => {
-          this.setState({ [propLoadingKey]: true });
-          try {
-            const data = await loadLocale(mapPropsToLocale(props));
-            if (!this.isUnmounting)
-              this.setState({ [propKey]: data, [propLoadingKey]: false });
-          } catch (error) {
-            reportErrorToSentry(error);
-          }
-        };
-        render() {
-          return <WrappedComponent {...this.props} {...this.state} />;
-        }
-      };
     };
   };
 }
