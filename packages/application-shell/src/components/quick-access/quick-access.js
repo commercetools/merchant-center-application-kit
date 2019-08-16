@@ -87,6 +87,8 @@ class QuickAccess extends React.Component {
     historyEntries: loadHistoryEntries(),
   };
 
+  isUnmounting = false;
+
   componentDidMount() {
     if (this.props.pimIndexerState === pimIndexerStates.UNCHECKED) {
       this.getProjectIndexStatus().then(pimIndexerState =>
@@ -95,7 +97,8 @@ class QuickAccess extends React.Component {
     }
   }
 
-  UNSAFE_componentWillUnmount() {
+  componentWillUnmount() {
+    this.isUnmounting = true;
     saveHistoryEntries(this.state.historyEntries);
   }
 
@@ -341,9 +344,11 @@ class QuickAccess extends React.Component {
       <Butler
         intl={this.props.intl}
         historyEntries={this.state.historyEntries}
-        onHistoryEntriesChange={historyEntries =>
-          this.setState({ historyEntries })
-        }
+        onHistoryEntriesChange={historyEntries => {
+          if (!this.isUnmounting) {
+            this.setState({ historyEntries });
+          }
+        }}
         search={this.search}
         executeCommand={this.executeCommand}
         onClose={this.props.onClose}
