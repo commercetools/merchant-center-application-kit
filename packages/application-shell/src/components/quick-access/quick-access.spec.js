@@ -1,5 +1,6 @@
 import React from 'react';
 import { customProperties } from '@commercetools-frontend/ui-kit';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import {
   renderAppWithRedux,
   fireEvent,
@@ -17,7 +18,7 @@ const createMatchlessSearchMock = (searchText, variables = {}) => ({
     query: QuickAccessQuery,
     variables: {
       searchText,
-      target: 'ctp',
+      target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
       canViewProducts: true,
       productsWhereClause: 'id in ()',
       includeProductsByIds: false,

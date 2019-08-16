@@ -24,7 +24,7 @@ export class InjectReducers extends React.PureComponent {
     this.setState({ areReducersInjected: true });
   }
 
-  UNSAFE_componentWillUnmount() {
+  componentWillUnmount() {
     if (this.props.shouldCleanUpOnUnmount) {
       this.context.store.removeReducers({
         id: this.props.id,

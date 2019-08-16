@@ -44,7 +44,7 @@ export class QuickAccessTrigger extends React.Component {
     document.addEventListener('keydown', this.handler);
   }
 
-  UNSAFE_componentWillUnmount() {
+  componentWillUnmount() {
     document.removeEventListener('keydown', this.handler);
   }
 
