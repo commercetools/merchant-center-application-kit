@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useLazyQuery } from 'react-apollo';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import FetchApplicationsMenu from './fetch-applications-menu.graphql';
 
