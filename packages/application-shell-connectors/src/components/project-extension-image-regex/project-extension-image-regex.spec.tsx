@@ -140,8 +140,9 @@ describe('rendering', () => {
         },
       ]);
     });
-    it('should not render regex info', async () => {
+    it('should report error to sentry', async () => {
       await waitForElementToBeRemoved(() => rendered.getByText('Loading...'));
+      expect(rendered.queryByText('Not found')).toBeInTheDocument();
       expect(reportErrorToSentry).toHaveBeenCalled();
     });
   });
