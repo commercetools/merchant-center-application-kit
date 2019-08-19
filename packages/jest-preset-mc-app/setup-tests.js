@@ -8,7 +8,7 @@ global.window.app = {
   mcApiUrl: 'http://localhost:8080',
 };
 
-const shouldIgnoreWarnings = (...messages) =>
+const shouldSilenceWarnings = (...messages) =>
   [/Warning: componentWillReceiveProps has been renamed/].some(msgRegex =>
     messages.some(msg => msgRegex.test(msg))
   );
@@ -17,7 +17,7 @@ const shouldIgnoreWarnings = (...messages) =>
 const logOrThrow = (log, method, messages) => {
   const warning = `console.${method} calls not allowed in tests`;
   if (process.env.CI) {
-    if (shouldIgnoreWarnings(messages)) {
+    if (shouldSilenceWarnings(messages)) {
       return;
     }
     log(warning, '\n', ...messages);

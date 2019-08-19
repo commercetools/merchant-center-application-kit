@@ -12,46 +12,52 @@ const defaultConfig = {
 };
 
 const useApplicationsMenu = (config = {}) => {
-  const mergedConfig = { ...defaultConfig, ...config };
+  const shallowlyMergedConfig = { ...defaultConfig, ...config };
 
   const [menu, setMenu] = React.useState(null);
 
   // Memoize the function to get the local config, for local development
   const getDevConfig = React.useCallback(() => {
-    const { __DEV_CONFIG__: devConfig } = mergedConfig.options;
+    const { __DEV_CONFIG__: devConfig } = shallowlyMergedConfig.options;
     if (!devConfig) {
       throw new Error(
         'In development mode, you need to pass `__DEV_CONFIG__` options to `useApplicationsMenu`.'
       );
     }
     return devConfig;
-  }, [mergedConfig.options]);
+  }, [shallowlyMergedConfig.options]);
 
   // Trigger loading the menu from local file, for local development
   React.useEffect(() => {
-    if (mergedConfig.skipRemoteQuery) {
+    if (shallowlyMergedConfig.skipRemoteQuery) {
       const devConfig = getDevConfig();
       if (devConfig.menuLoader) {
         devConfig.menuLoader().then(setMenu);
       }
     }
-  }, [getDevConfig, mergedConfig.skipRemoteQuery]);
+  }, [getDevConfig, shallowlyMergedConfig.skipRemoteQuery]);
 
   // Prepare to fetch config.
   // We set up the apollo query as lazy, in order to execute it conditionally
   // since hooks cannot be defined conditionally.
-  const environment = useApplicationContext(context => context.environment);
-  const [loadMenuData, { called, data }] = useLazyQuery(FetchApplicationsMenu, {
-    ...mergedConfig.queryOptions,
-    fetchPolicy: mergedConfig.queryOptions.fetchPolicy || 'cache-first',
+  const mcProxyApiUrl = useApplicationContext(
+    context => context.environment.mcProxyApiUrl
+  );
+  const [
+    loadMenuData,
+    { called: hasApplicationsMenuQueryBeenCalled, data: menuQueryResult },
+  ] = useLazyQuery(FetchApplicationsMenu, {
+    ...shallowlyMergedConfig.queryOptions,
+    fetchPolicy:
+      shallowlyMergedConfig.queryOptions.fetchPolicy || 'cache-first',
     context: {
       // Allow to overwrite the API url from `env.json`
-      uri: `${environment.mcProxyApiUrl || defaultApiUrl}/api/graphql`,
+      uri: `${mcProxyApiUrl || defaultApiUrl}/api/graphql`,
     },
   });
 
   // Return the local config
-  if (mergedConfig.skipRemoteQuery) {
+  if (shallowlyMergedConfig.skipRemoteQuery) {
     const devConfig = getDevConfig();
     const fakeGraphqlResponse = menu
       ? {
@@ -62,11 +68,11 @@ const useApplicationsMenu = (config = {}) => {
   }
 
   // Fetch the query remotely
-  if (!called) {
+  if (!hasApplicationsMenuQueryBeenCalled) {
     loadMenuData();
     return null;
   }
-  return data && data.applicationsMenu;
+  return menuQueryResult && menuQueryResult.applicationsMenu;
 };
 
 export default useApplicationsMenu;
