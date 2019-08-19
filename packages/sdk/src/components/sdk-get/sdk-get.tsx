@@ -1,28 +1,50 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { deepEqual } from 'fast-equals';
-import * as sdkActions from '../../actions';
+import { SuccessResult, HttpErrorType } from '@commercetools/sdk-client';
+import { TSdkAction } from '../../types';
 
-export class SdkGet extends React.Component {
+type TSdkError = Error | HttpErrorType;
+type TActionCreatorArgs = unknown[];
+type State = {
+  // We want the component to have a loading state by default, so we
+  // keep track of whether the first request has completed.
+  // We can't use requestsInFlight only as that would lead to a flash of
+  // the loading state until the first request starts in componentDidMount.
+  isWaitingForCompletionOfFirstRequest: boolean;
+  requestsInFlight: number;
+  result?: SuccessResult['body'];
+  error?: TSdkError;
+};
+type TRenderOptions = {
+  isLoading: boolean;
+  refresh: () => Promise<void | SuccessResult['body']>;
+  result?: State['result'];
+  error?: State['error'];
+};
+type DispatchProps = {
+  dispatch: (action: TSdkAction) => Promise<SuccessResult['body']>;
+};
+type OwnProps = {
+  actionCreator: (...args: TActionCreatorArgs) => TSdkAction;
+  actionCreatorArgs: TActionCreatorArgs;
+  shouldRefetch: (
+    prevArgs: TActionCreatorArgs,
+    nextArgs: TActionCreatorArgs
+  ) => boolean;
+  onSuccess?: (result: SuccessResult['body']) => void;
+  onError?: (error: TSdkError) => void;
+  render: (options: TRenderOptions) => JSX.Element;
+};
+export type Props = DispatchProps & OwnProps;
+
+export class SdkGet extends React.Component<Props, State> {
   static displayName = 'SdkGet';
-  static errorHandler = error => {
+  static errorHandler = (error: TSdkError) => {
     throw error;
   };
-  static propTypes = {
-    // Public API
-    actionCreator: PropTypes.func,
-    actionCreatorArgs: PropTypes.array,
-    shouldRefetch: PropTypes.func,
-    onSuccess: PropTypes.func,
-    onError: PropTypes.func,
-    render: PropTypes.func.isRequired,
-
-    // HoC
-    dispatch: PropTypes.func.isRequired,
-  };
-  static defaultProps = {
-    actionCreator: sdkActions.get,
+  static defaultProps: Pick<Props, 'actionCreatorArgs' | 'shouldRefetch'> = {
     actionCreatorArgs: [],
     shouldRefetch: (prevArgs, nextArgs) => !deepEqual(prevArgs, nextArgs),
   };
@@ -33,11 +55,11 @@ export class SdkGet extends React.Component {
     // the loading state until the first request starts in componentDidMount.
     isWaitingForCompletionOfFirstRequest: true,
     requestsInFlight: 0,
-    result: null,
-    error: null,
+    result: undefined,
+    error: undefined,
   };
   isComponentMounted = false;
-  changeRequestsInFlight = delta => {
+  changeRequestsInFlight = (delta: number) => {
     if (this.isComponentMounted)
       this.setState(prevState => ({
         requestsInFlight: prevState.requestsInFlight + delta,
@@ -64,7 +86,7 @@ export class SdkGet extends React.Component {
       }
     );
   }
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     if (
       this.props.shouldRefetch(
         prevProps.actionCreatorArgs,
@@ -88,18 +110,23 @@ export class SdkGet extends React.Component {
     actionCreatorArgs,
     onSuccess,
     onError,
-  }) => {
+  }: Pick<
+    Props,
+    'dispatch' | 'actionCreator' | 'actionCreatorArgs' | 'onSuccess' | 'onError'
+  >) => {
     this.changeRequestsInFlight(1);
     return dispatch(actionCreator(...actionCreatorArgs)).then(
       result => {
         this.changeRequestsInFlight(-1);
-        if (this.isComponentMounted) this.setState({ error: null, result });
+        if (this.isComponentMounted)
+          this.setState({ error: undefined, result });
         if (onSuccess) onSuccess(result);
         return result;
       },
-      error => {
+      (error: TSdkError) => {
         this.changeRequestsInFlight(-1);
-        if (this.isComponentMounted) this.setState({ error, result: null });
+        if (this.isComponentMounted)
+          this.setState({ error, result: undefined });
         if (onError) onError(error);
         else SdkGet.errorHandler(error);
       }
@@ -125,7 +152,12 @@ export class SdkGet extends React.Component {
   }
 }
 
-export default connect(
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<null, null, TSdkAction>
+): DispatchProps => ({
+  dispatch,
+});
+export default connect<null, DispatchProps, OwnProps>(
   null,
-  dispatch => ({ dispatch })
+  mapDispatchToProps
 )(SdkGet);

@@ -1,16 +1,24 @@
+import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { shallow } from 'enzyme';
-import { SdkGet } from './sdk-get';
+import { shallow, ShallowWrapper } from 'enzyme';
+import * as sdkActions from '../../actions';
+import { SdkGet, Props } from './sdk-get';
+import { Json } from '../../types';
 
-const createTestProps = custom => ({
+const createTestProps = (custom: Partial<Props> = {}) => ({
   dispatch: jest.fn(() => Promise.resolve()),
-  render: jest.fn(),
+  actionCreator: () => sdkActions.get({ uri: '/foo/bar' }),
+  actionCreatorArgs: [],
+  shouldRefetch: () => false,
+  onSuccess: jest.fn(),
+  onError: jest.fn(),
+  render: jest.fn(() => <div></div>),
   ...custom,
 });
 
 describe('rendering', () => {
-  let props;
-  let wrapper;
+  let props: Props;
+  let wrapper: ShallowWrapper;
   beforeEach(() => {
     props = createTestProps();
     wrapper = shallow(<SdkGet {...props} />);
@@ -20,39 +28,33 @@ describe('rendering', () => {
     expect(props.render).toHaveBeenCalledWith({
       isLoading: true,
       refresh: expect.any(Function),
-      result: null,
-      error: null,
+      result: undefined,
+      error: undefined,
     });
   });
   describe('when refreshing', () => {
-    let result;
+    let result: Promise<void | Json>;
     beforeEach(() => {
-      result = props.render.mock.calls[0][0].refresh();
+      result = mocked(props.render).mock.calls[0][0].refresh();
       return result;
     });
     it('should dispatch again', () => {
       expect(props.dispatch).toHaveBeenCalledTimes(2);
     });
-    describe('refresh', () => {
-      it('should return a promise', () => {
-        expect(typeof result.then).toEqual('function');
-      });
+    it('should return a promise', () => {
+      expect(typeof result.then).toEqual('function');
     });
   });
 });
 
 describe('when the component mounts', () => {
   describe('when the request succeeds', () => {
-    let wrapper;
-    let props;
+    let wrapper: ShallowWrapper;
+    let props: Props;
     const result = { foo: 'bar' };
     beforeEach(() => {
       props = createTestProps({
         dispatch: jest.fn(() => Promise.resolve(result)),
-        actionCreator: (...args) => ({ type: 'fetch', payload: args }),
-        actionCreatorArgs: ['foo'],
-        onSuccess: jest.fn(),
-        onError: jest.fn(),
       });
       wrapper = shallow(<SdkGet {...props} />);
       wrapper.instance().componentDidMount();
@@ -70,16 +72,12 @@ describe('when the component mounts', () => {
     });
   });
   describe('when the request fails', () => {
-    let wrapper;
-    let props;
+    let wrapper: ShallowWrapper;
+    let props: Props;
     const error = new Error('foo');
     beforeEach(() => {
       props = createTestProps({
         dispatch: jest.fn(() => Promise.reject(error)),
-        actionCreator: (...args) => ({ type: 'fetch', payload: args }),
-        actionCreatorArgs: ['foo'],
-        onSuccess: jest.fn(),
-        onError: jest.fn(),
       });
       wrapper = shallow(<SdkGet {...props} />);
       wrapper.instance().componentDidMount();

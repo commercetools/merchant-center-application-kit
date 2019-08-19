@@ -130,4 +130,4 @@ export const MC_API_PROXY_TARGETS = {
   PIM_SEARCH: 'pim-search',
   MC_METRICS: 'mc-metrics',
 } as const;
-export type TApiProxyTargets = (typeof MC_API_PROXY_TARGETS)[keyof typeof MC_API_PROXY_TARGETS];
+export type TMcApiProxyTargets = (typeof MC_API_PROXY_TARGETS)[keyof typeof MC_API_PROXY_TARGETS];
