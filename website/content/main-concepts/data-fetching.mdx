@@ -75,9 +75,9 @@ That's it, Apollo will then take care of data normalization, caching, etc.
 Some enpdoints or APIs might not be available as GraphQL, which means that we need to fetch the data using a normal HTTP REST endpoint.
 There are different options here: you can build and send requests manually, using e.g. the [`fetch`](https://github.github.io/fetch/) library or any HTTP client.
 
-However, we recommend to use our own declarative fetching library [`@commercetools-frontend/sdk`](https://www.npmjs.com/package/@commercetools-frontend/sdk), which builds on top of the [SDK client](https://commercetools.github.io/nodejs/sdk/api/sdkClient.html) and [Redux](https://redux.js.org/) and is already configured within the [`<ApplicationShell>`](./application-shell).
+However, we recommend to use our own declarative fetching library [`@commercetools-frontend/sdk`](https://www.npmjs.com/package/@commercetools-frontend/sdk), which builds on top of the [JS SDK client](https://commercetools.github.io/nodejs/sdk/api/sdkClient.html) and [Redux](https://redux.js.org/) and is already configured within the [`<ApplicationShell>`](./application-shell).
 
-> The library does not include features like data normalization, caching, etc. You will need to build those on your onw.
+> The library does not include features like data normalization, caching, etc. You will need to build those on your own. The **playground** application includes an example of setting up data normalization and caching.
 
 In the example below, we fetch a [Channel](https://docs.commercetools.com/http-api-projects-channels).
 First we define the action creator:
