@@ -6139,14 +6139,13 @@ classnames@^2.2.5, classnames@^2.2.6:
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
-cldr@5.3.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/cldr/-/cldr-5.3.0.tgz#8a58ce50d8ad309114d110179a230b21340b5ff7"
-  integrity sha512-rU65iKImlBjxd6Nfk3btGS2o2H53GInPzwnBoyc+OUzPXDljvCSRc/r/SmViJifhHXxQNFSTYF/iEwGPsd+Lew==
+cldr@5.4.1:
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/cldr/-/cldr-5.4.1.tgz#c839ca833baf2b88a9161313b122dd248e70281e"
+  integrity sha512-1571036iN5n4y59h/n5o4/YkBvxctcm8a9FN6f3Ww3v0pRJefeZ46HcBPIrn9OTImH//uB//cgUhIF84vjyHzQ==
   dependencies:
-    escodegen "^1.11.0"
+    escodegen "^1.12.0"
     esprima "^4.0.1"
-    lodash "^4.17.10"
     memoizeasync "^1.1.0"
     passerror "^1.1.1"
     pegjs "^0.10.0"
@@ -8559,7 +8558,19 @@ escape-string-regexp@1.0.5, escape-string-regexp@^1.0.2, escape-string-regexp@^1
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
-escodegen@^1.11.0, escodegen@^1.9.1:
+escodegen@^1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/escodegen/-/escodegen-1.12.0.tgz#f763daf840af172bb3a2b6dd7219c0e17f7ff541"
+  integrity sha512-TuA+EhsanGcme5T3R0L80u4t8CpbXQjegRmf7+FPTJrtCTErXFeelblRgHQa1FofEzqYYJmJ/OqjTwREp9qgmg==
+  dependencies:
+    esprima "^3.1.3"
+    estraverse "^4.2.0"
+    esutils "^2.0.2"
+    optionator "^0.8.1"
+  optionalDependencies:
+    source-map "~0.6.1"
+
+escodegen@^1.9.1:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/escodegen/-/escodegen-1.11.1.tgz#c485ff8d6b4cdb89e27f4a856e91f118401ca510"
   integrity sha512-JwiqFD9KdGVVpeuRa68yU3zZnBEOcPs0nKW7wZzXky8Z7tffdYUHbe11bPCV5jYlK6DVdKLWLm0f5I/QlL0Kmw==
