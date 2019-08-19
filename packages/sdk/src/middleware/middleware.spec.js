@@ -57,6 +57,32 @@ describe('when the action is of type SDK', () => {
         expect(next).toHaveBeenCalledTimes(0);
       });
     });
+    describe('when there is a uriPrefix', () => {
+      const dispatch = jest.fn();
+      const action = {
+        type: 'SDK',
+        payload: { uri: '/foo', uriPrefix: '/proxy/ctp', method: 'GET' },
+      };
+      const next = jest.fn();
+      const response = { body: 'foo', headers: {} };
+      let execute;
+      beforeEach(() => {
+        execute = jest.fn(() => Promise.resolve(response));
+        createClient.mockReturnValue({
+          execute,
+        });
+
+        return createMiddleware(middlewareOptions)({ dispatch })(next)(action);
+      });
+
+      it('should call `client.execute` with uri with prefix', () => {
+        expect(execute).toHaveBeenCalledWith(
+          expect.objectContaining({
+            uri: '/proxy/ctp/foo',
+          })
+        );
+      });
+    });
     describe('when the request is successful', () => {
       const dispatch = jest.fn();
       const action = {

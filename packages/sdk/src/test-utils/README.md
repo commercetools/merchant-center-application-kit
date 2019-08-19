@@ -39,6 +39,7 @@ const action = {
   payload: {
     method: 'GET',
     uri: '/foo/bar',
+    uriPrefix: '/proxy/ctp',
     headers: {
       Authorization: 'foo-bar',
     },

@@ -51,27 +51,29 @@ import { actions as sdkActions } from '@commercetools-frontend/sdk';
 
 #### Methods
 
-There are three action creators which all have the same behavior and API. The only difference is the resulting HTTP method:
+The supported action creators are:
 
-- `sdkActions.get(description)`: `GET`
-- `sdkActions.post(description)`: `POST`
-- `sdkActions.del(description)`: `DELETE`
+- `sdkActions.get(config)`: sends a HTTP `GET`
+- `sdkActions.post(config)`: sends a HTTP `POST`
+- `sdkActions.del(config)`: sends a HTTP `DELETE`
+- `sdkActions.head(config)`: sends a HTTP `HEAD`
 
 #### Specifying an endpoint
 
 There are two ways to describe an endpoint:
 
-- direct: `description.uri` is used as-is
-- combined: `description.service` and `description.options` are combined to form a `uri`
+- by `uri`: pass the URI as string
+- by `service`: uses the `@commercetools/api-request-builder` to build the URI. You can pass `config.options` to supply the necessary request parameters
 
-A `payload` can be provided in either case. It is only used by the `sdkActions.post` action creator. It contains the request payload.
+The `post` action creator additionally requires a `config.payload` object or string, containing the request payload.
 
 ##### Usage with `uri`
 
 ```js
 {
   uri: String,
-  payload: Object | String
+  uriPrefix?: String,
+  payload?: Object | String
 }
 ```
 
@@ -87,7 +89,8 @@ When both, `uri` and `options` (or `service`) are present, the `uri` takes prece
 {
   service: String,
   options: Object,
-  payload: Object | String
+  uriPrefix?: String,
+  payload?: Object | String
 }
 ```
 
