@@ -8,7 +8,6 @@ class StateMachinesListConnector extends React.Component {
   static displayName = 'StateMachinesListConnector';
   static propTypes = {
     children: PropTypes.func.isRequired,
-    projectKey: PropTypes.string.isRequired,
     // Action creators
     setStateMachines: PropTypes.func.isRequired,
   };
@@ -16,9 +15,7 @@ class StateMachinesListConnector extends React.Component {
     return (
       <Sdk.Get
         actionCreator={requestParams =>
-          actions.fetchStateMachines(requestParams, {
-            projectKey: this.props.projectKey,
-          })
+          actions.fetchStateMachines(requestParams)
         }
         actionCreatorArgs={[
           {

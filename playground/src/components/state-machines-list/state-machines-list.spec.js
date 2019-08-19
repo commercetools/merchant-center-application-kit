@@ -1,4 +1,5 @@
 import React from 'react';
+import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
 import {
   renderAppWithRedux,
   waitForElement,
@@ -14,7 +15,11 @@ const createStateMachinesListSdkMock = () => ({
     payload: {
       method: 'GET',
       service: 'states',
-      uri: '/my-project/states?limit=25&offset=0',
+      options: {
+        perPage: 25,
+        page: 1,
+      },
+      mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
     },
   },
   response: {
@@ -34,6 +39,7 @@ const createStateMachinesDetailSdkMockForId1 = () => ({
       method: 'GET',
       service: 'states',
       options: { id: 'sm1' },
+      mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
     },
   },
   response: {
@@ -51,6 +57,7 @@ const createStateMachinesDetailSdkMockForId2 = () => ({
       method: 'GET',
       service: 'states',
       options: { id: 'sm2' },
+      mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
     },
   },
   response: {
@@ -68,6 +75,7 @@ const createStateMachinesDetailSdkErrorMock = () => ({
       method: 'GET',
       service: 'states',
       options: { id: 'sm1' },
+      mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
     },
   },
   error: {

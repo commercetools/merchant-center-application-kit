@@ -9,7 +9,10 @@ import { withApollo } from 'react-apollo';
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
 import { oneLineTrim } from 'common-tags';
 import debounce from 'debounce-async';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import {
+  GRAPHQL_TARGETS,
+  MC_API_PROXY_TARGETS,
+} from '@commercetools-frontend/constants';
 import { hasSomePermissions } from '@commercetools-frontend/permissions';
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import Butler from './butler';
@@ -365,7 +368,8 @@ export default flowRight(
       pimSearchProductIds: searchText =>
         dispatch(
           sdkActions.post({
-            uri: `/proxy/pim-search/${ownProps.applicationContext.project.key}/search/products`,
+            uri: `/${ownProps.applicationContext.project.key}/search/products`,
+            mcApiProxyTarget: MC_API_PROXY_TARGETS.PIM_SEARCH,
             payload: {
               query: {
                 fullText: {
@@ -400,7 +404,8 @@ export default flowRight(
           // error, so we send a regular request for now and limit to no results
           // instead to keep the payload minimal
           sdkActions.post({
-            uri: `/proxy/pim-search/${ownProps.applicationContext.project.key}/search/products`,
+            uri: `/${ownProps.applicationContext.project.key}/search/products`,
+            mcApiProxyTarget: MC_API_PROXY_TARGETS.PIM_SEARCH,
             payload: {
               query: {
                 fullText: {

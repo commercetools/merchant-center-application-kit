@@ -1,4 +1,8 @@
-import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
+import {
+  SHOW_LOADING,
+  HIDE_LOADING,
+  MC_API_PROXY_TARGETS,
+} from '@commercetools-frontend/constants';
 import createMiddleware from './middleware';
 import createClient from './client';
 
@@ -55,6 +59,36 @@ describe('when the action is of type SDK', () => {
 
       it('should not call `next`', () => {
         expect(next).toHaveBeenCalledTimes(0);
+      });
+    });
+    describe('when there is a mcApiProxyTarget', () => {
+      const dispatch = jest.fn();
+      const action = {
+        type: 'SDK',
+        payload: {
+          uri: '/foo',
+          mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
+          method: 'GET',
+        },
+      };
+      const next = jest.fn();
+      const response = { body: 'foo', headers: {} };
+      let execute;
+      beforeEach(() => {
+        execute = jest.fn(() => Promise.resolve(response));
+        createClient.mockReturnValue({
+          execute,
+        });
+
+        return createMiddleware(middlewareOptions)({ dispatch })(next)(action);
+      });
+
+      it('should call `client.execute` with uri with prefix', () => {
+        expect(execute).toHaveBeenCalledWith(
+          expect.objectContaining({
+            uri: '/proxy/ctp/foo',
+          })
+        );
       });
     });
     describe('when the request is successful', () => {

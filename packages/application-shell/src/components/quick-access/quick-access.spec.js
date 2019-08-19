@@ -1,5 +1,6 @@
 import React from 'react';
 import { customProperties } from '@commercetools-frontend/ui-kit';
+import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
 import {
   renderAppWithRedux,
   fireEvent,
@@ -71,7 +72,8 @@ const createPimAvailabilityCheckSdkMock = (projectDataLocale = 'en') => ({
     type: 'SDK',
     payload: {
       method: 'POST',
-      uri: '/proxy/pim-search/test-with-big-data/search/products',
+      uri: '/test-with-big-data/search/products',
+      mcApiProxyTarget: MC_API_PROXY_TARGETS.PIM_SEARCH,
       payload: {
         query: {
           fullText: {
@@ -96,7 +98,8 @@ const createPimSearchSdkMock = (
     type: 'SDK',
     payload: {
       method: 'POST',
-      uri: '/proxy/pim-search/test-with-big-data/search/products',
+      uri: '/test-with-big-data/search/products',
+      mcApiProxyTarget: MC_API_PROXY_TARGETS.PIM_SEARCH,
       payload: {
         query: {
           fullText: {
@@ -1425,7 +1428,8 @@ describe('QuickAccess', () => {
               type: 'SDK',
               payload: {
                 method: 'POST',
-                uri: '/proxy/pim-search/test-with-big-data/search/products',
+                uri: '/test-with-big-data/search/products',
+                mcApiProxyTarget: MC_API_PROXY_TARGETS.PIM_SEARCH,
                 payload: {
                   query: {
                     fullText: {
