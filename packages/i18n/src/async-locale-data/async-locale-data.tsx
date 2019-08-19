@@ -63,7 +63,7 @@ class AsyncLocaleData extends React.Component<Props, State> {
     }
   }
 
-  UNSAFE_componentWillUnmount() {
+  componentWillUnmount() {
     this.isUnmounting = true;
   }
 

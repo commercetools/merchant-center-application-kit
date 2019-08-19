@@ -101,7 +101,7 @@ export class SdkGet extends React.Component<Props, State> {
         onError: this.props.onError,
       });
   }
-  UNSAFE_componentWillUnmount() {
+  componentWillUnmount() {
     this.isComponentMounted = false;
   }
   fetch = ({

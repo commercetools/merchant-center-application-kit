@@ -65,7 +65,7 @@
     "@percy/cypress": "2.0.1",
     "@percy/puppeteer": "1.0.8",
     "@testing-library/cypress": "4.2.0",
-    "@testing-library/react": "9.1.1",
+    "@testing-library/react": "9.1.2",
     "@types/common-tags": "1.8.0",
     "@types/enzyme": "3.10.3",
     "@types/graphql": "14.2.3",
@@ -147,7 +147,10 @@
   },
   "resolutions": {
     "@types/react": "16.9.2",
-    "react": "16.9.0"
+    "react": "16.9.0",
+    "**/react": "16.9.0",
+    "react-test-renderer": "16.9.0",
+    "**/react-test-renderer": "16.9.0"
   },
   "engines": {
     "node": ">=8.9",
