@@ -41,8 +41,8 @@ export default function createSdkMiddleware({
 
     if (action.type === 'SDK') {
       const uri = [
-        action.payload.uriPrefix &&
-          action.payload.uriPrefix.replace(/\/?$/, ''),
+        action.payload.mcApiProxyTarget &&
+          `/proxy/${action.payload.mcApiProxyTarget}`,
         actionToUri(action, projectKey),
       ]
         .filter(Boolean)

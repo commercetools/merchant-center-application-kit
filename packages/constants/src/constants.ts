@@ -123,3 +123,11 @@ export const GRAPHQL_TARGETS = {
   ADMINISTRATION_SERVICE: 'administration',
 } as const;
 export type TGraphQLTargets = (typeof GRAPHQL_TARGETS)[keyof typeof GRAPHQL_TARGETS];
+
+export const MC_API_PROXY_TARGETS = {
+  COMMERCETOOLS_PLATFORM: 'ctp',
+  MACHINE_LEARNING: 'ml',
+  PIM_SEARCH: 'pim-search',
+  MC_METRICS: 'mc-metrics',
+} as const;
+export type TApiProxyTargets = (typeof MC_API_PROXY_TARGETS)[keyof typeof MC_API_PROXY_TARGETS];

@@ -39,7 +39,7 @@ const action = {
   payload: {
     method: 'GET',
     uri: '/foo/bar',
-    uriPrefix: '/proxy/ctp',
+    mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
     headers: {
       Authorization: 'foo-bar',
     },

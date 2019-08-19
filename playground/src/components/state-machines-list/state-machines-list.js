@@ -46,7 +46,7 @@ const StateMachinesList = props => {
     <Spacings.Inset scale="m">
       <Spacings.Stack scale="m">
         <Text.Headline as="h2" intlMessage={messages.title} />
-        <StateMachinesListConnector projectKey={props.projectKey}>
+        <StateMachinesListConnector>
           {({ isLoading, result, error, hasNoResults /* , refresh */ }) => {
             if (isLoading) return <LoadingSpinner />;
             if (error) return <div>{getErrorMessage(error)}</div>;
@@ -111,7 +111,6 @@ const StateMachinesList = props => {
 StateMachinesList.displayName = 'StateMachinesList';
 StateMachinesList.propTypes = {
   goToStateMachineDetail: PropTypes.func.isRequired,
-  projectKey: PropTypes.string.isRequired,
 };
 
 export default StateMachinesList;

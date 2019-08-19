@@ -1,5 +1,5 @@
-import { createRequestBuilder } from '@commercetools/api-request-builder';
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
+import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
 import { actionTypes } from '../../reducers/cache';
 
 export const setStateMachines = payload => ({
@@ -7,16 +7,9 @@ export const setStateMachines = payload => ({
   payload,
 });
 
-export const getStateMachinesUri = (options, meta) => {
-  const requestBuilder = createRequestBuilder({ projectKey: meta.projectKey });
-  const service = requestBuilder.states;
-  service.page(options.page).perPage(options.perPage);
-  return service.build();
-};
-
-export const fetchStateMachines = (requestOptions, meta) =>
+export const fetchStateMachines = requestOptions =>
   sdkActions.get({
-    uriPrefix: '/proxy/ctp',
+    mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
     service: 'states',
-    uri: getStateMachinesUri(requestOptions, meta),
+    options: requestOptions,
   });

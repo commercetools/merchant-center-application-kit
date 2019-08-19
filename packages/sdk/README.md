@@ -67,12 +67,14 @@ There are two ways to describe an endpoint:
 
 The `post` action creator additionally requires a `config.payload` object or string, containing the request payload.
 
+> The `mcApiProxyTarget` values are exposed from the `@commercetools-frontend/constants` package, as `MC_API_PROXY_TARGETS`. The value will be used to build a prefix to the `uri` as `/proxy/<mcApiProxyTarget>/<uri>`.
+
 ##### Usage with `uri`
 
 ```js
 {
   uri: String,
-  uriPrefix?: String,
+  mcApiProxyTarget?: ApiProxyTarget,
   payload?: Object | String
 }
 ```
@@ -89,7 +91,7 @@ When both, `uri` and `options` (or `service`) are present, the `uri` takes prece
 {
   service: String,
   options: Object,
-  uriPrefix?: String,
+  mcApiProxyTarget?: ApiProxyTarget,
   payload?: Object | String
 }
 ```

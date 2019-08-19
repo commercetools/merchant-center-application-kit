@@ -42,13 +42,12 @@ const ApplicationRoutes = props => {
           }}
         />
         <Route
-          render={routerProps => {
+          render={() => {
             if (!canViewDeveloperSettings) {
               return <PageUnauthorized />;
             }
             return (
               <StateMachinesList
-                projectKey={routerProps.match.params.projectKey}
                 goToStateMachineDetail={id => {
                   props.history.push(`${props.match.url}/${id}`);
                 }}
