@@ -17,6 +17,7 @@ import {
   NotificationProviderForCustomComponent,
 } from '@commercetools-frontend/react-notifications';
 import { DOMAINS } from '@commercetools-frontend/constants';
+// eslint-disable-next-line import/named
 import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
 import { GtmContext } from '../components/gtm-booter';
 import { createReduxStore } from '../configure-store';
