@@ -16,6 +16,7 @@ export const getStateMachinesUri = (options, meta) => {
 
 export const fetchStateMachines = (requestOptions, meta) =>
   sdkActions.get({
+    uriPrefix: '/proxy/ctp',
     service: 'states',
     uri: getStateMachinesUri(requestOptions, meta),
   });
