@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import memoize from 'memoize-one';
-import { graphql } from 'react-apollo';
+import { useQuery } from 'react-apollo';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { css } from '@emotion/core';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -144,8 +144,14 @@ const redirectTo = targetUrl => window.location.replace(targetUrl);
 
 const ProjectSwitcher = props => {
   const intl = useIntl();
+  const { loading, data } = useQuery(ProjectsQuery, {
+    onError: reportErrorToSentry,
+    variables: {
+      target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+    },
+  });
 
-  if (props.projectsQuery.loading) return null;
+  if (loading) return null;
 
   return (
     <div
@@ -168,8 +174,7 @@ const ProjectSwitcher = props => {
             redirectTo(`/${selectedProjectKey}`);
         }}
         options={
-          props.projectsQuery.user &&
-          mapProjectsToOptions(props.projectsQuery.user.projects.results)
+          data && data.user && mapProjectsToOptions(data.user.projects.results)
         }
         isOptionDisabled={option =>
           option.suspension.isActive || option.expiry.isActive
@@ -181,7 +186,7 @@ const ProjectSwitcher = props => {
           ValueContainer: valueContainerProps => (
             <ProjectSwitcherValueContainer
               {...valueContainerProps}
-              projectCount={props.projectsQuery.user.projects.results.length}
+              projectCount={data.user.projects.results.length}
             />
           ),
         }}
@@ -196,37 +201,6 @@ const ProjectSwitcher = props => {
 ProjectSwitcher.displayName = 'ProjectSwitcher';
 ProjectSwitcher.propTypes = {
   projectKey: PropTypes.string.isRequired,
-  // graphql
-  projectsQuery: PropTypes.shape({
-    loading: PropTypes.bool.isRequired,
-    error: PropTypes.shape({
-      message: PropTypes.string.isRequired,
-    }),
-    user: PropTypes.shape({
-      projects: PropTypes.shape({
-        results: PropTypes.arrayOf(
-          PropTypes.shape({
-            key: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            suspension: PropTypes.shape({
-              isActive: PropTypes.bool.isRequired,
-            }),
-            expiry: PropTypes.shape({
-              isActive: PropTypes.bool.isRequired,
-            }),
-          })
-        ),
-      }),
-    }),
-  }),
 };
 
-export default graphql(ProjectsQuery, {
-  name: 'projectsQuery',
-  options: () => ({
-    onError: reportErrorToSentry,
-    variables: {
-      target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
-    },
-  }),
-})(ProjectSwitcher);
+export default ProjectSwitcher;

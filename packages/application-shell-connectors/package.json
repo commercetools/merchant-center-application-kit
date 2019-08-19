@@ -40,6 +40,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "7.5.5",
     "@commercetools-frontend/constants": "14.6.0",
+    "@commercetools-frontend/sentry": "14.6.0",
     "apollo-cache-inmemory": "1.6.3",
     "apollo-client": "2.6.4",
     "apollo-link-http": "1.5.15",
@@ -51,12 +52,13 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
+    "@apollo/react-testing": "3.0.1",
     "react": "16.9.0",
-    "react-apollo": "2.5.8"
+    "react-apollo": "3.0.1"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
-    "react-apollo": "2.x"
+    "react-apollo": "3.x"
   },
   "engines": {
     "node": ">=8",

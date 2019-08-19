@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { deepEqual } from 'fast-equals';
-import { Query } from 'react-apollo';
+import { useQuery } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import ProjectQuery from './fetch-project.graphql';
 
 /**
@@ -145,53 +145,48 @@ export const mapAllDataFencesToGroupedObjectShape = allAppliedDataFences => {
   );
 };
 
-class FetchProject extends React.Component {
-  static displayName = 'FetchProject';
-  static propTypes = {
-    projectKey: PropTypes.string,
-    skip: PropTypes.bool,
-    children: PropTypes.func.isRequired,
-  };
-  static defaultProps = {
-    skip: false,
-  };
-  shouldComponentUpdate(nextProps) {
-    return !deepEqual(this.props, nextProps);
-  }
-  render() {
-    return (
-      <Query
-        query={ProjectQuery}
-        variables={{
-          target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
-          projectKey: this.props.projectKey,
-        }}
-        skip={this.props.skip}
-      >
-        {({ data, loading, error }) =>
-          this.props.children({
-            isLoading: loading,
-            error,
-            project: data &&
-              data.project && {
-                ...data.project,
-                permissions: mapAllAppliedToObjectShape(
-                  data.project.allAppliedPermissions
-                ),
-                dataFences: mapAllDataFencesToGroupedObjectShape(
-                  data.project.allAppliedDataFences
-                ),
-                actionRights: mapAllAppliedToGroupedObjectShape(
-                  data.project.allAppliedActionRights
-                ),
-                menuVisibilities: mapAllAppliedToObjectShape(
-                  data.project.allAppliedMenuVisibilities
-                ),
-              },
-          })
-        }
-      </Query>
-    );
-  }
-}
+const FetchProject = props => {
+  const { loading, data, error } = useQuery(ProjectQuery, {
+    onError: reportErrorToSentry,
+    variables: {
+      target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+      projectKey: props.projectKey,
+    },
+    skip: props.skip,
+  });
+  return (
+    <>
+      {props.children({
+        isLoading: loading,
+        error,
+        project: data &&
+          data.project && {
+            ...data.project,
+            permissions: mapAllAppliedToObjectShape(
+              data.project.allAppliedPermissions
+            ),
+            dataFences: mapAllDataFencesToGroupedObjectShape(
+              data.project.allAppliedDataFences
+            ),
+            actionRights: mapAllAppliedToGroupedObjectShape(
+              data.project.allAppliedActionRights
+            ),
+            menuVisibilities: mapAllAppliedToObjectShape(
+              data.project.allAppliedMenuVisibilities
+            ),
+          },
+      })}
+    </>
+  );
+};
+FetchProject.displayName = 'FetchProject';
+FetchProject.propTypes = {
+  projectKey: PropTypes.string,
+  skip: PropTypes.bool,
+  children: PropTypes.func.isRequired,
+};
+FetchProject.defaultProps = {
+  skip: false,
+};
+
 export default FetchProject;

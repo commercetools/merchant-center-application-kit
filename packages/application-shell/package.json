@@ -37,6 +37,7 @@
     "build:test-utils:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./src/test-utils/index.js --o ./test-utils/index.js"
   },
   "dependencies": {
+    "@apollo/react-testing": "3.0.1",
     "@commercetools-frontend/actions-global": "14.6.0",
     "@commercetools-frontend/application-components": "14.6.0",
     "@commercetools-frontend/application-shell-connectors": "14.6.0",
@@ -95,9 +96,9 @@
   },
   "devDependencies": {
     "@commercetools-frontend/ui-kit": "10.1.2",
-    "@testing-library/react": "9.1.1",
+    "@testing-library/react": "9.1.2",
     "react": "16.9.0",
-    "react-apollo": "2.5.8",
+    "react-apollo": "3.0.1",
     "react-dom": "16.9.0",
     "react-intl": "3.1.11",
     "react-redux": "7.1.1",
@@ -110,7 +111,7 @@
     "@commercetools-frontend/ui-kit": "10.x",
     "@testing-library/react": "8.x",
     "react": ">=16.8.0",
-    "react-apollo": "2.x",
+    "react-apollo": "3.x",
     "react-dom": ">=16.8.0",
     "react-intl": "3.x",
     "react-redux": "7.x",

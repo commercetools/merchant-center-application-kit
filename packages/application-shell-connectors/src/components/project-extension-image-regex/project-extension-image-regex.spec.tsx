@@ -1,76 +1,149 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import { ProjectExtensionProviderForImageRegex } from './project-extension-image-regex';
+import {
+  render,
+  RenderResult,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
+import {
+  MockedProvider as ApolloMockProvider,
+  MockedProviderProps,
+} from '@apollo/react-testing';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import {
+  ProjectExtensionProviderForImageRegex,
+  GetProjectExtensionImageRegex,
+  TImageRegex,
+} from './project-extension-image-regex';
+import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.graphql';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+
+jest.mock('@commercetools-frontend/sentry');
+
+type TestProps = {
+  imageRegex: TImageRegex;
+};
+const TestComponent = (props: TestProps) => (
+  <>
+    <div>
+      {props.imageRegex &&
+        props.imageRegex.small &&
+        props.imageRegex.small.replace}
+    </div>
+    <div>
+      {props.imageRegex &&
+        props.imageRegex.thumb &&
+        props.imageRegex.thumb.replace}
+    </div>
+  </>
+);
+
+const renderComponent = (mocks: MockedProviderProps['mocks']) =>
+  render(
+    <ApolloMockProvider mocks={mocks} addTypename={true}>
+      <ProjectExtensionProviderForImageRegex>
+        <div>
+          <GetProjectExtensionImageRegex
+            render={imageRegexContext => {
+              if (imageRegexContext.isLoading) {
+                return <div>{'Loading...'}</div>;
+              }
+              if (!imageRegexContext.imageRegex) {
+                return <div>{'Not found'}</div>;
+              }
+              return (
+                <TestComponent imageRegex={imageRegexContext.imageRegex} />
+              );
+            }}
+          />
+        </div>
+      </ProjectExtensionProviderForImageRegex>
+    </ApolloMockProvider>
+  );
 
 describe('rendering', () => {
-  let wrapper: ShallowWrapper;
+  let rendered: RenderResult;
 
-  describe('Provider', () => {
-    describe('when data is not defined yet', () => {
-      beforeEach(() => {
-        wrapper = shallow(
-          <ProjectExtensionProviderForImageRegex>
-            <div />
-          </ProjectExtensionProviderForImageRegex>
-        ).renderProp('children')({ loading: true, data: undefined });
-      });
-      it('should pass value object with "isLoading" state "true" to Provider', () => {
-        expect(wrapper).toHaveProp(
-          'value',
-          expect.objectContaining({ isLoading: true })
-        );
-      });
-      it('should pass value object with "imageRegex" undefined to Provider', () => {
-        expect(wrapper).toHaveProp(
-          'value',
-          expect.objectContaining({ imageRegex: undefined })
-        );
-      });
-    });
-    describe('when data is defined', () => {
-      beforeEach(() => {
-        wrapper = shallow(
-          <ProjectExtensionProviderForImageRegex>
-            <div />
-          </ProjectExtensionProviderForImageRegex>
-        ).renderProp('children')({
-          loading: false,
-          data: {
-            projectExtension: {
-              imageRegex: {
-                thumb: {
-                  flag: 'gi',
-                  replace: '-thumb.jpg',
-                  search: '.[^.]+$',
+  describe('when image regex is defined', () => {
+    beforeEach(() => {
+      rendered = renderComponent([
+        {
+          request: {
+            query: FetchProjectExtensionImageRegex,
+            variables: {
+              target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
+            },
+          },
+          result: {
+            data: {
+              projectExtension: {
+                __typename: 'ProjectExtension',
+                id: 'p1',
+                imageRegex: {
+                  __typename: 'ImageRegex',
+                  thumb: {
+                    __typename: 'ImageRegexOptions',
+                    flag: 'gi',
+                    replace: '-thumb.jpg',
+                    search: '.[^.]+$',
+                  },
+                  small: null,
                 },
               },
             },
           },
-        });
-      });
-      it('should pass value object with "isLoading" state "false" to Provider', () => {
-        expect(wrapper).toHaveProp(
-          'value',
-          expect.objectContaining({ isLoading: false })
-        );
-      });
-      it('should pass value object with "imageRegex" to Provider', () => {
-        expect(wrapper).toHaveProp(
-          'value',
-          expect.objectContaining({
-            imageRegex: {
-              thumb: {
-                flag: 'gi',
-                replace: '-thumb.jpg',
-                search: '.[^.]+$',
-              },
-            },
-          })
-        );
-      });
+        },
+      ]);
+    });
+    it('should render regex info', async () => {
+      await waitForElementToBeRemoved(() => rendered.getByText('Loading...'));
+      expect(rendered.queryByText('-thumb.jpg')).toBeInTheDocument();
     });
   });
-  // TODO: we can write some functional tests using mount
-  // as soon as the new changes of the enzyme adapter are released.
-  // https://github.com/airbnb/enzyme/pull/1513
+  describe('when image regex is not defined', () => {
+    beforeEach(() => {
+      rendered = renderComponent([
+        {
+          request: {
+            query: FetchProjectExtensionImageRegex,
+            variables: {
+              target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
+            },
+          },
+          result: {
+            data: {
+              projectExtension: {
+                __typename: 'ProjectExtension',
+                id: 'p1',
+                imageRegex: null,
+              },
+            },
+          },
+        },
+      ]);
+    });
+    it('should not render regex info', async () => {
+      await waitForElementToBeRemoved(() => rendered.getByText('Loading...'));
+      expect(rendered.queryByText('Not found')).toBeInTheDocument();
+    });
+  });
+  describe('when request fails', () => {
+    beforeEach(() => {
+      rendered = renderComponent([
+        {
+          request: {
+            query: FetchProjectExtensionImageRegex,
+            variables: {
+              target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
+            },
+          },
+          error: new Error('Oops'),
+        },
+      ]);
+    });
+    it('should report error to sentry', async () => {
+      await waitForElementToBeRemoved(() => rendered.getByText('Loading...'));
+      expect(rendered.queryByText('Not found')).toBeInTheDocument();
+      expect(reportErrorToSentry).toHaveBeenCalled();
+    });
+  });
 });

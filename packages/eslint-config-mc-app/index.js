@@ -42,7 +42,6 @@ module.exports = {
           'UNSAFE_componentWillMount',
           'UNSAFE_componentWillReceiveProps',
           'UNSAFE_componentWillUpdate',
-          'UNSAFE_componentWillUnmount',
           'componentWillUnmount',
           'componentDidMount',
           'componentDidUpdate',

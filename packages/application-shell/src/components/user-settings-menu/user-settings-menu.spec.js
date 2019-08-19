@@ -2,12 +2,14 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { CaretDownIcon, Avatar, Text } from '@commercetools-frontend/ui-kit';
 import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
+import useApplicationsMenu from '../../hooks/use-applications-menu';
 import Downshift from 'downshift';
 import UserSettingsMenu, {
   UserSettingsMenuBody,
-  ConnectedUserSettingsMenuBody,
   UserAvatar,
 } from './user-settings-menu';
+
+jest.mock('../../hooks/use-applications-menu');
 
 const createTestProps = props => ({
   locale: 'en',
@@ -15,27 +17,8 @@ const createTestProps = props => ({
   lastName: 'Doe',
   email: 'john@doe.com',
   gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
+  environment: { servedByProxy: false },
   ...props,
-});
-
-const createTestMenuConfig = props => ({
-  applicationsMenuQuery: {
-    applicationsMenu: {
-      appBar: [
-        {
-          key: 'profile',
-          labelAllLocales: [{ locale: 'en', value: 'Profile' }],
-          uriPath: 'profile',
-        },
-        {
-          key: 'organizations',
-          labelAllLocales: [{ locale: 'en', value: 'Organizations' }],
-          uriPath: 'organizations',
-        },
-      ],
-      ...props,
-    },
-  },
 });
 
 const createDownshiftProps = props => ({
@@ -82,19 +65,31 @@ describe('rendering', () => {
           .find(Downshift)
           .renderProp('children')(downshiftProps);
       });
-      it('should render <ConnectedUserSettingsMenuBody>', () => {
-        expect(menuStateContainerRenderWrapper).toRender(
-          ConnectedUserSettingsMenuBody
-        );
+      it('should render <UserSettingsMenuBody>', () => {
+        expect(menuStateContainerRenderWrapper).toRender(UserSettingsMenuBody);
       });
     });
   });
 
   describe('<UserSettingsMenuBody>', () => {
     beforeEach(() => {
+      useApplicationsMenu.mockReturnValue({
+        appBar: [
+          {
+            key: 'profile',
+            labelAllLocales: [{ locale: 'en', value: 'Profile' }],
+            uriPath: 'profile',
+          },
+          {
+            key: 'organizations',
+            labelAllLocales: [{ locale: 'en', value: 'Organizations' }],
+            uriPath: 'organizations',
+          },
+        ],
+      });
       props = createTestProps({
         downshiftProps: createDownshiftProps(),
-        ...createTestMenuConfig(),
+        environment: { servedByProxy: false },
       });
       wrapper = shallow(<UserSettingsMenuBody {...props} />);
     });

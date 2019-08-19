@@ -7,6 +7,9 @@ import FetchProject, {
   mapAllAppliedToGroupedObjectShape,
   mapAllDataFencesToGroupedObjectShape,
 } from './fetch-project';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+
+jest.mock('@commercetools-frontend/sentry');
 
 const renderProject = options =>
   renderApp(
@@ -146,6 +149,7 @@ describe('rendering', () => {
       ],
     });
     await waitForElement(() => getByText(/Error: Oops/i));
+    expect(reportErrorToSentry).toHaveBeenCalled();
   });
 });
 

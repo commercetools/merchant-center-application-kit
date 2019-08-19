@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isNil from 'lodash/isNil';
-import flowRight from 'lodash/flowRight';
 import { FormattedMessage } from 'react-intl';
 import { NavLink, matchPath, withRouter } from 'react-router-dom';
-import { graphql } from 'react-apollo';
-import { ToggleFeature, injectFeatureToggle } from '@flopflip/react-broadcast';
+import { useQuery } from 'react-apollo';
+import { ToggleFeature, useFeatureToggle } from '@flopflip/react-broadcast';
 import classnames from 'classnames';
 import { oneLineTrim } from 'common-tags';
 import {
@@ -33,15 +32,16 @@ import {
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import { PROJECT_EXTENSIONS } from '../../feature-toggles';
 import { STORAGE_KEYS } from '../../constants';
-import getDisplayName from '../../utils/get-display-name';
+import useApplicationsMenu from '../../hooks/use-applications-menu';
 import { GtmContext } from '../gtm-booter';
 import LoadingPlaceholder from '../loading-placeholder';
-import withApplicationsMenu from '../with-applications-menu';
-import handleApolloErrors from '../handle-apollo-errors';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
 import styles from './navbar.mod.css';
 import messages from './messages';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
 /*
 <DataMenu data={[]}>
@@ -372,6 +372,13 @@ export class DataMenu extends React.PureComponent {
             uriPath: PropTypes.string.isRequired,
             featureToggle: PropTypes.string,
             permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
+            dataFences: PropTypes.arrayOf(
+              PropTypes.shape({
+                group: PropTypes.string.isRequired,
+                name: PropTypes.string.isRequired,
+                type: PropTypes.string.isRequired,
+              })
+            ),
             actionRights: PropTypes.arrayOf(
               PropTypes.shape({
                 group: PropTypes.string.isRequired,
@@ -387,9 +394,7 @@ export class DataMenu extends React.PureComponent {
     menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
     applicationLocale: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
-    environment: PropTypes.shape({
-      disabledMenuItems: PropTypes.arrayOf(PropTypes.string.isRequired),
-    }).isRequired,
+    disabledMenuItems: PropTypes.arrayOf(PropTypes.string.isRequired),
     isForcedMenuOpen: PropTypes.bool,
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
@@ -416,7 +421,7 @@ export class DataMenu extends React.PureComponent {
       document.body.classList.remove('body__menu-open');
   }
 
-  UNSAFE_componentWillUnmount() {
+  componentWillUnmount() {
     window.removeEventListener('resize', this.checkSize);
     window.removeEventListener('click', this.shouldCloseMenuFly, true);
   }
@@ -523,7 +528,7 @@ export class DataMenu extends React.PureComponent {
         dataFences={menu.dataFences}
         menuVisibilities={this.props.menuVisibilities}
         namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
-        disabledMenuItems={this.props.environment.disabledMenuItems}
+        disabledMenuItems={this.props.disabledMenuItems}
       >
         <MenuItem
           hasSubmenu={hasSubmenu}
@@ -578,7 +583,7 @@ export class DataMenu extends React.PureComponent {
                     dataFences={submenu.dataFences}
                     menuVisibilities={this.props.menuVisibilities}
                     namesOfMenuVisibilities={[submenu.menuVisibility]}
-                    disabledMenuItems={this.props.environment.disabledMenuItems}
+                    disabledMenuItems={this.props.disabledMenuItems}
                   >
                     <li className={styles['sublist-item']}>
                       <div className={styles.text}>
@@ -680,154 +685,108 @@ NavBarLayout.propTypes = {
   children: PropTypes.node,
 };
 
-export class NavBar extends React.PureComponent {
-  static displayName = 'NavBar';
-
-  static propTypes = {
-    // From parent
-    applicationLocale: PropTypes.string.isRequired,
-    projectKey: PropTypes.string.isRequired,
-    environment: PropTypes.shape({
-      servedByProxy: PropTypes.bool.isRequired,
-      useFullRedirectsForLinks: PropTypes.bool.isRequired,
-      disabledMenuItems: PropTypes.arrayOf(PropTypes.string),
-    }).isRequired,
-    menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
-    onMenuItemClick: PropTypes.func,
-    // Injected
-    areProjectExtensionsEnabled: PropTypes.bool.isRequired,
-    location: PropTypes.object.isRequired,
-    isForcedMenuOpen: PropTypes.bool,
-    applicationsMenuQuery: PropTypes.shape({
-      applicationsMenu: PropTypes.shape({
-        navBar: PropTypes.arrayOf(PropTypes.object).isRequired,
-      }),
-    }),
-    projectExtensionsQuery: PropTypes.shape({
-      projectExtension: PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        applications: PropTypes.arrayOf(
-          PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            navbarMenu: PropTypes.object.isRequired,
-          })
-        ).isRequired,
-      }),
-    }),
-  };
-
-  ref = React.createRef();
-
-  render() {
-    const navbarMenu =
-      (this.props.applicationsMenuQuery &&
-        this.props.applicationsMenuQuery.applicationsMenu &&
-        this.props.applicationsMenuQuery.applicationsMenu.navBar) ||
-      [];
-    const customAppsMenu =
-      this.props.projectExtensionsQuery &&
-      this.props.projectExtensionsQuery.projectExtension
-        ? this.props.projectExtensionsQuery.projectExtension.applications.map(
-            app => app.navbarMenu
-          )
-        : [];
-
-    return (
-      <NavBarLayout ref={this.ref}>
-        <DataMenu
-          rootNode={this.ref.current}
-          data={navbarMenu.concat(customAppsMenu)}
-          isForcedMenuOpen={this.props.isForcedMenuOpen}
-          location={this.props.location}
-          menuVisibilities={this.props.menuVisibilities}
-          applicationLocale={this.props.applicationLocale}
-          projectKey={this.props.projectKey}
-          environment={this.props.environment}
-          useFullRedirectsForLinks={
-            this.props.environment.useFullRedirectsForLinks
-          }
-          onMenuItemClick={this.props.onMenuItemClick}
-        />
-      </NavBarLayout>
-    );
-  }
-}
-
-const injectMenuToggleState = Component => {
-  const WrappedComponent = props => {
-    const cachedIsForcedMenuOpen = window.localStorage.getItem(
-      STORAGE_KEYS.IS_FORCED_MENU_OPEN
-    );
-    return (
-      <Component
-        {...props}
-        isForcedMenuOpen={
-          typeof cachedIsForcedMenuOpen === 'string'
-            ? cachedIsForcedMenuOpen === 'true'
-            : null
-        }
-      />
-    );
-  };
-  WrappedComponent.displayName = `injectMenuToggleState(${getDisplayName(
-    Component
-  )})`;
-  return WrappedComponent;
-};
-
-export default flowRight(
-  withRouter, // Connect again, to access the `location` object
-  injectFeatureToggle('projectExtensions', 'areProjectExtensionsEnabled'),
-  injectMenuToggleState,
-  withApplicationsMenu({
-    queryName: 'applicationsMenuQuery',
-    skipRemoteQuery: ownProps => !ownProps.environment.servedByProxy,
-    options: ownProps => ({
+export const NavBar = props => {
+  const ref = React.useRef();
+  const areProjectExtensionsEnabled = useFeatureToggle(PROJECT_EXTENSIONS);
+  const disabledMenuItems = useApplicationContext(
+    context => context.environment.disabledMenuItems
+  );
+  const applicationsMenu = useApplicationsMenu({
+    queryOptions: {
+      onError: reportErrorToSentry,
+    },
+    skipRemoteQuery: !props.environment.servedByProxy,
+    options: {
       __DEV_CONFIG__: {
-        menuLoader: ownProps.DEV_ONLY__loadNavbarMenuConfig,
+        menuLoader: props.DEV_ONLY__loadNavbarMenuConfig,
         menuKey: 'navBar',
       },
-    }),
-  }),
-  graphql(FetchProjectExtensionsNavbar, {
-    name: 'projectExtensionsQuery',
-    skip: ownProps =>
-      !ownProps.environment.servedByProxy ||
-      !ownProps.areProjectExtensionsEnabled,
-    options: () => ({
+    },
+  });
+  const { data: projectExtensionsQuery } = useQuery(
+    FetchProjectExtensionsNavbar,
+    {
+      skip: !props.environment.servedByProxy || !areProjectExtensionsEnabled,
       variables: {
         target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
       },
       fetchPolicy: 'cache-and-network',
-    }),
-  }),
-  handleApolloErrors(['applicationsMenuQuery', 'projectExtensionsQuery'])
-)(NavBar);
+      onError: reportErrorToSentry,
+    }
+  );
+  const navbarMenu = (applicationsMenu && applicationsMenu.navBar) || [];
+  const customAppsMenu =
+    projectExtensionsQuery && projectExtensionsQuery.projectExtension
+      ? projectExtensionsQuery.projectExtension.applications.map(
+          app => app.navbarMenu
+        )
+      : [];
+  const cachedIsForcedMenuOpen = window.localStorage.getItem(
+    STORAGE_KEYS.IS_FORCED_MENU_OPEN
+  );
+  const isForcedMenuOpen =
+    typeof cachedIsForcedMenuOpen === 'string'
+      ? cachedIsForcedMenuOpen === 'true'
+      : null;
 
-export class LoadingNavBar extends React.Component {
-  static displayName = 'LoadingNavBar';
-  ref = React.createRef();
-  render() {
-    return (
-      <NavBarLayout ref={this.ref}>
-        <MenuGroup level={1}>
-          <React.Fragment>
-            {Array.from(new Array(5)).map((_, index) => (
-              <MenuItem
-                key={index}
-                hasSubmenu={false}
-                isMenuOpen={false}
-                isActive={false}
-                onClick={() => {}}
-              >
-                <div className={styles['loading-dot-container']}>
-                  <LoadingPlaceholder shape="dot" size="m" />
-                </div>
-              </MenuItem>
-            ))}
-          </React.Fragment>
-        </MenuGroup>
-      </NavBarLayout>
-    );
-  }
-}
+  return (
+    <NavBarLayout ref={ref}>
+      <DataMenu
+        rootNode={ref.current}
+        data={navbarMenu.concat(customAppsMenu)}
+        isForcedMenuOpen={isForcedMenuOpen}
+        location={props.location}
+        menuVisibilities={props.menuVisibilities}
+        applicationLocale={props.applicationLocale}
+        projectKey={props.projectKey}
+        disabledMenuItems={disabledMenuItems}
+        useFullRedirectsForLinks={props.environment.useFullRedirectsForLinks}
+        onMenuItemClick={props.onMenuItemClick}
+      />
+    </NavBarLayout>
+  );
+};
+NavBar.displayName = 'NavBar';
+NavBar.propTypes = {
+  // From parent
+  applicationLocale: PropTypes.string.isRequired,
+  projectKey: PropTypes.string.isRequired,
+  environment: PropTypes.shape({
+    servedByProxy: PropTypes.bool.isRequired,
+    useFullRedirectsForLinks: PropTypes.bool.isRequired,
+  }).isRequired,
+  menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
+  DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
+  onMenuItemClick: PropTypes.func,
+  // withRouter
+  location: PropTypes.object.isRequired,
+};
+
+// Use `withRouter` to "connect" again, to access the `location` object
+export default withRouter(NavBar);
+
+export const LoadingNavBar = () => {
+  const ref = React.useRef();
+  return (
+    <NavBarLayout ref={ref}>
+      <MenuGroup level={1}>
+        <React.Fragment>
+          {Array.from(new Array(5)).map((_, index) => (
+            <MenuItem
+              key={index}
+              hasSubmenu={false}
+              isMenuOpen={false}
+              isActive={false}
+              onClick={() => {}}
+            >
+              <div className={styles['loading-dot-container']}>
+                <LoadingPlaceholder shape="dot" size="m" />
+              </div>
+            </MenuItem>
+          ))}
+        </React.Fragment>
+      </MenuGroup>
+    </NavBarLayout>
+  );
+};
+LoadingNavBar.displayName = 'LoadingNavBar';
