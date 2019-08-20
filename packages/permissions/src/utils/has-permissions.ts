@@ -38,9 +38,15 @@ type TDemandedDataFence = {
   name: string;
   type: TDataFenceType;
 };
-type TSelectDataFenceDataByType = (dataFenceWithType: {
-  type: TDataFenceType;
-}) => string[] | null;
+
+type TDemandedDataFenceWithValues = TDemandedDataFence & {
+  actualDataFenceValues: string[];
+};
+
+type TSelectDataFenceDataByType = (
+  dataFenceWithType: TDemandedDataFenceWithValues
+) => string[] | null;
+
 type TActualDataFence = {
   name: string;
   dataFenceValue: { values: string[] };
@@ -190,6 +196,9 @@ const hasDemandedDataFenceByType = (options: {
 
   const selectedDataFenceData = options.selectDataFenceDataByType({
     type: options.demandedDataFence.type,
+    group: options.demandedDataFence.group,
+    name: options.demandedDataFence.name,
+    actualDataFenceValues: options.actualDataFence.dataFenceValue.values,
   });
 
   if (!selectedDataFenceData) {

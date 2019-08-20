@@ -282,10 +282,10 @@ const LastOrder = ({ order : { store: "Germany" }}) =>
         type: 'store'
       }
     ],
-    getSelectDataFenceDataByType: ownProps => ({ type }) => {
-      switch (type) {
+    getSelectDataFenceDataByType: ownProps => (demandedDataFence) => {
+      switch (demandedDataFence.type) {
         case 'store':
-          return [ownProps.order.store];
+          return [ownProps.order.storeRef.key];
         default:
           return null
       }
