@@ -1,3 +1,15 @@
+## [14.5.0](https://github.com/commercetools/merchant-center-application-kit/compare/v14.4.1...v14.5.0) (2019-08-20)
+
+#### 🚀 Type: New Feature
+
+- `application-shell`, `constants`, `sdk`
+  - [#986](https://github.com/commercetools/merchant-center-application-kit/pull/986) feat(sdk): allow to pass a mcApiProxyTarget to the SDK action ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `application-components`, `application-shell`, `l10n`, `react-notifications`
+  - [#988](https://github.com/commercetools/merchant-center-application-kit/pull/988) chore: update deps ([@emmenko](https://github.com/emmenko))
+
 ## [14.4.1](https://github.com/commercetools/merchant-center-application-kit/compare/v14.4.0...v14.4.1) (2019-08-14)
 
 #### 🐛 Type: Bug
