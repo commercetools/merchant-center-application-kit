@@ -1,0 +1,8 @@
+{
+  "extends": "../tsconfig.json",
+  "files": ["./src/index.tsx"],
+  // https://github.com/parcel-bundler/parcel/issues/1199#issuecomment-477768068
+  "compilerOptions": {
+    "jsx": "react"
+  }
+}

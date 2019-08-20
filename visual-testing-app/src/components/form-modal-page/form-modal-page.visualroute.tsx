@@ -6,18 +6,31 @@ import {
   FlameIcon,
   BinLinearIcon,
 } from '@commercetools-uikit/icons';
-import TextField from '@commercetools-uikit/text-field';
+import TextField, { CustomFormikErrors } from '@commercetools-uikit/text-field';
 import IconButton from '@commercetools-uikit/icon-button';
 import Spacings from '@commercetools-uikit/spacings';
-import { FormModalPage } from '@local-build/application-components';
-import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
+import { FormModalPage } from '@commercetools-frontend/application-components';
+import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/form-modal-page';
 
-const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
-  <React.Fragment>
+type ContainerProps = {
+  portalId: string;
+} & Partial<Parameters<typeof FormModalPage>[0]>;
+type FormValues = {
+  email: string;
+};
+
+const ModalPageWithPortalParentSelector = ({
+  portalId,
+  ...props
+}: ContainerProps) => (
+  <>
     <div id={portalId} style={{ position: 'relative', height: '750px' }} />
-    <Formik initialValues={{ email: '' }} onSubmit={() => undefined}>
+    <Formik<FormValues>
+      initialValues={{ email: '' }}
+      onSubmit={() => undefined}
+    >
       {formikProps => (
         <FormModalPage
           title="Lorem ipsum"
@@ -27,7 +40,9 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
           onSecondaryButtonClick={() => undefined}
           onPrimaryButtonClick={() => undefined}
           isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
-          getParentSelector={() => document.querySelector(`#${portalId}`)}
+          getParentSelector={() =>
+            document.querySelector(`#${portalId}`) as HTMLElement
+          }
           {...props}
         >
           <TextField
@@ -35,17 +50,18 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
             title="Email"
             isRequired={true}
             value={formikProps.values.email}
-            errors={formikProps.errors.email}
+            errors={
+              (formikProps.errors as CustomFormikErrors<FormValues>).email
+            }
             touched={formikProps.touched.email}
             onChange={formikProps.handleChange}
             onBlur={formikProps.handleBlur}
-            onFocus={formikProps.handleFocus}
             horizontalConstraint="m"
           />
         </FormModalPage>
       )}
     </Formik>
-  </React.Fragment>
+  </>
 );
 ModalPageWithPortalParentSelector.displayName =
   'ModalPageWithPortalParentSelector';
@@ -54,7 +70,7 @@ ModalPageWithPortalParentSelector.propTypes = {
   portalId: PropTypes.string.isRequired,
 };
 
-export const component = () => (
+export const Component = () => (
   <Suite>
     <Spec label="FormModalPage" size="xl">
       <ModalPageWithPortalParentSelector portalId="form-modal-one" />
@@ -76,9 +92,21 @@ export const component = () => (
       <ModalPageWithPortalParentSelector
         customControls={
           <Spacings.Inline>
-            <IconButton icon={<SearchIcon />} onClick={() => undefined} />
-            <IconButton icon={<FlameIcon />} onClick={() => undefined} />
-            <IconButton icon={<BinLinearIcon />} onClick={() => undefined} />
+            <IconButton
+              label="Search"
+              icon={<SearchIcon />}
+              onClick={() => undefined}
+            />
+            <IconButton
+              label="Update"
+              icon={<FlameIcon />}
+              onClick={() => undefined}
+            />
+            <IconButton
+              label="Delete"
+              icon={<BinLinearIcon />}
+              onClick={() => undefined}
+            />
           </Spacings.Inline>
         }
         portalId="form-modal-custom"

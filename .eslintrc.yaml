@@ -88,13 +88,6 @@ overrides:
           },
         ]
       'react/display-name': 0
-  - files: ['*.visualspec.js']
-    globals:
-      page: true
-      HOST: true
-  - files: ['*.js']
-    rules:
-      '@typescript-eslint/explicit-function-return-type': 0
   - files: ['*.ts', '*.tsx']
     rules:
       '@typescript-eslint/ban-ts-ignore': 0
