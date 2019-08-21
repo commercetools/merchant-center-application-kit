@@ -37,7 +37,7 @@ type TDemandedDataFence = {
   name: string;
   type: TDataFenceType;
 };
-type TSelectDataFenceDataByType = (dataFenceWithType: {
+type TSelectDataFenceData = (dataFenceWithType: {
   type: TDataFenceType;
 }) => string[] | null;
 
@@ -49,7 +49,7 @@ type TestProps = {
   actualPermissions: TPermissions | null;
   actualActionRights: TActionRights | null;
   actualDataFences: TDataFences | null;
-  selectDataFenceDataByType?: TSelectDataFenceDataByType;
+  selectDataFenceData?: TSelectDataFenceData;
   render: jest.Mock;
 };
 
@@ -239,7 +239,7 @@ describe('rendering', () => {
                   name: 'ManageOrders',
                 },
               ],
-              selectDataFenceDataByType: ({ type }) => ['store-1'],
+              selectDataFenceData: ({ type }) => ['store-1'],
             }),
           };
           shallow(<Authorized {...props} />);
@@ -261,7 +261,7 @@ describe('rendering', () => {
                   name: 'ViewOrders',
                 },
               ],
-              selectDataFenceDataByType: ({ type }) => ['store-1'],
+              selectDataFenceData: ({ type }) => ['store-1'],
             }),
           };
           shallow(<Authorized {...props} />);

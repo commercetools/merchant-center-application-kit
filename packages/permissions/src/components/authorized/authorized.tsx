@@ -47,16 +47,18 @@ type TDemandedDataFence = {
   name: string;
   type: TDataFenceType;
 };
-type TSelectDataFenceDataByType = (dataFenceWithType: {
-  type: TDataFenceType;
-}) => string[] | null;
+type TSelectDataFenceData = (
+  demandedDataFenceWithActualValues: TDemandedDataFence & {
+    actualDataFenceValues: string[];
+  }
+) => string[] | null;
 
 type Props = {
   shouldMatchSomePermissions?: boolean;
   demandedPermissions: TPermissionName[];
   demandedActionRights?: TDemandedActionRight[];
   demandedDataFences?: TDemandedDataFence[];
-  selectDataFenceDataByType?: TSelectDataFenceDataByType;
+  selectDataFenceData?: TSelectDataFenceData;
   actualPermissions: TPermissions | null;
   actualActionRights: TActionRights | null;
   actualDataFences: TDataFences | null;
@@ -74,10 +76,10 @@ const Authorized = (props: Props) => {
     props.demandedDataFences &&
     props.demandedDataFences.length > 0
   ) {
-    if (!props.selectDataFenceDataByType) {
+    if (!props.selectDataFenceData) {
       reportErrorToSentry(
         new Error(
-          `@commercetools-frontend/permissions/Authorized: Missing data fences selector "selectDataFenceDataByType".`
+          `@commercetools-frontend/permissions/Authorized: Missing data fences selector "selectDataFenceData".`
         )
       );
       return <React.Fragment>{props.render(false)}</React.Fragment>;
@@ -88,7 +90,7 @@ const Authorized = (props: Props) => {
           hasAppliedDataFence({
             demandedDataFences: props.demandedDataFences,
             actualDataFences: props.actualDataFences,
-            selectDataFenceDataByType: props.selectDataFenceDataByType,
+            selectDataFenceData: props.selectDataFenceData,
           })
         )}
       </React.Fragment>
@@ -135,9 +137,7 @@ type TInjectAuthorizedOptions<OwnProps extends {}> = {
   actionRights?: TDemandedActionRight[];
   dataFences?: TDemandedDataFence[];
 
-  getSelectDataFenceDataByType?: (
-    ownProps: OwnProps
-  ) => TSelectDataFenceDataByType;
+  getSelectDataFenceData?: (ownProps: OwnProps) => TSelectDataFenceData;
 };
 
 const injectAuthorized = <
@@ -163,9 +163,9 @@ const injectAuthorized = <
           actualPermissions={applicationContext.permissions}
           actualActionRights={applicationContext.actionRights}
           actualDataFences={applicationContext.dataFences}
-          selectDataFenceDataByType={
-            options.getSelectDataFenceDataByType &&
-            options.getSelectDataFenceDataByType(props)
+          selectDataFenceData={
+            options.getSelectDataFenceData &&
+            options.getSelectDataFenceData(props)
           }
           render={isAuthorized => (
             <Component {...props} {...{ [propName]: isAuthorized }} />

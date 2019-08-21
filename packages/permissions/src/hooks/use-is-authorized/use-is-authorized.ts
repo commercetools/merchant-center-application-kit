@@ -44,22 +44,24 @@ type TDemandedDataFence = {
   name: string;
   type: TDataFenceType;
 };
-type TSelectDataFenceDataByType = (dataFenceWithType: {
-  type: TDataFenceType;
-}) => string[] | null;
+type TSelectDataFenceData = (
+  demandedDataFenceWithActualValues: TDemandedDataFence & {
+    actualDataFenceValues: string[];
+  }
+) => string[] | null;
 
 // Forward-compatibility with React Hooks 🎉
 const useIsAuthorized = ({
   demandedPermissions,
   demandedActionRights,
   demandedDataFences,
-  selectDataFenceDataByType,
+  selectDataFenceData,
   shouldMatchSomePermissions = false,
 }: {
   demandedPermissions: TPermissionName[];
   demandedActionRights?: TDemandedActionRight[];
   demandedDataFences?: TDemandedDataFence[];
-  selectDataFenceDataByType?: TSelectDataFenceDataByType;
+  selectDataFenceData?: TSelectDataFenceData;
   shouldMatchSomePermissions: boolean;
 }) => {
   const actualPermissions = useApplicationContext<TPermissions | null>(
@@ -74,10 +76,10 @@ const useIsAuthorized = ({
 
   // Check first for data fences
   if (actualDataFences && demandedDataFences && demandedDataFences.length > 0) {
-    if (!selectDataFenceDataByType) {
+    if (!selectDataFenceData) {
       reportErrorToSentry(
         new Error(
-          `@commercetools-frontend/permissions/Authorized: Missing data fences selector "selectDataFenceDataByType".`
+          `@commercetools-frontend/permissions/Authorized: Missing data fences selector "selectDataFenceData".`
         )
       );
       return false;
@@ -85,7 +87,7 @@ const useIsAuthorized = ({
     return hasAppliedDataFence({
       demandedDataFences: demandedDataFences,
       actualDataFences: actualDataFences,
-      selectDataFenceDataByType: selectDataFenceDataByType,
+      selectDataFenceData: selectDataFenceData,
     });
   }
 

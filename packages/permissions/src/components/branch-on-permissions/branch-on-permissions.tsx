@@ -19,17 +19,17 @@ type TDemandedDataFence = {
   name: string;
   type: TDataFenceType;
 };
-type TSelectDataFenceDataByType = (dataFenceWithType: {
-  type: TDataFenceType;
-}) => string[] | null;
+type TSelectDataFenceData = (
+  demandedDataFenceWithActualValues: TDemandedDataFence & {
+    actualDataFenceValues: string[];
+  }
+) => string[] | null;
 
 type TOptions<OwnProps extends {}> = {
   shouldMatchSomePermissions?: boolean;
   actionRights?: TDemandedActionRight[];
   dataFences?: TDemandedDataFence[];
-  getSelectDataFenceDataByType?: (
-    ownProps: OwnProps
-  ) => TSelectDataFenceDataByType;
+  getSelectDataFenceData?: (ownProps: OwnProps) => TSelectDataFenceData;
 };
 
 const branchOnPermissions = <OwnProps extends {}>(
@@ -52,9 +52,9 @@ const branchOnPermissions = <OwnProps extends {}>(
           demandedPermissions={demandedPermissions}
           demandedActionRights={options.actionRights}
           demandedDataFences={options.dataFences}
-          selectDataFenceDataByType={
-            options.getSelectDataFenceDataByType &&
-            options.getSelectDataFenceDataByType(props)
+          selectDataFenceData={
+            options.getSelectDataFenceData &&
+            options.getSelectDataFenceData(props)
           }
           render={isAuthorized => {
             if (isAuthorized) {

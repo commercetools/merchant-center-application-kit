@@ -38,9 +38,15 @@ type TDemandedDataFence = {
   name: string;
   type: TDataFenceType;
 };
-type TSelectDataFenceDataByType = (dataFenceWithType: {
-  type: TDataFenceType;
-}) => string[] | null;
+
+type TDemandedDataFenceWithValues = TDemandedDataFence & {
+  actualDataFenceValues: string[];
+};
+
+type TSelectDataFenceData = (
+  demandedDataFenceWithActualValues: TDemandedDataFenceWithValues
+) => string[] | null;
+
 type TActualDataFence = {
   name: string;
   dataFenceValue: { values: string[] };
@@ -49,7 +55,7 @@ type TActualDataFence = {
 type TOptionsForAppliedDataFence = {
   demandedDataFences: TDemandedDataFence[];
   actualDataFences: TDataFences;
-  selectDataFenceDataByType: TSelectDataFenceDataByType;
+  selectDataFenceData: TSelectDataFenceData;
 };
 
 // Build the permission key from the definition to match it to the format coming
@@ -177,10 +183,10 @@ export const getInvalidPermissions = (
   );
 };
 
-const hasDemandedDataFenceByType = (options: {
+const hasDemandedDataFence = (options: {
   actualDataFence: TActualDataFence;
   demandedDataFence: TDemandedDataFence;
-  selectDataFenceDataByType: TSelectDataFenceDataByType;
+  selectDataFenceData: TSelectDataFenceData;
 }): boolean => {
   const hasDemandedPermission = hasPermission(options.demandedDataFence.name, {
     [options.actualDataFence.name]: true,
@@ -188,8 +194,11 @@ const hasDemandedDataFenceByType = (options: {
 
   if (!hasDemandedPermission) return false;
 
-  const selectedDataFenceData = options.selectDataFenceDataByType({
+  const selectedDataFenceData = options.selectDataFenceData({
     type: options.demandedDataFence.type,
+    group: options.demandedDataFence.group,
+    name: options.demandedDataFence.name,
+    actualDataFenceValues: options.actualDataFence.dataFenceValue.values,
   });
 
   if (!selectedDataFenceData) {
@@ -234,19 +243,18 @@ export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) =>
     );
 
     if (actualDataFenceByPermissionGroup) {
-      const hasDemandedDataFence = Object.entries(
-        actualDataFenceByPermissionGroup
-      ).every(([dataFenceName, dataFenceValue]) => {
-        if (dataFenceValue) {
-          return hasDemandedDataFenceByType({
-            actualDataFence: { name: dataFenceName, dataFenceValue },
-            demandedDataFence,
-            selectDataFenceDataByType: options.selectDataFenceDataByType,
-          });
+      return Object.entries(actualDataFenceByPermissionGroup).every(
+        ([dataFenceName, dataFenceValue]) => {
+          if (dataFenceValue) {
+            return hasDemandedDataFence({
+              actualDataFence: { name: dataFenceName, dataFenceValue },
+              demandedDataFence,
+              selectDataFenceData: options.selectDataFenceData,
+            });
+          }
+          return false;
         }
-        return false;
-      });
-      return hasDemandedDataFence;
+      );
     }
 
     return false;
