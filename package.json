@@ -18,7 +18,7 @@
     "format:md": "prettier --write --parser markdown '**/*.{md,mdx}'",
     "format:yaml": "prettier --write --parser yaml '**/*.yaml'",
     "start": "yarn playground:start",
-    "prerelease": "yarn typecheck && yarn build",
+    "prerelease": "yarn build && yarn typecheck",
     "release": "lerna publish --exact --dist-tag next",
     "release:alpha": "lerna publish --exact --dist-tag alpha --no-git-tag-version --no-push",
     "release:canary": "lerna publish --exact --dist-tag canary --canary --preid canary --yes",
