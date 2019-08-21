@@ -17,6 +17,9 @@ export {
   default as InfoModalPage,
 } from './components/modal-pages/info-modal-page';
 export {
+  default as CustomFormModalPage,
+} from './components/modal-pages/custom-form-modal-page';
+export {
   default as FormModalPage,
 } from './components/modal-pages/form-modal-page';
 export {

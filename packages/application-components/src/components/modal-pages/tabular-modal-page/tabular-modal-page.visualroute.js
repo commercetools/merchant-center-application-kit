@@ -81,37 +81,33 @@ const Content = () => (
 export const component = () => (
   <Suite>
     <Spec label="TabularModalPage" size="xl">
-      <ModalPageWithPortalParentSelector
-        portalId="tabular-modal-page-default"
-        customControls={<React.Fragment />}
-      >
+      <ModalPageWithPortalParentSelector portalId="tabular-modal-page-default">
         <Content />
       </ModalPageWithPortalParentSelector>
     </Spec>
     <Spec
-      label="TabularModalPage - with secondary and primary buttons"
+      label="TabularModalPage - with the static exposed form controls"
       size="xl"
+      formControls={
+        <React.Fragment>
+          <TabularModalPage.FormSecondaryButton onClick={() => {}} />
+          <TabularModalPage.FormPrimaryButton onClick={() => {}} />
+          <TabularModalPage.FormDeleteButton onClick={() => {}} />
+        </React.Fragment>
+      }
     >
       <ModalPageWithPortalParentSelector portalId="tabular-modal-page-default-controls">
         <Content />
       </ModalPageWithPortalParentSelector>
     </Spec>
-    <Spec label="TabularModalPage - with primary button disabled" size="xl">
+    <Spec label="TabularModalPage - with other custom controls" size="xl">
       <ModalPageWithPortalParentSelector
-        portalId="tabular-modal-page-primary-button-disabled"
-        isPrimaryButtonDisabled={true}
-      >
-        <Content />
-      </ModalPageWithPortalParentSelector>
-    </Spec>
-    <Spec label="TabularModalPage - with Custom Controls" size="xl">
-      <ModalPageWithPortalParentSelector
-        customControls={
-          <Spacings.Inline>
+        formControls={
+          <React.Fragment>
             <IconButton icon={<SearchIcon />} onClick={() => {}} />
             <IconButton icon={<FlameIcon />} onClick={() => {}} />
             <IconButton icon={<BinLinearIcon />} onClick={() => {}} />
-          </Spacings.Inline>
+          </React.Fragment>
         }
         portalId="tabular-modal-page-custom-controls"
       >
@@ -143,14 +139,13 @@ export const component = () => (
             </Spacings.Inline>
           </Spacings.Inline>
         }
-        customControls={<React.Fragment />}
         portalId="tabular-modal-page-custom-title-row-no-controls"
       >
         <Content />
       </ModalPageWithPortalParentSelector>
     </Spec>
     <Spec
-      label="TabularModalPage - with Custom Title Row and default controls"
+      label="TabularModalPage - with Custom Title Row and the static exposed form controls"
       size="xl"
     >
       <ModalPageWithPortalParentSelector
@@ -173,52 +168,37 @@ export const component = () => (
               <TextInput id="input-2" value="" onChange={() => {}} />
             </Spacings.Inline>
           </Spacings.Inline>
+        }
+        formControls={
+          <React.Fragment>
+            <TabularModalPage.FormSecondaryButton onClick={() => {}} />
+            <TabularModalPage.FormPrimaryButton onClick={() => {}} />
+            <TabularModalPage.FormDeleteButton onClick={() => {}} />
+          </React.Fragment>
         }
         portalId="tabular-modal-page-custom-title-row-default-controls"
       >
         <Content />
       </ModalPageWithPortalParentSelector>
     </Spec>
-    <Spec
-      label="TabularModalPage - with Custom Title Row and custom controls"
-      size="xl"
-    >
+    <Spec label="TabularModalPage - with hidden controls" size="xl">
       <ModalPageWithPortalParentSelector
-        customTitleRow={
-          <Spacings.Inline scale="m">
-            <Spacings.Inline alignItems="center">
-              <label htmlFor="input-1">
-                <Text.Body isBold truncate>
-                  Input 1
-                </Text.Body>
-              </label>
-              <TextInput id="input-1" value="" onChange={() => {}} />
-            </Spacings.Inline>
-            <Spacings.Inline alignItems="center">
-              <label htmlFor="input-2">
-                <Text.Body isBold truncate>
-                  Input 2
-                </Text.Body>
-              </label>
-              <TextInput id="input-2" value="" onChange={() => {}} />
-            </Spacings.Inline>
-          </Spacings.Inline>
+        formControls={
+          <React.Fragment>
+            <TabularModalPage.FormSecondaryButton onClick={() => {}} />
+            <TabularModalPage.FormPrimaryButton onClick={() => {}} />
+            <TabularModalPage.FormDeleteButton onClick={() => {}} />
+          </React.Fragment>
         }
-        customControls={
-          <Spacings.Inline>
-            <IconButton icon={<SearchIcon />} onClick={() => {}} />
-            <IconButton icon={<FlameIcon />} onClick={() => {}} />
-            <IconButton icon={<BinLinearIcon />} onClick={() => {}} />
-          </Spacings.Inline>
-        }
-        portalId="tabular-modal-page-custom-title-row-and-custom-controls"
+        hideControls={true}
+        portalId="tabular-modal-page-hidden-controls"
       >
         <Content />
       </ModalPageWithPortalParentSelector>
     </Spec>
     <Spec label="TabularModalPage - long content" size="xl">
       <ModalPageWithPortalParentSelector
-        customControls={<React.Fragment />}
+        formControls={<React.Fragment />}
         portalId="tabular-modal-page-custom-title-row-long-content"
       >
         <Content />

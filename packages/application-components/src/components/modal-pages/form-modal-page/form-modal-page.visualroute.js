@@ -1,14 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
-import {
-  TextField,
-  Spacings,
-  IconButton,
-  SearchIcon,
-  FlameIcon,
-  BinLinearIcon,
-} from '@commercetools-frontend/ui-kit';
+import { TextField } from '@commercetools-frontend/ui-kit';
 import { FormModalPage } from '@local-build/application-components';
 import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
 
@@ -29,6 +22,7 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
           onSecondaryButtonClick={() => {}}
           onPrimaryButtonClick={() => {}}
           isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
+          isSecondaryButtonDisabled={props.isSecondaryButtonDisabled}
           getParentSelector={() => document.querySelector(`#${portalId}`)}
           {...props}
         >
@@ -53,6 +47,7 @@ ModalPageWithPortalParentSelector.displayName =
   'ModalPageWithPortalParentSelector';
 ModalPageWithPortalParentSelector.propTypes = {
   isPrimaryButtonDisabled: PropTypes.bool,
+  isSecondaryButtonDisabled: PropTypes.bool,
   portalId: PropTypes.string.isRequired,
 };
 
@@ -63,8 +58,14 @@ export const component = () => (
     </Spec>
     <Spec label="FormModalPage - Primary button disabled" size="xl">
       <ModalPageWithPortalParentSelector
-        portalId="form-modal-disabled"
+        portalId="form-modal-primary-disabled"
         isPrimaryButtonDisabled
+      />
+    </Spec>
+    <Spec label="FormModalPage - Secondary button disabled" size="xl">
+      <ModalPageWithPortalParentSelector
+        portalId="form-modal-secondary-disabled"
+        isSecondaryButtonDisabled
       />
     </Spec>
     <Spec label="FormModalPage - Long title and subtitle" size="xl">
@@ -74,16 +75,10 @@ export const component = () => (
         subtitle="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
       />
     </Spec>
-    <Spec label="FormModalPage - with Custom Controls" size="xl">
+    <Spec label="FormModalPage - With hidden controls" size="xl">
       <ModalPageWithPortalParentSelector
-        customControls={
-          <Spacings.Inline>
-            <IconButton icon={<SearchIcon />} onClick={() => {}} />
-            <IconButton icon={<FlameIcon />} onClick={() => {}} />
-            <IconButton icon={<BinLinearIcon />} onClick={() => {}} />
-          </Spacings.Inline>
-        }
-        portalId="form-modal-custom"
+        hideControls={true}
+        portalId="form-modal-hidden-controls"
       />
     </Spec>
   </Suite>

@@ -77,6 +77,10 @@ module.exports = {
                 linkTo: '/components/form-modal-page',
               },
               {
+                label: 'CustomFormModalPage',
+                linkTo: '/components/custom-form-modal-page',
+              },
+              {
                 label: 'TabularModalPage',
                 linkTo: '/components/tabular-modal-page',
               },

@@ -5,10 +5,6 @@ import {
   Spacings,
   TextInput,
   customProperties,
-  IconButton,
-  SearchIcon,
-  FlameIcon,
-  BinLinearIcon,
 } from '@commercetools-frontend/ui-kit';
 import { css } from '@emotion/core';
 import ExampleWrapper from '../../internals/for-docs/example-wrapper';
@@ -35,20 +31,6 @@ const exampleCustomTitleRow = (
     </Spacings.Inline>
   </Spacings.Inline>
 );
-
-const exampleCustomControls = (
-  <Spacings.Inline>
-    <IconButton icon={<SearchIcon />} onClick={() => {}} />
-    <IconButton icon={<FlameIcon />} onClick={() => {}} />
-    <IconButton icon={<BinLinearIcon />} onClick={() => {}} />
-  </Spacings.Inline>
-);
-
-const customControls = option => {
-  if (option === 'custom') return exampleCustomControls;
-  if (option === 'none') return <React.Fragment />;
-  return undefined;
-};
 
 // This component is supposed to be used in the mdx documentation
 const TabularModalPageExample = () => (
@@ -80,14 +62,13 @@ const TabularModalPageExample = () => (
         },
         {
           kind: 'select',
-          name: 'useCustomControls',
-          label: 'Form Controls',
+          name: 'hideControls',
+          label: 'Hide Controls?',
           valueOptions: [
-            { value: 'default', label: 'Default' },
-            { value: 'custom', label: 'Custom (example)' },
-            { value: 'none', label: 'None' },
+            { value: false, label: 'No' },
+            { value: true, label: 'Yes' },
           ],
-          initialValue: 'none',
+          initialValue: true,
         },
       ]}
     >
@@ -103,7 +84,7 @@ const TabularModalPageExample = () => (
           >
             {({ isOpen, setIsOpen }) => (
               <TabularModalPage
-                title="Lorem ipsum"
+                title={values.title}
                 isOpen={isOpen}
                 onClose={() => setIsOpen(false)}
                 getParentSelector={() =>
@@ -145,7 +126,24 @@ const TabularModalPageExample = () => (
                 customTitleRow={
                   values.useCustomTitleRow === 'custom' && exampleCustomTitleRow
                 }
-                customControls={customControls(values.useCustomControls)}
+                formControls={
+                  <React.Fragment>
+                    <TabularModalPage.FormSecondaryButton
+                      onClick={() => {
+                        setIsOpen(false);
+                      }}
+                    />
+                    <TabularModalPage.FormPrimaryButton
+                      onClick={() => {}}
+                      isDisabled
+                    />
+                    <TabularModalPage.FormDeleteButton
+                      onClick={() => {}}
+                      isDisabled
+                    />
+                  </React.Fragment>
+                }
+                hideControls={values.hideControls}
               >
                 <Text.Body>{values.content}</Text.Body>
               </TabularModalPage>

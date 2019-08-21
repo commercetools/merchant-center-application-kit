@@ -5,22 +5,15 @@ import { customProperties, Spacings } from '@commercetools-frontend/ui-kit';
 import buttonMessages from '../../../utils/button-messages';
 import ModalPage from '../internals/modal-page';
 import ModalPageHeaderTitle from '../internals/modal-page-header-title';
-import ModalPageHeaderDefaultControls from '../internals/modal-page-header-default-controls';
 import { ContentWrapper } from '../internals/modal-page.styles';
+import {
+  FormPrimaryButton,
+  FormSecondaryButton,
+  FormDeleteButton,
+} from '../../../utils/default-form-buttons';
 
 type Label = string | MessageDescriptor;
-// [conditional A]
-type WithCustomControls = {
-  customControls?: React.ReactNode;
-};
-// [conditional B]
-type WithoutCustomControls = {
-  labelSecondaryButton?: Label;
-  labelPrimaryButton?: Label;
-  onSecondaryButtonClick?: (event: React.SyntheticEvent) => void;
-  onPrimaryButtonClick?: (event: React.SyntheticEvent) => void;
-};
-type CommonProps = {
+type Props = {
   level?: number;
   title: string;
   isOpen: boolean;
@@ -39,50 +32,12 @@ type CommonProps = {
   tabControls: React.ReactNode;
   // Header Props
   subtitle?: string | React.ReactElement;
-  isPrimaryButtonDisabled?: boolean;
-  dataAttributesPrimaryButton?: { [key: string]: string };
-  dataAttributesSecondaryButton?: { [key: string]: string };
-};
-type Props = CommonProps & WithCustomControls & WithoutCustomControls;
-type PropsWithCustomControls = CommonProps & Required<WithCustomControls>;
-type PropsWithoutCustomControls = CommonProps & Required<WithoutCustomControls>;
-const defaultProps: Pick<
-  Props,
-  'labelPrimaryButton' | 'labelSecondaryButton'
-> = {
-  labelPrimaryButton: buttonMessages.confirm,
-  labelSecondaryButton: buttonMessages.cancel,
+  formControls: React.ReactNode;
+  hideControls: boolean;
 };
 
-// Type-guard validation for the correct props, based on the existence `customControls`
-const hasCustomControls = (
-  props: PropsWithCustomControls | PropsWithoutCustomControls
-): props is PropsWithCustomControls =>
-  'customControls' in props && props.customControls !== undefined;
-const getConditionalProps = (props: Props) => {
-  if ('customControls' in props && props.customControls !== undefined) {
-    return props as PropsWithCustomControls;
-  }
-  return props as PropsWithoutCustomControls;
-};
-
-const TabularModalPageHeaderControls = (
-  props: PropsWithCustomControls | PropsWithoutCustomControls
-) => {
-  if (hasCustomControls(props)) {
-    return <>{props.customControls}</>;
-  }
-  return (
-    <ModalPageHeaderDefaultControls
-      labelSecondaryButton={props.labelSecondaryButton}
-      labelPrimaryButton={props.labelPrimaryButton}
-      isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
-      onSecondaryButtonClick={props.onSecondaryButtonClick}
-      onPrimaryButtonClick={props.onPrimaryButtonClick}
-      dataAttributesSecondaryButton={props.dataAttributesSecondaryButton}
-      dataAttributesPrimaryButton={props.dataAttributesPrimaryButton}
-    />
-  );
+const defaultProps: Pick<Props, 'hideControls'> = {
+  hideControls: false,
 };
 
 const TabularModalPage = (props: Props) => (
@@ -129,7 +84,11 @@ const TabularModalPage = (props: Props) => (
               margin-bottom: 16px;
             `}
           >
-            <TabularModalPageHeaderControls {...getConditionalProps(props)} />
+            {!props.hideControls && props.formControls && (
+              <Spacings.Inline alignItems="flex-end">
+                {props.formControls}
+              </Spacings.Inline>
+            )}
           </div>
         </div>
       </Spacings.Stack>
@@ -140,5 +99,8 @@ const TabularModalPage = (props: Props) => (
 TabularModalPage.displayName = 'TabularModalPage';
 TabularModalPage.defaultProps = defaultProps;
 TabularModalPage.Intl = buttonMessages;
+TabularModalPage.FormPrimaryButton = FormPrimaryButton;
+TabularModalPage.FormSecondaryButton = FormSecondaryButton;
+TabularModalPage.FormDeleteButton = FormDeleteButton;
 
 export default TabularModalPage;
