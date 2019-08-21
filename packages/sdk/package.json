@@ -20,6 +20,8 @@
   },
   "main": "./dist/sdk.cjs.js",
   "module": "./dist/sdk.es.js",
+  "typings": "./dist/typings/index.d.ts",
+  "types": "./dist/typings/index.d.ts",
   "files": [
     "dist",
     "test-utils",
@@ -30,11 +32,12 @@
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/** test-utils/**",
-    "build": "yarn build:es && yarn build:cjs && yarn build:test-utils:cjs",
-    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.js -o ./dist/sdk.cjs.js",
-    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.js -o ./dist/sdk.es.js",
+    "build": "yarn build:es && yarn build:cjs && yarn build:test-utils:cjs && yarn build:typings",
+    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings",
+    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.ts -o ./dist/sdk.cjs.js",
+    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.ts -o ./dist/sdk.es.js",
     "build:es:watch": "yarn build:es -w",
-    "build:test-utils:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./src/test-utils/index.js --o ./test-utils/index.js"
+    "build:test-utils:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./src/test-utils/index.ts --o ./test-utils/index.js"
   },
   "dependencies": {
     "@commercetools-frontend/constants": "14.4.0",
@@ -50,10 +53,13 @@
   },
   "devDependencies": {
     "react": "16.8.6",
-    "react-redux": "7.1.0"
+    "react-redux": "7.1.0",
+    "redux": "4.0.4",
+    "redux-thunk": "2.x"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
-    "react-redux": "7.x"
+    "react-redux": "7.x",
+    "redux": "4.x"
   }
 }

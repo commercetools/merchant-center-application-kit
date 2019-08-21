@@ -1,7 +1,16 @@
 import { decode } from 'qss';
 import logger from './logger';
+import { THttpMethod, TSdkAction, Json, TSdkActionPost } from '../types';
 
-export const parseUri = uri => {
+type LogRequestParams = {
+  method: THttpMethod;
+  request: { headers: { [key: string]: string }; uri: string };
+  response?: Json;
+  error?: Error;
+  action: TSdkAction;
+};
+
+export const parseUri = (uri: string) => {
   const parser = document.createElement('a');
   parser.href = uri;
 
@@ -11,7 +20,16 @@ export const parseUri = uri => {
   };
 };
 
-export const logRequest = ({ method, request, response, error, action }) => {
+const isPostAction = (action: TSdkAction): action is TSdkActionPost =>
+  action.payload.method === 'POST';
+
+export const logRequest = ({
+  method,
+  request,
+  response,
+  error,
+  action,
+}: LogRequestParams) => {
   const uriParts = parseUri(request.uri);
   const groupName = `%c${method} %c${uriParts.pathname}`;
   logger.groupCollapsed(
@@ -24,10 +42,10 @@ export const logRequest = ({ method, request, response, error, action }) => {
     headers: request.headers,
     uri: request.uri,
     params: uriParts.search,
-    ...(method === 'POST' ? { body: action.payload.payload } : {}),
+    ...(isPostAction(action) ? { body: action.payload.payload } : {}),
   });
   if (response)
     logger.log('%cresponse', `color: green; font-weight: bold;`, response);
   if (error) logger.log('%cerror', `color: red; font-weight: bold;`, error);
-  logger.groupEnd(groupName);
+  logger.groupEnd();
 };

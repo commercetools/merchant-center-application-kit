@@ -52,7 +52,9 @@ const response = {
 };
 
 // Mock: error
-const error = {
+const error = new Error('Invalid parameter foo');
+error.statusCode = 400;
+error.body = {
   statusCode: 400,
   message: 'Invalid parameter foo',
   errors: [

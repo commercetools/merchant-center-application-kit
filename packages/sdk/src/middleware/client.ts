@@ -1,4 +1,9 @@
-import { createClient as createSdkClient } from '@commercetools/sdk-client';
+import {
+  createClient as createSdkClient,
+  MiddlewareRequest,
+  MiddlewareResponse,
+  Next,
+} from '@commercetools/sdk-client';
 import { createHttpMiddleware as createSdkHttpMiddleware } from '@commercetools/sdk-middleware-http';
 import { createCorrelationIdMiddleware as createSdkCorrelationIdMiddleware } from '@commercetools/sdk-middleware-correlation-id';
 import createHttpUserAgent from '@commercetools/http-user-agent';
@@ -12,7 +17,10 @@ const userAgent = createHttpUserAgent({
   contactEmail: 'mc@commercetools.com',
 });
 
-const customUserAgentMiddleware = next => (request, response) => {
+const customUserAgentMiddleware = (next: Next): Next => (
+  request: MiddlewareRequest,
+  response: MiddlewareResponse
+) => {
   const requestWithCustomUserAgent = {
     ...request,
     headers: {
@@ -32,12 +40,20 @@ const httpMiddleware = createSdkHttpMiddleware({
   fetch,
 });
 
-const createCorrelationIdMiddleware = ({ getCorrelationId }) =>
+const createCorrelationIdMiddleware = ({
+  getCorrelationId,
+}: {
+  getCorrelationId: () => string;
+}) =>
   createSdkCorrelationIdMiddleware({
     generate: getCorrelationId,
   });
 
-const createClient = ({ getCorrelationId }) =>
+const createClient = ({
+  getCorrelationId,
+}: {
+  getCorrelationId: () => string;
+}) =>
   createSdkClient({
     middlewares: [
       createCorrelationIdMiddleware({ getCorrelationId }),

@@ -1,9 +1,19 @@
+import { getErrorByCode } from '@commercetools/sdk-middleware-http';
+import { TSdkAction, Json } from '../types';
+import * as sdkActions from '../actions';
 import { createTestMiddleware } from './test-utils';
 
-const createTestStore = middleware => {
+type FakeStore = {
+  dispatch: (action: TSdkAction) => Promise<Json>;
+  next: jest.Mock;
+};
+
+const createTestStore = (
+  middleware: ReturnType<typeof createTestMiddleware>
+): FakeStore => {
   const next = jest.fn();
   return {
-    dispatch: action => middleware()(next)(action),
+    dispatch: (action: TSdkAction) => middleware()(next)(action),
     next,
   };
 };
@@ -11,11 +21,13 @@ const createTestStore = middleware => {
 describe('createTestMiddleware', () => {
   describe('validation', () => {
     it('when mocks argument is not provided', () => {
+      // @ts-ignore
       expect(() => createTestMiddleware()).toThrow(
         /Missing or invalid argument for `mocks`. Expected an array of mocked actions/
       );
     });
     it('when mocks argument is not an array', () => {
+      // @ts-ignore
       expect(() => createTestMiddleware('foo')).toThrow(
         /Missing or invalid argument for `mocks`. Expected an array of mocked actions/
       );
@@ -27,12 +39,13 @@ describe('createTestMiddleware', () => {
     });
   });
   describe('when action is not for SDK', () => {
-    let store;
+    let store: FakeStore;
     beforeEach(() => {
       const testMiddleware = createTestMiddleware([
-        { action: { type: 'SDK' } },
+        { action: sdkActions.get({ uri: '/foo/1' }), response: { ok: true } },
       ]);
       store = createTestStore(testMiddleware);
+      // @ts-ignore
       store.dispatch({ type: 'foo' });
     });
     it('should call next', () => {
@@ -40,10 +53,10 @@ describe('createTestMiddleware', () => {
     });
   });
   describe('when mocks do not match any action', () => {
-    let store;
+    let store: FakeStore;
     beforeEach(() => {
       const testMiddleware = createTestMiddleware([
-        { action: { type: 'SDK' }, response: { ok: true } },
+        { action: sdkActions.get({ uri: '/foo/1' }), response: { ok: true } },
       ]);
       store = createTestStore(testMiddleware);
     });
@@ -53,10 +66,7 @@ describe('createTestMiddleware', () => {
           type: 'SDK',
           payload: {
             method: 'GET',
-            uri: '/foo/bar',
-            headers: {
-              Authorization: 'foo-bar',
-            },
+            uri: '/foo/2',
           },
         });
       }).toThrow(/Could not find any more mocks for action/);
@@ -67,104 +77,63 @@ describe('createTestMiddleware', () => {
   });
   describe('when mocks match an action', () => {
     describe('action should be resolved', () => {
-      let store;
+      let store: FakeStore;
       beforeEach(() => {
         const testMiddleware = createTestMiddleware([
+          // @ts-ignore
+          { action: { type: 'another-action' } },
           {
-            action: {
-              type: 'another-action',
-            },
-          },
-          {
-            action: {
-              type: 'SDK',
-              payload: {
-                method: 'POST',
-                uri: '/foo/bar',
-                body: JSON.stringify({ foo: 'bar' }),
-              },
-            },
+            action: sdkActions.get({ uri: '/foo/1' }),
             response: { foo: 'bar' },
           },
           {
-            action: {
-              type: 'SDK',
-              payload: {
-                method: 'GET',
-                uri: '/foo/bar',
-                headers: {
-                  Authorization: 'foo-bar',
-                },
-              },
-            },
-            response: { ok: true },
+            action: sdkActions.post({
+              uri: '/foo',
+              payload: JSON.stringify({ foo: 'bar' }),
+            }),
+            response: { foo: 'bar' },
           },
         ]);
         store = createTestStore(testMiddleware);
       });
       it('resolves promise', () =>
         expect(
-          store.dispatch({
-            type: 'SDK',
-            payload: {
-              method: 'GET',
-              uri: '/foo/bar',
-              headers: {
-                Authorization: 'foo-bar',
-              },
-            },
-          })
-        ).resolves.toEqual({ ok: true }));
+          store.dispatch(sdkActions.get({ uri: '/foo/1' }))
+        ).resolves.toEqual({ foo: 'bar' }));
     });
     describe('action should be rejected', () => {
-      let store;
+      let store: FakeStore;
       beforeEach(() => {
+        const error = new Error('Invalid parameter');
+        // @ts-ignore
+        error.statusCode = 400;
+        // @ts-ignore
+        error.body = {
+          message: 'Invalid parameter',
+        };
         const testMiddleware = createTestMiddleware([
+          // @ts-ignore
+          { action: { type: 'another-action' } },
           {
-            action: {
-              type: 'another-action',
-            },
+            action: sdkActions.get({ uri: '/foo/1' }),
+            error,
           },
           {
-            action: {
-              type: 'SDK',
-              payload: {
-                method: 'POST',
-                uri: '/foo/bar',
-                body: JSON.stringify({ foo: 'bar' }),
-              },
-            },
+            action: sdkActions.post({
+              uri: '/foo',
+              payload: JSON.stringify({ foo: 'bar' }),
+            }),
             response: { foo: 'bar' },
-          },
-          {
-            action: {
-              type: 'SDK',
-              payload: {
-                method: 'GET',
-                uri: '/foo/bar',
-                headers: {
-                  Authorization: 'foo-bar',
-                },
-              },
-            },
-            error: { message: 'not valid' },
           },
         ]);
         store = createTestStore(testMiddleware);
       });
       it('rejects promise', () =>
         expect(
-          store.dispatch({
-            type: 'SDK',
-            payload: {
-              method: 'GET',
-              uri: '/foo/bar',
-              headers: {
-                Authorization: 'foo-bar',
-              },
-            },
-          })
-        ).rejects.toEqual({ message: 'not valid' }));
+          store.dispatch(sdkActions.get({ uri: '/foo/1' }))
+        ).rejects.toEqual(
+          expect.objectContaining({ message: 'Invalid parameter' })
+        ));
     });
   });
 });

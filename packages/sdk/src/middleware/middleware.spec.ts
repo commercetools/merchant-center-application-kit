@@ -1,8 +1,11 @@
+import { mocked } from 'ts-jest/utils';
 import {
   SHOW_LOADING,
   HIDE_LOADING,
   MC_API_PROXY_TARGETS,
 } from '@commercetools-frontend/constants';
+import { Json, TSdkAction } from '../types';
+import * as sdkActions from '../actions';
 import createMiddleware from './middleware';
 import createClient from './client';
 
@@ -16,23 +19,24 @@ const middlewareOptions = {
 };
 
 describe('when the action is of type SDK', () => {
+  let execute: () => Promise<Json>;
+  let resultPromise: Promise<Json>;
   describe('no matter the method', () => {
     describe('when making the request', () => {
       const dispatch = jest.fn();
-      const action = {
-        type: 'SDK',
-        payload: { service: 'productTypes', method: 'GET' },
-      };
+      const action = sdkActions.get({ service: 'productTypes', options: {} });
       const next = jest.fn();
       const response = { body: 'foo', headers: {} };
-      let execute;
       beforeEach(() => {
         execute = jest.fn(() => Promise.resolve(response));
-        createClient.mockReturnValue({
+        mocked(createClient).mockReturnValue({
           execute,
         });
 
-        return createMiddleware(middlewareOptions)({ dispatch })(next)(action);
+        return createMiddleware(middlewareOptions)({
+          dispatch,
+          getState: jest.fn(),
+        })(next)(action);
       });
 
       it('should call `client.execute`', () => {
@@ -93,23 +97,19 @@ describe('when the action is of type SDK', () => {
     });
     describe('when the request is successful', () => {
       const dispatch = jest.fn();
-      const action = {
-        type: 'SDK',
-        payload: { service: 'productTypes', method: 'GET' },
-      };
+      const action = sdkActions.get({ service: 'productTypes', options: {} });
       const next = jest.fn();
       const response = { body: 'foo', headers: {} };
-      let resultPromise;
-      let execute;
       beforeEach(() => {
         execute = jest.fn(() => Promise.resolve(response));
-        createClient.mockReturnValue({
+        mocked(createClient).mockReturnValue({
           execute,
         });
 
-        resultPromise = createMiddleware(middlewareOptions)({ dispatch })(next)(
-          action
-        );
+        resultPromise = createMiddleware(middlewareOptions)({
+          dispatch,
+          getState: jest.fn(),
+        })(next)(action);
       });
 
       it('should mark the request as completed', () => {
@@ -126,23 +126,19 @@ describe('when the action is of type SDK', () => {
 
     describe('when the request fails', () => {
       const dispatch = jest.fn();
-      const action = {
-        type: 'SDK',
-        payload: { service: 'productTypes', method: 'GET' },
-      };
+      const action = sdkActions.get({ service: 'productTypes', options: {} });
       const next = jest.fn();
       const expectedError = { body: 'foo', headers: {} };
-      let resultPromise;
-      let execute;
       beforeEach(() => {
         execute = jest.fn(() => Promise.reject(expectedError));
-        createClient.mockReturnValue({
+        mocked(createClient).mockReturnValue({
           execute,
         });
 
-        resultPromise = createMiddleware(middlewareOptions)({ dispatch })(next)(
-          action
-        );
+        resultPromise = createMiddleware(middlewareOptions)({
+          dispatch,
+          getState: jest.fn(),
+        })(next)(action);
         // We catch all errors here so that they don't throw globally
         // This is necessary because the rejected promise rethrows from
         // the handler
@@ -168,27 +164,23 @@ describe('when the action is of type SDK', () => {
 
   describe('when the request fails with 401', () => {
     const dispatch = jest.fn();
-    const action = {
-      type: 'SDK',
-      payload: { service: 'productTypes', method: 'GET' },
-    };
+    const action = sdkActions.get({ service: 'productTypes', options: {} });
     const next = jest.fn();
     const expectedError = { statusCode: 401, body: 'foo', headers: {} };
     const response = { body: 'foo', headers: {} };
-    let resultPromise;
-    let execute;
     beforeEach(() => {
       execute = jest
         .fn()
         .mockReturnValueOnce(Promise.reject(expectedError))
         .mockReturnValueOnce(Promise.resolve(response));
-      createClient.mockReturnValue({
+      mocked(createClient).mockReturnValue({
         execute,
       });
 
-      resultPromise = createMiddleware(middlewareOptions)({ dispatch })(next)(
-        action
-      );
+      resultPromise = createMiddleware(middlewareOptions)({
+        dispatch,
+        getState: jest.fn(),
+      })(next)(action);
       // We catch all errors here so that they don't throw globally
       // This is necessary because the rejected promise rethrows from
       // the handler
@@ -199,32 +191,36 @@ describe('when the action is of type SDK', () => {
     });
     it('should retry the request with the X-Force-Token header', () => {
       expect(execute).toHaveBeenCalledTimes(2);
-      const firstCall = execute.mock.calls[0][0];
-      expect(firstCall.headers).not.toHaveProperty('X-Force-Token');
-      const secondCall = execute.mock.calls[1][0];
-      expect(secondCall.headers).toHaveProperty('X-Force-Token');
-      expect(secondCall.headers['X-Force-Token']).toBe('true');
+      expect(execute).toHaveBeenNthCalledWith(
+        1,
+        expect.not.objectContaining({
+          headers: expect.objectContaining({
+            'X-Force-Token': expect.anything(),
+          }),
+        })
+      );
+      expect(execute).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          headers: expect.objectContaining({ 'X-Force-Token': 'true' }),
+        })
+      );
     });
   });
 
   describe('when the request always fails with 401', () => {
     const dispatch = jest.fn();
-    const action = {
-      type: 'SDK',
-      payload: { service: 'productTypes', method: 'GET' },
-    };
+    const action = sdkActions.get({ service: 'productTypes', options: {} });
     const next = jest.fn();
     const expectedError = { statusCode: 401, body: 'foo', headers: {} };
-    let resultPromise;
-    let execute;
     beforeEach(() => {
       execute = jest.fn(() => Promise.reject(expectedError));
-      createClient.mockReturnValue({
+      mocked(createClient).mockReturnValue({
         execute,
       });
-      resultPromise = createMiddleware(middlewareOptions)({ dispatch })(next)(
-        action
-      );
+      resultPromise = createMiddleware(middlewareOptions)({
+        dispatch,
+        getState: jest.fn(),
+      })(next)(action);
       // We catch all errors here so that they don't throw globally
       // This is necessary because the rejected promise rethrows from
       // the handler
@@ -235,32 +231,36 @@ describe('when the action is of type SDK', () => {
     });
     it('should only retry once', () => {
       expect(execute).toHaveBeenCalledTimes(2);
-      const firstCall = execute.mock.calls[0][0];
-      expect(firstCall.headers).not.toHaveProperty('X-Force-Token');
-      const secondCall = execute.mock.calls[1][0];
-      expect(secondCall.headers).toHaveProperty('X-Force-Token');
-      expect(secondCall.headers['X-Force-Token']).toBe('true');
+      expect(execute).toHaveBeenNthCalledWith(
+        1,
+        expect.not.objectContaining({
+          headers: expect.objectContaining({
+            'X-Force-Token': expect.anything(),
+          }),
+        })
+      );
+      expect(execute).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          headers: expect.objectContaining({ 'X-Force-Token': 'true' }),
+        })
+      );
     });
   });
 
   describe('when the method is "get"', () => {
     const dispatch = jest.fn();
-    const action = {
-      type: 'SDK',
-      payload: { service: 'productTypes', method: 'GET' },
-    };
+    const action = sdkActions.get({ service: 'productTypes', options: {} });
     const next = jest.fn();
     const response = { body: 'foo', headers: {} };
-    let resultPromise;
-    let execute;
     beforeEach(() => {
       execute = jest.fn(() => Promise.resolve(response));
-      createClient.mockReturnValue({
+      mocked(createClient).mockReturnValue({
         execute,
       });
-      resultPromise = createMiddleware(middlewareOptions)({ dispatch })(next)(
-        action
-      );
+      resultPromise = createMiddleware(middlewareOptions)({
+        dispatch,
+        getState: jest.fn(),
+      })(next)(action);
     });
 
     it('should return the body of the fetch result', async () => {
@@ -285,23 +285,23 @@ describe('when the action is of type SDK', () => {
 
   describe('when the method is "post"', () => {
     const dispatch = jest.fn();
-    const action = {
-      type: 'SDK',
-      payload: { service: 'productTypes', method: 'POST', payload: {} },
-    };
+    const action = sdkActions.post({
+      service: 'productTypes',
+      options: {},
+      payload: {},
+    });
     const next = jest.fn();
     const response = { body: 'foo', headers: {} };
-    let resultPromise;
-    let execute;
     beforeEach(() => {
       execute = jest.fn(() => Promise.resolve(response));
-      createClient.mockReturnValue({
+      mocked(createClient).mockReturnValue({
         execute,
       });
 
-      resultPromise = createMiddleware(middlewareOptions)({ dispatch })(next)(
-        action
-      );
+      resultPromise = createMiddleware(middlewareOptions)({
+        dispatch,
+        getState: jest.fn(),
+      })(next)(action);
     });
 
     it('should return the result the update', async () => {
@@ -328,13 +328,17 @@ describe('when the action is of type SDK', () => {
 describe('when the action is not of type SDK', () => {
   const dispatch = jest.fn();
   const action = { type: 'FOO' };
-  const next = jest.fn(() => 'result-of-next');
-  let result;
+  const next = jest.fn(() => action);
+  let result: Promise<Json>;
   beforeEach(() => {
-    createClient.mockReturnValue({
+    mocked(createClient).mockReturnValue({
       execute: jest.fn(),
     });
-    result = createMiddleware(middlewareOptions)({ dispatch })(next)(action);
+    result = createMiddleware(middlewareOptions)({
+      dispatch,
+      getState: jest.fn(),
+      // @ts-ignore
+    })(next)(action);
   });
 
   it('should call `next` with the action', () => {
@@ -342,22 +346,19 @@ describe('when the action is not of type SDK', () => {
     expect(next).toHaveBeenCalledWith(action);
   });
   it('should return the result of `next`', () => {
-    expect(result).toBe('result-of-next');
+    expect(result).toEqual(action);
   });
 });
 
 describe('when the projectKey is not defined', () => {
   const dispatch = jest.fn();
-  let action;
-  const next = jest.fn(() => 'result-of-next');
+  let action: TSdkAction;
+  const next = jest.fn();
   beforeEach(() => {
-    createClient.mockReturnValue({
+    mocked(createClient).mockReturnValue({
       execute: jest.fn(),
     });
-    action = {
-      type: 'SDK',
-      payload: { service: 'productTypes', method: 'GET' },
-    };
+    action = sdkActions.get({ service: 'productTypes', options: {} });
   });
   it('should throw an error with message containing URI', () => {
     expect(() =>
@@ -365,7 +366,7 @@ describe('when the projectKey is not defined', () => {
         getCorrelationId: jest.fn(),
         getProjectKey: jest.fn(() => null),
         getTeamId: jest.fn(() => null),
-      })({ dispatch })(next)(action)
+      })({ dispatch, getState: jest.fn() })(next)(action)
     ).toThrow(
       'Expected projectKey to be defined for action service "productTypes" (method "GET")'
     );
