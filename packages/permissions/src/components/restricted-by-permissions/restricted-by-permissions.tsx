@@ -23,9 +23,11 @@ type TDemandedDataFence = {
   name: string;
   type: TDataFenceType;
 };
-type TSelectDataFenceDataByType = (dataFenceWithType: {
-  type: TDataFenceType;
-}) => string[] | null;
+type TSelectDataFenceData = (
+  demandedDataFenceWithActualValues: TDemandedDataFence & {
+    actualDataFenceValues: string[];
+  }
+) => string[] | null;
 
 type TRenderProp = (props: { isAuthorized: boolean }) => React.ReactNode;
 
@@ -34,7 +36,7 @@ type Props = {
   permissions: TPermissionName[];
   actionRights?: TDemandedActionRight[];
   dataFences?: TDemandedDataFence[];
-  selectDataFenceDataByType?: TSelectDataFenceDataByType;
+  selectDataFenceData?: TSelectDataFenceData;
   unauthorizedComponent?: React.ComponentType;
   render?: TRenderProp;
   children?: TRenderProp | React.ReactNode;
@@ -59,7 +61,7 @@ const RestrictedByPermissions = (props: Props) => {
           demandedPermissions={props.permissions}
           demandedActionRights={props.actionRights}
           demandedDataFences={props.dataFences}
-          selectDataFenceDataByType={props.selectDataFenceDataByType}
+          selectDataFenceData={props.selectDataFenceData}
           render={(isAuthorized: boolean) => {
             if (typeof props.children === 'function')
               return props.children({

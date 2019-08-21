@@ -114,7 +114,7 @@ useIsAutorized(options: HookOptions): boolean
   be allowed to render
 - `demandedAtionRights`: (_optional_) an array of action rights (mentioned above)
 - `demandedDataFences`: (_optional_) an array of `DataFence` (mentioned above)
-- `selectDataFenceDataByType`: (_optional_ unless `dataFences` is specified) the function is called on each specified `dataFence` and should return the mapped value specific to the data fence. The function usually contains a switch-case logic based on the data fence `type`, with the return value based on the `props`. For example, with `type: 'order'`, the return value would be something like `ownProps.order.storeRef.key`.
+- `selectDataFenceData`: (_optional_ unless `dataFences` is specified) the function is called on each specified `dataFence` and should return the mapped value specific to the data fence. The function usually contains a switch-case logic based on the data fence `type`, with the return value based on the `props`. For example, with `type: 'order'`, the return value would be something like `ownProps.order.storeRef.key`.
 - `shouldMatchSomePermissions`: (_optional_) determines if _some_ or _every_ requested permission should match (default `false`)
 
 ### Example
@@ -154,7 +154,7 @@ injectAuthorized(
     (default `false`)
   - `actionRights`: (_optional_) an array of action rights (mentioned above)
   - `dataFences`: (_optional_) an array of `DataFence` (mentioned above)
-  - `getSelectDataFenceDataByType`: (_optional_ unless `dataFences` is specified) the function is called with the component `props` and must return a new function that will be called on each specified `dataFence` and should return the mapped value specific to the data fence. The returned function usually contains a switch-case logic based on the data fence `type`, with the return value based on the `props`. For example, with `type: 'order'`, the return value would be something like `ownProps.order.storeRef.key`.
+  - `getSelectDataFenceData`: (_optional_ unless `dataFences` is specified) the function is called with the component `props` and must return a new function that will be called on each specified `dataFence` and should return the mapped value specific to the data fence. The returned function usually contains a switch-case logic based on the data fence `type`, with the return value based on the `props`. For example, with `type: 'order'`, the return value would be something like `ownProps.order.storeRef.key`.
 
 ### Example
 
@@ -193,7 +193,7 @@ match, otherwise a fallback component.
 - `permissions`: an array of `Permission`, requested by the component
 - `actionRights`: (_optional_) an array of `ActionRight`, requested by the component
 - `dataFences`: (_optional_) an array of `DataFence`, requested by the component
-- `selectDataFenceDataByType`: (_optional_ unless `dataFences` is specified) the function is called on each specified `dataFence` and should return the mapped value specific to the data fence. The function usually contains a switch-case logic based on the data fence `type`, with the return value based on the `props`. For example, with `type: 'order'`, the return value would be something like `ownProps.order.storeRef.key`.
+- `selectDataFenceData`: (_optional_ unless `dataFences` is specified) the function is called on each specified `dataFence` and should return the mapped value specific to the data fence. The function usually contains a switch-case logic based on the data fence `type`, with the return value based on the `props`. For example, with `type: 'order'`, the return value would be something like `ownProps.order.storeRef.key`.
 - `unauthorizedComponent`: (_optional_) a function return an React element to be
   rendered in case the permissions don't match
 - `render`: (_optional_) a function returning an React element or a node to be
@@ -242,7 +242,7 @@ branchOnPermissions(
     shouldMatchSomePermissions: boolean,
     actionRights?: [ActionRight],
     dataFences?: [DataFence],
-    getSelectDataFenceDataByType?: ownProps => func
+    getSelectDataFenceData?: ownProps => func
   }
 ): HoC
 ```
@@ -257,7 +257,7 @@ branchOnPermissions(
     (default `false`)
   - `actionRights`: an array of `ActionRight` (mentioned above)
   - `dataFences`: an array of `DataFence` (mentioned above)
-  - `getSelectDataFenceDataByType`: (_optional_ unless `dataFences` is specified) the function is called with the component `props` and must return a new function that will be called on each specified `dataFence` and should return the mapped value specific to the data fence. The returned function usually contains a switch-case logic based on the data fence `type`, with the return value based on the `props`. For example, with `type: 'order'`, the return value would be something like `ownProps.order.storeRef.key`.
+  - `getSelectDataFenceData`: (_optional_ unless `dataFences` is specified) the function is called with the component `props` and must return a new function that will be called on each specified `dataFence` and should return the mapped value specific to the data fence. The returned function usually contains a switch-case logic based on the data fence `type`, with the return value based on the `props`. For example, with `type: 'order'`, the return value would be something like `ownProps.order.storeRef.key`.
 
 ### Example
 
@@ -282,7 +282,7 @@ const LastOrder = ({ order : { store: "Germany" }}) =>
         type: 'store'
       }
     ],
-    getSelectDataFenceDataByType: ownProps => (demandedDataFence) => {
+    getSelectDataFenceData: ownProps => (demandedDataFence) => {
       switch (demandedDataFence.type) {
         case 'store':
           return [ownProps.order.storeRef.key];
