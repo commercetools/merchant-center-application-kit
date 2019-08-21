@@ -12,6 +12,11 @@ query FetchApplicationsMenu {
       featureToggle
       menuVisibility
       permissions
+      dataFences {
+        group
+        name
+        type
+      }
       actionRights {
         group
         name

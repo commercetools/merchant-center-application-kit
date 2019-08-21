@@ -265,10 +265,19 @@ export const RestrictedMenuItem = props => {
     return null;
 
   const permissionsWrapper =
-    props.permissions.length > 0 ? (
+    props.permissions.length > 0 || props.dataFences.length > 0 ? (
       <RestrictedByPermissions
         permissions={props.permissions}
         actionRights={props.actionRights}
+        dataFences={props.dataFences}
+        selectDataFenceData={demandedDataFence => {
+          switch (demandedDataFence.type) {
+            case 'store':
+              return demandedDataFence.actualDataFenceValues;
+            default:
+              return null;
+          }
+        }}
         // Always check that some of the given permissions match.
         shouldMatchSomePermissions={true}
       >
@@ -293,6 +302,13 @@ RestrictedMenuItem.propTypes = {
   menuVisibilities: PropTypes.object.isRequired,
   disabledMenuItems: PropTypes.arrayOf(PropTypes.string),
   keyOfMenuItem: PropTypes.string.isRequired,
+  dataFences: PropTypes.arrayOf(
+    PropTypes.shape({
+      group: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+    })
+  ),
   permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
   actionRights: PropTypes.arrayOf(
     PropTypes.shape({
@@ -304,6 +320,7 @@ RestrictedMenuItem.propTypes = {
 };
 RestrictedMenuItem.defaultProps = {
   permissions: [],
+  dataFences: [],
 };
 export const getIconColor = (isActive, isAlternativeTheme) => {
   if (isActive) return 'primary40';
@@ -330,6 +347,13 @@ export class DataMenu extends React.PureComponent {
         icon: PropTypes.string.isRequired,
         featureToggle: PropTypes.string,
         permissions: PropTypes.arrayOf(PropTypes.string.isRequired),
+        dataFences: PropTypes.arrayOf(
+          PropTypes.shape({
+            group: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired,
+          })
+        ),
         actionRights: PropTypes.arrayOf(
           PropTypes.shape({
             group: PropTypes.string.isRequired,
