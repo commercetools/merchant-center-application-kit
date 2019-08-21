@@ -32,6 +32,7 @@ const createTestMenuConfig = (key, props) => ({
   uriPath: key,
   icon: 'UserFilledIcon',
   permissions: [],
+  dataFences: null,
   actionRights: null,
   featureToggle: null,
   menuVisibility: `hide${upperFirst(key)}`,
