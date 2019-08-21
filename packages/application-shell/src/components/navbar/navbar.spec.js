@@ -27,6 +27,7 @@ const createTestMenuConfig = (key, props) => ({
   keyOfMenuItem: key,
   icon: 'UserFilledIcon',
   permissions: [],
+  dataFences: [],
   actionRights: [],
   submenu: [
     {
@@ -501,12 +502,58 @@ describe('rendering', () => {
           it('should not render <RestrictedByPermissions>', () => {
             expect(wrapper).not.toRender(RestrictedByPermissions);
           });
+          describe('with defined dataFences', () => {
+            beforeEach(() => {
+              props = {
+                featureToggle: 'myFeature',
+                permissions: [],
+                dataFences: [
+                  {
+                    name: 'ViewOrders',
+                    group: 'orders',
+                    type: 'store',
+                  },
+                ],
+                actualPermissions: {},
+                menuVisibilities: {},
+                keyOfMenuItem: 'products',
+              };
+              wrapper = shallow(
+                <RestrictedMenuItem {...props}>
+                  <ItemChild />
+                </RestrictedMenuItem>
+              );
+            });
+            it('should render <RestrictedByPermissions>', () => {
+              expect(wrapper).toRender(RestrictedByPermissions);
+            });
+          });
+          describe('without defined dataFences', () => {
+            beforeEach(() => {
+              props = {
+                featureToggle: 'myFeature',
+                permissions: [],
+                actualPermissions: {},
+                menuVisibilities: {},
+                keyOfMenuItem: 'products',
+              };
+              wrapper = shallow(
+                <RestrictedMenuItem {...props}>
+                  <ItemChild />
+                </RestrictedMenuItem>
+              );
+            });
+            it('should not render <RestrictedByPermissions>', () => {
+              expect(wrapper).not.toRender(RestrictedByPermissions);
+            });
+          });
         });
         describe('with defined permissions', () => {
           beforeEach(() => {
             props = {
               featureToggle: 'myFeature',
               permissions: ['ManageOrders'],
+              dataFences: [],
               actionRights: [
                 {
                   group: 'Orders',
@@ -558,6 +605,7 @@ describe('rendering', () => {
             props = {
               featureToggle: undefined,
               permissions: [],
+              dataFences: [],
               actualPermissions: {},
               menuVisibilities: {},
               keyOfMenuItem: 'products',
@@ -580,6 +628,7 @@ describe('rendering', () => {
             props = {
               featureToggle: undefined,
               permissions: ['ManageOrders'],
+              dataFences: [],
               actionRights: [
                 {
                   group: 'Orders',
