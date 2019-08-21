@@ -1,8 +1,11 @@
+import { decode } from 'qss';
 import { parseUri } from './utils';
 
+type Result = { pathname: string; search: ReturnType<typeof decode> };
+
 describe('parseUri', () => {
+  let result: Result;
   describe('when the URI contains no search', () => {
-    let result;
     beforeEach(() => {
       result = parseUri('/project/products/new');
     });
@@ -14,7 +17,6 @@ describe('parseUri', () => {
     });
   });
   describe('when the URI contains a search', () => {
-    let result;
     beforeEach(() => {
       result = parseUri('/project/products/new?foo=true&bar=5');
     });

@@ -104,13 +104,8 @@ describe('createTestMiddleware', () => {
     describe('action should be rejected', () => {
       let store: FakeStore;
       beforeEach(() => {
-        const error = new Error('Invalid parameter');
-        // @ts-ignore
-        error.statusCode = 400;
-        // @ts-ignore
-        error.body = {
-          message: 'Invalid parameter',
-        };
+        const BadRequestError = getErrorByCode(400);
+        const error = new BadRequestError('Invalid parameter');
         const testMiddleware = createTestMiddleware([
           // @ts-ignore
           { action: { type: 'another-action' } },

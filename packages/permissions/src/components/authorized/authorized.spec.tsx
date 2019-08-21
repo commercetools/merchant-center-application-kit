@@ -65,6 +65,7 @@ const createTestProps = (custom: Partial<TestProps>) => ({
       canEditPrices: true,
     },
   },
+  actualDataFences: null,
   render: jest.fn(),
   ...custom,
 });
@@ -239,7 +240,14 @@ describe('rendering', () => {
                   name: 'ManageOrders',
                 },
               ],
-              selectDataFenceData: ({ type }) => ['store-1'],
+              selectDataFenceData: ({ type }) => {
+                switch (type) {
+                  case 'store':
+                    return ['store-1'];
+                  default:
+                    return null;
+                }
+              },
             }),
           };
           shallow(<Authorized {...props} />);
@@ -261,7 +269,14 @@ describe('rendering', () => {
                   name: 'ViewOrders',
                 },
               ],
-              selectDataFenceData: ({ type }) => ['store-1'],
+              selectDataFenceData: ({ type }) => {
+                switch (type) {
+                  case 'store':
+                    return ['store-1'];
+                  default:
+                    return null;
+                }
+              },
             }),
           };
           shallow(<Authorized {...props} />);
