@@ -3,7 +3,14 @@
 #### 🚀 Type: New Feature
 
 - `application-shell`, `constants`, `sdk`
-  - [#986](https://github.com/commercetools/merchant-center-application-kit/pull/986) feat(sdk): allow to pass a mcApiProxyTarget to the SDK action ([@emmenko](https://github.com/emmenko))
+  - [#986](https://github.com/commercetools/merchant-center-application-kit/pull/986) feat(sdk): allow to pass a mcApiProxyTarget, to the SDK action ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `permissions`
+  - [#990](https://github.com/commercetools/merchant-center-application-kit/pull/990) refactor(permissions/has-permissions): pass `actualDataFenceValues` into `selectDataFenceData` ([@adnasa](https://github.com/adnasa))
+- `application-shell`, `constants`, `sdk`
+  - [#985](https://github.com/commercetools/merchant-center-application-kit/pull/985) refactor(sdk): to convert to TS ([@emmenko](https://github.com/emmenko))
 
 #### 🤖 Type: Dependencies
 
