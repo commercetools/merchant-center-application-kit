@@ -1,3 +1,77 @@
+## [15.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v14.6.1...v15.0.0) (2019-09-02)
+
+This release introduces some **breaking changes** related to minimal dependency versions.
+
+In [v14.0.0](https://github.com/commercetools/merchant-center-application-kit/releases/tag/v14.0.0) we introduced full support for React Hooks, as well as other improvements.
+In this release we iterate on that and mostly update some of the React dependencies that ship with their Hooks support.
+
+- `react v16.9` [blog post](https://reactjs.org/blog/2019/08/08/react-v16.9.0.html)
+- `react-dom v16.9`
+- `@testing-library v9` [release notes](https://github.com/testing-library/react-testing-library/releases/tag/v9.0.0)
+- `react-apollo v3` [blog post](https://blog.apollographql.com/apollo-client-now-with-react-hooks-676d116eeae2)
+- `eslint v6`
+- `eslint-config-airbnb v14`
+
+React `v16.9`, together with `@testing-library` `v9`, fixes `act()` by supporting **async** `act()` for testing, among other things. This means that React won't throw any more warnings about updating state asynchronously inside Hooks 🎉
+
+> NOTE: if you're getting some errors about possible multiple copies of React installed, you can add a `resolutions` field in your `package.json` (_only supported by `yarn`_) that resolves the following dependencies:
+
+```json
+{
+  "resolutions": {
+    "react": "16.9.0",
+    "**/react": "16.9.0",
+    "react-test-renderer": "16.9.0",
+    "**/react-test-renderer": "16.9.0"
+  }
+}
+```
+
+Another important change is the support for `react-apollo` `v3`, which ships with React Hooks support.
+This means that you can now start using React Hooks to write queries and mutations.
+
+For example, the `FetchUser` query can be rewritten as following:
+
+```jsx
+const FetchUser = () => (
+  <Query
+    query={LoggedInUserQuery}
+    variables={{ target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND }}
+    onError={reportErrorToSentry}
+  >
+    {({ data, loading, error }) =>
+      this.props.children({
+        isLoading: loading,
+        user: data && data.user,
+        error,
+      })
+    }
+  </Query>
+);
+
+const FetchUser = props => {
+  const { loading, data, error } = useQuery(LoggedInUserQuery, {
+    onError: reportErrorToSentry,
+    variables: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
+  });
+  return (
+    <>
+      {props.children({ isLoading: loading, user: data && data.user, error })}
+    </>
+  );
+};
+```
+
+#### ⛑ Type: Refactoring
+
+- [#801](https://github.com/commercetools/merchant-center-application-kit/pull/801) refactor(app-shell): use react-apollo v3 ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- [#911](https://github.com/commercetools/merchant-center-application-kit/pull/911) chore: update eslint to v6 ([@emmenko](https://github.com/emmenko))
+- [#966](https://github.com/commercetools/merchant-center-application-kit/pull/966) chore: update react to v16.9 ([@tdeekens](https://github.com/tdeekens))
+- [#956](https://github.com/commercetools/merchant-center-application-kit/pull/956) chore: update @testing-library/reaact to v9 ([@emmenko](https://github.com/emmenko))
+
 ## [14.6.1](https://github.com/commercetools/merchant-center-application-kit/compare/v14.6.0...v14.6.1) (2019-08-29)
 
 #### 🐛 Type: Bug
