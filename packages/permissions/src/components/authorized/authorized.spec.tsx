@@ -202,54 +202,40 @@ describe('rendering', () => {
   });
 
   describe('dataFence to view orders on specific store', () => {
-    beforeEach(() => {
-      props = createTestProps({
-        actualDataFences: {
-          store: {
-            orders: {
-              canViewOrders: {
-                values: ['store-1'],
+    describe('if cannot view or manage orders', () => {
+      describe('has demanded dataFence to MANAGE orders on the specific store', () => {
+        beforeEach(() => {
+          props = createTestProps({
+            actualDataFences: {
+              store: {
+                orders: {
+                  canViewOrders: {
+                    values: ['store-1'],
+                  },
+                },
               },
             },
-          },
-        },
-      });
-    });
-    describe('if cannot view or manage orders', () => {
-      beforeEach(() => {
-        props = {
-          ...props,
-          ...createTestProps({
             actualPermissions: {
               canViewOrders: false,
               canManageOrders: false,
               canViewProducts: true,
             },
-          }),
-        };
-      });
-      describe('has demanded dataFence to MANAGE orders on the specific store', () => {
-        beforeEach(() => {
-          props = {
-            ...props,
-            ...createTestProps({
-              demandedDataFences: [
-                {
-                  type: 'store',
-                  group: 'orders',
-                  name: 'ManageOrders',
-                },
-              ],
-              selectDataFenceData: ({ type }) => {
-                switch (type) {
-                  case 'store':
-                    return ['store-1'];
-                  default:
-                    return null;
-                }
+            demandedDataFences: [
+              {
+                type: 'store',
+                group: 'orders',
+                name: 'ManageOrders',
               },
-            }),
-          };
+            ],
+            selectDataFenceData: ({ type }) => {
+              switch (type) {
+                case 'store':
+                  return ['store-1'];
+                default:
+                  return null;
+              }
+            },
+          });
           shallow(<Authorized {...props} />);
         });
         it('should pass isAuthorized as "false"', () => {
@@ -259,26 +245,37 @@ describe('rendering', () => {
 
       describe('has demanded dataFence to VIEW orders on the specific store', () => {
         beforeEach(() => {
-          props = {
-            ...props,
-            ...createTestProps({
-              demandedDataFences: [
-                {
-                  type: 'store',
-                  group: 'orders',
-                  name: 'ViewOrders',
+          props = createTestProps({
+            actualDataFences: {
+              store: {
+                orders: {
+                  canViewOrders: {
+                    values: ['store-1'],
+                  },
                 },
-              ],
-              selectDataFenceData: ({ type }) => {
-                switch (type) {
-                  case 'store':
-                    return ['store-1'];
-                  default:
-                    return null;
-                }
               },
-            }),
-          };
+            },
+            actualPermissions: {
+              canViewOrders: false,
+              canManageOrders: false,
+              canViewProducts: true,
+            },
+            demandedDataFences: [
+              {
+                type: 'store',
+                group: 'orders',
+                name: 'ViewOrders',
+              },
+            ],
+            selectDataFenceData: ({ type }) => {
+              switch (type) {
+                case 'store':
+                  return ['store-1'];
+                default:
+                  return null;
+              }
+            },
+          });
           shallow(<Authorized {...props} />);
         });
         it('should pass isAuthorized as "true"', () => {
