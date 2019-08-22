@@ -1,4 +1,7 @@
 import * as Sentry from '@sentry/browser';
+import { ApplicationWindow } from '@commercetools-frontend/constants';
+
+declare let window: ApplicationWindow;
 
 export const boot = () => {
   if (window.app.trackingSentry) {

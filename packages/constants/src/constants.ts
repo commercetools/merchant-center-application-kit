@@ -131,3 +131,17 @@ export const MC_API_PROXY_TARGETS = {
   MC_METRICS: 'mc-metrics',
 } as const;
 export type TMcApiProxyTargets = (typeof MC_API_PROXY_TARGETS)[keyof typeof MC_API_PROXY_TARGETS];
+
+// Global application environment on window object
+export interface ApplicationWindow extends Window {
+  app: {
+    applicationName?: string;
+    revision: string;
+    env: string;
+    location: string;
+    cdnUrl: string;
+    mcApiUrl: string;
+    frontendHost: string;
+    trackingSentry?: string;
+  };
+}

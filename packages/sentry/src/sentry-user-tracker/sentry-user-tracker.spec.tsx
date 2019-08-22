@@ -1,7 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import * as Sentry from '@sentry/browser';
+import { ApplicationWindow } from '@commercetools-frontend/constants';
 import SentryUserTracker from './sentry-user-tracker';
+
+declare let window: ApplicationWindow;
 
 jest.mock('@sentry/browser');
 

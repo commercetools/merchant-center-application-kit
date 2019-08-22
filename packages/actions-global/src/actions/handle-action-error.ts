@@ -4,10 +4,13 @@ import {
   LOGOUT_REASONS,
   TAppNotificationApiError,
   TStatusCode,
+  ApplicationWindow,
 } from '@commercetools-frontend/constants';
 import browserHistory from '@commercetools-frontend/browser-history';
 import showApiErrorNotification from './show-api-error-notification';
 import showUnexpectedErrorNotification from './show-unexpected-error-notification';
+
+declare let window: ApplicationWindow;
 
 type ApiError = {
   statusCode: TStatusCode;

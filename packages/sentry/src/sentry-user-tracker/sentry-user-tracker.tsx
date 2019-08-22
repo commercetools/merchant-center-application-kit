@@ -1,5 +1,8 @@
 import React from 'react';
 import * as Sentry from '@sentry/browser';
+import { ApplicationWindow } from '@commercetools-frontend/constants';
+
+declare let window: ApplicationWindow;
 
 type SentryUser = {
   id: string;

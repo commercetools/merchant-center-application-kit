@@ -7,7 +7,10 @@ import {
 import { createHttpMiddleware as createSdkHttpMiddleware } from '@commercetools/sdk-middleware-http';
 import { createCorrelationIdMiddleware as createSdkCorrelationIdMiddleware } from '@commercetools/sdk-middleware-correlation-id';
 import createHttpUserAgent from '@commercetools/http-user-agent';
+import { ApplicationWindow } from '@commercetools-frontend/constants';
 import version from '../version';
+
+declare let window: ApplicationWindow;
 
 const userAgent = createHttpUserAgent({
   name: '@commercetools/sdk-client',
