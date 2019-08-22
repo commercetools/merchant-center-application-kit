@@ -62,9 +62,9 @@ const testRender = ({
   demandedPermissions: TPermissionName[];
   demandedActionRights?: TDemandedActionRight[];
   shouldMatchSomePermissions: boolean;
-  actualPermissions?: TPermissions;
-  actualActionRights?: TActionRights;
-  actualDataFences?: TDataFences;
+  actualPermissions: TPermissions | null;
+  actualActionRights: TActionRights | null;
+  actualDataFences: TDataFences | null;
 }) =>
   render(
     <ApplicationContextProvider
@@ -109,7 +109,8 @@ describe('when only one permission matches', () => {
         actualPermissions: {
           canManageCustomers: true,
         },
-        actualActionRights: {},
+        actualActionRights: null,
+        actualDataFences: null,
         shouldMatchSomePermissions: true,
       });
 
@@ -122,6 +123,8 @@ describe('when only one permission matches', () => {
         actualPermissions: {
           canManageCustomers: true,
         },
+        actualActionRights: null,
+        actualDataFences: null,
         demandedPermissions: ['ManageCustomers', 'ManageOrders'],
         shouldMatchSomePermissions: false,
       });
@@ -140,6 +143,7 @@ describe('when only one permission matches', () => {
             canEditPrices: true,
           },
         },
+        actualDataFences: null,
         demandedPermissions: ['ManageCustomers'],
         demandedActionRights: [{ group: 'products', name: 'PublishProducts' }],
         shouldMatchSomePermissions: false,
@@ -157,6 +161,7 @@ describe('when only one permission matches', () => {
             canEditPrices: true,
           },
         },
+        actualDataFences: null,
         demandedPermissions: ['ManageCustomers'],
         demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
         shouldMatchSomePermissions: false,

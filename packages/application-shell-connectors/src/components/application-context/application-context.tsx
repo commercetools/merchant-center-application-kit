@@ -41,11 +41,11 @@ type TApplicationContextActionRights = {
 
 type TApplicationContextGroupedByPermission = {
   // E.g. { canManageOrders: { values: [] } }
-  [key: string]: { values: string[] };
+  [key: string]: { values: string[] } | null;
 };
 type TApplicationContextGroupedByResourceType = {
   // E.g. { orders: {...} }
-  [key: string]: TApplicationContextGroupedByPermission;
+  [key: string]: TApplicationContextGroupedByPermission | null;
 };
 /**
  * dataFence: {

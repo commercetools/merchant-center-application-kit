@@ -20,5 +20,5 @@ declare module '@commercetools/sdk-middleware-http' {
   export function createHttpMiddleware(
     options: HttpMiddlewareOptions
   ): Middleware;
-  export function getErrorByCode(code: number): HttpErrorType;
+  export function getErrorByCode(code: number): typeof HttpErrorType;
 }

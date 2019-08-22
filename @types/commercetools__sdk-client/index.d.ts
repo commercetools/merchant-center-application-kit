@@ -16,7 +16,8 @@ declare module '@commercetools/sdk-client' {
     body?: string | Json;
     headers?: Headers;
   };
-  export type HttpErrorType = {
+  export class HttpErrorType {
+    constructor(message: string, meta?: Json);
     name: string;
     message: string;
     code: number;
@@ -25,7 +26,7 @@ declare module '@commercetools/sdk-client' {
     originalRequest: ClientRequest;
     body?: Json;
     headers?: Headers;
-  };
+  }
   export type SuccessResult = {
     body: Json;
     statusCode: number;

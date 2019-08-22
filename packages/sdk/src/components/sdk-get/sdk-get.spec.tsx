@@ -6,7 +6,7 @@ import { SdkGet, Props } from './sdk-get';
 import { Json } from '../../types';
 
 const createTestProps = (custom: Partial<Props> = {}) => ({
-  dispatch: jest.fn(() => Promise.resolve()),
+  dispatch: jest.fn(() => Promise.resolve({})),
   actionCreator: () => sdkActions.get({ uri: '/foo/bar' }),
   actionCreatorArgs: [],
   shouldRefetch: () => false,
@@ -22,7 +22,8 @@ describe('rendering', () => {
   beforeEach(() => {
     props = createTestProps();
     wrapper = shallow(<SdkGet {...props} />);
-    wrapper.instance().componentDidMount();
+    const instance = wrapper.instance();
+    if (instance.componentDidMount) instance.componentDidMount();
   });
   it('should call render', () => {
     expect(props.render).toHaveBeenCalledWith({
@@ -57,7 +58,8 @@ describe('when the component mounts', () => {
         dispatch: jest.fn(() => Promise.resolve(result)),
       });
       wrapper = shallow(<SdkGet {...props} />);
-      wrapper.instance().componentDidMount();
+      const instance = wrapper.instance();
+      if (instance.componentDidMount) instance.componentDidMount();
     });
     it('should fetch with the passed args', () => {
       expect(props.dispatch).toHaveBeenCalledWith(
@@ -80,7 +82,8 @@ describe('when the component mounts', () => {
         dispatch: jest.fn(() => Promise.reject(error)),
       });
       wrapper = shallow(<SdkGet {...props} />);
-      wrapper.instance().componentDidMount();
+      const instance = wrapper.instance();
+      if (instance.componentDidMount) instance.componentDidMount();
     });
     it('should not call onSuccess', () => {
       expect(props.onSuccess).not.toHaveBeenCalled();

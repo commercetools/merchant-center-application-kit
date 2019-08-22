@@ -4,6 +4,7 @@ import {
   HIDE_LOADING,
   MC_API_PROXY_TARGETS,
 } from '@commercetools-frontend/constants';
+import { SuccessResult, ClientRequest } from '@commercetools/sdk-client';
 import { Json, TSdkAction } from '../types';
 import * as sdkActions from '../actions';
 import createMiddleware from './middleware';
@@ -19,14 +20,14 @@ const middlewareOptions = {
 };
 
 describe('when the action is of type SDK', () => {
-  let execute: () => Promise<Json>;
+  let execute: (request: ClientRequest) => Promise<SuccessResult>;
   let resultPromise: Promise<Json>;
   describe('no matter the method', () => {
     describe('when making the request', () => {
       const dispatch = jest.fn();
       const action = sdkActions.get({ service: 'productTypes', options: {} });
       const next = jest.fn();
-      const response = { body: 'foo', headers: {} };
+      const response = { body: { foo: 'bar' }, headers: {}, statusCode: 200 };
       beforeEach(() => {
         execute = jest.fn(() => Promise.resolve(response));
         mocked(createClient).mockReturnValue({
@@ -67,24 +68,22 @@ describe('when the action is of type SDK', () => {
     });
     describe('when there is a mcApiProxyTarget', () => {
       const dispatch = jest.fn();
-      const action = {
-        type: 'SDK',
-        payload: {
-          uri: '/foo',
-          mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
-          method: 'GET',
-        },
-      };
+      const action = sdkActions.get({
+        uri: '/foo',
+        mcApiProxyTarget: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
+      });
       const next = jest.fn();
-      const response = { body: 'foo', headers: {} };
-      let execute;
+      const response = { body: { foo: 'bar' }, headers: {}, statusCode: 200 };
       beforeEach(() => {
         execute = jest.fn(() => Promise.resolve(response));
-        createClient.mockReturnValue({
+        mocked(createClient).mockReturnValue({
           execute,
         });
 
-        return createMiddleware(middlewareOptions)({ dispatch })(next)(action);
+        return createMiddleware(middlewareOptions)({
+          dispatch,
+          getState: jest.fn(),
+        })(next)(action);
       });
 
       it('should call `client.execute` with uri with prefix', () => {
@@ -99,7 +98,7 @@ describe('when the action is of type SDK', () => {
       const dispatch = jest.fn();
       const action = sdkActions.get({ service: 'productTypes', options: {} });
       const next = jest.fn();
-      const response = { body: 'foo', headers: {} };
+      const response = { body: { foo: 'bar' }, headers: {}, statusCode: 200 };
       beforeEach(() => {
         execute = jest.fn(() => Promise.resolve(response));
         mocked(createClient).mockReturnValue({
@@ -167,7 +166,7 @@ describe('when the action is of type SDK', () => {
     const action = sdkActions.get({ service: 'productTypes', options: {} });
     const next = jest.fn();
     const expectedError = { statusCode: 401, body: 'foo', headers: {} };
-    const response = { body: 'foo', headers: {} };
+    const response = { body: { foo: 'bar' }, headers: {}, statusCode: 200 };
     beforeEach(() => {
       execute = jest
         .fn()
@@ -251,7 +250,7 @@ describe('when the action is of type SDK', () => {
     const dispatch = jest.fn();
     const action = sdkActions.get({ service: 'productTypes', options: {} });
     const next = jest.fn();
-    const response = { body: 'foo', headers: {} };
+    const response = { body: { foo: 'bar' }, headers: {}, statusCode: 200 };
     beforeEach(() => {
       execute = jest.fn(() => Promise.resolve(response));
       mocked(createClient).mockReturnValue({
@@ -291,7 +290,7 @@ describe('when the action is of type SDK', () => {
       payload: {},
     });
     const next = jest.fn();
-    const response = { body: 'foo', headers: {} };
+    const response = { body: { foo: 'bar' }, headers: {}, statusCode: 200 };
     beforeEach(() => {
       execute = jest.fn(() => Promise.resolve(response));
       mocked(createClient).mockReturnValue({
@@ -364,8 +363,8 @@ describe('when the projectKey is not defined', () => {
     expect(() =>
       createMiddleware({
         getCorrelationId: jest.fn(),
-        getProjectKey: jest.fn(() => null),
-        getTeamId: jest.fn(() => null),
+        getProjectKey: () => undefined,
+        getTeamId: () => undefined,
       })({ dispatch, getState: jest.fn() })(next)(action)
     ).toThrow(
       'Expected projectKey to be defined for action service "productTypes" (method "GET")'
