@@ -5,7 +5,7 @@ import DialogContent from '../internals/dialog-content';
 
 type Props = {
   isOpen: boolean;
-  onClose: (event: React.SyntheticEvent) => void;
+  onClose?: (event: React.SyntheticEvent) => void;
   size?: 'm' | 'l' | 'scale';
   zIndex?: number;
   title: string;
