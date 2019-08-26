@@ -3052,12 +3052,26 @@
   optionalDependencies:
     gc-stats "1.4.0"
 
-"@promster/server@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@promster/server/-/server-3.1.0.tgz#1c8edb639fbb7e2697a7af19286b6d1c076aa018"
-  integrity sha512-Z7m/poWudU7/mYibTR9ecCKUiymbKew2+ribCNG1BerpwmiXiHzMSKMFvQ9989SfwgTk+XQmWbvTqS7rY4UOsQ==
+"@promster/metrics@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@promster/metrics/-/metrics-3.2.0.tgz#780d685ebd9cee787f21986750e6e818dba2acf7"
+  integrity sha512-qHtl0Wz1mDLQzjxtAz7U07QGYi4AxawV294yMciKdTMVXvTcDT2p9IhdNg41+qhld89kP858vy1df3/+pMoQJg==
   dependencies:
-    "@promster/metrics" "^3.1.0"
+    lodash.memoize "4.1.2"
+    lodash.once "4.1.1"
+    merge-options "1.0.1"
+    optional "0.1.4"
+    url "0.11.0"
+    url-value-parser "2.0.1"
+  optionalDependencies:
+    gc-stats "1.4.0"
+
+"@promster/server@3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@promster/server/-/server-3.2.0.tgz#433897d2c98acafe736c29b470b005161a6a6fa4"
+  integrity sha512-vk0Tky+EWZ/VvLr6fcUTNoWN+ieIH7G0hL1G9kZjf1YQ2hsGVEfxtkLD8qIsF0VVcVra61AJwhxMEWPCAa/Tyw==
+  dependencies:
+    "@promster/metrics" "^3.2.0"
 
 "@reach/router@^1.1.1":
   version "1.2.1"
