@@ -25,7 +25,7 @@
     "@commercetools-frontend/assets": "14.3.0",
     "@commercetools-frontend/mc-dev-authentication": "14.0.0",
     "@commercetools-frontend/mc-html-template": "14.0.0",
-    "@promster/express": "3.1.0",
+    "@promster/express": "3.2.0",
     "@promster/server": "3.1.0",
     "compression": "1.7.4",
     "express": "4.17.1",
