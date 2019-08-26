@@ -52,7 +52,7 @@
     "deep-diff": "1.0.2",
     "moment-timezone": "0.5.26",
     "node-fetch": "2.6.0",
-    "rimraf": "2.6.3",
+    "rimraf": "3.0.0",
     "shelljs": "0.8.3"
   }
 }

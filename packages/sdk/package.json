@@ -53,9 +53,9 @@
   },
   "devDependencies": {
     "react": "16.8.6",
-    "react-redux": "7.1.0",
+    "react-redux": "7.1.1",
     "redux": "4.0.4",
-    "redux-thunk": "2.x"
+    "redux-thunk": "2.3.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
