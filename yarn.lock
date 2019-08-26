@@ -3042,18 +3042,32 @@
     string-width "^2.0.0"
     strip-ansi "^3"
 
-"@promster/express@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@promster/express/-/express-3.1.0.tgz#c2e32abf66dde47ba388bd781b44fe1f708eefaa"
-  integrity sha512-0BFn5pXXl0z5DUu9uNEu7caM19MJ8Suia665EjBuXsG0RYj8o4Vvt7LqvvTok5Bgkb8O4IUsfyXfbG3SBWmfbg==
+"@promster/express@3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@promster/express/-/express-3.2.0.tgz#729bb3ec8be4a49fe5034100b7beb22cd330a2c4"
+  integrity sha512-CnCNafNn0KSm0IQQvI0pjmF8o5e1PNhat0j/2tZYnEi9emoiSok5U1pKznWipKkL4Pxrt9Jg4tlkSTPXz99zsg==
   dependencies:
-    "@promster/metrics" "^3.1.0"
+    "@promster/metrics" "^3.2.0"
     merge-options "1.0.1"
 
 "@promster/metrics@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@promster/metrics/-/metrics-3.1.0.tgz#ba5ac1c558a9556c07667d335a600048251d334d"
   integrity sha512-QIztGXeI1CWRPF1bwugUmu4oIU+/pPAoKE2AViIup9Z+GPfwRKxv0YF0oDjitE6zCIMxXJZ4KMhzesYo/G7Eyg==
+  dependencies:
+    lodash.memoize "4.1.2"
+    lodash.once "4.1.1"
+    merge-options "1.0.1"
+    optional "0.1.4"
+    url "0.11.0"
+    url-value-parser "2.0.1"
+  optionalDependencies:
+    gc-stats "1.4.0"
+
+"@promster/metrics@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@promster/metrics/-/metrics-3.2.0.tgz#780d685ebd9cee787f21986750e6e818dba2acf7"
+  integrity sha512-qHtl0Wz1mDLQzjxtAz7U07QGYi4AxawV294yMciKdTMVXvTcDT2p9IhdNg41+qhld89kP858vy1df3/+pMoQJg==
   dependencies:
     lodash.memoize "4.1.2"
     lodash.once "4.1.1"
