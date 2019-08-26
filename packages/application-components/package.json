@@ -47,7 +47,7 @@
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
     "prop-types": "15.7.2",
-    "react-modal": "3.9.1",
+    "react-modal": "3.10.1",
     "react-required-if": "1.0.3",
     "warning": "4.0.3"
   },
@@ -55,7 +55,7 @@
     "@commercetools-frontend/ui-kit": "10.1.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-intl": "3.1.10"
+    "react-intl": "3.1.11"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "10.x",
