@@ -1,3 +1,31 @@
+## [14.6.0](https://github.com/commercetools/merchant-center-application-kit/compare/v14.5.0...v14.6.0) (2019-08-27)
+
+#### 🐛 Type: Bug
+
+- `application-components`
+  - [#994](https://github.com/commercetools/merchant-center-application-kit/pull/994) fix(dialogs): onClose prop is optional ([@emmenko](https://github.com/emmenko))
+- `actions-global`, `application-shell-connectors`, `constants`, `i18n`, `permissions`, `sdk`, `sentry`
+  - [#992](https://github.com/commercetools/merchant-center-application-kit/pull/992) fix: tsconfig to correctly include custom type definitions and check test files ([@emmenko](https://github.com/emmenko))
+
+#### 💅 Type: Enhancement
+
+- `i18n`
+  - [#1003](https://github.com/commercetools/merchant-center-application-kit/pull/1003) Translate '/packages/i18n/data/core.json' in 'zh_CN' ([@transifex-integration[bot]](https://github.com/apps/transifex-integration))
+  - [#998](https://github.com/commercetools/merchant-center-application-kit/pull/998) Translate '/packages/i18n/data/core.json' in 'fr_FR' ([@transifex-integration[bot]](https://github.com/apps/transifex-integration))
+  - [#997](https://github.com/commercetools/merchant-center-application-kit/pull/997) Translate '/packages/i18n/data/core.json' in 'es' ([@transifex-integration[bot]](https://github.com/apps/transifex-integration))
+  - [#996](https://github.com/commercetools/merchant-center-application-kit/pull/996) Translate '/packages/i18n/data/core.json' in 'de' ([@transifex-integration[bot]](https://github.com/apps/transifex-integration))
+  - [#995](https://github.com/commercetools/merchant-center-application-kit/pull/995) Translate '/packages/i18n/data/core.json' in 'en' ([@transifex-integration[bot]](https://github.com/apps/transifex-integration))
+
+#### 🚀 Type: New Feature
+
+- `application-shell`
+  - [#991](https://github.com/commercetools/merchant-center-application-kit/pull/991) feat(application-shell/navbar): add demandedDataFences and return dataFenceValues given to the user ([@adnasa](https://github.com/adnasa))
+
+#### 🤖 Type: Dependencies
+
+- `actions-global`, `application-components`, `application-shell`, `babel-preset-mc-app`, `jest-preset-mc-app`, `l10n`, `mc-html-template`, `mc-http-server`, `mc-scripts`, `react-notifications`, `sdk`, `sentry`
+  - [#1006](https://github.com/commercetools/merchant-center-application-kit/pull/1006) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+
 ## [14.5.0](https://github.com/commercetools/merchant-center-application-kit/compare/v14.4.1...v14.5.0) (2019-08-20)
 
 #### 🚀 Type: New Feature
