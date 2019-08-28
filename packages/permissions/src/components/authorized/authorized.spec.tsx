@@ -270,6 +270,33 @@ describe('rendering', () => {
           expect(props.render).toHaveBeenCalledWith(true);
         });
       });
+
+      describe('has demanded dataFence to VIEW or MANAGE orders on the specific store', () => {
+        beforeEach(() => {
+          props = {
+            ...props,
+            ...createTestProps({
+              demandedDataFences: [
+                {
+                  type: 'store',
+                  group: 'orders',
+                  name: 'ViewOrders',
+                },
+                {
+                  type: 'store',
+                  group: 'orders',
+                  name: 'ManageOrders',
+                },
+              ],
+              selectDataFenceData: ({ type }) => ['store-1'],
+            }),
+          };
+          shallow(<Authorized {...props} />);
+        });
+        it('should pass isAuthorized as "true"', () => {
+          expect(props.render).toHaveBeenCalledWith(true);
+        });
+      });
     });
   });
 });
