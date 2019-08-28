@@ -251,14 +251,19 @@ export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) =>
       actualDataFenceByPermissionGroup
     ).find(
       ([dataFenceName, dataFenceValue]) =>
-        dataFenceName === toCanCase(demandedDataFence.name)
+        dataFenceValue && dataFenceName === toCanCase(demandedDataFence.name)
     );
 
     if (!specificActualDataFence) return false;
 
     const [dataFenceName, dataFenceValue] = specificActualDataFence;
     return hasDemandedDataFence({
-      actualDataFence: { name: dataFenceName, dataFenceValue },
+      actualDataFence: {
+        name: dataFenceName,
+        // we do the type casting because at this point we are sure that
+        // specificActualDataFence.dataFenceValue is not null
+        dataFenceValue: dataFenceValue as { values: string[] },
+      },
       demandedDataFence,
       selectDataFenceData: options.selectDataFenceData,
     });
