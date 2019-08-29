@@ -520,6 +520,7 @@ export class DataMenu extends React.PureComponent {
         featureToggle={menu.featureToggle}
         permissions={menu.permissions}
         actionRights={menu.actionRights}
+        dataFences={menu.dataFences}
         menuVisibilities={this.props.menuVisibilities}
         namesOfMenuVisibilities={namesOfMenuVisibilitiesOfAllSubmenus}
         disabledMenuItems={this.props.environment.disabledMenuItems}
@@ -574,6 +575,7 @@ export class DataMenu extends React.PureComponent {
                     featureToggle={submenu.featureToggle}
                     permissions={submenu.permissions}
                     actionRights={submenu.actionRights}
+                    dataFences={submenu.dataFences}
                     menuVisibilities={this.props.menuVisibilities}
                     namesOfMenuVisibilities={[submenu.menuVisibility]}
                     disabledMenuItems={this.props.environment.disabledMenuItems}
@@ -729,6 +731,7 @@ export class NavBar extends React.PureComponent {
             app => app.navbarMenu
           )
         : [];
+
     return (
       <NavBarLayout ref={this.ref}>
         <DataMenu

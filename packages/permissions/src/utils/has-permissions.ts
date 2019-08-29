@@ -229,7 +229,9 @@ const getDataFenceByPermissionGroup = (
 };
 
 export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) =>
-  options.demandedDataFences.every((demandedDataFence: TDemandedDataFence) => {
+  // Datafences applied should be combined with an OR, that is why we use
+  // `some` and not `every`
+  options.demandedDataFences.some((demandedDataFence: TDemandedDataFence) => {
     // Given that dataFence structure on `applicationContext`, we get the value by a path
     // e.g given dataFence with { store: { orders: { canManageOrders: { values: } } } }
     // we read the dataFence by the [type] and [group]
@@ -242,20 +244,27 @@ export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) =>
       demandedDataFence.group
     );
 
-    if (actualDataFenceByPermissionGroup) {
-      return Object.entries(actualDataFenceByPermissionGroup).every(
-        ([dataFenceName, dataFenceValue]) => {
-          if (dataFenceValue) {
-            return hasDemandedDataFence({
-              actualDataFence: { name: dataFenceName, dataFenceValue },
-              demandedDataFence,
-              selectDataFenceData: options.selectDataFenceData,
-            });
-          }
-          return false;
-        }
-      );
-    }
+    if (!actualDataFenceByPermissionGroup) return false;
 
-    return false;
+    // we try to find if the demanded dataFence is available inside the actual datafences
+    const specificActualDataFence = Object.entries(
+      actualDataFenceByPermissionGroup
+    ).find(
+      ([dataFenceName, dataFenceValue]) =>
+        dataFenceValue && dataFenceName === toCanCase(demandedDataFence.name)
+    );
+
+    if (!specificActualDataFence) return false;
+
+    const [dataFenceName, dataFenceValue] = specificActualDataFence;
+    return hasDemandedDataFence({
+      actualDataFence: {
+        name: dataFenceName,
+        // we do the type casting because at this point we are sure that
+        // specificActualDataFence.dataFenceValue is not null
+        dataFenceValue: dataFenceValue as TActualDataFence['dataFenceValue'],
+      },
+      demandedDataFence,
+      selectDataFenceData: options.selectDataFenceData,
+    });
   });

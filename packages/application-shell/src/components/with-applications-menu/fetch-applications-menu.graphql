@@ -35,6 +35,11 @@ query FetchApplicationsMenu {
           group
           name
         }
+        dataFences {
+          group
+          name
+          type
+        }
       }
     }
     appBar {

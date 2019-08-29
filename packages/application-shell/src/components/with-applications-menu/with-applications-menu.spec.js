@@ -44,6 +44,7 @@ const createTestMenuConfig = (key, props) => ({
       uriPath: `${key}/new`,
       permissions: [],
       actionRights: null,
+      dataFences: null,
       featureToggle: null,
     },
   ],
