@@ -262,7 +262,7 @@ export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) =>
         name: dataFenceName,
         // we do the type casting because at this point we are sure that
         // specificActualDataFence.dataFenceValue is not null
-        dataFenceValue: dataFenceValue as { values: string[] },
+        dataFenceValue: dataFenceValue as TActualDataFence['dataFenceValue'],
       },
       demandedDataFence,
       selectDataFenceData: options.selectDataFenceData,
