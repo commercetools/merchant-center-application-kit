@@ -1,3 +1,8 @@
+#### 🐛 Type: Bug
+
+- `application-shell`, `permissions`
+  - [#1009](https://github.com/commercetools/merchant-center-application-kit/pull/1009) CON-187: properly pass dataFences from menu to `Authorized.js` ([@amine-benselim](https://github.com/amine-benselim))
+
 ## [14.6.0](https://github.com/commercetools/merchant-center-application-kit/compare/v14.5.0...v14.6.0) (2019-08-27)
 
 #### 🐛 Type: Bug
