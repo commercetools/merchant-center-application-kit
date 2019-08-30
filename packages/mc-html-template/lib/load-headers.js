@@ -39,7 +39,10 @@ const mergeCspDirectives = (...csps) =>
   );
 const toHeaderString = directives =>
   Object.entries(directives)
-    .map(([directive, value]) => `${directive} ${value.join(' ')}`)
+    .map(
+      ([directive, value]) =>
+        `${directive} ${Array.isArray(value) ? value.join(' ') : value}`
+    )
     .join('; ');
 
 module.exports = (env, options) => {
@@ -139,7 +142,7 @@ module.exports = (env, options) => {
   // Recursively merge the directives
   const mergedCsp = mergeCspDirectives(
     cspDirectives,
-    customHeaders.csp || customCspDirectivesFromDeprecatedPath
+    customHeaders.cors || customCspDirectivesFromDeprecatedPath
   );
 
   return {
