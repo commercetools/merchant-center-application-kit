@@ -31,9 +31,11 @@ describe('given not `servedByProxy`', () => {
   });
 
   it('should shows development mode message', () => {
-    const { getByText } = renderApp(<RedirectToProjectCreate />);
+    const rendered = renderApp(<RedirectToProjectCreate />);
 
     expect(window.location.replace).not.toHaveBeenCalled();
-    expect(getByText('Please create a project!')).toBeInTheDocument();
+    expect(
+      rendered.queryByText('Please create a project!')
+    ).toBeInTheDocument();
   });
 });

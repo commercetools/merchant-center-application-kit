@@ -4,7 +4,7 @@ import PageNotFound from './page-not-found';
 
 describe('rendering', () => {
   it('should render help desk link', () => {
-    const { getByText } = render(<PageNotFound />);
-    expect(getByText('Help Desk')).toBeInTheDocument();
+    const rendered = render(<PageNotFound />);
+    expect(rendered.queryByText('Help Desk')).toBeInTheDocument();
   });
 });

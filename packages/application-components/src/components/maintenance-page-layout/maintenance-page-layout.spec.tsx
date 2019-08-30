@@ -16,9 +16,9 @@ describe('rendering', () => {
       props = createTestProps();
     });
     it('renders the title and paragraph', () => {
-      const { getByText } = render(<MaintenancePageLayout {...props} />);
-      expect(getByText('title')).toBeInTheDocument();
-      expect(getByText('title 1')).toBeInTheDocument();
+      const rendered = render(<MaintenancePageLayout {...props} />);
+      expect(rendered.queryByText('title')).toBeInTheDocument();
+      expect(rendered.queryByText('title 1')).toBeInTheDocument();
     });
   });
   describe('with both paragraphs', () => {
@@ -28,10 +28,10 @@ describe('rendering', () => {
       });
     });
     it('renders the title and paragraphs', () => {
-      const { getByText } = render(<MaintenancePageLayout {...props} />);
-      expect(getByText('title')).toBeInTheDocument();
-      expect(getByText('title 1')).toBeInTheDocument();
-      expect(getByText('title 2')).toBeInTheDocument();
+      const rendered = render(<MaintenancePageLayout {...props} />);
+      expect(rendered.queryByText('title')).toBeInTheDocument();
+      expect(rendered.queryByText('title 1')).toBeInTheDocument();
+      expect(rendered.queryByText('title 2')).toBeInTheDocument();
     });
   });
   describe('with both paragraphs and a body content in between', () => {
@@ -42,11 +42,11 @@ describe('rendering', () => {
       });
     });
     it('renders the title, paragraphs and body content', () => {
-      const { getByText } = render(<MaintenancePageLayout {...props} />);
-      expect(getByText('title')).toBeInTheDocument();
-      expect(getByText('title 1')).toBeInTheDocument();
-      expect(getByText('title 2')).toBeInTheDocument();
-      expect(getByText('content')).toBeInTheDocument();
+      const rendered = render(<MaintenancePageLayout {...props} />);
+      expect(rendered.queryByText('title')).toBeInTheDocument();
+      expect(rendered.queryByText('title 1')).toBeInTheDocument();
+      expect(rendered.queryByText('title 2')).toBeInTheDocument();
+      expect(rendered.queryByText('content')).toBeInTheDocument();
     });
   });
   describe('with only one paragraph and the body content', () => {
@@ -56,10 +56,10 @@ describe('rendering', () => {
       });
     });
     it('renders the title, paragraphs and body content', () => {
-      const { getByText } = render(<MaintenancePageLayout {...props} />);
-      expect(getByText('title')).toBeInTheDocument();
-      expect(getByText('title 1')).toBeInTheDocument();
-      expect(getByText('content')).toBeInTheDocument();
+      const rendered = render(<MaintenancePageLayout {...props} />);
+      expect(rendered.queryByText('title')).toBeInTheDocument();
+      expect(rendered.queryByText('title 1')).toBeInTheDocument();
+      expect(rendered.queryByText('content')).toBeInTheDocument();
     });
   });
 });

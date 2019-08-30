@@ -141,7 +141,7 @@ describe('QuickAccess', () => {
     await waitForElement(() => getByTestId('quick-access-search-input'));
 
     // Value should be empty. The "f" should not end up as part of the value.
-    expect(getByTestId('quick-access-search-input')).toHaveAttribute(
+    expect(queryByTestId('quick-access-search-input')).toHaveAttribute(
       'value',
       ''
     );
@@ -165,7 +165,7 @@ describe('QuickAccess', () => {
     await waitForElement(() => getByTestId('quick-access-search-input'));
 
     // Value should be empty. The "f" should not end up as part of the value.
-    expect(getByTestId('quick-access-search-input')).toHaveAttribute(
+    expect(queryByTestId('quick-access-search-input')).toHaveAttribute(
       'value',
       ''
     );
@@ -184,7 +184,7 @@ describe('QuickAccess', () => {
     fireEvent.click(getByTestId('quick-access-search-input'));
 
     // It should not close, so the element should still be around
-    expect(getByTestId('quick-access-search-input')).toBeVisible();
+    expect(queryByTestId('quick-access-search-input')).toBeVisible();
   });
 
   it('should not open when pressing "f" not directly on other focusable elements', async () => {
@@ -226,7 +226,7 @@ describe('QuickAccess', () => {
     fireEvent.keyDown(document.body, { key: 'f' });
     await waitForElement(() => getByTestId('quick-access'));
 
-    expect(getByTestId('quick-access')).toBeInTheDocument();
+    expect(queryByTestId('quick-access')).toBeInTheDocument();
 
     // close quick-access
     fireEvent.keyDown(getByTestId('quick-access-search-input'), {
@@ -254,7 +254,7 @@ describe('QuickAccess', () => {
     const searchInput = getByTestId('quick-access-search-input');
     fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
     await waitForElement(() => getByText('Open Dashboard'));
-    expect(getByText('Open Dashboard')).toBeInTheDocument();
+    expect(queryByText('Open Dashboard')).toBeInTheDocument();
   });
   describe('when there are no results', () => {
     it('should show information message when searching does not yield results', async () => {
@@ -306,7 +306,7 @@ describe('QuickAccess', () => {
       });
       await waitForElement(() => getByText(noResultsText));
       // it should show the no results text
-      expect(getByText(noResultsText)).toBeVisible();
+      expect(queryByText(noResultsText)).toBeVisible();
 
       // when input is cleared again
       fireEvent.change(searchInput, { target: { value: '' } });
@@ -362,7 +362,7 @@ describe('QuickAccess', () => {
       });
       await waitForElement(() => getByText(offlineText));
       // it should show the offline warning
-      expect(getByText(offlineText)).toBeVisible();
+      expect(queryByText(offlineText)).toBeVisible();
 
       // when input is cleared again
       fireEvent.change(searchInput, { target: { value: '' } });
@@ -704,7 +704,7 @@ describe('QuickAccess', () => {
     fireEvent.keyDown(searchInput, { key: 'ArrowDown' });
     fireEvent.keyUp(searchInput, { key: 'ArrowDown' });
 
-    expect(getByTestId('quick-access-result(go/orders)')).toHaveStyle(
+    expect(queryByTestId('quick-access-result(go/orders)')).toHaveStyle(
       `color: ${customProperties.colorSurface};`
     );
 
@@ -713,7 +713,7 @@ describe('QuickAccess', () => {
     fireEvent.keyDown(searchInput, { key: 'ArrowUp' });
     fireEvent.keyUp(searchInput, { key: 'ArrowUp' });
 
-    expect(getByTestId('quick-access-result(go/dashboard)')).toHaveStyle(
+    expect(queryByTestId('quick-access-result(go/dashboard)')).toHaveStyle(
       `color: ${customProperties.colorSurface};`
     );
   });
@@ -782,7 +782,7 @@ describe('QuickAccess', () => {
     );
 
     expect(
-      getByTestId(
+      queryByTestId(
         'quick-access-result(go/product-variant-by-sku/product(party-parrot-id)/variant(1))'
       )
     ).toHaveStyle(`color: ${customProperties.colorSurface};`);
@@ -841,7 +841,7 @@ describe('QuickAccess', () => {
     await waitForElement(() => getByText('Show Product "Party Parrot"'));
 
     expect(
-      getByTestId('quick-access-result(go/product-by-id/product(01a1b2c3))')
+      queryByTestId('quick-access-result(go/product-by-id/product(01a1b2c3))')
     ).toHaveStyle(`color: ${customProperties.colorSurface};`);
   });
 
@@ -902,7 +902,7 @@ describe('QuickAccess', () => {
     await waitForElement(() => getByText('Show Product "party-parrot"'));
 
     expect(
-      getByTestId(
+      queryByTestId(
         'quick-access-result(go/product-by-key/product(party-parrot-id))'
       )
     ).toHaveStyle(`color: ${customProperties.colorSurface};`);
@@ -965,7 +965,9 @@ describe('QuickAccess', () => {
     await waitForElement(() => getByText('Show Product "Party Papagei"'));
 
     expect(
-      getByTestId(`quick-access-result(go/product-by-id/product(${productId}))`)
+      queryByTestId(
+        `quick-access-result(go/product-by-id/product(${productId}))`
+      )
     ).toHaveStyle(`color: ${customProperties.colorSurface};`);
   });
 
@@ -989,7 +991,7 @@ describe('QuickAccess', () => {
     const searchInput = getByTestId('quick-access-search-input');
     fireEvent.change(searchInput, { target: { value: searchTerm } });
     await waitForElement(() => getByText('Open Product Types Settings'));
-    expect(getByText('Open Product Types Settings')).toBeVisible();
+    expect(queryByText('Open Product Types Settings')).toBeVisible();
   });
 
   it('should be possible to navigate to sub commands and back out', async () => {
@@ -1020,7 +1022,7 @@ describe('QuickAccess', () => {
     fireEvent.keyDown(searchInput, { key: 'ArrowDown' });
     fireEvent.keyUp(searchInput, { key: 'ArrowDown' });
 
-    expect(getByTestId('quick-access-result(go/orders)')).toHaveStyle(
+    expect(queryByTestId('quick-access-result(go/orders)')).toHaveStyle(
       `color: ${customProperties.colorSurface};`
     );
 
@@ -1029,7 +1031,7 @@ describe('QuickAccess', () => {
     fireEvent.keyUp(searchInput, { key: 'ArrowRight' });
 
     await waitForElement(() => getByText('Open Orders List'));
-    expect(getByTestId('quick-access-result(go/orders/list)')).toHaveStyle(
+    expect(queryByTestId('quick-access-result(go/orders/list)')).toHaveStyle(
       `color: ${customProperties.colorSurface};`
     );
 
@@ -1039,10 +1041,10 @@ describe('QuickAccess', () => {
     await waitForElement(() => getByText('Open Orders'));
 
     // it should select the first element in the list
-    expect(getByTestId('quick-access-result(go/dashboard)')).toHaveStyle(
+    expect(queryByTestId('quick-access-result(go/dashboard)')).toHaveStyle(
       `color: ${customProperties.colorSurface};`
     );
-    expect(getByTestId('quick-access-result(go/orders)')).not.toHaveStyle(
+    expect(queryByTestId('quick-access-result(go/orders)')).not.toHaveStyle(
       `color: ${customProperties.colorSurface};`
     );
   });
@@ -1181,7 +1183,7 @@ describe('QuickAccess', () => {
       await waitForElement(() => getByText('Open Dashboard'));
 
       // results should contain "Open Orders"
-      expect(getByText('Open Orders')).toBeVisible();
+      expect(queryByText('Open Orders')).toBeVisible();
     });
   });
 
@@ -1374,7 +1376,7 @@ describe('QuickAccess', () => {
       const searchInput = getByTestId('quick-access-search-input');
       fireEvent.change(searchInput, { target: { value: searchTerm } });
       await waitForElement(() => getByText('Open PIM Search'));
-      expect(getByText('Open PIM Search')).toBeVisible();
+      expect(queryByText('Open PIM Search')).toBeVisible();
     });
   });
 
@@ -1467,7 +1469,7 @@ describe('QuickAccess', () => {
       await waitForElement(() => getByText('Show Product "Party Parrot"'));
 
       expect(
-        getByTestId(
+        queryByTestId(
           `quick-access-result(go/product-by-search-text/product(${partyParrotId}))`
         )
       ).toHaveStyle(`color: ${customProperties.colorSurface};`);
