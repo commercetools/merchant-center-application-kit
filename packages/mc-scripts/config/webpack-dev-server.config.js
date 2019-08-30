@@ -11,6 +11,7 @@ const sourcePath = process.cwd();
 const localEnv = loadEnv(path.join(sourcePath, 'env.json'));
 const headers = loadHeaders(localEnv, {
   cspPath: path.join(sourcePath, 'csp.json'),
+  featurePoliciesPath: path.join(sourcePath, 'feature-policies.json'),
 });
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';

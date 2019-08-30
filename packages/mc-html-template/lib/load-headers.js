@@ -4,14 +4,14 @@ const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
 const htmlScripts = require('./html-scripts');
 // const htmlStyles = require('./html-styles');
 
-const loadCustomCspDirectives = customCspPath => {
-  let rawConfig;
+const loadCustomDirectives = pathToDirectives => {
+  let rawDirectives;
   try {
-    rawConfig = fs.readFileSync(customCspPath, { encoding: 'utf8' });
+    rawDirectives = fs.readFileSync(pathToDirectives, { encoding: 'utf8' });
   } catch (error) {
     // Ignore
   }
-  return rawConfig ? JSON.parse(rawConfig) : {};
+  return rawDirectives ? JSON.parse(rawDirectives) : {};
 };
 
 const toArray = value => (Array.isArray(value) ? value : [value]);
@@ -35,6 +35,10 @@ const mergeCspDirectives = (...csps) =>
       ),
     {}
   );
+const toHeaderString = directives =>
+  Object.entries(directives)
+    .map(([directive, value]) => `${directive} ${value.join(' ')}`)
+    .join('; ');
 
 module.exports = (env, options) => {
   const isMcDevEnv = env.env === 'development';
@@ -119,14 +123,13 @@ module.exports = (env, options) => {
   );
 
   // Attempt to load the JSON config for custom CSP headers provided by each application
-  const customCspDirectives = loadCustomCspDirectives(options.cspPath);
+  const customCspDirectives = loadCustomDirectives(options.cspPath);
+  const featurePolicyDirectives = loadCustomDirectives(
+    options.featurePoliciesPath
+  );
 
   // Recursively merge the directives
   const mergedCsp = mergeCspDirectives(cspDirectives, customCspDirectives);
-
-  const cspHeaderString = Object.entries(mergedCsp)
-    .map(([directive, value]) => `${directive} ${value.join(' ')}`)
-    .join('; ');
 
   return {
     'Strict-Transport-Security': 'max-age=31536000',
@@ -134,6 +137,7 @@ module.exports = (env, options) => {
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
     'Referrer-Policy': 'same-origin',
-    'Content-Security-Policy': cspHeaderString,
+    'Content-Security-Policy': toHeaderString(mergedCsp),
+    'Feature-Policy': toHeaderString(featurePolicyDirectives),
   };
 };

@@ -31,6 +31,7 @@ if (flags.help) {
   Options:
   --config=<path>           (required) The path to the environment config (defined as a JSON file, e.g. "env.json").
   --csp=<path>              (optional) The path to the custom CSP directives config (defined as a JSON file, e.g. "csp.json").
+  --featurePolicies=<path>  (optional) The path to the feature policy directives config (defined as a JSON file, e.g. "feature-policies.json").
   --use-local-assets        (optional) If this option is enabled, the index.html.template will be taken from the local "dist/assets" folder, otherwise it will be downloaded from the remove URL provided in "cdnUrl" in the "env.json" file (requires "mc-scripts build" to run before) [default "false"]
   --transformer=<path>      (optional) The path to a JS module that can be used to generate a configuration for a specific cloud provider (e.g. Netlify, Now).
   `);
@@ -48,6 +49,7 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 const paths = {
   envPath: flags.config,
+  featurePoliciesPath: flags.featurePolicies,
   cspPath: flags.csp,
   publicAssetsPath: resolveApp('public'),
   // NOTE: previously, for running the prod server locally, we were copying
@@ -95,6 +97,7 @@ const generateStatic = async () => {
   const compiled = await compileHtml({
     envPath: paths.envPath,
     cspPath: paths.cspPath,
+    featurePoliciesPath: paths.featurePoliciesPath,
     publicAssetsPath: paths.publicAssetsPath,
     useLocalAssets,
   });

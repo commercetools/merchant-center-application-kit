@@ -11,6 +11,7 @@ const requiredOptions = ['envPath', 'publicAssetsPath'];
  * Options:
  * - envPath
  * - cspPath
+ * - featurePoliciesPath
  * - publicAssetsPath
  * - useLocalAssets
  */
@@ -22,7 +23,10 @@ module.exports = async function compileHtml(options) {
   });
 
   const env = loadEnv(options.envPath);
-  const headers = loadHeaders(env, { cspPath: options.cspPath });
+  const headers = loadHeaders(env, {
+    cspPath: options.cspPath,
+    featurePoliciesPath: options.featurePoliciesPath,
+  });
 
   if (options.useLocalAssets) {
     const indexHtmlContent = fs.readFileSync(
