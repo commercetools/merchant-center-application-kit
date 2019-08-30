@@ -34,7 +34,6 @@
     "morgan": "1.9.1",
     "mri": "1.1.4",
     "prom-client": "11.5.3",
-    "referrer-policy": "1.2.0",
     "shelljs": "0.8.3"
   },
   "engines": {

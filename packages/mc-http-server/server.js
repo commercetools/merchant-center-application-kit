@@ -4,7 +4,6 @@ const path = require('path');
 const http = require('http');
 const morgan = require('morgan');
 const hidePoweredBy = require('hide-powered-by');
-const referrerPolicy = require('referrer-policy');
 const { createLightship } = require('lightship');
 const {
   createMiddleware: createPrometheusMetricsMiddleware,
@@ -83,7 +82,6 @@ const startServer = options => {
   const app = express();
   app.use(hidePoweredBy());
   app
-    .use(referrerPolicy({ policy: 'same-origin' }))
     .get('/version', (request, response) => {
       response.setHeader('Content-Type', 'application/json');
       response.end(

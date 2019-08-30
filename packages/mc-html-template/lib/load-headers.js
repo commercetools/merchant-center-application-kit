@@ -133,6 +133,7 @@ module.exports = (env, options) => {
     'X-XSS-Protection': '1; mode=block',
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
+    'Referrer-Policy': 'same-origin',
     'Content-Security-Policy': cspHeaderString,
   };
 };
