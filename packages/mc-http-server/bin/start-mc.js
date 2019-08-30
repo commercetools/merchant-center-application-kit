@@ -20,8 +20,8 @@ if (flags.help) {
 
   Options:
   --config=<path>           (required) The path to the environment config (defined as a JSON file, e.g. "env.json").
-  --csp=<path>              (optional) The path to the custom CSP directives config (defined as a JSON file, e.g. "csp.json").
-  --featurePolicies=<path>  (optional) The path to the feature policy directives config (defined as a JSON file, e.g. "feature-policies.json").
+  --csp=<path>              (optional) Deprecated: the path to the custom CSP directives config (defined as a JSON file, e.g. "csp.json").
+  --headers=<path>          (optional) The path to the headers containing CSP and feature policy configs (defined as a JSON file, e.g. "headers.json").
   --use-local-assets        (optional) If this option is enabled, the "dist/assets" will be used to start the http-server package. This requires that the assets have been built before running this script.
   `);
 }
@@ -42,7 +42,7 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 const paths = {
   envPath: flags.config,
   cspPath: flags.csp,
-  featurePoliciesPath: flags.featurePolicies,
+  headersPath: flags.headers,
   publicAssetsPath: path.join(__dirname, '../public'),
   // NOTE: previously, for running the prod server locally, we were copying
   // assets into public/assets and compiling the index.html into public folder.
@@ -89,7 +89,7 @@ const start = async () => {
   const compiled = await compileHtml({
     envPath: paths.envPath,
     cspPath: paths.cspPath,
-    featurePoliciesPath: paths.featurePoliciesPath,
+    headersPath: paths.headersPath,
     publicAssetsPath: paths.publicAssetsPath,
     useLocalAssets,
   });

@@ -44,14 +44,24 @@ This method will attempt to load and parse the `env.json` file, performing some 
 
 This method will attempt to load and parse the `env.json` file, performing some validation and returning the parsed JSON.
 
-#### `loadHeaders(env: Object, { cspPath: String, featurePoliciesPath: String }): Object`
+#### `loadHeaders(env: Object, { headersPath: String }): Object`
 
 This method will return the security headers to be used on the server response, serving the `index.html`.
 
 The `env` argument, is the parsed `env.json` file (see `loadEnv`).
 
-Optionally, you can pass the path to the `csp.json` that contains custom CSP directives. Those will be merged with the default ones.
-Optionally, you can pass the path to the `feature-policies.json` that contains custom feature policy directives.
+Optionally, you can pass the path to a `headers.json` that contains custom CSP and feature directives such as:
+
+```json
+{
+  "csp": {
+    "script-src": ["storage.googleapis.com/my-bucket-path/"]
+  },
+  "featurePolicies": {
+    "microphone": "none"
+  }
+}
+```
 
 The final headers object contains the following headers:
 

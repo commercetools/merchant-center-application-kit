@@ -6,12 +6,13 @@ const loadHeaders = require('./load-headers');
 const replaceHtmlPlaceholders = require('./utils/replace-html-placeholders');
 
 const requiredOptions = ['envPath', 'publicAssetsPath'];
+const deprecatedOptions = ['cspPath'];
 
 /**
  * Options:
  * - envPath
  * - cspPath
- * - featurePoliciesPath
+ * - headersPath
  * - publicAssetsPath
  * - useLocalAssets
  */
@@ -22,10 +23,18 @@ module.exports = async function compileHtml(options) {
     }
   });
 
+  deprecatedOptions.forEach(key => {
+    if (options[key]) {
+      console.warn(
+        '⚠️ [@commercetools-frontend/mc-html-template]: `cspPath` has been deprecated. Please use `headerPath` instead while nesting CSPs into a `csp`-property in e.g. a `headers.json`.'
+      );
+    }
+  });
+
   const env = loadEnv(options.envPath);
   const headers = loadHeaders(env, {
     cspPath: options.cspPath,
-    featurePoliciesPath: options.featurePoliciesPath,
+    headersPath: options.headersPath,
   });
 
   if (options.useLocalAssets) {

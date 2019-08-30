@@ -4,14 +4,16 @@ const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
 const htmlScripts = require('./html-scripts');
 // const htmlStyles = require('./html-styles');
 
-const loadCustomDirectives = pathToDirectives => {
-  let rawDirectives;
+const loadCustomConfiguration = pathToConfiguration => {
+  let rawConfiguration;
   try {
-    rawDirectives = fs.readFileSync(pathToDirectives, { encoding: 'utf8' });
+    rawConfiguration = fs.readFileSync(pathToConfiguration, {
+      encoding: 'utf8',
+    });
   } catch (error) {
     // Ignore
   }
-  return rawDirectives ? JSON.parse(rawDirectives) : {};
+  return rawConfiguration ? JSON.parse(rawConfiguration) : {};
 };
 
 const toArray = value => (Array.isArray(value) ? value : [value]);
@@ -122,14 +124,23 @@ module.exports = (env, options) => {
     //   GTM and Intercom scripts are apparently not meant for this)
   );
 
-  // Attempt to load the JSON config for custom CSP headers provided by each application
-  const customCspDirectives = loadCustomDirectives(options.cspPath);
-  const featurePolicyDirectives = loadCustomDirectives(
-    options.featurePoliciesPath
-  );
+  // Attempt to load the JSON config for custom CSP and feature policy headers provided by each application
+  // For backwards compatibilty the `cspPath` is used too while the `headerPath` has preference.
+
+  const customHeaders = loadCustomConfiguration(options.headersPath);
+
+  let customCspDirectivesFromDeprecatedPath;
+
+  if (!customHeaders.csp && options.cspPath)
+    customCspDirectivesFromDeprecatedPath = loadCustomConfiguration(
+      options.cspPath
+    );
 
   // Recursively merge the directives
-  const mergedCsp = mergeCspDirectives(cspDirectives, customCspDirectives);
+  const mergedCsp = mergeCspDirectives(
+    cspDirectives,
+    customHeaders.csp || customCspDirectivesFromDeprecatedPath
+  );
 
   return {
     'Strict-Transport-Security': 'max-age=31536000',
@@ -138,6 +149,6 @@ module.exports = (env, options) => {
     'X-Frame-Options': 'DENY',
     'Referrer-Policy': 'same-origin',
     'Content-Security-Policy': toHeaderString(mergedCsp),
-    'Feature-Policy': toHeaderString(featurePolicyDirectives),
+    'Feature-Policy': toHeaderString(customHeaders.featurePolicies),
   };
 };
