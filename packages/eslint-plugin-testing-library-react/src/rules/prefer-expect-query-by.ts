@@ -93,19 +93,10 @@ export default createRule({
           node: node.callee,
           messageId: 'expectQueryBy',
           fix(fixer) {
-            if (nodesGetBy[0].name.startsWith('getBy')) {
-              return fixer.replaceText(
-                nodesGetBy[0],
-                nodesGetBy[0].name.replace(/^(getBy)(.*)$/, 'queryBy$2')
-              );
-            }
-            if (nodesGetBy[0].name.startsWith('getAllBy')) {
-              return fixer.replaceText(
-                nodesGetBy[0],
-                nodesGetBy[0].name.replace(/^(getAllBy)(.*)$/, 'queryAllBy$2')
-              );
-            }
-            return fixer.replaceText(nodesGetBy[0], nodesGetBy[0].name);
+            return fixer.replaceText(
+              nodesGetBy[0],
+              nodesGetBy[0].name.replace(/^(get(All)?(.*))$/, 'query$2$3')
+            );
           },
         });
       }
