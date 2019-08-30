@@ -40,11 +40,7 @@ At the moment we define the following placeholders:
 
 This method will attempt to load and parse the `env.json` file, performing some validation and returning the parsed JSON.
 
-#### `loadEnv(configPath: String): Object`
-
-This method will attempt to load and parse the `env.json` file, performing some validation and returning the parsed JSON.
-
-#### `loadHeaders(env: Object, { headersPath: String }): Object`
+#### `loadHeaders(env: Object, { headersPath: String, cspPath?: String }): Object`
 
 This method will return the security headers to be used on the server response, serving the `index.html`.
 
@@ -62,6 +58,8 @@ Optionally, you can pass the path to a `headers.json` that contains custom CSP a
   }
 }
 ```
+
+The `cspPath` has been deprecated in favour of the `headerpath option. To migrate away from the`cspPath`please use the`headerPath`while moving the contents of a e.g.`csp.json`into e.g. a`headers.json`behind a`csp`property while passing`headerPath`.
 
 The final headers object contains the following headers:
 
