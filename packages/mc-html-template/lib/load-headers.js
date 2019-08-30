@@ -125,7 +125,7 @@ module.exports = (env, options) => {
   );
 
   // Attempt to load the JSON config for custom CSP and feature policy headers provided by each application
-  // For backwards compatibilty the `cspPath` is used too while the `headerPath` has preference.
+  // For backwards compatibilty the `cspPath` can still be used but the `headerPath` takes precedence.
 
   const customHeaders = loadCustomConfiguration(options.headersPath);
 

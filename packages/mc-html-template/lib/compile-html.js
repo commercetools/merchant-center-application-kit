@@ -26,7 +26,7 @@ module.exports = async function compileHtml(options) {
   deprecatedOptions.forEach(key => {
     if (options[key]) {
       console.warn(
-        '⚠️ [@commercetools-frontend/mc-html-template]: `cspPath` has been deprecated. Please use `headerPath` instead while nesting CSPs into a `csp`-property in e.g. a `headers.json`.'
+        '⚠️ [@commercetools-frontend/mc-html-template]: `cspPath` has been deprecated. Please use `headerPath`. More info here: https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/mc-html-template/README.md.'
       );
     }
   });
