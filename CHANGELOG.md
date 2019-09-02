@@ -1,3 +1,15 @@
+## [15.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.0.0...v15.1.0) (2019-09-02)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1028](https://github.com/commercetools/merchant-center-application-kit/pull/1028) fix(app-shell): null check for dataFences in navbar component ([@emmenko](https://github.com/emmenko))
+
+#### 🚀 Type: New Feature
+
+- `mc-html-template`, `mc-http-server`, `mc-scripts`
+  - [#1016](https://github.com/commercetools/merchant-center-application-kit/pull/1016) feat: add ability to specify feature policies ([@tdeekens](https://github.com/tdeekens))
+
 ## [15.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v14.6.1...v15.0.0) (2019-09-02)
 
 This release introduces some **breaking changes** related to minimal dependency versions.
