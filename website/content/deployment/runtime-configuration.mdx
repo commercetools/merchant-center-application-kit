@@ -57,6 +57,24 @@ An example configuration for local development:
 }
 ```
 
+## `csp.json`
+
+This file as been deprecated by the `headers.json` mentioned below.
+
+To migrate nest the contents of your `csp.json` into the `csp`-property of the `headers.json`:
+
+```json
+{
++  "csp": {
+    "script-src": ["my-apps.com"],
+    "connect-src": ["my-apps.com"],
+    "style-src": ["my-apps.com"]
++  }
+}
+```
+
+Additionally, use the `--headers` over the `--csp` CLI option to point to the new `headers.json`.
+
 ## `headers.json`
 
 When you deploy your application to a server and domain of your choice, the application will fail to make requests to the [API Gateway](../main-concepts/api-gateway) as the custom domain is not whitelisted. This is why the application can only be accessed through the [Proxy Router](../main-concepts/api-gateway). Setting the `servedByProxy` in the `env.json` is also important.
