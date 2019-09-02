@@ -2,23 +2,21 @@
   "extends": [
     "config:base",
     ":pinOnlyDevDependencies",
-    "schedule:weekly",
+    "schedule:weekly"
+  ],
+  "separateMajorMinor": true,
+  "groupName": "all dependencies",
+  "groupSlug": "all",
+  "packageRules": [
     {
-      "groupName": "all dependencies",
-      "separateMajorMinor": true,
-      "groupSlug": "all",
-      "packageRules": [
-        {
-          "packagePatterns": [
-            "*"
-          ],
-          "groupName": "all dependencies",
-          "groupSlug": "all"
-        }
+      "packagePatterns": [
+        "*"
       ],
-      "lockFileMaintenance": {
-        "enabled": true
-      }
+      "groupName": "all dependencies",
+      "groupSlug": "all"
     }
-  ]
+  ],
+  "lockFileMaintenance": {
+    "enabled": true
+  }
 }
