@@ -137,17 +137,19 @@ First, you need to create an `env.prod.json` file with the following JSON:
 }
 ```
 
-You also need a `csp.json` file. You can also have a `csp.prod.json` file if you want to use a different configuration for `development`.
+You also need a `headers.json` file. You can also have a `headers.prod.json` file if you want to use a different configuration for `development`.
 
 ```json
 {
-  "script-src": ["[projectID].firebaseapp.com"],
-  "connect-src": ["[projectID].firebaseapp.com"],
-  "style-src": ["[projectID].firebaseapp.com"]
+  "csp": {
+    "script-src": ["[projectID].firebaseapp.com"],
+    "connect-src": ["[projectID].firebaseapp.com"],
+    "style-src": ["[projectID].firebaseapp.com"]
+  }
 }
 ```
 
-For both `env.prod.json` and `csp.json`, `[projectID]` should be replaced with your Firebase project ID.
+For both `env.prod.json` and `headers.json`, `[projectID]` should be replaced with your Firebase project ID.
 
 ## Build and Compilation
 
@@ -213,7 +215,7 @@ In your project's `package.json` add the following script:
 
 ```json
 {
-  "compile-html:firebase": "mc-scripts compile-html -—csp=$(pwd)/csp.json -—config=$(pwd)/env.prod.json -—use-local-assets -—transformer $(pwd)/config/transformer-firebase.js"
+  "compile-html:firebase": "mc-scripts compile-html -—headers=$(pwd)/headers.json -—config=$(pwd)/env.prod.json -—use-local-assets -—transformer $(pwd)/config/transformer-firebase.js"
 }
 ```
 

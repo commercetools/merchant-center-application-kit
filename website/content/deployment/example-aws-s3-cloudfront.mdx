@@ -352,17 +352,19 @@ First, you need to create an `env.prod.json` file with the following JSON:
 }
 ```
 
-You also need a `csp.json` file. You can also have a `csp.prod.json` file if you want to use a different configuration for `development`.
+You also need a `headers.json` file. You can also have a `headers.prod.json` file if you want to use a different configuration for `development`.
 
 ```json
 {
-  "script-src": ["[cloudfront-domain]"],
-  "connect-src": ["[cloudfront-domain]"],
-  "style-src": ["[cloudfront-domain]"]
+  "csp": {
+    "script-src": ["[cloudfront-domain]"],
+    "connect-src": ["[cloudfront-domain]"],
+    "style-src": ["[cloudfront-domain]"]
+  }
 }
 ```
 
-For both `env.prod.json` and `csp.json`, `[cloudfront-domain]` should be replaced with your CloudFront domain obtained from the last step of the previous section.
+For both `env.prod.json` and `headers.json`, `[cloudfront-domain]` should be replaced with your CloudFront domain obtained from the last step of the previous section.
 
 ## Build and Compilation
 
@@ -428,7 +430,7 @@ In your project's `package.json` add the following script:
 
 ```json
 {
-  "compile-html:aws": "mc-scripts compile-html -—csp=$(pwd)/csp.json -—config=$(pwd)/env.prod.json -—use-local-assets -—transformer $(pwd)/config/transformer-aws.js"
+  "compile-html:aws": "mc-scripts compile-html -—headers=$(pwd)/headers.json -—config=$(pwd)/env.prod.json -—use-local-assets -—transformer $(pwd)/config/transformer-aws.js"
 }
 ```
 

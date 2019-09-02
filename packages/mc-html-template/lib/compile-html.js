@@ -6,11 +6,13 @@ const loadHeaders = require('./load-headers');
 const replaceHtmlPlaceholders = require('./utils/replace-html-placeholders');
 
 const requiredOptions = ['envPath', 'publicAssetsPath'];
+const deprecatedOptions = ['cspPath'];
 
 /**
  * Options:
  * - envPath
- * - cspPath
+ * - cspPath (deprecated)
+ * - headersPath
  * - publicAssetsPath
  * - useLocalAssets
  */
@@ -21,8 +23,19 @@ module.exports = async function compileHtml(options) {
     }
   });
 
+  deprecatedOptions.forEach(key => {
+    if (options[key]) {
+      console.warn(
+        '⚠️ [@commercetools-frontend/mc-html-template]: `cspPath` has been deprecated. Please use `headerPath`. More info here: https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/mc-html-template/README.md.'
+      );
+    }
+  });
+
   const env = loadEnv(options.envPath);
-  const headers = loadHeaders(env, { cspPath: options.cspPath });
+  const headers = loadHeaders(env, {
+    cspPath: options.cspPath,
+    headersPath: options.headersPath,
+  });
 
   if (options.useLocalAssets) {
     const indexHtmlContent = fs.readFileSync(

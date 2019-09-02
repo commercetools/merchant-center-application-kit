@@ -40,17 +40,26 @@ At the moment we define the following placeholders:
 
 This method will attempt to load and parse the `env.json` file, performing some validation and returning the parsed JSON.
 
-#### `loadEnv(configPath: String): Object`
-
-This method will attempt to load and parse the `env.json` file, performing some validation and returning the parsed JSON.
-
-#### `loadHeaders(env: Object, { cspPath: String }): Object`
+#### `loadHeaders(env: Object, { headersPath: String, cspPath?: String }): Object`
 
 This method will return the security headers to be used on the server response, serving the `index.html`.
 
 The `env` argument, is the parsed `env.json` file (see `loadEnv`).
 
-Optionally, you can pass the path to the `csp.json` that contains custom CSP directives. Those will be merged with the default ones.
+Optionally, you can pass the path to a `headers.json` that contains custom CSP and feature directives such as:
+
+```json
+{
+  "csp": {
+    "script-src": ["storage.googleapis.com/my-bucket-path/"]
+  },
+  "featurePolicies": {
+    "microphone": "none"
+  }
+}
+```
+
+The `cspPath` has been **deprecated** in favour of the `headerpath` option. You can migrate to the new option by creating a `headers.json` (previously `csp.json`) and assigning the content of the `csp.json` into the `csp` field in the `headers.json` file.
 
 The final headers object contains the following headers:
 
@@ -60,7 +69,8 @@ The final headers object contains the following headers:
   "X-XSS-Protection": "1; mode=block",
   "X-Content-Type-Options": "nosniff",
   "X-Frame-Options": "DENY",
-  "Content-Security-Policy": "..."
+  "Content-Security-Policy": "...",
+  "Feature-Policies": "..."
 }
 ```
 

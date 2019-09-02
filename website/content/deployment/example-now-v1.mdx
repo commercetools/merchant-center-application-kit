@@ -35,7 +35,7 @@ The first thing to do is to define a `now.json` file to configure the deployment
   "name": "mc-examples-starter",
   "alias": "mc-examples-starter",
   "regions": ["bru"],
-  "files": ["dist", "csp.json", "env.prod.json", "now.json", "package.json"]
+  "files": ["dist", "headers.json", "env.prod.json", "now.json", "package.json"]
 }
 ```
 
@@ -57,13 +57,15 @@ Next, we need to create an `env.prod.json` file with the following JSON:
 }
 ```
 
-We also need a `csp.json` file. You can also have a `csp.prod.json` file if you want to use a different configuration for `development`.
+We also need a `headers.json` file. You can also have a `headers.prod.json` file if you want to use a different configuration for `development`.
 
 ```json
 {
-  "script-src": ["mc-examples-starter.now.sh"],
-  "connect-src": ["mc-examples-starter.now.sh"],
-  "style-src": ["mc-examples-starter.now.sh"]
+  "csp": {
+    "script-src": ["mc-examples-starter.now.sh"],
+    "connect-src": ["mc-examples-starter.now.sh"],
+    "style-src": ["mc-examples-starter.now.sh"]
+  }
 }
 ```
 

@@ -4,14 +4,16 @@ const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
 const htmlScripts = require('./html-scripts');
 // const htmlStyles = require('./html-styles');
 
-const loadCustomCspDirectives = customCspPath => {
-  let rawConfig;
+const loadCustomConfiguration = pathToConfiguration => {
+  let rawConfiguration;
   try {
-    rawConfig = fs.readFileSync(customCspPath, { encoding: 'utf8' });
+    rawConfiguration = fs.readFileSync(pathToConfiguration, {
+      encoding: 'utf8',
+    });
   } catch (error) {
     // Ignore
   }
-  return rawConfig ? JSON.parse(rawConfig) : {};
+  return rawConfiguration ? JSON.parse(rawConfiguration) : {};
 };
 
 const toArray = value => (Array.isArray(value) ? value : [value]);
@@ -35,6 +37,13 @@ const mergeCspDirectives = (...csps) =>
       ),
     {}
   );
+const toHeaderString = (directives = {}) =>
+  Object.entries(directives)
+    .map(
+      ([directive, value]) =>
+        `${directive} ${Array.isArray(value) ? value.join(' ') : value}`
+    )
+    .join('; ');
 
 module.exports = (env, options) => {
   const isMcDevEnv = env.env === 'development';
@@ -118,15 +127,22 @@ module.exports = (env, options) => {
     //   GTM and Intercom scripts are apparently not meant for this)
   );
 
-  // Attempt to load the JSON config for custom CSP headers provided by each application
-  const customCspDirectives = loadCustomCspDirectives(options.cspPath);
+  // Attempt to load the JSON config for custom CSP and feature policy headers provided by each application
+  // For backwards compatibilty the `cspPath` can still be used but the `headerPath` takes precedence.
+
+  const shouldUseDeprecatedCspPath = Boolean(options.cspPath);
+
+  const customHeaders = loadCustomConfiguration(options.headersPath);
+
+  const customCspDirectives = shouldUseDeprecatedCspPath
+    ? loadCustomConfiguration(options.cspPath)
+    : customHeaders.csp;
 
   // Recursively merge the directives
-  const mergedCsp = mergeCspDirectives(cspDirectives, customCspDirectives);
-
-  const cspHeaderString = Object.entries(mergedCsp)
-    .map(([directive, value]) => `${directive} ${value.join(' ')}`)
-    .join('; ');
+  const mergedCsp = mergeCspDirectives(
+    cspDirectives,
+    customCspDirectives || {}
+  );
 
   return {
     'Strict-Transport-Security': 'max-age=31536000',
@@ -134,6 +150,9 @@ module.exports = (env, options) => {
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
     'Referrer-Policy': 'same-origin',
-    'Content-Security-Policy': cspHeaderString,
+    'Content-Security-Policy': toHeaderString(mergedCsp),
+    ...(customHeaders.featurePolicies && {
+      'Feature-Policy': toHeaderString(customHeaders.featurePolicies),
+    }),
   };
 };
