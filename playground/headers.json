@@ -1,0 +1,7 @@
+{
+  "csp": {
+    "script-src": ["mc-extensions-channels.now.sh"],
+    "connect-src": ["mc-extensions-channels.now.sh"],
+    "style-src": ["mc-extensions-channels.now.sh"]
+  }
+}

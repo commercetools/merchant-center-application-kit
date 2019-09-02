@@ -57,23 +57,25 @@ An example configuration for local development:
 }
 ```
 
-## `csp.json`
+## `headers.json`
 
 When you deploy your application to a server and domain of your choice, the application will fail to make requests to the [API Gateway](../main-concepts/api-gateway) as the custom domain is not whitelisted. This is why the application can only be accessed through the [Proxy Router](../main-concepts/api-gateway). Setting the `servedByProxy` in the `env.json` is also important.
 
 However, there are additional security measures that prevents requests or scripts to be executed, based on the [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP). You can enhance the policy by whitelisting the domains where the application is hosted.
-To do so, you can specify a `csp.json` file where you configure some of the CSP directives. This is important as e.g. [static assets](./serving-static-assets) may be served by a CDN that is not whitelisted.
+To do so, you can specify a `headers.json` file where you configure headers such as the CSP directives. This is important as e.g. [static assets](./serving-static-assets) may be served by a CDN that is not whitelisted.
 
 For `production`, we recommended defining at a minimum the following directives, where `my-apps.com` is the domain hosting the Custom Application:
 
 ```json
 {
-  "script-src": ["my-apps.com"],
-  "connect-src": ["my-apps.com"],
-  "style-src": ["my-apps.com"]
+  "csp": {
+    "script-src": ["my-apps.com"],
+    "connect-src": ["my-apps.com"],
+    "style-src": ["my-apps.com"]
+  }
 }
 ```
 
 You can find the list of default directives in the `load-headers.js` file in the `@commercetools-frontend/mc-html-template` package.
 
-> Note: For `development` this configuration is **optional**. If you use it, the `csp.json` file must be in the root path of the project and is automatically loaded by the webpack dev-server.
+> Note: For `development` this configuration is **optional**. If you use it, the `headers.json` file must be in the root path of the project and is automatically loaded by the webpack dev-server.

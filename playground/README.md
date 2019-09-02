@@ -48,7 +48,8 @@ A project for developing a Merchant Center Application usually consists of the f
   - `cdnUrl`: the URL where the static assets are stored
   - `servedByProxy`: a flag to indicate if this application is running behind the Merchant Center proxy or not, usually `true` for production and `false` for local development
     Check the `<ApplicationContext>` in [`application-shell-connectors`](../packages/application-shell-connectors) for more information about it.
-- `csp.json` contains additional directives for CSP, specific to the domain hosting the app (_more on that will come soon_)
+- `headers.json`: contains headers such as additional directives for CSP (under a `csp`-property) or `Feature Policies` (under a `featurePolicies`-property). These are specific to the domain hosting the app
+- `csp.json` (deprecated): contains additional directives for CSP, specific to the domain hosting the app
 - `webpack.config.<env>.js` contains the setup for getting the webpack configurations for dev/prod (having those files is important as they are read by `mc-scripts`)
 
 ## Development
@@ -98,7 +99,7 @@ This will output a `dist` folder containing the JS bundles in the `dist/assets` 
 
 The HTTP server comes shipped with the [`mc-http-server`](../packages/mc-http-server) package and provides a binary to start the server (`mc-http-server`). The server will make sure to serve a valid `index.html` and it provides additional tools like _security headers, etc._.
 
-To start the server, you need to provide the path to the environment file `--config=$(pwd)/env.json` and the Content Security Policy file `--csp=$(pwd)/csp.json`. We recommend to have a separate `env.prod.json` for production usage.
+To start the server, you need to provide the path to the environment file `--config=$(pwd)/env.json` and the headers file containing Content Security Policies `--headers=$(pwd)/headers.json`. We recommend to have a separate `env.prod.json` for production usage.
 
 In case you host the JS bundles on an **external CDN**, you need to point the `cdnUrl` in the `env.json` config to the URL serving the assets. However, if you keep the assets within the server itself, you need to pass `--use-local-assets` to the command and point the `cdnUrl` to the root folder:
 
