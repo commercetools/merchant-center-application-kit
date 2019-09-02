@@ -59,7 +59,7 @@ Optionally, you can pass the path to a `headers.json` that contains custom CSP a
 }
 ```
 
-The `cspPath` has been deprecated in favour of the `headerpath option. To migrate away from the`cspPath`please use the`headerPath`while moving the contents of a e.g.`csp.json`into e.g. a`headers.json`behind a`csp`property while passing`headerPath`.
+The `cspPath` has been **deprecated** in favour of the `headerpath` option. You can migrate to the new option by creating a `headers.json` (previously `csp.json`) and assigning the content of the `csp.json` into the `csp` field in the `headers.json` file.
 
 The final headers object contains the following headers:
 
