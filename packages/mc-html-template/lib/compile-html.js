@@ -11,7 +11,7 @@ const deprecatedOptions = ['cspPath'];
 /**
  * Options:
  * - envPath
-  * - cspPath (deprecated)
+ * - cspPath (deprecated)
  * - headersPath
  * - publicAssetsPath
  * - useLocalAssets
