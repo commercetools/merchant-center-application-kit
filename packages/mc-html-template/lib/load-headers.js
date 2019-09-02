@@ -37,7 +37,7 @@ const mergeCspDirectives = (...csps) =>
       ),
     {}
   );
-const toHeaderString = directives =>
+const toHeaderString = (directives = {}) =>
   Object.entries(directives)
     .map(
       ([directive, value]) =>
@@ -142,7 +142,7 @@ module.exports = (env, options) => {
   // Recursively merge the directives
   const mergedCsp = mergeCspDirectives(
     cspDirectives,
-    customHeaders.cors || customCspDirectivesFromDeprecatedPath
+    customHeaders.csp || customCspDirectivesFromDeprecatedPath
   );
 
   return {
@@ -152,6 +152,8 @@ module.exports = (env, options) => {
     'X-Frame-Options': 'DENY',
     'Referrer-Policy': 'same-origin',
     'Content-Security-Policy': toHeaderString(mergedCsp),
-    'Feature-Policy': toHeaderString(customHeaders.featurePolicies),
+    ...(customHeaders.featurePolicies && {
+      'Feature-Policy': toHeaderString(customHeaders.featurePolicies),
+    }),
   };
 };
