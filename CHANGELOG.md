@@ -62,6 +62,11 @@ const FetchUser = props => {
 };
 ```
 
+#### 🚀 Type: New Feature
+
+- `application-components`, `application-shell`, `eslint-plugin-testing-library-react`
+  - [#1014](https://github.com/commercetools/merchant-center-application-kit/pull/1014) feat: add eslint plugin for react testing library 🔥 ([@emmenko](https://github.com/emmenko))
+
 #### ⛑ Type: Refactoring
 
 - [#801](https://github.com/commercetools/merchant-center-application-kit/pull/801) refactor(app-shell): use react-apollo v3 ([@emmenko](https://github.com/emmenko))
@@ -71,6 +76,16 @@ const FetchUser = props => {
 - [#911](https://github.com/commercetools/merchant-center-application-kit/pull/911) chore: update eslint to v6 ([@emmenko](https://github.com/emmenko))
 - [#966](https://github.com/commercetools/merchant-center-application-kit/pull/966) chore: update react to v16.9 ([@tdeekens](https://github.com/tdeekens))
 - [#956](https://github.com/commercetools/merchant-center-application-kit/pull/956) chore: update @testing-library/reaact to v9 ([@emmenko](https://github.com/emmenko))
+
+* Other
+  - [#1025](https://github.com/commercetools/merchant-center-application-kit/pull/1025) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+* `application-shell`
+  - [#1013](https://github.com/commercetools/merchant-center-application-kit/pull/1013) chore: update flopflip ([@tdeekens](https://github.com/tdeekens))
+
+#### 🚨 Type: Security
+
+- `mc-html-template`, `mc-http-server`
+  - [#1015](https://github.com/commercetools/merchant-center-application-kit/pull/1015) fix(mc-http-server): to add referrer policy ([@tdeekens](https://github.com/tdeekens))
 
 ## [14.6.1](https://github.com/commercetools/merchant-center-application-kit/compare/v14.6.0...v14.6.1) (2019-08-29)
 
