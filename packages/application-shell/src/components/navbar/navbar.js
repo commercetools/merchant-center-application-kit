@@ -265,7 +265,8 @@ export const RestrictedMenuItem = props => {
     return null;
 
   const permissionsWrapper =
-    props.permissions.length > 0 || props.dataFences.length > 0 ? (
+    (Array.isArray(props.permissions) && props.permissions.length > 0) ||
+    (Array.isArray(props.dataFences) && props.dataFences.length > 0) ? (
       <RestrictedByPermissions
         permissions={props.permissions}
         actionRights={props.actionRights}
@@ -320,7 +321,6 @@ RestrictedMenuItem.propTypes = {
 };
 RestrictedMenuItem.defaultProps = {
   permissions: [],
-  dataFences: [],
 };
 export const getIconColor = (isActive, isAlternativeTheme) => {
   if (isActive) return 'primary40';

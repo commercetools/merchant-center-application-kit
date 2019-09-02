@@ -27,8 +27,8 @@ const createTestMenuConfig = (key, props) => ({
   keyOfMenuItem: key,
   icon: 'UserFilledIcon',
   permissions: [],
-  dataFences: [],
-  actionRights: [],
+  dataFences: null,
+  actionRights: null,
   submenu: [
     {
       key: `${key}-new`,
@@ -534,6 +534,7 @@ describe('rendering', () => {
               props = {
                 featureToggle: 'myFeature',
                 permissions: [],
+                dataFences: null,
                 actualPermissions: {},
                 menuVisibilities: {},
                 keyOfMenuItem: 'products',
@@ -554,7 +555,7 @@ describe('rendering', () => {
             props = {
               featureToggle: 'myFeature',
               permissions: ['ManageOrders'],
-              dataFences: [],
+              dataFences: null,
               actionRights: [
                 {
                   group: 'Orders',
@@ -606,7 +607,7 @@ describe('rendering', () => {
             props = {
               featureToggle: undefined,
               permissions: [],
-              dataFences: [],
+              dataFences: null,
               actualPermissions: {},
               menuVisibilities: {},
               keyOfMenuItem: 'products',
@@ -629,7 +630,7 @@ describe('rendering', () => {
             props = {
               featureToggle: undefined,
               permissions: ['ManageOrders'],
-              dataFences: [],
+              dataFences: null,
               actionRights: [
                 {
                   group: 'Orders',
