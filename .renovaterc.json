@@ -2,7 +2,23 @@
   "extends": [
     "config:base",
     ":pinOnlyDevDependencies",
-    "group:monorepos",
-    "schedule:weekly"
+    "schedule:weekly",
+    {
+      "groupName": "all dependencies",
+      "separateMajorMinor": true,
+      "groupSlug": "all",
+      "packageRules": [
+        {
+          "packagePatterns": [
+            "*"
+          ],
+          "groupName": "all dependencies",
+          "groupSlug": "all"
+        }
+      ],
+      "lockFileMaintenance": {
+        "enabled": true
+      }
+    }
   ]
 }
