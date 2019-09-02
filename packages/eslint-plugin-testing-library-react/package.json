@@ -1,0 +1,43 @@
+{
+  "name": "eslint-plugin-testing-library-react",
+  "version": "14.0.0",
+  "description": "ESLint plugin for React Testing Library rules guiding best practices",
+  "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commercetools/merchant-center-application-kit.git"
+  },
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "eslint",
+    "react testing library"
+  ],
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "docs",
+    "lib"
+  ],
+  "main": "./lib/index.js",
+  "scripts": {
+    "prebuild": "rimraf lib/**",
+    "build": "babel --extensions .js,.ts src --out-dir lib --copy-files"
+  },
+  "dependencies": {
+    "@typescript-eslint/experimental-utils": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.5.5",
+    "@babel/core": "7.5.5",
+    "@babel/preset-env": "7.5.5",
+    "@babel/preset-typescript": "7.3.3"
+  },
+  "peerDependencies": {
+    "eslint": "5.x || 6.x"
+  }
+}
