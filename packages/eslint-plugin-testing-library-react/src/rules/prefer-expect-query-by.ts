@@ -58,7 +58,7 @@ function mapNodesForWrongGetByQuery(node: TSESTree.CallExpression) {
 function hasExpectWithWrongGetByQuery(node: TSESTree.CallExpression) {
   if (
     node.callee &&
-    isIdentifier(node.callee) &&
+    node.callee.type === AST_NODE_TYPES.Identifier &&
     node.callee.name === 'expect' &&
     node.arguments
   ) {
