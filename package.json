@@ -62,7 +62,7 @@
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "8.1.0",
     "@commitlint/config-conventional": "8.1.0",
-    "@percy/cypress": "2.0.0",
+    "@percy/cypress": "2.0.1",
     "@percy/puppeteer": "1.0.8",
     "@testing-library/cypress": "4.1.1",
     "@testing-library/react": "8.0.7",
