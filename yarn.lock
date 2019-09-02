@@ -1319,10 +1319,10 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@flopflip/launchdarkly-adapter@2.8.2":
-  version "2.8.2"
-  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.8.2.tgz#bf5c04fc801f791bae68074c3cb09b5e396c9ead"
-  integrity sha512-qorIm8/FkyktqCBzioTLXaBcYCmCbWte1+eDdlxcD5jryAEpM/Yblouy/exIfFEu1RzQlkfKg5Ym8qHk4J8Mwg==
+"@flopflip/launchdarkly-adapter@2.8.3":
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.8.3.tgz#1bf20f41531bd1292cd1f6de3920a9b497f4a86a"
+  integrity sha512-+RNAUbw2nC5OwM7m2TVvlVvuOKQKERU+LhG7o2zMeKaPWiNB9EnSjfTmRkCWo/RkywfoXSceysKNNcNsFsAHRw==
   dependencies:
     "@babel/runtime" "7.5.5"
     debounce-fn "3.0.1"
@@ -1340,20 +1340,20 @@
     invariant "2.2.4"
     mitt "1.1.3"
 
-"@flopflip/react-broadcast@9.0.2":
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-9.0.2.tgz#52f878cb8a13d592d8e3a7a6d89d2ae4c7d43cf6"
-  integrity sha512-KrYGGeMoj5I5SYSvuq4EpSDxmMmgpD2xSmOTgLEOxJc7Csl6oNXFDVo9dxSfrJszI9HiqpllN6aW9IsYS3PekA==
+"@flopflip/react-broadcast@9.0.3":
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-9.0.3.tgz#9495579451564638904514bdcbe9e7c2c3b49d12"
+  integrity sha512-zcYIZyH6TZz3WC1nIfd/SNSX3n97g4yoyOSZuCtDux0YFsicLYKXaDmba4WoamltbNAA04va2SIZg92CzJjoYw==
   dependencies:
     "@babel/runtime" "7.5.5"
-    "@flopflip/react" "^8.0.2"
+    "@flopflip/react" "^8.0.3"
     "@flopflip/types" "^2.1.1"
     lodash "4.17.15"
 
-"@flopflip/react@^8.0.2":
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-8.0.2.tgz#766ea97766250d8955d96379045d1a059b1a211e"
-  integrity sha512-HAHR+0AFStladV4ORDrxoHUsY8ff3zozEODgHYX6eSaw6vvslivBk1I/yMVb5VK74+jsSWjug4CqRfkdCFrI0g==
+"@flopflip/react@^8.0.3":
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-8.0.3.tgz#517e5542f4a5d895980a3c45a772ea5a58b9d2a5"
+  integrity sha512-i4+SS61HCTzjAzDEnJyX/S5bj8qcXKUDWlfUbj7nQn6r33Eje4KcOAoOdkS0fF+DVeEQyc9i+gt9gCc80QAJjw==
   dependencies:
     "@babel/runtime" "7.5.5"
     deepmerge "4.0.0"
