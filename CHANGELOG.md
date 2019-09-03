@@ -1,3 +1,10 @@
+## [15.1.2](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.1...v15.1.2) (2019-09-03)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1031](https://github.com/commercetools/merchant-center-application-kit/pull/1031) fix(app-shell): use default cache-first fetch policy for user account menu ([@emmenko](https://github.com/emmenko))
+
 ## [15.1.1](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.0...v15.1.1) (2019-09-03)
 
 #### 🐛 Type: Bug
