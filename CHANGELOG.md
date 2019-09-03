@@ -1,3 +1,10 @@
+## [15.1.1](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.0...v15.1.1) (2019-09-03)
+
+#### 🐛 Type: Bug
+
+- `mc-html-template`
+  - [#1029](https://github.com/commercetools/merchant-center-application-kit/pull/1029) fix(mc-html-template): to load headers not from csp ([@tdeekens](https://github.com/tdeekens))
+
 ## [15.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.0.0...v15.1.0) (2019-09-02)
 
 #### 🐛 Type: Bug
