@@ -109,9 +109,6 @@ const MenuItem = styled.div`
 const UserSettingsMenuBody = props => {
   const applicationsMenu = useApplicationsMenu({
     queryOptions: {
-      // We can assume here that the navbar already fetched the data, since this
-      // component gets rendered only when the user opens the menu
-      fetchPolicy: 'cache-only',
       onError: reportErrorToSentry,
     },
     skipRemoteQuery: !props.environment.servedByProxy,
