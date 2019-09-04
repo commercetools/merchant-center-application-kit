@@ -41,7 +41,7 @@
   },
   "BAM": {
     "label": "波斯尼亚-黑塞哥维那可兑换马克",
-    "symbol": "KM"
+    "symbol": "КМ"
   },
   "BBD": {
     "label": "巴巴多斯元",
@@ -137,7 +137,7 @@
   },
   "CNY": {
     "label": "人民币",
-    "symbol": "￥"
+    "symbol": "¥"
   },
   "COP": {
     "label": "哥伦比亚比索",
@@ -181,7 +181,7 @@
   },
   "DZD": {
     "label": "阿尔及利亚第纳尔",
-    "symbol": "DA"
+    "symbol": "د.ج.‏"
   },
   "EGP": {
     "label": "埃及镑",
@@ -193,7 +193,7 @@
   },
   "ETB": {
     "label": "埃塞俄比亚比尔",
-    "symbol": "Br"
+    "symbol": "ብር"
   },
   "EUR": {
     "label": "欧元",
@@ -277,7 +277,7 @@
   },
   "IRR": {
     "label": "伊朗里亚尔",
-    "symbol": "ریال"
+    "symbol": "IRR"
   },
   "ISK": {
     "label": "冰岛克朗",
@@ -341,7 +341,7 @@
   },
   "LKR": {
     "label": "斯里兰卡卢比",
-    "symbol": "Rs."
+    "symbol": "රු."
   },
   "LRD": {
     "label": "利比里亚元",
@@ -357,7 +357,7 @@
   },
   "MAD": {
     "label": "摩洛哥迪拉姆",
-    "symbol": "MAD"
+    "symbol": "د.م.‏"
   },
   "MDL": {
     "label": "摩尔多瓦列伊",
@@ -369,7 +369,7 @@
   },
   "MKD": {
     "label": "马其顿第纳尔",
-    "symbol": "den"
+    "symbol": "ден"
   },
   "MMK": {
     "label": "缅甸元",
@@ -385,7 +385,7 @@
   },
   "MRO": {
     "label": "毛里塔尼亚乌吉亚 (1973–2017)",
-    "symbol": "UM"
+    "symbol": "أ.م.‏"
   },
   "MUR": {
     "label": "毛里求斯卢比",
@@ -501,7 +501,7 @@
   },
   "SDG": {
     "label": "苏丹镑",
-    "symbol": "SDG"
+    "symbol": "ج.س."
   },
   "SEK": {
     "label": "瑞典克朗",
@@ -537,7 +537,7 @@
   },
   "SYP": {
     "label": "叙利亚镑",
-    "symbol": "LS"
+    "symbol": "ل.س.‏"
   },
   "SZL": {
     "label": "斯威士兰里兰吉尼",
@@ -553,7 +553,7 @@
   },
   "TND": {
     "label": "突尼斯第纳尔",
-    "symbol": "DT"
+    "symbol": "د.ت.‏"
   },
   "TOP": {
     "label": "汤加潘加",
@@ -585,7 +585,7 @@
   },
   "USD": {
     "label": "美元",
-    "symbol": "US$"
+    "symbol": "$"
   },
   "USN": {
     "label": "美元（次日）",
@@ -601,7 +601,7 @@
   },
   "UZS": {
     "label": "乌兹别克斯坦苏姆",
-    "symbol": "soʻm"
+    "symbol": "сўм"
   },
   "VEF": {
     "label": "委内瑞拉玻利瓦尔 (2008–2018)",
