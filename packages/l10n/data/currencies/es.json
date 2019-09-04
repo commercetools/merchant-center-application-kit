@@ -41,7 +41,7 @@
   },
   "BAM": {
     "label": "marco convertible de Bosnia y Herzegovina",
-    "symbol": "КМ"
+    "symbol": "KM"
   },
   "BBD": {
     "label": "dólar barbadense",
@@ -137,7 +137,7 @@
   },
   "CNY": {
     "label": "yuan",
-    "symbol": "¥"
+    "symbol": "￥"
   },
   "COP": {
     "label": "peso colombiano",
@@ -181,7 +181,7 @@
   },
   "DZD": {
     "label": "dinar argelino",
-    "symbol": "د.ج.‏"
+    "symbol": "DA"
   },
   "EGP": {
     "label": "libra egipcia",
@@ -193,7 +193,7 @@
   },
   "ETB": {
     "label": "bir",
-    "symbol": "ብር"
+    "symbol": "Br"
   },
   "EUR": {
     "label": "euro",
@@ -277,7 +277,7 @@
   },
   "IRR": {
     "label": "rial iraní",
-    "symbol": "IRR"
+    "symbol": "ریال"
   },
   "ISK": {
     "label": "corona islandesa",
@@ -341,7 +341,7 @@
   },
   "LKR": {
     "label": "rupia esrilanquesa",
-    "symbol": "රු."
+    "symbol": "Rs."
   },
   "LRD": {
     "label": "dólar liberiano",
@@ -357,7 +357,7 @@
   },
   "MAD": {
     "label": "dírham marroquí",
-    "symbol": "د.م.‏"
+    "symbol": "MAD"
   },
   "MDL": {
     "label": "leu moldavo",
@@ -369,7 +369,7 @@
   },
   "MKD": {
     "label": "dinar macedonio",
-    "symbol": "ден"
+    "symbol": "den"
   },
   "MMK": {
     "label": "kiat",
@@ -385,7 +385,7 @@
   },
   "MRO": {
     "label": "uguiya (1973–2017)",
-    "symbol": "أ.م.‏"
+    "symbol": "UM"
   },
   "MUR": {
     "label": "rupia mauriciana",
@@ -501,7 +501,7 @@
   },
   "SDG": {
     "label": "libra sudanesa",
-    "symbol": "ج.س."
+    "symbol": "SDG"
   },
   "SEK": {
     "label": "corona sueca",
@@ -537,7 +537,7 @@
   },
   "SYP": {
     "label": "libra siria",
-    "symbol": "ل.س.‏"
+    "symbol": "LS"
   },
   "SZL": {
     "label": "lilangeni",
@@ -553,7 +553,7 @@
   },
   "TND": {
     "label": "dinar tunecino",
-    "symbol": "د.ت.‏"
+    "symbol": "DT"
   },
   "TOP": {
     "label": "paanga",
@@ -585,7 +585,7 @@
   },
   "USD": {
     "label": "dólar estadounidense",
-    "symbol": "$"
+    "symbol": "US$"
   },
   "USN": {
     "label": "dólar estadounidense (día siguiente)",
@@ -601,7 +601,7 @@
   },
   "UZS": {
     "label": "sum",
-    "symbol": "сўм"
+    "symbol": "soʻm"
   },
   "VEF": {
     "label": "bolívar venezolano (2008–2018)",

@@ -35,11 +35,20 @@ const mapLocaleToCldrLocale = locale => {
 
 const extractCountryDataForLocale = locale => {
   const countryNames = cldr.extractTerritoryDisplayNames(locale);
+  // We only support ISO 3166-1 country code.
+  // there are https://en.wikipedia.org/wiki/ISO_3166-1
+  // there is alpha-2 (two-letter) , alpha-3 (three-letter) , and numeric (three-digit) representation
+  // that's why we escape the non-supported representations
+  // That's the lib used by the backend https://github.com/TakahikoKawasaki/nv-i18n/blob/master/src/main/java/com/neovisionaries/i18n/CountryCode.java#L2507-L2536
   const numberRegex = /^\d+$/;
 
   // filter out continents and invalid countries
   Object.keys(countryNames).forEach(key => {
-    if (numberRegex.test(key) || excludedCountries.includes(key))
+    if (
+      numberRegex.test(key) ||
+      key.length > 3 ||
+      excludedCountries.includes(key)
+    )
       delete countryNames[key];
   });
 
