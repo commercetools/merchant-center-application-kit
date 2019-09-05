@@ -1,3 +1,16 @@
+## [15.1.3](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.2...v15.1.3) (2019-09-05)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1036](https://github.com/commercetools/merchant-center-application-kit/pull/1036) fix(app-shell): fetch policy on AmILoggedIn ([@tdeekens](https://github.com/tdeekens))
+- `l10n`
+  - [#1033](https://github.com/commercetools/merchant-center-application-kit/pull/1033) Remove unsupported countries ([@islam3zzat](https://github.com/islam3zzat))
+
+#### 🖥 Type: Website
+
+- [#1035](https://github.com/commercetools/merchant-center-application-kit/pull/1035) Try to improve Netlify build time for website ([@emmenko](https://github.com/emmenko))
+
 ## [15.1.2](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.1...v15.1.2) (2019-09-03)
 
 #### 🐛 Type: Bug
