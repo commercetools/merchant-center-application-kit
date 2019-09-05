@@ -10429,6 +10429,14 @@ gatsby-plugin-meta-redirect@1.1.1:
   dependencies:
     fs-extra "^7.0.0"
 
+gatsby-plugin-netlify-cache@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify-cache/-/gatsby-plugin-netlify-cache-1.2.0.tgz#e68db9c5bd4ae103b4589f9be2a3cb9958750788"
+  integrity sha512-unt4mAVpC0JzwZSo8KQV4P/trDHkr3PeTWDF5Hijw9jGfNQIWXbcj9nYljAVg7HCich6E6b27Q+zuf53InwpDQ==
+  dependencies:
+    babel-runtime "^6.26.0"
+    fs-extra "^7.0.0"
+
 gatsby-plugin-page-creator@^2.1.5:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-page-creator/-/gatsby-plugin-page-creator-2.1.5.tgz#723fc0392a67978cab649a402ad88f6f06b74e4c"
