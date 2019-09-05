@@ -287,5 +287,6 @@ module.exports = {
     },
     // This needs to be last
     'gatsby-plugin-meta-redirect',
+    'gatsby-plugin-netlify-cache',
   ],
 };
