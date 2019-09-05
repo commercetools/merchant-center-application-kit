@@ -123,7 +123,7 @@ class QuickAccess extends React.Component {
     // skip checking when user can't view products anyways
     if (!canViewProducts) return pimIndexerStates.NOT_INDEXED;
 
-    return this.props.getPimSearchStatus();
+    return await this.props.getPimSearchStatus();
   };
 
   query = (Query, variables) =>
@@ -135,7 +135,7 @@ class QuickAccess extends React.Component {
       })
       .then(response => response.data);
 
-  getNextCommands = async command => {
+  getNextCommands = command => {
     if (!command.subCommands) return [];
     if (Array.isArray(command.subCommands)) return command.subCommands;
     return command.subCommands(this.query);

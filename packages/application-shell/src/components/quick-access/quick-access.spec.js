@@ -196,7 +196,7 @@ describe('QuickAccess', () => {
     expect(rendered.queryByTestId('quick-access-search-input')).toBeVisible();
   });
 
-  it('should not open when pressing "f" not directly on other focusable elements', async () => {
+  it('should not open when pressing "f" not directly on other focusable elements', () => {
     const rendered = renderAppWithRedux(<QuickAccess />, {
       permissions: managePermissions,
       sdkMocks: [createPimAvailabilityCheckSdkMock()],

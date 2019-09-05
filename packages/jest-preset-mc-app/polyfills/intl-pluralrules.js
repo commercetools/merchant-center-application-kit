@@ -23,7 +23,7 @@ const canonicalizeLocaleList = locales => {
       const msg = `Locales should be strings, ${JSON.stringify(tag)} isn't.`;
       throw new TypeError(msg);
     }
-    if (tag[0] === '*') continue;
+    if (tag.startsWith('*')) continue;
     if (!isStructurallyValidLanguageTag(tag)) {
       const strTag = JSON.stringify(tag);
       const msg = `The locale ${strTag} is not a structurally valid BCP 47 language tag.`;

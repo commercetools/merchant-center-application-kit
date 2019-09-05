@@ -495,7 +495,7 @@ export default function createCommands({
         ],
         // We would know these statically, but we define them here as we don't
         // want to include them in the top-level search results
-        subCommands: async () =>
+        subCommands: () =>
           applicationContext.project.languages.map(language => ({
             id: `action/set-resource-language/${language}`,
             text: oneLineTrim`

@@ -37,7 +37,7 @@ const loadApplicationMessages = async (
   locale: string
 ): Promise<TMessageTranslations> => {
   if (typeof applicationMessagesOrAsyncFunction === 'function') {
-    return applicationMessagesOrAsyncFunction(locale);
+    return await applicationMessagesOrAsyncFunction(locale);
   }
   return getMessagesForLocale(applicationMessagesOrAsyncFunction, locale);
 };

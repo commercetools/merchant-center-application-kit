@@ -148,7 +148,7 @@ const injectAuthorized = <
 >(
   demandedPermissions: TPermissionName[],
   options: TInjectAuthorizedOptions<OwnProps> = {},
-  propName: string = 'isAuthorized'
+  propName = 'isAuthorized'
 ) => (
   Component: React.ComponentType<OwnProps>
 ): React.ComponentType<OwnProps & InjectedProps> => {
