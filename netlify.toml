@@ -5,3 +5,4 @@
 [build.environment]
   YARN_FLAGS = "--pure-lockfile"
   YARN_VERSION = "1.15.2"
+  GATSBY_CPU_COUNT = "logical_cores"
