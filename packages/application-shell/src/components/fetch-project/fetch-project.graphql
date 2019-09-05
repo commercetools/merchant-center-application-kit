@@ -38,13 +38,6 @@ query ProjectQuery($projectKey: String!) {
     }
     owner {
       id
-      name
-      createdAt
-    }
-    settings {
-      id
-      productSettings
-      currentProductSettings
     }
   }
 }
