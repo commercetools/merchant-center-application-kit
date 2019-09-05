@@ -1,0 +1,34 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "*.d.ts",
+    "@types-extensions/*",
+    "packages/**/*.ts",
+    "packages/**/src/*.ts",
+    "packages/**/src/**/*.ts",
+    "packages/**/src/**/*.tsx",
+    // For a mixed JS/TS codebase, include JS files as well
+    "*.js",
+    "application-templates/**/*.js",
+    "application-templates/**/src/*.js",
+    "application-templates/**/src/**/*.js",
+    "cypress/**/*.js",
+    "packages/**/*.js",
+    "packages/**/src/*.js",
+    "packages/**/src/**/*.js",
+    "playground/**/*.js",
+    "playground/**/src/*.js",
+    "playground/**/src/**/*.js",
+    "scripts/*.js",
+    "visual-testing-app/**/*.js",
+    "visual-testing-app/**/src/*.js",
+    "visual-testing-app/**/src/**/*.js",
+    "website/**/*.js",
+    "website/**/src/*.js",
+    "website/**/src/**/*.js"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true
+  }
+}

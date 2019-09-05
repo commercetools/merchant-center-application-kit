@@ -4,8 +4,11 @@ parserOptions:
     jsx: true
   ecmaVersion: 8
   sourceType: module
+  project: './tsconfig.eslint.json'
+  # tsconfigRootDir: '.'
 extends:
   - plugin:@typescript-eslint/recommended
+  - plugin:@typescript-eslint/recommended-requiring-type-checking
   - plugin:import/errors
   - plugin:import/warnings
   - plugin:import/typescript
@@ -25,12 +28,13 @@ plugins:
   - '@typescript-eslint/eslint-plugin'
 rules:
   '@typescript-eslint/camelcase': 0
+  '@typescript-eslint/consistent-type-definitions': 0
   '@typescript-eslint/no-explicit-any': 2
   '@typescript-eslint/no-use-before-define':
     - error
     - functions: false
   '@typescript-eslint/no-var-requires': 0
-  '@typescript-eslint/prefer-interface': 0
+  '@typescript-eslint/unbound-method': 0
   react/jsx-tag-spacing: 0
   import/no-extraneous-dependencies: 0
   import/no-named-as-default: 0
@@ -84,8 +88,12 @@ overrides:
     globals:
       page: true
       HOST: true
+  - files: ['*.js']
+    rules:
+      '@typescript-eslint/explicit-function-return-type': 0
   - files: ['*.ts', '*.tsx']
     rules:
+      '@typescript-eslint/ban-ts-ignore': 0
       '@typescript-eslint/explicit-function-return-type': 0
       '@typescript-eslint/explicit-member-accessibility':
         [2, { accessibility: 'no-public' }]

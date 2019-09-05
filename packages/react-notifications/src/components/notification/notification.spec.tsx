@@ -45,7 +45,7 @@ describe('rendering', () => {
     expect(rendered.queryByText('Test')).toBeInTheDocument();
   });
 
-  it('should trigger onCloseClick', async () => {
+  it('should trigger onCloseClick', () => {
     fireEvent.click(rendered.getByLabelText('Hide notification'));
     expect(props.onCloseClick).toHaveBeenCalled();
   });

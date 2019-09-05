@@ -74,11 +74,11 @@ describe('tokenRetryLink', () => {
         context = undefined;
       });
 
-      it('should retry the request', async () => {
+      it('should retry the request', () => {
         expect(terminatingLinkStub).toHaveBeenCalledTimes(2);
       });
 
-      it('should set `x-force-token`-header on retry', async () => {
+      it('should set `x-force-token`-header on retry', () => {
         expect(context.headers).toEqual(
           expect.objectContaining({
             'X-Force-Token': true,
