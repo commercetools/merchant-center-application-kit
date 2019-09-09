@@ -38,9 +38,9 @@
     "build:es:watch": "yarn build:es -w"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.6.0",
+    "@babel/runtime-corejs3": "7.5.5",
     "@commercetools-frontend/constants": "15.0.0",
-    "@sentry/browser": "5.6.3",
+    "@sentry/browser": "5.6.2",
     "prop-types": "15.7.2"
   },
   "devDependencies": {

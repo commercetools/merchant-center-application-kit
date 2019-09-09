@@ -39,11 +39,11 @@
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.6.0",
+    "@babel/runtime-corejs3": "7.5.5",
     "@commercetools-frontend/assets": "15.0.0",
     "@commercetools-frontend/constants": "15.0.0",
-    "@emotion/core": "10.0.17",
-    "@emotion/styled": "10.0.17",
+    "@emotion/core": "10.0.16",
+    "@emotion/styled": "10.0.15",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
     "prop-types": "15.7.2",
@@ -52,10 +52,10 @@
     "warning": "4.0.3"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "10.1.3",
+    "@commercetools-frontend/ui-kit": "10.1.2",
     "react": "16.9.0",
     "react-dom": "16.9.0",
-    "react-intl": "3.2.1"
+    "react-intl": "3.1.13"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "10.x",

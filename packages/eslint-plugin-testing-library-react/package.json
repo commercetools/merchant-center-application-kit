@@ -32,10 +32,10 @@
     "@typescript-eslint/experimental-utils": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.6.0",
-    "@babel/core": "7.6.0",
-    "@babel/preset-env": "7.6.0",
-    "@babel/preset-typescript": "7.6.0"
+    "@babel/cli": "7.5.5",
+    "@babel/core": "7.5.5",
+    "@babel/preset-env": "7.5.5",
+    "@babel/preset-typescript": "7.3.3"
   },
   "peerDependencies": {
     "eslint": "5.x || 6.x"

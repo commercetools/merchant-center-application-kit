@@ -8,20 +8,20 @@
     "start": "serve dist --no-clipboard --single --listen 3999"
   },
   "dependencies": {
-    "@commercetools-frontend/ui-kit": "10.1.3",
-    "@emotion/core": "10.0.17",
-    "@emotion/styled": "10.0.17",
+    "@commercetools-frontend/ui-kit": "10.1.2",
+    "@emotion/core": "10.0.16",
+    "@emotion/styled": "10.0.15",
     "formik": "1.5.8",
     "prop-types": "15.7.2",
     "react": "16.9.0",
     "react-dom": "16.9.0",
-    "react-intl": "3.2.1",
+    "react-intl": "3.1.13",
     "react-router": "5.0.1",
     "react-router-dom": "5.0.1"
   },
   "devDependencies": {
     "serve": "11.1.0",
-    "webpack": "4.39.3",
-    "webpack-cli": "3.3.8"
+    "webpack": "4.39.2",
+    "webpack-cli": "3.3.7"
   }
 }
