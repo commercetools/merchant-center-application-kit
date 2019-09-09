@@ -38,7 +38,7 @@
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.5.5"
+    "@babel/runtime-corejs3": "7.6.0"
   },
   "devDependencies": {
     "redux": "4.0.4"

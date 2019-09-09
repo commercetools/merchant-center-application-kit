@@ -38,7 +38,7 @@
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.5.5",
+    "@babel/runtime-corejs3": "7.6.0",
     "@commercetools-frontend/application-shell-connectors": "15.0.0",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
