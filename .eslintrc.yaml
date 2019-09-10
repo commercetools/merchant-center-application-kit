@@ -4,11 +4,8 @@ parserOptions:
     jsx: true
   ecmaVersion: 8
   sourceType: module
-  project: './tsconfig.eslint.json'
-  # tsconfigRootDir: '.'
 extends:
   - plugin:@typescript-eslint/recommended
-  - plugin:@typescript-eslint/recommended-requiring-type-checking
   - plugin:import/errors
   - plugin:import/warnings
   - plugin:import/typescript
