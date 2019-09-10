@@ -51,10 +51,10 @@ Cypress.Commands.add(
       cy.url().should('include', '/login');
     }
     cy.visit(`/login`);
-    cy.getByText('Email').should('exist');
-    cy.getByText('Password').should('exist');
-    cy.getByLabelText(/email/i).type(Cypress.env('LOGIN_USER'));
-    cy.getByLabelText(/password/i).type(Cypress.env('LOGIN_PASSWORD'), {
+    cy.findByText('Email').should('exist');
+    cy.findByText('Password').should('exist');
+    cy.findByLabelText(/email/i).type(Cypress.env('LOGIN_USER'));
+    cy.findByLabelText(/password/i).type(Cypress.env('LOGIN_PASSWORD'), {
       log: false,
     });
     cy.get('[aria-label="Sign in"]').click();

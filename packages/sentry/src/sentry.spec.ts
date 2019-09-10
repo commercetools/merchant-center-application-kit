@@ -34,13 +34,12 @@ describe('reportErrorToSentry', () => {
 
     it('should send report', () => {
       const report = testkit.reports()[0];
-      expect(report.exception).toMatchObject({
-        values: [{ type: 'Error', value: 'Boom' }],
+      expect(report.error).toMatchObject({
+        message: 'Boom',
       });
-      expect(report).toHaveProperty('event_id', expect.any(String));
-      expect(report).not.toHaveProperty('extra');
+      expect(report).toHaveProperty('extra', undefined);
       expect(console.error).toHaveBeenCalledWith(
-        expect.stringContaining(report.event_id as string)
+        expect.stringContaining(report.originalReport.event_id as string)
       );
     });
   });
