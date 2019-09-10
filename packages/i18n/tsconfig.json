@@ -1,4 +1,4 @@
 {
   "extends": "../../tsconfig.json",
-  "files": ["./src/index.ts", "./src/locales.d.ts"]
+  "files": ["./src/index.ts"]
 }
