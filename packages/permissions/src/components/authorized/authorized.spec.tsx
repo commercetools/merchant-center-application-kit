@@ -300,7 +300,7 @@ describe('rendering', () => {
                   name: 'ManageOrders',
                 },
               ],
-              selectDataFenceData: ({ type }) => ['store-1'],
+              selectDataFenceData: () => ['store-1'],
             }),
           };
           shallow(<Authorized {...props} />);
