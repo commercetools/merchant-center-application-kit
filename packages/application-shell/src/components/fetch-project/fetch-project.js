@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import ProjectQuery from './fetch-project.graphql';
+import ProjectQuery from './fetch-project.users.graphql';
 
 /**
  * NOTE:

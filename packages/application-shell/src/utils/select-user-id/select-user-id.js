@@ -1,4 +1,4 @@
-import UserIdQuery from './select-user-id.graphql';
+import UserIdQuery from './select-user-id.users.graphql';
 
 export default function selectUserId({ apolloCache }) {
   try {

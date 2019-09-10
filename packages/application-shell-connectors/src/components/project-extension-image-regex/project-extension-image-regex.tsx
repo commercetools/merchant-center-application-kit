@@ -3,7 +3,7 @@ import { useQuery } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import getDisplayName from '../../utils/get-display-name';
-import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.graphql';
+import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.settings.graphql';
 
 type TImageRegexOptions = {
   flag: string;

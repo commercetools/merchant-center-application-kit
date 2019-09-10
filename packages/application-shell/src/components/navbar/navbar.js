@@ -38,7 +38,7 @@ import { STORAGE_KEYS } from '../../constants';
 import useApplicationsMenu from '../../hooks/use-applications-menu';
 import { GtmContext } from '../gtm-booter';
 import LoadingPlaceholder from '../loading-placeholder';
-import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.graphql';
+import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.settings.graphql';
 import styles from './navbar.mod.css';
 import messages from './messages';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';

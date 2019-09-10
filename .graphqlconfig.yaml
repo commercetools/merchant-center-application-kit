@@ -1,0 +1,42 @@
+projects:
+  users:
+    schemaPath: schemas/users.json
+    includes:
+      - '**/*.users.graphql'
+    extensions:
+      endpoints:
+        production:
+          url: 'https://mc-api.commercetools.com/graphql'
+          headers:
+            X-Graphql-Target: mc
+  menus:
+    schemaPath: schemas/menus.json
+    includes:
+      - '**/*.menus.graphql'
+    extensions:
+      endpoints:
+        production:
+          url: 'https://mc.commercetools.com/api/graphql'
+  settings:
+    schemaPath: schemas/settings.json
+    includes:
+      - '**/*.settings.graphql'
+    extensions:
+      endpoints:
+        production:
+          url: 'https://mc-api.commercetools.com/graphql'
+          headers:
+            Cookie: mcAccessToken=${env:MC_ACCESS_TOKEN}
+            X-Graphql-Target: settings
+  ctp:
+    schemaPath: schemas/ctp.json
+    includes:
+      - '**/*.ctp.graphql'
+    extensions:
+      endpoints:
+        production:
+          url: 'https://mc-api.commercetools.com/graphql'
+          headers:
+            Cookie: mcAccessToken=${env:MC_ACCESS_TOKEN}
+            X-Graphql-Target: ctp
+            X-Project-Key: ${env:CTP_PROJECT_KEY}

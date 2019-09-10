@@ -25,8 +25,10 @@ packages/
   constants/
   create-mc-app/
   eslint-config-mc-app/
+  eslint-plugin-testing-library-react/
   i18n/
   jest-preset-mc-app/
+  jest-stylelint-runner/
   l10n/
   mc-dev-authentication/
   mc-html-template/
@@ -37,7 +39,6 @@ packages/
   react-notifications/
   sdk/
   sentry/
-  storage/
   url-utils/
 ```
 
@@ -164,3 +165,20 @@ On `master` branch, we automatically publish **canary** releases from CI to the 
 Canary releases are useful to test early changes that should not be released yet to `next` or `latest`. They are automatically triggered and released after a Pull Request merged into `master`, unless the commit message contains `[skip publish]`.
 
 Note that canary releases **will not create git tags and version bump commits**.
+
+## GraphQL files and linting
+
+In order to be able to validate GraphQL queries and mutations, defined as `.graphql` files, we use the [eslint-plugin-graphql](https://github.com/apollographql/eslint-plugin-graphql), which requires **introspection schemas** from the different GraphQL APIs being used.
+
+To download the remote schemas simply run `yarn get-schemas`. The configuration of each schema is defined in the `.graphqlconfig.yml` file, in the root directory. Running this script will download the schemas in the `schemas/*.json` files.
+
+> NOTE that you need your user `mcAccessToken` to be defined as an environment variable `MC_ACCESS_TOKEN` in `.env` file. This will be used by the introspection queries to be able to download the schemas from the MC API. Additionally, you also need to specify one of your `CTP_PROJECT_KEY` where you have access to.
+
+Since the MC uses multiple GraphQL APIs, we need to differentiate which queries use which schema. To do so, prefix the file extension with one of the GraphQL targets:
+
+- **users**: instead of `.graphql` use `*.users.graphql` (_graphql target: `mc`_)
+- **settings**: instead of `.graphql` use `*.settings.graphql` (_graphql target: `settings`_)
+- **ctp**: instead of `.graphql` use `*.ctp.graphql` (_graphql target: `ctp`_)
+- **menus**: instead of `.graphql` use `*.menus.graphql` (_API in the MC frontend apps_)
+
+The regex to match the files to each project schema are defiend in the `.graphqlconfig.yml` file.

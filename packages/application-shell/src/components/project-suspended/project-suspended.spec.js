@@ -2,8 +2,8 @@ import React from 'react';
 import { Route } from 'react-router';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { renderApp, waitForElement } from '../../test-utils';
-import UserQuery from '../fetch-user/fetch-user.graphql';
-import ProjectsQuery from '../project-switcher/project-switcher.graphql';
+import UserQuery from '../fetch-user/fetch-user.users.graphql';
+import ProjectsQuery from '../project-switcher/project-switcher.users.graphql';
 import ProjectSuspended from './project-suspended';
 
 describe('rendering', () => {

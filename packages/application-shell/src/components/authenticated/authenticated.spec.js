@@ -2,7 +2,7 @@ import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { renderApp, wait } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
-import AmILoggedInQuery from './authenticated.graphql';
+import AmILoggedInQuery from './authenticated.users.graphql';
 import Authenticated from './authenticated';
 
 const createTestProps = custom => ({
