@@ -64,7 +64,6 @@ module.exports = (env, options) => {
    * Content Security Policy (CSP)
    * https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
    */
-  // eslint-disable-next-line prefer-object-spread/prefer-object-spread
   const cspDirectives = Object.assign(
     {
       'default-src': "'none'",
@@ -90,6 +89,7 @@ module.exports = (env, options) => {
         'clientstream.launchdarkly.com',
         'events.launchdarkly.com',
         'app.getsentry.com',
+        'sentry.io',
         'www.google-analytics.com',
       ].concat(
         isMcDevEnv ? ['ws:', 'localhost:8080', 'webpack-internal:'] : []
