@@ -44,7 +44,7 @@ Build the application bundles
 $ yarn build
 
 # or
-$ yarn build:es:watch
+$ yarn build:bundles:watch
 ```
 
 Start the [playground application](./playground):
@@ -53,7 +53,7 @@ Start the [playground application](./playground):
 
 ```bash
 // Terminal process 1
-$ yarn build:es:watch
+$ yarn build:bundles:watch
 
 // Terminal process 2
 $ yarn playground:start

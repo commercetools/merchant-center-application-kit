@@ -31,11 +31,10 @@
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",
-    "build": "yarn build:es && yarn build:cjs && yarn build:typings",
+    "build": "yarn build:bundles && yarn build:typings",
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings",
-    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.ts -o ./dist/sentry.cjs.js",
-    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.ts -o ./dist/sentry.es.js",
-    "build:es:watch": "yarn build:es -w"
+    "build:bundles": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js -i ./src/index.ts",
+    "build:bundles:watch": "yarn build:bundles -w"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.6.0",
