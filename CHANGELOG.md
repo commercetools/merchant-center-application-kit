@@ -1,3 +1,36 @@
+## [15.1.4](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.3...v15.1.4) (2019-09-11)
+
+#### 🐛 Type: Bug
+
+- `application-shell-connectors`, `permissions`
+  - [#1049](https://github.com/commercetools/merchant-center-application-kit/pull/1049) fix: to avoid using Mapped Types as babel plugin does not properly generate prop-types ([@emmenko](https://github.com/emmenko))
+- `mc-html-template`
+  - [#1045](https://github.com/commercetools/merchant-center-application-kit/pull/1045) fix(csp): to whitelist sentry.io in connect-src ([@emmenko](https://github.com/emmenko))
+
+#### 🔮 Type: Chore
+
+- `i18n`, `permissions`
+  - [#1047](https://github.com/commercetools/merchant-center-application-kit/pull/1047) chore: improve ts setup for discovering types ([@emmenko](https://github.com/emmenko))
+
+#### 💅 Type: Enhancement
+
+- `application-shell-connectors`, `application-shell`
+  - [#1048](https://github.com/commercetools/merchant-center-application-kit/pull/1048) feat: validate graphql files using eslint and schema introspection ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+  - [#1038](https://github.com/commercetools/merchant-center-application-kit/pull/1038) refactor(app-shell): do not fetch unused fields for project query ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `eslint-config-mc-app`, `jest-preset-mc-app`, `mc-html-template`, `mc-scripts`, `sentry`
+  - [#1040](https://github.com/commercetools/merchant-center-application-kit/pull/1040) chore(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `eslint-plugin-testing-library-react`, `i18n`, `jest-preset-mc-app`, `jest-stylelint-runner`, `l10n`, `mc-html-template`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sentry`, `url-utils`
+  - [#1039](https://github.com/commercetools/merchant-center-application-kit/pull/1039) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+- `application-components`, `application-shell`, `i18n`, `jest-preset-mc-app`, `mc-scripts`, `permissions`, `react-notifications`
+  - [#1034](https://github.com/commercetools/merchant-center-application-kit/pull/1034) chore: update ts-eslint to v2 ([@emmenko](https://github.com/emmenko))
+
 ## [15.1.3](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.2...v15.1.3) (2019-09-05)
 
 #### 🐛 Type: Bug
