@@ -1,11 +1,5 @@
 [
   {
-    "id": 1295395245,
-    "name": "🛑 Status: blocked",
-    "color": "222222",
-    "description": ""
-  },
-  {
     "id": 1083802571,
     "name": "⛑ Type: Refactoring",
     "color": "58ce3d",
@@ -144,6 +138,12 @@
     "description": "Waiting for technical reviews"
   },
   {
+    "id": 1469909491,
+    "name": "🚀 Status: ship it",
+    "color": "9dff42",
+    "description": "Triggers an merge if rules match via bot"
+  },
+  {
     "id": 1084711241,
     "name": "🚀 Type: New Feature",
     "color": "58ce3d",
@@ -162,6 +162,18 @@
     "description": ""
   },
   {
+    "id": 1295395245,
+    "name": "🛑 Status: blocked",
+    "color": "222222",
+    "description": ""
+  },
+  {
+    "id": 1549759837,
+    "name": "🛠 Type: Tooling",
+    "color": "d876e3",
+    "description": "Things related to development tools for the repository"
+  },
+  {
     "id": 1411935467,
     "name": "🤖 Type: Dependencies",
     "color": "d876e3",
@@ -172,11 +184,5 @@
     "name": "🧟 Type: Technical Debt",
     "color": "d876e3",
     "description": ""
-  },
-  {
-    "id": 1469909491,
-    "name": "🚀 Status: ship it",
-    "color": "9dff42",
-    "description": "Triggers an merge if rules match via bot"
   }
 ]
