@@ -1,7 +1,7 @@
 import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { renderApp, fireEvent, waitForElement, wait } from '../../test-utils';
-import ProjectsQuery from './project-switcher.users.graphql';
+import ProjectsQuery from './project-switcher.mc.graphql';
 import ProjectSwitcher from './project-switcher';
 
 const falsy = () => false;

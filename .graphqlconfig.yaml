@@ -1,22 +1,22 @@
 projects:
-  users:
-    schemaPath: schemas/users.json
+  mc:
+    schemaPath: schemas/mc.json
     includes:
-      - '**/*.users.graphql'
+      - '**/*.mc.graphql'
     extensions:
       endpoints:
         production:
-          url: 'https://mc-api.commercetools.com/graphql'
+          url: '${env:MC_API_URL}'
           headers:
             X-Graphql-Target: mc
-  menus:
-    schemaPath: schemas/menus.json
+  proxy:
+    schemaPath: schemas/proxy.json
     includes:
-      - '**/*.menus.graphql'
+      - '**/*.proxy.graphql'
     extensions:
       endpoints:
         production:
-          url: 'https://mc.commercetools.com/api/graphql'
+          url: '${env:MC_PROXY_URL}'
   settings:
     schemaPath: schemas/settings.json
     includes:
@@ -24,7 +24,7 @@ projects:
     extensions:
       endpoints:
         production:
-          url: 'https://mc-api.commercetools.com/graphql'
+          url: '${env:MC_API_URL}'
           headers:
             Cookie: mcAccessToken=${env:MC_ACCESS_TOKEN}
             X-Graphql-Target: settings
@@ -35,7 +35,7 @@ projects:
     extensions:
       endpoints:
         production:
-          url: 'https://mc-api.commercetools.com/graphql'
+          url: '${env:MC_API_URL}'
           headers:
             Cookie: mcAccessToken=${env:MC_ACCESS_TOKEN}
             X-Graphql-Target: ctp

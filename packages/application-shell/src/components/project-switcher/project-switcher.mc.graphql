@@ -1,4 +1,4 @@
-#import "./project-switcher-fragments.users.graphql"
+#import "./project-switcher-fragments.mc.graphql"
 
 query ProjectsQuery {
   user: me {

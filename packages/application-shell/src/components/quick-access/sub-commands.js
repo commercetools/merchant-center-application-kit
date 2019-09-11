@@ -1,7 +1,7 @@
 import { oneLineTrim } from 'common-tags';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { hasSomePermissions } from '@commercetools-frontend/permissions';
-import QuickAccessProductQuery from './quick-access-product.graphql';
+import QuickAccessProductQuery from './quick-access-product.ctp.graphql';
 import { permissions } from './constants';
 import messages from './messages';
 

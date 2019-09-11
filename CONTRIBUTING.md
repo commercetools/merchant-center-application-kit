@@ -176,9 +176,9 @@ To download the remote schemas simply run `yarn get-schemas`. The configuration 
 
 Since the MC uses multiple GraphQL APIs, we need to differentiate which queries use which schema. To do so, prefix the file extension with one of the GraphQL targets:
 
-- **users**: instead of `.graphql` use `*.users.graphql` (_graphql target: `mc`_)
+- **users**: instead of `.graphql` use `*.mc.graphql` (_graphql target: `mc`_)
 - **settings**: instead of `.graphql` use `*.settings.graphql` (_graphql target: `settings`_)
 - **ctp**: instead of `.graphql` use `*.ctp.graphql` (_graphql target: `ctp`_)
-- **menus**: instead of `.graphql` use `*.menus.graphql` (_API in the MC frontend apps_)
+- **menus**: instead of `.graphql` use `*.proxy.graphql` (_API in the MC frontend apps_)
 
 The regex to match the files to each project schema are defiend in the `.graphqlconfig.yml` file.

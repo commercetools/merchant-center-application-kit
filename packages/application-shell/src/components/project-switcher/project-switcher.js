@@ -11,7 +11,7 @@ import {
   ErrorIcon,
   customProperties,
 } from '@commercetools-frontend/ui-kit';
-import ProjectsQuery from './project-switcher.users.graphql';
+import ProjectsQuery from './project-switcher.mc.graphql';
 import messages from './messages';
 
 export const ProjectSwitcherValueContainer = props => (
