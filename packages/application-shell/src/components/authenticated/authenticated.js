@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { STORAGE_KEYS } from '../../constants';
-import AmILoggedInQuery from './authenticated.graphql';
+import AmILoggedInQuery from './authenticated.mc.graphql';
 
 const hasCachedAuthenticationState = () =>
   window.localStorage.getItem(STORAGE_KEYS.IS_AUTHENTICATED) === 'true';

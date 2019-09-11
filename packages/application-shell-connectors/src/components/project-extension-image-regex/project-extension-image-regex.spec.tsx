@@ -14,7 +14,7 @@ import {
   GetProjectExtensionImageRegex,
   TImageRegex,
 } from './project-extension-image-regex';
-import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.graphql';
+import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.settings.graphql';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 
 jest.mock('@commercetools-frontend/sentry');

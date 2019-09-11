@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import LoggedInUserQuery from './fetch-user.graphql';
+import LoggedInUserQuery from './fetch-user.mc.graphql';
 
 const FetchUser = props => {
   const { loading, data, error } = useQuery(LoggedInUserQuery, {

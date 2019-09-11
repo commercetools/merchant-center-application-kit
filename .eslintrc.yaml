@@ -22,6 +22,7 @@ plugins:
   - prettier
   - react
   - react-hooks
+  - graphql
   - '@typescript-eslint/eslint-plugin'
 rules:
   '@typescript-eslint/camelcase': 0
@@ -38,6 +39,9 @@ rules:
   import/no-unresolved: 2
   'react-hooks/rules-of-hooks': 'error'
   'react-hooks/exhaustive-deps': 'warn'
+  graphql/template-strings:
+    - error
+    - env: literal
 settings:
   react:
     version: 'detect'

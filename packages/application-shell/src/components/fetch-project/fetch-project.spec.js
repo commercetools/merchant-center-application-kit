@@ -1,7 +1,7 @@
 import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { renderApp, waitForElement } from '../../test-utils';
-import ProjectQuery from './fetch-project.graphql';
+import ProjectQuery from './fetch-project.mc.graphql';
 import FetchProject, {
   mapAllAppliedToObjectShape,
   mapAllAppliedToGroupedObjectShape,

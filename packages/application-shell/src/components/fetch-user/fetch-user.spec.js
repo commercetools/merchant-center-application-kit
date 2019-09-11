@@ -1,7 +1,7 @@
 import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { renderApp, waitForElement } from '../../test-utils';
-import LoggedInUserQuery from './fetch-user.graphql';
+import LoggedInUserQuery from './fetch-user.mc.graphql';
 import FetchUser from './fetch-user';
 
 jest.mock('@commercetools-frontend/sentry');

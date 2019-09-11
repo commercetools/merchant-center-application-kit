@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLazyQuery } from 'react-apollo';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import FetchApplicationsMenu from './fetch-applications-menu.graphql';
+import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 
 const defaultApiUrl = window.location.origin;
 

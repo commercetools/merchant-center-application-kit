@@ -1,0 +1,42 @@
+projects:
+  mc:
+    schemaPath: schemas/mc.json
+    includes:
+      - '**/*.mc.graphql'
+    extensions:
+      endpoints:
+        production:
+          url: '${env:MC_API_URL}'
+          headers:
+            X-Graphql-Target: mc
+  proxy:
+    schemaPath: schemas/proxy.json
+    includes:
+      - '**/*.proxy.graphql'
+    extensions:
+      endpoints:
+        production:
+          url: '${env:MC_PROXY_URL}'
+  settings:
+    schemaPath: schemas/settings.json
+    includes:
+      - '**/*.settings.graphql'
+    extensions:
+      endpoints:
+        production:
+          url: '${env:MC_API_URL}'
+          headers:
+            Cookie: mcAccessToken=${env:MC_ACCESS_TOKEN}
+            X-Graphql-Target: settings
+  ctp:
+    schemaPath: schemas/ctp.json
+    includes:
+      - '**/*.ctp.graphql'
+    extensions:
+      endpoints:
+        production:
+          url: '${env:MC_API_URL}'
+          headers:
+            Cookie: mcAccessToken=${env:MC_ACCESS_TOKEN}
+            X-Graphql-Target: ctp
+            X-Project-Key: ${env:CTP_PROJECT_KEY}

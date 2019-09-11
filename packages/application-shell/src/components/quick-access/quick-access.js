@@ -16,7 +16,7 @@ import {
 import { hasSomePermissions } from '@commercetools-frontend/permissions';
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import Butler from './butler';
-import QuickAccessQuery from './quick-access.graphql';
+import QuickAccessQuery from './quick-access.ctp.graphql';
 import createCommands from './create-commands';
 import { sanitize, translate } from './utils';
 import {

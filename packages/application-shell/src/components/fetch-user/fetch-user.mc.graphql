@@ -1,4 +1,4 @@
-#import "../project-switcher/project-switcher-fragments.graphql"
+#import "../project-switcher/project-switcher-fragments.mc.graphql"
 
 query LoggedInUserQuery {
   user: me {

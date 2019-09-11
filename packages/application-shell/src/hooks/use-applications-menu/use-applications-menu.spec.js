@@ -2,7 +2,7 @@ import React from 'react';
 import upperFirst from 'lodash/upperFirst';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { renderApp, waitForElement, wait } from '../../test-utils';
-import FetchApplicationsMenu from './fetch-applications-menu.graphql';
+import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 import useApplicationsMenu from './use-applications-menu';
 
 jest.mock('@commercetools-frontend/sentry');
