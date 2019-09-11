@@ -27,10 +27,16 @@ type TDataFenceGroupedByResourceType = {
   // E.g. { orders: {...} }
   [key: string]: TDataFenceGroupedByPermission | null;
 };
-type TDataFenceType = 'store';
+// NOTE: we currently can't use Mapped Types as the babel transfomer does not
+// understand them yet: https://github.com/milesj/babel-plugin-typescript-to-proptypes/issues/23
+// type TDataFenceType = 'store';
+// type TDataFences = {
+//   // E.g. { store: {...} }
+//   [key in TDataFenceType]: TDataFenceGroupedByResourceType;
+// };
 type TDataFences = {
   // E.g. { store: {...} }
-  [key in TDataFenceType]: TDataFenceGroupedByResourceType;
+  store: TDataFenceGroupedByResourceType;
 };
 type TestProps = {
   demandedPermissions: TPermissionName[];

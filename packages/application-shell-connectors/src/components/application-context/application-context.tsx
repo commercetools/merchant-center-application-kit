@@ -57,10 +57,16 @@ type TApplicationContextGroupedByResourceType = {
  *   }
  * }
  */
-type TApplicationContextDataFenceType = 'store';
+// NOTE: we currently can't use Mapped Types as the babel transfomer does not
+// understand them yet: https://github.com/milesj/babel-plugin-typescript-to-proptypes/issues/23
+// type TApplicationContextDataFenceType = 'store';
+// type TApplicationContextDataFences = {
+//   // E.g. { store: {...} }
+//   [key in TApplicationContextDataFenceType]: TApplicationContextGroupedByResourceType;
+// };
 type TApplicationContextDataFences = {
   // E.g. { store: {...} }
-  [key in TApplicationContextDataFenceType]: TApplicationContextGroupedByResourceType;
+  store: TApplicationContextGroupedByResourceType;
 };
 
 type TRawProject = {
