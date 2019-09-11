@@ -49,7 +49,7 @@ const FormModalPage = (props: Props) => (
     getParentSelector={props.getParentSelector}
     shouldDelayOnClose={props.shouldDelayOnClose}
     hideControls={props.hideControls}
-    controls={
+    formControls={
       <React.Fragment>
         <CustomFormModalPage.FormSecondaryButton
           label={props.labelSecondaryButton}

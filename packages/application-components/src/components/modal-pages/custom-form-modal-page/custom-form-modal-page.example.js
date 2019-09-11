@@ -65,7 +65,7 @@ const CustomFormModalPageExample = () => (
                     subtitle={values.subtitle}
                     isOpen={isOpen}
                     onClose={() => setIsOpen(false)}
-                    controls={
+                    formControls={
                       <React.Fragment>
                         <CustomFormModalPage.FormSecondaryButton
                           onClick={() => {

@@ -28,7 +28,7 @@ type Props = {
   // Header Props
   subtitle?: string | React.ReactElement;
   // Controls Props
-  controls: React.ReactNode;
+  formControls: React.ReactNode;
   hideControls?: boolean;
 };
 
@@ -46,9 +46,9 @@ const CustomFormModalPage = (props: Props) => (
     shouldDelayOnClose={props.shouldDelayOnClose}
   >
     <ModalPageHeader title={props.title} subtitle={props.subtitle}>
-      {!props.hideControls && props.controls && (
+      {!props.hideControls && props.formControls && (
         <Spacings.Inline alignItems="flex-end">
-          {props.controls}
+          {props.formControls}
         </Spacings.Inline>
       )}
     </ModalPageHeader>
