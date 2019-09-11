@@ -32,12 +32,11 @@
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/** test-utils/**",
-    "build": "yarn build:es && yarn build:cjs && yarn build:test-utils:cjs && yarn build:typings",
+    "build": "yarn build:bundles && yarn build:test-utils && yarn build:typings",
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings",
-    "build:cjs": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f cjs ./src/index.ts -o ./dist/sdk.cjs.js",
-    "build:es": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js  -f es ./src/index.ts -o ./dist/sdk.es.js",
-    "build:es:watch": "yarn build:es -w",
-    "build:test-utils:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js  -f cjs ./src/test-utils/index.ts --o ./test-utils/index.js"
+    "build:bundles": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js -i ./src/index.ts",
+    "build:bundles:watch": "yarn build:bundles -w",
+    "build:test-utils": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -i ./src/test-utils/index.ts"
   },
   "dependencies": {
     "@commercetools-frontend/constants": "15.0.0",

@@ -42,8 +42,8 @@
     "template-starter:start:prod:local": "yarn --cwd application-templates/starter start:prod:local",
     "build": "NODE_ENV=production lerna run build --no-private",
     "build:typings": "NODE_ENV=production lerna run build:typings --no-private",
-    "build:es": "NODE_ENV=production lerna run build:es --no-private",
-    "build:es:watch": "NODE_ENV=development lerna run --no-private --parallel build:es:watch",
+    "build:bundles": "NODE_ENV=production lerna run build:bundles --no-private",
+    "build:bundles:watch": "NODE_ENV=development lerna run --no-private --parallel build:bundles:watch",
     "labels:sync": "github-labels sync",
     "get-schemas": "graphql get-schema"
   },

@@ -26,85 +26,135 @@ const postcssReporter = require('postcss-reporter');
 const { package: pkg } = readPkgUp.sync({
   cwd: fs.realpathSync(process.cwd()),
 });
+const [, packageName] = pkg.name.split('@commercetools-frontend/');
 const extensions = ['.js', '.ts', '.tsx'];
 const babelOptions = getBabelPreset();
 
-const createConfig = cliArgs => {
-  const isFormatEs = cliArgs.format === 'es';
-  return {
-    output: {
-      name: pkg.name,
-      sourcemap: true,
-    },
-    plugins: [
-      peerDeps({
-        includeDependencies: true,
-      }),
-      babel({
-        extensions,
-        runtimeHelpers: true,
-        ...babelOptions,
-        plugins: [
-          babelPluginImportGraphQL.default,
-          ...babelOptions.plugins,
-          'babel-plugin-typescript-to-proptypes',
-          isFormatEs && [
-            'transform-rename-import',
-            {
-              replacements: [{ original: 'lodash', replacement: 'lodash-es' }],
-            },
-          ],
-        ].filter(Boolean),
-      }),
-      // To convert CJS modules to ES6
-      commonjs({
-        include: 'node_modules/**',
-      }),
-      resolve({
-        extensions,
-        mainFields: ['module', 'main', 'jsnext'],
-        preferBuiltins: true,
-        modulesOnly: true,
-      }),
-      json({ namedExports: false }),
-      builtins(),
-      postcss({
-        include: ['**/*.mod.css'],
-        exclude: ['node_modules/**/*.css'],
-        modules: true,
-        importLoaders: 1,
-        localIdentName: '[name]__[local]___[hash:base64:5]',
-        plugins: [
-          postcssImport(),
-          postcssPresetEnv({
-            autoprefixer: {
-              grid: true,
-              overrideBrowserslist: browserslist.production,
-            },
-          }),
-          postcssCustomMediaQueries({
-            importFrom: require.resolve(
-              '@commercetools-frontend/application-components/materials/media-queries.css'
-            ),
-          }),
-          // we need to place the postcssDiscardComments BEFORE postcssCustomProperties,
-          // otherwise we will end up with a bunch of empty :root elements
-          // wherever there are imported comments
-          // see https://github.com/postcss/postcss-custom-properties/issues/123
-          // and https://github.com/commercetools/ui-kit/pull/173
-          postcssDiscardComments(),
-          postcssCustomProperties({
-            preserve: false,
-            importFrom: require.resolve(
-              '@commercetools-frontend/ui-kit/materials/custom-properties.css'
-            ),
-          }),
-          postcssColorModFunction(),
-          postcssReporter(),
+const createPlugins = format => {
+  const isFormatEs = format === 'es';
+  return [
+    peerDeps({
+      includeDependencies: true,
+    }),
+    babel({
+      extensions,
+      runtimeHelpers: true,
+      ...babelOptions,
+      plugins: [
+        babelPluginImportGraphQL.default,
+        ...babelOptions.plugins,
+        'babel-plugin-typescript-to-proptypes',
+        isFormatEs && [
+          'transform-rename-import',
+          {
+            replacements: [{ original: 'lodash', replacement: 'lodash-es' }],
+          },
         ],
-      }),
-    ],
-  };
+      ].filter(Boolean),
+    }),
+    // To convert CJS modules to ES6
+    commonjs({
+      include: 'node_modules/**',
+    }),
+    resolve({
+      extensions,
+      mainFields: ['module', 'main', 'jsnext'],
+      preferBuiltins: true,
+      modulesOnly: true,
+    }),
+    json({ namedExports: false }),
+    builtins(),
+    postcss({
+      include: ['**/*.mod.css'],
+      exclude: ['node_modules/**/*.css'],
+      modules: true,
+      importLoaders: 1,
+      localIdentName: '[name]__[local]___[hash:base64:5]',
+      plugins: [
+        postcssImport(),
+        postcssPresetEnv({
+          autoprefixer: {
+            grid: true,
+            overrideBrowserslist: browserslist.production,
+          },
+        }),
+        postcssCustomMediaQueries({
+          importFrom: require.resolve(
+            '@commercetools-frontend/application-components/materials/media-queries.css'
+          ),
+        }),
+        // we need to place the postcssDiscardComments BEFORE postcssCustomProperties,
+        // otherwise we will end up with a bunch of empty :root elements
+        // wherever there are imported comments
+        // see https://github.com/postcss/postcss-custom-properties/issues/123
+        // and https://github.com/commercetools/ui-kit/pull/173
+        postcssDiscardComments(),
+        postcssCustomProperties({
+          preserve: false,
+          importFrom: require.resolve(
+            '@commercetools-frontend/ui-kit/materials/custom-properties.css'
+          ),
+        }),
+        postcssColorModFunction(),
+        postcssReporter(),
+      ],
+    }),
+  ];
+};
+
+const createConfig = cliArgs => {
+  if (/\/test-utils\//.test(cliArgs.input)) {
+    return {
+      input: cliArgs.input,
+      output: {
+        format: 'cjs',
+        file: `test-utils/index.js`,
+        sourcemap: true,
+      },
+      plugins: createPlugins('cjs'),
+    };
+  }
+
+  return [
+    // Bundle for cjs format
+    {
+      input: cliArgs.input,
+      output: {
+        format: 'cjs',
+        // Determine by the existence of the `--dir` option if the bundle should generate
+        // multiple chunks, as `--file` and `--dir` cannot be used together.
+        ...(cliArgs.dir
+          ? {
+              chunkFileNames: `${packageName}-[name]-[hash].cjs.js`,
+              entryFileNames: `${packageName}-[name].cjs.js`,
+            }
+          : {
+              file: `dist/${packageName}.cjs.js`,
+            }),
+        sourcemap: true,
+      },
+      plugins: createPlugins('cjs'),
+    },
+    // Bundle for es format
+    {
+      input: cliArgs.input,
+      output: {
+        format: 'es',
+        // Determine by the existence of the `--dir` option if the bundle should generate
+        // multiple chunks, as `--file` and `--dir` cannot be used together.
+        ...(cliArgs.dir
+          ? {
+              chunkFileNames: `${packageName}-[name]-[hash].es.js`,
+              entryFileNames: `${packageName}-[name].es.js`,
+            }
+          : {
+              file: `dist/${packageName}.es.js`,
+            }),
+        sourcemap: true,
+      },
+      plugins: createPlugins('es'),
+    },
+  ];
 };
 
 module.exports = createConfig;
