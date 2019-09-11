@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl, MessageDescriptor, IntlShape } from 'react-intl';
+import { useIntl, MessageDescriptor } from 'react-intl';
 import {
   PrimaryButton,
   SecondaryButton,
@@ -27,20 +27,21 @@ const primaryDefaultProps: Pick<
   dataAttributes: {},
 };
 
-const getFormattedLabel = (label: Label, intl: IntlShape) =>
-  typeof label === 'string' ? label : intl.formatMessage(label);
-
-const FormPrimaryButton = (props: Props) => {
+const useFormattedLabel = (label: Label) => {
   const intl = useIntl();
-  return (
-    <PrimaryButton
-      label={getFormattedLabel(props.label, intl)}
-      onClick={props.onClick}
-      isDisabled={props.isDisabled}
-      {...filterDataAttributes(props.dataAttributes)}
-    />
-  );
+
+  return typeof label === 'string' ? label : intl.formatMessage(label);
 };
+
+const FormPrimaryButton = (props: Props) => (
+  <PrimaryButton
+    label={useFormattedLabel(props.label)}
+    onClick={props.onClick}
+    isDisabled={props.isDisabled}
+    {...filterDataAttributes(props.dataAttributes)}
+  />
+);
+
 FormPrimaryButton.displayName = 'FormPrimaryButton';
 FormPrimaryButton.defaultProps = primaryDefaultProps;
 
@@ -53,17 +54,15 @@ const secondaryDefaultProps: Pick<
   dataAttributes: {},
 };
 
-const FormSecondaryButton = (props: Props) => {
-  const intl = useIntl();
-  return (
-    <SecondaryButton
-      label={getFormattedLabel(props.label, intl)}
-      onClick={props.onClick}
-      isDisabled={props.isDisabled}
-      {...filterDataAttributes(props.dataAttributes)}
-    />
-  );
-};
+const FormSecondaryButton = (props: Props) => (
+  <SecondaryButton
+    label={useFormattedLabel(props.label)}
+    onClick={props.onClick}
+    isDisabled={props.isDisabled}
+    {...filterDataAttributes(props.dataAttributes)}
+  />
+);
+
 FormSecondaryButton.displayName = 'FormSecondaryButton';
 FormSecondaryButton.defaultProps = secondaryDefaultProps;
 
@@ -76,18 +75,16 @@ const deleteDefaultProps: Pick<
   dataAttributes: {},
 };
 
-const FormDeleteButton = (props: Props) => {
-  const intl = useIntl();
-  return (
-    <IconButton
-      icon={<BinLinearIcon />}
-      label={getFormattedLabel(props.label, intl)}
-      onClick={props.onClick}
-      isDisabled={props.isDisabled}
-      {...filterDataAttributes(props.dataAttributes)}
-    />
-  );
-};
+const FormDeleteButton = (props: Props) => (
+  <IconButton
+    icon={<BinLinearIcon />}
+    label={useFormattedLabel(props.label)}
+    onClick={props.onClick}
+    isDisabled={props.isDisabled}
+    {...filterDataAttributes(props.dataAttributes)}
+  />
+);
+
 FormDeleteButton.displayName = 'FormDeleteButton';
 FormDeleteButton.defaultProps = deleteDefaultProps;
 
