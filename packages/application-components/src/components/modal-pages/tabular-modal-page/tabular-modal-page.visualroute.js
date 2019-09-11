@@ -16,7 +16,7 @@ import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
 
 export const routePath = '/tabular-modal-page';
 
-const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
+const ModalPageWithPortalParentSelector = ({ portalId, ...remainingProps }) => (
   <React.Fragment>
     <div id={portalId} style={{ position: 'relative', height: '750px' }} />
     <TabularModalPage
@@ -57,7 +57,7 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
           </span>
         </div>
       }
-      {...props}
+      {...remainingProps}
     />
   </React.Fragment>
 );

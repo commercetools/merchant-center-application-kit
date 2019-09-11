@@ -7,7 +7,7 @@ import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
 
 export const routePath = '/form-modal-page';
 
-const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
+const ModalPageWithPortalParentSelector = ({ portalId, ...remainingProps }) => (
   <React.Fragment>
     <div id={portalId} style={{ position: 'relative', height: '750px' }} />
     <Formik
@@ -24,7 +24,7 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
           isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
           isSecondaryButtonDisabled={props.isSecondaryButtonDisabled}
           getParentSelector={() => document.querySelector(`#${portalId}`)}
-          {...props}
+          {...remainingProps}
         >
           <TextField
             name="email"

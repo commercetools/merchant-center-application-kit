@@ -6,7 +6,7 @@ import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
 
 export const routePath = '/info-modal-page';
 
-const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
+const ModalPageWithPortalParentSelector = ({ portalId, ...remainingProps }) => (
   <React.Fragment>
     <div id={portalId} style={{ position: 'relative', height: '750px' }} />
     <InfoModalPage
@@ -16,7 +16,7 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
       onClose={() => {}}
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       getParentSelector={() => document.querySelector(`#${portalId}`)}
-      {...props}
+      {...remainingProps}
     />
   </React.Fragment>
 );
