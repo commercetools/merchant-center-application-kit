@@ -25,10 +25,15 @@ describe('getCorrelationId', () => {
     it('should build correlation id', () => {
       expect(correlationId).toBe('mc/test-project-key/user-1/test-uuid');
     });
+  });
 
-    it('should not contain `null`', () => {
-      // NOTE: `'null'` would be stringified.
-      expect(correlationId).not.toEqual(expect.stringContaining('null'));
+  describe('with malformed `userId`', () => {
+    beforeEach(() => {
+      correlationId = getCorrelationId({ userId: ':::' });
+    });
+
+    it('should not include userId in correlationId', () => {
+      expect(correlationId).toBe('mc/test-project-key/test-uuid');
     });
   });
 
@@ -40,10 +45,16 @@ describe('getCorrelationId', () => {
     it('should build correlation id', () => {
       expect(correlationId).toBe('mc/test-project-key/test-uuid');
     });
+  });
 
-    it('should not contain `null`', () => {
-      // NOTE: `'null'` would be stringified.
-      expect(correlationId).not.toEqual(expect.stringContaining('null'));
+  describe('with malformed `projectKey`', () => {
+    beforeEach(() => {
+      selectProjectKeyFromUrl.mockImplementation(() => ':::');
+      correlationId = getCorrelationId({ userId: 'user-1' });
+    });
+
+    it('should not include projectKey in correlationId', () => {
+      expect(correlationId).toBe('mc/user-1/test-uuid');
     });
   });
 });
