@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.6.0",
-    "history": "4.9.0",
+    "history": "4.10.1",
     "history-query-enhancer": "1.0.4",
     "qss": "2.0.3"
   }
