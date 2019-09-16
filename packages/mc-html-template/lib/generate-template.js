@@ -32,7 +32,7 @@ module.exports = function generateTemplate({
     <!-- Retina iPad -->
     <link rel="apple-touch-icon" sizes="144x144" href="/favicon_144x144px.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/favicon_144x144px.png">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i' rel='stylesheet' type='text/css'></link>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,600,600i,700,700i' rel='stylesheet' type='text/css'></link>
     ${cssImports.join('\n')}
     <title>Merchant Center</title>
   </head>
