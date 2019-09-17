@@ -12,6 +12,11 @@
       "packagePatterns": [
         "*"
       ],
+      "excludePackageNames": [
+        "typescript",
+        "gatsby-plugin-sharp",
+        "gatsby-transformer-sharp"
+      ],
       "groupName": "all dependencies",
       "groupSlug": "all"
     }
