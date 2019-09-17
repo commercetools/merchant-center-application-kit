@@ -1,3 +1,18 @@
+## [15.1.5](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.5...v15.1.5) (2019-09-17)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1057](https://github.com/commercetools/merchant-center-application-kit/pull/1057) fix(app-shell): sanitize correlation id parts ([@pa3](https://github.com/pa3))
+
+#### 🤖 Type: Dependencies
+
+- `application-components`, `application-shell-connectors`, `application-shell`, `browser-history`, `i18n`, `jest-preset-mc-app`, `mc-scripts`, `react-notifications`, `sdk`
+  - [#1053](https://github.com/commercetools/merchant-center-application-kit/pull/1053) chore(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+- Other
+  - [#1058](https://github.com/commercetools/merchant-center-application-kit/pull/1058) fix: exclude package names causing issues ([@tdeekens](https://github.com/tdeekens))
+  - [#1055](https://github.com/commercetools/merchant-center-application-kit/pull/1055) chore(deps): lock file maintenance ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [15.1.4](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.3...v15.1.4) (2019-09-11)
 
 #### 🐛 Type: Bug
