@@ -21,7 +21,7 @@ class GtmUserTracker extends React.PureComponent {
     if (this.props.user) this.syncUser();
   }
   syncUser = () => {
-    gtm.updateUser(this.props.user);
+    gtm.updateUser(this.props.user.id);
   };
   render() {
     return null;
