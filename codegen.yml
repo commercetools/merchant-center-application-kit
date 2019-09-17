@@ -1,0 +1,62 @@
+overwrite: true
+generates:
+  # CTP
+  packages/application-shell/src/types/generated/graphql-types-ctp.ts:
+    schema: schemas/ctp.json
+    documents: packages/application-shell/src/**/*.ctp.graphql
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      typesPrefix: T
+      addUnderscoreToArgsType: true
+      scalars:
+        Long: number
+        DateTime: string
+        Country: string
+        Locale: string
+        Date: string
+        Json: '{ [key: string]: unknown }'
+        Currency: string
+        KeyReferenceInput: string
+        SearchFilter: string
+        SearchSort: string
+        YearMonth: string
+        BigDecimal: string
+        Time: string
+
+  # MC Gateway
+  packages/application-shell/src/types/generated/graphql-types-mc.ts:
+    schema: schemas/mc.json
+    documents: packages/application-shell/src/**/*.mc.graphql
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      typesPrefix: T
+      addUnderscoreToArgsType: true
+
+  # MC Proxy
+  packages/application-shell/src/types/generated/graphql-types-proxy.ts:
+    schema: schemas/proxy.json
+    documents: packages/application-shell/src/**/*.proxy.graphql
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      typesPrefix: T
+      addUnderscoreToArgsType: true
+
+  # MC Settings
+  packages/application-shell/src/types/generated/graphql-types-settings.ts:
+    schema: schemas/settings.json
+    documents: packages/application-shell/src/**/*.settings.graphql
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      typesPrefix: T
+      addUnderscoreToArgsType: true
+      scalars:
+        DateTime: string
+        Json: '{ [key: string]: unknown }'

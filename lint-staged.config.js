@@ -23,4 +23,5 @@ module.exports = {
     // For that reason, we move the `--onlyChanged` flag next to it.
     'yarn lint:css --reporters=jest-silent-reporter --onlyChanged',
   ],
+  '*.graphql': ['yarn format:graphql', 'git add', 'yarn generate:types'],
 };

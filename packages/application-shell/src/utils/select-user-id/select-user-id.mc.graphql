@@ -1,4 +1,4 @@
-query LoggedInUserQuery {
+query SelectUserIdQuery {
   user: me {
     id
   }

@@ -1,8 +1,13 @@
-query QuickAccess($searchText: String!, $canViewProducts: Boolean!, $productsWhereClause: String, $includeProductsByIds: Boolean!) {
-
-  productsByIds: products(where: $productsWhereClause) @include(if: $includeProductsByIds) {
+query QuickAccess(
+  $searchText: String!
+  $canViewProducts: Boolean!
+  $productsWhereClause: String
+  $includeProductsByIds: Boolean!
+) {
+  productsByIds: products(where: $productsWhereClause)
+    @include(if: $includeProductsByIds) {
     results {
-      id,
+      id
       masterData {
         staged {
           nameAllLocales {
@@ -40,7 +45,8 @@ query QuickAccess($searchText: String!, $canViewProducts: Boolean!, $productsWhe
     }
   }
 
-  productByVariantSku: product(sku: $searchText) @include(if: $canViewProducts) {
+  productByVariantSku: product(sku: $searchText)
+    @include(if: $canViewProducts) {
     id
     masterData {
       staged {
@@ -57,7 +63,8 @@ query QuickAccess($searchText: String!, $canViewProducts: Boolean!, $productsWhe
     }
   }
 
-  productByVariantKey: product(variantKey: $searchText) @include(if: $canViewProducts) {
+  productByVariantKey: product(variantKey: $searchText)
+    @include(if: $canViewProducts) {
     id
     masterData {
       staged {

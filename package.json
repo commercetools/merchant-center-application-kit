@@ -12,11 +12,12 @@
     "lint:js": "jest --config jest.eslint.config.js",
     "lint:css": "jest --config jest.stylelint.config.js",
     "typecheck": "tsc --noEmit",
-    "format": "yarn format:js && yarn format:css & yarn format:md & yarn format:yaml",
+    "format": "yarn format:js && yarn format:css && yarn format:md && yarn format:yaml && yarn format:graphql",
     "format:js": "prettier --write '**/*.{js,ts,tsx}'",
     "format:css": "prettier --write --parser css '**/*.css'",
     "format:md": "prettier --write --parser markdown '**/*.{md,mdx}'",
     "format:yaml": "prettier --write --parser yaml '**/*.yaml'",
+    "format:graphql": "prettier --write --parser graphql '**/*.graphql'",
     "start": "yarn playground:start",
     "prerelease": "yarn build && yarn typecheck",
     "release": "lerna publish --exact --dist-tag next",
@@ -45,7 +46,8 @@
     "build:bundles": "NODE_ENV=production lerna run build:bundles --no-private",
     "build:bundles:watch": "NODE_ENV=development lerna run --no-private --parallel build:bundles:watch",
     "labels:sync": "github-labels sync",
-    "get-schemas": "graphql get-schema"
+    "get-schemas": "graphql get-schema",
+    "generate:types": "graphql-codegen"
   },
   "workspaces": {
     "packages": [
@@ -63,6 +65,9 @@
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "8.1.0",
     "@commitlint/config-conventional": "8.1.0",
+    "@graphql-codegen/cli": "1.7.0",
+    "@graphql-codegen/typescript": "1.7.0",
+    "@graphql-codegen/typescript-operations": "1.7.0",
     "@percy/cypress": "2.0.1",
     "@percy/puppeteer": "1.0.8",
     "@testing-library/cypress": "5.0.0",

@@ -41,4 +41,3 @@ query ProjectQuery($projectKey: String!) {
     }
   }
 }
-
