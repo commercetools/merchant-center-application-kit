@@ -1,4 +1,5 @@
 import { ApolloLink } from 'apollo-link';
+import omitEmpty from 'omit-empty-es';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import {
   getCorrelationId,
@@ -7,7 +8,9 @@ import {
   selectUserId,
 } from '../utils';
 
-const isKnownTarget = target => Object.values(GRAPHQL_TARGETS).includes(target);
+const isKnownGraphQlTarget = target =>
+  Object.values(GRAPHQL_TARGETS).includes(target);
+const omitEmptyHeaders = headers => omitEmpty(headers);
 
 /* eslint-disable import/prefer-default-export */
 // Use a middleware to update the request headers with the correct params.
@@ -22,10 +25,10 @@ const headerLink = new ApolloLink((operation, forward) => {
     return forward(operation);
   }
 
-  const target = operation.variables.target;
-  if (!isKnownTarget(target))
+  const graphQlTarget = operation.variables.target;
+  if (!isKnownGraphQlTarget(graphQlTarget))
     throw new Error(
-      `GraphQL target "${target}" is missing or is not supported`
+      `GraphQL target "${graphQlTarget}" is missing or is not supported`
     );
 
   /**
@@ -43,12 +46,12 @@ const headerLink = new ApolloLink((operation, forward) => {
 
   operation.setContext({
     credentials: 'include',
-    headers: {
+    headers: omitEmptyHeaders({
       'X-Project-Key': projectKey,
       'X-Correlation-Id': getCorrelationId({ userId }),
-      'X-Graphql-Target': target,
-      ...(teamId && { 'X-Team-Id': teamId }),
-    },
+      'X-Graphql-Target': graphQlTarget,
+      'X-Team-Id': teamId,
+    }),
   });
   return forward(operation);
 });

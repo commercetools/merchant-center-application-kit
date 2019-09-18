@@ -2,7 +2,12 @@ import { ApolloLink, execute, Observable } from 'apollo-link';
 import gql from 'graphql-tag';
 import waitFor from 'wait-for-observables';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { getCorrelationId } from '../utils';
+import {
+  getCorrelationId,
+  selectProjectKeyFromUrl,
+  selectTeamIdFromLocalStorage,
+  selectUserId,
+} from '../utils';
 import headerLink from './header-link';
 
 jest.mock('../utils/', () => ({
@@ -55,7 +60,7 @@ describe('with valid target', () => {
     expect(context).toMatchSnapshot();
   });
 
-  it('should set `X-Project-Key`-Header', () => {
+  it('should allow specifying `X-Project-Key`-Header', () => {
     expect(context.headers).toEqual(
       expect.objectContaining({
         'X-Project-Key': 'project-1',
@@ -63,7 +68,7 @@ describe('with valid target', () => {
     );
   });
 
-  it('should set `X-Team-Id`-Header', () => {
+  it('should allow specifying `X-Team-Id`-Header', () => {
     expect(context.headers).toEqual(
       expect.objectContaining({
         'X-Team-Id': 'team-1',
@@ -71,7 +76,7 @@ describe('with valid target', () => {
     );
   });
 
-  it('should set `X-Graphql-Target`-Header', () => {
+  it('should allow specifying `X-Graphql-Target`-Header', () => {
     expect(context.headers).toEqual(
       expect.objectContaining({
         'X-Graphql-Target': GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
@@ -144,6 +149,33 @@ describe('with valid target', () => {
           'X-Team-Id': teamId,
         })
       );
+    });
+  });
+
+  describe('with empty header values', () => {
+    const teamId = null;
+    const projectKey = undefined;
+
+    beforeEach(async () => {
+      selectProjectKeyFromUrl.mockReturnValueOnce(null);
+      selectTeamIdFromLocalStorage.mockReturnValueOnce(null);
+
+      await waitFor(
+        execute(link, {
+          query,
+          variables: {
+            target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+            teamId,
+            projectKey,
+          },
+        })
+      );
+    });
+
+    it('should remove the empty header values', () => {
+      expect(context.headers).not.toHaveProperty('X-Team-Id');
+      expect(context.headers).not.toHaveProperty('X-Project-Key');
+      expect(context.headers).toHaveProperty('X-Correlation-Id');
     });
   });
 });
