@@ -1,6 +1,6 @@
 #import "./project-switcher-fragments.mc.graphql"
 
-query ProjectsQuery {
+query FetchUserProjects {
   user: me {
     id
     projects {

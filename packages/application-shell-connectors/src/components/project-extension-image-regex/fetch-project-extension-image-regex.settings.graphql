@@ -1,4 +1,4 @@
-query FetchProjectExtensionImageRegexQuery {
+query FetchProjectExtensionImageRegex {
   projectExtension {
     id
     imageRegex {

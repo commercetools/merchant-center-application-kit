@@ -2,21 +2,19 @@ import React from 'react';
 import { useQuery } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import {
+  TFetchProjectExtensionImageRegexQuery,
+  TImageRegexOptions,
+} from '../../types/generated/settings';
 import getDisplayName from '../../utils/get-display-name';
 import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.settings.graphql';
 
-type TImageRegexOptions = {
-  flag: string;
-  replace: string;
-  search: string;
-};
-export type TImageRegex = {
-  thumb?: TImageRegexOptions;
-  small?: TImageRegexOptions;
-};
-type TImageRegexContext = {
+export type TImageRegexContext = {
   isLoading: boolean;
-  imageRegex?: TImageRegex;
+  imageRegex?: {
+    small?: Pick<TImageRegexOptions, 'flag' | 'replace' | 'search'>;
+    thumb?: Pick<TImageRegexOptions, 'flag' | 'replace' | 'search'>;
+  };
 };
 type ProviderProps = {
   children: React.ReactNode;
@@ -30,7 +28,7 @@ const Context = React.createContext<TImageRegexContext>({ isLoading: true });
 
 const ProjectExtensionProviderForImageRegex = (props: ProviderProps) => {
   const { loading, data } = useQuery<
-    { projectExtension?: { imageRegex?: TImageRegex } },
+    TFetchProjectExtensionImageRegexQuery,
     { target: typeof GRAPHQL_TARGETS.SETTINGS_SERVICE }
   >(FetchProjectExtensionImageRegex, {
     onError: reportErrorToSentry,

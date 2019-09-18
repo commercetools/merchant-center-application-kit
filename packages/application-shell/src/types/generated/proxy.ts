@@ -1,4 +1,4 @@
-export type Maybe<T> = T | null;
+export type Maybe<T> = T | undefined;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string,
@@ -25,11 +25,11 @@ export type TBaseMenu = {
   key: Scalars['String'],
   uriPath: Scalars['String'],
   labelAllLocales: Array<TLocalizedField>,
-  featureToggle?: Maybe<Scalars['String']>,
-  menuVisibility?: Maybe<Scalars['String']>,
+  featureToggle: Maybe<Scalars['String']>,
+  menuVisibility: Maybe<Scalars['String']>,
   permissions: Array<Scalars['String']>,
-  actionRights?: Maybe<Array<TActionRight>>,
-  dataFences?: Maybe<Array<TDataFence>>,
+  actionRights: Maybe<Array<TActionRight>>,
+  dataFences: Maybe<Array<TDataFence>>,
 };
 
 export type TDataFence = {
@@ -52,11 +52,11 @@ export type TNavbarMenu = {
   uriPath: Scalars['String'],
   icon: Scalars['String'],
   labelAllLocales: Array<TLocalizedField>,
-  featureToggle?: Maybe<Scalars['String']>,
+  featureToggle: Maybe<Scalars['String']>,
   permissions: Array<Scalars['String']>,
-  actionRights?: Maybe<Array<TActionRight>>,
-  dataFences?: Maybe<Array<TDataFence>>,
-  menuVisibility?: Maybe<Scalars['String']>,
+  actionRights: Maybe<Array<TActionRight>>,
+  dataFences: Maybe<Array<TDataFence>>,
+  menuVisibility: Maybe<Scalars['String']>,
   submenu: Array<TBaseMenu>,
 };
 

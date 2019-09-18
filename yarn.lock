@@ -1505,6 +1505,14 @@
     signedsource "^1.0.0"
     yargs "^9.0.0"
 
+"@graphql-codegen/add@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/add/-/add-1.7.0.tgz#8969e51913c4013e2ab098205184f38ca517cf7e"
+  integrity sha512-sk561sxOurcPTUS864pXDEh0sh/E5t0BRWPEdbSIcQ80Ia6WrwA6tuZfs59rkMlw99fpDTOGwjOHzqprZ9DzwQ==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "1.7.0"
+    tslib "1.10.0"
+
 "@graphql-codegen/cli@1.7.0":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/cli/-/cli-1.7.0.tgz#aade52f5c265450258e8fe0e45dc91268e8939a8"
@@ -1565,6 +1573,14 @@
     change-case "3.1.0"
     common-tags "1.8.0"
     import-from "3.0.0"
+    tslib "1.10.0"
+
+"@graphql-codegen/typescript-graphql-files-modules@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-graphql-files-modules/-/typescript-graphql-files-modules-1.7.0.tgz#762fc171a03226c080fabbc2684122d5aa4ed6ea"
+  integrity sha512-/86gcAJtES+rng3Mc3vP5ElyPROMp2qTw+HHPUX1MtSKTllXfEddPKnVPvB2W4jmyNlJ+QzB3khC4KJ6INuSGw==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "1.7.0"
     tslib "1.10.0"
 
 "@graphql-codegen/typescript-operations@1.7.0":

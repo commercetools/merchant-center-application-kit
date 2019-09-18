@@ -1,4 +1,4 @@
-query FetchProjectExtensionsNavbarQuery {
+query FetchProjectExtensionsNavbar {
   projectExtension {
     id
     applications(where: { isActive: true }) {

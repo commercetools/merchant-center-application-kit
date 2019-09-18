@@ -1,4 +1,4 @@
-export type Maybe<T> = T | null;
+export type Maybe<T> = T | undefined;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string,
@@ -63,7 +63,7 @@ export type TDataFence = {
 
 export type TDeleteAccountRequest = {
    __typename?: 'DeleteAccountRequest',
-  jwt?: Maybe<Scalars['String']>,
+  jwt: Maybe<Scalars['String']>,
 };
 
 export type TDeletedUser = {
@@ -92,14 +92,14 @@ export type TInvitationQueryResult = {
   isAlreadyAMemberOfTeam: Scalars['Boolean'],
   isKnownUser: Scalars['Boolean'],
   hasValidEmail: Scalars['Boolean'],
-  gravatarHash?: Maybe<Scalars['String']>,
+  gravatarHash: Maybe<Scalars['String']>,
 };
 
 export type TInvitationResult = {
    __typename?: 'InvitationResult',
   status: TInvitationStatus,
   email: Scalars['String'],
-  jwt?: Maybe<Scalars['String']>,
+  jwt: Maybe<Scalars['String']>,
 };
 
 export enum TInvitationStatus {
@@ -126,7 +126,7 @@ export type TLocalizedField = {
 
 export type TMetaData = {
   id: Scalars['ID'],
-  version?: Maybe<Scalars['Int']>,
+  version: Maybe<Scalars['Int']>,
   createdAt: Scalars['String'],
   lastModifiedAt: Scalars['String'],
 };
@@ -135,15 +135,15 @@ export type TMutation = {
    __typename?: 'Mutation',
   random: Scalars['String'],
   updateUser: TUser,
-  invite?: Maybe<Array<TInvitationResult>>,
-  importSampleData?: Maybe<Scalars['Boolean']>,
-  createMyProject?: Maybe<TProjectPendingCreation>,
-  createMyOrganization?: Maybe<TOrganizationCreated>,
-  sendLinkToResetPassword?: Maybe<TResetPasswordRequest>,
+  invite: Maybe<Array<TInvitationResult>>,
+  importSampleData: Maybe<Scalars['Boolean']>,
+  createMyProject: Maybe<TProjectPendingCreation>,
+  createMyOrganization: Maybe<TOrganizationCreated>,
+  sendLinkToResetPassword: Maybe<TResetPasswordRequest>,
   resetPassword: TUser,
-  sendLinkToSignUp?: Maybe<TSignUpRequest>,
+  sendLinkToSignUp: Maybe<TSignUpRequest>,
   signUp: TUser,
-  sendLinkToDeleteAccount?: Maybe<TDeleteAccountRequest>,
+  sendLinkToDeleteAccount: Maybe<TDeleteAccountRequest>,
   deleteAccount: TDeletedUser,
   createOAuthClient: TOAuthClient,
   deleteOAuthClient: TOAuthClient,
@@ -163,7 +163,7 @@ export type TMutation_UpdateUserArgs = {
 
 export type TMutation_InviteArgs = {
   draft: TInvitationInput,
-  origin?: Maybe<Scalars['String']>
+  origin: Maybe<Scalars['String']>
 };
 
 
@@ -174,19 +174,19 @@ export type TMutation_ImportSampleDataArgs = {
 
 export type TMutation_CreateMyProjectArgs = {
   draft: TProjectDraftType,
-  myPermission?: Maybe<TMyPermissionInitializationInput>
+  myPermission: Maybe<TMyPermissionInitializationInput>
 };
 
 
 export type TMutation_CreateMyOrganizationArgs = {
   draft: TOrganizationDraftType,
-  myPermission?: Maybe<TMyPermissionInitializationInput>
+  myPermission: Maybe<TMyPermissionInitializationInput>
 };
 
 
 export type TMutation_SendLinkToResetPasswordArgs = {
   email: Scalars['String'],
-  origin?: Maybe<Scalars['String']>
+  origin: Maybe<Scalars['String']>
 };
 
 
@@ -198,26 +198,26 @@ export type TMutation_ResetPasswordArgs = {
 
 export type TMutation_SendLinkToSignUpArgs = {
   email: Scalars['String'],
-  language?: Maybe<Scalars['String']>,
-  origin?: Maybe<Scalars['String']>
+  language: Maybe<Scalars['String']>,
+  origin: Maybe<Scalars['String']>
 };
 
 
 export type TMutation_SignUpArgs = {
   jwt: Scalars['String'],
   draft: TUserDraft,
-  trackingConfigs?: Maybe<Array<TTrackingConfig>>
+  trackingConfigs: Maybe<Array<TTrackingConfig>>
 };
 
 
 export type TMutation_SendLinkToDeleteAccountArgs = {
-  origin?: Maybe<Scalars['String']>
+  origin: Maybe<Scalars['String']>
 };
 
 
 export type TMutation_DeleteAccountArgs = {
   jwt: Scalars['String'],
-  origin?: Maybe<Scalars['String']>
+  origin: Maybe<Scalars['String']>
 };
 
 
@@ -231,16 +231,16 @@ export type TMutation_DeleteOAuthClientArgs = {
 };
 
 export type TMyPermissionInitializationInput = {
-  isEnabled?: Maybe<Scalars['Boolean']>,
-  teamId?: Maybe<Scalars['String']>,
+  isEnabled: Maybe<Scalars['Boolean']>,
+  teamId: Maybe<Scalars['String']>,
 };
 
 export type TOAuthClient = {
    __typename?: 'OAuthClient',
   id: Scalars['ID'],
   name: Scalars['String'],
-  createdAt?: Maybe<Scalars['String']>,
-  lastUsedAt?: Maybe<Scalars['String']>,
+  createdAt: Maybe<Scalars['String']>,
+  lastUsedAt: Maybe<Scalars['String']>,
   secret: Scalars['String'],
   ownerId: Scalars['ID'],
   permissions: Array<TProjectPermission>,
@@ -269,7 +269,7 @@ export type TOAuthClientTemplate = {
 export type TOrganization = TMetaData & {
    __typename?: 'Organization',
   id: Scalars['ID'],
-  version?: Maybe<Scalars['Int']>,
+  version: Maybe<Scalars['Int']>,
   createdAt: Scalars['String'],
   lastModifiedAt: Scalars['String'],
   name: Scalars['String'],
@@ -350,7 +350,7 @@ export enum TPermissionScope {
 export type TProject = TMetaData & {
    __typename?: 'Project',
   id: Scalars['ID'],
-  version?: Maybe<Scalars['Int']>,
+  version: Maybe<Scalars['Int']>,
   createdAt: Scalars['String'],
   lastModifiedAt: Scalars['String'],
   apiVersion: Scalars['String'],
@@ -366,8 +366,8 @@ export type TProject = TMetaData & {
   suspension: TProjectSuspension,
   expiry: TProjectExpiry,
   permissions: TProjectPermissions,
-  settings?: Maybe<TProjectSetting>,
-  shippingRateInputType?: Maybe<TShippingRateInputType>,
+  settings: Maybe<TProjectSetting>,
+  shippingRateInputType: Maybe<TShippingRateInputType>,
   allAppliedPermissions: Array<Maybe<TAppliedPermission>>,
   allAppliedDataFences: Array<Maybe<TAppliedDataFence>>,
   allAppliedActionRights: Array<Maybe<TAppliedActionRight>>,
@@ -381,14 +381,14 @@ export type TProjectDraftType = {
   languages: Array<Scalars['String']>,
   currencies: Array<Scalars['String']>,
   ownerId: Scalars['String'],
-  messagesEnabled?: Maybe<Scalars['Boolean']>,
-  deleteDaysAfterCreation?: Maybe<Scalars['Int']>,
+  messagesEnabled: Maybe<Scalars['Boolean']>,
+  deleteDaysAfterCreation: Maybe<Scalars['Int']>,
 };
 
 export type TProjectExpiry = {
    __typename?: 'ProjectExpiry',
   isActive: Scalars['Boolean'],
-  daysLeft?: Maybe<Scalars['Int']>,
+  daysLeft: Maybe<Scalars['Int']>,
 };
 
 export type TProjectPendingCreation = {
@@ -402,14 +402,14 @@ export type TProjectPendingCreation = {
 export type TProjectPermission = {
    __typename?: 'ProjectPermission',
   key: TPermissionScope,
-  projectKey?: Maybe<Scalars['String']>,
-  storeKey?: Maybe<Scalars['String']>,
+  projectKey: Maybe<Scalars['String']>,
+  storeKey: Maybe<Scalars['String']>,
 };
 
 export type TProjectPermissionInput = {
   key: TPermissionScope,
-  projectKey?: Maybe<Scalars['String']>,
-  storeKey?: Maybe<Scalars['String']>,
+  projectKey: Maybe<Scalars['String']>,
+  storeKey: Maybe<Scalars['String']>,
 };
 
 export type TProjectPermissions = {
@@ -492,7 +492,7 @@ export type TProjectQueryResult = TQueryResult & {
 export type TProjectSetting = TMetaData & {
    __typename?: 'ProjectSetting',
   id: Scalars['ID'],
-  version?: Maybe<Scalars['Int']>,
+  version: Maybe<Scalars['Int']>,
   createdAt: Scalars['String'],
   lastModifiedAt: Scalars['String'],
   projectId: Scalars['String'],
@@ -500,13 +500,13 @@ export type TProjectSetting = TMetaData & {
   user: Scalars['String'],
   active: Scalars['String'],
   productSettings: Array<Maybe<Scalars['String']>>,
-  currentProductSettings?: Maybe<Scalars['String']>,
+  currentProductSettings: Maybe<Scalars['String']>,
 };
 
 export type TProjectSuspension = {
    __typename?: 'ProjectSuspension',
   isActive: Scalars['Boolean'],
-  reason?: Maybe<TProjectSuspensionReason>,
+  reason: Maybe<TProjectSuspensionReason>,
 };
 
 export enum TProjectSuspensionReason {
@@ -517,24 +517,24 @@ export enum TProjectSuspensionReason {
 
 export type TQuery = {
    __typename?: 'Query',
-  release?: Maybe<Scalars['String']>,
+  release: Maybe<Scalars['String']>,
   amILoggedIn: Scalars['Boolean'],
-  me?: Maybe<TUser>,
-  project?: Maybe<TProject>,
-  organization?: Maybe<TOrganization>,
+  me: Maybe<TUser>,
+  project: Maybe<TProject>,
+  organization: Maybe<TOrganization>,
   /** 
  * Note: A `team` query exists as we do not always want to load
    * all teams of an organization just to retrieve all their members
    * to display them.
  **/
-  team?: Maybe<TTeam>,
-  invitation?: Maybe<TInvitationQueryResult>,
-  allSupportedResources?: Maybe<Array<TSupportedResource>>,
-  allSupportedActionRights?: Maybe<Array<TSupportedActionRight>>,
-  allSupportedMenuVisibilities?: Maybe<Array<TSupportedMenuVisibility>>,
+  team: Maybe<TTeam>,
+  invitation: Maybe<TInvitationQueryResult>,
+  allSupportedResources: Maybe<Array<TSupportedResource>>,
+  allSupportedActionRights: Maybe<Array<TSupportedActionRight>>,
+  allSupportedMenuVisibilities: Maybe<Array<TSupportedMenuVisibility>>,
   allImpliedOAuthScopes: Array<Scalars['String']>,
-  releases?: Maybe<TReleaseHistory>,
-  oAuthClient?: Maybe<TOAuthClient>,
+  releases: Maybe<TReleaseHistory>,
+  oAuthClient: Maybe<TOAuthClient>,
   oAuthClients: TOAuthClientQueryResult,
   oAuthScopes: Array<TPermissionScope>,
   oAuthClientTemplates: Array<TOAuthClientTemplate>,
@@ -542,7 +542,7 @@ export type TQuery = {
 
 
 export type TQuery_ProjectArgs = {
-  key?: Maybe<Scalars['String']>
+  key: Maybe<Scalars['String']>
 };
 
 
@@ -558,7 +558,7 @@ export type TQuery_TeamArgs = {
 
 
 export type TQuery_InvitationArgs = {
-  where?: Maybe<TInvitationWhereInput>
+  where: Maybe<TInvitationWhereInput>
 };
 
 
@@ -569,8 +569,8 @@ export type TQuery_AllImpliedOAuthScopesArgs = {
 
 export type TQuery_ReleasesArgs = {
   origin: TReleaseOrigin,
-  limit?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>
+  limit: Maybe<Scalars['Int']>,
+  offset: Maybe<Scalars['Int']>
 };
 
 
@@ -580,9 +580,9 @@ export type TQuery_OAuthClientArgs = {
 
 
 export type TQuery_OAuthClientsArgs = {
-  sort?: Maybe<Array<Scalars['String']>>,
-  limit?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>
+  sort: Maybe<Array<Scalars['String']>>,
+  limit: Maybe<Scalars['Int']>,
+  offset: Maybe<Scalars['Int']>
 };
 
 export type TQueryResult = {
@@ -615,8 +615,8 @@ export type TReleaseHistory = {
 
 
 export type TReleaseHistory_EntriesArgs = {
-  limit?: Maybe<Scalars['Int']>,
-  offset?: Maybe<Scalars['Int']>
+  limit: Maybe<Scalars['Int']>,
+  offset: Maybe<Scalars['Int']>
 };
 
 export enum TReleaseOrigin {
@@ -638,18 +638,18 @@ export type TResetPasswordDraft = {
 
 export type TResetPasswordRequest = {
    __typename?: 'ResetPasswordRequest',
-  jwt?: Maybe<Scalars['String']>,
+  jwt: Maybe<Scalars['String']>,
 };
 
 export type TSetUserTimeZone = {
   /** NOTE: This is optional as not passing it unsets the timezone. */
-  timeZone?: Maybe<Scalars['String']>,
+  timeZone: Maybe<Scalars['String']>,
 };
 
 export type TShippingRateInputType = {
    __typename?: 'ShippingRateInputType',
   type: TShippingRateType,
-  values?: Maybe<Array<Maybe<TCartClassificationValue>>>,
+  values: Maybe<Array<Maybe<TCartClassificationValue>>>,
 };
 
 export enum TShippingRateType {
@@ -660,7 +660,7 @@ export enum TShippingRateType {
 
 export type TSignUpRequest = {
    __typename?: 'SignUpRequest',
-  jwt?: Maybe<Scalars['String']>,
+  jwt: Maybe<Scalars['String']>,
 };
 
 export type TStoreDataFence = TDataFence & {
@@ -693,13 +693,13 @@ export type TTeam = {
   id: Scalars['ID'],
   name: Scalars['String'],
   members: TTeamMemberQueryResult,
-  permissions?: Maybe<Array<TTeamPermission>>,
+  permissions: Maybe<Array<TTeamPermission>>,
 };
 
 export type TTeamMember = TMetaData & {
    __typename?: 'TeamMember',
   id: Scalars['ID'],
-  version?: Maybe<Scalars['Int']>,
+  version: Maybe<Scalars['Int']>,
   createdAt: Scalars['String'],
   lastModifiedAt: Scalars['String'],
   email: Scalars['String'],
@@ -744,7 +744,7 @@ export enum TTrackingProvider {
 export type TUser = TMetaData & {
    __typename?: 'User',
   id: Scalars['ID'],
-  version?: Maybe<Scalars['Int']>,
+  version: Maybe<Scalars['Int']>,
   createdAt: Scalars['String'],
   lastModifiedAt: Scalars['String'],
   email: Scalars['String'],
@@ -752,13 +752,13 @@ export type TUser = TMetaData & {
   lastName: Scalars['String'],
   language: Scalars['String'],
   numberFormat: Scalars['String'],
-  timeZone?: Maybe<Scalars['String']>,
+  timeZone: Maybe<Scalars['String']>,
   launchdarklyTrackingId: Scalars['String'],
   launchdarklyTrackingGroup: Scalars['String'],
-  launchdarklyTrackingTeam?: Maybe<Array<Scalars['String']>>,
+  launchdarklyTrackingTeam: Maybe<Array<Scalars['String']>>,
   launchdarklyTrackingTenant: Scalars['String'],
   gravatarHash: Scalars['String'],
-  defaultProjectKey?: Maybe<Scalars['String']>,
+  defaultProjectKey: Maybe<Scalars['String']>,
   organizations: TOrganizationQueryResult,
   projects: TProjectQueryResult,
   permissions: TUserPermissions,
@@ -766,7 +766,7 @@ export type TUser = TMetaData & {
 
 
 export type TUser_PermissionsArgs = {
-  organizationId?: Maybe<Scalars['ID']>
+  organizationId: Maybe<Scalars['ID']>
 };
 
 export type TUserDraft = {
@@ -781,26 +781,26 @@ export type TUserPermissions = {
 };
 
 export type TUserUpdateAction = {
-  changeName?: Maybe<TChangeUserName>,
-  changePassword?: Maybe<TChangeUserPassword>,
-  changeLanguage?: Maybe<TChangeUserLanguage>,
-  changeNumberFormat?: Maybe<TChangeUserNumberFormat>,
-  setTimeZone?: Maybe<TSetUserTimeZone>,
+  changeName: Maybe<TChangeUserName>,
+  changePassword: Maybe<TChangeUserPassword>,
+  changeLanguage: Maybe<TChangeUserLanguage>,
+  changeNumberFormat: Maybe<TChangeUserNumberFormat>,
+  setTimeZone: Maybe<TSetUserTimeZone>,
 };
-export type TAmILoggedInQueryQueryVariables = {};
+export type TAmILoggedInQueryVariables = {};
 
 
-export type TAmILoggedInQueryQuery = (
+export type TAmILoggedInQuery = (
   { __typename?: 'Query' }
   & Pick<TQuery, 'amILoggedIn'>
 );
 
-export type TProjectQueryQueryVariables = {
+export type TFetchProjectQueryVariables = {
   projectKey: Scalars['String']
 };
 
 
-export type TProjectQueryQuery = (
+export type TFetchProjectQuery = (
   { __typename?: 'Query' }
   & { project: Maybe<(
     { __typename?: 'Project' }
@@ -830,10 +830,10 @@ export type TProjectQueryQuery = (
   )> }
 );
 
-export type TLoggedInUserQueryQueryVariables = {};
+export type TFetchLoggedInUserQueryVariables = {};
 
 
-export type TLoggedInUserQueryQuery = (
+export type TFetchLoggedInUserQuery = (
   { __typename?: 'Query' }
   & { user: Maybe<(
     { __typename?: 'User' }
@@ -860,10 +860,10 @@ export type TProjectFragmentFragment = (
   ) }
 );
 
-export type TProjectsQueryQueryVariables = {};
+export type TFetchUserProjectsQueryVariables = {};
 
 
-export type TProjectsQueryQuery = (
+export type TFetchUserProjectsQuery = (
   { __typename?: 'Query' }
   & { user: Maybe<(
     { __typename?: 'User' }
@@ -877,10 +877,10 @@ export type TProjectsQueryQuery = (
   )> }
 );
 
-export type TSelectUserIdQueryQueryVariables = {};
+export type TFetchUserIdQueryVariables = {};
 
 
-export type TSelectUserIdQueryQuery = (
+export type TFetchUserIdQuery = (
   { __typename?: 'Query' }
   & { user: Maybe<(
     { __typename?: 'User' }
