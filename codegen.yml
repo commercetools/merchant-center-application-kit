@@ -1,4 +1,7 @@
 overwrite: true
+hooks:
+  afterAllFileWrite:
+    - prettier --write --parser graphql
 generates:
   # CTP
   packages/application-shell/src/types/generated/graphql-types-ctp.ts:
