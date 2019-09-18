@@ -17,10 +17,10 @@ describe('rendering', () => {
             firstName: 'foo',
             lastName: 'bar',
             language: 'en',
+            timeZone: undefined,
             // Fields that should not be exposed
             numberFormat: 'en',
             gravatarHash: 'aaa',
-            launchdarklyTrackingId: '1',
             defaultProjectKey: 'aaaa',
             projects: {
               total: 1,
@@ -33,6 +33,10 @@ describe('rendering', () => {
                 },
               ],
             },
+            launchdarklyTrackingGroup: 'commercetools',
+            launchdarklyTrackingId: '111',
+            launchdarklyTrackingTeam: undefined,
+            launchdarklyTrackingTenant: 'gcp-eu',
           }}
           project={{
             key: 'foo-1',
@@ -41,12 +45,21 @@ describe('rendering', () => {
             countries: ['us'],
             currencies: ['USD'],
             languages: ['en'],
-            permissions: { canManageProjectSettings: true },
-            actionRights: null,
-            dataFences: null,
+            allAppliedPermissions: [
+              { name: 'canManageProjectSettings', value: true },
+            ],
+            allAppliedActionRights: [],
+            allAppliedDataFences: [],
+            allAppliedMenuVisibilities: [],
             // Fields that should not be exposed
-            expiry: { isActive: false },
-            suspension: { isActive: false },
+            initialized: true,
+            expiry: {
+              isActive: true,
+              daysLeft: undefined,
+            },
+            suspension: {
+              isActive: true,
+            },
             owner: { id: 'o1' },
           }}
           projectDataLocale="en"

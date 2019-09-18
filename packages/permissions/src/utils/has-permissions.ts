@@ -37,7 +37,7 @@ type TDataFenceType = 'store';
 // };
 type TDataFences = {
   // E.g. { store: {...} }
-  store: TDataFenceGroupedByResourceType;
+  store?: TDataFenceGroupedByResourceType;
 };
 type TDemandedDataFence = {
   group: string;
@@ -227,7 +227,7 @@ const getDataFenceByPermissionGroup = (
 ) => {
   if (storeKey in dataFences) {
     const resourceType = dataFences[storeKey];
-    if (groupKey in resourceType) {
+    if (resourceType && groupKey in resourceType) {
       return resourceType[groupKey];
     }
   }
