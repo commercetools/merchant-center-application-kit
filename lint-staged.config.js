@@ -1,7 +1,14 @@
 module.exports = {
-  '*.{md,mdx}': ['yarn format:md', 'git add'],
-  '*.yaml': ['yarn format:yaml', 'git add'],
+  '*.{md,mdx}': ['prettier --write --parser markdown', 'git add'],
+  '*.yaml': ['prettier --write --parser yaml', 'git add'],
+  '*.graphql': [
+    'prettier --write --parser graphql',
+    'git add',
+    'yarn generate:types',
+  ],
   '*.{js,ts,tsx}': [
+    'prettier --write',
+    'git add',
     // NOTE: apparently if you pass some argument that is not a flag AFTER the `reporters`
     // flag, jest does not seem correctly parse the arguments.
     //
@@ -13,6 +20,8 @@ module.exports = {
     'yarn lint:js --reporters=jest-silent-reporter --onlyChanged',
   ],
   '*.css': [
+    'prettier --write --parser css',
+    'git add',
     // NOTE: apparently if you pass some argument that is not a flag AFTER the `reporters`
     // flag, jest does not seem correctly parse the arguments.
     //

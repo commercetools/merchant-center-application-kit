@@ -1,4 +1,4 @@
-query ProjectQuery($projectKey: String!) {
+query FetchProject($projectKey: String!) {
   project(key: $projectKey) {
     key
     version
@@ -41,4 +41,3 @@ query ProjectQuery($projectKey: String!) {
     }
   }
 }
-

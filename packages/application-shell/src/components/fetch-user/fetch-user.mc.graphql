@@ -1,6 +1,6 @@
 #import "../project-switcher/project-switcher-fragments.mc.graphql"
 
-query LoggedInUserQuery {
+query FetchLoggedInUser {
   user: me {
     id
     email

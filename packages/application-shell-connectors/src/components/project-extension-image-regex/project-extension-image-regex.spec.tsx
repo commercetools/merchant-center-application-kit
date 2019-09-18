@@ -12,7 +12,7 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import {
   ProjectExtensionProviderForImageRegex,
   GetProjectExtensionImageRegex,
-  TImageRegex,
+  TImageRegexContext,
 } from './project-extension-image-regex';
 import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.settings.graphql';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -20,7 +20,7 @@ import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 jest.mock('@commercetools-frontend/sentry');
 
 type TestProps = {
-  imageRegex: TImageRegex;
+  imageRegex: TImageRegexContext['imageRegex'];
 };
 const TestComponent = (props: TestProps) => (
   <>

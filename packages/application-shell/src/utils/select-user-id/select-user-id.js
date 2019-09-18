@@ -1,9 +1,9 @@
-import UserIdQuery from './select-user-id.mc.graphql';
+import SelectUserIdQuery from './select-user-id.mc.graphql';
 
 export default function selectUserId({ apolloCache }) {
   try {
     const queryResult = apolloCache.readQuery({
-      query: UserIdQuery,
+      query: SelectUserIdQuery,
     });
 
     if (queryResult && queryResult.user) {

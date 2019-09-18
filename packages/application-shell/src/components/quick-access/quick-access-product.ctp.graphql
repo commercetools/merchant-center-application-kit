@@ -1,4 +1,4 @@
-query QuickAccessProductQuery($productId: String!) {
+query QuickAccessProduct($productId: String!) {
   product(id: $productId) {
     id
     masterData {
