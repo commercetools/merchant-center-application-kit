@@ -54,11 +54,11 @@ describe('rendering', () => {
             // Fields that should not be exposed
             initialized: true,
             expiry: {
-              isActive: true,
+              isActive: false,
               daysLeft: undefined,
             },
             suspension: {
-              isActive: true,
+              isActive: false,
             },
             owner: { id: 'o1' },
           }}

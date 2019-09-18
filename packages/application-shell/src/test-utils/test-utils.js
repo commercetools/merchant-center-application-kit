@@ -42,8 +42,18 @@ const defaultProject = {
   owner: {
     id: 'project-id-1',
   },
-  suspension: { isActive: false },
-  expiry: { isActive: false },
+  initialized: true,
+  expiry: {
+    isActive: false,
+    daysLeft: undefined,
+  },
+  suspension: {
+    isActive: false,
+  },
+  allAppliedPermissions: [],
+  allAppliedActionRights: [],
+  allAppliedMenuVisibilities: [],
+  allAppliedDataFences: [],
 };
 
 const defaultUser = {
@@ -53,11 +63,17 @@ const defaultUser = {
   lastName: 'Cooper',
   language: 'en',
   timeZone: 'Etc/UTC',
+  numberFormat: 'en',
   defaultProjectKey: defaultProject.key,
   projects: {
     total: 1,
     results: [defaultProject],
   },
+  gravatarHash: 'aaa',
+  launchdarklyTrackingGroup: 'commercetools',
+  launchdarklyTrackingId: '111',
+  launchdarklyTrackingTeam: undefined,
+  launchdarklyTrackingTenant: 'gcp-eu',
 };
 
 const defaultEnvironment = {
@@ -95,6 +111,73 @@ const defaultGtmTracking = {
   getHierarchy: jest.fn(),
 };
 const defaultFlopflipAdapterArgs = {};
+
+const denormalizePermissions = permissions => {
+  if (!permissions) return;
+  return Object.keys(permissions).reduce(
+    (allAppliedPermissions, permissionKey) => [
+      ...allAppliedPermissions,
+      { name: permissionKey, value: permissions[permissionKey] },
+    ],
+    []
+  );
+};
+const denormalizeActionRights = actionRights => {
+  if (!actionRights) return;
+  return Object.keys(actionRights).reduce(
+    (allAppliedActionRights, actionRightGroup) => [
+      ...allAppliedActionRights,
+      ...Object.keys(actionRights[actionRightGroup]).reduce(
+        (allActionRightsByGroup, actionRightKey) => [
+          ...allActionRightsByGroup,
+          {
+            group: actionRightGroup,
+            name: actionRightKey,
+            value: actionRights[actionRightGroup][actionRightKey],
+          },
+        ]
+      ),
+    ],
+    []
+  );
+};
+const denormalizeDataFences = dataFences => {
+  if (!dataFences) return;
+  return Object.keys(dataFences).reduce(
+    (allAppliedDataFences, dataFenceGroupKey) => {
+      switch (dataFenceGroupKey) {
+        case 'store':
+          return [
+            ...allAppliedDataFences,
+            ...Object.keys(dataFences.store).reduce(
+              (allResources, resourceType) => [
+                ...allResources,
+                ...Object.keys(dataFences.store[resourceType]).reduce(
+                  (allPermissions, permissionKey) => [
+                    ...allPermissions,
+                    ...dataFences.store[resourceType][permissionKey].values.map(
+                      value => ({
+                        __typename: 'StoreDataFence',
+                        type: 'store',
+                        value,
+                        group: resourceType,
+                        name: permissionKey,
+                      })
+                    ),
+                  ],
+                  []
+                ),
+              ],
+              []
+            ),
+          ];
+        default:
+          return allAppliedDataFences;
+      }
+    },
+    []
+  );
+};
 
 // This function renders any component within the application context, as if it
 // was rendered inside <ApplicationShell />.
@@ -156,9 +239,9 @@ const renderApp = (
               project={
                 mergedProject && {
                   ...mergedProject,
-                  permissions,
-                  actionRights,
-                  dataFences,
+                  allAppliedPermissions: denormalizePermissions(permissions),
+                  allAppliedActionRights: denormalizeActionRights(actionRights),
+                  allAppliedDataFences: denormalizeDataFences(dataFences),
                 }
               }
               environment={mergedEnvironment}

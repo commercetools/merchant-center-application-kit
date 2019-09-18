@@ -55,11 +55,11 @@ const testRender = ({
         },
         initialized: true,
         expiry: {
-          isActive: true,
+          isActive: false,
           daysLeft: undefined,
         },
         suspension: {
-          isActive: true,
+          isActive: false,
         },
         allAppliedPermissions,
         allAppliedActionRights,

@@ -27,7 +27,7 @@ export const normalizeAllAppliedPermissions = (
 ) => {
   if (!project) return null;
   const allAppliedPermissions = project.allAppliedPermissions;
-  if (allAppliedPermissions.length === 0) {
+  if (!allAppliedPermissions || allAppliedPermissions.length === 0) {
     return null;
   }
   return allAppliedPermissions.reduce((transformedAllApplied, allApplied) => {
@@ -44,7 +44,7 @@ export const normalizeAllAppliedMenuVisibilities = (
 ) => {
   if (!project) return null;
   const allAppliedMenuVisibilities = project.allAppliedMenuVisibilities;
-  if (allAppliedMenuVisibilities.length === 0) {
+  if (!allAppliedMenuVisibilities || allAppliedMenuVisibilities.length === 0) {
     return null;
   }
   return allAppliedMenuVisibilities.reduce(
@@ -71,7 +71,7 @@ export const normalizeAllAppliedActionRights = (
 ) => {
   if (!project) return null;
   const allAppliedActionRights = project.allAppliedActionRights;
-  if (allAppliedActionRights.length === 0) {
+  if (!allAppliedActionRights || allAppliedActionRights.length === 0) {
     return null;
   }
   return allAppliedActionRights.reduce<NormalizedActionRights>(
@@ -189,7 +189,7 @@ export const normalizeAllAppliedDataFences = (
 ) => {
   if (!project) return null;
   const allAppliedDataFences = project.allAppliedDataFences;
-  if (allAppliedDataFences.length === 0) {
+  if (!allAppliedDataFences || allAppliedDataFences.length === 0) {
     return null;
   }
   const groupedByType = allAppliedDataFences.reduce<NormalizedGroupByType>(
