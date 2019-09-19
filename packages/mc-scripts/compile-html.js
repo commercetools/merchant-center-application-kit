@@ -51,6 +51,7 @@ const paths = {
   envPath: flags.config,
   featurePoliciesPath: flags.featurePolicies,
   cspPath: flags.csp,
+  headersPath: flags.headers,
   publicAssetsPath: resolveApp('public'),
   // NOTE: previously, for running the prod server locally, we were copying
   // assets into public/assets and compiling the index.html into public folder.
