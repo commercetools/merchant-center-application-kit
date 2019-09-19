@@ -7,7 +7,7 @@ jest.mock('../../utils/gtm');
 
 const createTestProps = custom => ({
   user: {
-    id: 1,
+    id: 'user-id',
     firstName: 'Confoozius',
   },
   ...custom,
@@ -88,8 +88,6 @@ describe('syncUser', () => {
     wrapper.instance().syncUser();
   });
   it('should call updateUser with the user object', () => {
-    expect(updateUser).toHaveBeenCalledWith(
-      expect.objectContaining(props.user)
-    );
+    expect(updateUser).toHaveBeenCalledWith(props.user.id);
   });
 });

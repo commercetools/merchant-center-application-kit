@@ -70,11 +70,14 @@ describe('reportErrorToSentry', () => {
 
     it('should send report with extra info', () => {
       const report = testkit.reports()[0];
-      expect(report).toHaveProperty('extra', { extra: 'hello' });
+      expect(report).toHaveProperty(
+        'extra',
+        expect.objectContaining({ extra: 'hello' })
+      );
     });
   });
 
-  describe('when error is not an instance of Error', () => {
+  describe('when error is a string', () => {
     describe('when sentry is not enabled', () => {
       beforeEach(() => {
         console.warn = jest.fn();
@@ -85,7 +88,7 @@ describe('reportErrorToSentry', () => {
       it('should warn about malformed error object', () => {
         expect(console.warn).toHaveBeenCalledWith(
           expect.stringContaining(
-            `You called "reportErrorToSentry" with an argument that is not an instance of "Error"`
+            `You called "reportErrorToSentry" with a string argument`
           )
         );
       });
