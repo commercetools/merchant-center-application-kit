@@ -90,7 +90,7 @@ const eventHandler = (
   let trackLabel: string | undefined;
   let trackStrict: string | undefined;
 
-  let node = event.target as Node;
+  let node = event.target as Node | null;
   const originalNode = node;
 
   // Traverse the target elements' parents to find a `data-track` attribute,
@@ -111,9 +111,7 @@ const eventHandler = (
 
     if (dataTrackComponent) hierarchy.push(dataTrackComponent);
 
-    if (node.parentNode) {
-      node = node.parentNode;
-    }
+    node = node.parentNode || null;
   }
 
   if (!trackEvent) return;
