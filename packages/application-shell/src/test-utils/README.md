@@ -104,7 +104,7 @@ describe('FirstName', () => {
 });
 ```
 
-When passing `null` for `user` the default `user` will not be added to the context and the component-under-test will get rendered as-if no user was authenticated. This also works for `project`, `permissions` and `environment` as you will see below.
+When passing `null` for `user` the default `user` will not be added to the context and the component-under-test will get rendered as-if no user was authenticated. This also works for `project` and `environment` as you will see below.
 
 ### API
 
@@ -128,7 +128,6 @@ This section describes the methods exported by `@commercetools-frontend/applicat
 | `options.environment` | `Object`      | [Application Context](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md#environment) | Allows to set the `applicationContext.environment`. The passed object gets merged with the tests default environment. Pass `null` to completely remove the `environment`, which renders the `ui` as if no `environment` was given.                                                                                                                                                 |
 | `options.user`        | `Object`      | [Application Context](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md#user)        | Allows to set the `applicationContext.user`. The passed object gets merged with the tests default user. Pass `null` to completely remove the `user`, which renders the `ui` as if no user was authenticated.                                                                                                                                                                       |
 | `options.project`     | `Object`      | [Application Context](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md#project)     | Allows to set the `applicationContext.project`. The passed object gets merged with the tests default project. Pass `null` to completely remove the `project` which renders the `ui` outside of a project context.                                                                                                                                                                  |
-| `options.permissions` | `Object`      | [Application Context](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md#permissions) | Use `options.permissions` to influence the user's permissions in the project. The permissions will overwrite the default permissions.                                                                                                                                                                                                                                              |
 | `options.gtmTracking` | `Object`      | [Gtm Context](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell/src/components/gtm-booter/gtm-booter.js)                                     | Allows to overwrite gtm tracking functions: `{ track, getHierarchy }`. Defaults to `jest.fn()`                                                                                                                                                                                                                                                                                     |
 
 **Additional return values**
@@ -413,15 +412,64 @@ describe('Profile', () => {
 
 #### Application Context
 
-See the [Basics](#basics) example. The same works for `project` and `environment` as well. Check out [`ApplicationContext`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md) to learn about the details of `applicationContext` like `user`, `project`, `permissions` and `environment`.
+See the [Basics](#basics) example. The same works for `project` and `environment` as well. Check out [`ApplicationContext`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/application-shell-connectors/src/components/application-context/README.md) to learn about the details of `applicationContext` like `user`, `project` and `environment`.
 
-#### Permissions
+Additionally, there are some top level fields that you can use to change the behaviour of things related to permissions:
+
+- `permissions`: pass a key-value object of normalized permissions that the user should have for the given project.
+
+```js
+renderApp(<MyComponent />, {
+  permissions: { canManageProjectSettings: true },
+});
+```
+
+- `actionRights`: (_beta feature_) pass a nested key-value object of normalized action rights that the user should have for the given project.
+
+```js
+renderApp(<MyComponent />, {
+  actionRights: { products: { canEditPrices: true } },
+});
+```
+
+- `dataFences`: (_beta feature_) pass a nested key-value object of normalized data fences that the user should have for the given project.
+
+```js
+renderApp(<MyComponent />, {
+  dataFences: { store: { orders: { canViewOrders: { values: ['store-1'] } } } },
+});
+```
+
+You can also pass the original shape of the properties listed above to the `project` object:
+
+- `allAppliedPermissions`: pass a list of permissions that the user should have for the given project.
+- `allAppliedActionRights`: (_beta feature_) pass a list of action rights that the user should have for the given project.
+- `allAppliedDataFences`: (_beta feature_) pass a list of data fences that the user should have for the given project.
+
+```js
+renderApp(<MyComponent />, {
+  project: {
+    allAppliedPermissions: [{ name: 'canManageProjectSettings', value: true }],
+    allAppliedActionRights: [
+      { group: 'products', name: 'canEditPrices', value: true },
+    ],
+    allAppliedDataFences: [
+      {
+        type: 'store',
+        group: 'orders',
+        name: 'canViewOrders',
+        value: 'store-1',
+      },
+    ],
+  },
+});
+```
+
+#### Example for permissions
 
 ```jsx
 const DeleteProductButton = () => (
-  <RestrictedByPermissions
-    permissions={[{ mode: 'manage', resource: 'products' }]}
-  >
+  <RestrictedByPermissions permissions={['ManageProducts']}>
     {({ isAuthorized }) => (
       <button type="button" onClick={() => {}} disabled={!isAuthorized}>
         Delete Product
