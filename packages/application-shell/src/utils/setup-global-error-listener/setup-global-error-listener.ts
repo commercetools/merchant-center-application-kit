@@ -1,5 +1,8 @@
 import { showUnexpectedErrorNotification } from '@commercetools-frontend/actions-global';
-import { boot as bootSentry } from '@commercetools-frontend/sentry';
+import {
+  boot as bootSentry,
+  reportErrorToSentry,
+} from '@commercetools-frontend/sentry';
 import internalReduxStore from '../../configure-store';
 
 // Ensure to initialize Sentry as soon as possible, so that we have the chance
@@ -22,15 +25,14 @@ export default function setupGlobalErrorListener() {
           'handled. This is most likely a bug in the software. Please ensure ' +
           'that the promise is correctly handled.'
       );
-    internalReduxStore.dispatch(
-      showUnexpectedErrorNotification({ error: { message: event.reason } })
-    );
+
+    const errorId = reportErrorToSentry(event);
+    internalReduxStore.dispatch(showUnexpectedErrorNotification({ errorId }));
   });
 
   // Capture normal global errors coming from non Promise code.
   window.addEventListener('error', errorEvent => {
-    internalReduxStore.dispatch(
-      showUnexpectedErrorNotification({ error: errorEvent })
-    );
+    const errorId = reportErrorToSentry(errorEvent);
+    internalReduxStore.dispatch(showUnexpectedErrorNotification({ errorId }));
   });
 }

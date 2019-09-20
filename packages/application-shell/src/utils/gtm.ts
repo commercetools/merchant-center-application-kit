@@ -1,11 +1,31 @@
 /**
  * Google Tag Manager (GTM) Tracking Utilities
  */
+import { ApplicationWindow } from '@commercetools-frontend/constants';
 import camelcase from 'lodash/camelCase';
 import logger from './logger';
 
-const getDataAttribute = (node, key) => {
-  if (node.dataset) {
+declare let window: ApplicationWindow;
+
+type TrackingWhitelistValueMap = { [key: string]: string };
+type TrackingWhitelistValue = string | TrackingWhitelistValueMap;
+type TrackingWhitelist = {
+  [key: string]: TrackingWhitelistValue;
+};
+
+const isPlainTrackingWhitelistValue = (
+  value: TrackingWhitelistValue
+): value is string => typeof value === 'string';
+
+const isObjectTrackingWhitelistValue = (
+  value: TrackingWhitelistValue
+): value is TrackingWhitelistValueMap => typeof value === 'object';
+
+const isHtmlElement = (node: Node | HTMLElement): node is HTMLElement =>
+  (node as HTMLElement).dataset !== undefined;
+
+const getDataAttribute = (node: Node, key: string) => {
+  if (isHtmlElement(node)) {
     const camelKey = camelcase(key.replace(/^data-/, ''));
     return node.dataset[camelKey];
   }
@@ -28,8 +48,20 @@ export const defaultEventWhitelist = {
 };
 
 const logTracking = (
-  { action, category, label, variable, value },
-  { isIgnored } = { isIgnored: false }
+  {
+    action,
+    category,
+    label,
+    variable,
+    value,
+  }: {
+    action?: string;
+    category: string;
+    label?: string;
+    variable?: string;
+    value?: unknown;
+  },
+  { isIgnored }: { isIgnored: boolean } = { isIgnored: false }
 ) => {
   const groupName = `%cGTM ${
     isIgnored ? '%cignoring' : '%cperforming'
@@ -54,7 +86,7 @@ const logTracking = (
   logger.groupEnd();
 };
 
-export const track = (action, category, label) => {
+export const track = (action: string, category: string, label?: string) => {
   if (!window.dataLayer) return;
 
   logTracking({
@@ -74,7 +106,17 @@ export const track = (action, category, label) => {
   });
 };
 
-export const trackTiming = ({ category, variable, value, label }) => {
+export const trackTiming = ({
+  category,
+  variable,
+  value,
+  label,
+}: {
+  category: string;
+  variable: string;
+  value: string;
+  label?: string;
+}) => {
   if (window.dataLayer && window.app.trackingGtm) {
     logTracking({
       variable,
@@ -94,17 +136,17 @@ export const trackTiming = ({ category, variable, value, label }) => {
 };
 
 // Track custom dimensions
-export const trackApplicationName = applicationName => {
+export const trackApplicationName = (applicationName?: string) => {
   if (window.dataLayer && window.app.trackingGtm && applicationName)
     window.dataLayer.push({ applicationName });
 };
-export const trackProjectKey = projectKey => {
+export const trackProjectKey = (projectKey?: string) => {
   if (window.dataLayer && window.app.trackingGtm && projectKey)
     window.dataLayer.push({ projectKey });
 };
 
 // Sometimes necessary to manually get the hierarchy.
-export const getHierarchy = node => {
+export const getHierarchy = (node: Node) => {
   const hierarchy = [];
   let parent = node;
 
@@ -112,21 +154,27 @@ export const getHierarchy = node => {
     const dataTrackComponent = getDataAttribute(parent, 'data-track-component');
     if (dataTrackComponent) hierarchy.push(dataTrackComponent);
 
-    parent = parent.parentNode;
+    if (parent.parentNode) {
+      parent = parent.parentNode;
+    }
   }
 
   hierarchy.reverse();
   return hierarchy.join('-');
 };
 
-const eventHandler = (name, trackingEventWhitelist) => event => {
-  let hierarchy = [];
-  let node;
-  let trackEvent;
-  let trackLabel;
-  let trackStrict;
+const eventHandler = (
+  name: string,
+  trackingEventWhitelist: TrackingWhitelist
+) => (event: Event) => {
+  if (!event.target) return;
 
-  node = event.target;
+  const hierarchy: string[] = [];
+  let trackEvent: string | undefined;
+  let trackLabel: string | undefined;
+  let trackStrict: string | undefined;
+
+  let node = event.target as Node | null;
   const originalNode = node;
 
   // Traverse the target elements' parents to find a `data-track` attribute,
@@ -147,12 +195,13 @@ const eventHandler = (name, trackingEventWhitelist) => event => {
 
     if (dataTrackComponent) hierarchy.push(dataTrackComponent);
 
-    node = node.parentNode;
+    node = node.parentNode || null;
   }
 
+  if (!trackEvent) return;
   if (trackEvent !== name) return;
 
-  hierarchy = hierarchy.reverse().join('-');
+  let hierarchyKey = hierarchy.reverse().join('-');
 
   // The event map also serves as a whitelist. This is really not intuitive
   // by looking at the name.
@@ -170,30 +219,31 @@ const eventHandler = (name, trackingEventWhitelist) => event => {
   // specific application, but by parts of the application shell itself like the
   // menu or the profile view.
 
-  const eventWhiteList = {
+  const eventWhiteList: TrackingWhitelist = {
     ...defaultEventWhitelist,
     ...trackingEventWhitelist,
   };
+  const eventValue = eventWhiteList[hierarchyKey];
   // This checks:
   // 1. if the event is in the whitelist and is a string, map it
   // 2. if the event is in the whitelist, is an object,
   //   and there is a matching key, then map to the value
   // 3. if the event is not in the whitelist then don't track
-  if (typeof eventWhiteList[hierarchy] === 'string')
-    hierarchy = eventWhiteList[hierarchy];
+  if (isPlainTrackingWhitelistValue(eventValue)) hierarchyKey = eventValue;
   else if (
-    typeof eventWhiteList[hierarchy] === 'object' &&
-    trackLabel in eventWhiteList[hierarchy]
+    isObjectTrackingWhitelistValue(eventValue) &&
+    trackLabel &&
+    trackLabel in eventValue
   )
-    hierarchy = eventWhiteList[hierarchy][trackLabel];
+    hierarchyKey = eventValue[trackLabel];
   else {
     logTracking(
       {
         action: trackEvent,
         category:
-          typeof hierarchy === 'object' && trackLabel in hierarchy
-            ? hierarchy[trackLabel]
-            : hierarchy,
+          typeof hierarchyKey === 'object' && trackLabel
+            ? hierarchyKey[trackLabel]
+            : hierarchyKey,
         label: trackLabel,
       },
       { isIgnored: true }
@@ -204,25 +254,28 @@ const eventHandler = (name, trackingEventWhitelist) => event => {
 
   logTracking({
     action: trackEvent,
-    category: typeof hierarchy === 'object' ? hierarchy[trackLabel] : hierarchy,
+    category:
+      typeof hierarchyKey === 'object' && trackLabel
+        ? hierarchyKey[trackLabel]
+        : hierarchyKey,
     label: trackLabel,
   });
 
-  track(trackEvent, hierarchy, trackLabel);
+  track(trackEvent, hierarchyKey, trackLabel);
 };
 
 const events = ['click', 'change', 'drop'];
 
-export const boot = trackingEventWhitelist => {
+export const boot = (trackingEventWhitelist: TrackingWhitelist) => {
   events.forEach(event => {
     const handler = eventHandler(event, trackingEventWhitelist);
     window.addEventListener(event, handler, true);
   });
 };
 
-export const updateUser = user => {
+export const updateUser = (userId: string) => {
   if (window.dataLayer && window.app.trackingGtm)
-    window.dataLayer.push({ userId: user.id });
+    window.dataLayer.push({ userId });
 };
 
 export const stopTrackingUser = () => {
