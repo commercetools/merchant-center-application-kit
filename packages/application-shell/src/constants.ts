@@ -7,12 +7,12 @@ export const STORAGE_KEYS = {
   SELECTED_DATA_LOCALE: 'selectedDataLocale',
   IS_FORCED_MENU_OPEN: 'isForcedMenuOpen',
   LOGIN_STRATEGY: 'loginStrategy',
-};
+} as const;
 export const SUSPENSION_REASONS = {
   TEMPORARY_MAINTENANCE: 'TemporaryMaintenance',
   PAYMENT: 'Payment',
   OTHER: 'Other',
-};
+} as const;
 
 // SSO
 export const ORGANIZATION_GENERAL_ERROR = 'organizationGeneralError';
