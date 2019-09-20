@@ -14,12 +14,21 @@ export const isLoggerEnabled = () => {
   return false;
 };
 
-export default {
+const logger: {
+  groupCollapsed(groupTitle?: string, ...optionalParams: unknown[]): void;
+  groupEnd(): void;
+  info(message?: unknown, ...optionalParams: unknown[]): void;
+  log(message?: unknown, ...optionalParams: unknown[]): void;
+  error(message?: unknown, ...optionalParams: unknown[]): void;
+  warn(message?: unknown, ...optionalParams: unknown[]): void;
+} = {
   groupCollapsed: (...args) =>
     isLoggerEnabled() && console.groupCollapsed(...args),
-  groupEnd: (...args) => isLoggerEnabled() && console.groupEnd(...args),
+  groupEnd: () => isLoggerEnabled() && console.groupEnd(),
   info: (...args) => isLoggerEnabled() && console.info(...args),
   log: (...args) => isLoggerEnabled() && console.log(...args),
   error: (...args) => isLoggerEnabled() && console.error(...args),
   warn: (...args) => isLoggerEnabled() && console.warn(...args),
 };
+
+export default logger;

@@ -6,11 +6,19 @@ import { createHttpLink } from 'apollo-link-http';
 import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
+  IdGetterObj,
 } from 'apollo-cache-inmemory';
+import { ApplicationWindow } from '@commercetools-frontend/constants';
 import createHttpUserAgent from '@commercetools/http-user-agent';
 import { errorLink, headerLink, tokenRetryLink } from './apollo-links';
 import { isLoggerEnabled } from './utils/logger';
 import version from './version';
+
+declare let window: ApplicationWindow;
+
+type CustomIdGetterObj = IdGetterObj & {
+  key?: string;
+};
 
 const userAgent = createHttpUserAgent({
   name: 'apollo-client',
@@ -93,20 +101,23 @@ export const createApolloClient = () =>
     cache: new InMemoryCache({
       fragmentMatcher,
       dataIdFromObject: result => {
+        const customResult = result as CustomIdGetterObj;
         if (
-          !result.id &&
-          typeNamesWithoutIdAsIdentifier.includes(result.__typename)
+          !customResult.id &&
+          customResult.key &&
+          customResult.__typename &&
+          typeNamesWithoutIdAsIdentifier.includes(customResult.__typename)
         )
-          return `${result.__typename}:${result.key}`;
+          return `${customResult.__typename}:${customResult.key}`;
         // Generally all id's are unique accross the platform, so we don't need to
         // include the type name in the cache key.
         // However, a reference has the shape { typeId, id } where the id is the
         // id of the referenced entity. If we didn't prefix ids of References
         // they would clash with the referenced resource.
-        if (result.__typename === 'Reference')
-          return `${result.__typename}:${result.id}`;
+        if (customResult.__typename === 'Reference')
+          return `${customResult.__typename}:${customResult.id}`;
 
-        return result.id;
+        return customResult.id;
       },
     }),
   });

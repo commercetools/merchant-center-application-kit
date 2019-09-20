@@ -1,3 +1,5 @@
+import ApolloClient from 'apollo-client';
+import { NormalizedCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import omitEmpty from 'omit-empty-es';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -8,14 +10,26 @@ import {
   selectUserId,
 } from '../utils';
 
-const isKnownGraphQlTarget = target =>
+type GraphQlTarget = typeof GRAPHQL_TARGETS[keyof typeof GRAPHQL_TARGETS];
+
+type ApolloContext = {
+  uri?: string;
+  cache: ApolloClient<NormalizedCache>;
+};
+
+type QueryVariables = {
+  target: GraphQlTarget;
+  projectKey?: string;
+  teamId?: string;
+};
+
+const isKnownGraphQlTarget = (target: GraphQlTarget) =>
   Object.values(GRAPHQL_TARGETS).includes(target);
-const omitEmptyHeaders = headers => omitEmpty(headers);
 
 /* eslint-disable import/prefer-default-export */
 // Use a middleware to update the request headers with the correct params.
 const headerLink = new ApolloLink((operation, forward) => {
-  const { uri, cache } = operation.getContext();
+  const { uri, cache } = operation.getContext() as ApolloContext;
 
   // In case the `context` contains a `uri`, it means that we are not sending
   // the request to the MC API, but to another server.
@@ -25,7 +39,9 @@ const headerLink = new ApolloLink((operation, forward) => {
     return forward(operation);
   }
 
-  const graphQlTarget = operation.variables.target;
+  const variables = operation.variables as QueryVariables;
+
+  const graphQlTarget = variables.target;
   if (!isKnownGraphQlTarget(graphQlTarget))
     throw new Error(
       `GraphQL target "${graphQlTarget}" is missing or is not supported`
@@ -39,14 +55,13 @@ const headerLink = new ApolloLink((operation, forward) => {
    *   As a result we allow passing the project key as a variable on the operation allowing
    *   it to be the fallback.
    */
-  const projectKey =
-    operation.variables.projectKey || selectProjectKeyFromUrl();
-  const teamId = operation.variables.teamId || selectTeamIdFromLocalStorage();
+  const projectKey = variables.projectKey || selectProjectKeyFromUrl();
+  const teamId = variables.teamId || selectTeamIdFromLocalStorage();
   const userId = selectUserId({ apolloCache: cache });
 
   operation.setContext({
     credentials: 'include',
-    headers: omitEmptyHeaders({
+    headers: omitEmpty({
       'X-Project-Key': projectKey,
       'X-Correlation-Id': getCorrelationId({ userId }),
       'X-Graphql-Target': graphQlTarget,
