@@ -42,8 +42,18 @@ const defaultProject = {
   owner: {
     id: 'project-id-1',
   },
-  suspension: { isActive: false },
-  expiry: { isActive: false },
+  initialized: true,
+  expiry: {
+    isActive: false,
+    daysLeft: undefined,
+  },
+  suspension: {
+    isActive: false,
+  },
+  allAppliedPermissions: [],
+  allAppliedActionRights: [],
+  allAppliedMenuVisibilities: [],
+  allAppliedDataFences: [],
 };
 
 const defaultUser = {
@@ -53,11 +63,17 @@ const defaultUser = {
   lastName: 'Cooper',
   language: 'en',
   timeZone: 'Etc/UTC',
+  numberFormat: 'en',
   defaultProjectKey: defaultProject.key,
   projects: {
     total: 1,
     results: [defaultProject],
   },
+  gravatarHash: 'aaa',
+  launchdarklyTrackingGroup: 'commercetools',
+  launchdarklyTrackingId: '111',
+  launchdarklyTrackingTeam: undefined,
+  launchdarklyTrackingTenant: 'gcp-eu',
 };
 
 const defaultEnvironment = {
@@ -96,6 +112,128 @@ const defaultGtmTracking = {
 };
 const defaultFlopflipAdapterArgs = {};
 
+// For backwards compatibility we need to denormalize the given `permissions` option
+// (which is now deprecated) to `allAppliedPermissions`, in order to pass the value
+// to the `project` prop in the application context provider.
+// From:
+// {
+//   permissions: {
+//     canManageProjectSettings: true
+//   }
+// }
+// To:
+// {
+//   allAppliedPermissions: [
+//     { name: 'canManageProjectSettings', value: true }
+//   ]
+// }
+const denormalizePermissions = permissions => {
+  if (!permissions) return;
+  return Object.keys(permissions).reduce(
+    (allAppliedPermissions, permissionKey) => [
+      ...allAppliedPermissions,
+      { name: permissionKey, value: permissions[permissionKey] },
+    ],
+    []
+  );
+};
+// For backwards compatibility we need to denormalize the given `actionRights` option
+// (which is now deprecated) to `allAppliedActionRights`, in order to pass the value
+// to the `project` prop in the application context provider.
+// From:
+// {
+//   actionRights: {
+//     products: {
+//       canEditPrices: true,
+//       canPublishProducts: false,
+//     }
+//   }
+// }
+// To:
+// {
+//   allAppliedActionRights: [
+//     { group: 'products', name: 'canEditPrices', value: true },
+//     { group: 'products', name: 'canPublishProducts', value: false }
+//   ]
+// }
+const denormalizeActionRights = actionRights => {
+  if (!actionRights) return;
+  return Object.keys(actionRights).reduce(
+    (allAppliedActionRights, actionRightGroup) => [
+      ...allAppliedActionRights,
+      ...Object.keys(actionRights[actionRightGroup]).reduce(
+        (allActionRightsByGroup, actionRightKey) => [
+          ...allActionRightsByGroup,
+          {
+            group: actionRightGroup,
+            name: actionRightKey,
+            value: actionRights[actionRightGroup][actionRightKey],
+          },
+        ]
+      ),
+    ],
+    []
+  );
+};
+// For backwards compatibility we need to denormalize the given `dataFences` option
+// (which is now deprecated) to `allAppliedDataFences`, in order to pass the value
+// to the `project` prop in the application context provider.
+// From:
+// {
+//   dataFences: {
+//     store: {
+//       orders: {
+//         canViewOrders: {
+//           values: ['store-1'],
+//         }
+//       }
+//     }
+//   }
+// }
+// To:
+// {
+//   allAppliedDataFences: [
+//     { type: 'store', group: 'orders', name: 'canViewOrders', value: 'store-1' }
+//   ]
+// }
+const denormalizeDataFences = dataFences => {
+  if (!dataFences) return;
+  return Object.keys(dataFences).reduce(
+    (allAppliedDataFences, dataFenceGroupKey) => {
+      switch (dataFenceGroupKey) {
+        case 'store':
+          return [
+            ...allAppliedDataFences,
+            ...Object.keys(dataFences.store).reduce(
+              (allResources, resourceType) => [
+                ...allResources,
+                ...Object.keys(dataFences.store[resourceType]).reduce(
+                  (allPermissions, permissionKey) => [
+                    ...allPermissions,
+                    ...dataFences.store[resourceType][permissionKey].values.map(
+                      value => ({
+                        __typename: 'StoreDataFence',
+                        type: 'store',
+                        value,
+                        group: resourceType,
+                        name: permissionKey,
+                      })
+                    ),
+                  ],
+                  []
+                ),
+              ],
+              []
+            ),
+          ];
+        default:
+          return allAppliedDataFences;
+      }
+    },
+    []
+  );
+};
+
 // This function renders any component within the application context, as if it
 // was rendered inside <ApplicationShell />.
 // The context is not completely set up yet, some things are missing:
@@ -127,9 +265,9 @@ const renderApp = (
     environment,
     user,
     project,
-    permissions,
-    actionRights,
-    dataFences,
+    permissions, // <-- deprecated option, use `{ project: { allAppliedPermissions } }`
+    actionRights, // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
+    dataFences, // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
     dataLocale = 'en',
     ApolloProviderComponent = MockedApolloProvider,
     // gtm-context
@@ -156,9 +294,9 @@ const renderApp = (
               project={
                 mergedProject && {
                   ...mergedProject,
-                  permissions,
-                  actionRights,
-                  dataFences,
+                  allAppliedPermissions: denormalizePermissions(permissions),
+                  allAppliedActionRights: denormalizeActionRights(actionRights),
+                  allAppliedDataFences: denormalizeDataFences(dataFences),
                 }
               }
               environment={mergedEnvironment}

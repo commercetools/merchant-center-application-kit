@@ -1,37 +1,22 @@
 import React from 'react';
 import moment from 'moment-timezone';
 import getDisplayName from '../../utils/get-display-name';
+import {
+  TFetchLoggedInUserQuery,
+  TFetchProjectQuery,
+} from '../../types/generated/mc';
+import {
+  normalizeAllAppliedActionRights,
+  normalizeAllAppliedMenuVisibilities,
+  normalizeAllAppliedPermissions,
+  normalizeAllAppliedDataFences,
+} from './normalizers';
 
-type AdditionalProperties = { [key: string]: unknown };
-type TRawUserProjectsResult = {
-  name: string;
-  key: string;
-  suspension: { isActive: boolean };
-  expiry: { isActive: boolean };
-};
-type TRawUserProjects = {
-  total: number;
-  results: TRawUserProjectsResult[];
-};
-type TRawUser = {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  language: string;
-  timeZone?: string;
-  projects: TRawUserProjects;
-} & AdditionalProperties;
-type TApplicationContextUser = {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  locale: string;
-  timeZone?: string;
-  projects: TRawUserProjects;
-};
+type TFetchedUser = TFetchLoggedInUserQuery['user'];
+type TFetchedProject = TFetchProjectQuery['project'];
+
 type TApplicationContextPermissions = { [key: string]: boolean };
+type TApplicationContextMenuVisibilities = { [key: string]: boolean };
 type TActionRight = {
   [key: string]: boolean;
 };
@@ -66,62 +51,7 @@ type TApplicationContextGroupedByResourceType = {
 // };
 type TApplicationContextDataFences = {
   // E.g. { store: {...} }
-  store: TApplicationContextGroupedByResourceType;
-};
-
-type TRawProject = {
-  key: string;
-  version: number;
-  name: string;
-  countries: string[];
-  currencies: string[];
-  languages: string[];
-  owner: {
-    id: string;
-  };
-  permissions: TApplicationContextPermissions | null;
-  actionRights: TApplicationContextActionRights | null;
-  dataFences: TApplicationContextDataFences | null;
-} & AdditionalProperties;
-type TApplicationContextProject = {
-  key: string;
-  version: number;
-  name: string;
-  countries: string[];
-  currencies: string[];
-  languages: string[];
-  ownerId: string;
-};
-type TApplicationContextEnvironment = {
-  applicationName?: string;
-  frontendHost: string;
-  mcApiUrl: string;
-  location: string;
-  env: string;
-  cdnUrl: string;
-  servedByProxy: string | boolean;
-};
-type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
-  environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment;
-  user: TApplicationContextUser | null;
-  project: TApplicationContextProject | null;
-  permissions: TApplicationContextPermissions | null;
-  actionRights: TApplicationContextActionRights | null;
-  dataFences: TApplicationContextDataFences | null;
-  dataLocale: string | null;
-};
-type ProviderProps<AdditionalEnvironmentProperties extends {}> = {
-  environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment;
-  user?: TRawUser;
-  project?: TRawProject;
-  projectDataLocale?: string;
-  children: React.ReactNode;
-};
-type ConsumerProps<AdditionalEnvironmentProperties extends {}> = {
-  render: (
-    context: TApplicationContext<AdditionalEnvironmentProperties>
-  ) => React.ReactNode;
-  children?: never;
+  store?: TApplicationContextGroupedByResourceType;
 };
 
 const Context = React.createContext({});
@@ -130,11 +60,8 @@ const defaultTimeZone = moment.tz.guess() || 'Etc/UTC';
 
 // Expose only certain fields as some of them are only meant to
 // be used internally in the AppShell
-const mapUserToApplicationContextUser = (
-  user?: TRawUser
-): TApplicationContextUser | null => {
+const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
   if (!user) return null;
-
   return {
     id: user.id,
     email: user.email,
@@ -150,11 +77,8 @@ const mapUserToApplicationContextUser = (
 
 // Expose only certain fields as some of them are only meant to
 // be used internally in the AppShell
-const mapProjectToApplicationContextProject = (
-  project?: TRawProject
-): TApplicationContextProject | null => {
+const mapProjectToApplicationContextProject = (project?: TFetchedProject) => {
   if (!project) return null;
-
   return {
     key: project.key,
     version: project.version,
@@ -166,10 +90,43 @@ const mapProjectToApplicationContextProject = (
   };
 };
 
+type TApplicationContextEnvironment = {
+  applicationName?: string;
+  frontendHost: string;
+  mcApiUrl: string;
+  location: string;
+  env: string;
+  cdnUrl: string;
+  servedByProxy: string | boolean;
+};
+type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
+  environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment;
+  user: ReturnType<typeof mapUserToApplicationContextUser>;
+  project: ReturnType<typeof mapProjectToApplicationContextProject>;
+  permissions: TApplicationContextPermissions | null;
+  actionRights: TApplicationContextActionRights | null;
+  menuVisibilities: TApplicationContextMenuVisibilities | null;
+  dataFences: TApplicationContextDataFences | null;
+  dataLocale: string | null;
+};
+type ProviderProps<AdditionalEnvironmentProperties extends {}> = {
+  environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment;
+  user?: TFetchedUser;
+  project?: TFetchedProject;
+  projectDataLocale?: string;
+  children: React.ReactNode;
+};
+type ConsumerProps<AdditionalEnvironmentProperties extends {}> = {
+  render: (
+    context: TApplicationContext<AdditionalEnvironmentProperties>
+  ) => React.ReactNode;
+  children?: never;
+};
+
 const createApplicationContext: <AdditionalEnvironmentProperties extends {}>(
   environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment,
-  user?: TRawUser,
-  project?: TRawProject,
+  user?: TFetchedUser,
+  project?: TFetchedProject,
   projectDataLocale?: string
 ) => TApplicationContext<AdditionalEnvironmentProperties> = (
   environment,
@@ -180,9 +137,10 @@ const createApplicationContext: <AdditionalEnvironmentProperties extends {}>(
   environment,
   user: mapUserToApplicationContextUser(user),
   project: mapProjectToApplicationContextProject(project),
-  permissions: project && project.permissions ? project.permissions : null,
-  actionRights: project && project.actionRights ? project.actionRights : null,
-  dataFences: project && project.dataFences ? project.dataFences : null,
+  permissions: normalizeAllAppliedPermissions(project),
+  actionRights: normalizeAllAppliedActionRights(project),
+  menuVisibilities: normalizeAllAppliedMenuVisibilities(project),
+  dataFences: normalizeAllAppliedDataFences(project),
   dataLocale: projectDataLocale || null,
 });
 

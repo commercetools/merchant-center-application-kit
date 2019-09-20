@@ -297,9 +297,6 @@ export const RestrictedApplication = props => (
                                     <NavBar
                                       applicationLocale={locale}
                                       projectKey={projectKeyFromUrl}
-                                      menuVisibilities={
-                                        project.menuVisibilities
-                                      }
                                       environment={props.environment}
                                       DEV_ONLY__loadNavbarMenuConfig={
                                         props.DEV_ONLY__loadNavbarMenuConfig

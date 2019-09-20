@@ -36,7 +36,7 @@ type TDataFenceType = 'store';
 // };
 type TDataFences = {
   // E.g. { store: {...} }
-  store: TDataFenceGroupedByResourceType;
+  store?: TDataFenceGroupedByResourceType;
 };
 type TDemandedDataFence = {
   group: string;

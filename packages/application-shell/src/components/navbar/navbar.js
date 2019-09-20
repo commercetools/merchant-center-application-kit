@@ -691,6 +691,9 @@ export const NavBar = props => {
   const disabledMenuItems = useApplicationContext(
     context => context.environment.disabledMenuItems
   );
+  const menuVisibilities = useApplicationContext(
+    context => context.menuVisibilities
+  );
   const applicationsMenu = useApplicationsMenu({
     queryOptions: {
       onError: reportErrorToSentry,
@@ -736,7 +739,7 @@ export const NavBar = props => {
         data={navbarMenu.concat(customAppsMenu)}
         isForcedMenuOpen={isForcedMenuOpen}
         location={props.location}
-        menuVisibilities={props.menuVisibilities}
+        menuVisibilities={menuVisibilities}
         applicationLocale={props.applicationLocale}
         projectKey={props.projectKey}
         disabledMenuItems={disabledMenuItems}

@@ -4,39 +4,29 @@ import { render } from '@testing-library/react';
 import useIsAuthorized from './use-is-authorized';
 
 type TPermissionName = string;
-type TPermissions = {
-  [key: string]: boolean;
+type TAllAppliedPermission = {
+  name: string;
+  value: boolean;
 };
-type TActionRightName = string;
-type TActionRightGroup = string;
+type TAllAppliedActionRight = {
+  name: string;
+  value: boolean;
+  group: string;
+};
+type TAllAppliedMenuVisibility = {
+  name: string;
+  value: boolean;
+};
+type TAllAppliedDataFence = {
+  __typename: 'StoreDataFence';
+  value: string;
+  group: string;
+  name: string;
+  type: string;
+};
 type TDemandedActionRight = {
-  group: TActionRightGroup;
-  name: TActionRightName;
-};
-type TActionRight = {
-  [key: string]: boolean;
-};
-type TActionRights = {
-  [key: string]: TActionRight;
-};
-type TDataFenceGroupedByPermission = {
-  // E.g. { canManageOrders: { values: [] } }
-  [key: string]: { values: string[] } | null;
-};
-type TDataFenceGroupedByResourceType = {
-  // E.g. { orders: {...} }
-  [key: string]: TDataFenceGroupedByPermission | null;
-};
-// NOTE: we currently can't use Mapped Types as the babel transfomer does not
-// understand them yet: https://github.com/milesj/babel-plugin-typescript-to-proptypes/issues/23
-// type TDataFenceType = 'store';
-// type TDataFences = {
-//   // E.g. { store: {...} }
-//   [key in TDataFenceType]: TDataFenceGroupedByResourceType;
-// };
-type TDataFences = {
-  // E.g. { store: {...} }
-  store: TDataFenceGroupedByResourceType;
+  group: string;
+  name: string;
 };
 type TestProps = {
   demandedPermissions: TPermissionName[];
@@ -61,16 +51,18 @@ const testRender = ({
   demandedPermissions,
   demandedActionRights,
   shouldMatchSomePermissions,
-  actualPermissions = { canManageProjectSettings: true },
-  actualActionRights = null,
-  actualDataFences = null,
+  allAppliedPermissions = [{ name: 'canManageProjectSettings', value: true }],
+  allAppliedActionRights = [],
+  allAppliedMenuVisibilities = [],
+  allAppliedDataFences = [],
 }: {
   demandedPermissions: TPermissionName[];
   demandedActionRights?: TDemandedActionRight[];
   shouldMatchSomePermissions: boolean;
-  actualPermissions: TPermissions | null;
-  actualActionRights: TActionRights | null;
-  actualDataFences: TDataFences | null;
+  allAppliedPermissions?: TAllAppliedPermission[];
+  allAppliedActionRights?: TAllAppliedActionRight[];
+  allAppliedMenuVisibilities?: TAllAppliedMenuVisibility[];
+  allAppliedDataFences?: TAllAppliedDataFence[];
 }) =>
   render(
     <ApplicationContextProvider
@@ -84,9 +76,18 @@ const testRender = ({
         owner: {
           id: 'project-id-1',
         },
-        permissions: actualPermissions,
-        actionRights: actualActionRights,
-        dataFences: actualDataFences,
+        initialized: true,
+        expiry: {
+          isActive: true,
+          daysLeft: undefined,
+        },
+        suspension: {
+          isActive: true,
+        },
+        allAppliedPermissions,
+        allAppliedActionRights,
+        allAppliedMenuVisibilities,
+        allAppliedDataFences,
       }}
       environment={{
         applicationName: 'my-app',
@@ -112,11 +113,12 @@ describe('when only one permission matches', () => {
     it('should indicate being authorized', () => {
       const { queryByText } = testRender({
         demandedPermissions: ['ManageCustomers', 'ManageOrders'],
-        actualPermissions: {
-          canManageCustomers: true,
-        },
-        actualActionRights: null,
-        actualDataFences: null,
+        allAppliedPermissions: [
+          {
+            name: 'canManageCustomers',
+            value: true,
+          },
+        ],
         shouldMatchSomePermissions: true,
       });
 
@@ -126,11 +128,12 @@ describe('when only one permission matches', () => {
   describe('when it should not match some permission', () => {
     it('should indicate being not authorized', () => {
       const { queryByText } = testRender({
-        actualPermissions: {
-          canManageCustomers: true,
-        },
-        actualActionRights: null,
-        actualDataFences: null,
+        allAppliedPermissions: [
+          {
+            name: 'canManageCustomers',
+            value: true,
+          },
+        ],
         demandedPermissions: ['ManageCustomers', 'ManageOrders'],
         shouldMatchSomePermissions: false,
       });
@@ -141,15 +144,19 @@ describe('when only one permission matches', () => {
   describe('when it should not match an action right', () => {
     it('should indicate being not authorized', () => {
       const { queryByText } = testRender({
-        actualPermissions: {
-          canManageCustomers: true,
-        },
-        actualActionRights: {
-          products: {
-            canEditPrices: true,
+        allAppliedPermissions: [
+          {
+            name: 'canManageCustomers',
+            value: true,
           },
-        },
-        actualDataFences: null,
+        ],
+        allAppliedActionRights: [
+          {
+            group: 'products',
+            name: 'canEditPrices',
+            value: true,
+          },
+        ],
         demandedPermissions: ['ManageCustomers'],
         demandedActionRights: [{ group: 'products', name: 'PublishProducts' }],
         shouldMatchSomePermissions: false,
@@ -159,15 +166,19 @@ describe('when only one permission matches', () => {
     });
     it('should indicate being authorized', () => {
       const { queryByText } = testRender({
-        actualPermissions: {
-          canManageCustomers: true,
-        },
-        actualActionRights: {
-          products: {
-            canEditPrices: true,
+        allAppliedPermissions: [
+          {
+            name: 'canManageCustomers',
+            value: true,
           },
-        },
-        actualDataFences: null,
+        ],
+        allAppliedActionRights: [
+          {
+            group: 'products',
+            name: 'canEditPrices',
+            value: true,
+          },
+        ],
         demandedPermissions: ['ManageCustomers'],
         demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
         shouldMatchSomePermissions: false,
