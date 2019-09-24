@@ -1,4 +1,32 @@
-## [15.1.5](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.5...v15.1.5) (2019-09-17)
+## [15.1.6](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.5...v15.1.6) (2019-09-24)
+
+#### 🐛 Type: Bug
+
+- `mc-scripts`
+  - [#1066](https://github.com/commercetools/merchant-center-application-kit/pull/1066) fix(mc-scripts): to read headers path ([@emmenko](https://github.com/emmenko))
+- `application-shell`
+  - [#1063](https://github.com/commercetools/merchant-center-application-kit/pull/1063) fix(app-shell): apollo header link to omit empty headers ([@tdeekens](https://github.com/tdeekens))
+
+#### 🔮 Type: Chore
+
+- `application-shell-connectors`, `application-shell`
+  - [#1062](https://github.com/commercetools/merchant-center-application-kit/pull/1062) feat: generate TS types for graphql schemas ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell-connectors`, `application-shell`, `permissions`
+  - [#1064](https://github.com/commercetools/merchant-center-application-kit/pull/1064) refactor(app-context): to derive provider types from generated query types ([@emmenko](https://github.com/emmenko))
+
+#### 🖥 Type: Website
+
+- [#1067](https://github.com/commercetools/merchant-center-application-kit/pull/1067) docs(website): fix malformed hyphens ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `eslint-plugin-testing-library-react`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sentry`, `url-utils`
+  - [#1070](https://github.com/commercetools/merchant-center-application-kit/pull/1070) chore(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+
+## [15.1.5](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.4...v15.1.5) (2019-09-17)
 
 #### 🐛 Type: Bug
 
