@@ -1,6 +1,8 @@
 import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { renderApp, fireEvent, waitForElement, wait } from '../../test-utils';
+import { ApolloProvider } from 'react-apollo';
+import { MockedProvider as ApolloMockProvider } from '@apollo/react-testing';
 import ProjectsQuery from './project-switcher.mc.graphql';
 import ProjectSwitcher from './project-switcher';
 
