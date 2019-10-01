@@ -1,6 +1,7 @@
 import React from 'react';
 import { customProperties, Text } from '@commercetools-frontend/ui-kit';
 import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 
 type Props = {
   title: string;
@@ -11,6 +12,10 @@ type Props = {
 const defaultProps: Pick<Props, 'titleSize'> = {
   titleSize: 'small',
 };
+
+const SubtitleWrapper = styled.div`
+  margin-top: ${customProperties.spacingM};
+`;
 
 // eslint-disable-next-line react/display-name
 const renderTitle = (size: Props['titleSize'], title: Props['title']) => {
@@ -36,12 +41,14 @@ const renderSubtitle = (subtitle?: Props['subtitle']) => {
     return null;
   }
   if (React.isValidElement(subtitle)) {
-    return subtitle;
+    return <SubtitleWrapper>{subtitle}</SubtitleWrapper>;
   }
   return (
-    <Text.Body title={subtitle} truncate>
-      {subtitle}
-    </Text.Body>
+    <SubtitleWrapper>
+      <Text.Body title={subtitle} truncate>
+        {subtitle}
+      </Text.Body>
+    </SubtitleWrapper>
   );
 };
 
@@ -52,9 +59,6 @@ const ModalPageHeaderTitle = (props: Props) => {
     <div
       css={css`
         overflow: hidden;
-        & * + * {
-          margin-top: ${customProperties.spacingM} !important;
-        }
       `}
     >
       {renderedTitle}
