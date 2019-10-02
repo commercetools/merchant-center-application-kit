@@ -268,7 +268,7 @@ const renderApp = (
     permissions, // <-- deprecated option, use `{ project: { allAppliedPermissions } }`
     actionRights, // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
     dataFences, // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
-    dataLocale = 'en',
+    dataLocale = 'en-GB',
     ApolloProviderComponent = MockedApolloProvider,
     // gtm-context
     gtmTracking = defaultGtmTracking,
