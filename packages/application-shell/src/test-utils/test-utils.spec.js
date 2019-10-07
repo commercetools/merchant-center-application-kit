@@ -143,7 +143,7 @@ describe('ApplicationContext', () => {
           name: 'Test with big data',
           countries: ['de', 'en'],
           currencies: ['EUR', 'GBP'],
-          languages: ['de', 'en-GB'],
+          languages: ['de', 'en-GB', 'en'],
           owner: {
             id: 'project-id-1',
           },
