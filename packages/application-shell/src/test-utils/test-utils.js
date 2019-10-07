@@ -38,7 +38,7 @@ const defaultProject = {
   name: 'Test with big data',
   countries: ['de', 'en'],
   currencies: ['EUR', 'GBP'],
-  languages: ['de', 'en-GB'],
+  languages: ['de', 'en-GB', 'en'],
   owner: {
     id: 'project-id-1',
   },
@@ -268,7 +268,7 @@ const renderApp = (
     permissions, // <-- deprecated option, use `{ project: { allAppliedPermissions } }`
     actionRights, // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
     dataFences, // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
-    dataLocale = 'en-GB',
+    dataLocale = 'en',
     ApolloProviderComponent = MockedApolloProvider,
     // gtm-context
     gtmTracking = defaultGtmTracking,
