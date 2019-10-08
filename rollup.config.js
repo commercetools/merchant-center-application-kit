@@ -23,7 +23,7 @@ const postcssImport = require('postcss-import');
 const postcssPresetEnv = require('postcss-preset-env');
 const postcssReporter = require('postcss-reporter');
 
-const { package: pkg } = readPkgUp.sync({
+const { packageJson: pkg } = readPkgUp.sync({
   cwd: fs.realpathSync(process.cwd()),
 });
 const [, packageName] = pkg.name.split('@commercetools-frontend/');
