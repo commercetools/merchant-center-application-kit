@@ -43,7 +43,7 @@
     "apollo-cache-inmemory": "1.6.3",
     "apollo-client": "2.6.4",
     "apollo-link-http": "1.5.16",
-    "graphql": "14.5.7",
+    "graphql": "14.5.8",
     "graphql-tag": "^2.10.1",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
@@ -51,9 +51,9 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "@apollo/react-testing": "3.1.1",
-    "react": "16.9.0",
-    "react-apollo": "3.1.1"
+    "@apollo/react-testing": "3.1.2",
+    "react": "16.10.2",
+    "react-apollo": "3.1.2"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
