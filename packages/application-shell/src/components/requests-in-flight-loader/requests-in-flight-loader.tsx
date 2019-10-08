@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { LoadingSpinner } from '@commercetools-frontend/ui-kit';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from './constants';
 import messages from './messages';
+import { TRequestsInFlightState } from './types';
 
 const getPortalContainer = () =>
   process.env.NODE_ENV === 'test'
@@ -15,7 +16,7 @@ const getPortalContainer = () =>
 
 const RequestsInFlightLoader = () => {
   const hasRequestsInFlight = useSelector<
-    { requestsInFlight?: string[] },
+    { requestsInFlight?: TRequestsInFlightState },
     boolean
   >(state =>
     Boolean(state.requestsInFlight && state.requestsInFlight.length > 0)

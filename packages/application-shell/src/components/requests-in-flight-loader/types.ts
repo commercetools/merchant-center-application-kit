@@ -1,6 +1,8 @@
 import { Action } from 'redux';
 import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
 
+export type TRequestsInFlightState = string[];
+
 export type TShowRequestInFlightAction = Action<typeof SHOW_LOADING> & {
   payload: string;
 };

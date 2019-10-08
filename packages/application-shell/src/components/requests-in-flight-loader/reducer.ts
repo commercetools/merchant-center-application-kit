@@ -2,6 +2,7 @@ import { Action } from 'redux';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
 import {
+  TRequestsInFlightState,
   TShowRequestInFlightAction,
   THideRequestInFlightAction,
 } from './types';
@@ -18,7 +19,7 @@ const excludeFirstOccurrence = <Item>(list: Item[], item: Item) => {
   return [...list.slice(0, index), ...list.slice(index + 1)];
 };
 
-export default (requestsInFlight?: string[], action?: Action) => {
+export default (requestsInFlight?: TRequestsInFlightState, action?: Action) => {
   if (!requestsInFlight || !action) return [];
 
   if (isShowRequestInFlightAction(action))
