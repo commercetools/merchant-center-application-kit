@@ -29,7 +29,7 @@
     "build": "babel --extensions .js,.ts src --out-dir lib --copy-files"
   },
   "dependencies": {
-    "@typescript-eslint/experimental-utils": "^2.0.0"
+    "@typescript-eslint/experimental-utils": "^2.3.3"
   },
   "devDependencies": {
     "@babel/cli": "7.6.2",
