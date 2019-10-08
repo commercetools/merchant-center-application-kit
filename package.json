@@ -88,7 +88,7 @@
     "@types/react-dom": "16.9.1",
     "@types/react-modal": "3.8.3",
     "@types/react-redux": "7.1.4",
-    "@types/react-router-dom": "5.1.0",
+    "@types/react-router-dom": "4.0.4",
     "@typescript-eslint/eslint-plugin": "2.3.3",
     "@typescript-eslint/parser": "2.3.3",
     "babel-eslint": "10.0.3",
