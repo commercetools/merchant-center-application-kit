@@ -15,14 +15,13 @@ describe('rendering', () => {
         storeState: { requestsInFlight: [] },
       });
     });
-    it('should not render loading spinner', async () => {
-      await wait(
+    it('should not render loading spinner', () =>
+      wait(
         () => {
           expect(rendered.queryByText(/^Processing/)).not.toBeInTheDocument();
         },
         { timeout: 1000 }
-      );
-    });
+      ));
   });
   describe('when there are requests in flight', () => {
     beforeEach(() => {
@@ -30,8 +29,7 @@ describe('rendering', () => {
         storeState: { requestsInFlight: ['one', 'two'] },
       });
     });
-    it('should render loading spinner', async () => {
-      await waitForElement(() => rendered.queryByText(/^Processing/));
-    });
+    it('should render loading spinner', () =>
+      waitForElement(() => rendered.queryByText(/^Processing/)));
   });
 });
