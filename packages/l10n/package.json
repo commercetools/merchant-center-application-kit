@@ -42,10 +42,10 @@
     "@commercetools-frontend/sentry": "15.1.6",
     "moment": "^2.24.0",
     "prop-types": "15.7.2",
-    "react": "16.9.0"
+    "react": "16.10.2"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "2.0.1",
+    "@testing-library/react-hooks": "2.0.3",
     "chalk": "2.4.2",
     "cldr": "5.4.1",
     "deep-diff": "1.0.2",
