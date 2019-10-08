@@ -158,10 +158,11 @@
   },
   "resolutions": {
     "@types/react": "16.9.5",
-    "react": "16.9.0",
-    "**/react": "16.9.0",
-    "react-test-renderer": "16.9.0",
-    "**/react-test-renderer": "16.9.0"
+    "@types/react-router": "5.1.1",
+    "react": "16.10.2",
+    "**/react": "16.10.1",
+    "react-test-renderer": "16.10.2",
+    "**/react-test-renderer": "16.10.2"
   },
   "engines": {
     "node": ">=8.9",
