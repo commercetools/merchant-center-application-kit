@@ -1,141 +1,172 @@
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
-import { ApplicationContextProvider } from './application-context';
+import { render, waitForElement, RenderResult } from '@testing-library/react';
+import {
+  ApplicationContextProvider,
+  ApplicationContext,
+  useApplicationContext,
+  withApplicationContext,
+  mapUserToApplicationContextUser,
+  mapProjectToApplicationContextProject,
+} from './application-context';
 
 type AdditionalEnvironmentProps = { foo: string };
 
-describe('rendering', () => {
-  let wrapper: ShallowWrapper;
+const createTestUser = (custom = {}) => ({
+  id: 'u1',
+  email: 'foo@bar.com',
+  firstName: 'foo',
+  lastName: 'bar',
+  language: 'en',
+  timeZone: undefined,
+  // Fields that should not be exposed
+  numberFormat: 'en',
+  gravatarHash: 'aaa',
+  defaultProjectKey: 'aaaa',
+  projects: {
+    total: 1,
+    results: [
+      {
+        key: 'p1',
+        name: 'P1 ',
+        expiry: { isActive: false },
+        suspension: { isActive: false },
+      },
+    ],
+  },
+  launchdarklyTrackingGroup: 'commercetools',
+  launchdarklyTrackingId: '111',
+  launchdarklyTrackingTeam: undefined,
+  launchdarklyTrackingTenant: 'gcp-eu',
+  ...custom,
+});
+const createTestProject = (custom = {}) => ({
+  key: 'foo-1',
+  version: 1,
+  name: 'Foo 1',
+  countries: ['us'],
+  currencies: ['USD'],
+  languages: ['en'],
+  allAppliedPermissions: [{ name: 'canManageProjectSettings', value: true }],
+  allAppliedActionRights: [],
+  allAppliedDataFences: [],
+  allAppliedMenuVisibilities: [],
+  // Fields that should not be exposed
+  initialized: true,
+  expiry: {
+    isActive: false,
+    daysLeft: undefined,
+  },
+  suspension: {
+    isActive: false,
+  },
+  owner: { id: 'o1' },
+  ...custom,
+});
+const createTestEnvironment = (custom = {}) => ({
+  applicationName: 'my-app',
+  frontendHost: 'localhost:3001',
+  mcApiUrl: 'https://mc-api.commercetools.com',
+  location: 'eu',
+  env: 'development',
+  cdnUrl: 'http://localhost:3001',
+  servedByProxy: false,
+  // extra props
+  foo: 'bar',
+  ...custom,
+});
 
-  describe('Provider', () => {
-    beforeEach(() => {
-      wrapper = shallow(
-        <ApplicationContextProvider<AdditionalEnvironmentProps>
-          user={{
-            id: 'u1',
-            email: 'foo@bar.com',
-            firstName: 'foo',
-            lastName: 'bar',
-            language: 'en',
-            timeZone: undefined,
-            // Fields that should not be exposed
-            numberFormat: 'en',
-            gravatarHash: 'aaa',
-            defaultProjectKey: 'aaaa',
-            projects: {
-              total: 1,
-              results: [
-                {
-                  key: 'p1',
-                  name: 'P1 ',
-                  expiry: { isActive: false },
-                  suspension: { isActive: false },
-                },
-              ],
-            },
-            launchdarklyTrackingGroup: 'commercetools',
-            launchdarklyTrackingId: '111',
-            launchdarklyTrackingTeam: undefined,
-            launchdarklyTrackingTenant: 'gcp-eu',
-          }}
-          project={{
-            key: 'foo-1',
-            version: 1,
-            name: 'Foo 1',
-            countries: ['us'],
-            currencies: ['USD'],
-            languages: ['en'],
-            allAppliedPermissions: [
-              { name: 'canManageProjectSettings', value: true },
-            ],
-            allAppliedActionRights: [],
-            allAppliedDataFences: [],
-            allAppliedMenuVisibilities: [],
-            // Fields that should not be exposed
-            initialized: true,
-            expiry: {
-              isActive: false,
-              daysLeft: undefined,
-            },
-            suspension: {
-              isActive: false,
-            },
-            owner: { id: 'o1' },
-          }}
-          projectDataLocale="en"
-          environment={{
-            applicationName: 'my-app',
-            frontendHost: 'localhost:3001',
-            mcApiUrl: 'https://mc-api.commercetools.com',
-            location: 'eu',
-            env: 'development',
-            cdnUrl: 'http://localhost:3001',
-            servedByProxy: false,
-            // extra props
-            foo: 'bar',
-          }}
-        >
-          <div />
-        </ApplicationContextProvider>
-      );
-    });
-    it('should pass mapped user to Provider', () => {
-      expect(wrapper).toHaveProp(
-        'value',
-        expect.objectContaining({
-          user: {
-            id: expect.any(String),
-            email: expect.any(String),
-            firstName: expect.any(String),
-            lastName: expect.any(String),
-            locale: expect.any(String),
-            timeZone: expect.any(String),
-            projects: expect.objectContaining({
-              total: 1,
-              results: expect.arrayContaining([
-                expect.objectContaining({ key: expect.any(String) }),
-              ]),
-            }),
-          },
-        })
-      );
-    });
-    it('should pass mapped project to Provider', () => {
-      expect(wrapper).toHaveProp(
-        'value',
-        expect.objectContaining({
-          project: {
-            key: expect.any(String),
-            version: expect.any(Number),
-            name: expect.any(String),
-            countries: expect.any(Array),
-            currencies: expect.any(Array),
-            languages: expect.any(Array),
-            ownerId: expect.any(String),
-          },
-        })
-      );
-    });
-    it('should pass mapped permissions to Provider', () => {
-      expect(wrapper).toHaveProp(
-        'value',
-        expect.objectContaining({
-          permissions: {
-            canManageProjectSettings: true,
-          },
-        })
-      );
-    });
-    it('should pass mapped dataLocale to Provider', () => {
-      expect(wrapper).toHaveProp(
-        'value',
-        expect.objectContaining({
-          dataLocale: expect.any(String),
-        })
-      );
+const renderAppWithContext = (ui: React.ReactElement) =>
+  render(
+    <ApplicationContextProvider<AdditionalEnvironmentProps>
+      user={createTestUser()}
+      project={createTestProject()}
+      environment={createTestEnvironment()}
+      projectDataLocale="en"
+    >
+      {ui}
+    </ApplicationContextProvider>
+  );
+
+describe('<ApplicationContext>', () => {
+  let rendered: RenderResult;
+  beforeEach(() => {
+    rendered = renderAppWithContext(
+      <ApplicationContext
+        render={context => (
+          <div>{`Project name: ${context.project &&
+            context.project.name}`}</div>
+        )}
+      />
+    );
+  });
+  it('should render project name from context', () =>
+    waitForElement(() => rendered.getByText('Project name: Foo 1')));
+});
+
+describe('useApplicationContext', () => {
+  let rendered: RenderResult;
+  const App = () => {
+    const projectName = useApplicationContext(
+      context => context.project && context.project.name
+    );
+    return <div>{`Project name: ${projectName}`}</div>;
+  };
+  beforeEach(() => {
+    rendered = renderAppWithContext(<App />);
+  });
+  it('should render project name from context', () =>
+    waitForElement(() => rendered.getByText('Project name: Foo 1')));
+});
+
+describe('withApplicationContext', () => {
+  let rendered: RenderResult;
+  type AppProps = { projectName?: string; children?: never };
+  const App = (props: AppProps) => (
+    <div>{`Project name: ${props.projectName}`}</div>
+  );
+  const AppWithContext = withApplicationContext<
+    Pick<AppProps, 'children'>,
+    {},
+    Pick<AppProps, 'projectName'>
+  >(context => ({
+    projectName: context.project ? context.project.name : undefined,
+  }))(App);
+  beforeEach(() => {
+    rendered = renderAppWithContext(<AppWithContext />);
+  });
+  it('should render project name from context', () =>
+    waitForElement(() => rendered.getByText('Project name: Foo 1')));
+});
+
+describe('mapUserToApplicationContextUser', () => {
+  it('should map fetched user to user context', () => {
+    expect(mapUserToApplicationContextUser(createTestUser())).toEqual({
+      id: expect.any(String),
+      email: expect.any(String),
+      firstName: expect.any(String),
+      lastName: expect.any(String),
+      locale: expect.any(String),
+      timeZone: expect.any(String),
+      projects: expect.objectContaining({
+        total: 1,
+        results: expect.arrayContaining([
+          expect.objectContaining({ key: expect.any(String) }),
+        ]),
+      }),
     });
   });
-  // TODO: we can write some functional tests using mount
-  // as soon as the new changes of the enzyme adapter are released.
-  // https://github.com/airbnb/enzyme/pull/1513
+});
+
+describe('mapProjectToApplicationContextProject', () => {
+  it('should map fetched project to project context', () => {
+    expect(mapProjectToApplicationContextProject(createTestProject())).toEqual({
+      key: expect.any(String),
+      version: expect.any(Number),
+      name: expect.any(String),
+      countries: expect.any(Array),
+      currencies: expect.any(Array),
+      languages: expect.any(Array),
+      ownerId: expect.any(String),
+    });
+  });
 });
