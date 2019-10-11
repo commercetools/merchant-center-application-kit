@@ -3,4 +3,4 @@ plugins:
 env:
   cypress/globals: true
 rules:
-  prefer-object-spread/prefer-object-spread: false
+  prefer-object-spread/prefer-object-spread: 0

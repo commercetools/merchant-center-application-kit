@@ -35,7 +35,7 @@ module.exports = configPath => {
     servedByProxy: false,
   };
 
-  // eslint-disable-next-line prefer-object-spread/prefer-object-spread
+  // eslint-disable-next-line
   const mergedConfig = Object.assign({}, defaultConfig, config);
   loadedEnv = mergedConfig;
   return loadedEnv;

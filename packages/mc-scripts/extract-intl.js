@@ -194,7 +194,7 @@ const extractFromFile = async fileName => {
       );
       safelyMergedMessages = Object.keys(sortedCoreMessages).reduce(
         (updatedMessages, messageKey) =>
-          // eslint-disable-next-line prefer-object-spread/prefer-object-spread
+          // eslint-disable-next-line
           Object.assign({}, updatedMessages, {
             [messageKey]:
             // If the message key already exists in the core.json file, we won't update it
