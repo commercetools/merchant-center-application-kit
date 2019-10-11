@@ -1,3 +1,22 @@
+## [15.1.7](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.6...v15.1.7) (2019-10-11)
+
+#### 🐛 Type: Bug
+* `application-shell`
+  * [#1080](https://github.com/commercetools/merchant-center-application-kit/pull/1080) data locale should be one of the project languages ([@amine-benselim](https://github.com/amine-benselim))
+* `application-components`
+  * [#1079](https://github.com/commercetools/merchant-center-application-kit/pull/1079) fix: modal page header title spacing ([@jonnybel](https://github.com/jonnybel))
+
+#### 🤖 Type: Dependencies
+* `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `create-mc-app`, `eslint-plugin-testing-library-react`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-html-template`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sentry`, `url-utils`
+  * [#1085](https://github.com/commercetools/merchant-center-application-kit/pull/1085) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+* Other
+  * [#1083](https://github.com/commercetools/merchant-center-application-kit/pull/1083) chore: regenerate lockfile ([@tdeekens](https://github.com/tdeekens))
+* `application-shell`, `eslint-plugin-testing-library-react`, `sentry`
+  * [#1054](https://github.com/commercetools/merchant-center-application-kit/pull/1054) chore(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+* `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-scripts`, `permissions`, `react-notifications`, `sdk`, `sentry`
+  * [#1077](https://github.com/commercetools/merchant-center-application-kit/pull/1077) chore(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+
+
 ## [15.1.6](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.5...v15.1.6) (2019-09-24)
 
 #### 🐛 Type: Bug
