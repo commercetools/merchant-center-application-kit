@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitForElement, RenderResult } from '@testing-library/react';
+import { render, waitForElement } from '@testing-library/react';
 import {
   ApplicationContextProvider,
   ApplicationContext,
@@ -88,9 +88,8 @@ const renderAppWithContext = (ui: React.ReactElement) =>
   );
 
 describe('<ApplicationContext>', () => {
-  let rendered: RenderResult;
-  beforeEach(() => {
-    rendered = renderAppWithContext(
+  it('should render project name from context', async () => {
+    const rendered = renderAppWithContext(
       <ApplicationContext
         render={context => (
           <div>{`Project name: ${context.project &&
@@ -98,28 +97,24 @@ describe('<ApplicationContext>', () => {
         )}
       />
     );
+    await waitForElement(() => rendered.getByText('Project name: Foo 1'));
   });
-  it('should render project name from context', () =>
-    waitForElement(() => rendered.getByText('Project name: Foo 1')));
 });
 
 describe('useApplicationContext', () => {
-  let rendered: RenderResult;
   const TestComponent = () => {
     const projectName = useApplicationContext(
       context => context.project && context.project.name
     );
     return <div>{`Project name: ${projectName}`}</div>;
   };
-  beforeEach(() => {
-    rendered = renderAppWithContext(<TestComponent />);
+  it('should render project name from context', async () => {
+    const rendered = renderAppWithContext(<TestComponent />);
+    await waitForElement(() => rendered.getByText('Project name: Foo 1'));
   });
-  it('should render project name from context', () =>
-    waitForElement(() => rendered.getByText('Project name: Foo 1')));
 });
 
 describe('withApplicationContext', () => {
-  let rendered: RenderResult;
   type AppProps = { projectName?: string; children?: never };
   const TestComponent = (props: AppProps) => (
     <div>{`Project name: ${props.projectName}`}</div>
@@ -131,11 +126,10 @@ describe('withApplicationContext', () => {
   >(context => ({
     projectName: context.project ? context.project.name : undefined,
   }))(TestComponent);
-  beforeEach(() => {
-    rendered = renderAppWithContext(<AppWithContext />);
+  it('should render project name from context', async () => {
+    const rendered = renderAppWithContext(<AppWithContext />);
+    await waitForElement(() => rendered.getByText('Project name: Foo 1'));
   });
-  it('should render project name from context', () =>
-    waitForElement(() => rendered.getByText('Project name: Foo 1')));
 });
 
 describe('mapUserToApplicationContextUser', () => {
