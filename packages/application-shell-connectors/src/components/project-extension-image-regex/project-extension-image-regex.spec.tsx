@@ -8,7 +8,6 @@ import {
   MockedProvider as ApolloMockProvider,
   MockedProviderProps,
 } from '@apollo/react-testing';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import {
   ProjectExtensionProviderForImageRegex,
   GetProjectExtensionImageRegex,
@@ -124,30 +123,6 @@ describe('rendering', () => {
     it('should not render regex info', async () => {
       await waitForElementToBeRemoved(() => rendered.getByText('Loading...'));
       expect(rendered.queryByText('Not found')).toBeInTheDocument();
-    });
-  });
-  // TODO: the test is a bit flaky, where the `onError` callback does not get called
-  // consistently. This seems to be an internal issue with the apollo client.
-  // For now we can skip the test and maybe check again if it works in future versions
-  // of apollo.
-  describe.skip('when request fails', () => {
-    beforeEach(() => {
-      rendered = renderComponent([
-        {
-          request: {
-            query: FetchProjectExtensionImageRegex,
-            variables: {
-              target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
-            },
-          },
-          error: new Error('Oops'),
-        },
-      ]);
-    });
-    it('should report error to sentry', async () => {
-      await waitForElementToBeRemoved(() => rendered.getByText('Loading...'));
-      expect(rendered.queryByText('Not found')).toBeInTheDocument();
-      expect(reportErrorToSentry).toHaveBeenCalled();
     });
   });
 });
