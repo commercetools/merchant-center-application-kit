@@ -105,14 +105,14 @@ describe('<ApplicationContext>', () => {
 
 describe('useApplicationContext', () => {
   let rendered: RenderResult;
-  const App = () => {
+  const TestComponent = () => {
     const projectName = useApplicationContext(
       context => context.project && context.project.name
     );
     return <div>{`Project name: ${projectName}`}</div>;
   };
   beforeEach(() => {
-    rendered = renderAppWithContext(<App />);
+    rendered = renderAppWithContext(<TestComponent />);
   });
   it('should render project name from context', () =>
     waitForElement(() => rendered.getByText('Project name: Foo 1')));
@@ -121,7 +121,7 @@ describe('useApplicationContext', () => {
 describe('withApplicationContext', () => {
   let rendered: RenderResult;
   type AppProps = { projectName?: string; children?: never };
-  const App = (props: AppProps) => (
+  const TestComponent = (props: AppProps) => (
     <div>{`Project name: ${props.projectName}`}</div>
   );
   const AppWithContext = withApplicationContext<
@@ -130,7 +130,7 @@ describe('withApplicationContext', () => {
     Pick<AppProps, 'projectName'>
   >(context => ({
     projectName: context.project ? context.project.name : undefined,
-  }))(App);
+  }))(TestComponent);
   beforeEach(() => {
     rendered = renderAppWithContext(<AppWithContext />);
   });
