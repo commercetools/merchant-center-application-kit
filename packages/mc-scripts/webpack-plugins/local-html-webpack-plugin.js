@@ -1,4 +1,4 @@
-/* eslint-disable class-methods-use-this,no-param-reassign,prefer-object-spread/prefer-object-spread */
+/* eslint-disable class-methods-use-this,no-param-reassign */
 const path = require('path');
 const {
   loadEnv,

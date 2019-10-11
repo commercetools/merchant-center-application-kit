@@ -9,7 +9,7 @@
     "vrt": "percy snapshot public"
   },
   "dependencies": {
-    "@babel/core": "7.6.2",
+    "@babel/core": "7.6.4",
     "@commercetools-frontend/application-components": "15.1.6",
     "@commercetools-frontend/assets": "15.0.0",
     "@commercetools-frontend/ui-kit": "10.2.1",

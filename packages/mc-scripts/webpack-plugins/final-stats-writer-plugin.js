@@ -33,7 +33,7 @@ class FinalStatsWriterPlugin {
     if (this.config.includeFields) {
       finalStats = this.config.includeFields.reduce(
         (aggregatedStats, key) =>
-          // eslint-disable-next-line prefer-object-spread/prefer-object-spread
+          // eslint-disable-next-line
           Object.assign({}, aggregatedStats, {
             [key]: finalStats[key],
           }),

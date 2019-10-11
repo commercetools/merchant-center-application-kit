@@ -30,7 +30,7 @@ module.exports = ({ env, headers }) => {
       { src: '/(login|logout)', dest: '/config/fallback-route.js' },
       {
         src: '/(.*)',
-        // eslint-disable-next-line prefer-object-spread/prefer-object-spread
+        // eslint-disable-next-line
         headers: Object.assign({ 'Cache-Control': 'no-cache' }, headers),
         dest: '/public/index.html',
       },

@@ -1,4 +1,4 @@
-/* eslint-disable no-console, prefer-object-spread/prefer-object-spread */
+/* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
