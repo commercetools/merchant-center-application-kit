@@ -26,7 +26,7 @@
     "@commercetools-frontend/mc-http-server": "15.1.7",
     "@commercetools-frontend/permissions": "15.1.7",
     "@commercetools-frontend/sdk": "15.1.7",
-    "@commercetools-frontend/ui-kit": "10.2.1",
+    "@commercetools-frontend/ui-kit": "10.3.0",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
     "moment": "^2.24.0",

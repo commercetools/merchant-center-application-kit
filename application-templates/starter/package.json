@@ -19,7 +19,7 @@
     "@commercetools-frontend/i18n": "15.1.7",
     "@commercetools-frontend/mc-http-server": "15.1.7",
     "@commercetools-frontend/permissions": "15.1.7",
-    "@commercetools-frontend/ui-kit": "10.2.1",
+    "@commercetools-frontend/ui-kit": "10.3.0",
     "prop-types": "15.7.2",
     "react": "16.10.2",
     "react-apollo": "3.1.2",
