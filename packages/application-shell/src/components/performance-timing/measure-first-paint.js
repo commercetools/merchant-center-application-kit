@@ -27,7 +27,7 @@ const perfume = new Perfume({
   logging: false,
   firstContentfulPaint: true,
   firstPaint: true,
-  timeToInteractive: true,
+  firstInputDelay: true,
 });
 
 export class MeasureFirstPaint extends React.Component {
@@ -59,7 +59,10 @@ export class MeasureFirstPaint extends React.Component {
      *   on Perfume. Once resolved all other values are statically
      *   available.
      */
-    perfume.observeTimeToInteractive.then(timeToInteractiveMs => {
+    Promise.all([
+      perfume.observeFirstContentfulPaint,
+      perfume.observeFirstInputDelay,
+    ]).then(([firstContentfulPaintMs, firstInputDelayMs]) => {
       const paintMetrics = [
         {
           name: 'firstPaint',
@@ -67,11 +70,11 @@ export class MeasureFirstPaint extends React.Component {
         },
         {
           name: 'firstContentfulPaint',
-          durationMs: MeasureFirstPaint.tracker.firstContentfulPaintDuration,
+          durationMs: firstContentfulPaintMs,
         },
         {
-          name: 'timeToInteractive',
-          durationMs: timeToInteractiveMs,
+          name: 'firstInputDelay',
+          durationMs: firstInputDelayMs,
         },
       ]
         .filter(paintMeasurement => Boolean(paintMeasurement.durationMs))

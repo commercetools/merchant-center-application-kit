@@ -14,8 +14,8 @@ const createTestProps = custom => ({
 jest.mock('perfume.js', () =>
   jest.fn(() => ({
     firstPaintDuration: 1,
-    firstContentfulPaintDuration: 2,
-    observeTimeToInteractive: Promise.resolve(1234.22),
+    observeFirstContentfulPaint: Promise.resolve(2),
+    observeFirstInputDelay: Promise.resolve(1234.22),
   }))
 );
 
@@ -55,12 +55,12 @@ describe('lifecycle', () => {
         });
       });
 
-      it('should push the time to interactive metric as a histograms', () => {
+      it('should push the first input delay metric as a histograms', () => {
         expect(props.pushMetricHistogram).toHaveBeenCalledWith({
           payload: expect.arrayContaining([
             expect.objectContaining({
               metricName:
-                'browser_duration_time_to_interactive_buckets_milliseconds',
+                'browser_duration_first_input_delay_buckets_milliseconds',
             }),
           ]),
         });
