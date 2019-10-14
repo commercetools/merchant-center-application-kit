@@ -12,11 +12,6 @@
       "packagePatterns": [
         "*"
       ],
-      "excludePackageNames": [
-        "typescript",
-        "gatsby-plugin-sharp",
-        "gatsby-transformer-sharp"
-      ],
       "groupName": "all dependencies",
       "groupSlug": "all"
     }
@@ -24,5 +19,10 @@
   "lockFileMaintenance": {
     "enabled": true
   },
-  "labels": ["🤖 Type: Dependencies"]
+  "labels": ["🤖 Type: Dependencies"],
+  "ignoreDeps": [
+    "typescript",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp"
+  ]
 }
