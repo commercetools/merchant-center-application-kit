@@ -15,7 +15,7 @@ jest.mock('perfume.js', () =>
   jest.fn(() => ({
     firstPaintDuration: 1,
     firstContentfulPaintDuration: 2,
-    observeTimeToInteractive: Promise.resolve(1234.22),
+    observeFirstInputDelay: Promise.resolve(1234.22),
   }))
 );
 
@@ -60,7 +60,7 @@ describe('lifecycle', () => {
           payload: expect.arrayContaining([
             expect.objectContaining({
               metricName:
-                'browser_duration_time_to_interactive_buckets_milliseconds',
+                'browser_duration_first_input_delay_buckets_milliseconds',
             }),
           ]),
         });
