@@ -25,7 +25,6 @@ packages/
   constants/
   create-mc-app/
   eslint-config-mc-app/
-  eslint-plugin-testing-library-react/
   i18n/
   jest-preset-mc-app/
   jest-stylelint-runner/

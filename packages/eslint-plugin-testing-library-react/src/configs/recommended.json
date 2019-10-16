@@ -1,6 +1,0 @@
-{
-  "plugins": ["testing-library-react"],
-  "rules": {
-    "testing-library-react/prefer-expect-query-by": "error"
-  }
-}
