@@ -6,59 +6,59 @@ import { defineMessages } from 'react-intl';
 // Avoid changing the message id, otherwise you need to translate them again in Transifex.
 const messages = defineMessages({
   cancel: {
-    id: 'Messages.cancel',
+    id: 'AppKit.Shared.cancel',
     defaultMessage: 'Cancel',
   },
   confirm: {
-    id: 'Messages.confirm',
+    id: 'AppKit.Shared.confirm',
     defaultMessage: 'Confirm',
   },
   save: {
-    id: 'Messages.save',
+    id: 'AppKit.Shared.save',
     defaultMessage: 'Save',
   },
   update: {
-    id: 'Messages.update',
+    id: 'AppKit.Shared.update',
     defaultMessage: 'Update',
   },
   create: {
-    id: 'Messages.create',
+    id: 'AppKit.Shared.create',
     defaultMessage: 'Create',
   },
   delete: {
-    id: 'Messages.delete',
+    id: 'AppKit.Shared.delete',
     defaultMessage: 'Delete',
   },
   remove: {
-    id: 'Messages.remove',
+    id: 'AppKit.Shared.remove',
     defaultMessage: 'Remove',
   },
   close: {
-    id: 'Messages.close',
+    id: 'AppKit.Shared.close',
     defaultMessage: 'Close',
   },
   edit: {
-    id: 'Messages.edit',
+    id: 'AppKit.Shared.edit',
     defaultMessage: 'Edit',
   },
   open: {
-    id: 'Messages.open',
+    id: 'AppKit.Shared.open',
     defaultMessage: 'Open',
   },
   activate: {
-    id: 'Messages.activate',
+    id: 'AppKit.Shared.activate',
     defaultMessage: 'Activate',
   },
   deactivate: {
-    id: 'Messages.deactivate',
+    id: 'AppKit.Shared.deactivate',
     defaultMessage: 'Deactivate',
   },
   enable: {
-    id: 'Messages.enable',
+    id: 'AppKit.Shared.enable',
     defaultMessage: 'Enable',
   },
   disable: {
-    id: 'Messages.disable',
+    id: 'AppKit.Shared.disable',
     defaultMessage: 'Disable',
   },
 });
