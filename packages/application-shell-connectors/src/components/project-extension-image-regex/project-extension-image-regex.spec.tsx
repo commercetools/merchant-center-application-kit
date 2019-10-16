@@ -8,7 +8,6 @@ import {
   MockedProvider as ApolloMockProvider,
   MockedProviderProps,
 } from '@apollo/react-testing';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import {
   ProjectExtensionProviderForImageRegex,
   GetProjectExtensionImageRegex,
@@ -124,26 +123,6 @@ describe('rendering', () => {
     it('should not render regex info', async () => {
       await waitForElementToBeRemoved(() => rendered.getByText('Loading...'));
       expect(rendered.queryByText('Not found')).toBeInTheDocument();
-    });
-  });
-  describe('when request fails', () => {
-    beforeEach(() => {
-      rendered = renderComponent([
-        {
-          request: {
-            query: FetchProjectExtensionImageRegex,
-            variables: {
-              target: GRAPHQL_TARGETS.SETTINGS_SERVICE,
-            },
-          },
-          error: new Error('Oops'),
-        },
-      ]);
-    });
-    it('should report error to sentry', async () => {
-      await waitForElementToBeRemoved(() => rendered.getByText('Loading...'));
-      expect(rendered.queryByText('Not found')).toBeInTheDocument();
-      expect(reportErrorToSentry).toHaveBeenCalled();
     });
   });
 });

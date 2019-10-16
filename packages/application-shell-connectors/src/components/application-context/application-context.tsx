@@ -60,7 +60,7 @@ const defaultTimeZone = moment.tz.guess() || 'Etc/UTC';
 
 // Expose only certain fields as some of them are only meant to
 // be used internally in the AppShell
-const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
+export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
   if (!user) return null;
   return {
     id: user.id,
@@ -77,7 +77,9 @@ const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
 
 // Expose only certain fields as some of them are only meant to
 // be used internally in the AppShell
-const mapProjectToApplicationContextProject = (project?: TFetchedProject) => {
+export const mapProjectToApplicationContextProject = (
+  project?: TFetchedProject
+) => {
   if (!project) return null;
   return {
     key: project.key,
@@ -180,10 +182,10 @@ ApplicationContext.displayName = 'ApplicationContext';
 
 function withApplicationContext<
   OwnProps extends {},
-  MappedProps extends {
+  AdditionalEnvironmentProperties extends {},
+  MappedProps extends {} = {
     applicationContext?: TApplicationContext<AdditionalEnvironmentProperties>;
-  },
-  AdditionalEnvironmentProperties extends {}
+  }
 >(
   mapApplicationContextToProps?: (
     context: TApplicationContext<AdditionalEnvironmentProperties>
