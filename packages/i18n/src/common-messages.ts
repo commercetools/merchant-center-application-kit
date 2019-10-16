@@ -29,6 +29,10 @@ const messages = defineMessages({
     id: 'AppKit.Shared.delete',
     defaultMessage: 'Delete',
   },
+  add: {
+    id: 'AppKit.Shared.add',
+    defaultMessage: 'Add',
+  },
   remove: {
     id: 'AppKit.Shared.remove',
     defaultMessage: 'Remove',
@@ -52,6 +56,14 @@ const messages = defineMessages({
   deactivate: {
     id: 'AppKit.Shared.deactivate',
     defaultMessage: 'Deactivate',
+  },
+  active: {
+    id: 'AppKit.Shared.active',
+    defaultMessage: 'Active',
+  },
+  inactive: {
+    id: 'AppKit.Shared.inactive',
+    defaultMessage: 'Inactive',
   },
   enable: {
     id: 'AppKit.Shared.enable',
