@@ -1,6 +1,6 @@
 import React from 'react';
 import { SecondaryButton } from '@commercetools-frontend/ui-kit';
-import { render, wait, fireEvent } from '../../../../test-utils';
+import { renderComponent, wait, fireEvent } from '../../../../test-utils';
 import FormDialog from './form-dialog';
 
 type DialogControllerProps = {
@@ -27,7 +27,7 @@ describe('rendering', () => {
   it('should open the modal and close it by clicking on the close button', async () => {
     const onCancel = jest.fn();
     const onConfirm = jest.fn();
-    const { queryByText, getByLabelText } = render(
+    const { queryByText, getByLabelText } = renderComponent(
       <DialogController>
         {({ isOpen, setIsOpen }) => (
           <FormDialog
@@ -63,7 +63,7 @@ describe('rendering', () => {
   it('should not be able to close the modal when onClose is not provided', async () => {
     const onCancel = jest.fn();
     const onConfirm = jest.fn();
-    const { queryByText, getByLabelText } = render(
+    const { queryByText, getByLabelText } = renderComponent(
       <DialogController>
         {({ isOpen }) => (
           <FormDialog

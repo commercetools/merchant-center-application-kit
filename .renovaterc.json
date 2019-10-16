@@ -21,7 +21,6 @@
   },
   "labels": ["🤖 Type: Dependencies"],
   "ignoreDeps": [
-    "typescript",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp"
   ]
