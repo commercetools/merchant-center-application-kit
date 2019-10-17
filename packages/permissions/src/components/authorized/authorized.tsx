@@ -97,6 +97,8 @@ const Authorized = (props: Props) => {
             demandedDataFences: props.demandedDataFences,
             actualDataFences: props.actualDataFences,
             selectDataFenceData: props.selectDataFenceData,
+            actualPermissions: props.actualPermissions,
+            demandedPermissions: props.demandedPermissions,
           })
         )}
       </React.Fragment>

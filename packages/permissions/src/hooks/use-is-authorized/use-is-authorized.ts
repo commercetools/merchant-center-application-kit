@@ -91,9 +91,11 @@ const useIsAuthorized = ({
       return false;
     }
     return hasAppliedDataFence({
-      demandedDataFences: demandedDataFences,
-      actualDataFences: actualDataFences,
-      selectDataFenceData: selectDataFenceData,
+      demandedDataFences,
+      actualDataFences,
+      selectDataFenceData,
+      actualPermissions,
+      demandedPermissions,
     });
   }
 
