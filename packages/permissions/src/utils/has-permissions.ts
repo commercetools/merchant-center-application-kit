@@ -62,6 +62,8 @@ type TOptionsForAppliedDataFence = {
   demandedDataFences: TDemandedDataFence[];
   actualDataFences: TDataFences;
   selectDataFenceData: TSelectDataFenceData;
+  actualPermissions: TPermissions | null;
+  demandedPermissions: TPermissionName[];
 };
 
 // Build the permission key from the definition to match it to the format coming
@@ -234,43 +236,59 @@ const getDataFenceByPermissionGroup = (
   return null;
 };
 
-export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) =>
+export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) => {
+  // If user has `*Manage` as their `appliedPermission`, we bypass `dataFence`.
+  const hasAppliedManagePermission = options.demandedPermissions.some(
+    demandedPermission => {
+      if (options.actualPermissions) {
+        return hasManagePermission(
+          demandedPermission,
+          options.actualPermissions
+        );
+      }
+      return false;
+    }
+  );
+  if (hasAppliedManagePermission) return true;
   // Datafences applied should be combined with an OR, that is why we use
   // `some` and not `every`
-  options.demandedDataFences.some((demandedDataFence: TDemandedDataFence) => {
-    // Given that dataFence structure on `applicationContext`, we get the value by a path
-    // e.g given dataFence with { store: { orders: { canManageOrders: { values: } } } }
-    // we read the dataFence by the [type] and [group]
-    // dataFence[type][group] = dataFence.store.group
-    // with value = there is a dataFence to apply, overrules `hasDemandedProjectPermissions`
-    // without value = there is no dataFence to apply, overruled by `hasDemandedProjectPermissions`
-    const actualDataFenceByPermissionGroup = getDataFenceByPermissionGroup(
-      options.actualDataFences,
-      demandedDataFence.type,
-      demandedDataFence.group
-    );
+  return options.demandedDataFences.some(
+    (demandedDataFence: TDemandedDataFence) => {
+      // Given that dataFence structure on `applicationContext`, we get the value by a path
+      // e.g given dataFence with { store: { orders: { canManageOrders: { values: } } } }
+      // we read the dataFence by the [type] and [group]
+      // dataFence[type][group] = dataFence.store.group
+      // with value = there is a dataFence to apply, overrules `hasDemandedProjectPermissions`
+      // without value = there is no dataFence to apply, overruled by `hasDemandedProjectPermissions`
+      const actualDataFenceByPermissionGroup = getDataFenceByPermissionGroup(
+        options.actualDataFences,
+        demandedDataFence.type,
+        demandedDataFence.group
+      );
 
-    if (!actualDataFenceByPermissionGroup) return false;
+      if (!actualDataFenceByPermissionGroup) return false;
 
-    // we try to find if the demanded dataFence is available inside the actual datafences
-    const specificActualDataFence = Object.entries(
-      actualDataFenceByPermissionGroup
-    ).find(
-      ([dataFenceName, dataFenceValue]) =>
-        dataFenceValue && dataFenceName === toCanCase(demandedDataFence.name)
-    );
+      // we try to find if the demanded dataFence is available inside the actual datafences
+      const specificActualDataFence = Object.entries(
+        actualDataFenceByPermissionGroup
+      ).find(
+        ([dataFenceName, dataFenceValue]) =>
+          dataFenceValue && dataFenceName === toCanCase(demandedDataFence.name)
+      );
 
-    if (!specificActualDataFence) return false;
+      if (!specificActualDataFence) return false;
 
-    const [dataFenceName, dataFenceValue] = specificActualDataFence;
-    return hasDemandedDataFence({
-      actualDataFence: {
-        name: dataFenceName,
-        // we do the type casting because at this point we are sure that
-        // specificActualDataFence.dataFenceValue is not null
-        dataFenceValue: dataFenceValue as TActualDataFence['dataFenceValue'],
-      },
-      demandedDataFence,
-      selectDataFenceData: options.selectDataFenceData,
-    });
-  });
+      const [dataFenceName, dataFenceValue] = specificActualDataFence;
+      return hasDemandedDataFence({
+        actualDataFence: {
+          name: dataFenceName,
+          // we do the type casting because at this point we are sure that
+          // specificActualDataFence.dataFenceValue is not null
+          dataFenceValue: dataFenceValue as TActualDataFence['dataFenceValue'],
+        },
+        demandedDataFence,
+        selectDataFenceData: options.selectDataFenceData,
+      });
+    }
+  );
+};

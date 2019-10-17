@@ -208,8 +208,8 @@ describe('rendering', () => {
   });
 
   describe('dataFence to view orders on specific store', () => {
-    describe('if cannot view or manage orders', () => {
-      describe('has demanded dataFence to MANAGE orders on the specific store', () => {
+    describe('with general permission', () => {
+      describe('when general permissions is manage', () => {
         beforeEach(() => {
           props = createTestProps({
             actualDataFences: {
@@ -222,9 +222,84 @@ describe('rendering', () => {
               },
             },
             actualPermissions: {
-              canViewOrders: false,
-              canManageOrders: false,
-              canViewProducts: true,
+              canManageOrders: true,
+            },
+            demandedDataFences: [
+              {
+                type: 'store',
+                group: 'orders',
+                name: 'ManageOrders',
+              },
+            ],
+            selectDataFenceData: ({ type }) => {
+              switch (type) {
+                case 'store':
+                  return ['store-1'];
+                default:
+                  return null;
+              }
+            },
+          });
+          shallow(<Authorized {...props} />);
+        });
+        it('should indicate as authorized', () => {
+          expect(props.render).toHaveBeenCalledWith(true);
+        });
+      });
+      describe('when general permissions is view', () => {
+        describe('when data fence permission is manage', () => {
+          beforeEach(() => {
+            props = createTestProps({
+              actualDataFences: {
+                store: {
+                  orders: {
+                    canViewOrders: {
+                      values: ['store-1'],
+                    },
+                  },
+                },
+              },
+              actualPermissions: {
+                canViewOrders: true,
+                canManageOrders: false,
+              },
+              demandedDataFences: [
+                {
+                  type: 'store',
+                  group: 'orders',
+                  name: 'ManageOrders',
+                },
+              ],
+              selectDataFenceData: ({ type }) => {
+                switch (type) {
+                  case 'store':
+                    return ['store-1'];
+                  default:
+                    return null;
+                }
+              },
+            });
+            shallow(<Authorized {...props} />);
+          });
+          it('should indicate as not authorized', () => {
+            expect(props.render).toHaveBeenCalledWith(false);
+          });
+        });
+      });
+    });
+
+    describe('if cannot view or manage orders', () => {
+      describe('has demanded dataFence to MANAGE orders on the specific store', () => {
+        beforeEach(() => {
+          props = createTestProps({
+            actualDataFences: {
+              store: {
+                orders: {
+                  canViewOrders: {
+                    values: ['store-1'],
+                  },
+                },
+              },
             },
             demandedDataFences: [
               {
