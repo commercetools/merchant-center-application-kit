@@ -36,6 +36,8 @@ rules:
   react/jsx-tag-spacing: 0
   import/no-extraneous-dependencies: 0
   import/no-named-as-default: 0
+  import/no-named-as-default-member: 0
+  import/default: 0
   import/no-unresolved: 2
   'react-hooks/rules-of-hooks': 'error'
   'react-hooks/exhaustive-deps': 'warn'

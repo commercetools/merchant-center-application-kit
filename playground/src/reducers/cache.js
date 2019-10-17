@@ -1,5 +1,6 @@
 import omit from 'lodash/omit';
 import omitBy from 'lodash/omitBy';
+// eslint-disable-next-line import/named
 import { normalize, schema } from 'normalizr';
 import createReducer from '../utils/create-reducer';
 

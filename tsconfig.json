@@ -34,7 +34,8 @@
     // https://stackoverflow.com/a/40326719
     "paths": {
       "*": [
-        "@types/*"
+        "@types/*",
+        "*"
       ]
     },
     "typeRoots": [

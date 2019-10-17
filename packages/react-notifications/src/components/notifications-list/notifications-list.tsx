@@ -13,7 +13,6 @@ import {
 } from '@commercetools-frontend/constants';
 import { removeNotification } from '@commercetools-frontend/notifications';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import Notification from '../notification';
 import GenericNotification from '../notification-kinds/generic';
 import ApiErrorNotification from '../notification-kinds/api-error';
 import UnexpectedErrorNotification from '../notification-kinds/unexpected-error';
@@ -42,7 +41,7 @@ const NotificationsListGlobal = (props: Props) => {
         // 1. Check if there is a custom notification component first
         const CustomNotificationComponent = mapCustomNotificationToComponent(
           notification
-        ) as Notification;
+        );
         if (CustomNotificationComponent) {
           return (
             <CustomNotificationComponent
@@ -112,7 +111,7 @@ const NotificationsListPage = (props: Props) => {
         // 1. Check if there is a custom notification component first
         const CustomNotificationComponent = mapCustomNotificationToComponent(
           notification
-        ) as Notification;
+        );
         if (CustomNotificationComponent) {
           return (
             <CustomNotificationComponent
@@ -190,7 +189,7 @@ const NotificationsListSide = (props: Props) => {
         // 1. Check if there is a custom notification component first
         const CustomNotificationComponent = mapCustomNotificationToComponent(
           notification
-        ) as Notification;
+        );
         if (CustomNotificationComponent) {
           return (
             <CustomNotificationComponent

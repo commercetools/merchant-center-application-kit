@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '../../../test-utils';
+import { renderComponent } from '../../../test-utils';
 import MaintenancePageLayout, { Props } from './maintenance-page-layout';
 
 const createTestProps = (props: Partial<Props> = {}) => ({
@@ -16,7 +16,7 @@ describe('rendering', () => {
       props = createTestProps();
     });
     it('renders the title and paragraph', () => {
-      const rendered = render(<MaintenancePageLayout {...props} />);
+      const rendered = renderComponent(<MaintenancePageLayout {...props} />);
       expect(rendered.queryByText('title')).toBeInTheDocument();
       expect(rendered.queryByText('title 1')).toBeInTheDocument();
     });
@@ -28,7 +28,7 @@ describe('rendering', () => {
       });
     });
     it('renders the title and paragraphs', () => {
-      const rendered = render(<MaintenancePageLayout {...props} />);
+      const rendered = renderComponent(<MaintenancePageLayout {...props} />);
       expect(rendered.queryByText('title')).toBeInTheDocument();
       expect(rendered.queryByText('title 1')).toBeInTheDocument();
       expect(rendered.queryByText('title 2')).toBeInTheDocument();
@@ -42,7 +42,7 @@ describe('rendering', () => {
       });
     });
     it('renders the title, paragraphs and body content', () => {
-      const rendered = render(<MaintenancePageLayout {...props} />);
+      const rendered = renderComponent(<MaintenancePageLayout {...props} />);
       expect(rendered.queryByText('title')).toBeInTheDocument();
       expect(rendered.queryByText('title 1')).toBeInTheDocument();
       expect(rendered.queryByText('title 2')).toBeInTheDocument();
@@ -56,7 +56,7 @@ describe('rendering', () => {
       });
     });
     it('renders the title, paragraphs and body content', () => {
-      const rendered = render(<MaintenancePageLayout {...props} />);
+      const rendered = renderComponent(<MaintenancePageLayout {...props} />);
       expect(rendered.queryByText('title')).toBeInTheDocument();
       expect(rendered.queryByText('title 1')).toBeInTheDocument();
       expect(rendered.queryByText('content')).toBeInTheDocument();

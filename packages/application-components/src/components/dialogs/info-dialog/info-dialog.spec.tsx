@@ -1,6 +1,6 @@
 import React from 'react';
 import { SecondaryButton } from '@commercetools-frontend/ui-kit';
-import { render, wait, fireEvent } from '../../../../test-utils';
+import { renderComponent, wait, fireEvent } from '../../../../test-utils';
 import InfoDialog from './info-dialog';
 
 type DialogControllerProps = {
@@ -25,7 +25,7 @@ DialogController.displayName = 'DialogController';
 
 describe('rendering', () => {
   it('should open the modal and close it by clicking on the close button', async () => {
-    const { queryByText, getByLabelText } = render(
+    const { queryByText, getByLabelText } = renderComponent(
       <DialogController>
         {({ isOpen, setIsOpen }) => (
           <InfoDialog
