@@ -11,7 +11,7 @@ extends:
   - plugin:import/typescript
   - plugin:jest/recommended
   - plugin:react/recommended
-  - plugin:testing-library-react/recommended
+  - plugin:testing-library/recommended
   - prettier
   - prettier/react
   - prettier/@typescript-eslint
