@@ -66,8 +66,8 @@ describe('ApolloMockProvider', () => {
   });
 });
 
-describe('FlopFlip', () => {
-  const FEATURE_NAME = 'foo-bar';
+describe('`flopflip`', () => {
+  const FEATURE_NAME = 'fooBar';
   const TestComponent = injectFeatureToggle(FEATURE_NAME, 'isFooBarEnabled')(
     props => (props.isFooBarEnabled ? 'enabled' : 'disabled')
   );

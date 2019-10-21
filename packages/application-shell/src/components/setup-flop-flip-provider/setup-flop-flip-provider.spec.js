@@ -12,6 +12,10 @@ const createTestProps = props => ({
     launchdarklyTrackingTeam: ['abc', 'def'],
     launchdarklyTrackingTenant: 'xy',
   },
+  flags: {
+    flagA: true,
+    flagB: false,
+  },
   defaultFlags: {
     flagA: true,
   },
@@ -97,6 +101,18 @@ describe('rendering', () => {
     );
   });
   it('should pass "user.custom.tenant" as adapter arg', () => {
+    expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(
+      'adapterArgs',
+      expect.objectContaining({
+        user: expect.objectContaining({
+          custom: expect.objectContaining({
+            tenant: props.user.launchdarklyTrackingTenant,
+          }),
+        }),
+      })
+    );
+  });
+  it('should pass "flags" as adapter arg', () => {
     expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(
       'adapterArgs',
       expect.objectContaining({
