@@ -212,6 +212,7 @@ describe('rendering', () => {
       describe('when general permissions is manage', () => {
         beforeEach(() => {
           props = createTestProps({
+            demandedPermissions: ['ManageOrders'],
             actualDataFences: {
               store: {
                 orders: {
@@ -250,6 +251,7 @@ describe('rendering', () => {
         describe('when data fence permission is manage', () => {
           beforeEach(() => {
             props = createTestProps({
+              demandedPermissions: ['ViewOrders'],
               actualDataFences: {
                 store: {
                   orders: {
