@@ -36,7 +36,7 @@
     "build:test-utils": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -i ./src/test-utils/index.js"
   },
   "dependencies": {
-    "@apollo/react-testing": "3.1.2",
+    "@apollo/react-testing": "3.1.3",
     "@commercetools-frontend/actions-global": "15.1.7",
     "@commercetools-frontend/application-components": "15.1.7",
     "@commercetools-frontend/application-shell-connectors": "15.1.7",
@@ -56,7 +56,7 @@
     "@flopflip/launchdarkly-adapter": "2.9.0",
     "@flopflip/memory-adapter": "1.4.0",
     "@flopflip/react-broadcast": "9.1.0",
-    "@sentry/browser": "5.7.0",
+    "@sentry/browser": "5.7.1",
     "apollo-cache-inmemory": "1.6.3",
     "apollo-client": "2.6.4",
     "apollo-link": "1.2.13",
@@ -94,10 +94,10 @@
     "warning": "4.0.3"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "10.3.0",
+    "@commercetools-frontend/ui-kit": "10.4.0",
     "@testing-library/react": "9.3.0",
     "react": "16.10.2",
-    "react-apollo": "3.1.2",
+    "react-apollo": "3.1.3",
     "react-dom": "16.10.2",
     "react-intl": "3.3.2",
     "react-redux": "7.1.1",

@@ -49,7 +49,7 @@
     "chalk": "2.4.2",
     "cldr": "5.4.1",
     "deep-diff": "1.0.2",
-    "moment-timezone": "0.5.26",
+    "moment-timezone": "0.5.27",
     "node-fetch": "2.6.0",
     "rimraf": "3.0.0",
     "shelljs": "0.8.3"

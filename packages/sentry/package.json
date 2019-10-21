@@ -39,7 +39,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "7.6.3",
     "@commercetools-frontend/constants": "15.1.4",
-    "@sentry/browser": "5.7.0",
+    "@sentry/browser": "5.7.1",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
