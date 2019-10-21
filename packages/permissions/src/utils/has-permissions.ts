@@ -241,9 +241,9 @@ export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) => {
   const hasAppliedManagePermission = options.demandedPermissions.some(
     demandedPermission => {
       if (options.actualPermissions) {
-        return hasManagePermission(
-          demandedPermission,
-          options.actualPermissions
+        return (
+          demandedPermission.startsWith('Manage') &&
+          hasExactPermission(demandedPermission, options.actualPermissions)
         );
       }
       return false;
