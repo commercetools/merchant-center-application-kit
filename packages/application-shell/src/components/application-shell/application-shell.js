@@ -161,8 +161,8 @@ export const RestrictedApplication = props => (
                   user={user}
                   projectKey={projectKeyFromUrl}
                   appEnv={props.environment.env}
-                  defaultFlags={props.defaultFeatureFlags}
                   flags={props.featureFlags}
+                  defaultFlags={props.defaultFeatureFlags}
                 >
                   <React.Fragment>
                     <VersionTracker />
@@ -459,8 +459,8 @@ export default class ApplicationShell extends React.Component {
   static displayName = 'ApplicationShell';
   static propTypes = {
     environment: PropTypes.object.isRequired,
-    defaultFeatureFlags: PropTypes.object,
     featureFlags: PropTypes.object,
+    defaultFeatureFlags: PropTypes.object,
     trackingEventWhitelist: PropTypes.objectOf(
       PropTypes.oneOfType([
         PropTypes.string,

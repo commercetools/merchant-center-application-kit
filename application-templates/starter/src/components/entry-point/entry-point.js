@@ -7,6 +7,7 @@ import {
 } from '@commercetools-frontend/application-shell';
 import { Sdk } from '@commercetools-frontend/sdk';
 import * as globalActions from '@commercetools-frontend/actions-global';
+import { FEATURE_FLAGS } from '../../constants';
 import loadMessages from '../../messages';
 
 // Here we split up the main (app) bundle with the actual application business logic.
@@ -55,6 +56,7 @@ class EntryPoint extends React.Component {
         DEV_ONLY__loadNavbarMenuConfig={() =>
           import('../../../menu.json').then(data => data.default || data)
         }
+        featureFlags={FEATURE_FLAGS}
         render={() => <ApplicationStarter />}
       />
     );
