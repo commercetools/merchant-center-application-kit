@@ -3528,10 +3528,10 @@
     pretty-format "^24.0.0"
     redent "^3.0.0"
 
-"@testing-library/react-hooks@2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@testing-library/react-hooks/-/react-hooks-2.0.3.tgz#305a6c76facb5fa1d185792b9eb11b1ca1b63fb7"
-  integrity sha512-adm+7b1gcysGka8VuYq/ObBrIBJTT9QmCEIqPpuxozWFfVDgxSbzBGc44ia/WYLGVt2dqFIOc6/DmAmu/pa0gQ==
+"@testing-library/react-hooks@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/react-hooks/-/react-hooks-3.1.0.tgz#f186c4f3b32db153d30d646faacb043ef4089807"
+  integrity sha512-mwFDHXCQiyr0tQkYU4VkcwlCzR5YQ5k1/TCrL3hPslCM5MvS6pBhbl2z4UnCMV4DOyiUUXIvoMAf5kHT/hibTg==
   dependencies:
     "@babel/runtime" "^7.5.4"
     "@types/testing-library__react-hooks" "^2.0.0"
@@ -8303,10 +8303,10 @@ detab@2.0.2, detab@^2.0.0:
   dependencies:
     repeat-string "^1.5.4"
 
-detect-browser@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/detect-browser/-/detect-browser-4.0.0.tgz#e66ea9e777c86916f042057b0a15227fb77eb64d"
-  integrity sha512-L4aOcjXh6IHFC/Gw/LTrGTPPYA91fi0IZNG42fMzSjYr5YO2UbqqIEpN+31D54rF0FyIBR6vc/mKAcBwjYg+7Q==
+detect-browser@4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/detect-browser/-/detect-browser-4.5.1.tgz#b9df3f66454a4f32adbc4db2949aa788b757921b"
+  integrity sha512-cGXvbxvDws+ZjzR3AI+2IcKQR3Tj85PaUn42u6A/DWOEYda5fgvkS/NrQp2lD4LZ/IE2nLE/0kV//qekOyxJ2Q==
 
 detect-file@^1.0.0:
   version "1.0.0"
@@ -10326,11 +10326,6 @@ findup-sync@3.0.0:
     is-glob "^4.0.0"
     micromatch "^3.0.4"
     resolve-dir "^1.0.1"
-
-first-input-delay@0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/first-input-delay/-/first-input-delay-0.1.3.tgz#5506fb95a9537ba9706096b9c159bfd3f38f6f62"
-  integrity sha512-hZ1mI+BWYIBr8jlp2bDPnRvnmSICBxpZRwdc0nhiQn2uyMxSKZEBbkO8V0/s26AMeX8p/AD4g09+liRrhXvKKQ==
 
 flat-cache@^2.0.1:
   version "2.0.1"
@@ -15569,10 +15564,10 @@ make-fetch-happen@^5.0.0:
     socks-proxy-agent "^4.0.0"
     ssri "^6.0.0"
 
-make-plural@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/make-plural/-/make-plural-5.0.0.tgz#70fe4e16ee9c3b65ba59ad492b18619b555a58f2"
-  integrity sha512-1YH9im20TwiLUnpD72uoe6JJrdER04SOMCz4BLk0PWqrW1QxKW47SsJBSOf7HHH1ZYb8YZk10yXG60skmwiHlw==
+make-plural@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/make-plural/-/make-plural-6.0.1.tgz#ed3839fac3f469ebbe505751d48fe3319769edfc"
+  integrity sha512-h0uBNi4tpDkiWUyYKrJNj8Kif6q3Ba5zp/8jnfPy3pQE+4XcTj6h3eZM5SYVUyDNX9Zk69Isr/dx0I+78aJUaQ==
 
 makeerror@1.0.x:
   version "1.0.11"
@@ -17742,13 +17737,12 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-perfume.js@2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/perfume.js/-/perfume.js-2.1.2.tgz#71e81449eec0b55c7895b030a0a8c53b9da9c3d8"
-  integrity sha512-xKZc8ok0mzww8H45B3FVG5O9rvzY4tuCDELdtwM79OeeP4nVeX1d9Sr3ZNgbUDFQKiEJa1Prc/t8b+XxvSd9fQ==
+perfume.js@3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/perfume.js/-/perfume.js-3.0.4.tgz#5a4dd04eea59e004997e018f823557454576dc6e"
+  integrity sha512-Q/g22qlyZnvRuoej3OX0mz8qF0l/mPPpsYAVfN1PgsQ1qYBJ82AytmE0Aj3nV/MGmyBRU5bvrjRSQypxx6UkJQ==
   dependencies:
-    detect-browser "4.0.0"
-    first-input-delay "0.1.3"
+    detect-browser "4.5.1"
     idlize "0.1.1"
 
 phin@^2.9.1:
