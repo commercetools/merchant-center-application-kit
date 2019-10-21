@@ -162,6 +162,7 @@ export const RestrictedApplication = props => (
                   projectKey={projectKeyFromUrl}
                   appEnv={props.environment.env}
                   defaultFlags={props.defaultFeatureFlags}
+                  flags={props.featureFlags}
                 >
                   <React.Fragment>
                     <VersionTracker />
@@ -413,6 +414,7 @@ RestrictedApplication.displayName = 'RestrictedApplication';
 RestrictedApplication.propTypes = {
   environment: PropTypes.object.isRequired,
   defaultFeatureFlags: PropTypes.object,
+  featureFlags: PropTypes.object,
   render: PropTypes.func.isRequired,
   applicationMessages: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
     .isRequired,
@@ -458,6 +460,7 @@ export default class ApplicationShell extends React.Component {
   static propTypes = {
     environment: PropTypes.object.isRequired,
     defaultFeatureFlags: PropTypes.object,
+    featureFlags: PropTypes.object,
     trackingEventWhitelist: PropTypes.objectOf(
       PropTypes.oneOfType([
         PropTypes.string,
@@ -537,6 +540,7 @@ export default class ApplicationShell extends React.Component {
                       <RestrictedApplication
                         environment={coercedEnvironmentValues}
                         defaultFeatureFlags={this.props.defaultFeatureFlags}
+                        featureFlags={this.props.featureFlags}
                         render={this.props.render}
                         applicationMessages={this.props.applicationMessages}
                         onMenuItemClick={this.props.onMenuItemClick}

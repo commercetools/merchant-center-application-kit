@@ -28,6 +28,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
         launchdarklyTrackingTenant: PropTypes.string.isRequired,
       }),
     ]),
+    flags: PropTypes.object,
     defaultFlags: PropTypes.object,
     appEnv: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
@@ -39,12 +40,14 @@ export class SetupFlopFlipProvider extends React.PureComponent {
       clientSideId,
       userId,
       projectKey,
+      flags,
       ldTrackingId,
       ldTrackingGroup,
       ldTrackingTeam,
       ldTrackingTenant
     ) => ({
       clientSideId,
+      flags,
       user: {
         key: userId,
         custom: {
@@ -68,6 +71,7 @@ export class SetupFlopFlipProvider extends React.PureComponent {
             : ldClientSideIdStaging,
           this.props.user && this.props.user.id,
           this.props.projectKey,
+          this.props.flags,
           this.props.user && this.props.user.launchdarklyTrackingId,
           this.props.user && this.props.user.launchdarklyTrackingGroup,
           this.props.user && this.props.user.launchdarklyTrackingTeam,
