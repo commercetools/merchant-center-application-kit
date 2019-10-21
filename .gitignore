@@ -71,6 +71,7 @@ typings/
 dist
 public
 packages/application-shell/test-utils
+packages/application-shell-connectors/test-utils
 packages/sdk/test-utils
 
 # Editor/IDE
