@@ -30,7 +30,7 @@
     "colors": "1.4.0",
     "enzyme-adapter-react-16": "1.15.1",
     "enzyme-matchers": "7.1.1",
-    "enzyme-to-json": "3.4.2",
+    "enzyme-to-json": "3.4.3",
     "identity-obj-proxy": "3.0.0",
     "intl": "1.2.5",
     "jest-enzyme": "7.1.1",
