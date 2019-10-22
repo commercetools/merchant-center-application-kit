@@ -45,7 +45,7 @@
     "react": "16.10.2"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "2.0.3",
+    "@testing-library/react-hooks": "3.1.0",
     "chalk": "2.4.2",
     "cldr": "5.4.1",
     "deep-diff": "1.0.2",
