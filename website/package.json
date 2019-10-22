@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-application-kit-website",
-  "version": "15.1.7",
+  "version": "15.1.8",
   "private": true,
   "scripts": {
     "build": "gatsby build",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@babel/core": "7.6.4",
-    "@commercetools-frontend/application-components": "15.1.7",
+    "@commercetools-frontend/application-components": "15.1.8",
     "@commercetools-frontend/assets": "15.0.0",
     "@commercetools-frontend/ui-kit": "10.4.0",
     "@emotion/core": "10.0.21",
