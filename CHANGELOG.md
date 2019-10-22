@@ -1,4 +1,57 @@
-## [15.1.8](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.7...v15.1.8) ((2019-10-22))
+## [15.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.8...v15.2.0) (2019-10-22)
+
+#### 🚀 Type: New Feature
+
+- `application-shell-connectors`
+  - [#1108](https://github.com/commercetools/merchant-center-application-kit/pull/1108) feat(app-connectors): expose mock functions for image-regex settings as test-utils ([@emmenko](https://github.com/emmenko))
+
+In case your are testing a part of the UI that utilises the `project-extension-image-regex` connector, you might need to mock the GraphQL request with Apollo. To facilitate this, we expose some `test-utils` from the `@commercetools-frontend/application-shell-connectors` package.
+
+Below is an example of how to use them:
+
+```jsx
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import {
+  createFetchProjectExtensionImageRegexMock,
+  createGraphqlResponseForProjectExtensionImageRegexQuery,
+} from '@commercetools-frontend/application-shell-connectors/test-utils';
+import { renderApp } from '@commercetools-frontend/application-shell/test-utils';
+
+describe('rendering', () => {
+  it('should render view with images', async () => {
+    const rendered = renderApp(<App />, {
+      mocks: [
+        createFetchProjectExtensionImageRegexMock(),
+        // ...other mocks
+      ],
+    });
+    await waitForElement(() => rendered.getByText('...'));
+    // ...
+  });
+  it('should render view without images', async () => {
+    const rendered = renderApp(<App />, {
+      mocks: [
+        createFetchProjectExtensionImageRegexMock({
+          result: {
+            data: createGraphqlResponseForProjectExtensionImageRegexQuery({
+              projectExtension: {
+                __typename: 'ProjectExtension',
+                id: 'project-extension-id',
+                imageRegex: undefined,
+              },
+            }),
+          },
+        }),
+        // ...other mocks
+      ],
+    });
+    await waitForElement(() => rendered.getByText('...'));
+    // ...
+  });
+});
+```
+
+## [15.1.8](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.7...v15.1.8) (2019-10-22)
 
 #### 🐛 Type: Bug
 
