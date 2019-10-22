@@ -1,21 +1,67 @@
+## [15.1.8](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.7...v15.1.8) ((2019-10-22))
+
+#### 🐛 Type: Bug
+
+- `permissions`
+  - [#1109](https://github.com/commercetools/merchant-center-application-kit/pull/1109) fix(permissions/has-permissions): use `hasExactPermission` in `hasAppliedDataFences` ([@adnasa](https://github.com/adnasa))
+
+#### 🔮 Type: Chore
+
+- `i18n`
+  - [#1093](https://github.com/commercetools/merchant-center-application-kit/pull/1093) Translate '/packages/i18n/data/core.json' in 'fr_FR' ([@transifex-integration[bot]](https://github.com/apps/transifex-integration))
+  - [#1094](https://github.com/commercetools/merchant-center-application-kit/pull/1094) Translate '/packages/i18n/data/core.json' in 'de' ([@transifex-integration[bot]](https://github.com/apps/transifex-integration))
+
+#### 🚀 Type: New Feature
+
+- `permissions`
+  - [#1102](https://github.com/commercetools/merchant-center-application-kit/pull/1102) feat(permissions): allow appliedPermission with Manage to bypass dataFence ([@adnasa](https://github.com/adnasa))
+- `i18n`
+  - [#1097](https://github.com/commercetools/merchant-center-application-kit/pull/1097) feat(i18n): expose some common messages ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell-connectors`
+  - [#1084](https://github.com/commercetools/merchant-center-application-kit/pull/1084) refactor(app-context): restructure tests to RTL ([@emmenko](https://github.com/emmenko))
+- `application-shell`
+  - [#1091](https://github.com/commercetools/merchant-center-application-kit/pull/1091) fix(app-shell): use first input delay ([@tdeekens](https://github.com/tdeekens))
+
+#### 🤖 Type: Dependencies
+
+- `application-shell`, `jest-preset-mc-app`, `l10n`
+  - [#1105](https://github.com/commercetools/merchant-center-application-kit/pull/1105) chore(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+- Other
+  - [#1106](https://github.com/commercetools/merchant-center-application-kit/pull/1106) chore(deps): lock file maintenance ([@renovate[bot]](https://github.com/apps/renovate))
+  - [#1090](https://github.com/commercetools/merchant-center-application-kit/pull/1090) chore(deps): lock file maintenance ([@renovate[bot]](https://github.com/apps/renovate))
+- `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-http-server`, `mc-scripts`, `react-notifications`, `sdk`, `sentry`
+  - [#1104](https://github.com/commercetools/merchant-center-application-kit/pull/1104) chore(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+- `application-shell`
+  - [#1107](https://github.com/commercetools/merchant-center-application-kit/pull/1107) chore(app-shell): update flopflip to allow passing `featureFlags` ([@tdeekens](https://github.com/tdeekens))
+- `application-components`, `react-notifications`, `sdk`
+  - [#1089](https://github.com/commercetools/merchant-center-application-kit/pull/1089) fix(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+- `eslint-plugin-testing-library-react`
+  - [#1098](https://github.com/commercetools/merchant-center-application-kit/pull/1098) refactor: drop custom eslint plugin for rtl ([@emmenko](https://github.com/emmenko))
+- `application-components`, `application-shell`, `babel-preset-mc-app`, `i18n`, `mc-scripts`, `react-notifications`, `sdk`
+  - [#1088](https://github.com/commercetools/merchant-center-application-kit/pull/1088) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [15.1.7](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.6...v15.1.7) (2019-10-11)
 
 #### 🐛 Type: Bug
-* `application-shell`
-  * [#1080](https://github.com/commercetools/merchant-center-application-kit/pull/1080) data locale should be one of the project languages ([@amine-benselim](https://github.com/amine-benselim))
-* `application-components`
-  * [#1079](https://github.com/commercetools/merchant-center-application-kit/pull/1079) fix: modal page header title spacing ([@jonnybel](https://github.com/jonnybel))
+
+- `application-shell`
+  - [#1080](https://github.com/commercetools/merchant-center-application-kit/pull/1080) data locale should be one of the project languages ([@amine-benselim](https://github.com/amine-benselim))
+- `application-components`
+  - [#1079](https://github.com/commercetools/merchant-center-application-kit/pull/1079) fix: modal page header title spacing ([@jonnybel](https://github.com/jonnybel))
 
 #### 🤖 Type: Dependencies
-* `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `create-mc-app`, `eslint-plugin-testing-library-react`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-html-template`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sentry`, `url-utils`
-  * [#1085](https://github.com/commercetools/merchant-center-application-kit/pull/1085) chore: update deps ([@tdeekens](https://github.com/tdeekens))
-* Other
-  * [#1083](https://github.com/commercetools/merchant-center-application-kit/pull/1083) chore: regenerate lockfile ([@tdeekens](https://github.com/tdeekens))
-* `application-shell`, `eslint-plugin-testing-library-react`, `sentry`
-  * [#1054](https://github.com/commercetools/merchant-center-application-kit/pull/1054) chore(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
-* `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-scripts`, `permissions`, `react-notifications`, `sdk`, `sentry`
-  * [#1077](https://github.com/commercetools/merchant-center-application-kit/pull/1077) chore(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
 
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `create-mc-app`, `eslint-plugin-testing-library-react`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-html-template`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sentry`, `url-utils`
+  - [#1085](https://github.com/commercetools/merchant-center-application-kit/pull/1085) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+- Other
+  - [#1083](https://github.com/commercetools/merchant-center-application-kit/pull/1083) chore: regenerate lockfile ([@tdeekens](https://github.com/tdeekens))
+- `application-shell`, `eslint-plugin-testing-library-react`, `sentry`
+  - [#1054](https://github.com/commercetools/merchant-center-application-kit/pull/1054) chore(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-scripts`, `permissions`, `react-notifications`, `sdk`, `sentry`
+  - [#1077](https://github.com/commercetools/merchant-center-application-kit/pull/1077) chore(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
 
 ## [15.1.6](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.5...v15.1.6) (2019-09-24)
 
