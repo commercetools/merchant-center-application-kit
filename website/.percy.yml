@@ -6,3 +6,6 @@ static-snapshots:
   base-url: /
   snapshot-files: '**/*.html,**/*.htm'
   ignore-files: '404.html,404/index.html'
+agent:
+  asset-discovery:
+    network-idle-timeout: 500 # ms (https://docs.percy.io/docs/command-line-client#section--network-idle-timeout-t)
