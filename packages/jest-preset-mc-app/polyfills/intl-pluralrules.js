@@ -2,8 +2,8 @@
  * NOTE: this is a copy of https://github.com/eemeli/intl-pluralrules
  * as the package is shipped with ES6 code.
  */
-const pluralRules = require('make-plural');
-const pluralCategories = require('make-plural/umd/pluralCategories');
+const pluralRules = require('make-plural/plurals');
+const pluralCategories = require('make-plural/pluralCategories');
 
 // does not check for duplicate subtags
 const isStructurallyValidLanguageTag = locale =>
