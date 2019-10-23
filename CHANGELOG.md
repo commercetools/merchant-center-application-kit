@@ -1,3 +1,11 @@
+## [15.2.1](https://github.com/commercetools/merchant-center-application-kit/compare/v15.2.0...v15.2.1) (2019-10-23)
+
+#### 🤖 Type: Dependencies
+* `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `i18n`, `l10n`, `mc-http-server`, `mc-scripts`, `permissions`, `react-notifications`, `sdk`, `sentry`
+  * [#1114](https://github.com/commercetools/merchant-center-application-kit/pull/1114) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+* `application-shell`
+  * [#1113](https://github.com/commercetools/merchant-center-application-kit/pull/1113) chore: update flopflip ([@tdeekens](https://github.com/tdeekens))
+
 ## [15.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.8...v15.2.0) (2019-10-22)
 
 #### 🚀 Type: New Feature
