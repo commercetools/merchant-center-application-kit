@@ -52,8 +52,8 @@
   },
   "devDependencies": {
     "@commercetools-frontend/ui-kit": "10.4.0",
-    "react": "16.10.2",
-    "react-dom": "16.10.2",
+    "react": "16.11.0",
+    "react-dom": "16.11.0",
     "react-intl": "3.3.2"
   },
   "peerDependencies": {

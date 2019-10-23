@@ -45,7 +45,7 @@
     "lodash-es": "4.17.15"
   },
   "devDependencies": {
-    "react": "16.10.2",
+    "react": "16.11.0",
     "react-redux": "7.1.1",
     "redux": "4.0.4"
   },

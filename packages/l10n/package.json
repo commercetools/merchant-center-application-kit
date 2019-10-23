@@ -42,7 +42,7 @@
     "@commercetools-frontend/sentry": "15.1.8",
     "moment": "^2.24.0",
     "prop-types": "15.7.2",
-    "react": "16.10.2"
+    "react": "16.11.0"
   },
   "devDependencies": {
     "@testing-library/react-hooks": "3.1.0",
