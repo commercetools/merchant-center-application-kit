@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@commercetools-frontend/ui-kit": "10.4.0",
-    "@emotion/core": "10.0.21",
-    "@emotion/styled": "10.0.17",
+    "@emotion/core": "10.0.22",
+    "@emotion/styled": "10.0.22",
     "formik": "1.5.8",
     "prop-types": "15.7.2",
     "react": "16.10.2",
