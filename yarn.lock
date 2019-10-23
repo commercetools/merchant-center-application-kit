@@ -3332,18 +3332,18 @@
     string-width "^2.0.0"
     strip-ansi "^3"
 
-"@promster/express@3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@promster/express/-/express-3.3.1.tgz#d7de75ed860e602187c46d16bb077741bc3a0639"
-  integrity sha512-ZP+Nlg1b9BzvUVRRlubEwKr8KGV9lJLHzCjlMHIz8W1plm8L9lVHq7JPRIGIyh11K21ShGazwVC5c7xxkj1gYw==
+"@promster/express@3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@promster/express/-/express-3.4.1.tgz#8f67a9f50816b49ccbdef94cd707496028264f22"
+  integrity sha512-GVmEwTZRu3lVuUoSIEgFXB3k1Fh+cewVttJE58XhwCgjNDmOHRbtG6gtv020LNAAJipu8Q2j6el6HKwLWGyefA==
   dependencies:
-    "@promster/metrics" "3.3.0"
+    "@promster/metrics" "^3.4.1"
     merge-options "1.0.1"
 
-"@promster/metrics@3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@promster/metrics/-/metrics-3.3.0.tgz#0db0afd8bbb2e2e6871143e98350006e519f9198"
-  integrity sha512-A8ehvnXnL0s8P4VYRUkrsexWJUmasGlC8CUPitBuOf1PMo1B8taWZPoRIgjrYMhlKitD/WjAx45JZUZ/LBp+qw==
+"@promster/metrics@^3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@promster/metrics/-/metrics-3.4.1.tgz#eebff808bf51582d930c67221a71ca272d641080"
+  integrity sha512-2EufjFvoXGhjhHlU1UlOGeEp/aW0ZA/MCfRUvFj2xKWZy/Ip+FTb3v+66537jTjN4P877mUqzBvoYAXQr0o1dg==
   dependencies:
     lodash.memoize "4.1.2"
     lodash.once "4.1.1"
@@ -3354,12 +3354,12 @@
   optionalDependencies:
     gc-stats "1.4.0"
 
-"@promster/server@3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@promster/server/-/server-3.3.1.tgz#0e369c1b8e1fc5655934d1b3e915fb40994cb409"
-  integrity sha512-M/TyGl4Z/0LLedVMymV6BlC7RjSix+CdZA/LrzkPWCPV4FV5p+G2um3VZUs/JRqZCXe7Dpg21Owbs33JvqF/FA==
+"@promster/server@3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@promster/server/-/server-3.4.1.tgz#2cb032620906808d26c6a63e60a09baa8c6c28a3"
+  integrity sha512-HXtWwPg7LVGYeZtqEOifUjl28rVmgDNiouEJNo5O0IBJybAEQpg4tkqfkvm9LIN6AaIT5VSKw2eEkZ/Db+w/LA==
   dependencies:
-    "@promster/metrics" "3.3.0"
+    "@promster/metrics" "^3.4.1"
 
 "@reach/auto-id@^0.2.0":
   version "0.2.0"
