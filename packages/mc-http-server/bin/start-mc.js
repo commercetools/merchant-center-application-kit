@@ -10,7 +10,7 @@ const { compileHtml } = require('@commercetools-frontend/mc-html-template');
 const {
   packageLocation: applicationStaticAssetsPath,
 } = require('@commercetools-frontend/assets');
-const startServer = require('../server');
+const launchServer = require('../server');
 
 const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
 
@@ -101,7 +101,7 @@ const start = async () => {
   );
 
   // Start the server
-  await startServer({
+  await launchServer({
     env: compiled.env,
     headers: compiled.headers,
     paths,

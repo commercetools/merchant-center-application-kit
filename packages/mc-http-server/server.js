@@ -17,13 +17,54 @@ const express = require('express');
 const { createLogoutHandler, createLoginHandler } = require('./routes');
 
 // Config
-const serverPort = process.env.HTTP_PORT || 3001;
-const serverUri = `http://localhost`;
-const serverUrl = `${serverUri}:${serverPort}`;
+const lightshipServerPort = 9000;
+const applicationServerPort = process.env.HTTP_PORT || 3001;
+const prometheusMetricsServerPort = 7788;
+const applicationServerUri = `http://localhost`;
+const applicationServerUrl = `${applicationServerUri}:${applicationServerPort}`;
 
-const lightship = createLightship({
-  detectKubernetes: true,
-});
+let lightshipServer;
+let applicationServer;
+let prometheusMetricsServer;
+
+const createLightshipServer = options => {
+  const lightship = createLightship({
+    detectKubernetes: true,
+    ...options,
+  });
+  lightship.registerShutdownHandler(async () => {
+    /**
+     * NOTE: The default k8s grace period is 60 seconds. It is often
+     * recommended to not exceed the grace period given by k8s by half.
+     * 20 seconds is chosen here under the assumption that any outstanging
+     * request just settle by then.
+     */
+    await new Promise(resolve => setTimeout(resolve, 20000));
+
+    signalIsNotUp();
+
+    if (applicationServer) applicationServer.close();
+    if (prometheusMetricsServer) prometheusMetricsServer.close();
+  });
+
+  return lightship;
+};
+
+const startServer = (server, port) =>
+  new Promise((resolve, reject) => {
+    server.listen(port, error => {
+      if (error) reject(error);
+      else resolve();
+    });
+  });
+
+const shutdownServer = async () => {
+  // Something bad happened, trigger a manual shutdown of lightship,
+  // which in turn will close the other servers (`registerShutdownHandler`).
+  // If lightship was not setup due to early error we exit the process.
+  if (lightshipServer) await lightshipServer.shutdown();
+  else process.exit(1);
+};
 
 /**
  * 👇 Middlewares
@@ -75,7 +116,7 @@ const throwIfIndexHtmlIsMissing = options => {
   }
 };
 
-const startServer = options => {
+const configureApplication = options => {
   throwIfIndexHtmlIsMissing(options);
 
   const serverIndexMiddleware = createServerIndexMiddleware(options);
@@ -119,43 +160,45 @@ const startServer = options => {
   app.set('views', devAuthentication.views);
   app.set('view engine', devAuthentication.config.viewEngine);
 
-  const server = http.createServer(app);
-
-  return new Promise((resolve, reject) => {
-    server.listen(serverPort, async error => {
-      if (error) {
-        lightship.signalNotReady();
-        reject(error);
-      }
-
-      const prometheusMetricsServer = await createPrometheusMetricsServer();
-
-      lightship.registerShutdownHandler(async () => {
-        /**
-         * NOTE: The default k8s grace period is 60 seconds. It is often
-         * recommended to not exceed the grace period given by k8s by half.
-         * 20 seconds is chosen here under the assumption that any outstanging
-         * request just settle by then.
-         */
-        await new Promise(resolveShutdownDelay =>
-          setTimeout(resolveShutdownDelay, 20000)
-        );
-
-        prometheusMetricsServer.close();
-      });
-
-      lightship.signalReady();
-
-      console.log(
-        `[@commercetools-frontend/mc-http-server] server is listening on ${serverUrl}`
-      );
-      console.log(
-        `[@commercetools-frontend/mc-http-server] Prometheus metrics available on ${serverUri}:7788`
-      );
-
-      resolve();
-    });
-  });
+  return app;
 };
 
-module.exports = startServer;
+const createHttpServer = options => {
+  const app = configureApplication(options);
+  const server = http.createServer(app);
+
+  return server;
+};
+
+const launchServer = async options => {
+  try {
+    lightshipServer = await createLightshipServer({
+      port: lightshipServerPort,
+    });
+    prometheusMetricsServer = await createPrometheusMetricsServer({
+      port: prometheusMetricsServerPort,
+    });
+    applicationServer = createHttpServer(options);
+
+    await startServer(applicationServer, applicationServerPort);
+
+    console.log(
+      `[@commercetools-frontend/mc-http-server] server is listening on ${applicationServerUrl}`
+    );
+    console.log(
+      `[@commercetools-frontend/mc-http-server] Prometheus metrics available on ${serverUri}:${prometheusMetricsServerPort}`
+    );
+    console.log(
+      `[@commercetools-frontend/mc-http-server] Lightship available on ${serverUri}:${lightshipServerPort}`
+    );
+
+    lightshipServer.signalReady();
+    signalIsUp();
+  } catch (error) {
+    console.log(error.stack || error);
+
+    await shutdownServer();
+  }
+};
+
+module.exports = launchServer;
