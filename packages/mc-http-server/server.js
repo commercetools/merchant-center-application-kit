@@ -35,8 +35,10 @@ const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
     accuracies: ['ms'],
     metricTypes: ['httpRequestsHistogram'],
     metricNames: {
-      httpRequestDurationInMilliseconds:
+      httpRequestDurationInMilliseconds: [
         'http_request_duration_buckets_milliseconds',
+        'mc_http_request_duration_milliseconds',
+      ],
     },
     getLabelValues: () => ({
       /**
