@@ -7,6 +7,8 @@ const hidePoweredBy = require('hide-powered-by');
 const { createLightship } = require('lightship');
 const {
   createMiddleware: createPrometheusMetricsMiddleware,
+  signalIsUp,
+  signalIsNotUp,
 } = require('@promster/express');
 const {
   createServer: createPrometheusMetricsServer,
@@ -61,7 +63,7 @@ const startServer = (server, port) =>
 const shutdownServer = async () => {
   // Something bad happened, trigger a manual shutdown of lightship,
   // which in turn will close the other servers (`registerShutdownHandler`).
-  // If lightship was not setup due to early error we exit the process.
+  // If lightship was not setup due to early error we themeexit the process.
   if (lightshipServer) await lightshipServer.shutdown();
   else process.exit(1);
 };
@@ -183,13 +185,13 @@ const launchServer = async options => {
     await startServer(applicationServer, applicationServerPort);
 
     console.log(
-      `[@commercetools-frontend/mc-http-server] server is listening on ${applicationServerUrl}`
+      `[@commercetools-frontend/mc-http-server] Server is listening on ${applicationServerUrl}`
     );
     console.log(
-      `[@commercetools-frontend/mc-http-server] Prometheus metrics available on ${serverUri}:${prometheusMetricsServerPort}`
+      `[@commercetools-frontend/mc-http-server] Prometheus metrics available on ${applicationServerUri}:${prometheusMetricsServerPort}`
     );
     console.log(
-      `[@commercetools-frontend/mc-http-server] Lightship available on ${serverUri}:${lightshipServerPort}`
+      `[@commercetools-frontend/mc-http-server] Lightship available on ${applicationServerUri}:${lightshipServerPort}`
     );
 
     lightshipServer.signalReady();
