@@ -1,10 +1,8 @@
 ---
 id: deployment-example-now-v1
-title: Example Now v1 - Deployment
+title: Example Now v1
 permalink: /deployment/example-now-v1
 ---
-
-# Example: Now v1
 
 This deployment example refers to the [Now serverless deployment](https://zeit.co/now).
 
@@ -12,7 +10,7 @@ There are different deployment strategies but we will focus on deployments using
 
 > Note: this example refers to `now` version `1`. The version `2` has deprecated those deployment types and is based on **Lambda** functions (or static files) to run the application. See the [Now v2 example](./example-now-v2) for more information.
 
-## Prerequisites
+# Prerequisites
 
 Before you get started, you need to have:
 
@@ -24,7 +22,7 @@ We're going to deploy the application under the domain `mc-examples-starter.now.
 
 > Note: The `mc-examples-starter.now.sh` domain is already in use. Pick a different one if you choose to deploy using Now.
 
-## Configuration
+# Configuration
 
 The first thing to do is to define a `now.json` file to configure the deployment with the following JSON:
 
@@ -95,7 +93,7 @@ For the sake of the example, the setup includes the static assets within the HTT
 
 We also assume that the assets are built first with `yarn build` and then **copied** into the Docker image (`COPY ./dist /app/dist`).
 
-## Deployment
+# Deployment
 
 Finally, we can trigger the deployment using the [Now CLI](https://zeit.co/download#now-cli):
 

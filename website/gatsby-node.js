@@ -19,6 +19,7 @@ exports.createPages = async ({ actions, graphql }) => {
               title
               permalink
               redirect_from
+              beta
             }
           }
         }
@@ -32,7 +33,7 @@ exports.createPages = async ({ actions, graphql }) => {
   }
 
   allMarkdown.data.allMdx.edges.forEach(edge => {
-    const template = path.resolve(`src/templates/markdown.js`);
+    const template = path.resolve(`src/templates/page-content.js`);
     actions.createPage({
       path: edge.node.frontmatter.permalink,
       component: template,

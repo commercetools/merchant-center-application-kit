@@ -1,14 +1,12 @@
 ---
 id: deployment-example-firebase
-title: Example Firebase - Deployment
+title: Example Firebase
 permalink: /deployment/example-firebase
 ---
 
-# Example: Firebase
-
 This deployment example refers to [Firebase Hosting](https://firebase.google.com/docs/hosting).
 
-## Prerequisites
+# Prerequisites
 
 Before you get started, you need to have:
 
@@ -16,7 +14,7 @@ Before you get started, you need to have:
 
 - The [Firebase CLI](https://firebase.google.com/docs/hosting/quickstart#install-cli)
 
-## Create a Firebase Project
+# Create a Firebase Project
 
 1. In the [Firebase console](https://console.firebase.google.com/) click **Add project**, then select or enter a **Project name**.
 
@@ -32,7 +30,7 @@ Before you get started, you need to have:
 
 5. Click **Create project** (or **Add Firebase**, if you're using an existing GCP project).
 
-## Initalize your Project
+# Initalize your Project
 
 To connect your local project to your Firebase project, run the following command from the root of your local project directory:
 
@@ -75,7 +73,7 @@ To support Cloud Functions, Firebase also adds the following structure to your p
 - `package.json`: npm package file describing your Cloud Functions code
 - `index.js`: main source file for your Cloud Functions code
 
-## Configure Fallback Route
+# Configure Fallback Route
 
 To provide a more user-friendly experience when the Custom Application is accessed directly, we must create a Cloud Function to redirect the user to.
 
@@ -92,7 +90,7 @@ exports.customAppFallback = functions.https.onRequest((req, res) => {
 });
 ```
 
-## Set up a Hosting Site (_optional_)
+# Set up a Hosting Site (_optional_)
 
 You can set up one or more Firebase Hosting sites in a single Firebase project. This is useful if you would like to host multiple custom applications on a single Firebase/GCP project.
 
@@ -107,7 +105,7 @@ With _deploy targets_ you can uniquely identify a specific site by its _target n
 
 To create a deploy target and apply a target name to a Hosting site, run the following CLI command from the root of your project directory:
 
-```
+```zsh
 $ firebase target:apply hosting target-name resource-name
 ```
 
@@ -121,7 +119,7 @@ Where the parameters are:
 
 The settings for deploy targets are stored in the `.firebaserc` file in your project directory, so you only need to set up deploy targets one time per project.
 
-## Configuration
+# Configuration
 
 First, you need to create an `env.prod.json` file with the following JSON:
 
@@ -151,7 +149,7 @@ You also need a `headers.json` file. You can also have a `headers.prod.json` fil
 
 For both `env.prod.json` and `headers.json`, `[projectID]` should be replaced with your Firebase project ID.
 
-## Build and Compilation
+# Build and Compilation
 
 In order to generate the correct configuration for Firebase, the `mc-scripts compile-html` script must use a Firebase transformer. This transformer will generate a `firebase.json` file with the custom security headers required for Merchant Center Custom Applications.
 
@@ -223,17 +221,17 @@ If you configured a deploy target in a previous section, add `cross-env FIREBASE
 
 To build and compile your custom application run:
 
-```
+```zsh
 $ yarn build && yarn run compile-html:firebase
 ```
 
 The assets compiled into the `public` directory will be deployed to Firebase.
 
-## Deployment
+# Deployment
 
 Trigger the deployment using the Firebase CLI:
 
-```
+```zsh
 $ firebase deploy
 ```
 

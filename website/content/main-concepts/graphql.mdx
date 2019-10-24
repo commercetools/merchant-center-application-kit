@@ -1,16 +1,14 @@
 ---
 id: main-concepts-graphql
-title: GraphQL - Main concepts
+title: GraphQL
 permalink: /main-concepts/graphql
 ---
-
-# GraphQL
 
 For client-side applications, GraphQL provides benefits in terms of performance, state management, maintainability and user experience. At commercetools, the [main method of data fetching](https://techblog.commercetools.com/graphql-adoption-at-commercetools-cab25a1d1f4a) used by the Merchant Center is using the GraphQL API.
 
 The Merchant Center API Gateway exposes a `/graphql` endpoint, in addition to the [proxy endpoints](./proxy-endpoints). This endpoint should also be considered a proxy endpoint, as it connects to different underlying GraphQL APIs.
 
-## Available GraphQL schemas
+# Available GraphQL schemas
 
 The following GraphQL schemas are available:
 
@@ -19,7 +17,7 @@ The following GraphQL schemas are available:
 - **Merchant Center users**: this GraphQL API handles things like authentication, users, etc.
 - **Merchant Center settings**: this GraphQL API handles things like UI settings, custom applications, etc.
 
-## Request format
+# Request format
 
 Requests to the `/graphql` endpoint require one or more HTTP headers, to determine the proxy target.
 

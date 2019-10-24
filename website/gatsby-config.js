@@ -1,10 +1,11 @@
 /* eslint-disable global-require */
 
 module.exports = {
+  pathPrefix: '/app-kit',
   siteMetadata: {
-    title: `Merchant Center Application Kit`,
-    description: ``,
-    author: `commercetools`,
+    title: 'AppKit | commercetools docs',
+    description: 'Develop applications for the Merchant Center',
+    author: 'commercetools',
     repositoryUrl:
       'https://github.com/commercetools/merchant-center-application-kit',
     currentVersion:
@@ -13,12 +14,12 @@ module.exports = {
       process.env.BUILD_TARGET === 'percy'
         ? '0.0.0'
         : require('../lerna.json').version,
-    disableAnimations: process.env.BUILD_TARGET === 'percy',
-    navbarLinks: [
+    sidebarLinks: [
       {
         label: 'Getting started',
         groupKey: 'getting-started',
         subgroup: [
+          { label: 'Overview', linkTo: '/getting-started/overview' },
           {
             label: 'Installing a starter application',
             linkTo: '/getting-started/installing-a-starter-application',
@@ -30,6 +31,7 @@ module.exports = {
         label: 'Development',
         groupKey: 'development',
         subgroup: [
+          { label: 'Overview', linkTo: '/development/overview' },
           {
             label: 'Available scripts',
             linkTo: '/development/available-scripts',
@@ -48,39 +50,30 @@ module.exports = {
         label: 'UI Components',
         groupKey: 'components',
         subgroup: [
+          { label: 'Overview', linkTo: '/components/overview' },
           {
-            label: 'Dialogs',
-            subgroup: [
-              {
-                label: 'InfoDialog',
-                linkTo: '/components/info-dialog',
-              },
-              {
-                label: 'ConfirmationDialog',
-                linkTo: '/components/confirmation-dialog',
-              },
-              {
-                label: 'FormDialog',
-                linkTo: '/components/form-dialog',
-              },
-            ],
+            label: 'InfoDialog',
+            linkTo: '/components/info-dialog',
           },
           {
-            label: 'ModalPages',
-            subgroup: [
-              {
-                label: 'InfoModalPage',
-                linkTo: '/components/info-modal-page',
-              },
-              {
-                label: 'FormModalPage',
-                linkTo: '/components/form-modal-page',
-              },
-              {
-                label: 'TabularModalPage',
-                linkTo: '/components/tabular-modal-page',
-              },
-            ],
+            label: 'ConfirmationDialog',
+            linkTo: '/components/confirmation-dialog',
+          },
+          {
+            label: 'FormDialog',
+            linkTo: '/components/form-dialog',
+          },
+          {
+            label: 'InfoModalPage',
+            linkTo: '/components/info-modal-page',
+          },
+          {
+            label: 'FormModalPage',
+            linkTo: '/components/form-modal-page',
+          },
+          {
+            label: 'TabularModalPage',
+            linkTo: '/components/tabular-modal-page',
           },
           { label: 'UI-Kit', linkTo: '/components/ui-kit' },
         ],
@@ -89,6 +82,7 @@ module.exports = {
         label: 'Deployment',
         groupKey: 'deployment',
         subgroup: [
+          { label: 'Overview', linkTo: '/deployment/overview' },
           { label: 'Production build', linkTo: '/deployment/production-build' },
           {
             label: 'Runtime configuration',
@@ -116,6 +110,7 @@ module.exports = {
         label: 'Register applications',
         groupKey: 'register-applications',
         subgroup: [
+          { label: 'Overview', linkTo: '/register-applications/overview' },
           {
             label: 'Configuring a custom application',
             linkTo: '/register-applications/configuring-a-custom-application',
@@ -135,6 +130,7 @@ module.exports = {
         label: 'Main concepts',
         groupKey: 'main-concepts',
         subgroup: [
+          { label: 'Overview', linkTo: '/main-concepts/overview' },
           { label: 'Architecture', linkTo: '/main-concepts/architecture' },
           { label: 'Authentication', linkTo: '/main-concepts/authentication' },
           { label: 'API Gateway', linkTo: '/main-concepts/api-gateway' },
@@ -199,7 +195,7 @@ module.exports = {
       options: {
         name: `components`,
         path: `${__dirname}/../packages/application-components/src/components/`,
-        ignore: ['.js'],
+        ignore: ['.js', '.tsx'],
       },
     },
 
@@ -233,23 +229,6 @@ module.exports = {
               maxWidth: 740,
             },
           },
-          // For syntax code highlighting
-          {
-            resolve: `gatsby-remark-vscode`,
-            options: {
-              colorTheme: 'Monokai Dimmed',
-              injectStyles: true,
-              wrapperClassName: 'code-highlight-overrides',
-              // NOTE: somehow downloaded extensions seem to be "corrupted" while cached.
-              // For now we just use one of the default themes.
-              // extensions: [
-              //   {
-              //     identifier: 'dracula-theme.theme-dracula',
-              //     version: '2.18.0',
-              //   },
-              // ],
-            },
-          },
         ],
         plugins: ['gatsby-remark-images'], // workaround https://github.com/gatsbyjs/gatsby/issues/15486#issuecomment-510153237
       },
@@ -264,25 +243,21 @@ module.exports = {
     {
       resolve: `gatsby-plugin-favicon`,
       options: {
-        logo: `${__dirname}/src/images/logo.svg`,
+        logo: `${__dirname}/src/images/icons/logo.svg`,
       },
     },
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
-          include: /images/,
+          include: /images\/icons/,
         },
       },
     },
     {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
-        fonts: [
-          // https://design.google/library/choosing-web-fonts-beginners-guide/
-          'Open+Sans:300,300i,400,400i,600,600i,700,700i',
-          'Barlow:400,400i,600',
-        ],
+        fonts: ['Roboto:400,400i,500,700', 'Roboto+Mono:400,500'],
       },
     },
     // This needs to be last

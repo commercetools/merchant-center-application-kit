@@ -1,14 +1,9 @@
 ---
 id: deployment-http-server
-title: HTTP Server - Deployment
+title: HTTP Server
 permalink: /deployment/http-server
+beta: true
 ---
-
-import NotificationFeature from '../../src/components/notification-feature';
-
-<NotificationFeature flag="beta" />
-
-# HTTP Server
 
 We **recommend using** our [`@commercetools-frontend/mc-http-server`](https://www.npmjs.com/package/@commercetools-frontend/mc-http-server) package to run the application in `production` mode.
 
@@ -23,7 +18,7 @@ The package comes with a binary `mc-http-server` that sets up all the necessary 
 $ mc-http-server --config $(pwd)/env.json --headers $(pwd)/headers.json
 ```
 
-## Docker image
+# Docker image
 
 There is also a pre-built **Docker image** (`eu.gcr.io/ct-images/mc-http-server`) that you can use to run the application:
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as colors from '../colors';
 
 const svgPaths = {
   burger: `M0 2.5 L16 2.5 M0 8 L16 8 M0 13.5 L16 13.5`,
@@ -14,7 +13,7 @@ const BurgerIcon = props => (
     width={props.size}
     height={props.size}
     fill="none"
-    stroke={colors.light.borders}
+    // stroke={props.colorStroke}
     strokeWidth="3"
     style={{
       display: 'block',

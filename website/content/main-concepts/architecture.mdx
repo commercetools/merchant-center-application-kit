@@ -1,14 +1,9 @@
 ---
 id: main-concepts-architecture
-title: Architecture - Main concepts
+title: Architecture
 permalink: /main-concepts/architecture
+beta: true
 ---
-
-import NotificationFeature from '../../src/components/notification-feature';
-
-<NotificationFeature flag="beta" />
-
-# Merchant Center architecture
 
 The Merchant Center is a web application composed of **multiple single-page web applications** running behind a Proxy Router. The Proxy Router matches the incoming requests and forwards them to the appropriate application, which will serve a static `index.html` and the related JavaScript/CSS assets.
 

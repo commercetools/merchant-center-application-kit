@@ -1,16 +1,14 @@
 ---
 id: main-concepts-data-fetching
-title: Data Fetching - Main concepts
+title: Data Fetching
 permalink: /main-concepts/data-fetching
 ---
-
-# Data fetching
 
 In client-side applications, data fetching is not always easy and it usually involves a lot of boilerplate code around implementation, state management, data normalization, etc.
 
 Since the commercetools platform has first-class support for GraphQL, in Merchant Center we prefer and recommend to use GraphQL as the main data fetching choice.
 
-## GraphQL endpoints
+# GraphQL endpoints
 
 To handle requests to the [GraphQL APIs](./graphql) we use the [Apollo GraphQL Client](https://www.apollographql.com/docs/react/), which comes already configured within the [`<ApplicationShell>`](./application-shell).
 
@@ -70,7 +68,7 @@ export default ChannelDetails;
 
 That's it, Apollo will then take care of data normalization, caching, etc.
 
-## REST endpoints
+# REST endpoints
 
 Some enpdoints or APIs might not be available as GraphQL, which means that we need to fetch the data using a normal HTTP REST endpoint.
 There are different options here: you can build and send requests manually, using e.g. the [`fetch`](https://github.github.io/fetch/) library or any HTTP client.

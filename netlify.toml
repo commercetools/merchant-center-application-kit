@@ -1,8 +1,8 @@
 [build]
-  command = "yarn build && yarn --cwd website build"
+  command = "yarn build && yarn --cwd website build && yarn --cwd website-components-playground build"
   publish = "website/public"
 
 [build.environment]
-  YARN_FLAGS = "--pure-lockfile"
-  YARN_VERSION = "1.15.2"
+  YARN_FLAGS = "--frozen-lockfile"
+  YARN_VERSION = "1.19.0"
   GATSBY_CPU_COUNT = "logical_cores"

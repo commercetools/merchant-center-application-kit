@@ -1,16 +1,14 @@
 ---
 id: main-concepts-proxy-endpoints
-title: Proxy endpoints - Main concepts
+title: Proxy endpoints
 permalink: /main-concepts/proxy-endpoints
 ---
-
-# API Gateway proxy endpoints
 
 The Merchant Center API Gateway exposes different _proxy endpoints_.
 
 A proxy endpoint is meant to forward the request to the underlying configured service, while validating the authentication and authorization of the user.
 
-## Available endpoints
+# Available endpoints
 
 The following proxy endpoints are available:
 
@@ -20,7 +18,7 @@ The following proxy endpoints are available:
 
 In addition to those endpoints, there is a [`/graphql`](./graphql) endpoint that also works as a proxy.
 
-## Request format
+# Request format
 
 Each proxy endpoint works with the same format. To send a request through the proxy, you simply append the _real_ URL (according to the targeted API) after the proxy endpoint prefix.
 

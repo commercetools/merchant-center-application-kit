@@ -55,7 +55,8 @@
       "packages/*",
       "playground",
       "visual-testing-app",
-      "website"
+      "website",
+      "website-components-playground"
     ],
     "nohoist": [
       "**/react-apollo"

@@ -1,18 +1,13 @@
 ---
 id: deployment-runtime-configuration
-title: Runtime configuration - Deployment
+title: Runtime configuration
 permalink: /deployment/runtime-configuration
+beta: true
 ---
-
-import NotificationFeature from '../../src/components/notification-feature';
-
-<NotificationFeature flag="beta" />
-
-# Runtime configuration
 
 Merchant Center applications require a runtime configuration in order to work. This is useful for several reason and for convenience to be able to deploy the application in different environments.
 
-## `env.json`
+# `env.json`
 
 The configuration is defined in a file named `env.json`. The following fields are **required** but you can provide additional fields specific to your application:
 
@@ -57,7 +52,7 @@ An example configuration for local development:
 }
 ```
 
-## `csp.json`
+# `csp.json`
 
 This file as been deprecated by the `headers.json` mentioned below.
 
@@ -75,7 +70,7 @@ To migrate, nest the contents of your `csp.json` into the `csp`-property of the 
 
 Additionally, use the `--headers` over the `--csp` CLI option to point to the new `headers.json`.
 
-## `headers.json`
+# `headers.json`
 
 When you deploy your application to a server and domain of your choice, the application will fail to make requests to the [API Gateway](../main-concepts/api-gateway) as the custom domain is not whitelisted. This is why the application can only be accessed through the [Proxy Router](../main-concepts/api-gateway). Setting the `servedByProxy` in the `env.json` is also important.
 

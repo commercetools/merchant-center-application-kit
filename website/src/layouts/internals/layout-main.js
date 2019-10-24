@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
+import { dimensions } from '../../design-system';
 
 const LayoutMain = props => (
   <div
@@ -19,9 +20,11 @@ const LayoutMain = props => (
   >
     <div
       css={css`
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
+        min-height: calc(100vh - ${dimensions.heights.header});
+        display: grid;
+        grid-auto-rows: auto;
+        grid-template-rows: 1fr auto;
+        grid-template-columns: 1fr;
       `}
     >
       {props.children}

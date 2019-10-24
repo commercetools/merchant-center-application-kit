@@ -2,23 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import * as colors from '../../colors';
+import { colors, dimensions } from '../../design-system';
 import { BurgerIcon } from '../../components';
-import Navbar from './navbar';
+import Sidebar from './sidebar';
 
 const Container = styled.aside`
   position: relative;
   overflow: auto;
   grid-row: 2;
   flex-direction: column;
-  border-right: 1px solid ${colors.light.cards};
+  background-color: ${colors.light.surfaceSecondary1};
+  border-right: 1px solid ${colors.light.borderPrimary};
 
   display: ${props => (props.isMenuOpen ? 'flex' : 'none')};
-  grid-column: auto;
+  grid-column: 1/3;
 
-  @media screen and (min-width: 40em) {
+  @media screen and (${dimensions.viewports.tablet}) {
     display: flex;
-    width: 256px;
+    width: ${dimensions.widths.pageNavigation};
     grid-column: 1;
   }
 `;
@@ -27,15 +28,27 @@ const MenuButton = styled.button`
   appearance: none;
   border: 0;
   color: inherit;
-  padding: 2px;
-  background-color: transparent;
-  border-radius: 4px;
+  cursor: pointer;
+  padding: ${dimensions.spacings.s} ${dimensions.spacings.m};
+  background-color: ${colors.light.surfaceSecondary1};
+  transition: background-color 0.5s;
 
-  :focus {
-    outline: 1px solid ${colors.light.cards};
+  > svg {
+    stroke: ${colors.light.surfaceSecondary3};
+    transition: stroke 0.5s;
   }
 
-  @media screen and (min-width: 40em) {
+  :focus {
+    outline: 1px solid ${colors.light.surfaceSecondary3};
+  }
+  :hover {
+    background-color: ${colors.light.surfaceSecondary3};
+    > svg {
+      stroke: ${colors.light.surfaceSecondary1};
+    }
+  }
+
+  @media screen and (${dimensions.viewports.tablet}) {
     display: none;
   }
 `;
@@ -47,7 +60,7 @@ const LayoutSidebar = props => {
   }, []);
   return (
     <Container isMenuOpen={props.isMenuOpen}>
-      <Navbar
+      <Sidebar
         onLinkClick={() => {
           props.setMenuOpen(false);
         }}

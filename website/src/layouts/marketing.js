@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import LayoutContainer from './internals/layout-container';
+import { customProperties } from '@commercetools-frontend/ui-kit';
+import LandingPageBackground from '../images/landing-page-background.png';
+import { dimensions } from '../design-system';
+import LayoutApplication from './internals/layout-application';
 import LayoutHeader from './internals/layout-header';
 import LayoutFooter from './internals/layout-footer';
 import LayoutMain from './internals/layout-main';
@@ -10,17 +13,37 @@ import Globals from './internals/globals';
 const LayoutMarketing = props => (
   <React.Fragment>
     <Globals />
-    <LayoutContainer>
+    <LayoutApplication>
       <LayoutHeader />
       <LayoutMain
         css={css`
           grid-column: 1/4;
         `}
       >
-        {props.children}
+        <div
+          css={css`
+            box-shadow: ${customProperties.shadow1};
+            background: url('${LandingPageBackground}');
+            background-repeat: repeat-x;
+            background-position-x: center;
+            background-position-y: -25rem;
+            padding: ${dimensions.spacings.xl} 0;
+
+            > * + * {
+              margin-top: ${dimensions.spacings.xl} !important;
+            }
+
+            @media screen and (${dimensions.viewports.largeTablet}) {
+              background-position-y: -40rem;
+              padding: ${dimensions.spacings.xl};
+            }
+          `}
+        >
+          {props.children}
+        </div>
         <LayoutFooter />
       </LayoutMain>
-    </LayoutContainer>
+    </LayoutApplication>
   </React.Fragment>
 );
 LayoutMarketing.displayName = 'LayoutMarketing';

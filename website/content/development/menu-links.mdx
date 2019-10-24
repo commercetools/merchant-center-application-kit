@@ -1,14 +1,9 @@
 ---
 id: development-menu-links
-title: Menu links - Development
+title: Menu links
 permalink: /development/menu-links
+beta: true
 ---
-
-import NotificationFeature from '../../src/components/notification-feature';
-
-<NotificationFeature flag="beta" />
-
-# Menu links
 
 The navigation menu links (the menu on the left side of the Merchant Center) contains links to all the different applications within a project.
 
@@ -17,7 +12,7 @@ Instead, the links are rendered dynamically on runtime, by fetching the configur
 
 Additionally, links to custom applications are also fetched dynamically, based on the registered applications within a project.
 
-## Links for local development
+# Links for local development
 
 However, when developing a custom application locally, we can't fetch any configuration dynamically. This is because only one application is running locally and therefore links to other applications are pretty much useless.
 Therefore, in development only the application links should be rendered. To do so, you need to configure the links in the `menu.json`. The file is then loaded through a special prop that is only available in `development` mode.
