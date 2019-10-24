@@ -1,10 +1,23 @@
+## [15.2.2](https://github.com/commercetools/merchant-center-application-kit/compare/v15.2.1...v15.2.2) (2019-10-24)
+
+#### 🔮 Type: Chore
+
+- `mc-http-server`
+  - [#1116](https://github.com/commercetools/merchant-center-application-kit/pull/1116) chore(mc-http-server): to expose prefixed metric ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+
+- `mc-http-server`
+  - [#1117](https://github.com/commercetools/merchant-center-application-kit/pull/1117) refactor(mc-http-server): startup logic ([@tdeekens](https://github.com/tdeekens))
+
 ## [15.2.1](https://github.com/commercetools/merchant-center-application-kit/compare/v15.2.0...v15.2.1) (2019-10-23)
 
 #### 🤖 Type: Dependencies
-* `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `i18n`, `l10n`, `mc-http-server`, `mc-scripts`, `permissions`, `react-notifications`, `sdk`, `sentry`
-  * [#1114](https://github.com/commercetools/merchant-center-application-kit/pull/1114) chore: update deps ([@tdeekens](https://github.com/tdeekens))
-* `application-shell`
-  * [#1113](https://github.com/commercetools/merchant-center-application-kit/pull/1113) chore: update flopflip ([@tdeekens](https://github.com/tdeekens))
+
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `i18n`, `l10n`, `mc-http-server`, `mc-scripts`, `permissions`, `react-notifications`, `sdk`, `sentry`
+  - [#1114](https://github.com/commercetools/merchant-center-application-kit/pull/1114) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+- `application-shell`
+  - [#1113](https://github.com/commercetools/merchant-center-application-kit/pull/1113) chore: update flopflip ([@tdeekens](https://github.com/tdeekens))
 
 ## [15.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.1.8...v15.2.0) (2019-10-22)
 
