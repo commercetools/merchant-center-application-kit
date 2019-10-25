@@ -79,7 +79,6 @@ const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
     metricTypes: ['httpRequestsHistogram'],
     metricNames: {
       httpRequestDurationInMilliseconds: [
-        'http_request_duration_buckets_milliseconds',
         'mc_http_request_duration_milliseconds',
       ],
     },
