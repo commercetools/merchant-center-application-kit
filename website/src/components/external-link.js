@@ -6,10 +6,12 @@ const linkStyles = css`
   &,
   > code {
     color: ${colors.light.link};
+    text-decoration: none;
     :active,
     :focus,
     :hover {
       color: ${colors.light.linkHover};
+      text-decoration: underline;
     }
   }
 `;
