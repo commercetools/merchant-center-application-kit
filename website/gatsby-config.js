@@ -14,143 +14,6 @@ module.exports = {
       process.env.BUILD_TARGET === 'percy'
         ? '0.0.0'
         : require('../lerna.json').version,
-    sidebarLinks: [
-      {
-        label: 'Getting started',
-        groupKey: 'getting-started',
-        subgroup: [
-          { label: 'Overview', linkTo: '/getting-started/overview' },
-          {
-            label: 'Installing a starter application',
-            linkTo: '/getting-started/installing-a-starter-application',
-          },
-          { label: 'Tooling', linkTo: '/getting-started/tooling' },
-        ],
-      },
-      {
-        label: 'Development',
-        groupKey: 'development',
-        subgroup: [
-          { label: 'Overview', linkTo: '/development/overview' },
-          {
-            label: 'Available scripts',
-            linkTo: '/development/available-scripts',
-          },
-          {
-            label: 'Folder structure',
-            linkTo: '/development/folder-structure',
-          },
-          { label: 'Menu links', linkTo: '/development/menu-links' },
-          { label: 'Styling', linkTo: '/development/styling' },
-          { label: 'Testing', linkTo: '/development/testing' },
-          { label: 'Translations', linkTo: '/development/translations' },
-        ],
-      },
-      {
-        label: 'UI Components',
-        groupKey: 'components',
-        subgroup: [
-          { label: 'Overview', linkTo: '/components/overview' },
-          {
-            label: 'InfoDialog',
-            linkTo: '/components/info-dialog',
-          },
-          {
-            label: 'ConfirmationDialog',
-            linkTo: '/components/confirmation-dialog',
-          },
-          {
-            label: 'FormDialog',
-            linkTo: '/components/form-dialog',
-          },
-          {
-            label: 'InfoModalPage',
-            linkTo: '/components/info-modal-page',
-          },
-          {
-            label: 'FormModalPage',
-            linkTo: '/components/form-modal-page',
-          },
-          {
-            label: 'TabularModalPage',
-            linkTo: '/components/tabular-modal-page',
-          },
-          { label: 'UI-Kit', linkTo: '/components/ui-kit' },
-        ],
-      },
-      {
-        label: 'Deployment',
-        groupKey: 'deployment',
-        subgroup: [
-          { label: 'Overview', linkTo: '/deployment/overview' },
-          { label: 'Production build', linkTo: '/deployment/production-build' },
-          {
-            label: 'Runtime configuration',
-            linkTo: '/deployment/runtime-configuration',
-          },
-          { label: 'HTTP server', linkTo: '/deployment/http-server' },
-          { label: 'Static server', linkTo: '/deployment/static-server' },
-          {
-            label: 'Serving static assets',
-            linkTo: '/deployment/serving-static-assets',
-          },
-          { label: 'Example: Now v1', linkTo: '/deployment/example-now-v1' },
-          { label: 'Example: Now v2', linkTo: '/deployment/example-now-v2' },
-          {
-            label: 'Example: Firebase',
-            linkTo: '/deployment/example-firebase',
-          },
-          {
-            label: 'Example: AWS - S3 & CloudFront',
-            linkTo: '/deployment/example-aws-s3-cloudfront',
-          },
-        ],
-      },
-      {
-        label: 'Register applications',
-        groupKey: 'register-applications',
-        subgroup: [
-          { label: 'Overview', linkTo: '/register-applications/overview' },
-          {
-            label: 'Configuring a custom application',
-            linkTo: '/register-applications/configuring-a-custom-application',
-          },
-          {
-            label: 'Activating a custom application',
-            linkTo: '/register-applications/activating-a-custom-application',
-          },
-          {
-            label: 'Deleting a custom application',
-            linkTo: '/register-applications/deleting-a-custom-application',
-          },
-          { label: 'Caveats', linkTo: '/register-applications/caveats' },
-        ],
-      },
-      {
-        label: 'Main concepts',
-        groupKey: 'main-concepts',
-        subgroup: [
-          { label: 'Overview', linkTo: '/main-concepts/overview' },
-          { label: 'Architecture', linkTo: '/main-concepts/architecture' },
-          { label: 'Authentication', linkTo: '/main-concepts/authentication' },
-          { label: 'API Gateway', linkTo: '/main-concepts/api-gateway' },
-          { label: 'GraphQL API', linkTo: '/main-concepts/graphql' },
-          {
-            label: 'Proxy endpoints',
-            linkTo: '/main-concepts/proxy-endpoints',
-          },
-          {
-            label: 'Proxy to external API',
-            linkTo: '/main-concepts/proxy-to-external-api',
-          },
-          {
-            label: 'Application Shell',
-            linkTo: '/main-concepts/application-shell',
-          },
-          { label: 'Data fetching', linkTo: '/main-concepts/data-fetching' },
-        ],
-      },
-    ],
   },
   plugins: [
     /**
@@ -189,6 +52,14 @@ module.exports = {
         path: `${__dirname}/content`,
       },
     },
+    // Data files (.yaml)
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `configurationData`,
+        path: `${__dirname}/data`,
+      },
+    },
     // Pages for React components
     {
       resolve: `gatsby-source-filesystem`,
@@ -205,6 +76,9 @@ module.exports = {
 
     // For querying images
     `gatsby-transformer-sharp`,
+
+    // For querying configuration data
+    `gatsby-transformer-yaml`,
 
     // For querying MDX
     {

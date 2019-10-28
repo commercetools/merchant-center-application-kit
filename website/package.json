@@ -40,6 +40,7 @@
     "gatsby-source-filesystem": "2.1.36",
     "gatsby-transformer-remark": "2.6.30",
     "gatsby-transformer-sharp": "2.2.6",
+    "gatsby-transformer-yaml": "2.2.15",
     "github-slugger": "1.2.1",
     "hast-util-heading": "1.0.3",
     "hast-util-to-string": "1.0.2",

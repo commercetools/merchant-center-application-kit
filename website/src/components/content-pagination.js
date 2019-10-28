@@ -88,9 +88,9 @@ const flattenLinks = links => {
 const Pagination = props => {
   const data = useStaticQuery(graphql`
     query GetNavbarLinks {
-      site {
-        siteMetadata {
-          sidebarLinks {
+      allSideNavigationYaml {
+        edges {
+          node {
             label
             groupKey
             subgroup {
@@ -104,9 +104,9 @@ const Pagination = props => {
   `);
   const groupKey = props.permalink.replace(/^\/(.*)\/(.*)$/, '$1');
   const links = flattenLinks(
-    data.site.siteMetadata.sidebarLinks.filter(
-      link => link.groupKey === groupKey
-    )
+    data.allSideNavigationYaml.edges
+      .filter(edge => edge.node.groupKey === groupKey)
+      .map(edge => edge.node)
   );
   const index = links.findIndex(
     link =>

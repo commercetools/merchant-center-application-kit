@@ -49,7 +49,11 @@ const MarketingLandingPage = () => {
         siteMetadata {
           currentVersion
           repositoryUrl
-          sidebarLinks {
+        }
+      }
+      allSideNavigationYaml {
+        edges {
+          node {
             label
             groupKey
           }
@@ -181,9 +185,9 @@ const MarketingLandingPage = () => {
           linksData={[
             {
               title: 'Documentation',
-              links: data.site.siteMetadata.sidebarLinks.map(link => ({
-                to: `/${link.groupKey}`,
-                label: link.label,
+              links: data.allSideNavigationYaml.edges.map(edge => ({
+                to: `/${edge.node.groupKey}`,
+                label: edge.node.label,
               })),
             },
             {

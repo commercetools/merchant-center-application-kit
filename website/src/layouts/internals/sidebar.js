@@ -47,9 +47,9 @@ SidebarLink.displayName = 'SidebarLink';
 const Sidebar = props => {
   const data = useStaticQuery(graphql`
     query SidebarQuery {
-      site {
-        siteMetadata {
-          sidebarLinks {
+      allSideNavigationYaml {
+        edges {
+          node {
             label
             groupKey
             subgroup {
@@ -81,13 +81,13 @@ const Sidebar = props => {
       >
         {'AppKit'}
       </div>
-      {data.site.siteMetadata.sidebarLinks.map((link, index) => (
+      {data.allSideNavigationYaml.edges.map((edge, index) => (
         <Spacings.Stack scale="s" key={index}>
           <SidebarLinkItem>
-            <SidebarLinkTitle>{link.label}</SidebarLinkTitle>
+            <SidebarLinkTitle>{edge.node.label}</SidebarLinkTitle>
           </SidebarLinkItem>
           <Spacings.Stack scale="s">
-            {link.subgroup.map(subLink => (
+            {edge.node.subgroup.map(subLink => (
               <SidebarLink
                 to={subLink.linkTo}
                 key={subLink.linkTo}
