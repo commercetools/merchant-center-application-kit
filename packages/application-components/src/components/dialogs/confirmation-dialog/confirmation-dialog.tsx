@@ -1,10 +1,10 @@
 import React from 'react';
 import { MessageDescriptor } from 'react-intl';
+import { sharedMessages } from '@commercetools-frontend/i18n';
 import DialogContainer from '../internals/dialog-container';
 import DialogHeader from '../internals/dialog-header';
 import DialogContent from '../internals/dialog-content';
 import DialogFooter from '../internals/dialog-footer';
-import buttonMessages from '../../../utils/button-messages';
 
 type Label = string | MessageDescriptor;
 type Props = {
@@ -24,8 +24,8 @@ type Props = {
   getParentSelector?: () => HTMLElement;
 };
 const defaultProps: Pick<Props, 'labelSecondary' | 'labelPrimary'> = {
-  labelSecondary: buttonMessages.cancel,
-  labelPrimary: buttonMessages.confirm,
+  labelSecondary: sharedMessages.cancel,
+  labelPrimary: sharedMessages.confirm,
 };
 
 const ConfirmationDialog = (props: Props) => (
@@ -53,6 +53,7 @@ const ConfirmationDialog = (props: Props) => (
 ConfirmationDialog.displayName = 'ConfirmationDialog';
 ConfirmationDialog.defaultProps = defaultProps;
 // Make some default intl messages available to use
-ConfirmationDialog.Intl = buttonMessages;
+// TODO: remove this static export and prefer to import the messages from the i18n package directly.
+ConfirmationDialog.Intl = sharedMessages;
 
 export default ConfirmationDialog;

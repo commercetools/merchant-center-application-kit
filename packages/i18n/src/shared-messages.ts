@@ -2,7 +2,7 @@ import { defineMessages } from 'react-intl';
 
 // TODO: move it to its own package, so that other people can also use it?
 
-// Selection of common messages, to avoid duplicating translations.
+// Selection of shared messages, to avoid duplicating translations.
 // Avoid changing the message id, otherwise you need to translate them again in Transifex.
 const messages = defineMessages({
   cancel: {

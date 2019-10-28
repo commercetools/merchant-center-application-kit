@@ -22,7 +22,7 @@ $ npm install --save @commercetools-frontend/i18n
 
 ### Usage
 
-> This package should not be used directly, the `application-shell` does that internally.
+> This package should not be used directly to load the application messages, the `application-shell` does that internally.
 
 ```js
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
@@ -120,3 +120,9 @@ To extract the messages simply run `mc-scripts extract-intl [options]`.
 We use [Transifex](https://www.transifex.com/) as our translation tool. Once we have extracted new messages into the source file `core.json` (see `mc-scripts extract-inl`) and pushed/merged to `master`, the file will be automatically synced with Transifex using the [Transifex GitHub Integration](https://docs.transifex.com/integrations/transifex-github-integration).
 
 Translations that have been **reviewed** in Transifex will be automatically pushed back to GitHub by the Transifex Bot via a Pull Request.
+
+### Shared messages
+
+This package exposes some "shared" messages that can be used for different things like buttons, etc. instead of having duplicated messages.
+
+The messages are exported as `sharedMessages` property.
