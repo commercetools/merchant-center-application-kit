@@ -41,15 +41,28 @@ export const colors = {
 
 const breakpoints = {
   // content page + padding left/right
-  content: `calc(${pxToRem(pageWidth)} + ${pxToRem('32px')} * 2)`,
+  content: `calc(
+    ${pxToRem(pageWidth)} +
+    ${pxToRem('32px')} * 2
+  )`,
   // content page + padding left/right + page navigation
-  contentAndPageNavigation: `calc(${pxToRem(pageWidth)} + ${pxToRem(
-    '32px'
-  )} * 2 + ${pxToRem(navbarWidth)})`,
+  contentAndPageNavigation: `calc(
+    ${pxToRem(pageWidth)} +
+    ${pxToRem('32px')} * 2 +
+    ${pxToRem(navbarWidth)}
+  )`,
   // content page + padding left/right + page navigation + main navigation
-  contentAndBothNavigations: `calc(${pxToRem(pageWidth)} + ${pxToRem(
-    '32px'
-  )} * 2 + ${pxToRem(navbarWidth)} * 2)`,
+  contentAndBothNavigations: `calc(
+    ${pxToRem(pageWidth)} +
+    ${pxToRem('32px')} * 2 +
+    ${pxToRem(navbarWidth)} * 2
+  )`,
+  // double content page + padding left/center/right + page navigation + main navigation
+  doubleContentAndBothNavigations: `calc(
+    ${pxToRem(pageWidth)} * 2 +
+    ${pxToRem('32px')} * 3 +
+    ${pxToRem(navbarWidth)} * 2
+  )`,
 };
 
 export const dimensions = {
@@ -66,6 +79,7 @@ export const dimensions = {
     tablet: `min-width: ${breakpoints.content}`,
     largeTablet: `min-width: ${breakpoints.contentAndPageNavigation}`,
     desktop: `min-width: ${breakpoints.contentAndBothNavigations}`,
+    largeDesktop: `min-width: ${breakpoints.doubleContentAndBothNavigations}`,
   },
   spacings: {
     xs: pxToRem('4px'),
