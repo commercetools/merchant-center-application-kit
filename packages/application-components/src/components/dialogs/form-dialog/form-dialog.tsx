@@ -1,6 +1,6 @@
 import React from 'react';
 import { MessageDescriptor } from 'react-intl';
-import { commonMessages } from '@commercetools-frontend/i18n';
+import { sharedMessages } from '@commercetools-frontend/i18n';
 import DialogContainer from '../internals/dialog-container';
 import DialogHeader from '../internals/dialog-header';
 import DialogContent from '../internals/dialog-content';
@@ -24,8 +24,8 @@ type Props = {
   getParentSelector?: () => HTMLElement;
 };
 const defaultProps: Pick<Props, 'labelSecondary' | 'labelPrimary'> = {
-  labelSecondary: commonMessages.cancel,
-  labelPrimary: commonMessages.save,
+  labelSecondary: sharedMessages.cancel,
+  labelPrimary: sharedMessages.save,
 };
 
 const FormDialog = (props: Props) => (
@@ -53,6 +53,6 @@ const FormDialog = (props: Props) => (
 FormDialog.displayName = 'FormDialog';
 FormDialog.defaultProps = defaultProps;
 // Make some default intl messages available to use
-FormDialog.Intl = commonMessages;
+FormDialog.Intl = sharedMessages;
 
 export default FormDialog;

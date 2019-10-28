@@ -50,7 +50,7 @@ Confirmation dialogs are controlled components used to prompt the user to confir
 
 #### `ConfirmationDialog.Intl`
 
-> This export is deprecated. Please import the common messages from the `@commercetools-frontend/i18n` package.
+> This export is deprecated. Please import the shared messages from the `@commercetools-frontend/i18n` package.
 
 Exposes common intl messages to be used for the secondary/primary buttons
 

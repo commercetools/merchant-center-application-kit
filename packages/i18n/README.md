@@ -121,8 +121,8 @@ We use [Transifex](https://www.transifex.com/) as our translation tool. Once we 
 
 Translations that have been **reviewed** in Transifex will be automatically pushed back to GitHub by the Transifex Bot via a Pull Request.
 
-### Common messages
+### Shared messages
 
 This package exposes some "shared" messages that can be used for different things like buttons, etc. instead of having duplicated messages.
 
-The messages are exported as `commonMessages` property.
+The messages are exported as `sharedMessages` property.

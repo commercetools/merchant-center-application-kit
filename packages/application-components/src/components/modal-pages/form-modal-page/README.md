@@ -58,7 +58,7 @@ Form Modal pages are controlled components used to render a page with a form or 
 
 ### `FormModalPage.Intl`
 
-> This export is deprecated. Please import the common messages from the `@commercetools-frontend/i18n` package.
+> This export is deprecated. Please import the shared messages from the `@commercetools-frontend/i18n` package.
 
 Exposes common intl messages to be used for the secondary/primary buttons
 

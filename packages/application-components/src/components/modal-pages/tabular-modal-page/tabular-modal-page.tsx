@@ -2,7 +2,7 @@ import React from 'react';
 import { MessageDescriptor } from 'react-intl';
 import { css } from '@emotion/core';
 import { customProperties, Spacings } from '@commercetools-frontend/ui-kit';
-import { commonMessages } from '@commercetools-frontend/i18n';
+import { sharedMessages } from '@commercetools-frontend/i18n';
 import ModalPage from '../internals/modal-page';
 import ModalPageHeaderTitle from '../internals/modal-page-header-title';
 import ModalPageHeaderDefaultControls from '../internals/modal-page-header-default-controls';
@@ -50,8 +50,8 @@ const defaultProps: Pick<
   Props,
   'labelPrimaryButton' | 'labelSecondaryButton'
 > = {
-  labelPrimaryButton: commonMessages.confirm,
-  labelSecondaryButton: commonMessages.cancel,
+  labelPrimaryButton: sharedMessages.confirm,
+  labelSecondaryButton: sharedMessages.cancel,
 };
 
 // Type-guard validation for the correct props, based on the existence `customControls`
@@ -139,6 +139,6 @@ const TabularModalPage = (props: Props) => (
 );
 TabularModalPage.displayName = 'TabularModalPage';
 TabularModalPage.defaultProps = defaultProps;
-TabularModalPage.Intl = commonMessages;
+TabularModalPage.Intl = sharedMessages;
 
 export default TabularModalPage;
