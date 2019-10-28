@@ -1,3 +1,10 @@
+## [15.2.3](https://github.com/commercetools/merchant-center-application-kit/compare/v15.2.3...v15.2.3) (2019-10-28)
+
+#### 🔮 Type: Chore
+
+- `mc-http-server`
+  - [#1119](https://github.com/commercetools/merchant-center-application-kit/pull/1119) chore(mc-http-server): remove duplicate prom metric ([@tdeekens](https://github.com/tdeekens))
+
 ## [15.2.2](https://github.com/commercetools/merchant-center-application-kit/compare/v15.2.1...v15.2.2) (2019-10-24)
 
 #### 🔮 Type: Chore
