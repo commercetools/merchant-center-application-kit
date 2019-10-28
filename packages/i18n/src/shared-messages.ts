@@ -9,6 +9,10 @@ const messages = defineMessages({
     id: 'AppKit.Shared.cancel',
     defaultMessage: 'Cancel',
   },
+  revert: {
+    id: 'AppKit.Shared.revert',
+    defaultMessage: 'Revert',
+  },
   confirm: {
     id: 'AppKit.Shared.confirm',
     defaultMessage: 'Confirm',
