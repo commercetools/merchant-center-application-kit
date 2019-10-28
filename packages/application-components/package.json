@@ -41,6 +41,7 @@
     "@babel/runtime-corejs3": "7.6.3",
     "@commercetools-frontend/assets": "15.0.0",
     "@commercetools-frontend/constants": "15.1.4",
+    "@commercetools-frontend/i18n": "15.2.1",
     "@emotion/core": "10.0.22",
     "@emotion/styled": "10.0.22",
     "lodash": "4.17.15",

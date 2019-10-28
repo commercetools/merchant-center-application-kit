@@ -1,6 +1,6 @@
 import React from 'react';
 import { MessageDescriptor } from 'react-intl';
-import buttonMessages from '../../../utils/button-messages';
+import { commonMessages } from '@commercetools-frontend/i18n';
 import ModalPage from '../internals/modal-page';
 import ModalPageHeader from '../internals/modal-page-header';
 import ModalPageHeaderDefaultControls from '../internals/modal-page-header-default-controls';
@@ -44,8 +44,8 @@ const defaultProps: Pick<
   Props,
   'labelPrimaryButton' | 'labelSecondaryButton'
 > = {
-  labelPrimaryButton: buttonMessages.confirm,
-  labelSecondaryButton: buttonMessages.cancel,
+  labelPrimaryButton: commonMessages.confirm,
+  labelSecondaryButton: commonMessages.cancel,
 };
 
 // Type-guard validation for the correct props, based on the existence `customControls`
@@ -100,6 +100,6 @@ const FormModalPage = (props: Props) => (
 );
 FormModalPage.displayName = 'FormModalPage';
 FormModalPage.defaultProps = defaultProps;
-FormModalPage.Intl = buttonMessages;
+FormModalPage.Intl = commonMessages;
 
 export default FormModalPage;
