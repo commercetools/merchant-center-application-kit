@@ -48,7 +48,7 @@ const LinksCard = props => (
     <Grid
       gridGap={dimensions.spacings.l}
       gridAutoColumns="1fr"
-      gridTemplateColumns="repeat(auto-fill, 246px)"
+      gridTemplateColumns={`repeat(auto-fill, ${dimensions.widths.pageNavigation})`}
     >
       {props.linksData.map(linkData => (
         <Grid.Item key={linkData.title}>

@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@babel/core": "7.6.4",
-    "@commercetools-frontend/application-components": "15.1.8",
+    "@commercetools-frontend/application-components": "15.2.1",
     "@commercetools-frontend/ui-kit": "10.4.0",
-    "@emotion/core": "10.0.21",
-    "@emotion/styled": "10.0.17",
+    "@emotion/core": "10.0.22",
+    "@emotion/styled": "10.0.22",
     "core-js": "3.3.2",
     "emotion-theming": "10.0.19",
     "gatsby": "2.16.5",
@@ -24,9 +24,9 @@
     "moment": "2.24.0",
     "moment-timezone": "0.5.27",
     "prop-types": "15.7.2",
-    "react": "16.10.2",
-    "react-dom": "16.10.2",
-    "react-intl": "3.3.2",
+    "react": "16.11.0",
+    "react-dom": "16.11.0",
+    "react-intl": "3.4.0",
     "react-router-dom": "5.1.2"
   }
 }

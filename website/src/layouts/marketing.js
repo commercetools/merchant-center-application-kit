@@ -27,7 +27,7 @@ const LayoutMarketing = props => (
             background-repeat: repeat-x;
             background-position-x: center;
             background-position-y: -25rem;
-            padding: ${dimensions.spacings.xl} 0;
+            padding: ${dimensions.spacings.xl} ${dimensions.spacings.m};
 
             > * + * {
               margin-top: ${dimensions.spacings.xl} !important;

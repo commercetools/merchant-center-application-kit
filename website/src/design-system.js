@@ -1,5 +1,15 @@
 import { customProperties } from '@commercetools-frontend/ui-kit';
 
+const rootFontSizeNumber = 16;
+const pageWidth = '770px';
+const navbarWidth = '224px';
+
+export const pxToRem = px => {
+  const pxNumber = px.replace(/([0-9]+)px$/, '$1');
+  const remNumber = parseInt(pxNumber, 10) / rootFontSizeNumber;
+  return `${remNumber}rem`;
+};
+
 export const colors = {
   light: {
     // Used to give the website a unique tone (e.g. page titles, navigation links)
@@ -30,19 +40,26 @@ export const colors = {
 };
 
 const breakpoints = {
-  content: 'calc(770px + 32px * 2)', // content page + padding left/right
-  contentAndPageNavigation: 'calc(770px + 32px * 2 + 224px)', // content page + padding left/right + page navigation
-  contentAndBothNavigations: 'calc(770px + 32px * 2 + 224px * 2)', // content page + padding left/right + page navigation + main navigation
+  // content page + padding left/right
+  content: `calc(${pxToRem(pageWidth)} + ${pxToRem('32px')} * 2)`,
+  // content page + padding left/right + page navigation
+  contentAndPageNavigation: `calc(${pxToRem(pageWidth)} + ${pxToRem(
+    '32px'
+  )} * 2 + ${pxToRem(navbarWidth)})`,
+  // content page + padding left/right + page navigation + main navigation
+  contentAndBothNavigations: `calc(${pxToRem(pageWidth)} + ${pxToRem(
+    '32px'
+  )} * 2 + ${pxToRem(navbarWidth)} * 2)`,
 };
 
 export const dimensions = {
   heights: {
-    header: '48px',
+    header: pxToRem('48px'),
   },
   widths: {
-    pageContent: '770px',
-    pageNavigation: '224px',
-    marketingContent: '1168px',
+    pageContent: pxToRem(pageWidth),
+    pageNavigation: pxToRem(navbarWidth),
+    marketingContent: pxToRem('1168px'),
   },
   viewports: {
     mobile: `max-width: ${breakpoints.content}`,
@@ -51,14 +68,14 @@ export const dimensions = {
     desktop: `min-width: ${breakpoints.contentAndBothNavigations}`,
   },
   spacings: {
-    xs: '4px',
-    s: '8px',
-    m: '16px',
-    l: '24px',
-    xl: '32px',
-    xxl: '40px',
-    xxxl: '48px',
-    xxxxl: '56px',
+    xs: pxToRem('4px'),
+    s: pxToRem('8px'),
+    m: pxToRem('16px'),
+    l: pxToRem('24px'),
+    xl: pxToRem('32px'),
+    xxl: pxToRem('40px'),
+    xxxl: pxToRem('48px'),
+    xxxxl: pxToRem('56px'),
   },
 };
 
@@ -68,15 +85,17 @@ export const typography = {
     code: "'Roboto Mono', monospace",
   },
 
+  rootFontSize: `${rootFontSizeNumber}px`,
+
   fontSizes: {
-    h1: '3rem',
-    h2: '1.63rem',
-    h3: '1.5rem',
-    h4: '1.25rem',
-    h5: '1.13rem',
-    h6: '1rem',
-    body: '1rem',
-    small: '0.88rem',
+    h1: pxToRem('48px'),
+    h2: pxToRem('26px'),
+    h3: pxToRem('24px'),
+    h4: pxToRem('20px'),
+    h5: pxToRem('18px'),
+    h6: pxToRem('16px'),
+    body: pxToRem('16px'),
+    small: pxToRem('14px'),
   },
 
   fontWeights: {

@@ -22,7 +22,7 @@ const ColumnsContainer = styled.div`
     margin: ${customProperties.spacingM} 0 0 0;
   }
 
-  @media screen and (min-width: 40em) {
+  @media screen and (min-width: 64.154rem) {
     flex-direction: row;
 
     > * + * {

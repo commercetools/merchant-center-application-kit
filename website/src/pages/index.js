@@ -130,7 +130,7 @@ const MarketingLandingPage = () => {
           <Grid
             gridGap={dimensions.spacings.l}
             gridAutoColumns="1fr"
-            gridTemplateColumns="repeat(auto-fit, minmax(268px, 1fr))"
+            gridTemplateColumns={`repeat(auto-fit, minmax(${dimensions.widths.pageNavigation}, 1fr))`}
           >
             <Grid.Item>
               <Spacings.Stack scale="m">

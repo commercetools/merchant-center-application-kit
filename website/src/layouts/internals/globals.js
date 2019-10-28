@@ -13,7 +13,7 @@ const Globals = () => (
         height: 100vh;
         color: ${colors.light.textPrimary};
         font-family: ${typography.fontFamilies.primary};
-        font-size: 16px;
+        font-size: ${typography.rootFontSize};
       }
 
       iframe {

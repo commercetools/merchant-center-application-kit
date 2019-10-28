@@ -126,7 +126,13 @@ const Pagination = props => {
         grid-auto-columns: 1fr;
         grid-template-columns: repeat(
           auto-fill,
-          minmax(calc(${dimensions.widths.pageContent} / 2 - 32px * 2), 1fr)
+          minmax(
+            calc(
+              ${dimensions.widths.pageContent} / 2 - ${dimensions.spacings.xl} *
+                2
+            ),
+            1fr
+          )
         );
 
         @media screen and (${dimensions.viewports.tablet}) {
