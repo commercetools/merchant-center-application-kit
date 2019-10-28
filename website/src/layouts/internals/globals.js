@@ -1,6 +1,6 @@
 import React from 'react';
 import { css, Global } from '@emotion/core';
-import { colors, typography } from '../../design-system';
+import { colors, dimensions, typography } from '../../design-system';
 
 // eslint-disable-next-line react/display-name
 const Globals = () => (
@@ -21,6 +21,10 @@ const Globals = () => (
         outline: 0;
         padding: 0;
         margin: 0;
+      }
+
+      .section-h4 {
+        padding: 0 0 0 ${dimensions.spacings.l};
       }
     `}
   />

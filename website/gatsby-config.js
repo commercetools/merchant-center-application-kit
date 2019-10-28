@@ -214,7 +214,11 @@ module.exports = {
           '.mdx',
           // ".md"
         ],
-        remarkPlugins: [require('remark-slug'), require('remark-emoji')],
+        rehypePlugins: [
+          require('rehype-slug'),
+          require('./src/plugins/rehype-mdx-section'),
+        ],
+        remarkPlugins: [require('remark-emoji')],
         gatsbyRemarkPlugins: [
           // Convert absolute image file paths to relative. Required for remark-images to work.
           // https://www.gatsbyjs.org/packages/gatsby-remark-relative-images/?=gatsby-remark-relative-images

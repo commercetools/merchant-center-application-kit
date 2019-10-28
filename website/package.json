@@ -40,6 +40,9 @@
     "gatsby-source-filesystem": "2.1.36",
     "gatsby-transformer-remark": "2.6.30",
     "gatsby-transformer-sharp": "2.2.6",
+    "github-slugger": "1.2.1",
+    "hast-util-heading": "1.0.3",
+    "hast-util-to-string": "1.0.2",
     "lodash.escape": "4.0.1",
     "moment": "2.24.0",
     "moment-timezone": "0.5.27",
@@ -52,7 +55,7 @@
     "react-helmet": "5.2.1",
     "react-intl": "3.4.0",
     "react-router-dom": "5.1.2",
-    "remark-emoji": "2.0.2",
-    "remark-slug": "5.1.2"
+    "rehype-slug": "2.0.3",
+    "remark-emoji": "2.0.2"
   }
 }
