@@ -7,7 +7,7 @@ const LayoutPageHeader = styled.div`
   padding: ${dimensions.spacings.m} ${dimensions.spacings.m} 0;
   max-width: ${dimensions.widths.pageContent};
 
-  @media screen and (${dimensions.viewports.tablet}) {
+  @media screen and (${dimensions.viewports.largeTablet}) {
     grid-column: 1;
     padding: ${dimensions.spacings.m} ${dimensions.spacings.xl} 0;
   }

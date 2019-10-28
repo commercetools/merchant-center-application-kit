@@ -27,8 +27,8 @@ const SectionBody = styled.div`
   line-height: 1.5;
 `;
 const PageContainer = styled.div`
-  width: 90%;
-  max-width: 1168px;
+  width: 100%;
+  max-width: ${dimensions.widths.marketingContent};
   margin: 0 auto;
 `;
 const ButtonLink = styled(Link)`

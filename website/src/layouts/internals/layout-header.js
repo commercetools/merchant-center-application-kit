@@ -24,7 +24,7 @@ const LayoutHeader = () => (
         margin: 0 0 0 ${dimensions.spacings.m};
       }
 
-      @media screen and (${dimensions.viewports.tablet}) {
+      @media screen and (${dimensions.viewports.desktop}) {
         > * + * {
           margin: 0 0 0 ${dimensions.spacings.xl};
         }
@@ -36,11 +36,9 @@ const LayoutHeader = () => (
         border-right: 1px solid ${colors.light.borderPrimary};
         width: auto;
         height: 100%;
+        display: flex;
 
-        @media screen and (${dimensions.viewports.mobile}) {
-          display: flex;
-        }
-        @media screen and (${dimensions.viewports.tablet}) {
+        @media screen and (${dimensions.viewports.desktop}) {
           width: ${dimensions.widths.pageNavigation};
         }
       `}
@@ -69,14 +67,14 @@ const LayoutHeader = () => (
             white-space: nowrap;
           `}
         >
-          <Spacings.Inline scale="s" alignItems="center">
+          <Spacings.Inline scale="m" alignItems="center">
             <LogoSvg height={32} />
             <div
               css={css`
                 display: none;
                 font-size: ${typography.fontSizes.h4};
 
-                @media screen and (${dimensions.viewports.tablet}) {
+                @media screen and (${dimensions.viewports.desktop}) {
                   display: block;
                 }
               `}

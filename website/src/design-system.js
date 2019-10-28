@@ -29,6 +29,12 @@ export const colors = {
   },
 };
 
+const breakpoints = {
+  content: 'calc(770px + 32px * 2)', // content page + padding left/right
+  contentAndPageNavigation: 'calc(770px + 32px * 2 + 224px)', // content page + padding left/right + page navigation
+  contentAndBothNavigations: 'calc(770px + 32px * 2 + 224px * 2)', // content page + padding left/right + page navigation + main navigation
+};
+
 export const dimensions = {
   heights: {
     header: '48px',
@@ -36,12 +42,13 @@ export const dimensions = {
   widths: {
     pageContent: '770px',
     pageNavigation: '224px',
+    marketingContent: '1168px',
   },
   viewports: {
-    mobile: 'max-width: 40em',
-    tablet: 'min-width: 40em',
-    largeTablet: 'min-width: 64em',
-    desktop: 'min-width: 80em',
+    mobile: `max-width: ${breakpoints.content}`,
+    tablet: `min-width: ${breakpoints.content}`,
+    largeTablet: `min-width: ${breakpoints.contentAndPageNavigation}`,
+    desktop: `min-width: ${breakpoints.contentAndBothNavigations}`,
   },
   spacings: {
     xs: '4px',

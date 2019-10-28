@@ -32,7 +32,7 @@ const ResizableGrid = styled.div`
   display: block;
   width: 100vw;
 
-  @media screen and (${dimensions.viewports.tablet}) {
+  @media screen and (${dimensions.viewports.desktop}) {
     display: grid;
     grid:
       [row1-start] 'left center right' auto [row1-end]
@@ -81,12 +81,12 @@ const LayoutContent = props => {
         />
         <LayoutMain
           css={css`
-            grid-column: 1/3;
-            grid-row: ${isMenuOpen ? '3' : '2'};
+            grid-column: 2;
+            grid-row: 2;
 
-            @media screen and (${dimensions.viewports.tablet}) {
-              grid-column: 2;
-              grid-row: 2;
+            @media screen and (${dimensions.viewports.mobile}) {
+              grid-column: 1/3;
+              grid-row: ${isMenuOpen ? '3' : '2'};
             }
           `}
         >
@@ -108,7 +108,7 @@ const LayoutContent = props => {
                     0;
                   grid-template-rows: auto 1fr;
                 }
-                @media screen and (${dimensions.viewports.desktop}) {
+                @media screen and (${dimensions.viewports.largeTablet}) {
                   grid-template-columns:
                     calc(
                       ${dimensions.widths.pageContent} +

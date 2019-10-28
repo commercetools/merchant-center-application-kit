@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link as HistoryLink, withPrefix } from 'gatsby';
-import { css } from '@emotion/core';
+import { css, Global } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
   customProperties,
@@ -224,63 +224,98 @@ const CodeBlock = props => {
   const handleCopyToClipboardClick = () => copyToClipboard(content);
 
   return (
-    <div
-      className={[
-        'gatsby-highlight',
-        highlightLines && highlightLines.length > 0 && 'has-highlighted-lines',
-      ]
-        .filter(Boolean)
-        .join(' ')}
-      data-language={splitLanguage}
-    >
-      <div
-        css={css`
-          display: flex;
-          align-items: flex-start;
-          justify-content: space-between;
-          margin: ${dimensions.spacings.s} 0;
-          > * + * {
-            margin: 0 0 0 ${dimensions.spacings.m};
+    <>
+      <Global
+        styles={css`
+          .gatsby-highlight {
+            background-color: ${colors.light.surfaceCode};
+            border-radius: ${customProperties.borderRadius6};
+            margin: ${dimensions.spacings.m} 0;
+            padding: ${dimensions.spacings.s} ${dimensions.spacings.m};
+            overflow: auto;
+          }
+          .gatsby-highlight > code,
+          .gatsby-highlight code[class*='language-'],
+          .gatsby-highlight pre[class*='language-'],
+          .gatsby-highlight .line-numbers-rows {
+            font-family: ${typography.fontFamilies.code};
+            font-size: ${typography.fontSizes.small};
+          }
+          .gatsby-highlight pre[class*='language-'] {
+            background-color: ${colors.light.surfaceCode};
+            margin: 0;
+          }
+          .gatsby-highlight pre[class*='language-'].line-numbers {
+            padding: 0 ${dimensions.spacings.xl};
+            overflow-x: scroll;
+          }
+          .gatsby-highlight .gatsby-highlight-code-line {
+            background-color: ${colors.light.surfaceCodeHighlight};
+            width: 100%;
+            display: inline-block;
           }
         `}
+      />
+      <div
+        className={[
+          'gatsby-highlight',
+          highlightLines &&
+            highlightLines.length > 0 &&
+            'has-highlighted-lines',
+        ]
+          .filter(Boolean)
+          .join(' ')}
+        data-language={splitLanguage}
       >
-        <pre
-          className={`language-${splitLanguage} line-numbers`}
-          css={css`
-            counter-reset: linenumber;
-          `}
-        >
-          <code
-            className={`language-${splitLanguage}`}
-            dangerouslySetInnerHTML={{
-              __html: formattedContent,
-            }}
-          />
-          <span
-            aria-hidden="true"
-            className="line-numbers-rows"
-            css={css`
-              white-space: normal !important;
-              width: auto !important;
-              left: 0 !important;
-            `}
-          >
-            {Array.from({ length: numberOfLines }).map((_, index) => (
-              <span key={index} />
-            ))}
-          </span>
-        </pre>
         <div
           css={css`
-            cursor: pointer;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin: ${dimensions.spacings.s} 0;
+            > * + * {
+              margin: 0 0 0 ${dimensions.spacings.m};
+            }
           `}
-          onClick={handleCopyToClipboardClick}
-          title="Copy to clipboard"
         >
-          <ClipboardIcon color="surface" />
+          <pre
+            className={`language-${splitLanguage} line-numbers`}
+            css={css`
+              counter-reset: linenumber;
+            `}
+          >
+            <code
+              className={`language-${splitLanguage}`}
+              dangerouslySetInnerHTML={{
+                __html: formattedContent,
+              }}
+            />
+            <span
+              aria-hidden="true"
+              className="line-numbers-rows"
+              css={css`
+                white-space: normal !important;
+                width: auto !important;
+                left: 0 !important;
+              `}
+            >
+              {Array.from({ length: numberOfLines }).map((_, index) => (
+                <span key={index} />
+              ))}
+            </span>
+          </pre>
+          <div
+            css={css`
+              cursor: pointer;
+            `}
+            onClick={handleCopyToClipboardClick}
+            title="Copy to clipboard"
+          >
+            <ClipboardIcon color="surface" />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 CodeBlock.propTypes = {

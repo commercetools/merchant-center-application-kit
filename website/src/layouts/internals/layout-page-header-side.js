@@ -7,7 +7,7 @@ const LayoutPageHeaderSide = styled.div`
   width: ${dimensions.widths.pageNavigation};
   display: none;
 
-  @media screen and (${dimensions.viewports.desktop}) {
+  @media screen and (${dimensions.viewports.largeTablet}) {
     display: block;
   }
 `;

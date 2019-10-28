@@ -1,29 +1,66 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import { colors, dimensions } from '../../design-system';
 import { BurgerIcon } from '../../components';
 import Sidebar from './sidebar';
 
+const slideInAnimation = keyframes`
+  from { margin-left: -100%; }
+  to { margin-left: 0; }
+`;
+const ContainerOverlay = styled.div`
+  ${props => {
+    if (props.isMenuOpen) {
+      return css`
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+        position: fixed;
+        top: ${dimensions.heights.header};
+        left: 0;
+        right: 0;
+        bottom: 0;
+      `;
+    }
+    return css`
+      position: relative;
+      grid-row: 2;
+      grid-column: 1/3;
+    `;
+  }}
+
+  display: ${props => (props.isMenuOpen ? 'flex' : 'none')};
+  overflow: auto;
+
+  @media screen and (${dimensions.viewports.desktop}) {
+    display: flex;
+    grid-column: 1;
+
+    background: unset;
+    z-index: unset;
+    position: unset;
+    top: unset;
+    left: unset;
+    right: unset;
+    bottom: unset;
+  }
+`;
 const Container = styled.aside`
   position: relative;
   overflow: auto;
-  grid-row: 2;
-  flex-direction: column;
   background-color: ${colors.light.surfaceSecondary1};
   border-right: 1px solid ${colors.light.borderPrimary};
+  width: ${dimensions.widths.pageNavigation};
+  height: 100%;
+  z-index: 2;
 
-  display: ${props => (props.isMenuOpen ? 'flex' : 'none')};
-  grid-column: 1/3;
-
-  @media screen and (${dimensions.viewports.tablet}) {
-    display: flex;
-    width: ${dimensions.widths.pageNavigation};
-    grid-column: 1;
+  animation: ${slideInAnimation} 0.5s ease-out alternate;
+  @media screen and (${dimensions.viewports.desktop}) {
+    animation: unset;
   }
 `;
-
 const MenuButton = styled.button`
   appearance: none;
   border: 0;
@@ -48,7 +85,7 @@ const MenuButton = styled.button`
     }
   }
 
-  @media screen and (${dimensions.viewports.tablet}) {
+  @media screen and (${dimensions.viewports.desktop}) {
     display: none;
   }
 `;
@@ -59,25 +96,37 @@ const LayoutSidebar = props => {
     setPortalNode(document.getElementById('sidebar-menu-toggle'));
   }, []);
   return (
-    <Container isMenuOpen={props.isMenuOpen}>
-      <Sidebar
-        onLinkClick={() => {
-          props.setMenuOpen(false);
+    <ContainerOverlay
+      isMenuOpen={props.isMenuOpen}
+      onClick={() => {
+        props.setMenuOpen(false);
+      }}
+    >
+      <Container
+        isMenuOpen={props.isMenuOpen}
+        onClick={event => {
+          event.stopPropagation();
         }}
-        permalink={props.permalink}
-      />
-      {portalNode &&
-        ReactDOM.createPortal(
-          <MenuButton
-            onClick={() => {
-              props.setMenuOpen(!props.isMenuOpen);
-            }}
-          >
-            <BurgerIcon isActive={props.isMenuOpen} />
-          </MenuButton>,
-          portalNode
-        )}
-    </Container>
+      >
+        <Sidebar
+          onLinkClick={() => {
+            props.setMenuOpen(false);
+          }}
+          permalink={props.permalink}
+        />
+        {portalNode &&
+          ReactDOM.createPortal(
+            <MenuButton
+              onClick={() => {
+                props.setMenuOpen(!props.isMenuOpen);
+              }}
+            >
+              <BurgerIcon isActive={props.isMenuOpen} />
+            </MenuButton>,
+            portalNode
+          )}
+      </Container>
+    </ContainerOverlay>
   );
 };
 LayoutSidebar.displayName = 'LayoutSidebar';
