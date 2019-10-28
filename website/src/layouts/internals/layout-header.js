@@ -18,7 +18,7 @@ const LayoutHeader = () => (
       padding: 0;
       margin: 0 auto;
       box-shadow: ${customProperties.shadow1};
-      z-index: 1;
+      z-index: 10;
 
       > * + * {
         margin: 0 0 0 ${dimensions.spacings.m};
