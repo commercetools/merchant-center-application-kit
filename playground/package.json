@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "15.2.2",
+  "version": "15.2.3",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -23,7 +23,7 @@
     "@commercetools-frontend/constants": "15.1.4",
     "@commercetools-frontend/i18n": "15.2.1",
     "@commercetools-frontend/l10n": "15.2.1",
-    "@commercetools-frontend/mc-http-server": "15.2.2",
+    "@commercetools-frontend/mc-http-server": "15.2.3",
     "@commercetools-frontend/permissions": "15.2.1",
     "@commercetools-frontend/sdk": "15.2.1",
     "@commercetools-frontend/ui-kit": "10.4.0",
