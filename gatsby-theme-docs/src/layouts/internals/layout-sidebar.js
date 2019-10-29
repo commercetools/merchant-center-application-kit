@@ -113,6 +113,7 @@ const LayoutSidebar = props => {
             props.setMenuOpen(false);
           }}
           slug={props.slug}
+          siteTitle={props.siteTitle}
         />
         {portalNode &&
           ReactDOM.createPortal(
@@ -134,6 +135,7 @@ LayoutSidebar.propTypes = {
   isMenuOpen: PropTypes.bool.isRequired,
   setMenuOpen: PropTypes.func.isRequired,
   slug: PropTypes.string.isRequired,
+  siteTitle: PropTypes.string.isRequired,
 };
 
 export default LayoutSidebar;

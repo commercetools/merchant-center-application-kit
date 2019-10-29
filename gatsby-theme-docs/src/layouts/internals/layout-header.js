@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { Link } from 'gatsby';
 import { Spacings } from '../../components';
 import { colors, dimensions, typography, tokens } from '../../design-system';
 import LogoSvg from '../../images/icons/logo.svg';
 
-const LayoutHeader = () => (
+const LayoutHeader = props => (
   <header
     css={css`
       display: flex;
@@ -91,9 +92,12 @@ const LayoutHeader = () => (
         font-size: ${typography.fontSizes.body};
       `}
     >
-      {'AppKit'}
+      {props.siteTitle}
     </div>
   </header>
 );
+LayoutHeader.propTypes = {
+  siteTitle: PropTypes.string.isRequired,
+};
 
 export default LayoutHeader;

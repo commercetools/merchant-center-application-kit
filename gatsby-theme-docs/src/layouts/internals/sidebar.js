@@ -81,7 +81,7 @@ const Sidebar = props => {
           font-size: ${typography.fontSizes.h4};
         `}
       >
-        {'AppKit'}
+        {props.siteTitle}
       </div>
       {data.allNavigationYaml.nodes.map((node, index) => (
         <Spacings.Stack scale="s" key={index}>
@@ -110,6 +110,7 @@ Sidebar.displayName = 'Sidebar';
 Sidebar.propTypes = {
   onLinkClick: PropTypes.func.isRequired,
   slug: PropTypes.string.isRequired,
+  siteTitle: PropTypes.string.isRequired,
 };
 
 export default Sidebar;

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useStaticQuery, graphql } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { ContentPagination, NotificationInfo, Markdown } from '../components';
@@ -36,15 +37,25 @@ const ResizableGrid = styled.div`
 
 const LayoutContent = props => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
+  const data = useStaticQuery(graphql`
+    query GetTitle {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `);
   return (
     <React.Fragment>
       <Globals />
       <LayoutApplication isMenuOpen={isMenuOpen}>
-        <LayoutHeader />
+        <LayoutHeader siteTitle={data.site.siteMetadata.title} />
         <LayoutSidebar
           isMenuOpen={isMenuOpen}
           setMenuOpen={setMenuOpen}
           slug={props.pageData.fields.slug}
+          siteTitle={data.site.siteMetadata.title}
         />
         <LayoutMain
           css={css`

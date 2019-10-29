@@ -3,7 +3,7 @@
 module.exports = {
   pathPrefix: '/app-kit',
   siteMetadata: {
-    title: 'AppKit | commercetools docs',
+    title: 'AppKit',
     description: 'Develop applications for the Merchant Center',
     author: 'commercetools',
     repositoryUrl:
