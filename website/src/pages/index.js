@@ -13,10 +13,10 @@ import {
 import {
   Card,
   SEO,
-  LinksCard,
   Spacings,
 } from '@commercetools-docs/gatsby-theme-docs/src/components';
 import LayoutMarketing from '../layouts/marketing';
+import LinksCard from '../components/links-card';
 import LandingPageRocket from '../images/icons/landing-page-rocket.svg';
 import ScreenCogIcon from '../images/icons/screen-cog-icon.svg';
 import ScreenDesignToolIcon from '../images/icons/screen-design-tool-icon.svg';
