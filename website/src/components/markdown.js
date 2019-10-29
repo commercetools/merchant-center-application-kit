@@ -409,9 +409,9 @@ Link.propTypes = {
   children: PropTypes.node.isRequired,
 };
 const Img = props => (
-  <div>
+  <span>
     <img {...props} />
-    <p
+    <span
       css={css`
         color: ${colors.light.textPrimary};
         font-size: ${typography.fontSizes.small};
@@ -420,8 +420,8 @@ const Img = props => (
     >
       {/* eslint-disable-next-line react/prop-types */}
       {props.title || props.alt}
-    </p>
-  </div>
+    </span>
+  </span>
 );
 
 /* eslint-disable react/display-name,react/prop-types */

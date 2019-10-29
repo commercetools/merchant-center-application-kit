@@ -1,9 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { Spacings } from '@commercetools-frontend/ui-kit';
 import LogoSvg from '../../images/icons/logo.svg';
-import { ExternalLink } from '../../components';
+import { ExternalLink, Spacings } from '../../components';
 import { colors, dimensions, typography } from '../../design-system';
 
 const FooterExternalLink = styled(ExternalLink)`

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { Spacings } from '@commercetools-frontend/ui-kit';
+import { Spacings } from '../../components';
 import { colors, dimensions, typography } from '../../design-system';
 
 const itemType = {

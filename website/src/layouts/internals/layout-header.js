@@ -1,7 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import { Link } from 'gatsby';
-import { customProperties, Spacings } from '@commercetools-frontend/ui-kit';
+import { customProperties } from '@commercetools-frontend/ui-kit';
+import { Spacings } from '../../components';
 import { colors, dimensions, typography } from '../../design-system';
 import LogoSvg from '../../images/icons/logo.svg';
 

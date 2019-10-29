@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { useStaticQuery, graphql } from 'gatsby';
-import { customProperties, Spacings } from '@commercetools-frontend/ui-kit';
+import { customProperties } from '@commercetools-frontend/ui-kit';
 import {
   ContentPagination,
   NotificationInfo,
   Markdown,
   ExternalLink,
+  Spacings,
 } from '../components';
 import { dimensions } from '../design-system';
 import GitHubSvg from '../images/icons/github.svg';
@@ -52,7 +53,11 @@ const RepositoryLinks = () => {
     }
   `);
   return (
-    <Spacings.Inset scale="m">
+    <div
+      css={css`
+        padding: ${dimensions.spacings.m};
+      `}
+    >
       <Spacings.Inline scale="l" alignItems="center" justifyContent="flex-end">
         <ExternalLink
           href={`${data.site.siteMetadata.repositoryUrl}/releases/tag/v${data.site.siteMetadata.currentVersion}`}
@@ -63,7 +68,7 @@ const RepositoryLinks = () => {
           <GitHubSvg />
         </ExternalLink>
       </Spacings.Inline>
-    </Spacings.Inset>
+    </div>
   );
 };
 

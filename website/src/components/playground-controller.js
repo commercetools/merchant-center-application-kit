@@ -4,13 +4,13 @@ import { withPrefix } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
-  Spacings,
   customProperties,
   Tooltip,
   IconButton,
   CodeViewIcon,
 } from '@commercetools-frontend/ui-kit';
 import { InfoDialog } from '@commercetools-frontend/application-components';
+import Spacings from './spacings';
 import { colors } from '../design-system';
 
 const TooltipWrapperComponent = styled.div`
