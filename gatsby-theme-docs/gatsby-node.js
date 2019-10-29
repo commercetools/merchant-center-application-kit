@@ -13,8 +13,8 @@ const { createFilePath } = require('gatsby-source-filesystem');
 exports.onPreBootstrap = ({ reporter }) => {
   const requiredDirectories = [
     'src/data',
-    'src/content',
     'src/images',
+    'src/static/assets',
     'src/pages/files',
   ];
   requiredDirectories.forEach(dir => {

@@ -25,7 +25,7 @@ const components = {
   ul: Markdown.Ul,
   ol: Markdown.Ol,
   li: Markdown.Li,
-  table: Markdown.ScrollableTable,
+  table: Markdown.Table,
   tr: Markdown.TableRow,
   td: Markdown.TableCell,
   th: Markdown.TableHeader,

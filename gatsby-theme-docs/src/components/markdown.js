@@ -101,6 +101,7 @@ const Ol = styled.ol`
 `;
 const Li = styled.li``;
 const Table = styled.table`
+  border: 1px solid ${colors.light.borderPrimary};
   border-collapse: collapse;
   font-size: ${typography.fontSizes.body};
   tbody {
@@ -163,6 +164,7 @@ const TableCell = styled.td`
   padding: ${dimensions.spacings.s};
   white-space: pre-wrap;
   vertical-align: top;
+  text-align: ${props => props.align || 'left'};
 
   @media screen and (${dimensions.viewports.mobile}) {
     display: block;
@@ -184,16 +186,6 @@ const TableHeader = styled.th`
     display: block;
   }
 `;
-const ScrollableTable = props => (
-  <div
-    css={css`
-      overflow-x: auto;
-      border: 1px solid ${colors.light.borderPrimary};
-    `}
-  >
-    <Table {...props} />
-  </div>
-);
 const InlineCode = styled.code`
   background-color: ${colors.light.borderPrimary};
   border: 1px solid ${colors.light.surfaceInfo};
@@ -444,7 +436,6 @@ export {
   TableRow,
   TableCell,
   TableHeader,
-  ScrollableTable,
   InlineCode,
   CodeBlock,
   Em,
