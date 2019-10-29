@@ -39,6 +39,8 @@ const SlidingContainer = styled.div`
   background-color: ${colors.light.surfacePrimary};
   animation: ${slideInAnimation} 0.5s ease-out alternate;
   width: ${dimensions.widths.pageNavigation};
+  height: 100%;
+  overflow: auto;
 `;
 const GridContainer = styled.div`
   border-left: 1px solid ${colors.light.borderPrimary};

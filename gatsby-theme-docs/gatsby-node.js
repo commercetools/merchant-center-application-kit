@@ -5,6 +5,8 @@
  */
 
 const fs = require('fs');
+const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem');
 
 // Ensure that certain directories exist.
 // https://www.gatsbyjs.org/tutorial/building-a-theme/#create-a-data-directory-using-the-onprebootstrap-lifecycle
@@ -23,56 +25,61 @@ exports.onPreBootstrap = ({ reporter }) => {
   });
 };
 
-// Programmatically create MDX pages. While `gatsby-plugin-mdx` can automatically
-// do that, we want to have more control over building those pages as we might
-// have specific requirements (e.g. redirects).
-exports.createPages = async ({ actions, graphql }) => {
-  const allMarkdown = await graphql(`
-    {
-      allMdx(limit: 1000) {
-        edges {
-          node {
-            frontmatter {
-              id
-              title
-              permalink
-              redirect_from
-              beta
-            }
-          }
-        }
-      }
+exports.sourceNodes = ({ actions }) => {
+  actions.createTypes(`
+    type NavigationYaml implements Node @dontInfer {
+      id: ID!
+      chapterTitle: String! @proxy(from: "chapter-title")
+      pages: [Entry!]
+    }
+
+    type Entry {
+      title: String!
+      path: String!
+      beta: Boolean
     }
   `);
+};
 
-  if (allMarkdown.errors) {
-    console.error(allMarkdown.errors);
-    throw Error(allMarkdown.errors);
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  if (node.internal.type === 'Mdx') {
+    const { createNodeField } = actions;
+    const slug = createFilePath({ node, getNode, basePath: 'pages' });
+
+    createNodeField({
+      node,
+      name: 'slug',
+      value: slug,
+    });
   }
+};
 
-  allMarkdown.data.allMdx.edges.forEach(edge => {
-    const template = require.resolve(`./src/templates/page-content.js`);
+exports.onCreatePage = ({ page, actions }) => {
+  const extensionName = path.extname(page.componentPath);
+
+  if (extensionName === '.md' || extensionName === '.mdx') {
+    actions.deletePage(page);
     actions.createPage({
-      path: edge.node.frontmatter.permalink,
-      component: template,
-      // The context is passed as props to the component as well
-      // as into the component's GraphQL query.
+      ...page,
+      // page.context.frontmatter can be used to dynamically select approriate templates
+      component: require.resolve('./src/templates/page-content.js'),
       context: {
-        id: edge.node.frontmatter.id,
+        ...page.context,
+        // Data passed to context is available
+        // in page queries as GraphQL variables.
+        slug: page.path,
       },
     });
-
-    if (edge.node.frontmatter.redirect_from) {
-      edge.node.frontmatter.redirect_from.forEach(fromPath => {
-        actions.createRedirect({
-          fromPath,
-          toPath: edge.node.frontmatter.permalink,
-          isPermanent: true,
-          redirectInBrowser: true,
-        });
+    if (page.context.frontmatter.landing_page === true) {
+      const [, chapterPath] = page.path.split('/');
+      actions.createRedirect({
+        fromPath: `/${chapterPath}`,
+        toPath: page.path,
+        isPermanent: true,
+        redirectInBrowser: true,
       });
     }
-  });
+  }
 };
 
 exports.onCreateWebpackConfig = ({ actions, getConfig }) => {

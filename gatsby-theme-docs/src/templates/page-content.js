@@ -5,7 +5,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
 import LayoutContent from '../layouts/content';
 import { SEO, Markdown } from '../components';
-import PlaceholderMarkdownComponents from '../components/placeholder-markdown-components';
+import PlaceholderMarkdownComponents from '../overrides/markdown-components';
 
 // See https://mdxjs.com/getting-started#table-of-components
 const components = {
@@ -43,8 +43,8 @@ const components = {
   ...PlaceholderMarkdownComponents,
 };
 
-const getSeoTitle = permalink =>
-  permalink
+const getSeoTitle = slug =>
+  slug
     .split('/')
     .map(linkPath =>
       linkPath
@@ -60,7 +60,7 @@ const PageContentTemplate = props => (
   <LayoutContent pageData={props.data.mdx}>
     <MDXProvider components={components}>
       <Markdown.TypographyPage>
-        <SEO title={getSeoTitle(props.data.mdx.frontmatter.permalink)} />
+        <SEO title={getSeoTitle(props.data.mdx.fields.slug)} />
         {/* This wrapper div is important to ensure the vertical space */}
         <div>
           <MDXRenderer>{props.data.mdx.body}</MDXRenderer>
@@ -74,10 +74,11 @@ PageContentTemplate.displayName = 'PageContentTemplate';
 PageContentTemplate.propTypes = {
   data: PropTypes.shape({
     mdx: PropTypes.shape({
+      fields: PropTypes.shape({
+        slug: PropTypes.string.isRequired,
+      }).isRequired,
       frontmatter: PropTypes.shape({
-        id: PropTypes.string,
         title: PropTypes.string,
-        permalink: PropTypes.string,
       }).isRequired,
       body: PropTypes.string.isRequired,
       tableOfContents: PropTypes.object.isRequired,
@@ -87,13 +88,13 @@ PageContentTemplate.propTypes = {
 export default PageContentTemplate;
 
 export const query = graphql`
-  query QueryMarkdownPage($id: String!) {
-    mdx(frontmatter: { id: { eq: $id } }) {
-      id
+  query QueryMarkdownPage($slug: String!) {
+    mdx(fields: { slug: { eq: $slug } }) {
+      fields {
+        slug
+      }
       frontmatter {
-        id
         title
-        permalink
         beta
       }
       body

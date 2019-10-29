@@ -8,9 +8,13 @@ import { colors, dimensions, typography } from '../../design-system';
 
 const SidebarLinkTitle = styled.div`
   font-size: ${typography.fontSizes.body};
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 `;
 const SidebarLinkSubtitle = styled.div`
   font-size: ${typography.fontSizes.small};
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 `;
 const SidebarLinkItem = styled.div`
   padding: 0 ${dimensions.spacings.m};
@@ -47,15 +51,13 @@ SidebarLink.displayName = 'SidebarLink';
 const Sidebar = props => {
   const data = useStaticQuery(graphql`
     query SidebarQuery {
-      allSideNavigationYaml {
-        edges {
-          node {
-            label
-            groupKey
-            subgroup {
-              label
-              linkTo
-            }
+      allNavigationYaml {
+        nodes {
+          chapterTitle
+          pages {
+            title
+            path
+            beta
           }
         }
       }
@@ -81,22 +83,23 @@ const Sidebar = props => {
       >
         {'AppKit'}
       </div>
-      {data.allSideNavigationYaml.edges.map((edge, index) => (
+      {data.allNavigationYaml.nodes.map((node, index) => (
         <Spacings.Stack scale="s" key={index}>
           <SidebarLinkItem>
-            <SidebarLinkTitle>{edge.node.label}</SidebarLinkTitle>
+            <SidebarLinkTitle>{node.chapterTitle}</SidebarLinkTitle>
           </SidebarLinkItem>
           <Spacings.Stack scale="s">
-            {edge.node.subgroup.map(subLink => (
-              <SidebarLink
-                to={subLink.linkTo}
-                key={subLink.linkTo}
-                onClick={props.onLinkClick}
-                partiallyActive={true}
-              >
-                <SidebarLinkSubtitle>{subLink.label}</SidebarLinkSubtitle>
-              </SidebarLink>
-            ))}
+            {node.pages &&
+              node.pages.map(subLink => (
+                <SidebarLink
+                  to={subLink.path}
+                  key={subLink.path}
+                  onClick={props.onLinkClick}
+                  partiallyActive={true}
+                >
+                  <SidebarLinkSubtitle>{subLink.title}</SidebarLinkSubtitle>
+                </SidebarLink>
+              ))}
           </Spacings.Stack>
         </Spacings.Stack>
       ))}
@@ -106,7 +109,7 @@ const Sidebar = props => {
 Sidebar.displayName = 'Sidebar';
 Sidebar.propTypes = {
   onLinkClick: PropTypes.func.isRequired,
-  permalink: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
 };
 
 export default Sidebar;

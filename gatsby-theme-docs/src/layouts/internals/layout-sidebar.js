@@ -112,7 +112,7 @@ const LayoutSidebar = props => {
           onLinkClick={() => {
             props.setMenuOpen(false);
           }}
-          permalink={props.permalink}
+          slug={props.slug}
         />
         {portalNode &&
           ReactDOM.createPortal(
@@ -133,7 +133,7 @@ LayoutSidebar.displayName = 'LayoutSidebar';
 LayoutSidebar.propTypes = {
   isMenuOpen: PropTypes.bool.isRequired,
   setMenuOpen: PropTypes.func.isRequired,
-  permalink: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
 };
 
 export default LayoutSidebar;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useStaticQuery, graphql, Link, withPrefix } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import UnstyledAngleThinLeftIcon from '../images/icons/angle-thin-left-icon.svg';
@@ -73,50 +73,41 @@ PaginationLink.propTypes = {
   direction: PropTypes.oneOf(['left', 'right']).isRequired,
 };
 
-const flattenLinks = links => {
-  return links.reduce((flat, link) => {
-    if (link.subgroup) {
-      return [...flat, ...flattenLinks(link.subgroup)];
-    }
-    if (link.label && link.linkTo) {
-      return [...flat, { linkTo: link.linkTo, label: link.label }];
-    }
-    return flat;
-  }, []);
-};
-
 const Pagination = props => {
   const data = useStaticQuery(graphql`
     query GetNavbarLinks {
-      allSideNavigationYaml {
-        edges {
-          node {
-            label
-            groupKey
-            subgroup {
-              label
-              linkTo
-            }
+      allNavigationYaml {
+        nodes {
+          chapterTitle
+          pages {
+            title
+            path
+            beta
           }
         }
       }
     }
   `);
-  const groupKey = props.permalink.replace(/^\/(.*)\/(.*)$/, '$1');
-  const links = flattenLinks(
-    data.allSideNavigationYaml.edges
-      .filter(edge => edge.node.groupKey === groupKey)
-      .map(edge => edge.node)
+  const [, chapterPath] = props.slug.split('/');
+  const chapterSlug = `/${chapterPath}`;
+  const chapterPageLinks = data.allNavigationYaml.nodes.reduce(
+    (links, node) => {
+      if (node.pages) {
+        return [
+          ...links,
+          ...node.pages.filter(page => page.path.startsWith(chapterSlug)),
+        ];
+      }
+      return links;
+    },
+    []
   );
-  const index = links.findIndex(
-    link =>
-      withPrefix(link.linkTo) ===
-      (typeof window !== 'undefined' &&
-        window.location.pathname.replace(/\/$/, ''))
+  const currentPageLinkIndex = chapterPageLinks.findIndex(page =>
+    props.slug.startsWith(page.path)
   );
-  const hasPagination = index > -1;
-  const previous = links[index - 1];
-  const next = links[index + 1];
+  const hasPagination = currentPageLinkIndex > -1;
+  const previousPage = chapterPageLinks[currentPageLinkIndex - 1];
+  const nextPage = chapterPageLinks[currentPageLinkIndex + 1];
 
   return (
     <div
@@ -140,19 +131,19 @@ const Pagination = props => {
         }
       `}
     >
-      {hasPagination && previous ? (
+      {hasPagination && previousPage ? (
         <PaginationLink
-          linkTo={previous.linkTo}
-          label={previous.label}
+          linkTo={previousPage.path}
+          label={previousPage.title}
           direction="left"
         />
       ) : (
         <span />
       )}
-      {hasPagination && next ? (
+      {hasPagination && nextPage ? (
         <PaginationLink
-          linkTo={next.linkTo}
-          label={next.label}
+          linkTo={nextPage.path}
+          label={nextPage.title}
           direction="right"
         />
       ) : (
@@ -163,7 +154,7 @@ const Pagination = props => {
 };
 Pagination.displayName = 'Pagination';
 Pagination.propTypes = {
-  permalink: PropTypes.string,
+  slug: PropTypes.string,
 };
 
 export default Pagination;

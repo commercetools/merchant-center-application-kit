@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { ContentPagination, NotificationInfo, Markdown } from '../components';
 import { dimensions, tokens } from '../design-system';
+import PlaceholderPageHeaderSide from '../overrides/page-header-side';
 import LayoutApplication from './internals/layout-application';
 import LayoutHeader from './internals/layout-header';
 import LayoutSidebar from './internals/layout-sidebar';
@@ -14,7 +15,6 @@ import LayoutPageHeader from './internals/layout-page-header';
 import LayoutPageHeaderSide from './internals/layout-page-header-side';
 import LayoutPageNavigation from './internals/layout-page-navigation';
 import LayoutPageContent from './internals/layout-page-content';
-import PlaceholderPageHeaderSide from './internals/placeholder-page-header-side';
 
 const GridArea = styled.div`
   grid-area: ${props => props.name};
@@ -44,7 +44,7 @@ const LayoutContent = props => {
         <LayoutSidebar
           isMenuOpen={isMenuOpen}
           setMenuOpen={setMenuOpen}
-          permalink={props.pageData.frontmatter.permalink}
+          slug={props.pageData.fields.slug}
         />
         <LayoutMain
           css={css`
@@ -96,9 +96,7 @@ const LayoutContent = props => {
               </LayoutPageHeaderSide>
               <LayoutPageContent>
                 {props.children}
-                <ContentPagination
-                  permalink={props.pageData.frontmatter.permalink}
-                />
+                <ContentPagination slug={props.pageData.fields.slug} />
               </LayoutPageContent>
               <LayoutPageNavigation
                 pageTitle={props.pageData.frontmatter.title}
@@ -115,9 +113,11 @@ const LayoutContent = props => {
 LayoutContent.displayName = 'LayoutContent';
 LayoutContent.propTypes = {
   pageData: PropTypes.shape({
+    fields: PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+    }).isRequired,
     frontmatter: PropTypes.shape({
       title: PropTypes.string,
-      permalink: PropTypes.string,
       beta: PropTypes.bool,
     }).isRequired,
     tableOfContents: PropTypes.object.isRequired,

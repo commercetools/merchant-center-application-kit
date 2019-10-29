@@ -1,5 +1,7 @@
 /* eslint-disable global-require */
 
+const path = require('path');
+
 module.exports = {
   siteMetadata: {
     author: 'commercetools',
@@ -22,7 +24,31 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'srcImages',
-        path: `${__dirname}/src/images`,
+        path: path.resolve(`./src/images`),
+      },
+    },
+    // Data files (.yaml)
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'configurationData',
+        path: path.resolve(`./src/data`),
+      },
+    },
+    // Assets (e.g. images) used from the markdown pages
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: path.resolve(`./src/static/assets`),
+      },
+    },
+    // Main content pages (.mdx)
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'content',
+        path: path.resolve(`./src/pages`),
       },
     },
 
@@ -83,12 +109,12 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',
-    {
-      resolve: 'gatsby-plugin-favicon',
-      options: {
-        logo: `${__dirname}/src/images/icons/logo.svg`,
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-favicon',
+    //   options: {
+    //     logo: `${__dirname}/src/images/icons/logo.svg`,
+    //   },
+    // },
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {

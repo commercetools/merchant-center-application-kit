@@ -56,11 +56,11 @@ const MarketingLandingPage = () => {
           repositoryUrl
         }
       }
-      allSideNavigationYaml {
-        edges {
-          node {
-            label
-            groupKey
+      allNavigationYaml {
+        nodes {
+          chapterTitle
+          pages {
+            path
           }
         }
       }
@@ -110,7 +110,7 @@ const MarketingLandingPage = () => {
                 {'Develop applications for the Merchant Center'}
               </div>
               <div>
-                <ButtonLink to="getting-started">{'Get started'}</ButtonLink>
+                <ButtonLink to="/getting-started">{'Get started'}</ButtonLink>
               </div>
             </div>
             <div
@@ -190,10 +190,15 @@ const MarketingLandingPage = () => {
           linksData={[
             {
               title: 'Documentation',
-              links: data.allSideNavigationYaml.edges.map(edge => ({
-                to: `/${edge.node.groupKey}`,
-                label: edge.node.label,
-              })),
+              links: data.allNavigationYaml.nodes
+                .filter(node => node.pages && node.pages.length > 0)
+                .map(node => {
+                  const [, chapterPath] = node.pages[0].path.split('/');
+                  return {
+                    to: `/${chapterPath}`,
+                    label: node.chapterTitle,
+                  };
+                }),
             },
             {
               title: 'Resources',

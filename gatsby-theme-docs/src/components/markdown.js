@@ -205,7 +205,8 @@ const InlineCode = styled.code`
 `;
 const CodeBlock = props => {
   const className = props.children.props ? props.children.props.className : '';
-  const [languageTag] = className.split(':');
+  const languageToken = className || 'text';
+  const [languageTag] = languageToken.split(':');
   const languageAliases = { sh: 'bash', zsh: 'bash', js: 'javascript' };
   const parsedLanguage = languageTag.split('language-').pop();
   const language = languageAliases[parsedLanguage] || parsedLanguage;
