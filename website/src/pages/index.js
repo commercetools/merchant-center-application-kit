@@ -5,12 +5,11 @@ import styled from '@emotion/styled';
 import {
   customProperties,
   Grid,
-  Card,
   Spacings,
 } from '@commercetools-frontend/ui-kit';
 import pkg from '../../package.json';
 import { colors, dimensions, typography } from '../design-system';
-import { SEO, LinksCard } from '../components';
+import { Card, SEO, LinksCard } from '../components';
 import { LayoutMarketing } from '../layouts';
 import LandingPageRocket from '../images/icons/landing-page-rocket.svg';
 import ScreenCogIcon from '../images/icons/screen-cog-icon.svg';

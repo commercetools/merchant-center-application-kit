@@ -1,5 +1,3 @@
-import { customProperties } from '@commercetools-frontend/ui-kit';
-
 const rootFontSizeNumber = 16;
 const pageWidth = '770px';
 const navbarWidth = '224px';
@@ -10,33 +8,55 @@ export const pxToRem = px => {
   return `${remNumber}rem`;
 };
 
+const uikitColors = {
+  colorInfo: '#078cdf',
+  colorSurface: '#fff',
+  colorNeutral60: 'hsl(0, 0%, 60%)',
+  colorNeutral90: 'hsl(0, 0%, 90%)',
+  colorNeutral95: 'hsl(0, 0%, 95%)',
+  colorAccent: '#213c45',
+  colorAccent40: 'hsl(195, 35.2941176471%, 40%)',
+  colorAccent95: 'hsl(195, 35.2941176471%, 95%)',
+  colorAccent98: 'hsl(195, 35.2941176471%, 98%)',
+  colorSolid: '#1a1a1a',
+  colorError: '#e60050',
+  colorPrimary: '#00b39e',
+  colorPrimary25: 'hsl(172.9608938547486, 100%, 25%)',
+};
+
 export const colors = {
   light: {
     // Used to give the website a unique tone (e.g. page titles, navigation links)
-    primary: customProperties.colorInfo,
+    primary: uikitColors.colorInfo,
     // Surfaces are used for backgrounds
-    surfacePrimary: customProperties.colorSurface,
-    surfaceSecondary1: customProperties.colorNeutral95,
-    surfaceSecondary2: customProperties.colorNeutral90,
-    surfaceSecondary3: customProperties.colorNeutral60,
-    surfaceCode: customProperties.colorAccent,
-    surfaceCodeHighlight: customProperties.colorAccent40,
-    surfaceInfo: customProperties.colorInfo95,
-    surfaceQuote: customProperties.colorAccent98,
+    surfacePrimary: uikitColors.colorSurface,
+    surfaceSecondary1: uikitColors.colorNeutral95,
+    surfaceSecondary2: uikitColors.colorNeutral90,
+    surfaceSecondary3: uikitColors.colorNeutral60,
+    surfaceCode: uikitColors.colorAccent,
+    surfaceCodeHighlight: uikitColors.colorAccent40,
+    surfaceInfo: uikitColors.colorInfo95,
+    surfaceQuote: uikitColors.colorAccent98,
     // Different tones of text
-    textPrimary: customProperties.colorSolid,
+    textPrimary: uikitColors.colorSolid,
     textSecondary: '#666666',
-    textFaded: customProperties.colorNeutral60,
-    textCode: customProperties.colorError,
-    textInfo: customProperties.colorInfo,
+    textFaded: uikitColors.colorNeutral60,
+    textCode: uikitColors.colorError,
+    textInfo: uikitColors.colorInfo,
     // Different tones of border colors
-    borderPrimary: customProperties.colorNeutral90,
-    borderHighlight: customProperties.colorPrimary,
-    borderInfo: customProperties.colorInfo,
+    borderPrimary: uikitColors.colorNeutral90,
+    borderHighlight: uikitColors.colorPrimary,
+    borderInfo: uikitColors.colorInfo,
     // Links
-    link: customProperties.colorPrimary25,
-    linkHover: customProperties.colorPrimary,
+    link: uikitColors.colorPrimary25,
+    linkHover: uikitColors.colorPrimary,
   },
+};
+
+export const tokens = {
+  borderRadius4: '4px',
+  borderRadius6: '6px',
+  shadow1: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
 };
 
 const breakpoints = {

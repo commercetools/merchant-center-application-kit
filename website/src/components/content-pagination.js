@@ -5,11 +5,10 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
   Spacings,
-  Card,
   AngleThinLeftIcon,
   AngleThinRightIcon,
 } from '@commercetools-frontend/ui-kit';
-import { TextSmall } from '../components';
+import { Card, TextSmall } from '../components';
 import { colors, dimensions, typography } from '../design-system';
 
 const PaginationButtonLink = styled(Link)`
