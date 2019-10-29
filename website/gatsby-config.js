@@ -30,25 +30,25 @@ module.exports = {
           node { etc...
     */
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `srcImages`,
+        name: 'srcImages',
         path: `${__dirname}/src/images`,
       },
     },
     // Assets (e.g. images) used from the markdown pages
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `images`,
+        name: 'images',
         path: `${__dirname}/src/static/assets`,
       },
     },
     // Main content pages (.mdx)
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `content`,
+        name: 'content',
         // NOTE: since we want to programmatically `createPage` in `gatsby-node`,
         // we can't put the `mdx` files into `src/pages`, as `gatsby-plugin-mdx` will
         // create them automatically, resulting in conflicting pages.
@@ -58,17 +58,17 @@ module.exports = {
     },
     // Data files (.yaml)
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `configurationData`,
+        name: 'configurationData',
         path: `${__dirname}/src/data`,
       },
     },
     // Pages for React components
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `components`,
+        name: 'components',
         path: `${__dirname}/../packages/application-components/src/components/`,
         ignore: ['.js', '.tsx'],
       },
@@ -79,10 +79,10 @@ module.exports = {
      */
 
     // For querying images
-    `gatsby-transformer-sharp`,
+    'gatsby-transformer-sharp',
 
     // For querying configuration data
-    `gatsby-transformer-yaml`,
+    'gatsby-transformer-yaml',
 
     // For querying MDX
     {
@@ -103,9 +103,9 @@ module.exports = {
           // Convert absolute image file paths to relative. Required for remark-images to work.
           // https://www.gatsbyjs.org/packages/gatsby-remark-relative-images/?=gatsby-remark-relative-images
           // See options ^ For how to convert images from frontmatter if needed.
-          `gatsby-remark-relative-images`,
+          'gatsby-remark-relative-images',
           {
-            resolve: `gatsby-remark-images`,
+            resolve: 'gatsby-remark-images',
             options: {
               // It's important to specify the maxWidth (in pixels) of
               // the content container as this plugin uses this as the
@@ -128,11 +128,11 @@ module.exports = {
     /**
      * Plugins for general functionality
      */
-    `gatsby-plugin-sharp`,
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-emotion`,
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-emotion',
     {
-      resolve: `gatsby-plugin-favicon`,
+      resolve: 'gatsby-plugin-favicon',
       options: {
         logo: `${__dirname}/src/images/icons/logo.svg`,
       },
@@ -154,7 +154,21 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        short_name: 'AppKit | commercetools docs',
+        name: 'AppKit | commercetools docs',
+        description: 'Develop applications for the Merchant Center',
+        start_url: '/app-kit/',
+        background_color: '#FFFFFF', // surfacePrimary
+        theme_color: '#078CDF', // primary
+        display: 'standalone',
+        icon: require.resolve('./src/images/icons/logo.svg'),
+      },
+    },
     // This needs to be last
+    // 'gatsby-plugin-offline', // TODO: decide if we want to use it or not
     'gatsby-plugin-meta-redirect',
     'gatsby-plugin-netlify-cache',
   ],

@@ -163,7 +163,8 @@
     "react": "16.11.0",
     "**/react": "16.11.0",
     "react-test-renderer": "16.11.0",
-    "**/react-test-renderer": "16.11.0"
+    "**/react-test-renderer": "16.11.0",
+    "**/sharp": "0.22.1"
   },
   "engines": {
     "node": ">=8.9",
