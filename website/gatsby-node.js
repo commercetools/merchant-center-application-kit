@@ -4,10 +4,11 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
-
 const path = require('path');
 
+// Programmatically create MDX pages. While `gatsby-plugin-mdx` can automatically
+// do that, we want to have more control over building those pages as we might
+// have specific requirements (e.g. redirects).
 exports.createPages = async ({ actions, graphql }) => {
   const allMarkdown = await graphql(`
     {

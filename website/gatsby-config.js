@@ -92,11 +92,13 @@ module.exports = {
           '.mdx',
           // ".md"
         ],
+        // List of remark plugins, that transform the markdown AST.
+        remarkPlugins: [require('remark-emoji')],
+        // List of rehype plugins, that transform the HTML AST.
         rehypePlugins: [
           require('rehype-slug'),
           require('./src/plugins/rehype-mdx-section'),
         ],
-        remarkPlugins: [require('remark-emoji')],
         gatsbyRemarkPlugins: [
           // Convert absolute image file paths to relative. Required for remark-images to work.
           // https://www.gatsbyjs.org/packages/gatsby-remark-relative-images/?=gatsby-remark-relative-images
@@ -111,8 +113,15 @@ module.exports = {
               maxWidth: 740,
             },
           },
+          {
+            resolve: 'gatsby-remark-copy-linked-files',
+            options: {
+              destinationDir: 'files',
+            },
+          },
         ],
-        plugins: ['gatsby-remark-images'], // workaround https://github.com/gatsbyjs/gatsby/issues/15486#issuecomment-510153237
+        // workaround https://github.com/gatsbyjs/gatsby/issues/15486#issuecomment-510153237
+        plugins: ['gatsby-remark-images', 'gatsby-remark-copy-linked-files'],
       },
     },
 
