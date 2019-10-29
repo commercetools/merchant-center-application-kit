@@ -19,14 +19,13 @@ const SecondaryExternalLink = props => (
   <Markdown.Link
     {...props}
     css={css`
-      color: ${colors.light.textSecondary} !important;
       font-size: ${typography.fontSizes.small};
       text-decoration: none;
       svg {
         width: ${dimensions.spacings.m};
         height: ${dimensions.spacings.m};
         * {
-          fill: ${colors.light.textSecondary};
+          fill: ${colors.light.link};
         }
       }
     `}
