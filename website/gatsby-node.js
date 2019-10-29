@@ -4,7 +4,19 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
+const fs = require('fs');
 const path = require('path');
+
+// Ensure that certain directories exist.
+exports.onPreBootstrap = ({ reporter }) => {
+  const requiredDirectories = ['src/pages/files'];
+  requiredDirectories.forEach(dir => {
+    if (!fs.existsSync(dir)) {
+      reporter.info(`creating the ${dir} directory`);
+      fs.mkdirSync(dir);
+    }
+  });
+};
 
 // Programmatically create MDX pages. While `gatsby-plugin-mdx` can automatically
 // do that, we want to have more control over building those pages as we might
