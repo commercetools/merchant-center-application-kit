@@ -38,7 +38,7 @@ const NotificationInfo = props => (
   >
     <Spacings.Inline scale="s" alignItems="flex-start">
       <div>
-        <InformationIcon color="info" />
+        <InformationIcon color="textInfo" />
       </div>
       <Spacings.Stack>
         <Spacings.Inline>

@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { Tooltip, IconButton } from '@commercetools-frontend/ui-kit';
 import { InfoDialog } from '@commercetools-frontend/application-components';
 import UnstyledCodeViewIcon from '../images/icons/code-view-icon.svg';
-import { colors, tokens } from '../design-system';
+import { colors, dimensions, tokens } from '../design-system';
 import createStyledIcon from '../utils/create-styled-icon';
 import Spacings from './spacings';
 
@@ -50,7 +50,11 @@ const PlaygroundController = props => {
             width="100%"
           />
         </PreviewContainer>
-        <Spacings.Inset scale="s">
+        <div
+          css={css`
+            padding: ${dimensions.spacings.s};
+          `}
+        >
           <Spacings.Inline>
             <Tooltip
               position="top"
@@ -66,7 +70,7 @@ const PlaygroundController = props => {
               />
             </Tooltip>
           </Spacings.Inline>
-        </Spacings.Inset>
+        </div>
       </PlaygroundContainer>
 
       <InfoDialog
