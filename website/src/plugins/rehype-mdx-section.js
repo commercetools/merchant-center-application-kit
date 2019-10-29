@@ -14,7 +14,7 @@ const isHeading = node => {
 const mapNodeTagName = tagName =>
   tagName.replace(/([0-9])$/, match => parseInt(match, 10) + 1);
 
-module.exports = ({ leadSectionClassSuffix = 'lead' } = {}) => tree => {
+module.exports = ({ leadSectionClassSuffix = 'lead' } = {}) => ast => {
   const newNodes = [];
   let sectionNode = {
     type: 'element',
@@ -24,7 +24,7 @@ module.exports = ({ leadSectionClassSuffix = 'lead' } = {}) => tree => {
     },
     children: [],
   };
-  for (const node of tree.children) {
+  for (const node of ast.children) {
     if (isHeading(node)) {
       if (sectionNode.children.length > 0) {
         newNodes.push(sectionNode);
@@ -47,6 +47,6 @@ module.exports = ({ leadSectionClassSuffix = 'lead' } = {}) => tree => {
   if (sectionNode.children.length > 0) {
     newNodes.push(sectionNode);
   }
-  tree.children = newNodes;
-  return tree;
+  ast.children = newNodes;
+  return ast;
 };

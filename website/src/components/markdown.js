@@ -408,11 +408,21 @@ Link.propTypes = {
   target: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
-const Img = styled.img`
-  background-color: ${colors.light.surfacePrimary};
-  box-sizing: content-box;
-  max-width: 100%;
-`;
+const Img = props => (
+  <div>
+    <img {...props} />
+    <p
+      css={css`
+        color: ${colors.light.textPrimary};
+        font-size: ${typography.fontSizes.small};
+        margin: 0;
+      `}
+    >
+      {/* eslint-disable-next-line react/prop-types */}
+      {props.title || props.alt}
+    </p>
+  </div>
+);
 
 /* eslint-disable react/display-name,react/prop-types */
 const withAnchorLink = Component => props => {
