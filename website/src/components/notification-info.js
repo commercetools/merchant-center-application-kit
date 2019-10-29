@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import {
-  InformationIcon,
-  customProperties,
-} from '@commercetools-frontend/ui-kit';
+import { InformationIcon } from '@commercetools-frontend/ui-kit';
 import Spacings from './spacings';
-import { colors, dimensions, typography } from '../design-system';
+import { colors, dimensions, typography, tokens } from '../design-system';
 
 const Flag = props => (
   <span
     css={css`
       background-color: ${colors.light.surfaceInfo};
       border: 1px solid ${colors.light.borderInfo};
-      border-radius: ${customProperties.borderRadius4};
+      border-radius: ${tokens.borderRadius4};
       color: ${colors.light.textInfo};
       font-size: ${typography.fontSizes.small};
       padding: 0 ${dimensions.spacings.xs};
@@ -32,7 +29,7 @@ const NotificationInfo = props => (
       margin: 0 0 ${dimensions.spacings.m};
       background-color: ${colors.light.surfaceInfo};
       border: 1px solid ${colors.light.borderInfo};
-      border-radius: ${customProperties.borderRadius6};
+      border-radius: ${tokens.borderRadius6};
       padding: ${dimensions.spacings.m};
     `}
   >

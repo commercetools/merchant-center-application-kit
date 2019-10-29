@@ -4,11 +4,10 @@ import { Link as HistoryLink, withPrefix } from 'gatsby';
 import { css, Global } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
-  customProperties,
   ExternalLinkIcon,
   ClipboardIcon,
 } from '@commercetools-frontend/ui-kit';
-import { colors, dimensions, typography } from '../design-system';
+import { colors, dimensions, typography, tokens } from '../design-system';
 import copyToClipboard from '../utils/copy-to-clipboard';
 import codeBlockParseOptions from '../utils/code-block-parse-options';
 import codeBlockHighlightCode from '../utils/code-block-highlight-code';
@@ -71,8 +70,7 @@ const ThematicBreak = styled.hr`
 const Blockquote = styled.blockquote`
   background-color: ${colors.light.surfaceQuote};
   border-left: 1px solid ${colors.light.borderHighlight};
-  border-radius: 0 ${customProperties.borderRadius6}
-    ${customProperties.borderRadius6} 0;
+  border-radius: 0 ${tokens.borderRadius6} ${tokens.borderRadius6} 0;
   color: ${colors.light.textFaded};
   font-size: ${typography.fontSizes.small};
   margin: ${dimensions.spacings.l} ${dimensions.spacings.xxl};
@@ -229,7 +227,7 @@ const CodeBlock = props => {
         styles={css`
           .gatsby-highlight {
             background-color: ${colors.light.surfaceCode};
-            border-radius: ${customProperties.borderRadius6};
+            border-radius: ${tokens.borderRadius6};
             margin: ${dimensions.spacings.m} 0;
             padding: ${dimensions.spacings.s} ${dimensions.spacings.m};
             overflow: auto;

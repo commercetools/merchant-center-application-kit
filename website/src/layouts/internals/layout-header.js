@@ -1,9 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import { Link } from 'gatsby';
-import { customProperties } from '@commercetools-frontend/ui-kit';
 import { Spacings } from '../../components';
-import { colors, dimensions, typography } from '../../design-system';
+import { colors, dimensions, typography, tokens } from '../../design-system';
 import LogoSvg from '../../images/icons/logo.svg';
 
 const LayoutHeader = () => (
@@ -18,7 +17,7 @@ const LayoutHeader = () => (
       width: 100%;
       padding: 0;
       margin: 0 auto;
-      box-shadow: ${customProperties.shadow1};
+      box-shadow: ${tokens.shadow1};
       z-index: 10;
 
       > * + * {

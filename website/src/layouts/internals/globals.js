@@ -1,7 +1,6 @@
 import React from 'react';
 import { css, Global } from '@emotion/core';
-import { customProperties } from '@commercetools-frontend/ui-kit';
-import { colors, dimensions, typography } from '../../design-system';
+import { colors, dimensions, typography, tokens } from '../../design-system';
 
 // eslint-disable-next-line react/display-name
 const Globals = () => (
@@ -30,7 +29,7 @@ const Globals = () => (
 
       .gatsby-resp-image-wrapper {
         background-color: ${colors.light.surfaceSecondary1};
-        border-radius: ${customProperties.borderRadius6};
+        border-radius: ${tokens.borderRadius6};
         margin: 0;
         padding: ${dimensions.spacings.s};
       }
@@ -46,7 +45,7 @@ const Globals = () => (
 
       .gatsby-highlight {
         background-color: ${colors.light.surfaceCode};
-        border-radius: ${customProperties.borderRadius6};
+        border-radius: ${tokens.borderRadius6};
         margin: ${dimensions.spacings.m} 0;
         padding: ${dimensions.spacings.s} ${dimensions.spacings.m};
         overflow: auto;

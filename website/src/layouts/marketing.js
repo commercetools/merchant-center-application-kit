@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import { customProperties } from '@commercetools-frontend/ui-kit';
 import LandingPageBackground from '../images/landing-page-background.png';
-import { dimensions } from '../design-system';
+import { dimensions, tokens } from '../design-system';
 import LayoutApplication from './internals/layout-application';
 import LayoutHeader from './internals/layout-header';
 import LayoutFooter from './internals/layout-footer';
@@ -22,7 +21,7 @@ const LayoutMarketing = props => (
       >
         <div
           css={css`
-            box-shadow: ${customProperties.shadow1};
+            box-shadow: ${tokens.shadow1};
             background: url('${LandingPageBackground}');
             background-repeat: repeat-x;
             background-position-x: center;

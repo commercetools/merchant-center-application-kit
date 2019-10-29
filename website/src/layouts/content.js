@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { useStaticQuery, graphql } from 'gatsby';
-import { customProperties } from '@commercetools-frontend/ui-kit';
 import {
   ContentPagination,
   NotificationInfo,
@@ -11,7 +10,7 @@ import {
   ExternalLink,
   Spacings,
 } from '../components';
-import { dimensions } from '../design-system';
+import { dimensions, tokens } from '../design-system';
 import GitHubSvg from '../images/icons/github.svg';
 import LayoutApplication from './internals/layout-application';
 import LayoutHeader from './internals/layout-header';
@@ -28,7 +27,7 @@ const GridArea = styled.div`
   grid-area: ${props => props.name};
 `;
 const ResizableGrid = styled.div`
-  box-shadow: ${customProperties.shadow1};
+  box-shadow: ${tokens.shadow1};
   position: relative;
   display: block;
   width: 100vw;

@@ -2,9 +2,9 @@ import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { customProperties, Grid } from '@commercetools-frontend/ui-kit';
+import { Grid } from '@commercetools-frontend/ui-kit';
 import pkg from '../../package.json';
-import { colors, dimensions, typography } from '../design-system';
+import { colors, dimensions, typography, tokens } from '../design-system';
 import { Card, SEO, LinksCard, Spacings } from '../components';
 import { LayoutMarketing } from '../layouts';
 import LandingPageRocket from '../images/icons/landing-page-rocket.svg';
@@ -34,7 +34,7 @@ const ButtonLink = styled(Link)`
   color: ${colors.light.textPrimary};
   background-color: ${colors.light.surfacePrimary};
   border: 1px solid ${colors.light.surfacePrimary};
-  border-radius: ${customProperties.borderRadius6};
+  border-radius: ${tokens.borderRadius6};
 `;
 
 const MarketingLandingPage = () => {

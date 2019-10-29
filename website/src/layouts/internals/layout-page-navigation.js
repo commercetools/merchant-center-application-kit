@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
-import { customProperties } from '@commercetools-frontend/ui-kit';
 import { Spacings } from '../../components';
 import StackedLinesIndentedIcon from '../../images/icons/stacked-lines-indented-icon.svg';
-import { colors, dimensions, typography } from '../../design-system';
+import { colors, dimensions, typography, tokens } from '../../design-system';
 import PageNavigation from './page-navigation';
 
 const slideInAnimation = keyframes`
@@ -67,7 +66,7 @@ const RoundButton = styled.button`
   background-color: rgba(255, 255, 255, 0.5);
   border: 1px solid ${colors.light.borderPrimary};
   border-radius: ${dimensions.spacings.m};
-  box-shadow: ${customProperties.shadow1};
+  box-shadow: ${tokens.shadow1};
   width: ${dimensions.spacings.xl};
   height: ${dimensions.spacings.xl};
   position: fixed;

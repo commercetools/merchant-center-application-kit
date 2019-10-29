@@ -4,14 +4,13 @@ import { withPrefix } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
-  customProperties,
   Tooltip,
   IconButton,
   CodeViewIcon,
 } from '@commercetools-frontend/ui-kit';
 import { InfoDialog } from '@commercetools-frontend/application-components';
 import Spacings from './spacings';
-import { colors } from '../design-system';
+import { colors, tokens } from '../design-system';
 
 const TooltipWrapperComponent = styled.div`
   /* default z-index for dialogs is 1000 */
@@ -20,7 +19,7 @@ const TooltipWrapperComponent = styled.div`
 const PlaygroundContainer = styled.div`
   background-color: ${colors.light.surfaceSecondary1};
   border: 4px solid ${colors.light.borderPrimary};
-  border-radius: ${customProperties.borderRadius4};
+  border-radius: ${tokens.borderRadius4};
 `;
 const PreviewContainer = styled.div`
   position: relative;
@@ -28,8 +27,7 @@ const PreviewContainer = styled.div`
   overflow: hidden;
   height: ${props => props.height};
   background-color: ${colors.light.surfacePrimary};
-  border-radius: ${customProperties.borderRadius4}
-    ${customProperties.borderRadius4} 0 0;
+  border-radius: ${tokens.borderRadius4} ${tokens.borderRadius4} 0 0;
   border-bottom: 1px solid ${colors.light.borderPrimary};
 `;
 

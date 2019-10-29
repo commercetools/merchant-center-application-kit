@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { customProperties, Grid } from '@commercetools-frontend/ui-kit';
+import { Grid } from '@commercetools-frontend/ui-kit';
 import Spacings from './spacings';
-import { colors, dimensions, typography } from '../design-system';
+import { colors, dimensions, typography, tokens } from '../design-system';
 import * as Markdown from './markdown';
 
 const LinksList = styled.ul`
@@ -38,7 +38,7 @@ const LinksCard = props => (
     css={css`
       background-color: ${colors.light.surfacePrimary};
       border: 1px solid ${colors.light.borderPrimary};
-      border-radius: ${customProperties.borderRadius6};
+      border-radius: ${tokens.borderRadius6};
       padding: ${dimensions.spacings.l};
     `}
   >
