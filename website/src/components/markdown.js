@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 import { Link as HistoryLink, withPrefix } from 'gatsby';
 import { css, Global } from '@emotion/core';
 import styled from '@emotion/styled';
-import {
-  ExternalLinkIcon,
-  ClipboardIcon,
-} from '@commercetools-frontend/ui-kit';
+import UnstyledClipboardIcon from '../images/icons/clipboard-icon.svg';
+import UnstyledExternalLinkIcon from '../images/icons/external-link-icon.svg';
 import { colors, dimensions, typography, tokens } from '../design-system';
 import copyToClipboard from '../utils/copy-to-clipboard';
 import codeBlockParseOptions from '../utils/code-block-parse-options';
 import codeBlockHighlightCode from '../utils/code-block-highlight-code';
+import createStyledIcon from '../utils/create-styled-icon';
 import ExternalLink from './external-link';
+
+const ClipboardIcon = createStyledIcon(UnstyledClipboardIcon);
+const ExternalLinkIcon = createStyledIcon(UnstyledExternalLinkIcon);
 
 const TypographyPage = styled.div`
   font-family: ${typography.fontFamilies.primary};
@@ -309,7 +311,7 @@ const CodeBlock = props => {
             onClick={handleCopyToClipboardClick}
             title="Copy to clipboard"
           >
-            <ClipboardIcon color="surface" />
+            <ClipboardIcon color="surfacePrimary" />
           </div>
         </div>
       </div>

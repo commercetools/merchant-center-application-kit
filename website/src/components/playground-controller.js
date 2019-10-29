@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { withPrefix } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import {
-  Tooltip,
-  IconButton,
-  CodeViewIcon,
-} from '@commercetools-frontend/ui-kit';
+import { Tooltip, IconButton } from '@commercetools-frontend/ui-kit';
 import { InfoDialog } from '@commercetools-frontend/application-components';
-import Spacings from './spacings';
+import UnstyledCodeViewIcon from '../images/icons/code-view-icon.svg';
 import { colors, tokens } from '../design-system';
+import createStyledIcon from '../utils/create-styled-icon';
+import Spacings from './spacings';
+
+const CodeViewIcon = createStyledIcon(UnstyledCodeViewIcon);
 
 const TooltipWrapperComponent = styled.div`
   /* default z-index for dialogs is 1000 */

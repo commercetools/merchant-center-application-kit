@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link, withPrefix } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import {
-  AngleThinLeftIcon,
-  AngleThinRightIcon,
-} from '@commercetools-frontend/ui-kit';
+import UnstyledAngleThinLeftIcon from '../images/icons/angle-thin-left-icon.svg';
+import UnstyledAngleThinRightIcon from '../images/icons/angle-thin-right-icon.svg';
 import { Card, Spacings, TextSmall } from '../components';
+import createStyledIcon from '../utils/create-styled-icon';
 import { colors, dimensions, typography } from '../design-system';
+
+const AngleThinLeftIcon = createStyledIcon(UnstyledAngleThinLeftIcon);
+const AngleThinRightIcon = createStyledIcon(UnstyledAngleThinRightIcon);
 
 const PaginationButtonLink = styled(Link)`
   text-align: ${props => props.align};
