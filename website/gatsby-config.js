@@ -41,7 +41,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/static/assets`,
+        path: `${__dirname}/src/static/assets`,
       },
     },
     // Main content pages (.mdx)
@@ -49,7 +49,11 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `content`,
-        path: `${__dirname}/content`,
+        // NOTE: since we want to programmatically `createPage` in `gatsby-node`,
+        // we can't put the `mdx` files into `src/pages`, as `gatsby-plugin-mdx` will
+        // create them automatically, resulting in conflicting pages.
+        // See https://github.com/gatsbyjs/gatsby/issues/16224#issuecomment-529097809
+        path: `${__dirname}/src/content`,
       },
     },
     // Data files (.yaml)

@@ -7,7 +7,7 @@ permalink: /deployment/example-aws-s3-cloudfront
 This deployment example refers to [AWS](https://aws.amazon.com/) static hosting using an [S3](https://s3.console.aws.amazon.com/s3/home) bucket, [CloudFront](https://console.aws.amazon.com/cloudfront/home) distribution,
 and a [Lambda@Edge](https://us-east-2.console.aws.amazon.com/lambda/home) function generated with [CloudFormation](https://console.aws.amazon.com/cloudformation/home).
 
-#  Prerequisites
+# Prerequisites
 
 Before you get started, you need to have:
 
@@ -15,7 +15,7 @@ Before you get started, you need to have:
 
 > Note: This documentation uses the CloudFormation console. The [AWS CLI](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/index.html) can be used for further automation.
 
-#  Create AWS Resources
+# Create AWS Resources
 
 [CloudFormation](https://console.aws.amazon.com/cloudformation/home) is utilized to generate and configure the necessary AWS resources for hosting your Merchant Center custom application.
 The CloudFormation template will generate an [S3](https://s3.console.aws.amazon.com/s3/home) bucket configured with static website hosting and a [CloudFront](https://console.aws.amazon.com/cloudfront/home)
@@ -334,7 +334,7 @@ distribution backed by a [Lambda@Edge](https://us-east-2.console.aws.amazon.com/
 
    ![AWS Stack Outputs](/assets/custom-applications/mc-dev-aws-stack-outputs.png)
 
-#  Configuration
+# Configuration
 
 First, you need to create an `env.prod.json` file with the following JSON:
 
@@ -364,7 +364,7 @@ You also need a `headers.json` file. You can also have a `headers.prod.json` fil
 
 For both `env.prod.json` and `headers.json`, `[cloudfront-domain]` should be replaced with your CloudFront domain obtained from the last step of the previous section.
 
-#  Build and Compilation
+# Build and Compilation
 
 In order to generate the correct configuration for AWS, the `mc-scripts compile-html` script must use an AWS transformer. This transformer will generate a `lambda.js` file with the custom security headers required for Merchant Center Custom Applications.
 
@@ -438,7 +438,7 @@ To build and compile your custom application run:
 $ yarn build && yarn run compile-html:aws
 ```
 
-#  Update AWS Resources
+# Update AWS Resources
 
 The previously generated Lambda function has the important role of including security headers on all requests made to the CloudFront distribution. Here you will populate the contents of the Lambda function.
 
@@ -462,7 +462,7 @@ The previously generated Lambda function has the important role of including sec
 
    ![AWS Change Set Execute](/assets/custom-applications/mc-dev-aws-changeset-execute.png)
 
-#  Deployment
+# Deployment
 
 1. In the [CloudFormation](https://console.aws.amazon.com/cloudformation/home) console, select your stack, and then choose the **Resources** tab.
 
