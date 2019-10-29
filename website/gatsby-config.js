@@ -57,7 +57,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `configurationData`,
-        path: `${__dirname}/data`,
+        path: `${__dirname}/src/data`,
       },
     },
     // Pages for React components
