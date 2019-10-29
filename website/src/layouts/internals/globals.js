@@ -30,7 +30,7 @@ const Globals = () => (
       .gatsby-resp-image-wrapper {
         background-color: ${colors.light.surfaceSecondary1};
         border-radius: ${tokens.borderRadius6};
-        margin: 0;
+        margin: ${dimensions.spacings.m} 0;
         padding: ${dimensions.spacings.s};
       }
       .gatsby-resp-image-link {

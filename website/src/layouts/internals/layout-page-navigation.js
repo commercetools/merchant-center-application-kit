@@ -38,6 +38,7 @@ const ContainerOverlay = styled.div`
 const SlidingContainer = styled.div`
   background-color: ${colors.light.surfacePrimary};
   animation: ${slideInAnimation} 0.5s ease-out alternate;
+  width: ${dimensions.widths.pageNavigation};
 `;
 const GridContainer = styled.div`
   border-left: 1px solid ${colors.light.borderPrimary};
