@@ -5,10 +5,14 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Tooltip, IconButton } from '@commercetools-frontend/ui-kit';
 import { InfoDialog } from '@commercetools-frontend/application-components';
-import UnstyledCodeViewIcon from '../images/icons/code-view-icon.svg';
-import { colors, dimensions, tokens } from '../design-system';
-import createStyledIcon from '../utils/create-styled-icon';
-import Spacings from './spacings';
+import UnstyledCodeViewIcon from '@commercetools-docs/gatsby-theme-docs/src/images/icons/code-view-icon.svg';
+import {
+  colors,
+  dimensions,
+  tokens,
+} from '@commercetools-docs/gatsby-theme-docs/src/design-system';
+import createStyledIcon from '@commercetools-docs/gatsby-theme-docs/src/utils/create-styled-icon';
+import Spacings from '@commercetools-docs/gatsby-theme-docs/src/components/spacings';
 
 const CodeViewIcon = createStyledIcon(UnstyledCodeViewIcon);
 

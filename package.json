@@ -55,6 +55,7 @@
       "packages/*",
       "playground",
       "visual-testing-app",
+      "gatsby-theme-docs",
       "website",
       "website-components-playground"
     ],

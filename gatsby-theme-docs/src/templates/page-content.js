@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
-import { LayoutContent } from '../layouts';
-import { SEO, Markdown, PlaygroundController } from '../components';
+import LayoutContent from '../layouts/content';
+import { SEO, Markdown } from '../components';
+import PlaceholderMarkdownComponents from '../components/placeholder-markdown-components';
 
 // See https://mdxjs.com/getting-started#table-of-components
 const components = {
@@ -39,7 +40,7 @@ const components = {
   pre: Markdown.CodeBlock,
 
   // Custom React components to be used in MDX files
-  PlaygroundController,
+  ...PlaceholderMarkdownComponents,
 };
 
 const getSeoTitle = permalink =>

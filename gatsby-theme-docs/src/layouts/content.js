@@ -2,16 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { useStaticQuery, graphql } from 'gatsby';
-import {
-  ContentPagination,
-  NotificationInfo,
-  Markdown,
-  ExternalLink,
-  Spacings,
-} from '../components';
+import { ContentPagination, NotificationInfo, Markdown } from '../components';
 import { dimensions, tokens } from '../design-system';
-import GitHubSvg from '../images/icons/github.svg';
 import LayoutApplication from './internals/layout-application';
 import LayoutHeader from './internals/layout-header';
 import LayoutSidebar from './internals/layout-sidebar';
@@ -22,6 +14,7 @@ import LayoutPageHeader from './internals/layout-page-header';
 import LayoutPageHeaderSide from './internals/layout-page-header-side';
 import LayoutPageNavigation from './internals/layout-page-navigation';
 import LayoutPageContent from './internals/layout-page-content';
+import PlaceholderPageHeaderSide from './internals/placeholder-page-header-side';
 
 const GridArea = styled.div`
   grid-area: ${props => props.name};
@@ -40,36 +33,6 @@ const ResizableGrid = styled.div`
     width: auto;
   }
 `;
-const RepositoryLinks = () => {
-  const data = useStaticQuery(graphql`
-    query GetCurrentVersion {
-      site {
-        siteMetadata {
-          currentVersion
-          repositoryUrl
-        }
-      }
-    }
-  `);
-  return (
-    <div
-      css={css`
-        padding: ${dimensions.spacings.m};
-      `}
-    >
-      <Spacings.Inline scale="l" alignItems="center" justifyContent="flex-end">
-        <ExternalLink
-          href={`${data.site.siteMetadata.repositoryUrl}/releases/tag/v${data.site.siteMetadata.currentVersion}`}
-        >
-          {`v${data.site.siteMetadata.currentVersion}`}
-        </ExternalLink>
-        <ExternalLink href={data.site.siteMetadata.repositoryUrl}>
-          <GitHubSvg />
-        </ExternalLink>
-      </Spacings.Inline>
-    </div>
-  );
-};
 
 const LayoutContent = props => {
   const [isMenuOpen, setMenuOpen] = React.useState(false);
@@ -129,7 +92,7 @@ const LayoutContent = props => {
                 <Markdown.H1>{props.pageData.frontmatter.title}</Markdown.H1>
               </LayoutPageHeader>
               <LayoutPageHeaderSide>
-                <RepositoryLinks />
+                <PlaceholderPageHeaderSide />
               </LayoutPageHeaderSide>
               <LayoutPageContent>
                 {props.children}

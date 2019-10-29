@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
+import {
+  dimensions,
+  tokens,
+} from '@commercetools-docs/gatsby-theme-docs/src/design-system';
+import LayoutApplication from '@commercetools-docs/gatsby-theme-docs/src/layouts/internals/layout-application';
+import LayoutHeader from '@commercetools-docs/gatsby-theme-docs/src/layouts/internals/layout-header';
+import LayoutFooter from '@commercetools-docs/gatsby-theme-docs/src/layouts/internals/layout-footer';
+import LayoutMain from '@commercetools-docs/gatsby-theme-docs/src/layouts/internals/layout-main';
+import Globals from '@commercetools-docs/gatsby-theme-docs/src/layouts/internals/globals';
 import LandingPageBackground from '../images/landing-page-background.png';
-import { dimensions, tokens } from '../design-system';
-import LayoutApplication from './internals/layout-application';
-import LayoutHeader from './internals/layout-header';
-import LayoutFooter from './internals/layout-footer';
-import LayoutMain from './internals/layout-main';
-import Globals from './internals/globals';
 
 const LayoutMarketing = props => (
   <React.Fragment>

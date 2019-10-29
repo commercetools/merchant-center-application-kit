@@ -4,9 +4,19 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Grid } from '@commercetools-frontend/ui-kit';
 import pkg from '../../package.json';
-import { colors, dimensions, typography, tokens } from '../design-system';
-import { Card, SEO, LinksCard, Spacings } from '../components';
-import { LayoutMarketing } from '../layouts';
+import {
+  colors,
+  dimensions,
+  typography,
+  tokens,
+} from '@commercetools-docs/gatsby-theme-docs/src/design-system';
+import {
+  Card,
+  SEO,
+  LinksCard,
+  Spacings,
+} from '@commercetools-docs/gatsby-theme-docs/src/components';
+import LayoutMarketing from '../layouts/marketing';
 import LandingPageRocket from '../images/icons/landing-page-rocket.svg';
 import ScreenCogIcon from '../images/icons/screen-cog-icon.svg';
 import ScreenDesignToolIcon from '../images/icons/screen-design-tool-icon.svg';

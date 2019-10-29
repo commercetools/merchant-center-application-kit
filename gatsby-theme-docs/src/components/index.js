@@ -6,7 +6,6 @@ export { default as ContentPagination } from './content-pagination';
 export { default as ExternalLink } from './external-link';
 export { default as LinksCard } from './links-card';
 export { default as NotificationInfo } from './notification-info';
-export { default as PlaygroundController } from './playground-controller';
 export { default as SEO } from './seo';
 export { default as Spacings } from './spacings';
 export { default as TextSmall } from './text-small';
