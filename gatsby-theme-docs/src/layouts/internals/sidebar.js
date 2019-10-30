@@ -4,7 +4,7 @@ import { useStaticQuery, graphql, Link, withPrefix } from 'gatsby';
 import { css, ClassNames } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Spacings } from '../../components';
-import { colors, dimensions, typography } from '../../design-system';
+import { colors, dimensions, typography, tokens } from '../../design-system';
 
 const trimTrailingSlash = url => url.replace(/(\/?)$/, '');
 
@@ -23,6 +23,8 @@ const SidebarLinkSubtitle = styled.div`
   font-size: ${typography.fontSizes.small};
   text-overflow: ellipsis;
   overflow-x: hidden;
+  width: 100%;
+  white-space: nowrap;
 `;
 const SidebarLinkItem = styled.div`
   padding: 0 ${dimensions.spacings.m};
@@ -39,9 +41,16 @@ const SidebarLink = props => (
         );
         text-decoration: none;
         color: ${colors.light.textSecondary};
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
 
         :hover {
           color: ${colors.light.linkNavigation} !important;
+        }
+
+        > * + * {
+          margin: 0 0 0 ${dimensions.spacings.s};
         }
       `;
       const activeClassName = makeClassName`
@@ -115,13 +124,26 @@ const Sidebar = props => {
           </SidebarLinkItem>
           <Spacings.Stack scale="s">
             {node.pages &&
-              node.pages.map(subLink => (
+              node.pages.map(pageLink => (
                 <SidebarLink
-                  to={subLink.path}
-                  key={subLink.path}
+                  to={pageLink.path}
+                  key={pageLink.path}
                   onClick={props.onLinkClick}
                 >
-                  <SidebarLinkSubtitle>{subLink.title}</SidebarLinkSubtitle>
+                  <SidebarLinkSubtitle>{pageLink.title}</SidebarLinkSubtitle>
+                  {pageLink.beta && (
+                    <span
+                      css={css`
+                        border: 1px solid ${colors.light.borderInfo};
+                        border-radius: ${tokens.borderRadius4};
+                        color: ${colors.light.textInfo};
+                        font-size: ${typography.fontSizes.ultraSmall};
+                        padding: 1px ${dimensions.spacings.xs};
+                      `}
+                    >
+                      {'BETA'}
+                    </span>
+                  )}
                 </SidebarLink>
               ))}
           </Spacings.Stack>

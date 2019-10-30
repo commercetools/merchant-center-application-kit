@@ -134,6 +134,7 @@ export const typography = {
     body: pxToRem('16px'),
     small: pxToRem('14px'),
     extraSmall: pxToRem('12px'),
+    ultraSmall: pxToRem('10px'),
   },
 
   fontWeights: {
