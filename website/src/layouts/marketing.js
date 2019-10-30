@@ -16,7 +16,7 @@ const LayoutMarketing = props => (
   <React.Fragment>
     <Globals />
     <LayoutApplication>
-      <LayoutHeader />
+      <LayoutHeader siteTitle={props.siteTitle} />
       <LayoutMain
         css={css`
           grid-column: 1/4;
@@ -50,6 +50,7 @@ const LayoutMarketing = props => (
 );
 LayoutMarketing.displayName = 'LayoutMarketing';
 LayoutMarketing.propTypes = {
+  siteTitle: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
 

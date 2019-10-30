@@ -41,12 +41,13 @@ exports.sourceNodes = ({ actions }) => {
   `);
 };
 
-exports.onCreateNode = ({ node, getNode, actions }) => {
+exports.onCreateNode = ({ node, getNode, actions }, pluginOptions) => {
   if (node.internal.type === 'Mdx') {
-    const { createNodeField } = actions;
-    const slug = createFilePath({ node, getNode, basePath: 'pages' });
-
-    createNodeField({
+    const originalSlug = createFilePath({ node, getNode, basePath: 'pages' });
+    const slug = pluginOptions.createNodeSlug
+      ? pluginOptions.createNodeSlug(originalSlug, { node })
+      : originalSlug;
+    actions.createNodeField({
       node,
       name: 'slug',
       value: slug,
@@ -54,32 +55,51 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 };
 
-exports.onCreatePage = ({ page, actions }) => {
-  const extensionName = path.extname(page.componentPath);
-
-  if (extensionName === '.md' || extensionName === '.mdx') {
-    actions.deletePage(page);
+// https://www.gatsbyjs.org/docs/mdx/programmatically-creating-pages/#create-pages-from-sourced-mdx-files
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  const result = await graphql(`
+    query {
+      allMdx {
+        edges {
+          node {
+            id
+            frontmatter {
+              landing_page
+            }
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `);
+  if (result.errors) {
+    reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
+  }
+  const pages = result.data.allMdx.edges;
+  // you'll call `createPage` for each result
+  pages.forEach(({ node }) => {
     actions.createPage({
-      ...page,
-      // page.context.frontmatter can be used to dynamically select approriate templates
+      // This is the slug you created before
+      // (or `node.frontmatter.slug`)
+      path: node.fields.slug,
+      // This component will wrap our MDX content
       component: require.resolve('./src/templates/page-content.js'),
-      context: {
-        ...page.context,
-        // Data passed to context is available
-        // in page queries as GraphQL variables.
-        slug: page.path,
-      },
+      // You can use the values in this context in
+      // our page layout component
+      context: { slug: node.fields.slug },
     });
-    if (page.context.frontmatter.landing_page === true) {
-      const [, chapterPath] = page.path.split('/');
+    if (node.frontmatter.landing_page === true) {
+      const [, chapterPath] = node.fields.slug.split('/');
       actions.createRedirect({
         fromPath: `/${chapterPath}`,
-        toPath: page.path,
+        toPath: node.fields.slug,
         isPermanent: true,
         redirectInBrowser: true,
       });
     }
-  }
+  });
 };
 
 exports.onCreateWebpackConfig = ({ actions, getConfig }) => {

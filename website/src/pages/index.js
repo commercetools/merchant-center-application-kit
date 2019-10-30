@@ -52,6 +52,7 @@ const MarketingLandingPage = () => {
     query GetMainResourcesLinks {
       site {
         siteMetadata {
+          title
           currentVersion
           repositoryUrl
         }
@@ -67,7 +68,7 @@ const MarketingLandingPage = () => {
     }
   `);
   return (
-    <LayoutMarketing>
+    <LayoutMarketing siteTitle={data.site.siteMetadata.title}>
       <SEO
         title="Develop applications for the Merchant Center"
         keywords={pkg.keywords}

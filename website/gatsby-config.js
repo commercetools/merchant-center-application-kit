@@ -21,11 +21,28 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'components',
-        path: `${__dirname}/../packages/application-components/src/components/`,
+        path: `${__dirname}/../packages/application-components/src/`,
         ignore: ['.js', '.tsx'],
       },
     },
-
-    '@commercetools-docs/gatsby-theme-docs',
+    // Docs theme
+    {
+      resolve: '@commercetools-docs/gatsby-theme-docs',
+      options: {
+        // Patch the slug creation to get meaningful slugs for the application components
+        createNodeSlug: (originalSlug, { node }) => {
+          const isNodeForAppComponent =
+            node.fileAbsolutePath &&
+            node.fileAbsolutePath.includes('packages/application-components');
+          if (isNodeForAppComponent) {
+            return originalSlug.replace(
+              /^\/components\/(.*)\/(.*)\/$/,
+              '/components/$2/'
+            );
+          }
+          return originalSlug;
+        },
+      },
+    },
   ],
 };
