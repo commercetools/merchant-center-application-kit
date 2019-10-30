@@ -31,7 +31,7 @@ PaginationButtonLink.propTypes = {
 
 const PaginationButton = styled(Card)`
   :hover {
-    background-color: ${colors.light.surfacePrimary};
+    background-color: ${colors.light.surfaceQuote};
   }
 `;
 

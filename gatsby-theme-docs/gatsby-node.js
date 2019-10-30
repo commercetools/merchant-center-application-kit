@@ -14,6 +14,7 @@ exports.onPreBootstrap = ({ reporter }) => {
   const requiredDirectories = [
     'src/data',
     'src/images',
+    'src/content',
     'src/static/assets',
     'src/pages/files',
   ];
@@ -59,7 +60,7 @@ exports.onCreateNode = ({ node, getNode, actions }, pluginOptions) => {
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const result = await graphql(`
     query {
-      allMdx {
+      allMdx(limit: 1000) {
         edges {
           node {
             id
