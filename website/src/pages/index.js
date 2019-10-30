@@ -45,6 +45,10 @@ const ButtonLink = styled(Link)`
   background-color: ${colors.light.surfacePrimary};
   border: 1px solid ${colors.light.surfacePrimary};
   border-radius: ${tokens.borderRadius6};
+
+  :hover {
+    background-color: ${colors.light.surfaceQuote};
+  }
 `;
 
 const MarketingLandingPage = () => {
