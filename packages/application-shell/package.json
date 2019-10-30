@@ -69,7 +69,7 @@
     "debounce-async": "0.0.2",
     "downshift": "^3.3.4",
     "fast-equals": "2.0.0",
-    "formik": "^1.5.8",
+    "formik": "^2.0.0",
     "fuse.js": "3.4.5",
     "graphql": "14.5.8",
     "graphql-tag": "^2.10.1",
