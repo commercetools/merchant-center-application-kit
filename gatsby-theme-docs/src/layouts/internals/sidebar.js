@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { useStaticQuery, graphql, Link, withPrefix } from 'gatsby';
 import { css, ClassNames } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Spacings } from '../../components';
 import { colors, dimensions, typography } from '../../design-system';
+
+const trimTrailingSlash = url => url.replace(/(\/?)$/, '');
 
 const SidebarLinkTitle = styled.div`
   font-size: ${typography.fontSizes.body};
@@ -22,28 +24,41 @@ const SidebarLinkItem = styled.div`
 
 const SidebarLink = props => (
   <ClassNames>
-    {({ css: makeClassName }) => (
-      <Link
-        css={css`
-          border-left: ${dimensions.spacings.xs} solid
-            ${colors.light.surfaceSecondary1};
-          padding-left: calc(
-            ${dimensions.spacings.m} - ${dimensions.spacings.xs}
-          );
-          text-decoration: none;
-          color: ${colors.light.textSecondary};
+    {({ css: makeClassName }) => {
+      const linkClassName = makeClassName`
+        border-left: ${dimensions.spacings.xs} solid
+          ${colors.light.surfaceSecondary1};
+        padding-left: calc(
+          ${dimensions.spacings.m} - ${dimensions.spacings.xs}
+        );
+        text-decoration: none;
+        color: ${colors.light.textSecondary};
 
-          :hover {
-            color: ${colors.light.primary} !important;
-          }
-        `}
-        activeClassName={makeClassName`
-            border-left: ${dimensions.spacings.xs} solid ${colors.light.primary} !important;
-            color: ${colors.light.primary} !important;
-          `}
-        {...props}
-      />
-    )}
+        :hover {
+          color: ${colors.light.primary} !important;
+        }
+      `;
+      const activeClassName = makeClassName`
+        border-left: ${dimensions.spacings.xs} solid ${colors.light.primary} !important;
+        color: ${colors.light.primary} !important;
+      `;
+      return (
+        <Link
+          {...props}
+          getProps={({ href, location }) => {
+            // Manually check that the link is the active one, even with trailing slashes.
+            // The gatsby link is by default configured to match the exact path, therefore we
+            // need to check this manually.
+            const linkPath = trimTrailingSlash(withPrefix(href));
+            const locationPath = trimTrailingSlash(location.pathname);
+            if (linkPath === locationPath) {
+              return { className: [linkClassName, activeClassName].join(' ') };
+            }
+            return { className: linkClassName };
+          }}
+        />
+      );
+    }}
   </ClassNames>
 );
 SidebarLink.displayName = 'SidebarLink';
@@ -95,7 +110,6 @@ const Sidebar = props => {
                   to={subLink.path}
                   key={subLink.path}
                   onClick={props.onLinkClick}
-                  partiallyActive={true}
                 >
                   <SidebarLinkSubtitle>{subLink.title}</SidebarLinkSubtitle>
                 </SidebarLink>
