@@ -1,8 +1,10 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Link as HistoryLink, withPrefix } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
+import { Tooltip } from '@commercetools-frontend/ui-kit';
 import ClipboardIcon from '../images/icons/clipboard-icon.svg';
 import ExternalLinkIcon from '../images/icons/external-link-icon.svg';
 import RibbonIcon from '../images/icons/ribbon-icon.svg';
@@ -192,6 +194,15 @@ const InlineCode = styled.code`
   font-size: ${typography.fontSizes.small};
   padding: 0 ${dimensions.spacings.xs};
 `;
+const TooltipWrapperComponent = props =>
+  ReactDOM.createPortal(props.children, document.body);
+const TooltipBodyComponent = styled.div`
+  background-color: ${colors.light.surfaceCodeHighlight};
+  border-radius: ${tokens.borderRadius4};
+  color: ${colors.light.textInverted};
+  font-size: ${typography.fontSizes.extraSmall};
+  padding: ${dimensions.spacings.xs} ${dimensions.spacings.s};
+`;
 const CodeBlock = props => {
   const className = props.children.props ? props.children.props.className : '';
   const languageToken = className || 'text';
@@ -211,7 +222,17 @@ const CodeBlock = props => {
   ).replace(/\n$/, '');
   const numberOfLines =
     formattedContent.length === 0 ? 0 : formattedContent.split(`\n`).length;
-  const handleCopyToClipboardClick = () => copyToClipboard(content);
+
+  // Copy to clipboard logic
+  const [isCopiedToClipboard, setIsCopiedToClipboard] = React.useState(false);
+  const handleCopyToClipboardClick = () => {
+    copyToClipboard(content);
+
+    setIsCopiedToClipboard(true);
+    setTimeout(() => {
+      setIsCopiedToClipboard(false);
+    }, 1500);
+  };
 
   return (
     <div
@@ -243,28 +264,37 @@ const CodeBlock = props => {
         >
           {language}
         </span>
-        <div
-          css={css`
-            cursor: pointer;
-            height: ${dimensions.spacings.l};
-            svg {
-              * {
-                fill: ${colors.light.surfacePrimary};
-              }
-            }
-            :hover {
+        <Tooltip
+          placement="left"
+          title={isCopiedToClipboard ? 'Copied' : 'Copy to clipboard'}
+          components={{
+            TooltipWrapperComponent,
+            BodyComponent: TooltipBodyComponent,
+          }}
+        >
+          <div
+            css={css`
+              cursor: pointer;
+              height: ${dimensions.spacings.l};
               svg {
                 * {
-                  fill: ${colors.light.surfaceCodeHighlight};
+                  fill: ${colors.light.surfacePrimary};
                 }
               }
-            }
-          `}
-          onClick={handleCopyToClipboardClick}
-          title="Copy to clipboard"
-        >
-          <ClipboardIcon />
-        </div>
+              :hover {
+                svg {
+                  * {
+                    fill: ${colors.light.surfaceCodeHighlight};
+                  }
+                }
+              }
+            `}
+            onClick={handleCopyToClipboardClick}
+            title="Copy to clipboard"
+          >
+            <ClipboardIcon />
+          </div>
+        </Tooltip>
       </div>
       <div
         className={[

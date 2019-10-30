@@ -61,7 +61,7 @@ const PlaygroundController = props => {
         >
           <Spacings.Inline>
             <Tooltip
-              position="top"
+              placement="top"
               title="Enter playground mode"
               components={{
                 TooltipWrapperComponent,
