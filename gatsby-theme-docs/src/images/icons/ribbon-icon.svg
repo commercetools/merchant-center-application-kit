@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>clock</title>
+    <desc>Created with Sketch.</desc>
+    <g id="App-KIT-FInal" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="App-kit-/-3Colum-/--Component" transform="translate(-395.000000, -640.000000)" fill="#E6E6E6">
+            <g id="Component-/-icon-/-16px-/-bookmark" transform="translate(395.000000, 640.000000)">
+                <path d="M12.3218456,2 L3.69153157,2 C3.30427389,2 3,2.2778728 3,2.63152909 L3,13.3675236 C3,13.5948741 3.13830631,13.809594 3.35959642,13.9232692 C3.58088652,14.0369445 3.85749915,14.0243139 4.06495862,13.8853775 L8.00668859,11.4855669 L11.9345879,13.8980081 C12.045233,13.9737915 12.1835393,13.9990527 12.3218456,13.9990527 C12.4324907,13.9990527 12.5431357,13.9737915 12.6399501,13.9232692 C12.8612402,13.809594 12.9995466,13.5948741 12.9995466,13.3675236 L12.9995466,2.63152909 C13.0133772,2.2778728 12.7091033,2 12.3218456,2 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>

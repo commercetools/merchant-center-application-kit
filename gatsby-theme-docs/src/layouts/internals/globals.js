@@ -45,8 +45,7 @@ const Globals = () => (
 
       .gatsby-highlight {
         background-color: ${colors.light.surfaceCode};
-        border-radius: ${tokens.borderRadius6};
-        margin: ${dimensions.spacings.m} 0;
+        margin: 0;
         padding: ${dimensions.spacings.s} ${dimensions.spacings.m};
         overflow: auto;
       }
@@ -62,8 +61,17 @@ const Globals = () => (
         margin: 0;
       }
       .gatsby-highlight pre[class*='language-'].line-numbers {
-        padding: 0 ${dimensions.spacings.xl};
+        display: flex;
+        flex-direction: row;
+        padding: 0;
         overflow-x: scroll;
+        > * + * {
+          margin: 0 0 0 ${dimensions.spacings.m};
+        }
+      }
+      .gatsby-highlight .line-numbers,
+      .gatsby-highlight .line-numbers-rows {
+        position: relative;
       }
       .gatsby-highlight .gatsby-highlight-code-line {
         background-color: ${colors.light.surfaceCodeHighlight};

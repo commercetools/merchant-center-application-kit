@@ -44,6 +44,7 @@ export const colors = {
     textFaded: uikitColors.colorNeutral60,
     textCode: uikitColors.colorError,
     textInfo: uikitColors.colorInfo,
+    textInverted: uikitColors.colorSurface,
     // Different tones of border colors
     borderPrimary: uikitColors.colorNeutral90,
     borderHighlight: uikitColors.colorPrimary,

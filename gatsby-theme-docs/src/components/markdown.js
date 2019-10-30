@@ -3,17 +3,14 @@ import PropTypes from 'prop-types';
 import { Link as HistoryLink, withPrefix } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import UnstyledClipboardIcon from '../images/icons/clipboard-icon.svg';
-import UnstyledExternalLinkIcon from '../images/icons/external-link-icon.svg';
+import ClipboardIcon from '../images/icons/clipboard-icon.svg';
+import ExternalLinkIcon from '../images/icons/external-link-icon.svg';
+import RibbonIcon from '../images/icons/ribbon-icon.svg';
 import { colors, dimensions, typography, tokens } from '../design-system';
 import copyToClipboard from '../utils/copy-to-clipboard';
 import codeBlockParseOptions from '../utils/code-block-parse-options';
 import codeBlockHighlightCode from '../utils/code-block-highlight-code';
-import createStyledIcon from '../utils/create-styled-icon';
 import ExternalLink from './external-link';
-
-const ClipboardIcon = createStyledIcon(UnstyledClipboardIcon);
-const ExternalLinkIcon = createStyledIcon(UnstyledExternalLinkIcon);
 
 const TypographyPage = styled.div`
   font-family: ${typography.fontFamilies.primary};
@@ -218,24 +215,67 @@ const CodeBlock = props => {
 
   return (
     <div
-      className={[
-        'gatsby-highlight',
-        highlightLines && highlightLines.length > 0 && 'has-highlighted-lines',
-      ]
-        .filter(Boolean)
-        .join(' ')}
-      data-language={splitLanguage}
+      css={css`
+        border: 1px solid ${colors.light.surfaceCodeHighlight};
+        border-radius: ${tokens.borderRadius6};
+        margin: ${dimensions.spacings.m} 0;
+        overflow: auto;
+      `}
     >
       <div
         css={css`
+          background-color: ${colors.light.textPrimary};
+          border-bottom: 1px solid ${colors.light.surfaceCodeHighlight};
+          padding: ${dimensions.spacings.s} ${dimensions.spacings.m};
           display: flex;
-          align-items: flex-start;
-          justify-content: space-between;
-          margin: ${dimensions.spacings.s} 0;
+          align-items: center;
+          justify-content: flex-end;
           > * + * {
             margin: 0 0 0 ${dimensions.spacings.m};
           }
         `}
+      >
+        <span
+          css={css`
+            color: ${colors.light.textFaded};
+            text-transform: uppercase;
+          `}
+        >
+          {language}
+        </span>
+        <div
+          css={css`
+            cursor: pointer;
+            height: ${dimensions.spacings.l};
+            svg {
+              * {
+                fill: ${colors.light.surfacePrimary};
+              }
+            }
+            :hover {
+              svg {
+                * {
+                  fill: ${colors.light.surfaceCodeHighlight};
+                }
+              }
+            }
+          `}
+          onClick={handleCopyToClipboardClick}
+          title="Copy to clipboard"
+        >
+          <ClipboardIcon />
+        </div>
+      </div>
+      <div
+        className={[
+          'gatsby-highlight',
+          highlightLines &&
+            highlightLines.length > 0 &&
+            'has-highlighted-lines',
+        ]
+          .filter(Boolean)
+          .join(' ')}
+        data-language={splitLanguage}
       >
         <pre
           className={`language-${splitLanguage} line-numbers`}
@@ -243,12 +283,6 @@ const CodeBlock = props => {
             counter-reset: linenumber;
           `}
         >
-          <code
-            className={`language-${splitLanguage}`}
-            dangerouslySetInnerHTML={{
-              __html: formattedContent,
-            }}
-          />
           <span
             aria-hidden="true"
             className="line-numbers-rows"
@@ -262,16 +296,13 @@ const CodeBlock = props => {
               <span key={index} />
             ))}
           </span>
+          <code
+            className={`language-${splitLanguage}`}
+            dangerouslySetInnerHTML={{
+              __html: formattedContent,
+            }}
+          />
         </pre>
-        <div
-          css={css`
-            cursor: pointer;
-          `}
-          onClick={handleCopyToClipboardClick}
-          title="Copy to clipboard"
-        >
-          <ClipboardIcon color="surfacePrimary" />
-        </div>
       </div>
     </div>
   );
@@ -327,6 +358,18 @@ const InlineLink = styled.span`
   > * + * {
     margin: 0 0 0 ${dimensions.spacings.xs};
   }
+  svg {
+    * {
+      fill: ${colors.light.link};
+    }
+  }
+  :hover {
+    svg {
+      * {
+        fill: ${colors.light.linkHover};
+      }
+    }
+  }
 `;
 // eslint-disable-next-line react/display-name
 const Link = props => {
@@ -346,14 +389,14 @@ const Link = props => {
         children: (
           <InlineLink>
             <span>{props.children.props.children}</span>
-            <ExternalLinkIcon size="small" color="primary" />
+            <ExternalLinkIcon height={12} width={12} />
           </InlineLink>
         ),
       })
     ) : (
       <InlineLink>
         <span>{props.children}</span>
-        <ExternalLinkIcon size="small" color="primary" />
+        <ExternalLinkIcon height={12} width={12} />
       </InlineLink>
     );
     return <ExternalLink {...props}>{linkWithIcon}</ExternalLink>;
@@ -388,30 +431,28 @@ const withAnchorLink = Component => props => {
     <Component
       {...props}
       css={css`
-        a {
-          margin-left: ${dimensions.spacings.m};
-          color: ${colors.light.borderPrimary};
-          font-size: ${typography.fontSizes.small};
-        }
-        [role='anchor-link'] {
-          visibility: hidden;
-        }
-        :hover {
-          [role='anchor-link'] {
-            visibility: visible;
-          }
-        }
         display: flex;
-        align-items: center;
+        align-items: baseline;
+        > * + * {
+          margin: 0 0 0 ${dimensions.spacings.s};
+        }
       `}
     >
-      {props.children}
-      <a href={`#${props.id}`}>
-        <span
-          role="anchor-link"
-          aria-hidden="true"
-          dangerouslySetInnerHTML={{ __html: '&#8267;' }}
-        />
+      <span>{props.children}</span>
+      <a
+        href={`#${props.id}`}
+        role="anchor-link"
+        css={css`
+          :hover {
+            svg {
+              * {
+                fill: ${colors.light.linkNavigation};
+              }
+            }
+          }
+        `}
+      >
+        <RibbonIcon />
       </a>
     </Component>
   );
