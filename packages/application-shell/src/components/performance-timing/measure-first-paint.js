@@ -55,40 +55,45 @@ export class MeasureFirstPaint extends React.Component {
   componentDidMount() {
     /**
      * NOTE:
-     *   Time to Interactive is an async value emitted by a Promise
-     *   on Perfume. Once resolved all other values are statically
-     *   available.
+     *   `Promise.all` is deliberate here.
+     *   Some browsers do not support this metric and `perfume.js` will not expose
+     *   a promise as a result. Wrapping it and filtering later makes dealing with
+     *   this easier.
      */
-    perfume.observeFirstContentfulPaint.then(firstContentfulPaintMs => {
-      const paintMetrics = [
-        {
-          name: 'firstPaint',
-          durationMs: MeasureFirstPaint.tracker.firstPaintDuration,
-        },
-        {
-          name: 'firstContentfulPaint',
-          durationMs: firstContentfulPaintMs,
-        },
-      ]
-        .filter(paintMeasurement => Boolean(paintMeasurement.durationMs))
-        .map(paintMeasurement =>
-          createPaintMetric({
-            paintMeasurement,
-            labels: {
-              application: this.props.application,
-              user_agent: this.props.userAgent,
-              project_key: this.props.projectKey,
-            },
-          })
-        );
+    Promise.all([perfume.observeFirstContentfulPaint]).then(
+      ([firstContentfulPaintMs]) => {
+        const paintMetrics = [
+          {
+            name: 'firstPaint',
+            durationMs: MeasureFirstPaint.tracker.firstPaintDuration,
+          },
+          {
+            name: 'firstContentfulPaint',
+            durationMs: firstContentfulPaintMs,
+          },
+        ]
+          .filter(paintMeasurement => Boolean(paintMeasurement.durationMs))
+          .map(paintMeasurement =>
+            createPaintMetric({
+              paintMeasurement,
+              labels: {
+                application: this.props.application,
+                user_agent: this.props.userAgent,
+                project_key: this.props.projectKey,
+              },
+            })
+          );
 
-      if (paintMetrics.length > 0) {
-        this.props.pushMetricHistogram({ payload: paintMetrics }).catch(() => {
-          // Error is ignored under the assumption that page is being
-          // reloaded whilst the request was being sent or network request was interrupted
-        });
+        if (paintMetrics.length > 0) {
+          this.props
+            .pushMetricHistogram({ payload: paintMetrics })
+            .catch(() => {
+              // Error is ignored under the assumption that page is being
+              // reloaded whilst the request was being sent or network request was interrupted
+            });
+        }
       }
-    });
+    );
   }
   render() {
     return this.props.children;
