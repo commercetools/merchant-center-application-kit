@@ -7,6 +7,7 @@ describe.each([
   ['/foo', 'foo'],
   ['/foo/bar', 'foo'],
   ['/foo/bar/123', 'foo'],
+  // eslint-disable-next-line jest/valid-describe
 ])('when location is %s', (path, expected) => {
   it(`should return project key as "${expected}"`, () => {
     expect(selectProjectKeyFromUrl(path)).toBe(expected);
