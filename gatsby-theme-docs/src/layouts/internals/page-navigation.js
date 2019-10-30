@@ -40,10 +40,10 @@ const Link = styled.a`
   border-left: 1px solid transparent;
   padding: ${props => {
     switch (props.level) {
-      case '3':
-        return `0 ${dimensions.spacings.m} 0 ${dimensions.spacings.l}`;
-      default:
+      case '1':
         return `0 ${dimensions.spacings.m}`;
+      default:
+        return `0`;
     }
   }};
 
@@ -66,8 +66,24 @@ const Link = styled.a`
 `;
 const ListItemLevel = styled.ul`
   margin: 0;
-  padding: 0;
+  padding: 0 ${dimensions.spacings.m};
   list-style: none;
+
+  > li {
+    padding: ${props => {
+      switch (props.level) {
+        case '3':
+          return `0 0 0 ${dimensions.spacings.l}`;
+        default:
+          return `0`;
+      }
+    }};
+  }
+
+  /* Nested ul should get no padding */
+  ul {
+    padding: 0;
+  }
 `;
 
 const ListItemGroup = props => (
