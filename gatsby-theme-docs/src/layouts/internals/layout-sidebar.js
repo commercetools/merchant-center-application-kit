@@ -16,9 +16,9 @@ const ContainerOverlay = styled.div`
     if (props.isMenuOpen) {
       return css`
         background-color: rgba(0, 0, 0, 0.5);
-        z-index: 1;
+        z-index: 20;
         position: fixed;
-        top: ${dimensions.heights.header};
+        top: 0;
         left: 0;
         right: 0;
         bottom: 0;
