@@ -15,7 +15,7 @@ const Flag = props => (
       border: 1px solid ${colors.light.borderInfo};
       border-radius: ${tokens.borderRadius4};
       color: ${colors.light.textInfo};
-      font-size: ${typography.fontSizes.small};
+      font-size: ${typography.fontSizes.extraSmall};
       padding: 0 ${dimensions.spacings.xs};
     `}
   >

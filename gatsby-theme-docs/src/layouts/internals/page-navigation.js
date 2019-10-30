@@ -23,9 +23,9 @@ const Link = styled.a`
   font-size: ${props => {
     switch (props.level) {
       case '1':
-        return typography.fontSizes.body;
-      default:
         return typography.fontSizes.small;
+      default:
+        return typography.fontSizes.extraSmall;
     }
   }};
   color: ${props => {

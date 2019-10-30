@@ -59,7 +59,7 @@ const StickyContainer = styled.div`
 `;
 const PageTitle = styled.div`
   color: ${colors.light.textSecondary};
-  font-size: ${typography.fontSizes.small};
+  font-size: ${typography.fontSizes.extraSmall};
   padding: ${dimensions.spacings.s} ${dimensions.spacings.m} 0;
   border-left: 1px solid transparent;
 `;

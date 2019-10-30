@@ -19,7 +19,7 @@ const PaginationButtonLink = styled(Link)`
   color: ${colors.light.textPrimary};
 
   :hover {
-    opacity: 0.8;
+    background-color: ${colors.light.surfaceQuote};
   }
 `;
 PaginationButtonLink.defaultProps = {

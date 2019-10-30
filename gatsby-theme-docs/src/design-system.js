@@ -131,6 +131,7 @@ export const typography = {
     h6: pxToRem('16px'),
     body: pxToRem('16px'),
     small: pxToRem('14px'),
+    extraSmall: pxToRem('12px'),
   },
 
   fontWeights: {
