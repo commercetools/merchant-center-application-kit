@@ -1,3 +1,10 @@
+## [15.3.1](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.0...v15.3.1) (2019-10-30)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1136](https://github.com/commercetools/merchant-center-application-kit/pull/1136) fix(app-shell): how metric is read ([@tdeekens](https://github.com/tdeekens))
+
 ## [15.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.2.3...v15.3.0) (2019-10-30)
 
 #### 🐛 Type: Bug
