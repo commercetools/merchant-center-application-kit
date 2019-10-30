@@ -44,6 +44,7 @@ rules:
   graphql/template-strings:
     - error
     - env: literal
+  'jest/expect-expect': 'off'
 settings:
   react:
     version: 'detect'

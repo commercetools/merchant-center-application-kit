@@ -29,6 +29,7 @@ describe('reportErrorToSentry', () => {
       reportErrorToSentry(error, undefined, () => true);
 
       // Wait for the reports to have been sent
+      // eslint-disable-next-line jest/no-standalone-expect
       await waitForExpect(() => expect(testkit.reports()).toHaveLength(1));
     });
 
@@ -50,6 +51,7 @@ describe('reportErrorToSentry', () => {
       reportErrorToSentry(error, { extra: { name: 'foo' } }, () => true);
 
       // Wait for the reports to have been sent
+      // eslint-disable-next-line jest/no-standalone-expect
       await waitForExpect(() => expect(testkit.reports()).toHaveLength(1));
     });
 
@@ -65,6 +67,7 @@ describe('reportErrorToSentry', () => {
       reportErrorToSentry(error, { extra: 'hello' }, () => true);
 
       // Wait for the reports to have been sent
+      // eslint-disable-next-line jest/no-standalone-expect
       await waitForExpect(() => expect(testkit.reports()).toHaveLength(1));
     });
 
