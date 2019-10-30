@@ -1,4 +1,28 @@
-## [15.2.3](https://github.com/commercetools/merchant-center-application-kit/compare/v15.2.3...v15.2.3) (2019-10-28)
+## [15.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.2.3...v15.3.0) (2019-10-30)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1134](https://github.com/commercetools/merchant-center-application-kit/pull/1134) fix: remove first input delay ([@tdeekens](https://github.com/tdeekens))
+
+#### 💅 Type: Enhancement
+
+- `i18n`
+  - [#1124](https://github.com/commercetools/merchant-center-application-kit/pull/1124) PCM-1473: add revert message to Form Modal button messages ([@vidurar](https://github.com/vidurar))
+
+#### ⛑ Type: Refactoring
+
+- `application-components`, `i18n`
+  - [#1130](https://github.com/commercetools/merchant-center-application-kit/pull/1130) refactor(components): use common messages from i18n package ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `application-shell`, `eslint-config-mc-app`, `sentry`
+  - [#1121](https://github.com/commercetools/merchant-center-application-kit/pull/1121) chore(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+- `application-components`, `application-shell`, `babel-preset-mc-app`, `i18n`, `jest-preset-mc-app`, `jest-stylelint-runner`, `l10n`, `mc-scripts`, `react-notifications`, `sentry`
+  - [#1120](https://github.com/commercetools/merchant-center-application-kit/pull/1120) chore(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+
+## [15.2.3](https://github.com/commercetools/merchant-center-application-kit/compare/v15.2.2...v15.2.3) (2019-10-28)
 
 #### 🔮 Type: Chore
 
