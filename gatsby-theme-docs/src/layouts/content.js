@@ -110,7 +110,10 @@ const LayoutContent = props => {
                 <ContentPagination slug={props.pageData.fields.slug} />
               </LayoutPageContent>
               <LayoutPageNavigation
-                pageTitle={props.pageData.frontmatter.title}
+                pageTitle={
+                  props.pageData.frontmatter.shortTitle ||
+                  props.pageData.frontmatter.title
+                }
                 tableOfContents={props.pageData.tableOfContents}
               />
             </GridArea>
@@ -128,7 +131,8 @@ LayoutContent.propTypes = {
       slug: PropTypes.string.isRequired,
     }).isRequired,
     frontmatter: PropTypes.shape({
-      title: PropTypes.string,
+      title: PropTypes.string.isRequired,
+      shortTitle: PropTypes.string,
       beta: PropTypes.bool,
     }).isRequired,
     tableOfContents: PropTypes.object.isRequired,

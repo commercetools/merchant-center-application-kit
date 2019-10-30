@@ -78,7 +78,8 @@ PageContentTemplate.propTypes = {
         slug: PropTypes.string.isRequired,
       }).isRequired,
       frontmatter: PropTypes.shape({
-        title: PropTypes.string,
+        title: PropTypes.string.isRequired,
+        shortTitle: PropTypes.string,
       }).isRequired,
       body: PropTypes.string.isRequired,
       tableOfContents: PropTypes.object.isRequired,
@@ -95,6 +96,7 @@ export const query = graphql`
       }
       frontmatter {
         title
+        shortTitle
         beta
       }
       body

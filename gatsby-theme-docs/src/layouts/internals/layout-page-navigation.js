@@ -102,7 +102,9 @@ const LayoutPageNavigation = props => {
       <PageTitle>
         <Spacings.Inline scale="s" alignItems="center">
           <div>{props.pageTitle}</div>
-          <StackedLinesIndentedIcon />
+          <div>
+            <StackedLinesIndentedIcon />
+          </div>
         </Spacings.Inline>
       </PageTitle>
       <PageNavigation tableOfContents={props.tableOfContents} />
