@@ -28,7 +28,7 @@ const uikitColors = {
 export const colors = {
   light: {
     // Used to give the website a unique tone (e.g. page titles, navigation links)
-    primary: uikitColors.colorInfo,
+    primary: uikitColors.colorAccent40,
     // Surfaces are used for backgrounds
     surfacePrimary: uikitColors.colorSurface,
     surfaceSecondary1: uikitColors.colorNeutral95,
@@ -51,6 +51,7 @@ export const colors = {
     // Links
     link: uikitColors.colorPrimary25,
     linkHover: uikitColors.colorPrimary,
+    linkNavigation: uikitColors.colorInfo,
   },
 };
 

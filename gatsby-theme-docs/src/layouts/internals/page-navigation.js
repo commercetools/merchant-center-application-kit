@@ -48,8 +48,7 @@ const Link = styled.a`
   }};
 
   :hover {
-    color: ${colors.light.primary};
-    text-decoration: underline;
+    color: ${colors.light.linkNavigation};
   }
   :hover,
   :active {
@@ -59,8 +58,8 @@ const Link = styled.a`
   ${props =>
     isActiveLink(props.href)
       ? css`
-          border-left: 1px solid ${colors.light.primary};
-          color: ${colors.light.primary};
+          border-left: 1px solid ${colors.light.linkNavigation};
+          color: ${colors.light.linkNavigation};
         `
       : ''}
 `;

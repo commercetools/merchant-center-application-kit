@@ -28,6 +28,12 @@ const RepositoryLinks = () => {
       <Spacings.Inline scale="l" alignItems="center" justifyContent="flex-end">
         <ExternalLink
           href={`${data.site.siteMetadata.repositoryUrl}/releases/tag/v${data.site.siteMetadata.currentVersion}`}
+          css={css`
+            text-decoration: none;
+            :hover {
+              text-decoration: underline;
+            }
+          `}
         >
           {`v${data.site.siteMetadata.currentVersion}`}
         </ExternalLink>

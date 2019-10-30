@@ -8,6 +8,12 @@ import { colors, dimensions, typography } from '../../design-system';
 
 const trimTrailingSlash = url => url.replace(/(\/?)$/, '');
 
+const SidebarWebsiteTitle = styled.div`
+  background-color: ${colors.light.surfaceSecondary2};
+  color: ${colors.light.primary};
+  padding: ${dimensions.spacings.l} ${dimensions.spacings.m};
+  font-size: ${typography.fontSizes.h4};
+`;
 const SidebarLinkTitle = styled.div`
   font-size: ${typography.fontSizes.body};
   text-overflow: ellipsis;
@@ -35,12 +41,12 @@ const SidebarLink = props => (
         color: ${colors.light.textSecondary};
 
         :hover {
-          color: ${colors.light.primary} !important;
+          color: ${colors.light.linkNavigation} !important;
         }
       `;
       const activeClassName = makeClassName`
-        border-left: ${dimensions.spacings.xs} solid ${colors.light.primary} !important;
-        color: ${colors.light.primary} !important;
+        border-left: ${dimensions.spacings.xs} solid ${colors.light.linkNavigation} !important;
+        color: ${colors.light.linkNavigation} !important;
       `;
       return (
         <Link
@@ -81,23 +87,27 @@ const Sidebar = props => {
   return (
     <div
       css={css`
-        margin-right: ${dimensions.spacings.m};
-
         > * + * {
-          padding: ${dimensions.spacings.l} 0;
           border-top: 1px solid ${colors.light.borderPrimary};
+          margin-right: ${dimensions.spacings.m};
+          padding: ${dimensions.spacings.l} 0;
         }
       `}
     >
-      <div
-        css={css`
-          color: ${colors.light.primary};
-          padding: ${dimensions.spacings.l} ${dimensions.spacings.m};
-          font-size: ${typography.fontSizes.h4};
-        `}
-      >
-        {props.siteTitle}
-      </div>
+      <SidebarWebsiteTitle>
+        <Link
+          to="/"
+          css={css`
+            text-decoration: none;
+            color: ${colors.light.primary};
+            :hover {
+              text-decoration: underline;
+            }
+          `}
+        >
+          {props.siteTitle}
+        </Link>
+      </SidebarWebsiteTitle>
       {data.allNavigationYaml.nodes.map((node, index) => (
         <Spacings.Stack scale="s" key={index}>
           <SidebarLinkItem>

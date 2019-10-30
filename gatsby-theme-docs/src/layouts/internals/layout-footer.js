@@ -9,6 +9,9 @@ const FooterExternalLink = styled(ExternalLink)`
   font-size: ${typography.fontSizes.small};
   color: ${colors.light.textPrimary} !important;
   text-decoration: none;
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
 const LayoutFooter = () => (
