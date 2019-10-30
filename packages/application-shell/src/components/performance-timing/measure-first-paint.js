@@ -59,10 +59,7 @@ export class MeasureFirstPaint extends React.Component {
      *   on Perfume. Once resolved all other values are statically
      *   available.
      */
-    Promise.all([
-      perfume.observeFirstContentfulPaint,
-      perfume.observeFirstInputDelay,
-    ]).then(([firstContentfulPaintMs, firstInputDelayMs]) => {
+    perfume.observeFirstContentfulPaint.then(firstContentfulPaintMs => {
       const paintMetrics = [
         {
           name: 'firstPaint',
@@ -71,10 +68,6 @@ export class MeasureFirstPaint extends React.Component {
         {
           name: 'firstContentfulPaint',
           durationMs: firstContentfulPaintMs,
-        },
-        {
-          name: 'firstInputDelay',
-          durationMs: firstInputDelayMs,
         },
       ]
         .filter(paintMeasurement => Boolean(paintMeasurement.durationMs))
