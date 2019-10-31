@@ -15,6 +15,8 @@ import LayoutApp from '../layouts/layout-app';
 import ExampleWrapper from '../components/example-wrapper';
 import ModalController from '../components/modal-controller';
 
+const containerId = 'tabular-modal-page';
+
 const exampleCustomTitleRow = (
   <Spacings.Inline scale="m">
     <Spacings.Inline alignItems="center">
@@ -51,9 +53,11 @@ const customControls = option => {
   return undefined;
 };
 
-const TabularModalPageExample = () => (
+const TabularModalPageExample = props => (
   <LayoutApp>
     <ExampleWrapper
+      // eslint-disable-next-line react/prop-types
+      {...props.pageContext}
       knobs={[
         {
           kind: 'text',
@@ -91,68 +95,63 @@ const TabularModalPageExample = () => (
         },
       ]}
     >
-      {({ values, isPlaygroundMode }) => {
-        const containerId = isPlaygroundMode
-          ? 'tabular-modal-page-playground'
-          : 'tabular-modal-page';
-        return (
-          <ModalController
-            title={values.title}
-            buttonLabel="Open Tabular Modal Page"
-            containerId={containerId}
-          >
-            {({ isOpen, setIsOpen }) => (
-              <TabularModalPage
-                title="Lorem ipsum"
-                isOpen={isOpen}
-                onClose={() => setIsOpen(false)}
-                getParentSelector={() =>
-                  document.querySelector(`#${containerId}`)
-                }
-                // FIXME: use proper Tab components
-                tabControls={
-                  <div
-                    css={css`
-                      min-height: 30px;
-                      display: flex;
-                      > * {
-                        min-width: 50px;
-                        cursor: pointer;
-                        &:first-of-type {
-                          border-bottom: 3px solid
-                            ${customProperties.colorPrimary};
-                          & > * {
-                            color: ${customProperties.colorPrimary};
-                          }
+      {({ values }) => (
+        <ModalController
+          title={values.title}
+          buttonLabel="Open Tabular Modal Page"
+          containerId={containerId}
+        >
+          {({ isOpen, setIsOpen }) => (
+            <TabularModalPage
+              title="Lorem ipsum"
+              isOpen={isOpen}
+              onClose={() => setIsOpen(false)}
+              getParentSelector={() =>
+                document.querySelector(`#${containerId}`)
+              }
+              // FIXME: use proper Tab components
+              tabControls={
+                <div
+                  css={css`
+                    min-height: 30px;
+                    display: flex;
+                    > * {
+                      min-width: 50px;
+                      cursor: pointer;
+                      &:first-of-type {
+                        border-bottom: 3px solid
+                          ${customProperties.colorPrimary};
+                        & > * {
+                          color: ${customProperties.colorPrimary};
                         }
                       }
-                      > * + * {
-                        margin-left: 16px;
-                      }
-                    `}
-                  >
-                    <span>
-                      <Text.Subheadline as="h4">Tab One</Text.Subheadline>
-                    </span>
-                    <span>
-                      <Text.Subheadline as="h4">Tab Two</Text.Subheadline>
-                    </span>
-                    <span>
-                      <Text.Subheadline as="h4">Tab Three</Text.Subheadline>
-                    </span>
-                  </div>
-                }
-                customTitleRow={
-                  values.useCustomTitleRow === 'custom' && exampleCustomTitleRow
-                }
-                customControls={customControls(values.useCustomControls)}
-              >
-                <Text.Body>{values.content}</Text.Body>
-              </TabularModalPage>
-            )}
-          </ModalController>
-        );
-      }}
+                    }
+                    > * + * {
+                      margin-left: 16px;
+                    }
+                  `}
+                >
+                  <span>
+                    <Text.Subheadline as="h4">Tab One</Text.Subheadline>
+                  </span>
+                  <span>
+                    <Text.Subheadline as="h4">Tab Two</Text.Subheadline>
+                  </span>
+                  <span>
+                    <Text.Subheadline as="h4">Tab Three</Text.Subheadline>
+                  </span>
+                </div>
+              }
+              customTitleRow={
+                values.useCustomTitleRow === 'custom' && exampleCustomTitleRow
+              }
+              customControls={customControls(values.useCustomControls)}
+            >
+              <Text.Body>{values.content}</Text.Body>
+            </TabularModalPage>
+          )}
+        </ModalController>
+      )}
     </ExampleWrapper>
   </LayoutApp>
 );

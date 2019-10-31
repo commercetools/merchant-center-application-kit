@@ -5,9 +5,13 @@ import LayoutApp from '../layouts/layout-app';
 import ExampleWrapper from '../components/example-wrapper';
 import ModalController from '../components/modal-controller';
 
-const ConfirmationDialogExample = () => (
+const containerId = 'confirmation-dialog';
+
+const ConfirmationDialogExample = props => (
   <LayoutApp>
     <ExampleWrapper
+      // eslint-disable-next-line react/prop-types
+      {...props.pageContext}
       knobs={[
         {
           kind: 'text',
@@ -35,43 +39,38 @@ const ConfirmationDialogExample = () => (
         },
       ]}
     >
-      {({ values, isFullscreen }) => {
-        const containerId = isFullscreen
-          ? 'confirmation-dialog-fullscreen'
-          : 'confirmation-dialog';
-        return (
-          <ModalController
-            containerId={containerId}
-            title="Open the Confirmation Dialog by clicking on the button"
-            buttonLabel="Open Confirmation Dialog"
-          >
-            {({ isOpen, setIsOpen }) => (
-              <ConfirmationDialog
-                title={values.title}
-                isOpen={isOpen}
-                onClose={() => setIsOpen(false)}
-                size={values.size}
-                onCancel={() => {
-                  setIsOpen(false);
-                }}
-                onConfirm={() => {
-                  alert('confirmed');
-                  setIsOpen(false);
-                }}
-                getParentSelector={() =>
-                  document.querySelector(`#${containerId}`)
-                }
-              >
-                <Spacings.Stack scale="m">
-                  {values.content.split('\n').map((text, index) => (
-                    <Text.Body key={index}>{text}</Text.Body>
-                  ))}
-                </Spacings.Stack>
-              </ConfirmationDialog>
-            )}
-          </ModalController>
-        );
-      }}
+      {({ values }) => (
+        <ModalController
+          containerId={containerId}
+          title="Open the Confirmation Dialog by clicking on the button"
+          buttonLabel="Open Confirmation Dialog"
+        >
+          {({ isOpen, setIsOpen }) => (
+            <ConfirmationDialog
+              title={values.title}
+              isOpen={isOpen}
+              onClose={() => setIsOpen(false)}
+              size={values.size}
+              onCancel={() => {
+                setIsOpen(false);
+              }}
+              onConfirm={() => {
+                alert('confirmed');
+                setIsOpen(false);
+              }}
+              getParentSelector={() =>
+                document.querySelector(`#${containerId}`)
+              }
+            >
+              <Spacings.Stack scale="m">
+                {values.content.split('\n').map((text, index) => (
+                  <Text.Body key={index}>{text}</Text.Body>
+                ))}
+              </Spacings.Stack>
+            </ConfirmationDialog>
+          )}
+        </ModalController>
+      )}
     </ExampleWrapper>
   </LayoutApp>
 );

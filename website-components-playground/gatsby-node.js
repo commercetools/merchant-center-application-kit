@@ -20,3 +20,17 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
   // This will completely replace the webpack config with the modified object.
   actions.replaceWebpackConfig(config);
 };
+
+exports.onCreatePage = async ({ page, actions }) => {
+  actions.deletePage(page);
+  // Each page has a "fullscreen" mode, however because of SSR we can't rely on
+  // query parameters to toggle the view mode.
+  // To make this work, we will generate a new page under a different path.
+  // Both pages will then receive the `isFullScreen` as a prop.
+  actions.createPage({ ...page, context: { isFullScreen: false } });
+  actions.createPage({
+    ...page,
+    path: `${page.path}fullscreen`,
+    context: { isFullScreen: true },
+  });
+};

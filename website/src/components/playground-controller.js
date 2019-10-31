@@ -38,11 +38,12 @@ const PreviewContainer = styled.div`
   border-bottom: 1px solid ${colors.light.borderPrimary};
 `;
 
-const getIframeUrl = urlPath => {
+const getIframeUrl = (urlPath, isFullScreen = false) => {
+  const fullScreenPath = isFullScreen ? '/fullscreen' : '';
   if (process.env.NODE_ENV === 'production') {
-    return withPrefix(`/playground/${urlPath}`);
+    return withPrefix(`/playground/${urlPath}${fullScreenPath}`);
   }
-  return `http://localhost:8001/${urlPath}`;
+  return `http://localhost:8001/${urlPath}${fullScreenPath}`;
 };
 
 const PlaygroundController = props => {
@@ -95,7 +96,7 @@ const PlaygroundController = props => {
           `}
         >
           <iframe
-            src={`${getIframeUrl(props.urlPath)}?mode=fullscreen`}
+            src={getIframeUrl(props.urlPath, true)}
             height="100%"
             width="100%"
           />

@@ -5,9 +5,13 @@ import LayoutApp from '../layouts/layout-app';
 import ExampleWrapper from '../components/example-wrapper';
 import ModalController from '../components/modal-controller';
 
-const InfoDialogExample = () => (
+const containerId = 'info-dialog';
+
+const InfoDialogExample = props => (
   <LayoutApp>
     <ExampleWrapper
+      // eslint-disable-next-line react/prop-types
+      {...props.pageContext}
       knobs={[
         {
           kind: 'text',
@@ -35,36 +39,31 @@ const InfoDialogExample = () => (
         },
       ]}
     >
-      {({ values, isPlaygroundMode }) => {
-        const containerId = isPlaygroundMode
-          ? 'info-dialog-playground'
-          : 'info-dialog';
-        return (
-          <ModalController
-            containerId={containerId}
-            title="Open the Info Dialog by clicking on the button"
-            buttonLabel="Open Info Dialog"
-          >
-            {({ isOpen, setIsOpen }) => (
-              <InfoDialog
-                title={values.title}
-                size={values.size}
-                isOpen={isOpen}
-                onClose={() => setIsOpen(false)}
-                getParentSelector={() =>
-                  document.querySelector(`#${containerId}`)
-                }
-              >
-                <Spacings.Stack scale="m">
-                  {values.content.split('\n').map((text, index) => (
-                    <Text.Body key={index}>{text}</Text.Body>
-                  ))}
-                </Spacings.Stack>
-              </InfoDialog>
-            )}
-          </ModalController>
-        );
-      }}
+      {({ values }) => (
+        <ModalController
+          containerId={containerId}
+          title="Open the Info Dialog by clicking on the button"
+          buttonLabel="Open Info Dialog"
+        >
+          {({ isOpen, setIsOpen }) => (
+            <InfoDialog
+              title={values.title}
+              size={values.size}
+              isOpen={isOpen}
+              onClose={() => setIsOpen(false)}
+              getParentSelector={() =>
+                document.querySelector(`#${containerId}`)
+              }
+            >
+              <Spacings.Stack scale="m">
+                {values.content.split('\n').map((text, index) => (
+                  <Text.Body key={index}>{text}</Text.Body>
+                ))}
+              </Spacings.Stack>
+            </InfoDialog>
+          )}
+        </ModalController>
+      )}
     </ExampleWrapper>
   </LayoutApp>
 );

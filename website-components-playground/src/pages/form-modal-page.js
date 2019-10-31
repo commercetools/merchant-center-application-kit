@@ -28,9 +28,13 @@ const customControls = option => {
   return undefined;
 };
 
-const FormModalPageExample = () => (
+const containerId = 'form-modal-page';
+
+const FormModalPageExample = props => (
   <LayoutApp>
     <ExampleWrapper
+      // eslint-disable-next-line react/prop-types
+      {...props.pageContext}
       knobs={[
         {
           kind: 'text',
@@ -52,64 +56,58 @@ const FormModalPageExample = () => (
         },
       ]}
     >
-      {({ values, isPlaygroundMode }) => {
-        const containerId = isPlaygroundMode
-          ? 'form-modal-page-playground'
-          : 'form-modal-page';
-        return (
-          <ModalController
-            title="Open the Form Modal Page by clicking on the button"
-            buttonLabel="Open Form Modal Page"
-            containerId={containerId}
-          >
-            {({ isOpen, setIsOpen }) => (
-              <Formik
-                initialValues={{ email: '' }}
-                validate={formikValues => {
-                  if (TextInput.isEmpty(formikValues.email)) {
-                    return { email: { missing: true } };
+      {({ values }) => (
+        <ModalController
+          title="Open the Form Modal Page by clicking on the button"
+          buttonLabel="Open Form Modal Page"
+          containerId={containerId}
+        >
+          {({ isOpen, setIsOpen }) => (
+            <Formik
+              initialValues={{ email: '' }}
+              validate={formikValues => {
+                if (TextInput.isEmpty(formikValues.email)) {
+                  return { email: { missing: true } };
+                }
+                return {};
+              }}
+              onSubmit={formikValues => {
+                alert(`email: ${formikValues.email}`);
+                setIsOpen(false);
+              }}
+              render={formikProps => (
+                <FormModalPage
+                  title={values.title}
+                  isOpen={isOpen}
+                  onClose={() => setIsOpen(false)}
+                  customControls={customControls(values.useCustomControls)}
+                  isPrimaryButtonDisabled={formikProps.isSubmitting}
+                  onSecondaryButtonClick={() => {
+                    formikProps.resetForm();
+                    setIsOpen(false);
+                  }}
+                  onPrimaryButtonClick={formikProps.handleSubmit}
+                  getParentSelector={() =>
+                    document.querySelector(`#${containerId}`)
                   }
-                  return {};
-                }}
-                onSubmit={formikValues => {
-                  alert(`email: ${formikValues.email}`);
-                  setIsOpen(false);
-                }}
-              >
-                {formikProps => (
-                  <FormModalPage
-                    title={values.title}
-                    isOpen={isOpen}
-                    onClose={() => setIsOpen(false)}
-                    customControls={customControls(values.useCustomControls)}
-                    isPrimaryButtonDisabled={formikProps.isSubmitting}
-                    onSecondaryButtonClick={() => {
-                      formikProps.resetForm();
-                      setIsOpen(false);
-                    }}
-                    onPrimaryButtonClick={formikProps.handleSubmit}
-                    getParentSelector={() =>
-                      document.querySelector(`#${containerId}`)
-                    }
-                  >
-                    <TextField
-                      name="email"
-                      title="Email"
-                      isRequired={true}
-                      value={formikProps.values.email}
-                      errors={formikProps.errors.email}
-                      touched={formikProps.touched.email}
-                      onChange={formikProps.handleChange}
-                      onBlur={formikProps.handleBlur}
-                      onFocus={formikProps.handleFocus}
-                    />
-                  </FormModalPage>
-                )}
-              </Formik>
-            )}
-          </ModalController>
-        );
-      }}
+                >
+                  <TextField
+                    name="email"
+                    title="Email"
+                    isRequired={true}
+                    value={formikProps.values.email}
+                    errors={formikProps.errors.email}
+                    touched={formikProps.touched.email}
+                    onChange={formikProps.handleChange}
+                    onBlur={formikProps.handleBlur}
+                    onFocus={formikProps.handleFocus}
+                  />
+                </FormModalPage>
+              )}
+            />
+          )}
+        </ModalController>
+      )}
     </ExampleWrapper>
   </LayoutApp>
 );

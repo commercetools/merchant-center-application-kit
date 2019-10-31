@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { customProperties } from '@commercetools-frontend/ui-kit';
 import IntlController from './intl-controller';
@@ -9,8 +10,11 @@ const PreviewContainer = styled.div`
   position: relative;
   width: calc(100% - 1px - 1px);
   overflow: hidden;
-  height: ${props => props.height};
-  border: 1px solid ${customProperties.colorNeutral60};
+  height: 100%;
+  border: ${props =>
+    props.isFullScreen
+      ? `1px solid ${customProperties.colorNeutral60}`
+      : 'none'};
   border-radius: ${customProperties.borderRadius4};
 `;
 const ColumnsContainer = styled.div`
@@ -31,46 +35,45 @@ const ColumnsContainer = styled.div`
   }
 `;
 const ColumnLeft = styled.div`
-  flex: 2;
+  flex: ${props => (props.isFullScreen ? '2' : '3')};
   height: calc(100vh - 2px);
 `;
 const ColumnRight = styled.div`
-  flex: 1;
-  height: calc(100vh - 2px);
-  overflow: auto;
+  ${props => {
+    if (props.isFullScreen) {
+      return css`
+        flex: 1;
+        height: calc(100vh - 2px);
+        overflow: auto;
+      `;
+    }
+    return css`
+      display: none;
+    `;
+  }}
 `;
 
-const ExampleWrapper = props => {
-  const queryParams = new URLSearchParams(
-    typeof window !== 'undefined' && window.location.search
-  );
-  const isFullscreen = queryParams.get('mode') === 'fullscreen';
-  return (
-    <IntlController>
-      {intlProps => (
-        <KnobsController knobs={props.knobs} {...intlProps}>
-          {({ form, values }) => {
-            if (isFullscreen) {
-              return (
-                <ColumnsContainer>
-                  <ColumnLeft>
-                    <PreviewContainer height="100%">
-                      {props.children({ values, isFullscreen })}
-                    </PreviewContainer>
-                  </ColumnLeft>
-                  <ColumnRight>{form}</ColumnRight>
-                </ColumnsContainer>
-              );
-            }
-            return props.children({ values, isFullscreen });
-          }}
-        </KnobsController>
-      )}
-    </IntlController>
-  );
-};
+const ExampleWrapper = props => (
+  <IntlController>
+    {intlProps => (
+      <KnobsController knobs={props.knobs} {...intlProps}>
+        {({ form, values }) => (
+          <ColumnsContainer>
+            <ColumnLeft isFullScreen={props.isFullScreen}>
+              <PreviewContainer isFullScreen={props.isFullScreen}>
+                {props.children({ values })}
+              </PreviewContainer>
+            </ColumnLeft>
+            <ColumnRight isFullScreen={props.isFullScreen}>{form}</ColumnRight>
+          </ColumnsContainer>
+        )}
+      </KnobsController>
+    )}
+  </IntlController>
+);
 ExampleWrapper.displayName = 'ExampleWrapper';
 ExampleWrapper.propTypes = {
+  isFullScreen: PropTypes.bool.isRequired,
   knobs: PropTypes.arrayOf(
     PropTypes.shape({
       kind: PropTypes.oneOf(['text', 'text-multi', 'select']).isRequired,
