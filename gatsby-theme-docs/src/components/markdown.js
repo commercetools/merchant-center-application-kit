@@ -440,7 +440,7 @@ Link.propTypes = {
   children: PropTypes.node.isRequired,
 };
 const Img = props => (
-  <span>
+  <>
     <img {...props} />
     <span
       css={css`
@@ -452,7 +452,7 @@ const Img = props => (
       {/* eslint-disable-next-line react/prop-types */}
       {props.title || props.alt}
     </span>
-  </span>
+  </>
 );
 
 /* eslint-disable react/display-name,react/prop-types */

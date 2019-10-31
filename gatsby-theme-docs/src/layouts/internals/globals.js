@@ -39,7 +39,7 @@ const Globals = () => (
       .gatsby-resp-image-image {
         box-shadow: none !important;
         width: calc(100% - ${dimensions.spacings.s} * 2);
-        height: calc(100% - ${dimensions.spacings.s} * 2);
+        height: auto;
         margin: ${dimensions.spacings.s};
       }
 
