@@ -403,7 +403,7 @@ const InlineLink = styled.span`
 `;
 // eslint-disable-next-line react/display-name
 const Link = props => {
-  if (props.href.startsWith('/static')) {
+  if (props.href.startsWith(withPrefix('/static'))) {
     return <a {...props} />;
   }
 
