@@ -45,7 +45,8 @@
     "build:typings": "NODE_ENV=production lerna run build:typings --no-private",
     "build:bundles": "NODE_ENV=production lerna run build:bundles --no-private",
     "build:bundles:watch": "NODE_ENV=development lerna run --no-private --parallel build:bundles:watch",
-    "now-build": "yarn build && yarn --cwd website build && yarn --cwd website-components-playground build && rm -rf public && mv website/public public",
+    "build:website": "yarn build --scope '@commercetools-frontend/application-components' && yarn --cwd website build && yarn --cwd website-components-playground build",
+    "now-build": "yarn build:website && rm -rf public && mv website/public public",
     "labels:sync": "github-labels sync",
     "get-schemas": "graphql get-schema",
     "generate:types": "graphql-codegen"

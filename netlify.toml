@@ -1,5 +1,5 @@
 [build]
-  command = "yarn build && yarn --cwd website build && yarn --cwd website-components-playground build"
+  command = "yarn build:website"
   publish = "website/public"
 
 [build.environment]
