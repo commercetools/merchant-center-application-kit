@@ -51,15 +51,14 @@ const getColor = color => {
 };
 
 export default function createStyledIcon(Component) {
-  const StyledComponent = styled(Component)(props => {
-    console.log(props);
-    return css`
+  const StyledComponent = styled(Component)(
+    props => css`
       * {
         fill: ${getColor(props.color)};
       }
       ${getSizeStyle(props.size)}
-    `;
-  });
+    `
+  );
   StyledComponent.propTypes = {
     color: PropTypes.string,
     size: PropTypes.oneOf(['small', 'medium', 'big', 'scale']),
