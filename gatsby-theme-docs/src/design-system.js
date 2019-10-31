@@ -12,6 +12,7 @@ const uikitColors = {
   colorInfo: '#078cdf',
   colorInfo95: 'hsl(203.05555555555554, 93.9130434783%, 95%)',
   colorSurface: '#fff',
+  colorNeutral: '#ccc',
   colorNeutral60: 'hsl(0, 0%, 60%)',
   colorNeutral90: 'hsl(0, 0%, 90%)',
   colorNeutral95: 'hsl(0, 0%, 95%)',
@@ -47,6 +48,7 @@ export const colors = {
     textInverted: uikitColors.colorSurface,
     // Different tones of border colors
     borderPrimary: uikitColors.colorNeutral90,
+    borderSecondary: uikitColors.colorNeutral,
     borderHighlight: uikitColors.colorPrimary,
     borderInfo: uikitColors.colorInfo,
     // Links
@@ -57,10 +59,15 @@ export const colors = {
 };
 
 export const tokens = {
+  borderRadius2: '2px',
   borderRadius4: '4px',
   borderRadius6: '6px',
   shadow1: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
+  shadow7:
+    '0 -1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24)',
   shadow8: '0 1px 9.5px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.24)',
+  shadow9:
+    'inset 0 -1px 3px 0 rgba(0, 0, 0, 0.1), inset 0 1px 1.5px 0 rgba(0, 0, 0, 0.2), inset 0 1px 1.5px 0 rgba(0, 0, 0, 0.25)',
 };
 
 const breakpoints = {

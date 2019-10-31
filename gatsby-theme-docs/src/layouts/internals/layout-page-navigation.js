@@ -2,10 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
-import { Spacings } from '../../components';
-import StackedLinesIndentedIcon from '../../images/icons/stacked-lines-indented-icon.svg';
-import { colors, dimensions, typography, tokens } from '../../design-system';
+import { IconButton, Spacings } from '../../components';
+import UnstyledStackedLinesIndentedIcon from '../../images/icons/stacked-lines-indented-icon.svg';
+import { colors, dimensions, typography } from '../../design-system';
+import createStyledIcon from '../../utils/create-styled-icon';
 import PageNavigation from './page-navigation';
+
+const StackedLinesIndentedIcon = createStyledIcon(
+  UnstyledStackedLinesIndentedIcon
+);
 
 const slideInAnimation = keyframes`
   from { margin-right: -100%; }
@@ -56,6 +61,7 @@ const GridContainer = styled.div`
 const StickyContainer = styled.div`
   position: sticky;
   top: ${dimensions.spacings.xxl};
+  margin: 0 0 ${dimensions.spacings.s};
 `;
 const PageTitleLink = styled.a`
   color: ${colors.light.textSecondary};
@@ -76,28 +82,11 @@ const PageTitleLink = styled.a`
     outline-width: 0;
   }
 `;
-const RoundButton = styled.button`
-  display: flex;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0.5);
-  border: 1px solid ${colors.light.borderPrimary};
-  border-radius: ${dimensions.spacings.m};
-  box-shadow: ${tokens.shadow1};
-  width: ${dimensions.spacings.xl};
-  height: ${dimensions.spacings.xl};
+const ToggleMenuButton = styled.div`
   position: fixed;
   top: calc(${dimensions.heights.header} + ${dimensions.spacings.m});
   right: ${dimensions.spacings.m};
   cursor: pointer;
-
-  > svg {
-    height: ${dimensions.spacings.m};
-    width: ${dimensions.spacings.m};
-  }
-
-  :hover {
-    box-shadow: ${tokens.shadow8};
-  }
 
   @media screen and (${dimensions.viewports.largeTablet}) {
     display: none;
@@ -119,7 +108,7 @@ const LayoutPageNavigation = props => {
       <PageTitleLink href="#anchor-page-top">
         <Spacings.Inline scale="s" alignItems="center">
           <div>{props.pageTitle}</div>
-          <StackedLinesIndentedIcon />
+          <UnstyledStackedLinesIndentedIcon />
         </Spacings.Inline>
       </PageTitleLink>
       <PageNavigation tableOfContents={props.tableOfContents} />
@@ -127,13 +116,15 @@ const LayoutPageNavigation = props => {
   );
   return (
     <>
-      <RoundButton
-        onClick={() => {
-          setMenuOpen(true);
-        }}
-      >
-        <StackedLinesIndentedIcon />
-      </RoundButton>
+      <ToggleMenuButton>
+        <IconButton
+          icon={<StackedLinesIndentedIcon color="textSecondary" />}
+          label="Open page navigation"
+          onClick={() => {
+            setMenuOpen(true);
+          }}
+        />
+      </ToggleMenuButton>
       <ContainerOverlay
         isMenuOpen={isMenuOpen}
         onClick={() => {

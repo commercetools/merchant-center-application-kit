@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import invariant from 'tiny-invariant';
+import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { colors } from '../design-system';
 
@@ -50,14 +51,15 @@ const getColor = color => {
 };
 
 export default function createStyledIcon(Component) {
-  const StyledComponent = styled(Component)(
-    props => `
-    * {
-      fill: ${getColor(props.color)};
-    }
-    ${getSizeStyle(props.size)}
-  `
-  );
+  const StyledComponent = styled(Component)(props => {
+    console.log(props);
+    return css`
+      * {
+        fill: ${getColor(props.color)};
+      }
+      ${getSizeStyle(props.size)}
+    `;
+  });
   StyledComponent.propTypes = {
     color: PropTypes.string,
     size: PropTypes.oneOf(['small', 'medium', 'big', 'scale']),

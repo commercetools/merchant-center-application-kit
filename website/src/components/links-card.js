@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { Grid } from '@commercetools-frontend/ui-kit';
 import Spacings from '@commercetools-docs/gatsby-theme-docs/src/components/spacings';
 import * as Markdown from '@commercetools-docs/gatsby-theme-docs/src/components/markdown';
 import {
@@ -12,6 +11,18 @@ import {
   tokens,
 } from '@commercetools-docs/gatsby-theme-docs/src/design-system';
 
+const Container = styled.div`
+  background-color: ${colors.light.surfacePrimary};
+  border: 1px solid ${colors.light.borderPrimary};
+  border-radius: ${tokens.borderRadius6};
+  padding: ${dimensions.spacings.l};
+`;
+const GridContainer = styled.div`
+  display: grid;
+  grid-gap: ${dimensions.spacings.l};
+  grid-auto-columns: 1fr;
+  grid-template-columns: repeat(auto-fill, ${dimensions.widths.pageNavigation});
+`;
 const LinksList = styled.ul`
   list-style: none;
   margin: 0;
@@ -38,21 +49,10 @@ const SecondaryExternalLink = props => (
 );
 
 const LinksCard = props => (
-  <div
-    css={css`
-      background-color: ${colors.light.surfacePrimary};
-      border: 1px solid ${colors.light.borderPrimary};
-      border-radius: ${tokens.borderRadius6};
-      padding: ${dimensions.spacings.l};
-    `}
-  >
-    <Grid
-      gridGap={dimensions.spacings.l}
-      gridAutoColumns="1fr"
-      gridTemplateColumns={`repeat(auto-fill, ${dimensions.widths.pageNavigation})`}
-    >
+  <Container>
+    <GridContainer>
       {props.linksData.map(linkData => (
-        <Grid.Item key={linkData.title}>
+        <div key={linkData.title}>
           <Spacings.Stack scale="s">
             <div>{linkData.title}</div>
             <LinksList>
@@ -65,10 +65,10 @@ const LinksCard = props => (
               ))}
             </LinksList>
           </Spacings.Stack>
-        </Grid.Item>
+        </div>
       ))}
-    </Grid>
-  </div>
+    </GridContainer>
+  </Container>
 );
 LinksCard.propTypes = {
   linksData: PropTypes.arrayOf(

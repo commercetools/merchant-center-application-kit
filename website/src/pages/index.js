@@ -2,7 +2,6 @@ import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { Grid } from '@commercetools-frontend/ui-kit';
 import pkg from '../../package.json';
 import {
   colors,
@@ -50,6 +49,15 @@ const ButtonLink = styled(Link)`
     background-color: ${colors.light.surfaceQuote};
     color: ${colors.light.linkNavigation};
   }
+`;
+const GridContainer = styled.div`
+  display: grid;
+  grid-gap: ${dimensions.spacings.l};
+  grid-auto-columns: 1fr;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(${dimensions.widths.pageNavigation}, 1fr)
+  );
 `;
 
 const MarketingLandingPage = () => {
@@ -142,53 +150,41 @@ const MarketingLandingPage = () => {
             }
           `}
         >
-          <Grid
-            gridGap={dimensions.spacings.l}
-            gridAutoColumns="1fr"
-            gridTemplateColumns={`repeat(auto-fit, minmax(${dimensions.widths.pageNavigation}, 1fr))`}
-          >
-            <Grid.Item>
-              <Spacings.Stack scale="m">
-                <Spacings.Stack scale="s">
-                  <ScreenCogIcon />
-                  <SectionTitle>{'Built on modern technologies'}</SectionTitle>
-                </Spacings.Stack>
-                <SectionBody>
-                  {
-                    'Develop JavaScript applications with React, GraphQL, Webpack and other modern technologies.'
-                  }
-                </SectionBody>
+          <GridContainer>
+            <Spacings.Stack scale="m">
+              <Spacings.Stack scale="s">
+                <ScreenCogIcon />
+                <SectionTitle>{'Built on modern technologies'}</SectionTitle>
               </Spacings.Stack>
-            </Grid.Item>
-            <Grid.Item>
-              <Spacings.Stack scale="m">
-                <Spacings.Stack scale="s">
-                  <ScreenDesignToolIcon />
-                  <SectionTitle>
-                    {'Based on a solid Design System'}
-                  </SectionTitle>
-                </Spacings.Stack>
-                <SectionBody>
-                  {
-                    'Merchant Center applications are built and designed according to our Design System, which provides rules, patterns and best practices to ease development and focus on the business logic.'
-                  }
-                </SectionBody>
+              <SectionBody>
+                {
+                  'Develop JavaScript applications with React, GraphQL, Webpack and other modern technologies.'
+                }
+              </SectionBody>
+            </Spacings.Stack>
+            <Spacings.Stack scale="m">
+              <Spacings.Stack scale="s">
+                <ScreenDesignToolIcon />
+                <SectionTitle>{'Based on a solid Design System'}</SectionTitle>
               </Spacings.Stack>
-            </Grid.Item>
-            <Grid.Item>
-              <Spacings.Stack scale="m">
-                <Spacings.Stack scale="s">
-                  <ScreenBulbIcon />
-                  <SectionTitle>{'Zero config development tools'}</SectionTitle>
-                </Spacings.Stack>
-                <SectionBody>
-                  {
-                    'Focus more on implementing the right features instead of configuration. Our packages provide all the necessary tools to get started seamlessly.'
-                  }
-                </SectionBody>
+              <SectionBody>
+                {
+                  'Merchant Center applications are built and designed according to our Design System, which provides rules, patterns and best practices to ease development and focus on the business logic.'
+                }
+              </SectionBody>
+            </Spacings.Stack>
+            <Spacings.Stack scale="m">
+              <Spacings.Stack scale="s">
+                <ScreenBulbIcon />
+                <SectionTitle>{'Zero config development tools'}</SectionTitle>
               </Spacings.Stack>
-            </Grid.Item>
-          </Grid>
+              <SectionBody>
+                {
+                  'Focus more on implementing the right features instead of configuration. Our packages provide all the necessary tools to get started seamlessly.'
+                }
+              </SectionBody>
+            </Spacings.Stack>
+          </GridContainer>
         </Card>
       </PageContainer>
       <PageContainer>

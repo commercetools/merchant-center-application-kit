@@ -66,7 +66,7 @@ const H6 = styled.h6`
 const ThematicBreak = styled.hr`
   height: 1px;
   border: 0;
-  background-color: ${colors.light.surfaceSecondary3};
+  background-color: ${colors.light.borderPrimary};
 `;
 const Blockquote = styled.blockquote`
   background-color: ${colors.light.surfaceQuote};

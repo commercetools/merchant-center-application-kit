@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withPrefix } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { Tooltip, IconButton } from '@commercetools-frontend/ui-kit';
+import { Tooltip } from '@commercetools-frontend/ui-kit';
 import { InfoDialog } from '@commercetools-frontend/application-components';
 import UnstyledCodeViewIcon from '@commercetools-docs/gatsby-theme-docs/src/images/icons/code-view-icon.svg';
 import {
@@ -12,7 +12,10 @@ import {
   tokens,
 } from '@commercetools-docs/gatsby-theme-docs/src/design-system';
 import createStyledIcon from '@commercetools-docs/gatsby-theme-docs/src/utils/create-styled-icon';
-import Spacings from '@commercetools-docs/gatsby-theme-docs/src/components/spacings';
+import {
+  IconButton,
+  Spacings,
+} from '@commercetools-docs/gatsby-theme-docs/src/components';
 
 const CodeViewIcon = createStyledIcon(UnstyledCodeViewIcon);
 
@@ -68,7 +71,7 @@ const PlaygroundController = props => {
               }}
             >
               <IconButton
-                icon={<CodeViewIcon />}
+                icon={<CodeViewIcon color="textPrimary" />}
                 label="Enter playground mode"
                 onClick={() => setIsFullscreen(true)}
               />
