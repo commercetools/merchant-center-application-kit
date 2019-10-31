@@ -26,6 +26,9 @@ PaginationButtonLink.propTypes = {
 };
 
 const PaginationButton = styled(Card)`
+  > div {
+    padding: ${dimensions.spacings.s};
+  }
   svg {
     * {
       fill: ${colors.light.textPrimary};

@@ -72,6 +72,7 @@ const LayoutContent = props => {
             <GridArea name="left" />
             <GridArea name="right" />
             <GridArea
+              id="anchor-page-top"
               name="center"
               css={css`
                 display: block;

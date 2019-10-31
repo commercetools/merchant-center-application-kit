@@ -60,6 +60,7 @@ export const tokens = {
   borderRadius4: '4px',
   borderRadius6: '6px',
   shadow1: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
+  shadow8: '0 1px 9.5px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.24)',
 };
 
 const breakpoints = {
@@ -133,6 +134,8 @@ export const typography = {
     h6: pxToRem('16px'),
     body: pxToRem('16px'),
     small: pxToRem('14px'),
+    // The sizes below are only used in specific case. Do not use them regularly.
+    // If necessary, ask the Design team.
     extraSmall: pxToRem('12px'),
     ultraSmall: pxToRem('10px'),
   },

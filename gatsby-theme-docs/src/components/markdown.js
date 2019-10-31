@@ -40,10 +40,10 @@ const H1 = styled.h1`
 `;
 const H2 = styled.h2`
   ${headerStyles};
-  border-bottom: 1px solid ${colors.light.surfaceSecondary3};
+  border-bottom: 1px solid ${colors.light.borderPrimary};
   font-size: ${typography.fontSizes.h2};
   font-weight: ${typography.fontWeights.bold};
-  margin: ${dimensions.spacings.xxxxl} 0 ${dimensions.spacings.xxxl};
+  margin: ${dimensions.spacings.xxxxl} 0 ${dimensions.spacings.xl};
   padding-bottom: ${dimensions.spacings.s};
 `;
 const H3 = styled.h3`
@@ -290,7 +290,7 @@ const CodeBlock = props => {
               }
             `}
             onClick={handleCopyToClipboardClick}
-            title="Copy to clipboard"
+            title={isCopiedToClipboard ? 'Copied' : 'Copy to clipboard'}
           >
             <ClipboardIcon />
           </div>
@@ -463,25 +463,22 @@ const withAnchorLink = Component => props => {
       css={css`
         display: flex;
         align-items: baseline;
-        > * + * {
-          margin: 0 0 0 ${dimensions.spacings.s};
-        }
-      `}
-    >
-      <span>{props.children}</span>
-      <a
-        href={`#${props.id}`}
-        role="anchor-link"
-        css={css`
-          :hover {
+        :hover {
+          [role='anchor-link'] {
             svg {
               * {
                 fill: ${colors.light.linkNavigation};
               }
             }
           }
-        `}
-      >
+        }
+        > * + * {
+          margin: 0 0 0 ${dimensions.spacings.s};
+        }
+      `}
+    >
+      <span>{props.children}</span>
+      <a href={`#${props.id}`} role="anchor-link">
         <RibbonIcon />
       </a>
     </Component>

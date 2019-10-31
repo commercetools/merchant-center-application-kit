@@ -4,7 +4,8 @@ import { dimensions } from '../../design-system';
 const LayoutPageContent = styled.div`
   grid-row: 2;
   grid-column: 1/3;
-  padding: ${dimensions.spacings.xl} ${dimensions.spacings.m};
+  padding: ${dimensions.spacings.m} ${dimensions.spacings.m}
+    ${dimensions.spacings.xl};
   max-width: ${dimensions.widths.pageContent};
 
   > * + * {

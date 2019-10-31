@@ -57,11 +57,24 @@ const StickyContainer = styled.div`
   position: sticky;
   top: ${dimensions.spacings.xxl};
 `;
-const PageTitle = styled.div`
+const PageTitleLink = styled.a`
   color: ${colors.light.textSecondary};
   font-size: ${typography.fontSizes.extraSmall};
   padding: ${dimensions.spacings.s} ${dimensions.spacings.m} 0;
   border-left: 1px solid transparent;
+  text-decoration: none;
+  :hover {
+    color: ${colors.light.linkNavigation};
+    svg {
+      * {
+        fill: ${colors.light.linkNavigation};
+      }
+    }
+  }
+  :hover,
+  :active {
+    outline-width: 0;
+  }
 `;
 const RoundButton = styled.button`
   display: flex;
@@ -82,6 +95,10 @@ const RoundButton = styled.button`
     width: ${dimensions.spacings.m};
   }
 
+  :hover {
+    box-shadow: ${tokens.shadow8};
+  }
+
   @media screen and (${dimensions.viewports.largeTablet}) {
     display: none;
   }
@@ -99,12 +116,12 @@ const LayoutPageNavigation = props => {
 
   const navigationContainer = (
     <Spacings.Stack scale="m">
-      <PageTitle>
+      <PageTitleLink href="#anchor-page-top">
         <Spacings.Inline scale="s" alignItems="center">
           <div>{props.pageTitle}</div>
           <StackedLinesIndentedIcon />
         </Spacings.Inline>
-      </PageTitle>
+      </PageTitleLink>
       <PageNavigation tableOfContents={props.tableOfContents} />
     </Spacings.Stack>
   );
@@ -123,13 +140,7 @@ const LayoutPageNavigation = props => {
           setMenuOpen(false);
         }}
       >
-        <SlidingContainer
-          onClick={event => {
-            event.stopPropagation();
-          }}
-        >
-          {navigationContainer}
-        </SlidingContainer>
+        <SlidingContainer>{navigationContainer}</SlidingContainer>
       </ContainerOverlay>
 
       <GridContainer>

@@ -48,6 +48,7 @@ const ButtonLink = styled(Link)`
 
   :hover {
     background-color: ${colors.light.surfaceQuote};
+    color: ${colors.light.linkNavigation};
   }
 `;
 

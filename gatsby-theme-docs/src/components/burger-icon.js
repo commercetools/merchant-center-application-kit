@@ -21,7 +21,8 @@ const BurgerIcon = props => (
       overflow: 'visible',
     }}
   >
-    <path d={props.isActive ? svgPaths.cross : svgPaths.burger} />
+    {/* <path d={props.isActive ? svgPaths.cross : svgPaths.burger} /> */}
+    <path d={svgPaths.burger} />
   </svg>
 );
 BurgerIcon.displayName = 'BurgerIcon';

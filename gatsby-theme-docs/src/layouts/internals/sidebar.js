@@ -24,7 +24,6 @@ const SidebarLinkSubtitle = styled.div`
   text-overflow: ellipsis;
   overflow-x: hidden;
   width: 100%;
-  white-space: nowrap;
 `;
 const SidebarLinkItem = styled.div`
   padding: 0 ${dimensions.spacings.m};
@@ -64,7 +63,7 @@ const SidebarLink = props => (
             // Manually check that the link is the active one, even with trailing slashes.
             // The gatsby link is by default configured to match the exact path, therefore we
             // need to check this manually.
-            const linkPath = trimTrailingSlash(withPrefix(href));
+            const linkPath = trimTrailingSlash(href);
             const locationPath = trimTrailingSlash(location.pathname);
             if (linkPath === locationPath) {
               return { className: [linkClassName, activeClassName].join(' ') };
