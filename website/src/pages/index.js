@@ -132,7 +132,7 @@ const MarketingLandingPage = () => {
                 justify-self: center;
               `}
             >
-              <LandingPageRocket />
+              <LandingPageRocket height={300} />
             </div>
           </div>
         </div>
