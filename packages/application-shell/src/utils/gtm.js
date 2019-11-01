@@ -2,6 +2,7 @@
  * Google Tag Manager (GTM) Tracking Utilities
  */
 import camelcase from 'lodash/camelCase';
+import logger from './logger';
 
 const getDataAttribute = (node, key) => {
   if (node.dataset) {
@@ -26,8 +27,38 @@ export const defaultEventWhitelist = {
   ForgotPassword: 'ForgotPassword',
 };
 
+const logTracking = (
+  { event, hierarchy, label },
+  { isIgnored } = { isIgnored: false }
+) => {
+  const groupName = `%cGTM ${
+    isIgnored ? '%cignoring' : '%cperforming'
+  } %ctracking %c${hierarchy} %c${label}`;
+
+  logger.groupCollapsed(
+    groupName,
+    'color: gray; font-weight: bold;',
+    `color: ${isIgnored ? 'orangered' : 'seagreen'}; font-weight: lighter;`,
+    'color: gray; font-weight: lighter;',
+    'color: goldenrod; font-style: normal;',
+    'color: cornflowerblue; font-style: normal;'
+  );
+
+  logger.log('%cevent', 'color: cadetblue;', event);
+  logger.log('%chierarchy', 'color: goldenrod; font-weight: bold;', hierarchy);
+  logger.log('%clabel', 'color: cornflowerblue; font-weight: bold;', label);
+
+  logger.groupEnd();
+};
+
 export const track = (event, hierarchy, label) => {
   if (!window.dataLayer) return;
+
+  logTracking({
+    event,
+    hierarchy,
+    label,
+  });
 
   // sends event to google tag manager based on the mapping defined there
   // https://tagmanager.google.com/?authuser=2#/container/accounts/374886/containers/2308084/workspaces/6/tags
@@ -125,20 +156,22 @@ const eventHandler = (name, trackingEventWhitelist) => event => {
   )
     hierarchy = eventWhiteList[hierarchy][trackLabel];
   else {
-    // eslint-disable-next-line no-console
-    console.warn('ignoring event', {
-      event: trackEvent,
-      hierarchy:
-        typeof hierarchy === 'object' && trackLabel in hierarchy
-          ? hierarchy[trackLabel]
-          : hierarchy,
-      label: trackLabel,
-    });
+    logTracking(
+      {
+        event: trackEvent,
+        hierarchy:
+          typeof hierarchy === 'object' && trackLabel in hierarchy
+            ? hierarchy[trackLabel]
+            : hierarchy,
+        label: trackLabel,
+      },
+      { isIgnored: true }
+    );
+
     return;
   }
 
-  // eslint-disable-next-line no-console
-  console.info('tracking event', {
+  logTracking({
     event: trackEvent,
     hierarchy:
       typeof hierarchy === 'object' ? hierarchy[trackLabel] : hierarchy,
