@@ -43,7 +43,7 @@
     "@commercetools-frontend/constants": "15.1.4",
     "@commercetools-frontend/i18n": "15.3.0",
     "@emotion/core": "10.0.22",
-    "@emotion/styled": "10.0.22",
+    "@emotion/styled": "10.0.23",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
     "prop-types": "15.7.2",

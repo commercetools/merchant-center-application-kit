@@ -43,7 +43,7 @@
     "@commercetools-frontend/notifications": "15.1.7",
     "@commercetools-frontend/sentry": "15.3.0",
     "@emotion/core": "10.0.22",
-    "@emotion/styled": "10.0.22",
+    "@emotion/styled": "10.0.23",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
     "moment": "^2.24.0",
@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@commercetools-frontend/ui-kit": "10.6.1",
-    "@testing-library/react": "9.3.0",
+    "@testing-library/react": "9.3.1",
     "react": "16.11.0",
     "react-dom": "16.11.0",
     "react-intl": "3.4.0",

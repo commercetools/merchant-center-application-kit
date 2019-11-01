@@ -25,15 +25,15 @@
     "@commercetools-frontend/babel-preset-mc-app": "15.3.0",
     "@commercetools/enzyme-extensions": "5.0.0",
     "@commercetools/jest-enzyme-matchers": "1.1.2",
-    "@testing-library/jest-dom": "4.2.0",
+    "@testing-library/jest-dom": "4.2.3",
     "babel-jest": "24.9.0",
     "colors": "1.4.0",
     "enzyme-adapter-react-16": "1.15.1",
-    "enzyme-matchers": "7.1.1",
+    "enzyme-matchers": "7.1.2",
     "enzyme-to-json": "3.4.3",
     "identity-obj-proxy": "3.0.0",
     "intl": "1.2.5",
-    "jest-enzyme": "7.1.1",
+    "jest-enzyme": "7.1.2",
     "jest-localstorage-mock": "2.4.0",
     "jest-silent-reporter": "0.1.2",
     "jest-transform-graphql": "2.1.0",
@@ -46,7 +46,7 @@
     "unfetch": "4.1.0"
   },
   "devDependencies": {
-    "@testing-library/react": "9.3.0"
+    "@testing-library/react": "9.3.1"
   },
   "peerDependencies": {
     "@testing-library/react": "9.x",
