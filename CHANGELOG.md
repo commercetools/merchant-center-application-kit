@@ -1,3 +1,15 @@
+## [15.3.2](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.1...v15.3.2) (2019-11-01)
+
+#### 🔮 Type: Chore
+
+- `application-shell`
+  - [#1139](https://github.com/commercetools/merchant-center-application-kit/pull/1139) chore(app-shell): add logging to tracking ([@tdeekens](https://github.com/tdeekens))
+
+#### 🤖 Type: Dependencies
+
+- `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `jest-preset-mc-app`, `mc-http-server`, `mc-scripts`, `react-notifications`
+  - [#1140](https://github.com/commercetools/merchant-center-application-kit/pull/1140) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+
 ## [15.3.1](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.0...v15.3.1) (2019-10-30)
 
 #### 🐛 Type: Bug
