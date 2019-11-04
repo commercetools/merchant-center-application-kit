@@ -97,6 +97,7 @@ module.exports = {
               destinationDir: 'files',
             },
           },
+          require.resolve('./src/plugins/remark-rewrite-relative-links'),
         ],
         // workaround https://github.com/gatsbyjs/gatsby/issues/15486#issuecomment-510153237
         plugins: ['gatsby-remark-images', 'gatsby-remark-copy-linked-files'],

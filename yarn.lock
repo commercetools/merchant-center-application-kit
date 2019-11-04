@@ -11995,6 +11995,13 @@ gatsby-remark-relative-images@0.2.3:
     slash "^2.0.0"
     unist-util-select "^1.5.0"
 
+gatsby-remark-rewrite-relative-links@1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-rewrite-relative-links/-/gatsby-remark-rewrite-relative-links-1.0.7.tgz#f758537057c25a4dc81ecc49474f6d01b8b189f1"
+  integrity sha512-KScR54EJ8nJuKCFDsFyB/e8BkO96r4O2G16Prz1JdRP6utoBtzjf9BAL60hfC8S4FWc+bpQD7zJIpE33s47naw==
+  dependencies:
+    unist-util-visit "^2.0.0"
+
 gatsby-source-filesystem@2.1.33:
   version "2.1.33"
   resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.1.33.tgz#6a6e4a075be7af5db603acb695b9eabdc885985e"
@@ -25049,7 +25056,7 @@ unist-util-visit-parents@^3.0.0:
     "@types/unist" "^2.0.3"
     unist-util-is "^4.0.0"
 
-unist-util-visit@2.0.0:
+unist-util-visit@2.0.0, unist-util-visit@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/unist-util-visit/-/unist-util-visit-2.0.0.tgz#1fdae5ea88251651bfe49b7e84390d664fc227c5"
   integrity sha512-kiTpWKsF54u/78L/UU/i7lxrnqGiEWBgqCpaIZBYP0gwUC+Akq0Ajm4U8JiNIoQNfAioBdsyarnOcTEAb9mLeQ==

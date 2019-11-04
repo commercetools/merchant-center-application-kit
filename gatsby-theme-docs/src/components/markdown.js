@@ -348,42 +348,6 @@ const Delete = styled.span`
   text-decoration: line-through;
 `;
 const Hr = styled(ThematicBreak)``;
-// eslint-disable-next-line react/display-name
-const PatchedLink = props => {
-  // Since `document` is not available in SSR, we need to replace
-  // the link with the proper value once the component is mounted.
-  const [linkTo, setLink] = React.useState();
-  React.useEffect(() => {
-    // At this point, `href` values are relative but the link router expects
-    // a full relative path from the base URL path.
-    // E.g. if `href="./foo"` and we're on page `/getting-started/bar`, the
-    // value we need is `/getting-started/foo`.
-    // To achieve that, we let the DOM API build the full URL, then we simply
-    // extract the relative path.
-    const linkElement = document.createElement('a');
-    linkElement.href = props.href;
-    const absoluteUrl = linkElement.href; // <-- this now is the full absolute URL
-    const [, relativePath] = absoluteUrl.split(window.location.origin);
-    setLink(withPrefix(relativePath));
-  }, [props.href]);
-  if (linkTo) {
-    return (
-      <HistoryLink
-        to={linkTo}
-        css={ExternalLink.linkStyles}
-        className={props.className}
-      >
-        {props.children}
-      </HistoryLink>
-    );
-  }
-  return props.children;
-};
-PatchedLink.propTypes = {
-  href: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
 const InlineLink = styled.span`
   display: inline-flex;
   align-items: center;
@@ -434,11 +398,20 @@ const Link = props => {
     return <ExternalLink {...props}>{linkWithIcon}</ExternalLink>;
   }
 
-  return <PatchedLink {...props} />;
+  return (
+    <HistoryLink
+      to={props.href}
+      css={ExternalLink.linkStyles}
+      className={props.className}
+    >
+      {props.children}
+    </HistoryLink>
+  );
 };
 Link.propTypes = {
   href: PropTypes.string.isRequired,
   target: PropTypes.string,
+  className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 const Img = props => (
