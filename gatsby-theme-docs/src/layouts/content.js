@@ -98,15 +98,15 @@ const LayoutContent = props => {
               `}
             >
               <LayoutPageHeader>
-                {props.pageData.frontmatter.beta && (
-                  <NotificationInfo flag="beta" />
-                )}
                 <Markdown.H1>{props.pageData.frontmatter.title}</Markdown.H1>
               </LayoutPageHeader>
               <LayoutPageHeaderSide>
                 <PlaceholderPageHeaderSide />
               </LayoutPageHeaderSide>
               <LayoutPageContent>
+                {props.pageData.frontmatter.beta && (
+                  <NotificationInfo flag="beta" />
+                )}
                 {props.children}
                 <ContentPagination slug={props.pageData.fields.slug} />
               </LayoutPageContent>

@@ -4,8 +4,7 @@ import { dimensions } from '../../design-system';
 const LayoutPageContent = styled.div`
   grid-row: 2;
   grid-column: 1/3;
-  padding: ${dimensions.spacings.m} ${dimensions.spacings.m}
-    ${dimensions.spacings.xl};
+  padding: 0 ${dimensions.spacings.m} ${dimensions.spacings.xl};
   max-width: ${dimensions.widths.pageContent};
 
   > * + * {
@@ -14,7 +13,7 @@ const LayoutPageContent = styled.div`
 
   @media screen and (${dimensions.viewports.largeTablet}) {
     grid-column: 1;
-    padding: ${dimensions.spacings.xl};
+    padding: 0 ${dimensions.spacings.xl} ${dimensions.spacings.xl};
   }
 `;
 

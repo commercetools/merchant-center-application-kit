@@ -88,6 +88,7 @@ const Pagination = props => {
       allNavigationYaml {
         nodes {
           chapterTitle
+          pagination
           pages {
             title
             path
@@ -101,7 +102,9 @@ const Pagination = props => {
   const chapterSlug = `/${chapterPath}`;
   const chapterPageLinks = data.allNavigationYaml.nodes.reduce(
     (links, node) => {
-      if (node.pages) {
+      const isPaginationEnabledForChapter =
+        typeof node.pagination === 'boolean' ? node.pagination : true;
+      if (isPaginationEnabledForChapter && node.pages) {
         return [
           ...links,
           ...node.pages.filter(page => page.path.startsWith(chapterSlug)),

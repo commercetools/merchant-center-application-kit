@@ -5,7 +5,6 @@
  */
 
 const fs = require('fs');
-const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 
 // Ensure that certain directories exist.
@@ -31,6 +30,7 @@ exports.sourceNodes = ({ actions }) => {
     type NavigationYaml implements Node @dontInfer {
       id: ID!
       chapterTitle: String! @proxy(from: "chapter-title")
+      pagination: Boolean
       pages: [Entry!]
     }
 

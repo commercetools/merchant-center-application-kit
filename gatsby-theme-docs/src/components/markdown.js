@@ -209,7 +209,8 @@ const CodeBlock = props => {
   const [languageTag] = languageToken.split(':');
   const languageAliases = { sh: 'bash', zsh: 'bash', js: 'javascript' };
   const parsedLanguage = languageTag.split('language-').pop();
-  const language = languageAliases[parsedLanguage] || parsedLanguage;
+  const [languageCode] = parsedLanguage.split('{');
+  const language = languageAliases[languageCode] || languageCode;
   const content =
     props.children.props && props.children.props.children
       ? props.children.props.children
@@ -256,14 +257,15 @@ const CodeBlock = props => {
           }
         `}
       >
-        <span
-          css={css`
-            color: ${colors.light.textFaded};
-            text-transform: uppercase;
-          `}
-        >
-          {language}
-        </span>
+        {language === 'text' ? null : (
+          <span
+            css={css`
+              color: ${colors.light.textFaded};
+            `}
+          >
+            {language}
+          </span>
+        )}
         <Tooltip
           placement="left"
           title={isCopiedToClipboard ? 'Copied' : 'Copy to clipboard'}
@@ -442,16 +444,19 @@ Link.propTypes = {
 const Img = props => (
   <>
     <img {...props} />
-    <span
-      css={css`
-        color: ${colors.light.textSecondary};
-        font-size: ${typography.fontSizes.small};
-        margin: 0;
-      `}
-    >
-      {/* eslint-disable-next-line react/prop-types */}
-      {props.title || props.alt}
-    </span>
+    {/* eslint-disable-next-line react/prop-types */}
+    {props.title ? (
+      <span
+        css={css`
+          color: ${colors.light.textSecondary};
+          font-size: ${typography.fontSizes.small};
+          margin: 0;
+        `}
+      >
+        {/* eslint-disable-next-line react/prop-types */}
+        {props.title}
+      </span>
+    ) : null}
   </>
 );
 
