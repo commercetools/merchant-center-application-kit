@@ -6,7 +6,7 @@ import {
   Spacings,
 } from '@commercetools-docs/gatsby-theme-docs/src/components';
 import { dimensions } from '@commercetools-docs/gatsby-theme-docs/src/design-system';
-import GitHubSvg from '../../../images/icons/github.svg';
+import GitHubSvg from '../../../icons/github.svg';
 
 const RepositoryLinks = () => {
   const data = useStaticQuery(graphql`

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import AngleThinLeftIcon from '../images/icons/angle-thin-left-icon.svg';
-import AngleThinRightIcon from '../images/icons/angle-thin-right-icon.svg';
+import AngleThinLeftIcon from '../icons/angle-thin-left-icon.svg';
+import AngleThinRightIcon from '../icons/angle-thin-right-icon.svg';
 import { Card, Spacings, TextSmall } from '../components';
 import { colors, dimensions, typography } from '../design-system';
 

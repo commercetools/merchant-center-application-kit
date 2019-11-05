@@ -4,7 +4,7 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Spacings } from '../../components';
 import { colors, dimensions, typography, tokens } from '../../design-system';
-import LogoSvg from '../../images/icons/logo.svg';
+import LogoSvg from '../../icons/logo.svg';
 
 const MenuLogoContainer = styled.div`
   width: auto;

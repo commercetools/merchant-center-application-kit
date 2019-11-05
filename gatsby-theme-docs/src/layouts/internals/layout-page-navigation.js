@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import { IconButton, Spacings } from '../../components';
-import UnstyledStackedLinesIndentedIcon from '../../images/icons/stacked-lines-indented-icon.svg';
+import UnstyledStackedLinesIndentedIcon from '../../icons/stacked-lines-indented-icon.svg';
 import { colors, dimensions, typography } from '../../design-system';
 import createStyledIcon from '../../utils/create-styled-icon';
 import PageNavigation from './page-navigation';

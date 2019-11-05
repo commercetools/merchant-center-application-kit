@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import UnstyledInformationIcon from '../images/icons/information-icon.svg';
+import UnstyledInformationIcon from '../icons/information-icon.svg';
 import { colors, dimensions, typography, tokens } from '../design-system';
 import createStyledIcon from '../utils/create-styled-icon';
 import Spacings from './spacings';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import LogoSvg from '../../images/icons/logo.svg';
+import LogoSvg from '../../icons/logo.svg';
 import { ExternalLink, Spacings } from '../../components';
 import { colors, dimensions, typography } from '../../design-system';
 

@@ -5,7 +5,7 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Tooltip } from '@commercetools-frontend/ui-kit';
 import { InfoDialog } from '@commercetools-frontend/application-components';
-import UnstyledCodeViewIcon from '@commercetools-docs/gatsby-theme-docs/src/images/icons/code-view-icon.svg';
+import UnstyledCodeViewIcon from '@commercetools-docs/gatsby-theme-docs/src/icons/code-view-icon.svg';
 import {
   colors,
   dimensions,

@@ -40,7 +40,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: path.resolve(`./src/static/assets`),
+        path: path.resolve(`./src/images`),
       },
     },
     // Main content pages (.mdx)
@@ -113,14 +113,14 @@ module.exports = {
     // {
     //   resolve: 'gatsby-plugin-favicon',
     //   options: {
-    //     logo: `${__dirname}/src/images/icons/logo.svg`,
+    //     logo: `${__dirname}/src/icons/logo.svg`,
     //   },
     // },
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
-          include: /images\/icons/,
+          include: /icons/,
         },
       },
     },
@@ -136,6 +136,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
+        // FIXME: move outside of theme
         short_name: 'AppKit | commercetools docs',
         name: 'AppKit | commercetools docs',
         description: 'Develop applications for the Merchant Center',
@@ -143,7 +144,7 @@ module.exports = {
         background_color: '#FFFFFF', // surfacePrimary
         theme_color: '#078CDF', // primary
         display: 'standalone',
-        icon: require.resolve('./src/images/icons/logo.svg'),
+        icon: require.resolve('./src/icons/logo.svg'),
       },
     },
     // This needs to be last

@@ -14,7 +14,6 @@ exports.onPreBootstrap = ({ reporter }) => {
     'src/data',
     'src/images',
     'src/content',
-    'src/static/assets',
     'src/pages/files',
   ];
   requiredDirectories.forEach(dir => {

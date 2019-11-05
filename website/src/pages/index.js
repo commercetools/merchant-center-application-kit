@@ -16,10 +16,10 @@ import {
 } from '@commercetools-docs/gatsby-theme-docs/src/components';
 import LayoutMarketing from '../layouts/marketing';
 import LinksCard from '../components/links-card';
-import LandingPageRocket from '../images/icons/landing-page-rocket.svg';
-import ScreenCogIcon from '../images/icons/screen-cog-icon.svg';
-import ScreenDesignToolIcon from '../images/icons/screen-design-tool-icon.svg';
-import ScreenBulbIcon from '../images/icons/screen-bulb-icon.svg';
+import LandingPageRocket from '../icons/landing-page-rocket.svg';
+import ScreenCogIcon from '../icons/screen-cog-icon.svg';
+import ScreenDesignToolIcon from '../icons/screen-design-tool-icon.svg';
+import ScreenBulbIcon from '../icons/screen-bulb-icon.svg';
 
 const SectionTitle = styled.div`
   color: ${colors.light.primary};
