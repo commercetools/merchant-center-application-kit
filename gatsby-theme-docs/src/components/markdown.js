@@ -20,6 +20,10 @@ const TypographyPage = styled.div`
   font-weight: ${typography.fontWeights.regular};
   line-height: 1.5;
   word-spacing: 2px;
+
+  section > * + * {
+    margin: ${dimensions.spacings.m} 0 0;
+  }
 `;
 const headerStyles = () => css`
   font-weight: ${typography.fontWeights.medium};
@@ -28,7 +32,7 @@ const headerStyles = () => css`
 `;
 
 const Paragraph = styled.p`
-  margin: ${dimensions.spacings.s} 0;
+  margin: 0;
 `;
 const H1 = styled.h1`
   ${headerStyles};
@@ -64,9 +68,7 @@ const H6 = styled.h6`
   line-height: 1.4;
 `;
 const ThematicBreak = styled.hr`
-  height: 1px;
-  border: 0;
-  background-color: ${colors.light.borderPrimary};
+  display: none;
 `;
 const Blockquote = styled.blockquote`
   background-color: ${colors.light.surfaceQuote};
@@ -103,6 +105,7 @@ const Table = styled.table`
   border: 1px solid ${colors.light.borderPrimary};
   border-collapse: collapse;
   font-size: ${typography.fontSizes.body};
+  margin: 0;
   tbody {
     border-top: 2px solid ${colors.light.borderPrimary};
   }
@@ -240,7 +243,7 @@ const CodeBlock = props => {
       css={css`
         border: 1px solid ${colors.light.surfaceCodeHighlight};
         border-radius: ${tokens.borderRadius6};
-        margin: ${dimensions.spacings.m} 0;
+        margin: 0;
         overflow: auto;
       `}
     >
