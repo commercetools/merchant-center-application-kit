@@ -9,6 +9,8 @@
  *   fetched from LaunchDarkly (without default values flopflip will default
  *   them to off until fetched).
  */
-
-// eslint-disable-next-line import/prefer-default-export
 export const PROJECT_EXTENSIONS = 'projectExtensions';
+
+export const FLAGS = {
+  [PROJECT_EXTENSIONS]: true,
+};

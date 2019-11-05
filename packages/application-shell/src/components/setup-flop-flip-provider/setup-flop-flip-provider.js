@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import memoize from 'memoize-one';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
+import { FLAGS } from '../../feature-toggles';
 
 // This value is hard-coded here because we want to make sure that the
 // app uses our account of LD. The value is meant to be public, so there
@@ -62,6 +63,8 @@ export class SetupFlopFlipProvider extends React.PureComponent {
   );
 
   render() {
+    const mergedFlags = { ...FLAGS, ...(this.props.flags || {}) };
+    const mergedDefaultFlags = { ...FLAGS, ...(this.props.defaultFlags || {}) };
     return (
       <ConfigureFlopFlip
         adapter={ldAdapter}
@@ -71,13 +74,13 @@ export class SetupFlopFlipProvider extends React.PureComponent {
             : ldClientSideIdStaging,
           this.props.user && this.props.user.id,
           this.props.projectKey,
-          this.props.flags,
+          mergedFlags,
           this.props.user && this.props.user.launchdarklyTrackingId,
           this.props.user && this.props.user.launchdarklyTrackingGroup,
           this.props.user && this.props.user.launchdarklyTrackingTeam,
           this.props.user && this.props.user.launchdarklyTrackingTenant
         )}
-        defaultFlags={this.props.defaultFlags}
+        defaultFlags={mergedDefaultFlags}
         shouldDeferAdapterConfiguration={
           typeof this.props.shouldDeferAdapterConfiguration === 'boolean'
             ? this.props.shouldDeferAdapterConfiguration
