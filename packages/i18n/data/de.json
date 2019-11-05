@@ -41,6 +41,7 @@
   "AppKit.Shared.inactive": "Inaktiv",
   "AppKit.Shared.open": "Öffnen",
   "AppKit.Shared.remove": "Entfernen",
+  "AppKit.Shared.revert": "Änderungen verwerfen",
   "AppKit.Shared.save": "Speichern",
   "AppKit.Shared.update": "Aktualisieren",
   "Components.ModalPage.TopBar.Back": "Zurück",
