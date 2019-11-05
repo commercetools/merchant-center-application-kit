@@ -62,9 +62,18 @@ export class SetupFlopFlipProvider extends React.PureComponent {
     })
   );
 
+  getFlags = memoize((internalFlags, passedFlags = {}) => ({
+    ...internalFlags,
+    ...passedFlags,
+  }));
+  getDefaultFlags = memoize(
+    (internalDefaultFlags, passedDefaultFlags = {}) => ({
+      ...internalDefaultFlags,
+      ...passedDefaultFlags,
+    })
+  );
+
   render() {
-    const mergedFlags = { ...FLAGS, ...(this.props.flags || {}) };
-    const mergedDefaultFlags = { ...FLAGS, ...(this.props.defaultFlags || {}) };
     return (
       <ConfigureFlopFlip
         adapter={ldAdapter}
@@ -74,13 +83,13 @@ export class SetupFlopFlipProvider extends React.PureComponent {
             : ldClientSideIdStaging,
           this.props.user && this.props.user.id,
           this.props.projectKey,
-          mergedFlags,
+          this.getFlags(FLAGS, this.props.flags),
           this.props.user && this.props.user.launchdarklyTrackingId,
           this.props.user && this.props.user.launchdarklyTrackingGroup,
           this.props.user && this.props.user.launchdarklyTrackingTeam,
           this.props.user && this.props.user.launchdarklyTrackingTenant
         )}
-        defaultFlags={mergedDefaultFlags}
+        defaultFlags={this.getDefaultFlags(FLAGS, this.props.defaultFlags)}
         shouldDeferAdapterConfiguration={
           typeof this.props.shouldDeferAdapterConfiguration === 'boolean'
             ? this.props.shouldDeferAdapterConfiguration
