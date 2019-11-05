@@ -1,3 +1,17 @@
+## [15.3.3](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.2...v15.3.3) (2019-11-05)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1147](https://github.com/commercetools/merchant-center-application-kit/pull/1147) fix(app-shell): to merge internal feature flags with provided ones ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `application-components`, `application-shell`, `mc-scripts`
+  - [#1143](https://github.com/commercetools/merchant-center-application-kit/pull/1143) fix(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+- `application-components`, `application-shell-connectors`, `application-shell`, `i18n`, `jest-preset-mc-app`, `mc-http-server`, `mc-scripts`, `react-notifications`
+  - [#1142](https://github.com/commercetools/merchant-center-application-kit/pull/1142) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [15.3.2](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.1...v15.3.2) (2019-11-01)
 
 #### 🔮 Type: Chore
