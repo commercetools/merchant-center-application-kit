@@ -53,7 +53,8 @@ const FormDialogExample = () => {
                   alert(`email: ${formikValues.email}`);
                   setIsOpen(false);
                 }}
-                render={formikProps => (
+              >
+                {formikProps => (
                   <FormDialog
                     title={values.title}
                     isOpen={isOpen}
@@ -84,7 +85,7 @@ const FormDialogExample = () => {
                     </Spacings.Stack>
                   </FormDialog>
                 )}
-              />
+              </Formik>
             )}
           </ModalController>
         );
