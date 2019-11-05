@@ -54,7 +54,7 @@ const LayoutContent = props => {
         <LayoutSidebar
           isMenuOpen={isMenuOpen}
           setMenuOpen={setMenuOpen}
-          slug={props.pageData.fields.slug}
+          slug={props.pageContext.slug}
           siteTitle={data.site.siteMetadata.title}
         />
         <LayoutMain
@@ -108,11 +108,11 @@ const LayoutContent = props => {
                   <NotificationInfo flag="beta" />
                 )}
                 {props.children}
-                <ContentPagination slug={props.pageData.fields.slug} />
+                <ContentPagination slug={props.pageContext.slug} />
               </LayoutPageContent>
               <LayoutPageNavigation
                 pageTitle={
-                  props.pageData.frontmatter.shortTitle ||
+                  props.pageContext.shortTitle ||
                   props.pageData.frontmatter.title
                 }
                 tableOfContents={props.pageData.tableOfContents}
@@ -127,13 +127,13 @@ const LayoutContent = props => {
 };
 LayoutContent.displayName = 'LayoutContent';
 LayoutContent.propTypes = {
+  pageContext: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    shortTitle: PropTypes.string,
+  }).isRequired,
   pageData: PropTypes.shape({
-    fields: PropTypes.shape({
-      slug: PropTypes.string.isRequired,
-    }).isRequired,
     frontmatter: PropTypes.shape({
       title: PropTypes.string.isRequired,
-      shortTitle: PropTypes.string,
       beta: PropTypes.bool,
     }).isRequired,
     tableOfContents: PropTypes.object.isRequired,

@@ -7,6 +7,8 @@
 const fs = require('fs');
 const { createFilePath } = require('gatsby-source-filesystem');
 
+const trimTrailingSlash = url => url.replace(/(\/?)$/, '');
+
 // Ensure that certain directories exist.
 // https://www.gatsbyjs.org/tutorial/building-a-theme/#create-a-data-directory-using-the-onprebootstrap-lifecycle
 exports.onPreBootstrap = ({ reporter }) => {
@@ -57,8 +59,8 @@ exports.onCreateNode = ({ node, getNode, actions }, pluginOptions) => {
 
 // https://www.gatsbyjs.org/docs/mdx/programmatically-creating-pages/#create-pages-from-sourced-mdx-files
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const result = await graphql(`
-    query {
+  const allMdxPagesResult = await graphql(`
+    query QueryAllMdxPages {
       allMdx(limit: 1000) {
         edges {
           node {
@@ -71,12 +73,36 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     }
   `);
-  if (result.errors) {
-    reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
+  if (allMdxPagesResult.errors) {
+    reporter.panicOnBuild('🚨  ERROR: Loading "allMdx" query');
   }
-  const pages = result.data.allMdx.edges;
+  const navigationYamlResult = await graphql(`
+    query QueryNavigationYaml {
+      allNavigationYaml {
+        nodes {
+          chapterTitle
+          pages {
+            title
+            path
+          }
+        }
+      }
+    }
+  `);
+  if (navigationYamlResult.errors) {
+    reporter.panicOnBuild('🚨  ERROR: Loading "allNavigationYaml" query');
+  }
+  const pages = allMdxPagesResult.data.allMdx.edges;
+  const navigationPages = navigationYamlResult.data.allNavigationYaml.nodes.reduce(
+    (pageLinks, node) => [...pageLinks, ...node.pages],
+    []
+  );
   // you'll call `createPage` for each result
   pages.forEach(({ node }) => {
+    const matchingNavigationPage = navigationPages.find(
+      page =>
+        trimTrailingSlash(page.path) === trimTrailingSlash(node.fields.slug)
+    );
     actions.createPage({
       // This is the slug you created before
       // (or `node.frontmatter.slug`)
@@ -85,7 +111,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       component: require.resolve('./src/templates/page-content.js'),
       // You can use the values in this context in
       // our page layout component
-      context: { slug: node.fields.slug },
+      context: {
+        slug: node.fields.slug,
+        shortTitle: matchingNavigationPage
+          ? matchingNavigationPage.title
+          : undefined,
+      },
     });
   });
 };

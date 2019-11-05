@@ -43,24 +43,15 @@ const components = {
   ...PlaceholderMarkdownComponents,
 };
 
-const getSeoTitle = slug =>
-  slug
-    .split('/')
-    .map(linkPath =>
-      linkPath
-        // Upper case first letter
-        .replace(/^([a-zA-Z])/i, char => char.toUpperCase())
-        // Use whitespace instead of hyphens
-        .replace(/-/gi, ' ')
-    )
-    .filter(Boolean)
-    .join(' > ');
-
 const PageContentTemplate = props => (
-  <LayoutContent pageData={props.data.mdx}>
+  <LayoutContent pageContext={props.pageContext} pageData={props.data.mdx}>
     <MDXProvider components={components}>
       <Markdown.TypographyPage>
-        <SEO title={getSeoTitle(props.data.mdx.fields.slug)} />
+        <SEO
+          title={
+            props.pageContext.shortTitle || props.data.mdx.frontmatter.title
+          }
+        />
         {/* This wrapper div is important to ensure the vertical space */}
         <div>
           <MDXRenderer>{props.data.mdx.body}</MDXRenderer>
@@ -72,14 +63,14 @@ const PageContentTemplate = props => (
 
 PageContentTemplate.displayName = 'PageContentTemplate';
 PageContentTemplate.propTypes = {
+  pageContext: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    shortTitle: PropTypes.string,
+  }).isRequired,
   data: PropTypes.shape({
     mdx: PropTypes.shape({
-      fields: PropTypes.shape({
-        slug: PropTypes.string.isRequired,
-      }).isRequired,
       frontmatter: PropTypes.shape({
         title: PropTypes.string.isRequired,
-        shortTitle: PropTypes.string,
       }).isRequired,
       body: PropTypes.string.isRequired,
       tableOfContents: PropTypes.object.isRequired,
@@ -91,12 +82,8 @@ export default PageContentTemplate;
 export const query = graphql`
   query QueryMarkdownPage($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
-      fields {
-        slug
-      }
       frontmatter {
         title
-        shortTitle
         beta
       }
       body
