@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import memoize from 'memoize-one';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
+import { FLAGS } from '../../feature-toggles';
 
 // This value is hard-coded here because we want to make sure that the
 // app uses our account of LD. The value is meant to be public, so there
@@ -61,6 +62,17 @@ export class SetupFlopFlipProvider extends React.PureComponent {
     })
   );
 
+  getFlags = memoize((internalFlags, passedFlags = {}) => ({
+    ...internalFlags,
+    ...passedFlags,
+  }));
+  getDefaultFlags = memoize(
+    (internalDefaultFlags, passedDefaultFlags = {}) => ({
+      ...internalDefaultFlags,
+      ...passedDefaultFlags,
+    })
+  );
+
   render() {
     return (
       <ConfigureFlopFlip
@@ -71,13 +83,13 @@ export class SetupFlopFlipProvider extends React.PureComponent {
             : ldClientSideIdStaging,
           this.props.user && this.props.user.id,
           this.props.projectKey,
-          this.props.flags,
+          this.getFlags(FLAGS, this.props.flags),
           this.props.user && this.props.user.launchdarklyTrackingId,
           this.props.user && this.props.user.launchdarklyTrackingGroup,
           this.props.user && this.props.user.launchdarklyTrackingTeam,
           this.props.user && this.props.user.launchdarklyTrackingTenant
         )}
-        defaultFlags={this.props.defaultFlags}
+        defaultFlags={this.getDefaultFlags(FLAGS, this.props.defaultFlags)}
         shouldDeferAdapterConfiguration={
           typeof this.props.shouldDeferAdapterConfiguration === 'boolean'
             ? this.props.shouldDeferAdapterConfiguration

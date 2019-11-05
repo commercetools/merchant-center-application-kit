@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
+import { FLAGS } from '../../feature-toggles';
 import { SetupFlopFlipProvider } from './setup-flop-flip-provider';
 
 const createTestProps = props => ({
@@ -116,13 +117,19 @@ describe('rendering', () => {
     expect(wrapper.find(ConfigureFlopFlip)).toHaveProp(
       'adapterArgs',
       expect.objectContaining({
-        user: expect.objectContaining({
-          custom: expect.objectContaining({
-            tenant: props.user.launchdarklyTrackingTenant,
-          }),
-        }),
+        flags: {
+          ...FLAGS,
+          flagA: true,
+          flagB: false,
+        },
       })
     );
+  });
+  it('should pass "defaultFlags"', () => {
+    expect(wrapper.find(ConfigureFlopFlip)).toHaveProp('defaultFlags', {
+      ...FLAGS,
+      flagA: true,
+    });
   });
   describe('when shouldDeferAdapterConfiguration is defined', () => {
     describe('when is true', () => {
