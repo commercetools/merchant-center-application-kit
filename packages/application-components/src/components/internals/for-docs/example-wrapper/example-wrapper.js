@@ -56,9 +56,8 @@ const KnobsController = props => {
     {}
   );
   return (
-    <Formik
-      initialValues={initialValues}
-      render={formikProps => {
+    <Formik initialValues={initialValues}>
+      {formikProps => {
         const form = (
           <Spacings.Stack size="m">
             <SelectField
@@ -123,7 +122,7 @@ const KnobsController = props => {
         );
         return props.children({ form, values: formikProps.values });
       }}
-    />
+    </Formik>
   );
 };
 KnobsController.displayName = 'KnobsController';

@@ -75,7 +75,8 @@ const FormModalPageExample = () => (
                   alert(`email: ${formikValues.email}`);
                   setIsOpen(false);
                 }}
-                render={formikProps => (
+              >
+                {formikProps => (
                   <FormModalPage
                     title={values.title}
                     isOpen={isOpen}
@@ -104,7 +105,7 @@ const FormModalPageExample = () => (
                     />
                   </FormModalPage>
                 )}
-              />
+              </Formik>
             )}
           </ModalController>
         );

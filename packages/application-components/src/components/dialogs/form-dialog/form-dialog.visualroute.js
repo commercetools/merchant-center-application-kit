@@ -8,10 +8,8 @@ import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
 export const routePath = '/form-dialog';
 
 const FormDialogExample = props => (
-  <Formik
-    initialValues={{ email: '' }}
-    onSubmit={() => {}}
-    render={formikProps => (
+  <Formik initialValues={{ email: '' }} onSubmit={() => {}}>
+    {formikProps => (
       <React.Fragment>
         <div id={props.portalId} style={{ flex: 1 }} />
         <FormDialog
@@ -40,7 +38,7 @@ const FormDialogExample = props => (
         </FormDialog>
       </React.Fragment>
     )}
-  />
+  </Formik>
 );
 FormDialogExample.displayName = 'FormDialogExample';
 FormDialogExample.propTypes = {
