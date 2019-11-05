@@ -63,9 +63,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         edges {
           node {
             id
-            frontmatter {
-              landing_page
-            }
             fields {
               slug
             }
@@ -90,15 +87,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // our page layout component
       context: { slug: node.fields.slug },
     });
-    if (node.frontmatter.landing_page === true) {
-      const [, chapterPath] = node.fields.slug.split('/');
-      actions.createRedirect({
-        fromPath: `/${chapterPath}`,
-        toPath: node.fields.slug,
-        isPermanent: true,
-        redirectInBrowser: true,
-      });
-    }
   });
 };
 

@@ -1,15 +1,11 @@
 - chapter-title: Getting started
   pages:
-    - title: Overview
-      path: '/getting-started/overview'
     - title: Installing a starter application
       path: '/getting-started/installing-a-starter-application'
     - title: Tooling
       path: '/getting-started/tooling'
 - chapter-title: Development
   pages:
-    - title: Overview
-      path: '/development/overview'
     - title: Available scripts
       path: '/development/available-scripts'
     - title: Folder structure
@@ -24,8 +20,6 @@
       path: '/development/translations'
 - chapter-title: UI Components
   pages:
-    - title: Overview
-      path: '/components/overview'
     - title: InfoDialog
       path: '/components/info-dialog'
     - title: ConfirmationDialog
@@ -42,8 +36,6 @@
       path: '/components/ui-kit'
 - chapter-title: Deployment
   pages:
-    - title: Overview
-      path: '/deployment/overview'
     - title: Production build
       path: '/deployment/production-build'
     - title: Runtime configuration
@@ -64,8 +56,6 @@
       path: '/deployment/example-aws-s3-cloudfront'
 - chapter-title: Register applications
   pages:
-    - title: Overview
-      path: '/register-applications/overview'
     - title: Configuring a custom application
       path: '/register-applications/configuring-a-custom-application'
     - title: Activating a custom application
@@ -76,8 +66,6 @@
       path: '/register-applications/caveats'
 - chapter-title: Main concepts
   pages:
-    - title: Overview
-      path: '/main-concepts/overview'
     - title: Architecture
       path: '/main-concepts/architecture'
     - title: Authentication
