@@ -22,10 +22,10 @@ aliases:
     run: yarn --frozen-lockfile
 
 executors:
-  node_10:
+  node_12:
     working_directory: *working_directory
     docker:
-      - image: circleci/node:10.17
+      - image: circleci/node:12.13
 
   cypress:
     working_directory: *working_directory
@@ -107,7 +107,7 @@ commands:
 
 jobs:
   build_lint_and_test:
-    executor: node_10
+    executor: node_12
     steps:
       - setup_dependencies
       - *save_yarn_cache
@@ -115,7 +115,7 @@ jobs:
       - lint_and_test
       - save_package_bundles
   vrt_test:
-    executor: node_10
+    executor: node_12
     steps:
       - setup_dependencies
       - restore_package_bundles
@@ -192,7 +192,7 @@ jobs:
             - store_artifacts:
                 path: cypress/screenshots
   publish:
-    executor: node_10
+    executor: node_12
     steps:
       - setup_dependencies
       - restore_package_bundles
