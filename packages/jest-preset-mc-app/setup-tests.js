@@ -9,9 +9,10 @@ global.window.app = {
 };
 
 const shouldSilenceWarnings = (...messages) =>
-  [/Warning: componentWillReceiveProps has been renamed/].some(msgRegex =>
-    messages.some(msg => msgRegex.test(msg))
-  );
+  [
+    /Warning: componentWillReceiveProps has been renamed/,
+    /CellMeasurerCache should only measure a cell's width or height/,
+  ].some(msgRegex => messages.some(msg => msgRegex.test(msg)));
 
 // setup file
 const logOrThrow = (log, method, messages) => {
