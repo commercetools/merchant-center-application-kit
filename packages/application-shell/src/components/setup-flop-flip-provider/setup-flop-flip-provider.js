@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
+import useAllMenuFeatureToggles from '../../hooks/use-all-menu-feature-toggles';
 import { FLAGS } from '../../feature-toggles';
 
 // This value is hard-coded here because we want to make sure that the
@@ -13,20 +14,23 @@ const ldClientSideIdProduction = '5979d95f6040390cd07b5e01';
 const ldClientSideIdStaging = '5979d95f6040390cd07b5e00';
 
 export const SetupFlopFlipProvider = props => {
+  const allMenuFeatureToggles = useAllMenuFeatureToggles();
   const flags = React.useMemo(
     () => ({
       ...FLAGS,
+      ...allMenuFeatureToggles.allFeatureToggles,
       ...props.flags,
     }),
-    [props.flags]
+    [allMenuFeatureToggles.allFeatureToggles, props.flags]
   );
 
   const defaultFlags = React.useMemo(
     () => ({
       ...FLAGS,
+      ...allMenuFeatureToggles.allFeatureToggles,
       ...props.defaultFlags,
     }),
-    [props.defaultFlags]
+    [allMenuFeatureToggles.allFeatureToggles, props.defaultFlags]
   );
 
   const adapterArgs = React.useMemo(
@@ -54,7 +58,7 @@ export const SetupFlopFlipProvider = props => {
       shouldDeferAdapterConfiguration={
         typeof props.shouldDeferAdapterConfiguration === 'boolean'
           ? props.shouldDeferAdapterConfiguration
-          : !props.user
+          : !props.user || allMenuFeatureToggles.isLoading
       }
     >
       {props.children}

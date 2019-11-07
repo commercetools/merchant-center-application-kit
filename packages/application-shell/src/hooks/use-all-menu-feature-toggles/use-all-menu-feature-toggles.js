@@ -1,13 +1,13 @@
 import { useQuery } from 'react-apollo';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { FetchAllFeatureToggles } from './fetch-all-feature-toggles.proxy.graphql';
+import { FetchAllMenuFeatureToggles } from './fetch-all-menu-feature-toggles.proxy.graphql';
 
-const useAllFeatureToggles = () => {
+const useAllMenuFeatureToggles = () => {
   const mcProxyApiUrl = useApplicationContext(
     context => context.environment.mcProxyApiUrl
   );
 
-  const { data, refetch, loading } = useQuery(FetchAllFeatureToggles, {
+  const { data, refetch, loading } = useQuery(FetchAllMenuFeatureToggles, {
     fetchPolicy: 'cache-and-network',
     context: {
       uri: `${mcProxyApiUrl || defaultApiUrl}/api/graphql`,
@@ -21,4 +21,4 @@ const useAllFeatureToggles = () => {
   };
 };
 
-export default useAllFeatureToggles;
+export default useAllMenuFeatureToggles;
