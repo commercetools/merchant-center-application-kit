@@ -1,0 +1,3 @@
+query FetchAllFeatureToggles {
+  allFeatureToggles
+}
