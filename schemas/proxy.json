@@ -27,6 +27,30 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "allFeatureToggles",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -1498,7 +1522,7 @@
   "extensions": {
     "graphql-config": {
       "source": "https://mc.commercetools.com/api/graphql",
-      "timestamp": "Wed Sep 11 2019 09:40:29 GMT+0200 (Central European Summer Time)"
+      "timestamp": "Mon Nov 11 2019 13:53:20 GMT+0100 (Central European Standard Time)"
     }
   }
 }
