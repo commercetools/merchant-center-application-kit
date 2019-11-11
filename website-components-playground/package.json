@@ -17,6 +17,7 @@
     "@emotion/styled": "10.0.22",
     "core-js": "3.3.2",
     "emotion-theming": "10.0.19",
+    "formik": "2.0.3",
     "gatsby": "2.17.8",
     "gatsby-cli": "2.8.3",
     "gatsby-plugin-emotion": "4.1.12",
