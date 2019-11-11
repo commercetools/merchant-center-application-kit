@@ -404,10 +404,9 @@ describe('rendering', () => {
             ]);
           });
           it('should pass menu visibilities as prop', () => {
-            expect(restrictedMenuItemWrapper).toHaveProp(
-              'namesOfMenuVisibilities',
-              ['hideAddOrder']
-            );
+            expect(
+              restrictedMenuItemWrapper
+            ).toHaveProp('namesOfMenuVisibilities', ['hideAddOrder']);
           });
         });
         describe('when item is active', () => {
@@ -698,10 +697,9 @@ describe('rendering', () => {
           );
         });
         it('should pass permissions as prop', () => {
-          expect(wrapper.find(RestrictedByPermissions)).toHaveProp(
-            'permissions',
-            ['ViewProducts']
-          );
+          expect(
+            wrapper.find(RestrictedByPermissions)
+          ).toHaveProp('permissions', ['ViewProducts']);
         });
         it('should pass actionRights as prop', () => {
           expect(wrapper.find(RestrictedByPermissions)).toHaveProp(

@@ -367,69 +367,66 @@ export default flowRight(
   withRouter,
   injectFeatureToggles(['pimSearch', 'customApplications', 'canViewDashboard']),
   withApplicationContext(),
-  connect(
-    null,
-    (dispatch, ownProps) => ({
-      pimSearchProductIds: searchText =>
-        dispatch(
-          sdkActions.post({
-            uri: `/${ownProps.applicationContext.project.key}/search/products`,
-            mcApiProxyTarget: MC_API_PROXY_TARGETS.PIM_SEARCH,
-            payload: {
-              query: {
-                fullText: {
-                  field: 'name',
-                  language: ownProps.applicationContext.dataLocale,
-                  value: searchText,
-                },
+  connect(null, (dispatch, ownProps) => ({
+    pimSearchProductIds: searchText =>
+      dispatch(
+        sdkActions.post({
+          uri: `/${ownProps.applicationContext.project.key}/search/products`,
+          mcApiProxyTarget: MC_API_PROXY_TARGETS.PIM_SEARCH,
+          payload: {
+            query: {
+              fullText: {
+                field: 'name',
+                language: ownProps.applicationContext.dataLocale,
+                value: searchText,
               },
-              sort: [
-                {
-                  field: 'name',
-                  language: ownProps.applicationContext.dataLocale,
-                  order: 'desc',
-                },
-              ],
-              limit: 9,
-              offset: 0,
             },
-          })
-        ).then(result =>
-          result && result.hits ? result.hits.map(hit => hit.id) : []
-        ),
-      getPimSearchStatus: () =>
-        dispatch(
-          // TODO this should be sdkActions.head()
-          // and then we should check whether the response code is
-          // - 200 meaning the project is indexed
-          // - 404 meaning the project is not indexed
-          //
-          // But there is a problem in tne node-sdk client as it tries to
-          // .json()-parse the response to HEAD requests which results in an
-          // error, so we send a regular request for now and limit to no results
-          // instead to keep the payload minimal
-          sdkActions.post({
-            uri: `/${ownProps.applicationContext.project.key}/search/products`,
-            mcApiProxyTarget: MC_API_PROXY_TARGETS.PIM_SEARCH,
-            payload: {
-              query: {
-                fullText: {
-                  field: 'name',
-                  language: ownProps.applicationContext.dataLocale,
-                  value: 'availability-check',
-                },
+            sort: [
+              {
+                field: 'name',
+                language: ownProps.applicationContext.dataLocale,
+                order: 'desc',
               },
-              limit: 0,
-              offset: 0,
+            ],
+            limit: 9,
+            offset: 0,
+          },
+        })
+      ).then(result =>
+        result && result.hits ? result.hits.map(hit => hit.id) : []
+      ),
+    getPimSearchStatus: () =>
+      dispatch(
+        // TODO this should be sdkActions.head()
+        // and then we should check whether the response code is
+        // - 200 meaning the project is indexed
+        // - 404 meaning the project is not indexed
+        //
+        // But there is a problem in tne node-sdk client as it tries to
+        // .json()-parse the response to HEAD requests which results in an
+        // error, so we send a regular request for now and limit to no results
+        // instead to keep the payload minimal
+        sdkActions.post({
+          uri: `/${ownProps.applicationContext.project.key}/search/products`,
+          mcApiProxyTarget: MC_API_PROXY_TARGETS.PIM_SEARCH,
+          payload: {
+            query: {
+              fullText: {
+                field: 'name',
+                language: ownProps.applicationContext.dataLocale,
+                value: 'availability-check',
+              },
             },
-          })
-        ).then(
-          () => pimIndexerStates.INDEXED,
-          // project is not using pim-indexer when response error code is 404,
-          // but we treat all errors as non-indexed as a safe guard, so we're
-          // not checking the response error code at all
-          () => pimIndexerStates.NOT_INDEXED
-        ),
-    })
-  )
+            limit: 0,
+            offset: 0,
+          },
+        })
+      ).then(
+        () => pimIndexerStates.INDEXED,
+        // project is not using pim-indexer when response error code is 404,
+        // but we treat all errors as non-indexed as a safe guard, so we're
+        // not checking the response error code at all
+        () => pimIndexerStates.NOT_INDEXED
+      ),
+  }))
 )(QuickAccess);

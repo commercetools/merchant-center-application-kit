@@ -8,5 +8,6 @@ export type TAppState = {
   notifications: (
     | TAppNotificationGlobal
     | TAppNotificationPage
-    | TAppNotificationSide)[];
+    | TAppNotificationSide
+  )[];
 };

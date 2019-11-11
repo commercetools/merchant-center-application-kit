@@ -42,7 +42,6 @@ class StateMachinesListConnector extends React.Component {
   }
 }
 
-export default connect(
-  null,
-  { setStateMachines: actions.setStateMachines }
-)(StateMachinesListConnector);
+export default connect(null, { setStateMachines: actions.setStateMachines })(
+  StateMachinesListConnector
+);

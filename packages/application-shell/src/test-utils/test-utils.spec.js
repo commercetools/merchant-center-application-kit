@@ -68,9 +68,10 @@ describe('ApolloMockProvider', () => {
 
 describe('`flopflip`', () => {
   const FEATURE_NAME = 'fooBar';
-  const TestComponent = injectFeatureToggle(FEATURE_NAME, 'isFooBarEnabled')(
-    props => (props.isFooBarEnabled ? 'enabled' : 'disabled')
-  );
+  const TestComponent = injectFeatureToggle(
+    FEATURE_NAME,
+    'isFooBarEnabled'
+  )(props => (props.isFooBarEnabled ? 'enabled' : 'disabled'));
   it('should not have feature toggles by default', () => {
     const { container } = renderApp(<TestComponent />);
     expect(container).toHaveTextContent('disabled');

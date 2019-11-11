@@ -53,10 +53,7 @@ const mapDispatchToProps = {
   pushDependencyVersionCounter: actions.pushDependencyVersionCounter,
 };
 export default flowRight(
-  connect(
-    null,
-    mapDispatchToProps
-  ),
+  connect(null, mapDispatchToProps),
   withApplicationContext(({ environment }) => ({
     applicationName: environment.applicationName,
   }))

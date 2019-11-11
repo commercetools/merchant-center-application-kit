@@ -472,10 +472,9 @@ describe('rendering', () => {
       );
     });
     it('should pass "availableLocales" as prop', () => {
-      expect(switcherWrapper.find(LocaleSwitcher)).toHaveProp(
-        'availableLocales',
-        ['en', 'de']
-      );
+      expect(
+        switcherWrapper.find(LocaleSwitcher)
+      ).toHaveProp('availableLocales', ['en', 'de']);
     });
   });
 });
