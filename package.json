@@ -81,6 +81,7 @@
     "@types/graphql": "14.5.0",
     "@types/history": "4.7.3",
     "@types/jest": "24.0.22",
+    "@types/jquery": "3.3.31",
     "@types/lodash": "4.14.146",
     "@types/moment-timezone": "0.5.12",
     "@types/node": "10.17.5",
@@ -156,7 +157,8 @@
     "stylelint-config-standard": "19.0.0",
     "stylelint-order": "3.1.1",
     "stylelint-value-no-unknown-custom-properties": "2.0.0",
-    "typescript": "3.7.2"
+    "typescript": "3.7.2",
+    "vfile-message": "2.0.2"
   },
   "resolutions": {
     "@types/react": "16.9.11",
