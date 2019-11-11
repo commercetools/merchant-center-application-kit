@@ -1,3 +1,25 @@
+## [15.3.4](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.3...v15.3.4) (2019-11-11)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1157](https://github.com/commercetools/merchant-center-application-kit/pull/1157) fix(app-shell): falling back to default ([@tdeekens](https://github.com/tdeekens))
+  - [#1153](https://github.com/commercetools/merchant-center-application-kit/pull/1153) feat(app-shell): to use all feature toggles query ([@tdeekens](https://github.com/tdeekens))
+
+#### 🔮 Type: Chore
+
+- `jest-preset-mc-app`
+  - [#1149](https://github.com/commercetools/merchant-center-application-kit/pull/1149) test(setup-tests): ignore CellMeasurerCach warning ([@ahmehri](https://github.com/ahmehri))
+- Other
+  - [#1150](https://github.com/commercetools/merchant-center-application-kit/pull/1150) chore: bump to node 12 ([@tdeekens](https://github.com/tdeekens))
+
+#### 🤖 Type: Dependencies
+
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `constants`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-http-server`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sdk`, `sentry`, `url-utils`
+  - [#1154](https://github.com/commercetools/merchant-center-application-kit/pull/1154) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+- `l10n`
+  - [#1155](https://github.com/commercetools/merchant-center-application-kit/pull/1155) chore(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [15.3.3](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.2...v15.3.3) (2019-11-05)
 
 #### 🐛 Type: Bug
