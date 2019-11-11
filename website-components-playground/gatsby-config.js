@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 
 module.exports = {
-  pathPrefix: '/app-kit/playground',
+  pathPrefix: '/custom-applications/playground',
   siteMetadata: {
     title: `AppKit UI components | Playground`,
     description: ``,

@@ -1,11 +1,11 @@
 {
   "version": 2,
   "public": true,
-  "name": "mc-app-kit",
-  "alias": "mc-app-kit",
+  "name": "mc-custom-applications",
+  "alias": "mc-custom-applications",
   "routes": [
-    { "src": "/", "status": 302, "dest": "/app-kit/" },
+    { "src": "/", "status": 302, "dest": "/custom-application/" },
     { "handle": "filesystem" },
-    { "src": "/(.*)", "status": 404, "dest": "/app-kit/404" }
+    { "src": "/(.*)", "status": 404, "dest": "/custom-application/404" }
   ]
 }

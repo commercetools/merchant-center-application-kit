@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 
 module.exports = {
-  pathPrefix: '/app-kit',
+  pathPrefix: '/custom-applications',
   siteMetadata: {
     title: 'AppKit',
     description: 'Develop applications for the Merchant Center',
