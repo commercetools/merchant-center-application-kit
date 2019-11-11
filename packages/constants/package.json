@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/constants",
-  "version": "15.1.4",
+  "version": "15.3.4",
   "description": "Shared constants for MC applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
