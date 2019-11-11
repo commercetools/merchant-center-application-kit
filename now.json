@@ -4,8 +4,8 @@
   "name": "mc-custom-applications",
   "alias": "mc-custom-applications",
   "routes": [
-    { "src": "/", "status": 302, "dest": "/custom-application/" },
+    { "src": "/", "status": 302, "dest": "/custom-applications/" },
     { "handle": "filesystem" },
-    { "src": "/(.*)", "status": 404, "dest": "/custom-application/404" }
+    { "src": "/(.*)", "status": 404, "dest": "/custom-applications/404" }
   ]
 }
