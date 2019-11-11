@@ -12,11 +12,15 @@ const TestComponent = () => {
   if (!isLoading) {
     return (
       <>
-        <h3>Number of toggles: {allFeatureToggles.length}</h3>
+        <h3>Number of toggles: {Object.keys(allFeatureToggles).length}</h3>
         <ul>
-          {allFeatureToggles.map(featureToggle => (
-            <div key={featureToggle}>{`Toggle: ${featureToggle}`}</div>
-          ))}
+          {Object.entries(allFeatureToggles).map(
+            ([featureToggleName, featureToggleValue]) => (
+              <div key={featureToggleName}>{`Toggle: ${featureToggleName} is ${
+                featureToggleValue ? 'enabled' : 'disabled'
+              }`}</div>
+            )
+          )}
         </ul>
       </>
     );
@@ -69,8 +73,8 @@ describe('when served by proxy', () => {
       await waitForElement(() => rendered.getByText('Loading'));
       await waitForElement(() => [
         rendered.getByText(/Number of toggles: 2/i),
-        rendered.getByText(/Toggle: flagA/i),
-        rendered.getByText(/Toggle: flagB/i),
+        rendered.getByText(/Toggle: flagA is disabled/i),
+        rendered.getByText(/Toggle: flagB is disabled/i),
       ]);
     });
   });

@@ -5,6 +5,14 @@ import { FetchAllMenuFeatureToggles } from './fetch-all-menu-feature-toggles.pro
 
 const defaultApiUrl = window.location.origin;
 
+const getDefaultedFeatureToggles = allFeatureToggles =>
+  allFeatureToggles.reduce(
+    (previouslyDefaultedFeatureToggles, nextFeatureToggle) => ({
+      ...previouslyDefaultedFeatureToggles,
+      [nextFeatureToggle]: false,
+    }),
+    {}
+  );
 const useAllMenuFeatureToggles = () => {
   const { mcProxyApiUrl, servedByProxy } = useApplicationContext(
     applicationContext => ({
@@ -25,7 +33,8 @@ const useAllMenuFeatureToggles = () => {
   return {
     isLoading: loading,
     refetch,
-    allFeatureToggles: (data && data.allFeatureToggles) || [],
+    allFeatureToggles:
+      (data && getDefaultedFeatureToggles(data.allFeatureToggles)) || {},
   };
 };
 
