@@ -11,7 +11,7 @@
     "vrt": "percy snapshot public"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-docs": "1.0.0",
+    "@commercetools-docs/gatsby-theme-docs": "1.0.0-canary.2",
     "@commercetools-frontend/application-components": "15.3.4",
     "@commercetools-frontend/ui-kit": "10.8.0",
     "@emotion/core": "10.0.22",
