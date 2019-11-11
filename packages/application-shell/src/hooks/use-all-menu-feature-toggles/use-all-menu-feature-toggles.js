@@ -3,6 +3,8 @@ import { useApplicationContext } from '@commercetools-frontend/application-shell
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { FetchAllMenuFeatureToggles } from './fetch-all-menu-feature-toggles.proxy.graphql';
 
+const defaultApiUrl = window.location.origin;
+
 const useAllMenuFeatureToggles = () => {
   const { mcProxyApiUrl, servedByProxy } = useApplicationContext(
     applicationContext => ({
@@ -16,7 +18,7 @@ const useAllMenuFeatureToggles = () => {
     skip: !servedByProxy,
     onError: reportErrorToSentry,
     context: {
-      uri: `${mcProxyApiUrl}/api/graphql`,
+      uri: `${mcProxyApiUrl || defaultApiUrl}/api/graphql`,
     },
   });
 
