@@ -1,0 +1,33 @@
+{
+  "name": "@commercetools-docs/app-kit-components-playground",
+  "version": "15.2.0",
+  "private": true,
+  "scripts": {
+    "build:local": "gatsby build",
+    "build": "gatsby build --prefix-paths",
+    "postbuild": "mv public ../website/public/app-kit/playground",
+    "start": "gatsby develop --port 8001",
+    "serve": "gatsby serve"
+  },
+  "dependencies": {
+    "@babel/core": "7.6.4",
+    "@commercetools-frontend/application-components": "15.2.1",
+    "@commercetools-frontend/ui-kit": "10.4.0",
+    "@emotion/core": "10.0.22",
+    "@emotion/styled": "10.0.22",
+    "core-js": "3.3.2",
+    "emotion-theming": "10.0.19",
+    "gatsby": "2.17.8",
+    "gatsby-cli": "2.8.3",
+    "gatsby-plugin-emotion": "4.1.12",
+    "gatsby-plugin-prefetch-google-fonts": "1.4.3",
+    "gatsby-source-filesystem": "2.1.33",
+    "moment": "2.24.0",
+    "moment-timezone": "0.5.27",
+    "prop-types": "15.7.2",
+    "react": "16.11.0",
+    "react-dom": "16.11.0",
+    "react-intl": "3.4.0",
+    "react-router-dom": "5.1.2"
+  }
+}

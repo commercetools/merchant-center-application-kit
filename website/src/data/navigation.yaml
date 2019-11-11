@@ -1,0 +1,84 @@
+- chapter-title: Getting started
+  pages:
+    - title: Installing a starter application
+      path: '/getting-started/installing-a-starter-application'
+    - title: Tooling
+      path: '/getting-started/tooling'
+- chapter-title: Development
+  pages:
+    - title: Available scripts
+      path: '/development/available-scripts'
+    - title: Folder structure
+      path: '/development/folder-structure'
+    - title: Menu links
+      path: '/development/menu-links'
+    - title: Styling
+      path: '/development/styling'
+    - title: Testing
+      path: '/development/testing'
+    - title: Translations
+      path: '/development/translations'
+- chapter-title: UI Components
+  pages:
+    - title: InfoDialog
+      path: '/components/info-dialog'
+    - title: ConfirmationDialog
+      path: '/components/confirmation-dialog'
+    - title: FormDialog
+      path: '/components/form-dialog'
+    - title: InfoModalPage
+      path: '/components/info-modal-page'
+    - title: FormModalPage
+      path: '/components/form-modal-page'
+    - title: TabularModalPage
+      path: '/components/tabular-modal-page'
+    - title: UI-Kit
+      path: '/components/ui-kit'
+- chapter-title: Deployment
+  pages:
+    - title: Production build
+      path: '/deployment/production-build'
+    - title: Runtime configuration
+      path: '/deployment/runtime-configuration'
+    - title: HTTP server
+      path: '/deployment/http-server'
+    - title: Static server
+      path: '/deployment/static-server'
+    - title: Serving static assets
+      path: '/deployment/serving-static-assets'
+    - title: 'Example: Now v1'
+      path: '/deployment/example-now-v1'
+    - title: 'Example: Now v2'
+      path: '/deployment/example-now-v2'
+    - title: 'Example: Firebase'
+      path: '/deployment/example-firebase'
+    - title: 'Example: AWS - S3 & CloudFront'
+      path: '/deployment/example-aws-s3-cloudfront'
+- chapter-title: Register applications
+  pages:
+    - title: Configuring a custom application
+      path: '/register-applications/configuring-a-custom-application'
+    - title: Activating a custom application
+      path: '/register-applications/activating-a-custom-application'
+    - title: Deleting a custom application
+      path: '/register-applications/deleting-a-custom-application'
+    - title: Caveats
+      path: '/register-applications/caveats'
+- chapter-title: Main concepts
+  pages:
+    - title: Architecture
+      path: '/main-concepts/architecture'
+    - title: Authentication
+      path: '/main-concepts/authentication'
+    - title: API Gateway
+      path: '/main-concepts/api-gateway'
+    - title: GraphQL API
+      path: '/main-concepts/graphql'
+    - title: Proxy endpoints
+      path: '/main-concepts/proxy-endpoints'
+    - title: Proxy to external API
+      path: '/main-concepts/proxy-to-external-api'
+    - title: Application Shell
+      path: '/main-concepts/application-shell'
+    - title: Data fetching
+      path: '/main-concepts/data-fetching'

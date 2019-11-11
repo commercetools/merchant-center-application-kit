@@ -1,182 +1,247 @@
 import React from 'react';
-import { useTransition, animated } from 'react-spring';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import {
-  customProperties,
-  Grid,
-  Spacings,
-} from '@commercetools-frontend/ui-kit';
 import pkg from '../../package.json';
-import * as colors from '../colors';
-import DevelopItSvg from '../images/develop-it.svg';
-import DeployItSvg from '../images/deploy-it.svg';
-import RegisterItSvg from '../images/register-it.svg';
-import { TextHighlight, SEO } from '../components';
-import { LayoutMarketing } from '../layouts';
+import {
+  colors,
+  dimensions,
+  typography,
+  tokens,
+} from '@commercetools-docs/gatsby-theme-docs/src/design-system';
+import {
+  Card,
+  SEO,
+  Spacings,
+} from '@commercetools-docs/gatsby-theme-docs/src/components';
+import LayoutMarketing from '../layouts/marketing';
+import LinksCard from '../components/links-card';
+import LandingPageRocket from '../icons/landing-page-rocket.svg';
+import ScreenCogIcon from '../icons/screen-cog-icon.svg';
+import ScreenDesignToolIcon from '../icons/screen-design-tool-icon.svg';
+import ScreenBulbIcon from '../icons/screen-bulb-icon.svg';
 
 const SectionTitle = styled.div`
-  font-size: 2rem;
+  color: ${colors.light.primary};
+  font-size: ${typography.fontSizes.h4};
+`;
+const SectionBody = styled.div`
+  color: ${colors.light.textPrimary};
+  font-size: ${typography.fontSizes.small};
+  line-height: 1.5;
 `;
 const PageContainer = styled.div`
-  width: 90%;
-  max-width: 1024px;
-  margin: 72px auto;
+  width: 100%;
+  max-width: ${dimensions.widths.marketingContent};
+  margin: 0 auto;
 `;
 const ButtonLink = styled(Link)`
-  padding: ${customProperties.spacingM} ${customProperties.spacingXl};
+  display: inline-block;
+  padding: ${dimensions.spacings.m} ${dimensions.spacings.l};
   text-decoration: none;
-  font-size: 1.5rem;
-  color: ${colors.light.text};
-  background-color: ${colors.light.primarySoft};
-  border: 1px solid ${colors.light.primary};
-  border-bottom: 3px solid ${colors.light.primary};
-  border-radius: ${customProperties.borderRadius6};
+  font-size: ${typography.fontSizes.body};
+  color: ${colors.light.textPrimary};
+  background-color: ${colors.light.surfacePrimary};
+  border: 1px solid ${colors.light.surfacePrimary};
+  border-radius: ${tokens.borderRadius6};
+
+  :hover {
+    background-color: ${colors.light.surfaceQuote};
+    color: ${colors.light.linkNavigation};
+  }
+`;
+const GridContainer = styled.div`
+  display: grid;
+  grid-gap: ${dimensions.spacings.l};
+  grid-auto-columns: 1fr;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(${dimensions.widths.pageNavigation}, 1fr)
+  );
 `;
 
-const heroSlides = [
-  { id: 0, component: DevelopItSvg },
-  { id: 1, component: DeployItSvg },
-  { id: 2, component: RegisterItSvg },
-];
-
-const AnimatedHeroSlides = () => {
-  const [slideIndex, nextSlide] = React.useState(0);
-  const transitions = useTransition(slideIndex, i => i, {
-    from: { opacity: 0, transform: 'translate3d(0, 100%,0)' },
-    enter: { opacity: 1, transform: 'translate3d(0,0,0)' },
-    leave: { opacity: 0, transform: 'translate3d(0, -50%,0)' },
-  });
-  React.useEffect(() => {
-    setInterval(() => nextSlide(state => (state + 1) % 3), 3000);
-  }, []);
-  return (
-    <>
-      {transitions.map(({ item, props, key }) => {
-        const Image = heroSlides[item].component;
-        return (
-          <animated.div
-            key={key}
-            style={{
-              ...props,
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              top: 0,
-              bottom: 0,
-            }}
-          >
-            <Image width="100%" height="100%" />
-          </animated.div>
-        );
-      })}
-    </>
-  );
-};
-
-const IndexPage = () => {
-  const siteConfig = useStaticQuery(graphql`
-    query GetAnimationsStatus {
+const MarketingLandingPage = () => {
+  const data = useStaticQuery(graphql`
+    query GetMainResourcesLinks {
       site {
         siteMetadata {
-          disableAnimations
+          title
+          currentVersion
+          repositoryUrl
+        }
+      }
+      allNavigationYaml {
+        nodes {
+          chapterTitle
+          pages {
+            path
+          }
         }
       }
     }
   `);
-
   return (
-    <LayoutMarketing>
-      <SEO title="Home" keywords={pkg.keywords} />
+    <LayoutMarketing siteTitle={data.site.siteMetadata.title}>
+      <SEO
+        title="Develop applications for the Merchant Center"
+        keywords={pkg.keywords}
+      />
       <PageContainer>
-        <Grid
-          gridGap={customProperties.spacingL}
-          gridAutoColumns="1fr"
-          gridTemplateColumns="repeat(auto-fit, minmax(350px, 1fr))"
+        <div
+          css={css`
+            padding: 0;
+
+            @media screen and (${dimensions.viewports.largeTablet}) {
+              padding: calc(${dimensions.spacings.xl} * 2);
+            }
+          `}
         >
-          <Grid.Item>
+          <div
+            css={css`
+              display: grid;
+              grid-gap: ${dimensions.spacings.xl};
+              grid-template-rows: auto;
+              grid-template-columns: 1fr;
+
+              @media screen and (${dimensions.viewports.largeTablet}) {
+                grid-template-columns: 2fr 1fr;
+              }
+            `}
+          >
             <div
               css={css`
-                width: 100%;
-                height: 250px;
-                position: relative;
+                > * + * {
+                  margin: ${dimensions.spacings.xl} 0 0;
+                }
               `}
             >
-              {siteConfig.site.siteMetadata.disableAnimations ===
-              true ? null : (
-                <AnimatedHeroSlides />
-              )}
-            </div>
-          </Grid.Item>
-          <Grid.Item>
-            <Spacings.Stack scale="xl">
               <div
                 css={css`
-                  flex-grow: 1;
-                  font-size: 3rem;
+                  font-size: ${typography.fontSizes.h1};
+                  color: white;
                 `}
               >
-                <TextHighlight>
-                  {'Develop applications for the Merchant Center'}
-                </TextHighlight>
+                {'Develop applications for the Merchant Center'}
               </div>
-              <div
-                css={css`
-                  display: flex;
-                  justify-content: flex-start;
-                `}
-              >
+              <div>
                 <ButtonLink to="/getting-started">{'Get started'}</ButtonLink>
               </div>
-            </Spacings.Stack>
-          </Grid.Item>
-        </Grid>
+            </div>
+            <div
+              css={css`
+                justify-self: center;
+              `}
+            >
+              <LandingPageRocket height={300} />
+            </div>
+          </div>
+        </div>
       </PageContainer>
       <PageContainer>
-        <Grid
-          gridGap={customProperties.spacingL}
-          gridAutoColumns="1fr"
-          gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))"
+        <Card
+          css={css`
+            > div {
+              padding: ${dimensions.spacings.xl} ${dimensions.spacings.l};
+
+              @media screen and (${dimensions.viewports.tablet}) {
+                padding: calc(${dimensions.spacings.l} * 2)
+                  calc(${dimensions.spacings.xl} * 2);
+              }
+            }
+          `}
         >
-          <Grid.Item>
-            <SectionTitle>
-              {'🚀 '}
-              <TextHighlight>{'Built on modern technologies'}</TextHighlight>
-            </SectionTitle>
-            <p>
-              {
-                'Develop JavaScript applications with React, GraphQL, Webpack and other modern technologies.'
-              }
-            </p>
-          </Grid.Item>
-          <Grid.Item>
-            <SectionTitle>
-              {'🎨 '}
-              <TextHighlight>{'Based on a solid Design System'}</TextHighlight>
-            </SectionTitle>
-            <p>
-              {
-                'Merchant Center applications are built and designed according to our Design System, which provides rules, patterns and best practices to ease development and focus on the business logic.'
-              }
-            </p>
-          </Grid.Item>
-          <Grid.Item>
-            <SectionTitle>
-              {'📦 '}
-              <TextHighlight>{'Zero config development tools'}</TextHighlight>
-            </SectionTitle>
-            <p>
-              {
-                'Focus more on implementing the right features instead of configuration. Our packages provide all the necessary tools to get started seamlessly.'
-              }
-            </p>
-          </Grid.Item>
-        </Grid>
+          <GridContainer>
+            <Spacings.Stack scale="m">
+              <Spacings.Stack scale="s">
+                <ScreenCogIcon />
+                <SectionTitle>{'Built on modern technologies'}</SectionTitle>
+              </Spacings.Stack>
+              <SectionBody>
+                {
+                  'Develop JavaScript applications with React, GraphQL, Webpack and other modern technologies.'
+                }
+              </SectionBody>
+            </Spacings.Stack>
+            <Spacings.Stack scale="m">
+              <Spacings.Stack scale="s">
+                <ScreenDesignToolIcon />
+                <SectionTitle>{'Based on a solid Design System'}</SectionTitle>
+              </Spacings.Stack>
+              <SectionBody>
+                {
+                  'Merchant Center applications are built and designed according to our Design System, which provides rules, patterns and best practices to ease development and focus on the business logic.'
+                }
+              </SectionBody>
+            </Spacings.Stack>
+            <Spacings.Stack scale="m">
+              <Spacings.Stack scale="s">
+                <ScreenBulbIcon />
+                <SectionTitle>{'Zero config development tools'}</SectionTitle>
+              </Spacings.Stack>
+              <SectionBody>
+                {
+                  'Focus more on implementing the right features instead of configuration. Our packages provide all the necessary tools to get started seamlessly.'
+                }
+              </SectionBody>
+            </Spacings.Stack>
+          </GridContainer>
+        </Card>
+      </PageContainer>
+      <PageContainer>
+        <LinksCard
+          linksData={[
+            {
+              title: 'Documentation',
+              links: data.allNavigationYaml.nodes
+                .filter(node => node.pages && node.pages.length > 0)
+                .map(node => {
+                  const [, chapterPath] = node.pages[0].path.split('/');
+                  return {
+                    to: `/${chapterPath}`,
+                    label: node.chapterTitle,
+                  };
+                }),
+            },
+            {
+              title: 'Resources',
+              links: [
+                {
+                  to: data.site.siteMetadata.repositoryUrl,
+                  label: 'GitHub',
+                },
+                {
+                  to: 'https://github.com/commercetools/ui-kit',
+                  label: 'UI-Kit',
+                },
+                {
+                  to: 'https://docs.commercetools.com',
+                  label: 'commercetools platform',
+                },
+              ],
+            },
+            {
+              title: 'Releases',
+              links: [
+                {
+                  to: `${data.site.siteMetadata.repositoryUrl}/releases/tag/v${data.site.siteMetadata.currentVersion}`,
+                  label: `v${data.site.siteMetadata.currentVersion}`,
+                },
+                {
+                  to: `${data.site.siteMetadata.repositoryUrl}/blob/master/CONTRIBUTING.md`,
+                  label: 'Contributing',
+                },
+                {
+                  to: `${data.site.siteMetadata.repositoryUrl}/blob/master/LICENSE`,
+                  label: 'MIT license',
+                },
+              ],
+            },
+          ]}
+        />
       </PageContainer>
     </LayoutMarketing>
   );
 };
-IndexPage.displayName = 'IndexPage';
+MarketingLandingPage.displayName = 'MarketingLandingPage';
 
-export default IndexPage;
+export default MarketingLandingPage;

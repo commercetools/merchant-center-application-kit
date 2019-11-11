@@ -31,7 +31,6 @@
     "test:e2e:playground": "cypress run --spec cypress/integration/playground/**/*.js",
     "test:e2e:template-starter": "cypress run --spec cypress/integration/template-starter/**/*.js",
     "vrt:components": "percy exec -- jest --config jest.visual.config.js --runInBand",
-    "vrt:website": "yarn --cwd website vrt",
     "vrt:e2e": "percy exec -- cypress run",
     "playground:build": "yarn --cwd playground build",
     "playground:start": "yarn --cwd playground start",
@@ -45,6 +44,8 @@
     "build:typings": "NODE_ENV=production lerna run build:typings --no-private",
     "build:bundles": "NODE_ENV=production lerna run build:bundles --no-private",
     "build:bundles:watch": "NODE_ENV=development lerna run --no-private --parallel build:bundles:watch",
+    "build:website": "yarn build --scope '@commercetools-frontend/application-components' --include-dependencies && yarn --cwd website build && yarn --cwd website-components-playground build",
+    "now-build": "yarn build:website && rm -rf public && mv website/public public",
     "labels:sync": "github-labels sync",
     "get-schemas": "graphql get-schema",
     "generate:types": "graphql-codegen"
@@ -55,7 +56,8 @@
       "packages/*",
       "playground",
       "visual-testing-app",
-      "website"
+      "website",
+      "website-components-playground"
     ],
     "nohoist": [
       "**/react-apollo"
@@ -79,6 +81,7 @@
     "@types/graphql": "14.5.0",
     "@types/history": "4.7.3",
     "@types/jest": "24.0.22",
+    "@types/jquery": "3.3.31",
     "@types/lodash": "4.14.146",
     "@types/moment-timezone": "0.5.12",
     "@types/node": "10.17.5",
@@ -154,7 +157,8 @@
     "stylelint-config-standard": "19.0.0",
     "stylelint-order": "3.1.1",
     "stylelint-value-no-unknown-custom-properties": "2.0.0",
-    "typescript": "3.7.2"
+    "typescript": "3.7.2",
+    "vfile-message": "2.0.2"
   },
   "resolutions": {
     "@types/react": "16.9.11",
@@ -162,7 +166,8 @@
     "react": "16.11.0",
     "**/react": "16.11.0",
     "react-test-renderer": "16.11.0",
-    "**/react-test-renderer": "16.11.0"
+    "**/react-test-renderer": "16.11.0",
+    "**/sharp": "0.22.1"
   },
   "engines": {
     "node": ">=8.9",

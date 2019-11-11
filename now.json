@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "public": true,
+  "name": "mc-app-kit",
+  "alias": "mc-app-kit",
+  "routes": [
+    { "src": "/", "status": 302, "dest": "/app-kit/" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "status": 404, "dest": "/app-kit/404" }
+  ]
+}
