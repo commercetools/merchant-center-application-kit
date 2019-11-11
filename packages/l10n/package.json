@@ -38,14 +38,14 @@
     "generate-data": "node ./scripts/generate-l10n-data.js"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.6.3",
+    "@babel/runtime-corejs3": "7.7.2",
     "@commercetools-frontend/sentry": "15.3.0",
     "moment": "^2.24.0",
     "prop-types": "15.7.2",
     "react": "16.11.0"
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "3.1.1",
+    "@testing-library/react-hooks": "3.2.1",
     "chalk": "3.0.0",
     "cldr": "5.4.1",
     "deep-diff": "1.0.2",

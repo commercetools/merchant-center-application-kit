@@ -1,10 +1,6 @@
 export { default as version } from './version';
-export {
-  default as RestrictedByPermissions,
-} from './components/restricted-by-permissions';
-export {
-  default as branchOnPermissions,
-} from './components/branch-on-permissions';
+export { default as RestrictedByPermissions } from './components/restricted-by-permissions';
+export { default as branchOnPermissions } from './components/branch-on-permissions';
 export {
   default as Authorized,
   injectAuthorized,

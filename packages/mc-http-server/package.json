@@ -30,7 +30,7 @@
     "compression": "1.7.4",
     "express": "4.17.1",
     "hide-powered-by": "1.1.0",
-    "lightship": "4.3.3",
+    "lightship": "4.3.6",
     "morgan": "1.9.1",
     "mri": "1.1.4",
     "prom-client": "11.5.3",

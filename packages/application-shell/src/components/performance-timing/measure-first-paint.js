@@ -106,7 +106,4 @@ const mapStateToProps = () => ({
 const mapDispatchToProps = {
   pushMetricHistogram: actions.pushMetricHistogram,
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MeasureFirstPaint);
+export default connect(mapStateToProps, mapDispatchToProps)(MeasureFirstPaint);

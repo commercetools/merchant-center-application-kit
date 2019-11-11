@@ -2,29 +2,19 @@
  * THIS IS THE MODULE ENTRY POINT!
  */
 export { default as ApplicationShell } from './components/application-shell';
-export {
-  default as ApplicationShellProvider,
-} from './components/application-shell-provider';
+export { default as ApplicationShellProvider } from './components/application-shell-provider';
 export { default as apolloClient } from './configure-apollo';
 export { applyDefaultMiddlewares } from './configure-store';
 export { default as MeasureFirstPaint } from './components/performance-timing';
 export { default as InjectReducers } from './components/inject-reducers';
 export { default as RouteCatchAll } from './components/route-catch-all';
-export {
-  default as setupGlobalErrorListener,
-} from './utils/setup-global-error-listener';
+export { default as setupGlobalErrorListener } from './utils/setup-global-error-listener';
 export { selectUserId, selectProjectKeyFromUrl } from './utils';
 export { default as AsyncChunkLoader } from './components/async-chunk-loader';
 export { GtmContext } from './components/gtm-booter';
-export {
-  default as GtmUserLogoutTracker,
-} from './components/gtm-user-logout-tracker';
-export {
-  default as SetupFlopFlipProvider,
-} from './components/setup-flop-flip-provider';
-export {
-  default as handleApolloErrors,
-} from './components/handle-apollo-errors';
+export { default as GtmUserLogoutTracker } from './components/gtm-user-logout-tracker';
+export { default as SetupFlopFlipProvider } from './components/setup-flop-flip-provider';
+export { default as handleApolloErrors } from './components/handle-apollo-errors';
 export { default as version } from './version';
 
 /**
