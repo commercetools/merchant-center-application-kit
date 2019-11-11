@@ -1,8 +1,0 @@
-[build]
-  command = "yarn build:website"
-  publish = "website/public"
-
-[build.environment]
-  YARN_FLAGS = "--frozen-lockfile"
-  YARN_VERSION = "1.19.0"
-  GATSBY_CPU_COUNT = "logical_cores"
