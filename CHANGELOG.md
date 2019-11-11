@@ -1,3 +1,10 @@
+## [15.3.5](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.4...v15.3.5) (2019-11-11)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1159](https://github.com/commercetools/merchant-center-application-kit/pull/1157) fix(app-shell): return object with default values ([@tdeekens]
+
 ## [15.3.4](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.3...v15.3.4) (2019-11-11)
 
 #### 🐛 Type: Bug
