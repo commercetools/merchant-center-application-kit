@@ -36,7 +36,7 @@ export const SetupFlopFlipProvider = props => {
   const adapterArgs = React.useMemo(
     () => ({
       clientSideId:
-        this.props.appEnv === 'production'
+        props.appEnv === 'production'
           ? ldClientSideIdProduction
           : ldClientSideIdStaging,
       userId: props.user && props.user.id,
@@ -47,7 +47,7 @@ export const SetupFlopFlipProvider = props => {
       ldTrackingTeam: props.user && props.user.launchdarklyTrackingTeam,
       ldTrackingTenant: props.user && props.user.launchdarklyTrackingTenant,
     }),
-    [flags, props.projectKey, props.user]
+    [flags, props.appEnv, props.projectKey, props.user]
   );
 
   return (

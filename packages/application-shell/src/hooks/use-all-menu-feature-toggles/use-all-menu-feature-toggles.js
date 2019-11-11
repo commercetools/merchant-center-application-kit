@@ -3,14 +3,18 @@ import { useApplicationContext } from '@commercetools-frontend/application-shell
 import { FetchAllMenuFeatureToggles } from './fetch-all-menu-feature-toggles.proxy.graphql';
 
 const useAllMenuFeatureToggles = () => {
-  const mcProxyApiUrl = useApplicationContext(
-    context => context.environment.mcProxyApiUrl
+  const { mcProxyApiUrl, servedByProxy } = useApplicationContext(
+    applicationContext => ({
+      mcProxyApiUrl: applicationContext.environment.mcProxyApiUrl,
+      servedByProxy: applicationContext.environment.servedByProxy,
+    })
   );
 
   const { data, refetch, loading } = useQuery(FetchAllMenuFeatureToggles, {
     fetchPolicy: 'cache-and-network',
+    skip: !servedByProxy,
     context: {
-      uri: `${mcProxyApiUrl || defaultApiUrl}/api/graphql`,
+      uri: `${mcProxyApiUrl}/api/graphql`,
     },
   });
 
