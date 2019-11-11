@@ -94,12 +94,6 @@ commands:
       - run:
           name: Running VRT application for UI components
           command: PERCY_TOKEN="$PERCY_TOKEN_UI_COMPONENTS" yarn vrt:components
-      - run:
-          name: Building Documentation Website
-          command: BUILD_TARGET=percy yarn --cwd website build
-      - run:
-          name: Running Percy snapshots
-          command: PERCY_TOKEN="$PERCY_TOKEN_WEBSITE" yarn vrt:website
   publish_to_canary:
     description: Publishing to npm registry
     steps:

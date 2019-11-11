@@ -7,8 +7,7 @@
     "prebuild": "rm -rf public/app-kit",
     "postbuild": "mv public app-kit && mkdir public && mv app-kit public/",
     "start": "gatsby develop",
-    "serve": "gatsby serve",
-    "vrt": "percy snapshot public"
+    "serve": "gatsby serve"
   },
   "dependencies": {
     "@commercetools-docs/gatsby-theme-docs": "1.0.0-canary.2",
