@@ -90,6 +90,11 @@ const Authorized = (props: Props) => {
       );
       return <React.Fragment>{props.render(false)}</React.Fragment>;
     }
+    if (props.shouldMatchSomePermissions) {
+      console.warn(
+        `@commercetools-frontend/permissions/Authorized: "shouldMatchSomePermissions" has no effect when used with DataFences`
+      );
+    }
     return (
       <React.Fragment>
         {props.render(
