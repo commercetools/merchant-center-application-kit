@@ -4,25 +4,31 @@ import { render } from '@testing-library/react';
 import useIsAuthorized from './use-is-authorized';
 
 type TPermissionName = string;
-type TAllAppliedPermission = {
-  name: string;
-  value: boolean;
+declare type TApplicationContextPermissions = {
+  [key: string]: boolean;
 };
-type TAllAppliedActionRight = {
-  name: string;
-  value: boolean;
-  group: string;
+declare type TActionRight = {
+  [key: string]: boolean;
 };
+declare type TApplicationContextActionRights = {
+  [key: string]: TActionRight;
+};
+declare type TApplicationContextGroupedByPermission = {
+  [key: string]: {
+    values: string[];
+  } | null;
+};
+declare type TApplicationContextGroupedByResourceType = {
+  [key: string]: TApplicationContextGroupedByPermission | null;
+};
+declare type TApplicationContextDataFenceType = 'store';
+declare type TApplicationContextDataFences = {
+  [key in TApplicationContextDataFenceType]: TApplicationContextGroupedByResourceType;
+};
+
 type TAllAppliedMenuVisibility = {
   name: string;
   value: boolean;
-};
-type TAllAppliedDataFence = {
-  __typename: 'StoreDataFence';
-  value: string;
-  group: string;
-  name: string;
-  type: string;
 };
 type TDemandedActionRight = {
   group: string;
@@ -51,18 +57,18 @@ const testRender = ({
   demandedPermissions,
   demandedActionRights,
   shouldMatchSomePermissions,
-  allAppliedPermissions = [{ name: 'canManageProjectSettings', value: true }],
-  allAppliedActionRights = [],
+  permissions = { canManageProjectSettings: true },
+  actionRights = null,
+  dataFences = null,
   allAppliedMenuVisibilities = [],
-  allAppliedDataFences = [],
 }: {
   demandedPermissions: TPermissionName[];
   demandedActionRights?: TDemandedActionRight[];
   shouldMatchSomePermissions: boolean;
-  allAppliedPermissions?: TAllAppliedPermission[];
-  allAppliedActionRights?: TAllAppliedActionRight[];
+  permissions: TApplicationContextPermissions;
+  actionRights?: TApplicationContextActionRights | null;
+  dataFences?: TApplicationContextDataFences | null;
   allAppliedMenuVisibilities?: TAllAppliedMenuVisibility[];
-  allAppliedDataFences?: TAllAppliedDataFence[];
 }) =>
   render(
     <ApplicationContextProvider
@@ -84,10 +90,10 @@ const testRender = ({
         suspension: {
           isActive: true,
         },
-        allAppliedPermissions,
-        allAppliedActionRights,
+        permissions,
+        actionRights,
+        dataFences,
         allAppliedMenuVisibilities,
-        allAppliedDataFences,
       }}
       environment={{
         applicationName: 'my-app',
@@ -113,12 +119,9 @@ describe('when only one permission matches', () => {
     it('should indicate being authorized', () => {
       const { queryByText } = testRender({
         demandedPermissions: ['ManageCustomers', 'ManageOrders'],
-        allAppliedPermissions: [
-          {
-            name: 'canManageCustomers',
-            value: true,
-          },
-        ],
+        permissions: {
+          canManageCustomers: true,
+        },
         shouldMatchSomePermissions: true,
       });
 
@@ -128,12 +131,9 @@ describe('when only one permission matches', () => {
   describe('when it should not match some permission', () => {
     it('should indicate being not authorized', () => {
       const { queryByText } = testRender({
-        allAppliedPermissions: [
-          {
-            name: 'canManageCustomers',
-            value: true,
-          },
-        ],
+        permissions: {
+          canManageCustomers: true,
+        },
         demandedPermissions: ['ManageCustomers', 'ManageOrders'],
         shouldMatchSomePermissions: false,
       });
@@ -144,19 +144,14 @@ describe('when only one permission matches', () => {
   describe('when it should not match an action right', () => {
     it('should indicate being not authorized', () => {
       const { queryByText } = testRender({
-        allAppliedPermissions: [
-          {
-            name: 'canManageCustomers',
-            value: true,
+        permissions: {
+          canManageCustomers: true,
+        },
+        actionRights: {
+          products: {
+            canEditPrices: true,
           },
-        ],
-        allAppliedActionRights: [
-          {
-            group: 'products',
-            name: 'canEditPrices',
-            value: true,
-          },
-        ],
+        },
         demandedPermissions: ['ManageCustomers'],
         demandedActionRights: [{ group: 'products', name: 'PublishProducts' }],
         shouldMatchSomePermissions: false,
@@ -166,19 +161,14 @@ describe('when only one permission matches', () => {
     });
     it('should indicate being authorized', () => {
       const { queryByText } = testRender({
-        allAppliedPermissions: [
-          {
-            name: 'canManageCustomers',
-            value: true,
+        permissions: {
+          canManageCustomers: true,
+        },
+        actionRights: {
+          products: {
+            canEditPrices: true,
           },
-        ],
-        allAppliedActionRights: [
-          {
-            group: 'products',
-            name: 'canEditPrices',
-            value: true,
-          },
-        ],
+        },
         demandedPermissions: ['ManageCustomers'],
         demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
         shouldMatchSomePermissions: false,
