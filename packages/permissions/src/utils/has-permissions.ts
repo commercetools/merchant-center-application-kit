@@ -1,4 +1,3 @@
-import isNil from 'lodash/isNil';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 
 // Permissions
@@ -175,23 +174,6 @@ export const hasSomePermissions = (
   demandedPermissions.some((permission: TPermissionName) =>
     hasPermission(permission, actualPermissions)
   );
-
-// Returns an Array<String> of unconfigured (not passed as `actualPermissions`) permissions.
-// The shapes of the arguments are:
-// - demandedPermissions:
-//     ['ViewProducts', 'ManageOrders']
-// - actualPermissions:
-//     { canViewProducts: true, canManageOrders: false }
-export const getInvalidPermissions = (
-  demandedPermissions: TPermissionName[],
-  actualPermissions: TPermissions | null
-) => {
-  if (!actualPermissions) return demandedPermissions;
-  // All demanded permissions need to be present as an actual permission.
-  return demandedPermissions.filter((demandedPermission: TPermissionName) =>
-    isNil(actualPermissions[toCanCase(demandedPermission)])
-  );
-};
 
 const hasDemandedDataFence = (options: {
   actualDataFence: TActualDataFence;
