@@ -4,15 +4,25 @@
 // the `render` method sets up the tests correctly.
 // This is a bit different from our usual tests, as we are testing our testing
 // tools here instead of actual components.
-import React from 'react';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloClient } from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
+import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import { useIntl } from 'react-intl';
 import { Query } from 'react-apollo';
+import { useSelector } from 'react-redux';
 import gql from 'graphql-tag';
 import { injectFeatureToggle } from '@flopflip/react-broadcast';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { Switch, Route } from 'react-router';
-import { renderApp, wait } from './test-utils';
+import {
+  renderApp,
+  renderAppWithRedux,
+  experimentalRenderAppWithRedux,
+  wait,
+} from './test-utils';
 
 describe('Intl', () => {
   const TestComponent = () => {
@@ -262,5 +272,119 @@ describe('router', () => {
   it('should return a history object', () => {
     const { history } = renderApp(<TestComponent />, { route: '/foo' });
     expect(history.location.pathname).toBe('/foo');
+  });
+});
+
+describe('custom render function', () => {
+  describe('wrapper', () => {
+    describe('when provided', () => {
+      const Context = React.createContext();
+      const ProvidedWrapper = ({ children }) => (
+        <Context.Provider value="provided wrapper">{children}</Context.Provider>
+      );
+      ProvidedWrapper.propTypes = {
+        children: PropTypes.node.isRequired,
+      };
+
+      it('should renderApp merges the provided wrapper with its own wrapper', () => {
+        const TestComponent = () => {
+          // provided wrapper
+          const value = useContext(Context);
+          // own wrapper
+          useIntl();
+
+          return value;
+        };
+
+        const rendered = renderApp(<TestComponent number={1} />, {
+          wrapper: ProvidedWrapper,
+        });
+        rendered.getByText(/provided wrapper/i);
+      });
+
+      it('should renderAppWithRedux merges the provided wrapper with its own wrapper', () => {
+        const TestComponent = () => {
+          // provided wrapper
+          const value = useContext(Context);
+          // own wrapper
+          useSelector(() => {});
+
+          return value;
+        };
+
+        const rendered = renderAppWithRedux(<TestComponent number={1} />, {
+          wrapper: ProvidedWrapper,
+        });
+        rendered.getByText(/provided wrapper/i);
+      });
+    });
+
+    describe('when not provided', () => {
+      it.each([renderApp, renderAppWithRedux])(
+        'should %p still manage',
+        renderFn => {
+          const TestComponent = ({ number }) => {
+            return number;
+          };
+
+          const rendered = renderFn(<TestComponent number={1} />);
+          rendered.getByText(/1/);
+        }
+      );
+    });
+  });
+
+  describe('rerender', () => {
+    it('should works with renderApp', () => {
+      const TestComponent = ({ number }) => {
+        // the error won't be triggered unless one of the providers is used
+        useIntl();
+        return number;
+      };
+
+      const rendered = renderApp(<TestComponent number={1} />);
+      rendered.getByText(/1/);
+
+      rendered.rerender(<TestComponent number={2} />);
+      rendered.getByText(/2/);
+      expect(rendered.queryByText(/1/)).not.toBeInTheDocument();
+    });
+
+    it('should works with renderAppWithRedux', () => {
+      const TestComponent = ({ number }) => {
+        // the error won't be triggered unless one of the providers is used
+        useSelector(() => undefined);
+        return number;
+      };
+
+      const rendered = renderAppWithRedux(<TestComponent number={1} />);
+      rendered.getByText(/1/);
+
+      rendered.rerender(<TestComponent number={2} />);
+      rendered.getByText(/2/);
+      expect(rendered.queryByText(/1/)).not.toBeInTheDocument();
+    });
+
+    it('should works with experimentalRenderAppWithRedux', () => {
+      const TestComponent = ({ number }) => {
+        // the error won't be triggered unless one of the providers is used
+        new ApolloClient({
+          link: new HttpLink({
+            uri: 'http://localhost:4000/',
+          }),
+          cache: new InMemoryCache(),
+        });
+        return number;
+      };
+
+      const rendered = experimentalRenderAppWithRedux(
+        <TestComponent number={1} />
+      );
+      rendered.getByText(/1/);
+
+      rendered.rerender(<TestComponent number={2} />);
+      rendered.getByText(/2/);
+      expect(rendered.queryByText(/1/)).not.toBeInTheDocument();
+    });
   });
 });
