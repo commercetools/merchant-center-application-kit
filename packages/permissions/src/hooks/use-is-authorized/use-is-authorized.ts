@@ -80,17 +80,16 @@ const useIsAuthorized = ({
     applicationContext => applicationContext.dataFences
   );
 
-  // Check first for data fences
-  if (actualDataFences && demandedDataFences && demandedDataFences.length > 0) {
+  let hasDemandeDataFences = false;
+  if (demandedDataFences && demandedDataFences.length > 0) {
     if (!selectDataFenceData) {
       reportErrorToSentry(
         new Error(
           `@commercetools-frontend/permissions/Authorized: Missing data fences selector "selectDataFenceData".`
         )
       );
-      return false;
     }
-    return hasAppliedDataFence({
+    hasDemandeDataFences = hasAppliedDataFence({
       demandedDataFences,
       actualDataFences,
       selectDataFenceData,
@@ -99,7 +98,6 @@ const useIsAuthorized = ({
     });
   }
 
-  // If no data fences have been provided, fall back to normal permissions + action rights.
   const hasDemandedPermissions = shouldMatchSomePermissions
     ? hasSomePermissions(demandedPermissions, actualPermissions)
     : hasEveryPermissions(demandedPermissions, actualPermissions);
@@ -109,7 +107,9 @@ const useIsAuthorized = ({
     actualActionRights
   );
 
-  return hasDemandedPermissions && hasDemandedActionRights;
+  return (
+    hasDemandeDataFences || (hasDemandedPermissions && hasDemandedActionRights)
+  );
 };
 
 export default useIsAuthorized;
