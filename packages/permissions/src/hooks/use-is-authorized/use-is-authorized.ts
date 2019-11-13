@@ -96,7 +96,7 @@ const useIsAuthorized = ({
       demandedDataFences,
       actualDataFences,
       selectDataFenceData,
-      actualPermissions,
+      actualPermissions: actualPermissions || {},
       demandedPermissions,
     });
   }

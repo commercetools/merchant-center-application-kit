@@ -64,7 +64,7 @@ type Props = {
   demandedActionRights?: TDemandedActionRight[];
   demandedDataFences?: TDemandedDataFence[];
   selectDataFenceData?: TSelectDataFenceData;
-  actualPermissions: TPermissions | null;
+  actualPermissions: TPermissions;
   actualActionRights: TActionRights | null;
   actualDataFences: TDataFences | null;
   render: (isAuthorized: boolean) => React.ReactNode;
@@ -150,7 +150,7 @@ const injectAuthorized = <
           demandedPermissions={demandedPermissions}
           demandedActionRights={options.actionRights}
           demandedDataFences={options.dataFences}
-          actualPermissions={applicationContext.permissions}
+          actualPermissions={applicationContext.permissions || {}}
           actualActionRights={applicationContext.actionRights}
           actualDataFences={applicationContext.dataFences}
           selectDataFenceData={

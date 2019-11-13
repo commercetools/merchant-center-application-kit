@@ -52,7 +52,7 @@ type TestProps = {
   demandedPermissions: TPermissionName[];
   demandedActionRights?: TDemandedActionRight[];
   demandedDataFences?: TDemandedDataFence[];
-  actualPermissions: TPermissions | null;
+  actualPermissions: TPermissions;
   actualActionRights: TActionRights | null;
   actualDataFences: TDataFences | null;
   selectDataFenceData?: TSelectDataFenceData;
@@ -318,7 +318,10 @@ describe('rendering', () => {
                   return null;
               }
             },
-            actualPermissions: null,
+            actualPermissions: {
+              canViewProducts: false,
+              canViewOrders: false,
+            },
             actualActionRights: null,
           });
           shallow(<Authorized {...props} />);

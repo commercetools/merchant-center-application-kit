@@ -61,7 +61,7 @@ type TOptionsForAppliedDataFence = {
   demandedDataFences: TDemandedDataFence[];
   actualDataFences: TDataFences | null;
   selectDataFenceData?: TSelectDataFenceData;
-  actualPermissions: TPermissions | null;
+  actualPermissions: TPermissions;
   demandedPermissions: TPermissionName[] | null;
 };
 
@@ -77,9 +77,8 @@ const toCanCase = (permissionName: TPermissionName) => `can${permissionName}`;
 //     { canViewProducts: true, canManageOrders: false }
 const hasExactPermission = (
   demandedPermission: TPermissionName,
-  actualPermissions: TPermissions | null
-) =>
-  actualPermissions ? actualPermissions[toCanCase(demandedPermission)] : false;
+  actualPermissions: TPermissions
+) => actualPermissions[toCanCase(demandedPermission)];
 
 // Check that the user permissions match the required MANAGE permission.
 // The shapes of the arguments are:
