@@ -81,10 +81,7 @@ const Authorized = (props: Props) => {
     return <React.Fragment>{props.render(false)}</React.Fragment>;
   }
 
-  let hasDemandedPermissions = false;
-  let hasDemandedActionRights = false;
   let hasDemandedDataFences = false;
-
   if (props.demandedDataFences && props.demandedDataFences.length > 0) {
     if (!props.selectDataFenceData) {
       reportErrorToSentry(
@@ -115,11 +112,11 @@ const Authorized = (props: Props) => {
       { extra: namesOfNonConfiguredPermissions }
     );
 
-  hasDemandedPermissions = props.shouldMatchSomePermissions
+  const hasDemandedPermissions = props.shouldMatchSomePermissions
     ? hasSomePermissions(props.demandedPermissions, props.actualPermissions)
     : hasEveryPermissions(props.demandedPermissions, props.actualPermissions);
 
-  hasDemandedActionRights = hasEveryActionRight(
+  const hasDemandedActionRights = hasEveryActionRight(
     props.demandedActionRights || [],
     props.actualActionRights
   );
