@@ -39,13 +39,17 @@ export const SetupFlopFlipProvider = props => {
         props.appEnv === 'production'
           ? ldClientSideIdProduction
           : ldClientSideIdStaging,
-      userId: props.user && props.user.id,
-      projectKey: props.projectKey,
       flags,
-      ldTrackingId: props.user && props.user.launchdarklyTrackingId,
-      ldTrackingGroup: props.user && props.user.launchdarklyTrackingGroup,
-      ldTrackingTeam: props.user && props.user.launchdarklyTrackingTeam,
-      ldTrackingTenant: props.user && props.user.launchdarklyTrackingTenant,
+      user: {
+        key: props.user && props.user.id,
+        custom: {
+          id: props.user && props.user.launchdarklyTrackingId,
+          project: props.projectKey,
+          team: props.user && props.user.launchdarklyTrackingTeam,
+          group: props.user && props.user.launchdarklyTrackingGroup,
+          tenant: props.user && props.user.launchdarklyTrackingTenant,
+        },
+      },
     }),
     [flags, props.appEnv, props.projectKey, props.user]
   );
