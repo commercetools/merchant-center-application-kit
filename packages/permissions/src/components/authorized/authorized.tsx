@@ -110,7 +110,7 @@ const Authorized = (props: Props) => {
   if (namesOfNonConfiguredPermissions.length > 0)
     reportErrorToSentry(
       new Error(
-        `@commercetools-frontend/psermissions/Authorized: Invalid prop "demandedPermissions" supplied. The permission(s) ${namesOfNonConfiguredPermissions.toString()} is/are not configured through "actualPermissions".`
+        `@commercetools-frontend/permissions/Authorized: Invalid prop "demandedPermissions" supplied. The permission(s) ${namesOfNonConfiguredPermissions.toString()} is/are not configured through "actualPermissions".`
       ),
       { extra: namesOfNonConfiguredPermissions }
     );
