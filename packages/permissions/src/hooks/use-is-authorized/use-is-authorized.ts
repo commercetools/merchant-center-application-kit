@@ -80,6 +80,9 @@ const useIsAuthorized = ({
     applicationContext => applicationContext.dataFences
   );
 
+  // if the user has no permissions and no dataFences assigned to them, they are not authorized
+  if (!actualPermissions && !actualDataFences) return false;
+
   let hasDemandeDataFences = false;
   if (demandedDataFences && demandedDataFences.length > 0) {
     if (!selectDataFenceData) {
