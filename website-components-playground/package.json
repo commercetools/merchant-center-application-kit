@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-docs/app-kit-components-playground",
-  "version": "15.2.0",
+  "version": "15.3.6",
   "private": true,
   "scripts": {
     "build:local": "gatsby build",
