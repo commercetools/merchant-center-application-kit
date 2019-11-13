@@ -5,6 +5,7 @@ import {
   hasSomePermissions,
   hasEveryPermissions,
   hasEveryActionRight,
+  getInvalidPermissions,
   hasAppliedDataFence,
 } from '../../utils/has-permissions';
 import getDisplayName from '../../utils/get-display-name';
@@ -100,6 +101,19 @@ const Authorized = (props: Props) => {
       demandedPermissions: props.demandedPermissions,
     });
   }
+
+  const namesOfNonConfiguredPermissions = getInvalidPermissions(
+    props.demandedPermissions,
+    props.actualPermissions
+  );
+
+  if (namesOfNonConfiguredPermissions.length > 0)
+    reportErrorToSentry(
+      new Error(
+        `@commercetools-frontend/permissions/Authorized: Invalid prop "demandedPermissions" supplied. The permission(s) ${namesOfNonConfiguredPermissions.toString()} is/are not configured through "actualPermissions".`
+      ),
+      { extra: namesOfNonConfiguredPermissions }
+    );
 
   hasDemandedPermissions = props.shouldMatchSomePermissions
     ? hasSomePermissions(props.demandedPermissions, props.actualPermissions)

@@ -4,6 +4,7 @@ import {
   hasEveryActionRight,
   hasEveryPermissions,
   hasSomePermissions,
+  getInvalidPermissions,
 } from './has-permissions';
 
 type TPermissionName = string;
@@ -182,5 +183,25 @@ describe('hasEveryActionRight', () => {
         }
       )
     ).toBe(false);
+  });
+});
+
+describe('getInvalidPermissions', () => {
+  describe('given all permissions are configured (passed as `actualPermissions`)', () => {
+    it('should return no invalid permissions', () => {
+      expect(
+        getInvalidPermissions(['ManageOrders'], { canManageOrders: true })
+      ).toHaveLength(0);
+    });
+  });
+
+  describe('given some permissions are not configured (not passed as `actualPermissions`)', () => {
+    it('should return invalid permissions', () => {
+      expect(
+        getInvalidPermissions(['ManageOrders', 'ViewStars'], {
+          canManageOrders: true,
+        })
+      ).toEqual(expect.arrayContaining(['ViewStars']));
+    });
   });
 });
