@@ -3,30 +3,25 @@ import { ApplicationContextProvider } from '@commercetools-frontend/application-
 import { render } from '@testing-library/react';
 import RestrictedByPermissions from './restricted-by-permissions';
 
-declare type TApplicationContextPermissions = {
-  [key: string]: boolean;
+type TAllAppliedPermission = {
+  name: string;
+  value: boolean;
 };
-declare type TActionRight = {
-  [key: string]: boolean;
-};
-declare type TApplicationContextActionRights = {
-  [key: string]: TActionRight;
-};
-declare type TApplicationContextGroupedByPermission = {
-  [key: string]: {
-    values: string[];
-  } | null;
-};
-declare type TApplicationContextGroupedByResourceType = {
-  [key: string]: TApplicationContextGroupedByPermission | null;
-};
-declare type TApplicationContextDataFenceType = 'store';
-declare type TApplicationContextDataFences = {
-  [key in TApplicationContextDataFenceType]: TApplicationContextGroupedByResourceType;
+type TAllAppliedActionRight = {
+  name: string;
+  value: boolean;
+  group: string;
 };
 type TAllAppliedMenuVisibility = {
   name: string;
   value: boolean;
+};
+type TAllAppliedDataFence = {
+  __typename: 'StoreDataFence';
+  value: string;
+  group: string;
+  name: string;
+  type: string;
 };
 type TDemandedActionRight = {
   group: string;
@@ -34,16 +29,16 @@ type TDemandedActionRight = {
 };
 
 const testRender = ({
-  permissions = { canManageProjectSettings: true },
-  actionRights = null,
-  dataFences = null,
+  allAppliedPermissions = [{ name: 'canManageProjectSettings', value: true }],
+  allAppliedActionRights = [],
   allAppliedMenuVisibilities = [],
+  allAppliedDataFences = [],
   component,
 }: {
-  permissions: TApplicationContextPermissions;
-  actionRights?: TApplicationContextActionRights | null;
-  dataFences?: TApplicationContextDataFences | null;
+  allAppliedPermissions?: TAllAppliedPermission[];
+  allAppliedActionRights?: TAllAppliedActionRight[];
   allAppliedMenuVisibilities?: TAllAppliedMenuVisibility[];
+  allAppliedDataFences?: TAllAppliedDataFence[];
   component: React.ReactElement;
 }) =>
   render(
@@ -66,10 +61,10 @@ const testRender = ({
         suspension: {
           isActive: false,
         },
-        permissions,
-        actionRights,
-        dataFences,
+        allAppliedPermissions,
+        allAppliedActionRights,
         allAppliedMenuVisibilities,
+        allAppliedDataFences,
       }}
       environment={{
         applicationName: 'my-app',
@@ -120,9 +115,12 @@ describe('with permissions', () => {
     describe('with `FaaC`', () => {
       it('should indicate being authorized', () => {
         const rendered = testRender({
-          permissions: {
-            canManageCustomers: true,
-          },
+          allAppliedPermissions: [
+            {
+              name: 'canManageCustomers',
+              value: true,
+            },
+          ],
           component: <FaaCTestComponent />,
         });
 
@@ -133,9 +131,12 @@ describe('with permissions', () => {
     describe('with `render`-prop', () => {
       it('should indicate being authorized', () => {
         const rendered = testRender({
-          permissions: {
-            canManageCustomers: true,
-          },
+          allAppliedPermissions: [
+            {
+              name: 'canManageCustomers',
+              value: true,
+            },
+          ],
           component: <RenderPropTestComponent />,
         });
 
@@ -146,9 +147,12 @@ describe('with permissions', () => {
     describe('with `children` being a `ReactNode`', () => {
       it('should indicate being authorized', () => {
         const rendered = testRender({
-          permissions: {
-            canManageCustomers: true,
-          },
+          allAppliedPermissions: [
+            {
+              name: 'canManageCustomers',
+              value: true,
+            },
+          ],
           component: <TestComponent />,
         });
 
@@ -161,10 +165,16 @@ describe('with permissions', () => {
     describe('with `FaaC`', () => {
       it('should indicate not being authorized', () => {
         const rendered = testRender({
-          permissions: {
-            canManageCustomers: false,
-            canManageOrders: true,
-          },
+          allAppliedPermissions: [
+            {
+              name: 'canManageCustomers',
+              value: false,
+            },
+            {
+              name: 'canManageOrders',
+              value: true,
+            },
+          ],
           component: <FaaCTestComponent />,
         });
 
@@ -174,10 +184,16 @@ describe('with permissions', () => {
     describe('with `render`-prop', () => {
       it('should indicate not being authorized', () => {
         const rendered = testRender({
-          permissions: {
-            canManageCustomers: false,
-            canManageOrders: true,
-          },
+          allAppliedPermissions: [
+            {
+              name: 'canManageCustomers',
+              value: false,
+            },
+            {
+              name: 'canManageOrders',
+              value: true,
+            },
+          ],
           component: <RenderPropTestComponent />,
         });
 
@@ -187,10 +203,16 @@ describe('with permissions', () => {
     describe('with `children` being a `ReactNode`', () => {
       it('should indicate not being authorized', () => {
         const rendered = testRender({
-          permissions: {
-            canManageCustomers: false,
-            canManageOrders: true,
-          },
+          allAppliedPermissions: [
+            {
+              name: 'canManageCustomers',
+              value: false,
+            },
+            {
+              name: 'canManageOrders',
+              value: true,
+            },
+          ],
           component: <TestComponent />,
         });
 
@@ -203,11 +225,16 @@ describe('with permissions', () => {
       it('should indicate not being authorized', () => {
         const UnauthorizedComponent = () => <p>Is authorized: No</p>;
         const rendered = testRender({
-          permissions: {
-            canManageCustomers: false,
-            canManageOrders: true,
-          },
-
+          allAppliedPermissions: [
+            {
+              name: 'canManageCustomers',
+              value: false,
+            },
+            {
+              name: 'canManageOrders',
+              value: true,
+            },
+          ],
           component: (
             <TestComponent unauthorizedComponent={UnauthorizedComponent} />
           ),
@@ -224,14 +251,19 @@ describe('with action rights', () => {
     describe('with `FaaC`', () => {
       it('should indicate not being authorized', () => {
         const rendered = testRender({
-          permissions: {
-            canManageCustomers: true,
-          },
-          actionRights: {
-            products: {
-              canPublishProducts: true,
+          allAppliedPermissions: [
+            {
+              name: 'canManageCustomers',
+              value: true,
             },
-          },
+          ],
+          allAppliedActionRights: [
+            {
+              group: 'products',
+              name: 'canPublishProducts',
+              value: true,
+            },
+          ],
           component: (
             <FaaCTestComponent
               actionRights={[{ group: 'products', name: 'PublishProducts' }]}
@@ -247,14 +279,19 @@ describe('with action rights', () => {
     describe('with `FaaC`', () => {
       it('should indicate not being authorized', () => {
         const rendered = testRender({
-          permissions: {
-            canManageCustomers: true,
-          },
-          actionRights: {
-            products: {
-              canPublishProducts: false,
+          allAppliedPermissions: [
+            {
+              name: 'canManageCustomers',
+              value: true,
             },
-          },
+          ],
+          allAppliedActionRights: [
+            {
+              group: 'products',
+              name: 'canPublishProducts',
+              value: false,
+            },
+          ],
           component: (
             <FaaCTestComponent
               actionRights={[{ group: 'products', name: 'PublishProducts' }]}

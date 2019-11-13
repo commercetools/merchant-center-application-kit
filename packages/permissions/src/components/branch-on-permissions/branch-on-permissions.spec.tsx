@@ -55,13 +55,15 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
         suspension: {
           isActive: true,
         },
-        permissions: { canViewProducts: true },
-        actionRights: {
-          products: {
-            canEditPrices: false,
+        allAppliedPermissions: [{ name: 'canViewProducts', value: true }],
+        allAppliedActionRights: [
+          {
+            group: 'products',
+            name: 'canEditPrices',
+            value: false,
           },
-        },
-        dataFences: null,
+        ],
+        allAppliedDataFences: [],
         allAppliedMenuVisibilities: [],
       }}
       projectDataLocale="en"
