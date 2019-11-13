@@ -62,7 +62,7 @@ type TOptionsForAppliedDataFence = {
   demandedDataFences: TDemandedDataFence[];
   actualDataFences: TDataFences | null;
   selectDataFenceData?: TSelectDataFenceData;
-  actualPermissions: TPermissions;
+  actualPermissions: TPermissions | null;
   demandedPermissions: TPermissionName[];
 };
 
@@ -248,7 +248,7 @@ export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) => {
     options.demandedPermissions.some(
       demandedPermission =>
         demandedPermission.startsWith('Manage') &&
-        hasExactPermission(demandedPermission, options.actualPermissions)
+        hasExactPermission(demandedPermission, options.actualPermissions || {})
     );
   if (hasAppliedManagePermission) return true;
 

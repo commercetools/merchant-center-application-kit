@@ -46,7 +46,7 @@ const branchOnPermissions = <OwnProps extends {}>(
       render={applicationContext => (
         <Authorized
           shouldMatchSomePermissions={options.shouldMatchSomePermissions}
-          actualPermissions={applicationContext.permissions || {}}
+          actualPermissions={applicationContext.permissions}
           actualActionRights={applicationContext.actionRights}
           actualDataFences={applicationContext.dataFences}
           demandedPermissions={demandedPermissions}

@@ -65,7 +65,7 @@ type Props = {
   demandedActionRights?: TDemandedActionRight[];
   demandedDataFences?: TDemandedDataFence[];
   selectDataFenceData?: TSelectDataFenceData;
-  actualPermissions: TPermissions;
+  actualPermissions: TPermissions | null;
   actualActionRights: TActionRights | null;
   actualDataFences: TDataFences | null;
   render: (isAuthorized: boolean) => React.ReactNode;
