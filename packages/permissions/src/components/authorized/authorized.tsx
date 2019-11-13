@@ -76,43 +76,31 @@ const defaultProps: Pick<Props, 'shouldMatchSomePermissions'> = {
 };
 
 const Authorized = (props: Props) => {
-  // Check first for data fences
-  if (
-    props.actualDataFences &&
-    props.demandedDataFences &&
-    props.demandedDataFences.length > 0
-  ) {
+  // if the user has no permissions and no dataFences assigned to them, they are not authorized
+  if (!props.actualDataFences && !props.actualPermissions) {
+    return <React.Fragment>{props.render(false)}</React.Fragment>;
+  }
+
+  let hasDemandedPermissions = false;
+  let hasDemandedActionRights = false;
+  let hasDemandedDataFences = false;
+
+  if (props.demandedDataFences && props.demandedDataFences.length > 0) {
     if (!props.selectDataFenceData) {
       reportErrorToSentry(
         new Error(
           `@commercetools-frontend/permissions/Authorized: Missing data fences selector "selectDataFenceData".`
         )
       );
-      return <React.Fragment>{props.render(false)}</React.Fragment>;
     }
-    if (props.shouldMatchSomePermissions) {
-      console.warn(
-        `@commercetools-frontend/permissions/Authorized: "shouldMatchSomePermissions" has no effect when used with DataFences`
-      );
-    }
-    return (
-      <React.Fragment>
-        {props.render(
-          hasAppliedDataFence({
-            demandedDataFences: props.demandedDataFences,
-            actualDataFences: props.actualDataFences,
-            selectDataFenceData: props.selectDataFenceData,
-            actualPermissions: props.actualPermissions,
-            demandedPermissions: props.demandedPermissions,
-          })
-        )}
-      </React.Fragment>
-    );
+    hasDemandedDataFences = hasAppliedDataFence({
+      demandedDataFences: props.demandedDataFences,
+      actualDataFences: props.actualDataFences,
+      selectDataFenceData: props.selectDataFenceData,
+      actualPermissions: props.actualPermissions,
+      demandedPermissions: props.demandedPermissions,
+    });
   }
-
-  // If no data fences have been provided, fall back to normal permissions + action rights.
-  if (!props.actualPermissions)
-    return <React.Fragment>{props.render(false)}</React.Fragment>;
 
   const namesOfNonConfiguredPermissions = getInvalidPermissions(
     props.demandedPermissions,
@@ -122,23 +110,26 @@ const Authorized = (props: Props) => {
   if (namesOfNonConfiguredPermissions.length > 0)
     reportErrorToSentry(
       new Error(
-        `@commercetools-frontend/permissions/Authorized: Invalid prop "demandedPermissions" supplied. The permission(s) ${namesOfNonConfiguredPermissions.toString()} is/are not configured through "actualPermissions".`
+        `@commercetools-frontend/psermissions/Authorized: Invalid prop "demandedPermissions" supplied. The permission(s) ${namesOfNonConfiguredPermissions.toString()} is/are not configured through "actualPermissions".`
       ),
       { extra: namesOfNonConfiguredPermissions }
     );
 
-  const hasDemandedPermissions = props.shouldMatchSomePermissions
+  hasDemandedPermissions = props.shouldMatchSomePermissions
     ? hasSomePermissions(props.demandedPermissions, props.actualPermissions)
     : hasEveryPermissions(props.demandedPermissions, props.actualPermissions);
 
-  const hasDemandedActionRights = hasEveryActionRight(
+  hasDemandedActionRights = hasEveryActionRight(
     props.demandedActionRights || [],
     props.actualActionRights
   );
 
   return (
     <React.Fragment>
-      {props.render(hasDemandedPermissions && hasDemandedActionRights)}
+      {props.render(
+        hasDemandedDataFences ||
+          (hasDemandedPermissions && hasDemandedActionRights)
+      )}
     </React.Fragment>
   );
 };

@@ -60,10 +60,10 @@ type TActualDataFence = {
 
 type TOptionsForAppliedDataFence = {
   demandedDataFences: TDemandedDataFence[];
-  actualDataFences: TDataFences;
-  selectDataFenceData: TSelectDataFenceData;
+  actualDataFences: TDataFences | null;
+  selectDataFenceData?: TSelectDataFenceData;
   actualPermissions: TPermissions | null;
-  demandedPermissions: TPermissionName[];
+  demandedPermissions: TPermissionName[] | null;
 };
 
 // Build the permission key from the definition to match it to the format coming
@@ -78,8 +78,9 @@ const toCanCase = (permissionName: TPermissionName) => `can${permissionName}`;
 //     { canViewProducts: true, canManageOrders: false }
 const hasExactPermission = (
   demandedPermission: TPermissionName,
-  actualPermissions: TPermissions
-) => actualPermissions[toCanCase(demandedPermission)];
+  actualPermissions: TPermissions | null
+) =>
+  actualPermissions ? actualPermissions[toCanCase(demandedPermission)] : false;
 
 // Check that the user permissions match the required MANAGE permission.
 // The shapes of the arguments are:
@@ -183,8 +184,9 @@ export const hasSomePermissions = (
 //     { canViewProducts: true, canManageOrders: false }
 export const getInvalidPermissions = (
   demandedPermissions: TPermissionName[],
-  actualPermissions: TPermissions
+  actualPermissions: TPermissions | null
 ) => {
+  if (!actualPermissions) return demandedPermissions;
   // All demanded permissions need to be present as an actual permission.
   return demandedPermissions.filter((demandedPermission: TPermissionName) =>
     isNil(actualPermissions[toCanCase(demandedPermission)])
@@ -194,8 +196,10 @@ export const getInvalidPermissions = (
 const hasDemandedDataFence = (options: {
   actualDataFence: TActualDataFence;
   demandedDataFence: TDemandedDataFence;
-  selectDataFenceData: TSelectDataFenceData;
+  selectDataFenceData?: TSelectDataFenceData;
 }): boolean => {
+  if (!options.selectDataFenceData) return false;
+
   const hasDemandedPermission = hasPermission(options.demandedDataFence.name, {
     [options.actualDataFence.name]: true,
   });
@@ -223,10 +227,12 @@ const hasDemandedDataFence = (options: {
 };
 
 const getDataFenceByPermissionGroup = (
-  dataFences: TDataFences,
+  dataFences: TDataFences | null,
   storeKey: TDataFenceType,
   groupKey: string
 ) => {
+  if (!dataFences) return null;
+
   if (storeKey in dataFences) {
     const resourceType = dataFences[storeKey];
     if (resourceType && groupKey in resourceType) {
@@ -238,18 +244,15 @@ const getDataFenceByPermissionGroup = (
 
 export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) => {
   // If user has `*Manage` as their `appliedPermission`, we bypass `dataFence`.
-  const hasAppliedManagePermission = options.demandedPermissions.some(
-    demandedPermission => {
-      if (options.actualPermissions) {
-        return (
-          demandedPermission.startsWith('Manage') &&
-          hasExactPermission(demandedPermission, options.actualPermissions)
-        );
-      }
-      return false;
-    }
-  );
+  const hasAppliedManagePermission =
+    options.demandedPermissions &&
+    options.demandedPermissions.some(
+      demandedPermission =>
+        demandedPermission.startsWith('Manage') &&
+        hasExactPermission(demandedPermission, options.actualPermissions)
+    );
   if (hasAppliedManagePermission) return true;
+
   // Datafences applied should be combined with an OR, that is why we use
   // `some` and not `every`
   return options.demandedDataFences.some(
