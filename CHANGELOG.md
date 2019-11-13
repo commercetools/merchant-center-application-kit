@@ -1,3 +1,15 @@
+## [15.3.6](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.5...v15.3.6) (2019-11-13)
+
+#### 🖥 Type: Website
+
+- `application-components`
+  - [#1138](https://github.com/commercetools/merchant-center-application-kit/pull/1138) New documentation website designs ([@emmenko](https://github.com/emmenko))
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1161](https://github.com/commercetools/merchant-center-application-kit/pull/1161) fix(app-shell): passing of flag config ([@tdeekens]
+
 ## [15.3.5](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.4...v15.3.5) (2019-11-11)
 
 #### 🐛 Type: Bug
