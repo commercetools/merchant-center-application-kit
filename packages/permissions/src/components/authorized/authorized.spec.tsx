@@ -283,8 +283,8 @@ describe('rendering', () => {
             });
             shallow(<Authorized {...props} />);
           });
-          it('should indicate as not authorized', () => {
-            expect(props.render).toHaveBeenCalledWith(false);
+          it('should indicate as authorized', () => {
+            expect(props.render).toHaveBeenCalledWith(true);
           });
         });
       });
@@ -318,6 +318,8 @@ describe('rendering', () => {
                   return null;
               }
             },
+            actualPermissions: null,
+            actualActionRights: null,
           });
           shallow(<Authorized {...props} />);
         });
