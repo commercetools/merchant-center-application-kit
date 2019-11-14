@@ -17,6 +17,7 @@ type TAllAppliedMenuVisibility = {
   value: boolean;
 };
 type TAllAppliedDataFence = {
+  __typename: 'StoreDataFence';
   value: string;
   group: string;
   name: string;

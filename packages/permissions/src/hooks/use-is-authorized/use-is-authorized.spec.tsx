@@ -18,6 +18,7 @@ type TAllAppliedMenuVisibility = {
   value: boolean;
 };
 type TAllAppliedDataFence = {
+  __typename: 'StoreDataFence';
   value: string;
   group: string;
   name: string;
@@ -66,7 +67,7 @@ const testRender = ({
   demandedActionRights,
   demandedDataFences,
   selectDataFenceData,
-  shouldMatchSomePermissions,
+  shouldMatchSomePermissions = false,
   allAppliedPermissions = [{ name: 'canManageProjectSettings', value: true }],
   allAppliedActionRights = [],
   allAppliedMenuVisibilities = [],
@@ -281,7 +282,7 @@ describe('when only one permission matches', () => {
     });
   });
 
-  describe('dataFence to view orders on specific store', () => {
+  describe('dataFences', () => {
     describe('with general permission', () => {
       describe('when general permissions is manage', () => {
         it('should indicate as authorized', () => {
@@ -290,6 +291,7 @@ describe('when only one permission matches', () => {
             allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
             allAppliedDataFences: [
               {
+                __typename: 'StoreDataFence',
                 type: 'store',
                 group: 'orders',
                 name: 'canViewOrders',
@@ -325,6 +327,7 @@ describe('when only one permission matches', () => {
               allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
               allAppliedDataFences: [
                 {
+                  __typename: 'StoreDataFence',
                   type: 'store',
                   group: 'orders',
                   name: 'canViewOrders',
@@ -366,6 +369,7 @@ describe('when only one permission matches', () => {
             ],
             allAppliedDataFences: [
               {
+                __typename: 'StoreDataFence',
                 type: 'store',
                 group: 'orders',
                 name: 'canViewOrders',
@@ -404,6 +408,7 @@ describe('when only one permission matches', () => {
             ],
             allAppliedDataFences: [
               {
+                __typename: 'StoreDataFence',
                 type: 'store',
                 group: 'orders',
                 name: 'canViewOrders',
@@ -442,6 +447,7 @@ describe('when only one permission matches', () => {
             ],
             allAppliedDataFences: [
               {
+                __typename: 'StoreDataFence',
                 type: 'store',
                 group: 'orders',
                 name: 'canViewOrders',
