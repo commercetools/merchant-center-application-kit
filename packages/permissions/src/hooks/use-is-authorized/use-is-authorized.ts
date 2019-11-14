@@ -68,7 +68,7 @@ const useIsAuthorized = ({
   demandedActionRights?: TDemandedActionRight[];
   demandedDataFences?: TDemandedDataFence[];
   selectDataFenceData?: TSelectDataFenceData;
-  shouldMatchSomePermissions: boolean;
+  shouldMatchSomePermissions?: boolean;
 }) => {
   const actualPermissions = useApplicationContext<TPermissions | null>(
     applicationContext => applicationContext.permissions

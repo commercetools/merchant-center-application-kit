@@ -242,16 +242,6 @@ const getDataFenceByPermissionGroup = (
 };
 
 export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) => {
-  // If user has `*Manage` as their `appliedPermission`, we bypass `dataFence`.
-  const hasAppliedManagePermission =
-    options.demandedPermissions &&
-    options.demandedPermissions.some(
-      demandedPermission =>
-        demandedPermission.startsWith('Manage') &&
-        hasExactPermission(demandedPermission, options.actualPermissions || {})
-    );
-  if (hasAppliedManagePermission) return true;
-
   // Datafences applied should be combined with an OR, that is why we use
   // `some` and not `every`
   return options.demandedDataFences.some(
