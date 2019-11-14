@@ -62,8 +62,6 @@ type TOptionsForAppliedDataFence = {
   demandedDataFences: TDemandedDataFence[];
   actualDataFences: TDataFences | null;
   selectDataFenceData?: TSelectDataFenceData;
-  actualPermissions: TPermissions | null;
-  demandedPermissions: TPermissionName[];
 };
 
 // Build the permission key from the definition to match it to the format coming
