@@ -68,7 +68,7 @@ const useIsAuthorized = ({
   demandedActionRights?: TDemandedActionRight[];
   demandedDataFences?: TDemandedDataFence[];
   selectDataFenceData?: TSelectDataFenceData;
-  shouldMatchSomePermissions: boolean;
+  shouldMatchSomePermissions?: boolean;
 }) => {
   const actualPermissions = useApplicationContext<TPermissions | null>(
     applicationContext => applicationContext.permissions
@@ -80,26 +80,25 @@ const useIsAuthorized = ({
     applicationContext => applicationContext.dataFences
   );
 
-  // Check first for data fences
-  if (actualDataFences && demandedDataFences && demandedDataFences.length > 0) {
+  // if the user has no permissions and no dataFences assigned to them, they are not authorized
+  if (!actualPermissions && !actualDataFences) return false;
+
+  let hasDemandeDataFences = false;
+  if (demandedDataFences && demandedDataFences.length > 0) {
     if (!selectDataFenceData) {
       reportErrorToSentry(
         new Error(
           `@commercetools-frontend/permissions/Authorized: Missing data fences selector "selectDataFenceData".`
         )
       );
-      return false;
     }
-    return hasAppliedDataFence({
+    hasDemandeDataFences = hasAppliedDataFence({
       demandedDataFences,
       actualDataFences,
       selectDataFenceData,
-      actualPermissions,
-      demandedPermissions,
     });
   }
 
-  // If no data fences have been provided, fall back to normal permissions + action rights.
   const hasDemandedPermissions = shouldMatchSomePermissions
     ? hasSomePermissions(demandedPermissions, actualPermissions)
     : hasEveryPermissions(demandedPermissions, actualPermissions);
@@ -109,7 +108,9 @@ const useIsAuthorized = ({
     actualActionRights
   );
 
-  return hasDemandedPermissions && hasDemandedActionRights;
+  return (
+    hasDemandeDataFences || (hasDemandedPermissions && hasDemandedActionRights)
+  );
 };
 
 export default useIsAuthorized;
