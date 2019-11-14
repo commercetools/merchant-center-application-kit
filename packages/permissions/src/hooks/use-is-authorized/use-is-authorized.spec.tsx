@@ -131,7 +131,7 @@ const testRender = ({
 
 describe('when only one permission matches', () => {
   describe('General Permissions', () => {
-    describe('when it should match some permission', () => {
+    describe('when "shouldMatchSomePermissions=true"', () => {
       it('should indicate being authorized', () => {
         const { queryByText } = testRender({
           demandedPermissions: ['ManageCustomers', 'ManageOrders'],
@@ -147,7 +147,7 @@ describe('when only one permission matches', () => {
         expect(queryByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
-    describe('when it should not match some permission', () => {
+    describe('when "shouldMatchSomePermissions=false"', () => {
       it('should indicate being not authorized', () => {
         const { queryByText } = testRender({
           allAppliedPermissions: [
@@ -163,7 +163,7 @@ describe('when only one permission matches', () => {
         expect(queryByText('Is authorized: No')).toBeInTheDocument();
       });
     });
-    describe('when it should not match an action right', () => {
+    describe('with actual actionRight different than demanded actionRight', () => {
       it('should indicate being not authorized', () => {
         const { queryByText } = testRender({
           allAppliedPermissions: [
@@ -188,6 +188,8 @@ describe('when only one permission matches', () => {
 
         expect(queryByText('Is authorized: No')).toBeInTheDocument();
       });
+    });
+    describe('with actual actionRight similar to demanded actionRight', () => {
       it('should indicate being authorized', () => {
         const { queryByText } = testRender({
           allAppliedPermissions: [
