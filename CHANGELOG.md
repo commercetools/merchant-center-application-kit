@@ -1,3 +1,19 @@
+## [15.3.7](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.6...v15.3.7) (2019-11-15)
+
+#### 🐛 Type: Bug
+
+- `permissions`
+  - [#1163](https://github.com/commercetools/merchant-center-application-kit/pull/1163) fix the logic of isAuthorized and Authorized ([@amine-benselim](https://github.com/amine-benselim))
+
+#### 🖥 Type: Website
+
+- [#1160](https://github.com/commercetools/merchant-center-application-kit/pull/1160) Update description in cloudfront example ([@torihedden](https://github.com/torihedden))
+
+#### 🌏 Type: Translations
+
+- `i18n`
+  - [#1164](https://github.com/commercetools/merchant-center-application-kit/pull/1164) chore(i18n): add missing translation ([@emmenko](https://github.com/emmenko))
+
 ## [15.3.6](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.5...v15.3.6) (2019-11-13)
 
 #### 🖥 Type: Website
