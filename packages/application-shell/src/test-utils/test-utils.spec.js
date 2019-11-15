@@ -275,7 +275,7 @@ describe('router', () => {
   });
 });
 
-describe('custom render function', () => {
+describe('custom render functions', () => {
   describe('wrapper', () => {
     describe('when provided', () => {
       const Context = React.createContext();
