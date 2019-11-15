@@ -234,6 +234,9 @@ const denormalizeDataFences = dataFences => {
   );
 };
 
+const wrapIfNeeded = (wrapper, children) =>
+  wrapper ? React.createElement(wrapper, null, children) : children;
+
 // This function renders any component within the application context, as if it
 // was rendered inside <ApplicationShell />.
 // The context is not completely set up yet, some things are missing:
@@ -259,7 +262,7 @@ const renderApp = (
       createMemoryHistory({ initialEntries: [route] })
     ),
     // flopflip
-    adpater = memoryAdapter,
+    adapter = memoryAdapter,
     flags = {},
     // application-context
     environment,
@@ -280,41 +283,56 @@ const renderApp = (
   const mergedProject = mergeOptional(defaultProject, project);
   const mergedEnvironment = mergeOptional(defaultEnvironment, environment);
   const mergedGtmTracking = mergeOptional(defaultGtmTracking, gtmTracking);
-  return {
-    ...rtl.render(
-      <IntlProvider locale={locale}>
-        <ApolloProviderComponent mocks={mocks} addTypename={addTypename}>
-          <ConfigureFlopFlip
-            adapter={adpater}
-            defaultFlags={flags}
-            adapterArgs={defaultFlopflipAdapterArgs}
-          >
-            <ApplicationContextProvider
-              user={mergedUser}
-              project={
-                mergedProject && {
-                  ...mergedProject,
-                  allAppliedPermissions: denormalizePermissions(permissions),
-                  allAppliedActionRights: denormalizeActionRights(actionRights),
-                  allAppliedDataFences: denormalizeDataFences(dataFences),
-                }
+
+  const ApplicationProviders = ({ children }) => (
+    <IntlProvider locale={locale}>
+      <ApolloProviderComponent mocks={mocks} addTypename={addTypename}>
+        <ConfigureFlopFlip
+          adapter={adapter}
+          defaultFlags={flags}
+          adapterArgs={defaultFlopflipAdapterArgs}
+        >
+          <ApplicationContextProvider
+            user={mergedUser}
+            project={
+              mergedProject && {
+                ...mergedProject,
+                allAppliedPermissions: denormalizePermissions(permissions),
+                allAppliedActionRights: denormalizeActionRights(actionRights),
+                allAppliedDataFences: denormalizeDataFences(dataFences),
               }
-              environment={mergedEnvironment}
-              projectDataLocale={dataLocale}
-            >
-              <GtmContext.Provider value={mergedGtmTracking}>
-                <Router history={history}>
-                  <React.Suspense fallback={<LoadingFallback />}>
-                    {ui}
-                  </React.Suspense>
-                </Router>
-              </GtmContext.Provider>
-            </ApplicationContextProvider>
-          </ConfigureFlopFlip>
-        </ApolloProviderComponent>
-      </IntlProvider>,
-      renderOptions
-    ),
+            }
+            environment={mergedEnvironment}
+            projectDataLocale={dataLocale}
+          >
+            <GtmContext.Provider value={mergedGtmTracking}>
+              <Router history={history}>
+                <React.Suspense fallback={<LoadingFallback />}>
+                  {children}
+                </React.Suspense>
+              </Router>
+            </GtmContext.Provider>
+          </ApplicationContextProvider>
+        </ConfigureFlopFlip>
+      </ApolloProviderComponent>
+    </IntlProvider>
+  );
+  ApplicationProviders.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
+  const rendered = rtl.render(ui, {
+    ...renderOptions,
+    wrapper: ({ children }) =>
+      wrapIfNeeded(
+        ApplicationProviders,
+        wrapIfNeeded(renderOptions.wrapper, children)
+      ),
+  });
+
+  return {
+    ...rendered,
+
     // adding `history` to the returned utilities to allow us
     // to reference it in our tests (just try to avoid using
     // this to test implementation details).
@@ -400,22 +418,35 @@ const renderAppWithRedux = (
     return createReduxStore(storeState, [testingMiddleware]);
   })();
 
+  const ReduxProviders = ({ children }) => (
+    <NotificationProviderForCustomComponent
+      mapNotificationToComponent={mapNotificationToComponent}
+    >
+      <StoreProvider store={reduxStore}>
+        <div>
+          <NotificationsList domain={DOMAINS.GLOBAL} />
+          <NotificationsList domain={DOMAINS.PAGE} />
+          <NotificationsList domain={DOMAINS.SIDE} />
+          {children}
+        </div>
+      </StoreProvider>
+    </NotificationProviderForCustomComponent>
+  );
+  ReduxProviders.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
+  const rendered = renderApp(ui, {
+    ...renderOptions,
+    wrapper: ({ children }) =>
+      wrapIfNeeded(
+        ReduxProviders,
+        wrapIfNeeded(renderOptions.wrapper, children)
+      ),
+  });
+
   return {
-    ...renderApp(
-      <NotificationProviderForCustomComponent
-        mapNotificationToComponent={mapNotificationToComponent}
-      >
-        <StoreProvider store={reduxStore}>
-          <div>
-            <NotificationsList domain={DOMAINS.GLOBAL} />
-            <NotificationsList domain={DOMAINS.PAGE} />
-            <NotificationsList domain={DOMAINS.SIDE} />
-            {ui}
-          </div>
-        </StoreProvider>
-      </NotificationProviderForCustomComponent>,
-      renderOptions
-    ),
+    ...rendered,
     // adding `store` to the returned utilities to allow us
     // to reference it in our tests (just try to avoid using
     // this to test implementation details).
@@ -439,6 +470,7 @@ const experimentalRenderAppWithRedux = (ui, renderOptions) => {
     ApolloProviderComponent: RealApolloProvider,
   });
 };
+
 // re-export everything
 export * from '@testing-library/react';
 
