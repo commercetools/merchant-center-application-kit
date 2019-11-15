@@ -22,7 +22,8 @@
       "⛑ Type: Refactoring": "⛑ Type: Refactoring",
       "🖥 Type: Website": "🖥 Type: Website",
       "🚨 Type: Security": "🚨 Type: Security",
-      "🤖 Type: Dependencies": "🤖 Type: Dependencies"
+      "🤖 Type: Dependencies": "🤖 Type: Dependencies",
+      "🌏 Type: Translations": "🌏 Type: Translations"
     }
   }
 }
