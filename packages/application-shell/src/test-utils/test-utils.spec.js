@@ -276,66 +276,62 @@ describe('router', () => {
 });
 
 describe('custom render functions', () => {
-  describe('wrapper', () => {
-    describe('when provided', () => {
-      const Context = React.createContext();
-      const ProvidedWrapper = ({ children }) => (
-        <Context.Provider value="provided wrapper">{children}</Context.Provider>
-      );
-      ProvidedWrapper.propTypes = {
-        children: PropTypes.node.isRequired,
+  describe('with wrapper', () => {
+    const Context = React.createContext();
+    const ProvidedWrapper = ({ children }) => (
+      <Context.Provider value="provided wrapper">{children}</Context.Provider>
+    );
+    ProvidedWrapper.propTypes = {
+      children: PropTypes.node.isRequired,
+    };
+
+    it('should merge the passed wrapper with renderApp internal wrapper', () => {
+      const TestComponent = () => {
+        // provided wrapper
+        const value = useContext(Context);
+        // own wrapper
+        useIntl();
+
+        return value;
       };
 
-      it('should renderApp merges the provided wrapper with its own wrapper', () => {
-        const TestComponent = () => {
-          // provided wrapper
-          const value = useContext(Context);
-          // own wrapper
-          useIntl();
-
-          return value;
-        };
-
-        const rendered = renderApp(<TestComponent number={1} />, {
-          wrapper: ProvidedWrapper,
-        });
-        rendered.getByText(/provided wrapper/i);
+      const rendered = renderApp(<TestComponent number={1} />, {
+        wrapper: ProvidedWrapper,
       });
-
-      it('should renderAppWithRedux merges the provided wrapper with its own wrapper', () => {
-        const TestComponent = () => {
-          // provided wrapper
-          const value = useContext(Context);
-          // own wrapper
-          useSelector(() => {});
-
-          return value;
-        };
-
-        const rendered = renderAppWithRedux(<TestComponent number={1} />, {
-          wrapper: ProvidedWrapper,
-        });
-        rendered.getByText(/provided wrapper/i);
-      });
+      rendered.getByText(/provided wrapper/i);
     });
 
-    describe('when not provided', () => {
-      it.each([renderApp, renderAppWithRedux])(
-        'should %p still manage',
-        renderFn => {
-          const TestComponent = ({ number }) => {
-            return number;
-          };
+    it('should merge the passed wrapper with renderAppWithRedux internal wrapper', () => {
+      const TestComponent = () => {
+        // provided wrapper
+        const value = useContext(Context);
+        // own wrapper
+        useSelector(() => {});
 
-          const rendered = renderFn(<TestComponent number={1} />);
-          rendered.getByText(/1/);
-        }
-      );
+        return value;
+      };
+
+      const rendered = renderAppWithRedux(<TestComponent number={1} />, {
+        wrapper: ProvidedWrapper,
+      });
+      rendered.getByText(/provided wrapper/i);
     });
   });
 
+  describe('without wrapper', () => {
+    it.each([renderApp, renderAppWithRedux])(
+      'should %p still work',
+      renderFn => {
+        const TestComponent = ({ number }) => number;
+
+        const rendered = renderFn(<TestComponent number={1} />);
+        rendered.getByText(/1/);
+      }
+    );
+  });
+
   describe('rerender', () => {
-    it('should works with renderApp', () => {
+    it('should work with renderApp', () => {
       const TestComponent = ({ number }) => {
         // the error won't be triggered unless one of the providers is used
         useIntl();
@@ -350,7 +346,7 @@ describe('custom render functions', () => {
       expect(rendered.queryByText(/1/)).not.toBeInTheDocument();
     });
 
-    it('should works with renderAppWithRedux', () => {
+    it('should work with renderAppWithRedux', () => {
       const TestComponent = ({ number }) => {
         // the error won't be triggered unless one of the providers is used
         useSelector(() => undefined);
@@ -365,7 +361,7 @@ describe('custom render functions', () => {
       expect(rendered.queryByText(/1/)).not.toBeInTheDocument();
     });
 
-    it('should works with experimentalRenderAppWithRedux', () => {
+    it('should work with experimentalRenderAppWithRedux', () => {
       const TestComponent = ({ number }) => {
         // the error won't be triggered unless one of the providers is used
         new ApolloClient({

@@ -284,7 +284,7 @@ const renderApp = (
   const mergedEnvironment = mergeOptional(defaultEnvironment, environment);
   const mergedGtmTracking = mergeOptional(defaultGtmTracking, gtmTracking);
 
-  const Wrapper = ({ children }) => (
+  const ApplicationProviders = ({ children }) => (
     <IntlProvider locale={locale}>
       <ApolloProviderComponent mocks={mocks} addTypename={addTypename}>
         <ConfigureFlopFlip
@@ -317,14 +317,17 @@ const renderApp = (
       </ApolloProviderComponent>
     </IntlProvider>
   );
-  Wrapper.propTypes = {
+  ApplicationProviders.propTypes = {
     children: PropTypes.node.isRequired,
   };
 
   const rendered = rtl.render(ui, {
     ...renderOptions,
     wrapper: ({ children }) =>
-      wrapIfNeeded(Wrapper, wrapIfNeeded(renderOptions.wrapper, children)),
+      wrapIfNeeded(
+        ApplicationProviders,
+        wrapIfNeeded(renderOptions.wrapper, children)
+      ),
   });
 
   return {
@@ -415,7 +418,7 @@ const renderAppWithRedux = (
     return createReduxStore(storeState, [testingMiddleware]);
   })();
 
-  const Wrapper = ({ children }) => (
+  const ReduxProviders = ({ children }) => (
     <NotificationProviderForCustomComponent
       mapNotificationToComponent={mapNotificationToComponent}
     >
@@ -429,14 +432,17 @@ const renderAppWithRedux = (
       </StoreProvider>
     </NotificationProviderForCustomComponent>
   );
-  Wrapper.propTypes = {
+  ReduxProviders.propTypes = {
     children: PropTypes.node.isRequired,
   };
 
   const rendered = renderApp(ui, {
     ...renderOptions,
     wrapper: ({ children }) =>
-      wrapIfNeeded(Wrapper, wrapIfNeeded(renderOptions.wrapper, children)),
+      wrapIfNeeded(
+        ReduxProviders,
+        wrapIfNeeded(renderOptions.wrapper, children)
+      ),
   });
 
   return {
