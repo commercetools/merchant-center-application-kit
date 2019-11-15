@@ -9,7 +9,7 @@ const {
   browserslist,
 } = require('@commercetools-frontend/mc-scripts/package.json');
 const resolve = require('rollup-plugin-node-resolve');
-const json = require('rollup-plugin-json');
+const json = require('@rollup/plugin-json');
 const commonjs = require('rollup-plugin-commonjs');
 const postcss = require('rollup-plugin-postcss');
 const peerDeps = require('rollup-plugin-peer-deps-external');
