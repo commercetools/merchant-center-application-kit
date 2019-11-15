@@ -75,7 +75,6 @@
     "@percy/cypress": "2.2.0",
     "@percy/puppeteer": "1.0.8",
     "@rollup/plugin-json": "4.0.0",
-    "@rollup/plugin-replace": "2.2.1",
     "@testing-library/cypress": "5.0.2",
     "@testing-library/react": "9.3.2",
     "@types/common-tags": "1.8.0",
