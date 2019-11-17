@@ -4,16 +4,13 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import pkg from '../../package.json';
 import {
-  colors,
-  dimensions,
-  typography,
-  tokens,
-} from '@commercetools-docs/gatsby-theme-docs/src/design-system';
-import {
   Card,
   SEO,
   Spacings,
-} from '@commercetools-docs/gatsby-theme-docs/src/components';
+  ThemeProvider,
+  designSystem,
+  useSiteData,
+} from '@commercetools-docs/gatsby-theme-docs';
 import LayoutMarketing from '../layouts/marketing';
 import LinksCard from '../components/links-card';
 import LandingPageRocket from '../icons/landing-page-rocket.svg';
@@ -22,54 +19,49 @@ import ScreenDesignToolIcon from '../icons/screen-design-tool-icon.svg';
 import ScreenBulbIcon from '../icons/screen-bulb-icon.svg';
 
 const SectionTitle = styled.div`
-  color: ${colors.light.primary};
-  font-size: ${typography.fontSizes.h4};
+  color: ${designSystem.colors.light.primary};
+  font-size: ${designSystem.typography.fontSizes.h4};
 `;
 const SectionBody = styled.div`
-  color: ${colors.light.textPrimary};
-  font-size: ${typography.fontSizes.small};
+  color: ${designSystem.colors.light.textPrimary};
+  font-size: ${designSystem.typography.fontSizes.small};
   line-height: 1.5;
 `;
 const PageContainer = styled.div`
   width: 100%;
-  max-width: ${dimensions.widths.marketingContent};
+  max-width: ${designSystem.dimensions.widths.marketingContent};
   margin: 0 auto;
 `;
 const ButtonLink = styled(Link)`
   display: inline-block;
-  padding: ${dimensions.spacings.m} ${dimensions.spacings.l};
+  padding: ${designSystem.dimensions.spacings.m}
+    ${designSystem.dimensions.spacings.l};
   text-decoration: none;
-  font-size: ${typography.fontSizes.body};
-  color: ${colors.light.textPrimary};
-  background-color: ${colors.light.surfacePrimary};
-  border: 1px solid ${colors.light.surfacePrimary};
-  border-radius: ${tokens.borderRadius6};
+  font-size: ${designSystem.typography.fontSizes.body};
+  color: ${designSystem.colors.light.textPrimary};
+  background-color: ${designSystem.colors.light.surfacePrimary};
+  border: 1px solid ${designSystem.colors.light.surfacePrimary};
+  border-radius: ${designSystem.tokens.borderRadius6};
 
   :hover {
-    background-color: ${colors.light.surfaceQuote};
-    color: ${colors.light.linkNavigation};
+    background-color: ${designSystem.colors.light.surfaceQuote};
+    color: ${designSystem.colors.light.linkNavigation};
   }
 `;
 const GridContainer = styled.div`
   display: grid;
-  grid-gap: ${dimensions.spacings.l};
+  grid-gap: ${designSystem.dimensions.spacings.l};
   grid-auto-columns: 1fr;
   grid-template-columns: repeat(
     auto-fit,
-    minmax(${dimensions.widths.pageNavigation}, 1fr)
+    minmax(${designSystem.dimensions.widths.pageNavigation}, 1fr)
   );
 `;
 
-const MarketingLandingPage = () => {
+const PageMarketingContent = () => {
+  const siteData = useSiteData();
   const data = useStaticQuery(graphql`
     query GetMainResourcesLinks {
-      site {
-        siteMetadata {
-          title
-          currentVersion
-          repositoryUrl
-        }
-      }
       allNavigationYaml {
         nodes {
           chapterTitle
@@ -81,29 +73,27 @@ const MarketingLandingPage = () => {
     }
   `);
   return (
-    <LayoutMarketing siteTitle={data.site.siteMetadata.title}>
-      <SEO
-        title="Develop applications for the Merchant Center"
-        keywords={pkg.keywords}
-      />
+    <>
       <PageContainer>
         <div
           css={css`
             padding: 0;
 
-            @media screen and (${dimensions.viewports.largeTablet}) {
-              padding: calc(${dimensions.spacings.xl} * 2);
+            @media screen and (${designSystem.dimensions.viewports
+                .largeTablet}) {
+              padding: calc(${designSystem.dimensions.spacings.xl} * 2);
             }
           `}
         >
           <div
             css={css`
               display: grid;
-              grid-gap: ${dimensions.spacings.xl};
+              grid-gap: ${designSystem.dimensions.spacings.xl};
               grid-template-rows: auto;
               grid-template-columns: 1fr;
 
-              @media screen and (${dimensions.viewports.largeTablet}) {
+              @media screen and (${designSystem.dimensions.viewports
+                  .largeTablet}) {
                 grid-template-columns: 2fr 1fr;
               }
             `}
@@ -111,13 +101,13 @@ const MarketingLandingPage = () => {
             <div
               css={css`
                 > * + * {
-                  margin: ${dimensions.spacings.xl} 0 0;
+                  margin: ${designSystem.dimensions.spacings.xl} 0 0;
                 }
               `}
             >
               <div
                 css={css`
-                  font-size: ${typography.fontSizes.h1};
+                  font-size: ${designSystem.typography.fontSizes.h1};
                   color: white;
                 `}
               >
@@ -141,11 +131,12 @@ const MarketingLandingPage = () => {
         <Card
           css={css`
             > div {
-              padding: ${dimensions.spacings.xl} ${dimensions.spacings.l};
+              padding: ${designSystem.dimensions.spacings.xl}
+                ${designSystem.dimensions.spacings.l};
 
-              @media screen and (${dimensions.viewports.tablet}) {
-                padding: calc(${dimensions.spacings.l} * 2)
-                  calc(${dimensions.spacings.xl} * 2);
+              @media screen and (${designSystem.dimensions.viewports.tablet}) {
+                padding: calc(${designSystem.dimensions.spacings.l} * 2)
+                  calc(${designSystem.dimensions.spacings.xl} * 2);
               }
             }
           `}
@@ -206,7 +197,7 @@ const MarketingLandingPage = () => {
               title: 'Resources',
               links: [
                 {
-                  to: data.site.siteMetadata.repositoryUrl,
+                  to: siteData.siteMetadata.repositoryUrl,
                   label: 'GitHub',
                 },
                 {
@@ -223,15 +214,15 @@ const MarketingLandingPage = () => {
               title: 'Releases',
               links: [
                 {
-                  to: `${data.site.siteMetadata.repositoryUrl}/releases/tag/v${data.site.siteMetadata.currentVersion}`,
-                  label: `v${data.site.siteMetadata.currentVersion}`,
+                  to: `${siteData.siteMetadata.repositoryUrl}/releases/tag/v${siteData.siteMetadata.currentVersion}`,
+                  label: `v${siteData.siteMetadata.currentVersion}`,
                 },
                 {
-                  to: `${data.site.siteMetadata.repositoryUrl}/blob/master/CONTRIBUTING.md`,
+                  to: `${siteData.siteMetadata.repositoryUrl}/blob/master/CONTRIBUTING.md`,
                   label: 'Contributing',
                 },
                 {
-                  to: `${data.site.siteMetadata.repositoryUrl}/blob/master/LICENSE`,
+                  to: `${siteData.siteMetadata.repositoryUrl}/blob/master/LICENSE`,
                   label: 'MIT license',
                 },
               ],
@@ -239,9 +230,21 @@ const MarketingLandingPage = () => {
           ]}
         />
       </PageContainer>
-    </LayoutMarketing>
+    </>
   );
 };
-MarketingLandingPage.displayName = 'MarketingLandingPage';
+PageMarketingContent.displayName = 'PageMarketingContent';
 
-export default MarketingLandingPage;
+const PageMarketingTemplate = () => (
+  <ThemeProvider>
+    <LayoutMarketing>
+      <SEO
+        title="Develop applications for the Merchant Center"
+        keywords={pkg.keywords}
+      />
+      <PageMarketingContent />
+    </LayoutMarketing>
+  </ThemeProvider>
+);
+
+export default PageMarketingTemplate;

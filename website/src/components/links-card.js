@@ -2,46 +2,46 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import Spacings from '@commercetools-docs/gatsby-theme-docs/src/components/spacings';
-import * as Markdown from '@commercetools-docs/gatsby-theme-docs/src/components/markdown';
 import {
-  colors,
-  dimensions,
-  typography,
-  tokens,
-} from '@commercetools-docs/gatsby-theme-docs/src/design-system';
+  Spacings,
+  Markdown,
+  designSystem,
+} from '@commercetools-docs/gatsby-theme-docs';
 
 const Container = styled.div`
-  background-color: ${colors.light.surfacePrimary};
-  border: 1px solid ${colors.light.borderPrimary};
-  border-radius: ${tokens.borderRadius6};
-  padding: ${dimensions.spacings.l};
+  background-color: ${designSystem.colors.light.surfacePrimary};
+  border: 1px solid ${designSystem.colors.light.borderPrimary};
+  border-radius: ${designSystem.tokens.borderRadius6};
+  padding: ${designSystem.dimensions.spacings.l};
 `;
 const GridContainer = styled.div`
   display: grid;
-  grid-gap: ${dimensions.spacings.l};
+  grid-gap: ${designSystem.dimensions.spacings.l};
   grid-auto-columns: 1fr;
-  grid-template-columns: repeat(auto-fill, ${dimensions.widths.pageNavigation});
+  grid-template-columns: repeat(
+    auto-fill,
+    ${designSystem.dimensions.widths.pageNavigation}
+  );
 `;
 const LinksList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
   > * + * {
-    margin: ${dimensions.spacings.xs} 0 0;
+    margin: ${designSystem.dimensions.spacings.xs} 0 0;
   }
 `;
 const SecondaryExternalLink = props => (
   <Markdown.Link
     {...props}
     css={css`
-      font-size: ${typography.fontSizes.small};
+      font-size: ${designSystem.typography.fontSizes.small};
       text-decoration: none;
       svg {
-        width: ${dimensions.spacings.m};
-        height: ${dimensions.spacings.m};
+        width: ${designSystem.dimensions.spacings.m};
+        height: ${designSystem.dimensions.spacings.m};
         * {
-          fill: ${colors.light.link};
+          fill: ${designSystem.colors.light.link};
         }
       }
     `}

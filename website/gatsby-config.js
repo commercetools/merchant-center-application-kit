@@ -3,7 +3,7 @@
 module.exports = {
   pathPrefix: '/custom-applications',
   siteMetadata: {
-    title: 'AppKit',
+    title: 'Custom applications',
     description: 'Develop applications for the Merchant Center',
     author: 'commercetools',
     repositoryUrl:
@@ -29,6 +29,8 @@ module.exports = {
     {
       resolve: '@commercetools-docs/gatsby-theme-docs',
       options: {
+        websiteName: 'custom-applications',
+        gaTrackingId: 'UA-38285631-3',
         // Patch the slug creation to get meaningful slugs for the application components
         createNodeSlug: (originalSlug, { node }) => {
           const isNodeForAppComponent =

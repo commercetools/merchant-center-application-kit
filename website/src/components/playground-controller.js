@@ -7,15 +7,11 @@ import { Tooltip } from '@commercetools-frontend/ui-kit';
 import { InfoDialog } from '@commercetools-frontend/application-components';
 import UnstyledCodeViewIcon from '@commercetools-docs/gatsby-theme-docs/src/icons/code-view-icon.svg';
 import {
-  colors,
-  dimensions,
-  tokens,
-} from '@commercetools-docs/gatsby-theme-docs/src/design-system';
-import createStyledIcon from '@commercetools-docs/gatsby-theme-docs/src/utils/create-styled-icon';
-import {
+  createStyledIcon,
   IconButton,
   Spacings,
-} from '@commercetools-docs/gatsby-theme-docs/src/components';
+  designSystem,
+} from '@commercetools-docs/gatsby-theme-docs';
 
 const CodeViewIcon = createStyledIcon(UnstyledCodeViewIcon);
 
@@ -24,18 +20,19 @@ const TooltipWrapperComponent = styled.div`
   z-index: 1001;
 `;
 const PlaygroundContainer = styled.div`
-  background-color: ${colors.light.surfaceSecondary1};
-  border: 4px solid ${colors.light.borderPrimary};
-  border-radius: ${tokens.borderRadius4};
+  background-color: ${designSystem.colors.light.surfaceSecondary1};
+  border: 4px solid ${designSystem.colors.light.borderPrimary};
+  border-radius: ${designSystem.tokens.borderRadius4};
 `;
 const PreviewContainer = styled.div`
   position: relative;
   width: 100%;
   overflow: hidden;
   height: ${props => props.height};
-  background-color: ${colors.light.surfacePrimary};
-  border-radius: ${tokens.borderRadius4} ${tokens.borderRadius4} 0 0;
-  border-bottom: 1px solid ${colors.light.borderPrimary};
+  background-color: ${designSystem.colors.light.surfacePrimary};
+  border-radius: ${designSystem.tokens.borderRadius4}
+    ${designSystem.tokens.borderRadius4} 0 0;
+  border-bottom: 1px solid ${designSystem.colors.light.borderPrimary};
 `;
 
 const getIframeUrl = (urlPath, isFullScreen = false) => {
@@ -60,7 +57,7 @@ const PlaygroundController = props => {
         </PreviewContainer>
         <div
           css={css`
-            padding: ${dimensions.spacings.s};
+            padding: ${designSystem.dimensions.spacings.s};
           `}
         >
           <Spacings.Inline>

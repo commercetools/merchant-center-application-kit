@@ -1,33 +1,24 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
 import { css } from '@emotion/core';
 import {
-  ExternalLink,
+  designSystem,
   Spacings,
-} from '@commercetools-docs/gatsby-theme-docs/src/components';
-import { dimensions } from '@commercetools-docs/gatsby-theme-docs/src/design-system';
+  Markdown,
+  useSiteData,
+} from '@commercetools-docs/gatsby-theme-docs';
 import GitHubSvg from '../../../icons/github.svg';
 
 const RepositoryLinks = () => {
-  const data = useStaticQuery(graphql`
-    query GetCurrentVersion {
-      site {
-        siteMetadata {
-          currentVersion
-          repositoryUrl
-        }
-      }
-    }
-  `);
+  const siteData = useSiteData();
   return (
     <div
       css={css`
-        padding: ${dimensions.spacings.m};
+        padding: ${designSystem.dimensions.spacings.m};
       `}
     >
       <Spacings.Inline scale="l" alignItems="center" justifyContent="flex-end">
-        <ExternalLink
-          href={`${data.site.siteMetadata.repositoryUrl}/releases/tag/v${data.site.siteMetadata.currentVersion}`}
+        <Markdown.Link
+          href={`${siteData.siteMetadata.repositoryUrl}/releases/tag/v${siteData.siteMetadata.currentVersion}`}
           css={css`
             text-decoration: none;
             :hover {
@@ -35,11 +26,11 @@ const RepositoryLinks = () => {
             }
           `}
         >
-          {`v${data.site.siteMetadata.currentVersion}`}
-        </ExternalLink>
-        <ExternalLink href={data.site.siteMetadata.repositoryUrl}>
+          {`v${siteData.siteMetadata.currentVersion}`}
+        </Markdown.Link>
+        <Markdown.Link href={siteData.siteMetadata.repositoryUrl}>
           <GitHubSvg />
-        </ExternalLink>
+        </Markdown.Link>
       </Spacings.Inline>
     </div>
   );

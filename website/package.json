@@ -1,5 +1,5 @@
 {
-  "name": "@commercetools-docs/app-kit",
+  "name": "@commercetools-local/custom-applications",
   "version": "15.3.7",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-docs": "1.0.0-canary.3",
+    "@commercetools-docs/gatsby-theme-docs": "1.0.0-canary.28",
     "@commercetools-frontend/application-components": "15.3.7",
     "@commercetools-frontend/ui-kit": "10.8.0",
     "@emotion/core": "10.0.22",
