@@ -39,11 +39,11 @@
   "dependencies": {
     "@babel/runtime-corejs3": "7.7.2",
     "@commercetools-frontend/constants": "15.3.4",
-    "@sentry/browser": "5.7.1",
+    "@sentry/browser": "5.9.0",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "react": "16.11.0",
+    "react": "16.12.0",
     "sentry-testkit": "3.0.2",
     "wait-for-expect": "3.0.1"
   },
