@@ -318,7 +318,7 @@ const renderApp = (
     </IntlProvider>
   );
   ApplicationProviders.propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
   };
 
   const rendered = rtl.render(ui, {
@@ -433,7 +433,7 @@ const renderAppWithRedux = (
     </NotificationProviderForCustomComponent>
   );
   ReduxProviders.propTypes = {
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
   };
 
   const rendered = renderApp(ui, {
