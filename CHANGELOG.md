@@ -1,3 +1,21 @@
+## [15.3.8](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.7...v15.3.8) (2019-11-15)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1165](https://github.com/commercetools/merchant-center-application-kit/pull/1165) fix: cannot use rerender with app-kit custom render functions ([@ahmehri](https://github.com/ahmehri))
+
+#### 🖥 Type: Website
+
+- [#1169](https://github.com/commercetools/merchant-center-application-kit/pull/1169) refactor(website): upgrade to theme 1.0.0-canary.28 ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-http-server`, `mc-scripts`, `permissions`, `react-notifications`, `sdk`, `sentry`
+  - [#1171](https://github.com/commercetools/merchant-center-application-kit/pull/1171) chore: update deps ([@tdeekens](https://github.com/tdeekens))
+- Other
+  - [#1168](https://github.com/commercetools/merchant-center-application-kit/pull/1168) chore: replace deprecated rollup deps ([@emmenko](https://github.com/emmenko))
+
 ## [15.3.7](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.6...v15.3.7) (2019-11-15)
 
 #### 🐛 Type: Bug
