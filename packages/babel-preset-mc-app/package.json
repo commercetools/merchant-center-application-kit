@@ -40,9 +40,9 @@
     "@babel/preset-typescript": "7.7.2",
     "@babel/runtime-corejs3": "7.7.2",
     "@emotion/babel-preset-css-prop": "10.0.23",
-    "babel-plugin-macros": "2.6.1",
+    "babel-plugin-macros": "2.6.2",
     "babel-plugin-transform-dynamic-import": "2.1.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
-    "core-js": "3.4.0"
+    "core-js": "3.4.1"
   }
 }
