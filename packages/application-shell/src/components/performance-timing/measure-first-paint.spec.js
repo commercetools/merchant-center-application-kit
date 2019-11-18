@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { wait } from '../../test-utils';
 import { MeasureFirstPaint } from './measure-first-paint';
 
 const createTestProps = custom => ({
@@ -33,83 +34,97 @@ describe('lifecycle', () => {
     });
 
     describe('pushing metric histograms', () => {
-      it('should push the first paint metric as a histograms', () => {
-        expect(props.pushMetricHistogram).toHaveBeenCalledWith({
-          payload: expect.arrayContaining([
-            expect.objectContaining({
-              metricName: 'browser_duration_first_paint_buckets_milliseconds',
-            }),
-          ]),
-        });
-      });
-
-      it('should push the first contentful paint metric as a histograms', () => {
-        expect(props.pushMetricHistogram).toHaveBeenCalledWith({
-          payload: expect.arrayContaining([
-            expect.objectContaining({
-              metricName:
-                'browser_duration_first_contentful_paint_buckets_milliseconds',
-            }),
-          ]),
-        });
-      });
-
-      describe('metric values', () => {
-        it('should push the first paint', () => {
+      it('should push the first paint metric as a histograms', async () => {
+        await wait(() => {
           expect(props.pushMetricHistogram).toHaveBeenCalledWith({
             payload: expect.arrayContaining([
               expect.objectContaining({
-                metricValue: 1,
+                metricName: 'browser_duration_first_paint_buckets_milliseconds',
               }),
             ]),
           });
         });
+      });
 
-        it('should push the first contentful paint', () => {
+      it('should push the first contentful paint metric as a histograms', async () => {
+        await wait(() => {
           expect(props.pushMetricHistogram).toHaveBeenCalledWith({
             payload: expect.arrayContaining([
               expect.objectContaining({
-                metricValue: 2,
+                metricName:
+                  'browser_duration_first_contentful_paint_buckets_milliseconds',
               }),
             ]),
+          });
+        });
+      });
+
+      describe('metric values', () => {
+        it('should push the first paint', async () => {
+          await wait(() => {
+            expect(props.pushMetricHistogram).toHaveBeenCalledWith({
+              payload: expect.arrayContaining([
+                expect.objectContaining({
+                  metricValue: 1,
+                }),
+              ]),
+            });
+          });
+        });
+
+        it('should push the first contentful paint', async () => {
+          await wait(() => {
+            expect(props.pushMetricHistogram).toHaveBeenCalledWith({
+              payload: expect.arrayContaining([
+                expect.objectContaining({
+                  metricValue: 2,
+                }),
+              ]),
+            });
           });
         });
       });
 
       describe('metric labels', () => {
-        it('should push the user agent with metrics', () => {
-          expect(props.pushMetricHistogram).toHaveBeenCalledWith({
-            payload: expect.arrayContaining([
-              expect.objectContaining({
-                metricLabels: expect.objectContaining({
-                  user_agent: props.userAgent,
+        it('should push the user agent with metrics', async () => {
+          await wait(() => {
+            expect(props.pushMetricHistogram).toHaveBeenCalledWith({
+              payload: expect.arrayContaining([
+                expect.objectContaining({
+                  metricLabels: expect.objectContaining({
+                    user_agent: props.userAgent,
+                  }),
                 }),
-              }),
-            ]),
+              ]),
+            });
           });
         });
 
-        it('should push the application with metrics', () => {
-          expect(props.pushMetricHistogram).toHaveBeenCalledWith({
-            payload: expect.arrayContaining([
-              expect.objectContaining({
-                metricLabels: expect.objectContaining({
-                  application: props.application,
+        it('should push the application with metrics', async () => {
+          await wait(() => {
+            expect(props.pushMetricHistogram).toHaveBeenCalledWith({
+              payload: expect.arrayContaining([
+                expect.objectContaining({
+                  metricLabels: expect.objectContaining({
+                    application: props.application,
+                  }),
                 }),
-              }),
-            ]),
+              ]),
+            });
           });
         });
 
-        it('should push the project key with metrics', () => {
-          expect(props.pushMetricHistogram).toHaveBeenCalledWith({
-            payload: expect.arrayContaining([
-              expect.objectContaining({
-                metricLabels: expect.objectContaining({
-                  project_key: props.projectKey,
+        it('should push the project key with metrics', async () => {
+          await wait(() => {
+            expect(props.pushMetricHistogram).toHaveBeenCalledWith({
+              payload: expect.arrayContaining([
+                expect.objectContaining({
+                  metricLabels: expect.objectContaining({
+                    project_key: props.projectKey,
+                  }),
                 }),
-              }),
-            ]),
+              ]),
+            });
           });
         });
       });
