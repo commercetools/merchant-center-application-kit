@@ -218,7 +218,8 @@ const hasDemandedDataFence = (options: {
     return false;
   }
 
-  return selectedDataFenceData.every(value =>
+  // it is enough to only have a subset of demanded dataFence data belonging to actual dataFence values
+  return selectedDataFenceData.some(value =>
     options.actualDataFence.dataFenceValue.values.includes(value)
   );
 };

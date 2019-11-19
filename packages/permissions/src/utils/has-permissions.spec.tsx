@@ -5,6 +5,7 @@ import {
   hasEveryPermissions,
   hasSomePermissions,
   getInvalidPermissions,
+  hasAppliedDataFence,
 } from './has-permissions';
 
 type TPermissionName = string;
@@ -202,6 +203,181 @@ describe('getInvalidPermissions', () => {
           canManageOrders: true,
         })
       ).toEqual(expect.arrayContaining(['ViewStars']));
+    });
+  });
+});
+
+describe('hasAppliedDataFence', () => {
+  describe('user has not datafence permissions', () => {
+    it('should return false', () => {
+      expect(
+        hasAppliedDataFence({
+          actualDataFences: null,
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ViewOrders',
+            },
+          ],
+          selectDataFenceData: () => ['store-1'],
+        })
+      ).toBe(false);
+    });
+  });
+
+  describe('no demanded dataFence exists in actual dataFences', () => {
+    it('should return "false"', () => {
+      expect(
+        hasAppliedDataFence({
+          actualDataFences: {
+            store: {
+              orders: {
+                canViewOrders: {
+                  values: ['store-1'],
+                },
+              },
+            },
+          },
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ManageOrders',
+            },
+          ],
+          selectDataFenceData: () => ['store-1'],
+        })
+      ).toBe(false);
+    });
+  });
+  describe('some demanded dataFences exist in actual dataFences', () => {
+    it('should return "true"', () => {
+      expect(
+        hasAppliedDataFence({
+          actualDataFences: {
+            store: {
+              orders: {
+                canViewOrders: {
+                  values: ['store-1'],
+                },
+              },
+            },
+          },
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ViewOrders',
+            },
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ManageOrders',
+            },
+          ],
+          selectDataFenceData: () => ['store-1'],
+        })
+      ).toBe(true);
+    });
+  });
+  describe('all demanded dataFences exist in actual dataFences', () => {
+    it('should return "true"', () => {
+      expect(
+        hasAppliedDataFence({
+          actualDataFences: {
+            store: {
+              orders: {
+                canViewOrders: {
+                  values: ['store-1'],
+                },
+              },
+            },
+          },
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ViewOrders',
+            },
+          ],
+          selectDataFenceData: () => ['store-1'],
+        })
+      ).toBe(true);
+    });
+  });
+  describe('no value from demanded dataFence exists in actual DataFence values', () => {
+    it('should return "false"', () => {
+      expect(
+        hasAppliedDataFence({
+          actualDataFences: {
+            store: {
+              orders: {
+                canManageOrders: {
+                  values: ['store-1'],
+                },
+              },
+            },
+          },
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ManageOrders',
+            },
+          ],
+          selectDataFenceData: () => ['store-2'],
+        })
+      ).toBe(false);
+    });
+  });
+  describe('some values from demanded dataFence exist in actual DataFence values', () => {
+    it('should return "true"', () => {
+      const hasDF = hasAppliedDataFence({
+        actualDataFences: {
+          store: {
+            customers: {
+              canManageCustomers: {
+                values: ['store-1'],
+              },
+            },
+          },
+        },
+        demandedDataFences: [
+          {
+            type: 'store',
+            group: 'customers',
+            name: 'ManageCustomers',
+          },
+        ],
+        selectDataFenceData: () => ['store-1', 'store-2'],
+      });
+      expect(hasDF).toBe(true);
+    });
+  });
+  describe('all values from demanded dataFence exist in actual DataFence values', () => {
+    it('should return "true"', () => {
+      expect(
+        hasAppliedDataFence({
+          actualDataFences: {
+            store: {
+              orders: {
+                canManageOrders: {
+                  values: ['store-1', 'store-2'],
+                },
+              },
+            },
+          },
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ManageOrders',
+            },
+          ],
+          selectDataFenceData: () => ['store-1', 'store-2'],
+        })
+      ).toBe(true);
     });
   });
 });
