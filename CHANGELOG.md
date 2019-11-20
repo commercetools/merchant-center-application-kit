@@ -1,3 +1,10 @@
+## [15.3.9](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.8...v15.3.9) (2019-11-20)
+
+#### 💅 Type: Enhancement
+
+- `permissions`
+  - [#1173](https://github.com/commercetools/merchant-center-application-kit/pull/1173) refactor: only some subset of demanded DF values should belong to actual DF values ([@amine-benselim](https://github.com/amine-benselim))
+
 ## [15.3.8](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.7...v15.3.8) (2019-11-15)
 
 #### 🐛 Type: Bug
