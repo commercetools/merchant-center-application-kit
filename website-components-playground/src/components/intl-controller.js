@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
 
-const availableLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN'];
+const availableLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];
 
 const slugifyLocale = locale => {
   switch (locale) {
@@ -27,6 +27,8 @@ const namifyLocale = locale => {
       return 'Français';
     case 'zh-CN':
       return '简化字';
+    case 'ja':
+      return '日本人';
     default:
       return locale;
   }

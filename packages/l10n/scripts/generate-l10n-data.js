@@ -15,7 +15,7 @@ const L10N_KEYS = {
   LANGUAGE: 'language',
 };
 
-const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN'];
+const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];
 
 // This are excluded countries since cldr returns them in its list
 // but our API does not allow them. After some investigation with the
