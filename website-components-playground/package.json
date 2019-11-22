@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-local/components-playground",
-  "version": "15.3.8",
+  "version": "15.4.0",
   "private": true,
   "scripts": {
     "build:local": "gatsby build",
