@@ -26,6 +26,10 @@ const getImportChunk = (locale: string): Promise<ImportData> => {
       return import(
         /* webpackChunkName: "language-data-zh-CN" */ '../data/languages/zh-CN.json'
       );
+    case 'ja':
+      return import(
+        /* webpackChunkName: "language-data-ja" */ '../data/languages/ja.json'
+      );
     default:
       return import(
         /* webpackChunkName: "language-data-en" */ '../data/languages/en.json'

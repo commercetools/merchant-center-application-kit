@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { useShowApiErrorNotification } from '@commercetools-frontend/actions-global';
 import {
   LoadingSpinner,
   Spacings,
   Text,
-  LinkButton,
+  FlatButton,
   ListIcon,
   CheckBoldIcon,
   Grid,
@@ -93,8 +94,9 @@ const StateMachinesDetails = props => {
         return (
           <Spacings.Inset scale="m">
             <Spacings.Stack scale="l">
-              <LinkButton
-                iconLeft={<ListIcon />}
+              <FlatButton
+                as={Link}
+                icon={<ListIcon />}
                 label="Back to list"
                 to={props.backToListPath}
               />

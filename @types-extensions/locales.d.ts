@@ -29,3 +29,9 @@ declare module 'moment/locale/en-gb' {
   const data: moment.Locale;
   export = data;
 }
+
+declare module 'moment/locale/ja' {
+  import moment from 'moment';
+  const data: moment.Locale;
+  export = data;
+}

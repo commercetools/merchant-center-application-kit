@@ -5,10 +5,11 @@ export const mapLocaleToIntlLocale = (locale: string) => {
   if (locale.startsWith('es')) return 'es';
   if (locale.startsWith('fr')) return 'fr-FR';
   if (locale === 'zh-CN') return 'zh-CN';
+  if (locale.startsWith('ja')) return 'ja';
   return 'en';
 };
 
-const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN'];
+const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];
 const defaultLocale = 'en';
 
 // Given a locale, return the locale only if it's whitelisted.

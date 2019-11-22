@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import {
   ListIcon,
   TableIcon,
-  LinkButton,
+  FlatButton,
   Spacings,
   Text,
 } from '@commercetools-frontend/ui-kit';
@@ -22,18 +22,20 @@ const MainView = props => (
         <Spacings.Inline scale="s">
           <FormattedMessage {...messages.labelLinkOne}>
             {label => (
-              <LinkButton
+              <FlatButton
+                as={Link}
                 to={`${props.match.url}/one`}
-                iconLeft={<ListIcon />}
+                icon={<ListIcon />}
                 label={label}
               />
             )}
           </FormattedMessage>
           <FormattedMessage {...messages.labelLinkTwo}>
             {label => (
-              <LinkButton
+              <FlatButton
+                as={Link}
                 to={`${props.match.url}/two`}
-                iconLeft={<TableIcon />}
+                icon={<TableIcon />}
                 label={label}
               />
             )}

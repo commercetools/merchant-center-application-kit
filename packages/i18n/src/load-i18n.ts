@@ -41,6 +41,10 @@ const getMomentChunkImport = (locale: string): Promise<MomentImportData> => {
       return import(
         /* webpackChunkName: "i18n-moment-locale-zh-cn" */ 'moment/locale/zh-cn'
       );
+    case 'ja':
+      return import(
+        /* webpackChunkName: "i18n-moment-locale-ja" */ 'moment/locale/ja'
+      );
     default:
       return import(
         /* webpackChunkName: "i18n-moment-locale-en-gb" */ 'moment/locale/en-gb'
@@ -67,6 +71,10 @@ const getUiKitChunkImport = (locale: string): Promise<UIKitImportData> => {
       return import(
         /* webpackChunkName: "i18n-ui-kit-locale-zh-CN" */ '@commercetools-frontend/ui-kit/i18n/data/zh-CN.json'
       );
+    case 'ja':
+      return import(
+        /* webpackChunkName: "i18n-ui-kit-locale-ja" */ '@commercetools-frontend/ui-kit/i18n/data/ja.json'
+      );
     default:
       return import(
         /* webpackChunkName: "i18n-ui-kit-locale-en" */ '@commercetools-frontend/ui-kit/i18n/data/en.json'
@@ -92,6 +100,10 @@ const getAppKitChunkImport = (locale: string): Promise<AppKitImportData> => {
     case 'zh-CN':
       return import(
         /* webpackChunkName: "i18n-app-kit-locale-zh-CN" */ '../data/zh-CN.json'
+      );
+    case 'ja':
+      return import(
+        /* webpackChunkName: "i18n-app-kit-locale-ja" */ '../data/ja.json'
       );
     default:
       return import(

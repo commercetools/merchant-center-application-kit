@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { renderApp, waitForElement } from '../../test-utils';
+import { renderApp, wait } from '../../test-utils';
 import UserQuery from '../fetch-user/fetch-user.mc.graphql';
 import ProjectsQuery from '../project-switcher/project-switcher.mc.graphql';
 import ProjectSuspended from './project-suspended';
 
 describe('rendering', () => {
   it('when suspension is temporary it should print correct message', async () => {
-    const { getByText } = renderApp(
+    const { queryByText } = renderApp(
       <Route
         path="/:projectKey"
         render={() => <ProjectSuspended isTemporary={true} />}
@@ -97,8 +97,10 @@ describe('rendering', () => {
         ],
       }
     );
-    await waitForElement(() =>
-      getByText(/Your Project is temporarily suspended due to maintenance/)
+    await wait(() =>
+      expect(
+        queryByText(/Your Project is temporarily suspended due to maintenance/)
+      ).toBeInTheDocument()
     );
   });
 });

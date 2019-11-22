@@ -19,7 +19,7 @@ const nodeGlob = require('glob');
 const { transformAsync } = require('@babel/core');
 const getBabelPresetForMcApp = require('@commercetools-frontend/babel-preset-mc-app');
 
-const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN'];
+const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];
 const flags = mri(process.argv.slice(2), {
   alias: { help: ['h'] },
   default: {

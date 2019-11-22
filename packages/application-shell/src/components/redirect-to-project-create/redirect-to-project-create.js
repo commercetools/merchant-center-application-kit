@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { Spacings, Text, LinkButton } from '@commercetools-frontend/ui-kit';
+import { Spacings, Text, FlatButton } from '@commercetools-frontend/ui-kit';
 
 export const RedirectToProjectCreate = props => {
   /**
@@ -32,7 +33,11 @@ export const RedirectToProjectCreate = props => {
         Please go to the `application-accounts` while having it running to
         create a project first. Note, that you can do the same on staging.
       </Text.Body>
-      <LinkButton to={`account/projects/new`} label="Create project" />
+      <FlatButton
+        as={Link}
+        to={`account/projects/new`}
+        label="Create project"
+      />
     </Spacings.Stack>
   );
 };
