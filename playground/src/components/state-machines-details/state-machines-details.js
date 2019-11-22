@@ -96,7 +96,7 @@ const StateMachinesDetails = props => {
             <Spacings.Stack scale="l">
               <FlatButton
                 as={Link}
-                iconLeft={<ListIcon />}
+                icon={<ListIcon />}
                 label="Back to list"
                 to={props.backToListPath}
               />

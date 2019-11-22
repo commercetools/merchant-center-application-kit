@@ -25,7 +25,7 @@ const MainView = props => (
               <FlatButton
                 as={Link}
                 to={`${props.match.url}/one`}
-                iconLeft={<ListIcon />}
+                icon={<ListIcon />}
                 label={label}
               />
             )}
@@ -35,7 +35,7 @@ const MainView = props => (
               <FlatButton
                 as={Link}
                 to={`${props.match.url}/two`}
-                iconLeft={<TableIcon />}
+                icon={<TableIcon />}
                 label={label}
               />
             )}
