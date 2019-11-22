@@ -1,3 +1,10 @@
+## [15.4.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.9...v15.4.0) (2019-11-22)
+
+#### 🚀 Type: New Feature
+
+- `application-components`, `application-shell`, `i18n`, `l10n`, `mc-scripts`, `react-notifications`
+  - [#1176](https://github.com/commercetools/merchant-center-application-kit/pull/1176) feat(i18n): add Japanese (ja) locale support ([@amine-benselim](https://github.com/amine-benselim))
+
 ## [15.3.9](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.8...v15.3.9) (2019-11-20)
 
 #### 💅 Type: Enhancement
