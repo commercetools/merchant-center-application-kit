@@ -11,7 +11,7 @@
     "@commercetools-frontend/ui-kit": "10.11.0",
     "@emotion/core": "10.0.22",
     "@emotion/styled": "10.0.23",
-    "formik": "2.0.4",
+    "formik": "2.0.6",
     "prop-types": "15.7.2",
     "react": "16.12.0",
     "react-dom": "16.12.0",

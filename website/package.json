@@ -10,13 +10,13 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-docs": "1.0.0-canary.28",
+    "@commercetools-docs/gatsby-theme-docs": "1.0.0-canary.37",
     "@commercetools-frontend/application-components": "15.4.0",
     "@commercetools-frontend/ui-kit": "10.11.0",
     "@emotion/core": "10.0.22",
     "@emotion/styled": "10.0.23",
-    "gatsby": "2.17.11",
-    "gatsby-cli": "2.8.9",
+    "gatsby": "2.18.2",
+    "gatsby-cli": "2.8.13",
     "react": "16.12.0",
     "react-dom": "16.12.0"
   }
