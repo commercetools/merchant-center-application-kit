@@ -38,7 +38,7 @@
     "generate-data": "node ./scripts/generate-l10n-data.js"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.7.2",
+    "@babel/runtime-corejs3": "7.7.4",
     "@commercetools-frontend/sentry": "15.3.8",
     "moment": "^2.24.0",
     "prop-types": "15.7.2",
@@ -47,7 +47,7 @@
   "devDependencies": {
     "@testing-library/react-hooks": "3.2.1",
     "chalk": "3.0.0",
-    "cldr": "5.4.1",
+    "cldr": "5.5.3",
     "deep-diff": "1.0.2",
     "moment-timezone": "0.5.27",
     "node-fetch": "2.6.0",
