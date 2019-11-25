@@ -1625,10 +1625,10 @@
   dependencies:
     "@formatjs/intl-utils" "^1.4.2"
 
-"@formatjs/intl-listformat@^1.2.4":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@formatjs/intl-listformat/-/intl-listformat-1.2.6.tgz#73d6f7f1ad3447f7cffcda28949987e7c235e66f"
-  integrity sha512-YBCRxyGreYO1N3JioFuWnZQ9zmQxIXNdLrC4GO3Wr2j7t9N/9AMmHbT350Fce1kcmCjhx5Fk0p6kVwM+6gs4Mg==
+"@formatjs/intl-relativetimeformat@^4.2.1":
+  version "4.4.5"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-relativetimeformat/-/intl-relativetimeformat-4.4.5.tgz#96a8edf5791931123789c18b6be26b725b8e2937"
+  integrity sha512-dxUn3/+rfqBCmJrBNzKJUxIyIQSlmTUKUHxE/O4naEb2H7nnliW7Iy4Y/4ArjiL6PQlORMktQzzYJwAVUGbqNQ==
   dependencies:
     "@formatjs/intl-utils" "^1.4.3"
 
@@ -1639,10 +1639,10 @@
   dependencies:
     "@formatjs/intl-utils" "^1.4.2"
 
-"@formatjs/intl-relativetimeformat@^4.4.3":
-  version "4.4.5"
-  resolved "https://registry.yarnpkg.com/@formatjs/intl-relativetimeformat/-/intl-relativetimeformat-4.4.5.tgz#96a8edf5791931123789c18b6be26b725b8e2937"
-  integrity sha512-dxUn3/+rfqBCmJrBNzKJUxIyIQSlmTUKUHxE/O4naEb2H7nnliW7Iy4Y/4ArjiL6PQlORMktQzzYJwAVUGbqNQ==
+"@formatjs/intl-unified-numberformat@^2.1.0":
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-unified-numberformat/-/intl-unified-numberformat-2.1.6.tgz#57fcb63c16f1fa1c800e0f91f8d913db6147f723"
+  integrity sha512-O+RhEeHYcrX5ghzWaHB7ETHV7z3m2QpVM8hgMlLP2egf6WUZa8kQMc+R3tF/1uFoTzUf/Z2J8nuEHRF0HBwQxQ==
   dependencies:
     "@formatjs/intl-utils" "^1.4.3"
 
@@ -1652,13 +1652,6 @@
   integrity sha512-DHXwrn+FSJaTvAQ1Les4t3+FQo/blH2lOqbsE/5m+OdN+t8DhUKUsW3sRmv0gKE8z3eFhU+1P+7OPVl8U4X4AQ==
   dependencies:
     "@formatjs/intl-utils" "^1.4.2"
-
-"@formatjs/intl-unified-numberformat@^2.1.4":
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/@formatjs/intl-unified-numberformat/-/intl-unified-numberformat-2.1.6.tgz#57fcb63c16f1fa1c800e0f91f8d913db6147f723"
-  integrity sha512-O+RhEeHYcrX5ghzWaHB7ETHV7z3m2QpVM8hgMlLP2egf6WUZa8kQMc+R3tF/1uFoTzUf/Z2J8nuEHRF0HBwQxQ==
-  dependencies:
-    "@formatjs/intl-utils" "^1.4.3"
 
 "@formatjs/intl-utils@^1.4.2":
   version "1.4.2"
@@ -1670,7 +1663,7 @@
   resolved "https://registry.yarnpkg.com/@formatjs/intl-utils/-/intl-utils-1.4.3.tgz#97e8d79ec6ab8173b95bd285ce4b1ef9be6c4c24"
   integrity sha512-9zemPM/4+KgW14J8BJJFv0KEhdaPYgcYk5CUVWbwjl6VqOR/pATpQzac97VdIgkXODxMtCQ8tYEPz+LpmD+6Xw==
 
-"@formatjs/macro@^0.2.1", "@formatjs/macro@^0.2.4":
+"@formatjs/macro@^0.2.1":
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/@formatjs/macro/-/macro-0.2.5.tgz#4f93ed3db2f8ca688ae863cc885e20dd012612a3"
   integrity sha512-KkNQt/s+m0LdZwBoM5xCWQFuGWCv8i4pfMgEY9+KGaSP+l44IdO5tmpQsJ67bNYvjy4HTLptwr1TqF+2QQsAYg==
@@ -12421,7 +12414,7 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.1:
+hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#101685d3aff3b23ea213163f6e8e12f4f111e19f"
   integrity sha512-wbg3bpgA/ZqWrZuMOeJi8+SKMhr7X9TesL/rXMjTzh0p0JUBo3II8DHboYbuIXWRlttrUFxwcu/5kygrCw8fJw==
@@ -13110,7 +13103,7 @@ interpret@1.2.0, interpret@^1.0.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
   integrity sha512-mT34yGKMNceBQUoVn7iCDKDntA7SC6gycMAWzGx1z/CMCTV7b2AAtXlo3nRyHZ1FelRkQbQjprHSYGwzLtkVbw==
 
-intl-format-cache@^4.2.10, intl-format-cache@^4.2.8:
+intl-format-cache@^4.2.10, intl-format-cache@^4.2.3:
   version "4.2.10"
   resolved "https://registry.yarnpkg.com/intl-format-cache/-/intl-format-cache-4.2.10.tgz#5a79c8374d88eeb5f0cea78ed40069310b449c48"
   integrity sha512-GE9/50WluoMLxi1mP8fX5dcKfYfRNFhH3dy6Sgx96RsBla/9YApNL58Gzg9nHTipVUgX3VUz4PsssrKVlcQvWA==
@@ -13125,20 +13118,23 @@ intl-locales-supported@^1.6.0:
   resolved "https://registry.yarnpkg.com/intl-locales-supported/-/intl-locales-supported-1.8.2.tgz#bec6c8d6efabe5703b6b375bf91b9472f29a0e80"
   integrity sha512-O2euCUWzbHfFEEIm493LPYNGOLjLfAVTjGsApXUn72rLqolC2TPDFWnh8fT1wlcQ0UHE6aAKHHLPbtkEMlRFlA==
 
-intl-locales-supported@^1.8.2:
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/intl-locales-supported/-/intl-locales-supported-1.8.3.tgz#8b8c5b024d916c5cfa634077eb61dc701941ef14"
-  integrity sha512-CJr6+BMnsNFwrKqP1ZLovgwgzhfE1MQX5AV6qLuyEqVmUTaTw6V/f3nYbVK6aCTkfnvnNcxCWPSQSzq9JMERiw==
-
 intl-messageformat-parser@^3.2.2, intl-messageformat-parser@^3.2.5:
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-3.2.5.tgz#9d6a2c1aa13b3d247edea40a2847e374f86589b6"
   integrity sha512-cn2HgNCF1q9HCJxzpmFIWWADQWS/fG/UtAE7H8SVT79NOfNFiQnEQHokzA0UpvWv73jowFavMCvToPFRCf6zaQ==
 
-intl-messageformat-parser@^3.2.4, intl-messageformat-parser@^3.2.6:
+intl-messageformat-parser@^3.2.6:
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-3.2.6.tgz#a3b9e614d6073f2fb7dec0b49b0515ee84e2671b"
   integrity sha512-AtyA6Xa5DwtvhW9c2q071m9gRjwx2HkLKRnU3BzNGBnyNEkwAkrfF9dLPDMvorIx5GYgCtesHLxI1cF6GsOWWg==
+
+intl-messageformat@^7.3.3:
+  version "7.5.6"
+  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-7.5.6.tgz#f586d071c98c159c840df69599abe62cb4560cbd"
+  integrity sha512-MTFtbKLpGMRe1/3kK1kCvm+38UkBnBRiTbakoRV6b9wAoLxWgXoSR1Wu7OvkcyfSNk7j4zLeI/e/OuQdyxv69A==
+  dependencies:
+    intl-format-cache "^4.2.10"
+    intl-messageformat-parser "^3.2.6"
 
 intl-messageformat@^7.5.1:
   version "7.5.5"
@@ -13147,14 +13143,6 @@ intl-messageformat@^7.5.1:
   dependencies:
     intl-format-cache "^4.2.9"
     intl-messageformat-parser "^3.2.5"
-
-intl-messageformat@^7.5.4:
-  version "7.5.6"
-  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-7.5.6.tgz#f586d071c98c159c840df69599abe62cb4560cbd"
-  integrity sha512-MTFtbKLpGMRe1/3kK1kCvm+38UkBnBRiTbakoRV6b9wAoLxWgXoSR1Wu7OvkcyfSNk7j4zLeI/e/OuQdyxv69A==
-  dependencies:
-    intl-format-cache "^4.2.10"
-    intl-messageformat-parser "^3.2.6"
 
 intl@1.2.5:
   version "1.2.5"
@@ -19838,6 +19826,23 @@ react-input-autosize@^2.2.2:
   dependencies:
     prop-types "^15.5.8"
 
+react-intl@3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-3.4.0.tgz#25986ac75b3c0073c0a7bce31ab2cb1b8bbf421c"
+  integrity sha512-pW+z0ngVtPzICQeBrvoxk/YOotjFjVMvqxf/q0hjfM4CLvzIWJW/7MQcOz8ujD0Agf146mYOUv0//a9JM4H6Tg==
+  dependencies:
+    "@formatjs/intl-relativetimeformat" "^4.2.1"
+    "@formatjs/intl-unified-numberformat" "^2.1.0"
+    "@types/hoist-non-react-statics" "^3.3.1"
+    "@types/invariant" "^2.2.30"
+    hoist-non-react-statics "^3.3.0"
+    intl-format-cache "^4.2.3"
+    intl-locales-supported "^1.6.0"
+    intl-messageformat "^7.3.3"
+    intl-messageformat-parser "^3.2.2"
+    invariant "^2.1.1"
+    shallow-equal "^1.1.0"
+
 react-intl@3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-3.6.0.tgz#100185ee58620ecf1cf229de9afcb91ae9dd4e60"
@@ -19854,25 +19859,6 @@ react-intl@3.6.0:
     intl-locales-supported "^1.6.0"
     intl-messageformat "^7.5.1"
     intl-messageformat-parser "^3.2.2"
-    invariant "^2.1.1"
-    shallow-equal "^1.1.0"
-
-react-intl@3.6.2:
-  version "3.6.2"
-  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-3.6.2.tgz#9d9a7d309ba8087411e92fa281a19526dd2f9a96"
-  integrity sha512-iRWH50RxdCRsQDqZEgHQXurvj+d9XhbsyQ3elt2tiGu1h4P+kpMEE3h3v3VSNQ3SgNqwUhzUFYkiIWlL9ZDxQA==
-  dependencies:
-    "@formatjs/intl-listformat" "^1.2.4"
-    "@formatjs/intl-relativetimeformat" "^4.4.3"
-    "@formatjs/intl-unified-numberformat" "^2.1.4"
-    "@formatjs/macro" "^0.2.4"
-    "@types/hoist-non-react-statics" "^3.3.1"
-    "@types/invariant" "^2.2.30"
-    hoist-non-react-statics "^3.3.1"
-    intl-format-cache "^4.2.8"
-    intl-locales-supported "^1.8.2"
-    intl-messageformat "^7.5.4"
-    intl-messageformat-parser "^3.2.4"
     invariant "^2.1.1"
     shallow-equal "^1.1.0"
 
