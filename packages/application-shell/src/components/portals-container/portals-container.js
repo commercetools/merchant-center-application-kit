@@ -9,6 +9,8 @@ const PortalsContainer = () => (
     id={PORTALS_CONTAINER_ID}
     css={css`
       display: flex;
+      height: 1px;
+      margin-top: -1px;
     `}
   />
 );
