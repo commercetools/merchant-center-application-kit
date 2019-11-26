@@ -7,8 +7,11 @@ import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
 const PortalsContainer = () => (
   <div
     id={PORTALS_CONTAINER_ID}
+    // The container needs a height in order to be tabbable: https://reactjs/react-modal#774
     css={css`
       display: flex;
+      height: 1px;
+      margin-top: -1px;
     `}
   />
 );
