@@ -76,6 +76,8 @@ packages/sdk/test-utils
 
 # Editor/IDE
 .idea
+.vscode/*
+!.vscode/settings.json
 
 # Cypress
 cypress/screenshots
