@@ -1,3 +1,23 @@
+## [15.4.1](https://github.com/commercetools/merchant-center-application-kit/compare/v15.4.0...v15.4.1) (2019-11-27)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1183](https://github.com/commercetools/merchant-center-application-kit/pull/1183) fix(app-shell): portal container height to fix tabbing in modals ([@jonnybel](https://github.com/jonnybel))
+
+#### 🖥 Type: Website
+
+- [#1181](https://github.com/commercetools/merchant-center-application-kit/pull/1181) chore(website): update docs theme to canary.42 ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `i18n`, `jest-preset-mc-app`, `jest-stylelint-runner`, `l10n`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sentry`, `url-utils`
+  - [#1178](https://github.com/commercetools/merchant-center-application-kit/pull/1178) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+- `application-shell`
+  - [#1179](https://github.com/commercetools/merchant-center-application-kit/pull/1179) chore(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+- Other
+  - [#1180](https://github.com/commercetools/merchant-center-application-kit/pull/1180) chore(deps): lock file maintenance ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [15.4.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.3.9...v15.4.0) (2019-11-22)
 
 #### 🚀 Type: New Feature
