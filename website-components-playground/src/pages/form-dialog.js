@@ -3,14 +3,14 @@ import { Formik } from 'formik';
 import { FormDialog } from '@commercetools-frontend/application-components';
 import { Spacings, TextField } from '@commercetools-frontend/ui-kit';
 import LayoutApp from '../layouts/layout-app';
-import ExampleWrapper from '../components/example-wrapper';
+import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
 
 const containerId = 'form-dialog';
 
 const FormDialogExample = props => (
   <LayoutApp>
-    <ExampleWrapper
+    <PlaygroundController
       // eslint-disable-next-line react/prop-types
       {...props.pageContext}
       knobs={[
@@ -88,7 +88,7 @@ const FormDialogExample = props => (
           )}
         </ModalController>
       )}
-    </ExampleWrapper>
+    </PlaygroundController>
   </LayoutApp>
 );
 FormDialogExample.displayName = 'FormDialogExample';

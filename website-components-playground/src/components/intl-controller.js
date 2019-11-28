@@ -1,19 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
+import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 
 const availableLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];
-
-const slugifyLocale = locale => {
-  switch (locale) {
-    case 'frFR':
-      return 'fr-FR';
-    case 'zhCN':
-      return 'zh-CN';
-    default:
-      return locale;
-  }
-};
 
 const namifyLocale = locale => {
   switch (locale) {
@@ -40,13 +30,19 @@ const availableLocaleOptions = availableLocales.map(locale => ({
 }));
 
 const IntlController = props => {
-  const [locale, setLocale] = React.useState('en');
-  const messages = require(`@commercetools-frontend/i18n/data/${locale}.json`);
-
+  const [activeLocale, setActiveLocale] = React.useState('en');
   return (
-    <IntlProvider locale={slugifyLocale(locale)} messages={messages}>
-      {props.children({ locale, setLocale, availableLocaleOptions })}
-    </IntlProvider>
+    <AsyncLocaleData locale={activeLocale} applicationMessages={{}}>
+      {({ locale, messages }) => (
+        <IntlProvider locale={locale || activeLocale} messages={messages}>
+          {props.children({
+            locale: locale || activeLocale,
+            setLocale: setActiveLocale,
+            availableLocaleOptions,
+          })}
+        </IntlProvider>
+      )}
+    </AsyncLocaleData>
   );
 };
 IntlController.displayName = 'IntlController';

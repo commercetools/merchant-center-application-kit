@@ -1,7 +1,7 @@
-import PlaygroundController from '../../../components/playground-controller';
+import Playground from '../../../components/playground';
 
 const markdownComponents = {
-  PlaygroundController,
+  Playground,
 };
 
 export default markdownComponents;

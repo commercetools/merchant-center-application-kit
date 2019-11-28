@@ -12,7 +12,7 @@ import {
 } from '@commercetools-frontend/ui-kit';
 import { css } from '@emotion/core';
 import LayoutApp from '../layouts/layout-app';
-import ExampleWrapper from '../components/example-wrapper';
+import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
 
 const containerId = 'tabular-modal-page';
@@ -55,7 +55,7 @@ const customControls = option => {
 
 const TabularModalPageExample = props => (
   <LayoutApp>
-    <ExampleWrapper
+    <PlaygroundController
       // eslint-disable-next-line react/prop-types
       {...props.pageContext}
       knobs={[
@@ -152,7 +152,7 @@ const TabularModalPageExample = props => (
           )}
         </ModalController>
       )}
-    </ExampleWrapper>
+    </PlaygroundController>
   </LayoutApp>
 );
 TabularModalPageExample.displayName = 'TabularModalPageExample';

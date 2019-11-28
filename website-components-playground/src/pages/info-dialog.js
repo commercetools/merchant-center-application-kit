@@ -2,14 +2,14 @@ import React from 'react';
 import { InfoDialog } from '@commercetools-frontend/application-components';
 import { Spacings, Text } from '@commercetools-frontend/ui-kit';
 import LayoutApp from '../layouts/layout-app';
-import ExampleWrapper from '../components/example-wrapper';
 import ModalController from '../components/modal-controller';
+import PlaygroundController from '../components/playground-controller';
 
 const containerId = 'info-dialog';
 
 const InfoDialogExample = props => (
   <LayoutApp>
-    <ExampleWrapper
+    <PlaygroundController
       // eslint-disable-next-line react/prop-types
       {...props.pageContext}
       knobs={[
@@ -64,7 +64,7 @@ const InfoDialogExample = props => (
           )}
         </ModalController>
       )}
-    </ExampleWrapper>
+    </PlaygroundController>
   </LayoutApp>
 );
 InfoDialogExample.displayName = 'InfoDialogExample';

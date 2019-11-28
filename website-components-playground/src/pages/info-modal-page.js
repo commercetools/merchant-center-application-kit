@@ -2,14 +2,14 @@ import React from 'react';
 import { InfoModalPage } from '@commercetools-frontend/application-components';
 import { Text } from '@commercetools-frontend/ui-kit';
 import LayoutApp from '../layouts/layout-app';
-import ExampleWrapper from '../components/example-wrapper';
+import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
 
 const containerId = 'info-modal-page';
 
 const InfoModalPageExample = props => (
   <LayoutApp>
-    <ExampleWrapper
+    <PlaygroundController
       // eslint-disable-next-line react/prop-types
       {...props.pageContext}
       knobs={[
@@ -137,7 +137,7 @@ const InfoModalPageExample = props => (
           )}
         </ModalController>
       )}
-    </ExampleWrapper>
+    </PlaygroundController>
   </LayoutApp>
 );
 InfoModalPageExample.displayName = 'InfoModalPageExample';
