@@ -1,4 +1,10 @@
+## [15.4.2](https://github.com/commercetools/merchant-center-application-kit/compare/v15.4.1...v15.4.2) (2019-11-27)
+
+This release publishes all packages due to an issue with npm during the prior `15.4.1` release.
+
 ## [15.4.1](https://github.com/commercetools/merchant-center-application-kit/compare/v15.4.0...v15.4.1) (2019-11-27)
+
+> We recommend using the `15.4.2` release as not all packages within this release managed to be published.
 
 #### 🐛 Type: Bug
 
