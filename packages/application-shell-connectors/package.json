@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-shell-connectors",
-  "version": "15.4.1",
+  "version": "15.4.2",
   "description": "Contains complementary tools for @commercetools-frontend/application-shell",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -40,8 +40,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.7.4",
-    "@commercetools-frontend/constants": "15.3.4",
-    "@commercetools-frontend/sentry": "15.4.1",
+    "@commercetools-frontend/constants": "15.4.2",
+    "@commercetools-frontend/sentry": "15.4.2",
     "apollo-cache-inmemory": "1.6.3",
     "apollo-client": "2.6.4",
     "apollo-link-http": "1.5.16",
