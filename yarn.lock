@@ -1046,10 +1046,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-docs/gatsby-theme-docs@1.0.0-canary.51":
-  version "1.0.0-canary.51"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.0.0-canary.51.tgz#25594a7038f52373fdbd15c6ec8106d69872680e"
-  integrity sha512-ODWDj9brEGg6hq/XzQpF2nnp2Ge4BlCpqcmtHEN+l6TmwRpkuowY7rxE8iiLAfogeyAjSuFg25iXPvtiEF+q8Q==
+"@commercetools-docs/gatsby-theme-docs@1.0.0-canary.53":
+  version "1.0.0-canary.53"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.0.0-canary.53.tgz#7974e8dfa41d008fc1e749baab114da0ad691065"
+  integrity sha512-79+NLfwbRNr451IFE59K4WMJPeN4qvQga0H5alXRq3eORET50Vx10pf2qmw2wbp/Nh3jyXPS2/BA21LVtM3sEQ==
   dependencies:
     "@commercetools-frontend/ui-kit" "10.0.1"
     "@mdx-js/mdx" "1.5.1"
