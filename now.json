@@ -4,8 +4,15 @@
   "name": "mc-custom-applications",
   "alias": "mc-custom-applications",
   "routes": [
-    { "src": "/", "status": 302, "dest": "/custom-applications/" },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "status": 404, "dest": "/custom-applications/404" }
+    {
+      "src": "/",
+      "status": 302,
+      "headers": {
+        "Location": "/custom-applications/"
+      }
+    },
+    {
+      "handle": "filesystem"
+    }
   ]
 }
