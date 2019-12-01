@@ -1046,10 +1046,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-docs/gatsby-theme-docs@1.0.0-canary.57":
-  version "1.0.0-canary.57"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.0.0-canary.57.tgz#89687c6be8d033ef20086b362662117767992475"
-  integrity sha512-HBWrKa3oRPXIZTj/12JoVfsEmXzOJQxNYyLFuyuLMC1q+ECOV3+6kPAMIphdph7Rsv4V/9mkdArHot2NxCsgqw==
+"@commercetools-docs/gatsby-theme-docs@1.0.0-canary.60":
+  version "1.0.0-canary.60"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.0.0-canary.60.tgz#35c37aca91053e79729811cc57c54edbeb24b458"
+  integrity sha512-NLq0NqberYmgE8z0I8ymzTsFtgPUP2I1hGuJ3+IRy3JCPFgqJLgAhk7HD7+A6t1+ua0bDPqI+KLenjZMkTinIA==
   dependencies:
     "@commercetools-frontend/ui-kit" "10.0.1"
     "@mdx-js/mdx" "1.5.1"
@@ -1108,10 +1108,40 @@
     react-required-if "1.0.3"
     warning "4.0.3"
 
+"@commercetools-frontend/assets@15.0.0":
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/assets/-/assets-15.0.0.tgz#d6e27f59ae97bddd8c0772a7c8887fac91771a51"
+  integrity sha512-253d3xJDhrOywod1y6CLLFP43c8zVBaulBoOAUlPQ4fGY5T1SC+srGUKTQuEZaEAXSkSJSoAt7b5IiA7eFSMCw==
+
 "@commercetools-frontend/constants@15.1.4":
   version "15.1.4"
   resolved "https://registry.yarnpkg.com/@commercetools-frontend/constants/-/constants-15.1.4.tgz#55bae9741bd7d116007bbc891f2ac963a7eb6aea"
   integrity sha512-+oB3Y2STpQktaiAW33cw3BGb+l63AHXgPAlpFyTnVz7h5nNdYcMIhmd6FL3YIUJ6ZUz81g1KK8nqDvO+1jcOuw==
+
+"@commercetools-frontend/constants@15.3.4":
+  version "15.3.4"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/constants/-/constants-15.3.4.tgz#3d611311527e336d7f1aa45ebb442b84c9a83358"
+  integrity sha512-ebOVqYBxcu4HuSAq4B+lRBJG6jEByXxsgdc1Avoq5MtF/nEUPBMwkOBpeEdwqKzihYQghCPyEAfunUcIMoqVmg==
+
+"@commercetools-frontend/i18n@15.4.1":
+  version "15.4.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/i18n/-/i18n-15.4.1.tgz#e1f7985a99c76044da772afab1a200ed7b172506"
+  integrity sha512-mNOk9pjllm8LO49w2zwKY/sOJJtvyHW7VErYHdtlkMI7N7GkzY3Mnd6hRd6hjfWprf6sXJyzrGb6DEoy3VPW4A==
+  dependencies:
+    "@babel/runtime-corejs3" "7.7.4"
+    "@commercetools-frontend/sentry" "15.4.1"
+    moment "^2.24.0"
+    prop-types "15.7.2"
+
+"@commercetools-frontend/sentry@15.4.1":
+  version "15.4.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/sentry/-/sentry-15.4.1.tgz#05907fd3f500a5a3ce1e1146f5121d03250ee940"
+  integrity sha512-04YaiCf2m/t+nO98W9WH+E2Ldwirt40zQBLQeRZxjxUIFm5Gx9n1smV3iFqWeyeDdY/e+mx3rhnvCpz26N3Kpg==
+  dependencies:
+    "@babel/runtime-corejs3" "7.7.4"
+    "@commercetools-frontend/constants" "15.3.4"
+    "@sentry/browser" "5.9.1"
+    prop-types "15.7.2"
 
 "@commercetools-frontend/ui-kit@10.0.1", "@commercetools-frontend/ui-kit@10.11.0":
   version "10.11.0"
