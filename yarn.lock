@@ -961,6 +961,14 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-transform-typescript" "^7.7.4"
 
+"@babel/runtime-corejs3@7.6.3":
+  version "7.6.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.6.3.tgz#a2b2b7ceea6ecb37ff822d293a312f1f00c29b84"
+  integrity sha512-933SXHQr7apa95F+3IqkBne8mqOnu1kDh6dnSddC07aW/R51WsOVD7MSczJ6DRpq/L8KLll7TFDxmt30pft44w==
+  dependencies:
+    core-js-pure "^3.0.0"
+    regenerator-runtime "^0.13.2"
+
 "@babel/runtime-corejs3@7.7.4", "@babel/runtime-corejs3@^7.7.4":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.7.4.tgz#f861adc1cecb9903dfd66ea97917f02ff8d79888"
@@ -1103,6 +1111,16 @@
     react-modal "3.10.1"
     react-required-if "1.0.3"
     warning "4.0.3"
+
+"@commercetools-frontend/assets@15.0.0":
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/assets/-/assets-15.0.0.tgz#d6e27f59ae97bddd8c0772a7c8887fac91771a51"
+  integrity sha512-253d3xJDhrOywod1y6CLLFP43c8zVBaulBoOAUlPQ4fGY5T1SC+srGUKTQuEZaEAXSkSJSoAt7b5IiA7eFSMCw==
+
+"@commercetools-frontend/constants@15.1.4":
+  version "15.1.4"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/constants/-/constants-15.1.4.tgz#55bae9741bd7d116007bbc891f2ac963a7eb6aea"
+  integrity sha512-+oB3Y2STpQktaiAW33cw3BGb+l63AHXgPAlpFyTnVz7h5nNdYcMIhmd6FL3YIUJ6ZUz81g1KK8nqDvO+1jcOuw==
 
 "@commercetools-frontend/constants@15.3.4":
   version "15.3.4"
@@ -2703,7 +2721,7 @@
   resolved "https://registry.yarnpkg.com/@emotion/sheet/-/sheet-0.9.3.tgz#689f135ecf87d3c650ed0c4f5ddcbe579883564a"
   integrity sha512-c3Q6V7Df7jfwSq5AzQWbXHa5soeE4F5cbqi40xn0CzXxWW9/6Mxq48WJEtqfWzbZtW9odZdnRAkwCQwN12ob4A==
 
-"@emotion/styled-base@^10.0.23":
+"@emotion/styled-base@^10.0.22", "@emotion/styled-base@^10.0.23":
   version "10.0.24"
   resolved "https://registry.yarnpkg.com/@emotion/styled-base/-/styled-base-10.0.24.tgz#9497efd8902dfeddee89d24b0eeb26b0665bfe8b"
   integrity sha512-AnBImerf0h4dGAJVo0p0VE8KoAns71F28ErGFK474zbNAHX6yqSWQUasb+1jvg/VPwZjCp19+tAr6oOB0pwmLQ==
@@ -2712,6 +2730,14 @@
     "@emotion/is-prop-valid" "0.8.5"
     "@emotion/serialize" "^0.11.14"
     "@emotion/utils" "0.11.2"
+
+"@emotion/styled@10.0.22":
+  version "10.0.22"
+  resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-10.0.22.tgz#ee398710876ebda5a418f84359516c6a1c5c41b1"
+  integrity sha512-3+dnBk8NjXnddI8Gi2VJLMmup0bCG8HQkZLaeNky+GSLl8VyxQfuaK5I5aDVvgQ3UzkxrcZrFB3vHYU/iUakBA==
+  dependencies:
+    "@emotion/styled-base" "^10.0.22"
+    babel-plugin-emotion "^10.0.22"
 
 "@emotion/styled@10.0.23":
   version "10.0.23"
@@ -21080,6 +21106,16 @@ react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-modal@3.10.1:
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.10.1.tgz#ba37927871830c798f51404aa6bc71ff7a5e4c16"
+  integrity sha512-2DKIfdOc8+WY+SYJ/xf/WBwOYMmNAYAyGkYlc4e1TCs9rk1xY4QBz04hB3UHGcrLChh7ce77rHAe6VPNmuLYsQ==
+  dependencies:
+    exenv "^1.2.0"
+    prop-types "^15.5.10"
+    react-lifecycles-compat "^3.0.0"
+    warning "^4.0.3"
 
 react-modal@3.11.1:
   version "3.11.1"
