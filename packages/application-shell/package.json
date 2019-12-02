@@ -81,7 +81,7 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",
     "omit-empty-es": "1.0.3",
-    "perfume.js": "4.0.0",
+    "perfume.js": "4.5.0",
     "prop-types": "15.7.2",
     "qss": "2.0.3",
     "react-required-if": "1.0.3",
@@ -93,7 +93,7 @@
     "warning": "4.0.3"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "10.11.0",
+    "@commercetools-frontend/ui-kit": "10.12.0",
     "@testing-library/react": "9.3.2",
     "react": "16.12.0",
     "react-apollo": "3.1.3",
