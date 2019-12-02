@@ -1107,6 +1107,11 @@
     react-required-if "1.0.3"
     warning "4.0.3"
 
+"@commercetools-frontend/assets@15.0.0":
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-frontend/assets/-/assets-15.0.0.tgz#d6e27f59ae97bddd8c0772a7c8887fac91771a51"
+  integrity sha512-253d3xJDhrOywod1y6CLLFP43c8zVBaulBoOAUlPQ4fGY5T1SC+srGUKTQuEZaEAXSkSJSoAt7b5IiA7eFSMCw==
+
 "@commercetools-frontend/constants@15.1.4":
   version "15.1.4"
   resolved "https://registry.yarnpkg.com/@commercetools-frontend/constants/-/constants-15.1.4.tgz#55bae9741bd7d116007bbc891f2ac963a7eb6aea"
@@ -10082,10 +10087,10 @@ file-entry-cache@^5.0.1:
   dependencies:
     flat-cache "^2.0.1"
 
-file-loader@4.3.0, file-loader@~4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-4.3.0.tgz#780f040f729b3d18019f20605f723e844b8a58af"
-  integrity sha512-aKrYPYjF1yG3oX0kWRrqrSMfgftm7oJW5M+m4owoldH5C51C0RkIwB++JbRvEW3IU6/ZG5n8UvEcdgwOt2UOWA==
+file-loader@5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-5.0.2.tgz#7f3d8b4ac85a5e8df61338cfec95d7405f971caa"
+  integrity sha512-QMiQ+WBkGLejKe81HU8SZ9PovsU/5uaLo0JdTCEXOYv7i7jfAjHZi1tcwp9tSASJPOmmHZtbdCervFmXMH/Dcg==
   dependencies:
     loader-utils "^1.2.3"
     schema-utils "^2.5.0"
@@ -10097,6 +10102,14 @@ file-loader@^1.1.11:
   dependencies:
     loader-utils "^1.0.2"
     schema-utils "^0.4.5"
+
+file-loader@~4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-4.3.0.tgz#780f040f729b3d18019f20605f723e844b8a58af"
+  integrity sha512-aKrYPYjF1yG3oX0kWRrqrSMfgftm7oJW5M+m4owoldH5C51C0RkIwB++JbRvEW3IU6/ZG5n8UvEcdgwOt2UOWA==
+  dependencies:
+    loader-utils "^1.2.3"
+    schema-utils "^2.5.0"
 
 file-match@^1.0.1:
   version "1.0.2"
@@ -22528,10 +22541,10 @@ stylehacks@^4.0.0:
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
 
-stylelint-config-prettier@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/stylelint-config-prettier/-/stylelint-config-prettier-6.0.0.tgz#600aa218d8e34cf44a025903b0f60c079fd83366"
-  integrity sha512-f/BKiUAczB4KODC1w5eY6LoNgfq6QzdSnSc4ccAATKo1IfYCuG3IZwaxj/5AAxl1kyaW7kPLBOXG66O4gSIKTQ==
+stylelint-config-prettier@7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/stylelint-config-prettier/-/stylelint-config-prettier-7.0.0.tgz#a34bd0686dc22f9394271a59b9d7a8a58ec92452"
+  integrity sha512-qF2HcWd4QJJozdqjq/IbnoANHwP7FVRG6dqxGBKWNI/L6bdWi8aXI0hRtkkar2QjrP5riGACE2uDxfcL4AZqRA==
 
 stylelint-config-recommended@^3.0.0:
   version "3.0.0"
@@ -23877,10 +23890,10 @@ url-join@4.0.0:
   resolved "https://registry.yarnpkg.com/url-join/-/url-join-4.0.0.tgz#4d3340e807d3773bda9991f8305acdcc2a665d2a"
   integrity sha1-TTNA6AfTdzvamZH4MFrNzCpmXSo=
 
-url-loader@2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/url-loader/-/url-loader-2.3.0.tgz#e0e2ef658f003efb8ca41b0f3ffbf76bab88658b"
-  integrity sha512-goSdg8VY+7nPZKUEChZSEtW5gjbS66USIGCeSJ1OVOJ7Yfuh/36YxCwMi5HVEJh6mqUYOoy3NJ0vlOMrWsSHog==
+url-loader@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/url-loader/-/url-loader-3.0.0.tgz#9f1f11b371acf6e51ed15a50db635e02eec18368"
+  integrity sha512-a84JJbIA5xTFTWyjjcPdnsu+41o/SNE8SpXMdUvXs6Q+LuhCD9E2+0VCiuDWqgo3GGXVlFHzArDmBpj9PgWn4A==
   dependencies:
     loader-utils "^1.2.3"
     mime "^2.4.4"
