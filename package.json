@@ -160,6 +160,7 @@
     "vfile-message": "2.0.2"
   },
   "resolutions": {
+    "@commercetools-frontend/ui-kit": "10.11.0",
     "@types/react": "16.9.13",
     "@types/react-router": "5.1.3",
     "react": "16.12.0",

@@ -6,6 +6,7 @@ module.exports = {
     title: 'Custom applications',
     description: 'Develop applications for the Merchant Center',
     author: 'commercetools',
+    betaLink: '/beta',
     repositoryUrl:
       'https://github.com/commercetools/merchant-center-application-kit',
     currentVersion:
@@ -30,6 +31,8 @@ module.exports = {
       resolve: '@commercetools-docs/gatsby-theme-docs',
       options: {
         websiteKey: 'custom-applications',
+        beta: true,
+        excludeFromSearchIndex: true,
         gaTrackingId: 'UA-38285631-3',
         // Patch the slug creation to get meaningful slugs for the application components
         createNodeSlug: (originalSlug, { node }) => {

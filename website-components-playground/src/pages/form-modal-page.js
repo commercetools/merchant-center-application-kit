@@ -11,7 +11,7 @@ import {
   BinLinearIcon,
 } from '@commercetools-frontend/ui-kit';
 import LayoutApp from '../layouts/layout-app';
-import ExampleWrapper from '../components/example-wrapper';
+import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
 
 const exampleCustomControls = (
@@ -32,7 +32,7 @@ const containerId = 'form-modal-page';
 
 const FormModalPageExample = props => (
   <LayoutApp>
-    <ExampleWrapper
+    <PlaygroundController
       // eslint-disable-next-line react/prop-types
       {...props.pageContext}
       knobs={[
@@ -108,7 +108,7 @@ const FormModalPageExample = props => (
           )}
         </ModalController>
       )}
-    </ExampleWrapper>
+    </PlaygroundController>
   </LayoutApp>
 );
 

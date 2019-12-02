@@ -1,11 +1,12 @@
 import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import pkg from '../../package.json';
 import {
   Card,
   SEO,
+  Markdown,
   Spacings,
   ThemeProvider,
   designSystem,
@@ -32,7 +33,7 @@ const PageContainer = styled.div`
   max-width: ${designSystem.dimensions.widths.marketingContent};
   margin: 0 auto;
 `;
-const ButtonLink = styled(Link)`
+const ButtonLink = styled(Markdown.Link)`
   display: inline-block;
   padding: ${designSystem.dimensions.spacings.m}
     ${designSystem.dimensions.spacings.l};
@@ -108,13 +109,15 @@ const PageMarketingContent = () => {
               <div
                 css={css`
                   font-size: ${designSystem.typography.fontSizes.h1};
-                  color: white;
+                  color: ${designSystem.colors.light.textInverted};
                 `}
               >
                 {'Develop applications for the Merchant Center'}
               </div>
               <div>
-                <ButtonLink to="/getting-started">{'Get started'}</ButtonLink>
+                <ButtonLink href="/getting-started/installing-a-starter-application">
+                  {'Get started'}
+                </ButtonLink>
               </div>
             </div>
             <div
@@ -186,9 +189,9 @@ const PageMarketingContent = () => {
               links: data.allNavigationYaml.nodes
                 .filter(node => node.pages && node.pages.length > 0)
                 .map(node => {
-                  const [, chapterPath] = node.pages[0].path.split('/');
+                  const firstChapterPage = node.pages[0];
                   return {
-                    to: `/${chapterPath}`,
+                    to: firstChapterPage.path,
                     label: node.chapterTitle,
                   };
                 }),
@@ -241,6 +244,7 @@ const PageMarketingTemplate = () => (
       <SEO
         title="Develop applications for the Merchant Center"
         keywords={pkg.keywords}
+        excludeFromSearchIndex={true}
       />
       <PageMarketingContent />
     </LayoutMarketing>

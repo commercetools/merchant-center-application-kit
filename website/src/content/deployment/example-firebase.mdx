@@ -32,8 +32,8 @@ Before you get started, you need to have:
 
 To connect your local project to your Firebase project, run the following command from the root of your local project directory:
 
-```zsh
-$ firebase init
+```console
+firebase init
 ```
 
 1. Select to set up **Hosting** and **Functions**.
@@ -58,7 +58,7 @@ After initialization, Firebase automatically creates and adds two files to the r
 
 To support Cloud Functions, Firebase also adds the following structure to your project:
 
-```zsh
+```
 .
 └── functions
     ├── .eslintrc.json
@@ -103,8 +103,8 @@ With _deploy targets_ you can uniquely identify a specific site by its _target n
 
 To create a deploy target and apply a target name to a Hosting site, run the following CLI command from the root of your project directory:
 
-```zsh
-$ firebase target:apply hosting target-name resource-name
+```console
+firebase target:apply hosting target-name resource-name
 ```
 
 Where the parameters are:
@@ -219,8 +219,8 @@ If you configured a deploy target in a previous section, add `cross-env FIREBASE
 
 To build and compile your custom application run:
 
-```zsh
-$ yarn build && yarn run compile-html:firebase
+```console
+yarn build && yarn run compile-html:firebase
 ```
 
 The assets compiled into the `public` directory will be deployed to Firebase.
@@ -229,8 +229,8 @@ The assets compiled into the `public` directory will be deployed to Firebase.
 
 Trigger the deployment using the Firebase CLI:
 
-```zsh
-$ firebase deploy
+```console
+firebase deploy
 ```
 
 > Note: Deployment assumes that you have compiled assets in the `public` directory.

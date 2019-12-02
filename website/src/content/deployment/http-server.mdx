@@ -12,17 +12,17 @@ The [`@commercetools-frontend/mc-http-server`](https://www.npmjs.com/package/@co
 
 The package comes with a binary `mc-http-server` that sets up all the necessary configurations and starts a small Node.JS server.
 
-```zsh
-$ mc-http-server --config $(pwd)/env.json --headers $(pwd)/headers.json
+```console
+mc-http-server --config $(pwd)/env.json --headers $(pwd)/headers.json
 ```
 
 # Docker image
 
 There is also a pre-built **Docker image** (`eu.gcr.io/ct-images/mc-http-server`) that you can use to run the application:
 
-```zsh
-$ docker pull eu.gcr.io/ct-images/mc-http-server
-$ docker run \
+```console noPromptLines="3-7"
+docker pull eu.gcr.io/ct-images/mc-http-server
+docker run \
   -v $(pwd):/etc/app \
   -p 8080:8080 \
   eu.gcr.io/ct-images/mc-http-server \

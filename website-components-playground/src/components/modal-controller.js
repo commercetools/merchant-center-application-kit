@@ -20,13 +20,13 @@ const PortalContainer = styled.div`
 `;
 
 const ModalController = props => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(true);
   return (
     <>
       <PortalContainer id={props.containerId} />
       <div
         css={css`
-          height: 100vh;
+          height: 100%;
           display: grid;
           grid-template-columns: auto;
           grid-template-rows: auto;
