@@ -7,11 +7,18 @@ import * as rtl from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { MockedProvider as ApolloMockProvider } from '@apollo/react-testing';
+import { Flags } from '@flopflip/types';
+import {
+  MockedProvider as ApolloMockProvider,
+  MockedProviderProps,
+} from '@apollo/react-testing';
 import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
-import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
+import {
+  ApplicationContextProvider,
+  TProviderProps,
+} from '@commercetools-frontend/application-shell-connectors';
 import {
   NotificationsList,
   NotificationProviderForCustomComponent,
@@ -19,6 +26,7 @@ import {
 import { DOMAINS } from '@commercetools-frontend/constants';
 // eslint-disable-next-line import/named
 import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
+import * as gtm from '../utils/gtm';
 import { GtmContext } from '../components/gtm-booter';
 import { createReduxStore } from '../configure-store';
 import { createApolloClient } from '../configure-apollo';
@@ -88,23 +96,14 @@ const defaultEnvironment = {
 
 // Allow consumers of `render` to extend the defaults by passing an object
 // or to completely omit the value by passing `null`
-const mergeOptional = (defaultValue, value) =>
+const mergeOptional: <T>(
+  defaultValue: T,
+  value: Partial<T> | null
+) => T | undefined = (defaultValue, value) =>
   value === null ? undefined : { ...defaultValue, ...value };
 
-const LoadingFallback = () => 'Loading...';
+const LoadingFallback = () => <>{'Loading...'}</>;
 LoadingFallback.displayName = 'LoadingFallback';
-
-const MockedApolloProvider = ({ children, mocks, addTypename }) => (
-  <ApolloMockProvider mocks={mocks} addTypename={addTypename}>
-    {children}
-  </ApolloMockProvider>
-);
-MockedApolloProvider.displayName = 'MockedApolloProvider';
-MockedApolloProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-  mocks: PropTypes.array.isRequired,
-  addTypename: PropTypes.bool.isRequired,
-};
 
 const defaultGtmTracking = {
   track: jest.fn(),
@@ -127,9 +126,14 @@ const defaultFlopflipAdapterArgs = {};
 //     { name: 'canManageProjectSettings', value: true }
 //   ]
 // }
-const denormalizePermissions = permissions => {
+type TPermissions = { [key: string]: boolean };
+type TAllAppliedPermission = {
+  name: string;
+  value: boolean;
+};
+const denormalizePermissions = (permissions?: TPermissions) => {
   if (!permissions) return;
-  return Object.keys(permissions).reduce(
+  return Object.keys(permissions).reduce<TAllAppliedPermission[]>(
     (allAppliedPermissions, permissionKey) => [
       ...allAppliedPermissions,
       { name: permissionKey, value: permissions[permissionKey] },
@@ -156,12 +160,18 @@ const denormalizePermissions = permissions => {
 //     { group: 'products', name: 'canPublishProducts', value: false }
 //   ]
 // }
-const denormalizeActionRights = actionRights => {
+type TNormalizedActionRights = { [key: string]: TPermissions };
+type TAllAppliedActionRight = TAllAppliedPermission & {
+  group: string;
+};
+const denormalizeActionRights = (actionRights?: TNormalizedActionRights) => {
   if (!actionRights) return;
-  return Object.keys(actionRights).reduce(
+  return Object.keys(actionRights).reduce<TAllAppliedActionRight[]>(
     (allAppliedActionRights, actionRightGroup) => [
       ...allAppliedActionRights,
-      ...Object.keys(actionRights[actionRightGroup]).reduce(
+      ...Object.keys(actionRights[actionRightGroup]).reduce<
+        TAllAppliedActionRight[]
+      >(
         (allActionRightsByGroup, actionRightKey) => [
           ...allActionRightsByGroup,
           {
@@ -169,7 +179,8 @@ const denormalizeActionRights = actionRights => {
             name: actionRightKey,
             value: actionRights[actionRightGroup][actionRightKey],
           },
-        ]
+        ],
+        []
       ),
     ],
     []
@@ -196,29 +207,45 @@ const denormalizeActionRights = actionRights => {
 //     { type: 'store', group: 'orders', name: 'canViewOrders', value: 'store-1' }
 //   ]
 // }
-const denormalizeDataFences = dataFences => {
+type TNormalizedDataFenceStorePermissions = {
+  [key: string]: { values: string[] };
+};
+type TNormalizedDataFenceStores = {
+  [key: string]: TNormalizedDataFenceStorePermissions;
+};
+type TNormalizedDataFences = { store: TNormalizedDataFenceStores };
+type TAllAppliedDataFence = {
+  __typename: 'StoreDataFence';
+  type: string;
+  name: string;
+  value: string;
+  group: string;
+};
+const denormalizeDataFences = (dataFences?: TNormalizedDataFences) => {
   if (!dataFences) return;
-  return Object.keys(dataFences).reduce(
+  return Object.keys(dataFences).reduce<TAllAppliedDataFence[]>(
     (allAppliedDataFences, dataFenceGroupKey) => {
       switch (dataFenceGroupKey) {
         case 'store':
           return [
             ...allAppliedDataFences,
-            ...Object.keys(dataFences.store).reduce(
+            ...Object.keys(dataFences.store).reduce<TAllAppliedDataFence[]>(
               (allResources, resourceType) => [
                 ...allResources,
-                ...Object.keys(dataFences.store[resourceType]).reduce(
+                ...Object.keys(dataFences.store[resourceType]).reduce<
+                  TAllAppliedDataFence[]
+                >(
                   (allPermissions, permissionKey) => [
                     ...allPermissions,
-                    ...dataFences.store[resourceType][permissionKey].values.map(
-                      value => ({
-                        __typename: 'StoreDataFence',
-                        type: 'store',
-                        value,
-                        group: resourceType,
-                        name: permissionKey,
-                      })
-                    ),
+                    ...dataFences.store[resourceType][permissionKey].values.map<
+                      TAllAppliedDataFence
+                    >(value => ({
+                      __typename: 'StoreDataFence',
+                      type: 'store',
+                      value,
+                      group: resourceType,
+                      name: permissionKey,
+                    })),
                   ],
                   []
                 ),
@@ -234,8 +261,10 @@ const denormalizeDataFences = dataFences => {
   );
 };
 
-const wrapIfNeeded = (wrapper, children) =>
-  wrapper ? React.createElement(wrapper, null, children) : children;
+const wrapIfNeeded = (
+  children: React.ReactNode,
+  wrapper?: React.ComponentType
+) => (wrapper ? React.createElement(wrapper, null, children) : children);
 
 // This function renders any component within the application context, as if it
 // was rendered inside <ApplicationShell />.
@@ -246,9 +275,44 @@ const wrapIfNeeded = (wrapper, children) =>
 //
 //  We can add these things as we go and when we need them.
 
+type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
+  locale: string;
+  mocks: MockedProviderProps['mocks'];
+  addTypename: MockedProviderProps['addTypename'];
+  route: string;
+  history: ReturnType<typeof createEnhancedHistory>;
+  adapter: typeof memoryAdapter;
+  flags: Flags;
+  environment: TProviderProps<AdditionalEnvironmentProperties>['environment'];
+  user: TProviderProps<AdditionalEnvironmentProperties>['user'];
+  project: TProviderProps<AdditionalEnvironmentProperties>['project'];
+  dataLocale: TProviderProps<
+    AdditionalEnvironmentProperties
+  >['projectDataLocale'];
+  permissions: TPermissions; // <-- deprecated option, use `{ project: { allAppliedPermissions } }`
+  actionRights: TNormalizedActionRights; // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
+  dataFences: TNormalizedDataFences; // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
+  ApolloProviderComponent: typeof ApolloMockProvider;
+  // gtm-context
+  gtmTracking: {
+    track: typeof gtm.track;
+    getHierarchy: typeof gtm.getHierarchy;
+  };
+} & rtl.RenderOptions;
+type TRenderAppResult<AdditionalEnvironmentProperties = {}> = rtl.RenderResult &
+  Pick<
+    TRenderAppOptions<AdditionalEnvironmentProperties>,
+    'history' | 'user' | 'project' | 'environment' | 'gtmTracking'
+  >;
+type TApplicationProvidersProps = {
+  children: React.ReactNode;
+};
 // Inspired by
 // https://github.com/kentcdodds/react-testing-library-course/blob/2a5b1560656790bb1d9c055fba3845780b2c2c97/src/__tests__/react-router-03.js
-const renderApp = (
+const renderApp: <AdditionalEnvironmentProperties = {}>(
+  ui: React.ReactElement,
+  options?: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>>
+) => TRenderAppResult<AdditionalEnvironmentProperties> = (
   ui,
   {
     // react-intl
@@ -272,19 +336,25 @@ const renderApp = (
     actionRights, // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
     dataFences, // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
     dataLocale = 'en',
-    ApolloProviderComponent = MockedApolloProvider,
+    ApolloProviderComponent = ApolloMockProvider,
     // gtm-context
     gtmTracking = defaultGtmTracking,
     // forwarding to @testing-library/react
     ...renderOptions
-  } = {}
+  }: Partial<TRenderAppOptions> = {}
 ) => {
-  const mergedUser = mergeOptional(defaultUser, user);
-  const mergedProject = mergeOptional(defaultProject, project);
-  const mergedEnvironment = mergeOptional(defaultEnvironment, environment);
-  const mergedGtmTracking = mergeOptional(defaultGtmTracking, gtmTracking);
+  const mergedUser = mergeOptional<
+    ProviderProps<AdditionalEnvironmentProperties>['user']
+  >(defaultUser, user);
+  const mergedProject = mergeOptional<
+    ProviderProps<AdditionalEnvironmentProperties>['project']
+  >(defaultProject, project);
+  const mergedEnvironment = mergeOptional<
+    ProviderProps<AdditionalEnvironmentProperties>['environment']
+  >(defaultEnvironment, environment);
+  const mergedGtmTracking = { ...defaultGtmTracking, ...gtmTracking };
 
-  const ApplicationProviders = ({ children }) => (
+  const ApplicationProviders = (props: TApplicationProvidersProps) => (
     <IntlProvider locale={locale}>
       <ApolloProviderComponent mocks={mocks} addTypename={addTypename}>
         <ConfigureFlopFlip
@@ -308,7 +378,7 @@ const renderApp = (
             <GtmContext.Provider value={mergedGtmTracking}>
               <Router history={history}>
                 <React.Suspense fallback={<LoadingFallback />}>
-                  {children}
+                  {props.children}
                 </React.Suspense>
               </Router>
             </GtmContext.Provider>
@@ -325,8 +395,8 @@ const renderApp = (
     ...renderOptions,
     wrapper: ({ children }) =>
       wrapIfNeeded(
-        ApplicationProviders,
-        wrapIfNeeded(renderOptions.wrapper, children)
+        wrapIfNeeded(children, renderOptions.wrapper),
+        ApplicationProviders
       ),
   });
 
@@ -440,8 +510,8 @@ const renderAppWithRedux = (
     ...renderOptions,
     wrapper: ({ children }) =>
       wrapIfNeeded(
-        ReduxProviders,
-        wrapIfNeeded(renderOptions.wrapper, children)
+        wrapIfNeeded(children, renderOptions.wrapper),
+        ReduxProviders
       ),
   });
 
