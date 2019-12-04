@@ -24,7 +24,8 @@ const GtmBooter = props => {
       ...defaultTrackingEventWhitelist,
       ...props.trackingEventWhitelist,
     });
-  }, [props.trackingEventWhitelist]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return props.children;
 };
 GtmBooter.displayName = 'GtmBooter';

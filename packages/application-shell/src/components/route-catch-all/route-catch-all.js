@@ -27,12 +27,21 @@ const RouteCatchAll = () => {
   // the request to the discounts app.
   // If no route matches, the application fallback will handle the request
   // instead, showing e.g. a 404 page.
-  if (servedByProxy) return <Route component={ForcePageReload} />;
+  if (servedByProxy)
+    return (
+      <Route>
+        <ForcePageReload />
+      </Route>
+    );
 
   // In case we are developing the app locally, we simply render a 404
   // page because we most likely don't have other "apps" running at the same
   // time.
-  return <Route component={PageNotFound} />;
+  return (
+    <Route>
+      <PageNotFound />
+    </Route>
+  );
 };
 
 export default RouteCatchAll;
