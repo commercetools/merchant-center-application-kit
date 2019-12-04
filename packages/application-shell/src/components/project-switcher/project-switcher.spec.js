@@ -1,50 +1,7 @@
 import React from 'react';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { renderApp, fireEvent, waitForElement, wait } from '../../test-utils';
-import ProjectsQuery from './project-switcher.mc.graphql';
+import { createGraphqlResponseForProjectsQuery } from './project-switcher-test-utils';
 import ProjectSwitcher from './project-switcher';
-
-const falsy = () => false;
-
-const createGraphqlResponseForProjectsQuery = ({
-  numberOfProjects = 4,
-  getIsSuspended = falsy,
-  getIsExpired = falsy,
-} = {}) => ({
-  request: {
-    query: ProjectsQuery,
-    variables: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
-  },
-  result: {
-    data: {
-      loading: false,
-      user: {
-        __typename: 'User',
-        id: 'user-id',
-        projects: {
-          __typename: 'ProjectQueryResult',
-          results: Array.from({ length: numberOfProjects }).map((_, index) => {
-            const key = `key-${index}`;
-            const name = `Name ${index}`;
-            return {
-              __typename: 'Project',
-              key,
-              name,
-              suspension: {
-                __typename: 'ProjectSuspension',
-                isActive: getIsSuspended(key),
-              },
-              expiry: {
-                __typename: 'ProjectExpiry',
-                isActive: getIsExpired(key),
-              },
-            };
-          }),
-        },
-      },
-    },
-  },
-});
 
 const Wrapper = props => (
   <>
