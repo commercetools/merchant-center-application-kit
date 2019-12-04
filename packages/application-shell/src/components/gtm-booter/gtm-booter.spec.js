@@ -1,40 +1,39 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { boot } from '../../utils/gtm';
-import defaultTrackingEventWhitelist from '../../tracking-whitelist';
+import { render, wait, fireEvent } from '@testing-library/react';
 import GtmBooter from './gtm-booter';
-
-jest.mock('../../utils/gtm', () => ({
-  boot: jest.fn(),
-}));
 
 const createTestProps = custom => ({
   trackingEventWhitelist: {
-    EventName: 'MappedEventName',
+    'Test.button': 'Test.button',
   },
   ...custom,
 });
 
-let props;
-let wrapper;
-
-describe('lifecycle', () => {
-  beforeEach(() => {
-    props = createTestProps();
-    wrapper = shallow(<GtmBooter {...props}>{'foo'}</GtmBooter>);
-  });
-
-  describe('componentDidMount', () => {
-    beforeEach(() => {
-      boot.mockReset();
-      wrapper.instance().componentDidMount();
-    });
-    it('should call boot', () => {
-      expect(boot).toHaveBeenCalledTimes(1);
-      expect(boot).toHaveBeenCalledWith({
-        ...defaultTrackingEventWhitelist,
-        ...props.trackingEventWhitelist,
-      });
+describe('rendering', () => {
+  it('should track even when clicking on an element', async () => {
+    window.dataLayer = [];
+    const props = createTestProps();
+    const rendered = render(
+      <GtmBooter {...props}>
+        <button
+          data-track-component="Test.button"
+          data-track-event="click"
+          onClick={() => {}}
+        >
+          {'Click me'}
+        </button>
+      </GtmBooter>
+    );
+    fireEvent.click(rendered.getByText('Click me'));
+    await wait(() => {
+      expect(window.dataLayer).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            trackingAction: 'click',
+            trackingCategory: 'Test.button',
+          }),
+        ])
+      );
     });
   });
 });
