@@ -1,26 +1,16 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { stopTrackingUser } from '../../utils/gtm';
+import { render, wait } from '@testing-library/react';
 import GtmUserLogoutTracker from './gtm-user-logout-tracker';
 
-jest.mock('../../utils/gtm', () => ({
-  stopTrackingUser: jest.fn(),
-}));
-
-let wrapper;
-
-describe('lifecycle', () => {
-  beforeEach(() => {
-    wrapper = shallow(<GtmUserLogoutTracker />);
-  });
-
-  describe('componentDidMount', () => {
-    beforeEach(() => {
-      stopTrackingUser.mockReset();
-      wrapper.instance().componentDidMount();
-    });
-    it('should call stopTrackingUser', () => {
-      expect(stopTrackingUser).toHaveBeenCalledTimes(1);
+describe('rendering', () => {
+  it('should track even when clicking on an element', async () => {
+    window.app = { trackingGtm: '111' };
+    window.dataLayer = [];
+    render(<GtmUserLogoutTracker />);
+    await wait(() => {
+      expect(window.dataLayer).toEqual(
+        expect.arrayContaining([{ userId: undefined }])
+      );
     });
   });
 });
