@@ -10,7 +10,7 @@ const createTestProps = custom => ({
 });
 
 describe('rendering', () => {
-  it('should track even when clicking on an element', async () => {
+  it('should track event when clicking on an element', async () => {
     window.dataLayer = [];
     const props = createTestProps();
     const rendered = render(

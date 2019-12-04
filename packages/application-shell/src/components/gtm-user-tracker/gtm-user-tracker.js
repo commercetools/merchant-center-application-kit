@@ -7,25 +7,15 @@ import * as gtm from '../../utils/gtm';
  * changed.
  */
 
-class GtmUserTracker extends React.PureComponent {
-  static displayName = 'GtmUserTracker';
-  static propTypes = {
-    user: PropTypes.object,
-  };
-  componentDidMount() {
-    // since the user and project could have been loaded from the apollo cache
-    // they could be preset already when mounting
-    if (this.props.user) this.syncUser();
-  }
-  componentDidUpdate() {
-    if (this.props.user) this.syncUser();
-  }
-  syncUser = () => {
-    gtm.updateUser(this.props.user);
-  };
-  render() {
-    return null;
-  }
-}
+const GtmUserTracker = props => {
+  React.useEffect(() => {
+    gtm.updateUser(props.user);
+  }, [props.user]);
+  return null;
+};
+GtmUserTracker.displayName = 'GtmUserTracker';
+GtmUserTracker.propTypes = {
+  user: PropTypes.shape({ id: PropTypes.string.isRequired }),
+};
 
 export default GtmUserTracker;
