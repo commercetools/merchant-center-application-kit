@@ -1,52 +1,31 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { PageNotFound } from '@commercetools-frontend/application-components';
-import { ForcePageReload, RouteCatchAll } from './route-catch-all';
-
-const createTestProps = props => ({
-  servedByProxy: false,
-  ...props,
-});
+import { renderApp, wait, waitForElement } from '../../test-utils';
+import RouteCatchAll from './route-catch-all';
 
 describe('rendering', () => {
-  let wrapper;
-  let props;
-  describe('<ForcePageReload>', () => {
-    beforeEach(() => {
-      props = createTestProps();
-      wrapper = shallow(<ForcePageReload {...props} />);
-      wrapper.instance().reloadPage = jest.fn();
-      wrapper.instance().componentDidMount();
-    });
-    it('should call reloadPage when component mounts', () => {
-      expect(wrapper.instance().reloadPage).toHaveBeenCalled();
-    });
-    it('should render null', () => {
-      expect(wrapper.type()).toBe(null);
+  describe('when "servedByProxy" is "true"', () => {
+    it('should force a page reload', async () => {
+      window.location.reload = jest.fn();
+      renderApp(<RouteCatchAll />, {
+        environment: {
+          servedByProxy: true,
+        },
+      });
+      await wait(() => {
+        expect(window.location.reload).toHaveBeenCalledWith(true);
+      });
     });
   });
-  describe('<RouteCatchAll>', () => {
-    describe('when "servedByProxy" is "true"', () => {
-      beforeEach(() => {
-        props = createTestProps({
-          servedByProxy: true,
-        });
-        wrapper = shallow(<RouteCatchAll {...props} />);
+  describe('when "servedByProxy" is "false"', () => {
+    it('should render 404 page', async () => {
+      const rendered = renderApp(<RouteCatchAll />, {
+        environment: {
+          servedByProxy: false,
+        },
       });
-      it('should render Route with <ForcePageReload>', () => {
-        expect(wrapper.find('Route')).toHaveProp('component', ForcePageReload);
-      });
-    });
-    describe('when "servedByProxy" is not defined', () => {
-      beforeEach(() => {
-        props = createTestProps({
-          servedByProxy: undefined,
-        });
-        wrapper = shallow(<RouteCatchAll {...props} />);
-      });
-      it('should render Route with <PageNotFound>', () => {
-        expect(wrapper.find('Route')).toHaveProp('component', PageNotFound);
-      });
+      await waitForElement(() =>
+        rendered.getByText('We could not find what you are looking for')
+      );
     });
   });
 });

@@ -16,28 +16,27 @@ export const GtmContext = React.createContext({
   getHierarchy: gtm.getHierarchy,
 });
 
-class GtmBooter extends React.Component {
-  static displayName = 'GtmBooter';
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    trackingEventWhitelist: PropTypes.objectOf(
-      PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.objectOf(PropTypes.string),
-      ])
-    ).isRequired,
-  };
-  componentDidMount() {
+const GtmBooter = props => {
+  React.useEffect(() => {
     // We don't need any user data to start using GTM, for example for
     // tracking page views and flows when the user is not logged in.
     gtm.boot({
       ...defaultTrackingEventWhitelist,
-      ...this.props.trackingEventWhitelist,
+      ...props.trackingEventWhitelist,
     });
-  }
-  render() {
-    return this.props.children;
-  }
-}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return props.children;
+};
+GtmBooter.displayName = 'GtmBooter';
+GtmBooter.propTypes = {
+  children: PropTypes.node.isRequired,
+  trackingEventWhitelist: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.objectOf(PropTypes.string),
+    ])
+  ).isRequired,
+};
 
 export default GtmBooter;
