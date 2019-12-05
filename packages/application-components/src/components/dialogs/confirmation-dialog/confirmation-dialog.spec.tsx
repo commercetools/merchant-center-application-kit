@@ -1,5 +1,5 @@
 import React from 'react';
-import { SecondaryButton } from '@commercetools-frontend/ui-kit';
+import SecondaryButton from '@commercetools-uikit/secondary-button';
 import { renderComponent, wait, fireEvent } from '../../../../test-utils';
 import ConfirmationDialog from './confirmation-dialog';
 

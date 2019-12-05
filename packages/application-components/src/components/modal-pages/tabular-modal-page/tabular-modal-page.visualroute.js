@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import {
-  Text,
-  Spacings,
-  TextInput,
   FlameIcon,
-  IconButton,
   SearchIcon,
   BinLinearIcon,
-  customProperties,
-} from '@commercetools-frontend/ui-kit';
+} from '@commercetools-uikit/icons';
+import TextInput from '@commercetools-uikit/text-input';
+import Text from '@commercetools-uikit/text';
+import IconButton from '@commercetools-uikit/icon-button';
+import Spacings from '@commercetools-uikit/spacings';
+import { customProperties } from '@commercetools-uikit/design-system';
 import { TabularModalPage } from '@local-build/application-components';
 import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
 

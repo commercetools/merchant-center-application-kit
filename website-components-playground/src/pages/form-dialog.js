@@ -1,7 +1,8 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { FormDialog } from '@commercetools-frontend/application-components';
-import { Spacings, TextField } from '@commercetools-frontend/ui-kit';
+import Spacings from '@commercetools-uikit/spacings';
+import TextField from '@commercetools-uikit/text-field';
 import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';

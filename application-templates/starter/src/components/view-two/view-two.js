@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from '@commercetools-frontend/ui-kit';
+import Text from '@commercetools-uikit/text';
 import messages from './messages';
 
 const ViewTwo = () => <Text.Body intlMessage={messages.title} />;

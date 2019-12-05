@@ -28,7 +28,6 @@ const Table = ({ columns, items, itemRenderer, onRowClick, children }) => (
 );
 
 export default () =>
-  jest.mock('@commercetools-frontend/ui-kit', () => ({
-    ...require.requireActual('@commercetools-frontend/ui-kit'),
+  jest.mock('@commercetools-uikit/table', () => ({
     Table,
   }));

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
-import { customProperties } from '@commercetools-frontend/ui-kit';
+import { customProperties } from '@commercetools-uikit/design-system';
 
 const animationPulse = keyframes`
   0% {

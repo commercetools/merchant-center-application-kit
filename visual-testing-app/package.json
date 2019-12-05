@@ -8,7 +8,12 @@
     "start": "serve dist --no-clipboard --single --listen 3999"
   },
   "dependencies": {
-    "@commercetools-frontend/ui-kit": "10.12.0",
+    "@commercetools-uikit/design-system": "10.13.0",
+    "@commercetools-uikit/icon-button": "10.13.0",
+    "@commercetools-uikit/spacings": "10.13.0",
+    "@commercetools-uikit/text": "10.13.0",
+    "@commercetools-uikit/text-field": "10.13.0",
+    "@commercetools-uikit/text-input": "10.13.0",
     "@emotion/core": "10.0.22",
     "@emotion/styled": "10.0.23",
     "formik": "2.0.6",

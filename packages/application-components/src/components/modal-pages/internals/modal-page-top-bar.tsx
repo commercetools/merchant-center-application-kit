@@ -2,14 +2,11 @@ import React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { useIntl, MessageDescriptor } from 'react-intl';
-import {
-  Text,
-  CloseIcon,
-  FlatButton,
-  AngleLeftIcon,
-  SecondaryIconButton,
-  customProperties,
-} from '@commercetools-frontend/ui-kit';
+import { CloseIcon, AngleLeftIcon } from '@commercetools-uikit/icons';
+import FlatButton from '@commercetools-uikit/flat-button';
+import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
+import Text from '@commercetools-uikit/text';
+import { customProperties } from '@commercetools-uikit/design-system';
 import messages from './messages';
 
 // Component to have a larger the clickable surface

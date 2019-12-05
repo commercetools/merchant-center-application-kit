@@ -24,7 +24,7 @@ import {
   RocketIcon,
   StarIcon,
   ConnectedSquareIcon,
-} from '@commercetools-frontend/ui-kit';
+} from '@commercetools-uikit/icons';
 import MissingImageSvg from '@commercetools-frontend/assets/images/diagonal-line.svg';
 import {
   GRAPHQL_TARGETS,

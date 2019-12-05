@@ -2,14 +2,14 @@ import React from 'react';
 import { Formik } from 'formik';
 import { FormModalPage } from '@commercetools-frontend/application-components';
 import {
-  Spacings,
-  TextInput,
-  TextField,
   FlameIcon,
-  IconButton,
   SearchIcon,
   BinLinearIcon,
-} from '@commercetools-frontend/ui-kit';
+} from '@commercetools-uikit/icons';
+import IconButton from '@commercetools-uikit/icon-button';
+import Spacings from '@commercetools-uikit/spacings';
+import TextInput from '@commercetools-uikit/text-input';
+import TextField from '@commercetools-uikit/text-field';
 import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';

@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import {
-  TextField,
-  Spacings,
-  IconButton,
   SearchIcon,
   FlameIcon,
   BinLinearIcon,
-} from '@commercetools-frontend/ui-kit';
+} from '@commercetools-uikit/icons';
+import TextField from '@commercetools-uikit/text-field';
+import IconButton from '@commercetools-uikit/icon-button';
+import Spacings from '@commercetools-uikit/spacings';
 import { FormModalPage } from '@local-build/application-components';
 import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
 

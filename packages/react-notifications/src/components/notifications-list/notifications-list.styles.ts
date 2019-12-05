@@ -1,5 +1,5 @@
 import { css } from '@emotion/core';
-import { customProperties } from '@commercetools-frontend/ui-kit';
+import { customProperties } from '@commercetools-uikit/design-system';
 import {
   NOTIFICATION_DOMAINS,
   TAppNotificationDomain,

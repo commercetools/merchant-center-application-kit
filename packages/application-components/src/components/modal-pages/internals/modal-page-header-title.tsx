@@ -1,5 +1,6 @@
 import React from 'react';
-import { customProperties, Text } from '@commercetools-frontend/ui-kit';
+import { customProperties } from '@commercetools-uikit/design-system';
+import Text from '@commercetools-uikit/text';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 

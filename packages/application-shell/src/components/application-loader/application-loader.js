@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import {
-  LoadingSpinner,
-  customProperties,
-} from '@commercetools-frontend/ui-kit';
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
+import { customProperties } from '@commercetools-uikit/design-system';
 import CTLogoSVG from '@commercetools-frontend/assets/images/ct-logo.svg';
 
 const ApplicationLoader = props => (

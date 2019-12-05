@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import { Constraints, Text, Spacings } from '@commercetools-frontend/ui-kit';
+import Constraints from '@commercetools-uikit/constraints';
+import Text from '@commercetools-uikit/text';
+import Spacings from '@commercetools-uikit/spacings';
 
 export type Props = {
   imageSrc: string;

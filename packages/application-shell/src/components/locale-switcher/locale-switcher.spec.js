@@ -1,6 +1,7 @@
 import { shallow } from 'enzyme';
 import PropTypes from 'prop-types';
-import { SelectInput, WorldIcon } from '@commercetools-frontend/ui-kit';
+import SelectInput from '@commercetools-uikit/select-input';
+import { WorldIcon } from '@commercetools-uikit/icons';
 import React from 'react';
 import LocaleSwitcher, { SingleValue } from './locale-switcher';
 

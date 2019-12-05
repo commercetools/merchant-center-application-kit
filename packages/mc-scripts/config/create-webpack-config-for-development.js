@@ -242,7 +242,7 @@ module.exports = ({
                 postcssCustomProperties({
                   preserve: false,
                   importFrom: require.resolve(
-                    '@commercetools-frontend/ui-kit/materials/custom-properties.css'
+                    '@commercetools-uikit/design-system/materials/custom-properties.css'
                   ),
                 }),
                 postcssColorModFunction(),
@@ -290,7 +290,7 @@ module.exports = ({
                     postcssCustomProperties({
                       preserve: false,
                       importFrom: require.resolve(
-                        '@commercetools-frontend/ui-kit/materials/custom-properties.css'
+                        '@commercetools-uikit/design-system/materials/custom-properties.css'
                       ),
                     }),
                     postcssColorModFunction(),

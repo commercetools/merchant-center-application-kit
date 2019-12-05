@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import {
-  AngleThinRightIcon,
-  customProperties,
-} from '@commercetools-frontend/ui-kit';
+import { AngleThinRightIcon } from '@commercetools-uikit/icons';
+import { customProperties } from '@commercetools-uikit/design-system';
 
 const ButlerCommand = ({ command, onMouseEnter, onClick, isSelected }) => (
   <div

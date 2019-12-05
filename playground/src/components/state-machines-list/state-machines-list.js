@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { useSelector } from 'react-redux';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import {
-  LoadingSpinner,
-  Table,
-  Spacings,
-  Constraints,
-  Text,
-  DotIcon,
-} from '@commercetools-frontend/ui-kit';
+import { DotIcon } from '@commercetools-uikit/icons';
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
+import { Table } from '@commercetools-uikit/table';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
+import Constraints from '@commercetools-uikit/constraints';
 import { NO_VALUE_FALLBACK } from '@commercetools-frontend/constants';
 import PageBottomSpacer from '../page-bottom-spacer';
 import { selectStateMachinesFromCache } from '../../reducers/cache';

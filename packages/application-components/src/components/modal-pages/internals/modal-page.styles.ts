@@ -1,6 +1,6 @@
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { customProperties } from '@commercetools-frontend/ui-kit';
+import { customProperties } from '@commercetools-uikit/design-system';
 
 export const TRANSITION_DURATION = 200;
 

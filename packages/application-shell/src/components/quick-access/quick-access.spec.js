@@ -1,5 +1,5 @@
 import React from 'react';
-import { customProperties } from '@commercetools-frontend/ui-kit';
+import { customProperties } from '@commercetools-uikit/design-system';
 import {
   GRAPHQL_TARGETS,
   MC_API_PROXY_TARGETS,

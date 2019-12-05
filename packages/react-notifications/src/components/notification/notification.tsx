@@ -6,8 +6,8 @@ import {
   WarningIcon,
   InfoIcon,
   CheckBoldIcon,
-  IconButton,
-} from '@commercetools-frontend/ui-kit';
+} from '@commercetools-uikit/icons';
+import IconButton from '@commercetools-uikit/icon-button';
 import {
   NOTIFICATION_DOMAINS,
   TAppNotificationKind,

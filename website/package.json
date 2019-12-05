@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "@commercetools-docs/gatsby-theme-docs": "1.0.0-canary.60",
-    "@commercetools-frontend/application-components": "15.4.2",
-    "@commercetools-frontend/ui-kit": "10.12.0",
     "@emotion/core": "10.0.22",
     "@emotion/styled": "10.0.23",
     "gatsby": "2.18.5",
