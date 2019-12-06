@@ -1,6 +1,7 @@
 import React from 'react';
 import { InfoDialog } from '@commercetools-frontend/application-components';
-import { Spacings, Text } from '@commercetools-frontend/ui-kit';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
 import LayoutApp from '../layouts/layout-app';
 import ModalController from '../components/modal-controller';
 import PlaygroundController from '../components/playground-controller';

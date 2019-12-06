@@ -1,10 +1,8 @@
 import React from 'react';
-import {
-  CloseIcon,
-  SecondaryIconButton,
-  Text,
-  Spacings,
-} from '@commercetools-frontend/ui-kit';
+import { CloseIcon } from '@commercetools-uikit/icons';
+import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
+import Text from '@commercetools-uikit/text';
+import Spacings from '@commercetools-uikit/spacings';
 import { css } from '@emotion/core';
 
 type Props = {

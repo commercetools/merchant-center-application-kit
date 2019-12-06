@@ -5,7 +5,7 @@
 </p>
 
 UI components for building Merchant Center applications.
-The components follow the same principles of the [@commercetools-frontend/ui-kit](https://www.npmjs.com/package/@commercetools-frontend/ui-kit) components, but are more specific to Merchant Center applications.
+The components follow the same principles of the [UIKit](https://github.com/commercetools/ui-kit) components, but are more specific to Merchant Center applications.
 
 ## Install
 

@@ -1,10 +1,8 @@
 import React from 'react';
 import { useIntl, MessageDescriptor, IntlShape } from 'react-intl';
-import {
-  SecondaryButton,
-  PrimaryButton,
-  Spacings,
-} from '@commercetools-frontend/ui-kit';
+import SecondaryButton from '@commercetools-uikit/secondary-button';
+import PrimaryButton from '@commercetools-uikit/primary-button';
+import Spacings from '@commercetools-uikit/spacings';
 import filterDataAttributes from '../../../utils/filter-data-attributes';
 
 type Label = string | MessageDescriptor;

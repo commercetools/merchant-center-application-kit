@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text } from '@commercetools-frontend/ui-kit';
+import Text from '@commercetools-uikit/text';
 import { InfoModalPage } from '@local-build/application-components';
 import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
 

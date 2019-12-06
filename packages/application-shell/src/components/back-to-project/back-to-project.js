@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { AngleLeftIcon, FlatButton } from '@commercetools-frontend/ui-kit';
+import FlatButton from '@commercetools-uikit/flat-button';
+import { AngleLeftIcon } from '@commercetools-uikit/icons';
 import messages from './messages';
 
 /**

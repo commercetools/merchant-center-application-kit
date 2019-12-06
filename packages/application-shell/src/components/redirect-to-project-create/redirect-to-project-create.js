@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { Spacings, Text, FlatButton } from '@commercetools-frontend/ui-kit';
+import Spacings from '@commercetools-uikit/spacings';
+import FlatButton from '@commercetools-uikit/flat-button';
+import Text from '@commercetools-uikit/text';
 
 export const RedirectToProjectCreate = props => {
   /**

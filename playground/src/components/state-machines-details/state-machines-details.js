@@ -4,16 +4,13 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { useShowApiErrorNotification } from '@commercetools-frontend/actions-global';
-import {
-  LoadingSpinner,
-  Spacings,
-  Text,
-  FlatButton,
-  ListIcon,
-  CheckBoldIcon,
-  Grid,
-  Constraints,
-} from '@commercetools-frontend/ui-kit';
+import { ListIcon, CheckBoldIcon } from '@commercetools-uikit/icons';
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
+import Grid from '@commercetools-uikit/grid';
+import Constraints from '@commercetools-uikit/constraints';
+import FlatButton from '@commercetools-uikit/flat-button';
 import { fetchStateMachine } from './actions';
 
 const initialState = {

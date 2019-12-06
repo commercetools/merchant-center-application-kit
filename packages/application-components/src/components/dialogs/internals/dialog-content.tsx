@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { customProperties } from '@commercetools-frontend/ui-kit';
+import { customProperties } from '@commercetools-uikit/design-system';
 
 // The overflow should be "auto", to make the container scrollable
 const DialogContent = styled.div`

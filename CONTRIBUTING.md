@@ -47,7 +47,7 @@ Below a short description of the most import packages:
 
 #### [application-components](./packages/application-components)
 
-This package contains React components for developing Merchant Center applications, similarly to what the `@commercetools-frontend/ui-kit` implements.
+This package contains React components for developing Merchant Center applications, similarly to what the [UiKit](https://github.com/commercetools/ui-kit) implements.
 
 #### [application-shell](./packages/application-shell)
 

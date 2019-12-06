@@ -4,11 +4,9 @@ import Fuse from 'fuse.js';
 import { FormattedMessage } from 'react-intl';
 import last from 'lodash/last';
 import { css, keyframes, ClassNames } from '@emotion/core';
-import {
-  SearchIcon,
-  LoadingSpinner,
-  customProperties,
-} from '@commercetools-frontend/ui-kit';
+import LoadingSpinner from '@commercetools-uikit/loading-spinner';
+import { SearchIcon } from '@commercetools-uikit/icons';
+import { customProperties } from '@commercetools-uikit/design-system';
 import { flattenResults } from '../utils';
 import ButlerCommand from '../butler-command';
 import ButlerContainer from '../butler-container';

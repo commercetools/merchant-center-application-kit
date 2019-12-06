@@ -3,7 +3,8 @@ import Modal from 'react-modal';
 import { css, ClassNames } from '@emotion/core';
 import styled from '@emotion/styled';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
-import { Card, customProperties } from '@commercetools-frontend/ui-kit';
+import { customProperties } from '@commercetools-uikit/design-system';
+import Card from '@commercetools-uikit/card';
 import { getModalOverlayStyles, getModalContentStyles } from './dialog.styles';
 
 // When running tests, we don't render the AppShell. Instead we mock the

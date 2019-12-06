@@ -6,13 +6,11 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import Downshift from 'downshift';
 import { ToggleFeature } from '@flopflip/react-broadcast';
-import {
-  CaretDownIcon,
-  Text,
-  Spacings,
-  Avatar,
-  customProperties,
-} from '@commercetools-frontend/ui-kit';
+import Avatar from '@commercetools-uikit/avatar';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
+import { CaretDownIcon } from '@commercetools-uikit/icons';
+import { customProperties } from '@commercetools-uikit/design-system';
 import {
   LOGOUT_REASONS,
   NO_VALUE_FALLBACK,

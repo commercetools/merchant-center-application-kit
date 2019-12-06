@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { CaretDownIcon, Avatar, Text } from '@commercetools-frontend/ui-kit';
+import Avatar from '@commercetools-uikit/avatar';
+import Text from '@commercetools-uikit/text';
+import { CaretDownIcon } from '@commercetools-uikit/icons';
 import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
 import useApplicationsMenu from '../../hooks/use-applications-menu';
 import Downshift from 'downshift';

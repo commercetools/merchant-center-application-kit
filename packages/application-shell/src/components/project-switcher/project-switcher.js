@@ -6,11 +6,9 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { css } from '@emotion/core';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import {
-  SelectInput,
-  ErrorIcon,
-  customProperties,
-} from '@commercetools-frontend/ui-kit';
+import SelectInput from '@commercetools-uikit/select-input';
+import { ErrorIcon } from '@commercetools-uikit/icons';
+import { customProperties } from '@commercetools-uikit/design-system';
 import ProjectsQuery from './project-switcher.mc.graphql';
 import messages from './messages';
 

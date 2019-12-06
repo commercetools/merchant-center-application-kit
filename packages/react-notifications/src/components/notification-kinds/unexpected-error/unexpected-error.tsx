@@ -6,7 +6,7 @@ import {
   TAppNotification,
   TAppNotificationValuesUnexpectedError,
 } from '@commercetools-frontend/constants';
-import { Spacings } from '@commercetools-frontend/ui-kit';
+import Spacings from '@commercetools-uikit/spacings';
 import Notification from '../../notification';
 import apiErrorMessages from '../api-error-message/messages';
 

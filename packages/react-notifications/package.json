@@ -52,7 +52,9 @@
     "reselect": "4.0.0"
   },
   "devDependencies": {
-    "@commercetools-frontend/ui-kit": "10.12.0",
+    "@commercetools-uikit/icon-button": "10.13.0",
+    "@commercetools-uikit/icons": "10.13.0",
+    "@commercetools-uikit/spacings": "10.13.0",
     "@testing-library/react": "9.3.2",
     "react": "16.12.0",
     "react-dom": "16.12.0",
@@ -62,7 +64,9 @@
     "react-router-dom": "5.1.2"
   },
   "peerDependencies": {
-    "@commercetools-frontend/ui-kit": "10.x",
+    "@commercetools-uikit/icon-button": "10.x",
+    "@commercetools-uikit/icons": "10.x",
+    "@commercetools-uikit/spacings": "10.x",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
     "react-intl": "3.x",

@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import {
-  Spacings,
-  IconButton,
-  Text,
-  AngleRightIcon,
-  AngleDownIcon,
-  customProperties,
-} from '@commercetools-frontend/ui-kit';
+import { AngleRightIcon, AngleDownIcon } from '@commercetools-uikit/icons';
+import IconButton from '@commercetools-uikit/icon-button';
+import Spacings from '@commercetools-uikit/spacings';
+import Text from '@commercetools-uikit/text';
+import { customProperties } from '@commercetools-uikit/design-system';
 import IntlController from './intl-controller';
 import KnobsController from './knobs-controller';
 
