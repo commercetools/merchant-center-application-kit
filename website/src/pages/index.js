@@ -4,14 +4,14 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import pkg from '../../package.json';
 import {
-  Card,
   SEO,
   Markdown,
-  Spacings,
   ThemeProvider,
   designSystem,
   useSiteData,
 } from '@commercetools-docs/gatsby-theme-docs';
+import Card from '@commercetools-uikit/card';
+import SpacingsStack from '@commercetools-uikit/spacings-stack';
 import LayoutMarketing from '../layouts/marketing';
 import LinksCard from '../components/links-card';
 import LandingPageRocket from '../icons/landing-page-rocket.svg';
@@ -145,39 +145,39 @@ const PageMarketingContent = () => {
           `}
         >
           <GridContainer>
-            <Spacings.Stack scale="m">
-              <Spacings.Stack scale="s">
+            <SpacingsStack scale="m">
+              <SpacingsStack scale="s">
                 <ScreenCogIcon />
                 <SectionTitle>{'Built on modern technologies'}</SectionTitle>
-              </Spacings.Stack>
+              </SpacingsStack>
               <SectionBody>
                 {
                   'Develop JavaScript applications with React, GraphQL, Webpack and other modern technologies.'
                 }
               </SectionBody>
-            </Spacings.Stack>
-            <Spacings.Stack scale="m">
-              <Spacings.Stack scale="s">
+            </SpacingsStack>
+            <SpacingsStack scale="m">
+              <SpacingsStack scale="s">
                 <ScreenDesignToolIcon />
                 <SectionTitle>{'Based on a solid Design System'}</SectionTitle>
-              </Spacings.Stack>
+              </SpacingsStack>
               <SectionBody>
                 {
                   'Merchant Center applications are built and designed according to our Design System, which provides rules, patterns and best practices to ease development and focus on the business logic.'
                 }
               </SectionBody>
-            </Spacings.Stack>
-            <Spacings.Stack scale="m">
-              <Spacings.Stack scale="s">
+            </SpacingsStack>
+            <SpacingsStack scale="m">
+              <SpacingsStack scale="s">
                 <ScreenBulbIcon />
                 <SectionTitle>{'Zero config development tools'}</SectionTitle>
-              </Spacings.Stack>
+              </SpacingsStack>
               <SectionBody>
                 {
                   'Focus more on implementing the right features instead of configuration. Our packages provide all the necessary tools to get started seamlessly.'
                 }
               </SectionBody>
-            </Spacings.Stack>
+            </SpacingsStack>
           </GridContainer>
         </Card>
       </PageContainer>
