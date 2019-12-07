@@ -1,3 +1,57 @@
+## [15.5.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.4.2...v15.5.0) (2019-12-09)
+
+#### ⛑ Type: Refactoring
+
+- `application-components`, `application-shell`, `i18n`, `jest-stylelint-runner`, `mc-scripts`, `react-notifications`
+
+  - [#1193](https://github.com/commercetools/merchant-center-application-kit/pull/1193) refactor: use uikit single packages ([@emmenko](https://github.com/emmenko))
+
+  Packages that previously required `@commercetools-frontend/ui-kit` as a peer dependency now require peer dependencies of specific uikit packages.
+
+  > If you keep using `@commercetools-frontend/ui-kit` you don't need to change anything. If you start using specific uikit packages though, you need to make sure you have the proper peer dependencies in place. To make it easier to install the required peer dependencies of a package, you can use the [`install-peerdeps`](https://www.npmjs.com/package/install-peerdeps).
+
+  - `application-components`
+    - `@commercetools-uikit/design-system`
+    - `@commercetools-uikit/constraints`
+    - `@commercetools-uikit/primary-button`
+    - `@commercetools-uikit/secondary-button`
+    - `@commercetools-uikit/secondary-icon-button`
+    - `@commercetools-uikit/spacings`
+    - `@commercetools-uikit/text`
+  - `application-shell`
+    - `@commercetools-uikit/avatar`
+    - `@commercetools-uikit/design-system`
+    - `@commercetools-uikit/flat-button`
+    - `@commercetools-uikit/icons`
+    - `@commercetools-uikit/loading-spinner`
+    - `@commercetools-uikit/select-input`
+    - `@commercetools-uikit/spacings`
+    - `@commercetools-uikit/text`
+  - `i18n`
+    - `@commercetools-uikit/i18n`
+  - `react-notifications`
+    - `@commercetools-uikit/icon-button`
+    - `@commercetools-uikit/icons`
+    - `@commercetools-uikit/spacings`
+
+#### 🖥 Type: Website
+
+- Other
+  - [#1196](https://github.com/commercetools/merchant-center-application-kit/pull/1196) chore(website): update to theme 1.0.0 ([@emmenko](https://github.com/emmenko))
+- `application-components`
+  - [#1186](https://github.com/commercetools/merchant-center-application-kit/pull/1186) chore: update docs theme canary.60 ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `mc-html-template`
+  - [#1194](https://github.com/commercetools/merchant-center-application-kit/pull/1194) fix(deps): update dependency serialize-javascript to v2.1.1 [security](<[@renovate[bot]](https://github.com/apps/renovate)>)
+- Other
+  - [#1191](https://github.com/commercetools/merchant-center-application-kit/pull/1191) chore: update lockfile ([@tdeekens](https://github.com/tdeekens))
+- `application-components`, `application-shell`, `babel-preset-mc-app`, `i18n`, `mc-scripts`, `react-notifications`
+  - [#1187](https://github.com/commercetools/merchant-center-application-kit/pull/1187) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+- `mc-scripts`
+  - [#1188](https://github.com/commercetools/merchant-center-application-kit/pull/1188) fix(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [15.4.2](https://github.com/commercetools/merchant-center-application-kit/compare/v15.4.1...v15.4.2) (2019-11-27)
 
 This release publishes all packages due to an issue with npm during the prior `15.4.1` release.
