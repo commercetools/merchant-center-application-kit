@@ -2,11 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import {
-  Spacings,
-  Markdown,
-  designSystem,
-} from '@commercetools-docs/gatsby-theme-docs';
+import { Markdown, designSystem } from '@commercetools-docs/gatsby-theme-docs';
+import SpacingsStack from '@commercetools-uikit/spacings-stack';
 
 const Container = styled.div`
   background-color: ${designSystem.colors.light.surfacePrimary};
@@ -53,7 +50,7 @@ const LinksCard = props => (
     <GridContainer>
       {props.linksData.map(linkData => (
         <div key={linkData.title}>
-          <Spacings.Stack scale="s">
+          <SpacingsStack scale="s">
             <div>{linkData.title}</div>
             <LinksList>
               {linkData.links.map(link => (
@@ -64,7 +61,7 @@ const LinksCard = props => (
                 </li>
               ))}
             </LinksList>
-          </Spacings.Stack>
+          </SpacingsStack>
         </div>
       ))}
     </GridContainer>
