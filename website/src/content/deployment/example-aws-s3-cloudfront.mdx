@@ -328,7 +328,7 @@ distribution backed by a [Lambda@Edge](https://us-east-2.console.aws.amazon.com/
 
    ![AWS Stack Create](../../images/mc-dev-aws-stack-create.png)
 
-7. After the status in CloudFormation changes to **CREATE_COMPLETE**, select your stack, and choose the **Outputs** tab. Make a note of the CloudFront domain name (e.g. **CloudFrontDomain**).
+7. After the status in CloudFormation changes to **CREATE_COMPLETE**, select your stack, and choose the **Outputs** tab. Make a note of the CloudFront domain name (for example **CloudFrontDomain**).
 
    ![AWS Stack Outputs](../../images/mc-dev-aws-stack-outputs.png)
 
@@ -364,7 +364,7 @@ For both `env.prod.json` and `headers.json`, `[cloudfront-domain]` should be rep
 
 # Build and Compilation
 
-In order to generate the correct configuration for AWS, the `mc-scripts compile-html` script must use an AWS transformer. This transformer will generate a `lambda.js` file with the custom security headers required for Merchant Center Custom Applications.
+In order to generate the correct configuration for AWS, the `mc-scripts compile-html` script must use an AWS transformer. This transformer will generate a `lambda.js` file with the custom security headers required for Merchant Center custom applications.
 
 ```js
 const fs = require('fs');
@@ -464,7 +464,7 @@ The previously generated Lambda function has the important role of including sec
 
 1. In the [CloudFormation](https://console.aws.amazon.com/cloudformation/home) console, select your stack, and then choose the **Resources** tab.
 
-2. Select the link to navigate to the S3 Bucket (e.g. WebsiteBucket) created by CloudFormation.
+2. Select the link to navigate to the S3 Bucket (for example WebsiteBucket) created by CloudFormation.
 
    ![AWS Resources](../../images/mc-dev-aws-stack-resources.png)
 

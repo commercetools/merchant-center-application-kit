@@ -1,6 +1,5 @@
 ---
 title: HTTP Server
-beta: true
 ---
 
 We **recommend using** our [`@commercetools-frontend/mc-http-server`](https://www.npmjs.com/package/@commercetools-frontend/mc-http-server) package to run the application in `production` mode.
@@ -10,7 +9,7 @@ The [`@commercetools-frontend/mc-http-server`](https://www.npmjs.com/package/@co
 - Compiling the `index.html.template` into `index.html` (to inject the runtime configuration in the [`env.json`](./runtime-configuration) file).
 - Preparing the HTTP response headers, including the custom [`headers.json`](./runtime-configuration) configuration (**Content Security Policy**).
 
-The package comes with a binary `mc-http-server` that sets up all the necessary configurations and starts a small Node.JS server.
+The package comes with a binary `mc-http-server` that sets up all the necessary configurations and starts a small Node.js server.
 
 ```console
 mc-http-server --config $(pwd)/env.json --headers $(pwd)/headers.json
@@ -18,7 +17,7 @@ mc-http-server --config $(pwd)/env.json --headers $(pwd)/headers.json
 
 # Docker image
 
-There is also a pre-built **Docker image** (`eu.gcr.io/ct-images/mc-http-server`) that you can use to run the application:
+A pre-built **Docker image** (`eu.gcr.io/ct-images/mc-http-server`) is also available for running the application in a Docker environment:
 
 ```console noPromptLines="3-7"
 docker pull eu.gcr.io/ct-images/mc-http-server

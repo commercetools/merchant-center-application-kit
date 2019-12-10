@@ -1090,6 +1090,11 @@
     remark-emoji "2.0.2"
     tiny-invariant "1.0.6"
 
+"@commercetools-docs/writing-style@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/writing-style/-/writing-style-1.0.2.tgz#faecd8fa9b19806d1b409bbc2166b25d6674a961"
+  integrity sha512-VqZCFblEQaMEuqJ3WX4/9J/8fMQ6FH9pWerSv8F+DS0pCriXzhNK8U3FAi1G9MA3DnfGUg+tfIyTBmI0PIM2NQ==
+
 "@commercetools-frontend/application-components@15.2.1":
   version "15.2.1"
   resolved "https://registry.yarnpkg.com/@commercetools-frontend/application-components/-/application-components-15.2.1.tgz#3d965bcf3355823d3eb188db16347a5e10baafe3"
@@ -8696,16 +8701,6 @@ cors@^2.8.4, cors@^2.8.5:
     object-assign "^4"
     vary "^1"
 
-cosmiconfig@4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-4.0.0.tgz#760391549580bbd2df1e562bc177b13c290972dc"
-  integrity sha512-6e5vDdrXZD+t5v0L8CrurPeybg4Fmf+FCSYxXKYVAqLUtyCSbuyqE059d0kDthTNRzKVjL7QMgNpEUlsoYH3iQ==
-  dependencies:
-    is-directory "^0.3.1"
-    js-yaml "^3.9.0"
-    parse-json "^4.0.0"
-    require-from-string "^2.0.1"
-
 cosmiconfig@5.2.1, cosmiconfig@^5.0.0, cosmiconfig@^5.1.0, cosmiconfig@^5.2.0, cosmiconfig@^5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-5.2.1.tgz#040f726809c591e77a17c0a3626ca45b4f168b1a"
@@ -8765,15 +8760,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-jest-runner@^0.3.0:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/create-jest-runner/-/create-jest-runner-0.3.1.tgz#c4cd197a3fe3dcfff3f0e1b2c19f7cc562ac6928"
-  integrity sha512-E2581cGjVFUD3VFJ1zELs4unojIemky91VF/3WJlrvWY5V26gCQW8Oj8zvCm5suCiptu9iGqae53i/2HapQbWg==
-  dependencies:
-    jest-worker "^22.0.0"
-    throat "^4.1.0"
-
-create-jest-runner@^0.5.3:
+create-jest-runner@0.5.3, create-jest-runner@^0.5.3:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/create-jest-runner/-/create-jest-runner-0.5.3.tgz#1387e2ce70b08e4c989ae55f677005b64f9ba97b"
   integrity sha512-a9VY2doMBmzRollJB3Ft3/Y5fBceSWJ4gdyVsg4/d7nP1S4715VG939s2VnITDj79YBmRgKhjGjNRv1c+Kre1g==
@@ -15532,6 +15519,15 @@ jest-runner-eslint@0.7.5:
     create-jest-runner "^0.5.3"
     eslint "^4.0.0 || ^5.0.0 || ^6.0.0"
 
+jest-runner-executor@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jest-runner-executor/-/jest-runner-executor-1.0.0.tgz#25a4b3a9b35251149a03336367bf7a36a861718d"
+  integrity sha512-TIoGOhYI4YwiMS9/FyI9I7VFXqCwnfrsBwocnvbJphfhe62Xia65dOkHyDtJBzEAGFiwrYKjgtQSPykAmD1x6Q==
+  dependencies:
+    cosmiconfig "6.0.0"
+    create-jest-runner "0.5.3"
+    lodash.kebabcase "4.1.1"
+
 jest-runner-prettier@0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/jest-runner-prettier/-/jest-runner-prettier-0.3.3.tgz#4de89221a1ec61b10fbc18ac502678d7b2ac3109"
@@ -15540,15 +15536,6 @@ jest-runner-prettier@0.3.3:
     cli-highlight "^2.1.1"
     create-jest-runner "^0.5.3"
     jest-diff "^24.8.0"
-
-jest-runner-shellcheck@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/jest-runner-shellcheck/-/jest-runner-shellcheck-1.0.2.tgz#e19ce57c21bff2a5b7d1d8387745626ababb568a"
-  integrity sha512-o3AXBSU6RFLyeDIibPgkej5v1nRBmAyT6Bjsi6P36Wd+oxpvJsaQZ/GIOq4BlDB3qHazRCuhOy5cnvYjIHDWPA==
-  dependencies:
-    cosmiconfig "4.0.0"
-    create-jest-runner "^0.3.0"
-    lodash.kebabcase "^4.1.1"
 
 jest-runner@^24.9.0:
   version "24.9.0"
@@ -15704,13 +15691,6 @@ jest-watcher@^24.3.0, jest-watcher@^24.9.0:
     jest-util "^24.9.0"
     string-length "^2.0.0"
 
-jest-worker@^22.0.0:
-  version "22.4.3"
-  resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-22.4.3.tgz#5c421417cba1c0abf64bf56bd5fb7968d79dd40b"
-  integrity sha512-B1ucW4fI8qVAuZmicFxI1R3kr2fNeYJyvIQ1rKcuLYnenFV5K5aMbxFj6J0i00Ju83S8jP2d7Dz14+AvbIHRYQ==
-  dependencies:
-    merge-stream "^1.0.1"
-
 jest-worker@^24.0.0, jest-worker@^24.6.0, jest-worker@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-24.9.0.tgz#5dbfdb5b2d322e98567898238a9697bcce67b3e5"
@@ -15768,7 +15748,7 @@ js-tokens@^3.0.2:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
   integrity sha1-mGbfOVECEw449/mWvOtlRDIJwls=
 
-js-yaml@^3.10.0, js-yaml@^3.11.0, js-yaml@^3.12.0, js-yaml@^3.13.1, js-yaml@^3.5.2, js-yaml@^3.6.1, js-yaml@^3.8.4, js-yaml@^3.9.0, js-yaml@^3.9.1:
+js-yaml@^3.10.0, js-yaml@^3.11.0, js-yaml@^3.12.0, js-yaml@^3.13.1, js-yaml@^3.5.2, js-yaml@^3.6.1, js-yaml@^3.8.4, js-yaml@^3.9.1:
   version "3.13.1"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.13.1.tgz#aff151b30bfdfa8e49e05da22e7415e9dfa37847"
   integrity sha512-YfbcO7jXDdyj0DGxYVSlSeQNHbD7XPWvrVWeVUujrQEoZzWJIRrCPoyk6kL6IAjAG2IolMK4T0hNUe0HOUs5Jw==
@@ -16702,7 +16682,7 @@ lodash.istypedarray@^3.0.0:
   resolved "https://registry.yarnpkg.com/lodash.istypedarray/-/lodash.istypedarray-3.0.6.tgz#c9a477498607501d8e8494d283b87c39281cef62"
   integrity sha1-yaR3SYYHUB2OhJTSg7h8OSgc72I=
 
-lodash.kebabcase@^4.1.1:
+lodash.kebabcase@4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lodash.kebabcase/-/lodash.kebabcase-4.1.1.tgz#8489b1cb0d29ff88195cceca448ff6d6cc295c36"
   integrity sha1-hImxyw0p/4gZXM7KRI/21swpXDY=
@@ -17382,13 +17362,6 @@ merge-options@2.0.0:
   integrity sha512-S7xYIeWHl2ZUKF7SDeBhGg6rfv5bKxVBdk95s/I7wVF8d+hjLSztJ/B271cnUiF6CAFduEQ5Zn3HYwAjT16DlQ==
   dependencies:
     is-plain-obj "^2.0.0"
-
-merge-stream@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/merge-stream/-/merge-stream-1.0.1.tgz#4041202d508a342ba00174008df0c251b8c135e1"
-  integrity sha1-QEEgLVCKNCugAXQAjfDCUbjBNeE=
-  dependencies:
-    readable-stream "^2.0.1"
 
 merge-stream@^2.0.0:
   version "2.0.0"
@@ -22007,11 +21980,6 @@ require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
   integrity sha1-jGStX9MNqxyXbiNE/+f3kqam30I=
-
-require-from-string@^2.0.1:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-2.0.2.tgz#89a7fdd938261267318eafe14f9c32e598c36909"
-  integrity sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==
 
 "require-like@>= 0.1.1":
   version "0.1.2"
