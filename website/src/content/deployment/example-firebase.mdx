@@ -48,7 +48,7 @@ firebase init
 
 6. Configure your site as a single-page app to automatically add rewrite configurations.
 
-   ![Firebase Initialization](../../images/mc-dev-firebase-init.png)
+   ![Firebase Initialization](/images/mc-dev-firebase-init.png)
 
 After initialization, Firebase automatically creates and adds two files to the root of your local app directory:
 
@@ -94,9 +94,9 @@ You can set up one or more Firebase Hosting sites in a single Firebase project. 
 
 Add an additional site directly from your [Firebase Hosting page](https://console.firebase.google.com/project/_/hosting/main).
 
-![Firebase Hosting](../../images/mc-dev-firebase-hosting.png)
+![Firebase Hosting](/images/mc-dev-firebase-hosting.png)
 
-![Firebase Hosting Site](../../images/mc-dev-firebase-hosting-site.png)
+![Firebase Hosting Site](/images/mc-dev-firebase-hosting-site.png)
 
 When you have multiple sites and you run Firebase CLI deploy commands, the CLI needs a way to communicate which settings should be deployed to each site.
 With _deploy targets_ you can uniquely identify a specific site by its _target name_ in your `firebase.json` configuration file and in your Firebase CLI commands for testing or deploying to your sites.
@@ -113,7 +113,7 @@ Where the parameters are:
 
 - **resource-name** — the name of the Hosting site as listed in your Firebase project
 
-![Firebase Hosting Console](../../images/mc-dev-firebase-hosting-console.png)
+![Firebase Hosting Console](/images/mc-dev-firebase-hosting-console.png)
 
 The settings for deploy targets are stored in the `.firebaserc` file in your project directory, so you only need to set up deploy targets one time per project.
 
@@ -237,6 +237,6 @@ firebase deploy
 
 If you go to `https://[projectID].firebaseapp.com`, you will see the message supplied in the Cloud Function. **This is expected** as the application is not being loaded behind the Merchant Center Proxy.
 
-![Firebase Fallback](../../images/mc-dev-firebase-fallback.png)
+![Firebase Fallback](/images/mc-dev-firebase-fallback.png)
 
 Now you're ready to [Register your Custom Application](./register-applications) and start using it!

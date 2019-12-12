@@ -115,7 +115,7 @@ const PageMarketingContent = () => {
                 {'Develop applications for the Merchant Center'}
               </div>
               <div>
-                <ButtonLink href="/getting-started/installing-a-starter-application">
+                <ButtonLink href="/getting-started/what-is-a-custom-application">
                   {'Get started'}
                 </ButtonLink>
               </div>
