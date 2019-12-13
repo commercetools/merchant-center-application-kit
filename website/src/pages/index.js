@@ -5,11 +5,11 @@ import styled from '@emotion/styled';
 import pkg from '../../package.json';
 import {
   SEO,
-  Markdown,
+  Link,
   ThemeProvider,
-  designSystem,
   useSiteData,
 } from '@commercetools-docs/gatsby-theme-docs';
+import { designSystem } from '@commercetools-docs/ui-kit';
 import Card from '@commercetools-uikit/card';
 import SpacingsStack from '@commercetools-uikit/spacings-stack';
 import LayoutMarketing from '../layouts/marketing';
@@ -34,7 +34,7 @@ const PageContainer = styled.div`
   max-width: ${designSystem.dimensions.widths.marketingContent};
   margin: 0 auto;
 `;
-const ButtonLink = styled(Markdown.Link)`
+const ButtonLink = styled(Link)`
   display: inline-block;
   padding: ${designSystem.dimensions.spacings.m}
     ${designSystem.dimensions.spacings.l};

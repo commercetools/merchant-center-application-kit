@@ -1050,27 +1050,27 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-docs/gatsby-theme-docs@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.2.0.tgz#b9226e2d6b319061c321f6067ed26279144c77bb"
-  integrity sha512-hwxAl46dtI7scypRDhGimEPLDeZdFWC3MG84/0igixZxfilW9TXwNqFWBUnjRkmy9awuNhTL/cEFVhpBOFUEcw==
+"@commercetools-docs/gatsby-theme-docs@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.3.1.tgz#7bd92ab61a5206e89424f7ba69eaa245982c86d0"
+  integrity sha512-7Fve9wsoWPA3jz1t9MnJDPKL5D8nu/1+h4FFoxgN7DfDGkp9be5eGOBWGNAuGxm9FuyHjSJnE2USfDvfoVgbgw==
   dependencies:
+    "@commercetools-docs/ui-kit" "1.3.1"
     "@commercetools-uikit/card" "10.13.0"
     "@commercetools-uikit/design-system" "10.13.0"
     "@commercetools-uikit/icon-button" "10.13.0"
     "@commercetools-uikit/icons" "10.13.0"
     "@commercetools-uikit/spacings-inline" "10.13.0"
     "@commercetools-uikit/spacings-stack" "10.13.0"
-    "@commercetools-uikit/tooltip" "10.13.0"
     "@mdx-js/mdx" "1.5.1"
     "@mdx-js/react" "1.5.1"
-    "@sentry/browser" "5.9.1"
+    "@sentry/browser" "5.10.2"
     create-emotion-server "10.0.14"
     docsearch.js "2.6.3"
     emotion-theming "10.0.19"
     gatsby-image "2.2.34"
     gatsby-plugin-emotion "4.1.16"
-    gatsby-plugin-google-analytics "2.1.29"
+    gatsby-plugin-google-analytics "2.1.31"
     gatsby-plugin-manifest "2.2.31"
     gatsby-plugin-mdx "1.0.59"
     gatsby-plugin-meta-redirect "1.1.1"
@@ -1088,6 +1088,18 @@
     gatsby-transformer-sharp "2.3.6"
     gatsby-transformer-yaml "2.2.18"
     hast-util-heading "1.0.3"
+    lodash.throttle "4.1.1"
+    prop-types "15.7.2"
+    react-helmet "5.2.1"
+    rehype-slug "2.0.3"
+    remark-emoji "2.0.2"
+
+"@commercetools-docs/ui-kit@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-1.3.1.tgz#cbaa95041ed5536878fee618bd7d77705a361978"
+  integrity sha512-tIB/h5Rx5cDAOdZ9fztJggc6n+QyMeilRSYkIEn8FjjdAAicieIWVNJe+CAhX3A0oMtwDCDsYfntGriCiCRpGg==
+  dependencies:
+    "@commercetools-uikit/tooltip" "10.13.0"
     lodash.escape "4.0.1"
     lodash.throttle "4.1.1"
     parse-numeric-range "0.0.2"
@@ -1095,9 +1107,6 @@
     prism-themes "1.3.0"
     prismjs "1.17.1"
     prop-types "15.7.2"
-    react-helmet "5.2.1"
-    rehype-slug "2.0.3"
-    remark-emoji "2.0.2"
     tiny-invariant "1.0.6"
 
 "@commercetools-docs/writing-style@1.0.3":
@@ -4588,17 +4597,7 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@sentry/browser@5.10.2":
-  version "5.10.2"
-  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-5.10.2.tgz#0bbb05505c58ea998c833cffec3f922fe4b4fa58"
-  integrity sha512-r3eyBu2ln7odvWtXARCZPzpuGrKsD6U9F3gKTu4xdFkA0swSLUvS7AC2FUksj/1BE23y+eB/zzPT+RYJ58tidA==
-  dependencies:
-    "@sentry/core" "5.10.2"
-    "@sentry/types" "5.10.0"
-    "@sentry/utils" "5.10.2"
-    tslib "^1.9.3"
-
-"@sentry/browser@5.9.1":
+"@sentry/browser@5.10.2", "@sentry/browser@5.9.1":
   version "5.9.1"
   resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-5.9.1.tgz#b2ec27ead501a49f26807a9c0774f44f4292f236"
   integrity sha512-7AOabwp9yAH9h6Xe6TfDwlLxHbUSWs+SPWHI7bPlht2yDSAqkXYGSzRr5X0XQJX9oBQdx2cEPMqHyJrbNaP/og==
@@ -4606,17 +4605,6 @@
     "@sentry/core" "5.8.0"
     "@sentry/types" "5.7.1"
     "@sentry/utils" "5.8.0"
-    tslib "^1.9.3"
-
-"@sentry/core@5.10.2":
-  version "5.10.2"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-5.10.2.tgz#1cb64489e6f8363c3249415b49d3f1289814825f"
-  integrity sha512-sKVeFH3v8K8xw2vM5MKMnnyAAwih+JSE3pbNL0CcCCA+/SwX+3jeAo2BhgXev2SAR/TjWW+wmeC9TdIW7KyYbg==
-  dependencies:
-    "@sentry/hub" "5.10.2"
-    "@sentry/minimal" "5.10.2"
-    "@sentry/types" "5.10.0"
-    "@sentry/utils" "5.10.2"
     tslib "^1.9.3"
 
 "@sentry/core@5.8.0":
@@ -4630,15 +4618,6 @@
     "@sentry/utils" "5.8.0"
     tslib "^1.9.3"
 
-"@sentry/hub@5.10.2":
-  version "5.10.2"
-  resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-5.10.2.tgz#25d9f36b8f7c5cb65cf486737fa61dc9bf69b7e3"
-  integrity sha512-hSlZIiu3hcR/I5yEhlpN9C0nip+U7hiRzRzUQaBiHO4YG4TC58NqnOPR89D/ekiuHIXzFpjW9OQmqtAMRoSUYA==
-  dependencies:
-    "@sentry/types" "5.10.0"
-    "@sentry/utils" "5.10.2"
-    tslib "^1.9.3"
-
 "@sentry/hub@5.8.0":
   version "5.8.0"
   resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-5.8.0.tgz#56aaeb7324cb66d90db838011cb0127f5558007f"
@@ -4646,15 +4625,6 @@
   dependencies:
     "@sentry/types" "5.7.1"
     "@sentry/utils" "5.8.0"
-    tslib "^1.9.3"
-
-"@sentry/minimal@5.10.2":
-  version "5.10.2"
-  resolved "https://registry.yarnpkg.com/@sentry/minimal/-/minimal-5.10.2.tgz#267c2f3aa6877a0fe7a86971942e83f3ee616580"
-  integrity sha512-GalixiM9sckYfompH5HHTp9XT2BcjawBkcl1DMEKUBEi37+kUq0bivOBmnN1G/I4/wWOUdnAI/kagDWaWpbZPg==
-  dependencies:
-    "@sentry/hub" "5.10.2"
-    "@sentry/types" "5.10.0"
     tslib "^1.9.3"
 
 "@sentry/minimal@5.8.0":
@@ -4666,23 +4636,10 @@
     "@sentry/types" "5.7.1"
     tslib "^1.9.3"
 
-"@sentry/types@5.10.0":
-  version "5.10.0"
-  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-5.10.0.tgz#4f0ba31b6e4d5371112c38279f11f66c73b43746"
-  integrity sha512-TW20GzkCWsP6uAxR2JIpIkiitCKyIOfkyDsKBeLqYj4SaZjfvBPnzgNCcYR0L0UsP1/Es6oHooZfIGSkp6GGxQ==
-
 "@sentry/types@5.7.1":
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/@sentry/types/-/types-5.7.1.tgz#4c4c1d4d891b6b8c2c3c7b367d306a8b1350f090"
   integrity sha512-tbUnTYlSliXvnou5D4C8Zr+7/wJrHLbpYX1YkLXuIJRU0NSi81bHMroAuHWILcQKWhVjaV/HZzr7Y/hhWtbXVQ==
-
-"@sentry/utils@5.10.2":
-  version "5.10.2"
-  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-5.10.2.tgz#261f575079d30aaf604e59f5f4de0aa21db22252"
-  integrity sha512-UcbbaFpYrGSV448lQ16Cr+W/MPuKUflQQUdrMCt5vgaf5+M7kpozlcji4GGGZUCXIA7oRP93ABoXj55s1OM9zw==
-  dependencies:
-    "@sentry/types" "5.10.0"
-    tslib "^1.9.3"
 
 "@sentry/utils@5.8.0":
   version "5.8.0"
@@ -12097,12 +12054,12 @@ gatsby-plugin-emotion@4.1.18:
     "@babel/runtime" "^7.7.6"
     "@emotion/babel-preset-css-prop" "^10.0.23"
 
-gatsby-plugin-google-analytics@2.1.29:
-  version "2.1.29"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-2.1.29.tgz#d24caabf2a89abd95f1620434ff784088bac38f2"
-  integrity sha512-vRMmXyam7LUwD+xdWCLQTbe5pT8FOX3vcIJdwckY/c3x3/GFIkx9bRJ1/N8z9x9dAci3g0HoTQZ6BkcqcNhzkA==
+gatsby-plugin-google-analytics@2.1.31:
+  version "2.1.31"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-2.1.31.tgz#d53d20aa26321f43fa8320c169db0316320f98f8"
+  integrity sha512-vwx2eB703Yatp1ZQ0lQDiAG3k9gyvDEENRmtp+myfadI8Sgtq+LA+3OYGLeT0MYdifUTW0Lhcp3qoIrng/41zg==
   dependencies:
-    "@babel/runtime" "^7.7.4"
+    "@babel/runtime" "^7.7.6"
 
 gatsby-plugin-manifest@2.2.31:
   version "2.2.31"
