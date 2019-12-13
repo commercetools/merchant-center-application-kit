@@ -123,6 +123,14 @@ const PageMarketingContent = () => {
             <div
               css={css`
                 justify-self: center;
+
+                @media screen and (${designSystem.dimensions.viewports
+                    .mobile}) {
+                  svg {
+                    height: 100%;
+                    width: 100%;
+                  }
+                }
               `}
             >
               <LandingPageRocket height={300} />
