@@ -1059,7 +1059,7 @@ We removed some exports that are not necessary anymore:
 
 ### Dropped support for IE 11
 
-We decided to drop support for IE 11 as we want to reduce the maintainance costs due to transpilation and polyfills. As a result, we dropped those things from our tooling.
+We decided to drop support for IE 11 as we want to reduce the maintenance costs due to transpilation and polyfills. As a result, we dropped those things from our tooling.
 
 ### Deprecated packages
 
