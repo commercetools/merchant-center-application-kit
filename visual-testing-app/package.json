@@ -4,9 +4,11 @@
   "description": "An app to facilitate visual testing",
   "private": true,
   "scripts": {
+    "prebuild": "rimraf dist/**",
     "build": "mc-scripts build",
+    "postbuild": "mc-scripts compile-html --use-local-assets --config $(pwd)/env.json",
     "start": "mc-scripts start",
-    "serve": "serve dist --no-clipboard --single --listen 3001"
+    "serve": "serve public --no-clipboard --single --listen 3001"
   },
   "dependencies": {
     "@commercetools-frontend/application-components": "15.5.0",
