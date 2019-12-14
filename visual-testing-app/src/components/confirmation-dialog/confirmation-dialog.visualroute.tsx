@@ -21,7 +21,9 @@ const ConfirmationDialogExample = (props: ContainerProps) => (
       onCancel={() => undefined}
       onConfirm={() => undefined}
       isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
-      getParentSelector={() => document.querySelector(`#${props.portalId}`)}
+      getParentSelector={() =>
+        document.querySelector(`#${props.portalId}`) as HTMLElement
+      }
     >
       <Spacings.Stack scale="m">
         <Text.Body>

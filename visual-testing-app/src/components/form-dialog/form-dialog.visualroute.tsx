@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import TextField from '@commercetools-uikit/text-field';
+import TextField, { CustomFormikErrors } from '@commercetools-uikit/text-field';
 import Spacings from '@commercetools-uikit/spacings';
 import { FormDialog } from '@commercetools-frontend/application-components';
 import { Suite, Spec } from '../../test-utils';
@@ -27,7 +27,9 @@ const FormDialogExample = (props: ContainerProps) => (
           onSecondaryButtonClick={() => undefined}
           onPrimaryButtonClick={() => undefined}
           isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
-          getParentSelector={() => document.querySelector(`#${props.portalId}`)}
+          getParentSelector={() =>
+            document.querySelector(`#${props.portalId}`) as HTMLElement
+          }
         >
           <Spacings.Stack scale="m">
             <TextField
@@ -35,7 +37,9 @@ const FormDialogExample = (props: ContainerProps) => (
               title="Email"
               isRequired={true}
               value={formikProps.values.email}
-              errors={formikProps.errors.email}
+              errors={
+                (formikProps.errors as CustomFormikErrors<FormValues>).email
+              }
               touched={formikProps.touched.email}
               onChange={formikProps.handleChange}
               onBlur={formikProps.handleBlur}

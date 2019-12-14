@@ -18,7 +18,9 @@ const InfoDialogExample = (props: ContainerProps) => (
       size={props.size}
       isOpen={true}
       onClose={() => undefined}
-      getParentSelector={() => document.querySelector(`#${props.portalId}`)}
+      getParentSelector={() =>
+        document.querySelector(`#${props.portalId}`) as HTMLElement
+      }
     >
       <Spacings.Stack scale="m">
         <Text.Body>
