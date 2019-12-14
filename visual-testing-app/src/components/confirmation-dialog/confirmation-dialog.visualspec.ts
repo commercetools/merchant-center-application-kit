@@ -1,4 +1,5 @@
 import { percySnapshot } from '@percy/puppeteer';
+import { HOST } from '../../constants';
 
 describe(`ConfirmationDialog`, () => {
   beforeAll(async () => {

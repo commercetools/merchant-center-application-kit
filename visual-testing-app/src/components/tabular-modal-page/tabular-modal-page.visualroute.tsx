@@ -1,23 +1,47 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import styled from '@emotion/styled';
+import Text from '@commercetools-uikit/text';
+import TextInput from '@commercetools-uikit/text-input';
+import IconButton from '@commercetools-uikit/icon-button';
 import {
   FlameIcon,
   SearchIcon,
   BinLinearIcon,
 } from '@commercetools-uikit/icons';
-import TextInput from '@commercetools-uikit/text-input';
-import Text from '@commercetools-uikit/text';
-import IconButton from '@commercetools-uikit/icon-button';
-import Spacings from '@commercetools-uikit/spacings';
 import { customProperties } from '@commercetools-uikit/design-system';
-import { TabularModalPage } from '@local-build/application-components';
-import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
+import Spacings from '@commercetools-uikit/spacings';
+import { TabularModalPage } from '@commercetools-frontend/application-components';
+import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/tabular-modal-page';
 
-const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
-  <React.Fragment>
+const TabControlsContainer = styled.div`
+  min-height: 30px;
+  display: flex;
+  > * {
+    min-width: 50px;
+    cursor: pointer;
+    &:first-of-type {
+      border-bottom: 3px solid ${customProperties.colorPrimary};
+      & > * {
+        color: ${customProperties.colorPrimary};
+      }
+    }
+  }
+  > * + * {
+    margin-left: 16px;
+  }
+`;
+
+type ContainerProps = {
+  portalId: string;
+} & Partial<Parameters<typeof TabularModalPage>[0]>;
+
+const ModalPageWithPortalParentSelector = ({
+  portalId,
+  ...props
+}: ContainerProps) => (
+  <>
     <div id={portalId} style={{ position: 'relative', height: '750px' }} />
     <TabularModalPage
       title="Lorem ipsum"
@@ -25,27 +49,13 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
       level={1}
       isOpen={true}
       onClose={() => undefined}
-      getParentSelector={() => document.querySelector(`#${portalId}`)}
+      getParentSelector={() =>
+        document.querySelector(`#${portalId}`) as HTMLElement
+      }
+      onPrimaryButtonClick={() => undefined}
+      onSecondaryButtonClick={() => undefined}
       tabControls={
-        <div
-          css={css`
-            min-height: 30px;
-            display: flex;
-            > * {
-              min-width: 50px;
-              cursor: pointer;
-              &:first-of-type {
-                border-bottom: 3px solid ${customProperties.colorPrimary};
-                & > * {
-                  color: ${customProperties.colorPrimary};
-                }
-              }
-            }
-            > * + * {
-              margin-left: 16px;
-            }
-          `}
-        >
+        <TabControlsContainer>
           <span>
             <Text.Subheadline as="h4">Tab One</Text.Subheadline>
           </span>
@@ -55,17 +65,16 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
           <span>
             <Text.Subheadline as="h4">Tab Three</Text.Subheadline>
           </span>
-        </div>
+        </TabControlsContainer>
       }
       {...props}
-    />
-  </React.Fragment>
+    >
+      {props.children}
+    </TabularModalPage>
+  </>
 );
 ModalPageWithPortalParentSelector.displayName =
   'ModalPageWithPortalParentSelector';
-ModalPageWithPortalParentSelector.propTypes = {
-  portalId: PropTypes.string.isRequired,
-};
 
 const Content = () => (
   <Spacings.Stack scale="m">
@@ -77,8 +86,7 @@ const Content = () => (
     </Text.Body>
   </Spacings.Stack>
 );
-
-export const component = () => (
+export const Component = () => (
   <Suite>
     <Spec label="TabularModalPage" size="xl">
       <ModalPageWithPortalParentSelector
@@ -108,9 +116,21 @@ export const component = () => (
       <ModalPageWithPortalParentSelector
         customControls={
           <Spacings.Inline>
-            <IconButton icon={<SearchIcon />} onClick={() => undefined} />
-            <IconButton icon={<FlameIcon />} onClick={() => undefined} />
-            <IconButton icon={<BinLinearIcon />} onClick={() => undefined} />
+            <IconButton
+              label="SearchIcon"
+              icon={<SearchIcon />}
+              onClick={() => undefined}
+            />
+            <IconButton
+              label="FlameIcon"
+              icon={<FlameIcon />}
+              onClick={() => undefined}
+            />
+            <IconButton
+              label="BinLinearIcon"
+              icon={<BinLinearIcon />}
+              onClick={() => undefined}
+            />
           </Spacings.Inline>
         }
         portalId="tabular-modal-page-custom-controls"
@@ -206,9 +226,21 @@ export const component = () => (
         }
         customControls={
           <Spacings.Inline>
-            <IconButton icon={<SearchIcon />} onClick={() => undefined} />
-            <IconButton icon={<FlameIcon />} onClick={() => undefined} />
-            <IconButton icon={<BinLinearIcon />} onClick={() => undefined} />
+            <IconButton
+              label="SearchIcon"
+              icon={<SearchIcon />}
+              onClick={() => undefined}
+            />
+            <IconButton
+              label="FlameIcon"
+              icon={<FlameIcon />}
+              onClick={() => undefined}
+            />
+            <IconButton
+              label="BinLinearIcon"
+              icon={<BinLinearIcon />}
+              onClick={() => undefined}
+            />
           </Spacings.Inline>
         }
         portalId="tabular-modal-page-custom-title-row-and-custom-controls"

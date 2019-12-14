@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import {
   SearchIcon,
@@ -65,10 +64,6 @@ const ModalPageWithPortalParentSelector = ({
 );
 ModalPageWithPortalParentSelector.displayName =
   'ModalPageWithPortalParentSelector';
-ModalPageWithPortalParentSelector.propTypes = {
-  isPrimaryButtonDisabled: PropTypes.bool,
-  portalId: PropTypes.string.isRequired,
-};
 
 export const Component = () => (
   <Suite>

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Text from '@commercetools-uikit/text';
 import { InfoModalPage } from '@commercetools-frontend/application-components';
 import { Suite, Spec } from '../../test-utils';
@@ -33,9 +32,6 @@ const ModalPageWithPortalParentSelector = ({
 );
 ModalPageWithPortalParentSelector.displayName =
   'ModalPageWithPortalParentSelector';
-ModalPageWithPortalParentSelector.propTypes = {
-  portalId: PropTypes.string.isRequired,
-};
 
 export const Component = () => (
   <Suite>
