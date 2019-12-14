@@ -5,7 +5,7 @@ import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/notifications';
 
-export const component = () => (
+export const Component = () => (
   <Suite>
     <Spec label="Notification - Side (success)">
       <Notification type="success" domain={DOMAINS.SIDE}>

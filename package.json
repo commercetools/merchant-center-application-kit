@@ -32,7 +32,7 @@
     "test:e2e": "cypress run",
     "test:e2e:playground": "cypress run --spec cypress/integration/playground/**/*.js",
     "test:e2e:template-starter": "cypress run --spec cypress/integration/template-starter/**/*.js",
-    "vrt:components": "percy exec -- jest --config jest.visual.config.js --runInBand",
+    "vrt:components": "percy exec -- yarn test:visual",
     "vrt:e2e": "percy exec -- cypress run",
     "playground:build": "yarn --cwd playground build",
     "playground:start": "yarn --cwd playground start",
