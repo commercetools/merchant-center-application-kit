@@ -69,7 +69,7 @@ module.exports = function getBabePresetConfigForMcApp() {
           autoLabel: !isEnvProduction,
         },
       ],
-      '@babel/preset-typescript',
+      require('@babel/preset-typescript').default,
     ].filter(Boolean),
     plugins: [
       // Experimental macros support. Will be documented after it's had some time
