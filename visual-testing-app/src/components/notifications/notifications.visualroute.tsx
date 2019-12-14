@@ -1,7 +1,7 @@
 import React from 'react';
 import { DOMAINS } from '@commercetools-frontend/constants';
-import { Notification } from '@local-build/react-notifications';
-import { Suite, Spec } from '../../../../visual-testing-app/test-utils';
+import { Notification } from '@commercetools-frontend/react-notifications';
+import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/notifications';
 
