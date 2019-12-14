@@ -13,7 +13,10 @@ const isNotificationAction = <Payload extends TNotification>(
 ): action is TNotificationAction<Payload> =>
   [ADD_NOTIFICATION, REMOVE_NOTIFICATION].includes(action.type);
 
-const dismissCallbacksMap: { [key: number]: TNotificationOnDismiss } = {};
+const dismissCallbacksMap = new Map<
+  TNotification['id'],
+  TNotificationOnDismiss
+>();
 let id = 0;
 
 const middleware = <Payload extends TNotification>({
@@ -42,7 +45,7 @@ const middleware = <Payload extends TNotification>({
         if (action.meta.dismissAfter)
           setTimeout(dismissCallback, action.meta.dismissAfter);
         if (typeof action.meta.onDismiss === 'function')
-          dismissCallbacksMap[notification.id] = action.meta.onDismiss;
+          dismissCallbacksMap.set(notification.id, action.meta.onDismiss);
       }
 
       const nextAction = {
@@ -54,9 +57,9 @@ const middleware = <Payload extends TNotification>({
     }
     case REMOVE_NOTIFICATION: {
       const notificationId = action.payload.id;
-      const callback = dismissCallbacksMap[notificationId];
+      const callback = dismissCallbacksMap.get(notificationId);
       if (callback) callback(notificationId);
-      delete dismissCallbacksMap[notificationId];
+      dismissCallbacksMap.delete(notificationId);
       return next(action);
     }
     default:

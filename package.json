@@ -37,7 +37,7 @@
     "playground:build": "yarn --cwd playground build",
     "playground:start": "yarn --cwd playground start",
     "playground:start:prod:local": "yarn --cwd playground start:prod:local",
-    "visual-testing-app:develop": "yarn --cwd visual-testing-app develop",
+    "visual-testing-app:start": "yarn --cwd visual-testing-app start",
     "visual-testing-app:build": "yarn --cwd visual-testing-app build",
     "visual-testing-app:serve": "yarn --cwd visual-testing-app serve",
     "template-starter:build": "yarn --cwd application-templates/starter build",
