@@ -9,7 +9,7 @@ import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
 export const routePath = '/form-dialog';
 
 const FormDialogExample = props => (
-  <Formik initialValues={{ email: '' }} onSubmit={() => {}}>
+  <Formik initialValues={{ email: '' }} onSubmit={() => undefined}>
     {formikProps => (
       <React.Fragment>
         <div id={props.portalId} style={{ flex: 1 }} />
@@ -17,9 +17,9 @@ const FormDialogExample = props => (
           title="Lorem ipsum"
           size={props.size}
           isOpen={true}
-          onClose={() => {}}
-          onSecondaryButtonClick={() => {}}
-          onPrimaryButtonClick={() => {}}
+          onClose={() => undefined}
+          onSecondaryButtonClick={() => undefined}
+          onPrimaryButtonClick={() => undefined}
           isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
           getParentSelector={() => document.querySelector(`#${props.portalId}`)}
         >

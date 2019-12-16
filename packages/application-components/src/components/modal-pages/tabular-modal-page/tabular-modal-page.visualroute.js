@@ -24,7 +24,7 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       level={1}
       isOpen={true}
-      onClose={() => {}}
+      onClose={() => undefined}
       getParentSelector={() => document.querySelector(`#${portalId}`)}
       tabControls={
         <div
@@ -108,9 +108,9 @@ export const component = () => (
       <ModalPageWithPortalParentSelector
         customControls={
           <Spacings.Inline>
-            <IconButton icon={<SearchIcon />} onClick={() => {}} />
-            <IconButton icon={<FlameIcon />} onClick={() => {}} />
-            <IconButton icon={<BinLinearIcon />} onClick={() => {}} />
+            <IconButton icon={<SearchIcon />} onClick={() => undefined} />
+            <IconButton icon={<FlameIcon />} onClick={() => undefined} />
+            <IconButton icon={<BinLinearIcon />} onClick={() => undefined} />
           </Spacings.Inline>
         }
         portalId="tabular-modal-page-custom-controls"
@@ -131,7 +131,7 @@ export const component = () => (
                   Input 1
                 </Text.Body>
               </label>
-              <TextInput id="input-1" value="" onChange={() => {}} />
+              <TextInput id="input-1" value="" onChange={() => undefined} />
             </Spacings.Inline>
             <Spacings.Inline alignItems="center">
               <label htmlFor="input-2">
@@ -139,7 +139,7 @@ export const component = () => (
                   Input 2
                 </Text.Body>
               </label>
-              <TextInput id="input-2" value="" onChange={() => {}} />
+              <TextInput id="input-2" value="" onChange={() => undefined} />
             </Spacings.Inline>
           </Spacings.Inline>
         }
@@ -162,7 +162,7 @@ export const component = () => (
                   Input 1
                 </Text.Body>
               </label>
-              <TextInput id="input-1" value="" onChange={() => {}} />
+              <TextInput id="input-1" value="" onChange={() => undefined} />
             </Spacings.Inline>
             <Spacings.Inline alignItems="center">
               <label htmlFor="input-2">
@@ -170,7 +170,7 @@ export const component = () => (
                   Input 2
                 </Text.Body>
               </label>
-              <TextInput id="input-2" value="" onChange={() => {}} />
+              <TextInput id="input-2" value="" onChange={() => undefined} />
             </Spacings.Inline>
           </Spacings.Inline>
         }
@@ -192,7 +192,7 @@ export const component = () => (
                   Input 1
                 </Text.Body>
               </label>
-              <TextInput id="input-1" value="" onChange={() => {}} />
+              <TextInput id="input-1" value="" onChange={() => undefined} />
             </Spacings.Inline>
             <Spacings.Inline alignItems="center">
               <label htmlFor="input-2">
@@ -200,15 +200,15 @@ export const component = () => (
                   Input 2
                 </Text.Body>
               </label>
-              <TextInput id="input-2" value="" onChange={() => {}} />
+              <TextInput id="input-2" value="" onChange={() => undefined} />
             </Spacings.Inline>
           </Spacings.Inline>
         }
         customControls={
           <Spacings.Inline>
-            <IconButton icon={<SearchIcon />} onClick={() => {}} />
-            <IconButton icon={<FlameIcon />} onClick={() => {}} />
-            <IconButton icon={<BinLinearIcon />} onClick={() => {}} />
+            <IconButton icon={<SearchIcon />} onClick={() => undefined} />
+            <IconButton icon={<FlameIcon />} onClick={() => undefined} />
+            <IconButton icon={<BinLinearIcon />} onClick={() => undefined} />
           </Spacings.Inline>
         }
         portalId="tabular-modal-page-custom-title-row-and-custom-controls"

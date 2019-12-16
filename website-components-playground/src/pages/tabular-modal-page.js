@@ -25,7 +25,7 @@ const exampleCustomTitleRow = (
           Input 1
         </Text.Body>
       </label>
-      <TextInput id="input-1" value="" onChange={() => {}} />
+      <TextInput id="input-1" value="" onChange={() => undefined} />
     </Spacings.Inline>
 
     <Spacings.Inline alignItems="center">
@@ -34,16 +34,16 @@ const exampleCustomTitleRow = (
           Input 2
         </Text.Body>
       </label>
-      <TextInput id="input-2" value="" onChange={() => {}} />
+      <TextInput id="input-2" value="" onChange={() => undefined} />
     </Spacings.Inline>
   </Spacings.Inline>
 );
 
 const exampleCustomControls = (
   <Spacings.Inline>
-    <IconButton icon={<SearchIcon />} onClick={() => {}} />
-    <IconButton icon={<FlameIcon />} onClick={() => {}} />
-    <IconButton icon={<BinLinearIcon />} onClick={() => {}} />
+    <IconButton icon={<SearchIcon />} onClick={() => undefined} />
+    <IconButton icon={<FlameIcon />} onClick={() => undefined} />
+    <IconButton icon={<BinLinearIcon />} onClick={() => undefined} />
   </Spacings.Inline>
 );
 

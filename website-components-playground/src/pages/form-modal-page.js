@@ -16,9 +16,9 @@ import ModalController from '../components/modal-controller';
 
 const exampleCustomControls = (
   <Spacings.Inline>
-    <IconButton icon={<SearchIcon />} onClick={() => {}} />
-    <IconButton icon={<FlameIcon />} onClick={() => {}} />
-    <IconButton icon={<BinLinearIcon />} onClick={() => {}} />
+    <IconButton icon={<SearchIcon />} onClick={() => undefined} />
+    <IconButton icon={<FlameIcon />} onClick={() => undefined} />
+    <IconButton icon={<BinLinearIcon />} onClick={() => undefined} />
   </Spacings.Inline>
 );
 

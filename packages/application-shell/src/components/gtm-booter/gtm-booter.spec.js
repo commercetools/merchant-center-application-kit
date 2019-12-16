@@ -18,7 +18,7 @@ describe('rendering', () => {
         <button
           data-track-component="Test.button"
           data-track-event="click"
-          onClick={() => {}}
+          onClick={() => undefined}
         >
           {'Click me'}
         </button>

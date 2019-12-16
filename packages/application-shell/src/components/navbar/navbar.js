@@ -780,7 +780,7 @@ export const LoadingNavBar = () => {
               hasSubmenu={false}
               isMenuOpen={false}
               isActive={false}
-              onClick={() => {}}
+              onClick={() => undefined}
             >
               <div className={styles['loading-dot-container']}>
                 <LoadingPlaceholder shape="dot" size="m" />
