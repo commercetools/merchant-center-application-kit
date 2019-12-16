@@ -971,14 +971,6 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-transform-typescript" "^7.7.4"
 
-"@babel/runtime-corejs3@7.7.4":
-  version "7.7.4"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.7.4.tgz#f861adc1cecb9903dfd66ea97917f02ff8d79888"
-  integrity sha512-BBIEhzk8McXDcB3IbOi8zQPzzINUp4zcLesVlBSOcyGhzPUU8Xezk5GAG7Sy5GVhGmAO0zGd2qRSeY2g4Obqxw==
-  dependencies:
-    core-js-pure "^3.0.0"
-    regenerator-runtime "^0.13.2"
-
 "@babel/runtime-corejs3@7.7.6", "@babel/runtime-corejs3@^7.7.4":
   version "7.7.6"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.7.6.tgz#5b1044ea11b659d288f77190e19c62da959ed9a3"
@@ -1115,34 +1107,6 @@
     "7zip-bin" "5.0.3"
     node-fetch "2.6.0"
     shelljs "0.8.3"
-
-"@commercetools-frontend/application-components@15.4.2":
-  version "15.4.2"
-  resolved "https://registry.yarnpkg.com/@commercetools-frontend/application-components/-/application-components-15.4.2.tgz#fdc49626c6a2b821185ea150e7ac513a6d780873"
-  integrity sha512-jpkTnY4DHcdKFrdwUApUZQ4rHOUAHorhGc061L8p49V46tCrvUEY2rt55Ya2xZz5O4UoA8lgu8v5N7n88pK2aw==
-  dependencies:
-    "@babel/runtime-corejs3" "7.7.4"
-    "@commercetools-frontend/assets" "15.4.2"
-    "@commercetools-frontend/constants" "15.4.2"
-    "@commercetools-frontend/i18n" "15.4.2"
-    "@emotion/core" "10.0.22"
-    "@emotion/styled" "10.0.23"
-    lodash "4.17.15"
-    lodash-es "4.17.15"
-    prop-types "15.7.2"
-    react-modal "3.11.1"
-    react-required-if "1.0.3"
-    warning "4.0.3"
-
-"@commercetools-frontend/i18n@15.4.2":
-  version "15.4.2"
-  resolved "https://registry.yarnpkg.com/@commercetools-frontend/i18n/-/i18n-15.4.2.tgz#fd5f1474260fe1e3930936e26a816cdc0e76b21a"
-  integrity sha512-9Ny7CSx0a6J5Dw2gTvgLD3wQQJtYSsilY82+Odze4ipZ0r/QOJAiHmG0Qd4QF7+l/BO809d7o1VKlDQ7Mxg2yg==
-  dependencies:
-    "@babel/runtime-corejs3" "7.7.4"
-    "@commercetools-frontend/sentry" "15.4.2"
-    moment "^2.24.0"
-    prop-types "15.7.2"
 
 "@commercetools-frontend/ui-kit@10.13.0":
   version "10.13.0"
