@@ -17,15 +17,15 @@ export const routePath = '/form-modal-page';
 const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
   <React.Fragment>
     <div id={portalId} style={{ position: 'relative', height: '750px' }} />
-    <Formik initialValues={{ email: '' }} onSubmit={() => {}}>
+    <Formik initialValues={{ email: '' }} onSubmit={() => undefined}>
       {formikProps => (
         <FormModalPage
           title="Lorem ipsum"
           isOpen={true}
-          onClose={() => {}}
+          onClose={() => undefined}
           subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          onSecondaryButtonClick={() => {}}
-          onPrimaryButtonClick={() => {}}
+          onSecondaryButtonClick={() => undefined}
+          onPrimaryButtonClick={() => undefined}
           isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
           getParentSelector={() => document.querySelector(`#${portalId}`)}
           {...props}
@@ -76,9 +76,9 @@ export const component = () => (
       <ModalPageWithPortalParentSelector
         customControls={
           <Spacings.Inline>
-            <IconButton icon={<SearchIcon />} onClick={() => {}} />
-            <IconButton icon={<FlameIcon />} onClick={() => {}} />
-            <IconButton icon={<BinLinearIcon />} onClick={() => {}} />
+            <IconButton icon={<SearchIcon />} onClick={() => undefined} />
+            <IconButton icon={<FlameIcon />} onClick={() => undefined} />
+            <IconButton icon={<BinLinearIcon />} onClick={() => undefined} />
           </Spacings.Inline>
         }
         portalId="form-modal-custom"

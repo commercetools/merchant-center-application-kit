@@ -386,7 +386,7 @@ const renderAppWithRedux = (
     // they are provided in.
     sdkMocks = [],
     // Pass a function to map custom notification components
-    mapNotificationToComponent = () => {},
+    mapNotificationToComponent = () => undefined,
     ...renderOptions
   } = {}
 ) => {

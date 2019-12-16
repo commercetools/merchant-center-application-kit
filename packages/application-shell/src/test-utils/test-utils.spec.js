@@ -306,7 +306,7 @@ describe('custom render functions', () => {
         // provided wrapper
         const value = useContext(Context);
         // own wrapper
-        useSelector(() => {});
+        useSelector(() => undefined);
 
         return value;
       };

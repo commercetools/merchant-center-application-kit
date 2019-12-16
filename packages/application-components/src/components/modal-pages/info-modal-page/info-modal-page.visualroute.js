@@ -13,7 +13,7 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
       title="Lorem ipsum"
       level={1}
       isOpen={true}
-      onClose={() => {}}
+      onClose={() => undefined}
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       getParentSelector={() => document.querySelector(`#${portalId}`)}
       {...props}
@@ -58,7 +58,7 @@ export const component = () => (
           title="Second Level Modal"
           level={2}
           isOpen={true}
-          onClose={() => {}}
+          onClose={() => undefined}
           topBarCurrentPathLabel="Nested Modal"
           topBarPreviousPathLabel="First Level Modal"
           getParentSelector={() => document.querySelector(`#info-modal-two`)}
@@ -78,14 +78,14 @@ export const component = () => (
           title="Second Level Modal"
           level={2}
           isOpen={true}
-          onClose={() => {}}
+          onClose={() => undefined}
           getParentSelector={() => document.querySelector(`#info-modal-nested`)}
         >
           <InfoModalPage
             title="Third Level Modal"
             level={3}
             isOpen={true}
-            onClose={() => {}}
+            onClose={() => undefined}
             getParentSelector={() =>
               document.querySelector(`#info-modal-nested`)
             }
@@ -94,7 +94,7 @@ export const component = () => (
               title="Fourth Level Modal"
               level={4}
               isOpen={true}
-              onClose={() => {}}
+              onClose={() => undefined}
               getParentSelector={() =>
                 document.querySelector(`#info-modal-nested`)
               }
@@ -103,7 +103,7 @@ export const component = () => (
                 title="Fifth Level Modal"
                 level={5}
                 isOpen={true}
-                onClose={() => {}}
+                onClose={() => undefined}
                 getParentSelector={() =>
                   document.querySelector(`#info-modal-nested`)
                 }

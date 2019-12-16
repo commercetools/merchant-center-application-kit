@@ -14,9 +14,9 @@ const ConfirmationDialogExample = props => (
       title="Lorem ipsum"
       size={props.size}
       isOpen={true}
-      onClose={() => {}}
-      onCancel={() => {}}
-      onConfirm={() => {}}
+      onClose={() => undefined}
+      onCancel={() => undefined}
+      onConfirm={() => undefined}
       isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
       getParentSelector={() => document.querySelector(`#${props.portalId}`)}
     >
