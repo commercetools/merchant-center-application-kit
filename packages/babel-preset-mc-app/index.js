@@ -74,7 +74,15 @@ module.exports = function getBabePresetConfigForMcApp() {
     plugins: [
       // Experimental macros support. Will be documented after it's had some time
       // in the wild.
-      require('babel-plugin-macros'),
+      // https://github.com/formatjs/react-intl/issues/1511
+      [
+        require('babel-plugin-macros'),
+        {
+          isMacrosName: file =>
+            /[./]macro(\.js)?$/.test(file) &&
+            file.indexOf('@formatjs/macro') === -1,
+        },
+      ],
       // export { default } from './foo'
       require('@babel/plugin-proposal-export-default-from'),
       // export * from './foo'
