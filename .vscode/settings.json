@@ -18,8 +18,5 @@
     }
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "vscode-vale.path": "${workspaceFolder}/node_modules/.bin/commercetools-vale",
-  "workbench.colorCustomizations": {
-    "tab.unfocusedActiveBorder": "#fff0"
-  }
+  "vscode-vale.path": "${workspaceFolder}/node_modules/.bin/commercetools-vale"
 }
