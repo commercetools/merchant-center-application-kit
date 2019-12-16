@@ -1,15 +1,25 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import * as routes from './routes';
 
 interface ApplicationWindow extends Window {
   onAppLoaded: () => void;
 }
 declare let window: ApplicationWindow;
 
-const visualRoutes = Object.values(routes).filter(
-  value => typeof value !== 'boolean'
+type TVisualRouteSpec = {
+  routePath: string;
+  Component: React.ComponentType;
+};
+
+const visualRoutesContext = require.context(
+  './components/',
+  true,
+  /\.visualroute\.tsx$/
 );
+
+const visualRoutes = visualRoutesContext
+  .keys()
+  .map<TVisualRouteSpec>(id => visualRoutesContext(id));
 
 const hideAppLoader = () => {
   /**
