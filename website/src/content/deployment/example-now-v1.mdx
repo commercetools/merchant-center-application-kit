@@ -102,17 +102,17 @@ now
 now alias
 ```
 
-![Now deploy - part 1](../../images/mc-dev-now_1.png)
-![Now deploy - part 2](../../images/mc-dev-now_2.png)
-![Now alias](../../images/mc-dev-now-alias.png)
+![Now deploy - part 1](/images/mc-dev-now_1.png)
+![Now deploy - part 2](/images/mc-dev-now_2.png)
+![Now alias](/images/mc-dev-now-alias.png)
 
 If we go to `https://mc-examples-starter.now.sh` we can see the application loading and we can inspect the Developer Console to see that the configuration is correct:
 
-![Now deployed](../../images/mc-dev-now-deployed.png)
+![Now deployed](/images/mc-dev-now-deployed.png)
 
 However, if you try to log in, you will get an error:
 
-![Now login failed](../../images/mc-dev-now-login-failed.png)
+![Now login failed](/images/mc-dev-now-login-failed.png)
 
 **This is expected**. The domain `mc-examples-starter.now.sh` **is not allowed by the CORS rules** defined in the [Merchant Center API Gateway](../main-concepts/api-gateway). It's a security measure as the Custom Application should only be served behind the Merchant Center Proxy.
 

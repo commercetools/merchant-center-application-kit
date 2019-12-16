@@ -1,10 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import {
-  designSystem,
-  Markdown,
-  useSiteData,
-} from '@commercetools-docs/gatsby-theme-docs';
+import { useSiteData, Link } from '@commercetools-docs/gatsby-theme-docs';
+import { designSystem } from '@commercetools-docs/ui-kit';
 import SpacingsInline from '@commercetools-uikit/spacings-inline';
 import GitHubSvg from '../../../icons/github.svg';
 
@@ -19,10 +16,10 @@ const RepositoryLinks = () => {
       `}
     >
       <SpacingsInline scale="l" alignItems="center" justifyContent="flex-start">
-        <Markdown.Link href={siteData.siteMetadata.repositoryUrl}>
+        <Link href={siteData.siteMetadata.repositoryUrl}>
           <GitHubSvg />
-        </Markdown.Link>
-        <Markdown.Link
+        </Link>
+        <Link
           href={`${siteData.siteMetadata.repositoryUrl}/releases/tag/v${siteData.siteMetadata.currentVersion}`}
           css={css`
             text-decoration: none;
@@ -32,7 +29,7 @@ const RepositoryLinks = () => {
           `}
         >
           {`v${siteData.siteMetadata.currentVersion}`}
-        </Markdown.Link>
+        </Link>
       </SpacingsInline>
     </div>
   );

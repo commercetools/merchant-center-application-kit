@@ -4,9 +4,9 @@ import styled from '@emotion/styled';
 import {
   LayoutHeader,
   Footer,
-  designSystem,
   useSiteData,
 } from '@commercetools-docs/gatsby-theme-docs';
+import { designSystem } from '@commercetools-docs/ui-kit';
 import LandingPageBackground from '../images/landing-page-background.png';
 
 const Container = styled.div`

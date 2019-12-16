@@ -1,5 +1,7 @@
 - chapter-title: Getting started
   pages:
+    - title: What is a custom application?
+      path: '/getting-started/what-is-a-custom-application'
     - title: Installing a starter application
       path: '/getting-started/installing-a-starter-application'
     - title: Tooling

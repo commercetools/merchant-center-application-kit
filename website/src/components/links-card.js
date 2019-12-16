@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { Markdown, designSystem } from '@commercetools-docs/gatsby-theme-docs';
+import { Link } from '@commercetools-docs/gatsby-theme-docs';
+import { designSystem } from '@commercetools-docs/ui-kit';
 import SpacingsStack from '@commercetools-uikit/spacings-stack';
 
 const Container = styled.div`
@@ -29,7 +30,7 @@ const LinksList = styled.ul`
   }
 `;
 const SecondaryExternalLink = props => (
-  <Markdown.Link
+  <Link
     {...props}
     css={css`
       font-size: ${designSystem.typography.fontSizes.small};

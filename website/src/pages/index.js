@@ -5,11 +5,11 @@ import styled from '@emotion/styled';
 import pkg from '../../package.json';
 import {
   SEO,
-  Markdown,
+  Link,
   ThemeProvider,
-  designSystem,
   useSiteData,
 } from '@commercetools-docs/gatsby-theme-docs';
+import { designSystem } from '@commercetools-docs/ui-kit';
 import Card from '@commercetools-uikit/card';
 import SpacingsStack from '@commercetools-uikit/spacings-stack';
 import LayoutMarketing from '../layouts/marketing';
@@ -22,6 +22,7 @@ import ScreenBulbIcon from '../icons/screen-bulb-icon.svg';
 const SectionTitle = styled.div`
   color: ${designSystem.colors.light.primary};
   font-size: ${designSystem.typography.fontSizes.h4};
+  letter-spacing: 4px;
 `;
 const SectionBody = styled.div`
   color: ${designSystem.colors.light.textPrimary};
@@ -33,20 +34,20 @@ const PageContainer = styled.div`
   max-width: ${designSystem.dimensions.widths.marketingContent};
   margin: 0 auto;
 `;
-const ButtonLink = styled(Markdown.Link)`
+const ButtonLink = styled(Link)`
   display: inline-block;
   padding: ${designSystem.dimensions.spacings.m}
     ${designSystem.dimensions.spacings.l};
   text-decoration: none;
   font-size: ${designSystem.typography.fontSizes.body};
-  color: ${designSystem.colors.light.textPrimary};
+  color: ${designSystem.colors.light.textPrimary} !important;
   background-color: ${designSystem.colors.light.surfacePrimary};
   border: 1px solid ${designSystem.colors.light.surfacePrimary};
   border-radius: ${designSystem.tokens.borderRadius6};
 
   :hover {
     background-color: ${designSystem.colors.light.surfaceQuote};
-    color: ${designSystem.colors.light.linkNavigation};
+    color: ${designSystem.colors.light.linkNavigation} !important;
   }
 `;
 const GridContainer = styled.div`
@@ -82,7 +83,7 @@ const PageMarketingContent = () => {
 
             @media screen and (${designSystem.dimensions.viewports
                 .largeTablet}) {
-              padding: calc(${designSystem.dimensions.spacings.xl} * 2);
+              padding: 0;
             }
           `}
         >
@@ -101,6 +102,10 @@ const PageMarketingContent = () => {
           >
             <div
               css={css`
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
                 > * + * {
                   margin: ${designSystem.dimensions.spacings.xl} 0 0;
                 }
@@ -115,14 +120,22 @@ const PageMarketingContent = () => {
                 {'Develop applications for the Merchant Center'}
               </div>
               <div>
-                <ButtonLink href="/getting-started/installing-a-starter-application">
-                  {'Get started'}
+                <ButtonLink href="/getting-started/what-is-a-custom-application">
+                  {'Learn about custom applications'}
                 </ButtonLink>
               </div>
             </div>
             <div
               css={css`
                 justify-self: center;
+
+                @media screen and (${designSystem.dimensions.viewports
+                    .mobile}) {
+                  svg {
+                    height: 100%;
+                    width: 100%;
+                  }
+                }
               `}
             >
               <LandingPageRocket height={300} />
@@ -163,7 +176,7 @@ const PageMarketingContent = () => {
               </SpacingsStack>
               <SectionBody>
                 {
-                  'Merchant Center applications are built and designed according to our Design System, which provides rules, patterns and best practices to ease development and focus on the business logic.'
+                  'Merchant Center custom applications are built and designed according to our Design System. It provides rules, patterns and best practices to ease development and focus on the business logic.'
                 }
               </SectionBody>
             </SpacingsStack>
@@ -174,7 +187,7 @@ const PageMarketingContent = () => {
               </SpacingsStack>
               <SectionBody>
                 {
-                  'Focus more on implementing the right features instead of configuration. Our packages provide all the necessary tools to get started seamlessly.'
+                  'Focus more on implementing the right features instead of configuration. Our open source packages provide all the necessary tools and components to get started seamlessly.'
                 }
               </SectionBody>
             </SpacingsStack>
@@ -201,7 +214,7 @@ const PageMarketingContent = () => {
               links: [
                 {
                   to: siteData.siteMetadata.repositoryUrl,
-                  label: 'GitHub',
+                  label: 'App-Kit',
                 },
                 {
                   to: 'https://github.com/commercetools/ui-kit',
