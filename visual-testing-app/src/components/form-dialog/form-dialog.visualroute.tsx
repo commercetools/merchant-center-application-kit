@@ -1,15 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Formik } from 'formik';
+import TextField, { CustomFormikErrors } from '@commercetools-uikit/text-field';
 import Spacings from '@commercetools-uikit/spacings';
-import TextField from '@commercetools-uikit/text-field';
-import { FormDialog } from '@local-build/application-components';
-import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
+import { FormDialog } from '@commercetools-frontend/application-components';
+import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/form-dialog';
 
-const FormDialogExample = props => (
-  <Formik initialValues={{ email: '' }} onSubmit={() => undefined}>
+type ContainerProps = {
+  portalId: string;
+} & Partial<Parameters<typeof FormDialog>[0]>;
+type FormValues = {
+  email: string;
+};
+
+const FormDialogExample = (props: ContainerProps) => (
+  <Formik<FormValues> initialValues={{ email: '' }} onSubmit={() => undefined}>
     {formikProps => (
       <React.Fragment>
         <div id={props.portalId} style={{ flex: 1 }} />
@@ -21,7 +27,9 @@ const FormDialogExample = props => (
           onSecondaryButtonClick={() => undefined}
           onPrimaryButtonClick={() => undefined}
           isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
-          getParentSelector={() => document.querySelector(`#${props.portalId}`)}
+          getParentSelector={() =>
+            document.querySelector(`#${props.portalId}`) as HTMLElement
+          }
         >
           <Spacings.Stack scale="m">
             <TextField
@@ -29,11 +37,12 @@ const FormDialogExample = props => (
               title="Email"
               isRequired={true}
               value={formikProps.values.email}
-              errors={formikProps.errors.email}
+              errors={
+                (formikProps.errors as CustomFormikErrors<FormValues>).email
+              }
               touched={formikProps.touched.email}
               onChange={formikProps.handleChange}
               onBlur={formikProps.handleBlur}
-              onFocus={formikProps.handleFocus}
             />
           </Spacings.Stack>
         </FormDialog>
@@ -42,13 +51,8 @@ const FormDialogExample = props => (
   </Formik>
 );
 FormDialogExample.displayName = 'FormDialogExample';
-FormDialogExample.propTypes = {
-  size: PropTypes.oneOf(['m', 'l', 'scale']).isRequired,
-  isPrimaryButtonDisabled: PropTypes.bool,
-  portalId: PropTypes.string.isRequired,
-};
 
-export const component = () => (
+export const Component = () => (
   <Suite>
     <Spec label="FormDialog - Size M" size="l" contentAlignment="center">
       <FormDialogExample size="m" portalId="dialog-m" />

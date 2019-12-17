@@ -53,6 +53,16 @@ module.exports = ({
     runtimeChunk: true,
   },
 
+  resolve: {
+    // These are the reasonable defaults supported by the Node ecosystem.
+    // We also include JSX as a common component filename extension to support
+    // some tools, although we do not recommend using it, see:
+    // https://github.com/facebook/create-react-app/issues/290
+    // `web` extension prefixes have been added for better support
+    // for React Native Web.
+    extensions: ['js', 'ts', 'tsx', 'json', 'jsx'].map(ext => `.${ext}`),
+  },
+
   entry: {
     app: [
       require.resolve('./application-runtime'),
@@ -318,7 +328,7 @@ module.exports = ({
       },
       // Process JS with Babel.
       {
-        test: /\.js$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         use: [
           // This loader parallelizes code compilation, it is optional but
           // improves compile time on larger projects
@@ -332,6 +342,7 @@ module.exports = ({
             loader: require.resolve('babel-loader'),
             options: {
               babelrc: false,
+              configFile: false,
               compact: false,
               presets: [
                 require.resolve('@commercetools-frontend/babel-preset-mc-app'),

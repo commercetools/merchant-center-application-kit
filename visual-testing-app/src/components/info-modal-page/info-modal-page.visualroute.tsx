@@ -1,13 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Text from '@commercetools-uikit/text';
-import { InfoModalPage } from '@local-build/application-components';
-import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
+import { InfoModalPage } from '@commercetools-frontend/application-components';
+import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/info-modal-page';
 
-const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
-  <React.Fragment>
+type ContainerProps = {
+  portalId: string;
+} & Partial<Parameters<typeof InfoModalPage>[0]>;
+
+const ModalPageWithPortalParentSelector = ({
+  portalId,
+  ...props
+}: ContainerProps) => (
+  <>
     <div id={portalId} style={{ position: 'relative', height: '750px' }} />
     <InfoModalPage
       title="Lorem ipsum"
@@ -15,18 +21,19 @@ const ModalPageWithPortalParentSelector = ({ portalId, ...props }) => (
       isOpen={true}
       onClose={() => undefined}
       subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-      getParentSelector={() => document.querySelector(`#${portalId}`)}
+      getParentSelector={() =>
+        document.querySelector(`#${portalId}`) as HTMLElement
+      }
       {...props}
-    />
-  </React.Fragment>
+    >
+      {props.children}
+    </InfoModalPage>
+  </>
 );
 ModalPageWithPortalParentSelector.displayName =
   'ModalPageWithPortalParentSelector';
-ModalPageWithPortalParentSelector.propTypes = {
-  portalId: PropTypes.string.isRequired,
-};
 
-export const component = () => (
+export const Component = () => (
   <Suite>
     <Spec label="InfoModalPage - First Level" size="xl">
       <ModalPageWithPortalParentSelector portalId="info-modal-one">
@@ -61,7 +68,9 @@ export const component = () => (
           onClose={() => undefined}
           topBarCurrentPathLabel="Nested Modal"
           topBarPreviousPathLabel="First Level Modal"
-          getParentSelector={() => document.querySelector(`#info-modal-two`)}
+          getParentSelector={() =>
+            document.querySelector(`#info-modal-two`) as HTMLElement
+          }
         >
           <Text.Body>
             {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec turpis in risus elementum fringilla. Vestibulum nec vulputate metus, fringilla luctus nisl. Vestibulum mattis ultricies augue sagittis vestibulum. Nulla facilisi. Quisque tempor pulvinar efficitur. Praesent interdum ultrices leo. Vivamus non ex maximus justo egestas suscipit eget sed purus. Aliquam ut venenatis nulla. Fusce ac ligula viverra, blandit augue eget, congue turpis. Curabitur a sagittis leo. Nunc sed quam dictum, placerat nunc quis, luctus erat.`}
@@ -79,7 +88,9 @@ export const component = () => (
           level={2}
           isOpen={true}
           onClose={() => undefined}
-          getParentSelector={() => document.querySelector(`#info-modal-nested`)}
+          getParentSelector={() =>
+            document.querySelector(`#info-modal-nested`) as HTMLElement
+          }
         >
           <InfoModalPage
             title="Third Level Modal"
@@ -87,7 +98,7 @@ export const component = () => (
             isOpen={true}
             onClose={() => undefined}
             getParentSelector={() =>
-              document.querySelector(`#info-modal-nested`)
+              document.querySelector(`#info-modal-nested`) as HTMLElement
             }
           >
             <InfoModalPage
@@ -96,7 +107,7 @@ export const component = () => (
               isOpen={true}
               onClose={() => undefined}
               getParentSelector={() =>
-                document.querySelector(`#info-modal-nested`)
+                document.querySelector(`#info-modal-nested`) as HTMLElement
               }
             >
               <InfoModalPage
@@ -105,7 +116,7 @@ export const component = () => (
                 isOpen={true}
                 onClose={() => undefined}
                 getParentSelector={() =>
-                  document.querySelector(`#info-modal-nested`)
+                  document.querySelector(`#info-modal-nested`) as HTMLElement
                 }
               >
                 <Text.Body>

@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import { TabularModalPage } from '@commercetools-frontend/application-components';
 import {
   SearchIcon,
@@ -10,12 +11,29 @@ import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import TextInput from '@commercetools-uikit/text-input';
 import { customProperties } from '@commercetools-uikit/design-system';
-import { css } from '@emotion/core';
 import LayoutApp from '../layouts/layout-app';
 import PlaygroundController from '../components/playground-controller';
 import ModalController from '../components/modal-controller';
 
 const containerId = 'tabular-modal-page';
+
+const TabControlsContainer = styled.div`
+  min-height: 30px;
+  display: flex;
+  > * {
+    min-width: 50px;
+    cursor: pointer;
+    &:first-of-type {
+      border-bottom: 3px solid ${customProperties.colorPrimary};
+      & > * {
+        color: ${customProperties.colorPrimary};
+      }
+    }
+  }
+  > * + * {
+    margin-left: 16px;
+  }
+`;
 
 const exampleCustomTitleRow = (
   <Spacings.Inline scale="m">
@@ -111,26 +129,7 @@ const TabularModalPageExample = props => (
               }
               // FIXME: use proper Tab components
               tabControls={
-                <div
-                  css={css`
-                    min-height: 30px;
-                    display: flex;
-                    > * {
-                      min-width: 50px;
-                      cursor: pointer;
-                      &:first-of-type {
-                        border-bottom: 3px solid
-                          ${customProperties.colorPrimary};
-                        & > * {
-                          color: ${customProperties.colorPrimary};
-                        }
-                      }
-                    }
-                    > * + * {
-                      margin-left: 16px;
-                    }
-                  `}
-                >
+                <TabControlsContainer>
                   <span>
                     <Text.Subheadline as="h4">Tab One</Text.Subheadline>
                   </span>
@@ -140,7 +139,7 @@ const TabularModalPageExample = props => (
                   <span>
                     <Text.Subheadline as="h4">Tab Three</Text.Subheadline>
                   </span>
-                </div>
+                </TabControlsContainer>
               }
               customTitleRow={
                 values.useCustomTitleRow === 'custom' && exampleCustomTitleRow

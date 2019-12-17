@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { customProperties } from '@commercetools-uikit/design-system';
 
-const getContainerHeight = size => {
+const getContainerHeight = (size: SpecProps['size']) => {
   switch (size) {
     case 'l':
       return 550;
@@ -14,9 +13,10 @@ const getContainerHeight = size => {
   }
 };
 
-const SpecContainer = styled.div`
+const SpecContainer = styled.div<Pick<SpecProps, 'size'>>`
   display: flex;
   flex-direction: column;
+
   /*
     We don't want a change in a component's height resulting in diffs of the
     remaining states below it, so we establish a min-height for each spec to
@@ -36,7 +36,6 @@ const Label = styled.div`
 `;
 
 const PropList = styled.div`
-  font-family: ${customProperties.fontFamilyDefault};
   background-color: #894ac3;
   padding: 5px;
   box-sizing: border-box;
@@ -58,7 +57,7 @@ const PropValue = styled.span`
   box-sizing: border-box;
 `;
 
-const Box = styled.div`
+const Box = styled.div<Pick<SpecProps, 'tone' | 'contentAlignment'>>`
   background-color: ${props => {
     switch (props.tone) {
       case 'secondary':
@@ -70,7 +69,7 @@ const Box = styled.div`
     }
   }};
   ${props =>
-    props.alignment === 'center'
+    props.contentAlignment === 'center'
       ? `
         flex: 1;
         display: flex;
@@ -81,7 +80,12 @@ const Box = styled.div`
       : ``}
 `;
 
-const Pill = props => {
+type PillProps = {
+  label: string;
+  value: React.ReactNode;
+};
+
+const Pill = (props: PillProps) => {
   const value = (() => {
     if (React.isValidElement(props.value)) return 'React Element';
     if (
@@ -102,16 +106,15 @@ const Pill = props => {
     </div>
   );
 };
-
 Pill.displayName = 'Pill';
-Pill.propTypes = {
-  label: PropTypes.string,
-  value: PropTypes.any,
+
+type PropsLoggerProps = {
+  children: React.ReactElement;
 };
 
-const Props = props => {
+const PropsLogger = (props: PropsLoggerProps) => {
   const node = React.Children.only(props.children);
-  const propEntries = Object.entries(node.props);
+  const propEntries = Object.entries<React.ReactNode>(node.props);
   return (
     <PropList>
       {propEntries
@@ -122,38 +125,36 @@ const Props = props => {
     </PropList>
   );
 };
+PropsLogger.displayName = 'PropsLogger';
 
-Props.displayName = 'Props';
-Props.propTypes = {
-  children: PropTypes.node.isRequired,
+type SpecProps = {
+  label: string;
+  size: 'm' | 'l' | 'xl';
+  contentAlignment: 'default' | 'center';
+  children: React.ReactElement;
+  tone: 'normal' | 'secondary' | 'inverted';
+  omitPropsList: boolean;
 };
-
-const Spec = props => (
-  <SpecContainer size={props.size}>
-    <Label>{props.label}</Label>
-    {!props.omitPropsList && <Props>{props.children}</Props>}
-    <Box tone={props.tone} alignment={props.contentAlignment}>
-      {props.children}
-    </Box>
-  </SpecContainer>
-);
-
-Spec.propTypes = {
-  label: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(['m', 'l', 'xl']),
-  contentAlignment: PropTypes.oneOf(['default', 'center']),
-  children: PropTypes.node,
-  tone: PropTypes.oneOf(['normal', 'secondary', 'inverted']),
-  omitPropsList: PropTypes.bool,
-};
-
-Spec.defaultProps = {
+const defaultProps: Pick<
+  SpecProps,
+  'omitPropsList' | 'size' | 'contentAlignment' | 'tone'
+> = {
   omitPropsList: false,
   size: 'm',
   contentAlignment: 'default',
   tone: 'normal',
 };
 
+const Spec = (props: SpecProps) => (
+  <SpecContainer size={props.size}>
+    <Label>{props.label}</Label>
+    {!props.omitPropsList && <PropsLogger>{props.children}</PropsLogger>}
+    <Box tone={props.tone} contentAlignment={props.contentAlignment}>
+      {props.children}
+    </Box>
+  </SpecContainer>
+);
 Spec.displayName = 'Spec';
+Spec.defaultProps = defaultProps;
 
 export default Spec;

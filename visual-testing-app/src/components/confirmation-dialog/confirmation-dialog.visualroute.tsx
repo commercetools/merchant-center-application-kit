@@ -1,14 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
-import { ConfirmationDialog } from '@local-build/application-components';
-import { Suite, Spec } from '../../../../../../visual-testing-app/test-utils';
+import Spacings from '@commercetools-uikit/spacings';
+import { ConfirmationDialog } from '@commercetools-frontend/application-components';
+import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/confirmation-dialog';
 
-const ConfirmationDialogExample = props => (
-  <React.Fragment>
+type ContainerProps = {
+  portalId: string;
+} & Partial<Parameters<typeof ConfirmationDialog>[0]>;
+
+const ConfirmationDialogExample = (props: ContainerProps) => (
+  <>
     <div id={props.portalId} style={{ flex: 1 }} />
     <ConfirmationDialog
       title="Lorem ipsum"
@@ -18,7 +21,9 @@ const ConfirmationDialogExample = props => (
       onCancel={() => undefined}
       onConfirm={() => undefined}
       isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
-      getParentSelector={() => document.querySelector(`#${props.portalId}`)}
+      getParentSelector={() =>
+        document.querySelector(`#${props.portalId}`) as HTMLElement
+      }
     >
       <Spacings.Stack scale="m">
         <Text.Body>
@@ -26,16 +31,11 @@ const ConfirmationDialogExample = props => (
         </Text.Body>
       </Spacings.Stack>
     </ConfirmationDialog>
-  </React.Fragment>
+  </>
 );
 ConfirmationDialogExample.displayName = 'ConfirmationDialogExample';
-ConfirmationDialogExample.propTypes = {
-  size: PropTypes.oneOf(['m', 'l', 'scale']).isRequired,
-  isPrimaryButtonDisabled: PropTypes.bool,
-  portalId: PropTypes.string.isRequired,
-};
 
-export const component = () => (
+export const Component = () => (
   <Suite>
     <Spec
       label="ConfirmationDialog - Size M"

@@ -43,6 +43,7 @@
       "node_modules/@types"
     ]
   },
+  "files": ["visual-testing-app/src/index.tsx"],
   "include": [
     "jest.d.ts",
     "@types-extensions/*",

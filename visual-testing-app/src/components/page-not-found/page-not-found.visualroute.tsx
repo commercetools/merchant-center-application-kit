@@ -1,10 +1,10 @@
 import React from 'react';
-import { PageNotFound } from '@local-build/application-components';
-import { Suite, Spec } from '../../../../../visual-testing-app/test-utils';
+import { PageNotFound } from '@commercetools-frontend/application-components';
+import { Suite, Spec } from '../../test-utils';
 
 export const routePath = '/page-not-found';
 
-export const component = () => (
+export const Component = () => (
   <Suite>
     <Spec label="PageNotFound" size="l" contentAlignment="center">
       <PageNotFound />
