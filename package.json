@@ -175,12 +175,8 @@
     "**/react": "16.12.0",
     "react-test-renderer": "16.12.0",
     "**/react-test-renderer": "16.12.0",
-    "**/sharp": "0.22.1",
-    "cypress": "3.8.1",
-    "@sentry/browser": "5.9.1",
-    "**/@sentry/browser": "5.9.1",
-    "gatsby-plugin-emotion": "4.1.18",
-    "**/gatsby-plugin-emotion": "4.1.18"
+    "**/sharp": "0.23.3",
+    "cypress": "3.8.1"
   },
   "engines": {
     "node": ">=8.9",
