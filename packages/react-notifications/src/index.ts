@@ -1,3 +1,7 @@
+import { TProps as MapNotificationToComponentProps } from './components/map-notification-to-component'
+
+export type TMapNotificationToComponentProps = MapNotificationToComponentProps
+
 export { default as version } from './version';
 export { default as NotificationProviderForCustomComponent } from './components/map-notification-to-component';
 export { default as Notification } from './components/notification';

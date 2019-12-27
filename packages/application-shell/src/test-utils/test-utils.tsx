@@ -13,6 +13,7 @@ import {
   MockedProviderProps,
 } from '@apollo/react-testing';
 import memoryAdapter from '@flopflip/memory-adapter';
+import { PreloadedState } from 'redux';
 import { Provider as StoreProvider } from 'react-redux';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
 import {
@@ -22,10 +23,15 @@ import {
 import {
   NotificationsList,
   NotificationProviderForCustomComponent,
+  TMapNotificationToComponentProps,
 } from '@commercetools-frontend/react-notifications';
 import { DOMAINS } from '@commercetools-frontend/constants';
-// eslint-disable-next-line import/named
-import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
+/* eslint-disable import/named */
+import {
+  createTestMiddleware as createSdkTestMiddleware,
+  TSdkMock,
+} from '@commercetools-frontend/sdk/test-utils';
+/* eslint-enable import/named */
 import * as gtm from '../utils/gtm';
 import { GtmContext } from '../components/gtm-booter';
 import { createReduxStore } from '../configure-store';
@@ -291,7 +297,7 @@ type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   permissions: TPermissions; // <-- deprecated option, use `{ project: { allAppliedPermissions } }`
   actionRights: TNormalizedActionRights; // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
   dataFences: TNormalizedDataFences; // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
-  ApolloProviderComponent: typeof ApolloMockProvider;
+  ApolloProviderComponent: React.ElementType | typeof ApolloMockProvider;
   // gtm-context
   gtmTracking: {
     track: typeof gtm.track;
@@ -415,11 +421,22 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
   };
 }
 
+type TRenderAppWithReduxOptions<AdditionalEnvironmentProperties = {}> = {
+  store: ReturnType<typeof createReduxStore>;
+  storeState: PreloadedState<{}>; // TODO: allow to pass a type generic?
+  sdkMocks: TSdkMock[];
+  mapNotificationToComponent: TMapNotificationToComponentProps['mapNotificationToComponent'];
+} & TRenderAppOptions<AdditionalEnvironmentProperties>;
+type TRenderAppWithReduxResult<
+  AdditionalEnvironmentProperties = {}
+> = TRenderAppResult<AdditionalEnvironmentProperties> &
+  Pick<TRenderAppWithReduxOptions<AdditionalEnvironmentProperties>, 'store'>;
+
 // Test setup for rendering with Redux
 // We expose a sophisticated function because we plan to get rid of Redux
 // Use this function only when your test actually needs Redux
-const renderAppWithRedux = (
-  ui,
+function renderAppWithRedux<AdditionalEnvironmentProperties = {}>(
+  ui: React.ReactElement,
   {
     // The store option is kept around to keep the API open as not all use-cases
     // are known yet. Meanwhile storeState and sdkMocks provide convenient ways
@@ -452,10 +469,10 @@ const renderAppWithRedux = (
     // they are provided in.
     sdkMocks = [],
     // Pass a function to map custom notification components
-    mapNotificationToComponent = () => undefined,
+    mapNotificationToComponent = () => null,
     ...renderOptions
-  } = {}
-) => {
+  }: Partial<TRenderAppWithReduxOptions<AdditionalEnvironmentProperties>> = {}
+): TRenderAppWithReduxResult<AdditionalEnvironmentProperties> {
   invariant(
     !(store && storeState),
     'test-utils: You provided both `store` and `storeState`. Please provide only one of them.'
@@ -519,12 +536,24 @@ const renderAppWithRedux = (
     // this to test implementation details).
     store: reduxStore,
   };
-};
+}
+
+type TExperimentalRenderAppWithReduxOptions<
+  AdditionalEnvironmentProperties = {}
+> = TRenderAppWithReduxOptions<AdditionalEnvironmentProperties>;
+type TExperimentalRenderAppWithReduxResult<
+  AdditionalEnvironmentProperties = {}
+> = TRenderAppWithReduxResult<AdditionalEnvironmentProperties>;
 
 // Renders UI without mocking ApolloProvider
-const experimentalRenderAppWithRedux = (ui, renderOptions) => {
+function experimentalRenderAppWithRedux<AdditionalEnvironmentProperties = {}>(
+  ui: React.ReactElement,
+  renderOptions: Partial<
+    TExperimentalRenderAppWithReduxOptions<AdditionalEnvironmentProperties>
+  > = {}
+): TExperimentalRenderAppWithReduxResult<AdditionalEnvironmentProperties> {
   const client = createApolloClient();
-  const RealApolloProvider = ({ children }) => (
+  const RealApolloProvider = ({ children }: { children: React.ReactNode }) => (
     <ApolloProvider client={client}>{children}</ApolloProvider>
   );
   RealApolloProvider.displayName = 'RealApolloProvider';
@@ -532,11 +561,11 @@ const experimentalRenderAppWithRedux = (ui, renderOptions) => {
     children: PropTypes.node.isRequired,
   };
 
-  return renderAppWithRedux(ui, {
+  return renderAppWithRedux<AdditionalEnvironmentProperties>(ui, {
     ...renderOptions,
     ApolloProviderComponent: RealApolloProvider,
   });
-};
+}
 
 // re-export everything
 export * from '@testing-library/react';

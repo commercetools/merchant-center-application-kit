@@ -6,6 +6,7 @@ import {
   ReducersMapObject,
   Middleware,
   StoreEnhancer,
+  PreloadedState,
 } from 'redux';
 import thunk from 'redux-thunk';
 import {
@@ -77,7 +78,7 @@ export const applyDefaultMiddlewares = (...middlewares: Middleware[]) =>
 // We use a factory as it's more practicable for tests
 // The application can import the configured store (the default export)
 export const createReduxStore = (
-  preloadedState = { requestsInFlight: undefined },
+  preloadedState: PreloadedState<{}> = {},
   // additional middleware, used for testing
   additionalMiddlewares: Middleware[] = []
 ) => {
