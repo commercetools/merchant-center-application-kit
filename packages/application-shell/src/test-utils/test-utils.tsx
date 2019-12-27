@@ -94,14 +94,6 @@ const defaultEnvironment = {
   servedByProxy: false,
 };
 
-// Allow consumers of `render` to extend the defaults by passing an object
-// or to completely omit the value by passing `null`
-const mergeOptional: <T>(
-  defaultValue: T,
-  value: Partial<T> | null
-) => T | undefined = (defaultValue, value) =>
-  value === null ? undefined : { ...defaultValue, ...value };
-
 const LoadingFallback = () => <>{'Loading...'}</>;
 LoadingFallback.displayName = 'LoadingFallback';
 
@@ -109,7 +101,14 @@ const defaultGtmTracking = {
   track: jest.fn(),
   getHierarchy: jest.fn(),
 };
-const defaultFlopflipAdapterArgs = {};
+const defaultFlopflipAdapterArgs = {
+  clientSideId: 'test-client-side-id',
+  user: {
+    key: 'user-key',
+  },
+  onFlagsStateChange: jest.fn(),
+  onStatusStateChange: jest.fn(),
+};
 
 // For backwards compatibility we need to denormalize the given `permissions` option
 // (which is now deprecated) to `allAppliedPermissions`, in order to pass the value
@@ -132,7 +131,7 @@ type TAllAppliedPermission = {
   value: boolean;
 };
 const denormalizePermissions = (permissions?: TPermissions) => {
-  if (!permissions) return;
+  if (!permissions) return [];
   return Object.keys(permissions).reduce<TAllAppliedPermission[]>(
     (allAppliedPermissions, permissionKey) => [
       ...allAppliedPermissions,
@@ -165,7 +164,7 @@ type TAllAppliedActionRight = TAllAppliedPermission & {
   group: string;
 };
 const denormalizeActionRights = (actionRights?: TNormalizedActionRights) => {
-  if (!actionRights) return;
+  if (!actionRights) return [];
   return Object.keys(actionRights).reduce<TAllAppliedActionRight[]>(
     (allAppliedActionRights, actionRightGroup) => [
       ...allAppliedActionRights,
@@ -222,7 +221,7 @@ type TAllAppliedDataFence = {
   group: string;
 };
 const denormalizeDataFences = (dataFences?: TNormalizedDataFences) => {
-  if (!dataFences) return;
+  if (!dataFences) return [];
   return Object.keys(dataFences).reduce<TAllAppliedDataFence[]>(
     (allAppliedDataFences, dataFenceGroupKey) => {
       switch (dataFenceGroupKey) {
@@ -309,11 +308,8 @@ type TApplicationProvidersProps = {
 };
 // Inspired by
 // https://github.com/kentcdodds/react-testing-library-course/blob/2a5b1560656790bb1d9c055fba3845780b2c2c97/src/__tests__/react-router-03.js
-const renderApp: <AdditionalEnvironmentProperties = {}>(
+function renderApp<AdditionalEnvironmentProperties = {}>(
   ui: React.ReactElement,
-  options?: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>>
-) => TRenderAppResult<AdditionalEnvironmentProperties> = (
-  ui,
   {
     // react-intl
     locale = 'en',
@@ -341,17 +337,23 @@ const renderApp: <AdditionalEnvironmentProperties = {}>(
     gtmTracking = defaultGtmTracking,
     // forwarding to @testing-library/react
     ...renderOptions
-  }: Partial<TRenderAppOptions> = {}
-) => {
-  const mergedUser = mergeOptional<
-    ProviderProps<AdditionalEnvironmentProperties>['user']
-  >(defaultUser, user);
-  const mergedProject = mergeOptional<
-    ProviderProps<AdditionalEnvironmentProperties>['project']
-  >(defaultProject, project);
-  const mergedEnvironment = mergeOptional<
-    ProviderProps<AdditionalEnvironmentProperties>['environment']
-  >(defaultEnvironment, environment);
+  }: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>> = {}
+): TRenderAppResult<AdditionalEnvironmentProperties> {
+  const mergedUser = user === null ? undefined : { ...defaultUser, ...user };
+  const mergedProject =
+    project === null
+      ? undefined
+      : {
+          ...defaultProject,
+          ...project,
+          allAppliedPermissions: denormalizePermissions(permissions),
+          allAppliedActionRights: denormalizeActionRights(actionRights),
+          allAppliedDataFences: denormalizeDataFences(dataFences),
+        };
+  const mergedEnvironment = {
+    ...defaultEnvironment,
+    ...environment,
+  } as TProviderProps<AdditionalEnvironmentProperties>['environment'];
   const mergedGtmTracking = { ...defaultGtmTracking, ...gtmTracking };
 
   const ApplicationProviders = (props: TApplicationProvidersProps) => (
@@ -364,14 +366,7 @@ const renderApp: <AdditionalEnvironmentProperties = {}>(
         >
           <ApplicationContextProvider
             user={mergedUser}
-            project={
-              mergedProject && {
-                ...mergedProject,
-                allAppliedPermissions: denormalizePermissions(permissions),
-                allAppliedActionRights: denormalizeActionRights(actionRights),
-                allAppliedDataFences: denormalizeDataFences(dataFences),
-              }
-            }
+            project={mergedProject}
             environment={mergedEnvironment}
             projectDataLocale={dataLocale}
           >
@@ -393,11 +388,12 @@ const renderApp: <AdditionalEnvironmentProperties = {}>(
 
   const rendered = rtl.render(ui, {
     ...renderOptions,
-    wrapper: ({ children }) =>
-      wrapIfNeeded(
-        wrapIfNeeded(children, renderOptions.wrapper),
-        ApplicationProviders
-      ),
+    // eslint-disable-next-line react/display-name
+    wrapper: ({ children, ...props }) => (
+      <ApplicationProviders {...props}>
+        {wrapIfNeeded(children, renderOptions.wrapper)}
+      </ApplicationProviders>
+    ),
   });
 
   return {
@@ -417,7 +413,7 @@ const renderApp: <AdditionalEnvironmentProperties = {}>(
     // to reference it in our tests.
     gtmTracking: mergedGtmTracking,
   };
-};
+}
 
 // Test setup for rendering with Redux
 // We expose a sophisticated function because we plan to get rid of Redux
@@ -488,7 +484,7 @@ const renderAppWithRedux = (
     return createReduxStore(storeState, [testingMiddleware]);
   })();
 
-  const ReduxProviders = ({ children }) => (
+  const ReduxProviders = (props: { children: React.ReactNode }) => (
     <NotificationProviderForCustomComponent
       mapNotificationToComponent={mapNotificationToComponent}
     >
@@ -497,7 +493,7 @@ const renderAppWithRedux = (
           <NotificationsList domain={DOMAINS.GLOBAL} />
           <NotificationsList domain={DOMAINS.PAGE} />
           <NotificationsList domain={DOMAINS.SIDE} />
-          {children}
+          {props.children}
         </div>
       </StoreProvider>
     </NotificationProviderForCustomComponent>
@@ -508,11 +504,12 @@ const renderAppWithRedux = (
 
   const rendered = renderApp(ui, {
     ...renderOptions,
-    wrapper: ({ children }) =>
-      wrapIfNeeded(
-        wrapIfNeeded(children, renderOptions.wrapper),
-        ReduxProviders
-      ),
+    // eslint-disable-next-line react/display-name
+    wrapper: ({ children, ...props }) => (
+      <ReduxProviders {...props}>
+        {wrapIfNeeded(children, renderOptions.wrapper)}
+      </ReduxProviders>
+    ),
   });
 
   return {
