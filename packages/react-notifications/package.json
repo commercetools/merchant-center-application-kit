@@ -37,13 +37,13 @@
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.7.6",
+    "@babel/runtime-corejs3": "7.7.7",
     "@commercetools-frontend/actions-global": "15.4.2",
     "@commercetools-frontend/constants": "15.4.2",
     "@commercetools-frontend/notifications": "15.4.2",
     "@commercetools-frontend/sentry": "15.4.2",
-    "@emotion/core": "10.0.22",
-    "@emotion/styled": "10.0.23",
+    "@emotion/core": "10.0.27",
+    "@emotion/styled": "10.0.27",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
     "moment": "^2.24.0",
@@ -58,7 +58,7 @@
     "@testing-library/react": "9.4.0",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "react-intl": "3.4.0",
+    "react-intl": "3.10.0",
     "react-redux": "7.1.3",
     "react-router": "5.1.2",
     "react-router-dom": "5.1.2"
