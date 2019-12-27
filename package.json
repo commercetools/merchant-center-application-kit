@@ -178,7 +178,9 @@
     "**/sharp": "0.22.1",
     "cypress": "3.8.0",
     "@sentry/browser": "5.9.1",
-    "**/@sentry/browser": "5.9.1"
+    "**/@sentry/browser": "5.9.1",
+    "gatsby-plugin-emotion": "4.1.18",
+    "**/gatsby-plugin-emotion": "4.1.18"
   },
   "engines": {
     "node": ">=8.9",
