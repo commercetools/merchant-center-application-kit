@@ -139,7 +139,7 @@
     "jest-silent-reporter": "0.1.2",
     "jest-watch-typeahead": "0.4.2",
     "lerna": "3.19.0",
-    "lerna-changelog": "0.8.3",
+    "lerna-changelog": "1.0.0",
     "lint-staged": "9.5.0",
     "mri": "1.1.4",
     "postcss": "7.0.25",
