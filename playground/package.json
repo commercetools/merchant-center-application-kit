@@ -46,7 +46,7 @@
     "react-redux": "7.1.3",
     "react-router": "5.1.2",
     "react-router-dom": "5.1.2",
-    "redux": "4.0.4"
+    "redux": "4.0.5"
   },
   "devDependencies": {
     "@commercetools-frontend/mc-scripts": "15.5.0"

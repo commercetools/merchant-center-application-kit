@@ -25,7 +25,7 @@ executors:
   node_12:
     working_directory: *working_directory
     docker:
-      - image: circleci/node:12.13
+      - image: circleci/node:12.14
 
   cypress:
     working_directory: *working_directory

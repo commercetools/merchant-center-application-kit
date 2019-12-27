@@ -38,12 +38,12 @@
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.7.6",
+    "@babel/runtime-corejs3": "7.7.7",
     "@commercetools-frontend/assets": "15.4.2",
     "@commercetools-frontend/constants": "15.4.2",
     "@commercetools-frontend/i18n": "15.5.0",
-    "@emotion/core": "10.0.22",
-    "@emotion/styled": "10.0.23",
+    "@emotion/core": "10.0.27",
+    "@emotion/styled": "10.0.27",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
     "prop-types": "15.7.2",

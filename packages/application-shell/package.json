@@ -51,8 +51,8 @@
     "@commercetools-frontend/sdk": "15.4.2",
     "@commercetools-frontend/sentry": "15.4.2",
     "@commercetools-frontend/url-utils": "15.4.2",
-    "@emotion/core": "10.0.22",
-    "@emotion/styled": "10.0.23",
+    "@emotion/core": "10.0.27",
+    "@emotion/styled": "10.0.27",
     "@flopflip/launchdarkly-adapter": "2.9.3",
     "@flopflip/memory-adapter": "1.4.2",
     "@flopflip/react-broadcast": "9.1.1",
@@ -109,7 +109,7 @@
     "react-redux": "7.1.3",
     "react-router": "5.1.2",
     "react-router-dom": "5.1.2",
-    "redux": "4.0.4",
+    "redux": "4.0.5",
     "wait-for-observables": "1.0.3"
   },
   "peerDependencies": {
