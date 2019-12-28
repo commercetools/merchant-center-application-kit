@@ -21,7 +21,6 @@
   },
   "labels": ["🤖 Type: Dependencies"],
   "ignoreDeps": [
-    "@flopflip/react-broadcast",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "react-intl"
