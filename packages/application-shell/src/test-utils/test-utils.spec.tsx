@@ -328,50 +328,61 @@ describe('custom render functions', () => {
   });
 
   describe('without wrapper', () => {
-    it.each([renderApp, renderAppWithRedux])(
-      'should %p still work',
-      renderFn => {
-        const TestComponent = ({ number }) => number;
+    it('should work with renderApp', () => {
+      const TestComponent = (props: { children: React.ReactNode }) => (
+        <>{props.children}</>
+      );
 
-        const rendered = renderFn(<TestComponent number={1} />);
-        rendered.getByText(/1/);
-      }
-    );
+      const rendered = renderApp(<TestComponent>{'one'}</TestComponent>);
+      rendered.getByText('one');
+    });
+    it('should work with renderAppWithRedux', () => {
+      const TestComponent = (props: { children: React.ReactNode }) => (
+        <>{props.children}</>
+      );
+
+      const rendered = renderAppWithRedux(
+        <TestComponent>{'one'}</TestComponent>
+      );
+      rendered.getByText('one');
+    });
   });
 
   describe('rerender', () => {
     it('should work with renderApp', () => {
-      const TestComponent = ({ number }) => {
+      const TestComponent = (props: { children: React.ReactNode }) => {
         // the error won't be triggered unless one of the providers is used
         useIntl();
-        return number;
+        return <>{props.children}</>;
       };
 
-      const rendered = renderApp(<TestComponent number={1} />);
-      rendered.getByText(/1/);
+      const rendered = renderApp(<TestComponent>{'one'}</TestComponent>);
+      rendered.getByText('one');
 
-      rendered.rerender(<TestComponent number={2} />);
-      rendered.getByText(/2/);
-      expect(rendered.queryByText(/1/)).not.toBeInTheDocument();
+      rendered.rerender(<TestComponent>{'two'}</TestComponent>);
+      rendered.getByText('two');
+      expect(rendered.queryByText('one')).not.toBeInTheDocument();
     });
 
     it('should work with renderAppWithRedux', () => {
-      const TestComponent = ({ number }) => {
+      const TestComponent = (props: { children: React.ReactNode }) => {
         // the error won't be triggered unless one of the providers is used
         useSelector(() => undefined);
-        return number;
+        return <>{props.children}</>;
       };
 
-      const rendered = renderAppWithRedux(<TestComponent number={1} />);
-      rendered.getByText(/1/);
+      const rendered = renderAppWithRedux(
+        <TestComponent>{'one'}</TestComponent>
+      );
+      rendered.getByText('one');
 
-      rendered.rerender(<TestComponent number={2} />);
-      rendered.getByText(/2/);
-      expect(rendered.queryByText(/1/)).not.toBeInTheDocument();
+      rendered.rerender(<TestComponent>{'two'}</TestComponent>);
+      rendered.getByText('two');
+      expect(rendered.queryByText('one')).not.toBeInTheDocument();
     });
 
     it('should work with experimentalRenderAppWithRedux', () => {
-      const TestComponent = ({ number }) => {
+      const TestComponent = (props: { children: React.ReactNode }) => {
         // the error won't be triggered unless one of the providers is used
         new ApolloClient({
           link: new HttpLink({
@@ -379,17 +390,17 @@ describe('custom render functions', () => {
           }),
           cache: new InMemoryCache(),
         });
-        return number;
+        return <>{props.children}</>;
       };
 
       const rendered = experimentalRenderAppWithRedux(
-        <TestComponent number={1} />
+        <TestComponent>{'one'}</TestComponent>
       );
-      rendered.getByText(/1/);
+      rendered.getByText('one');
 
-      rendered.rerender(<TestComponent number={2} />);
-      rendered.getByText(/2/);
-      expect(rendered.queryByText(/1/)).not.toBeInTheDocument();
+      rendered.rerender(<TestComponent>{'two'}</TestComponent>);
+      rendered.getByText('two');
+      expect(rendered.queryByText('one')).not.toBeInTheDocument();
     });
   });
 });

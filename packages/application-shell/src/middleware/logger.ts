@@ -18,7 +18,7 @@ const loggerMiddleware = createLogger({
   // WARNING: Enabling this option causes huge performance degradation.
   // Only enable if you want detailed debugging.
   diff: false,
-  predicate: (getState, action) => {
+  predicate: (_getState, action) => {
     if (!action) return false;
 
     const { type, payload } = action;

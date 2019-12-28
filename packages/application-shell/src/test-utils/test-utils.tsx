@@ -112,6 +112,10 @@ const defaultFlopflipAdapterArgs = {
   user: {
     key: 'user-key',
   },
+  adapterConfiguration: {
+    pollingInteral: 1,
+  },
+  flags: {},
   onFlagsStateChange: jest.fn(),
   onStatusStateChange: jest.fn(),
 };
@@ -288,9 +292,11 @@ type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   history: ReturnType<typeof createEnhancedHistory>;
   adapter: typeof memoryAdapter;
   flags: Flags;
-  environment: TProviderProps<AdditionalEnvironmentProperties>['environment'];
-  user: TProviderProps<AdditionalEnvironmentProperties>['user'];
-  project: TProviderProps<AdditionalEnvironmentProperties>['project'];
+  environment: Partial<
+    TProviderProps<AdditionalEnvironmentProperties>['environment']
+  >;
+  user: Partial<TProviderProps<AdditionalEnvironmentProperties>['user']>;
+  project: Partial<TProviderProps<AdditionalEnvironmentProperties>['project']>;
   dataLocale: TProviderProps<
     AdditionalEnvironmentProperties
   >['projectDataLocale'];
