@@ -2839,20 +2839,21 @@
     invariant "2.2.4"
     mitt "1.2.0"
 
-"@flopflip/react-broadcast@9.1.3":
-  version "9.1.3"
-  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-9.1.3.tgz#8c686bc15a0d517e32116f759d57b37d5242598f"
-  integrity sha512-E6Grsu41pEGcoXWNl3YmslbTysPxHcasjc47NC6Zw8sy58y9eKKtL81AkJ14b2TNegxOSkQALXuasUI9TRa3iw==
+"@flopflip/react-broadcast@9.1.5":
+  version "9.1.5"
+  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-9.1.5.tgz#dde968b1547a91117dd30145f4f6e1d011b05983"
+  integrity sha512-kcuCjOgaQh+ZekzcdNFOwmIECLDxNs8cNKoChDmMu/yMfxPfCFy/a8rC+ndFDzI4JVpxT1wFtOmefuPtxKNwZA==
   dependencies:
     "@babel/runtime" "7.7.7"
-    "@flopflip/react" "^8.1.3"
+    "@flopflip/react" "^8.1.4"
     "@flopflip/types" "^2.2.1"
     lodash "4.17.15"
+    memoize-one "5.1.1"
 
-"@flopflip/react@^8.1.3":
-  version "8.1.3"
-  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-8.1.3.tgz#62851e4d5994992da91a0428d7046b199a9752ec"
-  integrity sha512-S9LXWMObdaDZuRplqNt3QPn6/v80s4XVkNvyQpb3LKihqpiringTb4EWnIxkXrE6+tPKI6DqYAx7OPRdEGmokg==
+"@flopflip/react@^8.1.4":
+  version "8.1.4"
+  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-8.1.4.tgz#42caaac9a8e6197d901b753965949264188ce71a"
+  integrity sha512-+PpqmopDeBqsPYSNALDtE0Rtc97HxrK6GbSXeE2yXyvSxgeNUT8qEMZ0ErVkukXzneZJX63zs8XLiRRMryxpCg==
   dependencies:
     "@babel/runtime" "7.7.7"
     deepmerge "4.2.2"
