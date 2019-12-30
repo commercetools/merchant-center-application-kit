@@ -13,7 +13,7 @@ import { useIntl } from 'react-intl';
 import { Query } from 'react-apollo';
 import { useSelector } from 'react-redux';
 import gql from 'graphql-tag';
-import { injectFeatureToggle } from '@flopflip/react-broadcast';
+import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { Switch, Route } from 'react-router';
@@ -21,6 +21,7 @@ import {
   renderApp,
   renderAppWithRedux,
   experimentalRenderAppWithRedux,
+  waitForElement,
   wait,
 } from './test-utils';
 
@@ -78,19 +79,22 @@ describe('ApolloMockProvider', () => {
 
 describe('`flopflip`', () => {
   const FEATURE_NAME = 'fooBar';
-  const TestComponent = injectFeatureToggle(
-    FEATURE_NAME,
-    'isFooBarEnabled'
-  )(props => (props.isFooBarEnabled ? 'enabled' : 'disabled'));
-  it('should not have feature toggles by default', () => {
-    const { container } = renderApp(<TestComponent />);
-    expect(container).toHaveTextContent('disabled');
+  const TestComponent = () => {
+    const isFeatureEnabled = useFeatureToggle(FEATURE_NAME);
+
+    return <p>Enabled: {isFeatureEnabled ? 'Yes' : 'No'}</p>;
+  };
+  it('should not enable features toggles by default', async () => {
+    const rendered = renderApp(<TestComponent />);
+
+    await waitForElement(() => rendered.getByText(/Enabled: No/i));
   });
-  it('should be possible to provide feature toggles', () => {
-    const { container } = renderApp(<TestComponent />, {
+  it('should be possible to enable feature toggles', async () => {
+    const rendered = renderApp(<TestComponent />, {
       flags: { [FEATURE_NAME]: true },
     });
-    expect(container).toHaveTextContent('enabled');
+
+    await waitForElement(() => rendered.getByText(/Enabled: Yes/i));
   });
 });
 
