@@ -4,6 +4,7 @@ import {
   applyMiddleware,
   combineReducers,
   ReducersMapObject,
+  Store,
   Middleware,
   StoreEnhancer,
 } from 'redux';
@@ -36,7 +37,7 @@ interface ApplicationWindowWithDevtools extends ApplicationWindow {
 }
 declare let window: ApplicationWindowWithDevtools;
 
-type TEnhancedStore = {
+type TEnhancedStore = Store & {
   injectedReducers: { [key: string]: ReducersMapObject };
   injectReducers: (payload: {
     id: string;
@@ -80,7 +81,7 @@ export const createReduxStore = (
   preloadedState = {},
   // additional middleware, used for testing
   additionalMiddlewares: Middleware[] = []
-) => {
+): TEnhancedStore => {
   const store = createStore(
     createInternalReducer(),
     preloadedState,
@@ -99,7 +100,7 @@ export const createReduxStore = (
     )
   );
 
-  const enhancedStore = store as typeof store & TEnhancedStore;
+  const enhancedStore = store as TEnhancedStore;
 
   // Enable reducers to be injected on runtime (see `<InjectReducer>`)
   enhancedStore.injectedReducers = {};
