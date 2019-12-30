@@ -1,4 +1,9 @@
 export { default as version } from './version';
+import { TProviderProps as ProviderProps } from './components/application-context';
+
+export type TProviderProps<
+  AdditionalEnvironmentProperties extends {}
+> = ProviderProps<AdditionalEnvironmentProperties>;
 
 export {
   Context,

@@ -1,5 +1,5 @@
 import ApolloClient from 'apollo-client';
-import { NormalizedCache } from 'apollo-cache-inmemory';
+import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import omitEmpty from 'omit-empty-es';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -14,7 +14,7 @@ type GraphQlTarget = typeof GRAPHQL_TARGETS[keyof typeof GRAPHQL_TARGETS];
 
 type ApolloContext = {
   uri?: string;
-  cache: ApolloClient<NormalizedCache>;
+  cache: ApolloClient<NormalizedCacheObject>;
 };
 
 type QueryVariables = {

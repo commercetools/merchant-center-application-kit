@@ -1,7 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import * as gtm from '../../utils/gtm';
 import defaultTrackingEventWhitelist from '../../tracking-whitelist';
+
+export type TGtmTrackingEventWhitelist = {
+  [key: string]: string;
+};
+export type Props = {
+  trackingEventWhitelist: {
+    [key: string]: string | TGtmTrackingEventWhitelist;
+  };
+  children: React.ReactNode;
+};
 
 // Expose a React.Context with the tracking functions.
 // This context can be used by consumers to access the values by either:
@@ -16,7 +25,7 @@ export const GtmContext = React.createContext({
   getHierarchy: gtm.getHierarchy,
 });
 
-const GtmBooter = props => {
+const GtmBooter = (props: Props) => {
   React.useEffect(() => {
     // We don't need any user data to start using GTM, for example for
     // tracking page views and flows when the user is not logged in.
@@ -26,17 +35,8 @@ const GtmBooter = props => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return props.children;
+  return <>{props.children}</>;
 };
 GtmBooter.displayName = 'GtmBooter';
-GtmBooter.propTypes = {
-  children: PropTypes.node.isRequired,
-  trackingEventWhitelist: PropTypes.objectOf(
-    PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.objectOf(PropTypes.string),
-    ])
-  ).isRequired,
-};
 
 export default GtmBooter;
