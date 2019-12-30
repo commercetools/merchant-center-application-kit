@@ -9,13 +9,15 @@ import * as gtm from '../../utils/gtm';
 
 const GtmUserTracker = props => {
   React.useEffect(() => {
-    gtm.updateUser(props.user.id);
+    if (props.user) {
+      gtm.updateUser(props.user.id);
+    }
   }, [props.user]);
   return null;
 };
 GtmUserTracker.displayName = 'GtmUserTracker';
 GtmUserTracker.propTypes = {
-  user: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired,
+  user: PropTypes.shape({ id: PropTypes.string.isRequired }),
 };
 
 export default GtmUserTracker;

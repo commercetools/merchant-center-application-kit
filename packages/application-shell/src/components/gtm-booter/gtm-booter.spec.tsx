@@ -1,8 +1,11 @@
 import React from 'react';
 import { render, wait, fireEvent } from '@testing-library/react';
-import GtmBooter from './gtm-booter';
+import { ApplicationWindow } from '@commercetools-frontend/constants';
+import GtmBooter, { Props } from './gtm-booter';
 
-const createTestProps = custom => ({
+declare let window: ApplicationWindow;
+
+const createTestProps = (custom: Partial<Props> = {}) => ({
   trackingEventWhitelist: {
     'Test.button': 'Test.button',
   },
