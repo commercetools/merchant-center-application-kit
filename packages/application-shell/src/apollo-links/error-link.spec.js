@@ -25,25 +25,78 @@ describe('with unauthenticated error', () => {
   let terminatingLinkStub;
   let link;
 
-  beforeEach(async () => {
-    history.push.mockClear();
-    terminatingLinkStub = jest.fn(
-      () => new Observable(o => o.error(unauthenticatedError))
-    );
+  describe('on network error', () => {
+    beforeEach(async () => {
+      history.push.mockClear();
+      terminatingLinkStub = jest.fn(
+        () => new Observable(o => o.error(unauthenticatedError))
+      );
 
-    link = ApolloLink.from([errorLink, terminatingLinkStub]);
+      link = ApolloLink.from([errorLink, terminatingLinkStub]);
 
-    await waitFor(execute(link, { query }));
+      await waitFor(execute(link, { query }));
+    });
+
+    it('should logout the user', () => {
+      expect(history.push).toHaveBeenCalled();
+    });
+
+    it('should redirect to the login page', () => {
+      expect(history.push).toHaveBeenCalledWith(
+        `/logout?reason=${LOGOUT_REASONS.UNAUTHORIZED}`
+      );
+    });
   });
 
-  it('should logout the user', () => {
-    expect(history.push).toHaveBeenCalled();
-  });
+  describe('on graphql error', () => {
+    let context;
+    let resolvedResponse;
+    const responses = {
+      success: { data: { sample: { id: 'sample-id' } } },
+      unauthenticated: {
+        data: null,
+        errors: [
+          {
+            extensions: {
+              code: 'UNAUTHENTICATED',
+            },
+          },
+        ],
+      },
+    };
+    beforeEach(async () => {
+      const debugLink = new ApolloLink((operation, forward) => {
+        context = operation.getContext();
+        return forward(operation);
+      });
+      terminatingLinkStub = jest.fn();
+      terminatingLinkStub.mockReturnValueOnce(
+        Observable.of(responses.unauthenticated)
+      );
+      terminatingLinkStub.mockReturnValueOnce(Observable.of(responses.success));
 
-  it('should redirect to the login page', () => {
-    expect(history.push).toHaveBeenCalledWith(
-      `/logout?reason=${LOGOUT_REASONS.UNAUTHORIZED}`
-    );
+      link = ApolloLink.from([errorLink, debugLink, terminatingLinkStub]);
+
+      resolvedResponse = await waitFor(execute(link, { query }));
+    });
+    afterEach(() => {
+      context = undefined;
+    });
+
+    it('should retry the request', () => {
+      expect(terminatingLinkStub).toHaveBeenCalledTimes(2);
+    });
+    it('should set `x-force-token`-header on retry', () => {
+      expect(context.headers).toEqual(
+        expect.objectContaining({
+          'X-Force-Token': true,
+        })
+      );
+    });
+    it('should eventually resolve with data', () => {
+      const [{ values }] = resolvedResponse;
+      expect(values).toEqual([responses.success]);
+    });
   });
 });
 
