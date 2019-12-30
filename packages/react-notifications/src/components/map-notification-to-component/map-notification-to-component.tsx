@@ -5,7 +5,7 @@ import {
   TAppNotificationSide,
 } from '@commercetools-frontend/constants';
 
-type Props = {
+export type Props = {
   mapNotificationToComponent: (
     notification:
       | TAppNotificationGlobal

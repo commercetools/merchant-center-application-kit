@@ -111,7 +111,7 @@ type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
   dataFences: TApplicationContextDataFences | null;
   dataLocale: string | null;
 };
-type ProviderProps<AdditionalEnvironmentProperties extends {}> = {
+export type ProviderProps<AdditionalEnvironmentProperties extends {}> = {
   environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment;
   user?: TFetchedUser;
   project?: TFetchedProject;
