@@ -13,7 +13,6 @@ import {
   MockedProviderProps,
 } from '@apollo/react-testing';
 import memoryAdapter from '@flopflip/memory-adapter';
-import { PreloadedState } from 'redux';
 import { Provider as StoreProvider } from 'react-redux';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
 import {
@@ -425,21 +424,31 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
   };
 }
 
-type TRenderAppWithReduxOptions<AdditionalEnvironmentProperties = {}> = {
+type TRenderAppWithReduxOptions<
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+> = {
   store: ReturnType<typeof createReduxStore>;
-  storeState: PreloadedState<{}>; // TODO: allow to pass a type generic?
+  storeState: StoreState;
   sdkMocks: TSdkMock[];
   mapNotificationToComponent: TMapNotificationToComponentProps['mapNotificationToComponent'];
 } & TRenderAppOptions<AdditionalEnvironmentProperties>;
 type TRenderAppWithReduxResult<
-  AdditionalEnvironmentProperties = {}
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
 > = TRenderAppResult<AdditionalEnvironmentProperties> &
-  Pick<TRenderAppWithReduxOptions<AdditionalEnvironmentProperties>, 'store'>;
+  Pick<
+    TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>,
+    'store'
+  >;
 
 // Test setup for rendering with Redux
 // We expose a sophisticated function because we plan to get rid of Redux
 // Use this function only when your test actually needs Redux
-function renderAppWithRedux<AdditionalEnvironmentProperties = {}>(
+function renderAppWithRedux<
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+>(
   ui: React.ReactElement,
   {
     // The store option is kept around to keep the API open as not all use-cases
@@ -475,8 +484,10 @@ function renderAppWithRedux<AdditionalEnvironmentProperties = {}>(
     // Pass a function to map custom notification components
     mapNotificationToComponent = () => null,
     ...renderOptions
-  }: Partial<TRenderAppWithReduxOptions<AdditionalEnvironmentProperties>> = {}
-): TRenderAppWithReduxResult<AdditionalEnvironmentProperties> {
+  }: Partial<
+    TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>
+  > = {}
+): TRenderAppWithReduxResult<AdditionalEnvironmentProperties, StoreState> {
   invariant(
     !(store && storeState),
     'test-utils: You provided both `store` and `storeState`. Please provide only one of them.'
@@ -543,19 +554,30 @@ function renderAppWithRedux<AdditionalEnvironmentProperties = {}>(
 }
 
 type TExperimentalRenderAppWithReduxOptions<
-  AdditionalEnvironmentProperties = {}
-> = TRenderAppWithReduxOptions<AdditionalEnvironmentProperties>;
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+> = TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>;
 type TExperimentalRenderAppWithReduxResult<
-  AdditionalEnvironmentProperties = {}
-> = TRenderAppWithReduxResult<AdditionalEnvironmentProperties>;
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+> = TRenderAppWithReduxResult<AdditionalEnvironmentProperties, StoreState>;
 
 // Renders UI without mocking ApolloProvider
-function experimentalRenderAppWithRedux<AdditionalEnvironmentProperties = {}>(
+function experimentalRenderAppWithRedux<
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+>(
   ui: React.ReactElement,
   renderOptions: Partial<
-    TExperimentalRenderAppWithReduxOptions<AdditionalEnvironmentProperties>
+    TExperimentalRenderAppWithReduxOptions<
+      AdditionalEnvironmentProperties,
+      StoreState
+    >
   > = {}
-): TExperimentalRenderAppWithReduxResult<AdditionalEnvironmentProperties> {
+): TExperimentalRenderAppWithReduxResult<
+  AdditionalEnvironmentProperties,
+  StoreState
+> {
   const client = createApolloClient();
   const RealApolloProvider = ({ children }: { children: React.ReactNode }) => (
     <ApolloProvider client={client}>{children}</ApolloProvider>
@@ -565,7 +587,7 @@ function experimentalRenderAppWithRedux<AdditionalEnvironmentProperties = {}>(
     children: PropTypes.node.isRequired,
   };
 
-  return renderAppWithRedux<AdditionalEnvironmentProperties>(ui, {
+  return renderAppWithRedux<AdditionalEnvironmentProperties, StoreState>(ui, {
     ...renderOptions,
     ApolloProviderComponent: RealApolloProvider,
   });
