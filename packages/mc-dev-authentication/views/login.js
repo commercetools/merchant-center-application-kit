@@ -47,15 +47,18 @@ window.addEventListener('load', function loaded() {
             window.location.replace(redirectTo);
           });
         }
-        return response.text().then(function onError() {
+        return response.text().then(function onError(responseText) {
           var message;
           try {
-            var parsedResponse = JSON.parse(this.responseText);
+            var parsedResponse = JSON.parse(responseText);
             message = parsedResponse.message;
           } catch (e) {
-            console.warn(`Request to ${url} failed with exception:`, e);
+            console.warn(
+              `Failed to parse error response for ${url}:`,
+              responseText
+            );
 
-            message = this.responseText;
+            message = responseText;
           }
           var errorMessage = document.createTextNode(message);
           var errorContainer = document.createElement('div');
