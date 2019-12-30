@@ -1,3 +1,4 @@
+import { Middleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import {
   ADD_NOTIFICATION,
@@ -5,7 +6,7 @@ import {
 } from '@commercetools-frontend/notifications';
 import logger from '../utils/logger';
 
-const loggerMiddleware = createLogger({
+const loggerMiddleware: Middleware = createLogger({
   logger,
   collapsed: true,
   colors: {
@@ -18,7 +19,7 @@ const loggerMiddleware = createLogger({
   // WARNING: Enabling this option causes huge performance degradation.
   // Only enable if you want detailed debugging.
   diff: false,
-  predicate: (getState, action) => {
+  predicate: (_getState, action) => {
     if (!action) return false;
 
     const { type, payload } = action;

@@ -51,10 +51,14 @@ describe('ApolloMockProvider', () => {
     }
   `;
   const TestComponent = () => (
-    <Query query={SomeQuery} variables={{ target: 'ctp' }}>
+    <Query<{ foo?: { name: string } }>
+      query={SomeQuery}
+      variables={{ target: 'ctp' }}
+    >
       {payload => {
-        if (!payload || !payload.data || !payload.data.foo) return 'loading';
-        return payload.data.foo.name;
+        if (!payload || !payload.data || !payload.data.foo)
+          return <>{'loading'}</>;
+        return <>{payload.data.foo.name}</>;
       }}
     </Query>
   );
@@ -81,19 +85,16 @@ describe('`flopflip`', () => {
   const FEATURE_NAME = 'fooBar';
   const TestComponent = () => {
     const isFeatureEnabled = useFeatureToggle(FEATURE_NAME);
-
     return <p>Enabled: {isFeatureEnabled ? 'Yes' : 'No'}</p>;
   };
   it('should not enable features toggles by default', async () => {
     const rendered = renderApp(<TestComponent />);
-
     await waitForElement(() => rendered.getByText(/Enabled: No/i));
   });
   it('should be possible to enable feature toggles', async () => {
     const rendered = renderApp(<TestComponent />, {
       flags: { [FEATURE_NAME]: true },
     });
-
     await waitForElement(() => rendered.getByText(/Enabled: Yes/i));
   });
 });
@@ -102,7 +103,9 @@ describe('ApplicationContext', () => {
   describe('user', () => {
     const TestComponent = () => (
       <ApplicationContext
-        render={({ user }) => [user.firstName, user.lastName].join(' ')}
+        render={({ user }) => (
+          <>{user && [user.firstName, user.lastName].join(' ')}</>
+        )}
       />
     );
 
@@ -141,7 +144,9 @@ describe('ApplicationContext', () => {
   describe('project', () => {
     const TestComponent = () => (
       <ApplicationContext
-        render={({ project }) => [project.key, project.name].join(' ')}
+        render={({ project }) => (
+          <>{project && [project.key, project.name].join(' ')}</>
+        )}
       />
     );
 
@@ -281,8 +286,8 @@ describe('router', () => {
 
 describe('custom render functions', () => {
   describe('with wrapper', () => {
-    const Context = React.createContext();
-    const ProvidedWrapper = ({ children }) => (
+    const Context = React.createContext('');
+    const ProvidedWrapper = ({ children }: { children?: React.ReactNode }) => (
       <Context.Provider value="provided wrapper">{children}</Context.Provider>
     );
     ProvidedWrapper.propTypes = {
@@ -296,10 +301,10 @@ describe('custom render functions', () => {
         // own wrapper
         useIntl();
 
-        return value;
+        return <>{value}</>;
       };
 
-      const rendered = renderApp(<TestComponent number={1} />, {
+      const rendered = renderApp(<TestComponent />, {
         wrapper: ProvidedWrapper,
       });
       rendered.getByText(/provided wrapper/i);
@@ -312,10 +317,10 @@ describe('custom render functions', () => {
         // own wrapper
         useSelector(() => undefined);
 
-        return value;
+        return <>{value}</>;
       };
 
-      const rendered = renderAppWithRedux(<TestComponent number={1} />, {
+      const rendered = renderAppWithRedux(<TestComponent />, {
         wrapper: ProvidedWrapper,
       });
       rendered.getByText(/provided wrapper/i);
@@ -323,50 +328,61 @@ describe('custom render functions', () => {
   });
 
   describe('without wrapper', () => {
-    it.each([renderApp, renderAppWithRedux])(
-      'should %p still work',
-      renderFn => {
-        const TestComponent = ({ number }) => number;
+    it('should work with renderApp', () => {
+      const TestComponent = (props: { children: React.ReactNode }) => (
+        <>{props.children}</>
+      );
 
-        const rendered = renderFn(<TestComponent number={1} />);
-        rendered.getByText(/1/);
-      }
-    );
+      const rendered = renderApp(<TestComponent>{'one'}</TestComponent>);
+      rendered.getByText('one');
+    });
+    it('should work with renderAppWithRedux', () => {
+      const TestComponent = (props: { children: React.ReactNode }) => (
+        <>{props.children}</>
+      );
+
+      const rendered = renderAppWithRedux(
+        <TestComponent>{'one'}</TestComponent>
+      );
+      rendered.getByText('one');
+    });
   });
 
   describe('rerender', () => {
     it('should work with renderApp', () => {
-      const TestComponent = ({ number }) => {
+      const TestComponent = (props: { children: React.ReactNode }) => {
         // the error won't be triggered unless one of the providers is used
         useIntl();
-        return number;
+        return <>{props.children}</>;
       };
 
-      const rendered = renderApp(<TestComponent number={1} />);
-      rendered.getByText(/1/);
+      const rendered = renderApp(<TestComponent>{'one'}</TestComponent>);
+      rendered.getByText('one');
 
-      rendered.rerender(<TestComponent number={2} />);
-      rendered.getByText(/2/);
-      expect(rendered.queryByText(/1/)).not.toBeInTheDocument();
+      rendered.rerender(<TestComponent>{'two'}</TestComponent>);
+      rendered.getByText('two');
+      expect(rendered.queryByText('one')).not.toBeInTheDocument();
     });
 
     it('should work with renderAppWithRedux', () => {
-      const TestComponent = ({ number }) => {
+      const TestComponent = (props: { children: React.ReactNode }) => {
         // the error won't be triggered unless one of the providers is used
         useSelector(() => undefined);
-        return number;
+        return <>{props.children}</>;
       };
 
-      const rendered = renderAppWithRedux(<TestComponent number={1} />);
-      rendered.getByText(/1/);
+      const rendered = renderAppWithRedux(
+        <TestComponent>{'one'}</TestComponent>
+      );
+      rendered.getByText('one');
 
-      rendered.rerender(<TestComponent number={2} />);
-      rendered.getByText(/2/);
-      expect(rendered.queryByText(/1/)).not.toBeInTheDocument();
+      rendered.rerender(<TestComponent>{'two'}</TestComponent>);
+      rendered.getByText('two');
+      expect(rendered.queryByText('one')).not.toBeInTheDocument();
     });
 
     it('should work with experimentalRenderAppWithRedux', () => {
-      const TestComponent = ({ number }) => {
+      const TestComponent = (props: { children: React.ReactNode }) => {
         // the error won't be triggered unless one of the providers is used
         new ApolloClient({
           link: new HttpLink({
@@ -374,17 +390,17 @@ describe('custom render functions', () => {
           }),
           cache: new InMemoryCache(),
         });
-        return number;
+        return <>{props.children}</>;
       };
 
       const rendered = experimentalRenderAppWithRedux(
-        <TestComponent number={1} />
+        <TestComponent>{'one'}</TestComponent>
       );
-      rendered.getByText(/1/);
+      rendered.getByText('one');
 
-      rendered.rerender(<TestComponent number={2} />);
-      rendered.getByText(/2/);
-      expect(rendered.queryByText(/1/)).not.toBeInTheDocument();
+      rendered.rerender(<TestComponent>{'two'}</TestComponent>);
+      rendered.getByText('two');
+      expect(rendered.queryByText('one')).not.toBeInTheDocument();
     });
   });
 });

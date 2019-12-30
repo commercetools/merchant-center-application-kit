@@ -12,7 +12,7 @@ interface TSdkMockSuccess extends TSdkMockBase {
 interface TSdkMockFailure extends TSdkMockBase {
   error: HttpErrorType;
 }
-type TSdkMock = TSdkMockSuccess | TSdkMockFailure;
+export type TSdkMock = TSdkMockSuccess | TSdkMockFailure;
 
 const serialize = (data: unknown) =>
   JSON.stringify(data, (_k, v) => (v === undefined ? null : v), 2);

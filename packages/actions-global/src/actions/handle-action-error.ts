@@ -6,6 +6,7 @@ import {
   TStatusCode,
   ApplicationWindow,
 } from '@commercetools-frontend/constants';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import browserHistory from '@commercetools-frontend/browser-history';
 import showApiErrorNotification from './show-api-error-notification';
 import showUnexpectedErrorNotification from './show-unexpected-error-notification';
@@ -38,7 +39,10 @@ export default function handleActionError(error: ActionError) {
     if (window.app.env !== 'production')
       console.error(error, error instanceof Error && error.stack);
 
-    if (!isApiError(error)) return dispatch(showUnexpectedErrorNotification());
+    if (!isApiError(error)) {
+      const errorId = reportErrorToSentry(error);
+      return dispatch(showUnexpectedErrorNotification({ errorId }));
+    }
 
     // logout when unauthorized
     if (error.statusCode === STATUS_CODES.UNAUTHORIZED) {

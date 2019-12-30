@@ -7,18 +7,31 @@ import * as rtl from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { MockedProvider as ApolloMockProvider } from '@apollo/react-testing';
+import { Flags } from '@flopflip/types';
+import {
+  MockedProvider as ApolloMockProvider,
+  MockedProviderProps,
+} from '@apollo/react-testing';
 import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
-import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
+import {
+  ApplicationContextProvider,
+  TProviderProps,
+} from '@commercetools-frontend/application-shell-connectors';
 import {
   NotificationsList,
   NotificationProviderForCustomComponent,
+  TMapNotificationToComponentProps,
 } from '@commercetools-frontend/react-notifications';
 import { DOMAINS } from '@commercetools-frontend/constants';
-// eslint-disable-next-line import/named
-import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
+/* eslint-disable import/named */
+import {
+  createTestMiddleware as createSdkTestMiddleware,
+  TSdkMock,
+} from '@commercetools-frontend/sdk/test-utils';
+/* eslint-enable import/named */
+import * as gtm from '../utils/gtm';
 import { GtmContext } from '../components/gtm-booter';
 import { createReduxStore } from '../configure-store';
 import { createApolloClient } from '../configure-apollo';
@@ -86,31 +99,23 @@ const defaultEnvironment = {
   servedByProxy: false,
 };
 
-// Allow consumers of `render` to extend the defaults by passing an object
-// or to completely omit the value by passing `null`
-const mergeOptional = (defaultValue, value) =>
-  value === null ? undefined : { ...defaultValue, ...value };
-
-const LoadingFallback = () => 'Loading...';
+const LoadingFallback = () => <>{'Loading...'}</>;
 LoadingFallback.displayName = 'LoadingFallback';
-
-const MockedApolloProvider = ({ children, mocks, addTypename }) => (
-  <ApolloMockProvider mocks={mocks} addTypename={addTypename}>
-    {children}
-  </ApolloMockProvider>
-);
-MockedApolloProvider.displayName = 'MockedApolloProvider';
-MockedApolloProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-  mocks: PropTypes.array.isRequired,
-  addTypename: PropTypes.bool.isRequired,
-};
 
 const defaultGtmTracking = {
   track: jest.fn(),
   getHierarchy: jest.fn(),
 };
-const defaultFlopflipAdapterArgs = {};
+const defaultFlopflipAdapterArgs = {
+  clientSideId: 'test-client-side-id',
+  user: {
+    key: 'user-key',
+  },
+  adapterConfiguration: {
+    pollingInteral: 1,
+  },
+  flags: {},
+};
 
 // For backwards compatibility we need to denormalize the given `permissions` option
 // (which is now deprecated) to `allAppliedPermissions`, in order to pass the value
@@ -127,9 +132,14 @@ const defaultFlopflipAdapterArgs = {};
 //     { name: 'canManageProjectSettings', value: true }
 //   ]
 // }
-const denormalizePermissions = permissions => {
-  if (!permissions) return;
-  return Object.keys(permissions).reduce(
+type TPermissions = { [key: string]: boolean };
+type TAllAppliedPermission = {
+  name: string;
+  value: boolean;
+};
+const denormalizePermissions = (permissions?: TPermissions) => {
+  if (!permissions) return [];
+  return Object.keys(permissions).reduce<TAllAppliedPermission[]>(
     (allAppliedPermissions, permissionKey) => [
       ...allAppliedPermissions,
       { name: permissionKey, value: permissions[permissionKey] },
@@ -156,12 +166,18 @@ const denormalizePermissions = permissions => {
 //     { group: 'products', name: 'canPublishProducts', value: false }
 //   ]
 // }
-const denormalizeActionRights = actionRights => {
-  if (!actionRights) return;
-  return Object.keys(actionRights).reduce(
+type TNormalizedActionRights = { [key: string]: TPermissions };
+type TAllAppliedActionRight = TAllAppliedPermission & {
+  group: string;
+};
+const denormalizeActionRights = (actionRights?: TNormalizedActionRights) => {
+  if (!actionRights) return [];
+  return Object.keys(actionRights).reduce<TAllAppliedActionRight[]>(
     (allAppliedActionRights, actionRightGroup) => [
       ...allAppliedActionRights,
-      ...Object.keys(actionRights[actionRightGroup]).reduce(
+      ...Object.keys(actionRights[actionRightGroup]).reduce<
+        TAllAppliedActionRight[]
+      >(
         (allActionRightsByGroup, actionRightKey) => [
           ...allActionRightsByGroup,
           {
@@ -169,7 +185,8 @@ const denormalizeActionRights = actionRights => {
             name: actionRightKey,
             value: actionRights[actionRightGroup][actionRightKey],
           },
-        ]
+        ],
+        []
       ),
     ],
     []
@@ -196,29 +213,45 @@ const denormalizeActionRights = actionRights => {
 //     { type: 'store', group: 'orders', name: 'canViewOrders', value: 'store-1' }
 //   ]
 // }
-const denormalizeDataFences = dataFences => {
-  if (!dataFences) return;
-  return Object.keys(dataFences).reduce(
+type TNormalizedDataFenceStorePermissions = {
+  [key: string]: { values: string[] };
+};
+type TNormalizedDataFenceStores = {
+  [key: string]: TNormalizedDataFenceStorePermissions;
+};
+type TNormalizedDataFences = { store: TNormalizedDataFenceStores };
+type TAllAppliedDataFence = {
+  __typename: 'StoreDataFence';
+  type: string;
+  name: string;
+  value: string;
+  group: string;
+};
+const denormalizeDataFences = (dataFences?: TNormalizedDataFences) => {
+  if (!dataFences) return [];
+  return Object.keys(dataFences).reduce<TAllAppliedDataFence[]>(
     (allAppliedDataFences, dataFenceGroupKey) => {
       switch (dataFenceGroupKey) {
         case 'store':
           return [
             ...allAppliedDataFences,
-            ...Object.keys(dataFences.store).reduce(
+            ...Object.keys(dataFences.store).reduce<TAllAppliedDataFence[]>(
               (allResources, resourceType) => [
                 ...allResources,
-                ...Object.keys(dataFences.store[resourceType]).reduce(
+                ...Object.keys(dataFences.store[resourceType]).reduce<
+                  TAllAppliedDataFence[]
+                >(
                   (allPermissions, permissionKey) => [
                     ...allPermissions,
-                    ...dataFences.store[resourceType][permissionKey].values.map(
-                      value => ({
-                        __typename: 'StoreDataFence',
-                        type: 'store',
-                        value,
-                        group: resourceType,
-                        name: permissionKey,
-                      })
-                    ),
+                    ...dataFences.store[resourceType][permissionKey].values.map<
+                      TAllAppliedDataFence
+                    >(value => ({
+                      __typename: 'StoreDataFence',
+                      type: 'store',
+                      value,
+                      group: resourceType,
+                      name: permissionKey,
+                    })),
                   ],
                   []
                 ),
@@ -234,8 +267,10 @@ const denormalizeDataFences = dataFences => {
   );
 };
 
-const wrapIfNeeded = (wrapper, children) =>
-  wrapper ? React.createElement(wrapper, null, children) : children;
+const wrapIfNeeded = (
+  children: React.ReactNode,
+  wrapper?: React.ComponentType
+) => (wrapper ? React.createElement(wrapper, null, children) : children);
 
 // This function renders any component within the application context, as if it
 // was rendered inside <ApplicationShell />.
@@ -246,10 +281,44 @@ const wrapIfNeeded = (wrapper, children) =>
 //
 //  We can add these things as we go and when we need them.
 
+type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
+  locale: string;
+  mocks: MockedProviderProps['mocks'];
+  addTypename: MockedProviderProps['addTypename'];
+  route: string;
+  history: ReturnType<typeof createEnhancedHistory>;
+  adapter: typeof memoryAdapter;
+  flags: Flags;
+  environment: Partial<
+    TProviderProps<AdditionalEnvironmentProperties>['environment']
+  >;
+  user: Partial<TProviderProps<AdditionalEnvironmentProperties>['user']>;
+  project: Partial<TProviderProps<AdditionalEnvironmentProperties>['project']>;
+  dataLocale: TProviderProps<
+    AdditionalEnvironmentProperties
+  >['projectDataLocale'];
+  permissions: TPermissions; // <-- deprecated option, use `{ project: { allAppliedPermissions } }`
+  actionRights: TNormalizedActionRights; // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
+  dataFences: TNormalizedDataFences; // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
+  ApolloProviderComponent: React.ElementType | typeof ApolloMockProvider;
+  // gtm-context
+  gtmTracking: {
+    track: typeof gtm.track;
+    getHierarchy: typeof gtm.getHierarchy;
+  };
+} & rtl.RenderOptions;
+type TRenderAppResult<AdditionalEnvironmentProperties = {}> = rtl.RenderResult &
+  Pick<
+    TRenderAppOptions<AdditionalEnvironmentProperties>,
+    'history' | 'user' | 'project' | 'environment' | 'gtmTracking'
+  >;
+type TApplicationProvidersProps = {
+  children: React.ReactNode;
+};
 // Inspired by
 // https://github.com/kentcdodds/react-testing-library-course/blob/2a5b1560656790bb1d9c055fba3845780b2c2c97/src/__tests__/react-router-03.js
-const renderApp = (
-  ui,
+function renderApp<AdditionalEnvironmentProperties = {}>(
+  ui: React.ReactElement,
   {
     // react-intl
     locale = 'en',
@@ -272,19 +341,31 @@ const renderApp = (
     actionRights, // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
     dataFences, // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
     dataLocale = 'en',
-    ApolloProviderComponent = MockedApolloProvider,
+    ApolloProviderComponent = ApolloMockProvider,
     // gtm-context
     gtmTracking = defaultGtmTracking,
     // forwarding to @testing-library/react
     ...renderOptions
-  } = {}
-) => {
-  const mergedUser = mergeOptional(defaultUser, user);
-  const mergedProject = mergeOptional(defaultProject, project);
-  const mergedEnvironment = mergeOptional(defaultEnvironment, environment);
-  const mergedGtmTracking = mergeOptional(defaultGtmTracking, gtmTracking);
+  }: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>> = {}
+): TRenderAppResult<AdditionalEnvironmentProperties> {
+  const mergedUser = user === null ? undefined : { ...defaultUser, ...user };
+  const mergedProject =
+    project === null
+      ? undefined
+      : {
+          ...defaultProject,
+          ...project,
+          allAppliedPermissions: denormalizePermissions(permissions),
+          allAppliedActionRights: denormalizeActionRights(actionRights),
+          allAppliedDataFences: denormalizeDataFences(dataFences),
+        };
+  const mergedEnvironment = {
+    ...defaultEnvironment,
+    ...environment,
+  } as TProviderProps<AdditionalEnvironmentProperties>['environment'];
+  const mergedGtmTracking = { ...defaultGtmTracking, ...gtmTracking };
 
-  const ApplicationProviders = ({ children }) => (
+  const ApplicationProviders = (props: TApplicationProvidersProps) => (
     <IntlProvider locale={locale}>
       <ApolloProviderComponent mocks={mocks} addTypename={addTypename}>
         <ConfigureFlopFlip
@@ -294,21 +375,14 @@ const renderApp = (
         >
           <ApplicationContextProvider
             user={mergedUser}
-            project={
-              mergedProject && {
-                ...mergedProject,
-                allAppliedPermissions: denormalizePermissions(permissions),
-                allAppliedActionRights: denormalizeActionRights(actionRights),
-                allAppliedDataFences: denormalizeDataFences(dataFences),
-              }
-            }
+            project={mergedProject}
             environment={mergedEnvironment}
             projectDataLocale={dataLocale}
           >
             <GtmContext.Provider value={mergedGtmTracking}>
               <Router history={history}>
                 <React.Suspense fallback={<LoadingFallback />}>
-                  {children}
+                  {props.children}
                 </React.Suspense>
               </Router>
             </GtmContext.Provider>
@@ -323,11 +397,12 @@ const renderApp = (
 
   const rendered = rtl.render(ui, {
     ...renderOptions,
-    wrapper: ({ children }) =>
-      wrapIfNeeded(
-        ApplicationProviders,
-        wrapIfNeeded(renderOptions.wrapper, children)
-      ),
+    // eslint-disable-next-line react/display-name
+    wrapper: ({ children, ...props }) => (
+      <ApplicationProviders {...props}>
+        {wrapIfNeeded(children, renderOptions.wrapper)}
+      </ApplicationProviders>
+    ),
   });
 
   return {
@@ -347,13 +422,34 @@ const renderApp = (
     // to reference it in our tests.
     gtmTracking: mergedGtmTracking,
   };
-};
+}
+
+type TRenderAppWithReduxOptions<
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+> = {
+  store: ReturnType<typeof createReduxStore>;
+  storeState: StoreState;
+  sdkMocks: TSdkMock[];
+  mapNotificationToComponent: TMapNotificationToComponentProps['mapNotificationToComponent'];
+} & TRenderAppOptions<AdditionalEnvironmentProperties>;
+type TRenderAppWithReduxResult<
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+> = TRenderAppResult<AdditionalEnvironmentProperties> &
+  Pick<
+    TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>,
+    'store'
+  >;
 
 // Test setup for rendering with Redux
 // We expose a sophisticated function because we plan to get rid of Redux
 // Use this function only when your test actually needs Redux
-const renderAppWithRedux = (
-  ui,
+function renderAppWithRedux<
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+>(
+  ui: React.ReactElement,
   {
     // The store option is kept around to keep the API open as not all use-cases
     // are known yet. Meanwhile storeState and sdkMocks provide convenient ways
@@ -386,10 +482,12 @@ const renderAppWithRedux = (
     // they are provided in.
     sdkMocks = [],
     // Pass a function to map custom notification components
-    mapNotificationToComponent = () => undefined,
+    mapNotificationToComponent = () => null,
     ...renderOptions
-  } = {}
-) => {
+  }: Partial<
+    TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>
+  > = {}
+): TRenderAppWithReduxResult<AdditionalEnvironmentProperties, StoreState> {
   invariant(
     !(store && storeState),
     'test-utils: You provided both `store` and `storeState`. Please provide only one of them.'
@@ -418,7 +516,7 @@ const renderAppWithRedux = (
     return createReduxStore(storeState, [testingMiddleware]);
   })();
 
-  const ReduxProviders = ({ children }) => (
+  const ReduxProviders = (props: { children: React.ReactNode }) => (
     <NotificationProviderForCustomComponent
       mapNotificationToComponent={mapNotificationToComponent}
     >
@@ -427,7 +525,7 @@ const renderAppWithRedux = (
           <NotificationsList domain={DOMAINS.GLOBAL} />
           <NotificationsList domain={DOMAINS.PAGE} />
           <NotificationsList domain={DOMAINS.SIDE} />
-          {children}
+          {props.children}
         </div>
       </StoreProvider>
     </NotificationProviderForCustomComponent>
@@ -438,11 +536,12 @@ const renderAppWithRedux = (
 
   const rendered = renderApp(ui, {
     ...renderOptions,
-    wrapper: ({ children }) =>
-      wrapIfNeeded(
-        ReduxProviders,
-        wrapIfNeeded(renderOptions.wrapper, children)
-      ),
+    // eslint-disable-next-line react/display-name
+    wrapper: ({ children, ...props }) => (
+      <ReduxProviders {...props}>
+        {wrapIfNeeded(children, renderOptions.wrapper)}
+      </ReduxProviders>
+    ),
   });
 
   return {
@@ -452,12 +551,35 @@ const renderAppWithRedux = (
     // this to test implementation details).
     store: reduxStore,
   };
-};
+}
+
+type TExperimentalRenderAppWithReduxOptions<
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+> = TRenderAppWithReduxOptions<AdditionalEnvironmentProperties, StoreState>;
+type TExperimentalRenderAppWithReduxResult<
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+> = TRenderAppWithReduxResult<AdditionalEnvironmentProperties, StoreState>;
 
 // Renders UI without mocking ApolloProvider
-const experimentalRenderAppWithRedux = (ui, renderOptions) => {
+function experimentalRenderAppWithRedux<
+  AdditionalEnvironmentProperties = {},
+  StoreState = {}
+>(
+  ui: React.ReactElement,
+  renderOptions: Partial<
+    TExperimentalRenderAppWithReduxOptions<
+      AdditionalEnvironmentProperties,
+      StoreState
+    >
+  > = {}
+): TExperimentalRenderAppWithReduxResult<
+  AdditionalEnvironmentProperties,
+  StoreState
+> {
   const client = createApolloClient();
-  const RealApolloProvider = ({ children }) => (
+  const RealApolloProvider = ({ children }: { children: React.ReactNode }) => (
     <ApolloProvider client={client}>{children}</ApolloProvider>
   );
   RealApolloProvider.displayName = 'RealApolloProvider';
@@ -465,11 +587,11 @@ const experimentalRenderAppWithRedux = (ui, renderOptions) => {
     children: PropTypes.node.isRequired,
   };
 
-  return renderAppWithRedux(ui, {
+  return renderAppWithRedux<AdditionalEnvironmentProperties, StoreState>(ui, {
     ...renderOptions,
     ApolloProviderComponent: RealApolloProvider,
   });
-};
+}
 
 // re-export everything
 export * from '@testing-library/react';
