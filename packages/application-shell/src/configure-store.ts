@@ -60,6 +60,8 @@ const patchedGetCorrelationId = () =>
   });
 
 const createInternalReducer = (injectedReducers: ReducersMapObject = {}) =>
+  // NOTE: since we don't know in advance which reducers will be injected,
+  // we pass an `unknown` type to express this uncertainty and make the compiler happy.
   combineReducers<unknown>({
     requestsInFlight: requestsInFlightReducer,
     notifications: notificationsReducer,
