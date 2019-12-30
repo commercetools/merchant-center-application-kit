@@ -116,8 +116,6 @@ const defaultFlopflipAdapterArgs = {
     pollingInteral: 1,
   },
   flags: {},
-  onFlagsStateChange: jest.fn(),
-  onStatusStateChange: jest.fn(),
 };
 
 // For backwards compatibility we need to denormalize the given `permissions` option
