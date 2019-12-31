@@ -63,7 +63,17 @@ export type TNavbarMenu = {
 export type TQuery = {
    __typename?: 'Query',
   applicationsMenu: TApplicationsMenu,
+  allFeatureToggles: Array<Scalars['String']>,
 };
+
+export type TFetchAllMenuFeatureTogglesQueryVariables = {};
+
+
+export type TFetchAllMenuFeatureTogglesQuery = (
+  { __typename?: 'Query' }
+  & Pick<TQuery, 'allFeatureToggles'>
+);
+
 export type TFetchApplicationsMenuQueryVariables = {};
 
 

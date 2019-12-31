@@ -80,12 +80,13 @@ export type TInvitationInput = {
 export type TInvitationOrganizationInput = {
   id: Scalars['ID'],
   version: Scalars['Int'],
+  name: Maybe<Scalars['String']>,
 };
 
 /** 
  * Note: you can not brute-force fetch user information
  * by trying emails. Only information about the membership itself.
- **/
+ */
 export type TInvitationQueryResult = {
    __typename?: 'InvitationQueryResult',
   version: Scalars['Int'],
@@ -125,7 +126,6 @@ export type TLocalizedField = {
 };
 
 export type TMetaData = {
-  id: Scalars['ID'],
   version: Maybe<Scalars['Int']>,
   createdAt: Scalars['String'],
   lastModifiedAt: Scalars['String'],
@@ -135,14 +135,13 @@ export type TMutation = {
    __typename?: 'Mutation',
   random: Scalars['String'],
   updateUser: TUser,
-  invite: Maybe<Array<TInvitationResult>>,
-  importSampleData: Maybe<Scalars['Boolean']>,
+  invite: Array<TInvitationResult>,
   createMyProject: Maybe<TProjectPendingCreation>,
   createMyOrganization: Maybe<TOrganizationCreated>,
   sendLinkToResetPassword: Maybe<TResetPasswordRequest>,
-  resetPassword: TUser,
+  resetPassword: TResetUser,
   sendLinkToSignUp: Maybe<TSignUpRequest>,
-  signUp: TUser,
+  signUp: TSignedUpUser,
   sendLinkToDeleteAccount: Maybe<TDeleteAccountRequest>,
   deleteAccount: TDeletedUser,
   createOAuthClient: TOAuthClient,
@@ -167,20 +166,14 @@ export type TMutation_InviteArgs = {
 };
 
 
-export type TMutation_ImportSampleDataArgs = {
-  key: Scalars['String']
-};
-
-
 export type TMutation_CreateMyProjectArgs = {
   draft: TProjectDraftType,
-  myPermission: Maybe<TMyPermissionInitializationInput>
+  myPermission: TMyPermissionInitializationInput
 };
 
 
 export type TMutation_CreateMyOrganizationArgs = {
-  draft: TOrganizationDraftType,
-  myPermission: Maybe<TMyPermissionInitializationInput>
+  draft: TOrganizationDraftType
 };
 
 
@@ -192,7 +185,8 @@ export type TMutation_SendLinkToResetPasswordArgs = {
 
 export type TMutation_ResetPasswordArgs = {
   jwt: Scalars['String'],
-  draft: TResetPasswordDraft
+  draft: TResetPasswordDraft,
+  origin: Maybe<Scalars['String']>
 };
 
 
@@ -231,8 +225,7 @@ export type TMutation_DeleteOAuthClientArgs = {
 };
 
 export type TMyPermissionInitializationInput = {
-  isEnabled: Maybe<Scalars['Boolean']>,
-  teamId: Maybe<Scalars['String']>,
+  teamId: Scalars['String'],
 };
 
 export type TOAuthClient = {
@@ -266,15 +259,16 @@ export type TOAuthClientTemplate = {
   oAuthScopes: Array<TPermissionScope>,
 };
 
-export type TOrganization = TMetaData & {
+/** 
+ * TODO: use `Reference` instead once there is no more usage of the following fields:
+ * - name
+ * - createdAt
+ */
+export type TOrganization = {
    __typename?: 'Organization',
   id: Scalars['ID'],
-  version: Maybe<Scalars['Int']>,
   createdAt: Scalars['String'],
-  lastModifiedAt: Scalars['String'],
   name: Scalars['String'],
-  teams: TTeamQueryResult,
-  teamsCount: Scalars['Int'],
 };
 
 export type TOrganizationCreated = {
@@ -289,19 +283,11 @@ export type TOrganizationDraftType = {
   ownerId: Scalars['String'],
 };
 
-export type TOrganizationQueryResult = TQueryResult & {
-   __typename?: 'OrganizationQueryResult',
-  count: Scalars['Int'],
-  offset: Scalars['Int'],
-  total: Scalars['Int'],
-  results: Array<TOrganization>,
-};
-
 /** 
  * Note:
  *   This is not a `Organization` type as in the future MC schema will not support
  * e.g. expanding on team members on its internal schema.
- **/
+ */
 export type TOrganizationTeamsCreated = {
    __typename?: 'OrganizationTeamsCreated',
   id: Scalars['String'],
@@ -349,7 +335,6 @@ export enum TPermissionScope {
 
 export type TProject = TMetaData & {
    __typename?: 'Project',
-  id: Scalars['ID'],
   version: Maybe<Scalars['Int']>,
   createdAt: Scalars['String'],
   lastModifiedAt: Scalars['String'],
@@ -365,7 +350,6 @@ export type TProject = TMetaData & {
   owner: TOrganization,
   suspension: TProjectSuspension,
   expiry: TProjectExpiry,
-  permissions: TProjectPermissions,
   settings: Maybe<TProjectSetting>,
   shippingRateInputType: Maybe<TShippingRateInputType>,
   allAppliedPermissions: Array<Maybe<TAppliedPermission>>,
@@ -412,75 +396,6 @@ export type TProjectPermissionInput = {
   storeKey: Maybe<Scalars['String']>,
 };
 
-export type TProjectPermissions = {
-   __typename?: 'ProjectPermissions',
-  canAddCategories: Scalars['Boolean'],
-  canAddCustomerGroups: Scalars['Boolean'],
-  canAddCustomers: Scalars['Boolean'],
-  canAddDiscountCodes: Scalars['Boolean'],
-  canAddOrders: Scalars['Boolean'],
-  canAddPrices: Scalars['Boolean'],
-  canAddProducts: Scalars['Boolean'],
-  canCreateAnonymousToken: Scalars['Boolean'],
-  canDeletePrices: Scalars['Boolean'],
-  canDeleteProducts: Scalars['Boolean'],
-  canEditPrices: Scalars['Boolean'],
-  canIntrospectOauthTokens: Scalars['Boolean'],
-  canManageApiClients: Scalars['Boolean'],
-  canManageCustomers: Scalars['Boolean'],
-  canManageExtensions: Scalars['Boolean'],
-  canManageMyOrders: Scalars['Boolean'],
-  canManageMyPayments: Scalars['Boolean'],
-  canManageMyProfile: Scalars['Boolean'],
-  canManageMyShoppingLists: Scalars['Boolean'],
-  canManageOrderEdits: Scalars['Boolean'],
-  canManageOrders: Scalars['Boolean'],
-  canManageOrganization: Scalars['Boolean'],
-  canManagePayments: Scalars['Boolean'],
-  canManageProducts: Scalars['Boolean'],
-  canManageProject: Scalars['Boolean'],
-  canManageShoppingLists: Scalars['Boolean'],
-  canManageStates: Scalars['Boolean'],
-  canManageSubscriptions: Scalars['Boolean'],
-  canManageTypes: Scalars['Boolean'],
-  canPublishProducts: Scalars['Boolean'],
-  canUnpublishProducts: Scalars['Boolean'],
-  canViewApiClients: Scalars['Boolean'],
-  canViewCartDiscounts: Scalars['Boolean'],
-  canViewCategories: Scalars['Boolean'],
-  canViewCategoriesList: Scalars['Boolean'],
-  canViewCategoriesSearch: Scalars['Boolean'],
-  canViewCustomApplications: Scalars['Boolean'],
-  canViewCustomerGroups: Scalars['Boolean'],
-  canViewCustomers: Scalars['Boolean'],
-  canViewCustomersList: Scalars['Boolean'],
-  canViewDashboard: Scalars['Boolean'],
-  canViewDeveloperSettings: Scalars['Boolean'],
-  canViewDirectAccess: Scalars['Boolean'],
-  canViewDiscountCodes: Scalars['Boolean'],
-  canViewDiscounts: Scalars['Boolean'],
-  canViewDiscountsList: Scalars['Boolean'],
-  canViewMessages: Scalars['Boolean'],
-  canViewModifiedProducts: Scalars['Boolean'],
-  canViewOrderEdits: Scalars['Boolean'],
-  canViewOrders: Scalars['Boolean'],
-  canViewOrdersList: Scalars['Boolean'],
-  canViewPayments: Scalars['Boolean'],
-  canViewPimSearch: Scalars['Boolean'],
-  canViewProductDiscounts: Scalars['Boolean'],
-  canViewProducts: Scalars['Boolean'],
-  canViewProductsList: Scalars['Boolean'],
-  canViewProductTypes: Scalars['Boolean'],
-  canViewProjectSettings: Scalars['Boolean'],
-  canViewProjectSettingsMisc: Scalars['Boolean'],
-  canViewSettings: Scalars['Boolean'],
-  canViewShoppingLists: Scalars['Boolean'],
-  canViewStates: Scalars['Boolean'],
-  canViewTypes: Scalars['Boolean'],
-  canViewShippingLists: Scalars['Boolean'],
-  canManageShippingLists: Scalars['Boolean'],
-};
-
 export type TProjectQueryResult = TQueryResult & {
    __typename?: 'ProjectQueryResult',
   count: Scalars['Int'],
@@ -521,39 +436,23 @@ export type TQuery = {
   amILoggedIn: Scalars['Boolean'],
   me: Maybe<TUser>,
   project: Maybe<TProject>,
-  organization: Maybe<TOrganization>,
-  /** 
- * Note: A `team` query exists as we do not always want to load
-   * all teams of an organization just to retrieve all their members
-   * to display them.
- **/
-  team: Maybe<TTeam>,
   invitation: Maybe<TInvitationQueryResult>,
   allSupportedResources: Maybe<Array<TSupportedResource>>,
   allSupportedActionRights: Maybe<Array<TSupportedActionRight>>,
+  allSupportedStoreScopes: Maybe<Array<TSupportedStoreScope>>,
   allSupportedMenuVisibilities: Maybe<Array<TSupportedMenuVisibility>>,
   allImpliedOAuthScopes: Array<Scalars['String']>,
   releases: Maybe<TReleaseHistory>,
   oAuthClient: Maybe<TOAuthClient>,
   oAuthClients: TOAuthClientQueryResult,
   oAuthScopes: Array<TPermissionScope>,
+  storeOAuthScopes: Array<TPermissionScope>,
   oAuthClientTemplates: Array<TOAuthClientTemplate>,
 };
 
 
 export type TQuery_ProjectArgs = {
   key: Maybe<Scalars['String']>
-};
-
-
-export type TQuery_OrganizationArgs = {
-  id: Scalars['ID']
-};
-
-
-export type TQuery_TeamArgs = {
-  organizationId: Scalars['ID'],
-  teamId: Scalars['ID']
 };
 
 
@@ -589,6 +488,12 @@ export type TQueryResult = {
   count: Scalars['Int'],
   offset: Scalars['Int'],
   total: Scalars['Int'],
+};
+
+export type TReference = {
+   __typename?: 'Reference',
+  typeId: Scalars['String'],
+  id: Scalars['String'],
 };
 
 export type TReferenceInput = {
@@ -641,6 +546,11 @@ export type TResetPasswordRequest = {
   jwt: Maybe<Scalars['String']>,
 };
 
+export type TResetUser = {
+   __typename?: 'ResetUser',
+  id: Scalars['String'],
+};
+
 export type TSetUserTimeZone = {
   /** NOTE: This is optional as not passing it unsets the timezone. */
   timeZone: Maybe<Scalars['String']>,
@@ -657,6 +567,11 @@ export enum TShippingRateType {
   CartScore = 'CartScore',
   CartValue = 'CartValue'
 }
+
+export type TSignedUpUser = {
+   __typename?: 'SignedUpUser',
+  id: Scalars['String'],
+};
 
 export type TSignUpRequest = {
    __typename?: 'SignUpRequest',
@@ -688,48 +603,10 @@ export type TSupportedResource = {
   name: Scalars['String'],
 };
 
-export type TTeam = {
-   __typename?: 'Team',
-  id: Scalars['ID'],
+export type TSupportedStoreScope = {
+   __typename?: 'SupportedStoreScope',
+  group: Scalars['String'],
   name: Scalars['String'],
-  members: TTeamMemberQueryResult,
-  permissions: Maybe<Array<TTeamPermission>>,
-};
-
-export type TTeamMember = TMetaData & {
-   __typename?: 'TeamMember',
-  id: Scalars['ID'],
-  version: Maybe<Scalars['Int']>,
-  createdAt: Scalars['String'],
-  lastModifiedAt: Scalars['String'],
-  email: Scalars['String'],
-  gravatarHash: Scalars['String'],
-  firstName: Scalars['String'],
-  lastName: Scalars['String'],
-  language: Scalars['String'],
-  numberFormat: Scalars['String'],
-};
-
-export type TTeamMemberQueryResult = TQueryResult & {
-   __typename?: 'TeamMemberQueryResult',
-  count: Scalars['Int'],
-  offset: Scalars['Int'],
-  total: Scalars['Int'],
-  results: Array<TTeamMember>,
-};
-
-export type TTeamPermission = {
-   __typename?: 'TeamPermission',
-  project: TProject,
-  permission: Scalars['String'],
-};
-
-export type TTeamQueryResult = TQueryResult & {
-   __typename?: 'TeamQueryResult',
-  count: Scalars['Int'],
-  offset: Scalars['Int'],
-  total: Scalars['Int'],
-  results: Array<TTeam>,
 };
 
 export type TTrackingConfig = {
@@ -759,25 +636,13 @@ export type TUser = TMetaData & {
   launchdarklyTrackingTenant: Scalars['String'],
   gravatarHash: Scalars['String'],
   defaultProjectKey: Maybe<Scalars['String']>,
-  organizations: TOrganizationQueryResult,
   projects: TProjectQueryResult,
-  permissions: TUserPermissions,
-};
-
-
-export type TUser_PermissionsArgs = {
-  organizationId: Maybe<Scalars['ID']>
 };
 
 export type TUserDraft = {
   firstName: Scalars['String'],
   lastName: Scalars['String'],
   password: Scalars['String'],
-};
-
-export type TUserPermissions = {
-   __typename?: 'UserPermissions',
-  canManageOrganization: Scalars['Boolean'],
 };
 
 export type TUserUpdateAction = {
@@ -787,6 +652,7 @@ export type TUserUpdateAction = {
   changeNumberFormat: Maybe<TChangeUserNumberFormat>,
   setTimeZone: Maybe<TSetUserTimeZone>,
 };
+
 export type TAmILoggedInQueryVariables = {};
 
 
@@ -841,9 +707,10 @@ export type TFetchLoggedInUserQuery = (
     & { projects: (
       { __typename?: 'ProjectQueryResult' }
       & Pick<TProjectQueryResult, 'total'>
-      & { results: Array<{ __typename?: 'Project' }
+      & { results: Array<(
+        { __typename?: 'Project' }
         & TProjectFragmentFragment
-      > }
+      )> }
     ) }
   )> }
 );
@@ -870,9 +737,10 @@ export type TFetchUserProjectsQuery = (
     & Pick<TUser, 'id'>
     & { projects: (
       { __typename?: 'ProjectQueryResult' }
-      & { results: Array<{ __typename?: 'Project' }
+      & { results: Array<(
+        { __typename?: 'Project' }
         & TProjectFragmentFragment
-      > }
+      )> }
     ) }
   )> }
 );

@@ -146,6 +146,20 @@ export type TApplicationExtensionWhereInput = {
   NOT: Maybe<Array<TApplicationExtensionWhereInput>>,
 };
 
+export type TCartDiscountsListView = {
+   __typename?: 'CartDiscountsListView',
+  id: Scalars['ID'],
+  createdAt: Scalars['DateTime'],
+  updatedAt: Scalars['DateTime'],
+  userId: Scalars['String'],
+  projectKey: Scalars['String'],
+  visibleColumns: Array<Scalars['String']>,
+};
+
+export type TCartDiscountsListViewInput = {
+  visibleColumns: Array<Scalars['String']>,
+};
+
 export enum TCategoryRecommendationSearchProperty {
   Attribute = 'Attribute',
   MachineLearning = 'MachineLearning',
@@ -216,6 +230,20 @@ export type TCustomersListViewTableInput = {
 };
 
 
+export type TDiscountCodesListView = {
+   __typename?: 'DiscountCodesListView',
+  id: Scalars['ID'],
+  createdAt: Scalars['DateTime'],
+  updatedAt: Scalars['DateTime'],
+  userId: Scalars['String'],
+  projectKey: Scalars['String'],
+  visibleColumns: Array<Scalars['String']>,
+};
+
+export type TDiscountCodesListViewInput = {
+  visibleColumns: Array<Scalars['String']>,
+};
+
 export enum TExistence {
   All = 'All',
   Filled = 'Filled',
@@ -229,7 +257,8 @@ export enum TFilterType {
   Missing = 'Missing',
   MissingIn = 'MissingIn',
   MoreThan = 'MoreThan',
-  Range = 'Range'
+  Range = 'Range',
+  CustomField = 'CustomField'
 }
 
 export type TFilterValues = {
@@ -482,6 +511,12 @@ export type TMutation = {
   activateCustomersListView: Maybe<TCustomersListView>,
   deactivateCustomersListView: Maybe<TOrdersListView>,
   updateRuleBuilderQuickSelectionValues: Maybe<TRuleBuilderQuickSelectionValues>,
+  createCartDiscountsListView: Maybe<TCartDiscountsListView>,
+  updateCartDiscountsListView: Maybe<TCartDiscountsListView>,
+  createProductDiscountsListView: Maybe<TProductDiscountsListView>,
+  updateProductDiscountsListView: Maybe<TProductDiscountsListView>,
+  createDiscountCodesListView: Maybe<TDiscountCodesListView>,
+  updateDiscountCodesListView: Maybe<TDiscountCodesListView>,
 };
 
 
@@ -662,6 +697,39 @@ export type TMutation_DeactivateCustomersListViewArgs = {
 export type TMutation_UpdateRuleBuilderQuickSelectionValuesArgs = {
   id: Maybe<Scalars['ID']>,
   data: TRuleBuilderQuickSelectionInput
+};
+
+
+export type TMutation_CreateCartDiscountsListViewArgs = {
+  data: TCartDiscountsListViewInput
+};
+
+
+export type TMutation_UpdateCartDiscountsListViewArgs = {
+  data: TCartDiscountsListViewInput,
+  id: Scalars['ID']
+};
+
+
+export type TMutation_CreateProductDiscountsListViewArgs = {
+  data: TProductDiscountsListViewInput
+};
+
+
+export type TMutation_UpdateProductDiscountsListViewArgs = {
+  data: TProductDiscountsListViewInput,
+  id: Scalars['ID']
+};
+
+
+export type TMutation_CreateDiscountCodesListViewArgs = {
+  data: TDiscountCodesListViewInput
+};
+
+
+export type TMutation_UpdateDiscountCodesListViewArgs = {
+  data: TDiscountCodesListViewInput,
+  id: Scalars['ID']
 };
 
 export type TNavbarMenu = {
@@ -952,7 +1020,7 @@ export type TOidcSsoConfig = {
   authorityUrl: Scalars['String'],
   clientId: Scalars['String'],
   clientSecret: Maybe<Scalars['String']>,
-  teamIdForNewUsers: Maybe<Scalars['String']>,
+  teamIdForNewUsers: Scalars['String'],
   logoutUrl: Maybe<Scalars['String']>,
 };
 
@@ -960,7 +1028,7 @@ export type TOidcSsoConfigDataInput = {
   authorityUrl: Scalars['String'],
   clientId: Scalars['String'],
   clientSecret: Maybe<Scalars['String']>,
-  teamIdForNewUsers: Maybe<Scalars['String']>,
+  teamIdForNewUsers: Scalars['String'],
   logoutUrl: Maybe<Scalars['String']>,
 };
 
@@ -1077,6 +1145,20 @@ export type TPimSearchListViewTableInput = {
   visibleColumns: Array<Scalars['String']>,
 };
 
+export type TProductDiscountsListView = {
+   __typename?: 'ProductDiscountsListView',
+  id: Scalars['ID'],
+  createdAt: Scalars['DateTime'],
+  updatedAt: Scalars['DateTime'],
+  userId: Scalars['String'],
+  projectKey: Scalars['String'],
+  visibleColumns: Array<Scalars['String']>,
+};
+
+export type TProductDiscountsListViewInput = {
+  visibleColumns: Array<Scalars['String']>,
+};
+
 export type TProductTypeAttributesView = {
    __typename?: 'ProductTypeAttributesView',
   id: Scalars['ID'],
@@ -1162,6 +1244,9 @@ export type TQuery = {
   customersListViews: Array<Maybe<TCustomersListView>>,
   customersListView: Maybe<TCustomersListView>,
   activeCustomersListView: Maybe<TCustomersListView>,
+  cartDiscountsListView: Maybe<TCartDiscountsListView>,
+  productDiscountsListView: Maybe<TProductDiscountsListView>,
+  discountCodesListView: Maybe<TDiscountCodesListView>,
 };
 
 
@@ -1279,6 +1364,7 @@ export type TVariantPricesListView = {
 export type TVariantPricesListViewInput = {
   visibleColumns: Array<Scalars['String']>,
 };
+
 export type TFetchProjectExtensionImageRegexQueryVariables = {};
 
 
@@ -1289,11 +1375,13 @@ export type TFetchProjectExtensionImageRegexQuery = (
     & Pick<TProjectExtension, 'id'>
     & { imageRegex: Maybe<(
       { __typename?: 'ImageRegex' }
-      & { thumb: Maybe<{ __typename?: 'ImageRegexOptions' }
+      & { thumb: Maybe<(
+        { __typename?: 'ImageRegexOptions' }
         & TImageRegexFragment
-      >, small: Maybe<{ __typename?: 'ImageRegexOptions' }
+      )>, small: Maybe<(
+        { __typename?: 'ImageRegexOptions' }
         & TImageRegexFragment
-      > }
+      )> }
     )> }
   )> }
 );
