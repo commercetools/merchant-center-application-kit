@@ -9,7 +9,7 @@ export type Scalars = {
   /** 
  * The `Long` scalar type represents non-fractional signed whole numeric values.
    * Long can represent values between -(2^63) and 2^63 - 1.
- **/
+ */
   Long: number,
   /** DateTime is a scalar value that represents an ISO8601 formatted date and time. */
   DateTime: string,
@@ -24,7 +24,7 @@ export type Scalars = {
   /** 
  * Represents a currency. Currencies are identified by their [ISO
    * 4217](http://www.iso.org/iso/home/standards/currency_codes.htm) currency codes.
- **/
+ */
   Currency: string,
   /** A key that references a resource. */
   KeyReferenceInput: string,
@@ -290,6 +290,23 @@ export type TAddShippingMethodZone = {
   zone: TResourceIdentifierInput,
 };
 
+export type TAddShoppingListLineItem = {
+  addedAt: Maybe<Scalars['DateTime']>,
+  custom: Maybe<TCustomFieldsDraft>,
+  quantity: Maybe<Scalars['Int']>,
+  variantId: Maybe<Scalars['Int']>,
+  sku: Maybe<Scalars['String']>,
+  productId: Maybe<Scalars['String']>,
+};
+
+export type TAddShoppingListTextLineItem = {
+  addedAt: Maybe<Scalars['DateTime']>,
+  custom: Maybe<TCustomFieldsDraft>,
+  quantity: Maybe<Scalars['Int']>,
+  description: Maybe<Array<TLocalizedStringItemInputType>>,
+  name: Array<TLocalizedStringItemInputType>,
+};
+
 export type TAddZoneLocation = {
   location: TZoneLocation,
 };
@@ -315,7 +332,7 @@ export enum TAnonymousCartSignInMode {
    * customer’s cart (same product ID and variant ID), the maximum quantity of both
    * LineItems is used as the new quantity. In that case `CustomFields` on the
    * `LineItem` of the anonymous cart will not be in the resulting `LineItem`.
- **/
+ */
   MergeWithExistingCustomerCart = 'MergeWithExistingCustomerCart'
 }
 
@@ -340,7 +357,7 @@ export type TApiClientWithoutSecretQueryResult = {
 /** 
  * API Clients can be used to obtain OAuth 2 access tokens. The secret is only
  * shown once in the response of creating the API Client.
- **/
+ */
 export type TApiClientWithSecret = {
    __typename?: 'APIClientWithSecret',
   id: Scalars['String'],
@@ -581,7 +598,7 @@ export type TBooleanType = TFieldType & {
 /** 
  * A shopping cart holds product variants and can be ordered. Each cart either
  * belongs to a registered customer or is an anonymous cart.
- **/
+ */
 export type TCart = TVersioned & {
    __typename?: 'Cart',
   customerId: Maybe<Scalars['String']>,
@@ -633,7 +650,7 @@ export type TCart = TVersioned & {
 /** 
  * A shopping cart holds product variants and can be ordered. Each cart either
  * belongs to a registered customer or is an anonymous cart.
- **/
+ */
 export type TCart_CustomFieldsRawArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -643,7 +660,7 @@ export type TCart_CustomFieldsRawArgs = {
 /** 
  * A shopping cart holds product variants and can be ordered. Each cart either
  * belongs to a registered customer or is an anonymous cart.
- **/
+ */
 export type TCart_CustomFieldListArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -665,7 +682,7 @@ export type TCartClassificationType = TShippingRateInputType & {
  * 
  * The number of active cart discounts that do not require a discount code
  * (isActive=true and requiresDiscountCode=false) is limited to 100.
- **/
+ */
 export type TCartDiscount = TVersioned & {
    __typename?: 'CartDiscount',
   cartPredicate: Scalars['String'],
@@ -704,7 +721,7 @@ export type TCartDiscount = TVersioned & {
  * 
  * The number of active cart discounts that do not require a discount code
  * (isActive=true and requiresDiscountCode=false) is limited to 100.
- **/
+ */
 export type TCartDiscount_NameArgs = {
   locale: Maybe<Scalars['Locale']>,
   acceptLanguage: Maybe<Array<Scalars['Locale']>>
@@ -717,7 +734,7 @@ export type TCartDiscount_NameArgs = {
  * 
  * The number of active cart discounts that do not require a discount code
  * (isActive=true and requiresDiscountCode=false) is limited to 100.
- **/
+ */
 export type TCartDiscount_DescriptionArgs = {
   locale: Maybe<Scalars['Locale']>,
   acceptLanguage: Maybe<Array<Scalars['Locale']>>
@@ -730,7 +747,7 @@ export type TCartDiscount_DescriptionArgs = {
  * 
  * The number of active cart discounts that do not require a discount code
  * (isActive=true and requiresDiscountCode=false) is limited to 100.
- **/
+ */
 export type TCartDiscount_CustomFieldsRawArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -743,7 +760,7 @@ export type TCartDiscount_CustomFieldsRawArgs = {
  * 
  * The number of active cart discounts that do not require a discount code
  * (isActive=true and requiresDiscountCode=false) is limited to 100.
- **/
+ */
 export type TCartDiscount_CustomFieldListArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -874,6 +891,15 @@ export type TCartQueryResult = {
   count: Scalars['Int'],
   total: Scalars['Long'],
   results: Array<TCart>,
+};
+
+export type TCartsConfiguration = {
+   __typename?: 'CartsConfiguration',
+  deleteDaysAfterLastModification: Maybe<Scalars['Int']>,
+};
+
+export type TCartsConfigurationInput = {
+  deleteDaysAfterLastModification: Maybe<Scalars['Int']>,
 };
 
 export type TCartScoreInput = {
@@ -1443,6 +1469,10 @@ export type TChangeProductSlug = {
   staged: Maybe<Scalars['Boolean']>,
 };
 
+export type TChangeProjectSettingsCartsConfiguration = {
+  cartsConfiguration: TCartsConfigurationInput,
+};
+
 export type TChangeProjectSettingsCountries = {
   countries: Array<Scalars['Country']>,
 };
@@ -1467,6 +1497,10 @@ export type TChangeProjectSettingsName = {
   name: Scalars['String'],
 };
 
+export type TChangeProjectSettingsShoppingListsConfiguration = {
+  shoppingListsConfiguration: TShoppingListsConfigurationInput,
+};
+
 export type TChangeShippingMethodIsDefault = {
   isDefault: Scalars['Boolean'],
 };
@@ -1477,6 +1511,33 @@ export type TChangeShippingMethodName = {
 
 export type TChangeShippingMethodTaxCategory = {
   taxCategory: TResourceIdentifierInput,
+};
+
+export type TChangeShoppingListLineItemQuantity = {
+  lineItemId: Scalars['String'],
+  quantity: Scalars['Int'],
+};
+
+export type TChangeShoppingListLineItemsOrder = {
+  lineItemOrder: Array<Scalars['String']>,
+};
+
+export type TChangeShoppingListName = {
+  name: Array<TLocalizedStringItemInputType>,
+};
+
+export type TChangeShoppingListTextLineItemName = {
+  textLineItemId: Scalars['String'],
+  name: Array<TLocalizedStringItemInputType>,
+};
+
+export type TChangeShoppingListTextLineItemQuantity = {
+  textLineItemId: Scalars['String'],
+  quantity: Scalars['Int'],
+};
+
+export type TChangeShoppingListTextLineItemsOrder = {
+  textLineItemOrder: Array<Scalars['String']>,
 };
 
 export type TChangeZoneName = {
@@ -1494,8 +1555,10 @@ export type TChannel = TVersioned & {
   description: Maybe<Scalars['String']>,
   descriptionAllLocales: Maybe<Array<TLocalizedString>>,
   address: Maybe<TAddress>,
+  geoLocation: Maybe<TGeometry>,
   createdAt: Scalars['DateTime'],
   lastModifiedAt: Scalars['DateTime'],
+  reviewRatingStatistics: Maybe<TReviewRatingStatistics>,
   /** This field contains non-typed data. Consider using `customFields` as a typed alternative. */
   customFieldsRaw: Maybe<Array<TRawCustomField>>,
   /** This field would contain type data */
@@ -1544,7 +1607,7 @@ export enum TChannelRole {
   /** 
  * Role tells that this channel can be used to expose products to a specific
    * distribution channel. It can be used by the cart to select a product price.
- **/
+ */
   ProductDistribution = 'ProductDistribution',
   /** Role tells that this channel can be used to track order export activities. */
   OrderExport = 'OrderExport',
@@ -1554,7 +1617,7 @@ export enum TChannelRole {
  * This role can be combined with some other roles (e.g. with `InventorySupply`)
    * to represent the fact that this particular channel is the primary/master
    * channel among the channels of the same type.
- **/
+ */
   Primary = 'Primary'
 }
 
@@ -1585,6 +1648,7 @@ export type TCreateApiClient = {
 export type TCreateStore = {
   key: Scalars['String'],
   name: Maybe<Array<TLocalizedStringItemInputType>>,
+  languages: Maybe<Array<Scalars['Locale']>>,
 };
 
 export type TCreateZone = {
@@ -1670,7 +1734,7 @@ export type TCustomerActiveCartInterface_CustomerActiveCartArgs = {
  * A customer can be a member in a customer group (e.g. reseller, gold member). A
  * customer group can be used in price calculations with special prices being
  * assigned to certain customer groups.
- **/
+ */
 export type TCustomerGroup = TVersioned & {
    __typename?: 'CustomerGroup',
   id: Scalars['String'],
@@ -1695,7 +1759,7 @@ export type TCustomerGroup = TVersioned & {
  * A customer can be a member in a customer group (e.g. reseller, gold member). A
  * customer group can be used in price calculations with special prices being
  * assigned to certain customer groups.
- **/
+ */
 export type TCustomerGroup_CustomFieldsRawArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -1706,7 +1770,7 @@ export type TCustomerGroup_CustomFieldsRawArgs = {
  * A customer can be a member in a customer group (e.g. reseller, gold member). A
  * customer group can be used in price calculations with special prices being
  * assigned to certain customer groups.
- **/
+ */
 export type TCustomerGroup_CustomFieldListArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -1801,27 +1865,28 @@ export type TCustomerSignMeUpDraft = {
   /** 
  * The index of the address in the `addresses` list. The
    * `defaultBillingAddressId` of the customer will be set to the ID of that address.
- **/
+ */
   defaultBillingAddress: Maybe<Scalars['Int']>,
   /** 
  * The index of the address in the `addresses` list. The
    * `defaultShippingAddressId` of the customer will be set to the ID of that address.
- **/
+ */
   defaultShippingAddress: Maybe<Scalars['Int']>,
   /** 
  * The indices of the shipping addresses in the `addresses` list. The
    * `shippingAddressIds` of the `Customer` will be set to the IDs of that addresses.
- **/
+ */
   shippingAddresses: Maybe<Array<Scalars['Int']>>,
   /** 
  * The indices of the billing addresses in the `addresses` list. The
    * `billingAddressIds` of the customer will be set to the IDs of that addresses.
- **/
+ */
   billingAddresses: Maybe<Array<Scalars['Int']>>,
   custom: Maybe<TCustomFieldsDraft>,
   locale: Maybe<Scalars['Locale']>,
   salutation: Maybe<Scalars['String']>,
   key: Maybe<Scalars['String']>,
+  stores: Maybe<Array<TResourceIdentifierInput>>,
 };
 
 export type TCustomerSignUpDraft = {
@@ -1838,34 +1903,34 @@ export type TCustomerSignUpDraft = {
   /** 
  * The index of the address in the `addresses` list. The
    * `defaultBillingAddressId` of the customer will be set to the ID of that address.
- **/
+ */
   defaultBillingAddress: Maybe<Scalars['Int']>,
   /** 
  * The index of the address in the `addresses` list. The
    * `defaultShippingAddressId` of the customer will be set to the ID of that address.
- **/
+ */
   defaultShippingAddress: Maybe<Scalars['Int']>,
   /** 
  * The indices of the shipping addresses in the `addresses` list. The
    * `shippingAddressIds` of the `Customer` will be set to the IDs of that addresses.
- **/
+ */
   shippingAddresses: Maybe<Array<Scalars['Int']>>,
   /** 
  * The indices of the billing addresses in the `addresses` list. The
    * `billingAddressIds` of the customer will be set to the IDs of that addresses.
- **/
+ */
   billingAddresses: Maybe<Array<Scalars['Int']>>,
   custom: Maybe<TCustomFieldsDraft>,
   locale: Maybe<Scalars['Locale']>,
   salutation: Maybe<Scalars['String']>,
   key: Maybe<Scalars['String']>,
+  stores: Maybe<Array<TResourceIdentifierInput>>,
   customerNumber: Maybe<Scalars['String']>,
   anonymousCartId: Maybe<Scalars['String']>,
   externalId: Maybe<Scalars['String']>,
   customerGroup: Maybe<TResourceIdentifierInput>,
   isEmailVerified: Maybe<Scalars['Boolean']>,
   anonymousId: Maybe<Scalars['String']>,
-  stores: Maybe<Array<TResourceIdentifierInput>>,
 };
 
 export type TCustomerToken = {
@@ -1924,7 +1989,7 @@ export type TCustomField = {
  * * FieldType `Number`: `"4"`
  * * FieldType `Set` with an elementType of `String`: `"[\"This is a string\", \"This is another string\"]"`
  * * FieldType `Reference`: `"{\"id\", \"b911b62d-353a-4388-93ee-8d488d9af962\", \"typeId\", \"product\"}"`
- **/
+ */
 export type TCustomFieldInput = {
   name: Scalars['String'],
   /** 
@@ -1937,7 +2002,7 @@ export type TCustomFieldInput = {
    * * FieldType `Number`: `"4"`
    * * FieldType `Set` with an elementType of `String`: `"[\"This is a string\", \"This is another string\"]"`
    * * FieldType `Reference`: `"{\"id\", \"b911b62d-353a-4388-93ee-8d488d9af962\", \"typeId\", \"product\"}"`
- **/
+ */
   value: Scalars['String'],
 };
 
@@ -1968,7 +2033,7 @@ export type TCustomFieldsType_CustomFieldsRawArgs = {
  * A custom line item is a generic item that can be added to the cart but is not
  * bound to a product. You can use it for discounts (negative money), vouchers,
  * complex cart rules, additional services or fees. You control the lifecycle of this item.
- **/
+ */
 export type TCustomLineItem = {
    __typename?: 'CustomLineItem',
   id: Scalars['String'],
@@ -1998,7 +2063,7 @@ export type TCustomLineItem = {
  * A custom line item is a generic item that can be added to the cart but is not
  * bound to a product. You can use it for discounts (negative money), vouchers,
  * complex cart rules, additional services or fees. You control the lifecycle of this item.
- **/
+ */
 export type TCustomLineItem_NameArgs = {
   locale: Maybe<Scalars['Locale']>,
   acceptLanguage: Maybe<Array<Scalars['Locale']>>
@@ -2009,7 +2074,7 @@ export type TCustomLineItem_NameArgs = {
  * A custom line item is a generic item that can be added to the cart but is not
  * bound to a product. You can use it for discounts (negative money), vouchers,
  * complex cart rules, additional services or fees. You control the lifecycle of this item.
- **/
+ */
 export type TCustomLineItem_CustomFieldsRawArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -2020,7 +2085,7 @@ export type TCustomLineItem_CustomFieldsRawArgs = {
  * A custom line item is a generic item that can be added to the cart but is not
  * bound to a product. You can use it for discounts (negative money), vouchers,
  * complex cart rules, additional services or fees. You control the lifecycle of this item.
- **/
+ */
 export type TCustomLineItem_CustomFieldListArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -2152,7 +2217,7 @@ export type TDimensionsInput = {
  * With discount codes it is possible to give specific cart discounts to an
  * eligible amount of users. They are defined by a string value which can be added
  * to a cart so that specific cart discounts can be applied to the cart.
- **/
+ */
 export type TDiscountCode = TVersioned & {
    __typename?: 'DiscountCode',
   code: Scalars['String'],
@@ -2192,7 +2257,7 @@ export type TDiscountCode = TVersioned & {
  * With discount codes it is possible to give specific cart discounts to an
  * eligible amount of users. They are defined by a string value which can be added
  * to a cart so that specific cart discounts can be applied to the cart.
- **/
+ */
 export type TDiscountCode_NameArgs = {
   locale: Maybe<Scalars['Locale']>,
   acceptLanguage: Maybe<Array<Scalars['Locale']>>
@@ -2203,7 +2268,7 @@ export type TDiscountCode_NameArgs = {
  * With discount codes it is possible to give specific cart discounts to an
  * eligible amount of users. They are defined by a string value which can be added
  * to a cart so that specific cart discounts can be applied to the cart.
- **/
+ */
 export type TDiscountCode_DescriptionArgs = {
   locale: Maybe<Scalars['Locale']>,
   acceptLanguage: Maybe<Array<Scalars['Locale']>>
@@ -2214,7 +2279,7 @@ export type TDiscountCode_DescriptionArgs = {
  * With discount codes it is possible to give specific cart discounts to an
  * eligible amount of users. They are defined by a string value which can be added
  * to a cart so that specific cart discounts can be applied to the cart.
- **/
+ */
 export type TDiscountCode_CustomFieldsRawArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -2225,7 +2290,7 @@ export type TDiscountCode_CustomFieldsRawArgs = {
  * With discount codes it is possible to give specific cart discounts to an
  * eligible amount of users. They are defined by a string value which can be added
  * to a cart so that specific cart discounts can be applied to the cart.
- **/
+ */
 export type TDiscountCode_CustomFieldListArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -2266,12 +2331,12 @@ export enum TDiscountCodeState {
  * The discount code is active and none of the discounts were applied because the
    * discount application was stopped by one discount that has the StackingMode of
    * StopAfterThisDiscount defined
- **/
+ */
   ApplicationStoppedByPreviousDiscount = 'ApplicationStoppedByPreviousDiscount',
   /** 
  * The discount code is not valid or it does not contain any valid cart
    * discounts. Validity is determined based on the validFrom and validUntil dates
- **/
+ */
   NotValid = 'NotValid',
   /** maxApplications or maxApplicationsPerCustomer for discountCode has been reached. */
   MaxApplicationReached = 'MaxApplicationReached',
@@ -2279,13 +2344,13 @@ export enum TDiscountCodeState {
  * The discount code is active and it contains at least one active and valid
    * CartDiscount. The discount code cartPredicate matches the cart and at least
    * one of the contained active discount’s cart predicates matches the cart.
- **/
+ */
   MatchesCart = 'MatchesCart',
   /** 
  * The discount code is active and it contains at least one active and valid
    * CartDiscount. But its cart predicate does not match the cart or none of the
    * contained active discount’s cart predicates match the cart
- **/
+ */
   DoesNotMatchCart = 'DoesNotMatchCart',
   /** The discount code is not active or it does not contain any active cart discounts. */
   NotActive = 'NotActive'
@@ -2466,6 +2531,10 @@ export type TFieldType = {
   name: Scalars['String'],
 };
 
+export type TGeometry = {
+  type: Scalars['String'],
+};
+
 export type TGiftLineItemValue = TCartDiscountValue & {
    __typename?: 'GiftLineItemValue',
   type: Scalars['String'],
@@ -2531,14 +2600,15 @@ export type TInitiator = {
   clientId: Maybe<Scalars['String']>,
 };
 
-export type TInStore = TCartQueryInterface & TCustomerActiveCartInterface & TOrderQueryInterface & TCustomerQueryInterface & TMeFieldInterface & {
+export type TInStore = TCartQueryInterface & TCustomerActiveCartInterface & TOrderQueryInterface & TCustomerQueryInterface & TShippingMethodsByCartInterface & TMeFieldInterface & {
    __typename?: 'InStore',
   /** 
  * This field can only be used with an access token created with the password flow or with an anonymous session.
    * 
    * It gives access to the data that is specific to the customer or the anonymous session linked to the access token.
- **/
+ */
   me: TInStoreMe,
+  shippingMethodsByCart: Array<TShippingMethod>,
   customer: Maybe<TCustomer>,
   customers: TCustomerQueryResult,
   cart: Maybe<TCart>,
@@ -2546,6 +2616,11 @@ export type TInStore = TCartQueryInterface & TCustomerActiveCartInterface & TOrd
   customerActiveCart: Maybe<TCart>,
   order: Maybe<TOrder>,
   orders: TOrderQueryResult,
+};
+
+
+export type TInStore_ShippingMethodsByCartArgs = {
+  id: Scalars['String']
 };
 
 
@@ -2598,11 +2673,14 @@ export type TInStore_OrdersArgs = {
 
 export type TInStoreMe = TMeQueryInterface & {
    __typename?: 'InStoreMe',
+  customer: Maybe<TCustomer>,
   cart: Maybe<TCart>,
   carts: TCartQueryResult,
   activeCart: Maybe<TCart>,
   order: Maybe<TOrder>,
   orders: TOrderQueryResult,
+  shoppingList: Maybe<TShoppingList>,
+  shoppingLists: TShoppingListQueryResult,
 };
 
 
@@ -2626,6 +2704,20 @@ export type TInStoreMe_OrderArgs = {
 
 
 export type TInStoreMe_OrdersArgs = {
+  where: Maybe<Scalars['String']>,
+  sort: Maybe<Array<Scalars['String']>>,
+  limit: Maybe<Scalars['Int']>,
+  offset: Maybe<Scalars['Int']>
+};
+
+
+export type TInStoreMe_ShoppingListArgs = {
+  id: Maybe<Scalars['String']>,
+  key: Maybe<Scalars['String']>
+};
+
+
+export type TInStoreMe_ShoppingListsArgs = {
   where: Maybe<Scalars['String']>,
   sort: Maybe<Array<Scalars['String']>>,
   limit: Maybe<Scalars['Int']>,
@@ -2723,19 +2815,19 @@ export enum TInventoryMode {
   /** 
  * Adding items to cart and ordering is independent of inventory. No inventory checks or modifications.
    * This is the default mode for a new cart.
- **/
+ */
   None = 'None',
   /** 
  * Creating an order will fail with an OutOfStock error if an unavailable line item exists. Line items in the cart
    * are only reserved for the duration of the ordering transaction.
- **/
+ */
   ReserveOnOrder = 'ReserveOnOrder',
   /** 
  * Orders are tracked on inventory. That means, ordering a LineItem will decrement the available quantity on the
    * respective InventoryEntry. Creating an order will succeed even if the line item’s available quantity is zero or
    * negative. But creating an order will fail with an OutOfStock error if no matching inventory entry exists for a
    * line item.
- **/
+ */
   TrackOnly = 'TrackOnly'
 }
 
@@ -2790,7 +2882,7 @@ export type TKeyReference = {
  * 
  * Please also note that creating an order is impossible if the product or product
  * variant a line item relates to has been deleted.
- **/
+ */
 export type TLineItem = {
    __typename?: 'LineItem',
   id: Scalars['String'],
@@ -2837,7 +2929,7 @@ export type TLineItem = {
  * 
  * Please also note that creating an order is impossible if the product or product
  * variant a line item relates to has been deleted.
- **/
+ */
 export type TLineItem_NameArgs = {
   locale: Maybe<Scalars['Locale']>,
   acceptLanguage: Maybe<Array<Scalars['Locale']>>
@@ -2855,7 +2947,7 @@ export type TLineItem_NameArgs = {
  * 
  * Please also note that creating an order is impossible if the product or product
  * variant a line item relates to has been deleted.
- **/
+ */
 export type TLineItem_ProductSlugArgs = {
   locale: Maybe<Scalars['Locale']>,
   acceptLanguage: Maybe<Array<Scalars['Locale']>>
@@ -2873,7 +2965,7 @@ export type TLineItem_ProductSlugArgs = {
  * 
  * Please also note that creating an order is impossible if the product or product
  * variant a line item relates to has been deleted.
- **/
+ */
 export type TLineItem_CustomFieldsRawArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -2891,7 +2983,7 @@ export type TLineItem_CustomFieldsRawArgs = {
  * 
  * Please also note that creating an order is impossible if the product or product
  * variant a line item relates to has been deleted.
- **/
+ */
 export type TLineItem_CustomFieldListArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -2918,12 +3010,12 @@ export enum TLineItemMode {
    * If the gift is removed, an entry is added to the "refusedGifts" array and the discount won’t be applied again
    * to the cart. The price can not be changed externally.
    * All other updates, such as the ones related to custom fields, can be used.
- **/
+ */
   GiftLineItem = 'GiftLineItem',
   /** 
  * The line item was added during cart creation or with the update action addLineItem. Its quantity can be
    * changed without restrictions.
- **/
+ */
   Standard = 'Standard'
 }
 
@@ -2934,7 +3026,7 @@ export enum TLineItemPriceMode {
  * The line item price was set externally. Cart discounts can apply to line items
    * with this price mode. All update actions that change the quantity of a line
    * item with this price mode require the externalPrice field to be given.
- **/
+ */
   ExternalPrice = 'ExternalPrice',
   /** The line item price with the total was set externally. */
   ExternalTotal = 'ExternalTotal'
@@ -3120,6 +3212,8 @@ export type TMe = TMeQueryInterface & {
   activeCart: Maybe<TCart>,
   order: Maybe<TOrder>,
   orders: TOrderQueryResult,
+  shoppingList: Maybe<TShoppingList>,
+  shoppingLists: TShoppingListQueryResult,
 };
 
 
@@ -3149,6 +3243,20 @@ export type TMe_OrdersArgs = {
   offset: Maybe<Scalars['Int']>
 };
 
+
+export type TMe_ShoppingListArgs = {
+  id: Maybe<Scalars['String']>,
+  key: Maybe<Scalars['String']>
+};
+
+
+export type TMe_ShoppingListsArgs = {
+  where: Maybe<Scalars['String']>,
+  sort: Maybe<Array<Scalars['String']>>,
+  limit: Maybe<Scalars['Int']>,
+  offset: Maybe<Scalars['Int']>
+};
+
 /** The me field gives access to the data that is specific to the customer or anonymous session linked to the access token. */
 export type TMeFieldInterface = {
   me: TMeQueryInterface,
@@ -3160,6 +3268,8 @@ export type TMeQueryInterface = {
   activeCart: Maybe<TCart>,
   order: Maybe<TOrder>,
   orders: TOrderQueryResult,
+  shoppingList: Maybe<TShoppingList>,
+  shoppingLists: TShoppingListQueryResult,
 };
 
 
@@ -3183,6 +3293,20 @@ export type TMeQueryInterface_OrderArgs = {
 
 
 export type TMeQueryInterface_OrdersArgs = {
+  where: Maybe<Scalars['String']>,
+  sort: Maybe<Array<Scalars['String']>>,
+  limit: Maybe<Scalars['Int']>,
+  offset: Maybe<Scalars['Int']>
+};
+
+
+export type TMeQueryInterface_ShoppingListArgs = {
+  id: Maybe<Scalars['String']>,
+  key: Maybe<Scalars['String']>
+};
+
+
+export type TMeQueryInterface_ShoppingListsArgs = {
   where: Maybe<Scalars['String']>,
   sort: Maybe<Array<Scalars['String']>>,
   limit: Maybe<Scalars['Int']>,
@@ -3324,7 +3448,7 @@ export type TMutation = {
    * the created customer and the version number of the Cart will increase. If the
    * id of an anonymous session is given, all carts and orders will be assigned to
    * the created customer.
- **/
+ */
   customerSignUp: TCustomerSignInResult,
   /** 
  * Retrieves the authenticated customer (a customer that matches the given email/password pair).
@@ -3360,7 +3484,7 @@ export type TMutation = {
    * If a cart is is returned as part of the `CustomerSignInResult`, it has been
    * recalculated (it will have up-to-date prices, taxes and discounts, and invalid
    * line items have been removed).
- **/
+ */
   customerSignIn: TCustomerSignInResult,
   updateCustomer: Maybe<TCustomer>,
   deleteCustomer: Maybe<TCustomer>,
@@ -3371,20 +3495,20 @@ export type TMutation = {
    * 1. Create a password reset token and send it embedded in a link to the customer.
    * 2. When the customer clicks on the link, you may optionally retrieve customer by password token.
    * 3. When the customer entered new password, use reset customer’s password to reset the password.
- **/
+ */
   customerResetPassword: Maybe<TCustomer>,
   /** Verifies customer's email using a token. */
   customerConfirmEmail: Maybe<TCustomer>,
   /** 
  * The token value is used to reset the password of the customer with the given
    * email. The token is valid only for 10 minutes.
- **/
+ */
   customerCreatePasswordResetToken: Maybe<TCustomerToken>,
   customerCreateEmailVerificationToken: TCustomerToken,
   /** 
  * If used with an access token for Anonymous Sessions, all orders and carts
    * belonging to the anonymousId will be assigned to the newly created customer.
- **/
+ */
   customerSignMeUp: TCustomerSignInResult,
   /** 
  * Retrieves the authenticated customer (a customer that matches the given email/password pair).
@@ -3400,7 +3524,7 @@ export type TMutation = {
    * If a cart is is returned as part of the `CustomerSignInResult`, it has been
    * recalculated (it will have up-to-date prices, taxes and discounts, and invalid
    * line items have been removed).
- **/
+ */
   customerSignMeIn: TCustomerSignInResult,
   updateMyCustomer: Maybe<TCustomer>,
   deleteMyCustomer: Maybe<TCustomer>,
@@ -3421,6 +3545,12 @@ export type TMutation = {
   updateOrder: Maybe<TOrder>,
   deleteOrder: Maybe<TOrder>,
   createMyOrderFromCart: Maybe<TOrder>,
+  createShoppingList: Maybe<TShoppingList>,
+  updateShoppingList: Maybe<TShoppingList>,
+  deleteShoppingList: Maybe<TShoppingList>,
+  createMyShoppingList: Maybe<TShoppingList>,
+  updateMyShoppingList: Maybe<TShoppingList>,
+  deleteMyShoppingList: Maybe<TShoppingList>,
   updateProject: Maybe<TProjectProjection>,
   createStore: Maybe<TStore>,
   updateStore: Maybe<TStore>,
@@ -3698,42 +3828,49 @@ export type TMutation_CustomerCreateEmailVerificationTokenArgs = {
 
 
 export type TMutation_CustomerSignMeUpArgs = {
-  draft: TCustomerSignMeUpDraft
+  draft: TCustomerSignMeUpDraft,
+  storeKey: Maybe<Scalars['KeyReferenceInput']>
 };
 
 
 export type TMutation_CustomerSignMeInArgs = {
-  draft: TCustomerSignMeInDraft
+  draft: TCustomerSignMeInDraft,
+  storeKey: Maybe<Scalars['KeyReferenceInput']>
 };
 
 
 export type TMutation_UpdateMyCustomerArgs = {
   version: Scalars['Long'],
-  actions: Array<TMyCustomerUpdateAction>
+  actions: Array<TMyCustomerUpdateAction>,
+  storeKey: Maybe<Scalars['KeyReferenceInput']>
 };
 
 
 export type TMutation_DeleteMyCustomerArgs = {
   version: Scalars['Long'],
-  personalDataErasure?: Maybe<Scalars['Boolean']>
+  personalDataErasure?: Maybe<Scalars['Boolean']>,
+  storeKey: Maybe<Scalars['KeyReferenceInput']>
 };
 
 
 export type TMutation_CustomerChangeMyPasswordArgs = {
   version: Scalars['Long'],
   currentPassword: Scalars['String'],
-  newPassword: Scalars['String']
+  newPassword: Scalars['String'],
+  storeKey: Maybe<Scalars['KeyReferenceInput']>
 };
 
 
 export type TMutation_CustomerConfirmMyEmailArgs = {
-  tokenValue: Scalars['String']
+  tokenValue: Scalars['String'],
+  storeKey: Maybe<Scalars['KeyReferenceInput']>
 };
 
 
 export type TMutation_CustomerResetMyPasswordArgs = {
   tokenValue: Scalars['String'],
-  newPassword: Scalars['String']
+  newPassword: Scalars['String'],
+  storeKey: Maybe<Scalars['KeyReferenceInput']>
 };
 
 
@@ -3830,6 +3967,45 @@ export type TMutation_DeleteOrderArgs = {
 export type TMutation_CreateMyOrderFromCartArgs = {
   draft: TOrderMyCartCommand,
   storeKey: Maybe<Scalars['KeyReferenceInput']>
+};
+
+
+export type TMutation_CreateShoppingListArgs = {
+  draft: TShoppingListDraft
+};
+
+
+export type TMutation_UpdateShoppingListArgs = {
+  version: Scalars['Long'],
+  actions: Array<TShoppingListUpdateAction>,
+  id: Maybe<Scalars['String']>,
+  key: Maybe<Scalars['String']>
+};
+
+
+export type TMutation_DeleteShoppingListArgs = {
+  version: Scalars['Long'],
+  personalDataErasure?: Maybe<Scalars['Boolean']>,
+  id: Maybe<Scalars['String']>,
+  key: Maybe<Scalars['String']>
+};
+
+
+export type TMutation_CreateMyShoppingListArgs = {
+  draft: TMyShoppingListDraft
+};
+
+
+export type TMutation_UpdateMyShoppingListArgs = {
+  id: Scalars['String'],
+  version: Scalars['Long'],
+  actions: Array<TMyShoppingListUpdateAction>
+};
+
+
+export type TMutation_DeleteMyShoppingListArgs = {
+  id: Scalars['String'],
+  version: Scalars['Long']
 };
 
 
@@ -3949,6 +4125,37 @@ export type TMyLineItemDraft = {
   shippingDetails: Maybe<TItemShippingDetailsDraft>,
 };
 
+export type TMyShoppingListDraft = {
+  name: Array<TLocalizedStringItemInputType>,
+  description: Maybe<Array<TLocalizedStringItemInputType>>,
+  lineItems: Maybe<Array<TShoppingListLineItemDraft>>,
+  textLineItems: Maybe<Array<TTextLineItemDraft>>,
+  custom: Maybe<TCustomFieldsDraft>,
+  deleteDaysAfterLastModification: Maybe<Scalars['Int']>,
+};
+
+export type TMyShoppingListUpdateAction = {
+  addLineItem: Maybe<TAddShoppingListLineItem>,
+  addTextLineItem: Maybe<TAddShoppingListTextLineItem>,
+  changeLineItemQuantity: Maybe<TChangeShoppingListLineItemQuantity>,
+  changeLineItemsOrder: Maybe<TChangeShoppingListLineItemsOrder>,
+  changeName: Maybe<TChangeShoppingListName>,
+  changeTextLineItemName: Maybe<TChangeShoppingListTextLineItemName>,
+  changeTextLineItemQuantity: Maybe<TChangeShoppingListTextLineItemQuantity>,
+  changeTextLineItemsOrder: Maybe<TChangeShoppingListTextLineItemsOrder>,
+  removeLineItem: Maybe<TRemoveShoppingListLineItem>,
+  removeTextLineItem: Maybe<TRemoveShoppingListTextLineItem>,
+  setCustomField: Maybe<TSetShoppingListCustomField>,
+  setCustomType: Maybe<TSetShoppingListCustomType>,
+  setDeleteDaysAfterLastModification: Maybe<TSetShoppingListDeleteDaysAfterLastModification>,
+  setDescription: Maybe<TSetShoppingListDescription>,
+  setLineItemCustomField: Maybe<TSetShoppingListLineItemCustomField>,
+  setLineItemCustomType: Maybe<TSetShoppingListLineItemCustomType>,
+  setTextLineItemCustomField: Maybe<TSetShoppingListTextLineItemCustomField>,
+  setTextLineItemCustomType: Maybe<TSetShoppingListTextLineItemCustomType>,
+  setTextLineItemDescription: Maybe<TSetShoppingListTextLineItemDescription>,
+};
+
 export type TNestedAttributeDefinitionType = TAttributeDefinitionType & {
    __typename?: 'NestedAttributeDefinitionType',
   typeReference: TReference,
@@ -3980,7 +4187,7 @@ export type TNumberType = TFieldType & {
 /** 
  * An order can be created from a cart, usually after a checkout process has been completed.
  * [documentation](https://docs.commercetools.com/http-api-projects-orders.html)
- **/
+ */
 export type TOrder = TVersioned & {
    __typename?: 'Order',
   customerId: Maybe<Scalars['String']>,
@@ -4042,7 +4249,7 @@ export type TOrder = TVersioned & {
 /** 
  * An order can be created from a cart, usually after a checkout process has been completed.
  * [documentation](https://docs.commercetools.com/http-api-projects-orders.html)
- **/
+ */
 export type TOrder_CustomFieldsRawArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -4052,7 +4259,7 @@ export type TOrder_CustomFieldsRawArgs = {
 /** 
  * An order can be created from a cart, usually after a checkout process has been completed.
  * [documentation](https://docs.commercetools.com/http-api-projects-orders.html)
- **/
+ */
 export type TOrder_CustomFieldListArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -4180,7 +4387,7 @@ export type TParcelMeasurementsDraftType = {
 /** 
  * Payments hold information about the current state of receiving and/or refunding money.
  * [documentation](https://docs.commercetools.com/http-api-projects-payments)
- **/
+ */
 export type TPayment = TVersioned & {
    __typename?: 'Payment',
   key: Maybe<Scalars['String']>,
@@ -4216,7 +4423,7 @@ export type TPayment = TVersioned & {
 /** 
  * Payments hold information about the current state of receiving and/or refunding money.
  * [documentation](https://docs.commercetools.com/http-api-projects-payments)
- **/
+ */
 export type TPayment_InterfaceInteractionsRawArgs = {
   limit: Maybe<Scalars['Int']>,
   offset: Maybe<Scalars['Int']>
@@ -4226,7 +4433,7 @@ export type TPayment_InterfaceInteractionsRawArgs = {
 /** 
  * Payments hold information about the current state of receiving and/or refunding money.
  * [documentation](https://docs.commercetools.com/http-api-projects-payments)
- **/
+ */
 export type TPayment_CustomFieldsRawArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -4236,7 +4443,7 @@ export type TPayment_CustomFieldsRawArgs = {
 /** 
  * Payments hold information about the current state of receiving and/or refunding money.
  * [documentation](https://docs.commercetools.com/http-api-projects-payments)
- **/
+ */
 export type TPayment_CustomFieldListArgs = {
   includeNames: Maybe<Array<Scalars['String']>>,
   excludeNames: Maybe<Array<Scalars['String']>>
@@ -4311,6 +4518,12 @@ export type TPlainEnumValueResult = {
   results: Array<TPlainEnumValue>,
 };
 
+export type TPoint = TGeometry & {
+   __typename?: 'Point',
+  coordinates: Array<Scalars['Float']>,
+  type: Scalars['String'],
+};
+
 export type TPriceFunction = {
    __typename?: 'PriceFunction',
   function: Scalars['String'],
@@ -4338,6 +4551,7 @@ export type TProduct = TVersioned & {
   state: Maybe<TState>,
   taxCategoryRef: Maybe<TReference>,
   taxCategory: Maybe<TTaxCategory>,
+  reviewRatingStatistics: Maybe<TReviewRatingStatistics>,
   createdBy: Maybe<TInitiator>,
   lastModifiedBy: Maybe<TInitiator>,
 };
@@ -4469,7 +4683,7 @@ export type TProductData_VariantArgs = {
  * minutes to update all the prices with the discounts.
  * 
  * The maximum number of ProductDiscounts that can be active at the same time is **200**.
- **/
+ */
 export type TProductDiscount = TVersioned & {
    __typename?: 'ProductDiscount',
   predicate: Scalars['String'],
@@ -4511,7 +4725,7 @@ export type TProductDiscount = TVersioned & {
  * minutes to update all the prices with the discounts.
  * 
  * The maximum number of ProductDiscounts that can be active at the same time is **200**.
- **/
+ */
 export type TProductDiscount_NameArgs = {
   locale: Maybe<Scalars['Locale']>,
   acceptLanguage: Maybe<Array<Scalars['Locale']>>
@@ -4536,7 +4750,7 @@ export type TProductDiscount_NameArgs = {
  * minutes to update all the prices with the discounts.
  * 
  * The maximum number of ProductDiscounts that can be active at the same time is **200**.
- **/
+ */
 export type TProductDiscount_DescriptionArgs = {
   locale: Maybe<Scalars['Locale']>,
   acceptLanguage: Maybe<Array<Scalars['Locale']>>
@@ -4883,6 +5097,8 @@ export type TProjectProjection = {
   languages: Array<Scalars['Locale']>,
   createdAt: Scalars['DateTime'],
   trialUntil: Maybe<Scalars['YearMonth']>,
+  carts: TCartsConfiguration,
+  shoppingLists: TShoppingListsConfiguration,
   version: Scalars['Long'],
   externalOAuth: Maybe<TExternalOAuth>,
   messages: TMessagesConfiguration,
@@ -4892,12 +5108,14 @@ export type TProjectProjection = {
 };
 
 export type TProjectSettingsUpdateAction = {
+  changeCartsConfiguration: Maybe<TChangeProjectSettingsCartsConfiguration>,
   changeCountries: Maybe<TChangeProjectSettingsCountries>,
   changeCurrencies: Maybe<TChangeProjectSettingsCurrencies>,
   changeLanguages: Maybe<TChangeProjectSettingsLanguages>,
   changeMessagesConfiguration: Maybe<TChangeProjectSettingsMessagesConfiguration>,
   changeMessagesEnabled: Maybe<TChangeProjectSettingsMessagesEnabled>,
   changeName: Maybe<TChangeProjectSettingsName>,
+  changeShoppingListsConfiguration: Maybe<TChangeProjectSettingsShoppingListsConfiguration>,
   setExternalOAuth: Maybe<TSetProjectSettingsExternalOAuth>,
   setShippingRateInputType: Maybe<TSetProjectSettingsShippingRateInputType>,
 };
@@ -4913,13 +5131,13 @@ export enum TPublishScope {
   Prices = 'Prices'
 }
 
-export type TQuery = TCartQueryInterface & TCustomerActiveCartInterface & TOrderQueryInterface & TCustomerQueryInterface & TMeFieldInterface & {
+export type TQuery = TCartQueryInterface & TCustomerActiveCartInterface & TOrderQueryInterface & TCustomerQueryInterface & TShoppingListQueryInterface & TShippingMethodsByCartInterface & TMeFieldInterface & {
    __typename?: 'Query',
   /** 
  * This field can only be used with an access token created with the password flow or with an anonymous session.
    * 
    * It gives access to the data that is specific to the customer or the anonymous session linked to the access token.
- **/
+ */
   me: TMe,
   /** This field gives access to the resources (such as carts) that are inside the given store. */
   inStore: TInStore,
@@ -4966,6 +5184,8 @@ export type TQuery = TCartQueryInterface & TCustomerActiveCartInterface & TOrder
   customerActiveCart: Maybe<TCart>,
   order: Maybe<TOrder>,
   orders: TOrderQueryResult,
+  shoppingList: Maybe<TShoppingList>,
+  shoppingLists: TShoppingListQueryResult,
   payment: Maybe<TPayment>,
   payments: TPaymentQueryResult,
   project: TProjectProjection,
@@ -5019,8 +5239,7 @@ export type TQuery_CategoryAutocompleteArgs = {
   text: Scalars['String'],
   limit?: Maybe<Scalars['Int']>,
   offset?: Maybe<Scalars['Int']>,
-  filters: Maybe<Array<Scalars['SearchFilter']>>,
-  experimental?: Maybe<Scalars['Boolean']>
+  filters: Maybe<Array<Scalars['SearchFilter']>>
 };
 
 
@@ -5030,8 +5249,7 @@ export type TQuery_CategorySearchArgs = {
   offset?: Maybe<Scalars['Int']>,
   queryFilters: Maybe<Array<Scalars['SearchFilter']>>,
   filters: Maybe<Array<Scalars['SearchFilter']>>,
-  sorts: Maybe<Array<Scalars['SearchSort']>>,
-  experimental?: Maybe<Scalars['Boolean']>
+  sorts: Maybe<Array<Scalars['SearchSort']>>
 };
 
 
@@ -5256,6 +5474,20 @@ export type TQuery_OrderArgs = {
 
 
 export type TQuery_OrdersArgs = {
+  where: Maybe<Scalars['String']>,
+  sort: Maybe<Array<Scalars['String']>>,
+  limit: Maybe<Scalars['Int']>,
+  offset: Maybe<Scalars['Int']>
+};
+
+
+export type TQuery_ShoppingListArgs = {
+  id: Maybe<Scalars['String']>,
+  key: Maybe<Scalars['String']>
+};
+
+
+export type TQuery_ShoppingListsArgs = {
   where: Maybe<Scalars['String']>,
   sort: Maybe<Array<Scalars['String']>>,
   limit: Maybe<Scalars['Int']>,
@@ -5490,6 +5722,16 @@ export type TRemoveShippingMethodZone = {
   zone: TResourceIdentifierInput,
 };
 
+export type TRemoveShoppingListLineItem = {
+  lineItemId: Scalars['String'],
+  quantity: Maybe<Scalars['Int']>,
+};
+
+export type TRemoveShoppingListTextLineItem = {
+  textLineItemId: Scalars['String'],
+  quantity: Maybe<Scalars['Int']>,
+};
+
 export type TRemoveZoneLocation = {
   location: TZoneLocation,
 };
@@ -5549,18 +5791,27 @@ export type TRevertStagedVariantChanges = {
   variantId: Scalars['Int'],
 };
 
+export type TReviewRatingStatistics = {
+   __typename?: 'ReviewRatingStatistics',
+  averageRating: Scalars['Float'],
+  highestRating: Scalars['Int'],
+  lowestRating: Scalars['Int'],
+  count: Scalars['Long'],
+  ratingsDistribution: Scalars['Json'],
+};
+
 export enum TRoundingMode {
   /** 
  * [Round half down](https://en.wikipedia.org/wiki/Rounding#Round_half_down).
    * Rounding mode used by, e.g., [Avalara Sales TaxII](https://help.avalara.com/kb/001/How_does_Rounding_with_SalesTaxII_work%3F)
- **/
+ */
   HalfDown = 'HalfDown',
   /** [Round half up](https://en.wikipedia.org/wiki/Rounding#Round_half_up) */
   HalfUp = 'HalfUp',
   /** 
  * [Round half to even](https://en.wikipedia.org/wiki/Rounding#Round_half_to_even).
    * Default rounding mode as used in IEEE 754 computing functions and operators.
- **/
+ */
   HalfEven = 'HalfEven'
 }
 
@@ -6378,6 +6629,79 @@ export type TSetShippingMethodPredicate = {
   predicate: Maybe<Scalars['String']>,
 };
 
+export type TSetShoppingListAnonymousId = {
+  anonymousId: Maybe<Scalars['String']>,
+};
+
+export type TSetShoppingListCustomer = {
+  customer: Maybe<TResourceIdentifierInput>,
+};
+
+export type TSetShoppingListCustomField = {
+  name: Scalars['String'],
+  value: Maybe<Scalars['String']>,
+};
+
+export type TSetShoppingListCustomType = {
+  fields: Maybe<Array<TCustomFieldInput>>,
+  type: Maybe<TResourceIdentifierInput>,
+  typeKey: Maybe<Scalars['String']>,
+  typeId: Maybe<Scalars['String']>,
+};
+
+export type TSetShoppingListDeleteDaysAfterLastModification = {
+  deleteDaysAfterLastModification: Maybe<Scalars['Int']>,
+};
+
+export type TSetShoppingListDescription = {
+  description: Maybe<Array<TLocalizedStringItemInputType>>,
+};
+
+export type TSetShoppingListKey = {
+  key: Maybe<Scalars['String']>,
+};
+
+export type TSetShoppingListLineItemCustomField = {
+  lineItemId: Scalars['String'],
+  name: Scalars['String'],
+  value: Maybe<Scalars['String']>,
+};
+
+export type TSetShoppingListLineItemCustomType = {
+  lineItemId: Scalars['String'],
+  fields: Maybe<Array<TCustomFieldInput>>,
+  type: Maybe<TResourceIdentifierInput>,
+  typeKey: Maybe<Scalars['String']>,
+  typeId: Maybe<Scalars['String']>,
+};
+
+export type TSetShoppingListSlug = {
+  slug: Maybe<Array<TLocalizedStringItemInputType>>,
+};
+
+export type TSetShoppingListTextLineItemCustomField = {
+  textLineItemId: Scalars['String'],
+  name: Scalars['String'],
+  value: Maybe<Scalars['String']>,
+};
+
+export type TSetShoppingListTextLineItemCustomType = {
+  textLineItemId: Scalars['String'],
+  fields: Maybe<Array<TCustomFieldInput>>,
+  type: Maybe<TResourceIdentifierInput>,
+  typeKey: Maybe<Scalars['String']>,
+  typeId: Maybe<Scalars['String']>,
+};
+
+export type TSetShoppingListTextLineItemDescription = {
+  textLineItemId: Scalars['String'],
+  description: Maybe<Array<TLocalizedStringItemInputType>>,
+};
+
+export type TSetStoreLanguages = {
+  languages: Maybe<Array<Scalars['Locale']>>,
+};
+
 export type TSetStoreName = {
   name: Maybe<Array<TLocalizedStringItemInputType>>,
 };
@@ -6460,13 +6784,24 @@ export type TShippingMethodQueryResult = {
   results: Array<TShippingMethod>,
 };
 
+/** A field to retrieve available shipping methods for a cart. */
+export type TShippingMethodsByCartInterface = {
+  shippingMethodsByCart: Array<TShippingMethod>,
+};
+
+
+/** A field to retrieve available shipping methods for a cart. */
+export type TShippingMethodsByCartInterface_ShippingMethodsByCartArgs = {
+  id: Scalars['String']
+};
+
 export enum TShippingMethodState {
   /** Either there is no predicate defined for the ShippingMethod or the given predicate matches the cart */
   MatchesCart = 'MatchesCart',
   /** 
  * The ShippingMethod predicate does not match the cart. Ordering this cart will
    * fail with error ShippingMethodDoesNotMatchCart
- **/
+ */
   DoesNotMatchCart = 'DoesNotMatchCart'
 }
 
@@ -6600,6 +6935,164 @@ export type TShippingTargetInput = {
   dummy: Maybe<Scalars['String']>,
 };
 
+export type TShoppingList = TVersioned & {
+   __typename?: 'ShoppingList',
+  key: Maybe<Scalars['String']>,
+  name: Maybe<Scalars['String']>,
+  nameAllLocales: Array<TLocalizedString>,
+  description: Maybe<Scalars['String']>,
+  descriptionAllLocales: Maybe<Array<TLocalizedString>>,
+  slug: Maybe<Scalars['String']>,
+  slugAllLocales: Maybe<Array<TLocalizedString>>,
+  customerRef: Maybe<TReference>,
+  customer: Maybe<TCustomer>,
+  anonymousId: Maybe<Scalars['String']>,
+  lineItems: Array<TShoppingListLineItem>,
+  textLineItems: Array<TTextLineItem>,
+  custom: Maybe<TCustomFieldsType>,
+  deleteDaysAfterLastModification: Maybe<Scalars['Int']>,
+  id: Scalars['String'],
+  version: Scalars['Long'],
+  createdAt: Scalars['DateTime'],
+  lastModifiedAt: Scalars['DateTime'],
+  createdBy: Maybe<TInitiator>,
+  lastModifiedBy: Maybe<TInitiator>,
+};
+
+
+export type TShoppingList_NameArgs = {
+  locale: Maybe<Scalars['Locale']>,
+  acceptLanguage: Maybe<Array<Scalars['Locale']>>
+};
+
+
+export type TShoppingList_DescriptionArgs = {
+  locale: Maybe<Scalars['Locale']>,
+  acceptLanguage: Maybe<Array<Scalars['Locale']>>
+};
+
+
+export type TShoppingList_SlugArgs = {
+  locale: Maybe<Scalars['Locale']>,
+  acceptLanguage: Maybe<Array<Scalars['Locale']>>
+};
+
+export type TShoppingListDraft = {
+  name: Array<TLocalizedStringItemInputType>,
+  description: Maybe<Array<TLocalizedStringItemInputType>>,
+  lineItems: Maybe<Array<TShoppingListLineItemDraft>>,
+  textLineItems: Maybe<Array<TTextLineItemDraft>>,
+  custom: Maybe<TCustomFieldsDraft>,
+  deleteDaysAfterLastModification: Maybe<Scalars['Int']>,
+  key: Maybe<Scalars['String']>,
+  customer: Maybe<TResourceIdentifierInput>,
+  slug: Maybe<Array<TLocalizedStringItemInputType>>,
+  anonymousId: Maybe<Scalars['String']>,
+};
+
+export type TShoppingListLineItem = {
+   __typename?: 'ShoppingListLineItem',
+  id: Scalars['String'],
+  productId: Scalars['String'],
+  variantId: Maybe<Scalars['Int']>,
+  productTypeRef: TReference,
+  productType: TProductTypeDefinition,
+  quantity: Scalars['Int'],
+  addedAt: Scalars['DateTime'],
+  name: Maybe<Scalars['String']>,
+  nameAllLocales: Array<TLocalizedString>,
+  deactivatedAt: Maybe<Scalars['DateTime']>,
+  custom: Maybe<TCustomFieldsType>,
+  productSlug: Maybe<Scalars['String']>,
+  variant: Maybe<TProductVariant>,
+};
+
+
+export type TShoppingListLineItem_NameArgs = {
+  locale: Maybe<Scalars['Locale']>,
+  acceptLanguage: Maybe<Array<Scalars['Locale']>>
+};
+
+
+export type TShoppingListLineItem_ProductSlugArgs = {
+  locale: Maybe<Scalars['Locale']>,
+  acceptLanguage: Maybe<Array<Scalars['Locale']>>
+};
+
+export type TShoppingListLineItemDraft = {
+  productId: Maybe<Scalars['String']>,
+  sku: Maybe<Scalars['String']>,
+  variantId: Maybe<Scalars['Int']>,
+  quantity: Maybe<Scalars['Int']>,
+  custom: Maybe<TCustomFieldsDraft>,
+  addedAt: Maybe<Scalars['DateTime']>,
+};
+
+/** Fields to access shopping lists. Includes direct access to a single list and searching for shopping lists. */
+export type TShoppingListQueryInterface = {
+  shoppingList: Maybe<TShoppingList>,
+  shoppingLists: TShoppingListQueryResult,
+};
+
+
+/** Fields to access shopping lists. Includes direct access to a single list and searching for shopping lists. */
+export type TShoppingListQueryInterface_ShoppingListArgs = {
+  id: Maybe<Scalars['String']>,
+  key: Maybe<Scalars['String']>
+};
+
+
+/** Fields to access shopping lists. Includes direct access to a single list and searching for shopping lists. */
+export type TShoppingListQueryInterface_ShoppingListsArgs = {
+  where: Maybe<Scalars['String']>,
+  sort: Maybe<Array<Scalars['String']>>,
+  limit: Maybe<Scalars['Int']>,
+  offset: Maybe<Scalars['Int']>
+};
+
+export type TShoppingListQueryResult = {
+   __typename?: 'ShoppingListQueryResult',
+  offset: Scalars['Int'],
+  count: Scalars['Int'],
+  total: Scalars['Long'],
+  results: Array<TShoppingList>,
+};
+
+export type TShoppingListsConfiguration = {
+   __typename?: 'ShoppingListsConfiguration',
+  deleteDaysAfterLastModification: Maybe<Scalars['Int']>,
+};
+
+export type TShoppingListsConfigurationInput = {
+  deleteDaysAfterLastModification: Maybe<Scalars['Int']>,
+};
+
+export type TShoppingListUpdateAction = {
+  addLineItem: Maybe<TAddShoppingListLineItem>,
+  addTextLineItem: Maybe<TAddShoppingListTextLineItem>,
+  changeLineItemQuantity: Maybe<TChangeShoppingListLineItemQuantity>,
+  changeLineItemsOrder: Maybe<TChangeShoppingListLineItemsOrder>,
+  changeName: Maybe<TChangeShoppingListName>,
+  changeTextLineItemName: Maybe<TChangeShoppingListTextLineItemName>,
+  changeTextLineItemQuantity: Maybe<TChangeShoppingListTextLineItemQuantity>,
+  changeTextLineItemsOrder: Maybe<TChangeShoppingListTextLineItemsOrder>,
+  removeLineItem: Maybe<TRemoveShoppingListLineItem>,
+  removeTextLineItem: Maybe<TRemoveShoppingListTextLineItem>,
+  setAnonymousId: Maybe<TSetShoppingListAnonymousId>,
+  setCustomField: Maybe<TSetShoppingListCustomField>,
+  setCustomType: Maybe<TSetShoppingListCustomType>,
+  setCustomer: Maybe<TSetShoppingListCustomer>,
+  setDeleteDaysAfterLastModification: Maybe<TSetShoppingListDeleteDaysAfterLastModification>,
+  setDescription: Maybe<TSetShoppingListDescription>,
+  setKey: Maybe<TSetShoppingListKey>,
+  setLineItemCustomField: Maybe<TSetShoppingListLineItemCustomField>,
+  setLineItemCustomType: Maybe<TSetShoppingListLineItemCustomType>,
+  setSlug: Maybe<TSetShoppingListSlug>,
+  setTextLineItemCustomField: Maybe<TSetShoppingListTextLineItemCustomField>,
+  setTextLineItemCustomType: Maybe<TSetShoppingListTextLineItemCustomType>,
+  setTextLineItemDescription: Maybe<TSetShoppingListTextLineItemDescription>,
+};
+
 export type TSimpleAttributeTypeDraft = {
   dummy: Maybe<Scalars['String']>,
 };
@@ -6689,6 +7182,7 @@ export type TStore = TVersioned & {
   key: Scalars['String'],
   name: Maybe<Scalars['String']>,
   nameAllLocales: Maybe<Array<TLocalizedString>>,
+  languages: Maybe<Array<Scalars['Locale']>>,
   createdAt: Scalars['DateTime'],
   lastModifiedAt: Scalars['DateTime'],
   createdBy: Maybe<TInitiator>,
@@ -6711,6 +7205,7 @@ export type TStoreQueryResult = {
 };
 
 export type TStoreUpdateAction = {
+  setLanguages: Maybe<TSetStoreLanguages>,
   setName: Maybe<TSetStoreName>,
 };
 
@@ -6761,12 +7256,12 @@ export enum TTaxCalculationMode {
   /** 
  * This calculation mode calculates the taxes on the unit price before multiplying with the quantity.
    * E.g. `($1.08 * 1.19 = $1.2852 -> $1.29 rounded) * 3 = $3.87`
- **/
+ */
   UnitPriceLevel = 'UnitPriceLevel',
   /** 
  * Default. This calculation mode calculates the taxes after the unit price is multiplied with the quantity.
    * E.g. `($1.08 * 3 = $3.24) * 1.19 = $3.8556 -> $3.86 rounded`
- **/
+ */
   LineItemLevel = 'LineItemLevel'
 }
 
@@ -6850,19 +7345,19 @@ export enum TTaxMode {
  * The tax amounts and the tax rates as well as the tax portions are set externally per ExternalTaxAmountDraft.
    * A cart with this tax mode can only be ordered if the cart itself and all line items, all custom line items and
    * the shipping method have an external tax amount and rate set
- **/
+ */
   ExternalAmount = 'ExternalAmount',
   /** 
  * The tax rates are set externally per ExternalTaxRateDraft. A cart with this tax mode can only be ordered if all
    * line items, all custom line items and the shipping method have an external tax rate set. The totalNet and
    * totalGross as well as the taxPortions fields are calculated by the platform according to the taxRoundingMode.
- **/
+ */
   External = 'External',
   /** 
  * The tax rates are selected by the platform from the TaxCategories based on the cart shipping address.
    * The totalNet and totalGross as well as the taxPortions fields are calculated by the platform according to the
    * taxRoundingMode.
- **/
+ */
   Platform = 'Platform'
 }
 
@@ -6870,7 +7365,7 @@ export enum TTaxMode {
  * Represents the portions that sum up to the totalGross field of a TaxedPrice. The portions are calculated
  * from the TaxRates. If a tax rate has SubRates, they are used and can be identified by name. Tax portions
  * from line items that have the same rate and name will be accumulated to the same tax portion.
- **/
+ */
 export type TTaxPortion = {
    __typename?: 'TaxPortion',
   rate: Scalars['Float'],
@@ -6920,6 +7415,38 @@ export enum TTextInputHint {
   MultiLine = 'MultiLine',
   SingleLine = 'SingleLine'
 }
+
+export type TTextLineItem = {
+   __typename?: 'TextLineItem',
+  id: Scalars['String'],
+  name: Maybe<Scalars['String']>,
+  nameAllLocales: Array<TLocalizedString>,
+  description: Maybe<Scalars['String']>,
+  descriptionAllLocales: Maybe<Array<TLocalizedString>>,
+  quantity: Scalars['Int'],
+  custom: Maybe<TCustomFieldsType>,
+  addedAt: Scalars['DateTime'],
+};
+
+
+export type TTextLineItem_NameArgs = {
+  locale: Maybe<Scalars['Locale']>,
+  acceptLanguage: Maybe<Array<Scalars['Locale']>>
+};
+
+
+export type TTextLineItem_DescriptionArgs = {
+  locale: Maybe<Scalars['Locale']>,
+  acceptLanguage: Maybe<Array<Scalars['Locale']>>
+};
+
+export type TTextLineItemDraft = {
+  name: Array<TLocalizedStringItemInputType>,
+  description: Maybe<Array<TLocalizedStringItemInputType>>,
+  quantity: Maybe<Scalars['Int']>,
+  custom: Maybe<TCustomFieldsDraft>,
+  addedAt: Maybe<Scalars['DateTime']>,
+};
 
 
 export type TTimeAttribute = TAttribute & {
@@ -7173,6 +7700,7 @@ export type TZoneUpdateAction = {
   setDescription: Maybe<TSetZoneDescription>,
   setKey: Maybe<TSetZoneKey>,
 };
+
 export type TQuickAccessProductQueryVariables = {
   productId: Scalars['String']
 };
