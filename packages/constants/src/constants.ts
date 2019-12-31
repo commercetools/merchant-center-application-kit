@@ -143,6 +143,8 @@ export interface ApplicationWindow extends Window {
     cdnUrl: string;
     mcApiUrl: string;
     frontendHost: string;
+    servedByProxy: boolean;
+    mcProxyApiUrl?: string;
     trackingSentry?: string;
     trackingGtm?: string;
   };
