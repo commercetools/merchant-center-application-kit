@@ -18,10 +18,10 @@ const getDefaultedFeatureToggles = (allFeatureToggles: string[]) =>
     {}
   );
 const useAllMenuFeatureToggles = () => {
-  const servedByProxy = useApplicationContext<boolean>(
+  const servedByProxy = useApplicationContext(
     applicationContext => applicationContext.environment.servedByProxy
   );
-  const mcProxyApiUrl = useApplicationContext<string | undefined>(
+  const mcProxyApiUrl = useApplicationContext(
     applicationContext => applicationContext.environment.mcProxyApiUrl
   );
 
