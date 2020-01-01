@@ -6,4 +6,4 @@ const FailedAuthentication = React.lazy(() =>
   )
 );
 
-export { FailedAuthentication as default };
+export default FailedAuthentication;
