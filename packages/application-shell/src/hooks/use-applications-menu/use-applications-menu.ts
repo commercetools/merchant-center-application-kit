@@ -1,17 +1,34 @@
 import React from 'react';
-import { useLazyQuery } from 'react-apollo';
+import { useLazyQuery, QueryFunctionOptions } from 'react-apollo';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import {
+  TFetchApplicationsMenuQuery,
+  TFetchApplicationsMenuQueryVariables,
+} from '../../types/generated/proxy';
+import { TNavbarMenu } from '../../types/generated/settings';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
+
+type MenuConfig = TNavbarMenu;
+type Config = {
+  queryOptions: QueryFunctionOptions;
+  skipRemoteQuery: boolean;
+  options: {
+    __DEV_CONFIG__?: {
+      menuLoader: () => Promise<MenuConfig | MenuConfig[]>;
+      menuKey: string;
+    };
+  };
+};
 
 const defaultApiUrl = window.location.origin;
 
-const defaultConfig = {
+const defaultConfig: Config = {
   queryOptions: {},
   skipRemoteQuery: false,
   options: {},
 };
 
-const getDevConfig = options => {
+const getDevConfig = (options: Config['options'] = {}) => {
   const { __DEV_CONFIG__: devConfig } = options;
   if (!devConfig) {
     throw new Error(
@@ -21,10 +38,10 @@ const getDevConfig = options => {
   return devConfig;
 };
 
-const useApplicationsMenu = (config = {}) => {
+const useApplicationsMenu = (config: Partial<Config> = {}) => {
   const shallowlyMergedConfig = { ...defaultConfig, ...config };
 
-  const [menu, setMenu] = React.useState(null);
+  const [menu, setMenu] = React.useState<MenuConfig | MenuConfig[]>();
 
   // Trigger loading the menu from local file, for local development
   React.useEffect(() => {
@@ -46,7 +63,10 @@ const useApplicationsMenu = (config = {}) => {
   const [
     loadMenuData,
     { called: hasApplicationsMenuQueryBeenCalled, data: menuQueryResult },
-  ] = useLazyQuery(FetchApplicationsMenu, {
+  ] = useLazyQuery<
+    TFetchApplicationsMenuQuery,
+    TFetchApplicationsMenuQueryVariables
+  >(FetchApplicationsMenu, {
     ...shallowlyMergedConfig.queryOptions,
     fetchPolicy:
       shallowlyMergedConfig.queryOptions.fetchPolicy || 'cache-first',

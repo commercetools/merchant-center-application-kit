@@ -1,12 +1,16 @@
 import { useQuery } from 'react-apollo';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import {
+  TFetchAllMenuFeatureTogglesQuery,
+  TFetchAllMenuFeatureTogglesQueryVariables,
+} from '../../types/generated/proxy';
 import { FetchAllMenuFeatureToggles } from './fetch-all-menu-feature-toggles.proxy.graphql';
 
 const defaultApiUrl = window.location.origin;
 
-const getDefaultedFeatureToggles = allFeatureToggles =>
-  allFeatureToggles.reduce(
+const getDefaultedFeatureToggles = (allFeatureToggles: string[]) =>
+  allFeatureToggles.reduce<{ [key: string]: boolean }>(
     (previouslyDefaultedFeatureToggles, nextFeatureToggle) => ({
       ...previouslyDefaultedFeatureToggles,
       [nextFeatureToggle]: false,
@@ -14,14 +18,17 @@ const getDefaultedFeatureToggles = allFeatureToggles =>
     {}
   );
 const useAllMenuFeatureToggles = () => {
-  const { mcProxyApiUrl, servedByProxy } = useApplicationContext(
-    applicationContext => ({
-      mcProxyApiUrl: applicationContext.environment.mcProxyApiUrl,
-      servedByProxy: applicationContext.environment.servedByProxy,
-    })
+  const servedByProxy = useApplicationContext(
+    applicationContext => applicationContext.environment.servedByProxy
+  );
+  const mcProxyApiUrl = useApplicationContext(
+    applicationContext => applicationContext.environment.mcProxyApiUrl
   );
 
-  const { data, refetch, loading } = useQuery(FetchAllMenuFeatureToggles, {
+  const { data, refetch, loading } = useQuery<
+    TFetchAllMenuFeatureTogglesQuery,
+    TFetchAllMenuFeatureTogglesQueryVariables
+  >(FetchAllMenuFeatureToggles, {
     fetchPolicy: 'cache-and-network',
     skip: !servedByProxy,
     onError: reportErrorToSentry,

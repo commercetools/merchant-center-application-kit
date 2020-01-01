@@ -8,6 +8,7 @@ import {
   mapUserToApplicationContextUser,
   mapProjectToApplicationContextProject,
 } from './application-context';
+import { ApplicationWindow } from '@commercetools-frontend/constants';
 
 type AdditionalEnvironmentProps = { foo: string };
 
@@ -63,7 +64,10 @@ const createTestProject = (custom = {}) => ({
   owner: { id: 'o1' },
   ...custom,
 });
-const createTestEnvironment = (custom = {}) => ({
+const createTestEnvironment = (
+  custom: Partial<ApplicationWindow['app']> = {}
+) => ({
+  revision: '1',
   applicationName: 'my-app',
   frontendHost: 'localhost:3001',
   mcApiUrl: 'https://mc-api.commercetools.com',
