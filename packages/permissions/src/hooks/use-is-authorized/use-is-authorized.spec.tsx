@@ -114,6 +114,7 @@ const render = ({
         allAppliedDataFences,
       }}
       environment={{
+        revision: '1',
         applicationName: 'my-app',
         frontendHost: 'localhost:3001',
         mcApiUrl: 'https://mc-api.commercetools.com',
