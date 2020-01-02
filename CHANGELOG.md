@@ -1,3 +1,46 @@
+## [15.6.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.5.0...v15.6.0) (2020-01-02)
+
+Happy New Year! 🎉
+
+#### 🐛 Type: Bug
+
+- `actions-global`, `application-components`, `application-shell-connectors`, `browser-history`, `constants`, `i18n`, `l10n`, `notifications`, `permissions`, `react-notifications`, `sdk`, `sentry`, `url-utils`
+  - [#1215](https://github.com/commercetools/merchant-center-application-kit/pull/1215) fix: building type declarations ([@emmenko](https://github.com/emmenko))
+- `application-shell`
+  - [#1214](https://github.com/commercetools/merchant-center-application-kit/pull/1214) fix(app-shell): retry unauthenticated requests for graphql errors ([@emmenko](https://github.com/emmenko))
+- `mc-dev-authentication`
+  - [#1213](https://github.com/commercetools/merchant-center-application-kit/pull/1213) fix(dev-auth): parsing of error responses ([@emmenko](https://github.com/emmenko))
+- `application-components`, `application-shell`, `babel-preset-mc-app`, `react-notifications`
+  - [#1202](https://github.com/commercetools/merchant-center-application-kit/pull/1202) fix: babel macros with react-intl ([@tdeekens](https://github.com/tdeekens))
+
+#### 🔮 Type: Chore
+
+- [#1198](https://github.com/commercetools/merchant-center-application-kit/pull/1198) chore: check npm authentication on prerelease ([@jonnybel](https://github.com/jonnybel))
+
+#### 🖥 Type: Website
+
+- [#1197](https://github.com/commercetools/merchant-center-application-kit/pull/1197) docs(website): document what a custom app is ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `mc-scripts`
+  - [#1211](https://github.com/commercetools/merchant-center-application-kit/pull/1211) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+  - [#1203](https://github.com/commercetools/merchant-center-application-kit/pull/1203) chore: update yarn and missing deps ([@tdeekens](https://github.com/tdeekens))
+- Other
+  - [#1212](https://github.com/commercetools/merchant-center-application-kit/pull/1212) chore(deps): lock file maintenance ([@renovate[bot]](https://github.com/apps/renovate))
+  - [#1209](https://github.com/commercetools/merchant-center-application-kit/pull/1209) chore(deps): lock file maintenance ([@renovate[bot]](https://github.com/apps/renovate))
+  - [#1201](https://github.com/commercetools/merchant-center-application-kit/pull/1201) chore(deps): lock file maintenance ([@renovate[bot]](https://github.com/apps/renovate))
+- `application-shell`
+  - [#1210](https://github.com/commercetools/merchant-center-application-kit/pull/1210) chore: update flopflip to latest ([@emmenko](https://github.com/emmenko))
+- `application-shell`, `mc-scripts`
+  - [#1208](https://github.com/commercetools/merchant-center-application-kit/pull/1208) fix(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `create-mc-app`, `i18n`, `jest-preset-mc-app`, `jest-stylelint-runner`, `l10n`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sdk`, `sentry`, `url-utils`
+  - [#1207](https://github.com/commercetools/merchant-center-application-kit/pull/1207) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+- `create-mc-app`, `mc-scripts`
+  - [#1200](https://github.com/commercetools/merchant-center-application-kit/pull/1200) fix(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `i18n`, `jest-preset-mc-app`, `jest-stylelint-runner`, `l10n`, `mc-html-template`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sdk`, `sentry`, `url-utils`
+  - [#1199](https://github.com/commercetools/merchant-center-application-kit/pull/1199) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [15.5.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.4.2...v15.5.0) (2019-12-09)
 
 #### ⛑ Type: Refactoring
