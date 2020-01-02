@@ -6,4 +6,4 @@ const ProjectNotInitialized = React.lazy(() =>
   )
 );
 
-export { ProjectNotInitialized as default };
+export default ProjectNotInitialized;
