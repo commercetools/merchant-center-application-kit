@@ -10,14 +10,7 @@ type Props = {
   children: (args: RenderFnArgs) => React.ReactNode;
 };
 
-const defaultLocale = 'en';
-
-const getSelectedDataLocaleForProject = (projectLocales?: string[]) => {
-  // In case the project is not present (e.g. 404), we just return `en`
-  // as a fallback value but it doesn't really matter at end what the
-  // value is. When the user access a proper project, this value will
-  // be correctly picked.
-  if (!projectLocales) return defaultLocale;
+const getSelectedDataLocaleForProject = (projectLocales: Props['locales']) => {
   const cachedDataLocale = window.localStorage.getItem(
     STORAGE_KEYS.SELECTED_DATA_LOCALE
   );

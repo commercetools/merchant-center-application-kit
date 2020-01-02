@@ -60,7 +60,7 @@ describe('rendering', () => {
         await wait(() => {
           expect(window.localStorage.setItem).toHaveBeenCalledWith(
             STORAGE_KEYS.IS_AUTHENTICATED,
-            true
+            'true'
           );
         });
       });
