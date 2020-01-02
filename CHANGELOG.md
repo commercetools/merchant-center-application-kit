@@ -1,3 +1,10 @@
+## [15.6.1](https://github.com/commercetools/merchant-center-application-kit/compare/v15.6.0...v15.6.1) (2020-01-02)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1220](https://github.com/commercetools/merchant-center-application-kit/pull/1220) fix(app-shell): null check ([@emmenko](https://github.com/emmenko))
+
 ## [15.6.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.5.0...v15.6.0) (2020-01-02)
 
 Happy New Year! 🎉
