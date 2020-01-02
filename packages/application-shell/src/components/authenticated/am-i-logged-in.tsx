@@ -1,19 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { STORAGE_KEYS } from '../../constants';
+import {
+  TAmILoggedInQuery,
+  TAmILoggedInQueryVariables,
+} from '../../types/generated/mc';
 import AmILoggedInQuery from './authenticated.mc.graphql';
 
-const hasCachedAuthenticationState = () =>
-  window.localStorage.getItem(STORAGE_KEYS.IS_AUTHENTICATED) === 'true';
+type RenderFnArgs = { isAuthenticated: boolean };
+type Props = {
+  render: (args: RenderFnArgs) => JSX.Element;
+  children?: never;
+};
 
-const AmILoggedIn = props => {
+const AmILoggedIn = (props: Props) => {
   // ...otherwise, we ping a "secured" endpoint in the MC API to see if there is
   // a valid access token. If we get an error, we assume that the user is not
   // authenticated. If we don't get any error, the access token sent with the cookie
   // is valid. We return null while the query is loading.
-  const { data, loading, error } = useQuery(AmILoggedInQuery, {
+  const { data, loading, error } = useQuery<
+    TAmILoggedInQuery,
+    TAmILoggedInQueryVariables
+  >(AmILoggedInQuery, {
     variables: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
     // NOTE: With `no-cache` the `useQuery` will not trigger a
     // re-render of the `AmILoggedIn` component. Relying on a default
@@ -37,7 +46,10 @@ const AmILoggedIn = props => {
         // we do it here as well. This will help in the future when we eventually
         // move the auth service to itw own domain, in which case the local storage
         // is not shared anymore.
-        window.localStorage.setItem(STORAGE_KEYS.IS_AUTHENTICATED, true);
+        window.localStorage.setItem(
+          STORAGE_KEYS.IS_AUTHENTICATED,
+          String(true)
+        );
       }
     },
     onError: () => {
@@ -49,31 +61,13 @@ const AmILoggedIn = props => {
   });
   if (error) {
     // No matter what error, we consider it as a failed authentication
-    return props.render({ isAuthenticated: false });
+    return <>{props.render({ isAuthenticated: false })}</>;
   }
   if (!loading && data && data.amILoggedIn) {
-    return props.render({ isAuthenticated: true });
+    return <>{props.render({ isAuthenticated: true })}</>;
   }
   return null;
 };
 AmILoggedIn.displayName = 'AmILoggedIn';
-AmILoggedIn.propTypes = {
-  render: PropTypes.func.isRequired,
-};
 
-const Authenticated = props => {
-  // We attempt to see if the user was already authenticated by looking
-  // at the "cached" flag in local storage.
-  const cachedAuthenticationState = hasCachedAuthenticationState();
-  if (cachedAuthenticationState) {
-    return props.render({ isAuthenticated: true });
-  }
-
-  return <AmILoggedIn {...props} />;
-};
-Authenticated.displayName = 'Authenticated';
-Authenticated.propTypes = {
-  render: PropTypes.func.isRequired,
-};
-
-export default Authenticated;
+export default AmILoggedIn;

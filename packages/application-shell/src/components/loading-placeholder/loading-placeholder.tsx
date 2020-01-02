@@ -1,7 +1,11 @@
-import PropTypes from 'prop-types';
 import { keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import { customProperties } from '@commercetools-uikit/design-system';
+
+type Props = {
+  shape: 'dot' | 'rect';
+  size: 's' | 'm' | 'l' | 'xl';
+};
 
 const animationPulse = keyframes`
   0% {
@@ -12,7 +16,7 @@ const animationPulse = keyframes`
   }
 `;
 
-const getWidthBySize = props => {
+const getWidthBySize = (props: Props) => {
   switch (props.shape) {
     case 'dot':
       switch (props.size) {
@@ -44,7 +48,7 @@ const getWidthBySize = props => {
       return 'auto';
   }
 };
-const getHeightBySize = props => {
+const getHeightBySize = (props: Props) => {
   switch (props.shape) {
     case 'dot':
       return getWidthBySize(props);
@@ -54,7 +58,7 @@ const getHeightBySize = props => {
       return 'auto';
   }
 };
-const getRadiusBySize = props => {
+const getRadiusBySize = (props: Props) => {
   switch (props.shape) {
     case 'dot':
       switch (props.size) {
@@ -76,7 +80,7 @@ const getRadiusBySize = props => {
   }
 };
 
-const LoadingPlaceholder = styled.div`
+const LoadingPlaceholder = styled.div<Props>`
   background-color: ${customProperties.colorNeutral};
   animation-name: ${animationPulse};
   animation-duration: 1s;
@@ -90,9 +94,5 @@ const LoadingPlaceholder = styled.div`
   border-radius: ${getRadiusBySize};
 `;
 LoadingPlaceholder.displayName = 'LoadingPlaceholder';
-LoadingPlaceholder.propTypes = {
-  shape: PropTypes.oneOf(['dot', 'rect']).isRequired,
-  size: PropTypes.oneOf(['s', 'm', 'l', 'xl']).isRequired,
-};
 
 export default LoadingPlaceholder;

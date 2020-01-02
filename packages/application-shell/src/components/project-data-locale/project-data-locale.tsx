@@ -1,8 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { STORAGE_KEYS } from '../../constants';
 
-const getSelectedDataLocaleForProject = projectLocales => {
+type RenderFnArgs = {
+  locale: string;
+  setProjectDataLocale: (locale: string) => void;
+};
+type Props = {
+  locales: string[];
+  children: (args: RenderFnArgs) => React.ReactNode;
+};
+
+const getSelectedDataLocaleForProject = (projectLocales: Props['locales']) => {
   const cachedDataLocale = window.localStorage.getItem(
     STORAGE_KEYS.SELECTED_DATA_LOCALE
   );
@@ -22,7 +30,7 @@ const getSelectedDataLocaleForProject = projectLocales => {
   return defaultDataLocaleForProject;
 };
 
-const ProjectDataLocale = props => {
+const ProjectDataLocale = (props: Props) => {
   const [locale, setLocale] = React.useState(
     getSelectedDataLocaleForProject(props.locales)
   );
@@ -41,9 +49,5 @@ const ProjectDataLocale = props => {
   );
 };
 ProjectDataLocale.displayName = 'ProjectDataLocale';
-ProjectDataLocale.propTypes = {
-  locales: PropTypes.arrayOf(PropTypes.string).isRequired,
-  children: PropTypes.func.isRequired,
-};
 
 export default ProjectDataLocale;

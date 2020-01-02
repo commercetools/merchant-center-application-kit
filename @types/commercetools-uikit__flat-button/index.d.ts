@@ -3,22 +3,32 @@ declare module '@commercetools-uikit/flat-button' {
 
   export const version: string;
 
+  // Taken from: https://www.erikverweij.dev/blog/making-your-components-extensible-with-typescript/
+  type MergeElementProps<
+    T extends React.ElementType,
+    P extends object = {}
+  > = Omit<React.ComponentPropsWithRef<T>, keyof P> & P;
+
   // <FlatButton>
-  export type FlatButtonProps = {
+  type BaseProps = {
     tone: 'primary' | 'secondary';
     type: 'submit' | 'reset' | 'button';
     label: string;
-    onClick: (event: React.SyntheticEvent) => void;
     icon?: React.ReactNode;
     iconPosition: 'left' | 'right';
     isDisabled: boolean;
     children?: never;
   };
+  export type FlatButtonProps<T extends React.ElementType = 'button'> = {
+    as?: T;
+  } & MergeElementProps<T, BaseProps>;
   const FlatButton: {
-    (props: FlatButtonProps): JSX.Element;
+    <T extends React.ElementType = 'button'>(
+      props: FlatButtonProps<T>
+    ): JSX.Element;
     displayName: string;
     defaultProps: Pick<
-      FlatButtonProps,
+      BaseProps,
       'tone' | 'type' | 'iconPosition' | 'isDisabled'
     >;
   };

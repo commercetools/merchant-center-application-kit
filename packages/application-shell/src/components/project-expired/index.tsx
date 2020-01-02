@@ -4,4 +4,4 @@ const ProjectExpired = React.lazy(() =>
   import('./project-expired' /* webpackChunkName: "project-expired" */)
 );
 
-export { ProjectExpired as default };
+export default ProjectExpired;
