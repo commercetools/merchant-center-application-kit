@@ -19,7 +19,7 @@ const errorLink = onError(
     // https://www.apollographql.com/docs/link/links/retry/
     if (graphQLErrors) {
       for (const err of graphQLErrors) {
-        if (err.extensions.code === 'UNAUTHENTICATED') {
+        if (err.extensions && err.extensions.code === 'UNAUTHENTICATED') {
           operation.setContext(({ headers }) => ({
             headers: {
               ...headers,
