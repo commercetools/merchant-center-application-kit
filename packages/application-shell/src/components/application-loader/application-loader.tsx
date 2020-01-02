@@ -1,11 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import { customProperties } from '@commercetools-uikit/design-system';
 import CTLogoSVG from '@commercetools-frontend/assets/images/ct-logo.svg';
 
-const ApplicationLoader = props => (
+type Props = {
+  showLogo?: boolean;
+};
+
+const ApplicationLoader = (props: Props) => (
   <div
     css={css`
       display: flex;
@@ -22,15 +25,11 @@ const ApplicationLoader = props => (
     `}
   >
     <LoadingSpinner />
-    {props.showLogo && <img alt="commercetools logo" src={CTLogoSVG} />}
+    {props.showLogo === true ? (
+      <img alt="commercetools logo" src={CTLogoSVG} />
+    ) : null}
   </div>
 );
 ApplicationLoader.displayName = 'ApplicationLoader';
-ApplicationLoader.propTypes = {
-  showLogo: PropTypes.bool,
-};
-ApplicationLoader.defaultProps = {
-  showLogo: false,
-};
 
 export default ApplicationLoader;

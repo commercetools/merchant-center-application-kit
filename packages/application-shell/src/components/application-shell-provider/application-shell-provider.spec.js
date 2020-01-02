@@ -5,11 +5,13 @@ import { render, wait, waitForElement } from '@testing-library/react';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { GtmContext } from '../gtm-booter';
 // eslint-disable-next-line import/named
-import { setIsAuthenticated } from '../authenticated';
+import { __setIsAuthenticated } from '../authenticated/am-i-logged-in';
+import hasCachedAuthenticationState from '../authenticated/has-cached-authentication-state';
 import { getBrowserLocale } from './utils';
 import ApplicationShellProvider from './application-shell-provider';
 
-jest.mock('../authenticated');
+jest.mock('../authenticated/has-cached-authentication-state');
+jest.mock('../authenticated/am-i-logged-in');
 jest.mock('./utils');
 
 const createTestProps = props => ({
@@ -34,7 +36,7 @@ const createTestProps = props => ({
 
 describe('rendering', () => {
   beforeEach(() => {
-    setIsAuthenticated('true');
+    hasCachedAuthenticationState.mockReturnValue(true);
   });
   it('should access environment from application context', async () => {
     const { getByText } = render(
@@ -97,7 +99,8 @@ describe('rendering', () => {
     expect(isAuth).toBe(true);
   });
   it('should pass isAuthenticated=false if local storage does not have auth key', async () => {
-    setIsAuthenticated('false');
+    hasCachedAuthenticationState.mockReturnValue(false);
+    __setIsAuthenticated(false);
     let isAuth;
     render(
       <ApplicationShellProvider {...createTestProps()}>
@@ -112,7 +115,8 @@ describe('rendering', () => {
     });
   });
   it('when not authenticated, it should setup intl provider', async () => {
-    setIsAuthenticated('false');
+    hasCachedAuthenticationState.mockReturnValue(false);
+    __setIsAuthenticated(false);
     getBrowserLocale.mockReturnValue('de');
     const { getByText } = render(
       <ApplicationShellProvider {...createTestProps()}>

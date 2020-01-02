@@ -1,12 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { withApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import Spacings from '@commercetools-uikit/spacings';
 import FlatButton from '@commercetools-uikit/flat-button';
 import Text from '@commercetools-uikit/text';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 
-export const RedirectToProjectCreate = props => {
+export const RedirectToProjectCreate = () => {
+  const servedByProxy = useApplicationContext(
+    context => context.environment.servedByProxy
+  );
   /**
    * NOTE:
    *   This looks a bit unusual: redirecting in render.
@@ -17,7 +19,7 @@ export const RedirectToProjectCreate = props => {
    *   In turn this intends wo make explicit that we never want to
    *   render and instead just navigate away.
    */
-  if (props.servedByProxy === true) {
+  if (servedByProxy === true) {
     window.location.replace('/account/projects/new');
 
     return null;
@@ -35,19 +37,10 @@ export const RedirectToProjectCreate = props => {
         Please go to the `application-accounts` while having it running to
         create a project first. Note, that you can do the same on staging.
       </Text.Body>
-      <FlatButton
-        as={Link}
-        to={`account/projects/new`}
-        label="Create project"
-      />
+      <FlatButton as={Link} to="account/projects/new" label="Create project" />
     </Spacings.Stack>
   );
 };
 RedirectToProjectCreate.displayName = 'RedirectToProjectCreate';
-RedirectToProjectCreate.propTypes = {
-  servedByProxy: PropTypes.bool.isRequired,
-};
 
-export default withApplicationContext(applicationContext => ({
-  servedByProxy: applicationContext.environment.servedByProxy,
-}))(RedirectToProjectCreate);
+export default RedirectToProjectCreate;
