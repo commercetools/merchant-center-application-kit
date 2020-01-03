@@ -7,7 +7,10 @@ import ProjectQuery from './fetch-project.mc.graphql';
 
 const FetchProject = props => {
   const { loading, data, error } = useQuery(ProjectQuery, {
-    onError: reportErrorToSentry,
+    onError: error => {
+      console.log('error', error);
+      reportErrorToSentry(error);
+    },
     variables: {
       target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
       projectKey: props.projectKey,

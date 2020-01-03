@@ -1,32 +1,26 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
+import { encode } from 'qss';
+import xhrMock from 'xhr-mock';
+import { render, wait, waitForElement } from '@testing-library/react';
+import { AuthenticationError, ApolloError } from 'apollo-server-errors';
+import { createMemoryHistory } from 'history';
+import defaultHistory, {
+  createEnhancedHistory,
+} from '@commercetools-frontend/browser-history';
+import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { AsyncLocaleData } from '@commercetools-frontend/i18n';
-import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
+import {
+  createGraphqlMockServer,
+  getDefaultFixturesFor,
+} from '../../test-utils/graphql-mock';
 import * as appShellUtils from '../../utils';
-import ConfigureIntlProvider from '../configure-intl-provider';
-import ProjectContainer from '../project-container';
-import FetchUser from '../fetch-user';
-import FetchProject from '../fetch-project';
-import AppBar from '../app-bar';
-import NavBar, { LoadingNavBar } from '../navbar';
 import ApplicationShellProvider from '../application-shell-provider';
-import { getBrowserLocale } from '../application-shell-provider/utils';
-import ApplicationShell, {
-  RestrictedApplication,
-  MainContainer,
-} from './application-shell';
+import ApplicationShell from './application-shell';
 
 jest.mock('@commercetools-frontend/sentry');
 jest.mock('../../utils');
 
 const createTestProps = props => ({
-  applicationMessages: {
-    en: { 'CustomApp.title': 'Title en' },
-    'en-US': { 'CustomApp.title': 'Title' },
-    de: { 'CustomApp.title': 'Titel' },
-  },
   environment: {
     applicationName: 'my-app',
     frontendHost: 'localhost:3001',
@@ -34,475 +28,327 @@ const createTestProps = props => ({
     location: 'eu',
     env: 'development',
     cdnUrl: 'http://localhost:3001',
-    servedByProxy: false,
+    servedByProxy: 'false',
+    enableSignUp: 'true',
   },
+  featureFlags: {},
+  defaultFeatureFlags: {},
   trackingEventWhitelist: {},
-  render: jest.fn(),
-  notificationsByDomain: {
-    global: [],
-    page: [],
-    side: [],
-  },
-  showNotification: jest.fn(),
-  showApiErrorNotification: jest.fn(),
-  showUnexpectedErrorNotification: jest.fn(),
   onRegisterErrorListeners: jest.fn(),
+  onMenuItemClick: jest.fn(),
+  applicationMessages: {
+    en: { 'CustomApp.title': 'Title en' },
+    'en-US': { 'CustomApp.title': 'Title' },
+    de: { 'CustomApp.title': 'Titel' },
+  },
   ...props,
 });
 
-const testLocaleData = {
-  isLoading: false,
-  locale: 'en',
-  messages: { 'AppKit.title': 'Title en', 'CustomApp.title': 'Title en' },
+const mockSuperfluousRequests = () => {
+  xhrMock.post(/\/proxy\/mc-metrics\/metrics\/.*$/, {
+    body: JSON.stringify({ message: 'ok' }),
+  });
+  xhrMock.get(/\.launchdarkly\.com\/.*$/, {
+    body: JSON.stringify({}),
+    headers: { 'Content-Type': 'application/json' },
+  });
+  xhrMock.post(/\.launchdarkly\.com\/.*$/, {
+    body: JSON.stringify({}),
+    headers: { 'Content-Type': 'application/json' },
+  });
 };
 
-const renderForAsyncData = ({ props, userData, localeData = testLocaleData }) =>
-  shallow(<RestrictedApplication {...props} />)
-    .find(FetchUser)
-    .renderProp('children')(userData)
-    .find(AsyncLocaleData)
-    .renderProp('children')(localeData);
+const renderApp = (options = {}) => {
+  const initialRoute = options.route || '/foo';
+  const testHistory = createEnhancedHistory(
+    createMemoryHistory({ initialEntries: [initialRoute] })
+  );
+  ApplicationShellProvider.history = testHistory;
+  const defaultProps = createTestProps();
+  const props = {
+    ...defaultProps,
+    environment: { ...defaultProps.environment, ...options.environment },
+  };
+  const rendered = render(
+    <ApplicationShell {...props} render={() => <span>{'Hello world'}</span>} />
+  );
+  return { ...rendered, history: testHistory };
+};
 
-describe('<RestrictedApplication>', () => {
-  let props;
-  let wrapper;
-  let userData;
-  let localeData;
-  describe('rendering', () => {
+beforeEach(() => {
+  xhrMock.setup();
+  mockSuperfluousRequests();
+  window.localStorage.setItem.mockClear();
+  window.localStorage.getItem.mockClear();
+  window.localStorage.removeItem.mockClear();
+  window.location.replace = jest.fn();
+  reportErrorToSentry.mockClear();
+  window.localStorage.getItem.mockReturnValue('true');
+  ApplicationShellProvider.history = defaultHistory;
+  appShellUtils.getPreviousProjectKey.mockClear();
+});
+afterEach(() => {
+  xhrMock.reset();
+  xhrMock.teardown();
+});
+
+describe('rendering', () => {
+  describe('when user is not authenticated', () => {
     beforeEach(() => {
-      window.location.replace = jest.fn();
-      props = createTestProps();
-      userData = {
-        isLoading: false,
-        user: {
-          id: 'u1',
-          email: 'john.snow@got.com',
-          gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
-          firstName: 'John',
-          lastName: 'Snow',
-          projects: {
-            total: 0,
-            results: [],
-          },
-          defaultProjectKey: 'foo-0',
-          language: 'en-US',
-          launchdarklyTrackingId: '123',
-          launchdarklyTrackingGroup: 'ct',
-          launchdarklyTrackingTeam: ['abc', 'def'],
-          launchdarklyTrackingTenant: 'xy',
+      window.localStorage.getItem.mockReturnValue(null);
+      createGraphqlMockServer(xhrMock, {
+        onRequest: async (req, res, next) => {
+          const body = JSON.parse(req.body());
+          if (body.operationName === 'AmILoggedIn') {
+            return res
+              .status(401)
+              .body(JSON.stringify({ message: 'Unauthorized' }));
+          }
+          return next();
         },
-      };
-      wrapper = renderForAsyncData({ props, userData });
-    });
-    describe('when user is loading', () => {
-      beforeEach(() => {
-        reportErrorToSentry.mockClear();
-        props = createTestProps();
-        userData = {
-          isLoading: true,
-        };
-        wrapper = shallow(<RestrictedApplication {...props} />)
-          .find(FetchUser)
-          .renderProp('children')(userData);
-      });
-      it('should pass "locale" as undefined to <AsyncLocaleData>', () => {
-        expect(wrapper.find(AsyncLocaleData)).toHaveProp('locale', undefined);
-      });
-      it('should pass "user" as undefined to <ApplicationContextProvider>', () => {
-        expect(wrapper.find(ApplicationContextProvider)).toHaveProp(
-          'user',
-          undefined
-        );
-      });
-      it('should pass "environment" to <ApplicationContextProvider>', () => {
-        expect(wrapper.find(ApplicationContextProvider)).toHaveProp(
-          'environment',
-          props.environment
-        );
       });
     });
-    describe('when user is loaded', () => {
+    it('redirect to /login with reason "unauthorized"', async () => {
+      const rendered = renderApp();
+      await wait(() => {
+        expect(window.location.replace).toHaveBeenCalledWith(
+          `${window.location.origin}/login?${encode({
+            reason: LOGOUT_REASONS.UNAUTHORIZED,
+            redirectTo: `${window.location.origin}/foo`,
+          })}`
+        );
+      });
+      expect(rendered.queryByText('Hello world')).not.toBeInTheDocument();
+    });
+  });
+  describe('when user is authenticated', () => {
+    describe('when route is /logout', () => {
       beforeEach(() => {
-        reportErrorToSentry.mockClear();
-        props = createTestProps();
-        wrapper = shallow(<RestrictedApplication {...props} />)
-          .find(FetchUser)
-          .renderProp('children')(userData);
+        createGraphqlMockServer(xhrMock);
       });
-      it('should pass "user" to <ApplicationContextProvider>', () => {
-        expect(wrapper.find(ApplicationContextProvider)).toHaveProp(
-          'user',
-          userData.user
-        );
-      });
-      it('should pass "environment" to <ApplicationContextProvider>', () => {
-        expect(wrapper.find(ApplicationContextProvider)).toHaveProp(
-          'environment',
-          props.environment
-        );
+      it('should redirect to /logout with reason "user"', async () => {
+        const rendered = renderApp({ route: '/logout' });
+        await wait(() => {
+          expect(window.location.replace).toHaveBeenCalledWith(
+            `${window.location.origin}/logout?${encode({
+              reason: LOGOUT_REASONS.USER,
+              redirectTo: window.location.origin,
+            })}`
+          );
+        });
+        expect(rendered.queryByText('Hello world')).not.toBeInTheDocument();
       });
     });
-    describe('when locale data is loading', () => {
+    describe('when route is /account', () => {
       beforeEach(() => {
-        reportErrorToSentry.mockClear();
-        wrapper = shallow(<RestrictedApplication {...props} />)
-          .find(FetchUser)
-          .renderProp('children')(userData)
-          .find(AsyncLocaleData)
-          .renderProp('children')({
-          isLoading: true,
-          locale: null,
-          messages: null,
+        createGraphqlMockServer(xhrMock);
+        appShellUtils.getPreviousProjectKey.mockReturnValue('test-project-key');
+      });
+      it('should render app as it is', async () => {
+        const rendered = renderApp({ route: '/account' });
+        await wait(() => {
+          expect(rendered.queryByText('Hello world')).toBeInTheDocument();
+        });
+        expect(rendered.history.location.pathname).toBe('/account');
+      });
+    });
+    describe('when route is /', () => {
+      beforeEach(() => {
+        createGraphqlMockServer(xhrMock);
+        appShellUtils.getPreviousProjectKey.mockReturnValue('test-project-key');
+      });
+      it('should redirect to project URL and render app', async () => {
+        const rendered = renderApp({ route: '/' });
+        await wait(() => {
+          expect(rendered.queryByText('Hello world')).toBeInTheDocument();
+        });
+        expect(rendered.history.location.pathname).toBe('/test-project-key');
+      });
+    });
+    describe('when user has no default project', () => {
+      beforeEach(() => {
+        createGraphqlMockServer(xhrMock);
+        appShellUtils.getPreviousProjectKey.mockReturnValue(null);
+      });
+      it('should redirect to project creation', async () => {
+        const rendered = renderApp({
+          route: '/',
+          environment: {
+            servedByProxy: 'true',
+          },
+        });
+        await wait(() => {
+          expect(window.location.replace).toHaveBeenCalledWith(
+            '/account/projects/new'
+          );
+        });
+        expect(rendered.queryByText('Hello world')).not.toBeInTheDocument();
+      });
+    });
+    describe('when user has no projects and signup is disabled and app is running on production', () => {
+      beforeEach(() => {
+        const mcFixtures = getDefaultFixturesFor('mc');
+        createGraphqlMockServer(xhrMock, {
+          resolvers: {
+            mc: {
+              query: {
+                me: () =>
+                  mcFixtures.User.attr('projects', {
+                    total: 0,
+                    results: [],
+                  }).build(),
+              },
+            },
+          },
+        });
+        appShellUtils.getPreviousProjectKey.mockReturnValue('something');
+      });
+      it('should redirect to /logout with reason param', async () => {
+        const rendered = renderApp({
+          route: '/',
+          environment: {
+            servedByProxy: 'true',
+            enableSignUp: 'false',
+          },
+        });
+        await wait(() => {
+          expect(window.location.replace).toHaveBeenCalledWith(
+            `${window.location.origin}/logout?${encode({
+              reason: 'no-projects',
+            })}`
+          );
+        });
+        expect(rendered.queryByText('Hello world')).not.toBeInTheDocument();
+      });
+    });
+    describe('when user has no projects and signup is enabled', () => {
+      beforeEach(() => {
+        const mcFixtures = getDefaultFixturesFor('mc');
+        createGraphqlMockServer(xhrMock, {
+          resolvers: {
+            mc: {
+              query: {
+                me: () =>
+                  mcFixtures.User.attr('projects', {
+                    total: 0,
+                    results: [],
+                  }).build(),
+              },
+            },
+          },
+        });
+        appShellUtils.getPreviousProjectKey.mockReturnValue('something');
+      });
+      it('should redirect to project creation', async () => {
+        const rendered = renderApp({
+          route: '/',
+          environment: {
+            servedByProxy: 'true',
+          },
+        });
+        await wait(() => {
+          expect(window.location.replace).toHaveBeenCalledWith(
+            '/account/projects/new'
+          );
+        });
+        expect(rendered.queryByText('Hello world')).not.toBeInTheDocument();
+      });
+    });
+
+    describe('when loading user fails with an unknown graphql error', () => {
+      beforeEach(() => {
+        createGraphqlMockServer(xhrMock, {
+          resolvers: {
+            mc: {
+              query: {
+                me: () => {
+                  throw new ApolloError('Oops');
+                },
+              },
+            },
+          },
         });
       });
-      it('should not pass "locale" prop to <ConfigureIntlProvider>', () => {
-        expect(wrapper.find(ConfigureIntlProvider)).not.toHaveProp('locale');
-      });
-      it('should not pass "messages" prop to <ConfigureIntlProvider>', () => {
-        expect(wrapper.find(ConfigureIntlProvider)).not.toHaveProp('messages');
-      });
-    });
-    describe('when fetching the user returns an error', () => {
-      beforeEach(() => {
-        reportErrorToSentry.mockClear();
-        props = createTestProps();
-        userData = {
-          isLoading: false,
-          error: new Error('Failed to fetch'),
-        };
-        wrapper = renderForAsyncData({ props, userData });
-      });
-      it('should pass "locale" to <ConfigureIntlProvider>', () => {
-        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp('locale', 'en');
-      });
-      it('should render <ErrorApologizer>', () => {
-        expect(wrapper).toRender('ErrorApologizer');
-      });
-      it('should report error to sentry', () => {
+      it('should render error page', async () => {
+        const rendered = renderApp();
+        await waitForElement(() =>
+          rendered.getByText('Sorry! An unexpected error occured.')
+        );
+        expect(rendered.queryByText('Hello world')).not.toBeInTheDocument();
         expect(reportErrorToSentry).toHaveBeenCalledWith(
-          new Error('Failed to fetch'),
+          expect.objectContaining({
+            graphQLErrors: expect.arrayContaining([
+              expect.objectContaining({ message: 'Oops' }),
+            ]),
+          }),
           {}
         );
       });
-      it('should pass default "messages" to <ConfigureIntlProvider>', () => {
-        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
-          'messages',
-          expect.objectContaining({
-            'AppKit.title': 'Title en',
-          })
-        );
-      });
-      it('should pass application "messages" to <ConfigureIntlProvider>', () => {
-        expect(wrapper.find(ConfigureIntlProvider)).toHaveProp(
-          'messages',
-          expect.objectContaining({
-            'CustomApp.title': 'Title en',
-          })
-        );
-      });
-      it('should not render <ApplicationContextProvider>', () => {
-        expect(wrapper).not.toRender(ApplicationContextProvider);
-      });
     });
-
-    describe('layout', () => {
-      it('should render "global-notifications" container inside "application-layout"', () => {
-        expect(
-          wrapper.find({ role: 'application-layout' }).find({
-            role: 'global-notifications',
-          })
-        ).toBeDefined();
-      });
-      it('should render "header" element inside "application-layout"', () => {
-        expect(
-          wrapper.find({ role: 'application-layout' }).find({ role: 'header' })
-        ).toBeDefined();
-      });
-      it('should render "aside" element inside "application-layout"', () => {
-        expect(
-          wrapper.find({ role: 'application-layout' }).find({ role: 'aside' })
-        ).toBeDefined();
-      });
-      it('should render "main" container inside "application-layout"', () => {
-        expect(
-          wrapper.find({ role: 'application-layout' }).find({ role: 'main' })
-        ).toBeDefined();
-      });
-    });
-    it('should render GLOBAL <NotificationsList>', () => {
-      expect(wrapper.find('NotificationsList').at(0)).toHaveProp(
-        'domain',
-        DOMAINS.GLOBAL
-      );
-    });
-    it('should render PAGE <NotificationsList>', () => {
-      expect(wrapper.find('NotificationsList').at(1)).toHaveProp(
-        'domain',
-        DOMAINS.PAGE
-      );
-    });
-    it('should render SIDE <NotificationsList>', () => {
-      expect(wrapper.find('NotificationsList').at(2)).toHaveProp(
-        'domain',
-        DOMAINS.SIDE
-      );
-    });
-    it('should render <AppBar> below header element', () => {
-      expect(wrapper.find('header').find(AppBar)).toBeDefined();
-    });
-    describe('<NavBar>', () => {
-      let wrapperAside;
-      describe('when there is a project key in the url', () => {
-        let project;
-        beforeEach(() => {
-          appShellUtils.selectProjectKeyFromUrl.mockReturnValue('foo-1');
-          wrapper = renderForAsyncData({ props, userData });
-          project = {
-            key: 'foo-1',
-            version: 1,
-            name: 'Foo 1',
-            countries: ['us'],
-            currencies: ['USD'],
-            languages: ['en'],
-            owner: {
-              id: 'foo-id',
+    describe('when loading user fails with an unauthorized graphql error', () => {
+      beforeEach(() => {
+        createGraphqlMockServer(xhrMock, {
+          resolvers: {
+            mc: {
+              query: {
+                me: () => {
+                  throw new AuthenticationError('User is not authorized');
+                },
+              },
             },
-            permissions: { canManageProjectSettings: true },
-            menuVisibilities: { hideDashboard: true },
-            actionRights: null,
-            dataFences: null,
-          };
-          wrapperAside = wrapper
-            .find({ role: 'aside' })
-            .find(FetchProject)
-            .renderProp('children')({
-            isLoading: false,
-            project,
-          });
-        });
-        it('should pass "user" to <ApplicationContextProvider>', () => {
-          expect(wrapperAside.find(ApplicationContextProvider)).toHaveProp(
-            'user',
-            userData.user
-          );
-        });
-        it('should pass "project" to <ApplicationContextProvider>', () => {
-          expect(wrapperAside.find(ApplicationContextProvider)).toHaveProp(
-            'project',
-            project
-          );
-        });
-        it('should pass "environment" to <ApplicationContextProvider>', () => {
-          expect(wrapperAside.find(ApplicationContextProvider)).toHaveProp(
-            'environment',
-            props.environment
-          );
-        });
-        it('should pass the projectKey matched from the URL', () => {
-          expect(wrapperAside.find(NavBar)).toHaveProp('projectKey', 'foo-1');
-        });
-        it('should pass the application language', () => {
-          expect(wrapperAside.find(NavBar)).toHaveProp(
-            'applicationLocale',
-            'en'
-          );
-        });
-        it('should pass "environment"', () => {
-          expect(wrapperAside.find(NavBar)).toHaveProp(
-            'environment',
-            props.environment
-          );
-        });
-        describe('when user, locale and project are loading', () => {
-          beforeEach(() => {
-            userData = {
-              isLoading: true,
-            };
-            localeData = {
-              isLoading: true,
-            };
-            wrapper = renderForAsyncData({ props, userData, localeData });
-            wrapperAside = wrapper
-              .find({ role: 'aside' })
-              .find(FetchProject)
-              .renderProp('children')({
-              isLoading: true,
-            });
-          });
-          it('should render <LoadingNavBar>', () => {
-            expect(wrapperAside).toRender(LoadingNavBar);
-          });
-        });
-        describe('when user is loaded, locale and project are loading', () => {
-          beforeEach(() => {
-            localeData = {
-              isLoading: true,
-            };
-            wrapper = renderForAsyncData({ props, userData, localeData });
-            wrapperAside = wrapper
-              .find({ role: 'aside' })
-              .find(FetchProject)
-              .renderProp('children')({
-              isLoading: true,
-            });
-          });
-          it('should render <LoadingNavBar>', () => {
-            expect(wrapperAside).toRender(LoadingNavBar);
-          });
-        });
-        describe('when user and locale data are loaded, project is loading', () => {
-          beforeEach(() => {
-            wrapper = renderForAsyncData({ props, userData });
-            wrapperAside = wrapper
-              .find({ role: 'aside' })
-              .find(FetchProject)
-              .renderProp('children')({
-              isLoading: true,
-            });
-          });
-          it('should render <LoadingNavBar>', () => {
-            expect(wrapperAside).toRender(LoadingNavBar);
-          });
+          },
         });
       });
-      describe('when there is no project key in the url', () => {
-        beforeEach(() => {
-          appShellUtils.selectProjectKeyFromUrl.mockReturnValue();
-          wrapper = renderForAsyncData({ props, userData });
-          wrapperAside = wrapper.find({ role: 'aside' });
+      it('should redirect to /logout with reason "unauthorized"', async () => {
+        const rendered = renderApp();
+        await wait(() => {
+          expect(window.location.replace).toHaveBeenCalledWith(
+            `${window.location.origin}/logout?${encode({
+              reason: LOGOUT_REASONS.UNAUTHORIZED,
+            })}`
+          );
         });
-        it('should not render <LoadingNavBar>', () => {
-          expect(wrapperAside).not.toRender(LoadingNavBar);
-        });
-        it('should not render <NavBar>', () => {
-          expect(wrapperAside).not.toRender(NavBar);
-        });
+        expect(rendered.queryByText('Hello world')).not.toBeInTheDocument();
       });
     });
-    it('should render <Route> for "/account"', () => {
-      expect(wrapper.find(MainContainer)).toRender({
-        path: '/account',
-        render: props.render,
-      });
-    });
-    it('should render <Route> for redirect to "/account"', () => {
-      expect(wrapper.find(MainContainer)).toRender({ to: '/account/profile' });
-    });
-    it('should render <Route> matching ":projectKey" path', () => {
-      expect(wrapper.find(MainContainer)).toRender({
-        exact: false,
-        path: '/:projectKey',
-      });
-    });
-    describe('project container <Route>', () => {
-      let routerProps;
+    describe('when loading user fails with a "was not found." graphql error message', () => {
       beforeEach(() => {
-        routerProps = {
-          location: { pathname: '/test-project/products' },
-          match: { params: { projectKey: 'foo-1' } },
-        };
-        wrapper = wrapper
-          .find(MainContainer)
-          .find({ exact: false, path: '/:projectKey' })
-          .renderProp('render')(routerProps);
-      });
-      it('should pass "match" to <ProjectContainer>', () => {
-        expect(wrapper.find(ProjectContainer)).toHaveProp(
-          'match',
-          routerProps.match
-        );
-      });
-      it('should pass "render" to <ProjectContainer>', () => {
-        expect(wrapper.find(ProjectContainer)).toHaveProp(
-          'render',
-          props.render
-        );
-      });
-    });
-    it('should render <Route> matching "/" path', () => {
-      expect(wrapper.find(MainContainer)).toRender({
-        path: '/',
-      });
-    });
-  });
-});
-
-describe('when user is not logged in', () => {
-  let props;
-  let wrapper;
-  describe('rendering', () => {
-    beforeEach(() => {
-      props = createTestProps();
-      wrapper = shallow(<ApplicationShell {...props} />)
-        .find(ApplicationShellProvider)
-        .renderProp('children')({ isAuthenticated: false });
-    });
-    describe('catch <Route>', () => {
-      let renderWrapper;
-      let routerProps;
-      beforeEach(() => {
-        routerProps = {
-          location: { pathname: '/foo' },
-        };
-        renderWrapper = wrapper.find('Route').renderProp('render')(routerProps);
-      });
-      it('should redirect "/login"', () => {
-        expect(renderWrapper).toHaveProp('to', 'login');
-      });
-      it('should pass location', () => {
-        expect(renderWrapper).toHaveProp('location', routerProps.location);
-      });
-      it('should pass queryParams', () => {
-        expect(renderWrapper).toHaveProp('queryParams', {
-          reason: LOGOUT_REASONS.UNAUTHORIZED,
-          redirectTo: `${window.location.origin}${routerProps.location.pathname}`,
+        createGraphqlMockServer(xhrMock, {
+          resolvers: {
+            mc: {
+              query: {
+                me: () => {
+                  throw new Error('User was not found.');
+                },
+              },
+            },
+          },
         });
       });
+      it('should redirect to /logout with reason "deleted"', async () => {
+        const rendered = renderApp();
+        await wait(() => {
+          expect(window.location.replace).toHaveBeenCalledWith(
+            `${window.location.origin}/logout?${encode({
+              reason: LOGOUT_REASONS.DELETED,
+            })}`
+          );
+        });
+        expect(rendered.queryByText('Hello world')).not.toBeInTheDocument();
+      });
     });
-  });
-});
 
-describe('lifecycle', () => {
-  let props;
-  let wrapper;
-  beforeEach(() => {
-    props = createTestProps();
-    wrapper = shallow(<ApplicationShell {...props} />);
-  });
-  describe('componentDidMount', () => {
-    beforeEach(() => {
-      wrapper.instance().componentDidMount();
+    describe('when project is not found', () => {
+      it.todo('should render page not found');
     });
-    it('should call onRegisterErrorListeners', () => {
-      expect(props.onRegisterErrorListeners).toHaveBeenCalled();
+    describe('when project is suspended', () => {
+      it.todo('should render project suspended page');
     });
-  });
-});
-
-describe('getBrowserLocale', () => {
-  let testWindow;
-  describe('when the locale is supported by the MC', () => {
-    beforeEach(() => {
-      testWindow = {
-        navigator: {
-          language: 'de-DE',
-        },
-      };
+    describe('when project is expired', () => {
+      it.todo('should render project expired page');
     });
-    it('should return the locale', () => {
-      expect(getBrowserLocale(testWindow)).toBe('de-DE');
-    });
-  });
-  describe('when locale is not supported by the MC', () => {
-    beforeEach(() => {
-      testWindow = {
-        navigator: {
-          language: 'hu',
-        },
-      };
-    });
-    it('should return the default locale, `en`', () => {
-      expect(getBrowserLocale(testWindow)).toBe('en');
+    describe('when project is not initialized', () => {
+      it.todo('should render project not initialized page');
     });
   });
 });

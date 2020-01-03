@@ -111,6 +111,7 @@ export const LOGOUT_REASONS = {
   UNAUTHORIZED: 'unauthorized',
   INVALID: 'invalid',
   DELETED: 'deleted',
+  NO_PROJECTS: 'no-projects',
 } as const;
 export type TLogoutReason = typeof LOGOUT_REASONS[keyof typeof LOGOUT_REASONS];
 

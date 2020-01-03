@@ -9,9 +9,9 @@ class Redirector extends React.PureComponent {
     to: PropTypes.string.isRequired,
     location: PropTypes.shape({
       query: PropTypes.shape({
-        reason: PropTypes.oneOf(Object.values(LOGOUT_REASONS)).isRequired,
+        reason: PropTypes.oneOf(Object.values(LOGOUT_REASONS)),
       }),
-    }).isRequired,
+    }),
     environment: PropTypes.shape({
       servedByProxy: PropTypes.bool.isRequired,
     }).isRequired,

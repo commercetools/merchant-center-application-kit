@@ -34,6 +34,8 @@ export default class ApplicationShellProvider extends React.Component {
   static defaultProps = {
     trackingEventWhitelist: {},
   };
+  // This is useful to inject a custom history object during tests
+  static history = history;
   state = {
     hasError: false,
   };
@@ -55,7 +57,7 @@ export default class ApplicationShellProvider extends React.Component {
         <ReduxProvider store={internalReduxStore}>
           <ApolloProvider client={apolloClient}>
             <React.Suspense fallback={<ApplicationLoader />}>
-              <Router history={history}>
+              <Router history={ApplicationShellProvider.history}>
                 <GtmBooter
                   trackingEventWhitelist={this.props.trackingEventWhitelist}
                 >

@@ -191,7 +191,7 @@ export class MenuItemLink extends React.PureComponent {
     exactMatch: PropTypes.bool,
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func,
-    useFullRedirectsForLinks: PropTypes.bool.isRequired,
+    useFullRedirectsForLinks: PropTypes.bool,
   };
   static defaultProps = {
     exactMatch: false,
@@ -399,7 +399,7 @@ export class DataMenu extends React.PureComponent {
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
-    useFullRedirectsForLinks: PropTypes.bool.isRequired,
+    useFullRedirectsForLinks: PropTypes.bool,
     onMenuItemClick: PropTypes.func,
   };
   state = {
@@ -756,7 +756,7 @@ NavBar.propTypes = {
   projectKey: PropTypes.string.isRequired,
   environment: PropTypes.shape({
     servedByProxy: PropTypes.bool.isRequired,
-    useFullRedirectsForLinks: PropTypes.bool.isRequired,
+    useFullRedirectsForLinks: PropTypes.bool,
   }).isRequired,
   menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
   DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
