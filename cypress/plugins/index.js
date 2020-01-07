@@ -20,7 +20,8 @@
 // Reference: https://docs.cypress.io/api/plugins/configuration-api.html#Promises
 
 /* eslint-disable global-require */
-
+const fs = require('fs');
+const path = require('path');
 const percyHealthCheck = require('@percy/cypress/task');
 
 // plugins file
@@ -33,7 +34,20 @@ module.exports = (on, cypressConfig) => {
     require('dotenv').config({ path: envPath });
   }
 
-  on('task', percyHealthCheck);
+  on('task', {
+    ...percyHealthCheck,
+    getGraphQLSchema(targetName) {
+      const schemaPath = path.resolve(
+        __dirname,
+        `../../schemas/${targetName}.json`
+      );
+      if (fs.existsSync(schemaPath)) {
+        const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
+        return schema.data;
+      }
+      throw new Error(`Unknown schema target ${targetName}`);
+    },
+  });
 
   return Object.assign({}, cypressConfig, {
     env: Object.assign({}, cypressConfig.env, {

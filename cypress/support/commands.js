@@ -1,5 +1,6 @@
 import '@percy/cypress';
 import '@testing-library/cypress/add-commands';
+import 'cypress-graphql-mock';
 
 function isLocalhost() {
   const url = new URL(Cypress.config('baseUrl'));
@@ -36,33 +37,27 @@ Cypress.Commands.add('logout', () => {
   cy.visit('/logout');
 });
 
-Cypress.Commands.add(
-  'login',
-  ({ redirectToUri, isForcedMenuOpen = false } = {}) => {
-    cy.setDesktopViewport();
-    cy.window().then(win =>
-      win.localStorage.setItem('isForcedMenuOpen', isForcedMenuOpen)
-    );
-    cy.visit('/logout');
-    // Wait to be in the "/login" route, then redirect to "/login" again
-    // to ensure we clear all query parameters, as they seem to interfer
-    // with the login form.
-    if (!isLocalhost()) {
-      cy.url().should('include', '/login');
-    }
-    cy.visit(`/login`);
-    cy.findByText('Email').should('exist');
-    cy.findByText('Password').should('exist');
-    cy.findByLabelText(/email/i).type(Cypress.env('LOGIN_USER'));
-    cy.findByLabelText(/password/i).type(Cypress.env('LOGIN_PASSWORD'), {
-      log: false,
-    });
-    cy.get('[aria-label="Sign in"]').click();
-    cy.get('[data-test=top-navigation').should('exist');
-    cy.visit(`${Cypress.config('baseUrl')}${redirectToUri}`);
-    cy.url().should('include', redirectToUri);
+Cypress.Commands.add('login', ({ isForcedMenuOpen = false } = {}) => {
+  cy.setDesktopViewport();
+  cy.window().then(win =>
+    win.localStorage.setItem('isForcedMenuOpen', isForcedMenuOpen)
+  );
+  cy.visit('/logout');
+  // Wait to be in the "/login" route, then redirect to "/login" again
+  // to ensure we clear all query parameters, as they seem to interfer
+  // with the login form.
+  if (!isLocalhost()) {
+    cy.url().should('include', '/login');
   }
-);
+  cy.visit(`/login`);
+  cy.findByText('Email').should('exist');
+  cy.findByText('Password').should('exist');
+  cy.findByLabelText(/email/i).type(Cypress.env('LOGIN_USER'));
+  cy.findByLabelText(/password/i).type(Cypress.env('LOGIN_PASSWORD'), {
+    log: false,
+  });
+  cy.get('[aria-label="Sign in"]').click();
+});
 
 Cypress.Commands.add('setDesktopViewport', () => {
   // we use ui-elements which only render elements to the DOM when they are visible to the user

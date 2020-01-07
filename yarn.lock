@@ -9442,6 +9442,15 @@ cyclist@^1.0.1:
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
   integrity sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
 
+cypress-graphql-mock@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/cypress-graphql-mock/-/cypress-graphql-mock-0.3.1.tgz#9c0d7869cc240e3fd6ea26cf013f647eaf4b7985"
+  integrity sha512-40OrMRdl8e2r0beYwMyhnvregFzf2/6/YgMYjbUCKpyUZUcsfjG3e3cLWk9kQqJDnamXCDbOcgqygZbu3H5wtA==
+  dependencies:
+    graphql "^14.0.2"
+    graphql-tools "^4.0.3"
+    tslib "^1.9.3"
+
 cypress@3.8.1, cypress@^3.5.0:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-3.8.1.tgz#7821084e0ead81d35ffa29f2141c977dfdfc2343"
@@ -13454,7 +13463,7 @@ graphql-tag@2.10.1, graphql-tag@^2.10.1, graphql-tag@^2.9.2:
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.1.tgz#10aa41f1cd8fae5373eaf11f1f67260a3cad5e02"
   integrity sha512-jApXqWBzNXQ8jYa/HLkZJaVw9jgwNqZkywa2zfFn16Iv1Zb7ELNHkJaXHR7Quvd5SIGsy6Ny7SUKATgnu05uEg==
 
-graphql-tools@4.0.6:
+graphql-tools@4.0.6, graphql-tools@^4.0.3:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-4.0.6.tgz#0e729e73db05ade3df10a2f92511be544972a844"
   integrity sha512-jHLQw8x3xmSNRBCsaZqelXXsFfUSUSktSCUP8KYHiX1Z9qEuwcMpAf+FkdBzk8aTAFqOlPdNZ3OI4DKKqGKUqg==
