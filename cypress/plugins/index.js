@@ -23,10 +23,6 @@
 
 const percyHealthCheck = require('@percy/cypress/task');
 
-module.exports = on => {
-  on('task', percyHealthCheck);
-};
-
 // plugins file
 module.exports = (on, cypressConfig) => {
   // Load the config
