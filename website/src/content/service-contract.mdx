@@ -80,7 +80,8 @@ We do not expect custom applications receiving the same amount of maintenance as
 However, commercetools recommends that custom applications are **updated at regular periods** and maintained in planned intervals to **not fall back behind too many major versions**.
 This for one enables consumers put new or improved features to use but also ensures that underlying libaries remain up-to-date with potential security patches.
 
-We recommend to use tools and services that can be used to get dependency updates and help with the maintenance work. For example Renovate, Dependabot, Greenkeeper, etc.
+Moreover, fixes or updates will not be backported to old releases. Only the latest release will be continously build upon.
+As a result, we recommend to use tools and services that can be used to get dependency updates and help with the maintenance work. For example Renovate, Dependabot, Greenkeeper, etc.
 
 Rare occasions may require migrating to a major release and commercetools to potentially contact owners of custom applications in the process. This can be caused by changes to internal GraphQL APIs or general required updates for custom applications to ensure reliability and stability.
 As part of the service contract commercetools guarantees that **any major non beta version will be supported for at least 12 months** without requiring maintenance work. Any mandatory breaking release will be documented in the changelogs.
