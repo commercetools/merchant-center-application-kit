@@ -42,7 +42,7 @@
     "make-plural": "6.0.1",
     "pkg-dir": "4.2.0",
     "raf": "3.4.1",
-    "ts-jest": "24.2.0",
+    "ts-jest": "24.3.0",
     "unfetch": "4.1.0"
   },
   "devDependencies": {
