@@ -60,6 +60,15 @@ Breaking changes are introduced whenever there is a **major** version release, f
 > A new major release does not always mean that breaking changes affect consumer of the packages directly.
 > Because of Semantic Versioning, a breaking change can sometimes mean bumping a version of a dependency package
 
+There are main ways a breaking change can impact a custom application:
+
+1. Affects a component or module _not used_ within the custom application
+2. Affects a component or module _used_ within the custom application
+3. Affects a component or module _used explicitly or implicitly_ interacting with our internal GraphQL APIs
+
+In case of a release with a breaking change of type 1. no action is required. In case of type 2. action is only required if the custom application should make use of the improvement enabled by the breaking change.
+Only in case of 3. commercetools may require a migration to be carried out while continuing to support the outdated version (more below).
+
 All breaking changes are thoroughly documented in the release notes together with migration steps to facilitate the version update. This also helps to identify if changes are needed within the custom application's code.
 
 # Minimal required maintenance
@@ -68,12 +77,13 @@ The Merchant Center applications themselves are always kept up-to-date with the 
 This ensures quality and consistency across our packages while we have to potentially perform migration steps related to a breaking change internally in multiple applications.
 
 We do not expect custom applications receiving the same amount of maintenance as Merchant Center applications.
-However, commercetools recommends that custom applications are at least **maintained at regular periods** and **do not fall back behind too many major versions**.
+However, commercetools recommends that custom applications are **updated at regular periods** and maintained in planned intervals to **not fall back behind too many major versions**.
 This for one enables consumers put new or improved features to use but also ensures that underlying libaries remain up-to-date with potential security patches.
 
 We recommend to use tools and services that can be used to get dependency updates and help with the maintenance work. For example Renovate, Dependabot, Greenkeeper, etc.
 
 Rare occasions may require migrating to a major release and commercetools to potentially contact owners of custom applications in the process. This can be caused by changes to internal GraphQL APIs or general required updates for custom applications to ensure reliability and stability.
+As part of the service contract commercetools guarantees that **any major non beta version will be supported for at least 12 months** without requiring maintenance work. Any mandatory breaking release will be documented in the changelogs.
 
 # Issues and support requests
 
