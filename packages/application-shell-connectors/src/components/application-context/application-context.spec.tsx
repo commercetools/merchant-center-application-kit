@@ -58,6 +58,7 @@ const createTestProject = (custom = {}) => ({
   },
   suspension: {
     isActive: false,
+    reason: undefined,
   },
   owner: { id: 'o1' },
   ...custom,

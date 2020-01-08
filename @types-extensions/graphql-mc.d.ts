@@ -25,14 +25,6 @@ declare module '*/fetch-user.mc.graphql' {
   export default defaultDocument;
 }
 
-declare module '*/project-switcher-fragments.mc.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const projectFragment: DocumentNode;
-
-  export default defaultDocument;
-}
-
 declare module '*/project-switcher.mc.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

@@ -27,6 +27,7 @@ const createTestProject = (
   },
   suspension: {
     isActive: false,
+    reason: undefined,
   },
   owner: { id: 'o1' },
   ...custom,

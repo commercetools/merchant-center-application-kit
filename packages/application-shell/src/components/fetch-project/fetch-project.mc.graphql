@@ -13,6 +13,7 @@ query FetchProject($projectKey: String!) {
     }
     suspension {
       isActive
+      reason
     }
     allAppliedPermissions {
       name

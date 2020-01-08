@@ -60,6 +60,7 @@ const testRender = ({
         },
         suspension: {
           isActive: false,
+          reason: undefined,
         },
         allAppliedPermissions,
         allAppliedActionRights,

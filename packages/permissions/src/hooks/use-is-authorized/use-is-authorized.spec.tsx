@@ -102,6 +102,7 @@ const testRender = ({
         },
         suspension: {
           isActive: true,
+          reason: undefined,
         },
         allAppliedPermissions,
         allAppliedActionRights,
