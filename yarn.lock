@@ -2870,10 +2870,10 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@flopflip/launchdarkly-adapter@2.10.0":
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.10.0.tgz#222d4c7ce1f2e7f89d5694b5b9ac8166985b7f7a"
-  integrity sha512-S6MiUcAbYwuwq3vVd3+lykYrWgYDdq7k6ZAopTNEBEA4avwf9tUOvrFUNKqSC1bnNi8OMQBt8xI433RNeuhegQ==
+"@flopflip/launchdarkly-adapter@2.9.4":
+  version "2.9.4"
+  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.9.4.tgz#ed508d076fdf784d7d52b704ae3152dc02bc5375"
+  integrity sha512-cPUyDACTieQZruzvqhoa2MLNkg8DAvTXowgFwwiyKzCUeW3sQ8cJS829UMdU58WUoIiCHS2HF/qRu2tte83ywg==
   dependencies:
     "@babel/runtime" "7.7.7"
     debounce-fn "3.0.1"
@@ -2882,10 +2882,10 @@
     lodash "4.17.15"
     tiny-warning "1.0.3"
 
-"@flopflip/memory-adapter@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-1.5.0.tgz#391167b8d4311f1e9e169b033c1854151656cfa2"
-  integrity sha512-+oJLE18VvdlH3I99YHP2f0CBbEt+QMXVYUNe4YTsb9HK1Jjg3hMvB9gxh04M6HV5trW3Qh7TKybvHn/asmBKXw==
+"@flopflip/memory-adapter@1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-1.4.3.tgz#08d001867698142ee451e4a606da2f7a6f4c9c69"
+  integrity sha512-Qwi2fovkU2iSBG+0yCcT0oxFi+yw27yvL3qUInt+gbEBCkoV/5mRraqxuJTe/qDCEaH3RS6yZpMee3YYMpM0pg==
   dependencies:
     "@babel/runtime" "7.7.7"
     invariant "2.2.4"
@@ -12138,7 +12138,6 @@ fsevents@^1.2.7:
   dependencies:
     bindings "^1.5.0"
     nan "^2.12.1"
-    node-pre-gyp "*"
 
 fsevents@~2.1.1, fsevents@~2.1.2:
   version "2.1.2"
