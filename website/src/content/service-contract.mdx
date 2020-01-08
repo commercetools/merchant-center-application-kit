@@ -14,15 +14,15 @@ import { BetaFlag } from '@commercetools-docs/gatsby-theme-docs';
 
 Beta features are indicated with the <BetaFlag /> flag. The flag can be visible in the main navigation of the documentation website as well as at the top of a page. The latter is a link to this page.
 
-A feature is marked as Beta when is stable enough to be used in production but is not fully feature complete.
-During the Beta period there might still be issues and planned breaking changes. In this phase commercetools will gather the necessary feedback from consumers of the features in order to finalize the missing things and promote the feature to general availability.
+A feature is marked as Beta when is stable enough to be used in production but may not yet be fully feature complete. Although expected to be stable, any Beta feature can be subject to change and should be used carefully in production.
+During the Beta period commercetools is still in the process of gathering the necessary feedback from consumers in order to complete and finalize the feature. After it will be promoted to general availability and announced in the release notes.
 
 # Hosting
 
 Customers using custom applications are responsible for the maintenance of their custom applications. This includes hosting and deployments.
-commercetools does not take any responsibility towards incidents and service disruptions related to custom applications.
+commercetools does not take any responsibility towards incidents and service disruptions related to custom applications caused by their underlying infrastructure.
 
-# Releases and breaking changes
+# Release process
 
 Tooling and packages related to custom applications are released and published to [Node Package Manager](https://www.npmjs.com) (NPM) following [Semantic Versioning](https://semver.org/) (SemVer).
 
@@ -40,9 +40,18 @@ All published packages to NPM are listed in the following package organization:
 - [`@commercetools-frontend`](https://www.npmjs.com/org/commercetools-frontend)
 - [`@commercetools-uikit`](https://www.npmjs.com/org/commercetools-uikit)
 
-## Pre-releases and stable releases
+## Release cadence
+
+Commercetools strives to improve tooling and packages around custom applications continously. This means we do not follow a strict release cycle. Instead publish releases in meaningful intervals, potentially multiple times a week.
+In accordance with SemVer we ensure that updating to fix- and minor releases does not require any maintenance other than updating the version in the `package.json`.
+Lastly, a major release communicates a breaking change (mentioned below) that may require migration steps. We strive to perform such releases as rarely as possible and batched when viable to reduce the impact on custom applications.
+
+## Stable releases and pre-releases
 
 By default, all releases go to the `next` distribution tag and should be considered **prereleases**. This gives us a chance to test a release before marking it **stable** in the `latest` distribution channel.
+
+It is recommended to use packages only from the `latest` distribution channel. The `next` channel contains non-ready or experimental releases which are are used internally to ensure stability and a slower release cadence on the `latest` distribution channel.
+If you however consider yourself an early adopter or are a library author dependent on an experimental release feel free to tap into it. Commercetools may already use such a release in production and appriciates any feedback regarding bugs, features or unexpected behavior.
 
 ## Breaking changes
 
@@ -51,16 +60,20 @@ Breaking changes are introduced whenever there is a **major** version release, f
 > A new major release does not always mean that breaking changes affect consumer of the packages directly.
 > Because of Semantic Versioning, a breaking change can sometimes mean bumping a version of a dependency package
 
-All breaking changes are thoroughly documented in the release notes together with migration steps to facilitate the version update.
+All breaking changes are thoroughly documented in the release notes together with migration steps to facilitate the version update. This also helps to identify if changes are needed within the custom application's code.
 
 # Minimal required maintenance
 
-The Merchant Center applications are always kept up-to-date with the released tools and packages used to build custom applications.
+The Merchant Center applications themselves are always kept up-to-date with the released tools and packages used to build custom applications.
+This ensures quality and consistency across our packages while we have to potentially perform migration steps related to a breaking change internally in multiple applications.
 
-However, customers developing and maintaining custom applications might not always have the time and resources to keep the applications up-to-date.
-commercetools requires that custom applications are at least **maintained at regular periods** and **do not fall back behind too many versions**.
+We do not expect custom applications receiving the same amount of maintenance as Merchant Center applications.
+However, commercetools recommends that custom applications are at least **maintained at regular periods** and **do not fall back behind too many major versions**.
+This for one enables consumers put new or improved features to use but also ensures that underlying libaries remain up-to-date with potential security patches.
 
-To help with the maintenance work, there are tools and services that can be used to get dependency updates. For example Renovate, Dependabot, Greenkeeper, etc.
+We recommend to use tools and services that can be used to get dependency updates and help with the maintenance work. For example Renovate, Dependabot, Greenkeeper, etc.
+
+Rare occasions may require migrating to a major release and commercetools to potentially contact owners of custom applications in the process. This can be caused by changes to internal GraphQL APIs or general required updates for custom applications to ensure reliability and stability.
 
 # Issues and support requests
 
