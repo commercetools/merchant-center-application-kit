@@ -1,3 +1,26 @@
+## [15.6.2](https://github.com/commercetools/merchant-center-application-kit/compare/v15.6.1...v15.6.2) (2020-01-09)
+
+#### 🐛 Type: Bug
+* `application-shell`
+  * [#1228](https://github.com/commercetools/merchant-center-application-kit/pull/1228) fix(app-shell): denormalization of action rights ([@tdeekens](https://github.com/tdeekens))
+
+#### ✍️ Type: Documentation
+* `l10n`
+  * [#1223](https://github.com/commercetools/merchant-center-application-kit/pull/1223) chore: update docs ([@ahmehri](https://github.com/ahmehri))
+
+#### ⛑ Type: Refactoring
+* `application-shell`
+  * [#1222](https://github.com/commercetools/merchant-center-application-kit/pull/1222) refactor(app-shell): rewrite tests for ProjectDataLocale, use functional components ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+* Other
+  * [#1224](https://github.com/commercetools/merchant-center-application-kit/pull/1224) chore(deps): update cypress/base docker tag to v10.18.0 ([@renovate[bot]](https://github.com/apps/renovate))
+  * [#1227](https://github.com/commercetools/merchant-center-application-kit/pull/1227) chore(deps): lock file maintenance ([@renovate[bot]](https://github.com/apps/renovate))
+* `application-shell`
+  * [#1226](https://github.com/commercetools/merchant-center-application-kit/pull/1226) fix(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+* `babel-preset-mc-app`, `jest-preset-mc-app`, `jest-stylelint-runner`, `mc-scripts`
+  * [#1225](https://github.com/commercetools/merchant-center-application-kit/pull/1225) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [15.6.1](https://github.com/commercetools/merchant-center-application-kit/compare/v15.6.0...v15.6.1) (2020-01-02)
 
 #### 🐛 Type: Bug
