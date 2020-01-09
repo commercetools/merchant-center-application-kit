@@ -169,7 +169,8 @@ const denormalizeActionRights = actionRights => {
             name: actionRightKey,
             value: actionRights[actionRightGroup][actionRightKey],
           },
-        ]
+        ],
+        []
       ),
     ],
     []
