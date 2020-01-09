@@ -2,8 +2,7 @@
 import { encode } from 'qss';
 import { AuthenticationError, ApolloError } from 'apollo-server-errors';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import UserMock from '../../support/graphql-types/user';
-import ProjectMock from '../../support/graphql-types/project';
+import { UserMock, ProjectMock } from '../../../graphql-test-utils';
 import { URL_BASE, URL_STATE_MACHINES } from '../../support/urls';
 
 describe('when user is not authenticated', () => {

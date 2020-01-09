@@ -367,7 +367,6 @@ export const RestrictedApplication = props => (
                                    *   Given the user was working on a project previously or has a default
                                    *   project, the application will redirect to that project.
                                    */
-
                                   if (!user) return <ApplicationLoader />;
                                   if (!previousProjectKey)
                                     return <RedirectToProjectCreate />;

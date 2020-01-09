@@ -245,7 +245,8 @@ const hasMenuEveryMenuVisibilitySetToBeHidden = (
   Array.isArray(namesOfMenuVisibilities) &&
   namesOfMenuVisibilities.length > 0 &&
   namesOfMenuVisibilities.every(
-    nameOfMenuVisibility => menuVisibilities[nameOfMenuVisibility] === true
+    nameOfMenuVisibility =>
+      menuVisibilities && menuVisibilities[nameOfMenuVisibility] === true
   );
 const isMenuItemDisabledForEnvironment = (keyOfMenuItem, disabledMenuItems) =>
   disabledMenuItems && disabledMenuItems.includes(keyOfMenuItem);
@@ -300,7 +301,7 @@ RestrictedMenuItem.displayName = 'RestrictedMenuItem';
 RestrictedMenuItem.propTypes = {
   featureToggle: PropTypes.string,
   namesOfMenuVisibilities: PropTypes.arrayOf(PropTypes.string),
-  menuVisibilities: PropTypes.object.isRequired,
+  menuVisibilities: PropTypes.object,
   disabledMenuItems: PropTypes.arrayOf(PropTypes.string),
   keyOfMenuItem: PropTypes.string.isRequired,
   dataFences: PropTypes.arrayOf(
@@ -391,7 +392,7 @@ export class DataMenu extends React.PureComponent {
         shouldRenderDivider: PropTypes.bool,
       })
     ),
-    menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
+    menuVisibilities: PropTypes.objectOf(PropTypes.bool),
     applicationLocale: PropTypes.string.isRequired,
     projectKey: PropTypes.string.isRequired,
     disabledMenuItems: PropTypes.arrayOf(PropTypes.string.isRequired),
@@ -675,6 +676,7 @@ export const NavBarLayout = React.forwardRef((props, ref) => (
     ref={ref}
     className={styles['left-navigation']}
     data-test="left-navigation"
+    data-testid="left-navigation"
     data-track-component="Navigation"
   >
     {props.children}
@@ -758,7 +760,7 @@ NavBar.propTypes = {
     servedByProxy: PropTypes.bool.isRequired,
     useFullRedirectsForLinks: PropTypes.bool,
   }).isRequired,
-  menuVisibilities: PropTypes.objectOf(PropTypes.bool).isRequired,
+  menuVisibilities: PropTypes.objectOf(PropTypes.bool),
   DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
   onMenuItemClick: PropTypes.func,
   // withRouter
