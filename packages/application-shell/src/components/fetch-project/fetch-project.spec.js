@@ -39,6 +39,7 @@ const createGraphqlResponseForProjectQuery = custom => ({
     suspension: {
       __typename: 'ProjectSuspension',
       isActive: false,
+      reason: null,
     },
     allAppliedPermissions: [
       {

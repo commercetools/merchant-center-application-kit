@@ -10,7 +10,6 @@ export type Scalars = {
   Json: { [key: string]: unknown },
 };
 
-
 export type TApplicationExtension = {
    __typename?: 'ApplicationExtension',
   id: Scalars['ID'],

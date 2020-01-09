@@ -8,10 +8,6 @@ export type Scalars = {
   Float: number,
 };
 
-
-
-
-
 export type TAppliedActionRight = {
    __typename?: 'AppliedActionRight',
   name: Scalars['String'],
@@ -676,7 +672,7 @@ export type TFetchProjectQuery = (
       & Pick<TProjectExpiry, 'isActive' | 'daysLeft'>
     ), suspension: (
       { __typename?: 'ProjectSuspension' }
-      & Pick<TProjectSuspension, 'isActive'>
+      & Pick<TProjectSuspension, 'isActive' | 'reason'>
     ), allAppliedPermissions: Array<Maybe<(
       { __typename?: 'AppliedPermission' }
       & Pick<TAppliedPermission, 'name' | 'value'>
@@ -709,22 +705,17 @@ export type TFetchLoggedInUserQuery = (
       & Pick<TProjectQueryResult, 'total'>
       & { results: Array<(
         { __typename?: 'Project' }
-        & TProjectFragmentFragment
+        & Pick<TProject, 'name' | 'key'>
+        & { suspension: (
+          { __typename?: 'ProjectSuspension' }
+          & Pick<TProjectSuspension, 'isActive'>
+        ), expiry: (
+          { __typename?: 'ProjectExpiry' }
+          & Pick<TProjectExpiry, 'isActive'>
+        ) }
       )> }
     ) }
   )> }
-);
-
-export type TProjectFragmentFragment = (
-  { __typename?: 'Project' }
-  & Pick<TProject, 'name' | 'key'>
-  & { suspension: (
-    { __typename?: 'ProjectSuspension' }
-    & Pick<TProjectSuspension, 'isActive'>
-  ), expiry: (
-    { __typename?: 'ProjectExpiry' }
-    & Pick<TProjectExpiry, 'isActive'>
-  ) }
 );
 
 export type TFetchUserProjectsQueryVariables = {};
@@ -739,7 +730,14 @@ export type TFetchUserProjectsQuery = (
       { __typename?: 'ProjectQueryResult' }
       & { results: Array<(
         { __typename?: 'Project' }
-        & TProjectFragmentFragment
+        & Pick<TProject, 'name' | 'key'>
+        & { suspension: (
+          { __typename?: 'ProjectSuspension' }
+          & Pick<TProjectSuspension, 'isActive'>
+        ), expiry: (
+          { __typename?: 'ProjectExpiry' }
+          & Pick<TProjectExpiry, 'isActive'>
+        ) }
       )> }
     ) }
   )> }

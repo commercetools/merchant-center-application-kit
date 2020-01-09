@@ -6,37 +6,18 @@ export type Scalars = {
   Boolean: boolean,
   Int: number,
   Float: number,
-  /** 
- * The `Long` scalar type represents non-fractional signed whole numeric values.
-   * Long can represent values between -(2^63) and 2^63 - 1.
- */
   Long: number,
-  /** DateTime is a scalar value that represents an ISO8601 formatted date and time. */
   DateTime: string,
-  /** [ISO 3166-1](http://en.wikipedia.org/wiki/ISO_3166-1) country code. */
   Country: string,
-  /** Locale is a scalar value represented as a string language tag. */
   Locale: string,
-  /** DateTime is a scalar value that represents an ISO8601 formatted date. */
   Date: string,
-  /** Raw JSON value */
   Json: { [key: string]: unknown },
-  /** 
- * Represents a currency. Currencies are identified by their [ISO
-   * 4217](http://www.iso.org/iso/home/standards/currency_codes.htm) currency codes.
- */
   Currency: string,
-  /** A key that references a resource. */
   KeyReferenceInput: string,
-  /** Search filter. It is represented as a string and has th same format as in REST API: "field:filter_criteria" */
   SearchFilter: string,
-  /** Search sort */
   SearchSort: string,
-  /** YearMonth is a scalar value that represents an ISO8601 formatted year and month. */
   YearMonth: string,
-  /** The `BigDecimal` scalar type represents signed fractional values with arbitrary precision. */
   BigDecimal: string,
-  /** Time is a scalar value that represents an ISO8601 formatted time. */
   Time: string,
 };
 
@@ -107,6 +88,10 @@ export type TAddCartShoppingList = {
 export type TAddCategoryAsset = {
   position: Maybe<Scalars['Int']>,
   asset: TAssetDraftInput,
+};
+
+export type TAddChannelRoles = {
+  roles: Array<TChannelRole>,
 };
 
 export type TAddCustomerAddress = {
@@ -1304,6 +1289,18 @@ export type TChangeCategorySlug = {
   slug: Array<TLocalizedStringItemInputType>,
 };
 
+export type TChangeChannelDescription = {
+  description: Maybe<Array<TLocalizedStringItemInputType>>,
+};
+
+export type TChangeChannelKey = {
+  key: Scalars['String'],
+};
+
+export type TChangeChannelName = {
+  name: Maybe<Array<TLocalizedStringItemInputType>>,
+};
+
 export type TChangeCustomerAddress = {
   addressId: Scalars['String'],
   address: TAddressInput,
@@ -1586,6 +1583,16 @@ export type TChannel_CustomFieldsRawArgs = {
   excludeNames: Maybe<Array<Scalars['String']>>
 };
 
+export type TChannelDraft = {
+  key: Scalars['String'],
+  roles: Array<TChannelRole>,
+  name: Maybe<Array<TLocalizedStringItemInputType>>,
+  description: Maybe<Array<TLocalizedStringItemInputType>>,
+  custom: Maybe<TCustomFieldsDraft>,
+  address: Maybe<TAddressInput>,
+  geoLocation: Maybe<TGeometryInput>,
+};
+
 export type TChannelQueryResult = {
    __typename?: 'ChannelQueryResult',
   offset: Scalars['Int'],
@@ -1620,6 +1627,19 @@ export enum TChannelRole {
  */
   Primary = 'Primary'
 }
+
+export type TChannelUpdateAction = {
+  addRoles: Maybe<TAddChannelRoles>,
+  changeDescription: Maybe<TChangeChannelDescription>,
+  changeKey: Maybe<TChangeChannelKey>,
+  changeName: Maybe<TChangeChannelName>,
+  removeRoles: Maybe<TRemoveChannelRoles>,
+  setAddress: Maybe<TSetChannelAddress>,
+  setCustomField: Maybe<TSetChannelCustomField>,
+  setCustomType: Maybe<TSetChannelCustomType>,
+  setGeoLocation: Maybe<TSetChannelGeoLocation>,
+  setRoles: Maybe<TSetChannelRoles>,
+};
 
 export type TClassificationShippingRateInput = TShippingRateInput & {
    __typename?: 'ClassificationShippingRateInput',
@@ -2535,6 +2555,11 @@ export type TGeometry = {
   type: Scalars['String'],
 };
 
+export type TGeometryInput = {
+  type: Scalars['String'],
+  coordinates: Maybe<Array<Scalars['Float']>>,
+};
+
 export type TGiftLineItemValue = TCartDiscountValue & {
    __typename?: 'GiftLineItemValue',
   type: Scalars['String'],
@@ -3419,6 +3444,9 @@ export type TMutation = {
   createCategory: Maybe<TCategory>,
   updateCategory: Maybe<TCategory>,
   deleteCategory: Maybe<TCategory>,
+  createChannel: Maybe<TChannel>,
+  updateChannel: Maybe<TChannel>,
+  deleteChannel: Maybe<TChannel>,
   createProductType: Maybe<TProductTypeDefinition>,
   updateProductType: Maybe<TProductTypeDefinition>,
   deleteProductType: Maybe<TProductTypeDefinition>,
@@ -3597,6 +3625,24 @@ export type TMutation_DeleteCategoryArgs = {
   version: Scalars['Long'],
   id: Maybe<Scalars['String']>,
   key: Maybe<Scalars['String']>
+};
+
+
+export type TMutation_CreateChannelArgs = {
+  draft: TChannelDraft
+};
+
+
+export type TMutation_UpdateChannelArgs = {
+  id: Scalars['String'],
+  version: Scalars['Long'],
+  actions: Array<TChannelUpdateAction>
+};
+
+
+export type TMutation_DeleteChannelArgs = {
+  id: Scalars['String'],
+  version: Scalars['Long']
 };
 
 
@@ -5636,6 +5682,10 @@ export type TRemoveCategoryAsset = {
   assetId: Maybe<Scalars['String']>,
 };
 
+export type TRemoveChannelRoles = {
+  roles: Array<TChannelRole>,
+};
+
 export type TRemoveCustomerAddress = {
   addressId: Scalars['String'],
 };
@@ -6126,6 +6176,30 @@ export type TSetCategoryMetaKeywords = {
 
 export type TSetCategoryMetaTitle = {
   metaTitle: Maybe<Array<TLocalizedStringItemInputType>>,
+};
+
+export type TSetChannelAddress = {
+  address: Maybe<TAddressInput>,
+};
+
+export type TSetChannelCustomField = {
+  name: Scalars['String'],
+  value: Maybe<Scalars['String']>,
+};
+
+export type TSetChannelCustomType = {
+  fields: Maybe<Array<TCustomFieldInput>>,
+  type: Maybe<TResourceIdentifierInput>,
+  typeKey: Maybe<Scalars['String']>,
+  typeId: Maybe<Scalars['String']>,
+};
+
+export type TSetChannelGeoLocation = {
+  geoLocation: Maybe<TGeometryInput>,
+};
+
+export type TSetChannelRoles = {
+  roles: Array<TChannelRole>,
 };
 
 export type TSetCustomerCompanyName = {
