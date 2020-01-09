@@ -6,7 +6,8 @@ const createMockOperations = (customOperations = {}) => {
     customOperations.FetchProject && customOperations.FetchProject.project
       ? customOperations.FetchProject.project
       : ProjectMock.build();
-  return {
+
+  const operations = {
     FetchLoggedInUser: {
       me: UserMock.build({
         defaultProjectKey: defaultProject.key,
@@ -19,8 +20,19 @@ const createMockOperations = (customOperations = {}) => {
     FetchProject: {
       project: defaultProject,
     },
+    FetchUserProjects: {
+      me: UserMock.build({
+        defaultProjectKey: defaultProject.key,
+        projects: {
+          total: 2,
+          results: [defaultProject, ProjectMock.build()],
+        },
+      }),
+    },
     ...customOperations,
   };
+
+  return operations;
 };
 
 const createMockResolvers = () => ({});
