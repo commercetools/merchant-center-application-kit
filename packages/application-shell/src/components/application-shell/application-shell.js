@@ -195,11 +195,7 @@ export const RestrictedApplication = props => (
                           if (!projectKeyFromUrl) return <QuickAccess />;
                           return (
                             <FetchProject projectKey={projectKeyFromUrl}>
-                              {({
-                                isLoading: isProjectLoading,
-                                project,
-                                error,
-                              }) => {
+                              {({ isLoading: isProjectLoading, project }) => {
                                 if (isProjectLoading) return null;
 
                                 // when used outside of a project context,
@@ -540,7 +536,7 @@ export default class ApplicationShell extends React.Component {
                     )}
                   />
                   <Route
-                    render={routerProps => (
+                    render={() => (
                       <RestrictedApplication
                         environment={coercedEnvironmentValues}
                         defaultFeatureFlags={this.props.defaultFeatureFlags}

@@ -1,7 +1,4 @@
-import {
-  TFetchProjectQuery,
-  TProjectSuspensionReason,
-} from '../../types/generated/mc';
+import { TFetchProjectQuery } from '../../types/generated/mc';
 import {
   normalizeAllAppliedActionRights,
   normalizeAllAppliedMenuVisibilities,

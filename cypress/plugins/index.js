@@ -36,6 +36,7 @@ module.exports = (on, cypressConfig) => {
 
   on('task', {
     ...percyHealthCheck,
+    // This will be available as `cy.task('getGraphQLSchema')`
     getGraphQLSchema(targetName) {
       const schemaPath = path.resolve(
         __dirname,

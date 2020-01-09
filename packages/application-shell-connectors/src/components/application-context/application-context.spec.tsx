@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, waitForElement } from '@testing-library/react';
-import { TProjectSuspensionReason } from '../../types/generated/mc';
 import {
   ApplicationContextProvider,
   ApplicationContext,

@@ -2,12 +2,12 @@
 import { encode } from 'qss';
 import { AuthenticationError, ApolloError } from 'apollo-server-errors';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import { defaultFixtures, createResolvers } from '../../support/fixtures/mc';
+import UserMock from '../../support/graphql-types/user';
+import ProjectMock from '../../support/graphql-types/project';
 import { URL_BASE, URL_STATE_MACHINES } from '../../support/urls';
 
 describe('when user is not authenticated', () => {
   beforeEach(() => {
-    cy.server();
     cy.on('window:before:load', win => {
       const originalFetch = win.fetch;
       function fetch(input, init) {
@@ -70,45 +70,28 @@ describe('when user is authenticated', () => {
     });
   });
   describe('when switching project', () => {
-    let resolvers;
-    beforeEach(() => {
-      cy.task('getGraphQLSchema', 'mc').then(schema => {
-        cy.mockGraphql({
-          schema,
-        });
-      });
-      resolvers = createResolvers();
-      cy.mockGraphqlOps({
-        operations: resolvers,
-      });
-    });
     it('should render app', () => {
-      const nextProject = resolvers.FetchLoggedInUser.me.projects.results[1];
-      cy.login();
-      cy.get('[data-test=top-navigation').should('exist');
-      cy.get('input[aria-labelledby="project-switcher"]')
-        .focus()
-        .type(nextProject.name);
-      cy.findByText(nextProject.name).click();
-      cy.url().should('include', `/${nextProject.key}/state-machines`);
+      cy.useMockedGraphqlApi().then(resolvers => {
+        const nextProject = resolvers.FetchLoggedInUser.me.projects.results[1];
+        cy.login();
+        cy.get('[data-test=top-navigation').should('exist');
+        cy.get('input[aria-labelledby="project-switcher"]')
+          .focus()
+          .click({ force: true });
+        cy.findByText(nextProject.name).click({ force: true });
+        cy.url().should('include', `/${nextProject.key}/state-machines`);
+      });
     });
   });
   describe('when user has no default project', () => {
     beforeEach(() => {
-      cy.task('getGraphQLSchema', 'mc').then(schema => {
-        cy.mockGraphql({
-          schema,
-        });
-      });
-      cy.mockGraphqlOps({
-        operations: createResolvers({
-          FetchLoggedInUser: {
-            me: defaultFixtures.User.build({
-              defaultProjectKey: null,
-              projects: { total: 0, results: [] },
-            }),
-          },
-        }),
+      cy.useMockedGraphqlApi({
+        FetchLoggedInUser: {
+          me: UserMock.build({
+            defaultProjectKey: null,
+            projects: { total: 0, results: [] },
+          }),
+        },
       });
       cy.window().then(win => win.localStorage.removeItem('activeProjectKey'));
     });
@@ -125,17 +108,10 @@ describe('when user is authenticated', () => {
   });
   describe('when loading user fails with an unknown graphql error', () => {
     beforeEach(() => {
-      cy.task('getGraphQLSchema', 'mc').then(schema => {
-        cy.mockGraphql({
-          schema,
-        });
-      });
-      cy.mockGraphqlOps({
-        operations: createResolvers({
-          FetchLoggedInUser: {
-            me: new ApolloError('Oops'),
-          },
-        }),
+      cy.useMockedGraphqlApi({
+        FetchLoggedInUser: {
+          me: new ApolloError('Oops'),
+        },
       });
     });
     it('should render error page', () => {
@@ -145,17 +121,10 @@ describe('when user is authenticated', () => {
   });
   describe('when loading user fails with an unauthorized graphql error', () => {
     beforeEach(() => {
-      cy.task('getGraphQLSchema', 'mc').then(schema => {
-        cy.mockGraphql({
-          schema,
-        });
-      });
-      cy.mockGraphqlOps({
-        operations: createResolvers({
-          FetchLoggedInUser: {
-            me: new AuthenticationError('User is not authorized'),
-          },
-        }),
+      cy.useMockedGraphqlApi({
+        FetchLoggedInUser: {
+          me: new AuthenticationError('User is not authorized'),
+        },
       });
     });
     it('should redirect to "/logout" with reason unauthorized', () => {
@@ -168,17 +137,10 @@ describe('when user is authenticated', () => {
   });
   describe('when loading user fails with a "was not found." graphql error message', () => {
     beforeEach(() => {
-      cy.task('getGraphQLSchema', 'mc').then(schema => {
-        cy.mockGraphql({
-          schema,
-        });
-      });
-      cy.mockGraphqlOps({
-        operations: createResolvers({
-          FetchLoggedInUser: {
-            me: new Error('User was not found.'),
-          },
-        }),
+      cy.useMockedGraphqlApi({
+        FetchLoggedInUser: {
+          me: new Error('User was not found.'),
+        },
       });
     });
     it('should redirect to /logout with reason "deleted"', () => {
@@ -191,17 +153,10 @@ describe('when user is authenticated', () => {
   });
   describe('when project is not found', () => {
     beforeEach(() => {
-      cy.task('getGraphQLSchema', 'mc').then(schema => {
-        cy.mockGraphql({
-          schema,
-        });
-      });
-      cy.mockGraphqlOps({
-        operations: createResolvers({
-          FetchProject: {
-            project: null,
-          },
-        }),
+      cy.useMockedGraphqlApi({
+        FetchProject: {
+          project: null,
+        },
       });
     });
     it('should render "project not found" page', () => {
@@ -211,19 +166,12 @@ describe('when user is authenticated', () => {
   });
   describe('when project is temporarily suspended', () => {
     beforeEach(() => {
-      cy.task('getGraphQLSchema', 'mc').then(schema => {
-        cy.mockGraphql({
-          schema,
-        });
-      });
-      cy.mockGraphqlOps({
-        operations: createResolvers({
-          FetchProject: {
-            project: defaultFixtures.Project.build({
-              suspension: { isActive: true, reason: 'TemporaryMaintenance' },
-            }),
-          },
-        }),
+      cy.useMockedGraphqlApi({
+        FetchProject: {
+          project: ProjectMock.build({
+            suspension: { isActive: true, reason: 'TemporaryMaintenance' },
+          }),
+        },
       });
     });
     it('should render "project suspended" page', () => {
@@ -235,19 +183,12 @@ describe('when user is authenticated', () => {
   });
   describe('when project is suspended for another reason', () => {
     beforeEach(() => {
-      cy.task('getGraphQLSchema', 'mc').then(schema => {
-        cy.mockGraphql({
-          schema,
-        });
-      });
-      cy.mockGraphqlOps({
-        operations: createResolvers({
-          FetchProject: {
-            project: defaultFixtures.Project.build({
-              suspension: { isActive: true, reason: 'Other' },
-            }),
-          },
-        }),
+      cy.useMockedGraphqlApi({
+        FetchProject: {
+          project: ProjectMock.build({
+            suspension: { isActive: true, reason: 'Other' },
+          }),
+        },
       });
     });
     it('should render "project suspended" page', () => {
@@ -257,19 +198,12 @@ describe('when user is authenticated', () => {
   });
   describe('when project is expired', () => {
     beforeEach(() => {
-      cy.task('getGraphQLSchema', 'mc').then(schema => {
-        cy.mockGraphql({
-          schema,
-        });
-      });
-      cy.mockGraphqlOps({
-        operations: createResolvers({
-          FetchProject: {
-            project: defaultFixtures.Project.build({
-              expiry: { isActive: true },
-            }),
-          },
-        }),
+      cy.useMockedGraphqlApi({
+        FetchProject: {
+          project: ProjectMock.build({
+            expiry: { isActive: true },
+          }),
+        },
       });
     });
     it('should render "project expired" page', () => {
@@ -279,19 +213,12 @@ describe('when user is authenticated', () => {
   });
   describe('when project is not initialized', () => {
     beforeEach(() => {
-      cy.task('getGraphQLSchema', 'mc').then(schema => {
-        cy.mockGraphql({
-          schema,
-        });
-      });
-      cy.mockGraphqlOps({
-        operations: createResolvers({
-          FetchProject: {
-            project: defaultFixtures.Project.build({
-              initialized: false,
-            }),
-          },
-        }),
+      cy.useMockedGraphqlApi({
+        FetchProject: {
+          project: ProjectMock.build({
+            initialized: false,
+          }),
+        },
       });
     });
     it('should render "project not initialized" page', () => {
@@ -303,19 +230,12 @@ describe('when user is authenticated', () => {
   });
   describe('when user does not have permissions to access the project', () => {
     beforeEach(() => {
-      cy.task('getGraphQLSchema', 'mc').then(schema => {
-        cy.mockGraphql({
-          schema,
-        });
-      });
-      cy.mockGraphqlOps({
-        operations: createResolvers({
-          FetchProject: {
-            project: defaultFixtures.Project.build({
-              allAppliedPermissions: [],
-            }),
-          },
-        }),
+      cy.useMockedGraphqlApi({
+        FetchProject: {
+          project: ProjectMock.build({
+            allAppliedPermissions: [],
+          }),
+        },
       });
     });
     it('should render "unauthorized" page', () => {

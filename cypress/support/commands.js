@@ -1,6 +1,8 @@
 import '@percy/cypress';
 import '@testing-library/cypress/add-commands';
 import 'cypress-graphql-mock';
+import UserMock from './graphql-types/user';
+import ProjectMock from './graphql-types/project';
 
 function isLocalhost() {
   const url = new URL(Cypress.config('baseUrl'));
@@ -67,4 +69,35 @@ Cypress.Commands.add('setDesktopViewport', () => {
   // really far off-screen, please consider if it really makes sense to test these
   // in lieu of the limited scope our e2e-tests are supposed to have
   cy.viewport(2560, 1440);
+});
+
+Cypress.Commands.add('useMockedGraphqlApi', (customResolvers = {}) => {
+  cy.task('getGraphQLSchema', 'mc').then(schema => {
+    cy.mockGraphql({
+      schema,
+    });
+  });
+  const defaultProject =
+    customResolvers.FetchProject && customResolvers.FetchProject.project
+      ? customResolvers.FetchProject.project
+      : ProjectMock.build();
+  const resolvers = {
+    FetchLoggedInUser: {
+      me: UserMock.build({
+        defaultProjectKey: defaultProject.key,
+        projects: {
+          total: 2,
+          results: [defaultProject, ProjectMock.build()],
+        },
+      }),
+    },
+    FetchProject: {
+      project: defaultProject,
+    },
+    ...customResolvers,
+  };
+  cy.mockGraphqlOps({
+    operations: resolvers,
+  });
+  return cy.wrap(resolvers);
 });
