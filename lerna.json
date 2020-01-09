@@ -1,7 +1,7 @@
 {
   "lerna": "3.13.4",
   "useWorkspaces": true,
-  "version": "15.6.1",
+  "version": "15.6.2",
   "npmClient": "yarn",
   "command": {
     "publish": {

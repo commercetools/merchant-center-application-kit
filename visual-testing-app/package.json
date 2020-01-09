@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-local/visual-testing-app",
-  "version": "15.6.0",
+  "version": "15.6.2",
   "description": "An app to facilitate visual testing",
   "private": true,
   "scripts": {
@@ -32,7 +32,7 @@
     "react-router-dom": "5.1.2"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "15.6.0",
+    "@commercetools-frontend/mc-scripts": "15.6.2",
     "serve": "11.3.0"
   }
 }
