@@ -5,8 +5,7 @@ import { URL_BASE, URL_STATE_MACHINES } from '../../support/urls';
 
 describe('when user is authenticated', () => {
   it('should log out with reason "user"', () => {
-    cy.login();
-    cy.get('[data-test=top-navigation').should('exist');
+    cy.login({ redirectToUri: URL_STATE_MACHINES });
     cy.findByLabelText('open menu').click();
     cy.findByText('Logout').click();
     const queryParams = encode({
@@ -19,10 +18,7 @@ describe('when user is authenticated', () => {
   });
   describe('when going to an unknown route', () => {
     it('should render page not found', () => {
-      cy.login();
-      cy.get('[data-test=top-navigation').should('exist');
-      // This implicitly checks that the redirect "/" -> "/:projectKey" works
-      cy.url().should('include', URL_STATE_MACHINES);
+      cy.login({ redirectToUri: URL_STATE_MACHINES });
       cy.visit(`${URL_BASE}/a-non-existing-route`);
       cy.findByText('We could not find what you are looking for').should(
         'exist'

@@ -1,7 +1,7 @@
 import '@percy/cypress';
 import '@testing-library/cypress/add-commands';
 import 'cypress-graphql-mock';
-import { mocksForMc } from '../../graphql-test-utils';
+import '../../graphql-test-utils/cypress-commands';
 
 function isLocalhost() {
   const url = new URL(Cypress.config('baseUrl'));
@@ -38,27 +38,33 @@ Cypress.Commands.add('logout', () => {
   cy.visit('/logout');
 });
 
-Cypress.Commands.add('login', ({ isForcedMenuOpen = false } = {}) => {
-  cy.setDesktopViewport();
-  cy.window().then(win =>
-    win.localStorage.setItem('isForcedMenuOpen', isForcedMenuOpen)
-  );
-  cy.visit('/logout');
-  // Wait to be in the "/login" route, then redirect to "/login" again
-  // to ensure we clear all query parameters, as they seem to interfer
-  // with the login form.
-  if (!isLocalhost()) {
-    cy.url().should('include', '/login');
+Cypress.Commands.add(
+  'login',
+  ({ redirectToUri, isForcedMenuOpen = false } = {}) => {
+    cy.setDesktopViewport();
+    cy.window().then(win =>
+      win.localStorage.setItem('isForcedMenuOpen', isForcedMenuOpen)
+    );
+    cy.visit('/logout');
+    // Wait to be in the "/login" route, then redirect to "/login" again
+    // to ensure we clear all query parameters, as they seem to interfer
+    // with the login form.
+    if (!isLocalhost()) {
+      cy.url().should('include', '/login');
+    }
+    cy.visit(`/login`);
+    cy.findByText('Email').should('exist');
+    cy.findByText('Password').should('exist');
+    cy.findByLabelText(/email/i).type(Cypress.env('LOGIN_USER'));
+    cy.findByLabelText(/password/i).type(Cypress.env('LOGIN_PASSWORD'), {
+      log: false,
+    });
+    cy.get('[aria-label="Sign in"]').click();
+    cy.get('[data-test=top-navigation').should('exist');
+    cy.visit(`${Cypress.config('baseUrl')}${redirectToUri}`);
+    cy.url().should('include', redirectToUri);
   }
-  cy.visit(`/login`);
-  cy.findByText('Email').should('exist');
-  cy.findByText('Password').should('exist');
-  cy.findByLabelText(/email/i).type(Cypress.env('LOGIN_USER'));
-  cy.findByLabelText(/password/i).type(Cypress.env('LOGIN_PASSWORD'), {
-    log: false,
-  });
-  cy.get('[aria-label="Sign in"]').click();
-});
+);
 
 Cypress.Commands.add('setDesktopViewport', () => {
   // we use ui-elements which only render elements to the DOM when they are visible to the user
@@ -68,15 +74,4 @@ Cypress.Commands.add('setDesktopViewport', () => {
   // really far off-screen, please consider if it really makes sense to test these
   // in lieu of the limited scope our e2e-tests are supposed to have
   cy.viewport(2560, 1440);
-});
-
-Cypress.Commands.add('useMockedGraphqlApi', (customOperations = {}) => {
-  cy.task('getGraphQLSchema', 'mc').then(schema => {
-    cy.mockGraphql({
-      schema,
-    });
-  });
-  const operations = mocksForMc.createMockOperations(customOperations);
-  cy.mockGraphqlOps({ operations });
-  return cy.wrap(operations);
 });

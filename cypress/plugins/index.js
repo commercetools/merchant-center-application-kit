@@ -20,9 +20,8 @@
 // Reference: https://docs.cypress.io/api/plugins/configuration-api.html#Promises
 
 /* eslint-disable global-require */
-const fs = require('fs');
-const path = require('path');
 const percyHealthCheck = require('@percy/cypress/task');
+const graphqlUtils = require('../../graphql-test-utils/cypress-task');
 
 // plugins file
 module.exports = (on, cypressConfig) => {
@@ -36,18 +35,7 @@ module.exports = (on, cypressConfig) => {
 
   on('task', {
     ...percyHealthCheck,
-    // This will be available as `cy.task('getGraphQLSchema')`
-    getGraphQLSchema(targetName) {
-      const schemaPath = path.resolve(
-        __dirname,
-        `../../schemas/${targetName}.json`
-      );
-      if (fs.existsSync(schemaPath)) {
-        const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
-        return schema.data;
-      }
-      throw new Error(`Unknown schema target ${targetName}`);
-    },
+    ...graphqlUtils,
   });
 
   return Object.assign({}, cypressConfig, {
