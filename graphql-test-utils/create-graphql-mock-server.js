@@ -1,37 +1,7 @@
 import { graphql, buildClientSchema } from 'graphql';
 import { addMockFunctionsToSchema } from 'graphql-tools';
 import { formatApolloErrors } from 'apollo-server-errors';
-import mcSchemaIntrospectionResult from '../schemas/mc.json';
-import proxySchemaIntrospectionResult from '../schemas/proxy.json';
-
-const getSchemaIntrospectionFor = targetName => {
-  switch (targetName) {
-    case 'mc':
-      return mcSchemaIntrospectionResult.data;
-    case 'proxy':
-      return proxySchemaIntrospectionResult.data;
-    default:
-      throw new Error(`Unknown target ${targetName}`);
-  }
-};
-
-const schemas = {
-  mc: buildClientSchema(getSchemaIntrospectionFor('mc')),
-  proxy: buildClientSchema(getSchemaIntrospectionFor('proxy')),
-};
-
-const getMockedSchemaFor = targetName => {
-  switch (targetName) {
-    case 'mc': {
-      return schemas.mc;
-    }
-    case 'proxy': {
-      return schemas.proxy;
-    }
-    default:
-      throw new Error(`Unknown target ${targetName}`);
-  }
-};
+import loadSchema from './load-schema';
 
 const getRootValue = (operations, operationName, variables) => {
   if (!operationName || !operations[operationName]) {
@@ -53,7 +23,7 @@ const createGraphqlMockServer = (
   { mocksByTarget = {}, operationsByTarget = {}, onRequest } = {}
 ) => {
   const processGraphQLRequest = async (targetName, req, res) => {
-    const schema = getMockedSchemaFor(targetName);
+    const schema = buildClientSchema(loadSchema(targetName));
     const mocks = mocksByTarget[targetName] || {};
     const operations = operationsByTarget[targetName] || {};
     addMockFunctionsToSchema({

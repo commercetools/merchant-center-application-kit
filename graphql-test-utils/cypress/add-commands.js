@@ -1,5 +1,5 @@
 import 'cypress-graphql-mock';
-import mocksForMc from './mc';
+import * as mocksForMc from '../graphql-mocks/mc';
 
 Cypress.Commands.add('useMockedGraphqlApi', (customOperations = {}) => {
   cy.task('getGraphQLSchema', 'mc').then(schema => {

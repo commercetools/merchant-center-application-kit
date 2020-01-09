@@ -21,7 +21,7 @@
 
 /* eslint-disable global-require */
 const percyHealthCheck = require('@percy/cypress/task');
-const graphqlUtils = require('../../graphql-test-utils/cypress-task');
+const getGraphqlSchema = require('../../graphql-test-utils/cypress/task');
 
 // plugins file
 module.exports = (on, cypressConfig) => {
@@ -35,7 +35,7 @@ module.exports = (on, cypressConfig) => {
 
   on('task', {
     ...percyHealthCheck,
-    ...graphqlUtils,
+    ...getGraphqlSchema,
   });
 
   return Object.assign({}, cypressConfig, {

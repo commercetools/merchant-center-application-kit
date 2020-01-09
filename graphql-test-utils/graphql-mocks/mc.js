@@ -1,5 +1,5 @@
-import UserMock from './graphql-mocks/user';
-import ProjectMock from './graphql-mocks/project';
+import UserMock from '../graphql-models/user';
+import ProjectMock from '../graphql-models/project';
 
 const createMockOperations = (customOperations = {}) => {
   const defaultProject =
