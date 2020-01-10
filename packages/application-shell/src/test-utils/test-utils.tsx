@@ -62,6 +62,7 @@ const defaultProject = {
   },
   suspension: {
     isActive: false,
+    reason: undefined,
   },
   allAppliedPermissions: [],
   allAppliedActionRights: [],
