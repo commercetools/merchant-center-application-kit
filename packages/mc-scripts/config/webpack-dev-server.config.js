@@ -64,6 +64,12 @@ module.exports = ({ proxy, allowedHost, contentBase, publicPath }) => ({
   // in the Webpack development configuration. Note that only changes
   // to CSS are currently hot reloaded. JS changes will refresh the browser.
   hot: true,
+  // Use 'ws' instead of 'sockjs-node' on server since we're using native
+  // websockets in `webpackHotDevClient`.
+  transportMode: 'ws',
+  // Prevent a WS client from getting injected as we're already including
+  // `webpackHotDevClient`.
+  injectClient: false,
   publicPath,
   // WebpackDevServer is noisy by default so we emit custom message instead
   // by listening to the compiler events with `compiler.hooks[...].tap` calls

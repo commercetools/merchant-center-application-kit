@@ -48,9 +48,12 @@ module.exports = ({
     splitChunks: {
       chunks: 'all',
     },
-    // Keep the runtime chunk seperated to enable long term caching
+    // Keep the runtime chunk separated to enable long term caching
     // https://twitter.com/wSokra/status/969679223278505985
-    runtimeChunk: true,
+    // https://github.com/facebook/create-react-app/issues/5358
+    runtimeChunk: {
+      name: entrypoint => `runtime-${entrypoint.name}`,
+    },
   },
 
   resolve: {
@@ -105,9 +108,9 @@ module.exports = ({
   },
 
   plugins: [
+    new WebpackBar(),
     // Allows to "assign" custom options to the `webpack` object.
     // At the moment, this is used to share some props with `postcss.config`.
-    new WebpackBar(),
     new webpack.LoaderOptionsPlugin({
       options: {
         sourceFolders,
@@ -369,17 +372,16 @@ module.exports = ({
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
   node: {
+    module: 'empty',
     dgram: 'empty',
+    dns: 'mock',
     fs: 'empty',
+    http2: 'empty',
     net: 'empty',
     tls: 'empty',
     child_process: 'empty',
   },
-
-  // Turn off performance hints during development because we don't do any
-  // splitting or minification in interest of speed. These warnings become
-  // cumbersome.
-  performance: {
-    hints: false,
-  },
+  // Turn off performance processing because we utilize
+  // our own hints via the FileSizeReporter
+  performance: false,
 });
