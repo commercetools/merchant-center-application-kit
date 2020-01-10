@@ -106,6 +106,7 @@
     "@types/webpack-env": "1.15.0",
     "@typescript-eslint/eslint-plugin": "2.15.0",
     "@typescript-eslint/parser": "2.15.0",
+    "apollo-server-errors": "2.3.4",
     "babel-eslint": "10.0.3",
     "babel-plugin-import-graphql": "2.7.0",
     "babel-plugin-transform-rename-import": "2.3.0",
