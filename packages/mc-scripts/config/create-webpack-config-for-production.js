@@ -97,6 +97,9 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
             mangle: {
               safari10: true,
             },
+            // Added for profiling in devtools
+            keep_classnames: true,
+            keep_fnames: true,
             output: {
               ecma: 5,
               comments: false,
@@ -123,9 +126,12 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
         // NOTE: if you enable `cacheGroups` for CSS, remember to toggle it with
         // the `mergedToggleFlags.enableExtractCss`
       },
-      // Keep the runtime chunk seperated to enable long term caching
+      // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
-      runtimeChunk: true,
+      // https://github.com/facebook/create-react-app/issues/5358
+      runtimeChunk: {
+        name: entrypoint => `runtime-${entrypoint.name}`,
+      },
     },
 
     // In production, we only want to load the polyfills and the app code.
