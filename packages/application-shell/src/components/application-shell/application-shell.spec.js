@@ -73,13 +73,9 @@ const renderApp = (ui, options = {}) => {
 beforeEach(() => {
   xhrMock.setup();
   applyMocksForExternalNetworkRequests();
-  window.localStorage.setItem.mockClear();
-  window.localStorage.getItem.mockClear();
-  window.localStorage.removeItem.mockClear();
-  window.location.replace = jest.fn();
-  reportErrorToSentry.mockClear();
-  selectProjectKeyFromUrl.mockClear();
+  jest.clearAllMocks();
 
+  window.location.replace = jest.fn();
   window.localStorage.getItem.mockImplementation(key => {
     switch (key) {
       case STORAGE_KEYS.IS_AUTHENTICATED:
