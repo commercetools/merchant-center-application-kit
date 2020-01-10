@@ -16,8 +16,8 @@ describe('when user is authenticated', () => {
       'exist'
     );
   });
-  describe('when going to an unknown route', () => {
-    it('should render page not found', () => {
+  describe('when navigating to an unknown route', () => {
+    it('should render a not found page', () => {
       cy.login({ redirectToUri: URL_STATE_MACHINES });
       cy.visit(`${URL_BASE}/a-non-existing-route`);
       cy.findByText('We could not find what you are looking for').should(

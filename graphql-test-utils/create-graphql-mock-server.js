@@ -22,7 +22,7 @@ const createGraphqlMockServer = (
   xhrMock,
   { mocksByTarget = {}, operationsByTarget = {}, onRequest } = {}
 ) => {
-  const processGraphQLRequest = async (targetName, req, res) => {
+  const processGraphQlRequest = async (targetName, req, res) => {
     const schema = buildClientSchema(loadSchema(targetName));
     const mocks = mocksByTarget[targetName] || {};
     const operations = operationsByTarget[targetName] || {};
@@ -49,7 +49,7 @@ const createGraphqlMockServer = (
   const handleProxyGraphQLRequest = async (req, res) => {
     const { variables } = JSON.parse(req.body());
     const targetName = variables.target;
-    return await processGraphQLRequest(targetName, req, res);
+    return await processGraphQlRequest(targetName, req, res);
   };
 
   xhrMock.post('http://localhost:8080/graphql', async (req, res) => {
