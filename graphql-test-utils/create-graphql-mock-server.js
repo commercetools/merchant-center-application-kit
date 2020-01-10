@@ -1,8 +1,9 @@
 import { graphql, buildClientSchema } from 'graphql';
 import { addMockFunctionsToSchema } from 'graphql-tools';
 import { formatApolloErrors } from 'apollo-server-errors';
-import loadSchema from './load-schema';
+import resolveAndCacheSchema from './resolve-and-cache-schema';
 
+// Copied from https://github.com/tgriesser/cypress-graphql-mock/blob/6000875ebc9a16f0a3a20fbef72a2c41f0379eca/src/index.ts#L194-L212
 const getRootValue = (operations, operationName, variables) => {
   if (!operationName || !operations[operationName]) {
     return {};
@@ -23,7 +24,7 @@ const createGraphqlMockServer = (
   { mocksByTarget = {}, operationsByTarget = {}, onRequest } = {}
 ) => {
   const processGraphQlRequest = async (targetName, req, res) => {
-    const schema = buildClientSchema(loadSchema(targetName));
+    const schema = buildClientSchema(resolveAndCacheSchema(targetName));
     const mocks = mocksByTarget[targetName] || {};
     const operations = operationsByTarget[targetName] || {};
     addMockFunctionsToSchema({
@@ -52,6 +53,7 @@ const createGraphqlMockServer = (
     return await processGraphQlRequest(targetName, req, res);
   };
 
+  // Mock requests to the MC HTTP GraphQL API
   xhrMock.post('http://localhost:8080/graphql', async (req, res) => {
     if (onRequest) {
       const next = async () => {
@@ -61,8 +63,9 @@ const createGraphqlMockServer = (
     }
     return await handleProxyGraphQLRequest(req, res);
   });
+  // Mock requests to the MC Proxy API
   xhrMock.post(/\/api\/graphql$/, async (req, res) => {
-    return await processGraphQLRequest('proxy', req, res);
+    return await processGraphQlRequest('proxy', req, res);
   });
 };
 

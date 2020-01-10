@@ -3,7 +3,7 @@ const path = require('path');
 
 const schemas = new Map();
 
-const loadSchema = targetName => {
+const resolveAndCacheSchema = targetName => {
   if (schemas.has(targetName)) {
     return schemas.get(targetName);
   }
@@ -16,4 +16,4 @@ const loadSchema = targetName => {
   throw new Error(`Unknown schema target ${targetName}`);
 };
 
-module.exports = loadSchema;
+module.exports = resolveAndCacheSchema;

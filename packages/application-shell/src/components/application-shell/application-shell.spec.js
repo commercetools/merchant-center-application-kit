@@ -1,12 +1,7 @@
 import React from 'react';
 import { encode } from 'qss';
 import xhrMock from 'xhr-mock';
-import {
-  render,
-  wait,
-  waitForElement,
-  fireEvent,
-} from '@testing-library/react';
+import { render, wait, fireEvent } from '@testing-library/react';
 import { AuthenticationError, ApolloError } from 'apollo-server-errors';
 import { createMemoryHistory } from 'history';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
@@ -17,6 +12,7 @@ import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import LockedDiamondSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
 import {
+  applyMocksForExternalNetworkRequests,
   createGraphqlMockServer,
   mocksForMc,
   UserMock,
@@ -55,20 +51,6 @@ const createTestProps = props => ({
   ...props,
 });
 
-const mockSuperfluousRequests = () => {
-  xhrMock.post(/\/proxy\/mc-metrics\/metrics\/.*$/, {
-    body: JSON.stringify({ message: 'ok' }),
-  });
-  xhrMock.get(/\.launchdarkly\.com\/.*$/, {
-    body: JSON.stringify({}),
-    headers: { 'Content-Type': 'application/json' },
-  });
-  xhrMock.post(/\.launchdarkly\.com\/.*$/, {
-    body: JSON.stringify({}),
-    headers: { 'Content-Type': 'application/json' },
-  });
-};
-
 const renderApp = (ui, options = {}) => {
   const initialRoute = options.route || '/';
   const testHistory = createEnhancedHistory(
@@ -90,7 +72,7 @@ const renderApp = (ui, options = {}) => {
 
 beforeEach(() => {
   xhrMock.setup();
-  mockSuperfluousRequests();
+  applyMocksForExternalNetworkRequests();
   window.localStorage.setItem.mockClear();
   window.localStorage.getItem.mockClear();
   window.localStorage.removeItem.mockClear();
@@ -128,7 +110,7 @@ describe('when rendering', () => {
       return <p>{`Application name: ${applicationName}`}</p>;
     };
     const rendered = renderApp(<TestComponent />);
-    await waitForElement(() => rendered.getByText('Application name: my-app'));
+    await rendered.findByText('Application name: my-app');
   });
 });
 describe('when route does not contain a project key', () => {
@@ -139,7 +121,7 @@ describe('when route does not contain a project key', () => {
   });
   it('should not render NavBar', async () => {
     const rendered = renderApp();
-    await waitForElement(() => rendered.getByText('OK'));
+    await rendered.findByText('OK');
     rendered.history.push('/account');
     await wait(() => {
       expect(rendered.history.location.pathname).toBe('/account');
@@ -190,9 +172,7 @@ describe('when loading user fails with an unknown graphql error', () => {
   });
   it('should render error page', async () => {
     const rendered = renderApp();
-    await waitForElement(() =>
-      rendered.getByText('Sorry! An unexpected error occured.')
-    );
+    await rendered.findByText('Sorry! An unexpected error occured.');
   });
 });
 describe('when loading user fails with an unauthorized graphql error', () => {
@@ -259,9 +239,7 @@ describe('when project is not found', () => {
   });
   it('should render "project not found" page', async () => {
     const rendered = renderApp();
-    await waitForElement(() =>
-      rendered.getByText('We could not find this Project')
-    );
+    await rendered.findByText('We could not find this Project');
   });
 });
 describe('when project is temporarily suspended', () => {
@@ -280,10 +258,8 @@ describe('when project is temporarily suspended', () => {
   });
   it('should render "project suspended" page', async () => {
     const rendered = renderApp();
-    await waitForElement(() =>
-      rendered.getByText(
-        'Your Project is temporarily suspended due to maintenance.'
-      )
+    await rendered.findByText(
+      'Your Project is temporarily suspended due to maintenance.'
     );
   });
 });
@@ -303,9 +279,7 @@ describe('when project is suspended for another reason', () => {
   });
   it('should render "project suspended" page', async () => {
     const rendered = renderApp();
-    await waitForElement(() =>
-      rendered.getByText('Your Project has been suspended')
-    );
+    await rendered.findByText('Your Project has been suspended');
   });
 });
 describe('when project is expired', () => {
@@ -324,7 +298,7 @@ describe('when project is expired', () => {
   });
   it('should render "project expired" page', async () => {
     const rendered = renderApp();
-    await waitForElement(() => rendered.getByText('Your trial has expired'));
+    await rendered.findByText('Your trial has expired');
   });
 });
 describe('when project is not initialized', () => {
@@ -343,9 +317,7 @@ describe('when project is not initialized', () => {
   });
   it('should render "project not initialized" page', async () => {
     const rendered = renderApp();
-    await waitForElement(() =>
-      rendered.getByText('Your project has not yet been initialized')
-    );
+    await rendered.findByText('Your project has not yet been initialized');
   });
 });
 describe('when user does not have permissions to access the project', () => {
@@ -380,9 +352,7 @@ describe('when user does not have permissions to access the project', () => {
       return <p>{'OK'}</p>;
     };
     const rendered = renderApp(<TestComponent />);
-    await waitForElement(() =>
-      rendered.getByText('Not enough permissions to access this resource')
-    );
+    await rendered.findByText('Not enough permissions to access this resource');
   });
 });
 describe('when switching project', () => {
@@ -401,10 +371,8 @@ describe('when switching project', () => {
       <label id="project-switcher">{'Project switcher'}</label>
     );
     const nextProject = operations.FetchLoggedInUser.me.projects.results[1];
-    await waitForElement(() => rendered.getByText('Project switcher'));
-    const input = await waitForElement(() =>
-      rendered.getByLabelText('Project switcher')
-    );
+    await rendered.findByText('Project switcher');
+    const input = await rendered.findByLabelText('Project switcher');
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
     rendered.getByText(nextProject.name).click();
