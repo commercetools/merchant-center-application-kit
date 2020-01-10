@@ -5,7 +5,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import isNil from 'lodash/isNil';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import { DOMAINS } from '@commercetools-frontend/constants';
+import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { STORAGE_KEYS, SUSPENSION_REASONS } from '../../constants';
@@ -132,7 +132,7 @@ export class ProjectContainer extends React.Component {
       this.props.environment.enableSignUp !== true &&
       this.props.environment.servedByProxy
     )
-      return <Redirect to="/logout?reason=no-projects" />;
+      return <Redirect to={`/logout?reason=${LOGOUT_REASONS.NO_PROJECTS}`} />;
     if (hasNoProjects && this.props.environment.enableSignUp)
       return (
         <Switch>

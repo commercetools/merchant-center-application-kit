@@ -91,7 +91,6 @@ const AppBar = props => {
                   />
                 );
               if (!props.user.defaultProjectKey) return '';
-
               return <BackToProject projectKey={previousProjectKey} />;
             })()}
           </Spacings.Inline>

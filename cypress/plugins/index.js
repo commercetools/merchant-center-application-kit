@@ -20,8 +20,8 @@
 // Reference: https://docs.cypress.io/api/plugins/configuration-api.html#Promises
 
 /* eslint-disable global-require */
-
 const percyHealthCheck = require('@percy/cypress/task');
+const getGraphqlSchema = require('../../graphql-test-utils/cypress/task');
 
 // plugins file
 module.exports = (on, cypressConfig) => {
@@ -33,7 +33,10 @@ module.exports = (on, cypressConfig) => {
     require('dotenv').config({ path: envPath });
   }
 
-  on('task', percyHealthCheck);
+  on('task', {
+    ...percyHealthCheck,
+    ...getGraphqlSchema,
+  });
 
   return Object.assign({}, cypressConfig, {
     env: Object.assign({}, cypressConfig.env, {
