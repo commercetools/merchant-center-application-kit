@@ -7,7 +7,6 @@ import { createMemoryHistory } from 'history';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import LockedDiamondSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';

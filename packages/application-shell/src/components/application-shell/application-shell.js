@@ -248,7 +248,6 @@ export const RestrictedApplication = props => (
                         <AppBar
                           user={user}
                           projectKeyFromUrl={projectKeyFromUrl}
-                          environment={props.environment}
                           DEV_ONLY__loadAppbarMenuConfig={
                             props.DEV_ONLY__loadAppbarMenuConfig
                           }
