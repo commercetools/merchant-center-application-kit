@@ -20,19 +20,18 @@ type ApiError = {
   };
 };
 
-type ActionError = Error | ApiError;
+export type ActionError = Error | ApiError;
+export type DispatchActionError = Dispatch<
+  | ReturnType<typeof showApiErrorNotification>
+  | ReturnType<typeof showUnexpectedErrorNotification>
+>;
 
 function isApiError(error: ActionError): error is ApiError {
   return (error as ApiError).body !== undefined;
 }
 
 export default function handleActionError(error: ActionError) {
-  return (
-    dispatch: Dispatch<
-      | ReturnType<typeof showApiErrorNotification>
-      | ReturnType<typeof showUnexpectedErrorNotification>
-    >
-  ) => {
+  return (dispatch: DispatchActionError) => {
     // On production we send the errors to Sentry.
     // eslint-disable-next-line no-console
     if (window.app.env !== 'production')
