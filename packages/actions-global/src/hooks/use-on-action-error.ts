@@ -8,6 +8,7 @@ export default function useOnActionError(error) {
     Dispatch<ReturnType<typeof handleActionError>>
   >();
   return React.useCallback(() => {
-    dispatch(handleActionError(error));
+    const action = handleActionError(error);
+    if (action) dispatch(action);
   }, [dispatch, error]);
 }
