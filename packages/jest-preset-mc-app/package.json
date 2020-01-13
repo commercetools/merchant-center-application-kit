@@ -21,7 +21,7 @@
   "main": "./jest-preset.js",
   "module": "./jest-preset.js",
   "dependencies": {
-    "@babel/core": "7.7.7",
+    "@babel/core": "7.8.0",
     "@commercetools-frontend/babel-preset-mc-app": "15.6.2",
     "@commercetools/enzyme-extensions": "5.0.0",
     "@commercetools/jest-enzyme-matchers": "1.1.2",
