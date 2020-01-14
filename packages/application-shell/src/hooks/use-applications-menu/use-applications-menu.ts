@@ -5,51 +5,34 @@ import {
   TFetchApplicationsMenuQuery,
   TFetchApplicationsMenuQueryVariables,
 } from '../../types/generated/proxy';
-import { TNavbarMenu } from '../../types/generated/settings';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 
-type MenuConfig = TNavbarMenu;
-type Config = {
-  queryOptions: QueryFunctionOptions;
-  skipRemoteQuery: boolean;
-  options: {
-    __DEV_CONFIG__?: {
-      menuLoader: () => Promise<MenuConfig | MenuConfig[]>;
-      menuKey: string;
-    };
-  };
+export type MenuKey = 'appBar' | 'navBar';
+export type MenuLoaderResult<Key extends MenuKey> = Key extends 'appBar'
+  ? TFetchApplicationsMenuQuery['applicationsMenu']['appBar']
+  : Key extends 'navBar'
+  ? TFetchApplicationsMenuQuery['applicationsMenu']['navBar']
+  : never;
+type BaseConfig = {
+  queryOptions?: QueryFunctionOptions;
+  skipRemoteQuery?: boolean;
+};
+export type Config<Key extends MenuKey> = BaseConfig & {
+  loadMenuConfig?: () => Promise<MenuLoaderResult<Key>>;
 };
 
 const defaultApiUrl = window.location.origin;
 
-const defaultConfig: Config = {
-  queryOptions: {},
-  skipRemoteQuery: false,
-  options: {},
-};
-
-const getDevConfig = (options: Config['options'] = {}) => {
-  const { __DEV_CONFIG__: devConfig } = options;
-  if (!devConfig) {
-    throw new Error(
-      'In development mode, you need to pass `__DEV_CONFIG__` options to `useApplicationsMenu`.'
-    );
-  }
-  return devConfig;
-};
-
-const useApplicationsMenu = (config: Partial<Config> = {}) => {
-  const shallowlyMergedConfig = { ...defaultConfig, ...config };
-
-  const [menu, setMenu] = React.useState<MenuConfig | MenuConfig[]>();
+function useApplicationsMenu<Key extends MenuKey>(
+  menuKey: Key,
+  config: Config<Key> = {}
+) {
+  const [menu, setMenu] = React.useState<MenuLoaderResult<Key>>();
 
   // Trigger loading the menu from local file, for local development
   React.useEffect(() => {
-    if (shallowlyMergedConfig.skipRemoteQuery) {
-      const devConfig = getDevConfig(shallowlyMergedConfig.options);
-      if (devConfig.menuLoader && !menu) {
-        devConfig.menuLoader().then(setMenu);
-      }
+    if (config.skipRemoteQuery === true && config.loadMenuConfig && !menu) {
+      config.loadMenuConfig().then(setMenu);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Make sure to run this effect only once, otherwise we might end up in an infinite loop!
@@ -60,6 +43,7 @@ const useApplicationsMenu = (config: Partial<Config> = {}) => {
   const mcProxyApiUrl = useApplicationContext(
     context => context.environment.mcProxyApiUrl
   );
+  const queryOptions = config.queryOptions || {};
   const [
     loadMenuData,
     { called: hasApplicationsMenuQueryBeenCalled, data: menuQueryResult },
@@ -67,9 +51,8 @@ const useApplicationsMenu = (config: Partial<Config> = {}) => {
     TFetchApplicationsMenuQuery,
     TFetchApplicationsMenuQueryVariables
   >(FetchApplicationsMenu, {
-    ...shallowlyMergedConfig.queryOptions,
-    fetchPolicy:
-      shallowlyMergedConfig.queryOptions.fetchPolicy || 'cache-first',
+    ...queryOptions,
+    fetchPolicy: queryOptions.fetchPolicy || 'cache-first',
     context: {
       // Allow to overwrite the API url from `env.json`
       uri: `${mcProxyApiUrl || defaultApiUrl}/api/graphql`,
@@ -77,22 +60,26 @@ const useApplicationsMenu = (config: Partial<Config> = {}) => {
   });
 
   // Return the local config
-  if (shallowlyMergedConfig.skipRemoteQuery) {
-    const devConfig = getDevConfig(shallowlyMergedConfig.options);
+  if (config.skipRemoteQuery === true) {
     const fakeGraphqlResponse = menu
-      ? {
-          [devConfig.menuKey]: Array.isArray(menu) ? menu : [menu],
-        }
-      : {};
+      ? Array.isArray(menu)
+        ? menu
+        : [menu]
+      : undefined;
     return fakeGraphqlResponse;
   }
 
   // Fetch the query remotely
   if (!hasApplicationsMenuQueryBeenCalled) {
     loadMenuData();
-    return null;
+    return;
   }
-  return menuQueryResult && menuQueryResult.applicationsMenu;
-};
+
+  if (menuQueryResult && menuQueryResult.applicationsMenu) {
+    return menuQueryResult.applicationsMenu[menuKey];
+  }
+
+  return;
+}
 
 export default useApplicationsMenu;

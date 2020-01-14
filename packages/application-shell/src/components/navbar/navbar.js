@@ -724,17 +724,12 @@ export const NavBar = props => {
   const menuVisibilities = useApplicationContext(
     context => context.menuVisibilities
   );
-  const applicationsMenu = useApplicationsMenu({
+  const applicationsNavBarMenu = useApplicationsMenu('navBar', {
     queryOptions: {
       onError: reportErrorToSentry,
     },
     skipRemoteQuery: !props.environment.servedByProxy,
-    options: {
-      __DEV_CONFIG__: {
-        menuLoader: props.DEV_ONLY__loadNavbarMenuConfig,
-        menuKey: 'navBar',
-      },
-    },
+    loadMenuConfig: props.DEV_ONLY__loadNavbarMenuConfig,
   });
   const { data: projectExtensionsQuery } = useQuery(
     FetchProjectExtensionsNavbar,
@@ -747,7 +742,6 @@ export const NavBar = props => {
       onError: reportErrorToSentry,
     }
   );
-  const navbarMenu = (applicationsMenu && applicationsMenu.navBar) || [];
   const customAppsMenu =
     projectExtensionsQuery && projectExtensionsQuery.projectExtension
       ? projectExtensionsQuery.projectExtension.applications.map(
@@ -766,7 +760,7 @@ export const NavBar = props => {
     <NavBarLayout ref={ref}>
       <DataMenu
         rootNode={ref.current}
-        data={navbarMenu.concat(customAppsMenu)}
+        data={(applicationsNavBarMenu || []).concat(customAppsMenu)}
         isForcedMenuOpen={isForcedMenuOpen}
         location={props.location}
         menuVisibilities={menuVisibilities}
