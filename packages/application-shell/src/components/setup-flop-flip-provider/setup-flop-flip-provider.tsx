@@ -1,9 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
+import { Flags } from '@flopflip/types';
+import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import useAllMenuFeatureToggles from '../../hooks/use-all-menu-feature-toggles';
 import { FLAGS } from '../../feature-toggles';
+
+type Props = {
+  projectKey?: string;
+  user?: TFetchLoggedInUserQuery['user'];
+  flags?: Flags;
+  defaultFlags?: Flags;
+  appEnv: string;
+  children: React.ReactNode;
+  shouldDeferAdapterConfiguration?: boolean;
+};
 
 // This value is hard-coded here because we want to make sure that the
 // app uses our account of LD. The value is meant to be public, so there
@@ -13,7 +24,7 @@ const ldClientSideIdProduction = '5979d95f6040390cd07b5e01';
 // one above only for `production` environment.
 const ldClientSideIdStaging = '5979d95f6040390cd07b5e00';
 
-export const SetupFlopFlipProvider = props => {
+export const SetupFlopFlipProvider = (props: Props) => {
   const allMenuFeatureToggles = useAllMenuFeatureToggles();
   const flags = React.useMemo(
     () => ({
@@ -56,7 +67,7 @@ export const SetupFlopFlipProvider = props => {
   );
 
   return (
-    <ConfigureFlopFlip
+    <ConfigureFlopFlip<typeof ldAdapter>
       adapter={ldAdapter}
       adapterArgs={adapterArgs}
       defaultFlags={defaultFlags}
@@ -72,26 +83,5 @@ export const SetupFlopFlipProvider = props => {
 };
 
 SetupFlopFlipProvider.displayName = 'SetupFlopFlipProvider';
-SetupFlopFlipProvider.propTypes = {
-  projectKey: PropTypes.string,
-  user: PropTypes.oneOfType([
-    PropTypes.shape({
-      launchdarklyTrackingTenant: PropTypes.string.isRequired,
-    }),
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      launchdarklyTrackingId: PropTypes.string.isRequired,
-      launchdarklyTrackingGroup: PropTypes.string.isRequired,
-      launchdarklyTrackingSubgroup: PropTypes.string,
-      launchdarklyTrackingTeam: PropTypes.array.isRequired,
-      launchdarklyTrackingTenant: PropTypes.string.isRequired,
-    }),
-  ]),
-  flags: PropTypes.object,
-  defaultFlags: PropTypes.object,
-  appEnv: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  shouldDeferAdapterConfiguration: PropTypes.bool,
-};
 
 export default SetupFlopFlipProvider;

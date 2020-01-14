@@ -1,18 +1,36 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import memoize from 'memoize-one';
 import { useQuery } from 'react-apollo';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { OptionProps, ValueContainerProps } from 'react-select';
 import { css } from '@emotion/core';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import SelectInput from '@commercetools-uikit/select-input';
 import { ErrorIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
+import {
+  TProject,
+  TFetchUserProjectsQuery,
+  TFetchUserProjectsQueryVariables,
+} from '../../types/generated/mc';
 import ProjectsQuery from './project-switcher.mc.graphql';
 import messages from './messages';
 
-export const ProjectSwitcherValueContainer = props => (
+type Props = {
+  projectKey: string;
+};
+type OptionType = Pick<TProject, 'key' | 'name' | 'suspension' | 'expiry'> & {
+  label: string;
+};
+type CustomValueContainerProps = ValueContainerProps<OptionType> & {
+  projectCount: number;
+};
+
+export const ProjectSwitcherValueContainer = ({
+  projectCount,
+  ...restProps
+}: CustomValueContainerProps) => (
   <div
     css={css`
       display: flex;
@@ -25,8 +43,8 @@ export const ProjectSwitcherValueContainer = props => (
         flex: 1;
       `}
     >
-      <SelectInput.ValueContainer {...props}>
-        {props.children}
+      <SelectInput.ValueContainer {...restProps}>
+        {restProps.children}
       </SelectInput.ValueContainer>
     </div>
     <span
@@ -42,18 +60,12 @@ export const ProjectSwitcherValueContainer = props => (
         align-items: center;
       `}
     >
-      {props.projectCount}
+      {projectCount}
     </span>
   </div>
 );
 
-ProjectSwitcherValueContainer.displayName = 'ProjectSwitcherValueContainer';
-ProjectSwitcherValueContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-  projectCount: PropTypes.number.isRequired,
-};
-
-export const ProjectSwitcherOption = props => (
+export const ProjectSwitcherOption = (props: OptionProps<OptionType>) => (
   <SelectInput.Option {...props}>
     <div
       css={css`
@@ -112,23 +124,9 @@ export const ProjectSwitcherOption = props => (
     </div>
   </SelectInput.Option>
 );
-ProjectSwitcherOption.displayName = 'ProjectSwitcherOption';
-ProjectSwitcherOption.propTypes = {
-  isDisabled: PropTypes.bool.isRequired,
-  data: PropTypes.shape({
-    key: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    expiry: PropTypes.shape({
-      isActive: PropTypes.bool,
-    }).isRequired,
-    suspension: PropTypes.shape({
-      isActive: PropTypes.bool,
-    }).isRequired,
-  }).isRequired,
-};
 
 const mapProjectsToOptions = memoize(projects =>
-  projects.map(project => ({
+  projects.map((project: TProject) => ({
     key: project.key,
     name: project.name,
     label: project.name,
@@ -138,11 +136,14 @@ const mapProjectsToOptions = memoize(projects =>
   }))
 );
 
-const redirectTo = targetUrl => window.location.replace(targetUrl);
+const redirectTo = (targetUrl: string) => window.location.replace(targetUrl);
 
-const ProjectSwitcher = props => {
+const ProjectSwitcher = (props: Props) => {
   const intl = useIntl();
-  const { loading, data } = useQuery(ProjectsQuery, {
+  const { loading, data } = useQuery<
+    TFetchUserProjectsQuery,
+    TFetchUserProjectsQueryVariables
+  >(ProjectsQuery, {
     onError: reportErrorToSentry,
     variables: {
       target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
@@ -159,7 +160,7 @@ const ProjectSwitcher = props => {
       data-track-component="ProjectSwitch"
       data-track-event="click"
     >
-      <SelectInput
+      <SelectInput<OptionType>
         value={props.projectKey}
         name="project-switcher"
         aria-labelledby="project-switcher"
@@ -184,7 +185,9 @@ const ProjectSwitcher = props => {
           ValueContainer: valueContainerProps => (
             <ProjectSwitcherValueContainer
               {...valueContainerProps}
-              projectCount={data.user.projects.results.length}
+              projectCount={
+                (data && data.user && data.user.projects.results.length) || 0
+              }
             />
           ),
         }}
@@ -197,8 +200,5 @@ const ProjectSwitcher = props => {
   );
 };
 ProjectSwitcher.displayName = 'ProjectSwitcher';
-ProjectSwitcher.propTypes = {
-  projectKey: PropTypes.string.isRequired,
-};
 
 export default ProjectSwitcher;

@@ -4,6 +4,10 @@ import styled from '@emotion/styled';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import ProjectSwitcher from '../project-switcher';
 
+type Params = {
+  projectKey: string;
+};
+
 const Container = styled.div`
   width: 200px;
   text-align: left;
@@ -11,9 +15,9 @@ const Container = styled.div`
 `;
 
 export const ServicePageProjectSwitcher = () => {
-  const params = useParams();
+  const params = useParams<Params>();
   const numberOfProjects = useApplicationContext(
-    context => context.user.projects.total
+    context => (context.user && context.user.projects.total) || 0
   );
   if (numberOfProjects === 0) return null;
   return (
@@ -25,7 +29,6 @@ export const ServicePageProjectSwitcher = () => {
         // This is fine becase the user has still the possibility to "switch"
         // to a project.
         projectKey={params.projectKey}
-        total={numberOfProjects}
       />
     </Container>
   );
