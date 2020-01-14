@@ -23,6 +23,7 @@ const ApplicationLoader = (props: Props) => (
         margin: ${customProperties.spacingL} 0 0;
       }
     `}
+    data-testid="application-loader"
   >
     <LoadingSpinner />
     {props.showLogo === true ? (
