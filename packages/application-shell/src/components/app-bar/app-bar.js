@@ -103,12 +103,11 @@ const AppBar = props => {
           />
           {props.user ? (
             <UserSettingsMenu
-              locale={props.user.language}
+              language={props.user.language}
               firstName={props.user.firstName}
               lastName={props.user.lastName}
               gravatarHash={props.user.gravatarHash}
               email={props.user.email}
-              environment={props.environment}
               DEV_ONLY__loadAppbarMenuConfig={
                 props.DEV_ONLY__loadAppbarMenuConfig
               }
@@ -135,9 +134,6 @@ AppBar.propTypes = {
     defaultProjectKey: PropTypes.string,
   }),
   projectKeyFromUrl: PropTypes.string,
-  environment: PropTypes.shape({
-    servedByProxy: PropTypes.bool.isRequired,
-  }).isRequired,
   DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
 };
 

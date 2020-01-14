@@ -1,10 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import Downshift from 'downshift';
+import Downshift, {
+  ControllerStateAndHelpers,
+  DownshiftProps,
+} from 'downshift';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import Avatar from '@commercetools-uikit/avatar';
 import Spacings from '@commercetools-uikit/spacings';
@@ -16,11 +18,37 @@ import {
   NO_VALUE_FALLBACK,
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import useApplicationsMenu from '../../hooks/use-applications-menu';
+import { TUser } from '../../types/generated/mc';
+import {
+  TApplicationsMenu,
+  TFetchApplicationsMenuQuery,
+} from '../../types/generated/proxy';
 import messages from './messages';
 
-const UserAvatar = props => {
+type Props = Pick<
+  TUser,
+  'language' | 'firstName' | 'lastName' | 'email' | 'gravatarHash'
+> & {
+  DEV_ONLY__loadAppbarMenuConfig?: () => Promise<TApplicationsMenu['appBar']>;
+};
+type MenuBodyProps = Props & {
+  downshiftProps: ControllerStateAndHelpers<{}>;
+};
+type OptionalFeatureToggleProps = {
+  featureToggle?: string;
+  children: React.ReactNode;
+};
+type MenuItemProps = {
+  hasDivider?: boolean;
+};
+type MenuConfig = TFetchApplicationsMenuQuery['applicationsMenu']['appBar'][0];
+
+const UserAvatar = (
+  props: Pick<Props, 'firstName' | 'lastName' | 'gravatarHash'>
+) => {
   const [isMouseOver, setIsMouseOver] = React.useState(false);
   const handleMouseOver = React.useCallback(() => {
     setIsMouseOver(true);
@@ -46,14 +74,8 @@ const UserAvatar = props => {
   );
 };
 UserAvatar.displayName = 'UserAvatar';
-UserAvatar.propTypes = {
-  gravatarHash: PropTypes.string.isRequired,
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
-  email: PropTypes.string,
-};
 
-function stateReducer(state, changes) {
+const stateReducer: DownshiftProps<{}>['stateReducer'] = (_state, changes) => {
   switch (changes.type) {
     // So in case the user wants to navigate with the tab button
     // we need to make sure that the menu does not close
@@ -65,21 +87,21 @@ function stateReducer(state, changes) {
     default:
       return changes;
   }
-}
-
-const OptionalFeatureToggle = props =>
-  props.featureToggle ? (
-    <ToggleFeature flag={props.featureToggle}>{props.children}</ToggleFeature>
-  ) : (
-    props.children
-  );
-OptionalFeatureToggle.displayName = 'OptionalFeatureToggle';
-OptionalFeatureToggle.propTypes = {
-  featureToggle: PropTypes.string,
-  children: PropTypes.element.isRequired,
 };
 
-const renderLabel = (menu, applicationLanguage) => {
+const OptionalFeatureToggle = (props: OptionalFeatureToggleProps) => {
+  if (props.featureToggle) {
+    return (
+      <ToggleFeature flag={props.featureToggle}>{props.children}</ToggleFeature>
+    );
+  }
+  return <>{props.children}</>;
+};
+
+const renderLabel = (
+  menu: MenuConfig,
+  applicationLanguage: Props['language']
+) => {
   const localizedLabel = menu.labelAllLocales.find(loc =>
     applicationLanguage.startsWith(loc.locale)
   );
@@ -87,7 +109,7 @@ const renderLabel = (menu, applicationLanguage) => {
   return NO_VALUE_FALLBACK;
 };
 
-const MenuItem = styled.div`
+const MenuItem = styled.div<MenuItemProps>`
   width: 100%;
   cursor: pointer;
   color: ${customProperties.colorSolid};
@@ -97,28 +119,24 @@ const MenuItem = styled.div`
   }
 
   ${props =>
-    props.hasDivider
+    props.hasDivider === true
       ? css`
           border-bottom: 1px solid ${customProperties.colorNeutral};
         `
       : ''};
 `;
 
-const UserSettingsMenuBody = props => {
-  const applicationsMenu = useApplicationsMenu({
+const UserSettingsMenuBody = (props: MenuBodyProps) => {
+  const servedByProxy = useApplicationContext(
+    context => context.environment.servedByProxy
+  );
+  const applicationsAppBarMenu = useApplicationsMenu<'appBar'>('appBar', {
     queryOptions: {
       onError: reportErrorToSentry,
     },
-    skipRemoteQuery: !props.environment.servedByProxy,
-    options: {
-      __DEV_CONFIG__: {
-        menuLoader: props.DEV_ONLY__loadAppbarMenuConfig,
-        menuKey: 'appBar',
-      },
-    },
+    skipRemoteQuery: !servedByProxy,
+    loadMenuConfig: props.DEV_ONLY__loadAppbarMenuConfig,
   });
-
-  const menuLinks = (applicationsMenu && applicationsMenu.appBar) || [];
 
   return (
     <div
@@ -151,29 +169,30 @@ const UserSettingsMenuBody = props => {
             </div>
           </Spacings.Inline>
         </Spacings.Inset>
-        {menuLinks.map(menu => (
-          <OptionalFeatureToggle
-            key={menu.key}
-            featureToggle={menu.featureToggle}
-          >
-            <Link
-              to={`/account/${menu.uriPath}`}
-              onClick={props.downshiftProps.toggleMenu}
+        {applicationsAppBarMenu &&
+          applicationsAppBarMenu.map(menu => (
+            <OptionalFeatureToggle
+              key={menu.key}
+              featureToggle={menu.featureToggle}
             >
-              <MenuItem>
-                <Spacings.Inset scale="s">
-                  {renderLabel(menu, props.locale)}
-                </Spacings.Inset>
-              </MenuItem>
-            </Link>
-          </OptionalFeatureToggle>
-        ))}
+              <Link
+                to={`/account/${menu.uriPath}`}
+                onClick={() => props.downshiftProps.toggleMenu()}
+              >
+                <MenuItem>
+                  <Spacings.Inset scale="s">
+                    {renderLabel(menu, props.language)}
+                  </Spacings.Inset>
+                </MenuItem>
+              </Link>
+            </OptionalFeatureToggle>
+          ))}
         <MenuItem hasDivider={true} />
         <a
           href={`https://commercetools.com/privacy#suppliers`}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={props.downshiftProps.toggleMenu}
+          onClick={() => props.downshiftProps.toggleMenu()}
         >
           <MenuItem>
             <Spacings.Inset scale="s">
@@ -188,7 +207,7 @@ const UserSettingsMenuBody = props => {
           data-track-component="Navigation-Support-links"
           data-track-event="click"
           data-track-label="support_textlink"
-          onClick={props.downshiftProps.toggleMenu}
+          onClick={() => props.downshiftProps.toggleMenu()}
         >
           <MenuItem>
             <Spacings.Inset scale="s">
@@ -203,7 +222,7 @@ const UserSettingsMenuBody = props => {
           href={`/logout?reason=${LOGOUT_REASONS.USER}`}
           data-test="logout-button"
         >
-          <MenuItem tabIndex="0">
+          <MenuItem tabIndex={0}>
             <Spacings.Inset scale="s">
               <FormattedMessage {...messages.logout} />
             </Spacings.Inset>
@@ -214,23 +233,8 @@ const UserSettingsMenuBody = props => {
   );
 };
 UserSettingsMenuBody.displayName = 'UserSettingsMenuBody';
-UserSettingsMenuBody.propTypes = {
-  locale: PropTypes.string.isRequired,
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
-  email: PropTypes.string.isRequired,
-  gravatarHash: PropTypes.string.isRequired,
-  downshiftProps: PropTypes.shape({
-    toggleMenu: PropTypes.func.isRequired,
-    getMenuProps: PropTypes.func.isRequired,
-  }).isRequired,
-  environment: PropTypes.shape({
-    servedByProxy: PropTypes.bool.isRequired,
-  }).isRequired,
-  DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
-};
 
-const UserSettingsMenu = props => (
+const UserSettingsMenu = (props: Props) => (
   <div data-test="user-settings-menu">
     <Downshift stateReducer={stateReducer}>
       {downshiftProps => (
@@ -261,17 +265,6 @@ const UserSettingsMenu = props => (
   </div>
 );
 UserSettingsMenu.displayName = 'UserSettingsMenu';
-UserSettingsMenu.propTypes = {
-  locale: PropTypes.string.isRequired,
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
-  email: PropTypes.string.isRequired,
-  gravatarHash: PropTypes.string.isRequired,
-  environment: PropTypes.shape({
-    servedByProxy: PropTypes.bool.isRequired,
-  }).isRequired,
-  DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
-};
 
 export default UserSettingsMenu;
 

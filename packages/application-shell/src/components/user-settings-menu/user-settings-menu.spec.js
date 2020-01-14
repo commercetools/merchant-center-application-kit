@@ -1,169 +1,165 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import Avatar from '@commercetools-uikit/avatar';
-import Text from '@commercetools-uikit/text';
-import { CaretDownIcon } from '@commercetools-uikit/icons';
-import { SUPPORT_PORTAL_URL } from '@commercetools-frontend/constants';
-import useApplicationsMenu from '../../hooks/use-applications-menu';
-import Downshift from 'downshift';
-import UserSettingsMenu, {
-  UserSettingsMenuBody,
-  UserAvatar,
-} from './user-settings-menu';
+import upperFirst from 'lodash/upperFirst';
+import {
+  LOGOUT_REASONS,
+  SUPPORT_PORTAL_URL,
+} from '@commercetools-frontend/constants';
+import { renderApp, fireEvent, wait } from '../../test-utils';
+import FetchApplicationsMenu from '../../hooks/use-applications-menu/fetch-applications-menu.proxy.graphql';
+import UserSettingsMenu from './user-settings-menu';
 
-jest.mock('../../hooks/use-applications-menu');
-
-const createTestProps = props => ({
-  locale: 'en',
+const createTestProps = (custom = {}) => ({
+  email: 'john.snow@got.com',
   firstName: 'John',
-  lastName: 'Doe',
-  email: 'john@doe.com',
-  gravatarHash: '20c9c1b252b46ab49d6f7a4cee9c3e68',
-  environment: { servedByProxy: false },
-  ...props,
+  lastName: 'Snow',
+  gravatarHash: '111',
+  language: 'en',
+  ...custom,
 });
-
-const createDownshiftProps = props => ({
-  isOpen: false,
-  toggleMenu: jest.fn(),
-  getToggleButtonProps: jest.fn(),
-  getMenuProps: jest.fn(),
-  ...props,
+const createTestMenuConfig = (key, custom = {}) => ({
+  key,
+  labelAllLocales: [{ locale: 'en', value: upperFirst(key) }],
+  uriPath: key,
+  permissions: [],
+  featureToggle: '',
+  ...custom,
 });
+const createGraphqlResponse = (custom = {}) => ({
+  applicationsMenu: {
+    appBar: [createTestMenuConfig('projects')],
+    navBar: [],
+  },
+  ...custom,
+});
+const linkChecker = rendered => (label, href) => {
+  const link = rendered.queryByText(label);
+  expect(link.closest('a')).toHaveAttribute('href', href);
+};
 
 describe('rendering', () => {
-  let wrapper;
-  let props;
-  beforeEach(() => {
-    props = createTestProps();
-    wrapper = shallow(<UserSettingsMenu {...props} />);
-  });
-
-  it('should render <Downshift> wrapper', () => {
-    expect(wrapper).toRender(Downshift);
-  });
-
-  describe('menu', () => {
-    let downshiftProps;
-    let menuStateContainerRenderWrapper;
-    beforeEach(() => {
-      downshiftProps = createDownshiftProps();
-      menuStateContainerRenderWrapper = wrapper
-        .find(Downshift)
-        .renderProp('children')(downshiftProps);
-    });
-    it('should render button', () => {
-      expect(menuStateContainerRenderWrapper).toRender({
-        role: 'user-menu-toggle',
-      });
-    });
-    it('should render <UserAvatar>', () => {
-      expect(menuStateContainerRenderWrapper).toRender(UserAvatar);
-    });
-    describe('when menu is open', () => {
-      beforeEach(() => {
-        downshiftProps = createDownshiftProps({ isOpen: true });
-        menuStateContainerRenderWrapper = wrapper
-          .find(Downshift)
-          .renderProp('children')(downshiftProps);
-      });
-      it('should render <UserSettingsMenuBody>', () => {
-        expect(menuStateContainerRenderWrapper).toRender(UserSettingsMenuBody);
-      });
-    });
-  });
-
-  describe('<UserSettingsMenuBody>', () => {
-    beforeEach(() => {
-      useApplicationsMenu.mockReturnValue({
-        appBar: [
+  describe('when fetching remote menu config', () => {
+    it('should open the menu and inspect the links', async () => {
+      const props = createTestProps();
+      const rendered = renderApp(<UserSettingsMenu {...props} />, {
+        environment: {
+          servedByProxy: 'true',
+        },
+        mocks: [
           {
-            key: 'profile',
-            labelAllLocales: [{ locale: 'en', value: 'Profile' }],
-            uriPath: 'profile',
-          },
-          {
-            key: 'organizations',
-            labelAllLocales: [{ locale: 'en', value: 'Organizations' }],
-            uriPath: 'organizations',
+            request: {
+              query: FetchApplicationsMenu,
+            },
+            result: {
+              data: createGraphqlResponse(),
+            },
           },
         ],
       });
-      props = createTestProps({
-        downshiftProps: createDownshiftProps(),
-        environment: { servedByProxy: false },
-      });
-      wrapper = shallow(<UserSettingsMenuBody {...props} />);
-    });
-    it('should render <Avatar>', () => {
-      expect(wrapper).toRender(Avatar);
-    });
-    it('should render full name', () => {
-      expect(wrapper).toContainReact(
-        <Text.Body isBold>{'John Doe'}</Text.Body>
+      const dropdownMenu = await rendered.findByLabelText('open menu');
+      fireEvent.click(dropdownMenu);
+      // Menu should be open
+      await rendered.findByLabelText('close menu');
+
+      const checkLink = linkChecker(rendered);
+
+      // Projects link
+      checkLink('Projects', '/account/projects');
+      // Privacy link
+      checkLink(
+        'Privacy Policy',
+        'https://commercetools.com/privacy#suppliers'
       );
+      // Support link
+      checkLink('Support', SUPPORT_PORTAL_URL);
+      // Logout link
+      checkLink('Logout', `/logout?reason=${LOGOUT_REASONS.USER}`);
     });
-    it('should render email', () => {
-      expect(wrapper).toContainReact(
-        <Text.Body truncate>{'john@doe.com'}</Text.Body>
+  });
+  describe('when fetching dev menu config', () => {
+    it('should open the menu and inspect the links', async () => {
+      const props = createTestProps({
+        DEV_ONLY__loadAppbarMenuConfig: () =>
+          Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
+      });
+      const rendered = renderApp(<UserSettingsMenu {...props} />);
+      const dropdownMenu = await rendered.findByLabelText('open menu');
+      fireEvent.click(dropdownMenu);
+      // Menu should be open
+      await rendered.findByLabelText('close menu');
+
+      const checkLink = linkChecker(rendered);
+
+      // Projects link
+      checkLink('Projects', '/account/projects');
+      // Privacy link
+      checkLink(
+        'Privacy Policy',
+        'https://commercetools.com/privacy#suppliers'
       );
+      // Support link
+      checkLink('Support', SUPPORT_PORTAL_URL);
+      // Logout link
+      checkLink('Logout', `/logout?reason=${LOGOUT_REASONS.USER}`);
     });
-    it('should render link to "/account/profile"', () => {
-      expect(wrapper).toRender({
-        to: '/account/profile',
+  });
+  describe('when clicking on the projects link', () => {
+    it('should navigate to projects route and close the user menu', async () => {
+      const props = createTestProps({
+        DEV_ONLY__loadAppbarMenuConfig: () =>
+          Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
       });
-    });
-    it('should render link to "/account/organizations"', () => {
-      expect(wrapper).toRender({
-        to: '/account/organizations',
-      });
-    });
-    it('should render link to "/logout"', () => {
-      expect(wrapper).toRender({
-        href: '/logout?reason=user',
-      });
-    });
-    it('should render link to support url', () => {
-      expect(wrapper).toRender({
-        href: SUPPORT_PORTAL_URL,
+      const rendered = renderApp(<UserSettingsMenu {...props} />);
+      const dropdownMenu = await rendered.findByLabelText('open menu');
+      fireEvent.click(dropdownMenu);
+      // Menu should be open
+      await rendered.findByLabelText('close menu');
+
+      const link = rendered.queryByText('Projects');
+      fireEvent.click(link);
+
+      // Menu should be closed
+      await rendered.findByLabelText('open menu');
+      await wait(() => {
+        expect(rendered.history.location.pathname).toBe('/account/projects');
       });
     });
   });
+  describe('when clicking on the Privacy link', () => {
+    it('should close the user menu', async () => {
+      const props = createTestProps({
+        DEV_ONLY__loadAppbarMenuConfig: () =>
+          Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
+      });
+      const rendered = renderApp(<UserSettingsMenu {...props} />);
+      const dropdownMenu = await rendered.findByLabelText('open menu');
+      fireEvent.click(dropdownMenu);
+      // Menu should be open
+      await rendered.findByLabelText('close menu');
 
-  describe('<UserAvatar>', () => {
-    const createUserAvatarProps = custom => ({
-      ...createTestProps(),
-      handleMouseOver: jest.fn(),
-      handleMouseOut: jest.fn(),
-      isMouseOver: false,
-      ...custom,
-    });
-    beforeEach(() => {
-      props = createUserAvatarProps();
-      wrapper = shallow(<UserAvatar {...props} />);
-    });
+      const link = rendered.queryByText('Privacy Policy');
+      fireEvent.click(link);
 
-    it('should render `CaretDownIcon`', () => {
-      expect(wrapper).toRender(CaretDownIcon);
+      // Menu should be closed
+      await rendered.findByLabelText('open menu');
     });
+  });
+  describe('when clicking on the Support link', () => {
+    it('should close the user menu', async () => {
+      const props = createTestProps({
+        DEV_ONLY__loadAppbarMenuConfig: () =>
+          Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
+      });
+      const rendered = renderApp(<UserSettingsMenu {...props} />);
+      const dropdownMenu = await rendered.findByLabelText('open menu');
+      fireEvent.click(dropdownMenu);
+      // Menu should be open
+      await rendered.findByLabelText('close menu');
 
-    it('should render `Avatar` component', () => {
-      expect(wrapper).toRender(Avatar);
-    });
+      const link = rendered.queryByText('Support');
+      fireEvent.click(link);
 
-    it('should pass prop firstName to `Avatar` component', () => {
-      expect(wrapper.find(Avatar)).toHaveProp('firstName', 'John');
-    });
-
-    it('should pass prop lastName to `Avatar` component', () => {
-      expect(wrapper.find(Avatar)).toHaveProp('lastName', 'Doe');
-    });
-
-    it('should pass prop `gravatarHash` to `Avatar` component', () => {
-      expect(wrapper.find(Avatar)).toHaveProp(
-        'gravatarHash',
-        '20c9c1b252b46ab49d6f7a4cee9c3e68'
-      );
+      // Menu should be closed
+      await rendered.findByLabelText('open menu');
     });
   });
 });
