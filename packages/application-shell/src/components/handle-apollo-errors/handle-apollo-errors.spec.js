@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  renderAppWithRedux,
-  waitForElement,
-  fireEvent,
-} from '../../test-utils';
+import { renderAppWithRedux, fireEvent } from '../../test-utils';
 import handleApolloErrors from './handle-apollo-errors';
 
 const createGraphqlResultProps = props => ({
@@ -25,34 +21,27 @@ Test.propTypes = {
   user: PropTypes.shape({ data: PropTypes.shape({ ok: PropTypes.bool }) }),
 };
 
-class QueryController extends React.Component {
-  static displayName = 'QueryController';
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    queryResult: PropTypes.object.isRequired,
-    children: PropTypes.node.isRequired,
+const QueryController = props => {
+  const [result, setResult] = React.useState(createGraphqlResultProps());
+  const triggerQuery = () => {
+    setResult({ ...props.queryResult, isLoading: false });
   };
-  state = {
-    result: createGraphqlResultProps(),
-  };
-  triggerQuery = () => {
-    this.setState({
-      result: { ...this.props.queryResult, isLoading: false },
-    });
-  };
-  render() {
-    return (
-      <React.Fragment>
-        <button data-testid={this.props.name} onClick={this.triggerQuery}>
-          {'query'}
-        </button>
-        {React.cloneElement(this.props.children, {
-          [this.props.name]: this.state.result,
-        })}
-      </React.Fragment>
-    );
-  }
-}
+  return (
+    <>
+      <button data-testid={props.name} onClick={triggerQuery}>
+        {'query'}
+      </button>
+      {React.cloneElement(props.children, {
+        [props.name]: result,
+      })}
+    </>
+  );
+};
+QueryController.propTypes = {
+  name: PropTypes.string.isRequired,
+  queryResult: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 describe('given the graphql queries for "user"', () => {
   beforeAll(() => {
@@ -62,33 +51,29 @@ describe('given the graphql queries for "user"', () => {
   describe('when the "user" query fails', () => {
     it('should dispatch notification error', async () => {
       const error = new Error('Oops');
-      const { getByText, getByTestId } = renderAppWithRedux(
+      const rendered = renderAppWithRedux(
         <QueryController name="user" queryResult={{ data: null, error }}>
           <WithApolloErrorHandling />
         </QueryController>
       );
-      await waitForElement(() => getByText('loading'));
-
-      fireEvent.click(getByTestId('user'));
-
+      await rendered.findByText('loading');
+      fireEvent.click(rendered.getByTestId('user'));
       // See error notification
-      await waitForElement(() =>
-        getByText(/Sorry, but there seems to be something wrong./i)
+      await rendered.findByText(
+        /Sorry, but there seems to be something wrong./i
       );
     });
   });
   describe('when no query fails', () => {
     it('should not dispatch any notification error', async () => {
-      const { getByText, getByTestId } = renderAppWithRedux(
+      const rendered = renderAppWithRedux(
         <QueryController name="user" queryResult={{ data: { ok: true } }}>
           <WithApolloErrorHandling />
         </QueryController>
       );
-      await waitForElement(() => getByText('loading'));
-
-      fireEvent.click(getByTestId('user'));
-
-      await waitForElement(() => getByText(/Status: true/i));
+      await rendered.findByText('loading');
+      fireEvent.click(rendered.getByTestId('user'));
+      await rendered.findByText(/Status: true/i);
     });
   });
 });
