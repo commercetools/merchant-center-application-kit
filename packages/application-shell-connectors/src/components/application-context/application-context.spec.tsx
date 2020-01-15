@@ -34,6 +34,7 @@ const createTestUser = (custom = {}) => ({
     ],
   },
   launchdarklyTrackingGroup: 'commercetools',
+  launchdarklyTrackingSubgroup: 'dev',
   launchdarklyTrackingId: '111',
   launchdarklyTrackingTeam: undefined,
   launchdarklyTrackingTenant: 'gcp-eu',

@@ -15,6 +15,7 @@ const User = new Factory()
   .attr('launchdarklyTrackingGroup', () =>
     faker.helpers.slugify(faker.company.companyName())
   )
+  .attr('launchdarklyTrackingSubgroup', () => 'dev')
   .attr('launchdarklyTrackingTeam', () => [faker.random.word()])
   .attr('launchdarklyTrackingTenant', 'gcp-eu')
   .attr('defaultProjectKey', () => null)
