@@ -1,3 +1,26 @@
+## [15.7.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.6.2...v15.7.0) (2020-01-15)
+
+#### 💅 Type: Enhancement
+
+- `actions-global`
+  - [#1240](https://github.com/commercetools/merchant-center-application-kit/pull/1240) feat(actions-global): to add use-on-action-error ([@tdeekens](https://github.com/tdeekens))
+  - [#1238](https://github.com/commercetools/merchant-center-application-kit/pull/1238) feat(actions-global): add use-hide-all-page-notifications ([@tdeekens](https://github.com/tdeekens))
+- `mc-scripts`
+  - [#1232](https://github.com/commercetools/merchant-center-application-kit/pull/1232) refactor(mc-scripts): sync with latest react-scripts ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `mc-scripts`
+  - [#1242](https://github.com/commercetools/merchant-center-application-kit/pull/1242) fix(mc-scripts): allowing to opt-out of parallel builds ([@tdeekens](https://github.com/tdeekens))
+
+#### 🤖 Type: Dependencies
+
+- Other
+  - [#1236](https://github.com/commercetools/merchant-center-application-kit/pull/1236) chore(deps): update dependency stylelint to v13 ([@renovate[bot]](https://github.com/apps/renovate))
+  - [#1237](https://github.com/commercetools/merchant-center-application-kit/pull/1237) chore(deps): lock file maintenance ([@renovate[bot]](https://github.com/apps/renovate))
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sdk`, `sentry`, `url-utils`
+  - [#1235](https://github.com/commercetools/merchant-center-application-kit/pull/1235) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [15.6.2](https://github.com/commercetools/merchant-center-application-kit/compare/v15.6.1...v15.6.2) (2020-01-09)
 
 #### 🐛 Type: Bug
