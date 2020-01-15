@@ -43,6 +43,13 @@ const defaultToggleFlags = {
   enableExtractCss: true,
   // Allow to disable index.html generation in case it's not necessary (e.g. for Storybook)
   generateIndexHtml: true,
+  // Some plugins spawn workers to speed up the build. However this can cause trouble on
+  // certain machines local and CI. This flag set to limit or disable any parallelism.
+  // Options:
+  //    `true` to default to the machines number of CPUs
+  //    `false` to disable any paralelism
+  //    `int` for a specific number of CPUs
+  parallelism: true,
 };
 
 /**
@@ -110,7 +117,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
           },
           // Use multi-process parallel running to improve the build speed
           // Default number of concurrent runs: os.cpus().length - 1
-          parallel: true,
+          parallel: mergedToggleFlags.parallelism,
           // Enable file caching
           cache: true,
           sourceMap: true,
