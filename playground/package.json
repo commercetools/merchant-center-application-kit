@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "15.6.2",
+  "version": "15.7.0",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -15,17 +15,17 @@
     "deploy:us": "yarn compile-html:us && now --local-config=production-us.now.json --target production"
   },
   "dependencies": {
-    "@commercetools-frontend/actions-global": "15.6.0",
-    "@commercetools-frontend/application-components": "15.6.0",
-    "@commercetools-frontend/application-shell": "15.6.2",
-    "@commercetools-frontend/application-shell-connectors": "15.6.2",
+    "@commercetools-frontend/actions-global": "15.7.0",
+    "@commercetools-frontend/application-components": "15.7.0",
+    "@commercetools-frontend/application-shell": "15.7.0",
+    "@commercetools-frontend/application-shell-connectors": "15.7.0",
     "@commercetools-frontend/assets": "15.4.2",
-    "@commercetools-frontend/constants": "15.6.0",
-    "@commercetools-frontend/i18n": "15.6.0",
-    "@commercetools-frontend/l10n": "15.6.2",
+    "@commercetools-frontend/constants": "15.7.0",
+    "@commercetools-frontend/i18n": "15.7.0",
+    "@commercetools-frontend/l10n": "15.7.0",
     "@commercetools-frontend/mc-http-server": "15.6.0",
-    "@commercetools-frontend/permissions": "15.6.2",
-    "@commercetools-frontend/sdk": "15.6.0",
+    "@commercetools-frontend/permissions": "15.7.0",
+    "@commercetools-frontend/sdk": "15.7.0",
     "@commercetools-uikit/constraints": "10.13.0",
     "@commercetools-uikit/flat-button": "10.13.0",
     "@commercetools-uikit/grid": "10.13.0",
@@ -49,6 +49,6 @@
     "redux": "4.0.5"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "15.6.2"
+    "@commercetools-frontend/mc-scripts": "15.7.0"
   }
 }
