@@ -1,4 +1,5 @@
 import React from 'react';
+import { defineMessages, IntlProvider, FormattedMessage } from 'react-intl';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import pkg from '../../package.json';
@@ -17,6 +18,44 @@ import LinksCard from '../components/links-card';
 import ScreenCogIcon from '../icons/screen-cog-icon.svg';
 import ScreenDesignToolIcon from '../icons/screen-design-tool-icon.svg';
 import ScreenBulbIcon from '../icons/screen-bulb-icon.svg';
+
+const messages = defineMessages({
+  textSectionTitle1: {
+    id: 'Marketing.textSectionTitle1',
+    defaultMessage: 'Built on modern technologies',
+  },
+  textSectionTitle2: {
+    id: 'Marketing.textSectionTitle2',
+    defaultMessage: 'Based on a solid Design System',
+  },
+  textSectionTitle3: {
+    id: 'Marketing.textSectionTitle3',
+    defaultMessage: 'Zero config development tools',
+  },
+  textSectionParagraph1: {
+    id: 'Marketing.textSectionParagraph1',
+    defaultMessage:
+      'Develop JavaScript applications with React, GraphQL, Webpack and other modern technologies.',
+  },
+  textSectionParagraph2: {
+    id: 'Marketing.textSectionParagraph2',
+    defaultMessage:
+      'Merchant Center custom applications are built and designed according to our <a>Design System</a>. It provides rules, patterns and best practices to ease development and focus on the business logic.',
+  },
+  textSectionParagraph3: {
+    id: 'Marketing.textSectionParagraph3',
+    defaultMessage:
+      'Focus more on implementing the right features instead of configuration. Our <a>open source packages</a> provide all the necessary tools and components to get started seamlessly.',
+  },
+});
+const getLinkToDesignSystem = msg => (
+  <Link href="https://github.com/commercetools/ui-kit/blob/master/design-system/materials/internals/TOKENS.md">
+    {msg}
+  </Link>
+);
+const getLinkToOssPackages = msg => (
+  <Link href="/getting-started/tooling">{msg}</Link>
+);
 
 const SectionTitle = styled.div`
   color: ${designSystem.colors.light.primary};
@@ -115,7 +154,7 @@ const PageMarketingContent = () => {
     }
   `);
   return (
-    <>
+    <IntlProvider locale="en" messages={{}}>
       <MainBanner>
         <MainBannerConstraint>
           <PageTitle>
@@ -134,12 +173,12 @@ const PageMarketingContent = () => {
             <SpacingsStack scale="m">
               <SpacingsStack scale="s">
                 <ScreenCogIcon />
-                <SectionTitle>{'Built on modern technologies'}</SectionTitle>
+                <SectionTitle>
+                  <FormattedMessage {...messages.textSectionTitle1} />
+                </SectionTitle>
               </SpacingsStack>
               <SectionBody>
-                {
-                  'Develop JavaScript applications with React, GraphQL, Webpack and other modern technologies.'
-                }
+                <FormattedMessage {...messages.textSectionParagraph1} />
               </SectionBody>
             </SpacingsStack>
           </Card>
@@ -147,12 +186,17 @@ const PageMarketingContent = () => {
             <SpacingsStack scale="m">
               <SpacingsStack scale="s">
                 <ScreenDesignToolIcon />
-                <SectionTitle>{'Based on a solid Design System'}</SectionTitle>
+                <SectionTitle>
+                  <FormattedMessage {...messages.textSectionTitle2} />
+                </SectionTitle>
               </SpacingsStack>
               <SectionBody>
-                {
-                  'Merchant Center custom applications are built and designed according to our Design System. It provides rules, patterns and best practices to ease development and focus on the business logic.'
-                }
+                <FormattedMessage
+                  {...messages.textSectionParagraph2}
+                  values={{
+                    a: getLinkToDesignSystem,
+                  }}
+                />
               </SectionBody>
             </SpacingsStack>
           </Card>
@@ -160,12 +204,17 @@ const PageMarketingContent = () => {
             <SpacingsStack scale="m">
               <SpacingsStack scale="s">
                 <ScreenBulbIcon />
-                <SectionTitle>{'Zero config development tools'}</SectionTitle>
+                <SectionTitle>
+                  <FormattedMessage {...messages.textSectionTitle3} />
+                </SectionTitle>
               </SpacingsStack>
               <SectionBody>
-                {
-                  'Focus more on implementing the right features instead of configuration. Our open source packages provide all the necessary tools and components to get started seamlessly.'
-                }
+                <FormattedMessage
+                  {...messages.textSectionParagraph3}
+                  values={{
+                    a: getLinkToOssPackages,
+                  }}
+                />
               </SectionBody>
             </SpacingsStack>
           </Card>
@@ -221,7 +270,7 @@ const PageMarketingContent = () => {
           ]}
         />
       </SectionContainer>
-    </>
+    </IntlProvider>
   );
 };
 PageMarketingContent.displayName = 'PageMarketingContent';
