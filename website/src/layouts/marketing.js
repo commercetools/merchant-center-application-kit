@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useStaticQuery, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import {
   LayoutHeader,
@@ -60,15 +59,6 @@ const LayoutMarketing = props => {
     setIsSearchDialogOpen(false);
   };
   const siteData = useSiteData();
-  const data = useStaticQuery(graphql`
-    query GetSitePageContext {
-      sitePage {
-        context {
-          excludeFromSearchIndex
-        }
-      }
-    }
-  `);
   return (
     <Container>
       <HeaderContainer>
@@ -77,7 +67,7 @@ const LayoutMarketing = props => {
         </LogoContainer>
         <LayoutHeader
           siteTitle={siteData.siteMetadata.title}
-          excludeFromSearchIndex={data.sitePage.context.excludeFromSearchIndex}
+          excludeFromSearchIndex={process.env.NODE_ENV === 'production'}
           isSearchDialogOpen={isSearchDialogOpen}
           openSearchDialog={openSearchDialog}
           closeSearchDialog={closeSearchDialog}
