@@ -4,14 +4,9 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Link } from '@commercetools-docs/gatsby-theme-docs';
 import { designSystem } from '@commercetools-docs/ui-kit';
+import Card from '@commercetools-uikit/card';
 import SpacingsStack from '@commercetools-uikit/spacings-stack';
 
-const Container = styled.div`
-  background-color: ${designSystem.colors.light.surfacePrimary};
-  border: 1px solid ${designSystem.colors.light.borderPrimary};
-  border-radius: ${designSystem.tokens.borderRadius6};
-  padding: ${designSystem.dimensions.spacings.l};
-`;
 const GridContainer = styled.div`
   display: grid;
   grid-gap: ${designSystem.dimensions.spacings.l};
@@ -47,7 +42,7 @@ const SecondaryExternalLink = props => (
 );
 
 const LinksCard = props => (
-  <Container>
+  <Card>
     <GridContainer>
       {props.linksData.map(linkData => (
         <div key={linkData.title}>
@@ -66,7 +61,7 @@ const LinksCard = props => (
         </div>
       ))}
     </GridContainer>
-  </Container>
+  </Card>
 );
 LinksCard.propTypes = {
   linksData: PropTypes.arrayOf(

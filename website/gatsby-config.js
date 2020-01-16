@@ -1,4 +1,5 @@
 /* eslint-disable global-require */
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   pathPrefix: '/custom-applications',
@@ -32,7 +33,7 @@ module.exports = {
       options: {
         websiteKey: 'custom-applications',
         beta: true,
-        excludeFromSearchIndex: true,
+        excludeFromSearchIndex: isProd,
         gaTrackingId: 'UA-38285631-3',
         // Patch the slug creation to get meaningful slugs for the application components
         createNodeSlug: (originalSlug, { node }) => {

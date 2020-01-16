@@ -1,6 +1,5 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import pkg from '../../package.json';
 import {
@@ -10,11 +9,11 @@ import {
   useSiteData,
 } from '@commercetools-docs/gatsby-theme-docs';
 import { designSystem } from '@commercetools-docs/ui-kit';
+import { customProperties } from '@commercetools-uikit/design-system';
 import Card from '@commercetools-uikit/card';
 import SpacingsStack from '@commercetools-uikit/spacings-stack';
 import LayoutMarketing from '../layouts/marketing';
 import LinksCard from '../components/links-card';
-import LandingPageRocket from '../icons/landing-page-rocket.svg';
 import ScreenCogIcon from '../icons/screen-cog-icon.svg';
 import ScreenDesignToolIcon from '../icons/screen-design-tool-icon.svg';
 import ScreenBulbIcon from '../icons/screen-bulb-icon.svg';
@@ -22,28 +21,68 @@ import ScreenBulbIcon from '../icons/screen-bulb-icon.svg';
 const SectionTitle = styled.div`
   color: ${designSystem.colors.light.primary};
   font-size: ${designSystem.typography.fontSizes.h4};
-  letter-spacing: 4px;
+  letter-spacing: 3px;
 `;
 const SectionBody = styled.div`
   color: ${designSystem.colors.light.textPrimary};
   font-size: ${designSystem.typography.fontSizes.small};
   line-height: 1.5;
 `;
-const PageContainer = styled.div`
+const PageTitle = styled.h1`
+  font-size: ${designSystem.typography.fontSizes.h1};
+  font-weight: ${designSystem.typography.fontWeights.regular};
+  color: ${designSystem.colors.light.textInverted};
+`;
+const MainBanner = styled.div`
+  width: 100%;
+  background-color: ${designSystem.colors.light.surfaceCode};
+`;
+const MainBannerConstraint = styled.div`
   width: 100%;
   max-width: ${designSystem.dimensions.widths.marketingContent};
-  margin: 0 auto;
+  padding: ${designSystem.dimensions.spacings.m};
+
+  > * + * {
+    margin: ${designSystem.dimensions.spacings.l} 0 0;
+  }
+
+  @media screen and (${designSystem.dimensions.viewports.desktop}) {
+    padding: ${designSystem.dimensions.spacings.xl};
+  }
+`;
+const SectionContainer = styled.div`
+  width: calc(100% - ${designSystem.dimensions.spacings.m} * 2);
+  max-width: calc(
+    ${designSystem.dimensions.widths.marketingContent} -
+      ${designSystem.dimensions.spacings.m} * 2
+  );
+  padding: ${designSystem.dimensions.spacings.l}
+    ${designSystem.dimensions.spacings.m};
+
+  > * + * {
+    margin: ${designSystem.dimensions.spacings.l} 0 0;
+  }
+
+  @media screen and (${designSystem.dimensions.viewports.desktop}) {
+    width: calc(100% - ${designSystem.dimensions.spacings.xl} * 2);
+    max-width: calc(
+      ${designSystem.dimensions.widths.marketingContent} -
+        ${designSystem.dimensions.spacings.xl} * 2
+    );
+    padding: ${designSystem.dimensions.spacings.l}
+      ${designSystem.dimensions.spacings.xl};
+  }
 `;
 const ButtonLink = styled(Link)`
   display: inline-block;
   padding: ${designSystem.dimensions.spacings.m}
     ${designSystem.dimensions.spacings.l};
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: ${designSystem.typography.fontSizes.body};
   color: ${designSystem.colors.light.textPrimary} !important;
   background-color: ${designSystem.colors.light.surfacePrimary};
   border: 1px solid ${designSystem.colors.light.surfacePrimary};
-  border-radius: ${designSystem.tokens.borderRadius6};
+  border-radius: ${customProperties.borderRadius6};
 
   :hover {
     background-color: ${designSystem.colors.light.surfaceQuote};
@@ -51,6 +90,7 @@ const ButtonLink = styled(Link)`
   }
 `;
 const GridContainer = styled.div`
+  width: 100%;
   display: grid;
   grid-gap: ${designSystem.dimensions.spacings.l};
   grid-auto-columns: 1fr;
@@ -76,88 +116,21 @@ const PageMarketingContent = () => {
   `);
   return (
     <>
-      <PageContainer>
-        <div
-          css={css`
-            padding: 0;
-
-            @media screen and (${designSystem.dimensions.viewports
-                .largeTablet}) {
-              padding: 0;
-            }
-          `}
-        >
-          <div
-            css={css`
-              display: grid;
-              grid-gap: ${designSystem.dimensions.spacings.xl};
-              grid-template-rows: auto;
-              grid-template-columns: 1fr;
-
-              @media screen and (${designSystem.dimensions.viewports
-                  .largeTablet}) {
-                grid-template-columns: 2fr 1fr;
-              }
-            `}
-          >
-            <div
-              css={css`
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-
-                > * + * {
-                  margin: ${designSystem.dimensions.spacings.xl} 0 0;
-                }
-              `}
-            >
-              <div
-                css={css`
-                  font-size: ${designSystem.typography.fontSizes.h1};
-                  color: ${designSystem.colors.light.textInverted};
-                `}
-              >
-                {'Develop applications for the Merchant Center'}
-              </div>
-              <div>
-                <ButtonLink href="/getting-started/what-is-a-custom-application">
-                  {'Learn about custom applications'}
-                </ButtonLink>
-              </div>
-            </div>
-            <div
-              css={css`
-                justify-self: center;
-
-                @media screen and (${designSystem.dimensions.viewports
-                    .mobile}) {
-                  svg {
-                    height: 100%;
-                    width: 100%;
-                  }
-                }
-              `}
-            >
-              <LandingPageRocket height={300} />
-            </div>
+      <MainBanner>
+        <MainBannerConstraint>
+          <PageTitle>
+            {'Develop applications for the Merchant Center'}
+          </PageTitle>
+          <div>
+            <ButtonLink href="/getting-started/what-is-a-custom-application">
+              {'Learn about custom applications'}
+            </ButtonLink>
           </div>
-        </div>
-      </PageContainer>
-      <PageContainer>
-        <Card
-          css={css`
-            > div {
-              padding: ${designSystem.dimensions.spacings.xl}
-                ${designSystem.dimensions.spacings.l};
-
-              @media screen and (${designSystem.dimensions.viewports.tablet}) {
-                padding: calc(${designSystem.dimensions.spacings.l} * 2)
-                  calc(${designSystem.dimensions.spacings.xl} * 2);
-              }
-            }
-          `}
-        >
-          <GridContainer>
+        </MainBannerConstraint>
+      </MainBanner>
+      <SectionContainer>
+        <GridContainer>
+          <Card>
             <SpacingsStack scale="m">
               <SpacingsStack scale="s">
                 <ScreenCogIcon />
@@ -169,6 +142,8 @@ const PageMarketingContent = () => {
                 }
               </SectionBody>
             </SpacingsStack>
+          </Card>
+          <Card>
             <SpacingsStack scale="m">
               <SpacingsStack scale="s">
                 <ScreenDesignToolIcon />
@@ -180,6 +155,8 @@ const PageMarketingContent = () => {
                 }
               </SectionBody>
             </SpacingsStack>
+          </Card>
+          <Card>
             <SpacingsStack scale="m">
               <SpacingsStack scale="s">
                 <ScreenBulbIcon />
@@ -191,10 +168,8 @@ const PageMarketingContent = () => {
                 }
               </SectionBody>
             </SpacingsStack>
-          </GridContainer>
-        </Card>
-      </PageContainer>
-      <PageContainer>
+          </Card>
+        </GridContainer>
         <LinksCard
           linksData={[
             {
@@ -245,7 +220,7 @@ const PageMarketingContent = () => {
             },
           ]}
         />
-      </PageContainer>
+      </SectionContainer>
     </>
   );
 };
