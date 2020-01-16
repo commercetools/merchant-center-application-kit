@@ -1,6 +1,6 @@
 import React from 'react';
+import { defineMessages, IntlProvider, FormattedMessage } from 'react-intl';
 import { useStaticQuery, graphql } from 'gatsby';
-import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import pkg from '../../package.json';
 import {
@@ -10,40 +10,118 @@ import {
   useSiteData,
 } from '@commercetools-docs/gatsby-theme-docs';
 import { designSystem } from '@commercetools-docs/ui-kit';
+import { customProperties } from '@commercetools-uikit/design-system';
 import Card from '@commercetools-uikit/card';
 import SpacingsStack from '@commercetools-uikit/spacings-stack';
 import LayoutMarketing from '../layouts/marketing';
 import LinksCard from '../components/links-card';
-import LandingPageRocket from '../icons/landing-page-rocket.svg';
 import ScreenCogIcon from '../icons/screen-cog-icon.svg';
 import ScreenDesignToolIcon from '../icons/screen-design-tool-icon.svg';
 import ScreenBulbIcon from '../icons/screen-bulb-icon.svg';
 
+const messages = defineMessages({
+  textSectionTitle1: {
+    id: 'Marketing.textSectionTitle1',
+    defaultMessage: 'Built on modern technologies',
+  },
+  textSectionTitle2: {
+    id: 'Marketing.textSectionTitle2',
+    defaultMessage: 'Based on a solid Design System',
+  },
+  textSectionTitle3: {
+    id: 'Marketing.textSectionTitle3',
+    defaultMessage: 'Zero config development tools',
+  },
+  textSectionParagraph1: {
+    id: 'Marketing.textSectionParagraph1',
+    defaultMessage:
+      'Develop JavaScript applications with React, GraphQL, Webpack and other modern technologies.',
+  },
+  textSectionParagraph2: {
+    id: 'Marketing.textSectionParagraph2',
+    defaultMessage:
+      'Merchant Center custom applications are built and designed according to our <a>Design System</a>. It provides rules, patterns and best practices to ease development and focus on the business logic.',
+  },
+  textSectionParagraph3: {
+    id: 'Marketing.textSectionParagraph3',
+    defaultMessage:
+      'Focus more on implementing the right features instead of configuration. Our <a>open source packages</a> provide all the necessary tools and components to get started seamlessly.',
+  },
+});
+const getLinkToDesignSystem = msg => (
+  <Link href="https://github.com/commercetools/ui-kit/blob/master/design-system/materials/internals/TOKENS.md">
+    {msg}
+  </Link>
+);
+const getLinkToOssPackages = msg => (
+  <Link href="/getting-started/tooling">{msg}</Link>
+);
+
 const SectionTitle = styled.div`
   color: ${designSystem.colors.light.primary};
   font-size: ${designSystem.typography.fontSizes.h4};
-  letter-spacing: 4px;
+  letter-spacing: 3px;
 `;
 const SectionBody = styled.div`
   color: ${designSystem.colors.light.textPrimary};
   font-size: ${designSystem.typography.fontSizes.small};
   line-height: 1.5;
 `;
-const PageContainer = styled.div`
+const PageTitle = styled.h1`
+  font-size: ${designSystem.typography.fontSizes.h1};
+  font-weight: ${designSystem.typography.fontWeights.regular};
+  color: ${designSystem.colors.light.textInverted};
+`;
+const MainBanner = styled.div`
+  width: 100%;
+  background-color: ${designSystem.colors.light.surfaceCode};
+`;
+const MainBannerConstraint = styled.div`
   width: 100%;
   max-width: ${designSystem.dimensions.widths.marketingContent};
-  margin: 0 auto;
+  padding: ${designSystem.dimensions.spacings.m};
+
+  > * + * {
+    margin: ${designSystem.dimensions.spacings.l} 0 0;
+  }
+
+  @media screen and (${designSystem.dimensions.viewports.desktop}) {
+    padding: ${designSystem.dimensions.spacings.xl};
+  }
+`;
+const SectionContainer = styled.div`
+  width: calc(100% - ${designSystem.dimensions.spacings.m} * 2);
+  max-width: calc(
+    ${designSystem.dimensions.widths.marketingContent} -
+      ${designSystem.dimensions.spacings.m} * 2
+  );
+  padding: ${designSystem.dimensions.spacings.l}
+    ${designSystem.dimensions.spacings.m};
+
+  > * + * {
+    margin: ${designSystem.dimensions.spacings.l} 0 0;
+  }
+
+  @media screen and (${designSystem.dimensions.viewports.desktop}) {
+    width: calc(100% - ${designSystem.dimensions.spacings.xl} * 2);
+    max-width: calc(
+      ${designSystem.dimensions.widths.marketingContent} -
+        ${designSystem.dimensions.spacings.xl} * 2
+    );
+    padding: ${designSystem.dimensions.spacings.l}
+      ${designSystem.dimensions.spacings.xl};
+  }
 `;
 const ButtonLink = styled(Link)`
   display: inline-block;
   padding: ${designSystem.dimensions.spacings.m}
     ${designSystem.dimensions.spacings.l};
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: ${designSystem.typography.fontSizes.body};
   color: ${designSystem.colors.light.textPrimary} !important;
   background-color: ${designSystem.colors.light.surfacePrimary};
   border: 1px solid ${designSystem.colors.light.surfacePrimary};
-  border-radius: ${designSystem.tokens.borderRadius6};
+  border-radius: ${customProperties.borderRadius6};
 
   :hover {
     background-color: ${designSystem.colors.light.surfaceQuote};
@@ -51,6 +129,7 @@ const ButtonLink = styled(Link)`
   }
 `;
 const GridContainer = styled.div`
+  width: 100%;
   display: grid;
   grid-gap: ${designSystem.dimensions.spacings.l};
   grid-auto-columns: 1fr;
@@ -75,126 +154,71 @@ const PageMarketingContent = () => {
     }
   `);
   return (
-    <>
-      <PageContainer>
-        <div
-          css={css`
-            padding: 0;
-
-            @media screen and (${designSystem.dimensions.viewports
-                .largeTablet}) {
-              padding: 0;
-            }
-          `}
-        >
-          <div
-            css={css`
-              display: grid;
-              grid-gap: ${designSystem.dimensions.spacings.xl};
-              grid-template-rows: auto;
-              grid-template-columns: 1fr;
-
-              @media screen and (${designSystem.dimensions.viewports
-                  .largeTablet}) {
-                grid-template-columns: 2fr 1fr;
-              }
-            `}
-          >
-            <div
-              css={css`
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-
-                > * + * {
-                  margin: ${designSystem.dimensions.spacings.xl} 0 0;
-                }
-              `}
-            >
-              <div
-                css={css`
-                  font-size: ${designSystem.typography.fontSizes.h1};
-                  color: ${designSystem.colors.light.textInverted};
-                `}
-              >
-                {'Develop applications for the Merchant Center'}
-              </div>
-              <div>
-                <ButtonLink href="/getting-started/what-is-a-custom-application">
-                  {'Learn about custom applications'}
-                </ButtonLink>
-              </div>
-            </div>
-            <div
-              css={css`
-                justify-self: center;
-
-                @media screen and (${designSystem.dimensions.viewports
-                    .mobile}) {
-                  svg {
-                    height: 100%;
-                    width: 100%;
-                  }
-                }
-              `}
-            >
-              <LandingPageRocket height={300} />
-            </div>
+    <IntlProvider locale="en" messages={{}}>
+      <MainBanner>
+        <MainBannerConstraint>
+          <PageTitle>
+            {'Develop applications for the Merchant Center'}
+          </PageTitle>
+          <div>
+            <ButtonLink href="/getting-started/what-is-a-custom-application">
+              {'Learn about custom applications'}
+            </ButtonLink>
           </div>
-        </div>
-      </PageContainer>
-      <PageContainer>
-        <Card
-          css={css`
-            > div {
-              padding: ${designSystem.dimensions.spacings.xl}
-                ${designSystem.dimensions.spacings.l};
-
-              @media screen and (${designSystem.dimensions.viewports.tablet}) {
-                padding: calc(${designSystem.dimensions.spacings.l} * 2)
-                  calc(${designSystem.dimensions.spacings.xl} * 2);
-              }
-            }
-          `}
-        >
-          <GridContainer>
+        </MainBannerConstraint>
+      </MainBanner>
+      <SectionContainer>
+        <GridContainer>
+          <Card>
             <SpacingsStack scale="m">
               <SpacingsStack scale="s">
                 <ScreenCogIcon />
-                <SectionTitle>{'Built on modern technologies'}</SectionTitle>
+                <SectionTitle>
+                  <FormattedMessage {...messages.textSectionTitle1} />
+                </SectionTitle>
               </SpacingsStack>
               <SectionBody>
-                {
-                  'Develop JavaScript applications with React, GraphQL, Webpack and other modern technologies.'
-                }
+                <FormattedMessage {...messages.textSectionParagraph1} />
               </SectionBody>
             </SpacingsStack>
+          </Card>
+          <Card>
             <SpacingsStack scale="m">
               <SpacingsStack scale="s">
                 <ScreenDesignToolIcon />
-                <SectionTitle>{'Based on a solid Design System'}</SectionTitle>
+                <SectionTitle>
+                  <FormattedMessage {...messages.textSectionTitle2} />
+                </SectionTitle>
               </SpacingsStack>
               <SectionBody>
-                {
-                  'Merchant Center custom applications are built and designed according to our Design System. It provides rules, patterns and best practices to ease development and focus on the business logic.'
-                }
+                <FormattedMessage
+                  {...messages.textSectionParagraph2}
+                  values={{
+                    a: getLinkToDesignSystem,
+                  }}
+                />
               </SectionBody>
             </SpacingsStack>
+          </Card>
+          <Card>
             <SpacingsStack scale="m">
               <SpacingsStack scale="s">
                 <ScreenBulbIcon />
-                <SectionTitle>{'Zero config development tools'}</SectionTitle>
+                <SectionTitle>
+                  <FormattedMessage {...messages.textSectionTitle3} />
+                </SectionTitle>
               </SpacingsStack>
               <SectionBody>
-                {
-                  'Focus more on implementing the right features instead of configuration. Our open source packages provide all the necessary tools and components to get started seamlessly.'
-                }
+                <FormattedMessage
+                  {...messages.textSectionParagraph3}
+                  values={{
+                    a: getLinkToOssPackages,
+                  }}
+                />
               </SectionBody>
             </SpacingsStack>
-          </GridContainer>
-        </Card>
-      </PageContainer>
-      <PageContainer>
+          </Card>
+        </GridContainer>
         <LinksCard
           linksData={[
             {
@@ -245,8 +269,8 @@ const PageMarketingContent = () => {
             },
           ]}
         />
-      </PageContainer>
-    </>
+      </SectionContainer>
+    </IntlProvider>
   );
 };
 PageMarketingContent.displayName = 'PageMarketingContent';
