@@ -18,7 +18,7 @@ import ProjectsQuery from './project-switcher.mc.graphql';
 import messages from './messages';
 
 type Props = {
-  projectKey: string;
+  projectKey?: string;
 };
 type OptionType = Pick<TProject, 'key' | 'name' | 'suspension' | 'expiry'> & {
   label: string;
@@ -161,7 +161,7 @@ const ProjectSwitcher = (props: Props) => {
       data-track-event="click"
     >
       <SelectInput<OptionType>
-        value={props.projectKey}
+        value={props.projectKey || ''}
         name="project-switcher"
         aria-labelledby="project-switcher"
         onChange={event => {

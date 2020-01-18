@@ -1,6 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { IntlProvider } from 'react-intl';
+import { IntlProvider, IntlConfig } from 'react-intl';
+
+interface ApplicationWindow extends Window {
+  onAppLoaded: () => void;
+}
+declare let window: ApplicationWindow;
+
+type Props = {
+  locale?: string;
+  messages?: IntlConfig['messages'];
+  children: React.ReactNode;
+};
 
 const hideAppLoader = () => {
   /**
@@ -18,7 +28,7 @@ const hideAppLoader = () => {
   if (window.onAppLoaded) window.onAppLoaded();
 };
 
-const ConfigureIntlProvider = props => {
+const ConfigureIntlProvider = (props: Props) => {
   React.useEffect(() => {
     if (props.locale) {
       hideAppLoader();
@@ -37,10 +47,5 @@ const ConfigureIntlProvider = props => {
 };
 
 ConfigureIntlProvider.displayName = 'ConfigureIntlProvider';
-ConfigureIntlProvider.propTypes = {
-  locale: PropTypes.string,
-  messages: PropTypes.object,
-  children: PropTypes.element.isRequired,
-};
 
 export default ConfigureIntlProvider;

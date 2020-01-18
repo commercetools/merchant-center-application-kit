@@ -1,0 +1,56 @@
+import React from 'react';
+import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import applicationShellVersion from '../../version';
+import { pushDependencyVersionCounter } from './actions';
+
+type VersionMetricOptions = {
+  applicationName?: string;
+};
+
+const createVersionMetric = ({ applicationName }: VersionMetricOptions) => [
+  {
+    metricName: 'npm_dependency_versions',
+    metricLabels: {
+      application: applicationName || 'unknown',
+      package_name: '@commercetools-frontend/application-shell',
+      package_version: applicationShellVersion,
+    },
+  },
+  {
+    metricName: 'npm_dependency_versions',
+    metricLabels: {
+      application: applicationName || 'unknown',
+      package_name: 'react',
+      package_version: React.version,
+    },
+  },
+];
+
+const VersionTracker = () => {
+  const applicationName = useApplicationContext(
+    context => context.environment.applicationName
+  );
+  const dispatch = useDispatch<
+    Dispatch<ReturnType<typeof pushDependencyVersionCounter>>
+  >();
+  React.useEffect(() => {
+    const result = (dispatch(
+      pushDependencyVersionCounter({
+        payload: createVersionMetric({
+          applicationName,
+        }),
+      })
+    ) as unknown) as Promise<unknown>;
+    result.catch(() => {
+      // Error is ignored under the assumption that page is being
+      // reloaded whilst the request was being sent or network request was interrupted
+    });
+  }, [applicationName, dispatch]);
+
+  return null;
+};
+VersionTracker.displayName = 'VersionTracker';
+
+export default VersionTracker;
