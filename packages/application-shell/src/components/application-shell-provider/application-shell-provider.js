@@ -8,6 +8,7 @@ import history from '@commercetools-frontend/browser-history';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import '../../track-performance';
 import internalReduxStore from '../../configure-store';
 import apolloClient from '../../configure-apollo';
 import ConfigureIntlProvider from '../configure-intl-provider';

@@ -28,12 +28,12 @@ export const defaultEventWhitelist = {
 };
 
 const logTracking = (
-  { event, hierarchy, label },
+  { action, category, label, variable, value },
   { isIgnored } = { isIgnored: false }
 ) => {
   const groupName = `%cGTM ${
     isIgnored ? '%cignoring' : '%cperforming'
-  } %ctracking %c${hierarchy} %c${label}`;
+  } %ctracking %c${category} %c${label || ''}`;
 
   logger.groupCollapsed(
     groupName,
@@ -44,32 +44,63 @@ const logTracking = (
     'color: cornflowerblue; font-style: normal;'
   );
 
-  logger.log('%cevent', 'color: cadetblue;', event);
-  logger.log('%chierarchy', 'color: goldenrod; font-weight: bold;', hierarchy);
-  logger.log('%clabel', 'color: cornflowerblue; font-weight: bold;', label);
+  if (action) logger.log('%caction', 'color: cadetblue;', action);
+  if (variable) logger.log('%cvariable', 'color: cadetblue;', variable);
+  if (typeof value === 'number') logger.log('%cvalue', 'color: red;', value);
+  logger.log('%ccategory', 'color: goldenrod; font-weight: bold;', category);
+  if (label)
+    logger.log('%clabel', 'color: cornflowerblue; font-weight: bold;', label);
 
   logger.groupEnd();
 };
 
-export const track = (event, hierarchy, label) => {
+export const track = (action, category, label) => {
   if (!window.dataLayer) return;
 
   logTracking({
-    event,
-    hierarchy,
+    action,
+    category,
     label,
   });
 
   // sends event to google tag manager based on the mapping defined there
-  // https://tagmanager.google.com/?authuser=2#/container/accounts/374886/containers/2308084/workspaces/6/tags
   // the mapped event is then forwarded to google analytics
   window.dataLayer.push({
     event: 'TrackingEvent',
-    trackingCategory: hierarchy,
-    trackingAction: event,
+    trackingCategory: category,
+    trackingAction: action,
     trackingLabel: label,
     // trackingValue: metadata # TODO: use `custom dimensions`
   });
+};
+
+export const trackTiming = ({ category, variable, value, label }) => {
+  if (window.dataLayer && window.app.trackingGtm) {
+    logTracking({
+      variable,
+      value,
+      category,
+      label,
+    });
+
+    window.dataLayer.push({
+      event: 'TimingEvent',
+      trackingCategory: category,
+      trackingVariable: variable,
+      trackingValue: value,
+      trackingLabel: label,
+    });
+  }
+};
+
+// Track custom dimensions
+export const trackApplicationName = applicationName => {
+  if (window.dataLayer && window.app.trackingGtm && applicationName)
+    window.dataLayer.push({ applicationName });
+};
+export const trackProjectKey = projectKey => {
+  if (window.dataLayer && window.app.trackingGtm && projectKey)
+    window.dataLayer.push({ projectKey });
 };
 
 // Sometimes necessary to manually get the hierarchy.
@@ -158,8 +189,8 @@ const eventHandler = (name, trackingEventWhitelist) => event => {
   else {
     logTracking(
       {
-        event: trackEvent,
-        hierarchy:
+        action: trackEvent,
+        category:
           typeof hierarchy === 'object' && trackLabel in hierarchy
             ? hierarchy[trackLabel]
             : hierarchy,
@@ -172,9 +203,8 @@ const eventHandler = (name, trackingEventWhitelist) => event => {
   }
 
   logTracking({
-    event: trackEvent,
-    hierarchy:
-      typeof hierarchy === 'object' ? hierarchy[trackLabel] : hierarchy,
+    action: trackEvent,
+    category: typeof hierarchy === 'object' ? hierarchy[trackLabel] : hierarchy,
     label: trackLabel,
   });
 

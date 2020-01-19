@@ -30,6 +30,7 @@ import ProjectContainer from '../project-container';
 import SetupFlopFlipProvider from '../setup-flop-flip-provider';
 import RequestsInFlightLoader from '../requests-in-flight-loader';
 import GtmUserTracker from '../gtm-user-tracker';
+import GtmApplicationTracker from '../gtm-application-tracker';
 import NavBar, { LoadingNavBar } from '../navbar';
 import ApplicationLoader from '../application-loader';
 import ErrorApologizer from '../error-apologizer';
@@ -171,6 +172,10 @@ export const RestrictedApplication = props => (
                     <RequestsInFlightLoader />
                     <SentryUserTracker user={user} />
                     <GtmUserTracker user={user} />
+                    <GtmApplicationTracker
+                      applicationName={props.environment.applicationName}
+                      projectKey={projectKeyFromUrl}
+                    />
                     <div
                       role="application-layout"
                       css={css`
