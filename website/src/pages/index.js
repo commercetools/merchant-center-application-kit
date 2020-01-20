@@ -75,8 +75,10 @@ const MainBanner = styled.div`
   width: 100%;
   position: relative;
   background-color: ${designSystem.colors.light.surfaceCode};
-  background-image: url('${withPrefix('/Endless-Constellation.svg')}');
+  background-image: url('${withPrefix('/Liquid-Cheese.svg')}');
   background-attachment: fixed;
+
+  /* License with attribution of the background by SVGBackgrounds.com */
 `;
 const MainBannerConstraint = styled.div`
   width: calc(100% - ${designSystem.dimensions.spacings.large} * 2);
