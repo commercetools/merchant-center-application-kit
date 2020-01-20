@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@commercetools-frontend/constants": "15.7.0",
-    "@commercetools/api-request-builder": "5.4.0",
+    "@commercetools/api-request-builder": "5.4.1",
     "@commercetools/http-user-agent": "2.1.2",
     "@commercetools/sdk-client": "2.1.1",
     "@commercetools/sdk-middleware-correlation-id": "2.1.1",
