@@ -8,7 +8,7 @@ import { ApplicationContextProvider } from '@commercetools-frontend/application-
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { STORAGE_KEYS, SUSPENSION_REASONS } from '../../constants';
+import { CONTAINERS, STORAGE_KEYS, SUSPENSION_REASONS } from '../../constants';
 import ApplicationLoader from '../application-loader';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectDataLocale from '../project-data-locale';
@@ -73,7 +73,7 @@ export class ProjectContainer extends React.Component {
      * "
      */
     this.setState({
-      localeSwitcherNode: document.getElementById('locale-switcher'),
+      localeSwitcherNode: document.getElementById(CONTAINERS.LOCALE_SWITCHER),
     });
   }
 

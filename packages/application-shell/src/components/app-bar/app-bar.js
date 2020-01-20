@@ -5,10 +5,11 @@ import { css } from '@emotion/core';
 import Spacings from '@commercetools-uikit/spacings';
 import { customProperties } from '@commercetools-uikit/design-system';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
+import { CONTAINERS } from '../../constants';
+import { getPreviousProjectKey } from '../../utils';
 import UserSettingsMenu from '../user-settings-menu';
 import ProjectSwitcher from '../project-switcher';
 import BackToProject from '../back-to-project';
-import { getPreviousProjectKey } from '../../utils';
 import LoadingPlaceholder from '../loading-placeholder';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/constants';
 
@@ -72,7 +73,7 @@ const AppBar = props => {
         <Spacings.Inline scale="m" alignItems="center">
           <Spacings.Inline alignItems="center">
             {/* This node is used by a react portal */}
-            <div id="locale-switcher" />
+            <div id={CONTAINERS.LOCALE_SWITCHER} />
             {(() => {
               if (!props.user) {
                 return <LoadingPlaceholder shape="rect" size="s" />;
@@ -90,7 +91,7 @@ const AppBar = props => {
                     projectKey={props.projectKeyFromUrl || previousProjectKey}
                   />
                 );
-              if (!props.user.defaultProjectKey) return '';
+              if (!props.user.defaultProjectKey) return null;
               return <BackToProject projectKey={previousProjectKey} />;
             })()}
           </Spacings.Inline>

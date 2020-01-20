@@ -72,6 +72,7 @@ export default class LocaleSwitcher extends React.PureComponent {
         <SelectInput
           value={this.props.projectDataLocale}
           name="locale-switcher"
+          aria-labelledby="locale-switcher"
           onChange={this.handleSelection}
           options={this.props.availableLocales.map(locale => ({
             label: locale,
