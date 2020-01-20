@@ -1,7 +1,6 @@
 import React from 'react';
-import { Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { useAsyncDispatch } from '@commercetools-frontend/sdk';
 import applicationShellVersion from '../../version';
 import { pushDependencyVersionCounter } from './actions';
 
@@ -32,18 +31,18 @@ const VersionTracker = () => {
   const applicationName = useApplicationContext(
     context => context.environment.applicationName
   );
-  const dispatch = useDispatch<
-    Dispatch<ReturnType<typeof pushDependencyVersionCounter>>
+  const dispatch = useAsyncDispatch<
+    ReturnType<typeof pushDependencyVersionCounter>,
+    unknown
   >();
   React.useEffect(() => {
-    const result = (dispatch(
+    dispatch(
       pushDependencyVersionCounter({
         payload: createVersionMetric({
           applicationName,
         }),
       })
-    ) as unknown) as Promise<unknown>;
-    result.catch(() => {
+    ).catch(() => {
       // Error is ignored under the assumption that page is being
       // reloaded whilst the request was being sent or network request was interrupted
     });
