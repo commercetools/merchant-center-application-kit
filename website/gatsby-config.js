@@ -7,7 +7,7 @@ module.exports = {
     title: 'Custom applications',
     description: 'Develop applications for the Merchant Center',
     author: 'commercetools',
-    betaLink: '/service-contract',
+    betaLink: '/support-policy',
     repositoryUrl:
       'https://github.com/commercetools/merchant-center-application-kit',
     currentVersion:
