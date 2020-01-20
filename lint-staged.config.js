@@ -1,14 +1,9 @@
 module.exports = {
   '*.{md,mdx}': ['prettier --write --parser markdown'],
   '*.yaml': ['prettier --write --parser yaml'],
-  '*.graphql': [
-    'prettier --write --parser graphql',
-    'git add',
-    'yarn generate:types',
-  ],
+  '*.graphql': ['prettier --write --parser graphql', 'yarn generate:types'],
   '*.{js,ts,tsx}': [
     'prettier --write',
-    'git add',
     // NOTE: apparently if you pass some argument that is not a flag AFTER the `reporters`
     // flag, jest does not seem correctly parse the arguments.
     //
@@ -21,7 +16,6 @@ module.exports = {
   ],
   '*.css': [
     'prettier --write --parser css',
-    'git add',
     // NOTE: apparently if you pass some argument that is not a flag AFTER the `reporters`
     // flag, jest does not seem correctly parse the arguments.
     //
