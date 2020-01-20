@@ -1,6 +1,6 @@
 module.exports = {
-  '*.{md,mdx}': ['prettier --write --parser markdown', 'git add'],
-  '*.yaml': ['prettier --write --parser yaml', 'git add'],
+  '*.{md,mdx}': ['prettier --write --parser markdown'],
+  '*.yaml': ['prettier --write --parser yaml'],
   '*.graphql': [
     'prettier --write --parser graphql',
     'git add',

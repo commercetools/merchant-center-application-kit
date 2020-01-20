@@ -5,7 +5,7 @@ aliases:
 
   - &restore_yarn_cache
     restore_cache:
-      name: 'Restoring yarn cache'
+      name: "Restoring yarn cache"
       keys:
         - v2-yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
         - v2-yarn-cache-{{ .Branch }}
@@ -13,7 +13,7 @@ aliases:
 
   - &save_yarn_cache
     save_cache:
-      name: 'Saving yarn cache'
+      name: "Saving yarn cache"
       key: v2-yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
       paths:
         - ~/.cache/yarn
@@ -30,7 +30,7 @@ executors:
   cypress:
     working_directory: *working_directory
     docker:
-      - image: 'cypress/base:10.18.0'
+      - image: "cypress/base:12.14.0"
         environment:
           TERM: xterm
 
@@ -128,22 +128,22 @@ jobs:
         default: 1
       start:
         type: string
-        default: ''
+        default: ""
       build:
         type: string
-        default: ''
+        default: ""
       wait-on:
         type: string
-        default: ''
+        default: ""
       run-command:
         type: string
-        default: ''
+        default: ""
       spec:
         type: string
-        default: ''
+        default: ""
       group:
         type: string
-        default: ''
+        default: ""
       store_artifacts:
         type: boolean
         default: false
@@ -204,20 +204,20 @@ workflows:
           name: e2e_playground
           requires:
             - build_lint_and_test
-          spec: 'cypress/integration/playground/**/*.js'
+          spec: "cypress/integration/playground/**/*.js"
           build: yarn playground:build
           start: yarn playground:start:prod:local
-          wait-on: 'http://localhost:3001'
+          wait-on: "http://localhost:3001"
           run-command: PERCY_TOKEN="$PERCY_TOKEN_E2E_PLAYGROUND" yarn vrt:e2e
           store_artifacts: true
       - e2e_test:
           name: e2e_starter
           requires:
             - build_lint_and_test
-          spec: 'cypress/integration/template-starter/**/*.js'
+          spec: "cypress/integration/template-starter/**/*.js"
           build: yarn template-starter:build
           start: yarn template-starter:start:prod:local
-          wait-on: 'http://localhost:3001'
+          wait-on: "http://localhost:3001"
           run-command: PERCY_TOKEN="$PERCY_TOKEN_E2E_STARTER" yarn vrt:e2e
           store_artifacts: true
       - publish:
