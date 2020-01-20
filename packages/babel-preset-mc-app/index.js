@@ -127,10 +127,6 @@ module.exports = function getBabePresetConfigForMcApp() {
         },
       ],
       require('@babel/plugin-proposal-do-expressions').default,
-      // Adds syntax support for import()
-      isEnvTest &&
-        // Transform dynamic import to require
-        require('babel-plugin-transform-dynamic-import').default,
     ].filter(Boolean),
   };
 };
