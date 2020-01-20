@@ -39,7 +39,7 @@
     "build:test-utils": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -i ./src/test-utils/index.ts"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.8.0",
+    "@babel/runtime-corejs3": "7.8.3",
     "@commercetools-frontend/constants": "15.7.0",
     "@commercetools-frontend/sentry": "15.7.0",
     "apollo-cache-inmemory": "1.6.5",
