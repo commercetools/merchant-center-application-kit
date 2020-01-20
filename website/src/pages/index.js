@@ -1,6 +1,6 @@
 import React from 'react';
 import { defineMessages, IntlProvider, FormattedMessage } from 'react-intl';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, withPrefix } from 'gatsby';
 import styled from '@emotion/styled';
 import pkg from '../../package.json';
 import {
@@ -59,8 +59,7 @@ const getLinkToOssPackages = msg => (
 
 const SectionTitle = styled.div`
   color: ${designSystem.colors.light.primary};
-  font-size: ${designSystem.typography.fontSizes.h4};
-  letter-spacing: 3px;
+  font-size: ${designSystem.typography.fontSizes.body};
 `;
 const SectionBody = styled.div`
   color: ${designSystem.colors.light.textPrimary};
@@ -74,48 +73,50 @@ const PageTitle = styled.h1`
 `;
 const MainBanner = styled.div`
   width: 100%;
+  position: relative;
   background-color: ${designSystem.colors.light.surfaceCode};
+  background-image: url('${withPrefix('/Liquid-Cheese.svg')}');
+  background-attachment: fixed;
+
+  /* License with attribution of the background by SVGBackgrounds.com */
 `;
 const MainBannerConstraint = styled.div`
-  width: 100%;
-  max-width: ${designSystem.dimensions.widths.marketingContent};
-  padding: ${designSystem.dimensions.spacings.m};
+  width: calc(100% - ${designSystem.dimensions.spacings.large} * 2);
+  max-width: ${designSystem.dimensions.widths.pageContent};
+  padding: ${designSystem.dimensions.spacings.big}
+    ${designSystem.dimensions.spacings.large};
 
   > * + * {
     margin: ${designSystem.dimensions.spacings.l} 0 0;
-  }
-
-  @media screen and (${designSystem.dimensions.viewports.desktop}) {
-    padding: ${designSystem.dimensions.spacings.xl};
   }
 `;
 const SectionContainer = styled.div`
-  width: calc(100% - ${designSystem.dimensions.spacings.m} * 2);
+  width: calc(100% - ${designSystem.dimensions.spacings.large} * 2);
   max-width: calc(
     ${designSystem.dimensions.widths.marketingContent} -
-      ${designSystem.dimensions.spacings.m} * 2
+      ${designSystem.dimensions.spacings.large} * 2
   );
-  padding: ${designSystem.dimensions.spacings.l}
-    ${designSystem.dimensions.spacings.m};
+  padding: ${designSystem.dimensions.spacings.big}
+    ${designSystem.dimensions.spacings.large};
 
   > * + * {
     margin: ${designSystem.dimensions.spacings.l} 0 0;
   }
 
   @media screen and (${designSystem.dimensions.viewports.desktop}) {
-    width: calc(100% - ${designSystem.dimensions.spacings.xl} * 2);
+    width: calc(100% - ${designSystem.dimensions.spacings.large} * 2);
     max-width: calc(
       ${designSystem.dimensions.widths.marketingContent} -
-        ${designSystem.dimensions.spacings.xl} * 2
+        ${designSystem.dimensions.spacings.large} * 2
     );
-    padding: ${designSystem.dimensions.spacings.l}
-      ${designSystem.dimensions.spacings.xl};
+    padding: ${designSystem.dimensions.spacings.big}
+      ${designSystem.dimensions.spacings.large};
   }
 `;
 const ButtonLink = styled(Link)`
   display: inline-block;
-  padding: ${designSystem.dimensions.spacings.m}
-    ${designSystem.dimensions.spacings.l};
+  padding: ${designSystem.dimensions.spacings.s}
+    ${designSystem.dimensions.spacings.m};
   text-decoration: none !important;
   font-size: ${designSystem.typography.fontSizes.body};
   color: ${designSystem.colors.light.textPrimary} !important;
@@ -132,11 +133,11 @@ const GridContainer = styled.div`
   width: 100%;
   display: grid;
   grid-gap: ${designSystem.dimensions.spacings.l};
-  grid-auto-columns: 1fr;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(${designSystem.dimensions.widths.pageNavigation}, 1fr)
-  );
+
+  @media screen and (${designSystem.dimensions.viewports.tablet}) {
+    grid-auto-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
 `;
 
 const PageMarketingContent = () => {

@@ -16,10 +16,27 @@ const Container = styled.div`
 `;
 const HeaderContainer = styled.div`
   width: 100%;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid:
+    [row1-start] 'header-logo header' ${designSystem
+      .dimensions.heights.header} [row1-end]
+    / auto 1fr;
+
+  @media screen and (${designSystem.dimensions.viewports.laptop}) {
+    grid:
+      [row1-start] 'header-logo header' ${designSystem.dimensions.heights
+        .header} [row1-end]
+      / ${designSystem.dimensions.widths.pageNavigationSmall} 1fr;
+  }
+  @media screen and (${designSystem.dimensions.viewports.desktop}) {
+    grid:
+      [row1-start] 'header-logo header' ${designSystem.dimensions.heights
+        .header} [row1-end]
+      / ${designSystem.dimensions.widths.pageNavigation} 1fr;
+  }
 `;
 const LogoContainer = styled.div`
+  grid-area: header-logo;
   display: none;
 
   @media screen and (${designSystem.dimensions.viewports.laptop}) {
