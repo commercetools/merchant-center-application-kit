@@ -19,18 +19,9 @@ During the Beta period commercetools is still in the process of gathering the ne
 
 <Info>
 
-Make sure to read and understand the [Minimal Required Maintenance Policy](#minimal-required-maintenance-policy) before starting to use custom applications in production.
+Make sure to read and understand the [Minimal required maintenance policy](#minimal-required-maintenance-policy) before starting to use custom applications in production.
 
 </Info>
-
-# Minimal Required Maintenance Policy
-
-_TODO_
-
-# Hosting
-
-Customers using custom applications are responsible for the maintenance of their custom applications. This includes hosting and deployments.
-commercetools does not take any responsibility towards incidents and service disruptions related to custom applications caused by their underlying infrastructure.
 
 # Release process
 
@@ -45,56 +36,116 @@ Releases are documented in both a `CHANGELOG.md` file and in the GitHub release 
   - [Merchant Center Application Kit](https://github.com/commercetools/merchant-center-application-kit/releases)
   - [UIKit](https://github.com/commercetools/ui-kit/releases)
 
-All published packages to NPM are listed in the following package organization:
+All published packages to NPM are listed in the following scoped packages:
 
 - [`@commercetools-frontend`](https://www.npmjs.com/org/commercetools-frontend)
 - [`@commercetools-uikit`](https://www.npmjs.com/org/commercetools-uikit)
 
 ## Release cadence
 
-Commercetools strives to improve tooling and packages around custom applications continously. This means we do not follow a strict release cycle. Instead publish releases in meaningful intervals, potentially multiple times a week.
-In accordance with SemVer we ensure that updating to fix- and minor releases does not require any maintenance other than updating the version in the `package.json`.
-Lastly, a major release communicates a breaking change (mentioned below) that may require migration steps. We strive to perform such releases as rarely as possible and batched when viable to reduce the impact on custom applications.
+commercetools strives to improve tooling and packages around custom applications continously. This means that we do not follow a strict release cycle but instead publish releases in meaningful intervals, potentially multiple times a week.
+
+<Info>
+
+According to Semantic Versioning, minor, and patch version releases can be safely updated and do not require any additional maintenance work.
+However, a major release indicates a breaking change (see [Breaking changes](#breaking-changes)) and might require maintenance work. Breaking changes do not occur that often.
+
+</Info>
 
 ## Stable releases and pre-releases
 
-By default, all releases go to the `next` distribution tag and should be considered **prereleases**. This gives us a chance to test a release before marking it **stable** in the `latest` distribution channel.
+By default, all releases go to the `next` distribution tag and should be considered **prereleases**. This gives commercetools a chance to test a release internally before marking it **stable** in the `latest` distribution channel.
 
-It is recommended to use packages only from the `latest` distribution channel. The `next` channel contains non-ready or experimental releases which are are used internally to ensure stability and a slower release cadence on the `latest` distribution channel.
-If you however consider yourself an early adopter or are a library author dependent on an experimental release feel free to tap into it. Commercetools may already use such a release in production and appriciates any feedback regarding bugs, features or unexpected behavior.
+It is recommended to use packages only from the `latest` distribution channel. The `next` channel is stable enough to be used on production but it's not officially supported. It can be used to try out new feautures or to get important bug fixes.
 
 ## Breaking changes
 
 Breaking changes are introduced whenever there is a **major** version release, for example from `v1` to `v2`.
 
-> A new major release does not always mean that breaking changes affect consumer of the packages directly.
-> Because of Semantic Versioning, a breaking change can sometimes mean bumping a version of a dependency package
+How a breaking change can impact a custom application:
 
-There are main ways a breaking change can impact a custom application:
+1. It affects a component or module _not used_ within the custom application
+2. It affects a component or module _used_ within the custom application
+3. It affects a component or module _used explicitly or implicitly_ interacting with some of commercetools's internal APIs
 
-1. Affects a component or module _not used_ within the custom application
-2. Affects a component or module _used_ within the custom application
-3. Affects a component or module _used explicitly or implicitly_ interacting with our internal GraphQL APIs
+<Info>
 
-In case of a release with a breaking change of type 1. no action is required. In case of type 2. action is only required if the custom application should make use of the improvement enabled by the breaking change.
-Only in case of 3. commercetools may require a migration to be carried out while continuing to support the outdated version (more below).
+A new major release does not always mean that breaking changes directly affect consumers of the packages. Some examples are:
+
+- a dependency package drops support for an "old" Nodejs version, thus releasing a major version. As a consequence, commercetools could release a new major version as well for dropping support to a specific Nodejs version. However, this won't likely affect consumers of the custom application packages.
+- React releases some new feature that requires a specific minimal version of React. Therefore, commercetools could release a new major version that requires custom applications to run to a minimal React version.
+
+</Info>
 
 All breaking changes are thoroughly documented in the release notes together with migration steps to facilitate the version update. This also helps to identify if changes are needed within the custom application's code.
 
-# Minimal required maintenance
+# Minimal required maintenance policy
 
-The Merchant Center applications themselves are always kept up-to-date with the released tools and packages used to build custom applications.
-This ensures quality and consistency across our packages while we have to potentially perform migration steps related to a breaking change internally in multiple applications.
+All the official Merchant Center applications are constantly kept up-to-date with the released tools and packages. This ensures that all the latest bug fixes and features are consistently adopted by all applications.
 
-We do not expect custom applications receiving the same amount of maintenance as Merchant Center applications.
-However, commercetools recommends that custom applications are **updated at regular periods** and maintained in planned intervals to **not fall back behind too many major versions**.
-This for one enables consumers put new or improved features to use but also ensures that underlying libaries remain up-to-date with potential security patches.
+In regards to custom applications, commercetools does not expect the same amount of maintenance as it requires internally.
+However, commercetools **recommends** that custom applications are **updated at regular periods** and **maintained in planned intervals**, to avoid falling too many versions behind.
 
-Moreover, fixes or updates will not be backported to old releases. Only the latest release will be continously build upon.
-As a result, we recommend to use tools and services that can be used to get dependency updates and help with the maintenance work. For example Renovate, Dependabot, Greenkeeper, etc.
+| Feature maturity     | Supported update interval                 |
+| -------------------- | ----------------------------------------- |
+| Beta                 | At least once a quarter (every 3 months)  |
+| General Availability | At least twice a year (every 6 months)    |
 
-Rare occasions may require migrating to a major release and commercetools to potentially contact owners of custom applications in the process. This can be caused by changes to internal GraphQL APIs or general required updates for custom applications to ensure reliability and stability.
-As part of the service contract commercetools guarantees that **any major non beta version will be supported for at least 12 months** without requiring maintenance work. Any mandatory breaking release will be documented in the changelogs.
+<Info>
+
+It's important to keep the dependencies up-to-date, especially to get the latest bug fixes and security patches. See also [Automate maintenance of dependencies](#automate-maintenance-of-dependencies).
+
+</Info>
+
+## Deprecation notice and End Of Life (EOL)
+
+Some packages, for example `@commercetools-frontend/application-shell`, rely on HTTP API functionalities and therefore new features might be included only in certain versions of a package.
+On the other hand, some HTTP API functionalities might be **deprecated** over time and **eventually removed**.
+
+<Info>
+
+commercetools guarantees that HTTP APIs do not have breaking changes, as they are not and will not be versioned.
+
+</Info>
+
+In case some HTTP API functionalities need to be deprecated, commercetools starts a **deprecation process** as following:
+
+1. the HTTP API functionality is marked as deprecated (for example GraphQL fields get the `@deprecated` directive)
+2. the deprecated functionality is removed from the packages that refer and use that functionality
+3. a new breaking change version of the packages is released, marking the starting point for how long the feature will remain deprecated
+4. the deprecation period (start-end) is documented in this page
+5. during the deprecation period, commercetools tracks the usage of the deprecated functionality, to determine if there are still applications using that functionality
+6. towards the end of the deprecation period, commercetools might contact the owners/mainteners of applications that are still using versions prior to the deprecation release
+7. after the deprecation period ends, commercetools is free to remove the deprecated functionalities from the HTTP APIs.
+
+| Feature maturity     | Deprecation period |
+| -------------------- | ------------------ |
+| Beta                 | 4 months           |
+| General Availability | 12 months          |
+
+<Info>
+
+Be aware that commercetools does not take any responsibility towards applications that might stop working after the deprecation period, because of the removed functionality.
+
+</Info>
+
+The following table lists all the released versions affected by the deprecation period:
+
+| Version  | Start date | End date   |
+| -------- | ---------- | ---------- |
+| `v5.0.0` | 2019-01-03 | 2019-05-03 |
+
+## Automate maintenance of dependencies
+
+To help with the maintenance of dependencies, there are tools and services that can be used to automatically get dependency version updates to your own repository.
+For example [Renovate](https://renovate.whitesourcesoftware.com/), [Dependabot](https://dependabot.com/), [Greenkeeer](https://greenkeeper.io/).
+
+Those tools and services can be configured to meet everyone's needs, for example to get updates only once a week.
+
+# Hosting
+
+Customers using custom applications are responsible for the maintenance of their custom applications. This includes hosting and deployments.
+commercetools does not take any responsibility towards incidents and service disruptions related to custom applications caused by their underlying infrastructure.
 
 # Issues and support requests
 
@@ -103,7 +154,11 @@ Any sensitive information should be left out, as Issues are publicly visible.
 
 In case the issue must contain sensitive information, for example the name of a customer project, open a commercetools [support ticket](https://jira.commercetools.com/servicedesk/customer/portal/1).
 
-> Never ever include password, credentials etc. in any issue (public or private)!
+<Info>
+
+Never ever include password, credentials etc. in any issue (public or private)!
+
+</Info>
 
 # Contributing
 
