@@ -1,4 +1,7 @@
 // eslint-disable-next-line import/prefer-default-export
+export const CONTAINERS = {
+  LOCALE_SWITCHER: 'locale-switcher-container',
+};
 export const STORAGE_KEYS = {
   NONCE: 'nonce',
   IS_AUTHENTICATED: 'isAuthenticated',

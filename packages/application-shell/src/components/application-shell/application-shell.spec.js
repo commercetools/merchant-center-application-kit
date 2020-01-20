@@ -1,13 +1,22 @@
 import React from 'react';
 import { encode } from 'qss';
 import xhrMock from 'xhr-mock';
-import { render, wait, fireEvent } from '@testing-library/react';
+import {
+  render,
+  wait,
+  fireEvent,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import { AuthenticationError, ApolloError } from 'apollo-server-errors';
+import { useDispatch } from 'react-redux';
 import { createMemoryHistory } from 'history';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
+import {
+  LOGOUT_REASONS,
+  SHOW_LOADING,
+  HIDE_LOADING,
+} from '@commercetools-frontend/constants';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import LockedDiamondSVG from '@commercetools-frontend/assets/images/locked-diamond.svg';
@@ -297,6 +306,92 @@ describe('when project is expired', () => {
     await rendered.findByText('Your trial has expired');
   });
 });
+describe('when project is about to expire (<14 days left)', () => {
+  beforeEach(() => {
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: {
+        mc: mocksForMc.createMockOperations({
+          FetchProject: {
+            project: ProjectMock.build({
+              expiry: { isActive: false, daysLeft: 13 },
+            }),
+          },
+        }),
+      },
+    });
+  });
+  it('should render global warning message', async () => {
+    const rendered = renderApp();
+    await rendered.findByText(
+      /^Your project trial period will expire in 13 days\.(.*)$/
+    );
+  });
+});
+describe('when project is about to expire (14 days left)', () => {
+  beforeEach(() => {
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: {
+        mc: mocksForMc.createMockOperations({
+          FetchProject: {
+            project: ProjectMock.build({
+              expiry: { isActive: false, daysLeft: 14 },
+            }),
+          },
+        }),
+      },
+    });
+  });
+  it('should render global warning message', async () => {
+    const rendered = renderApp();
+    await rendered.findByText(
+      /^Your project trial period will expire in 14 days\.(.*)$/
+    );
+  });
+});
+describe('when project is about to expire (>14 days left)', () => {
+  beforeEach(() => {
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: {
+        mc: mocksForMc.createMockOperations({
+          FetchProject: {
+            project: ProjectMock.build({
+              expiry: { isActive: false, daysLeft: 15 },
+            }),
+          },
+        }),
+      },
+    });
+  });
+  it('should not render global warning message', async () => {
+    const rendered = renderApp();
+    await wait(() => {
+      expect(
+        rendered.queryByText(/^Your project trial period will expire (.*)$/)
+      ).not.toBeInTheDocument();
+    });
+  });
+});
+describe('when project is about to expire (0 days left)', () => {
+  beforeEach(() => {
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: {
+        mc: mocksForMc.createMockOperations({
+          FetchProject: {
+            project: ProjectMock.build({
+              expiry: { isActive: false, daysLeft: 0 },
+            }),
+          },
+        }),
+      },
+    });
+  });
+  it('should render global warning message', async () => {
+    const rendered = renderApp();
+    await rendered.findByText(
+      /^Your project trial period will expire in 0 days\.(.*)$/
+    );
+  });
+});
 describe('when project is not initialized', () => {
   beforeEach(() => {
     createGraphqlMockServer(xhrMock, {
@@ -394,7 +489,7 @@ describe('when user is not authenticated', () => {
       },
     });
   });
-  it('redirect to /login with reason "unauthorized"', async () => {
+  it('should redirect to /login with reason "unauthorized"', async () => {
     const rendered = renderApp(null, { route: '/foo' });
     const queryParams = encode({
       reason: LOGOUT_REASONS.UNAUTHORIZED,
@@ -405,6 +500,136 @@ describe('when user is not authenticated', () => {
         `${window.location.origin}/login?${queryParams}`
       );
       expect(rendered.queryByText('OK')).not.toBeInTheDocument();
+    });
+  });
+});
+describe('when selecting project locale "de"', () => {
+  beforeEach(() => {
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: { mc: mocksForMc.createMockOperations() },
+    });
+  });
+  it('should render data for locale "de"', async () => {
+    const TestComponent = () => {
+      const projectDataLocale = useApplicationContext(
+        context => context.dataLocale
+      );
+      return <span>{`Data locale: ${projectDataLocale}`}</span>;
+    };
+    const rendered = renderApp(<TestComponent />);
+    await rendered.findByText('Data locale: en');
+
+    // Select a different locale
+    const input = rendered.container.querySelector('[name="locale-switcher"]');
+    fireEvent.focus(input);
+    fireEvent.keyDown(input, { key: 'ArrowDown' });
+    rendered.getByText('de').click();
+    await rendered.findByText('Data locale: de');
+  });
+});
+describe('when project has only one language', () => {
+  beforeEach(() => {
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: {
+        mc: mocksForMc.createMockOperations({
+          FetchProject: {
+            project: ProjectMock.build({
+              languages: ['en'],
+            }),
+          },
+        }),
+      },
+    });
+  });
+  it('should not render locale switcher', async () => {
+    const rendered = renderApp();
+    await wait(() => {
+      expect(
+        rendered.container.querySelector('[name="locale-switcher"]')
+      ).not.toBeInTheDocument();
+    });
+  });
+});
+describe('when user has no projects', () => {
+  beforeEach(() => {
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: {
+        mc: mocksForMc.createMockOperations({
+          FetchLoggedInUser: {
+            me: UserMock.build({
+              defaultProjectKey: null,
+              projects: { total: 0, results: [] },
+            }),
+          },
+        }),
+      },
+    });
+  });
+  it('should not render project switcher', async () => {
+    const rendered = renderApp();
+    await wait(() => {
+      expect(
+        rendered.container.querySelector('[name="project-switcher"]')
+      ).not.toBeInTheDocument();
+    });
+  });
+});
+describe('when user has no projects but a defaultProjectKey', () => {
+  beforeEach(() => {
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: {
+        mc: mocksForMc.createMockOperations({
+          FetchLoggedInUser: {
+            me: UserMock.build({
+              defaultProjectKey: 'test-1',
+              projects: { total: 0, results: [] },
+            }),
+          },
+        }),
+      },
+    });
+  });
+  it('should render back to project link', async () => {
+    const rendered = renderApp();
+    await rendered.findByText('Back to project');
+  });
+});
+describe('when dispatching a loading notification', () => {
+  beforeEach(() => {
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: { mc: mocksForMc.createMockOperations() },
+    });
+  });
+  it('should render loading info', async () => {
+    const TestComponent = () => {
+      const dispatch = useDispatch();
+      return (
+        <>
+          <button
+            onClick={() => {
+              dispatch({ type: SHOW_LOADING, payload: 'test' });
+            }}
+          >
+            {'Show loading'}
+          </button>
+          <button
+            onClick={() => {
+              dispatch({ type: HIDE_LOADING, payload: 'test' });
+            }}
+          >
+            {'Hide loading'}
+          </button>
+        </>
+      );
+    };
+    const rendered = renderApp(<TestComponent />);
+    const showBtn = await rendered.findByText('Show loading');
+    fireEvent.click(showBtn);
+    await rendered.findByText('Processing...');
+    const hideBtn = await rendered.findByText('Hide loading');
+    fireEvent.click(hideBtn);
+    await wait(() => {
+      expect(rendered.queryByText('Processing...')).not.toBeInTheDocument();
     });
   });
 });
