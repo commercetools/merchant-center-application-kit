@@ -43,7 +43,7 @@ All published packages to NPM are listed in the following scoped packages:
 
 ## Release cadence
 
-commercetools strives to improve tooling and packages around custom applications continously. This means that we do not follow a strict release cycle but instead publish releases in meaningful intervals, potentially multiple times a week.
+commercetools strives to improve tooling and packages around custom applications continously. This means that we do not follow a strict release cycle but instead publish releases in meaningful intervals, potentially multiple times a week depending on the version increment. In that patch and minor versions will be released more frequently than major versions.
 
 <Info>
 
@@ -66,13 +66,13 @@ How a breaking change can impact a custom application:
 
 1. It affects a component or module _not used_ within the custom application
 2. It affects a component or module _used_ within the custom application
-3. It affects a component or module _used explicitly or implicitly_ interacting with some of commercetools's internal APIs
+3. It affects a component or module _directly interacting_ with some of commercetools's internal APIs
 
 <Info>
 
 A new major release does not always mean that breaking changes directly affect consumers of the packages. Some examples are:
 
-- a dependency package drops support for an "old" Nodejs version, thus releasing a major version. As a consequence, commercetools could release a new major version as well for dropping support to a specific Nodejs version. However, this won't likely affect consumers of the custom application packages.
+- A dependency package drops support for an "old" Node.js version, thus releasing a major version. As a consequence, commercetools could release a new major version as well for dropping support to a specific Node.js version. However, this will unlikely affect consumers of custom application packages.
 - React releases some new feature that requires a specific minimal version of React. Therefore, commercetools could release a new major version that requires custom applications to run to a minimal React version.
 
 </Info>
@@ -93,14 +93,13 @@ However, commercetools **recommends** that custom applications are **updated at 
 
 <Info>
 
-It's important to keep the dependencies up-to-date, especially to get the latest bug fixes and security patches. See also [Automate maintenance of dependencies](#automate-maintenance-of-dependencies).
+It is important to keep the dependencies up-to-date, especially to get the latest bug fixes and security patches. See also [Automate maintenance of dependencies](#automate-maintenance-of-dependencies).
 
 </Info>
 
 ## Deprecation notice and End Of Life (EOL)
 
-Some packages, for example `@commercetools-frontend/application-shell`, rely on HTTP API functionalities and therefore new features might be included only in certain versions of a package.
-On the other hand, some HTTP API functionalities might be **deprecated** over time and **eventually removed**.
+Some packages, for example `@commercetools-frontend/application-shell`, interact with internal commercetools HTTP APIs. Interactions with these APIs is encapsulated within these modules themselves to ensure backwards compatibility. However, changes to these modules may be included in rare updates of a package. In the process some HTTP API functionalities might be **deprecated** over time and **eventually removed**.
 
 <Info>
 
@@ -110,13 +109,13 @@ commercetools guarantees that HTTP APIs do not have breaking changes, as they ar
 
 In case some HTTP API functionalities need to be deprecated, commercetools starts a **deprecation process** as following:
 
-1. the HTTP API functionality is marked as deprecated (for example GraphQL fields get the `@deprecated` directive)
-2. the deprecated functionality is removed from the packages that refer and use that functionality
-3. a new breaking change version of the packages is released, marking the starting point for how long the feature will remain deprecated
-4. the deprecation period (start-end) is documented in this page
-5. during the deprecation period, commercetools tracks the usage of the deprecated functionality, to determine if there are still applications using that functionality
-6. towards the end of the deprecation period, commercetools might contact the owners/mainteners of applications that are still using versions prior to the deprecation release
-7. after the deprecation period ends, commercetools is free to remove the deprecated functionalities from the HTTP APIs.
+1. The HTTP API functionality is marked as deprecated (for example GraphQL fields get the `@deprecated` directive)
+2. The deprecated functionality is removed from the packages that refer and use that functionality
+3. A new breaking change version of the packages is released, marking the starting point for how long the feature will remain deprecated
+4. The deprecation period (start to end) is documented on this page
+5. During the deprecation period, commercetools tracks the usage of the deprecated functionality, to determine if there are still applications using that functionality
+6. Towards the end of the deprecation period, commercetools might contact the owners/mainteners of applications that are still using versions prior to the deprecation release
+7. After the deprecation period ends, commercetools is free to remove the deprecated functionalities from the respective HTTP APIs.
 
 | Feature maturity     | Deprecation period |
 | -------------------- | ------------------ |
@@ -145,7 +144,7 @@ Those tools and services can be configured to meet everyone's needs, for example
 # Hosting
 
 Customers using custom applications are responsible for the maintenance of their custom applications. This includes hosting and deployments.
-commercetools does not take any responsibility towards incidents and service disruptions related to custom applications caused by their underlying infrastructure.
+Commercetools does not take any responsibility towards incidents and service disruptions related to custom applications caused by their underlying infrastructure.
 
 # Issues and support requests
 
@@ -156,7 +155,7 @@ In case the issue must contain sensitive information, for example the name of a 
 
 <Info>
 
-Never ever include password, credentials etc. in any issue (public or private)!
+Never ever include password, credentials or any private information in any issue (public or private)!
 
 </Info>
 
