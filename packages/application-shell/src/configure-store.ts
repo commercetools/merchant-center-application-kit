@@ -37,7 +37,7 @@ interface ApplicationWindowWithDevtools extends ApplicationWindow {
 }
 declare let window: ApplicationWindowWithDevtools;
 
-type TEnhancedStore = Store & {
+export type TEnhancedStore = Store & {
   injectedReducers: { [key: string]: ReducersMapObject };
   injectReducers: (payload: {
     id: string;
