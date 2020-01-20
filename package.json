@@ -144,7 +144,7 @@
     "jest-watch-typeahead": "0.4.2",
     "lerna": "3.20.2",
     "lerna-changelog": "1.0.0",
-    "lint-staged": "9.5.0",
+    "lint-staged": "10.0.0",
     "mri": "1.1.4",
     "postcss": "7.0.26",
     "postcss-custom-properties": "9.0.2",
