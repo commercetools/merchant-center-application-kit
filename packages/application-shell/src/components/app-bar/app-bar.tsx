@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/core';
 import Spacings from '@commercetools-uikit/spacings';
@@ -7,13 +6,21 @@ import { customProperties } from '@commercetools-uikit/design-system';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
 import { CONTAINERS } from '../../constants';
 import { getPreviousProjectKey } from '../../utils';
+import { TUser } from '../../types/generated/mc';
+import { TApplicationsMenu } from '../../types/generated/proxy';
 import UserSettingsMenu from '../user-settings-menu';
 import ProjectSwitcher from '../project-switcher';
 import BackToProject from '../back-to-project';
 import LoadingPlaceholder from '../loading-placeholder';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/constants';
 
-const AppBar = props => {
+type Props = {
+  user?: TUser;
+  projectKeyFromUrl?: string;
+  DEV_ONLY__loadAppbarMenuConfig?: () => Promise<TApplicationsMenu['appBar']>;
+};
+
+const AppBar = (props: Props) => {
   const previousProjectKey = getPreviousProjectKey(
     props.user && props.user.defaultProjectKey
   );
@@ -121,20 +128,5 @@ const AppBar = props => {
   );
 };
 AppBar.displayName = 'AppBar';
-AppBar.propTypes = {
-  user: PropTypes.shape({
-    language: PropTypes.string.isRequired,
-    gravatarHash: PropTypes.string.isRequired,
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    projects: PropTypes.shape({
-      total: PropTypes.number.isRequired,
-    }).isRequired,
-    defaultProjectKey: PropTypes.string,
-  }),
-  projectKeyFromUrl: PropTypes.string,
-  DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
-};
 
 export default AppBar;
