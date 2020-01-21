@@ -83,8 +83,6 @@ const hasExactPermission = (
 
 const getIsViewPermission = (demandedPermission: TPermissionName) =>
   demandedPermission.startsWith('View');
-const getIsManagePermission = (demandedPermission: TPermissionName) =>
-  demandedPermission.startsWith('Manage');
 
 // Check that the user permissions match the required MANAGE permission.
 // The shapes of the arguments are:
