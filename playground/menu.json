@@ -4,7 +4,27 @@
   "icon": "RocketIcon",
   "permissions": ["ManageDeveloperSettings", "ViewDeveloperSettings"],
   "featureToggle": null,
-  "submenu": [],
+  "submenu": [{
+    "key": "state-machines-new",
+    "uriPath": "state-machines/new",
+    "permissions": ["ManageDeveloperSettings"],
+    "featureToggle": null,
+    "labelAllLocales": [
+      {
+        "locale": "en",
+        "value": "State Machines new"
+      },
+      {
+        "locale": "de",
+        "value": "State Machines new"
+      },
+      {
+        "locale": "es",
+        "value": "State Machines new"
+      }
+    ]
+  }
+  ],
   "labelAllLocales": [
     {
       "locale": "en",

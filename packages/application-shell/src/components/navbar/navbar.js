@@ -134,30 +134,45 @@ MenuExpander.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export const MenuGroup = props => (
-  <ul
-    id={`${props.id}-group`}
-    data-testid={`${props.id}-group`}
-    role="menu"
-    aria-expanded={props.isExpanded}
-    className={classnames(
-      { [styles.list]: props.level === 1 },
-      { [styles.sublist]: props.level === 2 },
-      {
-        [styles['sublist-no-children']]: props.level === 2 && !props.children,
-      },
-      {
-        [styles['sublist-expanded__active']]:
-          props.level === 2 && props.isActive && props.isExpanded,
-      },
-      props.level === 2 && props.isActive && !props.isExpanded
-        ? styles['sublist-collapsed__active']
-        : styles.sublist__inactive
-    )}
-  >
-    {props.children}
-  </ul>
-);
+export const MenuGroup = props => {
+  const isSublistActiveWhileIsMenuExpanded =
+    props.level === 2 && props.isActive && props.isExpanded;
+  const isSublistActiveWhileIsMenuCollapsed =
+    props.level === 2 && props.isActive && !props.isExpanded;
+  return (
+    <ul
+      id={`${props.id}-group`}
+      data-testid={`${props.id}-group`}
+      role="menu"
+      aria-expanded={
+        isSublistActiveWhileIsMenuExpanded ||
+        isSublistActiveWhileIsMenuCollapsed
+      }
+      className={classnames(
+        { [styles.list]: props.level === 1 },
+        { [styles.sublist]: props.level === 2 },
+        {
+          [styles['sublist-no-children']]: props.level === 2 && !props.children,
+        },
+        {
+          [styles[
+            'sublist-expanded__active'
+          ]]: isSublistActiveWhileIsMenuExpanded,
+        },
+        {
+          [styles[
+            'sublist-collapsed__active'
+          ]]: isSublistActiveWhileIsMenuCollapsed,
+        },
+        {
+          [styles.sublist__inactive]: !isSublistActiveWhileIsMenuCollapsed,
+        }
+      )}
+    >
+      {props.children}
+    </ul>
+  );
+};
 MenuGroup.displayName = 'MenuGroup';
 MenuGroup.propTypes = {
   id: PropTypes.string.isRequired,

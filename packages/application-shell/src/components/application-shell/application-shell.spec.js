@@ -667,6 +667,11 @@ describe('when clicking on navbar menu toggle', () => {
         true
       );
     });
+    // Check that the support link is rendered
+    // Get the nav container, to narrow down the search area
+    const container = await rendered.findByTestId('left-navigation');
+    const navbarRendered = within(container);
+    expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
   });
 });
 describe('when rendering navbar menu links from local config', () => {
@@ -695,9 +700,6 @@ describe('when rendering navbar menu links from local config', () => {
     const container = await rendered.findByTestId('left-navigation');
     const navbarRendered = within(container);
 
-    // Check that the support link is rendered
-    expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
-
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
@@ -708,6 +710,11 @@ describe('when rendering navbar menu links from local config', () => {
     // Check the relationships between the menu items of a group
     const menuTitle = await navbarRendered.findByText(mainMenuLabel.value);
     const groupId = menuTitle.getAttribute('aria-owns');
+    expect(rendered.container.querySelector(`#${groupId}`)).toHaveAttribute(
+      'aria-expanded',
+      'false'
+    );
+    fireEvent.click(menuTitle);
     expect(rendered.container.querySelector(`#${groupId}`)).toHaveAttribute(
       'aria-expanded',
       'true'
@@ -753,9 +760,6 @@ describe('when rendering navbar menu links from remote config', () => {
     const container = await rendered.findByTestId('left-navigation');
     const navbarRendered = within(container);
 
-    // Check that the support link is rendered
-    expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
-
     const applicationLocale = mcOperations.FetchLoggedInUser.me.language;
     const mainMenuLabel = proxyOperations.FetchApplicationsMenu.applicationsMenu.navBar[0].labelAllLocales.find(
       localized => localized.locale === applicationLocale
@@ -766,6 +770,11 @@ describe('when rendering navbar menu links from remote config', () => {
     // Check the relationships between the menu items of a group
     const menuTitle = await navbarRendered.findByText(mainMenuLabel.value);
     const groupId = menuTitle.getAttribute('aria-owns');
+    expect(rendered.container.querySelector(`#${groupId}`)).toHaveAttribute(
+      'aria-expanded',
+      'false'
+    );
+    fireEvent.click(menuTitle);
     expect(rendered.container.querySelector(`#${groupId}`)).toHaveAttribute(
       'aria-expanded',
       'true'
@@ -817,9 +826,6 @@ describe('when rendering navbar menu links for custom applications', () => {
     const container = await rendered.findByTestId('left-navigation');
     const navbarRendered = within(container);
 
-    // Check that the support link is rendered
-    expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
-
     const applicationLocale = mcOperations.FetchLoggedInUser.me.language;
     const mainMenuLabel = settingsOperations.FetchProjectExtensionsNavbar.projectExtension.applications[0].navbarMenu.labelAllLocales.find(
       localized => localized.locale === applicationLocale
@@ -830,6 +836,11 @@ describe('when rendering navbar menu links for custom applications', () => {
     // Check the relationships between the menu items of a group
     const menuTitle = await navbarRendered.findByText(mainMenuLabel.value);
     const groupId = menuTitle.getAttribute('aria-owns');
+    expect(rendered.container.querySelector(`#${groupId}`)).toHaveAttribute(
+      'aria-expanded',
+      'false'
+    );
+    fireEvent.click(menuTitle);
     expect(rendered.container.querySelector(`#${groupId}`)).toHaveAttribute(
       'aria-expanded',
       'true'
@@ -875,9 +886,6 @@ describe('when navbar menu items are disabled', () => {
     // Get the nav container, to narrow down the search area
     const container = await rendered.findByTestId('left-navigation');
     const navbarRendered = within(container);
-
-    // Check that the support link is rendered
-    expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
@@ -925,9 +933,6 @@ describe('when navbar menu items are hidden', () => {
     const container = await rendered.findByTestId('left-navigation');
     const navbarRendered = within(container);
 
-    // Check that the support link is rendered
-    expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
-
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
@@ -970,9 +975,6 @@ describe('when navbar menu items match given permissions', () => {
     const container = await rendered.findByTestId('left-navigation');
     const navbarRendered = within(container);
 
-    // Check that the support link is rendered
-    expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
-
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
@@ -1010,9 +1012,6 @@ describe('when navbar menu items do not match given permissions', () => {
     // Get the nav container, to narrow down the search area
     const container = await rendered.findByTestId('left-navigation');
     const navbarRendered = within(container);
-
-    // Check that the support link is rendered
-    expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
@@ -1064,9 +1063,6 @@ describe('when navbar menu items match given action rights', () => {
     const container = await rendered.findByTestId('left-navigation');
     const navbarRendered = within(container);
 
-    // Check that the support link is rendered
-    expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
-
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
@@ -1112,9 +1108,6 @@ describe('when navbar menu items do not match given action rights', () => {
     // Get the nav container, to narrow down the search area
     const container = await rendered.findByTestId('left-navigation');
     const navbarRendered = within(container);
-
-    // Check that the support link is rendered
-    expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
@@ -1174,9 +1167,6 @@ describe('when navbar menu items match given data fences', () => {
     const container = await rendered.findByTestId('left-navigation');
     const navbarRendered = within(container);
 
-    // Check that the support link is rendered
-    expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
-
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
@@ -1230,9 +1220,6 @@ describe('when navbar menu items do not match given data fences', () => {
     // Get the nav container, to narrow down the search area
     const container = await rendered.findByTestId('left-navigation');
     const navbarRendered = within(container);
-
-    // Check that the support link is rendered
-    expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
