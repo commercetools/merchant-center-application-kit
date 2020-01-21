@@ -29,14 +29,16 @@ describe('when user is authenticated', () => {
 
 describe('navigation menu', () => {
   it('should stay collapsed for small viewports', () => {
-    cy.viewport(900, 800);
     cy.login({ redirectToUri: URL_STATE_MACHINES });
+    cy.viewport(900, 800);
+    cy.findAllByText('Initial').should('exist');
     cy.percySnapshot(cy.state('runnable').fullTitle(), {
       widths: [900],
     });
   });
   it('should expand menu when clicking on the expand button', () => {
     cy.login({ redirectToUri: URL_STATE_MACHINES });
+    cy.findAllByText('Initial').should('exist');
     cy.findByTestId('menu-expander').click();
     cy.window().then(win =>
       // eslint-disable-next-line jest/valid-expect
