@@ -137,7 +137,6 @@ export const RestrictedApplication = props => (
       }
 
       const projectKeyFromUrl = selectProjectKeyFromUrl();
-
       return (
         <ApplicationContextProvider user={user} environment={props.environment}>
           {/*
