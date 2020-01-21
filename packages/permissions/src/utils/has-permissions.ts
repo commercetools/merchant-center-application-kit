@@ -263,7 +263,7 @@ const getIsPermissionOverwritingDataFence = (
   return false;
 };
 
-export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) => {
+export const hasSomeDataFence = (options: TOptionsForAppliedDataFence) => {
   // Datafences applied should be combined with an OR, that is why we use
   // `some` and not `every`
   return options.demandedDataFences.some(
