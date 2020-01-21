@@ -97,8 +97,9 @@ const doesManagePermissionInferViewPermission = (
   const isDemandedPermissionViewPermission = getIsViewPermission(
     demandedPermission
   );
-  const isViewPermissionInferredByManagePermission =
-    actualPermissions[toCanCase(demandedPermission.replace('View', 'Manage'))];
+  const isViewPermissionInferredByManagePermission = Boolean(
+    actualPermissions[toCanCase(demandedPermission.replace('View', 'Manage'))]
+  );
 
   return (
     isDemandedPermissionViewPermission &&

@@ -282,7 +282,7 @@ describe('action rights', () => {
         expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
       });
     });
-    describe('with applied action right not matching demanded', () => {
+    describe('with applied action right matching demanded', () => {
       it('should indicate being authorized', () => {
         const rendered = render({
           allAppliedPermissions: [
@@ -328,7 +328,7 @@ describe('action rights', () => {
     });
   });
   describe('with applied and none matching demanded view permission', () => {
-    describe('with applied action right matching demanded', () => {
+    describe('with applied action right not matching demanded', () => {
       it('should indicate not being authorized', () => {
         const rendered = render({
           allAppliedPermissions: [{ name: 'canViewProducts', value: false }],
