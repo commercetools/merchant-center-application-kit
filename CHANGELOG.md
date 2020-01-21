@@ -1,3 +1,29 @@
+## [15.8.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.7.0...v15.8.0) (2020-01-21)
+
+#### 🔮 Type: Chore
+* `babel-preset-mc-app`
+  * [#1254](https://github.com/commercetools/merchant-center-application-kit/pull/1254) fix(babel-preset-mc-app): remove uncalled-for plugins ([@tdeekens](https://github.com/tdeekens))
+
+#### 💅 Type: Enhancement
+* `application-shell-connectors`, `application-shell`, `permissions`
+  * [#1241](https://github.com/commercetools/merchant-center-application-kit/pull/1241) feat(app-shell): add launchdarkly tracking subgroup ([@tdeekens](https://github.com/tdeekens))
+
+#### 🚀 Type: New Feature
+* `sdk`
+  * [#1250](https://github.com/commercetools/merchant-center-application-kit/pull/1250) feat(sdk): add useAsyncDispatch for resolving async sdk actions (static types) ([@emmenko](https://github.com/emmenko))
+
+#### 🖥 Type: Website
+* [#1245](https://github.com/commercetools/merchant-center-application-kit/pull/1245) refactor(website): improve landing page ([@emmenko](https://github.com/emmenko))
+* [#1244](https://github.com/commercetools/merchant-center-application-kit/pull/1244) refactor(website): layout for landing page to latest designs ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+* `jest-preset-mc-app`, `mc-http-server`
+  * [#1252](https://github.com/commercetools/merchant-center-application-kit/pull/1252) fix(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+* Other
+  * [#1253](https://github.com/commercetools/merchant-center-application-kit/pull/1253) chore(deps): lock file maintenance ([@renovate[bot]](https://github.com/apps/renovate))
+* `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-http-server`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sdk`, `sentry`, `url-utils`
+  * [#1251](https://github.com/commercetools/merchant-center-application-kit/pull/1251) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [15.7.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.6.2...v15.7.0) (2020-01-15)
 
 #### 💅 Type: Enhancement
