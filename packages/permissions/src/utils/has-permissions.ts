@@ -79,18 +79,30 @@ const hasExactPermission = (
   actualPermissions: TPermissions
 ) => actualPermissions[toCanCase(demandedPermission)];
 
+const getIsViewPermission = (demandedPermission: TPermissionName) =>
+  demandedPermission.startsWith('View');
+
 // Check that the user permissions match the required MANAGE permission.
 // The shapes of the arguments are:
 // - demandedPermission:
 //     'ViewProducts'
 // - actualPermissions:
 //     { canViewProducts: true, canManageOrders: false }
-const hasManagePermission = (
+const doesManagePermissionInferViewPermission = (
   demandedPermission: TPermissionName,
   actualPermissions: TPermissions
-) =>
-  demandedPermission.startsWith('View') &&
-  actualPermissions[toCanCase(demandedPermission.replace('View', 'Manage'))];
+) => {
+  const isDemandedPermissionViewPermission = getIsViewPermission(
+    demandedPermission
+  );
+  const isViewPermissionInferredByManagePermission =
+    actualPermissions[toCanCase(demandedPermission.replace('View', 'Manage'))];
+
+  return (
+    isDemandedPermissionViewPermission &&
+    isViewPermissionInferredByManagePermission
+  );
+};
 
 // Check the user permissions using one of the defined matchers.
 // The shapes of the arguments are:
@@ -107,8 +119,11 @@ export const hasPermission = (
 ) =>
   // First checking the existence of the exact permission
   hasExactPermission(demandedPermission, actualPermissions || {}) ||
-  // Then checking if a manage permission is inferred as a view permission
-  hasManagePermission(demandedPermission, actualPermissions || {});
+  // Then checking if a view permission is inferred as a manage permission
+  doesManagePermissionInferViewPermission(
+    demandedPermission,
+    actualPermissions || {}
+  );
 
 // Check the user action rights using one of the defined matchers.
 // The shapes of the arguments are:
