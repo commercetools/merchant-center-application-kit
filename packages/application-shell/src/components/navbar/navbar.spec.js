@@ -94,11 +94,11 @@ beforeEach(() => {
   window.localStorage.removeItem.mockClear();
 });
 
-describe('rendering', () => {
+describe.skip('rendering', () => {
   let props;
   let wrapper;
   // FIXME: rewrite tests using RTL
-  describe.skip('<NavBar>', () => {
+  describe('<NavBar>', () => {
     beforeEach(() => {
       props = createTestProps();
       wrapper = shallow(<NavBar {...props} />);
@@ -1074,7 +1074,7 @@ describe('rendering', () => {
   });
 });
 
-describe('lifecycle', () => {
+describe.skip('lifecycle', () => {
   let props;
   let wrapper;
   describe('<DataMenu>', () => {
@@ -1096,7 +1096,7 @@ describe('lifecycle', () => {
   });
 });
 
-describe('instance methods', () => {
+describe.skip('instance methods', () => {
   let props;
   let wrapper;
   describe('<DataMenu>', () => {
