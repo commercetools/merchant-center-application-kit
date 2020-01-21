@@ -4,7 +4,7 @@ import {
   hasSomePermissions,
   hasEveryPermissions,
   hasEveryActionRight,
-  hasAppliedDataFence,
+  hasSomeDataFence,
 } from '../../utils/has-permissions';
 
 // Permissions
@@ -91,7 +91,7 @@ const useIsAuthorized = ({
         )
       );
     }
-    hasDemandeDataFences = hasAppliedDataFence({
+    hasDemandeDataFences = hasSomeDataFence({
       actualPermissions,
       demandedDataFences,
       actualDataFences,
