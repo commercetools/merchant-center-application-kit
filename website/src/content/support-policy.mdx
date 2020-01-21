@@ -43,7 +43,7 @@ All published packages to NPM are listed in the following scoped packages:
 
 ## Release cadence
 
-commercetools strives to improve tooling and packages around custom applications continously. This means that we do not follow a strict release cycle but instead publish releases in meaningful intervals, potentially multiple times a week depending on the version increment. In that patch and minor versions will be released more frequently than major versions.
+commercetools strives to improve tooling and packages around custom applications continously. This means that we do not follow a strict release cycle but instead publish releases in meaningful intervals, potentially multiple times a week. Minor and patch versions are likely to be released more frequently than major versions.
 
 <Info>
 
@@ -72,7 +72,7 @@ How a breaking change can impact a custom application:
 
 A new major release does not always mean that breaking changes directly affect consumers of the packages. Some examples are:
 
-- A dependency package drops support for an "old" Node.js version, thus releasing a major version. As a consequence, commercetools could release a new major version as well for dropping support to a specific Node.js version. However, this will unlikely affect consumers of custom application packages.
+- A dependency package drops support for an "old" Node.js version, thus releasing a major version. As a consequence, commercetools could release a new major version as well for dropping support to a specific Node.js version. However, this unlikely affects consumers of custom application packages.
 - React releases some new feature that requires a specific minimal version of React. Therefore, commercetools could release a new major version that requires custom applications to run to a minimal React version.
 
 </Info>
@@ -99,7 +99,8 @@ It is important to keep the dependencies up-to-date, especially to get the lates
 
 ## Deprecation notice and End Of Life (EOL)
 
-Some packages, for example `@commercetools-frontend/application-shell`, interact with internal commercetools HTTP APIs. Interactions with these APIs is encapsulated within these modules themselves to ensure backwards compatibility. However, changes to these modules may be included in rare updates of a package. In the process some HTTP API functionalities might be **deprecated** over time and **eventually removed**.
+Some packages, for example `@commercetools-frontend/application-shell`, interact with different commercetools HTTP APIs. Changes to those packages might include updates related to HTTP API functionalities, usually in a backwards compatible way.
+However, it can happen that some HTTP API functionalities might be **deprecated** over time and **eventually removed**.
 
 <Info>
 
@@ -144,7 +145,7 @@ Those tools and services can be configured to meet everyone's needs, for example
 # Hosting
 
 Customers using custom applications are responsible for the maintenance of their custom applications. This includes hosting and deployments.
-Commercetools does not take any responsibility towards incidents and service disruptions related to custom applications caused by their underlying infrastructure.
+commercetools does not take any responsibility towards incidents and service disruptions related to custom applications caused by their underlying infrastructure.
 
 # Issues and support requests
 

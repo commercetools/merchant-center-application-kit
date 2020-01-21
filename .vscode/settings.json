@@ -10,16 +10,16 @@
   ],
   "stylelint.configOverrides": {
     "rules": {
-      "csstools/value-no-unknown-custom-properties": [true, {
-        "importFrom": [
-          "node_modules/@commercetools-frontend/ui-kit/materials/custom-properties.css"
-        ]
-      }]
+      "csstools/value-no-unknown-custom-properties": [
+        true,
+        {
+          "importFrom": [
+            "node_modules/@commercetools-frontend/ui-kit/materials/custom-properties.css"
+          ]
+        }
+      ]
     }
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "vscode-vale.path": "${workspaceFolder}/node_modules/.bin/commercetools-vale",
-  "workbench.colorCustomizations": {
-    "tab.unfocusedActiveBorder": "#fff0"
-  }
+  "vscode-vale.path": "${workspaceFolder}/node_modules/.bin/commercetools-vale"
 }
