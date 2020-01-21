@@ -38,7 +38,7 @@ const trackPerformance = () => {
             category: 'Navigation Timing',
             variable: metricName,
             value: data.dnsLookupTime,
-            label: 'DSN lookup time',
+            label: 'DNS lookup time',
           });
           trackTiming({
             category: 'Navigation Timing',
