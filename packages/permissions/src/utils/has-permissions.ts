@@ -239,17 +239,17 @@ const hasDemandedDataFence = (options: {
   );
 };
 
-const getDataFenceByPermissionGroup = (
+const getDataFenceByTypeAndGroup = (
   dataFences: TDataFences | null,
-  storeKey: TDataFenceType,
-  groupKey: string
+  demandedDataFenceType: TDataFenceType,
+  demandedDataFenceGroup: string
 ) => {
   if (!dataFences) return null;
 
-  if (storeKey in dataFences) {
-    const resourceType = dataFences[storeKey];
-    if (resourceType && groupKey in resourceType) {
-      return resourceType[groupKey];
+  if (demandedDataFenceType in dataFences) {
+    const dataFence = dataFences[demandedDataFenceType];
+    if (dataFence && demandedDataFenceGroup in dataFence) {
+      return dataFence[demandedDataFenceGroup];
     }
   }
   return null;
@@ -266,17 +266,17 @@ export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) => {
       // dataFence[type][group] = dataFence.store.group
       // with value = there is a dataFence to apply, overrules `hasDemandedProjectPermissions`
       // without value = there is no dataFence to apply, overruled by `hasDemandedProjectPermissions`
-      const actualDataFenceByPermissionGroup = getDataFenceByPermissionGroup(
+      const actualDataFenceByTypeAndGroup = getDataFenceByTypeAndGroup(
         options.actualDataFences,
         demandedDataFence.type,
         demandedDataFence.group
       );
 
-      if (!actualDataFenceByPermissionGroup) return false;
+      if (!actualDataFenceByTypeAndGroup) return false;
 
       // we try to find if the demanded dataFence is available inside the actual datafences
       const specificActualDataFence = Object.entries(
-        actualDataFenceByPermissionGroup
+        actualDataFenceByTypeAndGroup
       ).find(
         ([dataFenceName, dataFenceValue]) =>
           dataFenceValue && dataFenceName === toCanCase(demandedDataFence.name)
