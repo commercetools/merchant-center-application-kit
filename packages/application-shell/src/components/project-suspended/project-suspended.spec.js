@@ -36,6 +36,7 @@ describe('rendering', () => {
                   timeZone: null,
                   launchdarklyTrackingId: 'ld-1',
                   launchdarklyTrackingGroup: 'commercetools',
+                  launchdarklyTrackingSubgroup: 'dev',
                   launchdarklyTrackingTeam: 'ld-team-1',
                   launchdarklyTrackingTenant: 'eu',
                   defaultProjectKey: 'project-key',

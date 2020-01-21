@@ -32,6 +32,7 @@ const createGraphqlResponseForUserQuery = custom => ({
     timeZone: null,
     launchdarklyTrackingId: '111',
     launchdarklyTrackingGroup: 'nightswatch',
+    launchdarklyTrackingSubgroup: 'owl',
     launchdarklyTrackingTeam: ['wolf'],
     launchdarklyTrackingTenant: 'ctp-eu',
     defaultProjectKey: 'test-1',

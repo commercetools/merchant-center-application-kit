@@ -35,6 +35,7 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
         },
         gravatarHash: 'xxx',
         launchdarklyTrackingGroup: 'commercetools',
+        launchdarklyTrackingSubgroup: 'dev',
         launchdarklyTrackingId: '111',
         launchdarklyTrackingTeam: undefined,
         launchdarklyTrackingTenant: 'gcp-eu',

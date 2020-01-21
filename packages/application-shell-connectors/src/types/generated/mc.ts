@@ -628,6 +628,7 @@ export type TUser = TMetaData & {
   timeZone: Maybe<Scalars['String']>,
   launchdarklyTrackingId: Scalars['String'],
   launchdarklyTrackingGroup: Scalars['String'],
+  launchdarklyTrackingSubgroup: Maybe<Scalars['String']>,
   launchdarklyTrackingTeam: Maybe<Array<Scalars['String']>>,
   launchdarklyTrackingTenant: Scalars['String'],
   gravatarHash: Scalars['String'],
@@ -699,7 +700,7 @@ export type TFetchLoggedInUserQuery = (
   { __typename?: 'Query' }
   & { user: Maybe<(
     { __typename?: 'User' }
-    & Pick<TUser, 'id' | 'email' | 'gravatarHash' | 'firstName' | 'lastName' | 'language' | 'numberFormat' | 'timeZone' | 'launchdarklyTrackingId' | 'launchdarklyTrackingGroup' | 'launchdarklyTrackingTeam' | 'launchdarklyTrackingTenant' | 'defaultProjectKey'>
+    & Pick<TUser, 'id' | 'email' | 'gravatarHash' | 'firstName' | 'lastName' | 'language' | 'numberFormat' | 'timeZone' | 'launchdarklyTrackingId' | 'launchdarklyTrackingGroup' | 'launchdarklyTrackingSubgroup' | 'launchdarklyTrackingTeam' | 'launchdarklyTrackingTenant' | 'defaultProjectKey'>
     & { projects: (
       { __typename?: 'ProjectQueryResult' }
       & Pick<TProjectQueryResult, 'total'>
