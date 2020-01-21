@@ -59,6 +59,7 @@ type TActualDataFence = {
 };
 
 type TOptionsForAppliedDataFence = {
+  actualPermissions: TPermissions | null;
   demandedDataFences: TDemandedDataFence[];
   actualDataFences: TDataFences | null;
   selectDataFenceData?: TSelectDataFenceData;
@@ -205,7 +206,7 @@ export const getInvalidPermissions = (
   );
 };
 
-const hasDemandedDataFence = (options: {
+const getHasDemandedDataFence = (options: {
   actualDataFence: TActualDataFence;
   demandedDataFence: TDemandedDataFence;
   selectDataFenceData?: TSelectDataFenceData;
@@ -255,6 +256,13 @@ const getDataFenceByTypeAndGroup = (
   return null;
 };
 
+const getIsPermissionOverwritingDataFence = (
+  actualPermissions: TPermissions | null,
+  actualDataFence: TActualDataFence
+) => {
+  return false;
+};
+
 export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) => {
   // Datafences applied should be combined with an OR, that is why we use
   // `some` and not `every`
@@ -285,16 +293,24 @@ export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) => {
       if (!specificActualDataFence) return false;
 
       const [dataFenceName, dataFenceValue] = specificActualDataFence;
-      return hasDemandedDataFence({
-        actualDataFence: {
-          name: dataFenceName,
-          // we do the type casting because at this point we are sure that
-          // specificActualDataFence.dataFenceValue is not null
-          dataFenceValue: dataFenceValue as TActualDataFence['dataFenceValue'],
-        },
+      const actualDataFence = {
+        name: dataFenceName,
+        // we do the type casting because at this point we are sure that
+        // specificActualDataFence.dataFenceValue is not null
+        dataFenceValue: dataFenceValue as TActualDataFence['dataFenceValue'],
+      };
+
+      const isPermissionOverwritingDataFence = getIsPermissionOverwritingDataFence(
+        options.actualPermissions,
+        actualDataFence
+      );
+      const hasDemandedDataFence = getHasDemandedDataFence({
+        actualDataFence,
         demandedDataFence,
         selectDataFenceData: options.selectDataFenceData,
       });
+
+      return !isPermissionOverwritingDataFence && hasDemandedDataFence;
     }
   );
 };

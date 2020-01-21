@@ -56,7 +56,6 @@ type TSelectDataFenceData = (
   }
 ) => string[] | null;
 
-// Forward-compatibility with React Hooks 🎉
 const useIsAuthorized = ({
   demandedPermissions,
   demandedActionRights,
@@ -93,6 +92,7 @@ const useIsAuthorized = ({
       );
     }
     hasDemandeDataFences = hasAppliedDataFence({
+      actualPermissions,
       demandedDataFences,
       actualDataFences,
       selectDataFenceData,
