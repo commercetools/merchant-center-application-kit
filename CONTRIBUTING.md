@@ -181,3 +181,13 @@ Since the MC uses multiple GraphQL APIs, we need to differentiate which queries 
 - **proxy**: instead of `.graphql` use `*.proxy.graphql` (_API in the MC frontend apps_)
 
 The regex to match the files to each project schema are defiend in the `.graphqlconfig.yml` file.
+
+## Visual Studio Code recommended workspace
+
+The file `recommended.code-workspace` contains a pre-defined VSCode configuration that is optimized for working in this repository.
+It also contains the extension recommendations to effectively work with MDX, the writing style linter and more.
+
+When opening the project folder, VSCode detects that there is a workspace configuration available and prompts the option to open it.
+When VSCode loads the workspace configuration, it asks to automatically install all recommended extensions.
+
+If you wish to keep your own `settings.json` config, you might consider to pick the configuration that you need from the recommended config.
