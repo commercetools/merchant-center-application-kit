@@ -1,4 +1,3 @@
-import isNil from 'lodash/isNil';
 import upperFirst from 'lodash/upperFirst';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 
@@ -107,6 +106,22 @@ const doesManagePermissionInferViewPermission = (
   );
 };
 
+// Check if the demanded permissions contain any unnecessary
+// implied permissions.
+// E.g. ViewCustomerGroup is implied by ManageCustomerGroup.
+export const getImpliedPermissions = (
+  permissions: TPermissionName[]
+): TPermissionName[] => {
+  const viewPermissions = permissions.filter(permission =>
+    permission.startsWith('View')
+  );
+  const impliedPermissions = viewPermissions.filter(viewPermission =>
+    permissions.includes(viewPermission.replace('View', 'Manage'))
+  );
+
+  return impliedPermissions;
+};
+
 // Check the user permissions using one of the defined matchers.
 // The shapes of the arguments are:
 // - demandedPermission:
@@ -190,23 +205,6 @@ export const hasSomePermissions = (
   demandedPermissions.some((permission: TPermissionName) =>
     hasPermission(permission, actualPermissions)
   );
-
-// Returns an Array<String> of unconfigured (not passed as `actualPermissions`) permissions.
-// The shapes of the arguments are:
-// - demandedPermissions:
-//     ['ViewProducts', 'ManageOrders']
-// - actualPermissions:
-//     { canViewProducts: true, canManageOrders: false }
-export const getInvalidPermissions = (
-  demandedPermissions: TPermissionName[],
-  actualPermissions: TPermissions | null
-) => {
-  if (!actualPermissions) return demandedPermissions;
-  // All demanded permissions need to be present as an actual permission.
-  return demandedPermissions.filter((demandedPermission: TPermissionName) =>
-    isNil(actualPermissions[toCanCase(demandedPermission)])
-  );
-};
 
 type TGetHasDemandedDataFenceOptions = {
   actualDataFence: TActualDataFence;

@@ -41,7 +41,8 @@
     "@commercetools-frontend/application-shell-connectors": "15.8.0",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
-    "prop-types": "15.7.2"
+    "prop-types": "15.7.2",
+    "tiny-warning": "1.0.3"
   },
   "devDependencies": {
     "react": "16.12.0"

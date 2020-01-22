@@ -1,3 +1,4 @@
+import warning from 'tiny-warning';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import {
@@ -5,6 +6,7 @@ import {
   hasEveryPermissions,
   hasEveryActionRight,
   hasSomeDataFence,
+  getImpliedPermissions,
 } from '../../utils/has-permissions';
 
 // Permissions
@@ -69,6 +71,27 @@ const useIsAuthorized = ({
   selectDataFenceData?: TSelectDataFenceData;
   shouldMatchSomePermissions?: boolean;
 }) => {
+  const impliedPermissions = getImpliedPermissions(demandedPermissions);
+
+  warning(
+    !demandedActionRights || demandedActionRights.length === 1,
+    `@commercetools-frontend/permissions: It is recommended to pass a single demanded action right while using the hook, HoC or component multiple times.`
+  );
+  warning(
+    !demandedPermissions || demandedPermissions.length === 1,
+    `@commercetools-frontend/permissions: It is recommended to pass a single demanded permission while using the hook, HoC or component multiple times.`
+  );
+  warning(
+    shouldMatchSomePermissions === false,
+    `@commercetools-frontend/permissions: It is recommended not to use 'shouldMatchSomePermissions' but instead use the hook, HoC or comoponent multiple times.`
+  );
+  warning(
+    !impliedPermissions || impliedPermissions.length === 0,
+    `@commercetools-frontend/permissions: Demanded permissions contain implied permissions. These are implied: ${impliedPermissions.join(
+      ', '
+    )}.`
+  );
+
   const actualPermissions = useApplicationContext<TPermissions | null>(
     applicationContext => applicationContext.permissions
   );
