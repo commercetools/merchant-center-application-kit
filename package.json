@@ -169,6 +169,7 @@
     "stylelint-order": "4.0.0",
     "stylelint-value-no-unknown-custom-properties": "2.0.0",
     "typescript": "3.7.5",
+    "jest-environment-jsdom-sixteen": "1.0.0",
     "vfile-message": "2.0.2",
     "xhr-mock": "2.5.1"
   },
