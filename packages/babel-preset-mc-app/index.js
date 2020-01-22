@@ -110,6 +110,7 @@ module.exports = function getBabePresetConfigForMcApp() {
           regenerator: true,
         },
       ],
+      isEnvProduction && require('babel-plugin-dev-expression'),
       isEnvProduction && [
         // Remove PropTypes from production build
         require('babel-plugin-transform-react-remove-prop-types').default,
