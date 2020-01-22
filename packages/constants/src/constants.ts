@@ -148,5 +148,6 @@ export interface ApplicationWindow extends Window {
     mcProxyApiUrl?: string;
     trackingSentry?: string;
     trackingGtm?: string;
+    enableSignUp?: boolean;
   };
 }

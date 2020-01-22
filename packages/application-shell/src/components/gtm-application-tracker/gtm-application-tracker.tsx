@@ -1,8 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import * as gtm from '../../utils/gtm';
 
-const GtmApplicationTracker = props => {
+type Props = {
+  applicationName?: string;
+  projectKey?: string;
+};
+
+const GtmApplicationTracker = (props: Props) => {
   React.useEffect(() => {
     gtm.trackApplicationName(props.applicationName);
     gtm.trackProjectKey(props.projectKey);
@@ -10,9 +14,5 @@ const GtmApplicationTracker = props => {
   return null;
 };
 GtmApplicationTracker.displayName = 'GtmApplicationTracker';
-GtmApplicationTracker.propTypes = {
-  applicationName: PropTypes.string,
-  projectKey: PropTypes.string,
-};
 
 export default GtmApplicationTracker;
