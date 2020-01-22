@@ -25,8 +25,6 @@ import {
   ProjectMock,
   ApplicationNavbarMenuMock,
   ApplicationNavbarSubmenuMock,
-  ProjectExtensionMock,
-  CustomApplicationMock,
 } from '../../../../../graphql-test-utils';
 import selectProjectKeyFromUrl from '../../utils/select-project-key-from-url';
 import { createApolloClient } from '../../configure-apollo';
@@ -674,189 +672,147 @@ describe('when clicking on navbar menu toggle', () => {
     expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
   });
 });
-describe('when rendering navbar menu links from local config', () => {
-  let operations;
-  beforeEach(() => {
-    operations = mocksForMc.createMockOperations();
-    createGraphqlMockServer(xhrMock, {
-      operationsByTarget: { mc: operations },
-    });
-    selectProjectKeyFromUrl.mockReturnValue(
-      operations.FetchLoggedInUser.me.defaultProjectKey
-    );
-  });
-  it('should render links with all the correct state attributes', async () => {
-    const navbarSubmenuMock = ApplicationNavbarSubmenuMock.build();
-    const navbarMock = ApplicationNavbarMenuMock.build({
-      submenu: [navbarSubmenuMock],
-    });
-    const rendered = renderApp(null, {
-      featureFlags: {
-        [PROJECT_EXTENSIONS]: false,
-      },
-      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
-    });
+describe('navbar menu links interactions', () => {
+  async function checkLinksInteractions(
+    rendered,
+    { mainMenuLabel, mainSubmenuLabel }
+  ) {
     // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
-    const navbarRendered = within(container);
+    const leftNavContainer = await rendered.findByTestId('left-navigation');
+    const navbarRendered = within(leftNavContainer);
 
-    const applicationLocale = operations.FetchLoggedInUser.me.language;
-    const mainMenuLabel = navbarMock.labelAllLocales.find(
-      localized => localized.locale === applicationLocale
-    );
-    const mainSubmenuLabel = navbarSubmenuMock.labelAllLocales.find(
-      localized => localized.locale === applicationLocale
-    );
     // Check the relationships between the menu items of a group
     const menuTitle = await navbarRendered.findByText(mainMenuLabel.value);
     const groupId = menuTitle.getAttribute('aria-owns');
-    expect(rendered.container.querySelector(`#${groupId}`)).toHaveAttribute(
-      'aria-expanded',
-      'false'
-    );
+    const submenuContainer = rendered.container.querySelector(`#${groupId}`);
+    expect(submenuContainer).toHaveAttribute('aria-expanded', 'false');
     fireEvent.click(menuTitle);
-    expect(rendered.container.querySelector(`#${groupId}`)).toHaveAttribute(
-      'aria-expanded',
-      'true'
-    );
-    const menuGroup = within(rendered.getByTestId(groupId));
-    expect(menuGroup.queryByText(mainSubmenuLabel.value)).toBeInTheDocument();
-    expect(menuGroup.queryByText(mainSubmenuLabel.value)).not.toHaveAttribute(
-      'aria-current'
-    );
-    // Go to the link to check if the link becomes active
-    fireEvent.click(menuGroup.queryByText(mainSubmenuLabel.value));
     await wait(() => {
-      expect(menuGroup.queryByText(mainSubmenuLabel.value)).toHaveAttribute(
-        'aria-current',
-        'page'
+      expect(submenuContainer).toHaveAttribute('aria-expanded', 'true');
+    });
+    const menuGroupContainer = within(rendered.getByTestId(groupId));
+    const menuLink = menuGroupContainer.queryByText(mainSubmenuLabel.value);
+    expect(menuLink).toBeInTheDocument();
+    expect(menuLink).not.toHaveAttribute('aria-current');
+    // Go to the link to check if the link becomes active
+    fireEvent.click(menuLink);
+    await wait(() => {
+      expect(menuLink).toHaveAttribute('aria-current', 'page');
+    });
+  }
+  describe('when rendering navbar menu links from local config', () => {
+    let operations;
+    beforeEach(() => {
+      operations = mocksForMc.createMockOperations();
+      createGraphqlMockServer(xhrMock, {
+        operationsByTarget: { mc: operations },
+      });
+      selectProjectKeyFromUrl.mockReturnValue(
+        operations.FetchLoggedInUser.me.defaultProjectKey
       );
     });
-  });
-});
-describe('when rendering navbar menu links from remote config', () => {
-  let mcOperations;
-  let proxyOperations;
-  beforeEach(() => {
-    mcOperations = mocksForMc.createMockOperations();
-    proxyOperations = mocksForProxy.createMockOperations();
-    createGraphqlMockServer(xhrMock, {
-      operationsByTarget: { mc: mcOperations, proxy: proxyOperations },
-    });
-    selectProjectKeyFromUrl.mockReturnValue(
-      mcOperations.FetchLoggedInUser.me.defaultProjectKey
-    );
-  });
-  it('should render links with all the correct state attributes', async () => {
-    const rendered = renderApp(null, {
-      featureFlags: {
-        [PROJECT_EXTENSIONS]: false,
-      },
-      environment: {
-        servedByProxy: 'true',
-      },
-    });
-    // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
-    const navbarRendered = within(container);
+    it('should render links with all the correct state attributes', async () => {
+      const navbarSubmenuMock = ApplicationNavbarSubmenuMock.build();
+      const navbarMock = ApplicationNavbarMenuMock.build({
+        submenu: [navbarSubmenuMock],
+      });
+      const rendered = renderApp(null, {
+        featureFlags: {
+          [PROJECT_EXTENSIONS]: false,
+        },
+        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+      });
 
-    const applicationLocale = mcOperations.FetchLoggedInUser.me.language;
-    const mainMenuLabel = proxyOperations.FetchApplicationsMenu.applicationsMenu.navBar[0].labelAllLocales.find(
-      localized => localized.locale === applicationLocale
-    );
-    const mainSubmenuLabel = proxyOperations.FetchApplicationsMenu.applicationsMenu.navBar[0].submenu[0].labelAllLocales.find(
-      localized => localized.locale === applicationLocale
-    );
-    // Check the relationships between the menu items of a group
-    const menuTitle = await navbarRendered.findByText(mainMenuLabel.value);
-    const groupId = menuTitle.getAttribute('aria-owns');
-    expect(rendered.container.querySelector(`#${groupId}`)).toHaveAttribute(
-      'aria-expanded',
-      'false'
-    );
-    fireEvent.click(menuTitle);
-    expect(rendered.container.querySelector(`#${groupId}`)).toHaveAttribute(
-      'aria-expanded',
-      'true'
-    );
-    const menuGroup = within(rendered.getByTestId(groupId));
-    expect(menuGroup.queryByText(mainSubmenuLabel.value)).toBeInTheDocument();
-    expect(menuGroup.queryByText(mainSubmenuLabel.value)).not.toHaveAttribute(
-      'aria-current'
-    );
-    // Go to the link to check if the link becomes active
-    fireEvent.click(menuGroup.queryByText(mainSubmenuLabel.value));
-    await wait(() => {
-      expect(menuGroup.queryByText(mainSubmenuLabel.value)).toHaveAttribute(
-        'aria-current',
-        'page'
+      const applicationLocale = operations.FetchLoggedInUser.me.language;
+      const mainMenuLabel = navbarMock.labelAllLocales.find(
+        localized => localized.locale === applicationLocale
       );
-    });
-  });
-});
-describe('when rendering navbar menu links for custom applications', () => {
-  let mcOperations;
-  let proxyOperations;
-  let settingsOperations;
-  beforeEach(() => {
-    mcOperations = mocksForMc.createMockOperations();
-    proxyOperations = mocksForProxy.createMockOperations();
-    settingsOperations = mocksForSettings.createMockOperations();
-    createGraphqlMockServer(xhrMock, {
-      operationsByTarget: {
-        mc: mcOperations,
-        proxy: proxyOperations,
-        settings: settingsOperations,
-      },
-    });
-    selectProjectKeyFromUrl.mockReturnValue(
-      mcOperations.FetchLoggedInUser.me.defaultProjectKey
-    );
-  });
-  it('should render links with all the correct state attributes', async () => {
-    const rendered = renderApp(null, {
-      featureFlags: {
-        [PROJECT_EXTENSIONS]: true,
-      },
-      environment: {
-        servedByProxy: 'true',
-      },
-    });
-    // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
-    const navbarRendered = within(container);
+      const mainSubmenuLabel = navbarSubmenuMock.labelAllLocales.find(
+        localized => localized.locale === applicationLocale
+      );
 
-    const applicationLocale = mcOperations.FetchLoggedInUser.me.language;
-    const mainMenuLabel = settingsOperations.FetchProjectExtensionsNavbar.projectExtension.applications[0].navbarMenu.labelAllLocales.find(
-      localized => localized.locale === applicationLocale
-    );
-    const mainSubmenuLabel = settingsOperations.FetchProjectExtensionsNavbar.projectExtension.applications[0].navbarMenu.submenu[0].labelAllLocales.find(
-      localized => localized.locale === applicationLocale
-    );
-    // Check the relationships between the menu items of a group
-    const menuTitle = await navbarRendered.findByText(mainMenuLabel.value);
-    const groupId = menuTitle.getAttribute('aria-owns');
-    expect(rendered.container.querySelector(`#${groupId}`)).toHaveAttribute(
-      'aria-expanded',
-      'false'
-    );
-    fireEvent.click(menuTitle);
-    expect(rendered.container.querySelector(`#${groupId}`)).toHaveAttribute(
-      'aria-expanded',
-      'true'
-    );
-    const menuGroup = within(rendered.getByTestId(groupId));
-    expect(menuGroup.queryByText(mainSubmenuLabel.value)).toBeInTheDocument();
-    expect(menuGroup.queryByText(mainSubmenuLabel.value)).not.toHaveAttribute(
-      'aria-current'
-    );
-    // Go to the link to check if the link becomes active
-    fireEvent.click(menuGroup.queryByText(mainSubmenuLabel.value));
-    await wait(() => {
-      expect(menuGroup.queryByText(mainSubmenuLabel.value)).toHaveAttribute(
-        'aria-current',
-        'page'
+      await checkLinksInteractions(rendered, {
+        mainMenuLabel,
+        mainSubmenuLabel,
+      });
+    });
+  });
+  describe('when rendering navbar menu links from remote config', () => {
+    let mcOperations;
+    let proxyOperations;
+    beforeEach(() => {
+      mcOperations = mocksForMc.createMockOperations();
+      proxyOperations = mocksForProxy.createMockOperations();
+      createGraphqlMockServer(xhrMock, {
+        operationsByTarget: { mc: mcOperations, proxy: proxyOperations },
+      });
+      selectProjectKeyFromUrl.mockReturnValue(
+        mcOperations.FetchLoggedInUser.me.defaultProjectKey
       );
+    });
+    it('should render links with all the correct state attributes', async () => {
+      const rendered = renderApp(null, {
+        featureFlags: {
+          [PROJECT_EXTENSIONS]: false,
+        },
+        environment: {
+          servedByProxy: 'true',
+        },
+      });
+      const applicationLocale = mcOperations.FetchLoggedInUser.me.language;
+      const mainMenuLabel = proxyOperations.FetchApplicationsMenu.applicationsMenu.navBar[0].labelAllLocales.find(
+        localized => localized.locale === applicationLocale
+      );
+      const mainSubmenuLabel = proxyOperations.FetchApplicationsMenu.applicationsMenu.navBar[0].submenu[0].labelAllLocales.find(
+        localized => localized.locale === applicationLocale
+      );
+
+      await checkLinksInteractions(rendered, {
+        mainMenuLabel,
+        mainSubmenuLabel,
+      });
+    });
+  });
+  describe('when rendering navbar menu links for custom applications', () => {
+    let mcOperations;
+    let proxyOperations;
+    let settingsOperations;
+    beforeEach(() => {
+      mcOperations = mocksForMc.createMockOperations();
+      proxyOperations = mocksForProxy.createMockOperations();
+      settingsOperations = mocksForSettings.createMockOperations();
+      createGraphqlMockServer(xhrMock, {
+        operationsByTarget: {
+          mc: mcOperations,
+          proxy: proxyOperations,
+          settings: settingsOperations,
+        },
+      });
+      selectProjectKeyFromUrl.mockReturnValue(
+        mcOperations.FetchLoggedInUser.me.defaultProjectKey
+      );
+    });
+    it('should render links with all the correct state attributes', async () => {
+      const rendered = renderApp(null, {
+        featureFlags: {
+          [PROJECT_EXTENSIONS]: true,
+        },
+        environment: {
+          servedByProxy: 'true',
+        },
+      });
+      const applicationLocale = mcOperations.FetchLoggedInUser.me.language;
+      const mainMenuLabel = settingsOperations.FetchProjectExtensionsNavbar.projectExtension.applications[0].navbarMenu.labelAllLocales.find(
+        localized => localized.locale === applicationLocale
+      );
+      const mainSubmenuLabel = settingsOperations.FetchProjectExtensionsNavbar.projectExtension.applications[0].navbarMenu.submenu[0].labelAllLocales.find(
+        localized => localized.locale === applicationLocale
+      );
+
+      await checkLinksInteractions(rendered, {
+        mainMenuLabel,
+        mainSubmenuLabel,
+      });
     });
   });
 });
