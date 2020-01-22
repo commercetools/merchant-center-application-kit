@@ -89,8 +89,7 @@
     "redux-thunk": "2.3.0",
     "tiny-invariant": "1.0.6",
     "unfetch": "4.1.0",
-    "uuid": "3.4.0",
-    "warning": "4.0.3"
+    "uuid": "3.4.0"
   },
   "devDependencies": {
     "@commercetools-uikit/avatar": "10.13.0",
