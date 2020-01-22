@@ -1,12 +1,7 @@
 import React from 'react';
 import { encode } from 'qss';
 import xhrMock from 'xhr-mock';
-import {
-  render,
-  wait,
-  fireEvent,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { render, wait, fireEvent, within } from '@testing-library/react';
 import { AuthenticationError, ApolloError } from 'apollo-server-errors';
 import { useDispatch } from 'react-redux';
 import { createMemoryHistory } from 'history';
@@ -24,12 +19,17 @@ import {
   applyMocksForExternalNetworkRequests,
   createGraphqlMockServer,
   mocksForMc,
+  mocksForProxy,
+  mocksForSettings,
   UserMock,
   ProjectMock,
+  ApplicationNavbarMenuMock,
+  ApplicationNavbarSubmenuMock,
 } from '../../../../../graphql-test-utils';
 import selectProjectKeyFromUrl from '../../utils/select-project-key-from-url';
 import { createApolloClient } from '../../configure-apollo';
 import { STORAGE_KEYS } from '../../constants';
+import { PROJECT_EXTENSIONS } from '../../feature-toggles';
 import ApplicationShellProvider from '../application-shell-provider';
 import ApplicationShell from './application-shell';
 
@@ -61,7 +61,8 @@ const createTestProps = props => ({
 });
 
 const renderApp = (ui, options = {}) => {
-  const initialRoute = options.route || '/';
+  const { route, ...customProps } = options;
+  const initialRoute = route || '/';
   const testHistory = createEnhancedHistory(
     createMemoryHistory({ initialEntries: [initialRoute] })
   );
@@ -71,7 +72,8 @@ const renderApp = (ui, options = {}) => {
   const defaultProps = createTestProps();
   const props = {
     ...defaultProps,
-    environment: { ...defaultProps.environment, ...options.environment },
+    ...customProps,
+    environment: { ...defaultProps.environment, ...customProps.environment },
   };
   const rendered = render(
     <ApplicationShell {...props} render={() => ui || <p>{'OK'}</p>} />
@@ -88,6 +90,8 @@ beforeEach(() => {
   window.localStorage.getItem.mockImplementation(key => {
     switch (key) {
       case STORAGE_KEYS.IS_AUTHENTICATED:
+        return 'true';
+      case STORAGE_KEYS.IS_FORCED_MENU_OPEN:
         return 'true';
       case STORAGE_KEYS.ACTIVE_PROJECT_KEY:
         return null;
@@ -630,6 +634,557 @@ describe('when dispatching a loading notification', () => {
     fireEvent.click(hideBtn);
     await wait(() => {
       expect(rendered.queryByText('Processing...')).not.toBeInTheDocument();
+    });
+  });
+});
+describe('when clicking on navbar menu toggle', () => {
+  let operations;
+  beforeEach(() => {
+    operations = mocksForMc.createMockOperations();
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: { mc: operations },
+    });
+    selectProjectKeyFromUrl.mockReturnValue(
+      operations.FetchLoggedInUser.me.defaultProjectKey
+    );
+  });
+  it('should expand and collapse menu', async () => {
+    const rendered = renderApp();
+    const button = await rendered.findByTestId('menu-expander');
+    fireEvent.click(button);
+    await wait(() => {
+      expect(window.localStorage.setItem).toHaveBeenCalledWith(
+        STORAGE_KEYS.IS_FORCED_MENU_OPEN,
+        false
+      );
+    });
+    fireEvent.click(button);
+    await wait(() => {
+      expect(window.localStorage.setItem).toHaveBeenCalledWith(
+        STORAGE_KEYS.IS_FORCED_MENU_OPEN,
+        true
+      );
+    });
+    // Check that the support link is rendered
+    // Get the nav container, to narrow down the search area
+    const container = await rendered.findByTestId('left-navigation');
+    const navbarRendered = within(container);
+    expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
+  });
+});
+describe('navbar menu links interactions', () => {
+  async function checkLinksInteractions(
+    rendered,
+    { mainMenuLabel, mainSubmenuLabel }
+  ) {
+    // Get the nav container, to narrow down the search area
+    const leftNavContainer = await rendered.findByTestId('left-navigation');
+    const navbarRendered = within(leftNavContainer);
+
+    // Check the relationships between the menu items of a group
+    const menuTitle = await navbarRendered.findByText(mainMenuLabel.value);
+    const groupId = menuTitle.getAttribute('aria-owns');
+    const submenuContainer = rendered.container.querySelector(`#${groupId}`);
+    expect(submenuContainer).toHaveAttribute('aria-expanded', 'false');
+    fireEvent.click(menuTitle);
+    await wait(() => {
+      expect(submenuContainer).toHaveAttribute('aria-expanded', 'true');
+    });
+    const menuGroupContainer = within(rendered.getByTestId(groupId));
+    const menuLink = menuGroupContainer.queryByText(mainSubmenuLabel.value);
+    expect(menuLink).toBeInTheDocument();
+    expect(menuLink).not.toHaveAttribute('aria-current');
+    // Go to the link to check if the link becomes active
+    fireEvent.click(menuLink);
+    await wait(() => {
+      expect(menuLink).toHaveAttribute('aria-current', 'page');
+    });
+  }
+  describe('when rendering navbar menu links from local config', () => {
+    let operations;
+    beforeEach(() => {
+      operations = mocksForMc.createMockOperations();
+      createGraphqlMockServer(xhrMock, {
+        operationsByTarget: { mc: operations },
+      });
+      selectProjectKeyFromUrl.mockReturnValue(
+        operations.FetchLoggedInUser.me.defaultProjectKey
+      );
+    });
+    it('should render links with all the correct state attributes', async () => {
+      const navbarSubmenuMock = ApplicationNavbarSubmenuMock.build();
+      const navbarMock = ApplicationNavbarMenuMock.build({
+        submenu: [navbarSubmenuMock],
+      });
+      const rendered = renderApp(null, {
+        featureFlags: {
+          [PROJECT_EXTENSIONS]: false,
+        },
+        DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+      });
+
+      const applicationLocale = operations.FetchLoggedInUser.me.language;
+      const mainMenuLabel = navbarMock.labelAllLocales.find(
+        localized => localized.locale === applicationLocale
+      );
+      const mainSubmenuLabel = navbarSubmenuMock.labelAllLocales.find(
+        localized => localized.locale === applicationLocale
+      );
+
+      await checkLinksInteractions(rendered, {
+        mainMenuLabel,
+        mainSubmenuLabel,
+      });
+    });
+  });
+  describe('when rendering navbar menu links from remote config', () => {
+    let mcOperations;
+    let proxyOperations;
+    beforeEach(() => {
+      mcOperations = mocksForMc.createMockOperations();
+      proxyOperations = mocksForProxy.createMockOperations();
+      createGraphqlMockServer(xhrMock, {
+        operationsByTarget: { mc: mcOperations, proxy: proxyOperations },
+      });
+      selectProjectKeyFromUrl.mockReturnValue(
+        mcOperations.FetchLoggedInUser.me.defaultProjectKey
+      );
+    });
+    it('should render links with all the correct state attributes', async () => {
+      const rendered = renderApp(null, {
+        featureFlags: {
+          [PROJECT_EXTENSIONS]: false,
+        },
+        environment: {
+          servedByProxy: 'true',
+        },
+      });
+      const applicationLocale = mcOperations.FetchLoggedInUser.me.language;
+      const mainMenuLabel = proxyOperations.FetchApplicationsMenu.applicationsMenu.navBar[0].labelAllLocales.find(
+        localized => localized.locale === applicationLocale
+      );
+      const mainSubmenuLabel = proxyOperations.FetchApplicationsMenu.applicationsMenu.navBar[0].submenu[0].labelAllLocales.find(
+        localized => localized.locale === applicationLocale
+      );
+
+      await checkLinksInteractions(rendered, {
+        mainMenuLabel,
+        mainSubmenuLabel,
+      });
+    });
+  });
+  describe('when rendering navbar menu links for custom applications', () => {
+    let mcOperations;
+    let proxyOperations;
+    let settingsOperations;
+    beforeEach(() => {
+      mcOperations = mocksForMc.createMockOperations();
+      proxyOperations = mocksForProxy.createMockOperations();
+      settingsOperations = mocksForSettings.createMockOperations();
+      createGraphqlMockServer(xhrMock, {
+        operationsByTarget: {
+          mc: mcOperations,
+          proxy: proxyOperations,
+          settings: settingsOperations,
+        },
+      });
+      selectProjectKeyFromUrl.mockReturnValue(
+        mcOperations.FetchLoggedInUser.me.defaultProjectKey
+      );
+    });
+    it('should render links with all the correct state attributes', async () => {
+      const rendered = renderApp(null, {
+        featureFlags: {
+          [PROJECT_EXTENSIONS]: true,
+        },
+        environment: {
+          servedByProxy: 'true',
+        },
+      });
+      const applicationLocale = mcOperations.FetchLoggedInUser.me.language;
+      const mainMenuLabel = settingsOperations.FetchProjectExtensionsNavbar.projectExtension.applications[0].navbarMenu.labelAllLocales.find(
+        localized => localized.locale === applicationLocale
+      );
+      const mainSubmenuLabel = settingsOperations.FetchProjectExtensionsNavbar.projectExtension.applications[0].navbarMenu.submenu[0].labelAllLocales.find(
+        localized => localized.locale === applicationLocale
+      );
+
+      await checkLinksInteractions(rendered, {
+        mainMenuLabel,
+        mainSubmenuLabel,
+      });
+    });
+  });
+});
+describe('when navbar menu items are disabled', () => {
+  let operations;
+  beforeEach(() => {
+    operations = mocksForMc.createMockOperations();
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: { mc: operations },
+    });
+    selectProjectKeyFromUrl.mockReturnValue(
+      operations.FetchLoggedInUser.me.defaultProjectKey
+    );
+  });
+  it('should not render disabled menu items', async () => {
+    const navbarSubmenuMock = ApplicationNavbarSubmenuMock.build();
+    const navbarMock = ApplicationNavbarMenuMock.build({
+      submenu: [navbarSubmenuMock],
+    });
+    const rendered = renderApp(null, {
+      featureFlags: {
+        [PROJECT_EXTENSIONS]: false,
+      },
+      environment: { disabledMenuItems: [navbarMock.key] },
+      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+    });
+    // Get the nav container, to narrow down the search area
+    const container = await rendered.findByTestId('left-navigation');
+    const navbarRendered = within(container);
+
+    const applicationLocale = operations.FetchLoggedInUser.me.language;
+    const mainMenuLabel = navbarMock.labelAllLocales.find(
+      localized => localized.locale === applicationLocale
+    );
+    await wait(() => {
+      expect(
+        navbarRendered.queryByText(mainMenuLabel.value)
+      ).not.toBeInTheDocument();
+    });
+  });
+});
+describe('when navbar menu items are hidden', () => {
+  let operations;
+  beforeEach(() => {
+    operations = mocksForMc.createMockOperations({
+      FetchProject: {
+        project: ProjectMock.build({
+          allAppliedMenuVisibilities: [{ name: 'hideFoo', value: true }],
+        }),
+      },
+    });
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: { mc: operations },
+    });
+    selectProjectKeyFromUrl.mockReturnValue(
+      operations.FetchLoggedInUser.me.defaultProjectKey
+    );
+  });
+  it('should not render hidden menu items', async () => {
+    const navbarSubmenuMock = ApplicationNavbarSubmenuMock.build({
+      menuVisibility:
+        operations.FetchProject.project.allAppliedMenuVisibilities[0].name,
+    });
+    const navbarMock = ApplicationNavbarMenuMock.build({
+      submenu: [navbarSubmenuMock],
+    });
+    const rendered = renderApp(null, {
+      featureFlags: {
+        [PROJECT_EXTENSIONS]: false,
+      },
+      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+    });
+    // Get the nav container, to narrow down the search area
+    const container = await rendered.findByTestId('left-navigation');
+    const navbarRendered = within(container);
+
+    const applicationLocale = operations.FetchLoggedInUser.me.language;
+    const mainMenuLabel = navbarMock.labelAllLocales.find(
+      localized => localized.locale === applicationLocale
+    );
+    await wait(() => {
+      expect(
+        navbarRendered.queryByText(mainMenuLabel.value)
+      ).not.toBeInTheDocument();
+    });
+  });
+});
+describe('when navbar menu items match given permissions', () => {
+  let operations;
+  beforeEach(() => {
+    operations = mocksForMc.createMockOperations({
+      FetchProject: {
+        project: ProjectMock.build({
+          allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
+        }),
+      },
+    });
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: { mc: operations },
+    });
+    selectProjectKeyFromUrl.mockReturnValue(
+      operations.FetchLoggedInUser.me.defaultProjectKey
+    );
+  });
+  it('should render item', async () => {
+    const navbarMock = ApplicationNavbarMenuMock.build({
+      permissions: ['ManageOrders'],
+    });
+    const rendered = renderApp(null, {
+      featureFlags: {
+        [PROJECT_EXTENSIONS]: false,
+      },
+      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+    });
+    // Get the nav container, to narrow down the search area
+    const container = await rendered.findByTestId('left-navigation');
+    const navbarRendered = within(container);
+
+    const applicationLocale = operations.FetchLoggedInUser.me.language;
+    const mainMenuLabel = navbarMock.labelAllLocales.find(
+      localized => localized.locale === applicationLocale
+    );
+    await navbarRendered.findByText(mainMenuLabel.value);
+  });
+});
+describe('when navbar menu items do not match given permissions', () => {
+  let operations;
+  beforeEach(() => {
+    operations = mocksForMc.createMockOperations({
+      FetchProject: {
+        project: ProjectMock.build({
+          allAppliedPermissions: [{ name: 'canManageOrders', value: false }],
+        }),
+      },
+    });
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: { mc: operations },
+    });
+    selectProjectKeyFromUrl.mockReturnValue(
+      operations.FetchLoggedInUser.me.defaultProjectKey
+    );
+  });
+  it('should not render item', async () => {
+    const navbarMock = ApplicationNavbarMenuMock.build({
+      permissions: ['ViewOrders'],
+    });
+    const rendered = renderApp(null, {
+      featureFlags: {
+        [PROJECT_EXTENSIONS]: false,
+      },
+      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+    });
+    // Get the nav container, to narrow down the search area
+    const container = await rendered.findByTestId('left-navigation');
+    const navbarRendered = within(container);
+
+    const applicationLocale = operations.FetchLoggedInUser.me.language;
+    const mainMenuLabel = navbarMock.labelAllLocales.find(
+      localized => localized.locale === applicationLocale
+    );
+    await wait(() => {
+      expect(
+        navbarRendered.queryByText(mainMenuLabel.value)
+      ).not.toBeInTheDocument();
+    });
+  });
+});
+describe('when navbar menu items match given action rights', () => {
+  let operations;
+  beforeEach(() => {
+    operations = mocksForMc.createMockOperations({
+      FetchProject: {
+        project: ProjectMock.build({
+          allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
+          allAppliedActionRights: [
+            {
+              group: 'orders',
+              name: 'canAddOrders',
+              value: true,
+            },
+          ],
+        }),
+      },
+    });
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: { mc: operations },
+    });
+    selectProjectKeyFromUrl.mockReturnValue(
+      operations.FetchLoggedInUser.me.defaultProjectKey
+    );
+  });
+  it('should render item', async () => {
+    const navbarMock = ApplicationNavbarMenuMock.build({
+      permissions: ['ManageOrders'],
+      actionRights: [{ group: 'orders', name: 'AddOrders' }],
+    });
+    const rendered = renderApp(null, {
+      featureFlags: {
+        [PROJECT_EXTENSIONS]: false,
+      },
+      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+    });
+    // Get the nav container, to narrow down the search area
+    const container = await rendered.findByTestId('left-navigation');
+    const navbarRendered = within(container);
+
+    const applicationLocale = operations.FetchLoggedInUser.me.language;
+    const mainMenuLabel = navbarMock.labelAllLocales.find(
+      localized => localized.locale === applicationLocale
+    );
+    await navbarRendered.findByText(mainMenuLabel.value);
+  });
+});
+describe('when navbar menu items do not match given action rights', () => {
+  let operations;
+  beforeEach(() => {
+    operations = mocksForMc.createMockOperations({
+      FetchProject: {
+        project: ProjectMock.build({
+          allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
+          allAppliedActionRights: [
+            {
+              group: 'orders',
+              name: 'canAddOrders',
+              value: false,
+            },
+          ],
+        }),
+      },
+    });
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: { mc: operations },
+    });
+    selectProjectKeyFromUrl.mockReturnValue(
+      operations.FetchLoggedInUser.me.defaultProjectKey
+    );
+  });
+  it('should not render item', async () => {
+    const navbarMock = ApplicationNavbarMenuMock.build({
+      permissions: ['ManageOrders'],
+      actionRights: [{ group: 'orders', name: 'AddOrders' }],
+    });
+    const rendered = renderApp(null, {
+      featureFlags: {
+        [PROJECT_EXTENSIONS]: false,
+      },
+      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+    });
+    // Get the nav container, to narrow down the search area
+    const container = await rendered.findByTestId('left-navigation');
+    const navbarRendered = within(container);
+
+    const applicationLocale = operations.FetchLoggedInUser.me.language;
+    const mainMenuLabel = navbarMock.labelAllLocales.find(
+      localized => localized.locale === applicationLocale
+    );
+    await wait(() => {
+      expect(
+        navbarRendered.queryByText(mainMenuLabel.value)
+      ).not.toBeInTheDocument();
+    });
+  });
+});
+describe('when navbar menu items match given data fences', () => {
+  let operations;
+  beforeEach(() => {
+    operations = mocksForMc.createMockOperations({
+      FetchProject: {
+        project: ProjectMock.build({
+          allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
+          allAppliedDataFences: [
+            {
+              __typename: 'StoreDataFence',
+              value: 'usa',
+              type: 'store',
+              group: 'orders',
+              name: 'canManageOrders',
+            },
+          ],
+        }),
+      },
+    });
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: { mc: operations },
+    });
+    selectProjectKeyFromUrl.mockReturnValue(
+      operations.FetchLoggedInUser.me.defaultProjectKey
+    );
+  });
+  it('should render item', async () => {
+    const navbarMock = ApplicationNavbarMenuMock.build({
+      permissions: ['ManageOrders'],
+      dataFences: [
+        {
+          type: 'store',
+          group: 'orders',
+          name: 'ManageOrders',
+        },
+      ],
+    });
+    const rendered = renderApp(null, {
+      featureFlags: {
+        [PROJECT_EXTENSIONS]: false,
+      },
+      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+    });
+    // Get the nav container, to narrow down the search area
+    const container = await rendered.findByTestId('left-navigation');
+    const navbarRendered = within(container);
+
+    const applicationLocale = operations.FetchLoggedInUser.me.language;
+    const mainMenuLabel = navbarMock.labelAllLocales.find(
+      localized => localized.locale === applicationLocale
+    );
+    await navbarRendered.findByText(mainMenuLabel.value);
+  });
+});
+describe('when navbar menu items do not match given data fences', () => {
+  let operations;
+  beforeEach(() => {
+    operations = mocksForMc.createMockOperations({
+      FetchProject: {
+        project: ProjectMock.build({
+          allAppliedPermissions: [{ name: 'canViewOrders', value: true }],
+          allAppliedDataFences: [
+            {
+              __typename: 'StoreDataFence',
+              value: 'usa',
+              type: 'store',
+              group: 'orders',
+              name: 'canManageOrders',
+            },
+          ],
+        }),
+      },
+    });
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: { mc: operations },
+    });
+    selectProjectKeyFromUrl.mockReturnValue(
+      operations.FetchLoggedInUser.me.defaultProjectKey
+    );
+  });
+  it('should not render item', async () => {
+    const navbarMock = ApplicationNavbarMenuMock.build({
+      permissions: ['ManageOrders'],
+      dataFences: [
+        {
+          type: 'store',
+          group: 'orders',
+          name: 'ViewOrders',
+        },
+      ],
+    });
+    const rendered = renderApp(null, {
+      featureFlags: {
+        [PROJECT_EXTENSIONS]: false,
+      },
+      DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
+    });
+    // Get the nav container, to narrow down the search area
+    const container = await rendered.findByTestId('left-navigation');
+    const navbarRendered = within(container);
+
+    const applicationLocale = operations.FetchLoggedInUser.me.language;
+    const mainMenuLabel = navbarMock.labelAllLocales.find(
+      localized => localized.locale === applicationLocale
+    );
+    await wait(() => {
+      expect(
+        navbarRendered.queryByText(mainMenuLabel.value)
+      ).not.toBeInTheDocument();
     });
   });
 });

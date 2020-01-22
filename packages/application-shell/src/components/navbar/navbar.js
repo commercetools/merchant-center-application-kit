@@ -115,7 +115,11 @@ export const MenuExpander = props => (
       [styles.hidden]: !props.isVisible,
     })}
   >
-    <div onClick={props.onClick} className={styles['expand-icon']}>
+    <div
+      onClick={props.onClick}
+      className={styles['expand-icon']}
+      data-testid="menu-expander"
+    >
       {/*
         FIXME: define hover effect.
         https://github.com/commercetools/merchant-center-frontend/issues/2216
@@ -130,28 +134,48 @@ MenuExpander.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export const MenuGroup = props => (
-  <ul
-    className={classnames(
-      { [styles.list]: props.level === 1 },
-      { [styles.sublist]: props.level === 2 },
-      {
-        [styles['sublist-no-children']]: props.level === 2 && !props.children,
-      },
-      {
-        [styles['sublist-expanded__active']]:
-          props.level === 2 && props.isActive && props.isExpanded,
-      },
-      props.level === 2 && props.isActive && !props.isExpanded
-        ? styles['sublist-collapsed__active']
-        : styles.sublist__inactive
-    )}
-  >
-    {props.children}
-  </ul>
-);
+export const MenuGroup = props => {
+  const isSublistActiveWhileIsMenuExpanded =
+    props.level === 2 && props.isActive && props.isExpanded;
+  const isSublistActiveWhileIsMenuCollapsed =
+    props.level === 2 && props.isActive && !props.isExpanded;
+  return (
+    <ul
+      id={`${props.id}-group`}
+      data-testid={`${props.id}-group`}
+      role="menu"
+      aria-expanded={
+        isSublistActiveWhileIsMenuExpanded ||
+        isSublistActiveWhileIsMenuCollapsed
+      }
+      className={classnames(
+        { [styles.list]: props.level === 1 },
+        { [styles.sublist]: props.level === 2 },
+        {
+          [styles['sublist-no-children']]: props.level === 2 && !props.children,
+        },
+        {
+          [styles[
+            'sublist-expanded__active'
+          ]]: isSublistActiveWhileIsMenuExpanded,
+        },
+        {
+          [styles[
+            'sublist-collapsed__active'
+          ]]: isSublistActiveWhileIsMenuCollapsed,
+        },
+        {
+          [styles.sublist__inactive]: !isSublistActiveWhileIsMenuCollapsed,
+        }
+      )}
+    >
+      {props.children}
+    </ul>
+  );
+};
 MenuGroup.displayName = 'MenuGroup';
 MenuGroup.propTypes = {
+  id: PropTypes.string.isRequired,
   level: PropTypes.oneOf([1, 2]).isRequired,
   isActive: PropTypes.bool,
   isExpanded: PropTypes.bool,
@@ -160,6 +184,7 @@ MenuGroup.propTypes = {
 
 export const MenuItem = props => (
   <li
+    role="menu-item"
     className={classnames(styles['list-item'], {
       [styles.item__active]: props.isActive,
       [styles['item_menu-collapsed']]: !props.isMenuOpen,
@@ -565,10 +590,13 @@ export class DataMenu extends React.PureComponent {
                   )}
                 />
               </div>
-              <div className={styles.title}>{this.renderLabel(menu)}</div>
+              <div className={styles.title} aria-owns={`${menu.key}-group`}>
+                {this.renderLabel(menu)}
+              </div>
             </div>
           </MenuItemLink>
           <MenuGroup
+            id={menu.key}
             level={2}
             isActive={isActive}
             isExpanded={this.state.isMenuOpen}
@@ -650,7 +678,7 @@ export class DataMenu extends React.PureComponent {
 
   render() {
     return (
-      <MenuGroup level={1}>
+      <MenuGroup id="main" level={1}>
         <div className={styles['scrollable-menu']}>
           {this.props.data.map((menu, index) => (
             <React.Fragment key={index}>
@@ -774,7 +802,7 @@ export const LoadingNavBar = () => {
   const ref = React.useRef();
   return (
     <NavBarLayout ref={ref}>
-      <MenuGroup level={1}>
+      <MenuGroup id="main" level={1}>
         <React.Fragment>
           {Array.from(new Array(5)).map((_, index) => (
             <MenuItem
