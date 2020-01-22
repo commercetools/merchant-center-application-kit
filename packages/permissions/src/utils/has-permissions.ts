@@ -269,7 +269,7 @@ const getIsPermissionOverwritingDataFence = (
 
   /**
    * NOTE:
-   *    A data fence relates, exists in relation to a resource access.
+   *    A data fence relates, exists in relation to a general permission.
    *    This relation is constructed by the group of the data fence.
    *
    *    Given the user already has manage access on the data fence's group
