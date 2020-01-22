@@ -4,7 +4,7 @@ import {
   hasSomePermissions,
   hasEveryPermissions,
   hasEveryActionRight,
-  hasAppliedDataFence,
+  hasSomeDataFence,
 } from '../../utils/has-permissions';
 
 // Permissions
@@ -56,7 +56,6 @@ type TSelectDataFenceData = (
   }
 ) => string[] | null;
 
-// Forward-compatibility with React Hooks 🎉
 const useIsAuthorized = ({
   demandedPermissions,
   demandedActionRights,
@@ -92,7 +91,8 @@ const useIsAuthorized = ({
         )
       );
     }
-    hasDemandeDataFences = hasAppliedDataFence({
+    hasDemandeDataFences = hasSomeDataFence({
+      actualPermissions,
       demandedDataFences,
       actualDataFences,
       selectDataFenceData,

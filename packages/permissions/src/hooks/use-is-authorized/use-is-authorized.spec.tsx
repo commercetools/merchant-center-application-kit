@@ -1,6 +1,6 @@
 import React from 'react';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
-import { render } from '@testing-library/react';
+import { render as rtlRender } from '@testing-library/react';
 import useIsAuthorized from './use-is-authorized';
 
 type TPermissionName = string;
@@ -62,7 +62,7 @@ const TestComponent = (props: TestProps) => {
   );
 };
 
-const testRender = ({
+const render = ({
   demandedPermissions,
   demandedActionRights,
   demandedDataFences,
@@ -83,7 +83,7 @@ const testRender = ({
   allAppliedDataFences?: TAllAppliedDataFence[];
   shouldMatchSomePermissions?: boolean;
 }) =>
-  render(
+  rtlRender(
     <ApplicationContextProvider
       project={{
         key: 'test-with-big-data',
@@ -130,11 +130,11 @@ const testRender = ({
     </ApplicationContextProvider>
   );
 
-describe('when only one permission matches', () => {
-  describe('General Permissions', () => {
-    describe('when "shouldMatchSomePermissions=true"', () => {
+describe('general permissions', () => {
+  describe('when only some permission should be matched', () => {
+    describe('with one applied permission and one matching demanded permission', () => {
       it('should indicate being authorized', () => {
-        const { queryByText } = testRender({
+        const rendered = render({
           demandedPermissions: ['ManageCustomers', 'ManageOrders'],
           allAppliedPermissions: [
             {
@@ -145,12 +145,30 @@ describe('when only one permission matches', () => {
           shouldMatchSomePermissions: true,
         });
 
-        expect(queryByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
-    describe('when "shouldMatchSomePermissions=false"', () => {
+    describe('with one applied permission and no matching demanded permission', () => {
+      it('should indicate not being authorized', () => {
+        const rendered = render({
+          demandedPermissions: ['ManageCustomers', 'ManageOrders'],
+          allAppliedPermissions: [
+            {
+              name: 'canManageCustomersGroups',
+              value: true,
+            },
+          ],
+          shouldMatchSomePermissions: true,
+        });
+
+        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+      });
+    });
+  });
+  describe('when all permissions should be matched', () => {
+    describe('with one applied permission and one not matching demanded permission', () => {
       it('should indicate being not authorized', () => {
-        const { queryByText } = testRender({
+        const rendered = render({
           allAppliedPermissions: [
             {
               name: 'canManageCustomers',
@@ -161,43 +179,115 @@ describe('when only one permission matches', () => {
           shouldMatchSomePermissions: false,
         });
 
-        expect(queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
       });
     });
-    describe('with actual actionRight different than demanded actionRight', () => {
-      it('should indicate being not authorized', () => {
-        const { queryByText } = testRender({
+    describe('with mulltiple applied permission and all demanded permission matching', () => {
+      it('should indicate being authorized', () => {
+        const rendered = render({
+          allAppliedPermissions: [
+            {
+              name: 'canManageCustomers',
+              value: true,
+            },
+            {
+              name: 'canManageOrders',
+              value: true,
+            },
+          ],
+          demandedPermissions: ['ManageCustomers', 'ManageOrders'],
+          shouldMatchSomePermissions: false,
+        });
+
+        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+      });
+    });
+    describe('with applied manage permission', () => {
+      describe('when demanding view permission', () => {
+        it('should indicate being authorized', () => {
+          const rendered = render({
+            allAppliedPermissions: [
+              {
+                name: 'canManageCustomers',
+                value: true,
+              },
+            ],
+            demandedPermissions: ['ViewCustomers'],
+          });
+
+          expect(
+            rendered.queryByText('Is authorized: Yes')
+          ).toBeInTheDocument();
+        });
+      });
+      describe('when demanding manage permission', () => {
+        it('should indicate being authorized', () => {
+          const rendered = render({
+            allAppliedPermissions: [
+              {
+                name: 'canManageCustomers',
+                value: true,
+              },
+            ],
+            demandedPermissions: ['ManageCustomers'],
+          });
+
+          expect(
+            rendered.queryByText('Is authorized: Yes')
+          ).toBeInTheDocument();
+        });
+      });
+    });
+    describe('without applied manage permission', () => {
+      it('should indicate not being authorized', () => {
+        const rendered = render({
           allAppliedPermissions: [
             {
               name: 'canManageCustomers',
               value: true,
             },
           ],
+          demandedPermissions: ['ViewCustomersGroups'],
+        });
+
+        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+      });
+    });
+  });
+});
+
+describe('action rights', () => {
+  describe('with applied and matching demanded view permission', () => {
+    describe('without applied action right matching demanded', () => {
+      it('should indicate not being authorized', () => {
+        const rendered = render({
+          allAppliedPermissions: [
+            { name: 'canManageProjectSettings', value: true },
+            { name: 'canViewProducts', value: true },
+          ],
           allAppliedActionRights: [
             {
               group: 'products',
               name: 'canEditPrices',
-              value: true,
+              value: false,
             },
           ],
-          demandedPermissions: ['ManageCustomers'],
+          demandedPermissions: ['ViewProducts'],
           demandedActionRights: [
             { group: 'products', name: 'PublishProducts' },
           ],
-          shouldMatchSomePermissions: false,
+          shouldMatchSomePermissions: true,
         });
 
-        expect(queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
       });
     });
-    describe('with actual actionRight similar to demanded actionRight', () => {
+    describe('with applied action right matching demanded', () => {
       it('should indicate being authorized', () => {
-        const { queryByText } = testRender({
+        const rendered = render({
           allAppliedPermissions: [
-            {
-              name: 'canManageCustomers',
-              value: true,
-            },
+            { name: 'canManageProjectSettings', value: true },
+            { name: 'canViewProducts', value: true },
           ],
           allAppliedActionRights: [
             {
@@ -206,347 +296,388 @@ describe('when only one permission matches', () => {
               value: true,
             },
           ],
-          demandedPermissions: ['ManageCustomers'],
+          demandedPermissions: ['ViewProducts'],
           demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
+          shouldMatchSomePermissions: true,
+        });
+
+        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+      });
+    });
+    describe('with applied action right in another group of demanded', () => {
+      it('should indicate not being authorized', () => {
+        const rendered = render({
+          allAppliedPermissions: [
+            { name: 'canManageProjectSettings', value: true },
+            { name: 'canViewProducts', value: true },
+          ],
+          allAppliedActionRights: [
+            {
+              group: 'orders',
+              name: 'canEditPrices',
+              value: true,
+            },
+          ],
+          demandedPermissions: ['ViewProducts'],
+          demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
+          shouldMatchSomePermissions: true,
+        });
+
+        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+      });
+    });
+  });
+  describe('with applied and none matching demanded view permission', () => {
+    describe('with applied action right not matching demanded', () => {
+      it('should indicate not being authorized', () => {
+        const rendered = render({
+          allAppliedPermissions: [{ name: 'canViewProducts', value: false }],
+          allAppliedActionRights: [
+            {
+              group: 'products',
+              name: 'canEditPrices',
+              value: true,
+            },
+          ],
+          demandedPermissions: ['ManageProducts'],
+          demandedActionRights: [
+            { group: 'products', name: 'PublishProducts' },
+          ],
+        });
+
+        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+      });
+    });
+  });
+  describe('without applied and matching demanded view permission', () => {
+    it('should indicate not being authorized', () => {
+      const rendered = render({
+        allAppliedPermissions: [
+          { name: 'canManageProjectSettings', value: true },
+          // Misses `canViewProducts`
+        ],
+        allAppliedActionRights: [
+          {
+            group: 'products',
+            name: 'canEditPrices',
+            value: true,
+          },
+        ],
+        demandedPermissions: ['ViewProducts'],
+        demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
+      });
+
+      expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+    });
+  });
+});
+
+describe('data fences', () => {
+  describe('when general permission is matched', () => {
+    describe('when data fence is matched', () => {
+      describe('when not overwritten', () => {
+        it('should indicate as authorized', () => {
+          const rendered = render({
+            shouldMatchSomePermissions: true,
+            allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
+            allAppliedDataFences: [
+              {
+                __typename: 'StoreDataFence',
+                type: 'store',
+                group: 'orders',
+                name: 'canViewOrders',
+                value: 'store-1',
+              },
+            ],
+            demandedPermissions: ['ManageOrders'],
+            demandedDataFences: [
+              {
+                type: 'store',
+                group: 'orders',
+                name: 'ViewOrders',
+              },
+            ],
+            selectDataFenceData: ({ type }) => {
+              switch (type) {
+                case 'store':
+                  return ['store-1'];
+                default:
+                  return null;
+              }
+            },
+          });
+
+          expect(
+            rendered.queryByText('Is authorized: Yes')
+          ).toBeInTheDocument();
+        });
+      });
+    });
+    describe('when overwritten', () => {
+      it('should indicate as not authorized', () => {
+        const rendered = render({
+          shouldMatchSomePermissions: true,
+          allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
+          allAppliedActionRights: [
+            {
+              group: 'products',
+              name: 'canEditPrices',
+              value: false,
+            },
+          ],
+          allAppliedDataFences: [
+            {
+              __typename: 'StoreDataFence',
+              type: 'store',
+              group: 'orders',
+              name: 'canViewOrders',
+              value: 'store-1',
+            },
+          ],
+          demandedPermissions: ['ManageOrders'],
+          demandedActionRights: [
+            { group: 'products', name: 'PublishProducts' },
+          ],
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ViewOrders',
+            },
+          ],
+          selectDataFenceData: ({ type }) => {
+            switch (type) {
+              case 'store':
+                return ['store-1'];
+              default:
+                return null;
+            }
+          },
+        });
+
+        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+      });
+    });
+    describe('when data fence is not matched', () => {
+      it('should indicate as authorized', () => {
+        const rendered = render({
+          allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
+          allAppliedDataFences: [
+            {
+              __typename: 'StoreDataFence',
+              type: 'store',
+              group: 'orders',
+              name: 'canViewOrders',
+              value: 'store-1',
+            },
+          ],
+          demandedPermissions: ['ManageOrders'],
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ManageOrders',
+            },
+          ],
+          selectDataFenceData: ({ type }) => {
+            switch (type) {
+              case 'store':
+                return ['store-1'];
+              default:
+                return null;
+            }
+          },
+        });
+
+        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+      });
+    });
+    describe('when actual data fence is from different group', () => {
+      it('should indicate as authorized', () => {
+        const rendered = render({
+          shouldMatchSomePermissions: true,
+          allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
+          allAppliedDataFences: [
+            {
+              __typename: 'StoreDataFence',
+              type: 'store',
+              group: 'customers',
+              name: 'canViewCustomers',
+              value: 'store-1',
+            },
+          ],
+          demandedPermissions: ['ManageOrders'],
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ManageOrders',
+            },
+          ],
+          selectDataFenceData: ({ type }) => {
+            switch (type) {
+              case 'store':
+                return ['store-1'];
+              default:
+                return null;
+            }
+          },
+        });
+
+        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+      });
+    });
+  });
+
+  describe('when general permission is not matched', () => {
+    describe('when at least one of the demanded data fence is matched', () => {
+      it('should indicate as authorized', () => {
+        const rendered = render({
           shouldMatchSomePermissions: false,
+          allAppliedPermissions: [
+            { name: 'canViewOrders', value: false },
+            { name: 'canManageOrders', value: false },
+          ],
+          allAppliedDataFences: [
+            {
+              __typename: 'StoreDataFence',
+              type: 'store',
+              group: 'orders',
+              name: 'canViewOrders',
+              value: 'store-1',
+            },
+          ],
+          demandedPermissions: ['ViewOrders'],
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ViewOrders',
+            },
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ManageOrders',
+            },
+          ],
+          selectDataFenceData: () => ['store-1'],
         });
 
-        expect(queryByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
-  });
-
-  describe('ActionRights', () => {
-    describe('if can view products', () => {
-      describe('if can not publish products on products group', () => {
-        it('should pass isAuthorized as "false"', () => {
-          const { queryByText } = testRender({
-            allAppliedPermissions: [
-              { name: 'canManageProjectSettings', value: true },
-              { name: 'canViewProducts', value: true },
-            ],
-            allAppliedActionRights: [
-              {
-                group: 'products',
-                name: 'canEditPrices',
-                value: false,
-              },
-            ],
-            demandedPermissions: ['ViewProducts'],
-            demandedActionRights: [
-              { group: 'products', name: 'PublishProducts' },
-            ],
-            shouldMatchSomePermissions: true,
-          });
-
-          expect(queryByText('Is authorized: No')).toBeInTheDocument();
+    describe('when all data fences are matched', () => {
+      it('should indicate as authorized', () => {
+        const rendered = render({
+          shouldMatchSomePermissions: false,
+          allAppliedPermissions: [
+            { name: 'canViewOrders', value: false },
+            { name: 'canManageOrders', value: false },
+          ],
+          allAppliedDataFences: [
+            {
+              __typename: 'StoreDataFence',
+              type: 'store',
+              group: 'orders',
+              name: 'canViewOrders',
+              value: 'store-1',
+            },
+          ],
+          demandedPermissions: ['ViewOrders'],
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ViewOrders',
+            },
+          ],
+          selectDataFenceData: ({ type }) => {
+            switch (type) {
+              case 'store':
+                return ['store-1'];
+              default:
+                return null;
+            }
+          },
         });
-      });
-      describe('if can edit prices on products group', () => {
-        it('should pass isAuthorized as "false"', () => {
-          const { queryByText } = testRender({
-            allAppliedPermissions: [
-              { name: 'canManageProjectSettings', value: true },
-              { name: 'canViewProducts', value: true },
-            ],
-            allAppliedActionRights: [
-              {
-                group: 'products',
-                name: 'canEditPrices',
-                value: true,
-              },
-            ],
-            demandedPermissions: ['ViewProducts'],
-            demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
-            shouldMatchSomePermissions: true,
-          });
 
-          expect(queryByText('Is authorized: Yes')).toBeInTheDocument();
-        });
-      });
-      describe('if can edit prices on orders group', () => {
-        it('should pass isAuthorized as "false"', () => {
-          const { queryByText } = testRender({
-            allAppliedPermissions: [
-              { name: 'canManageProjectSettings', value: true },
-              { name: 'canViewProducts', value: true },
-            ],
-            allAppliedActionRights: [
-              {
-                group: 'orders',
-                name: 'canEditPrices',
-                value: true,
-              },
-            ],
-            demandedPermissions: ['ViewProducts'],
-            demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
-            shouldMatchSomePermissions: true,
-          });
-
-          expect(queryByText('Is authorized: No')).toBeInTheDocument();
-        });
+        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
-  });
-
-  describe('DataFences', () => {
-    describe('when general permission is met', () => {
-      describe('when dataFence permission is met', () => {
-        it('should indicate as authorized', () => {
-          const { queryByText } = testRender({
-            shouldMatchSomePermissions: true,
-            allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
-            allAppliedDataFences: [
-              {
-                __typename: 'StoreDataFence',
-                type: 'store',
-                group: 'orders',
-                name: 'canViewOrders',
-                value: 'store-1',
-              },
-            ],
-            demandedPermissions: ['ManageOrders'],
-            demandedDataFences: [
-              {
-                type: 'store',
-                group: 'orders',
-                name: 'ViewOrders',
-              },
-            ],
-            selectDataFenceData: ({ type }) => {
-              switch (type) {
-                case 'store':
-                  return ['store-1'];
-                default:
-                  return null;
-              }
+    describe('when data fence permission is not matched', () => {
+      it('should indicate as not authorized', () => {
+        const rendered = render({
+          shouldMatchSomePermissions: true,
+          allAppliedPermissions: [
+            { name: 'canViewOrders', value: false },
+            { name: 'canManageOrders', value: false },
+          ],
+          allAppliedDataFences: [
+            {
+              __typename: 'StoreDataFence',
+              type: 'store',
+              group: 'orders',
+              name: 'canViewOrders',
+              value: 'store-1',
             },
-          });
-
-          expect(queryByText('Is authorized: Yes')).toBeInTheDocument();
-        });
-      });
-      describe('when dataFence permission is not met', () => {
-        it('should indicate as authorized', () => {
-          const { queryByText } = testRender({
-            allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
-            allAppliedDataFences: [
-              {
-                __typename: 'StoreDataFence',
-                type: 'store',
-                group: 'orders',
-                name: 'canViewOrders',
-                value: 'store-1',
-              },
-            ],
-            demandedPermissions: ['ManageOrders'],
-            demandedDataFences: [
-              {
-                type: 'store',
-                group: 'orders',
-                name: 'ManageOrders',
-              },
-            ],
-            selectDataFenceData: ({ type }) => {
-              switch (type) {
-                case 'store':
-                  return ['store-1'];
-                default:
-                  return null;
-              }
+          ],
+          demandedPermissions: ['ViewOrders'],
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ManageOrders',
             },
-          });
-
-          expect(queryByText('Is authorized: Yes')).toBeInTheDocument();
+          ],
+          selectDataFenceData: ({ type }) => {
+            switch (type) {
+              case 'store':
+                return ['store-1'];
+              default:
+                return null;
+            }
+          },
         });
-      });
-      describe('when actual data fence permission is from different group', () => {
-        it('should indicate as authorized', () => {
-          const { queryByText } = testRender({
-            shouldMatchSomePermissions: true,
-            allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
-            allAppliedDataFences: [
-              {
-                __typename: 'StoreDataFence',
-                type: 'store',
-                group: 'customers',
-                name: 'canViewCustomers',
-                value: 'store-1',
-              },
-            ],
-            demandedPermissions: ['ManageOrders'],
-            demandedDataFences: [
-              {
-                type: 'store',
-                group: 'orders',
-                name: 'ManageOrders',
-              },
-            ],
-            selectDataFenceData: ({ type }) => {
-              switch (type) {
-                case 'store':
-                  return ['store-1'];
-                default:
-                  return null;
-              }
-            },
-          });
 
-          expect(queryByText('Is authorized: Yes')).toBeInTheDocument();
-        });
+        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
       });
     });
-
-    describe('when general permission is not met', () => {
-      describe('when at least one of the demanded DataFence permissions is met', () => {
-        it('should indicate as authorized', () => {
-          const { queryByText } = testRender({
-            shouldMatchSomePermissions: false,
-            allAppliedPermissions: [
-              { name: 'canViewOrders', value: false },
-              { name: 'canManageOrders', value: false },
-            ],
-            allAppliedDataFences: [
-              {
-                __typename: 'StoreDataFence',
-                type: 'store',
-                group: 'orders',
-                name: 'canViewOrders',
-                value: 'store-1',
-              },
-            ],
-            demandedPermissions: ['ViewOrders'],
-            demandedDataFences: [
-              {
-                type: 'store',
-                group: 'orders',
-                name: 'ViewOrders',
-              },
-              {
-                type: 'store',
-                group: 'orders',
-                name: 'ManageOrders',
-              },
-            ],
-            selectDataFenceData: () => ['store-1'],
-          });
-
-          expect(queryByText('Is authorized: Yes')).toBeInTheDocument();
-        });
-      });
-      describe('when all dataFence permission are met', () => {
-        it('should indicate as authorized', () => {
-          const { queryByText } = testRender({
-            shouldMatchSomePermissions: false,
-            allAppliedPermissions: [
-              { name: 'canViewOrders', value: false },
-              { name: 'canManageOrders', value: false },
-            ],
-            allAppliedDataFences: [
-              {
-                __typename: 'StoreDataFence',
-                type: 'store',
-                group: 'orders',
-                name: 'canViewOrders',
-                value: 'store-1',
-              },
-            ],
-            demandedPermissions: ['ViewOrders'],
-            demandedDataFences: [
-              {
-                type: 'store',
-                group: 'orders',
-                name: 'ViewOrders',
-              },
-            ],
-            selectDataFenceData: ({ type }) => {
-              switch (type) {
-                case 'store':
-                  return ['store-1'];
-                default:
-                  return null;
-              }
+    describe('when actual data fence permission is from different group', () => {
+      it('should indicate as not authorized', () => {
+        const rendered = render({
+          shouldMatchSomePermissions: true,
+          allAppliedPermissions: [
+            { name: 'canViewOrders', value: false },
+            { name: 'canManageOrders', value: false },
+          ],
+          allAppliedDataFences: [
+            {
+              __typename: 'StoreDataFence',
+              type: 'store',
+              group: 'customers',
+              name: 'canViewCustomers',
+              value: 'store-1',
             },
-          });
-
-          expect(queryByText('Is authorized: Yes')).toBeInTheDocument();
-        });
-      });
-      describe('when dataFence permission is not met', () => {
-        it('should indicate as not authorized', () => {
-          const { queryByText } = testRender({
-            shouldMatchSomePermissions: true,
-            allAppliedPermissions: [
-              { name: 'canViewOrders', value: false },
-              { name: 'canManageOrders', value: false },
-            ],
-            allAppliedDataFences: [
-              {
-                __typename: 'StoreDataFence',
-                type: 'store',
-                group: 'orders',
-                name: 'canViewOrders',
-                value: 'store-1',
-              },
-            ],
-            demandedPermissions: ['ViewOrders'],
-            demandedDataFences: [
-              {
-                type: 'store',
-                group: 'orders',
-                name: 'ManageOrders',
-              },
-            ],
-            selectDataFenceData: ({ type }) => {
-              switch (type) {
-                case 'store':
-                  return ['store-1'];
-                default:
-                  return null;
-              }
+          ],
+          demandedPermissions: ['ViewOrders'],
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ManageOrders',
             },
-          });
-
-          expect(queryByText('Is authorized: No')).toBeInTheDocument();
+          ],
+          selectDataFenceData: ({ type }) => {
+            switch (type) {
+              case 'store':
+                return ['store-1'];
+              default:
+                return null;
+            }
+          },
         });
-      });
-      describe('when actual data fence permission is from different group', () => {
-        it('should indicate as not authorized', () => {
-          const { queryByText } = testRender({
-            shouldMatchSomePermissions: true,
-            allAppliedPermissions: [
-              { name: 'canViewOrders', value: false },
-              { name: 'canManageOrders', value: false },
-            ],
-            allAppliedDataFences: [
-              {
-                __typename: 'StoreDataFence',
-                type: 'store',
-                group: 'customers',
-                name: 'canViewCustomers',
-                value: 'store-1',
-              },
-            ],
-            demandedPermissions: ['ViewOrders'],
-            demandedDataFences: [
-              {
-                type: 'store',
-                group: 'orders',
-                name: 'ManageOrders',
-              },
-            ],
-            selectDataFenceData: ({ type }) => {
-              switch (type) {
-                case 'store':
-                  return ['store-1'];
-                default:
-                  return null;
-              }
-            },
-          });
 
-          expect(queryByText('Is authorized: No')).toBeInTheDocument();
-        });
+        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });

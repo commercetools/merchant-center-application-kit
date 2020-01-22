@@ -5,7 +5,7 @@ import {
   hasEveryPermissions,
   hasSomePermissions,
   getInvalidPermissions,
-  hasAppliedDataFence,
+  hasSomeDataFence,
 } from './has-permissions';
 
 type TPermissionName = string;
@@ -207,11 +207,12 @@ describe('getInvalidPermissions', () => {
   });
 });
 
-describe('hasAppliedDataFence', () => {
+describe('hasSomeDataFence', () => {
   describe('user has not datafence permissions', () => {
     it('should return false', () => {
       expect(
-        hasAppliedDataFence({
+        hasSomeDataFence({
+          actualPermissions: null,
           actualDataFences: null,
           demandedDataFences: [
             {
@@ -229,7 +230,8 @@ describe('hasAppliedDataFence', () => {
   describe('no demanded dataFence exists in actual dataFences', () => {
     it('should return "false"', () => {
       expect(
-        hasAppliedDataFence({
+        hasSomeDataFence({
+          actualPermissions: null,
           actualDataFences: {
             store: {
               orders: {
@@ -254,7 +256,8 @@ describe('hasAppliedDataFence', () => {
   describe('some demanded dataFences exist in actual dataFences', () => {
     it('should return "true"', () => {
       expect(
-        hasAppliedDataFence({
+        hasSomeDataFence({
+          actualPermissions: null,
           actualDataFences: {
             store: {
               orders: {
@@ -284,7 +287,8 @@ describe('hasAppliedDataFence', () => {
   describe('all demanded dataFences exist in actual dataFences', () => {
     it('should return "true"', () => {
       expect(
-        hasAppliedDataFence({
+        hasSomeDataFence({
+          actualPermissions: null,
           actualDataFences: {
             store: {
               orders: {
@@ -309,7 +313,8 @@ describe('hasAppliedDataFence', () => {
   describe('no value from demanded dataFence exists in actual DataFence values', () => {
     it('should return "false"', () => {
       expect(
-        hasAppliedDataFence({
+        hasSomeDataFence({
+          actualPermissions: null,
           actualDataFences: {
             store: {
               orders: {
@@ -333,7 +338,8 @@ describe('hasAppliedDataFence', () => {
   });
   describe('some values from demanded dataFence exist in actual DataFence values', () => {
     it('should return "true"', () => {
-      const hasDF = hasAppliedDataFence({
+      const hasDF = hasSomeDataFence({
+        actualPermissions: null,
         actualDataFences: {
           store: {
             customers: {
@@ -358,7 +364,8 @@ describe('hasAppliedDataFence', () => {
   describe('all values from demanded dataFence exist in actual DataFence values', () => {
     it('should return "true"', () => {
       expect(
-        hasAppliedDataFence({
+        hasSomeDataFence({
+          actualPermissions: null,
           actualDataFences: {
             store: {
               orders: {

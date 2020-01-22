@@ -1,4 +1,5 @@
 import isNil from 'lodash/isNil';
+import upperFirst from 'lodash/upperFirst';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 
 // Permissions
@@ -59,6 +60,7 @@ type TActualDataFence = {
 };
 
 type TOptionsForAppliedDataFence = {
+  actualPermissions: TPermissions | null;
   demandedDataFences: TDemandedDataFence[];
   actualDataFences: TDataFences | null;
   selectDataFenceData?: TSelectDataFenceData;
@@ -79,18 +81,31 @@ const hasExactPermission = (
   actualPermissions: TPermissions
 ) => actualPermissions[toCanCase(demandedPermission)];
 
+const getIsViewPermission = (demandedPermission: TPermissionName) =>
+  demandedPermission.startsWith('View');
+
 // Check that the user permissions match the required MANAGE permission.
 // The shapes of the arguments are:
 // - demandedPermission:
 //     'ViewProducts'
 // - actualPermissions:
 //     { canViewProducts: true, canManageOrders: false }
-const hasManagePermission = (
+const doesManagePermissionInferViewPermission = (
   demandedPermission: TPermissionName,
   actualPermissions: TPermissions
-) =>
-  demandedPermission.startsWith('View') &&
-  actualPermissions[toCanCase(demandedPermission.replace('View', 'Manage'))];
+) => {
+  const isDemandedPermissionViewPermission = getIsViewPermission(
+    demandedPermission
+  );
+  const isViewPermissionInferredByManagePermission = Boolean(
+    actualPermissions[toCanCase(demandedPermission.replace('View', 'Manage'))]
+  );
+
+  return (
+    isDemandedPermissionViewPermission &&
+    isViewPermissionInferredByManagePermission
+  );
+};
 
 // Check the user permissions using one of the defined matchers.
 // The shapes of the arguments are:
@@ -107,8 +122,11 @@ export const hasPermission = (
 ) =>
   // First checking the existence of the exact permission
   hasExactPermission(demandedPermission, actualPermissions || {}) ||
-  // Then checking if a manage permission is inferred as a view permission
-  hasManagePermission(demandedPermission, actualPermissions || {});
+  // Then checking if a view permission is inferred as a manage permission
+  doesManagePermissionInferViewPermission(
+    demandedPermission,
+    actualPermissions || {}
+  );
 
 // Check the user action rights using one of the defined matchers.
 // The shapes of the arguments are:
@@ -190,11 +208,14 @@ export const getInvalidPermissions = (
   );
 };
 
-const hasDemandedDataFence = (options: {
+type TGetHasDemandedDataFenceOptions = {
   actualDataFence: TActualDataFence;
   demandedDataFence: TDemandedDataFence;
   selectDataFenceData?: TSelectDataFenceData;
-}): boolean => {
+};
+const getHasDemandedDataFence = (
+  options: TGetHasDemandedDataFenceOptions
+): boolean => {
   if (!options.selectDataFenceData) return false;
 
   const hasDemandedPermission = hasPermission(options.demandedDataFence.name, {
@@ -224,23 +245,49 @@ const hasDemandedDataFence = (options: {
   );
 };
 
-const getDataFenceByPermissionGroup = (
-  dataFences: TDataFences | null,
-  storeKey: TDataFenceType,
-  groupKey: string
+const getDataFenceByTypeAndGroup = (
+  actualDataFences: TDataFences | null,
+  demandedDataFenceType: TDataFenceType,
+  demandedDataFenceGroup: string
 ) => {
-  if (!dataFences) return null;
+  if (!actualDataFences) return null;
 
-  if (storeKey in dataFences) {
-    const resourceType = dataFences[storeKey];
-    if (resourceType && groupKey in resourceType) {
-      return resourceType[groupKey];
+  if (demandedDataFenceType in actualDataFences) {
+    const actualDataFence = actualDataFences[demandedDataFenceType];
+    if (actualDataFence && demandedDataFenceGroup in actualDataFence) {
+      return actualDataFence[demandedDataFenceGroup];
     }
   }
   return null;
 };
 
-export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) => {
+const getIsPermissionOverwritingDataFence = (
+  actualPermissions: TPermissions | null,
+  demandedDataFence: TDemandedDataFence
+) => {
+  if (!actualPermissions) return false;
+
+  /**
+   * NOTE:
+   *    A data fence relates, exists in relation to a general permission.
+   *    This relation is constructed by the group of the data fence.
+   *
+   *    Given the user already has manage access on the data fence's group
+   *     Then the data fence is overruled by it.
+   *    Given the user _does not_ have manage access on the data fence's group
+   *     Then the data fence itself takes precedence
+   */
+  const demandedPermissionByDataFence = `Manage${upperFirst(
+    demandedDataFence.group
+  )}`;
+
+  if (hasExactPermission(demandedPermissionByDataFence, actualPermissions))
+    return true;
+
+  return false;
+};
+
+export const hasSomeDataFence = (options: TOptionsForAppliedDataFence) => {
   // Datafences applied should be combined with an OR, that is why we use
   // `some` and not `every`
   return options.demandedDataFences.some(
@@ -251,17 +298,17 @@ export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) => {
       // dataFence[type][group] = dataFence.store.group
       // with value = there is a dataFence to apply, overrules `hasDemandedProjectPermissions`
       // without value = there is no dataFence to apply, overruled by `hasDemandedProjectPermissions`
-      const actualDataFenceByPermissionGroup = getDataFenceByPermissionGroup(
+      const actualDataFenceByTypeAndGroup = getDataFenceByTypeAndGroup(
         options.actualDataFences,
         demandedDataFence.type,
         demandedDataFence.group
       );
 
-      if (!actualDataFenceByPermissionGroup) return false;
+      if (!actualDataFenceByTypeAndGroup) return false;
 
       // we try to find if the demanded dataFence is available inside the actual datafences
       const specificActualDataFence = Object.entries(
-        actualDataFenceByPermissionGroup
+        actualDataFenceByTypeAndGroup
       ).find(
         ([dataFenceName, dataFenceValue]) =>
           dataFenceValue && dataFenceName === toCanCase(demandedDataFence.name)
@@ -270,16 +317,25 @@ export const hasAppliedDataFence = (options: TOptionsForAppliedDataFence) => {
       if (!specificActualDataFence) return false;
 
       const [dataFenceName, dataFenceValue] = specificActualDataFence;
-      return hasDemandedDataFence({
-        actualDataFence: {
-          name: dataFenceName,
-          // we do the type casting because at this point we are sure that
-          // specificActualDataFence.dataFenceValue is not null
-          dataFenceValue: dataFenceValue as TActualDataFence['dataFenceValue'],
-        },
+      const actualDataFence = {
+        name: dataFenceName,
+        // we do the type casting because at this point we are sure that
+        // specificActualDataFence.dataFenceValue is not null
+        dataFenceValue: dataFenceValue as TActualDataFence['dataFenceValue'],
+      };
+
+      const isPermissionOverwritingDataFence = getIsPermissionOverwritingDataFence(
+        options.actualPermissions,
+        demandedDataFence
+      );
+
+      const hasDemandedDataFence = getHasDemandedDataFence({
+        actualDataFence,
         demandedDataFence,
         selectDataFenceData: options.selectDataFenceData,
       });
+
+      return !isPermissionOverwritingDataFence && hasDemandedDataFence;
     }
   );
 };
