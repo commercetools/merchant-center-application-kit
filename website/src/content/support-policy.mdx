@@ -19,7 +19,7 @@ During the Beta period commercetools is still in the process of gathering the ne
 
 <Info>
 
-Make sure to read and understand the [Minimal required maintenance policy](#minimal-required-maintenance-policy) before starting to use custom applications in production.
+Make sure to read and understand the [Minimum required maintenance policy](#minimum-required-maintenance-policy) before starting to use custom applications in production, including the [Deprecation notice and End Of Life (EOL)](#deprecation-notice-and-end-of-life-eol).".
 
 </Info>
 
@@ -43,12 +43,12 @@ All published packages to NPM are listed in the following scoped packages:
 
 ## Release cadence
 
-commercetools strives to improve tooling and packages around custom applications continously. This means that we do not follow a strict release cycle but instead publish releases in meaningful intervals, potentially multiple times a week. Minor and patch versions are likely to be released more frequently than major versions.
+commercetools strives to improve tooling and packages around custom applications continuously. This means that we do not follow a strict release cycle but instead publish releases in meaningful intervals, potentially multiple times a week. Minor and patch versions are likely to be released more frequently than major versions.
 
 <Info>
 
 According to Semantic Versioning, minor, and patch version releases can be safely updated and do not require any additional maintenance work.
-However, a major release indicates a breaking change (see [Breaking changes](#breaking-changes)) and might require maintenance work. Breaking changes do not occur that often.
+However, a major release indicates a breaking change (see [Breaking changes](#breaking-changes)) and might require maintenance work. Breaking changes are kept to an absolute minimum and are planned ahead of time.
 
 </Info>
 
@@ -79,14 +79,15 @@ A new major release does not always mean that breaking changes directly affect c
 
 All breaking changes are thoroughly documented in the release notes together with migration steps to facilitate the version update. This also helps to identify if changes are needed within the custom application's code.
 
-# Minimal required maintenance policy
+# Minimum required maintenance policy
 
 All the official Merchant Center applications are constantly kept up-to-date with the released tools and packages. This ensures that all the latest bug fixes and features are consistently adopted by all applications.
 
-In regards to custom applications, commercetools does not expect the same amount of maintenance as it requires internally.
+In regards to custom applications, commercetools do not expect the same amount of maintenance as it requires internally.
 However, commercetools **recommends** that custom applications are **updated at regular periods** and **maintained in planned intervals**, to avoid falling too many versions behind.
+Not doing so might result in an increased maintenance effort in case the codebase needs to be updated to multiple versions, even more so for major versions and/or deprecated API functionalities.
 
-| Feature maturity     | Supported update interval                 |
+| Feature maturity     | Recommended update interval               |
 | -------------------- | ----------------------------------------- |
 | Beta                 | At least once a quarter (every 3 months)  |
 | General Availability | At least twice a year (every 6 months)    |
@@ -102,20 +103,21 @@ It is important to keep the dependencies up-to-date, especially to get the lates
 Some packages, for example `@commercetools-frontend/application-shell`, interact with different commercetools HTTP APIs. Changes to those packages might include updates related to HTTP API functionalities, usually in a backwards compatible way.
 However, it can happen that some HTTP API functionalities might be **deprecated** over time and **eventually removed**.
 
-<Info>
+<Warning>
 
-commercetools guarantees that HTTP APIs do not have breaking changes, as they are not and will not be versioned.
+The application kit packages rely on internal Merchant Center HTTP APIs that are **not covered by the standard [commercetools HTTP API policy](https://docs.commercetools.com/http-api-contract) of no breaking changes**.
+For custom applications this means that, in case the application is not kept up-to-date within the supported deprecation period, it might stop working because of the removed HTTP API functionalities.
 
-</Info>
+</Warning>
 
 In case some HTTP API functionalities need to be deprecated, commercetools starts a **deprecation process** as following:
 
-1. The HTTP API functionality is marked as deprecated (for example GraphQL fields get the `@deprecated` directive)
-2. The deprecated functionality is removed from the packages that refer and use that functionality
+1. The HTTP API feature is marked as deprecated (for example GraphQL fields get the `@deprecated` directive)
+2. The deprecated feature is removed from the packages that refer and use that feature
 3. A new breaking change version of the packages is released, marking the starting point for how long the feature will remain deprecated
 4. The deprecation period (start to end) is documented on this page
-5. During the deprecation period, commercetools tracks the usage of the deprecated functionality, to determine if there are still applications using that functionality
-6. Towards the end of the deprecation period, commercetools might contact the owners/mainteners of applications that are still using versions prior to the deprecation release
+5. During the deprecation period, commercetools tracks the usage of the deprecated features, to determine if there are still applications using them
+6. Towards the end of the deprecation period, commercetools might contact the owners/maintainers of applications that are still using versions prior to the deprecation release
 7. After the deprecation period ends, commercetools is free to remove the deprecated functionalities from the respective HTTP APIs.
 
 | Feature maturity     | Deprecation period |
@@ -125,7 +127,7 @@ In case some HTTP API functionalities need to be deprecated, commercetools start
 
 <Info>
 
-Be aware that commercetools does not take any responsibility towards applications that might stop working after the deprecation period, because of the removed functionality.
+Be aware that commercetools do not take any responsibility towards applications that might stop working after the deprecation period, because of the removed features.
 
 </Info>
 
@@ -145,7 +147,7 @@ Those tools and services can be configured to meet everyone's needs, for example
 # Hosting
 
 Customers using custom applications are responsible for the maintenance of their custom applications. This includes hosting and deployments.
-commercetools does not take any responsibility towards incidents and service disruptions related to custom applications caused by their underlying infrastructure.
+commercetools do not take any responsibility towards incidents and service disruptions related to custom applications caused by their underlying infrastructure.
 
 # Issues and support requests
 
@@ -156,7 +158,7 @@ In case the issue must contain sensitive information, for example the name of a 
 
 <Info>
 
-Never ever include password, credentials or any private information in any issue (public or private)!
+Never ever include password, credentials, or any private information in any issue (public or private)!
 
 </Info>
 
