@@ -143,11 +143,8 @@ class ProductPage extends React.Component {
 }
 
 // and finally we need to pass the bound action creator to the component using plain old redux
-export default connect(
-  null,
-  {
-    fetchProductById: productsActions.fetchProductById,
-    onActionError: globalActions.handleActionError,
-  }
-)(ProductPage);
+export default connect(null, {
+  fetchProductById: productsActions.fetchProductById,
+  onActionError: globalActions.handleActionError,
+})(ProductPage);
 ```

@@ -433,7 +433,6 @@ describe('when user does not have permissions to access the project', () => {
     const TestComponent = () => {
       const canViewDeveloperSettings = useIsAuthorized({
         demandedPermissions: ['ManageDeveloperSettings'],
-        shouldMatchSomePermissions: true,
       });
       if (!canViewDeveloperSettings) {
         return (

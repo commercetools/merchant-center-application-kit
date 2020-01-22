@@ -158,7 +158,6 @@ describe('general permissions', () => {
               value: true,
             },
           ],
-          shouldMatchSomePermissions: true,
         });
 
         expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
@@ -176,7 +175,6 @@ describe('general permissions', () => {
             },
           ],
           demandedPermissions: ['ManageCustomers', 'ManageOrders'],
-          shouldMatchSomePermissions: false,
         });
 
         expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
@@ -196,7 +194,6 @@ describe('general permissions', () => {
             },
           ],
           demandedPermissions: ['ManageCustomers', 'ManageOrders'],
-          shouldMatchSomePermissions: false,
         });
 
         expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
@@ -276,7 +273,6 @@ describe('action rights', () => {
           demandedActionRights: [
             { group: 'products', name: 'PublishProducts' },
           ],
-          shouldMatchSomePermissions: true,
         });
 
         expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
@@ -298,7 +294,6 @@ describe('action rights', () => {
           ],
           demandedPermissions: ['ViewProducts'],
           demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
-          shouldMatchSomePermissions: true,
         });
 
         expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
@@ -320,7 +315,6 @@ describe('action rights', () => {
           ],
           demandedPermissions: ['ViewProducts'],
           demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
-          shouldMatchSomePermissions: true,
         });
 
         expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
@@ -416,7 +410,6 @@ describe('data fences', () => {
     describe('when overwritten', () => {
       it('should indicate as not authorized', () => {
         const rendered = render({
-          shouldMatchSomePermissions: true,
           allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
           allAppliedActionRights: [
             {
@@ -495,7 +488,6 @@ describe('data fences', () => {
     describe('when actual data fence is from different group', () => {
       it('should indicate as authorized', () => {
         const rendered = render({
-          shouldMatchSomePermissions: true,
           allAppliedPermissions: [{ name: 'canManageOrders', value: true }],
           allAppliedDataFences: [
             {
@@ -533,7 +525,6 @@ describe('data fences', () => {
     describe('when at least one of the demanded data fence is matched', () => {
       it('should indicate as authorized', () => {
         const rendered = render({
-          shouldMatchSomePermissions: false,
           allAppliedPermissions: [
             { name: 'canViewOrders', value: false },
             { name: 'canManageOrders', value: false },
@@ -569,7 +560,6 @@ describe('data fences', () => {
     describe('when all data fences are matched', () => {
       it('should indicate as authorized', () => {
         const rendered = render({
-          shouldMatchSomePermissions: false,
           allAppliedPermissions: [
             { name: 'canViewOrders', value: false },
             { name: 'canManageOrders', value: false },
@@ -607,7 +597,6 @@ describe('data fences', () => {
     describe('when data fence permission is not matched', () => {
       it('should indicate as not authorized', () => {
         const rendered = render({
-          shouldMatchSomePermissions: true,
           allAppliedPermissions: [
             { name: 'canViewOrders', value: false },
             { name: 'canManageOrders', value: false },
@@ -645,7 +634,6 @@ describe('data fences', () => {
     describe('when actual data fence permission is from different group', () => {
       it('should indicate as not authorized', () => {
         const rendered = render({
-          shouldMatchSomePermissions: true,
           allAppliedPermissions: [
             { name: 'canViewOrders', value: false },
             { name: 'canManageOrders', value: false },
