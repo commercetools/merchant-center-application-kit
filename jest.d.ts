@@ -7,7 +7,6 @@ declare namespace jest {
     toRender(component: React.ComponentType): R;
     toHaveState(selector: string, expected: unknown): R;
     // The following matchers are part of https://www.npmjs.com/package/jest-dom
-    toBeInTheDocument: () => R;
     toHaveText(selector: string): R;
   }
 }

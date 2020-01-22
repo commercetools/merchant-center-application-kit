@@ -45,6 +45,7 @@ rules:
     - error
     - env: literal
   'jest/expect-expect': 'off'
+  'testing-library/prefer-expect-query-by': 'error'
 settings:
   react:
     version: 'detect'
