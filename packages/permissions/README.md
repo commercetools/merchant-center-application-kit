@@ -208,14 +208,17 @@ match, otherwise a fallback component.
 ```js
 const Unauthorized = () => <p>{'No permissions to see this'}</p>;
 const Dashboard = () => {
-  const isAuthorized = useIsAuthorized({
+  const canViewProducts = useIsAuthorized({
     demandedPermissions: ['ViewProducts'],
+  });
+  const canViewOrders = useIsAuthorized({
+    demandedPermissions: ['ViewOrders'],
   });
 
   return (
     <div>
-      {isAuthoried ? <TopFiveProducts /> : <Unauthorized />}
-      <RevenueChart isDisabled={!isAuthorized} />}
+      {canViewProducts ? <TopFiveProducts /> : <Unauthorized />}
+      <RevenueChart isDisabled={!canViewOrders || !canViewProducts} />}
     </div>
   );
 };
