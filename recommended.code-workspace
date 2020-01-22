@@ -1,0 +1,55 @@
+{
+  "folders": [
+    {
+      "path": "./"
+    }
+  ],
+  "settings": {
+    // https://vscode.readthedocs.io/en/latest/getstarted/settings/
+    "npm.packageManager": "yarn",
+    "eslint.packageManager": "yarn",
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/public": true,
+      "**/.cache": true,
+      "**/.yarn": true,
+      "**/*.snap": true,
+      "**/*.svg": true
+    },
+    "files.associations": {
+      "*.mdx": "mdx"
+    },
+    "vscode-vale.path": "${workspaceFolder}/node_modules/.bin/commercetools-vale",
+    "vscode-vale.fileExtensions": [
+      "md",
+      "markdown",
+      "mdx"
+    ],
+    "spellright.notificationClass": "warning",
+    "spellright.language": [
+      "en"
+    ],
+    "spellright.documentTypes": [
+      "plaintext",
+      "markdown",
+      "mdx",
+      "yaml"
+    ],
+    "spellright.configurationScope": "user"
+  },
+  "extensions": {
+    "recommendations": [
+      "ban.spellright",
+      "dbaeumer.vscode-eslint",
+      "editorconfig.editorconfig",
+      "esbenp.prettier-vscode",
+      "christian-kohler.path-intellisense",
+      "kumar-harsh.graphql-for-vscode",
+      "ms-vscode.vscode-typescript-tslint-plugin",
+      "redhat.vscode-yaml",
+      "silvenon.mdx",
+      "testthedocs.vale"
+    ]
+  }
+}
