@@ -682,6 +682,7 @@ export type TCartDiscount = TVersioned & {
   description: Maybe<Scalars['String']>,
   nameAllLocales: Array<TLocalizedString>,
   descriptionAllLocales: Maybe<Array<TLocalizedString>>,
+  referenceRefs: Array<TReference>,
   /** This field contains non-typed data. Consider using `customFields` as a typed alternative. */
   customFieldsRaw: Maybe<Array<TRawCustomField>>,
   /** This field would contain type data */
@@ -1544,6 +1545,7 @@ export type TChangeZoneName = {
 export type TChannel = TVersioned & {
    __typename?: 'Channel',
   id: Scalars['String'],
+  typeId: Scalars['String'],
   version: Scalars['Long'],
   key: Scalars['String'],
   roles: Array<TChannelRole>,
@@ -1758,6 +1760,7 @@ export type TCustomerActiveCartInterface_CustomerActiveCartArgs = {
 export type TCustomerGroup = TVersioned & {
    __typename?: 'CustomerGroup',
   id: Scalars['String'],
+  typeId: Scalars['String'],
   version: Scalars['Long'],
   name: Scalars['String'],
   key: Maybe<Scalars['String']>,
@@ -2252,6 +2255,7 @@ export type TDiscountCode = TVersioned & {
   name: Maybe<Scalars['String']>,
   description: Maybe<Scalars['String']>,
   cartDiscounts: Array<TCartDiscount>,
+  referenceRefs: Array<TReference>,
   nameAllLocales: Maybe<Array<TLocalizedString>>,
   descriptionAllLocales: Maybe<Array<TLocalizedString>>,
   /** This field contains non-typed data. Consider using `customFields` as a typed alternative. */
@@ -2774,11 +2778,12 @@ export type TInterfaceInteractionsRawResult = {
 export type TInventoryEntry = TVersioned & {
    __typename?: 'InventoryEntry',
   sku: Scalars['String'],
-  supplyChannel: Maybe<TReference>,
   quantityOnStock: Scalars['Long'],
   availableQuantity: Scalars['Long'],
   restockableInDays: Maybe<Scalars['Int']>,
   expectedDelivery: Maybe<Scalars['DateTime']>,
+  supplyChannel: Maybe<TChannel>,
+  supplyChannelRef: Maybe<TReference>,
   /** This field contains non-typed data. Consider using `customFields` as a typed alternative. */
   customFieldsRaw: Maybe<Array<TRawCustomField>>,
   /** This field would contain type data */
@@ -4741,6 +4746,7 @@ export type TProductDiscount = TVersioned & {
   key: Maybe<Scalars['String']>,
   name: Maybe<Scalars['String']>,
   description: Maybe<Scalars['String']>,
+  referenceRefs: Array<TReference>,
   nameAllLocales: Array<TLocalizedString>,
   descriptionAllLocales: Maybe<Array<TLocalizedString>>,
   value: TProductDiscountValue,
@@ -4869,8 +4875,10 @@ export type TProductPrice = {
   id: Maybe<Scalars['String']>,
   value: TBaseMoney,
   country: Maybe<Scalars['Country']>,
-  customerGroup: Maybe<TReference>,
-  channel: Maybe<TReference>,
+  customerGroup: Maybe<TCustomerGroup>,
+  customerGroupRef: Maybe<TReference>,
+  channel: Maybe<TChannel>,
+  channelRef: Maybe<TReference>,
   validFrom: Maybe<Scalars['DateTime']>,
   validUntil: Maybe<Scalars['DateTime']>,
   discounted: Maybe<TDiscountedProductPriceValue>,
@@ -6813,13 +6821,14 @@ export type TShippingInfo = {
   price: TMoney,
   shippingRate: TShippingRate,
   taxRate: Maybe<TTaxRate>,
-  taxCategory: Maybe<TReference>,
   deliveries: Array<TDelivery>,
   discountedPrice: Maybe<TDiscountedLineItemPrice>,
   taxedPrice: Maybe<TTaxedItemPrice>,
   shippingMethodState: TShippingMethodState,
   shippingMethod: Maybe<TShippingMethod>,
   shippingMethodRef: Maybe<TReference>,
+  taxCategory: Maybe<TTaxCategory>,
+  taxCategoryRef: Maybe<TReference>,
 };
 
 export type TShippingMethod = TVersioned & {
@@ -7346,6 +7355,7 @@ export type TTaxCategory = TVersioned & {
   description: Maybe<Scalars['String']>,
   rates: Array<TTaxRate>,
   key: Maybe<Scalars['String']>,
+  typeId: Scalars['String'],
   id: Scalars['String'],
   version: Scalars['Long'],
   createdAt: Scalars['DateTime'],
