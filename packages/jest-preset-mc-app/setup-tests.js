@@ -10,18 +10,27 @@ global.window.app = {
 
 const shouldSilenceWarnings = (...messages) =>
   [
-    /Warning: componentWillReceiveProps has been renamed/,
-    /CellMeasurerCache should only measure a cell's width or height/,
+    /.*Warning: componentWillReceiveProps has been renamed.*/,
+    /.*CellMeasurerCache should only measure a cell's width or height.*/,
   ].some(msgRegex => messages.some(msg => msgRegex.test(msg)));
+
+const shouldNotThrowWarnings = (...messages) =>
+  [/.*@commercetools-frontend\/permissions.*/].some(msgRegex =>
+    messages.some(msg => msgRegex.test(msg))
+  );
 
 // setup file
 const logOrThrow = (log, method, messages) => {
   const warning = `console.${method} calls not allowed in tests`;
   if (process.env.CI) {
-    if (shouldSilenceWarnings(messages)) {
-      return;
-    }
+    if (shouldSilenceWarnings(messages)) return;
+
     log(warning, '\n', ...messages);
+
+    // NOTE: That some warnings should be logged allowing us to refactor graceully
+    // without having to introduce a breaking change.
+    if (shouldNotThrowWarnings(messages)) return;
+
     throw new Error(...messages);
   } else {
     log(colors.bgYellow.black(' WARN '), warning, '\n', ...messages);
