@@ -21,7 +21,6 @@ const PageUnauthorized = () => (
 const ApplicationRoutes = props => {
   const canViewDeveloperSettings = useIsAuthorized({
     demandedPermissions: [PERMISSIONS.ViewDeveloperSettings],
-    shouldMatchSomePermissions: true,
   });
   return (
     <InjectReducers id="state-machines" reducers={reducers}>

@@ -18,7 +18,6 @@ const PageUnauthorized = () => (
 const ApplicationRoutes = ({ match }) => {
   const canViewProducts = useIsAuthorized({
     demandedPermissions: [PERMISSIONS.ViewProducts],
-    shouldMatchSomePermissions: true,
   });
   if (!canViewProducts) {
     return <PageUnauthorized />;

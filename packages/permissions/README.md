@@ -179,11 +179,7 @@ match, otherwise a fallback component.
 > This is the React version of the `branchOnPermissions` HoC.
 
 ```js
-<RestrictedByPermissions
-  permissions={[]}
-  unauthorizedComponent={Unauthorized}
-  shouldMatchSomePermissions={true}
->
+<RestrictedByPermissions permissions={[]} unauthorizedComponent={Unauthorized}>
   <MyAuthorizedComponent />
 </RestrictedByPermissions>
 ```
@@ -211,22 +207,21 @@ match, otherwise a fallback component.
 
 ```js
 const Unauthorized = () => <p>{'No permissions to see this'}</p>;
-const Dashboard = () => (
-  <div>
-    <RestrictedByPermissions
-      permissions={['ViewProducts']}
-      unauthorizedComponent={Unauthorized}
-    >
-      <TopFiveProducts />
-    </RestrictedByPermissions>
-    <RestrictedByPermissions
-      permissions={['ViewProducts', 'ViewOrders']}
-      shouldMatchSomePermissions={true}
-    >
-      {({ isAuthorized }) => <RevenueChart isDisabled={!isAuthorized} />}
-    </RestrictedByPermissions>
-  </div>
-);
+const Dashboard = () => {
+  const canViewProducts = useIsAuthorized({
+    demandedPermissions: ['ViewProducts'],
+  });
+  const canViewOrders = useIsAuthorized({
+    demandedPermissions: ['ViewOrders'],
+  });
+
+  return (
+    <div>
+      {canViewProducts ? <TopFiveProducts /> : <Unauthorized />}
+      <RevenueChart isDisabled={!canViewOrders || !canViewProducts} />}
+    </div>
+  );
+};
 ```
 
 ## `branchOnPermissions(permissions, [FallbackComponent], [options])`

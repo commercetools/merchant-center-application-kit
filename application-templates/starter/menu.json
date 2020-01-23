@@ -2,7 +2,7 @@
   "key": "examples-starter",
   "uriPath": "examples-starter",
   "icon": "RocketIcon",
-  "permissions": ["ViewProducts", "ManageProducts"],
+  "permissions": ["ViewProducts"],
   "featureToggle": null,
   "submenu": [],
   "labelAllLocales": [

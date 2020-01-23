@@ -18,7 +18,7 @@ export default function createCommands({
       applicationContext.permissions &&
       featureToggles.canViewDashboard &&
       hasSomePermissions(
-        [permissions.ViewOrders, permissions.ManageOrders],
+        [permissions.ViewOrders],
         applicationContext.permissions
       ) && {
         id: 'go/dashboard',
@@ -32,7 +32,7 @@ export default function createCommands({
     applicationContext.project &&
       applicationContext.permissions &&
       hasSomePermissions(
-        [permissions.ViewProducts, permissions.ManageProducts],
+        [permissions.ViewProducts],
         applicationContext.permissions
       ) && {
         id: 'go/products',
@@ -93,7 +93,7 @@ export default function createCommands({
     applicationContext.project &&
       applicationContext.permissions &&
       hasSomePermissions(
-        [permissions.ViewCategories, permissions.ManageCategories],
+        [permissions.ViewCategories],
         applicationContext.permissions
       ) && {
         id: 'go/categories',
@@ -142,12 +142,7 @@ export default function createCommands({
     applicationContext.project &&
       applicationContext.permissions &&
       hasSomePermissions(
-        [
-          permissions.ViewCustomers,
-          permissions.ManageCustomers,
-          permissions.ViewCustomerGroups,
-          permissions.ManageCustomerGroups,
-        ],
+        [permissions.ViewCustomers, permissions.ViewCustomerGroups],
         applicationContext.permissions
       ) && {
         id: 'go/customers',
@@ -207,7 +202,7 @@ export default function createCommands({
     applicationContext.project &&
       applicationContext.permissions &&
       hasSomePermissions(
-        [permissions.ViewOrders, permissions.ManageOrders],
+        [permissions.ViewOrders],
         applicationContext.permissions
       ) && {
         id: 'go/orders',
@@ -244,11 +239,8 @@ export default function createCommands({
       hasSomePermissions(
         [
           permissions.ViewDiscountCodes,
-          permissions.ManageDiscountCodes,
           permissions.ViewProductDiscounts,
-          permissions.ManageProductDiscounts,
           permissions.ViewCartDiscounts,
-          permissions.ManageCartDiscounts,
         ],
         applicationContext.permissions
       ) && {
@@ -350,11 +342,8 @@ export default function createCommands({
       hasSomePermissions(
         [
           permissions.ViewProjectSettings,
-          permissions.ManageProjectSettings,
           permissions.ViewDeveloperSettings,
-          permissions.ManageDeveloperSettings,
           permissions.ViewProductTypes,
-          permissions.ManageProductTypes,
         ],
         applicationContext.permissions
       ) && {
@@ -421,7 +410,7 @@ export default function createCommands({
             ].filter(Boolean),
           },
           hasSomePermissions(
-            [permissions.ViewProductTypes, permissions.ManageProductTypes],
+            [permissions.ViewProductTypes],
             applicationContext.permissions
           ) && {
             id: 'go/settings/product-types',
@@ -432,10 +421,7 @@ export default function createCommands({
             },
           },
           hasSomePermissions(
-            [
-              permissions.ViewDeveloperSettings,
-              permissions.ManageDeveloperSettings,
-            ],
+            [permissions.ViewDeveloperSettings],
             applicationContext.permissions
           ) && {
             id: 'go/settings/developer',

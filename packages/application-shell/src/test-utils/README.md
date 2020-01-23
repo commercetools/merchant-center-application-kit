@@ -319,19 +319,16 @@ class BankAccountBalance extends React.Component {
     return `Your balance is ${this.state.accountBalance}€`;
   }
 }
-const ConnectedBankAccount = connect(
-  null,
-  {
-    fetchAccountBalance: token =>
-      sdkActions.get({
-        uri: '/account/balance',
-        headers: {
-          Authorization: token,
-        },
-      }),
-    onActionError: globalActions.handleActionError,
-  }
-)(BankAccountBalance);
+const ConnectedBankAccount = connect(null, {
+  fetchAccountBalance: token =>
+    sdkActions.get({
+      uri: '/account/balance',
+      headers: {
+        Authorization: token,
+      },
+    }),
+  onActionError: globalActions.handleActionError,
+})(BankAccountBalance);
 export default ConnectedBankAccount;
 ```
 
@@ -381,9 +378,10 @@ const Profile = props => (
   </div>
 );
 
-export default injectFeatureToggle('experimentalAgeOnProfileFlag', 'showAge')(
-  Profile
-);
+export default injectFeatureToggle(
+  'experimentalAgeOnProfileFlag',
+  'showAge'
+)(Profile);
 ```
 
 ```jsx
