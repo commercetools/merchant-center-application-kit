@@ -1,24 +1,11 @@
 import React from 'react';
 import { MessageDescriptor } from 'react-intl';
 import { sharedMessages } from '@commercetools-frontend/i18n';
-import ModalPage from '../internals/modal-page';
-import ModalPageHeader from '../internals/modal-page-header';
-import ModalPageHeaderDefaultControls from '../internals/modal-page-header-default-controls';
-import { ContentWrapper } from '../internals/modal-page.styles';
+import CustomFormModalPage from '../custom-form-modal-page';
 
 type Label = string | MessageDescriptor;
-// [conditional A]
-type WithCustomControls = {
-  customControls?: React.ReactNode;
-};
-// [conditional B]
-type WithoutCustomControls = {
-  labelSecondaryButton?: Label;
-  labelPrimaryButton?: Label;
-  onSecondaryButtonClick?: (event: React.SyntheticEvent) => void;
-  onPrimaryButtonClick?: (event: React.SyntheticEvent) => void;
-};
-type CommonProps = {
+
+type Props = {
   level?: number;
   title: string;
   isOpen: boolean;
@@ -33,70 +20,55 @@ type CommonProps = {
   topBarPreviousPathLabel?: Label;
   // Header Props
   subtitle?: string | React.ReactElement;
+  // Controls Props
   isPrimaryButtonDisabled?: boolean;
+  isSecondaryButtonDisabled?: boolean;
   dataAttributesPrimaryButton?: { [key: string]: string };
   dataAttributesSecondaryButton?: { [key: string]: string };
-};
-type Props = CommonProps & WithCustomControls & WithoutCustomControls;
-type PropsWithCustomControls = CommonProps & Required<WithCustomControls>;
-type PropsWithoutCustomControls = CommonProps & Required<WithoutCustomControls>;
-const defaultProps: Pick<
-  Props,
-  'labelPrimaryButton' | 'labelSecondaryButton'
-> = {
-  labelPrimaryButton: sharedMessages.confirm,
-  labelSecondaryButton: sharedMessages.cancel,
+  labelPrimaryButton?: Label;
+  labelSecondaryButton?: Label;
+  onPrimaryButtonClick: (event: React.SyntheticEvent) => void;
+  onSecondaryButtonClick: (event: React.SyntheticEvent) => void;
+  hideControls: boolean;
 };
 
-// Type-guard validation for the correct props, based on the existence `customControls`
-const hasCustomControls = (
-  props: PropsWithCustomControls | PropsWithoutCustomControls
-): props is PropsWithCustomControls =>
-  'customControls' in props && props.customControls !== undefined;
-const getConditionalProps = (props: Props) => {
-  if ('customControls' in props && props.customControls !== undefined) {
-    return props as PropsWithCustomControls;
-  }
-  return props as PropsWithoutCustomControls;
-};
-
-const FormModalPageHeaderControls = (
-  props: PropsWithCustomControls | PropsWithoutCustomControls
-) => {
-  if (hasCustomControls(props)) {
-    return <>{props.customControls}</>;
-  }
-  return (
-    <ModalPageHeaderDefaultControls
-      labelSecondaryButton={props.labelSecondaryButton}
-      labelPrimaryButton={props.labelPrimaryButton}
-      isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
-      onSecondaryButtonClick={props.onSecondaryButtonClick}
-      onPrimaryButtonClick={props.onPrimaryButtonClick}
-      dataAttributesSecondaryButton={props.dataAttributesSecondaryButton}
-      dataAttributesPrimaryButton={props.dataAttributesPrimaryButton}
-    />
-  );
+const defaultProps: Pick<Props, 'hideControls'> = {
+  hideControls: false,
 };
 
 const FormModalPage = (props: Props) => (
-  <ModalPage
+  <CustomFormModalPage
     level={props.level}
     title={props.title}
+    subtitle={props.subtitle}
     isOpen={props.isOpen}
     zIndex={props.zIndex}
     onClose={props.onClose}
     baseZIndex={props.baseZIndex}
-    currentPathLabel={props.topBarCurrentPathLabel || props.title}
-    previousPathLabel={props.topBarPreviousPathLabel}
+    topBarCurrentPathLabel={props.topBarCurrentPathLabel}
+    topBarPreviousPathLabel={props.topBarPreviousPathLabel}
     getParentSelector={props.getParentSelector}
     shouldDelayOnClose={props.shouldDelayOnClose}
+    hideControls={props.hideControls}
+    formControls={
+      <React.Fragment>
+        <CustomFormModalPage.FormSecondaryButton
+          label={props.labelSecondaryButton}
+          onClick={props.onSecondaryButtonClick}
+          isDisabled={props.isSecondaryButtonDisabled}
+          dataAttributes={props.dataAttributesSecondaryButton}
+        />
+        <CustomFormModalPage.FormPrimaryButton
+          label={props.labelPrimaryButton}
+          onClick={props.onPrimaryButtonClick}
+          isDisabled={props.isPrimaryButtonDisabled}
+          dataAttributes={props.dataAttributesPrimaryButton}
+        />
+      </React.Fragment>
+    }
   >
-    <ModalPageHeader title={props.title} subtitle={props.subtitle}>
-      <FormModalPageHeaderControls {...getConditionalProps(props)} />
-    </ModalPageHeader>
-    <ContentWrapper>{props.children}</ContentWrapper>
-  </ModalPage>
+    {props.children}
+  </CustomFormModalPage>
 );
 FormModalPage.displayName = 'FormModalPage';
 FormModalPage.defaultProps = defaultProps;

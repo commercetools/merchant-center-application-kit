@@ -1,31 +1,40 @@
----
-title: Tabular Modal Page
----
+# CustomFormModalPage
 
-<Playground urlPath="tabular-modal-page" />
+## Usage
 
-# Description
+```js
+import CustomFormModalPageExample from './custom-form-modal-page.example';
+```
 
-Tabular Modal pages are controlled components used to render a page with custom navigational controls and content, for instance, with Tabs. Similar to `InfoModalPage`, but with no Header and a gray Top bar.
+## Description
 
-# Usage
+Custom Form Modal pages are controlled components used to render a page with a form or something that requires user input, similar to `InfoModalPage` but semantically with a different role. The header includes an area for control buttons, which can be customized at will. The component exposes three default buttons which can be useful for most use cases.
+
+## Usage
 
 ```jsx
-import { TabularModalPage } from '@commercetools-frontend/application-components';
+import { CustomFormModalPage } from '@commercetools-frontend/application-components';
 
-<TabularModalPage
+<CustomFormModalPage
   title="Lorem ipsum"
   isOpen={true}
   onClose={handleClose}
+  subtitle={<Text.Body>{'Lorem ipsum ...'}</Text.Body>}
   topBarCurrentPathLabel="Lorem ipsum"
   topBarPreviousPathLabel="Back"
+  formControls={
+    <React.Fragment>
+      <CustomFormModalPage.FormSecondaryButton onClick={handleCancel} />
+      <CustomFormModalPage.FormPrimaryButton onClick={handleConfirm} />
+      <CustomFormModalPage.FormDeleteButton onClick={handleDelete} />
+    </React.Fragment>
+  }
 >
-  <ViewHeader {...viewHeaderProps} />
-  <TabsContainer {...tabsContainerProps} />
-</TabularModalPage>;
+  <TextField {...textFieldFormProps} />
+</CustomFormModalPage>;
 ```
 
-# Properties
+## Properties
 
 | Props                     | Type               | Required | Default                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ------------------------- | ------------------ | :------: | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -38,33 +47,30 @@ import { TabularModalPage } from '@commercetools-frontend/application-components
 | `zIndex`                  | `number`           |          | -                        | The `z-index` value to be applied to the overlay container. This value overrides the normal `z-index` value calculated from the `baseZIndex` and `level` props. If you provide this value, you would need to take care of providing a proper `z-index` based on the stacked level.                                                                                                                                                                                                                                  |
 | `topBarCurrentPathLabel`  | `string`           |          | The `title` prop         | The label to appear as the current path of the top bar of the modal                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `topBarPreviousPathLabel` | `string`           |          | `"Go Back"` (translated) | The label to appear as the previous path of the top bar of the modal                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `children`                | `node`             |    ✅    | -                        | Content rendered within the page. It isn't wrapped by anything except the Modal Container itself, so its expected to have its style fully customized.                                                                                                                                                                                                                                                                                                                                                               |
+| `children`                | `node`             |    ✅    | -                        | Content rendered within the page. If the content is long in height (depending on the screen size) a scrollbar will appear.                                                                                                                                                                                                                                                                                                                                                                                          |
 | `formControls`            | `node`             |    -     | -                        | Pass a React.node with form controls. You can use the pre-made form buttons exposed by this component or you can use your own.                                                                                                                                                                                                                                                                                                                                                                                      |
-| `customTitleRow`          | `node`             |    -     | -                        | Pass a React.node to be used in place of the `title` and `subtitle`.                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `tabControls`             | `node`             |    ✅    | -                        | Pass a React.node to be used as the Tabs component for controling the navigation between the Tab contents within the modal.                                                                                                                                                                                                                                                                                                                                                                                         |
 | `getParentSelector`       | `function`         |    -     | -                        | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In `NODE_ENV=test` environment, the default HTML element is `body`.                                                                                                                                                                                                         |
+| `hideControls`            | `bool`             |    -     | `false`                  | If truthy, hides the form controls.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | `shouldDelayOnClose`      | `bool`             |    -     | `true`                   | Sets whether the ModalPage should delay calling its `onClose` function to allow the closing animation time to finish. This can be turned off if the developer is controlling the ModalPage only through the `isOpen` prop, and not abruptly mounting/unmounting it or one of its parent elements. You might also want to turn this off if you need to display a Prompt (e.g. to save changes) on the ModalPage before navigating out of it, as this option makes the Modal close itself before `onClose` is called. |
 
-# Static properties
+## Static properties
 
-## Form Control Buttons
+### Form Control Buttons
 
 Pre-made form control buttons which can be useful for the most common use cases: Confirm, Cancel, and Delete
 
 ```js
-TabularModalPage.FormPrimaryButton = FormPrimaryButton;
-TabularModalPage.FormSecondaryButton = FormSecondaryButton;
-TabularModalPage.FormDeleteButton = FormDeleteButton;
+CustomFormModalPage.FormPrimaryButton = FormPrimaryButton;
+CustomFormModalPage.FormSecondaryButton = FormSecondaryButton;
+CustomFormModalPage.FormDeleteButton = FormDeleteButton;
 ```
 
-## `TabularModalPage.Intl`
-
-> This export is deprecated. Please import the shared messages from the `@commercetools-frontend/i18n` package.
+### `CustomFormModalPage.Intl`
 
 Exposes common intl messages to be used for the secondary/primary buttons
 
 ```js
-TabularModalPage.Intl.cancel;
-TabularModalPage.Intl.confirm;
+CustomFormModalPage.Intl.cancel;
+CustomFormModalPage.Intl.confirm;
 // ...
 ```
