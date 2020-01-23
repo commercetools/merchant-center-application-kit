@@ -1,7 +1,11 @@
 import React from 'react';
+import { mocked } from 'ts-jest/utils';
+import warning from 'tiny-warning';
 import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { render as rtlRender } from '@testing-library/react';
 import useIsAuthorized from './use-is-authorized';
+
+jest.mock('tiny-warning');
 
 type TPermissionName = string;
 type TAllAppliedPermission = {
@@ -667,6 +671,82 @@ describe('data fences', () => {
 
         expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
       });
+    });
+  });
+});
+
+describe('warnings', () => {
+  beforeEach(() => {
+    mocked(warning).mockClear();
+  });
+  describe('with implied permissions', () => {
+    it('should warn to not specify the implied permissions', () => {
+      render({
+        allAppliedPermissions: [],
+        demandedPermissions: ['ViewOrders', 'ManageOrders'],
+      });
+
+      expect(warning).toHaveBeenCalledWith(
+        false,
+        expect.stringContaining(
+          'Demanded permissions contain implied permissions.'
+        )
+      );
+      expect(warning).toHaveBeenCalledWith(
+        false,
+        expect.stringContaining('ViewOrders')
+      );
+    });
+  });
+  describe('with multiple general permissions', () => {
+    it('should warn to not specify multiple general permissions', () => {
+      render({
+        allAppliedPermissions: [],
+        demandedPermissions: ['ViewOrders', 'ManageOrders'],
+      });
+
+      expect(warning).toHaveBeenCalledWith(
+        false,
+        expect.stringContaining(
+          'It is recommended to pass a single demanded permission'
+        )
+      );
+    });
+  });
+  describe('with multiple action rights', () => {
+    it('should warn to not specify multiple action rights', () => {
+      render({
+        allAppliedPermissions: [],
+        demandedPermissions: [],
+        demandedActionRights: [
+          { group: 'orders', name: 'EditPrice' },
+          { group: 'products', name: 'PublishProducts' },
+        ],
+      });
+
+      expect(warning).toHaveBeenCalledWith(
+        false,
+        expect.stringContaining(
+          'It is recommended to pass a single demanded action right'
+        )
+      );
+    });
+  });
+  describe('when only some permissions should match', () => {
+    it('should warn to not match some permission', () => {
+      render({
+        allAppliedPermissions: [],
+        demandedPermissions: [],
+        demandedActionRights: [],
+        shouldMatchSomePermissions: true,
+      });
+
+      expect(warning).toHaveBeenCalledWith(
+        false,
+        expect.stringContaining(
+          "It is recommended not to use 'shouldMatchSomePermissions'"
+        )
+      );
     });
   });
 });

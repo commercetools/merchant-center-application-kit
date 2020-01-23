@@ -4,8 +4,8 @@ import {
   hasEveryActionRight,
   hasEveryPermissions,
   hasSomePermissions,
-  getInvalidPermissions,
   hasSomeDataFence,
+  getImpliedPermissions,
 } from './has-permissions';
 
 type TPermissionName = string;
@@ -187,26 +187,6 @@ describe('hasEveryActionRight', () => {
   });
 });
 
-describe('getInvalidPermissions', () => {
-  describe('given all permissions are configured (passed as `actualPermissions`)', () => {
-    it('should return no invalid permissions', () => {
-      expect(
-        getInvalidPermissions(['ManageOrders'], { canManageOrders: true })
-      ).toHaveLength(0);
-    });
-  });
-
-  describe('given some permissions are not configured (not passed as `actualPermissions`)', () => {
-    it('should return invalid permissions', () => {
-      expect(
-        getInvalidPermissions(['ManageOrders', 'ViewStars'], {
-          canManageOrders: true,
-        })
-      ).toEqual(expect.arrayContaining(['ViewStars']));
-    });
-  });
-});
-
 describe('hasSomeDataFence', () => {
   describe('user has not datafence permissions', () => {
     it('should return false', () => {
@@ -385,6 +365,38 @@ describe('hasSomeDataFence', () => {
           selectDataFenceData: () => ['store-1', 'store-2'],
         })
       ).toBe(true);
+    });
+  });
+});
+describe('getImpliedPermissions', () => {
+  describe('when demanded permissions contain implied permissions', () => {
+    it('indicate that the demanded permissions contain implied permissions', () => {
+      expect(getImpliedPermissions(['ManageOrders', 'ViewOrders'])).toEqual(
+        expect.arrayContaining(['ViewOrders'])
+      );
+
+      expect(
+        getImpliedPermissions([
+          'ManageOrders',
+          'ManageCustomerGroups',
+          'ViewCustomers',
+          'ViewOrders',
+        ])
+      ).toEqual(expect.arrayContaining(['ViewOrders']));
+    });
+  });
+  describe('when demanded permissions contain no implied permissions', () => {
+    it('indicate that the demanded permissions contain no implied permissions', () => {
+      expect(
+        getImpliedPermissions(['ManageOrders', 'ViewCustomers'])
+      ).toHaveLength(0);
+      expect(
+        getImpliedPermissions([
+          'ManageOrders',
+          'ViewCustomersGroups',
+          'ManageProjectSettings',
+        ])
+      ).toHaveLength(0);
     });
   });
 });
