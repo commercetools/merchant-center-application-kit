@@ -8,7 +8,75 @@
 #### 🐛 Type: Bug
 
 - `permissions`
+
   - [#1259](https://github.com/commercetools/merchant-center-application-kit/pull/1259) fix(permissions): data fences to be overwritten by manage resource permission ([@tdeekens](https://github.com/tdeekens))
+
+Note that in this release we have added log statements whenever we encounter an what we consider an not recommended use of our permission components. The permission components include `RestrictedByPermissions`, `injectAuthorized` and `useIsAuthorized`.
+
+1. We recommend that with any of those components one general permission at a time is evaluated
+2. We also recommend not evaluating more than one action right at a time
+3. We recommend not to use `shouldMatchSomePermissions` but instead use e.g. `useIsAuthorized` twice and composing the boolean value
+4. Implied permission do not need to be passed. For instance `ViewOrders` is implied by `ManageOrders` so only passing `ViewOrders` is sufficient
+
+Examples of non recommended usages are:
+
+```js
+const canManageOrViewDiscountCodes = useIsAuthorized({
+  demandedPermissions: ['ManageDiscountCodes', 'ViewDiscountCodes'],
+});
+const canManageOrdersAndCustomers = useIsAuthorized({
+  demandedPermissions: ['ManageOrders', 'ManageCustomers'],
+});
+const canPublishProductsAndEditPrices = useIsAuthorized({
+  demandedPermissions: ['ManageOrders', 'ManageProducts'],
+  demandedActionRights: [
+    {
+      group: 'products',
+      name: 'PublishProducts',
+    },
+    {
+      group: 'orders',
+      name: 'EditPrices',
+    },
+  ],
+});
+```
+
+Instead we recommend composing resulting values yourself to keep things clearer
+
+```js
+const canManageOrViewDiscountCodes = useIsAuthorized({
+  demandedPermissions: ['ViewDiscountCodes'], // -> Removing the implied permission
+});
+// Splitting these two
+const canManageOrders = useIsAuthorized({
+  demandedPermissions: ['ManageOrders'],
+});
+const canManageCustomers = useIsAuthorized({
+  demandedPermissions: ['ManageCustomers'],
+});
+const canPublishProducts = useIsAuthorized({
+  demandedPermissions: ['ManageProducts'],
+  demandedActionRights: [
+    {
+      group: 'products',
+      name: 'PublishProducts',
+    },
+  ],
+});
+const canEditPrices = useIsAuthorized({
+  demandedPermissions: ['ManageOrders'],
+  demandedActionRights: [
+    {
+      group: 'orders',
+      name: 'EditPrices',
+    },
+  ],
+});
+
+const canManageOrdersAndCustomers = canManageOrders || canManageCustomers;
+const canPublishProductsAndEditPrices = canPublishProducts && canEditPrices;
+```
 
 #### ⛑ Type: Refactoring
 
@@ -29,13 +97,9 @@
 - `jest-preset-mc-app`, `mc-scripts`, `sdk`
   - [#1263](https://github.com/commercetools/merchant-center-application-kit/pull/1263) chore: update jest ([@tdeekens](https://github.com/tdeekens))
 
-#### ✍️ Type: Documentation
-
-- [#1205](https://github.com/commercetools/merchant-center-application-kit/pull/1205) docs(website): support policy ([@emmenko](https://github.com/emmenko)
-
 #### 🖥 Type: Website
 
-- [#1205](https://github.com/commercetools/merchant-center-application-kit/pull/1205) docs(website): support polic ([@emmenko](https://github.com/emmenko))
+- [#1205](https://github.com/commercetools/merchant-center-application-kit/pull/1205) docs(website): support policy ([@emmenko](https://github.com/emmenko))
 
 ## [15.8.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.7.0...v15.8.0) (2020-01-21)
 
