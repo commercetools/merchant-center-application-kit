@@ -83,7 +83,7 @@ const useIsAuthorized = ({
   );
   warning(
     shouldMatchSomePermissions === false,
-    `@commercetools-frontend/permissions: It is recommended not to use 'shouldMatchSomePermissions' but instead use the hook, HoC or comoponent multiple times.`
+    `@commercetools-frontend/permissions: It is recommended not to use 'shouldMatchSomePermissions' but instead use the hook, HoC or component multiple times.`
   );
   warning(
     !impliedPermissions || impliedPermissions.length === 0,
