@@ -1,7 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const MeasureFirstPaint = props => {
+type Props = {
+  children: React.ReactNode;
+};
+
+const MeasureFirstPaint = (props: Props) => {
   React.useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {
       console.warn(
@@ -12,8 +15,5 @@ const MeasureFirstPaint = props => {
   return props.children;
 };
 MeasureFirstPaint.displayName = 'MeasureFirstPaint';
-MeasureFirstPaint.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default MeasureFirstPaint;
