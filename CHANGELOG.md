@@ -1,28 +1,72 @@
+## [15.9.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.9.0...v15.8.0) (2020-01-23)
+
+#### 🚀 Type: New Feature
+
+- `application-shell`
+  - [#1249](https://github.com/commercetools/merchant-center-application-kit/pull/1249) feat: send performance timing values to GTM ([@emmenko](https://github.com/emmenko))
+
+#### 🐛 Type: Bug
+
+- `permissions`
+  - [#1259](https://github.com/commercetools/merchant-center-application-kit/pull/1259) fix(permissions): data fences to be overwritten by manage resource permission ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+
+- `application-components`, `application-shell`, `permissions`
+  - [#1260](https://github.com/commercetools/merchant-center-application-kit/pull/1260) refactor(app-shell): deprecate MeasureFirstPaint ([@emmenko](https://github.com/emmenko))
+
+#### 🔮 Type: Chore
+
+- `babel-preset-mc-app`, `jest-preset-mc-app`, `permissions`
+  - [#1261](https://github.com/commercetools/merchant-center-application-kit/pull/1261) chore(permissions): add warnings to propose improvements ([@tdeekens](https://github.com/tdeekens))
+- `application-shell`, `permissions`, `sdk`
+  - [#1267](https://github.com/commercetools/merchant-center-application-kit/pull/1267) refactor: fix and improve docs and usage of permissions ([@tdeekens](https://github.com/tdeekens))
+- Other
+  - [#1262](https://github.com/commercetools/merchant-center-application-kit/pull/1262) chore: ignore .vscode/settings.json, add recommended.code-workspace ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `jest-preset-mc-app`, `mc-scripts`, `sdk`
+  - [#1263](https://github.com/commercetools/merchant-center-application-kit/pull/1263) chore: update jest ([@tdeekens](https://github.com/tdeekens))
+
+#### ✍️ Type: Documentation
+
+- [#1205](https://github.com/commercetools/merchant-center-application-kit/pull/1205) docs(website): support policy ([@emmenko](https://github.com/emmenko)
+
+#### 🖥 Type: Website
+
+- [#1205](https://github.com/commercetools/merchant-center-application-kit/pull/1205) docs(website): support polic ([@emmenko](https://github.com/emmenko))
+
 ## [15.8.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.7.0...v15.8.0) (2020-01-21)
 
 #### 🔮 Type: Chore
-* `babel-preset-mc-app`
-  * [#1254](https://github.com/commercetools/merchant-center-application-kit/pull/1254) fix(babel-preset-mc-app): remove uncalled-for plugins ([@tdeekens](https://github.com/tdeekens))
+
+- `babel-preset-mc-app`
+  - [#1254](https://github.com/commercetools/merchant-center-application-kit/pull/1254) fix(babel-preset-mc-app): remove uncalled-for plugins ([@tdeekens](https://github.com/tdeekens))
 
 #### 💅 Type: Enhancement
-* `application-shell-connectors`, `application-shell`, `permissions`
-  * [#1241](https://github.com/commercetools/merchant-center-application-kit/pull/1241) feat(app-shell): add launchdarkly tracking subgroup ([@tdeekens](https://github.com/tdeekens))
+
+- `application-shell-connectors`, `application-shell`, `permissions`
+  - [#1241](https://github.com/commercetools/merchant-center-application-kit/pull/1241) feat(app-shell): add launchdarkly tracking subgroup ([@tdeekens](https://github.com/tdeekens))
 
 #### 🚀 Type: New Feature
-* `sdk`
-  * [#1250](https://github.com/commercetools/merchant-center-application-kit/pull/1250) feat(sdk): add useAsyncDispatch for resolving async sdk actions (static types) ([@emmenko](https://github.com/emmenko))
+
+- `sdk`
+  - [#1250](https://github.com/commercetools/merchant-center-application-kit/pull/1250) feat(sdk): add useAsyncDispatch for resolving async sdk actions (static types) ([@emmenko](https://github.com/emmenko))
 
 #### 🖥 Type: Website
-* [#1245](https://github.com/commercetools/merchant-center-application-kit/pull/1245) refactor(website): improve landing page ([@emmenko](https://github.com/emmenko))
-* [#1244](https://github.com/commercetools/merchant-center-application-kit/pull/1244) refactor(website): layout for landing page to latest designs ([@emmenko](https://github.com/emmenko))
+
+- [#1245](https://github.com/commercetools/merchant-center-application-kit/pull/1245) refactor(website): improve landing page ([@emmenko](https://github.com/emmenko))
+- [#1244](https://github.com/commercetools/merchant-center-application-kit/pull/1244) refactor(website): layout for landing page to latest designs ([@emmenko](https://github.com/emmenko))
 
 #### 🤖 Type: Dependencies
-* `jest-preset-mc-app`, `mc-http-server`
-  * [#1252](https://github.com/commercetools/merchant-center-application-kit/pull/1252) fix(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
-* Other
-  * [#1253](https://github.com/commercetools/merchant-center-application-kit/pull/1253) chore(deps): lock file maintenance ([@renovate[bot]](https://github.com/apps/renovate))
-* `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-http-server`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sdk`, `sentry`, `url-utils`
-  * [#1251](https://github.com/commercetools/merchant-center-application-kit/pull/1251) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+
+- `jest-preset-mc-app`, `mc-http-server`
+  - [#1252](https://github.com/commercetools/merchant-center-application-kit/pull/1252) fix(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+- Other
+  - [#1253](https://github.com/commercetools/merchant-center-application-kit/pull/1253) chore(deps): lock file maintenance ([@renovate[bot]](https://github.com/apps/renovate))
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-http-server`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sdk`, `sentry`, `url-utils`
+  - [#1251](https://github.com/commercetools/merchant-center-application-kit/pull/1251) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
 
 ## [15.7.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.6.2...v15.7.0) (2020-01-15)
 
