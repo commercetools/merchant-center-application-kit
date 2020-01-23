@@ -61,7 +61,7 @@ const ModalPageWithPortalParentSelector = ({
 ModalPageWithPortalParentSelector.displayName =
   'ModalPageWithPortalParentSelector';
 
-export const component = () => (
+export const Component = () => (
   <Suite>
     <Spec label="CustomFormModalPage" size="xl">
       <ModalPageWithPortalParentSelector portalId="custom-form-modal-page-default"></ModalPageWithPortalParentSelector>
