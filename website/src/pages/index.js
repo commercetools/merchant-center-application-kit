@@ -77,32 +77,57 @@ const MainBanner = styled.div`
   background-color: ${designSystem.colors.light.surfaceCode};
   background-image: url('${withPrefix('/Liquid-Cheese.svg')}');
   background-attachment: fixed;
+  background-size: cover;
+
+  @media screen and (${designSystem.dimensions.viewports.tablet}) {
+    background-size: auto;
+  }
+  @media screen and (${designSystem.dimensions.viewports.largeDesktop}) {
+    background-size: cover;
+  }
 
   /* License with attribution of the background by SVGBackgrounds.com */
 `;
 const MainBannerConstraint = styled.div`
-  width: calc(100% - ${designSystem.dimensions.spacings.large} * 2);
+  width: calc(100% - ${designSystem.dimensions.spacings.m} * 2);
   max-width: ${designSystem.dimensions.widths.pageContent};
   padding: ${designSystem.dimensions.spacings.big}
-    ${designSystem.dimensions.spacings.large};
+    ${designSystem.dimensions.spacings.m};
 
   > * + * {
     margin: ${designSystem.dimensions.spacings.l} 0 0;
+  }
+
+  @media screen and (${designSystem.dimensions.viewports.tablet}) {
+    width: calc(100% - ${designSystem.dimensions.spacings.large} * 2);
+    padding: ${designSystem.dimensions.spacings.big}
+      ${designSystem.dimensions.spacings.large};
   }
 `;
 const SectionContainer = styled.div`
-  width: calc(100% - ${designSystem.dimensions.spacings.large} * 2);
+  box-shadow: ${designSystem.tokens.shadowForPageContent};
+  z-index: 1;
+  width: calc(100% - ${designSystem.dimensions.spacings.m} * 2);
   max-width: calc(
     ${designSystem.dimensions.widths.marketingContent} -
-      ${designSystem.dimensions.spacings.large} * 2
+      ${designSystem.dimensions.spacings.m} * 2
   );
   padding: ${designSystem.dimensions.spacings.big}
-    ${designSystem.dimensions.spacings.large};
+    ${designSystem.dimensions.spacings.m};
 
   > * + * {
     margin: ${designSystem.dimensions.spacings.l} 0 0;
   }
 
+  @media screen and (${designSystem.dimensions.viewports.tablet}) {
+    width: calc(100% - ${designSystem.dimensions.spacings.large} * 2);
+    max-width: calc(
+      ${designSystem.dimensions.widths.marketingContent} -
+        ${designSystem.dimensions.spacings.large} * 2
+    );
+    padding: ${designSystem.dimensions.spacings.big}
+      ${designSystem.dimensions.spacings.large};
+  }
   @media screen and (${designSystem.dimensions.viewports.desktop}) {
     width: calc(100% - ${designSystem.dimensions.spacings.large} * 2);
     max-width: calc(

@@ -68,13 +68,26 @@ const FooterConstraint = styled.div`
 `;
 
 const LayoutMarketing = props => {
+  // State for the top menu
+  const [isTopMenuOpen, setIsTopMenuOpen] = React.useState(false);
+  const toggleTopMenu = React.useCallback(() => {
+    setIsTopMenuOpen(prev => !prev);
+  }, [setIsTopMenuOpen]);
+  const closeTopMenu = React.useCallback(() => {
+    setIsTopMenuOpen(false);
+  }, [setIsTopMenuOpen]);
+
+  // State for the search dialog
   const [isSearchDialogOpen, setIsSearchDialogOpen] = React.useState(false);
   const openSearchDialog = React.useCallback(() => {
     setIsSearchDialogOpen(true);
-  }, [setIsSearchDialogOpen]);
-  const closeSearchDialog = () => {
+    // Additionally make sure to close the top menu
+    closeTopMenu();
+  }, [setIsSearchDialogOpen, closeTopMenu]);
+  const closeSearchDialog = React.useCallback(() => {
     setIsSearchDialogOpen(false);
-  };
+  }, [setIsSearchDialogOpen]);
+
   const siteData = useSiteData();
   return (
     <Container>
@@ -88,6 +101,9 @@ const LayoutMarketing = props => {
           isSearchDialogOpen={isSearchDialogOpen}
           openSearchDialog={openSearchDialog}
           closeSearchDialog={closeSearchDialog}
+          isTopMenuOpen={isTopMenuOpen}
+          toggleTopMenu={toggleTopMenu}
+          closeTopMenu={closeTopMenu}
         />
       </HeaderContainer>
       <Main>{props.children}</Main>
