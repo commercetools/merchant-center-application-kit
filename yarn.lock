@@ -1165,12 +1165,12 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-docs/gatsby-theme-docs@1.6.1-canary.13":
-  version "1.6.1-canary.13"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.6.1-canary.13.tgz#7e81bb0c8cf2f02f8f4440aea64408d08921f0d4"
-  integrity sha512-ASzoTF618cDHXiCVSwU71TIWraIEPR/57PfD/ynJbDbqb0ANfj8qE21O4oMxBTYH1SmQrM9HCPfylMJPav62EQ==
+"@commercetools-docs/gatsby-theme-docs@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.7.0.tgz#0a96374324ba56db4f00e4f6c34321c0f017e7a5"
+  integrity sha512-bCr4OtfHilXDk68NuoFY9AC0aJ9EZAx6xR7lHynUlhEVrbpAPxV7e3mi4RX2DlsteOaBK3dAhpHhsbFB/V9t9A==
   dependencies:
-    "@commercetools-docs/ui-kit" "1.6.0"
+    "@commercetools-docs/ui-kit" "1.7.0"
     "@commercetools-uikit/card" "10.13.0"
     "@commercetools-uikit/design-system" "10.13.0"
     "@commercetools-uikit/icon-button" "10.13.0"
@@ -1210,25 +1210,10 @@
     rehype-slug "2.0.3"
     remark-emoji "2.0.2"
 
-"@commercetools-docs/ui-kit@1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-1.6.0.tgz#72ca863ca7d65d7b8109606ca3051f226ff54872"
-  integrity sha512-KS3+cII67esfykEF83FemyVRuPN/xqKQXZZYotRy2vyLLnj9DLJISrtOAonk+/PcD3AtOgFPSugCcoyb8hhpPQ==
-  dependencies:
-    "@commercetools-uikit/tooltip" "10.13.0"
-    lodash.escape "4.0.1"
-    lodash.throttle "4.1.1"
-    parse-numeric-range "0.0.2"
-    parse5 "5.1.1"
-    prism-themes "1.3.0"
-    prismjs "1.18.0"
-    prop-types "15.7.2"
-    tiny-invariant "1.0.6"
-
-"@commercetools-docs/ui-kit@1.6.1-canary.12":
-  version "1.6.1-canary.12"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-1.6.1-canary.12.tgz#9db5305b3788696d8fb2871bdb0f1c6cafb67c3a"
-  integrity sha512-kRnlf+Zf25uqB+8CjhiP7KsJLLtc2a16ar3Cj5Dgvrt8SoGO1faC66dmGiHU2VCcDEuePCWGzN06w3fYZXHBQg==
+"@commercetools-docs/ui-kit@1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-1.7.0.tgz#37791029ea35707003a14508b6e76dbf412eefc0"
+  integrity sha512-9sfngk6KchLvRjYIqyOLwNfhcqrseG+cAGOBrL+epWUol+f5jf9hOD3tKH/Xy7fUcEI24Ix75o5sTNSe78f1Hw==
   dependencies:
     "@commercetools-uikit/tooltip" "10.13.0"
     lodash.escape "4.0.1"
@@ -21266,13 +21251,6 @@ prisma-yml@1.34.10:
     replaceall "^0.1.6"
     scuid "^1.0.2"
     yaml-ast-parser "^0.0.40"
-
-prismjs@1.18.0:
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.18.0.tgz#8f04dd47fa232cbd27d1ca969107580ff43f06e4"
-  integrity sha512-N0r3i/Cto516V8+GKKamhsPVZSFcO0TMUBtIDW6uq6BVqoC3FNtZVZ+cmH16N2XtGQlgRN+sFUTjOdCsEP51qw==
-  optionalDependencies:
-    clipboard "^2.0.0"
 
 prismjs@1.19.0:
   version "1.19.0"
