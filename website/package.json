@@ -10,7 +10,7 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-docs": "1.6.1-canary.12",
+    "@commercetools-docs/gatsby-theme-docs": "1.6.1-canary.13",
     "@commercetools-docs/ui-kit": "1.6.1-canary.12",
     "@commercetools-uikit/card": "10.13.0",
     "@commercetools-uikit/spacings-inline": "10.13.0",
