@@ -335,9 +335,9 @@ export type TProject = TMetaData & {
   createdAt: Scalars['String'],
   lastModifiedAt: Scalars['String'],
   apiVersion: Scalars['String'],
-  countries: Array<Maybe<Scalars['String']>>,
-  currencies: Array<Maybe<Scalars['String']>>,
-  languages: Array<Maybe<Scalars['String']>>,
+  countries: Array<Scalars['String']>,
+  currencies: Array<Scalars['String']>,
+  languages: Array<Scalars['String']>,
   isProductionProject: Scalars['Boolean'],
   initialized: Scalars['Boolean'],
   plan: Scalars['String'],
@@ -348,10 +348,10 @@ export type TProject = TMetaData & {
   expiry: TProjectExpiry,
   settings: Maybe<TProjectSetting>,
   shippingRateInputType: Maybe<TShippingRateInputType>,
-  allAppliedPermissions: Array<Maybe<TAppliedPermission>>,
-  allAppliedDataFences: Array<Maybe<TAppliedDataFence>>,
-  allAppliedActionRights: Array<Maybe<TAppliedActionRight>>,
-  allAppliedMenuVisibilities: Array<Maybe<TAppliedMenuVisibilities>>,
+  allAppliedPermissions: Array<TAppliedPermission>,
+  allAppliedDataFences: Array<TAppliedDataFence>,
+  allAppliedActionRights: Array<TAppliedActionRight>,
+  allAppliedMenuVisibilities: Array<TAppliedMenuVisibilities>,
 };
 
 export type TProjectDraftType = {
@@ -674,19 +674,19 @@ export type TFetchProjectQuery = (
     ), suspension: (
       { __typename?: 'ProjectSuspension' }
       & Pick<TProjectSuspension, 'isActive' | 'reason'>
-    ), allAppliedPermissions: Array<Maybe<(
+    ), allAppliedPermissions: Array<(
       { __typename?: 'AppliedPermission' }
       & Pick<TAppliedPermission, 'name' | 'value'>
-    )>>, allAppliedActionRights: Array<Maybe<(
+    )>, allAppliedActionRights: Array<(
       { __typename?: 'AppliedActionRight' }
       & Pick<TAppliedActionRight, 'group' | 'name' | 'value'>
-    )>>, allAppliedMenuVisibilities: Array<Maybe<(
+    )>, allAppliedMenuVisibilities: Array<(
       { __typename?: 'AppliedMenuVisibilities' }
       & Pick<TAppliedMenuVisibilities, 'name' | 'value'>
-    )>>, allAppliedDataFences: Array<Maybe<(
+    )>, allAppliedDataFences: Array<(
       { __typename: 'StoreDataFence' }
       & Pick<TStoreDataFence, 'type' | 'name' | 'value' | 'group'>
-    )>>, owner: (
+    )>, owner: (
       { __typename?: 'Organization' }
       & Pick<TOrganization, 'id'>
     ) }

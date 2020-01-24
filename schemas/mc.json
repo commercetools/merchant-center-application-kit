@@ -1078,9 +1078,13 @@
                   "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
                   }
                 }
               },
@@ -1098,9 +1102,13 @@
                   "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
                   }
                 }
               },
@@ -1118,9 +1126,13 @@
                   "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
                   }
                 }
               },
@@ -1290,9 +1302,13 @@
                   "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "OBJECT",
-                    "name": "AppliedPermission",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "AppliedPermission",
+                      "ofType": null
+                    }
                   }
                 }
               },
@@ -1310,9 +1326,13 @@
                   "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "UNION",
-                    "name": "AppliedDataFence",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "UNION",
+                      "name": "AppliedDataFence",
+                      "ofType": null
+                    }
                   }
                 }
               },
@@ -1330,9 +1350,13 @@
                   "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "OBJECT",
-                    "name": "AppliedActionRight",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "AppliedActionRight",
+                      "ofType": null
+                    }
                   }
                 }
               },
@@ -1350,9 +1374,13 @@
                   "kind": "LIST",
                   "name": null,
                   "ofType": {
-                    "kind": "OBJECT",
-                    "name": "AppliedMenuVisibilities",
-                    "ofType": null
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "AppliedMenuVisibilities",
+                      "ofType": null
+                    }
                   }
                 }
               },
@@ -6090,7 +6118,7 @@
   "extensions": {
     "graphql-config": {
       "source": "https://mc-api.commercetools.com/graphql",
-      "timestamp": "Mon Jan 20 2020 18:30:47 GMT+0100 (Central European Standard Time)"
+      "timestamp": "Fri Jan 24 2020 11:37:47 GMT+0100 (Central European Standard Time)"
     }
   }
 }
