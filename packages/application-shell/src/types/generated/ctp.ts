@@ -296,12 +296,6 @@ export type TAddZoneLocation = {
   location: TZoneLocation,
 };
 
-/** there was once a monkey that drank gas */
-export type TAlmoProductType = TProductType & {
-   __typename?: 'almoProductType',
-  productTypeId: Scalars['String'],
-};
-
 export enum TAnonymousCartSignInMode {
   /** The anonymous cart is used as new active customer cart. No `LineItem`s get merged. */
   UseAsNewActiveCustomerCart = 'UseAsNewActiveCustomerCart',
@@ -682,6 +676,7 @@ export type TCartDiscount = TVersioned & {
   description: Maybe<Scalars['String']>,
   nameAllLocales: Array<TLocalizedString>,
   descriptionAllLocales: Maybe<Array<TLocalizedString>>,
+  referenceRefs: Array<TReference>,
   /** This field contains non-typed data. Consider using `customFields` as a typed alternative. */
   customFieldsRaw: Maybe<Array<TRawCustomField>>,
   /** This field would contain type data */
@@ -1544,6 +1539,7 @@ export type TChangeZoneName = {
 export type TChannel = TVersioned & {
    __typename?: 'Channel',
   id: Scalars['String'],
+  typeId: Scalars['String'],
   version: Scalars['Long'],
   key: Scalars['String'],
   roles: Array<TChannelRole>,
@@ -1758,6 +1754,7 @@ export type TCustomerActiveCartInterface_CustomerActiveCartArgs = {
 export type TCustomerGroup = TVersioned & {
    __typename?: 'CustomerGroup',
   id: Scalars['String'],
+  typeId: Scalars['String'],
   version: Scalars['Long'],
   name: Scalars['String'],
   key: Maybe<Scalars['String']>,
@@ -2196,12 +2193,6 @@ export type TDateType = TFieldType & {
   name: Scalars['String'],
 };
 
-/** Test */
-export type TDeleteProductType = TProductType & {
-   __typename?: 'DeleteProductType',
-  productTypeId: Scalars['String'],
-};
-
 export type TDelivery = {
    __typename?: 'Delivery',
   id: Scalars['String'],
@@ -2252,6 +2243,7 @@ export type TDiscountCode = TVersioned & {
   name: Maybe<Scalars['String']>,
   description: Maybe<Scalars['String']>,
   cartDiscounts: Array<TCartDiscount>,
+  referenceRefs: Array<TReference>,
   nameAllLocales: Maybe<Array<TLocalizedString>>,
   descriptionAllLocales: Maybe<Array<TLocalizedString>>,
   /** This field contains non-typed data. Consider using `customFields` as a typed alternative. */
@@ -2425,21 +2417,6 @@ export type TDiscountedProductPriceValueInput = {
   discount: TReferenceInput,
 };
 
-/** dss */
-export type TDsdProductType = TProductType & {
-   __typename?: 'dsdProductType',
-  productTypeId: Scalars['String'],
-};
-
-/** All techi stuff with power cables */
-export type TElectronicsProductType = TProductType & {
-   __typename?: 'ElectronicsProductType',
-  productTypeId: Scalars['String'],
-  afsefewafewa: Maybe<Array<TLocalizedStringAttribute>>,
-  filip: Maybe<TLocalizedStringAttribute>,
-  filip2: Maybe<Array<TLocalizedStringAttribute>>,
-};
-
 export type TEnumAttribute = TAttribute & {
    __typename?: 'EnumAttribute',
   key: Scalars['String'],
@@ -2482,12 +2459,6 @@ export type TEnumValue = {
    __typename?: 'EnumValue',
   key: Scalars['String'],
   label: Scalars['String'],
-};
-
-/** ew */
-export type TEweProductType = TProductType & {
-   __typename?: 'eweProductType',
-  productTypeId: Scalars['String'],
 };
 
 export type TExternalDiscountValue = TProductDiscountValue & {
@@ -2774,11 +2745,12 @@ export type TInterfaceInteractionsRawResult = {
 export type TInventoryEntry = TVersioned & {
    __typename?: 'InventoryEntry',
   sku: Scalars['String'],
-  supplyChannel: Maybe<TReference>,
   quantityOnStock: Scalars['Long'],
   availableQuantity: Scalars['Long'],
   restockableInDays: Maybe<Scalars['Int']>,
   expectedDelivery: Maybe<Scalars['DateTime']>,
+  supplyChannel: Maybe<TChannel>,
+  supplyChannelRef: Maybe<TReference>,
   /** This field contains non-typed data. Consider using `customFields` as a typed alternative. */
   customFieldsRaw: Maybe<Array<TRawCustomField>>,
   /** This field would contain type data */
@@ -4539,12 +4511,6 @@ export type TPaymentStatus = {
   state: Maybe<TState>,
 };
 
-/** 2ww */
-export type TPensProductType = TProductType & {
-   __typename?: 'pensProductType',
-  productTypeId: Scalars['String'],
-};
-
 export type TPlainEnumValue = {
    __typename?: 'PlainEnumValue',
   key: Scalars['String'],
@@ -4741,6 +4707,7 @@ export type TProductDiscount = TVersioned & {
   key: Maybe<Scalars['String']>,
   name: Maybe<Scalars['String']>,
   description: Maybe<Scalars['String']>,
+  referenceRefs: Array<TReference>,
   nameAllLocales: Array<TLocalizedString>,
   descriptionAllLocales: Maybe<Array<TLocalizedString>>,
   value: TProductDiscountValue,
@@ -4869,8 +4836,10 @@ export type TProductPrice = {
   id: Maybe<Scalars['String']>,
   value: TBaseMoney,
   country: Maybe<Scalars['Country']>,
-  customerGroup: Maybe<TReference>,
-  channel: Maybe<TReference>,
+  customerGroup: Maybe<TCustomerGroup>,
+  customerGroupRef: Maybe<TReference>,
+  channel: Maybe<TChannel>,
+  channelRef: Maybe<TReference>,
   validFrom: Maybe<Scalars['DateTime']>,
   validUntil: Maybe<Scalars['DateTime']>,
   discounted: Maybe<TDiscountedProductPriceValue>,
@@ -5865,20 +5834,6 @@ export enum TRoundingMode {
   HalfEven = 'HalfEven'
 }
 
-/** A demo product type */
-export type TSample_Product_Type_ProductType = TProductType & {
-   __typename?: 'Sample_Product_Type_ProductType',
-  productTypeId: Scalars['String'],
-  custom_attribute: Maybe<TStringAttribute>,
-  size: Maybe<TLocalizedEnumAttribute>,
-  common_attribute_sfa_1: Maybe<TStringAttribute>,
-  attribute_enum_1: Maybe<TEnumAttribute>,
-  attribute_set_lenum_1: Maybe<Array<TLocalizedEnumAttribute>>,
-  attribute_ltext_1: Maybe<TLocalizedStringAttribute>,
-  attribute_ltext_sfa_1: Maybe<TLocalizedStringAttribute>,
-  Number: Maybe<TNumberAttribute>,
-};
-
 export type TScoreShippingRateInput = TShippingRateInput & {
    __typename?: 'ScoreShippingRateInput',
   score: Scalars['Int'],
@@ -5887,12 +5842,6 @@ export type TScoreShippingRateInput = TShippingRateInput & {
 
 export type TScoreShippingRateInputDraft = {
   score: Scalars['Int'],
-};
-
-/** sdf */
-export type TSdfProductType = TProductType & {
-   __typename?: 'sdfProductType',
-  productTypeId: Scalars['String'],
 };
 
 
@@ -6813,13 +6762,14 @@ export type TShippingInfo = {
   price: TMoney,
   shippingRate: TShippingRate,
   taxRate: Maybe<TTaxRate>,
-  taxCategory: Maybe<TReference>,
   deliveries: Array<TDelivery>,
   discountedPrice: Maybe<TDiscountedLineItemPrice>,
   taxedPrice: Maybe<TTaxedItemPrice>,
   shippingMethodState: TShippingMethodState,
   shippingMethod: Maybe<TShippingMethod>,
   shippingMethodRef: Maybe<TReference>,
+  taxCategory: Maybe<TTaxCategory>,
+  taxCategoryRef: Maybe<TReference>,
 };
 
 export type TShippingMethod = TVersioned & {
@@ -7171,18 +7121,6 @@ export type TSimpleAttributeTypeDraft = {
   dummy: Maybe<Scalars['String']>,
 };
 
-/** ww */
-export type TSs_129bddac_67f5_4b68_B6e6_A0b6d1bba660ProductType = TProductType & {
-   __typename?: 'ss_129bddac_67f5_4b68_b6e6_a0b6d1bba660ProductType',
-  productTypeId: Scalars['String'],
-};
-
-/** ss */
-export type TSs_D71aa0c5_Db6c_4d65_B58a_Fe8f8e37a70dProductType = TProductType & {
-   __typename?: 'ss_d71aa0c5_db6c_4d65_b58a_fe8f8e37a70dProductType',
-  productTypeId: Scalars['String'],
-};
-
 /** Describes how this discount interacts with other discounts */
 export enum TStackingMode {
   /** Don’t apply any more matching discounts after this one. */
@@ -7311,12 +7249,6 @@ export type TSubRateDraft = {
   amount: Scalars['Float'],
 };
 
-/** Test Producttype */
-export type TSven_TestsProductType = TProductType & {
-   __typename?: 'Sven_TestsProductType',
-  productTypeId: Scalars['String'],
-};
-
 /** Stores information about order synchronization activities (like export or import). */
 export type TSyncInfo = {
    __typename?: 'SyncInfo',
@@ -7346,6 +7278,7 @@ export type TTaxCategory = TVersioned & {
   description: Maybe<Scalars['String']>,
   rates: Array<TTaxRate>,
   key: Maybe<Scalars['String']>,
+  typeId: Scalars['String'],
   id: Scalars['String'],
   version: Scalars['Long'],
   createdAt: Scalars['DateTime'],
@@ -7473,12 +7406,6 @@ export type TTaxRateDraft = {
   subRates: Maybe<Array<TSubRateDraft>>,
 };
 
-/** Test */
-export type TTestProductType = TProductType & {
-   __typename?: 'TestProductType',
-  productTypeId: Scalars['String'],
-};
-
 export type TTextAttributeDefinitionType = TAttributeDefinitionType & {
    __typename?: 'TextAttributeDefinitionType',
   name: Scalars['String'],
@@ -7543,29 +7470,6 @@ export type TTimeField = TCustomField & {
 export type TTimeType = TFieldType & {
    __typename?: 'TimeType',
   name: Scalars['String'],
-};
-
-/** boy and girl toys */
-export type TToysProductType = TProductType & {
-   __typename?: 'ToysProductType',
-  productTypeId: Scalars['String'],
-  danger: Maybe<TBooleanAttribute>,
-  description: Maybe<TStringAttribute>,
-  Age: Maybe<TEnumAttribute>,
-  common_attribute_sfa_1: Maybe<TStringAttribute>,
-  attribute_enum_1: Maybe<TEnumAttribute>,
-  attribute_set_lenum_1: Maybe<Array<TLocalizedEnumAttribute>>,
-  attribute_ltext_1: Maybe<TLocalizedStringAttribute>,
-  attribute_ltext_sfa_1: Maybe<TLocalizedStringAttribute>,
-  ltext_set: Maybe<Array<TLocalizedStringAttribute>>,
-  multi_line_set: Maybe<Array<TStringAttribute>>,
-  SLTMLSFA: Maybe<Array<TLocalizedStringAttribute>>,
-  size: Maybe<TLocalizedEnumAttribute>,
-  date: Maybe<TDateAttribute>,
-  time: Maybe<TTimeAttribute>,
-  datetime: Maybe<TDateTimeAttribute>,
-  date_set: Maybe<Array<TDateAttribute>>,
-  boolean_set: Maybe<Array<TBooleanAttribute>>,
 };
 
 export type TTrackingData = {
@@ -7718,12 +7622,6 @@ export type TVersioned = {
 
 export type TWhitespaceSuggestTokenizerInput = {
   dummy: Maybe<Scalars['String']>,
-};
-
-/** ww */
-export type TWwProductType = TProductType & {
-   __typename?: 'wwProductType',
-  productTypeId: Scalars['String'],
 };
 
 
