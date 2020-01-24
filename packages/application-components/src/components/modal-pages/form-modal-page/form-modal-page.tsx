@@ -51,7 +51,7 @@ const FormModalPage = (props: Props) => (
     shouldDelayOnClose={props.shouldDelayOnClose}
     hideControls={props.hideControls}
     formControls={
-      <React.Fragment>
+      <>
         <CustomFormModalPage.FormSecondaryButton
           label={props.labelSecondaryButton}
           onClick={props.onSecondaryButtonClick}
@@ -64,7 +64,7 @@ const FormModalPage = (props: Props) => (
           isDisabled={props.isPrimaryButtonDisabled}
           dataAttributes={props.dataAttributesPrimaryButton}
         />
-      </React.Fragment>
+      </>
     }
   >
     {props.children}
