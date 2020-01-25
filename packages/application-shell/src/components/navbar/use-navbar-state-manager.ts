@@ -1,5 +1,6 @@
 import React from 'react';
 import isNil from 'lodash/isNil';
+import throttle from 'lodash/throttle';
 import { useQuery } from 'react-apollo';
 import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -19,6 +20,44 @@ import nonNullable from './non-nullable';
 type HookProps = {
   environment: TApplicationContext<{}>['environment'];
   DEV_ONLY__loadNavbarMenuConfig?: () => Promise<TApplicationsMenu['navBar']>;
+};
+type State = {
+  activeItemIndex?: string;
+  isExpanderVisible: boolean;
+  isMenuOpen: boolean;
+};
+type Action =
+  | { type: 'setActiveItemIndex'; payload: string }
+  | { type: 'unsetActiveItemIndex' }
+  | { type: 'setIsExpanderVisible' }
+  | { type: 'toggleIsMenuOpen' }
+  | { type: 'setIsMenuOpenAndMakeExpanderVisible'; payload: boolean }
+  | { type: 'reset' };
+
+const initialState = {
+  isExpanderVisible: true,
+  isMenuOpen: false,
+};
+const reducer = (state = initialState, action: Action): State => {
+  switch (action.type) {
+    case 'setActiveItemIndex':
+      return { ...state, activeItemIndex: action.payload };
+    case 'unsetActiveItemIndex':
+      return { ...state, activeItemIndex: undefined };
+    case 'setIsExpanderVisible':
+      return { ...state, isExpanderVisible: true };
+    case 'toggleIsMenuOpen':
+      return { ...state, isMenuOpen: !state.isMenuOpen };
+    case 'setIsMenuOpenAndMakeExpanderVisible':
+      return { ...state, isExpanderVisible: true, isMenuOpen: action.payload };
+    case 'reset':
+      return {
+        isExpanderVisible: false,
+        isMenuOpen: false,
+      };
+    default:
+      return state;
+  }
 };
 
 const useNavbarStateManager = (props: HookProps) => {
@@ -86,41 +125,47 @@ const useNavbarStateManager = (props: HookProps) => {
       ? cachedIsForcedMenuOpen === 'true'
       : null;
 
-  const [activeItemIndex, setActiveItemIndex] = React.useState<string | null>(
-    null
-  );
-  const [isExpanderVisible, setIsExpanderVisible] = React.useState(true);
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [state, dispatch] = React.useReducer<
+    (prevState: State, action: Action) => State
+  >(reducer, initialState);
 
-  const checkSize = React.useCallback(() => {
-    const shouldOpen = window.innerWidth > 1024;
-    const canExpandMenu = window.innerWidth > 918;
+  const checkSize = React.useCallback(
+    throttle(() => {
+      const shouldOpen = window.innerWidth > 1024;
+      const canExpandMenu = window.innerWidth > 918;
 
-    // If the screen is small, we should always keep the menu closed,
-    // no matter the settings.
-    if (!canExpandMenu) {
-      if (isMenuOpen || isExpanderVisible) {
-        // and resets the state to avoid conflicts
-        setIsMenuOpen(false);
-        setIsExpanderVisible(false);
-        setActiveItemIndex(null);
+      // If the screen is small, we should always keep the menu closed,
+      // no matter the settings.
+      if (!canExpandMenu) {
+        if (state.isMenuOpen || state.isExpanderVisible) {
+          // and resets the state to avoid conflicts
+          dispatch({ type: 'reset' });
+        }
+      } else if (canExpandMenu && state.isExpanderVisible !== true) {
+        dispatch({ type: 'setIsExpanderVisible' });
+      } else if (isNil(isForcedMenuOpen) && state.isMenuOpen !== shouldOpen) {
+        // User has no settings yet (this.props.isForcedMenuOpen === null)
+        // We check the viewport size and:
+        // - if screen is big, we open the menu
+        // - if screen is small we close it
+        dispatch({
+          type: 'setIsMenuOpenAndMakeExpanderVisible',
+          payload: shouldOpen,
+        });
+      } else if (
+        !isNil(isForcedMenuOpen) &&
+        state.isMenuOpen !== isForcedMenuOpen
+      ) {
+        // User has setting, we should use that and ignore the screen size.
+        // Note: if viewport size is small, we should ignore the user settings.
+        dispatch({
+          type: 'setIsMenuOpenAndMakeExpanderVisible',
+          payload: isForcedMenuOpen,
+        });
       }
-    } else if (canExpandMenu && isExpanderVisible !== true)
-      setIsExpanderVisible(true);
-    else if (isNil(isForcedMenuOpen) && isMenuOpen !== shouldOpen) {
-      // User has no settings yet (this.props.isForcedMenuOpen === null)
-      // We check the viewport size and:
-      // - if screen is big, we open the menu
-      // - if screen is small we close it
-      setIsMenuOpen(shouldOpen);
-      setIsExpanderVisible(true);
-    } else if (!isNil(isForcedMenuOpen) && isMenuOpen !== isForcedMenuOpen) {
-      // User has setting, we should use that and ignore the screen size.
-      // Note: if viewport size is small, we should ignore the user settings.
-      setIsMenuOpen(isForcedMenuOpen);
-      setIsExpanderVisible(true);
-    }
-  }, [isExpanderVisible, isMenuOpen, isForcedMenuOpen]);
+    }, 100),
+    [isForcedMenuOpen, state.isExpanderVisible, state.isMenuOpen]
+  );
 
   const shouldCloseMenuFly = React.useCallback<
     (e: React.MouseEvent<HTMLElement> | MouseEvent) => void
@@ -130,19 +175,18 @@ const useNavbarStateManager = (props: HookProps) => {
         navBarNode &&
         navBarNode.current &&
         !navBarNode.current.contains(event.target as Node) &&
-        !isMenuOpen
+        !state.isMenuOpen
       )
-        setActiveItemIndex(null);
-      else if (event.type === 'mouseleave') setActiveItemIndex(null);
+        dispatch({ type: 'unsetActiveItemIndex' });
+      else if (event.type === 'mouseleave')
+        dispatch({ type: 'unsetActiveItemIndex' });
     },
-    [isMenuOpen]
+    [state.isMenuOpen]
   );
 
   React.useEffect(() => {
     window.addEventListener('resize', checkSize);
     window.addEventListener('click', shouldCloseMenuFly, true);
-
-    checkSize();
 
     return () => {
       window.removeEventListener('resize', checkSize);
@@ -151,42 +195,49 @@ const useNavbarStateManager = (props: HookProps) => {
   }, [checkSize, shouldCloseMenuFly]);
 
   React.useEffect(() => {
-    if (isMenuOpen) document.body.classList.add('body__menu-open');
-    if (!isMenuOpen) document.body.classList.remove('body__menu-open');
-  }, [isMenuOpen]);
+    checkSize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // <-- run this only once!!
+
+  React.useEffect(() => {
+    if (state.isMenuOpen) document.body.classList.add('body__menu-open');
+    if (!state.isMenuOpen) document.body.classList.remove('body__menu-open');
+  }, [state.isMenuOpen]);
 
   const handleToggleItem = React.useCallback(
     (menuType: string, index: string) => {
       const activeItem = `${menuType}-${index}`;
-      if (activeItemIndex !== activeItem) setActiveItemIndex(activeItem);
+      if (state.activeItemIndex !== activeItem)
+        dispatch({
+          type: 'setActiveItemIndex',
+          payload: activeItem,
+        });
     },
-    [activeItemIndex]
+    [state.activeItemIndex]
   );
 
   const handleToggleMenu = React.useCallback(() => {
-    if (isMenuOpen && activeItemIndex !== null) {
-      setActiveItemIndex(null);
+    if (state.isMenuOpen && state.activeItemIndex) {
+      dispatch({ type: 'unsetActiveItemIndex' });
     }
-    setIsMenuOpen(prevState => !prevState);
-  }, [activeItemIndex, isMenuOpen]);
+    dispatch({ type: 'toggleIsMenuOpen' });
+  }, [state.activeItemIndex, state.isMenuOpen]);
 
   // Synchronize the menu state with local storage.
   React.useEffect(() => {
     window.localStorage.setItem(
       STORAGE_KEYS.IS_FORCED_MENU_OPEN,
-      String(isMenuOpen)
+      String(state.isMenuOpen)
     );
-  }, [isMenuOpen]);
+  }, [state.isMenuOpen]);
 
   const allApplicationNavbarMenu = (applicationsNavBarMenu || []).concat(
     customAppsMenu
   );
 
   return {
+    ...state,
     navBarNode,
-    isMenuOpen,
-    isExpanderVisible,
-    activeItemIndex,
     handleToggleItem,
     handleToggleMenu,
     shouldCloseMenuFly,
