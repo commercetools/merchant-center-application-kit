@@ -370,6 +370,18 @@ const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
 const getMenuVisibilityOfMainmenu = (menu: TNavbarMenu) =>
   menu.menuVisibility ? [menu.menuVisibility] : [];
 
+type MenuLabelProps = {
+  labelAllLocales: TLocalizedField[];
+  applicationLocale: string;
+};
+const MenuLabel = (props: MenuLabelProps) => {
+  const localizedLabel = props.labelAllLocales.find(loc =>
+    props.applicationLocale.startsWith(loc.locale)
+  );
+  if (localizedLabel) return <>{localizedLabel.value}</>;
+  return <>{NO_VALUE_FALLBACK}</>;
+};
+
 type ApplicationMenuProps = {
   location: RouteComponentProps['location'];
   menuType: string;
@@ -399,13 +411,6 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
       strict: false,
     });
     return Boolean(match);
-  };
-  const renderLabel = (labelAllLocales: TLocalizedField[]) => {
-    const localizedLabel = labelAllLocales.find(loc =>
-      props.applicationLocale.startsWith(loc.locale)
-    );
-    if (localizedLabel) return <>{localizedLabel.value}</>;
-    return <>{NO_VALUE_FALLBACK}</>;
   };
 
   return (
@@ -463,7 +468,10 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                 className={styles.title}
                 aria-owns={`${props.menu.key}-group`}
               >
-                {renderLabel(props.menu.labelAllLocales)}
+                <MenuLabel
+                  labelAllLocales={props.menu.labelAllLocales}
+                  applicationLocale={props.applicationLocale}
+                />
               </div>
             </div>
           </MenuItemLink>
@@ -500,7 +508,10 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
                           }
                           onClick={props.onMenuItemClick}
                         >
-                          {renderLabel(submenu.labelAllLocales)}
+                          <MenuLabel
+                            labelAllLocales={submenu.labelAllLocales}
+                            applicationLocale={props.applicationLocale}
+                          />
                         </MenuItemLink>
                       </div>
                     </li>
