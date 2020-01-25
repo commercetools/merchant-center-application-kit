@@ -28,7 +28,6 @@ type TDataFenceGroupedByResourceType = {
   // E.g. { orders: {...} }
   [key: string]: TDataFenceGroupedByPermission | null;
 };
-type TDataFenceType = 'store';
 // NOTE: we currently can't use Mapped Types as the babel transfomer does not
 // understand them yet: https://github.com/milesj/babel-plugin-typescript-to-proptypes/issues/23
 // type TDataFences = {
@@ -42,7 +41,7 @@ type TDataFences = {
 type TDemandedDataFence = {
   group: string;
   name: string;
-  type: TDataFenceType;
+  type: string;
 };
 
 type TDemandedDataFenceWithValues = TDemandedDataFence & {
@@ -245,15 +244,22 @@ const getHasDemandedDataFence = (
 
 const getDataFenceByTypeAndGroup = (
   actualDataFences: TDataFences | null,
-  demandedDataFenceType: TDataFenceType,
+  demandedDataFenceType: string,
   demandedDataFenceGroup: string
 ) => {
   if (!actualDataFences) return null;
 
   if (demandedDataFenceType in actualDataFences) {
-    const actualDataFence = actualDataFences[demandedDataFenceType];
-    if (actualDataFence && demandedDataFenceGroup in actualDataFence) {
-      return actualDataFence[demandedDataFenceGroup];
+    switch (demandedDataFenceType) {
+      case 'store': {
+        const actualDataFence = actualDataFences[demandedDataFenceType];
+        if (actualDataFence && demandedDataFenceGroup in actualDataFence) {
+          return actualDataFence[demandedDataFenceGroup];
+        }
+        break;
+      }
+      default:
+        break;
     }
   }
   return null;

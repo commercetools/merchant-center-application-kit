@@ -1,8 +1,14 @@
-import { ProviderProps } from './application-context';
+import {
+  ProviderProps,
+  TApplicationContext as ApplicationContext,
+} from './application-context';
 
 export type TProviderProps<
   AdditionalEnvironmentProperties extends {}
 > = ProviderProps<AdditionalEnvironmentProperties>;
+export type TApplicationContext<
+  AdditionalEnvironmentProperties extends {}
+> = ApplicationContext<AdditionalEnvironmentProperties>;
 
 export {
   Context,
