@@ -4,4 +4,4 @@ export default {
     category: 'QuickAccess',
     label: 'quick_access_open',
   },
-};
+} as const;

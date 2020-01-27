@@ -23,4 +23,4 @@ export const permissions = {
   ManageDeveloperSettings: 'ManageDeveloperSettings',
   ViewProductTypes: 'ViewProductTypes',
   ManageProductTypes: 'ManageProductTypes',
-};
+} as const;

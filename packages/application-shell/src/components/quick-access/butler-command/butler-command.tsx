@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { AngleThinRightIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
+import { Command } from '../types';
 
-const ButlerCommand = ({ command, onMouseEnter, onClick, isSelected }) => (
+type Props = {
+  command: Command;
+  isSelected?: boolean;
+  onClick: MouseEventHandler<HTMLDivElement>;
+  onMouseEnter: MouseEventHandler<HTMLDivElement>;
+};
+
+const ButlerCommand = (props: Props) => (
   <div
-    key={command.id}
-    data-testid={`quick-access-result(${command.id})`}
+    key={props.command.id}
+    data-testid={`quick-access-result(${props.command.id})`}
     css={css`
       display: flex;
       padding: 0 ${customProperties.spacingM};
@@ -16,15 +24,15 @@ const ButlerCommand = ({ command, onMouseEnter, onClick, isSelected }) => (
       font-weight: 200;
       line-height: 36px;
       cursor: default;
-      ${isSelected
+      ${props.isSelected
         ? `
             background: ${customProperties.colorAccent};
             color: ${customProperties.colorSurface};
           `
         : ''}
     `}
-    onMouseEnter={onMouseEnter}
-    onClick={onClick}
+    onMouseEnter={props.onMouseEnter}
+    onClick={props.onClick}
   >
     <div
       css={css`
@@ -34,10 +42,11 @@ const ButlerCommand = ({ command, onMouseEnter, onClick, isSelected }) => (
         text-overflow: ellipsis;
       `}
     >
-      {command.text}
+      {props.command.text}
     </div>
-    {((Array.isArray(command.subCommands) && command.subCommands.length > 0) ||
-      typeof command.subCommands === 'function') && (
+    {((Array.isArray(props.command.subCommands) &&
+      props.command.subCommands.length > 0) ||
+      typeof props.command.subCommands === 'function') && (
       <div
         css={css`
           align-self: center;
@@ -48,7 +57,7 @@ const ButlerCommand = ({ command, onMouseEnter, onClick, isSelected }) => (
       >
         <AngleThinRightIcon
           size="medium"
-          color={isSelected ? 'surface' : 'neutral60'}
+          color={props.isSelected ? 'surface' : 'neutral60'}
         />
       </div>
     )}

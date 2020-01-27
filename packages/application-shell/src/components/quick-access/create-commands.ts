@@ -1,18 +1,32 @@
+import { IntlShape } from 'react-intl';
 import { oneLineTrim } from 'common-tags';
 import { hasSomePermissions } from '@commercetools-frontend/permissions';
 import {
   LOGOUT_REASONS,
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
+import { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { permissions } from './constants';
 import messages from './messages';
+import { Command } from './types';
 
-export default function createCommands({
-  applicationContext,
+function nonNullable<T>(value: T | boolean): value is NonNullable<T> {
+  return value !== null && value !== undefined && typeof value !== 'boolean';
+}
+
+type CreateCommandsOptions = {
+  intl: IntlShape;
+  applicationContext: TApplicationContext<{}>;
+  featureToggles: { [key: string]: boolean };
+  changeProjectDataLocale: (locale: string) => void;
+};
+
+const createCommands = ({
   intl,
+  applicationContext,
   featureToggles,
   changeProjectDataLocale,
-}) {
+}: CreateCommandsOptions): Command[] => {
   return [
     applicationContext.project &&
       applicationContext.permissions &&
@@ -88,7 +102,7 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/products/new`,
             },
           },
-        ].filter(Boolean),
+        ].filter(nonNullable),
       },
     applicationContext.project &&
       applicationContext.permissions &&
@@ -137,7 +151,7 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/categories/new`,
             },
           },
-        ].filter(Boolean),
+        ].filter(nonNullable),
       },
     applicationContext.project &&
       applicationContext.permissions &&
@@ -197,7 +211,7 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/customers/customer-groups/new`,
             },
           },
-        ].filter(Boolean),
+        ].filter(nonNullable),
       },
     applicationContext.project &&
       applicationContext.permissions &&
@@ -232,7 +246,7 @@ export default function createCommands({
               to: `/${applicationContext.project.key}/orders/new`,
             },
           },
-        ].filter(Boolean),
+        ].filter(nonNullable),
       },
     applicationContext.project &&
       applicationContext.permissions &&
@@ -333,9 +347,9 @@ export default function createCommands({
                   to: `/${applicationContext.project.key}/discounts/codes/new`,
                 },
               },
-            ].filter(Boolean),
+            ].filter(nonNullable),
           },
-        ].filter(Boolean),
+        ].filter(nonNullable),
       },
     applicationContext.project &&
       applicationContext.permissions &&
@@ -407,7 +421,7 @@ export default function createCommands({
                   to: `/${applicationContext.project.key}/settings/project/channels`,
                 },
               },
-            ].filter(Boolean),
+            ].filter(nonNullable),
           },
           hasSomePermissions(
             [permissions.ViewProductTypes],
@@ -453,7 +467,7 @@ export default function createCommands({
                   to: `/${applicationContext.project.key}/settings/developer/api-clients/new`,
                 },
               },
-            ].filter(Boolean),
+            ].filter(nonNullable),
           },
           featureToggles.customApplications &&
             hasSomePermissions(
@@ -467,7 +481,7 @@ export default function createCommands({
                 to: `/${applicationContext.project.key}/settings/custom-applications`,
               },
             },
-        ].filter(Boolean),
+        ].filter(nonNullable),
       },
     applicationContext.project &&
       applicationContext.project.languages &&
@@ -479,26 +493,32 @@ export default function createCommands({
           'set project data language',
           'set project data locale',
         ],
+        action: () => void 0,
         // We would know these statically, but we define them here as we don't
         // want to include them in the top-level search results
         subCommands: () =>
-          applicationContext.project.languages.map(language => ({
-            id: `action/set-resource-language/${language}`,
-            text: oneLineTrim`
+          Promise.resolve(
+            (applicationContext.project
+              ? applicationContext.project.languages
+              : []
+            ).map(language => ({
+              id: `action/set-resource-language/${language}`,
+              text: oneLineTrim`
               ${language}
               ${language === applicationContext.dataLocale ? ' (active)' : ''}
             `,
-            action: () => {
-              changeProjectDataLocale(language);
+              action: () => {
+                changeProjectDataLocale(language);
 
-              // We reload, since ProjectDataLocale is written in a way where
-              // only the tree under the parent container reloads, but
-              // not all of them reload.
-              // So this action would seem like it had not effect, unless we
-              // reload
-              window.location.reload();
-            },
-          })),
+                // We reload, since ProjectDataLocale is written in a way where
+                // only the tree under the parent container reloads, but
+                // not all of them reload.
+                // So this action would seem like it had not effect, unless we
+                // reload
+                window.location.reload();
+              },
+            }))
+          ),
       },
     {
       id: 'go/support',
@@ -561,5 +581,7 @@ export default function createCommands({
           },
         }))
       : []),
-  ].filter(Boolean);
-}
+  ].filter(nonNullable);
+};
+
+export default createCommands;
