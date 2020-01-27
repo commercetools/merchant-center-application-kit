@@ -83,6 +83,10 @@ const canPublishProductsAndEditPrices = canPublishProducts && canEditPrices;
 - `application-components`, `application-shell`, `permissions`
   - [#1260](https://github.com/commercetools/merchant-center-application-kit/pull/1260) refactor(app-shell): deprecate MeasureFirstPaint ([@emmenko](https://github.com/emmenko))
 
+#### ✍️ Type: Documentation
+
+- [#1205](https://github.com/commercetools/merchant-center-application-kit/pull/1205) docs(website): support policy ([@emmenko](https://github.com/emmenko))
+
 #### 🔮 Type: Chore
 
 - `babel-preset-mc-app`, `jest-preset-mc-app`, `permissions`
@@ -94,11 +98,16 @@ const canPublishProductsAndEditPrices = canPublishProducts && canEditPrices;
 
 #### 🤖 Type: Dependencies
 
+- `sdk`
+  - [#1274](https://github.com/commercetools/merchant-center-application-kit/pull/1274) fix(deps): update all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+- `jest-preset-mc-app`
+  - [#1275](https://github.com/commercetools/merchant-center-application-kit/pull/1275) chore(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
 - `jest-preset-mc-app`, `mc-scripts`, `sdk`
   - [#1263](https://github.com/commercetools/merchant-center-application-kit/pull/1263) chore: update jest ([@tdeekens](https://github.com/tdeekens))
 
 #### 🖥 Type: Website
 
+- [#1270](https://github.com/commercetools/merchant-center-application-kit/pull/1270) feat(website): to use new top menu and footer ([@emmenko](https://github.com/emmenko))
 - [#1205](https://github.com/commercetools/merchant-center-application-kit/pull/1205) docs(website): support policy ([@emmenko](https://github.com/emmenko))
 
 ## [15.8.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.7.0...v15.8.0) (2020-01-21)
