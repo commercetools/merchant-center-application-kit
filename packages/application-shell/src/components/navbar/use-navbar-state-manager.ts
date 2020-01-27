@@ -120,10 +120,7 @@ const useNavbarStateManager = (props: HookProps) => {
   const cachedIsForcedMenuOpen = window.localStorage.getItem(
     STORAGE_KEYS.IS_FORCED_MENU_OPEN
   );
-  const isForcedMenuOpen =
-    typeof cachedIsForcedMenuOpen === 'string'
-      ? cachedIsForcedMenuOpen === 'true'
-      : null;
+  const isForcedMenuOpen = cachedIsForcedMenuOpen === 'true' || null;
 
   const [state, dispatch] = React.useReducer<
     (prevState: State, action: Action) => State
