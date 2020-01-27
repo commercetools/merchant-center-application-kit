@@ -195,7 +195,6 @@ type MenuItemProps = {
   hasSubmenu: boolean;
   isActive: boolean;
   isMenuOpen: boolean;
-  isBottomItem?: boolean;
   onClick: MouseEventHandler<HTMLElement>;
   onMouseEnter?: MouseEventHandler<HTMLElement>;
   onMouseLeave?: MouseEventHandler<HTMLElement>;
@@ -274,7 +273,7 @@ MenuItemDivider.displayName = 'MenuItemDivider';
 // the `<ToggleFeature>` wrapper should be rendered only if the `featureToggle`
 // prop is defined. This is because `<ToggleFeature>` will not render any
 // children if the flag is missing/not found.
-const hasMenuEveryMenuVisibilitySetToBeHidden = (
+const isEveryMenuVisibilitySetToHidden = (
   menuVisibilities?: TApplicationContext<{}>['menuVisibilities'],
   namesOfMenuVisibilities?: string[]
 ) =>
@@ -310,7 +309,7 @@ const RestrictedMenuItem = (props: RestrictedMenuItemProps) => {
   // NOTE: Custom application are activated/deactivated while their
   // visibility is not controlled via a visibiility overwrite.
   if (
-    hasMenuEveryMenuVisibilitySetToBeHidden(
+    isEveryMenuVisibilitySetToHidden(
       props.menuVisibilities,
       props.namesOfMenuVisibilities
     ) ||
