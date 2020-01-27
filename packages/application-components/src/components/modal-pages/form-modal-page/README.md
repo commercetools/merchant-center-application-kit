@@ -8,7 +8,7 @@ import { FormModalPage } from '@commercetools-frontend/application-components';
 
 ## Description
 
-Form Modal pages are controlled components used to render a page with a form or something that requires user input, using `CustomFormModalPage` with default controls.
+Form Modal pages are controlled components used to render a page with a form or something that requires user input, using a `CustomFormModalPage` with default controls, which should be useful for most common use cases. In case you need aditional customization, please use `CustomFormModalPage` directly instead.
 
 ## Usage
 
