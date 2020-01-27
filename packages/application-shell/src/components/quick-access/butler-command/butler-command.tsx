@@ -16,6 +16,7 @@ const ButlerCommand = (props: Props) => (
   <div
     key={props.command.id}
     data-testid={`quick-access-result(${props.command.id})`}
+    aria-current={props.isSelected === true ? 'true' : 'false'}
     css={css`
       display: flex;
       padding: 0 ${customProperties.spacingM};
@@ -24,7 +25,7 @@ const ButlerCommand = (props: Props) => (
       font-weight: 200;
       line-height: 36px;
       cursor: default;
-      ${props.isSelected
+      ${props.isSelected === true
         ? `
             background: ${customProperties.colorAccent};
             color: ${customProperties.colorSurface};

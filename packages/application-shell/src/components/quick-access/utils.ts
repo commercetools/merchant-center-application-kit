@@ -1,6 +1,5 @@
-import flatMap from 'lodash/flatMap';
 import { TLocalizedString } from '../../types/generated/ctp';
-import { Command } from './types';
+import { Command, ExecGraphQlQuery } from './types';
 
 export const sanitize = (param: string) =>
   param
@@ -9,16 +8,28 @@ export const sanitize = (param: string) =>
     // Replace all " with \"
     .replace(/"/g, '\\"');
 
-export const flattenResults = (results: Command[]): Command[] =>
-  flatMap<Command, Omit<Command, 'subCommands'>>(results, result => {
-    if (result.subCommands) {
-      if (typeof result.subCommands === 'function') {
-        return [result, ...flattenResults(result.subCommands())];
+export const flattenCommands = async (
+  results: Command[],
+  execQuery: ExecGraphQlQuery
+) => {
+  async function flatten(commands: Command[]): Promise<Command[]> {
+    return commands.reduce(async (prevPromise: Promise<Command[]>, command) => {
+      const prevResults = await prevPromise;
+      if (command.subCommands) {
+        if (typeof command.subCommands === 'function') {
+          const subCommands = await command.subCommands(execQuery);
+          const flattenSubCommands = await flatten(subCommands);
+          return [...prevResults, command, ...flattenSubCommands];
+        }
+        const flattenSubCommands = await flatten(command.subCommands);
+        return [...prevResults, command, ...flattenSubCommands];
       }
-      return [result, ...flattenResults(result.subCommands)];
-    }
-    return result;
-  });
+      return [...prevResults, command];
+    }, Promise.resolve([]));
+  }
+
+  return await flatten(results);
+};
 
 // Once ui-kit exposes its fallback mechanism, we can use the same one here
 export const translate = (

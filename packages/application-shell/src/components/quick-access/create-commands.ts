@@ -8,7 +8,7 @@ import {
 import { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { permissions } from './constants';
 import messages from './messages';
-import { Command } from './types';
+import { actionTypes, Command } from './types';
 
 function nonNullable<T>(value: T | boolean): value is NonNullable<T> {
   return value !== null && value !== undefined && typeof value !== 'boolean';
@@ -18,7 +18,7 @@ type CreateCommandsOptions = {
   intl: IntlShape;
   applicationContext: TApplicationContext<{}>;
   featureToggles: { [key: string]: boolean };
-  changeProjectDataLocale: (locale: string) => void;
+  changeProjectDataLocale?: (locale: string) => void;
 };
 
 const createCommands = ({
@@ -39,7 +39,7 @@ const createCommands = ({
         text: intl.formatMessage(messages.openDashboard),
         keywords: ['Go to Dashboard'],
         action: {
-          type: 'go',
+          type: actionTypes.go,
           to: `/${applicationContext.project.key}/dashboard`,
         },
       },
@@ -53,7 +53,7 @@ const createCommands = ({
         text: intl.formatMessage(messages.openProducts),
         keywords: ['Go to Products'],
         action: {
-          type: 'go',
+          type: actionTypes.go,
           to: `/${applicationContext.project.key}/products`,
         },
         subCommands: [
@@ -64,7 +64,7 @@ const createCommands = ({
             id: 'go/products/list',
             text: intl.formatMessage(messages.openProductList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/products`,
             },
           },
@@ -75,7 +75,7 @@ const createCommands = ({
             id: 'go/products/modified',
             text: intl.formatMessage(messages.openModifiedProducts),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/products/modified`,
             },
           },
@@ -87,7 +87,7 @@ const createCommands = ({
               id: 'go/products/pim-search',
               text: intl.formatMessage(messages.openPimSearch),
               action: {
-                type: 'go',
+                type: actionTypes.go,
                 to: `/${applicationContext.project.key}/products/pim-search`,
               },
             },
@@ -98,7 +98,7 @@ const createCommands = ({
             id: 'go/products/add',
             text: intl.formatMessage(messages.openAddProducts),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/products/new`,
             },
           },
@@ -114,7 +114,7 @@ const createCommands = ({
         text: intl.formatMessage(messages.openCategories),
         keywords: ['Go to Categories'],
         action: {
-          type: 'go',
+          type: actionTypes.go,
           to: `/${applicationContext.project.key}/categories`,
         },
         subCommands: [
@@ -125,7 +125,7 @@ const createCommands = ({
             id: 'go/categories/list',
             text: intl.formatMessage(messages.openCategoriesList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/categories?mode=list`,
             },
           },
@@ -136,7 +136,7 @@ const createCommands = ({
             id: 'go/categories/search',
             text: intl.formatMessage(messages.openCategoriesSearch),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/categories?mode=search`,
             },
           },
@@ -147,7 +147,7 @@ const createCommands = ({
             id: 'go/categories/add',
             text: intl.formatMessage(messages.openAddCategory),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/categories/new`,
             },
           },
@@ -163,7 +163,7 @@ const createCommands = ({
         text: intl.formatMessage(messages.openCustomers),
         keywords: ['Go to Customers'],
         action: {
-          type: 'go',
+          type: actionTypes.go,
           to: `/${applicationContext.project.key}/customers`,
         },
         subCommands: [
@@ -174,7 +174,7 @@ const createCommands = ({
             id: 'go/customers/list',
             text: intl.formatMessage(messages.openCustomersList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/customers`,
             },
           },
@@ -185,7 +185,7 @@ const createCommands = ({
             id: 'go/customers/new',
             text: intl.formatMessage(messages.openAddCustomer),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/customers/new`,
             },
           },
@@ -196,7 +196,7 @@ const createCommands = ({
             id: 'go/customer/customer-groups',
             text: intl.formatMessage(messages.openCustomerGroupsList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/customers/customer-groups`,
             },
           },
@@ -207,7 +207,7 @@ const createCommands = ({
             id: 'go/customers/customer-groups/add',
             text: intl.formatMessage(messages.openAddCustomerGroup),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/customers/customer-groups/new`,
             },
           },
@@ -222,7 +222,10 @@ const createCommands = ({
         id: 'go/orders',
         text: intl.formatMessage(messages.openOrders),
         keywords: ['Go to Orders'],
-        action: { type: 'go', to: `/${applicationContext.project.key}/orders` },
+        action: {
+          type: actionTypes.go,
+          to: `/${applicationContext.project.key}/orders`,
+        },
         subCommands: [
           hasSomePermissions(
             [permissions.ViewOrders],
@@ -231,7 +234,7 @@ const createCommands = ({
             id: 'go/orders/list',
             text: intl.formatMessage(messages.openOrdersList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/orders`,
             },
           },
@@ -242,7 +245,7 @@ const createCommands = ({
             id: 'go/orders/add',
             text: intl.formatMessage(messages.openAddOrder),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/orders/new`,
             },
           },
@@ -262,7 +265,7 @@ const createCommands = ({
         text: intl.formatMessage(messages.openDiscounts),
         keywords: ['Go to Discounts'],
         action: {
-          type: 'go',
+          type: actionTypes.go,
           to: `/${applicationContext.project.key}/discounts`,
         },
         subCommands: [
@@ -273,7 +276,7 @@ const createCommands = ({
             id: 'go/discounts/products/list',
             text: intl.formatMessage(messages.openProductDiscountsList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/discounts/products`,
             },
           },
@@ -284,7 +287,7 @@ const createCommands = ({
             id: 'go/discounts/carts/list',
             text: intl.formatMessage(messages.openCartDiscountsList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/discounts/carts`,
             },
           },
@@ -295,7 +298,7 @@ const createCommands = ({
             id: 'go/discounts/codes/list',
             text: intl.formatMessage(messages.openDiscountCodesList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/discounts/codes`,
             },
           },
@@ -310,7 +313,7 @@ const createCommands = ({
             id: 'go/discounts/add',
             text: intl.formatMessage(messages.openAddDiscount),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/discounts/new`,
             },
             subCommands: [
@@ -321,7 +324,7 @@ const createCommands = ({
                 id: 'go/discounts/product/add',
                 text: intl.formatMessage(messages.openAddProductDiscount),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/discounts/products/new`,
                 },
               },
@@ -332,7 +335,7 @@ const createCommands = ({
                 id: 'go/discounts/cart/add',
                 text: intl.formatMessage(messages.openAddCartDiscount),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/discounts/carts/new`,
                 },
               },
@@ -343,7 +346,7 @@ const createCommands = ({
                 id: 'go/discounts/code/add',
                 text: intl.formatMessage(messages.openAddCartDiscount),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/discounts/codes/new`,
                 },
               },
@@ -365,7 +368,7 @@ const createCommands = ({
         text: intl.formatMessage(messages.openSettings),
         keywords: ['Go to Settings'],
         action: {
-          type: 'go',
+          type: actionTypes.go,
           to: `/${applicationContext.project.key}/settings/project`,
         },
         subCommands: [
@@ -379,7 +382,7 @@ const createCommands = ({
             id: 'go/settings/project',
             text: intl.formatMessage(messages.openProjectSettings),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/settings/project`,
             },
             subCommands: [
@@ -389,7 +392,7 @@ const createCommands = ({
                   messages.openProjectSettingsInternationalTab
                 ),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/settings/project/international`,
                 },
               },
@@ -397,7 +400,7 @@ const createCommands = ({
                 id: 'go/settings/project/taxes',
                 text: intl.formatMessage(messages.openProjectSettingsTaxesTab),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/settings/project/taxes`,
                 },
               },
@@ -407,7 +410,7 @@ const createCommands = ({
                   messages.openProjectSettingsShippingMethodsTab
                 ),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/settings/project/shipping-methods`,
                 },
               },
@@ -417,7 +420,7 @@ const createCommands = ({
                   messages.openProjectSettingsChannelsTab
                 ),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/settings/project/channels`,
                 },
               },
@@ -430,7 +433,7 @@ const createCommands = ({
             id: 'go/settings/product-types',
             text: intl.formatMessage(messages.openProductTypesSettings),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/settings/product-types`,
             },
           },
@@ -441,7 +444,7 @@ const createCommands = ({
             id: 'go/settings/developer',
             text: intl.formatMessage(messages.openDeveloperSettings),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/settings/developer`,
             },
             subCommands: [
@@ -452,7 +455,7 @@ const createCommands = ({
                 id: 'go/settings/developer/api-clients/list',
                 text: intl.formatMessage(messages.openApiClientsList),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/settings/developer/api-clients`,
                 },
               },
@@ -463,7 +466,7 @@ const createCommands = ({
                 id: 'go/settings/developer/api-clients/add',
                 text: intl.formatMessage(messages.openAddApiClient),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/settings/developer/api-clients/new`,
                 },
               },
@@ -477,7 +480,7 @@ const createCommands = ({
               id: 'go/settings/custom-applications',
               text: intl.formatMessage(messages.openCustomApplicationsSettings),
               action: {
-                type: 'go',
+                type: actionTypes.go,
                 to: `/${applicationContext.project.key}/settings/custom-applications`,
               },
             },
@@ -501,23 +504,32 @@ const createCommands = ({
             (applicationContext.project
               ? applicationContext.project.languages
               : []
-            ).map(language => ({
-              id: `action/set-resource-language/${language}`,
-              text: oneLineTrim`
-              ${language}
-              ${language === applicationContext.dataLocale ? ' (active)' : ''}
-            `,
-              action: () => {
-                changeProjectDataLocale(language);
+            )
+              .map(
+                language =>
+                  changeProjectDataLocale && {
+                    id: `action/set-resource-language/${language}`,
+                    text: oneLineTrim`
+                      ${language}
+                      ${
+                        language === applicationContext.dataLocale
+                          ? ' (active)'
+                          : ''
+                      }
+                    `,
+                    action: () => {
+                      changeProjectDataLocale(language);
 
-                // We reload, since ProjectDataLocale is written in a way where
-                // only the tree under the parent container reloads, but
-                // not all of them reload.
-                // So this action would seem like it had not effect, unless we
-                // reload
-                window.location.reload();
-              },
-            }))
+                      // We reload, since ProjectDataLocale is written in a way where
+                      // only the tree under the parent container reloads, but
+                      // not all of them reload.
+                      // So this action would seem like it had not effect, unless we
+                      // reload
+                      window.location.reload();
+                    },
+                  }
+              )
+              .filter(nonNullable)
           ),
       },
     {
@@ -525,7 +537,7 @@ const createCommands = ({
       text: intl.formatMessage(messages.openSupport),
       keywords: ['Go to support'],
       action: {
-        type: 'go',
+        type: actionTypes.go,
         to: SUPPORT_PORTAL_URL,
       },
     },
@@ -533,19 +545,25 @@ const createCommands = ({
       id: 'go/account-profile',
       text: intl.formatMessage(messages.openMyProfile),
       keywords: ['Go to user account', 'Go to profile', 'Open profile'],
-      action: { type: 'go', to: `/account/profile` },
+      action: { type: actionTypes.go, to: `/account/profile` },
     },
     {
       id: 'go/privacy-policy',
       text: intl.formatMessage(messages.showPrivacyPolicy),
       keywords: ['Open Privacy Policy'],
-      action: { type: 'go', to: 'https://commercetools.com/privacy#suppliers' },
+      action: {
+        type: actionTypes.go,
+        to: 'https://commercetools.com/privacy#suppliers',
+      },
     },
     {
       id: 'go/logout',
       text: intl.formatMessage(messages.logout),
       keywords: ['Sign out'],
-      action: { type: 'go', to: `/logout?reason=${LOGOUT_REASONS.USER}` },
+      action: {
+        type: actionTypes.go,
+        to: `/logout?reason=${LOGOUT_REASONS.USER}`,
+      },
     },
     {
       id: 'go/manage-projects',
@@ -555,7 +573,7 @@ const createCommands = ({
         'Go to projects',
         'Open projects list',
       ],
-      action: { type: 'go', to: `/account/projects` },
+      action: { type: actionTypes.go, to: `/account/projects` },
     },
     {
       id: 'go/manage-organizations',
@@ -565,7 +583,7 @@ const createCommands = ({
         'Go to organizations',
         'Open organizations list',
       ],
-      action: { type: 'go', to: `/account/organizations` },
+      action: { type: actionTypes.go, to: `/account/organizations` },
     },
     ...(applicationContext.user
       ? applicationContext.user.projects.results.map(userProject => ({

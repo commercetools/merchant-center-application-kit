@@ -7,7 +7,7 @@ import ButlerContainer from './butler-container';
 import pimIndexerStates from './pim-indexer-states';
 
 type Props = {
-  onChangeProjectDataLocale: (locale: string) => void;
+  onChangeProjectDataLocale?: (locale: string) => void;
 };
 
 const QuickAccess = React.lazy(() =>

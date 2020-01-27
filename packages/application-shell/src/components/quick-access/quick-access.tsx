@@ -2,6 +2,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { useFeatureToggles } from '@flopflip/react-broadcast';
 import { useApolloClient } from 'react-apollo';
+import { useHistory } from 'react-router-dom';
 import {
   actions as sdkActions,
   useAsyncDispatch,
@@ -14,12 +15,11 @@ import {
 } from '@commercetools-frontend/constants';
 import { hasSomePermissions } from '@commercetools-frontend/permissions';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import history from '@commercetools-frontend/browser-history';
 import { TQuickAccessQuery } from '../../types/generated/ctp';
 import Butler from './butler';
 import QuickAccessQuery from './quick-access.ctp.graphql';
 import createCommands from './create-commands';
-import { sanitize, translate } from './utils';
+import { sanitize, translate, flattenCommands } from './utils';
 import {
   createProductTabsSubCommands,
   createProductVariantSubCommands,
@@ -28,7 +28,7 @@ import messages from './messages';
 import { permissions } from './constants';
 import { saveHistoryEntries, loadHistoryEntries } from './history-entries';
 import pimIndexerStates from './pim-indexer-states';
-import { ExecGraphQlQuery, Command, HistoryEntry } from './types';
+import { actionTypes, ExecGraphQlQuery, Command, HistoryEntry } from './types';
 
 const searchProductIdsAction = (
   searchText: string,
@@ -90,7 +90,7 @@ type Props = {
     pimIndexerState: keyof typeof pimIndexerStates
   ) => void;
   onClose: () => void;
-  onChangeProjectDataLocale: (locale: string) => void;
+  onChangeProjectDataLocale?: (locale: string) => void;
 };
 
 const QuickAccess = (props: Props) => {
@@ -99,9 +99,12 @@ const QuickAccess = (props: Props) => {
   );
   const handleHistoryEntriesChange = React.useCallback<
     (historyEntries: HistoryEntry[]) => void
-  >(historyEntries => {
-    setHistoryEntries(historyEntries);
+  >(entries => {
+    // Keep the history in sync with the session storage
+    saveHistoryEntries(entries);
+    setHistoryEntries(entries);
   }, []);
+  const history = useHistory();
   const apolloClient = useApolloClient();
   const intl = useIntl();
   const [
@@ -114,6 +117,9 @@ const QuickAccess = (props: Props) => {
     canViewDashboard: true,
   });
   const applicationContext = useApplicationContext();
+
+  // Destructure functions from props to reference them in the hook dependency list
+  const { onPimIndexerStateChange: onPimIndexerStateChangeFromParent } = props;
 
   const dispatchFetchProductIds = useAsyncDispatch<
     ReturnType<typeof searchProductIdsAction>,
@@ -162,6 +168,8 @@ const QuickAccess = (props: Props) => {
         );
         return pimIndexerStates.INDEXED;
       } catch (error) {
+        // eslint-disable-next-line no-console
+        if (process.env.NODE_ENV !== 'production') console.error(error);
         // project is not using pim-indexer when response error code is 404,
         // but we treat all errors as non-indexed as a safe guard, so we're
         // not checking the response error code at all
@@ -197,14 +205,11 @@ const QuickAccess = (props: Props) => {
   React.useEffect(() => {
     if (props.pimIndexerState === pimIndexerStates.UNCHECKED) {
       getProjectIndexStatus().then(status => {
-        if (status) props.onPimIndexerStateChange(status);
+        onPimIndexerStateChangeFromParent(status);
       });
     }
-
-    return () => {
-      saveHistoryEntries(historyEntries);
-    };
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // <-- run only once, when component mounts
 
   const execQuery = React.useCallback<ExecGraphQlQuery>(
     (Query, variables) =>
@@ -242,7 +247,6 @@ const QuickAccess = (props: Props) => {
         [permissions.ViewProducts],
         applicationContext.permissions
       );
-
       const data = await execQuery<TQuickAccessQuery>(QuickAccessQuery, {
         searchText: sanitize(searchText),
         target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
@@ -281,7 +285,7 @@ const QuickAccess = (props: Props) => {
           }),
           keywords: variantKey ? [variantKey] : undefined,
           action: {
-            type: 'go',
+            type: actionTypes.go,
             to: `/${applicationContext.project.key}/products/${productId}/${variantId}`,
           },
           subCommands: createProductVariantSubCommands({
@@ -309,7 +313,7 @@ const QuickAccess = (props: Props) => {
             variantName: data.productByVariantSku.masterData.staged.variant.sku,
           }),
           action: {
-            type: 'go',
+            type: actionTypes.go,
             to: oneLineTrim`
             /${applicationContext.project.key}
             /products
@@ -345,7 +349,7 @@ const QuickAccess = (props: Props) => {
           }),
           keywords: [productId],
           action: {
-            type: 'go',
+            type: actionTypes.go,
             to: `/${applicationContext.project.key}/products/${productId}`,
           },
           subCommands: createProductTabsSubCommands({
@@ -372,7 +376,7 @@ const QuickAccess = (props: Props) => {
               }),
               keywords: [product.id],
               action: {
-                type: 'go',
+                type: actionTypes.go,
                 to: `/${applicationContext.project.key}/products/${product.id}`,
               },
               subCommands: createProductTabsSubCommands({
@@ -397,7 +401,7 @@ const QuickAccess = (props: Props) => {
             productName: data.productByKey.key,
           }),
           action: {
-            type: 'go',
+            type: actionTypes.go,
             to: `/${applicationContext.project.key}/products/${productId}`,
           },
           subCommands: createProductTabsSubCommands({
@@ -445,7 +449,8 @@ const QuickAccess = (props: Props) => {
 
       try {
         const projectCommands = await debouncedGetProjectCommands(searchText);
-        return [...generalCommands, ...projectCommands];
+        const allCommands = [...generalCommands, ...projectCommands];
+        return await flattenCommands(allCommands, execQuery);
       } catch (error) {
         // When the debounced search is canceled, it throws with "canceled"
         // In that case we know that another search is going to happen
@@ -457,6 +462,7 @@ const QuickAccess = (props: Props) => {
     [
       applicationContext,
       debouncedGetProjectCommands,
+      execQuery,
       intl,
       isCanViewDashboardEnabled,
       isCustomApplicationsEnabled,
@@ -469,26 +475,23 @@ const QuickAccess = (props: Props) => {
     (command: Command, meta: { openInNewTab: boolean }) => void
   >(
     (command, meta) => {
-      if (typeof command.action === 'object') {
-        if (command.action.type === 'go') {
-          // open in new window
-          // and always open other pages in a new window
-          if (meta.openInNewTab || !command.action.to.startsWith('/')) {
-            open(command.action.to, '_blank');
-          } else if (applicationContext.environment.useFullRedirectsForLinks) {
-            window.location.replace(command.action.to);
-          } else {
-            history.push(command.action.to);
-          }
-        }
-      }
       if (typeof command.action === 'function') {
         // Idea: We could handle these errors and set them on status bar of Butler
         // We can also handle sync/async commands by checking command.action.then
         command.action();
+        return;
+      }
+      // open in new window
+      // and always open other pages in a new window
+      if (meta.openInNewTab || !command.action.to.startsWith('/')) {
+        open(command.action.to, '_blank');
+      } else if (applicationContext.environment.useFullRedirectsForLinks) {
+        window.location.replace(command.action.to);
+      } else {
+        history.push(command.action.to);
       }
     },
-    [applicationContext.environment.useFullRedirectsForLinks]
+    [applicationContext.environment.useFullRedirectsForLinks, history]
   );
 
   return (

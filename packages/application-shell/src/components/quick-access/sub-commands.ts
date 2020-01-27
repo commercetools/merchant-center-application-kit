@@ -10,7 +10,7 @@ import {
 import QuickAccessProductQuery from './quick-access-product.ctp.graphql';
 import { permissions } from './constants';
 import messages from './messages';
-import { Command, ExecGraphQlQuery } from './types';
+import { actionTypes, Command, ExecGraphQlQuery } from './types';
 
 type CreateProductVariantSubCommandsOptions = {
   intl: IntlShape;
@@ -34,7 +34,7 @@ export const createProductVariantSubCommands = ({
       id: `go/product(${productId})/variant(${variantId})/attributes`,
       text: intl.formatMessage(messages.showProductVariantAttributes),
       action: {
-        type: 'go',
+        type: actionTypes.go,
         to: oneLineTrim`
           /${applicationContext.project.key}
           /products
@@ -49,7 +49,7 @@ export const createProductVariantSubCommands = ({
       id: `go/product(${productId})/variant${variantId}/images`,
       text: intl.formatMessage(messages.showProductVariantImages),
       action: {
-        type: 'go',
+        type: actionTypes.go,
         to: oneLineTrim`
           /${applicationContext.project.key}
           /products
@@ -64,7 +64,7 @@ export const createProductVariantSubCommands = ({
       id: `go/product(${productId})/variant(${variantId})/prices`,
       text: intl.formatMessage(messages.showProductVariantPrices),
       action: {
-        type: 'go',
+        type: actionTypes.go,
         to: oneLineTrim`
           /${applicationContext.project.key}
           /products
@@ -79,7 +79,7 @@ export const createProductVariantSubCommands = ({
       id: `go/product(${productId})/variant(${variantId})/inventory`,
       text: intl.formatMessage(messages.showProductVariantInventory),
       action: {
-        type: 'go',
+        type: actionTypes.go,
         to: oneLineTrim`
           /${applicationContext.project.key}
           /products
@@ -114,7 +114,7 @@ type CreateProductVariantListSubCommandsOptions = {
   productId: string;
   execQuery: ExecGraphQlQuery;
 };
-export const createProductVariantListSubCommands = async ({
+const createProductVariantListSubCommands = async ({
   intl,
   applicationContext,
   productId,
@@ -150,7 +150,7 @@ export const createProductVariantListSubCommands = async ({
         variantId: variant.id,
       }),
       action: {
-        type: 'go',
+        type: actionTypes.go,
         to: oneLineTrim`
           /${projectKey}
           /products
@@ -184,7 +184,7 @@ export const createProductTabsSubCommands = ({
       id: `go/product(${productId})/general`,
       text: intl.formatMessage(messages.openProductVariantGeneral),
       action: {
-        type: 'go',
+        type: actionTypes.go,
         to: oneLineTrim`
           /${applicationContext.project.key}
           /products
@@ -197,7 +197,7 @@ export const createProductTabsSubCommands = ({
       id: `go/product(${productId})/variants`,
       text: intl.formatMessage(messages.openProductVariantList),
       action: {
-        type: 'go',
+        type: actionTypes.go,
         to: oneLineTrim`
           /${applicationContext.project.key}
           /products
@@ -217,7 +217,7 @@ export const createProductTabsSubCommands = ({
       id: `go/product(${productId})/search`,
       text: intl.formatMessage(messages.openProductVariantSearch),
       action: {
-        type: 'go',
+        type: actionTypes.go,
         to: oneLineTrim`
           /${applicationContext.project.key}
           /products

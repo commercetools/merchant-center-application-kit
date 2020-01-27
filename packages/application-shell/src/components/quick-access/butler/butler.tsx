@@ -12,7 +12,6 @@ import { css, keyframes, ClassNames } from '@emotion/core';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import { SearchIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
-import { flattenResults } from '../utils';
 import ButlerCommand from '../butler-command';
 import ButlerContainer from '../butler-container';
 import messages from '../messages';
@@ -200,13 +199,7 @@ const reducer = (state: State = initialState, action: Action): State => {
     case 'resetResultsWhenClosing':
       return { ...state, selectedResult: -1, enableHistory: true };
     case 'reset':
-      return {
-        ...state,
-        results: [],
-        selectedResult: -1,
-        enableHistory: true,
-        stack: [],
-      };
+      return initialState;
     default:
       return state;
   }
@@ -266,99 +259,51 @@ const Butler = (props: Props) => {
       searchContainerRef.current.classList.add(props.classNameShakeAnimation);
     }
   }, [props.classNameShakeAnimation]);
-  const triggerSearch = React.useCallback<(searchText: SearchText) => void>(
-    searchText => {
-      if (searchText.trim().length === 0) {
-        dispatch({ type: 'reset' });
-        return;
-      }
 
-      // A search via network is only triggered when there
-      // are more than three characters. So no false loading
-      // indication is given.
-      if (searchText.trim().length > 3) {
-        setIsLoading();
-      }
-
-      searchFromParent(searchText).then(
-        (asyncResults: Command[]) => {
-          unsetHasNetworkError();
-          unsetIsLoading();
-          const flatResults = flattenResults(asyncResults);
-
-          const fuse = new Fuse(flatResults, {
-            keys: [
-              { name: 'text', weight: 0.6 },
-              { name: 'keywords', weight: 0.4 },
-            ],
-            tokenize: false,
-          });
-
-          const results = fuse.search(searchText).slice(0, 9);
-
-          if (state.searchText === searchText) {
-            dispatch({ type: 'setSearchTextResults', payload: results });
-          }
-        },
-        (error: Error) => {
-          // eslint-disable-next-line no-console
-          if (process.env.NODE_ENV !== 'production') console.error(error);
-          unsetIsLoading();
-          setHasNetworkError();
-        }
-      );
-    },
-    [
-      searchFromParent,
-      setHasNetworkError,
-      setIsLoading,
-      state.searchText,
-      unsetHasNetworkError,
-      unsetIsLoading,
-    ]
-  );
-  const appendHistoryEntry = React.useCallback(() => {
-    // Only main entries get added to history, so when a subcommand is executed,
-    // we add the main command of it to the history (the top-level command).
-    //
-    // The key to identify history entries by is always the searchText
-    // There will never be two history entries with the same searchText
-    const entry =
-      state.stack.length === 0
-        ? // The stack is empty, so we are executing a top-level command
-          { searchText: state.searchText, results: state.results }
-        : // We are executing a subcommand, so we get the top-level command for it,
-          // which is at the bottom of the stack.
-          {
-            searchText: state.stack[0].searchText,
-            results: state.stack[0].results,
-          };
-
-    // Add the entry to the history, while excluding any earlier history entry
-    // with the same search text. This effectively "moves" that entry to the
-    // top of the history (with the most recent results), or appends a new entry
-    // when it didn't exist before.
-    onHistoryEntriesChangeFromParent([
-      ...props.historyEntries.filter(
-        command => command.searchText !== entry.searchText
-      ),
-      entry,
-    ]);
-  }, [
-    onHistoryEntriesChangeFromParent,
-    props.historyEntries,
-    state.results,
-    state.searchText,
-    state.stack,
-  ]);
   const execute = React.useCallback(
     (command, meta) => {
-      appendHistoryEntry();
+      // Only main entries get added to history, so when a subcommand is executed,
+      // we add the main command of it to the history (the top-level command).
+      //
+      // The key to identify history entries by is always the searchText
+      // There will never be two history entries with the same searchText
+      const entry =
+        state.stack.length === 0
+          ? // The stack is empty, so we are executing a top-level command
+            { searchText: state.searchText, results: state.results }
+          : // We are executing a subcommand, so we get the top-level command for it,
+            // which is at the bottom of the stack.
+            {
+              searchText: state.stack[0].searchText,
+              results: state.stack[0].results,
+            };
+
+      // Add the entry to the history, while excluding any earlier history entry
+      // with the same search text. This effectively "moves" that entry to the
+      // top of the history (with the most recent results), or appends a new entry
+      // when it didn't exist before.
+      onHistoryEntriesChangeFromParent([
+        ...props.historyEntries.filter(
+          command => command.searchText !== entry.searchText
+        ),
+        entry,
+      ]);
+
       dispatch({ type: 'resetSearchText' });
+
       onCloseFromParent();
+
       executeCommandFromParent(command, meta);
     },
-    [appendHistoryEntry, executeCommandFromParent, onCloseFromParent]
+    [
+      executeCommandFromParent,
+      onCloseFromParent,
+      onHistoryEntriesChangeFromParent,
+      props.historyEntries,
+      state.results,
+      state.searchText,
+      state.stack,
+    ]
   );
   const handleKeyDown = React.useCallback<
     KeyboardEventHandler<HTMLInputElement>
@@ -471,21 +416,23 @@ const Butler = (props: Props) => {
           // NOTE: since we need to fetch the "next command", which is an async operation,
           // we use a IIFE to process that and eventually update the state.
           (async () => {
-            const nextCommands = await getNextCommandsFromParent(command);
-            // avoid moving cursor when there are sub-options
-            if (nextCommands.length > 0) {
-              // Ensure the search text has not changed while we were loading
-              // the next results, otherwise we'd interrupt the user.
-              // Throw away the results in case the search text has changed.
-              if (state.searchText === searchText) {
-                dispatch({
-                  type: 'setNextCommands',
-                  payload: { results: nextCommands },
-                });
+            if (command) {
+              const nextCommands = await getNextCommandsFromParent(command);
+              // avoid moving cursor when there are sub-options
+              if (nextCommands.length > 0) {
+                // Ensure the search text has not changed while we were loading
+                // the next results, otherwise we'd interrupt the user.
+                // Throw away the results in case the search text has changed.
+                if (state.searchText === searchText) {
+                  dispatch({
+                    type: 'setNextCommands',
+                    payload: { results: nextCommands },
+                  });
+                }
+                return;
               }
-            } else {
-              shake();
             }
+            shake();
           })();
           return;
         }
@@ -514,11 +461,7 @@ const Butler = (props: Props) => {
       getNextCommandsFromParent,
       props.historyEntries,
       shake,
-      state.enableHistory,
-      state.results,
-      state.searchText,
-      state.selectedResult,
-      state.stack,
+      state,
       unsetHasNetworkError,
     ]
   );
@@ -526,8 +469,9 @@ const Butler = (props: Props) => {
     event => {
       // setting the selection can only happen in onKeyUp
       if (shouldSelectFieldText.current) {
-        (event.target as HTMLInputElement).focus();
-        (event.target as HTMLInputElement).select();
+        const input = event.target as HTMLInputElement;
+        input.focus();
+        input.select();
         shouldSelectFieldText.current = false;
       }
 
@@ -549,15 +493,79 @@ const Butler = (props: Props) => {
   const handleChange = React.useCallback<ChangeEventHandler<HTMLInputElement>>(
     event => {
       const searchText = event.target.value;
+      if (searchText.trim().length === 0) {
+        dispatch({ type: 'reset' });
+        return;
+      }
+
       dispatch({ type: 'searchText', payload: searchText });
-      triggerSearch(state.searchText);
+
+      // A search via network is only triggered when there
+      // are more than three characters. So no false loading
+      // indication is given.
+      if (searchText.trim().length > 3) {
+        setIsLoading();
+      }
+
+      searchFromParent(searchText).then(
+        (asyncResults: Command[]) => {
+          unsetHasNetworkError();
+          unsetIsLoading();
+
+          const fuse = new Fuse(asyncResults, {
+            keys: [
+              { name: 'text', weight: 0.6 },
+              { name: 'keywords', weight: 0.4 },
+            ],
+            tokenize: false,
+          });
+
+          const results = fuse.search(searchText).slice(0, 9);
+
+          dispatch({ type: 'setSearchTextResults', payload: results });
+        },
+        (error: Error) => {
+          // eslint-disable-next-line no-console
+          if (process.env.NODE_ENV !== 'production') console.error(error);
+          unsetIsLoading();
+          setHasNetworkError();
+        }
+      );
     },
-    [state.searchText, triggerSearch]
+    [
+      searchFromParent,
+      setHasNetworkError,
+      setIsLoading,
+      unsetHasNetworkError,
+      unsetIsLoading,
+    ]
   );
   const handleContainerClick = React.useCallback(() => {
     dispatch({ type: 'resetResultsWhenClosing' });
     onCloseFromParent();
   }, [onCloseFromParent]);
+
+  const createCommandMouseEnterHandler = React.useCallback<
+    (index: number) => MouseEventHandler<HTMLDivElement>
+  >(
+    index => () => {
+      // In case the cursor happened to be in a location where a
+      // result would appear, it would trigger onMouseEnter and the
+      // result would be selected immediately. This is not something
+      // a user would expect, hence we prevent it from happening.
+      // The user has to move the cursor to an option explicitly for
+      // it to become active. However, the user can always click and
+      // that action will be triggered.
+      if (skipNextSelection.current) {
+        skipNextSelection.current = false;
+        return;
+      }
+
+      // sets the selected result, mainly for the hover effect
+      dispatch({ type: 'selectedResult', payload: index });
+    },
+    []
+  );
   const createCommandClickHandler = React.useCallback<
     (command: Command) => MouseEventHandler<HTMLDivElement>
   >(
@@ -640,6 +648,7 @@ const Butler = (props: Props) => {
             onKeyDown={handleKeyDown}
             onKeyUp={handleKeyUp}
             autoFocus={true}
+            autoComplete="off"
             data-testid="quick-access-search-input"
           />
           {state.isLoading && (
@@ -698,22 +707,7 @@ const Butler = (props: Props) => {
               key={command.id}
               command={command}
               isSelected={state.selectedResult === index}
-              onMouseEnter={() => {
-                // In case the cursor happened to be in a location where a
-                // result would appear, it would trigger onMouseEnter and the
-                // result would be selected immediately. This is not something
-                // a user would expect, hence we prevent it from happening.
-                // The user has to move the cursor to an option explicitly for
-                // it to become active. However, the user can always click and
-                // that action will be triggered.
-                if (skipNextSelection.current) {
-                  skipNextSelection.current = false;
-                  return;
-                }
-
-                // sets the selected result, mainly for the hover effect
-                dispatch({ type: 'selectedResult', payload: index });
-              }}
+              onMouseEnter={createCommandMouseEnterHandler(index)}
               onClick={createCommandClickHandler(command)}
             />
           ));
