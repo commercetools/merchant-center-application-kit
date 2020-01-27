@@ -3,8 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import {
   NavLink,
   matchPath,
-  Route,
   RouteComponentProps,
+  useLocation,
 } from 'react-router-dom';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import classnames from 'classnames';
@@ -569,81 +569,76 @@ const NavBar = (props: NavbarProps) => {
   const menuVisibilities = useApplicationContext(
     context => context.menuVisibilities
   );
+  const location = useLocation();
 
   return (
-    <Route>
-      {({ location }) => (
-        <NavBarLayout ref={navBarNode}>
-          <MenuGroup id="main" level={1}>
-            <div className={styles['scrollable-menu']}>
-              {allApplicationNavbarMenu.map(menu => {
-                const menuType = 'scrollable';
-                const itemIndex = `${menuType}-${menu.key}`;
-                return (
-                  <ApplicationMenu
-                    key={menu.key}
-                    location={location}
-                    menuType={menuType}
-                    menu={menu}
-                    isActive={activeItemIndex === itemIndex}
-                    handleToggleItem={handleToggleItem}
-                    isMenuOpen={isMenuOpen}
-                    shouldCloseMenuFly={shouldCloseMenuFly}
-                    menuVisibilities={menuVisibilities}
-                    applicationLocale={props.applicationLocale}
-                    projectKey={props.projectKey}
-                    disabledMenuItems={disabledMenuItems}
-                  />
-                );
-              })}
-            </div>
-            <div className={styles['fixed-menu']}>
-              <MenuItem
-                hasSubmenu={false}
-                isActive={false}
+    <NavBarLayout ref={navBarNode}>
+      <MenuGroup id="main" level={1}>
+        <div className={styles['scrollable-menu']}>
+          {allApplicationNavbarMenu.map(menu => {
+            const menuType = 'scrollable';
+            const itemIndex = `${menuType}-${menu.key}`;
+            return (
+              <ApplicationMenu
+                key={menu.key}
+                location={location}
+                menuType={menuType}
+                menu={menu}
+                isActive={activeItemIndex === itemIndex}
+                handleToggleItem={handleToggleItem}
                 isMenuOpen={isMenuOpen}
-                onClick={() => {
-                  handleToggleItem('fixed', 'support');
-                }}
-                onMouseEnter={
-                  isMenuOpen
-                    ? undefined
-                    : () => handleToggleItem('fixed', 'support')
-                }
-                onMouseLeave={isMenuOpen ? undefined : shouldCloseMenuFly}
-              >
-                <a
-                  href={SUPPORT_PORTAL_URL}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <div className={styles['item-icon-text']}>
-                    <div className={styles.icon}>
-                      <SupportIcon
-                        size="scale"
-                        color={getIconColor(
-                          activeItemIndex === 'fixed-support',
-                          true
-                        )}
-                      />
-                    </div>
-                    <div className={styles.title}>
-                      <FormattedMessage
-                        {...messages['NavBar.MCSupport.title']}
-                      />
-                    </div>
-                  </div>
-                </a>
-              </MenuItem>
-              <MenuExpander
-                isVisible={isExpanderVisible}
-                onClick={handleToggleMenu}
+                shouldCloseMenuFly={shouldCloseMenuFly}
+                menuVisibilities={menuVisibilities}
+                applicationLocale={props.applicationLocale}
+                projectKey={props.projectKey}
+                disabledMenuItems={disabledMenuItems}
               />
-            </div>
-          </MenuGroup>
-        </NavBarLayout>
-      )}
-    </Route>
+            );
+          })}
+        </div>
+        <div className={styles['fixed-menu']}>
+          <MenuItem
+            hasSubmenu={false}
+            isActive={false}
+            isMenuOpen={isMenuOpen}
+            onClick={() => {
+              handleToggleItem('fixed', 'support');
+            }}
+            onMouseEnter={
+              isMenuOpen
+                ? undefined
+                : () => handleToggleItem('fixed', 'support')
+            }
+            onMouseLeave={isMenuOpen ? undefined : shouldCloseMenuFly}
+          >
+            <a
+              href={SUPPORT_PORTAL_URL}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <div className={styles['item-icon-text']}>
+                <div className={styles.icon}>
+                  <SupportIcon
+                    size="scale"
+                    color={getIconColor(
+                      activeItemIndex === 'fixed-support',
+                      true
+                    )}
+                  />
+                </div>
+                <div className={styles.title}>
+                  <FormattedMessage {...messages['NavBar.MCSupport.title']} />
+                </div>
+              </div>
+            </a>
+          </MenuItem>
+          <MenuExpander
+            isVisible={isExpanderVisible}
+            onClick={handleToggleMenu}
+          />
+        </div>
+      </MenuGroup>
+    </NavBarLayout>
   );
 };
 NavBar.displayName = 'NavBar';
