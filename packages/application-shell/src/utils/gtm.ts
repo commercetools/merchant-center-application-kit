@@ -114,7 +114,7 @@ export const trackTiming = ({
 }: {
   category: string;
   variable: string;
-  value: unknown;
+  value: string | number;
   label?: string;
 }) => {
   if (window.dataLayer && window.app.trackingGtm) {

@@ -258,13 +258,14 @@ export const RestrictedApplication = <
 
                                 // when used outside of a project context,
                                 // or when the project is expired or supsended
-                                const useProjectContext = !(
+                                const shouldUseProjectContext = !(
                                   (project.suspension &&
                                     project.suspension.isActive) ||
                                   (project.expiry && project.expiry.isActive)
                                 );
 
-                                if (!useProjectContext) return <QuickAccess />;
+                                if (!shouldUseProjectContext)
+                                  return <QuickAccess />;
 
                                 return (
                                   <ProjectDataLocale
@@ -546,8 +547,8 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
             return (
               <Switch>
                 {/* When the application redirects to this route,
-            we always force a hard redirect to the logout route of
-            the authentication service. */}
+                we always force a hard redirect to the logout route of
+                the authentication service. */}
                 <Route
                   path="/logout"
                   render={({ location }) => (
@@ -567,24 +568,22 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
                     />
                   )}
                 />
-                <Route
-                  render={() => (
-                    <RestrictedApplication<AdditionalEnvironmentProperties>
-                      environment={coercedEnvironmentValues}
-                      defaultFeatureFlags={props.defaultFeatureFlags}
-                      featureFlags={props.featureFlags}
-                      render={props.render}
-                      applicationMessages={props.applicationMessages}
-                      onMenuItemClick={props.onMenuItemClick}
-                      DEV_ONLY__loadAppbarMenuConfig={
-                        props.DEV_ONLY__loadAppbarMenuConfig
-                      }
-                      DEV_ONLY__loadNavbarMenuConfig={
-                        props.DEV_ONLY__loadNavbarMenuConfig
-                      }
-                    />
-                  )}
-                />
+                <Route>
+                  <RestrictedApplication<AdditionalEnvironmentProperties>
+                    environment={coercedEnvironmentValues}
+                    defaultFeatureFlags={props.defaultFeatureFlags}
+                    featureFlags={props.featureFlags}
+                    render={props.render}
+                    applicationMessages={props.applicationMessages}
+                    onMenuItemClick={props.onMenuItemClick}
+                    DEV_ONLY__loadAppbarMenuConfig={
+                      props.DEV_ONLY__loadAppbarMenuConfig
+                    }
+                    DEV_ONLY__loadNavbarMenuConfig={
+                      props.DEV_ONLY__loadNavbarMenuConfig
+                    }
+                  />
+                </Route>
               </Switch>
             );
 
