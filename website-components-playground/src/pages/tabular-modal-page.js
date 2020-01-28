@@ -1,12 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { TabularModalPage } from '@commercetools-frontend/application-components';
-import {
-  SearchIcon,
-  FlameIcon,
-  BinLinearIcon,
-} from '@commercetools-uikit/icons';
-import IconButton from '@commercetools-uikit/icon-button';
 import Spacings from '@commercetools-uikit/spacings';
 import Text from '@commercetools-uikit/text';
 import TextInput from '@commercetools-uikit/text-input';
@@ -57,20 +51,6 @@ const exampleCustomTitleRow = (
   </Spacings.Inline>
 );
 
-const exampleCustomControls = (
-  <Spacings.Inline>
-    <IconButton icon={<SearchIcon />} onClick={() => undefined} />
-    <IconButton icon={<FlameIcon />} onClick={() => undefined} />
-    <IconButton icon={<BinLinearIcon />} onClick={() => undefined} />
-  </Spacings.Inline>
-);
-
-const customControls = option => {
-  if (option === 'custom') return exampleCustomControls;
-  if (option === 'none') return <React.Fragment />;
-  return undefined;
-};
-
 const TabularModalPageExample = props => (
   <LayoutApp>
     <PlaygroundController
@@ -102,14 +82,13 @@ const TabularModalPageExample = props => (
         },
         {
           kind: 'select',
-          name: 'useCustomControls',
-          label: 'Form Controls',
+          name: 'hideControls',
+          label: 'Hide Controls?',
           valueOptions: [
-            { value: 'default', label: 'Default' },
-            { value: 'custom', label: 'Custom (example)' },
-            { value: 'none', label: 'None' },
+            { value: false, label: 'No' },
+            { value: true, label: 'Yes' },
           ],
-          initialValue: 'none',
+          initialValue: true,
         },
       ]}
     >
@@ -121,7 +100,7 @@ const TabularModalPageExample = props => (
         >
           {({ isOpen, setIsOpen }) => (
             <TabularModalPage
-              title="Lorem ipsum"
+              title={values.title}
               isOpen={isOpen}
               onClose={() => setIsOpen(false)}
               getParentSelector={() =>
@@ -144,7 +123,24 @@ const TabularModalPageExample = props => (
               customTitleRow={
                 values.useCustomTitleRow === 'custom' && exampleCustomTitleRow
               }
-              customControls={customControls(values.useCustomControls)}
+              formControls={
+                <React.Fragment>
+                  <TabularModalPage.FormSecondaryButton
+                    onClick={() => {
+                      setIsOpen(false);
+                    }}
+                  />
+                  <TabularModalPage.FormPrimaryButton
+                    onClick={() => undefined}
+                    isDisabled
+                  />
+                  <TabularModalPage.FormDeleteButton
+                    onClick={() => undefined}
+                    isDisabled
+                  />
+                </React.Fragment>
+              }
+              hideControls={values.hideControls}
             >
               <Text.Body>{values.content}</Text.Body>
             </TabularModalPage>

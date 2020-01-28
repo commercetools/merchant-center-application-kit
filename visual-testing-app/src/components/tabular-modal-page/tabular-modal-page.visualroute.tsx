@@ -52,8 +52,6 @@ const ModalPageWithPortalParentSelector = ({
       getParentSelector={() =>
         document.querySelector(`#${portalId}`) as HTMLElement
       }
-      onPrimaryButtonClick={() => undefined}
-      onSecondaryButtonClick={() => undefined}
       tabControls={
         <TabControlsContainer>
           <span>
@@ -89,33 +87,31 @@ const Content = () => (
 export const Component = () => (
   <Suite>
     <Spec label="TabularModalPage" size="xl">
-      <ModalPageWithPortalParentSelector
-        portalId="tabular-modal-page-default"
-        customControls={<React.Fragment />}
-      >
+      <ModalPageWithPortalParentSelector portalId="tabular-modal-page-default">
         <Content />
       </ModalPageWithPortalParentSelector>
     </Spec>
     <Spec
-      label="TabularModalPage - with secondary and primary buttons"
       size="xl"
+      label="TabularModalPage - with the static exposed form controls"
     >
-      <ModalPageWithPortalParentSelector portalId="tabular-modal-page-default-controls">
-        <Content />
-      </ModalPageWithPortalParentSelector>
-    </Spec>
-    <Spec label="TabularModalPage - with primary button disabled" size="xl">
       <ModalPageWithPortalParentSelector
-        portalId="tabular-modal-page-primary-button-disabled"
-        isPrimaryButtonDisabled={true}
+        portalId="tabular-modal-page-default-controls"
+        formControls={
+          <React.Fragment>
+            <TabularModalPage.FormSecondaryButton onClick={() => undefined} />
+            <TabularModalPage.FormPrimaryButton onClick={() => undefined} />
+            <TabularModalPage.FormDeleteButton onClick={() => undefined} />
+          </React.Fragment>
+        }
       >
         <Content />
       </ModalPageWithPortalParentSelector>
     </Spec>
-    <Spec label="TabularModalPage - with Custom Controls" size="xl">
+    <Spec label="TabularModalPage - with other custom controls" size="xl">
       <ModalPageWithPortalParentSelector
-        customControls={
-          <Spacings.Inline>
+        formControls={
+          <React.Fragment>
             <IconButton
               label="SearchIcon"
               icon={<SearchIcon />}
@@ -131,7 +127,7 @@ export const Component = () => (
               icon={<BinLinearIcon />}
               onClick={() => undefined}
             />
-          </Spacings.Inline>
+          </React.Fragment>
         }
         portalId="tabular-modal-page-custom-controls"
       >
@@ -163,14 +159,13 @@ export const Component = () => (
             </Spacings.Inline>
           </Spacings.Inline>
         }
-        customControls={<React.Fragment />}
         portalId="tabular-modal-page-custom-title-row-no-controls"
       >
         <Content />
       </ModalPageWithPortalParentSelector>
     </Spec>
     <Spec
-      label="TabularModalPage - with Custom Title Row and default controls"
+      label="TabularModalPage - with Custom Title Row and the static exposed form controls"
       size="xl"
     >
       <ModalPageWithPortalParentSelector
@@ -193,66 +188,36 @@ export const Component = () => (
               <TextInput id="input-2" value="" onChange={() => undefined} />
             </Spacings.Inline>
           </Spacings.Inline>
+        }
+        formControls={
+          <React.Fragment>
+            <TabularModalPage.FormSecondaryButton onClick={() => undefined} />
+            <TabularModalPage.FormPrimaryButton onClick={() => undefined} />
+            <TabularModalPage.FormDeleteButton onClick={() => undefined} />
+          </React.Fragment>
         }
         portalId="tabular-modal-page-custom-title-row-default-controls"
       >
         <Content />
       </ModalPageWithPortalParentSelector>
     </Spec>
-    <Spec
-      label="TabularModalPage - with Custom Title Row and custom controls"
-      size="xl"
-    >
+    <Spec label="TabularModalPage - with hidden controls" size="xl">
       <ModalPageWithPortalParentSelector
-        customTitleRow={
-          <Spacings.Inline scale="m">
-            <Spacings.Inline alignItems="center">
-              <label htmlFor="input-1">
-                <Text.Body isBold truncate>
-                  Input 1
-                </Text.Body>
-              </label>
-              <TextInput id="input-1" value="" onChange={() => undefined} />
-            </Spacings.Inline>
-            <Spacings.Inline alignItems="center">
-              <label htmlFor="input-2">
-                <Text.Body isBold truncate>
-                  Input 2
-                </Text.Body>
-              </label>
-              <TextInput id="input-2" value="" onChange={() => undefined} />
-            </Spacings.Inline>
-          </Spacings.Inline>
+        formControls={
+          <React.Fragment>
+            <TabularModalPage.FormSecondaryButton onClick={() => undefined} />
+            <TabularModalPage.FormPrimaryButton onClick={() => undefined} />
+            <TabularModalPage.FormDeleteButton onClick={() => undefined} />
+          </React.Fragment>
         }
-        customControls={
-          <Spacings.Inline>
-            <IconButton
-              label="SearchIcon"
-              icon={<SearchIcon />}
-              onClick={() => undefined}
-            />
-            <IconButton
-              label="FlameIcon"
-              icon={<FlameIcon />}
-              onClick={() => undefined}
-            />
-            <IconButton
-              label="BinLinearIcon"
-              icon={<BinLinearIcon />}
-              onClick={() => undefined}
-            />
-          </Spacings.Inline>
-        }
-        portalId="tabular-modal-page-custom-title-row-and-custom-controls"
+        hideControls={true}
+        portalId="tabular-modal-page-hidden-controls"
       >
         <Content />
       </ModalPageWithPortalParentSelector>
     </Spec>
     <Spec label="TabularModalPage - long content" size="xl">
-      <ModalPageWithPortalParentSelector
-        customControls={<React.Fragment />}
-        portalId="tabular-modal-page-custom-title-row-long-content"
-      >
+      <ModalPageWithPortalParentSelector portalId="tabular-modal-page-custom-title-row-long-content">
         <Content />
         <Content />
         <Content />

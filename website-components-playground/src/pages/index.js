@@ -21,6 +21,9 @@ const Index = () => (
         <Link to="form-modal-page">{'<FormModalPage>'}</Link>
       </li>
       <li>
+        <Link to="custom-form-modal-page">{'<CustomFormModalPage>'}</Link>
+      </li>
+      <li>
         <Link to="tabular-modal-page">{'<TabularModalPage>'}</Link>
       </li>
     </ul>
