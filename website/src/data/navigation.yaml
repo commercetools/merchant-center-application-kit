@@ -6,6 +6,8 @@
       path: '/getting-started/installing-a-starter-application'
     - title: Tooling
       path: '/getting-started/tooling'
+    - title: Support Policy
+      path: '/support-policy'
 - chapter-title: Development
   pages:
     - title: Available scripts

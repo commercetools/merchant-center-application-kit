@@ -1,11 +1,11 @@
 ---
-title: Menu links
+title: Menu Links
 ---
 
-The navigation menu links (the menu on the left side of the Merchant Center) contains links to all the different applications within a project.
+The navigation menu links is positioned on the left side of each Merchant Center screen. It contains links to the different applications within a project.
 
-The Merchant Center is composed of multiple independent applications, so each application does not know anything about what other applications are available. Therefore, we can't define the links statically.
-Instead, the links are rendered dynamically on runtime, by fetching the configuration from an endpoint exposed by the [Proxy Router](../main-concepts/architecture).
+The Merchant Center is composed of multiple independent applications, where each application defines its own set of links. However, the navigation menu must contain links from all the available applications for a project.
+The links are rendered dynamically on runtime, where the navigation menu pulls the data from a common source.
 
 Additionally, links to Custom Applications are also fetched dynamically, based on the registered applications within a project.
 
@@ -27,9 +27,13 @@ const EntryPoint = () => (
 );
 ```
 
-> NOTE that the `menu.json` is only used for development. For production usage, the configuration of the links needs to be registered in the Merchant Center.
+<Info>
 
-Furthermore, when you visit the url `http://localhost:3001/` in development, you will get redirected to the default route `/:projectKey`, but your application can't handle this route and shows a 404 page. To fix that, we can provide an extra redirect to your **main application route path**, which is only used in `development` mode.
+The `menu.json` is only used for development. For production usage, the configuration of the links needs to be registered in the Merchant Center.
+
+</Info>
+
+Furthermore, when you visit the URL `http://localhost:3001/` in development, you get redirected to the default route `/:projectKey`, but your application can't handle this route and shows a 404 page. To fix that, you can provide an extra redirect to your **main application route path**, which is only used in `development` mode.
 
 ```jsx
 // entry-point.js
