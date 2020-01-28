@@ -40,7 +40,7 @@ const messages = defineMessages({
   textSectionParagraph2: {
     id: 'Marketing.textSectionParagraph2',
     defaultMessage:
-      'Merchant Center custom applications are built and designed according to our <a>Design System</a>. It provides rules, patterns and best practices to ease development and focus on the business logic.',
+      'Merchant Center Custom Applications are built and designed according to our <a>Design System</a>. It provides rules, patterns and best practices to ease development and focus on the business logic.',
   },
   textSectionParagraph3: {
     id: 'Marketing.textSectionParagraph3',
@@ -188,7 +188,7 @@ const PageMarketingContent = () => {
           </PageTitle>
           <div>
             <ButtonLink href="/getting-started/what-is-a-custom-application">
-              {'Learn about custom applications'}
+              {'Learn about Custom Applications'}
             </ButtonLink>
           </div>
         </MainBannerConstraint>

@@ -73,24 +73,24 @@ To support Cloud Functions, Firebase also adds the following structure to your p
 
 # Configure Fallback Route
 
-To provide a more user-friendly experience when the custom application is accessed directly, we must create a Cloud Function to redirect the user to.
+To provide a more user-friendly experience when the Custom Application is accessed directly, we must create a Cloud Function to redirect the user to.
 
 Add these lines to `functions/index.js`:
 
 ```js
 exports.customAppFallback = functions.https.onRequest((req, res) => {
   res.end(
-    'This is not a real route. If you are seeing this, you most likely are accessing the custom application\n' +
-      'directly from the hosted domain. Instead, you need to access the custom application from within the Merchant Center\n' +
-      'domain, as custom applications are served behind a proxy router.\n' +
-      'To do so, you need to first register the custom application in Merchant Center > Settings > custom applications.'
+    'This is not a real route. If you are seeing this, you most likely are accessing the Custom Application\n' +
+      'directly from the hosted domain. Instead, you need to access the Custom Application from within the Merchant Center\n' +
+      'domain, as Custom Applications are served behind a proxy router.\n' +
+      'To do so, you need to first register the Custom Application in Merchant Center > Settings > Custom Applications.'
   );
 });
 ```
 
 # Set up a Hosting Site (_optional_)
 
-You can set up one or more Firebase Hosting sites in a single Firebase project. This is useful if you would like to host multiple custom applications on a single Firebase/GCP project.
+You can set up one or more Firebase Hosting sites in a single Firebase project. This is useful if you would like to host multiple Custom Applications on a single Firebase/GCP project.
 
 Add an additional site directly from your [Firebase Hosting page](https://console.firebase.google.com/project/_/hosting/main).
 
@@ -149,7 +149,7 @@ For both `env.prod.json` and `headers.json`, `[projectID]` should be replaced wi
 
 # Build and Compilation
 
-In order to generate the correct configuration for Firebase, the `mc-scripts compile-html` script must use a Firebase transformer. This transformer will generate a `firebase.json` file with the custom security headers required for Merchant Center custom applications.
+In order to generate the correct configuration for Firebase, the `mc-scripts compile-html` script must use a Firebase transformer. This transformer will generate a `firebase.json` file with the custom security headers required for Merchant Center Custom Applications.
 
 ```js
 const fs = require('fs');
@@ -217,7 +217,7 @@ In your project's `package.json` add the following script:
 
 If you configured a deploy target in a previous section, add `cross-env FIREBASE_TARGET=[target-name]` to the beginning of the above script where `target-name` is the unique identifier that you defined above.
 
-To build and compile your custom application run:
+To build and compile your Custom Application run:
 
 ```console
 yarn build && yarn run compile-html:firebase

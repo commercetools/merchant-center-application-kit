@@ -2,13 +2,13 @@
 title: Proxy to external API
 ---
 
-Developing custom applications might require to have your own backend server, for several reasons: storing sensitive credentials for third-party services, performing custom server logic, etc.
+Developing Custom Applications might require to have your own backend server, for several reasons: storing sensitive credentials for third-party services, performing custom server logic, etc.
 
 If that's the case, you're probably facing a problem: _how do you authenticate requests to your API?_
 
 Merchant Center applications can make [authenticated requests](./authentication) using the [proxy endpoints](./proxy-endpoints) to the underlying APIs that are configured and supported for the Merchant Center. Requests are authenticated via the `mcAccessToken` stored in a secure cookie, which is set only for `commercetools.com` domains.
 
-Since your backend server is hosted on a different domain, you can't send authenticated requests to your server from your custom application. Well, you can but you don't know if the request comes from an authenticated user or not.
+Since your backend server is hosted on a different domain, you can't send authenticated requests to your server from your Custom Application. Well, you can but you don't know if the request comes from an authenticated user or not.
 
 # Validating authenticated requests
 

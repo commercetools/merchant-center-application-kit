@@ -9,12 +9,12 @@ Merchant Center applications require a runtime configuration in order to work. T
 The configuration is defined in a file named `env.json`. The following fields are **required** but you can provide additional fields specific to your application:
 
 - `applicationName`: the name of the application (usually the same as in `package.json`)
-- `frontendHost`: The host where the Merchant Center custom application is running (for example `mc.commercetools.com`)
+- `frontendHost`: The host where the Merchant Center Custom Application is running (for example `mc.commercetools.com`)
 - `mcApiUrl`: The API URL for the [Merchant Center API Gateway](../main-concepts/api-gateway)
-- `location`: The location where the Merchant Center custom application is running. This can be something like:
+- `location`: The location where the Merchant Center Custom Application is running. This can be something like:
   - `eu` for projects in **Europe**
   - `us` for projects in the **United States**
-- `env`: The environment where the Merchant Center custom application is running, usually `production` or `development`
+- `env`: The environment where the Merchant Center Custom Application is running, usually `production` or `development`
 - `cdnUrl`: The URL where the static assets are stored (see [Serving static assets](./serving-static-assets))
 - `servedByProxy`: A flag to indicate if the application is running behind the Merchant Center Proxy or not. This is either:
   - `true` for **production**
