@@ -6,7 +6,7 @@ Merchant Center applications need to fetch data from different sources in the co
 
 However, for security reasons, client-side applications **cannot be trusted** with sensitive credentials, which makes it difficult to connect to an API directly from a browser.
 
-To solve these issues, the Merchant Center provides an **API Gateway**, which proxies requests to a underlying APIs. Requests made through the proxy will be authenticated with the correct authentication mechanism specific to the targeted API. This way, a client-side application only needs to [authenticate](#authentication) to the Merchant Center API Gateway without needing to store credentials for the targeted APIs.
+To solve these issues, the Merchant Center provides an **API Gateway**, which proxies requests to underlying APIs. Requests made through the proxy will be authenticated with the correct authentication mechanism specific to the targeted API. This way, a client-side application only needs to [authenticate](#authentication) to the Merchant Center API Gateway without needing to store credentials for the targeted APIs.
 
 ![HTTP API](/images/mc-http-api.png)
 

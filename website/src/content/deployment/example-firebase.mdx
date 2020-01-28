@@ -12,7 +12,7 @@ Before you get started, you need to have:
 
 - The [Firebase CLI](https://firebase.google.com/docs/hosting/quickstart#install-cli)
 
-# Create a Firebase Project
+# Create a Firebase project
 
 1. In the [Firebase console](https://console.firebase.google.com/) click **Add project**, then select or enter a **Project name**.
 
@@ -28,7 +28,7 @@ Before you get started, you need to have:
 
 5. Click **Create project** (or **Add Firebase**, if you're using an existing GCP project).
 
-# Initalize your Project
+# Initialize your project
 
 To connect your local project to your Firebase project, run the following command from the root of your local project directory:
 
@@ -36,17 +36,19 @@ To connect your local project to your Firebase project, run the following comman
 firebase init
 ```
 
+During project initialization, from the Firebase CLI prompts:
+
 1. Select to set up **Hosting** and **Functions**.
 
-2. Select a Firebase project to connect to your local project directory. This will be the project created in the previous section.
+2. Select the Firebase project, which you have created in the previous section, to connect it to your local project directory
 
-3. Select **JavaScript** as the language to write Cloud Functions.
+3. Select **JavaScript** as language for writing Cloud Functions.
 
-4. Choose if you would like to use ESLint and install dependencies with npm (both recommended). It is safe to decline if you want to manage dependencies in another way.
+4. Choose whether you would like to use ESLint and install dependencies with npm (both recommended) or if you want to manage dependencies in another way.
 
-5. Select the default directory to use as your public root directory. The default is `public` and is where the compiled files will be placed.
+5. Select the default directory to use as your public root directory. This directory is `public` and all compiled files will be placed there.
 
-6. Configure your site as a single-page app to automatically add rewrite configurations.
+6. Configure your site as single-page app to automatically add rewrite configurations.
 
    ![Firebase Initialization](/images/mc-dev-firebase-init.png)
 
@@ -67,11 +69,11 @@ To support Cloud Functions, Firebase also adds the following structure to your p
     └── package.json
 ```
 
-- `.eslintrc.json`: Optional file containing rules for JavaScript linting.
-- `package.json`: npm package file describing your Cloud Functions code
-- `index.js`: main source file for your Cloud Functions code
+- `.eslintrc.json`: optional file containing rules for JavaScript linting.
+- `package.json`: npm package file describing your Cloud Functions code.
+- `index.js`: main source file for your Cloud Functions code.
 
-# Configure Fallback Route
+# Configure Fallback route
 
 To provide a more user-friendly experience when the Custom Application is accessed directly, we must create a Cloud Function to redirect the user to.
 
@@ -109,13 +111,13 @@ firebase target:apply hosting target-name resource-name
 
 Where the parameters are:
 
-- **target-name** — a unique identifier (that you've defined yourself) for the Hosting site that you're deploying to
+- **target-name**: a unique identifier (that you've defined yourself) for the Hosting site that you're deploying to.
 
-- **resource-name** — the name of the Hosting site as listed in your Firebase project
+- **resource-name**: the name of the Hosting site as listed in your Firebase project.
 
 ![Firebase Hosting Console](/images/mc-dev-firebase-hosting-console.png)
 
-The settings for deploy targets are stored in the `.firebaserc` file in your project directory, so you only need to set up deploy targets one time per project.
+The settings for deploy targets are stored in the `.firebaserc` file in your project directory, so you only need to set up deploy targets once per project.
 
 # Configuration
 
@@ -147,7 +149,7 @@ You also need a `headers.json` file. You can also have a `headers.prod.json` fil
 
 For both `env.prod.json` and `headers.json`, `[projectID]` should be replaced with your Firebase project ID.
 
-# Build and Compilation
+# Build and compilation
 
 In order to generate the correct configuration for Firebase, the `mc-scripts compile-html` script must use a Firebase transformer. This transformer will generate a `firebase.json` file with the custom security headers required for Merchant Center Custom Applications.
 
@@ -205,7 +207,7 @@ module.exports = ({ headers }) => {
 };
 ```
 
-Copy the above file into your local project as `transformer-firebase.js` under a `config` directory.
+Copy the file above into your local project as `transformer-firebase.js` under a `config` directory.
 
 In your project's `package.json` add the following script:
 
@@ -215,7 +217,7 @@ In your project's `package.json` add the following script:
 }
 ```
 
-If you configured a deploy target in a previous section, add `cross-env FIREBASE_TARGET=[target-name]` to the beginning of the above script where `target-name` is the unique identifier that you defined above.
+If you have configured a deploy target in a previous section, add `cross-env FIREBASE_TARGET=[target-name]` to the beginning of the script above whereby `target-name` the unique identifier is that you defined above.
 
 To build and compile your Custom Application run:
 
@@ -233,9 +235,13 @@ Trigger the deployment using the Firebase CLI:
 firebase deploy
 ```
 
-> Note: Deployment assumes that you have compiled assets in the `public` directory.
+<Info>
 
-If you go to `https://[projectID].firebaseapp.com`, you will see the message supplied in the Cloud Function. **This is expected** as the application is not being loaded behind the Merchant Center Proxy.
+Deployment assumes that you have compiled assets in the `public` directory.
+
+</Info>
+
+If you go to `https://[projectID].firebaseapp.com`, you will see the following message supplied in the Cloud Function. **This is expected** as the application is not being loaded behind the Merchant Center proxy.
 
 ![Firebase Fallback](/images/mc-dev-firebase-fallback.png)
 

@@ -2,7 +2,7 @@
 title: Proxy to external API
 ---
 
-Developing Custom Applications might require to have your own backend server, for several reasons: storing sensitive credentials for third-party services, performing custom server logic, etc.
+Developing Custom Applications might require you to have your own backend server, for several reasons: storing sensitive credentials for third-party services, performing custom server logic, etc.
 
 If that's the case, you're probably facing a problem: _how do you authenticate requests to your API?_
 
@@ -53,7 +53,7 @@ const app = express();
 
 // The issuer refers to the Merchant Center API Gateway URL.
 const issuer = 'https://mc-api.commercetools.com';
-// The audience refers to the forwared target URL (same value as in `X-Forward-To` header)
+// The audience refers to the forwarded target URL (same value as in `X-Forward-To` header)
 const audience = 'https://my-custom-app.com/foo/bar';
 
 app.use(

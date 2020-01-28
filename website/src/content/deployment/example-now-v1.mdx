@@ -6,7 +6,11 @@ This deployment example refers to the [Now serverless deployment](https://zeit.c
 
 There are different deployment strategies but we will focus on deployments using **Docker containers**.
 
-> Note: this example refers to `now` version `1`. The version `2` has deprecated those deployment types and is based on **Lambda** functions (or static files) to run the application. See the [Now v2 example](./example-now-v2) for more information.
+<Warning>
+
+This example refers to `now` version `1`. Version `2` has deprecated those deployment types and is based on **Lambda** functions (or static files) to run the application. See the [Now v2 example](./example-now-v2) for more information.
+
+</Warning>
 
 # Prerequisites
 
@@ -18,7 +22,11 @@ Before you get started, you need to have:
 
 We're going to deploy the application under the domain `mc-examples-starter.now.sh`.
 
-> Note: The `mc-examples-starter.now.sh` domain is already in use. Pick a different one if you choose to deploy using Now.
+<Info>
+
+The `mc-examples-starter.now.sh` domain is already in use. Pick a different one if you choose to deploy using Now.
+
+</Info>
 
 # Configuration
 
@@ -106,7 +114,7 @@ now alias
 ![Now deploy - part 2](/images/mc-dev-now_2.png)
 ![Now alias](/images/mc-dev-now-alias.png)
 
-If we go to `https://mc-examples-starter.now.sh` we can see the application loading and we can inspect the Developer Console to see that the configuration is correct:
+After changing to `https://mc-examples-starter.now.sh` we can see the application loading and inspect the Developer Console to see that the configuration is correct:
 
 ![Now deployed](/images/mc-dev-now-deployed.png)
 
