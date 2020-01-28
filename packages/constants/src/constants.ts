@@ -137,7 +137,7 @@ export type TMcApiProxyTargets = typeof MC_API_PROXY_TARGETS[keyof typeof MC_API
 export interface ApplicationWindow extends Window {
   dataLayer: unknown[];
   app: {
-    applicationName?: string;
+    applicationName: string;
     revision: string;
     env: string;
     location: string;

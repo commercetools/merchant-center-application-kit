@@ -14,7 +14,7 @@ declare let window: ApplicationWindow;
 
 const userAgent = createHttpUserAgent({
   name: '@commercetools/sdk-client',
-  libraryName: [window.app.applicationName || 'unknown', 'sdk'].join('/'),
+  libraryName: [window.app.applicationName, 'sdk'].join('/'),
   libraryVersion: version,
   contactUrl: 'https://git.io/fjuyC', // points to the appkit repo issues
   contactEmail: 'mc@commercetools.com',

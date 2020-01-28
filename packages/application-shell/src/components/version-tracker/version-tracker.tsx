@@ -5,7 +5,7 @@ import applicationShellVersion from '../../version';
 import { pushDependencyVersionCounter } from './actions';
 
 type VersionMetricOptions = {
-  applicationName?: string;
+  applicationName: string;
 };
 
 const createVersionMetric = ({ applicationName }: VersionMetricOptions) => [

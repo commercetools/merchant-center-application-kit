@@ -2,7 +2,7 @@ import React from 'react';
 import * as gtm from '../../utils/gtm';
 
 type Props = {
-  applicationName?: string;
+  applicationName: string;
   projectKey?: string;
 };
 
