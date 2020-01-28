@@ -10,7 +10,7 @@ const createVersionMetric = ({ applicationName }) => [
   {
     metricName: 'npm_dependency_versions',
     metricLabels: {
-      application: applicationName || 'unknown',
+      application: applicationName,
       package_name: '@commercetools-frontend/application-shell',
       package_version: applicationShellVersion,
     },
@@ -18,7 +18,7 @@ const createVersionMetric = ({ applicationName }) => [
   {
     metricName: 'npm_dependency_versions',
     metricLabels: {
-      application: applicationName || 'unknown',
+      application: applicationName,
       package_name: 'react',
       package_version: React.version,
     },
@@ -29,7 +29,7 @@ export class VersionTracker extends React.Component {
   static displayName = 'VersionTracker';
   static propTypes = {
     // withApplicationContext
-    applicationName: PropTypes.string,
+    applicationName: PropTypes.string.isRequired,
     // connect
     pushDependencyVersionCounter: PropTypes.func.isRequired,
   };

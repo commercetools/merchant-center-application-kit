@@ -11,7 +11,7 @@ const GtmApplicationTracker = props => {
 };
 GtmApplicationTracker.displayName = 'GtmApplicationTracker';
 GtmApplicationTracker.propTypes = {
-  applicationName: PropTypes.string,
+  applicationName: PropTypes.string.isRequired,
   projectKey: PropTypes.string,
 };
 

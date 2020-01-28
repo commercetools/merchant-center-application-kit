@@ -93,7 +93,7 @@ export const mapProjectToApplicationContextProject = (
 };
 
 type TApplicationContextEnvironment = {
-  applicationName?: string;
+  applicationName: string;
   frontendHost: string;
   mcApiUrl: string;
   location: string;

@@ -136,7 +136,7 @@ export type TMcApiProxyTargets = typeof MC_API_PROXY_TARGETS[keyof typeof MC_API
 // Global application environment on window object
 export interface ApplicationWindow extends Window {
   app: {
-    applicationName?: string;
+    applicationName: string;
     revision: string;
     env: string;
     location: string;
