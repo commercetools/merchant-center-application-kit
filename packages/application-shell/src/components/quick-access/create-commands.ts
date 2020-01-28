@@ -1,18 +1,32 @@
+import { IntlShape } from 'react-intl';
 import { oneLineTrim } from 'common-tags';
 import { hasSomePermissions } from '@commercetools-frontend/permissions';
 import {
   LOGOUT_REASONS,
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
+import { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { permissions } from './constants';
 import messages from './messages';
+import { actionTypes, Command } from './types';
 
-export default function createCommands({
-  applicationContext,
+function nonNullable<T>(value: T | boolean): value is NonNullable<T> {
+  return value !== null && value !== undefined && typeof value !== 'boolean';
+}
+
+type CreateCommandsOptions = {
+  intl: IntlShape;
+  applicationContext: TApplicationContext<{}>;
+  featureToggles: { [key: string]: boolean };
+  changeProjectDataLocale?: (locale: string) => void;
+};
+
+const createCommands = ({
   intl,
+  applicationContext,
   featureToggles,
   changeProjectDataLocale,
-}) {
+}: CreateCommandsOptions): Command[] => {
   return [
     applicationContext.project &&
       applicationContext.permissions &&
@@ -25,7 +39,7 @@ export default function createCommands({
         text: intl.formatMessage(messages.openDashboard),
         keywords: ['Go to Dashboard'],
         action: {
-          type: 'go',
+          type: actionTypes.go,
           to: `/${applicationContext.project.key}/dashboard`,
         },
       },
@@ -39,7 +53,7 @@ export default function createCommands({
         text: intl.formatMessage(messages.openProducts),
         keywords: ['Go to Products'],
         action: {
-          type: 'go',
+          type: actionTypes.go,
           to: `/${applicationContext.project.key}/products`,
         },
         subCommands: [
@@ -50,7 +64,7 @@ export default function createCommands({
             id: 'go/products/list',
             text: intl.formatMessage(messages.openProductList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/products`,
             },
           },
@@ -61,7 +75,7 @@ export default function createCommands({
             id: 'go/products/modified',
             text: intl.formatMessage(messages.openModifiedProducts),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/products/modified`,
             },
           },
@@ -73,7 +87,7 @@ export default function createCommands({
               id: 'go/products/pim-search',
               text: intl.formatMessage(messages.openPimSearch),
               action: {
-                type: 'go',
+                type: actionTypes.go,
                 to: `/${applicationContext.project.key}/products/pim-search`,
               },
             },
@@ -84,11 +98,11 @@ export default function createCommands({
             id: 'go/products/add',
             text: intl.formatMessage(messages.openAddProducts),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/products/new`,
             },
           },
-        ].filter(Boolean),
+        ].filter(nonNullable),
       },
     applicationContext.project &&
       applicationContext.permissions &&
@@ -100,7 +114,7 @@ export default function createCommands({
         text: intl.formatMessage(messages.openCategories),
         keywords: ['Go to Categories'],
         action: {
-          type: 'go',
+          type: actionTypes.go,
           to: `/${applicationContext.project.key}/categories`,
         },
         subCommands: [
@@ -111,7 +125,7 @@ export default function createCommands({
             id: 'go/categories/list',
             text: intl.formatMessage(messages.openCategoriesList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/categories?mode=list`,
             },
           },
@@ -122,7 +136,7 @@ export default function createCommands({
             id: 'go/categories/search',
             text: intl.formatMessage(messages.openCategoriesSearch),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/categories?mode=search`,
             },
           },
@@ -133,11 +147,11 @@ export default function createCommands({
             id: 'go/categories/add',
             text: intl.formatMessage(messages.openAddCategory),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/categories/new`,
             },
           },
-        ].filter(Boolean),
+        ].filter(nonNullable),
       },
     applicationContext.project &&
       applicationContext.permissions &&
@@ -149,7 +163,7 @@ export default function createCommands({
         text: intl.formatMessage(messages.openCustomers),
         keywords: ['Go to Customers'],
         action: {
-          type: 'go',
+          type: actionTypes.go,
           to: `/${applicationContext.project.key}/customers`,
         },
         subCommands: [
@@ -160,7 +174,7 @@ export default function createCommands({
             id: 'go/customers/list',
             text: intl.formatMessage(messages.openCustomersList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/customers`,
             },
           },
@@ -171,7 +185,7 @@ export default function createCommands({
             id: 'go/customers/new',
             text: intl.formatMessage(messages.openAddCustomer),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/customers/new`,
             },
           },
@@ -182,7 +196,7 @@ export default function createCommands({
             id: 'go/customer/customer-groups',
             text: intl.formatMessage(messages.openCustomerGroupsList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/customers/customer-groups`,
             },
           },
@@ -193,11 +207,11 @@ export default function createCommands({
             id: 'go/customers/customer-groups/add',
             text: intl.formatMessage(messages.openAddCustomerGroup),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/customers/customer-groups/new`,
             },
           },
-        ].filter(Boolean),
+        ].filter(nonNullable),
       },
     applicationContext.project &&
       applicationContext.permissions &&
@@ -208,7 +222,10 @@ export default function createCommands({
         id: 'go/orders',
         text: intl.formatMessage(messages.openOrders),
         keywords: ['Go to Orders'],
-        action: { type: 'go', to: `/${applicationContext.project.key}/orders` },
+        action: {
+          type: actionTypes.go,
+          to: `/${applicationContext.project.key}/orders`,
+        },
         subCommands: [
           hasSomePermissions(
             [permissions.ViewOrders],
@@ -217,7 +234,7 @@ export default function createCommands({
             id: 'go/orders/list',
             text: intl.formatMessage(messages.openOrdersList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/orders`,
             },
           },
@@ -228,11 +245,11 @@ export default function createCommands({
             id: 'go/orders/add',
             text: intl.formatMessage(messages.openAddOrder),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/orders/new`,
             },
           },
-        ].filter(Boolean),
+        ].filter(nonNullable),
       },
     applicationContext.project &&
       applicationContext.permissions &&
@@ -248,7 +265,7 @@ export default function createCommands({
         text: intl.formatMessage(messages.openDiscounts),
         keywords: ['Go to Discounts'],
         action: {
-          type: 'go',
+          type: actionTypes.go,
           to: `/${applicationContext.project.key}/discounts`,
         },
         subCommands: [
@@ -259,7 +276,7 @@ export default function createCommands({
             id: 'go/discounts/products/list',
             text: intl.formatMessage(messages.openProductDiscountsList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/discounts/products`,
             },
           },
@@ -270,7 +287,7 @@ export default function createCommands({
             id: 'go/discounts/carts/list',
             text: intl.formatMessage(messages.openCartDiscountsList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/discounts/carts`,
             },
           },
@@ -281,7 +298,7 @@ export default function createCommands({
             id: 'go/discounts/codes/list',
             text: intl.formatMessage(messages.openDiscountCodesList),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/discounts/codes`,
             },
           },
@@ -296,7 +313,7 @@ export default function createCommands({
             id: 'go/discounts/add',
             text: intl.formatMessage(messages.openAddDiscount),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/discounts/new`,
             },
             subCommands: [
@@ -307,7 +324,7 @@ export default function createCommands({
                 id: 'go/discounts/product/add',
                 text: intl.formatMessage(messages.openAddProductDiscount),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/discounts/products/new`,
                 },
               },
@@ -318,7 +335,7 @@ export default function createCommands({
                 id: 'go/discounts/cart/add',
                 text: intl.formatMessage(messages.openAddCartDiscount),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/discounts/carts/new`,
                 },
               },
@@ -329,13 +346,13 @@ export default function createCommands({
                 id: 'go/discounts/code/add',
                 text: intl.formatMessage(messages.openAddCartDiscount),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/discounts/codes/new`,
                 },
               },
-            ].filter(Boolean),
+            ].filter(nonNullable),
           },
-        ].filter(Boolean),
+        ].filter(nonNullable),
       },
     applicationContext.project &&
       applicationContext.permissions &&
@@ -351,7 +368,7 @@ export default function createCommands({
         text: intl.formatMessage(messages.openSettings),
         keywords: ['Go to Settings'],
         action: {
-          type: 'go',
+          type: actionTypes.go,
           to: `/${applicationContext.project.key}/settings/project`,
         },
         subCommands: [
@@ -365,7 +382,7 @@ export default function createCommands({
             id: 'go/settings/project',
             text: intl.formatMessage(messages.openProjectSettings),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/settings/project`,
             },
             subCommands: [
@@ -375,7 +392,7 @@ export default function createCommands({
                   messages.openProjectSettingsInternationalTab
                 ),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/settings/project/international`,
                 },
               },
@@ -383,7 +400,7 @@ export default function createCommands({
                 id: 'go/settings/project/taxes',
                 text: intl.formatMessage(messages.openProjectSettingsTaxesTab),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/settings/project/taxes`,
                 },
               },
@@ -393,7 +410,7 @@ export default function createCommands({
                   messages.openProjectSettingsShippingMethodsTab
                 ),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/settings/project/shipping-methods`,
                 },
               },
@@ -403,11 +420,11 @@ export default function createCommands({
                   messages.openProjectSettingsChannelsTab
                 ),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/settings/project/channels`,
                 },
               },
-            ].filter(Boolean),
+            ].filter(nonNullable),
           },
           hasSomePermissions(
             [permissions.ViewProductTypes],
@@ -416,7 +433,7 @@ export default function createCommands({
             id: 'go/settings/product-types',
             text: intl.formatMessage(messages.openProductTypesSettings),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/settings/product-types`,
             },
           },
@@ -427,7 +444,7 @@ export default function createCommands({
             id: 'go/settings/developer',
             text: intl.formatMessage(messages.openDeveloperSettings),
             action: {
-              type: 'go',
+              type: actionTypes.go,
               to: `/${applicationContext.project.key}/settings/developer`,
             },
             subCommands: [
@@ -438,7 +455,7 @@ export default function createCommands({
                 id: 'go/settings/developer/api-clients/list',
                 text: intl.formatMessage(messages.openApiClientsList),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/settings/developer/api-clients`,
                 },
               },
@@ -449,11 +466,11 @@ export default function createCommands({
                 id: 'go/settings/developer/api-clients/add',
                 text: intl.formatMessage(messages.openAddApiClient),
                 action: {
-                  type: 'go',
+                  type: actionTypes.go,
                   to: `/${applicationContext.project.key}/settings/developer/api-clients/new`,
                 },
               },
-            ].filter(Boolean),
+            ].filter(nonNullable),
           },
           featureToggles.customApplications &&
             hasSomePermissions(
@@ -463,11 +480,11 @@ export default function createCommands({
               id: 'go/settings/custom-applications',
               text: intl.formatMessage(messages.openCustomApplicationsSettings),
               action: {
-                type: 'go',
+                type: actionTypes.go,
                 to: `/${applicationContext.project.key}/settings/custom-applications`,
               },
             },
-        ].filter(Boolean),
+        ].filter(nonNullable),
       },
     applicationContext.project &&
       applicationContext.project.languages &&
@@ -479,33 +496,48 @@ export default function createCommands({
           'set project data language',
           'set project data locale',
         ],
+        action: () => void 0,
         // We would know these statically, but we define them here as we don't
         // want to include them in the top-level search results
         subCommands: () =>
-          applicationContext.project.languages.map(language => ({
-            id: `action/set-resource-language/${language}`,
-            text: oneLineTrim`
-              ${language}
-              ${language === applicationContext.dataLocale ? ' (active)' : ''}
-            `,
-            action: () => {
-              changeProjectDataLocale(language);
+          Promise.resolve(
+            (applicationContext.project
+              ? applicationContext.project.languages
+              : []
+            )
+              .map(
+                language =>
+                  changeProjectDataLocale && {
+                    id: `action/set-resource-language/${language}`,
+                    text: oneLineTrim`
+                      ${language}
+                      ${
+                        language === applicationContext.dataLocale
+                          ? ' (active)'
+                          : ''
+                      }
+                    `,
+                    action: () => {
+                      changeProjectDataLocale(language);
 
-              // We reload, since ProjectDataLocale is written in a way where
-              // only the tree under the parent container reloads, but
-              // not all of them reload.
-              // So this action would seem like it had not effect, unless we
-              // reload
-              window.location.reload();
-            },
-          })),
+                      // We reload, since ProjectDataLocale is written in a way where
+                      // only the tree under the parent container reloads, but
+                      // not all of them reload.
+                      // So this action would seem like it had not effect, unless we
+                      // reload
+                      window.location.reload();
+                    },
+                  }
+              )
+              .filter(nonNullable)
+          ),
       },
     {
       id: 'go/support',
       text: intl.formatMessage(messages.openSupport),
       keywords: ['Go to support'],
       action: {
-        type: 'go',
+        type: actionTypes.go,
         to: SUPPORT_PORTAL_URL,
       },
     },
@@ -513,19 +545,25 @@ export default function createCommands({
       id: 'go/account-profile',
       text: intl.formatMessage(messages.openMyProfile),
       keywords: ['Go to user account', 'Go to profile', 'Open profile'],
-      action: { type: 'go', to: `/account/profile` },
+      action: { type: actionTypes.go, to: `/account/profile` },
     },
     {
       id: 'go/privacy-policy',
       text: intl.formatMessage(messages.showPrivacyPolicy),
       keywords: ['Open Privacy Policy'],
-      action: { type: 'go', to: 'https://commercetools.com/privacy#suppliers' },
+      action: {
+        type: actionTypes.go,
+        to: 'https://commercetools.com/privacy#suppliers',
+      },
     },
     {
       id: 'go/logout',
       text: intl.formatMessage(messages.logout),
       keywords: ['Sign out'],
-      action: { type: 'go', to: `/logout?reason=${LOGOUT_REASONS.USER}` },
+      action: {
+        type: actionTypes.go,
+        to: `/logout?reason=${LOGOUT_REASONS.USER}`,
+      },
     },
     {
       id: 'go/manage-projects',
@@ -535,7 +573,7 @@ export default function createCommands({
         'Go to projects',
         'Open projects list',
       ],
-      action: { type: 'go', to: `/account/projects` },
+      action: { type: actionTypes.go, to: `/account/projects` },
     },
     {
       id: 'go/manage-organizations',
@@ -545,7 +583,7 @@ export default function createCommands({
         'Go to organizations',
         'Open organizations list',
       ],
-      action: { type: 'go', to: `/account/organizations` },
+      action: { type: actionTypes.go, to: `/account/organizations` },
     },
     ...(applicationContext.user
       ? applicationContext.user.projects.results.map(userProject => ({
@@ -561,5 +599,7 @@ export default function createCommands({
           },
         }))
       : []),
-  ].filter(Boolean);
-}
+  ].filter(nonNullable);
+};
+
+export default createCommands;

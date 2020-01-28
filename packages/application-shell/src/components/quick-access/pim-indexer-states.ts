@@ -5,4 +5,4 @@ export default {
   INDEXED: 'INDEXED',
   // the project is not indexed by pim-indexer
   NOT_INDEXED: 'NOT_INDEXED',
-};
+} as const;

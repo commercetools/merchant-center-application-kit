@@ -20,7 +20,7 @@ import ProjectExpired from '../project-expired';
 import ProjectNotInitialized from '../project-not-initialized';
 import RedirectToProjectCreate from '../redirect-to-project-create';
 import ProjectSuspended from '../project-suspended';
-import ErrorBoundary from './error-boundary';
+import ErrorBoundary from '../error-boundary';
 import messages from './messages';
 
 type QueryParams = {
