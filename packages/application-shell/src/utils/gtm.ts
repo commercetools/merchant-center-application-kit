@@ -136,8 +136,8 @@ export const trackTiming = ({
 };
 
 // Track custom dimensions
-export const trackApplicationName = (applicationName?: string) => {
-  if (window.dataLayer && window.app.trackingGtm && applicationName)
+export const trackApplicationName = (applicationName: string) => {
+  if (window.dataLayer && window.app.trackingGtm)
     window.dataLayer.push({ applicationName });
 };
 export const trackProjectKey = (projectKey?: string) => {

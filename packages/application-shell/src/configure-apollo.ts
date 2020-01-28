@@ -23,10 +23,7 @@ type CustomIdGetterObj = IdGetterObj & {
 const userAgent = createHttpUserAgent({
   name: 'apollo-client',
   version: apolloVersion,
-  libraryName: [
-    window.app.applicationName || 'unknown',
-    'application-shell',
-  ].join('/'),
+  libraryName: [window.app.applicationName, 'application-shell'].join('/'),
   libraryVersion: version,
   contactUrl: 'https://git.io/fjuyC', // points to the appkit repo issues
   contactEmail: 'mc@commercetools.com',
