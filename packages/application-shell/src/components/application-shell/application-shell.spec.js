@@ -654,14 +654,14 @@ describe('when clicking on navbar menu toggle', () => {
     await wait(() => {
       expect(window.localStorage.setItem).toHaveBeenCalledWith(
         STORAGE_KEYS.IS_FORCED_MENU_OPEN,
-        false
+        'false'
       );
     });
     fireEvent.click(button);
     await wait(() => {
       expect(window.localStorage.setItem).toHaveBeenCalledWith(
         STORAGE_KEYS.IS_FORCED_MENU_OPEN,
-        true
+        'true'
       );
     });
     // Check that the support link is rendered

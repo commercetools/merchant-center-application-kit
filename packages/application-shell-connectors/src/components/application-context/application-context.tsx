@@ -94,7 +94,7 @@ export const mapProjectToApplicationContextProject = (
 };
 
 type TApplicationContextEnvironment = ApplicationWindow['app'];
-type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
+export type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
   environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment;
   user: ReturnType<typeof mapUserToApplicationContextUser>;
   project: ReturnType<typeof mapProjectToApplicationContextProject>;
