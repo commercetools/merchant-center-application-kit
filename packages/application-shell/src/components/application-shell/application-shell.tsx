@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { SyntheticEvent } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import memoize from 'memoize-one';
+import { ApolloError } from 'apollo-client';
+import { Flags } from '@flopflip/types';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
@@ -13,9 +13,17 @@ import {
   reportErrorToSentry,
   SentryUserTracker,
 } from '@commercetools-frontend/sentry';
-import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
+import {
+  ApplicationContextProvider,
+  TApplicationContext,
+} from '@commercetools-frontend/application-shell-connectors';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
-import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import {
+  AsyncLocaleData,
+  TAsyncLocaleDataProps,
+} from '@commercetools-frontend/i18n';
+import { TApplicationsMenu } from '../../types/generated/proxy';
+import { TrackingWhitelist } from '../../utils/gtm';
 import internalReduxStore from '../../configure-store';
 import ProjectDataLocale from '../project-data-locale';
 import PortalsContainer from '../portals-container';
@@ -40,19 +48,59 @@ import RedirectToProjectCreate from '../redirect-to-project-create';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import QuickAccess from '../quick-access';
 
+type Props<AdditionalEnvironmentProperties extends {}> = {
+  /**
+   * NOTE: the environment value passed here is usually `window.app`.
+   * This object usually contains values as string and will be "transformed"
+   * to a real object with proper scalar values in the ApplicationShell.
+   * To keep the types simple, we assign here the already coerced type object.
+   * This should be fine, as consumers of the application can use the
+   * `ApplicationWindow` type from the `@commercetools-frontend/constants` package
+   * to type cast it:
+   *
+   * ```tsx
+   * import { ApplicationWindow } from '@commercetools-frontend/constants';
+   *
+   * declare let window: ApplicationWindow;
+   *
+   * <ApplicationShell environment={window.app} />
+   * ```
+   */
+  environment: TApplicationContext<
+    AdditionalEnvironmentProperties
+  >['environment'];
+  featureFlags?: Flags;
+  defaultFeatureFlags?: Flags;
+  trackingEventWhitelist?: TrackingWhitelist;
+  applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
+  onRegisterErrorListeners: (args: {
+    dispatch: typeof internalReduxStore.dispatch;
+  }) => void;
+  onMenuItemClick?: <TrackFn>(
+    event: SyntheticEvent<HTMLAnchorElement>,
+    track: TrackFn
+  ) => void;
+  render: () => JSX.Element;
+  // Only available in development mode
+  DEV_ONLY__loadAppbarMenuConfig?: () => Promise<TApplicationsMenu['appBar']>;
+  DEV_ONLY__loadNavbarMenuConfig?: () => Promise<TApplicationsMenu['navBar']>;
+};
+
 /**
  * This component is rendered whenever the user is considered "authenticated"
  * and contains the "restricted" application part.
  */
 
-const getHasUnauthorizedError = graphQLErrors =>
+const getHasUnauthorizedError = (graphQLErrors: ApolloError['graphQLErrors']) =>
   graphQLErrors.find(
     gqlError =>
       gqlError.extensions &&
       gqlError.extensions.code &&
       gqlError.extensions.code === 'UNAUTHENTICATED'
   );
-const getHasUserBeenDeletedError = graphQLErrors =>
+const getHasUserBeenDeletedError = (
+  graphQLErrors: ApolloError['graphQLErrors']
+) =>
   graphQLErrors.find(
     gqlError =>
       gqlError.message &&
@@ -87,7 +135,14 @@ export const MainContainer = styled.main`
   position: relative;
 `;
 
-export const RestrictedApplication = props => (
+export const RestrictedApplication = <
+  AdditionalEnvironmentProperties extends {}
+>(
+  props: Omit<
+    Props<AdditionalEnvironmentProperties>,
+    'onRegisterErrorListeners'
+  >
+) => (
   <FetchUser>
     {({ isLoading: isLoadingUser, user, error }) => {
       if (error) {
@@ -101,19 +156,15 @@ export const RestrictedApplication = props => (
           );
 
           if (hasUnauthorizedError || hasUserBeenDeletedError) {
+            let logoutReason:
+              | typeof LOGOUT_REASONS[keyof typeof LOGOUT_REASONS]
+              | undefined;
+            if (hasUnauthorizedError)
+              logoutReason = LOGOUT_REASONS.UNAUTHORIZED;
+            else if (hasUserBeenDeletedError)
+              logoutReason = LOGOUT_REASONS.DELETED;
             return (
-              <Redirector
-                to="logout"
-                environment={props.environment}
-                queryParams={{
-                  reason: (() => {
-                    if (hasUnauthorizedError)
-                      return LOGOUT_REASONS.UNAUTHORIZED;
-                    else if (hasUserBeenDeletedError)
-                      return LOGOUT_REASONS.DELETED;
-                  })(),
-                }}
-              />
+              <Redirector to="logout" queryParams={{ reason: logoutReason }} />
             );
           }
         }
@@ -139,7 +190,10 @@ export const RestrictedApplication = props => (
 
       const projectKeyFromUrl = selectProjectKeyFromUrl();
       return (
-        <ApplicationContextProvider user={user} environment={props.environment}>
+        <ApplicationContextProvider<AdditionalEnvironmentProperties>
+          user={user}
+          environment={props.environment}
+        >
           {/*
             NOTE: we do not want to load the locale data as long as we do not
             know the user setting. This is important in order to avoid flashing
@@ -200,19 +254,18 @@ export const RestrictedApplication = props => (
                           return (
                             <FetchProject projectKey={projectKeyFromUrl}>
                               {({ isLoading: isProjectLoading, project }) => {
-                                if (isProjectLoading) return null;
+                                if (isProjectLoading || !project) return null;
 
                                 // when used outside of a project context,
                                 // or when the project is expired or supsended
-                                const useProjectContext =
-                                  project &&
-                                  !(
-                                    (project.suspension &&
-                                      project.suspension.isActive) ||
-                                    (project.expiry && project.expiry.isActive)
-                                  );
+                                const useProjectContext = !(
+                                  (project.suspension &&
+                                    project.suspension.isActive) ||
+                                  (project.expiry && project.expiry.isActive)
+                                );
 
                                 if (!useProjectContext) return <QuickAccess />;
+
                                 return (
                                   <ProjectDataLocale
                                     locales={project.languages}
@@ -221,7 +274,9 @@ export const RestrictedApplication = props => (
                                       locale: dataLocale,
                                       setProjectDataLocale,
                                     }) => (
-                                      <ApplicationContextProvider
+                                      <ApplicationContextProvider<
+                                        AdditionalEnvironmentProperties
+                                      >
                                         user={user}
                                         project={project}
                                         projectDataLocale={dataLocale}
@@ -288,17 +343,20 @@ export const RestrictedApplication = props => (
                                   isLoadingUser ||
                                   isLoadingLocaleData ||
                                   isLoadingProject ||
+                                  !locale ||
                                   !project
                                 )
                                   return <LoadingNavBar />;
 
                                 return (
-                                  <ApplicationContextProvider
+                                  <ApplicationContextProvider<
+                                    AdditionalEnvironmentProperties
+                                  >
                                     user={user}
                                     project={project}
                                     environment={props.environment}
                                   >
-                                    <NavBar
+                                    <NavBar<AdditionalEnvironmentProperties>
                                       applicationLocale={locale}
                                       projectKey={projectKeyFromUrl}
                                       environment={props.environment}
@@ -383,7 +441,9 @@ export const RestrictedApplication = props => (
                                 path="/:projectKey"
                                 render={routerProps => (
                                   <React.Fragment>
-                                    <ProjectContainer
+                                    <ProjectContainer<
+                                      AdditionalEnvironmentProperties
+                                    >
                                       user={user}
                                       match={routerProps.match}
                                       location={routerProps.location}
@@ -411,19 +471,7 @@ export const RestrictedApplication = props => (
     }}
   </FetchUser>
 );
-
 RestrictedApplication.displayName = 'RestrictedApplication';
-RestrictedApplication.propTypes = {
-  environment: PropTypes.object.isRequired,
-  defaultFeatureFlags: PropTypes.object,
-  featureFlags: PropTypes.object,
-  render: PropTypes.func.isRequired,
-  applicationMessages: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
-    .isRequired,
-  onMenuItemClick: PropTypes.func,
-  DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
-  DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
-};
 
 /**
  * NOTE:
@@ -436,7 +484,7 @@ RestrictedApplication.propTypes = {
  *   - `JSON.parse('1')` => `1`
  *   - `JSON.parse('["a", "b"]')` => `['a', 'b']`
  */
-const getCoerceEnvironmentValue = environmentValueAsString => {
+const getCoerceEnvironmentValue = (environmentValueAsString: string) => {
   try {
     return JSON.parse(environmentValueAsString);
   } catch (e) {
@@ -444,7 +492,8 @@ const getCoerceEnvironmentValue = environmentValueAsString => {
   }
 };
 
-const shallowlyCoerceValues = memoize(uncoercedEnvironmentValues =>
+type ShallowJson = { [key: string]: string };
+const shallowlyCoerceValues = (uncoercedEnvironmentValues: ShallowJson) =>
   Object.keys(uncoercedEnvironmentValues).reduce(
     (coercedEnvironmentValues, key) => {
       const uncoercedEnvironmentValue = uncoercedEnvironmentValues[key];
@@ -454,130 +503,113 @@ const shallowlyCoerceValues = memoize(uncoercedEnvironmentValues =>
       };
     },
     {}
-  )
-);
+  );
 
-export default class ApplicationShell extends React.Component {
-  static displayName = 'ApplicationShell';
-  static propTypes = {
-    environment: PropTypes.object.isRequired,
-    featureFlags: PropTypes.object,
-    defaultFeatureFlags: PropTypes.object,
-    trackingEventWhitelist: PropTypes.objectOf(
-      PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.objectOf(PropTypes.string),
-      ]).isRequired
-    ),
-    render: PropTypes.func.isRequired,
-    onRegisterErrorListeners: PropTypes.func.isRequired,
-    onMenuItemClick: PropTypes.func,
-    applicationMessages: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
-      .isRequired,
-    // Only available in development mode
-    DEV_ONLY__loadAppbarMenuConfig: PropTypes.func,
-    DEV_ONLY__loadNavbarMenuConfig: PropTypes.func,
-  };
-  static defaultProps = {
-    trackingEventWhitelist: {},
-  };
-  static version = version;
-  redirectTo = targetUrl => window.location.replace(targetUrl);
-  componentDidMount() {
-    this.props.onRegisterErrorListeners({
+const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
+  props: Props<AdditionalEnvironmentProperties>
+) => {
+  React.useEffect(() => {
+    props.onRegisterErrorListeners({
       dispatch: internalReduxStore.dispatch,
     });
-  }
-  render() {
-    const coercedEnvironmentValues = shallowlyCoerceValues(
-      this.props.environment
-    );
-    return (
-      <>
-        <Global
-          styles={css`
-            #app {
-              height: 100%;
-            }
-            .ReactModal__Body--open main {
-              /* When a modal is open, we should prevent the content to be scrollable */
-              overflow: hidden;
-            }
-          `}
-        />
-        <ApplicationShellProvider
-          environment={coercedEnvironmentValues}
-          trackingEventWhitelist={this.props.trackingEventWhitelist}
-          applicationMessages={this.props.applicationMessages}
-        >
-          {({ isAuthenticated }) => {
-            if (isAuthenticated)
-              return (
-                <Switch>
-                  {/* When the application redirects to this route,
-                we always force a hard redirect to the logout route of
-                the authentication service. */}
-                  <Route
-                    path="/logout"
-                    render={({ location }) => (
-                      <Redirector
-                        to="logout"
-                        location={location}
-                        environment={coercedEnvironmentValues}
-                        queryParams={{
-                          reason: LOGOUT_REASONS.USER,
-                          ...(coercedEnvironmentValues.servedByProxy
-                            ? {}
-                            : {
-                                // This will be used after being logged in,
-                                // to redirect to this location.
-                                redirectTo: window.location.origin,
-                              }),
-                        }}
-                      />
-                    )}
-                  />
-                  <Route
-                    render={() => (
-                      <RestrictedApplication
-                        environment={coercedEnvironmentValues}
-                        defaultFeatureFlags={this.props.defaultFeatureFlags}
-                        featureFlags={this.props.featureFlags}
-                        render={this.props.render}
-                        applicationMessages={this.props.applicationMessages}
-                        onMenuItemClick={this.props.onMenuItemClick}
-                        DEV_ONLY__loadAppbarMenuConfig={
-                          this.props.DEV_ONLY__loadAppbarMenuConfig
-                        }
-                        DEV_ONLY__loadNavbarMenuConfig={
-                          this.props.DEV_ONLY__loadNavbarMenuConfig
-                        }
-                      />
-                    )}
-                  />
-                </Switch>
-              );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // <-- run only once, when component mounts
 
+  const coercedEnvironmentValues = React.useMemo(
+    () =>
+      shallowlyCoerceValues(props.environment) as Props<
+        AdditionalEnvironmentProperties
+      >['environment'],
+    [props.environment]
+  );
+
+  return (
+    <>
+      <Global
+        styles={css`
+          #app {
+            height: 100%;
+          }
+          .ReactModal__Body--open main {
+            /* When a modal is open, we should prevent the content to be scrollable */
+            overflow: hidden;
+          }
+        `}
+      />
+      <ApplicationShellProvider<AdditionalEnvironmentProperties>
+        environment={coercedEnvironmentValues}
+        trackingEventWhitelist={props.trackingEventWhitelist}
+        applicationMessages={props.applicationMessages}
+      >
+        {({ isAuthenticated }) => {
+          if (isAuthenticated)
             return (
-              <Route
-                render={({ location }) => (
-                  <Redirector
-                    to="login"
-                    location={location}
-                    environment={coercedEnvironmentValues}
-                    queryParams={{
-                      reason: LOGOUT_REASONS.UNAUTHORIZED,
-                      redirectTo: trimLeadingAndTrailingSlashes(
-                        joinPaths(window.location.origin, location.pathname)
-                      ),
-                    }}
-                  />
-                )}
-              />
+              <Switch>
+                {/* When the application redirects to this route,
+            we always force a hard redirect to the logout route of
+            the authentication service. */}
+                <Route
+                  path="/logout"
+                  render={({ location }) => (
+                    <Redirector
+                      to="logout"
+                      location={location}
+                      queryParams={{
+                        reason: LOGOUT_REASONS.USER,
+                        ...(coercedEnvironmentValues.servedByProxy
+                          ? {}
+                          : {
+                              // This will be used after being logged in,
+                              // to redirect to this location.
+                              redirectTo: window.location.origin,
+                            }),
+                      }}
+                    />
+                  )}
+                />
+                <Route
+                  render={() => (
+                    <RestrictedApplication<AdditionalEnvironmentProperties>
+                      environment={coercedEnvironmentValues}
+                      defaultFeatureFlags={props.defaultFeatureFlags}
+                      featureFlags={props.featureFlags}
+                      render={props.render}
+                      applicationMessages={props.applicationMessages}
+                      onMenuItemClick={props.onMenuItemClick}
+                      DEV_ONLY__loadAppbarMenuConfig={
+                        props.DEV_ONLY__loadAppbarMenuConfig
+                      }
+                      DEV_ONLY__loadNavbarMenuConfig={
+                        props.DEV_ONLY__loadNavbarMenuConfig
+                      }
+                    />
+                  )}
+                />
+              </Switch>
             );
-          }}
-        </ApplicationShellProvider>
-      </>
-    );
-  }
-}
+
+          return (
+            <Route
+              render={({ location }) => (
+                <Redirector
+                  to="login"
+                  location={location}
+                  queryParams={{
+                    reason: LOGOUT_REASONS.UNAUTHORIZED,
+                    redirectTo: trimLeadingAndTrailingSlashes(
+                      joinPaths(window.location.origin, location.pathname)
+                    ),
+                  }}
+                />
+              )}
+            />
+          );
+        }}
+      </ApplicationShellProvider>
+    </>
+  );
+};
+ApplicationShell.displayName = 'ApplicationShell';
+ApplicationShell.version = version;
+
+export default ApplicationShell;

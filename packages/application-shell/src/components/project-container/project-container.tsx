@@ -10,7 +10,7 @@ import {
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { CONTAINERS, STORAGE_KEYS, SUSPENSION_REASONS } from '../../constants';
-import { TUser } from '../../types/generated/mc';
+import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import ApplicationLoader from '../application-loader';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectDataLocale from '../project-data-locale';
@@ -30,7 +30,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = Pick<
   RouteComponentProps<QueryParams>,
   'match' | 'location'
 > & {
-  user?: TUser;
+  user: TFetchLoggedInUserQuery['user'];
   environment: TProviderProps<AdditionalEnvironmentProperties>['environment'];
   render: () => JSX.Element;
 };

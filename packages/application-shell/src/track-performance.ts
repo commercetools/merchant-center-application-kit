@@ -1,4 +1,7 @@
-import Perfume from 'perfume.js';
+import Perfume, {
+  IPerfumeNavigationTiming,
+  IPerfumeDataConsumption,
+} from 'perfume.js';
 import { trackTiming } from './utils/gtm';
 
 const trackPerformance = () => {
@@ -12,38 +15,40 @@ const trackPerformance = () => {
         case 'firstContentfulPaint':
         case 'firstInputDelay':
         case 'largestContentfulPaint': {
+          const paintValue = duration as number;
           trackTiming({
             category: 'Loading Performance',
             variable: metricName,
-            value: duration,
+            value: paintValue,
           });
           break;
         }
         // Navigation Timing collects performance metrics for the life and
         // timings of a network request.
         case 'navigationTiming': {
+          const navigationTiming = data as Required<IPerfumeNavigationTiming>;
           trackTiming({
             category: 'Navigation Timing',
             variable: metricName,
-            value: data.fetchTime,
+            value: navigationTiming.fetchTime,
             label: 'Fetch time',
           });
           trackTiming({
             category: 'Navigation Timing',
             variable: metricName,
-            value: data.timeToFirstByte,
+            value: navigationTiming.timeToFirstByte,
             label: 'Time To First Byte',
           });
           trackTiming({
             category: 'Navigation Timing',
             variable: metricName,
-            value: data.dnsLookupTime,
+            value: navigationTiming.dnsLookupTime,
             label: 'DNS lookup time',
           });
           trackTiming({
             category: 'Navigation Timing',
             variable: metricName,
-            value: data.totalTime,
+            value: navigationTiming.totalTime,
             label: 'Total time',
           });
           break;
@@ -53,22 +58,23 @@ const trackPerformance = () => {
         // PerformanceResourceTiming entries and group data data consumption by Kb used.
         // https://zizzamia.github.io/perfume/#/resource-timing/
         case 'dataConsumption': {
+          const dataConsumption = data as IPerfumeDataConsumption;
           trackTiming({
             category: 'Resource Timing',
             variable: metricName,
-            value: data.css,
+            value: dataConsumption.css,
             label: 'CSS',
           });
           trackTiming({
             category: 'Resource Timing',
             variable: metricName,
-            value: data.script,
+            value: dataConsumption.script,
             label: 'Script',
           });
           trackTiming({
             category: 'Resource Timing',
             variable: metricName,
-            value: data.script,
+            value: dataConsumption.script,
             label: 'Total ',
           });
           break;

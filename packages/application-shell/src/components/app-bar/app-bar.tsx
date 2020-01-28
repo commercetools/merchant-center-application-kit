@@ -6,7 +6,7 @@ import { customProperties } from '@commercetools-uikit/design-system';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
 import { CONTAINERS } from '../../constants';
 import { getPreviousProjectKey } from '../../utils';
-import { TUser } from '../../types/generated/mc';
+import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import { TApplicationsMenu } from '../../types/generated/proxy';
 import UserSettingsMenu from '../user-settings-menu';
 import ProjectSwitcher from '../project-switcher';
@@ -15,7 +15,7 @@ import LoadingPlaceholder from '../loading-placeholder';
 import { REQUESTS_IN_FLIGHT_LOADER_DOM_ID } from '../requests-in-flight-loader/constants';
 
 type Props = {
-  user?: TUser;
+  user: TFetchLoggedInUserQuery['user'];
   projectKeyFromUrl?: string;
   DEV_ONLY__loadAppbarMenuConfig?: () => Promise<TApplicationsMenu['appBar']>;
 };
