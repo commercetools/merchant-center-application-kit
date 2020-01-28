@@ -19,6 +19,11 @@ Tabular Modal pages are controlled components used to render a page with custom 
   onClose={handleClose}
   topBarCurrentPathLabel="Lorem ipsum"
   topBarPreviousPathLabel="Back"
+  formControls={[
+    TabularModalPage.ConfirmButton,
+    TabularModalPage.CancelButton,
+    TabularModalPage.DeleteButton,
+  ]}
 >
   <ViewHeader {...viewHeaderProps} />
   <TabsContainer {...tabsContainerProps} />

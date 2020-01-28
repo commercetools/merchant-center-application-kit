@@ -1,13 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
-import {
-  SearchIcon,
-  FlameIcon,
-  BinLinearIcon,
-} from '@commercetools-uikit/icons';
 import TextField, { CustomFormikErrors } from '@commercetools-uikit/text-field';
-import IconButton from '@commercetools-uikit/icon-button';
-import Spacings from '@commercetools-uikit/spacings';
 import { FormModalPage } from '@commercetools-frontend/application-components';
 import { Suite, Spec } from '../../test-utils';
 
@@ -39,6 +32,7 @@ const ModalPageWithPortalParentSelector = ({
           onSecondaryButtonClick={() => undefined}
           onPrimaryButtonClick={() => undefined}
           isPrimaryButtonDisabled={props.isPrimaryButtonDisabled}
+          isSecondaryButtonDisabled={props.isSecondaryButtonDisabled}
           getParentSelector={() =>
             document.querySelector(`#${portalId}`) as HTMLElement
           }
@@ -72,8 +66,14 @@ export const Component = () => (
     </Spec>
     <Spec label="FormModalPage - Primary button disabled" size="xl">
       <ModalPageWithPortalParentSelector
-        portalId="form-modal-disabled"
+        portalId="form-modal-primary-disabled"
         isPrimaryButtonDisabled
+      />
+    </Spec>
+    <Spec label="FormModalPage - Secondary button disabled" size="xl">
+      <ModalPageWithPortalParentSelector
+        portalId="form-modal-secondary-disabled"
+        isSecondaryButtonDisabled
       />
     </Spec>
     <Spec label="FormModalPage - Long title and subtitle" size="xl">
@@ -83,28 +83,10 @@ export const Component = () => (
         subtitle="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
       />
     </Spec>
-    <Spec label="FormModalPage - with Custom Controls" size="xl">
+    <Spec label="FormModalPage - With hidden controls" size="xl">
       <ModalPageWithPortalParentSelector
-        customControls={
-          <Spacings.Inline>
-            <IconButton
-              label="Search"
-              icon={<SearchIcon />}
-              onClick={() => undefined}
-            />
-            <IconButton
-              label="Update"
-              icon={<FlameIcon />}
-              onClick={() => undefined}
-            />
-            <IconButton
-              label="Delete"
-              icon={<BinLinearIcon />}
-              onClick={() => undefined}
-            />
-          </Spacings.Inline>
-        }
-        portalId="form-modal-custom"
+        hideControls={true}
+        portalId="form-modal-hidden-controls"
       />
     </Spec>
   </Suite>
