@@ -1,6 +1,6 @@
 import React from 'react';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
-import { renderComponent, wait, fireEvent } from '../../../../test-utils';
+import { renderComponent, wait, fireEvent } from '../../../test-utils';
 import InfoDialog from './info-dialog';
 
 type DialogControllerProps = {
