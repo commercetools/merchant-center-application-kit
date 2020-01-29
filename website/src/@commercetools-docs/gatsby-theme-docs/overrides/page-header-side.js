@@ -21,12 +21,6 @@ const RepositoryLinks = () => {
         </Link>
         <Link
           href={`${siteData.siteMetadata.repositoryUrl}/releases/tag/v${siteData.siteMetadata.currentVersion}`}
-          css={css`
-            text-decoration: none;
-            :hover {
-              text-decoration: underline;
-            }
-          `}
         >
           {`v${siteData.siteMetadata.currentVersion}`}
         </Link>

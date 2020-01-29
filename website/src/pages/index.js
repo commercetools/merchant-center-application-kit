@@ -49,12 +49,17 @@ const messages = defineMessages({
   },
 });
 const getLinkToDesignSystem = msg => (
-  <Link href="https://github.com/commercetools/ui-kit/blob/master/design-system/materials/internals/TOKENS.md">
+  <Link
+    href="https://github.com/commercetools/ui-kit/blob/master/design-system/materials/internals/TOKENS.md"
+    noUnderline={true}
+  >
     {msg}
   </Link>
 );
 const getLinkToOssPackages = msg => (
-  <Link href="/getting-started/tooling">{msg}</Link>
+  <Link href="/getting-started/tooling" noUnderline={true}>
+    {msg}
+  </Link>
 );
 
 const SectionTitle = styled.div`
@@ -142,7 +147,6 @@ const ButtonLink = styled(Link)`
   display: inline-block;
   padding: ${designSystem.dimensions.spacings.s}
     ${designSystem.dimensions.spacings.m};
-  text-decoration: none !important;
   font-size: ${designSystem.typography.fontSizes.body};
   color: ${designSystem.colors.light.textPrimary} !important;
   background-color: ${designSystem.colors.light.surfacePrimary};
@@ -187,7 +191,10 @@ const PageMarketingContent = () => {
             {'Develop applications for the Merchant Center'}
           </PageTitle>
           <div>
-            <ButtonLink href="/getting-started/what-is-a-custom-application">
+            <ButtonLink
+              href="/getting-started/what-is-a-custom-application"
+              noUnderline={true}
+            >
               {'Learn about Custom Applications'}
             </ButtonLink>
           </div>
