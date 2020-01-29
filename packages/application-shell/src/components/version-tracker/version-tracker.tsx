@@ -7,12 +7,22 @@ import { pushDependencyVersionCounter } from './actions';
 type VersionMetricOptions = {
   applicationName: string;
 };
+type VersionMetric = {
+  metricName: string;
+  metricLabels: {
+    application: string;
+    package_name: string;
+    package_version: string;
+  };
+};
 
-const createVersionMetric = ({ applicationName }: VersionMetricOptions) => [
+const createVersionMetric = ({
+  applicationName,
+}: VersionMetricOptions): VersionMetric[] => [
   {
     metricName: 'npm_dependency_versions',
     metricLabels: {
-      application: applicationName || 'unknown',
+      application: applicationName,
       package_name: '@commercetools-frontend/application-shell',
       package_version: applicationShellVersion,
     },
@@ -20,7 +30,7 @@ const createVersionMetric = ({ applicationName }: VersionMetricOptions) => [
   {
     metricName: 'npm_dependency_versions',
     metricLabels: {
-      application: applicationName || 'unknown',
+      application: applicationName,
       package_name: 'react',
       package_version: React.version,
     },
