@@ -1,6 +1,5 @@
 import React from 'react';
 import { MessageDescriptor } from 'react-intl';
-import { sharedMessages } from '@commercetools-frontend/i18n';
 import CustomFormModalPage from '../custom-form-modal-page';
 
 type Label = string | MessageDescriptor;
@@ -72,6 +71,5 @@ const FormModalPage = (props: Props) => (
 );
 FormModalPage.displayName = 'FormModalPage';
 FormModalPage.defaultProps = defaultProps;
-FormModalPage.Intl = sharedMessages;
 
 export default FormModalPage;

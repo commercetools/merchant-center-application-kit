@@ -52,8 +52,5 @@ const ConfirmationDialog = (props: Props) => (
 );
 ConfirmationDialog.displayName = 'ConfirmationDialog';
 ConfirmationDialog.defaultProps = defaultProps;
-// Make some default intl messages available to use
-// TODO: remove this static export and prefer to import the messages from the i18n package directly.
-ConfirmationDialog.Intl = sharedMessages;
 
 export default ConfirmationDialog;

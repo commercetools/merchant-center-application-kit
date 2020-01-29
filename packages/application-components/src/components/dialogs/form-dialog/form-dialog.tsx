@@ -52,7 +52,5 @@ const FormDialog = (props: Props) => (
 );
 FormDialog.displayName = 'FormDialog';
 FormDialog.defaultProps = defaultProps;
-// Make some default intl messages available to use
-FormDialog.Intl = sharedMessages;
 
 export default FormDialog;

@@ -43,17 +43,3 @@ Form dialogs are controlled components used to render a form or something that r
 | `dataAttributesSecondaryButton` | `object`                   |    -     | -                 | -         | Use this prop to pass `data-` attributes to the secondary button.                                                                                                                                                                                                                                               |
 | `dataAttributesPrimaryButton`   | `object`                   |    -     | -                 | -         | Use this prop to pass `data-` attributes to the primary button.                                                                                                                                                                                                                                                 |
 | `getParentSelector`             | `function`                 |    -     | -                 | -         | The function should return an HTML element that will be used as the parent container to hold the modal DOM tree. If no function is provided, it's expected that an HTML element with the `id="parent-container"` is present in the DOM. In the `NODE_ENV=test` environment, the default HTML element is `body`. |
-
-# Static properties
-
-## `FormDialog.Intl`
-
-> This export is deprecated. Please import the shared messages from the `@commercetools-frontend/i18n` package.
-
-Exposes common Intl messages to be used for the secondary/primary buttons
-
-```js
-FormDialog.Intl.cancel;
-FormDialog.Intl.confirm;
-// ...
-```

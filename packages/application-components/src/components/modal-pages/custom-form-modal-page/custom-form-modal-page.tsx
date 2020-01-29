@@ -1,6 +1,5 @@
 import React from 'react';
 import { MessageDescriptor } from 'react-intl';
-import { sharedMessages } from '@commercetools-frontend/i18n';
 import ModalPage from '../internals/modal-page';
 import ModalPageHeader from '../internals/modal-page-header';
 import { ContentWrapper } from '../internals/modal-page.styles';
@@ -56,7 +55,8 @@ const CustomFormModalPage = (props: Props) => (
   </ModalPage>
 );
 CustomFormModalPage.displayName = 'CustomFormModalPage';
-CustomFormModalPage.Intl = sharedMessages;
+// Static export of pre-configured form control buttons to easily re-use
+// them in the custom controls.
 CustomFormModalPage.FormPrimaryButton = FormPrimaryButton;
 CustomFormModalPage.FormSecondaryButton = FormSecondaryButton;
 CustomFormModalPage.FormDeleteButton = FormDeleteButton;

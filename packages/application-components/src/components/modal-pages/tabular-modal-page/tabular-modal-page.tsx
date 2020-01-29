@@ -3,7 +3,6 @@ import { MessageDescriptor } from 'react-intl';
 import { css } from '@emotion/core';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
-import { sharedMessages } from '@commercetools-frontend/i18n';
 import ModalPage from '../internals/modal-page';
 import ModalPageHeaderTitle from '../internals/modal-page-header-title';
 import { ContentWrapper } from '../internals/modal-page.styles';
@@ -100,7 +99,8 @@ const TabularModalPage = (props: Props) => (
 );
 TabularModalPage.displayName = 'TabularModalPage';
 TabularModalPage.defaultProps = defaultProps;
-TabularModalPage.Intl = sharedMessages;
+// Static export of pre-configured form control buttons to easily re-use
+// them in the custom controls.
 TabularModalPage.FormPrimaryButton = FormPrimaryButton;
 TabularModalPage.FormSecondaryButton = FormSecondaryButton;
 TabularModalPage.FormDeleteButton = FormDeleteButton;
