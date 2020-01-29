@@ -67,7 +67,7 @@
     ]
   },
   "devDependencies": {
-    "@commercetools-docs/writing-style": "1.0.3",
+    "@commercetools-docs/writing-style": "1.7.2",
     "@commercetools-uikit/design-system": "10.13.0",
     "@commercetools/github-labels": "1.1.0",
     "@commitlint/cli": "8.3.5",
