@@ -1,10 +1,10 @@
 # PageNotFound
 
-#### Description
+## Description
 
-The PageNotFound component can be used as a `404` or page not found route for merchant center applications.
+The PageNotFound component can be used as a `404` or page not found route for Merchant Center applications.
 
-#### Usage
+## Usage
 
 ```js
 import { Switch, Route } from 'react-router-dom';
