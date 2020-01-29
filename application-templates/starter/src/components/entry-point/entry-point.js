@@ -8,7 +8,7 @@ import {
 import { Sdk } from '@commercetools-frontend/sdk';
 import * as globalActions from '@commercetools-frontend/actions-global';
 import { FEATURE_FLAGS } from '../../constants';
-import loadMessages from '../../messages';
+import loadMessages from '../../load-messages';
 
 // Here we split up the main (app) bundle with the actual application business logic.
 // Splitting by route is usually recommended and you can potentially have a splitting

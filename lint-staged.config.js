@@ -1,5 +1,5 @@
 module.exports = {
-  '*.{md,mdx}': ['prettier --write --parser markdown'],
+  '*.md': ['prettier --write --parser markdown'],
   '*.yaml': ['prettier --write --parser yaml'],
   '*.graphql': ['prettier --write --parser graphql', 'yarn generate:types'],
   '*.{js,ts,tsx}': [
