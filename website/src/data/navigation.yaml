@@ -1,11 +1,13 @@
 - chapter-title: Getting started
   pages:
-    - title: What is a custom application?
+    - title: What is a Custom Application?
       path: '/getting-started/what-is-a-custom-application'
     - title: Installing a starter application
       path: '/getting-started/installing-a-starter-application'
     - title: Tooling
       path: '/getting-started/tooling'
+    - title: Support Policy
+      path: '/support-policy'
 - chapter-title: Development
   pages:
     - title: Available scripts
@@ -58,11 +60,11 @@
       path: '/deployment/example-aws-s3-cloudfront'
 - chapter-title: Register applications
   pages:
-    - title: Configuring a custom application
+    - title: Configuring a Custom Application
       path: '/register-applications/configuring-a-custom-application'
-    - title: Activating a custom application
+    - title: Activating a Custom Application
       path: '/register-applications/activating-a-custom-application'
-    - title: Deleting a custom application
+    - title: Deleting a Custom Application
       path: '/register-applications/deleting-a-custom-application'
     - title: Caveats
       path: '/register-applications/caveats'

@@ -4,7 +4,7 @@ title: Support Policy
 
 <Subtitle>
 
-This page describes the different aspects of the support policy between commercetools and consumers of the custom applications features.
+This page describes the different aspects of the support policy between commercetools and consumers of the Custom Applications features.
 
 </Subtitle>
 
@@ -19,13 +19,13 @@ During the Beta period commercetools is still in the process of gathering the ne
 
 <Info>
 
-Make sure to read and understand the [Minimum required maintenance policy](#minimum-required-maintenance-policy) before starting to use custom applications in production, including the [Deprecation notice and End Of Life (EOL)](#deprecation-notice-and-end-of-life-eol).".
+Make sure to read and understand the [Minimum required maintenance policy](#minimum-required-maintenance-policy) before starting to use Custom Applications in production, including the [Deprecation notice and End Of Life (EOL)](#deprecation-notice-and-end-of-life-eol).".
 
 </Info>
 
 # Release process
 
-Tooling and packages related to custom applications are released and published to [Node Package Manager](https://www.npmjs.com) (NPM) following [Semantic Versioning](https://semver.org/) (SemVer).
+Tooling and packages related to Custom Applications are released and published to [Node Package Manager](https://www.npmjs.com) (NPM) following [Semantic Versioning](https://semver.org/) (SemVer).
 
 Releases are documented in both a `CHANGELOG.md` file and in the GitHub release pages in the following repositories:
 
@@ -43,7 +43,7 @@ All published packages to NPM are listed in the following scoped packages:
 
 ## Release cadence
 
-commercetools strives to improve tooling and packages around custom applications continuously. This means that we do not follow a strict release cycle but instead publish releases in meaningful intervals, potentially multiple times a week. Minor and patch versions are likely to be released more frequently than major versions.
+commercetools strives to improve tooling and packages around Custom Applications continuously. This means that we do not follow a strict release cycle but instead publish releases in meaningful intervals, potentially multiple times a week. Minor and patch versions are likely to be released more frequently than major versions.
 
 <Info>
 
@@ -56,35 +56,35 @@ However, a major release indicates a breaking change (see [Breaking changes](#br
 
 By default, all releases go to the `next` distribution tag and should be considered **prereleases**. This gives commercetools a chance to test a release internally before marking it **stable** in the `latest` distribution channel.
 
-It is recommended to use packages only from the `latest` distribution channel. The `next` channel is stable enough to be used on production but it's not officially supported. It can be used to try out new feautures or to get important bug fixes.
+It is recommended to use packages only from the `latest` distribution channel. The `next` channel is stable enough to be used on production but it's not officially supported. It can be used to try out new features or to get important bug fixes.
 
 ## Breaking changes
 
 Breaking changes are introduced whenever there is a **major** version release, for example from `v1` to `v2`.
 
-How a breaking change can impact a custom application:
+How a breaking change can impact a Custom Application:
 
-1. It affects a component or module _not used_ within the custom application
-2. It affects a component or module _used_ within the custom application
+1. It affects a component or module _not used_ within the Custom Application
+2. It affects a component or module _used_ within the Custom Application
 3. It affects a component or module _directly interacting_ with some of commercetools's internal APIs
 
 <Info>
 
 A new major release does not always mean that breaking changes directly affect consumers of the packages. Some examples are:
 
-- A dependency package drops support for an "old" Node.js version, thus releasing a major version. As a consequence, commercetools could release a new major version as well for dropping support to a specific Node.js version. However, this unlikely affects consumers of custom application packages.
-- React releases some new feature that requires a specific minimal version of React. Therefore, commercetools could release a new major version that requires custom applications to run to a minimal React version.
+- A dependency package drops support for an "old" Node.js version, thus releasing a major version. As a consequence, commercetools could release a new major version as well for dropping support to a specific Node.js version. However, this unlikely affects consumers of Custom Application packages.
+- React releases some new feature that requires a specific minimal version of React. Therefore, commercetools could release a new major version that requires Custom Applications to run to a minimal React version.
 
 </Info>
 
-All breaking changes are thoroughly documented in the release notes together with migration steps to facilitate the version update. This also helps to identify if changes are needed within the custom application's code.
+All breaking changes are thoroughly documented in the release notes together with migration steps to facilitate the version update. This also helps to identify if changes are needed within the Custom Application's code.
 
 # Minimum required maintenance policy
 
 All the official Merchant Center applications are constantly kept up-to-date with the released tools and packages. This ensures that all the latest bug fixes and features are consistently adopted by all applications.
 
-In regards to custom applications, commercetools do not expect the same amount of maintenance as it requires internally.
-However, commercetools **recommends** that custom applications are **updated at regular periods** and **maintained in planned intervals**, to avoid falling too many versions behind.
+In regards to Custom Applications, commercetools do not expect the same amount of maintenance as it requires internally.
+However, commercetools **recommends** that Custom Applications are **updated at regular periods** and **maintained in planned intervals**, to avoid falling too many versions behind.
 Not doing so might result in an increased maintenance effort in case the codebase needs to be updated to multiple versions, even more so for major versions and/or deprecated API functionalities.
 
 | Feature maturity     | Recommended update interval               |
@@ -106,7 +106,7 @@ However, it can happen that some HTTP API functionalities might be **deprecated*
 <Warning>
 
 The application kit packages rely on internal Merchant Center HTTP APIs that are **not covered by the standard [commercetools HTTP API policy](https://docs.commercetools.com/http-api-contract) of no breaking changes**.
-For custom applications this means that, in case the application is not kept up-to-date within the supported deprecation period, it might stop working because of the removed HTTP API functionalities.
+For Custom Applications this means that, in case the application is not kept up-to-date within the supported deprecation period, it might stop working because of the removed HTTP API functionalities.
 
 </Warning>
 
@@ -146,12 +146,12 @@ Those tools and services can be configured to meet everyone's needs, for example
 
 # Hosting
 
-Customers using custom applications are responsible for the maintenance of their custom applications. This includes hosting and deployments.
-commercetools do not take any responsibility towards incidents and service disruptions related to custom applications caused by their underlying infrastructure.
+Customers using Custom Applications are responsible for the maintenance of their Custom Applications. This includes hosting and deployments.
+commercetools do not take any responsibility towards incidents and service disruptions related to Custom Applications caused by their underlying infrastructure.
 
 # Issues and support requests
 
-For any question or issue about custom applications, we recommend to open a GitHub Issue in one of the repositories (according to what the issue is about).
+For any question or issue about Custom Applications, we recommend to open a GitHub Issue in one of the repositories (according to what the issue is about).
 Any sensitive information should be left out, as Issues are publicly visible.
 
 In case the issue must contain sensitive information, for example the name of a customer project, open a commercetools [support ticket](https://jira.commercetools.com/servicedesk/customer/portal/1).

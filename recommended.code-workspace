@@ -18,7 +18,10 @@
       "**/*.svg": true
     },
     "files.associations": {
-      "*.mdx": "mdx"
+      // Spellright does not work on MDX files, so we map those to normal
+      // markdown files. The only downside so far is no syntax highlighting
+      // for React components and imports in a MDX file.
+      "*.mdx": "markdown"
     },
     "javascript.validate.enable": true,
     // Enable editor validation for graphql files
@@ -47,7 +50,7 @@
       "markdown",
       "mdx"
     ],
-    "spellright.notificationClass": "warning",
+    "spellright.notificationClass": "error",
     "spellright.language": [
       "en"
     ],

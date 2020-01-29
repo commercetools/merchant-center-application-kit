@@ -2,7 +2,7 @@
 title: Installing a starter application
 ---
 
-Get up and running in a few steps and start developing **custom applications** for the [Merchant Center](https://docs.commercetools.com/getting-started.html).
+Get up and running in a few steps and start developing Custom Applications for the [Merchant Center](https://docs.commercetools.com/getting-started.html).
 
 # Prerequisites
 
@@ -17,25 +17,25 @@ Before you start development, you should have the following:
 
 1. Install one of the [_starter templates_](https://github.com/commercetools/merchant-center-application-kit/tree/master/application-templates) using the `create-mc-app` package:
 
-```console noPromptLines="2-3"
-npx @commercetools-frontend/create-mc-app \
-  my-new-custom-application-project \
-  --template starter
-```
+  ```console noPromptLines="2-3"
+  npx @commercetools-frontend/create-mc-app \
+    my-new-custom-application-project \
+    --template starter
+  ```
 
 2. Start the development server:
 
-```console
-cd my-new-custom-application-project
-npm start
-```
+  ```console
+  cd my-new-custom-application-project
+  npm start
+  ```
 
-If you use `yarn`:
+  If you use `yarn`:
 
-```console
-cd my-new-custom-application-project
-yarn start
-```
+  ```console
+  cd my-new-custom-application-project
+  yarn start
+  ```
 
 The browser opens a new tab pointing to `http://localhost:3001`, with a login screen (for development only). Log in using your commercetools account as usual.
 
@@ -47,11 +47,15 @@ Once you've authenticated, you are redirected to the application `http://localho
 
 # Renaming the application main route path
 
-The starter application defines `example-starter` as the **main application route path** (see `src/components/entry-point`). This is the route that identifies your application and used by the Proxy Router. Check out the [Merchant Center architecture](../main-concepts/architecture) to know more about this.
+The starter application defines `example-starter` as the **main application route path** (see `src/components/entry-point`). This is the route that identifies your application and is used by the proxy router. Check out the [Merchant Center architecture](../main-concepts/architecture) to know more about this.
 
-> Be sure to choose a value that does not conflict with one of the official route values, otherwise your Custom Application will never be served.
+<Info>
 
-The official _main route path_ values are (_the list can be extended at any time_):
+Be sure to choose a value that does not conflict with one of the official route values, otherwise your Custom Application will never be served.
+
+</Info>
+
+The official main route path values are (_the list can be extended at any time_):
 
 - `authentication`
 - `dashboard`
@@ -62,4 +66,4 @@ The official _main route path_ values are (_the list can be extended at any time
 - `discounts`
 - `settings`
 
-You should choose a value that fits with the purpose of the application you are developing. For example, if you're application manages state machines, you can choose to name the route `state-machines`.
+You should choose a value that fits with the purpose of the application you are developing. For example, if your application manages state machines, you can choose to name the route `state-machines`.

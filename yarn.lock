@@ -1165,12 +1165,12 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-docs/gatsby-theme-docs@1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.7.0.tgz#0a96374324ba56db4f00e4f6c34321c0f017e7a5"
-  integrity sha512-bCr4OtfHilXDk68NuoFY9AC0aJ9EZAx6xR7lHynUlhEVrbpAPxV7e3mi4RX2DlsteOaBK3dAhpHhsbFB/V9t9A==
+"@commercetools-docs/gatsby-theme-docs@1.7.2":
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.7.2.tgz#b10006a9a3849591ce49c52bec126ee845f5b0cc"
+  integrity sha512-9cg7vjqt0I1Cbk7cypeNrSK72l11ggl2ceHOUribjqOdyTg7RLQyhFRNMjgRjBQ67CayyZAhwCuT8yTU3iDdxg==
   dependencies:
-    "@commercetools-docs/ui-kit" "1.7.0"
+    "@commercetools-docs/ui-kit" "1.7.1"
     "@commercetools-uikit/card" "10.13.0"
     "@commercetools-uikit/design-system" "10.13.0"
     "@commercetools-uikit/icon-button" "10.13.0"
@@ -1187,15 +1187,15 @@
     emotion-theming "10.0.27"
     gatsby-image "2.2.39"
     gatsby-plugin-emotion "4.1.21"
-    gatsby-plugin-google-analytics "2.1.33"
-    gatsby-plugin-manifest "2.2.37"
+    gatsby-plugin-google-analytics "2.1.34"
+    gatsby-plugin-manifest "2.2.38"
     gatsby-plugin-mdx "1.0.67"
     gatsby-plugin-meta-redirect "1.1.1"
     gatsby-plugin-netlify-cache "1.2.0"
     gatsby-plugin-prefetch-google-fonts "1.4.3"
     gatsby-plugin-react-helmet "3.1.21"
     gatsby-plugin-remove-trailing-slashes "2.1.20"
-    gatsby-plugin-sharp "2.4.0"
+    gatsby-plugin-sharp "2.4.2"
     gatsby-remark-copy-linked-files "2.1.36"
     gatsby-remark-images "3.1.42"
     gatsby-remark-relative-images "0.2.3"
@@ -1210,10 +1210,10 @@
     rehype-slug "2.0.3"
     remark-emoji "2.0.2"
 
-"@commercetools-docs/ui-kit@1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-1.7.0.tgz#37791029ea35707003a14508b6e76dbf412eefc0"
-  integrity sha512-9sfngk6KchLvRjYIqyOLwNfhcqrseG+cAGOBrL+epWUol+f5jf9hOD3tKH/Xy7fUcEI24Ix75o5sTNSe78f1Hw==
+"@commercetools-docs/ui-kit@1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-1.7.1.tgz#3ab262ab9f77112605825d036a1044bcc6e398cb"
+  integrity sha512-2uel5wpVWq+/+EzVvJmeK0NQoNlv6zdE6OJoVeRFr2MwcQULsgIXUI3LtHPYkVED+gWdC+dMilv+p3s4E/cy3A==
   dependencies:
     "@commercetools-uikit/tooltip" "10.13.0"
     lodash.escape "4.0.1"
@@ -1225,10 +1225,10 @@
     prop-types "15.7.2"
     tiny-invariant "1.0.6"
 
-"@commercetools-docs/writing-style@1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/writing-style/-/writing-style-1.0.3.tgz#3cebb242ef78759bfdcf1d980e90cb7296a8e702"
-  integrity sha512-NBoI9fr5RniBtJ7jho/OrBU4SJSQ1T07OXZE7y6TaF9IIcuhvZWTWSVF/mo6i5h+lG8g5reVebeBGDLkIIFwQw==
+"@commercetools-docs/writing-style@1.7.2":
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/writing-style/-/writing-style-1.7.2.tgz#a7b017637523126e73821b0d1aa50edf7a3c927a"
+  integrity sha512-yzCC2a4vp2kkBOxOp7228fWvT66U0wGwj5XY9cH95hvyF+awRQ7KWbO9TLM70oq1ruiTThm/kQfr4exazjVAIQ==
   dependencies:
     "7zip-bin" "5.0.3"
     node-fetch "2.6.0"
@@ -12562,17 +12562,17 @@ gatsby-plugin-emotion@4.1.21:
     "@babel/runtime" "^7.7.6"
     "@emotion/babel-preset-css-prop" "^10.0.23"
 
-gatsby-plugin-google-analytics@2.1.33:
-  version "2.1.33"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-2.1.33.tgz#4fcc203dee67832af4b6c619117dbcf4d67ecbeb"
-  integrity sha512-KOlLAInnUVPKkaphOayfsEcFOXEo5yTu03DbLc/WtAsny7vXN2Nd5JV8JJZOF1Z46hGzkgIjKO8AZCz//LSIoQ==
+gatsby-plugin-google-analytics@2.1.34:
+  version "2.1.34"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-2.1.34.tgz#364370958218eaf1619226c32990ff263a159e13"
+  integrity sha512-yhzrQ066mjVtq7+vuB1pF87sEsmIyb8SgeFJT2EoxgJ1XPmHCPYzB/ugcn3hYEh0Yun6tFrqWyb5+PYPwwCXHg==
   dependencies:
     "@babel/runtime" "^7.7.6"
 
-gatsby-plugin-manifest@2.2.37:
-  version "2.2.37"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.2.37.tgz#ea385bbd453d8455d3c4715c4f3b1e8c1313a97b"
-  integrity sha512-RT7ALsnq/H1gZrmyHJ6jJFn+Z/OzDJgiwVlP5qIUmAzAoqC95bq3XbXB5yHCePAvZjKn0liIRjUyp0OHVKQlNQ==
+gatsby-plugin-manifest@2.2.38:
+  version "2.2.38"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.2.38.tgz#365d679dc815b301b38eff7893f35c62036f5e2b"
+  integrity sha512-3DXS7FTK4qJnKLAZ/8x2/UfSOVCwTykg/kp0erYbdJ2roxPvUd3paCqGm3WfzbfwKVGVBpZgMaYO/whNw/bdbQ==
   dependencies:
     "@babel/runtime" "^7.7.6"
     gatsby-core-utils "^1.0.26"
@@ -12676,10 +12676,10 @@ gatsby-plugin-remove-trailing-slashes@2.1.20:
   dependencies:
     "@babel/runtime" "^7.7.6"
 
-gatsby-plugin-sharp@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-2.4.0.tgz#9df4c2646a34fb7ea4ff5428f6662ef3c0a80cde"
-  integrity sha512-PmifXRuy0R16uoWPIMvjHgoPdkG30uUS9r+XYAp+WW4Q7oWy1q0R2tia3rcdwvGeOsxX98W95jy8QTqhQ3BDFQ==
+gatsby-plugin-sharp@2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-2.4.2.tgz#30f010fcc3559282eaa24e4c9cb1644d491efb9b"
+  integrity sha512-30bl2nq0E36TfstcMCx9Zuo1FcRG3VB7dIhbNi6hPdONAvLv08K/SEvERkYVKPPQ7coh2L4DpStz+M/0auT+Vg==
   dependencies:
     "@babel/runtime" "^7.7.6"
     async "^2.6.3"

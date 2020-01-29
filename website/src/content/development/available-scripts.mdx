@@ -2,24 +2,28 @@
 title: Available scripts
 ---
 
-To develop Merchant Center custom applications we recommend to use [`@commercetools-frontend/mc-scripts`](https://www.npmjs.com/package/@commercetools-frontend/mc-scripts).
-It's a CLI inspired by [`react-scripts`](https://www.npmjs.com/package/react-scripts) to develop and build a React application.
+To develop Merchant Center Custom Applications we recommend using the [`@commercetools-frontend/mc-scripts`](https://www.npmjs.com/package/@commercetools-frontend/mc-scripts) package.
+It's a command-line interface, inspired by [`react-scripts`](https://www.npmjs.com/package/react-scripts) to develop and build a React application.
 
-# `mc-scripts start`
+- `mc-scripts start`
 
-Starts the application in `development` mode. The page will reload if you edit source files.
+  This command starts the application in `development` mode. The page will reload if you edit source files.
 
-# `mc-scripts build`
+- `mc-scripts build`
 
-Bundles the application in `production` mode to the `dist/assets` folder.
-It also creates a `index.html.template`, which contains references to the generated bundle entry points. This file will need to be compiled to `index.html` based on runtime values. See the [deployment](./deployment) section for more information.
+  This command bundles the application in `production` mode to the `dist/assets` folder.
+  It also creates an `index.html.template` file, which contains references to the generated bundle entry points. This file needs to be compiled to `index.html`, based on runtime values. See the [deployment](./deployment) section for more information.
 
-# `mc-scripts compile-html`
+- `mc-scripts compile-html`
 
-> This script requires `mc-scripts build` to be executed first.
+  This command compiles the `index.html.template` file into an `index.html` file, based on some runtime configuration defined in `env.json`. Additionally, it also generates Content Security Policy headers, including SHA hashes based on the runtime configuration. See the [deployment](./deployment) section for more information.
 
-Compiles `index.html.template` into `index.html`, based on some runtime configuration defined in `env.json`. Additionally it also generates Content Security Policy headers, including sha hashes based on the runtime configuration. See the [deployment](./deployment) section for more information.
+  <Info>
 
-# `mc-scripts extract-intl`
+  This script requires `mc-scripts build` to be executed first.
 
-Extracts intl messages into JSON files. See the command `--help` for more information.
+  </Info>
+
+* `mc-scripts extract-intl`
+
+  Extracts Intl messages into JSON files. See the command `--help` for more information.

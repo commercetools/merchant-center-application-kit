@@ -1,5 +1,5 @@
 ---
-title: Folder structure
+title: Folder Structure
 ---
 
 After bootstrapping a new application, your project should look like this:
@@ -39,23 +39,29 @@ After bootstrapping a new application, your project should look like this:
 │   │   │   └── es.json
 │   │   └── index.js
 │   ├── index.js
+│   ├── load-messages.js
 │   └── routes.js
 ├── webpack.config.dev.js
 ├── webpack.config.prod.js
 └── yarn.lock
 ```
 
-> Note: In this documentation, we're going to refer to React components as `<MyComponentName>`.
+<Info>
+
+Note: In this documentation, React components are referred as `<MyComponentName>`.
+
+</Info>
 
 - `src/`: Directory containing all the JavaScript files (for example React components) for the application. More specifically, it should include the following:
   - `src/index.js`: The application entry point. Contains the import statements to render the React application. The path to this file is also defined in the `webpack.config.<env>.js` as the `entryPoint`.
-  - `src/routes.js`: Defines the sub-routes and components rendered by the application. The main route is defined in the `<EntryPoint>` component and is loaded asynchronously using [Code-Splitting](https://reactjs.org/docs/code-splitting.html).
-  - `src/i18n`: Contains the translations `intl` messages.
+  - `src/routes.js`: Defines the sub routes and components rendered by the application. The main route is defined in the `<EntryPoint>` component and is loaded asynchronously using [Code-Splitting](https://reactjs.org/docs/code-splitting.html).
+  - `src/load-messages.js`: See [Translations](/development/translations#using-the-messages-in-the#application).
+  - `src/i18n`: Contains the translations from the Intl messages.
   - `src/components/entry-point`: Contains the `<EntryPoint>` component which **must**:
     - Use the `<ApplicationShell>` component to load the core logic of the application (including layout elements like the left hand and top navigation).
     - Define a `<Route>` component to handle requests matching the **main application route path**.
-- `env.json`: See [Configuring `env.json`](./deployment#configuring-envjson)
+- `env.json`: See [Runtime Configuration](/deployment/runtime-configuration)
 - `webpack.config.<env>.js`: Contains the setup for getting the webpack configurations for `development` and `production`.
-- `jest.test.config.js`: Contains configurations for different Jest test runner.
+- `jest.test.config.js`: Contains configurations for running tests using a Jest runner.
 - `dist/`: Contains the production bundles (created once you run `yarn build`).
 - `package.json`: Contains the dependencies to work on the project and npm `scripts` to perform important tasks (for example `yarn test`, `yarn start`, `yarn build`, `yarn i18n:build`, etc.).

@@ -24,7 +24,7 @@ This is the _default message_, which will be used in case there is no translatio
 
 # Extracting messages for translations
 
-To generate translation files, we provide a `mc-scripts extract-intl` script, which will aggregate all react intl messages into a `core.json` file:
+To generate translation files, we provide a `mc-scripts extract-intl` script, which will aggregate all react Intl messages into a `core.json` file:
 
 ```json
 {
@@ -32,14 +32,62 @@ To generate translation files, we provide a `mc-scripts extract-intl` script, wh
 }
 ```
 
-The `core.json` is the so-called source file, which should be used as the reference file for the translations in the other locales.
+The `core.json` is the so-called source file, which should be used as reference file for the translations in the other locales.
 
-Depending on your translation process, you can decide to manage the translations in a separate service (at commercetools we use [Transifex]()) or to manually provide the translations.
+Depending on your translation process, you can decide to manage the translations in a separate service (at commercetools we use [Transifex](https://www.transifex.com/)) or to manually provide the translations.
 
 The `mc-scripts extract-intl` command provides some extra options to deal with different scenarios.
 
-![Extract intl messages](/images/mc-dev-yarn-i18n-build.png)
+![Extract Intl messages](/images/mc-dev-yarn-i18n-build.png)
 
-The extracted JSON files ard loaded on runtime by the application and passed to the `<ApplicationShell>`.
+# Using the messages in the application
 
-You can see an example of asynchronously loading the JSON messages for a specific `locale` in the `<EntryPoint>` component, using a feature called [Code-Splitting](https://reactjs.org/docs/code-splitting.html).
+The JSON files containing the translations need to be loaded within the application. The `<ApplicationShell>` expects a `applicationMessages` prop that is used to load the messages in the `react-intl` provider.
+The `applicationMessages` prop can either be a JSON object or a function returning a Promise with the loaded messages.
+
+To keep the bundle size low, the application should only load the messages for a specific locale and not all of them. This can be achieved by using the [Code-Splitting](https://reactjs.org/docs/code-splitting.html) feature.
+
+Given the translation messages are located in the `i18n/data` folder, you can define a function to dynamically load the messages:
+
+```js
+// entry-point.js
+
+const loadMessages = lang => {
+  let loadAppI18nPromise;
+  switch (lang) {
+    case 'de':
+      loadAppI18nPromise = import(
+        '../../i18n/data/de.json' /* webpackChunkName: "app-i18n-de" */
+      );
+      break;
+    case 'es':
+      loadAppI18nPromise = import(
+        '../../i18n/data/es.json' /* webpackChunkName: "app-i18n-es" */
+      );
+      break;
+    default:
+      loadAppI18nPromise = import(
+        '../../i18n/data/en.json' /* webpackChunkName: "app-i18n-en" */
+      );
+  }
+
+  return loadAppI18nPromise.then(
+    result => result.default,
+    error => {
+      console.warn(
+        `Something went wrong while loading the app messages for ${lang}`,
+        error
+      );
+
+      return {};
+    }
+  );
+};
+
+const Application = () => (
+  <ApplicationShell
+    // other props
+    applicationMessages={loadMessages}
+  />
+);
+```
