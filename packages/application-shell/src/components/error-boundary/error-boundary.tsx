@@ -3,7 +3,7 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import ErrorApologizer from '../error-apologizer';
 
 type Props = {
-  pathname: string;
+  pathname?: string;
   children: React.ReactNode;
 };
 type State = {
@@ -21,10 +21,9 @@ class ErrorBoundary extends React.Component<Props, State> {
   };
 
   componentDidUpdate(prevProps: Props) {
+    const hasRouteChanged = prevProps.pathname !== this.props.pathname;
     this.setState(prevState =>
-      prevProps.pathname !== this.props.pathname && prevState.hasError
-        ? { hasError: false }
-        : null
+      hasRouteChanged && prevState.hasError ? { hasError: false } : null
     );
   }
 

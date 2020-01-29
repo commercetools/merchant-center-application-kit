@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderApp, fireEvent } from '../../../test-utils';
+import { renderApp, fireEvent } from '../../test-utils';
 import BackToProject from './back-to-project';
 
 describe('with `projectKey`', () => {

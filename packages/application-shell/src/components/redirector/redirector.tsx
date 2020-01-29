@@ -1,15 +1,16 @@
 import React from 'react';
 import { encode } from 'qss';
+import { RouteComponentProps } from 'react-router-dom';
 import { TEnhancedLocation } from '@commercetools-frontend/browser-history';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
 
 type QueryParams = {
-  reason: typeof LOGOUT_REASONS[keyof typeof LOGOUT_REASONS];
+  reason?: typeof LOGOUT_REASONS[keyof typeof LOGOUT_REASONS];
   redirectTo?: string;
 };
 type Props = {
   to: string;
-  location?: TEnhancedLocation<QueryParams>;
+  location?: RouteComponentProps['location'];
   queryParams: QueryParams;
 };
 
@@ -20,10 +21,12 @@ const Redirector = (props: Props) => {
     // For now the authentication service runs on the same domain as the application,
     // even on development (using the webpack dev server).
     const authUrl = window.location.origin;
-
+    const enhancedLocation = (props.location || {}) as TEnhancedLocation<
+      QueryParams
+    >;
     const searchQuery = {
       ...props.queryParams,
-      ...((props.location || {}).query || {}),
+      ...(enhancedLocation.query || {}),
     };
 
     redirectTo(`${authUrl}/${props.to}?${encode(searchQuery)}`);

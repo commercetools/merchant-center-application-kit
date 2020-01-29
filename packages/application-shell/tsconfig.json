@@ -1,8 +1,4 @@
 {
   "extends": "../../tsconfig.json",
-  "files": ["./src/index.ts"],
-  "compilerOptions": {
-    // TODO: remove once the entire package has been migrated
-    "allowJs": true
-  }
+  "files": ["./src/index.ts", "./src/test-utils/index.ts"]
 }

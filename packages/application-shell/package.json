@@ -20,6 +20,8 @@
   },
   "main": "./dist/application-shell-index.cjs.js",
   "module": "./dist/application-shell-index.es.js",
+  "typings": "./dist/typings/index.d.ts",
+  "types": "./dist/typings/index.d.ts",
   "files": [
     "dist",
     "test-utils",
@@ -30,7 +32,7 @@
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/** test-utils/**",
-    "build": "yarn build:bundles && yarn build:test-utils",
+    "build": "yarn build:bundles && yarn build:test-utils && yarn build:typings",
     "build:bundles": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js -i ./src/index.ts -d dist",
     "build:bundles:watch": "yarn build:bundles -w",
     "build:test-utils": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -i ./src/test-utils/index.ts",

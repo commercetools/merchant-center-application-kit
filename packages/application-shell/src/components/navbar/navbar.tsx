@@ -543,15 +543,18 @@ const NavBarLayout = React.forwardRef<HTMLElement, NavBarLayoutProps>(
 );
 NavBarLayout.displayName = 'NavBarLayout';
 
-type NavbarProps = {
+type NavbarProps<AdditionalEnvironmentProperties extends {}> = {
   applicationLocale: string;
   projectKey: string;
-  environment: TApplicationContext<{}>['environment'];
-  menuVisibilities: TApplicationContext<{}>['menuVisibilities'];
-  DEV_ONLY__loadNavbarMenuConfig?: () => Promise<TApplicationsMenu['navBar']>;
+  environment: TApplicationContext<
+    AdditionalEnvironmentProperties
+  >['environment'];
   onMenuItemClick?: MenuItemLinkProps['onClick'];
+  DEV_ONLY__loadNavbarMenuConfig?: () => Promise<TApplicationsMenu['navBar']>;
 };
-const NavBar = (props: NavbarProps) => {
+const NavBar = <AdditionalEnvironmentProperties extends {}>(
+  props: NavbarProps<AdditionalEnvironmentProperties>
+) => {
   const {
     navBarNode,
     isMenuOpen,

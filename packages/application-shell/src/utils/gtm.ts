@@ -9,7 +9,7 @@ declare let window: ApplicationWindow;
 
 type TrackingWhitelistValueMap = { [key: string]: string };
 type TrackingWhitelistValue = string | TrackingWhitelistValueMap;
-type TrackingWhitelist = {
+export type TrackingWhitelist = {
   [key: string]: TrackingWhitelistValue;
 };
 
@@ -114,7 +114,7 @@ export const trackTiming = ({
 }: {
   category: string;
   variable: string;
-  value: string;
+  value: string | number;
   label?: string;
 }) => {
   if (window.dataLayer && window.app.trackingGtm) {
