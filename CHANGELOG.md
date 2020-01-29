@@ -1,3 +1,73 @@
+## [16.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.9.0...v16.0.0) (2020-01-31)
+
+This release introduces some small **breaking changes**, as documented below.
+
+### Changes in modal page components
+
+The API of the `<FormModalPage>` component changed a bit: the prop `customControls` has been removed in favor of a new component `<CustomFormModalPage>`. This component has a prop `formControls`, which can be used to pass any React component to be rendered as the form controls. Under the hood, the `<FormModalPage>` uses the `<CustomFormModalPage>` with pre-defined form controls: a primary and a secondary button. Those pre-configured buttons are also exposed as static exports from the `<CustomFormModalPage>` component, to be able to reuse them when customizing the form controls.
+
+```js
+// previously
+<FormModalPage
+  // other props
+  customControls={<SomeCustomFormControls />}
+/>
+```
+
+```js
+// after
+<CustomFormModalPage
+  // other props
+  formControls={<SomeCustomFormControls />}
+/>
+```
+
+Additionally, a new prop `hideControls` can be used to hide/show the form controls. This can be useful for example when the form controls only need to be visible based on certain user permissions.
+
+### Changes in `env.json`
+
+The field `applicationName` is now a **required** field.
+
+### Other changes
+
+- The exported component `MeasureFirstPaint` from the `@commercetools-frontend/application-shell` has been removed.
+
+#### 💥 Type: Breaking Change
+
+- `application-shell`
+  - [#1280](https://github.com/commercetools/merchant-center-application-kit/pull/1280) refactor: remove MeasureFirstPaint export ([@emmenko](https://github.com/emmenko))
+- `application-shell`, `constants`, `mc-html-template`, `sdk`
+  - [#1279](https://github.com/commercetools/merchant-center-application-kit/pull/1279) refactor: make applicationName a required field ([@emmenko](https://github.com/emmenko))
+- `application-components`
+  - [#1269](https://github.com/commercetools/merchant-center-application-kit/pull/1269) feat(components): rework ModalPages to have more controls customization ([@jonnybel](https://github.com/jonnybel))
+
+#### 🔮 Type: Chore
+
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `browser-history`, `i18n`, `l10n`, `permissions`, `react-notifications`, `sdk`, `sentry`
+  - [#1290](https://github.com/commercetools/merchant-center-application-kit/pull/1290) chore: define needed type declaration deps in each package.json ([@emmenko](https://github.com/emmenko))
+
+#### ✍️ Type: Documentation
+
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `assets`, `babel-preset-mc-app`, `browser-history`, `constants`, `create-mc-app`, `eslint-config-mc-app`, `i18n`, `jest-preset-mc-app`, `jest-stylelint-runner`, `l10n`, `mc-dev-authentication`, `mc-html-template`, `mc-http-server`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sdk`, `sentry`, `url-utils`
+  - [#1291](https://github.com/commercetools/merchant-center-application-kit/pull/1291) chore: add homepage link and directory to each package.json ([@emmenko](https://github.com/emmenko))
+- `application-components`
+  - [#1283](https://github.com/commercetools/merchant-center-application-kit/pull/1283) docs(components): improve documentation of static Intl exports ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `browser-history`, `constants`, `i18n`, `permissions`, `react-notifications`, `sdk`, `sentry`
+  - [#1069](https://github.com/commercetools/merchant-center-application-kit/pull/1069) refactor(app-shell): migrate to TS ([@emmenko](https://github.com/emmenko))
+
+#### 🖥 Type: Website
+
+- `application-shell`
+  - [#1287](https://github.com/commercetools/merchant-center-application-kit/pull/1287) docs(website): document missing things, link READMEs to docs ([@emmenko](https://github.com/emmenko))
+- Other
+  - [#1288](https://github.com/commercetools/merchant-center-application-kit/pull/1288) refactor(website): pull latest and next releases from repo ([@emmenko](https://github.com/emmenko))
+  - [#1285](https://github.com/commercetools/merchant-center-application-kit/pull/1285) fix(website): use noUnderline prop to configure link styles ([@emmenko](https://github.com/emmenko))
+- `application-components`
+  - [#1278](https://github.com/commercetools/merchant-center-application-kit/pull/1278) docs(website): content wording improvements ([@emmenko](https://github.com/emmenko))
+
 ## [15.9.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.9.0...v15.8.0) (2020-01-23)
 
 #### 🚀 Type: New Feature
