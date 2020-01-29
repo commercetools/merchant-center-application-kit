@@ -1,4 +1,5 @@
 import React, { SyntheticEvent } from 'react';
+import { Dispatch } from 'redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ApolloError } from 'apollo-client';
 import { Flags } from '@flopflip/types';
@@ -73,9 +74,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
   defaultFeatureFlags?: Flags;
   trackingEventWhitelist?: TrackingWhitelist;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
-  onRegisterErrorListeners: (args: {
-    dispatch: typeof internalReduxStore.dispatch;
-  }) => void;
+  onRegisterErrorListeners: (args: { dispatch: Dispatch }) => void;
   onMenuItemClick?: <TrackFn>(
     event: SyntheticEvent<HTMLAnchorElement>,
     track: TrackFn
