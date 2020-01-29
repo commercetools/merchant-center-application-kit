@@ -78,6 +78,7 @@ packages/sdk/test-utils
 .idea
 .vscode/*
 #!.vscode/settings.json
+!.vscode/spellright.dict
 
 # Cypress
 cypress/screenshots

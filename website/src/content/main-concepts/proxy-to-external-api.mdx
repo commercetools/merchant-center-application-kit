@@ -32,7 +32,11 @@ fetch(`https://mc-api.commercetools.com/proxy/forward-to`, {
 
 The request will be then validated from the Merchant Center API Gateway and proxied to the specified HTTP header, sending alongside an `Authorization: Bearer <token>` HTTP header, in the form of a JWT.
 
-> NOTE that for security reasons, the exchanged JWT has an expiration date of 60 seconds, as the token should only be used to verify that the request is authorized.
+<Warning>
+
+For security reasons, the exchanged JWT has an expiration date of 60 seconds, as the token should only be used to verify that the request is authorized.
+
+</Warning>
 
 ## Using JSON Web Key Set endpoint
 
