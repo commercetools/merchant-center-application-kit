@@ -1,10 +1,10 @@
 # MaintenancePageLayout
 
-#### Description
+## Description
 
-This component should be used as a template to scaffold maintenance pages.
+This component is used as a template for creating maintenance pages.
 
-#### Usage
+## Usage
 
 ```js
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
@@ -19,7 +19,7 @@ const PageNotFound = () => (
 );
 ```
 
-#### Properties
+## Properties
 
 | Props         | Type     | Required | Values | Default | Description                                |
 | ------------- | -------- | :------: | ------ | ------- | ------------------------------------------ |
