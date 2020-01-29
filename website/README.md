@@ -1,13 +1,11 @@
 # Documentation website
 
-The website is available at https://appkit.commercetools.com and is built using Gatsby and deployed to Netlify.
+The website is available at https://docs.commercetools.com and is built using the commercetools [Gatsby theme](https://github.com/commercetools/commercetools-docs-kit) and deployed to Zeit Now.
 
-### Getting started
+## Getting started
 
-To work on the website, you simply execute `yarn start`.
+To start the website in development mode, execute `yarn start`.
 
-The `src/components` folder contains the main React components and pages of the website, mainly around the layout.
+Please refer to the [Gatsby theme documentation](https://github.com/commercetools/commercetools-docs-kit) to how the website is configured and to work with it.
 
-The `src/content` folde contains markdown pages for the main website content and are converted into actual pages by Gatsby.
-
-The pages of the `application-components` API are located within the React components folders and are converted into pages by Gatsby.
+The pages for the `application-components` are located int the [Website Components Playground](../website-components-playground) package.
