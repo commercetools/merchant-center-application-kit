@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment-timezone';
+import { ApplicationWindow } from '@commercetools-frontend/constants';
 import getDisplayName from '../../utils/get-display-name';
 import {
   TFetchLoggedInUserQuery,
@@ -92,16 +93,8 @@ export const mapProjectToApplicationContextProject = (
   };
 };
 
-type TApplicationContextEnvironment = {
-  applicationName?: string;
-  frontendHost: string;
-  mcApiUrl: string;
-  location: string;
-  env: string;
-  cdnUrl: string;
-  servedByProxy: string | boolean;
-};
-type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
+type TApplicationContextEnvironment = ApplicationWindow['app'];
+export type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
   environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment;
   user: ReturnType<typeof mapUserToApplicationContextUser>;
   project: ReturnType<typeof mapProjectToApplicationContextProject>;
@@ -111,7 +104,7 @@ type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
   dataFences: TApplicationContextDataFences | null;
   dataLocale: string | null;
 };
-type ProviderProps<AdditionalEnvironmentProperties extends {}> = {
+export type ProviderProps<AdditionalEnvironmentProperties extends {}> = {
   environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment;
   user?: TFetchedUser;
   project?: TFetchedProject;

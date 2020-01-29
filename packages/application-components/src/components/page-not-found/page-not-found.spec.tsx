@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderComponent } from '../../../test-utils';
+import { renderComponent } from '../../test-utils';
 import PageNotFound from './page-not-found';
 
 describe('rendering', () => {

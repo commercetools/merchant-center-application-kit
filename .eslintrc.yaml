@@ -49,12 +49,12 @@ rules:
 settings:
   react:
     version: 'detect'
-  import/ignore:
-    - /test-utils/
-    - test-utils$
-    - test-utils\.js$
+  # import/ignore:
+  #   - /test-utils/
+  #   - test-utils$
+  #   - test-utils\.js$
   import/parsers:
-    '@typescript-eslint/parser': ['.ts', '.tsx']
+    '@typescript-eslint/parser': ['.js', '.jsx', '.ts', '.tsx']
   import/resolver:
     eslint-import-resolver-typescript: true
     typescript: {}

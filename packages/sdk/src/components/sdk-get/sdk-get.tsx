@@ -38,10 +38,11 @@ type OwnProps = {
   render: (options: TRenderOptions) => JSX.Element;
 };
 export type Props = DispatchProps & OwnProps;
+type StaticErrorHandler = (error: TSdkError) => void;
 
 export class SdkGet extends React.Component<Props, State> {
   static displayName = 'SdkGet';
-  static errorHandler = (error: TSdkError) => {
+  static errorHandler: StaticErrorHandler = (error: TSdkError) => {
     throw error;
   };
   static defaultProps: Pick<Props, 'actionCreatorArgs' | 'shouldRefetch'> = {

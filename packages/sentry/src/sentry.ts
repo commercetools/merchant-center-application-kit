@@ -21,7 +21,7 @@ export const boot = () => {
 };
 
 export const reportErrorToSentry = (
-  error: Error | string,
+  error: Error | ErrorEvent | PromiseRejectionEvent | string,
   extraInfo?: { extra?: object | string },
   getIsEnabled?: () => boolean
 ) => {
@@ -29,37 +29,36 @@ export const reportErrorToSentry = (
     ? getIsEnabled()
     : Boolean(window.app.trackingSentry);
 
-  if (error instanceof Error === false && !isEnabled) {
+  if (typeof error === 'string' && !isEnabled) {
     console.warn(
-      '[SENTRY]: You called "reportErrorToSentry" with an argument that is not an instance of "Error". ' +
-        '"Error" should be preferred so that a stack-trace can be made available in sentry. ' +
+      '[SENTRY]: You called "reportErrorToSentry" with a string argument. ' +
+        '"Error" objects should be preferred so that a stack-trace can be made available in Sentry. ' +
         'See: https://docs.sentry.io/clients/javascript/usage/#try-catch'
     );
   }
 
   if (isEnabled) {
-    // logs error to sentry
-    Sentry.withScope(scope => {
-      if (extraInfo && extraInfo.extra) {
-        if (typeof extraInfo.extra === 'object') {
-          // See https://docs.sentry.io/platforms/javascript/react/
-          scope.setExtras(extraInfo.extra);
-        } else {
-          scope.setExtra('extra', extraInfo.extra);
-        }
+    if (extraInfo && extraInfo.extra) {
+      if (typeof extraInfo.extra === 'object') {
+        // See https://docs.sentry.io/platforms/javascript/react/
+        Sentry.setExtras(extraInfo.extra);
+      } else {
+        Sentry.setExtra('extra', extraInfo.extra);
       }
-      // Generate a unique ID referring to the last generated Sentry error
-      const errorId =
-        error instanceof Error
-          ? Sentry.captureException(error)
-          : Sentry.captureMessage(error);
+    }
+    // Generate a unique ID referring to the last generated Sentry error
+    const errorId =
+      typeof error === 'string'
+        ? Sentry.captureMessage(error)
+        : Sentry.captureException(error);
 
-      // The error stack should be available in Sentry, so there is no
-      // need to print it in the console as well.
-      // We just notify that an error occurred and provide the error ID.
-      console.error(`[SENTRY]: An error occured (ID: ${errorId}).`);
-    });
-  } else {
-    console.error('[SENTRY]:', error);
+    // The error stack should be available in Sentry, so there is no
+    // need to print it in the console as well.
+    // We just notify that an error occurred and provide the error ID.
+    console.error(`[SENTRY]: An error occured (ID: ${errorId}).`);
+    return errorId;
   }
+
+  console.error('[SENTRY]:', error);
+  return undefined;
 };

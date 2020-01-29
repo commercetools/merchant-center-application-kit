@@ -1,26 +1,21 @@
 import React from 'react';
-import { customProperties } from '@commercetools-uikit/design-system';
 import {
   GRAPHQL_TARGETS,
   MC_API_PROXY_TARGETS,
 } from '@commercetools-frontend/constants';
-import {
-  renderAppWithRedux,
-  fireEvent,
-  waitForElement,
-  wait,
-} from '../../test-utils';
+import { renderAppWithRedux, fireEvent, wait } from '../../test-utils';
 import * as gtm from '../../utils/gtm';
 import QuickAccessQuery from './quick-access.ctp.graphql';
+import QuickAccessProductQuery from './quick-access-product.ctp.graphql';
 import QuickAccess from './index';
 
 jest.mock('../../utils/gtm');
 
-const createMatchlessSearchMock = (searchText, variables = {}) => ({
+const createMatchlessSearchMock = ({ variables = {}, resultData = {} }) => ({
   request: {
     query: QuickAccessQuery,
     variables: {
-      searchText,
+      searchText: '',
       target: GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
       canViewProducts: true,
       productsWhereClause: 'id in ()',
@@ -35,6 +30,36 @@ const createMatchlessSearchMock = (searchText, variables = {}) => ({
       productByKey: null,
       productByVariantSku: null,
       productByVariantKey: null,
+      ...resultData,
+    },
+  },
+});
+
+const createAccessProductVariantsQueryMock = ({
+  variables = {},
+  resultData = {},
+}) => ({
+  request: {
+    query: QuickAccessProductQuery,
+    variables: {
+      productId: '',
+      target: MC_API_PROXY_TARGETS.COMMERCETOOLS_PLATFORM,
+      ...variables,
+    },
+  },
+  result: {
+    data: {
+      product: {
+        id: variables.productId,
+        masterData: {
+          staged: {
+            allVariants: [
+              { id: 1, key: 'variant-key-1', sku: 'variant-sku-1' },
+            ],
+          },
+        },
+      },
+      ...resultData,
     },
   },
 });
@@ -126,6 +151,13 @@ const createPimSearchSdkMock = (
   response: {},
 });
 
+const renderQuickAccess = (options = {}, ui) =>
+  renderAppWithRedux(ui || <QuickAccess />, {
+    permissions: managePermissions,
+    sdkMocks: [createPimAvailabilityCheckSdkMock()],
+    ...options,
+  });
+
 describe('QuickAccess', () => {
   beforeEach(() => {
     gtm.track.mockReset();
@@ -134,16 +166,11 @@ describe('QuickAccess', () => {
   });
 
   it('should open when pressing "f" on document body', async () => {
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
-      sdkMocks: [createPimAvailabilityCheckSdkMock()],
-    });
+    const rendered = renderQuickAccess();
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     // Value should be empty. The "f" should not end up as part of the value.
     expect(rendered.queryByTestId('quick-access-search-input')).toHaveAttribute(
@@ -153,23 +180,19 @@ describe('QuickAccess', () => {
   });
 
   it('should open when pressing "f" on an element with tabIndex="-1" (like a modal)', async () => {
-    const rendered = renderAppWithRedux(
+    const rendered = renderQuickAccess(
+      undefined,
       <div>
         <QuickAccess />
         <div tabIndex="-1" data-testid="modal">
           Modal
         </div>
-      </div>,
-      {
-        sdkMocks: [createPimAvailabilityCheckSdkMock()],
-      }
+      </div>
     );
 
     // open quick-access
     fireEvent.keyDown(rendered.getByTestId('modal'), { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     // Value should be empty. The "f" should not end up as part of the value.
     expect(rendered.queryByTestId('quick-access-search-input')).toHaveAttribute(
@@ -179,16 +202,11 @@ describe('QuickAccess', () => {
   });
 
   it('should not close when the search input is clicked', async () => {
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
-      sdkMocks: [createPimAvailabilityCheckSdkMock()],
-    });
+    const rendered = renderQuickAccess();
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     fireEvent.click(rendered.getByTestId('quick-access-search-input'));
 
@@ -197,10 +215,7 @@ describe('QuickAccess', () => {
   });
 
   it('should not open when pressing "f" not directly on other focusable elements', () => {
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
-      sdkMocks: [createPimAvailabilityCheckSdkMock()],
-    });
+    const rendered = renderQuickAccess();
 
     // open quick-access
     fireEvent.keyDown(document.body.firstChild, { key: 'f' });
@@ -208,16 +223,11 @@ describe('QuickAccess', () => {
   });
 
   it('should track when QuickAccess is opened', async () => {
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
-      sdkMocks: [createPimAvailabilityCheckSdkMock()],
-    });
+    const rendered = renderQuickAccess();
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     expect(gtm.track).toHaveBeenCalledTimes(1);
     expect(gtm.track).toHaveBeenCalledWith(
@@ -228,14 +238,11 @@ describe('QuickAccess', () => {
   });
 
   it('should close when pressing Escape', async () => {
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
-      sdkMocks: [createPimAvailabilityCheckSdkMock()],
-    });
+    const rendered = renderQuickAccess();
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() => rendered.getByTestId('quick-access'));
+    await rendered.findByTestId('quick-access');
 
     expect(rendered.queryByTestId('quick-access')).toBeInTheDocument();
 
@@ -247,9 +254,10 @@ describe('QuickAccess', () => {
   });
 
   it('should show results when searching for Dashboard', async () => {
-    const mocks = [createMatchlessSearchMock('Open dshbrd')];
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
+    const mocks = [
+      createMatchlessSearchMock({ variables: { searchText: 'Open dshbrd' } }),
+    ];
+    const rendered = renderQuickAccess({
       mocks,
       flags,
       sdkMocks: [
@@ -260,42 +268,23 @@ describe('QuickAccess', () => {
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     const searchInput = rendered.getByTestId('quick-access-search-input');
     fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
-    await waitForElement(() => rendered.getByText('Open Dashboard'));
+    await rendered.findByText('Open Dashboard');
     expect(rendered.queryByText('Open Dashboard')).toBeInTheDocument();
   });
   describe('when there are no results', () => {
     it('should show information message when searching does not yield results', async () => {
       const mocks = [
-        {
-          request: {
-            query: QuickAccessQuery,
-            variables: {
-              searchText: 'A thing which does not exist',
-              canViewProducts: true,
-              target: 'ctp',
-              productsWhereClause: 'id in ()',
-              includeProductsByIds: false,
-            },
+        createMatchlessSearchMock({
+          variables: {
+            searchText: 'A thing which does not exist',
           },
-          result: {
-            data: {
-              productsByIds: null,
-              productById: null,
-              productByKey: null,
-              productByVariantSku: null,
-              productByVariantKey: null,
-            },
-          },
-        },
+        }),
       ];
-      const rendered = renderAppWithRedux(
-        <QuickAccess />,
+      const rendered = renderQuickAccess(
         // Note that this test setup isn't perfect as the sdk request
         // currently succeeds while the Apollo request fails
         // Under real conditions both requests would fail.
@@ -311,53 +300,53 @@ describe('QuickAccess', () => {
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
-      await waitForElement(() =>
-        rendered.getByTestId('quick-access-search-input')
-      );
+      await rendered.findByTestId('quick-access-search-input');
 
       const searchInput = rendered.getByTestId('quick-access-search-input');
       fireEvent.change(searchInput, {
         target: { value: 'A thing which does not exist' },
       });
-      await waitForElement(() => rendered.getByText(noResultsText));
+      await rendered.findByText(noResultsText);
       // it should show the no results text
-      expect(rendered.queryByText(noResultsText)).toBeVisible();
+      expect(rendered.queryByText(noResultsText)).toBeInTheDocument();
 
       // when input is cleared again
       fireEvent.change(searchInput, { target: { value: '' } });
 
-      // the no results text should be removed
-      expect(rendered.queryByText(noResultsText)).toBeNull();
+      await wait(() => {
+        // the no results text should be removed
+        expect(rendered.queryByText(noResultsText)).not.toBeInTheDocument();
+      });
     });
   });
   describe('when there is an error', () => {
+    const originalConsoleError = console.error;
     beforeEach(() => {
       // eslint-disable-next-line no-console
       console.error = jest.fn();
     });
+    afterEach(() => {
+      // eslint-disable-next-line no-console
+      console.error = originalConsoleError;
+    });
     it('should show error message when searching while offline', async () => {
+      const searchMock = createMatchlessSearchMock({
+        variables: {
+          searchText: 'Open dshbrd-offline',
+        },
+      });
       const mocks = [
         {
-          request: {
-            query: QuickAccessQuery,
-            variables: {
-              searchText: 'Open dshbrd-offline',
-              canViewProducts: true,
-              target: 'ctp',
-              productsWhereClause: 'id in ()',
-              includeProductsByIds: false,
-            },
-          },
-          error: new Error('aw shucks'),
+          ...searchMock,
+          result: null,
+          error: new Error('no internet'),
         },
       ];
-      const rendered = renderAppWithRedux(
-        <QuickAccess />,
+      const rendered = renderQuickAccess(
         // Note that this test setup isn't perfect as the sdk request
         // currently succeeds while the Apollo request fails
         // Under real conditions both requests would fail.
         {
-          permissions: managePermissions,
           mocks,
           sdkMocks: [
             createPimAvailabilityCheckSdkMock(),
@@ -369,30 +358,34 @@ describe('QuickAccess', () => {
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
-      await waitForElement(() =>
-        rendered.getByTestId('quick-access-search-input')
-      );
+      await rendered.findByTestId('quick-access-search-input');
 
       const searchInput = rendered.getByTestId('quick-access-search-input');
       fireEvent.change(searchInput, {
         target: { value: 'Open dshbrd-offline' },
       });
-      await waitForElement(() => rendered.getByText(offlineText));
+      await rendered.findByText(offlineText);
       // it should show the offline warning
-      expect(rendered.queryByText(offlineText)).toBeVisible();
+      expect(rendered.queryByText(offlineText)).toBeInTheDocument();
+      expect(console.error).toHaveBeenCalledWith(
+        expect.objectContaining({ networkError: new Error('no internet') })
+      );
 
       // when input is cleared again
       fireEvent.change(searchInput, { target: { value: '' } });
 
-      // the offline warning should be removed
-      expect(rendered.queryByText(offlineText)).toBeNull();
+      await wait(() => {
+        // the offline warning should be removed
+        expect(rendered.queryByText(offlineText)).not.toBeInTheDocument();
+      });
     });
   });
 
   it('should open (route to) dashboard when chosing the "Open Dashboard" command', async () => {
-    const mocks = [createMatchlessSearchMock('Open dshbrd')];
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
+    const mocks = [
+      createMatchlessSearchMock({ variables: { searchText: 'Open dshbrd' } }),
+    ];
+    const rendered = renderQuickAccess({
       mocks,
       flags,
       sdkMocks: [
@@ -403,26 +396,27 @@ describe('QuickAccess', () => {
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     const searchInput = rendered.getByTestId('quick-access-search-input');
     fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
-    await waitForElement(() => rendered.getByText('Open Dashboard'));
+    await rendered.findByText('Open Dashboard');
     fireEvent.keyUp(searchInput, { key: 'Enter' });
-    expect(rendered.history.location.pathname).toBe(
-      '/test-with-big-data/dashboard'
-    );
 
-    // should close quick access
-    expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+    await wait(() => {
+      expect(rendered.history.location.pathname).toBe(
+        '/test-with-big-data/dashboard'
+      );
+      // should close quick access
+      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+    });
   });
 
   it('should open (reload to) dashboard when chosing the "Open Dashboard" command when using full redirects for links', async () => {
-    const mocks = [createMatchlessSearchMock('Open dshbrd')];
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
+    const mocks = [
+      createMatchlessSearchMock({ variables: { searchText: 'Open dshbrd' } }),
+    ];
+    const rendered = renderQuickAccess({
       environment: { useFullRedirectsForLinks: true },
       mocks,
       flags,
@@ -434,20 +428,20 @@ describe('QuickAccess', () => {
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     const searchInput = rendered.getByTestId('quick-access-search-input');
     fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
-    await waitForElement(() => rendered.getByText('Open Dashboard'));
+    await rendered.findByText('Open Dashboard');
     fireEvent.keyUp(searchInput, { key: 'Enter' });
-    expect(global.location.replace).toHaveBeenCalledWith(
-      '/test-with-big-data/dashboard'
-    );
 
-    // should close quick access
-    expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+    await wait(() => {
+      expect(global.location.replace).toHaveBeenCalledWith(
+        '/test-with-big-data/dashboard'
+      );
+      // should close quick access
+      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+    });
   });
 
   describe('on MacOS', () => {
@@ -459,9 +453,10 @@ describe('QuickAccess', () => {
       });
     });
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by cmd+enter', async () => {
-      const mocks = [createMatchlessSearchMock('Open dshbrd')];
-      const rendered = renderAppWithRedux(<QuickAccess />, {
-        permissions: managePermissions,
+      const mocks = [
+        createMatchlessSearchMock({ variables: { searchText: 'Open dshbrd' } }),
+      ];
+      const rendered = renderQuickAccess({
         mocks,
         flags,
         sdkMocks: [
@@ -472,29 +467,29 @@ describe('QuickAccess', () => {
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
-      await waitForElement(() =>
-        rendered.getByTestId('quick-access-search-input')
-      );
+      await rendered.findByTestId('quick-access-search-input');
 
       const searchInput = rendered.getByTestId('quick-access-search-input');
       fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
-      await waitForElement(() => rendered.getByText('Open Dashboard'));
+      await rendered.findByText('Open Dashboard');
       fireEvent.keyDown(searchInput, { key: 'Enter', metaKey: true });
       fireEvent.keyUp(searchInput, { key: 'Enter', metaKey: true });
 
-      expect(global.open).toHaveBeenCalledWith(
-        '/test-with-big-data/dashboard',
-        '_blank'
-      );
-
-      // should close quick access
-      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+      await wait(() => {
+        expect(global.open).toHaveBeenCalledWith(
+          '/test-with-big-data/dashboard',
+          '_blank'
+        );
+        // should close quick access
+        expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+      });
     });
 
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by cmd+click', async () => {
-      const mocks = [createMatchlessSearchMock('Open dshbrd')];
-      const rendered = renderAppWithRedux(<QuickAccess />, {
-        permissions: managePermissions,
+      const mocks = [
+        createMatchlessSearchMock({ variables: { searchText: 'Open dshbrd' } }),
+      ];
+      const rendered = renderQuickAccess({
         mocks,
         flags,
         sdkMocks: [
@@ -505,13 +500,11 @@ describe('QuickAccess', () => {
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
-      await waitForElement(() =>
-        rendered.getByTestId('quick-access-search-input')
-      );
+      await rendered.findByTestId('quick-access-search-input');
 
       const searchInput = rendered.getByTestId('quick-access-search-input');
       fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
-      await waitForElement(() => rendered.getByText('Open Dashboard'));
+      await rendered.findByText('Open Dashboard');
       fireEvent.click(
         rendered.getByTestId('quick-access-result(go/dashboard)'),
         {
@@ -519,13 +512,14 @@ describe('QuickAccess', () => {
         }
       );
 
-      expect(global.open).toHaveBeenCalledWith(
-        '/test-with-big-data/dashboard',
-        '_blank'
-      );
-
-      // should close quick access
-      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+      await wait(() => {
+        expect(global.open).toHaveBeenCalledWith(
+          '/test-with-big-data/dashboard',
+          '_blank'
+        );
+        // should close quick access
+        expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+      });
     });
   });
 
@@ -537,9 +531,10 @@ describe('QuickAccess', () => {
       });
     });
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by ctrl+enter', async () => {
-      const mocks = [createMatchlessSearchMock('Open dshbrd')];
-      const rendered = renderAppWithRedux(<QuickAccess />, {
-        permissions: managePermissions,
+      const mocks = [
+        createMatchlessSearchMock({ variables: { searchText: 'Open dshbrd' } }),
+      ];
+      const rendered = renderQuickAccess({
         mocks,
         flags,
         sdkMocks: [
@@ -550,29 +545,29 @@ describe('QuickAccess', () => {
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
-      await waitForElement(() =>
-        rendered.getByTestId('quick-access-search-input')
-      );
+      await rendered.findByTestId('quick-access-search-input');
 
       const searchInput = rendered.getByTestId('quick-access-search-input');
       fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
-      await waitForElement(() => rendered.getByText('Open Dashboard'));
+      await rendered.findByText('Open Dashboard');
       fireEvent.keyDown(searchInput, { key: 'Enter', ctrlKey: true });
       fireEvent.keyUp(searchInput, { key: 'Enter', ctrlKey: true });
 
-      expect(global.open).toHaveBeenCalledWith(
-        '/test-with-big-data/dashboard',
-        '_blank'
-      );
-
-      // should close quick access
-      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+      await wait(() => {
+        expect(global.open).toHaveBeenCalledWith(
+          '/test-with-big-data/dashboard',
+          '_blank'
+        );
+        // should close quick access
+        expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+      });
     });
 
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by ctrl+click', async () => {
-      const mocks = [createMatchlessSearchMock('Open dshbrd')];
-      const rendered = renderAppWithRedux(<QuickAccess />, {
-        permissions: managePermissions,
+      const mocks = [
+        createMatchlessSearchMock({ variables: { searchText: 'Open dshbrd' } }),
+      ];
+      const rendered = renderQuickAccess({
         mocks,
         flags,
         sdkMocks: [
@@ -583,13 +578,11 @@ describe('QuickAccess', () => {
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
-      await waitForElement(() =>
-        rendered.getByTestId('quick-access-search-input')
-      );
+      await rendered.findByTestId('quick-access-search-input');
 
       const searchInput = rendered.getByTestId('quick-access-search-input');
       fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
-      await waitForElement(() => rendered.getByText('Open Dashboard'));
+      await rendered.findByText('Open Dashboard');
       fireEvent.click(
         rendered.getByTestId('quick-access-result(go/dashboard)'),
         {
@@ -597,20 +590,22 @@ describe('QuickAccess', () => {
         }
       );
 
-      expect(global.open).toHaveBeenCalledWith(
-        '/test-with-big-data/dashboard',
-        '_blank'
-      );
-
-      // should close quick access
-      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+      await wait(() => {
+        expect(global.open).toHaveBeenCalledWith(
+          '/test-with-big-data/dashboard',
+          '_blank'
+        );
+        // should close quick access
+        expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+      });
     });
   });
 
   it('should open dashboard in new tab when chosing the "Open Dashboard" command by click', async () => {
-    const mocks = [createMatchlessSearchMock('Open dshbrd')];
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
+    const mocks = [
+      createMatchlessSearchMock({ variables: { searchText: 'Open dshbrd' } }),
+    ];
+    const rendered = renderQuickAccess({
       mocks,
       flags,
       sdkMocks: [
@@ -621,29 +616,28 @@ describe('QuickAccess', () => {
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     const searchInput = rendered.getByTestId('quick-access-search-input');
     fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
-    await waitForElement(() => rendered.getByText('Open Dashboard'));
+    await rendered.findByText('Open Dashboard');
     fireEvent.click(rendered.getByTestId('quick-access-result(go/dashboard)'));
 
-    expect(rendered.history.location.pathname).toBe(
-      '/test-with-big-data/dashboard'
-    );
-
-    // should close quick access
-    expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+    await wait(() => {
+      expect(rendered.history.location.pathname).toBe(
+        '/test-with-big-data/dashboard'
+      );
+      // should close quick access
+      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+    });
   });
 
   it('should cycle through the history', async () => {
     const mocks = [
-      createMatchlessSearchMock('Open dshbrd'),
-      createMatchlessSearchMock('Open prdcts'),
+      createMatchlessSearchMock({ variables: { searchText: 'Open dshbrd' } }),
+      createMatchlessSearchMock({ variables: { searchText: 'Open prdcts' } }),
     ];
-    const rendered = renderAppWithRedux(<QuickAccess />, {
+    const rendered = renderQuickAccess({
       permissions: managePermissions,
       mocks,
       flags,
@@ -656,54 +650,51 @@ describe('QuickAccess', () => {
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     let searchInput = rendered.getByTestId('quick-access-search-input');
 
     // create first history entry
     fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
-    await waitForElement(() => rendered.getByText('Open Dashboard'));
+    await rendered.findByText('Open Dashboard');
     fireEvent.keyUp(searchInput, { key: 'Enter' });
-    expect(rendered.history.location.pathname).toBe(
-      '/test-with-big-data/dashboard'
-    );
-    expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+    await wait(() => {
+      expect(rendered.history.location.pathname).toBe(
+        '/test-with-big-data/dashboard'
+      );
+      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+    });
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     // create second history entry
     // we have to get the new search input
     searchInput = rendered.getByTestId('quick-access-search-input');
     fireEvent.change(searchInput, { target: { value: 'Open prdcts' } });
-    await waitForElement(() => rendered.getByText('Open Products'));
+    await rendered.findByText('Open Products');
     fireEvent.keyUp(searchInput, { key: 'Enter' });
-    expect(rendered.history.location.pathname).toBe(
-      '/test-with-big-data/products'
-    );
-    expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+    await wait(() => {
+      expect(rendered.history.location.pathname).toBe(
+        '/test-with-big-data/products'
+      );
+      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+    });
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     // press ArrowUp to cycle through history
     searchInput = rendered.getByTestId('quick-access-search-input');
     fireEvent.keyDown(searchInput, { key: 'ArrowUp' });
     fireEvent.keyUp(searchInput, { key: 'ArrowUp' });
 
-    const value = 'Open prdcts';
-    expect(searchInput).toHaveAttribute('value', value);
+    expect(searchInput).toHaveAttribute('value', 'Open prdcts');
     // It should select the search text
     expect(searchInput.selectionStart).toBe(0);
-    expect(searchInput.selectionEnd).toBe(value.length);
+    expect(searchInput.selectionEnd).toBe('Open prdcts'.length);
 
     // press ArrowUp to cycle through history again
     searchInput = rendered.getByTestId('quick-access-search-input');
@@ -727,7 +718,7 @@ describe('QuickAccess', () => {
 
     expect(
       rendered.queryByTestId('quick-access-result(go/orders)')
-    ).toHaveStyle(`color: ${customProperties.colorSurface};`);
+    ).toHaveAttribute('aria-current', 'true');
 
     // when pressing up, it should jump up again
     searchInput = rendered.getByTestId('quick-access-search-input');
@@ -736,53 +727,39 @@ describe('QuickAccess', () => {
 
     expect(
       rendered.queryByTestId('quick-access-result(go/dashboard)')
-    ).toHaveStyle(`color: ${customProperties.colorSurface};`);
+    ).toHaveAttribute('aria-current', 'true');
   });
 
   it('should find a product by sku', async () => {
     const mocks = [
-      {
-        request: {
-          query: QuickAccessQuery,
-          variables: {
-            searchText: 'party-parrot-sku',
-            canViewProducts: true,
-            target: 'ctp',
-            productsWhereClause: 'id in ()',
-            includeProductsByIds: false,
-          },
+      createMatchlessSearchMock({
+        variables: {
+          searchText: 'party-parrot-sku',
         },
-        result: {
-          data: {
-            productsById: null,
-            productById: null,
-            productByKey: null,
-            productByVariantSku: {
-              id: 'party-parrot-id',
-              key: 'party-parrot-key',
-              masterData: {
-                staged: {
-                  nameAllLocales: [
-                    {
-                      locale: 'en',
-                      value: 'Party Parrot',
-                    },
-                  ],
-                  variant: {
-                    sku: 'party-parrot-sku',
-                    key: 'party-parrot-variant-one-key',
-                    id: '1',
+        resultData: {
+          productByVariantSku: {
+            id: 'party-parrot-id',
+            key: 'party-parrot-key',
+            masterData: {
+              staged: {
+                nameAllLocales: [
+                  {
+                    locale: 'en',
+                    value: 'Party Parrot',
                   },
+                ],
+                variant: {
+                  sku: 'party-parrot-sku',
+                  key: 'party-parrot-variant-one-key',
+                  id: '1',
                 },
               },
             },
-            productByVariantKey: null,
           },
         },
-      },
+      }),
     ];
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
+    const rendered = renderQuickAccess({
       mocks,
       sdkMocks: [
         createPimAvailabilityCheckSdkMock(),
@@ -792,60 +769,43 @@ describe('QuickAccess', () => {
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     const searchInput = rendered.getByTestId('quick-access-search-input');
 
     // create first history entry
     fireEvent.change(searchInput, { target: { value: 'party-parrot-sku' } });
-    await waitForElement(() =>
-      rendered.getByText('Show Product Variant "party-parrot-sku"')
-    );
+    await rendered.findByText('Show Product Variant "party-parrot-sku"');
 
     expect(
       rendered.queryByTestId(
         'quick-access-result(go/product-variant-by-sku/product(party-parrot-id)/variant(1))'
       )
-    ).toHaveStyle(`color: ${customProperties.colorSurface};`);
+    ).toHaveAttribute('aria-current', 'true');
   });
 
   it('should find a product by id', async () => {
-    const productId = '01a1b2c3';
+    const productId = 'party-parrot-id';
     const mocks = [
-      {
-        request: {
-          query: QuickAccessQuery,
-          variables: {
-            searchText: productId,
-            canViewProducts: true,
-            target: 'ctp',
-            productsWhereClause: 'id in ()',
-            includeProductsByIds: false,
-          },
+      createMatchlessSearchMock({
+        variables: {
+          searchText: productId,
         },
-        result: {
-          data: {
-            productsById: null,
-            productById: {
-              id: productId,
-              key: 'party-parrot-key',
-              masterData: {
-                staged: {
-                  nameAllLocales: [{ locale: 'en', value: 'Party Parrot' }],
-                },
+        resultData: {
+          productById: {
+            id: productId,
+            key: 'party-parrot-key',
+            masterData: {
+              staged: {
+                nameAllLocales: [{ locale: 'en', value: 'Party Parrot' }],
               },
             },
-            productByKey: null,
-            productByVariantSku: null,
-            productByVariantKey: null,
           },
         },
-      },
+      }),
+      createAccessProductVariantsQueryMock({ variables: { productId } }),
     ];
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
+    const rendered = renderQuickAccess({
       mocks,
       sdkMocks: [
         createPimAvailabilityCheckSdkMock(),
@@ -855,64 +815,47 @@ describe('QuickAccess', () => {
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
-
+    await rendered.findByTestId('quick-access-search-input');
     const searchInput = rendered.getByTestId('quick-access-search-input');
 
     // create first history entry
     fireEvent.change(searchInput, { target: { value: productId } });
-    await waitForElement(() =>
-      rendered.getByText('Show Product "Party Parrot"')
-    );
+    await rendered.findByText('Show Product "Party Parrot"');
 
     expect(
       rendered.queryByTestId(
-        'quick-access-result(go/product-by-id/product(01a1b2c3))'
+        `quick-access-result(go/product-by-id/product(${productId}))`
       )
-    ).toHaveStyle(`color: ${customProperties.colorSurface};`);
+    ).toHaveAttribute('aria-current', 'true');
   });
 
   it('should find a product by key', async () => {
+    const productId = 'party-parrot-id';
     const mocks = [
-      {
-        request: {
-          query: QuickAccessQuery,
-          variables: {
-            searchText: 'party-parrot',
-            canViewProducts: true,
-            target: 'ctp',
-            productsWhereClause: 'id in ()',
-            includeProductsByIds: false,
-          },
+      createMatchlessSearchMock({
+        variables: {
+          searchText: 'party-parrot',
         },
-        result: {
-          data: {
-            productsById: null,
-            productById: null,
-            productByKey: {
-              key: 'party-parrot',
-              id: 'party-parrot-id',
-              masterData: {
-                staged: {
-                  nameAllLocales: [
-                    {
-                      locale: 'en',
-                      value: 'Party Parrot',
-                    },
-                  ],
-                },
+        resultData: {
+          productByKey: {
+            id: productId,
+            key: 'party-parrot',
+            masterData: {
+              staged: {
+                nameAllLocales: [
+                  {
+                    locale: 'en',
+                    value: 'Party Parrot',
+                  },
+                ],
               },
             },
-            productByVariantSku: null,
-            productByVariantKey: null,
           },
         },
-      },
+      }),
+      createAccessProductVariantsQueryMock({ variables: { productId } }),
     ];
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
+    const rendered = renderQuickAccess({
       mocks,
       sdkMocks: [
         createPimAvailabilityCheckSdkMock(),
@@ -922,63 +865,46 @@ describe('QuickAccess', () => {
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     const searchInput = rendered.getByTestId('quick-access-search-input');
 
     // create first history entry
     fireEvent.change(searchInput, { target: { value: 'party-parrot' } });
-    await waitForElement(() =>
-      rendered.getByText('Show Product "party-parrot"')
-    );
+    await rendered.findByText('Show Product "party-parrot"');
 
     expect(
       rendered.queryByTestId(
-        'quick-access-result(go/product-by-key/product(party-parrot-id))'
+        `quick-access-result(go/product-by-key/product(${productId}))`
       )
-    ).toHaveStyle(`color: ${customProperties.colorSurface};`);
+    ).toHaveAttribute('aria-current', 'true');
   });
 
   it('should show products in the projectDataLocale', async () => {
     const productId = 'party-parrot-product-id';
     const mocks = [
-      {
-        request: {
-          query: QuickAccessQuery,
-          variables: {
-            searchText: productId,
-            canViewProducts: true,
-            target: 'ctp',
-            productsWhereClause: 'id in ()',
-            includeProductsByIds: false,
-          },
+      createMatchlessSearchMock({
+        variables: {
+          searchText: productId,
         },
-        result: {
-          data: {
-            productsById: null,
-            productById: {
-              id: productId,
-              key: 'party-parrot-key',
-              masterData: {
-                staged: {
-                  nameAllLocales: [
-                    { locale: 'en', value: 'Party Parrot' },
-                    { locale: 'de', value: 'Party Papagei' },
-                  ],
-                },
+        resultData: {
+          productById: {
+            id: productId,
+            key: 'party-parrot-key',
+            masterData: {
+              staged: {
+                nameAllLocales: [
+                  { locale: 'en', value: 'Party Parrot' },
+                  { locale: 'de', value: 'Party Papagei' },
+                ],
               },
             },
-            productByKey: null,
-            productByVariantSku: null,
-            productByVariantKey: null,
           },
         },
-      },
+      }),
+      createAccessProductVariantsQueryMock({ variables: { productId } }),
     ];
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
+    const rendered = renderQuickAccess({
       dataLocale: 'de',
       mocks,
       sdkMocks: [
@@ -989,77 +915,65 @@ describe('QuickAccess', () => {
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     const searchInput = rendered.getByTestId('quick-access-search-input');
 
     // create first history entry
     fireEvent.change(searchInput, { target: { value: productId } });
-    await waitForElement(() =>
-      rendered.getByText('Show Product "Party Papagei"')
-    );
+    await rendered.findByText('Show Product "Party Papagei"');
 
     expect(
       rendered.queryByTestId(
         `quick-access-result(go/product-by-id/product(${productId}))`
       )
-    ).toHaveStyle(`color: ${customProperties.colorSurface};`);
+    ).toHaveAttribute('aria-current', 'true');
   });
 
   it('should find sub commands', async () => {
-    const searchTerm = 'Open producttypesettings';
-    const mocks = [createMatchlessSearchMock(searchTerm)];
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
+    const searchText = 'Open producttypesettings';
+    const mocks = [createMatchlessSearchMock({ variables: { searchText } })];
+    const rendered = renderQuickAccess({
       mocks,
       flags,
       sdkMocks: [
         createPimAvailabilityCheckSdkMock(),
-        createPimSearchSdkMock(searchTerm),
+        createPimSearchSdkMock(searchText),
       ],
     });
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     const searchInput = rendered.getByTestId('quick-access-search-input');
-    fireEvent.change(searchInput, { target: { value: searchTerm } });
-    await waitForElement(() =>
-      rendered.getByText('Open Product Types Settings')
-    );
+    fireEvent.change(searchInput, { target: { value: searchText } });
+    await rendered.findByText('Open Product Types Settings');
     expect(rendered.queryByText('Open Product Types Settings')).toBeVisible();
   });
 
   it('should be possible to navigate to sub commands and back out', async () => {
-    const searchTerm = 'Open dshbrd';
-    const mocks = [createMatchlessSearchMock(searchTerm)];
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
+    const searchText = 'Open dshbrd';
+    const mocks = [createMatchlessSearchMock({ variables: { searchText } })];
+    const rendered = renderQuickAccess({
       mocks,
       flags,
       sdkMocks: [
         createPimAvailabilityCheckSdkMock(),
-        createPimSearchSdkMock(searchTerm),
+        createPimSearchSdkMock(searchText),
       ],
     });
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     const searchInput = rendered.getByTestId('quick-access-search-input');
-    fireEvent.change(searchInput, { target: { value: searchTerm } });
+    fireEvent.change(searchInput, { target: { value: searchText } });
     // place cursor at last position - this happens autotmatically when a real
     // user types
-    searchInput.setSelectionRange(searchTerm.length, searchTerm.length);
-    await waitForElement(() => rendered.getByText('Open Orders'));
+    searchInput.setSelectionRange(searchText.length, searchText.length);
+    await rendered.findByText('Open Orders');
 
     // go down to select Open orders
     fireEvent.keyDown(searchInput, { key: 'ArrowDown' });
@@ -1067,53 +981,50 @@ describe('QuickAccess', () => {
 
     expect(
       rendered.queryByTestId('quick-access-result(go/orders)')
-    ).toHaveStyle(`color: ${customProperties.colorSurface};`);
+    ).toHaveAttribute('aria-current', 'true');
 
     // navigate into sub commands
     fireEvent.keyDown(searchInput, { key: 'ArrowRight' });
     fireEvent.keyUp(searchInput, { key: 'ArrowRight' });
 
-    await waitForElement(() => rendered.getByText('Open Orders List'));
+    await rendered.findByText('Open Orders List');
     expect(
       rendered.queryByTestId('quick-access-result(go/orders/list)')
-    ).toHaveStyle(`color: ${customProperties.colorSurface};`);
+    ).toHaveAttribute('aria-current', 'true');
 
     // navigate back out
     fireEvent.keyDown(searchInput, { key: 'ArrowLeft' });
     fireEvent.keyUp(searchInput, { key: 'ArrowLeft' });
-    await waitForElement(() => rendered.getByText('Open Orders'));
+    await rendered.findByText('Open Orders');
 
     // it should select the first element in the list
     expect(
       rendered.queryByTestId('quick-access-result(go/dashboard)')
-    ).toHaveStyle(`color: ${customProperties.colorSurface};`);
+    ).toHaveAttribute('aria-current', 'true');
     expect(
       rendered.queryByTestId('quick-access-result(go/orders)')
-    ).not.toHaveStyle(`color: ${customProperties.colorSurface};`);
+    ).toHaveAttribute('aria-current', 'false');
   });
 
   it('should support selection by mouse', async () => {
-    const searchTerm = 'Open dshbrd';
-    const mocks = [createMatchlessSearchMock(searchTerm)];
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
+    const searchText = 'Open dshbrd';
+    const mocks = [createMatchlessSearchMock({ variables: { searchText } })];
+    const rendered = renderQuickAccess({
       mocks,
       flags,
       sdkMocks: [
         createPimAvailabilityCheckSdkMock(),
-        createPimSearchSdkMock(searchTerm),
+        createPimSearchSdkMock(searchText),
       ],
     });
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     const searchInput = rendered.getByTestId('quick-access-search-input');
-    fireEvent.change(searchInput, { target: { value: searchTerm } });
-    await waitForElement(() => rendered.getByText('Open Orders'));
+    fireEvent.change(searchInput, { target: { value: searchText } });
+    await rendered.findByText('Open Orders');
     const openOrdersResult = rendered.getByTestId(
       'quick-access-result(go/orders)'
     );
@@ -1122,41 +1033,37 @@ describe('QuickAccess', () => {
     fireEvent.mouseEnter(openOrdersResult);
 
     // it should highlight the hovered result
-    expect(openOrdersResult).toHaveStyle(
-      `color: ${customProperties.colorSurface};`
-    );
+    expect(openOrdersResult).toHaveAttribute('aria-current', 'true');
 
     // Click the selected result
     fireEvent.click(openOrdersResult);
 
-    expect(rendered.history.location.pathname).toBe(
-      '/test-with-big-data/orders'
-    );
-
-    // should close quick access
-    expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+    await wait(() => {
+      expect(rendered.history.location.pathname).toBe(
+        '/test-with-big-data/orders'
+      );
+      // should close quick access
+      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
+    });
   });
 
   it('should not show project-based commands when used outside of the project context', async () => {
-    const searchTerm = 'Open Dashboard';
-    const mocks = [createMatchlessSearchMock(searchTerm)];
-    const rendered = renderAppWithRedux(<QuickAccess />, {
-      permissions: managePermissions,
+    const searchText = 'Open Dashboard';
+    const mocks = [createMatchlessSearchMock({ variables: { searchText } })];
+    const rendered = renderQuickAccess({
       project: null,
       mocks,
     });
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
-    await waitForElement(() =>
-      rendered.getByTestId('quick-access-search-input')
-    );
+    await rendered.findByTestId('quick-access-search-input');
 
     const searchInput = rendered.getByTestId('quick-access-search-input');
-    fireEvent.change(searchInput, { target: { value: searchTerm } });
+    fireEvent.change(searchInput, { target: { value: searchText } });
 
     // wait for any other result
-    await waitForElement(() => rendered.getByText('Open Support'));
+    await rendered.findByText('Open Support');
 
     // ensure "Open Dashboard" is not visible, as it needs a project context
     expect(rendered.queryByText('Open Dashboard')).toBeNull();
@@ -1164,13 +1071,13 @@ describe('QuickAccess', () => {
 
   describe('permissions', () => {
     it('should not find "Open Orders" when user has no orders permission', async () => {
-      const searchTerm = 'Opn Ordrs';
-      const mocks = [createMatchlessSearchMock(searchTerm)];
-      const rendered = renderAppWithRedux(<QuickAccess />, {
+      const searchText = 'Opn Ordrs';
+      const mocks = [createMatchlessSearchMock({ variables: { searchText } })];
+      const rendered = renderQuickAccess({
         mocks,
         sdkMocks: [
           createPimAvailabilityCheckSdkMock(),
-          createPimSearchSdkMock(searchTerm),
+          createPimSearchSdkMock(searchText),
         ],
         flags,
         permissions: {
@@ -1183,11 +1090,11 @@ describe('QuickAccess', () => {
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
-      const searchInput = await waitForElement(() =>
-        rendered.getByTestId('quick-access-search-input')
+      const searchInput = await rendered.findByTestId(
+        'quick-access-search-input'
       );
-      fireEvent.change(searchInput, { target: { value: searchTerm } });
-      await waitForElement(() => rendered.getAllByText(/^Open/));
+      fireEvent.change(searchInput, { target: { value: searchText } });
+      await rendered.findAllByText(/^Open/);
 
       await wait(
         () => {
@@ -1199,13 +1106,13 @@ describe('QuickAccess', () => {
     });
 
     it('should find "Open Orders" when user has the view orders permission', async () => {
-      const searchTerm = 'Opn Ordrs';
-      const mocks = [createMatchlessSearchMock(searchTerm)];
-      const rendered = renderAppWithRedux(<QuickAccess />, {
+      const searchText = 'Opn Ordrs';
+      const mocks = [createMatchlessSearchMock({ variables: { searchText } })];
+      const rendered = renderQuickAccess({
         mocks,
         sdkMocks: [
           createPimAvailabilityCheckSdkMock(),
-          createPimSearchSdkMock(searchTerm),
+          createPimSearchSdkMock(searchText),
         ],
         flags,
         permissions: {
@@ -1218,13 +1125,13 @@ describe('QuickAccess', () => {
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
-      const searchInput = await waitForElement(() =>
-        rendered.getByTestId('quick-access-search-input')
+      const searchInput = await rendered.findByTestId(
+        'quick-access-search-input'
       );
-      fireEvent.change(searchInput, { target: { value: searchTerm } });
+      fireEvent.change(searchInput, { target: { value: searchText } });
 
       // wait for Dashboard option
-      await waitForElement(() => rendered.getByText('Open Dashboard'));
+      await rendered.findByText('Open Dashboard');
 
       // results should contain "Open Orders"
       expect(rendered.queryByText('Open Orders')).toBeVisible();
@@ -1235,9 +1142,11 @@ describe('QuickAccess', () => {
     describe('when inside a project', () => {
       describe('when project has only one project language', () => {
         it('should not show the option to change the project-data-locale', async () => {
-          const searchTerm = 'setreslan';
-          const mocks = [createMatchlessSearchMock(searchTerm)];
-          const rendered = renderAppWithRedux(<QuickAccess />, {
+          const searchText = 'setreslan';
+          const mocks = [
+            createMatchlessSearchMock({ variables: { searchText } }),
+          ];
+          const rendered = renderQuickAccess({
             project: {
               key: 'test-with-big-data',
               version: 43,
@@ -1269,9 +1178,9 @@ describe('QuickAccess', () => {
                     expiry: { isActive: false },
                   },
                   {
-                    key: searchTerm,
+                    key: searchText,
                     version: 1,
-                    name: searchTerm,
+                    name: searchText,
                     countries: ['de'],
                     currencies: ['EUR'],
                     languages: ['de'],
@@ -1287,21 +1196,17 @@ describe('QuickAccess', () => {
             mocks,
             sdkMocks: [
               createPimAvailabilityCheckSdkMock(),
-              createPimSearchSdkMock(searchTerm),
+              createPimSearchSdkMock(searchText),
             ],
           });
 
           // open quick-access
           fireEvent.keyDown(document.body, { key: 'f' });
-          await waitForElement(() =>
-            rendered.getByTestId('quick-access-search-input')
-          );
+          await rendered.findByTestId('quick-access-search-input');
 
           const searchInput = rendered.getByTestId('quick-access-search-input');
-          fireEvent.change(searchInput, { target: { value: searchTerm } });
-          await waitForElement(() =>
-            rendered.getByText(`Switch to project "${searchTerm}"`)
-          );
+          fireEvent.change(searchInput, { target: { value: searchText } });
+          await rendered.findByText(`Switch to project "${searchText}"`);
 
           expect(rendered.queryByText('Set Resource Language')).toBeNull();
         });
@@ -1312,8 +1217,8 @@ describe('QuickAccess', () => {
 
     describe('when outside of a project', () => {
       it('should not show the option to change the project-data-locale', async () => {
-        const searchTerm = 'setreslang2';
-        const rendered = renderAppWithRedux(<QuickAccess />, {
+        const searchText = 'setreslang2';
+        const rendered = renderQuickAccess({
           project: null,
           user: {
             projects: {
@@ -1332,9 +1237,9 @@ describe('QuickAccess', () => {
                   expiry: { isActive: false },
                 },
                 {
-                  key: searchTerm,
+                  key: searchText,
                   version: 1,
-                  name: searchTerm,
+                  name: searchText,
                   countries: ['de'],
                   currencies: ['EUR'],
                   languages: ['de'],
@@ -1351,15 +1256,11 @@ describe('QuickAccess', () => {
 
         // open quick-access
         fireEvent.keyDown(document.body, { key: 'f' });
-        await waitForElement(() =>
-          rendered.getByTestId('quick-access-search-input')
-        );
+        await rendered.findByTestId('quick-access-search-input');
 
         const searchInput = rendered.getByTestId('quick-access-search-input');
-        fireEvent.change(searchInput, { target: { value: searchTerm } });
-        await waitForElement(() =>
-          rendered.getByText(`Switch to project "${searchTerm}"`)
-        );
+        fireEvent.change(searchInput, { target: { value: searchText } });
+        await rendered.findByText(`Switch to project "${searchText}"`);
 
         expect(rendered.queryByText('Set Resource Language')).toBeNull();
       });
@@ -1368,27 +1269,24 @@ describe('QuickAccess', () => {
 
   describe('feature toggles', () => {
     it('should not find PIM-Search when the feature is toggled off', async () => {
-      const searchTerm = 'Opn PIM Srch';
-      const mocks = [createMatchlessSearchMock(searchTerm)];
-      const rendered = renderAppWithRedux(<QuickAccess />, {
-        permissions: managePermissions,
+      const searchText = 'Opn PIM Srch';
+      const mocks = [createMatchlessSearchMock({ variables: { searchText } })];
+      const rendered = renderQuickAccess({
         mocks,
         sdkMocks: [
           createPimAvailabilityCheckSdkMock(),
-          createPimSearchSdkMock(searchTerm),
+          createPimSearchSdkMock(searchText),
         ],
         flags: { ...flags, pimSearch: false },
       });
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
-      await waitForElement(() =>
-        rendered.getByTestId('quick-access-search-input')
-      );
+      await rendered.findByTestId('quick-access-search-input');
 
       const searchInput = rendered.getByTestId('quick-access-search-input');
-      fireEvent.change(searchInput, { target: { value: searchTerm } });
-      await waitForElement(() => rendered.getByText('Open Discounts'));
+      fireEvent.change(searchInput, { target: { value: searchText } });
+      await rendered.findByText('Open Discounts');
       expect(rendered.queryByText('Open PIM Search')).toBeNull();
       expect(
         rendered.queryByTestId('quick-access-result(go/products/pim-search)')
@@ -1396,27 +1294,24 @@ describe('QuickAccess', () => {
     });
 
     it('should find PIM-Search when the feature is toggled on', async () => {
-      const searchTerm = 'Opn PIM Srch';
-      const mocks = [createMatchlessSearchMock(searchTerm)];
-      const rendered = renderAppWithRedux(<QuickAccess />, {
-        permissions: managePermissions,
+      const searchText = 'Opn PIM Srch';
+      const mocks = [createMatchlessSearchMock({ variables: { searchText } })];
+      const rendered = renderQuickAccess({
         mocks,
         sdkMocks: [
           createPimAvailabilityCheckSdkMock(),
-          createPimSearchSdkMock(searchTerm),
+          createPimSearchSdkMock(searchText),
         ],
         flags: { pimSearch: true },
       });
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
-      await waitForElement(() =>
-        rendered.getByTestId('quick-access-search-input')
-      );
+      await rendered.findByTestId('quick-access-search-input');
 
       const searchInput = rendered.getByTestId('quick-access-search-input');
-      fireEvent.change(searchInput, { target: { value: searchTerm } });
-      await waitForElement(() => rendered.getByText('Open PIM Search'));
+      fireEvent.change(searchInput, { target: { value: searchText } });
+      await rendered.findByText('Open PIM Search');
       expect(rendered.queryByText('Open PIM Search')).toBeVisible();
     });
   });
@@ -1424,47 +1319,35 @@ describe('QuickAccess', () => {
   describe('when searching for a product with enabled pim-search', () => {
     it('should find a product by full-text pim search', async () => {
       const searchText = 'party';
-      const partyParrotId = '7a66d631-0e52-44f8-bb5d-2212839a2519';
+      const productId = '7a66d631-0e52-44f8-bb5d-2212839a2519';
       const mocks = [
-        {
-          request: {
-            query: QuickAccessQuery,
-            variables: {
-              searchText,
-              canViewProducts: true,
-              target: 'ctp',
-              productsWhereClause: `id in ("${partyParrotId}")`,
-              includeProductsByIds: true,
-            },
+        createMatchlessSearchMock({
+          variables: {
+            searchText,
+            productsWhereClause: `id in ("${productId}")`,
+            includeProductsByIds: true,
           },
-          result: {
-            data: {
-              productsByIds: {
-                results: [
-                  {
-                    id: partyParrotId,
-                    masterData: {
-                      staged: {
-                        nameAllLocales: [
-                          { locale: 'en', value: 'Party Parrot' },
-                        ],
-                      },
+          resultData: {
+            productsByIds: {
+              results: [
+                {
+                  id: productId,
+                  masterData: {
+                    staged: {
+                      nameAllLocales: [{ locale: 'en', value: 'Party Parrot' }],
                     },
                   },
-                ],
-              },
-              productById: null,
-              productByKey: null,
-              productByVariantSku: null,
-              productByVariantKey: null,
+                },
+              ],
             },
           },
-        },
+        }),
+        createAccessProductVariantsQueryMock({ variables: { productId } }),
       ];
-      const rendered = renderAppWithRedux(<QuickAccess />, {
-        permissions: managePermissions,
+      const rendered = renderQuickAccess({
         mocks,
         sdkMocks: [
+          createPimAvailabilityCheckSdkMock(),
           createPimAvailabilityCheckSdkMock(),
           {
             action: {
@@ -1491,7 +1374,7 @@ describe('QuickAccess', () => {
               total: 1,
               offset: 0,
               limit: 9,
-              hits: [{ id: partyParrotId, version: 709, relevance: null }],
+              hits: [{ id: productId, version: 709, relevance: null }],
               facets: null,
               suggestions: null,
             },
@@ -1501,23 +1384,19 @@ describe('QuickAccess', () => {
 
       // open quick-access
       fireEvent.keyDown(document.body, { key: 'f' });
-      await waitForElement(() =>
-        rendered.getByTestId('quick-access-search-input')
-      );
+      await rendered.findByTestId('quick-access-search-input');
 
       const searchInput = rendered.getByTestId('quick-access-search-input');
 
       // create first history entry
-      fireEvent.change(searchInput, { target: { value: 'party' } });
-      await waitForElement(() =>
-        rendered.getByText('Show Product "Party Parrot"')
-      );
+      fireEvent.change(searchInput, { target: { value: searchText } });
+      await rendered.findByText('Show Product "Party Parrot"');
 
       expect(
         rendered.queryByTestId(
-          `quick-access-result(go/product-by-search-text/product(${partyParrotId}))`
+          `quick-access-result(go/product-by-search-text/product(${productId}))`
         )
-      ).toHaveStyle(`color: ${customProperties.colorSurface};`);
+      ).toHaveAttribute('aria-current', 'true');
     });
   });
 });

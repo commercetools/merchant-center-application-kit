@@ -12,11 +12,10 @@ type TDemandedActionRight = {
   name: TActionRightName;
 };
 // Data fences
-type TDataFenceType = 'store';
 type TDemandedDataFence = {
   group: string;
   name: string;
-  type: TDataFenceType;
+  type: string;
 };
 type TSelectDataFenceData = (
   demandedDataFenceWithActualValues: TDemandedDataFence & {
