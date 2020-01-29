@@ -34,6 +34,8 @@
       path: '/components/info-modal-page'
     - title: FormModalPage
       path: '/components/form-modal-page'
+    - title: CustomFormModalPage
+      path: '/components/custom-form-modal-page'
     - title: TabularModalPage
       path: '/components/tabular-modal-page'
     - title: UI-Kit
