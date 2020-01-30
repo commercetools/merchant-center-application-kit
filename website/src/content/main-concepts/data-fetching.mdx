@@ -64,7 +64,7 @@ const ChannelDetails = props => (
 export default ChannelDetails;
 ```
 
-That's it, Apollo will then take care of data normalization, caching, etc.
+That's it, Apollo will take care of data normalization, caching, etc.
 
 # REST endpoints
 
@@ -123,4 +123,4 @@ export default connect(
 )(ChannelDetails);
 ```
 
-Ideally, you would want to also handle data normalization, caching etc. The data/state should also be lifted up to the global Redux store, which allows then other components to access the same data.
+Ideally, you would want to handle data normalization, caching etc. The data should also be lifted up to the global Redux store, which allows other components to access the same data afterwards.

@@ -15,8 +15,8 @@ The configuration is defined in a file named `env.json`. The following fields ar
   - `eu` for projects in **Europe**
   - `us` for projects in the **United States**
 - `env`: the environment where the Merchant Center Custom Application is running, usually `production` or `development`
-- `cdnUrl`: the URL where the static assets are stored (see [Serving static assets](/deployment/serving-static-assets))
-- `servedByProxy`: a flag to indicate if the application is running behind the Merchant Center Proxy or not. This is either:
+- `cdnUrl`: the URL where the static assets are stored (see [Serving Static Assets](/deployment/serving-static-assets))
+- `servedByProxy`: a flag to indicate if the application is running behind the Merchant Center proxy or not. This is either:
   - `true` for **production**
   - `false` for **local development**
 
@@ -77,7 +77,7 @@ Additionally, use the `--headers` over the `--csp` CLI option to point to the ne
 
 # `headers.json`
 
-When you deploy your application to a server and domain of your choice, the application will fail to make requests to the [API Gateway](/main-concepts/api-gateway) as the custom domain is not whitelisted. This is why the application can only be accessed through the [Proxy Router](/main-concepts/api-gateway). Setting the `servedByProxy` in the `env.json` is also important.
+When you deploy your application to a server and domain of your choice, the application will fail to make requests to the [API Gateway](/main-concepts/api-gateway) as the custom domain is not whitelisted. This is why the application can only be accessed through the [proxy router](/main-concepts/api-gateway). Setting the `servedByProxy` in the `env.json` is also important.
 
 However, there are additional security measures that prevent requests or scripts to be executed, based on the [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP). You can enhance the policy by whitelisting the domains where the application is hosted.
 To do so, you can specify a `headers.json` file where you configure headers such as the CSP directives. This is important as for example [static assets](/deployment/serving-static-assets) may be served by a CDN that is not whitelisted.

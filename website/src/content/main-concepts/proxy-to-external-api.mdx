@@ -16,8 +16,8 @@ To be able to validate that the request comes from an authenticated user, we imp
 
 Requests to your backend server should be configured as following:
 
-- send the request to `/proxy/forward-to` endpoint of the Merchant Center API Gateway
-- define the original request URL to your backend server as an HTTP header `X-Forward-To`
+- send the request to `/proxy/forward-to` endpoint of the Merchant Center API Gateway.
+- define the original request URL to your backend server as an HTTP header `X-Forward-To`.
 
 ```js
 fetch(`https://mc-api.commercetools.com/proxy/forward-to`, {

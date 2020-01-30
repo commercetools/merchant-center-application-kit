@@ -10,10 +10,10 @@ The Merchant Center API Gateway exposes a `/graphql` endpoint, in addition to th
 
 The following GraphQL schemas are available:
 
-- **commercetools platform projects**: this is the official [GraphQL API](https://docs.commercetools.com/graphql-api.html) for the commercetools platform
-- **commercetools platform administration**: this GraphQL API handles things like managing projects and organizations
-- **Merchant Center users**: this GraphQL API handles things like authentication, users, etc.
-- **Merchant Center settings**: this GraphQL API handles things like UI settings, Custom Applications, etc.
+- **commercetools platform projects**: this is the official [GraphQL API](https://docs.commercetools.com/graphql-api.html) for the commercetools platform.
+- **commercetools platform administration**: this GraphQL API handles tasks like managing projects and organizations.
+- **Merchant Center users**: this GraphQL API handles tasks like authentication, users, etc.
+- **Merchant Center settings**: this GraphQL API handles tasks like UI settings, Custom Applications, etc.
 
 # Request format
 
@@ -21,10 +21,10 @@ Requests to the `/graphql` endpoint require one or more HTTP headers, to determi
 
 - `X-Graphql-Target` (_required_): Specifies the GraphQL server to connect to, either one of:
 
-  - `ctp`: to target the **commercetools platform projects** API
-  - `administration`: to target the **commercetools platform administration** API
-  - `mc`: to target the **Merchant Center users** API
-  - `settings`: to target the **Merchant Center settings** API
+  - `ctp`: to target the **commercetools platform projects** API.
+  - `administration`: to target the **commercetools platform administration** API.
+  - `mc`: to target the **Merchant Center users** API.
+  - `settings`: to target the **Merchant Center settings** API.
 
   These values are available in the `@commercetools-frontend/constants` package as `GRAPHQL_TARGETS` variable.
   When sending queries from React components, you need to pass the value as a `variables.target`. For an example of a fully constructed request, see [Data fetching](/main-concepts/data-fetching).

@@ -2,9 +2,9 @@
 title: Serving Static Assets
 ---
 
-When you start the HTTP server, you need to make a decision where to host **CSS** and **JavaScript** assets. There are two choices:
+When you start the HTTP server, you need to make a decision where to host CSS and JavaScript assets. There are two choices:
 
-- Upload the static assets to a remote CDN (Content Delivery Network) or Cloud Storage (**recommended**).
+- Upload the static assets to a remote CDN (Content Delivery Network) or Cloud Storage (recommended).
 - Keep the static assets on the HTTP server.
 
 We strongly recommend uploading static assets to a **remote CDN or Cloud Storage** if possible. This prevents broken references. A broken reference is when a file is requested by the browser which is no longer found on the server. It often happens during application re-deploys.
@@ -39,4 +39,4 @@ To serve static assets in using the HTTP server, do the following:
 
 - Include the `/dist` directory in the project or in the Docker container.
 - Explicitly enable this option when running the `mc-http-server` by passing the `--use-local-assets` flag.
-- In the `env.json` file, set the `cdnUrl` to the **root domain** where the server is hosted. For example, if the application is hosted at `https://my-custom-app.com`, the `cdnUrl` should be `https://my-custom-app.com`.
+- In the `env.json` file, set the `cdnUrl` to the root domain where the server is hosted. For example, if the application is hosted at `https://my-custom-app.com`, the `cdnUrl` should be `https://my-custom-app.com`.

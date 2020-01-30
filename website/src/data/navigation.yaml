@@ -57,13 +57,13 @@
     - title: Serving Static Assets
       path: '/deployment/serving-static-assets'
     - title: 'Example Deployment With Now v1'
-      path: '/deployment/example-now-v1'
+      path: '/deployment/example-deployment-now-v1'
     - title: 'Example Deployment With Now v2'
-      path: '/deployment/example-now-v2'
+      path: '/deployment/example-deployment-now-v2'
     - title: 'Example Deployment With Firebase'
-      path: '/deployment/example-firebase'
+      path: '/deployment/example-deployment-firebase'
     - title: 'Example Deployment With AWS, S3 And CloudFront'
-      path: '/deployment/example-aws-s3-cloudfront'
+      path: '/deployment/example-deployment-aws-s3-cloudfront'
 - chapter-title: Register applications
   pages:
     - title: Configuring A Custom Application
