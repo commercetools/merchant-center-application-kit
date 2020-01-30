@@ -56,9 +56,13 @@ const CustomFormModalPage = (props: Props) => (
   </ModalPage>
 );
 CustomFormModalPage.displayName = 'CustomFormModalPage';
-CustomFormModalPage.Intl = sharedMessages;
+// Static export of pre-configured form control buttons to easily re-use
+// them in the custom controls.
 CustomFormModalPage.FormPrimaryButton = FormPrimaryButton;
 CustomFormModalPage.FormSecondaryButton = FormSecondaryButton;
 CustomFormModalPage.FormDeleteButton = FormDeleteButton;
+// This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+// The Intl messages can be used for button labels.
+CustomFormModalPage.Intl = sharedMessages;
 
 export default CustomFormModalPage;

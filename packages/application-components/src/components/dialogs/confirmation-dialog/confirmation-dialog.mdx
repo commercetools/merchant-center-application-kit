@@ -35,8 +35,8 @@ Confirmation dialogs are controlled components used to prompt the user to confir
 | `children`                      | `node`                     |    ✅    | -                 | -         | Content rendered within the dialog. If the content is long in height (depending on the screen size) a scrollbar will appear.                                                                                                                                                                                    |
 | `size`                          | `string`                   |          | `m`, `l`, `scale` | `l`       | Horizontal width limit of the dialog card.                                                                                                                                                                                                                                                                      |
 | `zIndex`                        | `number`                   |          | -                 | `1000`    | The `z-index` value to be applied to the overlay container. It is useful if you have stacking modals.                                                                                                                                                                                                           |
-| `labelSecondary`                | `string` \| `Intl message` |    ✅    | -                 | `Cancel`  | The label for the secondary button as a string, or as an Intl-like message (`{ id, defaultMessage }`). The `ConfirmationDialog` exposes a static object `Intl` containing some common Intl messages that are already translated.                                                                                |
-| `labelPrimary`                  | `string` \| `Intl message` |    ✅    | -                 | `Confirm` | The label for the primary button as a string, or as an Intl-like message (`{ id, defaultMessage }`). The `ConfirmationDialog` exposes a static object `Intl` containing some common Intl messages that are already translated.                                                                                  |
+| `labelSecondary`                | `string` \| `Intl message` |    ✅    | -                 | `Cancel`  | The label for the secondary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#confirmationdialogintl).                                                     |
+| `labelPrimary`                  | `string` \| `Intl message` |    ✅    | -                 | `Confirm` | The label for the primary button as a string, or as an Intl message (`{ id, defaultMessage }`). See [Static properties](#confirmationdialogintl).                                                                                  |
 | `onCancel`                      | `function`                 |    ✅    | -                 | -         | Called when the secondary button is clicked.                                                                                                                                                                                                                                                                    |
 | `onConfirm`                     | `function`                 |    ✅    | -                 | -         | Called when the primary button is clicked.                                                                                                                                                                                                                                                                      |
 | `isPrimaryButtonDisabled`       | `boolean`                  |    -     | -                 | false     | Indicates whether the primary button is disabled or not.                                                                                                                                                                                                                                                        |
@@ -48,12 +48,12 @@ Confirmation dialogs are controlled components used to prompt the user to confir
 
 ## `ConfirmationDialog.Intl`
 
-> This export is deprecated. Please import the shared messages from the `@commercetools-frontend/i18n` package.
+This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+The Intl messages can be used for button labels.
 
-Exposes common Intl messages to be used for the secondary/primary buttons
-
-```js
-ConfirmationDialog.Intl.cancel;
-ConfirmationDialog.Intl.confirm;
-// ...
+```jsx
+<ConfirmationDialog
+  // other props...
+  labelSecondary={ConfirmationDialog.Intl.revert}
+/>
 ```
