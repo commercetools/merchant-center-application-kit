@@ -1,8 +1,8 @@
 - chapter-title: Getting started
   pages:
-    - title: What Is A Custom Application?
+    - title: What is a Custom Application?
       path: '/getting-started/what-is-a-custom-application'
-    - title: Installing A Starter Application
+    - title: Installing a Starter Application
       path: '/getting-started/installing-a-starter-application'
     - title: Tooling
       path: '/getting-started/tooling'
@@ -10,10 +10,10 @@
       path: '/support-policy'
 - chapter-title: Development
   pages:
-    - title: Available Scripts
-      path: '/development/available-scripts'
     - title: Folder Structure
       path: '/development/folder-structure'
+    - title: Available Scripts
+      path: '/development/available-scripts'
     - title: Menu Links
       path: '/development/menu-links'
     - title: Styling
@@ -56,21 +56,21 @@
       path: '/deployment/static-server'
     - title: Serving Static Assets
       path: '/deployment/serving-static-assets'
-    - title: 'Example Deployment With Now v1'
+    - title: 'Example Deployment with Now v1'
       path: '/deployment/example-deployment-now-v1'
-    - title: 'Example Deployment With Now v2'
+    - title: 'Example Deployment with Now v2'
       path: '/deployment/example-deployment-now-v2'
-    - title: 'Example Deployment With Firebase'
+    - title: 'Example Deployment with Firebase'
       path: '/deployment/example-deployment-firebase'
-    - title: 'Example Deployment With AWS, S3 And CloudFront'
+    - title: 'Example Deployment with AWS, S3 and CloudFront'
       path: '/deployment/example-deployment-aws-s3-cloudfront'
 - chapter-title: Register applications
   pages:
-    - title: Configuring A Custom Application
+    - title: Configuring a Custom Application
       path: '/register-applications/configuring-a-custom-application'
-    - title: Activating A Custom Application
+    - title: Activating a Custom Application
       path: '/register-applications/activating-a-custom-application'
-    - title: Removing A Custom Application
+    - title: Removing a Custom Application
       path: '/register-applications/removing-a-custom-application'
     - title: Caveats
       path: '/register-applications/caveats'
