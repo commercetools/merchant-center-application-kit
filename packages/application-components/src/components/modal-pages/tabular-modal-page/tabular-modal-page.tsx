@@ -100,9 +100,13 @@ const TabularModalPage = (props: Props) => (
 );
 TabularModalPage.displayName = 'TabularModalPage';
 TabularModalPage.defaultProps = defaultProps;
-TabularModalPage.Intl = sharedMessages;
+// Static export of pre-configured form control buttons to easily re-use
+// them in the custom controls.
 TabularModalPage.FormPrimaryButton = FormPrimaryButton;
 TabularModalPage.FormSecondaryButton = FormSecondaryButton;
 TabularModalPage.FormDeleteButton = FormDeleteButton;
+// This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+// The Intl messages can be used for button labels.
+TabularModalPage.Intl = sharedMessages;
 
 export default TabularModalPage;

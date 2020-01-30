@@ -52,7 +52,8 @@ const FormDialog = (props: Props) => (
 );
 FormDialog.displayName = 'FormDialog';
 FormDialog.defaultProps = defaultProps;
-// Make some default intl messages available to use
+// This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+// The Intl messages can be used for button labels.
 FormDialog.Intl = sharedMessages;
 
 export default FormDialog;

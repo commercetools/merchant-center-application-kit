@@ -56,7 +56,7 @@ import { CustomFormModalPage } from '@commercetools-frontend/application-compone
 
 ## Form Control Buttons
 
-Pre-made form control buttons which can be useful for the most common use cases: Confirm, Cancel, and Delete
+Pre-configured form control buttons to easily re-use them in the custom controls.
 
 ```js
 CustomFormModalPage.FormPrimaryButton = FormPrimaryButton;
@@ -66,10 +66,17 @@ CustomFormModalPage.FormDeleteButton = FormDeleteButton;
 
 ## `CustomFormModalPage.Intl`
 
-Exposes common Intl messages to be used for the secondary/primary buttons
+This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+The Intl messages can be used for button labels.
 
-```js
-CustomFormModalPage.Intl.cancel;
-CustomFormModalPage.Intl.confirm;
-// ...
+```jsx
+<CustomFormModalPage
+  // other props...
+  formControls={
+    <CustomFormModalPage.FormSecondaryButton
+      // other props...
+      label={CustomFormModalPage.Intl.revert}
+    />
+  }
+/>
 ```

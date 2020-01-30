@@ -49,7 +49,7 @@ import { TabularModalPage } from '@commercetools-frontend/application-components
 
 ## Form Control Buttons
 
-Pre-made form control buttons which can be useful for the most common use cases: Confirm, Cancel, and Delete
+Pre-configured form control buttons to easily re-use them in the custom controls.
 
 ```js
 TabularModalPage.FormPrimaryButton = FormPrimaryButton;
@@ -59,12 +59,17 @@ TabularModalPage.FormDeleteButton = FormDeleteButton;
 
 ## `TabularModalPage.Intl`
 
-> This export is deprecated. Please import the shared messages from the `@commercetools-frontend/i18n` package.
+This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+The Intl messages can be used for button labels.
 
-Exposes common Intl messages to be used for the secondary/primary buttons
-
-```js
-TabularModalPage.Intl.cancel;
-TabularModalPage.Intl.confirm;
-// ...
+```jsx
+<TabularModalPage
+  // other props...
+  formControls={
+    <TabularModalPage.FormSecondaryButton
+      // other props...
+      label={TabularModalPage.Intl.revert}
+    />
+  }
+/>
 ```
