@@ -8,7 +8,7 @@ Since the commercetools platform has first-class support for GraphQL, in Merchan
 
 # GraphQL endpoints
 
-To handle requests to the [GraphQL APIs](./graphql) we use the [Apollo GraphQL Client](https://www.apollographql.com/docs/react/), which comes already configured within the [`<ApplicationShell>`](./application-shell).
+To handle requests to the [GraphQL APIs](/main-concepts/graphql) we use the [Apollo GraphQL Client](https://www.apollographql.com/docs/react/), which comes already configured within the [`<ApplicationShell>`](/main-concepts/application-shell).
 
 In the example below, we query for a [Channel](https://docs.commercetools.com/http-api-projects-channels).
 First we define the GraphQL query in a `.graphql` file:
@@ -71,7 +71,7 @@ That's it, Apollo will then take care of data normalization, caching, etc.
 Some endpoints or APIs might not be available as GraphQL, which means that we need to fetch the data using a normal HTTP REST endpoint.
 There are different options here: you can build and send requests manually, using for example the [`fetch`](https://github.github.io/fetch/) library or any HTTP client.
 
-However, we recommend using our own declarative fetching library [`@commercetools-frontend/sdk`](https://www.npmjs.com/package/@commercetools-frontend/sdk), which builds on top of the [JS SDK client](https://commercetools.github.io/nodejs/sdk/api/sdkClient.html) and [Redux](https://redux.js.org/) and is already configured within the [`<ApplicationShell>`](./application-shell).
+However, we recommend using our own declarative fetching library [`@commercetools-frontend/sdk`](https://www.npmjs.com/package/@commercetools-frontend/sdk), which builds on top of the [JS SDK client](https://commercetools.github.io/nodejs/sdk/api/sdkClient.html) and [Redux](https://redux.js.org/) and is already configured within the [`<ApplicationShell>`](/main-concepts/application-shell).
 
 <Info>
 

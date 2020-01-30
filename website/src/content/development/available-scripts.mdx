@@ -1,5 +1,5 @@
 ---
-title: Available scripts
+title: Available Scripts
 ---
 
 To develop Merchant Center Custom Applications we recommend using the [`@commercetools-frontend/mc-scripts`](https://www.npmjs.com/package/@commercetools-frontend/mc-scripts) package.
@@ -12,11 +12,11 @@ It's a command-line interface, inspired by [`react-scripts`](https://www.npmjs.c
 - `mc-scripts build`
 
   This command bundles the application in `production` mode to the `dist/assets` folder.
-  It also creates an `index.html.template` file, which contains references to the generated bundle entry points. This file needs to be compiled to `index.html`, based on runtime values. See the [deployment](./deployment) section for more information.
+  It also creates an `index.html.template` file, which contains references to the generated bundle entry points. This file needs to be compiled to `index.html`, based on runtime values. See the [deployment](/deployment/production-build) section for more information.
 
 - `mc-scripts compile-html`
 
-  This command compiles the `index.html.template` file into an `index.html` file, based on some runtime configuration defined in `env.json`. Additionally, it also generates Content Security Policy headers, including SHA hashes based on the runtime configuration. See the [deployment](./deployment) section for more information.
+  This command compiles the `index.html.template` file into an `index.html` file, based on some runtime configuration defined in `env.json`. Additionally, it also generates Content Security Policy headers, including SHA hashes based on the runtime configuration. See the [deployment](/deployment/production-build) section for more information.
 
   <Info>
 
