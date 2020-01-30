@@ -16,13 +16,17 @@ const RepositoryLinks = () => {
       `}
     >
       <SpacingsInline scale="l" alignItems="center" justifyContent="flex-start">
-        <Link href={siteData.siteMetadata.repositoryUrl}>
+        <Link
+          href={siteData.siteMetadata.repositoryUrl}
+          title="Application Kit repository"
+        >
           <GitHubSvg />
         </Link>
         <Link
-          href={`${siteData.siteMetadata.repositoryUrl}/releases/tag/v${siteData.siteMetadata.currentVersion}`}
+          href={`${siteData.siteMetadata.repositoryUrl}/releases/latest`}
+          title="Latest"
         >
-          {`v${siteData.siteMetadata.currentVersion}`}
+          {siteData.siteMetadata.publishedVersions.latest}
         </Link>
       </SpacingsInline>
     </div>

@@ -5,7 +5,10 @@ const useAdditionalSiteData = () => {
     query GetAdditionalSiteData {
       site {
         siteMetadata {
-          currentVersion
+          publishedVersions {
+            latest
+            next
+          }
           repositoryUrl
         }
       }

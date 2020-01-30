@@ -1,6 +1,11 @@
 /* eslint-disable global-require */
 const isProd = process.env.NODE_ENV === 'production';
 
+const dummyVersions = {
+  latest: 'v0.0.0',
+  next: 'v0.0.0',
+};
+
 module.exports = {
   pathPrefix: '/custom-applications',
   siteMetadata: {
@@ -10,12 +15,12 @@ module.exports = {
     betaLink: '/support-policy',
     repositoryUrl:
       'https://github.com/commercetools/merchant-center-application-kit',
-    currentVersion:
+    publishedVersions:
       // Keep the version fixed in case we build the website for snapshot testing.
       // This way, we avoid invalid snapshots every time we release a new version.
       process.env.BUILD_TARGET === 'percy'
-        ? '0.0.0'
-        : require('../lerna.json').version,
+        ? dummyVersions
+        : require('./versions'),
   },
   plugins: [
     // Pages for React components

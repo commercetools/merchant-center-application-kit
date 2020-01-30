@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "build": "gatsby build --prefix-paths",
-    "prebuild": "rm -rf public/custom-applications",
+    "prebuild": "rm -rf public/custom-applications && ./scripts/get_latest_release.sh",
     "postbuild": "mv public custom-applications && mkdir public && mv custom-applications public/",
-    "start": "gatsby develop",
-    "serve": "gatsby serve"
+    "prestart": "./scripts/get_latest_release.sh",
+    "start": "gatsby develop"
   },
   "dependencies": {
     "@commercetools-docs/gatsby-theme-docs": "1.7.3-canary.2",
