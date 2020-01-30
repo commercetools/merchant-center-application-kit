@@ -5,8 +5,10 @@
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/commercetools/merchant-center-application-kit.git"
+    "url": "https://github.com/commercetools/merchant-center-application-kit.git",
+    "directory": "packages/browser-history"
   },
+  "homepage": "https://docs.commercetools.com/custom-applications",
   "keywords": [
     "javascript",
     "frontend",
