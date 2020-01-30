@@ -27,9 +27,9 @@ const LinksList = styled.ul`
 const SecondaryExternalLink = props => (
   <Link
     {...props}
+    noUnderline={true}
     css={css`
       font-size: ${designSystem.typography.fontSizes.small};
-      text-decoration: none;
       svg {
         width: ${designSystem.dimensions.spacings.m};
         height: ${designSystem.dimensions.spacings.m};
