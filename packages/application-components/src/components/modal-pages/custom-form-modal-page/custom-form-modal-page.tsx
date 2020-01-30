@@ -1,5 +1,6 @@
 import React from 'react';
 import { MessageDescriptor } from 'react-intl';
+import { sharedMessages } from '@commercetools-frontend/i18n';
 import ModalPage from '../internals/modal-page';
 import ModalPageHeader from '../internals/modal-page-header';
 import { ContentWrapper } from '../internals/modal-page.styles';
@@ -60,5 +61,8 @@ CustomFormModalPage.displayName = 'CustomFormModalPage';
 CustomFormModalPage.FormPrimaryButton = FormPrimaryButton;
 CustomFormModalPage.FormSecondaryButton = FormSecondaryButton;
 CustomFormModalPage.FormDeleteButton = FormDeleteButton;
+// This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+// The Intl messages can be used for button labels.
+CustomFormModalPage.Intl = sharedMessages;
 
 export default CustomFormModalPage;

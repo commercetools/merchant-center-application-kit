@@ -3,6 +3,7 @@ import { MessageDescriptor } from 'react-intl';
 import { css } from '@emotion/core';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
+import { sharedMessages } from '@commercetools-frontend/i18n';
 import ModalPage from '../internals/modal-page';
 import ModalPageHeaderTitle from '../internals/modal-page-header-title';
 import { ContentWrapper } from '../internals/modal-page.styles';
@@ -104,5 +105,8 @@ TabularModalPage.defaultProps = defaultProps;
 TabularModalPage.FormPrimaryButton = FormPrimaryButton;
 TabularModalPage.FormSecondaryButton = FormSecondaryButton;
 TabularModalPage.FormDeleteButton = FormDeleteButton;
+// This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+// The Intl messages can be used for button labels.
+TabularModalPage.Intl = sharedMessages;
 
 export default TabularModalPage;

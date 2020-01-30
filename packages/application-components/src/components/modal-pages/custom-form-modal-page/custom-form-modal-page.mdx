@@ -63,3 +63,20 @@ CustomFormModalPage.FormPrimaryButton = FormPrimaryButton;
 CustomFormModalPage.FormSecondaryButton = FormSecondaryButton;
 CustomFormModalPage.FormDeleteButton = FormDeleteButton;
 ```
+
+## `CustomFormModalPage.Intl`
+
+This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+The Intl messages can be used for button labels.
+
+```jsx
+<CustomFormModalPage
+  // other props...
+  formControls={
+    <CustomFormModalPage.FormSecondaryButton
+      // other props...
+      label={CustomFormModalPage.Intl.revert}
+    />
+  }
+/>
+```

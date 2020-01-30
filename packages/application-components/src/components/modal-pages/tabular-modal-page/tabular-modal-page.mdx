@@ -56,3 +56,20 @@ TabularModalPage.FormPrimaryButton = FormPrimaryButton;
 TabularModalPage.FormSecondaryButton = FormSecondaryButton;
 TabularModalPage.FormDeleteButton = FormDeleteButton;
 ```
+
+## `TabularModalPage.Intl`
+
+This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+The Intl messages can be used for button labels.
+
+```jsx
+<TabularModalPage
+  // other props...
+  formControls={
+    <TabularModalPage.FormSecondaryButton
+      // other props...
+      label={TabularModalPage.Intl.revert}
+    />
+  }
+/>
+```

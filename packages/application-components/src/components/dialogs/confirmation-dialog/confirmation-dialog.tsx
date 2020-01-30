@@ -52,5 +52,8 @@ const ConfirmationDialog = (props: Props) => (
 );
 ConfirmationDialog.displayName = 'ConfirmationDialog';
 ConfirmationDialog.defaultProps = defaultProps;
+// This is a convenience proxy export to expose pre-defined Intl messages defined in the `@commercetools-frontend/i18n` package.
+// The Intl messages can be used for button labels.
+ConfirmationDialog.Intl = sharedMessages;
 
 export default ConfirmationDialog;
