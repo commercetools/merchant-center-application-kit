@@ -33,7 +33,7 @@ describe('hasPermission', () => {
       demandedPermission = 'ManageProducts';
       actualPermissions = { canManageProducts: true };
     });
-    it('should return true', () => {
+    it('should indicate the permission the permission matches', () => {
       expect(hasPermission(demandedPermission, actualPermissions)).toBe(true);
     });
   });
@@ -48,7 +48,7 @@ describe('hasPermission', () => {
           canManageProducts: true,
         };
       });
-      it('should return true', () => {
+      it('should indicate the permission the permission matches', () => {
         expect(hasPermission(demandedPermission, actualPermissions)).toBe(true);
       });
     });
@@ -60,7 +60,35 @@ describe('hasPermission', () => {
           canManageProjectSettings: false,
         };
       });
-      it('should return false', () => {
+      it('should indicate that the permission does not match', () => {
+        expect(hasPermission(demandedPermission, actualPermissions)).toBe(
+          false
+        );
+      });
+    });
+  });
+  describe('when a manage permission is demanded', () => {
+    beforeEach(() => {
+      demandedPermission = 'ManageProducts';
+    });
+    describe('when the user has the manage permission for same resource', () => {
+      beforeEach(() => {
+        actualPermissions = {
+          canManageProducts: true,
+        };
+      });
+      it('should indicate the permission the permission matches', () => {
+        expect(hasPermission(demandedPermission, actualPermissions)).toBe(true);
+      });
+    });
+    describe('when the user has view permission for the same resource', () => {
+      beforeEach(() => {
+        actualPermissions = {
+          canViewProducts: false,
+          canManageProjectSettings: false,
+        };
+      });
+      it('should indicate that the permission does not match', () => {
         expect(hasPermission(demandedPermission, actualPermissions)).toBe(
           false
         );
@@ -70,7 +98,7 @@ describe('hasPermission', () => {
 });
 
 describe('hasEveryPermission', () => {
-  it('should return true if every demanded permission match', () => {
+  it('should indicate the permission the permission matches if every demanded permission match', () => {
     expect(
       hasEveryPermissions(['ViewProducts', 'ManageOrders'], {
         canViewProducts: true,
@@ -78,7 +106,7 @@ describe('hasEveryPermission', () => {
       })
     ).toBe(true);
   });
-  it('should return false if at least one demanded permission does not match', () => {
+  it('should indicate that the permission does not match if at least one demanded permission does not match', () => {
     expect(
       hasEveryPermissions(['ViewProducts', 'ManageOrders'], {
         canViewProducts: true,
@@ -89,7 +117,7 @@ describe('hasEveryPermission', () => {
 });
 
 describe('hasSomePermissions', () => {
-  it('should return true if at least one demanded permission matches', () => {
+  it('should indicate the permission the permission matches if at least one demanded permission matches', () => {
     expect(
       hasSomePermissions(['ViewProducts', 'ManageOrders'], {
         canViewProducts: true,
@@ -97,7 +125,7 @@ describe('hasSomePermissions', () => {
       })
     ).toBe(true);
   });
-  it('should return false if none of the demanded permissions match', () => {
+  it('should indicate that the permission does not match if none of the demanded permissions match', () => {
     expect(
       hasSomePermissions(['ViewCustomers'], {
         canViewProducts: true,
@@ -116,7 +144,7 @@ describe('hasActionRight', () => {
       demandedActionRight = { group: 'products', name: 'EditPrices' };
       actualActionRights = { products: { canEditPrices: true } };
     });
-    it('should return true', () => {
+    it('should indicate the permission the permission matches', () => {
       expect(hasActionRight(demandedActionRight, actualActionRights)).toBe(
         true
       );
@@ -128,7 +156,7 @@ describe('hasActionRight', () => {
         demandedActionRight = { group: 'products', name: 'PublishProducts' };
         actualActionRights = { products: { canEditPrices: true } };
       });
-      it('should return false', () => {
+      it('should indicate that the permission does not match', () => {
         expect(hasActionRight(demandedActionRight, actualActionRights)).toBe(
           false
         );
@@ -139,7 +167,7 @@ describe('hasActionRight', () => {
         demandedActionRight = { group: 'orders', name: 'EditPrices' };
         actualActionRights = { products: { canEditPrices: true } };
       });
-      it('should return false', () => {
+      it('should indicate that the permission does not match', () => {
         expect(hasActionRight(demandedActionRight, actualActionRights)).toBe(
           false
         );
@@ -149,7 +177,7 @@ describe('hasActionRight', () => {
 });
 
 describe('hasEveryActionRight', () => {
-  it('should return true if every demanded action rights match', () => {
+  it('should indicate the permission the permission matches if every demanded action rights match', () => {
     expect(
       hasEveryActionRight(
         [
@@ -167,7 +195,7 @@ describe('hasEveryActionRight', () => {
       )
     ).toBe(true);
   });
-  it('should return false if at least one demanded action rights do not match', () => {
+  it('should indicate that the permission does not match if at least one demanded action rights do not match', () => {
     expect(
       hasEveryActionRight(
         [
@@ -188,8 +216,8 @@ describe('hasEveryActionRight', () => {
 });
 
 describe('hasSomeDataFence', () => {
-  describe('user has not datafence permissions', () => {
-    it('should return false', () => {
+  describe('user has not data fence permissions', () => {
+    it('should indicate that the permission does not match', () => {
       expect(
         hasSomeDataFence({
           actualPermissions: null,
@@ -207,8 +235,8 @@ describe('hasSomeDataFence', () => {
     });
   });
 
-  describe('no demanded dataFence exists in actual dataFences', () => {
-    it('should return "false"', () => {
+  describe('no demanded data fence exists in actual data fences', () => {
+    it('should indicate that the data fence does not match', () => {
       expect(
         hasSomeDataFence({
           actualPermissions: null,
@@ -233,8 +261,8 @@ describe('hasSomeDataFence', () => {
       ).toBe(false);
     });
   });
-  describe('some demanded dataFences exist in actual dataFences', () => {
-    it('should return "true"', () => {
+  describe('some demanded data fences exist in actual data fences', () => {
+    it('should indicate that the data fence matches', () => {
       expect(
         hasSomeDataFence({
           actualPermissions: null,
@@ -264,8 +292,8 @@ describe('hasSomeDataFence', () => {
       ).toBe(true);
     });
   });
-  describe('all demanded dataFences exist in actual dataFences', () => {
-    it('should return "true"', () => {
+  describe('all demanded data fences exist in actual data fences', () => {
+    it('should indicate that the data fence matches', () => {
       expect(
         hasSomeDataFence({
           actualPermissions: null,
@@ -290,8 +318,8 @@ describe('hasSomeDataFence', () => {
       ).toBe(true);
     });
   });
-  describe('no value from demanded dataFence exists in actual DataFence values', () => {
-    it('should return "false"', () => {
+  describe('no value from demanded data fence exists in actual data fence values', () => {
+    it('should indicate that the data fence does not match', () => {
       expect(
         hasSomeDataFence({
           actualPermissions: null,
@@ -316,8 +344,8 @@ describe('hasSomeDataFence', () => {
       ).toBe(false);
     });
   });
-  describe('some values from demanded dataFence exist in actual DataFence values', () => {
-    it('should return "true"', () => {
+  describe('some values from demanded data fence exist in actual data fence values', () => {
+    it('should indicate that the data fence matches', () => {
       const hasDF = hasSomeDataFence({
         actualPermissions: null,
         actualDataFences: {
@@ -341,8 +369,8 @@ describe('hasSomeDataFence', () => {
       expect(hasDF).toBe(true);
     });
   });
-  describe('all values from demanded dataFence exist in actual DataFence values', () => {
-    it('should return "true"', () => {
+  describe('all values from demanded data fence exist in actual data fence values', () => {
+    it('should indicate that the data fence matches', () => {
       expect(
         hasSomeDataFence({
           actualPermissions: null,
