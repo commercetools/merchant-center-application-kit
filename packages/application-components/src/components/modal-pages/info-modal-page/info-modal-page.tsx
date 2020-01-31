@@ -1,9 +1,16 @@
 import React from 'react';
-import { MessageDescriptor } from 'react-intl';
 import ModalPage from '../internals/modal-page';
 import ModalPageHeader from '../internals/modal-page-header';
 import { ContentWrapper } from '../internals/modal-page.styles';
 
+// NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
+// However, we need to explicitly define this otherwise the prop-types babel plugin
+// does not recognize the object shape.
+type MessageDescriptor = {
+  id: string;
+  description?: string | object;
+  defaultMessage?: string;
+};
 type Label = string | MessageDescriptor;
 type Props = {
   level?: number;

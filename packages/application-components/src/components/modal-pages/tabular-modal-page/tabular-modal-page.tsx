@@ -1,5 +1,4 @@
 import React from 'react';
-import { MessageDescriptor } from 'react-intl';
 import { css } from '@emotion/core';
 import { customProperties } from '@commercetools-uikit/design-system';
 import Spacings from '@commercetools-uikit/spacings';
@@ -13,6 +12,14 @@ import {
   FormDeleteButton,
 } from '../internals/default-form-buttons';
 
+// NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
+// However, we need to explicitly define this otherwise the prop-types babel plugin
+// does not recognize the object shape.
+type MessageDescriptor = {
+  id: string;
+  description?: string | object;
+  defaultMessage?: string;
+};
 type Label = string | MessageDescriptor;
 
 type Props = {

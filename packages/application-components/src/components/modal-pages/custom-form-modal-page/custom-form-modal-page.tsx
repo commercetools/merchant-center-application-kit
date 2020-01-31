@@ -1,5 +1,4 @@
 import React from 'react';
-import { MessageDescriptor } from 'react-intl';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import ModalPage from '../internals/modal-page';
 import ModalPageHeader from '../internals/modal-page-header';
@@ -11,6 +10,14 @@ import {
   FormDeleteButton,
 } from '../internals/default-form-buttons';
 
+// NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
+// However, we need to explicitly define this otherwise the prop-types babel plugin
+// does not recognize the object shape.
+type MessageDescriptor = {
+  id: string;
+  description?: string | object;
+  defaultMessage?: string;
+};
 type Label = string | MessageDescriptor;
 type Props = {
   level?: number;

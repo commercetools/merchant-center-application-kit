@@ -1,10 +1,18 @@
 import React from 'react';
-import { useIntl, MessageDescriptor, IntlShape } from 'react-intl';
+import { useIntl, IntlShape } from 'react-intl';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import Spacings from '@commercetools-uikit/spacings';
 import filterDataAttributes from '../../../utils/filter-data-attributes';
 
+// NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
+// However, we need to explicitly define this otherwise the prop-types babel plugin
+// does not recognize the object shape.
+type MessageDescriptor = {
+  id: string;
+  description?: string | object;
+  defaultMessage?: string;
+};
 type Label = string | MessageDescriptor;
 type Props = {
   labelSecondary: Label;
