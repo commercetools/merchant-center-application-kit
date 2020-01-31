@@ -113,8 +113,6 @@ match, otherwise the passed fallback component.
   rendered in case the permissions match
   - Note: when a function is passed it is invoked with an object
     containing `isAuthorized` for example `({ isAuthorized }) => <div />`
-- `shouldMatchSomePermissions`: (_optional_) determines if _some_ or _every_
-  requested permission should match (default `false`)
 
 ```jsx
 <RestrictedByPermissions permissions={[PERMISSIONS.ManageOrders]} unauthorizedComponent={Unauthorized}>
