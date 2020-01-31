@@ -344,6 +344,32 @@ describe('hasSomeDataFence', () => {
       ).toBe(true);
     });
   });
+  describe('manage data fences permission requested while only view is applied', () => {
+    it('should indicate that the data fence does not match', () => {
+      expect(
+        hasSomeDataFence({
+          actualPermissions: null,
+          actualDataFences: {
+            store: {
+              orders: {
+                canViewOrders: {
+                  values: ['store-1'],
+                },
+              },
+            },
+          },
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ManageOrders',
+            },
+          ],
+          selectDataFenceData: () => ['store-1'],
+        })
+      ).toBe(false);
+    });
+  });
   describe('no value from demanded data fence exists in actual data fence values', () => {
     it('should indicate that the data fence does not match', () => {
       expect(
