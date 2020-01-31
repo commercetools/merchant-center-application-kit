@@ -64,11 +64,10 @@ type TOptionsForAppliedDataFence = {
   selectDataFenceData?: TSelectDataFenceData;
 };
 
-// Build the permission key from the definition to match it to the format coming
-// from the API.
+// Build the permission key from the definition to match it to the format coming from the API.
+const toCanCase = (permissionName: TPermissionName) => `can${permissionName}`;
 const getIsViewPermission = (demandedPermission: TPermissionName) =>
   demandedPermission.startsWith('View');
-const toCanCase = (permissionName: TPermissionName) => `can${permissionName}`;
 const toManageCase = (permissionName: TPermissionName) =>
   permissionName.replace('View', 'Manage');
 

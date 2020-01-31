@@ -33,7 +33,7 @@ describe('hasPermission', () => {
       demandedPermission = 'ManageProducts';
       actualPermissions = { canManageProducts: true };
     });
-    it('should indicate the permission the permission matches', () => {
+    it('should indicate the permission matches', () => {
       expect(hasPermission(demandedPermission, actualPermissions)).toBe(true);
     });
   });
@@ -48,7 +48,7 @@ describe('hasPermission', () => {
           canManageProducts: true,
         };
       });
-      it('should indicate the permission the permission matches', () => {
+      it('should indicate the permission matches', () => {
         expect(hasPermission(demandedPermission, actualPermissions)).toBe(true);
       });
     });
@@ -77,7 +77,7 @@ describe('hasPermission', () => {
           canManageProducts: true,
         };
       });
-      it('should indicate the permission the permission matches', () => {
+      it('should indicate the permission matches', () => {
         expect(hasPermission(demandedPermission, actualPermissions)).toBe(true);
       });
     });
@@ -98,7 +98,7 @@ describe('hasPermission', () => {
 });
 
 describe('hasEveryPermission', () => {
-  it('should indicate the permission the permission matches if every demanded permission match', () => {
+  it('should indicate the permission matches if every demanded permission matches', () => {
     expect(
       hasEveryPermissions(['ViewProducts', 'ManageOrders'], {
         canViewProducts: true,
@@ -117,7 +117,7 @@ describe('hasEveryPermission', () => {
 });
 
 describe('hasSomePermissions', () => {
-  it('should indicate the permission the permission matches if at least one demanded permission matches', () => {
+  it('should indicate the permission matches if at least one demanded permission matches', () => {
     expect(
       hasSomePermissions(['ViewProducts', 'ManageOrders'], {
         canViewProducts: true,
@@ -125,7 +125,7 @@ describe('hasSomePermissions', () => {
       })
     ).toBe(true);
   });
-  it('should indicate that the permission does not match if none of the demanded permissions match', () => {
+  it('should indicate that the permission does not match if none of the demanded permissions matches', () => {
     expect(
       hasSomePermissions(['ViewCustomers'], {
         canViewProducts: true,
@@ -144,7 +144,7 @@ describe('hasActionRight', () => {
       demandedActionRight = { group: 'products', name: 'EditPrices' };
       actualActionRights = { products: { canEditPrices: true } };
     });
-    it('should indicate the permission the permission matches', () => {
+    it('should indicate the permission matches', () => {
       expect(hasActionRight(demandedActionRight, actualActionRights)).toBe(
         true
       );
@@ -177,7 +177,7 @@ describe('hasActionRight', () => {
 });
 
 describe('hasEveryActionRight', () => {
-  it('should indicate the permission the permission matches if every demanded action rights match', () => {
+  it('should indicate the permission matches if every demanded action rights matches', () => {
     expect(
       hasEveryActionRight(
         [
