@@ -64,9 +64,12 @@ type TOptionsForAppliedDataFence = {
   selectDataFenceData?: TSelectDataFenceData;
 };
 
-// Build the permission key from the definition to match it to the format coming
-// from the API.
+// Build the permission key from the definition to match it to the format coming from the API.
 const toCanCase = (permissionName: TPermissionName) => `can${permissionName}`;
+const getIsViewPermission = (demandedPermission: TPermissionName) =>
+  demandedPermission.startsWith('View');
+const toManageCase = (permissionName: TPermissionName) =>
+  permissionName.replace('View', 'Manage');
 
 // Check that the user permissions match EXACTLY the required permission.
 // The shapes of the arguments are:
@@ -79,8 +82,10 @@ const hasExactPermission = (
   actualPermissions: TPermissions
 ) => actualPermissions[toCanCase(demandedPermission)];
 
-const getIsViewPermission = (demandedPermission: TPermissionName) =>
-  demandedPermission.startsWith('View');
+const getInferredManagePermission = (
+  demandedPermission: TPermissionName,
+  actualPermissions: TPermissions
+) => actualPermissions[toCanCase(toManageCase(demandedPermission))];
 
 // Check that the user permissions match the required MANAGE permission.
 // The shapes of the arguments are:
@@ -96,7 +101,7 @@ const doesManagePermissionInferViewPermission = (
     demandedPermission
   );
   const isViewPermissionInferredByManagePermission = Boolean(
-    actualPermissions[toCanCase(demandedPermission.replace('View', 'Manage'))]
+    getInferredManagePermission(demandedPermission, actualPermissions)
   );
 
   return (
@@ -115,7 +120,7 @@ export const getImpliedPermissions = (
     permission.startsWith('View')
   );
   const impliedPermissions = viewPermissions.filter(viewPermission =>
-    permissions.includes(viewPermission.replace('View', 'Manage'))
+    permissions.includes(toManageCase(viewPermission))
   );
 
   return impliedPermissions;
@@ -313,10 +318,17 @@ export const hasSomeDataFence = (options: TOptionsForAppliedDataFence) => {
       // we try to find if the demanded dataFence is available inside the actual datafences
       const specificActualDataFence = Object.entries(
         actualDataFenceByTypeAndGroup
-      ).find(
-        ([dataFenceName, dataFenceValue]) =>
-          dataFenceValue && dataFenceName === toCanCase(demandedDataFence.name)
-      );
+      ).find(([dataFenceName, dataFenceValue]) => {
+        // Either the manage permission matches or the
+        // a demanded view permission is implied by a manage permission.
+        const doesDataFenceMatchByName =
+          dataFenceName === toCanCase(demandedDataFence.name) ||
+          dataFenceName === toCanCase(toManageCase(demandedDataFence.name));
+
+        const doesDataFenceHaveValue = Boolean(dataFenceValue);
+
+        return doesDataFenceMatchByName && doesDataFenceHaveValue;
+      });
 
       if (!specificActualDataFence) return false;
 

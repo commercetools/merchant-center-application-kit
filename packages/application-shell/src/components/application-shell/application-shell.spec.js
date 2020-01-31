@@ -1142,7 +1142,7 @@ describe('when navbar menu items do not match given data fences', () => {
               value: 'usa',
               type: 'store',
               group: 'orders',
-              name: 'canManageOrders',
+              name: 'canViewOrders',
             },
           ],
         }),
@@ -1162,7 +1162,7 @@ describe('when navbar menu items do not match given data fences', () => {
         {
           type: 'store',
           group: 'orders',
-          name: 'ViewOrders',
+          name: 'ManageOrders',
         },
       ],
     });
