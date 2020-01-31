@@ -40,6 +40,7 @@
     "@babel/runtime-corejs3": "7.8.3",
     "@commercetools-frontend/constants": "15.7.0",
     "@sentry/browser": "5.11.1",
+    "@types/prop-types": "^15.7.3",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
@@ -48,6 +49,7 @@
     "wait-for-expect": "3.0.1"
   },
   "peerDependencies": {
+    "@types/react": "16.x",
     "react": "16.x"
   }
 }

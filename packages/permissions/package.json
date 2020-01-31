@@ -39,6 +39,8 @@
   "dependencies": {
     "@babel/runtime-corejs3": "7.8.3",
     "@commercetools-frontend/application-shell-connectors": "15.9.0",
+    "@types/lodash": "^4.14.149",
+    "@types/prop-types": "^15.7.3",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
     "prop-types": "15.7.2",
@@ -48,6 +50,7 @@
     "react": "16.12.0"
   },
   "peerDependencies": {
+    "@types/react": "16.x",
     "react": "16.x"
   }
 }

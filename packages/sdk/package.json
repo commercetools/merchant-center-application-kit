@@ -45,6 +45,8 @@
     "@commercetools/sdk-client": "2.1.1",
     "@commercetools/sdk-middleware-correlation-id": "2.1.1",
     "@commercetools/sdk-middleware-http": "6.0.4",
+    "@types/node-fetch": "^2.5.4",
+    "@types/prop-types": "^15.7.3",
     "fast-equals": "2.0.0",
     "prop-types": "15.7.2",
     "qss": "2.0.3",
@@ -57,6 +59,8 @@
     "redux-thunk": "2.3.0"
   },
   "peerDependencies": {
+    "@types/react": "16.x",
+    "@types/react-redux": "7.x",
     "react": ">=16.8.0",
     "react-redux": "7.x",
     "redux": "4.x"
