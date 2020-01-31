@@ -112,6 +112,9 @@ const MainBannerConstraint = styled.div`
 const SectionContainer = styled.div`
   box-shadow: ${designSystem.tokens.shadowForPageContent};
   z-index: 1;
+  width: 100%;
+`;
+const Section = styled.div`
   width: calc(100% - ${designSystem.dimensions.spacings.m} * 2);
   max-width: calc(
     ${designSystem.dimensions.widths.marketingContent} -
@@ -201,111 +204,113 @@ const PageMarketingContent = () => {
         </MainBannerConstraint>
       </MainBanner>
       <SectionContainer>
-        <GridContainer>
-          <Card>
-            <SpacingsStack scale="m">
-              <SpacingsStack scale="s">
-                <ScreenCogIcon />
-                <SectionTitle>
-                  <FormattedMessage {...messages.textSectionTitle1} />
-                </SectionTitle>
+        <Section>
+          <GridContainer>
+            <Card>
+              <SpacingsStack scale="m">
+                <SpacingsStack scale="s">
+                  <ScreenCogIcon />
+                  <SectionTitle>
+                    <FormattedMessage {...messages.textSectionTitle1} />
+                  </SectionTitle>
+                </SpacingsStack>
+                <SectionBody>
+                  <FormattedMessage {...messages.textSectionParagraph1} />
+                </SectionBody>
               </SpacingsStack>
-              <SectionBody>
-                <FormattedMessage {...messages.textSectionParagraph1} />
-              </SectionBody>
-            </SpacingsStack>
-          </Card>
-          <Card>
-            <SpacingsStack scale="m">
-              <SpacingsStack scale="s">
-                <ScreenDesignToolIcon />
-                <SectionTitle>
-                  <FormattedMessage {...messages.textSectionTitle2} />
-                </SectionTitle>
+            </Card>
+            <Card>
+              <SpacingsStack scale="m">
+                <SpacingsStack scale="s">
+                  <ScreenDesignToolIcon />
+                  <SectionTitle>
+                    <FormattedMessage {...messages.textSectionTitle2} />
+                  </SectionTitle>
+                </SpacingsStack>
+                <SectionBody>
+                  <FormattedMessage
+                    {...messages.textSectionParagraph2}
+                    values={{
+                      a: getLinkToDesignSystem,
+                    }}
+                  />
+                </SectionBody>
               </SpacingsStack>
-              <SectionBody>
-                <FormattedMessage
-                  {...messages.textSectionParagraph2}
-                  values={{
-                    a: getLinkToDesignSystem,
-                  }}
-                />
-              </SectionBody>
-            </SpacingsStack>
-          </Card>
-          <Card>
-            <SpacingsStack scale="m">
-              <SpacingsStack scale="s">
-                <ScreenBulbIcon />
-                <SectionTitle>
-                  <FormattedMessage {...messages.textSectionTitle3} />
-                </SectionTitle>
+            </Card>
+            <Card>
+              <SpacingsStack scale="m">
+                <SpacingsStack scale="s">
+                  <ScreenBulbIcon />
+                  <SectionTitle>
+                    <FormattedMessage {...messages.textSectionTitle3} />
+                  </SectionTitle>
+                </SpacingsStack>
+                <SectionBody>
+                  <FormattedMessage
+                    {...messages.textSectionParagraph3}
+                    values={{
+                      a: getLinkToOssPackages,
+                    }}
+                  />
+                </SectionBody>
               </SpacingsStack>
-              <SectionBody>
-                <FormattedMessage
-                  {...messages.textSectionParagraph3}
-                  values={{
-                    a: getLinkToOssPackages,
-                  }}
-                />
-              </SectionBody>
-            </SpacingsStack>
-          </Card>
-        </GridContainer>
-        <LinksCard
-          linksData={[
-            {
-              title: 'Documentation',
-              links: data.allNavigationYaml.nodes
-                .filter(node => node.pages && node.pages.length > 0)
-                .map(node => {
-                  const firstChapterPage = node.pages[0];
-                  return {
-                    to: firstChapterPage.path,
-                    label: node.chapterTitle,
-                  };
-                }),
-            },
-            {
-              title: 'Resources',
-              links: [
-                {
-                  to: siteData.siteMetadata.repositoryUrl,
-                  label: 'App-Kit',
-                },
-                {
-                  to: 'https://github.com/commercetools/ui-kit',
-                  label: 'UI-Kit',
-                },
-                {
-                  to: 'https://docs.commercetools.com',
-                  label: 'commercetools platform',
-                },
-              ],
-            },
-            {
-              title: 'Application Kit',
-              links: [
-                {
-                  to: `${siteData.siteMetadata.repositoryUrl}/releases/latest`,
-                  label: `Latest: ${siteData.siteMetadata.publishedVersions.latest}`,
-                },
-                {
-                  to: `${siteData.siteMetadata.repositoryUrl}/releases/tag/${siteData.siteMetadata.publishedVersions.next}`,
-                  label: `Next: ${siteData.siteMetadata.publishedVersions.next}`,
-                },
-                {
-                  to: `${siteData.siteMetadata.repositoryUrl}/blob/master/CONTRIBUTING.md`,
-                  label: 'Contributing',
-                },
-                {
-                  to: `${siteData.siteMetadata.repositoryUrl}/blob/master/LICENSE`,
-                  label: 'MIT license',
-                },
-              ],
-            },
-          ]}
-        />
+            </Card>
+          </GridContainer>
+          <LinksCard
+            linksData={[
+              {
+                title: 'Documentation',
+                links: data.allNavigationYaml.nodes
+                  .filter(node => node.pages && node.pages.length > 0)
+                  .map(node => {
+                    const firstChapterPage = node.pages[0];
+                    return {
+                      to: firstChapterPage.path,
+                      label: node.chapterTitle,
+                    };
+                  }),
+              },
+              {
+                title: 'Resources',
+                links: [
+                  {
+                    to: siteData.siteMetadata.repositoryUrl,
+                    label: 'App-Kit',
+                  },
+                  {
+                    to: 'https://github.com/commercetools/ui-kit',
+                    label: 'UI-Kit',
+                  },
+                  {
+                    to: 'https://docs.commercetools.com',
+                    label: 'commercetools platform',
+                  },
+                ],
+              },
+              {
+                title: 'Application Kit',
+                links: [
+                  {
+                    to: `${siteData.siteMetadata.repositoryUrl}/releases/latest`,
+                    label: `Latest: ${siteData.siteMetadata.publishedVersions.latest}`,
+                  },
+                  {
+                    to: `${siteData.siteMetadata.repositoryUrl}/releases/tag/${siteData.siteMetadata.publishedVersions.next}`,
+                    label: `Next: ${siteData.siteMetadata.publishedVersions.next}`,
+                  },
+                  {
+                    to: `${siteData.siteMetadata.repositoryUrl}/blob/master/CONTRIBUTING.md`,
+                    label: 'Contributing',
+                  },
+                  {
+                    to: `${siteData.siteMetadata.repositoryUrl}/blob/master/LICENSE`,
+                    label: 'MIT license',
+                  },
+                ],
+              },
+            ]}
+          />
+        </Section>
       </SectionContainer>
     </IntlProvider>
   );
