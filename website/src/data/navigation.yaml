@@ -86,7 +86,7 @@
       path: '/main-concepts/graphql'
     - title: Proxy Endpoints
       path: '/main-concepts/proxy-endpoints'
-    - title: Proxy To External API
+    - title: Proxy to External API
       path: '/main-concepts/proxy-to-external-api'
     - title: Data Fetching
       path: '/main-concepts/data-fetching'
