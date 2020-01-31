@@ -1,8 +1,8 @@
 ---
-title: Proxy endpoints
+title: Proxy Endpoints
 ---
 
-The Merchant Center API Gateway exposes different _proxy endpoints_.
+The Merchant Center API Gateway exposes different proxy endpoints.
 
 A proxy endpoint is meant to forward the request to the underlying configured service, while validating the authentication and authorization of the user.
 
@@ -10,11 +10,11 @@ A proxy endpoint is meant to forward the request to the underlying configured se
 
 The following proxy endpoints are available:
 
-- `/proxy/ctp`: Proxies requests to the [commercetools platform HTTP API](https://docs.commercetools.com/http-api.html)
-- `/proxy/ml`: Proxies requests to the [machine learning API](https://docs.commercetools.com/http-api-ml.html)
+- `/proxy/ctp`: proxies requests to the [commercetools platform HTTP API](https://docs.commercetools.com/http-api.html)
+- `/proxy/ml`: proxies requests to the [machine learning API](https://docs.commercetools.com/http-api-ml.html)
 - _other endpoints that are only used for internal services_
 
-In addition to those endpoints, there is a [`/graphql`](./graphql) endpoint that also works as a proxy.
+In addition to those endpoints, there is a [`/graphql`](/main-concepts/graphql) endpoint that also works as a proxy.
 
 # Request format
 

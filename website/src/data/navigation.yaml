@@ -2,7 +2,7 @@
   pages:
     - title: What is a Custom Application?
       path: '/getting-started/what-is-a-custom-application'
-    - title: Installing a starter application
+    - title: Installing a Starter Application
       path: '/getting-started/installing-a-starter-application'
     - title: Tooling
       path: '/getting-started/tooling'
@@ -10,11 +10,11 @@
       path: '/support-policy'
 - chapter-title: Development
   pages:
-    - title: Available scripts
-      path: '/development/available-scripts'
-    - title: Folder structure
+    - title: Folder Structure
       path: '/development/folder-structure'
-    - title: Menu links
+    - title: Available Scripts
+      path: '/development/available-scripts'
+    - title: Menu Links
       path: '/development/menu-links'
     - title: Styling
       path: '/development/styling'
@@ -22,8 +22,12 @@
       path: '/development/testing'
     - title: Translations
       path: '/development/translations'
+    - title: TypeScript
+      path: '/development/typescript'
 - chapter-title: UI Components
   pages:
+    - title: Application Shell
+      path: '/components/application-shell'
     - title: InfoDialog
       path: '/components/info-dialog'
     - title: ConfirmationDialog
@@ -42,32 +46,32 @@
       path: '/components/ui-kit'
 - chapter-title: Deployment
   pages:
-    - title: Production build
+    - title: Production Build
       path: '/deployment/production-build'
-    - title: Runtime configuration
+    - title: Runtime Configuration
       path: '/deployment/runtime-configuration'
-    - title: HTTP server
+    - title: HTTP Server
       path: '/deployment/http-server'
-    - title: Static server
+    - title: Static Server
       path: '/deployment/static-server'
-    - title: Serving static assets
+    - title: Serving Static Assets
       path: '/deployment/serving-static-assets'
-    - title: 'Example: Now v1'
-      path: '/deployment/example-now-v1'
-    - title: 'Example: Now v2'
-      path: '/deployment/example-now-v2'
-    - title: 'Example: Firebase'
-      path: '/deployment/example-firebase'
-    - title: 'Example: AWS - S3 & CloudFront'
-      path: '/deployment/example-aws-s3-cloudfront'
+    - title: 'Example Deployment with Now v1'
+      path: '/deployment/example-deployment-now-v1'
+    - title: 'Example Deployment with Now v2'
+      path: '/deployment/example-deployment-now-v2'
+    - title: 'Example Deployment with Firebase'
+      path: '/deployment/example-deployment-firebase'
+    - title: 'Example Deployment with AWS, S3 and CloudFront'
+      path: '/deployment/example-deployment-aws-s3-cloudfront'
 - chapter-title: Register applications
   pages:
     - title: Configuring a Custom Application
       path: '/register-applications/configuring-a-custom-application'
     - title: Activating a Custom Application
       path: '/register-applications/activating-a-custom-application'
-    - title: Deleting a Custom Application
-      path: '/register-applications/deleting-a-custom-application'
+    - title: Removing a Custom Application
+      path: '/register-applications/removing-a-custom-application'
     - title: Caveats
       path: '/register-applications/caveats'
 - chapter-title: Main concepts
@@ -80,11 +84,11 @@
       path: '/main-concepts/api-gateway'
     - title: GraphQL API
       path: '/main-concepts/graphql'
-    - title: Proxy endpoints
+    - title: Proxy Endpoints
       path: '/main-concepts/proxy-endpoints'
-    - title: Proxy to external API
+    - title: Proxy to External API
       path: '/main-concepts/proxy-to-external-api'
-    - title: Application Shell
-      path: '/main-concepts/application-shell'
-    - title: Data fetching
+    - title: Data Fetching
       path: '/main-concepts/data-fetching'
+    - title: User Permissions
+      path: '/main-concepts/user-permissions'

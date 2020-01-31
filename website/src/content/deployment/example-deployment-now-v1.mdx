@@ -1,5 +1,5 @@
 ---
-title: Example Now v1
+title: Example Deployment with Now v1
 ---
 
 This deployment example refers to the [Now serverless deployment](https://zeit.co/now).
@@ -8,7 +8,7 @@ There are different deployment strategies but we will focus on deployments using
 
 <Warning>
 
-This example refers to `now` version `1`. Version `2` has deprecated those deployment types and is based on **Lambda** functions (or static files) to run the application. See the [Now v2 example](./example-now-v2) for more information.
+This example refers to `now` version `1`. Version `2` has deprecated those deployment types and is based on **Lambda** functions (or static files) to run the application. See the [Now v2 example](/deployment/example-now-v2) for more information.
 
 </Warning>
 
@@ -45,7 +45,7 @@ The first thing to do is to define a `now.json` file to configure the deployment
 
 Some fields may vary based on your setup and requirements (for example `public`, `regions`).
 
-The `files` field determines the list of files for uploading to the cloud servers. The `env.prod.json` file, contains the configuration for **production** use, to differentiate it from the `env.json` used for **development**.
+The `files` field determines the list of files for uploading to the cloud servers. The `env.prod.json` file, contains the configuration for production use, to differentiate it from the `env.json` used for development.
 
 Next, we need to create an `env.prod.json` file with the following JSON:
 
@@ -95,7 +95,7 @@ EXPOSE 3001
 CMD /app/node_modules/.bin/mc-http-server --config /app/env.prod.json --csp /app/csp.json --use-local-assets
 ```
 
-For the sake of the example, the setup includes the static assets within the HTTP server as described [here](./serving-static-assets#serving-assets-using-the-http-server). For **real production use** we recommend uploading static assets to a CDN or Cloud Storage as described [here](./serving-static-assets#serving-assets-on-a-remote-cdn-or-cloud-storage).
+For the sake of the example, the setup includes the static assets within the HTTP server as described [here](/deployment/serving-static-assets#serving-assets-using-the-http-server). For **real production use** we recommend uploading static assets to a CDN or Cloud Storage as described [here](/deployment/serving-static-assets#serving-assets-on-a-remote-cdn-or-cloud-storage).
 
 We also assume that the assets are built first with `yarn build` and then **copied** into the Docker image (`COPY ./dist /app/dist`).
 
@@ -122,6 +122,6 @@ However, if you try to log in, you will get an error:
 
 ![Now login failed](/images/mc-dev-now-login-failed.png)
 
-**This is expected**. The domain `mc-examples-starter.now.sh` **is not allowed by the CORS rules** defined in the [Merchant Center API Gateway](../main-concepts/api-gateway). It's a security measure as the Custom Application should only be served behind the Merchant Center Proxy.
+**This is expected**. The domain `mc-examples-starter.now.sh` **is not allowed by the CORS rules** defined in the [Merchant Center API Gateway](/main-concepts/api-gateway). It's a security measure as the Custom Application should only be served behind the Merchant Center proxy.
 
-Now you're ready to [Register your Custom Application](./register-applications) and start using it!
+Now you're ready to [Register your Custom Application](/deployment/register-applications) and start using it!
