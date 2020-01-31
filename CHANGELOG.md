@@ -1,3 +1,10 @@
+## [16.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v16.0.0...v16.0.1) (2020-01-31)
+
+#### 🐛 Type: Bug
+
+- `application-components`
+  - [#1293](https://github.com/commercetools/merchant-center-application-kit/pull/1293) fix(components): explicitly define intl message type, to generate correct prop-types ([@emmenko](https://github.com/emmenko))
+
 ## [16.0.0](https://github.com/commercetools/merchant-center-application-kit/compare/v15.9.0...v16.0.0) (2020-01-31)
 
 This release introduces some small **breaking changes**, as documented below.
