@@ -216,7 +216,7 @@ describe('hasEveryActionRight', () => {
 });
 
 describe('hasSomeDataFence', () => {
-  describe('user has not data fence permissions', () => {
+  describe('user has no data fence permissions', () => {
     it('should indicate that the permission does not match', () => {
       expect(
         hasSomeDataFence({
@@ -301,6 +301,32 @@ describe('hasSomeDataFence', () => {
             store: {
               orders: {
                 canViewOrders: {
+                  values: ['store-1'],
+                },
+              },
+            },
+          },
+          demandedDataFences: [
+            {
+              type: 'store',
+              group: 'orders',
+              name: 'ViewOrders',
+            },
+          ],
+          selectDataFenceData: () => ['store-1'],
+        })
+      ).toBe(true);
+    });
+  });
+  describe('inferred data fences permission exist in actual data fences', () => {
+    it('should indicate that the data fence matches', () => {
+      expect(
+        hasSomeDataFence({
+          actualPermissions: null,
+          actualDataFences: {
+            store: {
+              orders: {
+                canManageOrders: {
                   values: ['store-1'],
                 },
               },
