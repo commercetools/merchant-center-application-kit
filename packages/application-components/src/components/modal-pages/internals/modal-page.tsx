@@ -1,5 +1,4 @@
 import React from 'react';
-import { MessageDescriptor } from 'react-intl';
 import Modal from 'react-modal';
 import { ClassNames } from '@emotion/core';
 import { PORTALS_CONTAINER_ID } from '@commercetools-frontend/constants';
@@ -34,6 +33,14 @@ const getDefaultParentSelector = () =>
         `#${PORTALS_CONTAINER_ID}`
       ) as HTMLElement);
 
+// NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
+// However, we need to explicitly define this otherwise the prop-types babel plugin
+// does not recognize the object shape.
+type MessageDescriptor = {
+  id: string;
+  description?: string | object;
+  defaultMessage?: string;
+};
 type Label = string | MessageDescriptor;
 type Props = {
   level: number;

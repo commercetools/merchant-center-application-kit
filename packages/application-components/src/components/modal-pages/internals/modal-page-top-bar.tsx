@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { useIntl, MessageDescriptor } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { CloseIcon, AngleLeftIcon } from '@commercetools-uikit/icons';
 import FlatButton from '@commercetools-uikit/flat-button';
 import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
@@ -9,7 +9,7 @@ import Text from '@commercetools-uikit/text';
 import { customProperties } from '@commercetools-uikit/design-system';
 import messages from './messages';
 
-// Component to have a larger the clickable surface
+// Component to have a larger clickable surface
 const LargeIconWrapper = styled.span`
   display: flex;
   align-items: center;
@@ -24,6 +24,14 @@ const LargeIconWrapper = styled.span`
   }
 `;
 
+// NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
+// However, we need to explicitly define this otherwise the prop-types babel plugin
+// does not recognize the object shape.
+type MessageDescriptor = {
+  id: string;
+  description?: string | object;
+  defaultMessage?: string;
+};
 type Label = string | MessageDescriptor;
 type Props = {
   color: 'surface' | 'neutral';

@@ -1,11 +1,18 @@
 import React from 'react';
-import { MessageDescriptor } from 'react-intl';
 import { sharedMessages } from '@commercetools-frontend/i18n';
 import DialogContainer from '../internals/dialog-container';
 import DialogHeader from '../internals/dialog-header';
 import DialogContent from '../internals/dialog-content';
 import DialogFooter from '../internals/dialog-footer';
 
+// NOTE: the `MessageDescriptor` type is exposed by `react-intl`.
+// However, we need to explicitly define this otherwise the prop-types babel plugin
+// does not recognize the object shape.
+type MessageDescriptor = {
+  id: string;
+  description?: string | object;
+  defaultMessage?: string;
+};
 type Label = string | MessageDescriptor;
 type Props = {
   isOpen: boolean;
