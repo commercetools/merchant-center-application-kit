@@ -323,7 +323,7 @@ const PageMarketingTemplate = () => (
       <SEO
         title="Develop applications for the Merchant Center"
         keywords={pkg.keywords}
-        excludeFromSearchIndex={true}
+        excludeFromSearchIndex={false}
       />
       <PageMarketingContent />
     </LayoutMarketing>
