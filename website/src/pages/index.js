@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStaticQuery, graphql, withPrefix } from 'gatsby';
 import styled from '@emotion/styled';
+import { MDXProvider } from '@mdx-js/react';
 import pkg from '../../package.json';
 import {
   SEO,
@@ -20,6 +21,11 @@ import ScreenBulbIcon from '../icons/screen-bulb-icon.svg';
 import MessageBasedOnDesignSystem from './fragments/based-on-design-system.mdx';
 import MessageBuiltOnModernTechnologies from './fragments/built-on-modern-technologies.mdx';
 import MessageZeroConfigDevelopmentTools from './fragments/zero-config-development-tools.mdx';
+
+const SectionLink = props => <Link {...props} noUnderline={true} />;
+const sectionMdxComponents = {
+  a: SectionLink,
+};
 
 const SectionTitle = styled.div`
   color: ${designSystem.colors.light.primary};
@@ -164,43 +170,49 @@ const PageMarketingContent = () => {
       </MainBanner>
       <SectionContainer>
         <Section>
-          <GridContainer>
-            <Card>
-              <SpacingsStack scale="m">
-                <SpacingsStack scale="s">
-                  <ScreenCogIcon />
-                  <SectionTitle>{'Built on modern technologies'}</SectionTitle>
+          <MDXProvider components={sectionMdxComponents}>
+            <GridContainer>
+              <Card>
+                <SpacingsStack scale="m">
+                  <SpacingsStack scale="s">
+                    <ScreenCogIcon />
+                    <SectionTitle>
+                      {'Built on modern technologies'}
+                    </SectionTitle>
+                  </SpacingsStack>
+                  <SectionBody>
+                    <MessageBuiltOnModernTechnologies />
+                  </SectionBody>
                 </SpacingsStack>
-                <SectionBody>
-                  <MessageBuiltOnModernTechnologies />
-                </SectionBody>
-              </SpacingsStack>
-            </Card>
-            <Card>
-              <SpacingsStack scale="m">
-                <SpacingsStack scale="s">
-                  <ScreenDesignToolIcon />
-                  <SectionTitle>
-                    {'Based on a solid Design System'}
-                  </SectionTitle>
+              </Card>
+              <Card>
+                <SpacingsStack scale="m">
+                  <SpacingsStack scale="s">
+                    <ScreenDesignToolIcon />
+                    <SectionTitle>
+                      {'Based on a solid Design System'}
+                    </SectionTitle>
+                  </SpacingsStack>
+                  <SectionBody>
+                    <MessageBasedOnDesignSystem />
+                  </SectionBody>
                 </SpacingsStack>
-                <SectionBody>
-                  <MessageBasedOnDesignSystem />
-                </SectionBody>
-              </SpacingsStack>
-            </Card>
-            <Card>
-              <SpacingsStack scale="m">
-                <SpacingsStack scale="s">
-                  <ScreenBulbIcon />
-                  <SectionTitle>{'Zero config development tools'}</SectionTitle>
+              </Card>
+              <Card>
+                <SpacingsStack scale="m">
+                  <SpacingsStack scale="s">
+                    <ScreenBulbIcon />
+                    <SectionTitle>
+                      {'Zero config development tools'}
+                    </SectionTitle>
+                  </SpacingsStack>
+                  <SectionBody>
+                    <MessageZeroConfigDevelopmentTools />
+                  </SectionBody>
                 </SpacingsStack>
-                <SectionBody>
-                  <MessageZeroConfigDevelopmentTools />
-                </SectionBody>
-              </SpacingsStack>
-            </Card>
-          </GridContainer>
+              </Card>
+            </GridContainer>
+          </MDXProvider>
           <LinksCard
             linksData={[
               {
