@@ -208,11 +208,13 @@ const usePermissions = () => {
 This React hook can then be used across an entire Custom Application.
 
 ```jsx
-const { canManageProducts } = usePermissions();
+const InputField = props => {
+  const { canManageProducts } = usePermissions();
 
-const InputField = props => (
-  <Input
-    disabled={!canManageProducts}
-  />
-);
+  return (
+    <Input
+      disabled={!canManageProducts}
+    />
+  );
+};
 ```
