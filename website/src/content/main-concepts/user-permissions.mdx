@@ -118,13 +118,6 @@ A React component that evaluates the demanded permissions against the user permi
   rendered in case the permissions do not match
 - `render`: (_optional_) a render prop function that should return a React node. The function is called with the named boolean argument `isAuthorized`.
 - `children`: (_optional_) a render prop function that should return a React node. The function is called with the named boolean argument `isAuthorized`.
-  rendered in case the permissions match
-  - Note: when a function is passed it gets invoked with an object
-    containing `isAuthorized` for example `({ isAuthorized }) => <div />`
-- `children`: (_optional_) a function returning an React element or a node to be
-  rendered in case the permissions match
-  - Note: when a function is passed it is invoked with an object
-    containing `isAuthorized` for example `({ isAuthorized }) => <div />`
 
 ### Usage
 
