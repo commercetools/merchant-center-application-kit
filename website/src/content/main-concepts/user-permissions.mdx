@@ -64,9 +64,9 @@ A React hook that evaluates the demanded permissions against the user permission
 
 ### Supported named arguments
 
-- `demandedPermissions`: an array of [general permissions](#general-permissions)
-  be allowed to render
-- `demandedAtionRights`: (_optional_) an array of [action rights](#action-rights)
+- `demandedPermissions`: an array of [general permissions](#general-permissions).
+- `demandedAtionRights`: (_optional_) an array of [action rights](#action-rights).
+
 ### Usage
 
 ```jsx
@@ -108,8 +108,7 @@ export default injectAuthorized([PERMISSIONS.ViewProducts])(
 
 ## `<RestrictedByPermissions>`
 
-A React component that evaluates the demanded permissions against the user permissions and renders the result as a function with the a named argument `isAuthorized`.
-match, otherwise the passed fallback component.
+A React component that evaluates the demanded permissions against the user permissions and renders the result as a function with the named argument `isAuthorized`.
 
 ### Supported props
 
@@ -118,6 +117,7 @@ match, otherwise the passed fallback component.
 - `unauthorizedComponent`: (_optional_) a React component instance to be rendered in case the evaluation of the permissions returns `false`.
   rendered in case the permissions do not match
 - `render`: (_optional_) a render prop function that should return a React node. The function is called with the named boolean argument `isAuthorized`.
+- `children`: (_optional_) a render prop function that should return a React node. The function is called with the named boolean argument `isAuthorized`.
   rendered in case the permissions match
   - Note: when a function is passed it gets invoked with an object
     containing `isAuthorized` for example `({ isAuthorized }) => <div />`
@@ -142,7 +142,7 @@ match, otherwise the passed fallback component.
 
 ## Using a file with constants
 
-It is recommended to store general permissions and action rights used by your application into a `permissions.js` file. This helps to avoid repeating permission names across your code base. Preventing typographical errors while giving an overview of used permissions in an application easily.
+It is recommended to store general permissions and action rights used by your application into a `permissions.js` file. This helps to avoid repeating permission names across your code base and preventing typographical errors while giving an overview of used permissions in an application easily.
 
 ```jsw
 export const ACTION_RIGHTS = {
