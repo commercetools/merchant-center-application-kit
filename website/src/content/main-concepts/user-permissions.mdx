@@ -142,9 +142,9 @@ match, otherwise the passed fallback component.
 
 ## Using a file with constants
 
-It is recommended to store general permissions and action rights used by your application into a `permissions.js` file.
+It is recommended to store general permissions and action rights used by your application into a `permissions.js` file. This helps to avoid repeating permission names across your code base. Preventing typographical errors while giving an overview of used permissions in an application easily.
 
-```js
+```jsw
 export const ACTION_RIGHTS = {
   PublishProducts: { group: 'products', name: 'PublishProducts' },
 };
@@ -155,12 +155,12 @@ export const PERMISSIONS = {
 
 ## Evaluate permissions separately
 
-It is recommended to evaluate each permission separately even if the respective APIs allow specifying an array of general permissions and action rights.
+It is recommended to evaluate each permission separately even if the respective APIs allow specifying an array of general permissions and action rights. Combining different permissions in one hook or component usage can become hard to reason about. Splitting and later joining resulting booleans helps to keep the implications of permissions easier to understand.
 
 ```js
 // Instead of
 const canManageProductsAndViewOrders = useIsAuthorized({
-  demandedPermissions: {PERMISSIONS.ViewOrders, PERMISSIONS.ManageProducts},
+  demandedPermissions: [PERMISSIONS.ViewOrders, PERMISSIONS.ManageProducts],
 });
 
 // Apply the hook twice...
