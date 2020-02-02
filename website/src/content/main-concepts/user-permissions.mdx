@@ -2,19 +2,25 @@
 title: User Permissions
 ---
 
-The Merchant Center allows configuring permissions based on a user’s team. Each teams belong to one organization. While each organization can have as numerous teams and a user can belong to multiple teams across one or different organizations.
+The Merchant Center allows configuring permissions based on a user’s team. Teams belong to an organization and users can be member of multiple teams.
 
-More information about the [User Permission Concepts](https://docs.commercetools.com/merchant-center/user-permissions.html).
+See [User Permission Concepts](https://docs.commercetools.com/merchant-center/user-permissions.html) for more information about the relationships between users, teams, and organizations.
 
 # Types of permissions
 
-The Merchant Center loads and provides different types of permissions to be used within a Custom Application.
+The Merchant Center exposes different types of user permissions that are bound to a project and can be used within a Custom Application code. For example, to restrict access to a view, to prevent updating or deleting certain resources, etc.
 
 ## General permissions
 
-General permissions are bound to a resource and grant either view or manage  access. Whenever a user has manage access the respective view access is granted implicitly.
+General permissions are bound to a resource and grant either **view** or **manage** access.
 
-A general permission is represented as a `String` with a prefix of `View` or `Manage`, followed by one of the following resource names:
+<Info>
+
+A manage access always implies view access as well.
+
+</Info>
+
+A general permission is represented as a **string**, with the resource name prefixed by `View` or `Manage`. The following resource names are currently supported:
 
 - `Products`
 - `Categories`
@@ -28,9 +34,11 @@ A general permission is represented as a `String` with a prefix of `View` or `Ma
 - `ProductTypes`
 - `DeveloperSettings`
 
+Some examples are: `ViewProducts`, `ManageOrders`, etc.
+
 ## Action rights
 
-Action rights can be used to constrain a granted general permission. As manage access to products can be limited by not allowing publishing of products for a team.
+Action rights can be used to refine the general permissions. For example, manage access to products can be limited to exclude publishing.
 
 An action right is represented as an object with the shape `{ group: string, name: string }`. The `group` relates to the permission while the `name` is the action right itself. Currently the following action rights for the `group: 'products'` exist:
 
@@ -44,7 +52,7 @@ An action right is represented as an object with the shape `{ group: string, nam
 
 # Using configured permissions within a Custom Application
 
-The [`permissions`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/permissions/README.md)-package should be used to integrate configured permissions within a Custom Application. It offers React components, higher-order component and a hook.
+The [`@commercetools-frontend/permissions`](https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/permissions/README.md) package should be used to implement and apply the user permissions for the specific parts of the Custom Applications. The package exposes React components and React hooks to make it easy to work with it:
 
 - `useIsAuthorized()`
 - `injectAuthorized()`
@@ -52,13 +60,14 @@ The [`permissions`](https://github.com/commercetools/merchant-center-application
 
 ## `useIsAuthorized(options)`
 
-A React hook to evaluate passed in demanded permissions against the applied ones for the user's team.
+A React hook that evaluates the demanded permissions against the user permissions and returns a `boolean` value. Only the demanded permissions need to be explicitly provided, the user permissions are implicitly read from the application context.
 
-### Supported arguments
+### Supported named arguments
 
-- `demandedPermissions`: an array of `Permission`, requested for the child component to
+- `demandedPermissions`: an array of [general permissions](#general-permissions)
   be allowed to render
-- `demandedAtionRights`: (_optional_) an array of action rights
+- `demandedAtionRights`: (_optional_) an array of [action rights](#action-rights)
+### Usage
 
 ```jsx
 import { PERMISSIONS } from './constants/permissions.js';
@@ -74,13 +83,16 @@ const ExampleComponent = () => {
 
 ## `injectAuthorized(permissions, [options])`
 
-A React higher-order component to inject the evaluation of demanded permission against the applied ones into a base component.
+A React higher-order component that evaluates the demanded permissions against the user permissions and injects the result as a component prop (default to `isAuthorized`).
 
 ### Supported arguments
 
-- `permissions`: an array of demanded general permissions
+- `demandedPermissions`: an array of demanded [general permissions](#general-permissions).
 - `options` (_optional_)
-  - `actionRights`: (_optional_) an array of action rights - if passed both, general permissions and action rights needs to be applied to the user's team
+  - `actionRights`: (_optional_) an array of [action rights](#action-rights).
+- `propName`: (_optional_) the name of the injected prop (default to `isAuthorized`).
+
+### Usage
 
 ```jsx
 const InputField = props => (
@@ -96,16 +108,16 @@ export default injectAuthorized([PERMISSIONS.ViewProducts])(
 
 ## `<RestrictedByPermissions>`
 
-A React component which renders its children if the demanded permissions
+A React component that evaluates the demanded permissions against the user permissions and renders the result as a function with the a named argument `isAuthorized`.
 match, otherwise the passed fallback component.
 
 ### Supported props
 
-- `permissions`: an array of demanded general permissions
-- `actionRights`: (_optional_) an array of demanded action rights
-- `unauthorizedComponent`: (_optional_) a function return an React element to be
+- `permissions`: an array of demanded [general permissions](#general-permissions).
+- `actionRights`: (_optional_) an array of demanded [action rights](#action-rights).
+- `unauthorizedComponent`: (_optional_) a React component instance to be rendered in case the evaluation of the permissions returns `false`.
   rendered in case the permissions do not match
-- `render`: (_optional_) a function returning an React element or a node to be
+- `render`: (_optional_) a render prop function that should return a React node. The function is called with the named boolean argument `isAuthorized`.
   rendered in case the permissions match
   - Note: when a function is passed it gets invoked with an object
     containing `isAuthorized` for example `({ isAuthorized }) => <div />`
@@ -113,6 +125,8 @@ match, otherwise the passed fallback component.
   rendered in case the permissions match
   - Note: when a function is passed it is invoked with an object
     containing `isAuthorized` for example `({ isAuthorized }) => <div />`
+
+### Usage
 
 ```jsx
 <RestrictedByPermissions permissions={[PERMISSIONS.ManageOrders]} unauthorizedComponent={Unauthorized}>
@@ -124,7 +138,7 @@ match, otherwise the passed fallback component.
 </RestrictedByPermissions>
 ```
 
-# Recommendations when working with permissions
+# Best practices
 
 ## Using a file with constants
 
@@ -168,6 +182,8 @@ It is recommended to create a shared module containing a React hook, component, 
 2. Decreases the likelihood of silent bugs due to false configurations
 3. Allows changes in your configuration to easily propagate through your application
 
+For example, define a React hook `usePermissions` that includes evaluations of different permissions used across the application.
+
 ```js
 const usePermissions = () => {
   const canManageProducts = useIsAuthorized({
@@ -191,7 +207,7 @@ const usePermissions = () => {
 
 This React hook can then be used across an entire Custom Application.
 
-```js
+```jsx
 const { canManageProducts } = usePermissions();
 
 const InputField = props => (
