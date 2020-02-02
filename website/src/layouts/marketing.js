@@ -97,7 +97,7 @@ const LayoutMarketing = props => {
         </LogoContainer>
         <LayoutHeader
           siteTitle={siteData.siteMetadata.title}
-          excludeFromSearchIndex={process.env.NODE_ENV === 'production'}
+          excludeFromSearchIndex={false}
           isSearchDialogOpen={isSearchDialogOpen}
           openSearchDialog={openSearchDialog}
           closeSearchDialog={closeSearchDialog}

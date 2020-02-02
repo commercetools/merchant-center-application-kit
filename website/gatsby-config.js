@@ -1,6 +1,4 @@
 /* eslint-disable global-require */
-const isProd = process.env.NODE_ENV === 'production';
-
 const dummyVersions = {
   latest: 'v0.0.0',
   next: 'v0.0.0',
@@ -38,7 +36,7 @@ module.exports = {
       options: {
         websiteKey: 'custom-applications',
         beta: true,
-        excludeFromSearchIndex: isProd,
+        excludeFromSearchIndex: false,
         gaTrackingId: 'UA-38285631-3',
         // Patch the slug creation to get meaningful slugs for the application components
         createNodeSlug: (originalSlug, { node }) => {

@@ -1165,12 +1165,12 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-docs/gatsby-theme-docs@1.7.3":
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.7.3.tgz#6e7ea1b805132c1e32c187cf03d81f5746778c03"
-  integrity sha512-O0NrnwJam2hykKeuZDHq5AdcWDEiP1IKi207ifq3tlbbp1nm3lYNnqNK1QA4sMACEKfTQDRGMiMZgNJddTxwdA==
+"@commercetools-docs/gatsby-theme-docs@1.7.4":
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.7.4.tgz#a5cb2ae313d10648257a66280252f10e13e952a6"
+  integrity sha512-wTbgFBDZ5stbeQcCSVj6fPf7cWMV7Th7jANYgjhNlnQavgZkXEcL92n0Acy2vf98qcusoxsjjJvBeG7HxWp5tQ==
   dependencies:
-    "@commercetools-docs/ui-kit" "1.7.3"
+    "@commercetools-docs/ui-kit" "1.7.4"
     "@commercetools-uikit/card" "10.13.0"
     "@commercetools-uikit/design-system" "10.13.0"
     "@commercetools-uikit/icon-button" "10.13.0"
@@ -1210,10 +1210,10 @@
     rehype-slug "2.0.3"
     remark-emoji "2.0.2"
 
-"@commercetools-docs/ui-kit@1.7.3":
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-1.7.3.tgz#eb7a7ad36cc3d3cba5fd03c06c056a983370e2c3"
-  integrity sha512-wsW4OBDvoHnhxQL/uxGO45wrU/gnNum0Jsb1xd10DTfBf2mcfK0374u5vKNuycQnJQoonWShPfvuZZT0vncZHQ==
+"@commercetools-docs/ui-kit@1.7.4":
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-1.7.4.tgz#579d6355ee1eec19aa26854baf050c7e228fa12d"
+  integrity sha512-4f26DbSCfBOTMX82yDpkzRkkAWpFNqc0VfvaGmQ2X4Cclkg/knCSC4rFo+EDcc8VR7QXdgDZV2wOyiv8qKOUFQ==
   dependencies:
     "@commercetools-uikit/tooltip" "10.13.0"
     lodash.escape "4.0.1"

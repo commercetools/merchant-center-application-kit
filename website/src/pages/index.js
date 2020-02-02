@@ -1,7 +1,7 @@
 import React from 'react';
-import { defineMessages, IntlProvider, FormattedMessage } from 'react-intl';
 import { useStaticQuery, graphql, withPrefix } from 'gatsby';
 import styled from '@emotion/styled';
+import { MDXProvider } from '@mdx-js/react';
 import pkg from '../../package.json';
 import {
   SEO,
@@ -18,49 +18,14 @@ import LinksCard from '../components/links-card';
 import ScreenCogIcon from '../icons/screen-cog-icon.svg';
 import ScreenDesignToolIcon from '../icons/screen-design-tool-icon.svg';
 import ScreenBulbIcon from '../icons/screen-bulb-icon.svg';
+import MessageBasedOnDesignSystem from './fragments/based-on-design-system.mdx';
+import MessageBuiltOnModernTechnologies from './fragments/built-on-modern-technologies.mdx';
+import MessageZeroConfigDevelopmentTools from './fragments/zero-config-development-tools.mdx';
 
-const messages = defineMessages({
-  textSectionTitle1: {
-    id: 'Marketing.textSectionTitle1',
-    defaultMessage: 'Built on modern technologies',
-  },
-  textSectionTitle2: {
-    id: 'Marketing.textSectionTitle2',
-    defaultMessage: 'Based on a solid Design System',
-  },
-  textSectionTitle3: {
-    id: 'Marketing.textSectionTitle3',
-    defaultMessage: 'Zero config development tools',
-  },
-  textSectionParagraph1: {
-    id: 'Marketing.textSectionParagraph1',
-    defaultMessage:
-      'Develop JavaScript applications with React, GraphQL, Webpack and other modern technologies.',
-  },
-  textSectionParagraph2: {
-    id: 'Marketing.textSectionParagraph2',
-    defaultMessage:
-      'Merchant Center Custom Applications are built and designed according to our <a>Design System</a>. It provides rules, patterns and best practices to ease development and focus on the business logic.',
-  },
-  textSectionParagraph3: {
-    id: 'Marketing.textSectionParagraph3',
-    defaultMessage:
-      'Focus more on implementing the right features instead of configuration. Our <a>open source packages</a> provide all the necessary tools and components to get started seamlessly.',
-  },
-});
-const getLinkToDesignSystem = msg => (
-  <Link
-    href="https://github.com/commercetools/ui-kit/blob/master/design-system/materials/internals/TOKENS.md"
-    noUnderline={true}
-  >
-    {msg}
-  </Link>
-);
-const getLinkToOssPackages = msg => (
-  <Link href="/getting-started/tooling" noUnderline={true}>
-    {msg}
-  </Link>
-);
+const SectionLink = props => <Link {...props} noUnderline={true} />;
+const sectionMdxComponents = {
+  a: SectionLink,
+};
 
 const SectionTitle = styled.div`
   color: ${designSystem.colors.light.primary};
@@ -187,7 +152,7 @@ const PageMarketingContent = () => {
     }
   `);
   return (
-    <IntlProvider locale="en" messages={{}}>
+    <>
       <MainBanner>
         <MainBannerConstraint>
           <PageTitle>
@@ -205,57 +170,49 @@ const PageMarketingContent = () => {
       </MainBanner>
       <SectionContainer>
         <Section>
-          <GridContainer>
-            <Card>
-              <SpacingsStack scale="m">
-                <SpacingsStack scale="s">
-                  <ScreenCogIcon />
-                  <SectionTitle>
-                    <FormattedMessage {...messages.textSectionTitle1} />
-                  </SectionTitle>
+          <MDXProvider components={sectionMdxComponents}>
+            <GridContainer>
+              <Card>
+                <SpacingsStack scale="m">
+                  <SpacingsStack scale="s">
+                    <ScreenCogIcon />
+                    <SectionTitle>
+                      {'Built on modern technologies'}
+                    </SectionTitle>
+                  </SpacingsStack>
+                  <SectionBody>
+                    <MessageBuiltOnModernTechnologies />
+                  </SectionBody>
                 </SpacingsStack>
-                <SectionBody>
-                  <FormattedMessage {...messages.textSectionParagraph1} />
-                </SectionBody>
-              </SpacingsStack>
-            </Card>
-            <Card>
-              <SpacingsStack scale="m">
-                <SpacingsStack scale="s">
-                  <ScreenDesignToolIcon />
-                  <SectionTitle>
-                    <FormattedMessage {...messages.textSectionTitle2} />
-                  </SectionTitle>
+              </Card>
+              <Card>
+                <SpacingsStack scale="m">
+                  <SpacingsStack scale="s">
+                    <ScreenDesignToolIcon />
+                    <SectionTitle>
+                      {'Based on a solid Design System'}
+                    </SectionTitle>
+                  </SpacingsStack>
+                  <SectionBody>
+                    <MessageBasedOnDesignSystem />
+                  </SectionBody>
                 </SpacingsStack>
-                <SectionBody>
-                  <FormattedMessage
-                    {...messages.textSectionParagraph2}
-                    values={{
-                      a: getLinkToDesignSystem,
-                    }}
-                  />
-                </SectionBody>
-              </SpacingsStack>
-            </Card>
-            <Card>
-              <SpacingsStack scale="m">
-                <SpacingsStack scale="s">
-                  <ScreenBulbIcon />
-                  <SectionTitle>
-                    <FormattedMessage {...messages.textSectionTitle3} />
-                  </SectionTitle>
+              </Card>
+              <Card>
+                <SpacingsStack scale="m">
+                  <SpacingsStack scale="s">
+                    <ScreenBulbIcon />
+                    <SectionTitle>
+                      {'Zero config development tools'}
+                    </SectionTitle>
+                  </SpacingsStack>
+                  <SectionBody>
+                    <MessageZeroConfigDevelopmentTools />
+                  </SectionBody>
                 </SpacingsStack>
-                <SectionBody>
-                  <FormattedMessage
-                    {...messages.textSectionParagraph3}
-                    values={{
-                      a: getLinkToOssPackages,
-                    }}
-                  />
-                </SectionBody>
-              </SpacingsStack>
-            </Card>
-          </GridContainer>
+              </Card>
+            </GridContainer>
+          </MDXProvider>
           <LinksCard
             linksData={[
               {
@@ -312,7 +269,7 @@ const PageMarketingContent = () => {
           />
         </Section>
       </SectionContainer>
-    </IntlProvider>
+    </>
   );
 };
 PageMarketingContent.displayName = 'PageMarketingContent';
@@ -323,7 +280,7 @@ const PageMarketingTemplate = () => (
       <SEO
         title="Develop applications for the Merchant Center"
         keywords={pkg.keywords}
-        excludeFromSearchIndex={true}
+        excludeFromSearchIndex={false}
       />
       <PageMarketingContent />
     </LayoutMarketing>
