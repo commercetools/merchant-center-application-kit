@@ -178,9 +178,9 @@ const canManageProductsAndViewOrders = canManageProducts && canViewOrders;
 
 It is recommended to create a shared module containing a React hook, component, or higher-order component to share all permission evaluations across your application.
 
-1. It helps not to spread similar configuration across multiple components
-2. Decreases the likelihood of silent bugs due to false configurations
-3. Allows changes in your configuration to easily propagate through your application
+1. It helps not to spread similar configuration across multiple components.
+2. Decreases the likelihood of silent bugs due to false configurations.
+3. Allows changes in your configuration to easily propagate through your application.
 
 For example, define a React hook `usePermissions` that includes evaluations of different permissions used across the application.
 
