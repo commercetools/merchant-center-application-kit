@@ -142,6 +142,11 @@ export const RestrictedApplication = <
     'onRegisterErrorListeners'
   >
 ) => {
+  // TODO: using this hook will subscribe the component to route updates.
+  // This is currently useful for detecting a change in the project key
+  // from URL ("/" --> "/:projectKey").
+  // However, every route change will trigger a re-render. This is probably
+  // ok-ish but we might want to look into a more performant solution.
   const location = useLocation();
   return (
     <FetchUser>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import * as gtm from '../../utils/gtm';
 import ErrorBoundary from '../error-boundary';
 import trackingEvents from './tracking-events';
@@ -98,12 +97,11 @@ const QuickAccessTrigger = (props: Props) => {
       document.removeEventListener('keydown', keyHandler);
     };
   }, [keyHandler]);
-  const location = useLocation();
 
   if (!isVisible) return null;
 
   return (
-    <ErrorBoundary pathname={location.pathname}>
+    <ErrorBoundary>
       <React.Suspense fallback={<ButlerContainer tabIndex={-1} />}>
         <QuickAccess
           pimIndexerState={pimIndexerState}
