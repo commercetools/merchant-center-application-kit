@@ -1165,10 +1165,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-docs/gatsby-theme-docs@1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.7.4.tgz#a5cb2ae313d10648257a66280252f10e13e952a6"
-  integrity sha512-wTbgFBDZ5stbeQcCSVj6fPf7cWMV7Th7jANYgjhNlnQavgZkXEcL92n0Acy2vf98qcusoxsjjJvBeG7HxWp5tQ==
+"@commercetools-docs/gatsby-theme-docs@1.7.5":
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.7.5.tgz#22fd9677b2ced93c64d88182f5b16d34c26de59c"
+  integrity sha512-80bsc4JnJPZk+Iu5+lemaVG767QUwz8yyjMfSCvgVMMlVIZuohHsJWAaQEPUD7fFusTuM4xQ5SHT8xrwavRpjQ==
   dependencies:
     "@commercetools-docs/ui-kit" "1.7.4"
     "@commercetools-uikit/card" "10.13.0"
