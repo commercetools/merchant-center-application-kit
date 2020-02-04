@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route } from 'react-router-dom';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { renderApp, wait } from '../../test-utils';
 import UserQuery from '../fetch-user/fetch-user.mc.graphql';
