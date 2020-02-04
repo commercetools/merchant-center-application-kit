@@ -85,7 +85,7 @@ jobs:
           build: 'yarn template-starter:build'
           start: 'yarn template-starter:start:prod:local'
           wait-on: 'http://localhost:3001'
-          spec: 'cypress/integration/playground/**/*.js'
+          spec: 'cypress/integration/template-starter/**/*.js'
           env: 'CI=true'
           command-prefix: 'percy exec --'
         env:
