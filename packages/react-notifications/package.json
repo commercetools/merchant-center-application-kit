@@ -70,9 +70,7 @@
     "react-router-dom": "5.1.2"
   },
   "peerDependencies": {
-    "@commercetools-uikit/icon-button": "10.x",
-    "@commercetools-uikit/icons": "10.x",
-    "@commercetools-uikit/spacings": "10.x",
+    "@commercetools-frontend/ui-kit": "10.x",
     "@types/react": "16.x",
     "@types/react-dom": "16.x",
     "@types/react-redux": "7.x",
