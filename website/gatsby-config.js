@@ -7,7 +7,7 @@ const dummyVersions = {
 module.exports = {
   pathPrefix: '/custom-applications',
   siteMetadata: {
-    title: 'Custom applications',
+    title: 'Custom Applications',
     description: 'Develop applications for the Merchant Center',
     author: 'commercetools',
     betaLink: '/support-policy',
