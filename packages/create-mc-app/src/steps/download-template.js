@@ -1,3 +1,4 @@
+const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const execSync = require('child_process').execSync;
@@ -50,13 +51,26 @@ module.exports = function downloadTemplate({
     tagOrBranchVersion
   );
 
+  const sanitizedProjectDirectoryPath = projectDirectoryPath
+    // Escape white spaces
+    .replace(/ /g, '\\ ');
   try {
-    execSync(`mv ${templateFolderPath} ${projectDirectoryPath}`, {
+    execSync(`mv ${templateFolderPath} ${sanitizedProjectDirectoryPath}`, {
       stdio: 'inherit',
     });
   } catch (error) {
     throw new Error(
-      `Could not copy template "${templateName}" into "${projectDirectoryPath}"`
+      `Could not copy template "${templateName}" into "${sanitizedProjectDirectoryPath}"`
+    );
+  }
+
+  const templatePackageJsonPath = path.join(
+    projectDirectoryPath,
+    'package.json'
+  );
+  if (!fs.existsSync(templatePackageJsonPath)) {
+    throw new Error(
+      `Unable to verify that the template application has a package.json at "${templatePackageJsonPath}"`
     );
   }
 };
