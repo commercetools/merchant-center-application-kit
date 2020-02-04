@@ -136,7 +136,7 @@ describe('when route does not contain a project key (e.g. /account)', () => {
     });
   });
 });
-describe('when user fist visits "/" with no projectKey defined in localStorage', () => {
+describe('when user first visits "/" with no projectKey defined in localStorage', () => {
   let operations;
   beforeEach(() => {
     operations = mocksForMc.createMockOperations();
