@@ -16,7 +16,7 @@ import gql from 'graphql-tag';
 import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-import { Switch, Route } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
 import {
   renderApp,
   renderAppWithRedux,

@@ -44,6 +44,9 @@
     "@commercetools-frontend/constants": "16.0.0",
     "@commercetools-frontend/notifications": "16.0.0",
     "@commercetools-frontend/sentry": "16.0.0",
+    "@commercetools-uikit/icon-button": "^10.13.0",
+    "@commercetools-uikit/icons": "^10.13.0",
+    "@commercetools-uikit/spacings": "^10.13.0",
     "@emotion/core": "10.0.27",
     "@emotion/styled": "10.0.27",
     "@types/history": "^4.7.4",
@@ -58,21 +61,14 @@
     "reselect": "4.0.0"
   },
   "devDependencies": {
-    "@commercetools-uikit/icon-button": "10.13.0",
-    "@commercetools-uikit/icons": "10.13.0",
-    "@commercetools-uikit/spacings": "10.13.0",
     "@testing-library/react": "9.4.0",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-intl": "3.4.0",
     "react-redux": "7.1.3",
-    "react-router": "5.1.2",
     "react-router-dom": "5.1.2"
   },
   "peerDependencies": {
-    "@commercetools-uikit/icon-button": "10.x",
-    "@commercetools-uikit/icons": "10.x",
-    "@commercetools-uikit/spacings": "10.x",
     "@types/react": "16.x",
     "@types/react-dom": "16.x",
     "@types/react-redux": "7.x",
@@ -82,7 +78,6 @@
     "react-dom": ">=16.8.0",
     "react-intl": "3.x",
     "react-redux": "7.x",
-    "react-router": "5.x",
     "react-router-dom": "5.x"
   }
 }
