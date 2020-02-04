@@ -12,7 +12,7 @@ To handle requests to the [GraphQL APIs](/main-concepts/graphql) we use the buil
 
 <Info>
 
-The Apollo Client is already pre-configured within the [`<ApplicationShell>`](/main-concepts/application-shell) to connect to the `/graphql` endpoint of the [Merchant Center API Gateway](/main-concepts/api-gatway). You don't need to configure it on your own, unless you need to connect to an **external** GraphQL API (see [#connecting-to-an-external-graphql-api]).
+The Apollo Client is already pre-configured within the [`<ApplicationShell>`](/main-concepts/application-shell) to connect to the `/graphql` endpoint of the [Merchant Center API Gateway](/main-concepts/api-gatway). You don't need to configure it on your own, unless you need to connect to an **external** GraphQL API (see [Connecting to an external GraphQL API](#connecting-to-an-external-graphql-api)).
 
 </Info>
 
@@ -74,7 +74,7 @@ That's it, Apollo will take care of data normalization, caching, etc.
 
 ## Connecting to an external GraphQL API
 
-In case you have your own GraphQL API, in addition to the commercetools GraphQL APIs, that is specific to your Custom Application business requirements, you want to be able to connect to it.
+In case your Custom Application needs to connect to an external GraphQL API, in addition to the commercetools GraphQL APIs, you can't use the default Apollo Client.
 
 As mentioned in the section above, the `<ApplicationShell>` has the Apollo Client pre-configured, which points to the `/graphql` endpoint of the [Merchant Center API Gateway](/main-concepts/api-gatway). The Apollo Client can only be configured to **one URL**, which means that for your external GraphQL API you need to **create a new client**.
 
@@ -120,7 +120,7 @@ const HelloWorld = () => {
 
 Some endpoints or APIs might not be available as GraphQL but as a standard HTTP REST endpoint instead.
 
-To do so, you can use any HTTP client of your choice, for example the [`fetch`](https://github.github.io/fetch/) library. See [authenticating requests](/main-concepts/authentication).
+To fetch the data, you can use any HTTP client of your choice, for example the [`fetch`](https://github.github.io/fetch/) library. See [authenticating requests](/main-concepts/authentication).
 
 However, commercetools provides a declarative fetching library [`@commercetools-frontend/sdk`](https://www.npmjs.com/package/@commercetools-frontend/sdk), which builds on top of the [JS SDK client](https://commercetools.github.io/nodejs/sdk/api/sdkClient.html) and [Redux](https://redux.js.org/)
 
@@ -149,7 +149,7 @@ const fetchChannelById = id =>
   });
 ```
 
-Then we can use the `<Sdk.Get>` component to send the request and render the result:
+To send the request and render the result, one option is using the `<Sdk.Get>` component:
 
 ```jsx
 // channel-details.js
@@ -171,7 +171,7 @@ const ChannelDetails = props => (
 export default ChannelDetails;
 ```
 
-Alternatively, you can dispatch and manage the action creator on your own, if you don't want to use the `<Sdk.Get>` component:
+Alternatively, you can dispatch and manage the action creator on your own if you don't want to use the `<Sdk.Get>` component:
 
 ```jsx
 // channel-details.js
