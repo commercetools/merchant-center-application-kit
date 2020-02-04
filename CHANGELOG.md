@@ -1,3 +1,23 @@
+## [16.0.2](https://github.com/commercetools/merchant-center-application-kit/compare/v16.0.1...v16.0.2) (2020-02-04)
+
+#### 🐛 Type: Bug
+
+- `application-components`, `application-shell`, `react-notifications`
+  - [#1306](https://github.com/commercetools/merchant-center-application-kit/pull/1306) [#1308](https://github.com/commercetools/merchant-center-application-kit/pull/1308) fix: use ui-kit packages as dependency with ranged version ([@emmenko](https://github.com/emmenko))
+- `create-mc-app`
+  - [#1305](https://github.com/commercetools/merchant-center-application-kit/pull/1305) fix(create-mc-app): escape white spaces in project path ([@emmenko](https://github.com/emmenko))
+- `application-shell`
+  - [#1300](https://github.com/commercetools/merchant-center-application-kit/pull/1300) fix(app-shell): to read project key from url again when location changes ([@emmenko](https://github.com/emmenko))
+- `application-shell`, `permissions`
+  - [#1294](https://github.com/commercetools/merchant-center-application-kit/pull/1294) fix(permissions): to match inferred data fence (view when manage) ([@tdeekens](https://github.com/tdeekens))
+
+#### 🖥 Type: Website
+
+- [#1302](https://github.com/commercetools/merchant-center-application-kit/pull/1302) docs(website): improve documentation around data fetching ([@emmenko](https://github.com/emmenko))
+- [#1301](https://github.com/commercetools/merchant-center-application-kit/pull/1301) docs(website): fix title case, add basic info about ui-kit ([@emmenko](https://github.com/emmenko))
+- [#1299](https://github.com/commercetools/merchant-center-application-kit/pull/1299) chore(website): update to theme 1.7.5 ([@emmenko](https://github.com/emmenko))
+- [#1296](https://github.com/commercetools/merchant-center-application-kit/pull/1296) feat(website): enable search ([@emmenko](https://github.com/emmenko))
+
 ## [16.0.1](https://github.com/commercetools/merchant-center-application-kit/compare/v16.0.0...v16.0.1) (2020-01-31)
 
 #### 🐛 Type: Bug
