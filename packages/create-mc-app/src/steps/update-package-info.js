@@ -10,11 +10,11 @@ module.exports = function changePackageName({
 }) {
   logger.info(`📝 Updating package.json...`);
 
+  const packageJsonPath = path.join(projectDirectoryPath, 'package.json');
+
   // Change the package name based on the given project directory name
   const appPackageJson = JSON.parse(
-    fs.readFileSync(path.join(projectDirectoryPath, 'package.json'), {
-      encoding: 'utf8',
-    })
+    fs.readFileSync(packageJsonPath, { encoding: 'utf8' })
   );
   const updatedAppPackageJson = Object.assign({}, appPackageJson, {
     version: '1.0.0',
@@ -26,7 +26,7 @@ module.exports = function changePackageName({
     description: '',
   });
   fs.writeFileSync(
-    path.join(projectDirectoryPath, 'package.json'),
+    packageJsonPath,
     JSON.stringify(updatedAppPackageJson, null, 2) + os.EOL,
     { encoding: 'utf8' }
   );
