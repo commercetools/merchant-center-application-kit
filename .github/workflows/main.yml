@@ -74,6 +74,9 @@ jobs:
         env:
           NODE_ENV: test
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_PLAYGROUND }}
+          CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
+          CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
+          CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
 
       - name: Running End-to-End tests for Starter template application
         uses: cypress-io/github-action@v1
@@ -88,6 +91,9 @@ jobs:
         env:
           NODE_ENV: test
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_STARTER }}
+          CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
+          CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
+          CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
 
       - name: Uploading Cypress artifacts
         # Test run video was always captured, so this action uses "always()" condition
