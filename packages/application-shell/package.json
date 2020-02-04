@@ -124,6 +124,7 @@
     "wait-for-observables": "1.0.3"
   },
   "peerDependencies": {
+    "@commercetools-frontend/ui-kit": "10.x",
     "@testing-library/react": "9.x",
     "@types/prop-types": "15.x",
     "@types/react": "16.x",
