@@ -26,7 +26,6 @@ import {
   ApplicationNavbarMenuMock,
   ApplicationNavbarSubmenuMock,
 } from '../../../../../graphql-test-utils';
-import selectProjectKeyFromUrl from '../../utils/select-project-key-from-url';
 import { createApolloClient } from '../../configure-apollo';
 import { STORAGE_KEYS } from '../../constants';
 import { PROJECT_EXTENSIONS } from '../../feature-toggles';
@@ -34,7 +33,6 @@ import ApplicationShellProvider from '../application-shell-provider';
 import ApplicationShell from './application-shell';
 
 jest.mock('@commercetools-frontend/sentry');
-jest.mock('../../utils/select-project-key-from-url');
 
 const createTestProps = props => ({
   environment: {
@@ -122,7 +120,7 @@ describe('when rendering', () => {
     await rendered.findByText('Application name: my-app');
   });
 });
-describe('when route does not contain a project key', () => {
+describe('when route does not contain a project key (e.g. /account)', () => {
   beforeEach(() => {
     createGraphqlMockServer(xhrMock, {
       operationsByTarget: { mc: mocksForMc.createMockOperations() },
@@ -136,6 +134,25 @@ describe('when route does not contain a project key', () => {
       expect(rendered.history.location.pathname).toBe('/account');
       expect(rendered.queryByTestId('left-navigation')).not.toBeInTheDocument();
     });
+  });
+});
+describe('when user first visits "/" with no projectKey defined in localStorage', () => {
+  let operations;
+  beforeEach(() => {
+    operations = mocksForMc.createMockOperations();
+    createGraphqlMockServer(xhrMock, {
+      operationsByTarget: { mc: operations },
+    });
+  });
+  it('should not render the NavBar first, then redirect to "/:projectKey" and render the NavBar', async () => {
+    const rendered = renderApp();
+    await wait(() => {
+      // Redirect "/" -> "/:projectKey"
+      expect(rendered.history.location.pathname).toBe(
+        `/${operations.FetchProject.project.key}`
+      );
+    });
+    expect(rendered.queryByTestId('left-navigation')).toBeInTheDocument();
   });
 });
 describe('when user has no default project', () => {
@@ -456,9 +473,6 @@ describe('when switching project', () => {
     createGraphqlMockServer(xhrMock, {
       operationsByTarget: { mc: operations },
     });
-    selectProjectKeyFromUrl.mockReturnValue(
-      operations.FetchLoggedInUser.me.defaultProjectKey
-    );
   });
   it('should render app for new project', async () => {
     const rendered = renderApp(
@@ -643,9 +657,6 @@ describe('when clicking on navbar menu toggle', () => {
     createGraphqlMockServer(xhrMock, {
       operationsByTarget: { mc: operations },
     });
-    selectProjectKeyFromUrl.mockReturnValue(
-      operations.FetchLoggedInUser.me.defaultProjectKey
-    );
   });
   it('should expand and collapse menu', async () => {
     const rendered = renderApp();
@@ -706,9 +717,6 @@ describe('navbar menu links interactions', () => {
       createGraphqlMockServer(xhrMock, {
         operationsByTarget: { mc: operations },
       });
-      selectProjectKeyFromUrl.mockReturnValue(
-        operations.FetchLoggedInUser.me.defaultProjectKey
-      );
     });
     it('should render links with all the correct state attributes', async () => {
       const navbarSubmenuMock = ApplicationNavbarSubmenuMock.build();
@@ -745,9 +753,6 @@ describe('navbar menu links interactions', () => {
       createGraphqlMockServer(xhrMock, {
         operationsByTarget: { mc: mcOperations, proxy: proxyOperations },
       });
-      selectProjectKeyFromUrl.mockReturnValue(
-        mcOperations.FetchLoggedInUser.me.defaultProjectKey
-      );
     });
     it('should render links with all the correct state attributes', async () => {
       const rendered = renderApp(null, {
@@ -787,9 +792,6 @@ describe('navbar menu links interactions', () => {
           settings: settingsOperations,
         },
       });
-      selectProjectKeyFromUrl.mockReturnValue(
-        mcOperations.FetchLoggedInUser.me.defaultProjectKey
-      );
     });
     it('should render links with all the correct state attributes', async () => {
       const rendered = renderApp(null, {
@@ -822,9 +824,6 @@ describe('when navbar menu items are disabled', () => {
     createGraphqlMockServer(xhrMock, {
       operationsByTarget: { mc: operations },
     });
-    selectProjectKeyFromUrl.mockReturnValue(
-      operations.FetchLoggedInUser.me.defaultProjectKey
-    );
   });
   it('should not render disabled menu items', async () => {
     const navbarSubmenuMock = ApplicationNavbarSubmenuMock.build();
@@ -866,9 +865,6 @@ describe('when navbar menu items are hidden', () => {
     createGraphqlMockServer(xhrMock, {
       operationsByTarget: { mc: operations },
     });
-    selectProjectKeyFromUrl.mockReturnValue(
-      operations.FetchLoggedInUser.me.defaultProjectKey
-    );
   });
   it('should not render hidden menu items', async () => {
     const navbarSubmenuMock = ApplicationNavbarSubmenuMock.build({
@@ -912,9 +908,6 @@ describe('when navbar menu items match given permissions', () => {
     createGraphqlMockServer(xhrMock, {
       operationsByTarget: { mc: operations },
     });
-    selectProjectKeyFromUrl.mockReturnValue(
-      operations.FetchLoggedInUser.me.defaultProjectKey
-    );
   });
   it('should render item', async () => {
     const navbarMock = ApplicationNavbarMenuMock.build({
@@ -950,9 +943,6 @@ describe('when navbar menu items do not match given permissions', () => {
     createGraphqlMockServer(xhrMock, {
       operationsByTarget: { mc: operations },
     });
-    selectProjectKeyFromUrl.mockReturnValue(
-      operations.FetchLoggedInUser.me.defaultProjectKey
-    );
   });
   it('should not render item', async () => {
     const navbarMock = ApplicationNavbarMenuMock.build({
@@ -999,9 +989,6 @@ describe('when navbar menu items match given action rights', () => {
     createGraphqlMockServer(xhrMock, {
       operationsByTarget: { mc: operations },
     });
-    selectProjectKeyFromUrl.mockReturnValue(
-      operations.FetchLoggedInUser.me.defaultProjectKey
-    );
   });
   it('should render item', async () => {
     const navbarMock = ApplicationNavbarMenuMock.build({
@@ -1045,9 +1032,6 @@ describe('when navbar menu items do not match given action rights', () => {
     createGraphqlMockServer(xhrMock, {
       operationsByTarget: { mc: operations },
     });
-    selectProjectKeyFromUrl.mockReturnValue(
-      operations.FetchLoggedInUser.me.defaultProjectKey
-    );
   });
   it('should not render item', async () => {
     const navbarMock = ApplicationNavbarMenuMock.build({
@@ -1097,9 +1081,6 @@ describe('when navbar menu items match given data fences', () => {
     createGraphqlMockServer(xhrMock, {
       operationsByTarget: { mc: operations },
     });
-    selectProjectKeyFromUrl.mockReturnValue(
-      operations.FetchLoggedInUser.me.defaultProjectKey
-    );
   });
   it('should render item', async () => {
     const navbarMock = ApplicationNavbarMenuMock.build({
@@ -1151,9 +1132,6 @@ describe('when navbar menu items do not match given data fences', () => {
     createGraphqlMockServer(xhrMock, {
       operationsByTarget: { mc: operations },
     });
-    selectProjectKeyFromUrl.mockReturnValue(
-      operations.FetchLoggedInUser.me.defaultProjectKey
-    );
   });
   it('should not render item', async () => {
     const navbarMock = ApplicationNavbarMenuMock.build({

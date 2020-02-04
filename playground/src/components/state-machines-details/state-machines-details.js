@@ -99,7 +99,7 @@ const StateMachinesDetails = props => {
               />
               <Spacings.Stack scale="xs">
                 <Text.Headline as="h2">
-                  {data.name ? data.name[dataLocale] : 'n/a'}
+                  {(data.name && data.name[dataLocale]) || 'n/a'}
                 </Text.Headline>
                 <Text.Detail>{data.key}</Text.Detail>
               </Spacings.Stack>
@@ -112,9 +112,9 @@ const StateMachinesDetails = props => {
                   <Text.Body>{'Type'}</Text.Body>
                   <Text.Body>{data.type}</Text.Body>
                   <Text.Body>{'Built In'}</Text.Body>
-                  <Text.Body>{data.builtIn ? <CheckBoldIcon /> : ''}</Text.Body>
+                  <span>{data.builtIn ? <CheckBoldIcon /> : ''}</span>
                   <Text.Body>{'Initial'}</Text.Body>
-                  <Text.Body>{data.initial ? <CheckBoldIcon /> : ''}</Text.Body>
+                  <span>{data.initial ? <CheckBoldIcon /> : ''}</span>
                 </Grid>
               </Constraints.Horizontal>
             </Spacings.Stack>
