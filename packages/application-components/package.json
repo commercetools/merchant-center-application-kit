@@ -69,6 +69,7 @@
     "react-intl": "3.4.0"
   },
   "peerDependencies": {
+    "@commercetools-frontend/ui-kit": "10.x",
     "@types/react": "16.x",
     "@types/react-dom": "16.x",
     "react": ">=16.8.0",
