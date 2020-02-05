@@ -96,7 +96,7 @@ jobs:
           CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
 
       - name: Uploading Cypress artifacts
-        # Test run video was always captured, so this action uses "always()" condition
+        # Test run video was always captured because the action was using "always()" condition
         uses: actions/upload-artifact@v1
         if: failure()
         with:
