@@ -23,6 +23,8 @@
     "format:graphql": "prettier --write --parser graphql '**/*.graphql'",
     "start": "yarn playground:start",
     "prerelease": "yarn auth && yarn build && yarn typecheck",
+    "prerelease:alpha": "yarn prerelease",
+    "prerelease:canary": "yarn prerelease",
     "release": "lerna publish --exact --dist-tag next",
     "release:alpha": "lerna publish --exact --dist-tag alpha --no-git-tag-version --no-push",
     "release:canary": "lerna publish --exact --dist-tag canary --canary --preid canary --yes",
