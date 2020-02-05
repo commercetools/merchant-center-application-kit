@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Read .nvmrc
         run: echo ::set-output name=NVMRC::$(cat .nvmrc)
@@ -108,3 +108,29 @@ jobs:
         run: ./scripts/release_canary.sh
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  install_template_starter:
+    needs: build_lint_and_test
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+        node: [10, 12]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Installing and building template starter
+        run: ./scripts/install_template.sh
+        env:
+          TEMPLATE_NAME: starter
