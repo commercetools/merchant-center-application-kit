@@ -114,8 +114,7 @@ A React component that evaluates the demanded permissions against the user permi
 
 - `permissions`: an array of demanded [general permissions](#general-permissions).
 - `actionRights`: (_optional_) an array of demanded [action rights](#action-rights).
-- `unauthorizedComponent`: (_optional_) a React component instance to be rendered in case the evaluation of the permissions returns `false`.
-  rendered in case the permissions do not match
+- `unauthorizedComponent`: (_optional_) a React component instance to be rendered in case the evaluation of the permissions returns `false`. This happens the permissions do not match.
 - `render`: (_optional_) a render prop function that should return a React node. The function is called with the named boolean argument `isAuthorized`.
 - `children`: (_optional_) a render prop function that should return a React node. The function is called with the named boolean argument `isAuthorized`.
 
@@ -131,9 +130,9 @@ A React component that evaluates the demanded permissions against the user permi
 </RestrictedByPermissions>
 ```
 
-# Best practices
+## Best practices
 
-## Using a file with constants
+### Using a file with constants
 
 It is recommended to store general permissions and action rights used by your application into a `permissions.js` file. This helps to avoid repeating permission names across your code base and preventing typographical errors while giving an overview of used permissions in an application easily.
 
@@ -146,7 +145,7 @@ export const PERMISSIONS = {
 }
 ```
 
-## Evaluate permissions separately
+### Evaluate permissions separately
 
 It is recommended to evaluate each permission separately even if the respective APIs allow specifying an array of general permissions and action rights. Combining different permissions in one hook or component usage can become hard to reason about. Splitting and later joining resulting booleans helps to keep the implications of permissions easier to understand.
 
@@ -167,13 +166,13 @@ const canViewOrders = useIsAuthorized({
 const canManageProductsAndViewOrders = canManageProducts && canViewOrders;
 ```
 
-## Co-locate all evaluations in a shared module
+### Co-locate all evaluations in a shared module
 
 It is recommended to create a shared module containing a React hook, component, or higher-order component to share all permission evaluations across your application.
 
-1. It helps not to spread similar configuration across multiple components.
-2. Decreases the likelihood of silent bugs due to false configurations.
-3. Allows changes in your configuration to easily propagate through your application.
+- It helps not to spread similar configuration across multiple components.
+- Decreases the likelihood of silent bugs due to false configurations.
+- Allows changes in your configuration to easily propagate through your application.
 
 For example, define a React hook `usePermissions` that includes evaluations of different permissions used across the application.
 
