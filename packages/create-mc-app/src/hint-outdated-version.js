@@ -1,17 +1,27 @@
 const semver = require('semver');
-const execSync = require('child_process').execSync;
-const pkg = require('../../package.json');
-const logger = require('../logger');
+const execa = require('execa');
 
-const currentVersion = pkg.version;
-
-module.exports = function hintOutdatedVersion() {
+module.exports = function hintOutdatedVersion(currentVersion) {
   try {
     const packageInfoForTagLatest = JSON.parse(
-      execSync(`npm view @commercetools-frontend/create-mc-app --json`)
+      execa.sync(
+        'npm',
+        ['view', '@commercetools-frontend/create-mc-app', '--json'],
+        {
+          encoding: 'utf-8',
+          stdio: 'ignore',
+        }
+      )
     );
     const packageInfoForTagNext = JSON.parse(
-      execSync(`npm view @commercetools-frontend/create-mc-app@next --json`)
+      execa.sync(
+        'npm',
+        ['view', '@commercetools-frontend/create-mc-app@next', '--json'],
+        {
+          encoding: 'utf-8',
+          stdio: 'ignore',
+        }
+      )
     );
 
     const hasBeenReleastedInLatestTag = semver.gt(
@@ -33,7 +43,7 @@ module.exports = function hintOutdatedVersion() {
       .join(', ');
 
     if (hintNewerVersions.length > 0) {
-      logger.note(`New version available! ${hintNewerVersions}`);
+      console.log(`New version available! ${hintNewerVersions}`);
     }
   } catch (error) {
     // Ignore errors, as this function should not affect the exit code of the command

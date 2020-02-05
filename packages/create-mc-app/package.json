@@ -24,9 +24,10 @@
     "create-mc-app": "./bin/create-mc-app.js"
   },
   "dependencies": {
+    "execa": "4.0.0",
+    "listr": "0.14.3",
     "mri": "1.1.4",
-    "semver": "7.1.1",
-    "signale": "1.4.0"
+    "semver": "7.1.1"
   },
   "engines": {
     "node": ">=8",
