@@ -25,7 +25,7 @@
     "prerelease": "yarn auth && yarn build && yarn typecheck",
     "release": "lerna publish --exact --dist-tag next",
     "release:alpha": "lerna publish --exact --dist-tag alpha --no-git-tag-version --no-push",
-    "release:canary": "lerna publish --exact --dist-tag canary --canary --preid canary --yes",
+    "release:canary": "lerna publish --exact --dist-tag canary --canary --preid canary --yes --force-publish \"*\"",
     "release:from-next-to-latest": "lerna exec --no-bail --no-private --no-sort --stream -- '[ -n \"$(npm v . dist-tags.next)\" ] && npm dist-tag add ${LERNA_PACKAGE_NAME}@$(npm v . dist-tags.next) latest'",
     "test": "jest --config jest.test.config.js",
     "test:watch": "jest --config jest.test.config.js --watch",
