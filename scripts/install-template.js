@@ -2,25 +2,29 @@ const fs = require('fs');
 const path = require('path');
 const shelljs = require('shelljs');
 
-const templateName = process.env.TEMPLATE_NAME;
+const matchingPackages = /^@commercetools-frontend\/(?!ui-kit)(.*)/;
+const applicationName = 'my-starter-app';
+const rootPath = path.join(__dirname, '..');
+const tarballsDistPath = path.join(rootPath, 'dist-tarballs');
+const sandboxPath = path.join(rootPath, '..', 'sandbox-installation-template');
+const binaryPath = path.join(sandboxPath, 'node_modules/.bin/create-mc-app');
+const applicationPath = path.join(sandboxPath, applicationName);
 
+const templateName = process.env.TEMPLATE_NAME;
 if (!templateName) {
   throw new Error('Missing required environment variable "TEMPLATE_NAME"');
+}
+
+if (!fs.existsSync(tarballsDistPath)) {
+  throw new Error(
+    'The dist-tarballs folder does not exist. Please run the build-tarballs.js script before this.'
+  );
 }
 
 const branchName =
   process.env.GITHUB_EVENT_NAME === 'pull_request'
     ? process.env.GITHUB_HEAD_REF
     : 'master';
-
-const matchingPackages = /^@commercetools-frontend\/(?!ui-kit)(.*)/;
-
-const applicationName = 'my-starter-app';
-const rootPath = path.join(__dirname, '..');
-const sandboxPath = path.join(rootPath, '..', 'sandbox-installation-template');
-const tarballsDistPath = path.join(rootPath, 'dist-tarballs');
-const binaryPath = path.join(sandboxPath, 'node_modules/.bin/create-mc-app');
-const applicationPath = path.join(sandboxPath, applicationName);
 
 console.log('Cleaning up sandbox folder');
 shelljs.rm('-rf', sandboxPath);
