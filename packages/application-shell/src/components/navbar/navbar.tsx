@@ -393,7 +393,7 @@ type ApplicationMenuProps = {
   applicationLocale: string;
   projectKey: string;
   disabledMenuItems?: string[];
-  useFullRedirectsForLinks?: boolean;
+  useFullRedirectsForLinks: boolean;
   onMenuItemClick?: MenuItemLinkProps['onClick'];
 };
 const ApplicationMenu = (props: ApplicationMenuProps) => {
@@ -569,6 +569,10 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
     DEV_ONLY__loadNavbarMenuConfig: props.DEV_ONLY__loadNavbarMenuConfig,
   });
   const disabledMenuItems = props.environment.disabledMenuItems;
+  const useFullRedirectsForLinks = Boolean(
+    props.environment.useFullRedirectsForLinks
+  );
+
   const menuVisibilities = useApplicationContext(
     context => context.menuVisibilities
   );
@@ -595,6 +599,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
                 applicationLocale={props.applicationLocale}
                 projectKey={props.projectKey}
                 disabledMenuItems={disabledMenuItems}
+                useFullRedirectsForLinks={useFullRedirectsForLinks}
               />
             );
           })}
