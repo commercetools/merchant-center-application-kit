@@ -1,3 +1,19 @@
+## [16.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.0.2...v16.1.0) (2020-02-06)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1314](https://github.com/commercetools/merchant-center-application-kit/pull/1314) fix(application-menu): pass `useFullRedirectsForLinks` to ApplicationMenu ([@islam3zzat](https://github.com/islam3zzat))
+
+#### ✍️ Type: Documentation
+
+- [#1292](https://github.com/commercetools/merchant-center-application-kit/pull/1292) docs(website): add first draft of user permissions ([@tdeekens](https://github.com/tdeekens))
+
+#### 💅 Type: Enhancement
+
+- `create-mc-app`
+  - [#1312](https://github.com/commercetools/merchant-center-application-kit/pull/1312) refactor(create-mc-app): to run tasks using listr output ([@emmenko](https://github.com/emmenko))
+
 ## [16.0.2](https://github.com/commercetools/merchant-center-application-kit/compare/v16.0.1...v16.0.2) (2020-02-04)
 
 #### 🐛 Type: Bug
