@@ -11,7 +11,10 @@ const pkg = require('../package.json');
 const currentVersion = pkg.version;
 
 async function execute() {
-  const flags = mri(process.argv.slice(2), { alias: { help: ['h'] } });
+  const flags = mri(process.argv.slice(2), {
+    alias: { help: ['h'] },
+    default: { 'skip-install': false },
+  });
   const commands = flags._;
 
   if (commands.length === 0 || (flags.help && commands.length === 0)) {
@@ -22,9 +25,10 @@ async function execute() {
 
   Options:
 
-    --template <name>                (optional) The name of the template to install [default "starter"]
-                                     Available options: ["starter"]
-    --template-version <version>     (optional) The version of the template to install [default "master"]
+    --template <name>               (optional) The name of the template to install [default "starter"]
+                                    Available options: ["starter"]
+    --template-version <version>    (optional) The version of the template to install [default "master"]
+    --skip-install                  (optional) Skip installing the dependencies after cloning the template [default "false"]
     `);
     process.exit(0);
   }
@@ -33,11 +37,13 @@ async function execute() {
   console.log('');
   const options = parseArguments(flags);
 
-  const taskList = new Listr([
-    tasks.downloadTemplate(options),
-    tasks.updatePackageInfo(options),
-    tasks.installDependencies(options),
-  ]);
+  const taskList = new Listr(
+    [
+      tasks.downloadTemplate(options),
+      tasks.updatePackageInfo(options),
+      !flags['skip-install'] && tasks.installDependencies(options),
+    ].filter(Boolean)
+  );
 
   await taskList.run();
   const useYarn = shouldUseYarn();
@@ -49,6 +55,9 @@ async function execute() {
   console.log('');
   console.log(`To get started:`);
   console.log(`$ cd ${options.projectDirectoryName}`);
+  if (flags['skip-install']) {
+    console.log(`$ ${useYarn ? 'yarn' : 'npm'} install`);
+  }
   console.log(`$ ${useYarn ? 'yarn' : 'npm'} start`);
   console.log('');
   console.log(
