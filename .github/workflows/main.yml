@@ -111,71 +111,86 @@ jobs:
       - name: Preparing tarballs of packages for testing templates installation
         run: node ./scripts/build-tarballs.js
 
-      - name: Uploading tarball artifacts
-        uses: actions/upload-artifact@v1
-        with:
-          name: dist-tarballs
-          path: dist-tarballs
-
-  install_template_starter:
-    needs: build_lint_and_test
-
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [macos-latest, windows-latest]
-        node: [10, 12]
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - uses: actions/download-artifact@v1
-        with:
-          name: dist-tarballs
-          path: dist-tarballs
-
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-
-      - name: Installing shelljs globally
-        run: yarn add global shelljs
-
+      # TODO: in the future we want to extract this step into a separate job to be able
+      # to test this in multiple environments (macOS, Window) and with different node
+      # versions (10, 12). This can be done using the action strategy matrix.
+      # However, in order to do that, we need to be able to persist the tarballs between
+      # jobs. This can be done by using the upload/download artifacts actions.
+      # However, at this time there is no option to clean up the artifacts automatically
+      # after the workflow ends, and the artifacts will stay for 90 days.
+      # Some related issues:
+      # - https://github.com/actions/upload-artifact/issues/5
+      # - https://github.com/actions/upload-artifact/issues/45
       - name: Installing and building template starter
         run: node ./scripts/install-template.js
         env:
           TEMPLATE_NAME: starter
 
-      - name: Fetching workflow artifacts
-        uses: octokit/request-action@v2.x
-        if: always()
-        id: get_workflow_artifacts
-        with:
-          route: GET /repos/:owner/:repository/actions/runs/:run_id/artifacts
-          owner: commercetools
-          repository: ${{ github.repository }}
-          run_id: ${{ github.run_id }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Uploading tarball artifacts
+  #       uses: actions/upload-artifact@v1
+  #       with:
+  #         name: dist-tarballs
+  #         path: dist-tarballs
 
-      - name: Parsing result to get the artifact_id
-        uses: gr2m/get-json-paths-action@v1.x
-        if: always()
-        id: get_artifact_id
-        with:
-          json: ${{ steps.get_workflow_artifacts.outputs.data }}
-          artifact_id: "artifacts[0].id"
+  # install_template_starter:
+  #   needs: build_lint_and_test
 
-      - name: Deleting workflow artifact
-        uses: octokit/request-action@v2.x
-        if: always()
-        with:
-          route: DELETE /repos/:owner/:repository/actions/artifacts/:artifact_id
-          owner: commercetools
-          repository: ${{ github.repository }}
-          artifact_id: ${{ steps.get_artifact_id.outputs.artifact_id }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #   runs-on: ${{ matrix.os }}
+
+  #   strategy:
+  #     matrix:
+  #       os: [macos-latest, windows-latest]
+  #       node: [10, 12]
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+
+  #     - uses: actions/download-artifact@v1
+  #       with:
+  #         name: dist-tarballs
+  #         path: dist-tarballs
+
+  #     - name: Setup node
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: ${{ matrix.node }}
+
+  #     - name: Installing shelljs globally
+  #       run: yarn add global shelljs
+
+  #     - name: Installing and building template starter
+  #       run: node ./scripts/install-template.js
+  #       env:
+  #         TEMPLATE_NAME: starter
+
+  #     - name: Fetching workflow artifacts
+  #       uses: octokit/request-action@v2.x
+  #       if: always()
+  #       id: get_workflow_artifacts
+  #       with:
+  #         route: GET /repos/:owner/:repository/actions/runs/:run_id/artifacts
+  #         owner: commercetools
+  #         repository: ${{ github.repository }}
+  #         run_id: ${{ github.run_id }}
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  #     - name: Parsing result to get the artifact_id
+  #       uses: gr2m/get-json-paths-action@v1.x
+  #       if: always()
+  #       id: get_artifact_id
+  #       with:
+  #         json: ${{ steps.get_workflow_artifacts.outputs.data }}
+  #         artifact_id: "artifacts[0].id"
+
+  #     - name: Deleting workflow artifact
+  #       uses: octokit/request-action@v2.x
+  #       if: always()
+  #       with:
+  #         route: DELETE /repos/:owner/:repository/actions/artifacts/:artifact_id
+  #         owner: commercetools
+  #         repository: ${{ github.repository }}
+  #         artifact_id: ${{ steps.get_artifact_id.outputs.artifact_id }}
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
