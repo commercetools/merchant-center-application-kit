@@ -141,6 +141,9 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - name: Installing shelljs globally
+        run: yarn add global shelljs
+
       - name: Installing and building template starter
         run: node ./scripts/install-template.js
         env:
