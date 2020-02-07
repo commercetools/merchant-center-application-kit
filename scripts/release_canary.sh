@@ -26,7 +26,7 @@ EOF
   git status
 
   # Release package only if lerna detected some changes in packages
-  if yarn run lerna changed &> /dev/null; then
+  if yarn run lerna changed; then
     echo "Releasing canary version"
     yarn release:canary
   else
