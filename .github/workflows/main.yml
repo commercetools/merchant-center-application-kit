@@ -8,7 +8,11 @@ on:
   push:
     branches:
     - master
+    paths-ignore:
+    - 'CHANGELOG.md'
   pull_request:
+    paths-ignore:
+    - 'CHANGELOG.md'
 
 jobs:
   build_lint_and_test:
