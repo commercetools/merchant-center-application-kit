@@ -12704,7 +12704,7 @@
   },
   "extensions": {
     "graphql-config": {
-      "source": "https://mc-api.commercetools.com/graphql",
+      "source": "https://mc-api.europe-west1.gcp.commercetools.com/graphql",
       "timestamp": "Tue Dec 31 2019 16:44:28 GMT+0100 (Central European Standard Time)"
     }
   }

@@ -20,7 +20,7 @@ Requests to your backend server should be configured as following:
 - define the original request URL to your backend server as an HTTP header `X-Forward-To`.
 
 ```js
-fetch(`https://mc-api.commercetools.com/proxy/forward-to`, {
+fetch(`https://mc-api.europe-west1.gcp.commercetools.com/proxy/forward-to`, {
   method: 'GET',
   headers: {
     Accept: 'application/json',
@@ -56,7 +56,7 @@ const jwksRsa = require('jwks-rsa');
 const app = express();
 
 // The issuer refers to the Merchant Center API Gateway URL.
-const issuer = 'https://mc-api.commercetools.com';
+const issuer = 'https://mc-api.europe-west1.gcp.commercetools.com';
 // The audience refers to the forwarded target URL (same value as in `X-Forward-To` header)
 const audience = 'https://my-custom-app.com/foo/bar';
 

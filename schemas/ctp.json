@@ -58592,7 +58592,7 @@
   },
   "extensions": {
     "graphql-config": {
-      "source": "https://mc-api.commercetools.com/graphql",
+      "source": "https://mc-api.europe-west1.gcp.commercetools.com/graphql",
       "timestamp": "Fri Jan 24 2020 11:39:35 GMT+0100 (Central European Standard Time)"
     }
   }

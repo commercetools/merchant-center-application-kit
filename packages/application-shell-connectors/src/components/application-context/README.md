@@ -43,7 +43,7 @@ The following are common fields defined in `env.json`. However, each application
 
 - `applicationName`: the name of the application (usually the same as in the `package.json`)
 - `frontendHost`: the host where the Merchant Center application is running (e.g. `mc.commercetools.com`)
-- `mcApiUrl`: the API URL of the Merchant Center (`https://mc-api.commercetools.com` for projects in `EU` and `https://mc-api.commercetools.co` for projects in `US`)
+- `mcApiUrl`: the API URL of the Merchant Center (`https://mc-api.europe-west1.gcp.commercetools.com` for projects in `EU` and `https://mc-api.us-central1.gcp.commercetools.com` for projects in `US`)
 - `location`: the location where the Merchant Center is running, usually `eu` or `us`
 - `env`: the environment where the Merchant Center is running, usually `production` or `staging`
 - `cdnUrl`: the URL where the static assets are stored

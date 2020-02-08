@@ -83,6 +83,8 @@ module.exports = (env, options) => {
       ),
       'connect-src': [
         "'self'",
+        'mc-api.europe-west1.gcp.commercetools.com',
+        'mc-api.us-central1.gcp.commercetools.com',
         'mc-api.commercetools.com',
         'mc-api.commercetools.co',
         'app.launchdarkly.com',

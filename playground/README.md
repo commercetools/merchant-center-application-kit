@@ -42,7 +42,7 @@ A project for developing a Merchant Center Application usually consists of the f
 - `env.json` contains runtime configuration available as a global state `window.app`. The object has to be passed to the `<ApplicationShell>` as `environment` prop. The object can contain any configuration specific to the application, plus the following **required** fields:
   - `applicationName`: the name of the application (usually the same as in`package.json`)
   - `frontendHost`: the host where the Merchant Center application is running (e.g. `mc.commercetools.com`)
-  - `mcApiUrl`: the API URL of the Merchant Center (`https://mc-api.commercetools.com` for projects in `EU` and `https://mc-api.commercetools.co` for projects in `US`)
+  - `mcApiUrl`: the API URL of the Merchant Center (`https://mc-api.europe-west1.gcp.commercetools.com` for projects in `EU` and `https://mc-api.us-central1.gcp.commercetools.com` for projects in `US`)
   - `location`: the location where the Merchant Center is running, usually `eu` or `us`
   - `env`: the environment where the Merchant Center is running, usually `production` or `staging`
   - `cdnUrl`: the URL where the static assets are stored
@@ -74,8 +74,8 @@ The Merchant Center runs on 2 different _data centers_: one in `EU` and one in `
 
 The **Merchant Center API** is available at the following domains:
 
-- for `EU`: `https://mc-api.commercetools.com`
-- for `US`: `https://mc-api.commercetools.co`
+- for `EU`: `https://mc-api.europe-west1.gcp.commercetools.com`
+- for `US`: `https://mc-api.us-central1.gcp.commercetools.com`
 
 The Merchant Center API mostly works as an **API Gateway** and exposes several entry points, like:
 
