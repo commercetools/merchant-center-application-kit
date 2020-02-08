@@ -44,6 +44,11 @@ jobs:
           # to be cloned. Using 50 seems like a good balance to start with.
           fetch-depth: 50
 
+      # https://github.com/actions/checkout#fetch-all-tags
+      - name: Fetch all tags (for canary releases)
+        if: github.ref == 'refs/heads/master'
+        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+
       - name: Read .nvmrc
         run: echo ::set-output name=NVMRC::$(cat .nvmrc)
         id: nvm
