@@ -108,7 +108,7 @@
     "react-required-if": "1.0.3",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
-    "tiny-invariant": "1.0.6",
+    "tiny-invariant": "1.1.0",
     "unfetch": "4.1.0",
     "uuid": "3.4.0"
   },
