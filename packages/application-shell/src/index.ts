@@ -8,7 +8,7 @@ export { applyDefaultMiddlewares } from './configure-store';
 export { default as InjectReducers } from './components/inject-reducers';
 export { default as RouteCatchAll } from './components/route-catch-all';
 export { default as setupGlobalErrorListener } from './utils/setup-global-error-listener';
-export { selectUserId, selectProjectKeyFromUrl, getMcApiUrl } from './utils';
+export { selectUserId, selectProjectKeyFromUrl } from './utils';
 export { GtmContext } from './components/gtm-booter';
 export { default as GtmUserLogoutTracker } from './components/gtm-user-logout-tracker';
 export { default as SetupFlopFlipProvider } from './components/setup-flop-flip-provider';
