@@ -1,6 +1,6 @@
 export interface ApplicationWindow extends Window {
   app: {
-    servedByProxy?: string;
+    servedByProxy: string | boolean;
     mcApiUrl: string;
   };
 }
@@ -24,7 +24,7 @@ declare let window: ApplicationWindow;
  *    2. MC: mc.europe-west1.gcp.commercetools.com with API: mc-api..commercetools.com
  *       -> Will not work as urls differ
  *
- *    Using the origin ensures that urls always match the the cookie is sent. Otherwise,
+ *    Using the origin ensures that urls always match with the cookie sent. Otherwise,
  *    the application shell will rightfully redirect to the logout page.
  */
 const getMcApiUrlFromOrigin = (actualWindow: ApplicationWindow) => {
