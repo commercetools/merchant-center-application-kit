@@ -17,7 +17,7 @@ describe('getMcApiUrl', () => {
 
   describe('when application is configured to run behind proxy', () => {
     beforeEach(() => {
-      global.window.origin = 'mc-api.europe-west1.gcp.commercetools.com';
+      global.window.origin = 'https://mc.europe-west1.gcp.commercetools.com';
     });
 
     describe('when `mcApiurl` is defined on application environment', () => {
@@ -34,12 +34,14 @@ describe('getMcApiUrl', () => {
     });
 
     describe('when `mcApiurl` is not defined on application environment', () => {
-      it('should not return the origin of the window', () => {
+      it('should not return an api url based on the origin of the window', () => {
         const applicationEnvironment = {
           servedByProxy: true,
         };
 
-        expect(getMcApiUrl(applicationEnvironment)).toEqual(window.origin);
+        expect(getMcApiUrl(applicationEnvironment)).toEqual(
+          'https://mc-api.europe-west1.gcp.commercetools.com'
+        );
       });
     });
   });
