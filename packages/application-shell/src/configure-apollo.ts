@@ -11,6 +11,7 @@ import {
 import { ApplicationWindow } from '@commercetools-frontend/constants';
 import createHttpUserAgent from '@commercetools/http-user-agent';
 import { errorLink, headerLink, tokenRetryLink } from './apollo-links';
+import { getMcApiUrl } from './utils';
 import { isLoggerEnabled } from './utils/logger';
 import version from './version';
 
@@ -30,7 +31,7 @@ const userAgent = createHttpUserAgent({
 });
 
 const httpLink = createHttpLink({
-  uri: `${window.app.mcApiUrl}/graphql`,
+  uri: `${getMcApiUrl()}/graphql`,
   headers: {
     accept: 'application/json',
     'x-user-agent': userAgent,

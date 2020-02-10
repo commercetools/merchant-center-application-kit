@@ -1,1 +1,1 @@
-export { parseUri, logRequest } from './utils';
+export { parseUri, logRequest, getMcApiUrl } from './utils';

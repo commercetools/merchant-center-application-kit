@@ -1,5 +1,5 @@
 import { decode } from 'qss';
-import { parseUri } from './utils';
+import { parseUri, getMcApiUrl, ApplicationWindow } from './utils';
 
 type Result = { pathname: string; search: ReturnType<typeof decode> };
 
@@ -28,6 +28,38 @@ describe('parseUri', () => {
         foo: true,
         bar: 5,
       });
+    });
+  });
+});
+
+describe('getMcApiUrl', () => {
+  describe('when application is configured not to run behind proxy', () => {
+    it('should return the configured `mcApiUrl`', () => {
+      const actualWindow = {
+        app: {
+          mcApiUrl: 'mc.commercetools.co',
+        },
+      };
+
+      expect(getMcApiUrl(actualWindow as ApplicationWindow)).toEqual(
+        actualWindow.app.mcApiUrl
+      );
+    });
+  });
+
+  describe('when application is configured to run behind proxy', () => {
+    it('should not return the configured `mcApiUrl` but the origin of the window', () => {
+      const actualWindow = {
+        app: {
+          mcApiUrl: 'mc.commercetools.co',
+          servedByProxy: 'true',
+        },
+        origin: 'https://mc.europe-west1.gcp.commercetools.com',
+      };
+
+      expect(getMcApiUrl(actualWindow as ApplicationWindow)).toEqual(
+        'https://mc-api.europe-west1.gcp.commercetools.com'
+      );
     });
   });
 });
