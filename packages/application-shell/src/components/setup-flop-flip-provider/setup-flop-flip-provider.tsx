@@ -1,7 +1,7 @@
 import React from 'react';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { TFlags } from '@flopflip/types';
+import { Flags } from '@flopflip/types';
 import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import useAllMenuFeatureToggles from '../../hooks/use-all-menu-feature-toggles';
 import { FLAGS } from '../../feature-toggles';
@@ -9,8 +9,8 @@ import { FLAGS } from '../../feature-toggles';
 type Props = {
   projectKey?: string;
   user?: TFetchLoggedInUserQuery['user'];
-  flags?: TFlags;
-  defaultFlags?: TFlags;
+  flags?: Flags;
+  defaultFlags?: Flags;
   appEnv: string;
   children: React.ReactNode;
   shouldDeferAdapterConfiguration?: boolean;
