@@ -8,6 +8,7 @@ import { createHttpMiddleware as createSdkHttpMiddleware } from '@commercetools/
 import { createCorrelationIdMiddleware as createSdkCorrelationIdMiddleware } from '@commercetools/sdk-middleware-correlation-id';
 import createHttpUserAgent from '@commercetools/http-user-agent';
 import { ApplicationWindow } from '@commercetools-frontend/constants';
+import { getMcApiUrl } from '@commercetools-frontend/application-shell';
 import version from '../version';
 
 declare let window: ApplicationWindow;
@@ -37,7 +38,7 @@ const customUserAgentMiddleware = (next: Next): Next => (
 // NOTE we should not use these directly but rather have them passed in from
 // the application
 const httpMiddleware = createSdkHttpMiddleware({
-  host: window.app.mcApiUrl,
+  host: getMcApiUrl(),
   includeResponseHeaders: true,
   credentialsMode: 'include',
   fetch,
