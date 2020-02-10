@@ -146,17 +146,14 @@ export const trackProjectKey = (projectKey?: string) => {
 };
 
 // Sometimes necessary to manually get the hierarchy.
-export const getHierarchy = (node: Node) => {
+export const getHierarchy = (node: Node | null) => {
   const hierarchy = [];
   let parent = node;
 
   while (parent) {
     const dataTrackComponent = getDataAttribute(parent, 'data-track-component');
     if (dataTrackComponent) hierarchy.push(dataTrackComponent);
-
-    if (parent.parentNode) {
-      parent = parent.parentNode;
-    }
+    parent = parent.parentNode;
   }
 
   hierarchy.reverse();
