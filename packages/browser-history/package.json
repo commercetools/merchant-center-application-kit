@@ -39,7 +39,7 @@
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.8.3",
+    "@babel/runtime-corejs3": "7.8.4",
     "@types/history": "^4.7.4",
     "history": "4.10.1",
     "history-query-enhancer": "1.0.4",
