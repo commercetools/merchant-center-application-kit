@@ -8,7 +8,7 @@ import { createHttpMiddleware as createSdkHttpMiddleware } from '@commercetools/
 import { createCorrelationIdMiddleware as createSdkCorrelationIdMiddleware } from '@commercetools/sdk-middleware-correlation-id';
 import createHttpUserAgent from '@commercetools/http-user-agent';
 import { ApplicationWindow } from '@commercetools-frontend/constants';
-import { getMcApiUrl } from '@commercetools-frontend/application-shell';
+import { getMcApiUrl } from '../utils';
 import version from '../version';
 
 declare let window: ApplicationWindow;
