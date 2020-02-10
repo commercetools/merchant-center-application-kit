@@ -2,7 +2,7 @@ import React, { SyntheticEvent } from 'react';
 import { Dispatch } from 'redux';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { ApolloError } from 'apollo-client';
-import { Flags } from '@flopflip/types';
+import { TFlags } from '@flopflip/types';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
@@ -70,8 +70,8 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
   environment: TApplicationContext<
     AdditionalEnvironmentProperties
   >['environment'];
-  featureFlags?: Flags;
-  defaultFeatureFlags?: Flags;
+  featureFlags?: TFlags;
+  defaultFeatureFlags?: TFlags;
   trackingEventWhitelist?: TrackingWhitelist;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   onRegisterErrorListeners: (args: { dispatch: Dispatch }) => void;
