@@ -124,7 +124,7 @@
     "eslint-plugin-react-hooks": "2.3.0",
     "eslint-plugin-testing-library": "2.2.1",
     "faker": "4.1.0",
-    "gatsby-plugin-emotion": "4.1.21",
+    "gatsby-plugin-emotion": "4.1.22",
     "graphql-cli": "3.0.14",
     "husky": "4.2.1",
     "jest": "25.1.0",
