@@ -52,7 +52,7 @@ export const logRequest = ({
 
 export interface ApplicationWindow extends Window {
   app: {
-    servedByProxy?: string;
+    servedByProxy: string | boolean;
     mcApiUrl: string;
   };
 }
@@ -88,8 +88,8 @@ const getMcApiUrlFromOrigin = (actualWindow: ApplicationWindow) => {
 
 export function getMcApiUrl(actualWindow: ApplicationWindow = window) {
   const isServedByProxy =
-    actualWindow.app.servedByProxy &&
-    JSON.parse(actualWindow.app.servedByProxy);
+    actualWindow.app.servedByProxy === true ||
+    actualWindow.app.servedByProxy === 'true';
 
   if (isServedByProxy) return getMcApiUrlFromOrigin(actualWindow);
 
