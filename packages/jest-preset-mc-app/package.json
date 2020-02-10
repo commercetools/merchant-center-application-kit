@@ -27,7 +27,7 @@
     "@commercetools-frontend/babel-preset-mc-app": "16.0.0",
     "@commercetools/enzyme-extensions": "5.0.0",
     "@commercetools/jest-enzyme-matchers": "1.1.2",
-    "@testing-library/jest-dom": "5.0.2",
+    "@testing-library/jest-dom": "5.1.1",
     "babel-jest": "25.1.0",
     "colors": "1.4.0",
     "enzyme-adapter-react-16": "1.15.2",
