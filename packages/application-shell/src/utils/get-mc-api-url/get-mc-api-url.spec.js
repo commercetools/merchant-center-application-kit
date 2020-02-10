@@ -24,7 +24,7 @@ describe('getMcApiUrl', () => {
       it('should not return the configured `mcApiUrl` but the origin of the window', () => {
         const applicationEnvironment = {
           mcApiUrl: 'mc.commercetools.co',
-          servedByProxy: true,
+          servedByProxy: 'true',
         };
 
         expect(getMcApiUrl(applicationEnvironment)).toEqual(
@@ -36,7 +36,7 @@ describe('getMcApiUrl', () => {
     describe('when `mcApiurl` is not defined on application environment', () => {
       it('should not return an api url based on the origin of the window', () => {
         const applicationEnvironment = {
-          servedByProxy: true,
+          servedByProxy: 'true',
         };
 
         expect(getMcApiUrl(applicationEnvironment)).toEqual(

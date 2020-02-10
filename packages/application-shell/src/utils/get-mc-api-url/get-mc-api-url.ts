@@ -10,7 +10,7 @@ const getMcApiUrlFromOrigin = () => {
 };
 
 export default function getMcApiUrl(appEnv = window.app) {
-  const isServedByProxy = appEnv.servedByProxy;
+  const isServedByProxy = JSON.parse(appEnv.servedByProxy);
   const mcApiUrl = appEnv.mcApiUrl;
 
   if (isServedByProxy && !mcApiUrl) return getMcApiUrlFromOrigin();
