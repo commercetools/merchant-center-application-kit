@@ -1,9 +1,15 @@
 import getMcApiUrl from './get-mc-api-url';
 
 describe('getMcApiUrl', () => {
-  let mcApiUrl;
+  describe('when `mcApiurl` is defined on application environment', () => {
+    it('should return the configured `mcApiUrl`', () => {
+      const applicationEnvironment = {
+        mcApiUrl: 'mc.commercetools.co',
+      };
 
-  beforeEach(() => {
-    mcApiUrl = getMcApiUrl();
+      expect(getMcApiUrl(applicationEnvironment)).toEqual(
+        applicationEnvironment.mcApiUrl
+      );
+    });
   });
 });
