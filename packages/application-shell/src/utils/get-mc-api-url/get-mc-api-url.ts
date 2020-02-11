@@ -1,6 +1,6 @@
 export interface ApplicationWindow extends Window {
   app: {
-    skipInferringOfApiUrlOnProduction: string | boolean;
+    disableInferringOfMcApiUrlOnProduction: string | boolean;
     servedByProxy: string | boolean;
     mcApiUrl: string;
   };
@@ -43,11 +43,11 @@ export default function getMcApiUrl(actualWindow: ApplicationWindow = window) {
   const isServedByProxy = isEnvironmentConfigurationEnabled(
     actualWindow.app.servedByProxy
   );
-  const isSkipInferringOfApiUrlOnProductionEnabled = isEnvironmentConfigurationEnabled(
-    actualWindow.app.skipInferringOfApiUrlOnProduction
+  const isInferringOfMcApiUrlOnProductionDisabled = isEnvironmentConfigurationEnabled(
+    actualWindow.app.disableInferringOfMcApiUrlOnProduction
   );
 
-  if (isServedByProxy && !isSkipInferringOfApiUrlOnProductionEnabled)
+  if (isServedByProxy && !isInferringOfMcApiUrlOnProductionDisabled)
     return getMcApiUrlFromOrigin(actualWindow);
 
   return actualWindow.app.mcApiUrl;

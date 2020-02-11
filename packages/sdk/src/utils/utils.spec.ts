@@ -68,12 +68,14 @@ describe('getMcApiUrl', () => {
           app: {
             mcApiUrl: 'https://mc-api.commercetools.co',
             servedByProxy: 'true',
-            skipInferringOfApiUrlOnProduction: 'true',
+            disableInferringOfMcApiUrlOnProduction: 'true',
           },
           origin: 'https://mc.europe-west1.gcp.commercetools.com',
         };
 
-        expect(getMcApiUrl(actualWindow)).toEqual(actualWindow.app.mcApiUrl);
+        expect(getMcApiUrl(actualWindow as ApplicationWindow)).toEqual(
+          actualWindow.app.mcApiUrl
+        );
       });
     });
   });

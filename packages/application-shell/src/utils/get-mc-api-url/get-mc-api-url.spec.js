@@ -34,7 +34,7 @@ describe('getMcApiUrl', () => {
           app: {
             mcApiUrl: 'https://mc-api.commercetools.co',
             servedByProxy: 'true',
-            skipInferringOfApiUrlOnProduction: 'true',
+            disableInferringOfMcApiUrlOnProduction: 'true',
           },
           origin: 'https://mc.europe-west1.gcp.commercetools.com',
         };
