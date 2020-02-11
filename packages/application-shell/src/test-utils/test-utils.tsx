@@ -7,7 +7,7 @@ import * as rtl from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { Flags } from '@flopflip/types';
+import { TFlags } from '@flopflip/types';
 import {
   MockedProvider as ApolloMockProvider,
   MockedProviderProps,
@@ -290,7 +290,7 @@ type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   route: string;
   history: ReturnType<typeof createEnhancedHistory>;
   adapter: typeof memoryAdapter;
-  flags: Flags;
+  flags: TFlags;
   environment: Partial<
     TProviderProps<AdditionalEnvironmentProperties>['environment']
   >;
