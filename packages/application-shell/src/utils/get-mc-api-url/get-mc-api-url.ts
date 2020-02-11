@@ -1,5 +1,6 @@
 export interface ApplicationWindow extends Window {
   app: {
+    disableInferringOfMcApiUrlOnProduction: string | boolean;
     servedByProxy: string | boolean;
     mcApiUrl: string;
   };
@@ -34,12 +35,20 @@ const getMcApiUrlFromOrigin = (actualWindow: ApplicationWindow) => {
   return `${url.protocol}//${mcApiUrlHost}`;
 };
 
-export default function getMcApiUrl(actualWindow: ApplicationWindow = window) {
-  const isServedByProxy =
-    actualWindow.app.servedByProxy === true ||
-    actualWindow.app.servedByProxy === 'true';
+const isEnvironmentConfigurationEnabled = (
+  environmentConfiguration: string | boolean
+) => environmentConfiguration === true || environmentConfiguration === 'true';
 
-  if (isServedByProxy) return getMcApiUrlFromOrigin(actualWindow);
+export default function getMcApiUrl(actualWindow: ApplicationWindow = window) {
+  const isServedByProxy = isEnvironmentConfigurationEnabled(
+    actualWindow.app.servedByProxy
+  );
+  const isInferringOfMcApiUrlOnProductionDisabled = isEnvironmentConfigurationEnabled(
+    actualWindow.app.disableInferringOfMcApiUrlOnProduction
+  );
+
+  if (isServedByProxy && !isInferringOfMcApiUrlOnProductionDisabled)
+    return getMcApiUrlFromOrigin(actualWindow);
 
   return actualWindow.app.mcApiUrl;
 }
