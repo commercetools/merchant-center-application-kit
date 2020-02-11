@@ -52,6 +52,7 @@ export const logRequest = ({
 
 export interface ApplicationWindow extends Window {
   app: {
+    skipInferringOfApiUrlOnProduction: string | boolean;
     servedByProxy: string | boolean;
     mcApiUrl: string;
   };
@@ -86,12 +87,20 @@ const getMcApiUrlFromOrigin = (actualWindow: ApplicationWindow) => {
   return `${url.protocol}//${mcApiUrlHost}`;
 };
 
-export function getMcApiUrl(actualWindow: ApplicationWindow = window) {
-  const isServedByProxy =
-    actualWindow.app.servedByProxy === true ||
-    actualWindow.app.servedByProxy === 'true';
+const isEnvironmentConfigurationEnabled = (
+  environmentConfiguration: string | boolean
+) => environmentConfiguration === true || environmentConfiguration === 'true';
 
-  if (isServedByProxy) return getMcApiUrlFromOrigin(actualWindow);
+export function getMcApiUrl(actualWindow: ApplicationWindow = window) {
+  const isServedByProxy = isEnvironmentConfigurationEnabled(
+    actualWindow.app.servedByProxy
+  );
+  const isSkipInferringOfApiUrlOnProductionEnabled = isEnvironmentConfigurationEnabled(
+    actualWindow.app.skipInferringOfApiUrlOnProduction
+  );
+
+  if (isServedByProxy && !isSkipInferringOfApiUrlOnProductionEnabled)
+    return getMcApiUrlFromOrigin(actualWindow);
 
   return actualWindow.app.mcApiUrl;
 }

@@ -37,7 +37,7 @@ describe('getMcApiUrl', () => {
     it('should return the configured `mcApiUrl`', () => {
       const actualWindow = {
         app: {
-          mcApiUrl: 'mc.commercetools.co',
+          mcApiUrl: 'https://mc-api.commercetools.co',
         },
       };
 
@@ -51,7 +51,7 @@ describe('getMcApiUrl', () => {
     it('should not return the configured `mcApiUrl` but the origin of the window', () => {
       const actualWindow = {
         app: {
-          mcApiUrl: 'mc.commercetools.co',
+          mcApiUrl: 'https://mc-api.commercetools.co',
           servedByProxy: 'true',
         },
         origin: 'https://mc.europe-west1.gcp.commercetools.com',
@@ -60,6 +60,21 @@ describe('getMcApiUrl', () => {
       expect(getMcApiUrl(actualWindow as ApplicationWindow)).toEqual(
         'https://mc-api.europe-west1.gcp.commercetools.com'
       );
+    });
+
+    describe('when inferring of `mcApiUrl` from origin is disabled', () => {
+      it('should return the configured `mcApiUrl`', () => {
+        const actualWindow = {
+          app: {
+            mcApiUrl: 'https://mc-api.commercetools.co',
+            servedByProxy: 'true',
+            skipInferringOfApiUrlOnProduction: 'true',
+          },
+          origin: 'https://mc.europe-west1.gcp.commercetools.com',
+        };
+
+        expect(getMcApiUrl(actualWindow)).toEqual(actualWindow.app.mcApiUrl);
+      });
     });
   });
 });
