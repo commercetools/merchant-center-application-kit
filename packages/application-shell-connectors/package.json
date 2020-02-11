@@ -41,7 +41,7 @@
     "build:test-utils": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -i ./src/test-utils/index.ts"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.8.3",
+    "@babel/runtime-corejs3": "7.8.4",
     "@commercetools-frontend/constants": "16.0.0",
     "@commercetools-frontend/sentry": "16.0.0",
     "@types/graphql": "^14.5.0",
