@@ -1,3 +1,37 @@
+## [16.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.1.0...v16.2.0) (2020-02-11)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1323](https://github.com/commercetools/merchant-center-application-kit/pull/1323) fix(tracking): infinite loop in getHierarchy ([@ahmehri](https://github.com/ahmehri))
+
+#### 🔮 Type: Chore
+
+- `application-shell`, `sdk`
+  - [#1322](https://github.com/commercetools/merchant-center-application-kit/pull/1322) refactor(app-shell): sdk and apollo to fallback to build `mcApiUrl` from origin ([@tdeekens](https://github.com/tdeekens))
+- Other
+  - [#1321](https://github.com/commercetools/merchant-center-application-kit/pull/1321) fix(actions): check out with depth 50 to allow proper canary versions on master branch ([@emmenko](https://github.com/emmenko))
+  - [#1319](https://github.com/commercetools/merchant-center-application-kit/pull/1319) fix: publish canary only if lerna detects that packages changed ([@emmenko](https://github.com/emmenko))
+  - [#1318](https://github.com/commercetools/merchant-center-application-kit/pull/1318) chore(actions): skip workflow if CHANGELOG file changed ([@emmenko](https://github.com/emmenko))
+
+#### 💅 Type: Enhancement
+
+- `application-shell`, `sdk`
+  - [#1327](https://github.com/commercetools/merchant-center-application-kit/pull/1327) chore: add skipping of mc api url inferring process ([@tdeekens](https://github.com/tdeekens))
+
+#### 🖥 Type: Website
+
+- [#1317](https://github.com/commercetools/merchant-center-application-kit/pull/1317) chore: update docs-kit to 1.7.6 ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `application-shell`
+  - [#1328](https://github.com/commercetools/merchant-center-application-kit/pull/1328) chore: update flopflip ([@tdeekens](https://github.com/tdeekens))
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `create-mc-app`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-http-server`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sentry`, `url-utils`
+  - [#1324](https://github.com/commercetools/merchant-center-application-kit/pull/1324) chore: update deps 💣 ([@tdeekens](https://github.com/tdeekens))
+- Other
+  - [#1325](https://github.com/commercetools/merchant-center-application-kit/pull/1325) chore: update cypress to v4 ([@tdeekens](https://github.com/tdeekens))
+
 ## [16.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.0.2...v16.1.0) (2020-02-06)
 
 #### 🐛 Type: Bug
