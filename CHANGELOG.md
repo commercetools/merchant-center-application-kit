@@ -1,4 +1,4 @@
-## [16.2.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.1.0...v16.2.0) (2020-02-11)
+## [16.2.1](https://github.com/commercetools/merchant-center-application-kit/compare/v16.1.0...v16.2.1) (2020-02-11)
 
 #### 🐛 Type: Bug
 
@@ -31,6 +31,10 @@
   - [#1324](https://github.com/commercetools/merchant-center-application-kit/pull/1324) chore: update deps 💣 ([@tdeekens](https://github.com/tdeekens))
 - Other
   - [#1325](https://github.com/commercetools/merchant-center-application-kit/pull/1325) chore: update cypress to v4 ([@tdeekens](https://github.com/tdeekens))
+
+## [16.2.0] (2020-02-11)
+
+Please refer to `16.2.1` for this release. We ran into publishing issues with NPM during the release of `16.2.0`.
 
 ## [16.1.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.0.2...v16.1.0) (2020-02-06)
 
