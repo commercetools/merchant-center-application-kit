@@ -3157,10 +3157,10 @@
     invariant "2.2.4"
     mitt "1.2.0"
 
-"@flopflip/react-broadcast@10.1.5":
-  version "10.1.5"
-  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-10.1.5.tgz#59764ae4c42ccecaa14553eb820521a49f3564f4"
-  integrity sha512-8lRWbxOmN6tiHZTTpEnWgVQ/wVljv7rp2iht2MlmGlLFKkRglURv6Rd4xVO0VAHbsHLKpdbPGYv/tR3p+BpEgA==
+"@flopflip/react-broadcast@10.1.6":
+  version "10.1.6"
+  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-10.1.6.tgz#208828a16404d69f8e260947ea05c1ab149f0046"
+  integrity sha512-hjTU/2xuDFYigiWhl1BJXZr73YFlpcmiwzx3ohpbZaQwSYGQqm7f5VbXXHWycTawL9NFQEXiYUQ/3Axn9T6J8A==
   dependencies:
     "@babel/runtime" "7.8.4"
     "@flopflip/react" "^9.1.3"
