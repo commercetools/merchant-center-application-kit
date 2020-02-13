@@ -1,3 +1,16 @@
+## [16.2.2](https://github.com/commercetools/merchant-center-application-kit/compare/v16.2.1...v16.2.2) (2020-02-13)
+
+#### ✍️ Type: Documentation
+
+- [#1333](https://github.com/commercetools/merchant-center-application-kit/pull/1333) docs: testing.mdx ([@rudavko](https://github.com/rudavko))
+
+#### 🤖 Type: Dependencies
+
+- `application-shell-connectors`, `application-shell`, `create-mc-app`, `mc-scripts`
+  - [#1337](https://github.com/commercetools/merchant-center-application-kit/pull/1337) chore: update lockfile (update minor things) ([@tdeekens](https://github.com/tdeekens))
+- `application-shell`, `mc-http-server`
+  - [#1332](https://github.com/commercetools/merchant-center-application-kit/pull/1332) chore: update flopflip and promster ([@tdeekens](https://github.com/tdeekens))
+
 ## [16.2.1](https://github.com/commercetools/merchant-center-application-kit/compare/v16.1.0...v16.2.1) (2020-02-11)
 
 #### 🐛 Type: Bug
@@ -32,7 +45,7 @@
 - Other
   - [#1325](https://github.com/commercetools/merchant-center-application-kit/pull/1325) chore: update cypress to v4 ([@tdeekens](https://github.com/tdeekens))
 
-## [16.2.0] (2020-02-11)
+## 16.2.0 (2020-02-11)
 
 Please refer to `16.2.1` for this release. We ran into publishing issues with NPM during the release of `16.2.0`.
 
