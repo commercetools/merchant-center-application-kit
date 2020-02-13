@@ -112,10 +112,6 @@ jobs:
       # See also https://github.com/actions/toolkit/issues/216
       - name: Kill possible process running the application on port 3001
         run: lsof -nti:3001 | xargs kill -9
-      - name: Sleep for 5 seconds to shutdown server
-        uses: juliangruber/sleep-action@v1
-        with:
-          time: 5s
       - name: Running End-to-End tests for Starter template application
         uses: cypress-io/github-action@v1
         with:
