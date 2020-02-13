@@ -108,6 +108,12 @@ jobs:
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
 
+      # It seems that sometimes the application server started by Cypress
+      # does not get cleaned up properly.
+      # See also https://github.com/actions/toolkit/issues/216
+      - name: Kill possible process running the application on port 3001
+        run: lsof -nti:3001 | xargs kill -9
+
       - name: Running End-to-End tests for Starter template application
         uses: cypress-io/github-action@v1
         with:
