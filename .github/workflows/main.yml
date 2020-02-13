@@ -7,12 +7,12 @@ name: Main workflow
 on:
   push:
     branches:
-    - master
+      - master
     paths-ignore:
-    - 'CHANGELOG.md'
+      - 'CHANGELOG.md'
   pull_request:
     paths-ignore:
-    - 'CHANGELOG.md'
+      - 'CHANGELOG.md'
 
 jobs:
   build_lint_and_test:
@@ -107,13 +107,11 @@ jobs:
           CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
-
       # It seems that sometimes the application server started by Cypress
       # does not get cleaned up properly.
       # See also https://github.com/actions/toolkit/issues/216
       - name: Kill possible process running the application on port 3001
         run: lsof -nti:3001 | xargs kill -9
-
       - name: Running End-to-End tests for Starter template application
         uses: cypress-io/github-action@v1
         with:
@@ -161,45 +159,35 @@ jobs:
         run: node ./scripts/install-template.js
         env:
           TEMPLATE_NAME: starter
-
   #     - name: Uploading tarball artifacts
   #       uses: actions/upload-artifact@v1
   #       with:
   #         name: dist-tarballs
   #         path: dist-tarballs
-
   # install_template_starter:
   #   needs: build_lint_and_test
-
   #   runs-on: ${{ matrix.os }}
-
   #   strategy:
   #     matrix:
   #       os: [macos-latest, windows-latest]
   #       node: [10, 12]
-
   #   steps:
   #     - name: Checkout
   #       uses: actions/checkout@v2
-
   #     - uses: actions/download-artifact@v1
   #       with:
   #         name: dist-tarballs
   #         path: dist-tarballs
-
   #     - name: Setup node
   #       uses: actions/setup-node@v1
   #       with:
   #         node-version: ${{ matrix.node }}
-
   #     - name: Installing shelljs globally
   #       run: yarn add global shelljs
-
   #     - name: Installing and building template starter
   #       run: node ./scripts/install-template.js
   #       env:
   #         TEMPLATE_NAME: starter
-
   #     - name: Fetching workflow artifacts
   #       uses: octokit/request-action@v2.x
   #       if: always()
@@ -211,7 +199,6 @@ jobs:
   #         run_id: ${{ github.run_id }}
   #       env:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   #     - name: Parsing result to get the artifact_id
   #       uses: gr2m/get-json-paths-action@v1.x
   #       if: always()
@@ -219,7 +206,6 @@ jobs:
   #       with:
   #         json: ${{ steps.get_workflow_artifacts.outputs.data }}
   #         artifact_id: "artifacts[0].id"
-
   #     - name: Deleting workflow artifact
   #       uses: octokit/request-action@v2.x
   #       if: always()

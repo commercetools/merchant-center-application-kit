@@ -178,6 +178,7 @@ const launchServer = async options => {
     });
     prometheusMetricsServer = await createPrometheusMetricsServer({
       port: prometheusMetricsServerPort,
+      detectKubernetes: true,
     });
     applicationServer = createHttpServer(options);
 
