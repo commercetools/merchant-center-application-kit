@@ -9,10 +9,10 @@ on:
     branches:
       - master
     paths-ignore:
-      - 'CHANGELOG.md'
+      - "CHANGELOG.md"
   pull_request:
     paths-ignore:
-      - 'CHANGELOG.md'
+      - "CHANGELOG.md"
 
 jobs:
   build_lint_and_test:
@@ -56,7 +56,7 @@ jobs:
       - name: Setup Node (uses version in .nvmrc)
         uses: actions/setup-node@v1
         with:
-          node-version: '${{ steps.nvm.outputs.NVMRC }}'
+          node-version: "${{ steps.nvm.outputs.NVMRC }}"
 
       - name: Get yarn cache
         id: yarn-cache
@@ -87,7 +87,7 @@ jobs:
       - name: Running Visual Regression Tests for UI components
         uses: ianwalter/puppeteer@v2.0.0
         with:
-          args: 'yarn vrt:components'
+          args: "yarn vrt:components"
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_UI_COMPONENTS }}
 
@@ -95,39 +95,47 @@ jobs:
         uses: cypress-io/github-action@v1
         with:
           headless: true
-          build: 'yarn playground:build'
-          start: 'yarn playground:start:prod:local'
-          wait-on: 'http://localhost:3001'
-          spec: 'cypress/integration/playground/**/*.js'
-          env: 'CI=true'
-          command-prefix: 'percy exec --'
+          build: "yarn playground:build"
+          start: "yarn playground:start:prod:local"
+          wait-on: "http://localhost:3001"
+          spec: "cypress/integration/playground/**/*.js"
+          env: "CI=true"
+          command-prefix: "percy exec --"
         env:
           NODE_ENV: test
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_PLAYGROUND }}
           CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
+
       # It seems that sometimes the application server started by Cypress
       # does not get cleaned up properly.
       # See also https://github.com/actions/toolkit/issues/216
       - name: Kill possible process running the application on port 3001
         run: lsof -nti:3001 | xargs kill -9
+
       - name: Running End-to-End tests for Starter template application
         uses: cypress-io/github-action@v1
         with:
           headless: true
-          build: 'yarn template-starter:build'
-          start: 'yarn template-starter:start:prod:local'
-          wait-on: 'http://localhost:3001'
-          spec: 'cypress/integration/template-starter/**/*.js'
-          env: 'CI=true'
-          command-prefix: 'percy exec --'
+          build: "yarn template-starter:build"
+          start: "yarn template-starter:start:prod:local"
+          wait-on: "http://localhost:3001"
+          spec: "cypress/integration/template-starter/**/*.js"
+          env: "CI=true"
+          command-prefix: "percy exec --"
         env:
           NODE_ENV: test
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_STARTER }}
           CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
+
+      # It seems that sometimes the application server started by Cypress
+      # does not get cleaned up properly.
+      # See also https://github.com/actions/toolkit/issues/216
+      - name: Kill possible process running the application on port 3001
+        run: lsof -nti:3001 | xargs kill -9
 
       - name: Uploading Cypress artifacts
         uses: actions/upload-artifact@v1
