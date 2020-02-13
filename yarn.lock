@@ -3136,10 +3136,10 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@flopflip/launchdarkly-adapter@2.11.1":
-  version "2.11.1"
-  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.11.1.tgz#75ad8222c2ab8c6448e121f76796cc1dd951ddbf"
-  integrity sha512-fkU6cx5yqvVYKfXPGOkei861Ks7oUeIKRnfYp78dkFFKsM5WnV6JqxcPFAEPvbvunELQuQk5AZA899jlUXUCgw==
+"@flopflip/launchdarkly-adapter@2.11.2":
+  version "2.11.2"
+  resolved "https://registry.yarnpkg.com/@flopflip/launchdarkly-adapter/-/launchdarkly-adapter-2.11.2.tgz#05c7c0f62a1e09b172c84138f35d23c95e0d0c9c"
+  integrity sha512-I6zMfiXKr31nPS+a1TBVyRjumQv1LOqGVORugRzP5ETlEmwJR32iVuS/Lafrr5FMsoPSlhvvd5ybS5yGdjetpA==
   dependencies:
     "@babel/runtime" "7.8.4"
     debounce-fn "3.0.1"
@@ -3148,29 +3148,29 @@
     lodash "4.17.15"
     tiny-warning "1.0.3"
 
-"@flopflip/memory-adapter@1.5.2":
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-1.5.2.tgz#107810548d9534a16726adcac030ae9b7f57552a"
-  integrity sha512-k0+uZBDlzHxFFS0S5o36B6veLFqHjOdgD7AByHMhNFxyneqdbFyaOwIkzvW+Qjw8eNxVI3nYUU9KEOYkB5kicQ==
+"@flopflip/memory-adapter@1.5.3":
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/@flopflip/memory-adapter/-/memory-adapter-1.5.3.tgz#d2e9d17683eb663e47e61f47f9fd87bdd20d7684"
+  integrity sha512-XZwdhfGxWXHi7nOuoN0/zsN0f2eEi7+I/6Mj1YLFWqeAExDL5YzfDUZ2DNU2k0CDyYAvlqJfejj0/B97HtHPhQ==
   dependencies:
     "@babel/runtime" "7.8.4"
-    invariant "2.2.4"
     mitt "1.2.0"
+    tiny-warning "1.0.3"
 
-"@flopflip/react-broadcast@10.1.5":
-  version "10.1.5"
-  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-10.1.5.tgz#59764ae4c42ccecaa14553eb820521a49f3564f4"
-  integrity sha512-8lRWbxOmN6tiHZTTpEnWgVQ/wVljv7rp2iht2MlmGlLFKkRglURv6Rd4xVO0VAHbsHLKpdbPGYv/tR3p+BpEgA==
+"@flopflip/react-broadcast@10.1.7":
+  version "10.1.7"
+  resolved "https://registry.yarnpkg.com/@flopflip/react-broadcast/-/react-broadcast-10.1.7.tgz#683a36027d418e236381d3e2f921c2b65c58c384"
+  integrity sha512-/wa5IdRZuZCdPz+O7lSsu1J9g88hFHTameLRyYewWGINQ1MV1Ob8XyOrfvbhpMjv80O4CrdHbkWHagzbKmHgVw==
   dependencies:
     "@babel/runtime" "7.8.4"
-    "@flopflip/react" "^9.1.3"
-    "@flopflip/types" "^2.3.2"
+    "@flopflip/react" "^9.1.4"
+    "@flopflip/types" "^2.3.3"
     lodash "4.17.15"
 
-"@flopflip/react@^9.1.3":
-  version "9.1.3"
-  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-9.1.3.tgz#a3c870567f2575390e08208c50fcf239737c71b9"
-  integrity sha512-ZIdOnfNsZEC13C+r/CnrMAtvy07kLtSq+n+LDRs96P6ogtyoDUjCrFZZ384PsFMioU3yLMe1pXE4a17/f2pyaA==
+"@flopflip/react@^9.1.4":
+  version "9.1.4"
+  resolved "https://registry.yarnpkg.com/@flopflip/react/-/react-9.1.4.tgz#c43a91a73d99cda68ce9941b45dbac4306e5c449"
+  integrity sha512-/hW9jnUbY8MUKielOqlVd3awkgmhP1LGU1CPDa8RU76tXxoZa5b06bL+6/HxZyOT3wvQtYo18JYF/5535+PK1g==
   dependencies:
     "@babel/runtime" "7.8.4"
     deepmerge "4.2.2"
@@ -3179,10 +3179,10 @@
     react-is "16.12.0"
     tiny-warning "1.0.3"
 
-"@flopflip/types@^2.3.2":
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-2.3.2.tgz#c34468e26fc6dc20979c947c526f2577f1c93af9"
-  integrity sha512-gfVLBiUyzg7tua9ApXuSAQqk0FiLc7eDEnc+7sH7c2hd/HTEi22fNj2495bLPspoQZt9ygr8fQ8tKAuG7zeEYw==
+"@flopflip/types@^2.3.3":
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@flopflip/types/-/types-2.3.3.tgz#a93420a7ac926dba37af7064c304a53674dc64eb"
+  integrity sha512-/3Ioh7YnmdgmNkFf9ocaA+Q3/9EY8zYn5xLvbJQ7dz5bySL3Bnj3nDkBAgaE8WfHun2bUlWVsHm2Wwd+sbHkdg==
 
 "@formatjs/intl-relativetimeformat@^4.2.1":
   version "4.5.8"
@@ -15357,7 +15357,7 @@ into-stream@^3.1.0:
     from2 "^2.1.1"
     p-is-promise "^1.1.0"
 
-invariant@2.2.4, invariant@^2.1.1, invariant@^2.2.0, invariant@^2.2.2, invariant@^2.2.3, invariant@^2.2.4:
+invariant@^2.1.1, invariant@^2.2.0, invariant@^2.2.2, invariant@^2.2.3, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
