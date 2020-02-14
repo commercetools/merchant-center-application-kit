@@ -1,5 +1,4 @@
 import React from 'react';
-import { Dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
 import { showApiErrorNotification } from '../actions';
 import { TApiErrorNotificationOptions } from '../types';
@@ -9,9 +8,7 @@ import { TApiErrorNotificationOptions } from '../types';
 //   const showApiErrorNotification = useShowApiErrorNotification();
 //   showApiErrorNotification({ errors });
 export default function useShowApiErrorNotification() {
-  const dispatch = useDispatch<
-    Dispatch<ReturnType<typeof showApiErrorNotification>>
-  >();
+  const dispatch = useDispatch();
   return React.useCallback(
     (options: TApiErrorNotificationOptions) =>
       dispatch(showApiErrorNotification(options)),

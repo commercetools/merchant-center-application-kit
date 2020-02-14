@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import {
   STATUS_CODES,
   LOGOUT_REASONS,
@@ -22,7 +22,9 @@ type ApiError = {
 };
 
 export type ActionError = Error | ApiError;
-export type DispatchActionError = Dispatch<
+export type DispatchActionError = ThunkDispatch<
+  null,
+  null,
   | ReturnType<typeof showApiErrorNotification>
   | ReturnType<typeof showUnexpectedErrorNotification>
 >;
