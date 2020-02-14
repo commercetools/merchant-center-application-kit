@@ -45,7 +45,8 @@
     "@commercetools-frontend/notifications": "16.2.1",
     "@types/lodash": "^4.14.149",
     "lodash": "4.17.15",
-    "lodash-es": "4.17.15"
+    "lodash-es": "4.17.15",
+    "redux-thunk": "2.3.0"
   },
   "devDependencies": {
     "react": "16.12.0",
