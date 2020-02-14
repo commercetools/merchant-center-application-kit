@@ -80,6 +80,8 @@ jobs:
 
       - name: Running linters and tests
         run: yarn run jest --projects jest.{eslint,stylelint,test,text}.config.js --reporters jest-silent-reporter
+        env:
+          CI: true
 
       - name: Building Visual Regression Tests application for UI components
         run: yarn visual-testing-app:build
