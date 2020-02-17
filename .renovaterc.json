@@ -23,7 +23,6 @@
   "ignoreDeps": [
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
-    "react-intl",
-    "ts-jest"
+    "react-intl"
   ]
 }
