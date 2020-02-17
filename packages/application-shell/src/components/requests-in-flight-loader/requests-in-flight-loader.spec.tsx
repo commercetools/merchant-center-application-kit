@@ -1,35 +1,28 @@
 import React from 'react';
-import {
-  renderAppWithRedux,
-  RenderResult,
-  wait,
-  waitForElement,
-} from '../../test-utils';
+import { renderAppWithRedux, wait } from '../../test-utils';
 import RequestsInFlightLoader from './requests-in-flight-loader';
 
 describe('rendering', () => {
-  let rendered: RenderResult;
   describe('when there are no requests in flight', () => {
-    beforeEach(() => {
-      rendered = renderAppWithRedux(<RequestsInFlightLoader />, {
+    it('should not render loading spinner', async () => {
+      const rendered = renderAppWithRedux(<RequestsInFlightLoader />, {
         storeState: { requestsInFlight: [] },
       });
-    });
-    it('should not render loading spinner', () =>
-      wait(
+      await wait(
         () => {
           expect(rendered.queryByText(/^Processing/)).not.toBeInTheDocument();
         },
         { timeout: 1000 }
-      ));
+      );
+    });
   });
   describe('when there are requests in flight', () => {
-    beforeEach(() => {
-      rendered = renderAppWithRedux(<RequestsInFlightLoader />, {
+    it('should render loading spinner', async () => {
+      const rendered = renderAppWithRedux(<RequestsInFlightLoader />, {
         storeState: { requestsInFlight: ['one', 'two'] },
       });
+
+      await rendered.findByText(/^Processing/);
     });
-    it('should render loading spinner', () =>
-      waitForElement(() => rendered.queryByText(/^Processing/)));
   });
 });
