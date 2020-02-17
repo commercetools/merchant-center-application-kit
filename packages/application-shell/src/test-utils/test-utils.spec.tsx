@@ -21,7 +21,6 @@ import {
   renderApp,
   renderAppWithRedux,
   experimentalRenderAppWithRedux,
-  waitForElement,
   wait,
 } from './test-utils';
 
@@ -30,15 +29,15 @@ describe('Intl', () => {
     const intl = useIntl();
     return <span>{intl.locale}</span>;
   };
-  it('should have intl', () => {
-    const { container } = renderApp(<TestComponent />);
-    expect(container).toHaveTextContent('en');
+  it('should have intl', async () => {
+    const rendered = renderApp(<TestComponent />);
+    await rendered.findByText('en');
   });
-  it('should be possible to overwrite', () => {
-    const { container } = renderApp(<TestComponent />, {
+  it('should be possible to overwrite', async () => {
+    const rendered = renderApp(<TestComponent />, {
       locale: 'de',
     });
-    expect(container).toHaveTextContent('de');
+    await rendered.findByText('de');
   });
 });
 
@@ -63,7 +62,7 @@ describe('ApolloMockProvider', () => {
     </Query>
   );
   it('should be possible to fake GraphQL requests', async () => {
-    const { container } = renderApp(<TestComponent />, {
+    const rendered = renderApp(<TestComponent />, {
       mocks: [
         {
           request: {
@@ -74,10 +73,7 @@ describe('ApolloMockProvider', () => {
         },
       ],
     });
-    expect(container).toHaveTextContent('loading');
-    await wait(() => {
-      expect(container).toHaveTextContent('Snoop Dogg');
-    });
+    await rendered.findByText('Snoop Dogg');
   });
 });
 
@@ -89,13 +85,13 @@ describe('`flopflip`', () => {
   };
   it('should not enable features toggles by default', async () => {
     const rendered = renderApp(<TestComponent />);
-    await waitForElement(() => rendered.getByText(/Enabled: No/i));
+    await rendered.findByText(/Enabled: No/i);
   });
   it('should be possible to enable feature toggles', async () => {
     const rendered = renderApp(<TestComponent />, {
       flags: { [FEATURE_NAME]: true },
     });
-    await waitForElement(() => rendered.getByText(/Enabled: Yes/i));
+    await rendered.findByText(/Enabled: Yes/i);
   });
 });
 
@@ -109,11 +105,11 @@ describe('ApplicationContext', () => {
       />
     );
 
-    it('should render with defaults', () => {
-      const { container, user } = renderApp(<TestComponent />);
-      expect(container).toHaveTextContent('Sheldon Cooper');
+    it('should render with defaults', async () => {
+      const rendered = renderApp(<TestComponent />);
+      await rendered.findByText('Sheldon Cooper');
       // the user should be returned from "render"
-      expect(user).toEqual(
+      expect(rendered.user).toEqual(
         expect.objectContaining({
           id: 'user-id-1',
           email: 'sheldon.cooper@caltech.edu',
@@ -125,14 +121,14 @@ describe('ApplicationContext', () => {
       );
     });
 
-    it('should respect user overwrites', () => {
-      const { container, user } = renderApp(<TestComponent />, {
+    it('should respect user overwrites', async () => {
+      const rendered = renderApp(<TestComponent />, {
         user: { firstName: 'Leonard' },
       });
       // shows that data gets merged and overwrites have priority
-      expect(container).toHaveTextContent('Leonard Cooper');
+      await rendered.findByText('Leonard Cooper');
       // the merged user should be returned from "render"
-      expect(user).toEqual(
+      expect(rendered.user).toEqual(
         expect.objectContaining({
           email: 'sheldon.cooper@caltech.edu',
           firstName: 'Leonard',
@@ -150,13 +146,11 @@ describe('ApplicationContext', () => {
       />
     );
 
-    it('should render with defaults', () => {
-      const { container, project } = renderApp(<TestComponent />);
-      expect(container).toHaveTextContent(
-        'test-with-big-data Test with big data'
-      );
+    it('should render with defaults', async () => {
+      const rendered = renderApp(<TestComponent />);
+      await rendered.findByText('test-with-big-data Test with big data');
       // the project should be returned from "render"
-      expect(project).toEqual(
+      expect(rendered.project).toEqual(
         expect.objectContaining({
           key: 'test-with-big-data',
           version: 43,
@@ -171,14 +165,14 @@ describe('ApplicationContext', () => {
       );
     });
 
-    it('should respect project overwrites', () => {
-      const { container, project } = renderApp(<TestComponent />, {
+    it('should respect project overwrites', async () => {
+      const rendered = renderApp(<TestComponent />, {
         project: { name: 'Geek' },
       });
       // shows that data gets merged and overwrites have priority
-      expect(container).toHaveTextContent('test-with-big-data Geek');
+      await rendered.findByText('test-with-big-data Geek');
       // the merged project should be returned from "render"
-      expect(project).toEqual(
+      expect(rendered.project).toEqual(
         expect.objectContaining({
           key: 'test-with-big-data',
           name: 'Geek',
@@ -193,17 +187,17 @@ describe('ApplicationContext', () => {
         {({ isAuthorized }) => (isAuthorized ? 'Authorized' : 'Not allowed')}
       </RestrictedByPermissions>
     );
-    it('should render unauthorized when ManageProducts permission is false', () => {
-      const { container } = renderApp(<TestComponent />, {
+    it('should render unauthorized when ManageProducts permission is false', async () => {
+      const rendered = renderApp(<TestComponent />, {
         permissions: { canManageProducts: false },
       });
-      expect(container).toHaveTextContent('Not allowed');
+      await rendered.findByText('Not allowed');
     });
-    it('should render authorized when ManageProducts permission is true', () => {
-      const { container } = renderApp(<TestComponent />, {
+    it('should render authorized when ManageProducts permission is true', async () => {
+      const rendered = renderApp(<TestComponent />, {
         permissions: { canManageProducts: true },
       });
-      expect(container).toHaveTextContent('Authorized');
+      await rendered.findByText('Authorized');
     });
   });
 
@@ -211,9 +205,9 @@ describe('ApplicationContext', () => {
     const TestComponent = () => (
       <ApplicationContext render={({ dataLocale }) => dataLocale} />
     );
-    it('should add the locale to the project', () => {
-      const { container } = renderApp(<TestComponent />, { dataLocale: 'de' });
-      expect(container).toHaveTextContent('de');
+    it('should add the locale to the project', async () => {
+      const rendered = renderApp(<TestComponent />, { dataLocale: 'de' });
+      await rendered.findByText('de');
     });
   });
 
@@ -226,12 +220,12 @@ describe('ApplicationContext', () => {
       />
     );
 
-    it('should render with defaults', () => {
-      const { container, environment } = renderApp(<TestComponent />);
+    it('should render with defaults', async () => {
+      const rendered = renderApp(<TestComponent />);
       // shows that data gets merged and overwrites have priority
-      expect(container).toHaveTextContent('eu production');
+      await rendered.findByText('eu production');
       // the project should be returned from "render"
-      expect(environment).toEqual(
+      expect(rendered.environment).toEqual(
         expect.objectContaining({
           frontendHost: 'localhost:3001',
           mcApiUrl: 'https://mc-api.commercetools.com',
@@ -243,14 +237,14 @@ describe('ApplicationContext', () => {
       );
     });
 
-    it('should respect user overwrites', () => {
-      const { container, environment } = renderApp(<TestComponent />, {
+    it('should respect user overwrites', async () => {
+      const rendered = renderApp(<TestComponent />, {
         environment: { location: 'us' },
       });
       // shows that data gets merged and overwrites have priority
-      expect(container).toHaveTextContent('us production');
+      await rendered.findByText('us production');
       // the merged project should be returned from "render"
-      expect(environment).toEqual(
+      expect(rendered.environment).toEqual(
         expect.objectContaining({
           frontendHost: 'localhost:3001',
           location: 'us',
@@ -268,19 +262,21 @@ describe('router', () => {
       <Route render={() => 'None'} />
     </Switch>
   );
-  it('should render fallback when no route is provided', () => {
-    const { container } = renderApp(<TestComponent />);
-    expect(container).not.toHaveTextContent('Foo');
-    expect(container).toHaveTextContent('None');
+  it('should render fallback when no route is provided', async () => {
+    const rendered = renderApp(<TestComponent />);
+    await rendered.findByText('None');
+    expect(rendered.queryByText('Foo')).not.toBeInTheDocument();
   });
-  it('should render the route when a route is provided', () => {
-    const { container } = renderApp(<TestComponent />, { route: '/foo' });
-    expect(container).toHaveTextContent('Foo');
-    expect(container).not.toHaveTextContent('None');
+  it('should render the route when a route is provided', async () => {
+    const rendered = renderApp(<TestComponent />, { route: '/foo' });
+    await rendered.findByText('Foo');
+    expect(rendered.queryByText('None')).not.toBeInTheDocument();
   });
-  it('should return a history object', () => {
-    const { history } = renderApp(<TestComponent />, { route: '/foo' });
-    expect(history.location.pathname).toBe('/foo');
+  it('should return a history object', async () => {
+    const rendered = renderApp(<TestComponent />, { route: '/foo' });
+    await wait(() => {
+      expect(rendered.history.location.pathname).toBe('/foo');
+    });
   });
 });
 
@@ -294,7 +290,7 @@ describe('custom render functions', () => {
       children: PropTypes.node.isRequired,
     };
 
-    it('should merge the passed wrapper with renderApp internal wrapper', () => {
+    it('should merge the passed wrapper with renderApp internal wrapper', async () => {
       const TestComponent = () => {
         // provided wrapper
         const value = useContext(Context);
@@ -307,10 +303,10 @@ describe('custom render functions', () => {
       const rendered = renderApp(<TestComponent />, {
         wrapper: ProvidedWrapper,
       });
-      rendered.getByText(/provided wrapper/i);
+      await rendered.findByText(/provided wrapper/i);
     });
 
-    it('should merge the passed wrapper with renderAppWithRedux internal wrapper', () => {
+    it('should merge the passed wrapper with renderAppWithRedux internal wrapper', async () => {
       const TestComponent = () => {
         // provided wrapper
         const value = useContext(Context);
@@ -323,20 +319,20 @@ describe('custom render functions', () => {
       const rendered = renderAppWithRedux(<TestComponent />, {
         wrapper: ProvidedWrapper,
       });
-      rendered.getByText(/provided wrapper/i);
+      await rendered.findByText(/provided wrapper/i);
     });
   });
 
   describe('without wrapper', () => {
-    it('should work with renderApp', () => {
+    it('should work with renderApp', async () => {
       const TestComponent = (props: { children: React.ReactNode }) => (
         <>{props.children}</>
       );
 
       const rendered = renderApp(<TestComponent>{'one'}</TestComponent>);
-      rendered.getByText('one');
+      await rendered.findByText('one');
     });
-    it('should work with renderAppWithRedux', () => {
+    it('should work with renderAppWithRedux', async () => {
       const TestComponent = (props: { children: React.ReactNode }) => (
         <>{props.children}</>
       );
@@ -344,12 +340,12 @@ describe('custom render functions', () => {
       const rendered = renderAppWithRedux(
         <TestComponent>{'one'}</TestComponent>
       );
-      rendered.getByText('one');
+      await rendered.findByText('one');
     });
   });
 
   describe('rerender', () => {
-    it('should work with renderApp', () => {
+    it('should work with renderApp', async () => {
       const TestComponent = (props: { children: React.ReactNode }) => {
         // the error won't be triggered unless one of the providers is used
         useIntl();
@@ -357,14 +353,14 @@ describe('custom render functions', () => {
       };
 
       const rendered = renderApp(<TestComponent>{'one'}</TestComponent>);
-      rendered.getByText('one');
+      await rendered.findByText('one');
 
       rendered.rerender(<TestComponent>{'two'}</TestComponent>);
-      rendered.getByText('two');
+      await rendered.findByText('two');
       expect(rendered.queryByText('one')).not.toBeInTheDocument();
     });
 
-    it('should work with renderAppWithRedux', () => {
+    it('should work with renderAppWithRedux', async () => {
       const TestComponent = (props: { children: React.ReactNode }) => {
         // the error won't be triggered unless one of the providers is used
         useSelector(() => undefined);
@@ -374,14 +370,14 @@ describe('custom render functions', () => {
       const rendered = renderAppWithRedux(
         <TestComponent>{'one'}</TestComponent>
       );
-      rendered.getByText('one');
+      await rendered.findByText('one');
 
       rendered.rerender(<TestComponent>{'two'}</TestComponent>);
-      rendered.getByText('two');
+      await rendered.findByText('two');
       expect(rendered.queryByText('one')).not.toBeInTheDocument();
     });
 
-    it('should work with experimentalRenderAppWithRedux', () => {
+    it('should work with experimentalRenderAppWithRedux', async () => {
       const TestComponent = (props: { children: React.ReactNode }) => {
         // the error won't be triggered unless one of the providers is used
         new ApolloClient({
@@ -396,10 +392,10 @@ describe('custom render functions', () => {
       const rendered = experimentalRenderAppWithRedux(
         <TestComponent>{'one'}</TestComponent>
       );
-      rendered.getByText('one');
+      await rendered.findByText('one');
 
       rendered.rerender(<TestComponent>{'two'}</TestComponent>);
-      rendered.getByText('two');
+      await rendered.findByText('two');
       expect(rendered.queryByText('one')).not.toBeInTheDocument();
     });
   });
