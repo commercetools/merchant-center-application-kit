@@ -1,13 +1,19 @@
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import ProjectsQuery from './project-switcher.mc.graphql';
 
+type CreateGraphqlResponseForProjectsQueryOptions = {
+  numberOfProjects?: number;
+  getIsSuspended?: (key: string) => boolean;
+  getIsExpired?: (key: string) => boolean;
+};
+
 const falsy = () => false;
 
 export const createGraphqlResponseForProjectsQuery = ({
   numberOfProjects = 4,
   getIsSuspended = falsy,
   getIsExpired = falsy,
-} = {}) => ({
+}: CreateGraphqlResponseForProjectsQueryOptions = {}) => ({
   request: {
     query: ProjectsQuery,
     variables: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
