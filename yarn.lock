@@ -11134,10 +11134,20 @@ downshift@3.4.5:
     prop-types "^15.7.2"
     react-is "^16.9.0"
 
-downshift@4.1.0, downshift@^4.1.0:
+downshift@4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/downshift/-/downshift-4.1.0.tgz#a16c67ea965fd7c310c5f7872276e109a4de1704"
   integrity sha512-GODZOZC65a8n8YD/S/87hR2t5PJfqZ7+lwEBJsNi/AJnhImfle+CFD/ZPde4l+nB8QNHfn0GbE1W9djEFOj1yQ==
+  dependencies:
+    "@babel/runtime" "^7.4.5"
+    compute-scroll-into-view "^1.0.9"
+    prop-types "^15.7.2"
+    react-is "^16.9.0"
+
+downshift@^5.0.0:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/downshift/-/downshift-5.0.3.tgz#4912e1deeda89c6f78b2af765f6700722f00918d"
+  integrity sha512-J6cfEcv0qbCUuI4yUhdoj08aJ025MxjLe+GkQ53eY5iC1NrjMj+FgjGkA0dGsyHm5JzVuKTJFd5wQNWOvsLP0g==
   dependencies:
     "@babel/runtime" "^7.4.5"
     compute-scroll-into-view "^1.0.9"
@@ -24030,7 +24040,12 @@ serialize-error@^5.0.0:
   dependencies:
     type-fest "^0.8.0"
 
-serialize-javascript@2.1.2, serialize-javascript@^2.1.2:
+serialize-javascript@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-3.0.0.tgz#492e489a2d77b7b804ad391a5f5d97870952548e"
+  integrity sha512-skZcHYw2vEX4bw90nAr2iTTsz6x2SrHEnfxgKYmZlvJYBEZrvbKtobJWlQ20zczKb3bsHHXXTYt48zBA7ni9cw==
+
+serialize-javascript@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-2.1.2.tgz#ecec53b0e0317bdc95ef76ab7074b7384785fa61"
   integrity sha512-rs9OggEUF0V4jUSecXazOYsLfu7OGK2qIn3c7IPBiffz32XniEp/TX9Xmc9LQfK2nQ2QKHvZ2oygKUGU0lG4jQ==

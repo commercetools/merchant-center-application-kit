@@ -24,7 +24,7 @@
   "module": "./lib/index.js",
   "dependencies": {
     "node-fetch": "2.6.0",
-    "serialize-javascript": "2.1.2",
+    "serialize-javascript": "3.0.0",
     "uglify-es": "3.3.9",
     "uglifycss": "0.0.29"
   },
