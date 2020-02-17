@@ -1324,12 +1324,12 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-docs/gatsby-theme-docs@1.7.7-canary.4":
-  version "1.7.7-canary.4"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.7.7-canary.4.tgz#ba63c001de7da1ad7d8d805c010633173cc972b4"
-  integrity sha512-/druuODeKAbdTt1X+W9t1elqCCkF3jNUjUNsZtuyFoI2ycC1eFe1MqIsSg8q6ylFAAMCX+b67g+GwYSUn6xY9g==
+"@commercetools-docs/gatsby-theme-docs@1.7.7":
+  version "1.7.7"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-1.7.7.tgz#83d9eebaf7a04f43c064b418cab4694b57a1d761"
+  integrity sha512-mrcejGkpNNjZpmzMrGP3vATRQ9pEnXsvS2ZNriB0m2utGvpfQzGdqwq+xzP3g3GC+PLzelS6+Zs0CYuNIHIL2w==
   dependencies:
-    "@commercetools-docs/ui-kit" "1.7.7-canary.4+582b0ee"
+    "@commercetools-docs/ui-kit" "1.7.7"
     "@commercetools-uikit/card" "10.13.0"
     "@commercetools-uikit/design-system" "10.13.0"
     "@commercetools-uikit/icon-button" "10.13.0"
@@ -1370,10 +1370,10 @@
     rehype-slug "2.0.3"
     remark-emoji "2.0.2"
 
-"@commercetools-docs/ui-kit@1.7.7-canary.4", "@commercetools-docs/ui-kit@1.7.7-canary.4+582b0ee":
-  version "1.7.7-canary.4"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-1.7.7-canary.4.tgz#028f451a29b63ccd90bd633373f86b11d4247a45"
-  integrity sha512-fwbSKv9MBHZ14tM0qmadJsxLUaQo1Rr8rj3flIhlixQrIeG0l0e4z/mFBMBxCyAoTK9gdHSO7LymDHuv74KwqQ==
+"@commercetools-docs/ui-kit@1.7.7":
+  version "1.7.7"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-1.7.7.tgz#d62d74e26e40c28c057f9a8426b8ce51df9d6bf2"
+  integrity sha512-tK59oCQgtSg6W1ratzX6JXN9wEmruNS7AxR4qNVZijLqVQFbIYirIFemxKDF6oFLmHlqdK+JQPWUqxos+csvdA==
   dependencies:
     "@commercetools-uikit/tooltip" "10.13.0"
     lodash.escape "4.0.1"
