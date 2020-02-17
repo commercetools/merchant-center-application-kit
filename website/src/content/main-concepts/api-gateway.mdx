@@ -10,9 +10,61 @@ To solve these issues, the Merchant Center provides an **API Gateway**, which pr
 
 ![HTTP API](/images/mc-http-api.png)
 
-All Merchant Center applications should send requests through the API Gateway, which is available at the same domain of the Merchant Center but with the `mc` subdomain being `mc-api`.
+<Info>
 
-Official domains:
+It is recommended that Custom Applications use the API Gateway to access the commercetools APIs, for security reasons. See [Proxy Endpoints](/main-concepts/proxy-endpoints).
 
-- `https://mc-api.commercetools.com` for projects in **Europe** running on Google Cloud Platform
-- `https://mc-api.commercetools.co` for projects in the **United States** running on Google Cloud Platform
+</Info>
+
+# Cloud regions
+
+The commercetools platform is available in [multiple cloud regions](https://docs.commercetools.com/http-api.html#regions).
+These regions are completely isolated from each other and no data is transferred between them.
+
+<Info>
+
+Platform accounts created for one region are not valid for the other regions. A [signup](https://docs.commercetools.com/getting-started) is required for each region individually.
+In case you need advice in which region your project should be located, please contact [commercetools support](https://support.commercetools.com).
+
+</Info>
+
+## Hostnames
+
+The Merchant Center and the Merchant Center API Gateway are available at the same cloud regions where the commercetools platform runs.
+
+<Info>
+
+The Merchant Center runs on the `mc` subdomain, whereas the API Gateway runs on the `mc-api` subdomain.
+
+</Info>
+
+| Cloud region | Hostname |
+| --- | --- |
+| North America (Google Cloud, Iowa) | `mc-api.us-central1.gcp.commercetools.com` |
+| North America (AWS, Ohio) | `mc-api.us-east-2.aws.commercetools.com` |
+| Europe (Google Cloud, Belgium) | `mc-api.europe-west1.gcp.commercetools.com` |
+| Europe (AWS, Frankfurt) | `mc-api.eu-central-1.aws.commercetools.com` |
+
+## Deprecated hostnames
+
+Hostnames for each cloud region follow a specific naming format and therefore any hostname that does not comply to that is considered as deprecated.
+
+Current deprecated hostnames are:
+
+- `mc.commercetools.com`: Europe (Google Cloud).
+- `mc.commercetools.co`: North America (Google Cloud).
+- `mc-api.commercetools.com`: Europe (Google Cloud).
+- `mc-api.commercetools.co`: North America (Google Cloud).
+
+The equivalent new hostnames are respectively:
+
+- `mc.europe-west1.gcp.commercetools.com`: Europe (Google Cloud).
+- `mc.us-central1.gcp.commercetools.com`: North America (Google Cloud).
+- `mc-api.europe-west1.gcp.commercetools.com`: Europe (Google Cloud).
+- `mc-api.us-central1.gcp.commercetools.com`: North America (Google Cloud).
+
+<Warning>
+
+For the time being, we recommend that Custom Applications accommodate for both hostnames, as users can access one or the other. This is important for things like the [`headers.json` configuration](/deployment/runtime-configuration#headersjson).
+
+</Warning>
