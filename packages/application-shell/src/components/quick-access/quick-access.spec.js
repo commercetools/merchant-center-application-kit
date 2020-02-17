@@ -158,13 +158,13 @@ const renderQuickAccess = (options = {}, ui) =>
     ...options,
   });
 
-describe('QuickAccess', () => {
-  beforeEach(() => {
-    gtm.track.mockReset();
-    global.open = jest.fn();
-    global.location.replace = jest.fn();
-  });
+beforeEach(() => {
+  gtm.track.mockReset();
+  global.open = jest.fn();
+  global.location.replace = jest.fn();
+});
 
+describe('QuickAccess', () => {
   it('should open when pressing "f" on document body', async () => {
     const rendered = renderQuickAccess();
 
@@ -214,12 +214,14 @@ describe('QuickAccess', () => {
     expect(rendered.queryByTestId('quick-access-search-input')).toBeVisible();
   });
 
-  it('should not open when pressing "f" not directly on other focusable elements', () => {
+  it('should not open when pressing "f" not directly on other focusable elements', async () => {
     const rendered = renderQuickAccess();
 
     // open quick-access
     fireEvent.keyDown(document.body.firstChild, { key: 'f' });
-    expect(rendered.queryByTestId('quick-access')).toBeNull();
+    await wait(() => {
+      expect(rendered.queryByTestId('quick-access')).toBeNull();
+    });
   });
 
   it('should track when QuickAccess is opened', async () => {
