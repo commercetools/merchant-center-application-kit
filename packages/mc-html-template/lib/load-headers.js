@@ -72,6 +72,7 @@ module.exports = (env, options) => {
         // NOTE: trailing slash is important for partial URLs!
         'storage.googleapis.com/mc-production-eu/',
         'storage.googleapis.com/mc-production-us/',
+        'storage.googleapis.com/mc-production-asia/',
         'www.googletagmanager.com/gtm.js',
         'www.google-analytics.com/analytics.js',
       ].concat(
@@ -101,6 +102,7 @@ module.exports = (env, options) => {
         'data:',
         'storage.googleapis.com/mc-production-eu/',
         'storage.googleapis.com/mc-production-us/',
+        'storage.googleapis.com/mc-production-asia/',
       ].concat(
         // TODO: investigate what needs to be done to avoid unsafe-inline styles
         // https://github.com/commercetools/merchant-center-frontend/pull/5223#discussion_r210367636
