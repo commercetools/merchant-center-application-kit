@@ -8,8 +8,15 @@ This deployment example refers to [Firebase Hosting](https://firebase.google.com
 
 Before you get started, you need to have:
 
-- A [Google Cloud Platform (GCP)](https://cloud.google.com/free/) account
+- A [commercetools](https://docs.commercetools.com/getting-started.html) account and a project.
 
+  <Info>
+
+  In this example we are going to use the commercetools platform running on the [Europe cloud region](https://docs.commercetools.com/http-api.html#regions) on Google Cloud.
+
+  </Info>
+
+- A [Google Cloud Platform (GCP)](https://cloud.google.com/free/) account
 - The [Firebase CLI](https://firebase.google.com/docs/hosting/quickstart#install-cli)
 
 # Create a Firebase project
@@ -126,28 +133,32 @@ First, you need to create an `env.prod.json` file with the following JSON:
 ```json
 {
   "applicationName": "my-app",
-  "frontendHost": "mc.commercetools.co",
-  "mcApiUrl": "https://mc-api.commercetools.com",
-  "location": "eu",
+  "frontendHost": "mc.europe-west1.gcp.commercetools.com",
+  "mcApiUrl": "https://mc-api.europe-west1.gcp.commercetools.com",
+  "location": "gcp-eu",
   "env": "production",
   "cdnUrl": "https://[projectID].firebaseapp.com",
   "servedByProxy": true
 }
 ```
 
-You also need a `headers.json` file. You can also have a `headers.prod.json` file if you want to use a different configuration for `development`.
+We also need a `headers.prod.json` to whitelist the domains for the Content Security Policy:
 
 ```json
 {
   "csp": {
     "script-src": ["[projectID].firebaseapp.com"],
-    "connect-src": ["[projectID].firebaseapp.com"],
+    "connect-src": [
+      "[projectID].firebaseapp.com",
+      "mc-api.commercetools.com",
+      "mc-api.europe-west1.gcp.commercetools.com"
+    ],
     "style-src": ["[projectID].firebaseapp.com"]
   }
 }
 ```
 
-For both `env.prod.json` and `headers.json`, `[projectID]` should be replaced with your Firebase project ID.
+For both `env.prod.json` and `headers.prod.json`, `[projectID]` should be replaced with your Firebase project ID.
 
 # Build and compilation
 
@@ -209,21 +220,23 @@ module.exports = ({ headers }) => {
 
 Copy the file above into your local project as `transformer-firebase.js` under a `config` directory.
 
-In your project's `package.json` add the following script:
+To build and compile your Custom Application run:
 
-```json
-{
-  "compile-html:firebase": "mc-scripts compile-html --headers=$(pwd)/headers.json --config=$(pwd)/env.prod.json --use-local-assets --transformer $(pwd)/config/transformer-firebase.js"
-}
+```console noPromptLines="2,4-7"
+yarn build
+
+mc-scripts compile-html \
+  --headers=$(pwd)/headers.prod.json \
+  --config=$(pwd)/env.prod.json \
+  --use-local-assets \
+  --transformer $(pwd)/config/transformer-firebase.js
 ```
+
+<Warning>
 
 If you have configured a deploy target in a previous section, add `cross-env FIREBASE_TARGET=[target-name]` to the beginning of the script above whereby `target-name` the unique identifier is that you defined above.
 
-To build and compile your Custom Application run:
-
-```console
-yarn build && yarn run compile-html:firebase
-```
+</Warning>
 
 The assets compiled into the `public` directory will be deployed to Firebase.
 

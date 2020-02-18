@@ -8,13 +8,21 @@ There are different deployment strategies but we will focus on deployments using
 
 <Warning>
 
-This example refers to `now` version `1`. Version `2` has deprecated those deployment types and is based on **Lambda** functions (or static files) to run the application. See the [Now v2 example](/deployment/example-now-v2) for more information.
+This example refers to [Now `v1`](https://zeit.co/docs/v1), which has been **deprecated**. If you are looking for Now `v2`, check out the [Now v2 example](/deployment/example-now-v2).
 
 </Warning>
 
 # Prerequisites
 
 Before you get started, you need to have:
+
+- A [commercetools](https://docs.commercetools.com/getting-started.html) account and a project.
+
+  <Info>
+
+  In this example we are going to use the commercetools platform running on the [Europe cloud region](https://docs.commercetools.com/) on Google Cloud.
+
+  </Info>
 
 - A [Now](https://zeit.co/signup) account
 - The [Now Desktop](https://zeit.co/download) or [Now CLI](https://zeit.co/download#now-cli) applications
@@ -43,7 +51,11 @@ The first thing to do is to define a `now.json` file to configure the deployment
 }
 ```
 
-Some fields may vary based on your setup and requirements (for example `public`, `regions`).
+<Info>
+
+Some fields may vary based on your setup and requirements, for example `public`, `regions`, etc.
+
+</Info>
 
 The `files` field determines the list of files for uploading to the cloud servers. The `env.prod.json` file, contains the configuration for production use, to differentiate it from the `env.json` used for development.
 
@@ -51,23 +63,26 @@ Next, we need to create an `env.prod.json` file with the following JSON:
 
 ```json
 {
-  "applicationName": "my-app",
+  "applicationName": "mc-examples-starter",
   "frontendHost": "mc-examples-starter.now.sh",
   "mcApiUrl": "https://mc-api.commercetools.com",
-  "location": "eu",
+  "location": "gcp-eu",
   "env": "production",
   "cdnUrl": "http://mc-examples-starter.now.sh",
   "servedByProxy": true
 }
 ```
 
-We also need a `headers.json` file. You can also have a `headers.prod.json` file if you want to use a different configuration for `development`.
+We also need a `headers.prod.json` to whitelist the domains for the Content Security Policy:
 
 ```json
 {
   "csp": {
     "script-src": ["mc-examples-starter.now.sh"],
-    "connect-src": ["mc-examples-starter.now.sh"],
+    "connect-src": [
+      "mc-examples-starter.now.sh",
+      "mc-api.commercetools.com"
+    ],
     "style-src": ["mc-examples-starter.now.sh"]
   }
 }

@@ -7,7 +7,17 @@ and a [Lambda@Edge](https://us-east-2.console.aws.amazon.com/lambda/home) functi
 
 # Prerequisites
 
-Before you get started, you need to have an [AWS](https://portal.aws.amazon.com/billing/signup#/start) account.
+Before you get started, you need to have:
+
+- A [commercetools](https://docs.commercetools.com/getting-started.html) account and a project.
+
+  <Info>
+
+  In this example we are going to use the commercetools platform running on the [North America cloud region](https://docs.commercetools.com/http-api.html#regions) on Google Cloud.
+
+  </Info>
+
+- An [AWS](https://portal.aws.amazon.com/billing/signup#/start) account.
 
 <Info>
 
@@ -346,28 +356,32 @@ First, you need to create an `env.prod.json` file with the following JSON:
 ```json
 {
   "applicationName": "my-app",
-  "frontendHost": "mc.commercetools.co",
-  "mcApiUrl": "https://mc-api.commercetools.com",
-  "location": "eu",
+  "frontendHost": "mc.europe-west1.gcp.commercetools.com",
+  "mcApiUrl": "https://mc-api.europe-west1.gcp.commercetools.com",
+  "location": "gcp-eu",
   "env": "production",
   "cdnUrl": "https://[cloudfront-domain]",
   "servedByProxy": true
 }
 ```
 
-You also need a `headers.json` file. You can also have a `headers.prod.json` file if you want to use a different configuration for `development`.
+We also need a `headers.prod.json` to whitelist the domains for the Content Security Policy:
 
 ```json
 {
   "csp": {
     "script-src": ["[cloudfront-domain]"],
-    "connect-src": ["[cloudfront-domain]"],
+    "connect-src": [
+      "[cloudfront-domain]",
+      "mc-api.commercetools.com",
+      "mc-api.europe-west1.gcp.commercetools.com"
+    ],
     "style-src": ["[cloudfront-domain]"]
   }
 }
 ```
 
-For both `env.prod.json` and `headers.json`, `[cloudfront-domain]` should be replaced with your CloudFront domain obtained from the last step of the previous section.
+For both `env.prod.json` and `headers.prod.json`, `[cloudfront-domain]` should be replaced with your CloudFront domain obtained from the last step of the previous section.
 
 # Build and Compilation
 
@@ -429,18 +443,16 @@ module.exports = ({ headers }) => {
 
 Copy the above file into your local project as `transformer-aws.js` under a `config` directory.
 
-In your project's `package.json` add the following script:
-
-```json
-{
-  "compile-html:aws": "mc-scripts compile-html --headers=$(pwd)/headers.json --config=$(pwd)/env.prod.json --use-local-assets --transformer $(pwd)/config/transformer-aws.js"
-}
-```
-
 To build and compile your Custom Application run:
 
-```console
-yarn build && yarn run compile-html:aws
+```console noPromptLines="2,4-7"
+yarn build
+
+mc-scripts compile-html \
+  --headers=$(pwd)/headers.prod.json \
+  --config=$(pwd)/env.prod.json \
+  --use-local-assets \
+  --transformer $(pwd)/config/transformer-aws.js
 ```
 
 # Update AWS Resources
