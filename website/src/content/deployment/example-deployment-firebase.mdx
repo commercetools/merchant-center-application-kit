@@ -80,13 +80,218 @@ To support Cloud Functions, Firebase also adds the following structure to your p
 - `package.json`: npm package file describing your Cloud Functions code.
 - `index.js`: main source file for your Cloud Functions code.
 
-# Configure Fallback route
+# Configuration
 
-To provide a more user-friendly experience when the Custom Application is accessed directly, we must create a Cloud Function to redirect the user to.
+To start, we need to create an `env.prod.json` file with the following JSON:
 
-Add these lines to `functions/index.js`:
+```json
+{
+  "applicationName": "my-app",
+  "frontendHost": "mc.europe-west1.gcp.commercetools.com",
+  "mcApiUrl": "https://mc-api.europe-west1.gcp.commercetools.com",
+  "location": "gcp-eu",
+  "env": "production",
+  "cdnUrl": "https://[projectID].firebaseapp.com",
+  "servedByProxy": true
+}
+```
 
-```js
+We also need a `headers.prod.json` to whitelist the domains for the Content Security Policy:
+
+```json
+{
+  "csp": {
+    "script-src": ["[projectID].firebaseapp.com"],
+    "connect-src": [
+      "[projectID].firebaseapp.com",
+      "mc-api.commercetools.com",
+      "mc-api.europe-west1.gcp.commercetools.com"
+    ],
+    "style-src": ["[projectID].firebaseapp.com"]
+  }
+}
+```
+
+<Warning>
+
+The `[projectID]` should be replaced with your real Firebase project ID.
+
+</Warning>
+
+To configure Firebase deployments, we need to use a `firebase.json` file. Normally, it would look something like this:
+
+```json
+{
+  "hosting": {
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      { "source": "**", "destination": "/index.html" }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(js.map|js|css|txt|html|png)",
+        "headers": [
+          { "key": "Cache-Control", "value": "s-maxage=31536000,immutable" }
+        ]
+      },
+      {
+        "source": "**",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache" }
+        ]
+      },
+    ]
+  }
+}
+```
+
+<Info>
+
+Some fields may vary based on your setup and requirements, for example `public`, `ignore`, etc.
+
+</Info>
+
+However, that won't work as the Custom Application does not have an `index.html` after [building the production bundles](/deployment/production-build).
+To make it work, we need to **compile** the application first.
+
+# Compile the application
+
+The Merchant Center Custom Applications are available by default with a built-in [HTTP server](/deployment/http-server), which takes care of preparing the `index.html` according to the `env.json` and `headers.json` configuration (see [Runtime configuration](/deployment/runtime-configuration)).
+
+To be able to deploy the Custom Application to AWS Cloudfront, the application needs to be configured and built statically.
+This is possible using the [`compile-html` command](/development/available-scripts).
+
+```console
+mc-scripts compile-html
+```
+
+The command requires to provide the [runtime configuration](/deployment/runtime-configuration) files so that the `index.html` can be properly compiled.
+
+```console highlightLines="2-3" noPromptLines="2-4"
+mc-scripts compile-html \
+  --headers=$(pwd)/headers.prod.json \
+  --config=$(pwd)/env.prod.json \
+  --use-local-assets
+```
+
+<Info>
+
+The `--use-local-assets` option is required for the sake of this example. See [Serving static assets](/deployment/serving-static-assets).
+
+</Info>
+
+The command above does what we need: it compiles the `index.html` using the JavaScript bundle references (after running `mc-scripts build`) and the runtime configuration. At this point the `index.html` file is ready for production usage.
+
+However, the Custom Application needs to instruct the User-Agent (the browser) to enforce certain security measures, using HTTP headers.
+The HTTP headers are also compiled together with the `index.html`, as they rely on the runtime configuration `headers.json`.
+
+Because of that, the `firebase.json` function file **cannot be defined statically**. Instead, it neeeds to be generated programmatically when the Custom Application is built and compiled.
+To achieve that, we need to implement a **transformer** function.
+
+# Generate `firebase.json` function using a transformer function
+
+The `compile-html` command accepts an option `transformer` which we can use to pass the filesystem path to our transformer function.
+
+<Info>
+
+We assume that the transformer function is defined at the following location: `./config/transformer-firebase.js`.
+
+</Info>
+
+```console highlightLines="5" noPromptLines="2-5"
+mc-scripts compile-html \
+  --headers=$(pwd)/headers.prod.json \
+  --config=$(pwd)/env.prod.json \
+  --use-local-assets \
+  --transformer $(pwd)/config/transformer-firebase.js
+```
+
+The purpose of the transformer function is to generate the final `firebase.json` file given the compiled values passed to the function.
+
+```ts
+// Function signature using TypeScript
+
+type TransformerFunctionOptions = {
+  // The content of the `env.json` file.
+  env: Json;
+  // The compiled HTTP headers, including CSP (see `loadHeaders` from `@commercetools-frontend/mc-html-template`).
+  headers: Json;
+  // The final HTML content of the `index.html`.
+  indexHtmlContent: string;
+}
+type TransformerFunction = (options: TransformerFunctionOptions) => void;
+```
+
+The main export of the file should be the transformer function.
+
+```js title="transformer-firebase.js"
+module.exports = function transformer(options) {
+  // ...
+}
+```
+
+With that in mind, we can implement the transformer function and write the `firebase.json` config into the filesystem.
+
+```js title="./config/transformer-firebase.js"
+const fs = require('fs');
+const path = require('path');
+
+const rootPath = path.join(__dirname, '..');
+
+module.exports = ({ headers }) => {
+  const config = {
+    hosting: {
+      public: 'public',
+      ignore: ['firebase.json', '**/.*', '**/node_modules/**'],
+      rewrites: [
+        { source: '**', destination: '/index.html' },
+      ],
+      headers: [
+        {
+          source: '**/*.@(js.map|js|css|txt|html|png)',
+          headers: [
+            { key: 'Cache-Control', value: 's-maxage=31536000,immutable' },
+          ],
+        },
+        {
+          source: '**',
+          headers: Object.entries({
+            ...headers,
+            'Cache-Control': 'no-cache',
+          }).map(([key, value]) => ({ key, value })),
+        },
+      ],
+    },
+  };
+
+  const target = process.env.FIREBASE_TARGET;
+
+  if (target) {
+    config.hosting.target = target;
+  }
+
+  fs.writeFileSync(
+    path.join(rootPath, 'firebase.json'),
+    JSON.stringify(config, null, 2),
+    { encoding: 'utf8' }
+  );
+};
+```
+
+# Adding fallback routes
+
+<Info>
+
+This step is optional and does not prevent the application to be used within the Merchant Center. However, it's recommended to do so to avoid unexpected behaviors in case the URL, where the Custom Application is hosted, is accessed directly.
+
+</Info>
+
+Accessing the Custom Application directly at `https://[projectID].firebaseapp.com` won't work, as the application requires the user to log in and thus tries to redirect to the `/login` route at the same domain.
+
+To prevent that, we can add a dummy fallback route for the `login|logout` routes. This is only meant to inform the user that the Custom Application cannot be used standalone.
+
+```js title="./functions/index.js"
 exports.customAppFallback = functions.https.onRequest((req, res) => {
   res.end(
     'This is not a real route. If you are seeing this, you most likely are accessing the Custom Application\n' +
@@ -95,6 +300,55 @@ exports.customAppFallback = functions.https.onRequest((req, res) => {
       'To do so, you need to first register the Custom Application in Merchant Center > Settings > Custom Applications.'
   );
 });
+```
+
+This route will be used as a serverless function:
+
+```js title="./config/transformer-firebase.js" highlightLines="13"
+const fs = require('fs');
+const path = require('path');
+
+const rootPath = path.join(__dirname, '..');
+
+module.exports = ({ headers }) => {
+  const config = {
+    hosting: {
+      public: 'public',
+      ignore: ['firebase.json', '**/.*', '**/node_modules/**'],
+      rewrites: [
+        { source: '**', destination: '/index.html' },
+        { source: '/@(login|logout)', function: 'customAppFallback' },
+      ],
+      headers: [
+        {
+          source: '**/*.@(js.map|js|css|txt|html|png)',
+          headers: [
+            { key: 'Cache-Control', value: 's-maxage=31536000,immutable' },
+          ],
+        },
+        {
+          source: '**',
+          headers: Object.entries({
+            ...headers,
+            'Cache-Control': 'no-cache',
+          }).map(([key, value]) => ({ key, value })),
+        },
+      ],
+    },
+  };
+
+  const target = process.env.FIREBASE_TARGET;
+
+  if (target) {
+    config.hosting.target = target;
+  }
+
+  fs.writeFileSync(
+    path.join(rootPath, 'firebase.json'),
+    JSON.stringify(config, null, 2),
+    { encoding: 'utf8' }
+  );
+};
 ```
 
 # Set up a Hosting Site (_optional_)
@@ -126,115 +380,9 @@ Where the parameters are:
 
 The settings for deploy targets are stored in the `.firebaserc` file in your project directory, so you only need to set up deploy targets once per project.
 
-# Configuration
-
-First, you need to create an `env.prod.json` file with the following JSON:
-
-```json
-{
-  "applicationName": "my-app",
-  "frontendHost": "mc.europe-west1.gcp.commercetools.com",
-  "mcApiUrl": "https://mc-api.europe-west1.gcp.commercetools.com",
-  "location": "gcp-eu",
-  "env": "production",
-  "cdnUrl": "https://[projectID].firebaseapp.com",
-  "servedByProxy": true
-}
-```
-
-We also need a `headers.prod.json` to whitelist the domains for the Content Security Policy:
-
-```json
-{
-  "csp": {
-    "script-src": ["[projectID].firebaseapp.com"],
-    "connect-src": [
-      "[projectID].firebaseapp.com",
-      "mc-api.commercetools.com",
-      "mc-api.europe-west1.gcp.commercetools.com"
-    ],
-    "style-src": ["[projectID].firebaseapp.com"]
-  }
-}
-```
-
-For both `env.prod.json` and `headers.prod.json`, `[projectID]` should be replaced with your Firebase project ID.
-
-# Build and compilation
-
-In order to generate the correct configuration for Firebase, the `mc-scripts compile-html` script must use a Firebase transformer. This transformer will generate a `firebase.json` file with the custom security headers required for Merchant Center Custom Applications.
-
-```js
-const fs = require('fs');
-const path = require('path');
-
-module.exports = ({ headers }) => {
-  const config = {
-    hosting: {
-      public: 'public',
-      ignore: ['firebase.json', '**/.*', '**/node_modules/**'],
-      rewrites: [
-        { source: '/@(login|logout)', function: 'customAppFallback' },
-        {
-          source: '**',
-          destination: '/index.html',
-        },
-      ],
-      headers: [
-        {
-          source: '**/*.@(js.map|js|css|txt|html|png)',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 's-maxage=31536000,immutable',
-            },
-          ],
-        },
-        {
-          source: '**',
-          headers: Object.entries({
-            ...headers,
-            'Cache-Control': 'no-cache',
-          }).map(([key, value]) => ({
-            key,
-            value,
-          })),
-        },
-      ],
-    },
-  };
-
-  const target = process.env.FIREBASE_TARGET;
-
-  if (target) {
-    config.hosting.target = target;
-  }
-
-  fs.writeFileSync(
-    path.join(__dirname, '../firebase.json'),
-    JSON.stringify(config, null, 2),
-    { encoding: 'utf8' }
-  );
-};
-```
-
-Copy the file above into your local project as `transformer-firebase.js` under a `config` directory.
-
-To build and compile your Custom Application run:
-
-```console noPromptLines="2,4-7"
-yarn build
-
-mc-scripts compile-html \
-  --headers=$(pwd)/headers.prod.json \
-  --config=$(pwd)/env.prod.json \
-  --use-local-assets \
-  --transformer $(pwd)/config/transformer-firebase.js
-```
-
 <Warning>
 
-If you have configured a deploy target in a previous section, add `cross-env FIREBASE_TARGET=[target-name]` to the beginning of the script above whereby `target-name` the unique identifier is that you defined above.
+If you have configured a deploy target in a previous section, prefix the command `compile-html` with the `cross-env FIREBASE_TARGET=[target-name]`, where `target-name` is the unique identifier previously defined.
 
 </Warning>
 
@@ -242,20 +390,18 @@ The assets compiled into the `public` directory will be deployed to Firebase.
 
 # Deployment
 
-Trigger the deployment using the Firebase CLI:
+Finally, we can trigger the deployment using the [Firebase CLI](https://firebase.google.com/docs/hosting/quickstart#install-cli):
 
-```console
+```console noPromptLines="2,4-8"
+yarn build
+
+mc-scripts compile-html \
+  --headers=$(pwd)/headers.prod.json \
+  --config=$(pwd)/env.prod.json \
+  --use-local-assets \
+  --transformer $(pwd)/config/transformer-firebase.js
+
 firebase deploy
 ```
-
-<Info>
-
-Deployment assumes that you have compiled assets in the `public` directory.
-
-</Info>
-
-If you go to `https://[projectID].firebaseapp.com`, you will see the following message supplied in the Cloud Function. **This is expected** as the application is not being loaded behind the Merchant Center proxy.
-
-![Firebase Fallback](/images/mc-dev-firebase-fallback.png)
 
 Now you're ready to [Register your Custom Application](/register-applications/configuring-a-custom-application) and start using it!
