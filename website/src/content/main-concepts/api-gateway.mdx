@@ -8,11 +8,13 @@ However, for security reasons, client-side applications **cannot be trusted** wi
 
 To solve these issues, the Merchant Center provides an **API Gateway**, which proxies requests to underlying APIs. Requests made through the proxy will be authenticated with the correct authentication mechanism specific to the targeted API. This way, a client-side application only needs to [authenticate](#authentication) to the Merchant Center API Gateway without needing to store credentials for the targeted APIs.
 
+# Architecture overview
+
 ![HTTP API](/images/mc-http-api.png)
 
 <Info>
 
-It is recommended that Custom Applications use the API Gateway to access the commercetools APIs, for security reasons. See [Proxy Endpoints](/main-concepts/proxy-endpoints).
+For security reasons, it is recommended that Custom Applications use the API Gateway to access the commercetools APIs. See [Proxy Endpoints](/main-concepts/proxy-endpoints).
 
 </Info>
 
