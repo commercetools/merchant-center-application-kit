@@ -74,7 +74,7 @@ Therefore, it's important that the application is [registered](/register-applica
 
 </Warning>
 
-It is recommended to have two separate configuration files, one for development and one for production. The `env.json` **must** be used for development, therefore for production you can have a `env.prod.json` file.
+It is recommended to have two separate configuration files, one for development and one for production. The `env.json` **must** be used for development, therefore for production you can have an `env.prod.json` file.
 
 # `headers.json`
 
@@ -88,7 +88,7 @@ For development the `headers.json` file is **optional**. If used, the file must 
 
 ## Content Security Policy
 
-The Content Security Policy (CSP) header allows to instruct the browser how to deal with security measures, according to the configured instructions. Most of the times it's enough to whitelist the hostnames that the Custom Application uses, for example if [static assets](/deployment/serving-static-assets) are served by a CDN.
+The Content Security Policy (CSP) header allows to instruct the browser how to deal with security measures, according to the configured instructions. Most of the time it's enough to whitelist the hostnames that the Custom Application uses, for example if [static assets](/deployment/serving-static-assets) are served by a CDN.
 
 <Info>
 
@@ -115,7 +115,7 @@ For example, given that your application is hosted at `my-app.now.sh` and runs o
 
 <Info>
 
-This example includes two hostnames as one of them is a deprecated hostname: `mc.commercetools.com`. For more information read about [Deprecated hostnames](/main-concepts/api-gateway#deprecated-hostnames).
+This example includes two hostnames as one of them is a deprecated hostname: `mc-api.commercetools.com`. For more information read about [Deprecated hostnames](/main-concepts/api-gateway#deprecated-hostnames).
 
 </Info>
 
