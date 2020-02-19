@@ -10,7 +10,7 @@
     "start": "gatsby develop"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-docs": "1.7.7",
+    "@commercetools-docs/gatsby-theme-docs": "1.8.0",
     "@commercetools-docs/ui-kit": "1.7.7",
     "@commercetools-uikit/card": "10.16.0",
     "@commercetools-uikit/spacings-inline": "10.15.1",
