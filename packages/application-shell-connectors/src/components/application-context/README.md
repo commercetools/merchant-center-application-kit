@@ -37,17 +37,7 @@ The selected project **locale** (from the locale switcher in the AppBar) used to
 
 #### `environment`
 
-This object contains application specific environment information defined in the `env.json`. The object will then be available on runtime from `window.app`. However, to avoid accessing those values globally, we inject this object into the application context.
-
-The following are common fields defined in `env.json`. However, each application can provide more specific fields that cannot be documented.
-
-- `applicationName`: the name of the application (usually the same as in the `package.json`)
-- `frontendHost`: the host where the Merchant Center application is running (e.g. `mc.commercetools.com`)
-- `mcApiUrl`: the API URL of the Merchant Center (`https://mc-api.commercetools.com` for projects in `EU` and `https://mc-api.commercetools.co` for projects in `US`)
-- `location`: the location where the Merchant Center is running, usually `eu` or `us`
-- `env`: the environment where the Merchant Center is running, usually `production` or `staging`
-- `cdnUrl`: the URL where the static assets are stored
-- `servedByProxy`: a flag to indicate if this application is running behind the Merchant Center proxy or not, usually `true` for production and `false` for local development
+See https://docs.commercetools.com/custom-applications/deployment/runtime-configuration#envjson
 
 ### Usage
 

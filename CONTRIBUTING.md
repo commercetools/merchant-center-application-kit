@@ -4,7 +4,7 @@ Please _read_ before contributing to Merchant Center Application Kit in order to
 
 ## Core Ideas
 
-The [Merchant Center](https://mc.commercetools.com) is a _Multi Single-Page-Application_ where effectively multiple applications are running within the same domain, giving it a look and feel of being one big application. In fact, sections of the Merchant Center such as Dashboard, Orders, Products, etc are all different applications.
+The [Merchant Center](https://docs.commercetools.com/merchant-center/) is a _Multi Single-Page-Application_ where effectively multiple applications are running within the same domain, giving it a look and feel of being one big application. In fact, sections of the Merchant Center such as Dashboard, Orders, Products, etc are all different applications.
 You can read more about the architecture here (_coming soon_).
 
 With that in mind, developing a Merchant Center Application requires a set of tools and components that should be used across the different applications, as they share some common logic. This repository contains all the minimal packages that are necessary to do that. Some of them do not need to be used directly but are instead required by other packages. Let's have a deeper look.
