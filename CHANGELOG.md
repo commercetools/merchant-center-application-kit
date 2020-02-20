@@ -1,3 +1,31 @@
+## [16.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.2.2...v16.3.0) (2020-02-20)
+
+#### 🐛 Type: Bug
+
+- `create-mc-app`
+  - [#1353](https://github.com/commercetools/merchant-center-application-kit/pull/1353) fix(create-mc-app): yarn binary check to not throw ([@emmenko](https://github.com/emmenko))
+- `actions-global`
+  - [#1335](https://github.com/commercetools/merchant-center-application-kit/pull/1335) fix(actions-global): method signature of useOnActionError ([@pa3](https://github.com/pa3))
+
+#### 🚀 Type: New Feature
+
+- `mc-html-template`
+  - [#1348](https://github.com/commercetools/merchant-center-application-kit/pull/1348) feat(headers/csp): whitelist bucket for asia cloud region ([@adnasa](https://github.com/adnasa))
+
+#### 🖥 Type: Website
+
+- [#1351](https://github.com/commercetools/merchant-center-application-kit/pull/1351) docs(website): list legacy hostnames ([@emmenko](https://github.com/emmenko))
+- [#1346](https://github.com/commercetools/merchant-center-application-kit/pull/1346) docs(website): improve docs around csp and cloud regions ([@emmenko](https://github.com/emmenko))
+- [#1350](https://github.com/commercetools/merchant-center-application-kit/pull/1350) chore(website): update to theme 1.8.0 ([@emmenko](https://github.com/emmenko))
+- [#1344](https://github.com/commercetools/merchant-center-application-kit/pull/1344) chore(website): update to theme 1.7.7 ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `application-shell`, `mc-html-template`
+  - [#1341](https://github.com/commercetools/merchant-center-application-kit/pull/1341) fix(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+- `application-shell-connectors`, `application-shell`, `jest-preset-mc-app`, `mc-scripts`
+  - [#1342](https://github.com/commercetools/merchant-center-application-kit/pull/1342) chore(deps): lock file maintenance all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [16.2.2](https://github.com/commercetools/merchant-center-application-kit/compare/v16.2.1...v16.2.2) (2020-02-13)
 
 #### ✍️ Type: Documentation
