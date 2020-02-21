@@ -1,3 +1,15 @@
+## [16.3.1](https://github.com/commercetools/merchant-center-application-kit/compare/v16.3.0...v16.3.1) (2020-02-21)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1355](https://github.com/commercetools/merchant-center-application-kit/pull/1355) fix(app-shell): token refetch triggerd by requests from settings service ([@tdeekens](https://github.com/tdeekens))
+
+#### 🖥 Type: Website
+
+- `application-shell-connectors`, `jest-preset-mc-app`, `mc-scripts`
+  - [#1349](https://github.com/commercetools/merchant-center-application-kit/pull/1349) docs: add deployment example for ZEIT Now v2, restructure other examples. ([@emmenko](https://github.com/emmenko))
+
 ## [16.3.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.2.2...v16.3.0) (2020-02-20)
 
 #### 🐛 Type: Bug
