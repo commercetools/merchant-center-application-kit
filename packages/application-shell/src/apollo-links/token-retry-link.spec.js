@@ -206,4 +206,12 @@ describe('supported GraphQL targets', () => {
       })
     ).toBe(false);
   });
+
+  it('should not support the `settings service` GraphQL target', () => {
+    expect(
+      getDoesGraphQLTargetSupportTokenRetry({
+        'X-Graphql-Target': GRAPHQL_TARGETS.SETTINGS_SERVICE,
+      })
+    ).toBe(true);
+  });
 });

@@ -26,6 +26,7 @@ export const getDoesGraphQLTargetSupportTokenRetry = (
   return [
     GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
     GRAPHQL_TARGETS.ADMINISTRATION_SERVICE,
+    GRAPHQL_TARGETS.SETTINGS_SERVICE,
   ].includes(target);
 };
 
