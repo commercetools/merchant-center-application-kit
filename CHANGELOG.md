@@ -1,3 +1,14 @@
+## [16.3.2](https://github.com/commercetools/merchant-center-application-kit/compare/v16.3.1...v16.3.2) (2020-02-24)
+
+#### 🐛 Type: Bug
+
+- `mc-scripts`
+  - [#1362](https://github.com/commercetools/merchant-center-application-kit/pull/1362) fix(mc-scripts): remove noop service worker middleware from webpack dev server ([@emmenko](https://github.com/emmenko))
+
+#### 🖥 Type: Website
+
+- [#1357](https://github.com/commercetools/merchant-center-application-kit/pull/1357) chore(website): update to theme 1.8.1 ([@emmenko](https://github.com/emmenko))
+
 ## [16.3.1](https://github.com/commercetools/merchant-center-application-kit/compare/v16.3.0...v16.3.1) (2020-02-21)
 
 #### 🐛 Type: Bug
