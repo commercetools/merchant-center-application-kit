@@ -168,6 +168,8 @@
   "resolutions": {
     "@commercetools-frontend/ui-kit": "10.13.0",
     "**/@commercetools-frontend/ui-kit": "10.13.0",
+    "@sentry/types": "5.12.4",
+    "**/@sentry/types": "5.12.4",
     "@types/react": "16.9.22",
     "@types/react-router": "5.1.4",
     "react": "16.12.0",

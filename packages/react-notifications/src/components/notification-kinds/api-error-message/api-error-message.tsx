@@ -26,9 +26,20 @@ type ExtraErrorFields = {
   attribute?: {
     name: string;
   };
+  referencedBy?: string;
 };
 type Props = {
   error: TAppNotificationApiError<ExtraErrorFields>;
+};
+
+// The values passed to the Intl message must be a map of scalar values.
+// Some of the message values are already mapped in the `getSpecialFormattedMessageByErrorCode`
+// function. Here we map other possible error properties that can be
+// used in the message.
+const mapErrorFieldsToMessageValues = (error: Props['error']) => {
+  if (error.field) return { field: error.field };
+  if (error.referencedBy) return { referencedBy: error.referencedBy };
+  return {};
 };
 
 // Type-guard validation for error code to be included in the message object keys.
@@ -62,7 +73,14 @@ const FormattedErrorMessage = (props: Props) => {
 
   if (messageCode) {
     // The `error` object might contain extra fields for the specific `code`.
-    return <>{intl.formatMessage(messageCode, props.error)}</>;
+    return (
+      <>
+        {intl.formatMessage(
+          messageCode,
+          mapErrorFieldsToMessageValues(props.error)
+        )}
+      </>
+    );
   }
 
   return (
