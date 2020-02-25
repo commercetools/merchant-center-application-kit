@@ -498,15 +498,15 @@ RestrictedApplication.displayName = 'RestrictedApplication';
  *   - `JSON.parse('1')` => `1`
  *   - `JSON.parse('["a", "b"]')` => `['a', 'b']`
  */
-const getCoerceEnvironmentValue = (environmentValueAsString: string) => {
+const getCoerceEnvironmentValue = (environmentValueAsString: unknown) => {
   try {
-    return JSON.parse(environmentValueAsString);
+    return JSON.parse(String(environmentValueAsString));
   } catch (e) {
     return environmentValueAsString;
   }
 };
 
-type ShallowJson = { [key: string]: string };
+type ShallowJson = { [key: string]: unknown };
 const shallowlyCoerceValues = (uncoercedEnvironmentValues: ShallowJson) =>
   Object.keys(uncoercedEnvironmentValues).reduce(
     (coercedEnvironmentValues, key) => {

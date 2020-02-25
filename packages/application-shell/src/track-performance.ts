@@ -8,7 +8,6 @@ const trackPerformance = () => {
   new Perfume({
     logging: false,
     dataConsumption: true,
-    largestContentfulPaint: true,
     analyticsTracker: ({ metricName, data, duration }) => {
       switch (metricName) {
         case 'firstPaint':
