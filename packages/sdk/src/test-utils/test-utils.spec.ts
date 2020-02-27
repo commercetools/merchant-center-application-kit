@@ -70,9 +70,65 @@ describe('createTestMiddleware', () => {
           },
         });
       }).toThrow(/Could not find any more mocks for action/);
-    });
-    it('should not call next', () => {
+
       expect(store.next).not.toHaveBeenCalled();
+    });
+
+    describe('formatting error message', () => {
+      beforeEach(() => {
+        const testMiddleware = createTestMiddleware([
+          {
+            action: sdkActions.post({
+              uri: '/foo',
+              payload: { foo: undefined },
+            }),
+            response: { ok: true },
+          },
+        ]);
+        store = createTestStore(testMiddleware);
+      });
+
+      it('should not hide fields holding value `undefined`', () => {
+        expect(() => {
+          store.dispatch({
+            type: 'SDK',
+            payload: {
+              uri: '/foo',
+              method: 'POST',
+              payload: {
+                bar: undefined,
+              },
+            },
+          });
+        }).toThrow(
+          `Could not find any more mocks for action {
+  \"type\": \"SDK\",
+  \"payload\": {
+    \"uri\": \"/foo\",
+    \"method\": \"POST\",
+    \"payload\": {
+      \"bar\": undefined
+    }
+  }
+} in [
+  {
+    \"action\": {
+      \"type\": \"SDK\",
+      \"payload\": {
+        \"uri\": \"/foo\",
+        \"payload\": {
+          \"foo\": undefined
+        },
+        \"method\": \"POST\"
+      }
+    },
+    \"response\": {
+      \"ok\": true
+    }
+  }
+]`
+        );
+      });
     });
   });
   describe('when mocks match an action', () => {
