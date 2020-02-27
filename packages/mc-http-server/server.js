@@ -75,6 +75,7 @@ const shutdownServer = async () => {
 // Gather and expose metrics to Prometheus
 const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
   options: {
+    detectKubernetes: true,
     accuracies: ['ms'],
     metricTypes: ['httpRequestsHistogram'],
     metricNames: {
@@ -177,6 +178,7 @@ const launchServer = async options => {
       port: lightshipServerPort,
     });
     prometheusMetricsServer = await createPrometheusMetricsServer({
+      detectKubernetes: true,
       port: prometheusMetricsServerPort,
       detectKubernetes: true,
     });
