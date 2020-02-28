@@ -102,28 +102,28 @@ describe('createTestMiddleware', () => {
           });
         }).toThrow(
           `Could not find any more mocks for action {
-  \"type\": \"SDK\",
-  \"payload\": {
-    \"uri\": \"/foo\",
-    \"method\": \"POST\",
-    \"payload\": {
-      \"bar\": undefined
+  "type": "SDK",
+  "payload": {
+    "uri": "/foo",
+    "method": "POST",
+    "payload": {
+      "bar": undefined
     }
   }
 } in [
   {
-    \"action\": {
-      \"type\": \"SDK\",
-      \"payload\": {
-        \"uri\": \"/foo\",
-        \"payload\": {
-          \"foo\": undefined
+    "action": {
+      "type": "SDK",
+      "payload": {
+        "uri": "/foo",
+        "payload": {
+          "foo": undefined
         },
-        \"method\": \"POST\"
+        "method": "POST"
       }
     },
-    \"response\": {
-      \"ok\": true
+    "response": {
+      "ok": true
     }
   }
 ]`
