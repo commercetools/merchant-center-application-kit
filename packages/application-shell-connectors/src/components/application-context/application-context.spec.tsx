@@ -7,6 +7,7 @@ import {
   withApplicationContext,
   mapUserToApplicationContextUser,
   mapProjectToApplicationContextProject,
+  mapEnvironmentToApplicationContextEnvironment,
 } from './application-context';
 import { ApplicationWindow } from '@commercetools-frontend/constants';
 
@@ -167,6 +168,24 @@ describe('mapProjectToApplicationContextProject', () => {
       currencies: expect.any(Array),
       languages: expect.any(Array),
       ownerId: expect.any(String),
+    });
+  });
+});
+
+describe('mapEnvironmentToApplicationContextEnvironment', () => {
+  it('should map environment to environment context', () => {
+    expect(
+      mapEnvironmentToApplicationContextEnvironment(createTestEnvironment())
+    ).toEqual({
+      revision: expect.any(String),
+      applicationName: expect.any(String),
+      frontendHost: expect.any(String),
+      mcApiUrl: 'https://mc-api.commercetools.com',
+      location: expect.any(String),
+      env: expect.any(String),
+      cdnUrl: expect.any(String),
+      servedByProxy: expect.any(Boolean),
+      foo: expect.any(String),
     });
   });
 });

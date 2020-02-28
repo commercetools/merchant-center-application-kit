@@ -12,6 +12,7 @@ import {
   normalizeAllAppliedPermissions,
   normalizeAllAppliedDataFences,
 } from './normalizers';
+import getMcApiUrl from '../../utils/get-mc-api-url';
 
 type TFetchedUser = TFetchLoggedInUserQuery['user'];
 type TFetchedProject = TFetchProjectQuery['project'];
@@ -76,6 +77,16 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
   };
 };
 
+// Adjust certain fields which depend e.g. on the origin
+export const mapEnvironmentToApplicationContextEnvironment = <
+  TApplicationEnvironment extends {}
+>(
+  environment: TApplicationEnvironment
+) => ({
+  mcApiUrl: getMcApiUrl(),
+  ...environment,
+});
+
 // Expose only certain fields as some of them are only meant to
 // be used internally in the AppShell
 export const mapProjectToApplicationContextProject = (
@@ -129,7 +140,7 @@ const createApplicationContext: <AdditionalEnvironmentProperties extends {}>(
   project,
   projectDataLocale
 ) => ({
-  environment,
+  environment: mapEnvironmentToApplicationContextEnvironment(environment),
   user: mapUserToApplicationContextUser(user),
   project: mapProjectToApplicationContextProject(project),
   permissions: normalizeAllAppliedPermissions(project),
