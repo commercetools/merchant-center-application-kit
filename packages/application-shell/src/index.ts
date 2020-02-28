@@ -13,6 +13,7 @@ export { GtmContext } from './components/gtm-booter';
 export { default as GtmUserLogoutTracker } from './components/gtm-user-logout-tracker';
 export { default as SetupFlopFlipProvider } from './components/setup-flop-flip-provider';
 export { default as version } from './version';
+export { getMcApiUrl } from './utils';
 
 // Deprecated
 export { default as AsyncChunkLoader } from './components/async-chunk-loader';
