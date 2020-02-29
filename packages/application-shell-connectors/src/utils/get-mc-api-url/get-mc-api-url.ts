@@ -39,7 +39,11 @@ export default function getMcApiUrl(
   const isInferringOfMcApiUrlOnProductionDisabled =
     environment.disableInferringOfMcApiUrlOnProduction;
 
-  if (isServedByProxy && !isInferringOfMcApiUrlOnProductionDisabled)
+  if (
+    isServedByProxy &&
+    !isInferringOfMcApiUrlOnProductionDisabled &&
+    partialWindow.origin
+  )
     return getMcApiUrlFromOrigin(partialWindow);
 
   return environment.mcApiUrl;
