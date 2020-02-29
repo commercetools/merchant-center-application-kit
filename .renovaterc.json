@@ -22,7 +22,6 @@
   "labels": ["🤖 Type: Dependencies"],
   "ignoreDeps": [
     "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
-    "react-intl"
+    "gatsby-transformer-sharp"
   ]
 }
