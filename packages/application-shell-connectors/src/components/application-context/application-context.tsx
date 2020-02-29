@@ -12,6 +12,7 @@ import {
   normalizeAllAppliedPermissions,
   normalizeAllAppliedDataFences,
 } from './normalizers';
+import getMcApiUrl from '../../utils/get-mc-api-url';
 
 type TFetchedUser = TFetchLoggedInUserQuery['user'];
 type TFetchedProject = TFetchProjectQuery['project'];
@@ -54,6 +55,7 @@ type TApplicationContextDataFences = {
   // E.g. { store: {...} }
   store?: TApplicationContextGroupedByResourceType;
 };
+type TApplicationContextEnvironment = ApplicationWindow['app'];
 
 const Context = React.createContext({});
 
@@ -76,6 +78,18 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
   };
 };
 
+// Adjust certain fields which depend e.g. on the origin
+export const mapEnvironmentToApplicationContextEnvironment = <
+  AdditionalEnvironmentProperties extends {}
+>(
+  environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment,
+  partialWindow: Pick<Window, 'origin'> = window
+) => ({
+  ...environment,
+  // NOTE: The `mcApiUrl` depends on `servedByProxy` and `disableInferringOfMcApiUrlOnProduction`.
+  mcApiUrl: getMcApiUrl(environment, partialWindow),
+});
+
 // Expose only certain fields as some of them are only meant to
 // be used internally in the AppShell
 export const mapProjectToApplicationContextProject = (
@@ -93,7 +107,6 @@ export const mapProjectToApplicationContextProject = (
   };
 };
 
-type TApplicationContextEnvironment = ApplicationWindow['app'];
 export type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
   environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment;
   user: ReturnType<typeof mapUserToApplicationContextUser>;
@@ -129,7 +142,7 @@ const createApplicationContext: <AdditionalEnvironmentProperties extends {}>(
   project,
   projectDataLocale
 ) => ({
-  environment,
+  environment: mapEnvironmentToApplicationContextEnvironment(environment),
   user: mapUserToApplicationContextUser(user),
   project: mapProjectToApplicationContextProject(project),
   permissions: normalizeAllAppliedPermissions(project),
