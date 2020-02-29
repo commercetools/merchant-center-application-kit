@@ -151,5 +151,6 @@ export interface ApplicationWindow extends Window {
     enableSignUp?: boolean;
     disabledMenuItems?: string[];
     useFullRedirectsForLinks?: boolean;
+    disableInferringOfMcApiUrlOnProduction?: string;
   };
 }

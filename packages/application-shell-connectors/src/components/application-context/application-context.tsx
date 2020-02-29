@@ -55,6 +55,7 @@ type TApplicationContextDataFences = {
   // E.g. { store: {...} }
   store?: TApplicationContextGroupedByResourceType;
 };
+type TApplicationContextEnvironment = ApplicationWindow['app'];
 
 const Context = React.createContext({});
 
@@ -79,12 +80,14 @@ export const mapUserToApplicationContextUser = (user?: TFetchedUser) => {
 
 // Adjust certain fields which depend e.g. on the origin
 export const mapEnvironmentToApplicationContextEnvironment = <
-  TApplicationEnvironment extends {}
+  AdditionalEnvironmentProperties extends {}
 >(
-  environment: TApplicationEnvironment
+  environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment,
+  partialWindow: Pick<Window, 'origin'> = window
 ) => ({
-  mcApiUrl: getMcApiUrl(),
   ...environment,
+  // NOTE: The `mcApiUrl` depends on `servedByProxy` and `disableInferringOfMcApiUrlOnProduction`.
+  mcApiUrl: getMcApiUrl(environment, partialWindow),
 });
 
 // Expose only certain fields as some of them are only meant to
@@ -104,7 +107,6 @@ export const mapProjectToApplicationContextProject = (
   };
 };
 
-type TApplicationContextEnvironment = ApplicationWindow['app'];
 export type TApplicationContext<AdditionalEnvironmentProperties extends {}> = {
   environment: AdditionalEnvironmentProperties & TApplicationContextEnvironment;
   user: ReturnType<typeof mapUserToApplicationContextUser>;

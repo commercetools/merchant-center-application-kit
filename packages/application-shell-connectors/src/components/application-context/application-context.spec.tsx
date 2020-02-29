@@ -173,19 +173,44 @@ describe('mapProjectToApplicationContextProject', () => {
 });
 
 describe('mapEnvironmentToApplicationContextEnvironment', () => {
-  it('should map environment to environment context', () => {
-    expect(
-      mapEnvironmentToApplicationContextEnvironment(createTestEnvironment())
-    ).toEqual({
-      revision: expect.any(String),
-      applicationName: expect.any(String),
-      frontendHost: expect.any(String),
-      mcApiUrl: 'https://mc-api.commercetools.com',
-      location: expect.any(String),
-      env: expect.any(String),
-      cdnUrl: expect.any(String),
-      servedByProxy: expect.any(Boolean),
-      foo: expect.any(String),
+  describe('when application is configured to run behind proxy', () => {
+    it('should map environment to environment context', () => {
+      expect(
+        mapEnvironmentToApplicationContextEnvironment(
+          createTestEnvironment({ servedByProxy: true }),
+          {
+            origin: 'https://mc.europe-west1.gcp.commercetools.com',
+          }
+        )
+      ).toEqual({
+        revision: expect.any(String),
+        applicationName: expect.any(String),
+        frontendHost: expect.any(String),
+        mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
+        location: expect.any(String),
+        env: expect.any(String),
+        cdnUrl: expect.any(String),
+        servedByProxy: expect.any(Boolean),
+        foo: expect.any(String),
+      });
+    });
+  });
+
+  describe('when application is not configured to run behind proxy', () => {
+    it('should map environment to environment context', () => {
+      expect(
+        mapEnvironmentToApplicationContextEnvironment(createTestEnvironment())
+      ).toEqual({
+        revision: expect.any(String),
+        applicationName: expect.any(String),
+        frontendHost: expect.any(String),
+        mcApiUrl: 'https://mc-api.commercetools.com',
+        location: expect.any(String),
+        env: expect.any(String),
+        cdnUrl: expect.any(String),
+        servedByProxy: expect.any(Boolean),
+        foo: expect.any(String),
+      });
     });
   });
 });
