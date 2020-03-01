@@ -25,7 +25,9 @@ const isMacrosName = packageName =>
   defaultMacrosRegex.test(packageName) &&
   packageName.indexOf('@formatjs/macro') === -1;
 
-function getConfig() {
+function getConfig(api) {
+  api && api.cache(true);
+
   return {
     plugins: [
       [
@@ -39,4 +41,4 @@ function getConfig() {
   };
 }
 
-module.exports = getConfig();
+module.exports = getConfig;
