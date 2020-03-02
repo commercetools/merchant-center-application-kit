@@ -35,7 +35,7 @@
     ]
   },
   "dependencies": {
-    "@babel/core": "7.8.4",
+    "@babel/core": "7.8.6",
     "@commercetools-frontend/assets": "16.0.0",
     "@commercetools-frontend/babel-preset-mc-app": "16.2.1",
     "@commercetools-frontend/mc-dev-authentication": "16.0.0",
@@ -43,7 +43,7 @@
     "@svgr/webpack": "5.2.0",
     "babel-loader": "8.0.6",
     "babel-plugin-react-intl": "5.1.18",
-    "browserslist": "4.8.7",
+    "browserslist": "4.9.1",
     "clean-webpack-plugin": "3.0.0",
     "core-js": "3.6.4",
     "css-loader": "3.4.2",
