@@ -15,9 +15,10 @@ const shouldSilenceWarnings = (...messages) =>
   ].some(msgRegex => messages.some(msg => msgRegex.test(msg)));
 
 const shouldNotThrowWarnings = (...messages) =>
-  [/.*@commercetools-frontend\/permissions.*/].some(msgRegex =>
-    messages.some(msg => msgRegex.test(msg))
-  );
+  [
+    /.*@commercetools-frontend\/permissions.*/,
+    /.*Warning: React.createFactory() is deprecated.*/,
+  ].some(msgRegex => messages.some(msg => msgRegex.test(msg)));
 
 // setup file
 const logOrThrow = (log, method, messages) => {
