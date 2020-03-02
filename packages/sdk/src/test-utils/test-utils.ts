@@ -1,6 +1,6 @@
 import { deepEqual } from 'fast-equals';
 import { Action, Dispatch } from 'redux';
-import uuid from 'uuid';
+import { v4 as uuid } from 'uuid';
 import { HttpErrorType } from '@commercetools/sdk-client';
 import { TSdkAction, Json } from '../types';
 
@@ -16,7 +16,7 @@ interface TSdkMockFailure extends TSdkMockBase {
 export type TSdkMock = TSdkMockSuccess | TSdkMockFailure;
 
 const serialize = (data: unknown) => {
-  const undefinedPlaceholder = uuid.v4();
+  const undefinedPlaceholder = uuid();
   const placeholderRegexp = new RegExp(`"${undefinedPlaceholder}"`, 'g');
   const mapUndefinedValues = (_k: string, v: unknown) =>
     v === undefined ? undefinedPlaceholder : v;

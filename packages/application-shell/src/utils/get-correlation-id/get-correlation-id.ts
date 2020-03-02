@@ -1,4 +1,4 @@
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import selectProjectKeyFromUrl from '../select-project-key-from-url';
 
 const VALID_ID_PART_FORMAT = /^[\w-/]+$/;
