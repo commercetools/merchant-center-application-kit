@@ -1,3 +1,22 @@
+## [16.3.3](https://github.com/commercetools/merchant-center-application-kit/compare/v16.3.2...v16.3.3) (2020-03-02)
+
+#### 🐛 Type: Bug
+* `application-shell-connectors`, `constants`
+  * [#1368](https://github.com/commercetools/merchant-center-application-kit/pull/1368) bug(app-shell-connectors): path mcApiUrl on context env ([@tdeekens](https://github.com/tdeekens))
+* `sdk`
+  * [#1365](https://github.com/commercetools/merchant-center-application-kit/pull/1365) fix(sdk/test-utils): serialize `undefined` as `undefined` ([@pa3](https://github.com/pa3))
+
+#### 🖥 Type: Website
+* [#1364](https://github.com/commercetools/merchant-center-application-kit/pull/1364) chore(website): update MC architecture diagrams ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+* `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `i18n`, `jest-preset-mc-app`, `l10n`, `mc-scripts`, `permissions`, `react-notifications`, `sdk`, `sentry`
+  * [#1372](https://github.com/commercetools/merchant-center-application-kit/pull/1372) chore(deps): lock file maintenance all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+* `application-shell`, `mc-http-server`
+  * [#1366](https://github.com/commercetools/merchant-center-application-kit/pull/1366) chore: update flopflip and promster ([@tdeekens](https://github.com/tdeekens))
+* `actions-global`, `application-shell-connectors`, `application-shell`, `jest-preset-mc-app`, `jest-stylelint-runner`, `l10n`, `mc-scripts`, `react-notifications`, `sdk`, `sentry`
+  * [#1360](https://github.com/commercetools/merchant-center-application-kit/pull/1360) chore(deps): lock file maintenance all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [16.3.2](https://github.com/commercetools/merchant-center-application-kit/compare/v16.3.1...v16.3.2) (2020-02-24)
 
 #### 🐛 Type: Bug
