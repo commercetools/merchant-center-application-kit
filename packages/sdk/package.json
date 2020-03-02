@@ -59,7 +59,7 @@
     "react-redux": "7.2.0",
     "redux": "4.0.5",
     "redux-thunk": "2.3.0",
-    "uuid": "3.4.0"
+    "uuid": "7.0.1"
   },
   "peerDependencies": {
     "@types/react": "16.x",
