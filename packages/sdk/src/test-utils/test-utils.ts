@@ -1,5 +1,7 @@
 import { deepEqual } from 'fast-equals';
 import { Action, Dispatch } from 'redux';
+// ESLint is not able to follow this correct import.
+// eslint-disable-next-line import/named
 import { v4 as uuid } from 'uuid';
 import { HttpErrorType } from '@commercetools/sdk-client';
 import { TSdkAction, Json } from '../types';
