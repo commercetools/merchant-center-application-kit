@@ -15,12 +15,12 @@
     "@commercetools-uikit/card": "10.16.0",
     "@commercetools-uikit/spacings-inline": "10.15.1",
     "@commercetools-uikit/spacings-stack": "10.15.1",
-    "@emotion/core": "10.0.27",
+    "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
-    "gatsby": "2.19.19",
-    "gatsby-cli": "2.8.30",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
+    "gatsby": "2.19.23",
+    "gatsby-cli": "2.9.0",
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
     "react-intl": "3.4.0"
   }
 }

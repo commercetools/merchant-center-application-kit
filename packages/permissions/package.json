@@ -49,7 +49,7 @@
     "tiny-warning": "1.0.3"
   },
   "devDependencies": {
-    "react": "16.12.0"
+    "react": "16.13.0"
   },
   "peerDependencies": {
     "@types/react": "16.x",

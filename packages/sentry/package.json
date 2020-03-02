@@ -41,12 +41,12 @@
   "dependencies": {
     "@babel/runtime-corejs3": "7.8.4",
     "@commercetools-frontend/constants": "16.0.0",
-    "@sentry/browser": "5.12.4",
+    "@sentry/browser": "5.13.0",
     "@types/prop-types": "^15.7.3",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
-    "react": "16.12.0",
+    "react": "16.13.0",
     "sentry-testkit": "3.2.1",
     "wait-for-expect": "3.0.2"
   },
