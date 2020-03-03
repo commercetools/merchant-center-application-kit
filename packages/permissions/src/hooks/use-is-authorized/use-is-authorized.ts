@@ -1,3 +1,4 @@
+import React from 'react';
 import warning from 'tiny-warning';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
@@ -57,6 +58,12 @@ type TSelectDataFenceData = (
   }
 ) => string[] | null;
 
+const useWarning = (condition: boolean, message: string) => {
+  React.useEffect(() => {
+    warning(condition, message);
+  }, [condition, message]);
+};
+
 const useIsAuthorized = ({
   demandedPermissions,
   demandedActionRights,
@@ -72,19 +79,19 @@ const useIsAuthorized = ({
 }) => {
   const impliedPermissions = getImpliedPermissions(demandedPermissions);
 
-  warning(
+  useWarning(
     !demandedActionRights || demandedActionRights.length === 1,
     `@commercetools-frontend/permissions: It is recommended to pass a single demanded action right while using the hook, HoC or component multiple times.`
   );
-  warning(
+  useWarning(
     !demandedPermissions || demandedPermissions.length === 1,
     `@commercetools-frontend/permissions: It is recommended to pass a single demanded permission while using the hook, HoC or component multiple times.`
   );
-  warning(
+  useWarning(
     shouldMatchSomePermissions === false,
     `@commercetools-frontend/permissions: It is recommended not to use 'shouldMatchSomePermissions' but instead use the hook, HoC or component multiple times.`
   );
-  warning(
+  useWarning(
     !impliedPermissions || impliedPermissions.length === 0,
     `@commercetools-frontend/permissions: Demanded permissions contain implied permissions. These are implied: ${impliedPermissions.join(
       ', '
