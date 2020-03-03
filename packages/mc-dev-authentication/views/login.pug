@@ -30,7 +30,7 @@ html
       input(
         id="url"
         name="url"
-        value=env.mcApiUrl + "/tokens"
+        value=env.mcApiUrl.replace(/\/$/, '') + "/tokens"
         style="display: none;"
       )
       div
