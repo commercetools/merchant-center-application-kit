@@ -1,6 +1,4 @@
-// ESLint is not able to follow this correct import.
-// eslint-disable-next-line import/named
-import { v4 as uuid } from 'uuid';
+import uuid from 'uuid';
 import selectProjectKeyFromUrl from '../select-project-key-from-url';
 
 const VALID_ID_PART_FORMAT = /^[\w-/]+$/;
@@ -11,7 +9,7 @@ const skipMalformedPart = (part?: string | null) =>
 export default function getCorrelationId({
   userId,
 }: { userId?: string | null } = {}) {
-  return ['mc', selectProjectKeyFromUrl(), userId, uuid()]
+  return ['mc', selectProjectKeyFromUrl(), userId, uuid.v4()]
     .filter(skipMalformedPart)
     .join('/');
 }
