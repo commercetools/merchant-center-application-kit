@@ -1,7 +1,7 @@
 import selectProjectKeyFromUrl from '../select-project-key-from-url';
 import getCorrelationId from './get-correlation-id';
 
-jest.mock('uuid/v4', () => () => 'test-uuid');
+jest.mock('uuid', () => ({ v4: () => 'test-uuid' }));
 jest.mock('../select-project-key-from-url', () =>
   jest.fn(() => 'test-project-key')
 );
