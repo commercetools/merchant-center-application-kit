@@ -205,12 +205,11 @@ const useNavbarStateManager = (props: HookProps) => {
   }, [state.isMenuOpen]);
 
   const handleToggleItem = React.useCallback(
-    (menuType: string, index: string) => {
-      const activeItem = `${menuType}-${index}`;
-      if (state.activeItemIndex !== activeItem)
+    (nextActiveItemIndex: string) => {
+      if (state.activeItemIndex !== nextActiveItemIndex)
         dispatch({
           type: 'setActiveItemIndex',
-          payload: activeItem,
+          payload: nextActiveItemIndex,
         });
     },
     [state.activeItemIndex]
