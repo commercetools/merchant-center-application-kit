@@ -383,13 +383,12 @@ const MenuLabel = (props: MenuLabelProps) => {
 
 type ApplicationMenuProps = {
   location: RouteComponentProps['location'];
-  menuType: string;
   menu: TNavbarMenu;
   isActive: boolean;
   isMenuOpen: boolean;
   shouldCloseMenuFly: MouseEventHandler<HTMLElement>;
   menuVisibilities?: TApplicationContext<{}>['menuVisibilities'];
-  handleToggleItem: (menuType: string, index: string) => void;
+  handleToggleItem: () => void;
   applicationLocale: string;
   projectKey: string;
   disabledMenuItems?: string[];
@@ -414,9 +413,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
 
   return (
     <>
-      {props.menuType === 'application' && props.menu.shouldRenderDivider && (
-        <MenuItemDivider />
-      )}
+      {props.menu.shouldRenderDivider && <MenuItemDivider />}
 
       <RestrictedMenuItem
         key={props.menu.key}
@@ -433,14 +430,8 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
           hasSubmenu={hasSubmenu}
           isActive={props.isActive}
           isMenuOpen={props.isMenuOpen}
-          onClick={() => {
-            props.handleToggleItem(props.menuType, props.menu.key);
-          }}
-          onMouseEnter={
-            props.isMenuOpen
-              ? undefined
-              : () => props.handleToggleItem(props.menuType, props.menu.key)
-          }
+          onClick={props.handleToggleItem}
+          onMouseEnter={props.isMenuOpen ? undefined : props.handleToggleItem}
           onMouseLeave={props.isMenuOpen ? undefined : props.shouldCloseMenuFly}
         >
           <MenuItemLink
@@ -589,10 +580,9 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
               <ApplicationMenu
                 key={menu.key}
                 location={location}
-                menuType={menuType}
                 menu={menu}
                 isActive={activeItemIndex === itemIndex}
-                handleToggleItem={handleToggleItem}
+                handleToggleItem={() => handleToggleItem(itemIndex)}
                 isMenuOpen={isMenuOpen}
                 shouldCloseMenuFly={shouldCloseMenuFly}
                 menuVisibilities={menuVisibilities}
@@ -610,12 +600,10 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
             isActive={false}
             isMenuOpen={isMenuOpen}
             onClick={() => {
-              handleToggleItem('fixed', 'support');
+              handleToggleItem('fixed-support');
             }}
             onMouseEnter={
-              isMenuOpen
-                ? undefined
-                : () => handleToggleItem('fixed', 'support')
+              isMenuOpen ? undefined : () => handleToggleItem('fixed-support')
             }
             onMouseLeave={isMenuOpen ? undefined : shouldCloseMenuFly}
           >
