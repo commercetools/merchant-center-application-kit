@@ -16,15 +16,15 @@ const envRefSyntax = RegExp(/^env:/g);
 
 const hasVariablePlaceholder = valueOfEnvConfig =>
   typeof valueOfEnvConfig === 'string' &&
-  valueOfEnvConfig.match(variableSyntax);
+  variableSyntax.test(valueOfEnvConfig);
 const isEnvVariablePlaceholder = valueOfPlaceholder =>
-  valueOfPlaceholder.match(envRefSyntax);
+  envRefSyntax.test(valueOfPlaceholder);
 const substituteEnvVariablePlaceholder = (
   valueOfPlaceholder,
   matchedString,
   valueOfEnvConfig
 ) => {
-  const requestedEnvVar = valueOfPlaceholder.split(':')[1];
+  const [,requestedEnvVar] = valueOfPlaceholder.split(':');
   const valueOfEnv = process.env[requestedEnvVar];
 
   if (!valueOfEnv) {

@@ -4,7 +4,7 @@ const loadEnv = require('./load-env');
 jest.mock('fs');
 
 const minimalEnvConfig = {
-  applicationName: 'testa-application',
+  applicationName: 'test-application-name',
   frontendHost: 'test-frontend-host',
   mcApiUrl: 'test-mc-api-url',
   location: 'test-location',
