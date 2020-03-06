@@ -1,28 +1,70 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 const fs = require('fs');
+const replaceall = require('replaceall');
 
 // Keep a reference to the loaded config so that requiring the module
 // again will result in returning the cached value.
 let loadedEnv;
 
-const START_OF_ENV_PLACEHOLDER = 'env:';
-const isEnvVariablesPlaceholder = valueOfEnvConfig =>
-  valueOfEnvConfig && valueOfEnvConfig.startsWith(START_OF_ENV_PLACEHOLDER);
-const substitutePlaceholder = valueOfEnvConfig => {
-  const nameOfEnvVariable = valueOfEnvConfig.replace(
-    START_OF_ENV_PLACEHOLDER,
-    ''
-  );
+/**
+ * NOTE:
+ *  Allows env variable placeholders e.g. `${env:MC_API_URL}`.
+ *  Other placeholder types might be supported in the future.
+ */
+const variableSyntax = RegExp('\\${([ ~:a-zA-Z0-9._\'",\\-\\/\\(\\)]+?)}', 'g');
+const envRefSyntax = RegExp(/^env:/g);
 
-  const valueOfEnvVariable = process.env[nameOfEnvVariable];
+const hasVariablePlaceholder = valueOfEnvConfig =>
+  typeof valueOfEnvConfig === 'string' &&
+  valueOfEnvConfig.match(variableSyntax);
+const isEnvVariablePlaceholder = valueOfPlaceholder =>
+  valueOfPlaceholder.match(envRefSyntax);
+const substituteEnvVariablePlaceholder = (
+  valueOfPlaceholder,
+  matchedString,
+  valueOfEnvConfig
+) => {
+  const requestedEnvVar = valueOfPlaceholder.split(':')[1];
+  const valueOfEnv = process.env[requestedEnvVar];
 
-  if (!valueOfEnvVariable) {
+  if (!valueOfEnv) {
     throw new Error(
-      `Missing '${nameOfEnvVariable}' specified in config as 'env:${nameOfEnvVariable}'.`
+      `Missing '${requestedEnvVar}' specified in config as 'env:${requestedEnvVar}'.`
     );
   }
 
-  return valueOfEnvVariable;
+  const substitutedEnvConfig = replaceall(
+    matchedString,
+    valueOfEnv,
+    valueOfEnvConfig
+  );
+
+  return substitutedEnvConfig;
+};
+const getValueOfPlaceholder = valueWithPlaceholder =>
+  valueWithPlaceholder
+    .replace(variableSyntax, (match, varName) => varName.trim())
+    .replace(/\s/g, '');
+const substitutePlaceholders = valueOfEnvConfig => {
+  if (!hasVariablePlaceholder(valueOfEnvConfig)) return valueOfEnvConfig;
+
+  // NOTE: Interseting into the string with placeholders
+  // values one by one.
+  let populatedValueOfEnvConfig = valueOfEnvConfig;
+
+  valueOfEnvConfig.match(variableSyntax).forEach(matchedString => {
+    const valueOfPlaceholder = getValueOfPlaceholder(matchedString);
+
+    if (isEnvVariablePlaceholder(valueOfPlaceholder)) {
+      populatedValueOfEnvConfig = substituteEnvVariablePlaceholder(
+        valueOfPlaceholder,
+        matchedString,
+        populatedValueOfEnvConfig
+      );
+    }
+  });
+
+  return populatedValueOfEnvConfig;
 };
 const substituteEnvVariablePlaceholders = config => {
   const entriesOfEnvConfig = Object.entries(config);
@@ -30,9 +72,7 @@ const substituteEnvVariablePlaceholders = config => {
   const replacedEntriesOfEnvConfig = entriesOfEnvConfig.map(
     ([envConfigKey, envConfigValue]) => [
       envConfigKey,
-      isEnvVariablesPlaceholder(envConfigValue)
-        ? substitutePlaceholder(envConfigValue)
-        : envConfigValue,
+      substitutePlaceholders(envConfigValue),
     ]
   );
 

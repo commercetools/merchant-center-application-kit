@@ -20,7 +20,11 @@ const fsMocks = {
   withoutMissingKey: JSON.stringify(minimalEnvConfig),
   withPlaceholders: JSON.stringify({
     ...minimalEnvConfig,
-    apiUrl: 'env:API_URL',
+    apiUrl: '${env:API_URL}',
+  }),
+  withMultiplePlaceholders: JSON.stringify({
+    ...minimalEnvConfig,
+    apiUrl: 'http://${env:API_HOSTNAME}.${env:API_TLD}',
   }),
 };
 
@@ -74,6 +78,20 @@ describe('with environment variable placeholders', () => {
       );
     });
   });
+  describe('when multiple placeholders and all placeholders are defined on environment', () => {
+    it('should return the parsed config and all values with placeholders', () => {
+      process.env.API_HOSTNAME = 'test-api-hostname';
+      process.env.API_TLD = 'com';
+
+      fs.readFileSync.mockReturnValue(fsMocks.withMultiplePlaceholders);
+
+      expect(loadEnv(undefined, { disableCache: true })).toEqual(
+        expect.objectContaining({
+          apiUrl: `http://${process.env.API_HOSTNAME}.${process.env.API_TLD}`,
+        })
+      );
+    });
+  });
   describe('when not all placeholders are defined on environment', () => {
     it('should throw an error and not return the parsed config', () => {
       // NOTE: Setting to undefined will make it appear as a string.
@@ -82,7 +100,7 @@ describe('with environment variable placeholders', () => {
       fs.readFileSync.mockReturnValue(fsMocks.withPlaceholders);
 
       expect(() => loadEnv(undefined, { disableCache: true })).toThrow(
-        /Missing 'API_URL' specified in config as 'env:API_URL/
+        /Missing 'API_URL' specified in config as 'env:API_URL'/
       );
     });
   });

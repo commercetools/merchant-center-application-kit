@@ -26,7 +26,8 @@
     "node-fetch": "2.6.0",
     "serialize-javascript": "3.0.0",
     "uglify-es": "3.3.9",
-    "uglifycss": "0.0.29"
+    "uglifycss": "0.0.29",
+    "replaceall": "0.1.6"
   },
   "engines": {
     "node": ">=8",
