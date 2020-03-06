@@ -13,8 +13,7 @@ const variableSyntax = RegExp('\\${([ ~:a-zA-Z0-9._\'",\\-\\/\\(\\)]+?)}', 'g');
 const envRefSyntax = RegExp(/^env:/g);
 
 const hasVariablePlaceholder = valueOfEnvConfig =>
-  typeof valueOfEnvConfig === 'string' &&
-  variableSyntax.test(valueOfEnvConfig);
+  typeof valueOfEnvConfig === 'string' && variableSyntax.test(valueOfEnvConfig);
 const isEnvVariablePlaceholder = valueOfPlaceholder =>
   envRefSyntax.test(valueOfPlaceholder);
 const substituteEnvVariablePlaceholder = (
@@ -22,7 +21,7 @@ const substituteEnvVariablePlaceholder = (
   matchedString,
   valueOfEnvConfig
 ) => {
-  const [,requestedEnvVar] = valueOfPlaceholder.split(':');
+  const [, requestedEnvVar] = valueOfPlaceholder.split(':');
   const valueOfEnv = process.env[requestedEnvVar];
 
   if (!valueOfEnv) {
