@@ -57,15 +57,6 @@ describe('with all required environment config values', () => {
 
 describe('with environment variable placeholders', () => {
   describe('when all placeholders are defined on environment', () => {
-    it('should return the parsed config and all values without placeholders', () => {
-      process.env.API_URL = 'test-api-url';
-
-      fs.readFileSync.mockReturnValue(fsMocks.withPlaceholders);
-
-      expect(loadEnv(undefined, { disableCache: true })).toEqual(
-        expect.objectContaining(minimalEnvConfig)
-      );
-    });
     it('should return the parsed config and all values with placeholders', () => {
       process.env.API_URL = 'test-api-url';
 
@@ -73,6 +64,7 @@ describe('with environment variable placeholders', () => {
 
       expect(loadEnv(undefined, { disableCache: true })).toEqual(
         expect.objectContaining({
+          ...minimalEnvConfig,
           apiUrl: process.env.API_URL,
         })
       );
