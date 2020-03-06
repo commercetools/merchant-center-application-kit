@@ -5,12 +5,12 @@ const fs = require('fs');
 // again will result in returning the cached value.
 let loadedEnv;
 
-const START_OF_ENV_PLACEHODER = 'env:';
+const START_OF_ENV_PLACEHOLDER = 'env:';
 const isEnvVariablesPlaceholder = valueOfEnvConfig =>
-  valueOfEnvConfig && valueOfEnvConfig.startsWith(START_OF_ENV_PLACEHODER);
+  valueOfEnvConfig && valueOfEnvConfig.startsWith(START_OF_ENV_PLACEHOLDER);
 const substitutePlaceholder = valueOfEnvConfig => {
   const nameOfEnvVariable = valueOfEnvConfig.replace(
-    START_OF_ENV_PLACEHODER,
+    START_OF_ENV_PLACEHOLDER,
     ''
   );
 
