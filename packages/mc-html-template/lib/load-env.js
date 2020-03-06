@@ -9,13 +9,19 @@ let loadedEnv;
  *  Allows env variable placeholders e.g. `${env:MC_API_URL}`.
  *  Other placeholder types might be supported in the future.
  */
-const variableSyntax = RegExp('\\${([ ~:a-zA-Z0-9._\'",\\-\\/\\(\\)]+?)}', 'g');
-const envRefSyntax = RegExp(/^env:/g);
+const variableSyntax = /\${([ ~:a-zA-Z0-9._\'",\-\/\(\)]+?)}/g;
+const envRefSyntax = /^env:/g;
 
 const hasVariablePlaceholder = valueOfEnvConfig =>
-  typeof valueOfEnvConfig === 'string' && variableSyntax.test(valueOfEnvConfig);
+  typeof valueOfEnvConfig === 'string' &&
+  // Using `{regex}.test()` might cause false positives if called multiple
+  // times on a global regular expression:
+  // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test
+  //    As with exec() (or in combination with it), test() called multiple times
+  //    on the same global regular expression instance will advance past the previous match.
+  Boolean(valueOfEnvConfig.match(variableSyntax));
 const isEnvVariablePlaceholder = valueOfPlaceholder =>
-  envRefSyntax.test(valueOfPlaceholder);
+  Boolean(valueOfPlaceholder.match(envRefSyntax));
 const substituteEnvVariablePlaceholder = (
   valueOfPlaceholder,
   matchedString,
