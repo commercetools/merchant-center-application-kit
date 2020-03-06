@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 const fs = require('fs');
-const replaceall = require('replaceall');
 
 // Keep a reference to the loaded config so that requiring the module
 // again will result in returning the cached value.
@@ -33,13 +31,11 @@ const substituteEnvVariablePlaceholder = (
     );
   }
 
-  const substitutedEnvConfig = replaceall(
-    matchedString,
-    valueOfEnv,
-    valueOfEnvConfig
+  const escapedMatchedString = matchedString.replace(/[${}:]/g, '\\$&');
+  return valueOfEnvConfig.replace(
+    new RegExp(`(${escapedMatchedString})+`, 'g'),
+    valueOfEnv
   );
-
-  return substitutedEnvConfig;
 };
 const getValueOfPlaceholder = valueWithPlaceholder =>
   valueWithPlaceholder
