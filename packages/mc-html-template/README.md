@@ -36,7 +36,7 @@ At the moment we define the following placeholders:
 - `__DATALAYER_JS__`: the initial configuration for GTM, in case the `trackingGtm` is defined in the `env.json`
 - `__GTM_SCRIPT__`: the actual GTM script, in case the `trackingGtm` is defined in the `env.json`
 
-#### `loadEnv(configPath: String, { disableCache: boolean } = { disableCache: false }): Object`
+#### `loadEnv(configPath: String): Object`
 
 This method will attempt to load and parse the `env.json` file, performing some validation and returning the parsed JSON.
 
