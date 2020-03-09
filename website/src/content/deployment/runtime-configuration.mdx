@@ -80,7 +80,13 @@ The `MC_API_URL` environment variable can be provided in various ways. For examp
 
 <Info>
 
-You can also pass multiple references to the same value key: "https://mc-api.${env:CTP_REGION}.${env.CTP_CLOUD_REGION}.commercetools.com".
+You can also pass multiple references to the same value
+
+```json
+{
+  "mcApiUrl": "https://mc-api.${env:CTP_REGION}.${env.CTP_CLOUD_REGION}.commercetools.com"
+}
+```
 
 </Info>
 
