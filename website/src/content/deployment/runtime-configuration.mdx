@@ -65,7 +65,7 @@ An example configuration for local development:
 
 ## Using environment variables
 
-Any envrionment configuration JSON file can contain references for environment variables. This can be useful to avoid duplication between various `env.json` files for multiple different environments. References are specified with an expansion like syntax `${}` while additionally prefixing the environment variable name with `env:`.
+Values in an environment configuration JSON file can contain references to environment variables. This can be useful to avoid duplication between various `env.json` files for multiple different environments. References are specified with a special expansion like syntax `${}` while additionally prefixing the environment variable name with `env:`.
 
 Imagine needing various `env.json` files which differ only in the `MC_API_URL` for three deployments of the Custom Application. We can use the `${env:MC_API_URL}` reference within the `env.json` to avoid needing various environment configuration files.
 
