@@ -40,18 +40,8 @@ At the moment we define the following placeholders:
 
 This method will attempt to load and parse the `env.json` file, performing some validation and returning the parsed JSON.
 
-The environment configuration JSON file, usually called `env.json`, can contain placeholders for environment variables. This can be useful to avoid duplication between various `env.json` files for multiple different environments. Placeholders are specified with an expansion like syntax `${}` while additionally prefixing the environment variable name with `env:`.
-
-Imagine needing various `env.json` which differs only in the `MC_API_URL` for three environments. We can use the `${env:MC_API_URL}` placeholder within the `env.json`:
-
-```json
-{
-  "CDN_URL": "https://bucket.com",
-  "MC_API_URL": "${env:MC_API_URL}"
-}
-```
-
-The `MC_API_URL` placeholder can then be filled in various ways. For instance with a run script in a `package.json` as `MC_API_URL=https://mc-api.commercetools.com yarn start` or via a [dotenv](https://github.com/motdotla/dotenv)-file which is sourced before starting the application.
+More information about required values and references can be found in the [Runtime Configuration
+](https://docs.commercetools.com/custom-applications/deployment/runtime-configuration) documentation of Custom Applications.
 
 #### `loadHeaders(env: Object, { headersPath: String, cspPath?: String }): Object`
 
