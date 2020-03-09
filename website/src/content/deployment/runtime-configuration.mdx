@@ -78,6 +78,12 @@ For instance, imagine developing a Custom Application that can be used in the co
 
 The `MC_API_URL` environment variable can be provided in various ways. For example as an inline environment variable when running a script command (`MC_API_URL=https://mc-api.commercetools.com yarn start`), using a [dotenv](https://github.com/motdotla/dotenv) file or by defining the environment variables in your CI service.
 
+<Info>
+
+You can also pass multiple references to the same value key: "https://mc-api.${env:CTP_REGION}.${env.CTP_CLOUD_REGION}.commercetools.com".
+
+</Info>
+
 ## Production environment
 
 <Warning>
