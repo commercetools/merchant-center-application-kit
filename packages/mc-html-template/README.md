@@ -36,9 +36,22 @@ At the moment we define the following placeholders:
 - `__DATALAYER_JS__`: the initial configuration for GTM, in case the `trackingGtm` is defined in the `env.json`
 - `__GTM_SCRIPT__`: the actual GTM script, in case the `trackingGtm` is defined in the `env.json`
 
-#### `loadEnv(configPath: String): Object`
+#### `loadEnv(configPath: String, { disableCache: boolean } = { disableCache: false }): Object`
 
 This method will attempt to load and parse the `env.json` file, performing some validation and returning the parsed JSON.
+
+The environment configuration JSON file, usually called `env.json`, can contain placeholders for environment variables. This can be useful to avoid duplication between various `env.json` files for multiple different environments. Placeholders are specified with an expansion like syntax `${}` while additionally prefixing the environment variable name with `env:`.
+
+Imagine needing various `env.json` which differs only in the `MC_API_URL` for three environments. We can use the `${env:MC_API_URL}` placeholder within the `env.json`:
+
+```json
+{
+  "CDN_URL": "https://bucket.com",
+  "MC_API_URL": "${env:MC_API_URL}"
+}
+```
+
+The `MC_API_URL` placeholder can then be filled in various ways. For instance with a run script in a `package.json` as `MC_API_URL=https://mc-api.commercetools.com yarn start` or via a [dotenv](https://github.com/motdotla/dotenv)-file which is sourced before starting the application.
 
 #### `loadHeaders(env: Object, { headersPath: String, cspPath?: String }): Object`
 
