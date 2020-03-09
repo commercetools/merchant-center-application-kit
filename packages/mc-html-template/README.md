@@ -40,6 +40,9 @@ At the moment we define the following placeholders:
 
 This method will attempt to load and parse the `env.json` file, performing some validation and returning the parsed JSON.
 
+More information about required values and references can be found in the [Runtime Configuration
+](https://docs.commercetools.com/custom-applications/deployment/runtime-configuration) documentation of Custom Applications.
+
 #### `loadHeaders(env: Object, { headersPath: String, cspPath?: String }): Object`
 
 This method will return the security headers to be used on the server response, serving the `index.html`.

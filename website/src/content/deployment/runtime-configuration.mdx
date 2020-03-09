@@ -63,6 +63,32 @@ An example configuration for local development:
 }
 ```
 
+## Using environment variables
+
+Values in an environment configuration JSON file can contain references to environment variables. This can be useful to avoid duplication between various `env.json` files for multiple different environments. References are specified with a special expansion like syntax `${}` while additionally prefixing the environment variable name with `env:`.
+
+For instance, imagine developing a Custom Application that can be used in the commercetools platform Europe region and North America region. We can assign the `${env:MC_API_URL}` reference to the field `mcApiUrl` and pass the actual value using environment variables.
+
+```json
+{
+  "cdnUrl": "https://bucket.com",
+  "mcApiUrl": "${env:MC_API_URL}"
+}
+```
+
+The `MC_API_URL` environment variable can be provided in various ways. For example as an inline environment variable when running a script command (`MC_API_URL=https://mc-api.commercetools.com yarn start`), using a [dotenv](https://github.com/motdotla/dotenv) file or by defining the environment variables in your CI service.
+
+<Info>
+
+You can also pass multiple references to the same value
+
+```json
+{
+  "mcApiUrl": "https://mc-api.${env:CTP_REGION}.${env.CTP_CLOUD_REGION}.commercetools.com"
+}
+```
+
+</Info>
 
 ## Production environment
 
