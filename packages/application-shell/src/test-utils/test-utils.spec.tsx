@@ -17,6 +17,7 @@ import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
 import { Switch, Route } from 'react-router-dom';
+import { GtmContext } from '../';
 import {
   renderApp,
   renderAppWithRedux,
@@ -397,6 +398,24 @@ describe('custom render functions', () => {
       rendered.rerender(<TestComponent>{'two'}</TestComponent>);
       await rendered.findByText('two');
       expect(rendered.queryByText('one')).not.toBeInTheDocument();
+    });
+  });
+});
+
+describe('GTM tracking provider', () => {
+  const TestComponent = () => {
+    const gtmContext = useContext(GtmContext);
+    React.useLayoutEffect(() => {
+      gtmContext.track('foo', 'foo');
+    });
+    return <span>{'Hello'}</span>;
+  };
+  it('should call track function', async () => {
+    const track = jest.fn();
+    const rendered = renderApp(<TestComponent />, { gtmTracking: { track } });
+    await rendered.findByText('Hello');
+    await wait(() => {
+      expect(track).toHaveBeenCalled();
     });
   });
 });

@@ -305,8 +305,8 @@ type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   ApolloProviderComponent: React.ElementType | typeof ApolloMockProvider;
   // gtm-context
   gtmTracking: {
-    track: typeof gtm.track;
-    getHierarchy: typeof gtm.getHierarchy;
+    track?: typeof gtm.track;
+    getHierarchy?: typeof gtm.getHierarchy;
   };
 } & rtl.RenderOptions;
 type TRenderAppResult<AdditionalEnvironmentProperties = {}> = rtl.RenderResult &
