@@ -149,6 +149,7 @@ describe('details view', () => {
       await rendered.findByText(/sm-1/i);
     });
     it('should retrigger request if id changes', async () => {
+      const trackMock = jest.fn();
       rendered = renderApp({
         route: '/my-project/state-machines/sm1',
         sdkMocks: [
@@ -159,8 +160,17 @@ describe('details view', () => {
           canViewDeveloperSettings: true,
           canManageDeveloperSettings: true,
         },
+        gtmTracking: {
+          track: trackMock,
+        },
       });
       await rendered.findByText(/sm-1/i);
+      await wait(() => {
+        expect(trackMock).toHaveBeenCalledWith(
+          'rendered',
+          'State machine details'
+        );
+      });
 
       rendered.history.push('/my-project/state-machines/sm2');
       await rendered.findByText(/sm-2/i);

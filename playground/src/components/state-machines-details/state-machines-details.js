@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { useShowApiErrorNotification } from '@commercetools-frontend/actions-global';
+import { GtmContext } from '@commercetools-frontend/application-shell';
 import { ListIcon, CheckBoldIcon } from '@commercetools-uikit/icons';
 import LoadingSpinner from '@commercetools-uikit/loading-spinner';
 import Spacings from '@commercetools-uikit/spacings';
@@ -73,6 +74,12 @@ const StateMachinesDetails = props => {
     [dispatch]
   );
   const showApiErrorNotification = useShowApiErrorNotification();
+
+  // This tracking is just testing purposes
+  const { track } = React.useContext(GtmContext);
+  React.useEffect(() => {
+    track('rendered', 'State machine details');
+  }, [track]);
 
   return (
     <StateMachinesDetailsFetcher
