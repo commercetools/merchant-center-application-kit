@@ -46,6 +46,7 @@ import ErrorApologizer from '../error-apologizer';
 import Redirector from '../redirector';
 import version from '../../version';
 import RedirectToProjectCreate from '../redirect-to-project-create';
+import { location } from '../../utils/location';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import QuickAccess from '../quick-access';
 
@@ -564,18 +565,17 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
                 the authentication service. */}
                 <Route
                   path="/logout"
-                  render={({ location }) => (
+                  render={({ location: routeLocation }) => (
                     <Redirector
                       to="logout"
-                      location={location}
+                      location={routeLocation}
                       queryParams={{
                         reason: LOGOUT_REASONS.USER,
                         ...(coercedEnvironmentValues.servedByProxy
                           ? {}
                           : {
-                              // This will be used after being logged in,
-                              // to redirect to this location.
-                              redirectTo: window.location.origin,
+                              // This will be used after being logged in, to redirect to this location.
+                              redirectTo: location.origin,
                             }),
                       }}
                     />
@@ -602,14 +602,14 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
 
           return (
             <Route
-              render={({ location }) => (
+              render={({ location: routeLocation }) => (
                 <Redirector
                   to="login"
-                  location={location}
+                  location={routeLocation}
                   queryParams={{
                     reason: LOGOUT_REASONS.UNAUTHORIZED,
                     redirectTo: trimLeadingAndTrailingSlashes(
-                      joinPaths(window.location.origin, location.pathname)
+                      joinPaths(location.origin, location.pathname)
                     ),
                   }}
                 />

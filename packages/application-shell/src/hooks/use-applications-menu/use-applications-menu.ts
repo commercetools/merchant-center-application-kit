@@ -5,6 +5,7 @@ import {
   TFetchApplicationsMenuQuery,
   TFetchApplicationsMenuQueryVariables,
 } from '../../types/generated/proxy';
+import { location } from '../../utils/location';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 
 export type MenuKey = 'appBar' | 'navBar';
@@ -21,7 +22,7 @@ export type Config<Key extends MenuKey> = BaseConfig & {
   loadMenuConfig?: () => Promise<MenuLoaderResult<Key>>;
 };
 
-const defaultApiUrl = window.location.origin;
+const defaultApiUrl = location.origin;
 
 function useApplicationsMenu<Key extends MenuKey>(
   menuKey: Key,

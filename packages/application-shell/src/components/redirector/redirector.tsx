@@ -21,7 +21,7 @@ const Redirector = (props: Props) => {
   React.useEffect(() => {
     // For now the authentication service runs on the same domain as the application,
     // even on development (using the webpack dev server).
-    const authUrl = window.location.origin;
+    const authUrl = location.origin;
     const enhancedLocation = (props.location || {}) as TEnhancedLocation<
       QueryParams
     >;

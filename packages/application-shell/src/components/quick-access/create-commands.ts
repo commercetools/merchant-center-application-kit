@@ -8,6 +8,7 @@ import {
 import { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { permissions } from './constants';
 import messages from './messages';
+import { location } from '../../utils/location';
 import { actionTypes, Command } from './types';
 
 function nonNullable<T>(value: T | boolean): value is NonNullable<T> {
@@ -525,7 +526,7 @@ const createCommands = ({
                       // not all of them reload.
                       // So this action would seem like it had not effect, unless we
                       // reload
-                      window.location.reload();
+                      location.reload();
                     },
                   }
               )

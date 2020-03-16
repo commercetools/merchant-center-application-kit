@@ -514,12 +514,12 @@ describe('when user is not authenticated', () => {
     const rendered = renderApp(null, { route: '/foo' });
     const queryParams = encode({
       reason: LOGOUT_REASONS.UNAUTHORIZED,
-      redirectTo: `${window.location.origin}/foo`,
+      redirectTo: `${location.origin}`,
     });
 
     await waitFor(() => {
       expect(location.replace).toHaveBeenCalledWith(
-        `${window.location.origin}/login?${queryParams}`
+        `${location.origin}/login?${queryParams}`
       );
     });
     expect(rendered.queryByText('OK')).not.toBeInTheDocument();
