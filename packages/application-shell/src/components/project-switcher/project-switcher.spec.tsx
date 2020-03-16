@@ -2,7 +2,10 @@ import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import { renderApp, fireEvent, wait as waitFor } from '../../test-utils';
 import { createGraphqlResponseForProjectsQuery } from './project-switcher-test-utils';
+import { location } from '../../utils/location';
 import ProjectSwitcher from './project-switcher';
+
+jest.mock('../../utils/location');
 
 const render = () => {
   const mockedRequest = [
@@ -25,8 +28,9 @@ const render = () => {
 
 describe('rendering', () => {
   beforeEach(() => {
-    window.location.replace = jest.fn();
+    mocked(location.replace).mockClear();
   });
+
   it('should search and select a project', async () => {
     const rendered = render();
     await rendered.findByLabelText('Project switcher');
@@ -36,7 +40,7 @@ describe('rendering', () => {
     fireEvent.keyDown(input, { key: 'Enter', keyCode: 13, which: 13 });
 
     await waitFor(() => {
-      expect(mocked(window.location.replace)).toHaveBeenCalledWith('/key-1');
+      expect(mocked(location.replace)).toHaveBeenCalledWith('/key-1');
     });
   });
   it('should see no results message when search does not match any project', async () => {
@@ -59,7 +63,7 @@ describe('rendering', () => {
     fireEvent.click(rendered.getByText(/Suspended/i));
 
     await waitFor(() =>
-      expect(mocked(window.location.replace)).not.toHaveBeenCalled()
+      expect(mocked(location.replace)).not.toHaveBeenCalled()
     );
   });
   it('should prevent clicking on an expired project', async () => {
@@ -71,7 +75,7 @@ describe('rendering', () => {
     fireEvent.click(rendered.getByText(/Expired/i));
 
     await waitFor(() =>
-      expect(mocked(window.location.replace)).not.toHaveBeenCalled()
+      expect(mocked(location.replace)).not.toHaveBeenCalled()
     );
   });
 });

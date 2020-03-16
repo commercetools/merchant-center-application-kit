@@ -4,6 +4,7 @@ import Spacings from '@commercetools-uikit/spacings';
 import FlatButton from '@commercetools-uikit/flat-button';
 import Text from '@commercetools-uikit/text';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { location } from '../../utils/location';
 
 export const RedirectToProjectCreate = () => {
   const servedByProxy = useApplicationContext(
@@ -20,7 +21,7 @@ export const RedirectToProjectCreate = () => {
    *   render and instead just navigate away.
    */
   if (servedByProxy === true) {
-    window.location.replace('/account/projects/new');
+    location.replace('/account/projects/new');
 
     return null;
   }

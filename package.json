@@ -83,7 +83,7 @@
     "@percy/puppeteer": "1.1.0",
     "@rollup/plugin-json": "4.0.2",
     "@testing-library/cypress": "6.0.0",
-    "@testing-library/react": "9.4.1",
+    "@testing-library/react": "9.5.0",
     "@types/enzyme": "3.10.5",
     "@types/jquery": "3.3.33",
     "@types/node": "12.12.29",

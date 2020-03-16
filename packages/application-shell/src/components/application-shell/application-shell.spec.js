@@ -34,10 +34,12 @@ import {
 import { createApolloClient } from '../../configure-apollo';
 import { STORAGE_KEYS } from '../../constants';
 import { PROJECT_EXTENSIONS } from '../../feature-toggles';
+import { location } from '../../utils/location';
 import ApplicationShellProvider from '../application-shell-provider';
 import ApplicationShell from './application-shell';
 
 jest.mock('@commercetools-frontend/sentry');
+jest.mock('../../utils/location');
 
 const createTestProps = props => ({
   environment: {
@@ -89,7 +91,6 @@ beforeEach(() => {
   applyMocksForExternalNetworkRequests();
   jest.clearAllMocks();
 
-  window.location.replace = jest.fn();
   window.localStorage.getItem.mockImplementation(key => {
     switch (key) {
       case STORAGE_KEYS.IS_AUTHENTICATED:
@@ -182,11 +183,9 @@ describe('when user has no default project', () => {
       },
     });
     await waitFor(() => {
-      expect(window.location.replace).toHaveBeenCalledWith(
-        '/account/projects/new'
-      );
-      expect(rendered.queryByText('OK')).not.toBeInTheDocument();
+      expect(location.replace).toHaveBeenCalledWith('/account/projects/new');
     });
+    expect(rendered.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when loading user fails with an unknown graphql error', () => {
@@ -224,11 +223,11 @@ describe('when loading user fails with an unauthorized graphql error', () => {
       reason: LOGOUT_REASONS.UNAUTHORIZED,
     });
     await waitFor(() => {
-      expect(window.location.replace).toHaveBeenCalledWith(
+      expect(location.replace).toHaveBeenCalledWith(
         expect.stringContaining(`/logout?${queryParams}`)
       );
-      expect(rendered.queryByText('OK')).not.toBeInTheDocument();
     });
+    expect(rendered.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when loading user fails with a "was not found." graphql error message', () => {
@@ -249,11 +248,11 @@ describe('when loading user fails with a "was not found." graphql error message'
       reason: LOGOUT_REASONS.DELETED,
     });
     await waitFor(() => {
-      expect(window.location.replace).toHaveBeenCalledWith(
+      expect(location.replace).toHaveBeenCalledWith(
         expect.stringContaining(`/logout?${queryParams}`)
       );
-      expect(rendered.queryByText('OK')).not.toBeInTheDocument();
     });
+    expect(rendered.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when project is not found', () => {
@@ -486,13 +485,13 @@ describe('when switching project', () => {
     const nextProject = operations.FetchLoggedInUser.me.projects.results[1];
     await rendered.findByText('Project switcher');
     const input = await rendered.findByLabelText('Project switcher');
+
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
     rendered.getByText(nextProject.name).click();
+
     await waitFor(() => {
-      expect(window.location.replace).toHaveBeenCalledWith(
-        `/${nextProject.key}`
-      );
+      expect(location.replace).toHaveBeenCalledWith(`/${nextProject.key}`);
     });
   });
 });
@@ -517,12 +516,13 @@ describe('when user is not authenticated', () => {
       reason: LOGOUT_REASONS.UNAUTHORIZED,
       redirectTo: `${window.location.origin}/foo`,
     });
+
     await waitFor(() => {
-      expect(window.location.replace).toHaveBeenCalledWith(
+      expect(location.replace).toHaveBeenCalledWith(
         `${window.location.origin}/login?${queryParams}`
       );
-      expect(rendered.queryByText('OK')).not.toBeInTheDocument();
     });
+    expect(rendered.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when selecting project locale "de"', () => {
