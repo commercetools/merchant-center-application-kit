@@ -125,7 +125,7 @@
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "10.x",
-    "@testing-library/react": "9.x",
+    "@testing-library/react": "9.x || 10.x",
     "@types/prop-types": "15.x",
     "@types/react": "16.x",
     "@types/react-dom": "16.x",
