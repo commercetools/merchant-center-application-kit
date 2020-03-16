@@ -1,6 +1,6 @@
 import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { renderApp, waitForElement } from '../../test-utils';
+import { renderApp } from '../../test-utils';
 import LoggedInUserQuery from './fetch-user.mc.graphql';
 import FetchUser from './fetch-user';
 
@@ -56,7 +56,7 @@ const createGraphqlResponseForUserQuery = custom => ({
 
 describe('rendering', () => {
   it('should fetch user and pass data to children function', async () => {
-    const { getByText } = renderUser({
+    const rendered = renderUser({
       addTypename: true,
       mocks: [
         {
@@ -72,10 +72,10 @@ describe('rendering', () => {
         },
       ],
     });
-    await waitForElement(() => getByText(/John/i));
+    await rendered.findByText(/John/i);
   });
   it('should render loading state', async () => {
-    const { getByText } = renderUser({
+    const rendered = renderUser({
       addTypename: true,
       mocks: [
         {
@@ -94,10 +94,10 @@ describe('rendering', () => {
         },
       ],
     });
-    await waitForElement(() => getByText(/Loading/i));
+    await rendered.findByText(/Loading/i);
   });
   it('should render error state', async () => {
-    const { getByText } = renderUser({
+    const rendered = renderUser({
       addTypename: true,
       mocks: [
         {
@@ -111,6 +111,6 @@ describe('rendering', () => {
         },
       ],
     });
-    await waitForElement(() => getByText(/Error: Oops/i));
+    await rendered.findByText(/Error: Oops/i);
   });
 });

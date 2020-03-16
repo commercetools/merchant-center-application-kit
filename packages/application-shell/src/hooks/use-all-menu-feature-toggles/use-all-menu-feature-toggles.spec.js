@@ -1,6 +1,6 @@
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { renderApp, waitForElement, wait } from '../../test-utils';
+import { renderApp, wait } from '../../test-utils';
 import FetchAllMenuFeatureToggles from './fetch-all-menu-feature-toggles.proxy.graphql';
 import useAllMenuFeatureToggles from './use-all-menu-feature-toggles';
 
@@ -70,12 +70,10 @@ describe('when served by proxy', () => {
         mocks: [mockRequests.withoutError],
       });
 
-      await waitForElement(() => rendered.getByText('Loading'));
-      await waitForElement(() => [
-        rendered.getByText(/Number of toggles: 2/i),
-        rendered.getByText(/Toggle: flagA is disabled/i),
-        rendered.getByText(/Toggle: flagB is disabled/i),
-      ]);
+      await rendered.findByText('Loading');
+      await rendered.findByText(/Number of toggles: 2/i);
+      await rendered.findByText(/Toggle: flagA is disabled/i);
+      await rendered.findByText(/Toggle: flagB is disabled/i);
     });
   });
 
@@ -88,8 +86,8 @@ describe('when served by proxy', () => {
         mocks: [mockRequests.withError],
       });
 
-      await waitForElement(() => rendered.getByText('Loading'));
-      await waitForElement(() => rendered.getByText(/Number of toggles: 0/i));
+      await rendered.findByText('Loading');
+      await rendered.findByText(/Number of toggles: 0/i);
 
       await wait(() => {
         expect(reportErrorToSentry).toHaveBeenCalled();
@@ -104,6 +102,6 @@ describe('when not served proxy', () => {
 
     expect(rendered.queryByText('Loading')).not.toBeInTheDocument();
 
-    await waitForElement(() => rendered.getByText(/Number of toggles: 0/i));
+    await rendered.findByText(/Number of toggles: 0/i);
   });
 });

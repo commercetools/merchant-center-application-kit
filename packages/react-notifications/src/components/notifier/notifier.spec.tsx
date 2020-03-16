@@ -1,13 +1,7 @@
 /* eslint-disable react/prop-types */
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import {
-  render,
-  fireEvent,
-  waitForElement,
-  wait,
-  RenderResult,
-} from '@testing-library/react';
+import { render, fireEvent, wait, RenderResult } from '@testing-library/react';
 import {
   TAddNotificationAction,
   ADD_NOTIFICATION,
@@ -72,7 +66,7 @@ describe('rendering', () => {
         />
       </TestController>
     );
-    await waitForElement(() => rendered.getByText('Open'));
+    await rendered.findByText('Open');
     fireEvent.click(rendered.getByText('Open'));
 
     await wait(() => {
@@ -90,7 +84,7 @@ describe('rendering', () => {
     fireEvent.click(rendered.getByText('Increase counter'));
     fireEvent.click(rendered.getByText('Increase counter'));
     fireEvent.click(rendered.getByText('Increase counter'));
-    await waitForElement(() => rendered.getByText('Count: 3'));
+    await rendered.findByText('Count: 3');
 
     fireEvent.click(rendered.getByText('Close'));
     await wait(() => {

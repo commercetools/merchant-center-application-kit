@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitForElement } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { STORAGE_KEYS } from '../../constants';
 import ProjectDataLocale from './project-data-locale';
 import { wait } from '@apollo/react-testing';
@@ -20,7 +20,7 @@ describe('rendering', () => {
             {({ locale }) => <span>{`Locale: ${locale}`}</span>}
           </ProjectDataLocale>
         );
-        await waitForElement(() => rendered.getByText('Locale: de'));
+        await rendered.findByText('Locale: de');
       });
     });
     describe('when cached locale is not in the list of project locales', () => {
@@ -31,7 +31,7 @@ describe('rendering', () => {
             {({ locale }) => <span>{`Locale: ${locale}`}</span>}
           </ProjectDataLocale>
         );
-        await waitForElement(() => rendered.getByText('Locale: en'));
+        await rendered.findByText('Locale: en');
         await wait(() => {
           expect(window.localStorage.setItem).toHaveBeenCalledWith(
             STORAGE_KEYS.SELECTED_DATA_LOCALE,
@@ -49,7 +49,7 @@ describe('rendering', () => {
           {({ locale }) => <span>{`Locale: ${locale}`}</span>}
         </ProjectDataLocale>
       );
-      await waitForElement(() => rendered.getByText('Locale: en'));
+      await rendered.findByText('Locale: en');
       await wait(() => {
         expect(window.localStorage.setItem).toHaveBeenCalledWith(
           STORAGE_KEYS.SELECTED_DATA_LOCALE,

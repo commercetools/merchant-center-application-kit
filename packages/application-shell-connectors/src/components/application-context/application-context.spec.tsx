@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitForElement } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import {
   ApplicationContextProvider,
   ApplicationContext,
@@ -104,7 +104,7 @@ describe('<ApplicationContext>', () => {
         )}
       />
     );
-    await waitForElement(() => rendered.getByText('Project name: Foo 1'));
+    await rendered.findByText('Project name: Foo 1');
   });
 });
 
@@ -117,7 +117,7 @@ describe('useApplicationContext', () => {
   };
   it('should render project name from context', async () => {
     const rendered = renderAppWithContext(<TestComponent />);
-    await waitForElement(() => rendered.getByText('Project name: Foo 1'));
+    await rendered.findByText('Project name: Foo 1');
   });
 });
 
@@ -135,7 +135,7 @@ describe('withApplicationContext', () => {
   }))(TestComponent);
   it('should render project name from context', async () => {
     const rendered = renderAppWithContext(<AppWithContext />);
-    await waitForElement(() => rendered.getByText('Project name: Foo 1'));
+    await rendered.findByText('Project name: Foo 1');
   });
 });
 

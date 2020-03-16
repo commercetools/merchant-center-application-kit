@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderApp, wait, waitForElement } from '../../test-utils';
+import { renderApp, wait } from '../../test-utils';
 import RouteCatchAll from './route-catch-all';
 
 describe('rendering', () => {
@@ -23,9 +23,7 @@ describe('rendering', () => {
           servedByProxy: false,
         },
       });
-      await waitForElement(() =>
-        rendered.getByText('We could not find what you are looking for')
-      );
+      await rendered.findByText('We could not find what you are looking for');
     });
   });
 });
