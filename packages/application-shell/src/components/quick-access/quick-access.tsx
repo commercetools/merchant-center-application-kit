@@ -286,7 +286,13 @@ const QuickAccess = (props: Props) => {
           keywords: variantKey ? [variantKey] : undefined,
           action: {
             type: actionTypes.go,
-            to: `/${applicationContext.project.key}/products/${productId}/${variantId}`,
+            to: oneLineTrim`
+            /${applicationContext.project.key}
+            /products
+            /${productId}
+            /variants
+            /${variantId}
+          `,
           },
           subCommands: createProductVariantSubCommands({
             intl,
@@ -318,6 +324,7 @@ const QuickAccess = (props: Props) => {
             /${applicationContext.project.key}
             /products
             /${productId}
+            /variants
             /${variantId}
           `,
           },
