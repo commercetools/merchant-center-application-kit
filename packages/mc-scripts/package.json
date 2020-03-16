@@ -35,7 +35,7 @@
     ]
   },
   "dependencies": {
-    "@babel/core": "7.8.6",
+    "@babel/core": "7.8.7",
     "@commercetools-frontend/assets": "16.0.0",
     "@commercetools-frontend/babel-preset-mc-app": "16.3.3",
     "@commercetools-frontend/mc-dev-authentication": "16.0.0",
@@ -55,7 +55,7 @@
     "html-webpack-plugin": "3.2.0",
     "json-loader": "0.5.7",
     "mini-css-extract-plugin": "0.9.0",
-    "moment-locales-webpack-plugin": "1.1.2",
+    "moment-locales-webpack-plugin": "1.2.0",
     "mri": "1.1.4",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "postcss": "7.0.27",
@@ -74,8 +74,8 @@
     "terser-webpack-plugin": "2.3.5",
     "thread-loader": "2.1.3",
     "url-loader": "3.0.0",
-    "webpack": "4.41.6",
-    "webpack-bundle-analyzer": "3.6.0",
+    "webpack": "4.42.0",
+    "webpack-bundle-analyzer": "3.6.1",
     "webpack-dev-server": "3.10.3",
     "webpackbar": "4.0.0"
   },
