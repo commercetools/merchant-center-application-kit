@@ -1,6 +1,6 @@
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { renderApp, fireEvent, waitForElement, wait } from '../../test-utils';
+import { renderApp, fireEvent, wait } from '../../test-utils';
 import { createGraphqlResponseForProjectsQuery } from './project-switcher-test-utils';
 import ProjectSwitcher from './project-switcher';
 
@@ -29,7 +29,7 @@ describe('rendering', () => {
   });
   it('should search and select a project', async () => {
     const rendered = render();
-    await waitForElement(() => rendered.getByLabelText('Project switcher'));
+    await rendered.findByLabelText('Project switcher');
     const input = rendered.getByLabelText('Project switcher');
     fireEvent.focus(input);
     fireEvent.change(input, { target: { value: 'key-1' } });
@@ -41,20 +41,18 @@ describe('rendering', () => {
   });
   it('should see no results message when search does not match any project', async () => {
     const rendered = render();
-    await waitForElement(() => rendered.getByLabelText('Project switcher'));
+    await rendered.findByLabelText('Project switcher');
     const input = rendered.getByLabelText('Project switcher');
     fireEvent.focus(input);
     fireEvent.change(input, { target: { value: 'not existing' } });
 
-    await waitForElement(() =>
-      rendered.getByText(
-        /Sorry, but there are no projects that match your search/i
-      )
+    await rendered.findByText(
+      /Sorry, but there are no projects that match your search/i
     );
   });
   it('should prevent clicking on a suspended project', async () => {
     const rendered = render();
-    await waitForElement(() => rendered.getByLabelText('Project switcher'));
+    await rendered.findByLabelText('Project switcher');
     const input = rendered.getByLabelText('Project switcher');
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
@@ -66,7 +64,7 @@ describe('rendering', () => {
   });
   it('should prevent clicking on an expired project', async () => {
     const rendered = render();
-    await waitForElement(() => rendered.getByLabelText('Project switcher'));
+    await rendered.findByLabelText('Project switcher');
     const input = rendered.getByLabelText('Project switcher');
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });

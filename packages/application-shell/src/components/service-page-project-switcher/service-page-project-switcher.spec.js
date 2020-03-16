@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { renderApp, wait, waitForElement } from '../../test-utils';
+import { renderApp, wait } from '../../test-utils';
 import { createGraphqlResponseForProjectsQuery } from '../project-switcher/project-switcher-test-utils';
 import ServicePageProjectSwitcher from './service-page-project-switcher';
 
@@ -51,8 +51,10 @@ describe('rendering', () => {
           mocks: mockedRequest,
         }
       );
-      await waitForElement(() =>
-        rendered.container.querySelector('[name="project-switcher"]')
+      await wait(() =>
+        expect(
+          rendered.container.querySelector('[name="project-switcher"]')
+        ).toBeInTheDocument()
       );
     });
   });

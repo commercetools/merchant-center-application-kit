@@ -1,6 +1,6 @@
 import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { renderApp, waitForElement } from '../../test-utils';
+import { renderApp } from '../../test-utils';
 import ProjectQuery from './fetch-project.mc.graphql';
 import FetchProject from './fetch-project';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
@@ -90,7 +90,7 @@ const createGraphqlResponseForProjectQuery = custom => ({
 
 describe('rendering', () => {
   it('should fetch project and pass data to children function', async () => {
-    const { getByText } = renderProject({
+    const rendered = renderProject({
       mocks: [
         {
           request: {
@@ -106,10 +106,10 @@ describe('rendering', () => {
         },
       ],
     });
-    await waitForElement(() => getByText(/Test 1/i));
+    await rendered.findByText(/Test 1/i);
   });
   it('should render loading state', async () => {
-    const { getByText } = renderProject({
+    const rendered = renderProject({
       mocks: [
         {
           request: {
@@ -128,10 +128,10 @@ describe('rendering', () => {
         },
       ],
     });
-    await waitForElement(() => getByText(/Loading/i));
+    await rendered.findByText(/Loading/i);
   });
   it('should render error state', async () => {
-    const { getByText } = renderProject({
+    const rendered = renderProject({
       mocks: [
         {
           request: {
@@ -145,7 +145,7 @@ describe('rendering', () => {
         },
       ],
     });
-    await waitForElement(() => getByText(/Error: Oops/i));
+    await rendered.findByText(/Error: Oops/i);
     expect(reportErrorToSentry).toHaveBeenCalled();
   });
 });

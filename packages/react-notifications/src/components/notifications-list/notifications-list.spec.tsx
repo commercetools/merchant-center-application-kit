@@ -2,7 +2,7 @@ import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { useSelector } from 'react-redux';
-import { render, waitForElement, RenderResult } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_PAGE,
@@ -52,7 +52,7 @@ describe('rendering', () => {
       );
     });
     it('should render the <CustomComponent> notification component', async () => {
-      await waitForElement(() => rendered.getByText('Custom component'));
+      await rendered.findByText('Custom component');
     });
   });
   describe('for domain: page', () => {
@@ -72,7 +72,7 @@ describe('rendering', () => {
         );
       });
       it('should render the GenericNotification notification component', async () => {
-        await waitForElement(() => rendered.getByText('Something went wrong'));
+        await rendered.findByText('Something went wrong');
       });
     });
     describe('for kind: api-error', () => {
@@ -98,10 +98,8 @@ describe('rendering', () => {
         );
       });
       it('should render the ApiErrorNotification notification component', async () => {
-        await waitForElement(() =>
-          rendered.getByText(
-            /we were unable to save your changes as someone else made changes to this same resource while you were editing/
-          )
+        await rendered.findByText(
+          /we were unable to save your changes as someone else made changes to this same resource while you were editing/
         );
       });
     });
@@ -122,8 +120,8 @@ describe('rendering', () => {
         );
       });
       it('should render the UnexpectedErrorNotification notification component', async () => {
-        await waitForElement(() =>
-          rendered.getByText(/Sorry, but there seems to be something wrong/)
+        await rendered.findByText(
+          /Sorry, but there seems to be something wrong/
         );
       });
     });
@@ -145,7 +143,7 @@ describe('rendering', () => {
         );
       });
       it('should render the GenericNotification notification component', async () => {
-        await waitForElement(() => rendered.getByText('Something went wrong'));
+        await rendered.findByText('Something went wrong');
       });
     });
     describe('for kind: unexpected-error', () => {
@@ -164,8 +162,8 @@ describe('rendering', () => {
         );
       });
       it('should render the UnexpectedErrorNotification notification component', async () => {
-        await waitForElement(() =>
-          rendered.getByText(/Sorry, but there seems to be something wrong/)
+        await rendered.findByText(
+          /Sorry, but there seems to be something wrong/
         );
       });
     });
@@ -187,7 +185,7 @@ describe('rendering', () => {
         );
       });
       it('should render the GenericNotification notification component', async () => {
-        await waitForElement(() => rendered.getByText('Something went wrong'));
+        await rendered.findByText('Something went wrong');
       });
     });
   });

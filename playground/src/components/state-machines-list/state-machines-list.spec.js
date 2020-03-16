@@ -2,7 +2,6 @@ import React from 'react';
 import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
 import {
   renderAppWithRedux,
-  waitForElement,
   wait,
   fireEvent,
 } from '@commercetools-frontend/application-shell/test-utils';
@@ -105,12 +104,10 @@ describe('list view', () => {
         canManageDeveloperSettings: true,
       },
     });
-    await waitForElement(() => rendered.getByText(/State machines/i));
-    await waitForElement(() =>
-      rendered.getByText(/There are 2 objects in the cache/i)
-    );
-    await waitForElement(() => rendered.getByText('sm-1'));
-    await waitForElement(() => rendered.getByText('sm-2'));
+    await rendered.findByText(/State machines/i);
+    await rendered.findByText(/There are 2 objects in the cache/i);
+    await rendered.findByText('sm-1');
+    await rendered.findByText('sm-2');
   });
   it('the user can click on the state machines to get to the details page', async () => {
     rendered = renderApp({
@@ -123,16 +120,14 @@ describe('list view', () => {
         canManageDeveloperSettings: true,
       },
     });
-    await waitForElement(() =>
-      rendered.getByText(/There are 2 objects in the cache/i)
-    );
+    await rendered.findByText(/There are 2 objects in the cache/i);
     fireEvent.click(rendered.getByText('sm-1'));
     await wait(() => {
       expect(rendered.history.location.pathname).toBe(
         '/my-project/state-machines/sm1'
       );
     });
-    await waitForElement(() => rendered.getByText(/sm-1/i));
+    await rendered.findByText(/sm-1/i);
   });
 });
 
@@ -151,7 +146,7 @@ describe('details view', () => {
           canManageDeveloperSettings: true,
         },
       });
-      await waitForElement(() => rendered.getByText(/sm-1/i));
+      await rendered.findByText(/sm-1/i);
     });
     it('should retrigger request if id changes', async () => {
       rendered = renderApp({
@@ -165,10 +160,10 @@ describe('details view', () => {
           canManageDeveloperSettings: true,
         },
       });
-      await waitForElement(() => rendered.getByText(/sm-1/i));
+      await rendered.findByText(/sm-1/i);
 
       rendered.history.push('/my-project/state-machines/sm2');
-      await waitForElement(() => rendered.getByText(/sm-2/i));
+      await rendered.findByText(/sm-2/i);
     });
   });
   describe('when request returns an error', () => {
@@ -184,8 +179,8 @@ describe('details view', () => {
           canManageDeveloperSettings: true,
         },
       });
-      await waitForElement(() =>
-        rendered.getByText(/^Sorry, but there seems to be something wrong/i)
+      await rendered.findByText(
+        /^Sorry, but there seems to be something wrong/i
       );
     });
   });
