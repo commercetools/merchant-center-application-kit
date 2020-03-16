@@ -1,6 +1,6 @@
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { renderApp, fireEvent, wait } from '../../test-utils';
+import { renderApp, fireEvent, wait as waitFor } from '../../test-utils';
 import { createGraphqlResponseForProjectsQuery } from './project-switcher-test-utils';
 import ProjectSwitcher from './project-switcher';
 
@@ -35,7 +35,7 @@ describe('rendering', () => {
     fireEvent.change(input, { target: { value: 'key-1' } });
     fireEvent.keyDown(input, { key: 'Enter', keyCode: 13, which: 13 });
 
-    await wait(() => {
+    await waitFor(() => {
       expect(mocked(window.location.replace)).toHaveBeenCalledWith('/key-1');
     });
   });
@@ -58,7 +58,7 @@ describe('rendering', () => {
     fireEvent.keyDown(input, { key: 'ArrowDown' });
     fireEvent.click(rendered.getByText(/Suspended/i));
 
-    await wait(() =>
+    await waitFor(() =>
       expect(mocked(window.location.replace)).not.toHaveBeenCalled()
     );
   });
@@ -70,7 +70,7 @@ describe('rendering', () => {
     fireEvent.keyDown(input, { key: 'ArrowDown' });
     fireEvent.click(rendered.getByText(/Expired/i));
 
-    await wait(() =>
+    await waitFor(() =>
       expect(mocked(window.location.replace)).not.toHaveBeenCalled()
     );
   });

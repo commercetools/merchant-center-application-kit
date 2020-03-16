@@ -2,7 +2,7 @@ import React from 'react';
 import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
 import {
   renderAppWithRedux,
-  wait,
+  wait as waitFor,
   fireEvent,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { applyUiKitMocks } from '../../mocks';
@@ -122,7 +122,7 @@ describe('list view', () => {
     });
     await rendered.findByText(/There are 2 objects in the cache/i);
     fireEvent.click(rendered.getByText('sm-1'));
-    await wait(() => {
+    await waitFor(() => {
       expect(rendered.history.location.pathname).toBe(
         '/my-project/state-machines/sm1'
       );

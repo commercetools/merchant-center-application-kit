@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, wait } from '@testing-library/react';
+import { render, wait as waitFor } from '@testing-library/react';
 import GtmUserTracker from './gtm-user-tracker';
 
 describe('rendering', () => {
@@ -7,7 +7,7 @@ describe('rendering', () => {
     window.app = { trackingGtm: '111' };
     window.dataLayer = [];
     render(<GtmUserTracker user={{ id: 'user-id' }} />);
-    await wait(() => {
+    await waitFor(() => {
       expect(window.dataLayer).toEqual(
         expect.arrayContaining([{ userId: 'user-id' }])
       );

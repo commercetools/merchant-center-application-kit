@@ -2,7 +2,7 @@ import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { GraphQLError } from 'graphql';
-import { renderApp, wait } from '../../test-utils';
+import { renderApp, wait as waitFor } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import AmILoggedInQuery from './authenticated.mc.graphql';
 import Authenticated, { TProps } from './authenticated';
@@ -24,7 +24,7 @@ describe('rendering', () => {
       mocked(window.localStorage.getItem).mockReturnValue('true');
       const props = createTestProps();
       renderApp(<Authenticated {...props} />);
-      await wait(() => {
+      await waitFor(() => {
         expect(props.render).toHaveBeenCalledWith({ isAuthenticated: true });
       });
     });
@@ -49,7 +49,7 @@ describe('rendering', () => {
             },
           ],
         });
-        await wait(() => {
+        await waitFor(() => {
           expect(props.render).toHaveBeenCalledWith({ isAuthenticated: true });
         });
         expect(mocked(window.localStorage.setItem)).toHaveBeenCalledWith(
@@ -79,7 +79,7 @@ describe('rendering', () => {
             },
           ],
         });
-        await wait(() => {
+        await waitFor(() => {
           expect(props.render).toHaveBeenCalledWith({ isAuthenticated: false });
         });
         expect(mocked(window.localStorage.setItem)).not.toHaveBeenCalled();
@@ -107,7 +107,7 @@ describe('rendering', () => {
             },
           ],
         });
-        await wait(
+        await waitFor(
           () => {
             expect(props.render).not.toHaveBeenCalled();
           },

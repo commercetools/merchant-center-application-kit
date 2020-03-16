@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactReduxContext } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { render, wait } from '@testing-library/react';
+import { render, wait as waitFor } from '@testing-library/react';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { GtmContext } from '../gtm-booter';
 // eslint-disable-next-line import/named
@@ -110,7 +110,7 @@ describe('rendering', () => {
         }}
       </ApplicationShellProvider>
     );
-    await wait(() => {
+    await waitFor(() => {
       expect(isAuth).toBe(false);
     });
   });

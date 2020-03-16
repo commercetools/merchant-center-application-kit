@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, wait } from '@testing-library/react';
+import { render, wait as waitFor } from '@testing-library/react';
 import GtmApplicationTracker from './gtm-application-tracker';
 
 describe('rendering', () => {
@@ -12,7 +12,7 @@ describe('rendering', () => {
         projectKey="project-key"
       />
     );
-    await wait(() => {
+    await waitFor(() => {
       expect(window.dataLayer).toEqual(
         expect.arrayContaining([
           { applicationName: 'playground' },

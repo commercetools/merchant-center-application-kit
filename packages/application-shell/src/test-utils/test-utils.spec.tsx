@@ -21,7 +21,7 @@ import {
   renderApp,
   renderAppWithRedux,
   experimentalRenderAppWithRedux,
-  wait,
+  wait as waitFor,
 } from './test-utils';
 
 describe('Intl', () => {
@@ -274,7 +274,7 @@ describe('router', () => {
   });
   it('should return a history object', async () => {
     const rendered = renderApp(<TestComponent />, { route: '/foo' });
-    await wait(() => {
+    await waitFor(() => {
       expect(rendered.history.location.pathname).toBe('/foo');
     });
   });

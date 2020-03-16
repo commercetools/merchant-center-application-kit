@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, wait, fireEvent } from '@testing-library/react';
+import { render, wait as waitFor, fireEvent } from '@testing-library/react';
 import { ApplicationWindow } from '@commercetools-frontend/constants';
 import GtmBooter, { Props } from './gtm-booter';
 
@@ -28,7 +28,7 @@ describe('rendering', () => {
       </GtmBooter>
     );
     fireEvent.click(rendered.getByText('Click me'));
-    await wait(() => {
+    await waitFor(() => {
       expect(window.dataLayer).toEqual(
         expect.arrayContaining([
           expect.objectContaining({

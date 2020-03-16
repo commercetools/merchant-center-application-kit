@@ -1,7 +1,12 @@
 import React from 'react';
 import { encode } from 'qss';
 import xhrMock from 'xhr-mock';
-import { render, wait, fireEvent, within } from '@testing-library/react';
+import {
+  render,
+  wait as waitFor,
+  fireEvent,
+  within,
+} from '@testing-library/react';
 import { AuthenticationError, ApolloError } from 'apollo-server-errors';
 import { useDispatch } from 'react-redux';
 import { createMemoryHistory } from 'history';
@@ -130,7 +135,7 @@ describe('when route does not contain a project key (e.g. /account)', () => {
     const rendered = renderApp();
     await rendered.findByText('OK');
     rendered.history.push('/account');
-    await wait(() => {
+    await waitFor(() => {
       expect(rendered.history.location.pathname).toBe('/account');
       expect(rendered.queryByTestId('left-navigation')).not.toBeInTheDocument();
     });
@@ -146,7 +151,7 @@ describe('when user first visits "/" with no projectKey defined in localStorage'
   });
   it('should not render the NavBar first, then redirect to "/:projectKey" and render the NavBar', async () => {
     const rendered = renderApp();
-    await wait(() => {
+    await waitFor(() => {
       // Redirect "/" -> "/:projectKey"
       expect(rendered.history.location.pathname).toBe(
         `/${operations.FetchProject.project.key}`
@@ -176,7 +181,7 @@ describe('when user has no default project', () => {
         servedByProxy: 'true',
       },
     });
-    await wait(() => {
+    await waitFor(() => {
       expect(window.location.replace).toHaveBeenCalledWith(
         '/account/projects/new'
       );
@@ -218,7 +223,7 @@ describe('when loading user fails with an unauthorized graphql error', () => {
     const queryParams = encode({
       reason: LOGOUT_REASONS.UNAUTHORIZED,
     });
-    await wait(() => {
+    await waitFor(() => {
       expect(window.location.replace).toHaveBeenCalledWith(
         expect.stringContaining(`/logout?${queryParams}`)
       );
@@ -243,7 +248,7 @@ describe('when loading user fails with a "was not found." graphql error message'
     const queryParams = encode({
       reason: LOGOUT_REASONS.DELETED,
     });
-    await wait(() => {
+    await waitFor(() => {
       expect(window.location.replace).toHaveBeenCalledWith(
         expect.stringContaining(`/logout?${queryParams}`)
       );
@@ -385,7 +390,7 @@ describe('when project is about to expire (>14 days left)', () => {
   });
   it('should not render global warning message', async () => {
     const rendered = renderApp();
-    await wait(() => {
+    await waitFor(() => {
       expect(
         rendered.queryByText(/^Your project trial period will expire (.*)$/)
       ).not.toBeInTheDocument();
@@ -484,7 +489,7 @@ describe('when switching project', () => {
     fireEvent.focus(input);
     fireEvent.keyDown(input, { key: 'ArrowDown' });
     rendered.getByText(nextProject.name).click();
-    await wait(() => {
+    await waitFor(() => {
       expect(window.location.replace).toHaveBeenCalledWith(
         `/${nextProject.key}`
       );
@@ -512,7 +517,7 @@ describe('when user is not authenticated', () => {
       reason: LOGOUT_REASONS.UNAUTHORIZED,
       redirectTo: `${window.location.origin}/foo`,
     });
-    await wait(() => {
+    await waitFor(() => {
       expect(window.location.replace).toHaveBeenCalledWith(
         `${window.location.origin}/login?${queryParams}`
       );
@@ -560,7 +565,7 @@ describe('when project has only one language', () => {
   });
   it('should not render locale switcher', async () => {
     const rendered = renderApp();
-    await wait(() => {
+    await waitFor(() => {
       expect(
         rendered.container.querySelector('[name="locale-switcher"]')
       ).not.toBeInTheDocument();
@@ -584,7 +589,7 @@ describe('when user has no projects', () => {
   });
   it('should not render project switcher', async () => {
     const rendered = renderApp();
-    await wait(() => {
+    await waitFor(() => {
       expect(
         rendered.container.querySelector('[name="project-switcher"]')
       ).not.toBeInTheDocument();
@@ -645,7 +650,7 @@ describe('when dispatching a loading notification', () => {
     await rendered.findByText('Processing...');
     const hideBtn = await rendered.findByText('Hide loading');
     fireEvent.click(hideBtn);
-    await wait(() => {
+    await waitFor(() => {
       expect(rendered.queryByText('Processing...')).not.toBeInTheDocument();
     });
   });
@@ -662,14 +667,14 @@ describe('when clicking on navbar menu toggle', () => {
     const rendered = renderApp();
     const button = await rendered.findByTestId('menu-expander');
     fireEvent.click(button);
-    await wait(() => {
+    await waitFor(() => {
       expect(window.localStorage.setItem).toHaveBeenCalledWith(
         STORAGE_KEYS.IS_FORCED_MENU_OPEN,
         'false'
       );
     });
     fireEvent.click(button);
-    await wait(() => {
+    await waitFor(() => {
       expect(window.localStorage.setItem).toHaveBeenCalledWith(
         STORAGE_KEYS.IS_FORCED_MENU_OPEN,
         'true'
@@ -697,7 +702,7 @@ describe('navbar menu links interactions', () => {
     const submenuContainer = rendered.container.querySelector(`#${groupId}`);
     expect(submenuContainer).toHaveAttribute('aria-expanded', 'false');
     fireEvent.click(menuTitle);
-    await wait(() => {
+    await waitFor(() => {
       expect(submenuContainer).toHaveAttribute('aria-expanded', 'true');
     });
     const menuGroupContainer = within(rendered.getByTestId(groupId));
@@ -706,7 +711,7 @@ describe('navbar menu links interactions', () => {
     expect(menuLink).not.toHaveAttribute('aria-current');
     // Go to the link to check if the link becomes active
     fireEvent.click(menuLink);
-    await wait(() => {
+    await waitFor(() => {
       expect(menuLink).toHaveAttribute('aria-current', 'page');
     });
   }
@@ -845,7 +850,7 @@ describe('when navbar menu items are disabled', () => {
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
     );
-    await wait(() => {
+    await waitFor(() => {
       expect(
         navbarRendered.queryByText(mainMenuLabel.value)
       ).not.toBeInTheDocument();
@@ -888,7 +893,7 @@ describe('when navbar menu items are hidden', () => {
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
     );
-    await wait(() => {
+    await waitFor(() => {
       expect(
         navbarRendered.queryByText(mainMenuLabel.value)
       ).not.toBeInTheDocument();
@@ -962,7 +967,7 @@ describe('when navbar menu items do not match given permissions', () => {
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
     );
-    await wait(() => {
+    await waitFor(() => {
       expect(
         navbarRendered.queryByText(mainMenuLabel.value)
       ).not.toBeInTheDocument();
@@ -1052,7 +1057,7 @@ describe('when navbar menu items do not match given action rights', () => {
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
     );
-    await wait(() => {
+    await waitFor(() => {
       expect(
         navbarRendered.queryByText(mainMenuLabel.value)
       ).not.toBeInTheDocument();
@@ -1158,7 +1163,7 @@ describe('when navbar menu items do not match given data fences', () => {
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
     );
-    await wait(() => {
+    await waitFor(() => {
       expect(
         navbarRendered.queryByText(mainMenuLabel.value)
       ).not.toBeInTheDocument();
