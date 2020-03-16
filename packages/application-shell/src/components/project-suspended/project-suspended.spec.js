@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { renderApp } from '../../test-utils';
+import { renderApp, wait as waitFor } from '../../test-utils';
 import UserQuery from '../fetch-user/fetch-user.mc.graphql';
 import ProjectsQuery from '../project-switcher/project-switcher.mc.graphql';
 import ProjectSuspended from './project-suspended';
@@ -98,8 +98,12 @@ describe('rendering', () => {
         ],
       }
     );
-    await rendered.findByText(
-      /Your Project is temporarily suspended due to maintenance/
-    );
+    await waitFor(() => {
+      expect(
+        rendered.queryByText(
+          /Your Project is temporarily suspended due to maintenance/
+        )
+      ).toBeInTheDocument();
+    });
   });
 });
