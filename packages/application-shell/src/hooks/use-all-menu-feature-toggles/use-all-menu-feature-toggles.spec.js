@@ -1,6 +1,6 @@
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { renderApp, wait } from '../../test-utils';
+import { renderApp, wait as waitFor } from '../../test-utils';
 import FetchAllMenuFeatureToggles from './fetch-all-menu-feature-toggles.proxy.graphql';
 import useAllMenuFeatureToggles from './use-all-menu-feature-toggles';
 
@@ -89,7 +89,7 @@ describe('when served by proxy', () => {
       await rendered.findByText('Loading');
       await rendered.findByText(/Number of toggles: 0/i);
 
-      await wait(() => {
+      await waitFor(() => {
         expect(reportErrorToSentry).toHaveBeenCalled();
       });
     });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderApp, wait } from '../../test-utils';
+import { renderApp, wait as waitFor } from '../../test-utils';
 import RouteCatchAll from './route-catch-all';
 
 describe('rendering', () => {
@@ -11,7 +11,7 @@ describe('rendering', () => {
           servedByProxy: true,
         },
       });
-      await wait(() => {
+      await waitFor(() => {
         expect(window.location.reload).toHaveBeenCalledWith(true);
       });
     });

@@ -1,6 +1,6 @@
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { renderApp, wait } from '../../test-utils';
+import { renderApp, wait as waitFor } from '../../test-utils';
 import RedirectToProjectCreate from './redirect-to-project-create';
 
 beforeEach(() => {
@@ -14,7 +14,7 @@ describe('given `servedByProxy`', () => {
         servedByProxy: true,
       },
     });
-    await wait(() => {
+    await waitFor(() => {
       expect(mocked(window.location.replace)).toHaveBeenCalledWith(
         '/account/projects/new'
       );
@@ -25,7 +25,7 @@ describe('given `servedByProxy`', () => {
 describe('given not `servedByProxy`', () => {
   it('should not redirect to `projects/new`', async () => {
     renderApp(<RedirectToProjectCreate />);
-    await wait(() => {
+    await waitFor(() => {
       expect(mocked(window.location.replace)).not.toHaveBeenCalled();
     });
   });

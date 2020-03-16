@@ -1,6 +1,6 @@
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { render, wait } from '@testing-library/react';
+import { render, wait as waitFor } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import ApiErrorMessage from './api-error-message';
@@ -67,7 +67,7 @@ describe('render', () => {
     expect(
       rendered.queryByText('message-content (detailed-error-message-content)')
     ).toBeInTheDocument();
-    await wait(() => {
+    await waitFor(() => {
       expect(reportErrorToSentry).toHaveBeenCalledTimes(1);
     });
   });
@@ -79,7 +79,7 @@ describe('render', () => {
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(rendered.queryByText('has expired')).toBeInTheDocument();
-    await wait(() => {
+    await waitFor(() => {
       expect(reportErrorToSentry).not.toHaveBeenCalled();
     });
   });

@@ -1,7 +1,12 @@
 /* eslint-disable react/prop-types */
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { render, fireEvent, wait, RenderResult } from '@testing-library/react';
+import {
+  render,
+  fireEvent,
+  wait as waitFor,
+  RenderResult,
+} from '@testing-library/react';
 import {
   TAddNotificationAction,
   ADD_NOTIFICATION,
@@ -69,7 +74,7 @@ describe('rendering', () => {
     await rendered.findByText('Open');
     fireEvent.click(rendered.getByText('Open'));
 
-    await wait(() => {
+    await waitFor(() => {
       expect(showNotification).toHaveBeenCalledWith(
         expect.objectContaining({
           domain: NOTIFICATION_DOMAINS.SIDE,
@@ -87,7 +92,7 @@ describe('rendering', () => {
     await rendered.findByText('Count: 3');
 
     fireEvent.click(rendered.getByText('Close'));
-    await wait(() => {
+    await waitFor(() => {
       expect(showNotification).toHaveBeenCalledTimes(1);
       expect(dismiss).toHaveBeenCalled();
     });

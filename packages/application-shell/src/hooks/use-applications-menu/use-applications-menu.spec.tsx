@@ -2,7 +2,7 @@ import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import upperFirst from 'lodash/upperFirst';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { renderApp, wait } from '../../test-utils';
+import { renderApp, wait as waitFor } from '../../test-utils';
 import { TFetchApplicationsMenuQuery } from '../../types/generated/proxy';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 import useApplicationsMenu, {
@@ -131,7 +131,7 @@ describe('fetching the menu query', () => {
         }
       );
       await rendered.findByText('loading');
-      await wait(() => {
+      await waitFor(() => {
         expect(reportErrorToSentry).toHaveBeenCalled();
       });
     });
@@ -153,10 +153,8 @@ describe('loading the menu for local development', () => {
       />
     );
     await rendered.findByText('loading');
-    await wait(() => {
-      expect(rendered.queryByText(/Key: orders/i)).toBeInTheDocument();
-      expect(rendered.queryByText(/Key: products/i)).toBeInTheDocument();
-      expect(rendered.queryByText(/Key: customers/i)).toBeInTheDocument();
-    });
+    await rendered.findByText(/Key: orders/i);
+    await rendered.findByText(/Key: products/i);
+    await rendered.findByText(/Key: customers/i);
   });
 });

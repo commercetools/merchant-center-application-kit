@@ -1,6 +1,6 @@
 import React from 'react';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
-import { renderComponent, wait, fireEvent } from '../../../test-utils';
+import { renderComponent, fireEvent } from '../../../test-utils';
 import ConfirmationDialog from './confirmation-dialog';
 
 type DialogControllerProps = {
@@ -27,7 +27,7 @@ describe('rendering', () => {
   it('should open the modal and close it by clicking on the close button', async () => {
     const onCancel = jest.fn();
     const onConfirm = jest.fn();
-    const { queryByText, getByLabelText } = renderComponent(
+    const rendered = renderComponent(
       <DialogController>
         {({ isOpen, setIsOpen }) => (
           <ConfirmationDialog
@@ -42,28 +42,24 @@ describe('rendering', () => {
         )}
       </DialogController>
     );
-    expect(queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
+    expect(rendered.queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
 
-    fireEvent.click(getByLabelText(/Open Confirmation Dialog/i));
-    await wait(() => {
-      expect(queryByText(/Lorem ipsus/i)).toBeInTheDocument();
-    });
-    expect(queryByText(/Hello/i)).toBeInTheDocument();
+    fireEvent.click(rendered.getByLabelText(/Open Confirmation Dialog/i));
+    await rendered.findByText(/Lorem ipsus/i);
+    expect(rendered.queryByText(/Hello/i)).toBeInTheDocument();
 
-    fireEvent.click(getByLabelText('Cancel'));
+    fireEvent.click(rendered.getByLabelText('Cancel'));
     expect(onCancel).toHaveBeenCalled();
-    fireEvent.click(getByLabelText('Confirm'));
+    fireEvent.click(rendered.getByLabelText('Confirm'));
     expect(onConfirm).toHaveBeenCalled();
 
-    fireEvent.click(getByLabelText(/Close dialog/i));
-    await wait(() => {
-      expect(queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
-    });
+    fireEvent.click(rendered.getByLabelText(/Close dialog/i));
+    expect(rendered.queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
   });
   it('should not be able to close the modal when onClose is not provided', async () => {
     const onCancel = jest.fn();
     const onConfirm = jest.fn();
-    const { queryByText, getByLabelText } = renderComponent(
+    const rendered = renderComponent(
       <DialogController>
         {({ isOpen }) => (
           <ConfirmationDialog
@@ -77,16 +73,12 @@ describe('rendering', () => {
         )}
       </DialogController>
     );
-    expect(queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
+    expect(rendered.queryByText(/Lorem ipsus/i)).not.toBeInTheDocument();
 
-    fireEvent.click(getByLabelText(/Open Confirmation Dialog/i));
-    await wait(() => {
-      expect(queryByText(/Lorem ipsus/i)).toBeInTheDocument();
-    });
-    expect(queryByText(/Hello/i)).toBeInTheDocument();
+    fireEvent.click(rendered.getByLabelText(/Open Confirmation Dialog/i));
+    await rendered.findByText(/Lorem ipsus/i);
+    expect(rendered.queryByText(/Hello/i)).toBeInTheDocument();
 
-    await wait(() => {
-      expect(queryByText(/Close dialog/i)).not.toBeInTheDocument();
-    });
+    expect(rendered.queryByText(/Close dialog/i)).not.toBeInTheDocument();
   });
 });

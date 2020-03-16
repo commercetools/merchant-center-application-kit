@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, wait } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import ApplicationLoader from './application-loader';
 
 describe('rendering', () => {
@@ -16,15 +16,10 @@ describe('rendering', () => {
     beforeEach(() => {
       rendered = render(<ApplicationLoader />);
     });
-    it('should render the commercetools logo', async () => {
-      await wait(
-        () => {
-          expect(
-            rendered.queryByAltText('commercetools logo')
-          ).not.toBeInTheDocument();
-        },
-        { timeout: 1000 }
-      );
+    it('should not render the commercetools logo', async () => {
+      expect(
+        rendered.queryByAltText('commercetools logo')
+      ).not.toBeInTheDocument();
     });
   });
 });

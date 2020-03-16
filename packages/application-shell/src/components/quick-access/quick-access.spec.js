@@ -3,7 +3,12 @@ import {
   GRAPHQL_TARGETS,
   MC_API_PROXY_TARGETS,
 } from '@commercetools-frontend/constants';
-import { renderAppWithRedux, fireEvent, wait } from '../../test-utils';
+import {
+  renderAppWithRedux,
+  fireEvent,
+  wait as waitFor,
+  waitForElementToBeRemoved,
+} from '../../test-utils';
 import * as gtm from '../../utils/gtm';
 import QuickAccessQuery from './quick-access.ctp.graphql';
 import QuickAccessProductQuery from './quick-access-product.ctp.graphql';
@@ -219,7 +224,7 @@ describe('QuickAccess', () => {
 
     // open quick-access
     fireEvent.keyDown(document.body.firstChild, { key: 'f' });
-    await wait(() => {
+    await waitFor(() => {
       expect(rendered.queryByTestId('quick-access')).toBeNull();
     });
   });
@@ -315,10 +320,7 @@ describe('QuickAccess', () => {
       // when input is cleared again
       fireEvent.change(searchInput, { target: { value: '' } });
 
-      await wait(() => {
-        // the no results text should be removed
-        expect(rendered.queryByText(noResultsText)).not.toBeInTheDocument();
-      });
+      expect(rendered.queryByText(noResultsText)).not.toBeInTheDocument();
     });
   });
   describe('when there is an error', () => {
@@ -376,10 +378,7 @@ describe('QuickAccess', () => {
       // when input is cleared again
       fireEvent.change(searchInput, { target: { value: '' } });
 
-      await wait(() => {
-        // the offline warning should be removed
-        expect(rendered.queryByText(offlineText)).not.toBeInTheDocument();
-      });
+      expect(rendered.queryByText(offlineText)).not.toBeInTheDocument();
     });
   });
 
@@ -405,13 +404,13 @@ describe('QuickAccess', () => {
     await rendered.findByText('Open Dashboard');
     fireEvent.keyUp(searchInput, { key: 'Enter' });
 
-    await wait(() => {
+    await waitFor(() => {
       expect(rendered.history.location.pathname).toBe(
         '/test-with-big-data/dashboard'
       );
-      // should close quick access
-      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
     });
+    // should close quick access
+    expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
   });
 
   it('should open (reload to) dashboard when chosing the "Open Dashboard" command when using full redirects for links', async () => {
@@ -437,13 +436,13 @@ describe('QuickAccess', () => {
     await rendered.findByText('Open Dashboard');
     fireEvent.keyUp(searchInput, { key: 'Enter' });
 
-    await wait(() => {
+    await waitFor(() => {
       expect(global.location.replace).toHaveBeenCalledWith(
         '/test-with-big-data/dashboard'
       );
-      // should close quick access
-      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
     });
+    // should close quick access
+    expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
   });
 
   describe('on MacOS', () => {
@@ -477,14 +476,14 @@ describe('QuickAccess', () => {
       fireEvent.keyDown(searchInput, { key: 'Enter', metaKey: true });
       fireEvent.keyUp(searchInput, { key: 'Enter', metaKey: true });
 
-      await wait(() => {
+      await waitFor(() => {
         expect(global.open).toHaveBeenCalledWith(
           '/test-with-big-data/dashboard',
           '_blank'
         );
-        // should close quick access
-        expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
       });
+      // should close quick access
+      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
     });
 
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by cmd+click', async () => {
@@ -514,14 +513,14 @@ describe('QuickAccess', () => {
         }
       );
 
-      await wait(() => {
+      await waitFor(() => {
         expect(global.open).toHaveBeenCalledWith(
           '/test-with-big-data/dashboard',
           '_blank'
         );
-        // should close quick access
-        expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
       });
+      // should close quick access
+      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
     });
   });
 
@@ -555,14 +554,14 @@ describe('QuickAccess', () => {
       fireEvent.keyDown(searchInput, { key: 'Enter', ctrlKey: true });
       fireEvent.keyUp(searchInput, { key: 'Enter', ctrlKey: true });
 
-      await wait(() => {
+      await waitFor(() => {
         expect(global.open).toHaveBeenCalledWith(
           '/test-with-big-data/dashboard',
           '_blank'
         );
-        // should close quick access
-        expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
       });
+      // should close quick access
+      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
     });
 
     it('should open dashboard in new tab when chosing the "Open Dashboard" command by ctrl+click', async () => {
@@ -592,14 +591,14 @@ describe('QuickAccess', () => {
         }
       );
 
-      await wait(() => {
+      await waitFor(() => {
         expect(global.open).toHaveBeenCalledWith(
           '/test-with-big-data/dashboard',
           '_blank'
         );
-        // should close quick access
-        expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
       });
+      // should close quick access
+      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
     });
   });
 
@@ -625,13 +624,13 @@ describe('QuickAccess', () => {
     await rendered.findByText('Open Dashboard');
     fireEvent.click(rendered.getByTestId('quick-access-result(go/dashboard)'));
 
-    await wait(() => {
+    await waitFor(() => {
       expect(rendered.history.location.pathname).toBe(
         '/test-with-big-data/dashboard'
       );
-      // should close quick access
-      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
     });
+    // should close quick access
+    expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
   });
 
   it('should cycle through the history', async () => {
@@ -660,12 +659,13 @@ describe('QuickAccess', () => {
     fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
     await rendered.findByText('Open Dashboard');
     fireEvent.keyUp(searchInput, { key: 'Enter' });
-    await wait(() => {
+    await waitFor(() => {
       expect(rendered.history.location.pathname).toBe(
         '/test-with-big-data/dashboard'
       );
-      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
     });
+    // should close quick access
+    expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
@@ -677,12 +677,13 @@ describe('QuickAccess', () => {
     fireEvent.change(searchInput, { target: { value: 'Open prdcts' } });
     await rendered.findByText('Open Products');
     fireEvent.keyUp(searchInput, { key: 'Enter' });
-    await wait(() => {
+    await waitFor(() => {
       expect(rendered.history.location.pathname).toBe(
         '/test-with-big-data/products'
       );
-      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
     });
+    // should close quick access
+    expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
 
     // open quick-access
     fireEvent.keyDown(document.body, { key: 'f' });
@@ -1040,13 +1041,13 @@ describe('QuickAccess', () => {
     // Click the selected result
     fireEvent.click(openOrdersResult);
 
-    await wait(() => {
+    await waitFor(() => {
       expect(rendered.history.location.pathname).toBe(
         '/test-with-big-data/orders'
       );
-      // should close quick access
-      expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
     });
+    // should close quick access
+    expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
   });
 
   it('should not show project-based commands when used outside of the project context', async () => {
@@ -1098,13 +1099,8 @@ describe('QuickAccess', () => {
       fireEvent.change(searchInput, { target: { value: searchText } });
       await rendered.findAllByText(/^Open/);
 
-      await wait(
-        () => {
-          // results should not contain "Open Orders"
-          expect(rendered.queryByText('Open Orders')).toBeNull();
-        },
-        { timeout: 1000 }
-      );
+      // results should not contain "Open Orders"
+      expect(rendered.queryByText('Open Orders')).not.toBeInTheDocument();
     });
 
     it('should find "Open Orders" when user has the view orders permission', async () => {

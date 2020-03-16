@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderAppWithRedux, wait } from '../../test-utils';
+import { renderAppWithRedux } from '../../test-utils';
 import RequestsInFlightLoader from './requests-in-flight-loader';
 
 describe('rendering', () => {
@@ -8,12 +8,7 @@ describe('rendering', () => {
       const rendered = renderAppWithRedux(<RequestsInFlightLoader />, {
         storeState: { requestsInFlight: [] },
       });
-      await wait(
-        () => {
-          expect(rendered.queryByText(/^Processing/)).not.toBeInTheDocument();
-        },
-        { timeout: 1000 }
-      );
+      expect(rendered.queryByText(/^Processing/)).not.toBeInTheDocument();
     });
   });
   describe('when there are requests in flight', () => {

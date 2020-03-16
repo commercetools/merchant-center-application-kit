@@ -1,7 +1,7 @@
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { render, wait } from '@testing-library/react';
+import { render, wait as waitFor } from '@testing-library/react';
 import loadI18n from '../load-i18n';
 import AsyncLocaleData, {
   State,
@@ -51,7 +51,7 @@ describe('rendering', () => {
     });
     it('should report the error to sentry', async () => {
       const { container } = render(<AsyncLocaleData {...props} />);
-      await wait(() => {
+      await waitFor(() => {
         expect(container).toHaveTextContent('Nothing');
         expect(reportErrorToSentry).toHaveBeenCalledWith(error, {});
       });
@@ -68,7 +68,7 @@ describe('rendering', () => {
     });
     it('should render children with state', async () => {
       const { container } = render(<AsyncLocaleData {...props} />);
-      await wait(() => {
+      await waitFor(() => {
         expect(container).toHaveTextContent('Locale: en-US');
         expect(container).toHaveTextContent('Messages: Custom title en');
       });
@@ -91,7 +91,7 @@ describe('rendering', () => {
     });
     it('should render children with state', async () => {
       const { container } = render(<AsyncLocaleData {...props} />);
-      await wait(() => {
+      await waitFor(() => {
         expect(container).toHaveTextContent('Locale: en-CA');
         expect(container).toHaveTextContent('Messages: New title en');
       });
@@ -107,7 +107,7 @@ describe('rendering', () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { locale, ...withoutLocale } = props;
       const { container } = render(<AsyncLocaleData {...withoutLocale} />);
-      await wait(() => {
+      await waitFor(() => {
         expect(container).toHaveTextContent('Nothing');
       });
     });
