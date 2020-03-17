@@ -5,10 +5,9 @@ import {
   TFetchAllMenuFeatureTogglesQuery,
   TFetchAllMenuFeatureTogglesQueryVariables,
 } from '../../types/generated/proxy';
-import { location } from '../../utils/location';
 import { FetchAllMenuFeatureToggles } from './fetch-all-menu-feature-toggles.proxy.graphql';
 
-const defaultApiUrl = location.origin;
+const defaultApiUrl = window.location.origin;
 
 const getDefaultedFeatureToggles = (allFeatureToggles: string[]) =>
   allFeatureToggles.reduce<{ [key: string]: boolean }>(

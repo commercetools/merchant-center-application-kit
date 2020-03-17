@@ -46,7 +46,6 @@ import ErrorApologizer from '../error-apologizer';
 import Redirector from '../redirector';
 import version from '../../version';
 import RedirectToProjectCreate from '../redirect-to-project-create';
-import { location } from '../../utils/location';
 import { selectProjectKeyFromUrl, getPreviousProjectKey } from '../../utils';
 import QuickAccess from '../quick-access';
 
@@ -565,17 +564,17 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
                 the authentication service. */}
                 <Route
                   path="/logout"
-                  render={({ location: routeLocation }) => (
+                  render={({ location }) => (
                     <Redirector
                       to="logout"
-                      location={routeLocation}
+                      location={location}
                       queryParams={{
                         reason: LOGOUT_REASONS.USER,
                         ...(coercedEnvironmentValues.servedByProxy
                           ? {}
                           : {
                               // This will be used after being logged in, to redirect to this location.
-                              redirectTo: location.origin,
+                              redirectTo: window.location.origin,
                             }),
                       }}
                     />
@@ -602,14 +601,14 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
 
           return (
             <Route
-              render={({ location: routeLocation }) => (
+              render={({ location }) => (
                 <Redirector
                   to="login"
-                  location={routeLocation}
+                  location={location}
                   queryParams={{
                     reason: LOGOUT_REASONS.UNAUTHORIZED,
                     redirectTo: trimLeadingAndTrailingSlashes(
-                      joinPaths(location.origin, location.pathname)
+                      joinPaths(window.location.origin, location.pathname)
                     ),
                   }}
                 />
