@@ -692,12 +692,13 @@ describe('navbar menu links interactions', () => {
     rendered,
     { mainMenuLabel, mainSubmenuLabel }
   ) {
-    // Get the nav container, to narrow down the search area
-    const leftNavContainer = await rendered.findByTestId('left-navigation');
-    const navbarRendered = within(leftNavContainer);
+    // Wait for the nav container
+    await rendered.findByTestId('left-navigation');
 
     // Check the relationships between the menu items of a group
-    const menuTitle = await navbarRendered.findByText(mainMenuLabel.value);
+    const menuTitle = await within(
+      await rendered.findByTestId('left-navigation')
+    ).findByText(mainMenuLabel.value);
     const groupId = menuTitle.getAttribute('aria-owns');
     const submenuContainer = rendered.container.querySelector(`#${groupId}`);
     expect(submenuContainer).toHaveAttribute('aria-expanded', 'false');
@@ -924,15 +925,16 @@ describe('when navbar menu items match given permissions', () => {
       },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
-    // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
-    const navbarRendered = within(container);
+    // Wait the nav container
+    await rendered.findByTestId('left-navigation');
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
     );
-    await navbarRendered.findByText(mainMenuLabel.value);
+    await within(await rendered.findByTestId('left-navigation')).findByText(
+      mainMenuLabel.value
+    );
   });
 });
 describe('when navbar menu items do not match given permissions', () => {
@@ -1006,15 +1008,16 @@ describe('when navbar menu items match given action rights', () => {
       },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
-    // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
-    const navbarRendered = within(container);
+    // Wait for the nav container
+    await rendered.findByTestId('left-navigation');
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
     );
-    await navbarRendered.findByText(mainMenuLabel.value);
+    await within(await rendered.findByTestId('left-navigation')).findByText(
+      mainMenuLabel.value
+    );
   });
 });
 describe('when navbar menu items do not match given action rights', () => {
@@ -1104,15 +1107,16 @@ describe('when navbar menu items match given data fences', () => {
       },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
-    // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
-    const navbarRendered = within(container);
+    // Wait the nav container
+    await rendered.findByTestId('left-navigation');
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
     );
-    await navbarRendered.findByText(mainMenuLabel.value);
+    await within(await rendered.findByTestId('left-navigation')).findByText(
+      mainMenuLabel.value
+    );
   });
 });
 describe('when navbar menu items do not match given data fences', () => {
@@ -1155,17 +1159,18 @@ describe('when navbar menu items do not match given data fences', () => {
       },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
-    // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
-    const navbarRendered = within(container);
+    // Wait for the nav container
+    await rendered.findByTestId('left-navigation');
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
     );
-    await waitFor(() => {
+    await waitFor(async () => {
       expect(
-        navbarRendered.queryByText(mainMenuLabel.value)
+        within(await rendered.findByTestId('left-navigation')).queryByText(
+          mainMenuLabel.value
+        )
       ).not.toBeInTheDocument();
     });
   });
