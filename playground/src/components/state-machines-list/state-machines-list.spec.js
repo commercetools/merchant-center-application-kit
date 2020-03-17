@@ -5,6 +5,7 @@ import {
   wait as waitFor,
   fireEvent,
 } from '@commercetools-frontend/application-shell/test-utils';
+import { GtmContext } from '@commercetools-frontend/application-shell';
 import { applyUiKitMocks } from '../../mocks';
 import { ApplicationStateMachines } from '../entry-point';
 
@@ -85,10 +86,17 @@ const createStateMachinesDetailSdkErrorMock = () => ({
 
 const renderApp = (options = {}) => {
   const route = options.route || '/my-project/state-machines';
-  return renderAppWithRedux(<ApplicationStateMachines />, {
-    route,
-    ...options,
-  });
+  const gtmMock = { track: jest.fn(), getHierarchy: jest.fn() };
+  const rendered = renderAppWithRedux(
+    <GtmContext.Provider value={gtmMock}>
+      <ApplicationStateMachines />
+    </GtmContext.Provider>,
+    {
+      route,
+      ...options,
+    }
+  );
+  return { ...rendered, gtmMock };
 };
 
 describe('list view', () => {
@@ -149,7 +157,6 @@ describe('details view', () => {
       await rendered.findByText(/sm-1/i);
     });
     it('should retrigger request if id changes', async () => {
-      const trackMock = jest.fn();
       rendered = renderApp({
         route: '/my-project/state-machines/sm1',
         sdkMocks: [
@@ -160,13 +167,10 @@ describe('details view', () => {
           canViewDeveloperSettings: true,
           canManageDeveloperSettings: true,
         },
-        gtmTracking: {
-          track: trackMock,
-        },
       });
       await rendered.findByText(/sm-1/i);
-      await wait(() => {
-        expect(trackMock).toHaveBeenCalledWith(
+      await waitFor(() => {
+        expect(rendered.gtmMock.track).toHaveBeenCalledWith(
           'rendered',
           'State machine details'
         );
