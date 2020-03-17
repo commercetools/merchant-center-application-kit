@@ -9,11 +9,13 @@ import {
   wait as waitFor,
 } from '../../test-utils';
 import * as gtm from '../../utils/gtm';
+import { location } from '../../utils/location';
 import QuickAccessQuery from './quick-access.ctp.graphql';
 import QuickAccessProductQuery from './quick-access-product.ctp.graphql';
 import QuickAccess from './index';
 
 jest.mock('../../utils/gtm');
+jest.mock('../../utils/location');
 
 const createMatchlessSearchMock = ({ variables = {}, resultData = {} }) => ({
   request: {
@@ -165,7 +167,7 @@ const renderQuickAccess = (options = {}, ui) =>
 beforeEach(() => {
   gtm.track.mockReset();
   global.open = jest.fn();
-  global.location.replace = jest.fn();
+  location.replace.mockClear();
 });
 
 describe('QuickAccess', () => {
@@ -436,7 +438,7 @@ describe('QuickAccess', () => {
     fireEvent.keyUp(searchInput, { key: 'Enter' });
 
     await waitFor(() => {
-      expect(global.location.replace).toHaveBeenCalledWith(
+      expect(location.replace).toHaveBeenCalledWith(
         '/test-with-big-data/dashboard'
       );
     });
