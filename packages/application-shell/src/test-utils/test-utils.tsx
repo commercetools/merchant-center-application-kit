@@ -25,14 +25,10 @@ import {
   TMapNotificationToComponentProps,
 } from '@commercetools-frontend/react-notifications';
 import { DOMAINS } from '@commercetools-frontend/constants';
-/* eslint-disable import/named */
 import {
   createTestMiddleware as createSdkTestMiddleware,
   TSdkMock,
 } from '@commercetools-frontend/sdk/test-utils';
-/* eslint-enable import/named */
-import * as gtm from '../utils/gtm';
-import { GtmContext } from '../components/gtm-booter';
 import { createReduxStore } from '../configure-store';
 import { createApolloClient } from '../configure-apollo';
 
@@ -104,10 +100,6 @@ const defaultEnvironment = {
 const LoadingFallback = () => <>{'Loading...'}</>;
 LoadingFallback.displayName = 'LoadingFallback';
 
-const defaultGtmTracking = {
-  track: jest.fn(),
-  getHierarchy: jest.fn(),
-};
 const defaultFlopflipAdapterArgs = {
   clientSideId: 'test-client-side-id',
   user: {
@@ -303,16 +295,11 @@ type TRenderAppOptions<AdditionalEnvironmentProperties = {}> = {
   actionRights: TNormalizedActionRights; // <-- deprecated option, use `{ project: { allAppliedActionRights } }`
   dataFences: TNormalizedDataFences; // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
   ApolloProviderComponent: React.ElementType | typeof ApolloMockProvider;
-  // gtm-context
-  gtmTracking: {
-    track: typeof gtm.track;
-    getHierarchy: typeof gtm.getHierarchy;
-  };
 } & rtl.RenderOptions;
 type TRenderAppResult<AdditionalEnvironmentProperties = {}> = rtl.RenderResult &
   Pick<
     TRenderAppOptions<AdditionalEnvironmentProperties>,
-    'history' | 'user' | 'project' | 'environment' | 'gtmTracking'
+    'history' | 'user' | 'project' | 'environment'
   >;
 type TApplicationProvidersProps = {
   children: React.ReactNode;
@@ -344,8 +331,6 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
     dataFences, // <-- deprecated option, use `{ project: { allAppliedDataFences } }`
     dataLocale = 'en',
     ApolloProviderComponent = ApolloMockProvider,
-    // gtm-context
-    gtmTracking = defaultGtmTracking,
     // forwarding to @testing-library/react
     ...renderOptions
   }: Partial<TRenderAppOptions<AdditionalEnvironmentProperties>> = {}
@@ -365,7 +350,6 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
     ...defaultEnvironment,
     ...environment,
   } as TProviderProps<AdditionalEnvironmentProperties>['environment'];
-  const mergedGtmTracking = { ...defaultGtmTracking, ...gtmTracking };
 
   const ApplicationProviders = (props: TApplicationProvidersProps) => (
     <IntlProvider locale={locale}>
@@ -381,13 +365,11 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
             environment={mergedEnvironment}
             projectDataLocale={dataLocale}
           >
-            <GtmContext.Provider value={mergedGtmTracking}>
-              <Router history={history}>
-                <React.Suspense fallback={<LoadingFallback />}>
-                  {props.children}
-                </React.Suspense>
-              </Router>
-            </GtmContext.Provider>
+            <Router history={history}>
+              <React.Suspense fallback={<LoadingFallback />}>
+                {props.children}
+              </React.Suspense>
+            </Router>
           </ApplicationContextProvider>
         </ConfigureFlopFlip>
       </ApolloProviderComponent>
@@ -420,9 +402,6 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
     user: mergedUser,
     project: mergedProject,
     environment: mergedEnvironment,
-    // Adding gtmTracking to the returned utilities to allow us
-    // to reference it in our tests.
-    gtmTracking: mergedGtmTracking,
   };
 }
 
