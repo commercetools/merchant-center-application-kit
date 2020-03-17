@@ -11,4 +11,5 @@ module.exports = {
     // Transpile also our local packages as they are only symlinked.
     'node_modules/(?!(@commercetools-frontend)/)',
   ],
+  testEnvironment: 'jest-environment-jsdom-sixteen',
 };
