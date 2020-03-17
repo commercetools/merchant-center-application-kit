@@ -9,6 +9,7 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import SelectInput from '@commercetools-uikit/select-input';
 import { ErrorIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
+import { location } from '../../utils/location';
 import {
   TProject,
   TFetchUserProjectsQuery,
@@ -136,7 +137,7 @@ const mapProjectsToOptions = memoize(projects =>
   }))
 );
 
-const redirectTo = (targetUrl: string) => window.location.replace(targetUrl);
+const redirectTo = (targetUrl: string) => location.replace(targetUrl);
 
 const ProjectSwitcher = (props: Props) => {
   const intl = useIntl();

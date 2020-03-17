@@ -7,7 +7,6 @@ import {
   renderAppWithRedux,
   fireEvent,
   wait as waitFor,
-  waitForElementToBeRemoved,
 } from '../../test-utils';
 import * as gtm from '../../utils/gtm';
 import QuickAccessQuery from './quick-access.ctp.graphql';

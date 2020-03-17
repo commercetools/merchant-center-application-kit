@@ -3,6 +3,7 @@ import { encode } from 'qss';
 import { RouteComponentProps } from 'react-router-dom';
 import { TEnhancedLocation } from '@commercetools-frontend/browser-history';
 import { LOGOUT_REASONS } from '@commercetools-frontend/constants';
+import { location } from '../../utils/location';
 
 type QueryParams = {
   reason?: typeof LOGOUT_REASONS[keyof typeof LOGOUT_REASONS];
@@ -14,7 +15,7 @@ type Props = {
   queryParams: QueryParams;
 };
 
-const redirectTo = (targetUrl: string) => window.location.replace(targetUrl);
+const redirectTo = (targetUrl: string) => location.replace(targetUrl);
 
 const Redirector = (props: Props) => {
   React.useEffect(() => {

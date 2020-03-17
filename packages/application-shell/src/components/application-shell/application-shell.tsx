@@ -573,8 +573,7 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
                         ...(coercedEnvironmentValues.servedByProxy
                           ? {}
                           : {
-                              // This will be used after being logged in,
-                              // to redirect to this location.
+                              // This will be used after being logged in, to redirect to this location.
                               redirectTo: window.location.origin,
                             }),
                       }}

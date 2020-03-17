@@ -45,6 +45,7 @@ import {
   TLocalizedField,
   TNavbarMenu,
 } from '../../types/generated/proxy';
+import { location } from '../../utils/location';
 import { GtmContext } from '../gtm-booter';
 import LoadingPlaceholder from '../loading-placeholder';
 import styles from './navbar.mod.css';
@@ -232,7 +233,7 @@ const menuItemLinkDefaultProps: Pick<MenuItemLinkProps, 'exactMatch'> = {
 };
 const MenuItemLink = (props: MenuItemLinkProps) => {
   const gtmTracking = React.useContext(GtmContext);
-  const redirectTo = (targetUrl: string) => window.location.replace(targetUrl);
+  const redirectTo = (targetUrl: string) => location.replace(targetUrl);
   if (props.linkTo) {
     return (
       <NavLink

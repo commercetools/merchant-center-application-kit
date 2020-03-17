@@ -2,6 +2,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import FlatButton from '@commercetools-uikit/flat-button';
 import { AngleLeftIcon } from '@commercetools-uikit/icons';
+import { location } from '../../utils/location';
 import messages from './messages';
 
 type Props = {
@@ -13,7 +14,7 @@ type Props = {
  *   A full page reload is needed as the user's project may have changed (deletions and/or additions).
  *   As a result the project and user queries need refetching.
  */
-const redirectToProject = (key: string) => window.location.replace(`/${key}`);
+const redirectToProject = (key: string) => location.replace(`/${key}`);
 
 export const BackToProject = (props: Props) => {
   const intl = useIntl();

@@ -2,10 +2,11 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { PageNotFound } from '@commercetools-frontend/application-components';
+import { location } from '../../utils/location';
 
 const ForcePageReload = () => {
   React.useEffect(() => {
-    window.location.reload(/* forcedReload */ true);
+    location.reload(/* forcedReload */ true);
   }, []);
   return null;
 };

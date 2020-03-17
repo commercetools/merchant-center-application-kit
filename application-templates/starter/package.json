@@ -35,7 +35,7 @@
   "devDependencies": {
     "@commercetools-frontend/jest-preset-mc-app": "16.3.3",
     "@commercetools-frontend/mc-scripts": "16.3.3",
-    "@testing-library/react": "9.4.1",
+    "@testing-library/react": "9.5.0",
     "enzyme": "3.11.0",
     "jest": "25.1.0"
   }

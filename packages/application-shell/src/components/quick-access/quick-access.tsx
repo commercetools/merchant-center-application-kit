@@ -16,6 +16,7 @@ import {
 import { hasSomePermissions } from '@commercetools-frontend/permissions';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { TQuickAccessQuery } from '../../types/generated/ctp';
+import { location } from '../../utils/location';
 import Butler from './butler';
 import QuickAccessQuery from './quick-access.ctp.graphql';
 import createCommands from './create-commands';
@@ -493,7 +494,7 @@ const QuickAccess = (props: Props) => {
       if (meta.openInNewTab || !command.action.to.startsWith('/')) {
         open(command.action.to, '_blank');
       } else if (applicationContext.environment.useFullRedirectsForLinks) {
-        window.location.replace(command.action.to);
+        location.replace(command.action.to);
       } else {
         history.push(command.action.to);
       }
