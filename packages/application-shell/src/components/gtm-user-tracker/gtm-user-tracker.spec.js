@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, wait as waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import GtmUserTracker from './gtm-user-tracker';
 
 describe('rendering', () => {

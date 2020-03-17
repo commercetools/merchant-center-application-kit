@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderAppWithRedux, wait as waitFor } from '../../test-utils';
+import { renderAppWithRedux, waitFor } from '../../test-utils';
 import RequestsInFlightLoader from './requests-in-flight-loader';
 
 describe('rendering', () => {

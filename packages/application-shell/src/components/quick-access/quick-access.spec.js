@@ -3,11 +3,7 @@ import {
   GRAPHQL_TARGETS,
   MC_API_PROXY_TARGETS,
 } from '@commercetools-frontend/constants';
-import {
-  renderAppWithRedux,
-  fireEvent,
-  wait as waitFor,
-} from '../../test-utils';
+import { renderAppWithRedux, fireEvent, waitFor } from '../../test-utils';
 import * as gtm from '../../utils/gtm';
 import { location } from '../../utils/location';
 import QuickAccessQuery from './quick-access.ctp.graphql';

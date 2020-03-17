@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, wait as waitFor, fireEvent } from '@testing-library/react';
+import { render, waitFor, fireEvent } from '@testing-library/react';
 import { ApplicationWindow } from '@commercetools-frontend/constants';
 import GtmBooter, { Props } from './gtm-booter';
 

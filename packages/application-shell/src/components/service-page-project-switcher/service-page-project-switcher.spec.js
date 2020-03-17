@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { renderApp, wait as waitFor } from '../../test-utils';
+import { renderApp, waitFor } from '../../test-utils';
 import { createGraphqlResponseForProjectsQuery } from '../project-switcher/project-switcher-test-utils';
 import ServicePageProjectSwitcher from './service-page-project-switcher';
 

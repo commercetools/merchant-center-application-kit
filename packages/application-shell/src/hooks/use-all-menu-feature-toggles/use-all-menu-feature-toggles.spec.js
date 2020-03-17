@@ -1,6 +1,6 @@
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { renderApp, wait as waitFor } from '../../test-utils';
+import { renderApp, waitFor } from '../../test-utils';
 import FetchAllMenuFeatureToggles from './fetch-all-menu-feature-toggles.proxy.graphql';
 import useAllMenuFeatureToggles from './use-all-menu-feature-toggles';
 

@@ -1,6 +1,6 @@
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { renderApp, wait as waitFor } from '../../test-utils';
+import { renderApp, waitFor } from '../../test-utils';
 import { location } from '../../utils/location';
 import RedirectToProjectCreate from './redirect-to-project-create';
 

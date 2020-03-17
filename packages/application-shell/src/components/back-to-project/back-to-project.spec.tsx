@@ -1,6 +1,6 @@
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { renderApp, fireEvent, wait as waitFor } from '../../test-utils';
+import { renderApp, fireEvent, waitFor } from '../../test-utils';
 import { location } from '../../utils/location';
 import BackToProject from './back-to-project';
 

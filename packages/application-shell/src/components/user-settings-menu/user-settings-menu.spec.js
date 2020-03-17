@@ -4,7 +4,7 @@ import {
   LOGOUT_REASONS,
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
-import { renderApp, fireEvent, wait as waitFor } from '../../test-utils';
+import { renderApp, fireEvent, waitFor } from '../../test-utils';
 import FetchApplicationsMenu from '../../hooks/use-applications-menu/fetch-applications-menu.proxy.graphql';
 import UserSettingsMenu from './user-settings-menu';
 

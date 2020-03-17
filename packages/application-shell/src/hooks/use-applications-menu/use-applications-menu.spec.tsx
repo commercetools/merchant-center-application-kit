@@ -2,7 +2,7 @@ import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import upperFirst from 'lodash/upperFirst';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { renderApp, wait as waitFor } from '../../test-utils';
+import { renderApp, waitFor } from '../../test-utils';
 import { TFetchApplicationsMenuQuery } from '../../types/generated/proxy';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 import useApplicationsMenu, {
