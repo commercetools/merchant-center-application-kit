@@ -184,8 +184,8 @@ describe('when user has no default project', () => {
     });
     await waitFor(() => {
       expect(location.replace).toHaveBeenCalledWith('/account/projects/new');
+      expect(rendered.queryByText('OK')).not.toBeInTheDocument();
     });
-    expect(rendered.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when loading user fails with an unknown graphql error', () => {
@@ -226,8 +226,8 @@ describe('when loading user fails with an unauthorized graphql error', () => {
       expect(location.replace).toHaveBeenCalledWith(
         expect.stringContaining(`/logout?${queryParams}`)
       );
+      expect(rendered.queryByText('OK')).not.toBeInTheDocument();
     });
-    expect(rendered.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when loading user fails with a "was not found." graphql error message', () => {
@@ -251,8 +251,8 @@ describe('when loading user fails with a "was not found." graphql error message'
       expect(location.replace).toHaveBeenCalledWith(
         expect.stringContaining(`/logout?${queryParams}`)
       );
+      expect(rendered.queryByText('OK')).not.toBeInTheDocument();
     });
-    expect(rendered.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when project is not found', () => {
@@ -521,8 +521,8 @@ describe('when user is not authenticated', () => {
       expect(location.replace).toHaveBeenCalledWith(
         `${window.location.origin}/login?${queryParams}`
       );
+      expect(rendered.queryByText('OK')).not.toBeInTheDocument();
     });
-    expect(rendered.queryByText('OK')).not.toBeInTheDocument();
   });
 });
 describe('when selecting project locale "de"', () => {
