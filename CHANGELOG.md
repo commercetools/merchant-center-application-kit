@@ -1,3 +1,44 @@
+## [16.5.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.4.0...v16.5.0) (2020-03-18)
+
+#### 🚀 Type: New Feature
+
+- `jest-preset-mc-app`
+  - [#1401](https://github.com/commercetools/merchant-center-application-kit/pull/1401) feat(jest-preset): add preset for jsdom sixteen ([@tdeekens](https://github.com/tdeekens))
+
+#### 🐛 Type: Bug
+
+- `application-shell`, `i18n`
+  - [#1403](https://github.com/commercetools/merchant-center-application-kit/pull/1403) fix(quick-access): link to pim search list ([@vidurar](https://github.com/vidurar))
+- `application-shell`
+  - [#1395](https://github.com/commercetools/merchant-center-application-kit/pull/1395) PCM-1600: routes to product varitns from quick access ([@vidurar](https://github.com/vidurar))
+
+#### ✍️ Type: Documentation
+
+- `mc-html-template`
+  - [#1386](https://github.com/commercetools/merchant-center-application-kit/pull/1386) docs(mc-html-template): add docs for placeholders ([@tdeekens](https://github.com/tdeekens))
+
+#### ⛑ Type: Refactoring
+
+- `application-shell`
+  - [#1400](https://github.com/commercetools/merchant-center-application-kit/pull/1400) fix(quick-access): to not use global.replace under test ([@tdeekens](https://github.com/tdeekens))
+- `application-shell-connectors`, `application-shell`, `jest-preset-mc-app`, `react-notifications`
+  - [#1398](https://github.com/commercetools/merchant-center-application-kit/pull/1398) refactor: to use location module ([@tdeekens](https://github.com/tdeekens))
+- `application-components`, `application-shell`, `i18n`, `react-notifications`
+  - [#1397](https://github.com/commercetools/merchant-center-application-kit/pull/1397) refactor: to use waitFor and waitForElementToBeRemoved ([@tdeekens](https://github.com/tdeekens))
+- `application-shell-connectors`, `application-shell`, `permissions`, `react-notifications`
+  - [#1396](https://github.com/commercetools/merchant-center-application-kit/pull/1396) refactor: to not use wait-for-element ([@tdeekens](https://github.com/tdeekens))
+
+#### 🤖 Type: Dependencies
+
+- `application-shell`, `jest-preset-mc-app`
+  - [#1392](https://github.com/commercetools/merchant-center-application-kit/pull/1392) fix(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+- `application-shell`
+  - [#1387](https://github.com/commercetools/merchant-center-application-kit/pull/1387) chore: update flopflip ([@tdeekens](https://github.com/tdeekens))
+- `mc-scripts`
+  - [#1383](https://github.com/commercetools/merchant-center-application-kit/pull/1383) chore(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+- `sdk`
+  - [#1382](https://github.com/commercetools/merchant-center-application-kit/pull/1382) chore(deps): pin dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [16.4.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.3.3...v16.4.0) (2020-03-06)
 
 #### 🚀 Type: New Feature
