@@ -83,7 +83,15 @@ const renderApp = (ui, options = {}) => {
   const rendered = render(
     <ApplicationShell {...props} render={() => ui || <p>{'OK'}</p>} />
   );
-  return { ...rendered, history: testHistory };
+  const findByLeftNavigation = () => rendered.findByTestId('left-navigation');
+  const queryByLeftNavigation = () => rendered.queryByTestId('left-navigation');
+
+  return {
+    ...rendered,
+    findByLeftNavigation,
+    queryByLeftNavigation,
+    history: testHistory,
+  };
 };
 
 beforeEach(() => {
@@ -138,7 +146,7 @@ describe('when route does not contain a project key (e.g. /account)', () => {
     rendered.history.push('/account');
     await waitFor(() => {
       expect(rendered.history.location.pathname).toBe('/account');
-      expect(rendered.queryByTestId('left-navigation')).not.toBeInTheDocument();
+      expect(rendered.queryByLeftNavigation()).not.toBeInTheDocument();
     });
   });
 });
@@ -158,7 +166,7 @@ describe('when user first visits "/" with no projectKey defined in localStorage'
         `/${operations.FetchProject.project.key}`
       );
     });
-    expect(rendered.queryByTestId('left-navigation')).toBeInTheDocument();
+    expect(rendered.queryByLeftNavigation()).toBeInTheDocument();
   });
 });
 describe('when user has no default project', () => {
@@ -682,7 +690,7 @@ describe('when clicking on navbar menu toggle', () => {
     });
     // Check that the support link is rendered
     // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
+    const container = await rendered.findByLeftNavigation();
     const navbarRendered = within(container);
     expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
   });
@@ -692,12 +700,13 @@ describe('navbar menu links interactions', () => {
     rendered,
     { mainMenuLabel, mainSubmenuLabel }
   ) {
-    // Get the nav container, to narrow down the search area
-    const leftNavContainer = await rendered.findByTestId('left-navigation');
-    const navbarRendered = within(leftNavContainer);
+    // Wait for the nav container
+    await rendered.findByLeftNavigation();
 
     // Check the relationships between the menu items of a group
-    const menuTitle = await navbarRendered.findByText(mainMenuLabel.value);
+    const menuTitle = await within(
+      await rendered.findByLeftNavigation()
+    ).findByText(mainMenuLabel.value);
     const groupId = menuTitle.getAttribute('aria-owns');
     const submenuContainer = rendered.container.querySelector(`#${groupId}`);
     expect(submenuContainer).toHaveAttribute('aria-expanded', 'false');
@@ -843,7 +852,7 @@ describe('when navbar menu items are disabled', () => {
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
     // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
+    const container = await rendered.findByLeftNavigation();
     const navbarRendered = within(container);
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
@@ -886,7 +895,7 @@ describe('when navbar menu items are hidden', () => {
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
     // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
+    const container = await rendered.findByLeftNavigation();
     const navbarRendered = within(container);
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
@@ -924,15 +933,16 @@ describe('when navbar menu items match given permissions', () => {
       },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
-    // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
-    const navbarRendered = within(container);
+    // Wait the nav container
+    await rendered.findByLeftNavigation();
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
     );
-    await navbarRendered.findByText(mainMenuLabel.value);
+    await within(await rendered.findByLeftNavigation()).findByText(
+      mainMenuLabel.value
+    );
   });
 });
 describe('when navbar menu items do not match given permissions', () => {
@@ -960,7 +970,7 @@ describe('when navbar menu items do not match given permissions', () => {
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
     // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
+    const container = await rendered.findByLeftNavigation();
     const navbarRendered = within(container);
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
@@ -1006,15 +1016,16 @@ describe('when navbar menu items match given action rights', () => {
       },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
-    // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
-    const navbarRendered = within(container);
+    // Wait for the nav container
+    await rendered.findByLeftNavigation();
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
     );
-    await navbarRendered.findByText(mainMenuLabel.value);
+    await within(await rendered.findByLeftNavigation()).findByText(
+      mainMenuLabel.value
+    );
   });
 });
 describe('when navbar menu items do not match given action rights', () => {
@@ -1050,7 +1061,7 @@ describe('when navbar menu items do not match given action rights', () => {
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
     // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
+    const container = await rendered.findByLeftNavigation();
     const navbarRendered = within(container);
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
@@ -1104,15 +1115,16 @@ describe('when navbar menu items match given data fences', () => {
       },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
-    // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
-    const navbarRendered = within(container);
+    // Wait the nav container
+    await rendered.findByLeftNavigation();
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
     );
-    await navbarRendered.findByText(mainMenuLabel.value);
+    await within(await rendered.findByLeftNavigation()).findByText(
+      mainMenuLabel.value
+    );
   });
 });
 describe('when navbar menu items do not match given data fences', () => {
@@ -1155,17 +1167,18 @@ describe('when navbar menu items do not match given data fences', () => {
       },
       DEV_ONLY__loadNavbarMenuConfig: () => Promise.resolve([navbarMock]),
     });
-    // Get the nav container, to narrow down the search area
-    const container = await rendered.findByTestId('left-navigation');
-    const navbarRendered = within(container);
+    // Wait for the nav container
+    await rendered.findByLeftNavigation();
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
       localized => localized.locale === applicationLocale
     );
-    await waitFor(() => {
+    await waitFor(async () => {
       expect(
-        navbarRendered.queryByText(mainMenuLabel.value)
+        within(await rendered.findByLeftNavigation()).queryByText(
+          mainMenuLabel.value
+        )
       ).not.toBeInTheDocument();
     });
   });
