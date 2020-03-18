@@ -1,6 +1,6 @@
 ---
 name: Documentation request for deployment examples
-about: Requests to document an example of deployment to a specific cloud provider.
+about: Want to deploy to a specific cloud provider? Let us know, and we can provide you with an example.
 title: '[docs] Request deployment example for [...]'
 labels:
 - "✍️ Type: Documentation"

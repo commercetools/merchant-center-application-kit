@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 **Describe the issue**
-<!-- A clear and concise description of what the issue is. -->
+<!-- A clear and concise description of what's not working. -->
 
 **To Reproduce**
 Steps to reproduce the behavior:
