@@ -679,7 +679,7 @@ describe('QuickAccess', () => {
     fireEvent.keyUp(searchInput, { key: 'Enter' });
     await wait(() => {
       expect(rendered.history.location.pathname).toBe(
-        '/test-with-big-data/products'
+        '/test-with-big-data/products/pim-search'
       );
       expect(rendered.queryByTestId('quick-access')).not.toBeInTheDocument();
     });
