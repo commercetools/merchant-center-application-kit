@@ -27,7 +27,7 @@ module.exports = function getBabePresetConfigForMcApp() {
         require('@babel/preset-env').default,
         {
           targets: {
-            browsers: ['last 1 versions'],
+            browsers: ['last 2 versions'],
             node: '8',
           },
         },
@@ -37,7 +37,7 @@ module.exports = function getBabePresetConfigForMcApp() {
         require('@babel/preset-env').default,
         {
           targets: {
-            browsers: ['last 1 versions'],
+            browsers: ['last 2 versions'],
           },
           corejs: { version: 3, proposals: true },
           // `entry` transforms `@babel/polyfill` into individual requires for

@@ -8,6 +8,8 @@
       path: '/getting-started/tooling'
     - title: Support Policy
       path: '/support-policy'
+    - title: Help Needed?
+      path: '/help-needed'
 - chapter-title: Development
   pages:
     - title: Folder Structure
@@ -72,8 +74,6 @@
       path: '/register-applications/activating-a-custom-application'
     - title: Removing a Custom Application
       path: '/register-applications/removing-a-custom-application'
-    - title: Caveats
-      path: '/register-applications/caveats'
 - chapter-title: Main concepts
   pages:
     - title: Architecture
