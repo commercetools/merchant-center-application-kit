@@ -55,7 +55,7 @@ const createCommands = ({
         keywords: ['Go to Products'],
         action: {
           type: actionTypes.go,
-          to: `/${applicationContext.project.key}/products/pim-search`,
+          to: `/${applicationContext.project.key}/products`,
         },
         subCommands: [
           hasSomePermissions(
@@ -63,10 +63,10 @@ const createCommands = ({
             applicationContext.permissions
           ) && {
             id: 'go/products/list',
-            text: intl.formatMessage(messages.openProductsList),
+            text: intl.formatMessage(messages.openProductList),
             action: {
               type: actionTypes.go,
-              to: `/${applicationContext.project.key}/products/pim-search`,
+              to: `/${applicationContext.project.key}/products`,
             },
           },
           hasSomePermissions(
