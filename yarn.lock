@@ -5318,7 +5318,7 @@
     "@sentry/types" "5.12.4"
     tslib "^1.9.3"
 
-"@sheerun/mutationobserver-shim@^0.3.2":
+"@sheerun/mutationobserver-shim@0.3.3", "@sheerun/mutationobserver-shim@^0.3.2":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@sheerun/mutationobserver-shim/-/mutationobserver-shim-0.3.3.tgz#5405ee8e444ed212db44e79351f0c70a582aae25"
   integrity sha512-DetpxZw1fzPD5xUBrIAoplLChO2VB8DlL5Gg+I1IR9b2wPqYIca2WSUxL5g1vLeR4MsQq1NeWriXAVffV+U1Fw==

@@ -28,6 +28,7 @@
     "@commercetools/enzyme-extensions": "5.0.0",
     "@commercetools/jest-enzyme-matchers": "1.1.2",
     "@testing-library/jest-dom": "5.1.1",
+    "@sheerun/mutationobserver-shim": "0.3.3",
     "babel-jest": "25.1.0",
     "colors": "1.4.0",
     "enzyme-adapter-react-16": "1.15.2",
