@@ -2,11 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const colors = require('colors/safe');
 const pkgDir = require('pkg-dir');
+const MutationObserver = require('@sheerun/mutationobserver-shim');
 
 global.window.app = {
   applicationName: 'my-app',
   mcApiUrl: 'http://localhost:8080',
 };
+
+window.MutationObserver = MutationObserver;
 
 const shouldSilenceWarnings = (...messages) =>
   [
