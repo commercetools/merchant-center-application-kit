@@ -26,9 +26,9 @@ export default defineMessages({
     id: 'QuickAccess.openProducts',
     defaultMessage: 'Open Products',
   },
-  openProductsList: {
-    id: 'QuickAccess.openProductsList',
-    defaultMessage: 'Open Products List',
+  openProductList: {
+    id: 'QuickAccess.openProductList',
+    defaultMessage: 'Open Product List',
   },
   openProductVariantGeneral: {
     id: 'QuickAccess.openProductVariantGeneral',

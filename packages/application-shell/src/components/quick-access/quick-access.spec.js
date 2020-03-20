@@ -680,7 +680,7 @@ describe('QuickAccess', () => {
     fireEvent.keyUp(searchInput, { key: 'Enter' });
     await waitFor(() => {
       expect(rendered.history.location.pathname).toBe(
-        '/test-with-big-data/products/pim-search'
+        '/test-with-big-data/products'
       );
     });
     // should close quick access
