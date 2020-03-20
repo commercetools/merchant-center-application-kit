@@ -1,3 +1,20 @@
+## [16.5.1](https://github.com/commercetools/merchant-center-application-kit/compare/v16.5.0...v16.5.1) (2020-03-20)
+
+#### 🐛 Type: Bug
+
+- `application-shell`, `i18n`
+  - [#1407](https://github.com/commercetools/merchant-center-application-kit/pull/1407) fix: revert "fix: remove old product list from quick access" ([@tdeekens](https://github.com/tdeekens))
+
+#### 🖥 Type: Website
+
+- `babel-preset-mc-app`
+  - [#1405](https://github.com/commercetools/merchant-center-application-kit/pull/1405) docs: add 'Help Needed' page ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `jest-preset-mc-app`
+  - [#1406](https://github.com/commercetools/merchant-center-application-kit/pull/1406) fix(jest-preset-mc-app): add mutation-observer-shim ([@tdeekens](https://github.com/tdeekens))
+
 ## [16.5.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.4.0...v16.5.0) (2020-03-18)
 
 #### 🚀 Type: New Feature
