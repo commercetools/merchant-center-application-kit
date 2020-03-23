@@ -1103,7 +1103,7 @@ const FetchUser = () => (
   </Query>
 );
 
-const FetchUser = props => {
+const FetchUser = (props) => {
   const { loading, data, error } = useQuery(LoggedInUserQuery, {
     onError: reportErrorToSentry,
     variables: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
@@ -1446,9 +1446,11 @@ showUnexpectedErrorNotification({ error });
   - `useApplicationContext`
 
 ```js
-const projectName = useApplicationContext(context => context.project.name);
-const projectDataLocale = useApplicationContext(context => context.dataLocale);
-const user = useApplicationContext(context => context.user);
+const projectName = useApplicationContext((context) => context.project.name);
+const projectDataLocale = useApplicationContext(
+  (context) => context.dataLocale
+);
+const user = useApplicationContext((context) => context.user);
 // ...
 ```
 
@@ -2611,7 +2613,7 @@ Therefore, in `NODE_ENV=development` mode the navigation menu items are not bein
 <ApplicationShell
   // ...
   DEV_ONLY__loadNavbarMenuConfig={() =>
-    import('../../../menu.json').then(data => data.default || data)
+    import('../../../menu.json').then((data) => data.default || data)
   }
   render={() => {}}
 />
@@ -3194,7 +3196,7 @@ You can find out more on how to access this information in the [`ApplicationCont
 
 ```js
 <ApplicationContext
-  render={applicationContext => (
+  render={(applicationContext) => (
     <div>
       <h2>{`Hello ${applicationContext.user.firstName}`}</h2>
       <p>{`You are currently in project "${applicationContext.project.key}"`}</p>
@@ -3212,7 +3214,7 @@ withApplicationContext()(MyComponent);
 ...or pass a mapping function as the first argument to return custom shape of the injected props
 
 ```js
-withApplicationContext(applicationContext => ({
+withApplicationContext((applicationContext) => ({
   projectKey: applicationContext.project && applicationContext.project.key,
   userEmail: applicationContext.user && applicationContext.user.email,
 }))(MyComponent);

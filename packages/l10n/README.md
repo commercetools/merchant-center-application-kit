@@ -39,7 +39,7 @@ const { isLoading, data, error } = useCountries('en');
 ```js
 import { withCountries } from '@commercetools-frontend/l10n';
 
-withCountries(ownProps => ownProps.locale)(Component);
+withCountries((ownProps) => ownProps.locale)(Component);
 
 // format: { countryCode: countryLabel }
 // { "de":"Germany" }
@@ -48,7 +48,7 @@ withCountries(ownProps => ownProps.locale)(Component);
 ```js
 import { withCurrencies } from '@commercetools-frontend/l10n';
 
-withCurrencies(ownProps => ownProps.locale)(Component);
+withCurrencies((ownProps) => ownProps.locale)(Component);
 
 // format: { currencyCode: { label, symbol } }
 // { "EUR": { "label": "Euro", "symbol": "€" } }
@@ -57,7 +57,7 @@ withCurrencies(ownProps => ownProps.locale)(Component);
 ```js
 import { withLanguages } from '@commercetools-frontend/l10n';
 
-withLanguages(ownProps => ownProps.locale)(Component);
+withLanguages((ownProps) => ownProps.locale)(Component);
 
 // format: { languageCode: { language, country? } }
 // Case with main language
@@ -69,7 +69,7 @@ withLanguages(ownProps => ownProps.locale)(Component);
 ```js
 import { withTimeZones } from '@commercetools-frontend/l10n';
 
-withTimeZones(ownProps => ownProps.locale)(Component);
+withTimeZones((ownProps) => ownProps.locale)(Component);
 
 // format: { timezone: { name, abbr, offset } }
 // Case with main language

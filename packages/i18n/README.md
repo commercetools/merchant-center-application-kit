@@ -34,7 +34,7 @@ const myApplicationMessages = {
   },
 };
 
-const MyApplication = props => (
+const MyApplication = (props) => (
   <AsyncLocaleData
     locale={props.user.locale}
     applicationMessages={myApplicationMessages}
@@ -58,7 +58,7 @@ const MyApplication = props => (
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import { ConfigureIntlProvider } from '@commercetools-frontend/application-shell';
 
-const loadMessages = lang => {
+const loadMessages = (lang) => {
   let loadAppI18nPromise;
   switch (lang) {
     case 'de':
@@ -78,8 +78,8 @@ const loadMessages = lang => {
   }
 
   return loadAppI18nPromise.then(
-    result => result.default,
-    error => {
+    (result) => result.default,
+    (error) => {
       // eslint-disable-next-line no-console
       console.warn(
         `Something went wrong while loading the app messages for ${lang}`,
@@ -91,7 +91,7 @@ const loadMessages = lang => {
   );
 };
 
-const Application = props => (
+const Application = (props) => (
   <AsyncLocaleData
     locale={props.user.locale}
     applicationMessages={loadMessages}

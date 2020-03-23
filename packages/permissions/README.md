@@ -159,7 +159,7 @@ injectAuthorized(
 ### Example
 
 ```js
-const InputField = props => (
+const InputField = (props) => (
   <Input
     //...
     disabled={!props.isAuthorized}

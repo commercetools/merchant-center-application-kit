@@ -113,7 +113,7 @@ The MC has a `handleActionError` function which is what we currently use for err
 ```js
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
 
-const fetchProductById = productId =>
+const fetchProductById = (productId) =>
   sdkActions.get({
     service: 'products',
     options: { id: productId },
@@ -127,10 +127,10 @@ class ProductPage extends React.Component {
   state = { product: null };
   componentDidMount() {
     this.props.fetchProductById(this.props.productId).then(
-      product => {
+      (product) => {
         this.setState({ product });
       },
-      error => {
+      (error) => {
         this.props.onActionError(error, 'ProductPage/fetchProductById');
       }
     );
