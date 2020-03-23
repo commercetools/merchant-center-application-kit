@@ -93,6 +93,8 @@ const typeNamesWithoutIdAsIdentifier = [
   'Store',
 ];
 
+const referenceTypes = ['Reference', 'ChannelReferenceIdentifier'];
+
 export const createApolloClient = () =>
   new ApolloClient({
     link,
@@ -107,12 +109,15 @@ export const createApolloClient = () =>
           typeNamesWithoutIdAsIdentifier.includes(customResult.__typename)
         )
           return `${customResult.__typename}:${customResult.key}`;
-        // Generally all id's are unique accross the platform, so we don't need to
+        // Generally all id's are unique across the platform, so we don't need to
         // include the type name in the cache key.
         // However, a reference has the shape { typeId, id } where the id is the
         // id of the referenced entity. If we didn't prefix ids of References
         // they would clash with the referenced resource.
-        if (customResult.__typename === 'Reference')
+        if (
+          customResult.__typename &&
+          referenceTypes.includes(customResult.__typename)
+        )
           return `${customResult.__typename}:${customResult.id}`;
 
         return customResult.id;
