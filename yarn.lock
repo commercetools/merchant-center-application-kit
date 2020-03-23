@@ -1228,12 +1228,13 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-docs/gatsby-theme-docs@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-2.0.0.tgz#c6243ffcdd6f64461b81d8ddcee824676edafedb"
-  integrity sha512-aUxsH3m4Qc2L+MDfB0S/zbKe2T/Z5J1J7knTBm3DwJQCCg/YCuaf6MMuXlRjCx+IaS0mNJnoIHEee6MFsXEmHg==
+"@commercetools-docs/gatsby-theme-docs@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-2.1.0.tgz#07d2ce7e52ad8dc0999ee4fccc379d8fd2e9181b"
+  integrity sha512-xo7GQXcOTbaAkrNegjo10DscHeFu8fCzyudvU6uE58Fp+FC/S3x1Yf+otXTaJCRI1d9f3ESE1ia1GDSxqW6oHA==
   dependencies:
-    "@commercetools-docs/ui-kit" "2.0.0"
+    "@commercetools-docs/gatsby-transformer-code-examples" "2.1.0"
+    "@commercetools-docs/ui-kit" "2.1.0"
     "@commercetools-uikit/card" "10.13.0"
     "@commercetools-uikit/design-system" "10.13.0"
     "@commercetools-uikit/icon-button" "10.13.0"
@@ -1271,13 +1272,18 @@
     lodash.throttle "4.1.1"
     prop-types "15.7.2"
     react-helmet "5.2.1"
-    rehype-slug "2.0.3"
+    rehype-slug "3.0.0"
     remark-emoji "2.0.2"
 
-"@commercetools-docs/ui-kit@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-2.0.0.tgz#7255408da23b4e1bd16f5e1df7b65fca3e4e52ed"
-  integrity sha512-53y0tg8bMuoOv/VbkuYcShxQlO0gD0A6OOAW3kv2a/i+9BTmXMTEq5EmE38uOzEYpPM+VIXWFu7wNfRHscX5QQ==
+"@commercetools-docs/gatsby-transformer-code-examples@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-transformer-code-examples/-/gatsby-transformer-code-examples-2.1.0.tgz#f047ad8f6b75b4cd6dee2718bcb833ce3431f296"
+  integrity sha512-bFkG32sdmmI73zv6mBzEtZFhao6AU2WYFjFl1qwoKtlcUOFvGv6yowDTGvhdmgCQbxcIVWf7vk9w/Sfp0ANO+w==
+
+"@commercetools-docs/ui-kit@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-2.1.0.tgz#6b4a4226740a1f4208d3b31870ec140b2201f427"
+  integrity sha512-T1PU33AxEj/lMpW59wT+0UxfKbiyKFkGfJcwAHGbbfcpaW9t1z0KW18fzXCrr+kaPPlOe34cmvTePg0T5TROWQ==
   dependencies:
     "@commercetools-uikit/tooltip" "10.13.0"
     lodash.escape "4.0.1"
@@ -1288,10 +1294,10 @@
     prop-types "15.7.2"
     tiny-invariant "1.1.0"
 
-"@commercetools-docs/writing-style@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/writing-style/-/writing-style-2.0.0.tgz#79cafe5baa6afe693f949be8a1da58fe84a34a7d"
-  integrity sha512-g8ciQ4nRfYwUZqlT43aiCcdOjURv9KLLqHd+AHtYJ+Cr/eRFN1Oojf+P9F7C7xXf35na6TNm+EcrgR9lmUgKew==
+"@commercetools-docs/writing-style@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/writing-style/-/writing-style-2.1.0.tgz#f24a3d9c89f73f898796836531d97665d66a3f9e"
+  integrity sha512-8BKE8FGC6ZamkOA5RuPv0v0Bkspuqz/gthl0zve9TSEMypLUBPEixL5UaXMTENIGpmbo+VjaZE5BfD4WoHTvYA==
   dependencies:
     "7zip-bin" "5.0.3"
     node-fetch "2.6.0"
@@ -23763,16 +23769,16 @@ regjsparser@^0.6.4:
   dependencies:
     jsesc "~0.5.0"
 
-rehype-slug@2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/rehype-slug/-/rehype-slug-2.0.3.tgz#cd0234de130f02e3607396ff2e873fc5a3bd0413"
-  integrity sha512-7hgS91klce+p/1CrgMjV/JKyVmEevTM3YMkFtxF29twydKBSYVcy2x44z74SgCnzANj8H8N0g0O8F1OH1/OXJA==
+rehype-slug@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/rehype-slug/-/rehype-slug-3.0.0.tgz#8416257df9665981894a1f0cd42b13c407bbcc8e"
+  integrity sha512-zFnj5BCEJXV6+URwaz8yW+9BdjDwO5iVzlQui3+7cCJ9MXlIEL0IY8VefcT/03Gw+2Hutdrx+zXnS7bnOrepZg==
   dependencies:
     github-slugger "^1.1.1"
     hast-util-has-property "^1.0.0"
     hast-util-is-element "^1.0.0"
     hast-util-to-string "^1.0.0"
-    unist-util-visit "^1.1.0"
+    unist-util-visit "^2.0.0"
 
 relateurl@^0.2.7:
   version "0.2.7"
