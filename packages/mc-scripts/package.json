@@ -35,13 +35,13 @@
     ]
   },
   "dependencies": {
-    "@babel/core": "7.8.6",
+    "@babel/core": "7.9.0",
     "@commercetools-frontend/assets": "16.0.0",
     "@commercetools-frontend/babel-preset-mc-app": "16.5.1",
     "@commercetools-frontend/mc-dev-authentication": "16.0.0",
     "@commercetools-frontend/mc-html-template": "16.5.0",
     "@svgr/webpack": "5.2.0",
-    "babel-loader": "8.0.6",
+    "babel-loader": "8.1.0",
     "babel-plugin-react-intl": "6.0.1",
     "browserslist": "4.9.1",
     "clean-webpack-plugin": "3.0.0",
