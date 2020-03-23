@@ -21,7 +21,8 @@
  *    mocking system of Jest and no other trickery.
  * */
 const replace = (url: string): void => window.location.replace(url);
-const reload = (...args): void => window.location.reload(...args);
+const reload = (forceReload = false): void =>
+  window.location.reload(forceReload);
 
 const location = {
   replace,
