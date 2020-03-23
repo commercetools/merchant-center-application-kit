@@ -7,7 +7,7 @@ import ModalController from '../components/modal-controller';
 
 const containerId = 'info-modal-page';
 
-const InfoModalPageExample = props => (
+const InfoModalPageExample = (props) => (
   <LayoutApp>
     <PlaygroundController
       // eslint-disable-next-line react/prop-types

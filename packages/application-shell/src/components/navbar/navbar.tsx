@@ -241,7 +241,7 @@ const MenuItemLink = (props: MenuItemLinkProps) => {
         exact={props.exactMatch}
         activeClassName={styles.highlighted}
         className={styles['text-link']}
-        onClick={event => {
+        onClick={(event) => {
           if (props.linkTo && props.useFullRedirectsForLinks) {
             event.preventDefault();
             redirectTo(props.linkTo);
@@ -281,7 +281,7 @@ const isEveryMenuVisibilitySetToHidden = (
   Array.isArray(namesOfMenuVisibilities) &&
   namesOfMenuVisibilities.length > 0 &&
   namesOfMenuVisibilities.every(
-    nameOfMenuVisibility =>
+    (nameOfMenuVisibility) =>
       menuVisibilities && menuVisibilities[nameOfMenuVisibility] === true
   );
 const isMenuItemDisabledForEnvironment = (
@@ -328,7 +328,7 @@ const RestrictedMenuItem = (props: RestrictedMenuItemProps) => {
         permissions={props.permissions}
         actionRights={props.actionRights}
         dataFences={props.dataFences}
-        selectDataFenceData={demandedDataFence => {
+        selectDataFenceData={(demandedDataFence) => {
           switch (demandedDataFence.type) {
             case 'store':
               return demandedDataFence.actualDataFenceValues;
@@ -366,7 +366,7 @@ export const getIconColor = (
 };
 
 const getMenuVisibilitiesOfSubmenus = (menu: TNavbarMenu) =>
-  menu.submenu.map(submenu => submenu.menuVisibility).filter(nonNullable);
+  menu.submenu.map((submenu) => submenu.menuVisibility).filter(nonNullable);
 const getMenuVisibilityOfMainmenu = (menu: TNavbarMenu) =>
   menu.menuVisibility ? [menu.menuVisibility] : [];
 
@@ -375,7 +375,7 @@ type MenuLabelProps = {
   applicationLocale: string;
 };
 const MenuLabel = (props: MenuLabelProps) => {
-  const localizedLabel = props.labelAllLocales.find(loc =>
+  const localizedLabel = props.labelAllLocales.find((loc) =>
     props.applicationLocale.startsWith(loc.locale)
   );
   if (localizedLabel) return <>{localizedLabel.value}</>;
@@ -473,7 +473,7 @@ const ApplicationMenu = (props: ApplicationMenuProps) => {
             isExpanded={props.isMenuOpen}
           >
             {hasSubmenu
-              ? props.menu.submenu.map(submenu => (
+              ? props.menu.submenu.map((submenu) => (
                   <RestrictedMenuItem
                     key={`${props.menu.key}-submenu-${submenu.key}`}
                     keyOfMenuItem={submenu.key}
@@ -566,7 +566,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
   );
 
   const menuVisibilities = useApplicationContext(
-    context => context.menuVisibilities
+    (context) => context.menuVisibilities
   );
   const location = useLocation();
 
@@ -574,7 +574,7 @@ const NavBar = <AdditionalEnvironmentProperties extends {}>(
     <NavBarLayout ref={navBarNode}>
       <MenuGroup id="main" level={1}>
         <div className={styles['scrollable-menu']}>
-          {allApplicationNavbarMenu.map(menu => {
+          {allApplicationNavbarMenu.map((menu) => {
             const menuType = 'scrollable';
             const itemIndex = `${menuType}-${menu.key}`;
             return (

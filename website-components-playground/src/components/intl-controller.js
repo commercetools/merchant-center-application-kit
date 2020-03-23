@@ -5,7 +5,7 @@ import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 
 const availableLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];
 
-const namifyLocale = locale => {
+const namifyLocale = (locale) => {
   switch (locale) {
     case 'en':
       return 'English';
@@ -24,12 +24,12 @@ const namifyLocale = locale => {
   }
 };
 
-const availableLocaleOptions = availableLocales.map(locale => ({
+const availableLocaleOptions = availableLocales.map((locale) => ({
   label: namifyLocale(locale),
   value: locale,
 }));
 
-const IntlController = props => {
+const IntlController = (props) => {
   const [activeLocale, setActiveLocale] = React.useState('en');
   return (
     <AsyncLocaleData locale={activeLocale} applicationMessages={{}}>

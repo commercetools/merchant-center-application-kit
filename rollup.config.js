@@ -30,7 +30,7 @@ const [, packageName] = pkg.name.split('@commercetools-frontend/');
 const extensions = ['.js', '.ts', '.tsx'];
 const babelOptions = getBabelPreset();
 
-const createPlugins = format => {
+const createPlugins = (format) => {
   const isFormatEs = format === 'es';
   return [
     peerDeps({
@@ -102,7 +102,7 @@ const createPlugins = format => {
   ];
 };
 
-const createConfig = cliArgs => {
+const createConfig = (cliArgs) => {
   if (/\/test-utils\//.test(cliArgs.input)) {
     return {
       input: cliArgs.input,

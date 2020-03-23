@@ -58,12 +58,12 @@ class EntryPoint extends React.Component {
       <ApplicationShell
         environment={window.app}
         onRegisterErrorListeners={({ dispatch }) => {
-          Sdk.Get.errorHandler = error =>
+          Sdk.Get.errorHandler = (error) =>
             globalActions.handleActionError(error, 'sdk')(dispatch);
         }}
         applicationMessages={loadMessages}
         DEV_ONLY__loadNavbarMenuConfig={() =>
-          import('../../../menu.json').then(data => data.default || data)
+          import('../../../menu.json').then((data) => data.default || data)
         }
         render={() => <ApplicationStateMachines />}
       />

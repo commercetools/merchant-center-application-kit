@@ -62,7 +62,7 @@ export class SdkGet extends React.Component<Props, State> {
   isComponentMounted = false;
   changeRequestsInFlight = (delta: number) => {
     if (this.isComponentMounted)
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         requestsInFlight: prevState.requestsInFlight + delta,
       }));
   };
@@ -75,12 +75,12 @@ export class SdkGet extends React.Component<Props, State> {
       onSuccess: this.props.onSuccess,
       onError: this.props.onError,
     }).then(
-      result => {
+      (result) => {
         if (this.isComponentMounted)
           this.setState({ isWaitingForCompletionOfFirstRequest: false });
         return result;
       },
-      error => {
+      (error) => {
         if (this.isComponentMounted)
           this.setState({ isWaitingForCompletionOfFirstRequest: false });
         throw error;
@@ -117,7 +117,7 @@ export class SdkGet extends React.Component<Props, State> {
   >) => {
     this.changeRequestsInFlight(1);
     return dispatch(actionCreator(...actionCreatorArgs)).then(
-      result => {
+      (result) => {
         this.changeRequestsInFlight(-1);
         if (this.isComponentMounted)
           this.setState({ error: undefined, result });

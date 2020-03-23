@@ -24,7 +24,7 @@ const LinksList = styled.ul`
     margin: ${designSystem.dimensions.spacings.xs} 0 0;
   }
 `;
-const SecondaryExternalLink = props => (
+const SecondaryExternalLink = (props) => (
   <Link
     {...props}
     noUnderline={true}
@@ -41,15 +41,15 @@ const SecondaryExternalLink = props => (
   />
 );
 
-const LinksCard = props => (
+const LinksCard = (props) => (
   <Card>
     <GridContainer>
-      {props.linksData.map(linkData => (
+      {props.linksData.map((linkData) => (
         <div key={linkData.title}>
           <SpacingsStack scale="s">
             <div>{linkData.title}</div>
             <LinksList>
-              {linkData.links.map(link => (
+              {linkData.links.map((link) => (
                 <li key={link.to}>
                   <SecondaryExternalLink href={link.to}>
                     {link.label}

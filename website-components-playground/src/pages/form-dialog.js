@@ -9,7 +9,7 @@ import ModalController from '../components/modal-controller';
 
 const containerId = 'form-dialog';
 
-const FormDialogExample = props => (
+const FormDialogExample = (props) => (
   <LayoutApp>
     <PlaygroundController
       // eslint-disable-next-line react/prop-types
@@ -44,17 +44,17 @@ const FormDialogExample = props => (
           {({ isOpen, setIsOpen }) => (
             <Formik
               initialValues={{ email: '' }}
-              validate={formikValues => {
+              validate={(formikValues) => {
                 if (TextInput.isEmpty(formikValues.email)) {
                   return { email: { missing: true } };
                 }
                 return {};
               }}
-              onSubmit={formikValues => {
+              onSubmit={(formikValues) => {
                 alert(`email: ${formikValues.email}`);
                 setIsOpen(false);
               }}
-              render={formikProps => (
+              render={(formikProps) => (
                 <FormDialog
                   title={values.title}
                   isOpen={isOpen}

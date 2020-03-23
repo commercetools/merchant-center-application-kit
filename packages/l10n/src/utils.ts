@@ -15,7 +15,7 @@ const defaultLocale = 'en';
 // Given a locale, return the locale only if it's whitelisted.
 // If not, return a default locale.
 export function getSupportedLocale(locale: string) {
-  const isSupported = supportedLocales.find(supportedLocale =>
+  const isSupported = supportedLocales.find((supportedLocale) =>
     locale.startsWith(supportedLocale)
   );
   return isSupported ? locale : defaultLocale;

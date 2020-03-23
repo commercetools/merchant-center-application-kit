@@ -17,7 +17,7 @@ const PortalContainer = styled.div`
   flex: 1;
 `;
 
-const ModalController = props => {
+const ModalController = (props) => {
   const [isOpen, setIsOpen] = React.useState(true);
   return (
     <>

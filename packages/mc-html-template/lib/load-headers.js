@@ -4,7 +4,7 @@ const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
 const htmlScripts = require('./html-scripts');
 // const htmlStyles = require('./html-styles');
 
-const loadCustomConfiguration = pathToConfiguration => {
+const loadCustomConfiguration = (pathToConfiguration) => {
   let rawConfiguration;
   try {
     rawConfiguration = fs.readFileSync(pathToConfiguration, {
@@ -16,7 +16,7 @@ const loadCustomConfiguration = pathToConfiguration => {
   return rawConfiguration ? JSON.parse(rawConfiguration) : {};
 };
 
-const toArray = value => (Array.isArray(value) ? value : [value]);
+const toArray = (value) => (Array.isArray(value) ? value : [value]);
 const mergeCspDirectives = (...csps) =>
   csps.reduce(
     (mergedCsp, csp) =>
@@ -80,7 +80,7 @@ module.exports = (env, options) => {
           ? // Allow webpack to load source maps on runtime when errors occur
             // using script tags
             ['localhost:*', "'unsafe-inline'"]
-          : htmlScriptsHashes.map(assetHash => `'${assetHash}'`)
+          : htmlScriptsHashes.map((assetHash) => `'${assetHash}'`)
       ),
       'connect-src': [
         "'self'",

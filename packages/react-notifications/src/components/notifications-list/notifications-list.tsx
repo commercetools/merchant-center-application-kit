@@ -37,7 +37,7 @@ const NotificationsListGlobal = (props: Props) => {
   );
   return (
     <div css={getStyles(props)}>
-      {notifications.map(notification => {
+      {notifications.map((notification) => {
         // 1. Check if there is a custom notification component first
         const CustomNotificationComponent = mapCustomNotificationToComponent(
           notification
@@ -107,7 +107,7 @@ const NotificationsListPage = (props: Props) => {
   );
   return (
     <div css={getStyles(props)}>
-      {notifications.map(notification => {
+      {notifications.map((notification) => {
         // 1. Check if there is a custom notification component first
         const CustomNotificationComponent = mapCustomNotificationToComponent(
           notification
@@ -185,7 +185,7 @@ const NotificationsListSide = (props: Props) => {
   );
   return (
     <div css={getStyles(props)}>
-      {notifications.map(notification => {
+      {notifications.map((notification) => {
         // 1. Check if there is a custom notification component first
         const CustomNotificationComponent = mapCustomNotificationToComponent(
           notification

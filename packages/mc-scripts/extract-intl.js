@@ -7,7 +7,7 @@ process.env.NODE_ENV = 'development';
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
@@ -63,10 +63,10 @@ const globFilesToParse = commands[0];
 
 const newLine = () => process.stdout.write('\n');
 
-const task = message => {
+const task = (message) => {
   process.stdout.write(message);
 
-  return error => {
+  return (error) => {
     if (error) {
       process.stderr.write(error);
     }
@@ -75,7 +75,7 @@ const task = message => {
 };
 
 // Wrap async functions below into a promise
-const glob = pattern =>
+const glob = (pattern) =>
   new Promise((resolve, reject) => {
     nodeGlob(pattern, (error, value) =>
       error ? reject(error) : resolve(value)
@@ -87,7 +87,7 @@ const coreMessages = {};
 const oldLocaleMappings = [];
 const localeMappings = [];
 // Loop to run once per locale
-locales.forEach(locale => {
+locales.forEach((locale) => {
   oldLocaleMappings[locale] = {};
   localeMappings[locale] = {};
   // File to store translation messages into
@@ -96,7 +96,7 @@ locales.forEach(locale => {
     // Parse the old translation message JSON files
     const messages = JSON.parse(fs.readFileSync(translationFileName));
     const messageKeys = Object.keys(messages);
-    messageKeys.forEach(messageKey => {
+    messageKeys.forEach((messageKey) => {
       oldLocaleMappings[locale][messageKey] = messages[messageKey];
     });
   } catch (error) {
@@ -112,20 +112,20 @@ locales.forEach(locale => {
 // eslint-disable-next-line global-require
 plugins.push([require('babel-plugin-react-intl').default]);
 
-const sortMessages = localeMessages => {
+const sortMessages = (localeMessages) => {
   // Sort the translation JSON file so that git diffing is easier
   // Otherwise the translation messages will jump around every time we extract
   const sortedMessages = {};
   Object.keys(localeMessages)
     // transform strings to lowercase to imitate phraseapp sorting
     .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
-    .forEach(key => {
+    .forEach((key) => {
       sortedMessages[key] = localeMessages[key];
     });
   return sortedMessages;
 };
 
-const extractFromFile = async fileName => {
+const extractFromFile = async (fileName) => {
   try {
     const src = fs.readFileSync(path.join(rootPath, fileName), {
       encoding: 'utf8',
@@ -137,11 +137,11 @@ const extractFromFile = async fileName => {
       plugins,
       filename: fileName,
     });
-    result['react-intl'].messages.forEach(message => {
+    result['react-intl'].messages.forEach((message) => {
       // Extract core messages
       coreMessages[message.id] = message.defaultMessage;
       // Extract and map messages for each locale
-      locales.forEach(locale => {
+      locales.forEach((locale) => {
         const oldLocaleMapping = oldLocaleMappings[locale][message.id];
         // Merge old translations into the babel extracted instances where react-intl is used
         const newMsg = locale === defaultLocale ? message.defaultMessage : '';
@@ -163,7 +163,7 @@ const extractFromFile = async fileName => {
   const memoryTaskDone = task('Storing language files in memory');
   const files = (await glob(globFilesToParse)).filter(
     // exclude node_modules on non-root-level (due to monorepo-setup)
-    file =>
+    (file) =>
       !file.match(/node_modules/) &&
       !file.match(/dist/) &&
       !file.match(/public/)
@@ -172,7 +172,7 @@ const extractFromFile = async fileName => {
 
   const extractTaskDone = task('Run extraction on all files');
   // Run extraction on all files that match the glob
-  await Promise.all(files.map(fileName => extractFromFile(fileName)));
+  await Promise.all(files.map((fileName) => extractFromFile(fileName)));
   extractTaskDone();
 
   const coreTranslationFileName = `${outputPath}/core.json`;
@@ -225,7 +225,7 @@ const extractFromFile = async fileName => {
   // We usually do not build the translation-files because they are
   // handled by transifex and sync by the transifex CLI.
   if (shouldBuildTranslations) {
-    locales.forEach(locale => {
+    locales.forEach((locale) => {
       const translationFileName = `${outputPath}/${locale}.json`;
 
       localeTaskDone = task(

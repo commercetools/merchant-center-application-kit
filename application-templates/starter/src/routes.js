@@ -28,7 +28,7 @@ const ApplicationRoutes = ({ match }) => {
         path={`${match.path}/some-other-route`}
         render={() => <div>{'Nothing to see'}</div>}
       />
-      <Route render={routerProps => <MainView match={routerProps.match} />} />
+      <Route render={(routerProps) => <MainView match={routerProps.match} />} />
     </Switch>
   );
 };

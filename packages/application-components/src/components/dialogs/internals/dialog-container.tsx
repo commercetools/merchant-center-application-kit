@@ -46,7 +46,7 @@ type GridAreaProps = {
   name: string;
 };
 const GridArea = styled.div<GridAreaProps>`
-  grid-area: ${props => props.name};
+  grid-area: ${(props) => props.name};
 `;
 
 const sizeStyles = (props: Pick<Props, 'size'>) => {

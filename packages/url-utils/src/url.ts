@@ -5,7 +5,7 @@ export const trimLeadingAndTrailingSlashes = (url: string) =>
 
 export const joinPaths = (...paths: string[]) => {
   const joint = paths
-    .map(path => {
+    .map((path) => {
       if (typeof path !== 'string')
         throw new Error(
           `Expected path "${path}" to be a "string", but got "${typeof path}"`

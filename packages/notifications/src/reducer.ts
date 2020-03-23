@@ -17,7 +17,7 @@ export default function notificationsReducer<Payload extends TNotification>(
     }
     case REMOVE_NOTIFICATION:
       return state.filter(
-        notification => action.payload.id !== notification.id
+        (notification) => action.payload.id !== notification.id
       );
     default:
       return state;

@@ -36,7 +36,7 @@ const AmILoggedIn = (props: Props) => {
     // Then the component will re-render
     // Resulting in inconsistent data with the error not being defined
     fetchPolicy: 'no-cache',
-    onCompleted: data => {
+    onCompleted: (data) => {
       if (!data) {
         // In case the request is 200 but there is no data, we assume
         // there are some errors.

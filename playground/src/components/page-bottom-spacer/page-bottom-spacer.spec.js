@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import PageBottomSpacer from './page-bottom-spacer';
 
-const createTestProps = props => ({
+const createTestProps = (props) => ({
   size: 'm',
   ...props,
 });

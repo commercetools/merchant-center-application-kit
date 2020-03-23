@@ -51,7 +51,7 @@ const exampleCustomTitleRow = (
   </Spacings.Inline>
 );
 
-const TabularModalPageExample = props => (
+const TabularModalPageExample = (props) => (
   <LayoutApp>
     <PlaygroundController
       // eslint-disable-next-line react/prop-types

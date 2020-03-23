@@ -10,8 +10,8 @@ jest.mock('../../utils/location');
 const render = () => {
   const mockedRequest = [
     createGraphqlResponseForProjectsQuery({
-      getIsSuspended: key => key === 'key-2',
-      getIsExpired: key => key === 'key-3',
+      getIsSuspended: (key) => key === 'key-2',
+      getIsExpired: (key) => key === 'key-3',
     }),
   ];
   return renderApp(

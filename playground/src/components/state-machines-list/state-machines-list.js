@@ -29,16 +29,16 @@ export const columnsDefinition = [
   },
 ];
 
-const getErrorMessage = error =>
+const getErrorMessage = (error) =>
   error.stack || error.message || error.toString();
 
-const StateMachinesList = props => {
+const StateMachinesList = (props) => {
   const cachedStateMachine = useSelector(selectStateMachinesFromCache);
   const cachedStateMachineObjectsCount = cachedStateMachine
     ? Object.keys(cachedStateMachine).length
     : null;
 
-  const dataLocale = useApplicationContext(context => context.dataLocale);
+  const dataLocale = useApplicationContext((context) => context.dataLocale);
 
   return (
     <Spacings.Inset scale="m">
@@ -72,7 +72,7 @@ const StateMachinesList = props => {
                 )}
                 <Table
                   columns={columnsDefinition}
-                  itemRenderer={item => {
+                  itemRenderer={(item) => {
                     const value = result.results[item.rowIndex][item.columnKey];
 
                     switch (item.columnKey) {

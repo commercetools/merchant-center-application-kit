@@ -19,7 +19,7 @@ const visualRoutesContext = require.context(
 
 const visualRoutes = visualRoutesContext
   .keys()
-  .map<TVisualRouteSpec>(id => visualRoutesContext(id));
+  .map<TVisualRouteSpec>((id) => visualRoutesContext(id));
 
 const hideAppLoader = () => {
   /**

@@ -8,7 +8,7 @@ import { location } from '../../utils/location';
 
 export const RedirectToProjectCreate = () => {
   const servedByProxy = useApplicationContext(
-    context => context.environment.servedByProxy
+    (context) => context.environment.servedByProxy
   );
   /**
    * NOTE:

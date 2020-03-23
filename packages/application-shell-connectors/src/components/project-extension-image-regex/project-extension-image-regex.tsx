@@ -52,7 +52,7 @@ ProjectExtensionProviderForImageRegex.displayName =
 
 const GetProjectExtensionImageRegex = (props: ConsumerProps) => (
   <Context.Consumer>
-    {imageRegexContext => props.render(imageRegexContext)}
+    {(imageRegexContext) => props.render(imageRegexContext)}
   </Context.Consumer>
 );
 GetProjectExtensionImageRegex.displayName = 'GetProjectExtensionImageRegex';
@@ -63,7 +63,7 @@ function withProjectExtensionImageRegex<Props extends {}>(
   return (Component: React.ComponentType<Props>) => {
     const WrappedComponent = (props: Props) => (
       <GetProjectExtensionImageRegex
-        render={imageRegexData => (
+        render={(imageRegexData) => (
           <Component {...props} {...{ [propKey]: imageRegexData }} />
         )}
       />

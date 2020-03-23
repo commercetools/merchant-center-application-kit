@@ -1,6 +1,6 @@
 const execa = require('execa');
 
-const isSemVer = version => /^(v?)([0-9].[0-9].[0-9])+/.test(version);
+const isSemVer = (version) => /^(v?)([0-9].[0-9].[0-9])+/.test(version);
 
 const shouldUseYarn = () => {
   try {
@@ -11,7 +11,7 @@ const shouldUseYarn = () => {
   }
 };
 
-const slugify = name => name.toLowerCase().replace(/_/gi, '-');
+const slugify = (name) => name.toLowerCase().replace(/_/gi, '-');
 
 module.exports = {
   isSemVer,

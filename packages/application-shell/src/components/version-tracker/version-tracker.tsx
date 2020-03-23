@@ -39,7 +39,7 @@ const createVersionMetric = ({
 
 const VersionTracker = () => {
   const applicationName = useApplicationContext(
-    context => context.environment.applicationName
+    (context) => context.environment.applicationName
   );
   const dispatch = useAsyncDispatch<
     ReturnType<typeof pushDependencyVersionCounter>,

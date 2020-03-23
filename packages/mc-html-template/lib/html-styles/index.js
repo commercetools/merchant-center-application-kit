@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const uglifycss = require('uglifycss');
 
-const loadStyleAsString = fileName => {
+const loadStyleAsString = (fileName) => {
   const content = fs.readFileSync(path.join(__dirname, fileName), {
     encoding: 'utf8',
   });

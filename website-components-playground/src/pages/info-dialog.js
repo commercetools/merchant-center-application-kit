@@ -8,7 +8,7 @@ import PlaygroundController from '../components/playground-controller';
 
 const containerId = 'info-dialog';
 
-const InfoDialogExample = props => (
+const InfoDialogExample = (props) => (
   <LayoutApp>
     <PlaygroundController
       // eslint-disable-next-line react/prop-types

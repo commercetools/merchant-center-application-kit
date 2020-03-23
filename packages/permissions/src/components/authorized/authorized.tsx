@@ -80,7 +80,7 @@ const injectAuthorized = <
       selectDataFenceData={
         options.getSelectDataFenceData && options.getSelectDataFenceData(props)
       }
-      render={isAuthorized => (
+      render={(isAuthorized) => (
         <Component {...props} {...{ [propName]: isAuthorized }} />
       )}
     />

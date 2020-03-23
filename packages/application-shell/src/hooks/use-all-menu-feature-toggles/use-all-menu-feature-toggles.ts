@@ -19,10 +19,10 @@ const getDefaultedFeatureToggles = (allFeatureToggles: string[]) =>
   );
 const useAllMenuFeatureToggles = () => {
   const servedByProxy = useApplicationContext(
-    applicationContext => applicationContext.environment.servedByProxy
+    (applicationContext) => applicationContext.environment.servedByProxy
   );
   const mcProxyApiUrl = useApplicationContext(
-    applicationContext => applicationContext.environment.mcProxyApiUrl
+    (applicationContext) => applicationContext.environment.mcProxyApiUrl
   );
 
   const { data, refetch, loading } = useQuery<

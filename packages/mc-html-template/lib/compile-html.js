@@ -17,13 +17,13 @@ const deprecatedOptions = ['cspPath'];
  * - useLocalAssets
  */
 module.exports = async function compileHtml(options) {
-  requiredOptions.forEach(key => {
+  requiredOptions.forEach((key) => {
     if (!options[key]) {
       throw new Error(`Missing required option ${key}.`);
     }
   });
 
-  deprecatedOptions.forEach(key => {
+  deprecatedOptions.forEach((key) => {
     if (options[key]) {
       console.warn(
         '⚠️ [@commercetools-frontend/mc-html-template]: `cspPath` has been deprecated. Please use `headerPath`. More info here: https://github.com/commercetools/merchant-center-application-kit/blob/master/packages/mc-html-template/README.md.'

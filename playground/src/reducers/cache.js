@@ -8,7 +8,7 @@ const transitionSchema = new schema.Entity(
   'transitions',
   {},
   {
-    processStrategy: entity => entity.obj || entity,
+    processStrategy: (entity) => entity.obj || entity,
   }
 );
 const transitionListSchema = new schema.Array(transitionSchema);
@@ -18,8 +18,8 @@ const stateMachineSchema = new schema.Entity('stateMachine', {
 const stateMachinesSchema = new schema.Array(stateMachineSchema);
 
 export const normalizers = {
-  stateMachine: data => normalize(data, stateMachineSchema),
-  stateMachines: data => normalize(data, stateMachinesSchema),
+  stateMachine: (data) => normalize(data, stateMachineSchema),
+  stateMachines: (data) => normalize(data, stateMachinesSchema),
 };
 
 export const actionTypes = {
@@ -85,11 +85,11 @@ export function merge(state, entities = {}) {
   const newState = { ...state };
   // TODO normalizr refers to items as entities, so we need to rename things
   // go through each entity type (productDiscount) and merge the items
-  Object.keys(entities).forEach(entityKey => {
+  Object.keys(entities).forEach((entityKey) => {
     // Filter out updates that contain only an id.
     // This happens when the normalization encounters a non-expanded reference
     // TODO remove this workaround once we have proper merging of items
-    const entitiesWithData = omitBy(entities[entityKey], item => {
+    const entitiesWithData = omitBy(entities[entityKey], (item) => {
       const keys = Object.keys(item);
       return keys.length === 1 && keys[0] === 'id';
     });

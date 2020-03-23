@@ -140,7 +140,7 @@ const createProductVariantListSubCommands = async ({
     applicationContext.project
   ) {
     const projectKey = applicationContext.project;
-    return data.product.masterData.staged.allVariants.map(variant => ({
+    return data.product.masterData.staged.allVariants.map((variant) => ({
       id: `go/product(${productId})/variant(${variant.id})`,
       text: formatVariantMessage(variant, intl),
       subCommands: createProductVariantSubCommands({
@@ -205,7 +205,7 @@ export const createProductTabsSubCommands = ({
           /variants
         `,
       },
-      subCommands: execQuery =>
+      subCommands: (execQuery) =>
         createProductVariantListSubCommands({
           intl,
           applicationContext,

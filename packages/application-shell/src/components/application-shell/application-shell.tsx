@@ -92,7 +92,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
 
 const getHasUnauthorizedError = (graphQLErrors: ApolloError['graphQLErrors']) =>
   graphQLErrors.find(
-    gqlError =>
+    (gqlError) =>
       gqlError.extensions &&
       gqlError.extensions.code &&
       gqlError.extensions.code === 'UNAUTHENTICATED'
@@ -101,7 +101,7 @@ const getHasUserBeenDeletedError = (
   graphQLErrors: ApolloError['graphQLErrors']
 ) =>
   graphQLErrors.find(
-    gqlError =>
+    (gqlError) =>
       gqlError.message &&
       // NOTE: The CTP API does not provide an error code in this case.
       gqlError.message.includes('was not found.')
@@ -452,7 +452,7 @@ export const RestrictedApplication = <
                                 <Route
                                   exact={false}
                                   path="/:projectKey"
-                                  render={routerProps => (
+                                  render={(routerProps) => (
                                     <React.Fragment>
                                       <ProjectContainer<
                                         AdditionalEnvironmentProperties

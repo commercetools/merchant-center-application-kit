@@ -29,7 +29,7 @@ const ModalPageWithPortalParentSelector = ({
       initialValues={{ email: '' }}
       onSubmit={() => undefined}
     >
-      {formikProps => (
+      {(formikProps) => (
         <CustomFormModalPage
           title="Lorem ipsum"
           isOpen={true}

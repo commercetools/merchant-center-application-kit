@@ -80,7 +80,7 @@ const ModalPage = (props: Props) => {
   }, [props.isOpen]);
   const { onClose } = props;
   const handleClose = React.useCallback(
-    event => {
+    (event) => {
       if (props.shouldDelayOnClose) {
         // In this case we want the closing animation to be shown
         // and therefore we need wait for it to be completed

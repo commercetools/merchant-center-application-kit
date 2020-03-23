@@ -14,7 +14,7 @@ const ForcePageReload = () => {
 const RouteCatchAll = () => {
   // NOTE: it's important that the return value is a `Route` component!
   const servedByProxy = useApplicationContext(
-    context => context.environment.servedByProxy
+    (context) => context.environment.servedByProxy
   );
   // In case the application is served by a proxy server, we assume that
   // the reverse proxy router handles requests forwarding to the specified

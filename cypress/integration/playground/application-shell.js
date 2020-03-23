@@ -40,7 +40,7 @@ describe('navigation menu', () => {
     cy.login({ redirectToUri: URL_STATE_MACHINES });
     cy.findAllByText('Initial').should('exist');
     cy.findByTestId('menu-expander').click();
-    cy.window().then(win =>
+    cy.window().then((win) =>
       // eslint-disable-next-line jest/valid-expect
       expect(win.localStorage.getItem('isForcedMenuOpen')).to.equal('true')
     );

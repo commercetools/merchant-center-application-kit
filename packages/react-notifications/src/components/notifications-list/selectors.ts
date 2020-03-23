@@ -18,11 +18,11 @@ export const selectGlobalNotifications = createSelector<
   TAppNotificationGlobal[]
 >(
   selectNotifications,
-  notifications =>
+  (notifications) =>
     // https://stackoverflow.com/a/42487130
     (notifications as { domain: TAppNotificationDomain }[])
       .filter(
-        notification => notification.domain === NOTIFICATION_DOMAINS.GLOBAL
+        (notification) => notification.domain === NOTIFICATION_DOMAINS.GLOBAL
       )
       // Return only 1 at a time
       .slice(0, 1) as TAppNotificationGlobal[]
@@ -34,10 +34,10 @@ export const selectPageNotifications = createSelector<
   TAppNotificationPage[]
 >(
   selectNotifications,
-  notifications =>
+  (notifications) =>
     // https://stackoverflow.com/a/42487130
     (notifications as { domain: TAppNotificationDomain }[]).filter(
-      notification => notification.domain === NOTIFICATION_DOMAINS.PAGE
+      (notification) => notification.domain === NOTIFICATION_DOMAINS.PAGE
     ) as TAppNotificationPage[]
 );
 
@@ -47,9 +47,9 @@ export const selectSideNotifications = createSelector<
   TAppNotificationSide[]
 >(
   selectNotifications,
-  notifications =>
+  (notifications) =>
     // https://stackoverflow.com/a/42487130
     (notifications as { domain: TAppNotificationDomain }[]).filter(
-      notification => notification.domain === NOTIFICATION_DOMAINS.SIDE
+      (notification) => notification.domain === NOTIFICATION_DOMAINS.SIDE
     ) as TAppNotificationSide[]
 );

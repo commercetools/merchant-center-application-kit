@@ -5,7 +5,7 @@ import SelectInput from '@commercetools-uikit/select-input';
 import { WorldIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
 
-export const SingleValue = props => (
+export const SingleValue = (props) => (
   <div
     css={css`
       flex: 1;
@@ -57,7 +57,7 @@ export default class LocaleSwitcher extends React.PureComponent {
     availableLocales: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   };
 
-  handleSelection = event =>
+  handleSelection = (event) =>
     this.props.setProjectDataLocale(event.target.value);
 
   render() {
@@ -74,12 +74,12 @@ export default class LocaleSwitcher extends React.PureComponent {
           name="locale-switcher"
           aria-labelledby="locale-switcher"
           onChange={this.handleSelection}
-          options={this.props.availableLocales.map(locale => ({
+          options={this.props.availableLocales.map((locale) => ({
             label: locale,
             value: locale,
           }))}
           components={{
-            SingleValue: props => (
+            SingleValue: (props) => (
               <SingleValue
                 {...props}
                 localeCount={this.props.availableLocales.length}

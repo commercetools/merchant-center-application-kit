@@ -24,7 +24,7 @@ const enhancedLocalEnv = Object.assign(
 
 class LocalHtmlWebpackPlugin {
   apply(compiler) {
-    compiler.hooks.compilation.tap('LocalHtmlWebpackPlugin', compilation => {
+    compiler.hooks.compilation.tap('LocalHtmlWebpackPlugin', (compilation) => {
       compilation.hooks.htmlWebpackPluginAfterHtmlProcessing.tapAsync(
         'local-html-webpack-plugin',
         (data, cb) => {

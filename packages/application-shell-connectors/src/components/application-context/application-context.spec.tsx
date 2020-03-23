@@ -98,9 +98,10 @@ describe('<ApplicationContext>', () => {
   it('should render project name from context', async () => {
     const rendered = renderAppWithContext(
       <ApplicationContext
-        render={context => (
-          <div>{`Project name: ${context.project &&
-            context.project.name}`}</div>
+        render={(context) => (
+          <div>{`Project name: ${
+            context.project && context.project.name
+          }`}</div>
         )}
       />
     );
@@ -111,7 +112,7 @@ describe('<ApplicationContext>', () => {
 describe('useApplicationContext', () => {
   const TestComponent = () => {
     const projectName = useApplicationContext(
-      context => context.project && context.project.name
+      (context) => context.project && context.project.name
     );
     return <div>{`Project name: ${projectName}`}</div>;
   };
@@ -130,7 +131,7 @@ describe('withApplicationContext', () => {
     Pick<AppProps, 'children'>,
     {},
     Pick<AppProps, 'projectName'>
-  >(context => ({
+  >((context) => ({
     projectName: context.project ? context.project.name : undefined,
   }))(TestComponent);
   it('should render project name from context', async () => {

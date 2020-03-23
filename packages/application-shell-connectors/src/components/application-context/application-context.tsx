@@ -172,7 +172,7 @@ const ApplicationContext = <AdditionalEnvironmentProperties extends {}>(
   props: ConsumerProps<AdditionalEnvironmentProperties>
 ) => (
   <Context.Consumer>
-    {context => {
+    {(context) => {
       // Because of the way the ApplicationShell configures the Context.Provider,
       // we ensure that, when we read from the context, we always get actual
       // context object and not the initial value.
@@ -202,7 +202,7 @@ function withApplicationContext<
   ): React.ComponentType<OwnProps & MappedProps> => {
     const WrappedComponent = (props: OwnProps) => (
       <ApplicationContext<AdditionalEnvironmentProperties>
-        render={applicationContext => {
+        render={(applicationContext) => {
           const mappedProps = mapApplicationContextToProps
             ? mapApplicationContextToProps(applicationContext)
             : { applicationContext };

@@ -18,14 +18,14 @@ const PreviewContainer = styled.div`
   position: relative;
   width: 100%;
   overflow: hidden;
-  height: ${props => props.height};
+  height: ${(props) => props.height};
   background-color: ${customProperties.colorSurface};
   border-radius: ${customProperties.borderRadius4}
     ${customProperties.borderRadius4} 0 0;
   border-bottom: 1px solid ${customProperties.colorNeutral90};
 `;
 
-const PlaygroundController = props => {
+const PlaygroundController = (props) => {
   const [isPanelOpen, setIsPanelOpen] = React.useState(false);
   const togglePanel = () => {
     setIsPanelOpen(!isPanelOpen);
@@ -35,7 +35,7 @@ const PlaygroundController = props => {
   }, [isPanelOpen]);
   return (
     <IntlController>
-      {intlProps => (
+      {(intlProps) => (
         <KnobsController knobs={props.knobs} {...intlProps}>
           {({ form, values }) => (
             <PlaygroundContainer>

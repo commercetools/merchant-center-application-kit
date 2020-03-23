@@ -22,7 +22,7 @@ const SpecContainer = styled.div<Pick<SpecProps, 'size'>>`
     remaining states below it, so we establish a min-height for each spec to
     prevent that.
   */
-  min-height: ${props => `${getContainerHeight(props.size)}px`};
+  min-height: ${(props) => `${getContainerHeight(props.size)}px`};
 `;
 
 const Label = styled.div`
@@ -58,7 +58,7 @@ const PropValue = styled.span`
 `;
 
 const Box = styled.div<Pick<SpecProps, 'tone' | 'contentAlignment'>>`
-  background-color: ${props => {
+  background-color: ${(props) => {
     switch (props.tone) {
       case 'secondary':
         return '#eee';
@@ -68,7 +68,7 @@ const Box = styled.div<Pick<SpecProps, 'tone' | 'contentAlignment'>>`
         return '#fff';
     }
   }};
-  ${props =>
+  ${(props) =>
     props.contentAlignment === 'center'
       ? `
         flex: 1;
@@ -90,7 +90,7 @@ const Pill = (props: PillProps) => {
     if (React.isValidElement(props.value)) return 'React Element';
     if (
       Array.isArray(props.value) &&
-      props.value.every(element => React.isValidElement(element))
+      props.value.every((element) => React.isValidElement(element))
     )
       return '[React Element]';
     try {

@@ -4,7 +4,7 @@ import { css, Global } from '@emotion/core';
 import { customProperties } from '@commercetools-uikit/design-system';
 import useWindowHeight from '../hooks/use-window-height';
 
-const LayoutApp = props => {
+const LayoutApp = (props) => {
   const height = useWindowHeight();
   React.useEffect(() => {
     window.parent.postMessage(['playground-height', height], '*');

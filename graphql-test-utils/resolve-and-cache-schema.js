@@ -3,7 +3,7 @@ const path = require('path');
 
 const schemas = new Map();
 
-const resolveAndCacheSchema = targetName => {
+const resolveAndCacheSchema = (targetName) => {
   if (schemas.has(targetName)) {
     return schemas.get(targetName);
   }

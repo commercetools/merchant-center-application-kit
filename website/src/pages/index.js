@@ -22,7 +22,7 @@ import MessageBasedOnDesignSystem from './fragments/based-on-design-system.mdx';
 import MessageBuiltOnModernTechnologies from './fragments/built-on-modern-technologies.mdx';
 import MessageZeroConfigDevelopmentTools from './fragments/zero-config-development-tools.mdx';
 
-const SectionLink = props => <Link {...props} noUnderline={true} />;
+const SectionLink = (props) => <Link {...props} noUnderline={true} />;
 const sectionMdxComponents = {
   a: SectionLink,
 };
@@ -218,8 +218,8 @@ const PageMarketingContent = () => {
               {
                 title: 'Documentation',
                 links: data.allNavigationYaml.nodes
-                  .filter(node => node.pages && node.pages.length > 0)
-                  .map(node => {
+                  .filter((node) => node.pages && node.pages.length > 0)
+                  .map((node) => {
                     const firstChapterPage = node.pages[0];
                     return {
                       to: firstChapterPage.path,

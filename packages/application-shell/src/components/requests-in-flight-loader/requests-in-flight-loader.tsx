@@ -18,7 +18,7 @@ const RequestsInFlightLoader = () => {
   const hasRequestsInFlight = useSelector<
     { requestsInFlight?: TRequestsInFlightState },
     boolean
-  >(state =>
+  >((state) =>
     Boolean(state.requestsInFlight && state.requestsInFlight.length > 0)
   );
 

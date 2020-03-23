@@ -24,7 +24,7 @@ const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];
 // https://www.drupal.org/project/drupal/issues/2036219
 const excludedCountries = ['QO', 'UN', 'ZZ'];
 
-const mapLocaleToCldrLocale = locale => {
+const mapLocaleToCldrLocale = (locale) => {
   switch (locale) {
     case 'zh-CN':
       return 'zh_hans_cn';
@@ -33,7 +33,7 @@ const mapLocaleToCldrLocale = locale => {
   }
 };
 
-const extractCountryDataForLocale = locale => {
+const extractCountryDataForLocale = (locale) => {
   const countryNames = cldr.extractTerritoryDisplayNames(locale);
   // We only support ISO 3166-1 country code (https://en.wikipedia.org/wiki/ISO_3166-1)
   // there is alpha-2 (two-letter) , alpha-3 (three-letter) , and numeric (three-digit) representation
@@ -42,7 +42,7 @@ const extractCountryDataForLocale = locale => {
   const numberRegex = /^\d+$/;
 
   // filter out continents and invalid countries
-  Object.keys(countryNames).forEach(key => {
+  Object.keys(countryNames).forEach((key) => {
     if (
       numberRegex.test(key) ||
       key.length > 3 ||
@@ -61,7 +61,7 @@ const extractCountryDataForLocale = locale => {
   );
 };
 
-const extractCurrencyDataForLocale = async locale => {
+const extractCurrencyDataForLocale = async (locale) => {
   // Get the list of all currencies.
   // NOTE: this list contains "old" currencies that are not in used anymore.
   const currencyInfo = cldr.extractCurrencyInfoById(locale);
@@ -69,7 +69,7 @@ const extractCurrencyDataForLocale = async locale => {
   // to "remove" the outdated currencies from the previous list.
   const activeCurrencies = await fetch(
     'http://www.localeplanet.com/api/auto/currencymap.json'
-  ).then(response => response.json());
+  ).then((response) => response.json());
 
   return Promise.resolve(
     Object.keys(activeCurrencies).reduce(
@@ -95,14 +95,10 @@ const extractTimeZoneDataForLocale = (/* locale */) => {
   const timeZoneNames = moment.tz.names();
   return Promise.resolve(
     timeZoneNames
-      .map(name => ({
+      .map((name) => ({
         name,
-        abbr: moment()
-          .tz(name)
-          .zoneAbbr(),
-        offset: moment()
-          .tz(name)
-          .format('Z'),
+        abbr: moment().tz(name).zoneAbbr(),
+        offset: moment().tz(name).format('Z'),
       }))
       .sort(
         (a, b) =>
@@ -119,7 +115,7 @@ const extractTimeZoneDataForLocale = (/* locale */) => {
   );
 };
 
-const extractLanguageDataForLocale = locale => {
+const extractLanguageDataForLocale = (locale) => {
   // Get the list of all languages.
   const languages = cldr.extractLanguageSupplementalData(locale);
   // Get the list of all remaining languages.
@@ -168,13 +164,13 @@ const extractLanguageDataForLocale = locale => {
 
   // We need to fetch the countries first in order to have them when we have
   // languages the type es_GT so we can get the country name for object info
-  return extractCountryDataForLocale(locale).then(countries =>
+  return extractCountryDataForLocale(locale).then((countries) =>
     // We work with a set of data with a mix of the current languages and the
     // old ones
     [...Object.keys(languages), ...Object.keys(filteredOldLanguages)]
       // We only map the countries with 2 digits (ISO 3166-1 alpha-2) to be
       // inline with the AC
-      .filter(language => language.length === 2)
+      .filter((language) => language.length === 2)
       .reduce((totalLanguages, language) => {
         // If the key does not exist in the current languages is because is
         // and old one so now we need to discard the "deprecated" ones.
@@ -238,7 +234,7 @@ const mapDiffToWarnings = (oldData, newData) => {
   const diff = deepDiff(oldData, newData);
   if (!diff) return [];
   return diff
-    .map(diffEdit => {
+    .map((diffEdit) => {
       switch (diffEdit.kind) {
         case 'E':
           return `The field "${chalk.cyan(
@@ -267,7 +263,7 @@ const mapDiffToWarnings = (oldData, newData) => {
 
 const updateLocaleData = async (key, locales) => {
   const results = await Promise.all(
-    locales.map(async locale => {
+    locales.map(async (locale) => {
       const cldrLocale = mapLocaleToCldrLocale(locale);
       const newLocaleData = await DATA_DIR[key].transform(cldrLocale);
       const targetFolder = path.join(__dirname, '..', DATA_DIR[key].path);
@@ -293,7 +289,7 @@ const updateLocaleData = async (key, locales) => {
   );
 
   console.log(`[${key}] Updated ${locales.length} locales`);
-  results.forEach(r => {
+  results.forEach((r) => {
     if (r.warnings.length > 0) {
       console.log(
         chalk.yellow(
@@ -306,7 +302,7 @@ const updateLocaleData = async (key, locales) => {
   return Promise.resolve();
 };
 
-const run = async key => {
+const run = async (key) => {
   await updateLocaleData(key, supportedLocales);
 };
 
@@ -322,7 +318,7 @@ Promise.all(
     console.log('Data generated!');
     process.exit(0);
   })
-  .catch(error => {
+  .catch((error) => {
     console.error('Error generating data', error);
     process.exit(1);
   });

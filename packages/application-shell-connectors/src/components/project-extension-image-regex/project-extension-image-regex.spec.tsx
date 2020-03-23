@@ -42,7 +42,7 @@ const renderComponent = (mocks: MockedProviderProps['mocks']) =>
       <ProjectExtensionProviderForImageRegex>
         <div>
           <GetProjectExtensionImageRegex
-            render={imageRegexContext => {
+            render={(imageRegexContext) => {
               if (imageRegexContext.isLoading) {
                 return <div>{'Loading...'}</div>;
               }

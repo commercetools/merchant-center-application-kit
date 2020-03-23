@@ -17,7 +17,7 @@ const Container = styled.div`
 export const ServicePageProjectSwitcher = () => {
   const params = useParams<Params>();
   const numberOfProjects = useApplicationContext(
-    context => (context.user && context.user.projects.total) || 0
+    (context) => (context.user && context.user.projects.total) || 0
   );
   if (numberOfProjects === 0) return null;
   return (

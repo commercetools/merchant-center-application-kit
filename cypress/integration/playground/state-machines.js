@@ -14,9 +14,7 @@ describe('State machines', () => {
   it('should render list view and go to details page', () => {
     cy.login({ redirectToUri: URL_STATE_MACHINES });
     // Go to details page
-    cy.findAllByText('Initial')
-      .first()
-      .click();
+    cy.findAllByText('Initial').first().click();
     cy.url().should('include', URL_STATE_MACHINES_ID);
     cy.findByText('LineItemState').should('exist');
     cy.percySnapshot();

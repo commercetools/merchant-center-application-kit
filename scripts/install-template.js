@@ -32,7 +32,7 @@ shelljs.mkdir('-p', sandboxPath);
 
 const createMcAppTarballName = shelljs
   .ls(tarballsDistPath)
-  .find(tarballName => tarballName.includes('create-mc-app'));
+  .find((tarballName) => tarballName.includes('create-mc-app'));
 if (!createMcAppTarballName) {
   throw new Error('Failed to find tarball for create-mc-app package');
 }
@@ -71,7 +71,7 @@ const appPackageJson = require(appPackageJsonPath);
 const tarballNames = shelljs.ls(tarballsDistPath);
 const patchDependencyImportPath = (depName, dependencies) => {
   if (matchingPackages.test(depName)) {
-    const matchingTarballName = tarballNames.find(tarballName => {
+    const matchingTarballName = tarballNames.find((tarballName) => {
       const [, packageNameWithoutScope] = depName.split(
         '@commercetools-frontend/'
       );
@@ -83,10 +83,10 @@ const patchDependencyImportPath = (depName, dependencies) => {
     )}`;
   }
 };
-Object.keys(appPackageJson.dependencies).forEach(depName => {
+Object.keys(appPackageJson.dependencies).forEach((depName) => {
   patchDependencyImportPath(depName, appPackageJson.dependencies);
 });
-Object.keys(appPackageJson.devDependencies).forEach(depName => {
+Object.keys(appPackageJson.devDependencies).forEach((depName) => {
   patchDependencyImportPath(depName, appPackageJson.devDependencies);
 });
 fs.writeFileSync(appPackageJsonPath, JSON.stringify(appPackageJson, null, 2), {

@@ -46,7 +46,7 @@ export type TEnhancedStore = Store & {
   removeReducers: (payload: { id: string }) => void;
 };
 
-const identityStoreEnhancer: StoreEnhancer<unknown, {}> = noop => noop;
+const identityStoreEnhancer: StoreEnhancer<unknown, {}> = (noop) => noop;
 
 const mergeObjectValues = <T>(object: { [key: string]: T }) =>
   Object.entries<T>(object).reduce(

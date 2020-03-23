@@ -137,7 +137,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
       // https://twitter.com/wSokra/status/969679223278505985
       // https://github.com/facebook/create-react-app/issues/5358
       runtimeChunk: {
-        name: entrypoint => `runtime-${entrypoint.name}`,
+        name: (entrypoint) => `runtime-${entrypoint.name}`,
       },
     },
 
@@ -169,7 +169,7 @@ module.exports = ({ distPath, entryPoint, sourceFolders, toggleFlags }) => {
       // https://github.com/facebook/create-react-app/issues/290
       // `web` extension prefixes have been added for better support
       // for React Native Web.
-      extensions: ['js', 'ts', 'tsx', 'json', 'jsx'].map(ext => `.${ext}`),
+      extensions: ['js', 'ts', 'tsx', 'json', 'jsx'].map((ext) => `.${ext}`),
     },
 
     plugins: [

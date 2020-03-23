@@ -29,7 +29,7 @@ let lightshipServer;
 let applicationServer;
 let prometheusMetricsServer;
 
-const createLightshipServer = options => {
+const createLightshipServer = (options) => {
   const lightship = createLightship({
     detectKubernetes: true,
     ...options,
@@ -41,7 +41,7 @@ const createLightshipServer = options => {
      * 20 seconds is chosen here under the assumption that any outstanging
      * request just settle by then.
      */
-    await new Promise(resolve => setTimeout(resolve, 20000));
+    await new Promise((resolve) => setTimeout(resolve, 20000));
 
     signalIsNotUp();
 
@@ -54,7 +54,7 @@ const createLightshipServer = options => {
 
 const startServer = (server, port) =>
   new Promise((resolve, reject) => {
-    server.listen(port, error => {
+    server.listen(port, (error) => {
       if (error) reject(error);
       else resolve();
     });
@@ -95,15 +95,15 @@ const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
   },
 });
 
-const createServerIndexMiddleware = options => (request, response) => {
+const createServerIndexMiddleware = (options) => (request, response) => {
   // Define security headers!
-  Object.keys(options.headers).forEach(key => {
+  Object.keys(options.headers).forEach((key) => {
     response.setHeader(key, options.headers[key]);
   });
   // Fall back to index.html
   response.sendFile(path.join(options.paths.publicAssetsPath, 'index.html'));
 };
-const throwIfIndexHtmlIsMissing = options => {
+const throwIfIndexHtmlIsMissing = (options) => {
   // Make sure that the `index.html` is available.
   const indexHtmlPath = path.join(options.paths.publicAssetsPath, 'index.html');
   try {
@@ -118,7 +118,7 @@ const throwIfIndexHtmlIsMissing = options => {
   }
 };
 
-const configureApplication = options => {
+const configureApplication = (options) => {
   throwIfIndexHtmlIsMissing(options);
 
   const serverIndexMiddleware = createServerIndexMiddleware(options);
@@ -165,14 +165,14 @@ const configureApplication = options => {
   return app;
 };
 
-const createHttpServer = options => {
+const createHttpServer = (options) => {
   const app = configureApplication(options);
   const server = http.createServer(app);
 
   return server;
 };
 
-const launchServer = async options => {
+const launchServer = async (options) => {
   try {
     lightshipServer = await createLightshipServer({
       port: lightshipServerPort,
