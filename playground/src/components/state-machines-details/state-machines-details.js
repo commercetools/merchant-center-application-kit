@@ -47,14 +47,14 @@ class StateMachinesDetailsFetcher extends React.Component {
   componentWillUnmount() {
     this.isUnmounting = true;
   }
-  fetchData = id => {
+  fetchData = (id) => {
     this.setState({ isLoading: true, data: null, error: null });
     this.props.fetcher(id).then(
-      data => {
+      (data) => {
         !this.isUnmounting &&
           this.setState({ isLoading: false, data, error: null });
       },
-      error => {
+      (error) => {
         !this.isUnmounting &&
           this.setState({ isLoading: false, data: null, error });
         this.props.showApiErrorNotification({ errors: [error] });
@@ -66,8 +66,8 @@ class StateMachinesDetailsFetcher extends React.Component {
   }
 }
 
-const StateMachinesDetails = props => {
-  const dataLocale = useApplicationContext(context => context.dataLocale);
+const StateMachinesDetails = (props) => {
+  const dataLocale = useApplicationContext((context) => context.dataLocale);
   const dispatch = useDispatch();
   const fetcher = React.useCallback(
     (...args) => dispatch(fetchStateMachine(...args)),

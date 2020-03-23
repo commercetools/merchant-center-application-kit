@@ -8,7 +8,7 @@ import ModalController from '../components/modal-controller';
 
 const containerId = 'confirmation-dialog';
 
-const ConfirmationDialogExample = props => (
+const ConfirmationDialogExample = (props) => (
   <LayoutApp>
     <PlaygroundController
       // eslint-disable-next-line react/prop-types

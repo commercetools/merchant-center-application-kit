@@ -126,7 +126,7 @@ export const ProjectSwitcherOption = (props: OptionProps<OptionType>) => (
   </SelectInput.Option>
 );
 
-const mapProjectsToOptions = memoize(projects =>
+const mapProjectsToOptions = memoize((projects) =>
   projects.map((project: TProject) => ({
     key: project.key,
     name: project.name,
@@ -165,7 +165,7 @@ const ProjectSwitcher = (props: Props) => {
         value={props.projectKey || ''}
         name="project-switcher"
         aria-labelledby="project-switcher"
-        onChange={event => {
+        onChange={(event) => {
           const selectedProjectKey = event.target.value;
           if (selectedProjectKey !== props.projectKey)
             // We simply redirect to a "new" browser page, instead of using the
@@ -176,14 +176,14 @@ const ProjectSwitcher = (props: Props) => {
         options={
           data && data.user && mapProjectsToOptions(data.user.projects.results)
         }
-        isOptionDisabled={option =>
+        isOptionDisabled={(option) =>
           option.suspension.isActive || option.expiry.isActive
         }
         components={{
           // eslint-disable-next-line react/display-name
-          Option: optionsProps => <ProjectSwitcherOption {...optionsProps} />,
+          Option: (optionsProps) => <ProjectSwitcherOption {...optionsProps} />,
           // eslint-disable-next-line react/display-name
-          ValueContainer: valueContainerProps => (
+          ValueContainer: (valueContainerProps) => (
             <ProjectSwitcherValueContainer
               {...valueContainerProps}
               projectCount={

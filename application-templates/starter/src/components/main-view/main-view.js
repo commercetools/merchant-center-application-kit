@@ -11,14 +11,14 @@ import ViewTwo from '../view-two';
 import messages from './messages';
 import styles from './main-view.mod.css';
 
-const MainView = props => (
+const MainView = (props) => (
   <Spacings.Inset scale="m">
     <Spacings.Stack scale="m">
       <Text.Headline as="h1" intlMessage={messages.title} />
       <div className={styles['nav-header']}>
         <Spacings.Inline scale="s">
           <FormattedMessage {...messages.labelLinkOne}>
-            {label => (
+            {(label) => (
               <FlatButton
                 as={Link}
                 to={`${props.match.url}/one`}
@@ -28,7 +28,7 @@ const MainView = props => (
             )}
           </FormattedMessage>
           <FormattedMessage {...messages.labelLinkTwo}>
-            {label => (
+            {(label) => (
               <FlatButton
                 as={Link}
                 to={`${props.match.url}/two`}

@@ -3,11 +3,11 @@ module.exports = function generateTemplate({
   scriptChunks = [],
 }) {
   const cssImports = cssChunks.map(
-    chunkPath =>
+    (chunkPath) =>
       `<link href="__CDN_URL__${chunkPath}" rel='stylesheet' type='text/css'></link>`
   );
   const scriptImports = scriptChunks.map(
-    chunkPath => `<script src="__CDN_URL__${chunkPath}"></script>`
+    (chunkPath) => `<script src="__CDN_URL__${chunkPath}"></script>`
   );
 
   return `

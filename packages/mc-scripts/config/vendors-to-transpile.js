@@ -1,5 +1,5 @@
 // https://github.com/formatjs/react-intl/blob/master/docs/Upgrade-Guide.md#esm-build
-const resolvePathToPackageDir = packageName =>
+const resolvePathToPackageDir = (packageName) =>
   require
     .resolve(packageName)
     // `require.resolve` points to the entry point file of the package, which

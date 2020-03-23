@@ -9,7 +9,7 @@ import ModalController from '../components/modal-controller';
 
 const containerId = 'form-modal-page';
 
-const FormModalPageExample = props => (
+const FormModalPageExample = (props) => (
   <LayoutApp>
     <PlaygroundController
       // eslint-disable-next-line react/prop-types
@@ -62,17 +62,17 @@ const FormModalPageExample = props => (
           {({ isOpen, setIsOpen }) => (
             <Formik
               initialValues={{ email: '' }}
-              validate={formikValues => {
+              validate={(formikValues) => {
                 if (TextInput.isEmpty(formikValues.email)) {
                   return { email: { missing: true } };
                 }
                 return {};
               }}
-              onSubmit={formikValues => {
+              onSubmit={(formikValues) => {
                 alert(`email: ${formikValues.email}`);
                 setIsOpen(false);
               }}
-              render={formikProps => (
+              render={(formikProps) => (
                 <FormModalPage
                   title={values.title}
                   subtitle={values.subtitle}

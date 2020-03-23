@@ -48,7 +48,7 @@ const branchOnPermissions = <OwnProps extends {}>(
       selectDataFenceData={
         options.getSelectDataFenceData && options.getSelectDataFenceData(props)
       }
-      render={isAuthorized => {
+      render={(isAuthorized) => {
         if (isAuthorized) {
           return <Component {...props} />;
         }

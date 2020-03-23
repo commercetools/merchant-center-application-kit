@@ -6,7 +6,7 @@ import styles from './page-bottom-spacer.mod.css';
  * Adding properly this component also prevents the save toolbar to overlap
  * any other component in the layout.
  */
-const PageBottomSpacer = props => (
+const PageBottomSpacer = (props) => (
   <div className={styles[`height-${props.size}`]} />
 );
 PageBottomSpacer.displayName = 'PageBottomSpacer';

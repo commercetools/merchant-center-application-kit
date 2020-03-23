@@ -14,7 +14,7 @@ export const boot = () => {
       // https://blog.sentry.io/2017/03/27/tips-for-reducing-javascript-error-noise.html
       whitelistUrls: [window.app.cdnUrl, window.app.frontendHost],
     });
-    Sentry.configureScope(scope => {
+    Sentry.configureScope((scope) => {
       scope.setTag('role', 'frontend');
     });
   }

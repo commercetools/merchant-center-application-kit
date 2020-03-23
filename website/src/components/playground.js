@@ -10,10 +10,10 @@ const getIframeUrl = (urlPath, isFullScreen = false) => {
   return `http://localhost:8001/${urlPath}${fullScreenPath}`;
 };
 
-const PlaygroundController = props => {
+const PlaygroundController = (props) => {
   const [iframeHeight, setIframeHeight] = React.useState(0);
   React.useEffect(() => {
-    const onReceiveMessage = event => {
+    const onReceiveMessage = (event) => {
       if (Array.isArray(event.data)) {
         const [eventSource, value] = event.data;
         switch (eventSource) {

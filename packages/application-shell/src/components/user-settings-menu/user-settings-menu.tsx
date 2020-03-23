@@ -102,7 +102,7 @@ const renderLabel = (
   menu: MenuConfig,
   applicationLanguage: Props['language']
 ) => {
-  const localizedLabel = menu.labelAllLocales.find(loc =>
+  const localizedLabel = menu.labelAllLocales.find((loc) =>
     applicationLanguage.startsWith(loc.locale)
   );
   if (localizedLabel) return localizedLabel.value;
@@ -118,7 +118,7 @@ const MenuItem = styled.div<MenuItemProps>`
     background-color: ${customProperties.colorNeutral90};
   }
 
-  ${props =>
+  ${(props) =>
     props.hasDivider === true
       ? css`
           border-bottom: 1px solid ${customProperties.colorNeutral};
@@ -128,7 +128,7 @@ const MenuItem = styled.div<MenuItemProps>`
 
 const UserSettingsMenuBody = (props: MenuBodyProps) => {
   const servedByProxy = useApplicationContext(
-    context => context.environment.servedByProxy
+    (context) => context.environment.servedByProxy
   );
   const applicationsAppBarMenu = useApplicationsMenu<'appBar'>('appBar', {
     queryOptions: {
@@ -170,7 +170,7 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
           </Spacings.Inline>
         </Spacings.Inset>
         {applicationsAppBarMenu &&
-          applicationsAppBarMenu.map(menu => (
+          applicationsAppBarMenu.map((menu) => (
             <OptionalFeatureToggle
               key={menu.key}
               featureToggle={menu.featureToggle}
@@ -237,7 +237,7 @@ UserSettingsMenuBody.displayName = 'UserSettingsMenuBody';
 const UserSettingsMenu = (props: Props) => (
   <div data-test="user-settings-menu">
     <Downshift stateReducer={stateReducer}>
-      {downshiftProps => (
+      {(downshiftProps) => (
         <div>
           <button
             role="user-menu-toggle"

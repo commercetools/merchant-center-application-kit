@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const uglify = require('uglify-es');
 
-const loadScriptAsString = fileName => {
+const loadScriptAsString = (fileName) => {
   const content = fs.readFileSync(path.join(__dirname, fileName), {
     encoding: 'utf8',
   });

@@ -239,7 +239,7 @@ const denormalizeDataFences = (dataFences?: TNormalizedDataFences) => {
                     ...allPermissions,
                     ...dataFences.store[resourceType][permissionKey].values.map<
                       TAllAppliedDataFence
-                    >(value => ({
+                    >((value) => ({
                       __typename: 'StoreDataFence',
                       type: 'store',
                       value,

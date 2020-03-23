@@ -4,11 +4,11 @@ const stylelint = require('stylelint');
 const postcss = require('postcss');
 const loadPostCssConfig = require('postcss-load-config');
 
-const createLinter = testPath => {
-  return options => {
+const createLinter = (testPath) => {
+  return (options) => {
     const start = new Date();
 
-    return stylelint.lint(options).then(data => {
+    return stylelint.lint(options).then((data) => {
       if (data.errored) {
         return fail({
           start,
@@ -30,7 +30,7 @@ const createLinter = testPath => {
 };
 
 const endsWithAny = (suffixes, string) => {
-  return suffixes.some(suffix => {
+  return suffixes.some((suffix) => {
     return string.endsWith(suffix);
   });
 };
@@ -49,7 +49,7 @@ module.exports = ({ testPath }) => {
   return loadPostCssConfig(undefined, testPath).then(({ plugins, options }) => {
     return postcss(plugins)
       .process(css, { ...options, from: testPath })
-      .then(result => {
+      .then((result) => {
         return linter({
           code: result.css,
           formatter: 'string',

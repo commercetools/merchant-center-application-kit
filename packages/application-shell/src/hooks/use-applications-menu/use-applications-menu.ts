@@ -41,7 +41,7 @@ function useApplicationsMenu<Key extends MenuKey>(
   // We set up the apollo query as lazy, in order to execute it conditionally
   // since hooks cannot be defined conditionally.
   const mcProxyApiUrl = useApplicationContext(
-    context => context.environment.mcProxyApiUrl
+    (context) => context.environment.mcProxyApiUrl
   );
   const queryOptions = config.queryOptions || {};
   const [

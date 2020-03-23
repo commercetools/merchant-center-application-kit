@@ -4,7 +4,7 @@ const { isSemVer } = require('./utils');
 
 const availableTemplates = ['starter'];
 
-const throwIfTemplateIsNotSupported = templateName => {
+const throwIfTemplateIsNotSupported = (templateName) => {
   if (!availableTemplates.includes(templateName)) {
     throw new Error(
       `The provided template name "${templateName}" does not exist. Available templates are "${availableTemplates.toString()}". Make sure you are also using the latest version of "@commercetools-frontend/create-mc-app".`

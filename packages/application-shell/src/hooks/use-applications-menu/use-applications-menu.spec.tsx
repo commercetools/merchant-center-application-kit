@@ -25,7 +25,7 @@ const NavBarTest = (props: TestProps<'navBar'>) => {
   if (applicationsMenu) {
     return (
       <>
-        {applicationsMenu.map(menu => (
+        {applicationsMenu.map((menu) => (
           <div key={menu.key}>{`Key: ${menu.key}`}</div>
         ))}
       </>
@@ -41,7 +41,7 @@ const AppBarTest = (props: TestProps<'appBar'>) => {
   if (applicationsMenu) {
     return (
       <>
-        {applicationsMenu.map(menu => (
+        {applicationsMenu.map((menu) => (
           <div key={menu.key}>{`Key: ${menu.key}`}</div>
         ))}
       </>

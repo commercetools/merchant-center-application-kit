@@ -6,15 +6,15 @@ const Table = ({ columns, items, itemRenderer, onRowClick, children }) => (
     <table>
       <thead>
         <tr>
-          {columns.map(column => (
+          {columns.map((column) => (
             <td key={column.key}>{column.label}</td>
           ))}
         </tr>
       </thead>
       <tbody>
         {items.map((item, rowIndex) => (
-          <tr key={rowIndex} onClick={event => onRowClick(event, rowIndex)}>
-            {columns.map(column => (
+          <tr key={rowIndex} onClick={(event) => onRowClick(event, rowIndex)}>
+            {columns.map((column) => (
               <td key={column.key}>
                 {itemRenderer({ rowIndex, columnKey: column.key })}
               </td>

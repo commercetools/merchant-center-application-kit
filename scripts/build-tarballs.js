@@ -13,7 +13,7 @@ function extractTarball(packageInfo) {
   shelljs.exec('npm pack', { cwd: packageInfo.location, silent: true });
   const packageTarName = shelljs
     .ls(packageInfo.location)
-    .find(fileName => fileName.endsWith('.tgz'));
+    .find((fileName) => fileName.endsWith('.tgz'));
   const tarballPath = path.join(packageInfo.location, packageTarName);
   shelljs.mv(tarballPath, tarballsDistPath);
 }
@@ -25,7 +25,7 @@ async function run() {
   workspacePackageInfos.forEach(extractTarball);
 }
 
-run().catch(error => {
+run().catch((error) => {
   console.error(error);
   process.exit(1);
 });

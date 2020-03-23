@@ -41,7 +41,7 @@ Cypress.Commands.add(
   'login',
   ({ redirectToUri, isForcedMenuOpen = false } = {}) => {
     cy.setDesktopViewport();
-    cy.window().then(win =>
+    cy.window().then((win) =>
       win.localStorage.setItem('isForcedMenuOpen', isForcedMenuOpen)
     );
     cy.visit('/logout');

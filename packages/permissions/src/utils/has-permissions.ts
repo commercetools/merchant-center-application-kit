@@ -116,10 +116,10 @@ const doesManagePermissionInferViewPermission = (
 export const getImpliedPermissions = (
   permissions: TPermissionName[]
 ): TPermissionName[] => {
-  const viewPermissions = permissions.filter(permission =>
+  const viewPermissions = permissions.filter((permission) =>
     permission.startsWith('View')
   );
-  const impliedPermissions = viewPermissions.filter(viewPermission =>
+  const impliedPermissions = viewPermissions.filter((viewPermission) =>
     permissions.includes(toManageCase(viewPermission))
   );
 
@@ -242,7 +242,7 @@ const getHasDemandedDataFence = (
   }
 
   // it is enough to only have a subset of demanded dataFence data belonging to actual dataFence values
-  return selectedDataFenceData.some(value =>
+  return selectedDataFenceData.some((value) =>
     options.actualDataFence.dataFenceValue.values.includes(value)
   );
 };

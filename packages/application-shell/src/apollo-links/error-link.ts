@@ -21,7 +21,7 @@ const isGraphQLError = (
   error: ErrorResponse['graphQLErrors']
 ): error is GraphQLError[] =>
   Array.isArray(error) &&
-  error.some(err => (err as GraphQLError).extensions !== undefined);
+  error.some((err) => (err as GraphQLError).extensions !== undefined);
 
 // Checks response from GraphQL in order to scan 401 errors and redirect the
 // user to the login page resetting the store and showing the proper message

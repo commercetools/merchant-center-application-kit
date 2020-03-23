@@ -99,13 +99,13 @@ const useIsAuthorized = ({
   );
 
   const actualPermissions = useApplicationContext<TPermissions | null>(
-    applicationContext => applicationContext.permissions
+    (applicationContext) => applicationContext.permissions
   );
   const actualActionRights = useApplicationContext<TActionRights | null>(
-    applicationContext => applicationContext.actionRights
+    (applicationContext) => applicationContext.actionRights
   );
   const actualDataFences = useApplicationContext<TDataFences | null>(
-    applicationContext => applicationContext.dataFences
+    (applicationContext) => applicationContext.dataFences
   );
 
   // if the user has no permissions and no dataFences assigned to them, they are not authorized

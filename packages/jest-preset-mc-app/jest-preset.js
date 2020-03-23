@@ -2,7 +2,7 @@ const path = require('path');
 
 // Resolve the absolute path of the caller location.
 const rootPath = process.cwd();
-const resolveRelativePath = relativePath =>
+const resolveRelativePath = (relativePath) =>
   path.resolve(__dirname, relativePath);
 
 module.exports = {

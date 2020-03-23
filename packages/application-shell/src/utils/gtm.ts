@@ -264,7 +264,7 @@ const eventHandler = (
 const events = ['click', 'change', 'drop'];
 
 export const boot = (trackingEventWhitelist: TrackingWhitelist) => {
-  events.forEach(event => {
+  events.forEach((event) => {
     const handler = eventHandler(event, trackingEventWhitelist);
     window.addEventListener(event, handler, true);
   });

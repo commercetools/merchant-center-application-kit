@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { renderAppWithRedux, fireEvent } from '../../test-utils';
 import handleApolloErrors from './handle-apollo-errors';
 
-const createGraphqlResultProps = props => ({
+const createGraphqlResultProps = (props) => ({
   isLoading: true,
   data: null,
   error: null,
   ...props,
 });
 
-const Test = props => {
+const Test = (props) => {
   if (props.user.data) {
     return <span>{`Status: ${props.user.data.ok}`}</span>;
   }
@@ -21,7 +21,7 @@ Test.propTypes = {
   user: PropTypes.shape({ data: PropTypes.shape({ ok: PropTypes.bool }) }),
 };
 
-const QueryController = props => {
+const QueryController = (props) => {
   const [result, setResult] = React.useState(createGraphqlResultProps());
   const triggerQuery = () => {
     setResult({ ...props.queryResult, isLoading: false });

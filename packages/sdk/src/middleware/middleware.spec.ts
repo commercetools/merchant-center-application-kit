@@ -141,7 +141,7 @@ describe('when the action is of type SDK', () => {
         // We catch all errors here so that they don't throw globally
         // This is necessary because the rejected promise rethrows from
         // the handler
-        return resultPromise.catch(error => {
+        return resultPromise.catch((error) => {
           if (error === expectedError) return;
           throw error;
         });
@@ -183,7 +183,7 @@ describe('when the action is of type SDK', () => {
       // We catch all errors here so that they don't throw globally
       // This is necessary because the rejected promise rethrows from
       // the handler
-      return resultPromise.catch(error => {
+      return resultPromise.catch((error) => {
         if (error === expectedError) return;
         throw error;
       });
@@ -223,7 +223,7 @@ describe('when the action is of type SDK', () => {
       // We catch all errors here so that they don't throw globally
       // This is necessary because the rejected promise rethrows from
       // the handler
-      return resultPromise.catch(error => {
+      return resultPromise.catch((error) => {
         if (error === expectedError) return;
         throw error;
       });

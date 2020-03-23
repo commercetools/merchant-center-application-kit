@@ -100,7 +100,7 @@ const QuickAccess = (props: Props) => {
   );
   const handleHistoryEntriesChange = React.useCallback<
     (historyEntries: HistoryEntry[]) => void
-  >(entries => {
+  >((entries) => {
     // Keep the history in sync with the session storage
     saveHistoryEntries(entries);
     setHistoryEntries(entries);
@@ -129,7 +129,7 @@ const QuickAccess = (props: Props) => {
   const fetchPimSearchProductIds = React.useCallback<
     (searchText: string) => Promise<string[]>
   >(
-    async searchText => {
+    async (searchText) => {
       if (applicationContext.project && applicationContext.dataLocale) {
         const result = await dispatchFetchProductIds(
           searchProductIdsAction(
@@ -138,7 +138,7 @@ const QuickAccess = (props: Props) => {
             applicationContext.dataLocale
           )
         );
-        return result && result.hits ? result.hits.map(hit => hit.id) : [];
+        return result && result.hits ? result.hits.map((hit) => hit.id) : [];
       }
       return [];
     },
@@ -205,7 +205,7 @@ const QuickAccess = (props: Props) => {
 
   React.useEffect(() => {
     if (props.pimIndexerState === pimIndexerStates.UNCHECKED) {
-      getProjectIndexStatus().then(status => {
+      getProjectIndexStatus().then((status) => {
         onPimIndexerStateChangeFromParent(status);
       });
     }
@@ -220,14 +220,14 @@ const QuickAccess = (props: Props) => {
           errorPolicy: 'ignore',
           variables,
         })
-        .then(response => response.data),
+        .then((response) => response.data),
     [apolloClient]
   );
 
   const getNextCommands = React.useCallback<
     (command: Command) => Promise<Command[]>
   >(
-    async command => {
+    async (command) => {
       if (!command.subCommands) return [];
       if (Array.isArray(command.subCommands)) return command.subCommands;
       return await command.subCommands(execQuery);
@@ -238,7 +238,7 @@ const QuickAccess = (props: Props) => {
   const getProjectCommands = React.useCallback<
     (searchText: string) => Promise<Command[]>
   >(
-    async searchText => {
+    async (searchText) => {
       const idsOfProductsMatchingSearchText =
         props.pimIndexerState === pimIndexerStates.INDEXED
           ? await fetchPimSearchProductIds(searchText)
@@ -254,7 +254,7 @@ const QuickAccess = (props: Props) => {
         // Pass conditional arguments to disable some of the queries
         canViewProducts,
         productsWhereClause: `id in (${idsOfProductsMatchingSearchText
-          .map(id => JSON.stringify(id))
+          .map((id) => JSON.stringify(id))
           .join(', ')})`,
         includeProductsByIds: Boolean(
           canViewProducts && idsOfProductsMatchingSearchText.length > 0
@@ -368,7 +368,7 @@ const QuickAccess = (props: Props) => {
         });
       }
       if (data && data.productsByIds && data.productsByIds.results) {
-        data.productsByIds.results.forEach(product => {
+        data.productsByIds.results.forEach((product) => {
           if (
             product.masterData.staged &&
             applicationContext.project &&
@@ -435,7 +435,7 @@ const QuickAccess = (props: Props) => {
   });
 
   const search = React.useCallback<(searchText: string) => Promise<Command[]>>(
-    async searchText => {
+    async (searchText) => {
       const generalCommands = createCommands({
         applicationContext,
         changeProjectDataLocale: props.onChangeProjectDataLocale,

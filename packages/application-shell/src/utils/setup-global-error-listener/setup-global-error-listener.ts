@@ -17,7 +17,7 @@ export default function setupGlobalErrorListener() {
   //
   // Note: this currently works only in Chrome, and it might not be needed.
   // We just keep it here as a nice-to-have thing.
-  window.addEventListener('unhandledrejection', event => {
+  window.addEventListener('unhandledrejection', (event) => {
     if (process.env.NODE_ENV !== 'production')
       // eslint-disable-next-line no-console
       console.warn(
@@ -31,7 +31,7 @@ export default function setupGlobalErrorListener() {
   });
 
   // Capture normal global errors coming from non Promise code.
-  window.addEventListener('error', errorEvent => {
+  window.addEventListener('error', (errorEvent) => {
     const errorId = reportErrorToSentry(errorEvent);
     internalReduxStore.dispatch(showUnexpectedErrorNotification({ errorId }));
   });

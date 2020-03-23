@@ -34,11 +34,14 @@ const QuickAccessTrigger = (props: Props) => {
   const [pimIndexerState, setPimIndexerState] = React.useState(
     pimIndexerStates.UNCHECKED
   );
-  const handlePimIndexerStateChange = React.useCallback(nextPimIndexerState => {
-    setPimIndexerState(nextPimIndexerState);
-  }, []);
+  const handlePimIndexerStateChange = React.useCallback(
+    (nextPimIndexerState) => {
+      setPimIndexerState(nextPimIndexerState);
+    },
+    []
+  );
   const keyHandler = React.useCallback(
-    event => {
+    (event) => {
       const hotKey = 'f';
       // avoid interfering with any key combinations using modifier keys
       if (event.ctrlKey || event.altKey || event.shiftKey || event.metaKey)

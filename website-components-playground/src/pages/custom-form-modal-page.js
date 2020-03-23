@@ -48,17 +48,17 @@ const CustomFormModalPageExample = () => (
           {({ isOpen, setIsOpen }) => (
             <Formik
               initialValues={{ email: '' }}
-              validate={formikValues => {
+              validate={(formikValues) => {
                 if (TextInput.isEmpty(formikValues.email)) {
                   return { email: { missing: true } };
                 }
                 return {};
               }}
-              onSubmit={formikValues => {
+              onSubmit={(formikValues) => {
                 alert(`email: ${formikValues.email}`);
                 setIsOpen(false);
               }}
-              render={formikProps => (
+              render={(formikProps) => (
                 <CustomFormModalPage
                   title={values.title}
                   subtitle={values.subtitle}

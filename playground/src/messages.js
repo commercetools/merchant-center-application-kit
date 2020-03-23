@@ -1,4 +1,4 @@
-const loadMessages = lang => {
+const loadMessages = (lang) => {
   let loadAppI18nPromise;
   switch (lang) {
     case 'de':
@@ -18,8 +18,8 @@ const loadMessages = lang => {
   }
 
   return loadAppI18nPromise.then(
-    result => result.default,
-    error => {
+    (result) => result.default,
+    (error) => {
       // eslint-disable-next-line no-console
       console.warn(
         `Something went wrong while loading the app messages for ${lang}`,

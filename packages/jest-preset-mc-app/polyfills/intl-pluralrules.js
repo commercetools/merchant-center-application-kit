@@ -6,10 +6,10 @@ const pluralRules = require('make-plural/plurals');
 const pluralCategories = require('make-plural/pluralCategories');
 
 // does not check for duplicate subtags
-const isStructurallyValidLanguageTag = locale =>
-  locale.split('-').every(subtag => /[a-z0-9]+/i.test(subtag));
+const isStructurallyValidLanguageTag = (locale) =>
+  locale.split('-').every((subtag) => /[a-z0-9]+/i.test(subtag));
 
-const canonicalizeLocaleList = locales => {
+const canonicalizeLocaleList = (locales) => {
   if (!locales) return [];
   if (!Array.isArray(locales)) locales = [locales];
   const res = {};
@@ -40,7 +40,7 @@ const defaultLocale = () =>
     (navigator.userLanguage || navigator.language)) ||
   'en-US';
 
-const findLocale = locale => {
+const findLocale = (locale) => {
   do {
     if (pluralRules[locale]) return locale;
     locale = locale.replace(/-?[^-]*$/, '');
@@ -48,7 +48,7 @@ const findLocale = locale => {
   return null;
 };
 
-const resolveLocale = locales => {
+const resolveLocale = (locales) => {
   const canonicalLocales = canonicalizeLocaleList(locales);
   for (let i = 0; i < canonicalLocales.length; ++i) {
     const lc = findLocale(canonicalLocales[i]);
@@ -57,7 +57,7 @@ const resolveLocale = locales => {
   return findLocale(defaultLocale());
 };
 
-const getType = type => {
+const getType = (type) => {
   if (!type) return 'cardinal';
   if (type === 'cardinal' || type === 'ordinal') return type;
   throw new RangeError('Not a valid plural type: ' + JSON.stringify(type));

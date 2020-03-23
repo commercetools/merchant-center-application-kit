@@ -37,7 +37,7 @@ if (process.env.NODE_ENV !== 'production')
   );
 
 const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
 const paths = {
   envPath: flags.config,
@@ -108,7 +108,7 @@ const start = async () => {
   });
 };
 
-start().catch(error => {
+start().catch((error) => {
   console.error(error);
   process.exit(1);
 });

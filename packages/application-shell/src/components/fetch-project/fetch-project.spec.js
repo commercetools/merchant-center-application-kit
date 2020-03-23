@@ -7,7 +7,7 @@ import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 
 jest.mock('@commercetools-frontend/sentry');
 
-const renderProject = options =>
+const renderProject = (options) =>
   renderApp(
     <FetchProject projectKey="test-1">
       {({ isLoading, error, project }) => {
@@ -20,7 +20,7 @@ const renderProject = options =>
     options
   );
 
-const createGraphqlResponseForProjectQuery = custom => ({
+const createGraphqlResponseForProjectQuery = (custom) => ({
   loading: false,
   project: {
     __typename: 'Project',

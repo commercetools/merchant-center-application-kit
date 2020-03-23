@@ -62,7 +62,7 @@ SingleValue.displayName = 'SingleValue';
 const LocaleSwitcher = (props: Props) => {
   const { setProjectDataLocale } = props;
   const handleSelection = React.useCallback(
-    event => {
+    (event) => {
       setProjectDataLocale(event.target.value);
     },
     [setProjectDataLocale]
@@ -80,7 +80,7 @@ const LocaleSwitcher = (props: Props) => {
         name="locale-switcher"
         aria-labelledby="locale-switcher"
         onChange={handleSelection}
-        options={props.availableLocales.map(locale => ({
+        options={props.availableLocales.map((locale) => ({
           label: locale,
           value: locale,
         }))}

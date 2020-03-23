@@ -22,7 +22,7 @@ class ErrorBoundary extends React.Component<Props, State> {
 
   componentDidUpdate(prevProps: Props) {
     const hasRouteChanged = prevProps.pathname !== this.props.pathname;
-    this.setState(prevState =>
+    this.setState((prevState) =>
       hasRouteChanged && prevState.hasError ? { hasError: false } : null
     );
   }

@@ -1,5 +1,6 @@
 /* eslint-disable class-methods-use-this,no-param-reassign */
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {
   loadEnv,
   replaceHtmlPlaceholders,
@@ -24,9 +25,9 @@ const enhancedLocalEnv = Object.assign(
 
 class LocalHtmlWebpackPlugin {
   apply(compiler) {
-    compiler.hooks.compilation.tap('LocalHtmlWebpackPlugin', compilation => {
-      compilation.hooks.htmlWebpackPluginAfterHtmlProcessing.tapAsync(
-        'local-html-webpack-plugin',
+    compiler.hooks.compilation.tap('LocalHtmlWebpackPlugin', (compilation) => {
+      HtmlWebpackPlugin.getHooks(compilation).beforeEmit.tapAsync(
+        'LocalHtmlWebpackPlugin',
         (data, cb) => {
           data.html = replaceHtmlPlaceholders(data.html, enhancedLocalEnv);
           cb(null, data);

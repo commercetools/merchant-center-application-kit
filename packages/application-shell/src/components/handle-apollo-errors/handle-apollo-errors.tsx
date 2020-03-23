@@ -15,7 +15,7 @@ function handleApolloErrors(queryResultNames: QueryResultNames) {
     const WrappedComponent = (props: Props) => {
       const dispatch = useDispatch();
       React.useEffect(() => {
-        queryResultNames.forEach(name => {
+        queryResultNames.forEach((name) => {
           // To avoid infinite loops (dispatch -> store updates -> connected renders -> didUpdate -> dispatch)
           // we keep track of the errors that have been dispatched.
           // If an error has been dispatched already, we don't do anything else.

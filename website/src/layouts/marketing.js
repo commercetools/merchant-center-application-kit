@@ -67,11 +67,11 @@ const FooterConstraint = styled.div`
   margin: 0 auto;
 `;
 
-const LayoutMarketing = props => {
+const LayoutMarketing = (props) => {
   // State for the top menu
   const [isTopMenuOpen, setIsTopMenuOpen] = React.useState(false);
   const toggleTopMenu = React.useCallback(() => {
-    setIsTopMenuOpen(prev => !prev);
+    setIsTopMenuOpen((prev) => !prev);
   }, [setIsTopMenuOpen]);
   const closeTopMenu = React.useCallback(() => {
     setIsTopMenuOpen(false);

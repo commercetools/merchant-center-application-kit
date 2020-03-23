@@ -37,7 +37,8 @@ export const translate = (
   projectDataLocale: string
 ) => {
   const matchedTranslation = nameAllLocales.find(
-    translation => translation.locale === projectDataLocale && translation.value
+    (translation) =>
+      translation.locale === projectDataLocale && translation.value
   );
   if (matchedTranslation) return matchedTranslation.value;
 

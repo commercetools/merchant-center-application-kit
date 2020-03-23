@@ -14,7 +14,7 @@ class StateMachinesListConnector extends React.Component {
   render() {
     return (
       <Sdk.Get
-        actionCreator={requestParams =>
+        actionCreator={(requestParams) =>
           actions.fetchStateMachines(requestParams)
         }
         actionCreatorArgs={[
@@ -24,7 +24,7 @@ class StateMachinesListConnector extends React.Component {
             page: 1,
           },
         ]}
-        onSuccess={response => this.props.setStateMachines(response.results)}
+        onSuccess={(response) => this.props.setStateMachines(response.results)}
         render={({ isLoading, result, error, refresh }) => {
           const hasNoResults = Boolean(
             !isLoading && result && result.total === 0

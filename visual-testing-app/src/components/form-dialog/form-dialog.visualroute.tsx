@@ -16,7 +16,7 @@ type FormValues = {
 
 const FormDialogExample = (props: ContainerProps) => (
   <Formik<FormValues> initialValues={{ email: '' }} onSubmit={() => undefined}>
-    {formikProps => (
+    {(formikProps) => (
       <React.Fragment>
         <div id={props.portalId} style={{ flex: 1 }} />
         <FormDialog

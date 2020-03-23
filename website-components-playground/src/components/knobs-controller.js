@@ -6,7 +6,7 @@ import TextField from '@commercetools-uikit/text-field';
 import SelectField from '@commercetools-uikit/select-field';
 import MultilineTextField from '@commercetools-uikit/multiline-text-field';
 
-const KnobsController = props => {
+const KnobsController = (props) => {
   const initialValues = props.knobs.reduce(
     (mapped, knobConfig) => ({
       ...mapped,
@@ -16,7 +16,7 @@ const KnobsController = props => {
   );
   return (
     <Formik initialValues={initialValues}>
-      {formikProps => {
+      {(formikProps) => {
         const form = (
           <Spacings.Stack size="m">
             <SelectField
@@ -24,11 +24,11 @@ const KnobsController = props => {
               title="Locale"
               options={props.availableLocaleOptions}
               value={props.locale}
-              onChange={event => {
+              onChange={(event) => {
                 props.setLocale(event.target.value);
               }}
             />
-            {props.knobs.map(knobConfig => {
+            {props.knobs.map((knobConfig) => {
               switch (knobConfig.kind) {
                 case 'text':
                   return (

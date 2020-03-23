@@ -56,7 +56,7 @@ describe('tokenRetryLink', () => {
         terminatingLinkStub = jest.fn();
 
         terminatingLinkStub.mockReturnValueOnce(
-          new Observable(o => o.error(unauthenticatedError))
+          new Observable((o) => o.error(unauthenticatedError))
         );
         terminatingLinkStub.mockReturnValueOnce(Observable.of(responseStub));
 
@@ -110,7 +110,7 @@ describe('tokenRetryLink', () => {
         });
 
         terminatingLinkStub = jest.fn(
-          () => new Observable(o => o.error(unauthenticatedError))
+          () => new Observable((o) => o.error(unauthenticatedError))
         );
 
         link = ApolloLink.from([
@@ -156,7 +156,7 @@ describe('tokenRetryLink', () => {
       });
 
       terminatingLinkStub = jest.fn(
-        () => new Observable(o => o.error(badRequestError))
+        () => new Observable((o) => o.error(badRequestError))
       );
 
       link = ApolloLink.from([tokenRetryLink, debugLink, terminatingLinkStub]);

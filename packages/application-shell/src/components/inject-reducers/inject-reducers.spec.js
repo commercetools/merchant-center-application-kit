@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { renderAppWithRedux, fireEvent } from '../../test-utils';
 import InjectReducers from './inject-reducers';
 
-const Counter = props => (
+const Counter = (props) => (
   <div>
     <p>{`The count is ${props.count}`}</p>
     <button onClick={() => props.increment()} data-testid="increment">
@@ -18,8 +18,8 @@ Counter.propTypes = {
   increment: PropTypes.func.isRequired,
 };
 const ConnectedCounter = connect(
-  state => ({ count: state.counter }),
-  dispatch => ({ increment: () => dispatch({ type: 'INCREMENT_COUNT' }) })
+  (state) => ({ count: state.counter }),
+  (dispatch) => ({ increment: () => dispatch({ type: 'INCREMENT_COUNT' }) })
 )(Counter);
 
 const counterReducer = (state, action) => {

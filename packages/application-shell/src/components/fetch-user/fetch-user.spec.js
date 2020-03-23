@@ -6,7 +6,7 @@ import FetchUser from './fetch-user';
 
 jest.mock('@commercetools-frontend/sentry');
 
-const renderUser = options =>
+const renderUser = (options) =>
   renderApp(
     <FetchUser>
       {({ isLoading, error, user }) => {
@@ -19,7 +19,7 @@ const renderUser = options =>
     options
   );
 
-const createGraphqlResponseForUserQuery = custom => ({
+const createGraphqlResponseForUserQuery = (custom) => ({
   loading: false,
   user: {
     id: 'user-id',

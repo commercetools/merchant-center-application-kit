@@ -45,7 +45,7 @@ export default ({ getState }: MiddlewareAPI) => (next: Dispatch<Action>) => (
     isAddNotificationErrorAction(action)
   ) {
     const state = getState();
-    selectPageNotifications(state).forEach(notification => {
+    selectPageNotifications(state).forEach((notification) => {
       next(removeNotification(notification.id));
     });
   }

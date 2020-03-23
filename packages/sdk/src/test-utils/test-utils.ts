@@ -50,7 +50,9 @@ const createTestMiddleware = (mocks: TSdkMock[]) => {
       return next(action);
     }
 
-    const index = mocksStack.findIndex(item => deepEqual(item.action, action));
+    const index = mocksStack.findIndex((item) =>
+      deepEqual(item.action, action)
+    );
 
     if (index === -1)
       throw new Error(

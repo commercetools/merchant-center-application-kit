@@ -507,7 +507,7 @@ const createCommands = ({
               : []
             )
               .map(
-                language =>
+                (language) =>
                   changeProjectDataLocale && {
                     id: `action/set-resource-language/${language}`,
                     text: oneLineTrim`
@@ -587,7 +587,7 @@ const createCommands = ({
       action: { type: actionTypes.go, to: `/account/organizations` },
     },
     ...(applicationContext.user
-      ? applicationContext.user.projects.results.map(userProject => ({
+      ? applicationContext.user.projects.results.map((userProject) => ({
           id: `go/project(${userProject.key})`,
           text: intl.formatMessage(messages.useProject, {
             projectName: userProject.name,

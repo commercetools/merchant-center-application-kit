@@ -3,8 +3,8 @@ name: Documentation request for deployment examples
 about: Want to deploy to a specific cloud provider? Let us know, and we can provide you with an example.
 title: '[docs] Request deployment example for [...]'
 labels:
-- "✍️ Type: Documentation"
-- "🖥 Type: Website"
+  - '✍️ Type: Documentation'
+  - '🖥 Type: Website'
 assignees: ''
 ---
 

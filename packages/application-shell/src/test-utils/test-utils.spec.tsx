@@ -54,7 +54,7 @@ describe('ApolloMockProvider', () => {
       query={SomeQuery}
       variables={{ target: 'ctp' }}
     >
-      {payload => {
+      {(payload) => {
         if (!payload || !payload.data || !payload.data.foo)
           return <>{'loading'}</>;
         return <>{payload.data.foo.name}</>;

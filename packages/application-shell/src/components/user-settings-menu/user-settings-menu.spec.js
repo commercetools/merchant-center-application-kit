@@ -31,7 +31,7 @@ const createGraphqlResponse = (custom = {}) => ({
   },
   ...custom,
 });
-const linkChecker = rendered => (label, href) => {
+const linkChecker = (rendered) => (label, href) => {
   const link = rendered.queryByText(label);
   expect(link.closest('a')).toHaveAttribute('href', href);
 };

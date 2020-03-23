@@ -34,7 +34,7 @@ const ProjectDataLocale = (props: Props) => {
   const [locale, setLocale] = React.useState(
     getSelectedDataLocaleForProject(props.locales)
   );
-  const handleSetProjectDataLocale = React.useCallback(locale => {
+  const handleSetProjectDataLocale = React.useCallback((locale) => {
     setLocale(locale);
     // Cache it
     window.localStorage.setItem(STORAGE_KEYS.SELECTED_DATA_LOCALE, locale);

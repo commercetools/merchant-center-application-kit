@@ -114,7 +114,7 @@ export default function createSdkMiddleware({
       return client
         .execute({ uri, method: action.payload.method, headers, body })
         .then(
-          result => {
+          (result) => {
             if (process.env.NODE_ENV === 'development')
               logRequest({
                 method: action.payload.method,
@@ -149,7 +149,7 @@ export default function createSdkMiddleware({
         throw error;
       })
       .then(
-        result => {
+        (result) => {
           dispatch({ type: HIDE_LOADING, payload: requestName });
           // The promise returned by "fetch" will reject when the request fails,
           // but only in certain cases. See "Checking that the fetch was successful"
@@ -158,7 +158,7 @@ export default function createSdkMiddleware({
 
           return result.body;
         },
-        error => {
+        (error) => {
           dispatch({ type: HIDE_LOADING, payload: requestName });
           throw error;
         }

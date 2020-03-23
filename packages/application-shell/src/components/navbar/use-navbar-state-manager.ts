@@ -86,7 +86,7 @@ const useNavbarStateManager = (props: HookProps) => {
     projectExtensionsQuery.projectExtension &&
     projectExtensionsQuery.projectExtension.applications
       ? projectExtensionsQuery.projectExtension.applications
-          .map<TNavbarMenu | undefined>(app => {
+          .map<TNavbarMenu | undefined>((app) => {
             // Map the menu properties to match the one from the proxy schema.
             // This is to ensure that the menu object is the same from the proxy
             // config and the custom apps config, thus allowing them to be
@@ -99,7 +99,7 @@ const useNavbarStateManager = (props: HookProps) => {
               icon: app.navbarMenu.icon,
               featureToggle: app.navbarMenu.featureToggle,
               permissions: app.navbarMenu.permissions as string[],
-              submenu: (app.navbarMenu.submenu || []).map(menu => ({
+              submenu: (app.navbarMenu.submenu || []).map((menu) => ({
                 key: menu.key,
                 uriPath: menu.uriPath,
                 labelAllLocales: menu.labelAllLocales || [],
@@ -170,7 +170,7 @@ const useNavbarStateManager = (props: HookProps) => {
   const shouldCloseMenuFly = React.useCallback<
     (e: React.MouseEvent<HTMLElement> | MouseEvent) => void
   >(
-    event => {
+    (event) => {
       if (
         navBarNode &&
         navBarNode.current &&

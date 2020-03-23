@@ -284,7 +284,7 @@ const Butler = (props: Props) => {
       // when it didn't exist before.
       onHistoryEntriesChangeFromParent([
         ...props.historyEntries.filter(
-          command => command.searchText !== entry.searchText
+          (command) => command.searchText !== entry.searchText
         ),
         entry,
       ]);
@@ -308,7 +308,7 @@ const Butler = (props: Props) => {
   const handleKeyDown = React.useCallback<
     KeyboardEventHandler<HTMLInputElement>
   >(
-    event => {
+    (event) => {
       // Preventing cursor jumps can only happen in onKeyDown, but not in onKeyUp
       event.persist();
 
@@ -366,7 +366,7 @@ const Butler = (props: Props) => {
                 -1
               : // When going back more than one step
                 props.historyEntries.findIndex(
-                  command => command.searchText === state.searchText
+                  (command) => command.searchText === state.searchText
                 );
           // Pick the previous command from the history
           const prevCommand =
@@ -466,7 +466,7 @@ const Butler = (props: Props) => {
     ]
   );
   const handleKeyUp = React.useCallback<KeyboardEventHandler<HTMLInputElement>>(
-    event => {
+    (event) => {
       // setting the selection can only happen in onKeyUp
       if (shouldSelectFieldText.current) {
         const input = event.target as HTMLInputElement;
@@ -491,7 +491,7 @@ const Butler = (props: Props) => {
     [execute, state.results, state.selectedResult]
   );
   const handleChange = React.useCallback<ChangeEventHandler<HTMLInputElement>>(
-    event => {
+    (event) => {
       const searchText = event.target.value;
       if (searchText.trim().length === 0) {
         dispatch({ type: 'reset' });
@@ -548,7 +548,7 @@ const Butler = (props: Props) => {
   const createCommandMouseEnterHandler = React.useCallback<
     (index: number) => MouseEventHandler<HTMLDivElement>
   >(
-    index => () => {
+    (index) => () => {
       // In case the cursor happened to be in a location where a
       // result would appear, it would trigger onMouseEnter and the
       // result would be selected immediately. This is not something
@@ -569,7 +569,7 @@ const Butler = (props: Props) => {
   const createCommandClickHandler = React.useCallback<
     (command: Command) => MouseEventHandler<HTMLDivElement>
   >(
-    command => event => {
+    (command) => (event) => {
       execute(command, {
         openInNewTab: hasNewWindowModifier(event),
       });
@@ -603,7 +603,7 @@ const Butler = (props: Props) => {
             ? '0'
             : customProperties.spacingS};
         `}
-        onClick={event => {
+        onClick={(event) => {
           // Avoid closing when the searchContainer itself is clicked
           // If we don't do this, then the overlay will close when e.g.
           // the search input is clicked.

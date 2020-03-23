@@ -18,7 +18,7 @@ const PageUnauthorized = () => (
   />
 );
 
-const ApplicationRoutes = props => {
+const ApplicationRoutes = (props) => {
   const canViewDeveloperSettings = useIsAuthorized({
     demandedPermissions: [PERMISSIONS.ViewDeveloperSettings],
   });
@@ -27,7 +27,7 @@ const ApplicationRoutes = props => {
       <Switch>
         <Route
           path={`${props.match.path}/:id`}
-          render={routerProps => {
+          render={(routerProps) => {
             if (!canViewDeveloperSettings) {
               return <PageUnauthorized />;
             }
@@ -47,7 +47,7 @@ const ApplicationRoutes = props => {
             }
             return (
               <StateMachinesList
-                goToStateMachineDetail={id => {
+                goToStateMachineDetail={(id) => {
                   props.history.push(`${props.match.url}/${id}`);
                 }}
               />

@@ -68,7 +68,7 @@ withApplicationContext()(MyComponent);
 ...or pass a mapping function as the first argument to return custom shape of the injected props
 
 ```js
-withApplicationContext(applicationContext => ({
+withApplicationContext((applicationContext) => ({
   projectKey: applicationContext.project && applicationContext.project.key,
   userEmail: applicationContext.user && applicationContext.user.email,
 }))(MyComponent);

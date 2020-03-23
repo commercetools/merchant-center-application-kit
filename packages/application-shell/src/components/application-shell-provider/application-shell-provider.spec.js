@@ -14,7 +14,7 @@ jest.mock('../authenticated/has-cached-authentication-state');
 jest.mock('../authenticated/am-i-logged-in');
 jest.mock('./utils');
 
-const createTestProps = props => ({
+const createTestProps = (props) => ({
   applicationMessages: {
     en: { 'CustomApp.title': 'Title en' },
     'en-US': { 'CustomApp.title': 'Title' },

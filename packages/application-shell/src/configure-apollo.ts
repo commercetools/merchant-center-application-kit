@@ -100,7 +100,7 @@ export const createApolloClient = () =>
     link,
     cache: new InMemoryCache({
       fragmentMatcher,
-      dataIdFromObject: result => {
+      dataIdFromObject: (result) => {
         const customResult = result as CustomIdGetterObj;
         if (
           !customResult.id &&
