@@ -3,6 +3,7 @@
 #### 🐛 Type: Bug
 
 - `application-shell`
+  - [#1394](https://github.com/commercetools/merchant-center-application-kit/pull/1394) fix(apollo-caching): simplify id from object logic ([@islam3zzat](https://github.com/islam3zzat))
   - [#1411](https://github.com/commercetools/merchant-center-application-kit/pull/1411) fix: proper invocation of window.location.replace ([@pa3](https://github.com/pa3))
 
 ## [16.5.1](https://github.com/commercetools/merchant-center-application-kit/compare/v16.5.0...v16.5.1) (2020-03-20)
