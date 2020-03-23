@@ -40,7 +40,7 @@
     "generate-data": "node ./scripts/generate-l10n-data.js"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.8.4",
+    "@babel/runtime-corejs3": "7.9.2",
     "@commercetools-frontend/sentry": "16.3.3",
     "@types/prop-types": "^15.7.3",
     "moment": "^2.24.0",
