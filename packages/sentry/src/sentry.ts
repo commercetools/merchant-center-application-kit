@@ -13,8 +13,15 @@ export const boot = () => {
       // from our code and ignore errors that come from other services
       // https://blog.sentry.io/2017/03/27/tips-for-reducing-javascript-error-noise.html
       whitelistUrls: [window.app.cdnUrl, window.app.frontendHost],
+      // we don't need default Sentry's global handlers, because we  add default ones
+      integrations: [
+        new Sentry.Integrations.GlobalHandlers({
+          onunhandledrejection: false,
+          onerror: false,
+        }),
+      ],
     });
-    Sentry.configureScope((scope) => {
+    Sentry.configureScope(scope => {
       scope.setTag('role', 'frontend');
     });
   }
