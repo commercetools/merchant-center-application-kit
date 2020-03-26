@@ -38,7 +38,7 @@ export const boot = () => {
         }),
       ],
     });
-    Sentry.configureScope(scope => {
+    Sentry.configureScope((scope) => {
       scope.setTag('role', 'frontend');
     });
   }
