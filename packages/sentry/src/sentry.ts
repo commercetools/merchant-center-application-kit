@@ -3,6 +3,23 @@ import { ApplicationWindow } from '@commercetools-frontend/constants';
 
 declare let window: ApplicationWindow;
 
+type ReportableEvent = ErrorEvent | PromiseRejectionEvent;
+type Reportable = Error | ReportableEvent | string;
+
+const makeErrorToCapture = (error: Error | ReportableEvent) => {
+  if (error instanceof Error) return error;
+  if (error instanceof ErrorEvent) return new Error(error.message);
+  return new Error(
+    JSON.stringify(error.reason || 'Unhandled rejection without a reason')
+  );
+};
+
+const sendErrorToSentry = (error: Reportable) => {
+  if (typeof error === 'string') return Sentry.captureMessage(error);
+  const errorToCapture = makeErrorToCapture(error);
+  return Sentry.captureException(errorToCapture);
+};
+
 export const boot = () => {
   if (window.app.trackingSentry) {
     Sentry.init({
@@ -13,6 +30,13 @@ export const boot = () => {
       // from our code and ignore errors that come from other services
       // https://blog.sentry.io/2017/03/27/tips-for-reducing-javascript-error-noise.html
       whitelistUrls: [window.app.cdnUrl, window.app.frontendHost],
+      // we don't need default Sentry's global handlers, because we  add default ones
+      integrations: [
+        new Sentry.Integrations.GlobalHandlers({
+          onunhandledrejection: false,
+          onerror: false,
+        }),
+      ],
     });
     Sentry.configureScope((scope) => {
       scope.setTag('role', 'frontend');
@@ -21,7 +45,7 @@ export const boot = () => {
 };
 
 export const reportErrorToSentry = (
-  error: Error | ErrorEvent | PromiseRejectionEvent | string,
+  error: Reportable,
   extraInfo?: { extra?: object | string },
   getIsEnabled?: () => boolean
 ) => {
@@ -47,10 +71,7 @@ export const reportErrorToSentry = (
       }
     }
     // Generate a unique ID referring to the last generated Sentry error
-    const errorId =
-      typeof error === 'string'
-        ? Sentry.captureMessage(error)
-        : Sentry.captureException(error);
+    const errorId = sendErrorToSentry(error);
 
     // The error stack should be available in Sentry, so there is no
     // need to print it in the console as well.

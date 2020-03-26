@@ -7,6 +7,30 @@ const { testkit, sentryTransport } = sentryTestkit();
 
 const DUMMY_DSN = 'https://acacaeaccacacacabcaacdacdacadaca@sentry.io/000001';
 
+// At the moment, jsdom doesn't support PromiseRejectionEvent type. That leads to
+// ReferenceError in tests. So, we add this ad-hoc polyfill just for tests for now.
+// Once the following issue is fixed (which is unlikely to happen any soon) in jsdom
+// we can drop this polyfill: https://github.com/jsdom/jsdom/issues/2401
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+type Reason = unknown;
+type Payload = unknown;
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
+class PromiseRejectionEvent extends Event {
+  reason: Reason;
+  promise: Promise<Payload>;
+
+  constructor(
+    type: string,
+    options: { reason: Reason; promise: Promise<Payload> }
+  ) {
+    super(type);
+    this.promise = options.promise;
+    this.reason = options.reason;
+  }
+}
+
 describe('reportErrorToSentry', () => {
   let error;
 
@@ -94,6 +118,47 @@ describe('reportErrorToSentry', () => {
             `You called "reportErrorToSentry" with a string argument`
           )
         );
+      });
+    });
+  });
+
+  describe('when error is an ErrorEvent', () => {
+    beforeEach(async () => {
+      error = new ErrorEvent('error', { message: 'something went wrong' });
+      reportErrorToSentry(error, undefined, () => true);
+
+      // Wait for the reports to have been sent
+      // eslint-disable-next-line jest/no-standalone-expect
+      await waitForExpect(() => expect(testkit.reports()).toHaveLength(1));
+    });
+
+    it('should send report', () => {
+      const report = testkit.reports()[0];
+      expect(report.error).toMatchObject({
+        message: 'something went wrong',
+      });
+    });
+  });
+
+  describe('when error is an PromiseRejectionEvent', () => {
+    beforeEach(async () => {
+      error = new PromiseRejectionEvent('unhandledrejection', {
+        // That's supposed to be Promise.reject, but jsdom throws in this case
+        promise: Promise.resolve(null),
+        reason: { message: 'something went wrong' },
+      });
+
+      reportErrorToSentry(error, undefined, () => true);
+
+      // Wait for the reports to have been sent
+      // eslint-disable-next-line jest/no-standalone-expect
+      await waitForExpect(() => expect(testkit.reports()).toHaveLength(1));
+    });
+
+    it('should send report', () => {
+      const report = testkit.reports()[0];
+      expect(report.error).toMatchObject({
+        message: '{"message":"something went wrong"}',
       });
     });
   });
