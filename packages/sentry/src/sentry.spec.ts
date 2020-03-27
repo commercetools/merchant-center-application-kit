@@ -12,10 +12,8 @@ const DUMMY_DSN = 'https://acacaeaccacacacabcaacdacdacadaca@sentry.io/000001';
 // Once the following issue is fixed (which is unlikely to happen any soon) in jsdom
 // we can drop this polyfill: https://github.com/jsdom/jsdom/issues/2401
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 type Reason = unknown;
 type Payload = unknown;
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 class PromiseRejectionEvent extends Event {
   reason: Reason;

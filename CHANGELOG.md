@@ -1,3 +1,20 @@
+## [16.5.3](https://github.com/commercetools/merchant-center-application-kit/compare/v16.5.2...v16.5.3) (2020-03-27)
+
+#### 🐛 Type: Bug
+
+- `sentry`
+  - [#1416](https://github.com/commercetools/merchant-center-application-kit/pull/1416) Properly report unhandled rejections and ErrorEvents to Sentry ([@pa3](https://github.com/pa3))
+
+#### ⛑ Type: Refactoring
+
+- `permissions`
+  - [#1415](https://github.com/commercetools/merchant-center-application-kit/pull/1415) refactor: hasDemandeDataFences -> hasDemandedDataFences ([@adnasa](https://github.com/adnasa))
+
+#### 🤖 Type: Dependencies
+
+- `application-components`, `application-shell-connectors`, `application-shell`, `create-mc-app`, `i18n`, `jest-preset-mc-app`, `jest-stylelint-runner`, `l10n`, `mc-html-template`, `mc-http-server`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sdk`, `sentry`, `url-utils`
+  - [#1409](https://github.com/commercetools/merchant-center-application-kit/pull/1409) chore(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [16.5.2](https://github.com/commercetools/merchant-center-application-kit/compare/v16.5.1...v16.5.2) (2020-03-23)
 
 #### 🐛 Type: Bug
