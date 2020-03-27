@@ -2,6 +2,12 @@
 title: Proxy to External API
 ---
 
+<Warning>
+
+This feature only allows for an external server to check that requests come from authenticated users. It does not provide a way for the server to perform user access validation and more fine grained permission checks. If you are interested in this functionalities, let us know and open a [support issue](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose).
+
+</Warning>
+
 Developing Custom Applications might require you to have your own backend server, for several reasons: storing sensitive credentials for third-party services, performing custom server logic, etc.
 
 If that's the case, you're probably facing a problem: _how do you authenticate requests to your API?_
