@@ -149,7 +149,7 @@ describe('general permissions', () => {
           shouldMatchSomePermissions: true,
         });
 
-        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
     describe('with one applied permission and no matching demanded permission', () => {
@@ -164,7 +164,7 @@ describe('general permissions', () => {
           ],
         });
 
-        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });
@@ -181,7 +181,7 @@ describe('general permissions', () => {
           demandedPermissions: ['ManageCustomers', 'ManageOrders'],
         });
 
-        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
     describe('with mulltiple applied permission and all demanded permission matching', () => {
@@ -200,7 +200,7 @@ describe('general permissions', () => {
           demandedPermissions: ['ManageCustomers', 'ManageOrders'],
         });
 
-        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
     describe('with applied manage permission', () => {
@@ -216,9 +216,7 @@ describe('general permissions', () => {
             demandedPermissions: ['ViewCustomers'],
           });
 
-          expect(
-            rendered.queryByText('Is authorized: Yes')
-          ).toBeInTheDocument();
+          expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
         });
       });
       describe('when demanding manage permission', () => {
@@ -233,9 +231,7 @@ describe('general permissions', () => {
             demandedPermissions: ['ManageCustomers'],
           });
 
-          expect(
-            rendered.queryByText('Is authorized: Yes')
-          ).toBeInTheDocument();
+          expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
         });
       });
     });
@@ -251,7 +247,7 @@ describe('general permissions', () => {
           demandedPermissions: ['ViewCustomersGroups'],
         });
 
-        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });
@@ -279,7 +275,7 @@ describe('action rights', () => {
           ],
         });
 
-        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
     describe('with applied action right matching demanded', () => {
@@ -300,7 +296,7 @@ describe('action rights', () => {
           demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
         });
 
-        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
     describe('with applied action right in another group of demanded', () => {
@@ -321,7 +317,7 @@ describe('action rights', () => {
           demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
         });
 
-        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });
@@ -343,7 +339,7 @@ describe('action rights', () => {
           ],
         });
 
-        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });
@@ -365,7 +361,7 @@ describe('action rights', () => {
         demandedActionRights: [{ group: 'products', name: 'EditPrices' }],
       });
 
-      expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+      expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
     });
   });
 });
@@ -405,9 +401,7 @@ describe('data fences', () => {
             },
           });
 
-          expect(
-            rendered.queryByText('Is authorized: Yes')
-          ).toBeInTheDocument();
+          expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
         });
       });
     });
@@ -452,7 +446,7 @@ describe('data fences', () => {
           },
         });
 
-        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
     describe('when data fence is not matched', () => {
@@ -486,7 +480,7 @@ describe('data fences', () => {
           },
         });
 
-        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
     describe('when actual data fence is from different group', () => {
@@ -520,7 +514,7 @@ describe('data fences', () => {
           },
         });
 
-        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
   });
@@ -558,7 +552,7 @@ describe('data fences', () => {
           selectDataFenceData: () => ['store-1'],
         });
 
-        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
     describe('when all data fences are matched', () => {
@@ -595,7 +589,7 @@ describe('data fences', () => {
           },
         });
 
-        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
     describe('when data fence permission is not matched', () => {
@@ -632,7 +626,7 @@ describe('data fences', () => {
           },
         });
 
-        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
     describe('when actual data fence permission is from different group', () => {
@@ -669,7 +663,7 @@ describe('data fences', () => {
           },
         });
 
-        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });

@@ -14,7 +14,7 @@ describe('rendering', () => {
       );
     });
     it('should render translated message', () => {
-      expect(rendered.queryByText('Auto')).toBeInTheDocument();
+      expect(rendered.getByText('Auto')).toBeInTheDocument();
     });
   });
   describe('when locale is defined but there is no translation', () => {
@@ -27,7 +27,7 @@ describe('rendering', () => {
       );
     });
     it('should render default message', () => {
-      expect(rendered.queryByText('Car')).toBeInTheDocument();
+      expect(rendered.getByText('Car')).toBeInTheDocument();
     });
   });
   describe('when locale is not defined', () => {

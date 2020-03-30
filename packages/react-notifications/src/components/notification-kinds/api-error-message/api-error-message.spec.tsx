@@ -15,7 +15,7 @@ describe('render', () => {
     const error = { code: 'InvalidInput', message: 'message-content' };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.queryByText(/Sorry, but there seems to be something wrong/i)
+      rendered.getByText(/Sorry, but there seems to be something wrong/i)
     ).toBeInTheDocument();
   });
   it('should show message for OverlappingPrices', () => {
@@ -26,7 +26,7 @@ describe('render', () => {
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.queryByText(
+      rendered.getByText(
         /Sorry, but a price with these details already exists/i
       )
     ).toBeInTheDocument();
@@ -38,7 +38,7 @@ describe('render', () => {
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.queryByText(/"foo" is a required field/i)
+      rendered.getByText(/"foo" is a required field/i)
     ).toBeInTheDocument();
   });
   it('should show message for InvalidDateRange', () => {
@@ -53,7 +53,7 @@ describe('render', () => {
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.queryByText(/The value entered for the field price is invalid/i)
+      rendered.getByText(/The value entered for the field price is invalid/i)
     ).toBeInTheDocument();
   });
   it('should show message for unmapped error and report to sentry', async () => {
@@ -65,7 +65,7 @@ describe('render', () => {
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.queryByText('message-content (detailed-error-message-content)')
+      rendered.getByText('message-content (detailed-error-message-content)')
     ).toBeInTheDocument();
     await waitFor(() => {
       expect(reportErrorToSentry).toHaveBeenCalledTimes(1);
@@ -78,7 +78,7 @@ describe('render', () => {
       message: 'has expired',
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
-    expect(rendered.queryByText('has expired')).toBeInTheDocument();
+    expect(rendered.getByText('has expired')).toBeInTheDocument();
     await waitFor(() => {
       expect(reportErrorToSentry).not.toHaveBeenCalled();
     });
@@ -92,7 +92,7 @@ describe('render', () => {
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.queryByText(/"duplicateValueContent" is already in use/i)
+      rendered.getByText(/"duplicateValueContent" is already in use/i)
     ).toBeInTheDocument();
   });
   it('should show message for DuplicateAttributeValue', () => {
@@ -105,7 +105,7 @@ describe('render', () => {
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.queryByText(
+      rendered.getByText(
         /The "attribute-name" value must be unique for all variants for this product/i
       )
     ).toBeInTheDocument();
@@ -117,7 +117,7 @@ describe('render', () => {
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.queryByText(
+      rendered.getByText(
         /Sorry, but you are not authorized to access this feature/i
       )
     ).toBeInTheDocument();
@@ -129,7 +129,7 @@ describe('render', () => {
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.queryByText(
+      rendered.getByText(
         /You are not authorized to access this feature\. Please contact your system administrator with any further questions/i
       )
     ).toBeInTheDocument();
@@ -147,7 +147,7 @@ describe('render', () => {
       },
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
-    expect(rendered.queryByText(/Custom Message/i)).toBeInTheDocument();
+    expect(rendered.getByText(/Custom Message/i)).toBeInTheDocument();
   });
   it('should show "untranslated" message for API Error extensions', () => {
     const error = {
@@ -161,7 +161,7 @@ describe('render', () => {
       },
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
-    expect(rendered.queryByText(/Default message/i)).toBeInTheDocument();
+    expect(rendered.getByText(/Default message/i)).toBeInTheDocument();
   });
   it('should show message for ExtensionNoResponse', () => {
     const error = {
@@ -170,7 +170,7 @@ describe('render', () => {
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.queryByText(
+      rendered.getByText(
         /Sorry, we could not perform the requested action due to an API extension not responding/i
       )
     ).toBeInTheDocument();
@@ -182,7 +182,7 @@ describe('render', () => {
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.queryByText(
+      rendered.getByText(
         /Sorry, we could not perform the requested action due to failed processing of an API extension response/i
       )
     ).toBeInTheDocument();
@@ -194,7 +194,7 @@ describe('render', () => {
     };
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(
-      rendered.queryByText(
+      rendered.getByText(
         /Sorry, we could not perform the requested action\. It is not possible to perform the update actions as instructed by the API extension/i
       )
     ).toBeInTheDocument();

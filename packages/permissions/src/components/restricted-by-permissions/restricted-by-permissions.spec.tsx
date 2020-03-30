@@ -126,7 +126,7 @@ describe('with permissions', () => {
           component: <FaaCTestComponent />,
         });
 
-        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
 
@@ -142,7 +142,7 @@ describe('with permissions', () => {
           component: <RenderPropTestComponent />,
         });
 
-        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
 
@@ -158,7 +158,7 @@ describe('with permissions', () => {
           component: <TestComponent />,
         });
 
-        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
   });
@@ -180,7 +180,7 @@ describe('with permissions', () => {
           component: <FaaCTestComponent />,
         });
 
-        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
     describe('with `render`-prop', () => {
@@ -199,7 +199,7 @@ describe('with permissions', () => {
           component: <RenderPropTestComponent />,
         });
 
-        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
     describe('with `children` being a `ReactNode`', () => {
@@ -242,7 +242,7 @@ describe('with permissions', () => {
           ),
         });
 
-        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });
@@ -273,7 +273,7 @@ describe('with action rights', () => {
           ),
         });
 
-        expect(rendered.queryByText('Is authorized: Yes')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: Yes')).toBeInTheDocument();
       });
     });
   });
@@ -301,7 +301,7 @@ describe('with action rights', () => {
           ),
         });
 
-        expect(rendered.queryByText('Is authorized: No')).toBeInTheDocument();
+        expect(rendered.getByText('Is authorized: No')).toBeInTheDocument();
       });
     });
   });

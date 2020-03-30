@@ -9,7 +9,7 @@ describe('rendering', () => {
       rendered = render(<ApplicationLoader showLogo={true} />);
     });
     it('should render the commercetools logo', () => {
-      expect(rendered.queryByAltText('commercetools logo')).toBeInTheDocument();
+      expect(rendered.getByAltText('commercetools logo')).toBeInTheDocument();
     });
   });
   describe('when "showLogo" is "false"', () => {

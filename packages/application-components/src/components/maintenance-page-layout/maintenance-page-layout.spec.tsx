@@ -17,8 +17,8 @@ describe('rendering', () => {
     });
     it('renders the title and paragraph', () => {
       const rendered = renderComponent(<MaintenancePageLayout {...props} />);
-      expect(rendered.queryByText('title')).toBeInTheDocument();
-      expect(rendered.queryByText('title 1')).toBeInTheDocument();
+      expect(rendered.getByText('title')).toBeInTheDocument();
+      expect(rendered.getByText('title 1')).toBeInTheDocument();
     });
   });
   describe('with both paragraphs', () => {
@@ -29,9 +29,9 @@ describe('rendering', () => {
     });
     it('renders the title and paragraphs', () => {
       const rendered = renderComponent(<MaintenancePageLayout {...props} />);
-      expect(rendered.queryByText('title')).toBeInTheDocument();
-      expect(rendered.queryByText('title 1')).toBeInTheDocument();
-      expect(rendered.queryByText('title 2')).toBeInTheDocument();
+      expect(rendered.getByText('title')).toBeInTheDocument();
+      expect(rendered.getByText('title 1')).toBeInTheDocument();
+      expect(rendered.getByText('title 2')).toBeInTheDocument();
     });
   });
   describe('with both paragraphs and a body content in between', () => {
@@ -43,10 +43,10 @@ describe('rendering', () => {
     });
     it('renders the title, paragraphs and body content', () => {
       const rendered = renderComponent(<MaintenancePageLayout {...props} />);
-      expect(rendered.queryByText('title')).toBeInTheDocument();
-      expect(rendered.queryByText('title 1')).toBeInTheDocument();
-      expect(rendered.queryByText('title 2')).toBeInTheDocument();
-      expect(rendered.queryByText('content')).toBeInTheDocument();
+      expect(rendered.getByText('title')).toBeInTheDocument();
+      expect(rendered.getByText('title 1')).toBeInTheDocument();
+      expect(rendered.getByText('title 2')).toBeInTheDocument();
+      expect(rendered.getByText('content')).toBeInTheDocument();
     });
   });
   describe('with only one paragraph and the body content', () => {
@@ -57,9 +57,9 @@ describe('rendering', () => {
     });
     it('renders the title, paragraphs and body content', () => {
       const rendered = renderComponent(<MaintenancePageLayout {...props} />);
-      expect(rendered.queryByText('title')).toBeInTheDocument();
-      expect(rendered.queryByText('title 1')).toBeInTheDocument();
-      expect(rendered.queryByText('content')).toBeInTheDocument();
+      expect(rendered.getByText('title')).toBeInTheDocument();
+      expect(rendered.getByText('title 1')).toBeInTheDocument();
+      expect(rendered.getByText('content')).toBeInTheDocument();
     });
   });
 });

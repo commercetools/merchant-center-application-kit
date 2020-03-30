@@ -95,7 +95,7 @@ describe('rendering', () => {
     });
     it('should render regex info', async () => {
       await waitForElementToBeRemoved(() => rendered.queryByText('Loading...'));
-      expect(rendered.queryByText('-thumb.jpg')).toBeInTheDocument();
+      expect(rendered.getByText('-thumb.jpg')).toBeInTheDocument();
     });
   });
   describe('when image regex is not defined', () => {
@@ -122,7 +122,7 @@ describe('rendering', () => {
     });
     it('should not render regex info', async () => {
       await waitForElementToBeRemoved(() => rendered.queryByText('Loading...'));
-      expect(rendered.queryByText('Not found')).toBeInTheDocument();
+      expect(rendered.getByText('Not found')).toBeInTheDocument();
     });
   });
 });
