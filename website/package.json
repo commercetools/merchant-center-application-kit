@@ -10,17 +10,17 @@
     "start": "gatsby develop"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-docs": "2.1.0",
-    "@commercetools-docs/ui-kit": "2.1.0",
+    "@commercetools-docs/gatsby-theme-docs": "2.2.0",
+    "@commercetools-docs/ui-kit": "2.2.0",
     "@commercetools-uikit/card": "10.16.0",
     "@commercetools-uikit/spacings-inline": "10.15.1",
     "@commercetools-uikit/spacings-stack": "10.15.1",
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
-    "gatsby": "2.19.23",
-    "gatsby-cli": "2.9.0",
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
+    "gatsby": "2.20.8",
+    "gatsby-cli": "2.11.3",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
     "react-intl": "3.4.0"
   }
 }
