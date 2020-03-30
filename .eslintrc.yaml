@@ -45,7 +45,7 @@ rules:
     - error
     - env: literal
   'jest/expect-expect': 'off'
-  'testing-library/no-get-by-for-checking-element-not-present': 'error'
+  'testing-library/prefer-presence-queries': 'error'
 settings:
   react:
     version: 'detect'
