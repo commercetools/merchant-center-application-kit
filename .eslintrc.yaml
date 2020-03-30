@@ -46,6 +46,7 @@ rules:
     - env: literal
   'jest/expect-expect': 'off'
   'testing-library/prefer-presence-queries': 'error'
+  'testing-library/await-async-query': 'error'
 settings:
   react:
     version: 'detect'
