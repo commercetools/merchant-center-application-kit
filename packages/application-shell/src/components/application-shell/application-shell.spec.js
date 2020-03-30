@@ -41,7 +41,7 @@ import ApplicationShell from './application-shell';
 jest.mock('@commercetools-frontend/sentry');
 jest.mock('../../utils/location');
 
-const createTestProps = props => ({
+const createTestProps = (props) => ({
   environment: {
     applicationName: 'my-app',
     frontendHost: 'localhost:3001',
@@ -99,7 +99,7 @@ beforeEach(() => {
   applyMocksForExternalNetworkRequests();
   jest.clearAllMocks();
 
-  window.localStorage.getItem.mockImplementation(key => {
+  window.localStorage.getItem.mockImplementation((key) => {
     switch (key) {
       case STORAGE_KEYS.IS_AUTHENTICATED:
         return 'true';
@@ -126,7 +126,7 @@ describe('when rendering', () => {
   it('should pass environment into application context', async () => {
     const TestComponent = () => {
       const applicationName = useApplicationContext(
-        context => context.environment.applicationName
+        (context) => context.environment.applicationName
       );
       return <p>{`Application name: ${applicationName}`}</p>;
     };
@@ -542,7 +542,7 @@ describe('when selecting project locale "de"', () => {
   it('should render data for locale "de"', async () => {
     const TestComponent = () => {
       const projectDataLocale = useApplicationContext(
-        context => context.dataLocale
+        (context) => context.dataLocale
       );
       return <span>{`Data locale: ${projectDataLocale}`}</span>;
     };
@@ -746,10 +746,10 @@ describe('navbar menu links interactions', () => {
 
       const applicationLocale = operations.FetchLoggedInUser.me.language;
       const mainMenuLabel = navbarMock.labelAllLocales.find(
-        localized => localized.locale === applicationLocale
+        (localized) => localized.locale === applicationLocale
       );
       const mainSubmenuLabel = navbarSubmenuMock.labelAllLocales.find(
-        localized => localized.locale === applicationLocale
+        (localized) => localized.locale === applicationLocale
       );
 
       await checkLinksInteractions(rendered, {
@@ -779,10 +779,10 @@ describe('navbar menu links interactions', () => {
       });
       const applicationLocale = mcOperations.FetchLoggedInUser.me.language;
       const mainMenuLabel = proxyOperations.FetchApplicationsMenu.applicationsMenu.navBar[0].labelAllLocales.find(
-        localized => localized.locale === applicationLocale
+        (localized) => localized.locale === applicationLocale
       );
       const mainSubmenuLabel = proxyOperations.FetchApplicationsMenu.applicationsMenu.navBar[0].submenu[0].labelAllLocales.find(
-        localized => localized.locale === applicationLocale
+        (localized) => localized.locale === applicationLocale
       );
 
       await checkLinksInteractions(rendered, {
@@ -818,10 +818,10 @@ describe('navbar menu links interactions', () => {
       });
       const applicationLocale = mcOperations.FetchLoggedInUser.me.language;
       const mainMenuLabel = settingsOperations.FetchProjectExtensionsNavbar.projectExtension.applications[0].navbarMenu.labelAllLocales.find(
-        localized => localized.locale === applicationLocale
+        (localized) => localized.locale === applicationLocale
       );
       const mainSubmenuLabel = settingsOperations.FetchProjectExtensionsNavbar.projectExtension.applications[0].navbarMenu.submenu[0].labelAllLocales.find(
-        localized => localized.locale === applicationLocale
+        (localized) => localized.locale === applicationLocale
       );
 
       await checkLinksInteractions(rendered, {
@@ -857,7 +857,7 @@ describe('when navbar menu items are disabled', () => {
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
-      localized => localized.locale === applicationLocale
+      (localized) => localized.locale === applicationLocale
     );
     await waitFor(() => {
       expect(
@@ -900,7 +900,7 @@ describe('when navbar menu items are hidden', () => {
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
-      localized => localized.locale === applicationLocale
+      (localized) => localized.locale === applicationLocale
     );
     await waitFor(() => {
       expect(
@@ -938,7 +938,7 @@ describe('when navbar menu items match given permissions', () => {
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
-      localized => localized.locale === applicationLocale
+      (localized) => localized.locale === applicationLocale
     );
     await within(await rendered.findByLeftNavigation()).findByText(
       mainMenuLabel.value
@@ -975,7 +975,7 @@ describe('when navbar menu items do not match given permissions', () => {
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
-      localized => localized.locale === applicationLocale
+      (localized) => localized.locale === applicationLocale
     );
     await waitFor(() => {
       expect(
@@ -1021,7 +1021,7 @@ describe('when navbar menu items match given action rights', () => {
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
-      localized => localized.locale === applicationLocale
+      (localized) => localized.locale === applicationLocale
     );
     await within(await rendered.findByLeftNavigation()).findByText(
       mainMenuLabel.value
@@ -1066,7 +1066,7 @@ describe('when navbar menu items do not match given action rights', () => {
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
-      localized => localized.locale === applicationLocale
+      (localized) => localized.locale === applicationLocale
     );
     await waitFor(() => {
       expect(
@@ -1120,7 +1120,7 @@ describe('when navbar menu items match given data fences', () => {
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
-      localized => localized.locale === applicationLocale
+      (localized) => localized.locale === applicationLocale
     );
     await within(await rendered.findByLeftNavigation()).findByText(
       mainMenuLabel.value
@@ -1172,7 +1172,7 @@ describe('when navbar menu items do not match given data fences', () => {
 
     const applicationLocale = operations.FetchLoggedInUser.me.language;
     const mainMenuLabel = navbarMock.labelAllLocales.find(
-      localized => localized.locale === applicationLocale
+      (localized) => localized.locale === applicationLocale
     );
     await waitFor(async () => {
       expect(
