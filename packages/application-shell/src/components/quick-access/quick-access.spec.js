@@ -252,7 +252,7 @@ describe('QuickAccess', () => {
     fireEvent.keyDown(document.body, { key: 'f' });
     await rendered.findByTestId('quick-access');
 
-    expect(rendered.queryByTestId('quick-access')).toBeInTheDocument();
+    expect(rendered.getByTestId('quick-access')).toBeInTheDocument();
 
     // close quick-access
     fireEvent.keyDown(rendered.getByTestId('quick-access-search-input'), {
@@ -281,7 +281,7 @@ describe('QuickAccess', () => {
     const searchInput = rendered.getByTestId('quick-access-search-input');
     fireEvent.change(searchInput, { target: { value: 'Open dshbrd' } });
     await rendered.findByText('Open Dashboard');
-    expect(rendered.queryByText('Open Dashboard')).toBeInTheDocument();
+    expect(rendered.getByText('Open Dashboard')).toBeInTheDocument();
   });
   describe('when there are no results', () => {
     it('should show information message when searching does not yield results', async () => {
@@ -316,7 +316,7 @@ describe('QuickAccess', () => {
       });
       await rendered.findByText(noResultsText);
       // it should show the no results text
-      expect(rendered.queryByText(noResultsText)).toBeInTheDocument();
+      expect(rendered.getByText(noResultsText)).toBeInTheDocument();
 
       // when input is cleared again
       fireEvent.change(searchInput, { target: { value: '' } });
@@ -371,7 +371,7 @@ describe('QuickAccess', () => {
       });
       await rendered.findByText(offlineText);
       // it should show the offline warning
-      expect(rendered.queryByText(offlineText)).toBeInTheDocument();
+      expect(rendered.getByText(offlineText)).toBeInTheDocument();
       expect(console.error).toHaveBeenCalledWith(
         expect.objectContaining({ networkError: new Error('no internet') })
       );

@@ -46,7 +46,7 @@ describe('rendering', () => {
 
     fireEvent.click(rendered.getByLabelText(/Open Confirmation Dialog/i));
     await rendered.findByText(/Lorem ipsus/i);
-    expect(rendered.queryByText(/Hello/i)).toBeInTheDocument();
+    expect(rendered.getByText(/Hello/i)).toBeInTheDocument();
 
     fireEvent.click(rendered.getByLabelText('Cancel'));
     expect(onCancel).toHaveBeenCalled();
@@ -77,7 +77,7 @@ describe('rendering', () => {
 
     fireEvent.click(rendered.getByLabelText(/Open Confirmation Dialog/i));
     await rendered.findByText(/Lorem ipsus/i);
-    expect(rendered.queryByText(/Hello/i)).toBeInTheDocument();
+    expect(rendered.getByText(/Hello/i)).toBeInTheDocument();
 
     expect(rendered.queryByText(/Close dialog/i)).not.toBeInTheDocument();
   });

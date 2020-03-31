@@ -8057,17 +8057,17 @@ babel-plugin-macros@2.8.0, babel-plugin-macros@^2.0.0, babel-plugin-macros@^2.8.
     cosmiconfig "^6.0.0"
     resolve "^1.12.0"
 
-babel-plugin-react-intl@6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-react-intl/-/babel-plugin-react-intl-6.0.1.tgz#a6b172585eac6bbced6b17ffdd1f213c94205d79"
-  integrity sha512-bCXIrakboHTE4vL817Q+igArQIlutNXUXYkGxYYl+aBc/rfPbAb4zs/fk+6DXhL7LjC6ndt8XFUn1Uv/HucHoA==
+babel-plugin-react-intl@7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-react-intl/-/babel-plugin-react-intl-7.1.0.tgz#a5d51f3402470175c2d0627f6c6e0f55aa881864"
+  integrity sha512-5y/TOt/c5EU49eIQHbQnlGJHKrt1n116vynhpQ0gbhZPUSEF4nQ7mK02UKI7PbtKCxn1LUcuEW6mcH/0uA/U0A==
   dependencies:
     "@babel/core" "^7.7.2"
     "@babel/helper-plugin-utils" "^7.0.0"
     "@types/babel__core" "^7.1.3"
     "@types/schema-utils" "^1.0.0"
     fs-extra "^8.1.0"
-    intl-messageformat-parser "^4.1.0"
+    intl-messageformat-parser "^4.1.1"
     schema-utils "^2.2.0"
 
 babel-plugin-remove-graphql-queries@^2.7.23:
@@ -12221,10 +12221,10 @@ eslint-plugin-prettier@3.1.2:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-react-hooks@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.5.0.tgz#c50ab7ca5945ce6d1cf8248d9e185c80b54171b6"
-  integrity sha512-bzvdX47Jx847bgAYf0FPX3u1oxU+mKU8tqrpj4UX9A96SbAmj/HVEefEy6rJUog5u8QIlOPTKZcBpGn5kkKfAQ==
+eslint-plugin-react-hooks@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-3.0.0.tgz#9e80c71846eb68dd29c3b21d832728aa66e5bd35"
+  integrity sha512-EjxTHxjLKIBWFgDJdhKKzLh5q+vjTFrqNZX36uIxWS4OfyXe5DawqPj3U5qeJ1ngLwatjzQnmR0Lz0J0YH3kxw==
 
 eslint-plugin-react-hooks@^1.7.0:
   version "1.7.0"
@@ -12265,10 +12265,10 @@ eslint-plugin-react@^7.17.0:
     string.prototype.matchall "^4.0.2"
     xregexp "^4.3.0"
 
-eslint-plugin-testing-library@2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-testing-library/-/eslint-plugin-testing-library-2.2.3.tgz#de42d0c07e10578a2edb880c973758e948e7b47d"
-  integrity sha512-pqMTWjBxYv+TnuU3ZzbdUJ0s5p5jSInlk6ly+YnTBNCDy2aLYpnNqeEinYzj1nH8Cthij62ajqzgODg6J25QNA==
+eslint-plugin-testing-library@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-testing-library/-/eslint-plugin-testing-library-3.0.1.tgz#823125cc9fb04a3b4c4c0a4a409ed7cb4356e27c"
+  integrity sha512-Y0vI47eKYsfHVwmVH6JV/vRFnJjIrjQVoPvjtyZFBXCYEkgdKFgR/Ml4yEJ5T8X4GLrjnGjs0oBZKyCNUe/YNg==
 
 eslint-rule-composer@^0.3.0:
   version "0.3.0"
@@ -16159,7 +16159,7 @@ intl-messageformat-parser@^3.2.2, intl-messageformat-parser@^3.6.4:
   dependencies:
     "@formatjs/intl-unified-numberformat" "^3.2.0"
 
-intl-messageformat-parser@^4.1.0:
+intl-messageformat-parser@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-4.1.1.tgz#33a3ac1854a8b9adc18dfc73db018abf91be4c32"
   integrity sha512-RDmhjncV9VOKZ5nkoeeTxVy6G2kV5ZZNtewT89vj7vkr5NAPjw8/q6xYjUxdLnxNbQPcwno6zTD6j9VC0PW+Ag==

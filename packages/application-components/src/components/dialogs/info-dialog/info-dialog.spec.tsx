@@ -42,7 +42,7 @@ describe('rendering', () => {
 
     fireEvent.click(rendered.getByLabelText(/Open Info Dialog/));
     await rendered.findByText(/Lorem ipsus/);
-    expect(rendered.queryByText(/Hello/)).toBeInTheDocument();
+    expect(rendered.getByText(/Hello/)).toBeInTheDocument();
 
     fireEvent.click(rendered.getByLabelText(/Close dialog/));
     expect(rendered.queryByText(/Lorem ipsus/)).not.toBeInTheDocument();

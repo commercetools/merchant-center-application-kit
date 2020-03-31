@@ -692,7 +692,7 @@ describe('when clicking on navbar menu toggle', () => {
     // Get the nav container, to narrow down the search area
     const container = await rendered.findByLeftNavigation();
     const navbarRendered = within(container);
-    expect(navbarRendered.queryByText('Support')).toBeInTheDocument();
+    expect(navbarRendered.getByText('Support')).toBeInTheDocument();
   });
 });
 describe('navbar menu links interactions', () => {

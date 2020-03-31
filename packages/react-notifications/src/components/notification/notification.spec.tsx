@@ -42,7 +42,7 @@ describe('rendering', () => {
   });
 
   it('should render children', () => {
-    expect(rendered.queryByText('Test')).toBeInTheDocument();
+    expect(rendered.getByText('Test')).toBeInTheDocument();
   });
 
   it('should trigger onCloseClick', () => {

@@ -100,7 +100,7 @@ describe('rendering', () => {
     );
     await waitFor(() => {
       expect(
-        rendered.queryByText(
+        rendered.getByText(
           /Your Project is temporarily suspended due to maintenance/
         )
       ).toBeInTheDocument();
