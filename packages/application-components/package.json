@@ -64,8 +64,8 @@
     "react-required-if": "1.0.3"
   },
   "devDependencies": {
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
     "react-intl": "3.4.0"
   },
   "peerDependencies": {
