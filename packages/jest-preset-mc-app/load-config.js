@@ -1,6 +1,6 @@
 const { cosmiconfigSync } = require('cosmiconfig');
 
-const moduleName = 'jest-mc-app';
+const moduleName = 'jest-preset-mc-app';
 const explorer = cosmiconfigSync(moduleName);
 
 const defaultConfig = {
