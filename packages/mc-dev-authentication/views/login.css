@@ -15,6 +15,10 @@ body {
   margin-top: 32px;
 }
 
+body > * + * {
+  margin-top: 32px;
+}
+
 .title {
   width: 355px;
 }
@@ -64,4 +68,11 @@ abbr {
   background-color: red;
   color: #eee;
   padding: 8px;
+  border-radius: 4px;
+}
+
+.info {
+  background-color: #b5e1fd;
+  padding: 8px;
+  border-radius: 4px;
 }
