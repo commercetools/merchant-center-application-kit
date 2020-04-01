@@ -58,6 +58,7 @@
     "shelljs": "0.8.3"
   },
   "peerDependencies": {
-    "@types/react": "16.x"
+    "@types/react": "16.x",
+    "react": ">=16.8.0"
   }
 }
