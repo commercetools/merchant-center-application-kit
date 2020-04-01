@@ -19,18 +19,24 @@ const mergeSilenceConsoleWarnings = createListMergerWithDefaults(
 );
 const mergeNotThrowWarnings = createListMergerWithDefaults('notThrowWarnings');
 
+let cachedConfig;
 const loadConfig = () => {
-  const configFile = explorer.search();
-  if (!configFile || configFile.isEmpty) {
-    return defaultConfig;
+  if (cachedConfig) {
+    return cachedConfig;
   }
-  const customConfig = configFile.config;
-  return {
-    ...defaultConfig,
-    ...customConfig,
-    ...mergeSilenceConsoleWarnings(customConfig),
-    ...mergeNotThrowWarnings(customConfig),
-  };
+  const configFile = explorer.search();
+  if (configFile && configFile.config) {
+    const customConfig = configFile.config;
+    cachedConfig = {
+      ...defaultConfig,
+      ...customConfig,
+      ...mergeSilenceConsoleWarnings(customConfig),
+      ...mergeNotThrowWarnings(customConfig),
+    };
+  } else {
+    cachedConfig = defaultConfig;
+  }
+  return cachedConfig;
 };
 
 module.exports = loadConfig;
