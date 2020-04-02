@@ -43,6 +43,6 @@ module.exports = loadConfig;
 
 function createListMergerWithDefaults(key) {
   return (config) => ({
-    [key]: defaultConfig[key].concat(config[config] || []),
+    [key]: defaultConfig[key].concat(config[key] || []),
   });
 }
