@@ -1295,10 +1295,10 @@
     prop-types "15.7.2"
     tiny-invariant "1.1.0"
 
-"@commercetools-docs/writing-style@2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/writing-style/-/writing-style-2.4.0.tgz#129946f9697c82f8f23a7567308843e8eb700323"
-  integrity sha512-AA+tULxzAs1E/UiAILaciaqBn+tX6bMRrueBRJyOBwp8FuOUChdhMd19o00LBuj/WBLNU8G/L2p8H9Qqi+NR9Q==
+"@commercetools-docs/writing-style@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/writing-style/-/writing-style-2.1.0.tgz#f24a3d9c89f73f898796836531d97665d66a3f9e"
+  integrity sha512-8BKE8FGC6ZamkOA5RuPv0v0Bkspuqz/gthl0zve9TSEMypLUBPEixL5UaXMTENIGpmbo+VjaZE5BfD4WoHTvYA==
   dependencies:
     "7zip-bin" "5.0.3"
     node-fetch "2.6.0"
