@@ -3,6 +3,9 @@ const path = require('path');
 const colors = require('colors/safe');
 const pkgDir = require('pkg-dir');
 const MutationObserver = require('@sheerun/mutationobserver-shim');
+const loadConfig = require('./load-config');
+
+const jestConfig = loadConfig();
 
 global.window.app = {
   applicationName: 'my-app',
@@ -12,16 +15,14 @@ global.window.app = {
 window.MutationObserver = MutationObserver;
 
 const shouldSilenceWarnings = (...messages) =>
-  [
-    /.*Warning: componentWillReceiveProps has been renamed.*/,
-    /.*CellMeasurerCache should only measure a cell's width or height.*/,
-  ].some((msgRegex) => messages.some((msg) => msgRegex.test(msg)));
+  jestConfig.silenceConsoleWarnings.some((msgRegex) =>
+    messages.some((msg) => msgRegex.test(msg))
+  );
 
 const shouldNotThrowWarnings = (...messages) =>
-  [
-    /.*@commercetools-frontend\/permissions.*/,
-    /.*Warning: React.createFactory() is deprecated.*/,
-  ].some((msgRegex) => messages.some((msg) => msgRegex.test(msg)));
+  jestConfig.notThrowWarnings.some((msgRegex) =>
+    messages.some((msg) => msgRegex.test(msg))
+  );
 
 // setup file
 const logOrThrow = (log, method, messages) => {
