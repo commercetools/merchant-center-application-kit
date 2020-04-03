@@ -2,7 +2,7 @@ import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { GraphQLError } from 'graphql';
-import { renderApp, wait as waitFor } from '../../test-utils';
+import { renderApp, waitFor } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import AmILoggedInQuery from './authenticated.mc.graphql';
 import Authenticated, { TProps } from './authenticated';

@@ -21,7 +21,7 @@ import {
   renderApp,
   renderAppWithRedux,
   experimentalRenderAppWithRedux,
-  wait as waitFor,
+  waitFor,
 } from './test-utils';
 
 describe('Intl', () => {

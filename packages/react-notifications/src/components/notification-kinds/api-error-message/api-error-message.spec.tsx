@@ -1,6 +1,6 @@
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { render, wait as waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import ApiErrorMessage from './api-error-message';

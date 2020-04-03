@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { renderApp, wait as waitFor } from '../../test-utils';
+import { renderApp, waitFor } from '../../test-utils';
 import UserQuery from '../fetch-user/fetch-user.mc.graphql';
 import ProjectsQuery from '../project-switcher/project-switcher.mc.graphql';
 import ProjectSuspended from './project-suspended';

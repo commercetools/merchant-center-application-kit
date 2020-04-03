@@ -2,7 +2,7 @@ import React from 'react';
 import { MC_API_PROXY_TARGETS } from '@commercetools-frontend/constants';
 import {
   renderAppWithRedux,
-  wait as waitFor,
+  waitFor,
   fireEvent,
 } from '@commercetools-frontend/application-shell/test-utils';
 import { GtmContext } from '@commercetools-frontend/application-shell';

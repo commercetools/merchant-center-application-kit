@@ -1,12 +1,7 @@
 import React from 'react';
 import { encode } from 'qss';
 import xhrMock from 'xhr-mock';
-import {
-  render,
-  wait as waitFor,
-  fireEvent,
-  within,
-} from '@testing-library/react';
+import { render, waitFor, fireEvent, within } from '@testing-library/react';
 import { AuthenticationError, ApolloError } from 'apollo-server-errors';
 import { useDispatch } from 'react-redux';
 import { createMemoryHistory } from 'history';

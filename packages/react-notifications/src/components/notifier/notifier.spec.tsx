@@ -4,7 +4,7 @@ import React from 'react';
 import {
   render,
   fireEvent,
-  wait as waitFor,
+  waitFor,
   RenderResult,
 } from '@testing-library/react';
 import {
