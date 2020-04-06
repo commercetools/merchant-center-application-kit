@@ -11,8 +11,8 @@
     "start:prod:local": "NODE_ENV=production mc-http-server --headers=$(pwd)/headers.json --config=$(pwd)/env.json --use-local-assets",
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations",
     "deploy": "yarn build && yarn deploy:eu && yarn deploy:us",
-    "deploy:eu": "yarn compile-html:eu && now --local-config=production-eu.now.json --target production",
-    "deploy:us": "yarn compile-html:us && now --local-config=production-us.now.json --target production"
+    "deploy:eu": "yarn compile-html:eu && npx now --local-config=production-gcp-eu.now.json --target production",
+    "deploy:us": "yarn compile-html:us && npx now --local-config=production-gcp-us.now.json --target production"
   },
   "dependencies": {
     "@commercetools-frontend/actions-global": "16.5.3",

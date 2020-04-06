@@ -226,3 +226,9 @@ jobs:
   #         artifact_id: ${{ steps.get_artifact_id.outputs.artifact_id }}
   #       env:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploying Playground application to ZEIT Now
+        #if: github.ref == 'refs/heads/master'
+        run: ./scripts/deploy_playground.sh
+        env:
+          ZEIT_NOW_PLAYGROUND: ${{ secrets.ZEIT_NOW_PLAYGROUND }}

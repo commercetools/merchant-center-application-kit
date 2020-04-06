@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 const regions = {
-  eu: ['bru'],
-  us: ['sfo'],
+  'gcp-eu': ['bru'],
+  'gcp-us': ['sfo'],
 };
 const headersStaticFiles = { 'cache-control': 's-maxage=31536000,immutable' };
 
@@ -15,7 +15,6 @@ module.exports = ({ env, headers }) => {
     version: 2,
     public: true,
     name: `mc-app-state-machines-${environmentKey}`,
-    alias: `mc-app-state-machines-${environmentKey}`,
     regions: regions[env.location],
     builds: [
       { src: 'public/**', use: '@now/static' },

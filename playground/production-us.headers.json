@@ -1,7 +1,11 @@
 {
   "csp": {
-    "script-src": ["mc-app-state-machines-production-us.now.sh"],
-    "connect-src": ["mc-app-state-machines-production-us.now.sh"],
-    "style-src": ["mc-app-state-machines-production-us.now.sh"]
+    "script-src": ["mc-app-state-machines-production-gcp-us.now.sh"],
+    "connect-src": [
+      "mc-app-state-machines-production-gcp-us.now.sh",
+      "mc-api.us-central1.gcp.commercetools.com",
+      "mc-api.commercetools.co"
+    ],
+    "style-src": ["mc-app-state-machines-production-gcp-us.now.sh"]
   }
 }
