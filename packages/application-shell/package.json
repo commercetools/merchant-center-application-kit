@@ -41,7 +41,7 @@
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
   },
   "dependencies": {
-    "@apollo/react-testing": "3.1.3",
+    "@apollo/react-testing": "3.1.4",
     "@commercetools-frontend/actions-global": "16.5.3",
     "@commercetools-frontend/application-components": "16.5.3",
     "@commercetools-frontend/application-shell-connectors": "16.5.3",
@@ -69,7 +69,7 @@
     "@flopflip/launchdarkly-adapter": "2.13.0",
     "@flopflip/memory-adapter": "1.7.0",
     "@flopflip/react-broadcast": "10.1.13",
-    "@sentry/browser": "5.13.0",
+    "@sentry/browser": "5.15.4",
     "@types/classnames": "^2.2.9",
     "@types/common-tags": "^1.8.0",
     "@types/graphql": "^14.5.0",
@@ -90,7 +90,7 @@
     "common-tags": "1.8.0",
     "debounce-async": "0.0.2",
     "downshift": "^5.0.0",
-    "fuse.js": "3.4.6",
+    "fuse.js": "3.6.1",
     "graphql": "14.6.0",
     "graphql-tag": "^2.10.3",
     "history": "4.10.1",
@@ -110,12 +110,12 @@
     "redux-thunk": "2.3.0",
     "tiny-invariant": "1.1.0",
     "unfetch": "4.1.0",
-    "uuid": "7.0.1"
+    "uuid": "7.0.3"
   },
   "devDependencies": {
     "@testing-library/react": "10.0.2",
     "react": "16.13.1",
-    "react-apollo": "3.1.3",
+    "react-apollo": "3.1.4",
     "react-dom": "16.13.1",
     "react-intl": "3.4.0",
     "react-redux": "7.2.0",
