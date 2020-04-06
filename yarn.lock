@@ -1228,13 +1228,13 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-docs/gatsby-theme-docs@2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-2.4.0.tgz#9d1547a45cd082921f626d819ba203cb6170446f"
-  integrity sha512-vBezm70fJ8brDeFZak/YFhy0Ywrx+Ll5HL/hkQNBB3e/U7dfL+LOkE/LEWYDHgOm9MCSjrIipHIcgpBjk9m+vA==
+"@commercetools-docs/gatsby-theme-docs@2.4.1-canary.1":
+  version "2.4.1-canary.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-2.4.1-canary.1.tgz#dd29b0339546246bf2063d68d5f9f0fdf723e222"
+  integrity sha512-AgEWJw15A8P0GEmxVpctJZp3Bl/n1rE7AWCxg1/zHzkowcBUQIsMfU9c5E9Slctx/zngcgJdpqkVN3ujt+mxwA==
   dependencies:
-    "@commercetools-docs/gatsby-transformer-code-examples" "2.1.0"
-    "@commercetools-docs/ui-kit" "2.3.0"
+    "@commercetools-docs/gatsby-transformer-code-examples" "2.4.1-canary.1+b9f5504"
+    "@commercetools-docs/ui-kit" "2.4.1-canary.1+b9f5504"
     "@commercetools-uikit/card" "10.13.0"
     "@commercetools-uikit/design-system" "10.13.0"
     "@commercetools-uikit/icon-button" "10.13.0"
@@ -1276,15 +1276,15 @@
     rehype-slug "3.0.0"
     remark-emoji "2.0.2"
 
-"@commercetools-docs/gatsby-transformer-code-examples@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-transformer-code-examples/-/gatsby-transformer-code-examples-2.1.0.tgz#f047ad8f6b75b4cd6dee2718bcb833ce3431f296"
-  integrity sha512-bFkG32sdmmI73zv6mBzEtZFhao6AU2WYFjFl1qwoKtlcUOFvGv6yowDTGvhdmgCQbxcIVWf7vk9w/Sfp0ANO+w==
+"@commercetools-docs/gatsby-transformer-code-examples@2.4.1-canary.1+b9f5504":
+  version "2.4.1-canary.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-transformer-code-examples/-/gatsby-transformer-code-examples-2.4.1-canary.1.tgz#fa5666b03a89b8707f27bffd14dcf9f843c953b7"
+  integrity sha512-6bJ6B1+xEeeSHVrGjn1JPHqyvppXOS0/nVaMxBlUYQ0r1JWzpDznfA9X+RMXtq5rm1oI7TPa55CWpmWG9+W9Lg==
 
-"@commercetools-docs/ui-kit@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-2.3.0.tgz#e76c927131495793626456fc3b64bb81c6b770ca"
-  integrity sha512-yXgsMztKgWnWE1rphEVNNrAwmaxG7hH4lBNNwaKPBRra/i4OkKv/cKwLkw1YSH26O5XY4EaeWLSCjfnRFS7PDg==
+"@commercetools-docs/ui-kit@2.4.1-canary.1", "@commercetools-docs/ui-kit@2.4.1-canary.1+b9f5504":
+  version "2.4.1-canary.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-2.4.1-canary.1.tgz#1ffab2aa503bc1e8055994335b4c58fc0a299cff"
+  integrity sha512-IjujmyrThsJ6viUhIyQWniOiAg5aPOQVruDziOVjE4l/GpIx7UcXXIlru4xenPZpZ9iPoI7NV4kYeOZjX0i+Rg==
   dependencies:
     "@commercetools-uikit/tooltip" "10.13.0"
     lodash.escape "4.0.1"
