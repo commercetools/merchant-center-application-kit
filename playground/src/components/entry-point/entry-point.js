@@ -31,15 +31,17 @@ export const ApplicationStateMachines = () => (
         </Text.Body>
       )}
     />
-    {/* For development, it's useful to redirect to the actual
+    {
+      /* For development, it's useful to redirect to the actual
       application routes when you open the browser at http://localhost:3001 */
-    process.env.NODE_ENV === 'production' ? null : (
-      <Redirect
-        exact={true}
-        from="/:projectKey"
-        to="/:projectKey/state-machines"
-      />
-    )}
+      process.env.NODE_ENV === 'production' ? null : (
+        <Redirect
+          exact={true}
+          from="/:projectKey"
+          to="/:projectKey/state-machines"
+        />
+      )
+    }
     <Route path="/:projectKey/state-machines" component={AsyncStateMachines} />
     {/* Catch-all route */}
     <RouteCatchAll />
