@@ -21,8 +21,9 @@ type ApolloContext = {
 export const getDoesGraphQLTargetSupportTokenRetry = (
   requestHeaders: ApolloContext['headers']
 ) => {
-  const target = (requestHeaders['X-Graphql-Target'] ||
-    requestHeaders['x-graphql-target']) as TokenRetryGraphQlTarget;
+  const target =
+    (requestHeaders['X-Graphql-Target'] ||
+      requestHeaders['x-graphql-target']) as TokenRetryGraphQlTarget;
   return [
     GRAPHQL_TARGETS.COMMERCETOOLS_PLATFORM,
     GRAPHQL_TARGETS.ADMINISTRATION_SERVICE,

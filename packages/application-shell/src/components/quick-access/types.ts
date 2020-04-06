@@ -2,9 +2,10 @@ import { DocumentNode } from 'graphql';
 import { ApolloQueryResult } from 'apollo-client';
 import { OperationVariables } from '@apollo/react-common';
 
-export const actionTypes = {
-  go: 'go',
-} as const;
+export const actionTypes =
+  {
+    go: 'go',
+  } as const;
 
 export type ActionAsFn = () => void;
 export type SubCommandAsFn = (
