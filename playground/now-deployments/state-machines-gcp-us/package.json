@@ -1,0 +1,6 @@
+{
+  "name": "state-machines-gcp-us",
+  "scripts": {
+    "deploy": "npx now --prod --scope=commercetools-playground --local-config=production-gcp-us.now.json --confirm --no-clipboard"
+  }
+}
