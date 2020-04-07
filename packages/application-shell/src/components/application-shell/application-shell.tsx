@@ -531,8 +531,9 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
 
   const coercedEnvironmentValues = React.useMemo(
     () =>
-      shallowlyCoerceValues(props.environment) as
-      Props<AdditionalEnvironmentProperties>['environment'],
+      shallowlyCoerceValues(props.environment) as Props<
+        AdditionalEnvironmentProperties
+      >['environment'],
     [props.environment]
   );
 

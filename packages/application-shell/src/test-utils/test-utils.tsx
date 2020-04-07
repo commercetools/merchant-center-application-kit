@@ -346,11 +346,10 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
           allAppliedActionRights: denormalizeActionRights(actionRights),
           allAppliedDataFences: denormalizeDataFences(dataFences),
         };
-  const mergedEnvironment =
-    {
-      ...defaultEnvironment,
-      ...environment,
-    } as TProviderProps<AdditionalEnvironmentProperties>['environment'];
+  const mergedEnvironment = {
+    ...defaultEnvironment,
+    ...environment,
+  } as TProviderProps<AdditionalEnvironmentProperties>['environment'];
 
   const ApplicationProviders = (props: TApplicationProvidersProps) => (
     <IntlProvider locale={locale}>

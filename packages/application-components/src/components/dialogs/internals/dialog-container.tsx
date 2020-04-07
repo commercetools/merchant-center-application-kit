@@ -23,8 +23,9 @@ import { getModalOverlayStyles, getModalContentStyles } from './dialog.styles';
 const getDefaultParentSelector = () =>
   process.env.NODE_ENV === 'test'
     ? document.body
-    : (document.querySelector<HTMLElement>(`#${PORTALS_CONTAINER_ID}`) as
-      HTMLElement);
+    : (document.querySelector<HTMLElement>(
+        `#${PORTALS_CONTAINER_ID}`
+      ) as HTMLElement);
 
 type Props = {
   isOpen: boolean;

@@ -162,9 +162,7 @@ const NotificationsListPage = (props: Props) => {
                 key={notification.id}
                 notification={{
                   ...errorNotification,
-                  values:
-                    notification.values as
-                    TAppNotificationValuesUnexpectedError,
+                  values: notification.values as TAppNotificationValuesUnexpectedError,
                 }}
                 dismiss={() => {
                   dispatch(removeNotification(notification.id));

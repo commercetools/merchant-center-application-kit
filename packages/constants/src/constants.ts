@@ -11,36 +11,32 @@ export const HIDE_LOADING = 'HIDE_LOADING';
 export const HIDE_ALL_PAGE_NOTIFICATIONS = 'HIDE_ALL_PAGE_NOTIFICATIONS';
 
 // Notifications
-export const NOTIFICATION_DOMAINS =
-  {
-    GLOBAL: 'global',
-    PAGE: 'page',
-    SIDE: 'side',
-  } as const;
-export const NOTIFICATION_KINDS_SIDE =
-  {
-    error: 'error',
-    warning: 'warning',
-    info: 'info',
-    success: 'success',
-  } as const;
-export const NOTIFICATION_KINDS_GLOBAL =
-  {
-    error: 'error',
-    warning: 'warning',
-    info: 'info',
-    success: 'success',
-    'unexpected-error': 'unexpected-error',
-  } as const;
-export const NOTIFICATION_KINDS_PAGE =
-  {
-    error: 'error',
-    warning: 'warning',
-    info: 'info',
-    success: 'success',
-    'unexpected-error': 'unexpected-error',
-    'api-error': 'api-error',
-  } as const;
+export const NOTIFICATION_DOMAINS = {
+  GLOBAL: 'global',
+  PAGE: 'page',
+  SIDE: 'side',
+} as const;
+export const NOTIFICATION_KINDS_SIDE = {
+  error: 'error',
+  warning: 'warning',
+  info: 'info',
+  success: 'success',
+} as const;
+export const NOTIFICATION_KINDS_GLOBAL = {
+  error: 'error',
+  warning: 'warning',
+  info: 'info',
+  success: 'success',
+  'unexpected-error': 'unexpected-error',
+} as const;
+export const NOTIFICATION_KINDS_PAGE = {
+  error: 'error',
+  warning: 'warning',
+  info: 'info',
+  success: 'success',
+  'unexpected-error': 'unexpected-error',
+  'api-error': 'api-error',
+} as const;
 export type TAppNotificationDomain = typeof NOTIFICATION_DOMAINS[keyof typeof NOTIFICATION_DOMAINS];
 // Alias to `NOTIFICATION_DOMAINS` for backwards compatibility
 export const DOMAINS = NOTIFICATION_DOMAINS;
@@ -102,43 +98,39 @@ export type TAppNotificationSide = TAppNotification<{
 export const NO_VALUE_FALLBACK = '- - - -';
 
 // HTTP requests and responses
-export const STATUS_CODES =
-  {
-    UNAUTHORIZED: 401,
-    FORBIDDEN: 403,
-    UNAUTHENTICATED: 299,
-    NOT_FOUND: 404,
-  } as const;
+export const STATUS_CODES = {
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  UNAUTHENTICATED: 299,
+  NOT_FOUND: 404,
+} as const;
 export type TStatusCode = typeof STATUS_CODES[keyof typeof STATUS_CODES];
 
-export const LOGOUT_REASONS =
-  {
-    USER: 'user',
-    UNAUTHORIZED: 'unauthorized',
-    INVALID: 'invalid',
-    DELETED: 'deleted',
-    NO_PROJECTS: 'no-projects',
-  } as const;
+export const LOGOUT_REASONS = {
+  USER: 'user',
+  UNAUTHORIZED: 'unauthorized',
+  INVALID: 'invalid',
+  DELETED: 'deleted',
+  NO_PROJECTS: 'no-projects',
+} as const;
 export type TLogoutReason = typeof LOGOUT_REASONS[keyof typeof LOGOUT_REASONS];
 
-export const GRAPHQL_TARGETS =
-  {
-    MERCHANT_CENTER_BACKEND: 'mc',
-    COMMERCETOOLS_PLATFORM: 'ctp',
-    DASHBOARD_SERVICE: 'dashboard',
-    PIM_INDEXER: 'pim-indexer',
-    SETTINGS_SERVICE: 'settings',
-    ADMINISTRATION_SERVICE: 'administration',
-  } as const;
+export const GRAPHQL_TARGETS = {
+  MERCHANT_CENTER_BACKEND: 'mc',
+  COMMERCETOOLS_PLATFORM: 'ctp',
+  DASHBOARD_SERVICE: 'dashboard',
+  PIM_INDEXER: 'pim-indexer',
+  SETTINGS_SERVICE: 'settings',
+  ADMINISTRATION_SERVICE: 'administration',
+} as const;
 export type TGraphQLTargets = typeof GRAPHQL_TARGETS[keyof typeof GRAPHQL_TARGETS];
 
-export const MC_API_PROXY_TARGETS =
-  {
-    COMMERCETOOLS_PLATFORM: 'ctp',
-    MACHINE_LEARNING: 'ml',
-    PIM_SEARCH: 'pim-search',
-    MC_METRICS: 'mc-metrics',
-  } as const;
+export const MC_API_PROXY_TARGETS = {
+  COMMERCETOOLS_PLATFORM: 'ctp',
+  MACHINE_LEARNING: 'ml',
+  PIM_SEARCH: 'pim-search',
+  MC_METRICS: 'mc-metrics',
+} as const;
 export type TMcApiProxyTargets = typeof MC_API_PROXY_TARGETS[keyof typeof MC_API_PROXY_TARGETS];
 
 // Global application environment on window object
