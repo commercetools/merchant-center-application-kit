@@ -6,13 +6,10 @@
   "scripts": {
     "build": "mc-scripts build",
     "start": "mc-scripts start",
-    "compile-html:eu": "mc-scripts compile-html --headers=$(pwd)/production-eu.headers.json --config=$(pwd)/production-eu.env.json --use-local-assets --transformer $(pwd)/config/transformer-now.js",
-    "compile-html:us": "mc-scripts compile-html --headers=$(pwd)/production-us.headers.json --config=$(pwd)/production-us.env.json --use-local-assets --transformer $(pwd)/config/transformer-now.js",
+    "compile-html:gcp-eu": "mc-scripts compile-html --headers=$(pwd)/now-deployments/state-machines-gcp-eu/production-gcp-eu.headers.json --config=$(pwd)/now-deployments/state-machines-gcp-eu/production-gcp-eu.env.json --use-local-assets --transformer $(pwd)/config/transformer-now.js",
+    "compile-html:gcp-us": "mc-scripts compile-html --headers=$(pwd)/now-deployments/state-machines-gcp-us/production-gcp-us.headers.json --config=$(pwd)/now-deployments/state-machines-gcp-us/production-gcp-us.env.json --use-local-assets --transformer $(pwd)/config/transformer-now.js",
     "start:prod:local": "NODE_ENV=production mc-http-server --headers=$(pwd)/headers.json --config=$(pwd)/env.json --use-local-assets",
-    "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations",
-    "deploy": "yarn build && yarn deploy:eu && yarn deploy:us",
-    "deploy:eu": "yarn compile-html:eu && npx now --local-config=production-gcp-eu.now.json --target production",
-    "deploy:us": "yarn compile-html:us && npx now --local-config=production-gcp-us.now.json --target production"
+    "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations"
   },
   "dependencies": {
     "@commercetools-frontend/actions-global": "16.5.3",

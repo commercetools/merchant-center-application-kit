@@ -1,0 +1,15 @@
+{
+  "csp": {
+    "script-src": [
+      "state-machines-gcp-eu.commercetools-playground.now.sh"
+    ],
+    "connect-src": [
+      "state-machines-gcp-eu.commercetools-playground.now.sh",
+      "mc-api.europe-west1.gcp.commercetools.com",
+      "mc-api.commercetools.com"
+    ],
+    "style-src": [
+      "state-machines-gcp-eu.commercetools-playground.now.sh"
+    ]
+  }
+}

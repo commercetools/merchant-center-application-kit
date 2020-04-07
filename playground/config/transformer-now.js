@@ -14,11 +14,10 @@ module.exports = ({ env, headers }) => {
   const config = {
     version: 2,
     public: true,
-    name: `mc-app-state-machines-${environmentKey}`,
     regions: regions[env.location],
     builds: [
       { src: 'public/**', use: '@now/static' },
-      { src: 'config/fallback-route.js', use: '@now/node' },
+      { src: 'routes/fallback.js', use: '@now/node' },
     ],
     routes: [
       {
@@ -26,7 +25,7 @@ module.exports = ({ env, headers }) => {
         dest: '/public/$1.$2',
         headers: headersStaticFiles,
       },
-      { src: '/(login|logout)', dest: '/config/fallback-route.js' },
+      { src: '/(login|logout)', dest: '/routes/fallback.js' },
       {
         src: '/(.*)',
         // eslint-disable-next-line
@@ -36,7 +35,10 @@ module.exports = ({ env, headers }) => {
     ],
   };
   fs.writeFileSync(
-    path.join(__dirname, `../${environmentKey}.now.json`),
+    path.join(
+      __dirname,
+      `../now-deployments/state-machines-${env.location}/${environmentKey}.now.json`
+    ),
     JSON.stringify(config, null, 2),
     { encoding: 'utf8' }
   );
