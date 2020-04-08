@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@commercetools-frontend/constants": "16.3.3",
-    "@commercetools/api-request-builder": "5.5.0",
+    "@commercetools/api-request-builder": "5.6.0",
     "@commercetools/http-user-agent": "2.1.2",
     "@commercetools/sdk-client": "2.1.2",
     "@commercetools/sdk-middleware-correlation-id": "2.1.4",
@@ -55,12 +55,12 @@
     "unfetch": "4.1.0"
   },
   "devDependencies": {
-    "@types/uuid": "7.0.0",
+    "@types/uuid": "7.0.2",
     "react": "16.13.1",
     "react-redux": "7.2.0",
     "redux": "4.0.5",
     "redux-thunk": "2.3.0",
-    "uuid": "7.0.1"
+    "uuid": "7.0.3"
   },
   "peerDependencies": {
     "@types/react": "16.x",

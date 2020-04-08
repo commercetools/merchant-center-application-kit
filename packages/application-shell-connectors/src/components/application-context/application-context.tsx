@@ -177,8 +177,9 @@ const ApplicationContext = <AdditionalEnvironmentProperties extends {}>(
       // we ensure that, when we read from the context, we always get actual
       // context object and not the initial value.
       // Therefore, we can safely cast the value to be out `TApplicationContext` type.
-      const applicationContext =
-        context as TApplicationContext<AdditionalEnvironmentProperties>;
+      const applicationContext = context as TApplicationContext<
+        AdditionalEnvironmentProperties
+      >;
       return props.render(applicationContext);
     }}
   </Context.Consumer>
@@ -245,8 +246,9 @@ function useApplicationContextHook<
   // we ensure that, when we read from the context, we always get actual
   // context object and not the initial value.
   // Therefore, we can safely cast the value to be out `TApplicationContext` type.
-  const applicationContext =
-    context as TApplicationContext<AdditionalEnvironmentProperties>;
+  const applicationContext = context as TApplicationContext<
+    AdditionalEnvironmentProperties
+  >;
   return selector ? selector(applicationContext) : applicationContext;
 }
 
