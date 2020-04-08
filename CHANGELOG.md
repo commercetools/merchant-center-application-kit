@@ -1,3 +1,35 @@
+## [16.6.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.5.3...v16.6.0) (2020-04-08)
+
+#### 🐛 Type: Bug
+
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `i18n`, `l10n`, `permissions`, `react-notifications`, `sdk`, `sentry`
+  - [#1424](https://github.com/commercetools/merchant-center-application-kit/pull/1424) fix(l18n): react to only be peer dependency ([@tdeekens](https://github.com/tdeekens))
+
+#### 🚀 Type: New Feature
+
+- `jest-preset-mc-app`
+  - [#1423](https://github.com/commercetools/merchant-center-application-kit/pull/1423) feat(jest-preset): allow to configure jest preset ([@emmenko](https://github.com/emmenko))
+
+#### 🖥 Type: Website
+
+- `mc-dev-authentication`
+  - [#1422](https://github.com/commercetools/merchant-center-application-kit/pull/1422) docs(website): mention that dev login with SSO is currently not supported ([@emmenko](https://github.com/emmenko))
+- Other
+  - [#1418](https://github.com/commercetools/merchant-center-application-kit/pull/1418) docs(website): mention limitations of forward-to proxy endpoint ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `application-components`, `application-shell-connectors`, `application-shell`, `constants`, `create-mc-app`, `mc-scripts`, `react-notifications`, `sdk`
+  - [#1430](https://github.com/commercetools/merchant-center-application-kit/pull/1430) chore: update deps (among flopflip) ([@tdeekens](https://github.com/tdeekens))
+- `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `constants`, `create-mc-app`, `jest-preset-mc-app`, `mc-http-server`, `mc-scripts`, `react-notifications`, `sdk`, `sentry`
+  - [#1428](https://github.com/commercetools/merchant-center-application-kit/pull/1428) chore: update rollup among other deps ([@tdeekens](https://github.com/tdeekens))
+- Other
+  - [#1425](https://github.com/commercetools/merchant-center-application-kit/pull/1425) chore(website): update to theme 2.4.0 ([@emmenko](https://github.com/emmenko))
+- `application-shell-connectors`, `application-shell`, `i18n`, `jest-preset-mc-app`, `react-notifications`
+  - [#1399](https://github.com/commercetools/merchant-center-application-kit/pull/1399) chore: update testing-library/react to v10 ([@tdeekens](https://github.com/tdeekens))
+- `application-components`, `application-shell-connectors`, `application-shell`, `mc-scripts`, `permissions`, `react-notifications`
+  - [#1419](https://github.com/commercetools/merchant-center-application-kit/pull/1419) chore(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [16.5.3](https://github.com/commercetools/merchant-center-application-kit/compare/v16.5.2...v16.5.3) (2020-03-27)
 
 #### 🐛 Type: Bug
