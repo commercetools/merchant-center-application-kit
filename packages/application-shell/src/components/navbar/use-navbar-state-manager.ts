@@ -34,10 +34,33 @@ type Action =
   | { type: 'setIsMenuOpenAndMakeExpanderVisible'; payload: boolean }
   | { type: 'reset' };
 
+const cachedIsForcedMenuOpen = window.localStorage.getItem(
+  STORAGE_KEYS.IS_FORCED_MENU_OPEN
+);
+
+const getShouldInitiallyOpen = (): boolean => {
+  if (!isNil(cachedIsForcedMenuOpen)) {
+    return (
+      typeof cachedIsForcedMenuOpen === 'string' &&
+      cachedIsForcedMenuOpen === 'true'
+    );
+  }
+  return false;
+};
+
+const shouldBeInitiallyOpen: boolean = getShouldInitiallyOpen();
+
+// GIVEN user has `STORAGE_KEYS.IS_FORCED_MENU_OPEN=true`
+// THEN update the DOM immediately and not defer that to the reducer
+// this is done to avoid the flickering experience of the menu once the user loads the application
+if (shouldBeInitiallyOpen) {
+  document.body.classList.add('body__menu-open');
+}
 const initialState = {
   isExpanderVisible: true,
-  isMenuOpen: false,
+  isMenuOpen: shouldBeInitiallyOpen,
 };
+
 const reducer = (state = initialState, action: Action): State => {
   switch (action.type) {
     case 'setActiveItemIndex':
@@ -117,9 +140,6 @@ const useNavbarStateManager = (props: HookProps) => {
           })
           .filter(nonNullable)
       : [];
-  const cachedIsForcedMenuOpen = window.localStorage.getItem(
-    STORAGE_KEYS.IS_FORCED_MENU_OPEN
-  );
   const isForcedMenuOpen =
     typeof cachedIsForcedMenuOpen === 'string'
       ? cachedIsForcedMenuOpen === 'true'
