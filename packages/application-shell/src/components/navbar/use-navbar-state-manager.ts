@@ -40,10 +40,7 @@ const cachedIsForcedMenuOpen = window.localStorage.getItem(
 
 const getShouldInitiallyOpen = (): boolean => {
   if (!isNil(cachedIsForcedMenuOpen)) {
-    return (
-      typeof cachedIsForcedMenuOpen === 'string' &&
-      cachedIsForcedMenuOpen === 'true'
-    );
+    return JSON.parse(cachedIsForcedMenuOpen);
   }
   return false;
 };
