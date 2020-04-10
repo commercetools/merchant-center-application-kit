@@ -350,6 +350,7 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
     ...defaultEnvironment,
     ...environment,
   } as TProviderProps<AdditionalEnvironmentProperties>['environment'];
+  const hasFlags = flags && Object.keys(flags).length > 0;
 
   const ApplicationProviders = (props: TApplicationProvidersProps) => (
     <IntlProvider locale={locale}>
@@ -358,6 +359,7 @@ function renderApp<AdditionalEnvironmentProperties = {}>(
           adapter={adapter}
           defaultFlags={flags}
           adapterArgs={defaultFlopflipAdapterArgs}
+          shouldDeferAdapterConfiguration={!hasFlags}
         >
           <ApplicationContextProvider
             user={mergedUser}
