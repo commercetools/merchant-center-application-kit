@@ -50,7 +50,7 @@
     "@types/prop-types": "^15.7.3",
     "apollo-cache-inmemory": "1.6.5",
     "apollo-client": "2.6.8",
-    "apollo-link-http": "1.5.16",
+    "apollo-link-http": "1.5.17",
     "graphql": "14.6.0",
     "graphql-tag": "^2.10.3",
     "lodash": "4.17.15",
