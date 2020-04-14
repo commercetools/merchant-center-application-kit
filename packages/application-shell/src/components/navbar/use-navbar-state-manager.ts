@@ -34,18 +34,29 @@ type Action =
   | { type: 'setIsMenuOpenAndMakeExpanderVisible'; payload: boolean }
   | { type: 'reset' };
 
+type CachedIsMenuOpenState = string | null;
+
+const initialState = {
+  isExpanderVisible: true,
+  isMenuOpen: false,
+};
+
 const cachedIsForcedMenuOpen = window.localStorage.getItem(
   STORAGE_KEYS.IS_FORCED_MENU_OPEN
 );
 
-const getShouldInitiallyOpen = (): boolean => {
-  if (!isNil(cachedIsForcedMenuOpen)) {
-    return JSON.parse(cachedIsForcedMenuOpen);
+const getShouldInitiallyOpen = (
+  cachedIsMenuOpen: CachedIsMenuOpenState
+): boolean => {
+  if (!isNil(cachedIsMenuOpen)) {
+    return JSON.parse(cachedIsMenuOpen);
   }
   return false;
 };
 
-const shouldBeInitiallyOpen: boolean = getShouldInitiallyOpen();
+const shouldBeInitiallyOpen: boolean = getShouldInitiallyOpen(
+  cachedIsForcedMenuOpen
+);
 
 // GIVEN user has `STORAGE_KEYS.IS_FORCED_MENU_OPEN=true`
 // THEN update the DOM immediately and not defer that to the reducer
@@ -53,10 +64,11 @@ const shouldBeInitiallyOpen: boolean = getShouldInitiallyOpen();
 if (shouldBeInitiallyOpen) {
   document.body.classList.add('body__menu-open');
 }
-const initialState = {
-  isExpanderVisible: true,
-  isMenuOpen: shouldBeInitiallyOpen,
-};
+
+const getInitialState = (cachedIsMenuOpen: CachedIsMenuOpenState): State => ({
+  ...initialState,
+  isMenuOpen: getShouldInitiallyOpen(cachedIsMenuOpen),
+});
 
 const reducer = (state = initialState, action: Action): State => {
   switch (action.type) {
@@ -144,7 +156,7 @@ const useNavbarStateManager = (props: HookProps) => {
 
   const [state, dispatch] = React.useReducer<
     (prevState: State, action: Action) => State
-  >(reducer, initialState);
+  >(reducer, getInitialState(cachedIsForcedMenuOpen));
 
   const checkSize = React.useCallback(
     throttle(() => {
