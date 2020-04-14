@@ -34,11 +34,12 @@ type Action =
   | { type: 'setIsMenuOpenAndMakeExpanderVisible'; payload: boolean }
   | { type: 'reset' };
 
-const initialState = {
+const getInitialState = (isForcedMenuOpen: boolean | null): State => ({
   isExpanderVisible: true,
-  isMenuOpen: false,
-};
-const reducer = (state = initialState, action: Action): State => {
+  isMenuOpen: isNil(isForcedMenuOpen) ? false : isForcedMenuOpen,
+});
+
+const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'setActiveItemIndex':
       return { ...state, activeItemIndex: action.payload };
@@ -120,14 +121,13 @@ const useNavbarStateManager = (props: HookProps) => {
   const cachedIsForcedMenuOpen = window.localStorage.getItem(
     STORAGE_KEYS.IS_FORCED_MENU_OPEN
   );
-  const isForcedMenuOpen =
-    typeof cachedIsForcedMenuOpen === 'string'
-      ? cachedIsForcedMenuOpen === 'true'
-      : null;
+  const isForcedMenuOpen = isNil(cachedIsForcedMenuOpen)
+    ? null
+    : (JSON.parse(cachedIsForcedMenuOpen) as boolean);
 
   const [state, dispatch] = React.useReducer<
     (prevState: State, action: Action) => State
-  >(reducer, initialState);
+  >(reducer, getInitialState(isForcedMenuOpen));
 
   const checkSize = React.useCallback(
     throttle(() => {
@@ -199,7 +199,7 @@ const useNavbarStateManager = (props: HookProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // <-- run this only once!!
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (state.isMenuOpen) document.body.classList.add('body__menu-open');
     if (!state.isMenuOpen) document.body.classList.remove('body__menu-open');
   }, [state.isMenuOpen]);
