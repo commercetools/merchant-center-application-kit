@@ -50,6 +50,7 @@ import { GtmContext } from '../gtm-booter';
 import LoadingPlaceholder from '../loading-placeholder';
 import styles from './navbar.mod.css';
 import messages from './messages';
+import useInitialForcedMenuState from './use-initial-forced-menu-state';
 import useNavbarStateManager from './use-navbar-state-manager';
 import nonNullable from './non-nullable';
 
@@ -644,6 +645,7 @@ export default NavBar;
 
 export const LoadingNavBar = () => {
   const ref = React.useRef<HTMLDivElement>(null);
+  useInitialForcedMenuState();
   return (
     <NavBarLayout ref={ref}>
       <MenuGroup id="main" level={1}>
