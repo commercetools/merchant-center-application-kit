@@ -2,7 +2,7 @@ import React from 'react';
 import isNil from 'lodash/isNil';
 import { STORAGE_KEYS } from '../../constants';
 
-const useInitialForcedMenuState = () => {
+const useLoadingMenuLayoutEffect = () => {
   const cachedIsForcedMenuOpen = window.localStorage.getItem(
     STORAGE_KEYS.IS_FORCED_MENU_OPEN
   );
@@ -15,4 +15,4 @@ const useInitialForcedMenuState = () => {
   }, [isForcedMenuOpen]);
 };
 
-export default useInitialForcedMenuState;
+export default useLoadingMenuLayoutEffect;
