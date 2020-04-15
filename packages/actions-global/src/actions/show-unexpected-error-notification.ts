@@ -1,8 +1,7 @@
-import {
-  DOMAINS,
-  TAppNotificationValuesUnexpectedError,
-} from '@commercetools-frontend/constants';
-import { TUnexpectedErrorNotification } from '../types';
+import type { TAppNotificationValuesUnexpectedError } from '@commercetools-frontend/constants';
+import type { TUnexpectedErrorNotification } from '../types';
+
+import { DOMAINS } from '@commercetools-frontend/constants';
 import showNotification from './show-notification';
 
 export default function showUnexpectedErrorNotification({
