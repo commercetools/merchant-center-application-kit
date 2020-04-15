@@ -1,6 +1,7 @@
-import { Dispatch } from 'redux';
+import type { Dispatch } from 'redux';
+import type { TSdkAction } from '../types';
+
 import { useDispatch } from 'react-redux';
-import { TSdkAction } from '../types';
 
 // Wraps `dispatch` and cast the return type to a Promise, as the middleware
 // returns a Promise.

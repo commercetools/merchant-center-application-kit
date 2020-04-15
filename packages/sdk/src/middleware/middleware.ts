@@ -1,17 +1,18 @@
-import { Action, Dispatch, MiddlewareAPI } from 'redux';
+import type { Action, Dispatch, MiddlewareAPI } from 'redux';
+import type { HttpErrorType } from '@commercetools/sdk-client';
+import type {
+  TSdkAction,
+  TSdkActionPayload,
+  TSdkActionPayloadForUri,
+} from '../types';
+
 import { createRequestBuilder } from '@commercetools/api-request-builder';
-import { HttpErrorType } from '@commercetools/sdk-client';
 import {
   SHOW_LOADING,
   HIDE_LOADING,
   STATUS_CODES,
 } from '@commercetools-frontend/constants';
 import { logRequest } from '../utils';
-import {
-  TSdkAction,
-  TSdkActionPayload,
-  TSdkActionPayloadForUri,
-} from '../types';
 import createClient from './client';
 
 const isSdkActionForUri = (

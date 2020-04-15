@@ -1,9 +1,12 @@
+import type { ShallowWrapper } from 'enzyme';
+import type { Props } from './sdk-get';
+import type { Json } from '../../types';
+
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { shallow } from 'enzyme';
 import * as sdkActions from '../../actions';
-import { SdkGet, Props } from './sdk-get';
-import { Json } from '../../types';
+import { SdkGet } from './sdk-get';
 
 const createTestProps = (custom: Partial<Props> = {}) => ({
   dispatch: jest.fn(() => Promise.resolve({})),

@@ -1,11 +1,12 @@
+import type { SuccessResult, ClientRequest } from '@commercetools/sdk-client';
+import type { Json, TSdkAction } from '../types';
+
 import { mocked } from 'ts-jest/utils';
 import {
   SHOW_LOADING,
   HIDE_LOADING,
   MC_API_PROXY_TARGETS,
 } from '@commercetools-frontend/constants';
-import { SuccessResult, ClientRequest } from '@commercetools/sdk-client';
-import { Json, TSdkAction } from '../types';
 import * as sdkActions from '../actions';
 import createMiddleware from './middleware';
 import createClient from './client';

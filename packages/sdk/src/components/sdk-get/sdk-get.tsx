@@ -1,9 +1,10 @@
+import type { ThunkDispatch } from 'redux-thunk';
+import type { SuccessResult, HttpErrorType } from '@commercetools/sdk-client';
+import type { TSdkAction } from '../../types';
+
 import React from 'react';
 import { connect } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
 import { deepEqual } from 'fast-equals';
-import { SuccessResult, HttpErrorType } from '@commercetools/sdk-client';
-import { TSdkAction } from '../../types';
 
 type TSdkError = Error | HttpErrorType;
 type TActionCreatorArgs = unknown[];

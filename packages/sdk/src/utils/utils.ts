@@ -1,6 +1,7 @@
+import type { THttpMethod, TSdkAction, Json, TSdkActionPost } from '../types';
+
 import { decode } from 'qss';
 import logger from './logger';
-import { THttpMethod, TSdkAction, Json, TSdkActionPost } from '../types';
 
 type LogRequestParams = {
   method: THttpMethod;
