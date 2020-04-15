@@ -1,8 +1,10 @@
+import type { TAppNotificationApiError } from '@commercetools-frontend/constants';
+import type { IntlShape } from 'react-intl';
+
 import React from 'react';
-import { useIntl, IntlShape } from 'react-intl';
+import { useIntl } from 'react-intl';
 import has from 'lodash/has';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { TAppNotificationApiError } from '@commercetools-frontend/constants';
 import messages from './messages';
 
 const regexInvalidOperationRequiredAttribute = /Required attribute '(.*)' cannot be removed/;

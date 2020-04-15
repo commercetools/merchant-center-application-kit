@@ -1,3 +1,8 @@
+import type {
+  TAppNotificationKind,
+  TAppNotificationDomain,
+} from '@commercetools-frontend/constants';
+
 import React from 'react';
 import { useIntl } from 'react-intl';
 import {
@@ -10,8 +15,6 @@ import {
 import IconButton from '@commercetools-uikit/icon-button';
 import {
   NOTIFICATION_DOMAINS,
-  TAppNotificationKind,
-  TAppNotificationDomain,
   NOTIFICATION_KINDS_SIDE,
 } from '@commercetools-frontend/constants';
 import filterDataAttributes from '../../utils/filter-data-attributes';

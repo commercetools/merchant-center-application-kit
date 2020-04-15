@@ -1,9 +1,10 @@
-import React from 'react';
-import {
+import type {
   TAppNotificationGlobal,
   TAppNotificationPage,
   TAppNotificationSide,
 } from '@commercetools-frontend/constants';
+
+import React from 'react';
 
 export type Props = {
   mapNotificationToComponent: (

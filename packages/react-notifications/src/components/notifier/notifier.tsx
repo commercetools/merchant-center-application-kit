@@ -1,10 +1,13 @@
+import type {
+  TAppNotificationDomain,
+  TAppNotificationKind,
+} from '@commercetools-frontend/constants';
+
 import React from 'react';
 import isNumber from 'lodash/isNumber';
 import * as globalActions from '@commercetools-frontend/actions-global';
 import {
   NOTIFICATION_DOMAINS,
-  TAppNotificationDomain,
-  TAppNotificationKind,
   NOTIFICATION_KINDS_SIDE,
 } from '@commercetools-frontend/constants';
 

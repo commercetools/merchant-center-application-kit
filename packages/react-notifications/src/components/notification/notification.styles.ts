@@ -1,9 +1,12 @@
+import type {
+  TAppNotificationKind,
+  TAppNotificationDomain,
+} from '@commercetools-frontend/constants';
+
 import { css, keyframes } from '@emotion/core';
 import { customProperties } from '@commercetools-uikit/design-system';
 import {
   NOTIFICATION_DOMAINS,
-  TAppNotificationKind,
-  TAppNotificationDomain,
   NOTIFICATION_KINDS_SIDE,
 } from '@commercetools-frontend/constants';
 
