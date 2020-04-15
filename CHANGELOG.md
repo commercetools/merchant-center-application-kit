@@ -1,3 +1,15 @@
+## [16.6.1](https://github.com/commercetools/merchant-center-application-kit/compare/v16.6.0...v16.6.1) (2020-04-15)
+
+#### 🐛 Type: Bug
+
+- `application-shell`
+  - [#1433](https://github.com/commercetools/merchant-center-application-kit/pull/1433) fix(app-shell): apply cached menu state synchronously as a layout effect, to avoid flickering ([@adnasa](https://github.com/adnasa))
+  - [#1436](https://github.com/commercetools/merchant-center-application-kit/pull/1436) fix(app-shell/test-utils): to defer adapter initialization without flags ([@tdeekens](https://github.com/tdeekens))
+
+#### 🖥 Type: Website
+
+- [#1432](https://github.com/commercetools/merchant-center-application-kit/pull/1432) chore(website): update to theme 2.4.1-canary.7 ([@emmenko](https://github.com/emmenko))
+
 ## [16.6.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.5.3...v16.6.0) (2020-04-08)
 
 #### 🐛 Type: Bug
