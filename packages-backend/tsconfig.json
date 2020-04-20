@@ -7,8 +7,6 @@
       "DOM",
     ],
     "allowJs": false,
-    "outDir": "build",
-    "rootDir": "src",
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
