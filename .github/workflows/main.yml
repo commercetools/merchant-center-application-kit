@@ -16,8 +16,14 @@ on:
 
 jobs:
   build_lint_and_test:
-    # https://github.com/cypress-io/github-action/blob/263091cab1962eea06e293a19146e9d0241a1c32/README.md#important
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
+
+    # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L8-L11
+    env:
+      # prevents extra Cypress installation progress messages
+      CI: 1
+      # avoid warnings like "tput: No value for $TERM and no -T specified"
+      TERM: xterm
 
     steps:
       - name: Checkout
@@ -71,6 +77,10 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+        env:
+          # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L14-L18
+          # https://github.com/marketplace/actions/cypress-io#custom-install
+          CYPRESS_INSTALL_BINARY: 0
 
       - name: Building packages
         run: yarn build
@@ -93,19 +103,29 @@ jobs:
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_UI_COMPONENTS }}
 
-      - name: Running End-to-End tests for Playground application
-        uses: cypress-io/github-action@v1
+      # https://github.com/bahmutov/cypress-gh-action-split-install/blob/ca3916d4e7240ebdc337825d2d78eb354855464b/.github/workflows/tests.yml#L23-L30
+      # https://github.com/marketplace/actions/cypress-io#custom-install
+      - name: Restoring Cypress cache
+        # restore / cache the binary ourselves on Linux
+        # see https://github.com/actions/cache
+        id: cache-cypress
+        uses: actions/cache@v1
         with:
-          headless: true
-          build: "yarn playground:build"
-          start: "yarn playground:start:prod:local"
-          wait-on: "http://localhost:3001"
-          spec: "cypress/integration/playground/**/*.js"
-          env: "CI=true"
-          command-prefix: "percy exec --"
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+
+      - name: Installing Cypress binary
+        run: yarn run cypress install && yarn run cypress cache list
+
+      - name: Building Playground application
+        run: yarn playground:build
+
+      - name: Running End-to-End tests for Playground application
+        run: yarn run start-server-and-test 'yarn playground:start:prod:local' 3001 'yarn run percy exec -- yarn test:e2e:playground'
         env:
           NODE_ENV: test
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_PLAYGROUND }}
+          CYPRESS_CI: "true"
           CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
@@ -116,19 +136,15 @@ jobs:
       - name: Kill possible process running the application on port 3001
         run: lsof -nti:3001 | xargs kill -9
 
+      - name: Building Starter template application
+        run: yarn template-starter:build
+
       - name: Running End-to-End tests for Starter template application
-        uses: cypress-io/github-action@v1
-        with:
-          headless: true
-          build: "yarn template-starter:build"
-          start: "yarn template-starter:start:prod:local"
-          wait-on: "http://localhost:3001"
-          spec: "cypress/integration/template-starter/**/*.js"
-          env: "CI=true"
-          command-prefix: "percy exec --"
+        run: yarn run start-server-and-test 'yarn template-starter:start:prod:local' 3001 'yarn run percy exec -- yarn test:e2e:template-starter'
         env:
           NODE_ENV: test
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN_E2E_STARTER }}
+          CYPRESS_CI: "true"
           CYPRESS_LOGIN_USER: ${{ secrets.CYPRESS_LOGIN_USER }}
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
           CYPRESS_PROJECT_KEY: ${{ secrets. CYPRESS_PROJECT_KEY }}
