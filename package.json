@@ -59,6 +59,7 @@
     "packages": [
       "application-templates/*",
       "packages/*",
+      "packages-backend/*",
       "playground",
       "visual-testing-app",
       "website",

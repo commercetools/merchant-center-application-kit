@@ -1,12 +1,12 @@
 {
-  "name": "@commercetools-frontend/server-express",
+  "name": "@commercetools-backend/server-express",
   "version": "16.5.3",
   "description": "Zero-config HTTP server as Express.js for working with Merchant Center Custom Applications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/commercetools/merchant-center-application-kit.git",
-    "directory": "packages/server-express"
+    "directory": "packages-backend/server-express"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
   "keywords": [

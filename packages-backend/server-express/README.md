@@ -1,7 +1,7 @@
-# @commercetools-frontend/server-express
+# @commercetools-backend/server-express
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@commercetools-frontend/server-express"><img src="https://badgen.net/npm/v/@commercetools-frontend/server-express" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-frontend/server-express"><img src="https://badgen.net/npm/v/@commercetools-frontend/server-express/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-frontend/server-express"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-frontend/server-express" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/master/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
+  <a href="https://www.npmjs.com/package/@commercetools-backend/server-express"><img src="https://badgen.net/npm/v/@commercetools-backend/server-express" alt="Latest release (latest dist-tag)" /></a> <a href="https://www.npmjs.com/package/@commercetools-backend/server-express"><img src="https://badgen.net/npm/v/@commercetools-backend/server-express/next" alt="Latest release (next dist-tag)" /></a> <a href="https://bundlephobia.com/result?p=@commercetools-backend/server-express"><img src="https://badgen.net/bundlephobia/minzip/@commercetools-backend/server-express" alt="Minified + GZipped size" /></a> <a href="https://github.com/commercetools/merchant-center-application-kit/blob/master/LICENSE"><img src="https://badgen.net/github/license/commercetools/merchant-center-application-kit" alt="GitHub license" /></a>
 </p>
 
 Zero-config HTTP server as Express.js for working with Merchant Center Custom Applications
@@ -11,7 +11,7 @@ This package is primarily built for HTTP servers used by Custom Applications and
 ## Install
 
 ```bash
-$ npm install --save @commercetools-frontend/server-express
+$ npm install --save @commercetools-backend/server-express
 ```
 
 ## Session middleware
@@ -24,7 +24,7 @@ This middleware should be used to handle the authentication exchange between the
 const {
   createSessionMiddleware,
   CLOUD_IDENTIFIERS,
-} = require('@commercetools-frontend/server-express');
+} = require('@commercetools-backend/server-express');
 
 app.use(createSessionMiddleware({ mcApiUrl: CLOUD_IDENTIFIERS.GCP_EU }));
 app.use((request, response, next) => {

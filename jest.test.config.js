@@ -3,13 +3,14 @@ module.exports = {
   moduleDirectories: [
     'application-templates',
     'packages',
+    'packages-backend',
     'playground',
     'node_modules',
   ],
   modulePathIgnorePatterns: ['examples'],
   transformIgnorePatterns: [
     // Transpile also our local packages as they are only symlinked.
-    'node_modules/(?!(@commercetools-frontend)/)',
+    'node_modules/(?!(@commercetools-[frontend|backend]+)/)',
   ],
   testEnvironment: 'jest-environment-jsdom-sixteen',
 };
