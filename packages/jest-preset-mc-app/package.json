@@ -29,7 +29,7 @@
     "@commercetools/jest-enzyme-matchers": "1.1.2",
     "@sheerun/mutationobserver-shim": "0.3.3",
     "@testing-library/jest-dom": "5.5.0",
-    "babel-jest": "25.3.0",
+    "babel-jest": "25.4.0",
     "colors": "1.4.0",
     "cosmiconfig": "6.0.0",
     "enzyme-adapter-react-16": "1.15.2",

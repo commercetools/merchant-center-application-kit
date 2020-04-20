@@ -10,8 +10,8 @@
     "start": "gatsby develop"
   },
   "dependencies": {
-    "@commercetools-docs/gatsby-theme-docs": "2.4.1-canary.22",
-    "@commercetools-docs/ui-kit": "2.4.1-canary.22",
+    "@commercetools-docs/gatsby-theme-docs": "2.5.0",
+    "@commercetools-docs/ui-kit": "2.5.0",
     "@commercetools-uikit/card": "10.18.4",
     "@commercetools-uikit/spacings-inline": "10.18.4",
     "@commercetools-uikit/spacings-stack": "10.18.4",
