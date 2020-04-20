@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "build",
+    "outDir": "build"
+  },
+  "exclude": [
+    "**/fixtures/**",
+    "**/*.spec.ts"
+  ],
+}

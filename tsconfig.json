@@ -9,11 +9,11 @@
     "isolatedModules": true,
     "jsx": "react",
     "lib": [
-      "esnext",
-      "dom"
+      "ESNext",
+      "DOM"
     ],
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -28,7 +28,7 @@
     "strict": true,
     "strictNullChecks": true,
     "stripInternal": true,
-    "target": "esnext",
+    "target": "ES2019",
     "allowJs": false,
     "baseUrl": ".",
     // https://stackoverflow.com/a/40326719
