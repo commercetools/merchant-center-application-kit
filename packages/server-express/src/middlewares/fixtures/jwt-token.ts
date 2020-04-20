@@ -2,9 +2,9 @@ import { JWT, JWK, JWKS } from '@panva/jose';
 
 const keyRS256 = JWK.generateSync('RSA', 2048, { use: 'sig', alg: 'RS256' });
 
-export const jwksStore = new JWKS.KeyStore([keyRS256]);
+const jwksStore = new JWKS.KeyStore([keyRS256]);
 
-export const createToken = (options: { issuer: string; audience: string }) =>
+const createToken = (options: { issuer: string; audience: string }) =>
   JWT.sign(
     {
       sub: 'user-id',
@@ -15,3 +15,5 @@ export const createToken = (options: { issuer: string; audience: string }) =>
     keyRS256,
     { algorithm: 'RS256' }
   );
+
+export { jwksStore, createToken };

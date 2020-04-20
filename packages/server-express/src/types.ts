@@ -1,4 +1,5 @@
 import type { Request } from 'express';
+import type { ExpressJwtOptions } from 'jwks-rsa';
 
 import { CLOUD_IDENTIFIERS } from './constants';
 
@@ -12,13 +13,10 @@ export type TSessionMiddlewareOptions = {
   // HTTP header `x-mc-api-cloud-identifier` which is sent by the MC API when
   // forwarding the request.
   // This might be useful in case the server is used in multiple regions.
-  inferIssuerFromCustomHeader?: boolean;
+  inferIssuer?: boolean;
 
   /* Options for the `jwksRsa.expressJwtSecret` */
-
-  jwksUseCache?: boolean;
-  jwksUseRateLimit?: boolean;
-  jwksRequestsPerMinute?: number;
+  jwks?: Omit<ExpressJwtOptions, 'jwksUri'>;
 };
 
 export type TSession = {

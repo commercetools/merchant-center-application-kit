@@ -59,8 +59,8 @@ describe.each`
     if (!cloudIdentifier.startsWith('http')) {
       it('should infer cloud identifier from custom HTTP header instead of given "mcApiUrl"', async () => {
         const sessionMiddleware = createSessionMiddleware({
-          issuer: 'this-value-should-not-matter',
-          inferIssuerFromCustomHeader: true,
+          issuer: 'https://mc-api.another-ct-test.com', // This value should not matter
+          inferIssuer: true,
         });
         const fakeRequest = {
           method: 'GET',
@@ -99,3 +99,13 @@ describe.each`
     }
   }
 );
+
+describe('when issuer is not a valid URL', () => {
+  it('should throw a validation error', () => {
+    expect(() =>
+      createSessionMiddleware({
+        issuer: 'invalid url',
+      })
+    ).toThrowError('Invalid issuer URL');
+  });
+});

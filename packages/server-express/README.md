@@ -16,7 +16,7 @@ $ npm install --save @commercetools-frontend/server-express
 
 ## Session middleware
 
-This middleware should be used to handle the authentication exchange between the server and the `/proxy/forward-to` endpoint of the MC API.
+This middleware should be used to handle the authentication exchange between the server and the `/proxy/forward-to` endpoint of the Merchant Center API.
 
 > You can read more about the "Proxy to External API" concepts [here](https://docs.commercetools.com/custom-applications/main-concepts/proxy-to-external-api).
 
@@ -26,7 +26,7 @@ const {
   CLOUD_IDENTIFIERS,
 } = require('@commercetools-frontend/server-express');
 
-app.use(createSessionMiddleware({ mcApiUrl: CLOUD_IDENTIFIERS['gcp-eu'] }));
+app.use(createSessionMiddleware({ mcApiUrl: CLOUD_IDENTIFIERS.GCP_EU }));
 app.use((request, response, next) => {
   // `request.session` contains the useful information
 });
@@ -34,7 +34,7 @@ app.use((request, response, next) => {
 
 ### Middleware options
 
-- `issuer` (_string_): either a cloud identifier or a URL. The cloud identifier maps to the MC API URL of the related [cloud region](https://docs.commercetools.com/custom-applications/main-concepts/api-gateway#cloud-regions).
+- `issuer` (_string_): either a cloud identifier or a valid URL to the Merchant Center API Gateway. The cloud identifier maps to the Merchant Center API URL of the related [cloud region](https://docs.commercetools.com/custom-applications/main-concepts/api-gateway#cloud-regions).
 
   - `gcp-au`: `https://mc-api.australia-southeast1.gcp.commercetools.com`
   - `gcp-eu`: `https://mc-api.europe-west1.gcp.commercetools.com`
@@ -42,4 +42,4 @@ app.use((request, response, next) => {
   - `aws-fra`: `https://mc-api.eu-central-1.aws.commercetools.com`
   - `aws-ohio`: `https://mc-api.us-east-2.aws.commercetools.com`
 
-- `inferIssuerFromCustomHeader` (_boolean_): determines whether the issuer should be inferred from the custom request HTTP header `x-mc-api-cloud-identifier` which is sent by the MC API when forwarding the request. This might be useful in case the server is used in multiple regions.
+- `inferIssuer` (_boolean_): determines whether the issuer should be inferred from the custom request HTTP header `x-mc-api-cloud-identifier` which is sent by the MC API when forwarding the request. This might be useful in case the server is used in multiple regions.
