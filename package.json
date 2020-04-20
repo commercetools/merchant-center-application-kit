@@ -181,8 +181,7 @@
     "**/react-test-renderer": "16.13.1",
     "**/sharp": "0.23.3",
     "cypress": "4.2.0",
-    "pretty-format" :"25.2.6",
-    "gatsby-plugin-mdx": "1.1.6"
+    "pretty-format" :"25.2.6"
   },
   "engines": {
     "node": ">=8.9",
