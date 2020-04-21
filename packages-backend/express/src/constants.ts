@@ -13,3 +13,8 @@ export const MC_API_URLS = {
   AWS_FRA: 'https://mc-api.eu-central-1.aws.commercetools.com',
   AWS_OHIO: 'https://mc-api.us-east-2.aws.commercetools.com',
 } as const;
+
+export const MC_API_PROXY_HEADERS = {
+  FORWARD_TO_VERSION: 'x-mc-api-forward-to-version',
+  CLOUD_IDENTIFIER: 'x-mc-api-cloud-identifier',
+} as const;

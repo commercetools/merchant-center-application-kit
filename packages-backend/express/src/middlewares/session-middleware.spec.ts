@@ -1,6 +1,8 @@
 import nock from 'nock';
 import createSessionMiddleware from './session-middleware';
 import * as fixtureJWTToken from './fixtures/jwt-token';
+import { createSessionAuthVerifier } from '../auth';
+import { CLOUD_IDENTIFIERS } from '../constants';
 
 describe.each`
   cloudIdentifier                 | issuer
@@ -31,6 +33,7 @@ describe.each`
             audience: 'http://test-server/foo/bar',
           })}`,
           'x-mc-api-cloud-identifier': cloudIdentifier,
+          'x-mc-api-forward-to-version': 'v2',
         },
         originalUrl: '/foo/bar',
       };
@@ -64,6 +67,7 @@ describe.each`
               audience: 'http://test-server/foo/bar',
             })}`,
             'x-mc-api-cloud-identifier': cloudIdentifier,
+            'x-mc-api-forward-to-version': 'v2',
           },
           originalUrl: '/foo/bar',
         };
@@ -86,6 +90,22 @@ describe.each`
   }
 );
 
+describe('when audience is missing', () => {
+  it('should throw a validation error', () => {
+    // @ts-ignore
+    expect(() => createSessionMiddleware({})).toThrowError(
+      'Missing required option "audience"'
+    );
+  });
+});
+describe('when issuer is missing', () => {
+  it('should throw a validation error', () => {
+    expect(() =>
+      // @ts-ignore
+      createSessionMiddleware({ audience: 'http://test-server' })
+    ).toThrowError('Missing required option "issuer"');
+  });
+});
 describe('when issuer is not a valid URL', () => {
   it('should throw a validation error', () => {
     expect(() =>
@@ -94,5 +114,61 @@ describe('when issuer is not a valid URL', () => {
         issuer: 'invalid url',
       })
     ).toThrowError('Invalid issuer URL');
+  });
+});
+describe('when "X-MC-API-Cloud-Identifier" is missing', () => {
+  it('should throw a validation error', async () => {
+    const fakeRequest = {
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${fixtureJWTToken.createToken({
+          issuer: CLOUD_IDENTIFIERS.GCP_EU,
+          audience: 'http://test-server/foo/bar',
+        })}`,
+        'x-mc-api-forward-to-version': 'v2',
+      },
+      originalUrl: '/foo/bar',
+    };
+    const fakeResponse = {};
+    const sessionAuthVerifier = createSessionAuthVerifier({
+      audience: 'http://test-server',
+      issuer: CLOUD_IDENTIFIERS.GCP_EU,
+    });
+    await expect(
+      // @ts-ignore
+      sessionAuthVerifier(fakeRequest, fakeResponse)
+    ).rejects.toMatchObject({
+      message: expect.stringContaining(
+        'Missing "X-MC-API-Cloud-Identifier" header'
+      ),
+    });
+  });
+});
+describe('when "X-MC-API-Forward-To-Version" is missing', () => {
+  it('should throw a validation error', async () => {
+    const fakeRequest = {
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${fixtureJWTToken.createToken({
+          issuer: CLOUD_IDENTIFIERS.GCP_EU,
+          audience: 'http://test-server/foo/bar',
+        })}`,
+        'x-mc-api-cloud-identifier': CLOUD_IDENTIFIERS.GCP_EU,
+      },
+      originalUrl: '/foo/bar',
+    };
+    const fakeResponse = {};
+    const sessionAuthVerifier = createSessionAuthVerifier({
+      audience: 'http://test-server',
+      issuer: CLOUD_IDENTIFIERS.GCP_EU,
+    });
+    await expect(
+      // @ts-ignore
+      sessionAuthVerifier(fakeRequest, fakeResponse)
+    ).rejects.toMatchObject({
+      message: expect.stringContaining(
+        'Missing "X-MC-API-Forward-To-Version" header'
+      ),
+    });
   });
 });
