@@ -51,6 +51,8 @@ app.use((request, response, next) => {
 
 - `inferIssuer` (_boolean_): Determines whether the issuer should be inferred from the custom request HTTP header `x-mc-api-cloud-identifier` which is sent by the Merchant Center API Gateway when forwarding the request. This might be useful in case the server is used in multiple regions.
 
+- `jwks` (_object_): see options of `jwks-rsa`.
+
 ### Usage in Serverless Functions
 
 If your HTTP server runs as a Serverless Function, the Express.js middleware should not be needed. Instead you can use the underlying function that does not require the `next` callback.
