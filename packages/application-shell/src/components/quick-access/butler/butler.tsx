@@ -517,10 +517,12 @@ const Butler = (props: Props) => {
               { name: 'text', weight: 0.6 },
               { name: 'keywords', weight: 0.4 },
             ],
-            tokenize: false,
           });
 
-          const results = fuse.search(searchText).slice(0, 9);
+          const results = fuse
+            .search(searchText)
+            .slice(0, 9)
+            .map((result) => result.item);
 
           dispatch({ type: 'setSearchTextResults', payload: results });
         },
