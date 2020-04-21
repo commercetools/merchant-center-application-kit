@@ -20,25 +20,18 @@ describe.each`
     });
     it('should verify the token and attach the session info to the request', async () => {
       const sessionMiddleware = createSessionMiddleware({
+        audience: 'http://test-server',
         issuer: cloudIdentifier,
       });
       const fakeRequest = {
         method: 'GET',
-        header: jest.fn((key) => {
-          switch (key) {
-            case 'x-mc-api-cloud-identifier':
-              return cloudIdentifier;
-            default:
-              return undefined;
-          }
-        }),
         headers: {
           authorization: `Bearer ${fixtureJWTToken.createToken({
             issuer,
             audience: 'http://test-server/foo/bar',
           })}`,
+          'x-mc-api-cloud-identifier': cloudIdentifier,
         },
-        hostname: 'http://test-server',
         originalUrl: '/foo/bar',
       };
       const fakeResponse = {};
@@ -59,26 +52,19 @@ describe.each`
     if (!cloudIdentifier.startsWith('http')) {
       it('should infer cloud identifier from custom HTTP header instead of given "mcApiUrl"', async () => {
         const sessionMiddleware = createSessionMiddleware({
+          audience: 'http://test-server',
           issuer: 'https://mc-api.another-ct-test.com', // This value should not matter
           inferIssuer: true,
         });
         const fakeRequest = {
           method: 'GET',
-          header: jest.fn((key) => {
-            switch (key) {
-              case 'x-mc-api-cloud-identifier':
-                return cloudIdentifier;
-              default:
-                return undefined;
-            }
-          }),
           headers: {
             authorization: `Bearer ${fixtureJWTToken.createToken({
               issuer,
               audience: 'http://test-server/foo/bar',
             })}`,
+            'x-mc-api-cloud-identifier': cloudIdentifier,
           },
-          hostname: 'http://test-server',
           originalUrl: '/foo/bar',
         };
         const fakeResponse = {};
@@ -104,6 +90,7 @@ describe('when issuer is not a valid URL', () => {
   it('should throw a validation error', () => {
     expect(() =>
       createSessionMiddleware({
+        audience: 'http://test-server',
         issuer: 'invalid url',
       })
     ).toThrowError('Invalid issuer URL');
