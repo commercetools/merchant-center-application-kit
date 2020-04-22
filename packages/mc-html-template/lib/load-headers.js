@@ -1,6 +1,7 @@
 const fs = require('fs');
 const createAssetHash = require('./utils/create-asset-hash');
 const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
+const substituteEnvVariablePlaceholders = require('./utils/substitute-env-variable-placeholders');
 const htmlScripts = require('./html-scripts');
 // const htmlStyles = require('./html-styles');
 
@@ -45,15 +46,15 @@ const toHeaderString = (directives = {}) =>
     )
     .join('; ');
 
-module.exports = (env, options) => {
-  const isMcDevEnv = env.env === 'development';
+module.exports = (envConfig, options) => {
+  const isMcDevEnv = envConfig.env === 'development';
 
   // List hashes for injected inline scripts.
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src
   const htmlScriptsHashes = [
     createAssetHash(htmlScripts.dataLayer),
     createAssetHash(htmlScripts.loadingScreen),
-    createAssetHash(`window.app = ${sanitizeAppEnvironment(env)};`),
+    createAssetHash(`window.app = ${sanitizeAppEnvironment(envConfig)};`),
   ];
 
   // // List hashes for injected inline styles.
@@ -141,11 +142,14 @@ module.exports = (env, options) => {
   const customCspDirectives = shouldUseDeprecatedCspPath
     ? loadCustomConfiguration(options.cspPath)
     : customHeaders.csp;
+  const substitutedCspDirectivesConfig = substituteEnvVariablePlaceholders(
+    customCspDirectives
+  );
 
   // Recursively merge the directives
   const mergedCsp = mergeCspDirectives(
     cspDirectives,
-    customCspDirectives || {}
+    substitutedCspDirectivesConfig
   );
 
   return {
@@ -156,7 +160,9 @@ module.exports = (env, options) => {
     'Referrer-Policy': 'same-origin',
     'Content-Security-Policy': toHeaderString(mergedCsp),
     ...(customHeaders.featurePolicies && {
-      'Feature-Policy': toHeaderString(customHeaders.featurePolicies),
+      'Feature-Policy': toHeaderString(
+        substituteEnvVariablePlaceholders(customHeaders.featurePolicies)
+      ),
     }),
   };
 };
