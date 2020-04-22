@@ -1,3 +1,5 @@
+import type { TApolloContext } from '../utils/apollo-context';
+
 import ApolloClient from 'apollo-client';
 import { NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
@@ -12,8 +14,7 @@ import {
 
 type GraphQlTarget = typeof GRAPHQL_TARGETS[keyof typeof GRAPHQL_TARGETS];
 
-type ApolloContext = {
-  uri?: string;
+type ApolloContextWithInMemoryCache = TApolloContext & {
   cache: ApolloClient<NormalizedCacheObject>;
 };
 
@@ -29,20 +30,15 @@ const isKnownGraphQlTarget = (target: GraphQlTarget) =>
 /* eslint-disable import/prefer-default-export */
 // Use a middleware to update the request headers with the correct params.
 const headerLink = new ApolloLink((operation, forward) => {
-  const { uri, cache } = operation.getContext() as ApolloContext;
-
-  // In case the `context` contains a `uri`, it means that we are not sending
-  // the request to the MC API, but to another server.
-  // For now, if that's the case, we skip the `target` validation and we do
-  // not send the custom headers.
-  if (uri) {
-    return forward(operation);
-  }
+  const {
+    skipGraphQlTargetCheck = false,
+    cache,
+  } = operation.getContext() as ApolloContextWithInMemoryCache;
 
   const variables = operation.variables as QueryVariables;
 
   const graphQlTarget = variables.target;
-  if (!isKnownGraphQlTarget(graphQlTarget))
+  if (!skipGraphQlTargetCheck && !isKnownGraphQlTarget(graphQlTarget))
     throw new Error(
       `GraphQL target "${graphQlTarget}" is missing or is not supported`
     );

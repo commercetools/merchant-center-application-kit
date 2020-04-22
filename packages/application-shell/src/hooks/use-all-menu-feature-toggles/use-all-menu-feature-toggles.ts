@@ -34,6 +34,7 @@ const useAllMenuFeatureToggles = () => {
     onError: reportErrorToSentry,
     context: {
       uri: `${mcProxyApiUrl || defaultApiUrl}/api/graphql`,
+      skipGraphQlTargetCheck: true,
     },
   });
 

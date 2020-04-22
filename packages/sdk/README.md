@@ -6,13 +6,13 @@
 
 Tools for declarative fetching.
 
-## Install
+# Install
 
 ```bash
 $ npm install --save @commercetools-frontend/sdk
 ```
 
-## Declarative Fetching
+# Declarative Fetching
 
 There are two sides to declarative fetching:
 
@@ -35,13 +35,13 @@ The provided middleware takes an object which describes what data should be
 fetched. The middleware transforms that description into a promise and resolves
 the promise. It passes the response back to the callee.
 
-## Usage
+# Usage
 
 The middleware is a thin wrapper around [`sdk-client`](https://commercetools.github.io/nodejs/sdk/api/sdkClient.html). It offers a way to declaratively describe the data requirements.
 
 A Redux action using one of the action creators below needs to be dispatched. It contains the description of what to get/post/delete. The `sdk` middleware then turns the declarative description into imperative API calls on `sdk-client`. The dispatched action resolves with the result of `sdk-client`.
 
-### Action creators
+## Action creators
 
 The action creators can be imported as
 
@@ -49,7 +49,7 @@ The action creators can be imported as
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
 ```
 
-#### Methods
+### Methods
 
 The supported action creators are:
 
@@ -58,7 +58,7 @@ The supported action creators are:
 - `sdkActions.del(config)`: sends a HTTP `DELETE`
 - `sdkActions.head(config)`: sends a HTTP `HEAD`
 
-#### Specifying an endpoint
+### Specifying an endpoint
 
 There are two ways to describe an endpoint:
 
@@ -69,7 +69,7 @@ The `post` action creator additionally requires a `config.payload` object or str
 
 > The `mcApiProxyTarget` values are exposed from the `@commercetools-frontend/constants` package, as `MC_API_PROXY_TARGETS`. The value will be used to build a prefix to the `uri` as `/proxy/<mcApiProxyTarget>/<uri>`.
 
-##### Usage with `uri`
+**Usage with `uri`**
 
 ```js
 {
@@ -85,7 +85,7 @@ This approach must be used when querying something other than the CTP API. In ca
 
 When both, `uri` and `options` (or `service`) are present, the `uri` takes precedence.
 
-##### Usage with `service` and `options`
+**Usage with `service` and `options`**
 
 ```js
 {
@@ -100,7 +100,32 @@ Before using the `sdk-client` the `sdk` middleware combines `service` and `optio
 
 The supported `options` can be found in the `api-request-builder`'s documentation under the [Declarative Usage](https://commercetools.github.io/nodejs/sdk/api/apiRequestBuilder.html#declarative-usage) section.
 
-### Error handling
+## Action creators for external API usage
+
+By default, all requests with the SDK are configured to be sent to the MC API.
+However, Custom Applications using the [Proxy to external API](https://docs.commercetools.com/custom-applications/main-concepts/proxy-to-external-api) need to configure the request a bit differently, and send additional headers.
+
+To make it easier to make requests to the proxy endpoint using the SDK, there is a new action creator wrapper that comes with built-in configuration options.
+
+The exported action creators have a new export `forwardTo`, which is an object containing wrappers around the normal action creators.
+
+```js
+actions.forwardTo.get(options);
+actions.forwardTo.del(options);
+actions.forwardTo.head(options);
+actions.forwardTo.post(options);
+```
+
+The options for the action creators are the same as the **Usage with `uri`**, except that the `uri` value needs to be the URL to the external API (see `X-Forward-To` header).
+
+The `forwardTo` action creators additionally set the following headers:
+
+- `X-Forward-To`
+- `Accept-version`
+
+For more information, check the [Proxy to external API](https://docs.commercetools.com/custom-applications/main-concepts/proxy-to-external-api) documentation.
+
+## Error handling
 
 Failed requests will result in a rejected promise. The `sdk-client`'s error handling applies, so network errors and CTP API errors on the content itself result in a rejected promise.
 
@@ -108,7 +133,7 @@ The `sdk` package does not provide any error handling out of the box. It's the a
 
 The MC has a `handleActionError` function which is what we currently use for error handling. It logs the error to the tracking tool (Sentry) and shows a notification to the client. This should be used whenever a more special error handling is not necessary.
 
-### Example
+## Example
 
 ```js
 import { actions as sdkActions } from '@commercetools-frontend/sdk';
