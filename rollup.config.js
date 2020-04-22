@@ -106,10 +106,10 @@ const createConfig = (cliArgs) => {
   if (/\/test-utils\//.test(cliArgs.input)) {
     return {
       input: cliArgs.input,
+      external: ['crypto'],
       output: {
         format: 'cjs',
         file: `test-utils/index.js`,
-        sourcemap: true,
       },
       plugins: createPlugins('cjs'),
     };
