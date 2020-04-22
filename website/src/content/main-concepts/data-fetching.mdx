@@ -74,40 +74,23 @@ That's it, Apollo will take care of data normalization, caching, etc.
 
 ## Connecting to an external GraphQL API
 
-In case your Custom Application needs to connect to an external GraphQL API, in addition to the commercetools GraphQL APIs, you can't use the default Apollo Client.
+In case your Custom Application needs to connect to an [external GraphQL API](/main-concepts/proxy-to-external-api), in addition to the commercetools GraphQL APIs, the Apollo Client needs to be reconfigured to connect to the `/proxy/forward-to` endpoint with the appropriate headers.
+This can be achieved by using the `context` option of Apollo Client, which allows to pass configuration options to the Apollo Links.
 
-As mentioned in the section above, the `<ApplicationShell>` has the Apollo Client pre-configured, which points to the `/graphql` endpoint of the [Merchant Center API Gateway](/main-concepts/api-gatway). The Apollo Client can only be configured to **one URL**, which means that for your external GraphQL API you need to **create a new client**.
-
-To send requests to your GraphQL API you need to explicitly pass the client to each query or mutation, as otherwise Apollo will fall back to using the default client defined in the React Context, which is the pre-configured one.
+The `@commercetools-frontend/application-shell` package now exposes a `createApolloContextForProxyForwardTo` to construct a predefined context object specific to the `/proxy/forward-to`.
 
 ```jsx
-// custom-apollo-client.js
-import { createHttpLink } from 'apollo-link-http';
-import { ApolloLink } from 'apollo-link';
-import ApolloClient from 'apollo-client';
-
-const httpLink = createHttpLink({
-  uri: 'https://my-custom-app.com/graphql',
-  headers: { accept: 'application/json' },
-  fetch,
-});
-const link = ApolloLink.from([
-  httpLink,
-]);
-const client = new ApolloClient({ link });
-
-export default client;
-
-// hello-world.js
 import React from 'react';
 import { useQuery } from 'react-apollo';
+import { createApolloContextForProxyForwardTo } from '@commercetools-frontend/application-shell';
 import Text from '@commercetools-uikit/text';
-import customClient from './custom-apollo-client';
 import HelloWorldQuery from './hello-world.graphql';
 
 const HelloWorld = () => {
   const { loading, data, error } = useQuery(HelloWorldQuery, {
-    client: customClient,
+    context: createApolloContextForProxyForwardTo({
+      uri: 'https://my-custom-app.com/graphql',
+    }),
   });
 
   if (loading) return 'Loading...';
