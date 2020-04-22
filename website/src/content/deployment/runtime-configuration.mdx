@@ -65,6 +65,12 @@ An example configuration for local development:
 
 ## Using environment variables
 
+<Info>
+
+This feature is available from version `>= 16.4.0`.
+
+</Info>
+
 Values in an environment configuration JSON file can contain references to environment variables. This can be useful to avoid duplication between various `env.json` files for multiple different environments. References are specified with a special expansion like syntax `${}` while additionally prefixing the environment variable name with `env:`.
 
 For instance, imagine developing a Custom Application that can be used in the commercetools platform Europe region and North America region. We can assign the `${env:MC_API_URL}` reference to the field `mcApiUrl` and pass the actual value using environment variables.
@@ -144,6 +150,12 @@ This example includes two hostnames as one of them is a legacy hostname: `mc-api
 You can find the list of default directives in the `load-headers.js` file in the `@commercetools-frontend/mc-html-template` package.
 
 ## Using environment variables
+
+<Info>
+
+This feature is available from version `>= 16.7.0`.
+
+</Info>
 
 Values in an environment configuration JSON file can contain references to environment variables. This can be useful to avoid duplication between various `headers.json` files for multiple different environments. References are specified with a special expansion like syntax `${}` while additionally prefixing the environment variable name with `env:`.
 
