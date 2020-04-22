@@ -51,7 +51,7 @@ const MyComponent = () => {
 
 An example configuration for local development:
 
-```json
+```json title="env.json"
 {
   "applicationName": "merchant-center-application-template-starter",
   "frontendHost": "localhost:3001",
@@ -65,11 +65,17 @@ An example configuration for local development:
 
 ## Using environment variables
 
+<Info>
+
+This feature is available from version `>= 16.4.0`.
+
+</Info>
+
 Values in an environment configuration JSON file can contain references to environment variables. This can be useful to avoid duplication between various `env.json` files for multiple different environments. References are specified with a special expansion like syntax `${}` while additionally prefixing the environment variable name with `env:`.
 
 For instance, imagine developing a Custom Application that can be used in the commercetools platform Europe region and North America region. We can assign the `${env:MC_API_URL}` reference to the field `mcApiUrl` and pass the actual value using environment variables.
 
-```json
+```json title="env.json"
 {
   "cdnUrl": "https://bucket.com",
   "mcApiUrl": "${env:MC_API_URL}"
@@ -78,17 +84,13 @@ For instance, imagine developing a Custom Application that can be used in the co
 
 The `MC_API_URL` environment variable can be provided in various ways. For example as an inline environment variable when running a script command (`MC_API_URL=https://mc-api.commercetools.com yarn start`), using a [dotenv](https://github.com/motdotla/dotenv) file or by defining the environment variables in your CI service.
 
-<Info>
+You can also pass multiple references to the same value:
 
-You can also pass multiple references to the same value
-
-```json
+```json title="env.json"
 {
   "mcApiUrl": "https://mc-api.${env:CTP_REGION}.${env.CTP_CLOUD_REGION}.commercetools.com"
 }
 ```
-
-</Info>
 
 ## Production environment
 
@@ -125,7 +127,7 @@ Furthermore, the [API Gateway](/main-concepts/api-gateway#hostnames) hostnames *
 
 For example, given that your application is hosted at `my-app.now.sh` and runs on the [Google Cloud Europe region](/main-concepts/api-gateway#cloud-regions), the `headers.json` file must be configured as following:
 
-```json
+```json title="headers.json"
 {
   "csp": {
     "script-src": ["my-app.now.sh"],
@@ -147,6 +149,48 @@ This example includes two hostnames as one of them is a legacy hostname: `mc-api
 
 You can find the list of default directives in the `load-headers.js` file in the `@commercetools-frontend/mc-html-template` package.
 
+## Using environment variables
+
+<Info>
+
+This feature is available from version `>= 16.7.0`.
+
+</Info>
+
+Values in an environment configuration JSON file can contain references to environment variables. This can be useful to avoid duplication between various `headers.json` files for multiple different environments. References are specified with a special expansion like syntax `${}` while additionally prefixing the environment variable name with `env:`.
+
+For instance, imagine developing a Custom Application that can be used in the commercetools platform Europe region and North America region. We can assign the `${env:APP_HOSTNAME}` reference to the field `csp` object directives and pass the actual value using environment variables.
+
+```json title="headers.json"
+{
+  "csp": {
+    "script-src": ["${env:APP_HOSTNAME}"],
+    "connect-src": [
+      "${env:APP_HOSTNAME}",
+      "${env:MC_API_HOSTNAME}"
+    ],
+    "style-src": ["${env:APP_HOSTNAME}"]
+  }
+}
+```
+
+The `APP_HOSTNAME` environment variable can be provided in various ways. For example as an inline environment variable when running a script command (`APP_HOSTNAME=my-apps.com yarn start`), using a [dotenv](https://github.com/motdotla/dotenv) file or by defining the environment variables in your CI service.
+
+You can also pass multiple references to the same value:
+
+```json title="headers.json"
+{
+  "csp": {
+    "script-src": ["my-apps.com"],
+    "connect-src": [
+      "my-apps.com",
+      "mc-api.${env:CTP_REGION}.${env.CTP_CLOUD_REGION}.commercetools.com"
+    ],
+    "style-src": ["my-apps.com"]
+  }
+}
+```
+
 ## Production environment
 
 It is recommended to have two separate configuration files, one for development and one for production. The `headers.json` **must** be used for development, therefore for production you can have a `headers.prod.json` file.
@@ -161,11 +205,14 @@ This file has been deprecated by the `headers.json`.
 
 To migrate to the new format, wrap the `csp.json` content into a `csp` property in the `headers.json`:
 
-```json highlightLines="2,6"
+```json highlightLines="2,9"
 {
   "csp": {
     "script-src": ["my-apps.com"],
-    "connect-src": ["my-apps.com"],
+    "connect-src": [
+      "${env:APP_HOSTNAME}",
+      "${env:MC_API_HOSTNAME}"
+    ],
     "style-src": ["my-apps.com"]
   }
 }
