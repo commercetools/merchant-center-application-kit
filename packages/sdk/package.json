@@ -35,10 +35,11 @@
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/** test-utils/**",
     "build": "yarn build:bundles && yarn build:test-utils && yarn build:typings",
-    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings",
     "build:bundles": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js -i ./src/index.ts",
     "build:bundles:watch": "yarn build:bundles -w",
-    "build:test-utils": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -i ./src/test-utils/index.ts"
+    "build:test-utils": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -i ./src/test-utils/index.ts",
+    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings",
+    "postbuild:typings": "echo \"export * from '../dist/typings/test-utils';\" > test-utils/index.d.ts"
   },
   "dependencies": {
     "@commercetools-frontend/constants": "16.3.3",

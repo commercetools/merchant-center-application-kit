@@ -37,8 +37,9 @@
     "build": "yarn build:bundles && yarn build:test-utils && yarn build:typings",
     "build:bundles": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js -i ./src/index.ts",
     "build:bundles:watch": "yarn build:bundles -w",
+    "build:test-utils": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -i ./src/test-utils/index.ts",
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings",
-    "build:test-utils": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -i ./src/test-utils/index.ts"
+    "postbuild:typings": "echo \"export * from '../dist/typings/test-utils';\" > test-utils/index.d.ts"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.9.2",
