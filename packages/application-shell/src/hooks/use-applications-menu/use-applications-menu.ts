@@ -56,6 +56,7 @@ function useApplicationsMenu<Key extends MenuKey>(
     context: {
       // Allow to overwrite the API url from `env.json`
       uri: `${mcProxyApiUrl || defaultApiUrl}/api/graphql`,
+      skipGraphQlTargetCheck: true,
     },
   });
 

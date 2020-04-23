@@ -48,3 +48,60 @@ export function post(
 export function post(payload: TSdkActionPayload & TSdkActionPayloadBody) {
   return { type: 'SDK', payload: { ...payload, method: 'POST' } };
 }
+
+const enhancePayloadForForwardToProxy = (payload: TSdkActionPayloadForUri) => {
+  const headers = payload.headers ?? {};
+  return {
+    uri: '/proxy/forward-to',
+    mcApiProxyTarget: undefined,
+    headers: {
+      ...headers,
+      'Accept-version': 'v2',
+      'X-Forward-To': payload.uri,
+    },
+  };
+};
+export const forwardTo = {
+  get(payload: TSdkActionPayloadForUri): TSdkActionGetForUri {
+    return {
+      type: 'SDK',
+      payload: {
+        ...payload,
+        method: 'GET',
+        ...enhancePayloadForForwardToProxy(payload),
+      },
+    };
+  },
+  del(payload: TSdkActionPayloadForUri): TSdkActionDeleteForUri {
+    return {
+      type: 'SDK',
+      payload: {
+        ...payload,
+        method: 'DELETE',
+        ...enhancePayloadForForwardToProxy(payload),
+      },
+    };
+  },
+  head(payload: TSdkActionPayloadForUri): TSdkActionHeadForUri {
+    return {
+      type: 'SDK',
+      payload: {
+        ...payload,
+        method: 'HEAD',
+        ...enhancePayloadForForwardToProxy(payload),
+      },
+    };
+  },
+  post(
+    payload: TSdkActionPayloadForUri & TSdkActionPayloadBody
+  ): TSdkActionPostForUri {
+    return {
+      type: 'SDK',
+      payload: {
+        ...payload,
+        method: 'POST',
+        ...enhancePayloadForForwardToProxy(payload),
+      },
+    };
+  },
+};
