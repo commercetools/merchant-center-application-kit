@@ -1177,6 +1177,20 @@
   resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-transformer-code-examples/-/gatsby-transformer-code-examples-2.5.1-canary.2.tgz#36332c154b9234315d15fe97921abc141086d386"
   integrity sha512-4ZA99qvys2fIw1XtHgOxqd2zudyVMY8opNRMOnNcy1YMf203RcSPMOLjjBlm3y6wjX3gj7gtxCArfZWYMObjdw==
 
+"@commercetools-docs/ui-kit@2.5.0":
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-2.5.0.tgz#63991972928afaab015efb82ffd31519cbd459e5"
+  integrity sha512-GWXG+6cBMBuGn4huPwyh5ikoMRVZi5Ameby1nnJwz61vivH2jnHgfEPsmOPvIZzvQA0XyO/WEsQpvYPNDHs3CA==
+  dependencies:
+    "@commercetools-uikit/tooltip" "10.18.4"
+    lodash.escape "4.0.1"
+    lodash.throttle "4.1.1"
+    parse-numeric-range "0.0.2"
+    parse5 "5.1.1"
+    prism-react-renderer "1.0.2"
+    prop-types "15.7.2"
+    tiny-invariant "1.1.0"
+
 "@commercetools-docs/ui-kit@2.5.1-canary.2", "@commercetools-docs/ui-kit@2.5.1-canary.2+6379138":
   version "2.5.1-canary.2"
   resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-2.5.1-canary.2.tgz#d6eb524154e677c20fea7f151268e7ae0c967781"
