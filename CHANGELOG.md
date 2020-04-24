@@ -1,6 +1,8 @@
 ## [16.7.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.6.1...v16.7.0) (2020-04-24)
 
-This release introduces a new package to help working and developing an external server/API for Custom Applications.
+This release introduces a new package to help working and developing an external API for Custom Applications.
+
+> Please make sure to read the updated documentation about [Proxing to an external API](https://docs.commercetools.com/custom-applications/main-concepts/proxy-to-external-api).
 
 ```
 npm install --save @commercetools-backend/express
@@ -60,7 +62,7 @@ exports.handler = async function (request, response) {
 
 **Support forwardTo request config for Apollo and SDK actions**
 
-Connecting to your external server/API requires you to use the `/proxy/forward-to` endpoint of the Merchant Center API Gateway.
+Connecting to your external API requires you to use the `/proxy/forward-to` endpoint of the Merchant Center API Gateway.
 
 To facilitate the usage of the built-in Apollo client and the SDK actions, we provide some utility helpers to abstract away the request configuration for the `/proxy/forward-to` endpoint.
 
@@ -117,11 +119,15 @@ actions.forwardTo.post(options);
 
 #### ⛑ Type: Refactoring
 
-- [#1453](https://github.com/commercetools/merchant-center-application-kit/pull/1453) refactor(express): support backwards compatibility for v1 ([@emmenko](https://github.com/emmenko))
-- [#1452](https://github.com/commercetools/merchant-center-application-kit/pull/1452) refactor(express): support request handler for serverless functions ([@emmenko](https://github.com/emmenko))
+- `mc-http-server`
+  - [#1462](https://github.com/commercetools/merchant-center-application-kit/pull/1462) refactor: to update to node v13 ([@tdeekens](https://github.com/tdeekens))
+- Other
+  - [#1453](https://github.com/commercetools/merchant-center-application-kit/pull/1453) refactor(express): support backwards compatibility for v1 ([@emmenko](https://github.com/emmenko))
+  - [#1452](https://github.com/commercetools/merchant-center-application-kit/pull/1452) refactor(express): support request handler for serverless functions ([@emmenko](https://github.com/emmenko))
 
 #### 🖥 Type: Website
 
+- [#1461](https://github.com/commercetools/merchant-center-application-kit/pull/1461) docs(website): rewrite docs for proxing to external API ([@emmenko](https://github.com/emmenko))
 - [#1450](https://github.com/commercetools/merchant-center-application-kit/pull/1450) fix(website): update to docs-kit 2.5.1-canary.2 to fix MDX issues ([@emmenko](https://github.com/emmenko))
 - [#1446](https://github.com/commercetools/merchant-center-application-kit/pull/1446) fix(website): rendering of UI component pages ([@emmenko](https://github.com/emmenko))
 

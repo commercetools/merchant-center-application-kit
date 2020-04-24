@@ -184,7 +184,7 @@
     "pretty-format" :"25.2.6"
   },
   "engines": {
-    "node": ">=8.9",
+    "node": ">=12",
     "npm": ">=5",
     "yarn": ">=1.10"
   }
