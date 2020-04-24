@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/mc-http-server",
-  "version": "16.6.0",
+  "version": "16.7.0",
   "description": "Production HTTP server for running a MC application",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -26,7 +26,7 @@
   "dependencies": {
     "@commercetools-frontend/assets": "16.0.0",
     "@commercetools-frontend/mc-dev-authentication": "16.6.0",
-    "@commercetools-frontend/mc-html-template": "16.5.3",
+    "@commercetools-frontend/mc-html-template": "16.7.0",
     "@promster/express": "4.1.2",
     "@promster/server": "4.2.2",
     "compression": "1.7.4",
