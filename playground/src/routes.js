@@ -7,6 +7,7 @@ import { InjectReducers } from '@commercetools-frontend/application-shell';
 import { useIsAuthorized } from '@commercetools-frontend/permissions';
 import StateMachinesList from './components/state-machines-list';
 import StateMachinesDetails from './components/state-machines-details';
+import EchoServer from './components/echo-server';
 import reducers from './reducers';
 import { PERMISSIONS } from './constants';
 
@@ -25,6 +26,9 @@ const ApplicationRoutes = (props) => {
   return (
     <InjectReducers id="state-machines" reducers={reducers}>
       <Switch>
+        <Route path={`${props.match.path}/echo-server`}>
+          <EchoServer />
+        </Route>
         <Route
           path={`${props.match.path}/:id`}
           render={(routerProps) => {

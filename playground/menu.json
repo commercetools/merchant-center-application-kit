@@ -2,9 +2,10 @@
   "key": "state-machines",
   "uriPath": "state-machines",
   "icon": "RocketIcon",
-  "permissions": ["ViewDeveloperSettings"],
+  "permissions": [
+    "ViewDeveloperSettings"
+  ],
   "featureToggle": null,
-  "submenu": [],
   "labelAllLocales": [
     {
       "locale": "en",
@@ -17,6 +18,28 @@
     {
       "locale": "es",
       "value": "State Machines"
+    }
+  ],
+  "submenu": [
+    {
+      "key": "state-machines-echo-server",
+      "uriPath": "state-machines/echo-server",
+      "permissions": [],
+      "featureToggle": null,
+      "labelAllLocales": [
+        {
+          "locale": "en",
+          "value": "Echo Server"
+        },
+        {
+          "locale": "de",
+          "value": "Echo Server"
+        },
+        {
+          "locale": "es",
+          "value": "Echo Server"
+        }
+      ]
     }
   ]
 }

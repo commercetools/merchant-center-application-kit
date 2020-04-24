@@ -15,8 +15,14 @@ module.exports = ({ env, headers }) => {
     version: 2,
     public: true,
     regions: regions[env.location],
+    env: {
+      // Use the `cdnUrl` vale as it happens to be the exact value that we
+      // need for the audience.
+      PLAYGROUND_API_AUDIENCE: env.cdnUrl,
+    },
     builds: [
       { src: 'public/**', use: '@now/static' },
+      { src: 'api/*.ts', use: '@now/node' },
       { src: 'routes/fallback.js', use: '@now/node' },
     ],
     routes: [
@@ -26,6 +32,7 @@ module.exports = ({ env, headers }) => {
         headers: headersStaticFiles,
       },
       { src: '/(login|logout)', dest: '/routes/fallback.js' },
+      { src: '/api/(.*)', dest: '/api/$1.ts' },
       {
         src: '/(.*)',
         // eslint-disable-next-line

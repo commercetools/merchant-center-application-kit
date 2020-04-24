@@ -12,6 +12,7 @@
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations"
   },
   "dependencies": {
+    "@commercetools-docs/ui-kit": "2.5.0",
     "@commercetools-frontend/actions-global": "16.6.0",
     "@commercetools-frontend/application-components": "16.6.0",
     "@commercetools-frontend/application-shell": "16.6.1",
@@ -25,6 +26,7 @@
     "@commercetools-frontend/sdk": "16.6.0",
     "@commercetools-uikit/constraints": "10.18.4",
     "@commercetools-uikit/flat-button": "10.18.4",
+    "@commercetools-uikit/primary-button": "10.18.4",
     "@commercetools-uikit/grid": "10.18.4",
     "@commercetools-uikit/icons": "10.18.4",
     "@commercetools-uikit/loading-spinner": "10.18.4",
