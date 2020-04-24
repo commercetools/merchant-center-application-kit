@@ -8,8 +8,23 @@ import Text from '@commercetools-uikit/text';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import { CodeBlock } from '@commercetools-docs/ui-kit';
 
+const initialState = {
+  isLoading: false,
+  result: null,
+};
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'loading':
+      return { isLoading: true, result: null };
+    case 'complete':
+      return { isLoading: false, result: action.payload };
+    default:
+      return state;
+  }
+};
+
 const EchoServer = () => {
-  const [result, setResult] = React.useState();
+  const [state, dispatchState] = React.useReducer(reducer, initialState);
   const dispatch = useAsyncDispatch();
   const dispatchError = useOnActionError();
   const echoServerApiUrl = useApplicationContext(
@@ -26,11 +41,13 @@ const EchoServer = () => {
             },
           })
         );
-        setResult(result);
+        dispatchState({ type: 'complete', payload: result });
       } catch (error) {
+        dispatchState({ type: 'complete' });
         dispatchError(error);
       }
     }
+    dispatchState({ type: 'loading' });
     ping();
   });
   return (
@@ -52,11 +69,15 @@ const EchoServer = () => {
         <Constraints.Horizontal constraint="xl">
           <Spacings.Stack>
             <Spacings.Inline>
-              <PrimaryButton label="Send request" onClick={handleSendRequest} />
+              <PrimaryButton
+                label={state.isLoading ? 'Sending...' : 'Send request'}
+                onClick={handleSendRequest}
+                isDisabled={state.isLoading}
+              />
             </Spacings.Inline>
-            {result && (
+            {state.result && (
               <CodeBlock
-                content={JSON.stringify(result, null, 2)}
+                content={JSON.stringify(state.result, null, 2)}
                 language="json"
               />
             )}
