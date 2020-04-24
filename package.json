@@ -88,7 +88,7 @@
     "@testing-library/react": "10.0.2",
     "@types/enzyme": "3.10.5",
     "@types/jquery": "3.3.35",
-    "@types/node": "13.13.2",
+    "@types/node": "13.11.1",
     "@types/react": "16.9.34",
     "@types/react-dom": "16.9.6",
     "@types/react-redux": "7.1.7",
