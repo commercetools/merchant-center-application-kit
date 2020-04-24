@@ -89,7 +89,7 @@ const validateRequiredValues = (options: TSessionMiddlewareOptions) => {
 };
 // Attempt to parse the given issuer. If the value is a cloud identifier, it will
 // be mapped to one of the supported values. If not, we assume the value is a valid URL.
-const parseDefaultIssuer = (options: TSessionMiddlewareOptions) => {
+const getConfiguredDefaultIssuer = (options: TSessionMiddlewareOptions) => {
   const issuer = mapCloudIdentifierToIssuer(options.issuer);
   if (!issuer) {
     throwIfIssuerIsNotAValidUrl(options.issuer);
@@ -98,13 +98,27 @@ const parseDefaultIssuer = (options: TSessionMiddlewareOptions) => {
   return issuer;
 };
 
+// Construct the audience from the given option + the request path.
+// If the request path is `/`, do not append it to the audience, otherwise
+// the token validation might fail because of mismatching audiences.
+const getConfiguredAudience = (
+  options: TSessionMiddlewareOptions,
+  requestPath: string
+) => {
+  const url = new URL(options.audience);
+  if (requestPath !== '/') {
+    url.pathname = requestPath;
+  }
+  return url.toString();
+};
+
 function createSessionAuthVerifier<
   Request extends IncomingMessage,
   Response extends ServerResponse
 >(options: TSessionMiddlewareOptions) {
   validateRequiredValues(options);
 
-  const configuredDefaultIssuer = parseDefaultIssuer(options);
+  const configuredDefaultIssuer = getConfiguredDefaultIssuer(options);
 
   // Returns an async HTTP handler.
   return async (request: Request, response: Response) => {
@@ -133,7 +147,7 @@ function createSessionAuthVerifier<
 
     // @ts-ignore: the node HTTP request does not know about `originalUrl`
     const requestUrlPath = request.originalUrl ?? request.url;
-    const audience = `${options.audience.replace(/\/?$/, '')}${requestUrlPath}`;
+    const audience = getConfiguredAudience(options, requestUrlPath);
 
     return new Promise((resolve, reject) => {
       expressJwtMiddleware({
