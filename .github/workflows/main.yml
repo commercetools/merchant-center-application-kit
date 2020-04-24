@@ -161,7 +161,7 @@ jobs:
 
       # TODO: in the future we want to extract this step into a separate job to be able
       # to test this in multiple environments (macOS, Window) and with different node
-      # versions (10, 12). This can be done using the action strategy matrix.
+      # versions (13, 14). This can be done using the action strategy matrix.
       # However, in order to do that, we need to be able to persist the tarballs between
       # jobs. This can be done by using the upload/download artifacts actions.
       # However, at this time there is no option to clean up the artifacts automatically
@@ -184,7 +184,7 @@ jobs:
   #   strategy:
   #     matrix:
   #       os: [macos-latest, windows-latest]
-  #       node: [10, 12]
+  #       node: [13, 14]
   #   steps:
   #     - name: Checkout
   #       uses: actions/checkout@v2

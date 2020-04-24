@@ -3,7 +3,7 @@
 # We use Google Cloud Container Registry to build and store the Docker image, using a Build trigger connected to our GitHub repo.
 # The build is triggered on each tag, so whenever we do a new release.
 
-FROM node:12-alpine
+FROM node:13-alpine
 
 LABEL maintainer="mc@commercetools.com"
 
