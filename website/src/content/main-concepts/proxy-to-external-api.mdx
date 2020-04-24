@@ -32,11 +32,11 @@ Requests to that endpoint should additionally pass the following HTTP headers:
 - `X-Forward-To: <url>`: The URL to your external API.
 - `X-Project-Key: <project-key>`: The key of the project currently being used by the Custom Application. The Merchant Center API Gateway will perform a validation check to ensure that the user has access to the project, then forward the request to your server only if the check was successful.
 
-To facilitate the usage of the [built-in Apollo client and the SDK actions](/main-concepts/data-fetching), we provide some utility helpers to abstract away the request configuration for the HTTP headers listed above.
+To facilitate the usage of the [built-in Apollo client and the SDK actions](/main-concepts/data-fetching), we provide some helpers to easily integrate with the request configuration for the HTTP headers listed above.
 
 ## Usage for Apollo
 
-We can leverage the `context` option for Apollo queries to change a bit how the request is configured. The `@commercetools-frontend/application-shell` package now exposes an utility function to configure the Apollo context for the `/proxy/forward-to` usage.
+We can leverage the `context` option for Apollo queries to adjust how request is configured and executed. The `@commercetools-frontend/application-shell` package now exposes an utility function to configure the Apollo context for the `/proxy/forward-to` usage.
 
 ```js
 import { useQuery } from 'react-apollo';
@@ -82,7 +82,7 @@ The external API must verify that the token is valid by [using the JSON Web Key 
 
 <Warning>
 
-It's imperative that the external API is securely protected and that only users with access to the project are able to connect to the API.
+It's imperative that the external API is securely protected and that only users with access to the project should be able to connect to the API.
 
 </Warning>
 
@@ -128,7 +128,7 @@ The middleware requires some options:
 
 - `jwks` (_object_): See [options of `jwks-rsa`](https://github.com/auth0/node-jwks-rsa/).
 
-Finally, you can use the middleware as following:
+You can use the middleware as following:
 
 ```js highlightLines="3,9-12"
 const express = require('express');
@@ -181,14 +181,14 @@ exports.handler = async function (request, response) {
 
 ## Using JSON Web Key Set endpoint
 
-The Merchant Center API Gateway exposes a `/.well-known/jwks.json` endpoint that can be used to validate JWTs, as per Open ID Connect (OIDC) spec. The endpoint provides a rotating public key used to verify the JWT signature.
+The Merchant Center API Gateway exposes a `/.well-known/jwks.json` endpoint that can be used to validate JWTs, as defined in Open ID Connect (OIDC) specification. The endpoint provides a rotating public key used to verify the JWT signature.
 Additionally, there is also a `/.well-known/openid-configuration` discovery endpoint.
 
 You can read more about JSON Web Key Set [here](https://auth0.com/docs/jwks) and [here](https://tools.ietf.org/html/rfc7517).
 
 <Info>
 
-If you use the `@commercetools-backend/express` package, you don't need to do anything in this regard.
+The setup described above is not needed when using the `@commercetools-backend/express` package which already contains the necessary setup.
 
 </Info>
 
@@ -215,7 +215,7 @@ When we introduce a new version, the default version enters a **deprecation peri
 | Beta                 | 4 months           |
 | General Availability | 12 months          |
 
-The following table lists all the supported versions and their deprecation period:
+The following table lists all the supported versions and the possible start date for their deprecation period:
 
 | Version  | Is default |  Deprecated from  |
 | -------- | ---------- | ---------- |
