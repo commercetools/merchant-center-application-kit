@@ -1,3 +1,135 @@
+## [16.7.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.6.1...v16.7.0) (2020-04-24)
+
+This release introduces a new package to help working and developing an external server/API for Custom Applications.
+
+```
+npm install --save @commercetools-backend/express
+
+# or
+
+yarn add @commercetools-backend/express
+```
+
+The package currently includes an Express.js middleware to verify requests sent via the `/proxy/forward-to` endpoint of the Merchant Center API Gateway.
+
+```js
+const {
+  createSessionMiddleware,
+  CLOUD_IDENTIFIERS,
+} = require('@commercetools-backend/express');
+
+app.use(
+  createSessionMiddleware({
+    audience: 'https://my-api-server.com',
+    issuer: CLOUD_IDENTIFIERS.GCP_EU,
+  })
+);
+app.use((request, response, next) => {
+  // `request.session` contains the useful information
+});
+```
+
+> We strongly recommend to use this package to secure your API server, as well as to make it easier to setup your server.
+
+We plan to further develop the package to include other useful components to work with the Merchant Center and commercetools APIs. If you are interested in these functionalities and you would like to have certain features included in the packae, let us know and open a [support issue](https://github.com/commercetools/merchant-center-application-kit/issues/new/choose).
+
+The middleware also works for Serverless functions. Below is an example for Google Cloud Functions:
+
+```js
+const {
+  createSessionAuthVerifier,
+  CLOUD_IDENTIFIERS,
+} = require('@commercetools-backend/express');
+
+const sessionAuthVerifier = createSessionAuthVerifier({
+  audience: 'https://my-api-server.com',
+  issuer: CLOUD_IDENTIFIERS.GCP_EU,
+});
+
+exports.handler = async function (request, response) {
+  try {
+    await sessionAuthVerifier(request, response);
+  } catch (error) {
+    response.status(401).send(JSON.stringify({ message: 'Unauthorized' }));
+    return;
+  }
+
+  // `request.session` contains the useful information
+};
+```
+
+**Support forwardTo request config for Apollo and SDK actions**
+
+Connecting to your external server/API requires you to use the `/proxy/forward-to` endpoint of the Merchant Center API Gateway.
+
+To facilitate the usage of the built-in Apollo client and the SDK actions, we provide some utility helpers to abstract away the request configuration for the `/proxy/forward-to` endpoint.
+
+- Usage for Apollo
+
+We can leverage the `context` option for Apollo queries to change a bit how the request is configured. The `@commercetools-frontend/application-shell` package now exposes an utility function to configure the Apollo context for the `/proxy/forward-to` usage.
+
+```js
+import { useQuery } from 'react-apollo';
+import { createApolloContextForProxyForwardTo } from '@commercetools-frontend/application-shell';
+
+const Fetcher = () => {
+  const { loading, data, error } = useQuery(MyQuery, {
+    context: createApolloContextForProxyForwardTo({
+      uri: 'https://my-custom-app.com/graphql',
+    }),
+  });
+};
+```
+
+- Usage for SDK
+
+By default, all requests with the SDK are configured to be sent to the MC API.
+To make it easier to make requests to the proxy endpoint using the SDK, there is a new action creator wrapper that comes with built-in configuration options.
+
+The exported action creators have a new export `forwardTo`, which is an object containing wrappers around the normal action creators.
+
+```js
+actions.forwardTo.get({ uri: 'https://my-custom-app.com/graphql' });
+actions.forwardTo.del(options);
+actions.forwardTo.head(options);
+actions.forwardTo.post(options);
+```
+
+#### 🐛 Type: Bug
+
+- Other
+  - [#1459](https://github.com/commercetools/merchant-center-application-kit/pull/1459) fix(express): do not append trailing slash to audience if request path is "/" ([@emmenko](https://github.com/emmenko))
+- `application-shell-connectors`, `application-shell`, `sdk`
+  - [#1455](https://github.com/commercetools/merchant-center-application-kit/pull/1455) fix: typings ref for test utils, treat crypto as an external module ([@emmenko](https://github.com/emmenko))
+
+#### 🔮 Type: Chore
+
+- [#1451](https://github.com/commercetools/merchant-center-application-kit/pull/1451) refactor(ci): to not use cypress github action ([@emmenko](https://github.com/emmenko))
+
+#### 🚀 Type: New Feature
+
+- `application-shell`, `sdk`
+  - [#1457](https://github.com/commercetools/merchant-center-application-kit/pull/1457) feat: support forwardTo request config for apollo and sdk ([@emmenko](https://github.com/emmenko))
+- `mc-html-template`
+  - [#1456](https://github.com/commercetools/merchant-center-application-kit/pull/1456) feat(headers.json): add support for env variable placeholders ([@emmenko](https://github.com/emmenko))
+- Other
+  - [#1447](https://github.com/commercetools/merchant-center-application-kit/pull/1447) feat: introduce new package @commercetools-backend/express with utilities for working with Custom Applications ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- [#1453](https://github.com/commercetools/merchant-center-application-kit/pull/1453) refactor(express): support backwards compatibility for v1 ([@emmenko](https://github.com/emmenko))
+- [#1452](https://github.com/commercetools/merchant-center-application-kit/pull/1452) refactor(express): support request handler for serverless functions ([@emmenko](https://github.com/emmenko))
+
+#### 🖥 Type: Website
+
+- [#1450](https://github.com/commercetools/merchant-center-application-kit/pull/1450) fix(website): update to docs-kit 2.5.1-canary.2 to fix MDX issues ([@emmenko](https://github.com/emmenko))
+- [#1446](https://github.com/commercetools/merchant-center-application-kit/pull/1446) fix(website): rendering of UI component pages ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `create-mc-app`, `jest-preset-mc-app`, `l10n`, `mc-scripts`, `permissions`, `react-notifications`
+  - [#1438](https://github.com/commercetools/merchant-center-application-kit/pull/1438) chore(deps): lock file maintenance all dependencies ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [16.6.1](https://github.com/commercetools/merchant-center-application-kit/compare/v16.6.0...v16.6.1) (2020-04-15)
 
 #### 🐛 Type: Bug
