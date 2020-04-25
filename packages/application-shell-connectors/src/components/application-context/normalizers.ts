@@ -98,23 +98,14 @@ type NormalizedGroupedByResourceType = {
   // E.g. { orders: {...} }
   [key: string]: NormalizedGroupedByPermission | null;
 };
-/**
- * dataFence: {
- *   store: {
- *     orders: {
- *       canManageOrders: { values: ['usa', 'germany'] },
- *       canViewOrders: { values: ['canada'] },
- *     }
- *   }
- * }
- */
 type NormalizedStoresGroupByResourceType = {
+  // E.g [ { group: 'orders', value: 'us', type: 'store', name: 'canManageOrders' } ]
   [key: string]: TStoreDataFence[];
 };
 
 const normalizeAppliedDataFencesForStoresByResourceType = (
   dataFences: Maybe<TStoreDataFence>[]
-) => {
+): NormalizedGroupedByResourceType => {
   const groupedByResourceType = dataFences.reduce<
     NormalizedStoresGroupByResourceType
   >((previousGroupsOfSameType, appliedDataFence) => {
@@ -184,9 +175,15 @@ type NormalizedGroupByType = {
   [key: string]: Maybe<TStoreDataFence>[];
 };
 
+type SupportedDataFenceType = 'store';
+type NormalizedDataFenceRecord = Record<
+  SupportedDataFenceType,
+  NormalizedGroupedByResourceType
+>;
+
 export const normalizeAllAppliedDataFences = (
   project: TFetchProjectQuery['project']
-) => {
+): NormalizedDataFenceRecord | null => {
   if (!project) return null;
   const allAppliedDataFences = project.allAppliedDataFences;
   if (!allAppliedDataFences || allAppliedDataFences.length === 0) {
@@ -212,7 +209,9 @@ export const normalizeAllAppliedDataFences = (
         }
       : {}),
   };
-  return Object.keys(normalizedDataFences).length > 0
-    ? normalizedDataFences
-    : null;
+
+  if (Object.keys(normalizedDataFences).length > 0)
+    return normalizedDataFences as NormalizedDataFenceRecord;
+
+  return null;
 };

@@ -44,17 +44,11 @@ type TApplicationContextGroupedByResourceType = {
  *   }
  * }
  */
-// NOTE: we currently can't use Mapped Types as the babel transfomer does not
-// understand them yet: https://github.com/milesj/babel-plugin-typescript-to-proptypes/issues/23
-// type TApplicationContextDataFenceType = 'store';
-// type TApplicationContextDataFences = {
-//   // E.g. { store: {...} }
-//   [key in TApplicationContextDataFenceType]: TApplicationContextGroupedByResourceType;
-// };
-type TApplicationContextDataFences = {
-  // E.g. { store: {...} }
-  store?: TApplicationContextGroupedByResourceType;
-};
+type TApplicationContextDataFenceType = 'store';
+type TApplicationContextDataFences = Record<
+  TApplicationContextDataFenceType,
+  TApplicationContextGroupedByResourceType
+>;
 type TApplicationContextEnvironment = ApplicationWindow['app'];
 
 const Context = React.createContext({});
