@@ -105,7 +105,7 @@ type NormalizedStoresGroupByResourceType = {
 
 const normalizeAppliedDataFencesForStoresByResourceType = (
   dataFences: Maybe<TStoreDataFence>[]
-): NormalizedGroupedByResourceType => {
+) => {
   const groupedByResourceType = dataFences.reduce<
     NormalizedStoresGroupByResourceType
   >((previousGroupsOfSameType, appliedDataFence) => {
@@ -183,7 +183,7 @@ type NormalizedDataFenceRecord = Record<
 
 export const normalizeAllAppliedDataFences = (
   project: TFetchProjectQuery['project']
-): NormalizedDataFenceRecord | null => {
+) => {
   if (!project) return null;
   const allAppliedDataFences = project.allAppliedDataFences;
   if (!allAppliedDataFences || allAppliedDataFences.length === 0) {
