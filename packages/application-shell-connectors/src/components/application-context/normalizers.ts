@@ -98,17 +98,8 @@ type NormalizedGroupedByResourceType = {
   // E.g. { orders: {...} }
   [key: string]: NormalizedGroupedByPermission | null;
 };
-/**
- * dataFence: {
- *   store: {
- *     orders: {
- *       canManageOrders: { values: ['usa', 'germany'] },
- *       canViewOrders: { values: ['canada'] },
- *     }
- *   }
- * }
- */
 type NormalizedStoresGroupByResourceType = {
+  // E.g [ { group: 'orders', value: 'us', type: 'store', name: 'canManageOrders' } ]
   [key: string]: TStoreDataFence[];
 };
 
@@ -184,6 +175,11 @@ type NormalizedGroupByType = {
   [key: string]: Maybe<TStoreDataFence>[];
 };
 
+type SupportedDataFenceType = 'store';
+type NormalizedDataFences = Partial<
+  Record<SupportedDataFenceType, NormalizedGroupedByResourceType>
+>;
+
 export const normalizeAllAppliedDataFences = (
   project: TFetchProjectQuery['project']
 ) => {
@@ -212,7 +208,9 @@ export const normalizeAllAppliedDataFences = (
         }
       : {}),
   };
-  return Object.keys(normalizedDataFences).length > 0
-    ? normalizedDataFences
-    : null;
+
+  if (Object.keys(normalizedDataFences).length > 0)
+    return normalizedDataFences as NormalizedDataFences;
+
+  return null;
 };
