@@ -9,12 +9,7 @@
     "directory": "packages/mc-scripts"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -24,15 +19,8 @@
     "mc-scripts": "./bin/mc-scripts.js"
   },
   "browserslist": {
-    "production": [
-      ">1%",
-      "not op_mini all",
-      "not dead"
-    ],
-    "development": [
-      "last 2 firefox versions",
-      "last 2 chrome versions"
-    ]
+    "production": [">1%", "not op_mini all", "not dead"],
+    "development": ["last 2 firefox versions", "last 2 chrome versions"]
   },
   "dependencies": {
     "@babel/core": "7.9.0",
