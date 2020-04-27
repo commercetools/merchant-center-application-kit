@@ -15,16 +15,50 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./lib/index.js",
-  "module": "./lib/index.js",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
+  "scripts": {
+    "prebuild": "rimraf build/**",
+    "build": "babel src --out-dir build"
+  },
   "dependencies": {
+    "@babel/runtime": "7.9.2",
+    "core-js": "3.6.5",
     "node-fetch": "2.6.0",
     "serialize-javascript": "3.0.0",
     "uglify-es": "3.3.9",
     "uglifycss": "0.0.29"
   },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "7.9.0",
+    "@babel/preset-env": "7.9.5"
+  },
   "engines": {
-    "node": ">=8",
+    "node": ">=10",
     "npm": ">=5"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "10"
+          },
+          "modules": "commonjs",
+          "useBuiltIns": "usage",
+          "corejs": 3
+        }
+      ]
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "corejs": 3,
+          "helpers": false
+        }
+      ]
+    ]
   }
 }

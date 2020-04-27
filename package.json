@@ -70,6 +70,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
+    "@babel/core": "7.9.0",
     "@commercetools-docs/writing-style": "2.5.0",
     "@commercetools-uikit/design-system": "10.18.4",
     "@commercetools/github-labels": "1.1.0",
