@@ -176,9 +176,8 @@ type NormalizedGroupByType = {
 };
 
 type SupportedDataFenceType = 'store';
-type NormalizedDataFenceRecord = Record<
-  SupportedDataFenceType,
-  NormalizedGroupedByResourceType
+type NormalizedDataFences = Partial<
+  Record<SupportedDataFenceType, NormalizedGroupedByResourceType>
 >;
 
 export const normalizeAllAppliedDataFences = (
@@ -211,7 +210,7 @@ export const normalizeAllAppliedDataFences = (
   };
 
   if (Object.keys(normalizedDataFences).length > 0)
-    return normalizedDataFences as NormalizedDataFenceRecord;
+    return normalizedDataFences as NormalizedDataFences;
 
   return null;
 };

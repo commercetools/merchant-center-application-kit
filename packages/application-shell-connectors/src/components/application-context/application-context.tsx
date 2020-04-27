@@ -45,9 +45,11 @@ type TApplicationContextGroupedByResourceType = {
  * }
  */
 type TApplicationContextDataFenceType = 'store';
-type TApplicationContextDataFences = Record<
-  TApplicationContextDataFenceType,
-  TApplicationContextGroupedByResourceType
+type TApplicationContextDataFences = Partial<
+  Record<
+    TApplicationContextDataFenceType,
+    TApplicationContextGroupedByResourceType
+  >
 >;
 type TApplicationContextEnvironment = ApplicationWindow['app'];
 

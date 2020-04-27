@@ -31,7 +31,9 @@ type TDataFenceGroupedByResourceType = {
 
 // Potentially a union type.
 type TDataFenceType = 'store';
-type TDataFences = Record<TDataFenceType, TDataFenceGroupedByResourceType>;
+type TDataFences = Partial<
+  Record<TDataFenceType, TDataFenceGroupedByResourceType>
+>;
 
 type TDemandedDataFence = {
   group: string;

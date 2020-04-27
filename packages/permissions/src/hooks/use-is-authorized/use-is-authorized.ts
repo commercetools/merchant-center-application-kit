@@ -38,7 +38,9 @@ type TDataFenceGroupedByResourceType = {
   [key: string]: TDataFenceGroupedByPermission | null;
 };
 type TDataFenceType = 'store';
-type TDataFences = Record<TDataFenceType, TDataFenceGroupedByResourceType>;
+type TDataFences = Partial<
+  Record<TDataFenceType, TDataFenceGroupedByResourceType>
+>;
 type TDemandedDataFence = {
   group: string;
   name: string;
