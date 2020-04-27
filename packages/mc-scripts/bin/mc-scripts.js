@@ -31,7 +31,7 @@ switch (command) {
     const commandArgs = process.argv.slice(2).filter((arg) => command !== arg);
     const result = spawn.sync(
       'node',
-      [require.resolve(`../${command}`)].concat(commandArgs),
+      [require.resolve(`../build/${command}`)].concat(commandArgs),
       {
         stdio: 'inherit',
       }

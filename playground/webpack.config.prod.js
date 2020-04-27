@@ -1,5 +1,7 @@
 const path = require('path');
-const createWebpackConfigForProduction = require('@commercetools-frontend/mc-scripts/config/create-webpack-config-for-production');
+const {
+  createWebpackConfigForProduction,
+} = require('@commercetools-frontend/mc-scripts');
 
 const distPath = path.resolve(__dirname, 'dist');
 const entryPoint = path.resolve(__dirname, 'src/index.js');
