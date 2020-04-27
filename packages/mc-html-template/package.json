@@ -17,6 +17,15 @@
   },
   "main": "./build/index.js",
   "module": "./build/index.js",
+  "files": [
+    "build",
+    "html-scripts",
+    "html-styles",
+    "webpack.js",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prebuild": "rimraf build/**",
     "build": "babel src --out-dir build"
