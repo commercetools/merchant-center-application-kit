@@ -1,4 +1,6 @@
-const generateTemplate = require('./lib/generate-template');
+// Keep it a direct import, otherwise Webpack will try to require/load
+// non-browser dependencies.
+const generateTemplate = require('./build/generate-template');
 
 module.exports = (templateParams) => {
   const cssVendorChunks = [];
