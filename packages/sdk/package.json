@@ -56,7 +56,7 @@
     "unfetch": "4.1.0"
   },
   "devDependencies": {
-    "@types/uuid": "7.0.2",
+    "@types/uuid": "7.0.3",
     "react": "16.13.1",
     "react-redux": "7.2.0",
     "redux": "4.0.5",

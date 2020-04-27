@@ -71,7 +71,7 @@
     "@flopflip/launchdarkly-adapter": "2.13.2",
     "@flopflip/memory-adapter": "1.7.2",
     "@flopflip/react-broadcast": "10.1.15",
-    "@sentry/browser": "5.15.4",
+    "@sentry/browser": "5.15.5",
     "@types/classnames": "^2.2.9",
     "@types/common-tags": "^1.8.0",
     "@types/graphql": "^14.5.0",
@@ -92,7 +92,7 @@
     "common-tags": "1.8.0",
     "debounce-async": "0.0.2",
     "downshift": "^5.1.1",
-    "fuse.js": "3.4.6",
+    "fuse.js": "3.6.1",
     "graphql": "14.6.0",
     "graphql-tag": "^2.10.3",
     "history": "4.10.1",
@@ -115,7 +115,7 @@
     "uuid": "7.0.3"
   },
   "devDependencies": {
-    "@testing-library/react": "10.0.2",
+    "@testing-library/react": "10.0.3",
     "react": "16.13.1",
     "react-apollo": "3.1.5",
     "react-dom": "16.13.1",
