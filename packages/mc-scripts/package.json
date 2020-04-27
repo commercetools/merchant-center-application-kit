@@ -30,7 +30,7 @@
   },
   "scripts": {
     "prebuild": "rimraf build/**",
-    "build": "babel src --out-dir build"
+    "build": "babel src --out-dir build --copy-files"
   },
   "browserslist": {
     "production": [">1%", "not op_mini all", "not dead"],
