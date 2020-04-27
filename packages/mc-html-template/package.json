@@ -19,7 +19,7 @@
   "module": "./build/index.js",
   "scripts": {
     "prebuild": "rimraf build/**",
-    "build": "babel src --out-dir build --copy-files"
+    "build": "babel src --out-dir build"
   },
   "dependencies": {
     "@babel/runtime": "7.9.2",
