@@ -150,11 +150,11 @@ jobs:
           name: cypress-videos
           path: cypress/videos
 
-      - name: Publishing to npm registry
+      - name: Deploying Playground application to ZEIT Now
         if: github.ref == 'refs/heads/master'
-        run: ./scripts/release_canary.sh
+        run: ./scripts/deploy_playground.sh
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          ZEIT_NOW_PLAYGROUND: ${{ secrets.ZEIT_NOW_PLAYGROUND }}
 
       - name: Preparing tarballs of packages for testing templates installation
         run: node ./scripts/build-tarballs.js
@@ -230,9 +230,8 @@ jobs:
   #         artifact_id: ${{ steps.get_artifact_id.outputs.artifact_id }}
   #       env:
   #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Deploying Playground application to ZEIT Now
+      - name: Publishing to npm registry
         if: github.ref == 'refs/heads/master'
-        run: ./scripts/deploy_playground.sh
+        run: ./scripts/release_canary.sh
         env:
-          ZEIT_NOW_PLAYGROUND: ${{ secrets.ZEIT_NOW_PLAYGROUND }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
