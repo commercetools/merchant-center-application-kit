@@ -1,4 +1,4 @@
-const generateTemplate = require('./lib/generate-template');
+const { generateTemplate } = require('.');
 
 module.exports = (templateParams) => {
   const cssVendorChunks = [];
