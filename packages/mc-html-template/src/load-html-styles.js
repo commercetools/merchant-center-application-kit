@@ -4,9 +4,10 @@ const path = require('path');
 const uglifycss = require('uglifycss');
 
 const loadStyleAsString = (fileName) => {
-  const content = fs.readFileSync(path.join(__dirname, fileName), {
-    encoding: 'utf8',
-  });
+  const content = fs.readFileSync(
+    path.join(__dirname, '../html-styles', fileName),
+    { encoding: 'utf8' }
+  );
   if (process.env.NODE_ENV !== 'production') return content;
 
   // Minify styles for production usage

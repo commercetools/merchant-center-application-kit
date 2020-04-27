@@ -2,8 +2,8 @@ const fs = require('fs');
 const createAssetHash = require('./utils/create-asset-hash');
 const sanitizeAppEnvironment = require('./utils/sanitize-app-environment');
 const substituteEnvVariablePlaceholders = require('./utils/substitute-env-variable-placeholders');
-const htmlScripts = require('./html-scripts');
-// const htmlStyles = require('./html-styles');
+const htmlScripts = require('./load-html-scripts');
+// const htmlStyles = require('./load-html-styles');
 
 const loadCustomConfiguration = (pathToConfiguration) => {
   let rawConfiguration;

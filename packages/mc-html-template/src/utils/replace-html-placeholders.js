@@ -1,5 +1,5 @@
-const htmlScripts = require('../html-scripts');
-const htmlStyles = require('../html-styles');
+const htmlScripts = require('../load-html-scripts');
+const htmlStyles = require('../load-html-styles');
 const sanitizeAppEnvironment = require('./sanitize-app-environment');
 
 const getGtmTrackingScript = (gtmId) => {
