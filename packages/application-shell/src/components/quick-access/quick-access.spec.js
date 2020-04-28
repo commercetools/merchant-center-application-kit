@@ -153,12 +153,37 @@ const createPimSearchSdkMock = (
   response: {},
 });
 
-const renderQuickAccess = (options = {}, ui) =>
-  renderAppWithRedux(ui || <QuickAccess />, {
+const renderQuickAccess = (options = {}, ui) => {
+  const rendered = renderAppWithRedux(ui || <QuickAccess />, {
     permissions: managePermissions,
     sdkMocks: [createPimAvailabilityCheckSdkMock()],
     ...options,
   });
+
+  const findCurrentItem = ({ input, inputKey, itemTestId }) => {
+    let attempts = 4;
+    // Select the "next" item in the results until it finds the "Orders" match.
+    while (attempts > 0) {
+      fireEvent.keyDown(input, { key: inputKey });
+      fireEvent.keyUp(input, { key: inputKey });
+      const el = rendered.queryByTestId(itemTestId);
+      if (el.getAttribute('aria-current') === 'true') {
+        attempts = 0;
+      } else {
+        attempts -= 1;
+      }
+    }
+    expect(rendered.queryByTestId(itemTestId)).toHaveAttribute(
+      'aria-current',
+      'true'
+    );
+  };
+
+  return {
+    ...rendered,
+    findCurrentItem,
+  };
+};
 
 beforeEach(() => {
   gtm.track.mockReset();
@@ -713,21 +738,21 @@ describe('QuickAccess', () => {
 
     // when now pressing key down the selection should jump down
     searchInput = rendered.getByTestId('quick-access-search-input');
-    fireEvent.keyDown(searchInput, { key: 'ArrowDown' });
-    fireEvent.keyUp(searchInput, { key: 'ArrowDown' });
 
-    expect(
-      rendered.queryByTestId('quick-access-result(go/orders)')
-    ).toHaveAttribute('aria-current', 'true');
+    rendered.findCurrentItem({
+      input: searchInput,
+      inputKey: 'ArrowDown',
+      itemTestId: 'quick-access-result(go/orders)',
+    });
 
     // when pressing up, it should jump up again
     searchInput = rendered.getByTestId('quick-access-search-input');
-    fireEvent.keyDown(searchInput, { key: 'ArrowUp' });
-    fireEvent.keyUp(searchInput, { key: 'ArrowUp' });
 
-    expect(
-      rendered.queryByTestId('quick-access-result(go/dashboard)')
-    ).toHaveAttribute('aria-current', 'true');
+    rendered.findCurrentItem({
+      input: searchInput,
+      inputKey: 'ArrowUp',
+      itemTestId: 'quick-access-result(go/dashboard)',
+    });
   });
 
   it('should find a product by sku', async () => {
@@ -975,13 +1000,11 @@ describe('QuickAccess', () => {
     searchInput.setSelectionRange(searchText.length, searchText.length);
     await rendered.findByText('Open Orders');
 
-    // go down to select Open orders
-    fireEvent.keyDown(searchInput, { key: 'ArrowDown' });
-    fireEvent.keyUp(searchInput, { key: 'ArrowDown' });
-
-    expect(
-      rendered.queryByTestId('quick-access-result(go/orders)')
-    ).toHaveAttribute('aria-current', 'true');
+    rendered.findCurrentItem({
+      input: searchInput,
+      inputKey: 'ArrowDown',
+      itemTestId: 'quick-access-result(go/orders)',
+    });
 
     // navigate into sub commands
     fireEvent.keyDown(searchInput, { key: 'ArrowRight' });
