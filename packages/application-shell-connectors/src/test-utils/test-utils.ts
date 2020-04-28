@@ -1,8 +1,9 @@
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import {
+import type {
   Maybe,
   TFetchProjectExtensionImageRegexQuery,
 } from '../types/generated/settings';
+
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { FetchProjectExtensionImageRegex } from '../components/project-extension-image-regex/fetch-project-extension-image-regex.settings.graphql';
 
 export const createGraphqlResponseForProjectExtensionImageRegexQuery = (

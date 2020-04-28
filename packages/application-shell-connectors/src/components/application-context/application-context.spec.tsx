@@ -1,3 +1,5 @@
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
+
 import React from 'react';
 import { render } from '@testing-library/react';
 import {
@@ -9,7 +11,6 @@ import {
   mapProjectToApplicationContextProject,
   mapEnvironmentToApplicationContextEnvironment,
 } from './application-context';
-import { ApplicationWindow } from '@commercetools-frontend/constants';
 
 type AdditionalEnvironmentProps = { foo: string };
 

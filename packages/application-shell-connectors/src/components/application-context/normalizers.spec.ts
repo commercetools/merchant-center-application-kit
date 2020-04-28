@@ -1,4 +1,5 @@
-import { TFetchProjectQuery } from '../../types/generated/mc';
+import type { TFetchProjectQuery } from '../../types/generated/mc';
+
 import {
   normalizeAllAppliedActionRights,
   normalizeAllAppliedMenuVisibilities,

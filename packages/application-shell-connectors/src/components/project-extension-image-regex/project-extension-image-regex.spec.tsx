@@ -1,17 +1,13 @@
+import type { RenderResult } from '@testing-library/react';
+import type { MockedProviderProps } from '@apollo/react-testing';
+import type { TImageRegexContext } from './project-extension-image-regex';
+
 import React from 'react';
-import {
-  render,
-  RenderResult,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
-import {
-  MockedProvider as ApolloMockProvider,
-  MockedProviderProps,
-} from '@apollo/react-testing';
+import { render, waitForElementToBeRemoved } from '@testing-library/react';
+import { MockedProvider as ApolloMockProvider } from '@apollo/react-testing';
 import {
   ProjectExtensionProviderForImageRegex,
   GetProjectExtensionImageRegex,
-  TImageRegexContext,
 } from './project-extension-image-regex';
 import FetchProjectExtensionImageRegex from './fetch-project-extension-image-regex.settings.graphql';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';

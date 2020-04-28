@@ -1,4 +1,4 @@
-import { ApplicationWindow } from '@commercetools-frontend/constants';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
 
 /**
  * NOTE:

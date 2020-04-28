@@ -1,4 +1,4 @@
-import {
+import type {
   ProviderProps,
   TApplicationContext as ApplicationContext,
 } from './application-context';
