@@ -1,13 +1,11 @@
+import type { State, Props, TMessageTranslations } from './async-locale-data';
+
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { render, waitFor } from '@testing-library/react';
 import loadI18n from '../load-i18n';
-import AsyncLocaleData, {
-  State,
-  Props,
-  TMessageTranslations,
-} from './async-locale-data';
+import AsyncLocaleData from './async-locale-data';
 
 jest.mock('@commercetools-frontend/sentry');
 

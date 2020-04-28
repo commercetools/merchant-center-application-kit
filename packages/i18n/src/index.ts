@@ -1,4 +1,4 @@
-import { Props } from './async-locale-data/async-locale-data';
+import type { Props } from './async-locale-data/async-locale-data';
 
 export type TAsyncLocaleDataProps = Props;
 
