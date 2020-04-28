@@ -1,6 +1,8 @@
+import type { Props } from './maintenance-page-layout';
+
 import React from 'react';
 import { renderComponent } from '../../../test-utils';
-import MaintenancePageLayout, { Props } from './maintenance-page-layout';
+import MaintenancePageLayout from './maintenance-page-layout';
 
 const createTestProps = (props: Partial<Props> = {}) => ({
   imageSrc: '/assets/foo.svg',

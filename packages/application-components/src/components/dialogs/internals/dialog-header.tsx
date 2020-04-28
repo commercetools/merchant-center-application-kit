@@ -1,9 +1,9 @@
 import React from 'react';
+import { css } from '@emotion/core';
 import { CloseIcon } from '@commercetools-uikit/icons';
 import SecondaryIconButton from '@commercetools-uikit/secondary-icon-button';
 import Text from '@commercetools-uikit/text';
 import Spacings from '@commercetools-uikit/spacings';
-import { css } from '@emotion/core';
 
 type Props = {
   title: string;

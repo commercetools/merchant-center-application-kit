@@ -1,5 +1,7 @@
+import type { IntlShape } from 'react-intl';
+
 import React from 'react';
-import { useIntl, IntlShape } from 'react-intl';
+import { useIntl } from 'react-intl';
 import SecondaryButton from '@commercetools-uikit/secondary-button';
 import PrimaryButton from '@commercetools-uikit/primary-button';
 import Spacings from '@commercetools-uikit/spacings';
