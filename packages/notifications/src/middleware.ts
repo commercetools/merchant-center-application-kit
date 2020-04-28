@@ -1,9 +1,10 @@
-import { Action, Dispatch, MiddlewareAPI } from 'redux';
-import {
+import type { Action, Dispatch, MiddlewareAPI } from 'redux';
+import type {
   TNotification,
   TNotificationOnDismiss,
   TNotificationAction,
 } from './types';
+
 import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from './action-types';
 import { removeNotification } from './action-creators';
 
