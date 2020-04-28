@@ -1,3 +1,7 @@
+import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
+import type { TrackingWhitelist } from '../../utils/gtm';
+
 import './global-style-imports';
 import '../../track-performance';
 import React from 'react';
@@ -5,15 +9,8 @@ import { Router } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { Provider as ReduxProvider } from 'react-redux';
 import history from '@commercetools-frontend/browser-history';
-import {
-  ApplicationContextProvider,
-  TApplicationContext,
-} from '@commercetools-frontend/application-shell-connectors';
-import {
-  AsyncLocaleData,
-  TAsyncLocaleDataProps,
-} from '@commercetools-frontend/i18n';
-import { TrackingWhitelist } from '../../utils/gtm';
+import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
+import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import internalReduxStore from '../../configure-store';
 import apolloClient from '../../configure-apollo';
 import ConfigureIntlProvider from '../configure-intl-provider';

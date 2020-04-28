@@ -1,3 +1,6 @@
+import type { IdGetterObj } from 'apollo-cache-inmemory';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
+
 import ApolloClient from 'apollo-client';
 import { version as apolloVersion } from 'apollo-client/version';
 import { ApolloLink } from 'apollo-link';
@@ -6,9 +9,7 @@ import { createHttpLink } from 'apollo-link-http';
 import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
-  IdGetterObj,
 } from 'apollo-cache-inmemory';
-import { ApplicationWindow } from '@commercetools-frontend/constants';
 import createHttpUserAgent from '@commercetools/http-user-agent';
 import { errorLink, headerLink, tokenRetryLink } from './apollo-links';
 import { getMcApiUrl } from './utils';

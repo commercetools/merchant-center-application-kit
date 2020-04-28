@@ -1,3 +1,6 @@
+import type { TQuickAccessQuery } from '../../types/generated/ctp';
+import type { ExecGraphQlQuery, Command, HistoryEntry } from './types';
+
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useFeatureToggles } from '@flopflip/react-broadcast';
@@ -15,7 +18,6 @@ import {
 } from '@commercetools-frontend/constants';
 import { hasSomePermissions } from '@commercetools-frontend/permissions';
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { TQuickAccessQuery } from '../../types/generated/ctp';
 import { location } from '../../utils/location';
 import Butler from './butler';
 import QuickAccessQuery from './quick-access.ctp.graphql';
@@ -29,7 +31,7 @@ import messages from './messages';
 import { permissions } from './constants';
 import { saveHistoryEntries, loadHistoryEntries } from './history-entries';
 import pimIndexerStates from './pim-indexer-states';
-import { actionTypes, ExecGraphQlQuery, Command, HistoryEntry } from './types';
+import { actionTypes } from './types';
 
 const searchProductIdsAction = (
   searchText: string,

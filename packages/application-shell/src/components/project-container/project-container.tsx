@@ -1,16 +1,16 @@
+import type { RouteComponentProps } from 'react-router-dom';
+import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
+import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Switch, Redirect, RouteComponentProps } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import isNil from 'lodash/isNil';
-import {
-  ApplicationContextProvider,
-  TProviderProps,
-} from '@commercetools-frontend/application-shell-connectors';
+import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { DOMAINS, LOGOUT_REASONS } from '@commercetools-frontend/constants';
 import { Notifier } from '@commercetools-frontend/react-notifications';
 import { CONTAINERS, STORAGE_KEYS, SUSPENSION_REASONS } from '../../constants';
-import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import ApplicationLoader from '../application-loader';
 import LocaleSwitcher from '../locale-switcher';
 import ProjectDataLocale from '../project-data-locale';

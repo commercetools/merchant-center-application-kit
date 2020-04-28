@@ -1,11 +1,17 @@
-import React, { MouseEventHandler, SyntheticEvent } from 'react';
+import type { MouseEventHandler, SyntheticEvent } from 'react';
+import type { RouteComponentProps } from 'react-router-dom';
+import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import type {
+  TDataFence,
+  TActionRight,
+  TApplicationsMenu,
+  TLocalizedField,
+  TNavbarMenu,
+} from '../../types/generated/proxy';
+
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import {
-  NavLink,
-  matchPath,
-  RouteComponentProps,
-  useLocation,
-} from 'react-router-dom';
+import { NavLink, matchPath, useLocation } from 'react-router-dom';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import classnames from 'classnames';
 import {
@@ -33,18 +39,8 @@ import {
   NO_VALUE_FALLBACK,
   SUPPORT_PORTAL_URL,
 } from '@commercetools-frontend/constants';
-import {
-  useApplicationContext,
-  TApplicationContext,
-} from '@commercetools-frontend/application-shell-connectors';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { RestrictedByPermissions } from '@commercetools-frontend/permissions';
-import {
-  TDataFence,
-  TActionRight,
-  TApplicationsMenu,
-  TLocalizedField,
-  TNavbarMenu,
-} from '../../types/generated/proxy';
 import { location } from '../../utils/location';
 import { GtmContext } from '../gtm-booter';
 import LoadingPlaceholder from '../loading-placeholder';

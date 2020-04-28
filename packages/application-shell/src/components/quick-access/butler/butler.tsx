@@ -1,10 +1,19 @@
-import React, {
+import type {
   KeyboardEventHandler,
   ChangeEventHandler,
   KeyboardEvent,
   MouseEventHandler,
   MouseEvent,
 } from 'react';
+import type {
+  Command,
+  SearchText,
+  SelectedResult,
+  Stack,
+  HistoryEntry,
+} from '../types';
+
+import React from 'react';
 import Fuse from 'fuse.js';
 import { FormattedMessage, useIntl } from 'react-intl';
 import last from 'lodash/last';
@@ -15,13 +24,6 @@ import { customProperties } from '@commercetools-uikit/design-system';
 import ButlerCommand from '../butler-command';
 import ButlerContainer from '../butler-container';
 import messages from '../messages';
-import {
-  Command,
-  SearchText,
-  SelectedResult,
-  Stack,
-  HistoryEntry,
-} from '../types';
 
 const isSelectAllCombo = (event: KeyboardEvent<HTMLInputElement>) =>
   event.key === 'a' &&

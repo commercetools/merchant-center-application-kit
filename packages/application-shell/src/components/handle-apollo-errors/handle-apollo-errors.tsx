@@ -1,6 +1,7 @@
+import type { QueryResult } from 'react-apollo';
+
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { QueryResult } from 'react-apollo';
 import { handleActionError } from '@commercetools-frontend/actions-global';
 import getDisplayName from '../../utils/get-display-name';
 

@@ -4,11 +4,11 @@
 // the `render` method sets up the tests correctly.
 // This is a bit different from our usual tests, as we are testing our testing
 // tools here instead of actual components.
+import React from 'react';
+import PropTypes from 'prop-types';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
-import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
 import { useIntl } from 'react-intl';
 import { Query } from 'react-apollo';
 import { useSelector } from 'react-redux';
@@ -293,7 +293,7 @@ describe('custom render functions', () => {
     it('should merge the passed wrapper with renderApp internal wrapper', async () => {
       const TestComponent = () => {
         // provided wrapper
-        const value = useContext(Context);
+        const value = React.useContext(Context);
         // own wrapper
         useIntl();
 
@@ -309,7 +309,7 @@ describe('custom render functions', () => {
     it('should merge the passed wrapper with renderAppWithRedux internal wrapper', async () => {
       const TestComponent = () => {
         // provided wrapper
-        const value = useContext(Context);
+        const value = React.useContext(Context);
         // own wrapper
         useSelector(() => undefined);
 

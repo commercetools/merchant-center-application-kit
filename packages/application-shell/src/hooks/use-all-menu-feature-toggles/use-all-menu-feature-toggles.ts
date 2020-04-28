@@ -1,10 +1,11 @@
-import { useQuery } from 'react-apollo';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import {
+import type {
   TFetchAllMenuFeatureTogglesQuery,
   TFetchAllMenuFeatureTogglesQueryVariables,
 } from '../../types/generated/proxy';
+
+import { useQuery } from 'react-apollo';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { FetchAllMenuFeatureToggles } from './fetch-all-menu-feature-toggles.proxy.graphql';
 
 const defaultApiUrl = window.location.origin;

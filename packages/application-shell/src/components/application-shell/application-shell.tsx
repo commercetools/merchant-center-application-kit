@@ -1,8 +1,14 @@
-import React, { SyntheticEvent } from 'react';
-import { Dispatch } from 'redux';
+import type { SyntheticEvent } from 'react';
+import type { Dispatch } from 'redux';
+import type { TFlags } from '@flopflip/types';
+import type { ApolloError } from 'apollo-client';
+import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
+import type { TApplicationsMenu } from '../../types/generated/proxy';
+import type { TrackingWhitelist } from '../../utils/gtm';
+
+import React from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
-import { ApolloError } from 'apollo-client';
-import { TFlags } from '@flopflip/types';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
@@ -14,17 +20,9 @@ import {
   reportErrorToSentry,
   SentryUserTracker,
 } from '@commercetools-frontend/sentry';
-import {
-  ApplicationContextProvider,
-  TApplicationContext,
-} from '@commercetools-frontend/application-shell-connectors';
+import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import { NotificationsList } from '@commercetools-frontend/react-notifications';
-import {
-  AsyncLocaleData,
-  TAsyncLocaleDataProps,
-} from '@commercetools-frontend/i18n';
-import { TApplicationsMenu } from '../../types/generated/proxy';
-import { TrackingWhitelist } from '../../utils/gtm';
+import { AsyncLocaleData } from '@commercetools-frontend/i18n';
 import internalReduxStore from '../../configure-store';
 import ProjectDataLocale from '../project-data-locale';
 import PortalsContainer from '../portals-container';

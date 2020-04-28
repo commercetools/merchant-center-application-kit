@@ -1,16 +1,18 @@
-import { IntlShape } from 'react-intl';
-import { oneLineTrim } from 'common-tags';
-import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { hasSomePermissions } from '@commercetools-frontend/permissions';
-import { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import {
+import type { IntlShape } from 'react-intl';
+import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import type {
   TProductVariant,
   TQuickAccessProductQuery,
 } from '../../types/generated/ctp';
+import type { Command, ExecGraphQlQuery } from './types';
+
+import { oneLineTrim } from 'common-tags';
+import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { hasSomePermissions } from '@commercetools-frontend/permissions';
 import QuickAccessProductQuery from './quick-access-product.ctp.graphql';
 import { permissions } from './constants';
 import messages from './messages';
-import { actionTypes, Command, ExecGraphQlQuery } from './types';
+import { actionTypes } from './types';
 
 type CreateProductVariantSubCommandsOptions = {
   intl: IntlShape;

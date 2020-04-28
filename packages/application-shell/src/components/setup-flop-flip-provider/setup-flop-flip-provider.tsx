@@ -1,8 +1,9 @@
+import type { TFlags } from '@flopflip/types';
+import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
+
 import React from 'react';
 import ldAdapter from '@flopflip/launchdarkly-adapter';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { TFlags } from '@flopflip/types';
-import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import useAllMenuFeatureToggles from '../../hooks/use-all-menu-feature-toggles';
 import { FLAGS } from '../../feature-toggles';
 

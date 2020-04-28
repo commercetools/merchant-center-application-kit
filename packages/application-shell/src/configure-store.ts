@@ -1,24 +1,19 @@
-import {
-  createStore,
-  compose,
-  applyMiddleware,
-  combineReducers,
+import type {
   ReducersMapObject,
   Store,
   Middleware,
   StoreEnhancer,
 } from 'redux';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
+
+import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import {
   middleware as notificationsMiddleware,
   reducer as notificationsReducer,
 } from '@commercetools-frontend/notifications';
 import { createMiddleware as createSdkMiddleware } from '@commercetools-frontend/sdk';
-import {
-  SHOW_LOADING,
-  HIDE_LOADING,
-  ApplicationWindow,
-} from '@commercetools-frontend/constants';
+import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
 import hideNotificationsMiddleware from './middleware/hide-notifications';
 import loggerMiddleware from './middleware/logger';
 import { requestsInFlightReducer } from './components/requests-in-flight-loader';

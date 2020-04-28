@@ -1,11 +1,12 @@
+import type {
+  TAmILoggedInQuery,
+  TAmILoggedInQueryVariables,
+} from '../../types/generated/mc';
+
 import React from 'react';
 import { useQuery } from 'react-apollo';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { STORAGE_KEYS } from '../../constants';
-import {
-  TAmILoggedInQuery,
-  TAmILoggedInQueryVariables,
-} from '../../types/generated/mc';
 import AmILoggedInQuery from './authenticated.mc.graphql';
 
 type RenderFnArgs = { isAuthenticated: boolean };
