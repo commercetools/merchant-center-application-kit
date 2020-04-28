@@ -1,13 +1,14 @@
-import {
-  createClient as createSdkClient,
+import type {
   MiddlewareRequest,
   MiddlewareResponse,
   Next,
 } from '@commercetools/sdk-client';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
+
+import { createClient as createSdkClient } from '@commercetools/sdk-client';
 import { createHttpMiddleware as createSdkHttpMiddleware } from '@commercetools/sdk-middleware-http';
 import { createCorrelationIdMiddleware as createSdkCorrelationIdMiddleware } from '@commercetools/sdk-middleware-correlation-id';
 import createHttpUserAgent from '@commercetools/http-user-agent';
-import { ApplicationWindow } from '@commercetools-frontend/constants';
 import { getMcApiUrl } from '../utils';
 import version from '../version';
 

@@ -1,3 +1,6 @@
+import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
+import type { TApplicationsMenu } from '../../types/generated/proxy';
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/core';
@@ -6,8 +9,6 @@ import { customProperties } from '@commercetools-uikit/design-system';
 import LogoSVG from '@commercetools-frontend/assets/images/logo.svg';
 import { CONTAINERS } from '../../constants';
 import { getPreviousProjectKey } from '../../utils';
-import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
-import { TApplicationsMenu } from '../../types/generated/proxy';
 import UserSettingsMenu from '../user-settings-menu';
 import ProjectSwitcher from '../project-switcher';
 import BackToProject from '../back-to-project';

@@ -1,13 +1,14 @@
-import { Action, Dispatch, MiddlewareAPI } from 'redux';
-import {
-  removeNotification,
-  ADD_NOTIFICATION,
-  TNotificationAction,
-} from '@commercetools-frontend/notifications';
-import {
+import type { Action, Dispatch, MiddlewareAPI } from 'redux';
+import type { TNotificationAction } from '@commercetools-frontend/notifications';
+import type {
   TApiErrorNotification,
   TUnexpectedErrorNotification,
 } from '@commercetools-frontend/actions-global';
+
+import {
+  removeNotification,
+  ADD_NOTIFICATION,
+} from '@commercetools-frontend/notifications';
 import { selectPageNotifications } from '@commercetools-frontend/react-notifications';
 import {
   HIDE_ALL_PAGE_NOTIFICATIONS,

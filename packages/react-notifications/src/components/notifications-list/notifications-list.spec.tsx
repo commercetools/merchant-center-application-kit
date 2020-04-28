@@ -1,8 +1,10 @@
+import type { RenderResult } from '@testing-library/react';
+
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { useSelector } from 'react-redux';
-import { render, RenderResult } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_PAGE,

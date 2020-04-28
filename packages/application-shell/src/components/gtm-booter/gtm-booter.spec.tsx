@@ -1,7 +1,9 @@
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import type { Props } from './gtm-booter';
+
 import React from 'react';
 import { render, waitFor, fireEvent } from '@testing-library/react';
-import { ApplicationWindow } from '@commercetools-frontend/constants';
-import GtmBooter, { Props } from './gtm-booter';
+import GtmBooter from './gtm-booter';
 
 declare let window: ApplicationWindow;
 

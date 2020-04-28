@@ -1,4 +1,6 @@
-import React, { ErrorInfo } from 'react';
+import type { ErrorInfo } from 'react';
+
+import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import ErrorApologizer from '../error-apologizer';
 

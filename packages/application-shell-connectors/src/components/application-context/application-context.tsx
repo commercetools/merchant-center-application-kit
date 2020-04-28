@@ -1,11 +1,12 @@
-import React from 'react';
-import moment from 'moment-timezone';
-import { ApplicationWindow } from '@commercetools-frontend/constants';
-import getDisplayName from '../../utils/get-display-name';
-import {
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import type {
   TFetchLoggedInUserQuery,
   TFetchProjectQuery,
 } from '../../types/generated/mc';
+
+import React from 'react';
+import moment from 'moment-timezone';
+import getDisplayName from '../../utils/get-display-name';
 import {
   normalizeAllAppliedActionRights,
   normalizeAllAppliedMenuVisibilities,

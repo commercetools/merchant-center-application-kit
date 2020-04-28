@@ -1,9 +1,10 @@
-import React from 'react';
-import {
+import type {
   TAppNotification,
   TAppNotificationDomain,
   TAppNotificationKindSide,
 } from '@commercetools-frontend/constants';
+
+import React from 'react';
 import Notification from '../../notification';
 
 type Props = {

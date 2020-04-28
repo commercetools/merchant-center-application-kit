@@ -1,8 +1,14 @@
+import type { OptionProps, ValueContainerProps } from 'react-select';
+import type {
+  TProject,
+  TFetchUserProjectsQuery,
+  TFetchUserProjectsQueryVariables,
+} from '../../types/generated/mc';
+
 import React from 'react';
 import memoize from 'memoize-one';
 import { useQuery } from 'react-apollo';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { OptionProps, ValueContainerProps } from 'react-select';
 import { css } from '@emotion/core';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
@@ -10,11 +16,6 @@ import SelectInput from '@commercetools-uikit/select-input';
 import { ErrorIcon } from '@commercetools-uikit/icons';
 import { customProperties } from '@commercetools-uikit/design-system';
 import { location } from '../../utils/location';
-import {
-  TProject,
-  TFetchUserProjectsQuery,
-  TFetchUserProjectsQueryVariables,
-} from '../../types/generated/mc';
 import ProjectsQuery from './project-switcher.mc.graphql';
 import messages from './messages';
 

@@ -1,10 +1,13 @@
-import { ThunkDispatch } from 'redux-thunk';
-import {
-  STATUS_CODES,
-  LOGOUT_REASONS,
+import type { ThunkDispatch } from 'redux-thunk';
+import type {
   TAppNotificationApiError,
   TStatusCode,
   ApplicationWindow,
+} from '@commercetools-frontend/constants';
+
+import {
+  STATUS_CODES,
+  LOGOUT_REASONS,
 } from '@commercetools-frontend/constants';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import browserHistory from '@commercetools-frontend/browser-history';

@@ -1,10 +1,12 @@
-import React from 'react';
-import { useLazyQuery, QueryFunctionOptions } from 'react-apollo';
-import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
-import {
+import type { QueryFunctionOptions } from 'react-apollo';
+import type {
   TFetchApplicationsMenuQuery,
   TFetchApplicationsMenuQueryVariables,
 } from '../../types/generated/proxy';
+
+import React from 'react';
+import { useLazyQuery } from 'react-apollo';
+import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
 
 export type MenuKey = 'appBar' | 'navBar';

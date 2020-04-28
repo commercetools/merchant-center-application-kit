@@ -1,11 +1,14 @@
+import type { RenderResult } from '@testing-library/react';
+import type { Props } from './notification';
+
 import React from 'react';
 import { IntlProvider } from 'react-intl';
-import { render, RenderResult, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_SIDE,
 } from '@commercetools-frontend/constants';
-import Notification, { Props } from './notification';
+import Notification from './notification';
 
 const TestComponent = () => <div>{'Test'}</div>;
 

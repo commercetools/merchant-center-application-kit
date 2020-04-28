@@ -1,5 +1,5 @@
 export { default as version } from './version';
-import {
+import type {
   TProviderProps as ProviderProps,
   TApplicationContext as ApplicationContext,
 } from './components/application-context';

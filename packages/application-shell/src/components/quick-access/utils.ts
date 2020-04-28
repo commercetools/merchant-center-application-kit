@@ -1,5 +1,5 @@
-import { TLocalizedString } from '../../types/generated/ctp';
-import { Command, ExecGraphQlQuery } from './types';
+import type { TLocalizedString } from '../../types/generated/ctp';
+import type { Command, ExecGraphQlQuery } from './types';
 
 export const sanitize = (param: string) =>
   param

@@ -1,7 +1,9 @@
-import Perfume, {
+import type {
   IPerfumeNavigationTiming,
   IPerfumeDataConsumption,
 } from 'perfume.js';
+
+import Perfume from 'perfume.js';
 import { trackTiming } from './utils/gtm';
 
 const trackPerformance = () => {

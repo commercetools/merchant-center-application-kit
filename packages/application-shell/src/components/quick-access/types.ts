@@ -1,6 +1,6 @@
-import { DocumentNode } from 'graphql';
-import { ApolloQueryResult } from 'apollo-client';
-import { OperationVariables } from '@apollo/react-common';
+import type { DocumentNode } from 'graphql';
+import type { ApolloQueryResult } from 'apollo-client';
+import type { OperationVariables } from '@apollo/react-common';
 
 export const actionTypes = {
   go: 'go',

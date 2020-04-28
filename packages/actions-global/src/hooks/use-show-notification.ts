@@ -1,8 +1,9 @@
+import type { TNotificationMetaOptions } from '@commercetools-frontend/notifications';
+import type { TShowNotification } from '../types';
+
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { TNotificationMetaOptions } from '@commercetools-frontend/notifications';
 import { showNotification } from '../actions';
-import { TShowNotification } from '../types';
 
 // Returns a function that dispatches a notification, pre-configured to
 // a speficic notification.

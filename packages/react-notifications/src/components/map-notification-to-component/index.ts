@@ -1,4 +1,4 @@
-import { Props } from './map-notification-to-component';
+import type { Props } from './map-notification-to-component';
 
 // Re-export type for convenience
 export type TProps = Props;

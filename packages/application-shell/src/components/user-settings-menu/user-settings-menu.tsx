@@ -1,12 +1,16 @@
+import type { ControllerStateAndHelpers, DownshiftProps } from 'downshift';
+import type { TUser } from '../../types/generated/mc';
+import type {
+  TApplicationsMenu,
+  TFetchApplicationsMenuQuery,
+} from '../../types/generated/proxy';
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import Downshift, {
-  ControllerStateAndHelpers,
-  DownshiftProps,
-} from 'downshift';
+import Downshift from 'downshift';
 import { ToggleFeature } from '@flopflip/react-broadcast';
 import Avatar from '@commercetools-uikit/avatar';
 import Spacings from '@commercetools-uikit/spacings';
@@ -21,11 +25,6 @@ import {
 import { useApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import useApplicationsMenu from '../../hooks/use-applications-menu';
-import { TUser } from '../../types/generated/mc';
-import {
-  TApplicationsMenu,
-  TFetchApplicationsMenuQuery,
-} from '../../types/generated/proxy';
 import messages from './messages';
 
 type Props = Pick<

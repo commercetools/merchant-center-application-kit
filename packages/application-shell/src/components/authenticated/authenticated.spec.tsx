@@ -1,3 +1,5 @@
+import type { TProps } from './authenticated';
+
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
@@ -5,7 +7,7 @@ import { GraphQLError } from 'graphql';
 import { renderApp, waitFor } from '../../test-utils';
 import { STORAGE_KEYS } from '../../constants';
 import AmILoggedInQuery from './authenticated.mc.graphql';
-import Authenticated, { TProps } from './authenticated';
+import Authenticated from './authenticated';
 
 const createTestProps = (custom: Partial<TProps> = {}) => ({
   render: jest.fn(() => <div />),

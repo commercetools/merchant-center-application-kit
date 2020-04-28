@@ -1,15 +1,17 @@
+import type { TFetchApplicationsMenuQuery } from '../../types/generated/proxy';
+import type {
+  MenuKey,
+  Config,
+  MenuLoaderResult,
+} from './use-applications-menu';
+
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import upperFirst from 'lodash/upperFirst';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { renderApp, waitFor } from '../../test-utils';
-import { TFetchApplicationsMenuQuery } from '../../types/generated/proxy';
 import FetchApplicationsMenu from './fetch-applications-menu.proxy.graphql';
-import useApplicationsMenu, {
-  MenuKey,
-  Config,
-  MenuLoaderResult,
-} from './use-applications-menu';
+import useApplicationsMenu from './use-applications-menu';
 
 jest.mock('@commercetools-frontend/sentry');
 

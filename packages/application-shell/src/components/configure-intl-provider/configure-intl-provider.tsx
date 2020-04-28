@@ -1,5 +1,7 @@
+import type { IntlConfig } from 'react-intl';
+
 import React from 'react';
-import { IntlProvider, IntlConfig } from 'react-intl';
+import { IntlProvider } from 'react-intl';
 
 interface ApplicationWindow extends Window {
   onAppLoaded: () => void;

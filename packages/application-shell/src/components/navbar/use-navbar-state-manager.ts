@@ -1,16 +1,20 @@
+import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
+import type {
+  TApplicationsMenu,
+  TNavbarMenu,
+} from '../../types/generated/proxy';
+import type {
+  TFetchProjectExtensionsNavbarQuery,
+  TFetchProjectExtensionsNavbarQueryVariables,
+} from '../../types/generated/settings';
+
 import React from 'react';
 import isNil from 'lodash/isNil';
 import throttle from 'lodash/throttle';
 import { useQuery } from 'react-apollo';
 import { useFeatureToggle } from '@flopflip/react-broadcast';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
-import { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
-import { TApplicationsMenu, TNavbarMenu } from '../../types/generated/proxy';
-import {
-  TFetchProjectExtensionsNavbarQuery,
-  TFetchProjectExtensionsNavbarQueryVariables,
-} from '../../types/generated/settings';
 import { PROJECT_EXTENSIONS } from '../../feature-toggles';
 import { STORAGE_KEYS } from '../../constants';
 import useApplicationsMenu from '../../hooks/use-applications-menu';

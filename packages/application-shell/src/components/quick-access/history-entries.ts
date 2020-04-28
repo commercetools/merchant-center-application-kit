@@ -1,4 +1,4 @@
-import { HistoryEntry } from './types';
+import type { HistoryEntry } from './types';
 
 const STORAGE_KEY = 'quickAccessHistoryEntries';
 

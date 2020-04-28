@@ -1,5 +1,7 @@
+import type { ApplicationWindow } from './utils';
+
 import { decode } from 'qss';
-import { parseUri, getMcApiUrl, ApplicationWindow } from './utils';
+import { parseUri, getMcApiUrl } from './utils';
 
 type Result = { pathname: string; search: ReturnType<typeof decode> };
 

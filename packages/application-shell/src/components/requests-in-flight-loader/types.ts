@@ -1,4 +1,4 @@
-import { Action } from 'redux';
+import type { Action } from 'redux';
 import { SHOW_LOADING, HIDE_LOADING } from '@commercetools-frontend/constants';
 
 export type TRequestsInFlightState = string[];

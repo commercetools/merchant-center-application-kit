@@ -1,4 +1,5 @@
-import { TStatusCode } from '@commercetools-frontend/constants';
+import type { TStatusCode } from '@commercetools-frontend/constants';
+
 import handleActionError from './handle-action-error';
 
 let dispatch: jest.Mock;

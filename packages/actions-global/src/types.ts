@@ -1,5 +1,5 @@
-import { TNotification } from '@commercetools-frontend/notifications';
-import {
+import type { TNotification } from '@commercetools-frontend/notifications';
+import type {
   TAppNotification,
   TAppNotificationDomain,
   TAppNotificationKind,

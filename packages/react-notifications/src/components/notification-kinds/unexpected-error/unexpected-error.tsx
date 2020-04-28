@@ -1,10 +1,13 @@
+import type {
+  TAppNotification,
+  TAppNotificationValuesUnexpectedError,
+} from '@commercetools-frontend/constants';
+
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_PAGE,
-  TAppNotification,
-  TAppNotificationValuesUnexpectedError,
 } from '@commercetools-frontend/constants';
 import Spacings from '@commercetools-uikit/spacings';
 import Notification from '../../notification';

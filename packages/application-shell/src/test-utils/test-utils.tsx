@@ -1,3 +1,9 @@
+import type { MockedProviderProps } from '@apollo/react-testing';
+import type { TFlags } from '@flopflip/types';
+import type { TProviderProps } from '@commercetools-frontend/application-shell-connectors';
+import type { TMapNotificationToComponentProps } from '@commercetools-frontend/react-notifications';
+import type { TSdkMock } from '@commercetools-frontend/sdk/test-utils';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Router } from 'react-router-dom';
@@ -7,28 +13,17 @@ import * as rtl from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { IntlProvider } from 'react-intl';
 import { ConfigureFlopFlip } from '@flopflip/react-broadcast';
-import { TFlags } from '@flopflip/types';
-import {
-  MockedProvider as ApolloMockProvider,
-  MockedProviderProps,
-} from '@apollo/react-testing';
+import { MockedProvider as ApolloMockProvider } from '@apollo/react-testing';
 import memoryAdapter from '@flopflip/memory-adapter';
 import { Provider as StoreProvider } from 'react-redux';
 import { createEnhancedHistory } from '@commercetools-frontend/browser-history';
-import {
-  ApplicationContextProvider,
-  TProviderProps,
-} from '@commercetools-frontend/application-shell-connectors';
+import { ApplicationContextProvider } from '@commercetools-frontend/application-shell-connectors';
 import {
   NotificationsList,
   NotificationProviderForCustomComponent,
-  TMapNotificationToComponentProps,
 } from '@commercetools-frontend/react-notifications';
 import { DOMAINS } from '@commercetools-frontend/constants';
-import {
-  createTestMiddleware as createSdkTestMiddleware,
-  TSdkMock,
-} from '@commercetools-frontend/sdk/test-utils';
+import { createTestMiddleware as createSdkTestMiddleware } from '@commercetools-frontend/sdk/test-utils';
 import { createReduxStore } from '../configure-store';
 import { createApolloClient } from '../configure-apollo';
 

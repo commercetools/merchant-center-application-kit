@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/named
-import { EnhancedLocation } from 'history-query-enhancer';
+import type { EnhancedLocation } from 'history-query-enhancer';
 
 export { default as version } from './version';
 

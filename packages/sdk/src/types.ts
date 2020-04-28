@@ -1,4 +1,4 @@
-import { TMcApiProxyTargets } from '@commercetools-frontend/constants';
+import type { TMcApiProxyTargets } from '@commercetools-frontend/constants';
 
 export type Json = { [key: string]: unknown };
 

@@ -1,7 +1,10 @@
-import React from 'react';
-import {
+import type {
   TAppNotification,
   TAppNotificationValuesApiError,
+} from '@commercetools-frontend/constants';
+
+import React from 'react';
+import {
   NOTIFICATION_DOMAINS,
   NOTIFICATION_KINDS_PAGE,
 } from '@commercetools-frontend/constants';

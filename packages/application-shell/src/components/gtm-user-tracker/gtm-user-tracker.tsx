@@ -1,5 +1,6 @@
+import type { TFetchLoggedInUserQuery } from '../../types/generated/mc';
+
 import React from 'react';
-import { TFetchLoggedInUserQuery } from '../../types/generated/mc';
 import * as gtm from '../../utils/gtm';
 
 type TFetchedUser = TFetchLoggedInUserQuery['user'];

@@ -1,4 +1,4 @@
-import { Currencies } from './types';
+import type { Currencies } from './types';
 
 export const mapLocaleToIntlLocale = (locale: string) => {
   if (locale.startsWith('de')) return 'de';

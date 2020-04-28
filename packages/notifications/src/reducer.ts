@@ -1,8 +1,9 @@
-import {
+import type {
   TNotification,
   TNotificationAction,
   TNotificationState,
 } from './types';
+
 import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from './action-types';
 
 export default function notificationsReducer<Payload extends TNotification>(

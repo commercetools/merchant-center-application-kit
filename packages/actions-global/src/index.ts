@@ -1,5 +1,5 @@
 export { default as version } from './version';
-import { DispatchActionError } from './actions/handle-action-error';
+import type { DispatchActionError } from './actions/handle-action-error';
 
 export type TDispatchActionError = DispatchActionError;
 
