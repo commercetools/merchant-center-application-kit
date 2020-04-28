@@ -1,7 +1,8 @@
+import type { Currencies } from './types';
+
 import * as PropTypes from 'prop-types';
 import { createL10NInjector, createL10NHook } from './create-l10n-injector';
 import { getSupportedLocale, mapLocaleToIntlLocale } from './utils';
-import { Currencies } from './types';
 
 type ImportData = {
   default: Currencies;
