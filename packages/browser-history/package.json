@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/browser-history",
-  "version": "16.5.2",
+  "version": "16.7.1",
   "description": "Enhances browser history",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -9,7 +9,12 @@
     "directory": "packages/browser-history"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -19,7 +24,12 @@
   "module": "./dist/browser-history.es.js",
   "typings": "./dist/typings/index.d.ts",
   "types": "./dist/typings/index.d.ts",
-  "files": ["dist", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",

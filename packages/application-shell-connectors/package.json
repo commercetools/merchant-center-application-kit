@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-shell-connectors",
-  "version": "16.7.0",
+  "version": "16.7.1",
   "description": "Contains complementary tools for @commercetools-frontend/application-shell",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -9,7 +9,12 @@
     "directory": "packages/application-shell-connectors"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -19,7 +24,13 @@
   "module": "./dist/application-shell-connectors.es.js",
   "typings": "./dist/typings/index.d.ts",
   "types": "./dist/typings/index.d.ts",
-  "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "test-utils",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/** test-utils/**",
@@ -32,8 +43,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs3": "7.9.2",
-    "@commercetools-frontend/constants": "16.3.3",
-    "@commercetools-frontend/sentry": "16.6.0",
+    "@commercetools-frontend/constants": "16.7.1",
+    "@commercetools-frontend/sentry": "16.7.1",
     "@types/graphql": "^14.5.0",
     "@types/lodash": "^4.14.150",
     "@types/moment-timezone": "^0.5.12",

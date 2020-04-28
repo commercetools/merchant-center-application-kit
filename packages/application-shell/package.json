@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/application-shell",
-  "version": "16.7.0",
+  "version": "16.7.1",
   "description": "React component to bootstrap the general MC application logic",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -9,7 +9,12 @@
     "directory": "packages/application-shell"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -19,7 +24,13 @@
   "module": "./dist/application-shell-index.es.js",
   "typings": "./dist/typings/index.d.ts",
   "types": "./dist/typings/index.d.ts",
-  "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "test-utils",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/** test-utils/**",
@@ -32,20 +43,20 @@
   },
   "dependencies": {
     "@apollo/react-testing": "3.1.4",
-    "@commercetools-frontend/actions-global": "16.7.0",
-    "@commercetools-frontend/application-components": "16.7.0",
-    "@commercetools-frontend/application-shell-connectors": "16.7.0",
-    "@commercetools-frontend/assets": "16.0.0",
-    "@commercetools-frontend/browser-history": "16.5.2",
-    "@commercetools-frontend/constants": "16.3.3",
-    "@commercetools-frontend/i18n": "16.6.0",
-    "@commercetools-frontend/l10n": "16.7.0",
-    "@commercetools-frontend/notifications": "16.5.3",
-    "@commercetools-frontend/permissions": "16.7.0",
-    "@commercetools-frontend/react-notifications": "16.7.0",
-    "@commercetools-frontend/sdk": "16.7.0",
-    "@commercetools-frontend/sentry": "16.6.0",
-    "@commercetools-frontend/url-utils": "16.5.3",
+    "@commercetools-frontend/actions-global": "16.7.1",
+    "@commercetools-frontend/application-components": "16.7.1",
+    "@commercetools-frontend/application-shell-connectors": "16.7.1",
+    "@commercetools-frontend/assets": "16.7.1",
+    "@commercetools-frontend/browser-history": "16.7.1",
+    "@commercetools-frontend/constants": "16.7.1",
+    "@commercetools-frontend/i18n": "16.7.1",
+    "@commercetools-frontend/l10n": "16.7.1",
+    "@commercetools-frontend/notifications": "16.7.1",
+    "@commercetools-frontend/permissions": "16.7.1",
+    "@commercetools-frontend/react-notifications": "16.7.1",
+    "@commercetools-frontend/sdk": "16.7.1",
+    "@commercetools-frontend/sentry": "16.7.1",
+    "@commercetools-frontend/url-utils": "16.7.1",
     "@commercetools-uikit/avatar": "^10.13.0",
     "@commercetools-uikit/design-system": "^10.13.0",
     "@commercetools-uikit/flat-button": "^10.13.0",

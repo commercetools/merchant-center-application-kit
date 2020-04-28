@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/jest-stylelint-runner",
-  "version": "16.5.3",
+  "version": "16.7.1",
   "description": "Jest runner that will transform css with postcss before running stylelint",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -9,13 +9,24 @@
     "directory": "packages/jest-stylelint-runner"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "files": ["package.json", "run.js", "index.js", "LICENSE", "README.md"],
+  "files": [
+    "package.json",
+    "run.js",
+    "index.js",
+    "LICENSE",
+    "README.md"
+  ],
   "main": "index.js",
   "module": "index.js",
   "peerDependencies": {
