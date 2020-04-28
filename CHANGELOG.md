@@ -1,3 +1,24 @@
+## [16.7.1](https://github.com/commercetools/merchant-center-application-kit/compare/v16.7.0...v16.7.1) (2020-04-28)
+
+#### 💅 Type: Enhancement
+
+- `application-shell-connectors`, `permissions`
+  - [#1463](https://github.com/commercetools/merchant-center-application-kit/pull/1463) refactor(permissions): use Record for dataFences ([@adnasa](https://github.com/adnasa))
+
+#### ⛑ Type: Refactoring
+
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `browser-history`, `i18n`, `l10n`, `notifications`, `react-notifications`, `sdk`, `sentry`
+  - [#1443](https://github.com/commercetools/merchant-center-application-kit/pull/1443) refactor: use TS "import type" ([@emmenko](https://github.com/emmenko))
+- `create-mc-app`, `jest-preset-mc-app`, `mc-html-template`, `mc-scripts`
+  - [#1470](https://github.com/commercetools/merchant-center-application-kit/pull/1470) refactor(mc-html-template): compile it through babel, to support node 10 ([@emmenko](https://github.com/emmenko))
+- `mc-scripts`
+  - [#1468](https://github.com/commercetools/merchant-center-application-kit/pull/1468) refactor(mc-script): compile it through babel, to support node 10 ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `application-shell`, `l10n`
+  - [#1448](https://github.com/commercetools/merchant-center-application-kit/pull/1448) chore(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+
 ## [16.7.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.6.1...v16.7.0) (2020-04-24)
 
 This release introduces a new package to help working and developing an external API for Custom Applications.
