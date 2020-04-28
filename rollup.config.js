@@ -2,7 +2,7 @@
 process.env.BUILD_ROLLUP = true;
 
 const fs = require('fs');
-const babel = require('rollup-plugin-babel');
+const babel = require('@rollup/plugin-babel');
 const readPkgUp = require('read-pkg-up');
 const getBabelPreset = require('@commercetools-frontend/babel-preset-mc-app');
 const {
