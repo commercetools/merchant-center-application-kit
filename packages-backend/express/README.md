@@ -51,7 +51,7 @@ app.use((request, response, next) => {
 
 - `inferIssuer` (_boolean_): Determines whether the issuer should be inferred from the custom request HTTP header `x-mc-api-cloud-identifier` which is sent by the Merchant Center API Gateway when forwarding the request. This might be useful in case the server is used in multiple regions.
 
-- `jwks` (_object_): see options of `jwks-rsa`.
+- `jwks` (_object_): See options of `jwks-rsa`.
 
 ### Usage in Serverless Functions
 
