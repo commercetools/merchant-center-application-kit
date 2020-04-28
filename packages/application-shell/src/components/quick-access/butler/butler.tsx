@@ -517,14 +517,21 @@ const Butler = (props: Props) => {
               { name: 'text', weight: 0.6 },
               { name: 'keywords', weight: 0.4 },
             ],
+            minMatchCharLength: 2,
+            includeScore: true,
           });
 
-          const results = fuse
+          const searchResults = fuse
             .search(searchText)
-            .slice(0, 9)
-            .map((result) => result.item);
+            // Filter out results with a matching score over 0.75
+            .filter((result) => (result.score ? result.score < 0.75 : false))
+            // Keep a maximal of 9 results
+            .slice(0, 9);
 
-          dispatch({ type: 'setSearchTextResults', payload: results });
+          dispatch({
+            type: 'setSearchTextResults',
+            payload: searchResults.map((result) => result.item),
+          });
         },
         (error: Error) => {
           // eslint-disable-next-line no-console
