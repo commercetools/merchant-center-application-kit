@@ -2,13 +2,13 @@
 process.env.BUILD_ROLLUP = true;
 
 const fs = require('fs');
-const babel = require('rollup-plugin-babel');
+const { babel } = require('@rollup/plugin-babel');
 const readPkgUp = require('read-pkg-up');
 const getBabelPreset = require('@commercetools-frontend/babel-preset-mc-app');
 const {
   browserslist,
 } = require('@commercetools-frontend/mc-scripts/package.json');
-const resolve = require('rollup-plugin-node-resolve');
+const resolve = require('@rollup/plugin-node-resolve');
 const json = require('@rollup/plugin-json');
 const commonjs = require('@rollup/plugin-commonjs');
 const postcss = require('rollup-plugin-postcss');
@@ -38,7 +38,7 @@ const createPlugins = (format) => {
     }),
     babel({
       extensions,
-      runtimeHelpers: true,
+      babelHelpers: 'runtime',
       ...babelOptions,
       plugins: [
         babelPluginImportGraphQL.default,

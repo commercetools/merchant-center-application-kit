@@ -106,7 +106,8 @@ module.exports = function getBabePresetConfigForMcApp() {
         require('@babel/plugin-transform-runtime').default,
         {
           corejs: 3,
-          helpers: false,
+          // To be able to use `runtime` in Rollup babel plugin
+          helpers: true,
           regenerator: true,
         },
       ],

@@ -42,6 +42,7 @@
     "postbuild:typings": "echo \"export * from '../dist/typings/test-utils';\" > test-utils/index.d.ts"
   },
   "dependencies": {
+    "@babel/runtime": "7.9.2",
     "@babel/runtime-corejs3": "7.9.2",
     "@commercetools-frontend/constants": "16.7.1",
     "@commercetools-frontend/sentry": "16.7.1",
