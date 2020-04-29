@@ -37,5 +37,9 @@
     "build:bundles": "cross-env NODE_ENV=production rollup -c ../../rollup.config.js -i ./src/index.ts",
     "build:bundles:watch": "yarn build:bundles -w",
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir dist/typings"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.9.2",
+    "@babel/runtime-corejs3": "7.9.2"
   }
 }

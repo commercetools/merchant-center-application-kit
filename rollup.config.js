@@ -38,7 +38,7 @@ const createPlugins = (format) => {
     }),
     babel({
       extensions,
-      babelHelpers: 'bundled',
+      babelHelpers: 'runtime',
       ...babelOptions,
       plugins: [
         babelPluginImportGraphQL.default,
