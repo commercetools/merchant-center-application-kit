@@ -8,5 +8,4 @@ export { default as createApplicationLogger } from './create-application-logger'
 export { default as rewriteFieldsFormatter } from './formatters/rewrite-fields';
 
 // Re-export winston for convenience
-import * as winston from 'winston';
-export { winston };
+export * as winston from 'winston';
