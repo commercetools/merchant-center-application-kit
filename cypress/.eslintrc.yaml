@@ -4,3 +4,4 @@ env:
   cypress/globals: true
 rules:
   prefer-object-spread/prefer-object-spread: 0
+  testing-library/await-async-query: 0
