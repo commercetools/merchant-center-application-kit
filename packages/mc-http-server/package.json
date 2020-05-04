@@ -27,8 +27,8 @@
     "@commercetools-frontend/assets": "16.7.1",
     "@commercetools-frontend/mc-dev-authentication": "16.7.1",
     "@commercetools-frontend/mc-html-template": "16.7.1",
-    "@promster/express": "4.1.2",
-    "@promster/server": "4.2.2",
+    "@promster/express": "4.1.9",
+    "@promster/server": "4.2.10",
     "compression": "1.7.4",
     "express": "4.17.1",
     "hide-powered-by": "1.1.0",
@@ -36,7 +36,7 @@
     "morgan": "1.10.0",
     "mri": "1.1.5",
     "prom-client": "12.0.0",
-    "shelljs": "0.8.3"
+    "shelljs": "0.8.4"
   },
   "engines": {
     "node": ">=8",

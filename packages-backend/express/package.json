@@ -36,10 +36,10 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@types/node": "12.12.29",
+    "@types/node": "12.12.37",
     "express": "4.17.1",
     "express-jwt": "5.3.3",
-    "jwks-rsa": "1.7.0"
+    "jwks-rsa": "1.8.0"
   },
   "devDependencies": {
     "@panva/jose": "1.9.3",
