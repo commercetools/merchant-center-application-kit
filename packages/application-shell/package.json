@@ -43,8 +43,8 @@
   },
   "dependencies": {
     "@apollo/react-testing": "3.1.4",
-    "@babel/runtime": "7.9.2",
-    "@babel/runtime-corejs3": "7.9.2",
+    "@babel/runtime": "7.9.6",
+    "@babel/runtime-corejs3": "7.9.6",
     "@commercetools-frontend/actions-global": "16.7.1",
     "@commercetools-frontend/application-components": "16.7.1",
     "@commercetools-frontend/application-shell-connectors": "16.7.1",
@@ -73,7 +73,7 @@
     "@flopflip/launchdarkly-adapter": "2.13.2",
     "@flopflip/memory-adapter": "1.7.2",
     "@flopflip/react-broadcast": "10.1.15",
-    "@sentry/browser": "5.15.4",
+    "@sentry/browser": "5.15.5",
     "@types/classnames": "^2.2.9",
     "@types/common-tags": "^1.8.0",
     "@types/graphql": "^14.5.0",
@@ -93,7 +93,7 @@
     "classnames": "^2.2.6",
     "common-tags": "1.8.0",
     "debounce-async": "0.0.2",
-    "downshift": "^5.1.1",
+    "downshift": "^5.2.4",
     "fuse.js": "5.2.3",
     "graphql": "14.6.0",
     "graphql-tag": "^2.10.3",
@@ -117,7 +117,7 @@
     "uuid": "8.0.0"
   },
   "devDependencies": {
-    "@testing-library/react": "10.0.2",
+    "@testing-library/react": "10.0.4",
     "react": "16.13.1",
     "react-apollo": "3.1.5",
     "react-dom": "16.13.1",
