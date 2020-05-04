@@ -12,18 +12,26 @@ Opinionated JSON loggers for HTTP server applications.
 $ npm install --save @commercetools-backend/loggers
 ```
 
-## Access logger
+## Middlewares
+
+### Access logger
 
 Creates a logger to be used for HTTP requests access logs.
 
 ```js
-const { createAccessLogger } = require('@commercetools-backend/loggers');
+const {
+  createAccessLoggerMiddleware,
+} = require('@commercetools-backend/loggers');
 
-app.use(createAccessLogger());
+app.use(createAccessLoggerMiddleware());
 ```
 
-### Access logger options
+**Options**
 
+- `level` (_string_): The log level to be used. **Default: `info`**
+- `silent` (_boolean_): In case logs should be skipped. **Default: `false`**
+- `json` (_boolean_): To use the JSON formatter, otherwise falls back to CLI format. It's recommended to use the JSON formatter on production.
+- `formatters` (_Array of Winston formatters_): In case you want to pass additional Winston formatters.
 - `ignoreUrls` (_Array of string_): A list of URL paths to be ignored from being logged.
 
 ## Application logger
@@ -38,36 +46,49 @@ const app = createApplicationLogger();
 app.info('Hey there', { meta: { name: 'Tom' } });
 ```
 
-## Error report logger (Sentry)
+**Options**
 
-Creates a logger to be used for error reporting with Sentry.
+- `level` (_string_): The log level to be used. **Default: `info`**
+- `silent` (_boolean_): In case logs should be skipped. **Default: `false`**
+- `json` (_boolean_): To use the JSON formatter, otherwise falls back to CLI format. It's recommended to use the JSON formatter on production.
+- `formatters` (_Array of Winston formatters_): In case you want to pass additional Winston formatters.
+
+## Formatters
+
+The package provides some come Winston formatters that can be passed to the given loggers.
+
+### Rewrite fields
+
+This formatter allows to rewrite fields from the JSON logger. It can be useful for redacting insecure information, or to map certain fields to a specific format (for example for Kibana).
 
 ```js
-const { createErrorReportLogger } = require('@commercetools-backend/loggers');
+const {
+  createAccessLoggerMiddleware,
+  rewriteFieldsFormatter,
+} = require('@commercetools-backend/loggers');
 
-const { sentryRequestHandler } = createErrorReportLogger();
-
-app.use(sentryRequestHandler);
+app.use(
+  createAccessLoggerMiddleware({
+    formatters: [
+      rewriteFieldsFormatter({
+        fields: [
+          { from: 'level', to: 'logLevel' },
+          { from: 'meta.error.message', to: 'meta.errorMessage' },
+          {
+            from: 'meta.error',
+            to: 'meta.errorJsonString',
+            replaceValue: (value) => JSON.stringify(value),
+          },
+        ],
+      }),
+    ],
+  })
+);
 ```
 
-```js
-const { createErrorReportLogger } = require('@commercetools-backend/loggers');
+**Options**
 
-const { trackError } = createErrorReportLogger();
-
-trackError(error, { request }, (errorId) => {
-  if (errorId) {
-    // Attach the Sentry error id to the custom response header
-    response.setHeader('X-Sentry-Error-Id', errorId);
-  }
-  response.end();
-});
-```
-
-### Error report logger options
-
-- `sentry` (_object_): An optional configuration object for Sentry.
-  - `sentry.DSN` (_string_): The DSN value of your Sentry project.
-  - `sentry.role` (_string_): The value for the `role` Sentry tag.
-  - `sentry.environment` (_string_): The value for the `environment` Sentry tag.
-- `errorMessageBlacklist` (_Array of string or RegExp_): A list of error messages for which the error should not be reported, if the error message matches.
+- `fields` (_Array of RewriteField_): A `RewriteField` is an object with the following properties:
+  - `from` (_string_): A JSON path to one of the fields of the log information that needs to be rewritten. The field will be deleted.
+  - `to` (_string_): A JSON path to the new field that should be created.
+  - `replaceValue` (_function_): An optional function that takes the value from the original field and returns a new value for the field. It can be used for example to serialize the value with `JSON.stringify`.

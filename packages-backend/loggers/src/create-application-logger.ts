@@ -1,20 +1,20 @@
-import winston from 'winston';
-import * as env from './env';
-import jsonFormatter from './custom-formats/json';
+import type { TLoggerOptions } from './types';
 
-const shouldLog = !env.isTest || process.env.DEBUG === 'true';
+import * as winston from 'winston';
 
-const createApplicationLogger = () => {
+const createApplicationLogger = (options: TLoggerOptions = {}) => {
+  const shouldLog = Boolean(options.silent);
+  const formatters = winston.format.combine(
+    ...(options.formatters ?? []),
+    options.json
+      ? winston.format.json()
+      : winston.format.combine(winston.format.cli(), winston.format.simple())
+  );
+
   return winston.createLogger({
-    level: process.env.DEBUG === 'true' ? 'debug' : 'info',
-    format: env.isDev
-      ? winston.format.combine(winston.format.cli(), winston.format.simple())
-      : jsonFormatter(),
-    transports: [
-      new winston.transports.Console({
-        silent: !shouldLog,
-      }),
-    ],
+    level: options.level ?? 'info',
+    format: formatters,
+    transports: [new winston.transports.Console({ silent: !shouldLog })],
   });
 };
 
