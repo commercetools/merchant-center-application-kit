@@ -5,35 +5,35 @@ import getIn from 'lodash/get';
 import setIn from 'lodash/set';
 import unsetIn from 'lodash/unset';
 
-type TRewriteField = {
+type TRewriteField<FieldValue> = {
   from: string;
   to: string;
-  replaceValue?: (value: string) => unknown;
+  replaceValue?: (value: FieldValue) => unknown;
 };
-type TRewriteFieldsFormatterOption = {
-  fields: TRewriteField[];
+type TRewriteFieldsFormatterOption<FieldValue> = {
+  fields: TRewriteField<FieldValue>[];
 };
 
-function rewriteField(
+function rewriteField<FieldValue>(
   info: TransformableInfo,
-  jsonPath: string,
-  newJsonPath: string,
-  replaceValue?: (value: string) => unknown
+  field: TRewriteField<FieldValue>
 ) {
-  const val: string | undefined = getIn(info, jsonPath);
+  const val: FieldValue | undefined = getIn(info, field.from);
   if (val) {
-    unsetIn(info, jsonPath);
-    setIn(info, newJsonPath, replaceValue ? replaceValue(val) : val);
+    unsetIn(info, field.from);
+    setIn(info, field.to, field.replaceValue ? field.replaceValue(val) : val);
   }
 }
 
-const rewriteFieldsFormatter = format(
-  (info, options: TRewriteFieldsFormatterOption) => {
+function rewriteFieldsFormatter<FieldValue>(
+  options: TRewriteFieldsFormatterOption<FieldValue>
+) {
+  return format((info) => {
     options.fields.forEach((field) => {
-      rewriteField(info, field.from, field.to, field.replaceValue);
+      rewriteField(info, field);
     });
     return info;
-  }
-);
+  })(options);
+}
 
 export default rewriteFieldsFormatter;
