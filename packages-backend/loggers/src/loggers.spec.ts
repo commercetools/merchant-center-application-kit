@@ -1,5 +1,3 @@
-import type { Request } from 'express';
-
 import rewriteFieldsFormatter from './formatters/rewrite-fields';
 import createApplicationLogger from './create-application-logger';
 
@@ -10,15 +8,12 @@ describe('application logger', () => {
     const logger = createApplicationLogger({
       json: true,
       formatters: [
-        rewriteFieldsFormatter<Request['headers']>({
+        rewriteFieldsFormatter({
           fields: [
             {
               from: 'meta.req.headers',
               to: 'meta.req.headersJsonString',
               replaceValue: (value) => {
-                const assertHeaders: typeof value = {};
-                // This should not throw any error
-                assertHeaders.accept = 'application/json';
                 return JSON.stringify(value);
               },
             },
