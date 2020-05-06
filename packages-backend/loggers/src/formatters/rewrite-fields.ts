@@ -5,29 +5,24 @@ import getIn from 'lodash/get';
 import setIn from 'lodash/set';
 import unsetIn from 'lodash/unset';
 
-type TRewriteField<FieldValue> = {
+type TRewriteField = {
   from: string;
   to: string;
-  replaceValue?: (value: FieldValue) => unknown;
+  replaceValue?: (value: unknown) => unknown;
 };
-type TRewriteFieldsFormatterOption<FieldValue> = {
-  fields: TRewriteField<FieldValue>[];
+type TRewriteFieldsFormatterOption = {
+  fields: TRewriteField[];
 };
 
-function rewriteField<FieldValue>(
-  info: TransformableInfo,
-  field: TRewriteField<FieldValue>
-) {
-  const val: FieldValue | undefined = getIn(info, field.from);
+function rewriteField(info: TransformableInfo, field: TRewriteField) {
+  const val = getIn(info, field.from);
   if (val) {
     unsetIn(info, field.from);
     setIn(info, field.to, field.replaceValue ? field.replaceValue(val) : val);
   }
 }
 
-function rewriteFieldsFormatter<FieldValue>(
-  options: TRewriteFieldsFormatterOption<FieldValue>
-) {
+function rewriteFieldsFormatter(options: TRewriteFieldsFormatterOption) {
   return format((info) => {
     options.fields.forEach((field) => {
       rewriteField(info, field);
