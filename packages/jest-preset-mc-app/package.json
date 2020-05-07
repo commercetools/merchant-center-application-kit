@@ -28,7 +28,7 @@
     "@commercetools/jest-enzyme-matchers": "1.1.2",
     "@sheerun/mutationobserver-shim": "0.3.3",
     "@testing-library/jest-dom": "5.5.0",
-    "babel-jest": "25.5.1",
+    "babel-jest": "26.0.1",
     "colors": "1.4.0",
     "cosmiconfig": "6.0.0",
     "enzyme-adapter-react-16": "1.15.2",
@@ -42,11 +42,11 @@
     "jest-silent-reporter": "0.2.1",
     "jest-transform-graphql": "2.1.0",
     "jest-watch-master": "1.0.0",
-    "jest-watch-typeahead": "0.5.0",
+    "jest-watch-typeahead": "0.6.0",
     "make-plural": "6.2.1",
     "pkg-dir": "4.2.0",
     "raf": "3.4.1",
-    "ts-jest": "25.4.0",
+    "ts-jest": "25.5.0",
     "unfetch": "4.1.0"
   },
   "devDependencies": {
