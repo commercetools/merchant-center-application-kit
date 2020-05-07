@@ -1,3 +1,38 @@
+## [16.8.0](https://github.com/commercetools/merchant-center-application-kit/compare/v16.7.1...v16.8.0) (2020-05-06)
+
+This release introduces a new package to provide some pre-configured loggers to be used in an HTTP server.
+
+```
+npm install --save @commercetools-backend/loggers
+
+# or
+
+yarn add @commercetools-backend/loggers
+```
+
+You can find out more about it in the package [Documentation](https://www.npmjs.com/package/@commercetools-backend/loggers).
+
+#### 🐛 Type: Bug
+
+- [#1477](https://github.com/commercetools/merchant-center-application-kit/pull/1477) fix(loggers): silent option ([@emmenko](https://github.com/emmenko))
+
+#### 🚀 Type: New Feature
+
+- [#1472](https://github.com/commercetools/merchant-center-application-kit/pull/1472) feat: add loggers package ([@emmenko](https://github.com/emmenko))
+
+#### ⛑ Type: Refactoring
+
+- [#1480](https://github.com/commercetools/merchant-center-application-kit/pull/1480) refactor(loggers): remove generic type, as it doesn't really work as expected ([@emmenko](https://github.com/emmenko))
+
+* [#1478](https://github.com/commercetools/merchant-center-application-kit/pull/1478) refactor(loggers): refine types ([@emmenko](https://github.com/emmenko))
+
+#### 🤖 Type: Dependencies
+
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `constants`, `i18n`, `jest-preset-mc-app`, `jest-stylelint-runner`, `l10n`, `mc-html-template`, `mc-http-server`, `mc-scripts`, `notifications`, `permissions`, `react-notifications`, `sdk`, `sentry`, `url-utils`
+  - [#1475](https://github.com/commercetools/merchant-center-application-kit/pull/1475) chore(deps): update all dependencies (major) ([@renovate[bot]](https://github.com/apps/renovate))
+- `actions-global`, `application-components`, `application-shell-connectors`, `application-shell`, `babel-preset-mc-app`, `browser-history`, `constants`, `i18n`, `l10n`, `notifications`, `permissions`, `react-notifications`, `sdk`, `sentry`, `url-utils`
+  - [#1471](https://github.com/commercetools/merchant-center-application-kit/pull/1471) refactor: to use official rollup plugins ([@tdeekens](https://github.com/tdeekens))
+
 ## [16.7.1](https://github.com/commercetools/merchant-center-application-kit/compare/v16.7.0...v16.7.1) (2020-04-28)
 
 #### 💅 Type: Enhancement
