@@ -42,6 +42,7 @@ typings/
 
 # Optional npm cache directory
 .npm
+.npmrc
 
 # Optional eslint cache
 .eslintcache
@@ -91,3 +92,9 @@ public
 
 # Parcel
 .parcel-cache
+
+# Changesets
+application-templates/**/CHANGELOG.md
+playground/CHANGELOG.md
+visual-testing-app/CHANGELOG.md
+website-*/CHANGELOG.md

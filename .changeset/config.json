@@ -1,0 +1,42 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@1.0.3/schema.json",
+  "changelog": [
+    "@changesets/changelog-github",
+    {
+      "repo": "commercetools/merchant-center-application-kit"
+    }
+  ],
+  "commit": false,
+  "linked": [
+    [
+      "@commercetools-backend/express",
+      "@commercetools-backend/loggers",
+      "@commercetools-frontend/actions-global",
+      "@commercetools-frontend/application-components",
+      "@commercetools-frontend/application-shell",
+      "@commercetools-frontend/application-shell-connectors",
+      "@commercetools-frontend/assets",
+      "@commercetools-frontend/babel-preset-mc-app",
+      "@commercetools-frontend/browser-history",
+      "@commercetools-frontend/constants",
+      "@commercetools-frontend/create-mc-app",
+      "@commercetools-frontend/eslint-config-mc-app",
+      "@commercetools-frontend/i18n",
+      "@commercetools-frontend/jest-preset-mc-app",
+      "@commercetools-frontend/jest-stylelint-runner",
+      "@commercetools-frontend/l10n",
+      "@commercetools-frontend/mc-dev-authentication",
+      "@commercetools-frontend/mc-html-template",
+      "@commercetools-frontend/mc-http-server",
+      "@commercetools-frontend/mc-scripts",
+      "@commercetools-frontend/notifications",
+      "@commercetools-frontend/permissions",
+      "@commercetools-frontend/react-notifications",
+      "@commercetools-frontend/sdk",
+      "@commercetools-frontend/sentry",
+      "@commercetools-frontend/url-utils"
+    ]
+  ],
+  "access": "restricted",
+  "baseBranch": "master"
+}
