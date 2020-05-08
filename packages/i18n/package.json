@@ -44,14 +44,14 @@
     "@commercetools-frontend/sentry": "16.8.0",
     "@commercetools-uikit/i18n": "^10.13.0",
     "@types/prop-types": "^15.7.3",
-    "moment": "^2.24.0",
+    "moment": "2.24.0",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
+    "@types/react": "16.9.34",
     "react": "16.13.1"
   },
   "peerDependencies": {
-    "@commercetools-uikit/i18n": "10.x",
     "@types/react": "16.x",
     "react": ">=16.8.0"
   }

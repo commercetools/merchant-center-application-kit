@@ -12,7 +12,7 @@
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations"
   },
   "dependencies": {
-    "@commercetools-docs/ui-kit": "2.5.0",
+    "@commercetools-docs/ui-kit": "2.5.1-canary.2",
     "@commercetools-frontend/actions-global": "16.8.0",
     "@commercetools-frontend/application-components": "16.8.0",
     "@commercetools-frontend/application-shell": "16.8.0",
@@ -35,8 +35,8 @@
     "@commercetools-uikit/text": "10.18.4",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
-    "moment": "^2.24.0",
-    "moment-timezone": "^0.5.26",
+    "moment": "2.24.0",
+    "moment-timezone": "0.5.28",
     "normalizr": "3.6.0",
     "prop-types": "15.7.2",
     "react": "16.13.1",
@@ -47,6 +47,6 @@
     "redux": "4.0.5"
   },
   "devDependencies": {
-    "@commercetools-frontend/mc-scripts": "16.8.0"
+    "@commercetools-frontend/mc-scripts": "*"
   }
 }

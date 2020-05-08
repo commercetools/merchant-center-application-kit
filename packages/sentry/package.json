@@ -47,6 +47,7 @@
     "prop-types": "15.7.2"
   },
   "devDependencies": {
+    "@types/react": "16.9.34",
     "react": "16.13.1",
     "sentry-testkit": "3.2.1",
     "wait-for-expect": "3.0.2"

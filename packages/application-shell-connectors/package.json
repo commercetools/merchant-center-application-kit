@@ -54,15 +54,16 @@
     "apollo-client": "2.6.8",
     "apollo-link-http": "1.5.17",
     "graphql": "14.6.0",
-    "graphql-tag": "^2.10.3",
+    "graphql-tag": "2.10.3",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
-    "moment-timezone": "^0.5.26",
+    "moment-timezone": "0.5.28",
     "prop-types": "15.7.2"
   },
   "devDependencies": {
     "@apollo/react-testing": "3.1.4",
     "@testing-library/react": "10.0.4",
+    "@types/react": "16.9.34",
     "react": "16.13.1",
     "react-apollo": "3.1.5"
   },

@@ -50,6 +50,8 @@
     "redux-thunk": "2.3.0"
   },
   "devDependencies": {
+    "@types/react": "16.9.34",
+    "@types/react-redux": "7.1.7",
     "react": "16.13.1",
     "react-redux": "7.2.0",
     "redux": "4.0.5"
