@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.9.6",
+    "@babel/runtime-corejs3": "7.9.6",
     "@commercetools-frontend/assets": "16.8.0",
     "@commercetools-frontend/babel-preset-mc-app": "16.8.0",
     "@commercetools-frontend/mc-dev-authentication": "16.8.0",
