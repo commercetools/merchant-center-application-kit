@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-application-template-starter",
-  "version": "16.8.1",
+  "version": "16.8.2",
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
@@ -34,7 +34,7 @@
     "redux": "4.0.5"
   },
   "devDependencies": {
-    "@commercetools-frontend/jest-preset-mc-app": "16.8.0",
+    "@commercetools-frontend/jest-preset-mc-app": "16.8.2",
     "@commercetools-frontend/mc-scripts": "16.8.1",
     "@testing-library/react": "10.0.4",
     "enzyme": "3.11.0",
