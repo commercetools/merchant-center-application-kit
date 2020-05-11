@@ -1,8 +1,7 @@
 {
   "extends": [
     "config:base",
-    ":pinOnlyDevDependencies",
-    "schedule:weekly"
+    ":pinOnlyDevDependencies"
   ],
   "separateMajorMinor": true,
   "groupName": "all dependencies",
