@@ -11,7 +11,6 @@ jobs:
 
     steps:
       - name: Checkout
-        if: github.ref == 'refs/heads/master'
         uses: actions/checkout@v2
         with:
           # TL;DR: On master branch we check out the code using a depth of 50 commits.
@@ -27,7 +26,6 @@ jobs:
 
       # https://github.com/actions/checkout#fetch-all-tags
       - name: Fetch all tags (for canary releases)
-        if: github.ref == 'refs/heads/master'
         run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
       - name: Read .nvmrc
