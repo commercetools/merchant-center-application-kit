@@ -1,5 +1,6 @@
 import type { Action, Dispatch, MiddlewareAPI } from 'redux';
 import type { HttpErrorType } from '@commercetools/sdk-client';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type {
   TSdkAction,
   TSdkActionPayload,
@@ -14,6 +15,8 @@ import {
 } from '@commercetools-frontend/constants';
 import { logRequest } from '../utils';
 import createClient from './client';
+
+declare let window: ApplicationWindow;
 
 const isSdkActionForUri = (
   actionPayload: TSdkActionPayload
@@ -108,7 +111,11 @@ export default function createSdkMiddleware({
         ...(action.payload.headers || {}),
         ...(shouldRenewToken ? { 'X-Force-Token': 'true' } : {}),
         ...(projectKey && { 'X-Project-Key': projectKey }),
+        // Experimental features, use with caution.
         ...(teamId && { 'X-Team-Id': teamId }),
+        ...(window.app.applicationId && {
+          'X-Application-Id': window.app.applicationId,
+        }),
       };
       const body =
         action.payload.method === 'POST' ? action.payload.payload : undefined;

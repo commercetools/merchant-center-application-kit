@@ -137,6 +137,8 @@ export type TMcApiProxyTargets = typeof MC_API_PROXY_TARGETS[keyof typeof MC_API
 export interface ApplicationWindow extends Window {
   dataLayer: unknown[];
   app: {
+    // TODO: make it required: https://github.com/commercetools/merchant-center-application-kit/issues/1440
+    applicationId?: string;
     applicationName: string;
     revision: string;
     env: string;
