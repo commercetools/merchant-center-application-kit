@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-local/visual-testing-app",
-  "version": "16.8.0",
+  "version": "16.8.1",
   "description": "An app to facilitate visual testing",
   "private": true,
   "scripts": {
@@ -11,9 +11,9 @@
     "serve": "serve public --no-clipboard --single --listen 3001"
   },
   "dependencies": {
-    "@commercetools-frontend/application-components": "16.8.0",
-    "@commercetools-frontend/constants": "16.8.0",
-    "@commercetools-frontend/react-notifications": "16.8.0",
+    "@commercetools-frontend/application-components": "16.8.3",
+    "@commercetools-frontend/constants": "16.8.3",
+    "@commercetools-frontend/react-notifications": "16.8.3",
     "@commercetools-uikit/design-system": "10.18.4",
     "@commercetools-uikit/icon-button": "10.18.4",
     "@commercetools-uikit/icons": "10.18.4",
