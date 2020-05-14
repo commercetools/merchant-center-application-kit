@@ -1,4 +1,5 @@
 import type { NormalizedCacheObject } from 'apollo-cache-inmemory';
+import type { ApplicationWindow } from '@commercetools-frontend/constants';
 import type { TApolloContext } from '../utils/apollo-context';
 
 import ApolloClient from 'apollo-client';
@@ -11,6 +12,8 @@ import {
   selectTeamIdFromLocalStorage,
   selectUserId,
 } from '../utils';
+
+declare let window: ApplicationWindow;
 
 type GraphQlTarget = typeof GRAPHQL_TARGETS[keyof typeof GRAPHQL_TARGETS];
 
@@ -61,7 +64,9 @@ const headerLink = new ApolloLink((operation, forward) => {
       'X-Project-Key': projectKey,
       'X-Correlation-Id': getCorrelationId({ userId }),
       'X-Graphql-Target': graphQlTarget,
+      // Experimental features, use with caution.
       'X-Team-Id': teamId,
+      'X-Application-Id': window.app.applicationId,
     }),
   });
   return forward(operation);
