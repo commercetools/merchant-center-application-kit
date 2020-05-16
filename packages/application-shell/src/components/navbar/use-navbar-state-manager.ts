@@ -21,6 +21,15 @@ import useApplicationsMenu from '../../hooks/use-applications-menu';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.settings.graphql';
 import nonNullable from './non-nullable';
 
+enum ActionTypes {
+  setActiveItemIndex = 'setActiveItemIndex',
+  unsetActiveItemIndex = 'unsetActiveItemIndex',
+  setIsExpanderVisible = 'setIsExpanderVisible',
+  toggleIsMenuOpen = 'toggleIsMenuOpen',
+  setIsMenuOpenAndMakeExpanderVisible = 'setIsMenuOpenAndMakeExpanderVisible',
+  reset = 'reset',
+}
+
 type HookProps = {
   environment: TApplicationContext<{}>['environment'];
   DEV_ONLY__loadNavbarMenuConfig?: () => Promise<TApplicationsMenu['navBar']>;
@@ -31,12 +40,12 @@ type State = {
   isMenuOpen: boolean;
 };
 type Action =
-  | { type: 'setActiveItemIndex'; payload: string }
-  | { type: 'unsetActiveItemIndex' }
-  | { type: 'setIsExpanderVisible' }
-  | { type: 'toggleIsMenuOpen' }
-  | { type: 'setIsMenuOpenAndMakeExpanderVisible'; payload: boolean }
-  | { type: 'reset' };
+  | { type: ActionTypes.setActiveItemIndex; payload: string }
+  | { type: ActionTypes.unsetActiveItemIndex }
+  | { type: ActionTypes.setIsExpanderVisible }
+  | { type: ActionTypes.toggleIsMenuOpen }
+  | { type: ActionTypes.setIsMenuOpenAndMakeExpanderVisible; payload: boolean }
+  | { type: ActionTypes.reset };
 
 const getInitialState = (isForcedMenuOpen: boolean | null): State => ({
   isExpanderVisible: true,
@@ -45,17 +54,17 @@ const getInitialState = (isForcedMenuOpen: boolean | null): State => ({
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case 'setActiveItemIndex':
+    case ActionTypes.setActiveItemIndex:
       return { ...state, activeItemIndex: action.payload };
-    case 'unsetActiveItemIndex':
+    case ActionTypes.unsetActiveItemIndex:
       return { ...state, activeItemIndex: undefined };
-    case 'setIsExpanderVisible':
+    case ActionTypes.setIsExpanderVisible:
       return { ...state, isExpanderVisible: true };
-    case 'toggleIsMenuOpen':
+    case ActionTypes.toggleIsMenuOpen:
       return { ...state, isMenuOpen: !state.isMenuOpen };
-    case 'setIsMenuOpenAndMakeExpanderVisible':
+    case ActionTypes.setIsMenuOpenAndMakeExpanderVisible:
       return { ...state, isExpanderVisible: true, isMenuOpen: action.payload };
-    case 'reset':
+    case ActionTypes.reset:
       return {
         isExpanderVisible: false,
         isMenuOpen: false,
@@ -129,9 +138,10 @@ const useNavbarStateManager = (props: HookProps) => {
     ? null
     : (JSON.parse(cachedIsForcedMenuOpen) as boolean);
 
-  const [state, dispatch] = React.useReducer<
-    (prevState: State, action: Action) => State
-  >(reducer, getInitialState(isForcedMenuOpen));
+  const [state, dispatch] = React.useReducer(
+    reducer,
+    getInitialState(isForcedMenuOpen)
+  );
 
   const checkSize = React.useCallback(
     throttle(() => {
@@ -143,17 +153,17 @@ const useNavbarStateManager = (props: HookProps) => {
       if (!canExpandMenu) {
         if (state.isMenuOpen || state.isExpanderVisible) {
           // and resets the state to avoid conflicts
-          dispatch({ type: 'reset' });
+          dispatch({ type: ActionTypes.reset });
         }
       } else if (canExpandMenu && state.isExpanderVisible !== true) {
-        dispatch({ type: 'setIsExpanderVisible' });
+        dispatch({ type: ActionTypes.setIsExpanderVisible });
       } else if (isNil(isForcedMenuOpen) && state.isMenuOpen !== shouldOpen) {
         // User has no settings yet (this.props.isForcedMenuOpen === null)
         // We check the viewport size and:
         // - if screen is big, we open the menu
         // - if screen is small we close it
         dispatch({
-          type: 'setIsMenuOpenAndMakeExpanderVisible',
+          type: ActionTypes.setIsMenuOpenAndMakeExpanderVisible,
           payload: shouldOpen,
         });
       } else if (
@@ -163,7 +173,7 @@ const useNavbarStateManager = (props: HookProps) => {
         // User has setting, we should use that and ignore the screen size.
         // Note: if viewport size is small, we should ignore the user settings.
         dispatch({
-          type: 'setIsMenuOpenAndMakeExpanderVisible',
+          type: ActionTypes.setIsMenuOpenAndMakeExpanderVisible,
           payload: isForcedMenuOpen,
         });
       }
@@ -181,9 +191,9 @@ const useNavbarStateManager = (props: HookProps) => {
         !navBarNode.current.contains(event.target as Node) &&
         !state.isMenuOpen
       )
-        dispatch({ type: 'unsetActiveItemIndex' });
+        dispatch({ type: ActionTypes.unsetActiveItemIndex });
       else if (event.type === 'mouseleave')
-        dispatch({ type: 'unsetActiveItemIndex' });
+        dispatch({ type: ActionTypes.unsetActiveItemIndex });
     },
     [state.isMenuOpen]
   );
@@ -212,7 +222,7 @@ const useNavbarStateManager = (props: HookProps) => {
     (nextActiveItemIndex: string) => {
       if (state.activeItemIndex !== nextActiveItemIndex)
         dispatch({
-          type: 'setActiveItemIndex',
+          type: ActionTypes.setActiveItemIndex,
           payload: nextActiveItemIndex,
         });
     },
@@ -221,9 +231,9 @@ const useNavbarStateManager = (props: HookProps) => {
 
   const handleToggleMenu = React.useCallback(() => {
     if (state.isMenuOpen && state.activeItemIndex) {
-      dispatch({ type: 'unsetActiveItemIndex' });
+      dispatch({ type: ActionTypes.unsetActiveItemIndex });
     }
-    dispatch({ type: 'toggleIsMenuOpen' });
+    dispatch({ type: ActionTypes.toggleIsMenuOpen });
   }, [state.activeItemIndex, state.isMenuOpen]);
 
   // Synchronize the menu state with local storage.
