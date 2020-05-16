@@ -21,7 +21,7 @@ import useApplicationsMenu from '../../hooks/use-applications-menu';
 import FetchProjectExtensionsNavbar from './fetch-project-extensions-navbar.settings.graphql';
 import nonNullable from './non-nullable';
 
-enum ActionTypes {
+const enum ActionTypes {
   setActiveItemIndex = 'setActiveItemIndex',
   unsetActiveItemIndex = 'unsetActiveItemIndex',
   setIsExpanderVisible = 'setIsExpanderVisible',
