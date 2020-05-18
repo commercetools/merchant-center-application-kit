@@ -36,7 +36,7 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@types/node": "12.12.29",
+    "@types/node": "12.12.39",
     "express": "4.17.1",
     "express-jwt": "5.3.3",
     "jwks-rsa": "1.7.0"
