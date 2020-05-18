@@ -248,14 +248,6 @@ const PageMarketingContent = () => {
                 title: 'Application Kit',
                 links: [
                   {
-                    to: `${siteData.siteMetadata.repositoryUrl}/releases/latest`,
-                    label: `Latest: ${siteData.siteMetadata.publishedVersions.latest}`,
-                  },
-                  {
-                    to: `${siteData.siteMetadata.repositoryUrl}/releases/tag/${siteData.siteMetadata.publishedVersions.next}`,
-                    label: `Next: ${siteData.siteMetadata.publishedVersions.next}`,
-                  },
-                  {
                     to: `${siteData.siteMetadata.repositoryUrl}/blob/master/CONTRIBUTING.md`,
                     label: 'Contributing',
                   },

@@ -1,8 +1,4 @@
-/* eslint-disable global-require */
-const dummyVersions = {
-  latest: 'v0.0.0',
-  next: 'v0.0.0',
-};
+const colorPresets = require('@commercetools-docs/gatsby-theme-docs/color-presets');
 
 module.exports = {
   pathPrefix: '/custom-applications',
@@ -13,12 +9,6 @@ module.exports = {
     betaLink: '/support-policy',
     repositoryUrl:
       'https://github.com/commercetools/merchant-center-application-kit',
-    publishedVersions:
-      // Keep the version fixed in case we build the website for snapshot testing.
-      // This way, we avoid invalid snapshots every time we release a new version.
-      process.env.BUILD_TARGET === 'percy'
-        ? dummyVersions
-        : require('./versions'),
   },
   plugins: [
     // Pages for React components
@@ -35,6 +25,7 @@ module.exports = {
       resolve: '@commercetools-docs/gatsby-theme-docs',
       options: {
         websiteKey: 'custom-applications',
+        colorPreset: colorPresets.merchantCenterDeveloperDocs.key,
         beta: true,
         excludeFromSearchIndex: false,
         gaTrackingId: 'UA-38285631-3',
