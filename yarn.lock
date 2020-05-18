@@ -1547,13 +1547,15 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@commercetools-docs/gatsby-theme-docs@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-3.0.0.tgz#dc827cdec38b0b1b76b4beead093bc7278075219"
-  integrity sha512-iWuKq5KuTzELDOzKpkwwcYD2iGMNlboURkTRqrdDzxM7jO5xEWbG4FvAdNSvayWFl8n8kfopb8ktULIyj4SqlA==
+"@commercetools-docs/gatsby-theme-docs@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/gatsby-theme-docs/-/gatsby-theme-docs-4.0.0.tgz#d06fb76207537a95f26fbed225535f41f5dc17dd"
+  integrity sha512-8kidg/+foT0NuVZUaZTXzl5Aa2NPqJ4HXjckFVW68l+g5GeWp0IEWXBDNT3/3e7eTLlTQdp9m+ezBNiYbiJFlA==
   dependencies:
-    "@commercetools-docs/ui-kit" "3.0.0"
+    "@commercetools-docs/ui-kit" "3.0.1"
     "@commercetools-uikit/card" "10.18.4"
+    "@commercetools-uikit/checkbox-input" "10.18.4"
+    "@commercetools-uikit/date-input" "10.18.4"
     "@commercetools-uikit/design-system" "10.18.4"
     "@commercetools-uikit/icon-button" "10.18.4"
     "@commercetools-uikit/icons" "10.18.4"
@@ -1590,9 +1592,13 @@
     github-slugger "1.3.0"
     hast-util-heading "1.0.4"
     lodash.throttle "4.1.1"
+    moment "2.24.0"
     prismjs "1.20.0"
     prop-types "15.7.2"
+    qss "2.0.3"
     react-helmet "6.0.0"
+    react-intl "4.5.1"
+    react-router-dom "5.1.2"
     rehype-slug "3.0.0"
     remark-emoji "2.1.0"
     remark-frontmatter "2.0.0"
@@ -1606,6 +1612,19 @@
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-3.0.0.tgz#2514aaf52740ced7e3e91641815e68f9e30a4dc3"
   integrity sha512-3bkyhTHcj0c61vewcT0ux2YkBp+PAI+TgNDEK3kJmRRj5OI/40RNBBvngc5eXFQ1GSUNacWkq+ad7VX6W+mJnQ==
+  dependencies:
+    "@commercetools-uikit/tooltip" "10.18.4"
+    lodash.escape "4.0.1"
+    lodash.throttle "4.1.1"
+    parse5 "6.0.0"
+    prism-react-renderer "1.0.2"
+    prop-types "15.7.2"
+    tiny-invariant "1.1.0"
+
+"@commercetools-docs/ui-kit@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-3.0.1.tgz#477b5f600d4cd79bfb9b7dbe06b7a3533868309b"
+  integrity sha512-2fOiv+AAyHamv19BWkz1Ytk5e6dbe9hz1aUJC8IiNB9TBurihiTE5uUwpPjbVJs8aXwrNxMX3R9VRvJ24zyTJQ==
   dependencies:
     "@commercetools-uikit/tooltip" "10.18.4"
     lodash.escape "4.0.1"
@@ -1947,6 +1966,31 @@
     "@emotion/styled" "10.0.27"
     prop-types "15.7.2"
     react-required-if "1.0.3"
+
+"@commercetools-uikit/date-input@10.18.4":
+  version "10.18.4"
+  resolved "https://registry.yarnpkg.com/@commercetools-uikit/date-input/-/date-input-10.18.4.tgz#65ec2e9960ca9488cc6f497cace89270e11b599c"
+  integrity sha512-jHV2FOVEySfitJ1yurZEWZD/Fu2/fKg5km8QTqF6WhoDg/AuXM7hze1VseyCyIzZmSskWYUuXtWJYnOnQ9Lf5Q==
+  dependencies:
+    "@commercetools-uikit/calendar-utils" "10.14.2"
+    "@commercetools-uikit/constraints" "10.18.4"
+    "@commercetools-uikit/design-system" "10.18.4"
+    "@commercetools-uikit/icons" "10.18.4"
+    "@commercetools-uikit/secondary-icon-button" "10.18.4"
+    "@commercetools-uikit/select-utils" "10.18.4"
+    "@commercetools-uikit/spacings-inline" "10.18.4"
+    "@commercetools-uikit/text" "10.18.4"
+    "@commercetools-uikit/tooltip" "10.18.4"
+    "@commercetools-uikit/utils" "10.18.4"
+    "@emotion/core" "10.0.28"
+    "@emotion/styled" "10.0.27"
+    common-tags "1.8.0"
+    downshift "5.0.5"
+    prop-types "15.7.2"
+    react-is "16.13.1"
+    react-required-if "1.0.3"
+    tiny-invariant "1.1.0"
+    warning "4.0.3"
 
 "@commercetools-uikit/date-input@10.18.5":
   version "10.18.5"
@@ -3514,12 +3558,33 @@
   dependencies:
     ts-essentials "6.0.4"
 
+"@formatjs/intl-displaynames@^1.2.8":
+  version "1.2.10"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-displaynames/-/intl-displaynames-1.2.10.tgz#bb9625cca90b099978cd967c6a98aaf4e23fc878"
+  integrity sha512-GROA2RP6+7Ouu0WnHFF78O5XIU7pBfI19WM1qm93l6MFWibUk67nCfVCK3VAYJkLy8L8ZxjkYT11VIAfvSz8wg==
+  dependencies:
+    "@formatjs/intl-utils" "^2.3.0"
+
+"@formatjs/intl-listformat@^1.4.6":
+  version "1.4.8"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-listformat/-/intl-listformat-1.4.8.tgz#70b81005e7dcf74329cb5b314a940ce5fce36cd0"
+  integrity sha512-WNMQlEg0e50VZrGIkgD5n7+DAMGt3boKi1GJALfhFMymslJb5i+5WzWxyj/3a929Z6MAFsmzRIJjKuv+BxKAOQ==
+  dependencies:
+    "@formatjs/intl-utils" "^2.3.0"
+
 "@formatjs/intl-relativetimeformat@^4.2.1":
   version "4.5.12"
   resolved "https://registry.yarnpkg.com/@formatjs/intl-relativetimeformat/-/intl-relativetimeformat-4.5.12.tgz#2d2365f62c15524a40b63627cd62924f6196dd4e"
   integrity sha512-Fh57ZnwOgAIA61i3BQhTb8C8OrCP1zDLQ35xzJ7yv/UiDDExAS8rQPf80+7Hu/8+kydL1DDgVY1PXvE63fxF+Q==
   dependencies:
     "@formatjs/intl-utils" "^2.2.2"
+
+"@formatjs/intl-relativetimeformat@^4.5.14":
+  version "4.5.16"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-relativetimeformat/-/intl-relativetimeformat-4.5.16.tgz#7449cef3213dd66d25924ca41f125f87b58df95a"
+  integrity sha512-IQ0haY97oHAH5OYUdykNiepdyEWj3SAT+Fp9ZpR85ov2JNiFx+12WWlxlVS8ehdyncC2ZMt/SwFIy2huK2+6/A==
+  dependencies:
+    "@formatjs/intl-utils" "^2.3.0"
 
 "@formatjs/intl-unified-numberformat@^2.1.0":
   version "2.2.0"
@@ -3535,6 +3600,13 @@
   dependencies:
     "@formatjs/intl-utils" "^2.2.2"
 
+"@formatjs/intl-unified-numberformat@^3.3.5", "@formatjs/intl-unified-numberformat@^3.3.7":
+  version "3.3.7"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-unified-numberformat/-/intl-unified-numberformat-3.3.7.tgz#9995a24568908188e716d81a1de5b702b2ee00e2"
+  integrity sha512-KnWgLRHzCAgT9eyt3OS34RHoyD7dPDYhRcuKn+/6Kv2knDF8Im43J6vlSW6Hm1w63fNq3ZIT1cFk7RuVO3Psag==
+  dependencies:
+    "@formatjs/intl-utils" "^2.3.0"
+
 "@formatjs/intl-utils@^1.6.0":
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@formatjs/intl-utils/-/intl-utils-1.6.0.tgz#43b094232b9ef98b57a270bcecee99168d329e9f"
@@ -3544,6 +3616,11 @@
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/@formatjs/intl-utils/-/intl-utils-2.2.2.tgz#adc448035c2e3f60c550bd27c97eca336e641f5a"
   integrity sha512-rKINaMRYH3FeNwYjEQwPtsA0kP2/hLLMB9mLi/QYfszz/huTqkInFmYilFRCX4oLlhFXDK5UQQMGNfEavN02Sg==
+
+"@formatjs/intl-utils@^2.2.4", "@formatjs/intl-utils@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-utils/-/intl-utils-2.3.0.tgz#2dc8c57044de0340eb53a7ba602e59abf80dc799"
+  integrity sha512-KWk80UPIzPmUg+P0rKh6TqspRw0G6eux1PuJr+zz47ftMaZ9QDwbGzHZbtzWkl5hgayM/qrKRutllRC7D/vVXQ==
 
 "@graphql-codegen/add@1.13.5":
   version "1.13.5"
@@ -6237,6 +6314,11 @@
   version "2.2.31"
   resolved "https://registry.yarnpkg.com/@types/invariant/-/invariant-2.2.31.tgz#4444c03004f215289dbca3856538434317dd28b2"
   integrity sha512-jMlgg9pIURvy9jgBHCjQp/CyBjYHUwj91etVcDdXkFl2CwTFiQlB+8tcsMeXpXf2PFE5X2pjk4Gm43hQSMHAdA==
+
+"@types/invariant@^2.2.31":
+  version "2.2.33"
+  resolved "https://registry.yarnpkg.com/@types/invariant/-/invariant-2.2.33.tgz#ec5eec29c63bf5e4ca164e9feb3ef7337cdcbadb"
+  integrity sha512-/jUNmS8d4bCKdqslfxW6dg/9Gksfzxz67IYfqApHn+HvHlMVXwYv2zpTDnS/yaK9BB0i0GlBTaYci0EFE62Hmw==
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.1"
@@ -15850,7 +15932,7 @@ hogan.js@^3.0.2:
     mkdirp "0.3.0"
     nopt "1.0.10"
 
-hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0:
+hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -16689,6 +16771,11 @@ intl-format-cache@^4.2.21, intl-format-cache@^4.2.3:
   resolved "https://registry.yarnpkg.com/intl-format-cache/-/intl-format-cache-4.2.24.tgz#d6a264430553db233aa444acefc4150762d603e4"
   integrity sha512-eea8rHu7ipmUilSd9+MCglgR07E+xJXmTYVFODmeLKsO3Psr/OrixDr6vWprz1whli7cwRdSc1/jHVBxrd+QBw==
 
+intl-format-cache@^4.2.26, intl-format-cache@^4.2.28:
+  version "4.2.28"
+  resolved "https://registry.yarnpkg.com/intl-format-cache/-/intl-format-cache-4.2.28.tgz#67cccee0ae5234cb61bb72f82c4f1df5804aed7f"
+  integrity sha512-yFACAtiacQj2nPfFSyDd/ZRgDFDDtw55cmqdYux7ncqrqvaMTajf3Biuc4a3HAWNuMvk0r2VHBfwy2YmOmAZ+A==
+
 intl-locales-supported@^1.6.0:
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/intl-locales-supported/-/intl-locales-supported-1.8.5.tgz#8c4aa6751ee35d215db4754656a70139ebdc5a9c"
@@ -16708,6 +16795,13 @@ intl-messageformat-parser@^4.1.1:
   dependencies:
     "@formatjs/intl-unified-numberformat" "^3.3.3"
 
+intl-messageformat-parser@^5.0.2, intl-messageformat-parser@^5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-5.0.4.tgz#c3e2f3be02a51ae78bb3cc61f8ade6d1e2aa7f5c"
+  integrity sha512-7+MvIzLkcjCEPBKW/NLGBIZr1cpOz/iAp6Thx8tc1BZUeWMfHOIb/Z53/nTwWd4p0ij9plB8+tHcFmI24Ubvuw==
+  dependencies:
+    "@formatjs/intl-unified-numberformat" "^3.3.7"
+
 intl-messageformat@^7.3.3:
   version "7.8.4"
   resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-7.8.4.tgz#c29146a06b9cd26662978a4d95fff2b133e3642f"
@@ -16715,6 +16809,14 @@ intl-messageformat@^7.3.3:
   dependencies:
     intl-format-cache "^4.2.21"
     intl-messageformat-parser "^3.6.4"
+
+intl-messageformat@^8.3.9:
+  version "8.3.11"
+  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-8.3.11.tgz#90381357d72d76dd1a5557f50b150b71089a9511"
+  integrity sha512-unuEfGZdUxO64sqClyRESfLC01mo2cmzUtTILMKluv0Z4bwS5KoJ6X8mUvyGOKzZkxhLwAzo6B/AC0ahSjaa2g==
+  dependencies:
+    intl-format-cache "^4.2.28"
+    intl-messageformat-parser "^5.0.4"
 
 intl@1.2.5:
   version "1.2.5"
@@ -24083,6 +24185,24 @@ react-intl@3.4.0:
     invariant "^2.1.1"
     shallow-equal "^1.1.0"
 
+react-intl@4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-4.5.1.tgz#b1583c853eaf652ba3579e605aec66eeb915195f"
+  integrity sha512-Zhe5rn+AYtcnzgAuL2ZgqOCMpFwco9aQ0OMdobe/g1l+hUTEEt7gQyZO0cHXd4lsfJIyBtjGnVlR9V2YwC1dDw==
+  dependencies:
+    "@formatjs/intl-displaynames" "^1.2.8"
+    "@formatjs/intl-listformat" "^1.4.6"
+    "@formatjs/intl-relativetimeformat" "^4.5.14"
+    "@formatjs/intl-unified-numberformat" "^3.3.5"
+    "@formatjs/intl-utils" "^2.2.4"
+    "@types/hoist-non-react-statics" "^3.3.1"
+    "@types/invariant" "^2.2.31"
+    hoist-non-react-statics "^3.3.2"
+    intl-format-cache "^4.2.26"
+    intl-messageformat "^8.3.9"
+    intl-messageformat-parser "^5.0.2"
+    shallow-equal "^1.2.1"
+
 react-is@16.13.1, react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.6, react-is@^16.9.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -25800,7 +25920,7 @@ shallow-compare@^1.2.2:
   resolved "https://registry.yarnpkg.com/shallow-compare/-/shallow-compare-1.2.2.tgz#fa4794627bf455a47c4f56881d8a6132d581ffdb"
   integrity sha512-LUMFi+RppPlrHzbqmFnINTrazo0lPNwhcgzuAXVVcfy/mqPDrQmHAyz5bvV0gDAuRFrk804V0HpQ6u9sZ0tBeg==
 
-shallow-equal@^1.1.0:
+shallow-equal@^1.1.0, shallow-equal@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.2.1.tgz#4c16abfa56043aa20d050324efa68940b0da79da"
   integrity sha512-S4vJDjHHMBaiZuT9NPb616CSmLf618jawtv3sufLl6ivK8WocjAo58cXwbRV1cgqxH0Qbv+iUt6m05eqEa2IRA==
