@@ -4,14 +4,13 @@
   "private": true,
   "scripts": {
     "build": "gatsby build --prefix-paths",
-    "prebuild": "rm -rf public/custom-applications && ./scripts/get_latest_release.sh",
+    "prebuild": "rm -rf public/custom-applications",
     "postbuild": "mv public custom-applications && mkdir public && mv custom-applications public/",
-    "prestart": "./scripts/get_latest_release.sh",
     "start": "gatsby develop"
   },
   "dependencies": {
     "@commercetools-docs/gatsby-theme-docs": "4.0.0",
-    "@commercetools-docs/ui-kit": "3.0.0",
+    "@commercetools-docs/ui-kit": "3.0.1",
     "@commercetools-uikit/card": "10.18.4",
     "@commercetools-uikit/spacings-inline": "10.18.4",
     "@commercetools-uikit/spacings-stack": "10.18.4",

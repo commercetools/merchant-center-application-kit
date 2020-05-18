@@ -22,12 +22,6 @@ const RepositoryLinks = () => {
         >
           <GitHubSvg />
         </Link>
-        <Link
-          href={`${siteData.siteMetadata.repositoryUrl}/releases/latest`}
-          title="Latest"
-        >
-          {siteData.siteMetadata.publishedVersions.latest}
-        </Link>
       </SpacingsInline>
     </div>
   );
