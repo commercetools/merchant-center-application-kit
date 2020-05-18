@@ -162,7 +162,7 @@
     "stylelint-config-prettier": "8.0.1",
     "stylelint-config-standard": "20.0.0",
     "stylelint-order": "4.0.0",
-    "stylelint-value-no-unknown-custom-properties": "2.0.0",
+    "stylelint-value-no-unknown-custom-properties": "3.0.0",
     "typescript": "3.8.3",
     "vfile-message": "2.0.4",
     "xhr-mock": "2.5.1"
