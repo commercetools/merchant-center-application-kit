@@ -32,6 +32,6 @@
   },
   "devDependencies": {
     "@commercetools-frontend/mc-scripts": "16.8.4",
-    "serve": "11.3.0"
+    "serve": "11.3.1"
   }
 }
