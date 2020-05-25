@@ -82,7 +82,7 @@
     "@types/moment-timezone": "^0.5.12",
     "@types/react-select": "^3.0.8",
     "@types/redux-logger": "^3.0.7",
-    "@types/uuid": "^7.0.0",
+    "@types/uuid": "^8.0.0",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.10",
     "apollo-link": "^1.2.13",
