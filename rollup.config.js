@@ -8,7 +8,7 @@ const getBabelPreset = require('@commercetools-frontend/babel-preset-mc-app');
 const {
   browserslist,
 } = require('@commercetools-frontend/mc-scripts/package.json');
-const resolve = require('@rollup/plugin-node-resolve');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const json = require('@rollup/plugin-json');
 const commonjs = require('@rollup/plugin-commonjs');
 const postcss = require('rollup-plugin-postcss');
@@ -56,7 +56,7 @@ const createPlugins = (format) => {
     commonjs({
       include: 'node_modules/**',
     }),
-    resolve({
+    nodeResolve({
       extensions,
       mainFields: ['module', 'main', 'jsnext'],
       preferBuiltins: true,
