@@ -70,9 +70,9 @@
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
     "@emotion/styled-base": "10.0.31",
-    "@flopflip/launchdarkly-adapter": "2.13.2",
-    "@flopflip/memory-adapter": "1.7.2",
-    "@flopflip/react-broadcast": "10.1.15",
+    "@flopflip/launchdarkly-adapter": "2.13.3",
+    "@flopflip/memory-adapter": "1.7.3",
+    "@flopflip/react-broadcast": "10.2.0",
     "@sentry/browser": "5.15.5",
     "@types/classnames": "^2.2.9",
     "@types/common-tags": "^1.8.0",
@@ -114,7 +114,7 @@
     "redux-thunk": "2.3.0",
     "tiny-invariant": "1.1.0",
     "unfetch": "4.1.0",
-    "uuid": "8.0.0"
+    "uuid": "8.1.0"
   },
   "devDependencies": {
     "@testing-library/react": "10.0.4",
