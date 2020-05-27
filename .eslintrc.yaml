@@ -25,7 +25,8 @@ plugins:
   - graphql
   - '@typescript-eslint/eslint-plugin'
 rules:
-  '@typescript-eslint/camelcase': 0
+  '@typescript-eslint/ban-types': 0
+  '@typescript-eslint/naming-convention': 0
   '@typescript-eslint/consistent-type-definitions': 0
   '@typescript-eslint/no-explicit-any': 2
   '@typescript-eslint/no-use-before-define':
@@ -67,7 +68,7 @@ overrides:
       'react/display-name': 0
   - files: ['*.ts', '*.tsx']
     rules:
-      '@typescript-eslint/ban-ts-ignore': 0
+      '@typescript-eslint/ban-ts-comment': 0
       '@typescript-eslint/explicit-function-return-type': 0
       '@typescript-eslint/explicit-member-accessibility':
         [2, { accessibility: 'no-public' }]
