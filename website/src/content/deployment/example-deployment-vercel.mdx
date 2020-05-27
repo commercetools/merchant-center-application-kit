@@ -1,12 +1,12 @@
 ---
-title: Example Deployment with Now v2
+title: Example Deployment with Vercel
 ---
 
-This deployment example refers to the [Now serverless deployment](https://zeit.co/now).
+This deployment example refers to the [Vercel serverless deployment](https://vercel.com), [formerly ZEIT Now](https://vercel.com/blog/zeit-is-now-vercel).
 
 <Warning>
 
-This example refers to [Now `v2`](https://zeit.co/docs/v2). If you are looking for Now `v1`, check out the [Now v1 example](/deployment/example-now-v1).
+This example refers to [Vercel `v2`](https://vercel.com/docs).
 
 </Warning>
 
@@ -22,14 +22,14 @@ Before you get started, you need to have:
 
   </Info>
 
-- A [Now](https://zeit.co/signup) account
-- The [Now Desktop](https://zeit.co/download) or [Now CLI](https://zeit.co/download#now-cli) applications
+- A [Vercel](https://vercel.com/signup) account
+- The [Vercel CLI](https://vercel.com/download)
 
-We're going to deploy the application under the domain `mc-examples-starter.now.sh`.
+We're going to deploy the application under the domain `mc-examples-starter.vercel.app`.
 
 <Info>
 
-The `mc-examples-starter.now.sh` domain is already in use. Pick a different one if you choose to deploy using Now.
+The `mc-examples-starter.vercel.app` domain is already in use. Pick a different one if you choose to deploy using Vercel.
 
 </Info>
 
@@ -40,11 +40,11 @@ To start, we need to create an `env.prod.json` file with the following JSON:
 ```json
 {
   "applicationName": "mc-examples-starter",
-  "frontendHost": "mc-examples-starter.now.sh",
+  "frontendHost": "mc-examples-starter.vercel.app",
   "mcApiUrl": "https://mc-api.commercetools.com",
   "location": "gcp-eu",
   "env": "production",
-  "cdnUrl": "http://mc-examples-starter.now.sh",
+  "cdnUrl": "http://mc-examples-starter.vercel.app",
   "servedByProxy": true
 }
 ```
@@ -54,24 +54,24 @@ We also need a `headers.prod.json` to whitelist the domains for the Content Secu
 ```json
 {
   "csp": {
-    "script-src": ["mc-examples-starter.now.sh"],
+    "script-src": ["mc-examples-starter.vercel.app"],
     "connect-src": [
-      "mc-examples-starter.now.sh",
+      "mc-examples-starter.vercel.app",
       "mc-api.commercetools.com"
     ],
-    "style-src": ["mc-examples-starter.now.sh"]
+    "style-src": ["mc-examples-starter.vercel.app"]
   }
 }
 ```
 
-To configure Now deployments, we can use a `now.json` file. Normally, it would look something like this:
+To configure Vercel (formerly Zeit Now) deployments, we can use a `vercel.json` file. It looks something like this:
 
 ```json
 {
   "version": 2,
   "public": true,
-  "name": "mc-examples-starter.now.sh",
-  "alias": "mc-examples-starter.now.sh",
+  "name": "mc-examples-starter.vercel.app",
+  "alias": "mc-examples-starter.vercel.app",
   "regions": ["bru"],
   "builds": [
     {
@@ -111,7 +111,7 @@ To make it work, we need to **compile** the application first.
 
 The Merchant Center Custom Applications are available by default with a built-in [HTTP server](/deployment/http-server), which takes care of preparing the `index.html` according to the `env.json` and `headers.json` configuration (see [Runtime configuration](/deployment/runtime-configuration)).
 
-To be able to deploy the Custom Application to the version 2 of the ZEIT Now platform, the application needs to be configured and built statically.
+To be able to deploy the Custom Application to the version 2 of the Vercel platform, the application needs to be configured and built statically.
 This is possible using the [`compile-html` command](/development/available-scripts).
 
 ```console
@@ -138,7 +138,7 @@ The command above does what we need: it compiles the `index.html` using the Java
 However, the Custom Application needs to instruct the User-Agent (the browser) to enforce certain security measures, using HTTP headers.
 The HTTP headers are also compiled together with the `index.html`, as they rely on the runtime configuration `headers.json`.
 
-Because of that, the `now.json` file **cannot be defined statically**. Instead, it neeeds to be generated programmatically when the Custom Application is built and compiled.
+Because of that, the `now.json` file **cannot be defined statically**. Instead, it needs to be generated programmatically when the Custom Application is built and compiled.
 To achieve that, we need to implement a **transformer** function.
 
 # Generate `now.json` using a transformer function
@@ -195,8 +195,8 @@ module.exports =  function transformer({ headers }) {
   const config = {
     version: 2,
     public: true,
-    name: 'mc-examples-starter.now.sh',
-    alias: 'mc-examples-starter.now.sh',
+    name: 'mc-examples-starter.vercel.app',
+    alias: 'mc-examples-starter.vercel.app',
     regions: ['bru'],
     builds: [
       { src: 'public/**', use: '@now/static' },
@@ -230,7 +230,7 @@ This step is optional and does not prevent the application to be used within the
 
 </Info>
 
-Accessing the Custom Application directly at `https://mc-examples-starter.now.sh` won't work, as the application requires the user to log in and thus tries to redirect to the `/login` route at the same domain.
+Accessing the Custom Application directly at `https://mc-examples-starter.vercel.app` won't work, as the application requires the user to log in and thus tries to redirect to the `/login` route at the same domain.
 
 To prevent that, we can add a dummy fallback route for the `login|logout` routes. This is only meant to inform the user that the Custom Application cannot be used standalone.
 
@@ -257,8 +257,8 @@ module.exports =  function transformer({ headers }) {
   const config = {
     version: 2,
     public: true,
-    name: 'mc-examples-starter.now.sh',
-    alias: 'mc-examples-starter.now.sh',
+    name: 'mc-examples-starter.vercel.app',
+    alias: 'mc-examples-starter.vercel.app',
     regions: ['bru'],
     builds: [
       { src: 'public/**', use: '@now/static' },
@@ -288,7 +288,7 @@ module.exports =  function transformer({ headers }) {
 
 # Deployment
 
-Finally, we can trigger the deployment using the [Now CLI](https://zeit.co/download#now-cli):
+Finally, we can trigger the deployment using the [Vercel CLI](https://vercel.com/download):
 
 ```console noPromptLines="2,4-8"
 yarn build
