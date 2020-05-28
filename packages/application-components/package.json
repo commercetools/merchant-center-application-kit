@@ -67,7 +67,7 @@
   "devDependencies": {
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-intl": "3.4.0"
+    "react-intl": "4.6.2"
   },
   "peerDependencies": {
     "@commercetools-frontend/ui-kit": "10.x",
@@ -75,6 +75,6 @@
     "@types/react-dom": "16.x",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
-    "react-intl": "3.x"
+    "react-intl": "4.x"
   }
 }
