@@ -9,12 +9,7 @@
     "directory": "packages/application-shell"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "frontend",
-    "react",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "frontend", "react", "toolkit"],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -24,13 +19,7 @@
   "module": "./dist/application-shell-index.es.js",
   "typings": "./dist/typings/index.d.ts",
   "types": "./dist/typings/index.d.ts",
-  "files": [
-    "dist",
-    "test-utils",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["dist", "test-utils", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/** test-utils/**",
@@ -59,14 +48,14 @@
     "@commercetools-frontend/sdk": "16.8.5",
     "@commercetools-frontend/sentry": "16.8.3",
     "@commercetools-frontend/url-utils": "16.8.0",
-    "@commercetools-uikit/avatar": "^10.13.0",
-    "@commercetools-uikit/design-system": "^10.13.0",
-    "@commercetools-uikit/flat-button": "^10.13.0",
-    "@commercetools-uikit/icons": "^10.13.0",
-    "@commercetools-uikit/loading-spinner": "^10.13.0",
-    "@commercetools-uikit/select-input": "^10.13.0",
-    "@commercetools-uikit/spacings": "^10.13.0",
-    "@commercetools-uikit/text": "^10.13.0",
+    "@commercetools-uikit/avatar": "^10.21.0",
+    "@commercetools-uikit/design-system": "^10.18.4",
+    "@commercetools-uikit/flat-button": "^10.21.0",
+    "@commercetools-uikit/icons": "^10.20.0",
+    "@commercetools-uikit/loading-spinner": "^10.21.0",
+    "@commercetools-uikit/select-input": "^10.21.0",
+    "@commercetools-uikit/spacings": "^10.18.5",
+    "@commercetools-uikit/text": "^10.21.0",
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
     "@emotion/styled-base": "10.0.31",
