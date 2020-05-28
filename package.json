@@ -168,6 +168,10 @@
     "xhr-mock": "2.5.1"
   },
   "resolutions": {
+    "@mdx-js/mdx": "1.6.4",
+    "**/@mdx-js/mdx": "1.6.4",
+    "@mdx-js/react": "1.6.4",
+    "**/@mdx-js/react": "1.6.4",
     "@sentry/types": "5.15.5",
     "**/@sentry/types": "5.15.5",
     "@types/react": "16.9.35",
