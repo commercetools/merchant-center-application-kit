@@ -60,9 +60,7 @@
       "website",
       "website-components-playground"
     ],
-    "nohoist": [
-      "**/react-apollo"
-    ]
+    "nohoist": ["**/react-apollo"]
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
@@ -175,8 +173,6 @@
     "@sentry/types": "5.15.5",
     "**/@sentry/types": "5.15.5",
     "@types/react": "16.9.35",
-    "@commercetools-frontend/ui-kit": "10.18.7",
-    "**/@commercetools-frontend/ui-kit": "10.18.7",
     "@types/react-router": "5.1.7",
     "react": "16.13.1",
     "**/react": "16.13.1",
