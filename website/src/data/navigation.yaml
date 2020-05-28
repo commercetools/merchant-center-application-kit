@@ -58,10 +58,8 @@
       path: '/deployment/static-server'
     - title: Serving Static Assets
       path: '/deployment/serving-static-assets'
-    - title: 'Example Deployment with Now v1'
-      path: '/deployment/example-deployment-now-v1'
-    - title: 'Example Deployment with Now v2'
-      path: '/deployment/example-deployment-now-v2'
+    - title: 'Example Deployment with Vercel'
+      path: '/deployment/example-deployment-vercel'
     - title: 'Example Deployment with Firebase'
       path: '/deployment/example-deployment-firebase'
     - title: 'Example Deployment with AWS, S3 and CloudFront'

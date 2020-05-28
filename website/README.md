@@ -1,6 +1,6 @@
 # Documentation website
 
-The website is available at https://docs.commercetools.com and is built using the commercetools [Gatsby theme](https://github.com/commercetools/commercetools-docs-kit) and deployed to Zeit Now.
+The website is available at https://docs.commercetools.com and is built using the commercetools [Gatsby theme](https://github.com/commercetools/commercetools-docs-kit) and deployed to Vercel (formerly Zeit Now).
 
 ## Getting started
 

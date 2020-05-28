@@ -120,7 +120,7 @@ jobs:
           name: cypress-videos
           path: cypress/videos
 
-      - name: Deploying Playground application to ZEIT Now
+      - name: Deploying Playground application to Vercel
         if: github.ref == 'refs/heads/master'
         run: ./scripts/deploy_playground.sh
         env:
