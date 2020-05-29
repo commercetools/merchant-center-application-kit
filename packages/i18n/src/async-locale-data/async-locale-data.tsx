@@ -79,7 +79,7 @@ const AsyncLocaleData = (props: Props) => {
     <>
       {props.children({
         isLoading,
-        locale: props.locale,
+        locale: isLoading ? undefined : props.locale,
         messages: error ? undefined : messages,
       })}
     </>
