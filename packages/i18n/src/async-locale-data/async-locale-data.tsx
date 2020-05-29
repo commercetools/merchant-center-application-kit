@@ -1,16 +1,18 @@
+import type {
+  TMessagesAsync,
+  TMessageTranslations,
+} from './use-async-intl-messages';
+
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { extractLanguageTagFromLocale, mergeMessages } from '../utils';
 import loadI18n from '../load-i18n';
+import useAsyncIntlMessages from './use-async-intl-messages';
 
-export type TMessageTranslations = {
-  [key: string]: string;
-};
 export type TMessages = {
   [key: string]: TMessageTranslations;
 };
-export type TMessagesAsync = (locale: string) => Promise<TMessageTranslations>;
-export type State = {
+export type TRenderFunctionResult = {
   isLoading: boolean;
   locale?: string;
   messages?: TMessageTranslations;
@@ -22,7 +24,7 @@ export type Props = {
   // therefore causing flashing of translated content on subsequent re-renders.
   locale?: string;
   applicationMessages: TMessages | TMessagesAsync;
-  children: (state: State) => React.ReactNode;
+  children: (state: TRenderFunctionResult) => React.ReactNode;
 };
 
 const getMessagesForLocale = (data?: TMessages, locale?: string) => {
@@ -32,63 +34,56 @@ const getMessagesForLocale = (data?: TMessages, locale?: string) => {
   return data[fallbackLanguage];
 };
 
-const loadApplicationMessages = async (
-  applicationMessagesOrAsyncFunction: TMessages | TMessagesAsync,
-  locale: string
-): Promise<TMessageTranslations> => {
-  if (typeof applicationMessagesOrAsyncFunction === 'function') {
-    return await applicationMessagesOrAsyncFunction(locale);
-  }
-  return getMessagesForLocale(applicationMessagesOrAsyncFunction, locale);
+const useAsyncLocaleData = ({
+  locale,
+  applicationMessages,
+}: Pick<Props, 'locale' | 'applicationMessages'>) => {
+  const loadApplicationMessages = React.useCallback(
+    async (locale: string) => {
+      if (typeof applicationMessages === 'function') {
+        return await applicationMessages(locale);
+      }
+      return getMessagesForLocale(applicationMessages, locale);
+    },
+    [applicationMessages]
+  );
+  const messagesFromKitResult = useAsyncIntlMessages({
+    locale,
+    loader: loadI18n,
+  });
+  const applicationMessagesResult = useAsyncIntlMessages({
+    locale,
+    loader: loadApplicationMessages,
+  });
+
+  // Merge the loaded messages into one
+  return {
+    isLoading:
+      messagesFromKitResult.isLoading || applicationMessagesResult.isLoading,
+    messages: mergeMessages(
+      messagesFromKitResult.messages ?? {},
+      applicationMessagesResult.messages ?? {}
+    ),
+    error: messagesFromKitResult.error ?? applicationMessagesResult.error,
+  };
 };
 
-class AsyncLocaleData extends React.Component<Props, State> {
-  static displayName = 'AsyncLocaleData';
+const AsyncLocaleData = (props: Props) => {
+  const { isLoading, messages, error } = useAsyncLocaleData(props);
 
-  state = {
-    isLoading: true,
-    locale: undefined,
-    messages: undefined,
-  };
+  React.useEffect(() => {
+    if (error) reportErrorToSentry(error, {});
+  }, [error]);
 
-  isUnmounting = false;
+  return (
+    <>
+      {props.children({
+        isLoading,
+        locale: props.locale,
+        messages: error ? undefined : messages,
+      })}
+    </>
+  );
+};
 
-  componentDidMount() {
-    if (this.props.locale) this.loadLocaleData(this.props.locale);
-  }
-
-  componentDidUpdate(prevProps: Props) {
-    if (this.props.locale && prevProps.locale !== this.props.locale) {
-      this.loadLocaleData(this.props.locale);
-    }
-  }
-
-  componentWillUnmount() {
-    this.isUnmounting = true;
-  }
-
-  loadLocaleData = async (locale: string) => {
-    try {
-      if (!this.isUnmounting) {
-        const messages = await loadI18n(locale);
-        const applicationMessages = await loadApplicationMessages(
-          this.props.applicationMessages,
-          locale
-        );
-        this.setState({
-          isLoading: false,
-          locale,
-          messages: mergeMessages(messages, applicationMessages),
-        });
-      }
-    } catch (error) {
-      reportErrorToSentry(error, {});
-    }
-  };
-
-  render() {
-    return this.props.children(this.state);
-  }
-}
-
-export default AsyncLocaleData;
+export { AsyncLocaleData, useAsyncLocaleData };

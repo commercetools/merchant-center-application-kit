@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
-import { AsyncLocaleData } from '@commercetools-frontend/i18n';
+import { useAsyncLocaleData } from '@commercetools-frontend/i18n';
 
 const availableLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];
 
@@ -31,18 +31,18 @@ const availableLocaleOptions = availableLocales.map((locale) => ({
 
 const IntlController = (props) => {
   const [activeLocale, setActiveLocale] = React.useState('en');
+  const { locale, messages } = useAsyncLocaleData({
+    locale: activeLocale,
+    applicationMessages: {},
+  });
   return (
-    <AsyncLocaleData locale={activeLocale} applicationMessages={{}}>
-      {({ locale, messages }) => (
-        <IntlProvider locale={locale || activeLocale} messages={messages}>
-          {props.children({
-            locale: locale || activeLocale,
-            setLocale: setActiveLocale,
-            availableLocaleOptions,
-          })}
-        </IntlProvider>
-      )}
-    </AsyncLocaleData>
+    <IntlProvider locale={locale || activeLocale} messages={messages}>
+      {props.children({
+        locale: locale || activeLocale,
+        setLocale: setActiveLocale,
+        availableLocaleOptions,
+      })}
+    </IntlProvider>
   );
 };
 IntlController.displayName = 'IntlController';

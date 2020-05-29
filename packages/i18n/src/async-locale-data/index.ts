@@ -1,1 +1,2 @@
-export { default } from './async-locale-data';
+export { AsyncLocaleData, useAsyncLocaleData } from './async-locale-data';
+export { default as useAsyncIntlMessages } from './use-async-intl-messages';
