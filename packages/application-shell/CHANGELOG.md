@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 16.8.7
+
+### Patch Changes
+
+- [`96e411a`](https://github.com/commercetools/merchant-center-application-kit/commit/96e411a95eb07a65aab3648afb79299f0767d36a) [#1524](https://github.com/commercetools/merchant-center-application-kit/pull/1524) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency perfume.js to v5
+
 ## 16.8.6
 
 ### Patch Changes
