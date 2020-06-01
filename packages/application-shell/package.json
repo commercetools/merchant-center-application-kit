@@ -43,8 +43,8 @@
   },
   "dependencies": {
     "@apollo/react-testing": "3.1.4",
-    "@babel/runtime": "7.9.6",
-    "@babel/runtime-corejs3": "7.9.6",
+    "@babel/runtime": "7.10.2",
+    "@babel/runtime-corejs3": "7.10.2",
     "@commercetools-frontend/actions-global": "16.8.6",
     "@commercetools-frontend/application-components": "16.8.6",
     "@commercetools-frontend/application-shell-connectors": "16.8.6",

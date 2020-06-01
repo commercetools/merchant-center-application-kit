@@ -39,8 +39,8 @@
     "build:bundles:watch": "yarn build:bundles -w"
   },
   "dependencies": {
-    "@babel/runtime": "7.9.6",
-    "@babel/runtime-corejs3": "7.9.6",
+    "@babel/runtime": "7.10.2",
+    "@babel/runtime-corejs3": "7.10.2",
     "@commercetools-frontend/constants": "16.8.6",
     "@sentry/browser": "5.15.5",
     "@types/prop-types": "^15.7.3",

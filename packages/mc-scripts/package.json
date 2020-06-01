@@ -49,15 +49,15 @@
     ]
   },
   "dependencies": {
-    "@babel/runtime": "7.9.6",
-    "@babel/runtime-corejs3": "7.9.6",
+    "@babel/runtime": "7.10.2",
+    "@babel/runtime-corejs3": "7.10.2",
     "@commercetools-frontend/assets": "16.8.6",
     "@commercetools-frontend/babel-preset-mc-app": "16.8.6",
     "@commercetools-frontend/mc-dev-authentication": "16.8.6",
     "@commercetools-frontend/mc-html-template": "16.8.6",
     "@svgr/webpack": "5.4.0",
     "babel-loader": "8.1.0",
-    "babel-plugin-react-intl": "7.5.13",
+    "babel-plugin-react-intl": "7.5.15",
     "browserslist": "4.12.0",
     "clean-webpack-plugin": "3.0.0",
     "core-js": "3.6.5",
@@ -73,7 +73,7 @@
     "moment-locales-webpack-plugin": "1.2.0",
     "mri": "1.1.5",
     "optimize-css-assets-webpack-plugin": "5.0.3",
-    "postcss": "7.0.30",
+    "postcss": "7.0.31",
     "postcss-color-mod-function": "3.0.3",
     "postcss-custom-media": "7.0.8",
     "postcss-custom-properties": "9.1.1",
@@ -86,7 +86,7 @@
     "shelljs": "0.8.4",
     "style-loader": "1.2.1",
     "svg-url-loader": "6.0.0",
-    "terser-webpack-plugin": "3.0.1",
+    "terser-webpack-plugin": "3.0.2",
     "thread-loader": "2.1.3",
     "url-loader": "4.1.0",
     "webpack": "4.43.0",
@@ -95,8 +95,8 @@
     "webpackbar": "4.0.0"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "7.9.6",
-    "@babel/preset-env": "7.9.6"
+    "@babel/plugin-transform-runtime": "7.10.1",
+    "@babel/preset-env": "7.10.2"
   },
   "engines": {
     "node": ">=10",

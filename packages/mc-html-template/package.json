@@ -36,17 +36,17 @@
     "build": "babel src --out-dir build"
   },
   "dependencies": {
-    "@babel/runtime": "7.9.6",
-    "@babel/runtime-corejs3": "7.9.6",
+    "@babel/runtime": "7.10.2",
+    "@babel/runtime-corejs3": "7.10.2",
     "core-js": "3.6.5",
     "node-fetch": "2.6.0",
-    "serialize-javascript": "3.0.0",
+    "serialize-javascript": "3.1.0",
     "uglify-es": "3.3.9",
     "uglifycss": "0.0.29"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "7.9.6",
-    "@babel/preset-env": "7.9.6"
+    "@babel/plugin-transform-runtime": "7.10.1",
+    "@babel/preset-env": "7.10.2"
   },
   "engines": {
     "node": ">=10",
