@@ -1,5 +1,11 @@
 # @commercetools-frontend/browser-history
 
+## 16.8.8
+
+### Patch Changes
+
+- [`0925da6`](https://github.com/commercetools/merchant-center-application-kit/commit/0925da6f11e35cc712cc12337716f846a67c0e4c) [#1537](https://github.com/commercetools/merchant-center-application-kit/pull/1537) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
 ## 16.8.6
 
 ### Patch Changes

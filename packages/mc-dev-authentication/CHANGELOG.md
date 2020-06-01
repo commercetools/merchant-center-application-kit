@@ -1,5 +1,11 @@
 # @commercetools-frontend/mc-dev-authentication
 
+## 16.8.8
+
+### Patch Changes
+
+- [`8600676`](https://github.com/commercetools/merchant-center-application-kit/commit/86006764f9fb75d82ffb01bcc7f14c912c61b698) [#1539](https://github.com/commercetools/merchant-center-application-kit/pull/1539) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency pug to v3
+
 ## 16.8.6
 
 ### Patch Changes
