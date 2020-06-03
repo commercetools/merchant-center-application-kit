@@ -47,4 +47,4 @@ jobs:
           echo "Tag: $TAG_NAME"
           docker push "$IMAGE_NAME":v"$TAG_NAME"
           docker tag "$IMAGE_NAME":v"$TAG_NAME" "$IMAGE_NAME":latest
-          docker push "$IMAGE_NAME":v"$TAG_NAME":latest
+          docker push "$IMAGE_NAME":latest
