@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "version": "16.8.7",
+  "version": "16.8.8",
   "description": "A playground application to get started developing Merchant Center Applications",
   "private": true,
   "scripts": {
@@ -21,7 +21,7 @@
     "@commercetools-frontend/constants": "16.8.8",
     "@commercetools-frontend/i18n": "16.8.8",
     "@commercetools-frontend/l10n": "16.8.8",
-    "@commercetools-frontend/mc-http-server": "16.8.8",
+    "@commercetools-frontend/mc-http-server": "16.8.9",
     "@commercetools-frontend/permissions": "16.8.8",
     "@commercetools-frontend/sdk": "16.8.8",
     "@commercetools-uikit/constraints": "10.21.0",

@@ -1,5 +1,13 @@
 # @commercetools-frontend/mc-http-server
 
+## 16.8.9
+
+### Patch Changes
+
+- [`db62c5e`](https://github.com/commercetools/merchant-center-application-kit/commit/db62c5e315532a9090c21e7e390596e1dbd95f4c) [#1543](https://github.com/commercetools/merchant-center-application-kit/pull/1543) Thanks [@tdeekens](https://github.com/tdeekens)! - > Re-release of prior failed release without additional changes.
+
+  refactor(mc-http-server): to use Node.js v14
+
 ## 16.8.8
 
 ### Patch Changes
