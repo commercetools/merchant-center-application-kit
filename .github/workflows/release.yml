@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  release:
+  npm:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,7 +28,7 @@ jobs:
       - name: Setup Node (uses version in .nvmrc)
         uses: actions/setup-node@v1
         with:
-          node-version: '${{ steps.nvm.outputs.NVMRC }}'
+          node-version: "${{ steps.nvm.outputs.NVMRC }}"
 
       - name: Get yarn cache
         id: yarn-cache
@@ -73,3 +73,37 @@ jobs:
         if: steps.changesets.outputs.published != 'true'
         # TODO: this command will be replaced by the changesets snapshots feature
         run: yarn lerna publish 0.0.0-canary-${{ github.sha }} --exact --dist-tag canary --yes --no-push --force-publish "*"
+
+  docker:
+    runs-on: ubuntu-latest
+
+    if: contains(jobs.npm.steps.changesets.outputs.publishedPackages.*.name, '@commercetools-frontend/mc-http-server')
+
+    env:
+      GITHUB_REF: ${{ github.ref }}
+      IMAGE_NAME: eu.gcr.io/ct-images/mc-http-server
+
+    steps:
+      - name: Installing gcloud CLI
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: "291.0.0"
+          project_id: ct-images
+          service_account_key: ${{ secrets.GCR_KEY }}
+
+      - name: Configuring Docker to authenticate via gcloud CLI
+        run: gcloud auth configure-docker
+
+      - name: Building the Docker image for mc-http-server
+        run: |
+          export TAG_NAME=`echo $GITHUB_REF | awk -F@ '{print $NF}'`
+          echo "Tag: $TAG_NAME"
+          docker build -t "$IMAGE_NAME":v"$TAG_NAME" ./packages/mc-http-server
+
+      - name: Publishing the Docker image to the Google Cloud Registry
+        run: |
+          export TAG_NAME=`echo $GITHUB_REF | awk -F@ '{print $NF}'`
+          echo "Tag: $TAG_NAME"
+          docker push "$IMAGE_NAME":v"$TAG_NAME"
+          docker tag "$IMAGE_NAME":v"$TAG_NAME" "$IMAGE_NAME":latest
+          docker push "$IMAGE_NAME":v"$TAG_NAME":latest
