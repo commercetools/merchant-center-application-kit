@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-application-template-starter",
-  "version": "16.8.8",
+  "version": "16.8.9",
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
@@ -17,7 +17,7 @@
     "@commercetools-frontend/application-shell": "16.8.8",
     "@commercetools-frontend/assets": "16.8.6",
     "@commercetools-frontend/i18n": "16.8.8",
-    "@commercetools-frontend/mc-http-server": "16.8.8",
+    "@commercetools-frontend/mc-http-server": "16.8.9",
     "@commercetools-frontend/permissions": "16.8.8",
     "@commercetools-uikit/flat-button": "10.21.0",
     "@commercetools-uikit/icons": "10.20.0",
