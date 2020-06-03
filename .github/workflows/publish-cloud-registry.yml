@@ -9,7 +9,7 @@ jobs:
   mc-http-server:
     runs-on: ubuntu-latest
 
-    if: startsWith(github.ref, '@commercetools-frontend/mc-http-server@')
+    if: contains(github.ref, '@commercetools-frontend/mc-http-server@')
 
     env:
       GITHUB_REF: ${{ github.ref }}
