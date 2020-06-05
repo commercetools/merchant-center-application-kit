@@ -30,7 +30,7 @@ const createTestProject = (
     isActive: false,
     reason: undefined,
   },
-  owner: { id: 'o1' },
+  owner: { id: 'o1', name: 'Organization Name' },
   ...custom,
 });
 
