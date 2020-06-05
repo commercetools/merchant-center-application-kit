@@ -170,6 +170,7 @@ describe('mapProjectToApplicationContextProject', () => {
       currencies: expect.any(Array),
       languages: expect.any(Array),
       ownerId: expect.any(String),
+      ownerName: expect.any(String),
     });
   });
 });
