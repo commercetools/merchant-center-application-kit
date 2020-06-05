@@ -20,13 +20,19 @@ $ npm install --save @commercetools-frontend/i18n
 - `fr-FR`
 - `zh-CN`
 
-### Usage
+## Usage
 
-> This package should not be used directly to load the application messages, the `application-shell` does that internally.
+> The `<AsyncLocaleData>` component, or the `useAsyncLocaleData` hook, are internally used by the `<ApplicationShell>` and there is no need to use them directly.
+> If you do need to load translation files asynchronously, we expose an additional hook `useAsyncIntlMessages` that you can use for that.
+> The difference between those is that the "async locale data" components additionally load the application-kit and ui-kit messages, as well as the moment locales.
+
+### Using a React component with render props
+
+**With static messages**
 
 ```js
+import { IntlProvider } from 'react-intl';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
-import { ConfigureIntlProvider } from '@commercetools-frontend/application-shell';
 
 const myApplicationMessages = {
   en: {
@@ -34,7 +40,7 @@ const myApplicationMessages = {
   },
 };
 
-const MyApplication = (props) => (
+const Application = (props) => (
   <AsyncLocaleData
     locale={props.user.locale}
     applicationMessages={myApplicationMessages}
@@ -43,20 +49,20 @@ const MyApplication = (props) => (
       if (isLoading) return null;
 
       return (
-        <ConfigureIntlProvider locale={locale} messages={messages}>
+        <IntlProvider locale={locale} messages={messages}>
           ...
-        </ConfigureIntlProvider>
+        </IntlProvider>
       );
     }}
   </AsyncLocaleData>
 );
 ```
 
-### Usage with code splitting
+**With dynamic loaded messages (code splitting)**
 
 ```js
+import { IntlProvider } from 'react-intl';
 import { AsyncLocaleData } from '@commercetools-frontend/i18n';
-import { ConfigureIntlProvider } from '@commercetools-frontend/application-shell';
 
 const loadMessages = (lang) => {
   let loadAppI18nPromise;
@@ -100,28 +106,51 @@ const Application = (props) => (
       if (isLoading) return null;
 
       return (
-        <ConfigureIntlProvider locale={locale} messages={messages}>
+        <IntlProvider locale={locale} messages={messages}>
           ...
-        </ConfigureIntlProvider>
+        </IntlProvider>
       );
     }}
   </AsyncLocaleData>
 );
 ```
 
-### Generating translation files
+### Using a React hook
+
+Similarly to the `<AsyncLocaleData>`, we also expose a React hook.
+
+```js
+import { IntlProvider } from 'react-intl';
+import { useAsyncLocaleData } from '@commercetools-frontend/i18n';
+
+const Application = (props) => {
+  const { isLoading, locale, messages } = useAsyncLocaleData({
+    locale: props.locale,
+    applicationMessages: loadMessages,
+  });
+
+  if (isLoading) return null;
+  return (
+    <IntlProvider locale={locale} messages={messages}>
+      ...
+    </IntlProvider>
+  );
+};
+```
+
+## Generating translation files
 
 After you have defined the `intl` messages in your React components, you should extract those messages into the source file `core.json`. This file contains a key-value map of the message `id` and the message value.
 
 To extract the messages simply run `mc-scripts extract-intl [options]`.
 
-### Syncing translations with Transifex
+## Syncing translations with Transifex
 
 We use [Transifex](https://www.transifex.com/) as our translation tool. Once we have extracted new messages into the source file `core.json` (see `mc-scripts extract-inl`) and pushed/merged to `master`, the file will be automatically synced with Transifex using the [Transifex GitHub Integration](https://docs.transifex.com/integrations/transifex-github-integration).
 
 Translations that have been **reviewed** in Transifex will be automatically pushed back to GitHub by the Transifex Bot via a Pull Request.
 
-### Shared messages
+## Shared messages
 
 This package exposes some "shared" messages that can be used for different things like buttons, etc. instead of having duplicated messages.
 

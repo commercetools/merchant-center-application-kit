@@ -1,11 +1,12 @@
-import type { State, Props, TMessageTranslations } from './async-locale-data';
+import type { TRenderFunctionResult, Props } from './async-locale-data';
+import type { TMessageTranslations } from './use-async-intl-messages';
 
 import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import { render, waitFor } from '@testing-library/react';
 import loadI18n from '../load-i18n';
-import AsyncLocaleData from './async-locale-data';
+import { AsyncLocaleData } from './async-locale-data';
 
 jest.mock('@commercetools-frontend/sentry');
 
@@ -33,7 +34,7 @@ const createTestProps = (props: Partial<Props> = {}) => ({
     en: { 'CustomApp.title': 'Custom title en' },
   },
   // eslint-disable-next-line react/display-name
-  children: (state: State) => <ChildComponent {...state} />,
+  children: (result: TRenderFunctionResult) => <ChildComponent {...result} />,
   ...props,
 });
 
