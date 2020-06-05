@@ -101,6 +101,7 @@ export const mapProjectToApplicationContextProject = (
     currencies: project.currencies,
     languages: project.languages,
     ownerId: project.owner.id,
+    ownerName: project.owner.name,
   };
 };
 

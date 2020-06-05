@@ -47,7 +47,7 @@ const renderWithPermissions = (demandedPermissions: string[]) => {
         countries: ['us'],
         currencies: ['USD'],
         languages: ['en'],
-        owner: { id: 'o1' },
+        owner: { id: 'o1', name: 'Organization 1' },
         initialized: true,
         expiry: {
           isActive: true,

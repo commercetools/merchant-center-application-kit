@@ -79,7 +79,7 @@ export type TInvitationOrganizationInput = {
   name: Maybe<Scalars['String']>,
 };
 
-/** 
+/**
  * Note: you can not brute-force fetch user information
  * by trying emails. Only information about the membership itself.
  */
@@ -255,7 +255,7 @@ export type TOAuthClientTemplate = {
   oAuthScopes: Array<TPermissionScope>,
 };
 
-/** 
+/**
  * TODO: use `Reference` instead once there is no more usage of the following fields:
  * - name
  * - createdAt
@@ -279,7 +279,7 @@ export type TOrganizationDraftType = {
   ownerId: Scalars['String'],
 };
 
-/** 
+/**
  * Note:
  *   This is not a `Organization` type as in the future MC schema will not support
  * e.g. expanding on team members on its internal schema.
@@ -688,7 +688,7 @@ export type TFetchProjectQuery = (
       & Pick<TStoreDataFence, 'type' | 'name' | 'value' | 'group'>
     )>, owner: (
       { __typename?: 'Organization' }
-      & Pick<TOrganization, 'id'>
+      & Pick<TOrganization, 'id' | 'name'>
     ) }
   )> }
 );
