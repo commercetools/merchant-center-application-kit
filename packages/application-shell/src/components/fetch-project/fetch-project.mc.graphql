@@ -39,6 +39,7 @@ query FetchProject($projectKey: String!) {
     }
     owner {
       id
+      name
     }
   }
 }

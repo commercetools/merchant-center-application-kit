@@ -51,7 +51,8 @@ const testRender = ({
         currencies: ['EUR', 'GBP'],
         languages: ['de', 'en-GB'],
         owner: {
-          id: 'project-id-1',
+          id: 'organization-id-1',
+          name: 'Organization Name',
         },
         initialized: true,
         expiry: {

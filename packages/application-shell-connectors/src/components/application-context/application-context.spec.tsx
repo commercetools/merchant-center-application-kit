@@ -64,7 +64,7 @@ const createTestProject = (custom = {}) => ({
     isActive: false,
     reason: undefined,
   },
-  owner: { id: 'o1' },
+  owner: { id: 'o1', name: 'Organization 1' },
   ...custom,
 });
 const createTestEnvironment = (

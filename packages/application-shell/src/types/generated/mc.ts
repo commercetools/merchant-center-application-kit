@@ -688,7 +688,7 @@ export type TFetchProjectQuery = (
       & Pick<TStoreDataFence, 'type' | 'name' | 'value' | 'group'>
     )>, owner: (
       { __typename?: 'Organization' }
-      & Pick<TOrganization, 'id'>
+      & Pick<TOrganization, 'id' | 'name'>
     ) }
   )> }
 );

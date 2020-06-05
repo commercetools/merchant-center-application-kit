@@ -1173,7 +1173,8 @@ describe('QuickAccess', () => {
               currencies: ['EUR', 'GBP'],
               languages: ['en'],
               owner: {
-                id: 'project-id-1',
+                id: 'organization-id-1',
+                name: 'Organization Name',
               },
               suspension: { isActive: false },
               expiry: { isActive: false },
@@ -1190,7 +1191,8 @@ describe('QuickAccess', () => {
                     currencies: ['EUR', 'GBP'],
                     languages: ['en'],
                     owner: {
-                      id: 'project-id-1',
+                      id: 'organization-id-1',
+                      name: 'Organization Name',
                     },
                     suspension: { isActive: false },
                     expiry: { isActive: false },
@@ -1203,7 +1205,8 @@ describe('QuickAccess', () => {
                     currencies: ['EUR'],
                     languages: ['de'],
                     owner: {
-                      id: 'project-id-2',
+                      id: 'organization-id-1',
+                      name: 'Organization Name',
                     },
                     suspension: { isActive: false },
                     expiry: { isActive: false },
@@ -1249,7 +1252,8 @@ describe('QuickAccess', () => {
                   currencies: ['EUR', 'GBP'],
                   languages: ['en'],
                   owner: {
-                    id: 'project-id-1',
+                    id: 'organization-id-1',
+                    name: 'Organization Name',
                   },
                   suspension: { isActive: false },
                   expiry: { isActive: false },
@@ -1262,7 +1266,8 @@ describe('QuickAccess', () => {
                   currencies: ['EUR'],
                   languages: ['de'],
                   owner: {
-                    id: 'project-id-2',
+                    id: 'organization-id-1',
+                    name: 'Organization Name',
                   },
                   suspension: { isActive: false },
                   expiry: { isActive: false },
