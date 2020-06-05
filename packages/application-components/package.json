@@ -75,6 +75,6 @@
     "@types/react-dom": "16.x",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
-    "react-intl": "4.x"
+    "react-intl": "3.x || 4.x"
   }
 }

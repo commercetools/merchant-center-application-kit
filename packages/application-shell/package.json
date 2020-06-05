@@ -139,7 +139,7 @@
     "react": ">=16.8.0",
     "react-apollo": "3.x",
     "react-dom": ">=16.8.0",
-    "react-intl": "4.x",
+    "react-intl": "3.x || 4.x",
     "react-redux": "7.x",
     "react-router-dom": "5.x",
     "redux": "4.x"
