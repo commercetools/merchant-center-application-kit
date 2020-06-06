@@ -46,7 +46,7 @@
     "@commercetools-frontend/notifications": "16.8.8",
     "@commercetools-frontend/sentry": "16.8.8",
     "@commercetools-uikit/icon-button": "^10.21.0",
-    "@commercetools-uikit/icons": "^10.20.0",
+    "@commercetools-uikit/icons": "^10.22.0",
     "@commercetools-uikit/spacings": "^10.18.5",
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
