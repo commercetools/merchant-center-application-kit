@@ -42,7 +42,7 @@
     "@babel/runtime": "7.10.2",
     "@babel/runtime-corejs3": "7.10.2",
     "@commercetools-frontend/application-shell-connectors": "16.8.8",
-    "@types/lodash": "^4.14.152",
+    "@types/lodash": "^4.14.155",
     "@types/prop-types": "^15.7.3",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",

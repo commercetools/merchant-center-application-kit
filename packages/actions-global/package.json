@@ -44,7 +44,7 @@
     "@commercetools-frontend/browser-history": "16.8.8",
     "@commercetools-frontend/constants": "16.8.8",
     "@commercetools-frontend/notifications": "16.8.8",
-    "@types/lodash": "^4.14.152",
+    "@types/lodash": "^4.14.155",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
     "redux-thunk": "2.3.0"
