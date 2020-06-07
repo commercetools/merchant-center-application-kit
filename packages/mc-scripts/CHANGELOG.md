@@ -1,5 +1,17 @@
 # @commercetools-frontend/mc-scripts
 
+## 16.9.0
+
+### Minor Changes
+
+- [`96ab311`](https://github.com/commercetools/merchant-center-application-kit/commit/96ab3114a4c00b192763feaeedb68c1e3e804c3e) [#1533](https://github.com/commercetools/merchant-center-application-kit/pull/1533) Thanks [@emmenko](https://github.com/emmenko)! - Upgrade to `react-intl` v4. See also https://formatjs.io/docs/react-intl/upgrade-guide-4x
+
+  We updated the peer dependency range to support both `v3` and `v4`.
+
+### Patch Changes
+
+- [`ccbabfd`](https://github.com/commercetools/merchant-center-application-kit/commit/ccbabfdc75972aedcc12e833cc958b5585cb6d60) [#1549](https://github.com/commercetools/merchant-center-application-kit/pull/1549) Thanks [@tdeekens](https://github.com/tdeekens)! - chore: update deps to prepare for release
+
 ## 16.8.8
 
 ### Patch Changes

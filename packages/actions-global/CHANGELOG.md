@@ -1,5 +1,11 @@
 # @commercetools-frontend/actions-global
 
+## 16.9.0
+
+### Patch Changes
+
+- [`ccbabfd`](https://github.com/commercetools/merchant-center-application-kit/commit/ccbabfdc75972aedcc12e833cc958b5585cb6d60) [#1549](https://github.com/commercetools/merchant-center-application-kit/pull/1549) Thanks [@tdeekens](https://github.com/tdeekens)! - chore: update deps to prepare for release
+
 ## 16.8.8
 
 ### Patch Changes
