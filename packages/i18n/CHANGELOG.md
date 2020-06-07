@@ -1,5 +1,17 @@
 # @commercetools-frontend/i18n
 
+## 16.9.0
+
+### Minor Changes
+
+- [`2f6f7ba`](https://github.com/commercetools/merchant-center-application-kit/commit/2f6f7bad4970a6b38b39df58fe6fedb98cb62873) [#1534](https://github.com/commercetools/merchant-center-application-kit/pull/1534) Thanks [@emmenko](https://github.com/emmenko)! - Expose a `useAsyncLocaleData` (as a companion of `<AsyncLocaleData>` and additionally a `useAsyncIntlMessages` to load translation files directly.
+  The difference between those is that the "async locale data" components additionally load the application-kit and ui-kit messages, as well as the moment locales.
+
+### Patch Changes
+
+- Updated dependencies [[`ccbabfd`](https://github.com/commercetools/merchant-center-application-kit/commit/ccbabfdc75972aedcc12e833cc958b5585cb6d60)]:
+  - @commercetools-frontend/sentry@16.9.0
+
 ## 16.8.8
 
 ### Patch Changes
