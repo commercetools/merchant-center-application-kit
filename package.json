@@ -60,9 +60,7 @@
       "website",
       "website-components-playground"
     ],
-    "nohoist": [
-      "**/react-apollo"
-    ]
+    "nohoist": ["**/react-apollo"]
   },
   "devDependencies": {
     "@babel/cli": "7.10.1",
