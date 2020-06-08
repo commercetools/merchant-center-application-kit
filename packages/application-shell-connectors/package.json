@@ -48,7 +48,6 @@
     "@commercetools-frontend/sentry": "16.9.0",
     "@types/graphql": "^14.5.0",
     "@types/lodash": "^4.14.155",
-    "@types/moment-timezone": "^0.5.12",
     "@types/prop-types": "^15.7.3",
     "apollo-cache-inmemory": "1.6.6",
     "apollo-client": "2.6.10",

@@ -52,7 +52,6 @@
     "@emotion/styled": "10.0.27",
     "@types/history": "^4.7.6",
     "@types/lodash": "^4.14.155",
-    "@types/moment-timezone": "^0.5.12",
     "@types/prop-types": "^15.7.3",
     "lodash": "4.17.15",
     "lodash-es": "4.17.15",
