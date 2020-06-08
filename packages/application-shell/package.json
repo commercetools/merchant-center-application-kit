@@ -105,7 +105,7 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",
     "omit-empty-es": "1.0.3",
-    "perfume.js": "5.0.2",
+    "perfume.js": "5.1.0",
     "prop-types": "15.7.2",
     "qss": "2.0.3",
     "react-required-if": "1.0.3",
