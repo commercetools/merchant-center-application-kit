@@ -2337,6 +2337,19 @@
     prop-types "15.7.2"
     tiny-invariant "1.1.0"
 
+"@commercetools-docs/ui-kit@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@commercetools-docs/ui-kit/-/ui-kit-5.0.0.tgz#9b274059177a4e8fdf287519edd42ca9aa3d7c6c"
+  integrity sha512-HZidBCj3C/PZq5xrc67gwNYUOin4HHiAphkjHrOhif6BUTLSC+aEzLa5oF0IwsdAJrmGbS4qvdWOOzrRz7JavQ==
+  dependencies:
+    "@commercetools-uikit/tooltip" "10.21.0"
+    lodash.escape "4.0.1"
+    lodash.throttle "4.1.1"
+    parse5 "6.0.0"
+    prism-react-renderer "1.0.2"
+    prop-types "15.7.2"
+    tiny-invariant "1.1.0"
+
 "@commercetools-docs/writing-style@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@commercetools-docs/writing-style/-/writing-style-3.0.0.tgz#83f5236c06b88051542e0bf7a6d8a218de0685ea"
