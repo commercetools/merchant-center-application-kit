@@ -67,7 +67,7 @@ const trackPerformance = () => {
         case 'tbt':
         case 'tbt10S':
         case 'tbtFinal': {
-          const paintValue = data;
+          const paintValue = data as number;
           trackTiming({
             category: 'Loading Performance',
             variable: mapMetricToLabel(metricName),
