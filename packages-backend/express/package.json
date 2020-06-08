@@ -9,14 +9,7 @@
     "directory": "packages-backend/express"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": [
-    "javascript",
-    "nodejs",
-    "express",
-    "http",
-    "server",
-    "toolkit"
-  ],
+  "keywords": ["javascript", "nodejs", "express", "http", "server", "toolkit"],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -25,12 +18,7 @@
   "main": "./build/index.js",
   "typings": "./build/index.d.ts",
   "types": "./build/index.d.ts",
-  "files": [
-    "build",
-    "package.json",
-    "LICENSE",
-    "README.md"
-  ],
+  "files": ["build", "package.json", "LICENSE", "README.md"],
   "scripts": {
     "prebuild": "rimraf build/**",
     "build": "tsc -p tsconfig.build.json"
@@ -39,7 +27,7 @@
     "@types/node": "14.0.11",
     "express": "4.17.1",
     "express-jwt": "5.3.3",
-    "jwks-rsa": "1.7.0"
+    "jwks-rsa": "1.8.0"
   },
   "devDependencies": {
     "@panva/jose": "1.9.3",
