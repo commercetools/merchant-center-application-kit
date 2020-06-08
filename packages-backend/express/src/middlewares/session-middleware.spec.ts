@@ -17,6 +17,7 @@ describe.each`
   ({ cloudIdentifier, issuer }) => {
     beforeEach(() => {
       nock(issuer)
+        .defaultReplyHeaders({ 'access-control-allow-origin': '*' })
         .get('/.well-known/jwks.json')
         .reply(200, fixtureJWTToken.jwksStore.toJWKS());
     });
