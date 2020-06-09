@@ -14,13 +14,35 @@ Recently we [introduced a new host naming scheme](/main-concepts/api-gateway#clo
 
 While the previous hostnames such as `*.sphere.io` (Google Cloud, Belgium), `*.commercetools.com` (Google Cloud, Belgium), and `*.commercetools.co` (Google Cloud, Iowa) continue to be operational, we **strongly recommend** to migrate to the new hostname structure.
 
-In regards to Custom Applications, the [runtime configuration](/deployment/runtime-configuration) needs to be updated to **support both the new and the legacy hostnames**, to allow users to log in with the new Merchant Center hostname and to be backwards compatible with the legacy hostnames.
+In regards to Custom Applications, the [runtime configuration](/deployment/runtime-configuration) needs to be updated to **support both the new and the legacy hostnames** to allow users to log in with the new Merchant Center hostname, and to be backwards compatible with the legacy hostnames.
 
 Here are the steps to take.
 
 <!--more-->
 
-# 1. Update the `env.json`
+# 1. Update dependencies
+
+Some of the features related to the new hostnames are available from version `>= 16.2.1` of the `@commercetools-frontend/application-shell` package.
+
+To update all the application KIT packages to a specific version, you can use the following script:
+
+```console noPromptLines="2-4"
+npx bulk-update-versions \
+  --match '^@commercetools-frontend/(?!ui-kit)(.*)' \
+  --force-latest
+
+yarn install
+```
+
+The `bulk-update-versions` script with the `--force-latest` option bumps all packages matching the specified pattern to their `latest` version.
+
+<Info>
+
+[We recommend](/support-policy#automate-maintenance-of-dependencies) to always keep your dependencies up-to-date on a regular basis.
+
+</Info>
+
+# 2. Update the `env.json`
 
 Change the `mcApiUrl` in the [`env.json`](/deployment/runtime-configuration#envjson) to use the new hostname.
 
@@ -43,9 +65,11 @@ For example:
 In production, the `<ApplicationShell>` takes care of inferring the correct [Merchant Center Gateway API hostname](/main-concepts/api-gateway#hostnames) based on the Merchant Center hostname that the user is logged into.
 This results in the Custom Application to work in both new and legacy hostnames, even though the `mcApiUrl` is configured to a specific value.
 
+This feature is available from version `>= 16.2.1`.
+
 </Info>
 
-# 2. Update the `headers.json`
+# 3. Update the `headers.json`
 
 Update the [Content Security Policy](/deployment/runtime-configuration#content-security-policy) to allow both new and legacy hostnames.
 
@@ -65,6 +89,6 @@ For example:
 }
 ```
 
-# 3. Re-deploy the Custom Application
+# 4. Re-deploy the Custom Application
 
-That's it, re-deploy the Custom Application with the updated configuration. Users can now access the Custom Application using both new and legacy hostnames (for backwards compatibility).
+That's it. Re-deploy the Custom Application with the updated configuration. Users can now access the Custom Application using both new and legacy hostnames (for backwards compatibility).
