@@ -1,11 +1,7 @@
-import { mocked } from 'ts-jest/utils';
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import ApiErrorMessage from './api-error-message';
-
-jest.mock('@commercetools-frontend/sentry');
 
 const renderMessage = (ui: React.ReactElement) =>
   render(<IntlProvider locale="en">{ui}</IntlProvider>);
@@ -57,7 +53,7 @@ describe('render', () => {
     ).toBeInTheDocument();
   });
   it('should show message for unmapped error and report to sentry', async () => {
-    mocked(reportErrorToSentry).mockReset();
+    console.warn = jest.fn();
     const error = {
       code: 'unmapped error message foo 123',
       message: 'message-content',
@@ -68,11 +64,11 @@ describe('render', () => {
       rendered.getByText('message-content (detailed-error-message-content)')
     ).toBeInTheDocument();
     await waitFor(() => {
-      expect(reportErrorToSentry).toHaveBeenCalledTimes(1);
+      expect(console.warn).toHaveBeenCalledTimes(1);
     });
   });
   it('should show message for unmapped error and not report to sentry for project expired', async () => {
-    mocked(reportErrorToSentry).mockReset();
+    console.warn = jest.fn();
     const error = {
       code: 'invalid_scope',
       message: 'has expired',
@@ -80,7 +76,7 @@ describe('render', () => {
     const rendered = renderMessage(<ApiErrorMessage error={error} />);
     expect(rendered.getByText('has expired')).toBeInTheDocument();
     await waitFor(() => {
-      expect(reportErrorToSentry).not.toHaveBeenCalled();
+      expect(console.warn).not.toHaveBeenCalled();
     });
   });
   it('should show message for DuplicateSlug', () => {

@@ -4,7 +4,6 @@ import type { IntlShape } from 'react-intl';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import has from 'lodash/has';
-import { reportErrorToSentry } from '@commercetools-frontend/sentry';
 import messages from './messages';
 
 const regexInvalidOperationRequiredAttribute = /Required attribute '(.*)' cannot be removed/;
@@ -60,13 +59,13 @@ const FormattedErrorMessage = (props: Props) => {
   React.useEffect(() => {
     if (!messageCode) {
       // This error is not mapped / translated yet,
-      // we log, report it to sentry and show the original error, unless `error.code` is `invalid_scope`
+      // We log a warning and show the original error, unless `error.code` is `invalid_scope`
       // which an error code emitted for expired project(s)
       if (
         props.error.code !== 'invalid_scope' &&
         !props.error.message.includes('has expired')
       ) {
-        reportErrorToSentry(new Error('Unmapped error'), {
+        console.warn(new Error('Unmapped error'), {
           extra: props.error,
         });
       }
