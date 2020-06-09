@@ -365,7 +365,7 @@ To start, we need to create an `env.prod.json` file with the following JSON:
 }
 ```
 
-We also need a `headers.prod.json` to whitelist the domains for the Content Security Policy:
+We also need a `headers.prod.json` to configure the [Content Security Policy](/deployment/runtime-configuration#content-security-policy) to allow the required hostnames:
 
 ```json
 {
@@ -373,8 +373,8 @@ We also need a `headers.prod.json` to whitelist the domains for the Content Secu
     "script-src": ["[cloudfront-domain]"],
     "connect-src": [
       "[cloudfront-domain]",
-      "mc-api.commercetools.com",
-      "mc-api.europe-west1.gcp.commercetools.com"
+      "mc-api.europe-west1.gcp.commercetools.com",
+      "mc-api.commercetools.com"
     ],
     "style-src": ["[cloudfront-domain]"]
   }

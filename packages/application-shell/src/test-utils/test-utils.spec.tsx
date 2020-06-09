@@ -229,7 +229,7 @@ describe('ApplicationContext', () => {
       expect(rendered.environment).toEqual(
         expect.objectContaining({
           frontendHost: 'localhost:3001',
-          mcApiUrl: 'https://mc-api.commercetools.com',
+          mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
           location: 'eu',
           env: 'production',
           cdnUrl: 'http://localhost:3001',

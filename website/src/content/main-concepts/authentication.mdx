@@ -26,7 +26,7 @@ For example, to make requests to the [commercetools platform HTTP API](https://d
 
 ```js
 // Direct request to the commercetools platform HTTP API
-fetch(`https://api.commercetools.com/${projectKey}/orders`, {
+fetch(`https://api.europe-west1.gcp.commercetools.com/${projectKey}/orders`, {
   method: 'GET',
   headers: {
     Accept: 'application/json',
@@ -35,7 +35,7 @@ fetch(`https://api.commercetools.com/${projectKey}/orders`, {
 });
 
 // Proxied request to the commercetools platform HTTP API
-fetch(`https://mc-api.commercetools.com/proxy/ctp/${projectKey}/orders`, {
+fetch(`https://mc-api.europe-west1.gcp.commercetools.com/proxy/ctp/${projectKey}/orders`, {
   method: 'GET',
   headers: { Accept: 'application/json' },
   credentials: 'include', // <-- this will send along the cookie "mcAccessToken"

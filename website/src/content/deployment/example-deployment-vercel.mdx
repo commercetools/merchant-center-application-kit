@@ -35,7 +35,7 @@ To start, we need to create an `env.prod.json` file with the following JSON:
 {
   "applicationName": "mc-examples-starter",
   "frontendHost": "mc-examples-starter.vercel.app",
-  "mcApiUrl": "https://mc-api.commercetools.com",
+  "mcApiUrl": "https://mc-api.europe-west1.gcp.commercetools.com",
   "location": "gcp-eu",
   "env": "production",
   "cdnUrl": "http://mc-examples-starter.vercel.app",
@@ -43,7 +43,7 @@ To start, we need to create an `env.prod.json` file with the following JSON:
 }
 ```
 
-We also need a `headers.prod.json` to whitelist the domains for the Content Security Policy:
+We also need a `headers.prod.json` to configure the [Content Security Policy](/deployment/runtime-configuration#content-security-policy) to allow the required hostnames:
 
 ```json
 {
@@ -51,6 +51,7 @@ We also need a `headers.prod.json` to whitelist the domains for the Content Secu
     "script-src": ["mc-examples-starter.vercel.app"],
     "connect-src": [
       "mc-examples-starter.vercel.app",
+      "mc-api.europe-west1.gcp.commercetools.com",
       "mc-api.commercetools.com"
     ],
     "style-src": ["mc-examples-starter.vercel.app"]

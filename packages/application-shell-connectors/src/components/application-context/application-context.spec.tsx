@@ -73,7 +73,7 @@ const createTestEnvironment = (
   revision: '1',
   applicationName: 'my-app',
   frontendHost: 'localhost:3001',
-  mcApiUrl: 'https://mc-api.commercetools.com',
+  mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
   location: 'eu',
   env: 'development',
   cdnUrl: 'http://localhost:3001',
@@ -176,7 +176,7 @@ describe('mapProjectToApplicationContextProject', () => {
 });
 
 describe('mapEnvironmentToApplicationContextEnvironment', () => {
-  describe('when application is configured to run behind proxy', () => {
+  describe('when application is configured to run behind the proxy', () => {
     it('should map environment to environment context', () => {
       expect(
         mapEnvironmentToApplicationContextEnvironment(
@@ -199,7 +199,7 @@ describe('mapEnvironmentToApplicationContextEnvironment', () => {
     });
   });
 
-  describe('when application is not configured to run behind proxy', () => {
+  describe('when application is configured to not run behind the proxy', () => {
     it('should map environment to environment context', () => {
       expect(
         mapEnvironmentToApplicationContextEnvironment(createTestEnvironment())
@@ -207,7 +207,7 @@ describe('mapEnvironmentToApplicationContextEnvironment', () => {
         revision: expect.any(String),
         applicationName: expect.any(String),
         frontendHost: expect.any(String),
-        mcApiUrl: 'https://mc-api.commercetools.com',
+        mcApiUrl: 'https://mc-api.europe-west1.gcp.commercetools.com',
         location: expect.any(String),
         env: expect.any(String),
         cdnUrl: expect.any(String),
