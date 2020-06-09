@@ -22,9 +22,9 @@ Here are the steps to take.
 
 # 1. Update dependencies
 
-Some of the features related to the new hostnames are available from version `>= 16.2.1` of the `@commercetools-frontend/application-shell` package.
+Make sure that the application kit dependencies are updated to at least version `>= 16.2.1`, in particular the `@commercetools-frontend/application-shell` package. This is important to ensure that certain functionalities related to the hostname migration are available.
 
-To update all the application KIT packages to a specific version, you can use the following script:
+To update all the application kit packages to a specific version, you can use the following script:
 
 ```console noPromptLines="2-4"
 npx bulk-update-versions \
@@ -36,11 +36,11 @@ yarn install
 
 The `bulk-update-versions` script with the `--force-latest` option bumps all packages matching the specified pattern to their `latest` version.
 
-<Info>
+<Warning>
 
-[We recommend](/support-policy#automate-maintenance-of-dependencies) to always keep your dependencies up-to-date on a regular basis.
+If you are upgrading the application kit packages from older versions prior to `v16`, follow the instructions in the [changelogs](https://github.com/commercetools/merchant-center-application-kit/blob/master/ARCHIVED_CHANGELOG.md).
 
-</Info>
+</Warning>
 
 # 2. Update the `env.json`
 
