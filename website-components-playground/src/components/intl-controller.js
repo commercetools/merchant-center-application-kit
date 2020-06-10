@@ -29,16 +29,18 @@ const availableLocaleOptions = availableLocales.map((locale) => ({
   value: locale,
 }));
 
+const loadApplicationMessages = () => Promise.resolve({});
+
 const IntlController = (props) => {
   const [activeLocale, setActiveLocale] = React.useState('en');
-  const { locale, messages } = useAsyncLocaleData({
+  const { messages } = useAsyncLocaleData({
     locale: activeLocale,
-    applicationMessages: {},
+    applicationMessages: loadApplicationMessages,
   });
   return (
-    <IntlProvider locale={locale || activeLocale} messages={messages}>
+    <IntlProvider locale={activeLocale} messages={messages}>
       {props.children({
-        locale: locale || activeLocale,
+        locale: activeLocale,
         setLocale: setActiveLocale,
         availableLocaleOptions,
       })}
