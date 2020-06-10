@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/react-notifications",
-  "version": "16.9.0",
+  "version": "16.9.1",
   "description": "React bindings for @commercetools-frontend/notifications",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -9,7 +9,12 @@
     "directory": "packages/react-notifications"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -19,7 +24,12 @@
   "module": "./dist/react-notifications.es.js",
   "typings": "./dist/typings/index.d.ts",
   "types": "./dist/typings/index.d.ts",
-  "files": ["dist", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf dist/**",
@@ -31,10 +41,10 @@
   "dependencies": {
     "@babel/runtime": "7.10.2",
     "@babel/runtime-corejs3": "7.10.2",
-    "@commercetools-frontend/actions-global": "16.9.0",
-    "@commercetools-frontend/constants": "16.8.8",
-    "@commercetools-frontend/notifications": "16.8.8",
-    "@commercetools-frontend/sentry": "16.9.0",
+    "@commercetools-frontend/actions-global": "16.9.1",
+    "@commercetools-frontend/constants": "16.9.1",
+    "@commercetools-frontend/notifications": "16.9.1",
+    "@commercetools-frontend/sentry": "16.9.1",
     "@commercetools-uikit/icon-button": "^10.21.0",
     "@commercetools-uikit/icons": "^10.22.0",
     "@commercetools-uikit/spacings": "^10.18.5",

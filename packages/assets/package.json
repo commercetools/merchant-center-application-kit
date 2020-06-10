@@ -1,6 +1,6 @@
 {
   "name": "@commercetools-frontend/assets",
-  "version": "16.8.6",
+  "version": "16.9.1",
   "description": "Assets for building mc apps",
   "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
   "repository": {
@@ -9,7 +9,12 @@
     "directory": "packages/assets"
   },
   "homepage": "https://docs.commercetools.com/custom-applications",
-  "keywords": ["javascript", "frontend", "react", "toolkit"],
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit"
+  ],
   "license": "MIT",
   "private": false,
   "publishConfig": {
