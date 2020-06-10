@@ -55,8 +55,8 @@ An example configuration for local development:
 {
   "applicationName": "merchant-center-application-template-starter",
   "frontendHost": "localhost:3001",
-  "mcApiUrl": "https://mc-api.commercetools.com",
-  "location": "eu",
+  "mcApiUrl": "https://mc-api.europe-west1.gcp.commercetools.com",
+  "location": "gcp-eu",
   "env": "development",
   "cdnUrl": "http://localhost:3001",
   "servedByProxy": false
@@ -82,7 +82,7 @@ For instance, imagine developing a Custom Application that can be used in the co
 }
 ```
 
-The `MC_API_URL` environment variable can be provided in various ways. For example as an inline environment variable when running a script command (`MC_API_URL=https://mc-api.commercetools.com yarn start`), using a [dotenv](https://github.com/motdotla/dotenv) file or by defining the environment variables in your CI service.
+The `MC_API_URL` environment variable can be provided in various ways. For example as an inline environment variable when running a script command (`MC_API_URL=https://mc-api.europe-west1.gcp.commercetools.com yarn start`), using a [dotenv](https://github.com/motdotla/dotenv) file or by defining the environment variables in your CI service.
 
 You can also pass multiple references to the same value:
 
@@ -96,7 +96,7 @@ You can also pass multiple references to the same value:
 
 <Warning>
 
-When the application is deployed on a production environment, the application will fail to make requests to the [API Gateway](/main-concepts/api-gateway). This is due to the fact that the domain, where the application is hosted, is not whitelisted by the CORS rules of the API Gateway.
+When the application is deployed on a production environment, the application fails to make requests to the [API Gateway](/main-concepts/api-gateway). This is due to the fact that the domain, where the application is hosted, is not being configured by the [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) rules of the API Gateway.
 
 Therefore, it's important that the application is [registered](/register-applications/configuring-a-custom-application), runs behind the proxy router, and that the `servedByProxy` option in the `env.json` is set to `true`.
 
@@ -106,7 +106,7 @@ It is recommended to have two separate configuration files, one for development 
 
 # `headers.json`
 
-This configuration file allows to configure HTTP headers. The most important one is the [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) header.
+This configuration file allows to configure HTTP headers. The most important one is the [Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) header.
 
 <Info>
 
@@ -116,12 +116,11 @@ For development the `headers.json` file is **optional**. If used, the file must 
 
 ## Content Security Policy
 
-The Content Security Policy (CSP) header allows to instruct the browser how to deal with security measures, according to the configured instructions. Most of the time it's enough to whitelist the hostnames that the Custom Application uses, for example if [static assets](/deployment/serving-static-assets) are served by a CDN.
+The [Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) header allows to instruct the browser how to deal with security measures, according to the configured instructions. For example, to allow [static assets](/deployment/serving-static-assets) to be served from a third-party [Content Delivery Network (CDN)](https://en.wikipedia.org/wiki/Content_delivery_network).
 
 <Info>
 
-Since Custom Applications are hosted on any domain of your choice, it's **imperative** that any hostname used by the application is whitelisted in the CSP configuration.
-Furthermore, the [API Gateway](/main-concepts/api-gateway#hostnames) hostnames **must** also be listed in the CSP configuration.
+Since Custom Applications are hosted on any domain of your choice, it's **imperative** that any hostname used by the application is explicitly configured in the Content Security Policy (CSP) configuration, as well as the [API Gateway](/main-concepts/api-gateway#hostnames) hostnames.
 
 </Info>
 
