@@ -82,7 +82,9 @@ if (!process.env.LISTENING_TO_UNHANDLED_REJECTION) {
         path.join(
           rootDir,
           'fail-tests-because-there-was-an-unhandled-rejection.lock'
-        )
+        ),
+        '',
+        { encoding: 'utf8' }
       );
       process.env.HAS_CREATED_UNHANDLED_REJECTION_FILE = true;
     }
