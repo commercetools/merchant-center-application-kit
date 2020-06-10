@@ -1,5 +1,13 @@
 # @commercetools-frontend/i18n
 
+## 16.9.2
+
+### Patch Changes
+
+- [`fcdf604`](https://github.com/commercetools/merchant-center-application-kit/commit/fcdf604b1daba48e0617c0db321572206ba79afe) [#1567](https://github.com/commercetools/merchant-center-application-kit/pull/1567) Thanks [@emmenko](https://github.com/emmenko)! - Avoid infinite loop by disabling dependency array in hook.
+
+* [`77c06ea`](https://github.com/commercetools/merchant-center-application-kit/commit/77c06ea17a56e2bd48793f5e1b0bba95b0dc3d27) [#1568](https://github.com/commercetools/merchant-center-application-kit/pull/1568) Thanks [@transifex-integration](https://github.com/apps/transifex-integration)! - Translate '/packages/i18n/data/core.json' in 'ja'
+
 ## 16.9.1
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @commercetools-frontend/application-components
 
+## 16.9.2
+
+### Patch Changes
+
+- Updated dependencies [[`fcdf604`](https://github.com/commercetools/merchant-center-application-kit/commit/fcdf604b1daba48e0617c0db321572206ba79afe), [`77c06ea`](https://github.com/commercetools/merchant-center-application-kit/commit/77c06ea17a56e2bd48793f5e1b0bba95b0dc3d27)]:
+  - @commercetools-frontend/i18n@16.9.2
+
 ## 16.9.1
 
 ### Patch Changes

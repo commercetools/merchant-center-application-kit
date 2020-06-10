@@ -1,5 +1,11 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 16.9.2
+
+### Patch Changes
+
+- [`aabc88f`](https://github.com/commercetools/merchant-center-application-kit/commit/aabc88f23b58946aa5619c0fb58a2bddbfcae146) [#1566](https://github.com/commercetools/merchant-center-application-kit/pull/1566) Thanks [@emmenko](https://github.com/emmenko)! - Pass correct args to `fs.writeFile`
+
 ## 16.9.1
 
 ### Patch Changes
