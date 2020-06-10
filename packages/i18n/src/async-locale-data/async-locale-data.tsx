@@ -45,7 +45,11 @@ const useAsyncLocaleData = ({
       }
       return getMessagesForLocale(applicationMessages, locale);
     },
-    [applicationMessages]
+    // NOTE: we assume that the `applicationMessages` argument never changes.
+    // Therefore, we disable the dependency array to not depend on that argument.
+    // This is important, to avoid potential infinite loops.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
   const messagesFromKitResult = useAsyncIntlMessages({
     locale,
