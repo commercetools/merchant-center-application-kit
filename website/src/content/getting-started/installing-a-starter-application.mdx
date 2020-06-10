@@ -22,7 +22,15 @@ Before you start development, you should have the following:
     --template starter
   ```
 
-2. Start the development server:
+2. Configure the application environment:
+
+  Rename the `.env.template` file to `.env`. By default the GCP EU environment is configured. If you plan to run the Custom Application in [another environment](/main-concepts/api-gateway#cloud-regions), change the hostname accordingly.
+
+  ```console
+  mv .env.template .env
+  ```
+
+3. Start the development server:
 
   ```console
   cd my-new-custom-application-project
