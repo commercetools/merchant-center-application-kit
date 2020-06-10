@@ -96,6 +96,9 @@ fs.writeFileSync(appPackageJsonPath, JSON.stringify(appPackageJson, null, 2), {
 console.log('Installing the application dependencies');
 shelljs.exec('yarn install --no-lockfile', { cwd: applicationPath });
 
+console.log('Preparing application environment');
+shelljs.exec('mv .env.template .env', { cwd: applicationPath });
+
 console.log(
   `Building the production bundle for the application ${applicationName}, using the tempalte ${templateName}`
 );

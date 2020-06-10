@@ -18,6 +18,12 @@ $ create-mc-app my-new-custom-application-project --template starter
 $ npx @commercetools-frontend/create-mc-app my-new-custom-application-project --template starter
 ```
 
+## Adjust the configuration
+
+Rename the file `.env.template` to `.env`. It contains some environment variables used in the `env.json` and `headers.json` file.
+
+By default the GCP EU environment is configured. If you plan to run the Custom Application in another environment, change the hostname accordingly.
+
 ## Start the development server
 
 Run the following command to start the development server and launch the application:
