@@ -8,7 +8,7 @@ describe('when user is authenticated', () => {
     cy.login({ redirectToUri: URL_STATE_MACHINES });
 
     cy.findByRole('button', { name: /open user settings menu/i }).click();
-    cy.findByText('Logout').click();
+    cy.findByRole('link', { name: /logout/i }).click();
 
     const queryParams = encode({
       reason: LOGOUT_REASONS.USER,
