@@ -19,11 +19,11 @@ export default defineMessages({
   openMenuLabel: {
     id: 'UserSettingsMenu.openMenuLabel',
     description: 'The label when menu is closed and would be opened by a click',
-    defaultMessage: 'Open User Settings Menu',
+    defaultMessage: 'Open user settings menu',
   },
   closeMenuLabel: {
     id: 'UserSettingsMenu.closeMenuLabel',
     description: 'The label when menu is open and would be closed by a click',
-    defaultMessage: 'Close User Settings Menu',
+    defaultMessage: 'Close user settings menu',
   },
 });
