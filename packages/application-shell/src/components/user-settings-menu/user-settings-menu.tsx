@@ -7,7 +7,7 @@ import type {
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import Downshift from 'downshift';
@@ -233,36 +233,49 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
 };
 UserSettingsMenuBody.displayName = 'UserSettingsMenuBody';
 
-const UserSettingsMenu = (props: Props) => (
-  <div data-test="user-settings-menu">
-    <Downshift stateReducer={stateReducer}>
-      {(downshiftProps) => (
-        <div>
-          <button
-            role="user-menu-toggle"
-            css={css`
-              cursor: pointer;
-              border: none;
-              padding: 0;
-              display: flex;
-              background: transparent;
-            `}
-            {...downshiftProps.getToggleButtonProps()}
-          >
-            <UserAvatar
-              firstName={props.firstName}
-              lastName={props.lastName}
-              gravatarHash={props.gravatarHash}
-            />
-          </button>
-          {downshiftProps.isOpen && (
-            <UserSettingsMenuBody {...props} downshiftProps={downshiftProps} />
-          )}
-        </div>
-      )}
-    </Downshift>
-  </div>
-);
+const UserSettingsMenu = (props: Props) => {
+  const intl = useIntl();
+
+  return (
+    <div data-test="user-settings-menu">
+      <Downshift stateReducer={stateReducer}>
+        {(downshiftProps) => (
+          <div>
+            <button
+              role="user-menu-toggle"
+              css={css`
+                cursor: pointer;
+                border: none;
+                padding: 0;
+                display: flex;
+                background: transparent;
+              `}
+              {...downshiftProps.getToggleButtonProps({
+                'aria-label': intl.formatMessage(
+                  downshiftProps.isOpen
+                    ? messages.closeMenuLabel
+                    : messages.openMenuLabel
+                ),
+              })}
+            >
+              <UserAvatar
+                firstName={props.firstName}
+                lastName={props.lastName}
+                gravatarHash={props.gravatarHash}
+              />
+            </button>
+            {downshiftProps.isOpen && (
+              <UserSettingsMenuBody
+                {...props}
+                downshiftProps={downshiftProps}
+              />
+            )}
+          </div>
+        )}
+      </Downshift>
+    </div>
+  );
+};
 UserSettingsMenu.displayName = 'UserSettingsMenu';
 
 export default UserSettingsMenu;
