@@ -73,6 +73,7 @@ module.exports = {
     'no-underscore-dangle': 0,
     'jest/no-identical-title': 'warn',
     'jest/no-focused-tests': 2,
+    /* eslint-plugin-react */
     'react/jsx-uses-vars': 2,
     'react/wrap-multilines': 0,
     'react/no-deprecated': 'error',
@@ -83,10 +84,11 @@ module.exports = {
         ignoreTranspilerName: true,
       },
     ],
+    'react/jsx-no-target-blank': 0,
+    'react/no-unused-prop-types': 'error',
     'prefer-object-spread/prefer-object-spread': 2,
     'prefer-destructuring': 0,
     'prefer-promise-reject-errors': 'warn',
-    'react/jsx-no-target-blank': 0,
     'lines-between-class-members': 0,
     // NOTE: The regular rule does not support do-expressions. The equivalent rule of babel does.
     'no-unused-expressions': 0,
