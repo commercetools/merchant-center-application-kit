@@ -1,5 +1,12 @@
 # @commercetools-frontend/application-shell-connectors
 
+## 16.10.0
+
+### Patch Changes
+
+- Updated dependencies [[`f8f8609`](https://github.com/commercetools/merchant-center-application-kit/commit/f8f86098687c8cecaaec1b13debabe290b007b58)]:
+  - @commercetools-frontend/sentry@16.10.0
+
 ## 16.9.1
 
 ### Patch Changes

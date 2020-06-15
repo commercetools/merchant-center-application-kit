@@ -1,5 +1,14 @@
 # @commercetools-frontend/i18n
 
+## 16.10.0
+
+### Patch Changes
+
+- [`ab6f011`](https://github.com/commercetools/merchant-center-application-kit/commit/ab6f011d2988d25364269f737aa91a3b9c920f00) [#1572](https://github.com/commercetools/merchant-center-application-kit/pull/1572) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(app-shell): user settings menu labels for opening and closing menu
+
+- Updated dependencies [[`f8f8609`](https://github.com/commercetools/merchant-center-application-kit/commit/f8f86098687c8cecaaec1b13debabe290b007b58)]:
+  - @commercetools-frontend/sentry@16.10.0
+
 ## 16.9.2
 
 ### Patch Changes
