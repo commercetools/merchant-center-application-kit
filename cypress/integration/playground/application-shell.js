@@ -6,8 +6,10 @@ import { URL_BASE, URL_STATE_MACHINES } from '../../support/urls';
 describe('when user is authenticated', () => {
   it('should log out with reason "user"', () => {
     cy.login({ redirectToUri: URL_STATE_MACHINES });
-    cy.findByLabelText('open menu').click();
+
+    cy.findByRole('button', { name: /open user settings menu/i }).click();
     cy.findByText('Logout').click();
+
     const queryParams = encode({
       reason: LOGOUT_REASONS.USER,
     });

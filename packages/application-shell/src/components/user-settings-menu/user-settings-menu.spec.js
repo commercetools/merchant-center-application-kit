@@ -55,10 +55,14 @@ describe('rendering', () => {
           },
         ],
       });
-      const dropdownMenu = await rendered.findByLabelText('open menu');
+      const dropdownMenu = await rendered.findByRole('button', {
+        name: /open user settings menu/i,
+      });
       fireEvent.click(dropdownMenu);
       // Menu should be open
-      await rendered.findByLabelText('close menu');
+      await rendered.findByRole('button', {
+        name: /close user settings menu/i,
+      });
 
       const checkLink = linkChecker(rendered);
 
@@ -82,10 +86,14 @@ describe('rendering', () => {
           Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
       });
       const rendered = renderApp(<UserSettingsMenu {...props} />);
-      const dropdownMenu = await rendered.findByLabelText('open menu');
+      const dropdownMenu = await rendered.findByRole('button', {
+        name: /open user settings menu/i,
+      });
       fireEvent.click(dropdownMenu);
       // Menu should be open
-      await rendered.findByLabelText('close menu');
+      await rendered.findByRole('button', {
+        name: /close user settings menu/i,
+      });
 
       const checkLink = linkChecker(rendered);
 
@@ -109,16 +117,22 @@ describe('rendering', () => {
           Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
       });
       const rendered = renderApp(<UserSettingsMenu {...props} />);
-      const dropdownMenu = await rendered.findByLabelText('open menu');
+      const dropdownMenu = await rendered.findByRole('button', {
+        name: /open user settings menu/i,
+      });
       fireEvent.click(dropdownMenu);
       // Menu should be open
-      await rendered.findByLabelText('close menu');
+      await rendered.findByRole('button', {
+        name: /close user settings menu/i,
+      });
 
       const link = rendered.queryByText('Projects');
       fireEvent.click(link);
 
       // Menu should be closed
-      await rendered.findByLabelText('open menu');
+      await rendered.findByRole('button', {
+        name: /open user settings menu/i,
+      });
       await waitFor(() => {
         expect(rendered.history.location.pathname).toBe('/account/projects');
       });
@@ -131,16 +145,22 @@ describe('rendering', () => {
           Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
       });
       const rendered = renderApp(<UserSettingsMenu {...props} />);
-      const dropdownMenu = await rendered.findByLabelText('open menu');
+      const dropdownMenu = await rendered.findByRole('button', {
+        name: /open user settings menu/i,
+      });
       fireEvent.click(dropdownMenu);
       // Menu should be open
-      await rendered.findByLabelText('close menu');
+      await rendered.findByRole('button', {
+        name: /close user settings menu/i,
+      });
 
       const link = rendered.queryByText('Privacy Policy');
       fireEvent.click(link);
 
       // Menu should be closed
-      await rendered.findByLabelText('open menu');
+      await rendered.findByRole('button', {
+        name: /open user settings menu/i,
+      });
     });
   });
   describe('when clicking on the Support link', () => {
@@ -150,16 +170,22 @@ describe('rendering', () => {
           Promise.all([Promise.resolve(createTestMenuConfig('projects'))]),
       });
       const rendered = renderApp(<UserSettingsMenu {...props} />);
-      const dropdownMenu = await rendered.findByLabelText('open menu');
+      const dropdownMenu = await rendered.findByRole('button', {
+        name: /open user settings menu/i,
+      });
       fireEvent.click(dropdownMenu);
       // Menu should be open
-      await rendered.findByLabelText('close menu');
+      await rendered.findByRole('button', {
+        name: /close user settings menu/i,
+      });
 
       const link = rendered.queryByText('Support');
       fireEvent.click(link);
 
       // Menu should be closed
-      await rendered.findByLabelText('open menu');
+      await rendered.findByRole('button', {
+        name: /open user settings menu/i,
+      });
     });
   });
 });

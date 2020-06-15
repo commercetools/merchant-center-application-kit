@@ -131,7 +131,9 @@
   "QuickAccess.showProductVariantPrices": "Show Prices",
   "QuickAccess.useProject": "Switch to project \"{projectName}\"",
   "TopNavigation.labelLoading": "Processing...",
+  "UserSettingsMenu.closeMenuLabel": "Close user settings menu",
   "UserSettingsMenu.logout": "Logout",
+  "UserSettingsMenu.openMenuLabel": "Open user settings menu",
   "UserSettingsMenu.privacyPolicy": "Privacy Policy",
   "UserSettingsMenu.support": "Support"
 }

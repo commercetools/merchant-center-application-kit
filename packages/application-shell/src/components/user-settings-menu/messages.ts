@@ -16,4 +16,14 @@ export default defineMessages({
     description: 'The label for privacy policy option',
     defaultMessage: 'Privacy Policy',
   },
+  openMenuLabel: {
+    id: 'UserSettingsMenu.openMenuLabel',
+    description: 'The label when menu is closed and would be opened by a click',
+    defaultMessage: 'Open user settings menu',
+  },
+  closeMenuLabel: {
+    id: 'UserSettingsMenu.closeMenuLabel',
+    description: 'The label when menu is open and would be closed by a click',
+    defaultMessage: 'Close user settings menu',
+  },
 });
