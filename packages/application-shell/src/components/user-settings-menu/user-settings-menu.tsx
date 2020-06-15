@@ -125,6 +125,10 @@ const MenuItem = styled.div<MenuItemProps>`
       : ''};
 `;
 
+const getUserSettingsMenuItemLinkStyles = () => css`
+  display: block;
+`;
+
 const UserSettingsMenuBody = (props: MenuBodyProps) => {
   const servedByProxy = useApplicationContext(
     (context) => context.environment.servedByProxy
@@ -168,26 +172,27 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
             </div>
           </Spacings.Inline>
         </Spacings.Inset>
-        {applicationsAppBarMenu &&
-          applicationsAppBarMenu.map((menu) => (
-            <OptionalFeatureToggle
-              key={menu.key}
-              featureToggle={menu.featureToggle}
+        {applicationsAppBarMenu?.map((menu) => (
+          <OptionalFeatureToggle
+            key={menu.key}
+            featureToggle={menu.featureToggle}
+          >
+            <Link
+              css={getUserSettingsMenuItemLinkStyles()}
+              to={`/account/${menu.uriPath}`}
+              onClick={() => props.downshiftProps.toggleMenu()}
             >
-              <Link
-                to={`/account/${menu.uriPath}`}
-                onClick={() => props.downshiftProps.toggleMenu()}
-              >
-                <MenuItem>
-                  <Spacings.Inset scale="s">
-                    {renderLabel(menu, props.language)}
-                  </Spacings.Inset>
-                </MenuItem>
-              </Link>
-            </OptionalFeatureToggle>
-          ))}
+              <MenuItem>
+                <Spacings.Inset scale="s">
+                  {renderLabel(menu, props.language)}
+                </Spacings.Inset>
+              </MenuItem>
+            </Link>
+          </OptionalFeatureToggle>
+        ))}
         <MenuItem hasDivider={true} />
         <a
+          css={getUserSettingsMenuItemLinkStyles()}
           href={`https://commercetools.com/privacy#suppliers`}
           target="_blank"
           rel="noopener noreferrer"
@@ -200,6 +205,7 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
           </MenuItem>
         </a>
         <a
+          css={getUserSettingsMenuItemLinkStyles()}
           href={SUPPORT_PORTAL_URL}
           rel="noopener noreferrer"
           target="_blank"
@@ -216,6 +222,7 @@ const UserSettingsMenuBody = (props: MenuBodyProps) => {
         </a>
         <MenuItem hasDivider={true} />
         <a
+          css={getUserSettingsMenuItemLinkStyles()}
           // NOTE: we want to redirect to a new page so that the
           // server can remove things like cookie for access token.
           href={`/logout?reason=${LOGOUT_REASONS.USER}`}
