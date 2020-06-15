@@ -19,7 +19,7 @@
     "@commercetools-frontend/i18n": "16.9.2",
     "@commercetools-frontend/mc-http-server": "16.9.1",
     "@commercetools-frontend/permissions": "16.9.1",
-    "@commercetools-uikit/flat-button": "10.21.0",
+    "@commercetools-uikit/flat-button": "10.22.1",
     "@commercetools-uikit/icons": "10.22.0",
     "@commercetools-uikit/spacings": "10.18.5",
     "@commercetools-uikit/text": "10.21.0",
