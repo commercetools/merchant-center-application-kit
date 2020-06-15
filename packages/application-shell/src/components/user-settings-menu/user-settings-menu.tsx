@@ -126,8 +126,7 @@ const MenuItem = styled.div<MenuItemProps>`
 `;
 
 const getUserSettingsMenuItemLinkStyles = () => css`
-  display: inline-block;
-  width: 100%;
+  display: block;
 `;
 
 const UserSettingsMenuBody = (props: MenuBodyProps) => {
