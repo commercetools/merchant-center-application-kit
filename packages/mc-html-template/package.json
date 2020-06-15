@@ -40,7 +40,7 @@
     "@babel/runtime-corejs3": "7.10.2",
     "core-js": "3.6.5",
     "node-fetch": "2.6.0",
-    "serialize-javascript": "3.1.0",
+    "serialize-javascript": "4.0.0",
     "uglify-es": "3.3.9",
     "uglifycss": "0.0.29"
   },
