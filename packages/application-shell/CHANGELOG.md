@@ -1,5 +1,24 @@
 # @commercetools-frontend/application-shell
 
+## 16.10.0
+
+### Patch Changes
+
+- [`f8f8609`](https://github.com/commercetools/merchant-center-application-kit/commit/f8f86098687c8cecaaec1b13debabe290b007b58) [#1573](https://github.com/commercetools/merchant-center-application-kit/pull/1573) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update all dependencies
+
+* [`352cc92`](https://github.com/commercetools/merchant-center-application-kit/commit/352cc92eeb1981e6f024fb6d6065cd5a800408f2) [#1571](https://github.com/commercetools/merchant-center-application-kit/pull/1571) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(app-shell): user settings menu link width for testing
+
+- [`ab6f011`](https://github.com/commercetools/merchant-center-application-kit/commit/ab6f011d2988d25364269f737aa91a3b9c920f00) [#1572](https://github.com/commercetools/merchant-center-application-kit/pull/1572) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(app-shell): user settings menu labels for opening and closing menu
+
+- Updated dependencies [[`f8f8609`](https://github.com/commercetools/merchant-center-application-kit/commit/f8f86098687c8cecaaec1b13debabe290b007b58), [`ab6f011`](https://github.com/commercetools/merchant-center-application-kit/commit/ab6f011d2988d25364269f737aa91a3b9c920f00)]:
+  - @commercetools-frontend/l10n@16.10.0
+  - @commercetools-frontend/sentry@16.10.0
+  - @commercetools-frontend/i18n@16.10.0
+  - @commercetools-frontend/application-shell-connectors@16.10.0
+  - @commercetools-frontend/react-notifications@16.10.0
+  - @commercetools-frontend/application-components@16.10.0
+  - @commercetools-frontend/permissions@16.10.0
+
 ## 16.9.2
 
 ### Patch Changes

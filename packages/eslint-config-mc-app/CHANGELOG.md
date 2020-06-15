@@ -1,5 +1,11 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 16.10.0
+
+### Minor Changes
+
+- [`8d3f626`](https://github.com/commercetools/merchant-center-application-kit/commit/8d3f626c540b00dfdf45e0b84c6524119c6c5c40) [#1570](https://github.com/commercetools/merchant-center-application-kit/pull/1570) Thanks [@ahmehri](https://github.com/ahmehri)! - enable `react/no-unused-prop-types` eslint rule
+
 ## 16.9.1
 
 ### Patch Changes
