@@ -24,6 +24,7 @@ module.exports = {
   plugins: [
     'import',
     'jest',
+    'jest-dom',
     'jsx-a11y',
     'prettier',
     'prefer-object-spread',
