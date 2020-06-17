@@ -10,6 +10,7 @@ module.exports = {
   extends: [
     'airbnb-base',
     'plugin:jest/recommended',
+    'plugin:jest-dom/recommended',
     'plugin:react/recommended',
     'prettier',
     'prettier/react',
@@ -24,6 +25,7 @@ module.exports = {
   plugins: [
     'import',
     'jest',
+    'jest-dom',
     'jsx-a11y',
     'prettier',
     'prefer-object-spread',
