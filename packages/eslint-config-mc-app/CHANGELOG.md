@@ -1,5 +1,11 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 16.11.0
+
+### Minor Changes
+
+- [`30e2501`](https://github.com/commercetools/merchant-center-application-kit/commit/30e250124f819884c8ea7c21e3cff1d0d7b29ca5) [#1579](https://github.com/commercetools/merchant-center-application-kit/pull/1579) Thanks [@tdeekens](https://github.com/tdeekens)! - feat(eslint-config-mc-app): to add jest-dom plugin
+
 ## 16.10.0
 
 ### Minor Changes
