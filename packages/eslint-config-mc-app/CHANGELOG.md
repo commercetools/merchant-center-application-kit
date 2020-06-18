@@ -1,5 +1,11 @@
 # @commercetools-frontend/eslint-config-mc-app
 
+## 16.11.1
+
+### Patch Changes
+
+- [`ee0b882`](https://github.com/commercetools/merchant-center-application-kit/commit/ee0b882c711040a2af8f8c86899cd889b5e6c635) [#1581](https://github.com/commercetools/merchant-center-application-kit/pull/1581) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(eslint-config-mc-app): add missing peer dep
+
 ## 16.11.0
 
 ### Minor Changes
