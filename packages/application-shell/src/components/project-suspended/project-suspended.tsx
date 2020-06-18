@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 import ProjectSuspendedSVG from '@commercetools-frontend/assets/images/doors-closed.svg';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import ServicePageProjectSwitcher from '../service-page-project-switcher';
@@ -9,7 +9,9 @@ type Props = {
   isTemporary?: boolean;
 };
 
-const ProjectSuspended = (props: Props) => (
+const ProjectSuspended = (props: Props) => {
+  const intl = useIntl();
+
   <MaintenancePageLayout
     imageSrc={ProjectSuspendedSVG}
     title={(() => {
@@ -22,10 +24,11 @@ const ProjectSuspended = (props: Props) => (
         );
       return <FormattedMessage {...messages.defaultSuspensionMessage} />;
     })()}
+    label={intl.formatMessage(messages.title)}
     paragraph1={<FormattedMessage {...messages.paragraph1} />}
     bodyContent={<ServicePageProjectSwitcher />}
-  />
-);
+  />;
+};
 ProjectSuspended.displayName = 'ProjectSuspended';
 
 export default ProjectSuspended;
