@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 import ProjectNotInitializedSVG from '@commercetools-frontend/assets/images/hourglass.svg';
 import { MaintenancePageLayout } from '@commercetools-frontend/application-components';
 import ServicePageProjectSwitcher from '../service-page-project-switcher';
@@ -16,19 +16,24 @@ const EmailLink = (props: Props) => (
 );
 EmailLink.displayName = 'EmailLink';
 
-const ProjectNotInitialized = () => (
-  <MaintenancePageLayout
-    imageSrc={ProjectNotInitializedSVG}
-    title={<FormattedMessage {...messages.title} />}
-    paragraph1={
-      <FormattedMessage
-        {...messages.paragraph1}
-        values={{ mailto: <EmailLink email={supportEmail} /> }}
-      />
-    }
-    bodyContent={<ServicePageProjectSwitcher />}
-  />
-);
+const ProjectNotInitialized = () => {
+  const intl = useIntl();
+
+  return (
+    <MaintenancePageLayout
+      imageSrc={ProjectNotInitializedSVG}
+      title={<FormattedMessage {...messages.title} />}
+      label={intl.formatMessage(messages.title)}
+      paragraph1={
+        <FormattedMessage
+          {...messages.paragraph1}
+          values={{ mailto: <EmailLink email={supportEmail} /> }}
+        />
+      }
+      bodyContent={<ServicePageProjectSwitcher />}
+    />
+  );
+};
 ProjectNotInitialized.displayName = 'ProjectNotInitialized';
 
 export default ProjectNotInitialized;

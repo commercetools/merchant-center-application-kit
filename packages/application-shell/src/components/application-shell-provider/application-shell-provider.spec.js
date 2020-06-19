@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactReduxContext } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
+import { IntlProvider, FormattedMessage } from 'react-intl';
 import { render, waitFor } from '@testing-library/react';
 import { ApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import { GtmContext } from '../gtm-booter';
@@ -150,9 +150,11 @@ describe('rendering', () => {
       }
     }
     const rendered = render(
-      <ApplicationShellProvider {...createTestProps()}>
-        {() => <Thrower />}
-      </ApplicationShellProvider>
+      <IntlProvider locale="en" messages={{}}>
+        <ApplicationShellProvider {...createTestProps()}>
+          {() => <Thrower />}
+        </ApplicationShellProvider>
+      </IntlProvider>
     );
     await rendered.findByText(/Sorry! An unexpected error occured/i);
     expect(console.error).toHaveBeenCalled();

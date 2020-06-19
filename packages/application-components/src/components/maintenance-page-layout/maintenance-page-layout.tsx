@@ -8,6 +8,7 @@ import Spacings from '@commercetools-uikit/spacings';
 export type Props = {
   imageSrc: string;
   title: React.ReactNode;
+  label?: string;
   paragraph1: React.ReactNode;
   paragraph2?: React.ReactNode;
   bodyContent?: React.ReactNode;
@@ -28,7 +29,7 @@ const MaintenancePageLayout = (props: Props) => (
     <Constraints.Horizontal constraint="l">
       <Spacings.Stack scale="m">
         <div>
-          <img src={props.imageSrc} />
+          <img src={props.imageSrc} alt={props.label} />
         </div>
         <Text.Headline as="h2">{props.title}</Text.Headline>
         <Text.Body>{props.paragraph1}</Text.Body>
@@ -50,6 +51,7 @@ const MaintenancePageLayout = (props: Props) => (
 MaintenancePageLayout.displayName = 'MaintenancePageLayout';
 MaintenancePageLayout.propTypes = {
   imageSrc: PropTypes.string.isRequired,
+  label: PropTypes.string,
   title: PropTypes.node.isRequired,
   paragraph1: PropTypes.node.isRequired,
   paragraph2: PropTypes.node,

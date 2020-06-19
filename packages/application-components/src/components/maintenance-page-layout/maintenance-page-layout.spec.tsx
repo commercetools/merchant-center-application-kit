@@ -64,4 +64,15 @@ describe('rendering', () => {
       expect(rendered.getByText('content')).toBeInTheDocument();
     });
   });
+  describe('with label', () => {
+    beforeEach(() => {
+      props = createTestProps({ label: 'page label' });
+    });
+    it('renders the label as an alt of the image', () => {
+      const rendered = renderComponent(<MaintenancePageLayout {...props} />);
+      expect(
+        rendered.getByRole('img', { name: props.label })
+      ).toBeInTheDocument();
+    });
+  });
 });
