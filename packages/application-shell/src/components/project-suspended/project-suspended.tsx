@@ -21,13 +21,15 @@ const ProjectSuspended = (props: Props) => {
   const intl = useIntl();
   const titleMessage = getTitleMessage(props);
 
-  <MaintenancePageLayout
-    imageSrc={ProjectSuspendedSVG}
-    title={<FormattedMessage {...titleMessage} />}
-    label={intl.formatMessage(titleMessage)}
-    paragraph1={<FormattedMessage {...messages.paragraph1} />}
-    bodyContent={<ServicePageProjectSwitcher />}
-  />;
+  return (
+    <MaintenancePageLayout
+      imageSrc={ProjectSuspendedSVG}
+      title={<FormattedMessage {...titleMessage} />}
+      label={intl.formatMessage(titleMessage)}
+      paragraph1={<FormattedMessage {...messages.paragraph1} />}
+      bodyContent={<ServicePageProjectSwitcher />}
+    />
+  );
 };
 ProjectSuspended.displayName = 'ProjectSuspended';
 
