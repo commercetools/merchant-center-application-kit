@@ -6,7 +6,7 @@ require('./polyfills/intl');
 const Enzyme = require('enzyme');
 const Adapter = require('enzyme-adapter-react-16');
 const ShallowWrapper = require('enzyme/ShallowWrapper');
-import { configure as configureRtl } from '@testing-library/react';
+const { configure: configureRtl } = require('@testing-library/react');
 const configureEnzymeExtensions = require('@commercetools/enzyme-extensions');
 const commerceToolsEnzymeMatchers = require('@commercetools/jest-enzyme-matchers');
 const loadConfig = require('./load-config');
