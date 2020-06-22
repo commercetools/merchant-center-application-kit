@@ -39,7 +39,7 @@
     "@types/node": "14.0.13",
     "express": "4.17.1",
     "express-jwt": "5.3.3",
-    "jwks-rsa": "1.8.0"
+    "jwks-rsa": "1.8.1"
   },
   "devDependencies": {
     "@panva/jose": "1.9.3",
