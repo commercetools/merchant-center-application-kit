@@ -1,5 +1,11 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 16.12.1
+
+### Patch Changes
+
+- [`f1946cc`](https://github.com/commercetools/merchant-center-application-kit/commit/f1946cc841906820235c8cb1bab0c2a92ae7601a) [#1593](https://github.com/commercetools/merchant-center-application-kit/pull/1593) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(jest-preset-mc-app): to import with cjs
+
 ## 16.12.0
 
 ### Patch Changes

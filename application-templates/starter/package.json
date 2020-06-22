@@ -34,7 +34,7 @@
     "redux": "4.0.5"
   },
   "devDependencies": {
-    "@commercetools-frontend/jest-preset-mc-app": "16.12.0",
+    "@commercetools-frontend/jest-preset-mc-app": "16.12.1",
     "@commercetools-frontend/mc-scripts": "16.12.0",
     "@testing-library/react": "10.3.0",
     "dotenv-cli": "3.1.0",
