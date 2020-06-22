@@ -1,5 +1,11 @@
 # @commercetools-frontend/jest-preset-mc-app
 
+## 16.12.0
+
+### Patch Changes
+
+- [`640051f`](https://github.com/commercetools/merchant-center-application-kit/commit/640051f9713815a27997a15849a557b5d5450155) [#1586](https://github.com/commercetools/merchant-center-application-kit/pull/1586) Thanks [@tdeekens](https://github.com/tdeekens)! - feat(jest-preset-mc-app): add config for rtl
+
 ## 16.10.0
 
 ### Patch Changes

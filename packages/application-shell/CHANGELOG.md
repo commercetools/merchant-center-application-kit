@@ -1,5 +1,16 @@
 # @commercetools-frontend/application-shell
 
+## 16.12.0
+
+### Minor Changes
+
+- [`053ae10`](https://github.com/commercetools/merchant-center-application-kit/commit/053ae101588c75410aaa7cf4e17848fa8e22cfef) [#1583](https://github.com/commercetools/merchant-center-application-kit/pull/1583) Thanks [@tdeekens](https://github.com/tdeekens)! - feat(app-shell): to add label to maintenance page layouts
+
+### Patch Changes
+
+- Updated dependencies [[`053ae10`](https://github.com/commercetools/merchant-center-application-kit/commit/053ae101588c75410aaa7cf4e17848fa8e22cfef)]:
+  - @commercetools-frontend/application-components@16.12.0
+
 ## 16.10.0
 
 ### Patch Changes
