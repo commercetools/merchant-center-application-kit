@@ -2,7 +2,7 @@
 
 ## Description
 
-The PageUnauthorized component can be used for informing user they don't have permissions for certain resources in Merchant Center applications.
+The PageUnauthorized component can be used to inform a user that certain permissions are lacking for views of a respective Merchant Center application.
 
 ## Usage
 
