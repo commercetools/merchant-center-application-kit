@@ -180,7 +180,7 @@
     "**/react": "16.13.1",
     "react-test-renderer": "16.13.1",
     "**/react-test-renderer": "16.13.1",
-    "**/react-intl": "4.6.10",
+    "**/react-intl": "4.6.9",
     "**/sharp": "0.23.3",
     "cypress": "4.8.0",
     "pretty-format": "26.0.1"
