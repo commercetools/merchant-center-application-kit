@@ -1,5 +1,15 @@
 # @commercetools-frontend/mc-scripts
 
+## 16.12.0
+
+### Patch Changes
+
+- [`fa6386c`](https://github.com/commercetools/merchant-center-application-kit/commit/fa6386c347df0505235c199232353bc315a47c81) [#1587](https://github.com/commercetools/merchant-center-application-kit/pull/1587) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
+- Updated dependencies [[`fa6386c`](https://github.com/commercetools/merchant-center-application-kit/commit/fa6386c347df0505235c199232353bc315a47c81)]:
+  - @commercetools-frontend/babel-preset-mc-app@16.12.0
+  - @commercetools-frontend/mc-html-template@16.12.0
+
 ## 16.10.0
 
 ### Patch Changes
