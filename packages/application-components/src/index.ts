@@ -3,6 +3,7 @@ export { default as version } from './version';
 // Maintenance pages
 export { default as MaintenancePageLayout } from './components/maintenance-page-layout';
 export { default as PageNotFound } from './components/page-not-found';
+export { default as PageUnauthorized } from './components/page-unauthorized';
 
 // Dialogs
 export { default as InfoDialog } from './components/dialogs/info-dialog';
