@@ -2,8 +2,8 @@ version = 1
 
 [merge]
 automerge_label = "🚀 Status: ship it"
-blacklist_title_regex = ".*WIP.*"
-blacklist_labels = ["🛑 Status: blocked"]
+blocking_title_regex = ".*WIP.*"
+blocking_labels = ["🛑 Status: blocked"]
 method = "squash"
 delete_branch_on_merge = true
 block_on_reviews_requested = true
