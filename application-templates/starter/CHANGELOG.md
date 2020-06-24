@@ -1,5 +1,15 @@
 # merchant-center-application-template-starter
 
+## 16.9.5
+
+### Patch Changes
+
+- [`023c0bb`](https://github.com/commercetools/merchant-center-application-kit/commit/023c0bb222cf16d4e1b8eac9135112c9b7a694eb) [#1599](https://github.com/commercetools/merchant-center-application-kit/pull/1599) Thanks [@tdeekens](https://github.com/tdeekens)! - feat(template/starter): to add version update script for app-kit and ui-kit
+
+- Updated dependencies [[`f70fed0`](https://github.com/commercetools/merchant-center-application-kit/commit/f70fed0e1332d1cc285bf832aec5e3dcbe325546)]:
+  - @commercetools-frontend/application-components@16.13.0
+  - @commercetools-frontend/application-shell@16.13.0
+
 ## 16.9.4
 
 ### Patch Changes
