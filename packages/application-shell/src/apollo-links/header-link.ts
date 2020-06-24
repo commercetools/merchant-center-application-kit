@@ -25,6 +25,7 @@ type QueryVariables = {
   target: GraphQlTarget;
   projectKey?: string;
   teamId?: string;
+  featureFlag?: string;
 };
 
 const isKnownGraphQlTarget = (target: GraphQlTarget) =>
@@ -57,6 +58,7 @@ const headerLink = new ApolloLink((operation, forward) => {
   const projectKey = variables.projectKey || selectProjectKeyFromUrl();
   const teamId = variables.teamId || selectTeamIdFromLocalStorage();
   const userId = selectUserId({ apolloCache: cache });
+  const featureFlag = variables.featureFlag;
 
   operation.setContext({
     credentials: 'include',
@@ -67,6 +69,7 @@ const headerLink = new ApolloLink((operation, forward) => {
       // Experimental features, use with caution.
       'X-Team-Id': teamId,
       'X-Application-Id': window.app.applicationId,
+      'X-Feature-Flag': featureFlag,
     }),
   });
   return forward(operation);

@@ -5,6 +5,20 @@ Object {
   "credentials": "include",
   "headers": Object {
     "X-Correlation-Id": "test-correlation-id",
+    "X-Feature-Flag": "test-feature-a",
+    "X-Graphql-Target": "mc",
+    "X-Project-Key": "project-1",
+    "X-Team-Id": "team-1",
+  },
+}
+`;
+
+exports[`with valid target with feature flag in variables should set headers matching snapshot 1`] = `
+Object {
+  "credentials": "include",
+  "headers": Object {
+    "X-Correlation-Id": "test-correlation-id",
+    "X-Feature-Flag": "test-feature-flag",
     "X-Graphql-Target": "mc",
     "X-Project-Key": "project-1",
     "X-Team-Id": "team-1",

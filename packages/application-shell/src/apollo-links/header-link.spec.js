@@ -51,7 +51,10 @@ describe('with valid target', () => {
     await waitFor(
       execute(link, {
         query,
-        variables: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
+        variables: {
+          target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+          featureFlag: 'test-feature-a',
+        },
       })
     );
   });
@@ -72,6 +75,14 @@ describe('with valid target', () => {
     expect(context.headers).toEqual(
       expect.objectContaining({
         'X-Team-Id': 'team-1',
+      })
+    );
+  });
+
+  it('should allow specifying `X-Feature-Flag`-Header', () => {
+    expect(context.headers).toEqual(
+      expect.objectContaining({
+        'X-Feature-Flag': 'test-feature-a',
       })
     );
   });
@@ -147,6 +158,34 @@ describe('with valid target', () => {
       expect(context.headers).toEqual(
         expect.objectContaining({
           'X-Team-Id': teamId,
+        })
+      );
+    });
+  });
+
+  describe('with feature flag in variables', () => {
+    const featureFlag = 'test-feature-flag';
+
+    beforeEach(async () => {
+      await waitFor(
+        execute(link, {
+          query,
+          variables: {
+            target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+            featureFlag,
+          },
+        })
+      );
+    });
+
+    it('should set headers matching snapshot', () => {
+      expect(context).toMatchSnapshot();
+    });
+
+    it('should set `X-Feature-Flag`-Header', () => {
+      expect(context.headers).toEqual(
+        expect.objectContaining({
+          'X-Feature-Flag': featureFlag,
         })
       );
     });
