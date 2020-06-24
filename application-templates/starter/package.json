@@ -9,7 +9,8 @@
     "start:prod:local": "NODE_ENV=production dotenv -- mc-http-server --config=$(pwd)/env.json --headers=$(pwd)/headers.json --use-local-assets",
     "i18n:build": "mc-scripts extract-intl --output-path=$(pwd)/src/i18n/data 'src/**/!(*.spec).js' --build-translations",
     "test": "jest --config jest.test.config.js",
-    "test:watch": "jest --config jest.test.config.js --watch"
+    "test:watch": "jest --config jest.test.config.js --watch",
+    "update-versions": "bulk-update-versions --match '^@commercetools-frontend/(?!ui-kit)(.*)'"
   },
   "dependencies": {
     "@commercetools-frontend/actions-global": "16.12.0",
@@ -24,6 +25,7 @@
     "@commercetools-uikit/spacings": "10.18.5",
     "@commercetools-uikit/text": "10.21.0",
     "apollo-client": "2.6.10",
+    "bulk-update-versions": "1.1.0",
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-apollo": "3.1.5",

@@ -10407,9 +10407,9 @@ dezalgo@^1.0.0:
     asap "^2.0.0"
     wrappy "1"
 
-"diagnostics@github:DABH/diagnostics#master":
+diagnostics@DABH/diagnostics#master:
   version "2.0.2"
-  resolved "https://codeload.github.com/DABH/diagnostics/tar.gz/1533851826eac88679124d41f87e45e1b196be56"
+  resolved "https://codeload.github.com/DABH/diagnostics/tar.gz/5d8f82956c32bf73a8802e806c585758fad627ba"
   dependencies:
     colorspace "1.1.x"
     enabled "2.0.x"
