@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 16.13.1
+
+### Patch Changes
+
+- [`0e85200`](https://github.com/commercetools/merchant-center-application-kit/commit/0e8520074143508e0078f8eeb1311bc1e2b6033d) [#1600](https://github.com/commercetools/merchant-center-application-kit/pull/1600) Thanks [@tdeekens](https://github.com/tdeekens)! - feat(app-shell): to allow passing `featureFlag` as variable
+
 ## 16.13.0
 
 ### Patch Changes
