@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-components
 
+## 16.13.0
+
+### Minor Changes
+
+- [`f70fed0`](https://github.com/commercetools/merchant-center-application-kit/commit/f70fed0e1332d1cc285bf832aec5e3dcbe325546) [#1595](https://github.com/commercetools/merchant-center-application-kit/pull/1595) Thanks [@Rombelirk](https://github.com/Rombelirk)! - refactor(application-components, visual-testing-app): migrate PageUnauthorized component to AppKit
+
 ## 16.12.0
 
 ### Minor Changes
