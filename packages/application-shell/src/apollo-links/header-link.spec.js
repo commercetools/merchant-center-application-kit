@@ -51,13 +51,27 @@ describe('with valid target', () => {
     await waitFor(
       execute(link, {
         query,
-        variables: { target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND },
+        variables: {
+          target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+          featureFlag: 'test-feature-a',
+        },
       })
     );
   });
 
   it('should set headers matching snapshot', () => {
-    expect(context).toMatchSnapshot();
+    expect(context).toMatchInlineSnapshot(`
+      Object {
+        "credentials": "include",
+        "headers": Object {
+          "X-Correlation-Id": "test-correlation-id",
+          "X-Feature-Flag": "test-feature-a",
+          "X-Graphql-Target": "mc",
+          "X-Project-Key": "project-1",
+          "X-Team-Id": "team-1",
+        },
+      }
+    `);
   });
 
   it('should allow specifying `X-Project-Key`-Header', () => {
@@ -72,6 +86,14 @@ describe('with valid target', () => {
     expect(context.headers).toEqual(
       expect.objectContaining({
         'X-Team-Id': 'team-1',
+      })
+    );
+  });
+
+  it('should allow specifying `X-Feature-Flag`-Header', () => {
+    expect(context.headers).toEqual(
+      expect.objectContaining({
+        'X-Feature-Flag': 'test-feature-a',
       })
     );
   });
@@ -112,7 +134,17 @@ describe('with valid target', () => {
     });
 
     it('should set headers matching snapshot', () => {
-      expect(context).toMatchSnapshot();
+      expect(context).toMatchInlineSnapshot(`
+        Object {
+          "credentials": "include",
+          "headers": Object {
+            "X-Correlation-Id": "test-correlation-id",
+            "X-Graphql-Target": "mc",
+            "X-Project-Key": "test-project-key",
+            "X-Team-Id": "team-1",
+          },
+        }
+      `);
     });
 
     it('should set `X-Project-Key`-Header', () => {
@@ -140,13 +172,62 @@ describe('with valid target', () => {
     });
 
     it('should set headers matching snapshot', () => {
-      expect(context).toMatchSnapshot();
+      expect(context).toMatchInlineSnapshot(`
+        Object {
+          "credentials": "include",
+          "headers": Object {
+            "X-Correlation-Id": "test-correlation-id",
+            "X-Graphql-Target": "mc",
+            "X-Project-Key": "project-1",
+            "X-Team-Id": "test-team-id",
+          },
+        }
+      `);
     });
 
     it('should set `X-Team-Id`-Header', () => {
       expect(context.headers).toEqual(
         expect.objectContaining({
           'X-Team-Id': teamId,
+        })
+      );
+    });
+  });
+
+  describe('with feature flag in variables', () => {
+    const featureFlag = 'test-feature-flag';
+
+    beforeEach(async () => {
+      await waitFor(
+        execute(link, {
+          query,
+          variables: {
+            target: GRAPHQL_TARGETS.MERCHANT_CENTER_BACKEND,
+            featureFlag,
+          },
+        })
+      );
+    });
+
+    it('should set headers matching snapshot', () => {
+      expect(context).toMatchInlineSnapshot(`
+        Object {
+          "credentials": "include",
+          "headers": Object {
+            "X-Correlation-Id": "test-correlation-id",
+            "X-Feature-Flag": "test-feature-flag",
+            "X-Graphql-Target": "mc",
+            "X-Project-Key": "project-1",
+            "X-Team-Id": "team-1",
+          },
+        }
+      `);
+    });
+
+    it('should set `X-Feature-Flag`-Header', () => {
+      expect(context.headers).toEqual(
+        expect.objectContaining({
+          'X-Feature-Flag': featureFlag,
         })
       );
     });
