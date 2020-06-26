@@ -54,6 +54,9 @@
   "Notification.hideNotification": "Benachrichtigung ausblenden",
   "PageNotFound.paragraph1": "Die Information, die Sie suchen, wurde möglicherweise gelöscht, existiert nicht oder die URL wurde falsch eingegeben. Überprüfen Sie die URL und versuchen Sie es erneut.\n\nBitte wenden Sie sich an Ihren Systemadministrator oder an den commercetools <a>Help Desk</a>, wenn Sie weitere Fragen haben.",
   "PageNotFound.title": "Wir konnten nicht finden, was Sie suchen",
+  "PageUnauthorized.paragraph1": "Das Modul, das Sie suchen, existiert nicht für dieses Projekt oder Sie sind nicht berechtigt es zu sehen.",
+  "PageUnauthorized.paragraph2": "Bei weiteren Fragen wenden Sie sich bitte an Ihren Systemadministrator oder an den commercetools <a>Help Desk</a>.",
+  "PageUnauthorized.title": "Wir konnten nicht finden, was Sie suchen",
   "Project.trialDaysLeft": "Ihr Projekt Trial wird in {daysLeft} {daysLeft, plural, one {Tag} other {Tagen}} ablaufen. Bei Fragen, wenden Sie sich bitte an sales@commercetools.com.",
   "ProjectExpired.paragraph1": "Wenn Sie mehr über das commercetools Merchant Center erfahren wollen, kontaktieren Sie uns bitte unter {mailto}.",
   "ProjectExpired.title": "Ihr Testzeitraum für das Merchant Center ist abgelaufen",
@@ -131,7 +134,9 @@
   "QuickAccess.showProductVariantPrices": "Anzeigen: Preise",
   "QuickAccess.useProject": "Wechseln zu: Projekt \"{projectName}\"",
   "TopNavigation.labelLoading": "Bearbeitung läuft ...",
+  "UserSettingsMenu.closeMenuLabel": "Menu der Benutzereinstellungen schließen",
   "UserSettingsMenu.logout": "Logout",
+  "UserSettingsMenu.openMenuLabel": "Menu der Benutzereinstellungen öffnen",
   "UserSettingsMenu.privacyPolicy": "Datenschutzbestimmungen",
   "UserSettingsMenu.support": "Support"
 }
