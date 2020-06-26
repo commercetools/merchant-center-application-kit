@@ -1,5 +1,13 @@
 # @commercetools-frontend/i18n
 
+## 16.13.2
+
+### Patch Changes
+
+- [`7fbb076`](https://github.com/commercetools/merchant-center-application-kit/commit/7fbb0760a6573396d9038d5e2109ad25632c0392) [#1604](https://github.com/commercetools/merchant-center-application-kit/pull/1604) Thanks [@transifex-integration](https://github.com/apps/transifex-integration)! - Translate '/packages/i18n/data/core.json' in 'de'
+
+* [`faf980d`](https://github.com/commercetools/merchant-center-application-kit/commit/faf980ddb23827baba79faa4fb4e4f004922edd2) [#1605](https://github.com/commercetools/merchant-center-application-kit/pull/1605) Thanks [@transifex-integration](https://github.com/apps/transifex-integration)! - Translate '/packages/i18n/data/core.json' in 'en'
+
 ## 16.12.0
 
 ### Patch Changes
