@@ -1,5 +1,12 @@
 # @commercetools-local/visual-testing-app
 
+## 16.10.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @commercetools-frontend/application-components@16.13.2
+
 ## 16.10.0
 
 ### Minor Changes
