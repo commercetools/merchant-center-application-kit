@@ -43,6 +43,6 @@
   },
   "devDependencies": {
     "@panva/jose": "1.9.3",
-    "nock": "12.0.3"
+    "nock": "13.0.0"
   }
 }
