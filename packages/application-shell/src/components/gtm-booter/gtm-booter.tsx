@@ -1,13 +1,13 @@
 import React from 'react';
 import * as gtm from '../../utils/gtm';
-import defaultTrackingEventWhitelist from '../../tracking-whitelist';
+import defaultTrackingEventList from '../../tracking-event-list';
 
-export type TGtmTrackingEventWhitelist = {
+export type TGtmTrackingEventList = {
   [key: string]: string;
 };
 export type Props = {
-  trackingEventWhitelist: {
-    [key: string]: string | TGtmTrackingEventWhitelist;
+  trackingEventList: {
+    [key: string]: string | TGtmTrackingEventList;
   };
   children: React.ReactNode;
 };
@@ -30,8 +30,8 @@ const GtmBooter = (props: Props) => {
     // We don't need any user data to start using GTM, for example for
     // tracking page views and flows when the user is not logged in.
     gtm.boot({
-      ...defaultTrackingEventWhitelist,
-      ...props.trackingEventWhitelist,
+      ...defaultTrackingEventList,
+      ...props.trackingEventList,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

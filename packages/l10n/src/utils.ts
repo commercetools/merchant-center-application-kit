@@ -12,7 +12,7 @@ export const mapLocaleToIntlLocale = (locale: string) => {
 const supportedLocales = ['en', 'de', 'es', 'fr-FR', 'zh-CN', 'ja'];
 const defaultLocale = 'en';
 
-// Given a locale, return the locale only if it's whitelisted.
+// Given a locale, return the locale only if it's supported.
 // If not, return a default locale.
 export function getSupportedLocale(locale: string) {
   const isSupported = supportedLocales.find((supportedLocale) =>

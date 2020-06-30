@@ -1,4 +1,4 @@
-const trackingEventWhitelist = {
+const trackingEventList = {
   'Navigation-Categories': 'Navigation-Categories',
   'Navigation-CategoriesSearch': 'Navigation-CategoriesSearch',
   'Navigation-AddCategory': 'Navigation-AddCategory',
@@ -17,4 +17,4 @@ const trackingEventWhitelist = {
   'Navigation-Support-links': 'Navigation-Support-links',
 } as const;
 
-export default trackingEventWhitelist;
+export default trackingEventList;

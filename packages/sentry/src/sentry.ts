@@ -30,7 +30,7 @@ export const boot = () => {
       // in order to reduce the noise in sentry we only track errors that come
       // from our code and ignore errors that come from other services
       // https://blog.sentry.io/2017/03/27/tips-for-reducing-javascript-error-noise.html
-      whitelistUrls: [window.app.cdnUrl, window.app.frontendHost],
+      denyUrls: [window.app.cdnUrl, window.app.frontendHost],
       // we don't need default Sentry's global handlers, because we  add default ones
       integrations: [
         new Sentry.Integrations.GlobalHandlers({

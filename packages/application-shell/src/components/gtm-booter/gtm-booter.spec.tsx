@@ -8,7 +8,7 @@ import GtmBooter from './gtm-booter';
 declare let window: ApplicationWindow;
 
 const createTestProps = (custom: Partial<Props> = {}) => ({
-  trackingEventWhitelist: {
+  trackingEventList: {
     'Test.button': 'Test.button',
   },
   ...custom,

@@ -1,6 +1,6 @@
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
-import type { TrackingWhitelist } from '../../utils/gtm';
+import type { TrackingList } from '../../utils/gtm';
 
 import './global-style-imports';
 import '../../track-performance';
@@ -24,7 +24,7 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
   environment: TApplicationContext<
     AdditionalEnvironmentProperties
   >['environment'];
-  trackingEventWhitelist?: TrackingWhitelist;
+  trackingEventList?: TrackingList;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   children: (args: { isAuthenticated: boolean }) => JSX.Element;
 };
@@ -40,9 +40,7 @@ const ApplicationShellProvider = <AdditionalEnvironmentProperties extends {}>(
         <ApolloProvider client={ApplicationShellProvider.apolloClient}>
           <React.Suspense fallback={<ApplicationLoader />}>
             <Router history={ApplicationShellProvider.history}>
-              <GtmBooter
-                trackingEventWhitelist={props.trackingEventWhitelist || {}}
-              >
+              <GtmBooter trackingEventList={props.trackingEventList || {}}>
                 <Authenticated
                   render={({ isAuthenticated }) => {
                     if (isAuthenticated)

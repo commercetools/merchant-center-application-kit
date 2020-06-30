@@ -5,7 +5,7 @@ import type { ApolloError } from 'apollo-client';
 import type { TApplicationContext } from '@commercetools-frontend/application-shell-connectors';
 import type { TAsyncLocaleDataProps } from '@commercetools-frontend/i18n';
 import type { TApplicationsMenu } from '../../types/generated/proxy';
-import type { TrackingWhitelist } from '../../utils/gtm';
+import type { TrackingList } from '../../utils/gtm';
 
 import React from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
@@ -70,7 +70,10 @@ type Props<AdditionalEnvironmentProperties extends {}> = {
   >['environment'];
   featureFlags?: TFlags;
   defaultFeatureFlags?: TFlags;
-  trackingEventWhitelist?: TrackingWhitelist;
+  // This is deprecated, to avoid usage of oppressive language!
+  // Use `trackingEventList` instead.
+  trackingEventWhitelist?: TrackingList;
+  trackingEventList?: TrackingList;
   applicationMessages: TAsyncLocaleDataProps['applicationMessages'];
   onRegisterErrorListeners: (args: { dispatch: Dispatch }) => void;
   onMenuItemClick?: <TrackFn>(
@@ -550,7 +553,9 @@ const ApplicationShell = <AdditionalEnvironmentProperties extends {}>(
       />
       <ApplicationShellProvider<AdditionalEnvironmentProperties>
         environment={coercedEnvironmentValues}
-        trackingEventWhitelist={props.trackingEventWhitelist}
+        trackingEventList={
+          props.trackingEventList || props.trackingEventWhitelist
+        }
         applicationMessages={props.applicationMessages}
       >
         {({ isAuthenticated }) => {
