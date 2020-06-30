@@ -7,7 +7,7 @@ const regions = {
 };
 const headersStaticFiles = { 'cache-control': 's-maxage=31536000,immutable' };
 
-// This transformer will generate a `now.json` config file, based on the application
+// This transformer will generate a `vercel.json` config file, based on the application
 // environment config and custom headers.
 module.exports = ({ env, headers }) => {
   const environmentKey = `${env.env}-${env.location}`;
@@ -21,9 +21,9 @@ module.exports = ({ env, headers }) => {
       PLAYGROUND_API_AUDIENCE: env.cdnUrl,
     },
     builds: [
-      { src: 'public/**', use: '@now/static' },
-      { src: 'api/*.ts', use: '@now/node' },
-      { src: 'routes/fallback.js', use: '@now/node' },
+      { src: 'public/**', use: '@vercel/static' },
+      { src: 'api/*.ts', use: '@vercel/node' },
+      { src: 'routes/fallback.js', use: '@vercel/node' },
     ],
     routes: [
       {
@@ -44,7 +44,7 @@ module.exports = ({ env, headers }) => {
   fs.writeFileSync(
     path.join(
       __dirname,
-      `../now-deployments/state-machines-${env.location}/${environmentKey}.now.json`
+      `../vercel-deployments/state-machines-${env.location}/${environmentKey}.vercel.json`
     ),
     JSON.stringify(config, null, 2),
     { encoding: 'utf8' }
