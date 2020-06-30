@@ -124,18 +124,18 @@ Since Custom Applications are hosted on any domain of your choice, it's **impera
 
 </Info>
 
-For example, given that your application is hosted at `my-app.now.sh` and runs on the [Google Cloud Europe region](/main-concepts/api-gateway#cloud-regions), the `headers.json` file must be configured as following:
+For example, given that your application is hosted at `my-app.vercel.app` and runs on the [Google Cloud Europe region](/main-concepts/api-gateway#cloud-regions), the `headers.json` file must be configured as following:
 
 ```json title="headers.json"
 {
   "csp": {
-    "script-src": ["my-app.now.sh"],
+    "script-src": ["my-app.vercel.app"],
     "connect-src": [
-      "my-app.now.sh",
+      "my-app.vercel.app",
       "mc-api.europe-west1.gcp.commercetools.com",
       "mc-api.commercetools.com"
     ],
-    "style-src": ["my-app.now.sh"]
+    "style-src": ["my-app.vercel.app"]
   }
 }
 ```

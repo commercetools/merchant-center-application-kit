@@ -1,0 +1,15 @@
+{
+  "csp": {
+    "script-src": [
+      "state-machines-gcp-us.commercetools-playground.vercel.app"
+    ],
+    "connect-src": [
+      "state-machines-gcp-us.commercetools-playground.vercel.app",
+      "mc-api.us-central1.gcp.commercetools.com",
+      "mc-api.commercetools.co"
+    ],
+    "style-src": [
+      "state-machines-gcp-us.commercetools-playground.vercel.app"
+    ]
+  }
+}

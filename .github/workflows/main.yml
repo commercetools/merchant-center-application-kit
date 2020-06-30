@@ -128,7 +128,7 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: ./scripts/deploy_playground.sh
         env:
-          ZEIT_NOW_PLAYGROUND: ${{ secrets.ZEIT_NOW_PLAYGROUND }}
+          VERCEL_TOKEN_PLAYGROUND: ${{ secrets.VERCEL_TOKEN_PLAYGROUND }}
 
       - name: Preparing tarballs of packages for testing templates installation
         if: github.ref != 'refs/heads/master'

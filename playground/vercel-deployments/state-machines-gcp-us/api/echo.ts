@@ -1,7 +1,7 @@
 // NOTE: this file is duplicated in both gcp-eu/us deployment folders
 /* eslint-disable import/no-unresolved */
 // @ts-ignore
-import { NowRequest, NowResponse } from '@now/node';
+import { NowRequest, NowResponse } from '@vercel/node';
 import {
   createSessionAuthVerifier,
   CLOUD_IDENTIFIERS,

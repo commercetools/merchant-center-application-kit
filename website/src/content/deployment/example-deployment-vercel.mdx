@@ -71,7 +71,7 @@ To configure Vercel (formerly Zeit Now) deployments, we can use a `vercel.json` 
   "builds": [
     {
       "src": "public/**",
-      "use": "@now/static"
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -133,16 +133,16 @@ The command above does what we need: it compiles the `index.html` using the Java
 However, the Custom Application needs to instruct the User-Agent (the browser) to enforce certain security measures, using HTTP headers.
 The HTTP headers are also compiled together with the `index.html`, as they rely on the runtime configuration `headers.json`.
 
-Because of that, the `now.json` file **cannot be defined statically**. Instead, it needs to be generated programmatically when the Custom Application is built and compiled.
+Because of that, the `vercel.json` file **cannot be defined statically**. Instead, it needs to be generated programmatically when the Custom Application is built and compiled.
 To achieve that, we need to implement a **transformer** function.
 
-# Generate `now.json` using a transformer function
+# Generate `vercel.json` using a transformer function
 
 The `compile-html` command accepts an option `transformer` which we can use to pass the filesystem path to our transformer function.
 
 <Info>
 
-We assume that the transformer function is defined at the following location: `./config/transformer-now.js`.
+We assume that the transformer function is defined at the following location: `./config/transformer-vercel.js`.
 
 </Info>
 
@@ -151,10 +151,10 @@ mc-scripts compile-html \
   --headers=$(pwd)/headers.prod.json \
   --config=$(pwd)/env.prod.json \
   --use-local-assets \
-  --transformer $(pwd)/config/transformer-now.js
+  --transformer $(pwd)/config/transformer-vercel.js
 ```
 
-The purpose of the transformer function is to generate the final `now.json` given the compiled values passed to the function.
+The purpose of the transformer function is to generate the final `vercel.json` given the compiled values passed to the function.
 
 ```ts
 // Function signature using TypeScript
@@ -172,15 +172,15 @@ type TransformerFunction = (options: TransformerFunctionOptions) => void;
 
 The main export of the file should be the transformer function.
 
-```js title="transformer-now.js"
+```js title="transformer-vercel.js"
 module.exports = function transformer(options) {
   // ...
 }
 ```
 
-With that in mind, we can implement the transformer function and write the `now.json` config into the filesystem.
+With that in mind, we can implement the transformer function and write the `vercel.json` config into the filesystem.
 
-```js title="./config/transformer-now.js"
+```js title="./config/transformer-vercel.js"
 const fs = require('fs');
 const path = require('path');
 
@@ -194,7 +194,7 @@ module.exports =  function transformer({ headers }) {
     alias: 'mc-examples-starter.vercel.app',
     regions: ['bru'],
     builds: [
-      { src: 'public/**', use: '@now/static' },
+      { src: 'public/**', use: '@vercel/static' },
     ],
     routes: [
       {
@@ -210,7 +210,7 @@ module.exports =  function transformer({ headers }) {
     ],
   };
   fs.writeFileSync(
-    path.join(rootPath, 'now.json'),
+    path.join(rootPath, 'vercel.json'),
     JSON.stringify(config, null, 2),
     { encoding: 'utf8' }
   );
@@ -242,7 +242,7 @@ module.exports = function fallbackRoute(request, response) {
 
 This route will be used as a serverless function:
 
-```js title="./config/transformer-now.js" highlightLines="15,23"
+```js title="./config/transformer-vercel.js" highlightLines="15,23"
 const fs = require('fs');
 const path = require('path');
 
@@ -256,8 +256,8 @@ module.exports =  function transformer({ headers }) {
     alias: 'mc-examples-starter.vercel.app',
     regions: ['bru'],
     builds: [
-      { src: 'public/**', use: '@now/static' },
-      { src: 'config/fallback-route.js', use: '@now/node' },
+      { src: 'public/**', use: '@vercel/static' },
+      { src: 'config/fallback-route.js', use: '@vercel/node' },
     ],
     routes: [
       {
@@ -274,7 +274,7 @@ module.exports =  function transformer({ headers }) {
     ],
   };
   fs.writeFileSync(
-    path.join(rootPath, 'now.json'),
+    path.join(rootPath, 'vercel.json'),
     JSON.stringify(config, null, 2),
     { encoding: 'utf8' }
   );
@@ -292,7 +292,7 @@ mc-scripts compile-html \
   --headers=$(pwd)/headers.prod.json \
   --config=$(pwd)/env.prod.json \
   --use-local-assets \
-  --transformer $(pwd)/config/transformer-now.js
+  --transformer $(pwd)/config/transformer-vercel.js
 
 now
 ```
