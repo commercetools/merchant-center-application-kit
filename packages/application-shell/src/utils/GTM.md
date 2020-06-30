@@ -7,22 +7,22 @@ kinds of analytics services like Google Analytics.
 
 ## Why not directly use Google Analytics (GA)?
 
-There is no really strong reason here. GTM allows to plugin in multiple
+For convenience, GTM allows to plugin in multiple
 different analytics solutions without needing to change any code. This is
 cool, but we are only sending data to Google Analytics right now.
 
 ## How can I track events?
 
-There are two ways. Imperatively by calling the `track` function that lies
-in the React Context. Or declaratively using the `data-track` attributes.
+Events can be tracked in two ways. Imperatively, by calling the `track` function that lies
+in the React Context, or declaratively, by using the `data-track` attributes.
 
 ## Imperative Tracking
 
 ```jsx
 import { GtmContext } from '@commercetools-frontend/application-shell';
 
-// In your application tracking event whitelist
-const trackingEventWhitelist = {
+// In your application tracking event list
+const trackingEventList = {
   'InterestingComponent-MyInterestingFeature': 'InterestingComponent-MyInterestingFeature',
 };
 
@@ -48,8 +48,8 @@ class ImperativeTrackingExample extends React.Component {
 ## Declarative Tracking
 
 ```jsx
-// In your application tracking event whitelist
-const trackingEventWhitelist = {
+// In your application tracking event list
+const trackingEventList = {
   'InterestingComponent-InterestingButton':
     'InterestingComponent-InterestingButton',
 };
