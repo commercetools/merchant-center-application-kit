@@ -94,7 +94,7 @@
     "debounce-async": "0.0.2",
     "downshift": "^5.4.2",
     "fuse.js": "6.4.0",
-    "graphql": "14.6.0",
+    "graphql": "15.3.0",
     "graphql-tag": "^2.10.3",
     "history": "4.10.1",
     "is-retina": "1.0.3",
