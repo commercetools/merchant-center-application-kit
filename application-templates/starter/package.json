@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-application-template-starter",
-  "version": "16.9.7",
+  "version": "16.9.8",
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
@@ -13,13 +13,13 @@
     "update-versions": "bulk-update-versions --match '^@commercetools-frontend/(?!ui-kit)(.*)'"
   },
   "dependencies": {
-    "@commercetools-frontend/actions-global": "16.12.0",
-    "@commercetools-frontend/application-components": "16.13.2",
-    "@commercetools-frontend/application-shell": "16.13.2",
+    "@commercetools-frontend/actions-global": "16.14.0",
+    "@commercetools-frontend/application-components": "16.14.0",
+    "@commercetools-frontend/application-shell": "16.14.0",
     "@commercetools-frontend/assets": "16.9.1",
-    "@commercetools-frontend/i18n": "16.13.2",
-    "@commercetools-frontend/mc-http-server": "16.12.0",
-    "@commercetools-frontend/permissions": "16.12.0",
+    "@commercetools-frontend/i18n": "16.14.0",
+    "@commercetools-frontend/mc-http-server": "16.14.0",
+    "@commercetools-frontend/permissions": "16.14.0",
     "@commercetools-uikit/flat-button": "10.22.1",
     "@commercetools-uikit/icons": "10.22.0",
     "@commercetools-uikit/spacings": "10.18.5",
@@ -36,8 +36,8 @@
     "redux": "4.0.5"
   },
   "devDependencies": {
-    "@commercetools-frontend/jest-preset-mc-app": "16.12.1",
-    "@commercetools-frontend/mc-scripts": "16.12.0",
+    "@commercetools-frontend/jest-preset-mc-app": "16.14.0",
+    "@commercetools-frontend/mc-scripts": "16.14.0",
     "@testing-library/react": "10.4.4",
     "dotenv-cli": "3.2.0",
     "enzyme": "3.11.0",

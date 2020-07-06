@@ -1,5 +1,11 @@
 # @commercetools-frontend/url-utils
 
+## 16.14.0
+
+### Patch Changes
+
+- [`4168061`](https://github.com/commercetools/merchant-center-application-kit/commit/41680612042d476422776e5eaa254450bf874581) [#1618](https://github.com/commercetools/merchant-center-application-kit/pull/1618) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update all dependencies
+
 ## 16.12.0
 
 ### Patch Changes
