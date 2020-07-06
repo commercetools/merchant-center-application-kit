@@ -64,7 +64,7 @@
     "@testing-library/react": "10.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-intl": "4.7.6",
+    "react-intl": "5.0.2",
     "react-redux": "7.2.0",
     "react-router-dom": "5.2.0"
   },
@@ -77,7 +77,7 @@
     "@types/react-router-dom": "5.x",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
-    "react-intl": "3.x || 4.x",
+    "react-intl": "3.x || 4.x || 5.x",
     "react-redux": "7.x",
     "react-router-dom": "5.x"
   }
