@@ -36,8 +36,8 @@
     "build": "babel src --out-dir build"
   },
   "dependencies": {
-    "@babel/runtime": "7.10.3",
-    "@babel/runtime-corejs3": "7.10.3",
+    "@babel/runtime": "7.10.4",
+    "@babel/runtime-corejs3": "7.10.4",
     "core-js": "3.6.5",
     "node-fetch": "2.6.0",
     "serialize-javascript": "4.0.0",
@@ -45,8 +45,8 @@
     "uglifycss": "0.0.29"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "7.10.3",
-    "@babel/preset-env": "7.10.3"
+    "@babel/plugin-transform-runtime": "7.10.4",
+    "@babel/preset-env": "7.10.4"
   },
   "engines": {
     "node": ">=10",

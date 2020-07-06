@@ -49,16 +49,16 @@
     ]
   },
   "dependencies": {
-    "@babel/runtime": "7.10.3",
-    "@babel/runtime-corejs3": "7.10.3",
+    "@babel/runtime": "7.10.4",
+    "@babel/runtime-corejs3": "7.10.4",
     "@commercetools-frontend/assets": "16.9.1",
     "@commercetools-frontend/babel-preset-mc-app": "16.12.0",
     "@commercetools-frontend/mc-dev-authentication": "16.9.1",
     "@commercetools-frontend/mc-html-template": "16.12.0",
     "@svgr/webpack": "5.4.0",
     "babel-loader": "8.1.0",
-    "babel-plugin-react-intl": "7.5.24",
-    "browserslist": "4.12.2",
+    "babel-plugin-react-intl": "7.5.28",
+    "browserslist": "4.13.0",
     "clean-webpack-plugin": "3.0.0",
     "core-js": "3.6.5",
     "css-loader": "3.6.0",
@@ -95,8 +95,8 @@
     "webpackbar": "4.0.0"
   },
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "7.10.3",
-    "@babel/preset-env": "7.10.3"
+    "@babel/plugin-transform-runtime": "7.10.4",
+    "@babel/preset-env": "7.10.4"
   },
   "engines": {
     "node": ">=10",
