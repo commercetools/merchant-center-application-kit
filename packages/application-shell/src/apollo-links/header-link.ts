@@ -37,6 +37,7 @@ const headerLink = new ApolloLink((operation, forward) => {
   const {
     skipGraphQlTargetCheck = false,
     cache,
+    headers: additionalHeaders = {},
   } = operation.getContext() as ApolloContextWithInMemoryCache;
 
   const variables = operation.variables as QueryVariables;
@@ -70,6 +71,8 @@ const headerLink = new ApolloLink((operation, forward) => {
       'X-Team-Id': teamId,
       'X-Application-Id': window.app.applicationId,
       'X-Feature-Flag': featureFlag,
+      // Merge additional headers that may have been set in the `context.headers` option.
+      ...additionalHeaders,
     }),
   });
   return forward(operation);
