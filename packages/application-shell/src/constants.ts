@@ -1,7 +1,17 @@
-// eslint-disable-next-line import/prefer-default-export
+export const SUPPORTED_HEADERS = {
+  ACCEPT_VERSION: 'Accept-version',
+  X_APPLICATION_ID: 'X-Application-Id',
+  X_CORRELATION_ID: 'X-Correlation-Id',
+  X_FEATURE_FLAG: 'X-Feature-Flag',
+  X_FORWARD_TO: 'X-Forward-To',
+  X_GRAPHQL_TARGET: 'X-Graphql-Target',
+  X_PROJECT_KEY: 'X-Project-Key',
+  X_TEAM_ID: 'X-Team-Id',
+} as const;
+
 export const CONTAINERS = {
   LOCALE_SWITCHER: 'locale-switcher-container',
-};
+} as const;
 export const STORAGE_KEYS = {
   NONCE: 'nonce',
   IS_AUTHENTICATED: 'isAuthenticated',

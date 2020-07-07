@@ -6,6 +6,7 @@ import ApolloClient from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
 import omitEmpty from 'omit-empty-es';
 import { GRAPHQL_TARGETS } from '@commercetools-frontend/constants';
+import { SUPPORTED_HEADERS } from '../constants';
 import {
   getCorrelationId,
   selectProjectKeyFromUrl,
@@ -37,7 +38,7 @@ const headerLink = new ApolloLink((operation, forward) => {
   const {
     skipGraphQlTargetCheck = false,
     cache,
-    headers: additionalHeaders = {},
+    forwardToConfig,
   } = operation.getContext() as ApolloContextWithInMemoryCache;
 
   const variables = operation.variables as QueryVariables;
@@ -64,15 +65,20 @@ const headerLink = new ApolloLink((operation, forward) => {
   operation.setContext({
     credentials: 'include',
     headers: omitEmpty({
-      'X-Project-Key': projectKey,
-      'X-Correlation-Id': getCorrelationId({ userId }),
-      'X-Graphql-Target': graphQlTarget,
+      [SUPPORTED_HEADERS.X_PROJECT_KEY]: projectKey,
+      [SUPPORTED_HEADERS.X_CORRELATION_ID]: getCorrelationId({ userId }),
+      [SUPPORTED_HEADERS.X_GRAPHQL_TARGET]: graphQlTarget,
       // Experimental features, use with caution.
-      'X-Team-Id': teamId,
-      'X-Application-Id': window.app.applicationId,
-      'X-Feature-Flag': featureFlag,
-      // Merge additional headers that may have been set in the `context.headers` option.
-      ...additionalHeaders,
+      [SUPPORTED_HEADERS.X_TEAM_ID]: teamId,
+      [SUPPORTED_HEADERS.X_APPLICATION_ID]: window.app.applicationId,
+      [SUPPORTED_HEADERS.X_FEATURE_FLAG]: featureFlag,
+      // Additional headers for the forward-to feature.
+      [SUPPORTED_HEADERS.ACCEPT_VERSION]: forwardToConfig
+        ? forwardToConfig.version
+        : undefined,
+      [SUPPORTED_HEADERS.X_FORWARD_TO]: forwardToConfig
+        ? forwardToConfig.uri
+        : undefined,
     }),
   });
   return forward(operation);
