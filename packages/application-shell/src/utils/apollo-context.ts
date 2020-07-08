@@ -2,7 +2,7 @@ import getMcApiUrl from './get-mc-api-url';
 
 export type TApolloContext = {
   uri?: string;
-  headers?: { [key: string]: string };
+  forwardToConfig?: { version: string; uri: string };
   skipGraphQlTargetCheck?: boolean;
 };
 
@@ -16,9 +16,10 @@ const createApolloContextForProxyForwardTo = (
 ): TApolloContext => ({
   // Send the request to the forward-to endpoint.
   uri: `${getMcApiUrl()}/proxy/forward-to`,
-  headers: {
-    'Accept-version': 'v2',
-    'X-Forward-To': context.uri,
+  // Custom properties to be used by the "header-link".
+  forwardToConfig: {
+    version: 'v2',
+    uri: context.uri,
   },
   skipGraphQlTargetCheck: true,
 });
