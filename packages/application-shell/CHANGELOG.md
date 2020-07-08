@@ -1,5 +1,11 @@
 # @commercetools-frontend/application-shell
 
+## 16.14.1
+
+### Patch Changes
+
+- [`e154dcc`](https://github.com/commercetools/merchant-center-application-kit/commit/e154dcc18ebeb43a63b9dbb5ce54daca25f9f7d1) [#1624](https://github.com/commercetools/merchant-center-application-kit/pull/1624) Thanks [@emmenko](https://github.com/emmenko)! - Fixes an issue when using the `forward-to` feature with the Apollo Client, where the additional headers pre-configured in `createApolloContextForProxyForwardTo` have been ignored by the Apollo Link.
+
 ## 16.14.0
 
 ### Minor Changes

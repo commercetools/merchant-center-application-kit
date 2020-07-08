@@ -1,6 +1,6 @@
 {
   "name": "merchant-center-application-template-starter",
-  "version": "16.9.8",
+  "version": "16.9.9",
   "description": "A starter example for the bare minimum setup to develop a Merchant Center Application",
   "private": true,
   "scripts": {
@@ -15,7 +15,7 @@
   "dependencies": {
     "@commercetools-frontend/actions-global": "16.14.0",
     "@commercetools-frontend/application-components": "16.14.0",
-    "@commercetools-frontend/application-shell": "16.14.0",
+    "@commercetools-frontend/application-shell": "16.14.1",
     "@commercetools-frontend/assets": "16.9.1",
     "@commercetools-frontend/i18n": "16.14.0",
     "@commercetools-frontend/mc-http-server": "16.14.0",
