@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "JSON schema for Custom Application configuration files",
+  "type": "object",
+  "definitions": {
+    "menuLink": {
+      "type": "object",
+      "properties": {
+        "uriPath": {
+          "description": "The URI path of the link",
+          "type": "string"
+        },
+        "key": {
+          "description": "An identifier key for the link, usually a slugified version of the URI path",
+          "type": "string"
+        },
+        "permissions": {
+          "description": "A list of permissions that should be applied to the link",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "labelAllLocales": {
+          "description": "Translations for the link",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "locale": {
+                "description": "The locale for the translation, for example `en`",
+                "type": "string"
+              },
+              "value": {
+                "description": "The translation value",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "featureToggle": {
+          "description": "The name of a feature toggle (internal use only)",
+          "type": "string",
+          "default": null
+        }
+      },
+      "required": [
+        "uriPath",
+        "key",
+        "labelAllLocales"
+      ]
+    },
+    "cspDirective": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "properties": {
+    "id": {
+      "description": "The ID of the Custom Application (when you register the application in the Merchant Center)",
+      "type": "string"
+    },
+    "name": {
+      "description": "The name of the Custom Application",
+      "type": "string"
+    },
+    "url": {
+      "description": "The URL where the Custom Application is hosted",
+      "type": "string"
+    },
+    "entryPointUriPath": {
+      "description": "The unique route path of the Custom Application. This is the identifier that the Merchant Center Proxy uses to match the HTTP request and forward the request to the Custom Application. This value also needs to be used in the application client side routes.",
+      "type": "string"
+    },
+    "navbarMenu": {
+      "description": "Configuration for the menu links for local development. On production the links are configured via the UI when registering the application.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/menuLink"
+        },
+        {
+          "properties": {
+            "icon": {
+              "description": "The identifier of one of the supported icons",
+              "type": "string",
+              "enum": [
+                "HeartIcon",
+                "PaperclipIcon",
+                "PluginIcon",
+                "RocketIcon",
+                "StarIcon",
+                "ConnectedSquareIcon",
+                "WorldIcon"
+              ]
+            },
+            "submenu": {
+              "description": "A list of sub links",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/menuLink"
+              },
+              "default": []
+            }
+          },
+          "required": [
+            "icon"
+          ]
+        }
+      ]
+    },
+    "environment": {
+      "description": "Environment values to configure the application",
+      "type": "object",
+      "properties": {
+        "servedByProxy": {
+          "description": "A flag to indicate if the application is running behind the Merchant Center proxy router or not. For production this value must be set to true, for local development it should be set to false.",
+          "type": "boolean"
+        },
+        "cloudIdentifier": {
+          "description": "The cloud identifier where the Custom Application is running. This value is used to derive the Merchant Center API URL.",
+          "type": "string",
+          "enum": [
+            "gcp-au",
+            "gcp-eu",
+            "gcp-us",
+            "aws-fra",
+            "aws-ohio"
+          ]
+        },
+        "mcApiUrl": {
+          "description": "The URL of the Merchant Center API. We usually recommend to use the `cloudIdentifier` option to avoid possible typos.",
+          "type": "string"
+        },
+        "cdnUrl": {
+          "description": "The URL where the Custom Application static assets are hosted. If the static assets are hosted alongside the Custom Application, you can omit this option and the Custom Application URL will be used instead.",
+          "type": "string"
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "servedByProxy",
+            "cloudIdentifier"
+          ]
+        },
+        {
+          "required": [
+            "servedByProxy",
+            "mcApiUrl"
+          ]
+        }
+      ]
+    },
+    "additionalEnvironment": {
+      "description": "Additional environment values that are injected in the application context",
+      "type": "object"
+    },
+    "headers": {
+      "description": "Configuration for HTTP headers",
+      "type": "object",
+      "properties": {
+        "csp": {
+          "description": "Configuration for the HTTP Content-Security-Policy header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)",
+          "type": "object",
+          "properties": {
+            "connect-src": {
+              "$ref": "#/definitions/cspDirective"
+            },
+            "font-src": {
+              "$ref": "#/definitions/cspDirective"
+            },
+            "img-src": {
+              "$ref": "#/definitions/cspDirective"
+            },
+            "script-src": {
+              "$ref": "#/definitions/cspDirective"
+            },
+            "style-src": {
+              "$ref": "#/definitions/cspDirective"
+            }
+          },
+          "required": [
+            "connect-src"
+          ]
+        },
+        "featurePolicies": {
+          "description": "Configuration for the HTTP Feature-Policy header (https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy/Using_Feature_Policy)",
+          "type": "object"
+        }
+      },
+      "required": [
+        "csp"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "url",
+    "entryPointUriPath",
+    "environment",
+    "headers"
+  ]
+}

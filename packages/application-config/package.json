@@ -1,0 +1,74 @@
+{
+  "name": "@commercetools-frontend/application-config",
+  "version": "1.0.0",
+  "description": "Configuration utilities for building Custom Applications",
+  "bugs": "https://github.com/commercetools/merchant-center-application-kit/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/commercetools/merchant-center-application-kit.git",
+    "directory": "packages/application-config"
+  },
+  "homepage": "https://docs.commercetools.com/custom-applications",
+  "keywords": [
+    "javascript",
+    "frontend",
+    "react",
+    "toolkit",
+    "config"
+  ],
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "index.js",
+  "module": "index.js",
+  "files": [
+    "build",
+    "schema.json",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "prebuild": "rimraf build/**",
+    "build": "babel src --out-dir build"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.10.4",
+    "@babel/runtime-corejs3": "7.10.4",
+    "core-js": "3.6.5"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "7.10.4",
+    "@babel/preset-env": "7.10.4",
+    "@hyperjump/json-schema": "0.11.0"
+  },
+  "engines": {
+    "node": ">=10",
+    "npm": ">=5"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "10"
+          },
+          "modules": "commonjs",
+          "useBuiltIns": "usage",
+          "corejs": 3
+        }
+      ]
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "corejs": 3
+        }
+      ]
+    ]
+  }
+}

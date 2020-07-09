@@ -60,7 +60,16 @@
       "mdx",
       "yaml"
     ],
-    "spellright.configurationScope": "user"
+    "spellright.configurationScope": "user",
+    "json.schemas": [
+      {
+        "fileMatch": [
+          "/.applicationconfig.json",
+          "/applicationconfig.json"
+        ],
+        "url": "./packages/application-config/schema.json"
+      }
+    ]
   },
   "extensions": {
     "recommendations": [

@@ -1,0 +1,16 @@
+{
+  "name": "test",
+  "url": "https://foo.com",
+  "entryPointUriPath": "example",
+  "environment": {
+    "servedByProxy": false,
+    "cloudIdentifier": "gcp-eu"
+  },
+  "headers": {
+    "csp": {
+	  "connect-src": [
+        "mc-api.commercetools.com"
+      ]
+    }
+  }
+}
