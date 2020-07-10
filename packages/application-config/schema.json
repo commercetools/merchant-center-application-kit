@@ -1,9 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://unpkg.com/@commercetools-frontend/application-config/schema.json",
   "title": "JSON schema for Custom Application configuration files",
   "type": "object",
   "definitions": {
     "menuLink": {
+      "$id": "#menuLink",
       "type": "object",
       "properties": {
         "uriPath": {
@@ -30,14 +32,17 @@
             "properties": {
               "locale": {
                 "description": "The locale for the translation, for example `en`",
-                "type": "string"
+                "type": "string",
+                "minLength": 2
               },
               "value": {
                 "description": "The translation value",
                 "type": "string"
               }
             }
-          }
+          },
+          "minItems": 1,
+          "uniqueItems": true
         },
         "featureToggle": {
           "description": "The name of a feature toggle (internal use only)",
@@ -52,6 +57,7 @@
       ]
     },
     "cspDirective": {
+      "$id": "#cspDirective",
       "type": "array",
       "items": {
         "type": "string"
@@ -71,7 +77,9 @@
     },
     "url": {
       "description": "The URL where the Custom Application is hosted",
-      "type": "string"
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https?://"
     },
     "entryPointUriPath": {
       "description": "The unique route path of the Custom Application. This is the identifier that the Merchant Center Proxy uses to match the HTTP request and forward the request to the Custom Application. This value also needs to be used in the application client side routes.",
@@ -82,7 +90,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "#/definitions/menuLink"
+          "$ref": "#menuLink"
         },
         {
           "properties": {
@@ -103,7 +111,7 @@
               "description": "A list of sub links",
               "type": "array",
               "items": {
-                "$ref": "#/definitions/menuLink"
+                "$ref": "#menuLink"
               },
               "default": []
             }
@@ -170,19 +178,19 @@
           "type": "object",
           "properties": {
             "connect-src": {
-              "$ref": "#/definitions/cspDirective"
+              "$ref": "#cspDirective"
             },
             "font-src": {
-              "$ref": "#/definitions/cspDirective"
+              "$ref": "#cspDirective"
             },
             "img-src": {
-              "$ref": "#/definitions/cspDirective"
+              "$ref": "#cspDirective"
             },
             "script-src": {
-              "$ref": "#/definitions/cspDirective"
+              "$ref": "#cspDirective"
             },
             "style-src": {
-              "$ref": "#/definitions/cspDirective"
+              "$ref": "#cspDirective"
             }
           },
           "required": [
