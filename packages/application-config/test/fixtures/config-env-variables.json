@@ -3,23 +3,6 @@
   "entryPointUriPath": "avengers",
   "cloudIdentifier": "${env:CLOUD_IDENTIFIER}",
   "env": {
-    "development": {
-      "url": "http://localhost:3001",
-      "navbarMenu": {
-        "uriPath": "avengers",
-        "labelAllLocales": [
-          {
-            "locale": "en",
-            "value": "Avengers"
-          },
-          {
-            "locale": "de",
-            "value": "Avengers"
-          }
-        ],
-        "icon": "WorldIcon"
-      }
-    },
     "production": {
       "url": "${env:APP_URL}"
     }

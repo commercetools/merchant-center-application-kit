@@ -3,23 +3,6 @@
   "entryPointUriPath": "avengers",
   "cloudIdentifier": "gcp-eu",
   "env": {
-    "development": {
-      "url": "http://localhost:3001",
-      "navbarMenu": {
-        "uriPath": "avengers",
-        "labelAllLocales": [
-          {
-            "locale": "en",
-            "value": "Avengers"
-          },
-          {
-            "locale": "de",
-            "value": "Avengers"
-          }
-        ],
-        "icon": "WorldIcon"
-      }
-    },
     "production": {
       "url": "https://avengers.app"
     }

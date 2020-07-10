@@ -3,70 +3,13 @@
   "cloudIdentifier": "gcp-eu",
   "entryPointUriPath": "avengers",
   "env": {
-    "development": {
-      "url": "http://localhost:3001",
-      "additionalEnvironment": {
-        "numberOfMovies": 4
-      },
-      "navbarMenu": {
-        "uriPath": "avengers",
-        "labelAllLocales": [
-          {
-            "locale": "en",
-            "value": "Avengers"
-          },
-          {
-            "locale": "de",
-            "value": "Avengers"
-          }
-        ],
-        "icon": "WorldIcon",
-        "permissions": [
-          "ManageProjectSettings"
-        ],
-        "submenu": [
-          {
-            "uriPath": "avengers/new",
-            "labelAllLocales": [
-              {
-                "locale": "en",
-                "value": "New Avenger"
-              },
-              {
-                "locale": "de",
-                "value": "Neu Avenger"
-              }
-            ],
-            "permissions": [
-              "ManageProjectSettings"
-            ]
-          },
-          {
-            "uriPath": "avengers/members",
-            "labelAllLocales": [
-              {
-                "locale": "en",
-                "value": "Avenger members"
-              },
-              {
-                "locale": "de",
-                "value": "Avenger Mitglieder"
-              }
-            ],
-            "permissions": [
-              "ManageProjectSettings"
-            ]
-          }
-        ]
-      }
-    },
     "production": {
       "url": "https://avengers.app",
-      "cdnUrl": "https://cdn.avengers.app",
-      "additionalEnvironment": {
-        "numberOfMovies": 4
-      }
+      "cdnUrl": "https://cdn.avengers.app"
     }
+  },
+  "additionalEnv": {
+    "numberOfMovies": 4
   },
   "headers": {
     "csp": {

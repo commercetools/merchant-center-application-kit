@@ -26,6 +26,8 @@ The configuration file follows a JSON schema that is also shipped with the packa
 
 By default the configuration file uses the `NODE_ENV` variable to determine which configuration to use. This can be overridden by using the custom environment variable `MC_APP_ENV`.
 
+In the [test fixtures](./test/fixtures) folder you can see some examples of configuration.
+
 ### JSON Schema
 
 To enable JSON schema validation for the Custom Application configuration, you can add reference the URL to the `schema.json` file provided in this package.
