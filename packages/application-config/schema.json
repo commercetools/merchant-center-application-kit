@@ -5,16 +5,12 @@
   "type": "object",
   "definitions": {
     "menuLink": {
-      "$id": "#menuLink",
       "type": "object",
       "properties": {
         "uriPath": {
           "description": "The URI path of the link",
-          "type": "string"
-        },
-        "key": {
-          "description": "An identifier key for the link, usually a slugified version of the URI path",
-          "type": "string"
+          "type": "string",
+          "pattern": "^[a-z0-9-/]+$"
         },
         "permissions": {
           "description": "A list of permissions that should be applied to the link",
@@ -57,7 +53,6 @@
       ]
     },
     "cspDirective": {
-      "$id": "#cspDirective",
       "type": "array",
       "items": {
         "type": "string"
@@ -82,7 +77,7 @@
       "pattern": "^https?://"
     },
     "entryPointUriPath": {
-      "description": "The unique route path of the Custom Application. This is the identifier that the Merchant Center Proxy uses to match the HTTP request and forward the request to the Custom Application. This value also needs to be used in the application client side routes.",
+      "description": "The unique route path of the Custom Application. This is the identifier that the Merchant Center Proxy uses to match the HTTP request and forward the request to the Custom Application. This value also needs to be used in the application client side routes. The value must be the same as the `navbarMenu.uriPath` value.",
       "type": "string"
     },
     "navbarMenu": {
@@ -90,7 +85,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "#menuLink"
+          "$ref": "#/definitions/menuLink"
         },
         {
           "properties": {
@@ -111,7 +106,7 @@
               "description": "A list of sub links",
               "type": "array",
               "items": {
-                "$ref": "#menuLink"
+                "$ref": "#/definitions/menuLink"
               },
               "default": []
             }
@@ -143,11 +138,15 @@
         },
         "mcApiUrl": {
           "description": "The URL of the Merchant Center API. We usually recommend to use the `cloudIdentifier` option to avoid possible typos.",
-          "type": "string"
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://"
         },
         "cdnUrl": {
           "description": "The URL where the Custom Application static assets are hosted. If the static assets are hosted alongside the Custom Application, you can omit this option and the Custom Application URL will be used instead.",
-          "type": "string"
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://"
         }
       },
       "oneOf": [
@@ -178,19 +177,19 @@
           "type": "object",
           "properties": {
             "connect-src": {
-              "$ref": "#cspDirective"
+              "$ref": "#/definitions/cspDirective"
             },
             "font-src": {
-              "$ref": "#cspDirective"
+              "$ref": "#/definitions/cspDirective"
             },
             "img-src": {
-              "$ref": "#cspDirective"
+              "$ref": "#/definitions/cspDirective"
             },
             "script-src": {
-              "$ref": "#cspDirective"
+              "$ref": "#/definitions/cspDirective"
             },
             "style-src": {
-              "$ref": "#cspDirective"
+              "$ref": "#/definitions/cspDirective"
             }
           },
           "required": [
