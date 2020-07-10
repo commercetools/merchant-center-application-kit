@@ -1,30 +1,15 @@
-const JsonSchema = require('@hyperjump/json-schema');
-const schemaJson = require('../schema.json');
+const { validate } = require('../src');
 const fixtureConfigSimple = require('./fixtures/config-simple.json');
 const fixtureConfigFull = require('./fixtures/config-full.json');
-const fixtureConfigForDevelopment = require('./fixtures/config-for-development.json');
-
-const schemaId =
-  'https://unpkg.com/@commercetools-frontend/application-config/schema.json';
-
-JsonSchema.add(schemaJson, schemaId);
+const fixtureConfigEnvVariables = require('./fixtures/config-env-variables.json');
 
 describe.each`
-  name                 | config
-  ${'Simple'}          | ${fixtureConfigSimple}
-  ${'Full'}            | ${fixtureConfigFull}
-  ${'For development'} | ${fixtureConfigForDevelopment}
+  name               | config
+  ${'Simple'}        | ${fixtureConfigSimple}
+  ${'Full'}          | ${fixtureConfigFull}
+  ${'Env variables'} | ${fixtureConfigEnvVariables}
 `('validating config "$name"', ({ config }) => {
   it('should detect the config as valid', async () => {
-    const schema = await JsonSchema.get(schemaId);
-    const output = await JsonSchema.validate(
-      schema,
-      config,
-      JsonSchema.DETAILED
-    );
-    if (!output.valid) {
-      console.error('Invalid JSON:\n', JSON.stringify(output, null, 2));
-    }
-    expect(output.valid).toBe(true);
+    await validate(config);
   });
 });

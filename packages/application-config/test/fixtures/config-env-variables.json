@@ -1,7 +1,7 @@
 {
   "name": "avengers-app",
   "entryPointUriPath": "avengers",
-  "cloudIdentifier": "gcp-eu",
+  "cloudIdentifier": "${env:CLOUD_IDENTIFIER}",
   "env": {
     "development": {
       "url": "http://localhost:3001",
@@ -21,7 +21,7 @@
       }
     },
     "production": {
-      "url": "https://avengers.app"
+      "url": "${env:APP_URL}"
     }
   }
 }

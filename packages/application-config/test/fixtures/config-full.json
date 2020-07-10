@@ -1,65 +1,72 @@
 {
   "name": "avengers-app",
-  "url": "https://avengers.app",
+  "cloudIdentifier": "gcp-eu",
   "entryPointUriPath": "avengers",
-  "environment": {
-    "servedByProxy": false,
-    "cloudIdentifier": "gcp-eu",
-    "cdnUrl": "https://cdn.avengers.app"
-  },
-  "additionalEnvironment": {
-    "numberOfMovies": 4
-  },
-  "navbarMenu": {
-    "uriPath": "avengers",
-    "labelAllLocales": [
-      {
-        "locale": "en",
-        "value": "Avengers"
+  "env": {
+    "development": {
+      "url": "http://localhost:3001",
+      "additionalEnvironment": {
+        "numberOfMovies": 4
       },
-      {
-        "locale": "de",
-        "value": "Avengers"
-      }
-    ],
-    "icon": "WorldIcon",
-    "permissions": [
-      "ManageProjectSettings"
-    ],
-    "submenu": [
-      {
-        "uriPath": "avengers/new",
+      "navbarMenu": {
+        "uriPath": "avengers",
         "labelAllLocales": [
           {
             "locale": "en",
-            "value": "New Avenger"
+            "value": "Avengers"
           },
           {
             "locale": "de",
-            "value": "Neu Avenger"
+            "value": "Avengers"
           }
         ],
+        "icon": "WorldIcon",
         "permissions": [
           "ManageProjectSettings"
-        ]
-      },
-      {
-        "uriPath": "avengers/members",
-        "labelAllLocales": [
+        ],
+        "submenu": [
           {
-            "locale": "en",
-            "value": "Avenger members"
+            "uriPath": "avengers/new",
+            "labelAllLocales": [
+              {
+                "locale": "en",
+                "value": "New Avenger"
+              },
+              {
+                "locale": "de",
+                "value": "Neu Avenger"
+              }
+            ],
+            "permissions": [
+              "ManageProjectSettings"
+            ]
           },
           {
-            "locale": "de",
-            "value": "Avenger Mitglieder"
+            "uriPath": "avengers/members",
+            "labelAllLocales": [
+              {
+                "locale": "en",
+                "value": "Avenger members"
+              },
+              {
+                "locale": "de",
+                "value": "Avenger Mitglieder"
+              }
+            ],
+            "permissions": [
+              "ManageProjectSettings"
+            ]
           }
-        ],
-        "permissions": [
-          "ManageProjectSettings"
         ]
       }
-    ]
+    },
+    "production": {
+      "url": "https://avengers.app",
+      "cdnUrl": "https://cdn.avengers.app",
+      "additionalEnvironment": {
+        "numberOfMovies": 4
+      }
+    }
   },
   "headers": {
     "csp": {

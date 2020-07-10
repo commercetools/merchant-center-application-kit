@@ -4,13 +4,16 @@
   "title": "JSON schema for Custom Application configuration files",
   "type": "object",
   "definitions": {
+    "environmentVariable": {
+      "type": "string",
+      "pattern": "(\\$\\{env:\\w+\\})+"
+    },
     "menuLink": {
       "type": "object",
       "properties": {
         "uriPath": {
           "description": "The URI path of the link",
-          "type": "string",
-          "pattern": "^[a-z0-9-/]+$"
+          "type": "string"
         },
         "permissions": {
           "description": "A list of permissions that should be applied to the link",
@@ -69,64 +72,18 @@
       "description": "The name of the Custom Application",
       "type": "string"
     },
-    "url": {
-      "description": "The URL where the Custom Application is hosted",
-      "type": "string",
-      "format": "uri",
-      "pattern": "^https?://"
-    },
     "entryPointUriPath": {
       "description": "The unique route path of the Custom Application. This is the identifier that the Merchant Center Proxy uses to match the HTTP request and forward the request to the Custom Application. This value also needs to be used in the application client side routes. The value must be the same as the `navbarMenu.uriPath` value.",
       "type": "string"
     },
-    "navbarMenu": {
-      "description": "Configuration for the menu links for local development. On production the links are configured via the UI when registering the application.",
-      "type": "object",
-      "allOf": [
+    "cloudIdentifier": {
+      "description": "The cloud identifier where the Custom Application is running. This value is used to derive the Merchant Center API URL. Alternatively you can use the `mcApiUrl` property.",
+      "type": "string",
+      "oneOf": [
         {
-          "$ref": "#/definitions/menuLink"
+          "$ref": "#/definitions/environmentVariable"
         },
         {
-          "properties": {
-            "icon": {
-              "description": "The identifier of one of the supported icons",
-              "type": "string",
-              "enum": [
-                "HeartIcon",
-                "PaperclipIcon",
-                "PluginIcon",
-                "RocketIcon",
-                "StarIcon",
-                "ConnectedSquareIcon",
-                "WorldIcon"
-              ]
-            },
-            "submenu": {
-              "description": "A list of sub links",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/menuLink"
-              },
-              "default": []
-            }
-          },
-          "required": [
-            "icon"
-          ]
-        }
-      ]
-    },
-    "environment": {
-      "description": "Environment values to configure the application",
-      "type": "object",
-      "properties": {
-        "servedByProxy": {
-          "description": "A flag to indicate if the application is running behind the Merchant Center proxy router or not. For production this value must be set to true, for local development it should be set to false.",
-          "type": "boolean"
-        },
-        "cloudIdentifier": {
-          "description": "The cloud identifier where the Custom Application is running. This value is used to derive the Merchant Center API URL.",
-          "type": "string",
           "enum": [
             "gcp-au",
             "gcp-eu",
@@ -134,38 +91,98 @@
             "aws-fra",
             "aws-ohio"
           ]
-        },
-        "mcApiUrl": {
-          "description": "The URL of the Merchant Center API. We usually recommend to use the `cloudIdentifier` option to avoid possible typos.",
-          "type": "string",
-          "format": "uri",
-          "pattern": "^https?://"
-        },
-        "cdnUrl": {
-          "description": "The URL where the Custom Application static assets are hosted. If the static assets are hosted alongside the Custom Application, you can omit this option and the Custom Application URL will be used instead.",
-          "type": "string",
-          "format": "uri",
-          "pattern": "^https?://"
-        }
-      },
-      "oneOf": [
-        {
-          "required": [
-            "servedByProxy",
-            "cloudIdentifier"
-          ]
-        },
-        {
-          "required": [
-            "servedByProxy",
-            "mcApiUrl"
-          ]
         }
       ]
     },
-    "additionalEnvironment": {
-      "description": "Additional environment values that are injected in the application context",
-      "type": "object"
+    "mcApiUrl": {
+      "description": "The URL of the Merchant Center API. We usually recommend to use the `cloudIdentifier` option to avoid possible typos.",
+      "type": "string"
+    },
+    "env": {
+      "description": "This is an object of keys that represent different environments (development and production). The environment used depends on the environment variable MC_APP_ENV. If MC_APP_ENV isn't set then NODE_ENV will be used, if it's not set then it defaults to \"development\"",
+      "type": "object",
+      "properties": {
+        "development": {
+          "description": "Configuration for development only",
+          "type": "object",
+          "properties": {
+            "url": {
+              "description": "The URL where the Custom Application is hosted",
+              "type": "string"
+            },
+            "additionalEnvironment": {
+              "description": "Additional environment values that are injected in the application context",
+              "type": "object"
+            },
+            "navbarMenu": {
+              "description": "Configuration for the menu links for local development. On production the links are configured via the UI when registering the application.",
+              "type": "object",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/menuLink"
+                },
+                {
+                  "properties": {
+                    "icon": {
+                      "description": "The identifier of one of the supported icons",
+                      "type": "string",
+                      "enum": [
+                        "HeartIcon",
+                        "PaperclipIcon",
+                        "PluginIcon",
+                        "RocketIcon",
+                        "StarIcon",
+                        "ConnectedSquareIcon",
+                        "WorldIcon"
+                      ]
+                    },
+                    "submenu": {
+                      "description": "A list of sub links",
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/menuLink"
+                      },
+                      "default": []
+                    }
+                  },
+                  "required": [
+                    "icon"
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "url",
+            "navbarMenu"
+          ]
+        },
+        "production": {
+          "description": "Configuration for development only",
+          "type": "object",
+          "properties": {
+            "url": {
+              "description": "The URL where the Custom Application is hosted",
+              "type": "string"
+            },
+            "cdnUrl": {
+              "description": "The URL where the Custom Application static assets are hosted, like an external CDN. If the static assets are hosted alongside the Custom Application, you can omit this option and the Custom Application URL will be used instead.",
+              "type": "string"
+            },
+            "additionalEnvironment": {
+              "description": "Additional environment values that are injected in the application context",
+              "type": "object"
+            }
+          },
+          "required": [
+            "url"
+          ]
+        }
+      },
+      "required": [
+        "development",
+        "production"
+      ]
     },
     "headers": {
       "description": "Configuration for HTTP headers",
@@ -205,10 +222,20 @@
       ]
     }
   },
+  "oneOf": [
+    {
+      "required": [
+        "cloudIdentifier"
+      ]
+    },
+    {
+      "required": [
+        "mcApiUrl"
+      ]
+    }
+  ],
   "required": [
     "name",
-    "url",
-    "entryPointUriPath",
-    "environment"
+    "entryPointUriPath"
   ]
 }

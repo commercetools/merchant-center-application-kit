@@ -1,1 +1,2 @@
-// TODO: expose methods to work with the config file.
+export { default as loadConfig } from './load-config';
+export { default as validate } from './validate';
