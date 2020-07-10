@@ -1,16 +1,9 @@
 {
-  "name": "test",
-  "url": "https://foo.com",
-  "entryPointUriPath": "example",
+  "name": "avengers-app",
+  "url": "https://avengers.app",
+  "entryPointUriPath": "avengers",
   "environment": {
     "servedByProxy": false,
     "cloudIdentifier": "gcp-eu"
-  },
-  "headers": {
-    "csp": {
-	  "connect-src": [
-        "mc-api.commercetools.com"
-      ]
-    }
   }
 }

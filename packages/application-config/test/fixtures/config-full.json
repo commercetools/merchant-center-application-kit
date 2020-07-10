@@ -1,0 +1,80 @@
+{
+  "name": "avengers-app",
+  "url": "https://avengers.app",
+  "entryPointUriPath": "avengers",
+  "environment": {
+    "servedByProxy": false,
+    "cloudIdentifier": "gcp-eu",
+    "cdnUrl": "https://cdn.avengers.app"
+  },
+  "additionalEnvironment": {
+    "numberOfMovies": 4
+  },
+  "navbarMenu": {
+    "uriPath": "avengers",
+    "labelAllLocales": [
+      {
+        "locale": "en",
+        "value": "Avengers"
+      },
+      {
+        "locale": "de",
+        "value": "Avengers"
+      }
+    ],
+    "icon": "WorldIcon",
+    "permissions": [
+      "ManageProjectSettings"
+    ],
+    "submenu": [
+      {
+        "uriPath": "avengers/new",
+        "labelAllLocales": [
+          {
+            "locale": "en",
+            "value": "New Avenger"
+          },
+          {
+            "locale": "de",
+            "value": "Neu Avenger"
+          }
+        ],
+        "permissions": [
+          "ManageProjectSettings"
+        ]
+      },
+      {
+        "uriPath": "avengers/members",
+        "labelAllLocales": [
+          {
+            "locale": "en",
+            "value": "Avenger members"
+          },
+          {
+            "locale": "de",
+            "value": "Avenger Mitglieder"
+          }
+        ],
+        "permissions": [
+          "ManageProjectSettings"
+        ]
+      }
+    ]
+  },
+  "headers": {
+    "csp": {
+      "script-src": [
+        "cdn.avengers.app"
+      ],
+      "connect-src": [
+        "cdn.avengers.app"
+      ],
+      "style-src": [
+        "cdn.avengers.app"
+      ]
+    },
+    "featurePolicies": {
+      "microphone": "none"
+    }
+  }
+}

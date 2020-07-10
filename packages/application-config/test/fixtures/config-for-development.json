@@ -1,0 +1,23 @@
+{
+  "name": "avengers-app",
+  "url": "http://localhost:3001",
+  "entryPointUriPath": "avengers",
+  "environment": {
+    "servedByProxy": false,
+    "cloudIdentifier": "gcp-eu"
+  },
+  "navbarMenu": {
+    "uriPath": "avengers",
+    "labelAllLocales": [
+      {
+        "locale": "en",
+        "value": "Avengers"
+      },
+      {
+        "locale": "de",
+        "value": "Avengers"
+      }
+    ],
+    "icon": "WorldIcon"
+  }
+}
