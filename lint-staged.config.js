@@ -26,4 +26,7 @@ module.exports = {
     // For that reason, we move the `--onlyChanged` flag next to it.
     'yarn lint:css --reporters=jest-silent-reporter --onlyChanged',
   ],
+  'packages/application-config/schema.json': [
+    'bash -c "yarn --cwd packages/application-config build:schema"',
+  ],
 };

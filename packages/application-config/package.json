@@ -21,8 +21,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "index.js",
-  "module": "index.js",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
+  "typings": "./build/typings/src/index.d.ts",
+  "types": "./build/typings/src/index.d.ts",
   "files": [
     "build",
     "schema.json",
@@ -31,20 +33,26 @@
     "README.md"
   ],
   "scripts": {
+    "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf build/**",
-    "build": "babel src --out-dir build"
+    "build": "yarn build:schema && build:src && yarn build:typings",
+    "build:schema": "json2ts schema.json src/schema.ts --style.singleQuote",
+    "build:src": "babel src --out-dir build --extensions .ts --ignore src/types.ts,src/schema.ts",
+    "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir build/typings"
   },
   "dependencies": {
     "@babel/runtime": "7.10.4",
     "@babel/runtime-corejs3": "7.10.4",
-    "@hyperjump/json-schema": "0.11.0",
+    "ajv": "6.12.3",
     "core-js": "3.6.5",
     "cosmiconfig": "6.0.0",
-    "lodash.uniq": "4.5.0"
+    "lodash": "4.17.19"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "7.10.4",
-    "@babel/preset-env": "7.10.4"
+    "@babel/preset-env": "7.10.4",
+    "@babel/preset-typescript": "7.10.4",
+    "json-schema-to-typescript": "9.1.1"
   },
   "engines": {
     "node": ">=10",
@@ -62,7 +70,8 @@
           "useBuiltIns": "usage",
           "corejs": 3
         }
-      ]
+      ],
+      "@babel/preset-typescript"
     ],
     "plugins": [
       [

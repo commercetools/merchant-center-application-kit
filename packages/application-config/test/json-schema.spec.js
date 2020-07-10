@@ -1,4 +1,4 @@
-const { validate } = require('../src');
+const { validateConfig } = require('../src');
 const fixtureConfigSimple = require('./fixtures/config-simple.json');
 const fixtureConfigFull = require('./fixtures/config-full.json');
 const fixtureConfigEnvVariables = require('./fixtures/config-env-variables.json');
@@ -10,6 +10,6 @@ describe.each`
   ${'Env variables'} | ${fixtureConfigEnvVariables}
 `('validating config "$name"', ({ config }) => {
   it('should detect the config as valid', async () => {
-    await validate(config);
+    await validateConfig(config);
   });
 });

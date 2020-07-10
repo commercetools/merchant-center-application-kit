@@ -1,3 +1,5 @@
+import type { ApplicationConfig } from './types';
+
 import { cosmiconfigSync, defaultLoaders } from 'cosmiconfig';
 
 const moduleName = 'applicationconfig';
@@ -13,8 +15,8 @@ const explorer = cosmiconfigSync(moduleName, {
   },
 });
 
-let cachedConfig;
-const loadConfig = () => {
+let cachedConfig: ApplicationConfig | undefined;
+const loadConfig = (): ApplicationConfig | undefined => {
   if (cachedConfig) {
     return cachedConfig;
   }
