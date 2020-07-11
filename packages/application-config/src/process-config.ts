@@ -11,13 +11,6 @@ import validateConfig from './validate-config';
 import { mapCloudIdentifierToApiUrl, getUniqueValues } from './utils';
 import substituteEnvVariablePlaceholders from './substitute-env-variable-placeholders';
 
-// TODO: validate that the env key is either prod or dev
-const appEnvKey =
-  process.env.MC_APP_ENV ?? process.env.NODE_ENV ?? 'development';
-const isProd = process.env.MC_APP_ENV
-  ? process.env.MC_APP_ENV === 'production'
-  : process.env.NODE_ENV === 'production';
-
 const developmentConfig: ApplicationConfig['env']['production'] = {
   url: 'http://localhost:3001',
 };
@@ -26,10 +19,17 @@ const developmentConfig: ApplicationConfig['env']['production'] = {
 // again will result in returning the cached value.
 let cachedConfig: ApplicationConfigResult;
 
-const buildConfig = async ({
+const processConfig = async ({
   disableCache = false,
 }: { disableCache?: boolean } = {}): Promise<ApplicationConfigResult> => {
   if (cachedConfig && !disableCache) return cachedConfig;
+
+  // TODO: validate that the env key is either prod or dev
+  const appEnvKey =
+    process.env.MC_APP_ENV ?? process.env.NODE_ENV ?? 'development';
+  const isProd = process.env.MC_APP_ENV
+    ? process.env.MC_APP_ENV === 'production'
+    : process.env.NODE_ENV === 'production';
 
   // TODO: handle legacy configs for backwards compatibility
 
@@ -61,7 +61,7 @@ const buildConfig = async ({
       applicationName: appConfig.name,
       cdnUrl: cdnUrl.origin,
       env: appEnvKey,
-      frontendHost: appUrl.hostname,
+      frontendHost: appUrl.host,
       location: appConfig.cloudIdentifier,
       mcApiUrl: mcApiUrl.origin,
       revision: '', // TODO
@@ -90,4 +90,4 @@ const buildConfig = async ({
   return cachedConfig;
 };
 
-export default buildConfig;
+export default processConfig;
