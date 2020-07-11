@@ -44,7 +44,7 @@ const processConfig = async ({
 
   const appConfig = substituteEnvVariablePlaceholders<
     JSONSchemaForCustomApplicationConfigurationFiles
-  >(validatedRawAppConfig);
+  >(validatedRawAppConfig, { processEnv });
 
   const appEnvConfig = isProd ? appConfig.env.production : developmentConfig;
 

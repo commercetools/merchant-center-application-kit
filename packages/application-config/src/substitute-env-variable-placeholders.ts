@@ -21,10 +21,11 @@ const isEnvVariablePlaceholder = (valueOfPlaceholder: string) =>
 const substituteEnvVariablePlaceholder = (
   valueOfPlaceholder: string,
   matchedString: string,
-  valueOfEnvConfig: string
+  valueOfEnvConfig: string,
+  meta: { processEnv: NodeJS.ProcessEnv } = { processEnv: process.env }
 ) => {
   const [, requestedEnvVar] = valueOfPlaceholder.split(':');
-  const valueOfEnv = process.env[requestedEnvVar];
+  const valueOfEnv = meta.processEnv[requestedEnvVar];
 
   if (!valueOfEnv) {
     throw new Error(
@@ -44,7 +45,10 @@ const getValueOfPlaceholder = (valueWithPlaceholder: string) =>
     .replace(variableSyntax, (_match, varName) => varName.trim())
     .replace(/\s/g, '');
 
-const substituteEnvVariablePlaceholders = <T>(config: T): T =>
+const substituteEnvVariablePlaceholders = <T>(
+  config: T,
+  meta: { processEnv: NodeJS.ProcessEnv } = { processEnv: process.env }
+): T =>
   JSON.parse(JSON.stringify(config), (_key, value) => {
     // Only strings are allowed
     let substitutedValue = value as string;
@@ -57,7 +61,8 @@ const substituteEnvVariablePlaceholders = <T>(config: T): T =>
             substitutedValue = substituteEnvVariablePlaceholder(
               valueOfPlaceholder,
               matchedString,
-              substitutedValue
+              substitutedValue,
+              meta
             );
           }
         });

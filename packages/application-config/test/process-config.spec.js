@@ -6,16 +6,21 @@ const fixtureConfigEnvVariables = require('./fixtures/config-env-variables.json'
 
 jest.mock('../src/load-config');
 
+const createTestOptions = (options) => ({
+  disableCache: true,
+  processEnv: {
+    NODE_ENV: 'test',
+  },
+  ...options,
+});
+
 describe('processing a simple config', () => {
   beforeEach(() => {
     loadConfig.mockClear();
     loadConfig.mockReturnValue(fixtureConfigSimple);
-    process.env = {
-      NODE_ENV: 'test',
-    };
   });
   it('should process the config and prepare the application environment and headers', async () => {
-    const result = await processConfig({ disableCache: true });
+    const result = await processConfig(createTestOptions());
     expect(result).toEqual({
       env: {
         applicationId: undefined,
@@ -38,13 +43,14 @@ describe('processing a simple config', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    beforeEach(() => {
-      process.env = {
-        NODE_ENV: 'production',
-      };
-    });
     it('should process the config as if for production', async () => {
-      const result = await processConfig({ disableCache: true });
+      const result = await processConfig(
+        createTestOptions({
+          processEnv: {
+            NODE_ENV: 'production',
+          },
+        })
+      );
       expect(result).toEqual({
         env: {
           applicationId: undefined,
@@ -71,14 +77,15 @@ describe('processing a simple config', () => {
     });
   });
   describe('with MC_APP_ENV=development and NODE_ENV=production', () => {
-    beforeEach(() => {
-      process.env = {
-        NODE_ENV: 'production',
-        MC_APP_ENV: 'development',
-      };
-    });
     it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', async () => {
-      const result = await processConfig({ disableCache: true });
+      const result = await processConfig(
+        createTestOptions({
+          processEnv: {
+            NODE_ENV: 'production',
+            MC_APP_ENV: 'development',
+          },
+        })
+      );
       expect(result).toEqual({
         env: {
           applicationId: undefined,
@@ -107,12 +114,9 @@ describe('processing a full config', () => {
   beforeEach(() => {
     loadConfig.mockClear();
     loadConfig.mockReturnValue(fixtureConfigFull);
-    process.env = {
-      NODE_ENV: 'test',
-    };
   });
   it('should process the config and prepare the application environment and headers', async () => {
-    const result = await processConfig({ disableCache: true });
+    const result = await processConfig(createTestOptions());
     expect(result).toEqual({
       env: {
         applicationId: undefined,
@@ -142,13 +146,14 @@ describe('processing a full config', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    beforeEach(() => {
-      process.env = {
-        NODE_ENV: 'production',
-      };
-    });
     it('should process the config as if for production', async () => {
-      const result = await processConfig({ disableCache: true });
+      const result = await processConfig(
+        createTestOptions({
+          processEnv: {
+            NODE_ENV: 'production',
+          },
+        })
+      );
       expect(result).toEqual({
         env: {
           applicationId: undefined,
@@ -180,14 +185,15 @@ describe('processing a full config', () => {
     });
   });
   describe('with MC_APP_ENV=development and NODE_ENV=production', () => {
-    beforeEach(() => {
-      process.env = {
-        NODE_ENV: 'production',
-        MC_APP_ENV: 'development',
-      };
-    });
     it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', async () => {
-      const result = await processConfig({ disableCache: true });
+      const result = await processConfig(
+        createTestOptions({
+          processEnv: {
+            NODE_ENV: 'production',
+            MC_APP_ENV: 'development',
+          },
+        })
+      );
       expect(result).toEqual({
         env: {
           applicationId: undefined,
@@ -223,14 +229,17 @@ describe('processing a config with environment variable placeholders', () => {
   beforeEach(() => {
     loadConfig.mockClear();
     loadConfig.mockReturnValue(fixtureConfigEnvVariables);
-    process.env = {
-      APP_URL: 'https://avengers.app',
-      CLOUD_IDENTIFIER: 'gcp-eu',
-      NODE_ENV: 'test',
-    };
   });
   it('should process the config and prepare the application environment and headers', async () => {
-    const result = await processConfig({ disableCache: true });
+    const result = await processConfig(
+      createTestOptions({
+        processEnv: {
+          APP_URL: 'https://avengers.app',
+          CLOUD_IDENTIFIER: 'gcp-eu',
+          NODE_ENV: 'test',
+        },
+      })
+    );
     expect(result).toEqual({
       env: {
         applicationId: undefined,
@@ -253,15 +262,16 @@ describe('processing a config with environment variable placeholders', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    beforeEach(() => {
-      process.env = {
-        APP_URL: 'https://avengers.app',
-        CLOUD_IDENTIFIER: 'gcp-eu',
-        NODE_ENV: 'production',
-      };
-    });
     it('should process the config as if for production', async () => {
-      const result = await processConfig({ disableCache: true });
+      const result = await processConfig(
+        createTestOptions({
+          processEnv: {
+            APP_URL: 'https://avengers.app',
+            CLOUD_IDENTIFIER: 'gcp-eu',
+            NODE_ENV: 'production',
+          },
+        })
+      );
       expect(result).toEqual({
         env: {
           applicationId: undefined,
@@ -288,16 +298,17 @@ describe('processing a config with environment variable placeholders', () => {
     });
   });
   describe('with MC_APP_ENV=development and NODE_ENV=production', () => {
-    beforeEach(() => {
-      process.env = {
-        APP_URL: 'https://avengers.app',
-        CLOUD_IDENTIFIER: 'gcp-eu',
-        NODE_ENV: 'production',
-        MC_APP_ENV: 'development',
-      };
-    });
     it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', async () => {
-      const result = await processConfig({ disableCache: true });
+      const result = await processConfig(
+        createTestOptions({
+          processEnv: {
+            APP_URL: 'https://avengers.app',
+            CLOUD_IDENTIFIER: 'gcp-eu',
+            NODE_ENV: 'production',
+            MC_APP_ENV: 'development',
+          },
+        })
+      );
       expect(result).toEqual({
         env: {
           applicationId: undefined,
