@@ -3,15 +3,10 @@ import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema'
 
 import { CLOUD_IDENTIFIERS } from './constants';
 
+export type CloudIdentifier = typeof CLOUD_IDENTIFIERS[keyof typeof CLOUD_IDENTIFIERS];
+
 // Supported environment variables
 export type ApplicationConfigEnv = 'production' | 'development';
-
-export type Scalar = number | boolean | string;
-export type JSONConfig = {
-  [key: string]: Scalar | Scalar[] | JSONConfig[] | JSONConfig;
-};
-
-export type CloudIdentifier = typeof CLOUD_IDENTIFIERS[keyof typeof CLOUD_IDENTIFIERS];
 
 // The object result after processing the config file
 export type ApplicationConfig = {

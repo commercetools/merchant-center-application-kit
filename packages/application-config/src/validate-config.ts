@@ -6,7 +6,6 @@ import schemaJson from '../schema.json';
 
 const ajv = new Ajv({
   format: 'full',
-  jsonPointers: true,
   strictDefaults: true,
   strictKeywords: true,
   strictNumbers: true,

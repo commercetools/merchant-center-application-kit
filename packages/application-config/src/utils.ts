@@ -25,4 +25,9 @@ const getUniqueValues = (
   additionalValues: string[] = []
 ): string[] => uniq([...initialValues, ...additionalValues]);
 
-export { mapCloudIdentifierToApiUrl, getUniqueValues };
+const getIsProd = (env: NodeJS.ProcessEnv): boolean =>
+  env.MC_APP_ENV
+    ? env.MC_APP_ENV === 'production'
+    : env.NODE_ENV === 'production';
+
+export { mapCloudIdentifierToApiUrl, getUniqueValues, getIsProd };

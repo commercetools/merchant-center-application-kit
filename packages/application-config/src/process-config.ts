@@ -5,8 +5,17 @@ import type { ApplicationConfig, CloudIdentifier } from './types';
 // Most of the resulting values are inferred from the config.
 import loadConfig from './load-config';
 import validateConfig from './validate-config';
-import { mapCloudIdentifierToApiUrl, getUniqueValues } from './utils';
+import {
+  mapCloudIdentifierToApiUrl,
+  getUniqueValues,
+  getIsProd,
+} from './utils';
 import substituteEnvVariablePlaceholders from './substitute-env-variable-placeholders';
+
+type ProcessConfigOptions = {
+  disableCache?: boolean;
+  processEnv?: NodeJS.ProcessEnv;
+};
 
 const developmentConfig: JSONSchemaForCustomApplicationConfigurationFiles['env']['production'] = {
   url: 'http://localhost:3001',
@@ -17,16 +26,15 @@ const developmentConfig: JSONSchemaForCustomApplicationConfigurationFiles['env']
 let cachedConfig: ApplicationConfig;
 
 const processConfig = async ({
+  // Options useful for testing
   disableCache = false,
-}: { disableCache?: boolean } = {}): Promise<ApplicationConfig> => {
+  processEnv = process.env,
+}: ProcessConfigOptions = {}): Promise<ApplicationConfig> => {
   if (cachedConfig && !disableCache) return cachedConfig;
 
-  // TODO: validate that the env key is either prod or dev
   const appEnvKey =
-    process.env.MC_APP_ENV ?? process.env.NODE_ENV ?? 'development';
-  const isProd = process.env.MC_APP_ENV
-    ? process.env.MC_APP_ENV === 'production'
-    : process.env.NODE_ENV === 'production';
+    processEnv.MC_APP_ENV ?? processEnv.NODE_ENV ?? 'development';
+  const isProd = getIsProd(processEnv);
 
   // TODO: handle legacy configs for backwards compatibility
 

@@ -13,3 +13,56 @@ describe.each`
     await validateConfig(config);
   });
 });
+
+describe('invalid configurations', () => {
+  it('should validate that "env" is defined', () =>
+    expect(
+      validateConfig({
+        ...fixtureConfigSimple,
+        env: undefined,
+      })
+    ).rejects.toEqual(
+      expect.objectContaining({
+        message: expect.stringContaining(`should have required property 'env'`),
+      })
+    ));
+  it('should validate that "env.production" is defined', () =>
+    expect(
+      validateConfig({
+        ...fixtureConfigSimple,
+        env: {},
+      })
+    ).rejects.toEqual(
+      expect.objectContaining({
+        message: expect.stringContaining(
+          `env should have required property 'production'`
+        ),
+      })
+    ));
+  it('should validate that "entryPointUriPath" is defined', () =>
+    expect(
+      validateConfig({
+        ...fixtureConfigSimple,
+        entryPointUriPath: undefined,
+      })
+    ).rejects.toEqual(
+      expect.objectContaining({
+        message: expect.stringContaining(
+          `should have required property 'entryPointUriPath'`
+        ),
+      })
+    ));
+  it('should validate that "cloudIdentifier" is one of the expected values', () =>
+    expect(
+      validateConfig({
+        ...fixtureConfigSimple,
+        cloudIdentifier: 'wrong',
+      })
+    ).rejects.toEqual(
+      expect.objectContaining({
+        message: expect.stringContaining(
+          `should be equal to one of the allowed values: gcp-au,gcp-eu,gcp-us,aws-fra,aws-ohio`
+        ),
+      })
+    ));
+});

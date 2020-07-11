@@ -1,10 +1,3 @@
-import type { Scalar, JSONConfig } from './types';
-
-const isScalarList = (value: Scalar[] | JSONConfig[]): value is Scalar[] =>
-  (value as Scalar[]).every((val) =>
-    ['number', 'boolean', 'string'].includes(typeof val)
-  );
-
 /**
  * NOTE:
  *  Allows env variable placeholders e.g. `${env:MC_API_URL}`.
@@ -13,7 +6,7 @@ const isScalarList = (value: Scalar[] | JSONConfig[]): value is Scalar[] =>
 const variableSyntax = /\${([ ~:a-zA-Z0-9._\'",\-\/\(\)]+?)}/g;
 const envRefSyntax = /^env:/g;
 
-const hasVariablePlaceholder = (valueOfEnvConfig: Scalar | JSONConfig) =>
+const hasVariablePlaceholder = (valueOfEnvConfig: string) =>
   typeof valueOfEnvConfig === 'string' &&
   // Using `{regex}.test()` might cause false positives if called multiple
   // times on a global regular expression:
@@ -51,60 +44,26 @@ const getValueOfPlaceholder = (valueWithPlaceholder: string) =>
     .replace(variableSyntax, (_match, varName) => varName.trim())
     .replace(/\s/g, '');
 
-const substitutePlaceholders = (valueOfEnvConfig: Scalar | JSONConfig) => {
-  if (!hasVariablePlaceholder(valueOfEnvConfig)) return valueOfEnvConfig;
-
-  // Only strings are allowed
-  const valueOfEnvConfigAsString = valueOfEnvConfig as string;
-  // NOTE: Interseting into the string with placeholders
-  // values one by one.
-  let populatedValueOfEnvConfig = valueOfEnvConfigAsString;
-
-  const matchResult = valueOfEnvConfigAsString.match(variableSyntax);
-
-  if (matchResult) {
-    matchResult.forEach((matchedString) => {
-      const valueOfPlaceholder = getValueOfPlaceholder(matchedString);
-
-      if (isEnvVariablePlaceholder(valueOfPlaceholder)) {
-        populatedValueOfEnvConfig = substituteEnvVariablePlaceholder(
-          valueOfPlaceholder,
-          matchedString,
-          populatedValueOfEnvConfig
-        );
+const substituteEnvVariablePlaceholders = <T>(config: T): T =>
+  JSON.parse(JSON.stringify(config), (_key, value) => {
+    // Only strings are allowed
+    let substitutedValue = value as string;
+    if (hasVariablePlaceholder(substitutedValue)) {
+      const matchResult = substitutedValue.match(variableSyntax);
+      if (matchResult) {
+        matchResult.forEach((matchedString) => {
+          const valueOfPlaceholder = getValueOfPlaceholder(matchedString);
+          if (isEnvVariablePlaceholder(valueOfPlaceholder)) {
+            substitutedValue = substituteEnvVariablePlaceholder(
+              valueOfPlaceholder,
+              matchedString,
+              substitutedValue
+            );
+          }
+        });
       }
-    });
-  }
-
-  return populatedValueOfEnvConfig;
-};
-
-const substituteEnvVariablePlaceholders = <T>(config: T): T => {
-  const configAsJson = ((config as unknown) as JSONConfig) ?? {};
-  const entriesOfEnvConfig = Object.entries(configAsJson);
-
-  const replacedEntriesOfEnvConfig = entriesOfEnvConfig.map(
-    ([envConfigKey, envConfigValue]) => {
-      if (Array.isArray(envConfigValue)) {
-        if (isScalarList(envConfigValue)) {
-          return [envConfigKey, envConfigValue.map(substitutePlaceholders)];
-        }
-        return [
-          envConfigKey,
-          envConfigValue.map(substituteEnvVariablePlaceholders),
-        ];
-      }
-      if (typeof envConfigValue === 'object') {
-        return [
-          envConfigKey,
-          substituteEnvVariablePlaceholders(envConfigValue),
-        ];
-      }
-      return [envConfigKey, substitutePlaceholders(envConfigValue)];
     }
-  );
-
-  return Object.fromEntries(replacedEntriesOfEnvConfig);
-};
+    return substitutedValue;
+  });
 
 export default substituteEnvVariablePlaceholders;
