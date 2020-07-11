@@ -3,6 +3,7 @@ module.exports = {
   displayName: 'stylelint',
   moduleFileExtensions: ['css', 'js'],
   modulePathIgnorePatterns: [
+    'build',
     'dist',
     'public',
     '.spec.js',
