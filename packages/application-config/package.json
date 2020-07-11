@@ -35,7 +35,7 @@
   "scripts": {
     "prepare": "./../../scripts/version.js replace",
     "prebuild": "rimraf build/**",
-    "build": "yarn build:schema && build:src && yarn build:typings",
+    "build": "yarn build:schema && yarn build:src && yarn build:typings",
     "build:schema": "json2ts schema.json src/schema.ts --style.singleQuote",
     "build:src": "babel src --out-dir build --extensions .ts --ignore src/types.ts,src/schema.ts",
     "build:typings": "cross-env tsc -p tsconfig.declarations.json --emitDeclarationOnly --declarationDir build/typings"
