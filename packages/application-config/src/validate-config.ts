@@ -1,5 +1,5 @@
 import type { AdditionalPropertiesParams, EnumParams } from 'ajv';
-import type { ApplicationConfig } from './types';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 
 import Ajv from 'ajv';
 import schemaJson from '../schema.json';
@@ -35,7 +35,9 @@ const printErrors = (errors: typeof validate.errors) => {
     .join('\n');
 };
 
-const validateConfig = async (config?: ApplicationConfig): Promise<void> => {
+const validateConfig = async (
+  config?: JSONSchemaForCustomApplicationConfigurationFiles
+): Promise<void> => {
   const valid = validate(config);
   if (!valid) {
     throw new Error(printErrors(validate.errors));

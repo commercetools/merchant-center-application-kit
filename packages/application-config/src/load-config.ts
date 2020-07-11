@@ -1,4 +1,4 @@
-import type { ApplicationConfig } from './types';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 
 import { cosmiconfigSync, defaultLoaders } from 'cosmiconfig';
 
@@ -15,8 +15,10 @@ const explorer = cosmiconfigSync(moduleName, {
   },
 });
 
-let cachedConfig: ApplicationConfig | undefined;
-const loadConfig = (): ApplicationConfig | undefined => {
+let cachedConfig: JSONSchemaForCustomApplicationConfigurationFiles | undefined;
+const loadConfig = ():
+  | JSONSchemaForCustomApplicationConfigurationFiles
+  | undefined => {
   if (cachedConfig) {
     return cachedConfig;
   }

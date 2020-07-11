@@ -1,8 +1,5 @@
-import type {
-  ApplicationConfig,
-  ApplicationConfigResult,
-  CloudIdentifier,
-} from './types';
+import { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
+import type { ApplicationConfig, CloudIdentifier } from './types';
 
 // Loads the configuration file and parse the environment and header values.
 // Most of the resulting values are inferred from the config.
@@ -11,17 +8,17 @@ import validateConfig from './validate-config';
 import { mapCloudIdentifierToApiUrl, getUniqueValues } from './utils';
 import substituteEnvVariablePlaceholders from './substitute-env-variable-placeholders';
 
-const developmentConfig: ApplicationConfig['env']['production'] = {
+const developmentConfig: JSONSchemaForCustomApplicationConfigurationFiles['env']['production'] = {
   url: 'http://localhost:3001',
 };
 
 // Keep a reference to the config so that requiring the module
 // again will result in returning the cached value.
-let cachedConfig: ApplicationConfigResult;
+let cachedConfig: ApplicationConfig;
 
 const processConfig = async ({
   disableCache = false,
-}: { disableCache?: boolean } = {}): Promise<ApplicationConfigResult> => {
+}: { disableCache?: boolean } = {}): Promise<ApplicationConfig> => {
   if (cachedConfig && !disableCache) return cachedConfig;
 
   // TODO: validate that the env key is either prod or dev
@@ -35,11 +32,11 @@ const processConfig = async ({
 
   const rawAppConfig = loadConfig();
   await validateConfig(rawAppConfig);
-  const validatedRawAppConfig = rawAppConfig as ApplicationConfig;
+  const validatedRawAppConfig = rawAppConfig as JSONSchemaForCustomApplicationConfigurationFiles;
 
-  const appConfig = substituteEnvVariablePlaceholders<ApplicationConfig>(
-    validatedRawAppConfig
-  );
+  const appConfig = substituteEnvVariablePlaceholders<
+    JSONSchemaForCustomApplicationConfigurationFiles
+  >(validatedRawAppConfig);
 
   const appEnvConfig = isProd ? appConfig.env.production : developmentConfig;
 
