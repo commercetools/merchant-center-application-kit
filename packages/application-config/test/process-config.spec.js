@@ -332,3 +332,78 @@ describe('processing a config with environment variable placeholders', () => {
     });
   });
 });
+
+describe('when app URL is malformed', () => {
+  beforeEach(() => {
+    loadConfig.mockClear();
+    loadConfig.mockReturnValue({
+      ...fixtureConfigSimple,
+      env: {
+        production: {
+          url: 'wrong url',
+        },
+      },
+    });
+  });
+  it('should throw', () =>
+    expect(
+      processConfig(
+        createTestOptions({
+          processEnv: {
+            NODE_ENV: 'production',
+          },
+        })
+      )
+    ).rejects.toEqual(
+      expect.objectContaining({
+        message: expect.stringContaining(
+          'Invalid application URL: "wrong url"'
+        ),
+      })
+    ));
+});
+describe('when CDN URL is malformed', () => {
+  beforeEach(() => {
+    loadConfig.mockClear();
+    loadConfig.mockReturnValue({
+      ...fixtureConfigSimple,
+      env: {
+        production: {
+          url: 'https://avengers.app',
+          cdnUrl: 'wrong url',
+        },
+      },
+    });
+  });
+  it('should throw', () =>
+    expect(
+      processConfig(
+        createTestOptions({
+          processEnv: {
+            NODE_ENV: 'production',
+          },
+        })
+      )
+    ).rejects.toEqual(
+      expect.objectContaining({
+        message: expect.stringContaining(
+          'Invalid application CDN URL: "wrong url"'
+        ),
+      })
+    ));
+});
+describe('when MC API URL is malformed', () => {
+  beforeEach(() => {
+    loadConfig.mockClear();
+    loadConfig.mockReturnValue({
+      ...fixtureConfigSimple,
+      mcApiUrl: 'wrong url',
+    });
+  });
+  it('should throw', () =>
+    expect(processConfig(createTestOptions())).rejects.toEqual(
+      expect.objectContaining({
+        message: expect.stringContaining('Invalid MC API URL: "wrong url"'),
+      })
+    ));
+});

@@ -9,6 +9,7 @@ import {
   mapCloudIdentifierToApiUrl,
   getUniqueValues,
   getIsProd,
+  getOrThrow,
 } from './utils';
 import substituteEnvVariablePlaceholders from './substitute-env-variable-placeholders';
 
@@ -49,14 +50,23 @@ const processConfig = async ({
   const appEnvConfig = isProd ? appConfig.env.production : developmentConfig;
 
   // Parse all the supported URLs, which gets implicitly validated
-  const appUrl = new URL(appEnvConfig.url);
-  const cdnUrl = new URL(appEnvConfig.cdnUrl || appUrl.origin);
-  const mcApiUrl = new URL(
-    appConfig.mcApiUrl ??
-      mapCloudIdentifierToApiUrl(
-        appConfig.cloudIdentifier as CloudIdentifier
-      ) ??
-      'invalid url, this will throw'
+  const appUrl = getOrThrow(
+    () => new URL(appEnvConfig.url),
+    `Invalid application URL: "${appEnvConfig.url}"`
+  );
+  const cdnUrl = getOrThrow(
+    () => new URL(appEnvConfig.cdnUrl || appUrl.origin),
+    `Invalid application CDN URL: "${appEnvConfig.cdnUrl || appUrl.origin}"`
+  );
+  const mcApiUrl = getOrThrow(
+    () =>
+      new URL(
+        appConfig.mcApiUrl ??
+          mapCloudIdentifierToApiUrl(
+            appConfig.cloudIdentifier as CloudIdentifier
+          )
+      ),
+    `Invalid MC API URL: "${appConfig.mcApiUrl}"`
   );
 
   cachedConfig = {
