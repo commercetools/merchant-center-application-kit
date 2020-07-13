@@ -129,6 +129,7 @@ module.exports = function getBabePresetConfigForMcApp() {
         },
       ],
       require('@babel/plugin-proposal-do-expressions').default,
+      require('@babel/plugin-proposal-logical-assignment-operators').default,
     ].filter(Boolean),
   };
 };

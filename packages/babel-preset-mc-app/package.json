@@ -29,6 +29,7 @@
     "@babel/plugin-proposal-export-default-from": "7.10.4",
     "@babel/plugin-proposal-export-namespace-from": "7.10.4",
     "@babel/plugin-proposal-object-rest-spread": "7.10.4",
+    "@babel/plugin-proposal-logical-assignment-operators": "7.10.4",
     "@babel/plugin-transform-classes": "7.10.4",
     "@babel/plugin-transform-destructuring": "7.10.4",
     "@babel/plugin-transform-react-display-name": "7.10.4",
