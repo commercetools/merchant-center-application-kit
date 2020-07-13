@@ -17,7 +17,7 @@
     "config"
   ],
   "license": "MIT",
-  "private": false,
+  "private": true,
   "publishConfig": {
     "access": "public"
   },
