@@ -46,9 +46,10 @@ const processConfig = async ({
   const appConfig = substituteEnvVariablePlaceholders<
     JSONSchemaForCustomApplicationConfigurationFiles
   >(validatedRawAppConfig, { processEnv });
+  const additionalAppEnv = appConfig.additionalEnv ?? {};
+  const revision = (additionalAppEnv.revision as string) ?? '';
 
   const appEnvConfig = isProd ? appConfig.env.production : developmentConfig;
-
   // Parse all the supported URLs, which gets implicitly validated
   const appUrl = getOrThrow(
     () => new URL(appEnvConfig.url),
@@ -71,7 +72,7 @@ const processConfig = async ({
 
   cachedConfig = {
     env: {
-      ...(appConfig.additionalEnv || {}),
+      ...additionalAppEnv,
       applicationId: appConfig.id,
       applicationName: appConfig.name,
       cdnUrl: cdnUrl.origin,
@@ -79,7 +80,7 @@ const processConfig = async ({
       frontendHost: appUrl.host,
       location: appConfig.cloudIdentifier,
       mcApiUrl: mcApiUrl.origin,
-      revision: '', // TODO
+      revision,
       servedByProxy: isProd,
     },
     headers: {
