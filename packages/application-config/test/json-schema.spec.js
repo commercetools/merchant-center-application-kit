@@ -21,10 +21,8 @@ describe('invalid configurations', () => {
         ...fixtureConfigSimple,
         env: undefined,
       })
-    ).rejects.toEqual(
-      expect.objectContaining({
-        message: expect.stringContaining(`should have required property 'env'`),
-      })
+    ).rejects.toMatchInlineSnapshot(
+      `[Error:  should have required property 'env']`
     ));
   it('should validate that "env.production" is defined', () =>
     expect(
@@ -32,12 +30,8 @@ describe('invalid configurations', () => {
         ...fixtureConfigSimple,
         env: {},
       })
-    ).rejects.toEqual(
-      expect.objectContaining({
-        message: expect.stringContaining(
-          `env should have required property 'production'`
-        ),
-      })
+    ).rejects.toMatchInlineSnapshot(
+      `[Error: .env should have required property 'production']`
     ));
   it('should validate that "entryPointUriPath" is defined', () =>
     expect(
@@ -45,12 +39,8 @@ describe('invalid configurations', () => {
         ...fixtureConfigSimple,
         entryPointUriPath: undefined,
       })
-    ).rejects.toEqual(
-      expect.objectContaining({
-        message: expect.stringContaining(
-          `should have required property 'entryPointUriPath'`
-        ),
-      })
+    ).rejects.toMatchInlineSnapshot(
+      `[Error:  should have required property 'entryPointUriPath']`
     ));
   it('should validate that "cloudIdentifier" is one of the expected values', () =>
     expect(
@@ -58,11 +48,9 @@ describe('invalid configurations', () => {
         ...fixtureConfigSimple,
         cloudIdentifier: 'wrong',
       })
-    ).rejects.toEqual(
-      expect.objectContaining({
-        message: expect.stringContaining(
-          `should be equal to one of the allowed values: gcp-au,gcp-eu,gcp-us,aws-fra,aws-ohio`
-        ),
-      })
-    ));
+    ).rejects.toMatchInlineSnapshot(`
+      [Error: .cloudIdentifier should match pattern "(\\$\\{env:\\w+\\})+"
+      .cloudIdentifier should be equal to one of the allowed values: gcp-au,gcp-eu,gcp-us,aws-fra,aws-ohio
+      .cloudIdentifier should match exactly one schema in oneOf]
+    `));
 });
