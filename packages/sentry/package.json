@@ -42,7 +42,7 @@
     "@babel/runtime": "7.10.4",
     "@babel/runtime-corejs3": "7.10.4",
     "@commercetools-frontend/constants": "16.14.0",
-    "@sentry/browser": "5.19.0",
+    "@sentry/browser": "5.19.2",
     "@types/prop-types": "^15.7.3",
     "prop-types": "15.7.2"
   },

@@ -1,4 +1,4 @@
-import { JWT, JWK, JWKS } from '@panva/jose';
+import { JWT, JWK, JWKS } from 'jose';
 
 const keyRS256 = JWK.generateSync('RSA', 2048, { use: 'sig', alg: 'RS256' });
 

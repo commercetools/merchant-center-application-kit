@@ -1,7 +1,7 @@
 import type { ApplicationWindow } from '@commercetools-frontend/constants';
+import type { Extra, Extras } from '@sentry/types';
 
 import * as Sentry from '@sentry/browser';
-
 declare let window: ApplicationWindow;
 
 type ReportableEvent = ErrorEvent | PromiseRejectionEvent;
@@ -45,11 +45,15 @@ export const boot = () => {
   }
 };
 
+const isExtraAsObject = (
+  extrasOrExtra: Extra | Extras
+): extrasOrExtra is Extras => typeof extrasOrExtra === 'object';
+
 export const reportErrorToSentry = (
   error: Reportable,
-  extraInfo?: { extra?: object | string },
+  extraInfo?: { extra?: Extra | Extras },
   getIsEnabled?: () => boolean
-) => {
+): string | undefined => {
   const isEnabled = getIsEnabled
     ? getIsEnabled()
     : Boolean(window.app.trackingSentry);
@@ -63,8 +67,8 @@ export const reportErrorToSentry = (
   }
 
   if (isEnabled) {
-    if (extraInfo && extraInfo.extra) {
-      if (typeof extraInfo.extra === 'object') {
+    if (extraInfo?.extra) {
+      if (isExtraAsObject(extraInfo.extra)) {
         // See https://docs.sentry.io/platforms/javascript/react/
         Sentry.setExtras(extraInfo.extra);
       } else {
