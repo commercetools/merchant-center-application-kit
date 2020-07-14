@@ -2,7 +2,7 @@ import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema'
 
 import { cosmiconfigSync, defaultLoaders } from 'cosmiconfig';
 
-const moduleName = 'applicationconfig';
+const moduleName = 'custom-application-config';
 const explorer = cosmiconfigSync(moduleName, {
   // Restrict the supported file formats / names
   searchPlaces: [

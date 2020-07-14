@@ -64,8 +64,9 @@
     "json.schemas": [
       {
         "fileMatch": [
-          "/.applicationconfig.json",
-          "/applicationconfig.json"
+          "/.custom-application-configrc",
+          "/.custom-application-config.json",
+          "/custom-application-config.json"
         ],
         "url": "./packages/application-config/schema.json"
       }

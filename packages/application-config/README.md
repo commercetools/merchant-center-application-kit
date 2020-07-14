@@ -16,9 +16,9 @@ $ npm install --save @commercetools-frontend/application-config
 
 A Custom Application must be configured with a single JSON configuration file. The file name can be one of:
 
-- `.applicationconfigrc`
-- `.applicationconfig.json`
-- `applicationconfig.json`
+- `.custom-application-configrc`
+- `.custom-application-config.json`
+- `custom-application-config.json`
 
 The file is automatically loaded, as long as it is found in the project's root folder. For that, the package uses the [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) library.
 
@@ -40,9 +40,9 @@ In the VSCode settings (either user settings or workspace settings), reference t
 "json.schemas": [
   {
     "fileMatch": [
-      "/.applicationconfigrc",
-      "/.applicationconfig.json",
-      "/applicationconfig.json"
+      "/.custom-application-configrc",
+      "/.custom-application-config.json",
+      "/custom-application-config.json"
     ],
     "url": "https://unpkg.com/@commercetools-frontend/application-config/schema.json"
   }
