@@ -20,6 +20,6 @@
     "gatsby-cli": "2.12.58",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-intl": "5.0.2"
+    "react-intl": "5.1.0"
   }
 }

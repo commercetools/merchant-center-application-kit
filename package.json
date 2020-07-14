@@ -176,9 +176,9 @@
     "@mdx-js/react": "1.6.6",
     "**/@mdx-js/react": "1.6.6",
     "**/gatsby-link": "2.4.11",
-    "@sentry/types": "5.19.0",
+    "@sentry/types": "5.19.1",
     "**/@sentry/types": "5.19.0",
-    "@types/react": "16.9.41",
+    "@types/react": "16.9.43",
     "@types/react-router": "5.1.8",
     "react": "16.13.1",
     "**/react": "16.13.1",
@@ -186,7 +186,7 @@
     "**/react-test-renderer": "16.13.1",
     "**/react-intl": "5.0.2",
     "**/sharp": "0.23.3",
-    "cypress": "4.9.0",
+    "cypress": "4.10.0",
     "pretty-format": "26.1.0"
   },
   "engines": {
