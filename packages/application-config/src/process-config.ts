@@ -39,13 +39,13 @@ const processConfig = async ({
 
   // TODO: handle legacy configs for backwards compatibility
 
-  const rawAppConfig = loadConfig();
-  await validateConfig(rawAppConfig);
-  const validatedRawAppConfig = rawAppConfig as JSONSchemaForCustomApplicationConfigurationFiles;
+  const loadedAppConfig = loadConfig();
+  await validateConfig(loadedAppConfig);
+  const validatedLoadedAppConfig = loadedAppConfig as JSONSchemaForCustomApplicationConfigurationFiles;
 
   const appConfig = substituteEnvVariablePlaceholders<
     JSONSchemaForCustomApplicationConfigurationFiles
-  >(validatedRawAppConfig, { processEnv });
+  >(validatedLoadedAppConfig, { processEnv });
   const additionalAppEnv = appConfig.additionalEnv ?? {};
   const revision = (additionalAppEnv.revision as string) ?? '';
 
