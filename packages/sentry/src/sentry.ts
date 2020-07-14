@@ -45,14 +45,15 @@ export const boot = () => {
   }
 };
 
-const isEntras = (extrasOrExtra: Extra | Extras): extrasOrExtra is Extras =>
-  typeof extrasOrExtra === 'object';
+const isExtraAsObject = (
+  extrasOrExtra: Extra | Extras
+): extrasOrExtra is Extras => typeof extrasOrExtra === 'object';
 
 export const reportErrorToSentry = (
   error: Reportable,
   extraInfo?: { extra?: Extra | Extras },
   getIsEnabled?: () => boolean
-) => {
+): string | undefined => {
   const isEnabled = getIsEnabled
     ? getIsEnabled()
     : Boolean(window.app.trackingSentry);
@@ -67,7 +68,7 @@ export const reportErrorToSentry = (
 
   if (isEnabled) {
     if (extraInfo?.extra) {
-      if (isEntras(extraInfo.extra)) {
+      if (isExtraAsObject(extraInfo.extra)) {
         // See https://docs.sentry.io/platforms/javascript/react/
         Sentry.setExtras(extraInfo.extra);
       } else {
