@@ -14,15 +14,15 @@ $ npm install --save @commercetools-frontend/application-config
 
 ## Configuration format
 
-The Custom Application must be configured with a single configuration file, in JSON format. The file name can be one of:
+A Custom Application must be configured with a single JSON configuration file. The file name can be one of:
 
 - `.applicationconfigrc`
 - `.applicationconfig.json`
 - `applicationconfig.json`
 
-The file is automatically loaded, as long as it's found in the project path. For that, the package uses the [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) library.
+The file is automatically loaded, as long as it is found in the project's root folder. For that, the package uses the [cosmiconfig](https://www.npmjs.com/package/cosmiconfig) library.
 
-The configuration file follows a JSON schema that is also shipped with the package. The configuration file is validated upon starting the Custom Application.
+The configuration file is in the format of a JSON schema that is also part of this package. The configuration file itself is validated when starting the Custom Application against the JSON schema.
 
 By default the configuration file uses the `NODE_ENV` variable to determine which configuration to use. This can be overridden by using the custom environment variable `MC_APP_ENV`.
 
@@ -30,7 +30,7 @@ In the [test fixtures](./test/fixtures) folder you can see some examples of conf
 
 ### JSON Schema
 
-To enable JSON schema validation for the Custom Application configuration, you can add reference the URL to the `schema.json` file provided in this package.
+To enable JSON schema validation for the Custom Application configuration, you can add a reference as a URL to the `schema.json` file provided in this package.
 
 **Example setup for VSCode**
 
