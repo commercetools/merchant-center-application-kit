@@ -49,8 +49,8 @@ describe('invalid configurations', () => {
         cloudIdentifier: 'wrong',
       })
     ).rejects.toMatchInlineSnapshot(`
-      [Error: .cloudIdentifier should match pattern "(\\$\\{env:\\w+\\})+"
-      .cloudIdentifier should be equal to one of the allowed values: gcp-au,gcp-eu,gcp-us,aws-fra,aws-ohio
+      [Error: .cloudIdentifier should be equal to one of the allowed values: gcp-au,gcp-eu,gcp-us,aws-fra,aws-ohio
+      .cloudIdentifier should match pattern "(\\$\\{env:\\w+\\})+"
       .cloudIdentifier should match exactly one schema in oneOf]
     `));
 });

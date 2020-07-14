@@ -34,9 +34,6 @@
       "type": "string",
       "oneOf": [
         {
-          "$ref": "#/definitions/envVariablePlaceholder"
-        },
-        {
           "enum": [
             "gcp-au",
             "gcp-eu",
@@ -44,6 +41,9 @@
             "aws-fra",
             "aws-ohio"
           ]
+        },
+        {
+          "$ref": "#/definitions/envVariablePlaceholder"
         }
       ]
     },
