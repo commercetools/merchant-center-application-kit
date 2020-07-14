@@ -73,7 +73,7 @@
     "@flopflip/launchdarkly-adapter": "2.13.4",
     "@flopflip/memory-adapter": "1.7.4",
     "@flopflip/react-broadcast": "10.2.1",
-    "@sentry/browser": "5.19.1",
+    "@sentry/browser": "5.19.2",
     "@types/classnames": "^2.2.9",
     "@types/common-tags": "^1.8.0",
     "@types/graphql": "^14.5.0",
