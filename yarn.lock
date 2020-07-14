@@ -4693,13 +4693,6 @@
   resolved "https://registry.yarnpkg.com/@panva/asn1.js/-/asn1.js-1.0.0.tgz#dd55ae7b8129e02049f009408b97c61ccf9032f6"
   integrity sha512-UdkG3mLEqXgnlKsWanWcgb6dOjUzJ+XC5f+aWw30qrtjxeNUSfKX1cd5FBzOaXQumoe9nIqeZUvrRJS03HCCtw==
 
-"@panva/jose@1.9.3":
-  version "1.9.3"
-  resolved "https://registry.yarnpkg.com/@panva/jose/-/jose-1.9.3.tgz#572182543d4b04ab9d414a358be794ed1bbb5eb3"
-  integrity sha512-oKzjM5YsCSaL+/7NDQhfqeu0xj7owqRduNLM/W+dtIyGI7/AIaPue/bz4fqjYVDTpmRtrlsserR6kiqJucmbjA==
-  dependencies:
-    jose "^1.15.0"
-
 "@percy/agent@~0":
   version "0.27.0"
   resolved "https://registry.yarnpkg.com/@percy/agent/-/agent-0.27.0.tgz#0a026f6306b8a09ec07ede74502a91646854f9b2"
@@ -17256,7 +17249,7 @@ jimp@^0.10.2:
     core-js "^3.4.1"
     regenerator-runtime "^0.13.3"
 
-jose@^1.15.0:
+jose@1.27.2:
   version "1.27.2"
   resolved "https://registry.yarnpkg.com/jose/-/jose-1.27.2.tgz#060c6cddf17e90eaa6316b926860b12ab76580fc"
   integrity sha512-zLIwnMa8dh5A2jFo56KvhiXCaW0hFjdNvG0I5GScL8Wro+/r/SnyIYTbnX3fYztPNSfgQp56sDMHUuS9c3e6bw==

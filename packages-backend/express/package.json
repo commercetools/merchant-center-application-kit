@@ -42,7 +42,7 @@
     "jwks-rsa": "1.8.1"
   },
   "devDependencies": {
-    "@panva/jose": "1.9.3",
+    "jose": "1.27.2",
     "nock": "13.0.2"
   }
 }
