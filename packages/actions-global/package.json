@@ -45,7 +45,7 @@
     "@commercetools-frontend/constants": "16.14.0",
     "@commercetools-frontend/notifications": "16.14.0",
     "@types/lodash": "^4.14.155",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "lodash-es": "4.17.15",
     "redux-thunk": "2.3.0"
   },
