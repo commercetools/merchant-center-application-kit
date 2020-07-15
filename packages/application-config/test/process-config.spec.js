@@ -19,8 +19,8 @@ describe('processing a simple config', () => {
     loadConfig.mockClear();
     loadConfig.mockReturnValue(fixtureConfigSimple);
   });
-  it('should process the config and prepare the application environment and headers', async () => {
-    const result = await processConfig(createTestOptions());
+  it('should process the config and prepare the application environment and headers', () => {
+    const result = processConfig(createTestOptions());
     expect(result).toEqual({
       env: {
         applicationId: undefined,
@@ -43,8 +43,8 @@ describe('processing a simple config', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    it('should process the config as if for production', async () => {
-      const result = await processConfig(
+    it('should process the config as if for production', () => {
+      const result = processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -77,8 +77,8 @@ describe('processing a simple config', () => {
     });
   });
   describe('with MC_APP_ENV=development and NODE_ENV=production', () => {
-    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', async () => {
-      const result = await processConfig(
+    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', () => {
+      const result = processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -115,8 +115,8 @@ describe('processing a full config', () => {
     loadConfig.mockClear();
     loadConfig.mockReturnValue(fixtureConfigFull);
   });
-  it('should process the config and prepare the application environment and headers', async () => {
-    const result = await processConfig(createTestOptions());
+  it('should process the config and prepare the application environment and headers', () => {
+    const result = processConfig(createTestOptions());
     expect(result).toEqual({
       env: {
         applicationId: undefined,
@@ -146,8 +146,8 @@ describe('processing a full config', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    it('should process the config as if for production', async () => {
-      const result = await processConfig(
+    it('should process the config as if for production', () => {
+      const result = processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -185,8 +185,8 @@ describe('processing a full config', () => {
     });
   });
   describe('with MC_APP_ENV=development and NODE_ENV=production', () => {
-    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', async () => {
-      const result = await processConfig(
+    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', () => {
+      const result = processConfig(
         createTestOptions({
           processEnv: {
             NODE_ENV: 'production',
@@ -230,8 +230,8 @@ describe('processing a config with environment variable placeholders', () => {
     loadConfig.mockClear();
     loadConfig.mockReturnValue(fixtureConfigEnvVariables);
   });
-  it('should process the config and prepare the application environment and headers', async () => {
-    const result = await processConfig(
+  it('should process the config and prepare the application environment and headers', () => {
+    const result = processConfig(
       createTestOptions({
         processEnv: {
           APP_URL: 'https://avengers.app',
@@ -262,8 +262,8 @@ describe('processing a config with environment variable placeholders', () => {
     });
   });
   describe('with NODE_ENV=production', () => {
-    it('should process the config as if for production', async () => {
-      const result = await processConfig(
+    it('should process the config as if for production', () => {
+      const result = processConfig(
         createTestOptions({
           processEnv: {
             APP_URL: 'https://avengers.app',
@@ -298,8 +298,8 @@ describe('processing a config with environment variable placeholders', () => {
     });
   });
   describe('with MC_APP_ENV=development and NODE_ENV=production', () => {
-    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', async () => {
-      const result = await processConfig(
+    it('should process the config where the MC_APP_ENV variable takes precedence over NODE_ENV', () => {
+      const result = processConfig(
         createTestOptions({
           processEnv: {
             APP_URL: 'https://avengers.app',
@@ -345,8 +345,8 @@ describe('when app URL is malformed', () => {
       },
     });
   });
-  it('should throw', () =>
-    expect(
+  it('should throw', () => {
+    expect(() =>
       processConfig(
         createTestOptions({
           processEnv: {
@@ -354,13 +354,10 @@ describe('when app URL is malformed', () => {
           },
         })
       )
-    ).rejects.toEqual(
-      expect.objectContaining({
-        message: expect.stringContaining(
-          'Invalid application URL: "wrong url"'
-        ),
-      })
-    ));
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"Invalid application URL: \\"wrong url\\""`
+    );
+  });
 });
 describe('when CDN URL is malformed', () => {
   beforeEach(() => {
@@ -375,8 +372,8 @@ describe('when CDN URL is malformed', () => {
       },
     });
   });
-  it('should throw', () =>
-    expect(
+  it('should throw', () => {
+    expect(() =>
       processConfig(
         createTestOptions({
           processEnv: {
@@ -384,13 +381,10 @@ describe('when CDN URL is malformed', () => {
           },
         })
       )
-    ).rejects.toEqual(
-      expect.objectContaining({
-        message: expect.stringContaining(
-          'Invalid application CDN URL: "wrong url"'
-        ),
-      })
-    ));
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"Invalid application CDN URL: \\"wrong url\\""`
+    );
+  });
 });
 describe('when MC API URL is malformed', () => {
   beforeEach(() => {
@@ -400,10 +394,11 @@ describe('when MC API URL is malformed', () => {
       mcApiUrl: 'wrong url',
     });
   });
-  it('should throw', () =>
-    expect(processConfig(createTestOptions())).rejects.toEqual(
-      expect.objectContaining({
-        message: expect.stringContaining('Invalid MC API URL: "wrong url"'),
-      })
-    ));
+  it('should throw', () => {
+    expect(() =>
+      processConfig(createTestOptions())
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"Invalid MC API URL: \\"wrong url\\""`
+    );
+  });
 });

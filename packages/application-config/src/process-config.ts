@@ -1,4 +1,4 @@
-import { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
+import type { JSONSchemaForCustomApplicationConfigurationFiles } from './schema';
 import type { ApplicationConfig, CloudIdentifier } from './types';
 
 // Loads the configuration file and parse the environment and header values.
@@ -26,11 +26,11 @@ const developmentConfig: JSONSchemaForCustomApplicationConfigurationFiles['env']
 // again will result in returning the cached value.
 let cachedConfig: ApplicationConfig;
 
-const processConfig = async ({
+const processConfig = ({
   // Options useful for testing
   disableCache = false,
   processEnv = process.env,
-}: ProcessConfigOptions = {}): Promise<ApplicationConfig> => {
+}: ProcessConfigOptions = {}): ApplicationConfig => {
   if (cachedConfig && !disableCache) return cachedConfig;
 
   const appEnvKey =
@@ -40,7 +40,7 @@ const processConfig = async ({
   // TODO: handle legacy configs for backwards compatibility
 
   const loadedAppConfig = loadConfig();
-  await validateConfig(loadedAppConfig);
+  validateConfig(loadedAppConfig);
   const validatedLoadedAppConfig = loadedAppConfig as JSONSchemaForCustomApplicationConfigurationFiles;
 
   const appConfig = substituteEnvVariablePlaceholders<

@@ -9,48 +9,54 @@ describe.each`
   ${'Full'}          | ${fixtureConfigFull}
   ${'Env variables'} | ${fixtureConfigEnvVariables}
 `('validating config "$name"', ({ config }) => {
-  it('should detect the config as valid', async () => {
-    await validateConfig(config);
+  it('should detect the config as valid', () => {
+    expect(() => validateConfig(config)).not.toThrowError();
   });
 });
 
 describe('invalid configurations', () => {
-  it('should validate that "env" is defined', () =>
-    expect(
+  it('should validate that "env" is defined', () => {
+    expect(() =>
       validateConfig({
         ...fixtureConfigSimple,
         env: undefined,
       })
-    ).rejects.toMatchInlineSnapshot(
-      `[Error:  should have required property 'env']`
-    ));
-  it('should validate that "env.production" is defined', () =>
-    expect(
+    ).toThrowErrorMatchingInlineSnapshot(
+      `" should have required property 'env'"`
+    );
+  });
+  it('should validate that "env.production" is defined', () => {
+    expect(() =>
       validateConfig({
         ...fixtureConfigSimple,
         env: {},
       })
-    ).rejects.toMatchInlineSnapshot(
-      `[Error: .env should have required property 'production']`
-    ));
-  it('should validate that "entryPointUriPath" is defined', () =>
-    expect(
+    ).toThrowErrorMatchingInlineSnapshot(
+      `".env should have required property 'production'"`
+    );
+  });
+  it('should validate that "entryPointUriPath" is defined', () => {
+    expect(() =>
       validateConfig({
         ...fixtureConfigSimple,
         entryPointUriPath: undefined,
       })
-    ).rejects.toMatchInlineSnapshot(
-      `[Error:  should have required property 'entryPointUriPath']`
-    ));
-  it('should validate that "cloudIdentifier" is one of the expected values', () =>
-    expect(
+    ).toThrowErrorMatchingInlineSnapshot(
+      `" should have required property 'entryPointUriPath'"`
+    );
+  });
+  it('should validate that "cloudIdentifier" is one of the expected values', () => {
+    expect(() =>
       validateConfig({
         ...fixtureConfigSimple,
         cloudIdentifier: 'wrong',
       })
-    ).rejects.toMatchInlineSnapshot(`
-      [Error: .cloudIdentifier should be equal to one of the allowed values: gcp-au,gcp-eu,gcp-us,aws-fra,aws-ohio
-      .cloudIdentifier should match pattern "(\\$\\{env:\\w+\\})+"
-      .cloudIdentifier should match exactly one schema in oneOf]
-    `));
+    ).toThrowError(
+      expect.objectContaining({
+        message: expect.stringContaining(
+          'cloudIdentifier should be equal to one of the allowed values: gcp-au,gcp-eu,gcp-us,aws-fra,aws-ohio'
+        ),
+      })
+    );
+  });
 });

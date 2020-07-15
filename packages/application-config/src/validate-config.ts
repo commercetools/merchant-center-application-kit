@@ -9,6 +9,7 @@ const ajv = new Ajv({
   strictDefaults: true,
   strictKeywords: true,
   strictNumbers: true,
+  async: false,
 });
 const validate = ajv.compile(schemaJson);
 
@@ -34,9 +35,9 @@ const printErrors = (errors: typeof validate.errors) => {
     .join('\n');
 };
 
-const validateConfig = async (
+const validateConfig = (
   config?: JSONSchemaForCustomApplicationConfigurationFiles
-): Promise<void> => {
+): void => {
   const valid = validate(config);
   if (!valid) {
     throw new Error(printErrors(validate.errors));
