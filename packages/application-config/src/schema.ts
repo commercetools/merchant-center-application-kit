@@ -21,9 +21,7 @@ export interface JSONSchemaForCustomApplicationConfigurationFiles {
   /**
    * The cloud identifier where the Custom Application is running. This value is used to derive the Merchant Center API URL. Alternatively you can use the `mcApiUrl` property.
    */
-  cloudIdentifier:
-    | ('gcp-au' | 'gcp-eu' | 'gcp-us' | 'aws-fra' | 'aws-ohio')
-    | EnvVariablePlaceholder;
+  cloudIdentifier: ('gcp-au' | 'gcp-eu' | 'gcp-us' | 'aws-fra' | 'aws-ohio') | EnvVariablePlaceholder;
   /**
    * The URL of the Merchant Center API. We usually recommend to use the `cloudIdentifier` option to avoid possible typos.
    */
